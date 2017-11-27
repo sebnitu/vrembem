@@ -9,24 +9,34 @@ var
   replace = require('gulp-replace'),
   merge = require('merge-stream'),
   minimist = require('minimist'),
+  livereload = require('gulp-livereload')
+;
 
+// Styles Packages
+var
   sass = require('gulp-sass'),
   sourcemaps = require('gulp-sourcemaps'),
   postcss = require('gulp-postcss'),
   autoprefixer = require('autoprefixer'),
-  cssnano = require('cssnano'),
+  cssnano = require('cssnano')
+;
 
+// JavaScript Packages
+var
   concat = require('gulp-concat'),
   deporder = require('gulp-deporder'),
   stripdebug = require('gulp-strip-debug'),
-  uglify = require('gulp-uglify'),
+  uglify = require('gulp-uglify')
+;
 
+// Image Packages
+var
   imagemin = require('gulp-imagemin'),
   feather = require('feather-icons'),
   svgSymbols = require('gulp-svg-symbols')
 ;
 
-// Paths variable
+// Paths
 var paths = {
   src: 'src/',
   dest: 'dist/',
