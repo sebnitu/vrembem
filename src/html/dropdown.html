@@ -1,0 +1,197 @@
+<div class="dropdown__trigger">
+  <button class="button button--outline">
+    <span class="button__text">Dropdown</span>
+    <span class="arrow arrow--down"></span>
+  </button>
+  <ul class="dropdown">
+    <li class="dropdown__content">
+      <p><strong>Some text</strong></p>
+      <p>Any content can go in this dropdown area...</p>
+      <form>
+        <div class="input-group">
+          <input class="input-group__item input" type="text" placeholder="Search..." />
+          <button class="input-group__item input-group__item--static button button--block button--color-secondary">Go</button>
+        </div>
+      </form>
+    </li>
+    <li class="dropdown__sep"></li>
+    <li class="dropdown__item">
+      <a href="#" class="dropdown__link">Dropdown Link</a>
+    </li>
+    <li class="dropdown__item">
+      <a href="#" class="dropdown__link dropdown__link--arrow">Dropdown Link</a>
+      <ul class="dropdown dropdown--size-auto">
+        <li class="dropdown__title">Dropdown Title</li>
+        <li class="dropdown__item">
+          <a href="#" class="dropdown__link">Dropdown Link</a>
+        </li>
+        <li class="dropdown__item">
+          <a href="#" class="dropdown__link">Dropdown Link</a>
+        </li>
+        <li class="dropdown__item">
+          <a href="#" class="dropdown__link">Dropdown Link</a>
+        </li>
+        <li class="dropdown__sep"></li>
+        <li class="dropdown__item">
+          <a href="#" class="dropdown__link">Dropdown Link</a>
+        </li>
+        <li class="dropdown__item">
+          <a href="#" class="dropdown__link">Dropdown Link</a>
+        </li>
+      </ul>
+    </li>
+    <li class="dropdown__item">
+      <a href="#" class="dropdown__link dropdown__link--disabled">Dropdown Link</a>
+    </li>
+    <li class="dropdown__sep"></li>
+    <li class="dropdown__item">
+      <a href="#" class="dropdown__link dropdown__link--active dropdown__link--arrow">Dropdown Link</a>
+      <ul class="dropdown">
+        <li class="dropdown__item">
+          <a href="#" class="dropdown__link">Dropdown Link</a>
+        </li>
+        <li class="dropdown__item">
+          <a href="#" class="dropdown__link">Dropdown Link</a>
+        </li>
+        <li class="dropdown__item">
+          <a href="#" class="dropdown__link dropdown__link--active">Dropdown Link</a>
+        </li>
+        <li class="dropdown__sep"></li>
+        <li class="dropdown__item">
+          <a href="#" class="dropdown__link">Dropdown Link</a>
+        </li>
+        <li class="dropdown__item">
+          <a href="#" class="dropdown__link">Dropdown Link</a>
+        </li>
+      </ul>
+    </li>
+    <li class="dropdown__item">
+      <a href="#" class="dropdown__link">Dropdown Link</a>
+    </li>
+  </ul>
+</div>
+
+<br />
+
+<ul class="menu menu--full">
+  <li class="menu__item">
+    <a href="#" class="menu__link">Menu Item</a>
+  </li>
+  <li class="menu__item dropdown__trigger">
+    <a href="#" class="menu__link">
+      <span class="menu__text">Menu Item</span>
+      <span class="arrow arrow--down"></span>
+    </a>
+    <ul class="dropdown">
+      <li class="dropdown__item">
+        <a href="#" class="dropdown__link">
+          {% include icons/plus-circle.svg %}
+          <span class="dropdown__text">Create</span>
+        </a>
+      </li>
+      <li class="dropdown__item">
+        <a href="#" class="dropdown__link dropdown__link--active">
+          {% include icons/eye.svg %}
+          <span class="dropdown__text">Read</span>
+        </a>
+      </li>
+      <li class="dropdown__item">
+        <a href="#" class="dropdown__link dropdown__link--disabled">
+          {% include icons/rotate-cw.svg %}
+          <span class="dropdown__text">Update</span>
+        </a>
+      </li>
+      <li class="dropdown__item">
+        <a href="#" class="dropdown__link">
+          {% include icons/delete.svg %}
+          <span class="dropdown__text">Delete</span>
+        </a>
+      </li>
+      <li class="dropdown__sep"></li>
+      <li class="dropdown__item">
+        <a href="#" class="dropdown__link">
+          {% include icons/user.svg %}
+          <span class="dropdown__text">Profile</span>
+        </a>
+      </li>
+      <li class="dropdown__item">
+        <a href="#" class="dropdown__link">
+          {% include icons/log-out.svg %}
+          <span class="dropdown__text">Logout</span>
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li class="menu__item dropdown__trigger">
+    <a href="#" class="menu__link">
+      <span class="menu__text">Menu Item</span>
+      <span class="arrow arrow--down"></span>
+    </a>
+    <ul class="dropdown dropdown--pos-down dropdown--size-auto">
+      <li class="dropdown__item">
+        <a href="#" class="dropdown__link"><span class="dropdown__text">Dropdown Link</span></a>
+      </li>
+      <li class="dropdown__item">
+        <a href="#" class="dropdown__link dropdown__link--arrow">
+          <span class="dropdown__text">Dropdown Link</span>
+        </a>
+        <ul class="dropdown dropdown--size-auto">
+          <li class="dropdown__item">
+            <a href="#" class="dropdown__link"><span class="dropdown__text">Dropdown Link</span></a>
+          </li>
+          <li class="dropdown__item">
+            <a href="#" class="dropdown__link"><span class="dropdown__text">Dropdown Link</span></a>
+          </li>
+          <li class="dropdown__item">
+            <a href="#" class="dropdown__link"><span class="dropdown__text">Dropdown Link</span></a>
+          </li>
+          <li class="dropdown__sep"></li>
+          <li class="dropdown__item">
+            <a href="#" class="dropdown__link"><span class="dropdown__text">Dropdown Link</span></a>
+          </li>
+          <li class="dropdown__item">
+            <a href="#" class="dropdown__link"><span class="dropdown__text">Dropdown Link</span></a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown__item">
+        <a href="#" class="dropdown__link dropdown__link--arrow">
+          <span class="dropdown__text">Dropdown Link</span>
+        </a>
+        <ul class="dropdown dropdown--pos-switch dropdown--size-auto">
+          <li class="dropdown__item">
+            <a href="#" class="dropdown__link"><span class="dropdown__text">Dropdown Link</span></a>
+          </li>
+          <li class="dropdown__item">
+            <a href="#" class="dropdown__link"><span class="dropdown__text">Dropdown Link</span></a>
+          </li>
+          <li class="dropdown__item">
+            <a href="#" class="dropdown__link"><span class="dropdown__text">Dropdown Link</span></a>
+          </li>
+          <li class="dropdown__sep"></li>
+          <li class="dropdown__item">
+            <a href="#" class="dropdown__link"><span class="dropdown__text">Dropdown Link</span></a>
+          </li>
+          <li class="dropdown__item">
+            <a href="#" class="dropdown__link"><span class="dropdown__text">Dropdown Link</span></a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown__sep"></li>
+      <li class="dropdown__item">
+        <a href="#" class="dropdown__link"><span class="dropdown__text">Dropdown Link</span></a>
+      </li>
+      <li class="dropdown__item">
+        <a href="#" class="dropdown__link"><span class="dropdown__text">Dropdown Link</span></a>
+      </li>
+    </ul>
+  </li>
+  <li class="menu__item">
+    <a href="#" class="menu__link">Menu Item</a>
+  </li>
+  <li class="menu__item">
+    <a href="#" class="menu__link">Menu Item</a>
+  </li>
+</ul>
+
+<br />

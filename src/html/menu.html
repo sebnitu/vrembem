@@ -1,0 +1,123 @@
+<!-- Default Menus -->
+<ul class="menu">
+  <li class="menu__item"><a href="#" class="menu__link">Create</a></li>
+  <li class="menu__item"><a href="#" class="menu__link">Read</a></li>
+  <li class="menu__item"><a href="#" class="menu__link">Update</a></li>
+  <li class="menu__item"><a href="#" class="menu__link">Delete</a></li>
+  <li class="menu__item"><a href="#" class="menu__link">Profile</a></li>
+  <li class="menu__item"><a href="#" class="menu__link">Logout</a></li>
+</ul>
+
+<br>
+
+<ul class="menu menu--align-center">
+  <li class="menu__item"><a href="#" class="menu__link">Create</a></li>
+  <li class="menu__item"><a href="#" class="menu__link">Read</a></li>
+  <li class="menu__item"><a href="#" class="menu__link">Update</a></li>
+  <li class="menu__item"><a href="#" class="menu__link">Delete</a></li>
+  <li class="menu__item"><a href="#" class="menu__link">Profile</a></li>
+  <li class="menu__item"><a href="#" class="menu__link">Logout</a></li>
+</ul>
+
+<br>
+
+<ul class="menu menu--align-right">
+  <li class="menu__item"><a href="#" class="menu__link">Create</a></li>
+  <li class="menu__item"><a href="#" class="menu__link">Read</a></li>
+  <li class="menu__item"><a href="#" class="menu__link">Update</a></li>
+  <li class="menu__item"><a href="#" class="menu__link">Delete</a></li>
+  <li class="menu__item"><a href="#" class="menu__link">Profile</a></li>
+  <li class="menu__item"><a href="#" class="menu__link">Logout</a></li>
+</ul>
+
+<br>
+
+<!-- Full Menu -->
+<ul class="menu menu--full">
+  <li class="menu__item menu__item--static"><a href="#" class="menu__link menu__link--icon">{% include icons/home.svg %}</a></li>
+  <li class="menu__item"><a href="#" class="menu__link">Create</a></li>
+  <li class="menu__item"><a href="#" class="menu__link">Read</a></li>
+  <li class="menu__item"><a href="#" class="menu__link">Update</a></li>
+  <li class="menu__item"><a href="#" class="menu__link">Delete</a></li>
+  <li class="menu__item"><a href="#" class="menu__link">Profile</a></li>
+  <li class="menu__item"><a href="#" class="menu__link">Logout</a></li>
+</ul>
+
+<br>
+
+<!-- Icon only menu -->
+<ul class="menu">
+  <li class="menu__item"><a href="#" class="menu__link menu__link--icon">{% include icons/arrow-left.svg %}</a></li>
+  <li class="menu__item"><a href="#" class="menu__link menu__link--icon">{% include icons/arrow-right.svg %}</a></li>
+  <li class="menu__item"><a href="#" class="menu__link menu__link--icon">{% include icons/rotate-cw.svg %}</a></li>
+  <li class="menu__item"><a href="#" class="menu__link menu__link--icon">{% include icons/home.svg %}</a></li>
+  <li class="menu__sep"></li>
+  <li class="menu__item"><a href="#" class="menu__link menu__link--icon">{% include icons/more-vertical.svg %}</a></li>
+</ul>
+
+<br />
+
+{% capture menu__items %}
+  <li class="menu__title">Menu Title</li>
+  <li class="menu__item">
+    <a href="#" class="menu__link">
+      {% include icons/plus-circle.svg %}
+      <span class="menu__text">Create</span>
+    </a>
+  </li>
+  <li class="menu__item">
+    <a href="#" class="menu__link menu__link--active">
+      {% include icons/eye.svg %}
+      <span class="menu__text">Read</span>
+    </a>
+  </li>
+  <li class="menu__item">
+    <a href="#" class="menu__link menu__link--disabled">
+      {% include icons/rotate-cw.svg %}
+      <span class="menu__text">Update</span>
+    </a>
+  </li>
+  <li class="menu__item">
+    <a href="#" class="menu__link">
+      {% include icons/delete.svg %}
+      <span class="menu__text">Delete</span>
+    </a>
+  </li>
+  <li class="menu__sep"></li>
+  <li class="menu__item">
+    <a href="#" class="menu__link">
+      <span class="menu__text">Profile</span>
+      {% include icons/user.svg %}
+    </a>
+  </li>
+  <li class="menu__item">
+    <a href="#" class="menu__link">
+      <span class="menu__text">Logout</span>
+      {% include icons/log-out.svg %}
+    </a>
+  </li>
+{% endcapture %}
+
+<ul class="menu menu--scrollable">
+  {{ menu__items }}
+</ul>
+
+<br>
+
+<ul class="menu menu--scrollable menu--align-center">
+  {{ menu__items }}
+</ul>
+
+<br>
+
+<ul class="menu menu--scrollable menu--align-right">
+  {{ menu__items }}
+</ul>
+
+<br>
+
+<ul class="menu menu--scrollable menu--full">
+  {{ menu__items }}
+</ul>
+
+<br>

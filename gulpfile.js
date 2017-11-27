@@ -36,6 +36,11 @@ var
   svgSymbols = require('gulp-svg-symbols')
 ;
 
+// HTML Packages
+var
+  gulpImport = require('gulp-html-import')
+;
+
 // Paths
 var paths = {
   src: 'src/',
@@ -181,6 +186,20 @@ gulp.task('icons', function() {
     }))
     .pipe(gulp.dest( paths.dest + 'icons/' ));
 
+});
+
+/**
+ * Build HTML templates
+ */
+gulp.task('html', function () {
+
+  var src  = paths.src + '*.html';
+  var dest = paths.dest + '/';
+
+  return gulp.src(src)
+    .pipe(gulpImport(paths.src))
+    .pipe(gulp.dest(dest))
+    .pipe(livereload());
 });
 
 /**
