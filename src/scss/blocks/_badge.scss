@@ -1,0 +1,97 @@
+////////////////////////////////////////////////////////////////////////////////
+// @badge classes
+////////////////////////////////////////////////////////////////////////////////
+//
+//  .badge (
+//    .badge--hover
+//    .badge--pill
+//  )
+//    .badge__text
+//    .badge__chip
+//
+////////////////////////////////////////////////////////////////////////////////
+// @badge settings
+////////////////////////////////////////////////////////////////////////////////
+
+$badge-color: $white !default;
+$badge-color-hover: $white !default;
+
+$badge-font-size: 0.875em !default;
+$badge-line-height: 1.325em !default;
+
+$badge-background: $secondary !default;
+$badge-background-hover: darken($secondary, 10%) !default;
+
+$badge-border-radius: $border-radius !default;
+$badge-border: 1px solid transparent !default;
+$badge-border-hover: 1px solid transparent !default;
+
+$badge__chip-padding: px-to-rem(2px) !default;
+$badge__chip-font-size: px-to-rem(12px) !default;
+
+/*==============================================================================
+  @badge
+==============================================================================*/
+
+.badge {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  color: $badge-color;
+  font-size: $badge-font-size;
+  line-height: $badge-line-height;
+  background: $badge-background;
+  border: $badge-border;
+  border-radius: $badge-border-radius;
+  
+  &:hover {
+    color: $badge-color;
+    border: $badge-border;
+  }
+  
+  .chip {
+    padding: $badge__chip-padding;
+    font-size: $badge__chip-font-size;
+    
+    .icon {
+      stroke-width: 3px;
+    }
+    
+    &:first-child {
+      margin: 0 0.5rem 0 -0.25rem;
+    }
+    &:last-child {
+      margin: 0 -0.25rem 0 0.5rem;
+    }
+  }
+}
+
+.badge__text {
+  &:first-child {
+    margin-left: 0.25em;
+  }
+  &:last-child {
+    margin-right: 0.25em;
+  }
+}
+
+.badge--hover:hover {
+  cursor: pointer;
+  color: $badge-color-hover;
+  background: $badge-background-hover;
+  border: $badge-border-hover;
+}
+
+.badge--pill {
+  border-radius: 2em;
+  
+  .badge__text {
+    &:first-child {
+      margin-left: 0.5em;
+    }
+    &:last-child {
+      margin-right: 0.5em;
+    }
+  }
+}

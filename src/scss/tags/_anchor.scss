@@ -1,0 +1,13 @@
+/*==============================================================================
+  @anchor
+==============================================================================*/
+
+a {
+  color: $anchor-color;
+  text-decoration: none;
+  border-bottom: $anchor-border;
+  &:hover {
+    color: $anchor-color--hover;
+    border-color: $anchor-color--hover;
+  }
+}

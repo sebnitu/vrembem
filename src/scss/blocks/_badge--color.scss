@@ -1,0 +1,202 @@
+////////////////////////////////////////////////////////////////////////////////
+// @badge--color classes
+////////////////////////////////////////////////////////////////////////////////
+//
+//  extends .badge
+//    .badge--color-light
+//    .badge--color-dark
+//    .badge--color-red
+//    .badge--color-pink
+//    .badge--color-purple
+//    .badge--color-deep-purple
+//    .badge--color-indigo
+//    .badge--color-blue
+//    .badge--color-light-blue
+//    .badge--color-cyan
+//    .badge--color-teal
+//    .badge--color-green
+//    .badge--color-light-green
+//    .badge--color-lime
+//    .badge--color-yellow
+//    .badge--color-amber
+//    .badge--color-orange
+//    .badge--color-deep-orange
+//
+////////////////////////////////////////////////////////////////////////////////
+// @badge--color settings
+////////////////////////////////////////////////////////////////////////////////
+
+$badge-color: $white !default;
+$badge-color-hover: $white !default;
+
+/*==============================================================================
+  @badge--color
+==============================================================================*/
+
+.badge--color-light {
+  color: $color;
+  background: rgba($white, 0.75);
+  &.badge--hover:hover {
+    color: $color;
+    background: $white;
+  }
+}
+
+.badge--color-dark {
+  color: $white;
+  background: $gray-800;
+  &.badge--hover:hover {
+    color: $white;
+    background: $gray-700;
+  }
+}
+
+.badge--color-red {
+  color: $white;
+  background: $red;
+  &.badge--hover:hover {
+    color: $white;
+    background: $red-700;
+  }
+}
+
+.badge--color-pink {
+  color: $white;
+  background: $pink;
+  &.badge--hover:hover {
+    color: $white;
+    background: $pink-700;
+  }
+}
+
+.badge--color-purple {
+  color: $white;
+  background: $purple;
+  &.badge--hover:hover {
+    color: $white;
+    background: $purple-700;
+  }
+}
+
+.badge--color-deep-purple {
+  color: $white;
+  background: $deep-purple;
+  &.badge--hover:hover {
+    color: $white;
+    background: $deep-purple-700;
+  }
+}
+
+.badge--color-indigo {
+  color: $white;
+  background: $indigo;
+  &.badge--hover:hover {
+    color: $white;
+    background: $indigo-700;
+  }
+}
+
+.badge--color-blue {
+  color: $white;
+  background: $blue;
+  &.badge--hover:hover {
+    color: $white;
+    background: $blue-700;
+  }
+}
+
+.badge--color-light-blue {
+  color: $white;
+  background: $light-blue;
+  &.badge--hover:hover {
+    color: $white;
+    background: $light-blue-700;
+  }
+}
+
+.badge--color-cyan {
+  color: $white;
+  background: $cyan;
+  &.badge--hover:hover {
+    color: $white;
+    background: $cyan-700;
+  }
+}
+
+.badge--color-teal {
+  color: $white;
+  background: $teal;
+  &.badge--hover:hover {
+    color: $white;
+    background: $teal-700;
+  }
+}
+
+.badge--color-green {
+  color: $white;
+  background: $green;
+  &.badge--hover:hover {
+    color: $white;
+    background: $green-700;
+  }
+}
+
+.badge--color-light-green {
+  color: $white;
+  background: $light-green;
+  &.badge--hover:hover {
+    color: $white;
+    background: $light-green-700;
+  }
+}
+
+.badge--color-lime {
+  color: $color;
+  background: $lime;
+  &:hover {
+    color: $color;
+  }
+  &.badge--hover:hover {
+    background: $lime-700;
+  }
+}
+
+.badge--color-yellow {
+  color: $color;
+  background: $yellow;
+  &:hover {
+    color: $color;
+  }
+  &.badge--hover:hover {
+    background: $yellow-700;
+  }
+}
+
+.badge--color-amber {
+  color: $color;
+  background: $amber;
+  &:hover {
+    color: $color;
+  }
+  &.badge--hover:hover {
+    background: $amber-700;
+  }
+}
+
+.badge--color-orange {
+  color: $white;
+  background: $orange;
+  &.badge--hover:hover {
+    color: $white;
+    background: $orange-700;
+  }
+}
+
+.badge--color-deep-orange {
+  color: $white;
+  background: $deep-orange;
+  &.badge--hover:hover {
+    color: $white;
+    background: $deep-orange-700;
+  }
+}

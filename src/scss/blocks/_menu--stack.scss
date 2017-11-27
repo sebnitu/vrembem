@@ -1,0 +1,86 @@
+////////////////////////////////////////////////////////////////////////////////
+// @menu--stack classes
+////////////////////////////////////////////////////////////////////////////////
+//
+//  extends .menu
+//    .menu--stack
+//
+////////////////////////////////////////////////////////////////////////////////
+// @menu--stack settings
+////////////////////////////////////////////////////////////////////////////////
+
+$menu--stack__text-spacing: 1em !default;
+
+/*==============================================================================
+  @menu--stack
+==============================================================================*/
+
+.menu--stack {
+  flex-direction: column;
+  align-items: stretch;
+  overflow: visible;
+  
+  .menu--stack {
+    margin-left: $menu-indent;
+  }
+    
+  .menu__item + .menu__item {
+    margin-left: 0;
+    margin-top: $menu__item-spacing;
+  }
+  
+  .menu__text {
+    margin: 0 $menu--stack__text-spacing;
+    
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  
+  .menu__title {
+    margin: 1em 0;
+    
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  .menu__sep {
+    margin: $menu__sep-spacing 0;
+    border-right: none;
+    border-top: $menu__sep-border;
+  }
+}
+
+.menu--stack.menu--align-left {
+  .menu__title {
+    text-align: left;
+  }
+  .menu__link {
+    justify-content: flex-start;
+  }
+}
+
+.menu--stack.menu--align-center {
+  .menu__title {
+    text-align: center;
+  }
+  .menu__link {
+    justify-content: center;
+  }
+}
+
+.menu--stack.menu--align-right {
+  .menu__title {
+    text-align: right;
+  }
+  .menu__link {
+    justify-content: flex-end;
+  }
+}

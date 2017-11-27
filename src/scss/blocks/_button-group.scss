@@ -1,0 +1,125 @@
+////////////////////////////////////////////////////////////////////////////////
+// @notice classes
+////////////////////////////////////////////////////////////////////////////////
+//
+//  .button-group (
+//    .button-group--stack
+//    .button-group--full
+//    .button-group--outline
+//  )
+//    .button-group_item (
+//      .button-group_item--active
+//      .button-group_item--static
+//    )
+//
+////////////////////////////////////////////////////////////////////////////////
+// @notice settings
+////////////////////////////////////////////////////////////////////////////////
+
+$button-group-spacing: 0 !default;
+$button-group--outline-spacing: -1px !default;
+
+$button-group-border-radius-outer: $border-radius !default;
+$button-group-border-radius-inner: 0 !default;
+
+/*==============================================================================
+  @button-group
+==============================================================================*/
+
+.button-group {
+  display: inline-flex;
+  align-items: center;
+}
+
+.button-group_item {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+  margin: 0;
+  border-radius: $button-group-border-radius-inner;
+  
+  &:hover {
+    z-index: 2;
+  }
+  &:focus {
+    z-index: 3;
+  }
+  &:active {
+    z-index: 4;
+  }
+  &:first-child {
+    border-radius:
+      $button-group-border-radius-outer
+      $button-group-border-radius-inner
+      $button-group-border-radius-inner
+      $button-group-border-radius-outer
+    ;
+  }
+  &:last-child {
+    border-radius:
+      $button-group-border-radius-inner
+      $button-group-border-radius-outer
+      $button-group-border-radius-outer
+      $button-group-border-radius-inner
+    ;
+  }
+  
+  + .button-group_item {
+    margin: 0 0 0 $button-group-spacing;
+  }
+}
+
+.button-group_item--active {
+  z-index: 5;
+}
+
+.button-group--stack {
+  flex-direction: column;
+  
+  .button-group_item {
+    &:first-child {
+      border-radius:
+        $button-group-border-radius-outer
+        $button-group-border-radius-outer
+        $button-group-border-radius-inner
+        $button-group-border-radius-inner
+      ;
+    }
+    &:last-child {
+      border-radius:
+        $button-group-border-radius-inner
+        $button-group-border-radius-inner
+        $button-group-border-radius-outer
+        $button-group-border-radius-outer
+      ;
+    }
+    + .button-group_item {
+      margin: $button-group-spacing 0 0 0;
+    }
+  }
+}
+
+.button-group--full {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  
+  .button-group_item--static {
+    flex-grow: 0;
+  }
+}
+
+@if variable-exists('button--outline-border-width') {
+
+  .button-group--outline {
+    .button-group_item + .button-group_item {
+      margin: 0 0 0 $button-group--outline-spacing;
+    }
+    
+    &.button-group--stack {
+      .button-group_item + .button-group_item {
+        margin: $button-group--outline-spacing 0 0 0;
+      }
+    }
+  }
+}

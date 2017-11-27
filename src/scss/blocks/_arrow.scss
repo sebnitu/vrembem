@@ -1,0 +1,53 @@
+////////////////////////////////////////////////////////////////////////////////
+// @arrow classes
+////////////////////////////////////////////////////////////////////////////////
+//
+//  .arrow (
+//    .arrow--up
+//    .arrow--left
+//    .arrow--right
+//    .arrow--down
+//  )
+//
+////////////////////////////////////////////////////////////////////////////////
+// @arrow settings
+////////////////////////////////////////////////////////////////////////////////
+
+$arrow-size: 4px !default;
+$arrow-color: currentColor !default;
+
+/*==============================================================================
+  @dropdown
+==============================================================================*/
+
+.arrow {
+  display: inline-block;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 0;
+  height: 0;
+}
+
+.arrow--up {
+  border-left: $arrow-size solid transparent;
+  border-right: $arrow-size solid transparent;
+  border-bottom: $arrow-size solid $arrow-color;
+}
+
+.arrow--down {
+  border-left: $arrow-size solid transparent;
+  border-right: $arrow-size solid transparent;
+  border-top: $arrow-size solid $arrow-color;
+}
+
+.arrow--right {
+  border-top: $arrow-size solid transparent;
+  border-bottom: $arrow-size solid transparent;
+  border-left: $arrow-size solid $arrow-color;
+}
+
+.arrow--left {
+  border-top: $arrow-size solid transparent;
+  border-bottom: $arrow-size solid transparent; 
+  border-right: $arrow-size solid $arrow-color; 
+}

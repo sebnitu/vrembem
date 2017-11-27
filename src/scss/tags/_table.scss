@@ -1,0 +1,28 @@
+/*==============================================================================
+  @table
+==============================================================================*/
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  max-width: 100%;
+  margin: 1em 0;
+  overflow: auto;
+  border-top: 1px solid rgba($black, 0.1);
+
+  tr {
+    vertical-align: top;
+  }
+  
+  th,
+  td {
+    padding: 0.5em;
+    border-bottom: 1px solid rgba($black, 0.1);
+  }
+  th {
+    color: $color-dark;
+    font-weight: bold;
+    text-align: left;
+  }
+}

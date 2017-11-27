@@ -1,0 +1,232 @@
+////////////////////////////////////////////////////////////////////////////////
+// @dropdown classes
+////////////////////////////////////////////////////////////////////////////////
+//
+//  .dropdown__trigger
+//    .dropdown (
+//        .dropdown--size-auto
+//        .dropdown--pos-switch
+//    )
+//      .dropdown__item
+//      .dropdown__link (
+//        .dropdown__link--active
+//        .dropdown__link--disabled
+//        .dropdown__link--arrow
+//      )
+//        .dropdown__text
+//      .dropdown__title
+//      .dropdown__content
+//      .dropdown__sep
+//
+////////////////////////////////////////////////////////////////////////////////
+// @dropdown settings
+////////////////////////////////////////////////////////////////////////////////
+
+$dropdown-spacing: 0.5em !default;
+$dropdown-width: 240px !default;
+$dropdown-font-size: px-to-rem(14px) !default;
+$dropdown-line-height: 1.5em !default;
+$dropdown-background: $white !default;
+$dropdown-box-shadow: 0 1px 6px rgba($black, 0.1), 0 0 0 1px rgba($black, 0.1) !default;
+
+$dropdown__item-margin: 1px 0 !default;
+$dropdown__item-background: null !default;
+$dropdown__item-background-hover: $gray-100 !default;
+
+$dropdown__link-padding: 0.625em 1.375em !default;
+
+$dropdown__link-color: $color !default;
+$dropdown__link-color-hover: $color !default;
+$dropdown__link-color-active: $white !default;
+$dropdown__link-color-disabled: $color-light !default;
+
+$dropdown__link-background: null !default;
+$dropdown__link-background-hover: $gray-100 !default;
+$dropdown__link-background-active: $primary !default;
+$dropdown__link-background-disabled: $white !default;
+
+$dropdown__link--arrow-size: 4px !default;
+
+$dropdown__text-spacing: 1em !default;
+
+$dropdown__sep-border: 1px solid rgba($black, 0.1) !default;
+
+/*==============================================================================
+  @dropdown
+==============================================================================*/
+
+.dropdown__trigger {
+  position: relative;
+  display: inline-block;
+}
+.dropdown__trigger .dropdown__trigger {
+  padding-bottom: 0;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  z-index: 10;
+  top: 100%;
+  left: 0;
+  right: auto;
+  bottom: auto;
+  width: $dropdown-width;
+  margin: $dropdown-spacing 0 0;
+  padding: $dropdown-spacing 0;
+  font-size: $dropdown-font-size;
+  line-height: $dropdown-line-height;
+  text-align: left;
+  list-style: none;
+  background: $dropdown-background;
+  background-clip: padding-box;
+  border-radius: $border-radius;
+  box-shadow: $dropdown-box-shadow;
+  
+  &:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: $dropdown-spacing;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+  }
+}
+.dropdown__trigger:not(.js-dropdown--on-click):hover > .dropdown,
+.dropdown__item:hover > .dropdown,
+.js-dropdown--active > .dropdown {
+  display: block;
+}
+
+.dropdown__trigger:hover > .dropdown,
+.dropdown__item:hover > .dropdown {
+  z-index: 12;
+}
+
+.dropdown--size-auto {
+  width: auto;
+  white-space: nowrap;
+}
+
+.dropdown__item {
+  position: relative;
+  display: block;
+  margin: $dropdown__item-margin;
+  background: $dropdown__item-background;
+  
+  &:hover {
+    background: $dropdown__item-background-hover;
+  }
+  
+  .dropdown {
+    top: -$dropdown-spacing;
+    left: 100%;
+    right: auto;
+    margin: -1px 0 0 1px;
+    
+    &:before {
+      width: 1px;
+      height: 100%;
+      top: 0;
+      left: auto;
+      right: 100%;
+      bottom: 0;
+    }
+  }
+  .dropdown--pos-switch {
+    left: auto;
+    right: 100%;
+    margin: -1px 1px 0 0;
+    
+    &:before {
+      left: 100%;
+      right: auto;
+    }
+  }
+}
+
+.dropdown__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: $dropdown__link-padding;
+  color: $dropdown__link-color;
+  background: $dropdown__link-background;
+  border: none;
+  
+  &:hover {
+    color: $dropdown__link-color-hover;
+    background: $dropdown__link-background-hover;
+  }
+}
+.dropdown__link--active {
+  color: $dropdown__link-color-active;
+  background: $dropdown__link-background-active;
+  &:hover {
+    color: $dropdown__link-color-active;
+    background: $dropdown__link-background-active;
+  }
+}
+.dropdown__link--disabled {
+  color: $dropdown__link-color-disabled;
+  background: $dropdown__link-background-disabled;
+  &:hover {
+    color: $dropdown__link-color-disabled;
+    background: $dropdown__link-background-disabled;
+  }
+}
+.dropdown__link--arrow {
+  padding-right: 2.5em;
+  
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    display: inline-block;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 0;
+    height: 0;
+    margin: -$dropdown__link--arrow-size 1em 0 0;
+    border-top: $dropdown__link--arrow-size solid transparent;
+    border-bottom: $dropdown__link--arrow-size solid transparent;
+    border-left: $dropdown__link--arrow-size solid currentColor;
+  }
+}
+
+.dropdown__text {
+  margin: 0 $dropdown__text-spacing;
+  
+  &:first-child {
+    margin-left: 0;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.dropdown__content {
+  margin: $dropdown__item-margin;
+  padding: $dropdown__link-padding;
+  
+  > * {
+    margin: 0;
+  }
+  > * + * {
+    margin-top: $dropdown-spacing;
+  }
+}
+
+.dropdown__title {
+  margin: $dropdown__item-margin;
+  padding: $dropdown__link-padding;
+  font-weight: font-weight('semi-bold');
+}
+
+.dropdown__sep {
+  margin: $dropdown-spacing 0;
+  border-bottom: $dropdown__sep-border;
+}

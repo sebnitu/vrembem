@@ -1,0 +1,42 @@
+////////////////////////////////////////////////////////////////////////////////
+// @Settings
+////////////////////////////////////////////////////////////////////////////////
+
+$primary: $blue !default;
+$secondary: $gray !default;
+$success: $green !default;
+$caution: $amber-600 !default;
+$danger: $red !default;
+
+$background-color: $gray-100 !default;
+
+$border-color: rgba($black, 0.10) !default;
+$border-radius: 3px !default;
+
+$box-sizing: border-box !default;
+$box-shadow: 0 1px 3px rgba($black, 0.1) !default;
+
+$transition: all 0.25s linear !default;
+
+$font-family-sans: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif !default;
+$font-family-serif: georgia, "Times New Roman", times, serif !default;
+$font-family-mono: Menlo, Monaco, Consolas, "Courier New", monospace !default;
+$font-family: $font-family-sans !default;
+
+$font-size: 16px !default;
+$line-height: 1.5em !default;
+$font-weight: font-weight('normal') !default;
+
+$color: $gray-800 !default;
+$color-light: $gray-400 !default;
+$color-dark: $gray-900 !default;
+
+$anchor-color: $blue !default;
+$anchor-color--hover: $blue-700 !default;
+$anchor-border: 1px solid rgba($black, 0.1) !default;
+$anchor-border--hover: 1px solid rgba($blue-700, 1) !default;
+
+$heading-font-weight: font-weight('semi-bold') !default;
+$heading-color: $color-dark !default;
+$heading__anchor-color: $color-dark !default;
+$heading__anchor-color--hover: $blue !default;

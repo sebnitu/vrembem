@@ -1,0 +1,38 @@
+/*==============================================================================
+  @list
+==============================================================================*/
+
+ul, ol {
+  margin: 1em 0 1em 2em;
+  padding: 0;
+  ul, ol, li {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+}
+
+ul, ul ul ul {
+  list-style: disc;
+}
+ul ul, ul ul ul ul {
+  list-style: circle;
+}
+
+ol, ol ol ol {
+  list-style: decimal;
+}
+ol ol, ol ol ol ol {
+  list-style: lower-alpha;
+}
+
+dl {
+  margin: 1em 0;
+  dt {
+    margin: 1em 0 0;
+    font-weight: bold;
+    color: $color-dark;
+  }
+  dd {
+    margin: 0 0 1em 1em;
+  }
+}

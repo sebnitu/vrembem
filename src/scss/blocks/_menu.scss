@@ -1,0 +1,197 @@
+////////////////////////////////////////////////////////////////////////////////
+// @menu classes
+////////////////////////////////////////////////////////////////////////////////
+//
+//  .menu (
+//    .menu--full
+//    .menu--scrollable
+//    .menu--align-left 
+//    .menu--align-center 
+//    .menu--align-right
+//  )
+//    .menu__item
+//      .menu__link (
+//        .menu__link--active 
+//        .menu__link--disabled 
+//        .menu__link--icon
+//      )
+//        .menu__text
+//    .menu__title
+//      .menu__title-link
+//    .menu__sep
+//
+////////////////////////////////////////////////////////////////////////////////
+// @menu settings
+////////////////////////////////////////////////////////////////////////////////
+
+$menu-font-size: 1em !default;
+$menu-indent: 1em !default;
+
+$menu__item-spacing: 1px !default;
+
+$menu__link-padding: 0.375em 0.75em !default;
+
+$menu__link-color: $color !default;
+$menu__link-color-hover: $color !default;
+$menu__link-color-active: $blue !default;
+$menu__link-color-disabled: $color-light !default;
+
+$menu__link-border-width: 1px !default;
+$menu__link-border-color: transparent !default;
+$menu__link-border-color-hover: transparent !default;
+$menu__link-border-radius: $border-radius !default;
+
+$menu__link-background: null !default;
+$menu__link-background-hover: rgba($black, 0.05) !default;
+$menu__link-background-active: null !default;
+$menu__link-background-disabled: none !default;
+
+$menu__text-spacing: 0.5em !default;
+
+$menu__title-margin: 1em !default;
+$menu__title-font-size: 0.9em !default;
+
+$menu__sep-spacing: 0.5em;
+$menu__sep-border: 1px solid rgba($black, 0.1) !default;
+
+/*==============================================================================
+  @menu
+==============================================================================*/
+
+.menu {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  font-size: $menu-font-size;
+  list-style: none;
+}
+
+.menu__item {
+  margin: 0;
+  
+  + .menu__item {
+    margin-left: $menu__item-spacing;
+  }
+}
+
+.menu__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: none;
+  padding: $menu__link-padding;
+  color: $menu__link-color;
+  white-space: nowrap;
+  text-decoration: none;
+  background: $menu__link-background;
+  border: $menu__link-border-width solid $menu__link-border-color;
+  border-radius: $menu__link-border-radius;
+  
+  &:hover,
+  &:focus {
+    outline: none;
+    color: $menu__link-color-hover;
+    background: $menu__link-background-hover;
+    border-color: $menu__link-border-color-hover;
+  }
+}
+.menu__link--active {
+  background: $menu__link-background-active;
+  color: $menu__link-color-active;
+  
+  &:hover,
+  &:focus {
+    background: $menu__link-background-active;
+    color: $menu__link-color-active;
+  }
+}
+.menu__link--disabled {
+  background: $menu__link-background-disabled;
+  color: $menu__link-color-disabled;
+  
+  &:hover,
+  &:focus {
+    background: $menu__link-background-disabled;
+    color: $menu__link-color-disabled;
+  }
+}
+.menu__link--icon {
+  padding: nth($menu__link-padding, 1);
+}
+
+.menu__text {
+  margin: 0 $menu__text-spacing;
+  
+  &:first-child {
+    margin-left: 0;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.menu__title {
+  margin: 0 $menu__title-margin;
+  font-size: $menu__title-font-size;
+  font-weight: font-weight('semi-bold');
+  text-transform: uppercase;
+  color: $color-light;
+  white-space: nowrap;
+  
+  &:first-child {
+    margin-left: 0;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.menu__title-link {
+  display: block;
+  padding: 0.375rem 0.75rem;
+  border-radius: $menu__link-border-radius;
+  color: $color-light;
+  border: none;
+  &:hover {
+    background: $menu__link-background-hover;
+    color: $menu__link-color-hover;
+  }
+}
+
+.menu__sep {
+  align-self: stretch;
+  margin: 0 $menu__sep-spacing;
+  border-right: $menu__sep-border;
+}
+
+.menu--full {
+  justify-content: space-between;
+  
+  .menu__item {
+    flex: 1 1 auto;
+  }
+  .menu__item--static {
+    flex-grow: 0;
+  }
+  .menu__link {
+    justify-content: center;
+  }
+}
+
+.menu--scrollable {
+  overflow: auto;
+  @include add-scrollable();
+}
+
+.menu--align-left {
+  justify-content: flex-start;
+}
+
+.menu--align-center {
+  justify-content: center;
+}
+
+.menu--align-right {
+  justify-content: flex-end;
+}

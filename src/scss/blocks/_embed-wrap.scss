@@ -1,0 +1,52 @@
+////////////////////////////////////////////////////////////////////////////////
+// @embed-wrap classes
+////////////////////////////////////////////////////////////////////////////////
+//
+//  .embed-wrap (
+//    .embed-wrap--16x9
+//    .embed-wrap--4x3
+//    .embed-wrap--3x2
+//  )
+//    .embed-wrap__item
+//
+////////////////////////////////////////////////////////////////////////////////
+// @embed-wrap settings
+////////////////////////////////////////////////////////////////////////////////
+
+$embed-wrap-ratio: 56.25% !default;
+
+/*==============================================================================
+  @embed-wrap
+==============================================================================*/
+
+.embed-wrap {
+  position: relative;
+	display: block;
+	height: 0;
+	margin: 1em 0;
+	padding: 0 0 $embed-wrap-ratio 0;
+	overflow: hidden;
+}
+
+.embed-wrap--16x9 {
+  padding-bottom: aspect-ratio(16, 9);
+}
+
+.embed-wrap--4x3 {
+  padding-bottom: aspect-ratio(4, 3);
+}
+
+.embed-wrap--3x2 {
+  padding-bottom: aspect-ratio(3, 2);
+}
+
+.embed-wrap__item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+}

@@ -1,0 +1,16 @@
+/*==============================================================================
+  @html
+==============================================================================*/
+
+html {
+  margin: 0;
+  padding: 0;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  box-sizing: $box-sizing;
+  font-size: $font-size;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}

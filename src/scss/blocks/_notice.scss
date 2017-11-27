@@ -1,0 +1,68 @@
+////////////////////////////////////////////////////////////////////////////////
+// @notice classes
+////////////////////////////////////////////////////////////////////////////////
+//
+//  .notice (
+//    .notice--color-info
+//    .notice--color-success
+//    .notice--color-warning
+//    .notice--color-danger
+//  )
+//
+////////////////////////////////////////////////////////////////////////////////
+// @notice settings
+////////////////////////////////////////////////////////////////////////////////
+
+$notice-margin: 1em 0 !default;
+$notice-padding: 0.75em 1em !default;
+$notice-background: rgba($black, 0.05) !default;
+$notice-border-width: 1px !default;
+$notice-border-color: rgba($black, 0.1) !default;
+$notice-border-radius: $border-radius !default;
+
+/*==============================================================================
+  @notice
+==============================================================================*/
+
+.notice {
+  position: relative;
+  margin: $notice-margin;
+  padding: $notice-padding;
+  background: $notice-background;
+  border: $notice-border-width solid $notice-border-color;
+  border-radius: $notice-border-radius;
+}
+
+.notice__close {
+  float: right;
+  margin: -1px -0.25em 0.5em 1em;
+}
+
+.notice__content {
+  > * {
+    margin: 0;
+  }
+  > * + * {
+    margin-top: 1em;
+  }
+}
+
+.notice--outline {
+  background: none;
+}
+
+.notice--color-info {
+  background: rgba($primary, 0.2);
+}
+
+.notice--color-success {
+  background: rgba($success, 0.2);
+}
+
+.notice--color-caution {
+  background: rgba($caution, 0.2);
+}
+
+.notice--color-danger {
+  background: rgba($danger, 0.2);
+}
