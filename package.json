@@ -1,7 +1,7 @@
 {
   "name": "vrembem",
   "description": "A BEM powered CSS component library.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": {
     "name": "Sebastian Nitu",
     "email": "me@sebnitu.com",
