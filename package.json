@@ -15,7 +15,6 @@
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^7.1.6",
-    "cssnano": "^3.10.0",
     "feather-icons": "^4.0.1",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
@@ -27,6 +26,9 @@
     "gulp-strip-debug": "^1.1.0",
     "gulp-svg-symbols": "^2.0.2",
     "gulp-uglify": "^3.0.0",
-    "merge-stream": "^1.0.1"
-  }
+    "merge-stream": "^1.0.1",
+    "q": "^1.5.1",
+    "through2": "^2.0.3"
+  },
+  "dependencies": {}
 }

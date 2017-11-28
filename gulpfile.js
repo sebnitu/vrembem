@@ -4,7 +4,8 @@ var
   path = require('path'),
   gulp = require('gulp'),
   rename = require('gulp-rename'),
-  merge = require('merge-stream')
+  merge = require('merge-stream'),
+  Q = require('q')
 ;
 
 // CSS Processing Packages
@@ -12,8 +13,7 @@ var
   sass = require('gulp-sass'),
   sourcemaps = require('gulp-sourcemaps'),
   postcss = require('gulp-postcss'),
-  autoprefixer = require('autoprefixer'),
-  cssnano = require('cssnano')
+  autoprefixer = require('autoprefixer')
 ;
 
 // JS Processing Packages
@@ -40,84 +40,145 @@ var paths = {
  * CSS Task
  */
 gulp.task('css', function() {
-  var
-    src = paths.src + 'scss/vrembem.scss',
-    dest = paths.dest + 'css/',
-    sassOpts = {
-      outputStyle: 'expanded',
-      precision: 3
-    },
-    postcssOpts = [
-      autoprefixer({ browsers: ['last 2 versions', '> 2%'] })
-    ],
-    css = gulp.src(src)
-      .pipe(sourcemaps.init())
-      .pipe(sass(sassOpts)
-      .on('error', sass.logError))
-      .pipe(postcss(postcssOpts))
-      .pipe(rename('vrembem.css'))
-      .pipe(sourcemaps.write('./'))
-      .pipe(gulp.dest(dest)),
-    cssmin = gulp.src(src)
-      .pipe(sourcemaps.init())
-      .pipe(sass(sassOpts)
-      .on('error', sass.logError))
-      .pipe(postcss(postcssOpts))
-      .pipe(postcss([cssnano]))
-      .pipe(rename('vrembem.min.css'))
-      .pipe(sourcemaps.write('./'))
-      .pipe(gulp.dest(dest));
+
+  var src = paths.src + 'scss/*.scss';
+  var dest = paths.dest + 'css/';
+
+  var css = gulp.src(src)
+    .pipe(sourcemaps.init())
+    .pipe(
+      sass({
+        outputStyle: 'expanded',
+        precision: 3
+      })
+      .on('error', sass.logError)
+    )
+    .pipe(postcss([
+      autoprefixer({
+        browsers: ['last 2 versions', '> 2%']
+      })
+    ]))
+    .pipe(sourcemaps.write('./maps'))
+    .pipe(gulp.dest(dest));
+
+  var cssmin = gulp.src(src)
+    .pipe(sourcemaps.init())
+    .pipe(
+      sass({
+        outputStyle: 'compressed',
+        precision: 3
+      })
+      .on('error', sass.logError)
+    )
+    .pipe(postcss([
+      autoprefixer({
+        browsers: ['last 2 versions', '> 2%']
+      })
+    ]))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(sourcemaps.write('./maps'))
+    .pipe(gulp.dest(dest));
 
   return merge(css, cssmin);
 });
 
 /**
- * Output expanded and minified JS files from `src` into `dist`
+ * JS Task
  */
 gulp.task('js', function() {
-  var
-    src = paths.src + 'js/**/*',
-    dest = paths.dest + 'js/',
-    js = gulp.src(src)
-      .pipe(deporder())
-      .pipe(concat('vrembem.js'))
-      .pipe(gulp.dest(dest)),
-    jsmin = gulp.src(src)
-      .pipe(deporder())
-      .pipe(concat('vrembem.min.js'))
-      .pipe(uglify())
-      .pipe(gulp.dest(dest));
+
+  var src = paths.src + 'js/**/*';
+  var dest = paths.dest + 'js/';
+
+  var js = gulp.src(src)
+    .pipe(deporder())
+    .pipe(concat('vrembem.js'))
+    .pipe(gulp.dest(dest));
+
+  var jsmin = gulp.src(src)
+    .pipe(deporder())
+    .pipe(concat('vrembem.min.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest(dest));
 
   return merge(js, jsmin);
 });
 
 /**
- * Icons Task
+ * Icons Source Task
  */
-gulp.task('icons', function() {
+gulp.task('icons:src', function() {
 
-  var src  = paths.icons + '*.svg';
+  var deferred = Q.defer();
+  var itemsProcessed = 0;
+
+  var src = paths.icons;
   var dest = paths.src + 'icons/';
 
-  fs.readdirSync(paths.icons).forEach(icon => {
-    icon = path.basename(icon, '.svg');
-    var svg = feather.icons[icon].toSvg({
-      class: 'icon icon-' + icon
-    });
-    fs.writeFile(dest + icon + '.svg', svg, function (err) {
-      if (err) { console.error(err); }
+  // Create the source directory if it doesn't exist
+  if (!fs.existsSync(dest)){
+    fs.mkdirSync(dest);
+  }
+
+  // Get all the icons
+  fs.readdir(src, function(err, icons) {
+    if (err) { console.error(err); }
+
+    // Loop through our icons
+    icons.forEach(icon => {
+
+      // Get the icon name
+      icon = path.basename(icon, '.svg');
+
+      // Get the icon object
+      var obj = feather.icons[icon];
+
+      // Set our custom classes
+      obj.attrs.class = 'icon icon-' + icon;
+
+      // Convert to SVG
+      var svg = obj.toSvg();
+
+      // Write new icons
+      fs.writeFile(dest + icon + '.svg', svg, function (err) {
+        if (err) { console.error(err); }
+
+        itemsProcessed++;
+        if(itemsProcessed === icons.length) {
+          deferred.resolve();
+        }
+      });
     });
   });
 
-  return gulp.src( src )
+  return deferred.promise;
+
+});
+
+/**
+ * Icons Symbols Task
+ */
+gulp.task('icons:dest', ['icons:src'], function() {
+
+  var src = paths.src + 'icons/*.svg';
+  var dest = paths.dest + 'icons/';
+
+  var symbols = gulp.src(src)
     .pipe(svgSymbols({
       id: 'icon-%f',
       svgClassname: 'svg-symbols',
       templates: ['default-svg']
     }))
-    .pipe(gulp.dest( paths.dest + 'icons/' ));
+    .pipe(gulp.dest(dest));
+
+  return symbols;
 
 });
+
+/**
+ * Icons Task
+ */
+gulp.task('icons', ['icons:src', 'icons:dest']);
 
 /**
  * Watch
@@ -125,7 +186,7 @@ gulp.task('icons', function() {
 gulp.task('watch', function() {
   gulp.watch(paths.src + 'scss/**/*', ['css']);
   gulp.watch(paths.src + 'js/**/*', ['js']);
-  gulp.watch(paths.src + 'icons/**/*', ['icons']);
+  gulp.watch(paths.src + 'icons/**/*', ['icons:dest']);
 });
 
 /**
