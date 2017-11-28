@@ -1659,6 +1659,7 @@ table th {
   margin: 2em 0;
 }
 
+.hero__background,
 .hero__canvas {
   position: absolute;
   z-index: 1;
@@ -1666,6 +1667,13 @@ table th {
   left: 0;
   right: 0;
   bottom: 0;
+}
+
+.hero__background {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
 /*==============================================================================
@@ -2300,11 +2308,14 @@ table th {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  max-width: 75rem;
+  margin: 0 auto;
+}
+
+.navbar__container--split {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  max-width: 75rem;
-  margin: 0 auto;
 }
 
 .navbar__item + .navbar__item {

@@ -3,6 +3,7 @@ var
   fs = require('fs'),
   path = require('path'),
   gulp = require('gulp'),
+  del = require('del'),
   rename = require('gulp-rename'),
   merge = require('merge-stream'),
   Q = require('q')
@@ -37,9 +38,26 @@ var paths = {
 };
 
 /**
+ * Clean Task
+ */
+gulp.task('clean', function() {
+  return del([
+    paths.dest + '**/*',
+    paths.src + 'icons/**/*'
+  ]);
+});
+
+/**
+ * Clean CSS Task
+ */
+gulp.task('clean:css', function() {
+  return del(paths.dest + 'css/**/*');
+});
+
+/**
  * CSS Task
  */
-gulp.task('css', function() {
+gulp.task('build:css', ['clean:css'], function() {
 
   var src = paths.src + 'scss/*.scss';
   var dest = paths.dest + 'css/';
@@ -83,31 +101,49 @@ gulp.task('css', function() {
 });
 
 /**
+ * Clean JS Task
+ */
+gulp.task('clean:js', function() {
+  return del(paths.dest + 'js/**/*');
+});
+
+/**
  * JS Task
  */
-gulp.task('js', function() {
+gulp.task('build:js', ['clean:js'], function() {
 
   var src = paths.src + 'js/**/*';
   var dest = paths.dest + 'js/';
 
   var js = gulp.src(src)
+    .pipe(sourcemaps.init())
     .pipe(deporder())
     .pipe(concat('vrembem.js'))
+    .pipe(sourcemaps.write('./maps'))
     .pipe(gulp.dest(dest));
 
   var jsmin = gulp.src(src)
+    .pipe(sourcemaps.init())
     .pipe(deporder())
     .pipe(concat('vrembem.min.js'))
     .pipe(uglify())
+    .pipe(sourcemaps.write('./maps'))
     .pipe(gulp.dest(dest));
 
   return merge(js, jsmin);
 });
 
 /**
+ * Clean Icons Source Task
+ */
+gulp.task('clean:icons:src', function() {
+  return del(paths.src + 'icons/**/*');
+});
+
+/**
  * Icons Source Task
  */
-gulp.task('icons:src', function() {
+gulp.task('build:icons:src', ['clean:icons:src'], function() {
 
   var deferred = Q.defer();
   var itemsProcessed = 0;
@@ -156,9 +192,16 @@ gulp.task('icons:src', function() {
 });
 
 /**
+ * Clean Icons Source Task
+ */
+gulp.task('clean:icons:dest', function() {
+  return del(paths.dest + 'icons/**/*');
+});
+
+/**
  * Icons Symbols Task
  */
-gulp.task('icons:dest', ['icons:src'], function() {
+gulp.task('build:icons:dest', ['clean:icons:dest'], function() {
 
   var src = paths.src + 'icons/*.svg';
   var dest = paths.dest + 'icons/';
@@ -178,18 +221,23 @@ gulp.task('icons:dest', ['icons:src'], function() {
 /**
  * Icons Task
  */
-gulp.task('icons', ['icons:src', 'icons:dest']);
+gulp.task('build:icons', ['build:icons:src', 'build:icons:dest']);
+
+/**
+ * Build
+ */
+ gulp.task('build', ['build:css', 'build:js', 'build:icons']);
 
 /**
  * Watch
  */
 gulp.task('watch', function() {
-  gulp.watch(paths.src + 'scss/**/*', ['css']);
-  gulp.watch(paths.src + 'js/**/*', ['js']);
-  gulp.watch(paths.src + 'icons/**/*', ['icons:dest']);
+  gulp.watch(paths.src + 'scss/**/*', ['build:css']);
+  gulp.watch(paths.src + 'js/**/*', ['build:js']);
+  gulp.watch(paths.src + 'icons/**/*', ['build:icons:dest']);
 });
 
 /**
  * Default
  */
-gulp.task('default', ['css', 'js', 'icons', 'watch']);
+gulp.task('default', ['build']);

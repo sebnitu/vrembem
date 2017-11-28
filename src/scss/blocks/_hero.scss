@@ -6,6 +6,7 @@
 //    .hero__container
 //      .hero__title
 //      .hero__action
+//      .hero__background
 //      .hero__canvas
 //
 ////////////////////////////////////////////////////////////////////////////////
@@ -50,6 +51,7 @@ $hero-background: null !default;
   margin: 2em 0;
 }
 
+.hero__background,
 .hero__canvas {
   position: absolute;
   z-index: 1;
@@ -57,4 +59,10 @@ $hero-background: null !default;
   left: 0;
   right: 0;
   bottom: 0;
+}
+
+.hero__background {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
