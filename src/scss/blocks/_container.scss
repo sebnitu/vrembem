@@ -1,27 +1,27 @@
 ////////////////////////////////////////////////////////////////////////////////
-// @body classes
+// @container classes
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  body
+//  .container
 //
 ////////////////////////////////////////////////////////////////////////////////
-// @body settings
+// @container settings
 ////////////////////////////////////////////////////////////////////////////////
 
-$body-background: null !default;
+$container-max-width: 75rem !default;
+$container-margin: 0 auto !default;
+$container-padding: 1.5em !default;
 
 /*==============================================================================
-  @body
+  @container
 ==============================================================================*/
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: $font-family;
-  font-size: $font-size;
-  line-height: $line-height;
-  font-weight: $font-weight;
-  color: $color;
-  -webkit-font-smoothing: subpixel-antialiased;
-  background: $body-background;
+.container {
+  max-width: $container-max-width;
+  margin: $container-margin;
+  padding: 0 $container-padding;
+}
+
+.container--padding {
+  padding: $container-padding;
 }

@@ -14,8 +14,15 @@
 // @input settings
 ////////////////////////////////////////////////////////////////////////////////
 
+$input-padding: 0.375em 0.5em !default;
 $input-font-size: 1em !default;
 $input-line-height: 1.5em !default;
+
+$input--small-padding: 0.25em 0.5em !default;
+$input--small-font-size: .875em !default;
+
+$input--large-padding: 0.5em 0.75em !default;
+$input--large-font-size: 1.25em !default;
 
 $input-background: $white !default;
 $input-background-focus: $white !default;
@@ -36,7 +43,7 @@ $input--type-select-image: 'data:image/svg+xml;utf8,<svg width="36px" height="10
   display: block;
   width: 100%;
   margin: 0;
-  padding: 0.375em .5em;
+  padding: $input-padding;
   color: $color;
   font-family: $font-family;
   font-size: $input-font-size;
@@ -57,6 +64,16 @@ $input--type-select-image: 'data:image/svg+xml;utf8,<svg width="36px" height="10
   &::placeholder {
     color: $color-light;
   }
+}
+
+.input--size-small {
+  padding: $input--small-padding;
+  font-size: $input--small-font-size;
+}
+
+.input--size-large {
+  padding: $input--large-padding;
+  font-size: $input--large-font-size;
 }
 
 .input--type-select {

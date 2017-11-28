@@ -1,14 +1,3 @@
-/*!
- * Vrembem
- * We want BEM. A CSS component library.
- * @version 0.0.2
- *
- * @author Sebastian Nitu
- * @url https://github.com/sebnitu/vrembem
- * @url http://sebnitu.com
- *
- * Copyright (c) 2017 Sebastian Nitu (MIT Licensed)
- */
 /*==============================================================================
   @anchor
 ==============================================================================*/
@@ -249,6 +238,37 @@ table th {
   color: #212121;
   font-weight: bold;
   text-align: left;
+}
+
+/*==============================================================================
+  @animate
+==============================================================================*/
+.animate {
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+}
+
+.animate--fade-in {
+  -webkit-animation-name: animate--fade-in;
+          animation-name: animate--fade-in;
+}
+
+@-webkit-keyframes animate--fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes animate--fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /*==============================================================================
@@ -1056,6 +1076,19 @@ table th {
 }
 
 /*==============================================================================
+  @container
+==============================================================================*/
+.container {
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: 0 1.5em;
+}
+
+.container--padding {
+  padding: 1.5em;
+}
+
+/*==============================================================================
   @modal
 ==============================================================================*/
 .dialog {
@@ -1586,6 +1619,56 @@ table th {
 }
 
 /*==============================================================================
+  @hero
+==============================================================================*/
+.hero {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 1em 1.5em;
+  min-height: 500px;
+}
+
+.hero__container {
+  position: relative;
+  z-index: 2;
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: 1em 1.5em;
+  text-align: center;
+}
+
+.hero__title {
+  font-size: 2em;
+  font-weight: 300;
+  margin-bottom: 1em;
+}
+
+.hero__action {
+  margin: 2em 0;
+}
+
+.hero__canvas {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/*==============================================================================
   @icon
 ==============================================================================*/
 .icon {
@@ -1639,7 +1722,7 @@ table th {
   display: block;
   width: 100%;
   margin: 0;
-  padding: 0.375em .5em;
+  padding: 0.375em 0.5em;
   color: #424242;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
   font-size: 1em;
@@ -1677,6 +1760,16 @@ table th {
 
 .input::placeholder {
   color: #BDBDBD;
+}
+
+.input--size-small {
+  padding: 0.25em 0.5em;
+  font-size: 0.875em;
+}
+
+.input--size-large {
+  padding: 0.5em 0.75em;
+  font-size: 1.25em;
 }
 
 .input--type-select {
@@ -2187,6 +2280,41 @@ table th {
 
 .js-modal--active {
   overflow: hidden;
+}
+
+/*==============================================================================
+  @navbar
+==============================================================================*/
+.navbar {
+  padding: 1em 1.5em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.navbar__container {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 0px;
+          flex: 1 1 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  max-width: 75rem;
+  margin: 0 auto;
+}
+
+.navbar__item + .navbar__item {
+  margin-left: 1em;
+}
+
+.navbar__title {
+  font-size: 1.5em;
+  color: #212121;
+  border: none;
 }
 
 /*==============================================================================

@@ -1,27 +1,33 @@
 ////////////////////////////////////////////////////////////////////////////////
-// @body classes
+// @animate classes
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  body
+//  .animate (
+//    .animate--fade-in
+//  )
 //
 ////////////////////////////////////////////////////////////////////////////////
-// @body settings
+// @animate settings
 ////////////////////////////////////////////////////////////////////////////////
 
-$body-background: null !default;
+$animate-duration: 5s !default;
 
 /*==============================================================================
-  @body
+  @animate
 ==============================================================================*/
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: $font-family;
-  font-size: $font-size;
-  line-height: $line-height;
-  font-weight: $font-weight;
-  color: $color;
-  -webkit-font-smoothing: subpixel-antialiased;
-  background: $body-background;
+.animate {
+  animation-duration: $animate-duration;
+}
+
+.animate--fade-in {
+  animation-name: animate--fade-in;
+}
+@keyframes animate--fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
