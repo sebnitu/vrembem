@@ -13,8 +13,24 @@
   },
   "bugs": "https://github.com/sebnitu/vrembem/issues",
   "license": "MIT",
+  "main": "index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "webpack-dev-server",
+    "docs": "NODE_ENV=production webpack -p",
+    "build": "babel src -d dist",
+    "clean": "rm -rf dist",
+    "dist": "npm run clean && npm run build"
+  },
   "devDependencies": {
     "autoprefixer": "^7.1.6",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
     "del": "^3.0.0",
     "feather-icons": "^4.0.1",
     "gulp": "^3.9.1",
@@ -27,9 +43,17 @@
     "gulp-strip-debug": "^1.1.0",
     "gulp-svg-symbols": "^2.0.2",
     "gulp-uglify": "^3.0.0",
+    "html-webpack-plugin": "^2.30.1",
     "merge-stream": "^1.0.1",
     "q": "^1.5.1",
-    "through2": "^2.0.3"
+    "raw-loader": "^0.5.1",
+    "through2": "^2.0.3",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.5"
   },
-  "dependencies": {}
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "styled-components": "^2.2.3"
+  }
 }
