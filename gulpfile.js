@@ -12,6 +12,7 @@ var
 // CSS Processing Packages
 var
   sass = require('gulp-sass'),
+  sassVariables = require('gulp-sass-variables'),
   magicImporter = require('node-sass-magic-importer'),
   sourcemaps = require('gulp-sourcemaps'),
   postcss = require('gulp-postcss'),
@@ -71,46 +72,67 @@ gulp.task('build', function() {
   var src = paths.src + '**/*.scss';
   var dest = paths.dest;
 
-  var css = gulp.src(src)
-    .pipe(sourcemaps.init())
-    .pipe(
-      sass({
-        outputStyle: 'expanded',
-        precision: 3,
-        includePaths: paths.includePaths,
-        importer: magicImporter()
-      })
-      .on('error', sass.logError)
-    )
-    .pipe(postcss([
-      autoprefixer({
-        browsers: ['last 2 versions', '> 2%']
-      })
-    ]))
-    .pipe(sourcemaps.write('./_maps'))
-    .pipe(gulp.dest(dest));
+  // Get package.json content
+  fs.readFile('./package.json', function(err, content) {
+    if (err) throw err;
+    var data = JSON.parse(content);
 
-  var cssmin = gulp.src(src)
-    .pipe(sourcemaps.init())
-    .pipe(
-      sass({
-        outputStyle: 'compressed',
-        precision: 3,
-        includePaths: paths.includePaths,
-        importer: magicImporter()
-      })
-      .on('error', sass.logError)
-    )
-    .pipe(postcss([
-      autoprefixer({
-        browsers: ['last 2 versions', '> 2%']
-      })
-    ]))
-    .pipe(rename({suffix: '.min'}))
-    .pipe(sourcemaps.write('./_maps'))
-    .pipe(gulp.dest(dest));
+    var sassVars = {
+      $project: data.title,
+      $description: data.description,
+      $version: data.version,
+      $author: data.author.name,
+      $repo: data.repository.url,
+      $url: data.author.url,
+      $year: new Date().getFullYear(),
+      $license: data.license
+    };
 
-  return merge(css, cssmin);
+    var css = gulp.src(src)
+      .pipe(sourcemaps.init())
+      .pipe(sassVariables(sassVars))
+      .pipe(
+        sass({
+          outputStyle: 'expanded',
+          precision: 3,
+          includePaths: paths.includePaths,
+          importer: magicImporter()
+        })
+        .on('error', sass.logError)
+      )
+      .pipe(postcss([
+        autoprefixer({
+          browsers: ['last 2 versions', '> 2%']
+        })
+      ]))
+      .pipe(sourcemaps.write('./_maps'))
+      .pipe(gulp.dest(dest));
+
+    var cssmin = gulp.src(src)
+      .pipe(sourcemaps.init())
+      .pipe(sassVariables(sassVars))
+      .pipe(
+        sass({
+          outputStyle: 'compressed',
+          precision: 3,
+          includePaths: paths.includePaths,
+          importer: magicImporter()
+        })
+        .on('error', sass.logError)
+      )
+      .pipe(postcss([
+        autoprefixer({
+          browsers: ['last 2 versions', '> 2%']
+        })
+      ]))
+      .pipe(rename({suffix: '.min'}))
+      .pipe(sourcemaps.write('./_maps'))
+      .pipe(gulp.dest(dest));
+
+    return merge(css, cssmin);
+
+  });
+
 });
 
 /**

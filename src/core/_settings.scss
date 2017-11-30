@@ -4,6 +4,15 @@
 /// @access public
 ////
 
+$project: '...' !default;
+$description: '...' !default;
+$version: '0.0.0' !default;
+$author: '...' !default;
+$repo: 'http://...' !default;
+$url: 'http://...' !default;
+$year: 'forever by' !default;
+$license: '...' !default;
+
 $primary: $blue !default;
 $secondary: $gray !default;
 $success: $green !default;

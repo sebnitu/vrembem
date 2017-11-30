@@ -1,7 +1,8 @@
 {
   "name": "vrembem",
   "description": "A BEM powered CSS component library.",
-  "version": "0.1.2",
+  "title": "Vrembem",
+  "version": "0.1.3",
   "author": {
     "name": "Sebastian Nitu",
     "email": "me@sebnitu.com",
@@ -48,6 +49,7 @@
     "gulp-postcss": "^7.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
+    "gulp-sass-variables": "^1.1.1",
     "gulp-scss-lint": "^0.5.0",
     "gulp-sourcemaps": "^2.6.1",
     "gulp-strip-debug": "^1.1.0",

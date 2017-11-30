@@ -1,5 +1,5 @@
 ////
-/// Global mixins passed to all files.
+/// Global mixins passed to all files
 /// @author Sebastian Nitu
 /// @access public
 ////
@@ -8,7 +8,7 @@
 /// @param {String} $hook
 @mixin add-comment($hook) {
 /*==============================================================================
-  Vrembem 0.1.0 - @#{$hook}
+  #{$project} #{$version} - @#{$hook}
 ==============================================================================*/
 }
 
@@ -16,15 +16,15 @@
 /// @param {String} $hook
 @mixin add-colophon($hook) {
 /*!
- * Vrembem - A CSS component library
- * @version 0.1.0
+ * #{$project} - #{$description}
+ * @version #{$version}
  * @package #{$hook}
  *
- * @author Sebastian Nitu
- * @url https://github.com/sebnitu/vrembem
- * @url http://sebnitu.com
+ * @author #{$author}
+ * @repo #{$repo}
+ * @url #{$url}
  *
- * Copyright (c) 2017 Sebastian Nitu (MIT Licensed)
+ * Copyright (c) #{$year} Sebastian Nitu (MIT Licensed)
  */
 }
 
