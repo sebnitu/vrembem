@@ -1,0 +1,14 @@
+@import 'vrem-core';
+@include add-comment('hr');
+
+hr,
+.hrs {
+  display: block;
+  height: 0;
+  width: 100%;
+  margin: 2em 0;
+  padding: 0;
+  background: none;
+  border: 0 none;
+  border-bottom: 1px solid rgba($black, 0.1);
+}

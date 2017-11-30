@@ -1,0 +1,16 @@
+@import 'vrem-core';
+@include add-comment('container');
+
+$container-max-width: 75rem !default;
+$container-margin: 0 auto !default;
+$container-padding: 1.5em !default;
+
+.container {
+  max-width: $container-max-width;
+  margin: $container-margin;
+  padding: 0 $container-padding;
+}
+
+.container_padding {
+  padding: $container-padding;
+}

@@ -1,0 +1,79 @@
+@import 'vrem-core';
+@include add-comment('button-group');
+
+$button-group-spacing: 0 !default;
+$button-group_outline-spacing: -1px !default;
+
+// border-radius outer
+$button-group-bro: $border-radius !default;
+// border-radius inner
+$button-group-bri: 0 !default;
+
+.button-group {
+  display: inline-flex;
+  align-items: center;
+}
+
+.button-group_item {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+  margin: 0;
+  border-radius: $button-group-bri;
+
+  &:hover {
+    z-index: 2;
+  }
+
+  &:focus {
+    z-index: 3;
+  }
+
+  &:active {
+    z-index: 4;
+  }
+
+  &:first-child {
+    border-radius: $button-group-bro $button-group-bri $button-group-bri $button-group-bro;
+  }
+
+  &:last-child {
+    border-radius: $button-group-bri $button-group-bro $button-group-bro $button-group-bri;
+  }
+
+  + .button-group_item {
+    margin: 0 0 0 $button-group-spacing;
+  }
+}
+
+.button-group_item.is-active {
+  z-index: 5;
+}
+
+.button-group_stack {
+  flex-direction: column;
+
+  .button-group_item {
+    &:first-child {
+      border-radius: $button-group-bro $button-group-bro $button-group-bri $button-group-bri;
+    }
+
+    &:last-child {
+      border-radius: $button-group-bri $button-group-bri $button-group-bro $button-group-bro;
+    }
+
+    + .button-group_item {
+      margin: $button-group-spacing 0 0;
+    }
+  }
+}
+
+.button-group_full {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+
+  .button-group_item_static {
+    flex-grow: 0;
+  }
+}

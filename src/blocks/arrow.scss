@@ -1,0 +1,37 @@
+@import 'vrem-core';
+@include add-comment('arrow');
+
+$arrow-size: 4px !default;
+$arrow-color: currentColor !default;
+
+.arrow {
+  display: inline-block;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 0;
+  height: 0;
+}
+
+.arrow_up {
+  border-left: $arrow-size solid transparent;
+  border-right: $arrow-size solid transparent;
+  border-bottom: $arrow-size solid $arrow-color;
+}
+
+.arrow_down {
+  border-left: $arrow-size solid transparent;
+  border-right: $arrow-size solid transparent;
+  border-top: $arrow-size solid $arrow-color;
+}
+
+.arrow_right {
+  border-top: $arrow-size solid transparent;
+  border-bottom: $arrow-size solid transparent;
+  border-left: $arrow-size solid $arrow-color;
+}
+
+.arrow_left {
+  border-top: $arrow-size solid transparent;
+  border-bottom: $arrow-size solid transparent;
+  border-right: $arrow-size solid $arrow-color;
+}

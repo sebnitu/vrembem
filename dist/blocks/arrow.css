@@ -1,0 +1,39 @@
+/*==============================================================================
+  Vrembem 0.1.0 - @arrow
+==============================================================================*/
+.arrow {
+  display: inline-block;
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  width: 0;
+  height: 0;
+}
+
+.arrow_up {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid currentColor;
+}
+
+.arrow_down {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid currentColor;
+}
+
+.arrow_right {
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 4px solid currentColor;
+}
+
+.arrow_left {
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-right: 4px solid currentColor;
+}
+
+/*# sourceMappingURL=../_maps/blocks/arrow.css.map */

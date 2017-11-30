@@ -1,0 +1,36 @@
+@import 'vrem-core';
+@include add-comment('code');
+
+code,
+pre {
+  font-family: $font-family-mono;
+}
+
+code {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  color: $red;
+}
+
+pre {
+  margin: 1.5em 0;
+  padding: 0.5em;
+  overflow: auto;
+  color: $color-dark;
+  line-height: 1.5em;
+  background: $gray-100;
+  border-radius: $border-radius;
+
+  code {
+    display: block;
+    margin: 0;
+    padding: 0.5em;
+    overflow: auto;
+    white-space: pre;
+    font-size: 100%;
+    color: inherit;
+    background: none;
+    border: 0 none;
+  }
+}

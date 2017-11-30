@@ -1,0 +1,56 @@
+@import 'vrem-core';
+@include add-comment('animate');
+
+$animate-duration: 5s !default;
+
+.animate {
+  animation-duration: $animate-duration;
+}
+
+.animate_fade-in {
+  animation-name: fade-in;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate_fade-out {
+  animation-name: fade-out;
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.animate_rotate {
+  animation-name: rotate;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate_rotate_switch {
+  animation-name: rotate-switch;
+}
+
+@keyframes rotate-switch {
+  100% {
+    transform: rotate(-360deg);
+  }
+}

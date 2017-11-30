@@ -1,0 +1,1 @@
+{"version":3,"sources":["tags/image.scss"],"names":[],"mappings":"AAGA,IACE,cACA,SACA,eACA,WAAY,CACb","file":"../../tags/image.min.css","sourcesContent":["@import 'vrem-core';\n@include add-comment('image');\n\nimg {\n  display: block;\n  margin: 0;\n  max-width: 100%;\n  height: auto;\n}\n"]}

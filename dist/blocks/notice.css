@@ -1,0 +1,46 @@
+/*==============================================================================
+  Vrembem 0.1.0 - @notice
+==============================================================================*/
+.notice {
+  position: relative;
+  margin: 1em 0;
+  padding: 0.75em 1em;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.notice__close {
+  float: right;
+  margin: -1px -0.25em 0.5em 1em;
+}
+
+.notice__content > * {
+  margin: 0;
+}
+
+.notice__content > * + * {
+  margin-top: 1em;
+}
+
+.notice_outline {
+  background: none;
+}
+
+.notice_type_info {
+  background: rgba(33, 150, 243, 0.2);
+}
+
+.notice_type_success {
+  background: rgba(76, 175, 80, 0.2);
+}
+
+.notice_type_caution {
+  background: rgba(255, 179, 0, 0.2);
+}
+
+.notice_type_danger {
+  background: rgba(244, 67, 54, 0.2);
+}
+
+/*# sourceMappingURL=../_maps/blocks/notice.css.map */

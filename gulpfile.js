@@ -12,9 +12,11 @@ var
 // CSS Processing Packages
 var
   sass = require('gulp-sass'),
+  magicImporter = require('node-sass-magic-importer'),
   sourcemaps = require('gulp-sourcemaps'),
   postcss = require('gulp-postcss'),
-  autoprefixer = require('autoprefixer')
+  autoprefixer = require('autoprefixer'),
+  scsslint = require('gulp-scss-lint')
 ;
 
 // JS Processing Packages
@@ -34,7 +36,14 @@ var
 var paths = {
   src: 'src/',
   dest: 'dist/',
-  icons: 'node_modules/feather-icons/dist/icons/'
+  icons: 'node_modules/feather-icons/dist/icons/',
+  includePaths: [
+    'src/',
+    'src/core/',
+    'src/global/',
+    'src/tags/',
+    'src/blocks/'
+  ]
 };
 
 /**
@@ -42,32 +51,34 @@ var paths = {
  */
 gulp.task('clean', function() {
   return del([
-    paths.dest + '**/*',
-    paths.src + 'icons/**/*'
+    paths.dest + '**/*'
   ]);
 });
 
 /**
- * Clean CSS Task
+ * SCSS Lint
  */
-gulp.task('clean:css', function() {
-  return del(paths.dest + 'css/**/*');
+gulp.task('lint', function() {
+  return gulp.src(paths.src + '**/*.scss')
+    .pipe(scsslint({ 'config': 'scsslint.yml' }));
 });
 
 /**
  * CSS Task
  */
-gulp.task('build:css', ['clean:css'], function() {
+gulp.task('build', function() {
 
-  var src = paths.src + 'scss/*.scss';
-  var dest = paths.dest + 'css/';
+  var src = paths.src + '**/*.scss';
+  var dest = paths.dest;
 
   var css = gulp.src(src)
     .pipe(sourcemaps.init())
     .pipe(
       sass({
         outputStyle: 'expanded',
-        precision: 3
+        precision: 3,
+        includePaths: paths.includePaths,
+        importer: magicImporter()
       })
       .on('error', sass.logError)
     )
@@ -76,7 +87,7 @@ gulp.task('build:css', ['clean:css'], function() {
         browsers: ['last 2 versions', '> 2%']
       })
     ]))
-    .pipe(sourcemaps.write('./maps'))
+    .pipe(sourcemaps.write('./_maps'))
     .pipe(gulp.dest(dest));
 
   var cssmin = gulp.src(src)
@@ -84,7 +95,9 @@ gulp.task('build:css', ['clean:css'], function() {
     .pipe(
       sass({
         outputStyle: 'compressed',
-        precision: 3
+        precision: 3,
+        includePaths: paths.includePaths,
+        importer: magicImporter()
       })
       .on('error', sass.logError)
     )
@@ -94,147 +107,26 @@ gulp.task('build:css', ['clean:css'], function() {
       })
     ]))
     .pipe(rename({suffix: '.min'}))
-    .pipe(sourcemaps.write('./maps'))
+    .pipe(sourcemaps.write('./_maps'))
     .pipe(gulp.dest(dest));
 
   return merge(css, cssmin);
 });
 
 /**
- * Clean JS Task
+ * Clean Buttons Task
  */
-gulp.task('clean:js', function() {
-  return del(paths.dest + 'js/**/*');
+gulp.task('clean:blocks', function() {
+  return del([
+    paths.dest + 'blocks/*',
+  ]);
 });
-
-/**
- * JS Task
- */
-gulp.task('build:js', ['clean:js'], function() {
-
-  var src = paths.src + 'js/**/*';
-  var dest = paths.dest + 'js/';
-
-  var js = gulp.src(src)
-    .pipe(sourcemaps.init())
-    .pipe(deporder())
-    .pipe(concat('vrembem.js'))
-    .pipe(sourcemaps.write('./maps'))
-    .pipe(gulp.dest(dest));
-
-  var jsmin = gulp.src(src)
-    .pipe(sourcemaps.init())
-    .pipe(deporder())
-    .pipe(concat('vrembem.min.js'))
-    .pipe(uglify())
-    .pipe(sourcemaps.write('./maps'))
-    .pipe(gulp.dest(dest));
-
-  return merge(js, jsmin);
-});
-
-/**
- * Clean Icons Source Task
- */
-gulp.task('clean:icons:src', function() {
-  return del(paths.src + 'icons/**/*');
-});
-
-/**
- * Icons Source Task
- */
-gulp.task('build:icons:src', ['clean:icons:src'], function() {
-
-  var deferred = Q.defer();
-  var itemsProcessed = 0;
-
-  var src = paths.icons;
-  var dest = paths.src + 'icons/';
-
-  // Create the source directory if it doesn't exist
-  if (!fs.existsSync(dest)){
-    fs.mkdirSync(dest);
-  }
-
-  // Get all the icons
-  fs.readdir(src, function(err, icons) {
-    if (err) { console.error(err); }
-
-    // Loop through our icons
-    icons.forEach(icon => {
-
-      // Get the icon name
-      icon = path.basename(icon, '.svg');
-
-      // Get the icon object
-      var obj = feather.icons[icon];
-
-      // Set our custom classes
-      obj.attrs.class = 'icon icon-' + icon;
-
-      // Convert to SVG
-      var svg = obj.toSvg();
-
-      // Write new icons
-      fs.writeFile(dest + icon + '.svg', svg, function (err) {
-        if (err) { console.error(err); }
-
-        itemsProcessed++;
-        if(itemsProcessed === icons.length) {
-          deferred.resolve();
-        }
-      });
-    });
-  });
-
-  return deferred.promise;
-
-});
-
-/**
- * Clean Icons Source Task
- */
-gulp.task('clean:icons:dest', function() {
-  return del(paths.dest + 'icons/**/*');
-});
-
-/**
- * Icons Symbols Task
- */
-gulp.task('build:icons:dest', ['clean:icons:dest'], function() {
-
-  var src = paths.src + 'icons/*.svg';
-  var dest = paths.dest + 'icons/';
-
-  var symbols = gulp.src(src)
-    .pipe(svgSymbols({
-      id: 'icon-%f',
-      svgClassname: 'svg-symbols',
-      templates: ['default-svg']
-    }))
-    .pipe(gulp.dest(dest));
-
-  return symbols;
-
-});
-
-/**
- * Icons Task
- */
-gulp.task('build:icons', ['build:icons:src', 'build:icons:dest']);
-
-/**
- * Build
- */
- gulp.task('build', ['build:css', 'build:js', 'build:icons']);
 
 /**
  * Watch
  */
 gulp.task('watch', function() {
-  gulp.watch(paths.src + 'scss/**/*', ['build:css']);
-  gulp.watch(paths.src + 'js/**/*', ['build:js']);
-  gulp.watch(paths.src + 'icons/**/*', ['build:icons:dest']);
+  gulp.watch(paths.src + '**/*', ['build']);
 });
 
 /**

@@ -1,0 +1,221 @@
+/*==============================================================================
+  Vrembem 0.1.0 - @tooltip
+==============================================================================*/
+.tooltip {
+  position: relative;
+}
+
+.tooltip::after {
+  content: attr(data-tooltip);
+  pointer-events: none;
+  position: absolute;
+  z-index: 100;
+  display: block;
+  max-width: 30em;
+  margin: 0;
+  padding: 0.5em 1em;
+  font-size: 0.85em;
+  line-height: 1.5em;
+  color: #fff;
+  background: rgba(158, 158, 158, 0.9);
+  border-radius: 3px;
+  opacity: 0;
+  -webkit-transition: opacity 0.25s, -webkit-transform 0.25s;
+  transition: opacity 0.25s, -webkit-transform 0.25s;
+  transition: opacity 0.25s, transform 0.25s;
+  transition: opacity 0.25s, transform 0.25s, -webkit-transform 0.25s;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.tooltip::after {
+  top: auto;
+  left: 50%;
+  right: auto;
+  bottom: 100%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+}
+
+.tooltip:hover::after, .tooltip:focus::after {
+  opacity: 1;
+  -webkit-transform: translate(-50%, -0.5em);
+          transform: translate(-50%, -0.5em);
+}
+
+.tooltip_pos_up::after {
+  top: auto;
+  left: 50%;
+  right: auto;
+  bottom: 100%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+}
+
+.tooltip_pos_up:hover::after, .tooltip_pos_up:focus::after {
+  opacity: 1;
+  -webkit-transform: translate(-50%, -0.5em);
+          transform: translate(-50%, -0.5em);
+}
+
+.tooltip_pos_up-left::after {
+  top: auto;
+  left: 0;
+  right: auto;
+  bottom: 100%;
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+
+.tooltip_pos_up-left:hover::after, .tooltip_pos_up-left:focus::after {
+  opacity: 1;
+  -webkit-transform: translate(0, -0.5em);
+          transform: translate(0, -0.5em);
+}
+
+.tooltip_pos_up-right::after {
+  top: auto;
+  left: auto;
+  right: 0;
+  bottom: 100%;
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+
+.tooltip_pos_up-right:hover::after, .tooltip_pos_up-right:focus::after {
+  opacity: 1;
+  -webkit-transform: translate(0, -0.5em);
+          transform: translate(0, -0.5em);
+}
+
+.tooltip_pos_left::after {
+  top: 50%;
+  left: auto;
+  right: 100%;
+  bottom: auto;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+
+.tooltip_pos_left:hover::after, .tooltip_pos_left:focus::after {
+  -webkit-transform: translate(-0.5em, -50%);
+          transform: translate(-0.5em, -50%);
+}
+
+.tooltip_pos_left-up::after {
+  top: 0;
+  left: auto;
+  right: 100%;
+  bottom: auto;
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+
+.tooltip_pos_left-up:hover::after, .tooltip_pos_left-up:focus::after {
+  -webkit-transform: translate(-0.5em, 0);
+          transform: translate(-0.5em, 0);
+}
+
+.tooltip_pos_left-down::after {
+  top: auto;
+  left: auto;
+  right: 100%;
+  bottom: 0;
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+
+.tooltip_pos_left-down:hover::after, .tooltip_pos_left-down:focus::after {
+  -webkit-transform: translate(-0.5em, 0);
+          transform: translate(-0.5em, 0);
+}
+
+.tooltip_pos_right::after {
+  top: auto;
+  left: 100%;
+  right: auto;
+  bottom: 50%;
+  -webkit-transform: translate(0, 50%);
+          transform: translate(0, 50%);
+}
+
+.tooltip_pos_right:hover::after, .tooltip_pos_right:focus::after {
+  -webkit-transform: translate(0.5em, 50%);
+          transform: translate(0.5em, 50%);
+}
+
+.tooltip_pos_right-up::after {
+  top: 0;
+  left: 100%;
+  right: auto;
+  bottom: auto;
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+
+.tooltip_pos_right-up:hover::after, .tooltip_pos_right-up:focus::after {
+  -webkit-transform: translate(0.5em, 0);
+          transform: translate(0.5em, 0);
+}
+
+.tooltip_pos_right-down::after {
+  top: auto;
+  left: 100%;
+  right: auto;
+  bottom: 0;
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+
+.tooltip_pos_right-down:hover::after, .tooltip_pos_right-down:focus::after {
+  -webkit-transform: translate(0.5em, 0);
+          transform: translate(0.5em, 0);
+}
+
+.tooltip_pos_down::after {
+  top: 100%;
+  left: auto;
+  right: 50%;
+  bottom: auto;
+  -webkit-transform: translate(50%, 0);
+          transform: translate(50%, 0);
+}
+
+.tooltip_pos_down:hover::after, .tooltip_pos_down:focus::after {
+  opacity: 1;
+  -webkit-transform: translate(50%, 0.5em);
+          transform: translate(50%, 0.5em);
+}
+
+.tooltip_pos_down-left::after {
+  top: 100%;
+  left: 0;
+  right: auto;
+  bottom: auto;
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+
+.tooltip_pos_down-left:hover::after, .tooltip_pos_down-left:focus::after {
+  opacity: 1;
+  -webkit-transform: translate(0, 0.5em);
+          transform: translate(0, 0.5em);
+}
+
+.tooltip_pos_down-right::after {
+  top: 100%;
+  left: auto;
+  right: 0;
+  bottom: auto;
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+
+.tooltip_pos_down-right:hover::after, .tooltip_pos_down-right:focus::after {
+  opacity: 1;
+  -webkit-transform: translate(0, 0.5em);
+          transform: translate(0, 0.5em);
+}
+
+/*# sourceMappingURL=../_maps/blocks/tooltip.css.map */

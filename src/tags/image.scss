@@ -1,0 +1,9 @@
+@import 'vrem-core';
+@include add-comment('image');
+
+img {
+  display: block;
+  margin: 0;
+  max-width: 100%;
+  height: auto;
+}

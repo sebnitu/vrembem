@@ -1,0 +1,52 @@
+@import 'vrem-core';
+@include add-comment('hero');
+
+$hero-height: 500px !default;
+$hero-padding: 1em 1.5em !default;
+$hero-background: null !default;
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  padding: $hero-padding;
+  min-height: $hero-height;
+  background: $hero-background;
+}
+
+.hero__container {
+  position: relative;
+  z-index: 2;
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: $hero-padding;
+  text-align: center;
+}
+
+.hero__title {
+  font-size: 2em;
+  font-weight: font-weight('light');
+  margin-bottom: 1em;
+}
+
+.hero__action {
+  margin: 2em 0;
+}
+
+.hero__background,
+.hero__canvas {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.hero__background {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}

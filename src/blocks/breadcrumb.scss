@@ -1,0 +1,28 @@
+@import 'vrem-core';
+@include add-comment('breadcrumb');
+
+$breadcrumb-delimiter: '/' !default;
+$breadcrumb-delimiter-padding: 0 0.5em !default;
+$breadcrumb-delimiter-color: $gray-400 !default;
+
+.breadcrumb {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  list-style: none;
+}
+
+.breadcrumb__item {
+  margin: 0;
+
+  &::after {
+    content: $breadcrumb-delimiter;
+    padding: $breadcrumb-delimiter-padding;
+    color: $breadcrumb-delimiter-color;
+  }
+
+  &:last-child::after {
+    content: none;
+  }
+}

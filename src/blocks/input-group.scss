@@ -1,0 +1,54 @@
+@import 'vrem-core';
+@include add-comment('input-group');
+
+$input-group-background: $white !default;
+
+.input-group {
+  display: flex;
+
+  .input {
+    z-index: 1;
+  }
+
+  .button {
+    z-index: 2;
+
+    &:hover {
+      z-index: 5;
+    }
+  }
+}
+
+.input-group__item {
+  position: relative;
+  z-index: 1;
+  flex: 1 0 0;
+  border-radius: 0;
+
+  &:hover {
+    z-index: 3;
+  }
+
+  &:focus {
+    z-index: 4;
+  }
+
+  &:first-child {
+    border-top-left-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
+  }
+
+  &:last-child {
+    border-top-right-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+  }
+}
+
+.input-group__item + .input-group__item {
+  margin-left: -1px;
+}
+
+.input-group__item_static {
+  flex-grow: 0;
+  width: auto;
+}

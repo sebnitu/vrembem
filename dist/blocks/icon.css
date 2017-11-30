@@ -1,0 +1,33 @@
+/*==============================================================================
+  Vrembem 0.1.0 - @icon
+==============================================================================*/
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin: 0.1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2px;
+  font-size: 1.25em;
+}
+
+.icon.is-loading {
+  -webkit-animation: rotate 1.5s linear infinite;
+          animation: rotate 1.5s linear infinite;
+}
+
+.svg-symbols {
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+}
+
+/*# sourceMappingURL=../_maps/blocks/icon.css.map */

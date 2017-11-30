@@ -1,0 +1,171 @@
+@import 'vrem-core';
+@include add-comment('badge');
+
+$badge-color: $white !default;
+$badge-color-hover: $white !default;
+
+$badge-font-size: 0.875em !default;
+$badge-line-height: 1.325em !default;
+
+$badge-background: $secondary !default;
+$badge-background-hover: darken($secondary, 10%) !default;
+
+$badge-border-radius: $border-radius !default;
+$badge-border: 1px solid transparent !default;
+$badge-border-hover: 1px solid transparent !default;
+
+$badge__chip-padding: px-to-rem(2px) !default;
+$badge__chip-font-size: px-to-rem(12px) !default;
+
+.badge {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  color: $badge-color;
+  font-size: $badge-font-size;
+  line-height: $badge-line-height;
+  background: $badge-background;
+  border: $badge-border;
+  border-radius: $badge-border-radius;
+
+  &:hover {
+    color: $badge-color;
+    border: $badge-border;
+  }
+
+  .chip {
+    padding: $badge__chip-padding;
+    font-size: $badge__chip-font-size;
+
+    .icon {
+      stroke-width: 3px;
+    }
+
+    &:first-child {
+      margin: 0 0.5rem 0 -0.25rem;
+    }
+
+    &:last-child {
+      margin: 0 -0.25rem 0 0.5rem;
+    }
+  }
+}
+
+.badge__text {
+  &:first-child {
+    margin-left: 0.25em;
+  }
+
+  &:last-child {
+    margin-right: 0.25em;
+  }
+}
+
+.badge_pill {
+  border-radius: 2em;
+
+  .badge__text {
+    &:first-child {
+      margin-left: 0.5em;
+    }
+
+    &:last-child {
+      margin-right: 0.5em;
+    }
+  }
+}
+
+/**
+ * badge_color
+ */
+
+.badge_color_light {
+  color: $color;
+  background: rgba($white, 0.75);
+}
+
+.badge_color_dark {
+  color: $white;
+  background: $gray-800;
+}
+
+.badge_color_red {
+  color: $white;
+  background: $red;
+}
+
+.badge_color_pink {
+  color: $white;
+  background: $pink;
+}
+
+.badge_color_purple {
+  color: $white;
+  background: $purple;
+}
+
+.badge_color_deep-purple {
+  color: $white;
+  background: $deep-purple;
+}
+
+.badge_color_indigo {
+  color: $white;
+  background: $indigo;
+}
+
+.badge_color_blue {
+  color: $white;
+  background: $blue;
+}
+
+.badge_color_light-blue {
+  color: $white;
+  background: $light-blue;
+}
+
+.badge_color_cyan {
+  color: $white;
+  background: $cyan;
+}
+
+.badge_color_teal {
+  color: $white;
+  background: $teal;
+}
+
+.badge_color_green {
+  color: $white;
+  background: $green;
+}
+
+.badge_color_light-green {
+  color: $white;
+  background: $light-green;
+}
+
+.badge_color_lime {
+  color: $color;
+  background: $lime;
+}
+
+.badge_color_yellow {
+  color: $color;
+  background: $yellow;
+}
+
+.badge_color_amber {
+  color: $color;
+  background: $amber;
+}
+
+.badge_color_orange {
+  color: $white;
+  background: $orange;
+}
+
+.badge_color_deep-orange {
+  color: $white;
+  background: $deep-orange;
+}

@@ -1,0 +1,15 @@
+/*==============================================================================
+  Vrembem 0.1.0 - @anchor
+==============================================================================*/
+a {
+  color: #2196f3;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+a:hover {
+  color: #1976d2;
+  border-color: #1976d2;
+}
+
+/*# sourceMappingURL=../_maps/tags/anchor.css.map */

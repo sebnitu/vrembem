@@ -1,0 +1,55 @@
+////
+/// Global mixins passed to all files.
+/// @author Sebastian Nitu
+/// @access public
+////
+
+/// Output a comment to flag sections
+/// @param {String} $hook
+@mixin add-comment($hook) {
+/*==============================================================================
+  Vrembem 0.1.0 - @#{$hook}
+==============================================================================*/
+}
+
+/// Output a colophone comment for the top of packages
+/// @param {String} $hook
+@mixin add-colophon($hook) {
+/*!
+ * Vrembem - A CSS component library
+ * @version 0.1.0
+ * @package #{$hook}
+ *
+ * @author Sebastian Nitu
+ * @url https://github.com/sebnitu/vrembem
+ * @url http://sebnitu.com
+ *
+ * Copyright (c) 2017 Sebastian Nitu (MIT Licensed)
+ */
+}
+
+/// Allows you to apply a clearfix to an element that contains floats.
+@mixin add-clearfix() {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+/// Removes the clearfix styles from an element. This is typically used when a
+/// clearfix is inherited on an element and you'd like it removed.
+@mixin remove-clearfix() {
+  &::after {
+    content: none;
+    display: none;
+    clear: none;
+  }
+}
+
+/// Makes touch devices use momentum-based scrolling for the given element.
+@mixin add-scrollable() {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  transition: top linear 0.2s, bottom linear 0.2s;
+}
