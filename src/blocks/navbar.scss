@@ -1,25 +1,27 @@
 @import 'vrem-core';
 @include add-comment('navbar');
 
-$navbar-padding: 1em 1.5em !default;
+$navbar-padding: 1em !default;
 $navbar-background: null !default;
+$navbar-border: 1px solid $border-color !default;
+
+$navbar__title-color: $color-dark !default;
+$navbar__title-color_hover: null !default;
+$navbar__title-padding: 0 0.75rem !default;
 
 .navbar {
   padding: $navbar-padding;
   background: $navbar-background;
-  border-bottom: 1px solid $border-color;
+  border-bottom: $navbar-border;
 }
 
 .navbar__container {
   flex: 1 1 0;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   max-width: 75rem;
   margin: 0 auto;
-}
-
-.navbar__container_split {
-  justify-content: space-between;
 }
 
 .navbar__item {
@@ -29,7 +31,14 @@ $navbar-background: null !default;
 }
 
 .navbar__title {
+  padding: $navbar__title-padding;
   font-size: px-to-em(20px);
-  color: $color-dark;
+  font-weight: font-weight('semi-bold');
+  color: $navbar__title-color;
   border: none;
+
+  &:hover {
+    color: $navbar__title-color_hover;
+    border: none;
+  }
 }

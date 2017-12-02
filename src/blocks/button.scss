@@ -1,7 +1,7 @@
 @import 'vrem-core';
 @include add-comment('button');
 
-$button-padding: 0.375em 0.75em !default;
+$button-padding: $padding !default;
 $button-font-size: 1em !default;
 $button-line-height: 1.5em !default;
 
@@ -115,6 +115,20 @@ $button_outline_border-width: 1px !default;
 /**
  * button_color
  */
+
+.button_color_inverted {
+  color: $white;
+  background: rgba($white, 0.05);
+  background-clip: border-box;
+  border: $button-border-width solid $button-border-color;
+
+  &:hover,
+  &:focus {
+    color: $white;
+    background-color: rgba($white, 0.1);
+    border-color: $button-border-color-hover;
+  }
+}
 
 .button_color_primary {
   color: $white;

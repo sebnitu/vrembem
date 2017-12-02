@@ -14,9 +14,9 @@
       -ms-flex-align: center;
           align-items: center;
   margin: 0;
-  padding: 0.188rem;
-  color: #fff;
-  font-size: 1.125rem;
+  padding: 0.21429rem;
+  color: #ffffff;
+  font-size: 1.28571rem;
   background: rgba(0, 0, 0, 0.25);
   border: 1px solid transparent;
   border-radius: 2em;
@@ -24,7 +24,7 @@
 
 .chip:hover, .chip:focus {
   cursor: pointer;
-  color: #fff;
+  color: #ffffff;
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid transparent;
 }
@@ -39,8 +39,8 @@
 }
 
 .chip_size_small {
-  padding: 0.125rem;
-  font-size: 0.75em;
+  padding: 0.14286rem;
+  font-size: 0.85714em;
 }
 
 .chip_size_small .icon {
@@ -48,8 +48,8 @@
 }
 
 .chip_size_large {
-  padding: 0.438em;
-  font-size: 1.375rem;
+  padding: 0.5em;
+  font-size: 1.57143rem;
 }
 
 .chip_color_fade {

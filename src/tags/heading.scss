@@ -1,6 +1,11 @@
 @import 'vrem-core';
 @include add-comment('heading');
 
+$heading-font-weight: font-weight('semi-bold') !default;
+$heading-color: $color-dark !default;
+$heading__anchor-color: $color-dark !default;
+$heading__anchor-color_hover: $blue !default;
+
 h1,
 h2,
 h3,
@@ -24,7 +29,7 @@ h6,
     border: none;
 
     &:hover {
-      color: $heading__anchor-color--hover;
+      color: $heading__anchor-color_hover;
     }
   }
 }

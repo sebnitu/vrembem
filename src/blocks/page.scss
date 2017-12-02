@@ -1,0 +1,43 @@
+@import 'vrem-core';
+@include add-comment('page');
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.page__header {
+  flex: 0 0 auto;
+}
+
+.page__main {
+  flex: 1 1 auto;
+  display: flex;
+  overflow: hidden;
+}
+
+.page__aside {
+  flex: 0 0 220px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: $background-color;
+
+  .page__container {
+    padding: 0.75em;
+  }
+
+  .menu__link:hover {
+    background-color: $white;
+  }
+}
+
+.page__content {
+  flex: 1 1 auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  .page__container {
+    padding: 0.75em 1.75em;
+  }
+}

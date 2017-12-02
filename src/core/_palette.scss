@@ -4,6 +4,9 @@
 /// @access public
 ////
 
+$black: #000000 !default;
+$white: #ffffff !default;
+
 $red-50:  #ffebee !default;
 $red-100: #ffcdd2 !default;
 $red-200: #ef9a9a !default;
@@ -328,28 +331,23 @@ $blue-gray-800: #37474f !default;
 $blue-gray-900: #263238 !default;
 $blue-gray: $blue-gray-500 !default;
 
-$black: #000 !default;
-$white: #fff !default;
-
-$social: (
-  'twitter'     : #00aced,
-  'facebook'    : #3b5998,
-  'google'      : #dd4b39,
-  'pinterest'   : #cb2027,
-  'linkedin'    : #007bb6,
-  'youtube'     : #bb0000,
-  'vimeo'       : #1ab7ea,
-  'tumblr'      : #32506d,
-  'instagram'   : #bc2a8d,
-  'flickr'      : #ff0084,
-  'dribbble'    : #ea4c89,
-  'quora'       : #a82400,
-  'foursquare'  : #0072b1,
-  'forrst'      : #5b9a68,
-  'vk'          : #45668e,
-  'wordpress'   : #21759b,
-  'stumbleupon' : #eb4823,
-  'yahoo'       : #7b0099,
-  'blogger'     : #fb8f3d,
-  'soundcloud'  : #ff3a00,
-) !default;
+$color-twitter: #00aced !default;
+$color-facebook: #3b5998 !default;
+$color-google: #dd4b39 !default;
+$color-pinterest: #cb2027 !default;
+$color-linkedin: #007bb6 !default;
+$color-youtube: #bb0000 !default;
+$color-vimeo: #1ab7ea !default;
+$color-tumblr: #32506d !default;
+$color-instagram: #bc2a8d !default;
+$color-flickr: #ff0084 !default;
+$color-dribbble: #ea4c89 !default;
+$color-quora: #a82400 !default;
+$color-foursquare: #0072b1 !default;
+$color-forrst: #5b9a68 !default;
+$color-vk: #45668e !default;
+$color-wordpress: #21759b !default;
+$color-stumbleupon: #eb4823 !default;
+$color-yahoo: #7b0099 !default;
+$color-blogger: #fb8f3d !default;
+$color-soundcloud: #ff3a00 !default;

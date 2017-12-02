@@ -12,7 +12,7 @@
       -ms-flex-align: center;
           align-items: center;
   padding: 0.25rem 0.5rem;
-  color: #fff;
+  color: #ffffff;
   font-size: 0.875em;
   line-height: 1.325em;
   background: #9e9e9e;
@@ -21,13 +21,13 @@
 }
 
 .badge:hover {
-  color: #fff;
+  color: #ffffff;
   border: 1px solid transparent;
 }
 
 .badge .chip {
-  padding: 0.125rem;
-  font-size: 0.75rem;
+  padding: 0.14286rem;
+  font-size: 0.85714rem;
 }
 
 .badge .chip .icon {
@@ -71,62 +71,62 @@
 }
 
 .badge_color_dark {
-  color: #fff;
+  color: #ffffff;
   background: #424242;
 }
 
 .badge_color_red {
-  color: #fff;
+  color: #ffffff;
   background: #f44336;
 }
 
 .badge_color_pink {
-  color: #fff;
+  color: #ffffff;
   background: #e91e63;
 }
 
 .badge_color_purple {
-  color: #fff;
+  color: #ffffff;
   background: #9c27b0;
 }
 
 .badge_color_deep-purple {
-  color: #fff;
+  color: #ffffff;
   background: #673ab7;
 }
 
 .badge_color_indigo {
-  color: #fff;
+  color: #ffffff;
   background: #3f51b5;
 }
 
 .badge_color_blue {
-  color: #fff;
+  color: #ffffff;
   background: #2196f3;
 }
 
 .badge_color_light-blue {
-  color: #fff;
+  color: #ffffff;
   background: #03a9f4;
 }
 
 .badge_color_cyan {
-  color: #fff;
+  color: #ffffff;
   background: #00bcd4;
 }
 
 .badge_color_teal {
-  color: #fff;
+  color: #ffffff;
   background: #009688;
 }
 
 .badge_color_green {
-  color: #fff;
+  color: #ffffff;
   background: #4caf50;
 }
 
 .badge_color_light-green {
-  color: #fff;
+  color: #ffffff;
   background: #8bc34a;
 }
 
@@ -146,12 +146,12 @@
 }
 
 .badge_color_orange {
-  color: #fff;
+  color: #ffffff;
   background: #ff9800;
 }
 
 .badge_color_deep-orange {
-  color: #fff;
+  color: #ffffff;
   background: #ff5722;
 }
 

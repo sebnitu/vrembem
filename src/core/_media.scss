@@ -11,10 +11,11 @@ $tweakpoints: () !default;
 /// Global breakpoints map
 /// @type {Map}
 $breakpoints: (
-  'small'  : 480px,
-  'medium' : 760px,
-  'large'  : 990px,
-  'huge'   : 1380px
+  'tiny': 480px,
+  'small': 620px,
+  'medium': 760px,
+  'large': 990px,
+  'huge': 1380px
 ) !default;
 
 
@@ -70,6 +71,7 @@ $breakpoints: (
 /// screens. Used when setting higher resolution background images.
 /// @param {Style Block} @content - Passed in brackets
 @mixin media-retina() {
+  // sass-lint:disable no-vendor-prefixes
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     @content;
   }

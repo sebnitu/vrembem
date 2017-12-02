@@ -29,7 +29,7 @@ $icon-symbols-class: 'svg-symbols' !default;
 }
 
 .#{$icon-symbols-class} {
-  border: 0 !important;
+  border: none !important;
   clip: rect(0 0 0 0) !important;
   height: 1px !important;
   margin: -1px !important;

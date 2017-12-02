@@ -1,157 +1,121 @@
-// Base Packages
-var
-  fs = require('fs'),
-  path = require('path'),
-  gulp = require('gulp'),
-  del = require('del'),
-  rename = require('gulp-rename'),
-  merge = require('merge-stream'),
-  Q = require('q')
-;
+// Gulp Packages
+// yarn add node-sass node-sass-magic-importer
+// yarn add --dev del gulp gulp-rename gulp-sass gulp-sass-lint gulp-sourcemaps gulp-postcss autoprefixer
 
-// CSS Processing Packages
-var
-  sass = require('gulp-sass'),
-  sassVariables = require('gulp-sass-variables'),
-  magicImporter = require('node-sass-magic-importer'),
-  sourcemaps = require('gulp-sourcemaps'),
-  postcss = require('gulp-postcss'),
-  autoprefixer = require('autoprefixer'),
-  scsslint = require('gulp-scss-lint')
-;
+'use strict'
 
-// JS Processing Packages
-var
-  concat = require('gulp-concat'),
-  deporder = require('gulp-deporder'),
-  uglify = require('gulp-uglify')
-;
+const fs = require('fs')
+const path = require('path')
+const del = require('del')
+const gulp = require('gulp')
+const rename = require('gulp-rename')
 
-// SVG Processing Packages
-var
-  feather = require('feather-icons'),
-  svgSymbols = require('gulp-svg-symbols')
-;
+const sass = require('gulp-sass')
+const sassLint = require('gulp-sass-lint')
+const sourcemaps = require('gulp-sourcemaps')
+const magicImporter = require('node-sass-magic-importer')
+const postcss = require('gulp-postcss')
+const autoprefixer = require('autoprefixer')
 
-// Paths Variable
-var paths = {
+const  paths = {
   src: 'src/',
-  dest: 'dist/',
-  icons: 'node_modules/feather-icons/dist/icons/',
-  includePaths: [
-    'src/',
-    'src/core/',
-    'src/global/',
-    'src/tags/',
-    'src/blocks/'
+  dest: 'dist/'
+}
+
+/**
+ * Clean
+ */
+
+gulp.task('clean', function () {
+  return del(['dist/**/*'])
+})
+
+/**
+ * Styles
+ */
+
+gulp.task('scss:lint', function() {
+
+  const src = paths.src + '**/*.scss'
+  const dest = paths.dest
+
+  const scss = gulp.src(src)
+    .pipe(sassLint({
+      configFile: '.sass-lint.yml'
+    }))
+    .pipe(sassLint.format())
+    .pipe(sassLint.failOnError())
+
+  return scss
+})
+
+gulp.task('scss:dev', function() {
+
+  const src = [
+    paths.src + '**/*.scss',
+    '!' + paths.src + 'vrem-core.scss'
   ]
-};
+  const dest = paths.dest
+
+  const scss = gulp.src(src)
+    .pipe(sourcemaps.init())
+    .pipe(sass({
+      outputStyle: 'expanded',
+      includePaths: paths.src,
+      importer: magicImporter()
+    })
+    .on('error', sass.logError))
+    .pipe(postcss([
+      autoprefixer({ browsers: ['last 2 versions', '> 2%'] })
+    ]))
+    .pipe(sourcemaps.write('./_maps'))
+    .pipe(gulp.dest(dest))
+
+  return scss
+})
+
+gulp.task('scss:min', function() {
+
+  const src = [
+    paths.src + '**/*.scss',
+    '!' + paths.src + 'vrem-core.scss'
+  ]
+  const dest = paths.dest
+
+  const scss = gulp.src(src)
+    .pipe(sourcemaps.init())
+    .pipe(sass({
+      outputStyle: 'compressed',
+      includePaths: paths.src,
+      importer: magicImporter()
+    })
+    .on('error', sass.logError))
+    .pipe(postcss([
+      autoprefixer({ browsers: ['last 2 versions', '> 2%'] })
+    ]))
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(sourcemaps.write('./_maps'))
+    .pipe(gulp.dest(dest))
+
+  return scss
+})
 
 /**
- * Clean Task
+ * Build Task
  */
-gulp.task('clean', function() {
-  return del([
-    paths.dest + '**/*'
-  ]);
-});
+
+gulp.task('scss', ['scss:dev', 'scss:min'])
+gulp.task('build', ['scss'])
 
 /**
- * SCSS Lint
+ * Watch Task
  */
-gulp.task('lint', function() {
-  return gulp.src(paths.src + '**/*.scss')
-    .pipe(scsslint({ 'config': 'scsslint.yml' }));
-});
 
-/**
- * CSS Task
- */
-gulp.task('build', function() {
-
-  var src = paths.src + '**/*.scss';
-  var dest = paths.dest;
-
-  // Get package.json content
-  fs.readFile('./package.json', function(err, content) {
-    if (err) throw err;
-    var data = JSON.parse(content);
-
-    var sassVars = {
-      $project: data.title,
-      $description: data.description,
-      $version: data.version,
-      $author: data.author.name,
-      $repo: data.repository.url,
-      $url: data.author.url,
-      $year: new Date().getFullYear(),
-      $license: data.license
-    };
-
-    var css = gulp.src(src)
-      .pipe(sourcemaps.init())
-      .pipe(sassVariables(sassVars))
-      .pipe(
-        sass({
-          outputStyle: 'expanded',
-          precision: 3,
-          includePaths: paths.includePaths,
-          importer: magicImporter()
-        })
-        .on('error', sass.logError)
-      )
-      .pipe(postcss([
-        autoprefixer({
-          browsers: ['last 2 versions', '> 2%']
-        })
-      ]))
-      .pipe(sourcemaps.write('./_maps'))
-      .pipe(gulp.dest(dest));
-
-    var cssmin = gulp.src(src)
-      .pipe(sourcemaps.init())
-      .pipe(sassVariables(sassVars))
-      .pipe(
-        sass({
-          outputStyle: 'compressed',
-          precision: 3,
-          includePaths: paths.includePaths,
-          importer: magicImporter()
-        })
-        .on('error', sass.logError)
-      )
-      .pipe(postcss([
-        autoprefixer({
-          browsers: ['last 2 versions', '> 2%']
-        })
-      ]))
-      .pipe(rename({suffix: '.min'}))
-      .pipe(sourcemaps.write('./_maps'))
-      .pipe(gulp.dest(dest));
-
-    return merge(css, cssmin);
-
-  });
-
-});
-
-/**
- * Clean Buttons Task
- */
-gulp.task('clean:blocks', function() {
-  return del([
-    paths.dest + 'blocks/*',
-  ]);
-});
-
-/**
- * Watch
- */
 gulp.task('watch', function() {
-  gulp.watch(paths.src + '**/*', ['build']);
-});
+  gulp.watch(paths.src + '**/*', ['scss'])
+})
 
 /**
- * Default
+ * Default Task
  */
-gulp.task('default', ['build']);
+gulp.task('default', ['build', 'watch'])

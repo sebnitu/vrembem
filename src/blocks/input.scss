@@ -60,6 +60,7 @@ $input_t-select-image: 'data:image/svg+xml;utf8,<svg width="36px" height="10px" 
 }
 
 .input_t-select {
+  // sass-lint:disable no-vendor-prefixes
   cursor: pointer;
   -webkit-appearance: none;
   -moz-appearance: none;

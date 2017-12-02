@@ -4,6 +4,8 @@
 /// @access public
 ////
 
+// sass-lint:disable no-empty-rulesets, indentation, no-vendor-prefixes
+
 /// Output a comment to flag sections
 /// @param {String} $hook
 @mixin add-comment($hook) {
@@ -18,7 +20,7 @@
 /*!
  * #{$project} - #{$description}
  * @version #{$version}
- * @package #{$hook}
+ * @bundle #{$hook}
  *
  * @author #{$author}
  * @repo #{$repo}

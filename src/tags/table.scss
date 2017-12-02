@@ -8,7 +8,7 @@ table {
   max-width: 100%;
   margin: 1em 0;
   overflow: auto;
-  border-top: 1px solid rgba($black, 0.1);
+  border-top: 1px solid $border-color;
 
   tr {
     vertical-align: top;
@@ -17,7 +17,7 @@ table {
   th,
   td {
     padding: 0.5em;
-    border-bottom: 1px solid rgba($black, 0.1);
+    border-bottom: 1px solid $border-color;
   }
 
   th {

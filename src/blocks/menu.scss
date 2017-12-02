@@ -6,34 +6,30 @@ $menu-indent: 1em !default;
 
 $menu__item-spacing: 1px !default;
 
-$menu__link-padding: 0.375em 0.75em !default;
+$menu__link-padding: $padding !default;
 
 $menu__link-color: $color !default;
-$menu__link-color-hover: $color !default;
-$menu__link-color-active: $blue !default;
-$menu__link-color-disabled: $color-light !default;
+$menu__link-color_hover: $color !default;
+$menu__link-color_active: $blue !default;
+$menu__link-color_disabled: $color-light !default;
 
 $menu__link-border-width: 1px !default;
 $menu__link-border-color: transparent !default;
-$menu__link-border-color-hover: transparent !default;
+$menu__link-border-color_hover: transparent !default;
 $menu__link-border-radius: $border-radius !default;
 
-$menu__link-background: null !default;
-$menu__link-background-hover: rgba($black, 0.05) !default;
-$menu__link-background-active: null !default;
-$menu__link-background-disabled: none !default;
+$menu__link-background: none !default;
+$menu__link-background_hover: rgba($black, 0.05) !default;
+$menu__link-background_active: none !default;
+$menu__link-background_disabled: none !default;
 
 $menu__text-spacing: 0.5em !default;
 
-$menu__title-margin: 1em !default;
 $menu__title-font-size: 0.9em !default;
 
-$menu__sep-spacing: 0.5em;
-$menu__sep-border: 1px solid rgba($black, 0.1) !default;
-
-$menu_stack__text-spacing: 1em !default;
-
-$menu_tabs-border-color: rgba($black, 0.1) !default;
+$menu__sep-spacing: 0.5em !default;
+$menu__sep-border-width: 1px !default;
+$menu__sep-border-color: rgba($black, 0.1) !default;
 
 .menu {
   display: flex;
@@ -67,31 +63,31 @@ $menu_tabs-border-color: rgba($black, 0.1) !default;
   &:hover,
   &:focus {
     outline: none;
-    color: $menu__link-color-hover;
-    background: $menu__link-background-hover;
-    border-color: $menu__link-border-color-hover;
+    color: $menu__link-color_hover;
+    background: $menu__link-background_hover;
+    border-color: $menu__link-border-color_hover;
   }
 }
 
-.menu__link.is-active {
-  background: $menu__link-background-active;
-  color: $menu__link-color-active;
+.menu__link_active {
+  background: $menu__link-background_active;
+  color: $menu__link-color_active;
 
   &:hover,
   &:focus {
-    background: $menu__link-background-active;
-    color: $menu__link-color-active;
+    background: $menu__link-background_active;
+    color: $menu__link-color_active;
   }
 }
 
-.menu__link.is-disabled {
-  background: $menu__link-background-disabled;
-  color: $menu__link-color-disabled;
+.menu__link_disabled {
+  background: $menu__link-background_disabled;
+  color: $menu__link-color_disabled;
 
   &:hover,
   &:focus {
-    background: $menu__link-background-disabled;
-    color: $menu__link-color-disabled;
+    background: $menu__link-background_disabled;
+    color: $menu__link-color_disabled;
   }
 }
 
@@ -108,20 +104,12 @@ $menu_tabs-border-color: rgba($black, 0.1) !default;
 }
 
 .menu__title {
-  margin: 0 $menu__title-margin;
+  padding: $menu__link-padding;
   font-size: $menu__title-font-size;
   font-weight: font-weight('semi-bold');
   text-transform: uppercase;
   color: $color-light;
   white-space: nowrap;
-
-  &:first-child {
-    margin-left: 0;
-  }
-
-  &:last-child {
-    margin-right: 0;
-  }
 }
 
 .menu__title-link {
@@ -132,15 +120,15 @@ $menu_tabs-border-color: rgba($black, 0.1) !default;
   border: none;
 
   &:hover {
-    background: $menu__link-background-hover;
-    color: $menu__link-color-hover;
+    background: $menu__link-background_hover;
+    color: $menu__link-color_hover;
   }
 }
 
 .menu__sep {
   align-self: stretch;
   margin: 0 $menu__sep-spacing;
-  border-right: $menu__sep-border;
+  border-right: $menu__sep-border-width solid $menu__sep-border-color;
 }
 
 .menu_full {
@@ -172,8 +160,55 @@ $menu_tabs-border-color: rgba($black, 0.1) !default;
 }
 
 /**
+ * menu_inverted
+ */
+
+$menu_inverted__link-color: $white !default;
+$menu_inverted__link-color-hover: $white !default;
+
+$menu_inverted__link-background: null !default;
+$menu_inverted__link-background-hover: rgba($white, 0.05) !default;
+
+$menu_inverted__link_active-color: $blue-400 !default;
+$menu_inverted__link_active-color-hover: $blue-400 !default;
+
+$menu_inverted__link_active-background: none !default;
+$menu_inverted__link_active-background-hover: none !default;
+
+$menu_inverted__sep-border-color: rgba($white, 0.1) !default;
+
+.menu_inverted {
+  .menu__link {
+    color: $menu_inverted__link-color;
+    background: $menu_inverted__link-background;
+
+    &:hover {
+      color: $menu_inverted__link-color-hover;
+      background: $menu_inverted__link-background-hover;
+    }
+  }
+
+  .menu__link_active {
+    color: $menu_inverted__link_active-color;
+    background: $menu_inverted__link_active-background;
+
+    &:hover,
+    &:focus {
+      color: $menu_inverted__link_active-color-hover;
+      background: $menu_inverted__link_active-background-hover;
+    }
+  }
+
+  .menu__sep {
+    border-color: $menu_inverted__sep-border-color;
+  }
+}
+
+/**
  * menu_stack
  */
+
+$menu_stack__text-spacing: 1em !default;
 
 .menu_stack {
   flex-direction: column;
@@ -201,22 +236,10 @@ $menu_tabs-border-color: rgba($black, 0.1) !default;
     }
   }
 
-  .menu__title {
-    margin: 1em 0;
-
-    &:first-child {
-      margin-top: 0;
-    }
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
   .menu__sep {
     margin: $menu__sep-spacing 0;
     border-right: none;
-    border-top: $menu__sep-border;
+    border-top: $menu__sep-border-width solid $menu__sep-border-color;
   }
 }
 
@@ -254,6 +277,8 @@ $menu_tabs-border-color: rgba($black, 0.1) !default;
 /**
  * menu_tabs
  */
+
+$menu_tabs-border-color: rgba($black, 0.1) !default;
 
 .menu_tabs {
   padding: 0;

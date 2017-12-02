@@ -1,13 +1,18 @@
 @import 'vrem-core';
 @include add-comment('anchor');
 
+$anchor-color: $blue !default;
+$anchor-color_hover: $blue-700 !default;
+$anchor-border: 1px solid rgba($black, 0.1) !default;
+$anchor-border_hover: 1px solid rgba($blue-700, 1) !default;
+
 a {
   color: $anchor-color;
   text-decoration: none;
   border-bottom: $anchor-border;
 
   &:hover {
-    color: $anchor-color--hover;
-    border-color: $anchor-color--hover;
+    color: $anchor-color_hover;
+    border-bottom: $anchor-border_hover;
   }
 }

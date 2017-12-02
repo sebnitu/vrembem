@@ -1,56 +1,30 @@
-# Compiled source #
-###################
-*.com
-*.class
-*.dll
-*.exe
-*.o
-*.so
+node_modules/
 
-# Packages #
-############
-# it's better to unpack these files and commit the raw source
-# git has its own built in compression methods
-*.7z
-*.dmg
-*.gz
-*.iso
-*.jar
-*.rar
-*.tar
-*.zip
-
-# Logs and databases #
-######################
+# Numerous always-ignore extensions
+*.diff
+*.err
+*.orig
 *.log
-*.sql
-*.sqlite
+*.rej
+*.swo
+*.swp
+*.zip
+*.vi
+*~
+*.sass-cache
+*.ruby-version
 
-# OS generated files #
-######################
+# OS or Editor folders
 .DS_Store
-.DS_Store?
 ._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
-
-# Directories #
-###############
-bower_components
-node_modules
-.sass-cache/
-
-# Jekyll Stuff #
-################
-docs/_site
-docs/.jekyll-metadata
-
-# Ignore ruby files #
-#####################
-.ruby-version
-.bundle
-vendor/cache
-vendor/bundle
-gh_token
+.cache
+.project
+.settings
+.tmproj
+.docpad.db
+*.esproj
+nbproject
+*.sublime-project
+*.sublime-workspace
+.build*
