@@ -1,0 +1,28 @@
+@import 'vrem-core';
+@import 'vrem-tags';
+
+/**
+ * Logo
+ */
+
+.logo {
+  display: inline-block;
+  width: 6em;
+  height: 6em;
+  background: url('./img/sebnitu-logo.jpg') no-repeat 0 0;
+  background-size: 100%;
+  border-radius: 4px;
+}
+
+.one,
+.two {
+  height: 3em;
+}
+
+.one {
+  background: black;
+}
+
+.two {
+  background: red;
+}

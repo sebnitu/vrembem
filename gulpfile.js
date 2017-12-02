@@ -1,6 +1,7 @@
 // Gulp Packages
 // yarn add node-sass node-sass-magic-importer
-// yarn add --dev del gulp gulp-rename gulp-sass gulp-sass-lint gulp-sourcemaps gulp-postcss autoprefixer
+// yarn add --dev del gulp gulp-rename gulp-sass gulp-sass-lint gulp-sourcemaps
+// yarn add --dev gulp-postcss autoprefixer
 
 'use strict'
 
@@ -31,7 +32,7 @@ gulp.task('clean', function () {
 })
 
 /**
- * Styles
+ * SCSS Linting
  */
 
 gulp.task('scss:lint', function() {
@@ -49,7 +50,11 @@ gulp.task('scss:lint', function() {
   return scss
 })
 
-gulp.task('scss:dev', function() {
+/**
+ * Build SCSS => CSS
+ */
+
+gulp.task('css:dev', function() {
 
   const src = [
     paths.src + '**/*.scss',
@@ -57,7 +62,7 @@ gulp.task('scss:dev', function() {
   ]
   const dest = paths.dest
 
-  const scss = gulp.src(src)
+  const css = gulp.src(src)
     .pipe(sourcemaps.init())
     .pipe(sass({
       outputStyle: 'expanded',
@@ -71,10 +76,14 @@ gulp.task('scss:dev', function() {
     .pipe(sourcemaps.write('./_maps'))
     .pipe(gulp.dest(dest))
 
-  return scss
+  return css
 })
 
-gulp.task('scss:min', function() {
+/**
+ * Build SCSS => CSS.min
+ */
+
+gulp.task('css:prod', function() {
 
   const src = [
     paths.src + '**/*.scss',
@@ -82,7 +91,7 @@ gulp.task('scss:min', function() {
   ]
   const dest = paths.dest
 
-  const scss = gulp.src(src)
+  const css = gulp.src(src)
     .pipe(sourcemaps.init())
     .pipe(sass({
       outputStyle: 'compressed',
@@ -97,22 +106,22 @@ gulp.task('scss:min', function() {
     .pipe(sourcemaps.write('./_maps'))
     .pipe(gulp.dest(dest))
 
-  return scss
+  return css
 })
 
 /**
- * Build Task
+ * Build Task Shorthands
  */
 
-gulp.task('scss', ['scss:dev', 'scss:min'])
-gulp.task('build', ['scss'])
+gulp.task('css', ['css:dev', 'css:prod'])
+gulp.task('build', ['clean', 'css'])
 
 /**
  * Watch Task
  */
 
 gulp.task('watch', function() {
-  gulp.watch(paths.src + '**/*', ['scss'])
+  gulp.watch(paths.src + '**/*', ['css'])
 })
 
 /**
