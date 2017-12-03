@@ -10,18 +10,13 @@ $navbar__title-color_hover: null !default;
 $navbar__title-padding: 0 0.75rem !default;
 
 .navbar {
-  padding: $navbar-padding;
-  background: $navbar-background;
-  border-bottom: $navbar-border;
-}
-
-.navbar__container {
   flex: 1 1 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 75rem;
-  margin: 0 auto;
+  padding: $navbar-padding;
+  background: $navbar-background;
+  border-bottom: $navbar-border;
 }
 
 .navbar__item {
@@ -40,5 +35,16 @@ $navbar__title-padding: 0 0.75rem !default;
   &:hover {
     color: $navbar__title-color_hover;
     border: none;
+  }
+}
+
+
+
+.navbar_inverted {
+  background: $color-dark;
+  border-bottom: none;
+
+  .navbar__title {
+    color: $white;
   }
 }

@@ -104,6 +104,7 @@ $menu__sep-border-color: rgba($black, 0.1) !default;
 }
 
 .menu__title {
+  display: block;
   padding: $menu__link-padding;
   font-size: $menu__title-font-size;
   font-weight: font-weight('semi-bold');

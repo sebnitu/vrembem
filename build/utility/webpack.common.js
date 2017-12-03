@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const config = {
   entry: {
-    app: [
+    docs: [
       path.join(paths.src, 'entry.js')
     ]
   },
@@ -14,8 +14,39 @@ const config = {
     filename: 'bundle.js',
     path: paths.docs
   },
+  resolve: {
+    alias: {
+      vrembem: paths.src
+    }
+  },
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          'babel-loader'
+        ]
+      },
+      {
+        test: /\.html/,
+        use: [
+          {
+            loader: 'html-loader'
+          }
+        ]
+      },
+      {
+        test: /\.md/,
+        use: [
+          {
+            loader: 'html-loader'
+          },
+          {
+            loader: 'markdown-loader'
+          }
+        ]
+      },
       {
         test: /\.(png|jpg|gif)$/,
         use: [
@@ -33,12 +64,13 @@ const config = {
   },
   devServer: {
     port: 9000,
-    historyApiFallback: true,
-    hot: true
+    historyApiFallback: true
   },
   plugins: [
     new webpack.ProgressPlugin(),
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin({
+      template: path.join(paths.src, 'examples/index.html'),
+    })
   ]
 }
 

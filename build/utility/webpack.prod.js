@@ -1,26 +1,19 @@
 const webpack = require('webpack')
 const path = require('path')
 const paths = require('./paths.config')
-const glob = require('glob') // Req for PurifyCSSPlugin
+// const glob = require('glob') // Req for PurifyCSSPlugin
 
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const MagicImporter = require('node-sass-magic-importer')
 const UglifyPlugin = require('uglifyjs-webpack-plugin')
 const CleanPlugin = require('clean-webpack-plugin')
 const CompressionPlugin = require("compression-webpack-plugin")
-const PurifyCSSPlugin = require('purifycss-webpack')
+// const PurifyCSSPlugin = require('purifycss-webpack')
 
 const config = {
   devtool: 'source-map', // https://webpack.js.org/configuration/devtool/
   module: {
     rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: [
-          'babel-loader'
-        ]
-      },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
@@ -36,6 +29,8 @@ const config = {
             {
               loader: 'sass-loader',
               options: {
+                sourceMap: true,
+                includePaths: [paths.src],
                 importer: MagicImporter()
               }
             }
@@ -58,10 +53,10 @@ const config = {
       threshold: 10240,
       minRatio: 0.8
     }),
-    new PurifyCSSPlugin({
-      minimize: true,
-      paths: glob.sync(path.join(__dirname, '*.html')),
-    }),
+    // new PurifyCSSPlugin({
+    //   minimize: true,
+    //   paths: glob.sync(path.join(__dirname, '*.html')),
+    // }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
     })

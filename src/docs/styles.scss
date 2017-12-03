@@ -1,0 +1,9 @@
+@import 'vrem-core';
+@import 'overrides.scss';
+@import 'vrembem';
+@include add-colophon('Docs');
+
+.wrapper {
+  max-width: 75rem;
+  margin: 0 auto;
+}

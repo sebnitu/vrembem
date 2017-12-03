@@ -9,13 +9,6 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: [
-          'babel-loader'
-        ]
-      },
-      {
         test: /\.css$/,
         use: [
           'style-loader',
@@ -30,6 +23,8 @@ const config = {
           {
             loader: 'sass-loader',
             options: {
+              sourceMap: true,
+              includePaths: [paths.src],
               importer: MagicImporter()
             }
           }

@@ -1,9 +1,9 @@
-// Webpack Packages (separated by: core, js, scss, img, file, plugins)
+// Webpack Packages
 // yarn add --dev webpack webpack-dev-server webpack-merge
 // yarn add --dev babel-core babel-loader babel-cli babel-preset-env
 // yarn add --dev style-loader css-loader sass-loader
-// yarn add --dev file-loader url-loader image-webpack-loader
-// yarn add --dev raw-loader
+// yarn add --dev raw-loader file-loader url-loader image-webpack-loader
+// yarn add --dev html-loader markdown-loader
 // yarn add --dev extract-text-webpack-plugin clean-webpack-plugin html-webpack-plugin compression-webpack-plugin purifycss-webpack purify-css
 
 const webpack = require('webpack')
