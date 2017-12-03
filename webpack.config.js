@@ -2,10 +2,12 @@
 // yarn add --dev webpack webpack-dev-server
 // yarn add --dev babel-core babel-loader babel-cli babel-preset-env
 // yarn add --dev style-loader css-loader sass-loader
+// yarn add --dev image-webpack-loader
 // yarn add --dev raw-loader file-loader url-loader
 // yarn add --dev extract-text-webpack-plugin clean-webpack-plugin purifycss-webpack purify-css
 
 const webpack = require('webpack')
+const fs = require('fs')
 const path = require('path')
 const glob = require('glob') // Req for PurifyCSSPlugin
 
@@ -16,12 +18,16 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const CleanPlugin = require('clean-webpack-plugin')
 const PurifyCSSPlugin = require('purifycss-webpack')
 
+// Custon webpack plugin import
+// const SampleWebpackPlugin = require('./build/plugins/SampleWebpackPlugin')
+
 // Set our environment variable
 const isProd = process.env.NODE_ENV === 'production'
+const dest = path.resolve(__dirname, 'docs')
 
 // Webpack config
 // Contains: entry, output, module, plugins
-// Variables: [name][ext][hash]
+// Variables: [name][ext][hash][chunkhash]
 const config = {
   entry: {
     app: [
@@ -31,8 +37,8 @@ const config = {
     ]
   },
   output: {
-    path: path.resolve(__dirname, 'docs'),
-    filename: '[name].js'
+    filename: '[name].[chunkhash].js',
+    path: dest
   },
   module: {
     rules: [
@@ -71,16 +77,33 @@ const config = {
           {
             loader: 'file-loader',
             options: {
-              name: 'img/[name].[ext]'
+              name: 'img/[name].[hash].[ext]'
+            }
+          },
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              gifsicle: {}, // Compress GIF images
+              mozjpeg: {}, // Compress JPEG images
+              optipng: {}, // Compress PNG images
+              svgo: {}, // Compress SVG images
+              pngquant: {}, // Compress PNG images
+              webp: {} // Compress JPG & PNG images into WEBP
             }
           }
         ]
       }
     ]
   },
+  devServer: {
+    port: 9000,
+    historyApiFallback: true,
+    contentBase: './',
+    inline: true
+  },
   plugins: [
-    new ExtractTextPlugin('[name].css'),
-    new CleanPlugin(path.resolve(__dirname, 'docs')),
+    new ExtractTextPlugin('[name].[hash].css'),
+    new CleanPlugin(dest),
     new PurifyCSSPlugin({
       minimize: isProd,
       paths: glob.sync(path.join(__dirname, '*.html')),
@@ -88,6 +111,21 @@ const config = {
     new webpack.LoaderOptionsPlugin({
       minimize: isProd
     })
+
+    // Custom webpack plugin
+    // ,
+    // new SampleWebpackPlugin()
+
+    // Custom webpack function
+    // ,
+    // function() {
+    //   this.plugin('done', stats => {
+    //     fs.writeFileSync(
+    //       path.join(dest, 'manifest.json'),
+    //       JSON.stringify(stats.toJson().assetsByChunkName)
+    //     )
+    //   })
+    // }
   ]
 }
 

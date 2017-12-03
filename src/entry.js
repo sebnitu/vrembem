@@ -5,7 +5,7 @@
 
 class Form {
   constructor() {
-    console.log('This worked!')
+    console.log('Test!')
   }
 }
 
