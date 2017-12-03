@@ -37,7 +37,7 @@ const config = {
     ]
   },
   output: {
-    filename: '[name].[chunkhash].js',
+    filename: '[name].js',
     path: dest
   },
   module: {
@@ -77,7 +77,7 @@ const config = {
           {
             loader: 'file-loader',
             options: {
-              name: 'img/[name].[hash].[ext]'
+              name: 'img/[name].[ext]'
             }
           },
           {
@@ -102,7 +102,7 @@ const config = {
     inline: true
   },
   plugins: [
-    new ExtractTextPlugin('[name].[hash].css'),
+    new ExtractTextPlugin('[name].css'),
     new CleanPlugin(dest),
     new PurifyCSSPlugin({
       minimize: isProd,
