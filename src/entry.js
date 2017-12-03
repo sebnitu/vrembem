@@ -1,12 +1,4 @@
 // Webpack entry point
+import './app.scss'
 
-// import './vrembem.scss'
-// import './img/sebnitu-logo.jpg'
-
-class Form {
-  constructor() {
-    console.log('Test!')
-  }
-}
-
-new Form()
+console.log('Test')

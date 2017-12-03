@@ -1,7 +1,6 @@
 // Sample Webpack Plugin
 
 const fs = require('fs')
-const path = require('path')
 
 // Constructor based plugin
 

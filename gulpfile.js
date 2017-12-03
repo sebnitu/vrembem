@@ -1,4 +1,4 @@
-// Gulp Packages
+// Gulp Packages (separated by: core, scss, postcss)
 // yarn add node-sass node-sass-magic-importer
 // yarn add --dev del gulp gulp-rename gulp-sass gulp-sass-lint gulp-sourcemaps
 // yarn add --dev gulp-postcss autoprefixer
