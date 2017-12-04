@@ -5,19 +5,22 @@
 
 'use strict'
 
+// Core
 const fs = require('fs')
 const path = require('path')
 const del = require('del')
 const gulp = require('gulp')
 const rename = require('gulp-rename')
+const sourcemaps = require('gulp-sourcemaps')
 
+// Styles
 const sass = require('gulp-sass')
 const sassLint = require('gulp-sass-lint')
-const sourcemaps = require('gulp-sourcemaps')
 const magicImporter = require('node-sass-magic-importer')
 const postcss = require('gulp-postcss')
 const autoprefixer = require('autoprefixer')
 
+// Paths
 const  paths = {
   src: 'src/',
   dest: 'dist/'

@@ -31,9 +31,9 @@ const config = {
       {
         test: /\.html/,
         use: [
-          {
-            loader: 'html-loader'
-          }
+          // {
+          //   loader: 'html-loader'
+          // }
         ]
       },
       {
@@ -69,7 +69,8 @@ const config = {
   plugins: [
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
-      template: path.join(paths.src, 'examples/index.html'),
+      title: 'Vrembem Style Guide',
+      template: path.join(paths.src, 'templates/index.html'),
     })
   ]
 }
