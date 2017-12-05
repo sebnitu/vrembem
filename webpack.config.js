@@ -3,7 +3,7 @@
 // yarn add --dev babel-core babel-loader babel-cli babel-preset-env
 // yarn add --dev style-loader css-loader sass-loader
 // yarn add --dev raw-loader file-loader url-loader image-webpack-loader
-// yarn add --dev html-loader markdown-loader
+// yarn add --dev html-loader markdown-loader ejs-loader
 // yarn add --dev extract-text-webpack-plugin clean-webpack-plugin html-webpack-plugin compression-webpack-plugin purifycss-webpack purify-css
 
 const webpack = require('webpack')

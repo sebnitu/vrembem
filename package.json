@@ -17,8 +17,6 @@
   "scripts": {
     "dev": "webpack --env.env=dev",
     "prod": "webpack --env.env=prod",
-    "dev:watch": "yarn dev --watch",
-    "prod:watch": "yarn prod --watch",
     "dev:serve": "webpack-dev-server --env.env=dev",
     "prod:serve": "webpack-dev-server --env.env=prod"
   },
@@ -36,6 +34,7 @@
     "compression-webpack-plugin": "^1.0.1",
     "css-loader": "^0.28.7",
     "del": "^3.0.0",
+    "ejs-loader": "^0.3.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.5",
     "gulp": "^3.9.1",

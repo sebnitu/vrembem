@@ -29,15 +29,23 @@ const config = {
         ]
       },
       {
-        test: /\.html/,
+        test: /\.ejs$/,
         use: [
-          // {
-          //   loader: 'html-loader'
-          // }
+          {
+            loader: 'ejs-loader'
+          }
         ]
       },
       {
-        test: /\.md/,
+        test: /\.html$/,
+        use: [
+          {
+            loader: 'html-loader'
+          }
+        ]
+      },
+      {
+        test: /\.md$/,
         use: [
           {
             loader: 'html-loader'
@@ -70,7 +78,9 @@ const config = {
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
       title: 'Vrembem Style Guide',
-      template: path.join(paths.src, 'templates/index.html'),
+      hash: true,
+      filename: 'index.html',
+      template: path.join(paths.src, 'templates/index.tpl'),
     })
   ]
 }

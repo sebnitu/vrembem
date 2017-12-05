@@ -5,8 +5,6 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
-    <div id="root" class="wrapper">
-      ${require('html-loader?interpolate!./layout.html')}
-    </div>
+    <div id="root"></div>
   </body>
 </html>

@@ -30,7 +30,7 @@ const config = {
               loader: 'sass-loader',
               options: {
                 sourceMap: true,
-                includePaths: [paths.src],
+                includePaths: [paths.scss],
                 importer: MagicImporter()
               }
             }
