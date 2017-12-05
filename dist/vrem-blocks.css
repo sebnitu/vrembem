@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library.
- * @version 0.1.3
+ * @version 0.2.0
  * @bundle Blocks
  *
  * @author Sebastian Nitu
@@ -10,7 +10,7 @@
  * Copyright (c) 2017 Sebastian Nitu (MIT Licensed)
  */
 /*==============================================================================
-  Vrembem 0.1.3 - @animate
+  @animate - Vrembem 0.2.0
 ==============================================================================*/
 .animate {
   -webkit-animation-duration: 5s;
@@ -102,7 +102,7 @@
 }
 
 /*==============================================================================
-  Vrembem 0.1.3 - @arrow
+  @arrow - Vrembem 0.2.0
 ==============================================================================*/
 .arrow {
   display: inline-block;
@@ -140,7 +140,7 @@
 }
 
 /*==============================================================================
-  Vrembem 0.1.3 - @badge
+  @badge - Vrembem 0.2.0
 ==============================================================================*/
 .badge {
   display: -webkit-inline-box;
@@ -167,8 +167,8 @@
 }
 
 .badge .chip {
-  padding: 0.14286rem;
-  font-size: 0.85714rem;
+  padding: 0.125rem;
+  font-size: 0.75rem;
 }
 
 .badge .chip .icon {
@@ -297,7 +297,7 @@
 }
 
 /*==============================================================================
-  Vrembem 0.1.3 - @breadcrumb
+  @breadcrumb - Vrembem 0.2.0
 ==============================================================================*/
 .breadcrumb {
   display: -webkit-inline-box;
@@ -327,7 +327,7 @@
 }
 
 /*==============================================================================
-  Vrembem 0.1.3 - @button-group
+  @button-group - Vrembem 0.2.0
 ==============================================================================*/
 .button-group {
   display: -webkit-inline-box;
@@ -414,7 +414,7 @@
 }
 
 /*==============================================================================
-  Vrembem 0.1.3 - @button
+  @button - Vrembem 0.2.0
 ==============================================================================*/
 .button {
   cursor: pointer;
@@ -429,7 +429,7 @@
       -ms-flex-pack: center;
           justify-content: center;
   margin: 0;
-  padding: 0.5em 1em;
+  padding: 0.3125em 0.75em;
   color: #424242;
   font-family: inherit;
   font-size: 1em;
@@ -496,7 +496,7 @@
  * button_icon
  */
 .button_icon {
-  padding: 0.5em;
+  padding: 0.3125em;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -716,7 +716,7 @@
 }
 
 /*==============================================================================
-  Vrembem 0.1.3 - @chip
+  @chip - Vrembem 0.2.0
 ==============================================================================*/
 .chip {
   cursor: pointer;
@@ -731,9 +731,9 @@
       -ms-flex-align: center;
           align-items: center;
   margin: 0;
-  padding: 0.21429rem;
+  padding: 0.1875rem;
   color: #ffffff;
-  font-size: 1.28571rem;
+  font-size: 1.125rem;
   background: rgba(0, 0, 0, 0.25);
   border: 1px solid transparent;
   border-radius: 2em;
@@ -756,8 +756,8 @@
 }
 
 .chip_size_small {
-  padding: 0.14286rem;
-  font-size: 0.85714em;
+  padding: 0.125rem;
+  font-size: 0.75em;
 }
 
 .chip_size_small .icon {
@@ -765,8 +765,8 @@
 }
 
 .chip_size_large {
-  padding: 0.5em;
-  font-size: 1.57143rem;
+  padding: 0.4375em;
+  font-size: 1.375rem;
 }
 
 .chip_color_fade {
@@ -814,7 +814,7 @@
 }
 
 /*==============================================================================
-  Vrembem 0.1.3 - @container
+  @container - Vrembem 0.2.0
 ==============================================================================*/
 .container {
   max-width: 75rem;
@@ -822,11 +822,19 @@
 }
 
 .container_padding {
-  padding: 0.75em 1.75em;
+  padding: 1.5em;
+}
+
+.container_padding > * {
+  margin: 0;
+}
+
+.container_padding > * + * {
+  margin-top: 1rem;
 }
 
 /*==============================================================================
-  Vrembem 0.1.3 - @modal
+  @modal - Vrembem 0.2.0
 ==============================================================================*/
 .dialog {
   position: relative;
@@ -974,7 +982,7 @@
 }
 
 /*==============================================================================
-  Vrembem 0.1.3 - @dropdown
+  @dropdown - Vrembem 0.2.0
 ==============================================================================*/
 .dropdown__trigger {
   position: relative;
@@ -996,7 +1004,7 @@
   width: 240px;
   margin: 0.5em 0 0;
   padding: 0.5em 0;
-  font-size: 1rem;
+  font-size: 0.875rem;
   line-height: 1.5em;
   text-align: left;
   list-style: none;
@@ -1316,7 +1324,7 @@
 }
 
 /*==============================================================================
-  Vrembem 0.1.3 - @embed-wrap
+  @embed-wrap - Vrembem 0.2.0
 ==============================================================================*/
 .embed-wrap {
   position: relative;
@@ -1351,7 +1359,7 @@
 }
 
 /*==============================================================================
-  Vrembem 0.1.3 - @hero
+  @hero - Vrembem 0.2.0
 ==============================================================================*/
 .hero {
   position: relative;
@@ -1409,7 +1417,7 @@
 }
 
 /*==============================================================================
-  Vrembem 0.1.3 - @icon
+  @icon - Vrembem 0.2.0
 ==============================================================================*/
 .icon {
   display: inline-block;
@@ -1441,7 +1449,7 @@
 }
 
 /*==============================================================================
-  Vrembem 0.1.3 - @input-group
+  @input-group - Vrembem 0.2.0
 ==============================================================================*/
 .input-group {
   display: -webkit-box;
@@ -1500,7 +1508,7 @@
 }
 
 /*==============================================================================
-  Vrembem 0.1.3 - @input
+  @input - Vrembem 0.2.0
 ==============================================================================*/
 .input {
   position: relative;
@@ -1586,7 +1594,7 @@
 }
 
 /*==============================================================================
-  Vrembem 0.1.3 - @menu
+  @menu - Vrembem 0.2.0
 ==============================================================================*/
 .menu {
   display: -webkit-box;
@@ -1617,7 +1625,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0.5em 1em;
+  padding: 0.3125em 0.75em;
   color: #424242;
   white-space: nowrap;
   text-decoration: none;
@@ -1666,7 +1674,8 @@
 }
 
 .menu__title {
-  padding: 0.5em 1em;
+  display: block;
+  padding: 0.3125em 0.75em;
   font-size: 0.9em;
   font-weight: 600;
   text-transform: uppercase;
@@ -1874,7 +1883,7 @@
 }
 
 /*==============================================================================
-  Vrembem 0.1.3 - @modal
+  @modal - Vrembem 0.2.0
 ==============================================================================*/
 .modal {
   display: -webkit-box;
@@ -2000,14 +2009,9 @@
 }
 
 /*==============================================================================
-  Vrembem 0.1.3 - @navbar
+  @navbar - Vrembem 0.2.0
 ==============================================================================*/
 .navbar {
-  padding: 1em;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.navbar__container {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 0px;
           flex: 1 1 0;
@@ -2020,8 +2024,8 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  max-width: 75rem;
-  margin: 0 auto;
+  padding: 1em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .navbar__item + .navbar__item {
@@ -2030,7 +2034,7 @@
 
 .navbar__title {
   padding: 0 0.75rem;
-  font-size: 1.42857em;
+  font-size: 1.25em;
   font-weight: 600;
   color: #212121;
   border: none;
@@ -2040,8 +2044,17 @@
   border: none;
 }
 
+.navbar_inverted {
+  background: #212121;
+  border-bottom: none;
+}
+
+.navbar_inverted .navbar__title {
+  color: #ffffff;
+}
+
 /*==============================================================================
-  Vrembem 0.1.3 - @notice
+  @notice - Vrembem 0.2.0
 ==============================================================================*/
 .notice {
   position: relative;
@@ -2086,7 +2099,7 @@
 }
 
 /*==============================================================================
-  Vrembem 0.1.3 - @page
+  @page - Vrembem 0.2.0
 ==============================================================================*/
 .page {
   display: -webkit-box;
@@ -2117,15 +2130,12 @@
 
 .page__aside {
   -webkit-box-flex: 0;
-      -ms-flex: 0 0 220px;
-          flex: 0 0 220px;
+      -ms-flex: 0 0 16em;
+          flex: 0 0 16em;
+  padding: 0.75em;
   overflow-x: hidden;
   overflow-y: auto;
   background: #f5f5f5;
-}
-
-.page__aside .page__container {
-  padding: 0.75em;
 }
 
 .page__aside .menu__link:hover {
@@ -2136,16 +2146,13 @@
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
+  padding: 0.75em 1.75em;
   overflow-x: hidden;
   overflow-y: auto;
 }
 
-.page__content .page__container {
-  padding: 0.75em 1.75em;
-}
-
 /*==============================================================================
-  Vrembem 0.1.3 - @tooltip
+  @tooltip - Vrembem 0.2.0
 ==============================================================================*/
 .tooltip {
   position: relative;
@@ -2362,7 +2369,7 @@
 }
 
 /*==============================================================================
-  Vrembem 0.1.3 - @utility
+  @utility - Vrembem 0.2.0
 ==============================================================================*/
 /**
  * Text Styles
@@ -2372,6 +2379,10 @@
   line-height: 1.4em;
   color: #212121;
   font-weight: 300;
+}
+
+.text_nowrap {
+  white-space: nowrap;
 }
 
 /**
@@ -2423,7 +2434,7 @@
   display: none !important;
 }
 
-.hide_overflow {
+.hide-overflow {
   overflow: hidden !important;
 }
 

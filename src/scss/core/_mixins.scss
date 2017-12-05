@@ -8,10 +8,17 @@
 
 /// Output a comment to flag sections
 /// @param {String} $hook
-@mixin add-comment($hook) {
+/// @param {Boolean} $details - Whether or not to add project name and version
+@mixin add-comment($hook, $details: true) {
+@if ($details) {
 /*==============================================================================
-  #{$project} #{$version} - @#{$hook}
+  @#{$hook} - #{$project} #{$version}
 ==============================================================================*/
+} @else {
+/*==============================================================================
+  @#{$hook}
+==============================================================================*/
+}
 }
 
 /// Output a colophone comment for the top of packages

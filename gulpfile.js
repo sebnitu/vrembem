@@ -22,7 +22,7 @@ const autoprefixer = require('autoprefixer')
 
 // Paths
 const  paths = {
-  src: 'src/',
+  src: 'src/scss/',
   dest: 'dist/'
 }
 
@@ -124,7 +124,7 @@ gulp.task('build', ['clean', 'css'])
  */
 
 gulp.task('watch', function() {
-  gulp.watch(paths.src + '**/*', ['css'])
+  gulp.watch(paths.src + 'scss/**/*', ['css'])
 })
 
 /**

@@ -1,5 +1,5 @@
 /*==============================================================================
-  Vrembem 0.1.3 - @menu
+  @menu - Vrembem 0.2.0
 ==============================================================================*/
 .menu {
   display: -webkit-box;
@@ -30,7 +30,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0.5em 1em;
+  padding: 0.3125em 0.75em;
   color: #424242;
   white-space: nowrap;
   text-decoration: none;
@@ -79,7 +79,8 @@
 }
 
 .menu__title {
-  padding: 0.5em 1em;
+  display: block;
+  padding: 0.3125em 0.75em;
   font-size: 0.9em;
   font-weight: 600;
   text-transform: uppercase;

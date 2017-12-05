@@ -10,17 +10,21 @@ $success: $green !default;
 $caution: $amber-600 !default;
 $danger: $red !default;
 
-$padding-vert: 0.5em !default;
-$padding-hori: 1em !default;
+$padding-vert: 0.3125em !default;
+$padding-hori: 0.75em !default;
 $padding: $padding-vert $padding-hori !default;
+
+$margin-vert: 1rem !default;
+$margin-hori: 0 !default;
+$margin: $margin-vert $margin-hori !default;
 
 $font-family-sans: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif !default;
 $font-family-serif: georgia, 'Times New Roman', times, serif !default;
 $font-family-mono: Menlo, Monaco, Consolas, 'Courier New', monospace !default;
 $font-family: $font-family-sans !default;
 
-$font-size: 14px !default;
-$line-height: 1.45em !default;
+$font-size: 16px !default;
+$line-height: 1.5em !default;
 $font-weight: font-weight('normal') !default;
 
 $color: $gray-800 !default;

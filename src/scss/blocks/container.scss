@@ -3,7 +3,7 @@
 
 $container-max-width: 75rem !default;
 $container-margin: 0 auto !default;
-$container-padding: 0.75em 1.75em !default;
+$container-padding: 1.5em !default;
 
 .container {
   max-width: $container-max-width;
@@ -12,4 +12,12 @@ $container-padding: 0.75em 1.75em !default;
 
 .container_padding {
   padding: $container-padding;
+
+  > * {
+    margin: 0;
+  }
+
+  > * + * {
+    margin-top: $margin-vert;
+  }
 }

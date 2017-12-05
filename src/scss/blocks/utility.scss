@@ -15,6 +15,10 @@ $lead-line-height: 1.4em !default;
   font-weight: font-weight('light');
 }
 
+.text_nowrap {
+  white-space: nowrap;
+}
+
 /**
  * Text Alignment Classes
  */
@@ -63,7 +67,7 @@ $lead-line-height: 1.4em !default;
   display: none !important;
 }
 
-.hide_overflow {
+.hide-overflow {
   overflow: hidden !important;
 }
 
