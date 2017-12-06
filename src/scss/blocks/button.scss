@@ -27,6 +27,7 @@ $button_outline_border-width: 1px !default;
 
 .button {
   cursor: pointer;
+  position: relative;
   vertical-align: top;
   display: inline-flex;
   align-items: center;
@@ -141,6 +142,7 @@ $button_outline_border-width: 1px !default;
   }
 }
 
+.button.is-off,
 .button_color_secondary {
   color: $white;
   background: $secondary;
@@ -152,6 +154,7 @@ $button_outline_border-width: 1px !default;
   }
 }
 
+.button.is-on,
 .button_color_success {
   color: $white;
   background: $success;

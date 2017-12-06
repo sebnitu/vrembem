@@ -19,19 +19,14 @@
 
 .page__aside {
   flex: 0 0 16em;
-  padding: 0.75em;
+  padding: 3em 1em;
   overflow-x: hidden;
   overflow-y: auto;
-  background: $background-color;
-
-  .menu__link:hover {
-    background-color: $white;
-  }
 }
 
 .page__content {
   flex: 1 1 auto;
-  padding: 0.75em 1.75em;
+  padding: 3em 2em;
   overflow-x: hidden;
   overflow-y: auto;
 }

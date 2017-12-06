@@ -18,11 +18,14 @@
     "dev": "webpack --env.env=dev",
     "prod": "webpack --env.env=prod",
     "dev:serve": "webpack-dev-server --env.env=dev",
-    "prod:serve": "webpack-dev-server --env.env=prod"
+    "prod:serve": "webpack-dev-server --env.env=prod",
+    "lint": "eslint ./src/*.js"
   },
   "dependencies": {
     "node-sass": "^4.7.2",
-    "node-sass-magic-importer": "^5.0.0"
+    "node-sass-magic-importer": "^5.0.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.6",
@@ -30,11 +33,16 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "classnames": "^2.2.5",
     "clean-webpack-plugin": "^0.1.17",
     "compression-webpack-plugin": "^1.0.1",
     "css-loader": "^0.28.7",
     "del": "^3.0.0",
     "ejs-loader": "^0.3.0",
+    "eslint": "^4.12.1",
+    "eslint-config-google": "^0.9.1",
+    "eslint-config-react-tools": "^1.0.10",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.5",
     "gulp": "^3.9.1",

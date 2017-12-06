@@ -2,8 +2,8 @@
 @include add-comment('navbar');
 
 $navbar-padding: 1em !default;
-$navbar-background: null !default;
-$navbar-border: 1px solid $border-color !default;
+$navbar-background: $background-color !default;
+$navbar-border: null !default;
 
 $navbar__title-color: $color-dark !default;
 $navbar__title-color_hover: null !default;
@@ -37,8 +37,6 @@ $navbar__title-padding: 0 0.75rem !default;
     border: none;
   }
 }
-
-
 
 .navbar_inverted {
   background: $color-dark;

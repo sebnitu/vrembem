@@ -1,12 +1,16 @@
-// Webpack entry point
-import './docs/imports.scss'
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-// HTML Files
-// import Layout from './templates/layout.html'
-// import Home from './templates/home.md'
+import './scss/vrembem.scss'
+import './styles.scss'
 
-// var root = document.getElementById('root');
-// root.innerHTML = Layout;
+import Layout from './blocks/Layout'
 
-// var content = document.getElementById('content');
-// content.innerHTML = Home;
+const App = () => (
+  <Layout />
+)
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root'),
+)

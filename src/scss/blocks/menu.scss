@@ -69,7 +69,7 @@ $menu__sep-border-color: rgba($black, 0.1) !default;
   }
 }
 
-.menu__link_active {
+.menu__link.is-active {
   background: $menu__link-background_active;
   color: $menu__link-color_active;
 
@@ -80,7 +80,7 @@ $menu__sep-border-color: rgba($black, 0.1) !default;
   }
 }
 
-.menu__link_disabled {
+.menu__link.is-disabled {
   background: $menu__link-background_disabled;
   color: $menu__link-color_disabled;
 
@@ -148,15 +148,15 @@ $menu__sep-border-color: rgba($black, 0.1) !default;
   }
 }
 
-.menu_a-left {
+.menu_align_left {
   justify-content: flex-start;
 }
 
-.menu_a-center {
+.menu_align_center {
   justify-content: center;
 }
 
-.menu_a-right {
+.menu_align_right {
   justify-content: flex-end;
 }
 
@@ -244,7 +244,7 @@ $menu_stack__text-spacing: 1em !default;
   }
 }
 
-.menu_stack.menu_a-left {
+.menu_stack.menu_align_left {
   .menu__title {
     text-align: left;
   }
@@ -254,7 +254,7 @@ $menu_stack__text-spacing: 1em !default;
   }
 }
 
-.menu_stack.menu_a-center {
+.menu_stack.menu_align_center {
   .menu__title {
     text-align: center;
   }
@@ -264,7 +264,7 @@ $menu_stack__text-spacing: 1em !default;
   }
 }
 
-.menu_stack.menu_a-right {
+.menu_stack.menu_align_right {
   .menu__title {
     text-align: right;
   }
