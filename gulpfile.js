@@ -1,4 +1,4 @@
-// Install Scripts
+// Gulp Packages
 // Sorted by: core, core gulp, styles, graphics
 // yarn add --dev del q
 // yarn add --dev gulp gulp-util gulp-rename gulp-newer gulp-sourcemaps gulp-livereload
@@ -95,7 +95,7 @@ gulp.task('scss:lint', function() {
 
 gulp.task('css:dev', function() {
 
-  const src = paths.src + '**/*.scss'
+  const src = paths.src + 'vrem-blocks.scss'
   const dest = paths.dest
 
   const css = gulp.src(src)
@@ -117,7 +117,7 @@ gulp.task('css:dev', function() {
 
 gulp.task('css:prod', function() {
 
-  const src = paths.src + '**/*.scss'
+  const src = paths.src + 'vrem-blocks.scss'
   const dest = paths.dest
 
   const css = gulp.src(src)

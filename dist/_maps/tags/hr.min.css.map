@@ -1,1 +1,0 @@
-{"version":3,"sources":["tags/hr.scss"],"names":[],"mappings":"AAGA,QAEE,cACA,WACA,WACA,aACA,UACA,2BACA,WAAY,CACb","file":"../../tags/hr.min.css","sourcesContent":["@import 'vrem-core';\n@include add-comment('hr');\n\nhr,\n.hrs {\n  display: block;\n  height: 1px;\n  width: 100%;\n  margin: 2em 0;\n  padding: 0;\n  background: $border-color;\n  border: none;\n}\n"]}

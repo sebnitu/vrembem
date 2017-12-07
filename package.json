@@ -16,6 +16,10 @@
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^7.2.1",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
     "del": "^3.0.0",
     "feather-icons": "^4.0.1",
     "gulp": "^3.9.1",
@@ -30,6 +34,9 @@
     "gulp-svg-symbols": "^2.0.2",
     "gulp-util": "^3.0.8",
     "node-sass-magic-importer": "^5.0.0",
-    "q": "^1.5.1"
+    "q": "^1.5.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7",
+    "webpack-merge": "^4.1.1"
   }
 }
