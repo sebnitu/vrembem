@@ -15,7 +15,7 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 1em;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background: #f5f5f5;
 }
 
 .navbar__item + .navbar__item {

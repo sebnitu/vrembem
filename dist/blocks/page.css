@@ -32,21 +32,16 @@
   -webkit-box-flex: 0;
       -ms-flex: 0 0 16em;
           flex: 0 0 16em;
-  padding: 0.75em;
+  padding: 3em 1em;
   overflow-x: hidden;
   overflow-y: auto;
-  background: #f5f5f5;
-}
-
-.page__aside .menu__link:hover {
-  background-color: #ffffff;
 }
 
 .page__content {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
-  padding: 0.75em 1.75em;
+  padding: 3em 2em;
   overflow-x: hidden;
   overflow-y: auto;
 }

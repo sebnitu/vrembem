@@ -3,6 +3,7 @@
 ==============================================================================*/
 .button {
   cursor: pointer;
+  position: relative;
   vertical-align: top;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -121,22 +122,28 @@
   background: #0c7cd5;
 }
 
+.button.is-off,
 .button_color_secondary {
   color: #ffffff;
   background: #9e9e9e;
 }
 
-.button_color_secondary:hover, .button_color_secondary:focus {
+.button.is-off:hover, .button.is-off:focus,
+.button_color_secondary:hover,
+.button_color_secondary:focus {
   color: #ffffff;
   background: #858585;
 }
 
+.button.is-on,
 .button_color_success {
   color: #ffffff;
   background: #4caf50;
 }
 
-.button_color_success:hover, .button_color_success:focus {
+.button.is-on:hover, .button.is-on:focus,
+.button_color_success:hover,
+.button_color_success:focus {
   color: #ffffff;
   background: #3d8b40;
 }

@@ -1,4 +1,4 @@
 @import 'vrem-core';
 @include add-colophon('Tags');
 
-@import 'tags/*';
+@import 'tags/**/*.scss';

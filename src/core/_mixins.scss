@@ -6,6 +6,22 @@
 
 // sass-lint:disable no-empty-rulesets, indentation, no-vendor-prefixes
 
+/// Output a colophone comment for the top of packages
+/// @param {String} $hook
+@mixin add-colophon($hook) {
+/*!
+ * #{$project} - #{$description}
+ * @version #{$version}
+ * @bundle #{$hook}
+ *
+ * @author #{$author}
+ * @repo #{$repo}
+ * @url #{$url}
+ *
+ * Copyright (c) #{$year} Sebastian Nitu (MIT Licensed)
+ */
+}
+
 /// Output a comment to flag sections
 /// @param {String} $hook
 /// @param {Boolean} $details - Whether or not to add project name and version
@@ -21,19 +37,11 @@
 }
 }
 
-/// Output a colophone comment for the top of packages
+/// Output a comment to flag sections
 /// @param {String} $hook
-@mixin add-colophon($hook) {
-/*!
- * #{$project} - #{$description}
- * @version #{$version}
- * @bundle #{$hook}
- *
- * @author #{$author}
- * @repo #{$repo}
- * @url #{$url}
- *
- * Copyright (c) #{$year} Sebastian Nitu (MIT Licensed)
+@mixin add-comment-subtle($hook) {
+/**
+ * #{$hook}
  */
 }
 

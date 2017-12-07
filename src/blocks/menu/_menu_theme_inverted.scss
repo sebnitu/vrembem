@@ -1,0 +1,43 @@
+@import 'vrem-core';
+@include add-comment-subtle('menu_theme_inverted');
+
+$menu_theme_inverted-color: $white !default;
+$menu_theme_inverted-color_hover: $white !default;
+
+$menu_theme_inverted-background: null !default;
+$menu_theme_inverted-background_hover: rgba($white, 0.05) !default;
+
+$menu_theme_inverted-color_active: $blue-400 !default;
+$menu_theme_inverted-color_active_hover: $blue-400 !default;
+
+$menu_theme_inverted-background_active: none !default;
+$menu_theme_inverted-background_active_hover: none !default;
+
+$menu_theme_inverted-border-color: rgba($white, 0.1) !default;
+
+.menu_theme_inverted {
+  .menu__link {
+    color: $menu_theme_inverted-color;
+    background: $menu_theme_inverted-background;
+
+    &:hover {
+      color: $menu_theme_inverted-color_hover;
+      background: $menu_theme_inverted-background_hover;
+    }
+
+    &.is-active {
+      color: $menu_theme_inverted-color_active;
+      background: $menu_theme_inverted-background_active;
+
+      &:hover,
+      &:focus {
+        color: $menu_theme_inverted-color_active_hover;
+        background: $menu_theme_inverted-background_active_hover;
+      }
+    }
+  }
+
+  .menu__sep {
+    border-color: $menu_theme_inverted-border-color;
+  }
+}

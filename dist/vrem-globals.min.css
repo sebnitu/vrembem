@@ -8,6 +8,6 @@
  * @url http://sebnitu.com
  *
  * Copyright (c) 2017 Sebastian Nitu (MIT Licensed)
- */body{margin:0;padding:0;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI","Roboto","Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.5em;font-weight:400;color:#424242;-webkit-font-smoothing:subpixel-antialiased}html{margin:0;padding:0;-webkit-box-sizing:border-box;box-sizing:border-box;font-size:16px}*,*::before,*::after{-webkit-box-sizing:inherit;box-sizing:inherit}
+ */body{margin:0;padding:0;font-family:-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI","Roboto","Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.5em;font-weight:400;color:#424242;-webkit-font-smoothing:subpixel-antialiased}html{margin:0;padding:0;-webkit-box-sizing:border-box;box-sizing:border-box;font-size:16px;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased}*,*::before,*::after{-webkit-box-sizing:inherit;box-sizing:inherit}
 
 /*# sourceMappingURL=_maps/vrem-globals.min.css.map */

@@ -1,0 +1,37 @@
+@import 'vrem-core';
+@include add-comment-subtle('menu_stack');
+
+$menu_stack__text-spacing: 1em !default;
+
+.menu_stack {
+  flex-direction: column;
+  align-items: stretch;
+  overflow: visible;
+
+  .menu_stack {
+    margin-left: $menu-indent;
+  }
+
+  .menu__item + .menu__item {
+    margin-left: 0;
+    margin-top: $menu__item-spacing;
+  }
+
+  .menu__text {
+    margin: 0 $menu_stack__text-spacing;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .menu__sep {
+    margin: $menu__sep-spacing 0;
+    border-right: none;
+    border-top: $menu__sep-border-width solid $menu__sep-border-color;
+  }
+}
