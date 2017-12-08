@@ -8,7 +8,7 @@ build()
 
 if (process.argv.includes('--watch')) {
   console.log('Watching...'.yellow);
-  watch(paths.src, { recursive: true }, function(evt, name) {
+  watch([paths.src, paths.scripts + '/layouts'], { recursive: true }, function(evt, name) {
     console.log('Watch:'.cyan, '"' + path.basename(name) + '"' + ' was ' + evt + 'd')
     build()
   })

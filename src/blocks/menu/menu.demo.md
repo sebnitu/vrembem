@@ -1,3 +1,8 @@
+---
+title: 'Menu'
+desc: 'Groups of links'
+---
+
 # Menu
 
 This is some intro text...

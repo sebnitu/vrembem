@@ -1,0 +1,20 @@
+
+.jumbo-menu {
+
+}
+
+.jumbo-menu__item {
+
+}
+
+.jumbo-menu__link {
+  display: block;
+  padding: 2em;
+  background-color: $white;
+  transition: background-color 0.5s linear;
+
+  &:hover {
+    background-color: $blue-50;
+    transition: background-color 0.25s linear;
+  }
+}

@@ -1,0 +1,45 @@
+
+.cover {
+  display: flex;
+  align-items: stretch;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.cover__header,
+.cover__content {
+  @include add-scrollable();
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex: 1 0 0;
+}
+
+.cover__header {
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4em 0;
+  color: $white;
+  background: $brown-900;
+}
+
+.cover__title {
+  font: 5em/1.325 $font-family-serif;
+  margin-bottom: 1rem;
+}
+
+.cover__desc {
+  font: 1.4em/1.6 $font-family;
+  margin-bottom: 1rem;
+}
+
+.cover__version {
+  color: rgba($white, 0.25);
+}
+
+.cover__inner {
+  max-width: 42em;
+  padding: 0 10%;
+}

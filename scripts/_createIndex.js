@@ -5,8 +5,10 @@ import paths from './paths.config'
 import matter from 'gray-matter'
 import ejs from 'ejs'
 
+// Default function export
 export default function(pages) {
 
+  // Initiate our menu array and process counter
   const menu = []
   var itemsProcessed = 0
 

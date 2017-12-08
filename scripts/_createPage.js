@@ -21,6 +21,7 @@ const md = require('markdown-it')({
   }
 })
 
+// Default function export
 export default function(file, data) {
 
   // Get the frontmatter from file

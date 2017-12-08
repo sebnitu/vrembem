@@ -1,1 +1,8 @@
 @import 'vrembem';
+
+@import 'blocks/cover';
+@import 'blocks/jumbo-menu';
+
+body {
+  min-height: 100vh;
+}
