@@ -1,9 +1,14 @@
 .demo {
-  padding-top: 1em;
-  border-top: 1px solid $border-color;
+  padding-bottom: 2em;
+  border-bottom: 1px solid $border-color;
+
+  &:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
 
   > * {
-    margin-bottom: 1em;
+    margin-bottom: 1rem;
   }
 
   > *:last-child {
@@ -22,7 +27,7 @@
 }
 
 .demo__output {
-
+  margin-bottom: 1em;
 }
 
 .demo__code {

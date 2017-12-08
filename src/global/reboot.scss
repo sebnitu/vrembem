@@ -70,6 +70,11 @@ button {
   overflow: visible;
 }
 
+code,
+pre {
+  font-family: $font-family-mono;
+}
+
 ::-moz-focus-inner {
   padding: 0;
   border: 0;

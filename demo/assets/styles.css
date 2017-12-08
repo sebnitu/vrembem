@@ -80,6 +80,11 @@ button {
   overflow: visible;
 }
 
+code,
+pre {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace;
+}
+
 ::-moz-focus-inner {
   padding: 0;
   border: 0;
@@ -2300,12 +2305,17 @@ body {
 }
 
 .demo {
-  padding-top: 1em;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 2em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.demo:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 
 .demo > * {
-  margin-bottom: 1em;
+  margin-bottom: 1rem;
 }
 
 .demo > *:last-child {
@@ -2318,10 +2328,15 @@ body {
   font-weight: 600;
 }
 
+.demo__output {
+  margin-bottom: 1em;
+}
+
 .hljs {
   display: block;
   overflow-x: auto;
   padding: 1em;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace;
   color: #b0bec5;
   background: #263238;
   border-radius: 3px;
@@ -2426,7 +2441,7 @@ body {
 }
 
 .typography > * {
-  margin-bottom: 1em;
+  margin-bottom: 1rem;
 }
 
 .typography > *:first-child {
@@ -2481,6 +2496,13 @@ body {
 
 .typography > ul,
 .typography > ol {
+  padding-left: 1.5em;
+}
+
+.typography > ul ul,
+.typography > ul ol,
+.typography > ol ul,
+.typography > ol ol {
   padding-left: 1.5em;
 }
 

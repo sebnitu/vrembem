@@ -2,7 +2,7 @@
 .typography {
 
   > * {
-    margin-bottom: 1em;
+    margin-bottom: 1rem;
   }
 
   > *:first-child {
@@ -47,10 +47,6 @@
     color: $color-light;
   }
 
-  > p {
-
-  }
-
   > ul {
     list-style: disc;
   }
@@ -62,6 +58,11 @@
   > ul,
   > ol {
     padding-left: 1.5em;
+
+    & ul,
+    & ol {
+      padding-left: 1.5em;
+    }
 
     > li + li {
       margin-top: 0.5em;
