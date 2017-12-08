@@ -1,6 +1,3 @@
-@import 'vrem-core';
-@include add-comment('breadcrumb');
-
 $breadcrumb-delimiter: '/' !default;
 $breadcrumb-delimiter-padding: 0 0.5em !default;
 $breadcrumb-delimiter-color: $gray-400 !default;

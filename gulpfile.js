@@ -95,7 +95,7 @@ gulp.task('scss:lint', function() {
 
 gulp.task('css:dev', function() {
 
-  const src = paths.src + 'vrem-blocks.scss'
+  const src = paths.src + '**/*.scss'
   const dest = paths.dest
 
   const css = gulp.src(src)
@@ -117,7 +117,7 @@ gulp.task('css:dev', function() {
 
 gulp.task('css:prod', function() {
 
-  const src = paths.src + 'vrem-blocks.scss'
+  const src = paths.src + '**/*.scss'
   const dest = paths.dest
 
   const css = gulp.src(src)

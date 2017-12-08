@@ -1,6 +1,3 @@
-@import 'vrem-core';
-@include add-comment('tooltip');
-
 $tooltip-background: rgba($color, 0.95) !default;
 
 .tooltip {

@@ -1,6 +1,3 @@
-@import 'vrem-core';
-@include add-comment('chip');
-
 $chip-color: $white !default;
 $chip-padding: px-to-rem(3px) !default;
 $chip-font-size: px-to-rem(18px) !default;

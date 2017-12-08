@@ -14,29 +14,45 @@
   },
   "bugs": "https://github.com/sebnitu/vrembem/issues",
   "license": "MIT",
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "scripts": {
+    "clean": "yarn clean:dist && yarn clean:demo",
+    "clean:dist": "rimraf dist",
+    "clean:demo": "rimraf demo",
+
+    "dist": "yarn clean:dist && yarn dist:dev && yarn dist:prod && yarn dist:post",
+    "dist:dev": "node-sass src/vrembem.scss dist/vrembrem.css --output-style expanded --source-map true",
+    "dist:prod": "node-sass src/vrembem.scss dist/vrembrem.min.css --output-style compressed --source-map true",
+    "dist:post": "postcss dist/*.css --dir dist --use autoprefixer --no-map true",
+
+    "demo": "yarn clean:demo && yarn demo:dev && yarn demo:prod && yarn demo:post && yarn demo:pages",
+    "demo:dev": "node-sass scripts/assets/styles.scss demo/assets/styles.css --include-path src --output-style expanded --source-map true",
+    "demo:prod": "node-sass scripts/assets/styles.scss demo/assets/styles.min.css --include-path src --output-style compressed --source-map true",
+    "demo:post": "postcss demo/assets/*.css --dir demo/assets --use autoprefixer --no-map true",
+
+    "demo:pages": "babel-node scripts/demo.js",
+
+    "serve": "cd demo && live-server --host=localhost --port=9000 --wait=500 --watch=../demo,../dist,../scripts/assets,../scripts/layouts,../src"
+  },
   "devDependencies": {
     "autoprefixer": "^7.2.1",
     "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
-    "del": "^3.0.0",
-    "feather-icons": "^4.0.1",
-    "gulp": "^3.9.1",
-    "gulp-imagemin": "^4.0.0",
-    "gulp-livereload": "^3.8.1",
-    "gulp-newer": "^1.3.0",
-    "gulp-postcss": "^7.0.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^3.1.0",
-    "gulp-sass-lint": "^1.3.4",
-    "gulp-sourcemaps": "^2.6.1",
-    "gulp-svg-symbols": "^2.0.2",
-    "gulp-util": "^3.0.8",
-    "node-sass-magic-importer": "^5.0.0",
-    "q": "^1.5.1",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.9.7",
-    "webpack-merge": "^4.1.1"
+    "colors": "^1.1.2",
+    "ejs": "^2.5.7",
+    "glob": "^7.1.2",
+    "gray-matter": "^3.1.1",
+    "highlight.js": "^9.12.0",
+    "live-server": "^1.2.0",
+    "markdown-it": "^8.4.0",
+    "node-sass": "^4.7.2",
+    "node-watch": "^0.5.5",
+    "postcss-cli": "^4.1.1",
+    "rimraf": "^2.6.2",
+    "shelljs": "^0.7.8"
   }
 }

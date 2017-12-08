@@ -1,6 +1,3 @@
-@import 'vrem-core';
-@include add-comment('animate');
-
 $animate-duration: 5s !default;
 
 .animate {
@@ -45,11 +42,11 @@ $animate-duration: 5s !default;
   }
 }
 
-.animate_rotate_switch {
-  animation-name: rotate-switch;
+.animate_rotate_inverse {
+  animation-name: rotate-inverse;
 }
 
-@keyframes rotate-switch {
+@keyframes rotate-inverse {
   100% {
     transform: rotate(-360deg);
   }

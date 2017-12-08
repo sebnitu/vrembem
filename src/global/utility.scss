@@ -1,0 +1,84 @@
+$lead-font-size: 1.5em !default;
+$lead-line-height: 1.4em !default;
+
+.text_lead {
+  font-size: $lead-font-size;
+  line-height: $lead-line-height;
+  color: $color-dark;
+  font-weight: font-weight('light');
+}
+
+.text_nowrap {
+  white-space: nowrap;
+}
+
+.text_subtle {
+  color: $color-light;
+}
+
+.text_align_left {
+  text-align: left;
+}
+
+.text_align_center {
+  text-align: center;
+}
+
+.text_align_right {
+  text-align: right;
+}
+
+.show {
+  display: block !important;
+}
+
+.show-inline-block {
+  display: inline-block !important;
+}
+
+.show-flex {
+  display: flex !important;
+}
+
+.show-inline-flex {
+  display: inline-flex !important;
+}
+
+.show-inherit {
+  display: inherit !important;
+}
+
+.hide {
+  display: none !important;
+}
+
+.hide-overflow {
+  overflow: hidden !important;
+}
+
+@each $name, $value in $breakpoints {
+  @include media-min($name) {
+    .show_media_#{$name}-down {
+      display: none !important;
+    }
+
+    .hide_media_#{$name}-up {
+      display: none !important;
+    }
+  }
+
+  @include media-max($name) {
+    .hide_media_#{$name}-down {
+      display: none !important;
+    }
+
+    .show_media_#{$name}-up {
+      display: none !important;
+    }
+  }
+}
+
+.is-scrollable {
+  @include add-scrollable();
+  overflow: auto;
+}

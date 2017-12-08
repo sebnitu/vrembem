@@ -1,0 +1,43 @@
+.menu_align_left {
+  justify-content: flex-start;
+}
+
+.menu_align_center {
+  justify-content: center;
+}
+
+.menu_align_right {
+  justify-content: flex-end;
+}
+
+.menu_stack {
+  .menu_align_left {
+    .menu__title {
+      text-align: left;
+    }
+
+    .menu__link {
+      justify-content: flex-start;
+    }
+  }
+
+  .menu_align_center {
+    .menu__title {
+      text-align: center;
+    }
+
+    .menu__link {
+      justify-content: center;
+    }
+  }
+
+  .menu_align_right {
+    .menu__title {
+      text-align: right;
+    }
+
+    .menu__link {
+      justify-content: flex-end;
+    }
+  }
+}
