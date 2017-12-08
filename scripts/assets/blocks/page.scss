@@ -1,0 +1,41 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.page__header {
+  flex: 0 0 auto;
+  background: $brown-900;
+  color: $white;
+
+  .container {
+    max-width: 60rem;
+  }
+}
+
+.page__main {
+  flex: 1 1 auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  .hero {
+    min-height: 300px;
+  }
+}
+
+.page__section {
+  padding: 2em;
+}
+
+.page__container {
+  max-width: 60rem;
+}
+
+.page__section_banner {
+  background: $background-color;
+}
+
+.page__section_content {
+
+}

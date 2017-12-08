@@ -1,50 +1,37 @@
 ---
 title: 'Menu'
-desc: 'Groups of links'
+desc: 'Menus display a list of choices'
 ---
 
-# Menu
+<p class="demo__title">Basic Menu</p>
 
-This is some intro text...
-
-## Base menu styles
-
-<ul class="menu">
-  <li class="menu__item">
-    <a class="menu__link" href="#">Menu item...</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Menu item...</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Menu item...</a>
-  </li>
-  <li class="menu__sep"></li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Menu item...</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Menu item...</a>
-  </li>
-</ul>
+<div class="demo">
+  <ul class="menu">
+    <li class="menu__item">
+      <a class="menu__link" href="#">Menu Item</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Menu Item</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Menu Item</a>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Menu Item</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Menu Item</a>
+    </li>
+  </ul>
+</div>
 
 ```html
 <ul class="menu">
   <li class="menu__item">
-    <a class="menu__link" href="#">Menu item...</a>
+    <a class="menu__link" href="#">Menu Item</a>
   </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Menu item...</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Menu item...</a>
-  </li>
+  ...
   <li class="menu__sep"></li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Menu item...</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Menu item...</a>
-  </li>
 </ul>
 ```

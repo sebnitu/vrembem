@@ -1,7 +1,15 @@
 @import 'vrembem';
 
+// Demo home components
 @import 'blocks/cover';
 @import 'blocks/jumbo-menu';
+
+// Demo page components
+@import 'blocks/aside';
+@import 'blocks/demo';
+@import 'blocks/highlight';
+@import 'blocks/page';
+@import 'blocks/typography';
 
 body {
   min-height: 100vh;

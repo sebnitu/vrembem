@@ -1,0 +1,82 @@
+
+.typography {
+
+  > * {
+    margin-bottom: 1em;
+  }
+
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+
+  > h1,
+  > h2,
+  > h3,
+  > h4,
+  > h5,
+  > h6 {
+    line-height: $line-height;
+  }
+
+  > h1 {
+    font-size: 2em;
+  }
+
+  > h2 {
+    font-size: 1.75em;
+  }
+
+  > h3 {
+    font-size: 1.5em;
+  }
+
+  > h4 {
+    font-size: 1.25em;
+  }
+
+  > h5 {
+    font-size: 1em;
+  }
+
+  > h6 {
+    font-size: 1em;
+    color: $color-light;
+  }
+
+  > p {
+
+  }
+
+  > ul {
+    list-style: disc;
+  }
+
+  > ol {
+    list-style: decimal;
+  }
+
+  > ul,
+  > ol {
+    padding-left: 1.5em;
+
+    > li + li {
+      margin-top: 0.5em;
+    }
+  }
+
+  code {
+    padding: 0 0.25em;
+    background: $yellow;
+    word-break: break-word;
+  }
+  pre code {
+    padding: 0;
+    background: none;
+    word-break: normal;
+  }
+
+}

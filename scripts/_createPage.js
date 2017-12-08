@@ -14,10 +14,13 @@ const md = require('markdown-it')({
   highlight: function (str, lang) {
     if (lang && hljs.getLanguage(lang)) {
       try {
-        return hljs.highlight(lang, str).value
+        return '<pre class="demo__code hljs"><code>' +
+               hljs.highlight(lang, str, true).value +
+               '</code></pre>';
       } catch (__) {}
     }
-    return ''
+
+    return '<pre class="demo__code hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
   }
 })
 

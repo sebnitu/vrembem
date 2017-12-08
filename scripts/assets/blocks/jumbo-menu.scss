@@ -1,15 +1,12 @@
 
 .jumbo-menu {
-
-}
-
-.jumbo-menu__item {
-
+  padding: 1em;
+  list-style: none;
 }
 
 .jumbo-menu__link {
   display: block;
-  padding: 2em;
+  padding: 1.5em;
   background-color: $white;
   transition: background-color 0.5s linear;
 

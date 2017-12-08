@@ -6,55 +6,83 @@
   <link rel="stylesheet" href="../assets/styles.css" />
 </head>
 <body>
-  <header class="navbar">
-    <div class="navbar__item">
-      <a href="../index.html" class="button">Back</a>
-    </div>
+  <div class="page">
+    <header class="page__header navbar">
+      <div class="navbar__container container">
 
-    <div class="navbar__item">
-      <a href="https://github.com/sebnitu/vrembem" class="button">GitHub</a>
-    </div>
-  </header>
-  <h1>Menu</h1>
-<p>This is some intro text...</p>
-<h2>Base menu styles</h2>
-<ul class="menu">
-  <li class="menu__item">
-    <a class="menu__link" href="#">Menu item...</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Menu item...</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Menu item...</a>
-  </li>
-  <li class="menu__sep"></li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Menu item...</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Menu item...</a>
-  </li>
-</ul>
-<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"menu"</span>&gt;</span>
+        <div class="navbar__item">
+          <a href="../index.html" class="button button_color_inverted">Back</a>
+        </div>
+        <div class="navbar__item">
+          <a href="https://github.com/sebnitu/vrembem" class="button button_color_inverted">GitHub</a>
+        </div>
+
+      </div>
+    </header><!-- .page__header .navbar -->
+    <div class="page__main">
+      <div class="page__section page__section_banner hero">
+        <div class="page__container container text_align_center">
+          <h1 class="hero__title">Menu</h1>
+          <p class="hero__desc">Menus display a list of choices</p>
+        </div>
+      </div>
+      <div class="page__section">
+        <div class="page__container container typography">
+          <aside class="aside">
+            <h3>Aside Title</h3>
+            <p>This is some text that goes in teh aside</p>
+            <ul>
+              <li>
+                <a href="#">Some item</a>
+              </li>
+              <li>
+                <a href="#">Some item</a>
+              </li>
+              <li>
+                <a href="#">Some item</a>
+              </li>
+              <li>
+                <a href="#">Some item</a>
+              </li>
+              <li>
+                <a href="#">Some item</a>
+              </li>
+            </ul>
+          </aside>
+
+          <p class="demo__title">Basic Menu</p>
+<div class="demo">
+  <ul class="menu">
+    <li class="menu__item">
+      <a class="menu__link" href="#">Menu Item</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Menu Item</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Menu Item</a>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Menu Item</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Menu Item</a>
+    </li>
+  </ul>
+</div>
+<pre class="demo__code hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"menu"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"menu__item"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"menu__link"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Menu item...<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"menu__link"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Menu Item<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"menu__item"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"menu__link"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Menu item...<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"menu__item"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"menu__link"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Menu item...<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  ...
   <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"menu__sep"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"menu__item"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"menu__link"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Menu item...<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"menu__item"</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"menu__link"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Menu item...<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
 </code></pre>
 
+        </div>
+      </div>
+    </div><!-- .page__main -->
+  </div><!-- .page -->
 </body>
 </html>
