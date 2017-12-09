@@ -639,6 +639,10 @@ body {
   color: #bdbdbd;
 }
 
+.menu__link_icon {
+  padding: 0.3125em;
+}
+
 .menu__text {
   margin: 0 0.5em;
 }
@@ -649,6 +653,23 @@ body {
 
 .menu__text:last-child {
   margin-right: 0;
+}
+
+.menu__label {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.3125em 0.75em;
+  color: inherit;
+  white-space: nowrap;
+  text-decoration: none;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 3px;
 }
 
 .menu__title {
@@ -2516,6 +2537,9 @@ body {
           transform: translate(0, 0.5em);
 }
 
+/**
+ * Cover
+ */
 .cover {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2523,47 +2547,105 @@ body {
   -webkit-box-align: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
-  height: 100vh;
-  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
+@media (min-width: 760px) {
+  .cover {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    height: 100vh;
+    overflow: hidden;
+  }
+}
+
+/**
+ * Header and Content
+ */
 .cover__header,
 .cover__content {
   -webkit-overflow-scrolling: touch;
   position: relative;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+.cover__content {
   -webkit-box-flex: 1;
-      -ms-flex: 1 0 0px;
-          flex: 1 0 0;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
 }
 
 .cover__header {
-  -webkit-box-flex: 2;
-      -ms-flex-positive: 2;
-          flex-grow: 2;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding: 4em 0;
   color: #ffffff;
   background: #3e2723;
 }
 
+@media (min-width: 760px) {
+  .cover__header,
+  .cover__content {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 0 0px;
+            flex: 1 0 0;
+  }
+  .cover__header {
+    -webkit-box-flex: 2;
+        -ms-flex-positive: 2;
+            flex-grow: 2;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+/**
+ * Inner
+ */
+.cover__inner {
+  padding: 1.5em;
+}
+
+@media (min-width: 480px) {
+  .cover__inner {
+    padding: 2em;
+  }
+}
+
+@media (min-width: 760px) {
+  .cover__inner {
+    max-width: 42em;
+    padding: 4em;
+  }
+}
+
+/**
+ * Title, description and version
+ */
 .cover__title {
-  font: 5em/1.325 Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+  font-family: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+  font-size: 2.5em;
+  line-height: 1.325em;
+  font-weight: normal;
   margin-bottom: 1rem;
 }
 
 .cover__desc {
-  font: 1.4em/1.6 BlinkMacSystemFont, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6em;
   margin-bottom: 1rem;
 }
 
@@ -2571,19 +2653,22 @@ body {
   color: rgba(255, 255, 255, 0.25);
 }
 
-.cover__inner {
-  max-width: 44em;
-  padding: 0 10%;
+@media (min-width: 760px) {
+  .cover__title {
+    font-size: 5em;
+  }
+  .cover__desc {
+    font-size: 1.4em;
+  }
 }
 
 .jumbo-menu {
-  padding: 1em;
   list-style: none;
 }
 
 .jumbo-menu__link {
   display: block;
-  padding: 1.5em;
+  padding: 1.25em 1.5em;
   background-color: #ffffff;
   -webkit-transition: background-color 0.5s linear;
   transition: background-color 0.5s linear;
@@ -2593,6 +2678,27 @@ body {
   background-color: #e3f2fd;
   -webkit-transition: background-color 0s linear;
   transition: background-color 0s linear;
+}
+
+@media (min-width: 480px) {
+  .jumbo-menu__link {
+    padding: 1.5em 2em;
+  }
+}
+
+/**
+ * Link Content
+ */
+.jumbo-menu__title {
+  display: block;
+  font-weight: 600;
+}
+
+.jumbo-menu__desc {
+  display: block;
+  font-size: 0.875em;
+  line-height: 1.325em;
+  color: rgba(33, 33, 33, 0.5);
 }
 
 .aside {
@@ -2745,6 +2851,16 @@ body {
 
 .page__section_banner {
   background: #f5f5f5;
+}
+
+.page__button {
+  color: #ffffff;
+  background: none;
+}
+
+.page__button:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .typography > * {

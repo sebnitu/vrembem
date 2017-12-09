@@ -1,5 +1,5 @@
 $hero-height: 500px !default;
-$hero-padding: 1em 1.5em !default;
+$hero-padding: 1.5em !default;
 $hero-background: null !default;
 
 .hero {
@@ -9,7 +9,6 @@ $hero-background: null !default;
   align-items: stretch;
   justify-content: center;
   padding: $hero-padding;
-  min-height: $hero-height;
   background: $hero-background;
 }
 
@@ -20,19 +19,36 @@ $hero-background: null !default;
   text-align: center;
 }
 
+/**
+ * Hero Content
+ */
+
 .hero__title {
-  font-size: 2.5em;
+  font-size: 1.5em;
   line-height: 1.5em;
 }
 
 .hero__desc {
-  font-size: 1.4em;
   line-height: 1.6em;
 }
 
 .hero__action {
   margin-top: 2em;
 }
+
+@include media-min('medium') {
+  .hero__title {
+    font-size: 2.5em;
+  }
+
+  .hero__desc {
+    font-size: 1.4em;
+  }
+}
+
+/**
+ * Background
+ */
 
 .hero__background,
 .hero__canvas {

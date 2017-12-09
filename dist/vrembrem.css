@@ -639,6 +639,10 @@ body {
   color: #bdbdbd;
 }
 
+.menu__link_icon {
+  padding: 0.3125em;
+}
+
 .menu__text {
   margin: 0 0.5em;
 }
@@ -649,6 +653,23 @@ body {
 
 .menu__text:last-child {
   margin-right: 0;
+}
+
+.menu__label {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.3125em 0.75em;
+  color: inherit;
+  white-space: nowrap;
+  text-decoration: none;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 3px;
 }
 
 .menu__title {

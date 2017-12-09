@@ -6,11 +6,18 @@
 
 .page__header {
   flex: 0 0 auto;
+  padding: 0.5em;
   background: $brown-900;
   color: $white;
 
   .container {
     max-width: 60rem;
+  }
+}
+
+@include media-min('medium') {
+  .page__header {
+    padding: 1em;
   }
 }
 
@@ -20,12 +27,31 @@
   overflow-y: auto;
 
   .hero {
+    min-height: none;
+  }
+}
+
+@include media-min('tiny') {
+  .page__main .hero {
+    min-height: 200px;
+  }
+}
+
+
+@include media-min('medium') {
+  .page__main .hero {
     min-height: 300px;
   }
 }
 
 .page__section {
-  padding: 2em;
+  padding: 1.5em;
+}
+
+@include media-min('medium') {
+  .page__section {
+    padding: 2em;
+  }
 }
 
 .page__container {
@@ -42,6 +68,6 @@
 
   &:hover {
     color: $white;
-    background-color: rgba($white, 0.1);
+    background-color: rgba($white, 0.05);
   }
 }
