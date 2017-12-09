@@ -1,18 +1,15 @@
 import fs from 'fs'
 import path from 'path'
-import paths from './paths.config'
 import glob from 'glob'
 
-// Import our build file module
-import createPage from './_createPage'
-import createIndex from './_createIndex'
+import { config, paths } from './config'
+import createIndex from './create-index'
+import createPage from './create-page'
 
-// Initiate our export function
 export default function() {
 
-  // Get all our demo files
-  const filesGlob = path.join(paths.src, '**/*.demo.md')
-  const files = glob.sync(filesGlob)
+  // Get all our pages
+  const files = glob.sync(path.join(paths.pages, '**/*' + config.ext))
 
   // Initiate our components array and process counter
   const pages = []

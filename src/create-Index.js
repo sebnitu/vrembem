@@ -1,11 +1,10 @@
 import fs from 'fs'
 import path from 'path'
-import paths from './paths.config'
-
 import matter from 'gray-matter'
 import ejs from 'ejs'
 
-// Default function export
+import { config, paths } from './config'
+
 export default function(pages) {
 
   // Initiate our menu array and process counter
@@ -16,7 +15,7 @@ export default function(pages) {
 
     // Process our menu items here and push them into the menu array
     const pageData = matter(page.data)
-    const pageName = page.file.replace(paths.src, '').replace('.demo.md', '')
+    const pageName = page.file.replace(paths.pages, '').replace(config.ext, '')
     const pageBase = path.basename(pageName)
     const pagePath = path.dirname(pageName).replace(pageBase, '')
 
@@ -43,15 +42,15 @@ export default function(pages) {
         }
       })
 
-      // Create demo dir if it doesn't exist
-      if (!fs.existsSync('demo')) {
-        fs.mkdirSync('demo')
+      // Create key directory if it doesn't exist
+      if (!fs.existsSync(config.key)) {
+        fs.mkdirSync(config.key)
       }
 
       // Write the file
-      fs.writeFile('demo/index.html', html, (err) => {
+      fs.writeFile(config.key + '/index.html', html, (err) => {
           if (err) throw err
-          console.info('Success:'.green, 'Demo index has been built!')
+          console.info('Success:'.green, 'Index page has been created!')
         }
       )
     }
