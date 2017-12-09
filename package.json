@@ -20,7 +20,7 @@
     ]
   },
   "scripts": {
-    "clean": "yarn dist:clean && yarn pages:clean",
+    "clean": "yarn dist:clean && yarn build:clean",
 
     "dist:clean": "rimraf dist",
     "dist:dev": "node-sass scss/vrembem.scss dist/vrembrem.css --output-style expanded --source-map true",
@@ -28,13 +28,15 @@
     "dist:post": "postcss dist/*.css --dir dist --use autoprefixer --no-map true",
     "dist": "yarn dist:clean && yarn dist:dev && yarn dist:prod && yarn dist:post",
 
-    "pages:clean": "rimraf demo",
-    "pages:dev": "node-sass src/assets/styles.scss demo/assets/styles.css --include-path scss --output-style expanded --source-map true",
-    "pages:post": "postcss demo/assets/*.css --dir demo/assets --use autoprefixer --no-map true",
-    "pages:build": "babel-node src/index.js",
-    "pages": "yarn pages:clean && yarn pages:dev && yarn pages:post && yarn pages:build",
+    "build:clean": "rimraf demo",
+    "build:dev": "node-sass src/assets/styles.scss demo/assets/styles.css --include-path scss --output-style expanded --source-map true",
+    "build:prod": "node-sass src/assets/styles.scss demo/assets/styles.min.css --include-path scss --output-style compressed --source-map true",
+    "build:post": "postcss demo/assets/*.css --dir demo/assets --use autoprefixer --no-map true",
+    "build:pages": "babel-node src/index.js",
+    "build": "yarn build:clean && yarn build:dev && yarn build:prod && yarn build:post && yarn build:pages",
 
-    "serve": "cd demo && live-server --host=localhost --port=9000 --wait=500 --watch=../demo,../src/assets,../src/layouts,../scss,../dist"
+    "serve": "cd demo && live-server --host=localhost --port=9000",
+    "start": "yarn dist && yarn build && yarn serve"
   },
   "devDependencies": {
     "autoprefixer": "^7.2.1",

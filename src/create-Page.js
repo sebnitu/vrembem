@@ -6,6 +6,7 @@ import matter from 'gray-matter'
 import hljs from 'highlight.js'
 import ejs from 'ejs'
 import markdownIt from 'markdown-it'
+import feather from 'feather-icons'
 
 import { config, paths } from './config'
 
@@ -52,12 +53,19 @@ export default function(file, data) {
   // Set page title if one doesn't exist
   pageData.data.title = (pageData.data.title ? pageData.data.title : pageBase)
 
+  // Add icons
+  const icons = {
+    arrowLeft: feather.icons['arrow-left'].toSvg({ class: 'icon'}),
+    github: feather.icons['github'].toSvg({ class: 'icon',})
+  }
+
   // Render ejs template
   const html = ejs.render(template, {
     page: pageData.data,
     site: {
       baseurl: '../'.repeat(dirDepth.length - 1)
     },
+    icons: icons,
     content: content
   })
 

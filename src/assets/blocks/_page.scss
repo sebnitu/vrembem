@@ -36,6 +36,12 @@
   background: $background-color;
 }
 
-.page__section_content {
+.page__button {
+  color: $white;
+  background: none;
 
+  &:hover {
+    color: $white;
+    background-color: rgba($white, 0.1);
+  }
 }

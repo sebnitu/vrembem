@@ -88,6 +88,10 @@ $menu__sep-border-color: rgba($black, 0.1) !default;
   }
 }
 
+.menu__link_icon {
+  padding: nth($menu-padding, 1);
+}
+
 .menu__text {
   margin: 0 $menu__text-spacing;
 
@@ -98,6 +102,19 @@ $menu__sep-border-color: rgba($black, 0.1) !default;
   &:last-child {
     margin-right: 0;
   }
+}
+
+.menu__label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: $menu-padding;
+  color: inherit;
+  white-space: nowrap;
+  text-decoration: none;
+  background: $menu-background;
+  border: $menu-border-width solid $menu-border-color;
+  border-radius: $menu-border-radius;
 }
 
 .menu__title {

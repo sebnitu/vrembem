@@ -2,20 +2,31 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Vrembem demo: <%= page.title %></title>
+  <title><%= page.title %> / Component Catalog</title>
   <link rel="icon" type="image/png" sizes="64x64" href="<%= site.baseurl %>assets/favicon.png">
-  <link rel="stylesheet" href="<%= site.baseurl %>assets/styles.css" />
+  <link rel="stylesheet" href="<%= site.baseurl %>assets/styles.min.css" />
 </head>
 <body>
   <div class="page">
     <header class="page__header navbar">
       <div class="navbar__container container">
 
+        <ul class="navbar__item menu menu_theme_inverted">
+          <li class="menu__item">
+            <a href="<%= site.baseurl %>index.html" class="page__button menu__link menu__link_icon">
+              <%- icons.arrowLeft %>
+            </a>
+          </li>
+          <li class="menu__sep"></li>
+          <li class="menu__label">
+            <span><%= page.title %></span>
+          </li>
+        </ul>
+
         <div class="navbar__item">
-          <a href="<%= site.baseurl %>index.html" class="button button_color_inverted">Back</a>
-        </div>
-        <div class="navbar__item">
-          <a href="https://github.com/sebnitu/vrembem" class="button button_color_inverted">GitHub</a>
+          <a href="https://github.com/sebnitu/vrembem" class="page__button button button_icon">
+            <%- icons.github %>
+          </a>
         </div>
 
       </div>
