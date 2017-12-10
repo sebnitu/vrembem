@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import ejs from 'ejs'
+import feather from 'feather-icons'
 
 import { config, paths } from './config'
 
@@ -21,7 +22,7 @@ export default function(pages) {
 
     // Push page values in our menu
     menu.push({
-      text: (pageData.data.title ? pageData.data.title : pageBase),
+      name: (pageData.data.title ? pageData.data.title : pageBase),
       desc: (pageData.data.desc ? pageData.data.desc : null),
       icon: (pageData.data.icon ? pageData.data.icon : null),
       href: pagePath + pageBase + '.html'
@@ -39,6 +40,10 @@ export default function(pages) {
         site: {
           menu: menu,
           baseurl: ''
+        },
+        icons: {
+          search: feather.icons['search'].toSvg({ class: 'icon',}),
+          sort: feather.icons['maximize-2'].toSvg({ class: 'icon',})
         }
       })
 

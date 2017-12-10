@@ -1,10 +1,10 @@
-$animate-duration: 5s !default;
+$animate-duration: 0.5s !default;
 
 .animate {
   animation-duration: $animate-duration;
 }
 
-.animate_fade-in {
+.animate_fade_in {
   animation-name: fade-in;
 }
 
@@ -18,7 +18,7 @@ $animate-duration: 5s !default;
   }
 }
 
-.animate_fade-out {
+.animate_fade_out {
   animation-name: fade-out;
 }
 

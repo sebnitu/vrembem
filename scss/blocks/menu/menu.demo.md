@@ -1,6 +1,5 @@
 ---
 title: 'Menu'
-desc: 'Menus display a list of choices'
 ---
 
 <div class="demo">

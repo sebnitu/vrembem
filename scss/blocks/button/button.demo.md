@@ -1,13 +1,10 @@
 ---
 title: 'Button'
-desc: 'The most basic of UI components'
 ---
 
 <div class="demo">
 
   <p class="demo__title">Default</p>
-
-  <p class="demo__desc">Buttons are very basic components but they are used everywhere so they need a lot of utility for context. The basic usage is simply the <code>button</code> class and everything from there are modifiers.</p>
 
   <div class="demo__example">
     <div class="demo__output">
@@ -26,8 +23,6 @@ desc: 'The most basic of UI components'
 <div class="demo">
 
   <p class="demo__title">Color Modifiers</p>
-
-  <p class="demo__desc">Buttons are very basic components but they are used everywhere so they need a lot of utility for context. The basic usage is simply the <code>button</code> class and everything from there are modifiers.</p>
 
   <div class="demo__example">
     <div class="demo__output">

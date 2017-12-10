@@ -15,21 +15,31 @@
         <p class="cover__version">Version 0.2.0</p>
       </div>
     </header>
-    <div class="content cover__content">
+    <div id="vrembem-blocks" class="content cover__content">
+      <div class="jumbo-filter">
+        <input id="jumbo-filter__search" name="jumbo-filter__search" class="jumbo-filter__search" type="text" placeholder="Search..." />
+        <button class="jumbo-filter__sort asc button button_icon" data-sort="jumbo-menu__name"><%- icons.search %></button>
+      </div>
       <ul class="jumbo-menu">
-        <li class="jumbo-menu__item">
-          <input type="text" class="jumbo-menu__search" placeholder="Search..." />
-        </li>
         <% site.menu.forEach(function(item) { %>
-          <li class="jumbo-menu__item">
-            <a class="jumbo-menu__link" href=".<%= item.href %>">
-              <span class="jumbo-menu__title"><%= item.text %></span>
-              <span class="jumbo-menu__desc"><%= item.desc %></span>
-            </a>
-          </li>
+        <li class="jumbo-menu__item">
+          <a class="jumbo-menu__link" href=".<%= item.href %>">
+            <h3 class="jumbo-menu__name"><%= item.name %></h3>
+            <p class="jumbo-menu__desc"><%= item.desc %></p>
+          </a>
+        </li>
         <% }) %>
       </ul>
     </div>
   </div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+  <script>
+  var blocksList = new List('vrembem-blocks', {
+    valueNames: [ 'jumbo-menu__name' ],
+    searchClass: 'jumbo-filter__search',
+    sortClass: 'jumbo-filter__sort',
+    listClass: 'jumbo-menu'
+  });
+  </script>
 </body>
 </html>

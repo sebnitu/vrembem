@@ -1,5 +1,6 @@
 
 .jumbo-menu {
+  position: relative;
   list-style: none;
 }
 
@@ -18,7 +19,9 @@
   background-color: $white;
   transition: background-color 0.5s linear;
 
-  &:hover {
+  &:hover,
+  &:focus {
+    outline: none;
     background-color: $blue-50;
     transition: background-color 0s linear;
   }
@@ -34,7 +37,7 @@
  * Menu Link Content
  */
 
-.jumbo-menu__title {
+.jumbo-menu__name {
   display: block;
   font-weight: font-weight('semi-bold');
 }
@@ -43,35 +46,4 @@
   display: block;
   color: rgba($black, 0.5);
   font-size: 0.875em;
-}
-
-.jumbo-menu__search {
-  position: relative;
-  z-index: 1;
-  display: block;
-  width: 100%;
-  margin: 0 0 -1px 0;
-  padding: 1.25em 1.5em;
-  font-size: 1em;
-  line-height: 1.5em;
-  color: $blue;
-  background: $white;
-  background-clip: padding-box;
-  border: none;
-  border-bottom: 1px solid $border-color;
-
-  &::placeholder {
-    color: $color-light;
-  }
-
-  &:focus {
-    outline: none;
-    background: $yellow-50;
-  }
-}
-
-@include media-min('tiny') {
-  .jumbo-menu__search {
-    padding: 1.5em 2em;
-  }
 }
