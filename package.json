@@ -21,20 +21,17 @@
   },
   "scripts": {
     "clean": "yarn dist:clean && yarn build:clean",
-
     "dist:clean": "rimraf dist",
     "dist:dev": "node-sass scss/vrembem.scss dist/vrembrem.css --output-style expanded --source-map true",
     "dist:prod": "node-sass scss/vrembem.scss dist/vrembrem.min.css --output-style compressed --source-map true",
     "dist:post": "postcss dist/*.css --dir dist --use autoprefixer --no-map true",
     "dist": "yarn dist:clean && yarn dist:dev && yarn dist:prod && yarn dist:post",
-
     "build:clean": "rimraf demo",
     "build:dev": "node-sass src/assets/styles.scss demo/assets/styles.css --include-path scss --output-style expanded --source-map true",
     "build:prod": "node-sass src/assets/styles.scss demo/assets/styles.min.css --include-path scss --output-style compressed --source-map true",
     "build:post": "postcss demo/assets/*.css --dir demo/assets --use autoprefixer --no-map true",
     "build:pages": "babel-node src/index.js",
     "build": "yarn build:clean && yarn build:dev && yarn build:prod && yarn build:post && yarn build:pages",
-
     "serve": "cd demo && live-server --host=localhost --port=9000",
     "start": "yarn dist && yarn build && yarn serve"
   },
@@ -54,6 +51,7 @@
     "node-watch": "^0.5.5",
     "postcss-cli": "^4.1.1",
     "rimraf": "^2.6.2",
-    "shelljs": "^0.7.8"
+    "shelljs": "^0.7.8",
+    "svg-symbols": "^1.0.4"
   }
 }

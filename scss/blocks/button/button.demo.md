@@ -44,3 +44,19 @@ title: 'Button'
 
   </div>
 </div>
+
+<div class="demo">
+
+  <p class="demo__title">Icon Modifier</p>
+
+  <div class="demo__example">
+    <div class="demo__output">
+      <button class="button button_color_primary">Button</button>
+    </div>
+
+```html
+<button class="button button_color_primary">Button</button>
+```
+
+  </div>
+</div>
