@@ -2,71 +2,29 @@ import fs from 'fs'
 import path from 'path'
 import shell from 'shelljs'
 import colors from 'colors'
-import matter from 'gray-matter'
-import hljs from 'highlight.js'
 import ejs from 'ejs'
 import markdownIt from 'markdown-it'
-import feather from 'feather-icons'
 
-import { config, paths } from './config'
+import { config, paths, markdown } from './config'
 
 export default function(file, data) {
 
-  // Import markdown with settings
-  const md = new markdownIt({
-    html: true,
-    highlight: function (str, lang) {
-      if (lang && hljs.getLanguage(lang)) {
-        try {
-          return '<pre class="demo__code hljs"><code>' +
-                 hljs.highlight(lang, str, true).value +
-                 '</code></pre>';
-        } catch (__) {}
-      }
-
-      return '<pre class="demo__code hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
-    }
-  })
-
-  // Get the frontmatter from file
-  const pageData = matter(data)
-  // Get the layout template
-  const layout = (
-    pageData.data.layout ?
-      'layouts/' + pageData.data.layout + '.ejs' :
-      'layouts/page.ejs'
-  )
-  const template = fs.readFileSync(path.join(__dirname, layout), 'utf8')
-  // Render the markdown content
-  const content = md.render(pageData.content)
-
-  // Build our new pageName
   const pageName = file.replace(paths.pages, config.key).replace(config.ext, '')
   const pageBase = path.basename(pageName)
   const pagePath = path.dirname(pageName).replace(pageBase, '')
 
-  // Get our directory depth
+  const template = fs.readFileSync(path.join(__dirname, 'layouts/page.ejs'), 'utf8')
+  const content = new markdownIt(markdown).render(data)
   const dirDepth = pagePath.split('/').filter(function(entry) {
     return entry.trim() != '';
   });
-
-  // Set page title if one doesn't exist
-  pageData.data.title = (pageData.data.title ? pageData.data.title : pageBase)
-
-  // Add icons
-  const icons = {
-    arrowLeft: feather.icons['arrow-left'].toSvg({ class: 'icon'}),
-    github: feather.icons['github'].toSvg({ class: 'icon',})
-  }
-
-  // Render ejs template
   const html = ejs.render(template, {
-    page: pageData.data,
-    site: {
-      baseurl: '../'.repeat(dirDepth.length - 1)
-    },
-    icons: icons,
+    baseurl: '../'.repeat(dirDepth.length - 1),
+    svgSymbols: fs.readFileSync(path.join(__dirname, 'assets/svg-symbols.svg')),
+    title: pageBase.charAt(0).toUpperCase() + pageBase.slice(1),
     content: content
+  }, {
+    root: __dirname
   })
 
   // Create our directories

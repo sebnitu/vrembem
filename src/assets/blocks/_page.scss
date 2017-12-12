@@ -25,23 +25,6 @@
   flex: 1 1 auto;
   overflow-x: hidden;
   overflow-y: auto;
-
-  .hero {
-    min-height: none;
-  }
-}
-
-@include media-min('tiny') {
-  .page__main .hero {
-    min-height: 200px;
-  }
-}
-
-
-@include media-min('medium') {
-  .page__main .hero {
-    min-height: 300px;
-  }
 }
 
 .page__section {
@@ -56,10 +39,6 @@
 
 .page__container {
   max-width: 60rem;
-}
-
-.page__section_banner {
-  background: $background-color;
 }
 
 .page__button {

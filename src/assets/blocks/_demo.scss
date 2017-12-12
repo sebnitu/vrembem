@@ -1,35 +1,8 @@
 .demo {
-  padding-bottom: 2em;
-  border-bottom: 1px solid $border-color;
-
-  &:last-child {
-    padding-bottom: 0;
-    border-bottom: 0;
-  }
-
-  > * {
-    margin-bottom: 1rem;
-  }
-
-  > *:last-child {
-    margin-bottom: 0;
-  }
+  margin: 1.5em 0;
 }
 
-.demo__title {
-  font-size: 1.2em;
-  line-height: $line-height;
-  font-weight: font-weight('semi-bold');
-}
-
-.demo__example {
-
-}
-
+.demo__input,
 .demo__output {
-  margin-bottom: 1em;
-}
-
-.demo__code {
-
+  margin: 1em 0;
 }

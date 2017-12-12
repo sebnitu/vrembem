@@ -268,95 +268,6 @@ body {
   overflow: auto;
 }
 
-.animate {
-  -webkit-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-}
-
-.animate_fade_in {
-  -webkit-animation-name: fade-in;
-          animation-name: fade-in;
-}
-
-@-webkit-keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.animate_fade_out {
-  -webkit-animation-name: fade-out;
-          animation-name: fade-out;
-}
-
-@-webkit-keyframes fade-out {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes fade-out {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-.animate_rotate {
-  -webkit-animation-name: rotate;
-          animation-name: rotate;
-}
-
-@-webkit-keyframes rotate {
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
-}
-
-@keyframes rotate {
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
-}
-
-.animate_rotate_inverse {
-  -webkit-animation-name: rotate-inverse;
-          animation-name: rotate-inverse;
-}
-
-@-webkit-keyframes rotate-inverse {
-  100% {
-    -webkit-transform: rotate(-360deg);
-            transform: rotate(-360deg);
-  }
-}
-
-@keyframes rotate-inverse {
-  100% {
-    -webkit-transform: rotate(-360deg);
-            transform: rotate(-360deg);
-  }
-}
-
 .arrow {
   pointer-events: none;
   display: inline-block;
@@ -661,6 +572,14 @@ body {
 .button_size_large {
   padding: 0.5em 1.5em;
   font-size: 1.25em;
+}
+
+.button_size_large .icon:first-child {
+  margin-left: -0.25em;
+}
+
+.button_size_large .icon:last-child {
+  margin-right: -0.25em;
 }
 
 .button_color_inverted {

@@ -6,4 +6,12 @@
 .button_size_large {
   padding: $button_large-padding;
   font-size: $button_large-font-size;
+
+  .icon:first-child {
+    margin-left: -0.25em;
+  }
+
+  .icon:last-child {
+    margin-right: -0.25em;
+  }
 }

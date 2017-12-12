@@ -1,16 +1,15 @@
-
 .typography {
+  @include add-clearfix();
+  font-family: $font-family;
+  font-size: $font-size;
+  line-height: $line-height;
 
-  > * {
-    margin-bottom: 1rem;
+  > *:first-child {
+    margin-top: 0 !important;
+  }
 
-    &:first-child {
-      margin-top: 0;
-    }
-
-    &:last-child {
-      margin-bottom: 0;
-    }
+  > *:last-child {
+    margin-bottom: 0 !important;
   }
 
   > h1,
@@ -19,7 +18,14 @@
   > h4,
   > h5,
   > h6 {
-    line-height: $line-height;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.25;
+    font-weight: font-weight('semi-bold');
+
+    code {
+      font-size: 1rem;
+    }
   }
 
   > h1 {
@@ -27,24 +33,40 @@
   }
 
   > h2 {
-    font-size: 1.75em;
-  }
-
-  > h3 {
     font-size: 1.5em;
   }
 
-  > h4 {
+  > h3 {
     font-size: 1.25em;
   }
 
-  > h5 {
+  > h4 {
     font-size: 1em;
   }
 
+  > h5 {
+    font-size: 0.875em;
+  }
+
   > h6 {
-    font-size: 1em;
+    font-size: 0.85em;
     color: $color-light;
+  }
+
+  > p {
+    margin-bottom: 1em;
+  }
+
+  code {
+    padding: 0 0.25em;
+    background: rgba($yellow, 0.5);
+    word-break: break-word;
+  }
+
+  pre code {
+    padding: 0;
+    background: none;
+    word-break: normal;
   }
 
   > a {
@@ -57,6 +79,14 @@
     }
   }
 
+  > hr {
+    display: block;
+    height: 1px;
+    margin: 1.5em 0;
+    background: $border-color;
+    border: none;
+  }
+
   > ul {
     list-style: disc;
   }
@@ -67,6 +97,7 @@
 
   > ul,
   > ol {
+    margin: 1em 0;
     padding-left: 1.5em;
 
     & ul,
@@ -77,12 +108,6 @@
     > li + li {
       margin-top: 0.5em;
     }
-  }
-
-  p > code {
-    padding: 0 0.25em;
-    background: rgba($yellow, 0.5);
-    word-break: break-word;
   }
 
 }

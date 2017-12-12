@@ -2,42 +2,17 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title><%= page.title %> / Component Catalog</title>
-  <link rel="icon" type="image/png" sizes="64x64" href="<%= site.baseurl %>assets/favicon.png">
-  <link rel="stylesheet" href="<%= site.baseurl %>assets/styles.min.css" />
+  <title><%= title %> / Component Catalog</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="<%= baseurl %>assets/favicon.png">
+  <link rel="stylesheet" href="<%= baseurl %>assets/styles.min.css" />
 </head>
 <body>
+  <%- svgSymbols %>
   <div class="page">
     <header class="page__header navbar">
-      <div class="navbar__container container">
-
-        <ul class="navbar__item menu menu_theme_inverted">
-          <li class="menu__item">
-            <a href="<%= site.baseurl %>index.html" class="page__button menu__link menu__link_icon">
-              <%- icons.arrowLeft %>
-            </a>
-          </li>
-          <li class="menu__sep"></li>
-          <li class="menu__label">
-            <span><%= page.title %></span>
-          </li>
-        </ul>
-
-        <div class="navbar__item">
-          <a href="https://github.com/sebnitu/vrembem" class="page__button button button_icon">
-            <%- icons.github %>
-          </a>
-        </div>
-
-      </div>
+      <%- include('/partials/navbar.ejs') %>
     </header><!-- .page__header .navbar -->
     <div class="page__main">
-      <div class="page__section page__section_banner hero">
-        <div class="page__container container text_align_center">
-          <h1 class="hero__title"><%= page.title %></h1>
-          <p class="hero__desc"><%= page.desc %></p>
-        </div>
-      </div>
       <div class="page__section">
         <div class="page__container container typography">
           <%- content %>
@@ -45,5 +20,6 @@
       </div>
     </div><!-- .page__main -->
   </div><!-- .page -->
+  <script src="<%= baseurl %>assets/scripts.min.js"></script>
 </body>
 </html>

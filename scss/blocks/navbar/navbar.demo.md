@@ -1,5 +1,5 @@
 ---
-title: 'Animate'
+title: 'Navbar'
 ---
 
 <div class="demo">

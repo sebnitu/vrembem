@@ -26,12 +26,24 @@
     "dist:prod": "node-sass scss/vrembem.scss dist/vrembrem.min.css --output-style compressed --source-map true",
     "dist:post": "postcss dist/*.css --dir dist --use autoprefixer --no-map true",
     "dist": "yarn dist:clean && yarn dist:dev && yarn dist:prod && yarn dist:post",
+
     "build:clean": "rimraf demo",
-    "build:dev": "node-sass src/assets/styles.scss demo/assets/styles.css --include-path scss --output-style expanded --source-map true",
-    "build:prod": "node-sass src/assets/styles.scss demo/assets/styles.min.css --include-path scss --output-style compressed --source-map true",
-    "build:post": "postcss demo/assets/*.css --dir demo/assets --use autoprefixer --no-map true",
+    "build:css:dev": "node-sass src/assets/styles.scss demo/assets/styles.css --include-path scss --output-style expanded --source-map true",
+    "build:css:prod": "node-sass src/assets/styles.scss demo/assets/styles.min.css --include-path scss --output-style compressed --source-map true",
+    "build:css:post": "postcss demo/assets/*.css --dir demo/assets --use autoprefixer --no-map true",
+
+    "build:js:bundle": "browserify src/assets/scripts.js -o demo/assets/scripts.js",
+    "build:js:min": "uglifyjs demo/assets/scripts.js --compress --output demo/assets/scripts.min.js",
+    "build:js": "yarn build:js:bundle && yarn build:js:min",
+
     "build:pages": "babel-node src/index.js",
-    "build": "yarn build:clean && yarn build:dev && yarn build:prod && yarn build:post && yarn build:pages",
+    "build": "yarn build:clean && yarn build:css:dev && yarn build:css:prod && yarn build:css:post && yarn build:js && yarn build:pages",
+
+    "svg:copy": "babel-node bin/copy-icons.js",
+    "svg:symbols": "svg-symbols tmp > src/assets/svg-symbols.svg",
+    "svg:clean": "rimraf tmp",
+    "icons": "yarn svg:copy && yarn svg:symbols && yarn svg:clean",
+
     "serve": "cd demo && live-server --host=localhost --port=9000",
     "start": "yarn dist && yarn build && yarn serve"
   },
@@ -43,8 +55,8 @@
     "ejs": "^2.5.7",
     "feather-icons": "^4.0.1",
     "glob": "^7.1.2",
-    "gray-matter": "^3.1.1",
     "highlight.js": "^9.12.0",
+    "list.js": "^1.5.0",
     "live-server": "^1.2.0",
     "markdown-it": "^8.4.0",
     "node-sass": "^4.7.2",
@@ -52,6 +64,7 @@
     "postcss-cli": "^4.1.1",
     "rimraf": "^2.6.2",
     "shelljs": "^0.7.8",
-    "svg-symbols": "^1.0.4"
+    "svg-symbols": "^1.0.4",
+    "uglify-js": "^3.2.2"
   }
 }
