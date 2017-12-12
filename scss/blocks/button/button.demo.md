@@ -13,7 +13,7 @@
 <button class="button button_block">Button</button>
 ```
 
-## `button_color_`
+## `button_color_*`
 
 ```html
 <button class="button button_color_primary">Button</button>
@@ -41,7 +41,7 @@ Used for when displaying a button with only an icon and no text.
 </button>
 ```
 
-## `button_outline_`
+## `button_outline_*`
 
 ```html
 <button class="button button_outline">Button</button>
@@ -55,7 +55,7 @@ Used for when displaying a button with only an icon and no text.
 <button class="button button_outline_fade">Button</button>
 ```
 
-## `button_size_`
+## `button_size_*`
 
 ```html
 <button class="button button_size_small button_color_primary">Button</button>
