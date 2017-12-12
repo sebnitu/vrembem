@@ -3,7 +3,7 @@ import colors from 'colors'
 import watch from 'node-watch'
 
 import { config, paths } from './config'
-import build from './build-pages'
+import build from './scripts/build'
 
 build()
 

@@ -5,7 +5,7 @@ import colors from 'colors'
 import ejs from 'ejs'
 import markdownIt from 'markdown-it'
 
-import { config, paths, markdown } from './config'
+import { config, paths, markdown } from '../config'
 
 export default function(file, data) {
 
@@ -13,18 +13,18 @@ export default function(file, data) {
   const pageBase = path.basename(pageName)
   const pagePath = path.dirname(pageName).replace(pageBase, '')
 
-  const template = fs.readFileSync(path.join(__dirname, 'layouts/page.ejs'), 'utf8')
+  const template = fs.readFileSync(path.join(paths.src, 'layouts/page.ejs'), 'utf8')
   const content = new markdownIt(markdown).render(data)
   const dirDepth = pagePath.split('/').filter(function(entry) {
     return entry.trim() != '';
   });
   const html = ejs.render(template, {
     baseurl: '../'.repeat(dirDepth.length - 1),
-    svgSymbols: fs.readFileSync(path.join(__dirname, 'assets/svg-symbols.svg')),
+    svgSymbols: fs.readFileSync(path.join(paths.src, 'assets/svg-symbols.svg')),
     title: pageBase.charAt(0).toUpperCase() + pageBase.slice(1),
     content: content
   }, {
-    root: __dirname
+    root: paths.src
   })
 
   // Create our directories

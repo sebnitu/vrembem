@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import glob from 'glob'
 
-import { config, paths } from './config'
+import { config, paths } from '../config'
 import createIndex from './create-index'
 import createPage from './create-page'
 

@@ -1,5 +1,5 @@
 import path from 'path'
-import { config, paths } from './config'
+import { config, paths } from '../config'
 
 const menuName = function(string) {
   return string.charAt(0).toUpperCase() + string.slice(1)

@@ -2,16 +2,16 @@ import fs from 'fs'
 import path from 'path'
 import ejs from 'ejs'
 
+import { config, paths } from '../config'
 import { menu } from './get-menu.js'
-import { config, paths } from './config'
 
 export default function(pages) {
 
-  const template = fs.readFileSync(path.join(__dirname, 'layouts/index.ejs'), 'utf8')
+  const template = fs.readFileSync(path.join(paths.src, 'layouts/index.ejs'), 'utf8')
 
   const html = ejs.render(template, {
     baseurl: '',
-    svgSymbols: fs.readFileSync(path.join(__dirname, 'assets/svg-symbols.svg')),
+    svgSymbols: fs.readFileSync(path.join(paths.src, 'assets/svg-symbols.svg')),
     menu: menu(pages)
   }, {
     root: __dirname

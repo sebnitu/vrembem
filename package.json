@@ -20,32 +20,32 @@
     ]
   },
   "scripts": {
-    "clean": "yarn dist:clean && yarn build:clean",
+
+    "clean": "yarn dist:clean && yarn demo:clean",
     "dist:clean": "rimraf dist",
     "dist:dev": "node-sass scss/vrembem.scss dist/vrembrem.css --output-style expanded --source-map true",
     "dist:prod": "node-sass scss/vrembem.scss dist/vrembrem.min.css --output-style compressed --source-map true",
     "dist:post": "postcss dist/*.css --dir dist --use autoprefixer --no-map true",
     "dist": "yarn dist:clean && yarn dist:dev && yarn dist:prod && yarn dist:post",
 
-    "build:clean": "rimraf demo",
-    "build:css:dev": "node-sass src/assets/styles.scss demo/assets/styles.css --include-path scss --output-style expanded --source-map true",
-    "build:css:prod": "node-sass src/assets/styles.scss demo/assets/styles.min.css --include-path scss --output-style compressed --source-map true",
-    "build:css:post": "postcss demo/assets/*.css --dir demo/assets --use autoprefixer --no-map true",
+    "demo:clean": "rimraf demo",
 
-    "build:js:bundle": "browserify src/assets/scripts.js -o demo/assets/scripts.js",
-    "build:js:min": "uglifyjs demo/assets/scripts.js --compress --output demo/assets/scripts.min.js",
-    "build:js": "yarn build:js:bundle && yarn build:js:min",
+    "demo:css:dev": "node-sass src/assets/styles.scss demo/assets/styles.css --include-path scss --output-style expanded --source-map true",
+    "demo:css:prod": "node-sass src/assets/styles.scss demo/assets/styles.min.css --include-path scss --output-style compressed --source-map true",
+    "demo:css:post": "postcss demo/assets/*.css --dir demo/assets --use autoprefixer --no-map true",
 
-    "build:pages": "babel-node src/index.js",
-    "build": "yarn build:clean && yarn build:css:dev && yarn build:css:prod && yarn build:css:post && yarn build:js && yarn build:pages",
+    "demo:js:bundle": "browserify src/assets/scripts.js -o demo/assets/scripts.js",
+    "demo:js:min": "uglifyjs demo/assets/scripts.js --compress --output demo/assets/scripts.min.js",
+    "demo:js": "yarn demo:js:bundle && yarn demo:js:min",
 
-    "svg:copy": "babel-node bin/copy-icons.js",
-    "svg:symbols": "svg-symbols tmp > src/assets/svg-symbols.svg",
-    "svg:clean": "rimraf tmp",
-    "icons": "yarn svg:copy && yarn svg:symbols && yarn svg:clean",
+    "demo:pages": "babel-node src/demo.js",
+
+    "demo": "yarn demo:clean && yarn demo:css:dev && yarn demo:css:prod && yarn demo:css:post && yarn demo:js && yarn demo:pages",
+
+    "symbols": "babel-node src/symbols.js",
 
     "serve": "cd demo && live-server --host=localhost --port=9000",
-    "start": "yarn dist && yarn build && yarn serve"
+    "start": "yarn dist && yarn demo && yarn serve"
   },
   "devDependencies": {
     "autoprefixer": "^7.2.1",
