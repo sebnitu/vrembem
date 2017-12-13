@@ -1,0 +1,25 @@
+.menu_align_left {
+  justify-content: flex-start;
+}
+
+.menu_align_center {
+  justify-content: center;
+}
+
+.menu_align_right {
+  justify-content: flex-end;
+}
+
+.menu_stack {
+  &.menu_align_left .menu__link {
+    justify-content: flex-start;
+  }
+
+  &.menu_align_center .menu__link {
+    justify-content: center;
+  }
+
+  &.menu_align_right .menu__link {
+    justify-content: flex-end;
+  }
+}

@@ -27,7 +27,7 @@ const menu = function(pages) {
     const pagePath = path.dirname(pageName).replace(pageBase, '')
     menu.push({
       name: menuName(pageBase),
-      href: pagePath + pageBase + '.html'
+      href: path.join(pagePath, pageBase + '.html')
     })
   }
 

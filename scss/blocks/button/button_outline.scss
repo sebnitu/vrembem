@@ -9,6 +9,19 @@
   }
 }
 
+.button_outline_inverted {
+  color: $white;
+  background: none;
+  border: $button_outline_border-width solid $white;
+
+  &:hover,
+  &:focus {
+    color: $color;
+    background: $white;
+    border-color: $white;
+  }
+}
+
 .button_outline_primary {
   color: $primary;
   background: none;
@@ -71,19 +84,6 @@
     color: $white;
     background: $danger;
     border-color: $danger;
-  }
-}
-
-.button_outline_light {
-  color: $white;
-  background: none;
-  border: $button_outline_border-width solid $white;
-
-  &:hover,
-  &:focus {
-    color: $color;
-    background: $white;
-    border-color: $white;
   }
 }
 

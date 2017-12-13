@@ -3,14 +3,14 @@ import hljs from 'highlight.js'
 
 const config = {
   key: 'demo',
-  ext: '.demo.md'
+  ext: '.md'
 }
 
 const paths = {
   root: path.resolve(__dirname, '../'),
   src:  path.resolve(__dirname, '../', 'src'),
-  dist: path.resolve(__dirname, '../', 'demo'),
-  pages: path.resolve(__dirname, '../', 'scss')
+  dest: path.resolve(__dirname, '../', 'demo'),
+  pages: path.resolve(__dirname, '../', 'src/pages')
 }
 
 const markdown = {

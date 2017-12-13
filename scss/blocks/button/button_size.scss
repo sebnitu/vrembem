@@ -7,11 +7,11 @@
   padding: $button_large-padding;
   font-size: $button_large-font-size;
 
-  .icon:first-child {
+  &:not(.button_icon) .icon:first-child {
     margin-left: -0.25em;
   }
 
-  .icon:last-child {
+  &:not(.button_icon) .icon:last-child {
     margin-right: -0.25em;
   }
 }

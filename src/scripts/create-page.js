@@ -4,6 +4,7 @@ import shell from 'shelljs'
 import colors from 'colors'
 import ejs from 'ejs'
 import markdownIt from 'markdown-it'
+import { minify } from 'html-minifier'
 
 import { config, paths, markdown } from '../config'
 
@@ -26,12 +27,17 @@ export default function(file, data) {
   }, {
     root: paths.src
   })
+  const miniHtml = minify(html, {
+    collapseWhitespace: true,
+    conservativeCollapse: true,
+    removeComments: true
+  })
 
   // Create our directories
   shell.mkdir('-p', pagePath)
 
   // Write the file
-  fs.writeFile( path.join(pagePath, pageBase + '.html'), html, (err) => {
+  fs.writeFile( path.join(pagePath, pageBase + '.html'), miniHtml, (err) => {
       if (err) throw err
       console.info('Success:'.green, 'Page has been created!')
     }

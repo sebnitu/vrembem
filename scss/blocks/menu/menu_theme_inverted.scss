@@ -2,13 +2,19 @@ $menu_theme_inverted-color: $white !default;
 $menu_theme_inverted-color_hover: $white !default;
 
 $menu_theme_inverted-background: null !default;
-$menu_theme_inverted-background_hover: rgba($white, 0.05) !default;
+$menu_theme_inverted-background_hover: rgba($white, 0.1) !default;
 
-$menu_theme_inverted-color_active: $blue-400 !default;
-$menu_theme_inverted-color_active_hover: $blue-400 !default;
+$menu_theme_inverted-color_active: $color !default;
+$menu_theme_inverted-color_active_hover: $color !default;
 
-$menu_theme_inverted-background_active: none !default;
-$menu_theme_inverted-background_active_hover: none !default;
+$menu_theme_inverted-background_active: $white !default;
+$menu_theme_inverted-background_active_hover: $white !default;
+
+$menu_theme_inverted-color_disabled: rgba($white, 0.5) !default;
+$menu_theme_inverted-color_disabled_hover: rgba($white, 0.5) !default;
+
+$menu_theme_inverted-background_disabled: none !default;
+$menu_theme_inverted-background_disabled_hover: none !default;
 
 $menu_theme_inverted-border-color: rgba($white, 0.1) !default;
 
@@ -30,6 +36,17 @@ $menu_theme_inverted-border-color: rgba($white, 0.1) !default;
       &:focus {
         color: $menu_theme_inverted-color_active_hover;
         background: $menu_theme_inverted-background_active_hover;
+      }
+    }
+
+    &.is-disabled {
+      color: $menu_theme_inverted-color_disabled;
+      background: $menu_theme_inverted-background_disabled;
+
+      &:hover,
+      &:focus {
+        color: $menu_theme_inverted-color_disabled_hover;
+        background: $menu_theme_inverted-background_disabled_hover;
       }
     }
   }

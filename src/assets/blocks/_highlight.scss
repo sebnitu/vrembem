@@ -1,30 +1,13 @@
 .hljs {
   display: block;
   overflow-x: auto;
-  margin-left: -1.5rem;
-  margin-right: -1.5rem;
+  margin: 0;
   padding: 1rem 1.5rem;
   font-family: $font-family-mono;
   font-size: 0.875em;
   line-height: 1.8em;
-  color: $blue-gray-200;
-  background: $blue-gray-900;
-}
-
-.page__section {
-  padding: 1.5rem;
-}
-
-@include media-min('medium') {
-  .hljs {
-    margin-left: 0;
-    margin-right: 0;
-    padding: 1rem;
-    border-radius: $border-radius;
-  }
-  .page__section {
-    padding: 2em;
-  }
+  color: $color;
+  background: none;
 }
 
 .hljs-strong,
@@ -56,7 +39,7 @@
 .hljs-attribute,
 .hljs-name,
 .hljs-variable {
-  color: $amber-700;
+  color: $amber-900;
 }
 
 .hljs-params {
@@ -64,7 +47,7 @@
 }
 
 .hljs-string {
-  color: $teal-300;
+  color: $teal-500;
 }
 
 .hljs-subst,

@@ -37,3 +37,46 @@ $menu_theme_tabs-border-color: $gray-300 !default;
     }
   }
 }
+
+.menu_theme_tabs.menu_stack {
+
+  border-right: 1px solid $menu_theme_tabs-border-color;
+  border-bottom: none;
+
+  .menu__item + .menu__item {
+    margin-top: 0.25em;
+    margin-left: 0;
+  }
+
+  .menu__link {
+    position: relative;
+    border-right: none;
+    border-bottom: inherit;
+    border-radius: $menu-border-radius;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+    &.is-active {
+      background: $menu_theme_tabs-background;
+      border: 1px solid $menu_theme_tabs-border-color;
+      border-right: 1px solid transparent;
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 2px;
+        height: 100%;
+        top: 0;
+        left: 100%;
+        right: auto;
+        bottom: 0;
+        background: $menu_theme_tabs-background;
+      }
+
+      &:hover {
+        background: none;
+      }
+    }
+  }
+
+}
