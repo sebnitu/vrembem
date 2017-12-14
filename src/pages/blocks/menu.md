@@ -105,9 +105,43 @@ Used for displaying icon-only links.
   </div><!-- .demo__code -->
 </div><!-- .demo -->
 
+## `menu__text`
+
+For creating non-link menu item content.
+
+<div class="demo demo_medium_row">
+  <div class="demo__render">
+    <ul class="menu">
+      <li class="menu__item">
+        <strong class="menu__text">Actions:</strong>
+      </li>
+      <li class="menu__item">
+        <a class="menu__link" href="#">Create</a>
+      </li>
+      <li class="menu__item">
+        <a class="menu__link" href="#">Update</a>
+      </li>
+      <li class="menu__item">
+        <a class="menu__link" href="#">Delete</a>
+      </li>
+    </ul>
+  </div><!-- .demo__render -->
+  <div class="demo__code">
+
+```html
+<ul class="menu">
+  <li class="menu__item">
+    <strong class="menu__text">Actions:</strong>
+  </li>
+</ul>
+```
+
+  </div><!-- .demo__code -->
+</div><!-- .demo -->
+
 ## `menu > *`
 
-Elements inside the button component receive appropriate spacing.
+Elements inside the menu__link and menu__text elements receive appropriate spacing.
 
 <div class="demo demo_medium_row">
   <div class="demo__render">

@@ -20,6 +20,8 @@ $menu-background_disabled: none !default;
 
 $menu__item-spacing: 1px !default;
 
+$menu__text-color: $color !default;
+
 $menu__sep-spacing: 0.5em !default;
 $menu__sep-border-width: 1px !default;
 $menu__sep-border-color: rgba($black, 0.1) !default;
@@ -97,4 +99,21 @@ $menu__sep-border-color: rgba($black, 0.1) !default;
 
 .menu__link_icon {
   padding: nth($menu-padding, 1);
+}
+
+.menu__text {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: $menu-padding;
+  color: $menu__text-color;
+  white-space: nowrap;
+  text-decoration: none;
+  background: $menu-background;
+  border: $menu-border-width solid $menu-border-color;
+  border-radius: $menu-border-radius;
+
+  > * + * {
+    margin-left: $menu-inner-spacing;
+  }
 }

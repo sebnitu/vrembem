@@ -26,12 +26,12 @@
   transition: background-color 0.5s linear;
 
   &::placeholder {
-    color: $color-light;
+    color: rgba($black, 0.5);
   }
 
   &:focus {
     outline: none;
-    background: $yellow-100;
+    background: $blue-50;
     transition: background-color 0s linear;
   }
 }

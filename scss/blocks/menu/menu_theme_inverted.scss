@@ -18,6 +18,8 @@ $menu_theme_inverted-background_disabled_hover: none !default;
 
 $menu_theme_inverted-border-color: rgba($white, 0.1) !default;
 
+$menu_theme_inverted__text-color: $white !default;
+
 .menu_theme_inverted {
   .menu__link {
     color: $menu_theme_inverted-color;
@@ -49,6 +51,11 @@ $menu_theme_inverted-border-color: rgba($white, 0.1) !default;
         background: $menu_theme_inverted-background_disabled_hover;
       }
     }
+  }
+
+  .menu__text {
+    color: $menu_theme_inverted__text-color;
+    background: $menu_theme_inverted-background;
   }
 
   .menu__sep {
