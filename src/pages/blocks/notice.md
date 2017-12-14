@@ -64,7 +64,7 @@
         <use xlink:href="#x"></use>
       </svg>
       <div class="notice__content">
-        <h2>This is a heading</h2>
+        <h2>Heading</h2>
         <p>Lorem ipsum dolor sit amet, <a href="#">consectetur adipiscing</a> elit. Etiam sed semper dui. Donec malesuada, augue sit amet auctor elementum, est sem consectetur nisi, ac pretium massa sapien eu quam.</p>
       </div>
     </div>
@@ -146,7 +146,7 @@
         <use xlink:href="#x"></use>
       </svg>
       <div class="notice__content">
-        <h2>This is a heading</h2>
+        <h2>Heading</h2>
         <p>Lorem ipsum dolor sit amet, <a href="#">consectetur adipiscing</a> elit. Etiam sed semper dui. Donec malesuada, augue sit amet auctor elementum, est sem consectetur nisi, ac pretium massa sapien eu quam.</p>
       </div>
     </div>
@@ -155,7 +155,7 @@
         <use xlink:href="#x"></use>
       </svg>
       <div class="notice__content">
-        <h2>This is a heading</h2>
+        <h2>Heading</h2>
         <p>Lorem ipsum dolor sit amet, <a href="#">consectetur adipiscing</a> elit. Etiam sed semper dui. Donec malesuada, augue sit amet auctor elementum, est sem consectetur nisi, ac pretium massa sapien eu quam.</p>
       </div>
     </div>
@@ -164,7 +164,7 @@
         <use xlink:href="#x"></use>
       </svg>
       <div class="notice__content">
-        <h2>This is a heading</h2>
+        <h2>Heading</h2>
         <p>Lorem ipsum dolor sit amet, <a href="#">consectetur adipiscing</a> elit. Etiam sed semper dui. Donec malesuada, augue sit amet auctor elementum, est sem consectetur nisi, ac pretium massa sapien eu quam.</p>
       </div>
     </div>
@@ -173,7 +173,7 @@
         <use xlink:href="#x"></use>
       </svg>
       <div class="notice__content">
-        <h2>This is a heading</h2>
+        <h2>Heading</h2>
         <p>Lorem ipsum dolor sit amet, <a href="#">consectetur adipiscing</a> elit. Etiam sed semper dui. Donec malesuada, augue sit amet auctor elementum, est sem consectetur nisi, ac pretium massa sapien eu quam.</p>
       </div>
     </div>

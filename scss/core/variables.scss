@@ -38,3 +38,16 @@ $breakpoints: (
   'large': 990px,
   'huge': 1380px
 ) !default;
+
+$anchor: (
+  'color': $primary,
+  'text-decoration': none,
+  'background': null,
+  'border': 1px solid $border-color,
+  'hover': (
+    'color': darken($primary, 10%),
+    'text-decoration': null,
+    'background': null,
+    'border': 1px solid darken($primary, 10%)
+  )
+)!default;

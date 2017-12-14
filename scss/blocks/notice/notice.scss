@@ -13,15 +13,7 @@ $notice-border-radius: $border-radius !default;
   border: $notice-border-width solid $notice-border-color;
   border-radius: $notice-border-radius;
 
-  a:not(.button):not(.badge):not(.menu__link) {
-    color: currentColor;
-    border-bottom: 1px solid $border-color;
-
-    &:hover {
-      // color: darken(currentColor, 10%);
-      // border-color: darken(currentColor, 10%);
-    }
-  }
+  @include add-anchor();
 }
 
 .notice__close {
@@ -42,5 +34,14 @@ $notice-border-radius: $border-radius !default;
 
   > * + * {
     margin-top: 0.5em;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 1.1em;
   }
 }

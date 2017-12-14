@@ -23,6 +23,8 @@
     line-height: 1.25;
     font-weight: font-weight('semi-bold');
 
+    @include add-anchor();
+
     code {
       font-size: 1rem;
     }
@@ -55,6 +57,8 @@
 
   > p {
     margin-bottom: 1em;
+
+    @include add-anchor();
   }
 
   code {
@@ -67,16 +71,6 @@
     padding: 0;
     background: none;
     word-break: normal;
-  }
-
-  a:not(.button):not(.badge):not(.menu__link) {
-    color: $primary;
-    border-bottom: 1px solid $border-color;
-
-    &:hover {
-      color: darken($primary, 10%);
-      border-color: darken($primary, 10%);
-    }
   }
 
   > hr {
@@ -109,5 +103,4 @@
       margin-top: 0.5em;
     }
   }
-
 }

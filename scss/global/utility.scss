@@ -15,6 +15,17 @@ $lead-line-height: 1.6em !default;
   color: $color-light;
 }
 
+.text_link {
+  color: $primary;
+  text-decoration: none;
+  border-bottom: 1px solid $border-color;
+
+  &:hover {
+    color: darken($primary, 10%);
+    border-color: darken($primary, 10%);
+  }
+}
+
 .text_align_left {
   text-align: left;
 }
