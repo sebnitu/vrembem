@@ -8,19 +8,14 @@ $button_small-font-size: 0.875em !default;
 $button_large-padding: 0.5em 1.5em !default;
 $button_large-font-size: 1.25em !default;
 
+$button-inner-spacing: 0.5em !default;
+
 $button-background: rgba($black, 0.05) !default;
 $button-background-hover: rgba($black, 0.1) !default;
 $button-border-width: 1px !default;
 $button-border-color: transparent !default;
 $button-border-color-hover: transparent !default;
 $button-border-radius: $border-radius !default;
-
-$button__text-spacing: 0.5em !default;
-
-$button__icon-size: 1.25em !default;
-$button__icon-margin: 0.1em !default;
-
-$button_outline_border-width: 1px !default;
 
 .button {
   cursor: pointer;
@@ -44,28 +39,13 @@ $button_outline_border-width: 1px !default;
 
   &:hover,
   &:focus {
+    outline: none;
     color: $color;
     background-color: $button-background-hover;
     border-color: $button-border-color-hover;
   }
-
-  &:focus {
-    outline: none;
-  }
-
-  > * {
-    flex-shrink: 0;
-  }
-}
-
-.button__text {
-  margin: 0 $button__text-spacing;
-
-  &:first-child {
-    margin-left: 0;
-  }
-
-  &:last-child {
-    margin-right: 0;
+  
+  > * + * {
+    margin-left: $button-inner-spacing;
   }
 }

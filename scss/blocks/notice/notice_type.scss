@@ -1,0 +1,23 @@
+.notice_type_info {
+  color: darken($primary, 10%);
+  background: rgba($primary, 0.1);
+  border-color: rgba($primary, 0.5);
+}
+
+.notice_type_success {
+  color: darken($success, 10%);
+  background: rgba($success, 0.1);
+  border-color: rgba($success, 0.5);
+}
+
+.notice_type_caution {
+  color: darken($caution, 10%);
+  background: rgba($caution, 0.1);
+  border-color: rgba($caution, 0.65);
+}
+
+.notice_type_danger {
+  color: darken($danger, 10%);
+  background: rgba($danger, 0.1);
+  border-color: rgba($danger, 0.5);
+}

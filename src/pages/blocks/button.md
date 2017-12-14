@@ -19,89 +19,42 @@
   </div><!-- .demo__code -->
 </div><!-- .demo -->
 
-## `button_size`
+## `button > *`
+
+Elements inside the button component receive appropriate spacing.
 
 <div class="demo demo_medium_row">
   <div class="demo__render">
-    <button class="button button_size_small button_color_primary">Button</button>
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_size_large button_color_primary">Button</button>
+    <button class="button button_color_primary">
+      <svg role="img" class="icon">
+        <use xlink:href="#github"></use>
+      </svg>
+      <span>Button</span>
+      <span class="arrow"></span>
+    </button>
+    <button class="button button_color_primary">
+      <span>Button</span>
+      <svg role="img" class="icon">
+        <use xlink:href="#github"></use>
+      </svg>
+      <span class="arrow"></span>
+    </button>
+    <button class="button button_color_primary">
+      <svg role="img" class="icon">
+        <use xlink:href="#github"></use>
+      </svg>
+      <span class="arrow"></span>
+    </button>
   </div><!-- .demo__render -->
   <div class="demo__code">
 
 ```html
-<button class="button button_size_small button_color_primary">Button</button>
-<button class="button button_color_primary">Button</button>
-<button class="button button_size_large button_color_primary">Button</button>
-```
-
-  </div><!-- .demo__code -->
-</div><!-- .demo -->
-
-## `button__text`
-
-Used for when you have other content within a button besides just text.
-
-<div class="demo demo_medium_row">
-  <div class="demo__render">
-    <div class="demo__group">
-      <button class="button button_size_small button_color_primary">
-        <svg role="img" class="icon">
-          <use xlink:href="#github"></use>
-        </svg>
-        <span class="button__text">Button</span>
-      </button>
-      <button class="button button_color_primary">
-        <svg role="img" class="icon">
-          <use xlink:href="#github"></use>
-        </svg>
-        <span class="button__text">Button</span>
-      </button>
-      <button class="button button_size_large button_color_primary">
-        <svg role="img" class="icon">
-          <use xlink:href="#github"></use>
-        </svg>
-        <span class="button__text">Button</span>
-      </button>
-    </div>
-    <div class="demo__group">
-      <button class="button button_size_small button_color_primary">
-        <span class="button__text">Button</span>
-        <svg role="img" class="icon">
-          <use xlink:href="#github"></use>
-        </svg>
-      </button>
-      <button class="button button_color_primary">
-        <span class="button__text">Button</span>
-        <svg role="img" class="icon">
-          <use xlink:href="#github"></use>
-        </svg>
-      </button>
-      <button class="button button_size_large button_color_primary">
-        <span class="button__text">Button</span>
-        <svg role="img" class="icon">
-          <use xlink:href="#github"></use>
-        </svg>
-      </button>
-    </div>
-  </div><!-- .demo__render -->
-  <div class="demo__code">
-
-```html
-<!-- Icons on the left side -->
-<button class="button button_color_primary">
+<button class="button">
   <svg role="img" class="icon">
     <use xlink:href="#github"></use>
   </svg>
-  <span class="button__text">Button</span>
-</button>
-
-<!-- Icons on the right side -->
-<button class="button button_color_primary">
-  <span class="button__text">Button</span>
-  <svg role="img" class="icon">
-    <use xlink:href="#github"></use>
-  </svg>
+  <span>Button</span>
+  <span class="arrow"></span>
 </button>
 ```
 
@@ -153,6 +106,25 @@ Used for when displaying a button with only an icon and no text.
     <use xlink:href="#github"></use>
   </svg>
 </button>
+```
+
+  </div><!-- .demo__code -->
+</div><!-- .demo -->
+
+## `button_size`
+
+<div class="demo demo_medium_row">
+  <div class="demo__render">
+    <button class="button button_size_small button_color_primary">Button</button>
+    <button class="button button_color_primary">Button</button>
+    <button class="button button_size_large button_color_primary">Button</button>
+  </div><!-- .demo__render -->
+  <div class="demo__code">
+
+```html
+<button class="button button_size_small button_color_primary">Button</button>
+<button class="button button_color_primary">Button</button>
+<button class="button button_size_large button_color_primary">Button</button>
 ```
 
   </div><!-- .demo__code -->

@@ -1,22 +1,38 @@
-$notice-margin: 1em 0 !default;
 $notice-padding: 0.75em 1em !default;
-$notice-background: rgba($black, 0.05) !default;
+$notice-background: $white !default;
+$notice-box-shadow: 0 1px 6px rgba($black, 0.05) !default;
 $notice-border-width: 1px !default;
-$notice-border-color: rgba($black, 0.1) !default;
+$notice-border-color: rgba($black, 0.2) !default;
 $notice-border-radius: $border-radius !default;
 
 .notice {
   position: relative;
-  margin: $notice-margin;
   padding: $notice-padding;
   background: $notice-background;
+  box-shadow: $notice-box-shadow;
   border: $notice-border-width solid $notice-border-color;
   border-radius: $notice-border-radius;
+
+  a:not(.button):not(.badge):not(.menu__link) {
+    color: currentColor;
+    border-bottom: 1px solid $border-color;
+
+    &:hover {
+      // color: darken(currentColor, 10%);
+      // border-color: darken(currentColor, 10%);
+    }
+  }
 }
 
 .notice__close {
+  cursor: pointer;
   float: right;
-  margin: -1px -0.25em 0.5em 1em;
+  margin: 0 -0.25em 0.25em 1em;
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1;
+  }
 }
 
 .notice__content {
@@ -25,26 +41,6 @@ $notice-border-radius: $border-radius !default;
   }
 
   > * + * {
-    margin-top: 1em;
+    margin-top: 0.5em;
   }
-}
-
-.notice_outline {
-  background: none;
-}
-
-.notice_type_info {
-  background: rgba($primary, 0.2);
-}
-
-.notice_type_success {
-  background: rgba($success, 0.2);
-}
-
-.notice_type_caution {
-  background: rgba($caution, 0.2);
-}
-
-.notice_type_danger {
-  background: rgba($danger, 0.2);
 }

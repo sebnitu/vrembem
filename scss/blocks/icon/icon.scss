@@ -1,37 +1,23 @@
-$icon-margin: 0.1em !default;
+$icon-padding: 0.1em !default;
 $icon-font-size: 1.25em !default;
 $icon-fill: none !default;
 $icon-stroke: currentColor !default;
+$icon-stroke-linecap: round !default;
+$icon-stroke-linejoin: round !default;
 $icon-stroke-width: 2px !default;
 
 $icon--loading-duration: 1.5s !default;
-
-$icon-symbols-class: 'svg-symbols' !default;
 
 .icon {
   display: inline-block;
   width: 1em;
   height: 1em;
-  margin: $icon-margin;
+  padding: $icon-padding;
   fill: $icon-fill;
   stroke: $icon-stroke;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  stroke-linecap: $icon-stroke-linecap;
+  stroke-linejoin: $icon-stroke-linejoin;
   stroke-width: $icon-stroke-width;
   font-size: $icon-font-size;
-}
-
-.icon.is-loading {
-  animation: rotate $icon--loading-duration linear infinite;
-}
-
-.#{$icon-symbols-class} {
-  border: none !important;
-  clip: rect(0 0 0 0) !important;
-  height: 1px !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  padding: 0 !important;
-  position: absolute !important;
-  width: 1px !important;
+  box-sizing: content-box;
 }

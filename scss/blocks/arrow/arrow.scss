@@ -8,25 +8,20 @@ $arrow-color: currentColor !default;
   flex-shrink: 0;
   width: 0;
   height: 0;
-  border: 4px solid $arrow-color;
-  border-right: 0;
-  border-top: 0;
-  transform: rotate(-45deg);
+  border-top: $arrow-size solid $arrow-color;
+  border-left: $arrow-size solid transparent;
+  border-right: $arrow-size solid transparent;
   transform-origin: center;
 }
 
 .arrow_up {
-  transform: rotate(-45deg);
-}
-
-.arrow_down {
-  transform: rotate(-135deg);
-}
-
-.arrow_right {
-  transform: rotate(45deg);
+  transform: rotate(180deg);
 }
 
 .arrow_left {
-  transform: rotate(135deg);
+  transform: rotate(90deg);
+}
+
+.arrow_right {
+  transform: rotate(-90deg);
 }

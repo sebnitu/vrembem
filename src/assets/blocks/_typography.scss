@@ -69,13 +69,13 @@
     word-break: normal;
   }
 
-  > a {
-    color: $blue;
+  a:not(.button):not(.badge):not(.menu__link) {
+    color: $primary;
     border-bottom: 1px solid $border-color;
 
     &:hover {
-      color: $blue-700;
-      border-color: $blue-700;
+      color: darken($primary, 10%);
+      border-color: darken($primary, 10%);
     }
   }
 

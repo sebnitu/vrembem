@@ -1,9 +1,7 @@
-$menu-font-size: 1em !default;
-$menu-indent: 1em !default;
-
-$menu__item-spacing: 1px !default;
-
 $menu-padding: $padding !default;
+$menu-font-size: 1em !default;
+
+$menu-inner-spacing: 0.5em !default;
 
 $menu-color: $color !default;
 $menu-color_hover: $color !default;
@@ -20,9 +18,7 @@ $menu-background_hover: rgba($black, 0.05) !default;
 $menu-background_active: none !default;
 $menu-background_disabled: none !default;
 
-$menu__text-spacing: 0.5em !default;
-
-$menu__title-font-size: 0.9em !default;
+$menu__item-spacing: 1px !default;
 
 $menu__sep-spacing: 0.5em !default;
 $menu__sep-border-width: 1px !default;
@@ -93,20 +89,12 @@ $menu__sep-border-color: rgba($black, 0.1) !default;
       color: $menu-color_disabled;
     }
   }
+
+  > * + * {
+    margin-left: $menu-inner-spacing;
+  }
 }
 
 .menu__link_icon {
   padding: nth($menu-padding, 1);
-}
-
-.menu__text {
-  margin: 0 $menu__text-spacing;
-
-  &:first-child {
-    margin-left: 0;
-  }
-
-  &:last-child {
-    margin-right: 0;
-  }
 }

@@ -105,9 +105,9 @@ Used for displaying icon-only links.
   </div><!-- .demo__code -->
 </div><!-- .demo -->
 
-## `menu__text`
+## `menu > *`
 
-Adds custom spacing for menu text when combined with other components, such as icons.
+Elements inside the button component receive appropriate spacing.
 
 <div class="demo demo_medium_row">
   <div class="demo__render">
@@ -117,7 +117,7 @@ Adds custom spacing for menu text when combined with other components, such as i
           <svg role="img" class="icon">
             <use xlink:href="#thumbs-up"></use>
           </svg>
-          <span class="menu__text">30k</span>
+          <span>30k</span>
         </a>
       </li>
       <li class="menu__item">
@@ -125,7 +125,7 @@ Adds custom spacing for menu text when combined with other components, such as i
           <svg role="img" class="icon">
             <use xlink:href="#thumbs-down"></use>
           </svg>
-          <span class="menu__text">1k</span>
+          <span>1k</span>
         </a>
       </li>
       <li class="menu__item">
@@ -133,7 +133,7 @@ Adds custom spacing for menu text when combined with other components, such as i
           <svg role="img" class="icon">
             <use xlink:href="#share"></use>
           </svg>
-          <span class="menu__text">Share</span>
+          <span>Share</span>
         </a>
       </li>
       <li class="menu__sep"></li>
@@ -155,7 +155,7 @@ Adds custom spacing for menu text when combined with other components, such as i
       <svg role="img" class="icon">
         <use xlink:href="#thumbs-up"></use>
       </svg>
-      <span class="menu__text">30k</span>
+      <span>30k</span>
     </a>
   </li>
 </ul>

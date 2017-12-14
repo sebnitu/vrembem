@@ -1,3 +1,4 @@
+$menu_stack-indent: 1em !default;
 $menu_stack__text-spacing: 1em !default;
 
 .menu_stack {
@@ -6,7 +7,7 @@ $menu_stack__text-spacing: 1em !default;
   overflow: visible;
 
   .menu_stack {
-    margin-left: $menu-indent;
+    margin-left: $menu_stack-indent;
   }
 
   .menu__item + .menu__item {
