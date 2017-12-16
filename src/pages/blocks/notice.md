@@ -182,36 +182,36 @@
 
 ```html
 <div class="notice notice_type_info">
-  <svg role="img" class="notice__close icon">
-    <use xlink:href="#x"></use>
-  </svg>
+  <span class="notice__close">
+    ...
+  </span>
   <div class="notice__content">
     ...
   </div>
 </div>
 
 <div class="notice notice_type_success">
-  <svg role="img" class="notice__close icon">
-    <use xlink:href="#x"></use>
-  </svg>
+  <span class="notice__close">
+    ...
+  </span>
   <div class="notice__content">
     ...
   </div>
 </div>
 
 <div class="notice notice_type_caution">
-  <svg role="img" class="notice__close icon">
-    <use xlink:href="#x"></use>
-  </svg>
+  <span class="notice__close">
+    ...
+  </span>
   <div class="notice__content">
     ...
   </div>
 </div>
 
 <div class="notice notice_type_danger">
-  <svg role="img" class="notice__close icon">
-    <use xlink:href="#x"></use>
-  </svg>
+  <span class="notice__close">
+    ...
+  </span>
   <div class="notice__content">
     ...
   </div>

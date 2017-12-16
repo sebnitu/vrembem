@@ -1,6 +1,6 @@
 $breadcrumb-delimiter: '/' !default;
 $breadcrumb-delimiter-padding: 0 0.5em !default;
-$breadcrumb-delimiter-color: $gray-400 !default;
+$breadcrumb-delimiter-color: $color-light !default;
 
 .breadcrumb {
   display: inline-flex;
@@ -8,6 +8,7 @@ $breadcrumb-delimiter-color: $gray-400 !default;
   align-items: center;
   margin: 0;
   list-style: none;
+  color: $color;
 }
 
 .breadcrumb__item {
@@ -22,4 +23,8 @@ $breadcrumb-delimiter-color: $gray-400 !default;
   &:last-child::after {
     content: none;
   }
+}
+
+.breadcrumb__link {
+  @include add-anchor();
 }

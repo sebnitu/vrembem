@@ -23,7 +23,9 @@
     line-height: 1.25;
     font-weight: font-weight('semi-bold');
 
-    @include add-anchor();
+    a {
+      @include add-anchor();
+    }
 
     code {
       font-size: 1rem;
@@ -58,7 +60,9 @@
   > p {
     margin-bottom: 1em;
 
-    @include add-anchor();
+    a {
+      @include add-anchor();
+    }
   }
 
   code {

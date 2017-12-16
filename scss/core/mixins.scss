@@ -16,18 +16,16 @@
 @mixin add-anchor($settings: ()) {
   $o: map-extend($anchor, $settings);
 
-  a {
-    color: map-get($o, 'color');
-    text-decoration: map-get($o, 'text-decoration');
-    background: map-get($o, 'background');
-    border-bottom: map-get($o, 'border');
+  color: map-get($o, 'color');
+  text-decoration: map-get($o, 'text-decoration');
+  background: map-get($o, 'background');
+  border-bottom: map-get($o, 'border');
 
-    &:hover {
-      color: map-fetch($o, 'hover', 'color');
-      text-decoration: map-fetch($o, 'hover', 'text-decoration');
-      background: map-fetch($o, 'hover', 'background');
-      border-bottom: map-fetch($o, 'hover', 'border');
-    }
+  &:hover {
+    color: map-fetch($o, 'hover', 'color');
+    text-decoration: map-fetch($o, 'hover', 'text-decoration');
+    background: map-fetch($o, 'hover', 'background');
+    border-bottom: map-fetch($o, 'hover', 'border');
   }
 }
 

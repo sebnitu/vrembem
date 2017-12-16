@@ -13,7 +13,9 @@ $notice-border-radius: $border-radius !default;
   border: $notice-border-width solid $notice-border-color;
   border-radius: $notice-border-radius;
 
-  @include add-anchor();
+  a {
+    @include add-anchor();
+  }
 }
 
 .notice__close {
