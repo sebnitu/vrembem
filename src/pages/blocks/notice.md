@@ -1,6 +1,6 @@
 # Notice
 
-<p class="text_lead">Notices are blocks of content that are meant to draw special attention to.</p>
+<p class="text_lead">A component for highlighting messages to the user.</p>
 
 ## `notice`
 

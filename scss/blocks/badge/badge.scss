@@ -1,6 +1,8 @@
 $badge-color: $white !default;
 $badge-color-hover: $white !default;
 
+$badge-padding: 0 0.25rem !default;
+
 $badge-font-size: 0.875em !default;
 $badge-line-height: 1.325em !default;
 
@@ -20,7 +22,7 @@ $badge__chip-font-size: px-to-rem(12px) !default;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.25rem 0.5rem;
+  padding: $badge-padding;
   color: $badge-color;
   font-size: $badge-font-size;
   line-height: $badge-line-height;

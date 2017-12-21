@@ -1,6 +1,6 @@
 # Arrow
 
-<p class="text_lead">Arrow is a simple directional triangle.</p>
+<p class="text_lead">A directional triangle drawn with CSS.</p>
 
 ## `arrow`
 

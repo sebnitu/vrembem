@@ -1,0 +1,7 @@
+$badge_large-padding: 0.25rem 0.5rem !default;
+$badge_large-font-size: 0.875em !default;
+
+.badge_large {
+  padding: $badge_large-padding;
+  font-size: $badge_large-font-size;
+}

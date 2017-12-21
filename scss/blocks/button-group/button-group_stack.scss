@@ -1,0 +1,17 @@
+.button-group_stack {
+  flex-direction: column;
+
+  .button-group__item {
+    &:first-child {
+      border-radius: $button-group-bro $button-group-bro $button-group-bri $button-group-bri;
+    }
+
+    &:last-child {
+      border-radius: $button-group-bri $button-group-bri $button-group-bro $button-group-bro;
+    }
+
+    + .button-group__item {
+      margin: $button-group-spacing 0 0;
+    }
+  }
+}

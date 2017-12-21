@@ -1,4 +1,10 @@
 .badge_pill {
   border-radius: 2em;
-  padding: 0.25rem 0.75rem;
+  padding-left: 0.325rem;
+  padding-right: 0.325rem;
+
+  &.badge_large {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
 }

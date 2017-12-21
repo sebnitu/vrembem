@@ -55,29 +55,3 @@ $button-group-bri: 0 !default;
 .button-group__item_static {
   flex-grow: 0;
 }
-
-.button-group_full {
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-}
-
-.button-group_stack {
-  flex-direction: column;
-
-  .button-group__item {
-    &:first-child {
-      border-radius: $button-group-bro $button-group-bro $button-group-bri $button-group-bri;
-    }
-
-    &:last-child {
-      border-radius: $button-group-bri $button-group-bri $button-group-bro $button-group-bro;
-    }
-
-    + .button-group__item {
-      margin: $button-group-spacing 0 0;
-    }
-  }
-}
-
-

@@ -1,6 +1,6 @@
 # Icon
 
-<p class="text_lead">Icons are a set of glyphs that convey meaning.</p>
+<p class="text_lead">A component for displaying glyphs that convey meaning through iconography.</p>
 
 <div class="notice notice_type_info">You can use any icon set but may require changing default icon variables. Default styles are intended for <a href="https://feathericons.com/">feather icons</a> which is a great open source option.</div>
 

@@ -1,6 +1,6 @@
 # Button
 
-<p class="text_lead">Buttons are the most basic of UI components. They represent an action that a user can take.</p>
+<p class="text_lead">The most basic of UI components. Buttons represent an action that a user can take.</p>
 
 ## `button`
 

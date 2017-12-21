@@ -23,6 +23,7 @@
 .demo__render_tile {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   align-content: flex-start;
   justify-content: flex-start;
 
