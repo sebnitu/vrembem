@@ -9,7 +9,7 @@ $button-group-bri: 0 !default;
   display: inline-flex;
   align-items: center;
 
-  .button-group__item {
+  > .button {
     border-radius: $button-group-bri;
 
     &:first-child {
@@ -22,7 +22,7 @@ $button-group-bri: 0 !default;
   }
 }
 
-.button-group__item {
+.button-group > .button {
   z-index: 1;
   flex: 1 1 auto;
   margin: 0;
@@ -43,15 +43,15 @@ $button-group-bri: 0 !default;
     z-index: 5;
   }
 
-  + .button-group__item {
+  + .button {
     margin: 0 0 0 $button-group-spacing;
   }
 }
 
-.button-group__item_equal {
+.button-group > .button_equal {
   flex-basis: 0;
 }
 
-.button-group__item_static {
+.button-group > .button_static {
   flex-grow: 0;
 }

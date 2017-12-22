@@ -10,6 +10,10 @@
   background: none;
 }
 
+.hljs + .hljs {
+  border-top: 5px solid $white;
+}
+
 .hljs-strong,
 .hljs-emphasis {
   color: #a8a8a2;
@@ -22,11 +26,6 @@
 .hljs-regexp,
 .hljs-literal {
   color: #6896ba;
-}
-
-.hljs-code,
-.hljs-selector-class {
-  color: #a6e22e;
 }
 
 .hljs-emphasis {
@@ -46,6 +45,8 @@
   color: #b9b9b9;
 }
 
+.hljs-code,
+.hljs-selector-class,
 .hljs-string {
   color: $teal-500;
 }

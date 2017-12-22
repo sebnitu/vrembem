@@ -43,6 +43,7 @@
 
 ```html
 <span class="badge badge_pill">Badge</span>
+<span class="badge badge_pill badge_large">Badge</span>
 ```
 
   </div><!-- .demo__code -->

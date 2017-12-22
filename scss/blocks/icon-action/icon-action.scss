@@ -1,0 +1,46 @@
+$icon-action-color: $white !default;
+$icon-action-padding: px-to-rem(3px) !default;
+$icon-action-font-size: px-to-rem(18px) !default;
+$icon-action-background: rgba($black, 0.25) !default;
+$icon-action-background-hover: rgba($black, 0.5) !default;
+$icon-action-border: 1px solid transparent !default;
+$icon-action-border-hover: 1px solid transparent !default;
+$icon-action-border-radius: 2em !default;
+
+$icon-action_size_small-padding: px-to-rem(2px) !default;
+$icon-action_size_small-font-size: px-to-em(12px) !default;
+
+$icon-action_size_large-padding: px-to-em(7px) !default;
+$icon-action_size_large-font-size: px-to-rem(22px) !default;
+
+.icon-action {
+  cursor: pointer;
+  vertical-align: top;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: $icon-action-padding;
+  color: $icon-action-color;
+  font-size: $icon-action-font-size;
+  background: $icon-action-background;
+  border: $icon-action-border;
+  border-radius: $icon-action-border-radius;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    color: $white;
+    background: $icon-action-background-hover;
+    border: $icon-action-border-hover;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  > .icon {
+    margin: 0;
+    font-size: 1em;
+  }
+}

@@ -1,7 +1,7 @@
 .button-group_stack {
   flex-direction: column;
 
-  .button-group__item {
+  > .button {
     &:first-child {
       border-radius: $button-group-bro $button-group-bro $button-group-bri $button-group-bri;
     }
@@ -10,7 +10,7 @@
       border-radius: $button-group-bri $button-group-bri $button-group-bro $button-group-bro;
     }
 
-    + .button-group__item {
+    + .button {
       margin: $button-group-spacing 0 0;
     }
   }
