@@ -1,16 +1,14 @@
 $dialog-spacing: 1em !default;
+$dialog-inner-spacing: 0.5em !default;
 $dialog-padding: 1em !default;
-$dialog-padding-expanded: 1em 1.5em !default;
+$dialog-padding-expanded: 2em !default;
 $dialog-background: $white !default;
 $dialog-border: 1px solid rgba($black, 0.1) !default;
 $dialog-border-radius: $border-radius !default;
-$dialog-box-shadow: 0 2px 6px rgba($black, 0.1) !default;
+$dialog-box-shadow: 0 2px 6px rgba($black, 0.15) !default;
 
 $dialog__title-font-size: 1.125em !default;
 $dialog__title-line-height: 1.45em !default;
-
-$dialog__toolbar-spacing: 0.25em !default;
-$dialog__action-spacing: 0.5em !default;
 
 .dialog {
   position: relative;
@@ -20,108 +18,85 @@ $dialog__action-spacing: 0.5em !default;
   overflow: auto;
   padding: 0;
   background: $dialog-background;
+  background-clip: padding-box;
+  border: $dialog-border;
   border-radius: $dialog-border-radius;
   box-shadow: $dialog-box-shadow;
   transition: all 0.5s;
 }
 
 .dialog__header,
+.dialog__body,
 .dialog__footer {
-  flex: 0 0 auto;
   padding: $dialog-padding;
 }
 
-.dialog__header {
+.dialog__body_expanded {
+  padding: $dialog-padding-expanded;
+}
+
+.dialog__body_flush {
+  padding: 0;
+}
+
+.dialog__header,
+.dialog__footer,
+.dialog__group {
+  flex: 0 0 auto;
   display: flex;
-  align-items: top;
-  justify-content: space-between;
-  border-bottom: $dialog-border;
+  align-items: center;
 
   > * + * {
-    margin-left: $dialog-spacing;
+    margin-left: $dialog-inner-spacing;
   }
 }
 
-.dialog__toolbar {
-  > * + * {
-    margin-left: $dialog__toolbar-spacing;
+.dialog__header {
+  border-bottom: $dialog-border;
+
+  .dialog__close {
+    position: relative;
+    top: auto;
+    right: auto;
+    flex-grow: 0;
   }
+}
+
+.dialog__body {
+  flex-grow: 1;
+
+  > * + * {
+    margin-top: $dialog-spacing;
+  }
+}
+
+.dialog__footer {
+  border-top: $dialog-border;
+}
+
+.dialog__footer_justify_split,
+.dialog__group_justify_split {
+  justify-content: space-between;
+}
+
+.dialog__footer_justify_center,
+.dialog__group_justify_center {
+  justify-content: center;
+}
+
+.dialog__footer_justify_right,
+.dialog__group_justify_right {
+  justify-content: flex-end;
 }
 
 .dialog__close {
-  flex-grow: 0;
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
 }
 
 .dialog__title {
   flex: 1 1 0;
-  margin-top: 0;
-  margin-bottom: 0;
   font-size: $dialog__title-font-size;
   line-height: $dialog__title-line-height;
-}
-
-.dialog__content {
-  flex-grow: 1;
-  padding: $dialog-padding;
-
-  .dialog__close {
-    position: absolute;
-    top: 1em;
-    right: 1em;
-    padding: 0;
-  }
-
-  .dialog__title {
-    margin: 0;
-  }
-
-  > * {
-    margin: 0;
-  }
-
-  > * + * {
-    margin: $dialog-spacing 0 0;
-  }
-}
-
-.dialog__content_expanded {
-  padding: $dialog-padding-expanded;
-}
-
-.dialog__action {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: $dialog-padding;
-  padding-top: 0;
-
-  > * + * {
-    margin-left: $dialog__action-spacing;
-  }
-}
-
-.dialog__action-set {
-  > * + * {
-    margin-left: $dialog__action-spacing;
-  }
-}
-
-.dialog__footer {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  border-top: $dialog-border;
-
-  .dialog__action {
-    padding: 0;
-  }
-
-  > * + * {
-    margin-left: $dialog-spacing;
-  }
-}
-
-.dialog__action_split,
-.dialog__footer_split {
-  justify-content: space-between;
 }

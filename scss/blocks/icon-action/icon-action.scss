@@ -10,8 +10,8 @@ $icon-action-border-radius: 2em !default;
 $icon-action_size_small-padding: px-to-rem(2px) !default;
 $icon-action_size_small-font-size: px-to-em(12px) !default;
 
-$icon-action_size_large-padding: px-to-em(7px) !default;
-$icon-action_size_large-font-size: px-to-rem(22px) !default;
+$icon-action_size_large-padding: px-to-rem(7px) !default;
+$icon-action_size_large-font-size: px-to-em(22px) !default;
 
 .icon-action {
   cursor: pointer;
@@ -41,6 +41,7 @@ $icon-action_size_large-font-size: px-to-rem(22px) !default;
 
   > .icon {
     margin: 0;
+    padding: 0;
     font-size: 1em;
   }
 }

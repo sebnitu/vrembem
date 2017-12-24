@@ -38,6 +38,11 @@
         <use xlink:href="#x"></use>
       </svg>
     </button>
+    <button class="icon-action">
+      <svg role="img" class="icon">
+        <use xlink:href="#x"></use>
+      </svg>
+    </button>
     <button class="icon-action icon-action_size_large">
       <svg role="img" class="icon">
         <use xlink:href="#x"></use>
@@ -47,13 +52,9 @@
   <div class="demo__code">
 
 ```html
-<button class="icon-action icon-action_size_small">
-  ...
-</button>
-
-<button class="icon-action icon-action_size_large">
-  ...
-</button>
+<button class="icon-action icon-action_size_small">...</button>
+<button class="icon-action">...</button>
+<button class="icon-action icon-action_size_large">...</button>
 ```
 
   </div><!-- .demo__code -->
