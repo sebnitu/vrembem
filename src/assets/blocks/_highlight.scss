@@ -68,5 +68,9 @@
 .hljs-comment,
 .hljs-deletion,
 .hljs-meta {
-  color: #7f7f7f;
+  color: $color-light;
+}
+
+.hljs-comment {
+  font-style: italic;
 }

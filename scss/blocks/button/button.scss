@@ -24,7 +24,6 @@ $button-border-radius: $border-radius !default;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin: 0;
   padding: $button-padding;
   color: $color;
   font-family: inherit;
@@ -44,8 +43,9 @@ $button-border-radius: $border-radius !default;
     background-color: $button-background-hover;
     border-color: $button-border-color-hover;
   }
-  
-  > * + * {
+
+  > * + *,
+  .button__item {
     margin-left: $button-inner-spacing;
   }
 }

@@ -1,0 +1,6 @@
+$button_min-width: 110px !default;
+
+.button_min-width {
+  max-width: 100%;
+  min-width: $button_min-width;
+}

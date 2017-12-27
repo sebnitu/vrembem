@@ -8,7 +8,6 @@ html {
 }
 
 body {
-  margin: 0;
   font-family: $font-family;
   line-height: $line-height;
   font-weight: $font-weight;
@@ -20,4 +19,6 @@ body {
 *::before,
 *::after {
   box-sizing: inherit;
+  margin: 0;
+  padding: 0;
 }

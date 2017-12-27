@@ -2,26 +2,111 @@
 
 <p class="text_lead">A component that facilitates a conversation between the system and the user. They often request information or an action from the user.</p>
 
-## `dialog`
+## `dialog + dialog__body`
 
 <div class="demo demo_medium_row">
   <div class="demo__render">
     <div class="dialog">
       <div class="dialog__body">
-        <p>This is a dialog</p>
+        <p>This is some dialog content...</p>
       </div>
     </div>
   </div>
   <div class="demo__code">
 
 ```html
-...
+<div class="dialog">
+  <div class="dialog__body">
+    ...
+  </div>
+</div>
 ```
 
   </div>
 </div>
 
-## `dialog__body`
+## `dialog__body_flush`
+
+<div class="demo demo_medium_row">
+  <div class="demo__render">
+    <div class="dialog">
+      <div class="dialog__body dialog__body_flush">
+        <p>This is some dialog content...</p>
+      </div>
+    </div>
+  </div>
+  <div class="demo__code">
+
+```html
+<div class="dialog">
+  <div class="dialog__body dialog__body_flush">
+    ...
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+## `dialog__body_expanded`
+
+<div class="demo demo_medium_row">
+  <div class="demo__render">
+    <div class="dialog">
+      <div class="dialog__body dialog__body_expanded">
+        <p>This is some dialog content...</p>
+      </div>
+    </div>
+  </div>
+  <div class="demo__code">
+
+```html
+<div class="dialog">
+  <div class="dialog__body dialog__body_expanded">
+    ...
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+## `dialog__close`
+
+In this example, I'm including the `icon-action` component in our `dialog__close` composition.
+
+<div class="demo demo_medium_row">
+  <div class="demo__render">
+    <div class="dialog">
+      <button class="dialog__close icon-action icon-action_color_fade">
+        <svg role="img" class="icon">
+          <use xlink:href="#x"></use>
+        </svg>
+      </button>
+      <div class="dialog__body">
+        <p>This is some dialog content...</p>
+      </div>
+    </div>
+  </div>
+  <div class="demo__code">
+
+```html
+<div class="dialog">
+  <button class="dialog__close icon-action icon-action_color_fade">
+    <svg role="img" class="icon">
+      <use xlink:href="#x"></use>
+    </svg>
+  </button>
+  <div class="dialog__body">
+    ...
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+## `dialog__title`
 
 <div class="demo demo_medium_row">
   <div class="demo__render">
@@ -33,10 +118,43 @@
       </button>
       <div class="dialog__body">
         <h2 class="dialog__title">Dialog Title</h2>
-        <p>This is a dialog</p>
-        <div class="dialog__group dialog__group_justify_right">
+        <p>This is some dialog content...</p>
+      </div>
+    </div>
+  </div>
+  <div class="demo__code">
+
+```html
+<div class="dialog">
+  <button class="dialog__close">...</button>
+  <div class="dialog__body">
+    <h2 class="dialog__title">...</h2>
+    ...
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+## `dialog__group`
+
+<div class="demo demo_medium_row">
+  <div class="demo__render">
+    <div class="dialog">
+      <div class="dialog__body">
+        <div class="dialog__group">
+          <h2 class="dialog__title">Dialog Conditions</h2>
+          <button class="dialog__close icon-action icon-action_color_fade">
+            <svg role="img" class="icon">
+              <use xlink:href="#x"></use>
+            </svg>
+          </button>
+        </div>
+        <p>Do you accept the conditions of this dialog?</p>
+        <div class="dialog__group">
           <button class="button button_color_primary">Accept</button>
-          <button class="button">Cancel</button>
+          <button class="button">Decline</button>
         </div>
       </div>
     </div>
@@ -44,14 +162,141 @@
   <div class="demo__code">
 
 ```html
-...
+<div class="dialog">
+  <div class="dialog__body">
+    <div class="dialog__group">
+      ...
+    </div>
+    ...
+    <div class="dialog__group">
+      ...
+    </div>
+  </div>
+</div>
 ```
 
   </div>
 </div>
 
+## `dialog__group_justify_split`
 
-## `dialog__header + dialog__footer`
+<div class="demo demo_medium_row">
+  <div class="demo__render">
+    <div class="dialog">
+      <div class="dialog__body">
+        <div class="dialog__group">
+          <h2 class="dialog__title">Dialog Conditions</h2>
+          <button class="dialog__close icon-action icon-action_color_fade">
+            <svg role="img" class="icon">
+              <use xlink:href="#x"></use>
+            </svg>
+          </button>
+        </div>
+        <p>Do you accept the conditions of this dialog?</p>
+        <div class="dialog__group dialog__group_justify_split">
+          <button class="button button_color_primary">Accept</button>
+          <button class="button">Decline</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="demo__code">
+
+```html
+<div class="dialog">
+  <div class="dialog__body">
+    ...
+    <div class="dialog__group dialog__group_justify_split">
+      ...
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+## `dialog__group_justify_center`
+
+<div class="demo demo_medium_row">
+  <div class="demo__render">
+    <div class="dialog">
+      <div class="dialog__body">
+        <div class="dialog__group">
+          <h2 class="dialog__title">Dialog Conditions</h2>
+          <button class="dialog__close icon-action icon-action_color_fade">
+            <svg role="img" class="icon">
+              <use xlink:href="#x"></use>
+            </svg>
+          </button>
+        </div>
+        <p>Do you accept the conditions of this dialog?</p>
+        <div class="dialog__group dialog__group_justify_center">
+          <button class="button button_color_primary">Accept</button>
+          <button class="button">Decline</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="demo__code">
+
+```html
+<div class="dialog">
+  <div class="dialog__body">
+    ...
+    <div class="dialog__group dialog__group_justify_center">
+      ...
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+## `dialog__group_justify_right`
+
+<div class="demo demo_medium_row">
+  <div class="demo__render">
+    <div class="dialog">
+      <div class="dialog__body">
+        <div class="dialog__group">
+          <h2 class="dialog__title">Dialog Conditions</h2>
+          <button class="dialog__close icon-action icon-action_color_fade">
+            <svg role="img" class="icon">
+              <use xlink:href="#x"></use>
+            </svg>
+          </button>
+        </div>
+        <p>Do you accept the conditions of this dialog?</p>
+        <div class="dialog__group dialog__group_justify_right">
+          <button class="button button_color_primary">Accept</button>
+          <button class="button">Decline</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="demo__code">
+
+```html
+<div class="dialog">
+  <div class="dialog__body">
+    ...
+    <div class="dialog__group dialog__group_justify_right">
+      ...
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+## Dialog Structural Elements
+
+These elements are unique because they should only be used as direct children of the `dialog` element.
+
+## `dialog__header`
 
 <div class="demo demo_medium_row">
   <div class="demo__render">
@@ -65,7 +310,33 @@
         </button>
       </div>
       <div class="dialog__body">
-        <p>This is a dialog</p>
+        <p>This is some dialog content...</p>
+      </div>
+    </div>
+  </div>
+  <div class="demo__code">
+
+```html
+<div class="dialog">
+  <div class="dialog__header">
+    ...
+  </div>
+  <div class="dialog__body">
+    ...
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+## `dialog__footer`
+
+<div class="demo demo_medium_row">
+  <div class="demo__render">
+    <div class="dialog">
+      <div class="dialog__body">
+        <p>This is some dialog content...</p>
       </div>
       <div class="dialog__footer">
         <button class="button button_color_primary">Accept</button>
@@ -76,13 +347,106 @@
   <div class="demo__code">
 
 ```html
-...
+<div class="dialog">
+  <div class="dialog__body">
+    ...
+  </div>
+  <div class="dialog__footer">
+    ...
+  </div>
+</div>
 ```
 
   </div>
 </div>
 
-## Dialog Compositions
+## `dialog__footer_justify_split`
+
+<div class="demo demo_medium_row">
+  <div class="demo__render">
+    <div class="dialog">
+      <div class="dialog__body">
+        <p>This is some dialog content...</p>
+      </div>
+      <div class="dialog__footer dialog__footer_justify_split">
+        <button class="button button_color_primary">Accept</button>
+        <button class="button">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <div class="demo__code">
+
+```html
+<div class="dialog">
+  ...
+  <div class="dialog__footer dialog__footer_justify_split">
+    ...
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+## `dialog__footer_justify_center`
+
+<div class="demo demo_medium_row">
+  <div class="demo__render">
+    <div class="dialog">
+      <div class="dialog__body">
+        <p>This is some dialog content...</p>
+      </div>
+      <div class="dialog__footer dialog__footer_justify_center">
+        <button class="button button_color_primary">Accept</button>
+        <button class="button">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <div class="demo__code">
+
+```html
+<div class="dialog">
+  ...
+  <div class="dialog__footer dialog__footer_justify_center">
+    ...
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+## `dialog__footer_justify_right`
+
+<div class="demo demo_medium_row">
+  <div class="demo__render">
+    <div class="dialog">
+      <div class="dialog__body">
+        <p>This is some dialog content...</p>
+      </div>
+      <div class="dialog__footer dialog__footer_justify_right">
+        <button class="button button_color_primary">Accept</button>
+        <button class="button">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <div class="demo__code">
+
+```html
+<div class="dialog">
+  ...
+  <div class="dialog__footer dialog__footer_justify_right">
+    ...
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+## Examples
+
+<p class="text_lead">The dialog is a very flexible component and can be used in many different contexts. Below are more compositional examples of the dialog component.</p>
 
 <div class="demo demo_medium_row">
   <div class="demo__render">
@@ -90,39 +454,27 @@
       <div class="dialog__header">
         <h2 class="dialog__title">New Message</h2>
         <div class="dialog__group">
-          <div>
-            <button class="icon-action icon-action_color_fade">
-              <svg role="img" class="icon">
-                <use xlink:href="#minus"></use>
-              </svg>
-            </button>
-          </div>
-          <div>
-            <button class="icon-action icon-action_color_fade">
-              <svg role="img" class="icon">
-                <use xlink:href="#maximize-2"></use>
-              </svg>
-            </button>
-          </div>
-          <div>
-            <button class="dialog__close icon-action icon-action_color_fade">
-              <svg role="img" class="icon">
-                <use xlink:href="#x"></use>
-              </svg>
-            </button>
-          </div>
+          <button class="dialog__group-item icon-action icon-action_color_fade">
+            <svg role="img" class="icon">
+              <use xlink:href="#minus"></use>
+            </svg>
+          </button>
+          <button class="dialog__group-item icon-action icon-action_color_fade">
+            <svg role="img" class="icon">
+              <use xlink:href="#maximize-2"></use>
+            </svg>
+          </button>
+          <button class="dialog__group-item dialog__close icon-action icon-action_color_fade">
+            <svg role="img" class="icon">
+              <use xlink:href="#x"></use>
+            </svg>
+          </button>
         </div>
       </div>
       <form class="dialog__body">
-        <div>
-          <input type="text" class="input" placeholder="Recipients" />
-        </div>
-        <div>
-          <input type="text" class="input" placeholder="Subjects" />
-        </div>
-        <div>
-          <textarea class="input input_type_textarea" placeholder="..."></textarea>
-        </div>
+        <input type="text" class="input" placeholder="Recipients" />
+        <input type="text" class="input" placeholder="Subjects" />
+        <textarea class="input input_type_textarea" placeholder="..."></textarea>
       </form>
       <div class="dialog__footer dialog__footer_justify_split">
         <div class="dialog__group">
@@ -156,7 +508,101 @@
   <div class="demo__code">
 
 ```html
-...
+<div class="dialog">
+  <div class="dialog__header">
+    <h2 class="dialog__title">New Message</h2>
+    <div class="dialog__group">
+      <button class="dialog__group-item icon-action icon-action_color_fade">
+        <svg role="img" class="icon">
+          <use xlink:href="#minus"></use>
+        </svg>
+      </button>
+      <button class="dialog__group-item icon-action icon-action_color_fade">
+        <svg role="img" class="icon">
+          <use xlink:href="#maximize-2"></use>
+        </svg>
+      </button>
+      <button class="dialog__group-item dialog__close icon-action icon-action_color_fade">
+        <svg role="img" class="icon">
+          <use xlink:href="#x"></use>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <form class="dialog__body">
+    <input type="text" class="input" placeholder="Recipients" />
+    <input type="text" class="input" placeholder="Subjects" />
+    <textarea class="input input_type_textarea" placeholder="..."></textarea>
+  </form>
+  <div class="dialog__footer dialog__footer_justify_split">
+    <div class="dialog__group">
+      <button class="button button_color_primary">Send</button>
+      <button class="button button_icon">
+        <svg role="img" class="icon">
+          <use xlink:href="#paperclip"></use>
+        </svg>
+      </button>
+      <button class="button button_icon">
+        <svg role="img" class="icon">
+          <use xlink:href="#image"></use>
+        </svg>
+      </button>
+    </div>
+    <div class="dialog__group">
+      <button class="button button_icon">
+        <svg role="img" class="icon">
+          <use xlink:href="#trash"></use>
+        </svg>
+      </button>
+      <button class="button button_icon">
+        <svg role="img" class="icon">
+          <use xlink:href="#chevron-up"></use>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+<div class="demo demo_medium_row">
+  <div class="demo__render">
+    <div class="dialog">
+      <button class="dialog__close icon-action icon-action_color_fade">
+        <svg role="img" class="icon">
+          <use xlink:href="#x"></use>
+        </svg>
+      </button>
+      <div class="dialog__body dialog__body_expanded">
+        <h2 class="dialog__title">Did you forget an attachment?</h2>
+        <p>You wrote "I have attached" in your message, but there are no files attached. Send anyway?</p>
+      </div>
+      <div class="dialog__footer dialog__footer_justify_right">
+        <button class="button button_min-width">Cancel</button>
+        <button class="button button_min-width button_color_primary">Ok</button>
+      </div>
+    </div>
+  </div>
+  <div class="demo__code">
+
+```html
+<div class="dialog">
+  <button class="dialog__close icon-action icon-action_color_fade">
+    <svg role="img" class="icon">
+      <use xlink:href="#x"></use>
+    </svg>
+  </button>
+  <div class="dialog__body dialog__body_expanded">
+    <h2 class="dialog__title">Did you forget an attachment?</h2>
+    <p>You wrote "I have attached" in your message, but there are no files attached. Send anyway?</p>
+  </div>
+  <div class="dialog__footer dialog__footer_justify_right">
+    <button class="button button_min-width">Cancel</button>
+    <button class="button button_min-width button_color_primary">Ok</button>
+  </div>
+</div>
 ```
 
   </div>

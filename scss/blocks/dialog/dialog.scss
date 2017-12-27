@@ -16,7 +16,6 @@ $dialog__title-line-height: 1.45em !default;
   display: flex;
   flex-direction: column;
   overflow: auto;
-  padding: 0;
   background: $dialog-background;
   background-clip: padding-box;
   border: $dialog-border;
@@ -31,12 +30,12 @@ $dialog__title-line-height: 1.45em !default;
   padding: $dialog-padding;
 }
 
-.dialog__body_expanded {
-  padding: $dialog-padding-expanded;
-}
-
 .dialog__body_flush {
   padding: 0;
+}
+
+.dialog__body_expanded {
+  padding: $dialog-padding-expanded;
 }
 
 .dialog__header,
@@ -53,13 +52,6 @@ $dialog__title-line-height: 1.45em !default;
 
 .dialog__header {
   border-bottom: $dialog-border;
-
-  .dialog__close {
-    position: relative;
-    top: auto;
-    right: auto;
-    flex-grow: 0;
-  }
 }
 
 .dialog__body {
@@ -68,10 +60,24 @@ $dialog__title-line-height: 1.45em !default;
   > * + * {
     margin-top: $dialog-spacing;
   }
+
+  + .dialog__body {
+    border-top: $dialog-border;
+  }
 }
 
 .dialog__footer {
   border-top: $dialog-border;
+}
+
+.dialog__header,
+.dialog__group {
+  .dialog__close {
+    position: relative;
+    top: auto;
+    right: auto;
+    flex-grow: 0;
+  }
 }
 
 .dialog__footer_justify_split,
@@ -91,8 +97,12 @@ $dialog__title-line-height: 1.45em !default;
 
 .dialog__close {
   position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
+  top: 1rem;
+  right: 1rem;
+
+  + .dialog__body {
+    padding-right: 3.5em;
+  }
 }
 
 .dialog__title {

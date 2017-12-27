@@ -19,9 +19,9 @@
   </div><!-- .demo__code -->
 </div><!-- .demo -->
 
-## `button > *`
+## `button__item`
 
-Elements inside the button component receive appropriate spacing.
+Elements inside the button component receive appropriate spacing using the `> * + *` selector rule. You can also use the `.button__item` element for more specificity.
 
 <div class="demo demo_medium_row">
   <div class="demo__render">
@@ -29,11 +29,11 @@ Elements inside the button component receive appropriate spacing.
       <svg role="img" class="icon">
         <use xlink:href="#github"></use>
       </svg>
-      <span>Button</span>
+      <span class="button__item">Button</span>
       <span class="arrow"></span>
     </button>
     <button class="button button_color_primary">
-      <span>Button</span>
+      <span class="button__item">Button</span>
       <svg role="img" class="icon">
         <use xlink:href="#github"></use>
       </svg>
@@ -53,7 +53,7 @@ Elements inside the button component receive appropriate spacing.
   <svg role="img" class="icon">
     <use xlink:href="#github"></use>
   </svg>
-  <span>Button</span>
+  <span class="button__item">Button</span>
   <span class="arrow"></span>
 </button>
 ```
@@ -147,6 +147,22 @@ Used for when displaying a button with only an icon and no text.
 <button class="button button_block">
   Button
 </button>
+```
+
+  </div><!-- .demo__code -->
+</div><!-- .demo -->
+
+## `button_min-width`
+
+<div class="demo demo_medium_row">
+  <div class="demo__render">
+    <button class="button button_min-width button_color_primary">Button</button>
+    <button class="button button_min-width button_color_secondary">Button</button>
+  </div><!-- .demo__render -->
+  <div class="demo__code">
+
+```html
+<button class="button button_min-width">Button</button>
 ```
 
   </div><!-- .demo__code -->
