@@ -32,7 +32,7 @@ Trigger classes:
       <ul class="dropdown__menu">
         <li class="dropdown__item">
           <div class="dropdown__content">
-            <p><b class="dropdown__title">Dropdown Title</b></p>
+            <h2 class="dropdown__title">Dropdown Title</h2>
             <p>This is some content for a dropdown...</p>
           </div>
         </li>
@@ -64,7 +64,7 @@ Trigger classes:
   <ul class="dropdown__menu">
     <li class="dropdown__item">
       <div class="dropdown__content">
-        <p><strong>Some Title</strong></p>
+        <h2 class="dropdown__title">Dropdown Title</h2>
         <p>This is some content for a dropdown...</p>
       </div>
     </li>
@@ -92,6 +92,284 @@ Trigger classes:
   </div>
 </div>
 
+## `dropdown__item > dropdown__menu`
+
+This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_switch` class for reversing the direction of a sub dropdown.
+
+<div class="demo demo_medium_row">
+  <div class="demo__render">
+    <div class="dropdown on-hover">
+      <button class="dropdown__trigger button button_color_primary">Trigger</button>
+      <ul class="dropdown__menu">
+        <li class="dropdown__item">
+          <a href="#" class="dropdown__link">Dropdown Item</a>
+        </li>
+        <li class="dropdown__item">
+          <a href="#" class="dropdown__link">Dropdown Item</a>
+          <ul class="dropdown__menu">
+            <li class="dropdown__item">
+              <a href="#" class="dropdown__link">Dropdown Item</a>
+            </li>
+            <li class="dropdown__item">
+              <a href="#" class="dropdown__link">Dropdown Item</a>
+              <ul class="dropdown__menu dropdown__menu_pos_switch">
+                <li class="dropdown__item">
+                  <a href="#" class="dropdown__link">Dropdown Item</a>
+                </li>
+                <li class="dropdown__item">
+                  <a href="#" class="dropdown__link">Dropdown Item</a>
+                </li>
+                <li class="dropdown__item">
+                  <a href="#" class="dropdown__link">Dropdown Item</a>
+                </li>
+                <li class="dropdown__sep"></li>
+                <li class="dropdown__item">
+                  <a href="#" class="dropdown__link is-disabled">Dropdown Item</a>
+                </li>
+                <li class="dropdown__item">
+                  <a href="#" class="dropdown__link">Dropdown Item</a>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown__item">
+              <a href="#" class="dropdown__link">Dropdown Item</a>
+            </li>
+            <li class="dropdown__sep"></li>
+            <li class="dropdown__item">
+              <a href="#" class="dropdown__link is-disabled">Dropdown Item</a>
+            </li>
+            <li class="dropdown__item">
+              <a href="#" class="dropdown__link">Dropdown Item</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown__item">
+          <a href="#" class="dropdown__link">Dropdown Item</a>
+        </li>
+        <li class="dropdown__sep"></li>
+        <li class="dropdown__item">
+          <a href="#" class="dropdown__link is-disabled">Dropdown Item</a>
+        </li>
+        <li class="dropdown__item">
+          <a href="#" class="dropdown__link">Dropdown Item</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="demo__code">
+
+```html
+<div class="dropdown is-active">
+  <button class="dropdown__trigger button button_color_primary">Trigger</button>
+  <ul class="dropdown__menu">
+    <li class="dropdown__item">
+      <a href="#" class="dropdown__link">Dropdown Item</a>
+    </li>
+    <li class="dropdown__item">
+      <a href="#" class="dropdown__link">Dropdown Item</a>
+      <ul class="dropdown__menu">
+        <li class="dropdown__item">
+          <a href="#" class="dropdown__link">Dropdown Item</a>
+        </li>
+        <li class="dropdown__item">
+          <a href="#" class="dropdown__link">Dropdown Item</a>
+          <ul class="dropdown__menu dropdown__menu_pos_switch">
+            <li class="dropdown__item">
+              <a href="#" class="dropdown__link">Dropdown Item</a>
+            </li>
+            <li class="dropdown__item">
+              <a href="#" class="dropdown__link">Dropdown Item</a>
+            </li>
+            <li class="dropdown__item">
+              <a href="#" class="dropdown__link">Dropdown Item</a>
+            </li>
+            <li class="dropdown__sep"></li>
+            <li class="dropdown__item">
+              <a href="#" class="dropdown__link is-disabled">Dropdown Item</a>
+            </li>
+            <li class="dropdown__item">
+              <a href="#" class="dropdown__link">Dropdown Item</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown__item">
+          <a href="#" class="dropdown__link">Dropdown Item</a>
+        </li>
+        <li class="dropdown__sep"></li>
+        <li class="dropdown__item">
+          <a href="#" class="dropdown__link is-disabled">Dropdown Item</a>
+        </li>
+        <li class="dropdown__item">
+          <a href="#" class="dropdown__link">Dropdown Item</a>
+        </li>
+      </ul>
+    </li>
+    <li class="dropdown__item">
+      <a href="#" class="dropdown__link">Dropdown Item</a>
+    </li>
+    <li class="dropdown__sep"></li>
+    <li class="dropdown__item">
+      <a href="#" class="dropdown__link is-disabled">Dropdown Item</a>
+    </li>
+    <li class="dropdown__item">
+      <a href="#" class="dropdown__link">Dropdown Item</a>
+    </li>
+  </ul>
+</div>
+```
+
+  </div>
+</div>
+
+## `dropdown__menu_pos`
+
+<div class="demo demo_medium_row">
+  <div class="demo__render">
+    <div class="demo__group">
+      <div class="dropdown on-hover">
+        <button class="button button_icon">
+          <svg role="img" class="icon">
+            <use xlink:href="#chevron-down"></use>
+          </svg>
+        </button>
+        <ul class="dropdown__menu dropdown__menu_pos_down-left">
+          <li class="dropdown__item dropdown__content">This is a dropdown...</li>
+        </ul>
+      </div><!-- .dropdown -->
+      <div class="dropdown on-hover">
+        <button class="button button_icon">
+          <svg role="img" class="icon">
+            <use xlink:href="#chevron-down"></use>
+          </svg>
+        </button>
+        <ul class="dropdown__menu dropdown__menu_pos_down">
+          <li class="dropdown__item dropdown__content">This is a dropdown...</li>
+        </ul>
+      </div><!-- .dropdown -->
+      <div class="dropdown on-hover">
+        <button class="button button_icon">
+          <svg role="img" class="icon">
+            <use xlink:href="#chevron-down"></use>
+          </svg>
+        </button>
+        <ul class="dropdown__menu dropdown__menu_pos_down-right">
+          <li class="dropdown__item dropdown__content">This is a dropdown...</li>
+        </ul>
+      </div><!-- .dropdown -->
+      <div class="dropdown on-hover">
+        <button class="button button_icon">
+          <svg role="img" class="icon">
+            <use xlink:href="#chevron-left"></use>
+          </svg>
+        </button>
+        <ul class="dropdown__menu dropdown__menu_pos_left-down">
+          <li class="dropdown__item dropdown__content">This is a dropdown...</li>
+        </ul>
+      </div><!-- .dropdown -->
+      <div class="dropdown on-hover">
+        <button class="button button_icon">
+          <svg role="img" class="icon">
+            <use xlink:href="#chevron-left"></use>
+          </svg>
+        </button>
+        <ul class="dropdown__menu dropdown__menu_pos_left">
+          <li class="dropdown__item dropdown__content">This is a dropdown...</li>
+        </ul>
+      </div><!-- .dropdown -->
+      <div class="dropdown on-hover">
+        <button class="button button_icon">
+          <svg role="img" class="icon">
+            <use xlink:href="#chevron-left"></use>
+          </svg>
+        </button>
+        <ul class="dropdown__menu dropdown__menu_pos_left-up">
+          <li class="dropdown__item dropdown__content">This is a dropdown...</li>
+        </ul>
+      </div><!-- .dropdown -->
+    </div><!-- .demo__group -->
+    <div class="demo__group">
+      <div class="dropdown on-hover">
+        <button class="button button_icon">
+          <svg role="img" class="icon">
+            <use xlink:href="#chevron-up"></use>
+          </svg>
+        </button>
+        <ul class="dropdown__menu dropdown__menu_pos_up-left">
+          <li class="dropdown__item dropdown__content">This is a dropdown...</li>
+        </ul>
+      </div><!-- .dropdown -->
+      <div class="dropdown on-hover">
+        <button class="button button_icon">
+          <svg role="img" class="icon">
+            <use xlink:href="#chevron-up"></use>
+          </svg>
+        </button>
+        <ul class="dropdown__menu dropdown__menu_pos_up">
+          <li class="dropdown__item dropdown__content">This is a dropdown...</li>
+        </ul>
+      </div><!-- .dropdown -->
+      <div class="dropdown on-hover">
+        <button class="button button_icon">
+          <svg role="img" class="icon">
+            <use xlink:href="#chevron-up"></use>
+          </svg>
+        </button>
+        <ul class="dropdown__menu dropdown__menu_pos_up-right">
+          <li class="dropdown__item dropdown__content">This is a dropdown...</li>
+        </ul>
+      </div><!-- .dropdown -->
+      <div class="dropdown on-hover">
+        <button class="button button_icon">
+          <svg role="img" class="icon">
+            <use xlink:href="#chevron-right"></use>
+          </svg>
+        </button>
+        <ul class="dropdown__menu dropdown__menu_pos_right-down">
+          <li class="dropdown__item dropdown__content">This is a dropdown...</li>
+        </ul>
+      </div><!-- .dropdown -->
+      <div class="dropdown on-hover">
+        <button class="button button_icon">
+          <svg role="img" class="icon">
+            <use xlink:href="#chevron-right"></use>
+          </svg>
+        </button>
+        <ul class="dropdown__menu dropdown__menu_pos_right">
+          <li class="dropdown__item dropdown__content">This is a dropdown...</li>
+        </ul>
+      </div><!-- .dropdown -->
+      <div class="dropdown on-hover">
+        <button class="button button_icon">
+          <svg role="img" class="icon">
+            <use xlink:href="#chevron-right"></use>
+          </svg>
+        </button>
+        <ul class="dropdown__menu dropdown__menu_pos_right-up">
+          <li class="dropdown__item dropdown__content">This is a dropdown...</li>
+        </ul>
+      </div><!-- .dropdown -->
+    </div><!-- .demo__group -->
+  </div>
+  <div class="demo__code">
+
+```html
+<ul class="dropdown__menu dropdown__menu_pos_up-left">...</ul>
+<ul class="dropdown__menu dropdown__menu_pos_up">...</ul>
+<ul class="dropdown__menu dropdown__menu_pos_up-right">...</ul>
+<ul class="dropdown__menu dropdown__menu_pos_down-left">...</ul>
+<ul class="dropdown__menu dropdown__menu_pos_down">...</ul>
+<ul class="dropdown__menu dropdown__menu_pos_down-right">...</ul>
+<ul class="dropdown__menu dropdown__menu_pos_left-up">...</ul>
+<ul class="dropdown__menu dropdown__menu_pos_left">...</ul>
+<ul class="dropdown__menu dropdown__menu_pos_left-down">...</ul>
+<ul class="dropdown__menu dropdown__menu_pos_right-up">...</ul>
+<ul class="dropdown__menu dropdown__menu_pos_right">...</ul>
+<ul class="dropdown__menu dropdown__menu_pos_right-down">...</ul>
+```
+
+  </div>
+</div>
+
 ## Examples
 
 <div class="demo demo_medium_row">
@@ -102,7 +380,7 @@ Trigger classes:
         <li class="dropdown__item">
           <a href="#" class="dropdown__content">
             <div>
-              <strong class="dropdown__title">Sebastian Nitu</strong><br />
+              <h2 class="dropdown__title">Sebastian Nitu</h2>
               <span class="text_subtle">@sebnitu</span>
             </div>
           </a>
