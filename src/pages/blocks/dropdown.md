@@ -12,6 +12,7 @@ The base dropdown component provides the following elements:
     * `dropdown__item`
       * `dropdown__link`
       * `dropdown__content`
+        * `dropdown__title`
     * `dropdown__sep`
 
 State classes:
@@ -31,7 +32,7 @@ Trigger classes:
       <ul class="dropdown__menu">
         <li class="dropdown__item">
           <div class="dropdown__content">
-            <p><strong>Some Title</strong></p>
+            <p><b class="dropdown__title">Dropdown Title</b></p>
             <p>This is some content for a dropdown...</p>
           </div>
         </li>
