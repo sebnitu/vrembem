@@ -38,7 +38,6 @@ $button-border-radius: $border-radius !default;
 
   &:hover,
   &:focus {
-    outline: none;
     color: $color;
     background-color: $button-background-hover;
     border-color: $button-border-color-hover;

@@ -34,10 +34,6 @@ $icon-action_size_large-font-size: px-to-em(22px) !default;
     border: $icon-action-border-hover;
   }
 
-  &:focus {
-    outline: none;
-  }
-
   > .icon {
     margin: 0;
     padding: 0;
