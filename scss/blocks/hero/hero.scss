@@ -1,6 +1,8 @@
 $hero-height: 500px !default;
+$hero-width: 720px !default;
 $hero-padding: 1.5em !default;
-$hero-background: null !default;
+$hero-background: $blue-50 !default;
+$hero__screen-background: rgba($black, 0.6) !default;
 
 .hero {
   position: relative;
@@ -8,19 +10,52 @@ $hero-background: null !default;
   flex-direction: column;
   align-items: stretch;
   justify-content: center;
-  padding: $hero-padding;
   background: $hero-background;
+}
+
+@include media-min('medium') {
+  .hero {
+    min-height: $hero-height;
+  }
 }
 
 .hero__container {
   position: relative;
-  z-index: 2;
+  z-index: 3;
+  width: $hero-width;
+  max-width: 100%;
+  margin: 0 auto;
   padding: $hero-padding;
   text-align: center;
 }
 
+.hero__container_inverted {
+  color: $white;
+}
+
+.hero__background,
+.hero__screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero__background {
+  z-index: 1;
+  object-fit: cover;
+}
+
+.hero__screen {
+  z-index: 2;
+  background: $hero__screen-background;
+}
+
 /**
- * Hero Content
+ * Hero Container Content
  */
 
 .hero__title {
@@ -28,40 +63,29 @@ $hero-background: null !default;
   line-height: 1.5em;
 }
 
-.hero__desc {
-  line-height: 1.6em;
-}
-
-.hero__action {
-  margin-top: 2em;
-}
-
 @include media-min('medium') {
   .hero__title {
     font-size: 2.5em;
   }
+}
 
+.hero__desc {
+  line-height: 1.6em;
+}
+
+@include media-min('medium') {
   .hero__desc {
     font-size: 1.4em;
   }
 }
 
-/**
- * Background
- */
+.hero__action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2em;
 
-.hero__background,
-.hero__canvas {
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-.hero__background {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
+  > * + * {
+    margin-left: 1em;
+  }
 }
