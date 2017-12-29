@@ -4,7 +4,7 @@
 
 ## `dropdown`
 
-The base dropdown component provides the following elements:
+The dropdown component provides the following elements:
 
 * `dropdown`
   * `dropdown__trigger`
@@ -164,56 +164,20 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
   <ul class="dropdown__menu">
     <li class="dropdown__item">
       <a href="#" class="dropdown__link">Dropdown Item</a>
-    </li>
-    <li class="dropdown__item">
-      <a href="#" class="dropdown__link">Dropdown Item</a>
       <ul class="dropdown__menu">
-        <li class="dropdown__item">
-          <a href="#" class="dropdown__link">Dropdown Item</a>
-        </li>
         <li class="dropdown__item">
           <a href="#" class="dropdown__link">Dropdown Item</a>
           <ul class="dropdown__menu dropdown__menu_pos_switch">
             <li class="dropdown__item">
               <a href="#" class="dropdown__link">Dropdown Item</a>
             </li>
-            <li class="dropdown__item">
-              <a href="#" class="dropdown__link">Dropdown Item</a>
-            </li>
-            <li class="dropdown__item">
-              <a href="#" class="dropdown__link">Dropdown Item</a>
-            </li>
-            <li class="dropdown__sep"></li>
-            <li class="dropdown__item">
-              <a href="#" class="dropdown__link is-disabled">Dropdown Item</a>
-            </li>
-            <li class="dropdown__item">
-              <a href="#" class="dropdown__link">Dropdown Item</a>
-            </li>
+            ...
           </ul>
         </li>
-        <li class="dropdown__item">
-          <a href="#" class="dropdown__link">Dropdown Item</a>
-        </li>
-        <li class="dropdown__sep"></li>
-        <li class="dropdown__item">
-          <a href="#" class="dropdown__link is-disabled">Dropdown Item</a>
-        </li>
-        <li class="dropdown__item">
-          <a href="#" class="dropdown__link">Dropdown Item</a>
-        </li>
+        ...
       </ul>
     </li>
-    <li class="dropdown__item">
-      <a href="#" class="dropdown__link">Dropdown Item</a>
-    </li>
-    <li class="dropdown__sep"></li>
-    <li class="dropdown__item">
-      <a href="#" class="dropdown__link is-disabled">Dropdown Item</a>
-    </li>
-    <li class="dropdown__item">
-      <a href="#" class="dropdown__link">Dropdown Item</a>
-    </li>
+    ...
   </ul>
 </div>
 ```
@@ -225,7 +189,7 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
 
 <div class="demo demo_medium_row">
   <div class="demo__render">
-    <div class="demo__group">
+    <div class="demo__group demo__group_tile">
       <div class="dropdown on-hover">
         <button class="button button_icon">
           <svg role="img" class="icon">
@@ -287,7 +251,7 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
         </ul>
       </div><!-- .dropdown -->
     </div><!-- .demo__group -->
-    <div class="demo__group">
+    <div class="demo__group demo__group_tile">
       <div class="dropdown on-hover">
         <button class="button button_icon">
           <svg role="img" class="icon">
@@ -372,9 +336,9 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
 
 ## Examples
 
-<div class="demo demo_medium_row">
+<div class="demo">
   <div class="demo__render">
-    <div class="dropdown is-active">
+    <div class="dropdown on-hover">
       <button class="dropdown__trigger button button_color_primary">Twitter</button>
       <ul class="dropdown__menu">
         <li class="dropdown__item">
@@ -463,13 +427,13 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
   <div class="demo__code">
 
 ```html
-<div class="dropdown is-active">
+<div class="dropdown on-hover">
   <button class="dropdown__trigger button button_color_primary">Twitter</button>
   <ul class="dropdown__menu">
     <li class="dropdown__item">
       <a href="#" class="dropdown__content">
         <div>
-          <strong class="dropdown__title">Sebastian Nitu</strong><br />
+          <h2 class="dropdown__title">Sebastian Nitu</h2>
           <span class="text_subtle">@sebnitu</span>
         </div>
       </a>

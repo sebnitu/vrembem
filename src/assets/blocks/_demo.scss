@@ -20,7 +20,8 @@
   background: $gray-800;
 }
 
-.demo__render_tile {
+.demo__render_tile,
+.demo__group_tile {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
