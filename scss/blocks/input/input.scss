@@ -16,7 +16,7 @@ $input-box-shadow-focus: 0 0 0 3px rgba($blue, 0.1) !default;
 $input-border: 1px solid rgba($black, 0.2) !default;
 $input-border-focus: 1px solid rgba($blue, 1) !default;
 
-$input_t-select-image: 'data:image/svg+xml;utf8,<svg width="36px" height="10px" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" stroke-width="2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" points="15 4 18 7 21 4"></polyline></svg>' !default;
+$input_type_select-image: 'data:image/svg+xml;utf8,<svg width="36px" height="10px" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" stroke-width="2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" points="15 4 18 7 21 4"></polyline></svg>' !default;
 
 .input {
   position: relative;
@@ -43,43 +43,4 @@ $input_t-select-image: 'data:image/svg+xml;utf8,<svg width="36px" height="10px" 
   &::placeholder {
     color: $color-light;
   }
-}
-
-.input_s-small {
-  padding: $input_small-padding;
-  font-size: $input_small-font-size;
-}
-
-.input_s-large {
-  padding: $input_large-padding;
-  font-size: $input_large-font-size;
-}
-
-.input_t-select {
-  // sass-lint:disable no-vendor-prefixes
-  cursor: pointer;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image: url($input_t-select-image);
-  background-position: 100% center;
-  background-repeat: no-repeat;
-  padding-right: 2em;
-}
-
-.input_t-textarea {
-  max-width: 100%;
-  min-height: 2.375em; // row="1"
-  height: 5.375em; // rows="3"
-}
-
-.input_t-textarea-auto {
-  max-width: 100%;
-  min-height: 2.375em; // row="1"
-}
-
-.input.is-disabled,
-.input.is-readonly,
-.input[readonly],
-.input[disabled] {
-  opacity: 0.5;
 }
