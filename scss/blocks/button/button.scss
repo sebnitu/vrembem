@@ -2,11 +2,11 @@ $button-padding: $padding !default;
 $button-font-size: 1em !default;
 $button-line-height: 1.5em !default;
 
-$button_small-padding: 0.25em 0.5em !default;
-$button_small-font-size: 0.875em !default;
+$button_small-padding: $padding-small !default;
+$button_small-font-size: $font-size-small !default;
 
-$button_large-padding: 0.5em 1.5em !default;
-$button_large-font-size: 1.25em !default;
+$button_large-padding: $padding-large !default;
+$button_large-font-size: $font-size-large !default;
 
 $button-inner-spacing: 0.5em !default;
 

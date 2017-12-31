@@ -1,17 +1,19 @@
-$input-padding: 0.375em 0.5em !default;
+$input-padding: $padding !default;
 $input-font-size: 1em !default;
 $input-line-height: 1.5em !default;
 
-$input_small-padding: 0.25em 0.5em !default;
-$input_small-font-size: 0.875em !default;
+$input_size_small-padding: $padding-small !default;
+$input_size_small-font-size: $font-size-small !default;
 
-$input_large-padding: 0.5em 0.75em !default;
-$input_large-font-size: 1.25em !default;
+$input_size_large-padding: nth($padding-large, 1) (nth($padding-large, 1) * 1.33) !default;
+$input_size_large-font-size: $font-size-large !default;
 
 $input-background: $white !default;
 $input-background-focus: $white !default;
-$input-box-shadow: 0 0 0 0 rgba($blue, 0) !default;
-$input-box-shadow-focus: 0 0 0 3px rgba($blue, 0.1) !default;
+$input-box-shadow-values: 0 0 0 0 !default;
+$input-box-shadow-color: rgba($blue, 0) !default;
+$input-box-shadow-focus-values: 0 0 0 3px !default;
+$input-box-shadow-focus-color: rgba($blue, 0.1) !default;
 
 $input-border: 1px solid rgba($black, 0.2) !default;
 $input-border-focus: 1px solid rgba($blue, 1) !default;
@@ -29,7 +31,7 @@ $input_type_select-image: 'data:image/svg+xml;utf8,<svg width="36px" height="10p
   line-height: $input-line-height;
   background: $input-background;
   border: $input-border;
-  box-shadow: $input-box-shadow;
+  box-shadow: $input-box-shadow-values $input-box-shadow-color;
   border-radius: 3px;
   transition: border-color 0.25s, background-color 0.25s, box-shadow 0.25s;
 
@@ -37,7 +39,7 @@ $input_type_select-image: 'data:image/svg+xml;utf8,<svg width="36px" height="10p
     outline: none;
     background-color: $input-background-focus;
     border: $input-border-focus;
-    box-shadow: $input-box-shadow-focus;
+    box-shadow: $input-box-shadow-focus-values $input-box-shadow-focus-color;
   }
 
   &::placeholder {

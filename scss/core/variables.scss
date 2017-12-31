@@ -4,9 +4,9 @@ $success: $green !default;
 $caution: $amber-600 !default;
 $danger: $red !default;
 
-$padding-y: 0.3125em !default;
-$padding-x: 0.75em !default;
-$padding: $padding-y $padding-x !default;
+$padding-small: 0.25em 0.5em !default;
+$padding: 0.3125em 0.75em !default;
+$padding-large: 0.5em 1.5em !default;
 
 $spacing: 1rem !default;
 
@@ -15,7 +15,10 @@ $font-family-serif: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", L
 $font-family-mono: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace !default;
 $font-family: $font-family-sans !default;
 
+$font-size-small: 0.875em !default;
 $font-size: 16px !default;
+$font-size-large: 1.25em !default;
+
 $line-height: 1.5em !default;
 $font-weight: font-weight('normal') !default;
 

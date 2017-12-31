@@ -19,7 +19,7 @@ $input-group-background: $white !default;
 .input-group__item {
   position: relative;
   z-index: 1;
-  flex: 1 0 0;
+  flex: 2 0 0;
   border-radius: 0;
 
   &:hover {
@@ -39,13 +39,21 @@ $input-group-background: $white !default;
     border-top-right-radius: $border-radius;
     border-bottom-right-radius: $border-radius;
   }
+
+  + .input-group__item {
+    margin-left: -1px;
+  }
 }
 
-.input-group__item + .input-group__item {
-  margin-left: -1px;
+.input-group__item_grow_large {
+  flex-grow: 3;
 }
 
-.input-group__item_static {
+.input-group__item_grow_small {
+  flex-grow: 1;
+}
+
+.input-group__item_grow_none {
   flex-grow: 0;
   width: auto;
 }
