@@ -117,7 +117,7 @@
 <div class="demo demo_medium_row">
   <div class="demo__render">
     <div class="demo__group">
-      <input class="input input_state_success" placeholder="Default input..." type="text" />
+      <input class="input input_state_success" type="text" />
     </div>
     <div class="demo__group">
       <select class="input input_state_success input_type_select">
@@ -133,7 +133,13 @@
   <div class="demo__code">
 
 ```html
-
+<input class="input input_state_success" type="text" />
+<select class="input input_state_success input_type_select">
+  <option>Option 1</option>
+  <option>Option 2</option>
+  <option>Option 3</option>
+</select>
+<textarea class="input input_state_success input_type_textarea" rows="3"></textarea>
 ```
 
   </div>
@@ -144,7 +150,7 @@
 <div class="demo demo_medium_row">
   <div class="demo__render">
     <div class="demo__group">
-      <input class="input input_state_caution" placeholder="Default input..." type="text" />
+      <input class="input input_state_caution" type="text" />
     </div>
     <div class="demo__group">
       <select class="input input_state_caution input_type_select">
@@ -160,7 +166,13 @@
   <div class="demo__code">
 
 ```html
-
+<input class="input input_state_caution" type="text" />
+<select class="input input_state_caution input_type_select">
+  <option>Option 1</option>
+  <option>Option 2</option>
+  <option>Option 3</option>
+</select>
+<textarea class="input input_state_caution input_type_textarea" rows="3"></textarea>
 ```
 
   </div>
@@ -171,7 +183,7 @@
 <div class="demo demo_medium_row">
   <div class="demo__render">
     <div class="demo__group">
-      <input class="input input_state_danger" placeholder="Default input..." type="text" />
+      <input class="input input_state_danger" type="text" />
     </div>
     <div class="demo__group">
       <select class="input input_state_danger input_type_select">
@@ -187,7 +199,13 @@
   <div class="demo__code">
 
 ```html
-
+<input class="input input_state_danger" type="text" />
+<select class="input input_state_danger input_type_select">
+  <option>Option 1</option>
+  <option>Option 2</option>
+  <option>Option 3</option>
+</select>
+<textarea class="input input_state_danger input_type_textarea" rows="3"></textarea>
 ```
 
   </div>
