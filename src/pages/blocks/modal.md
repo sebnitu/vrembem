@@ -1,8 +1,15 @@
 # modal
 
-<p class="text_lead">A component for changing the mode of a page to complete a critical task.</p>
+<p class="text_lead">A component for changing the mode of a page to complete a critical task. This is usually used in conjunction with the Dialog component to make modal dialogs.</p>
 
 ## `modal`
+
+The core poarts of a modal include the following elements:
+
+* `modal__trigger`: The initial modal trigger. Uses the `data-modal` attribute to set trigger target.
+* `modal`
+  * `modal__dialog`
+    * `modal__trigger`: Used without the `data-modal` attribute for closing modal from within a dialog.
 
 <div class="demo">
   <div class="demo__render">
