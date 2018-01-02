@@ -1,6 +1,6 @@
 $modal-width: 600px !default;
 $modal-travel: 100% !default;
-$modal-background: $gray !default;
+$modal-background: $black !default;
 
 .modal {
   display: flex;
@@ -28,63 +28,9 @@ $modal-background: $gray !default;
   visibility: hidden;
 }
 
-.modal_size_small .modal__dialog {
-  width: ($modal-width * 0.5);
-}
-
-.modal_size_large .modal__dialog {
-  width: ($modal-width * 1.5);
-}
-
-.modal_pos_top {
-  justify-content: flex-start;
-}
-
-.modal_pos_bottom {
-  justify-content: flex-end;
-
-  .modal__dialog {
-    transform: translate3d(0, $modal-travel, 0);
-  }
-}
-
-.modal_full .modal__dialog {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  border-radius: 0;
-  transform: translate3d(0, -($modal-travel * 0.25), 0);
-}
-
-.modal_pos_left,
-.modal_pos_right {
-  .modal__dialog {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 280px;
-    height: 100%;
-    margin: 0;
-    border-radius: 0;
-    opacity: 1;
-  }
-}
-
-.modal_pos_left .modal__dialog {
-  left: 0;
-  transform: translate3d(-$modal-travel, 0, 0);
-}
-
-.modal_pos_right .modal__dialog {
-  right: 0;
-  transform: translate3d($modal-travel, 0, 0);
-}
-
+/**
+ * Active State
+ */
 .modal.is-active {
   width: 100%;
   height: 100%;

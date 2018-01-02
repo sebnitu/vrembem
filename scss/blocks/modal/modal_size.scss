@@ -1,0 +1,7 @@
+.modal_size_small .modal__dialog {
+  width: ($modal-width * 0.5);
+}
+
+.modal_size_large .modal__dialog {
+  width: ($modal-width * 1.5);
+}

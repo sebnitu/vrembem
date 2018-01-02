@@ -1,4 +1,5 @@
 var list = require('list.js')
+var modal = require('./modal.js')
 
 var blocksList = new list('vrembem-blocks', {
   valueNames: [ 'jumbo-menu__name' ],
@@ -6,3 +7,7 @@ var blocksList = new list('vrembem-blocks', {
   sortClass: 'jumbo-filter__sort',
   listClass: 'jumbo-menu'
 })
+
+var demoModal = new modal()
+
+demoModal.init()
