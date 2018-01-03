@@ -1,3 +1,6 @@
+/**
+ * Down
+ */
 .dropdown__menu_pos_down-left,
 .dropdown__menu_pos_down-right,
 .dropdown__menu_pos_down {
@@ -31,6 +34,9 @@
   transform: translate3d(-50%, 0, 0);
 }
 
+/**
+ * Up
+ */
 .dropdown__menu_pos_up-left,
 .dropdown__menu_pos_up-right,
 .dropdown__menu_pos_up {
@@ -64,6 +70,9 @@
   transform: translate3d(-50%, 0, 0);
 }
 
+/**
+ * Right
+ */
 .dropdown__menu_pos_right-down,
 .dropdown__menu_pos_right-up,
 .dropdown__menu_pos_right {
@@ -97,6 +106,9 @@
   transform: translate3d(0, -50%, 0);
 }
 
+/**
+ * Left
+ */
 .dropdown__menu_pos_left-down,
 .dropdown__menu_pos_left-up,
 .dropdown__menu_pos_left {
