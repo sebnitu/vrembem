@@ -2,14 +2,27 @@ $navbar-padding: 1em !default;
 $navbar-background: $background-color !default;
 $navbar-border: null !default;
 
-$navbar__title-color: $color-dark !default;
-$navbar__title-color_hover: null !default;
 $navbar__title-padding: 0 0.75rem !default;
+$navbar__title-font-size: px-to-em(20px) !default;
+$navbar__title-font-weight: font-weight('semi-bold') !default;
+$navbar__title-color: $color-dark !default;
+$navbar__title-color-hover: null !default;
 
-.navbar {
+$navbar__desc-color: $color-light !default;
+
+.navbar,
+.navbar__container,
+.navbar__item {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  > * + * {
+    margin-left: 1em;
+  }
+}
+
+.navbar {
   padding: $navbar-padding;
   background: $navbar-background;
   border-bottom: $navbar-border;
@@ -17,35 +30,21 @@ $navbar__title-padding: 0 0.75rem !default;
 
 .navbar__container {
   flex: 1 0 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.navbar__item {
-  + .navbar__item {
-    margin-left: 1em;
-  }
 }
 
 .navbar__title {
   padding: $navbar__title-padding;
-  font-size: px-to-em(20px);
-  font-weight: font-weight('semi-bold');
+  font-size: $navbar__title-font-size;
+  font-weight: $navbar__title-font-weight;
   color: $navbar__title-color;
   border: none;
 
   &:hover {
-    color: $navbar__title-color_hover;
+    color: $navbar__title-color-hover;
     border: none;
   }
 }
 
-.navbar_inverted {
-  background: $color-dark;
-  border-bottom: none;
-
-  .navbar__title {
-    color: $white;
-  }
+.navbar__desc {
+  color: $navbar__desc-color;
 }

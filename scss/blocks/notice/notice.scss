@@ -5,6 +5,8 @@ $notice-border-width: 1px !default;
 $notice-border-color: rgba($black, 0.2) !default;
 $notice-border-radius: $border-radius !default;
 
+$notice-heading-font-size: 1.1em !default;
+
 .notice {
   position: relative;
   padding: $notice-padding;
@@ -30,9 +32,6 @@ $notice-border-radius: $border-radius !default;
 }
 
 .notice__content {
-  > * {
-    margin: 0;
-  }
 
   > * + * {
     margin-top: 0.5em;
@@ -44,6 +43,6 @@ $notice-border-radius: $border-radius !default;
   h4,
   h5,
   h6 {
-    font-size: 1.1em;
+    font-size: $notice-heading-font-size;
   }
 }

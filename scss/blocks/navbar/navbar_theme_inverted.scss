@@ -1,0 +1,25 @@
+$navbar_theme_inverted-background: $gray-800 !default;
+$navbar_theme_inverted-border: null !default;
+
+$navbar_theme_inverted__title-color: $white !default;
+$navbar_theme_inverted__title-color-hover: null !default;
+
+$navbar_theme_inverted__desc-color: rgba($white, 0.5) !default;
+
+.navbar_theme_inverted {
+  color: $white;
+  background: $navbar_theme_inverted-background;
+  border-bottom: $navbar_theme_inverted-border;
+
+  .navbar__title {
+    color: $navbar_theme_inverted__title-color;
+
+    &:hover {
+      color: $navbar_theme_inverted__title-color-hover;
+    }
+  }
+
+  .navbar__desc {
+    color: $navbar_theme_inverted__desc-color;
+  }
+}
