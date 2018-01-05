@@ -1,8 +1,19 @@
+$type-font-family: $font-family !default;
+$type-font-size: $font-size !default;
+$type-line-height: $line-height !default;
+
+$type-heading-margin: 2rem 0 1rem !default;
+$type-heading-font-weight: font-weight('semi-bold') !default;
+
+$type-blockquote-padding: 1em 1.5em !default;
+$type-blockquote-background: $blue-50 !default;
+$type-blockquote-border: 3px solid $blue !default;
+
 .typography {
   @include add-clearfix();
-  font-family: $font-family;
-  font-size: $font-size;
-  line-height: $line-height;
+  font-family: $type-font-family;
+  font-size: $type-font-size;
+  line-height: $type-line-height;
 
   > *:first-child {
     margin-top: 0 !important;
@@ -18,17 +29,19 @@
   > h4,
   > h5,
   > h6 {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    margin: $type-heading-margin;
     line-height: 1.25;
-    font-weight: font-weight('semi-bold');
+    font-weight: $type-heading-font-weight;
 
     a {
       @include add-anchor();
     }
 
     code {
+      padding: 0 0.25em;
       font-size: 1rem;
+      word-break: break-word;
+      background: rgba($yellow, 0.5);
     }
   }
 
@@ -63,18 +76,34 @@
     a {
       @include add-anchor();
     }
+
+    code {
+      padding: 0 0.25em;
+      background: rgba($yellow, 0.5);
+      word-break: break-word;
+    }
   }
 
-  code {
-    padding: 0 0.25em;
-    background: rgba($yellow, 0.5);
-    word-break: break-word;
+  > pre {
+    padding: 1em;
+    background: $background-color;
+    border-radius: $border-radius;
   }
 
-  pre code {
+  > pre code {
     padding: 0;
     background: none;
     word-break: normal;
+  }
+
+  > blockquote {
+    padding: $type-blockquote-padding;
+    background: $type-blockquote-background;
+    border-left: $type-blockquote-border;
+
+    > * + * {
+      margin-top: 1em;
+    }
   }
 
   > hr {
@@ -91,6 +120,10 @@
 
   > ol {
     list-style: decimal;
+
+    ol {
+      list-style: lower-alpha;
+    }
   }
 
   > ul,
