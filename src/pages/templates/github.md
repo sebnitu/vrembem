@@ -10,10 +10,10 @@
       </li>
       <li class="menu__sep"></li>
       <li class="menu__item">
-        <div class="input-group">
-          <button class="input-group__item input-group__item_grow_none button button_outline">This repository</button>
-          <input type="text" class="input-group__item input" placeholder="Search GitHub" />
-        </div>
+        <label class="input-group">
+          <div class="input-group__item input-group__item_grow_none button button_outline">This repository</div>
+          <input type="text" class="input-group__item input" placeholder="Search" />
+        </label>
       </li>
       <li class="menu__item">
         <a href="#" class="menu__link">Pull request</a>
@@ -67,8 +67,8 @@
         </a>
         <ul class="dropdown__menu dropdown__menu_pos_switch">
           <li class="dropdown__item">
-            <div class="dropdown__content">
-              <p class="text-subtle">Signed in as <strong>sebnitu</strong></p>
+            <div class="dropdown__content text_subtle">
+              Signed in as <strong>sebnitu</strong>
             </div>
           </li>
           <li class="dropdown__sep"></li>
