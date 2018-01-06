@@ -1,10 +1,10 @@
 
-.jumbo-menu {
+.jumbo-list {
   position: relative;
   list-style: none;
 }
 
-.jumbo-menu__item {
+.jumbo-list__item {
   position: relative;
 }
 
@@ -12,7 +12,7 @@
  * Menu Link
  */
 
-.jumbo-menu__link {
+.jumbo-list__link {
   display: block;
   padding: 1.25em 1.5em;
   line-height: 1.325em;
@@ -28,7 +28,7 @@
 }
 
 @include media-min('tiny') {
-  .jumbo-menu__link {
+  .jumbo-list__link {
     padding: 1.5em 2em;
   }
 }

@@ -55,7 +55,18 @@ You can adjust the flex grow property on items using the following modifiers:
   <div class="demo__code">
 
 ```html
-...
+<div class="input-group">
+  <input class="input-group__item input-group__item_grow_large input" placeholder="..." type="text" />
+  <button class="input-group__item button button_color_primary">Submit</button>
+</div>
+<div class="input-group">
+  <input class="input-group__item input" placeholder="..." type="text" />
+  <button class="input-group__item input-group__item_grow_small button button_color_primary">Submit</button>
+</div>
+<div class="input-group">
+  <input class="input-group__item input" placeholder="..." type="text" />
+  <button class="input-group__item input-group__item_grow_none button button_color_primary">Submit</button>
+</div>
 ```
 
   </div>

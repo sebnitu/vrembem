@@ -56,4 +56,5 @@ $input-group-background: $white !default;
 .input-group__item_grow_none {
   flex-grow: 0;
   width: auto;
+  white-space: nowrap;
 }

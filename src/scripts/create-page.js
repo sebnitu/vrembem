@@ -5,6 +5,7 @@ import colors from 'colors'
 import ejs from 'ejs'
 import markdownIt from 'markdown-it'
 import { minify } from 'html-minifier'
+import titleCase from './title-case.js'
 
 import { config, paths, markdown } from '../config'
 
@@ -13,8 +14,9 @@ export default function(file, data) {
   const pageName = file.replace(paths.pages, config.key).replace(config.ext, '')
   const pageBase = path.basename(pageName)
   const pagePath = path.dirname(pageName).replace(pageBase, '')
+  const pageLayout = pagePath.replace(config.key + '/', '')
 
-  const template = fs.readFileSync(path.join(paths.src, 'layouts/page.ejs'), 'utf8')
+  const template = fs.readFileSync(path.join(paths.src, 'layouts/' + pageLayout + '.ejs'), 'utf8')
   const content = new markdownIt(markdown).render(data)
   const dirDepth = pagePath.split('/').filter(function(entry) {
     return entry.trim() != '';
@@ -22,7 +24,8 @@ export default function(file, data) {
   const html = ejs.render(template, {
     baseurl: '../'.repeat(dirDepth.length - 1),
     svgSymbols: fs.readFileSync(path.join(paths.src, 'assets/svg-symbols.svg')),
-    title: pageBase.charAt(0).toUpperCase() + pageBase.slice(1),
+    title: titleCase(pageBase),
+    type: titleCase(pageLayout),
     content: content
   }, {
     root: paths.src

@@ -2,12 +2,12 @@ $button_outline_border-width: 1px !default;
 
 .button_outline {
   background: none;
-  border: $button_outline_border-width solid $gray-300;
+  border: $button_outline_border-width solid $gray-400;
 
   &:hover,
   &:focus {
     background: $white;
-    border-color: $color;
+    border-color: rgba($primary, 1);
   }
 }
 

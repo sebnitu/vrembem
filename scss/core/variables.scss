@@ -29,7 +29,10 @@ $color-dark: $black !default;
 $body-background: null !default;
 
 $background-color: $gray-100 !default;
+$border-width: 1px !default;
+$border-style: solid !default;
 $border-color: rgba($black, 0.1) !default;
+$border: 1px solid rgba($black, 0.1) !default;
 $border-radius: 3px !default;
 $box-sizing: border-box !default;
 $box-shadow: 0 1px 3px rgba($black, 0.1) !default;

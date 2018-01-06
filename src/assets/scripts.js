@@ -2,11 +2,24 @@ var list = require('list.js')
 var modal = require('./modal.js')
 
 var blocksList = new list('vrembem-blocks', {
-  valueNames: [ 'jumbo-menu__name' ],
-  searchClass: 'jumbo-filter__search',
-  sortClass: 'jumbo-filter__sort',
-  listClass: 'jumbo-menu'
+  valueNames: [
+    'jumbo-list__name',
+    { data: ['type'] }
+  ],
+  listClass: 'jumbo-list'
 })
+
+var updateList = function(){
+  var values_type = document.getElementById('jumbo-filter__type').value
+
+  blocksList.filter(function(item) {
+    return (values_type.includes(item.values().type) || !values_type)
+  })
+}
+
+document.addEventListener('DOMContentLoaded',function() {
+  document.getElementById('jumbo-filter__type').onchange=updateList;
+},false);
 
 var demoModal = new modal()
 

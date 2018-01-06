@@ -1,9 +1,6 @@
 import path from 'path'
 import { config, paths } from '../config'
-
-const menuName = function(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1)
-}
+import titleCase from './title-case.js'
 
 const menuSort = function(menu, key) {
   return menu.sort(function(a, b) {
@@ -25,13 +22,15 @@ const menu = function(pages) {
     const pageName = pages[i].file.replace(paths.pages, '').replace(config.ext, '')
     const pageBase = path.basename(pageName)
     const pagePath = path.dirname(pageName).replace(pageBase, '')
+    const pageType = pagePath.replace('/', '')
     menu.push({
-      name: menuName(pageBase),
-      href: path.join(pagePath, pageBase + '.html')
+      name: titleCase(pageBase),
+      href: path.join(pagePath, pageBase + '.html'),
+      type: pageType,
     })
   }
 
   return menuSort(menu, 'name')
 }
 
-export { menu, menuName, menuSort }
+export { menu, menuSort }
