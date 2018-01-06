@@ -18,8 +18,11 @@ var updateList = function(){
 }
 
 document.addEventListener('DOMContentLoaded',function() {
-  document.getElementById('jumbo-filter__type').onchange=updateList;
-},false);
+  var filter = document.getElementById('jumbo-filter__type')
+  if (filter) {
+    filter.onchange=updateList
+  }
+},false)
 
 var demoModal = new modal()
 
