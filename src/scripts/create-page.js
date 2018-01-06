@@ -23,7 +23,7 @@ export default function(file, data) {
   });
   const html = ejs.render(template, {
     baseurl: '../'.repeat(dirDepth.length - 1),
-    svgSymbols: fs.readFileSync(path.join(paths.src, 'assets/svg-symbols.svg')),
+    svgSymbols: fs.readFileSync(path.join(paths.src, 'assets/img/svg-symbols.svg')),
     title: titleCase(pageBase),
     type: titleCase(pageLayout),
     content: content
@@ -42,7 +42,7 @@ export default function(file, data) {
   // Write the file
   fs.writeFile( path.join(pagePath, pageBase + '.html'), miniHtml, (err) => {
       if (err) throw err
-      console.info('Success:'.green, 'Page has been created!')
+      console.info('Success:'.green, titleCase(pageBase) + ' page has been created!')
     }
   )
 }

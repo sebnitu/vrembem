@@ -12,7 +12,7 @@ export default function(pages) {
 
   const html = ejs.render(template, {
     baseurl: '',
-    svgSymbols: fs.readFileSync(path.join(paths.src, 'assets/svg-symbols.svg')),
+    svgSymbols: fs.readFileSync(path.join(paths.src, 'assets/img/svg-symbols.svg')),
     menu: menu(pages)
   }, {
     root: __dirname
