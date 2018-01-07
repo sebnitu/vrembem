@@ -1,14 +1,13 @@
 .button_color_inverted {
   color: $white;
-  background: rgba($white, 0);
-  background-clip: border-box;
-  border: $button-border-width solid $button-border-color;
+  background: rgba($white, 0.1);
+  border-color: rgba($white, 0);
 
   &:hover,
   &:focus {
     color: $white;
-    background-color: rgba($white, 0.1);
-    border-color: $button-border-color-hover;
+    background: rgba($white, 0.2);
+    border-color: rgba($white, 0);
   }
 }
 

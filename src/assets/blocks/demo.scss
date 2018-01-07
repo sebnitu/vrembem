@@ -50,6 +50,10 @@
 .demo__group_inverted {
   background: $gray-800;
   padding: 1em;
+
+  &.demo__group_tile {
+    padding-bottom: 0.5em;
+  }
 }
 
 .demo__code {

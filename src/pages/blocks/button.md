@@ -171,16 +171,23 @@ Used for when displaying a button with only an icon and no text.
 ## `button_color`
 
 <div class="demo demo_medium_row">
-  <div class="demo__render demo__render_tile">
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_color_secondary">Button</button>
-    <button class="button button_color_success">Button</button>
-    <button class="button button_color_caution">Button</button>
-    <button class="button button_color_danger">Button</button>
+  <div class="demo__render">
+    <div class="demo__group demo__group_tile">
+      <button class="button button_color_primary">Button</button>
+      <button class="button button_color_secondary">Button</button>
+      <button class="button button_color_success">Button</button>
+      <button class="button button_color_caution">Button</button>
+      <button class="button button_color_danger">Button</button>
+    </div>
+    <div class="demo__group demo__group_tile demo__group_inverted">
+      <button class="button button_color_inverted">Button</button>
+    </div>
+
   </div><!-- .demo__render -->
   <div class="demo__code">
 
 ```html
+<button class="button button_color_inverted">Button</button>
 <button class="button button_color_primary">Button</button>
 <button class="button button_color_secondary">Button</button>
 <button class="button button_color_success">Button</button>
@@ -205,7 +212,7 @@ Used for when displaying a button with only an icon and no text.
       <button class="button button_outline_dark">Button</button>
       <button class="button button_outline_fade">Button</button>
     </div>
-    <div class="demo__group demo__group_inverted">
+    <div class="demo__group demo__group_tile demo__group_inverted">
       <button class="button button_outline_inverted">Button</button>
     </div>
   </div><!-- .demo__render -->

@@ -46,3 +46,16 @@ $input_type_select-image: 'data:image/svg+xml;utf8,<svg width="36px" height="10p
     color: $color-light;
   }
 }
+
+.input_color_inverted {
+  background: rgba($white, 0.1);
+  border-color: rgba($white, 0);
+  box-shadow: none;
+  color: $white;
+
+  &:focus {
+    background: rgba($white, 0.2);
+    border-color: rgba($white, 0);
+    box-shadow: none;
+  }
+}

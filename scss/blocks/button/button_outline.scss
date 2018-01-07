@@ -1,7 +1,7 @@
 $button_outline_border-width: 1px !default;
 
 .button_outline {
-  background: none;
+  background: $white;
   border: $button_outline_border-width solid $gray-400;
 
   &:hover,
@@ -14,7 +14,7 @@ $button_outline_border-width: 1px !default;
 .button_outline_inverted {
   color: $white;
   background: none;
-  border: $button_outline_border-width solid $white;
+  border: $button_outline_border-width solid rgba($white, 0.25);
 
   &:hover,
   &:focus {

@@ -31,7 +31,7 @@ $menu_theme_tabs-border-color: $gray-300 !default;
       }
 
       &:hover {
-        background: none;
+        background: $menu_theme_tabs-background;
       }
     }
   }

@@ -31,10 +31,10 @@ $menu__sep-border-color: rgba($black, 0.1) !default;
   align-items: center;
   font-size: $menu-font-size;
   list-style: none;
-}
 
-.menu__item + .menu__item {
-  margin-left: $menu__item-spacing;
+  > * + * {
+    margin-left: $menu__item-spacing;
+  }
 }
 
 .menu__sep {
@@ -61,6 +61,10 @@ $menu__sep-border-color: rgba($black, 0.1) !default;
     border-color: $menu-border-color_hover;
   }
 
+  > * + * {
+    margin-left: $menu-inner-spacing;
+  }
+
   &.is-active {
     color: $menu-color_active;
     background: $menu-background_active;
@@ -82,10 +86,6 @@ $menu__sep-border-color: rgba($black, 0.1) !default;
       color: $menu-color_disabled;
       background: $menu-background_disabled;
     }
-  }
-
-  > * + * {
-    margin-left: $menu-inner-spacing;
   }
 }
 

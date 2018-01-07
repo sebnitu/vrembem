@@ -1,4 +1,6 @@
 $input-group-background: $white !default;
+$input-group_spacing: -1px !default;
+$input-group_gap-spacing: 1px !default;
 
 .input-group {
   display: flex;
@@ -30,6 +32,10 @@ $input-group-background: $white !default;
     z-index: 4;
   }
 
+  + .input-group__item {
+    margin-left: $input-group_spacing;
+  }
+
   &:first-child {
     border-top-left-radius: $border-radius;
     border-bottom-left-radius: $border-radius;
@@ -39,9 +45,11 @@ $input-group-background: $white !default;
     border-top-right-radius: $border-radius;
     border-bottom-right-radius: $border-radius;
   }
+}
 
-  + .input-group__item {
-    margin-left: -1px;
+.input-group_gap {
+  .input-group__item + .input-group__item {
+    margin-left: $input-group_gap-spacing;
   }
 }
 

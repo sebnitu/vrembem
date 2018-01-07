@@ -1,7 +1,7 @@
 $container-max-width: 68rem !default;
 $container-margin: 0 auto !default;
 $container-padding: 1em !default;
-$container-spacing: 1em !default;
+$container-spacing: 1.5em !default;
 
 .container {
   max-width: $container-max-width;
@@ -20,10 +20,6 @@ $container-spacing: 1em !default;
   > * + * {
     margin-left: 1em;
   }
-}
-
-.container_padding {
-  padding: $container-padding;
 }
 
 .container__item {
