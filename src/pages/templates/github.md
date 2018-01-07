@@ -128,7 +128,7 @@
   * Dropdown
   * Menu
 -->
-<div class="section section_border_bottom section_padding_bottom-none">
+<div class="section section_background section_border_bottom section_padding_bottom-none">
   <div class="container container_flex">
     <div class="container__item">
       <svg role="img" class="icon">
@@ -281,3 +281,26 @@
   </div>
 </div>
 <!-- </Section> -->
+
+<!-- <Section> -->
+<!--
+  Includes:
+  * Section
+-->
+<!-- </Section> -->
+<div class="section">
+  <div class="container">
+    <div>
+      <button class="button button_size_small">Edit</button>
+      <p class="text_lead">Some project description goes here...</p>
+      <p>
+        <a href="#" class="badge">css</a>
+        <a href="#" class="badge">components</a>
+        <a href="#" class="badge">library</a>
+        <a href="#" class="badge">framework</a>
+        <a href="#" class="badge">design</a>
+        <a href="#" class="text_link">Manage topics</a>
+      </p>
+    </div>
+  </div>
+</div>
