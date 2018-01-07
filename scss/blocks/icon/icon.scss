@@ -10,6 +10,7 @@ $icon--loading-duration: 1.5s !default;
 
 .icon {
   display: inline-block;
+  flex-shrink: 0;
   width: 1em;
   height: 1em;
   padding: $icon-padding;
@@ -20,4 +21,12 @@ $icon--loading-duration: 1.5s !default;
   stroke-width: $icon-stroke-width;
   font-size: $icon-font-size;
   box-sizing: content-box;
+}
+
+.icon_size_small {
+  font-size: 1.0435em;
+}
+
+.icon_size_large {
+  font-size: 1.5625em;
 }

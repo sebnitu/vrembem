@@ -1,0 +1,12 @@
+.dropdown__menu_size_small {
+  width: $dropdown_size_small-width;
+}
+
+.dropdown__menu_size_large {
+  width: $dropdown_size_large-width;
+}
+
+.dropdown__menu_size_auto {
+  width: auto;
+  white-space: nowrap;
+}

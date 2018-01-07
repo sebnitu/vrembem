@@ -1,5 +1,8 @@
 $dropdown-spacing: 0.5em !default;
 $dropdown-width: 240px !default;
+$dropdown_size_small-width: 180px !default;
+$dropdown_size_large-width: 300px !default;
+
 $dropdown-font-size: px-to-rem(14px) !default;
 $dropdown-line-height: 1.5em !default;
 $dropdown-background: $white !default;
@@ -28,7 +31,6 @@ $dropdown__menu_pos_spacing: 0.5em !default;
 
 .dropdown {
   position: relative;
-  display: inline-block;
 }
 
 .dropdown__menu {
@@ -65,11 +67,6 @@ $dropdown__menu_pos_spacing: 0.5em !default;
     left: auto;
     right: 0;
   }
-}
-
-.dropdown__menu_auto {
-  width: auto;
-  white-space: nowrap;
 }
 
 /**
@@ -146,6 +143,20 @@ $dropdown__menu_pos_spacing: 0.5em !default;
 
   > * + * {
     margin-left: $menu-inner-spacing;
+  }
+}
+
+.dropdown__link_align_top {
+  align-items: flex-start;
+}
+
+.dropdown__link_stack {
+  flex-direction: column;
+  align-items: flex-start;
+
+  > * + * {
+    margin-left: 0;
+    margin-top: $dropdown-spacing;
   }
 }
 

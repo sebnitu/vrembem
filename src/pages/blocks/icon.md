@@ -31,3 +31,21 @@ You can inject svg icons directly or use svg sprites. The only requirement is th
 
   </div><!-- .demo__code -->
 </div><!-- .demo -->
+
+## `icon_size`
+
+<div class="demo demo_medium_row">
+  <div class="demo__render demo__render_tile">
+    <svg role="img" class="icon icon_size_small"><use xlink:href="#anchor"></use></svg>
+    <svg role="img" class="icon icon_size_large"><use xlink:href="#anchor"></use></svg>
+  </div><!-- .demo__render -->
+  <div class="demo__code">
+
+```html
+<svg role="img" class="icon">
+  <use xlink:href="#github"></use>
+</svg>
+```
+
+  </div><!-- .demo__code -->
+</div><!-- .demo -->

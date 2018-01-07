@@ -1,3 +1,5 @@
+@import 'core/all';
+
 .page {
   display: flex;
   flex-direction: column;
@@ -9,10 +11,6 @@
   padding: 0.5em;
   background: $blue-900;
   color: $white;
-
-  .container {
-    max-width: 60rem;
-  }
 }
 
 @include media-min('medium') {
@@ -35,8 +33,4 @@
   .page__section {
     padding: 2em;
   }
-}
-
-.page__container {
-  max-width: 60rem;
 }

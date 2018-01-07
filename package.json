@@ -21,13 +21,11 @@
   },
   "scripts": {
     "clean": "yarn dist:clean && yarn demo:clean",
-
     "dist:clean": "rimraf dist",
     "dist:dev": "node-sass scss/vrembem.scss dist/vrembrem.css --output-style expanded --source-map true",
     "dist:prod": "node-sass scss/vrembem.scss dist/vrembrem.min.css --output-style compressed --source-map true",
     "dist:post": "postcss dist/*.css --dir dist --use autoprefixer --no-map true",
     "dist": "yarn dist:clean && yarn dist:dev && yarn dist:prod && yarn dist:post",
-
     "demo:clean": "rimraf demo",
     "demo:css": "node-sass src/assets/styles.scss demo/assets/styles.min.css --include-path scss --output-style compressed --source-map true",
     "demo:css:post": "postcss demo/assets/*.css --dir demo/assets --use autoprefixer --no-map true",
@@ -35,7 +33,6 @@
     "demo:assets": "yarn demo:css && yarn demo:css:post && yarn demo:js",
     "demo:pages": "babel-node src/pages.js",
     "demo": "yarn demo:clean && yarn demo:assets && yarn demo:pages",
-
     "symbols": "babel-node src/symbols.js",
     "serve": "cd demo && live-server --host=localhost --port=9000",
     "start": "yarn dist && yarn demo && yarn serve"
@@ -46,7 +43,7 @@
     "babel-preset-env": "^1.6.1",
     "colors": "^1.1.2",
     "ejs": "^2.5.7",
-    "feather-icons": "^4.0.1",
+    "feather-icons": "^4.5.0",
     "glob": "^7.1.2",
     "highlight.js": "^9.12.0",
     "html-minifier": "^3.5.7",
