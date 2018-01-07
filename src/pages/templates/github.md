@@ -119,6 +119,7 @@
 <!-- <Section> -->
 <!--
   Includes:
+  * Section
   * Container
   * Breadcrumb
   * Button
