@@ -1,6 +1,11 @@
 .button_size_small {
   padding: $button_small-padding;
   font-size: $button_small-font-size;
+  line-height: 1.6em;
+
+  .icon {
+    padding: 0.129em;
+  }
 }
 
 .button_size_large {

@@ -1,32 +1,9 @@
 $container-max-width: 68rem !default;
 $container-margin: 0 auto !default;
 $container-padding: 1em !default;
-$container-spacing: 1.5em !default;
+$container-spacing: 1em !default;
 
 .container {
   max-width: $container-max-width;
   margin: $container-margin;
-
-  + .container {
-    margin-top: $container-spacing;
-  }
-}
-
-.container_flex {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  > * + * {
-    margin-left: 1em;
-  }
-}
-
-.container__item {
-  display: flex;
-  align-items: center;
-
-  > * + * {
-    margin-left: 0.5em;
-  }
 }

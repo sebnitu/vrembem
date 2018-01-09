@@ -15,3 +15,9 @@
     }
   }
 }
+
+.button-group_stack.button-group_gap > .button {
+  + .button {
+    margin: $button-group_gap-spacing 0 0;
+  }
+}

@@ -121,6 +121,8 @@
   Includes:
   * Section
   * Container
+  * Spacing
+  * Grid
   * Breadcrumb
   * Button
   * Button-group
@@ -129,97 +131,97 @@
   * Menu
 -->
 <div class="section section_background section_border_bottom section_padding_bottom-none">
-  <div class="container container_flex">
-    <div class="container__item">
-      <svg role="img" class="icon">
-        <use xlink:href="#book"></use>
-      </svg>
-      <ul class="breadcrumb breadcrumb_size_large">
-        <li class="breadcrumb__item">
-          <a href="#" class="breadcrumb__link">username</a>
-        </li>
-        <li class="breadcrumb__item">
-          <a href="#" class="breadcrumb__link">project</a>
-        </li>
-      </ul>
-    </div>
-    <div class="container__item">
-      <div class="button-group">
-        <div class="button-group__item button button_outline dropdown on-hover">
-          <svg role="img" class="icon">
-            <use xlink:href="#eye"></use>
-          </svg>
-          <span>Unwatch</span>
-          <span class="arrow"></span>
-          <ul class="dropdown__menu dropdown__menu_size_large">
-            <li class="dropdown__item">
-              <div class="dropdown__content text_subtle">Notifications</div>
-            </li>
-            <li class="dropdown__sep"></li>
-            <li class="dropdown__item">
-              <a href="#" class="dropdown__link dropdown__link_align_top">
-                <svg role="img" class="icon icon_size_large text_subtle">
-                  <use xlink:href="#circle"></use>
-                </svg>
-                <div>
-                  <h2 class="dropdown__title">Not Watching</h2>
-                  <p>Be notified when participating or @mentioned.</p>
-                </div>
-              </a>
-            </li>
-            <li class="dropdown__item">
-              <a href="#" class="dropdown__link dropdown__link_align_top">
-                <svg role="img" class="icon icon_size_large">
-                  <use xlink:href="#check-circle"></use>
-                </svg>
-                <div>
-                  <h2 class="dropdown__title">Watching</h2>
-                  <p>Be notified of all conversations.</p>
-                </div>
-              </a>
-            </li>
-            <li class="dropdown__item">
-              <a href="#" class="dropdown__link dropdown__link_align_top">
-                <svg role="img" class="icon icon_size_large text_subtle">
-                  <use xlink:href="#circle"></use>
-                </svg>
-                <div>
-                  <h2 class="dropdown__title">Ignore</h2>
-                  <p>Never be notified.</p>
-                </div>
-              </a>
-            </li>
-          </ul>
+  <div class="container spacing">
+    <div class="grid">
+      <div class="grid__item level">
+        <svg role="img" class="icon">
+          <use xlink:href="#book"></use>
+        </svg>
+        <ul class="breadcrumb breadcrumb_size_large">
+          <li class="breadcrumb__item">
+            <a href="#" class="breadcrumb__link">username</a>
+          </li>
+          <li class="breadcrumb__item">
+            <a href="#" class="breadcrumb__link">project</a>
+          </li>
+        </ul>
+      </div>
+      <div class="grid__item grid__item_size_auto level">
+        <div class="button-group">
+          <div class="button-group__item button dropdown on-hover">
+            <svg role="img" class="icon">
+              <use xlink:href="#eye"></use>
+            </svg>
+            <span>Unwatch</span>
+            <span class="arrow"></span>
+            <ul class="dropdown__menu dropdown__menu_size_large">
+              <li class="dropdown__item">
+                <div class="dropdown__content">Notifications</div>
+              </li>
+              <li class="dropdown__sep"></li>
+              <li class="dropdown__item">
+                <a href="#" class="dropdown__link dropdown__link_align_top">
+                  <svg role="img" class="icon icon_size_large text_subtle">
+                    <use xlink:href="#circle"></use>
+                  </svg>
+                  <div>
+                    <h2 class="dropdown__title">Not Watching</h2>
+                    <p>Be notified when participating or @mentioned.</p>
+                  </div>
+                </a>
+              </li>
+              <li class="dropdown__item">
+                <a href="#" class="dropdown__link dropdown__link_align_top">
+                  <svg role="img" class="icon icon_size_large">
+                    <use xlink:href="#check-circle"></use>
+                  </svg>
+                  <div>
+                    <h2 class="dropdown__title">Watching</h2>
+                    <p>Be notified of all conversations.</p>
+                  </div>
+                </a>
+              </li>
+              <li class="dropdown__item">
+                <a href="#" class="dropdown__link dropdown__link_align_top">
+                  <svg role="img" class="icon icon_size_large text_subtle">
+                    <use xlink:href="#circle"></use>
+                  </svg>
+                  <div>
+                    <h2 class="dropdown__title">Ignore</h2>
+                    <p>Never be notified.</p>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <button class="button-group__item button">
+            <span>1</span>
+          </button>
         </div>
-        <button class="button-group__item button button_outline">
-          <span>1</span>
-        </button>
+        <div class="button-group">
+          <button class="button-group__item button">
+            <svg role="img" class="icon">
+              <use xlink:href="#star"></use>
+            </svg>
+            <span>Star</span>
+          </button>
+          <button class="button-group__item button">
+            <span>0</span>
+          </button>
+        </div>
+        <div class="button-group">
+          <button class="button-group__item button">
+            <svg role="img" class="icon">
+              <use xlink:href="#git-branch"></use>
+            </svg>
+            <span>Fork</span>
+          </button>
+          <button class="button-group__item button">
+            <span>0</span>
+          </button>
+        </div>
       </div>
-      <div class="button-group">
-        <button class="button-group__item button button_outline">
-          <svg role="img" class="icon">
-            <use xlink:href="#star"></use>
-          </svg>
-          <span>Star</span>
-        </button>
-        <button class="button-group__item button button_outline">
-          <span>0</span>
-        </button>
-      </div>
-      <div class="button-group">
-        <button class="button-group__item button button_outline">
-          <svg role="img" class="icon">
-            <use xlink:href="#git-branch"></use>
-          </svg>
-          <span>Fork</span>
-        </button>
-        <button class="button-group__item button button_outline">
-          <span>0</span>
-        </button>
-      </div>
-    </div>
-  </div>
-  <div class="container">
+    </div><!-- .grid -->
     <ul class="menu menu_theme_tabs" style="border-bottom: none;">
       <li class="menu__item">
         <a href="#" class="menu__link is-active">
@@ -278,8 +280,8 @@
         </a>
       </li>
     </ul>
-  </div>
-</div>
+  </div><!-- .container -->
+</div><!-- .section -->
 <!-- </Section> -->
 
 <!-- <Section> -->
@@ -287,20 +289,119 @@
   Includes:
   * Section
 -->
-<!-- </Section> -->
 <div class="section">
-  <div class="container">
+  <div class="container spacing">
+    <div class="grid">
+      <div class="grid__item spacing spacing_size_small">
+        <p>Some project description goes here...</p>
+        <p class="level">
+          <a href="#" class="badge badge_link">css</a>
+          <a href="#" class="badge badge_link">components</a>
+          <a href="#" class="badge badge_link">library</a>
+          <a href="#" class="badge badge_link">framework</a>
+          <a href="#" class="badge badge_link">design</a>
+          <span><a href="#" class="text_size_small text_link">Manage topics</a></span>
+        </p>
+      </div>
+      <div class="grid__item grid__item_size_auto">
+        <button class="button">Edit</button>
+      </div>
+    </div><!-- .grid -->
+    <div class="box spacing spacing_size_small">
+      <ul class="menu menu_full">
+        <li class="menu__item">
+          <a href="#" class="menu__link">
+            <svg role="img" class="icon">
+              <use xlink:href="#git-commit"></use>
+            </svg>
+            <span>873 commits</span>
+          </a>
+        </li>
+        <li class="menu__item">
+          <a href="#" class="menu__link">
+            <svg role="img" class="icon">
+              <use xlink:href="#git-branch"></use>
+            </svg>
+            <span>2 branch</span>
+          </a>
+        </li>
+        <li class="menu__item">
+          <a href="#" class="menu__link">
+            <svg role="img" class="icon">
+              <use xlink:href="#tag"></use>
+            </svg>
+            <span>52 releases</span>
+          </a>
+        </li>
+        <li class="menu__item">
+          <a href="#" class="menu__link">
+            <svg role="img" class="icon">
+              <use xlink:href="#users"></use>
+            </svg>
+            <span>6 contributor</span>
+          </a>
+        </li>
+        <li class="menu__item">
+          <a href="#" class="menu__link">
+            <svg role="img" class="icon">
+              <use xlink:href="#clipboard"></use>
+            </svg>
+            <span>MIT</span>
+          </a>
+        </li>
+      </ul>
+      <hr class="divider" />
+      <ul class="menu menu_full">
+        <li class="menu__item">
+          <a href="#" class="menu__link">
+            <span class="badge badge_dot badge_color_purple"></span>
+            <span>CSS <span class="text_subtle">84.1%</span></span>
+          </a>
+        </li>
+        <li class="menu__item">
+          <a href="#" class="menu__link">
+            <span class="badge badge_dot badge_color_blue"></span>
+            <span>JavaScript <span class="text_subtle">12.7%</span></span>
+          </a>
+        </li>
+        <li class="menu__item">
+          <a href="#" class="menu__link">
+            <span class="badge badge_dot badge_color_green"></span>
+            <span>Ruby <span class="text_subtle">3.2%</span></span>
+          </a>
+        </li>
+      </ul>
+    </div><!-- .box -->
     <div>
-      <button class="button button_size_small">Edit</button>
-      <p class="text_lead">Some project description goes here...</p>
-      <p>
-        <a href="#" class="badge">css</a>
-        <a href="#" class="badge">components</a>
-        <a href="#" class="badge">library</a>
-        <a href="#" class="badge">framework</a>
-        <a href="#" class="badge">design</a>
-        <a href="#" class="text_link">Manage topics</a>
-      </p>
+      <div class="grid">
+        <div class="grid__item level">
+          <button class="button">
+            <span>Branch: master</span>
+            <span class="arrow"></span>
+          </button>
+          <button class="button">
+            <span>New pull request</span>
+          </button>
+        </div>
+        <div class="grid__item grid__item_size_auto level">
+          <div class="button-group">
+            <button class="button-group__item button">
+              <span>Create new file</span>
+            </button>
+            <button class="button-group__item button">
+              <span>Upload files</span>
+            </button>
+            <button class="button-group__item button">
+              <span>Find file</span>
+            </button>
+          </div>
+          <button class="button button_color_primary">
+            <span>Clone or download</span>
+            <span class="arrow"></span>
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  </div><!-- .container -->
+</div><!-- .section -->
+<!-- </Section> -->

@@ -1,0 +1,11 @@
+.spacing {
+  > * + * {
+    margin-top: 1em;
+  }
+}
+
+.spacing_size_small {
+  > * + * {
+    margin-top: 0.5em;
+  }
+}

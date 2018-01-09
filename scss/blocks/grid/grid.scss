@@ -1,0 +1,16 @@
+$grid-spacing: 2rem !default;
+$grid-columns: 12 !default;
+
+.grid {
+  display: flex;
+  margin: -($grid-spacing * 0.5);
+}
+
+.grid_split {
+  justify-content: space-between;
+}
+
+.grid__item {
+  flex: 1 1 0;
+  padding: ($grid-spacing * 0.5);
+}

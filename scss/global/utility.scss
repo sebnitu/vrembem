@@ -1,6 +1,12 @@
 $lead-font-size: 1.4em !default;
 $lead-line-height: 1.6em !default;
 
+.divider {
+  height: 1px;
+  background: $border-color;
+  border: none;
+}
+
 .text_lead {
   font-size: $lead-font-size;
   line-height: $lead-line-height;
@@ -24,6 +30,14 @@ $lead-line-height: 1.6em !default;
     color: darken($primary, 10%);
     border-color: darken($primary, 10%);
   }
+}
+
+.text_size_small {
+  font-size: $font-size-small;
+}
+
+.text_size_large {
+  font-size: $font-size-large;
 }
 
 .text_align_left {

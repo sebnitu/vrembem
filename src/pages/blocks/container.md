@@ -22,23 +22,3 @@
 
   </div><!-- .demo__code -->
 </div><!-- .demo -->
-
-## `container_padding`
-
-<div class="demo">
-  <div class="demo__code">
-
-```html
-<div class="container container_padding">
-  ...
-</div>
-```
-
-```css
-.container_padding {
-  padding: $container-padding;
-}
-```
-
-  </div><!-- .demo__code -->
-</div><!-- .demo -->

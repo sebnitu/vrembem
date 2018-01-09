@@ -13,6 +13,7 @@ $dropdown__item-background: null !default;
 $dropdown__item-background-hover: $gray-100 !default;
 $dropdown__item-background-active: $white !default;
 
+$dropdown__link-inner-spacing: 0.5em !default;
 $dropdown__link-padding: 0.625em 1.375em !default;
 
 $dropdown__link-color: $color !default;
@@ -47,6 +48,7 @@ $dropdown__menu_pos_spacing: 0.5em !default;
   line-height: $dropdown-line-height;
   text-align: left;
   list-style: none;
+  white-space: normal;
   background: $dropdown-background;
   background-clip: padding-box;
   border-radius: $border-radius;
@@ -118,6 +120,10 @@ $dropdown__menu_pos_spacing: 0.5em !default;
     background: $dropdown__link-background-hover;
   }
 
+  > * + * {
+    margin-left: $dropdown__link-inner-spacing;
+  }
+
   &.is-active {
     color: $dropdown__link-color-active;
     background: $dropdown__link-background-active;
@@ -139,10 +145,6 @@ $dropdown__menu_pos_spacing: 0.5em !default;
       color: $dropdown__link-color-disabled;
       background: $dropdown__link-background-disabled;
     }
-  }
-
-  > * + * {
-    margin-left: $menu-inner-spacing;
   }
 }
 

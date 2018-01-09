@@ -7,6 +7,7 @@
 <div class="demo demo_medium_row">
   <div class="demo__render">
     <span class="badge">Badge</span>
+    <span class="badge badge_inverted">Badge</span>
   </div><!-- .demo__render -->
   <div class="demo__code">
 
@@ -17,33 +18,17 @@
   </div><!-- .demo__code -->
 </div><!-- .demo -->
 
-## `badge_large`
+## `badge_link`
 
 <div class="demo demo_medium_row">
-  <div class="demo__render demo__render_tile">
-    <span class="badge badge_large">Badge</span>
+  <div class="demo__render">
+    <a href="#" class="badge badge_link">Badge</a>
+    <a href="#" class="badge badge_link badge_inverted">Badge</a>
   </div><!-- .demo__render -->
   <div class="demo__code">
 
 ```html
-<span class="badge badge_large">Badge</span>
-```
-
-  </div><!-- .demo__code -->
-</div><!-- .demo -->
-
-## `badge_pill`
-
-<div class="demo demo_medium_row">
-  <div class="demo__render demo__render_tile">
-    <span class="badge badge_pill">Badge</span>
-    <span class="badge badge_pill badge_large">Badge</span>
-  </div><!-- .demo__render -->
-  <div class="demo__code">
-
-```html
-<span class="badge badge_pill">Badge</span>
-<span class="badge badge_pill badge_large">Badge</span>
+<span class="badge badge_link">Badge</span>
 ```
 
   </div><!-- .demo__code -->
@@ -53,70 +38,46 @@
 
 <div class="demo demo_medium_row">
   <div class="demo__render demo__render_tile">
-    <span class="badge badge_color_dark">Badge</span>
-    <span class="badge badge_color_light">Badge</span>
-    <span class="badge badge_color_red">Badge</span>
-    <span class="badge badge_color_pink">Badge</span>
-    <span class="badge badge_color_purple">Badge</span>
-    <span class="badge badge_color_deep-purple">Badge</span>
-    <span class="badge badge_color_indigo">Badge</span>
-    <span class="badge badge_color_blue">Badge</span>
-    <span class="badge badge_color_light-blue">Badge</span>
-    <span class="badge badge_color_cyan">Badge</span>
-    <span class="badge badge_color_teal">Badge</span>
-    <span class="badge badge_color_green">Badge</span>
-    <span class="badge badge_color_light-green">Badge</span>
-    <span class="badge badge_color_lime">Badge</span>
-    <span class="badge badge_color_yellow">Badge</span>
-    <span class="badge badge_color_amber">Badge</span>
-    <span class="badge badge_color_orange">Badge</span>
-    <span class="badge badge_color_deep-orange">Badge</span>
+    <a href="#" class="badge badge_link badge_color_dark">Badge</a>
+    <a href="#" class="badge badge_link badge_color_light">Badge</a>
+    <a href="#" class="badge badge_link badge_color_red">Badge</a>
+    <a href="#" class="badge badge_link badge_color_pink">Badge</a>
+    <a href="#" class="badge badge_link badge_color_purple">Badge</a>
+    <a href="#" class="badge badge_link badge_color_deep-purple">Badge</a>
+    <a href="#" class="badge badge_link badge_color_indigo">Badge</a>
+    <a href="#" class="badge badge_link badge_color_blue">Badge</a>
+    <a href="#" class="badge badge_link badge_color_light-blue">Badge</a>
+    <a href="#" class="badge badge_link badge_color_cyan">Badge</a>
+    <a href="#" class="badge badge_link badge_color_teal">Badge</a>
+    <a href="#" class="badge badge_link badge_color_green">Badge</a>
+    <a href="#" class="badge badge_link badge_color_light-green">Badge</a>
+    <a href="#" class="badge badge_link badge_color_lime">Badge</a>
+    <a href="#" class="badge badge_link badge_color_yellow">Badge</a>
+    <a href="#" class="badge badge_link badge_color_amber">Badge</a>
+    <a href="#" class="badge badge_link badge_color_orange">Badge</a>
+    <a href="#" class="badge badge_link badge_color_deep-orange">Badge</a>
   </div><!-- .demo__render -->
   <div class="demo__code">
 
 ```html
-<span class="badge badge_color_dark">Badge</span>
-<span class="badge badge_color_light">Badge</span>
-<span class="badge badge_color_red">Badge</span>
-<span class="badge badge_color_pink">Badge</span>
-<span class="badge badge_color_purple">Badge</span>
-<span class="badge badge_color_deep-purple">Badge</span>
-<span class="badge badge_color_indigo">Badge</span>
-<span class="badge badge_color_blue">Badge</span>
-<span class="badge badge_color_light-blue">Badge</span>
-<span class="badge badge_color_cyan">Badge</span>
-<span class="badge badge_color_teal">Badge</span>
-<span class="badge badge_color_green">Badge</span>
-<span class="badge badge_color_light-green">Badge</span>
-<span class="badge badge_color_lime">Badge</span>
-<span class="badge badge_color_yellow">Badge</span>
-<span class="badge badge_color_amber">Badge</span>
-<span class="badge badge_color_orange">Badge</span>
-<span class="badge badge_color_deep-orange">Badge</span>
-```
-
-  </div><!-- .demo__code -->
-</div><!-- .demo -->
-
-## `button > badge`
-
-<div class="demo demo_medium_row">
-  <div class="demo__render">
-    <button class="button button_color_primary">
-      Settings
-    </button>
-    <button class="button button_color_primary">
-      <span class="button__text">Notifications</span>
-      <span class="badge badge_color_light">6</span>
-    </button>
-  </div><!-- .demo__render -->
-  <div class="demo__code">
-
-```html
-<button class="button button_color_primary">
-  <span class="button__text">Notifications</span>
-  <span class="badge badge_color_light">6</span>
-</button>
+<a href="#" class="badge badge_link badge_color_dark">Badge</a>
+<a href="#" class="badge badge_link badge_color_light">Badge</a>
+<a href="#" class="badge badge_link badge_color_red">Badge</a>
+<a href="#" class="badge badge_link badge_color_pink">Badge</a>
+<a href="#" class="badge badge_link badge_color_purple">Badge</a>
+<a href="#" class="badge badge_link badge_color_deep-purple">Badge</a>
+<a href="#" class="badge badge_link badge_color_indigo">Badge</a>
+<a href="#" class="badge badge_link badge_color_blue">Badge</a>
+<a href="#" class="badge badge_link badge_color_light-blue">Badge</a>
+<a href="#" class="badge badge_link badge_color_cyan">Badge</a>
+<a href="#" class="badge badge_link badge_color_teal">Badge</a>
+<a href="#" class="badge badge_link badge_color_green">Badge</a>
+<a href="#" class="badge badge_link badge_color_light-green">Badge</a>
+<a href="#" class="badge badge_link badge_color_lime">Badge</a>
+<a href="#" class="badge badge_link badge_color_yellow">Badge</a>
+<a href="#" class="badge badge_link badge_color_amber">Badge</a>
+<a href="#" class="badge badge_link badge_color_orange">Badge</a>
+<a href="#" class="badge badge_link badge_color_deep-orange">Badge</a>
 ```
 
   </div><!-- .demo__code -->

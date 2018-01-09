@@ -115,9 +115,15 @@ Used for when displaying a button with only an icon and no text.
 
 <div class="demo demo_medium_row">
   <div class="demo__render demo__render_tile">
-    <button class="button button_size_small button_color_primary">Button</button>
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_size_large button_color_primary">Button</button>
+    <button class="button button_size_small button_color_primary">
+      <span>Button</span>
+    </button>
+    <button class="button button_color_primary">
+      <span>Button</span>
+    </button>
+    <button class="button button_size_large button_color_primary">
+      <span>Button</span>
+    </button>
   </div><!-- .demo__render -->
   <div class="demo__code">
 
