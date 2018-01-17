@@ -156,7 +156,9 @@
             <span class="arrow"></span>
             <ul class="dropdown__menu dropdown__menu_size_large">
               <li class="dropdown__item">
-                <div class="dropdown__content">Notifications</div>
+                <div class="dropdown__content">
+                  <h3>Notifications</h3>
+                </div>
               </li>
               <li class="dropdown__sep"></li>
               <li class="dropdown__item">
@@ -375,10 +377,71 @@
     <div>
       <div class="grid">
         <div class="grid__item level">
-          <button class="button">
-            <span>Branch: master</span>
-            <span class="arrow"></span>
-          </button>
+          <div class="dropdown on-hover">
+            <button class="dropdown__trigger button">
+              <span>Branch: master</span>
+              <span class="arrow"></span>
+            </button>
+            <ul class="dropdown__menu">
+              <li class="dropdown__item">
+                <div class="dropdown__content">
+                  <h3>Switch branches/tags</h3>
+                </div>
+              </li>
+              <li class="dropdown__sep"></li>
+              <li class="dropdown__item">
+                <div class="dropdown__content" style="padding-bottom: 0; margin-bottom: 0.5em; border-bottom: 1px solid #e0e0e0">
+                  <form>
+                    <input type="text" class="input" placeholder="Find or create a branch..." />
+                  </form>
+                  <ul class="menu menu_theme_tabs" style="border-bottom: none;">
+                    <li class="menu__item">
+                      <a href="#" class="menu__link is-active">
+                        <span>Branches</span>
+                      </a>
+                    </li>
+                    <li class="menu__item">
+                      <a href="#" class="menu__link">
+                        <span>Tags</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="dropdown__item">
+                <a href="#" class="dropdown__link is-active">
+                  <svg role="img" class="icon">
+                    <use xlink:href="#check-circle"></use>
+                  </svg>
+                  <span>master</span>
+                </a>
+              </li>
+              <li class="dropdown__item">
+                <a href="#" class="dropdown__link">
+                  <svg role="img" class="icon">
+                    <use xlink:href="#circle"></use>
+                  </svg>
+                  <span>feat/some-update</span>
+                </a>
+              </li>
+              <li class="dropdown__item">
+                <a href="#" class="dropdown__link">
+                  <svg role="img" class="icon">
+                    <use xlink:href="#circle"></use>
+                  </svg>
+                  <span>update/some-update</span>
+                </a>
+              </li>
+              <li class="dropdown__item">
+                <a href="#" class="dropdown__link">
+                  <svg role="img" class="icon">
+                    <use xlink:href="#circle"></use>
+                  </svg>
+                  <span>bug/some-update</span>
+                </a>
+              </li>
+            </ul>
+          </div>
           <button class="button">
             <span>New pull request</span>
           </button>
@@ -395,13 +458,117 @@
               <span>Find file</span>
             </button>
           </div>
-          <button class="button button_color_primary">
-            <span>Clone or download</span>
-            <span class="arrow"></span>
-          </button>
+          <div class="dropdown on-hover">
+            <button class="dropdown__trigger button button_color_primary">
+              <span>Clone or download</span>
+              <span class="arrow"></span>
+            </button>
+            <ul class="dropdown__menu dropdown__menu_size_auto dropdown__menu_pos_switch">
+              <li class="dropdown__item">
+                <div class="dropdown__content">
+                  <div class="level level_justify_split">
+                    <div class="level">
+                      <h3>Clone with HTTPS</h3>
+                      <a href="#" class="level">
+                        <svg role="img" class="icon">
+                          <use xlink:href="#help-circle"></use>
+                        </svg>
+                      </a>
+                    </div>
+                    <a href="#" class="text_link">Use SSH</a>
+                  </div>
+                  <p>Use Git or checkout with SVN using the web URL</p>
+                  <form>
+                    <div class="input-group">
+                      <input type="text" class="input-group__item input" value="https://github.com/username/ProjectNames.git" readonly />
+                      <button class="input-group__item input-group__item_grow_none button">
+                        <svg role="img" class="icon">
+                          <use xlink:href="#clipboard"></use>
+                        </svg>
+                      </button>
+                    </div>
+                  </form>
+                  <div class="button-group">
+                    <button class="button-group__item button">Open in Desktop</button>
+                    <button class="button-group__item button">Download Zip</button>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </div><!-- .container -->
 </div><!-- .section -->
+<!-- </Section> -->
+
+<!-- <Section> -->
+<!--
+  Includes:
+  * Section
+-->
+<div class="section">
+  <div class="container">
+    <p>...</p>
+  </div><!-- .container -->
+</div><!-- .section -->
+<!-- </Section> -->
+
+<!-- <Section> -->
+<!--
+  Includes:
+  * Section
+-->
+<footer class="section text_size_small">
+  <div class="container">
+    <div class="level level_justify_split">
+      <div class="level">
+        <p>&copy; 2018 GitHub, Inc.</p>
+        <ul class="menu">
+          <li class="menu__item">
+            <a href="#" class="menu__link">Terms</a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">Privacy</a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">Security</a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">Status</a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">Help</a>
+          </li>
+        </ul>
+      </div>
+      <a href="#" class="button button_color_fade button_icon">
+        <svg role="img" class="icon">
+          <use xlink:href="#github"></use>
+        </svg>
+      </a>
+      <ul class="menu">
+        <li class="menu__item">
+          <a href="#" class="menu__link">Contact GitHub</a>
+        </li>
+        <li class="menu__item">
+          <a href="#" class="menu__link">API</a>
+        </li>
+        <li class="menu__item">
+          <a href="#" class="menu__link">Training</a>
+        </li>
+        <li class="menu__item">
+          <a href="#" class="menu__link">Shop</a>
+        </li>
+        <li class="menu__item">
+          <a href="#" class="menu__link">Blog</a>
+        </li>
+        <li class="menu__item">
+          <a href="#" class="menu__link">About</a>
+        </li>
+      </ul>
+    </div>
+  </div><!-- .container -->
+</footer><!-- .section -->
 <!-- </Section> -->
