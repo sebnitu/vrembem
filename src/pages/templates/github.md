@@ -297,11 +297,11 @@
       <div class="grid__item spacing spacing_size_small">
         <p>Some project description goes here...</p>
         <p class="level">
-          <a href="#" class="badge badge_link">css</a>
-          <a href="#" class="badge badge_link">components</a>
-          <a href="#" class="badge badge_link">library</a>
-          <a href="#" class="badge badge_link">framework</a>
-          <a href="#" class="badge badge_link">design</a>
+          <a href="#" class="badge badge_color_primary badge_link">css</a>
+          <a href="#" class="badge badge_color_primary badge_link">components</a>
+          <a href="#" class="badge badge_color_primary badge_link">library</a>
+          <a href="#" class="badge badge_color_primary badge_link">framework</a>
+          <a href="#" class="badge badge_color_primary badge_link">design</a>
           <span><a href="#" class="text_size_small text_link">Manage topics</a></span>
         </p>
       </div>
