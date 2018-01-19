@@ -1,0 +1,30 @@
+$menu-padding: $padding !default;
+$menu-font-size: 1em !default;
+
+$menu-inner-spacing: 0.5em !default;
+
+$menu-color: $color !default;
+$menu-color_hover: $color !default;
+$menu-color_active: $blue !default;
+$menu-color_disabled: $color-light !default;
+
+$menu-border-width: 1px !default;
+$menu-border-color: transparent !default;
+$menu-border-color_hover: transparent !default;
+$menu-border-radius: $border-radius !default;
+
+$menu-background: none !default;
+$menu-background_hover: rgba($black, 0.05) !default;
+$menu-background_active: none !default;
+$menu-background_disabled: none !default;
+
+$menu__item-spacing: 1px !default;
+
+$menu__text-color: $color !default;
+
+$menu__sep-spacing: 0.5em !default;
+$menu__sep-border-width: 1px !default;
+$menu__sep-border-color: rgba($black, 0.1) !default;
+
+$menu_stack-indent: 1em !default;
+$menu_stack__text-spacing: 1em !default;

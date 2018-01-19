@@ -1,21 +1,4 @@
-$button-padding: $padding !default;
-$button-font-size: 1em !default;
-$button-line-height: 1.5em !default;
-
-$button_small-padding: $padding-small !default;
-$button_small-font-size: $font-size-small !default;
-
-$button_large-padding: $padding-large !default;
-$button_large-font-size: $font-size-large !default;
-
-$button-inner-spacing: 0.5em !default;
-
-$button-background: rgba($black, 0.05) !default;
-$button-background-hover: rgba($black, 0.1) !default;
-$button-border-width: 1px !default;
-$button-border-color: transparent !default;
-$button-border-color-hover: transparent !default;
-$button-border-radius: $border-radius !default;
+@import 'variables';
 
 .button {
   cursor: pointer;

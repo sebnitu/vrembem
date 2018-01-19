@@ -1,13 +1,4 @@
-$type-font-family: $font-family !default;
-$type-font-size: $font-size !default;
-$type-line-height: $line-height !default;
-
-$type-heading-margin: 2rem 0 1rem !default;
-$type-heading-font-weight: font-weight('semi-bold') !default;
-
-$type-blockquote-padding: 1em 1.5em !default;
-$type-blockquote-background: $blue-50 !default;
-$type-blockquote-border: 3px solid $blue !default;
+@import 'variables';
 
 .typography {
   @include add-clearfix();

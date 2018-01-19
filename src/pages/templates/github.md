@@ -130,7 +130,7 @@
   * Dropdown
   * Menu
 -->
-<div class="section section_background section_border_bottom section_padding_bottom-none">
+<div class="section section_background section_border_bottom section_flush_bottom">
   <div class="container spacing">
     <div class="grid">
       <div class="grid__item level">

@@ -1,3 +1,5 @@
+@import 'variables';
+
 .section_border {
   border-top: $section-border;
   border-bottom: $section-border;
@@ -5,6 +7,14 @@
 
 .section_border_top {
   border-top: $section-border;
+}
+
+.section_border_left {
+  border-left: $section-border;
+}
+
+.section_border_right {
+  border-right: $section-border;
 }
 
 .section_border_bottom {

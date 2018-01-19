@@ -1,4 +1,4 @@
-$badge_dot-size: 0.75em !default;
+@import 'variables';
 
 .badge_dot {
   width: $badge_dot-size;

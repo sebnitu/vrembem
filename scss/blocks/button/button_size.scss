@@ -1,6 +1,8 @@
+@import 'variables';
+
 .button_size_small {
-  padding: $button_small-padding;
-  font-size: $button_small-font-size;
+  padding: $button_size_small-padding;
+  font-size: $button_size_small-font-size;
   line-height: 1.6em;
 
   .icon {
@@ -9,8 +11,8 @@
 }
 
 .button_size_large {
-  padding: $button_large-padding;
-  font-size: $button_large-font-size;
+  padding: $button_size_large-padding;
+  font-size: $button_size_large-font-size;
 
   &:not(.button_icon) .icon:first-child {
     margin-left: -0.25em;

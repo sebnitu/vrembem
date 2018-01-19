@@ -1,0 +1,13 @@
+@import 'variables';
+
+.spacing_size_small {
+  > * + * {
+    margin-top: $spacing_size_small-margin;
+  }
+}
+
+.spacing_size_large {
+  > * + * {
+    margin-top: $spacing_size_large-margin;
+  }
+}

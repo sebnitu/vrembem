@@ -1,5 +1,4 @@
-$grid-spacing: 2rem !default;
-$grid-columns: 12 !default;
+@import 'variables';
 
 .grid {
   display: flex;

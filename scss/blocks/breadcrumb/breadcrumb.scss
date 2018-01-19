@@ -1,9 +1,4 @@
-$breadcrumb-delimiter: '/' !default;
-$breadcrumb-delimiter-padding: 0 0.5em !default;
-$breadcrumb-delimiter-color: $color-light !default;
-
-$breadcrumb_size_small-font-size: $font-size-small !default;
-$breadcrumb_size_large-font-size: $font-size-large !default;
+@import 'variables';
 
 .breadcrumb {
   display: inline-flex;
