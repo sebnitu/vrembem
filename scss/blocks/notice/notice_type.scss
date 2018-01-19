@@ -1,5 +1,4 @@
-$notice_type-font-weight: font-weight('semi-bold') !default;
-$notice_type-border-color: null !default;
+@import 'variables';
 
 .notice_type_info {
   color: darken($primary, 10%);
@@ -8,8 +7,7 @@ $notice_type-border-color: null !default;
 
   a {
     color: darken($primary, 10%);
-    font-weight: $notice_type-font-weight;
-    border-color: $notice_type-border-color;
+    font-weight: font-weight('semi-bold');
 
     &:hover {
       color: darken($primary, 10%);
@@ -25,8 +23,7 @@ $notice_type-border-color: null !default;
 
   a {
     color: darken($success, 10%);
-    font-weight: $notice_type-font-weight;
-    border-color: $notice_type-border-color;
+    font-weight: font-weight('semi-bold');
 
     &:hover {
       color: darken($success, 10%);
@@ -42,8 +39,7 @@ $notice_type-border-color: null !default;
 
   a {
     color: darken($caution, 15%);
-    font-weight: $notice_type-font-weight;
-    border-color: $notice_type-border-color;
+    font-weight: font-weight('semi-bold');
 
     &:hover {
       color: darken($caution, 15%);
@@ -59,8 +55,7 @@ $notice_type-border-color: null !default;
 
   a {
     color: darken($danger, 10%);
-    font-weight: $notice_type-font-weight;
-    border-color: $notice_type-border-color;
+    font-weight: font-weight('semi-bold');
 
     &:hover {
       color: darken($danger, 10%);

@@ -1,3 +1,5 @@
+@import 'variables';
+
 .input_state_success {
   border-color: $success;
   box-shadow: $input-box-shadow-values rgba($success, 0);

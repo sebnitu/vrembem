@@ -1,5 +1,4 @@
-$menu_stack-indent: 1em !default;
-$menu_stack__text-spacing: 1em !default;
+@import 'variables';
 
 .menu_stack {
   flex-direction: column;

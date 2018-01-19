@@ -1,34 +1,4 @@
-$dropdown-spacing: 0.5em !default;
-$dropdown-width: 240px !default;
-$dropdown_size_small-width: 180px !default;
-$dropdown_size_large-width: 300px !default;
-
-$dropdown-font-size: px-to-rem(14px) !default;
-$dropdown-line-height: 1.5em !default;
-$dropdown-background: $white !default;
-$dropdown-box-shadow: 0 1px 6px rgba($black, 0.1), 0 0 0 1px rgba($black, 0.1) !default;
-
-$dropdown__item-margin: 1px 0 !default;
-$dropdown__item-background: null !default;
-$dropdown__item-background-hover: $gray-100 !default;
-$dropdown__item-background-active: $white !default;
-
-$dropdown__link-inner-spacing: 0.5em !default;
-$dropdown__link-padding: 0.625em 1.375em !default;
-
-$dropdown__link-color: $color !default;
-$dropdown__link-color-hover: $color !default;
-$dropdown__link-color-active: $primary !default;
-$dropdown__link-color-disabled: $color-light !default;
-
-$dropdown__link-background: null !default;
-$dropdown__link-background-hover: $gray-100 !default;
-$dropdown__link-background-active: $white !default;
-$dropdown__link-background-disabled: $white !default;
-
-$dropdown__sep-border: 1px solid rgba($black, 0.1) !default;
-
-$dropdown__menu_pos_spacing: 0.5em !default;
+@import 'variables';
 
 .dropdown {
   position: relative;

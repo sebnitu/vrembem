@@ -1,6 +1,4 @@
-$input-group_spacing: -1px !default;
-$input-group_gap-spacing: 1px !default;
-$input-group-background: $white !default;
+@import 'variables';
 
 .input-group {
   display: flex;

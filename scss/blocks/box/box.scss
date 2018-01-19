@@ -1,5 +1,7 @@
+@import 'variables';
+
 .box {
-  padding: 0.5em;
-  border: 1px solid $border-color;
-  border-radius: $border-radius;
+  padding: $box-padding;
+  border: $box-border;
+  border-radius: $box-border-radius;
 }
