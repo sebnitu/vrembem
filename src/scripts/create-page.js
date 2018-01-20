@@ -15,12 +15,19 @@ export default function(file, data) {
   const pageBase = path.basename(pageName)
   const pagePath = path.dirname(pageName).replace(pageBase, '')
   const pageLayout = pagePath.replace(config.key + '/', '')
+  let template
 
-  const template = fs.readFileSync(path.join(paths.src, 'layouts/' + pageLayout + '.ejs'), 'utf8')
+  if (fs.existsSync(path.join(paths.src, 'layouts/' + pageLayout + '.ejs'))) {
+    template = fs.readFileSync(path.join(paths.src, 'layouts/' + pageLayout + '.ejs'), 'utf8')
+  } else {
+    template = fs.readFileSync(path.join(paths.src, 'layouts/blocks.ejs'), 'utf8')
+  }
+
   const content = new markdownIt(markdown).render(data)
   const dirDepth = pagePath.split('/').filter(function(entry) {
-    return entry.trim() != '';
-  });
+    return entry.trim() != ''
+  })
+
   const html = ejs.render(template, {
     baseurl: '../'.repeat(dirDepth.length - 1),
     svgSymbols: fs.readFileSync(path.join(paths.src, 'assets/img/svg-symbols.svg')),
@@ -30,6 +37,7 @@ export default function(file, data) {
   }, {
     root: paths.src
   })
+
   const miniHtml = minify(html, {
     collapseWhitespace: true,
     conservativeCollapse: true,
