@@ -14,13 +14,13 @@ npm install vrembem
 yarn add vrembem
 ```
 
-Then you can import the components you'd like to use directly into your Sass project. To import the entire project, use the vrembem import:
+Import the components you'd like to use directly into your Sass project. To import the entire project, use the vrembem import:
 
 ```scss
 @import 'vrembem';
 ```
 
-Alternatively, you can add only the specific components you want. Keep in mind that components include the `all` to include all necessary component files:
+Alternatively, you can add only the specific components you need. Keep in mind that components include the `all` to include all necessary component files:
 
 ```scss
 // Import core files
@@ -46,6 +46,11 @@ node_modules/vrembem/scss/
 ```
 
 ## Available Components
+
+**Global**
+- [ ] Base
+- [ ] Reboot
+- [ ] Utility
 
 **Layout**
 
