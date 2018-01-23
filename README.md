@@ -12,31 +12,31 @@ npm add vrembem
 
 **Layout**
 
-[ ] Container
-[ ] Grid
-[ ] Level
-[ ] Section
-[ ] Spacing
+- [ ] Container
+- [ ] Grid
+- [ ] Level
+- [ ] Section
+- [ ] Spacing
 
 **Blocks**
 
-[ ] Arrow
-[ ] Badge
-[ ] Box
-[ ] Breadcrumb
-[ ] Button
-[ ] Button-group
-[ ] Dialog
-[ ] Dropdown
-[ ] Embed-wrap
-[ ] Hero
-[ ] Icon
-[ ] Icon-action
-[ ] Input
-[ ] Input-group
-[ ] Menu
-[ ] Modal
-[ ] Navbar
-[ ] Notice
-[ ] Tooltip
-[ ] Typography
+- [ ] Arrow
+- [ ] Badge
+- [ ] Box
+- [ ] Breadcrumb
+- [ ] Button
+- [ ] Button-group
+- [ ] Dialog
+- [ ] Dropdown
+- [ ] Embed-wrap
+- [ ] Hero
+- [ ] Icon
+- [ ] Icon-action
+- [ ] Input
+- [ ] Input-group
+- [ ] Menu
+- [ ] Modal
+- [ ] Navbar
+- [ ] Notice
+- [ ] Tooltip
+- [ ] Typography
