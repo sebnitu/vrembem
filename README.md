@@ -1,12 +1,12 @@
 # Vrembem
 
-—is a CSS component library based on the BEM methodology.
+A CSS component library based on the BEM methodology.
 
 ## Usage
 
 A quick way to start using Vrembem now is to install it via a package manager.
 
-```
+```bash
 # Using NPM
 npm install vrembem
 
@@ -82,3 +82,9 @@ node_modules/vrembem/scss/
 - [ ] Notice
 - [ ] Tooltip
 - [ ] Typography
+
+## Upcoming Layout Examples
+
+- [ ] GitHub project dashboard
+- [ ] Signin form
+- [ ] Slack chat interface
