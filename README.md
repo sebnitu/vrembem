@@ -14,13 +14,15 @@ npm install vrembem
 yarn add vrembem
 ```
 
+## Imports
+
 Import the components you'd like to use directly into your Sass project. To import the entire project, use the vrembem import:
 
 ```scss
 @import 'vrembem';
 ```
 
-Alternatively, you can add only the specific components you need. Keep in mind that components include the `all` to include all necessary component files:
+Alternatively, you can add only the specific components you need. Keep in mind that components include the `all` import to include all necessary component files:
 
 ```scss
 // Import core files
@@ -39,13 +41,15 @@ Alternatively, you can add only the specific components you need. Keep in mind t
 @import 'blocks/tooltip/all';
 ```
 
-Remember that you will need to add the path to Vrembem in your `includePaths` options array to make sure LibSass can resolve `@import` declarations.
+**Paths**
+
+To resolve the import paths for Vrembem, you'll need to include the following path in your compiler options. In node-sass it's passed in the `includePaths` option array.
 
 ```
 node_modules/vrembem/scss/
 ```
 
-## Available Components
+## What's Available?
 
 **Global**
 - [ ] Base
@@ -83,8 +87,12 @@ node_modules/vrembem/scss/
 - [ ] Tooltip
 - [ ] Typography
 
-## Upcoming Layout Examples
+## In Development
+
+**Examples**
 
 - [ ] GitHub project dashboard
 - [ ] Signin form
 - [ ] Slack chat interface
+- [ ] YouTube single video view
+- [ ] Single page website
