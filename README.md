@@ -25,23 +25,26 @@ Import the components you'd like to use directly into your Sass project. To impo
 Alternatively, you can add only the specific components you need. Keep in mind that components include the `all` import to include all necessary component files:
 
 ```scss
-// Import core files
+// Core files
 @import 'core/all';
 
-// Import all global styles (recommended)
+// Global styles (recommended)
 @import 'global/all';
 
-// Import all layout components
+// Layout components
 @import 'layout/all';
 
-// Import either all components, or call specific components you need
+// All block components
+@import 'blocks/all';
+
+// Individual block components
 @import 'blocks/button/all';
 @import 'blocks/dialog/all';
 @import 'blocks/menu/all';
 @import 'blocks/tooltip/all';
 ```
 
-**Paths**
+**Path**
 
 To resolve the import paths for Vrembem, you'll need to include the following path in your compiler options. In node-sass it's passed in the `includePaths` option array.
 
