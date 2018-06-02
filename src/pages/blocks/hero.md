@@ -64,7 +64,7 @@ Used for adding cover style inline images and optional color screens on top.
         </div>
       </div>
       <div class="hero__screen"></div>
-      <img class="hero__background" src="/assets/hero-background-example.jpg" alt="" />
+      <img class="hero__background" src="/assets/img/hero-background-example.jpg" alt="" />
     </div>
   </div>
   <div class="demo__code">
@@ -80,7 +80,7 @@ Used for adding cover style inline images and optional color screens on top.
     </div>
   </div>
   <div class="hero__screen"></div>
-  <img class="hero__background" src="/assets/hero-background-example.jpg" alt="" />
+  <img class="hero__background" src="/assets/img/hero-background-example.jpg" alt="" />
 </div>
 ```
 
