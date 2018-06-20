@@ -49,53 +49,5 @@ Alternatively, you can add only the specific components you need. Keep in mind t
 To resolve the import paths for Vrembem, you'll need to include the following path in your compiler options. In node-sass it's passed in the `includePaths` option array.
 
 ```
-node_modules/vrembem/scss/
+node_modules/vrembem/src/scss/
 ```
-
-## What's Available?
-
-**Global**
-- [ ] Base
-- [ ] Reboot
-- [ ] Utility
-
-**Layout**
-
-- [ ] Container
-- [ ] Grid
-- [ ] Level
-- [ ] Section
-- [ ] Spacing
-
-**Blocks**
-
-- [ ] Arrow
-- [ ] Badge
-- [ ] Box
-- [ ] Breadcrumb
-- [ ] Button
-- [ ] Button-group
-- [ ] Dialog
-- [ ] Dropdown
-- [ ] Embed-wrap
-- [ ] Hero
-- [ ] Icon
-- [ ] Icon-action
-- [ ] Input
-- [ ] Input-group
-- [ ] Menu
-- [ ] Modal
-- [ ] Navbar
-- [ ] Notice
-- [ ] Tooltip
-- [ ] Typography
-
-## In Development
-
-**Examples**
-
-- [ ] GitHub project dashboard
-- [ ] Signin form
-- [ ] Slack chat interface
-- [ ] YouTube single video view
-- [ ] Single page website
