@@ -1,0 +1,53 @@
+# Server
+host: localhost
+port: 8000
+baseurl: "" # subpath of your site, e.g. /blog
+url: "http://getbaseweb.com" # base hostname & protocol for your site
+permalink: pretty
+
+# Site
+markdown: kramdown
+title: Vrembem
+description: "A CSS component library based on the BEM methodology."
+version: 0.1.5
+repository: sebnitu/vrembem
+
+exclude:
+  - node_modules
+  - src
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-github-metadata
+
+# Author
+author:
+  name: Sebastian Nitu
+  url: http://sebnitu.com
+  email: me@sebnitu.com
+  twitter: sebnitu
+
+# Defaults
+defaults:
+  - scope:
+      path: ''
+    values:
+      layout: page
+
+  - scope:
+      path: '_posts'
+      type: 'posts'
+    values:
+      layout: post
+      category: blog
+
+# Collections
+collections_dir: collections
+collections:
+  blocks:
+    output: true
+  layout:
+    output: true
+  templates:
+    output: true

@@ -1,0 +1,154 @@
+/*==============================================================================
+  @card
+==============================================================================*/
+
+.card {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  background: $white;
+  border-radius: $border-radius;
+}
+
+/**
+ * Card Elements
+ */
+
+.card__inner {
+  position: relative;
+  z-index: 3;
+  padding: 1.2em;
+}
+
+.card__image {
+  width: 100%;
+  height: auto;
+
+  &:first-child {
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+  }
+
+  &:last-child {
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+  }
+}
+
+.card__icon {
+  color: $primary;
+  font-size: 1.6em;
+}
+
+.card__title {
+  font-size: 1.25em;
+  line-height: 1.4em;
+  font-weight: normal;
+  color: $primary;
+  margin-bottom: 0.5rem;
+}
+
+.card__text {
+  font-size: px-to-em(15px);
+  line-height: 1.4em;
+  margin-bottom: 0.5rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.card__action {
+  margin-top: 1rem;
+}
+
+.card__sep {
+  margin: 1em 0;
+  border: none;
+  border-bottom: 1px solid rgba($black, 0.1);
+}
+
+/**
+ * Card Modifiers
+ */
+
+.card_center {
+  text-align: center;
+
+  .card__inner {
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+}
+
+.card_large {
+  padding: 1em 2em;
+
+  .card__title {
+    font-size: 2.5em;
+    line-height: 1.3em;
+    font-weight: 200;
+    margin-bottom: 1rem;
+  }
+
+  .card__text {
+    font-size: 1.125em;
+  }
+
+  .card__action {
+    margin-top: 3rem;
+  }
+}
+
+@include media-min('medium') {
+  .card_large {
+    padding: 3em 5em;
+  }
+}
+
+/**
+ * Card Background Modifiers
+ */
+
+.card_bg_shade {
+  background: #efefef;
+}
+
+.card_bg_image {
+  background: #000;
+  color: $white;
+
+  .card__title {
+    color: $white;
+  }
+
+  .card__text {
+    color: rgba($white, 0.8);
+  }
+}
+
+/**
+ * Section Background and Screens
+ */
+
+.card__background,
+.card__screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: $border-radius;
+}
+
+.card__background {
+  z-index: 1;
+  object-fit: cover;
+}
+
+.card__screen {
+  z-index: 2;
+  background: rgba($black, 0.8);
+}

@@ -1,0 +1,71 @@
+/**
+ * Margin
+ */
+
+@each $name, $value in $spacing-steps {
+  .m_#{$name} {
+    margin: $value !important;
+  }
+}
+
+/**
+ * Margin Top
+ */
+
+@each $name, $value in $spacing-steps {
+  .mt_#{$name} {
+    margin-top: $value !important;
+  }
+}
+
+/**
+ * Margin Bottom
+ */
+
+@each $name, $value in $spacing-steps {
+  .mb_#{$name} {
+    margin-bottom: $value !important;
+  }
+}
+
+/**
+ * Margin Left
+ */
+
+@each $name, $value in $spacing-steps {
+  .ml_#{$name} {
+    margin-left: $value !important;
+  }
+}
+
+/**
+ * Margin Right
+ */
+
+@each $name, $value in $spacing-steps {
+  .mr_#{$name} {
+    margin-right: $value !important;
+  }
+}
+
+/**
+ * Margin X Axes
+ */
+
+@each $name, $value in $spacing-steps {
+  .mx_#{$name} {
+    margin-left: $value !important;
+    margin-right: $value !important;
+  }
+}
+
+/**
+ * Margin Y Axes
+ */
+
+@each $name, $value in $spacing-steps {
+  .my_#{$name} {
+    margin-top: $value !important;
+    margin-bottom: $value !important;
+  }
+}

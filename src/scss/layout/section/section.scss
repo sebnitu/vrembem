@@ -1,0 +1,195 @@
+@import 'variables';
+
+.section {
+  position: relative;
+  padding: $section-padding;
+  overflow: hidden;
+}
+
+@include media-min('medium') {
+  .section {
+    padding: 2em;
+  }
+}
+
+/**
+ * Container
+ */
+
+.section__container {
+  position: relative;
+  z-index: 3;
+}
+
+/**
+ * Intro
+ */
+
+.section__intro {
+  padding-top: 2em;
+  padding-bottom: 2em;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+@include media-min('medium') {
+  .section__intro {
+    padding-top: 4em;
+    padding-bottom: 4em;
+  }
+}
+
+/**
+ * Content
+ */
+
+.section__content {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+@include media-min('medium') {
+  .section__content {
+    padding-top: 2em;
+    padding-bottom: 2em;
+  }
+}
+
+@include media-min('large') {
+  .section__content {
+    padding-top: 4em;
+    padding-bottom: 4em;
+  }
+}
+
+/**
+ * Elements
+ */
+
+.section__heading {
+  font-size: 2.5em;
+  line-height: 1.3em;
+  font-weight: 200;
+  margin-bottom: 1rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.section__subheading {
+  font-size: 2em;
+  line-height: 1.3em;
+  font-weight: 400;
+  color: $primary;
+  margin-bottom: 1rem;
+}
+
+.section__text {
+  font-size: 1.125em;
+  line-height: 1.5em;
+  margin-top: 1rem;
+}
+
+.section__action {
+  margin-top: 2rem;
+}
+
+.section__spacer {
+  height: 10em;
+}
+
+@include media-min('medium') {
+  .section__spacer {
+    height: 20em;
+  }
+}
+
+.section__sep {
+  margin: 1em 0;
+  border: none;
+  border-bottom: 1px solid rgba($black, 0.1);
+}
+
+@include media-min('medium') {
+  .section__sep {
+    margin: 2em 0;
+  }
+}
+
+.section__listing {
+  padding-bottom: 1em;
+}
+
+@include media-min('medium') {
+  .section__listing {
+    padding-bottom: 4em;
+  }
+}
+
+@include media-min('large') {
+  .section__listing {
+    padding-bottom: 6em;
+  }
+}
+
+/**
+ * Section Background and Screens
+ */
+
+.section__background,
+.section__screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.section__background {
+  z-index: 1;
+  object-fit: cover;
+}
+
+.section__screen {
+  z-index: 2;
+  background: rgba($black, 0.6);
+}
+
+/**
+ * Background Modifiers
+ */
+
+.section_bg_primary {
+  color: $white;
+  background: $primary;
+
+  .section__text,
+  .section__subtletext {
+    color: rgba($white, 0.8);
+    font-weight: 300;
+  }
+}
+
+.section_bg_shade {
+  background: #efefef;
+}
+
+/**
+ * Size Modifiers
+ */
+
+.section_size_large {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+@include media-min('medium') {
+  .section_size_large {
+    padding-top: 6em;
+    padding-bottom: 6em;
+  }
+}

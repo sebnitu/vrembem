@@ -1,0 +1,71 @@
+/**
+ * Padding
+ */
+
+@each $name, $value in $spacing-steps {
+  .p_#{$name} {
+    padding: $value !important;
+  }
+}
+
+/**
+ * Padding Top
+ */
+
+@each $name, $value in $spacing-steps {
+  .pt_#{$name} {
+    padding-top: $value !important;
+  }
+}
+
+/**
+ * Padding Bottom
+ */
+
+@each $name, $value in $spacing-steps {
+  .pb_#{$name} {
+    padding-bottom: $value !important;
+  }
+}
+
+/**
+ * Padding Left
+ */
+
+@each $name, $value in $spacing-steps {
+  .pl_#{$name} {
+    padding-left: $value !important;
+  }
+}
+
+/**
+ * Padding Right
+ */
+
+@each $name, $value in $spacing-steps {
+  .pr_#{$name} {
+    padding-right: $value !important;
+  }
+}
+
+/**
+ * Padding X Axes
+ */
+
+@each $name, $value in $spacing-steps {
+  .px_#{$name} {
+    padding-left: $value !important;
+    padding-right: $value !important;
+  }
+}
+
+/**
+ * Padding Y Axes
+ */
+
+@each $name, $value in $spacing-steps {
+  .py_#{$name} {
+    padding-top: $value !important;
+    padding-bottom: $value !important;
+  }
+}

@@ -1,0 +1,26 @@
+.divider {
+  height: 1px;
+  background: $border-color;
+  border: none;
+}
+
+.is-scrollable {
+  @include add-scrollable();
+  overflow: auto;
+}
+
+/**
+ * Float
+ */
+
+.f_none {
+  float: none !important;
+}
+
+.f_left {
+  float: left !important;
+}
+
+.f_right {
+  float: right !important;
+}
