@@ -1,0 +1,61 @@
+/**
+ * Flex Utility
+ */
+
+/* Justify Content */
+
+.justify-content_start {
+  justify-content: flex-start;
+}
+
+.justify-content_center {
+  justify-content: center;
+}
+
+.justify-content_end {
+  justify-content: flex-end;
+}
+
+.justify-content_between {
+  justify-content: space-between;
+}
+
+.justify-content_around {
+  justify-content: space-around;
+}
+
+/* Align Items */
+
+.align-items_start {
+  align-items: flex-start;
+}
+
+.align-items_center {
+  align-items: center;
+}
+
+.align-items_end {
+  align-items: flex-end;
+}
+
+.align-items_stretch {
+  align-items: stretch;
+}
+
+/* Align Self */
+
+.align-self_start {
+  align-self: flex-start;
+}
+
+.align-self_center {
+  align-self: center;
+}
+
+.align-self_end {
+  align-self: flex-end;
+}
+
+.align-self_stretch {
+  align-self: stretch;
+}

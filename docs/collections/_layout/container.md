@@ -9,19 +9,12 @@ title: Container
 ## `container`
 
 <div class="demo">
-  <div class="demo__code">
+  <div class="demo__code" markdown="1">
 
 ```html
 <div class="container">
   ...
 </div>
-```
-
-```css
-.container {
-  max-width: $container-max-width;
-  margin: $container-margin;
-}
 ```
 
   </div><!-- .demo__code -->

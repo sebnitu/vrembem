@@ -10,7 +10,7 @@
   flex-direction: column;
 }
 
-@include media-min('medium') {
+@include media-min('md') {
   .cover {
     flex-direction: row;
     height: 100vh;
@@ -41,7 +41,7 @@
   background: $blue-900;
 }
 
-@include media-min('medium') {
+@include media-min('md') {
   .cover__header,
   .cover__content {
     flex: 1 0 0;
@@ -62,13 +62,13 @@
   padding: 1.5em;
 }
 
-@include media-min('tiny') {
+@include media-min('xs') {
   .cover__inner {
     padding: 2em;
   }
 }
 
-@include media-min('medium') {
+@include media-min('md') {
   .cover__inner {
     max-width: 42em;
     padding: 4em;
@@ -96,7 +96,7 @@
   color: rgba($white, 0.25);
 }
 
-@include media-min('medium') {
+@include media-min('md') {
   .cover__title {
     font-size: 5em;
   }

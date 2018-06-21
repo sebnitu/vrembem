@@ -1,4 +1,4 @@
-@import 'variables';
+$level-spacing: 0.5rem !default;
 
 .level {
   display: flex;
@@ -7,8 +7,4 @@
   > * + * {
     margin-left: $level-spacing;
   }
-}
-
-.level_justify_split {
-  justify-content: space-between;
 }

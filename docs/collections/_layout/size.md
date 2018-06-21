@@ -1,0 +1,79 @@
+---
+title: Size
+---
+
+# Size
+
+<p class="text_lead">A flexbox based grid system.</p>
+
+## `.size_auto`
+
+<div class="grid">
+
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+
+  <div class="grid__item size_auto">
+    <div class="box">...</div>
+  </div>
+
+</div>
+
+## `size_[col]`
+
+<div class="grid">
+
+  <div class="grid__item size_6">
+    <div class="box">...</div>
+  </div>
+
+  <div class="grid__item size_6">
+    <div class="box">...</div>
+  </div>
+
+  <div class="grid__break"></div>
+
+  <div class="grid__item size_6">
+    <div class="box">...</div>
+  </div>
+
+  <div class="grid__item size_3">
+    <div class="box">...</div>
+  </div>
+
+  <div class="grid__item size_3">
+    <div class="box">...</div>
+  </div>
+
+</div>
+
+## `.size_[breakpoint]_[col]`
+
+<div class="grid">
+
+  <div class="grid__item size_12 size_xs_6 size_sm_8 size_md_4 size_lg_3">
+    <div class="box">...</div>
+  </div>
+
+  <div class="grid__item size_12 size_xs_6 size_sm_4 size_md_4 size_lg_3">
+    <div class="box">...</div>
+  </div>
+
+  <div class="grid__item size_12 size_xs_6 size_sm_4 size_md_4 size_lg_3">
+    <div class="box">...</div>
+  </div>
+
+  <div class="grid__item size_12 size_xs_6 size_sm_8 size_md_12 size_lg_3">
+    <div class="box">...</div>
+  </div>
+
+</div>

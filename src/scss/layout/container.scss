@@ -1,4 +1,5 @@
-@import 'variables';
+$container-max-width: 68rem !default;
+$container-margin: 0 auto !default;
 
 .container {
   max-width: $container-max-width;

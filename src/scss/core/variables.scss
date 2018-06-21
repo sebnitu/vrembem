@@ -47,11 +47,20 @@ $lead-line-height: 1.6em !default;
 ////////////////////////
 
 $breakpoints: (
-  'tiny': 480px,
-  'small': 620px,
-  'medium': 760px,
-  'large': 990px,
-  'huge': 1380px
+  'xs': 480px,
+  'sm': 620px,
+  'md': 760px,
+  'lg': 990px,
+  'xl': 1380px
+) !default;
+
+$utility_display:  (
+  flex,
+  inline-flex,
+  block,
+  inline-block,
+  inline,
+  none
 ) !default;
 
 $spacing-steps: (

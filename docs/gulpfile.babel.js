@@ -273,7 +273,7 @@ gulp.task('all', ['css', 'js', 'img'])
  */
 
 gulp.task('watch', function() {
-  gulp.watch(paths.src + 'scss/**/*', ['css'])
+  gulp.watch([paths.src + 'scss/**/*', '../' + paths.src + 'scss/**/*'], ['css'])
   gulp.watch(paths.src + 'js/**/*', ['js'])
 })
 

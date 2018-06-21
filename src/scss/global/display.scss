@@ -1,97 +1,19 @@
+/**
+ * Display Utility
+ */
+
+@each $display in $utility_display {
+  .d_#{$display} {
+    display: $display !important;
+  }
+}
+
 @each $name, $value in $breakpoints {
-  @include media-min($name) {
-    .show_media_#{$name}-down {
-      display: none !important;
+  @each $display in $utility_display {
+    @include media-min($name) {
+      .d_#{$display}_#{$name} {
+        display: $display !important;
+      }
     }
-
-    .hide_media_#{$name}-up {
-      display: none !important;
-    }
-  }
-
-  @include media-max($name) {
-    .hide_media_#{$name}-down {
-      display: none !important;
-    }
-
-    .show_media_#{$name}-up {
-      display: none !important;
-    }
-  }
-}
-
-/**
- * Display Flex
- */
-
-.d_flex {
-  display: flex !important;
-}
-
-@include media-max('tiny') {
-  .d_tn_flex {
-    display: none !important;
-  }
-}
-
-@include media-max('small') {
-  .d_sm_flex {
-    display: none !important;
-  }
-}
-
-@include media-max('medium') {
-  .d_md_flex {
-    display: none !important;
-  }
-}
-
-@include media-max('large') {
-  .d_lg_flex {
-    display: none !important;
-  }
-}
-
-@include media-max('huge') {
-  .d_hg_flex {
-    display: none !important;
-  }
-}
-
-/**
- * Display None
- */
-
-.d_none {
-  display: none !important;
-}
-
-@include media-max('tiny') {
-  .d_tn_none {
-    display: none !important;
-  }
-}
-
-@include media-max('small') {
-  .d_sm_none {
-    display: none !important;
-  }
-}
-
-@include media-max('medium') {
-  .d_md_none {
-    display: none !important;
-  }
-}
-
-@include media-max('large') {
-  .d_lg_none {
-    display: none !important;
-  }
-}
-
-@include media-max('huge') {
-  .d_hg_none {
-    display: none !important;
   }
 }

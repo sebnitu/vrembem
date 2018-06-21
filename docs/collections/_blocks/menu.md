@@ -26,7 +26,7 @@ title: Menu
       </li>
     </ul>
   </div><!-- .demo__render -->
-  <div class="demo__code">
+  <div class="demo__code" markdown="1">
 
 ```html
 <ul class="menu">

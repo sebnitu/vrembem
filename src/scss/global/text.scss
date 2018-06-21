@@ -1,3 +1,7 @@
+/**
+ * Text Utility
+ */
+
 .text_lead {
   font-size: $lead-font-size;
   line-height: $lead-line-height;
@@ -23,6 +27,8 @@
   }
 }
 
+/* Text Size */
+
 .text_size_small {
   font-size: $font-size-small;
 }
@@ -30,6 +36,8 @@
 .text_size_large {
   font-size: $font-size-large;
 }
+
+/* Text Alignment */
 
 .text_align_left {
   text-align: left;

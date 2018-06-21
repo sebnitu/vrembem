@@ -6,6 +6,10 @@
   font-size: $type-font-size;
   line-height: $type-line-height;
 
+  > * {
+    margin-bottom: 1em;
+  }
+
   > *:first-child {
     margin-top: 0 !important;
   }

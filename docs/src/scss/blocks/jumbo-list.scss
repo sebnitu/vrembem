@@ -28,7 +28,7 @@
   }
 }
 
-@include media-min('tiny') {
+@include media-min('xs') {
   .jumbo-list__link {
     padding: 1.5em 2em;
   }

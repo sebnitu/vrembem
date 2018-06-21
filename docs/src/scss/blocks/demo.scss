@@ -92,7 +92,7 @@
   @include demo_row();
 }
 
-@include media-min('medium') {
+@include media-min('md') {
   .demo_medium_row {
     @include demo_row();
   }

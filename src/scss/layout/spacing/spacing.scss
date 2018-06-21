@@ -1,7 +1,0 @@
-@import 'variables';
-
-.spacing {
-  > * + * {
-    margin-top: $spacing-margin;
-  }
-}

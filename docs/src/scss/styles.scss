@@ -17,3 +17,9 @@ body {
 .svg-symbols {
   display: none;
 }
+
+.box {
+  padding: 1em;
+  background: rgba($blue, 0.2);
+  border-radius: $border-radius;
+}

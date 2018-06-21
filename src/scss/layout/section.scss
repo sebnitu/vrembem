@@ -1,4 +1,6 @@
-@import 'variables';
+$section-padding: 1em !default;
+$section-background: $background-color !default;
+$section-border: 1px solid $border-color !default;
 
 .section {
   position: relative;
