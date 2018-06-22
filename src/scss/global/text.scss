@@ -8,14 +8,6 @@
   font-weight: font-weight('light');
 }
 
-.text_nowrap {
-  white-space: nowrap;
-}
-
-.text_subtle {
-  color: $color-light;
-}
-
 .text_link {
   color: $primary;
   text-decoration: none;
@@ -27,26 +19,34 @@
   }
 }
 
+.text_nowrap {
+  white-space: nowrap !important;
+}
+
+.text_subtle {
+  color: $color-light !important;
+}
+
 /* Text Size */
 
 .text_size_small {
-  font-size: $font-size-small;
+  font-size: $font-size-small !important;
 }
 
 .text_size_large {
-  font-size: $font-size-large;
+  font-size: $font-size-large !important;
 }
 
 /* Text Alignment */
 
 .text_align_left {
-  text-align: left;
+  text-align: left !important;
 }
 
 .text_align_center {
-  text-align: center;
+  text-align: center !important;
 }
 
 .text_align_right {
-  text-align: right;
+  text-align: right !important;
 }

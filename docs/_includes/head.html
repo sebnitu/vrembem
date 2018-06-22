@@ -24,11 +24,3 @@
 
 <!-- Styles -->
 <link rel="stylesheet" href="{{ site.url }}{{ site.baseurl }}/dist/css/styles.min.css">
-
-{% if page.include.css %}
-  {% for file in page.include.css %}
-  <link rel="stylesheet" href="{% include asset.html file=file %}">
-  {% endfor %}
-{% endif %}
-
-{% include head-styles.html %}

@@ -6,9 +6,9 @@
 @import 'blocks/jumbo-list';
 
 // Demo page components
+@import 'blocks/page';
 @import 'blocks/demo';
 @import 'blocks/highlight';
-@import 'blocks/page';
 
 body {
   min-height: 100vh;
@@ -20,6 +20,6 @@ body {
 
 .box {
   padding: 1em;
-  background: rgba($blue, 0.2);
+  background: rgba($green, 0.2);
   border-radius: $border-radius;
 }

@@ -13,6 +13,30 @@
   }
 }
 
+.button_color_subtle {
+  background: none;
+  border-color: rgba($white, 0);
+
+  &:hover,
+  &:focus {
+    background: rgba($black, 0.05);
+    border-color: rgba($white, 0);
+  }
+}
+
+.button_color_subtle-inverted {
+  color: $white;
+  background: none;
+  border-color: rgba($white, 0);
+
+  &:hover,
+  &:focus {
+    color: $white;
+    background: rgba($white, 0.1);
+    border-color: rgba($white, 0);
+  }
+}
+
 .button_color_primary {
   color: $white;
   background: $primary;

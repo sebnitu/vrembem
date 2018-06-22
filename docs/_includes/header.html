@@ -1,1 +1,27 @@
-<p>This is the header...</p>
+<div class="grid">
+
+  <div class="grid__item">
+    <ul class="menu menu_theme_inverted">
+      <li class="menu__item">
+        <a href="{{ site.url }}{{ site.baseurl }}" class="menu__link menu__link_icon">
+          {% include icon.html icon="arrow-left" %}
+        </a>
+      </li>
+      <li class="menu__sep"></li>
+      <li class="menu__item">
+        <span class="menu__text">{{ page.title }}</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="grid__item size_auto">
+    <ul class="menu menu_theme_inverted">
+      <li class="menu__item">
+        <a href="https://github.com/{{ site.repository }}" class="menu__link menu__link_icon">
+          {% include icon.html icon="github" %}
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</div><!-- .grid -->

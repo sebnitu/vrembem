@@ -7,7 +7,7 @@ $grid-spacing: 2rem !default;
 .grid {
   display: flex;
   flex-wrap: wrap;
-  margin: -($grid-spacing * 0.5);
+  margin: 0 -($grid-spacing * 0.5);
 }
 
 .grid__item {
@@ -37,7 +37,7 @@ $grid-spacing: 2rem !default;
   }
 
   @include media-max($name) {
-    .grid_#{$name} .grid__item {
+    .grid_#{$name} > .grid__item {
       width: 100%;
     }
   }

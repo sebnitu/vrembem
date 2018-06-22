@@ -1,5 +1,9 @@
 @import 'core/all';
 
+/**
+ * Page
+ */
+
 .page {
   display: flex;
   flex-direction: column;
@@ -7,24 +11,49 @@
   overflow: hidden;
 }
 
-.page__header {
+/* Header & Footer */
+
+.page__header,
+.page__footer {
   flex: 0 0 auto;
   padding: 0.5em;
+}
+
+.page__header {
   background: $blue-900;
   color: $white;
 }
 
-@include media-min('md') {
-  .page__header {
-    padding: 1em;
+.page__footer {
+  background: $blue-50;
+}
+
+@include media-max('sm') {
+  .page__footer .grid_sm > .grid__item + .grid__item {
+    margin-top: -1.5em;
   }
 }
+
+@include media-min('md') {
+  .page__header,
+  .page__footer {
+    padding: 1em;
+  }
+
+  .page__footer .grid_md > .grid__item + .grid__item {
+    margin-top: -1.5em;
+  }
+}
+
+/* Main */
 
 .page__main {
   flex: 1 1 auto;
   overflow-x: hidden;
   overflow-y: auto;
 }
+
+/* Section */
 
 .page__section {
   padding: 1.5em;
