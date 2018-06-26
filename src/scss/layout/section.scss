@@ -1,46 +1,81 @@
+$section-scale: (
+  'default': (
+    'base': 1em,
+    'md': 2em 1em,
+    'lg': 3em 1em
+  ),
+  'small': (
+    'base': 1em,
+    'md': 1em,
+    'lg': 1em
+  ),
+  'large': (
+    'base': 1em,
+    'md': 4em 1em,
+    'lg': 6em 1em
+  ),
+  'huge': (
+    'base': 3em 1em,
+    'md': 8em 2em,
+    'lg': 12em 2em
+  )
+) !default;
+
+$section__intro-max-width: 720px !default;
+$section__screen-opacity: 0.6 !default;
+$section__screen-background: $black !default;
+
 /**
  * Section
  */
 
 .section {
   position: relative;
-  padding: 1em;
 }
 
-@include media-min('md') {
-  .section {
-    padding: 2em 1em;
+/* Section Scale */
+
+@each $name, $group in $section-scale {
+
+  @if ($name == 'default') {
+    $name: '.section';
+  } @else {
+    $name: '.section_size_#{$name}';
+  }
+
+  @each $bp, $value in $group {
+
+    @if ($bp == 'base') {
+      #{$name} {
+        padding: $value;
+      }
+    } @else {
+      @include media-min($bp) {
+        #{$name} {
+          padding: $value;
+        }
+      }
+    }
+
   }
 }
 
-@include media-min('lg') {
-  .section {
-    padding: 3em 1em;
-  }
-}
-
-/**
- * Section Container
- */
+/* Section Container */
 
 .section__container {
   position: relative;
   z-index: 3;
 }
 
-/**
- * Section Intro
- */
+/* Section Intro */
 
 .section__intro {
   text-align: center;
   margin: 0 auto;
-  max-width: 720px;
+  max-width: $section__intro-max-width;
 }
 
-/**
- * Section Background and Screens
- */
+/* Section Background and Screens */
 
 .section__background,
 .section__screen {
@@ -60,49 +95,6 @@
 
 .section__screen {
   z-index: 2;
-  background: rgba($black, 0.6);
-}
-
-/**
- * Size Modifiers
- */
-
-.section_size_small {
-  padding: 1em;
-}
-
-.section_size_large {
-  padding: 1em;
-}
-
-.section_size_huge {
-  padding: 3em 1em;
-}
-
-@include media-min('md') {
-  .section_size_small {
-    padding: 1em;
-  }
-
-  .section_size_large {
-    padding: 4em 1em;
-  }
-
-  .section_size_huge {
-    padding: 8em 2em;
-  }
-}
-
-@include media-min('lg') {
-  .section_size_small {
-    padding: 1em;
-  }
-
-  .section_size_large {
-    padding: 6em 1em;
-  }
-
-  .section_size_huge {
-    padding: 12em 2em;
-  }
+  opacity: $section__screen-opacity;
+  background: $section__screen-background;
 }

@@ -2,14 +2,14 @@
  * Display Utility
  */
 
-@each $display in $utility_display {
+@each $display in $utility-display {
   .d_#{$display} {
     display: $display !important;
   }
 }
 
 @each $name, $value in $breakpoints {
-  @each $display in $utility_display {
+  @each $display in $utility-display {
     @include media-min($name) {
       .d_#{$display}_#{$name} {
         display: $display !important;

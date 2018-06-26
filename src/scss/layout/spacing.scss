@@ -1,21 +1,19 @@
-$spacing-margin: 1em !default;
-$spacing_spacing_small-margin: 0.5em !default;
-$spacing_spacing_large-margin: 1.5em !default;
+/**
+ * Spacing
+ */
 
 .spacing {
   > * + * {
-    margin-top: $spacing-margin;
+    margin-top: $spacing;
   }
 }
 
-.spacing_spacing_small {
-  > * + * {
-    margin-top: $spacing_spacing_small-margin;
-  }
-}
+/* Spacing Modifiers */
 
-.spacing_spacing_large {
-  > * + * {
-    margin-top: $spacing_spacing_large-margin;
+@each $key, $value in $spacing-scale {
+  .spacing_#{$key} {
+    > * + * {
+      margin-top: $value;
+    }
   }
 }

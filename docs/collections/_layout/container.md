@@ -1,5 +1,6 @@
 ---
 title: Container
+order: 2
 ---
 
 # Container
@@ -8,14 +9,17 @@ title: Container
 
 ## `container`
 
-<div class="demo">
+<div class="demo spacing">
+  <div class="demo__render">
+    <div class="container">
+      <div class="box">This is a container</div>
+    </div>
+  </div>
   <div class="demo__code" markdown="1">
-
 ```html
 <div class="container">
   ...
 </div>
 ```
-
-  </div><!-- .demo__code -->
-</div><!-- .demo -->
+  </div>
+</div>

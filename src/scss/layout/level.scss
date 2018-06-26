@@ -1,13 +1,13 @@
-$level-spacing: 1rem !default;
-$level-spacing-small: 0.5rem !default;
-$level-spacing-large: 2rem !default;
+/**
+ * Level
+ */
 
 .level {
   display: inline-flex;
   align-items: center;
 
   > * + * {
-    margin-left: $level-spacing;
+    margin-left: $spacing;
   }
 }
 
@@ -15,16 +15,12 @@ $level-spacing-large: 2rem !default;
   display: flex;
 }
 
-/* Spacing Modifiers */
+/* Level Spacing Modifiers */
 
-.level_spacing_small {
-  > * + * {
-    margin-left: $level-spacing-small;
-  }
-}
-
-.level_spacing_large {
-  > * + * {
-    margin-left: $level-spacing-large;
+@each $key, $value in $spacing-scale {
+  .level_spacing_#{$key} {
+    > * + * {
+      margin-left: $value;
+    }
   }
 }

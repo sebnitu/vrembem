@@ -2,7 +2,7 @@
  * Margin Utility
  */
 
-@each $name, $value in $spacing-steps {
+@each $name, $value in $utility-spacing {
   .m_#{$name} {
     margin: $value !important;
   }
@@ -10,7 +10,7 @@
 
 /* Margin Top */
 
-@each $name, $value in $spacing-steps {
+@each $name, $value in $utility-spacing {
   .mt_#{$name} {
     margin-top: $value !important;
   }
@@ -18,7 +18,7 @@
 
 /* Margin Bottom */
 
-@each $name, $value in $spacing-steps {
+@each $name, $value in $utility-spacing {
   .mb_#{$name} {
     margin-bottom: $value !important;
   }
@@ -26,7 +26,7 @@
 
 /* Margin Left */
 
-@each $name, $value in $spacing-steps {
+@each $name, $value in $utility-spacing {
   .ml_#{$name} {
     margin-left: $value !important;
   }
@@ -34,7 +34,7 @@
 
 /* Margin Right */
 
-@each $name, $value in $spacing-steps {
+@each $name, $value in $utility-spacing {
   .mr_#{$name} {
     margin-right: $value !important;
   }
@@ -42,7 +42,7 @@
 
 /* Margin X Axes */
 
-@each $name, $value in $spacing-steps {
+@each $name, $value in $utility-spacing {
   .mx_#{$name} {
     margin-left: $value !important;
     margin-right: $value !important;
@@ -51,7 +51,7 @@
 
 /* Margin Y Axes */
 
-@each $name, $value in $spacing-steps {
+@each $name, $value in $utility-spacing {
   .my_#{$name} {
     margin-top: $value !important;
     margin-bottom: $value !important;

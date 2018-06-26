@@ -3,43 +3,43 @@
  */
 
 .b {
-  border: $border;
+  border: $border !important;
 }
 
 /* Border Top */
 
 .bt {
-  border-top: $border;
+  border-top: $border !important;
 }
 
 /* Border Bottom */
 
 .bb {
-  border-bottom: $border;
+  border-bottom: $border !important;
 }
 
 /* Border Left */
 
 .bl {
-  border-left: $border;
+  border-left: $border !important;
 }
 
 /* Border Right */
 
 .br {
-  border-right: $border;
+  border-right: $border !important;
 }
 
 /* Border Y Axes */
 
 .by {
-  border-top: $border;
-  border-bottom: $border;
+  border-top: $border !important;
+  border-bottom: $border !important;
 }
 
 /* Border X Axes */
 
 .bx {
-  border-left: $border;
-  border-right: $border;
+  border-left: $border !important;
+  border-right: $border !important;
 }

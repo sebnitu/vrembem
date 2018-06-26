@@ -2,7 +2,7 @@
  * Padding Utility
  */
 
-@each $name, $value in $spacing-steps {
+@each $name, $value in $utility-spacing {
   .p_#{$name} {
     padding: $value !important;
   }
@@ -10,7 +10,7 @@
 
 /* Padding Top */
 
-@each $name, $value in $spacing-steps {
+@each $name, $value in $utility-spacing {
   .pt_#{$name} {
     padding-top: $value !important;
   }
@@ -18,7 +18,7 @@
 
 /* Padding Bottom */
 
-@each $name, $value in $spacing-steps {
+@each $name, $value in $utility-spacing {
   .pb_#{$name} {
     padding-bottom: $value !important;
   }
@@ -26,7 +26,7 @@
 
 /* Padding Left */
 
-@each $name, $value in $spacing-steps {
+@each $name, $value in $utility-spacing {
   .pl_#{$name} {
     padding-left: $value !important;
   }
@@ -34,7 +34,7 @@
 
 /* Padding Right */
 
-@each $name, $value in $spacing-steps {
+@each $name, $value in $utility-spacing {
   .pr_#{$name} {
     padding-right: $value !important;
   }
@@ -42,7 +42,7 @@
 
 /* Padding X Axes */
 
-@each $name, $value in $spacing-steps {
+@each $name, $value in $utility-spacing {
   .px_#{$name} {
     padding-left: $value !important;
     padding-right: $value !important;
@@ -51,7 +51,7 @@
 
 /* Padding Y Axes */
 
-@each $name, $value in $spacing-steps {
+@each $name, $value in $utility-spacing {
   .py_#{$name} {
     padding-top: $value !important;
     padding-bottom: $value !important;

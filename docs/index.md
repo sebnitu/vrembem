@@ -36,7 +36,8 @@ title: Home
     </div><!-- .jumbo-filter -->
     <ul class="jumbo-list">
       {% for collection_name in site.collections %}
-        {% for item in site[collection_name.label] %}
+        {% assign items = site[collection_name.label] %}
+        {% for item in items %}
           <li class="jumbo-list__item" data-type="{{ collection_name.label }}">
             <a class="jumbo-list__link" href="{{ item.url }}">
               <span class="jumbo-list__name">{{ item.title }}</span>

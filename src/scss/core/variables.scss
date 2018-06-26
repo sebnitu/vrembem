@@ -1,4 +1,4 @@
-// Variables
+// Colors
 ////////////////////////
 
 $primary: $blue-500 !default;
@@ -17,11 +17,12 @@ $success: $green !default;
 $caution: $amber-600 !default;
 $danger: $red !default;
 
+// Global Properties
+////////////////////////
+
 $padding-small: 0.215em 0.5em !default;
 $padding: 0.3125em 0.75em !default;
 $padding-large: 0.5em 1.5em !default;
-
-$spacing: 1rem !default;
 
 $font-family-sans: BlinkMacSystemFont, -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif !default;
 $font-family-serif: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif !default;
@@ -52,8 +53,16 @@ $border-radius: 3px !default;
 $box-sizing: border-box !default;
 $box-shadow: 0 1px 3px rgba($black, 0.1) !default;
 
-$lead-font-size: 1.4em !default;
-$lead-line-height: 1.6em !default;
+// Breakpoints
+////////////////////////
+
+$breakpoints: (
+  'xs': 480px,
+  'sm': 620px,
+  'md': 760px,
+  'lg': 990px,
+  'xl': 1380px
+) !default;
 
 // Type
 ////////////////////////
@@ -71,32 +80,8 @@ $type-blockquote-padding: 1em 1.5em !default;
 $type-blockquote-background: $blue-50 !default;
 $type-blockquote-border: 3px solid $blue !default;
 
-// Maps
-////////////////////////
-
-$breakpoints: (
-  'xs': 480px,
-  'sm': 620px,
-  'md': 760px,
-  'lg': 990px,
-  'xl': 1380px
-) !default;
-
-$utility_display: (
-  flex,
-  inline-flex,
-  block,
-  inline-block,
-  inline,
-  none
-) !default;
-
-$spacing-steps: (
-  '0': 0,
-  '1': $spacing,
-  '2': ($spacing * 2),
-  '3': ($spacing * 3)
-) !default;
+$lead-font-size: 1.4em !default;
+$lead-line-height: 1.6em !default;
 
 $anchor: (
   'color': $primary,
@@ -110,3 +95,35 @@ $anchor: (
     'border': 1px solid darken($primary, 10%)
   )
 )!default;
+
+// Spacing
+////////////////////////
+
+$spacing: 1rem !default;
+
+$spacing-scale: (
+  'xs': 0.5rem,
+  'sm': 1rem,
+  'md': 1.5rem,
+  'lg': 2rem,
+  'xl': 3rem
+) !default;
+
+// Utility
+////////////////////////
+
+$utility-display: (
+  inline,
+  flex,
+  inline-flex,
+  block,
+  inline-block,
+  none
+) !default;
+
+$utility-spacing: (
+  '0': 0,
+  '1': 1rem,
+  '2': 2rem,
+  '3': 3rem
+) !default;
