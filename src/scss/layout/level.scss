@@ -5,6 +5,7 @@
 .level {
   display: inline-flex;
   align-items: center;
+  vertical-align: middle;
 
   > * + * {
     margin-left: $spacing;
