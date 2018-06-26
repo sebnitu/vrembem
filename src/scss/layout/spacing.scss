@@ -1,6 +1,6 @@
 $spacing-margin: 1em !default;
-$spacing_size_small-margin: 0.5em !default;
-$spacing_size_large-margin: 1.5em !default;
+$spacing_spacing_small-margin: 0.5em !default;
+$spacing_spacing_large-margin: 1.5em !default;
 
 .spacing {
   > * + * {
@@ -8,14 +8,14 @@ $spacing_size_large-margin: 1.5em !default;
   }
 }
 
-.spacing_size_small {
+.spacing_spacing_small {
   > * + * {
-    margin-top: $spacing_size_small-margin;
+    margin-top: $spacing_spacing_small-margin;
   }
 }
 
-.spacing_size_large {
+.spacing_spacing_large {
   > * + * {
-    margin-top: $spacing_size_large-margin;
+    margin-top: $spacing_spacing_large-margin;
   }
 }

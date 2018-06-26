@@ -1,0 +1,45 @@
+/**
+ * Border
+ */
+
+.b {
+  border: $border;
+}
+
+/* Border Top */
+
+.bt {
+  border-top: $border;
+}
+
+/* Border Bottom */
+
+.bb {
+  border-bottom: $border;
+}
+
+/* Border Left */
+
+.bl {
+  border-left: $border;
+}
+
+/* Border Right */
+
+.br {
+  border-right: $border;
+}
+
+/* Border Y Axes */
+
+.by {
+  border-top: $border;
+  border-bottom: $border;
+}
+
+/* Border X Axes */
+
+.bx {
+  border-left: $border;
+  border-right: $border;
+}

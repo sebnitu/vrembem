@@ -1,11 +1,12 @@
 ---
+layout: base
 title: GitHub
 ---
 
-<!-- <Navbar> -->
+<!-- <Section> -->
 <!--
   Includes:
-  * Navbar
+  * Section
   * Container
   * Menu
   * Dropdown
@@ -16,109 +17,108 @@ title: GitHub
   * Arrow
   * Tooltip
 -->
-<div class="navbar navbar_theme_inverted">
-  <div class="navbar__container container">
-    <div class="navbar__item">
-      <ul class="menu menu_theme_inverted">
-        <li class="menu__item">
-          <a href="#" class="menu__link menu__link_icon">
-            <svg role="img" class="icon">
-              <use xlink:href="#github"></use>
-            </svg>
-          </a>
-        </li>
-        <li class="menu__sep"></li>
-        <li class="menu__item">
-          <label class="input-group input-group_gap">
-            <div class="input-group__item input-group__item_grow_none button button_color_inverted">This repository</div>
-            <input type="text" class="input-group__item input input_color_inverted" placeholder="Search" />
-          </label>
-        </li>
-        <li class="menu__item">
-          <a href="#" class="menu__link">Pull request</a>
-        </li>
-        <li class="menu__item">
-          <a href="#" class="menu__link">Issues</a>
-        </li>
-        <li class="menu__item">
-          <a href="#" class="menu__link">Marketplace</a>
-        </li>
-        <li class="menu__item">
-          <a href="#" class="menu__link">Explore</a>
-        </li>
-      </ul>
-    </div>
-    <div class="navbar__item">
-      <ul class="menu menu_theme_inverted">
-        <li class="menu__item">
-          <a href="#" class="menu__link menu__link_icon tooltip tooltip_pos_down-right" data-tooltip="You have no unread notifications">
-            <svg role="img" class="icon">
-              <use xlink:href="#bell"></use>
-            </svg>
-          </a>
-        </li>
-        <li class="menu__item dropdown on-hover">
-          <a href="#" class="menu__link menu__link_icon dropdown__trigger">
-            <svg role="img" class="icon">
-              <use xlink:href="#plus-circle"></use>
-            </svg>
-            <span class="arrow"></span>
-          </a>
-          <ul class="dropdown__menu dropdown__menu_pos_switch">
-            <li class="dropdown__item">
-              <a href="#" class="dropdown__link">New repository</a>
-            </li>
-            <li class="dropdown__item">
-              <a href="#" class="dropdown__link">Import repository</a>
-            </li>
-            <li class="dropdown__item">
-              <a href="#" class="dropdown__link">New gist</a>
-            </li>
-            <li class="dropdown__item">
-              <a href="#" class="dropdown__link">New organization</a>
-            </li>
-          </ul>
-        </li>
-        <li class="menu__item dropdown on-hover">
-          <a href="#" class="menu__link menu__link_icon dropdown__trigger">
-            <svg role="img" class="icon">
-              <use xlink:href="#user"></use>
-            </svg>
-            <span class="arrow"></span>
-          </a>
-          <ul class="dropdown__menu dropdown__menu_pos_switch">
-            <li class="dropdown__item">
-              <div class="dropdown__content text_subtle">
-                Signed in as <strong>username</strong>
-              </div>
-            </li>
-            <li class="dropdown__sep"></li>
-            <li class="dropdown__item">
-              <a href="#" class="dropdown__link">Your profile</a>
-            </li>
-            <li class="dropdown__item">
-              <a href="#" class="dropdown__link">Your stars</a>
-            </li>
-            <li class="dropdown__item">
-              <a href="#" class="dropdown__link">Your gists</a>
-            </li>
-            <li class="dropdown__sep"></li>
-            <li class="dropdown__item">
-              <a href="#" class="dropdown__link">Help</a>
-            </li>
-            <li class="dropdown__item">
-              <a href="#" class="dropdown__link">Settings</a>
-            </li>
-            <li class="dropdown__item">
-              <a href="#" class="dropdown__link">Sign out</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-<!-- </Navbar> -->
+<div class="section section_size_small bg_primary">
+  <div class="section__container container">
+
+    <div class="grid grid_flatten">
+
+      <div class="grid__item">
+        <ul class="menu menu_theme_inverted">
+          <li class="menu__item">
+            <a href="#" class="menu__link menu__link_icon">
+              {% include icon.html icon="anchor" %}
+            </a>
+          </li>
+          <li class="menu__sep"></li>
+          <li class="menu__item">
+            <label class="input-group input-group_gap">
+              <div class="input-group__item input-group__item_grow_none button button_color_inverted">This repository</div>
+              <input type="text" class="input-group__item input input_color_inverted" placeholder="Search" />
+            </label>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">Pull request</a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">Issues</a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">Marketplace</a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">Explore</a>
+          </li>
+        </ul>
+      </div><!-- .grid__item -->
+
+      <div class="grid__item size_auto">
+        <ul class="menu menu_theme_inverted">
+          <li class="menu__item">
+            <a href="#" class="menu__link menu__link_icon tooltip tooltip_pos_down-right" data-tooltip="You have no unread notifications">
+              {% include icon.html icon="bell" %}
+            </a>
+          </li>
+          <li class="menu__item dropdown on-hover">
+            <a href="#" class="menu__link menu__link_icon dropdown__trigger">
+              {% include icon.html icon="plus-circle" %}
+              <span class="arrow"></span>
+            </a>
+            <ul class="dropdown__menu dropdown__menu_pos_switch">
+              <li class="dropdown__item">
+                <a href="#" class="dropdown__link">New repository</a>
+              </li>
+              <li class="dropdown__item">
+                <a href="#" class="dropdown__link">Import repository</a>
+              </li>
+              <li class="dropdown__item">
+                <a href="#" class="dropdown__link">New gist</a>
+              </li>
+              <li class="dropdown__item">
+                <a href="#" class="dropdown__link">New organization</a>
+              </li>
+            </ul>
+          </li>
+          <li class="menu__item dropdown on-hover">
+            <a href="#" class="menu__link menu__link_icon dropdown__trigger">
+              {% include icon.html icon="user" %}
+              <span class="arrow"></span>
+            </a>
+            <ul class="dropdown__menu dropdown__menu_pos_switch">
+              <li class="dropdown__item">
+                <div class="dropdown__content text_subtle">
+                  Signed in as <strong>username</strong>
+                </div>
+              </li>
+              <li class="dropdown__sep"></li>
+              <li class="dropdown__item">
+                <a href="#" class="dropdown__link">Your profile</a>
+              </li>
+              <li class="dropdown__item">
+                <a href="#" class="dropdown__link">Your stars</a>
+              </li>
+              <li class="dropdown__item">
+                <a href="#" class="dropdown__link">Your gists</a>
+              </li>
+              <li class="dropdown__sep"></li>
+              <li class="dropdown__item">
+                <a href="#" class="dropdown__link">Help</a>
+              </li>
+              <li class="dropdown__item">
+                <a href="#" class="dropdown__link">Settings</a>
+              </li>
+              <li class="dropdown__item">
+                <a href="#" class="dropdown__link">Sign out</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- .grid__item -->
+
+    </div><!-- .grid -->
+
+  </div><!-- .container -->
+</div><!-- .section -->
+<!-- </Section> -->
 
 <!-- <Section> -->
 <!--
@@ -134,13 +134,11 @@ title: GitHub
   * Dropdown
   * Menu
 -->
-<div class="section section_background section_border_bottom section_flush_bottom">
+<div class="section section_size_small bg_shade">
   <div class="container spacing">
     <div class="grid">
       <div class="grid__item level">
-        <svg role="img" class="icon">
-          <use xlink:href="#book"></use>
-        </svg>
+        {% include icon.html icon="book" %}
         <ul class="breadcrumb breadcrumb_size_large">
           <li class="breadcrumb__item">
             <a href="#" class="breadcrumb__link">username</a>
@@ -153,9 +151,7 @@ title: GitHub
       <div class="grid__item grid__item_size_auto level">
         <div class="button-group">
           <div class="button-group__item button dropdown on-hover">
-            <svg role="img" class="icon">
-              <use xlink:href="#eye"></use>
-            </svg>
+            {% include icon.html icon="eye" %}
             <span>Unwatch</span>
             <span class="arrow"></span>
             <ul class="dropdown__menu dropdown__menu_size_large">
@@ -167,9 +163,7 @@ title: GitHub
               <li class="dropdown__sep"></li>
               <li class="dropdown__item">
                 <a href="#" class="dropdown__link dropdown__link_align_top">
-                  <svg role="img" class="icon icon_size_large text_subtle">
-                    <use xlink:href="#circle"></use>
-                  </svg>
+                  {% include icon.html icon="circle" %}
                   <div>
                     <h2 class="dropdown__title">Not Watching</h2>
                     <p>Be notified when participating or @mentioned.</p>
@@ -178,9 +172,7 @@ title: GitHub
               </li>
               <li class="dropdown__item">
                 <a href="#" class="dropdown__link dropdown__link_align_top">
-                  <svg role="img" class="icon icon_size_large">
-                    <use xlink:href="#check-circle"></use>
-                  </svg>
+                  {% include icon.html icon="check-circle" %}
                   <div>
                     <h2 class="dropdown__title">Watching</h2>
                     <p>Be notified of all conversations.</p>
@@ -189,9 +181,7 @@ title: GitHub
               </li>
               <li class="dropdown__item">
                 <a href="#" class="dropdown__link dropdown__link_align_top">
-                  <svg role="img" class="icon icon_size_large text_subtle">
-                    <use xlink:href="#circle"></use>
-                  </svg>
+                  {% include icon.html icon="circle" %}
                   <div>
                     <h2 class="dropdown__title">Ignore</h2>
                     <p>Never be notified.</p>
@@ -206,9 +196,7 @@ title: GitHub
         </div>
         <div class="button-group">
           <button class="button-group__item button">
-            <svg role="img" class="icon">
-              <use xlink:href="#star"></use>
-            </svg>
+            {% include icon.html icon="star" %}
             <span>Star</span>
           </button>
           <button class="button-group__item button">
@@ -217,9 +205,7 @@ title: GitHub
         </div>
         <div class="button-group">
           <button class="button-group__item button">
-            <svg role="img" class="icon">
-              <use xlink:href="#git-branch"></use>
-            </svg>
+            {% include icon.html icon="git-branch" %}
             <span>Fork</span>
           </button>
           <button class="button-group__item button">
@@ -228,60 +214,47 @@ title: GitHub
         </div>
       </div>
     </div><!-- .grid -->
-    <ul class="menu menu_theme_tabs" style="border-bottom: none;">
+
+    <ul class="menu">
       <li class="menu__item">
         <a href="#" class="menu__link is-active">
-          <svg role="img" class="icon">
-            <use xlink:href="#code"></use>
-          </svg>
+          {% include icon.html icon="code" %}
           <span>Code</span>
         </a>
       </li>
       <li class="menu__item">
         <a href="#" class="menu__link">
-          <svg role="img" class="icon">
-            <use xlink:href="#alert-circle"></use>
-          </svg>
+          {% include icon.html icon="alert-circle" %}
           <span>Issues</span>
         </a>
       </li>
       <li class="menu__item">
         <a href="#" class="menu__link">
-          <svg role="img" class="icon">
-            <use xlink:href="#git-pull-request"></use>
-          </svg>
+          {% include icon.html icon="git-pull-request" %}
           <span>Pull requests</span>
         </a>
       </li>
       <li class="menu__item">
         <a href="#" class="menu__link">
-          <svg role="img" class="icon">
-            <use xlink:href="#grid"></use>
-          </svg>
+          {% include icon.html icon="grid" %}
           <span>Projects</span>
         </a>
       </li>
       <li class="menu__item">
         <a href="#" class="menu__link">
-          <svg role="img" class="icon">
-            <use xlink:href="#book-open"></use>
-          </svg>
+          {% include icon.html icon="book-open" %}
           <span>Wiki</span>
         </a>
       </li>
       <li class="menu__item">
         <a href="#" class="menu__link">
-          <svg role="img" class="icon">
-            <use xlink:href="#pie-chart"></use>
-          </svg>
+          {% include icon.html icon="pie-chart" %}
           <span>Insights</span>
         </a>
       </li>
       <li class="menu__item">
         <a href="#" class="menu__link">
-          <svg role="img" class="icon">
-            <use xlink:href="#settings"></use>
-          </svg>
+          {% include icon.html icon="settings" %}
           <span>Settings</span>
         </a>
       </li>
@@ -295,12 +268,12 @@ title: GitHub
   Includes:
   * Section
 -->
-<div class="section">
+<div class="section section_size_small">
   <div class="container spacing">
     <div class="grid">
       <div class="grid__item spacing spacing_size_small">
         <p>Some project description goes here...</p>
-        <p class="level">
+        <p class="level level_spacing_small">
           <a href="#" class="badge badge_color_primary badge_link">css</a>
           <a href="#" class="badge badge_color_primary badge_link">components</a>
           <a href="#" class="badge badge_color_primary badge_link">library</a>
@@ -309,54 +282,44 @@ title: GitHub
           <span><a href="#" class="text_size_small text_link">Manage topics</a></span>
         </p>
       </div>
-      <div class="grid__item grid__item_size_auto">
+      <div class="grid__item size_auto">
         <button class="button">Edit</button>
       </div>
     </div><!-- .grid -->
-    <div class="box spacing spacing_size_small">
+    <div class="section section_size_small bg_shade-light spacing">
       <ul class="menu menu_full">
         <li class="menu__item">
           <a href="#" class="menu__link">
-            <svg role="img" class="icon">
-              <use xlink:href="#git-commit"></use>
-            </svg>
+            {% include icon.html icon="git-commit" %}
             <span>873 commits</span>
           </a>
         </li>
         <li class="menu__item">
           <a href="#" class="menu__link">
-            <svg role="img" class="icon">
-              <use xlink:href="#git-branch"></use>
-            </svg>
+            {% include icon.html icon="git-branch" %}
             <span>2 branch</span>
           </a>
         </li>
         <li class="menu__item">
           <a href="#" class="menu__link">
-            <svg role="img" class="icon">
-              <use xlink:href="#tag"></use>
-            </svg>
+            {% include icon.html icon="tag" %}
             <span>52 releases</span>
           </a>
         </li>
         <li class="menu__item">
           <a href="#" class="menu__link">
-            <svg role="img" class="icon">
-              <use xlink:href="#users"></use>
-            </svg>
+            {% include icon.html icon="users" %}
             <span>6 contributor</span>
           </a>
         </li>
         <li class="menu__item">
           <a href="#" class="menu__link">
-            <svg role="img" class="icon">
-              <use xlink:href="#clipboard"></use>
-            </svg>
+            {% include icon.html icon="clipboard" %}
             <span>MIT</span>
           </a>
         </li>
       </ul>
-      <hr class="divider" />
+      <hr class="hr" />
       <ul class="menu menu_full">
         <li class="menu__item">
           <a href="#" class="menu__link">
@@ -414,33 +377,25 @@ title: GitHub
               </li>
               <li class="dropdown__item">
                 <a href="#" class="dropdown__link is-active">
-                  <svg role="img" class="icon">
-                    <use xlink:href="#check-circle"></use>
-                  </svg>
+                  {% include icon.html icon="check-circle" %}
                   <span>master</span>
                 </a>
               </li>
               <li class="dropdown__item">
                 <a href="#" class="dropdown__link">
-                  <svg role="img" class="icon">
-                    <use xlink:href="#circle"></use>
-                  </svg>
+                  {% include icon.html icon="circle" %}
                   <span>feat/some-update</span>
                 </a>
               </li>
               <li class="dropdown__item">
                 <a href="#" class="dropdown__link">
-                  <svg role="img" class="icon">
-                    <use xlink:href="#circle"></use>
-                  </svg>
+                  {% include icon.html icon="circle" %}
                   <span>update/some-update</span>
                 </a>
               </li>
               <li class="dropdown__item">
                 <a href="#" class="dropdown__link">
-                  <svg role="img" class="icon">
-                    <use xlink:href="#circle"></use>
-                  </svg>
+                  {% include icon.html icon="circle" %}
                   <span>bug/some-update</span>
                 </a>
               </li>
@@ -450,7 +405,7 @@ title: GitHub
             <span>New pull request</span>
           </button>
         </div>
-        <div class="grid__item grid__item_size_auto level">
+        <div class="grid__item size_auto level">
           <div class="button-group">
             <button class="button-group__item button">
               <span>Create new file</span>
@@ -474,9 +429,7 @@ title: GitHub
                     <div class="level">
                       <h3>Clone with HTTPS</h3>
                       <a href="#" class="level">
-                        <svg role="img" class="icon">
-                          <use xlink:href="#help-circle"></use>
-                        </svg>
+                        {% include icon.html icon="help-circle" %}
                       </a>
                     </div>
                     <a href="#" class="text_link">Use SSH</a>
@@ -486,9 +439,7 @@ title: GitHub
                     <div class="input-group">
                       <input type="text" class="input-group__item input" value="https://github.com/username/ProjectNames.git" readonly />
                       <button class="input-group__item input-group__item_grow_none button">
-                        <svg role="img" class="icon">
-                          <use xlink:href="#clipboard"></use>
-                        </svg>
+                        {% include icon.html icon="clipboard" %}
                       </button>
                     </div>
                   </form>
@@ -526,10 +477,12 @@ title: GitHub
 -->
 <footer class="section text_size_small">
   <div class="container">
-    <div class="level level_justify_split">
-      <div class="level">
-        <p>&copy; 2018 GitHub, Inc.</p>
+    <div class="grid justify-content_between">
+      <div class="grid__item size_auto level">
         <ul class="menu">
+          <li class="menu__item">
+            <span class="menu__text">&copy; {{ site.year }}</span>
+          </li>
           <li class="menu__item">
             <a href="#" class="menu__link">Terms</a>
           </li>
@@ -547,32 +500,34 @@ title: GitHub
           </li>
         </ul>
       </div>
-      <a href="#" class="button button_color_fade button_icon">
-        <svg role="img" class="icon">
-          <use xlink:href="#github"></use>
-        </svg>
-      </a>
-      <ul class="menu">
-        <li class="menu__item">
-          <a href="#" class="menu__link">Contact GitHub</a>
-        </li>
-        <li class="menu__item">
-          <a href="#" class="menu__link">API</a>
-        </li>
-        <li class="menu__item">
-          <a href="#" class="menu__link">Training</a>
-        </li>
-        <li class="menu__item">
-          <a href="#" class="menu__link">Shop</a>
-        </li>
-        <li class="menu__item">
-          <a href="#" class="menu__link">Blog</a>
-        </li>
-        <li class="menu__item">
-          <a href="#" class="menu__link">About</a>
-        </li>
-      </ul>
-    </div>
+      <div class="grid__item size_auto">
+        <a href="#" class="button button_color_fade button_icon">
+          {% include icon.html icon="anchor" %}
+        </a>
+      </div>
+      <div class="grid__item size_auto">
+        <ul class="menu">
+          <li class="menu__item">
+            <a href="#" class="menu__link">Contact Us</a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">API</a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">Training</a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">Shop</a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">Blog</a>
+          </li>
+          <li class="menu__item">
+            <a href="#" class="menu__link">About</a>
+          </li>
+        </ul>
+      </div>
+    </div><!-- .grid -->
   </div><!-- .container -->
 </footer><!-- .section -->
 <!-- </Section> -->

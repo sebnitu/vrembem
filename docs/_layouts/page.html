@@ -1,23 +1,9 @@
 ---
-layout: default
+layout: base
 ---
 
-<div class="page">
-  <header class="page__header">
-    <div class="container">
-      {% include header.html %}
-    </div>
-  </header><!-- .page__header .navbar -->
-  <div class="page__main">
-    <div class="page__section">
-      <div class="page__container container typography">
-        {{ content }}
-      </div>
-    </div>
-  </div><!-- .page__main -->
-  <footer class="page__footer">
-    <div class="container">
-      {% include footer.html %}
-    </div>
-  </footer><!-- .page__footer -->
-</div><!-- .page -->
+<div class="page__section">
+  <div class="page__container container type">
+    {{ content }}
+  </div>
+</div>

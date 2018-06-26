@@ -1,0 +1,133 @@
+/**
+ * Headings
+ */
+
+.h,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  margin: $type-heading-margin;
+  line-height: 1.25;
+  font-weight: $type-heading-font-weight;
+
+  a {
+    @include add-anchor();
+  }
+
+  code {
+    padding: 0 0.25em;
+    font-size: 1rem;
+    word-break: break-word;
+    background: rgba($yellow, 0.5);
+  }
+}
+
+.h1 {
+  font-size: 2em;
+}
+
+.h2 {
+  font-size: 1.5em;
+}
+
+.h3 {
+  font-size: 1.25em;
+}
+
+.h4 {
+  font-size: 1em;
+}
+
+.h5 {
+  font-size: 0.875em;
+}
+
+.h6 {
+  font-size: 0.85em;
+  color: $color-light;
+}
+
+/**
+ * Horizontal Rule
+ */
+
+.hr {
+  display: block;
+  height: 1px;
+  background: $border-color;
+  border: none;
+}
+
+.hr_inverted {
+  background-color: $border-color-inverted;
+}
+
+/**
+ * Links & Anchors
+ */
+
+.link,
+.anchor,
+.a {
+  @include add-anchor();
+}
+
+/**
+ * Text
+ */
+
+.text,
+.p {
+  a {
+    @include add-anchor();
+  }
+
+  code {
+    padding: 0 0.25em;
+    background: rgba($yellow, 0.5);
+    word-break: break-word;
+  }
+}
+
+/* Text Modifiers */
+
+.text_lead {
+  font-size: $lead-font-size;
+  line-height: $lead-line-height;
+  font-weight: font-weight('light');
+}
+
+.text_subtle {
+  color: $color-light !important;
+}
+
+.text_nowrap {
+  white-space: nowrap !important;
+}
+
+/* Text Size */
+
+.text_size_small {
+  font-size: $font-size-small !important;
+}
+
+.text_size_large {
+  font-size: $font-size-large !important;
+}
+
+/* Text Alignment */
+
+.text_align_left {
+  text-align: left !important;
+}
+
+.text_align_center {
+  text-align: center !important;
+}
+
+.text_align_right {
+  text-align: right !important;
+}

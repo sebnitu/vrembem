@@ -10,6 +10,7 @@ markdown: kramdown
 title: Vrembem
 description: "A CSS component library based on the BEM methodology."
 version: 0.1.5
+year: 2018
 repository: sebnitu/vrembem
 
 exclude:

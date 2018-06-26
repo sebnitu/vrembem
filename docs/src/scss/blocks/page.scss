@@ -20,12 +20,12 @@
 }
 
 .page__header {
-  background: $blue-900;
+  background: $primary-dark;
   color: $white;
 }
 
 .page__footer {
-  background: $blue-50;
+  background: $shade;
 }
 
 @include media-max('sm') {

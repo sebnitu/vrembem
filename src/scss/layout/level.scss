@@ -1,10 +1,30 @@
-$level-spacing: 0.5rem !default;
+$level-spacing: 1rem !default;
+$level-spacing-small: 0.5rem !default;
+$level-spacing-large: 2rem !default;
 
 .level {
-  display: flex;
+  display: inline-flex;
   align-items: center;
 
   > * + * {
     margin-left: $level-spacing;
+  }
+}
+
+.level_block {
+  display: flex;
+}
+
+/* Spacing Modifiers */
+
+.level_spacing_small {
+  > * + * {
+    margin-left: $level-spacing-small;
+  }
+}
+
+.level_spacing_large {
+  > * + * {
+    margin-left: $level-spacing-large;
   }
 }

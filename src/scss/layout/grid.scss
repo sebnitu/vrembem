@@ -7,7 +7,11 @@ $grid-spacing: 2rem !default;
 .grid {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 -($grid-spacing * 0.5);
+  margin: 0 (-($grid-spacing * 0.5));
+}
+
+.grid_flatten {
+  margin: (-($grid-spacing * 0.5));
 }
 
 .grid__item {

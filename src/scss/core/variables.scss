@@ -1,8 +1,18 @@
 // Variables
 ////////////////////////
 
-$primary: $blue !default;
-$secondary: $gray !default;
+$primary: $blue-500 !default;
+$primary-light: lighten($primary, 15%) !default;
+$primary-dark: darken($primary, 15%) !default;
+
+$secondary: $pink-300 !default;
+$secondary-light: lighten($secondary, 15%) !default;
+$secondary-dark: darken($secondary, 15%) !default;
+
+$shade: $blue-gray-50 !default;
+$shade-light: rgba($black, 0.05) !default;
+$shade-dark: darken($shade, 5%) !default;
+
 $success: $green !default;
 $caution: $amber-600 !default;
 $danger: $red !default;
@@ -35,13 +45,31 @@ $background-color: $gray-100 !default;
 $border-width: 1px !default;
 $border-style: solid !default;
 $border-color: rgba($black, 0.1) !default;
+$border-color-inverted: rgba($white, 0.1) !default;
 $border: 1px solid rgba($black, 0.1) !default;
+$border-inverted: 1px solid rgba($white, 0.1) !default;
 $border-radius: 3px !default;
 $box-sizing: border-box !default;
 $box-shadow: 0 1px 3px rgba($black, 0.1) !default;
 
 $lead-font-size: 1.4em !default;
 $lead-line-height: 1.6em !default;
+
+// Type
+////////////////////////
+
+$type-font-family: $font-family !default;
+$type-font-size: $font-size !default;
+$type-line-height: $line-height !default;
+
+$type-spacing: 1em !default;
+
+$type-heading-margin: 2rem 0 1rem !default;
+$type-heading-font-weight: font-weight('semi-bold') !default;
+
+$type-blockquote-padding: 1em 1.5em !default;
+$type-blockquote-background: $blue-50 !default;
+$type-blockquote-border: 3px solid $blue !default;
 
 // Maps
 ////////////////////////
