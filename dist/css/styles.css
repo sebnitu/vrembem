@@ -100,6 +100,14 @@ pre {
   background-color: #000000 !important;
 }
 
+.bg_gray {
+  background-color: #9e9e9e !important;
+}
+
+.bg_color {
+  background-color: #212121 !important;
+}
+
 /* Primary */
 .bg_primary {
   background-color: #2196f3 !important;
@@ -1756,8 +1764,30 @@ pre {
   display: flex;
 }
 
+.level_wrap {
+  margin-top: -1rem;
+  margin-left: -1rem;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.level_wrap > * {
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+
 /* Level Spacing Modifiers */
 .level_spacing_xs > * + * {
+  margin-left: 0.5rem;
+}
+
+.level_spacing_xs.level_wrap {
+  margin-top: -0.5rem;
+  margin-left: -0.5rem;
+}
+
+.level_spacing_xs.level_wrap > * {
+  margin-top: 0.5rem;
   margin-left: 0.5rem;
 }
 
@@ -1765,7 +1795,27 @@ pre {
   margin-left: 1rem;
 }
 
+.level_spacing_sm.level_wrap {
+  margin-top: -1rem;
+  margin-left: -1rem;
+}
+
+.level_spacing_sm.level_wrap > * {
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+
 .level_spacing_md > * + * {
+  margin-left: 1.5rem;
+}
+
+.level_spacing_md.level_wrap {
+  margin-top: -1.5rem;
+  margin-left: -1.5rem;
+}
+
+.level_spacing_md.level_wrap > * {
+  margin-top: 1.5rem;
   margin-left: 1.5rem;
 }
 
@@ -1773,7 +1823,27 @@ pre {
   margin-left: 2rem;
 }
 
+.level_spacing_lg.level_wrap {
+  margin-top: -2rem;
+  margin-left: -2rem;
+}
+
+.level_spacing_lg.level_wrap > * {
+  margin-top: 2rem;
+  margin-left: 2rem;
+}
+
 .level_spacing_xl > * + * {
+  margin-left: 3rem;
+}
+
+.level_spacing_xl.level_wrap {
+  margin-top: -3rem;
+  margin-left: -3rem;
+}
+
+.level_spacing_xl.level_wrap > * {
+  margin-top: 3rem;
   margin-left: 3rem;
 }
 
@@ -2048,11 +2118,11 @@ pre {
 
 .badge_inverted {
   color: #ffffff;
-  background: #f06292;
+  background: #212121;
 }
 
 .badge_inverted.badge_link:hover {
-  background: #ec3372;
+  background: #474747;
 }
 
 .breadcrumb {
@@ -2101,14 +2171,6 @@ pre {
 .breadcrumb__link:hover {
   color: #0c7cd5;
   border-bottom: 1px solid #0c7cd5;
-}
-
-.breadcrumb_size_large {
-  font-size: 1.25em;
-}
-
-.breadcrumb_size_small {
-  font-size: 0.875em;
 }
 
 .button {
