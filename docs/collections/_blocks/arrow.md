@@ -8,29 +8,29 @@ title: Arrow
 
 ## `arrow`
 
-<div class="demo demo_medium_row">
-  <div class="demo__render">
+<div class="demo grid grid_md">
+  <div class="demo__render grid__item">
     <span class="arrow"></span>
     <span class="arrow arrow_up"></span>
     <span class="arrow arrow_left"></span>
     <span class="arrow arrow_right"></span>
   </div><!-- .demo__render -->
-  <div class="demo__code">
-
+  <div class="grid__item">
+  <div class="demo__code" markdown="1">
 ```html
 <span class="arrow"></span>
 <span class="arrow arrow_up"></span>
 <span class="arrow arrow_left"></span>
 <span class="arrow arrow_right"></span>
 ```
-
-  </div><!-- .demo__code -->
-</div><!-- .demo -->
+  </div>
+  </div>
+</div>
 
 ## `button > arrow`
 
-<div class="demo demo_medium_row">
-  <div class="demo__render">
+<div class="demo grid grid_md">
+  <div class="demo__render grid__item">
     <button class="button button_color_primary">
       <span>Button</span>
       <span class="arrow"></span>
@@ -40,34 +40,30 @@ title: Arrow
       <span>Button</span>
     </button>
     <button class="button button_color_primary">
-      <svg role="img" class="icon">
-        <use xlink:href="#github"></use>
-      </svg>
+      {% include icon.html icon="github" %}
       <span class="arrow arrow_right"></span>
     </button>
     <button class="button button_outline_dark">
       <span class="arrow arrow_left"></span>
-      <svg role="img" class="icon">
-        <use xlink:href="#github"></use>
-      </svg>
+      {% include icon.html icon="github" %}
     </button>
   </div><!-- .demo__render -->
-  <div class="demo__code">
-
+  <div class="grid__item size_6">
+  <div class="demo__code" markdown="1">
 ```html
 <button class="button">
   <span>Button</span>
   <span class="arrow"></span>
 </button>
 ```
-
-  </div><!-- .demo__code -->
-</div><!-- .demo -->
+  </div>
+  </div>
+</div>
 
 ## `menu > arrow`
 
-<div class="demo demo_medium_row">
-  <div class="demo__render">
+<div class="demo grid grid_md">
+  <div class="demo__render grid__item">
     <ul class="menu">
       <li class="menu__item">
         <a class="menu__link" href="#">
@@ -96,8 +92,8 @@ title: Arrow
       </li>
     </ul>
   </div><!-- .demo__render -->
-  <div class="demo__code">
-
+  <div class="grid__item size_6">
+  <div class="demo__code" markdown="1">
 ```html
 <ul class="menu">
   <li class="menu__item">
@@ -108,6 +104,6 @@ title: Arrow
   </li>
 </ul>
 ```
-
-  </div><!-- .demo__code -->
-</div><!-- .demo -->
+  </div>
+  </div>
+</div>

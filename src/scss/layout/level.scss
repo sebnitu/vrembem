@@ -16,6 +16,17 @@
   display: flex;
 }
 
+.level_wrap {
+  margin-top: (-$spacing);
+  margin-left: (-$spacing);
+  flex-wrap: wrap;
+
+  > * {
+    margin-top: $spacing;
+    margin-left: $spacing;
+  }
+}
+
 /* Level Spacing Modifiers */
 
 @each $key, $value in $spacing-scale {

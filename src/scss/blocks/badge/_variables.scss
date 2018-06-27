@@ -17,7 +17,7 @@ $badge-border-hover: 1px solid transparent !default;
 $badge_inverted-color: $white !default;
 $badge_inverted-color-hover: null !default;
 
-$badge_inverted-background: $secondary !default;
-$badge_inverted-background-hover: darken($secondary, 10%) !default;
+$badge_inverted-background: $color !default;
+$badge_inverted-background-hover: lighten($color, 15%) !default;
 
 $badge_dot-size: 0.75em !default;

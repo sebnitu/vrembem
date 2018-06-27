@@ -1756,6 +1756,18 @@ pre {
   display: flex;
 }
 
+.level_wrap {
+  margin-top: -1rem;
+  margin-left: -1rem;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.level_wrap > * {
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+
 /* Level Spacing Modifiers */
 .level_spacing_xs > * + * {
   margin-left: 0.5rem;
@@ -2048,11 +2060,11 @@ pre {
 
 .badge_inverted {
   color: #ffffff;
-  background: #f06292;
+  background: #212121;
 }
 
 .badge_inverted.badge_link:hover {
-  background: #ec3372;
+  background: #474747;
 }
 
 .breadcrumb {
