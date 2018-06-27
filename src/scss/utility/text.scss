@@ -1,5 +1,5 @@
 /**
- * Headings
+ * Headings Utility
  */
 
 .h,
@@ -51,7 +51,7 @@
 }
 
 /**
- * Horizontal Rule
+ * Horizontal Rule Utility
  */
 
 .hr {
@@ -66,17 +66,16 @@
 }
 
 /**
- * Links & Anchors
+ * Links Utility
  */
 
 .link,
-.anchor,
 .a {
   @include add-anchor();
 }
 
 /**
- * Text
+ * Text Utility
  */
 
 .text,

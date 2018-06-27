@@ -9,8 +9,8 @@
 }
 
 @each $name, $value in $breakpoints {
-  @each $display in $utility-display {
-    @include media-min($name) {
+  @include media-min($name) {
+    @each $display in $utility-display {
       .d_#{$display}_#{$name} {
         display: $display !important;
       }
