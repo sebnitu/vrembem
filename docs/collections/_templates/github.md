@@ -273,7 +273,7 @@ title: GitHub
     <div class="grid">
       <div class="grid__item spacing spacing_size_small">
         <p>Some project description goes here...</p>
-        <p class="level level_spacing_small">
+        <p class="level level_spacing_xs">
           <a href="#" class="badge badge_color_primary badge_link">css</a>
           <a href="#" class="badge badge_color_primary badge_link">components</a>
           <a href="#" class="badge badge_color_primary badge_link">library</a>

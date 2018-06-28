@@ -42,4 +42,8 @@
     border-color: rgba($white, 0);
     box-shadow: none;
   }
+
+  &::placeholder {
+    color: rgba($white, 0.5);
+  }
 }

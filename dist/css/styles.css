@@ -3532,6 +3532,22 @@ pre {
           box-shadow: none;
 }
 
+.input_color_inverted::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.input_color_inverted:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.input_color_inverted::-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.input_color_inverted::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
 /**
  * Input size modifiers
  */
