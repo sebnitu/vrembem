@@ -1,0 +1,49 @@
+/**
+ * Border Radius Utility
+ */
+
+.radius {
+  border-radius: $border-radius !important;
+}
+
+.radius_circle {
+  border-radius: 50% !important;
+}
+
+/* Border radius positions */
+
+.radius_t {
+  border-top-left-radius: $border-radius !important;
+  border-top-right-radius: $border-radius !important;
+}
+
+.radius_b {
+  border-bottom-left-radius: $border-radius !important;
+  border-bottom-right-radius: $border-radius !important;
+}
+
+.radius_l {
+  border-top-left-radius: $border-radius !important;
+  border-bottom-left-radius: $border-radius !important;
+}
+
+.radius_r {
+  border-top-right-radius: $border-radius !important;
+  border-bottom-right-radius: $border-radius !important;
+}
+
+.radius_tl {
+  border-top-left-radius: $border-radius !important;
+}
+
+.radius_tr {
+  border-top-right-radius: $border-radius !important;
+}
+
+.radius_bl {
+  border-bottom-left-radius: $border-radius !important;
+}
+
+.radius_br {
+  border-bottom-right-radius: $border-radius !important;
+}

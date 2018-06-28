@@ -6,12 +6,13 @@
 
 .media {
   display: flex;
+  align-items: flex-start;
 
   > * + * {
-    margin-left: 2em;
+    margin-left: $media-spacing;
   }
 }
 
-.media__body {
-
+.media__image {
+  border-radius: $media-border-radius;
 }

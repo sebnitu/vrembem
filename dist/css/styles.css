@@ -191,6 +191,54 @@ pre {
 }
 
 /**
+ * Border Radius Utility
+ */
+.radius {
+  border-radius: 3px !important;
+}
+
+.radius_circle {
+  border-radius: 50% !important;
+}
+
+/* Border radius positions */
+.radius_t {
+  border-top-left-radius: 3px !important;
+  border-top-right-radius: 3px !important;
+}
+
+.radius_b {
+  border-bottom-left-radius: 3px !important;
+  border-bottom-right-radius: 3px !important;
+}
+
+.radius_l {
+  border-top-left-radius: 3px !important;
+  border-bottom-left-radius: 3px !important;
+}
+
+.radius_r {
+  border-top-right-radius: 3px !important;
+  border-bottom-right-radius: 3px !important;
+}
+
+.radius_tl {
+  border-top-left-radius: 3px !important;
+}
+
+.radius_tr {
+  border-top-right-radius: 3px !important;
+}
+
+.radius_bl {
+  border-bottom-left-radius: 3px !important;
+}
+
+.radius_br {
+  border-bottom-right-radius: 3px !important;
+}
+
+/**
  * Color Utility
  */
 .c {
@@ -3627,10 +3675,17 @@ pre {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
 .media > * + * {
-  margin-left: 2em;
+  margin-left: 1.5rem;
+}
+
+.media__image {
+  border-radius: 3px;
 }
 
 .menu {
