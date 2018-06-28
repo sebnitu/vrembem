@@ -463,9 +463,152 @@ title: GitHub
   Includes:
   * Section
 -->
-<div class="section">
+<div class="section section_size_small">
   <div class="container">
-    <p>...</p>
+
+    <div class="b radius">
+      <div class="p_1 bg_shade radius_t level justify_between">
+        <span class="level">
+          <img class="radius" src="https://picsum.photos/20/20/?random" width="20" height="20" />
+          <span>
+            <strong>sebnitu</strong> Merge branch 'master' of <a class="link" href="#">http://github.com/sebnitu/vrembem</a>
+          </span>
+        </span>
+        <span>
+          Lastest commit 7597aa1 26 days ago
+        </span>
+      </div>
+      <div class="grid bt m_0">
+        <div class="grid__item size_2 level">
+          {% include icon.html icon="folder" %}
+          <span>css</span>
+        </div>
+        <div class="grid__item">
+          Updated version
+        </div>
+        <div class="grid__item size_auto">
+          26 days ago
+        </div>
+      </div>
+      <div class="grid bt m_0">
+        <div class="grid__item size_2 level">
+          {% include icon.html icon="folder" %}
+          <span>scss</span>
+        </div>
+        <div class="grid__item">
+          Updated version
+        </div>
+        <div class="grid__item size_auto">
+          26 days ago
+        </div>
+      </div>
+      <div class="grid bt m_0">
+        <div class="grid__item size_2 level">
+          {% include icon.html icon="folder" %}
+          <span>src</span>
+        </div>
+        <div class="grid__item">
+          Updated version
+        </div>
+        <div class="grid__item size_auto">
+          26 days ago
+        </div>
+      </div>
+
+      <div class="grid bt m_0">
+        <div class="grid__item size_2 level">
+          {% include icon.html icon="file" %}
+          <span>.gitignore</span>
+        </div>
+        <div class="grid__item">
+          Added demo to the ignored directories
+        </div>
+        <div class="grid__item size_auto">
+          5 months ago
+        </div>
+      </div>
+      <div class="grid bt m_0">
+        <div class="grid__item size_2 level">
+          {% include icon.html icon="file" %}
+          <span>LICENSE</span>
+        </div>
+        <div class="grid__item">
+          Updated the year
+        </div>
+        <div class="grid__item size_auto">
+          4 months ago
+        </div>
+      </div>
+      <div class="grid bt m_0">
+        <div class="grid__item size_2 level">
+          {% include icon.html icon="file" %}
+          <span>README.md</span>
+        </div>
+        <div class="grid__item">
+          Updated imports section
+        </div>
+        <div class="grid__item size_auto">
+          4 months ago
+        </div>
+      </div>
+      <div class="grid bt m_0">
+        <div class="grid__item size_2 level">
+          {% include icon.html icon="file" %}
+          <span>package.json</span>
+        </div>
+        <div class="grid__item">
+          Merge branch 'master' of http://github.com/sebnitu/vrembem
+        </div>
+        <div class="grid__item size_auto">
+          26 days ago
+        </div>
+      </div>
+      <div class="grid bt m_0">
+        <div class="grid__item size_2 level">
+          {% include icon.html icon="file" %}
+          <span>yarn.lock</span>
+        </div>
+        <div class="grid__item">
+          Updated packages
+        </div>
+        <div class="grid__item size_auto">
+          4 months ago
+        </div>
+      </div>
+    </div>
+
+  </div><!-- .container -->
+</div><!-- .section -->
+<!-- </Section> -->
+
+<!-- <Section> -->
+<!--
+  Includes:
+  * Section
+-->
+<div class="section section_size_small">
+  <div class="container">
+
+    <div class="b radius">
+      <div class="bg_shade p_1 level level_spacing_xs">
+        {% include icon.html icon="book-open" %}
+        <span>README.md</span>
+      </div>
+      <div class="bt p_3 type">
+        <h1>Vrembem</h1>
+        <p>A CSS component library based on the BEM methodology.</p>
+        <h2>Usage</h2>
+        <p>A quick way to start using Vrembem now is to install it via a package manager.</p>
+        <code><pre># Using NPM
+npm install vrembem
+
+# Using Yarn
+yarn add vrembem</pre></code>
+      </div>
+    </div>
+
+    <hr class="hr mt_3" />
+
   </div><!-- .container -->
 </div><!-- .section -->
 <!-- </Section> -->
