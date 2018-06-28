@@ -13,6 +13,14 @@
   }
 }
 
+.media__body {
+  flex: 1 1 auto;
+
+  > * + * {
+    margin-top: $media__body-spacing;
+  }
+}
+
 .media__image {
   border-radius: $media-border-radius;
 }

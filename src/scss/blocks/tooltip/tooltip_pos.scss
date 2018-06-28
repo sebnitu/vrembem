@@ -1,8 +1,9 @@
 @import 'variables';
 
 /**
- * Up
+ * Tooltip position modifiers
  */
+
 .tooltip_pos_up {
   &::after {
     top: auto;
@@ -51,9 +52,8 @@
   }
 }
 
-/**
- * Left
- */
+/* Left */
+
 .tooltip_pos_left {
   &::after {
     top: 50%;
@@ -99,9 +99,8 @@
   }
 }
 
-/**
- * Right
- */
+/* Right */
+
 .tooltip_pos_right {
   &::after {
     top: auto;
@@ -147,9 +146,8 @@
   }
 }
 
-/**
- * Down
- */
+/* Down */
+
 .tooltip_pos_down {
   &::after {
     top: 100%;

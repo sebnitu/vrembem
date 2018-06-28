@@ -1,7 +1,7 @@
 @import 'variables';
 
 /**
- * Menu Stack Modifier
+ * Menu stack modifier
  */
 
 .menu_stack {
@@ -34,5 +34,17 @@
     margin: $menu__sep-spacing 0;
     border-right: none;
     border-top: $menu__sep-border-width solid $menu__sep-border-color;
+  }
+
+  &.justify_start .menu__link {
+    justify-content: flex-start;
+  }
+
+  &.justify_center .menu__link {
+    justify-content: center;
+  }
+
+  &.justify_end .menu__link {
+    justify-content: flex-end;
   }
 }

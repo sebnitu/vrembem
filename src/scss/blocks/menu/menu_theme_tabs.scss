@@ -3,6 +3,10 @@
 $menu_theme_tabs-background: $white !default;
 $menu_theme_tabs-border-color: $gray-300 !default;
 
+/**
+ * Menu theme tabs modifier
+ */
+
 .menu_theme_tabs {
   padding: 0;
   border-bottom: 1px solid $menu_theme_tabs-border-color;

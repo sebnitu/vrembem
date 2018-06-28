@@ -1,5 +1,9 @@
 @import 'variables';
 
+/**
+ * Notice
+ */
+
 .notice {
   position: relative;
   padding: $notice-padding;
@@ -27,15 +31,10 @@
 .notice__content {
 
   > * + * {
-    margin-top: 0.5em;
+    margin-top: $notice-spacing;
   }
+}
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-size: $notice-heading-font-size;
-  }
+.notice__heading {
+  font-size: $notice-heading-font-size;
 }

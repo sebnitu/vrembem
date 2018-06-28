@@ -22,6 +22,10 @@ $menu_theme_inverted-border-color: rgba($white, 0.1) !default;
 
 $menu_theme_inverted__text-color: $white !default;
 
+/**
+ * Menu theme inverted modifier
+ */
+
 .menu_theme_inverted {
   .menu__link {
     color: $menu_theme_inverted-color;

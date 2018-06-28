@@ -1,5 +1,9 @@
 @import 'variables';
 
+/**
+ * Notice type modifiers
+ */
+
 .notice_type_info {
   color: darken($primary, 10%);
   background: rgba($primary, 0.1);
