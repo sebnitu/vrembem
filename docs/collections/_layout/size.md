@@ -84,19 +84,19 @@ order: 4
   <div class="demo__render">
     <div class="grid grid_flatten">
 
-      <div class="grid__item size_12 size_xs_6 size_sm_8 size_md_4 size_lg_3">
+      <div class="grid__item size_12 size_6_xs size_8_sm size_4_md size_3_lg">
         <div class="box">...</div>
       </div>
 
-      <div class="grid__item size_12 size_xs_6 size_sm_4 size_md_4 size_lg_3">
+      <div class="grid__item size_12 size_6_xs size_4_sm size_4_md size_3_lg">
         <div class="box">...</div>
       </div>
 
-      <div class="grid__item size_12 size_xs_6 size_sm_4 size_md_4 size_lg_3">
+      <div class="grid__item size_12 size_6_xs size_4_sm size_4_md size_3_lg">
         <div class="box">...</div>
       </div>
 
-      <div class="grid__item size_12 size_xs_6 size_sm_8 size_md_12 size_lg_3">
+      <div class="grid__item size_12 size_6_xs size_8_sm size_12_md size_3_lg">
         <div class="box">...</div>
       </div>
 
@@ -105,10 +105,10 @@ order: 4
   <div class="demo__code" markdown="1">
 ```html
 <div class="grid">
-  <div class="grid__item size_12 size_xs_6 size_sm_8 size_md_4 size_lg_3">...</div>
-  <div class="grid__item size_12 size_xs_6 size_sm_4 size_md_4 size_lg_3">...</div>
-  <div class="grid__item size_12 size_xs_6 size_sm_4 size_md_4 size_lg_3">...</div>
-  <div class="grid__item size_12 size_xs_6 size_sm_8 size_md_12 size_lg_3">...</div>
+  <div class="grid__item size_12 size_6_xs size_8_sm size_4_md size_3_lg">...</div>
+  <div class="grid__item size_12 size_6_xs size_4_sm size_4_md size_3_lg">...</div>
+  <div class="grid__item size_12 size_6_xs size_4_sm size_4_md size_3_lg">...</div>
+  <div class="grid__item size_12 size_6_xs size_8_sm size_12_md size_3_lg">...</div>
 </div>
 ```
   </div>

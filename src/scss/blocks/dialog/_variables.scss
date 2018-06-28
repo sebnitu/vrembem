@@ -1,9 +1,10 @@
-$dialog-spacing: 1em !default;
+$dialog-zindex: 500 !default;
+
+$dialog-spacing: $spacing !default;
 $dialog-inner-spacing: 0.5em !default;
 $dialog-padding: 1em !default;
-$dialog-padding-expanded: 2em !default;
 $dialog-background: $white !default;
-$dialog-border: 1px solid rgba($black, 0.1) !default;
+$dialog-border: $border !default;
 $dialog-border-radius: $border-radius !default;
 $dialog-box-shadow: 0 2px 6px rgba($black, 0.15) !default;
 

@@ -1,22 +1,17 @@
-/*==============================================================================
-  @Media
-==============================================================================*/
+@import 'variables';
+
+/**
+ * Media
+ */
 
 .media {
   display: flex;
 
-  + .media {
-    margin-top: 1em;
-  }
-
   > * + * {
-    margin-left: 1em;
+    margin-left: 2em;
   }
 }
 
-.media__content {
+.media__body {
 
-  > * + * {
-    margin-top: 0.5rem;
-  }
 }

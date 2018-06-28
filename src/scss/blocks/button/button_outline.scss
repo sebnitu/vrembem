@@ -1,5 +1,9 @@
 @import 'variables';
 
+/**
+ * Button outline modifier
+ */
+
 .button_outline {
   background: $white;
   border: $button_outline_border-width solid $gray-400;

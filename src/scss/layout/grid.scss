@@ -19,6 +19,14 @@ $grid-spacing: 2rem !default;
   padding: ($grid-spacing * 0.5);
 }
 
+.grid__item_fill {
+  display: flex;
+
+  > * {
+    flex: 1 0 0;
+  }
+}
+
 .grid__break {
   flex: none;
   width: 100%;

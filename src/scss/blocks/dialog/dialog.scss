@@ -1,8 +1,12 @@
 @import 'variables';
 
+/**
+ * Dialog
+ */
+
 .dialog {
   position: relative;
-  z-index: 500;
+  z-index: $dialog-zindex;
   display: flex;
   flex-direction: column;
   overflow: auto;
@@ -20,20 +24,13 @@
   padding: $dialog-padding;
 }
 
-.dialog__body_flush {
-  padding: 0;
-}
-
-.dialog__body_expanded {
-  padding: $dialog-padding-expanded;
-}
-
 .dialog__header,
 .dialog__footer,
 .dialog__group {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
+  vertical-align: middle;
 
   > * + * {
     margin-left: $dialog-inner-spacing;
@@ -46,6 +43,10 @@
 
 .dialog__body {
   flex-grow: 1;
+
+  > * {
+    margin: 0;
+  }
 
   > * + * {
     margin-top: $dialog-spacing;
@@ -60,30 +61,7 @@
   border-top: $dialog-border;
 }
 
-.dialog__header,
-.dialog__group {
-  .dialog__close {
-    position: relative;
-    top: auto;
-    right: auto;
-    flex-grow: 0;
-  }
-}
-
-.dialog__footer_justify_split,
-.dialog__group_justify_split {
-  justify-content: space-between;
-}
-
-.dialog__footer_justify_center,
-.dialog__group_justify_center {
-  justify-content: center;
-}
-
-.dialog__footer_justify_right,
-.dialog__group_justify_right {
-  justify-content: flex-end;
-}
+/* Dialog close */
 
 .dialog__close {
   position: absolute;
@@ -94,6 +72,18 @@
     padding-right: 3.5em;
   }
 }
+
+.dialog__header,
+.dialog__group {
+  .dialog__close {
+    position: relative;
+    top: auto;
+    right: auto;
+    flex-grow: 0;
+  }
+}
+
+/* Dialog title */
 
 .dialog__title {
   flex: 1 1 0;

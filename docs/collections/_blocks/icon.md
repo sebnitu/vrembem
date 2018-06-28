@@ -12,44 +12,46 @@ title: Icon
 
 You can inject svg icons directly or use svg sprites. The only requirement is the `icon` component class.
 
-<div class="demo demo_medium_row">
-  <div class="demo__render">
-    <svg role="img" class="icon"><use xlink:href="#anchor"></use></svg>
-    <svg role="img" class="icon"><use xlink:href="#arrow-left"></use></svg>
-    <svg role="img" class="icon"><use xlink:href="#arrow-right"></use></svg>
-    <svg role="img" class="icon"><use xlink:href="#arrow-up"></use></svg>
-    <svg role="img" class="icon"><use xlink:href="#arrow-down"></use></svg>
-    <svg role="img" class="icon"><use xlink:href="#clipboard"></use></svg>
-    <svg role="img" class="icon"><use xlink:href="#clock"></use></svg>
-    <svg role="img" class="icon"><use xlink:href="#cpu"></use></svg>
-    <svg role="img" class="icon"><use xlink:href="#delete"></use></svg>
-    <svg role="img" class="icon"><use xlink:href="#download-cloud"></use></svg>
-  </div><!-- .demo__render -->
-  <div class="demo__code">
-
+<div class="demo grid grid_md">
+  <div class="demo__render grid__item">
+    {% include icon.html icon="anchor" %}
+    {% include icon.html icon="arrow-left" %}
+    {% include icon.html icon="arrow-right" %}
+    {% include icon.html icon="arrow-up" %}
+    {% include icon.html icon="arrow-down" %}
+    {% include icon.html icon="clipboard" %}
+    {% include icon.html icon="clock" %}
+    {% include icon.html icon="cpu" %}
+    {% include icon.html icon="delete" %}
+    {% include icon.html icon="download-cloud" %}
+  </div>
+  <div class="grid__item size_6">
+  <div class="demo__code" markdown="1">
 ```html
 <svg role="img" class="icon">
   <use xlink:href="#github"></use>
 </svg>
 ```
-
-  </div><!-- .demo__code -->
-</div><!-- .demo -->
+  </div>
+  </div>
+</div>
 
 ## `icon_size`
 
-<div class="demo demo_medium_row">
-  <div class="demo__render demo__render_tile">
-    <svg role="img" class="icon icon_size_small"><use xlink:href="#anchor"></use></svg>
-    <svg role="img" class="icon icon_size_large"><use xlink:href="#anchor"></use></svg>
-  </div><!-- .demo__render -->
-  <div class="demo__code">
-
+<div class="demo grid grid_md">
+  <div class="demo__render grid__item">
+    <div class="level level_wrap">
+      <svg role="img" class="icon icon_size_small"><use xlink:href="#icon-anchor"></use></svg>
+      <svg role="img" class="icon icon_size_large"><use xlink:href="#icon-anchor"></use></svg>
+    </div>
+  </div>
+  <div class="grid__item size_6">
+  <div class="demo__code" markdown="1">
 ```html
 <svg role="img" class="icon">
   <use xlink:href="#github"></use>
 </svg>
 ```
-
-  </div><!-- .demo__code -->
-</div><!-- .demo -->
+  </div>
+  </div>
+</div>

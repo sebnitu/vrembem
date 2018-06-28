@@ -29,7 +29,7 @@ $size-columns: 12 !default;
     }
 
     @for $i from 1 through $size-columns {
-      .size_#{$name}_#{$i} {
+      .size_#{$i}_#{$name} {
         flex-basis: (100% * ($i/$size-columns));
         width: (100% * ($i/$size-columns));
       }

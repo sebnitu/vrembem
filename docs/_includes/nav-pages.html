@@ -4,7 +4,7 @@
     <ul class="menu menu_full">
       <li class="menu__item">
         {% if page.previous %}
-        <a href="{{ page.previous.url }}" class="menu__link justify-content_start">
+        <a href="{{ page.previous.url }}" class="menu__link justify_start">
           {% include icon.html icon="arrow-left" %}
           <span>{{ page.previous.title }}</span>
         </a>
@@ -12,7 +12,7 @@
       </li>
       <li class="menu__item">
         {% if page.next %}
-        <a href="{{ page.next.url }}" class="menu__link justify-content_end">
+        <a href="{{ page.next.url }}" class="menu__link justify_end">
           <span>{{ page.next.title }}</span>
           {% include icon.html icon="arrow-right" %}
         </a>

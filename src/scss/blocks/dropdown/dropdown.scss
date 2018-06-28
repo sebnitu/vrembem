@@ -1,5 +1,9 @@
 @import 'variables';
 
+/**
+ * Dropdown
+ */
+
 .dropdown {
   position: relative;
 }
@@ -79,6 +83,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  vertical-align: middle;
   padding: $dropdown__link-padding;
   color: $dropdown__link-color;
   background: $dropdown__link-background;
@@ -130,10 +135,6 @@
     margin-left: 0;
     margin-top: $dropdown-spacing;
   }
-}
-
-.dropdown__link_split {
-  justify-content: space-between;
 }
 
 .dropdown__content {

@@ -8,20 +8,20 @@ title: Icon-action
 
 ## `icon-action`
 
-<div class="demo demo_medium_row">
-  <div class="demo__render">
+<div class="demo grid grid_md">
+  <div class="demo__render grid__item">
     <button class="icon-action">
-      <svg role="img" class="icon"><use xlink:href="#x"></use></svg>
+      {% include icon.html icon="x" %}
     </button>
     <button class="icon-action">
-      <svg role="img" class="icon"><use xlink:href="#minus"></use></svg>
+      {% include icon.html icon="minus" %}
     </button>
     <button class="icon-action">
-      <svg role="img" class="icon"><use xlink:href="#maximize-2"></use></svg>
+      {% include icon.html icon="maximize-2" %}
     </button>
-  </div><!-- .demo__render -->
-  <div class="demo__code">
-
+  </div>
+  <div class="grid__item size_6">
+  <div class="demo__code" markdown="1">
 ```html
 <button class="icon-action">
   <svg role="img" class="icon">
@@ -29,82 +29,64 @@ title: Icon-action
   </svg>
 </button>
 ```
-
-  </div><!-- .demo__code -->
-</div><!-- .demo -->
+  </div>
+  </div>
+</div>
 
 ## `icon-action_size`
 
-<div class="demo demo_medium_row">
-  <div class="demo__render">
+<div class="demo grid grid_md">
+  <div class="demo__render grid__item">
     <button class="icon-action icon-action_size_small">
-      <svg role="img" class="icon">
-        <use xlink:href="#x"></use>
-      </svg>
+      {% include icon.html icon="x" %}
     </button>
     <button class="icon-action">
-      <svg role="img" class="icon">
-        <use xlink:href="#x"></use>
-      </svg>
+      {% include icon.html icon="x" %}
     </button>
     <button class="icon-action icon-action_size_large">
-      <svg role="img" class="icon">
-        <use xlink:href="#x"></use>
-      </svg>
+      {% include icon.html icon="x" %}
     </button>
-  </div><!-- .demo__render -->
-  <div class="demo__code">
-
+  </div>
+  <div class="grid__item size_6">
+  <div class="demo__code" markdown="1">
 ```html
 <button class="icon-action icon-action_size_small">...</button>
 <button class="icon-action">...</button>
 <button class="icon-action icon-action_size_large">...</button>
 ```
-
-  </div><!-- .demo__code -->
-</div><!-- .demo -->
+  </div>
+  </div>
+</div>
 
 ## `icon-action_color`
 
-<div class="demo demo_medium_row">
-  <div class="demo__render">
+<div class="demo grid grid_md">
+  <div class="demo__render grid__item spacing">
     <div class="demo__group">
       <button class="icon-action icon-action_color_fade">
-        <svg role="img" class="icon">
-          <use xlink:href="#x"></use>
-        </svg>
+        {% include icon.html icon="x" %}
       </button>
       <button class="icon-action icon-action_color_danger">
-        <svg role="img" class="icon">
-          <use xlink:href="#x"></use>
-        </svg>
+        {% include icon.html icon="x" %}
       </button>
       <button class="icon-action icon-action_color_caution">
-        <svg role="img" class="icon">
-          <use xlink:href="#x"></use>
-        </svg>
+        {% include icon.html icon="minus" %}
       </button>
       <button class="icon-action icon-action_color_success">
-        <svg role="img" class="icon">
-          <use xlink:href="#x"></use>
-        </svg>
+        {% include icon.html icon="maximize-2" %}
       </button>
     </div>
-    <div class="demo__group demo__group_inverted">
+    <div class="demo__group bg_gray p_1">
       <button class="icon-action icon-action_color_fade-inverted">
-        <svg role="img" class="icon">
-          <use xlink:href="#x"></use>
-        </svg>
+        {% include icon.html icon="x" %}
       </button>
       <button class="icon-action icon-action_color_light">
-        <svg role="img" class="icon">
-          <use xlink:href="#x"></use>
-        </svg>
+        {% include icon.html icon="x" %}
       </button>
     </div>
-  </div><!-- .demo__render -->
-  <div class="demo__code">
-
+  </div>
+  <div class="grid__item size_6">
+  <div class="demo__code" markdown="1">
 ```html
 <button class="icon-action icon-action_color_fade">...</button>
 <button class="icon-action icon-action_color_fade-inverted">...</button>
@@ -113,6 +95,6 @@ title: Icon-action
 <button class="icon-action icon-action_color_caution">...</button>
 <button class="icon-action icon-action_color_success">...</button>
 ```
-
-  </div><!-- .demo__code -->
-</div><!-- .demo -->
+  </div>
+  </div>
+</div>

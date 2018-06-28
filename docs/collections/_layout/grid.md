@@ -34,6 +34,37 @@ order: 3
   </div>
 </div>
 
+## `.grid__item_fill`
+
+The fill modifier class creates equal height columns for a grid.
+
+<div class="demo spacing">
+  <div class="demo__render">
+    <div class="grid grid_flatten">
+      <div class="grid__item">
+        <div class="box">...<br /><br /><br /><br /></div>
+      </div>
+      <div class="grid__item grid__item_fill">
+        <div class="box">...</div>
+      </div>
+      <div class="grid__item">
+        <div class="box">...</div>
+      </div>
+    </div>
+  </div>
+  <div class="demo__code" markdown="1">
+```html
+<div class="grid">
+  <div class="grid__item">
+    ...<br /><br /><br /><br />
+  </div>
+  <div class="grid__item grid__item_fill">...</div>
+  <div class="grid__item">...</div>
+</div>
+```
+  </div>
+</div>
+
 ## `.grid__break`
 
 <div class="demo spacing">

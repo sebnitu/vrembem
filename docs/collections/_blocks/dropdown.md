@@ -29,8 +29,8 @@ Trigger classes:
 * `on-hover`
 * `on-focus`
 
-<div class="demo demo_medium_row">
-  <div class="demo__render">
+<div class="demo grid grid_md">
+  <div class="demo__render grid__item">
     <div class="dropdown is-active">
       <button class="dropdown__trigger button button_color_primary">Trigger</button>
       <ul class="dropdown__menu">
@@ -60,8 +60,8 @@ Trigger classes:
       </ul>
     </div>
   </div>
-  <div class="demo__code">
-
+  <div class="grid__item size_6">
+  <div class="demo__code" markdown="1">
 ```html
 <div class="dropdown is-active">
   <button class="dropdown__trigger button button_color_primary">Dropdown</button>
@@ -92,7 +92,7 @@ Trigger classes:
   </ul>
 </div>
 ```
-
+  </div>
   </div>
 </div>
 
@@ -100,8 +100,8 @@ Trigger classes:
 
 This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_switch` class for reversing the direction of a sub dropdown.
 
-<div class="demo demo_medium_row">
-  <div class="demo__render">
+<div class="demo grid grid_md">
+  <div class="demo__render grid__item">
     <div class="dropdown on-hover">
       <button class="dropdown__trigger button button_color_primary">Trigger</button>
       <ul class="dropdown__menu">
@@ -160,8 +160,8 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
       </ul>
     </div>
   </div>
-  <div class="demo__code">
-
+  <div class="grid__item size_6">
+  <div class="demo__code" markdown="1">
 ```html
 <div class="dropdown is-active">
   <button class="dropdown__trigger button button_color_primary">Trigger</button>
@@ -185,20 +185,18 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
   </ul>
 </div>
 ```
-
+  </div>
   </div>
 </div>
 
 ## `dropdown__menu_pos`
 
-<div class="demo demo_medium_row">
-  <div class="demo__render">
-    <div class="demo__group demo__group_tile">
+<div class="demo grid grid_md">
+  <div class="demo__render grid__item spacing spacing_xs">
+    <div class="demo__group level level_wrap">
       <div class="dropdown on-hover">
         <button class="button button_icon">
-          <svg role="img" class="icon">
-            <use xlink:href="#chevron-down"></use>
-          </svg>
+          {% include icon.html icon="chevron-down" %}
         </button>
         <ul class="dropdown__menu dropdown__menu_pos_down-left">
           <li class="dropdown__item dropdown__content">This is a dropdown...</li>
@@ -206,9 +204,7 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
       </div><!-- .dropdown -->
       <div class="dropdown on-hover">
         <button class="button button_icon">
-          <svg role="img" class="icon">
-            <use xlink:href="#chevron-down"></use>
-          </svg>
+          {% include icon.html icon="chevron-down" %}
         </button>
         <ul class="dropdown__menu dropdown__menu_pos_down">
           <li class="dropdown__item dropdown__content">This is a dropdown...</li>
@@ -216,9 +212,7 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
       </div><!-- .dropdown -->
       <div class="dropdown on-hover">
         <button class="button button_icon">
-          <svg role="img" class="icon">
-            <use xlink:href="#chevron-down"></use>
-          </svg>
+          {% include icon.html icon="chevron-down" %}
         </button>
         <ul class="dropdown__menu dropdown__menu_pos_down-right">
           <li class="dropdown__item dropdown__content">This is a dropdown...</li>
@@ -226,9 +220,7 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
       </div><!-- .dropdown -->
       <div class="dropdown on-hover">
         <button class="button button_icon">
-          <svg role="img" class="icon">
-            <use xlink:href="#chevron-left"></use>
-          </svg>
+          {% include icon.html icon="chevron-left" %}
         </button>
         <ul class="dropdown__menu dropdown__menu_pos_left-down">
           <li class="dropdown__item dropdown__content">This is a dropdown...</li>
@@ -236,9 +228,7 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
       </div><!-- .dropdown -->
       <div class="dropdown on-hover">
         <button class="button button_icon">
-          <svg role="img" class="icon">
-            <use xlink:href="#chevron-left"></use>
-          </svg>
+          {% include icon.html icon="chevron-left" %}
         </button>
         <ul class="dropdown__menu dropdown__menu_pos_left">
           <li class="dropdown__item dropdown__content">This is a dropdown...</li>
@@ -246,21 +236,17 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
       </div><!-- .dropdown -->
       <div class="dropdown on-hover">
         <button class="button button_icon">
-          <svg role="img" class="icon">
-            <use xlink:href="#chevron-left"></use>
-          </svg>
+          {% include icon.html icon="chevron-left" %}
         </button>
         <ul class="dropdown__menu dropdown__menu_pos_left-up">
           <li class="dropdown__item dropdown__content">This is a dropdown...</li>
         </ul>
       </div><!-- .dropdown -->
     </div><!-- .demo__group -->
-    <div class="demo__group demo__group_tile">
+    <div class="demo__group level level_wrap">
       <div class="dropdown on-hover">
         <button class="button button_icon">
-          <svg role="img" class="icon">
-            <use xlink:href="#chevron-up"></use>
-          </svg>
+          {% include icon.html icon="chevron-up" %}
         </button>
         <ul class="dropdown__menu dropdown__menu_pos_up-left">
           <li class="dropdown__item dropdown__content">This is a dropdown...</li>
@@ -268,9 +254,7 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
       </div><!-- .dropdown -->
       <div class="dropdown on-hover">
         <button class="button button_icon">
-          <svg role="img" class="icon">
-            <use xlink:href="#chevron-up"></use>
-          </svg>
+          {% include icon.html icon="chevron-up" %}
         </button>
         <ul class="dropdown__menu dropdown__menu_pos_up">
           <li class="dropdown__item dropdown__content">This is a dropdown...</li>
@@ -278,9 +262,7 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
       </div><!-- .dropdown -->
       <div class="dropdown on-hover">
         <button class="button button_icon">
-          <svg role="img" class="icon">
-            <use xlink:href="#chevron-up"></use>
-          </svg>
+          {% include icon.html icon="chevron-up" %}
         </button>
         <ul class="dropdown__menu dropdown__menu_pos_up-right">
           <li class="dropdown__item dropdown__content">This is a dropdown...</li>
@@ -288,9 +270,7 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
       </div><!-- .dropdown -->
       <div class="dropdown on-hover">
         <button class="button button_icon">
-          <svg role="img" class="icon">
-            <use xlink:href="#chevron-right"></use>
-          </svg>
+          {% include icon.html icon="chevron-right" %}
         </button>
         <ul class="dropdown__menu dropdown__menu_pos_right-down">
           <li class="dropdown__item dropdown__content">This is a dropdown...</li>
@@ -298,9 +278,7 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
       </div><!-- .dropdown -->
       <div class="dropdown on-hover">
         <button class="button button_icon">
-          <svg role="img" class="icon">
-            <use xlink:href="#chevron-right"></use>
-          </svg>
+          {% include icon.html icon="chevron-right" %}
         </button>
         <ul class="dropdown__menu dropdown__menu_pos_right">
           <li class="dropdown__item dropdown__content">This is a dropdown...</li>
@@ -308,9 +286,7 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
       </div><!-- .dropdown -->
       <div class="dropdown on-hover">
         <button class="button button_icon">
-          <svg role="img" class="icon">
-            <use xlink:href="#chevron-right"></use>
-          </svg>
+          {% include icon.html icon="chevron-right" %}
         </button>
         <ul class="dropdown__menu dropdown__menu_pos_right-up">
           <li class="dropdown__item dropdown__content">This is a dropdown...</li>
@@ -318,8 +294,8 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
       </div><!-- .dropdown -->
     </div><!-- .demo__group -->
   </div>
-  <div class="demo__code">
-
+  <div class="grid__item size_6">
+  <div class="demo__code" markdown="1">
 ```html
 <ul class="dropdown__menu dropdown__menu_pos_up-left">...</ul>
 <ul class="dropdown__menu dropdown__menu_pos_up">...</ul>
@@ -334,13 +310,15 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
 <ul class="dropdown__menu dropdown__menu_pos_right">...</ul>
 <ul class="dropdown__menu dropdown__menu_pos_right-down">...</ul>
 ```
-
+  </div>
   </div>
 </div>
 
 ## Examples
 
-<div class="demo">
+Below are some examples of complex dropdowns and how they may be composed using this component along with some utility modifiers.
+
+<div class="demo spacing">
   <div class="demo__render">
     <div class="dropdown on-hover">
       <button class="dropdown__trigger button button_color_primary">Twitter</button>
@@ -356,50 +334,50 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
         <li class="dropdown__sep"></li>
         <li class="dropdown__item">
           <a href="#" class="dropdown__link">
-            <svg role="img" class="dropdown__icon icon">
-              <use xlink:href="#user"></use>
-            </svg>
+            <span class="text_subtle">
+              {% include icon.html icon="user" %}
+            </span>
             <span class="dropdown__text">Profile</span>
           </a>
         </li>
         <li class="dropdown__item">
           <a href="#" class="dropdown__link">
-            <svg role="img" class="dropdown__icon icon">
-              <use xlink:href="#list"></use>
-            </svg>
+            <span class="text_subtle">
+              {% include icon.html icon="list" %}
+            </span>
             <span class="dropdown__text">Lists</span>
           </a>
         </li>
         <li class="dropdown__item">
           <a href="#" class="dropdown__link">
-            <svg role="img" class="dropdown__icon icon">
-              <use xlink:href="#zap"></use>
-            </svg>
+            <span class="text_subtle">
+              {% include icon.html icon="zap" %}
+            </span>
             <span class="dropdown__text">Moments</span>
           </a>
         </li>
         <li class="dropdown__sep"></li>
         <li class="dropdown__item">
           <a href="#" class="dropdown__link">
-            <svg role="img" class="dropdown__icon icon">
-              <use xlink:href="#heart"></use>
-            </svg>
+            <span class="text_subtle">
+              {% include icon.html icon="heart" %}
+            </span>
             <span class="dropdown__text">Promote Mode</span>
           </a>
         </li>
         <li class="dropdown__item">
           <a href="#" class="dropdown__link">
-            <svg role="img" class="dropdown__icon icon">
-              <use xlink:href="#external-link"></use>
-            </svg>
+            <span class="text_subtle">
+              {% include icon.html icon="external-link" %}
+            </span>
             <span class="dropdown__text">Twitter Ads</span>
           </a>
         </li>
         <li class="dropdown__item">
           <a href="#" class="dropdown__link">
-            <svg role="img" class="dropdown__icon icon">
-              <use xlink:href="#activity"></use>
-            </svg>
+            <span class="text_subtle">
+              {% include icon.html icon="activity" %}
+            </span>
             <span class="dropdown__text">Analytics</span>
           </a>
         </li>
@@ -418,18 +396,17 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
         </li>
         <li class="dropdown__sep"></li>
         <li class="dropdown__item">
-          <a href="#" class="dropdown__link dropdown__link_split">
+          <a href="#" class="dropdown__link justify_between">
             <span class="dropdown__text">Night mode</span>
-            <svg role="img" class="dropdown__icon icon">
-              <use xlink:href="#moon"></use>
-            </svg>
+            <span class="text_subtle">
+              {% include icon.html icon="moon" %}
+            </span>
           </a>
         </li>
       </ul>
     </div>
   </div>
-  <div class="demo__code">
-
+  <div class="demo__code" markdown="1">
 ```html
 <div class="dropdown on-hover">
   <button class="dropdown__trigger button button_color_primary">Twitter</button>
@@ -445,50 +422,38 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
     <li class="dropdown__sep"></li>
     <li class="dropdown__item">
       <a href="#" class="dropdown__link">
-        <svg role="img" class="dropdown__icon icon">
-          <use xlink:href="#user"></use>
-        </svg>
+        {<span class="text_subtle">...</span>
         <span class="dropdown__text">Profile</span>
       </a>
     </li>
     <li class="dropdown__item">
       <a href="#" class="dropdown__link">
-        <svg role="img" class="dropdown__icon icon">
-          <use xlink:href="#list"></use>
-        </svg>
+        <span class="text_subtle">...</span>
         <span class="dropdown__text">Lists</span>
       </a>
     </li>
     <li class="dropdown__item">
       <a href="#" class="dropdown__link">
-        <svg role="img" class="dropdown__icon icon">
-          <use xlink:href="#zap"></use>
-        </svg>
+        <span class="text_subtle">...</span>
         <span class="dropdown__text">Moments</span>
       </a>
     </li>
     <li class="dropdown__sep"></li>
     <li class="dropdown__item">
       <a href="#" class="dropdown__link">
-        <svg role="img" class="dropdown__icon icon">
-          <use xlink:href="#heart"></use>
-        </svg>
+        <span class="text_subtle">...</span>
         <span class="dropdown__text">Promote Mode</span>
       </a>
     </li>
     <li class="dropdown__item">
       <a href="#" class="dropdown__link">
-        <svg role="img" class="dropdown__icon icon">
-          <use xlink:href="#external-link"></use>
-        </svg>
+        <span class="text_subtle">...</span>
         <span class="dropdown__text">Twitter Ads</span>
       </a>
     </li>
     <li class="dropdown__item">
       <a href="#" class="dropdown__link">
-        <svg role="img" class="dropdown__icon icon">
-          <use xlink:href="#activity"></use>
-        </svg>
+        <span class="text_subtle">...</span>
         <span class="dropdown__text">Analytics</span>
       </a>
     </li>
@@ -507,16 +472,13 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
     </li>
     <li class="dropdown__sep"></li>
     <li class="dropdown__item">
-      <a href="#" class="dropdown__link dropdown__link_split">
+      <a href="#" class="dropdown__link justify_between">
         <span class="dropdown__text">Night mode</span>
-        <svg role="img" class="dropdown__icon icon">
-          <use xlink:href="#moon"></use>
-        </svg>
+        <span class="text_subtle">...</span>
       </a>
     </li>
   </ul>
 </div>
 ```
-
   </div>
 </div>

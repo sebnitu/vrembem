@@ -1,14 +1,18 @@
 @import 'variables';
 
+/**
+ * Button icon modifier
+ */
+
 .button_icon {
   padding: nth($button-padding, 1);
   justify-content: center;
 
-  &.button_size_small {
-    padding: nth($button_size_small-padding, 1);
+  &.button_size_sm {
+    padding: nth($button_size_sm-padding, 1);
   }
 
-  &.button_size_large {
-    padding: nth($button_size_large-padding, 1);
+  &.button_size_lg {
+    padding: nth($button_size_lg-padding, 1);
   }
 }

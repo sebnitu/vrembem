@@ -425,7 +425,7 @@ title: GitHub
             <ul class="dropdown__menu dropdown__menu_size_auto dropdown__menu_pos_switch">
               <li class="dropdown__item">
                 <div class="dropdown__content">
-                  <div class="level level_justify_split">
+                  <div class="level justify_split">
                     <div class="level">
                       <h3>Clone with HTTPS</h3>
                       <a href="#" class="level">
@@ -477,7 +477,7 @@ title: GitHub
 -->
 <footer class="section text_size_small">
   <div class="container">
-    <div class="grid justify-content_between">
+    <div class="grid justify_between">
       <div class="grid__item size_auto level">
         <ul class="menu">
           <li class="menu__item">

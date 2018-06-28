@@ -24,6 +24,7 @@
   > h5,
   > h6 {
     @extend .h;
+    margin: $type-heading-margin;
   }
 
   > h1 {

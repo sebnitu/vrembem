@@ -1,5 +1,9 @@
 @import 'variables';
 
+/**
+ * Button color modifier
+ */
+
 .button_color_inverted {
   color: $white;
   background: rgba($white, 0.1);

@@ -1,5 +1,9 @@
 @import 'variables';
 
+/**
+ * Icon
+ */
+
 .icon {
   display: inline-block;
   flex-shrink: 0;
@@ -13,6 +17,7 @@
   stroke-width: $icon-stroke-width;
   font-size: $icon-font-size;
   box-sizing: content-box;
+  vertical-align: middle;
 }
 
 .icon_size_small {

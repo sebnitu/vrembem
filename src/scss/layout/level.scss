@@ -3,17 +3,13 @@
  */
 
 .level {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   vertical-align: middle;
 
   > * + * {
     margin-left: $spacing;
   }
-}
-
-.level_block {
-  display: flex;
 }
 
 .level_wrap {

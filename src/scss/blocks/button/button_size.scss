@@ -1,8 +1,12 @@
 @import 'variables';
 
-.button_size_small {
-  padding: $button_size_small-padding;
-  font-size: $button_size_small-font-size;
+/**
+ * Button size modifier
+ */
+
+.button_size_sm {
+  padding: $button_size_sm-padding;
+  font-size: $button_size_sm-font-size;
   line-height: 1.6em;
 
   .icon {
@@ -10,9 +14,9 @@
   }
 }
 
-.button_size_large {
-  padding: $button_size_large-padding;
-  font-size: $button_size_large-font-size;
+.button_size_lg {
+  padding: $button_size_lg-padding;
+  font-size: $button_size_lg-font-size;
 
   &:not(.button_icon) .icon:first-child {
     margin-left: -0.25em;

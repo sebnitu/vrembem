@@ -1,5 +1,9 @@
 @import 'variables';
 
+/**
+ * Badge inverted modifier
+ */
+
 .badge_inverted {
   color: $badge_inverted-color;
   background: $badge_inverted-background;

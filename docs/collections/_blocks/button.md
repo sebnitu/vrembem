@@ -68,10 +68,10 @@ Used for when displaying a button with only an icon and no text.
 <div class="demo grid grid_md">
   <div class="demo__render grid__item">
     <div class="level level_wrap">
-      <button class="button button_size_small button_icon">
+      <button class="button button_size_sm button_icon">
         {% include icon.html icon="anchor" %}
       </button>
-      <button class="button button_size_small button_icon button_color_primary">
+      <button class="button button_size_sm button_icon button_color_primary">
         {% include icon.html icon="anchor" %}
       </button>
       <button class="button button_icon">
@@ -80,10 +80,10 @@ Used for when displaying a button with only an icon and no text.
       <button class="button button_icon button_color_primary">
         {% include icon.html icon="anchor" %}
       </button>
-      <button class="button button_size_large button_icon">
+      <button class="button button_size_lg button_icon">
         {% include icon.html icon="anchor" %}
       </button>
-      <button class="button button_size_large button_icon button_color_primary">
+      <button class="button button_size_lg button_icon button_color_primary">
         {% include icon.html icon="anchor" %}
       </button>
     </div>
@@ -106,13 +106,13 @@ Used for when displaying a button with only an icon and no text.
 <div class="demo grid grid_md">
   <div class="demo__render grid__item">
     <div class="level level_wrap">
-      <button class="button button_size_small button_color_primary">
+      <button class="button button_size_sm button_color_primary">
         <span>Button</span>
       </button>
       <button class="button button_color_primary">
         <span>Button</span>
       </button>
-      <button class="button button_size_large button_color_primary">
+      <button class="button button_size_lg button_color_primary">
         <span>Button</span>
       </button>
     </div>
@@ -120,9 +120,9 @@ Used for when displaying a button with only an icon and no text.
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
 ```html
-<button class="button button_size_small button_color_primary">Button</button>
+<button class="button button_size_sm button_color_primary">Button</button>
 <button class="button button_color_primary">Button</button>
-<button class="button button_size_large button_color_primary">Button</button>
+<button class="button button_size_lg button_color_primary">Button</button>
 ```
   </div>
   </div>

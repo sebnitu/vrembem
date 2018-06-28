@@ -1,23 +1,45 @@
-/*==============================================================================
-  @card
-==============================================================================*/
+@import 'variables';
+
+/**
+ * Card
+ */
 
 .card {
   position: relative;
-  display: block;
-  margin: 0 auto;
-  background: $white;
-  border-radius: $border-radius;
+  display: flex;
+  flex-direction: column;
+  background: $card-background;
+  border: $card-border;
+  border-radius: $card-border-radius;
 }
 
-/**
- * Card Elements
- */
+.card_max {
+  max-width: $card-max-width;
+}
 
-.card__inner {
+/* Card Elements */
+
+.card__body,
+.card__image {
   position: relative;
   z-index: 3;
-  padding: 1.2em;
+}
+
+.card__body,
+.card__header,
+.card__footer {
+  padding: $card-padding;
+}
+
+.card__body {
+  flex: 1 0 0;
+}
+
+.card__body_center {
+  flex-basis: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .card__image {
@@ -25,111 +47,40 @@
   height: auto;
 
   &:first-child {
-    border-top-left-radius: $border-radius;
-    border-top-right-radius: $border-radius;
+    border-top-left-radius: $card-border-radius;
+    border-top-right-radius: $card-border-radius;
   }
 
   &:last-child {
-    border-bottom-left-radius: $border-radius;
-    border-bottom-right-radius: $border-radius;
+    border-bottom-left-radius: $card-border-radius;
+    border-bottom-right-radius: $card-border-radius;
   }
 }
 
-.card__icon {
-  color: $primary;
-  font-size: 1.6em;
+.card__header {
+  border-bottom: $card-border;
+
+  &:first-child {
+    border-top-left-radius: $card-border-radius;
+    border-top-right-radius: $card-border-radius;
+  }
+}
+
+.card__footer {
+  border-top: $card-border;
+
+  &:last-child {
+    border-bottom-left-radius: $card-border-radius;
+    border-bottom-right-radius: $card-border-radius;
+  }
 }
 
 .card__title {
-  font-size: 1.25em;
-  line-height: 1.4em;
-  font-weight: normal;
-  color: $primary;
-  margin-bottom: 0.5rem;
+  font-size: 1.2em;
+  line-height: 1.35em;
 }
 
-.card__text {
-  font-size: px-to-em(15px);
-  line-height: 1.4em;
-  margin-bottom: 0.5rem;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-}
-
-.card__action {
-  margin-top: 1rem;
-}
-
-.card__sep {
-  margin: 1em 0;
-  border: none;
-  border-bottom: 1px solid rgba($black, 0.1);
-}
-
-/**
- * Card Modifiers
- */
-
-.card_center {
-  text-align: center;
-
-  .card__inner {
-    padding-left: 2em;
-    padding-right: 2em;
-  }
-}
-
-.card_large {
-  padding: 1em 2em;
-
-  .card__title {
-    font-size: 2.5em;
-    line-height: 1.3em;
-    font-weight: 200;
-    margin-bottom: 1rem;
-  }
-
-  .card__text {
-    font-size: 1.125em;
-  }
-
-  .card__action {
-    margin-top: 3rem;
-  }
-}
-
-@include media-min('medium') {
-  .card_large {
-    padding: 3em 5em;
-  }
-}
-
-/**
- * Card Background Modifiers
- */
-
-.card_bg_shade {
-  background: #efefef;
-}
-
-.card_bg_image {
-  background: #000;
-  color: $white;
-
-  .card__title {
-    color: $white;
-  }
-
-  .card__text {
-    color: rgba($white, 0.8);
-  }
-}
-
-/**
- * Section Background and Screens
- */
+/* Section Background and Screens */
 
 .card__background,
 .card__screen {
@@ -140,7 +91,7 @@
   bottom: 0;
   width: 100%;
   height: 100%;
-  border-radius: $border-radius;
+  border-radius: $card-border-radius;
 }
 
 .card__background {
@@ -150,5 +101,6 @@
 
 .card__screen {
   z-index: 2;
-  background: rgba($black, 0.8);
+  opacity: $card__screen-opacity;
+  background: $card__screen-background;
 }
