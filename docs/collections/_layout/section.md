@@ -161,3 +161,24 @@ order: 1
     <p class="text_lead">Vestibulum a arcu mi. Integer tempus scelerisque turpis, nec sodales eros facilisis non. Nam pulvinar vel quam in eleifend. Nunc ullamcorper aliquet tellus vitae euismod.</p>
   </div>
 </div>
+
+<div class="section bg_color">
+  <div class="section__container container type type_inverted">
+    <h1>Dark Shade Background</h1>
+    <p class="text_lead">Vestibulum a arcu mi. Integer tempus scelerisque turpis, nec sodales eros facilisis non. Nam pulvinar vel quam in eleifend. Nunc ullamcorper aliquet tellus vitae euismod.</p>
+  </div>
+</div>
+
+<div class="section bg_gray">
+  <div class="section__container container type type_inverted">
+    <h1>Dark Shade Background</h1>
+    <p class="text_lead">Vestibulum a arcu mi. Integer tempus scelerisque turpis, nec sodales eros facilisis non. Nam pulvinar vel quam in eleifend. Nunc ullamcorper aliquet tellus vitae euismod.</p>
+  </div>
+</div>
+
+<div class="section bg_black">
+  <div class="section__container container type type_inverted">
+    <h1>Dark Shade Background</h1>
+    <p class="text_lead">Vestibulum a arcu mi. Integer tempus scelerisque turpis, nec sodales eros facilisis non. Nam pulvinar vel quam in eleifend. Nunc ullamcorper aliquet tellus vitae euismod.</p>
+  </div>
+</div>

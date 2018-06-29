@@ -17,7 +17,7 @@ title: GitHub
   * Arrow
   * Tooltip
 -->
-<div class="section section_size_small bg_primary">
+<div class="section section_size_sm bg_primary">
   <div class="section__container container">
 
     <div class="grid grid_flatten">
@@ -134,7 +134,7 @@ title: GitHub
   * Dropdown
   * Menu
 -->
-<div class="section section_size_small bg_shade">
+<div class="section section_size_sm bg_shade">
   <div class="container spacing">
     <div class="grid">
       <div class="grid__item level">
@@ -268,7 +268,7 @@ title: GitHub
   Includes:
   * Section
 -->
-<div class="section section_size_small">
+<div class="section section_size_sm">
   <div class="container spacing">
     <div class="grid">
       <div class="grid__item spacing spacing_size_small">
@@ -286,7 +286,7 @@ title: GitHub
         <button class="button">Edit</button>
       </div>
     </div><!-- .grid -->
-    <div class="section section_size_small bg_shade-light spacing">
+    <div class="section section_size_sm bg_shade-light spacing">
       <ul class="menu menu_full">
         <li class="menu__item">
           <a href="#" class="menu__link">
@@ -463,7 +463,7 @@ title: GitHub
   Includes:
   * Section
 -->
-<div class="section section_size_small">
+<div class="section section_size_sm">
   <div class="container">
 
     <div class="b radius">
@@ -586,7 +586,7 @@ title: GitHub
   Includes:
   * Section
 -->
-<div class="section section_size_small">
+<div class="section section_size_sm">
   <div class="container">
 
     <div class="b radius">

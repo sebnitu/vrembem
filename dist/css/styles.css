@@ -100,12 +100,12 @@ pre {
   background-color: #000000 !important;
 }
 
-.bg_gray {
-  background-color: #9e9e9e !important;
-}
-
 .bg_color {
   background-color: #212121 !important;
+}
+
+.bg_gray {
+  background-color: #9e9e9e !important;
 }
 
 /* Primary */
@@ -243,6 +243,10 @@ pre {
  */
 .c {
   color: #212121 !important;
+}
+
+.c_light {
+  color: #bdbdbd !important;
 }
 
 .c_white {
@@ -565,6 +569,7 @@ pre {
 .type > h6 {
   line-height: 1.25;
   font-weight: 600;
+  color: inherit;
 }
 
 .h a, .type > h1 a, .type > h2 a, .type > h3 a, .type > h4 a, .type > h5 a, .type > h6 a,
@@ -1004,12 +1009,17 @@ pre {
 }
 
 /* Text Size */
-.text_size_small {
+.text_size_sm {
   font-size: 0.875em !important;
 }
 
-.text_size_large {
+.text_size_lg {
   font-size: 1.25em !important;
+}
+
+.text_size_sm,
+.text_size_lg {
+  line-height: 1.5em;
 }
 
 /* Text Alignment */
@@ -1112,6 +1122,15 @@ pre {
   color: #ffffff;
 }
 
+.type_inverted > h1,
+.type_inverted > h2,
+.type_inverted > h3,
+.type_inverted > h4,
+.type_inverted > h5,
+.type_inverted > h6 {
+  color: #ffffff;
+}
+
 /**
  * Section
  */
@@ -1194,7 +1213,7 @@ pre {
 .section__intro {
   text-align: center;
   margin: 0 auto;
-  max-width: 720px;
+  max-width: 45rem;
 }
 
 /* Section Background and Screens */
@@ -3368,11 +3387,11 @@ pre {
   vertical-align: middle;
 }
 
-.icon_size_small {
+.icon_size_sm {
   font-size: 1.0435em;
 }
 
-.icon_size_large {
+.icon_size_lg {
   font-size: 1.5625em;
 }
 

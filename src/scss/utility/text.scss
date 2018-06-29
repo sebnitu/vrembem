@@ -33,12 +33,17 @@
 
 /* Text Size */
 
-.text_size_small {
+.text_size_sm {
   font-size: $font-size-small !important;
 }
 
-.text_size_large {
+.text_size_lg {
   font-size: $font-size-large !important;
+}
+
+.text_size_sm,
+.text_size_lg {
+  line-height: 1.5em;
 }
 
 /* Text Alignment */
