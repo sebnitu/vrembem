@@ -25,11 +25,11 @@ Import the components you'd like to use directly into your Sass project. To impo
 Alternatively, you can add only the specific components you need. Keep in mind that components include the `all` import to include all necessary component files:
 
 ```scss
-// Core files
+// Core files (required)
 @import 'core/all';
 
-// Global styles (recommended)
-@import 'global/all';
+// Utility components and modifiers
+@import 'utility/all';
 
 // Layout components
 @import 'layout/all';
