@@ -49,45 +49,33 @@ Used for displaying icon-only links.
     <ul class="menu">
       <li class="menu__item">
         <a class="menu__link menu__link_icon" href="#">
-          <svg role="img" class="icon">
-            <use xlink:href="#arrow-left"></use>
-          </svg>
+          {% include icon.html icon="arrow-left" %}
         </a>
       </li>
       <li class="menu__item">
         <a class="menu__link menu__link_icon" href="#">
-          <svg role="img" class="icon">
-            <use xlink:href="#arrow-right"></use>
-          </svg>
+          {% include icon.html icon="arrow-right" %}
         </a>
       </li>
       <li class="menu__item">
         <a class="menu__link menu__link_icon" href="#">
-          <svg role="img" class="icon">
-            <use xlink:href="#rotate-cw"></use>
-          </svg>
+          {% include icon.html icon="rotate-cw" %}
         </a>
       </li>
       <li class="menu__item">
         <a class="menu__link menu__link_icon" href="#">
-          <svg role="img" class="icon">
-            <use xlink:href="#home"></use>
-          </svg>
+          {% include icon.html icon="home" %}
         </a>
       </li>
       <li class="menu__sep"></li>
       <li class="menu__item">
         <a class="menu__link menu__link_icon" href="#">
-          <svg role="img" class="icon">
-            <use xlink:href="#at-sign"></use>
-          </svg>
+          {% include icon.html icon="at-sign" %}
         </a>
       </li>
       <li class="menu__item">
         <a class="menu__link menu__link_icon" href="#">
-          <svg role="img" class="icon">
-            <use xlink:href="#more-vertical"></use>
-          </svg>
+          {% include icon.html icon="more-vertical" %}
         </a>
       </li>
     </ul>
@@ -152,34 +140,26 @@ Elements inside the menu__link and menu__text elements receive appropriate spaci
     <ul class="menu">
       <li class="menu__item">
         <a class="menu__link" href="#">
-          <svg role="img" class="icon">
-            <use xlink:href="#thumbs-up"></use>
-          </svg>
+          {% include icon.html icon="thumbs-up" %}
           <span>30k</span>
         </a>
       </li>
       <li class="menu__item">
         <a class="menu__link" href="#">
-          <svg role="img" class="icon">
-            <use xlink:href="#thumbs-down"></use>
-          </svg>
+          {% include icon.html icon="thumbs-down" %}
           <span>1k</span>
         </a>
       </li>
       <li class="menu__item">
         <a class="menu__link" href="#">
-          <svg role="img" class="icon">
-            <use xlink:href="#share"></use>
-          </svg>
+          {% include icon.html icon="share" %}
           <span>Share</span>
         </a>
       </li>
       <li class="menu__sep"></li>
       <li class="menu__item">
         <a class="menu__link menu__link_icon" href="#">
-          <svg role="img" class="icon">
-            <use xlink:href="#more-horizontal"></use>
-          </svg>
+          {% include icon.html icon="more-horizontal" %}
         </a>
       </li>
     </ul>

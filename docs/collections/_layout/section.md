@@ -19,7 +19,7 @@ order: 1
     <div class="section__intro type type_inverted">
       <h1>Huge Section with Screen &amp; Background Image</h1>
       <p class="text_lead">This is a demonstration of section area using the intro element along with a screen and background image. The screen color is set using the background modifiers and can be changed as needed.</p>
-      <div class="level">
+      <div class="level justify_center">
         <button class="button button_color_primary">First Action</button>
         <button class="button button_color_secondary">Second Action</button>
       </div>
