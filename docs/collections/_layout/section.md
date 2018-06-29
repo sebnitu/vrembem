@@ -14,7 +14,7 @@ order: 1
   </div>
 </div>
 
-<div class="section section_size_huge">
+<div class="section section_size_xl">
   <div class="section__container container">
     <div class="section__intro type type_inverted">
       <h1>Huge Section with Screen &amp; Background Image</h1>
@@ -30,7 +30,7 @@ order: 1
 <div class="demo spacing">
   <div class="demo__code" markdown="1">
 ```html
-<div class="section section_size_huge">
+<div class="section section_size_xl">
   <div class="section__container container">
     <div class="section__intro">
       ...
@@ -56,14 +56,14 @@ order: 1
   </div>
 </div>
 
-<div class="section section_size_huge bb">
+<div class="section section_size_xl bb">
   <div class="section__container container type">
     <h1>Huge Section</h1>
     <p class="text_lead">Vestibulum a arcu mi. Integer tempus scelerisque turpis, nec sodales eros facilisis non. Nam pulvinar vel quam in eleifend. Nunc ullamcorper aliquet tellus vitae euismod.</p>
   </div>
 </div>
 
-<div class="section section_size_large bb">
+<div class="section section_size_lg bb">
   <div class="section__container container type">
     <h1>LargeSection</h1>
     <p class="text_lead">Vestibulum a arcu mi. Integer tempus scelerisque turpis, nec sodales eros facilisis non. Nam pulvinar vel quam in eleifend. Nunc ullamcorper aliquet tellus vitae euismod.</p>
@@ -77,7 +77,7 @@ order: 1
   </div>
 </div>
 
-<div class="section section_size_small bb">
+<div class="section section_size_sm bb">
   <div class="section__container container type">
     <h1>Small Section</h1>
     <p class="text_lead">Vestibulum a arcu mi. Integer tempus scelerisque turpis, nec sodales eros facilisis non. Nam pulvinar vel quam in eleifend. Nunc ullamcorper aliquet tellus vitae euismod.</p>
