@@ -1,0 +1,10 @@
+@import 'variables';
+
+/**
+ * Button min-width modifier
+ */
+
+.button_min-width {
+  max-width: 100%;
+  min-width: $button_min-width;
+}

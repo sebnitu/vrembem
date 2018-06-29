@@ -1,0 +1,42 @@
+@import 'variables';
+
+/**
+ * Modal position modifiers
+ */
+
+.modal_pos_top {
+  justify-content: flex-start;
+}
+
+.modal_pos_bottom {
+  justify-content: flex-end;
+
+  .modal__dialog {
+    transform: translate3d(0, $modal-travel, 0);
+  }
+}
+
+.modal_pos_left,
+.modal_pos_right {
+  .modal__dialog {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 280px;
+    height: 100%;
+    margin: 0;
+    border-radius: 0;
+    opacity: 1;
+    border: none;
+  }
+}
+
+.modal_pos_left .modal__dialog {
+  left: 0;
+  transform: translate3d(-$modal-travel, 0, 0);
+}
+
+.modal_pos_right .modal__dialog {
+  right: 0;
+  transform: translate3d($modal-travel, 0, 0);
+}

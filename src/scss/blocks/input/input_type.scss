@@ -1,0 +1,21 @@
+@import 'variables';
+
+/**
+ * Input type modifiers
+ */
+
+.input_type_select {
+  // sass-lint:disable no-vendor-prefixes
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url($input_type_select-image);
+  background-position: 100% center;
+  background-repeat: no-repeat;
+  padding-right: 2em;
+}
+
+.input_type_textarea {
+  max-width: 100%;
+  min-height: 2.375em; // rows="1"
+}

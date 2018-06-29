@@ -1,0 +1,21 @@
+@import 'variables';
+
+/**
+ * Menu full modifier
+ */
+
+.menu_full {
+  justify-content: space-between;
+
+  .menu__item {
+    flex: 1 1 auto;
+  }
+
+  .menu__item_static {
+    flex-grow: 0;
+  }
+
+  .menu__link {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,13 @@
+@import 'core/all';
+
+.demo {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.demo__code {
+  padding: 1em;
+  background: $background-color;
+  border-radius: $border-radius;
+  overflow: auto;
+}

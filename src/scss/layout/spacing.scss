@@ -1,0 +1,19 @@
+/**
+ * Spacing
+ */
+
+.spacing {
+  > * + * {
+    margin-top: $spacing;
+  }
+}
+
+/* Spacing Modifiers */
+
+@each $key, $value in $spacing-scale {
+  .spacing_#{$key} {
+    > * + * {
+      margin-top: $value;
+    }
+  }
+}

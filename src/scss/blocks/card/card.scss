@@ -1,0 +1,106 @@
+@import 'variables';
+
+/**
+ * Card
+ */
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: $card-background;
+  border: $card-border;
+  border-radius: $card-border-radius;
+}
+
+.card_max {
+  max-width: $card-max-width;
+}
+
+/* Card Elements */
+
+.card__body,
+.card__image {
+  position: relative;
+  z-index: 3;
+}
+
+.card__body,
+.card__header,
+.card__footer {
+  padding: $card-padding;
+}
+
+.card__body {
+  flex: 1 0 0;
+}
+
+.card__body_center {
+  flex-basis: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card__image {
+  width: 100%;
+  height: auto;
+
+  &:first-child {
+    border-top-left-radius: $card-border-radius;
+    border-top-right-radius: $card-border-radius;
+  }
+
+  &:last-child {
+    border-bottom-left-radius: $card-border-radius;
+    border-bottom-right-radius: $card-border-radius;
+  }
+}
+
+.card__header {
+  border-bottom: $card-border;
+
+  &:first-child {
+    border-top-left-radius: $card-border-radius;
+    border-top-right-radius: $card-border-radius;
+  }
+}
+
+.card__footer {
+  border-top: $card-border;
+
+  &:last-child {
+    border-bottom-left-radius: $card-border-radius;
+    border-bottom-right-radius: $card-border-radius;
+  }
+}
+
+.card__title {
+  font-size: 1.2em;
+  line-height: 1.35em;
+}
+
+/* Section Background and Screens */
+
+.card__background,
+.card__screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: $card-border-radius;
+}
+
+.card__background {
+  z-index: 1;
+  object-fit: cover;
+}
+
+.card__screen {
+  z-index: 2;
+  opacity: $card__screen-opacity;
+  background: $card__screen-background;
+}

@@ -1,0 +1,19 @@
+@import 'variables';
+
+/**
+ * Icon-action size modifiers
+ */
+
+.icon-action_size_small {
+  padding: $icon-action_size_small-padding;
+  font-size: $icon-action_size_small-font-size;
+
+  .icon {
+    stroke-width: 3px;
+  }
+}
+
+.icon-action_size_large {
+  padding: $icon-action_size_large-padding;
+  font-size: $icon-action_size_large-font-size;
+}

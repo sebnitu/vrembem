@@ -1,0 +1,14 @@
+@import 'variables';
+
+/**
+ * Media reverse modifier
+ */
+
+.media_reverse {
+  flex-direction: row-reverse;
+
+  > * + * {
+    margin-left: 0;
+    margin-right: $media-spacing;
+  }
+}

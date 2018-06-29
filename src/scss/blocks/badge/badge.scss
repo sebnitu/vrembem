@@ -1,0 +1,27 @@
+@import 'variables';
+
+/**
+ * Badge
+ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $badge-padding;
+  color: $badge-color;
+  font-size: $badge-font-size;
+  line-height: $badge-line-height;
+  background: $badge-background;
+  border: $badge-border;
+  border-radius: $badge-border-radius;
+
+  > * + * {
+    margin-left: $badge-inner-spacing;
+  }
+
+  &.badge_link:hover {
+    color: $badge-color-hover;
+    background: $badge-background-hover;
+  }
+}

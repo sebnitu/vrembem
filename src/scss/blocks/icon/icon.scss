@@ -1,0 +1,29 @@
+@import 'variables';
+
+/**
+ * Icon
+ */
+
+.icon {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  padding: $icon-padding;
+  fill: $icon-fill;
+  stroke: $icon-stroke;
+  stroke-linecap: $icon-stroke-linecap;
+  stroke-linejoin: $icon-stroke-linejoin;
+  stroke-width: $icon-stroke-width;
+  font-size: $icon-font-size;
+  box-sizing: content-box;
+  vertical-align: middle;
+}
+
+.icon_size_small {
+  font-size: 1.0435em;
+}
+
+.icon_size_large {
+  font-size: 1.5625em;
+}

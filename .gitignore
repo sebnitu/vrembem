@@ -1,5 +1,6 @@
 node_modules/
-demo/
+docs/_site
+docs/.jekyll-metadata
 
 # Numerous always-ignore extensions
 *.diff

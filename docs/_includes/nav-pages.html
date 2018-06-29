@@ -1,0 +1,24 @@
+{% if page.previous or page.next %}
+<footer class="page__footer">
+  <div class="container">
+    <ul class="menu menu_full">
+      <li class="menu__item">
+        {% if page.previous %}
+        <a href="{{ page.previous.url }}" class="menu__link justify_start">
+          {% include icon.html icon="arrow-left" %}
+          <span>{{ page.previous.title }}</span>
+        </a>
+        {% endif %}
+      </li>
+      <li class="menu__item">
+        {% if page.next %}
+        <a href="{{ page.next.url }}" class="menu__link justify_end">
+          <span>{{ page.next.title }}</span>
+          {% include icon.html icon="arrow-right" %}
+        </a>
+        {% endif %}
+      </li>
+    </ul>
+  </div>
+</footer><!-- .page__footer -->
+{% endif %}

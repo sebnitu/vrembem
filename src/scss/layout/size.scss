@@ -1,0 +1,38 @@
+$size-columns: 12 !default;
+
+/**
+ * Size Modifiers
+ */
+
+.size_auto {
+  flex: 0 0 auto;
+  width: auto;
+}
+
+@for $i from 1 through $size-columns {
+  .size_#{$i} {
+    flex: 0 0 (100% * ($i/$size-columns));
+    width: (100% * ($i/$size-columns));
+  }
+}
+
+/**
+ * Size Breakpoints Modifiers
+ */
+
+@each $name, $value in $breakpoints {
+  @include media-min($name) {
+
+    .size_#{$name}_auto {
+      flex: 0 0 auto;
+      width: auto;
+    }
+
+    @for $i from 1 through $size-columns {
+      .size_#{$i}_#{$name} {
+        flex-basis: (100% * ($i/$size-columns));
+        width: (100% * ($i/$size-columns));
+      }
+    }
+  }
+}

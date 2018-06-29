@@ -1,0 +1,21 @@
+@import 'variables';
+
+/**
+ * Card size modifiers
+ */
+
+.card_size_lg {
+  .card__body,
+  .card__header,
+  .card__footer {
+    padding: $card-padding-lg;
+  }
+}
+
+.card_size_xl {
+  .card__body,
+  .card__header,
+  .card__footer {
+    padding: $card-padding-xl;
+  }
+}

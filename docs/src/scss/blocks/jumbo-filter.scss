@@ -1,0 +1,21 @@
+@import 'core/all';
+
+.jumbo-filter {
+  position: relative;
+  padding: 0.5em;
+  border-bottom: $border;
+
+  > * + * {
+    margin-top: 0.25em;
+  }
+}
+
+@include media-min('xs') {
+  .jumbo-filter {
+    padding: 1em;
+
+    > * + * {
+      margin-top: 0.5em;
+    }
+  }
+}

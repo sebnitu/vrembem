@@ -1,0 +1,43 @@
+@import 'variables';
+
+/**
+ * Media stack modifier
+ */
+
+.media_stack {
+  flex-direction: column;
+
+  > * + * {
+    margin-top: $media-spacing;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@each $name, $value in $breakpoints {
+
+  .media_stack_#{$name} {
+    flex-direction: column;
+  }
+
+  @include media-min($name) {
+    .media_stack_#{$name} {
+      flex-direction: row;
+
+      &.media_reverse {
+        flex-direction: row-reverse;
+      }
+    }
+  }
+
+  @include media-max($name) {
+    .media_stack_#{$name} {
+      > * + * {
+        margin-top: $media-spacing;
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+  }
+
+}

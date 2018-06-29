@@ -1,0 +1,26 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+{%- capture title -%}
+  {%- if page.title == 'Home' -%}
+    {{ site.title  }}
+  {%- else -%}
+    {{ page.title }} - {{ site.title  }}
+  {%- endif -%}
+{%- endcapture -%}
+
+<title>{{ title }}</title>
+
+<meta name="description" content="{{ site.description }}">
+
+{% include head-og.html %}
+
+<!-- RSS -->
+{% feed_meta %}
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="{{ site.url }}{{ site.baseurl }}/dist/img/favicon.png">
+
+<!-- Styles -->
+<link rel="stylesheet" href="{{ site.url }}{{ site.baseurl }}/dist/css/styles.min.css">

@@ -1,0 +1,20 @@
+/**
+ * Links Utility
+ */
+
+.link {
+  @include add-anchor();
+}
+
+/* Link modifiers */
+
+.link_subtle {
+  color: $color-light;
+  font-weight: normal;
+  border: none;
+
+  &:hover {
+    color: $color;
+    border: none;
+  }
+}

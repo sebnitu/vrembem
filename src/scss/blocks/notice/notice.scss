@@ -1,0 +1,40 @@
+@import 'variables';
+
+/**
+ * Notice
+ */
+
+.notice {
+  position: relative;
+  padding: $notice-padding;
+  background: $notice-background;
+  box-shadow: $notice-box-shadow;
+  border: $notice-border-width solid $notice-border-color;
+  border-radius: $notice-border-radius;
+
+  a {
+    @include add-anchor();
+  }
+}
+
+.notice__close {
+  cursor: pointer;
+  float: right;
+  margin: 0 -0.25em 0.25em 1em;
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.notice__content {
+
+  > * + * {
+    margin-top: $notice-spacing;
+  }
+}
+
+.notice__heading {
+  font-size: $notice-heading-font-size;
+}

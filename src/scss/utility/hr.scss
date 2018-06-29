@@ -1,0 +1,14 @@
+/**
+ * Horizontal Rule Utility
+ */
+
+.hr {
+  display: block;
+  height: 1px;
+  background: $border-color;
+  border: none;
+}
+
+.hr_inverted {
+  background-color: $border-color-inverted;
+}

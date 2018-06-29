@@ -1,0 +1,28 @@
+@import 'variables';
+
+/**
+ * Button size modifier
+ */
+
+.button_size_sm {
+  padding: $button_size_sm-padding;
+  font-size: $button_size_sm-font-size;
+  line-height: 1.6em;
+
+  .icon {
+    padding: 0.129em;
+  }
+}
+
+.button_size_lg {
+  padding: $button_size_lg-padding;
+  font-size: $button_size_lg-font-size;
+
+  &:not(.button_icon) .icon:first-child {
+    margin-left: -0.25em;
+  }
+
+  &:not(.button_icon) .icon:last-child {
+    margin-right: -0.25em;
+  }
+}

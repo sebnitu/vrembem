@@ -1,0 +1,66 @@
+@import 'core/all';
+
+/**
+ * Page
+ */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Header & Footer */
+
+.page__header,
+.page__footer {
+  flex: 0 0 auto;
+  padding: 0.5em;
+}
+
+.page__header {
+  background: $primary-dark;
+  color: $white;
+}
+
+.page__footer {
+  background: $shade;
+}
+
+@include media-max('sm') {
+  .page__footer .grid_sm > .grid__item + .grid__item {
+    margin-top: -1.5em;
+  }
+}
+
+@include media-min('md') {
+  .page__header,
+  .page__footer {
+    padding: 1em;
+  }
+
+  .page__footer .grid_md > .grid__item + .grid__item {
+    margin-top: -1.5em;
+  }
+}
+
+/* Main */
+
+.page__main {
+  flex: 1 1 auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Section */
+
+.page__section {
+  padding: 1.5em;
+}
+
+@include media-min('md') {
+  .page__section {
+    padding: 2em;
+  }
+}

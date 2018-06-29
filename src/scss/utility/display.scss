@@ -1,0 +1,19 @@
+/**
+ * Display Utility
+ */
+
+@each $display in $utility-display {
+  .d_#{$display} {
+    display: $display !important;
+  }
+}
+
+@each $name, $value in $breakpoints {
+  @include media-min($name) {
+    @each $display in $utility-display {
+      .d_#{$display}_#{$name} {
+        display: $display !important;
+      }
+    }
+  }
+}
