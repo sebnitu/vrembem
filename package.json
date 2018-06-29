@@ -19,14 +19,14 @@
     "gulpfile.babel.js"
   ],
   "devDependencies": {
-    "autoprefixer": "^8.0.0",
+    "autoprefixer": "^8.6.4",
     "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
     "babelify": "^8.0.0",
     "browserify": "^16.2.0",
     "del": "^3.0.0",
-    "feather-icons": "^4.5.0",
+    "feather-icons": "^4.7.3",
     "gulp": "^3.9.1",
     "gulp-imagemin": "^4.1.0",
     "gulp-postcss": "^7.0.0",
