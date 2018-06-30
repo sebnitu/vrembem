@@ -2,7 +2,7 @@
 host: localhost
 port: 8000
 baseurl: "" # subpath of your site, e.g. /blog
-url: "http://getbaseweb.com" # base hostname & protocol for your site
+url: "" # base hostname & protocol for your site
 permalink: pretty
 
 # Site
