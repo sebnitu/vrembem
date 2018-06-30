@@ -1,4 +1,10 @@
 $grid-spacing: 2rem !default;
+$grid-scale: (
+  'xs': 0.5rem,
+  'sm': 1rem,
+  'lg': 2.5rem,
+  'xl': 3rem,
+) !default;
 
 /**
  * Grid
@@ -37,7 +43,6 @@ $grid-spacing: 2rem !default;
  */
 
 @each $name, $value in $breakpoints {
-
   .grid_#{$name} {
     flex-direction: column;
   }
@@ -53,5 +58,38 @@ $grid-spacing: 2rem !default;
       width: 100%;
     }
   }
+}
 
+/**
+ * Grid Size Modifiers
+ */
+
+@each $key, $value in $grid-scale {
+  .grid_size_#{$key} {
+    margin: 0 (-($value * 0.5));
+
+    .grid__item {
+      padding: ($value * 0.5);
+    }
+  }
+
+  .grid_size_#{$key}.grid_flatten {
+    margin: (-($value * 0.5));
+  }
+}
+
+/**
+ * Grid Flush Modifier
+ */
+
+.grid_flush {
+  margin: 0;
+
+  .grid__item {
+    padding: 0;
+  }
+}
+
+.grid_flush.grid_flatten {
+  margin: 0;
 }

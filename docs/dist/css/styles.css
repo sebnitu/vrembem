@@ -1421,6 +1421,72 @@ pre {
 }
 
 /**
+ * Grid Size Modifiers
+ */
+.grid_size_xs {
+  margin: 0 -0.25rem;
+}
+
+.grid_size_xs .grid__item {
+  padding: 0.25rem;
+}
+
+.grid_size_xs.grid_flatten {
+  margin: -0.25rem;
+}
+
+.grid_size_sm {
+  margin: 0 -0.5rem;
+}
+
+.grid_size_sm .grid__item {
+  padding: 0.5rem;
+}
+
+.grid_size_sm.grid_flatten {
+  margin: -0.5rem;
+}
+
+.grid_size_lg {
+  margin: 0 -1.25rem;
+}
+
+.grid_size_lg .grid__item {
+  padding: 1.25rem;
+}
+
+.grid_size_lg.grid_flatten {
+  margin: -1.25rem;
+}
+
+.grid_size_xl {
+  margin: 0 -1.5rem;
+}
+
+.grid_size_xl .grid__item {
+  padding: 1.5rem;
+}
+
+.grid_size_xl.grid_flatten {
+  margin: -1.5rem;
+}
+
+/**
+ * Grid Flush Modifier
+ */
+.grid_flush {
+  margin: 0;
+}
+
+.grid_flush .grid__item {
+  padding: 0;
+}
+
+.grid_flush.grid_flatten {
+  margin: 0;
+}
+
+/**
  * Size Modifiers
  */
 .size_auto {

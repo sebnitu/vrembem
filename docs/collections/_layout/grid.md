@@ -165,3 +165,107 @@ The fill modifier class creates equal height columns for a grid.
 ```
   </div>
 </div>
+
+## `.grid_size_[type]`
+
+<div class="demo spacing">
+  <div class="demo__render">
+
+    <div class="grid grid_size_xs">
+      <div class="grid__item">
+        <div class="box">...</div>
+      </div>
+      <div class="grid__item">
+        <div class="box">...</div>
+      </div>
+      <div class="grid__item">
+        <div class="box">...</div>
+      </div>
+    </div>
+
+    <div class="grid grid_size_sm">
+      <div class="grid__item">
+        <div class="box">...</div>
+      </div>
+      <div class="grid__item">
+        <div class="box">...</div>
+      </div>
+      <div class="grid__item">
+        <div class="box">...</div>
+      </div>
+    </div>
+
+    <div class="grid grid_size_lg">
+      <div class="grid__item">
+        <div class="box">...</div>
+      </div>
+      <div class="grid__item">
+        <div class="box">...</div>
+      </div>
+      <div class="grid__item">
+        <div class="box">...</div>
+      </div>
+    </div>
+
+    <div class="grid grid_size_xl">
+      <div class="grid__item">
+        <div class="box">...</div>
+      </div>
+      <div class="grid__item">
+        <div class="box">...</div>
+      </div>
+      <div class="grid__item">
+        <div class="box">...</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="demo__code" markdown="1">
+```html
+<div class="grid grid_size_xs">...</div>
+<div class="grid grid_size_sm">...</div>
+<div class="grid grid_size_lg">...</div>
+<div class="grid grid_size_xl">...</div>
+```
+  </div>
+</div>
+
+## `.grid_flush`
+
+<div class="demo spacing">
+  <div class="demo__render">
+
+    <div class="grid grid_flush">
+      <div class="grid__item">
+        <div class="box">...</div>
+      </div>
+      <div class="grid__item">
+        <div class="box">...</div>
+      </div>
+      <div class="grid__item">
+        <div class="box">...</div>
+      </div>
+    </div>
+
+    <div class="grid grid_flush">
+      <div class="grid__item">
+        <div class="box">...</div>
+      </div>
+      <div class="grid__item">
+        <div class="box">...</div>
+      </div>
+      <div class="grid__item">
+        <div class="box">...</div>
+      </div>
+      <div class="grid__item">
+        <div class="box">...</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="demo__code" markdown="1">
+```html
+<div class="grid grid_flush">...</div>
+```
+  </div>
+</div>
