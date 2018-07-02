@@ -55,6 +55,7 @@ $grid-scale: (
 
   @include media-max($name) {
     .grid_#{$name} > .grid__item {
+      flex: none;
       width: 100%;
     }
   }

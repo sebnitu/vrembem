@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.2
+ * @version 0.2.3
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -1328,6 +1328,9 @@ pre {
 
 @media (max-width: 479px) {
   .grid_xs > .grid__item {
+    -webkit-box-flex: 0;
+        -ms-flex: none;
+            flex: none;
     width: 100%;
   }
 }
@@ -1350,6 +1353,9 @@ pre {
 
 @media (max-width: 619px) {
   .grid_sm > .grid__item {
+    -webkit-box-flex: 0;
+        -ms-flex: none;
+            flex: none;
     width: 100%;
   }
 }
@@ -1372,6 +1378,9 @@ pre {
 
 @media (max-width: 759px) {
   .grid_md > .grid__item {
+    -webkit-box-flex: 0;
+        -ms-flex: none;
+            flex: none;
     width: 100%;
   }
 }
@@ -1394,6 +1403,9 @@ pre {
 
 @media (max-width: 989px) {
   .grid_lg > .grid__item {
+    -webkit-box-flex: 0;
+        -ms-flex: none;
+            flex: none;
     width: 100%;
   }
 }
@@ -1416,6 +1428,9 @@ pre {
 
 @media (max-width: 1379px) {
   .grid_xl > .grid__item {
+    -webkit-box-flex: 0;
+        -ms-flex: none;
+            flex: none;
     width: 100%;
   }
 }
