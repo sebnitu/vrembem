@@ -74,16 +74,16 @@ title: Input
 <div class="demo grid grid_md">
   <div class="demo__render grid__item spacing">
     <div class="demo__group">
-      <input class="input input_size_small" placeholder="Default input..." type="text" />
+      <input class="input input_size_sm" placeholder="Default input..." type="text" />
     </div>
     <div class="demo__group">
       <input class="input" placeholder="Default input..." type="text" />
     </div>
     <div class="demo__group">
-      <input class="input input_size_large" placeholder="Default input..." type="text" />
+      <input class="input input_size_lg" placeholder="Default input..." type="text" />
     </div>
     <div class="demo__group">
-      <select class="input input_type_select input_size_small">
+      <select class="input input_type_select input_size_sm">
         <option>Option 1</option>
         <option>Option 2</option>
         <option>Option 3</option>
@@ -97,7 +97,7 @@ title: Input
       </select>
     </div>
     <div class="demo__group">
-      <select class="input input_type_select input_size_large">
+      <select class="input input_type_select input_size_lg">
         <option>Option 1</option>
         <option>Option 2</option>
         <option>Option 3</option>
@@ -107,10 +107,10 @@ title: Input
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
 ```html
-<input class="input input_size_small" placeholder="Default input..." type="text" />
-<input class="input input_size_large" placeholder="Default input..." type="text" />
-<select class="input input_type_select input_size_small">...</select>
-<select class="input input_type_select input_size_large">...</select>
+<input class="input input_size_sm" placeholder="Default input..." type="text" />
+<input class="input input_size_lg" placeholder="Default input..." type="text" />
+<select class="input input_type_select input_size_sm">...</select>
+<select class="input input_type_select input_size_lg">...</select>
 ```
   </div>
   </div>

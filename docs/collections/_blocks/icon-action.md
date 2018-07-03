@@ -37,22 +37,22 @@ title: Icon-action
 
 <div class="demo grid grid_md">
   <div class="demo__render grid__item">
-    <button class="icon-action icon-action_size_small">
+    <button class="icon-action icon-action_size_sm">
       {% include icon.html icon="x" %}
     </button>
     <button class="icon-action">
       {% include icon.html icon="x" %}
     </button>
-    <button class="icon-action icon-action_size_large">
+    <button class="icon-action icon-action_size_lg">
       {% include icon.html icon="x" %}
     </button>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
 ```html
-<button class="icon-action icon-action_size_small">...</button>
+<button class="icon-action icon-action_size_sm">...</button>
 <button class="icon-action">...</button>
-<button class="icon-action icon-action_size_large">...</button>
+<button class="icon-action icon-action_size_lg">...</button>
 ```
   </div>
   </div>

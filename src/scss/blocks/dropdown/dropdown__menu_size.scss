@@ -4,12 +4,12 @@
  * Dropdown size modifiers
  */
 
-.dropdown__menu_size_small {
-  width: $dropdown_size_small-width;
+.dropdown__menu_size_sm {
+  width: $dropdown_size_sm-width;
 }
 
-.dropdown__menu_size_large {
-  width: $dropdown_size_large-width;
+.dropdown__menu_size_lg {
+  width: $dropdown_size_lg-width;
 }
 
 .dropdown__menu_size_auto {

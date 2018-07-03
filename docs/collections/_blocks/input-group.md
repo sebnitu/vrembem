@@ -31,22 +31,22 @@ title: Input-group
 
 You can adjust the flex grow property on items using the following modifiers:
 
-* `input-group__item_grow_large`
-* `input-group__item_grow_small`
+* `input-group__item_grow_lg`
+* `input-group__item_grow_sm`
 * `input-group__item_grow_none`
 
 <div class="demo grid grid_md">
   <div class="demo__render grid__item spacing">
     <div class="demo__group">
       <div class="input-group">
-        <input class="input-group__item input-group__item_grow_large input" placeholder="..." type="text" />
+        <input class="input-group__item input-group__item_grow_lg input" placeholder="..." type="text" />
         <button class="input-group__item button button_color_primary">Submit</button>
       </div>
     </div>
     <div class="demo__group">
       <div class="input-group">
         <input class="input-group__item input" placeholder="..." type="text" />
-        <button class="input-group__item input-group__item_grow_small button button_color_primary">Submit</button>
+        <button class="input-group__item input-group__item_grow_sm button button_color_primary">Submit</button>
       </div>
     </div>
     <div class="demo__group">
@@ -60,12 +60,12 @@ You can adjust the flex grow property on items using the following modifiers:
   <div class="demo__code" markdown="1">
 ```html
 <div class="input-group">
-  <input class="input-group__item input-group__item_grow_large input" placeholder="..." type="text" />
+  <input class="input-group__item input-group__item_grow_lg input" placeholder="..." type="text" />
   <button class="input-group__item button button_color_primary">Submit</button>
 </div>
 <div class="input-group">
   <input class="input-group__item input" placeholder="..." type="text" />
-  <button class="input-group__item input-group__item_grow_small button button_color_primary">Submit</button>
+  <button class="input-group__item input-group__item_grow_sm button button_color_primary">Submit</button>
 </div>
 <div class="input-group">
   <input class="input-group__item input" placeholder="..." type="text" />
@@ -82,36 +82,36 @@ You can adjust the flex grow property on items using the following modifiers:
   <div class="demo__render spacing">
     <div class="demo__group">
       <div class="input-group">
-        <input class="input-group__item input-group__item_grow_small input input_size_small" placeholder="Title" type="text" />
-        <input class="input-group__item input input_size_small" placeholder="First" type="text" />
-        <input class="input-group__item input input_size_small" placeholder="Last" type="text" />
-        <button class="input-group__item input-group__item_grow_small button button_size_small button_color_primary">Submit</button>
+        <input class="input-group__item input-group__item_grow_sm input input_size_sm" placeholder="Title" type="text" />
+        <input class="input-group__item input input_size_sm" placeholder="First" type="text" />
+        <input class="input-group__item input input_size_sm" placeholder="Last" type="text" />
+        <button class="input-group__item input-group__item_grow_sm button button_size_sm button_color_primary">Submit</button>
       </div>
     </div>
     <div class="demo__group">
       <div class="input-group">
-        <input class="input-group__item input-group__item_grow_small input" placeholder="Title" type="text" />
+        <input class="input-group__item input-group__item_grow_sm input" placeholder="Title" type="text" />
         <input class="input-group__item input" placeholder="First" type="text" />
         <input class="input-group__item input" placeholder="Last" type="text" />
-        <button class="input-group__item input-group__item_grow_small button button_color_primary">Submit</button>
+        <button class="input-group__item input-group__item_grow_sm button button_color_primary">Submit</button>
       </div>
     </div>
     <div class="demo__group">
       <div class="input-group">
-        <input class="input-group__item input-group__item_grow_small input input_size_large" placeholder="Title" type="text" />
-        <input class="input-group__item input input_size_large" placeholder="First" type="text" />
-        <input class="input-group__item input input_size_large" placeholder="Last" type="text" />
-        <button class="input-group__item input-group__item_grow_small button button_size_large button_color_primary">Submit</button>
+        <input class="input-group__item input-group__item_grow_sm input input_size_lg" placeholder="Title" type="text" />
+        <input class="input-group__item input input_size_lg" placeholder="First" type="text" />
+        <input class="input-group__item input input_size_lg" placeholder="Last" type="text" />
+        <button class="input-group__item input-group__item_grow_sm button button_size_lg button_color_primary">Submit</button>
       </div>
     </div>
   </div>
   <div class="demo__code" markdown="1">
 ```html
 <div class="input-group">
-  <input class="input-group__item input-group__item_grow_small input" placeholder="Title" type="text" />
+  <input class="input-group__item input-group__item_grow_sm input" placeholder="Title" type="text" />
   <input class="input-group__item input" placeholder="First" type="text" />
   <input class="input-group__item input" placeholder="Last" type="text" />
-  <button class="input-group__item input-group__item_grow_small button button_color_primary">Submit</button>
+  <button class="input-group__item input-group__item_grow_sm button button_color_primary">Submit</button>
 </div>
 ```
   </div>

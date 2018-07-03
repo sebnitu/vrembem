@@ -3250,11 +3250,11 @@ pre {
 /**
  * Dropdown size modifiers
  */
-.dropdown__menu_size_small {
+.dropdown__menu_size_sm {
   width: 180px;
 }
 
-.dropdown__menu_size_large {
+.dropdown__menu_size_lg {
   width: 300px;
 }
 
@@ -3515,16 +3515,16 @@ pre {
 /**
  * Icon-action size modifiers
  */
-.icon-action_size_small {
+.icon-action_size_sm {
   padding: 0.125rem;
   font-size: 0.75em;
 }
 
-.icon-action_size_small .icon {
+.icon-action_size_sm .icon {
   stroke-width: 3px;
 }
 
-.icon-action_size_large {
+.icon-action_size_lg {
   padding: 0.4375rem;
   font-size: 1.375em;
 }
@@ -3671,12 +3671,12 @@ pre {
 /**
  * Input size modifiers
  */
-.input_size_small {
+.input_size_sm {
   padding: 0.215em 0.5em;
   font-size: 0.875em;
 }
 
-.input_size_large {
+.input_size_lg {
   padding: 0.5em 0.665em;
   font-size: 1.25em;
 }
@@ -3794,13 +3794,13 @@ pre {
   margin-left: 1px;
 }
 
-.input-group__item_grow_large {
+.input-group__item_grow_lg {
   -webkit-box-flex: 3;
       -ms-flex-positive: 3;
           flex-grow: 3;
 }
 
-.input-group__item_grow_small {
+.input-group__item_grow_sm {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
@@ -4460,11 +4460,11 @@ pre {
 /**
  * Modal size modifiers
  */
-.modal_size_small .modal__dialog {
+.modal_size_sm .modal__dialog {
   width: 300px;
 }
 
-.modal_size_large .modal__dialog {
+.modal_size_lg .modal__dialog {
   width: 900px;
 }
 

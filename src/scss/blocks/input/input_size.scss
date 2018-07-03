@@ -4,12 +4,12 @@
  * Input size modifiers
  */
 
-.input_size_small {
-  padding: $input_size_small-padding;
-  font-size: $input_size_small-font-size;
+.input_size_sm {
+  padding: $input_size_sm-padding;
+  font-size: $input_size_sm-font-size;
 }
 
-.input_size_large {
-  padding: $input_size_large-padding;
-  font-size: $input_size_large-font-size;
+.input_size_lg {
+  padding: $input_size_lg-padding;
+  font-size: $input_size_lg-font-size;
 }

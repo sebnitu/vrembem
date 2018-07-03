@@ -4,10 +4,10 @@
  * Modal size modifiers
  */
 
-.modal_size_small .modal__dialog {
+.modal_size_sm .modal__dialog {
   width: ($modal-width * 0.5);
 }
 
-.modal_size_large .modal__dialog {
+.modal_size_lg .modal__dialog {
   width: ($modal-width * 1.5);
 }

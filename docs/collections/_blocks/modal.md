@@ -38,14 +38,14 @@ The core poarts of a modal include the following elements:
 
 <div class="demo grid grid_md">
   <div class="demo__render grid__item">
-    <button class="modal__trigger button button_color_primary" data-modal="modal-size-small">Small Modal</button>
-    <button class="modal__trigger button button_color_primary" data-modal="modal-size-large">Large Modal</button>
+    <button class="modal__trigger button button_color_primary" data-modal="modal-size-sm">Small Modal</button>
+    <button class="modal__trigger button button_color_primary" data-modal="modal-size-lg">Large Modal</button>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
 ```html
-<div class="modal modal_size_small" id="modal-size-small">...</div>
-<div class="modal modal_size_large" id="modal-size-large">...</div>
+<div class="modal modal_size_sm" id="modal-size-sm">...</div>
+<div class="modal modal_size_lg" id="modal-size-lg">...</div>
 ```
   </div>
   </div>
@@ -100,7 +100,7 @@ The core poarts of a modal include the following elements:
   </div>
 </div>
 
-<div class="modal modal_size_small" id="modal-size-small">
+<div class="modal modal_size_sm" id="modal-size-sm">
   <div class="modal__dialog dialog">
     <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
       {% include icon.html icon="x" %}
@@ -111,7 +111,7 @@ The core poarts of a modal include the following elements:
   </div>
 </div>
 
-<div class="modal modal_size_large" id="modal-size-large">
+<div class="modal modal_size_lg" id="modal-size-lg">
   <div class="modal__dialog dialog">
     <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
       {% include icon.html icon="x" %}

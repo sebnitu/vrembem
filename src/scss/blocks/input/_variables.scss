@@ -2,11 +2,11 @@ $input-padding: $padding !default;
 $input-font-size: 1em !default;
 $input-line-height: 1.5em !default;
 
-$input_size_small-padding: $padding-small !default;
-$input_size_small-font-size: $font-size-small !default;
+$input_size_sm-padding: $padding-sm !default;
+$input_size_sm-font-size: $font-size-sm !default;
 
-$input_size_large-padding: nth($padding-large, 1) (nth($padding-large, 1) * 1.33) !default;
-$input_size_large-font-size: $font-size-large !default;
+$input_size_lg-padding: nth($padding-lg, 1) (nth($padding-lg, 1) * 1.33) !default;
+$input_size_lg-font-size: $font-size-lg !default;
 
 $input-background: $white !default;
 $input-background-focus: $white !default;

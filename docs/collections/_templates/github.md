@@ -148,7 +148,7 @@ title: GitHub
           </li>
         </ul>
       </div>
-      <div class="grid__item grid__item_size_auto level">
+      <div class="grid__item size_auto level">
         <div class="button-group">
           <div class="button-group__item button dropdown on-hover">
             {% include icon.html icon="eye" %}
@@ -215,7 +215,7 @@ title: GitHub
       </div>
     </div><!-- .grid -->
 
-    <ul class="menu">
+    <ul class="menu menu_full">
       <li class="menu__item">
         <a href="#" class="menu__link is-active">
           {% include icon.html icon="code" %}
@@ -467,7 +467,7 @@ title: GitHub
   <div class="container">
 
     <div class="b radius">
-      <div class="p_1 bg_shade radius_t level justify_between">
+      <div class="p_1 bg_shade-light radius_t level justify_between">
         <span class="level">
           <img class="radius" src="https://picsum.photos/20/20/?random" width="20" height="20" />
           <span>
@@ -590,7 +590,7 @@ title: GitHub
   <div class="container">
 
     <div class="b radius">
-      <div class="bg_shade p_1 level level_spacing_xs">
+      <div class="bg_shade-light p_1 level level_spacing_xs">
         {% include icon.html icon="book-open" %}
         <span>README.md</span>
       </div>
