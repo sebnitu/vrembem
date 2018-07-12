@@ -42,12 +42,18 @@ import uglify from 'gulp-uglify'
 const paths = {
   src: 'src/',
   dest: 'dist/',
-  search: {
-    scss: [
+  scss: {
+    entry: 'vrembem.scss',
+    output: 'styles.css',
+    search: [
       'src/scss/',
       'node_modules/'
-    ],
-    js: [
+    ]
+  },
+  js: {
+    entry: 'app.js',
+    output: 'scripts.js',
+    search: [
       'src/js/',
       'node_modules/'
     ]
@@ -59,19 +65,19 @@ const paths = {
  */
 
 gulp.task('css:dev', () => {
-  const src = paths.src + 'scss/vrembem.scss'
+  const src = paths.src + 'scss/' + paths.scss.entry
   const dest = paths.dest + 'css/'
   const css = gulp.src(src)
     .pipe(sourcemaps.init())
     .pipe(sass({
       outputStyle: 'expanded',
-      includePaths: paths.search.scss
+      includePaths: paths.scss.search
     })
     .on('error', sass.logError))
     .pipe(postcss([
       autoprefixer({ browsers: ['last 2 versions', '> 2%'] })
     ]))
-    .pipe(rename('styles.css'))
+    .pipe(rename(paths.scss.output))
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(dest))
 
@@ -79,19 +85,19 @@ gulp.task('css:dev', () => {
 })
 
 gulp.task('css:prod', () => {
-  const src = paths.src + 'scss/vrembem.scss'
+  const src = paths.src + 'scss/' + paths.scss.entry
   const dest = paths.dest + 'css/'
   const css = gulp.src(src)
     .pipe(sourcemaps.init())
     .pipe(sass({
       outputStyle: 'compressed',
-      includePaths: paths.search.scss
+      includePaths: paths.scss.search
     })
     .on('error', sass.logError))
     .pipe(postcss([
       autoprefixer({ browsers: ['last 2 versions', '> 2%'] })
     ]))
-    .pipe(rename('styles.min.css'))
+    .pipe(rename(paths.scss.output.replace(/(\.[\w\d_-]+)$/i, '.min$1')))
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(dest))
 
@@ -105,11 +111,11 @@ gulp.task('css', ['css:dev', 'css:prod'])
  */
 
 gulp.task('js:dev', () => {
-  const src = paths.src + 'js/app.js'
+  const src = paths.src + 'js/' + paths.js.entry
   const dest = paths.dest + 'js/'
   const b = browserify({
     entries: src,
-    paths: paths.search.js,
+    paths: paths.js.search,
     debug: true
   }).transform(babel)
   const js = b.bundle()
@@ -117,7 +123,7 @@ gulp.task('js:dev', () => {
     .pipe(buffer())
     .pipe(sourcemaps.init())
     .on('error', log.error)
-    .pipe(rename('scripts.js'))
+    .pipe(rename(paths.js.output))
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(dest))
 
@@ -125,11 +131,11 @@ gulp.task('js:dev', () => {
 })
 
 gulp.task('js:prod', () => {
-  const src = paths.src + 'js/app.js'
+  const src = paths.src + 'js/' + paths.js.entry
   const dest = paths.dest + 'js/'
   const b = browserify({
     entries: src,
-    paths: paths.search.js,
+    paths: paths.js.search,
     debug: true
   }).transform(babel)
   const js = b.bundle()
@@ -138,7 +144,7 @@ gulp.task('js:prod', () => {
     .pipe(sourcemaps.init())
     .pipe(uglify())
     .on('error', log.error)
-    .pipe(rename('scripts.min.js'))
+    .pipe(rename(paths.js.output.replace(/(\.[\w\d_-]+)$/i, '.min$1')))
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(dest))
 

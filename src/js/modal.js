@@ -1,7 +1,6 @@
-var utility = require('./utility.js')
-var u = new utility()
+import u from './utility.js'
 
-var modal = function() {
+export default function() {
 
   'use strict'
 
@@ -55,5 +54,3 @@ var modal = function() {
 
   return api
 }
-
-module.exports = modal

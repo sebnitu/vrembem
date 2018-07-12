@@ -23,7 +23,7 @@ $size-columns: 12 !default;
 @each $name, $value in $breakpoints {
   @include media-min($name) {
 
-    .size_#{$name}_auto {
+    .size_auto_#{$name} {
       flex: 0 0 auto;
       width: auto;
     }

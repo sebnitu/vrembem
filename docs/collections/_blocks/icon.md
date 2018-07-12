@@ -41,8 +41,8 @@ You can inject svg icons directly or use svg sprites. The only requirement is th
 <div class="demo grid grid_md">
   <div class="demo__render grid__item">
     <div class="level level_wrap">
-      <svg role="img" class="icon icon_size_sm"><use xlink:href="#icon-anchor"></use></svg>
-      <svg role="img" class="icon icon_size_lg"><use xlink:href="#icon-anchor"></use></svg>
+      {% include icon.html icon="anchor" class="icon_size_sm" %}
+      {% include icon.html icon="anchor" class="icon_size_lg" %}
     </div>
   </div>
   <div class="grid__item size_6">

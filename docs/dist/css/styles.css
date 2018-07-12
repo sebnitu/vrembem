@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.4
+ * @version 0.2.5
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -1136,6 +1136,7 @@ pre {
  */
 .section {
   position: relative;
+  overflow: hidden;
 }
 
 /* Section Scale */
@@ -1599,7 +1600,7 @@ pre {
  * Size Breakpoints Modifiers
  */
 @media (min-width: 480px) {
-  .size_xs_auto {
+  .size_auto_xs {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 auto;
             flex: 0 0 auto;
@@ -1668,7 +1669,7 @@ pre {
 }
 
 @media (min-width: 620px) {
-  .size_sm_auto {
+  .size_auto_sm {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 auto;
             flex: 0 0 auto;
@@ -1737,7 +1738,7 @@ pre {
 }
 
 @media (min-width: 760px) {
-  .size_md_auto {
+  .size_auto_md {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 auto;
             flex: 0 0 auto;
@@ -1806,7 +1807,7 @@ pre {
 }
 
 @media (min-width: 990px) {
-  .size_lg_auto {
+  .size_auto_lg {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 auto;
             flex: 0 0 auto;
@@ -1875,7 +1876,7 @@ pre {
 }
 
 @media (min-width: 1380px) {
-  .size_xl_auto {
+  .size_auto_xl {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 auto;
             flex: 0 0 auto;
