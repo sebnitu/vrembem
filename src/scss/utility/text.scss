@@ -4,7 +4,7 @@
 
 .text,
 .p {
-  a {
+  a:not(.button) {
     @include add-anchor();
   }
 
@@ -29,6 +29,14 @@
 
 .text_nowrap {
   white-space: nowrap !important;
+}
+
+.text_wrap {
+  white-space: normal !important;
+}
+
+.text_uppercase {
+  text-transform: uppercase!important;
 }
 
 /* Text Size */

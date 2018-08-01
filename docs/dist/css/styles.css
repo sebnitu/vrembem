@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.5
+ * @version 0.2.6
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -970,17 +970,17 @@ pre {
 /**
  * Text Utility
  */
-.text a,
-.p a,
-.type > p a {
+.text a:not(.button),
+.p a:not(.button),
+.type > p a:not(.button) {
   color: #2196f3;
   text-decoration: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.text a:hover,
-.p a:hover,
-.type > p a:hover {
+.text a:not(.button):hover,
+.p a:not(.button):hover,
+.type > p a:not(.button):hover {
   color: #0c7cd5;
   border-bottom: 1px solid #0c7cd5;
 }
@@ -1006,6 +1006,14 @@ pre {
 
 .text_nowrap {
   white-space: nowrap !important;
+}
+
+.text_wrap {
+  white-space: normal !important;
+}
+
+.text_uppercase {
+  text-transform: uppercase !important;
 }
 
 /* Text Size */
@@ -1153,6 +1161,22 @@ pre {
 @media (min-width: 990px) {
   .section {
     padding: 3em 1em;
+  }
+}
+
+.section_size_xs {
+  padding: 0;
+}
+
+@media (min-width: 760px) {
+  .section_size_xs {
+    padding: 0;
+  }
+}
+
+@media (min-width: 990px) {
+  .section_size_xs {
+    padding: 0;
   }
 }
 
