@@ -92,8 +92,12 @@
   margin-bottom: 1rem;
 }
 
-.cover__version {
+.cover__version a {
   color: rgba($white, 0.25);
+
+  &:hover span {
+    color: rgba($white, 0.75);
+  }
 }
 
 @include media-min('md') {

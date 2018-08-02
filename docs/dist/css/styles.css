@@ -4937,8 +4937,12 @@ pre {
   margin-bottom: 1rem;
 }
 
-.cover__version {
+.cover__version a {
   color: rgba(255, 255, 255, 0.25);
+}
+
+.cover__version a:hover span {
+  color: rgba(255, 255, 255, 0.75);
 }
 
 @media (min-width: 760px) {

@@ -9,7 +9,9 @@ title: Home
     <div class="cover__inner">
       <h1 class="cover__title">{{ site.title }}</h1>
       <p class="cover__desc">A CSS component library based on the BEM methodology. You're viewing the component catalog where you can test all available components.</p>
-      <p class="cover__version">Version {{ site.version }}</p>
+      <p class="cover__version">
+        <a class="tooltip tooltip_pos_right" data-tooltip="View releases on Github" href="http://github.com/{{ site.repository }}/releases" target="_blank">Version <span class="version-number">{{ site.version }}</span></a>
+      </p>
     </div>
   </header>
 
