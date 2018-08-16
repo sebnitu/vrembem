@@ -1,6 +1,6 @@
 # Server
 host: localhost
-port: 8000
+port: 8010
 baseurl: "" # subpath of your site, e.g. /blog
 url: "" # base hostname & protocol for your site
 permalink: pretty
@@ -25,7 +25,7 @@ plugins:
 # Author
 author:
   name: Sebastian Nitu
-  url: http://sebnitu.com
+  url: https://sebnitu.com
   email: me@sebnitu.com
   twitter: sebnitu
 
