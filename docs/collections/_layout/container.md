@@ -1,18 +1,13 @@
 ---
 layout: base
 title: Container
-order: 2
+desc: "A container component for general page composition purposes."
 ---
 
 <div class="page__section">
-  <div class="page__container container type" markdown="1">
-
-# Container
-
-<p class="text_lead">A container component for general page composition purposes.</p>
-
-## `container`
-
+  <div class="page__container container spacing">
+    <h1 class="h1">{{ page.title }}</h1>
+    <p class="text_lead">{{ page.desc }}</p>
   </div>
 </div>
 

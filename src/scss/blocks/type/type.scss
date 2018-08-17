@@ -1,0 +1,136 @@
+@import 'variables';
+
+/**
+ * Type
+ */
+
+.type {
+  @include add-clearfix();
+  font-family: $type-font-family;
+  font-size: $type-font-size;
+  line-height: $type-line-height;
+
+  > *:first-child {
+    margin-top: 0 !important;
+  }
+
+  > *:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  // Headings
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @extend .h;
+    margin: ($type-spacing * 1.5) 0 $type-spacing;
+  }
+
+  h1 {
+    @extend .h1;
+  }
+
+  h2 {
+    @extend .h2;
+  }
+
+  h3 {
+    @extend .h3;
+  }
+
+  h4 {
+    @extend .h4;
+  }
+
+  h5 {
+    @extend .h5;
+  }
+
+  h6 {
+    @extend .h6;
+  }
+
+  // Misc elements
+
+  p {
+    @extend .p;
+    margin: $type-spacing 0;
+  }
+
+  pre,
+  blockquote {
+    margin: ($type-spacing * 1.5) 0;
+  }
+
+  blockquote {
+    padding: $type-blockquote-padding;
+    background: $type-blockquote-background;
+    border-left: $type-blockquote-border;
+
+    > * + * {
+      margin-top: 1em;
+    }
+  }
+
+  // Horizontal Rule
+
+  hr {
+    @extend .hr;
+    margin: $type-hr-margin;
+  }
+
+  // Lists
+
+  ul, ol {
+    margin: $type-spacing 0 $type-spacing ($type-spacing * 2);
+    padding: 0;
+
+    ul, ol, li {
+      margin-top: ($type-spacing * 0.5);
+      margin-bottom: ($type-spacing * 0.5);
+    }
+  }
+
+  ul, ul ul ul ul {
+    list-style: disc;
+  }
+
+  ul ul {
+    list-style: circle;
+  }
+
+  ul ul ul {
+    list-style: disc;
+  }
+
+  ol, ol ol ol ol {
+    list-style: decimal;
+  }
+
+  ol ol {
+    list-style: lower-alpha;
+  }
+
+  ol ol ol {
+    list-style: lower-roman;
+  }
+
+  dl {
+    margin: $type-spacing 0;
+
+    dt {
+      margin: $type-spacing 0 0;
+      font-weight: bold;
+      color: $color-dark;
+    }
+
+    dd {
+      margin: 0 0 $type-spacing $type-spacing;
+    }
+  }
+
+}

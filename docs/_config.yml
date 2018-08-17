@@ -9,7 +9,7 @@ permalink: pretty
 markdown: kramdown
 title: Vrembem
 description: "A CSS component library based on the BEM methodology."
-version: 0.2.6
+version: 0.2.7
 year: 2018
 repository: sebnitu/vrembem
 
@@ -47,6 +47,8 @@ defaults:
 collections_dir: collections
 collections:
   blocks:
+    output: true
+  utility:
     output: true
   layout:
     output: true

@@ -1,10 +1,7 @@
 ---
 title: Card
+desc: "The cards component provide a flexible and extensible content container with multiple variants and options."
 ---
-
-# Card
-
-<p class="text_lead">The cards component provide a flexible and extensible content container with multiple variants and options.</p>
 
 ## `.card`
 

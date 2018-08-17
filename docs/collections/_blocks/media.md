@@ -1,10 +1,7 @@
 ---
 title: Media
+desc: "The media component allows the composition of content which contains images, thumbnails or other media related to the content."
 ---
-
-# Media
-
-<p class="text_lead">The media component allows the composition of content which contains images, thumbnails or other media related to the content.</p>
 
 ## `.media`
 

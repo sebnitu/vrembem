@@ -1,10 +1,7 @@
 ---
 title: Button
+desc: "The most basic of UI components. Buttons represent an action that a user can take."
 ---
-
-# Button
-
-<p class="text_lead">The most basic of UI components. Buttons represent an action that a user can take.</p>
 
 ## `button`
 

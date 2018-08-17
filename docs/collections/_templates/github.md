@@ -599,11 +599,11 @@ title: GitHub
         <p>A CSS component library based on the BEM methodology.</p>
         <h2>Usage</h2>
         <p>A quick way to start using Vrembem now is to install it via a package manager.</p>
-        <code><pre># Using NPM
+        <pre><code># Using NPM
 npm install vrembem
 
 # Using Yarn
-yarn add vrembem</pre></code>
+yarn add vrembem</code></pre>
       </div>
     </div>
 

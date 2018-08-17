@@ -1,10 +1,7 @@
 ---
 title: Embed-wrap
+desc: "A container component for wrapping embeded media content in order to make them responsive."
 ---
-
-# Embed-wrap
-
-<p class="text_lead">A container component for wrapping embeded media content in order to make them responsive.</p>
 
 ## `embed-wrap`
 

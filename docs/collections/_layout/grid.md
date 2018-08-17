@@ -1,11 +1,7 @@
 ---
 title: Grid
-order: 3
+desc: "A flexbox based grid system."
 ---
-
-# Grid
-
-<p class="text_lead">A flexbox based grid system.</p>
 
 ## `.grid` `+` `.grid__item`
 

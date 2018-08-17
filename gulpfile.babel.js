@@ -117,7 +117,9 @@ gulp.task('js:dev', () => {
     entries: src,
     paths: paths.js.search,
     debug: true
-  }).transform(babel)
+  }).transform(babel, {
+    global: true
+  })
   const js = b.bundle()
     .pipe(source(src))
     .pipe(buffer())
@@ -137,7 +139,9 @@ gulp.task('js:prod', () => {
     entries: src,
     paths: paths.js.search,
     debug: true
-  }).transform(babel)
+  }).transform(babel, {
+    global: true
+  })
   const js = b.bundle()
     .pipe(source(src))
     .pipe(buffer())

@@ -1,0 +1,13 @@
+@import 'variables';
+
+/**
+ * Icon fill modifier
+ */
+
+.icon_fill {
+  fill: currentColor;
+  stroke: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 0;
+}

@@ -1,10 +1,7 @@
 ---
 title: Badge
+desc: "A text component that can be used for labeling, tagging or counters."
 ---
-
-# Badge
-
-<p class="text_lead">A text component that can be used for labeling, tagging or counters.</p>
 
 ## `badge`
 

@@ -1,11 +1,7 @@
 ---
 title: Level
-order: 5
+desc: "A simple layout component that helps center children in an element vertically and gives them horizontal spacing."
 ---
-
-# Level
-
-<p class="text_lead">A simple layout component that helps center children in an element vertically and gives them horizontal spacing.</p>
 
 ## `.level`
 

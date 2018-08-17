@@ -1,4 +1,13 @@
+// Base styles
 @import 'base';
+
+// Element utlities
+@import 'heading';
+@import 'hr';
+@import 'link';
+@import 'text';
+
+// Property utlities
 @import 'background';
 @import 'border';
 @import 'border-radius';
@@ -6,10 +15,5 @@
 @import 'display';
 @import 'flex';
 @import 'float';
-@import 'heading';
-@import 'hr';
-@import 'link';
 @import 'margin';
 @import 'padding';
-@import 'text';
-@import 'type';

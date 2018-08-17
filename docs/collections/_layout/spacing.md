@@ -1,13 +1,9 @@
 ---
 title: Spacing
-order: 6
+desc: "A simple layout component that gives vertical spacing to all of an elements children."
 ---
 
-# Spacing
-
-<p class="text_lead">A simple layout component that gives vertical spacing to all of an elements children.</p>
-
-## `.level`
+## `.spacing`
 
 <div class="demo grid grid_md">
   <div class="demo__render grid__item">
@@ -28,7 +24,7 @@ order: 6
   </div>
 </div>
 
-## `.level_block` `+` `.level_spacing_[key]`
+## `.spacing_[size]`
 
 <div class="demo grid grid_md">
   <div class="demo__render grid__item">

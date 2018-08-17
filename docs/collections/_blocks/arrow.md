@@ -1,10 +1,7 @@
 ---
 title: Arrow
+desc: "A directional triangle drawn with CSS."
 ---
-
-# Arrow
-
-<p class="text_lead">A directional triangle drawn with CSS.</p>
 
 ## `arrow`
 

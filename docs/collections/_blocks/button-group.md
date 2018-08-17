@@ -1,10 +1,7 @@
 ---
 title: Button-group
+desc: "A container component for groups of buttons."
 ---
-
-# Button-group
-
-<p class="text_lead">A container component for groups of buttons.</p>
 
 ## `button-group`
 

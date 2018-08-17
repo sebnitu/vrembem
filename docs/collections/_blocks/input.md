@@ -1,10 +1,7 @@
 ---
 title: Input
+desc: "The default component for user input."
 ---
-
-# Input
-
-<p class="text_lead">The default component for user input.</p>
 
 ## `input`
 

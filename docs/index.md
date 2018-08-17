@@ -21,7 +21,8 @@ title: Home
         <span class="input-group__item input-group__item_grow_none button button_outline">Filter by:</span>
         <select id="jumbo-filter__type" class="input-group__item input input_type_select">
           <option value="" selected>All</option>
-          <option value="blocks">Components</option>
+          <option value="blocks">Blocks</option>
+          <option value="utility">Utility</option>
           <option value="layout">Layout</option>
           <option value="templates">Templates</option>
         </select>

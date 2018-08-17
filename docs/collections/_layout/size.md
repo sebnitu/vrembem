@@ -1,11 +1,7 @@
 ---
 title: Size
-order: 4
+desc: "A flexbox based grid system."
 ---
-
-# Size
-
-<p class="text_lead">A flexbox based grid system.</p>
 
 ## `.size_auto`
 

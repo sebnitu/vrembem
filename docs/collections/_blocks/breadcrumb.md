@@ -1,10 +1,7 @@
 ---
 title: Breadcrumb
+desc: "The breadcrumb is a navigation component that shows the hierarchical path to a users current location."
 ---
-
-# Breadcrumb
-
-<p class="text_lead">The breadcrumb is a navigation component that shows the hierarchical path to a users current location.</p>
 
 ## `breadcrumb`
 

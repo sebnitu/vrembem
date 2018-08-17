@@ -1,10 +1,7 @@
 ---
 title: Notice
+desc: "A component for highlighting messages to the user."
 ---
-
-# Notice
-
-<p class="text_lead">A component for highlighting messages to the user.</p>
 
 ## `.notice`
 

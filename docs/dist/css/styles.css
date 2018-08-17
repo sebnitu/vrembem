@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.6
+ * @version 0.2.7
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -23,7 +23,7 @@ html {
 
 body {
   font-family: BlinkMacSystemFont, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
-  line-height: 1.5em;
+  line-height: 1.5;
   font-weight: 400;
   color: #212121;
 }
@@ -84,9 +84,249 @@ pre {
   font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace;
 }
 
+pre {
+  padding: 1rem;
+  overflow: auto;
+  background: #f5f5f5;
+  border-radius: 3px;
+}
+
 ::-moz-focus-inner {
   padding: 0;
   border: 0;
+}
+
+/**
+ * Headings Utility
+ */
+.h, .type h1,
+.type h2,
+.type h3,
+.type h4,
+.type h5,
+.type h6,
+.h1,
+.type h1,
+.h2,
+.type h2,
+.h3,
+.type h3,
+.h4,
+.type h4,
+.h5,
+.type h5,
+.h6,
+.type h6 {
+  line-height: 1.25;
+  font-weight: 600;
+  color: inherit;
+}
+
+.h a, .type h1 a, .type h2 a, .type h3 a, .type h4 a, .type h5 a, .type h6 a,
+.h1 a,
+.type h1 a,
+.h2 a,
+.type h2 a,
+.h3 a,
+.type h3 a,
+.h4 a,
+.type h4 a,
+.h5 a,
+.type h5 a,
+.h6 a,
+.type h6 a {
+  color: #2196f3;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.h a:hover, .type h1 a:hover, .type h2 a:hover, .type h3 a:hover, .type h4 a:hover, .type h5 a:hover, .type h6 a:hover,
+.h1 a:hover,
+.type h1 a:hover,
+.h2 a:hover,
+.type h2 a:hover,
+.h3 a:hover,
+.type h3 a:hover,
+.h4 a:hover,
+.type h4 a:hover,
+.h5 a:hover,
+.type h5 a:hover,
+.h6 a:hover,
+.type h6 a:hover {
+  color: #0c7cd5;
+  border-bottom: 1px solid #0c7cd5;
+}
+
+.h code, .type h1 code, .type h2 code, .type h3 code, .type h4 code, .type h5 code, .type h6 code,
+.h1 code,
+.type h1 code,
+.h2 code,
+.type h2 code,
+.h3 code,
+.type h3 code,
+.h4 code,
+.type h4 code,
+.h5 code,
+.type h5 code,
+.h6 code,
+.type h6 code {
+  padding: 0 0.25em;
+  font-size: 1rem;
+  word-break: break-word;
+  background: rgba(255, 235, 59, 0.5);
+}
+
+
+.h1,
+.type h1 {
+  font-size: 2em;
+}
+
+
+.h2,
+.type h2 {
+  font-size: 1.5em;
+}
+
+
+.h3,
+.type h3 {
+  font-size: 1.25em;
+}
+
+
+.h4,
+.type h4 {
+  font-size: 1em;
+}
+
+
+.h5,
+.type h5 {
+  font-size: 0.875em;
+}
+
+
+.h6,
+.type h6 {
+  font-size: 0.85em;
+}
+
+/**
+ * Horizontal Rule Utility
+ */
+.hr, .type hr {
+  display: block;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+.hr_inverted {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/**
+ * Links Utility
+ */
+.link {
+  color: #2196f3;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.link:hover {
+  color: #0c7cd5;
+  border-bottom: 1px solid #0c7cd5;
+}
+
+/* Link modifiers */
+.link_subtle {
+  color: #bdbdbd;
+  font-weight: normal;
+  border: none;
+}
+
+.link_subtle:hover {
+  color: #212121;
+  border: none;
+}
+
+/**
+ * Text Utility
+ */
+.text a:not(.button),
+.p a:not(.button),
+.type p a:not(.button) {
+  color: #2196f3;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.text a:not(.button):hover,
+.p a:not(.button):hover,
+.type p a:not(.button):hover {
+  color: #0c7cd5;
+  border-bottom: 1px solid #0c7cd5;
+}
+
+.text code,
+.p code,
+.type p code {
+  font-size: 0.9em;
+  padding: 0 0.25em;
+  background: rgba(255, 235, 59, 0.5);
+  word-break: break-word;
+}
+
+/* Text Modifiers */
+.text_lead {
+  font-size: 1.4em;
+  line-height: 1.6em;
+  font-weight: 300;
+}
+
+.text_subtle {
+  color: #bdbdbd !important;
+}
+
+.text_nowrap {
+  white-space: nowrap !important;
+}
+
+.text_wrap {
+  white-space: normal !important;
+}
+
+.text_uppercase {
+  text-transform: uppercase !important;
+}
+
+/* Text Size */
+.text_size_sm {
+  font-size: 0.875em !important;
+}
+
+.text_size_lg {
+  font-size: 1.25em !important;
+}
+
+.text_size_sm,
+.text_size_lg {
+  line-height: 1.5em;
+}
+
+/* Text Alignment */
+.text_align_left {
+  text-align: left !important;
+}
+
+.text_align_center {
+  text-align: center !important;
+}
+
+.text_align_right {
+  text-align: right !important;
 }
 
 /**
@@ -547,163 +787,6 @@ pre {
 }
 
 /**
- * Headings Utility
- */
-.h, .type > h1,
-.type > h2,
-.type > h3,
-.type > h4,
-.type > h5,
-.type > h6,
-.h1,
-.type > h1,
-.h2,
-.type > h2,
-.h3,
-.type > h3,
-.h4,
-.type > h4,
-.h5,
-.type > h5,
-.h6,
-.type > h6 {
-  line-height: 1.25;
-  font-weight: 600;
-  color: inherit;
-}
-
-.h a, .type > h1 a, .type > h2 a, .type > h3 a, .type > h4 a, .type > h5 a, .type > h6 a,
-.h1 a,
-.type > h1 a,
-.h2 a,
-.type > h2 a,
-.h3 a,
-.type > h3 a,
-.h4 a,
-.type > h4 a,
-.h5 a,
-.type > h5 a,
-.h6 a,
-.type > h6 a {
-  color: #2196f3;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.h a:hover, .type > h1 a:hover, .type > h2 a:hover, .type > h3 a:hover, .type > h4 a:hover, .type > h5 a:hover, .type > h6 a:hover,
-.h1 a:hover,
-.type > h1 a:hover,
-.h2 a:hover,
-.type > h2 a:hover,
-.h3 a:hover,
-.type > h3 a:hover,
-.h4 a:hover,
-.type > h4 a:hover,
-.h5 a:hover,
-.type > h5 a:hover,
-.h6 a:hover,
-.type > h6 a:hover {
-  color: #0c7cd5;
-  border-bottom: 1px solid #0c7cd5;
-}
-
-.h code, .type > h1 code, .type > h2 code, .type > h3 code, .type > h4 code, .type > h5 code, .type > h6 code,
-.h1 code,
-.type > h1 code,
-.h2 code,
-.type > h2 code,
-.h3 code,
-.type > h3 code,
-.h4 code,
-.type > h4 code,
-.h5 code,
-.type > h5 code,
-.h6 code,
-.type > h6 code {
-  padding: 0 0.25em;
-  font-size: 1rem;
-  word-break: break-word;
-  background: rgba(255, 235, 59, 0.5);
-}
-
-
-.h1,
-.type > h1 {
-  font-size: 2em;
-}
-
-
-.h2,
-.type > h2 {
-  font-size: 1.5em;
-}
-
-
-.h3,
-.type > h3 {
-  font-size: 1.25em;
-}
-
-
-.h4,
-.type > h4 {
-  font-size: 1em;
-}
-
-
-.h5,
-.type > h5 {
-  font-size: 0.875em;
-}
-
-
-.h6,
-.type > h6 {
-  font-size: 0.85em;
-  color: #bdbdbd;
-}
-
-/**
- * Horizontal Rule Utility
- */
-.hr, .type > hr {
-  display: block;
-  height: 1px;
-  background: rgba(0, 0, 0, 0.1);
-  border: none;
-}
-
-.hr_inverted {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-/**
- * Links Utility
- */
-.link {
-  color: #2196f3;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.link:hover {
-  color: #0c7cd5;
-  border-bottom: 1px solid #0c7cd5;
-}
-
-/* Link modifiers */
-.link_subtle {
-  color: #bdbdbd;
-  font-weight: normal;
-  border: none;
-}
-
-.link_subtle:hover {
-  color: #212121;
-  border: none;
-}
-
-/**
  * Margin Utility
  */
 .m_0 {
@@ -968,183 +1051,10 @@ pre {
 }
 
 /**
- * Text Utility
- */
-.text a:not(.button),
-.p a:not(.button),
-.type > p a:not(.button) {
-  color: #2196f3;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.text a:not(.button):hover,
-.p a:not(.button):hover,
-.type > p a:not(.button):hover {
-  color: #0c7cd5;
-  border-bottom: 1px solid #0c7cd5;
-}
-
-.text code,
-.p code,
-.type > p code {
-  padding: 0 0.25em;
-  background: rgba(255, 235, 59, 0.5);
-  word-break: break-word;
-}
-
-/* Text Modifiers */
-.text_lead {
-  font-size: 1.4em;
-  line-height: 1.6em;
-  font-weight: 300;
-}
-
-.text_subtle {
-  color: #bdbdbd !important;
-}
-
-.text_nowrap {
-  white-space: nowrap !important;
-}
-
-.text_wrap {
-  white-space: normal !important;
-}
-
-.text_uppercase {
-  text-transform: uppercase !important;
-}
-
-/* Text Size */
-.text_size_sm {
-  font-size: 0.875em !important;
-}
-
-.text_size_lg {
-  font-size: 1.25em !important;
-}
-
-.text_size_sm,
-.text_size_lg {
-  line-height: 1.5em;
-}
-
-/* Text Alignment */
-.text_align_left {
-  text-align: left !important;
-}
-
-.text_align_center {
-  text-align: center !important;
-}
-
-.text_align_right {
-  text-align: right !important;
-}
-
-/**
- * Type Utility
- */
-.type::after {
-  content: '';
-  display: table;
-  clear: both;
-}
-
-.type > * {
-  margin-bottom: 1em;
-}
-
-.type > *:first-child {
-  margin-top: 0 !important;
-}
-
-.type > *:last-child {
-  margin-bottom: 0 !important;
-}
-
-.type > h1,
-.type > h2,
-.type > h3,
-.type > h4,
-.type > h5,
-.type > h6 {
-  margin: 2rem 0 1rem;
-}
-
-.type > pre {
-  padding: 1em;
-  background: #f5f5f5;
-  border-radius: 3px;
-}
-
-.type > pre code {
-  padding: 0;
-  background: none;
-  word-break: normal;
-}
-
-.type > blockquote {
-  padding: 1em 1.5em;
-  background: #e3f2fd;
-  border-left: 3px solid #2196f3;
-}
-
-.type > blockquote > * + * {
-  margin-top: 1em;
-}
-
-.type > ul {
-  list-style: disc;
-}
-
-.type > ol {
-  list-style: decimal;
-}
-
-.type > ol ol {
-  list-style: lower-alpha;
-}
-
-.type > ul,
-.type > ol {
-  margin: 1em 0;
-  padding-left: 1.5em;
-}
-
-.type > ul ul,
-.type > ul ol,
-.type > ol ul,
-.type > ol ol {
-  padding-left: 1.5em;
-}
-
-.type > ul > li + li,
-.type > ol > li + li {
-  margin-top: 0.5em;
-}
-
-/* Type Modifiers */
-.type_inverted {
-  color: #ffffff;
-}
-
-.type_inverted > h1,
-.type_inverted > h2,
-.type_inverted > h3,
-.type_inverted > h4,
-.type_inverted > h5,
-.type_inverted > h6 {
-  color: #ffffff;
-}
-
-/**
  * Section
  */
 .section {
   position: relative;
-  overflow: hidden;
 }
 
 /* Section Scale */
@@ -3502,6 +3412,17 @@ pre {
 }
 
 /**
+ * Icon fill modifier
+ */
+.icon_fill {
+  fill: currentColor;
+  stroke: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 0;
+}
+
+/**
  * Icon-action
  */
 .icon-action {
@@ -4826,6 +4747,102 @@ pre {
 }
 
 /**
+ * Type
+ */
+.type::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.type > *:first-child {
+  margin-top: 0 !important;
+}
+
+.type > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+.type h1,
+.type h2,
+.type h3,
+.type h4,
+.type h5,
+.type h6 {
+  margin: 1.5em 0 1em;
+}
+
+.type p {
+  margin: 1em 0;
+}
+
+.type pre,
+.type blockquote {
+  margin: 1.5em 0;
+}
+
+.type blockquote {
+  padding: 0.5em 0 0.5em 1.5em;
+  border-left: 3px solid #2196f3;
+}
+
+.type blockquote > * + * {
+  margin-top: 1em;
+}
+
+.type hr {
+  margin: 2em 0;
+}
+
+.type ul, .type ol {
+  margin: 1em 0 1em 2em;
+  padding: 0;
+}
+
+.type ul ul, .type ul ol, .type ul li, .type ol ul, .type ol ol, .type ol li {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.type ul, .type ul ul ul ul {
+  list-style: disc;
+}
+
+.type ul ul {
+  list-style: circle;
+}
+
+.type ul ul ul {
+  list-style: disc;
+}
+
+.type ol, .type ol ol ol ol {
+  list-style: decimal;
+}
+
+.type ol ol {
+  list-style: lower-alpha;
+}
+
+.type ol ol ol {
+  list-style: lower-roman;
+}
+
+.type dl {
+  margin: 1em 0;
+}
+
+.type dl dt {
+  margin: 1em 0 0;
+  font-weight: bold;
+  color: #000000;
+}
+
+.type dl dd {
+  margin: 0 0 1em 1em;
+}
+
+/**
  * Cover
  */
 .cover {
@@ -5076,25 +5093,9 @@ pre {
   }
 }
 
-.demo {
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
-}
-
-.demo__code {
-  padding: 1em;
-  background: #f5f5f5;
-  border-radius: 3px;
-  overflow: auto;
-}
-
-/*==============================================================================
-  @Code - highlights - scss/docs/_code-highlight.scss
-==============================================================================*/
-figure {
-  margin: 1em 0;
-}
-
+/**
+ * Syntax highlighter
+ */
 .highlight .c {
   color: #998;
   font-style: italic;
@@ -5339,28 +5340,6 @@ figure {
 
 .highlight .il {
   color: #099;
-}
-
-/**
- * Console Editor
- */
-.highlight .editor-prefixed:before,
-.highlight .editor-comment:before {
-  content: "\00a0";
-  margin-right: 0.5em;
-  color: #bdbdbd;
-}
-
-.highlight .editor-prefixed {
-  color: #2196f3;
-}
-
-.highlight .editor-prefixed:before {
-  content: "$";
-}
-
-.highlight .editor-comment {
-  color: #bdbdbd;
 }
 
 body {

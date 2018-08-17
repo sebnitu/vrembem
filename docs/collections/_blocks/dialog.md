@@ -1,10 +1,7 @@
 ---
 title: Dialog
+desc: "A component that facilitates a conversation between the system and the user. They often request information or an action from the user."
 ---
-
-# Dialog
-
-<p class="text_lead">A component that facilitates a conversation between the system and the user. They often request information or an action from the user.</p>
 
 ## `dialog + dialog__body`
 

@@ -1,10 +1,7 @@
 ---
 title: Input-group
+desc: "A container component for grouping inputs and buttons together."
 ---
-
-# Input-group
-
-<p>A container component for grouping inputs and buttons together.</p>
 
 ## `input-group`
 

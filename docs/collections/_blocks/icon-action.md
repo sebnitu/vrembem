@@ -1,10 +1,7 @@
 ---
 title: Icon-action
+dsc: "A minimal container component for icon based actions."
 ---
-
-# Icon-action
-
-<p class="text_lead">A minimal container component for icon based actions.</p>
 
 ## `icon-action`
 

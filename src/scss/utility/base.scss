@@ -74,6 +74,13 @@ pre {
   font-family: $font-family-mono;
 }
 
+pre {
+  padding: 1rem;
+  overflow: auto;
+  background: $background-color;
+  border-radius: $border-radius;
+}
+
 ::-moz-focus-inner {
   padding: 0;
   border: 0;
