@@ -56,8 +56,11 @@
 
   // Misc elements
 
+  a:not(.button) {
+    @include add-anchor();
+  }
+
   p {
-    @extend .p;
     margin: $type-spacing 0;
   }
 
@@ -66,13 +69,33 @@
     margin: ($type-spacing * 1.5) 0;
   }
 
+  code {
+    font-size: 0.9em;
+    padding: 0 0.25em;
+    background: rgba($yellow, 0.5);
+    word-break: break-word;
+  }
+
+  pre {
+    padding: ($type-spacing * 1.5);
+    overflow: auto;
+    background: $background-color;
+    border-radius: $border-radius;
+
+    code {
+      font-size: 1em;
+      padding: 0;
+      background: none;
+    }
+  }
+
   blockquote {
-    padding: $type-blockquote-padding;
-    background: $type-blockquote-background;
-    border-left: $type-blockquote-border;
+    padding: ($type-spacing * 0.5) ($type-spacing * 1.5);
+    background: $background-color;
+    border-radius: $border-radius;
 
     > * + * {
-      margin-top: 1em;
+      margin-top: $type-spacing;
     }
   }
 

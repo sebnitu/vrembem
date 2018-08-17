@@ -2,22 +2,6 @@
  * Text Utility
  */
 
-.text,
-.p {
-  a:not(.button) {
-    @include add-anchor();
-  }
-
-  code {
-    font-size: 0.9em;
-    padding: 0 0.25em;
-    background: rgba($yellow, 0.5);
-    word-break: break-word;
-  }
-}
-
-/* Text Modifiers */
-
 .text_lead {
   font-size: $lead-font-size;
   line-height: $lead-line-height;

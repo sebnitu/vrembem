@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.8
+ * @version 0.2.9
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -84,13 +84,6 @@ pre {
   font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace;
 }
 
-pre {
-  padding: 1rem;
-  overflow: auto;
-  background: #f5f5f5;
-  border-radius: 3px;
-}
-
 ::-moz-focus-inner {
   padding: 0;
   border: 0;
@@ -120,60 +113,6 @@ pre {
   line-height: 1.25;
   font-weight: 600;
   color: inherit;
-}
-
-.h a, .type h1 a, .type h2 a, .type h3 a, .type h4 a, .type h5 a, .type h6 a,
-.h1 a,
-.type h1 a,
-.h2 a,
-.type h2 a,
-.h3 a,
-.type h3 a,
-.h4 a,
-.type h4 a,
-.h5 a,
-.type h5 a,
-.h6 a,
-.type h6 a {
-  color: #2196f3;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.h a:hover, .type h1 a:hover, .type h2 a:hover, .type h3 a:hover, .type h4 a:hover, .type h5 a:hover, .type h6 a:hover,
-.h1 a:hover,
-.type h1 a:hover,
-.h2 a:hover,
-.type h2 a:hover,
-.h3 a:hover,
-.type h3 a:hover,
-.h4 a:hover,
-.type h4 a:hover,
-.h5 a:hover,
-.type h5 a:hover,
-.h6 a:hover,
-.type h6 a:hover {
-  color: #0c7cd5;
-  border-bottom: 1px solid #0c7cd5;
-}
-
-.h code, .type h1 code, .type h2 code, .type h3 code, .type h4 code, .type h5 code, .type h6 code,
-.h1 code,
-.type h1 code,
-.h2 code,
-.type h2 code,
-.h3 code,
-.type h3 code,
-.h4 code,
-.type h4 code,
-.h5 code,
-.type h5 code,
-.h6 code,
-.type h6 code {
-  padding: 0 0.25em;
-  font-size: 1rem;
-  word-break: break-word;
-  background: rgba(255, 235, 59, 0.5);
 }
 
 
@@ -255,34 +194,9 @@ pre {
 /**
  * Text Utility
  */
-.text a:not(.button),
-.p a:not(.button),
-.type p a:not(.button) {
-  color: #2196f3;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.text a:not(.button):hover,
-.p a:not(.button):hover,
-.type p a:not(.button):hover {
-  color: #0c7cd5;
-  border-bottom: 1px solid #0c7cd5;
-}
-
-.text code,
-.p code,
-.type p code {
-  font-size: 0.9em;
-  padding: 0 0.25em;
-  background: rgba(255, 235, 59, 0.5);
-  word-break: break-word;
-}
-
-/* Text Modifiers */
 .text_lead {
   font-size: 1.4em;
-  line-height: 1.6em;
+  line-height: 1.6;
   font-weight: 300;
 }
 
@@ -4772,6 +4686,17 @@ pre {
   margin: 1.5em 0 1em;
 }
 
+.type a:not(.button) {
+  color: #2196f3;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.type a:not(.button):hover {
+  color: #0c7cd5;
+  border-bottom: 1px solid #0c7cd5;
+}
+
 .type p {
   margin: 1em 0;
 }
@@ -4781,9 +4706,30 @@ pre {
   margin: 1.5em 0;
 }
 
+.type code {
+  font-size: 0.9em;
+  padding: 0 0.25em;
+  background: rgba(255, 235, 59, 0.5);
+  word-break: break-word;
+}
+
+.type pre {
+  padding: 1.5em;
+  overflow: auto;
+  background: #f5f5f5;
+  border-radius: 3px;
+}
+
+.type pre code {
+  font-size: 1em;
+  padding: 0;
+  background: none;
+}
+
 .type blockquote {
-  padding: 0.5em 0 0.5em 1.5em;
-  border-left: 3px solid #2196f3;
+  padding: 0.5em 1.5em;
+  background: #f5f5f5;
+  border-radius: 3px;
 }
 
 .type blockquote > * + * {
