@@ -10,7 +10,7 @@
   font-size: $menu-font-size;
   list-style: none;
 
-  > * + * {
+  .menu__item + .menu__item {
     margin-left: $menu__item-spacing;
   }
 }
