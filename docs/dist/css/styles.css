@@ -204,16 +204,17 @@ pre {
   color: #bdbdbd !important;
 }
 
+.text_uppercase {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
 .text_nowrap {
   white-space: nowrap !important;
 }
 
 .text_wrap {
   white-space: normal !important;
-}
-
-.text_uppercase {
-  text-transform: uppercase !important;
 }
 
 /* Text Size */
