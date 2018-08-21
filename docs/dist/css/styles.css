@@ -974,18 +974,18 @@ pre {
 
 /* Section Scale */
 .section {
-  padding: 1em;
+  padding: 1.5em;
 }
 
 @media (min-width: 760px) {
   .section {
-    padding: 2em 1em;
+    padding: 2em 1.5em;
   }
 }
 
 @media (min-width: 990px) {
   .section {
-    padding: 3em 1em;
+    padding: 3em 1.5em;
   }
 }
 
