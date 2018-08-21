@@ -22,7 +22,8 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 280px;
+    width: $modal-left-right-width;
+    max-width: $modal-left-right-max-width;
     height: 100%;
     margin: 0;
     border-radius: 0;

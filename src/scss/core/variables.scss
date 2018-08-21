@@ -47,6 +47,15 @@ $heading-font-weight: font-weight('semi-bold') !default;
 $lead-font-size: 1.4em !default;
 $lead-line-height: 1.6 !default;
 
+$mark-color: $color-dark !default;
+$mark-background: rgba($yellow, 0.5) !default;
+$code-color: $color-dark !default;
+$code-background: rgba($lime, 0.5) !default;
+$pre-color: $color-dark !default;
+$pre-background: $gray-100 !default;
+$blockquote-color: $color-dark !default;
+$blockquote-background: $gray-100 !default;
+
 $body-background: null !default;
 
 $background-color: $gray-100 !default;

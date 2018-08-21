@@ -72,8 +72,15 @@
   code {
     font-size: 0.9em;
     padding: 0 0.25em;
-    background: rgba($yellow, 0.5);
+    color: $code-color;
+    background: $code-background;
     word-break: break-word;
+  }
+
+  mark {
+    padding: 0 0.25em;
+    color: $mark-color;
+    background: $mark-background;
   }
 
   pre {
@@ -91,7 +98,8 @@
 
   blockquote {
     padding: ($type-spacing * 0.5) ($type-spacing * 1.5);
-    background: $background-color;
+    color: $blockquote-color;
+    background: $blockquote-background;
     border-radius: $border-radius;
 
     > * + * {
