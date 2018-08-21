@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.13
+ * @version 0.2.14
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -110,7 +110,6 @@ pre {
 .type h5,
 .h6,
 .type h6 {
-  line-height: 1.25;
   font-weight: 600;
   color: inherit;
 }
@@ -228,9 +227,14 @@ pre {
  * Text Utility
  */
 .text_lead {
-  font-size: 1.4em;
-  line-height: 1.6;
+  font-size: 1.25em;
   font-weight: 300;
+}
+
+@media (min-width: 760px) {
+  .text_lead {
+    font-size: 1.5em;
+  }
 }
 
 .text_subtle {

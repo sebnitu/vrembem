@@ -40,12 +40,9 @@ $color: $gray-900 !default;
 $color-light: $gray-400 !default;
 $color-dark: $black !default;
 
-$heading-line-height: 1.25 !default;
+$heading-line-height: null !default;
 $heading-color: inherit !default;
 $heading-font-weight: font-weight('semi-bold') !default;
-
-$lead-font-size: 1.4em !default;
-$lead-line-height: 1.6 !default;
 
 $mark-color: $color-dark !default;
 $mark-background: rgba($yellow, 0.5) !default;

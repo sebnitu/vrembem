@@ -3,9 +3,14 @@
  */
 
 .text_lead {
-  font-size: $lead-font-size;
-  line-height: $lead-line-height;
+  font-size: 1.25em;
   font-weight: font-weight('light');
+}
+
+@include media-min('md') {
+  .text_lead {
+    font-size: 1.5em;
+  }
 }
 
 .text_subtle {
