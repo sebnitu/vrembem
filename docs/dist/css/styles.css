@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.11
+ * @version 0.2.12
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -4041,6 +4041,10 @@ pre {
   margin-top: 1px;
 }
 
+.menu_stack .menu__link {
+  white-space: normal;
+}
+
 .menu_stack .menu__text {
   margin: 0 1em;
 }
@@ -4057,24 +4061,6 @@ pre {
   margin: 0.5em 0;
   border-right: none;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.menu_stack.justify_start .menu__link {
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-}
-
-.menu_stack.justify_center .menu__link {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.menu_stack.justify_end .menu__link {
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
 }
 
 /**

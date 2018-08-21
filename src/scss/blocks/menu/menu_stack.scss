@@ -18,6 +18,10 @@
     margin-top: $menu__item-spacing;
   }
 
+  .menu__link {
+    white-space: normal;
+  }
+
   .menu__text {
     margin: 0 $menu_stack__text-spacing;
 
@@ -34,17 +38,5 @@
     margin: $menu__sep-spacing 0;
     border-right: none;
     border-top: $menu__sep-border-width solid $menu__sep-border-color;
-  }
-
-  &.justify_start .menu__link {
-    justify-content: flex-start;
-  }
-
-  &.justify_center .menu__link {
-    justify-content: center;
-  }
-
-  &.justify_end .menu__link {
-    justify-content: flex-end;
   }
 }
