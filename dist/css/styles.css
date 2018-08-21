@@ -4735,14 +4735,14 @@ pre {
   font-size: 0.9em;
   padding: 0 0.25em;
   color: #000000;
-  background: rgba(205, 220, 57, 0.5);
+  background: rgba(255, 235, 59, 0.6);
   word-break: break-word;
 }
 
 .type mark {
   padding: 0 0.25em;
   color: #000000;
-  background: rgba(255, 235, 59, 0.5);
+  background: rgba(255, 235, 59, 0.6);
 }
 
 .type pre {
