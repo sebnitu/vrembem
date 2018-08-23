@@ -18,6 +18,7 @@
   box-shadow: $input-box-shadow-values $input-box-shadow-color;
   border-radius: 3px;
   transition: border-color 0.25s, background-color 0.25s, box-shadow 0.25s;
+  appearance: none;
 
   &:focus {
     outline: none;

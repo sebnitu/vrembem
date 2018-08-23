@@ -57,7 +57,7 @@
   // Misc elements
 
   a:not(.button) {
-    @include add-anchor();
+    @extend .link;
   }
 
   p {

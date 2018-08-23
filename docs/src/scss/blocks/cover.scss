@@ -13,7 +13,7 @@
 @include media-min('md') {
   .cover {
     flex-direction: row;
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
   }
 }
@@ -24,13 +24,11 @@
 
 .cover__header,
 .cover__content {
-  @include add-scrollable();
   position: relative;
-  overflow-x: hidden;
-  overflow-y: auto;
 }
 
 .cover__content {
+  position: relative;
   flex: 1 1 auto;
 }
 
@@ -45,6 +43,8 @@
   .cover__header,
   .cover__content {
     flex: 1 0 0;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .cover__header {

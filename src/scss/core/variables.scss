@@ -66,6 +66,17 @@ $border-radius: 3px !default;
 $box-sizing: border-box !default;
 $box-shadow: 0 1px 3px rgba($black, 0.1) !default;
 
+// Link
+////////////////////////
+
+$link-color: $primary !default;
+$link-color-hover: darken($link-color, 10%) !default;
+$link-border: 1px solid rgba($black, 0.1) !default;
+$link-border-hover: 1px solid darken($primary, 10%) !default;
+$link-text-decoration: none !default;
+$link-text-decoration-hover: null !default;
+$link-transition: null !default;
+
 // Breakpoints
 ////////////////////////
 
@@ -76,22 +87,6 @@ $breakpoints: (
   'lg': 990px,
   'xl': 1380px
 ) !default;
-
-// Anchor
-////////////////////////
-
-$anchor: (
-  'color': $primary,
-  'text-decoration': none,
-  'background': null,
-  'border': 1px solid $border-color,
-  'hover': (
-    'color': darken($primary, 10%),
-    'text-decoration': null,
-    'background': null,
-    'border': 1px solid darken($primary, 10%)
-  )
-)!default;
 
 // Spacing
 ////////////////////////

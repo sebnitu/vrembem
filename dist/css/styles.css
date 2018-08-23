@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.15
+ * @version 0.2.16
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -200,13 +200,13 @@ pre {
 /**
  * Links Utility
  */
-.link {
+.link, .breadcrumb__link, .notice a, .type a:not(.button) {
   color: #2196f3;
   text-decoration: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.link:hover {
+.link:hover, .breadcrumb__link:hover, .notice a:hover, .type a:hover:not(.button) {
   color: #0c7cd5;
   border-bottom: 1px solid #0c7cd5;
 }
@@ -214,7 +214,6 @@ pre {
 /* Link modifiers */
 .link_subtle {
   color: #bdbdbd;
-  font-weight: normal;
   border: none;
 }
 
@@ -2260,17 +2259,6 @@ pre {
   content: none;
 }
 
-.breadcrumb__link {
-  color: #2196f3;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.breadcrumb__link:hover {
-  color: #0c7cd5;
-  border-bottom: 1px solid #0c7cd5;
-}
-
 /**
  * Button
  */
@@ -3509,6 +3497,9 @@ pre {
   transition: border-color 0.25s, background-color 0.25s, -webkit-box-shadow 0.25s;
   transition: border-color 0.25s, background-color 0.25s, box-shadow 0.25s;
   transition: border-color 0.25s, background-color 0.25s, box-shadow 0.25s, -webkit-box-shadow 0.25s;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 
 .input:focus {
@@ -4366,17 +4357,6 @@ pre {
   border-radius: 3px;
 }
 
-.notice a {
-  color: #2196f3;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.notice a:hover {
-  color: #0c7cd5;
-  border-bottom: 1px solid #0c7cd5;
-}
-
 .notice__close {
   cursor: pointer;
   float: right;
@@ -4709,17 +4689,6 @@ pre {
 .type h5,
 .type h6 {
   margin: 1.5em 0 1em;
-}
-
-.type a:not(.button) {
-  color: #2196f3;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.type a:not(.button):hover {
-  color: #0c7cd5;
-  border-bottom: 1px solid #0c7cd5;
 }
 
 .type p {

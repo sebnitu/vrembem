@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.15
+ * @version 0.2.16
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -200,13 +200,13 @@ pre {
 /**
  * Links Utility
  */
-.link {
+.link, .breadcrumb__link, .notice a, .type a:not(.button) {
   color: #2196f3;
   text-decoration: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.link:hover {
+.link:hover, .breadcrumb__link:hover, .notice a:hover, .type a:hover:not(.button) {
   color: #0c7cd5;
   border-bottom: 1px solid #0c7cd5;
 }
@@ -214,7 +214,6 @@ pre {
 /* Link modifiers */
 .link_subtle {
   color: #bdbdbd;
-  font-weight: normal;
   border: none;
 }
 
@@ -2260,17 +2259,6 @@ pre {
   content: none;
 }
 
-.breadcrumb__link {
-  color: #2196f3;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.breadcrumb__link:hover {
-  color: #0c7cd5;
-  border-bottom: 1px solid #0c7cd5;
-}
-
 /**
  * Button
  */
@@ -3509,6 +3497,9 @@ pre {
   transition: border-color 0.25s, background-color 0.25s, -webkit-box-shadow 0.25s;
   transition: border-color 0.25s, background-color 0.25s, box-shadow 0.25s;
   transition: border-color 0.25s, background-color 0.25s, box-shadow 0.25s, -webkit-box-shadow 0.25s;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 
 .input:focus {
@@ -4366,17 +4357,6 @@ pre {
   border-radius: 3px;
 }
 
-.notice a {
-  color: #2196f3;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.notice a:hover {
-  color: #0c7cd5;
-  border-bottom: 1px solid #0c7cd5;
-}
-
 .notice__close {
   cursor: pointer;
   float: right;
@@ -4711,17 +4691,6 @@ pre {
   margin: 1.5em 0 1em;
 }
 
-.type a:not(.button) {
-  color: #2196f3;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.type a:not(.button):hover {
-  color: #0c7cd5;
-  border-bottom: 1px solid #0c7cd5;
-}
-
 .type p {
   margin: 1em 0;
 }
@@ -4843,7 +4812,7 @@ pre {
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
   }
 }
@@ -4853,13 +4822,11 @@ pre {
  */
 .cover__header,
 .cover__content {
-  -webkit-overflow-scrolling: touch;
   position: relative;
-  overflow-x: hidden;
-  overflow-y: auto;
 }
 
 .cover__content {
+  position: relative;
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
@@ -4882,6 +4849,8 @@ pre {
     -webkit-box-flex: 1;
         -ms-flex: 1 0 0px;
             flex: 1 0 0;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .cover__header {
     -webkit-box-flex: 2;
@@ -4951,8 +4920,12 @@ pre {
 }
 
 .jumbo-filter {
-  position: relative;
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 1;
+  top: 0;
   padding: 0.5em;
+  background: #ffffff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -5003,6 +4976,11 @@ pre {
   }
 }
 
+html,
+body {
+  height: 100%;
+}
+
 /**
  * Page
  */
@@ -5014,7 +4992,8 @@ pre {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  height: 100vh;
+  height: 100%;
+  max-height: 100%;
   overflow: hidden;
 }
 
@@ -5057,8 +5036,21 @@ pre {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.page_center .page__main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
 }
 
 /* Section */
@@ -5319,10 +5311,6 @@ pre {
 
 .highlight .il {
   color: #099;
-}
-
-body {
-  min-height: 100vh;
 }
 
 .svg-symbols {

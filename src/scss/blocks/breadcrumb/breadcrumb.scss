@@ -33,5 +33,5 @@
 }
 
 .breadcrumb__link {
-  @include add-anchor();
+  @extend .link;
 }

@@ -3,14 +3,22 @@
  */
 
 .link {
-  @include add-anchor();
+  color: $link-color;
+  text-decoration: $link-text-decoration;
+  border-bottom: $link-border;
+  transition: $link-transition;
+
+  &:hover {
+    color: $link-color-hover;
+    text-decoration: $link-text-decoration-hover;
+    border-bottom: $link-border-hover;
+  }
 }
 
 /* Link modifiers */
 
 .link_subtle {
   color: $color-light;
-  font-weight: normal;
   border: none;
 
   &:hover {

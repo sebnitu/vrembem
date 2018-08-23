@@ -1,8 +1,11 @@
 @import 'core/all';
 
 .jumbo-filter {
-  position: relative;
+  position: sticky;
+  z-index: 1;
+  top: 0;
   padding: 0.5em;
+  background: $white;
   border-bottom: $border;
 
   > * + * {

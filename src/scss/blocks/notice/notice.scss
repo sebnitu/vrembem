@@ -13,7 +13,7 @@
   border-radius: $notice-border-radius;
 
   a {
-    @include add-anchor();
+    @extend .link;
   }
 }
 

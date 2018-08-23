@@ -7,28 +7,6 @@
   }
 }
 
-// Makes touch devices use momentum-based scrolling for the given element.
-@mixin add-scrollable() {
-  -webkit-overflow-scrolling: touch;
-}
-
-// Adds anchor styles
-@mixin add-anchor($settings: ()) {
-  $o: map-extend($anchor, $settings);
-
-  color: map-get($o, 'color');
-  text-decoration: map-get($o, 'text-decoration');
-  background: map-get($o, 'background');
-  border-bottom: map-get($o, 'border');
-
-  &:hover {
-    color: map-fetch($o, 'hover', 'color');
-    text-decoration: map-fetch($o, 'hover', 'text-decoration');
-    background: map-fetch($o, 'hover', 'background');
-    border-bottom: map-fetch($o, 'hover', 'border');
-  }
-}
-
 // A media query mixin that deifnes a query using min-width. You can pass in a
 // key to the `$breakpoints()` map to access that value, or pass a value to
 // create your media query.
