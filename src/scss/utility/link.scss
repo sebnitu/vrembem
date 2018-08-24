@@ -18,11 +18,10 @@
 /* Link modifiers */
 
 .link_subtle {
-  color: $color-light;
-  border: none;
+  color: inherit;
 
   &:hover {
-    color: $color;
-    border: none;
+    color: $link-color;
+    border-color: $link-color;
   }
 }

@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.16
+ * @version 0.2.17
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -213,13 +213,12 @@ pre {
 
 /* Link modifiers */
 .link_subtle {
-  color: #bdbdbd;
-  border: none;
+  color: inherit;
 }
 
 .link_subtle:hover {
-  color: #212121;
-  border: none;
+  color: #2196f3;
+  border-color: #2196f3;
 }
 
 /**
