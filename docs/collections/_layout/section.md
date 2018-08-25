@@ -1,6 +1,5 @@
 ---
-layout: base
-title: Section
+title: "Section"
 desc: "A container component for wrapping distinct sections of a project."
 ---
 

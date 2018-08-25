@@ -4,11 +4,23 @@ layout: compress
 <!DOCTYPE html>
 <html lang="en" {% if page.class %}class="{{ page.class }}"{% endif %}>
   <head>
-    {% include head.html %}
+    {%- include head.html -%}
   </head>
   <body>
-    {% include symbols.svg %}
-    {{ content }}
-    {% include foot.html %}
+    {%- include symbols.svg -%}
+
+    <div class="page">
+      <header class="page__header">
+        <div class="container">
+          {% include header.html %}
+        </div>
+      </header>
+      <div class="page__main">
+        {{ content }}
+      </div>
+      {% include footer.html %}
+    </div>
+
+    {%- include foot.html -%}
   </body>
 </html>

@@ -1,5 +1,5 @@
 ---
-title: Grid
+title: "Grid"
 desc: "A flexbox based grid system."
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Size
+title: "Size"
 desc: "A flexbox based grid system."
 ---
 

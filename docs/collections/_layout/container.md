@@ -1,6 +1,5 @@
 ---
-layout: base
-title: Container
+title: "Container"
 desc: "A container component for general page composition purposes."
 ---
 
