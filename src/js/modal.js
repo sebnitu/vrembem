@@ -28,7 +28,6 @@ export default function() {
     var trigger = event.target.closest('.' + settings.classTrigger)
     var modal = event.target.closest('.' + settings.classModal)
     var dialog = event.target.closest('.' + settings.classDialog)
-
     if (trigger) {
       close()
       var dataModal = trigger.dataset.modal
@@ -45,11 +44,13 @@ export default function() {
     api.destroy()
     settings = u.extend( defaults, options || {} )
     document.addEventListener('click', run, false)
+    document.addEventListener('touchstart', run, false)
   }
 
   api.destroy = function() {
     settings = null
     document.removeEventListener('click', run, false)
+    document.removeEventListener('touchstart', run, false)
   }
 
   return api

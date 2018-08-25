@@ -85,6 +85,7 @@ The core poarts of a modal include the following elements:
 </div>
 
 <!-- Modal Markup -->
+<div>
 
 <div class="modal" id="modal-default">
   <div class="modal__dialog dialog">
@@ -174,4 +175,6 @@ The core poarts of a modal include the following elements:
       <p>This is using the dialog component...</p>
     </div>
   </div>
+</div>
+
 </div>
