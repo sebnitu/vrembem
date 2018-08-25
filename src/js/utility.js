@@ -108,7 +108,7 @@ export default class {
       i++
     }
 
-    var merge = function( obj ) {
+    let merge = ( obj ) => {
       for ( var prop in obj ) {
         if ( Object.prototype.hasOwnProperty.call( obj, prop ) ) {
           if ( deep && Object.prototype.toString.call(obj[prop]) === '[object Object]' ) {

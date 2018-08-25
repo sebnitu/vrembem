@@ -13,18 +13,18 @@ export default function() {
     classActive: 'is-active'
   }
 
-  var open = function(target) {
+  var open = (target) => {
     u.addClass(target, settings.classActive)
   }
 
-  var close = function() {
+  var close = () => {
     var modals = document.querySelectorAll('.' + settings.classModal)
     for (var i = 0; i < modals.length; ++i) {
       u.removeClass(modals[i], settings.classActive)
     }
   }
 
-  var run = function() {
+  var run = () => {
     var trigger = event.target.closest('.' + settings.classTrigger)
     var modal = event.target.closest('.' + settings.classModal)
     var dialog = event.target.closest('.' + settings.classDialog)
@@ -40,14 +40,14 @@ export default function() {
     }
   }
 
-  api.init = function(options) {
+  api.init = (options) => {
     api.destroy()
     settings = u.extend( defaults, options || {} )
     document.addEventListener('click', run, false)
     document.addEventListener('touchend', run, false)
   }
 
-  api.destroy = function() {
+  api.destroy = () => {
     settings = null
     document.removeEventListener('click', run, false)
     document.removeEventListener('touchend', run, false)

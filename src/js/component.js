@@ -5,18 +5,18 @@ export default function() {
   'use strict'
 
   // Init variables
-  var api = {}
-  var settings
+  let api = {}
+  let settings
 
   // Default settings
-  var defaults = {
+  let defaults = {
     classTrigger: 'trigger',
     classTarget: 'target',
     classActive: 'active'
   }
 
   // Private functions
-  var run = function() {
+  let run = () => {
     var trigger = event.target.closest('.' + settings.classTrigger)
 
     if (trigger) {
@@ -30,13 +30,13 @@ export default function() {
   }
 
   // Public functions
-  api.init = function(options) {
+  api.init = (options) => {
     api.destroy()
     settings = u.extend( defaults, options || {} )
     document.addEventListener('click', run, false)
   }
 
-  api.destroy = function() {
+  api.destroy = () => {
     settings = null
     document.removeEventListener('click', run, false)
   }

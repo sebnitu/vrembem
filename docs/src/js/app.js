@@ -1,7 +1,11 @@
 import list from 'list.js'
 import modal from 'modal.js'
 
+const m = new modal()
+m.init()
+
 const home = document.getElementById('vrembem-blocks')
+
 if (home) {
 
   const blocksList = new list('vrembem-blocks', {
@@ -29,6 +33,3 @@ if (home) {
   blocksList.sort('jumbo-list__name', { order: 'asc' })
 
 }
-
-const m = new modal()
-m.init()
