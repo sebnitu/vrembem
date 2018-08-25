@@ -44,13 +44,13 @@ export default function() {
     api.destroy()
     settings = u.extend( defaults, options || {} )
     document.addEventListener('click', run, false)
-    document.addEventListener('touchstart', run, false)
+    document.addEventListener('touchend', run, false)
   }
 
   api.destroy = function() {
     settings = null
     document.removeEventListener('click', run, false)
-    document.removeEventListener('touchstart', run, false)
+    document.removeEventListener('touchend', run, false)
   }
 
   return api
