@@ -2,6 +2,11 @@
  * Base Styles
  */
 
+html,
+body {
+  height: 100%;
+}
+
 html {
   box-sizing: $box-sizing;
   font-size: $font-size;

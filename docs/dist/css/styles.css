@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.20
+ * @version 0.2.21
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -11,6 +11,11 @@
 /**
  * Base Styles
  */
+html,
+body {
+  height: 100%;
+}
+
 html {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -4973,11 +4978,6 @@ pre {
   .jumbo-list__link {
     padding: 1.5em 2em;
   }
-}
-
-html,
-body {
-  height: 100%;
 }
 
 /**
