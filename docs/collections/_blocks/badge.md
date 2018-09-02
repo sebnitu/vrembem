@@ -1,4 +1,5 @@
 ---
+layout: page
 title: Badge
 desc: "A text component that can be used for labeling, tagging or counters."
 ---

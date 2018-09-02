@@ -1,4 +1,5 @@
 ---
+layout: page
 title: Input
 desc: "The default component for user input."
 ---

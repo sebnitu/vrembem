@@ -1,4 +1,5 @@
 ---
+layout: page
 title: Type
 desc: "The type utility component is used for displaying formatted text like you would see in a blog post or document."
 ---

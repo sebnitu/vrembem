@@ -1,4 +1,5 @@
 ---
+layout: page
 title: "Section"
 desc: "A container component for wrapping distinct sections of a project."
 ---

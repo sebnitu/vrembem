@@ -1,4 +1,5 @@
 ---
+layout: page
 title: Notice
 desc: "A component for highlighting messages to the user."
 ---

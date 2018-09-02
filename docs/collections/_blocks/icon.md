@@ -1,4 +1,5 @@
 ---
+layout: page
 title: Icon
 desc: "A component for displaying glyphs that convey meaning through iconography."
 ---

@@ -1,4 +1,5 @@
 ---
+layout: page
 title: Breadcrumb
 desc: "The breadcrumb is a navigation component that shows the hierarchical path to a users current location."
 ---

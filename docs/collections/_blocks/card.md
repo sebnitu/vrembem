@@ -1,4 +1,5 @@
 ---
+layout: page
 title: Card
 desc: "The cards component provide a flexible and extensible content container with multiple variants and options."
 ---

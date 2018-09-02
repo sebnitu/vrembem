@@ -1,4 +1,5 @@
 ---
+layout: page
 title: Arrow
 desc: "A directional triangle drawn with CSS."
 ---

@@ -1,4 +1,5 @@
 ---
+layout: page
 title: Button
 desc: "The most basic of UI components. Buttons represent an action that a user can take."
 ---

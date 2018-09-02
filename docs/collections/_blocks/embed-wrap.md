@@ -1,4 +1,5 @@
 ---
+layout: page
 title: Embed-wrap
 desc: "A container component for wrapping embeded media content in order to make them responsive."
 ---

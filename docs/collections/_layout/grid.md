@@ -1,4 +1,5 @@
 ---
+layout: page
 title: "Grid"
 desc: "A flexbox based grid system."
 ---

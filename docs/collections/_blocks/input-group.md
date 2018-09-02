@@ -1,4 +1,5 @@
 ---
+layout: page
 title: Input-group
 desc: "A container component for grouping inputs and buttons together."
 ---

@@ -1,4 +1,5 @@
 ---
+layout: page
 title: "Size"
 desc: "A flexbox based grid system."
 ---

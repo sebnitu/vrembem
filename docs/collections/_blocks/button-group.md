@@ -1,4 +1,5 @@
 ---
+layout: page
 title: Button-group
 desc: "A container component for groups of buttons."
 ---
