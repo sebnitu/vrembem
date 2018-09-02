@@ -1,46 +1,35 @@
-# Server
+# Server settings
+###
+
 host: localhost
 port: 8010
-baseurl: '' # subpath of your site, e.g. /blog
+baseurl: '' # The subpath of your site, e.g. /blog
 url: 'http://vrembem.sebnitu.com/' # base hostname & protocol for your site
-permalink: pretty
 
-# Site
-markdown: kramdown
+# Site details
+###
+
 title: Vrembem
-description: "A CSS component library based on the BEM methodology. You're viewing the component catalog where you can test all available components."
 version: 0.2.22
-year: 2018
+description: "A CSS component library based on the BEM methodology. You're viewing the component catalog where you can test all available components."
+email: me@sebnitu.com
 repository: sebnitu/vrembem
 
+# Build settings
+###
+
+permalink: pretty
+plugins:
+  - jekyll-feed
 exclude:
   - node_modules
   - src
-
-# Plugins
-plugins:
-  - jekyll-feed
-
-# Author
-author:
-  name: Sebastian Nitu
-  url: https://sebnitu.com
-  email: me@sebnitu.com
-  twitter: sebnitu
-
-# Defaults
-defaults:
-  - scope:
-      path: ''
-    values:
-      layout: page
-
-  - scope:
-      path: '_posts'
-      type: 'posts'
-    values:
-      layout: post
-      category: blog
+  - Gemfile
+  - Gemfile.lock
+  - gulpfile.babel.js
+  - package-lock.json
+  - package.json
+  - readme.md
 
 # Collections
 collections_dir: collections
@@ -53,3 +42,19 @@ collections:
     output: true
   templates:
     output: true
+
+# Defaults
+defaults:
+  - scope:
+      path: ''
+    values:
+      layout: page
+  - scope:
+      path: ''
+      type: 'posts'
+    values:
+      layout: post
+      category: blog
+
+# Theme settings
+###
