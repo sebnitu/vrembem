@@ -9,7 +9,7 @@ permalink: pretty
 markdown: kramdown
 title: Vrembem
 description: "A CSS component library based on the BEM methodology. You're viewing the component catalog where you can test all available components."
-version: 0.2.21
+version: 0.2.22
 year: 2018
 repository: sebnitu/vrembem
 
