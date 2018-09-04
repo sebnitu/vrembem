@@ -53,3 +53,6 @@ defaults:
 
 # Theme settings
 ###
+
+# Third-party
+google_analytics: UA-5911557-7
