@@ -50,13 +50,13 @@ $mark-background: rgba($yellow, 0.6) !default;
 $code-color: $color-dark !default;
 $code-background: rgba($yellow, 0.6) !default;
 $pre-color: $color-dark !default;
-$pre-background: $gray-100 !default;
+$pre-background: $shade !default;
 $blockquote-color: $color-dark !default;
-$blockquote-background: $gray-100 !default;
+$blockquote-background: $shade !default;
 
 $body-background: null !default;
 
-$background-color: $gray-100 !default;
+$background-color: $shade !default;
 $border-width: 1px !default;
 $border-style: solid !default;
 $border-color: rgba($black, 0.1) !default;
