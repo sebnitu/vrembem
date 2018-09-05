@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.28
+ * @version 0.2.29
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -86,7 +86,7 @@ button {
 
 code,
 pre {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 ::-moz-focus-inner {
@@ -4470,36 +4470,34 @@ pre {
 
 .type code {
   font-size: 0.9em;
-  padding: 0.25em 0.5em;
-  color: #000000;
-  background: #ffeb3b;
+  color: #e91e63;
   word-break: break-word;
 }
 
 .type mark {
-  padding: 0 0.25em;
+  background-color: #fff59d;
   color: #000000;
-  background: #ffeb3b;
 }
 
 .type pre {
-  padding: 1.5rem;
   overflow: auto;
+  padding: 1.5rem;
   background: #f5f5f5;
   border-radius: 3px;
 }
 
 .type pre code {
-  font-size: 1em;
   padding: 0;
   background: none;
+  font-size: 1em;
+  color: inherit;
 }
 
 .type blockquote {
   padding: 0.5rem 1.5rem;
-  color: #000000;
   background: #f5f5f5;
   border-radius: 3px;
+  color: #000000;
 }
 
 .type blockquote > * + * {
@@ -4556,6 +4554,38 @@ pre {
 
 .type dl dd {
   margin: 0 0 1rem 1rem;
+}
+
+.type table {
+  overflow: auto;
+  width: 100%;
+  margin: 1.5rem 0;
+  border-spacing: 0;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.type table tr {
+  background-color: #ffffff;
+  border-top: 1px solid #e0e0e0;
+}
+
+.type table th {
+  padding: 0.3125em 0.75em;
+  border: 1px solid #e0e0e0;
+}
+
+.type table td {
+  padding: 0.3125em 0.75em;
+  border: 1px solid #e0e0e0;
+}
+
+.type table tr:nth-child(2n + 1) {
+  background-color: #f5f5f5;
+}
+
+.type table thead tr:nth-child(2n + 1) {
+  background-color: #ffffff;
 }
 
 /**

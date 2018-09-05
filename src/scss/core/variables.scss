@@ -26,7 +26,7 @@ $padding-lg: 0.5em 1.5em !default;
 
 $font-family-sans: BlinkMacSystemFont, -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif !default;
 $font-family-serif: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif !default;
-$font-family-mono: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace !default;
+$font-family-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 $font-family: $font-family-sans !default;
 
 $font-size-sm: 0.875em !default;
@@ -46,26 +46,38 @@ $heading-color: inherit !default;
 $heading-font-weight: font-weight('semi-bold') !default;
 
 $mark-color: $color-dark !default;
-$mark-background: $yellow !default;
-$code-color: $color-dark !default;
-$code-background: $yellow !default;
+$mark-background: $yellow-200 !default;
+$mark-padding: null !default;
+
+$code-color: $pink !default;
+$code-background: null !default;
+$code-padding: null !default;
+
 $pre-color: $color-dark !default;
 $pre-background: $shade !default;
+
 $blockquote-color: $color-dark !default;
 $blockquote-background: $shade !default;
+
+$table-color: $color !default;
+$table-border: 1px solid $gray-300 !default;
+$table-background: $white !default;
+$table-background-alt: $shade !default;
+$table-padding: $padding !default;
 
 $body-background: null !default;
 
 $background-color: $shade !default;
+$border-radius: 3px !default;
+$box-sizing: border-box !default;
+$box-shadow: 0 1px 3px rgba($black, 0.1) !default;
+
 $border-width: 1px !default;
 $border-style: solid !default;
 $border-color: rgba($black, 0.1) !default;
 $border-color-invert: rgba($white, 0.1) !default;
 $border: 1px solid rgba($black, 0.1) !default;
 $border-invert: 1px solid rgba($white, 0.1) !default;
-$border-radius: 3px !default;
-$box-sizing: border-box !default;
-$box-shadow: 0 1px 3px rgba($black, 0.1) !default;
 
 // Link
 ////////////////////////

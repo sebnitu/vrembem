@@ -73,37 +73,38 @@
   }
 
   code {
-    font-size: 0.9em;
-    padding: 0.25em 0.5em;
-    color: $code-color;
+    padding: $code-padding;
     background: $code-background;
+    font-size: 0.9em;
+    color: $code-color;
     word-break: break-word;
   }
 
   mark {
-    padding: 0 0.25em;
+    padding: $mark-padding;
+    background-color: $mark-background;
     color: $mark-color;
-    background: $mark-background;
   }
 
   pre {
-    padding: ($type-spacing * 1.5);
     overflow: auto;
+    padding: ($type-spacing * 1.5);
     background: $pre-background;
     border-radius: $border-radius;
 
     code {
-      font-size: 1em;
       padding: 0;
       background: none;
+      font-size: 1em;
+      color: inherit;
     }
   }
 
   blockquote {
     padding: ($type-spacing * 0.5) ($type-spacing * 1.5);
-    color: $blockquote-color;
     background: $blockquote-background;
     border-radius: $border-radius;
+    color: $blockquote-color;
 
     > * + * {
       margin-top: $type-spacing;
@@ -164,6 +165,42 @@
 
     dd {
       margin: 0 0 $type-spacing $type-spacing;
+    }
+  }
+
+  // Tables
+
+  table {
+    overflow: auto;
+    width: 100%;
+    margin: ($type-spacing * 1.5) 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+    text-align: left;
+
+    tr {
+      background-color: $table-background;
+      border-top: $table-border;
+    }
+
+    th {
+      padding: $table-padding;
+      border: $table-border;
+    }
+
+    td {
+      padding: $table-padding;
+      border: $table-border;
+    }
+
+    // Zebra Stripes
+
+    tr:nth-child(2n + 1) {
+      background-color: $table-background-alt;
+    }
+
+    thead tr:nth-child(2n + 1) {
+      background-color: $table-background;
     }
   }
 
