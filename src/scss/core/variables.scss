@@ -9,7 +9,7 @@ $secondary: $pink-300 !default;
 $secondary-light: lighten($secondary, 15%) !default;
 $secondary-dark: darken($secondary, 15%) !default;
 
-$shade: $blue-gray-50 !default;
+$shade: #f5f5f5 !default;
 $shade-light: rgba($black, 0.05) !default;
 $shade-dark: darken($shade, 5%) !default;
 
