@@ -46,9 +46,9 @@ $heading-color: inherit !default;
 $heading-font-weight: font-weight('semi-bold') !default;
 
 $mark-color: $color-dark !default;
-$mark-background: rgba($yellow, 0.6) !default;
+$mark-background: $yellow !default;
 $code-color: $color-dark !default;
-$code-background: rgba($yellow, 0.6) !default;
+$code-background: $yellow !default;
 $pre-color: $color-dark !default;
 $pre-background: $shade !default;
 $blockquote-color: $color-dark !default;
