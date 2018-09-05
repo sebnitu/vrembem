@@ -4,7 +4,7 @@
  * Button color modifier
  */
 
-.button_color_inverted {
+.button_color_invert {
   color: $white;
   background: rgba($white, 0.1);
   border-color: rgba($white, 0);
@@ -28,7 +28,7 @@
   }
 }
 
-.button_color_subtle-inverted {
+.button_color_subtle-invert {
   color: $white;
   background: none;
   border-color: rgba($white, 0);
