@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.23
+ * @version 0.2.24
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -97,14 +97,7 @@ pre {
 /**
  * Headings Utility
  */
-.h, .type h1,
-.type h2,
-.type h3,
-.type h4,
-.type h5,
-.type h6,
-.h1,
-.type h1,
+.h1, .type h1,
 .h2,
 .type h2,
 .h3,
@@ -119,9 +112,7 @@ pre {
   color: inherit;
 }
 
-
-.h1,
-.type h1 {
+.h1, .type h1 {
   font-size: 2em;
 }
 
@@ -156,9 +147,7 @@ pre {
 }
 
 @media (min-width: 760px) {
-  
-  .h1,
-  .type h1 {
+  .h1, .type h1 {
     font-size: 2.5em;
   }
   
@@ -4692,16 +4681,18 @@ pre {
 .type h4,
 .type h5,
 .type h6 {
-  margin: 1.5em 0 1em;
+  font-weight: 600;
+  color: inherit;
+  margin: 1.5rem 0 1rem;
 }
 
 .type p {
-  margin: 1em 0;
+  margin: 1rem 0;
 }
 
 .type pre,
 .type blockquote {
-  margin: 1.5em 0;
+  margin: 1.5rem 0;
 }
 
 .type code {
@@ -4719,7 +4710,7 @@ pre {
 }
 
 .type pre {
-  padding: 1.5em;
+  padding: 1.5rem;
   overflow: auto;
   background: #f5f5f5;
   border-radius: 3px;
@@ -4732,28 +4723,28 @@ pre {
 }
 
 .type blockquote {
-  padding: 0.5em 1.5em;
+  padding: 0.5rem 1.5rem;
   color: #000000;
   background: #f5f5f5;
   border-radius: 3px;
 }
 
 .type blockquote > * + * {
-  margin-top: 1em;
+  margin-top: 1rem;
 }
 
 .type hr {
-  margin: 2em 0;
+  margin: 2rem 0;
 }
 
 .type ul, .type ol {
-  margin: 1em 0 1em 2em;
+  margin: 1rem 0 1rem 2rem;
   padding: 0;
 }
 
 .type ul ul, .type ul ol, .type ul li, .type ol ul, .type ol ol, .type ol li {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .type ul, .type ul ul ul ul {
@@ -4781,17 +4772,17 @@ pre {
 }
 
 .type dl {
-  margin: 1em 0;
+  margin: 1rem 0;
 }
 
 .type dl dt {
-  margin: 1em 0 0;
+  margin: 1rem 0 0;
   font-weight: bold;
   color: #000000;
 }
 
 .type dl dd {
-  margin: 0 0 1em 1em;
+  margin: 0 0 1rem 1rem;
 }
 
 /**

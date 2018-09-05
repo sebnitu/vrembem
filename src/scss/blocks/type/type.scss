@@ -26,7 +26,10 @@
   h4,
   h5,
   h6 {
-    @extend .h;
+    font-family: $heading-font-family;
+    font-weight: $heading-font-weight;
+    line-height: $heading-line-height;
+    color: $heading-color;
     margin: ($type-spacing * 1.5) 0 $type-spacing;
   }
 
