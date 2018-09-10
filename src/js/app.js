@@ -1,8 +1,12 @@
-import component from './component.js'
-import modal from './modal.js'
+import Example from './example.js'
+import Modal from './modal.js'
+import Dismissible from './dismissible.js'
 
-const c = new component()
-c.init()
+const example = new Example()
+example.init()
 
-const m = new modal()
-m.init()
+const modal = new Modal()
+modal.init()
+
+const dismissible = new Dismissible()
+dismissible.init()

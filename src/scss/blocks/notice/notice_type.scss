@@ -4,66 +4,46 @@
  * Notice type modifiers
  */
 
+.notice_type_primary {
+  background-color: $primary;
+  color: $white;
+}
+
+.notice_type_secondary {
+  background-color: $secondary;
+  color: $white;
+}
+
+.notice_type_dark {
+  background-color: $color;
+  color: $white;
+}
+
+.notice_type_light {
+  background-color: $white;
+  box-shadow: 0 0 20px rgba($black, 0.1);
+}
+
+/**
+ * Semantic type modifiers
+ */
+
 .notice_type_info {
-  color: darken($primary, 10%);
-  background: rgba($primary, 0.1);
-  border-color: rgba($primary, 0.5);
-
-  a {
-    color: darken($primary, 10%);
-    font-weight: font-weight('semi-bold');
-
-    &:hover {
-      color: darken($primary, 10%);
-      border-color: darken($primary, 10%);
-    }
-  }
+  background-color: rgba($info, 0.1);
+  color: darken($info, 10%);
 }
 
 .notice_type_success {
+  background-color: rgba($success, 0.1);
   color: darken($success, 10%);
-  background: rgba($success, 0.1);
-  border-color: rgba($success, 0.5);
-
-  a {
-    color: darken($success, 10%);
-    font-weight: font-weight('semi-bold');
-
-    &:hover {
-      color: darken($success, 10%);
-      border-color: darken($success, 10%);
-    }
-  }
 }
 
 .notice_type_caution {
+  background-color: rgba($caution, 0.1);
   color: darken($caution, 15%);
-  background: rgba($caution, 0.1);
-  border-color: rgba(darken($caution, 10%), 0.5);
-
-  a {
-    color: darken($caution, 15%);
-    font-weight: font-weight('semi-bold');
-
-    &:hover {
-      color: darken($caution, 15%);
-      border-color: darken($caution, 15%);
-    }
-  }
 }
 
 .notice_type_danger {
+  background-color: rgba($danger, 0.1);
   color: darken($danger, 10%);
-  background: rgba($danger, 0.1);
-  border-color: rgba($danger, 0.5);
-
-  a {
-    color: darken($danger, 10%);
-    font-weight: font-weight('semi-bold');
-
-    &:hover {
-      color: darken($danger, 10%);
-      border-color: darken($danger, 10%);
-    }
-  }
 }

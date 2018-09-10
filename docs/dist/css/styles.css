@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.29
+ * @version 0.2.30
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -187,20 +187,20 @@ pre {
   border: none;
 }
 
-.hr_invert {
+.hr_invert, .type_invert hr {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
 /**
  * Links Utility
  */
-.link, .breadcrumb__link, .notice a, .type a:not(.button) {
+.link, .breadcrumb__link, .type a:not(.button) {
   color: #2196f3;
   text-decoration: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.link:hover, .breadcrumb__link:hover, .notice a:hover, .type a:hover:not(.button) {
+.link:hover, .breadcrumb__link:hover, .type a:hover:not(.button) {
   color: #0c7cd5;
   border-bottom: 1px solid #0c7cd5;
 }
@@ -478,6 +478,13 @@ pre {
 
 .c_shade-dark {
   color: #e8e8e8 !important;
+}
+
+/**
+ * Dismiss
+ */
+.dismiss {
+  display: none !important;
 }
 
 /**
@@ -4115,98 +4122,91 @@ pre {
  */
 .notice {
   position: relative;
-  padding: 0.75em 1em;
+  padding: 1.5em;
   background: #f5f5f5;
-  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
-          box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
+}
+
+.notice > * + * {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.notice > .notice__close + *,
+.notice > *:first-child {
+  margin-top: 0;
+}
+
+.notice > *:last-child {
+  margin-bottom: 0;
 }
 
 .notice__close {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   cursor: pointer;
   float: right;
-  margin: 0 -0.25em 0.25em 1em;
-  opacity: 0.5;
+  margin: 0 0 0.5rem 1rem;
 }
 
-.notice__close:hover {
-  opacity: 1;
-}
-
-.notice__content > * + * {
-  margin-top: 0.5rem;
-}
-
-.notice__heading {
-  font-size: 1.2em;
+/**
+ * Box inside of type component
+ */
+.type .notice {
+  margin: 1.5em 0;
 }
 
 /**
  * Notice type modifiers
  */
+.notice_type_primary {
+  background-color: #2196f3;
+  color: #ffffff;
+}
+
+.notice_type_secondary {
+  background-color: #f06292;
+  color: #ffffff;
+}
+
+.notice_type_dark {
+  background-color: #212121;
+  color: #ffffff;
+}
+
+.notice_type_light {
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/**
+ * Semantic type modifiers
+ */
 .notice_type_info {
+  background-color: rgba(33, 150, 243, 0.1);
   color: #0c7cd5;
-  background: rgba(33, 150, 243, 0.1);
-  border-color: rgba(33, 150, 243, 0.5);
-}
-
-.notice_type_info a {
-  color: #0c7cd5;
-  font-weight: 600;
-}
-
-.notice_type_info a:hover {
-  color: #0c7cd5;
-  border-color: #0c7cd5;
 }
 
 .notice_type_success {
+  background-color: rgba(76, 175, 80, 0.1);
   color: #3d8b40;
-  background: rgba(76, 175, 80, 0.1);
-  border-color: rgba(76, 175, 80, 0.5);
-}
-
-.notice_type_success a {
-  color: #3d8b40;
-  font-weight: 600;
-}
-
-.notice_type_success a:hover {
-  color: #3d8b40;
-  border-color: #3d8b40;
 }
 
 .notice_type_caution {
+  background-color: rgba(255, 179, 0, 0.1);
   color: #b37d00;
-  background: rgba(255, 179, 0, 0.1);
-  border-color: rgba(204, 143, 0, 0.5);
-}
-
-.notice_type_caution a {
-  color: #b37d00;
-  font-weight: 600;
-}
-
-.notice_type_caution a:hover {
-  color: #b37d00;
-  border-color: #b37d00;
 }
 
 .notice_type_danger {
+  background-color: rgba(244, 67, 54, 0.1);
   color: #ea1c0d;
-  background: rgba(244, 67, 54, 0.1);
-  border-color: rgba(244, 67, 54, 0.5);
-}
-
-.notice_type_danger a {
-  color: #ea1c0d;
-  font-weight: 600;
-}
-
-.notice_type_danger a:hover {
-  color: #ea1c0d;
-  border-color: #ea1c0d;
 }
 
 /**
@@ -4441,11 +4441,11 @@ pre {
 }
 
 .type > *:first-child {
-  margin-top: 0 !important;
+  margin-top: 0;
 }
 
 .type > *:last-child {
-  margin-bottom: 0 !important;
+  margin-bottom: 0;
 }
 
 .type h1,
@@ -4504,6 +4504,26 @@ pre {
   margin-top: 1rem;
 }
 
+.type figure {
+  padding: 1em;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.type figcaption {
+  margin: 1em 0.5em;
+  font-size: 0.875em;
+  color: #bdbdbd;
+  font-style: italic;
+}
+
+.type figcaption:first-child {
+  margin-top: 0;
+}
+
+.type figcaption:last-child {
+  margin-bottom: 0;
+}
+
 .type hr {
   margin: 2rem 0;
 }
@@ -4549,7 +4569,6 @@ pre {
 .type dl dt {
   margin: 1rem 0 0;
   font-weight: bold;
-  color: #000000;
 }
 
 .type dl dd {
@@ -4586,6 +4605,22 @@ pre {
 
 .type table thead tr:nth-child(2n + 1) {
   background-color: #ffffff;
+}
+
+/**
+ * Type invert modifier
+ */
+.type_invert {
+  color: #ffffff;
+}
+
+.type_invert h1,
+.type_invert h2,
+.type_invert h3,
+.type_invert h4,
+.type_invert h5,
+.type_invert h6 {
+  color: inherit;
 }
 
 /**

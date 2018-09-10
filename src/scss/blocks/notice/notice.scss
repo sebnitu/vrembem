@@ -8,33 +8,37 @@
   position: relative;
   padding: $notice-padding;
   background: $notice-background;
-  box-shadow: $notice-box-shadow;
-  border: $notice-border-width solid $notice-border-color;
+  border: $notice-border;
   border-radius: $notice-border-radius;
 
-  a {
-    @extend .link;
+  > * + * {
+    margin-top: $notice-spacing;
+    margin-bottom: $notice-spacing;
+  }
+
+  > .notice__close + *,
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
   }
 }
 
 .notice__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   float: right;
-  margin: 0 -0.25em 0.25em 1em;
-  opacity: 0.5;
-
-  &:hover {
-    opacity: 1;
-  }
+  margin: 0 0 0.5rem 1rem;
 }
 
-.notice__content {
+/**
+ * Box inside of type component
+ */
 
-  > * + * {
-    margin-top: $notice-spacing;
-  }
-}
-
-.notice__heading {
-  font-size: $notice-heading-font-size;
+.type .notice {
+  margin: 1.5em 0;
 }

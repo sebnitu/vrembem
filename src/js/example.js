@@ -41,6 +41,9 @@ export default function() {
     document.removeEventListener('click', run, false)
   }
 
+  // Initialize our component when an instance is created
+  api.init()
+
   // Return the application program interface
   return api
 }

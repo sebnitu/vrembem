@@ -11,11 +11,11 @@
   line-height: $type-line-height;
 
   > *:first-child {
-    margin-top: 0 !important;
+    margin-top: 0;
   }
 
   > *:last-child {
-    margin-bottom: 0 !important;
+    margin-bottom: 0;
   }
 
   // Headings
@@ -111,6 +111,26 @@
     }
   }
 
+  figure {
+    padding: 1em;
+    border: $border;
+  }
+
+  figcaption {
+    margin: 1em 0.5em;
+    font-size: $font-size-sm;
+    color: $color-light;
+    font-style: italic;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
   // Horizontal Rule
 
   hr {
@@ -160,7 +180,6 @@
     dt {
       margin: $type-spacing 0 0;
       font-weight: bold;
-      color: $color-dark;
     }
 
     dd {

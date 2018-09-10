@@ -1,8 +1,9 @@
 import list from 'list.js'
-import modal from 'modal.js'
+import Modal from 'modal.js'
+import Dismissible from 'dismissible.js'
 
-const m = new modal()
-m.init()
+const modal = new Modal()
+const dismissible = new Dismissible()
 
 const home = document.getElementById('vrembem-blocks')
 
