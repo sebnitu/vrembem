@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.34
+ * @version 0.2.35
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -4145,7 +4145,7 @@ pre {
   background: #f5f5f5;
 }
 
-.notice > * + * {
+.notice > * {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }

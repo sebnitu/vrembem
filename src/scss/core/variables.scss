@@ -41,6 +41,18 @@ $color: $gray-900 !default;
 $color-light: $gray-400 !default;
 $color-dark: $black !default;
 
+$background-color: $shade !default;
+$border-radius: 3px !default;
+$box-sizing: border-box !default;
+$box-shadow: 0 1px 3px rgba($black, 0.1) !default;
+
+$border-width: 1px !default;
+$border-style: solid !default;
+$border-color: rgba($black, 0.1) !default;
+$border-color-invert: rgba($white, 0.1) !default;
+$border: 1px solid rgba($black, 0.1) !default;
+$border-invert: 1px solid rgba($white, 0.1) !default;
+
 $heading-font-family: null !default;
 $heading-line-height: null !default;
 $heading-color: inherit !default;
@@ -56,9 +68,11 @@ $code-padding: null !default;
 
 $pre-color: $color-dark !default;
 $pre-background: $shade !default;
+$pre-border-radius: $border-radius !default;
 
 $blockquote-color: $color-dark !default;
 $blockquote-background: $shade !default;
+$blockquote-border-radius: $border-radius !default;
 
 $table-color: $color !default;
 $table-border: 1px solid $gray-300 !default;
@@ -67,18 +81,6 @@ $table-background-alt: $shade !default;
 $table-padding: $padding !default;
 
 $body-background: null !default;
-
-$background-color: $shade !default;
-$border-radius: 3px !default;
-$box-sizing: border-box !default;
-$box-shadow: 0 1px 3px rgba($black, 0.1) !default;
-
-$border-width: 1px !default;
-$border-style: solid !default;
-$border-color: rgba($black, 0.1) !default;
-$border-color-invert: rgba($white, 0.1) !default;
-$border: 1px solid rgba($black, 0.1) !default;
-$border-invert: 1px solid rgba($white, 0.1) !default;
 
 // Link
 ////////////////////////

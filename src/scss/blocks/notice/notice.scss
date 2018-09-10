@@ -11,7 +11,7 @@
   border: $notice-border;
   border-radius: $notice-border-radius;
 
-  > * + * {
+  > * {
     margin-top: $notice-spacing;
     margin-bottom: $notice-spacing;
   }

@@ -90,7 +90,7 @@
     overflow: auto;
     padding: ($type-spacing * 1.5);
     background: $pre-background;
-    border-radius: $border-radius;
+    border-radius: $pre-border-radius;
 
     code {
       padding: 0;
@@ -103,7 +103,7 @@
   blockquote {
     padding: ($type-spacing * 0.5) ($type-spacing * 1.5);
     background: $blockquote-background;
-    border-radius: $border-radius;
+    border-radius: $blockquote-border-radius;
     color: $blockquote-color;
 
     > * + * {
