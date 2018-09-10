@@ -18,6 +18,12 @@
     color: inherit;
   }
 
+  // Misc elements
+
+  a:not(.button) {
+    @extend .link_invert;
+  }
+
   // Horizontal Rule
 
   hr {

@@ -4,12 +4,14 @@
 
 .text_lead {
   font-size: 1.25em;
+  line-height: $line-height;
   font-weight: font-weight('light');
 }
 
 @include media-min('md') {
   .text_lead {
     font-size: 1.5em;
+    line-height: 1.6;
   }
 }
 
