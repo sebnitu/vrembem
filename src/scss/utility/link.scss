@@ -22,12 +22,12 @@
 
 .link_invert {
   color: $link-color-invert;
-  border: $link-border-invert;
+  border-bottom: $link-border-invert;
 
   &:hover,
   &:focus {
     color: $link-color-invert-hover;
-    border: $link-border-invert-hover;
+    border-bottom: $link-border-invert-hover;
   }
 }
 

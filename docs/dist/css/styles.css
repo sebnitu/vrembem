@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.31
+ * @version 0.2.32
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -210,12 +210,12 @@ pre {
  */
 .link_invert, .type_invert a:not(.button) {
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .link_invert:hover, .type_invert a:hover:not(.button), .link_invert:focus, .type_invert a:focus:not(.button) {
   color: #ffffff;
-  border: 1px solid white;
+  border-bottom: 1px solid white;
 }
 
 /* Link modifiers */
