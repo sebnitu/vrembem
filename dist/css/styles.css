@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.33
+ * @version 0.2.34
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -4172,6 +4172,23 @@ pre {
   cursor: pointer;
   float: right;
   margin: 0 0 0.5rem 1rem;
+}
+
+.notice__group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.notice__group > *:nth-child(1n + 1) {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 /**

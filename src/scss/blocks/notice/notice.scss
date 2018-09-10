@@ -35,6 +35,17 @@
   margin: 0 0 0.5rem 1rem;
 }
 
+.notice__group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  > *:nth-child(1n + 1) {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
 /**
  * Box inside of type component
  */
