@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.32
+ * @version 0.2.33
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -1158,6 +1158,10 @@ pre {
   max-width: 60rem;
 }
 
+.container_size_md {
+  max-width: 70rem;
+}
+
 .container_size_lg {
   max-width: 80rem;
 }
@@ -2063,7 +2067,7 @@ pre {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 0.3125em 0.75em;
+  padding: 0.438em 0.75em;
   color: #212121;
   font-family: inherit;
   font-size: 1em;
@@ -2092,7 +2096,7 @@ pre {
  * Button icon modifier
  */
 .button_icon {
-  padding: 0.3125em;
+  padding: 0.438em;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -2103,7 +2107,7 @@ pre {
 }
 
 .button_icon.button_size_lg {
-  padding: 0.5em;
+  padding: 0.75em;
 }
 
 /**
@@ -2120,8 +2124,8 @@ pre {
 }
 
 .button_size_lg {
-  padding: 0.5em 1.5em;
-  font-size: 1.25em;
+  padding: 0.75em 1.75em;
+  font-size: 16px;
 }
 
 .button_size_lg:not(.button_icon) .icon:first-child {
@@ -2810,7 +2814,7 @@ pre {
       -ms-flex-align: center;
           align-items: center;
   vertical-align: middle;
-  padding: 0.625em 1.375em;
+  padding: 0.679em 1.375em;
   color: #212121;
   border: none;
 }
@@ -2868,7 +2872,7 @@ pre {
 
 .dropdown__content {
   display: block;
-  padding: 0.625em 1.375em;
+  padding: 0.679em 1.375em;
 }
 
 .dropdown__content > * + * {
@@ -3209,25 +3213,25 @@ pre {
 .icon-action_color_fade {
   color: #000000;
   background: none;
-  opacity: 0.25;
+  opacity: 0.5;
 }
 
 .icon-action_color_fade:hover, .icon-action_color_fade:focus {
   color: #000000;
   background: none;
-  opacity: 0.75;
+  opacity: 1;
 }
 
 .icon-action_color_fade-invert {
   color: #ffffff;
   background: none;
-  opacity: 0.25;
+  opacity: 0.5;
 }
 
 .icon-action_color_fade-invert:hover, .icon-action_color_fade-invert:focus {
   color: #ffffff;
   background: none;
-  opacity: 0.75;
+  opacity: 0.1;
 }
 
 .icon-action_color_light {
@@ -3271,7 +3275,7 @@ pre {
   position: relative;
   display: block;
   width: 100%;
-  padding: 0.3125em 0.75em;
+  padding: 0.438em 0.5em;
   color: #212121;
   font-family: BlinkMacSystemFont, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
   font-size: 1em;
@@ -3354,8 +3358,8 @@ pre {
 }
 
 .input_size_lg {
-  padding: 0.5em 0.665em;
-  font-size: 1.25em;
+  padding: 0.75em 0.975em;
+  font-size: 16px;
 }
 
 /**
@@ -3735,7 +3739,7 @@ pre {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0.3125em 0.75em;
+  padding: 0.438em 0.75em;
   color: #212121;
   white-space: nowrap;
   background: none;
@@ -3775,7 +3779,7 @@ pre {
 }
 
 .menu__link_icon {
-  padding: 0.3125em;
+  padding: 0.438em;
 }
 
 .menu__text {
@@ -3786,7 +3790,7 @@ pre {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 0.3125em 0.75em;
+  padding: 0.438em 0.75em;
   color: #212121;
   white-space: nowrap;
   text-decoration: none;
@@ -4243,7 +4247,7 @@ pre {
   display: block;
   max-width: 30em;
   margin: 0;
-  padding: 0.3125em 0.75em;
+  padding: 0.438em 0.75em;
   font-size: 0.85rem;
   color: #ffffff;
   background: rgba(33, 33, 33, 0.95);
@@ -4605,12 +4609,12 @@ pre {
 }
 
 .type table th {
-  padding: 0.3125em 0.75em;
+  padding: 0.438em 0.75em;
   border: 1px solid #e0e0e0;
 }
 
 .type table td {
-  padding: 0.3125em 0.75em;
+  padding: 0.438em 0.75em;
   border: 1px solid #e0e0e0;
 }
 

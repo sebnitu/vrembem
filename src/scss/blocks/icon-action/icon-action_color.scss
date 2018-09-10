@@ -7,26 +7,26 @@
 .icon-action_color_fade {
   color: $black;
   background: none;
-  opacity: 0.25;
+  opacity: 0.5;
 
   &:hover,
   &:focus {
     color: $black;
     background: none;
-    opacity: 0.75;
+    opacity: 1;
   }
 }
 
 .icon-action_color_fade-invert {
   color: $white;
   background: none;
-  opacity: 0.25;
+  opacity: 0.5;
 
   &:hover,
   &:focus {
     color: $white;
     background: none;
-    opacity: 0.75;
+    opacity: 0.1;
   }
 }
 
