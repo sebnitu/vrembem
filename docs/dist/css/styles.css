@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.36
+ * @version 0.2.37
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -3081,9 +3081,9 @@ pre {
 }
 
 /**
- * Embed-wrap
+ * embed
  */
-.embed-wrap {
+.embed {
   position: relative;
   display: block;
   height: 0;
@@ -3091,19 +3091,19 @@ pre {
   overflow: hidden;
 }
 
-.embed-wrap_ratio_16x9 {
+.embed_ratio_16x9 {
   padding-bottom: 56.25%;
 }
 
-.embed-wrap_ratio_4x3 {
+.embed_ratio_4x3 {
   padding-bottom: 75%;
 }
 
-.embed-wrap_ratio_3x2 {
+.embed_ratio_3x2 {
   padding-bottom: 66.66667%;
 }
 
-.embed-wrap__item {
+.embed__item {
   position: absolute;
   top: 0;
   left: 0;
