@@ -214,12 +214,12 @@
 
     // Zebra Stripes
 
-    tr:nth-child(2n + 1) {
+    tr:nth-child(2n + 2) {
       background-color: $table-background-alt;
     }
 
-    thead tr:nth-child(2n + 1) {
-      background-color: $table-background;
+    thead tr {
+      background-color: $table-background-alt;
     }
   }
 

@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.37
+ * @version 0.2.38
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -4635,12 +4635,12 @@ pre {
   border: 1px solid #e0e0e0;
 }
 
-.type table tr:nth-child(2n + 1) {
+.type table tr:nth-child(2n + 2) {
   background-color: #f5f5f5;
 }
 
-.type table thead tr:nth-child(2n + 1) {
-  background-color: #ffffff;
+.type table thead tr {
+  background-color: #f5f5f5;
 }
 
 /**
