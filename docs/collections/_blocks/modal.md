@@ -88,7 +88,7 @@ The core poarts of a modal include the following elements:
 <!-- Modal Markup -->
 <div>
 
-<div class="modal" id="modal-default">
+<div class="modal" id="modal-default" tabindex="-1">
   <div class="modal__dialog dialog">
     <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
       {% include icon.html icon="x" %}

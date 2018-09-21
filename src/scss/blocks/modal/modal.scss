@@ -30,6 +30,11 @@
   visibility: hidden;
 }
 
+// Remove outline on focused items with tabindex of "-1"
+[tabindex="-1"]:focus {
+  outline: 0!important;
+}
+
 /**
  * Active State
  */

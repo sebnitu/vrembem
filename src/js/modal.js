@@ -10,17 +10,37 @@ export default function() {
     classTrigger: 'modal__trigger',
     classModal: 'modal',
     classDialog: 'modal__dialog',
-    classActive: 'is-active'
+    classActive: 'is-active',
+    focus: '[data-focus]'
   }
+  let memoryTrigger
+  let memoryTarget
 
   let open = (target) => {
     u.addClass(target, settings.classActive)
+    let focus = target.querySelector(settings.focus)
+    target.addEventListener('transitionend', function _listener() {
+      if (focus) {
+        focus.focus()
+      } else {
+        target.focus()
+      }
+      this.removeEventListener('transitionend', _listener, true)
+    }, true);
   }
 
   let close = () => {
     let modals = document.querySelectorAll('.' + settings.classModal)
     for (let i = 0; i < modals.length; ++i) {
       u.removeClass(modals[i], settings.classActive)
+    }
+    if (memoryTrigger && memoryTarget) {
+      memoryTarget.addEventListener('transitionend', function _listener() {
+        memoryTrigger.focus()
+        memoryTarget = null
+        memoryTrigger = null
+        this.removeEventListener('transitionend', _listener, true)
+      }, true);
     }
   }
 
@@ -32,7 +52,9 @@ export default function() {
       close()
       let dataModal = trigger.dataset.modal
       if (dataModal) {
-        open(document.getElementById(dataModal))
+        memoryTarget = document.getElementById(dataModal)
+        memoryTrigger = trigger
+        open(memoryTarget)
       }
       event.preventDefault()
     } else if (modal && !dialog) {
@@ -49,6 +71,8 @@ export default function() {
 
   api.destroy = () => {
     settings = null
+    memoryTarget = null
+    memoryTrigger = null
     document.removeEventListener('click', run, false)
     document.removeEventListener('touchend', run, false)
   }
