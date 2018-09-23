@@ -13,6 +13,7 @@ export default function() {
     classActive: 'is-active',
     focus: '[data-focus]'
   }
+
   let memoryTrigger
   let memoryTarget
 
@@ -60,6 +61,14 @@ export default function() {
     } else if (modal && !dialog) {
       close()
     }
+  }
+
+  api.open = (target) => {
+    open(document.getElementById(target))
+  }
+
+  api.close = () => {
+    close()
   }
 
   api.init = (options) => {
