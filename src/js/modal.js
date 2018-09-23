@@ -37,7 +37,9 @@ export default function() {
     }
     if (memoryTrigger && memoryTarget) {
       memoryTarget.addEventListener('transitionend', function _listener() {
-        memoryTrigger.focus()
+        if (memoryTrigger) {
+          memoryTrigger.focus()
+        }
         memoryTarget = null
         memoryTrigger = null
         this.removeEventListener('transitionend', _listener, true)
