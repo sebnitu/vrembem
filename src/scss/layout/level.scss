@@ -13,13 +13,11 @@
 }
 
 .level_wrap {
-  margin-top: (-$spacing);
-  margin-left: (-$spacing);
   flex-wrap: wrap;
+  margin: (-$spacing * 0.5);
 
   > * {
-    margin-top: $spacing;
-    margin-left: $spacing;
+    margin: ($spacing * 0.5);
   }
 }
 
@@ -32,12 +30,10 @@
     }
 
     &.level_wrap {
-      margin-top: (-$value);
-      margin-left: (-$value);
+      margin-top: ($value * 0.5);
 
       > * {
-        margin-top: $value;
-        margin-left: $value;
+        margin: ($value * 0.5);
       }
     }
   }

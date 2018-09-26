@@ -7,10 +7,12 @@ desc: "A component for highlighting messages to the user."
 ## `.notice`
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item">
+  <div class="grid__item">
+  <div class="demo__render">
     <div class="notice">
       Notice content goes here...
     </div>
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
@@ -23,10 +25,32 @@ desc: "A component for highlighting messages to the user."
   </div>
 </div>
 
+## `.notice_link`
+
+<div class="demo grid grid_md">
+  <div class="grid__item">
+  <div class="demo__render">
+    <a href="#" class="notice notice_link">
+      Notice content goes here...
+    </a>
+  </div>
+  </div>
+  <div class="grid__item size_6">
+  <div class="demo__code" markdown="1">
+```html
+<a href="#" class="notice notice_link">
+  ...
+</a>
+```
+  </div>
+  </div>
+</div>
+
 ## `.notice__close`
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item type">
+  <div class="grid__item">
+  <div class="demo__render type">
     <div class="notice" data-dismissible>
       <span class="notice__close" data-dismiss>
         <a href="#" class="link">Close</a>
@@ -39,6 +63,7 @@ desc: "A component for highlighting messages to the user."
       </button>
       Notice content goes here...
     </div>
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
@@ -66,7 +91,8 @@ desc: "A component for highlighting messages to the user."
 ## `.notice_type_[name]`
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item spacing">
+  <div class="grid__item">
+  <div class="demo__render spacing">
     <div class="notice notice_type_primary" data-dismissible>
       <button class="notice__close icon-action" data-dismiss>
       {% include icon.html icon="x" class="icon" %}
@@ -116,6 +142,7 @@ desc: "A component for highlighting messages to the user."
       Notice content goes here...
     </div>
   </div>
+  </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
 ```html
@@ -139,10 +166,11 @@ desc: "A component for highlighting messages to the user."
   </div>
 </div>
 
-## `.notice_type_[name]` `>` `.notice__content`
+## `.notice_type_[name]` `>` `[content]`
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item type">
+  <div class="grid__item">
+  <div class="demo__render type">
     <div class="notice notice_type_info" data-dismissible>
       <span class="notice__close" data-dismiss>
       {% include icon.html icon="x" class="icon" %}
@@ -171,6 +199,7 @@ desc: "A component for highlighting messages to the user."
       <h4>Heading</h4>
       <p>Lorem ipsum dolor sit amet, <a href="#">consectetur adipiscing</a> elit. Etiam sed semper dui. Donec malesuada, augue sit amet auctor elementum, est sem consectetur nisi, ac pretium massa sapien eu quam.</p>
     </div>
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">

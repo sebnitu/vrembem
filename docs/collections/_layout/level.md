@@ -25,6 +25,36 @@ desc: "A simple layout component that helps center children in an element vertic
   </div>
 </div>
 
+## `.level_wrap`
+
+<div class="demo grid grid_md">
+  <div class="grid__item">
+  <div class="demo__render">
+    <div>
+    <div class="level level_wrap">
+      <div class="box">This</div>
+      <div class="box">Group</div>
+      <div class="box">of</div>
+      <div class="box">Items</div>
+      <div class="box">Will</div>
+      <div class="box">Wrap</div>
+    </div>
+    </div>
+  </div>
+  </div>
+  <div class="grid__item size_6">
+  <div class="demo__code" markdown="1">
+```html
+<div>
+  <div class="level level_wrap">
+    ...
+  </div>
+</div>
+```
+  </div>
+  </div>
+</div>
+
 ## `.level_block` `+` `.level_spacing_[key]`
 
 <div class="demo grid grid_md">

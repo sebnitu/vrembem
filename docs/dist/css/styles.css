@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.43
+ * @version 0.2.44
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -1025,6 +1025,16 @@ pre {
 }
 
 /**
+ * Symbols
+ */
+.svg-symbols {
+  position: absolute !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/**
  * Section
  */
 .section {
@@ -1874,15 +1884,13 @@ pre {
 }
 
 .level_wrap {
-  margin-top: -1rem;
-  margin-left: -1rem;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  margin: -0.5rem;
 }
 
 .level_wrap > * {
-  margin-top: 1rem;
-  margin-left: 1rem;
+  margin: 0.5rem;
 }
 
 /* Level Spacing Modifiers */
@@ -1891,13 +1899,11 @@ pre {
 }
 
 .level_spacing_xs.level_wrap {
-  margin-top: -0.5rem;
-  margin-left: -0.5rem;
+  margin-top: 0.25rem;
 }
 
 .level_spacing_xs.level_wrap > * {
-  margin-top: 0.5rem;
-  margin-left: 0.5rem;
+  margin: 0.25rem;
 }
 
 .level_spacing_sm > * + * {
@@ -1905,13 +1911,11 @@ pre {
 }
 
 .level_spacing_sm.level_wrap {
-  margin-top: -1rem;
-  margin-left: -1rem;
+  margin-top: 0.5rem;
 }
 
 .level_spacing_sm.level_wrap > * {
-  margin-top: 1rem;
-  margin-left: 1rem;
+  margin: 0.5rem;
 }
 
 .level_spacing_md > * + * {
@@ -1919,13 +1923,11 @@ pre {
 }
 
 .level_spacing_md.level_wrap {
-  margin-top: -1.5rem;
-  margin-left: -1.5rem;
+  margin-top: 0.75rem;
 }
 
 .level_spacing_md.level_wrap > * {
-  margin-top: 1.5rem;
-  margin-left: 1.5rem;
+  margin: 0.75rem;
 }
 
 .level_spacing_lg > * + * {
@@ -1933,13 +1935,11 @@ pre {
 }
 
 .level_spacing_lg.level_wrap {
-  margin-top: -2rem;
-  margin-left: -2rem;
+  margin-top: 1rem;
 }
 
 .level_spacing_lg.level_wrap > * {
-  margin-top: 2rem;
-  margin-left: 2rem;
+  margin: 1rem;
 }
 
 .level_spacing_xl > * + * {
@@ -1947,13 +1947,11 @@ pre {
 }
 
 .level_spacing_xl.level_wrap {
-  margin-top: -3rem;
-  margin-left: -3rem;
+  margin-top: 1.5rem;
 }
 
 .level_spacing_xl.level_wrap > * {
-  margin-top: 3rem;
-  margin-left: 3rem;
+  margin: 1.5rem;
 }
 
 /**
@@ -4617,6 +4615,7 @@ pre {
   font-size: 0.875em;
   color: #bdbdbd;
   font-style: italic;
+  text-align: center;
 }
 
 .type figcaption:first-child {
