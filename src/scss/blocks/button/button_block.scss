@@ -8,3 +8,21 @@
   display: flex;
   width: 100%;
 }
+
+/**
+ * Button block breakpoint modifiers
+ */
+
+@each $name, $value in $breakpoints {
+  .button_block_#{$name} {
+    display: flex;
+    width: 100%;
+  }
+
+  @include media-min($name) {
+    .button_block_#{$name} {
+      display: inline-flex;
+      width: auto;
+    }
+  }
+}

@@ -342,7 +342,7 @@ Allows a horizontal menu to scroll if it exceeds the full width of it's containe
 
 ## Menu Themes
 
-## `menu_theme_inverted`
+## `menu_invert`
 
 This theme is perfect for using menus on a dark background.
 
@@ -350,7 +350,7 @@ This theme is perfect for using menus on a dark background.
   <div class="demo__render grid__item">
     <div class="spacing_lg bg_gray p_1">
       <div class="demo__group">
-        <ul class="menu menu_theme_inverted">
+        <ul class="menu menu_invert">
           <li class="menu__item">
             <a class="menu__link is-active" href="#">Create</a>
           </li>
@@ -370,7 +370,7 @@ This theme is perfect for using menus on a dark background.
         </ul>
       </div>
       <div class="demo__group">
-        <ul class="menu menu_stack menu_theme_inverted">
+        <ul class="menu menu_stack menu_invert">
           <li class="menu__item">
             <a class="menu__link is-active" href="#">Create</a>
           </li>
@@ -394,7 +394,7 @@ This theme is perfect for using menus on a dark background.
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
 ```html
-<ul class="menu menu_theme_inverted">
+<ul class="menu menu_invert">
   <li class="menu__item">
     <a class="menu__link is-active" href="#">Create</a>
   </li>

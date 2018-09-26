@@ -9,10 +9,6 @@
   align-items: stretch;
   overflow: visible;
 
-  .menu_stack {
-    margin-left: $menu_stack-indent;
-  }
-
   .menu__item + .menu__item {
     margin-left: 0;
     margin-top: $menu__item-spacing;
@@ -38,5 +34,21 @@
     margin: $menu__sep-spacing 0;
     border-right: none;
     border-top: $menu__sep-border-width solid $menu__sep-border-color;
+  }
+}
+
+/**
+ * Menu stack breakpoint modifiers
+ */
+
+@each $name, $value in $breakpoints {
+  .menu_stack_#{$name} {
+    @extend .menu_stack;
+  }
+
+  @include media-min($name) {
+    .menu_stack_#{$name} {
+      flex-direction: row;
+    }
   }
 }
