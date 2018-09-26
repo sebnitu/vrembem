@@ -6,11 +6,11 @@ $menu_invert-color_hover: $white !default;
 $menu_invert-background: null !default;
 $menu_invert-background_hover: rgba($white, 0.1) !default;
 
-$menu_invert-color_active: $color !default;
-$menu_invert-color_active_hover: $color !default;
+$menu_invert-color_active: $primary !default;
+$menu_invert-color_active_hover: null !default;
 
-$menu_invert-background_active: $white !default;
-$menu_invert-background_active_hover: $white !default;
+$menu_invert-background_active: null !default;
+$menu_invert-background_active_hover: none !default;
 
 $menu_invert-color_disabled: rgba($white, 0.5) !default;
 $menu_invert-color_disabled_hover: rgba($white, 0.5) !default;

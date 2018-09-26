@@ -15,7 +15,15 @@
 }
 
 .bg_gray {
-  background-color: $gray !important;
+  background-color: $gray-600 !important;
+}
+
+.bg_gray-light {
+  background-color: $gray-400 !important;
+}
+
+.bg_gray-dark {
+  background-color: $gray-800 !important;
 }
 
 /* Primary */

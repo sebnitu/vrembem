@@ -1,0 +1,44 @@
+/**
+ * Demo
+ */
+
+.demo .grid__item {
+  display: flex;
+
+  > * {
+    width: 100%;
+  }
+}
+
+.demo__render {
+
+  &.invert {
+    padding: $type-spacing;
+    background: $gray-800;
+    border-radius: $border-radius;
+  }
+}
+
+.demo__code {
+  overflow: auto;
+  padding: $type-spacing;
+  background: $pre-background;
+  border-radius: $pre-border-radius;
+}
+
+@include media-min('md') {
+  .demo__render.invert,
+  .demo__code {
+    padding: ($type-spacing * 1.5);
+  }
+}
+
+/**
+ * Box
+ */
+
+.box {
+  padding: 1em;
+  background: rgba($green, 0.2);
+  border-radius: $border-radius;
+}

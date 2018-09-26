@@ -6,22 +6,10 @@
 @import 'blocks/jumbo-list';
 
 // Demo page components
+@import 'blocks/demo';
 @import 'blocks/page';
 @import 'blocks/highlight';
 
 .svg-symbols {
   display: none;
-}
-
-.box {
-  padding: 1em;
-  background: rgba($green, 0.2);
-  border-radius: $border-radius;
-}
-
-.demo__code {
-  overflow: auto;
-  padding: ($type-spacing * 1.5);
-  background: $pre-background;
-  border-radius: $pre-border-radius;
 }
