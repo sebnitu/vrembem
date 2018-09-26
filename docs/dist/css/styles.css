@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.45
+ * @version 0.2.46
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -2726,10 +2726,9 @@ pre {
   overflow: auto;
   background: #ffffff;
   background-clip: padding-box;
-  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 3px;
-  -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
+          box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
@@ -4107,8 +4106,8 @@ pre {
   z-index: 1001;
   width: 600px;
   max-width: 100%;
-  -webkit-transform: translate3d(0, -100%, 0);
-          transform: translate3d(0, -100%, 0);
+  -webkit-transform: translate3d(0, -80px, 0);
+          transform: translate3d(0, -80px, 0);
   opacity: 0;
   visibility: hidden;
 }
@@ -4150,8 +4149,8 @@ pre {
   margin: 0;
   border: none;
   border-radius: 0;
-  -webkit-transform: translate3d(0, -25%, 0);
-          transform: translate3d(0, -25%, 0);
+  -webkit-transform: translate3d(0, -80px, 0);
+          transform: translate3d(0, -80px, 0);
 }
 
 /**
@@ -4170,8 +4169,8 @@ pre {
 }
 
 .modal_pos_bottom .modal__dialog {
-  -webkit-transform: translate3d(0, 100%, 0);
-          transform: translate3d(0, 100%, 0);
+  -webkit-transform: translate3d(0, 80px, 0);
+          transform: translate3d(0, 80px, 0);
 }
 
 .modal_pos_left .modal__dialog,

@@ -9,10 +9,15 @@ $secondary: $pink-300 !default;
 $secondary-light: lighten($secondary, 15%) !default;
 $secondary-dark: darken($secondary, 15%) !default;
 
+$accent: $purple !default;
+$accent-light: lighten($accent, 15%) !default;
+$accent-dark: darken($accent, 15%) !default;
+
 $shade: #f5f5f5 !default;
 $shade-light: rgba($black, 0.05) !default;
 $shade-dark: darken($shade, 5%) !default;
 
+// Semantic type colors
 $info: $blue !default;
 $success: $green !default;
 $caution: $amber-600 !default;
@@ -21,31 +26,78 @@ $danger: $red !default;
 // Global Properties
 ////////////////////////
 
+// Padding
 $padding-sm: 0.215em 0.5em !default;
 $padding: 0.438em 0.75em !default;
 $padding-lg: 0.75em 1.75em !default;
 
+// Fonts
 $font-family-sans: BlinkMacSystemFont, -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif !default;
 $font-family-serif: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif !default;
 $font-family-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 $font-family: $font-family-sans !default;
 
+// Front Size
 $font-size-sm: 0.875em !default;
 $font-size: 16px !default;
 $font-size-lg: 1.25em !default;
 
+// Typography
 $line-height: 1.5 !default;
 $font-weight: font-weight('normal') !default;
 
+// Color
 $color: $gray-900 !default;
 $color-light: $gray-400 !default;
 $color-dark: $black !default;
 
+// Box styles
 $background-color: $shade !default;
 $border-radius: 3px !default;
 $box-sizing: border-box !default;
-$box-shadow: 0 1px 3px rgba($black, 0.1) !default;
 
+// Box Shadow
+// offset-x | offset-y | blur-radius | spread-radius | color
+// https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow
+$box-shadow-1dp:
+  0 2px 1px -1px rgba($black, 0.2),
+  0 1px 1px 0 rgba($black, 0.14),
+  0 1px 3px 0 rgba($black, 0.12)
+!default;
+
+$box-shadow-4dp:
+  0 2px 4px -1px rgba($black, 0.2),
+  0 4px 5px 0 rgba($black, 0.14),
+  0 1px 10px 0 rgba($black, 0.12)
+!default;
+
+$box-shadow-8dp:
+  0 5px 5px -3px rgba($black, 0.2),
+  0 8px 10px 1px rgba($black, 0.14),
+  0 3px 14px 2px rgba($black, 0.12)
+!default;
+
+$box-shadow-16dp:
+  0 8px 10px -5px rgba($black, 0.2),
+  0 16px 24px 2px rgba($black, 0.14),
+  0 6px 30px 5px rgba($black, 0.12)
+!default;
+
+$box-shadow-24dp:
+  0 11px 15px -7px rgba($black, 0.2),
+  0 24px 38px 3px rgba($black, 0.14),
+  0 9px 46px 8px rgba($black, 0.12)
+!default;
+
+$box-shadow: $box-shadow-4dp !default;
+
+// Transition
+// property | duration | timing-function | delay
+// https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions
+$transition-duration: 0.3s !default;
+$transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1) !default;
+
+// Border
 $border-width: 1px !default;
 $border-style: solid !default;
 $border-color: rgba($black, 0.1) !default;
@@ -53,33 +105,40 @@ $border-color-invert: rgba($white, 0.1) !default;
 $border: 1px solid rgba($black, 0.1) !default;
 $border-invert: 1px solid rgba($white, 0.1) !default;
 
+// Headings
 $heading-font-family: null !default;
 $heading-line-height: null !default;
 $heading-color: inherit !default;
 $heading-font-weight: font-weight('semi-bold') !default;
 
+// Mark
 $mark-color: $color-dark !default;
 $mark-background: $yellow-200 !default;
 $mark-padding: null !default;
 
+// Code
 $code-color: $pink !default;
 $code-background: null !default;
 $code-padding: null !default;
 
+// Pre
 $pre-color: $color-dark !default;
 $pre-background: $shade !default;
 $pre-border-radius: $border-radius !default;
 
+// Blockquotes
 $blockquote-color: $color-dark !default;
 $blockquote-background: $shade !default;
 $blockquote-border-radius: $border-radius !default;
 
+// Tables
 $table-color: $color !default;
 $table-border: 1px solid $gray-300 !default;
 $table-background: $white !default;
 $table-background-alt: $shade !default;
 $table-padding: $padding !default;
 
+// Body
 $body-background: null !default;
 
 // Link
@@ -94,7 +153,6 @@ $link-text-decoration-hover: null !default;
 $link-transition: null !default;
 
 // Invert
-
 $link-color-invert: $white !default;
 $link-color-invert-hover: $white !default;
 $link-border-invert: 1px solid rgba($white, 0.5) !default;

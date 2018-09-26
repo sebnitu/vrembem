@@ -6,16 +6,22 @@ desc: "A component for changing the mode of a page to complete a critical task. 
 
 ## `modal`
 
-The core poarts of a modal include the following elements:
+<div class="type" markdown="1">
+
+The core parts of a modal include the following elements:
 
 * `modal__trigger`: The initial modal trigger. Uses the `data-modal` attribute to set trigger target.
 * `modal`
   * `modal__dialog`
     * `modal__trigger`: Used without the `data-modal` attribute for closing modal from within a dialog.
 
+</div>
+
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item">
+  <div class="grid__item">
+  <div class="demo__render">
     <button class="modal__trigger button button_color_primary" data-modal="modal-default">Modal</button>
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
@@ -35,9 +41,11 @@ The core poarts of a modal include the following elements:
 ## `modal_size`
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item">
+  <div class="grid__item">
+  <div class="demo__render">
     <button class="modal__trigger button button_color_primary" data-modal="modal-size-sm">Small Modal</button>
     <button class="modal__trigger button button_color_primary" data-modal="modal-size-lg">Large Modal</button>
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
@@ -52,8 +60,10 @@ The core poarts of a modal include the following elements:
 ## `modal_full`
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item">
+  <div class="grid__item">
+  <div class="demo__render">
     <button class="modal__trigger button button_color_primary" data-modal="modal-full">Modal</button>
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
@@ -67,11 +77,13 @@ The core poarts of a modal include the following elements:
 ## `modal_pos`
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item">
+  <div class="grid__item">
+  <div class="demo__render">
     <button class="modal__trigger button button_color_primary" data-modal="modal-pos-top">Modal Top</button>
     <button class="modal__trigger button button_color_primary" data-modal="modal-pos-bottom">Modal Bottom</button>
     <button class="modal__trigger button button_color_primary" data-modal="modal-pos-left">Modal Left</button>
     <button class="modal__trigger button button_color_primary" data-modal="modal-pos-right">Modal Right</button>
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">

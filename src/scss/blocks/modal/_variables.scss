@@ -1,5 +1,11 @@
 $modal-width: 600px !default;
-$modal-left-right-width: 260px !default;
-$modal-left-right-max-width: 90% !default;
-$modal-travel: 100% !default;
+$modal-width-sm: 300px !default;
+$modal-width-lg: 900px !default;
+
+$modal-width-aside: 260px !default;
+$modal-max-width-aside: 90% !default;
+
+$modal-travel: 80px !default;
 $modal-background: $black !default;
+
+$modal-transition-duration: 0.5s !default;

@@ -18,7 +18,7 @@
   overflow: hidden;
   background-color: rgba($modal-background, 0);
   backdrop-filter: blur(4px);
-  transition: background-color 0.5s, width 0.1s 0.5s, height 0.1s 0.5s, padding 0.1s 0.5s;
+  transition: background-color $modal-transition-duration, width 0.1s $modal-transition-duration, height 0.1s $modal-transition-duration, padding 0.1s $modal-transition-duration;
 }
 
 .modal__dialog {
@@ -43,7 +43,7 @@
   height: 100%;
   padding: 1em;
   background-color: rgba($modal-background, 0.75);
-  transition: background-color 0.5s;
+  transition: background-color $modal-transition-duration;
 
   .modal__dialog {
     transform: translate3d(0, 0, 0);

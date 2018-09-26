@@ -4,15 +4,33 @@ title: Dialog
 desc: "A component that facilitates a conversation between the system and the user. They often request information or an action from the user."
 ---
 
+<div class="bg_shade p_2">
+
+<div class="shadow"></div>
+
+<div class="shadow shadow-depth-1"></div>
+
+<div class="shadow shadow-depth-2"></div>
+
+<div class="shadow shadow-depth-3"></div>
+
+<div class="shadow shadow-depth-4"></div>
+
+<div class="shadow shadow-depth-5"></div>
+
+</div>
+
 ## `dialog + dialog__body`
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item">
+  <div class="grid__item">
+  <div class="demo__render">
     <div class="dialog">
       <div class="dialog__body">
         <p>This is some dialog content...</p>
       </div>
     </div>
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
@@ -32,7 +50,8 @@ desc: "A component that facilitates a conversation between the system and the us
 In this example, I'm including the `icon-action` component in our `dialog__close` composition.
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item">
+  <div class="grid__item">
+  <div class="demo__render">
     <div class="dialog">
       <button class="dialog__close icon-action icon-action_color_fade">
         {% include icon.html icon="x" %}
@@ -41,6 +60,7 @@ In this example, I'm including the `icon-action` component in our `dialog__close
         <p>This is some dialog content...</p>
       </div>
     </div>
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
@@ -63,7 +83,8 @@ In this example, I'm including the `icon-action` component in our `dialog__close
 ## `dialog__title`
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item">
+  <div class="grid__item">
+  <div class="demo__render">
     <div class="dialog">
       <button class="dialog__close icon-action icon-action_color_fade">
         {% include icon.html icon="x" %}
@@ -73,6 +94,7 @@ In this example, I'm including the `icon-action` component in our `dialog__close
         <p>This is some dialog content...</p>
       </div>
     </div>
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
@@ -92,7 +114,8 @@ In this example, I'm including the `icon-action` component in our `dialog__close
 ## `dialog__group`
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item">
+  <div class="grid__item">
+  <div class="demo__render">
     <div class="dialog">
       <div class="dialog__body">
         <div class="dialog__group">
@@ -108,6 +131,7 @@ In this example, I'm including the `icon-action` component in our `dialog__close
         </div>
       </div>
     </div>
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
@@ -131,7 +155,8 @@ In this example, I'm including the `icon-action` component in our `dialog__close
 ## `justify_[value]`
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item">
+  <div class="grid__item">
+  <div class="demo__render">
     <div class="dialog">
       <div class="dialog__body">
         <div class="dialog__group">
@@ -147,6 +172,7 @@ In this example, I'm including the `icon-action` component in our `dialog__close
         </div>
       </div>
     </div>
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
@@ -165,7 +191,8 @@ In this example, I'm including the `icon-action` component in our `dialog__close
 </div>
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item">
+  <div class="grid__item">
+  <div class="demo__render">
     <div class="dialog">
       <div class="dialog__body">
         <div class="dialog__group">
@@ -181,6 +208,7 @@ In this example, I'm including the `icon-action` component in our `dialog__close
         </div>
       </div>
     </div>
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
@@ -199,7 +227,8 @@ In this example, I'm including the `icon-action` component in our `dialog__close
 </div>
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item">
+  <div class="grid__item">
+  <div class="demo__render">
     <div class="dialog">
       <div class="dialog__body">
         <div class="dialog__group">
@@ -215,6 +244,7 @@ In this example, I'm including the `icon-action` component in our `dialog__close
         </div>
       </div>
     </div>
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
@@ -239,7 +269,8 @@ These elements are unique because they should only be used as direct children of
 ## `dialog__header`
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item">
+  <div class="grid__item">
+  <div class="demo__render">
     <div class="dialog">
       <div class="dialog__header">
         <h2 class="dialog__title">Dialog Title</h2>
@@ -251,6 +282,7 @@ These elements are unique because they should only be used as direct children of
         <p>This is some dialog content...</p>
       </div>
     </div>
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
@@ -271,7 +303,8 @@ These elements are unique because they should only be used as direct children of
 ## `dialog__footer`
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item">
+  <div class="grid__item">
+  <div class="demo__render">
     <div class="dialog">
       <div class="dialog__body">
         <p>This is some dialog content...</p>
@@ -281,6 +314,7 @@ These elements are unique because they should only be used as direct children of
         <button class="button">Cancel</button>
       </div>
     </div>
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
@@ -303,8 +337,9 @@ These elements are unique because they should only be used as direct children of
 <p class="text_lead">The dialog is a very flexible component and can be used in many different contexts. Below are more compositional examples of the dialog component.</p>
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item">
-    <div class="dialog">
+  <div class="grid__item">
+  <div class="demo__render">
+    <div class="dialog" data-dismissible>
       <div class="dialog__header">
         <h2 class="dialog__title">New Message</h2>
         <div class="dialog__group">
@@ -314,7 +349,7 @@ These elements are unique because they should only be used as direct children of
           <button class="dialog__group-item icon-action icon-action_color_fade">
             {% include icon.html icon="maximize-2" %}
           </button>
-          <button class="dialog__group-item dialog__close icon-action icon-action_color_fade">
+          <button class="dialog__group-item dialog__close icon-action icon-action_color_fade" data-dismiss>
             {% include icon.html icon="x" %}
           </button>
         </div>
@@ -345,14 +380,15 @@ These elements are unique because they should only be used as direct children of
       </div>
     </div>
   </div>
+  </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
 ```html
-<div class="dialog">
+<div class="dialog" data-dismissible>
   <div class="dialog__header">
     <h2 class="dialog__title">New Message</h2>
     <div class="dialog__group">
-      <button class="dialog__group-item icon-action icon-action_color_fade">
+      <button class="dialog__group-item icon-action icon-action_color_fade" data-dismiss>
         <svg role="img" class="icon">
           <use xlink:href="#minus"></use>
         </svg>
@@ -408,9 +444,10 @@ These elements are unique because they should only be used as direct children of
 </div>
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item">
-    <div class="dialog">
-      <button class="dialog__close icon-action icon-action_color_fade">
+  <div class="grid__item">
+  <div class="demo__render">
+    <div class="dialog" data-dismissible>
+      <button class="dialog__close icon-action icon-action_color_fade" data-dismiss>
         <svg role="img" class="icon">
           <use xlink:href="#x"></use>
         </svg>
@@ -425,11 +462,12 @@ These elements are unique because they should only be used as direct children of
       </div>
     </div>
   </div>
+  </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
 ```html
-<div class="dialog">
-  <button class="dialog__close icon-action icon-action_color_fade">
+<div class="dialog" data-dismissible>
+  <button class="dialog__close icon-action icon-action_color_fade" data-dismiss>
     <svg role="img" class="icon">
       <use xlink:href="#x"></use>
     </svg>

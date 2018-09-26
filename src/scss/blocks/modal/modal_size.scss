@@ -5,9 +5,9 @@
  */
 
 .modal_size_sm .modal__dialog {
-  width: ($modal-width * 0.5);
+  width: $modal-width-sm;
 }
 
 .modal_size_lg .modal__dialog {
-  width: ($modal-width * 1.5);
+  width: $modal-width-lg;
 }
