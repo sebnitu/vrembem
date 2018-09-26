@@ -37,7 +37,15 @@
   }
 }
 
+.dialog__header,
+.dialog__footer {
+  position: sticky;
+  z-index: 1;
+  background: $dialog-background;
+}
+
 .dialog__header {
+  top: 0;
   border-bottom: $dialog-border;
 }
 
@@ -58,6 +66,7 @@
 }
 
 .dialog__footer {
+  bottom: 0;
   border-top: $dialog-border;
 }
 
