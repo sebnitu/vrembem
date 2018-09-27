@@ -90,6 +90,7 @@ $box-shadow-24dp:
 !default;
 
 $box-shadow: $box-shadow-4dp !default;
+$box-shadow-flat: 0 0 0 0 rgba($black, 0) !default;
 
 // Transition
 // property | duration | timing-function | delay

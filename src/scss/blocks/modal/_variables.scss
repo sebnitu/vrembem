@@ -1,3 +1,5 @@
+$modal-zindex: 1000 !default;
+
 $modal-width: 600px !default;
 $modal-width-sm: 300px !default;
 $modal-width-lg: 900px !default;
@@ -7,5 +9,6 @@ $modal-max-width-aside: 90% !default;
 
 $modal-travel: 80px !default;
 $modal-background: $black !default;
+$modal__dialog-box-shadow: $box-shadow-24dp !default;
 
 $modal-transition-duration: 0.5s !default;

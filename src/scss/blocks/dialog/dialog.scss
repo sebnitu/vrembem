@@ -14,7 +14,7 @@
   background-clip: padding-box;
   border-radius: $dialog-border-radius;
   box-shadow: $dialog-box-shadow;
-  transition: all 0.5s;
+  transition: all $dialog-transition-duration $dialog-transition-timing-function;
 }
 
 .dialog__header,
