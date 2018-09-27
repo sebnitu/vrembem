@@ -1,6 +1,6 @@
-import list from 'list.js'
 import Modal from 'modal.js'
 import Dismissible from 'dismissible.js'
+import list from 'list.js'
 
 const modal = new Modal()
 const dismissible = new Dismissible()
