@@ -23,48 +23,48 @@ desc: "Text labels that appear when a user hovers over, focuses on or touches an
   </div>
 </div>
 
-## `[data-tooptip-pos]`
+## `[data-tooltip-pos]`
 
 <div class="demo grid grid_md">
   <div class="grid__item">
   <div class="demo__render spacing_xs">
   <div class="demo__group level level_wrap">
-    <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooptip-pos="up">
+    <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="up">
       {% include icon.html icon="chevron-up" %}
     </button>
-    <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooptip-pos="up-left">
+    <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="up-left">
       {% include icon.html icon="chevron-up" %}
     </button>
-    <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooptip-pos="up-right">
+    <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="up-right">
       {% include icon.html icon="chevron-up" %}
     </button>
-    <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooptip-pos="down">
+    <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="down">
       {% include icon.html icon="chevron-down" %}
     </button>
-    <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooptip-pos="down-left">
+    <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="down-left">
       {% include icon.html icon="chevron-down" %}
     </button>
-    <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooptip-pos="down-right">
+    <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="down-right">
       {% include icon.html icon="chevron-down" %}
     </button>
   </div>
   <div class="demo__group level level_wrap">
-    <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooptip-pos="right">
+    <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="right">
       {% include icon.html icon="chevron-right" %}
     </button>
-    <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooptip-pos="right-up">
+    <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="right-up">
       {% include icon.html icon="chevron-right" %}
     </button>
-    <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooptip-pos="right-down">
+    <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="right-down">
       {% include icon.html icon="chevron-right" %}
     </button>
-    <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooptip-pos="left">
+    <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="left">
       {% include icon.html icon="chevron-left" %}
     </button>
-    <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooptip-pos="left-up">
+    <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="left-up">
       {% include icon.html icon="chevron-left" %}
     </button>
-    <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooptip-pos="left-down">
+    <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="left-down">
       {% include icon.html icon="chevron-left" %}
     </button>
   </div>
@@ -73,9 +73,9 @@ desc: "Text labels that appear when a user hovers over, focuses on or touches an
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
 ```html
-<button data-tooltip="..." data-tooptip-pos="down">...</button>
-<button data-tooltip="..." data-tooptip-pos="down-left">...</button>
-<button data-tooltip="..." data-tooptip-pos="down-right">...</button>
+<button data-tooltip="..." data-tooltip-pos="down">...</button>
+<button data-tooltip="..." data-tooltip-pos="down-left">...</button>
+<button data-tooltip="..." data-tooltip-pos="down-right">...</button>
 ...
 ```
   </div>
