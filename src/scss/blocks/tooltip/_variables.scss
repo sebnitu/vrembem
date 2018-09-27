@@ -1,5 +1,11 @@
-$tooltip-max-width: 30em !default;
-$tooltip-padding: $padding !default;
-$tooltip-font-size: 0.85rem !default;
-$tooltip-background: rgba($color, 0.95) !default;
+$tooltip-max-width: 20em !default;
+$tooltip-padding: 0.334em 0.75em !default;
+
+$tooltip-font-size: px-to-em(12px) !default;
+$tooltip-color: $white !default;
+
+$tooltip-background: rgba($gray-700, 0.9) !default;
 $tooltip-border-radius: $border-radius !default;
+
+$tooltip-scale: 0.75 !default;
+$tooltip-distance: 5px !default;

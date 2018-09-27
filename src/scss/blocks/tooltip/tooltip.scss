@@ -4,7 +4,7 @@
  * Tooltip
  */
 
-.tooltip {
+[data-tooltip] {
   position: relative;
 
   &::after {
@@ -19,22 +19,25 @@
     display: block;
     max-width: $tooltip-max-width;
     margin: 0;
-    padding: $padding;
+    padding: $tooltip-padding;
     font-size: $tooltip-font-size;
-    color: $white;
+    color: $tooltip-color;
     background: $tooltip-background;
     border-radius: $tooltip-border-radius;
     opacity: 0;
-    transition: opacity 0.25s, transform 0.25s;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, 0) scale($tooltip-scale);
+    transition:
+      opacity $transition-duration $transition-timing-function,
+      transform $transition-duration $transition-timing-function
+    ;
   }
 
   &:hover::after,
   &:focus::after {
     opacity: 1;
-    transform: translate(-50%, -0.5em);
+    transform: translate(-50%, -$tooltip-distance) scale(1);
   }
 }
