@@ -31,6 +31,10 @@
     border-color: $button-border-color-hover;
   }
 
+  &:focus {
+    outline: $button-focus-outline;
+  }
+
   > * + *,
   .button__item {
     margin-left: $button-inner-spacing;
