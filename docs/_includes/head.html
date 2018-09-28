@@ -12,10 +12,10 @@
 {%- feed_meta -%}
 
 <!-- Favicon -->
-<link rel="icon" type="image/png" sizes="32x32" href="{{ "/dist/img/favicon.png" | relative_url }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ site.url }}{{ site.baseurl }}/dist/img/favicon.png?v={{ site.version }}">
 
 <!-- Styles -->
-<link rel="stylesheet" href="{{ "/dist/css/styles.min.css" | relative_url }}">
+<link rel="stylesheet" href="{{ site.url }}{{ site.baseurl }}/dist/css/styles.min.css?v={{ site.version }}">
 
 {%- if page.include.css -%}
   {%- for file in page.include.css -%}

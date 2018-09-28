@@ -1,6 +1,6 @@
 {
   "name": "vrembem",
-  "version": "0.2.51",
+  "version": "0.2.52",
   "description": "A CSS component library based on the BEM methodology.",
   "author": {
     "name": "Sebastian Nitu",
@@ -38,6 +38,7 @@
     "gulp-util": "^3.0.8",
     "gulplog": "^1.0.0",
     "list.js": "^1.5.0",
+    "svgxuse": "^1.2.6",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   }
