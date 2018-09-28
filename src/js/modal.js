@@ -4,6 +4,10 @@ export default function() {
 
   'use strict'
 
+  /**
+   * Variables
+   */
+
   let api = {}
   let settings
   let defaults = {
@@ -16,6 +20,10 @@ export default function() {
 
   let memoryTrigger
   let memoryTarget
+
+  /**
+   * Private functions
+   */
 
   let open = (target) => {
     u.addClass(target, settings.classActive)
@@ -47,6 +55,12 @@ export default function() {
     }
   }
 
+  let escape = () => {
+    if (event.keyCode == 27) {
+      close()
+    }
+  }
+
   let run = () => {
     let trigger = event.target.closest('.' + settings.classTrigger)
     let modal = event.target.closest('.' + settings.classModal)
@@ -65,6 +79,10 @@ export default function() {
     }
   }
 
+  /**
+   * Public functions
+   */
+
   api.open = (target) => {
     open(document.getElementById(target))
   }
@@ -78,6 +96,7 @@ export default function() {
     settings = u.extend( defaults, options || {} )
     document.addEventListener('click', run, false)
     document.addEventListener('touchend', run, false)
+    document.addEventListener('keyup', escape, false)
   }
 
   api.destroy = () => {
@@ -86,9 +105,16 @@ export default function() {
     memoryTrigger = null
     document.removeEventListener('click', run, false)
     document.removeEventListener('touchend', run, false)
+    document.removeEventListener('keyup', escape, false)
   }
 
+  /**
+   * Init the plugin
+   */
   api.init()
 
+  /**
+   * Return the API
+   */
   return api
 }
