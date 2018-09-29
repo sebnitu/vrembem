@@ -26,13 +26,13 @@
     left: 0;
     right: auto;
     bottom: 100%;
-    transform: translate(0, 0) scale($tooltip-scale);
+    transform: translate(-$tooltip-offset, 0) scale($tooltip-scale);
   }
 
   &:hover::after,
   &:focus::after {
     opacity: 1;
-    transform: translate(0, -$tooltip-distance) scale(1);
+    transform: translate(-$tooltip-offset, -$tooltip-distance) scale(1);
   }
 }
 
@@ -42,13 +42,13 @@
     left: auto;
     right: 0;
     bottom: 100%;
-    transform: translate(0, 0) scale($tooltip-scale);
+    transform: translate($tooltip-offset, 0) scale($tooltip-scale);
   }
 
   &:hover::after,
   &:focus::after {
     opacity: 1;
-    transform: translate(0, -$tooltip-distance) scale(1);
+    transform: translate($tooltip-offset, -$tooltip-distance) scale(1);
   }
 }
 
@@ -75,12 +75,12 @@
     left: auto;
     right: 100%;
     bottom: auto;
-    transform: translate(0, 0) scale($tooltip-scale);
+    transform: translate(0, -$tooltip-offset) scale($tooltip-scale);
   }
 
   &:hover::after,
   &:focus::after {
-    transform: translate(-$tooltip-distance, 0) scale(1);
+    transform: translate(-$tooltip-distance, -$tooltip-offset) scale(1);
   }
 }
 
@@ -90,12 +90,12 @@
     left: auto;
     right: 100%;
     bottom: 0;
-    transform: translate(0, 0) scale($tooltip-scale);
+    transform: translate(0, $tooltip-offset) scale($tooltip-scale);
   }
 
   &:hover::after,
   &:focus::after {
-    transform: translate(-$tooltip-distance, 0) scale(1);
+    transform: translate(-$tooltip-distance, $tooltip-offset) scale(1);
   }
 }
 
@@ -122,12 +122,12 @@
     left: 100%;
     right: auto;
     bottom: auto;
-    transform: translate(0, 0) scale($tooltip-scale);
+    transform: translate(0, -$tooltip-offset) scale($tooltip-scale);
   }
 
   &:hover::after,
   &:focus::after {
-    transform: translate($tooltip-distance, 0) scale(1);
+    transform: translate($tooltip-distance, -$tooltip-offset) scale(1);
   }
 }
 
@@ -137,12 +137,12 @@
     left: 100%;
     right: auto;
     bottom: 0;
-    transform: translate(0, 0) scale($tooltip-scale);
+    transform: translate(0, $tooltip-offset) scale($tooltip-scale);
   }
 
   &:hover::after,
   &:focus::after {
-    transform: translate($tooltip-distance, 0) scale(1);
+    transform: translate($tooltip-distance, $tooltip-offset) scale(1);
   }
 }
 
@@ -170,13 +170,13 @@
     left: 0;
     right: auto;
     bottom: auto;
-    transform: translate(0, 0) scale($tooltip-scale);
+    transform: translate(-$tooltip-offset, 0) scale($tooltip-scale);
   }
 
   &:hover::after,
   &:focus::after {
     opacity: 1;
-    transform: translate(0, $tooltip-distance) scale(1);
+    transform: translate(-$tooltip-offset, $tooltip-distance) scale(1);
   }
 }
 
@@ -186,12 +186,12 @@
     left: auto;
     right: 0;
     bottom: auto;
-    transform: translate(0, 0) scale($tooltip-scale);
+    transform: translate($tooltip-offset, 0) scale($tooltip-scale);
   }
 
   &:hover::after,
   &:focus::after {
     opacity: 1;
-    transform: translate(0, $tooltip-distance) scale(1);
+    transform: translate($tooltip-offset, $tooltip-distance) scale(1);
   }
 }

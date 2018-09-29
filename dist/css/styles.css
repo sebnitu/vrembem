@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.53
+ * @version 0.2.54
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -4392,14 +4392,14 @@ pre {
   left: 0;
   right: auto;
   bottom: 100%;
-  -webkit-transform: translate(0, 0) scale(0.75);
-          transform: translate(0, 0) scale(0.75);
+  -webkit-transform: translate(-1px, 0) scale(0.75);
+          transform: translate(-1px, 0) scale(0.75);
 }
 
 [data-tooltip-pos="up-left"]:hover::after, [data-tooltip-pos="up-left"]:focus::after {
   opacity: 1;
-  -webkit-transform: translate(0, -5px) scale(1);
-          transform: translate(0, -5px) scale(1);
+  -webkit-transform: translate(-1px, -5px) scale(1);
+          transform: translate(-1px, -5px) scale(1);
 }
 
 [data-tooltip-pos="up-right"]::after {
@@ -4407,14 +4407,14 @@ pre {
   left: auto;
   right: 0;
   bottom: 100%;
-  -webkit-transform: translate(0, 0) scale(0.75);
-          transform: translate(0, 0) scale(0.75);
+  -webkit-transform: translate(1px, 0) scale(0.75);
+          transform: translate(1px, 0) scale(0.75);
 }
 
 [data-tooltip-pos="up-right"]:hover::after, [data-tooltip-pos="up-right"]:focus::after {
   opacity: 1;
-  -webkit-transform: translate(0, -5px) scale(1);
-          transform: translate(0, -5px) scale(1);
+  -webkit-transform: translate(1px, -5px) scale(1);
+          transform: translate(1px, -5px) scale(1);
 }
 
 /* Left */
@@ -4437,13 +4437,13 @@ pre {
   left: auto;
   right: 100%;
   bottom: auto;
-  -webkit-transform: translate(0, 0) scale(0.75);
-          transform: translate(0, 0) scale(0.75);
+  -webkit-transform: translate(0, -1px) scale(0.75);
+          transform: translate(0, -1px) scale(0.75);
 }
 
 [data-tooltip-pos="left-up"]:hover::after, [data-tooltip-pos="left-up"]:focus::after {
-  -webkit-transform: translate(-5px, 0) scale(1);
-          transform: translate(-5px, 0) scale(1);
+  -webkit-transform: translate(-5px, -1px) scale(1);
+          transform: translate(-5px, -1px) scale(1);
 }
 
 [data-tooltip-pos="left-down"]::after {
@@ -4451,13 +4451,13 @@ pre {
   left: auto;
   right: 100%;
   bottom: 0;
-  -webkit-transform: translate(0, 0) scale(0.75);
-          transform: translate(0, 0) scale(0.75);
+  -webkit-transform: translate(0, 1px) scale(0.75);
+          transform: translate(0, 1px) scale(0.75);
 }
 
 [data-tooltip-pos="left-down"]:hover::after, [data-tooltip-pos="left-down"]:focus::after {
-  -webkit-transform: translate(-5px, 0) scale(1);
-          transform: translate(-5px, 0) scale(1);
+  -webkit-transform: translate(-5px, 1px) scale(1);
+          transform: translate(-5px, 1px) scale(1);
 }
 
 /* Right */
@@ -4480,13 +4480,13 @@ pre {
   left: 100%;
   right: auto;
   bottom: auto;
-  -webkit-transform: translate(0, 0) scale(0.75);
-          transform: translate(0, 0) scale(0.75);
+  -webkit-transform: translate(0, -1px) scale(0.75);
+          transform: translate(0, -1px) scale(0.75);
 }
 
 [data-tooltip-pos="right-up"]:hover::after, [data-tooltip-pos="right-up"]:focus::after {
-  -webkit-transform: translate(5px, 0) scale(1);
-          transform: translate(5px, 0) scale(1);
+  -webkit-transform: translate(5px, -1px) scale(1);
+          transform: translate(5px, -1px) scale(1);
 }
 
 [data-tooltip-pos="right-down"]::after {
@@ -4494,13 +4494,13 @@ pre {
   left: 100%;
   right: auto;
   bottom: 0;
-  -webkit-transform: translate(0, 0) scale(0.75);
-          transform: translate(0, 0) scale(0.75);
+  -webkit-transform: translate(0, 1px) scale(0.75);
+          transform: translate(0, 1px) scale(0.75);
 }
 
 [data-tooltip-pos="right-down"]:hover::after, [data-tooltip-pos="right-down"]:focus::after {
-  -webkit-transform: translate(5px, 0) scale(1);
-          transform: translate(5px, 0) scale(1);
+  -webkit-transform: translate(5px, 1px) scale(1);
+          transform: translate(5px, 1px) scale(1);
 }
 
 /* Down */
@@ -4524,14 +4524,14 @@ pre {
   left: 0;
   right: auto;
   bottom: auto;
-  -webkit-transform: translate(0, 0) scale(0.75);
-          transform: translate(0, 0) scale(0.75);
+  -webkit-transform: translate(-1px, 0) scale(0.75);
+          transform: translate(-1px, 0) scale(0.75);
 }
 
 [data-tooltip-pos="down-left"]:hover::after, [data-tooltip-pos="down-left"]:focus::after {
   opacity: 1;
-  -webkit-transform: translate(0, 5px) scale(1);
-          transform: translate(0, 5px) scale(1);
+  -webkit-transform: translate(-1px, 5px) scale(1);
+          transform: translate(-1px, 5px) scale(1);
 }
 
 [data-tooltip-pos="down-right"]::after {
@@ -4539,14 +4539,14 @@ pre {
   left: auto;
   right: 0;
   bottom: auto;
-  -webkit-transform: translate(0, 0) scale(0.75);
-          transform: translate(0, 0) scale(0.75);
+  -webkit-transform: translate(1px, 0) scale(0.75);
+          transform: translate(1px, 0) scale(0.75);
 }
 
 [data-tooltip-pos="down-right"]:hover::after, [data-tooltip-pos="down-right"]:focus::after {
   opacity: 1;
-  -webkit-transform: translate(0, 5px) scale(1);
-          transform: translate(0, 5px) scale(1);
+  -webkit-transform: translate(1px, 5px) scale(1);
+          transform: translate(1px, 5px) scale(1);
 }
 
 /**
