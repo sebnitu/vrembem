@@ -91,6 +91,11 @@ export default function() {
     close()
   }
 
+  api.clear_memory = () => {
+    memoryTarget = null
+    memoryTrigger = null
+  }
+
   api.init = (options) => {
     api.destroy()
     settings = u.extend( defaults, options || {} )
