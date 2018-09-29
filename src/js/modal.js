@@ -38,12 +38,12 @@ export default function() {
     }, true);
   }
 
-  let close = () => {
+  let close = (clear = false) => {
     let modals = document.querySelectorAll('.' + settings.classModal)
     for (let i = 0; i < modals.length; ++i) {
       u.removeClass(modals[i], settings.classActive)
     }
-    if (memoryTrigger && memoryTarget) {
+    if (clear == false && memoryTrigger && memoryTarget) {
       memoryTarget.addEventListener('transitionend', function _listener() {
         if (memoryTrigger) {
           memoryTrigger.focus()
@@ -52,6 +52,9 @@ export default function() {
         memoryTrigger = null
         this.removeEventListener('transitionend', _listener, true)
       }, true);
+    } else if (clear == true) {
+      memoryTarget = null
+      memoryTrigger = null
     }
   }
 
@@ -87,13 +90,8 @@ export default function() {
     open(document.getElementById(target))
   }
 
-  api.close = () => {
-    close()
-  }
-
-  api.clear_memory = () => {
-    memoryTarget = null
-    memoryTrigger = null
+  api.close = (clear) => {
+    close(clear)
   }
 
   api.init = (options) => {
