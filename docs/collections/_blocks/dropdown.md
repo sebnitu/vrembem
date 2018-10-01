@@ -6,6 +6,8 @@ desc: "A component that is initially hidden and revealed upon user interaction e
 
 ## `dropdown`
 
+<div class="type" markdown="1">
+
 The dropdown component provides the following elements:
 
 * `dropdown`
@@ -27,8 +29,11 @@ Trigger classes:
 * `on-hover`
 * `on-focus`
 
+</div>
+
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item">
+  <div class="grid__item">
+  <div class="demo__render">
     <div class="dropdown is-active">
       <button class="dropdown__trigger button button_color_primary">Trigger</button>
       <ul class="dropdown__menu">
@@ -57,6 +62,7 @@ Trigger classes:
         </li>
       </ul>
     </div>
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
@@ -99,8 +105,9 @@ Trigger classes:
 This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_switch` class for reversing the direction of a sub dropdown.
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item">
-    <div class="dropdown on-hover">
+  <div class="grid__item">
+  <div class="demo__render">
+    <div class="dropdown on-hover" style="display:inline-block;">
       <button class="dropdown__trigger button button_color_primary">Trigger</button>
       <ul class="dropdown__menu">
         <li class="dropdown__item">
@@ -158,6 +165,7 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
       </ul>
     </div>
   </div>
+  </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
 ```html
@@ -190,7 +198,8 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
 ## `dropdown__menu_pos`
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item spacing spacing_xs">
+  <div class="grid__item">
+  <div class="demo__render spacing spacing_xs">
     <div class="demo__group level level_wrap">
       <div class="dropdown on-hover">
         <button class="button button_icon">
@@ -291,6 +300,7 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
         </ul>
       </div><!-- .dropdown -->
     </div><!-- .demo__group -->
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">

@@ -6,7 +6,7 @@ $dropdown_size_lg-width: 300px !default;
 $dropdown-font-size: px-to-rem(14px) !default;
 $dropdown-line-height: 1.5em !default;
 $dropdown-background: $white !default;
-$dropdown-box-shadow: 0 1px 6px rgba($black, 0.1), 0 0 0 1px rgba($black, 0.1) !default;
+$dropdown-box-shadow: $box-shadow-8dp !default;
 
 $dropdown__item-margin: 1px 0 !default;
 $dropdown__item-background: null !default;
