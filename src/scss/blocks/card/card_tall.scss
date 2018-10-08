@@ -11,6 +11,10 @@ $card_tall-min-height: 18em !default;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    > * {
+      width: 100%;
+    }
   }
 }
 
