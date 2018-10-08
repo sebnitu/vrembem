@@ -1,0 +1,115 @@
+/**
+ * Table
+ */
+
+.table {
+  width: 100%;
+  text-align: left;
+
+  th,
+  td {
+    padding: 0.75em;
+    vertical-align: top;
+  }
+
+  tfoot {
+    font-size: $font-size-sm;
+    color: $color-light;
+  }
+}
+
+/**
+ * Table Modifier
+ */
+
+.table_bordered {
+  overflow: auto;
+  border-spacing: 0;
+  border-collapse: collapse;
+  border-bottom: $table-border;
+
+  tr {
+    background-color: $table-background;
+    border-top: $table-border;
+  }
+
+  th {
+    padding: $table-padding;
+    border: $table-border;
+  }
+
+  td {
+    padding: $table-padding;
+    border: $table-border;
+  }
+
+  // Zebra Stripes
+
+  tr:nth-child(2n + 2) {
+    background-color: $table-background-alt;
+  }
+
+  thead tr {
+    background-color: $table-background-alt;
+  }
+}
+
+/**
+ * Table Rowed Modifier
+ */
+
+.table_rowed {
+
+  tr {
+    border-top: $table-border;
+  }
+
+  th,
+  td {
+    border: none;
+  }
+
+  // Remove zebra stripes
+
+  tr:nth-child(2n+2) {
+    background: none;
+  }
+
+  thead tr {
+    background: none;
+  }
+
+}
+
+/**
+ * Table Responsive Modifier
+ */
+
+@include media-max('md') {
+  .table_responsive {
+    display: block;
+
+    > * {
+      display: block;
+    }
+
+    tr {
+      display: block;
+      padding: 0.5em;
+      border-top: $table-border;
+    }
+
+    th,
+    td {
+      display: block;
+      width: 100%;
+      padding: 0.5em 0;
+      border: none;
+      border-top: 1px dashed $shade;
+
+      &:first-child {
+        border-top: none;
+      }
+    }
+  }
+}

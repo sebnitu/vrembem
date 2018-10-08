@@ -1,0 +1,9 @@
+$card-max-width: 20rem !default;
+
+/**
+ * Card max modifier
+ */
+
+.card_max {
+  max-width: $card-max-width;
+}

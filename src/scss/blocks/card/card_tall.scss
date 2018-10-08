@@ -1,0 +1,23 @@
+$card_tall-min-height: 18em !default;
+
+/**
+ * Card Tall
+ */
+
+.card_tall {
+  .card__body {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@include media-min('md') {
+  .card_tall {
+    min-height: $card_tall-min-height;
+    .card__body {
+    }
+  }
+}

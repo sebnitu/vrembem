@@ -1,0 +1,11 @@
+$card_link-extend: 'card_lift', 'card_zoom' !default;
+
+/**
+ * Card links
+ */
+
+.card_link {
+  @each $class in $card_link-extend {
+    @extend .#{$class};
+  }
+}

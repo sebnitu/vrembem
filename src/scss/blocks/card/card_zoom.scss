@@ -1,0 +1,19 @@
+$card_zoom-transition: transform 1s $transition-timing-function;
+
+/**
+ * Card Zoom
+ */
+
+.card_zoom {
+
+  .card__background {
+    transition: $card_zoom-transition;
+  }
+
+  &:hover,
+  &:focus {
+    .card__background {
+      transform: scale(1.1);
+    }
+  }
+}

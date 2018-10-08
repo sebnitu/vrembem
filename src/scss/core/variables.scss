@@ -14,8 +14,7 @@ $accent-light: lighten($accent, 15%) !default;
 $accent-dark: darken($accent, 15%) !default;
 
 $shade: #f5f5f5 !default;
-$shade-light: rgba($black, 0.05) !default;
-$shade-dark: darken($shade, 5%) !default;
+$dark: $blue-gray-800 !default;
 
 // Semantic type colors
 $info: $blue !default;

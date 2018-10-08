@@ -57,51 +57,15 @@
     @extend .h6;
   }
 
-  // Misc elements
-
-  a:not(.button) {
-    @extend .link;
-  }
+  // Block elements
 
   p {
     margin: $type-spacing 0;
   }
 
-  pre,
-  blockquote {
-    margin: ($type-spacing * 1.5) 0;
-  }
-
-  code {
-    padding: $code-padding;
-    background: $code-background;
-    font-size: 0.9em;
-    color: $code-color;
-    word-break: break-word;
-  }
-
-  mark {
-    padding: $mark-padding;
-    background-color: $mark-background;
-    color: $mark-color;
-  }
-
-  pre {
-    overflow: auto;
-    padding: ($type-spacing * 1.5);
-    background: $pre-background;
-    border-radius: $pre-border-radius;
-
-    code {
-      padding: 0;
-      background: none;
-      font-size: 1em;
-      color: inherit;
-    }
-  }
-
   blockquote {
     padding: ($type-spacing * 0.5) ($type-spacing * 1.5);
+    margin: ($type-spacing * 1.5) 0;
     background: $blockquote-background;
     border-radius: $blockquote-border-radius;
     color: $blockquote-color;
@@ -129,6 +93,43 @@
 
     &:last-child {
       margin-bottom: 0;
+    }
+  }
+
+  // Inline elements
+
+  a:not(.button) {
+    @extend .link;
+  }
+
+  mark {
+    padding: $mark-padding;
+    background-color: $mark-background;
+    color: $mark-color;
+  }
+
+  // Code
+
+  code {
+    padding: $code-padding;
+    background: $code-background;
+    font-size: 0.9em;
+    color: $code-color;
+    word-break: break-word;
+  }
+
+  pre {
+    overflow: auto;
+    margin: ($type-spacing * 1.5) 0;
+    padding: ($type-spacing * 1.5);
+    background: $pre-background;
+    border-radius: $pre-border-radius;
+
+    code {
+      padding: 0;
+      background: none;
+      font-size: 1em;
+      color: inherit;
     }
   }
 
@@ -191,37 +192,8 @@
   // Tables
 
   table {
-    overflow: auto;
-    width: 100%;
+    @extend .table;
     margin: ($type-spacing * 1.5) 0;
-    border-spacing: 0;
-    border-collapse: collapse;
-    text-align: left;
-
-    tr {
-      background-color: $table-background;
-      border-top: $table-border;
-    }
-
-    th {
-      padding: $table-padding;
-      border: $table-border;
-    }
-
-    td {
-      padding: $table-padding;
-      border: $table-border;
-    }
-
-    // Zebra Stripes
-
-    tr:nth-child(2n + 2) {
-      background-color: $table-background-alt;
-    }
-
-    thead tr {
-      background-color: $table-background-alt;
-    }
   }
 
 }

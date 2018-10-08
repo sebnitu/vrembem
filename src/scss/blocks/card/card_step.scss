@@ -1,0 +1,14 @@
+$card-step-offset: 5px !default;
+
+/**
+ * Card Step
+ */
+
+.card_step {
+  transform: translate(0, 0);
+
+  &:hover,
+  &:focus {
+    transform: translate(0, -($card-step-offset));
+  }
+}

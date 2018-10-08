@@ -11,15 +11,16 @@
   background: $card-background;
   border: $card-border;
   border-radius: $card-border-radius;
-}
-
-.card_max {
-  max-width: $card-max-width;
+  box-shadow: $card-box-shadow;
+  overflow: hidden;
+  transition: $card-transition;
 }
 
 /* Card Elements */
 
+.card__header,
 .card__body,
+.card__footer,
 .card__image {
   position: relative;
   z-index: 3;
@@ -58,7 +59,7 @@
 }
 
 .card__header {
-  border-bottom: $card-border;
+  border-bottom: $card-sep-border;
 
   &:first-child {
     border-top-left-radius: $card-border-radius;
@@ -67,7 +68,7 @@
 }
 
 .card__footer {
-  border-top: $card-border;
+  border-top: $card-sep-border;
 
   &:last-child {
     border-bottom-left-radius: $card-border-radius;
@@ -92,6 +93,7 @@
   width: 100%;
   height: 100%;
   border-radius: $card-border-radius;
+  transition: $card-transition;
 }
 
 .card__background {

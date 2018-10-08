@@ -1,0 +1,15 @@
+$card-lift-shadow: $box-shadow-1dp !default;
+$card-lift-shadow-hover: $box-shadow-8dp !default;
+
+/**
+ * Card lift
+ */
+
+.card_lift {
+  box-shadow: $card-lift-shadow;
+
+  &:hover,
+  &:focus {
+    box-shadow: $card-lift-shadow-hover;
+  }
+}

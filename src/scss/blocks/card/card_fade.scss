@@ -1,0 +1,31 @@
+$card_fade-transition: opacity $transition-duration $transition-timing-function;
+
+/**
+ * Card Fade
+ */
+
+@include media-min('md') {
+
+  .card_fade {
+    .card__header,
+    .card__body,
+    .card__footer,
+    .card__screen {
+      opacity: 0;
+      transition: $card_fade-transition;
+    }
+
+    &:hover,
+    &:focus {
+      .card__header,
+      .card__body,
+      .card__footer {
+        opacity: 1;
+      }
+      .card__screen {
+        opacity: $card__screen-opacity;
+      }
+    }
+  }
+
+}
