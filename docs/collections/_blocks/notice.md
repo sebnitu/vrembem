@@ -105,14 +105,26 @@ desc: "A component for highlighting messages to the user."
       </button>
       Notice content goes here...
     </div>
-    <div class="notice notice_type_light" data-dismissible>
-      <button class="notice__close icon-action icon-action_color_fade" data-dismiss>
+    <div class="notice notice_type_accent" data-dismissible>
+      <button class="notice__close icon-action" data-dismiss>
       {% include icon.html icon="x" class="icon" %}
       </button>
       Notice content goes here...
     </div>
     <div class="notice notice_type_dark" data-dismissible>
       <button class="notice__close icon-action icon-action_color_light" data-dismiss>
+      {% include icon.html icon="x" class="icon" %}
+      </button>
+      Notice content goes here...
+    </div>
+    <div class="notice notice_type_light" data-dismissible>
+      <button class="notice__close icon-action icon-action_color_fade" data-dismiss>
+      {% include icon.html icon="x" class="icon" %}
+      </button>
+      Notice content goes here...
+    </div>
+    <div class="notice notice_type_bordered" data-dismissible>
+      <button class="notice__close icon-action icon-action_color_fade" data-dismiss>
       {% include icon.html icon="x" class="icon" %}
       </button>
       Notice content goes here...

@@ -1,4 +1,4 @@
-@import 'variables';
+$button_outline_border-width: 1px !default;
 
 /**
  * Button outline modifier
@@ -12,19 +12,6 @@
   &:focus {
     background: $white;
     border-color: rgba($primary, 1);
-  }
-}
-
-.button_outline_invert {
-  color: $white;
-  background: none;
-  border: $button_outline_border-width solid rgba($white, 0.25);
-
-  &:hover,
-  &:focus {
-    color: $color;
-    background: $white;
-    border-color: $white;
   }
 }
 
@@ -54,57 +41,39 @@
   }
 }
 
-.button_outline_success {
-  color: $success;
+.button_outline_accent {
+  color: $accent;
   background: none;
-  border: $button_outline_border-width solid $success;
+  border: $button_outline_border-width solid $accent;
 
   &:hover,
   &:focus {
     color: $white;
-    background: $success;
-    border-color: $success;
+    background: $accent;
+    border-color: $accent;
   }
 }
 
-.button_outline_caution {
-  color: $caution;
-  background: none;
-  border: $button_outline_border-width solid $caution;
-
-  &:hover,
-  &:focus {
-    color: $white;
-    background: $caution;
-    border-color: $caution;
-  }
-}
-
-.button_outline_danger {
-  color: $danger;
-  background: none;
-  border: $button_outline_border-width solid $danger;
-
-  &:hover,
-  &:focus {
-    color: $white;
-    background: $danger;
-    border-color: $danger;
-  }
-}
+/**
+ * Dark
+ */
 
 .button_outline_dark {
-  color: $gray-800;
+  color: $dark;
   background: none;
-  border: $button_outline_border-width solid $gray-800;
+  border: $button_outline_border-width solid $dark;
 
   &:hover,
   &:focus {
     color: $white;
-    background: $gray-800;
-    border-color: $gray-800;
+    background: $dark;
+    border-color: $dark;
   }
 }
+
+/**
+ * Utility
+ */
 
 .button_outline_fade {
   color: $color-light;
@@ -116,5 +85,22 @@
     color: $color;
     background: none;
     border-color: $color;
+  }
+}
+
+/**
+ * Inverts
+ */
+
+.button_outline_invert {
+  color: $white;
+  background: none;
+  border: $button_outline_border-width solid rgba($white, 0.25);
+
+  &:hover,
+  &:focus {
+    color: $color;
+    background: $white;
+    border-color: $white;
   }
 }

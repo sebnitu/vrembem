@@ -5,21 +5,22 @@ $primary: $blue-500 !default;
 $primary-light: lighten($primary, 15%) !default;
 $primary-dark: darken($primary, 15%) !default;
 
-$secondary: $pink-300 !default;
+$secondary: $blue-gray !default;
 $secondary-light: lighten($secondary, 15%) !default;
 $secondary-dark: darken($secondary, 15%) !default;
 
-$accent: $purple !default;
+$accent: $orange !default;
 $accent-light: lighten($accent, 15%) !default;
 $accent-dark: darken($accent, 15%) !default;
 
-$shade: #f5f5f5 !default;
+$shade: $blue-gray-50 !default;
 $dark: $blue-gray-800 !default;
 
 // Semantic type colors
+
 $info: $blue !default;
 $success: $green !default;
-$caution: $amber-600 !default;
+$caution: $yellow-800 !default;
 $danger: $red !default;
 
 // Global Properties
@@ -200,3 +201,5 @@ $utility-spacing: (
   '2': 2rem,
   '3': 3rem
 ) !default;
+
+$lightness-threshold: 60 !default;

@@ -4,16 +4,10 @@ title: "Section"
 desc: "A container component for wrapping distinct sections of a project."
 ---
 
-<div class="page__section">
-  <div class="page__container container spacing">
-    <h1 class="h1">{{ page.title }}</h1>
-    <p class="text_lead">{{ page.desc }}</p>
-  </div>
-</div>
-
 <div class="section section_size_xl">
   <div class="section__container container">
-    <div class="section__intro type c_white">
+
+    <div class="section__intro type type_invert">
       <h1>Huge Section with Screen &amp; Background Image</h1>
       <p class="text_lead">This is a demonstration of section area using the intro element along with a screen and background image. The screen color is set using the background modifiers and can be changed as needed.</p>
       <div class="level justify_center">
@@ -22,7 +16,7 @@ desc: "A container component for wrapping distinct sections of a project."
       </div>
     </div>
 
-    <hr class="hr hr_inverted my_3" />
+    <hr class="hr hr_invert my_3" />
 
 <div class="demo spacing">
   <div class="demo__code" markdown="1">
@@ -97,50 +91,64 @@ desc: "A container component for wrapping distinct sections of a project."
 </div>
 
 <div class="section bg_primary-light">
-  <div class="section__container container type c_white">
+  <div class="section__container container type type_invert">
     <h1>Light Primary Background</h1>
     <p class="text_lead">Vestibulum a arcu mi. Integer tempus scelerisque turpis, nec sodales eros facilisis non. Nam pulvinar vel quam in eleifend. Nunc ullamcorper aliquet tellus vitae euismod.</p>
   </div>
 </div>
 
 <div class="section bg_primary">
-  <div class="section__container container type c_white">
+  <div class="section__container container type type_invert">
     <h1>Primary Background</h1>
     <p class="text_lead">Vestibulum a arcu mi. Integer tempus scelerisque turpis, nec sodales eros facilisis non. Nam pulvinar vel quam in eleifend. Nunc ullamcorper aliquet tellus vitae euismod.</p>
   </div>
 </div>
 
 <div class="section bg_primary-dark">
-  <div class="section__container container type c_white">
+  <div class="section__container container type type_invert">
     <h1>Dark Primary Background</h1>
     <p class="text_lead">Vestibulum a arcu mi. Integer tempus scelerisque turpis, nec sodales eros facilisis non. Nam pulvinar vel quam in eleifend. Nunc ullamcorper aliquet tellus vitae euismod.</p>
   </div>
 </div>
 
 <div class="section bg_secondary-light">
-  <div class="section__container container type c_white">
+  <div class="section__container container type type_invert">
     <h1>Light Secondary Background</h1>
     <p class="text_lead">Vestibulum a arcu mi. Integer tempus scelerisque turpis, nec sodales eros facilisis non. Nam pulvinar vel quam in eleifend. Nunc ullamcorper aliquet tellus vitae euismod.</p>
   </div>
 </div>
 
 <div class="section bg_secondary">
-  <div class="section__container container type c_white">
+  <div class="section__container container type type_invert">
     <h1>Secondary Background</h1>
     <p class="text_lead">Vestibulum a arcu mi. Integer tempus scelerisque turpis, nec sodales eros facilisis non. Nam pulvinar vel quam in eleifend. Nunc ullamcorper aliquet tellus vitae euismod.</p>
   </div>
 </div>
 
 <div class="section bg_secondary-dark">
-  <div class="section__container container type c_white">
+  <div class="section__container container type type_invert">
     <h1>Dark Secondary Background</h1>
     <p class="text_lead">Vestibulum a arcu mi. Integer tempus scelerisque turpis, nec sodales eros facilisis non. Nam pulvinar vel quam in eleifend. Nunc ullamcorper aliquet tellus vitae euismod.</p>
   </div>
 </div>
 
-<div class="section bg_shade-light">
-  <div class="section__container container type">
-    <h1>Light Shade Background</h1>
+<div class="section bg_accent-light">
+  <div class="section__container container type type_invert">
+    <h1>Light Accent Background</h1>
+    <p class="text_lead">Vestibulum a arcu mi. Integer tempus scelerisque turpis, nec sodales eros facilisis non. Nam pulvinar vel quam in eleifend. Nunc ullamcorper aliquet tellus vitae euismod.</p>
+  </div>
+</div>
+
+<div class="section bg_accent">
+  <div class="section__container container type type_invert">
+    <h1>Accent Background</h1>
+    <p class="text_lead">Vestibulum a arcu mi. Integer tempus scelerisque turpis, nec sodales eros facilisis non. Nam pulvinar vel quam in eleifend. Nunc ullamcorper aliquet tellus vitae euismod.</p>
+  </div>
+</div>
+
+<div class="section bg_accent-dark">
+  <div class="section__container container type type_invert">
+    <h1>Dark Accent Background</h1>
     <p class="text_lead">Vestibulum a arcu mi. Integer tempus scelerisque turpis, nec sodales eros facilisis non. Nam pulvinar vel quam in eleifend. Nunc ullamcorper aliquet tellus vitae euismod.</p>
   </div>
 </div>
@@ -152,29 +160,15 @@ desc: "A container component for wrapping distinct sections of a project."
   </div>
 </div>
 
-<div class="section bg_shade-dark">
-  <div class="section__container container type">
-    <h1>Dark Shade Background</h1>
-    <p class="text_lead">Vestibulum a arcu mi. Integer tempus scelerisque turpis, nec sodales eros facilisis non. Nam pulvinar vel quam in eleifend. Nunc ullamcorper aliquet tellus vitae euismod.</p>
-  </div>
-</div>
-
-<div class="section bg_color">
-  <div class="section__container container type c_white">
-    <h1>Dark Shade Background</h1>
-    <p class="text_lead">Vestibulum a arcu mi. Integer tempus scelerisque turpis, nec sodales eros facilisis non. Nam pulvinar vel quam in eleifend. Nunc ullamcorper aliquet tellus vitae euismod.</p>
-  </div>
-</div>
-
-<div class="section bg_gray">
-  <div class="section__container container type c_white">
+<div class="section bg_dark">
+  <div class="section__container container type type_invert">
     <h1>Dark Shade Background</h1>
     <p class="text_lead">Vestibulum a arcu mi. Integer tempus scelerisque turpis, nec sodales eros facilisis non. Nam pulvinar vel quam in eleifend. Nunc ullamcorper aliquet tellus vitae euismod.</p>
   </div>
 </div>
 
 <div class="section bg_black">
-  <div class="section__container container type c_white">
+  <div class="section__container container type type_invert">
     <h1>Dark Shade Background</h1>
     <p class="text_lead">Vestibulum a arcu mi. Integer tempus scelerisque turpis, nec sodales eros facilisis non. Nam pulvinar vel quam in eleifend. Nunc ullamcorper aliquet tellus vitae euismod.</p>
   </div>

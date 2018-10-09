@@ -4,3 +4,17 @@ $notice-background: $background-color !default;
 $notice-box-shadow: 0 0 20px rgba($black, 0.1) !default;
 $notice-border: null !default;
 $notice-border-radius: null !default;
+$notice-color: $color !default;
+$notice-color-invert: $white !default;
+
+// Notice Color Function
+
+@function notice-color($color) {
+  @if (lightness($color) > $lightness-threshold) {
+    // Lighter backgorund, return dark color
+    @return $notice-color;
+  } @else {
+    // Darker background, return light color
+    @return $notice-color-invert;
+  }
+}

@@ -7,9 +7,13 @@ desc: "The most basic of UI components. Buttons represent an action that a user 
 ## `button`
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item">
-    <a class="button" href="#">Button</a>
-    <button class="button">Button</button>
+  <div class="grid__item">
+  <div class="demo__render">
+    <div class="level level_wrap">
+      <a class="button" href="#">Button</a>
+      <button class="button">Button</button>
+    </div>
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
@@ -26,7 +30,8 @@ desc: "The most basic of UI components. Buttons represent an action that a user 
 Elements inside the button component receive appropriate spacing using the `> * + *` selector rule. You can also use the `.button__item` element for more specificity.
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item">
+  <div class="grid__item">
+  <div class="demo__render">
     <div class="level level_wrap">
       <button class="button button_color_primary">
         {% include icon.html icon="anchor" %}
@@ -43,6 +48,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
         <span class="arrow"></span>
       </button>
     </div>
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
@@ -64,7 +70,8 @@ Elements inside the button component receive appropriate spacing using the `> * 
 Used for when displaying a button with only an icon and no text.
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item">
+  <div class="grid__item">
+  <div class="demo__render">
     <div class="level level_wrap">
       <button class="button button_size_sm button_icon">
         {% include icon.html icon="anchor" %}
@@ -86,6 +93,7 @@ Used for when displaying a button with only an icon and no text.
       </button>
     </div>
   </div>
+  </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
 ```html
@@ -102,7 +110,8 @@ Used for when displaying a button with only an icon and no text.
 ## `button_size`
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item">
+  <div class="grid__item">
+  <div class="demo__render">
     <div class="level level_wrap">
       <button class="button button_size_sm button_color_primary">
         <span>Button</span>
@@ -114,6 +123,7 @@ Used for when displaying a button with only an icon and no text.
         <span>Button</span>
       </button>
     </div>
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
@@ -129,13 +139,15 @@ Used for when displaying a button with only an icon and no text.
 ## `button_block`
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item spacing">
+  <div class="grid__item">
+  <div class="demo__render spacing">
     <div class="demo__group">
       <button class="button button_block button_color_primary">Button</button>
     </div>
     <div class="demo__group">
       <button class="button button_block button_color_secondary">Button</button>
     </div>
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
@@ -151,11 +163,13 @@ Used for when displaying a button with only an icon and no text.
 ## `button_min-width`
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item">
+  <div class="grid__item">
+  <div class="demo__render">
     <div class="level level_wrap">
       <button class="button button_min-width button_color_primary">Button</button>
       <button class="button button_min-width button_color_secondary">Button</button>
     </div>
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
@@ -169,27 +183,35 @@ Used for when displaying a button with only an icon and no text.
 ## `button_color`
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item spacing">
+  <div class="grid__item">
+  <div class="demo__render spacing">
+
     <div class="demo__group level level_wrap">
       <button class="button button_color_primary">Button</button>
       <button class="button button_color_secondary">Button</button>
-      <button class="button button_color_success">Button</button>
-      <button class="button button_color_caution">Button</button>
-      <button class="button button_color_danger">Button</button>
+      <button class="button button_color_accent">Button</button>
+      <button class="button button_color_shade">Button</button>
+      <button class="button button_color_dark">Button</button>
     </div>
-    <div class="demo__group bg_gray p_1">
-      <button class="button button_color_inverted">Button</button>
+
+    <div class="demo__group level level_wrap">
+      <button class="button">Button</button>
+      <button class="button button_color_subtle">Button</button>
+      <button class="button button_color_fade">Button</button>
     </div>
+
+    <div class="demo__group level level_wrap bg_dark p_1">
+      <button class="button button_color_invert">Button</button>
+      <button class="button button_color_invert_subtle">Button</button>
+      <button class="button button_color_invert_fade">Button</button>
+    </div>
+
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
 ```html
-<button class="button button_color_inverted">Button</button>
-<button class="button button_color_primary">Button</button>
-<button class="button button_color_secondary">Button</button>
-<button class="button button_color_success">Button</button>
-<button class="button button_color_caution">Button</button>
-<button class="button button_color_danger">Button</button>
+...
 ```
   </div>
   </div>
@@ -198,33 +220,27 @@ Used for when displaying a button with only an icon and no text.
 ## `button_outline`
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item spacing">
+  <div class="grid__item">
+  <div class="demo__render spacing">
     <div class="demo__group level level_wrap">
-      <button class="button button_outline">Button</button>
       <button class="button button_outline_primary">Button</button>
       <button class="button button_outline_secondary">Button</button>
-      <button class="button button_outline_success">Button</button>
-      <button class="button button_outline_caution">Button</button>
-      <button class="button button_outline_danger">Button</button>
+      <button class="button button_outline_accent">Button</button>
       <button class="button button_outline_dark">Button</button>
+    </div>
+    <div class="demo__group level level_wrap">
+      <button class="button button_outline">Button</button>
       <button class="button button_outline_fade">Button</button>
     </div>
-    <div class="demo__group bg_gray p_1">
-      <button class="button button_outline_inverted">Button</button>
+    <div class="demo__group level level_wrap bg_dark p_1">
+      <button class="button button_outline_invert">Button</button>
     </div>
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
 ```html
-<button class="button button_outline">Button</button>
-<button class="button button_outline_inverted">Button</button>
-<button class="button button_outline_primary">Button</button>
-<button class="button button_outline_secondary">Button</button>
-<button class="button button_outline_success">Button</button>
-<button class="button button_outline_caution">Button</button>
-<button class="button button_outline_danger">Button</button>
-<button class="button button_outline_dark">Button</button>
-<button class="button button_outline_fade">Button</button>
+...
 ```
   </div>
   </div>

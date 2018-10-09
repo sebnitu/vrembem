@@ -10,22 +10,6 @@
   background-color: $black !important;
 }
 
-.bg_color {
-  background-color: $color !important;
-}
-
-.bg_gray {
-  background-color: $gray-600 !important;
-}
-
-.bg_gray-light {
-  background-color: $gray-400 !important;
-}
-
-.bg_gray-dark {
-  background-color: $gray-800 !important;
-}
-
 /* Primary */
 
 .bg_primary {
@@ -52,6 +36,20 @@
 
 .bg_secondary-dark {
   background-color: $secondary-dark !important;
+}
+
+/* Accent */
+
+.bg_accent {
+  background-color: $accent !important;
+}
+
+.bg_accent-light {
+  background-color: $accent-light !important;
+}
+
+.bg_accent-dark {
+  background-color: $accent-dark !important;
 }
 
 /* Shade */

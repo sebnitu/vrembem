@@ -6,22 +6,32 @@
 
 .notice_type_primary {
   background-color: $primary;
-  color: $white;
+  color: notice-color($primary);
 }
 
 .notice_type_secondary {
   background-color: $secondary;
-  color: $white;
+  color: notice-color($secondary);
+}
+
+.notice_type_accent {
+  background-color: $accent;
+  color: notice-color($accent);
 }
 
 .notice_type_dark {
-  background-color: $color;
-  color: $white;
+  background-color: $dark;
+  color: notice-color($dark);
 }
 
 .notice_type_light {
   background-color: $white;
   box-shadow: 0 0 20px rgba($black, 0.1);
+}
+
+.notice_type_bordered {
+  background-color: $white;
+  border: 2px solid $shade;
 }
 
 /**

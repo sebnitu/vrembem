@@ -1,10 +1,14 @@
-$button-padding: $padding !default;
 $button-font-size: 1em !default;
-$button-line-height: 1.5em !default;
-$button-color: $color !default;
+$button-line-height: 1.5 !default;
+$button-padding: $padding !default;
 $button-inner-spacing: 0.5em !default;
+
+$button-color: $color !default;
+$button-color-invert: $white !default;
+
 $button-background: rgba($black, 0.05) !default;
 $button-background-hover: rgba($black, 0.1) !default;
+
 $button-border-width: 1px !default;
 $button-border-color: transparent !default;
 $button-border-color-hover: transparent !default;
@@ -12,12 +16,20 @@ $button-border-radius: $border-radius !default;
 
 $button-focus-outline: none !default;
 
-$button_size_sm-padding: $padding-sm !default;
 $button_size_sm-font-size: $font-size-sm !default;
+$button_size_sm-padding: $padding-sm !default;
 
-$button_size_lg-padding: $padding-lg !default;
 $button_size_lg-font-size: $font-size !default;
+$button_size_lg-padding: $padding-lg !default;
 
-$button_min-width: 110px !default;
+// Button Color Function
 
-$button_outline_border-width: 1px !default;
+@function button-color($color) {
+  @if (lightness($color) > $lightness-threshold) {
+    // Lighter backgorund, return dark color
+    @return $button-color;
+  } @else {
+    // Darker background, return light color
+    @return $button-color-invert;
+  }
+}
