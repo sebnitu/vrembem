@@ -95,106 +95,157 @@ pre {
 }
 
 /**
- * Headings Utility
+ * Headings
  */
-.h1, .type h1,
+.h1,
 .h2,
-.type h2,
 .h3,
-.type h3,
 .h4,
-.type h4,
 .h5,
+.h6, .type h1,
+.type h2,
+.type h3,
+.type h4,
 .type h5,
-.h6,
 .type h6 {
   font-weight: 600;
   color: inherit;
 }
 
-.h1, .type h1 {
+/**
+ * H1 Heading
+ */
+.h1,
+.type .h1, .type h1 {
   font-size: 2em;
 }
 
+@media (min-width: 760px) {
+  .h1,
+  .type .h1, .type h1 {
+    font-size: 2.5em;
+  }
+}
+
+/**
+ * H2 Heading
+ */
 
 .h2,
+.type .h2,
 .type h2 {
   font-size: 1.75em;
 }
 
+@media (min-width: 760px) {
+  
+  .h2,
+  .type .h2,
+  .type h2 {
+    font-size: 2em;
+  }
+}
+
+/**
+ * H3 Heading
+ */
 
 .h3,
+.type .h3,
 .type h3 {
   font-size: 1.5em;
 }
 
+@media (min-width: 760px) {
+  
+  .h3,
+  .type .h3,
+  .type h3 {
+    font-size: 1.75em;
+  }
+}
+
+/**
+ * H4 Heading
+ */
 
 .h4,
+.type .h4,
 .type h4 {
   font-size: 1.25em;
 }
 
+@media (min-width: 760px) {
+  
+  .h4,
+  .type .h4,
+  .type h4 {
+    font-size: 1.5em;
+  }
+}
+
+/**
+ * H5 Heading
+ */
 
 .h5,
+.type .h5,
 .type h5 {
   font-size: 1em;
 }
 
+@media (min-width: 760px) {
+  
+  .h5,
+  .type .h5,
+  .type h5 {
+    font-size: 1.25em;
+  }
+}
+
+/**
+ * H6 Heading
+ */
 
 .h6,
+.type .h6,
 .type h6 {
   font-size: 1em;
 }
 
 @media (min-width: 760px) {
-  .h1, .type h1 {
-    font-size: 2.5em;
-  }
-  
-  .h2,
-  .type h2 {
-    font-size: 2em;
-  }
-  
-  .h3,
-  .type h3 {
-    font-size: 1.75em;
-  }
-  
-  .h4,
-  .type h4 {
-    font-size: 1.5em;
-  }
-  
-  .h5,
-  .type h5 {
-    font-size: 1.25em;
-  }
   
   .h6,
+  .type .h6,
   .type h6 {
     font-size: 1.25em;
   }
 }
 
 /**
- * Horizontal Rule Utility
+ * Horizontal Rule
  */
-.hr, .type hr {
+.hr,
+.type .hr, .type hr {
   display: block;
   height: 1px;
   background: rgba(0, 0, 0, 0.1);
   border: none;
 }
 
-.hr_invert, .type_invert hr, .notice_type_primary hr, .notice_type_secondary hr, .notice_type_dark hr {
+/**
+ * Horizontal Rule Invert
+ */
+.hr_invert,
+.type .hr_invert, .type_invert hr, .notice_type_primary hr, .notice_type_secondary hr, .notice_type_dark hr {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
 /**
- * Links Utility
+ * Link
  */
-.link, .breadcrumb__link, .type a:not(.button) {
+.link, .breadcrumb__link,
+.type .link, .type .breadcrumb__link, .type a:not(.button) {
   color: #2196f3;
   text-decoration: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -206,9 +257,10 @@ pre {
 }
 
 /**
- * Link invert utility
+ * Link Invert
  */
-.link_invert, .type_invert a:not(.button), .notice_type_primary a:not(.button), .notice_type_secondary a:not(.button), .notice_type_dark a:not(.button) {
+.link_invert,
+.type .link_invert, .type_invert a:not(.button), .notice_type_primary a:not(.button), .notice_type_secondary a:not(.button), .notice_type_dark a:not(.button) {
   color: #ffffff;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
@@ -218,8 +270,11 @@ pre {
   border-bottom: 1px solid white;
 }
 
-/* Link modifiers */
-.link_subtle {
+/**
+ * Link Subtle
+ */
+.link_subtle,
+.type .link_subtle {
   color: inherit;
 }
 
@@ -1023,93 +1078,107 @@ pre {
 /**
  * Table
  */
-.table, .type table {
+.table,
+.type .table, .type table {
   width: 100%;
   text-align: left;
 }
 
-.table th, .type table th,
+.table th, .type .table th, .type table th,
 .table td,
+.type .table td,
 .type table td {
   padding: 0.75em;
   vertical-align: top;
 }
 
 /**
- * Table Modifier
+ * Table bordered modifier
  */
-.table_bordered, .type table {
+.table_bordered,
+.type .table_bordered, .type table {
   overflow: auto;
   border-spacing: 0;
   border-collapse: collapse;
   border-bottom: 1px solid #e0e0e0;
 }
 
-.table_bordered tr, .type table tr {
+.table_bordered tr, .type .table_bordered tr, .type table tr {
   background-color: #ffffff;
   border-top: 1px solid #e0e0e0;
 }
 
-.table_bordered th, .type table th {
+.table_bordered th, .type .table_bordered th, .type table th {
   padding: 0.438em 0.75em;
   border: 1px solid #e0e0e0;
 }
 
-.table_bordered td, .type table td {
+.table_bordered td, .type .table_bordered td, .type table td {
   padding: 0.438em 0.75em;
   border: 1px solid #e0e0e0;
-}
-
-.table_bordered tr:nth-child(2n + 2), .type table tr:nth-child(2n + 2) {
-  background-color: #f5f5f5;
-}
-
-.table_bordered thead tr, .type table thead tr {
-  background-color: #f5f5f5;
 }
 
 /**
- * Table Rowed Modifier
+ * Table rowed modifier
  */
-.table_rowed tr {
+.table_rowed tr, .type .table_rowed tr {
   border-top: 1px solid #e0e0e0;
 }
 
-.table_rowed th,
-.table_rowed td {
+.table_rowed th, .type .table_rowed th,
+.table_rowed td,
+.type .table_rowed td {
   border: none;
 }
 
-.table_rowed tr:nth-child(2n+2) {
-  background: none;
+/**
+ * Table Zebra
+ */
+.table_zebra tr:nth-child(even), .type .table_zebra tr:nth-child(even), .type table tr:nth-child(even) {
+  background-color: #f5f5f5;
 }
 
-.table_rowed thead tr {
-  background: none;
+.table_zebra thead tr, .type .table_zebra thead tr, .type table thead tr {
+  background-color: #f5f5f5;
 }
 
 /**
- * Table Responsive Modifier
+ * Table Zebra Remove
+ */
+.table_zebra_remove tr:nth-child(even), .type .table_zebra_remove tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.table_zebra_remove thead tr, .type .table_zebra_remove thead tr {
+  background-color: #ffffff;
+}
+
+/**
+ * Table responsive modifier
  */
 @media (max-width: 759px) {
-  .table_responsive {
+  .table_responsive,
+  .type .table_responsive {
+    display: block;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .table_responsive > *, .type .table_responsive > * {
     display: block;
   }
-  .table_responsive > * {
-    display: block;
-  }
-  .table_responsive tr {
+  .table_responsive tr, .type .table_responsive tr {
     display: block;
     padding: 0.5em;
     border-top: 1px solid #e0e0e0;
   }
-  .table_responsive th,
-  .table_responsive td {
+  .table_responsive th, .type .table_responsive th,
+  .table_responsive td,
+  .type .table_responsive td {
     display: block;
     width: 100%;
     padding: 0.5em 0;
     border: none;
-    border-top: 1px dashed #eceff1;
+    border-top: 1px dashed #e0e0e0;
   }
   .table_responsive th:first-child,
   .table_responsive td:first-child {
@@ -4846,8 +4915,6 @@ pre {
 .type h4,
 .type h5,
 .type h6 {
-  font-weight: 600;
-  color: inherit;
   margin: 1.5rem 0 1rem;
 }
 

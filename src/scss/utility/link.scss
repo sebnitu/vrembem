@@ -1,8 +1,8 @@
 /**
- * Links Utility
+ * Link
  */
 
-.link {
+%link {
   color: $link-color;
   text-decoration: $link-text-decoration;
   border-bottom: $link-border;
@@ -16,11 +16,16 @@
   }
 }
 
+.link,
+.type .link {
+  @extend %link;
+}
+
 /**
- * Link invert utility
+ * Link Invert
  */
 
-.link_invert {
+%link_invert {
   color: $link-color-invert;
   border-bottom: $link-border-invert;
 
@@ -31,9 +36,16 @@
   }
 }
 
-/* Link modifiers */
+.link_invert,
+.type .link_invert {
+  @extend %link_invert;
+}
 
-.link_subtle {
+/**
+ * Link Subtle
+ */
+
+%link_subtle {
   color: inherit;
 
   &:hover,
@@ -41,4 +53,9 @@
     color: $link-color;
     border-color: $link-color;
   }
+}
+
+.link_subtle,
+.type .link_subtle {
+  @extend %link_subtle;
 }

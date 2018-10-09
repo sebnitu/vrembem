@@ -26,35 +26,32 @@
   h4,
   h5,
   h6 {
-    font-family: $heading-font-family;
-    font-weight: $heading-font-weight;
-    line-height: $heading-line-height;
-    color: $heading-color;
+    @extend %h;
     margin: ($type-spacing * 1.5) 0 $type-spacing;
   }
 
   h1 {
-    @extend .h1;
+    @extend %h1;
   }
 
   h2 {
-    @extend .h2;
+    @extend %h2;
   }
 
   h3 {
-    @extend .h3;
+    @extend %h3;
   }
 
   h4 {
-    @extend .h4;
+    @extend %h4;
   }
 
   h5 {
-    @extend .h5;
+    @extend %h5;
   }
 
   h6 {
-    @extend .h6;
+    @extend %h6;
   }
 
   // Block elements
@@ -99,7 +96,7 @@
   // Inline elements
 
   a:not(.button) {
-    @extend .link;
+    @extend %link;
   }
 
   mark {
@@ -136,7 +133,7 @@
   // Horizontal Rule
 
   hr {
-    @extend .hr;
+    @extend %hr;
     margin: $type-hr-margin;
   }
 
@@ -192,8 +189,9 @@
   // Tables
 
   table {
-    @extend .table;
-    @extend .table_bordered;
+    @extend %table;
+    @extend %table_bordered;
+    @extend %table_zebra;
     margin: ($type-spacing * 1.5) 0;
   }
 

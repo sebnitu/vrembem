@@ -1,14 +1,28 @@
 /**
- * Horizontal Rule Utility
+ * Horizontal Rule
  */
 
-.hr {
+%hr {
   display: block;
   height: 1px;
   background: $border-color;
   border: none;
 }
 
-.hr_invert {
+.hr,
+.type .hr {
+  @extend %hr;
+}
+
+/**
+ * Horizontal Rule Invert
+ */
+
+%hr_invert {
   background-color: $border-color-invert;
+}
+
+.hr_invert,
+.type .hr_invert {
+  @extend %hr_invert;
 }

@@ -2,7 +2,7 @@
  * Table
  */
 
-.table {
+%table {
   width: 100%;
   text-align: left;
 
@@ -13,11 +13,16 @@
   }
 }
 
+.table,
+.type .table {
+  @extend %table;
+}
+
 /**
- * Table Modifier
+ * Table bordered modifier
  */
 
-.table_bordered {
+%table_bordered {
   overflow: auto;
   border-spacing: 0;
   border-collapse: collapse;
@@ -37,24 +42,18 @@
     padding: $table-padding;
     border: $table-border;
   }
+}
 
-  // Zebra Stripes
-
-  tr:nth-child(2n + 2) {
-    background-color: $table-background-alt;
-  }
-
-  thead tr {
-    background-color: $table-background-alt;
-  }
+.table_bordered,
+.type .table_bordered {
+  @extend %table_bordered;
 }
 
 /**
- * Table Rowed Modifier
+ * Table rowed modifier
  */
 
-.table_rowed {
-
+%table_rowed {
   tr {
     border-top: $table-border;
   }
@@ -63,26 +62,60 @@
   td {
     border: none;
   }
+}
 
-  // Remove zebra stripes
-
-  tr:nth-child(2n+2) {
-    background: none;
-  }
-
-  thead tr {
-    background: none;
-  }
-
+.table_rowed,
+.type .table_rowed {
+  @extend %table_rowed;
 }
 
 /**
- * Table Responsive Modifier
+ * Table Zebra
+ */
+
+%table_zebra {
+  tr:nth-child(even) {
+    background-color: $table-background-alt;
+  }
+
+  thead tr {
+    background-color: $table-background-alt;
+  }
+}
+
+.table_zebra,
+.type .table_zebra {
+  @extend %table_zebra;
+}
+
+/**
+ * Table Zebra Remove
+ */
+
+%table_zebra_remove {
+  tr:nth-child(even) {
+    background-color: $table-background;
+  }
+
+  thead tr {
+    background-color: $table-background;
+  }
+}
+
+.table_zebra_remove,
+.type .table_zebra_remove {
+  @extend %table_zebra_remove;
+}
+
+/**
+ * Table responsive modifier
  */
 
 @include media-max('md') {
-  .table_responsive {
+  %table_responsive {
     display: block;
+    text-align: left;
+    border-bottom: $table-border;
 
     > * {
       display: block;
@@ -100,11 +133,16 @@
       width: 100%;
       padding: 0.5em 0;
       border: none;
-      border-top: 1px dashed $shade;
+      border-top: 1px dashed $table-border-color;
 
       &:first-child {
         border-top: none;
       }
     }
   }
+}
+
+.table_responsive,
+.type .table_responsive {
+  @extend %table_responsive;
 }

@@ -1,6 +1,13 @@
 /**
- * Headings Utility
+ * Headings
  */
+
+%h {
+  font-family: $heading-font-family;
+  font-weight: $heading-font-weight;
+  line-height: $heading-line-height;
+  color: $heading-color;
+}
 
 .h1,
 .h2,
@@ -8,59 +15,119 @@
 .h4,
 .h5,
 .h6 {
-  font-family: $heading-font-family;
-  font-weight: $heading-font-weight;
-  line-height: $heading-line-height;
-  color: $heading-color;
+  @extend %h;
 }
 
-.h1 {
+/**
+ * H1 Heading
+ */
+
+%h1 {
   font-size: 2em;
 }
 
-.h2 {
+@include media-min('md') {
+  %h1 {
+    font-size: 2.5em;
+  }
+}
+
+.h1,
+.type .h1 {
+  @extend %h1;
+}
+
+/**
+ * H2 Heading
+ */
+
+%h2 {
   font-size: 1.75em;
 }
 
-.h3 {
+@include media-min('md') {
+  %h2 {
+    font-size: 2em;
+  }
+}
+
+.h2,
+.type .h2 {
+  @extend %h2;
+}
+
+/**
+ * H3 Heading
+ */
+
+%h3 {
   font-size: 1.5em;
 }
 
-.h4 {
+@include media-min('md') {
+  %h3 {
+    font-size: 1.75em;
+  }
+}
+
+.h3,
+.type .h3 {
+  @extend %h3;
+}
+
+/**
+ * H4 Heading
+ */
+
+%h4 {
   font-size: 1.25em;
 }
 
-.h5 {
-  font-size: 1em;
+@include media-min('md') {
+  %h4 {
+    font-size: 1.5em;
+  }
 }
 
-.h6 {
+.h4,
+.type .h4 {
+  @extend %h4;
+}
+
+/**
+ * H5 Heading
+ */
+
+%h5 {
   font-size: 1em;
 }
 
 @include media-min('md') {
-
-  .h1 {
-    font-size: 2.5em;
-  }
-
-  .h2 {
-    font-size: 2em;
-  }
-
-  .h3 {
-    font-size: 1.75em;
-  }
-
-  .h4 {
-    font-size: 1.5em;
-  }
-
-  .h5 {
+  %h5 {
     font-size: 1.25em;
   }
+}
 
-  .h6 {
+.h5,
+.type .h5 {
+  @extend %h5;
+}
+
+/**
+ * H6 Heading
+ */
+
+%h6 {
+  font-size: 1em;
+}
+
+@include media-min('md') {
+  %h6 {
     font-size: 1.25em;
   }
+}
+
+.h6,
+.type .h6 {
+  @extend %h6;
 }

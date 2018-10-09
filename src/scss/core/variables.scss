@@ -135,7 +135,8 @@ $blockquote-border-radius: $border-radius !default;
 
 // Tables
 $table-color: $color !default;
-$table-border: 1px solid $gray-300 !default;
+$table-border-color: $gray-300 !default;
+$table-border: 1px solid $table-border-color !default;
 $table-background: $white !default;
 $table-background-alt: $background-color !default;
 $table-padding: $padding !default;
