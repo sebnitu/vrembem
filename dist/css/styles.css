@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.62
+ * @version 0.2.63
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -2386,58 +2386,33 @@ pre {
  * Utility
  */
 .button_color_subtle {
-  background: none;
-  border-color: rgba(255, 255, 255, 0);
-}
-
-.button_color_subtle:hover, .button_color_subtle:focus {
-  background: rgba(0, 0, 0, 0.05);
-  border-color: rgba(255, 255, 255, 0);
-}
-
-.button_color_fade {
   color: #bdbdbd;
   background: none;
 }
 
-.button_color_fade:hover, .button_color_fade:focus {
+.button_color_subtle:hover, .button_color_subtle:focus {
   color: #212121;
   background: rgba(0, 0, 0, 0.05);
 }
 
-/**
- * Inverts
- */
 .button_color_invert {
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.1);
+  background: none;
   border-color: rgba(255, 255, 255, 0);
 }
 
 .button_color_invert:hover, .button_color_invert:focus {
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0);
-}
-
-.button_color_invert_subtle {
-  color: #ffffff;
-  background: none;
-  border-color: rgba(255, 255, 255, 0);
-}
-
-.button_color_invert_subtle:hover, .button_color_invert_subtle:focus {
-  color: #ffffff;
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0);
 }
 
-.button_color_invert_fade {
+.button_color_invert_subtle {
   color: rgba(255, 255, 255, 0.5);
   background: none;
 }
 
-.button_color_invert_fade:hover, .button_color_invert_fade:focus {
+.button_color_invert_subtle:hover, .button_color_invert_subtle:focus {
   color: #ffffff;
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0);
@@ -2447,15 +2422,20 @@ pre {
  * Button outline modifier
  */
 .button_outline {
-  background: #ffffff;
-  border: 1px solid #bdbdbd;
+  color: #212121;
+  background: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .button_outline:hover, .button_outline:focus {
+  color: #212121;
   background: #ffffff;
   border-color: #2196f3;
 }
 
+/**
+ * Colors
+ */
 .button_outline_primary {
   color: #2196f3;
   background: none;
@@ -2487,14 +2467,26 @@ pre {
 }
 
 .button_outline_accent:hover, .button_outline_accent:focus {
-  color: #ffffff;
+  color: #212121;
   background: #ffee58;
   border-color: #ffee58;
 }
 
 /**
- * Dark
+ * Shade & Dark
  */
+.button_outline_shade {
+  color: #eceff1;
+  background: none;
+  border: 1px solid #eceff1;
+}
+
+.button_outline_shade:hover, .button_outline_shade:focus {
+  color: #212121;
+  background: #eceff1;
+  border-color: #eceff1;
+}
+
 .button_outline_dark {
   color: #37474f;
   background: none;
@@ -2510,21 +2502,18 @@ pre {
 /**
  * Utility
  */
-.button_outline_fade {
+.button_outline_subtle {
   color: #bdbdbd;
   background: none;
-  border: 1px solid #e0e0e0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.button_outline_fade:hover, .button_outline_fade:focus {
+.button_outline_subtle:hover, .button_outline_subtle:focus {
   color: #212121;
   background: none;
-  border-color: #212121;
+  border-color: rgba(0, 0, 0, 0.2);
 }
 
-/**
- * Inverts
- */
 .button_outline_invert {
   color: #ffffff;
   background: none;
@@ -2535,6 +2524,18 @@ pre {
   color: #212121;
   background: #ffffff;
   border-color: #ffffff;
+}
+
+.button_outline_invert_subtle {
+  color: rgba(255, 255, 255, 0.5);
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.button_outline_invert_subtle:hover, .button_outline_invert_subtle:focus {
+  color: #ffffff;
+  background: none;
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 /**
@@ -3486,7 +3487,7 @@ pre {
   padding: 0.1875rem;
   color: #ffffff;
   font-size: 1.125rem;
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0.3);
   border: 1px solid transparent;
   border-radius: 2em;
 }
@@ -3494,7 +3495,7 @@ pre {
 .icon-action:hover, .icon-action:focus {
   cursor: pointer;
   color: #ffffff;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   border: 1px solid transparent;
 }
 
@@ -3524,62 +3525,67 @@ pre {
 /**
  * Icon-action color modifiers
  */
-.icon-action_color_fade {
-  color: #000000;
+.icon-action_color_subtle {
+  color: #212121;
   background: none;
-  opacity: 0.5;
 }
 
-.icon-action_color_fade:hover, .icon-action_color_fade:focus {
-  color: #000000;
-  background: none;
-  opacity: 1;
+.icon-action_color_subtle:hover, .icon-action_color_subtle:focus {
+  color: #212121;
+  background: rgba(0, 0, 0, 0.1);
 }
 
-.icon-action_color_fade-invert {
-  color: #ffffff;
-  background: none;
-  opacity: 0.5;
-}
-
-.icon-action_color_fade-invert:hover, .icon-action_color_fade-invert:focus {
-  color: #ffffff;
-  background: none;
-  opacity: 0.1;
-}
-
-.icon-action_color_light {
+.icon-action_color_invert {
   color: #212121;
   background: rgba(255, 255, 255, 0.5);
 }
 
-.icon-action_color_light:hover, .icon-action_color_light:focus {
+.icon-action_color_invert:hover, .icon-action_color_invert:focus {
   color: #212121;
-  background: white;
+  background: rgba(255, 255, 255, 0.75);
 }
 
+.icon-action_color_invert_subtle {
+  color: #ffffff;
+  background: none;
+}
+
+.icon-action_color_invert_subtle:hover, .icon-action_color_invert_subtle:focus {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/**
+ * Semantic
+ */
 .icon-action_color_danger {
   background: #f44336;
+  color: #ffffff;
 }
 
 .icon-action_color_danger:hover, .icon-action_color_danger:focus {
   background: #ea1c0d;
+  color: #ffffff;
 }
 
 .icon-action_color_caution {
   background: #f9a825;
+  color: #ffffff;
 }
 
 .icon-action_color_caution:hover, .icon-action_color_caution:focus {
   background: #e59006;
+  color: #ffffff;
 }
 
 .icon-action_color_success {
   background: #4caf50;
+  color: #ffffff;
 }
 
 .icon-action_color_success:hover, .icon-action_color_success:focus {
   background: #3d8b40;
+  color: #ffffff;
 }
 
 /**
@@ -4506,6 +4512,10 @@ pre {
 
 .notice_type_accent {
   background-color: #ffee58;
+}
+
+.notice_type_shade {
+  background-color: #eceff1;
 }
 
 .notice_type_dark {

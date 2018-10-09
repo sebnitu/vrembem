@@ -5,34 +5,34 @@
  */
 
 .button_color_primary {
-  color: button-color($primary);
+  color: color-switch($primary, $button-color, $button-color-invert);
   background: $primary;
 
   &:hover,
   &:focus {
-    color: button-color($primary);
+    color: color-switch($primary, $button-color, $button-color-invert);
     background: darken($primary, 5%);
   }
 }
 
 .button_color_secondary {
-  color: button-color($secondary);
+  color: color-switch($secondary, $button-color, $button-color-invert);
   background: $secondary;
 
   &:hover,
   &:focus {
-    color: button-color($secondary);
+    color: color-switch($secondary, $button-color, $button-color-invert);
     background: darken($secondary, 5%);
   }
 }
 
 .button_color_accent {
-  color: button-color($accent);
+  color: color-switch($accent, $button-color, $button-color-invert);
   background: $accent;
 
   &:hover,
   &:focus {
-    color: button-color($accent);
+    color: color-switch($accent, $button-color, $button-color-invert);
     background: darken($accent, 5%);
   }
 }
@@ -42,23 +42,23 @@
  */
 
 .button_color_shade {
-  color: button-color($shade);
+  color: color-switch($shade, $button-color, $button-color-invert);
   background: $shade;
 
   &:hover,
   &:focus {
-    color: button-color($shade);
+    color: color-switch($shade, $button-color, $button-color-invert);
     background: darken($shade, 5%);
   }
 }
 
 .button_color_dark {
-  color: $white;
+  color: color-switch($dark, $button-color, $button-color-invert);
   background: $dark;
 
   &:hover,
   &:focus {
-    color: $white;
+    color: color-switch($dark, $button-color, $button-color-invert);
     background: lighten($dark, 5%);
   }
 }
@@ -68,17 +68,6 @@
  */
 
 .button_color_subtle {
-  background: none;
-  border-color: rgba($white, 0);
-
-  &:hover,
-  &:focus {
-    background: rgba($black, 0.05);
-    border-color: rgba($white, 0);
-  }
-}
-
-.button_color_fade {
   color: $color-light;
   background: none;
 
@@ -89,24 +78,7 @@
   }
 }
 
-/**
- * Inverts
- */
-
 .button_color_invert {
-  color: $white;
-  background: rgba($white, 0.1);
-  border-color: rgba($white, 0);
-
-  &:hover,
-  &:focus {
-    color: $white;
-    background: rgba($white, 0.2);
-    border-color: rgba($white, 0);
-  }
-}
-
-.button_color_invert_subtle {
   color: $white;
   background: none;
   border-color: rgba($white, 0);
@@ -119,7 +91,7 @@
   }
 }
 
-.button_color_invert_fade {
+.button_color_invert_subtle {
   color: rgba($white, 0.5);
   background: none;
 

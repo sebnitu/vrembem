@@ -50,6 +50,7 @@ $font-weight: font-weight('normal') !default;
 $color: $gray-900 !default;
 $color-light: $gray-400 !default;
 $color-dark: $black !default;
+$color-invert: $white !default;
 
 // Box styles
 $background-color: $gray-100 !default;
@@ -203,3 +204,21 @@ $utility-spacing: (
 ) !default;
 
 $lightness-threshold: 60 !default;
+
+// Var Dependent Functions
+////////////////////////
+
+@function color-switch(
+  $base,
+  $dark: $color,
+  $light: $color-invert
+) {
+  // Checkout base color to lightness threshold
+  @if (lightness($base) > $lightness-threshold) {
+    // Lighter backgorund, return dark color
+    @return $dark;
+  } @else {
+    // Darker background, return light color
+    @return $light;
+  }
+}

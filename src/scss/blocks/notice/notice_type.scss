@@ -25,6 +25,13 @@
   }
 }
 
+.notice_type_shade {
+  background-color: $shade;
+  @if (lightness($shade) < $lightness-threshold) {
+    @extend .type_invert;
+  }
+}
+
 .notice_type_dark {
   background-color: $dark;
   @if (lightness($dark) < $lightness-threshold) {

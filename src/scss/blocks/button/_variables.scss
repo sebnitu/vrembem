@@ -21,15 +21,3 @@ $button_size_sm-padding: $padding-sm !default;
 
 $button_size_lg-font-size: $font-size !default;
 $button_size_lg-padding: $padding-lg !default;
-
-// Button Color Function
-
-@function button-color($color) {
-  @if (lightness($color) > $lightness-threshold) {
-    // Lighter backgorund, return dark color
-    @return $button-color;
-  } @else {
-    // Darker background, return light color
-    @return $button-color-invert;
-  }
-}

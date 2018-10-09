@@ -197,13 +197,11 @@ Used for when displaying a button with only an icon and no text.
     <div class="demo__group level level_wrap">
       <button class="button">Button</button>
       <button class="button button_color_subtle">Button</button>
-      <button class="button button_color_fade">Button</button>
     </div>
 
     <div class="demo__group level level_wrap bg_dark p_1">
       <button class="button button_color_invert">Button</button>
       <button class="button button_color_invert_subtle">Button</button>
-      <button class="button button_color_invert_fade">Button</button>
     </div>
 
   </div>
@@ -226,14 +224,16 @@ Used for when displaying a button with only an icon and no text.
       <button class="button button_outline_primary">Button</button>
       <button class="button button_outline_secondary">Button</button>
       <button class="button button_outline_accent">Button</button>
+      <button class="button button_outline_shade">Button</button>
       <button class="button button_outline_dark">Button</button>
     </div>
     <div class="demo__group level level_wrap">
       <button class="button button_outline">Button</button>
-      <button class="button button_outline_fade">Button</button>
+      <button class="button button_outline_subtle">Button</button>
     </div>
     <div class="demo__group level level_wrap bg_dark p_1">
       <button class="button button_outline_invert">Button</button>
+      <button class="button button_outline_invert_subtle">Button</button>
     </div>
   </div>
   </div>

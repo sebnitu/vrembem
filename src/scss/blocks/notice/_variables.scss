@@ -6,15 +6,3 @@ $notice-border: null !default;
 $notice-border-radius: null !default;
 $notice-color: $color !default;
 $notice-color-invert: $white !default;
-
-// Notice Color Function
-
-@function notice-color($color) {
-  @if (lightness($color) > $lightness-threshold) {
-    // Lighter backgorund, return dark color
-    @return $notice-color;
-  } @else {
-    // Darker background, return light color
-    @return $notice-color-invert;
-  }
-}

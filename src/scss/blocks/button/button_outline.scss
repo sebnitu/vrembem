@@ -1,28 +1,34 @@
-$button_outline_border-width: 1px !default;
+$button_outline-border-width: 1px !default;
 
 /**
  * Button outline modifier
  */
 
 .button_outline {
-  background: $white;
-  border: $button_outline_border-width solid $gray-400;
+  color: $button-color;
+  background: none;
+  border: $button_outline-border-width solid rgba($black, 0.2);
 
   &:hover,
   &:focus {
+    color: color-switch($white, $button-color, $button-color-invert);
     background: $white;
     border-color: rgba($primary, 1);
   }
 }
 
+/**
+ * Colors
+ */
+
 .button_outline_primary {
   color: $primary;
   background: none;
-  border: $button_outline_border-width solid $primary;
+  border: $button_outline-border-width solid $primary;
 
   &:hover,
   &:focus {
-    color: $white;
+    color: color-switch($primary, $button-color, $button-color-invert);
     background: $primary;
     border-color: $primary;
   }
@@ -31,11 +37,11 @@ $button_outline_border-width: 1px !default;
 .button_outline_secondary {
   color: $secondary;
   background: none;
-  border: $button_outline_border-width solid $secondary;
+  border: $button_outline-border-width solid $secondary;
 
   &:hover,
   &:focus {
-    color: $white;
+    color: color-switch($secondary, $button-color, $button-color-invert);
     background: $secondary;
     border-color: $secondary;
   }
@@ -44,28 +50,41 @@ $button_outline_border-width: 1px !default;
 .button_outline_accent {
   color: $accent;
   background: none;
-  border: $button_outline_border-width solid $accent;
+  border: $button_outline-border-width solid $accent;
 
   &:hover,
   &:focus {
-    color: $white;
+    color: color-switch($accent, $button-color, $button-color-invert);
     background: $accent;
     border-color: $accent;
   }
 }
 
 /**
- * Dark
+ * Shade & Dark
  */
+
+.button_outline_shade {
+  color: $shade;
+  background: none;
+  border: $button_outline-border-width solid $shade;
+
+  &:hover,
+  &:focus {
+    color: color-switch($shade, $button-color, $button-color-invert);
+    background: $shade;
+    border-color: $shade;
+  }
+}
 
 .button_outline_dark {
   color: $dark;
   background: none;
-  border: $button_outline_border-width solid $dark;
+  border: $button_outline-border-width solid $dark;
 
   &:hover,
   &:focus {
-    color: $white;
+    color: color-switch($dark, $button-color, $button-color-invert);
     background: $dark;
     border-color: $dark;
   }
@@ -75,32 +94,41 @@ $button_outline_border-width: 1px !default;
  * Utility
  */
 
-.button_outline_fade {
+.button_outline_subtle {
   color: $color-light;
   background: none;
-  border: $button_outline_border-width solid $gray-300;
+  border: $button_outline-border-width solid rgba($black, 0.1);
 
   &:hover,
   &:focus {
-    color: $color;
+    color: $button-color;
     background: none;
-    border-color: $color;
+    border-color: rgba($black, 0.2);
   }
 }
-
-/**
- * Inverts
- */
 
 .button_outline_invert {
   color: $white;
   background: none;
-  border: $button_outline_border-width solid rgba($white, 0.25);
+  border: $button_outline-border-width solid rgba($white, 0.25);
 
   &:hover,
   &:focus {
-    color: $color;
+    color: $button-color;
     background: $white;
     border-color: $white;
+  }
+}
+
+.button_outline_invert_subtle {
+  color: rgba($white, 0.5);
+  background: none;
+  border: $button_outline-border-width solid rgba($white, 0.2);
+
+  &:hover,
+  &:focus {
+    color: $white;
+    background: none;
+    border-color: rgba($white, 0.5);
   }
 }
