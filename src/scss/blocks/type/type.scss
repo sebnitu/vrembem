@@ -193,6 +193,7 @@
 
   table {
     @extend .table;
+    @extend .table_bordered;
     margin: ($type-spacing * 1.5) 0;
   }
 

@@ -6,15 +6,15 @@ $button-inner-spacing: 0.5em !default;
 $button-color: $color !default;
 $button-color-invert: $white !default;
 
-$button-background: rgba($black, 0.05) !default;
-$button-background-hover: rgba($black, 0.1) !default;
+$button-background: none !default;
+$button-background-hover: rgba($black, 0.05) !default;
 
 $button-border-width: 1px !default;
 $button-border-color: transparent !default;
 $button-border-color-hover: transparent !default;
 $button-border-radius: $border-radius !default;
 
-$button-focus-outline: none !default;
+$button-focus-outline: null !default;
 
 $button_size_sm-font-size: $font-size-sm !default;
 $button_size_sm-padding: $padding-sm !default;

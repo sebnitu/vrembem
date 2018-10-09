@@ -52,7 +52,7 @@ $color-light: $gray-400 !default;
 $color-dark: $black !default;
 
 // Box styles
-$background-color: $shade !default;
+$background-color: $gray-100 !default;
 $border-radius: 3px !default;
 $box-sizing: border-box !default;
 
@@ -124,7 +124,7 @@ $code-padding: null !default;
 
 // Pre
 $pre-color: $color-dark !default;
-$pre-background: $shade !default;
+$pre-background: $background-color !default;
 $pre-border-radius: $border-radius !default;
 
 // Blockquotes
@@ -136,7 +136,7 @@ $blockquote-border-radius: $border-radius !default;
 $table-color: $color !default;
 $table-border: 1px solid $gray-300 !default;
 $table-background: $white !default;
-$table-background-alt: $shade !default;
+$table-background-alt: $background-color !default;
 $table-padding: $padding !default;
 
 // Body
