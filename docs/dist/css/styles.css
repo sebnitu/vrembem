@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.63
+ * @version 0.2.64
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -3525,16 +3525,6 @@ pre {
 /**
  * Icon-action color modifiers
  */
-.icon-action_color_subtle {
-  color: #212121;
-  background: none;
-}
-
-.icon-action_color_subtle:hover, .icon-action_color_subtle:focus {
-  color: #212121;
-  background: rgba(0, 0, 0, 0.1);
-}
-
 .icon-action_color_invert {
   color: #212121;
   background: rgba(255, 255, 255, 0.5);
@@ -3545,6 +3535,19 @@ pre {
   background: rgba(255, 255, 255, 0.75);
 }
 
+/**
+ * Subtle
+ */
+.icon-action_color_subtle {
+  color: #212121;
+  background: none;
+}
+
+.icon-action_color_subtle:hover, .icon-action_color_subtle:focus {
+  color: #212121;
+  background: rgba(0, 0, 0, 0.1);
+}
+
 .icon-action_color_invert_subtle {
   color: #ffffff;
   background: none;
@@ -3553,6 +3556,33 @@ pre {
 .icon-action_color_invert_subtle:hover, .icon-action_color_invert_subtle:focus {
   color: #ffffff;
   background: rgba(255, 255, 255, 0.1);
+}
+
+/**
+ * Fade
+ */
+.icon-action_color_fade {
+  color: #212121;
+  background: none;
+  opacity: 0.5;
+}
+
+.icon-action_color_fade:hover, .icon-action_color_fade:focus {
+  color: #212121;
+  background: none;
+  opacity: 1;
+}
+
+.icon-action_color_invert_fade {
+  color: #ffffff;
+  background: none;
+  opacity: 0.5;
+}
+
+.icon-action_color_invert_fade:hover, .icon-action_color_invert_fade:focus {
+  color: #ffffff;
+  background: none;
+  opacity: 1;
 }
 
 /**

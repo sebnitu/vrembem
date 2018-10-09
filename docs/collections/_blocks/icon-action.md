@@ -77,6 +77,10 @@ dsc: "A minimal container component for icon based actions."
       <button class="icon-action icon-action_color_subtle">
         {% include icon.html icon="x" %}
       </button>
+      <button class="icon-action icon-action_color_fade">
+        {% include icon.html icon="x" %}
+      </button>
+
       <button class="icon-action icon-action_color_danger">
         {% include icon.html icon="x" %}
       </button>
@@ -93,6 +97,9 @@ dsc: "A minimal container component for icon based actions."
         {% include icon.html icon="x" %}
       </button>
       <button class="icon-action icon-action_color_invert_subtle">
+        {% include icon.html icon="x" %}
+      </button>
+      <button class="icon-action icon-action_color_invert_fade">
         {% include icon.html icon="x" %}
       </button>
     </div>

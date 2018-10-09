@@ -4,17 +4,6 @@
  * Icon-action color modifiers
  */
 
-.icon-action_color_subtle {
-  color: $icon-action-color-invert;
-  background: none;
-
-  &:hover,
-  &:focus {
-    color: $icon-action-color-invert;
-    background: rgba($black, 0.1);
-  }
-}
-
 .icon-action_color_invert {
   color: $icon-action-color-invert;
   background: rgba($white, 0.5);
@@ -26,6 +15,21 @@
   }
 }
 
+/**
+ * Subtle
+ */
+
+.icon-action_color_subtle {
+  color: $icon-action-color-invert;
+  background: none;
+
+  &:hover,
+  &:focus {
+    color: $icon-action-color-invert;
+    background: rgba($black, 0.1);
+  }
+}
+
 .icon-action_color_invert_subtle {
   color: $icon-action-color;
   background: none;
@@ -34,6 +38,36 @@
   &:focus {
     color: $icon-action-color;
     background: rgba($white, 0.1);
+  }
+}
+
+/**
+ * Fade
+ */
+
+.icon-action_color_fade {
+  color: $icon-action-color-invert;
+  background: none;
+  opacity: 0.5;
+
+  &:hover,
+  &:focus {
+    color: $icon-action-color-invert;
+    background: none;
+    opacity: 1;
+  }
+}
+
+.icon-action_color_invert_fade {
+  color: $icon-action-color;
+  background: none;
+  opacity: 0.5;
+
+  &:hover,
+  &:focus {
+    color: $icon-action-color;
+    background: none;
+    opacity: 1;
   }
 }
 
