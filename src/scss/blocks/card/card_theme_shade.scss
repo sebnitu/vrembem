@@ -4,6 +4,7 @@
 
 .card_theme_shade {
   background: $shade;
+  color: color-switch($shade);
 
   .card__screen {
     background: $shade;

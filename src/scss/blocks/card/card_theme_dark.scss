@@ -4,7 +4,7 @@
 
 .card_theme_dark {
   background: $dark;
-  color: $white;
+  color: color-switch($dark);
 
   .card__header,
   .card__footer {

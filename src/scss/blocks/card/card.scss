@@ -12,6 +12,7 @@
   border: $card-border;
   border-radius: $card-border-radius;
   box-shadow: $card-box-shadow;
+  color: color-switch($card-background);
   overflow: hidden;
   transition: $card-transition;
 }
