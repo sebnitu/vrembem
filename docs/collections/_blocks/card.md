@@ -287,7 +287,7 @@ Below are a few examples of different ways to build a card.
   </div>
 
   <div class="grid__item size_12 size_6_md grid__item_fill">
-    <div class="card card_theme_bordered card_size_lg">
+    <a href="#" class="card card_theme_bordered card_link card_size_lg">
       <div class="card__body spacing">
         <blockquote>
           <p class="text_lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et, efficitur ultricies metus. Vestibulum rutrum dolor dui, lacinia viverra tellus molestie eget. Proin tempor mauris id velit luctus, sit amet varius erat vestibulum.</p>
@@ -296,7 +296,7 @@ Below are a few examples of different ways to build a card.
           </footer>
         </blockquote>
       </div>
-    </div>
+    </a>
   </div>
 
   <div class="grid__item size_12 size_6_xs size_4_md grid__item_fill">
@@ -330,7 +330,7 @@ Below are a few examples of different ways to build a card.
   </div>
 
   <div class="grid__item size_12 size_4_md grid__item_fill">
-    <div class="card card_theme_bordered">
+    <a href="#" class="card card_theme_bordered card_link">
       <div class="card__header">
         <h3 class="card__title">Card Title</h3>
       </div>
@@ -341,7 +341,7 @@ Below are a few examples of different ways to build a card.
         <p><button class="button button_outline_success">Card Action</button></p>
       </div>
       <img src="https://picsum.photos/600/400/?13" class="card__image d_none_xs d_block_md" width="600" height="400" />
-    </div>
+    </a>
   </div>
 
 </div><!-- .grid -->

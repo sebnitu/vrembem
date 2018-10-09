@@ -2922,7 +2922,15 @@ pre {
  * Card Theme: Bordered
  */
 .card_theme_bordered {
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(236, 239, 241, 0);
+  border: 2px solid #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.card_theme_bordered.card_link:hover {
+  background: rgba(236, 239, 241, 0.75);
+  border-color: #dde3e6;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
@@ -3450,12 +3458,30 @@ pre {
   vertical-align: middle;
 }
 
+/**
+ * Icon absolute size modifier
+ */
+.icon_abs {
+  font-size: 1.25rem;
+}
+
+/**
+ * Icon size modifiers
+ */
 .icon_size_sm {
   font-size: 1.0435em;
 }
 
+.icon_size_sm.icon_abs {
+  font-size: 1.0435rem;
+}
+
 .icon_size_lg {
   font-size: 1.5625em;
+}
+
+.icon_size_lg.icon_abs {
+  font-size: 1.5625rem;
 }
 
 /**

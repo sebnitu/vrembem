@@ -1,12 +1,22 @@
-$card_theme_bordered-border: $border !default;
+$card_theme_bordered-background: rgba($shade, 0) !default;
+$card_theme_bordered-background-hover: rgba($shade, 0.75) !default;
+$card_theme_bordered-border: 2px solid $shade !default;
+$card_theme_bordered-border-color-hover: darken($shade, 5%) !default;
 $card_theme_bordered-box-shadow: none !default;
+$card_theme_bordered-box-shadow-hover: none !default;
 
 /**
  * Card Theme: Bordered
  */
 
 .card_theme_bordered {
+  background: $card_theme_bordered-background;
   border: $card_theme_bordered-border;
   box-shadow: $card_theme_bordered-box-shadow;
-}
 
+  &.card_link:hover {
+    background: $card_theme_bordered-background-hover;
+    border-color: $card_theme_bordered-border-color-hover;
+    box-shadow: $card_theme_bordered-box-shadow-hover;
+  }
+}

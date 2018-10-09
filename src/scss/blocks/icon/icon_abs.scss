@@ -1,0 +1,9 @@
+@import 'variables';
+
+/**
+ * Icon absolute size modifier
+ */
+
+.icon_abs {
+  font-size: strip-unit($icon-font-size) * 1rem;
+}
