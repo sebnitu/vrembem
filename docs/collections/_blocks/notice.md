@@ -92,66 +92,54 @@ desc: "A component for highlighting messages to the user."
 
 <div class="demo grid grid_md">
   <div class="grid__item">
-  <div class="demo__render spacing">
+  <div class="demo__render spacing type">
     <div class="notice notice_type_primary" data-dismissible>
       <button class="notice__close icon-action" data-dismiss>
       {% include icon.html icon="x" class="icon" %}
       </button>
-      Notice content goes here...
+      Notice <a href="#">content</a> goes here...
     </div>
     <div class="notice notice_type_secondary" data-dismissible>
       <button class="notice__close icon-action" data-dismiss>
       {% include icon.html icon="x" class="icon" %}
       </button>
-      Notice content goes here...
+      Notice <a href="#">content</a> goes here...
     </div>
     <div class="notice notice_type_accent" data-dismissible>
       <button class="notice__close icon-action" data-dismiss>
       {% include icon.html icon="x" class="icon" %}
       </button>
-      Notice content goes here...
+      Notice <a href="#">content</a> goes here...
     </div>
     <div class="notice notice_type_dark" data-dismissible>
       <button class="notice__close icon-action icon-action_color_light" data-dismiss>
       {% include icon.html icon="x" class="icon" %}
       </button>
-      Notice content goes here...
-    </div>
-    <div class="notice notice_type_light" data-dismissible>
-      <button class="notice__close icon-action icon-action_color_fade" data-dismiss>
-      {% include icon.html icon="x" class="icon" %}
-      </button>
-      Notice content goes here...
-    </div>
-    <div class="notice notice_type_bordered" data-dismissible>
-      <button class="notice__close icon-action icon-action_color_fade" data-dismiss>
-      {% include icon.html icon="x" class="icon" %}
-      </button>
-      Notice content goes here...
+      Notice <a href="#">content</a> goes here...
     </div>
     <div class="notice notice_type_info" data-dismissible>
       <span class="notice__close" data-dismiss>
       {% include icon.html icon="x" class="icon" %}
       </span>
-      Notice content goes here...
+      Notice <a href="#">content</a> goes here...
     </div>
     <div class="notice notice_type_success" data-dismissible>
       <span class="notice__close" data-dismiss>
       {% include icon.html icon="x" class="icon" %}
       </span>
-      Notice content goes here...
+      Notice <a href="#">content</a> goes here...
     </div>
     <div class="notice notice_type_caution" data-dismissible>
       <span class="notice__close" data-dismiss>
       {% include icon.html icon="x" class="icon" %}
       </span>
-      Notice content goes here...
+      Notice <a href="#">content</a> goes here...
     </div>
     <div class="notice notice_type_danger" data-dismissible>
       <span class="notice__close" data-dismiss>
       {% include icon.html icon="x" class="icon" %}
       </span>
-      Notice content goes here...
+      Notice <a href="#">content</a> goes here...
     </div>
   </div>
   </div>

@@ -187,7 +187,7 @@ pre {
   border: none;
 }
 
-.hr_invert, .type_invert hr {
+.hr_invert, .type_invert hr, .notice_type_primary hr, .notice_type_secondary hr, .notice_type_dark hr {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -208,12 +208,12 @@ pre {
 /**
  * Link invert utility
  */
-.link_invert, .type_invert a:not(.button) {
+.link_invert, .type_invert a:not(.button), .notice_type_primary a:not(.button), .notice_type_secondary a:not(.button), .notice_type_dark a:not(.button) {
   color: #ffffff;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-.link_invert:hover, .type_invert a:hover:not(.button), .link_invert:focus, .type_invert a:focus:not(.button) {
+.link_invert:hover, .type_invert a:hover:not(.button), .notice_type_primary a:hover:not(.button), .notice_type_secondary a:hover:not(.button), .notice_type_dark a:hover:not(.button), .link_invert:focus, .type_invert a:focus:not(.button), .notice_type_primary a:focus:not(.button), .notice_type_secondary a:focus:not(.button), .notice_type_dark a:focus:not(.button) {
   color: #ffffff;
   border-bottom: 1px solid white;
 }
@@ -322,15 +322,15 @@ pre {
 
 /* Accent */
 .bg_accent {
-  background-color: #ff9800 !important;
+  background-color: #ffee58 !important;
 }
 
 .bg_accent-light {
-  background-color: #ffb74d !important;
+  background-color: #fff6a5 !important;
 }
 
 .bg_accent-dark {
-  background-color: #b36a00 !important;
+  background-color: #ffe60c !important;
 }
 
 /* Shade */
@@ -2359,13 +2359,13 @@ pre {
 }
 
 .button_color_accent {
-  color: #ffffff;
-  background: #ff9800;
+  color: #212121;
+  background: #ffee58;
 }
 
 .button_color_accent:hover, .button_color_accent:focus {
-  color: #ffffff;
-  background: #e68900;
+  color: #212121;
+  background: #ffeb3f;
 }
 
 /**
@@ -2490,15 +2490,15 @@ pre {
 }
 
 .button_outline_accent {
-  color: #ff9800;
+  color: #ffee58;
   background: none;
-  border: 1px solid #ff9800;
+  border: 1px solid #ffee58;
 }
 
 .button_outline_accent:hover, .button_outline_accent:focus {
   color: #ffffff;
-  background: #ff9800;
-  border-color: #ff9800;
+  background: #ffee58;
+  border-color: #ffee58;
 }
 
 /**
@@ -4443,6 +4443,7 @@ pre {
  * Notice
  */
 .notice {
+  display: block;
   position: relative;
   padding: 1.5em;
   background: #eceff1;
@@ -4506,33 +4507,18 @@ pre {
  */
 .notice_type_primary {
   background-color: #2196f3;
-  color: #ffffff;
 }
 
 .notice_type_secondary {
   background-color: #607d8b;
-  color: #ffffff;
 }
 
 .notice_type_accent {
-  background-color: #ff9800;
-  color: #ffffff;
+  background-color: #ffee58;
 }
 
 .notice_type_dark {
   background-color: #37474f;
-  color: #ffffff;
-}
-
-.notice_type_light {
-  background-color: #ffffff;
-  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-}
-
-.notice_type_bordered {
-  background-color: #ffffff;
-  border: 2px solid #eceff1;
 }
 
 /**
@@ -4929,16 +4915,31 @@ pre {
 /**
  * Type invert modifier
  */
-.type_invert {
+.type_invert, .notice_type_primary, .notice_type_secondary, .notice_type_dark {
   color: #ffffff;
 }
 
-.type_invert h1,
+.type_invert h1, .notice_type_primary h1, .notice_type_secondary h1, .notice_type_dark h1,
 .type_invert h2,
+.notice_type_primary h2,
+.notice_type_secondary h2,
+.notice_type_dark h2,
 .type_invert h3,
+.notice_type_primary h3,
+.notice_type_secondary h3,
+.notice_type_dark h3,
 .type_invert h4,
+.notice_type_primary h4,
+.notice_type_secondary h4,
+.notice_type_dark h4,
 .type_invert h5,
-.type_invert h6 {
+.notice_type_primary h5,
+.notice_type_secondary h5,
+.notice_type_dark h5,
+.type_invert h6,
+.notice_type_primary h6,
+.notice_type_secondary h6,
+.notice_type_dark h6 {
   color: inherit;
 }
 
