@@ -8,7 +8,9 @@
 
   .card__header,
   .card__footer {
-    border-color: $border-color-invert;
+    @if (is-dark($dark)) {
+      border-color: $border-color-invert;
+    }
   }
 
   .card__screen {

@@ -1,5 +1,5 @@
 // Colors
-////////////////////////
+// ---
 
 $primary: $blue-500 !default;
 $primary-light: lighten($primary, 15%) !default;
@@ -24,7 +24,7 @@ $caution: $yellow-800 !default;
 $danger: $red !default;
 
 // Global Properties
-////////////////////////
+// ---
 
 // Padding
 $padding-sm: 0.215em 0.5em !default;
@@ -145,7 +145,7 @@ $table-padding: $padding !default;
 $body-background: null !default;
 
 // Link
-////////////////////////
+// ---
 
 $link-color: $primary !default;
 $link-color-hover: darken($link-color, 10%) !default;
@@ -162,7 +162,7 @@ $link-border-invert: 1px solid rgba($white, 0.5) !default;
 $link-border-invert-hover: 1px solid rgba($white, 1) !default;
 
 // Breakpoints
-////////////////////////
+// ---
 
 $breakpoints: (
   'xs': 480px,
@@ -173,7 +173,7 @@ $breakpoints: (
 ) !default;
 
 // Spacing
-////////////////////////
+// ---
 
 $spacing: 1rem !default;
 
@@ -186,7 +186,7 @@ $spacing-scale: (
 ) !default;
 
 // Utility
-////////////////////////
+// ---
 
 $utility-display: (
   inline,
@@ -207,7 +207,7 @@ $utility-spacing: (
 $lightness-threshold: 60 !default;
 
 // Var Dependent Functions
-////////////////////////
+// ---
 
 @function color-switch(
   $base,
@@ -222,4 +222,12 @@ $lightness-threshold: 60 !default;
     // Darker background, return light color
     @return $light;
   }
+}
+
+@function is-dark($base) {
+  @return (lightness($base) < $lightness-threshold);
+}
+
+@function is-light($base) {
+  @return (lightness($base) > $lightness-threshold);
 }

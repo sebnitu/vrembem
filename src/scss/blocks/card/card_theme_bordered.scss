@@ -14,7 +14,8 @@ $card_theme_bordered-box-shadow-hover: none !default;
   border: $card_theme_bordered-border;
   box-shadow: $card_theme_bordered-box-shadow;
 
-  &.card_link:hover {
+  &.card_link:hover,
+  &.card_link:focus {
     background: $card_theme_bordered-background-hover;
     border-color: $card_theme_bordered-border-color-hover;
     box-shadow: $card_theme_bordered-box-shadow-hover;

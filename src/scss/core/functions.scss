@@ -88,11 +88,14 @@
   @return $result;
 }
 
-/// Srtips the unit from a value. e.g. 12px -> 12.
-/// @param {Unit} $val
-/// @return {Value}
-@function strip-units($val) {
-  @return ($val / ($val * 0 + 1));
+/// Remove the unit of a length
+/// @param {Number} $number - Number to remove unit from
+/// @return {Number} - Unitless number
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
 }
 
 /// Converts a pixel value to ems.
@@ -107,7 +110,7 @@
     $base: 1px * $base;
   }
   $px: ($px / $base) * 1em;
-  @return strip-units($px) * 1em;
+  @return strip-unit($px) * 1em;
 }
 
 /// Converts a pixel value to rems.
@@ -121,7 +124,7 @@
     $font-size: 1px * $font-size;
   }
   $px: ($px / $font-size) * 1rem;
-  @return strip-units($px) * 1rem;
+  @return strip-unit($px) * 1rem;
 }
 
 /// Converts an em value to pixels.
@@ -136,7 +139,7 @@
     $base: 1px * $base;
   }
   $em: ($em * $base) / 1px;
-  @return strip-units($em) * 1px;
+  @return strip-unit($em) * 1px;
 }
 
 /// Output the font weight value using the a weight keyword.
@@ -174,14 +177,4 @@
 /// @return {Percent}
 @function aspect-ratio($width, $height) {
   @return (($height / $width) * 100%);
-}
-
-/// Remove the unit of a length
-/// @param {Number} $number - Number to remove unit from
-/// @return {Number} - Unitless number
-@function strip-unit($number) {
-  @if type-of($number) == 'number' and not unitless($number) {
-    @return $number / ($number * 0 + 1);
-  }
-  @return $number;
 }
