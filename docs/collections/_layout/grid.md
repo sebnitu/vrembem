@@ -39,13 +39,25 @@ The fill modifier class creates equal height columns for a grid.
   <div class="demo__render">
     <div class="grid grid_flatten">
       <div class="grid__item">
-        <div class="box">...<br /><br /><br /><br /></div>
-      </div>
-      <div class="grid__item grid__item_fill">
-        <div class="box">...</div>
+        <div class="card card_theme_shade">
+          <div class="card__body">
+            Duis nec augue nec massa feugiat bibendum eu et nisl. Vivamus accumsan consequat justo, sed faucibus lorem sodales vitae. Integer et consectetur tellus. Aliquam pellentesque est id sapien tristique, eget lobortis enim luctus.
+          </div>
+        </div>
       </div>
       <div class="grid__item">
-        <div class="box">...</div>
+        <div class="card card_theme_shade">
+          <div class="card__body">
+            ...
+          </div>
+        </div>
+      </div>
+      <div class="grid__item">
+        <div class="card card_theme_shade">
+          <div class="card__body">
+            ...
+          </div>
+        </div>
       </div>
     </div>
   </div>

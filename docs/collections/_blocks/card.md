@@ -10,7 +10,7 @@ desc: "The cards component provide a flexible and extensible content container w
   <div class="grid__item size_4">
   <div class="demo__render">
     <div class="card">
-      <img src="https://picsum.photos/600/400/?random" class="card__image" width="600" height="400" />
+      <img src="https://picsum.photos/600/400/?random" class="card__image" width="600" height="400">
       <div class="card__body spacing">
         <h3 class="card__title">Card Title</h3>
         <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
@@ -60,7 +60,7 @@ desc: "The cards component provide a flexible and extensible content container w
       {%- for counter in (1..3) -%}
       <div class="grid__item grid__item_fill">
         <a href="#" class="card {{ card_class }}">
-          <img src="https://picsum.photos/600/400/?2{{ counter }}" class="card__image" width="600" height="400" />
+          <img src="https://picsum.photos/600/400/?2{{ counter }}" class="card__image" width="600" height="400">
           <div class="card__body spacing">
             <h3 class="card__title level justify_between">
               <span>Card Title</span>
@@ -99,7 +99,7 @@ desc: "The cards component provide a flexible and extensible content container w
               </button>
             </p>
           </div>
-          <img src="https://picsum.photos/600/400/?3{{ counter }}" class="card__background" width="600" height="400" />
+          <img src="https://picsum.photos/600/400/?3{{ counter }}" class="card__background" width="600" height="400">
           <div class="card__screen"></div>
         </a>
       </div>
@@ -155,7 +155,7 @@ desc: "The cards component provide a flexible and extensible content container w
           <button class="button button_color_secondary">Card Action</button>
         </p>
       </div>
-      <img src="https://picsum.photos/600/400/?20" class="card__background" width="600" height="400" />
+      <img src="https://picsum.photos/600/400/?20" class="card__background" width="600" height="400">
       <div class="card__screen"></div>
     </a>
   </div>
@@ -187,7 +187,7 @@ desc: "The cards component provide a flexible and extensible content container w
           <button class="button button_color_primary">Card Action</button>
         </p>
       </div>
-      <img src="https://picsum.photos/600/400/?9" class="card__background" width="600" height="400" />
+      <img src="https://picsum.photos/600/400/?9" class="card__background" width="600" height="400">
       <div class="card__screen"></div>
     </div>
   </div>
@@ -212,7 +212,7 @@ desc: "The cards component provide a flexible and extensible content container w
           <button class="button button_color_secondary">Card Action</button>
         </p>
       </div>
-      <img src="https://picsum.photos/600/400/?10" class="card__background" width="600" height="400" />
+      <img src="https://picsum.photos/600/400/?10" class="card__background" width="600" height="400">
       <div class="card__screen"></div>
     </div>
   </div>
@@ -235,7 +235,7 @@ Below are a few examples of different ways to build a card.
 
   <div class="grid__item size_12 size_6_xs size_4_md grid__item_fill">
     <div class="card">
-      <img src="https://picsum.photos/600/400/?2" class="card__image" width="600" height="400" />
+      <img src="https://picsum.photos/600/400/?2" class="card__image" width="600" height="400">
       <div class="card__body spacing">
         <h3 class="card__title">Card Title</h3>
         <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
@@ -251,7 +251,7 @@ Below are a few examples of different ways to build a card.
         <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
         <p><button class="button button_color_primary">Card Action</button></p>
       </div>
-      <img src="https://picsum.photos/600/400/?3" class="card__image" width="600" height="400" />
+      <img src="https://picsum.photos/600/400/?3" class="card__image" width="600" height="400">
     </div>
   </div>
 
@@ -281,7 +281,7 @@ Below are a few examples of different ways to build a card.
       <div class="card__footer">
         <p><button class="button button_color_primary">Card Action</button></p>
       </div>
-      <img src="https://picsum.photos/600/400/?4" class="card__background" width="600" height="400" />
+      <img src="https://picsum.photos/600/400/?4" class="card__background" width="600" height="400">
       <div class="card__screen"></div>
     </a>
   </div>
@@ -301,7 +301,7 @@ Below are a few examples of different ways to build a card.
 
   <div class="grid__item size_12 size_6_xs size_4_md grid__item_fill">
     <div class="card card_theme_shade">
-      <img src="https://picsum.photos/600/400/?11" class="card__image" width="600" height="400" />
+      <img src="https://picsum.photos/600/400/?11" class="card__image" width="600" height="400">
       <div class="card__header">
         <h3 class="card__title">Card Title</h3>
       </div>
@@ -319,7 +319,7 @@ Below are a few examples of different ways to build a card.
       <div class="card__header">
         <h3 class="card__title">Card Title</h3>
       </div>
-      <img src="https://picsum.photos/600/400/?12" class="card__image" width="600" height="400" />
+      <img src="https://picsum.photos/600/400/?12" class="card__image" width="600" height="400">
       <div class="card__body spacing">
         <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
       </div>
@@ -340,7 +340,7 @@ Below are a few examples of different ways to build a card.
       <div class="card__footer">
         <p><button class="button button_outline_success">Card Action</button></p>
       </div>
-      <img src="https://picsum.photos/600/400/?13" class="card__image d_none_xs d_block_md" width="600" height="400" />
+      <img src="https://picsum.photos/600/400/?13" class="card__image d_none_xs d_block_md" width="600" height="400">
     </a>
   </div>
 
