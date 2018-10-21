@@ -8,10 +8,15 @@
   display: flex;
   align-items: center;
   font-size: $menu-font-size;
+  line-height: $menu-line-height;
   list-style: none;
 
   .menu__item + .menu__item {
     margin-left: $menu__item-spacing;
+  }
+
+  .icon {
+    padding: $menu-icon-padding;
   }
 }
 

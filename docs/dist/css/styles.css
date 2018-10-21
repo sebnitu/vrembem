@@ -1,6 +1,6 @@
 /*!
  * Vrembem - A BEM powered CSS component library
- * @version 0.2.69
+ * @version 0.2.70
  * @repo https://github.com/sebnitu/vrembem.git
  *
  * @author Sebastian Nitu
@@ -4255,11 +4255,16 @@ pre {
       -ms-flex-align: center;
           align-items: center;
   font-size: 1em;
+  line-height: 1.5;
   list-style: none;
 }
 
 .menu .menu__item + .menu__item {
   margin-left: 1px;
+}
+
+.menu .icon {
+  padding: 0.1em;
 }
 
 .menu__sep {
