@@ -34,6 +34,36 @@
 }
 
 /**
+ * Swatches
+ */
+
+.swatch {
+  background: $white;
+  width: 160px;
+  height: 160px;
+}
+
+.shadow-1 {
+  box-shadow: $box-shadow-1dp;
+}
+
+.shadow-2 {
+  box-shadow: $box-shadow-4dp;
+}
+
+.shadow-3 {
+  box-shadow: $box-shadow-8dp;
+}
+
+.shadow-4 {
+  box-shadow: $box-shadow-16dp;
+}
+
+.shadow-5 {
+  box-shadow: $box-shadow-24dp;
+}
+
+/**
  * Box
  */
 

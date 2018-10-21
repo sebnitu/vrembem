@@ -15,8 +15,10 @@
   color: $button-color;
   font-family: inherit;
   font-size: $button-font-size;
-  font-weight: inherit;
+  font-weight: $button-font-weight;
   line-height: $button-line-height;
+  text-transform: $button-text-transform;
+  letter-spacing: $button-letter-spacing;
   text-decoration: none;
   white-space: nowrap;
   background: $button-background;
@@ -38,5 +40,9 @@
   > * + *,
   .button__item {
     margin-left: $button-inner-spacing;
+  }
+
+  .icon {
+    padding: $button-icon-padding;
   }
 }

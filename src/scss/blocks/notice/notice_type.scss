@@ -45,20 +45,20 @@
 
 .notice_type_info {
   background-color: rgba($info, 0.1);
-  color: darken($info, 10%);
+  color: darken($info, 25%);
 }
 
 .notice_type_success {
   background-color: rgba($success, 0.1);
-  color: darken($success, 10%);
+  color: darken($success, 25%);
 }
 
 .notice_type_caution {
   background-color: rgba($caution, 0.1);
-  color: darken($caution, 15%);
+  color: darken($caution, 25%);
 }
 
 .notice_type_danger {
   background-color: rgba($danger, 0.1);
-  color: darken($danger, 10%);
+  color: darken($danger, 25%);
 }
