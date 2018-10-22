@@ -25,7 +25,8 @@
   white-space: normal;
   background: $dropdown-background;
   background-clip: padding-box;
-  border-radius: $border-radius;
+  border: $dropdown-border;
+  border-radius: $dropdown-border-radius;
   box-shadow: $dropdown-box-shadow;
 
   &::before {
@@ -161,7 +162,7 @@
     top: -$dropdown-spacing;
     left: 100%;
     right: auto;
-    margin: -1px 0 0 1px;
+    margin: -1px 0 0 $dropdown__menu_pos_margin;
 
     &::before {
       width: 1px;
@@ -176,7 +177,7 @@
   > .dropdown__menu_pos_switch {
     left: auto;
     right: 100%;
-    margin: -1px 1px 0 0;
+    margin: -1px $dropdown__menu_pos_margin 0 0;
 
     &::before {
       left: 100%;

@@ -12,6 +12,7 @@
   overflow: auto;
   background: $dialog-background;
   background-clip: padding-box;
+  border: $dialog-border;
   border-radius: $dialog-border-radius;
   box-shadow: $dialog-box-shadow;
   transition: all $dialog-transition-duration $dialog-transition-timing-function;
@@ -45,7 +46,7 @@
 
 .dialog__header {
   top: 0;
-  border-bottom: $dialog-border;
+  border-bottom: $dialog-inner-border;
 }
 
 .dialog__body {
@@ -60,13 +61,13 @@
   }
 
   + .dialog__body {
-    border-top: $dialog-border;
+    border-top: $dialog-inner-border;
   }
 }
 
 .dialog__footer {
   bottom: 0;
-  border-top: $dialog-border;
+  border-top: $dialog-inner-border;
 }
 
 /* Dialog close */

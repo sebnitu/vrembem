@@ -60,9 +60,9 @@ $box-sizing: border-box !default;
 // Box Shadow
 // offset-x | offset-y | blur-radius | spread-radius | color
 // https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow
-$box-shadow-shade-1: rgba($black, 0.10) !default; // Material design: 0.2
-$box-shadow-shade-2: rgba($black, 0.07) !default; // Material design: 0.14
-$box-shadow-shade-3: rgba($black, 0.06) !default; // Material design: 0.12
+$box-shadow-shade-1: rgba($black, 0.20) !default; // Material design: 0.2
+$box-shadow-shade-2: rgba($black, 0.14) !default; // Material design: 0.14
+$box-shadow-shade-3: rgba($black, 0.12) !default; // Material design: 0.12
 
 $box-shadow-1dp:
   0 2px 1px -1px $box-shadow-shade-1,

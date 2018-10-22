@@ -4,7 +4,7 @@ title: Settings
 desc: "These are the core settings for Vrembem and are made available to all components."
 ---
 
-## `[data-tooltip]`
+## `box-shadow`
 
 <div class="demo">
   <div class="demo__render grid">

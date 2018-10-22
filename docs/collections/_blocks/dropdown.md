@@ -328,7 +328,7 @@ Below are some examples of complex dropdowns and how they may be composed using 
 
 <div class="demo spacing">
   <div class="demo__render">
-    <div class="dropdown on-hover">
+    <div class="dropdown on-hover" style="display:inline-block;">
       <button class="dropdown__trigger button button_color_primary">Twitter</button>
       <ul class="dropdown__menu">
         <li class="dropdown__item">
