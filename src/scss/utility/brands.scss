@@ -1,0 +1,41 @@
+$brands: (
+  'twitter': #00aced,
+  'facebook': #3b5998,
+  'google': #dd4b39,
+  'instagram': #bc2a8d,
+  'github': #4078c0,
+  'dribbble': #ea4c89,
+  'youtube': #bb0000,
+  'pinterest': #cb2027,
+  'linkedin': #007bb6,
+  'yelp': #af0606,
+  'stackoverflow': #f48024,
+  'tumblr': #32506d,
+  'vimeo': #1ab7ea,
+  'flickr': #ff0084,
+  'quora': #a82400,
+  'foursquare': #0072b1,
+  'forrst': #5b9a68,
+  'vk': #45668e,
+  'wordpress': #21759b,
+  'stumbleupon': #eb4823,
+  'yahoo': #7b0099,
+  'blogger': #fb8f3d,
+  'soundcloud': #ff3a00,
+  'email': #607d8b,
+  'rss': #f26522
+) !default;
+
+/**
+ * Brands Utility
+ */
+
+@each $key, $value in $brands {
+  .bg_#{$key} {
+    background: $value !important;
+  }
+
+  .c_#{$key} {
+    color: $value !important;
+  }
+}

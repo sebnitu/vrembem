@@ -10,7 +10,7 @@ url: 'https://vrembem.sebnitu.com/' # base hostname & protocol for your site
 ###
 
 title: Vrembem
-version: 0.2.71
+version: 0.3.0
 description: "A CSS component library based on the BEM methodology. You're viewing the component catalog where you can test all available components."
 email: me@sebnitu.com
 repository: sebnitu/vrembem
@@ -26,32 +26,14 @@ plugins:
 exclude:
   - Gemfile
   - Gemfile.lock
-  - node_modules
   - src
+  - tasks
   - gulpfile.babel.js
-  - package-lock.json
-  - package.json
-  - readme.md
 
 # Collections
-collections_dir: collections
 collections:
-  blocks:
+  components:
     output: true
-  core:
-    output: true
-  layout:
-    output: true
-  utility:
-    output: true
-
-# Defaults
-defaults:
-  - scope:
-      path: ''
-      type: 'posts'
-    values:
-      category: blog
 
 # Theme settings
 ###

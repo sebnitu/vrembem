@@ -2,24 +2,20 @@
 
 $menu_invert-color: $white !default;
 $menu_invert-color_hover: $white !default;
-
 $menu_invert-background: null !default;
 $menu_invert-background_hover: rgba($white, 0.1) !default;
 
 $menu_invert-color_active: $primary !default;
 $menu_invert-color_active_hover: null !default;
-
 $menu_invert-background_active: null !default;
 $menu_invert-background_active_hover: none !default;
 
 $menu_invert-color_disabled: rgba($white, 0.5) !default;
 $menu_invert-color_disabled_hover: rgba($white, 0.5) !default;
-
 $menu_invert-background_disabled: none !default;
 $menu_invert-background_disabled_hover: none !default;
 
-$menu_invert-border-color: rgba($white, 0.1) !default;
-
+$menu_invert__sep-background: rgba($white, 0.1) !default;
 $menu_invert__text-color: $white !default;
 
 /**
@@ -36,7 +32,8 @@ $menu_invert__text-color: $white !default;
       background: $menu_invert-background_hover;
     }
 
-    &.is-active {
+    &.is-active,
+    &.is-parent {
       color: $menu_invert-color_active;
       background: $menu_invert-background_active;
 
@@ -65,6 +62,6 @@ $menu_invert__text-color: $white !default;
   }
 
   .menu__sep {
-    border-color: $menu_invert-border-color;
+    background: $menu_invert__sep-background;
   }
 }

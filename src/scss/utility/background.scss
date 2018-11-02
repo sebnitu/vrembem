@@ -10,17 +10,25 @@
   background-color: $black !important;
 }
 
+.bg_shade {
+  background-color: $shade !important;
+}
+
+.bg_dark {
+  background-color: $dark !important;
+}
+
 /* Primary */
 
 .bg_primary {
   background-color: $primary !important;
 }
 
-.bg_primary-light {
+.bg_primary_light {
   background-color: $primary-light !important;
 }
 
-.bg_primary-dark {
+.bg_primary_dark {
   background-color: $primary-dark !important;
 }
 
@@ -30,11 +38,11 @@
   background-color: $secondary !important;
 }
 
-.bg_secondary-light {
+.bg_secondary_light {
   background-color: $secondary-light !important;
 }
 
-.bg_secondary-dark {
+.bg_secondary_dark {
   background-color: $secondary-dark !important;
 }
 
@@ -44,23 +52,10 @@
   background-color: $accent !important;
 }
 
-.bg_accent-light {
+.bg_accent_light {
   background-color: $accent-light !important;
 }
 
-.bg_accent-dark {
+.bg_accent_dark {
   background-color: $accent-dark !important;
 }
-
-/* Shade */
-
-.bg_shade {
-  background-color: $shade !important;
-}
-
-/* Dark */
-
-.bg_dark {
-  background-color: $dark !important;
-}
-

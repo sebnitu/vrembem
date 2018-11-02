@@ -1,0 +1,75 @@
+{%- comment -%}
+  Title
+{%- endcomment -%}
+{%- if page.url == '/' -%}
+  {%- assign title = site.title | append: ' | ' | append: site.description | escape -%}
+{%- else -%}
+  {%- assign title = page.title | append: ' | ' | append: site.title | escape -%}
+{%- endif -%}
+
+<title>{{ title }}</title>
+
+{%- comment -%}
+  Open graph title
+{%- endcomment -%}
+{%- if page.og.title -%}
+  {%- assign og_title = page.og.title | escape -%}
+{%- elsif page.url == '/' -%}
+  {%- assign og_title = site.title | escape -%}
+{%- else -%}
+  {%- assign og_title = page.title | escape -%}
+{%- endif -%}
+
+<meta property="og:site_name" content="{{ site.title | escape }}">
+<meta property="og:title" content="{{ og_title }}">
+
+{%- comment -%}
+  Author information
+{%- endcomment -%}
+{%- if site.author.name -%}
+  <meta name="author" content="{{ site.author.name | escape }}">
+{%- endif -%}
+
+{%- if site.author.social.twitter -%}
+  <meta name="twitter:site" content="@{{ site.author.social.twitter | escape }}">
+{%- endif -%}
+
+{%- comment -%}
+  Description
+{%- endcomment -%}
+{%- if page.og.description -%}
+  {%- assign description = page.og.description | escape -%}
+  <meta property="og:description" content="{{ page.description | escape }}">
+{%- else -%}
+  {%- assign description = page.description | default: site.description | escape -%}
+{%- endif -%}
+
+<meta name="description" content="{{ description }}">
+<meta property="og:description" content="{{ description }}">
+
+{%- comment -%}
+  Page links
+{%- endcomment -%}
+{%- if page.canonical -%}
+  <link rel="canonical" href="{{ page.canonical }}">
+{%- endif -%}
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+
+{%- comment -%}
+  Twitter Card
+{%- endcomment -%}
+{%- if page.og.image -%}
+  <meta property="og:image" content="{%- include asset.html src=page.og.image -%}">
+  <meta name="twitter:card" content="summary_large_image">
+{%- elsif site.og.image -%}
+  <meta property="og:image" content="{{ site.og.image | relative_url }}">
+  <meta name="twitter:card" content="summary"/>
+{%- endif -%}
+
+{%- comment -%}
+  Post details
+{% endcomment %}
+{%- if page.collection == 'posts' -%}
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+{%- endif -%}

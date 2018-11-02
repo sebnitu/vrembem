@@ -11,7 +11,7 @@
 
   .menu__item + .menu__item {
     margin-left: 0;
-    margin-top: $menu__item-spacing;
+    margin-top: $menu-spacing;
   }
 
   .menu__link {
@@ -32,8 +32,8 @@
 
   .menu__sep {
     margin: $menu__sep-spacing 0;
-    border-right: none;
-    border-top: $menu__sep-border-width solid $menu__sep-border-color;
+    width: auto;
+    height: $menu__sep-width;
   }
 }
 

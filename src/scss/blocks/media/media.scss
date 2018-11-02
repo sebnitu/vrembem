@@ -7,10 +7,6 @@
 .media {
   display: flex;
   align-items: flex-start;
-
-  > * + * {
-    margin-left: $media-spacing;
-  }
 }
 
 .media__body {
@@ -22,5 +18,14 @@
 }
 
 .media__image {
-  border-radius: $media-border-radius;
+  max-width: $media__image-max-width;
+  border-radius: $media__image-border-radius;
+
+  &:first-child {
+    margin-right: $media-spacing;
+  }
+
+  &:last-child {
+    margin-left: $media-spacing;
+  }
 }

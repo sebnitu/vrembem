@@ -9,10 +9,6 @@
   position: relative;
 }
 
-/**
- * Menu Link
- */
-
 .jumbo-list__link {
   display: block;
   padding: 1.25em 1.5em;
@@ -23,7 +19,7 @@
   &:hover,
   &:focus {
     outline: none;
-    background-color: $shade;
+    background-color: rgba($blue, 0.1);
     transition: background-color 0s linear;
   }
 }
@@ -32,4 +28,8 @@
   .jumbo-list__link {
     padding: 1.5em 2em;
   }
+}
+
+.search_empty {
+  
 }

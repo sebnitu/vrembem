@@ -1,0 +1,23 @@
+@import 'variables';
+
+/**
+ * Spacing
+ */
+
+.spacing {
+  > * + * {
+    margin-top: $spacing;
+  }
+}
+
+/**
+ * Spacing scale modifiers
+ */
+
+@each $key, $value in $spacing-scale {
+  .spacing_#{$key} {
+    > * + * {
+      margin-top: $value;
+    }
+  }
+}

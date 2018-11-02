@@ -1,0 +1,10 @@
+@import 'variables';
+
+/**
+ * Container
+ */
+
+.container {
+  max-width: $container-max-width;
+  margin: $container-margin;
+}

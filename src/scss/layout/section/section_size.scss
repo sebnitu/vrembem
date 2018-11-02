@@ -1,0 +1,30 @@
+@import 'variables';
+
+/**
+ * Section size modifiers
+ */
+
+@each $name, $group in $section-scale {
+
+  @if ($name == 'default') {
+    $name: '.section';
+  } @else {
+    $name: '.section_size_#{$name}';
+  }
+
+  @each $bp, $value in $group {
+
+    @if ($bp == 'base') {
+      #{$name} {
+        padding: $value;
+      }
+    } @else {
+      @include media-min($bp) {
+        #{$name} {
+          padding: $value;
+        }
+      }
+    }
+
+  }
+}

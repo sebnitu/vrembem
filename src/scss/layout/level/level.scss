@@ -1,0 +1,15 @@
+@import 'variables';
+
+/**
+ * Level
+ */
+
+.level {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+
+  > * + * {
+    margin-left: $level-spacing;
+  }
+}

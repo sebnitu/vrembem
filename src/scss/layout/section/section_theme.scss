@@ -1,0 +1,73 @@
+@import 'variables';
+
+/**
+ * Section theme primary
+ */
+
+.section_theme_primary {
+  background: $primary;
+
+  .section__screen {
+    background: $primary;
+  }
+}
+
+/**
+ * Section theme secondary
+ */
+
+.section_theme_secondary {
+  background: $secondary;
+
+  .section__screen {
+    background: $secondary;
+  }
+}
+
+/**
+ * Section theme accent
+ */
+
+.section_theme_accent {
+  background: $accent;
+
+  .section__screen {
+    background: $accent;
+  }
+}
+
+/**
+ * Section theme shade
+ */
+
+.section_theme_shade {
+  background: $shade;
+
+  .section__screen {
+    background: $shade;
+  }
+}
+
+/**
+ * Section theme dark
+ */
+
+.section_theme_dark {
+  background: $dark;
+
+  .section__screen {
+    background: $dark;
+  }
+}
+
+/**
+ * Section theme light
+ */
+
+.section_theme_light {
+  background: $white;
+
+  .section__screen {
+    background: $white;
+  }
+}

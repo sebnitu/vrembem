@@ -1,6 +1,6 @@
-<div class="grid grid_flatten">
+<div class="level justify_between">
 
-  <div class="grid__item">
+  <div>
     <ul class="menu menu_invert">
       <li class="menu__item">
         <a href="{{ site.url }}{{ site.baseurl }}" class="menu__link menu__link_icon">
@@ -14,14 +14,10 @@
     </ul>
   </div>
 
-  <div class="grid__item size_auto">
-    <ul class="menu menu_invert">
-      <li class="menu__item">
-        <a href="https://github.com/{{ site.repository }}" class="menu__link menu__link_icon">
-          {% include icon.html icon="github" %}
-        </a>
-      </li>
-    </ul>
+  <div>
+    <a href="https://github.com/{{ site.repository }}" class="button button_color_invert button_icon">
+      {% include icon.html icon="github" %}
+    </a>
   </div>
 
-</div><!-- .grid -->
+</div>

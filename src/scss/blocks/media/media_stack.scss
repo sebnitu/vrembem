@@ -7,10 +7,17 @@
 .media_stack {
   flex-direction: column;
 
-  > * + * {
-    margin-top: $media-spacing;
-    margin-left: 0;
+  .media__image {
     margin-right: 0;
+    margin-left: 0;
+
+    &:first-child {
+      margin-bottom: $media-spacing;
+    }
+
+    &:last-child {
+      margin-top: $media-spacing;
+    }
   }
 }
 
@@ -32,10 +39,19 @@
 
   @include media-max($name) {
     .media_stack_#{$name} {
-      > * + * {
-        margin-top: $media-spacing;
-        margin-left: 0;
+      .media__image {
         margin-right: 0;
+        margin-left: 0;
+
+        &:first-child {
+          margin-top: $media-spacing;
+          margin-bottom: 0;
+        }
+
+        &:last-child {
+          margin-top: 0;
+          margin-bottom: $media-spacing;
+        }
       }
     }
   }

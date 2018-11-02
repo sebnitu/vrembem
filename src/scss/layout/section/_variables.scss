@@ -1,0 +1,31 @@
+$section-scale: (
+  'default': (
+    'base': 1.5em,
+    'md': 2em 1.5em,
+    'lg': 3em 1.5em
+  ),
+  'xs': (
+    'base': 0,
+    'md': 0,
+    'lg': 0
+  ),
+  'sm': (
+    'base': 1em,
+    'md': 1em,
+    'lg': 1em
+  ),
+  'lg': (
+    'base': 1.5em,
+    'md': 4em 1.5em,
+    'lg': 6em 1.5em
+  ),
+  'xl': (
+    'base': 3em 1.5em,
+    'md': 8em 2em,
+    'lg': 12em 2em
+  )
+) !default;
+
+$section__intro-max-width: 45rem !default;
+$section__screen-opacity: 0.6 !default;
+$section__screen-background: $dark !default;

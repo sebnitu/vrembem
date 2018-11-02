@@ -1,0 +1,54 @@
+---
+layout: compress
+---
+
+{%- include head.html -%}
+
+<div class="cover">
+
+  <header class="header cover__header">
+    <div class="cover__inner">
+      <h1 class="cover__title">{{ site.title }}</h1>
+      {%- if site.description -%}
+        <p class="cover__desc">{{ site.description }}</p>
+      {%- endif -%}
+      <p class="cover__version">
+        <a data-tooltip="View releases on Github" data-tooltip-pos="right" href="http://github.com/{{ site.repository }}/releases" target="_blank">Version <span class="version-number">{{ site.version }}</span></a>
+      </p>
+    </div>
+  </header>
+
+  <div id="listjs" class="content cover__content">
+    <div class="jumbo-filter">
+      <div class="input-group">
+        <input class="search input input-group__item" type="text" placeholder="Search..." />
+      </div><!-- .input-group -->
+    </div><!-- .jumbo-filter -->
+
+    <div class="notice notice_type_caution notice_empty d_none">
+      No results found for "<span class="search_text"></span>"
+    </div>
+
+    <ul class="jumbo-list">
+      {%- for item in site.components -%}
+
+        <li class="jumbo-list__item" data-tags="">
+          <a class="jumbo-list__link" href="{{ item.url }}">
+            <span class="name">{{ item.title }}</span>
+            {%- assign tags_count = item.tags | size -%}
+            {% if tags_count > 0 %}
+              {%- assign tags = item.tags | sort -%}
+              {%- for tag in tags -%}
+                <span class="text_sublte">{{ tag }}</span>
+              {%- endfor -%}
+            {% endif %}
+          </a>
+        </li>
+
+      {%- endfor -%}
+    </ul><!-- .jumbo-list -->
+  </div><!-- .vrembem-blocks -->
+
+</div>
+
+{%- include foot.html -%}

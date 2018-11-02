@@ -1,4 +1,4 @@
 ---
-layout: cover
+layout: home
 title: "Home"
 ---

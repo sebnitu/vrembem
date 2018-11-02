@@ -1,0 +1,18 @@
+@import 'variables';
+
+/**
+ * Menu size modifier
+ */
+
+.menu_size_sm {
+  .menu__link {
+    font-size: $font-size-sm;
+    padding: $padding-sm;
+  }
+}
+
+.menu_size_lg {
+  .menu__link {
+    padding: 1em;
+  }
+}

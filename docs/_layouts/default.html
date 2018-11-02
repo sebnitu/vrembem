@@ -1,15 +1,27 @@
 ---
-layout: base
+layout: compress
 ---
 
+{%- include head.html -%}
+
 <div class="page">
+
   <header class="page__header">
     <div class="container">
-      {% include header.html %}
+      {%- include header.html -%}
     </div>
   </header>
+
   <div class="page__main">
     {{ content }}
   </div>
-  {% include footer.html %}
+
+  <footer class="page__footer">
+    <div class="container">
+      {%- include footer.html -%}
+    </div>
+  </footer>
+
 </div>
+
+{%- include foot.html -%}

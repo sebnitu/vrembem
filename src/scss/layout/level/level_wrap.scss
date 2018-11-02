@@ -1,0 +1,14 @@
+@import 'variables';
+
+/**
+ * Level wrap modifier
+ */
+
+.level_wrap {
+  flex-wrap: wrap;
+  margin: (-$level-spacing * 0.5);
+
+  > * {
+    margin: ($level-spacing * 0.5);
+  }
+}

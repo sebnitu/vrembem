@@ -7,8 +7,15 @@
 .media_reverse {
   flex-direction: row-reverse;
 
-  > * + * {
-    margin-left: 0;
-    margin-right: $media-spacing;
+  .media__image {
+    &:first-child {
+      margin-left: $media-spacing;
+      margin-right: 0;
+    }
+
+    &:last-child {
+      margin-left: 0;
+      margin-right: $media-spacing;
+    }
   }
 }

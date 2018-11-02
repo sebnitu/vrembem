@@ -1,0 +1,58 @@
+@import 'variables';
+
+/**
+ * Grid
+ */
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 (-($grid-spacing * 0.5));
+}
+
+.grid_flatten {
+  margin: (-($grid-spacing * 0.5));
+}
+
+.grid__item {
+  flex: 1 1 0;
+  padding: ($grid-spacing * 0.5);
+}
+
+.grid__item_fill {
+  display: flex;
+
+  > * {
+    flex: 1 0 0;
+  }
+}
+
+.grid__break {
+  flex: none;
+  width: 100%;
+  max-width: 100%;
+}
+
+/**
+ * Grid Breakpoints Modifiers
+ */
+
+@each $name, $value in $breakpoints {
+  .grid_#{$name} {
+    flex-direction: column;
+  }
+
+  @include media-min($name) {
+    .grid_#{$name} {
+      flex-direction: row;
+    }
+  }
+
+  @include media-max($name) {
+    .grid_#{$name} > .grid__item {
+      flex: none;
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+}

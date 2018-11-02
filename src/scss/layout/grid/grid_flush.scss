@@ -1,0 +1,17 @@
+@import 'variables';
+
+/**
+ * Grid Flush Modifier
+ */
+
+.grid_flush {
+  margin: 0;
+
+  > .grid__item {
+    padding: 0;
+  }
+}
+
+.grid_flush.grid_flatten {
+  margin: 0;
+}

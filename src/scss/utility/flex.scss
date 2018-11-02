@@ -1,8 +1,12 @@
 /**
  * Flex Utility
+ * ---
+ * Used to add specific styles to flexbox based components
  */
 
-/* Justify Content */
+/**
+ * Justify Content
+ */
 
 .justify_start {
   justify-content: flex-start !important;
@@ -24,38 +28,106 @@
   justify-content: space-around !important;
 }
 
-/* Align Items */
+.justify_evenly {
+  justify-content: space-evenly !important;
+}
 
-.align-items_start {
+/**
+ * Align Items
+ */
+
+.items_start {
   align-items: flex-start !important;
 }
 
-.align-items_center {
+.items_center {
   align-items: center !important;
 }
 
-.align-items_end {
+.items_end {
   align-items: flex-end !important;
 }
 
-.align-items_stretch {
+.items_stretch {
   align-items: stretch !important;
 }
 
-/* Align Self */
+.items_baseline {
+  align-items: baseline !important;
+}
 
-.align-self_start {
+/**
+ * Align Self
+ */
+
+.self_auto {
+  align-self: auto !important;
+}
+
+.self_start {
   align-self: flex-start !important;
 }
 
-.align-self_center {
+.self_center {
   align-self: center !important;
 }
 
-.align-self_end {
+.self_end {
   align-self: flex-end !important;
 }
 
-.align-self_stretch {
+.self_stretch {
   align-self: stretch !important;
+}
+
+.self_baseline {
+  align-self: baseline !important;
+}
+
+/**
+ * Flex grow
+ */
+
+.grow_0 {
+  flex-grow: 0 !important;
+}
+
+.grow_1 {
+  flex-grow: 1 !important;
+}
+
+.grow_2 {
+  flex-grow: 2 !important;
+}
+
+.grow_3 {
+  flex-grow: 3 !important;
+}
+
+/**
+ * Flex order
+ */
+
+.order_n1 {
+  order: -1 !important;
+}
+
+.order_n2 {
+  order: -2 !important;
+}
+
+.order_n3 {
+  order: -3 !important;
+}
+
+.order_p1 {
+  order: 1 !important;
+}
+
+.order_p2 {
+  order: 2 !important;
+}
+
+.order_p3 {
+  order: 3 !important;
 }
