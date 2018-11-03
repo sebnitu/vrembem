@@ -1,5 +1,3 @@
-@import 'core/all';
-
 /**
  * Cover
  */
@@ -70,7 +68,7 @@
 
 @include media-min('md') {
   .cover__inner {
-    max-width: 42em;
+    max-width: 46em;
     padding: 4em;
   }
 }
@@ -93,10 +91,10 @@
 }
 
 .cover__version a {
-  color: rgba($white, 0.25);
+  color: rgba($white, 0.5);
 
   &:hover span {
-    color: rgba($white, 0.75);
+    color: rgba($white, 1);
   }
 }
 

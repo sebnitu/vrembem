@@ -34,7 +34,9 @@ const build = gulp.parallel(
 
 export {
   styles,
+  styles_clean,
   scripts,
+  scripts_clean,
   img,
   img_clean,
   svg,

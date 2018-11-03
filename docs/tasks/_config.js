@@ -1,7 +1,4 @@
 export default {
-  src: 'src/',
-  dest: 'dist/',
-
   styles: {
     src: 'src/scss/app.scss',
     dest: 'dist/css/',
@@ -50,12 +47,12 @@ export default {
   symbols: {
     src: '_includes/icon/**/*.svg',
     dest: '_includes/svg/',
+    output: 'symbols.svg',
     options: {
       id: 'icon-%f',
       svgAttrs: { class: 'svg-symbols' },
       templates: ['default-svg']
-    },
-    output: 'symbols.svg'
+    }
   },
 
   feather: {

@@ -1,18 +1,14 @@
-// Import Google Font
-// @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700');
-
-// Custom overrides
-// $font-family-sans: 'Open Sans', sans-serif;
-
-// Import Vrembem libarary
+// Overrides & Libraries
+// ---
+@import 'overrides';
 @import 'vrembem';
 
-// Demo home components
+// Custom components
+// ---
 @import 'blocks/cover';
 @import 'blocks/jumbo-filter';
 @import 'blocks/jumbo-list';
 
-// Demo page components
-@import 'blocks/demo';
 @import 'blocks/page';
+@import 'blocks/demo';
 @import 'blocks/highlight';

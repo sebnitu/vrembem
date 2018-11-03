@@ -2483,7 +2483,7 @@ pre {
 }
 
 .level_spacing_xs.level_wrap {
-  margin-top: 0.5px;
+  margin: -0.5px;
 }
 
 .level_spacing_xs.level_wrap > * {
@@ -2495,7 +2495,7 @@ pre {
 }
 
 .level_spacing_sm.level_wrap {
-  margin-top: 0.125rem;
+  margin: -0.125rem;
 }
 
 .level_spacing_sm.level_wrap > * {
@@ -2507,7 +2507,7 @@ pre {
 }
 
 .level_spacing_md.level_wrap {
-  margin-top: 0.25rem;
+  margin: -0.25rem;
 }
 
 .level_spacing_md.level_wrap > * {
@@ -2519,7 +2519,7 @@ pre {
 }
 
 .level_spacing_lg.level_wrap {
-  margin-top: 0.5rem;
+  margin: -0.5rem;
 }
 
 .level_spacing_lg.level_wrap > * {
@@ -2531,7 +2531,7 @@ pre {
 }
 
 .level_spacing_xl.level_wrap {
-  margin-top: 0.75rem;
+  margin: -0.75rem;
 }
 
 .level_spacing_xl.level_wrap > * {

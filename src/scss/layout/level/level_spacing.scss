@@ -11,7 +11,7 @@
     }
 
     &.level_wrap {
-      margin-top: ($value * 0.5);
+      margin: -($value * 0.5);
 
       > * {
         margin: ($value * 0.5);

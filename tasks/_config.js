@@ -1,7 +1,4 @@
 export default {
-  src: 'src/',
-  dest: 'dist/',
-
   styles: {
     src: 'src/scss/vrembem.scss',
     dest: 'dist/css/',
