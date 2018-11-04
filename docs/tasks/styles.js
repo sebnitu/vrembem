@@ -1,6 +1,7 @@
 import gulp from 'gulp'
 import del from 'del'
 import rename from 'gulp-rename'
+import through2 from 'through2'
 import sourcemaps from 'gulp-sourcemaps'
 
 import sass from 'gulp-sass'
@@ -31,6 +32,12 @@ const styles_dev = () => {
       extname: '.css'
     }))
     .pipe(sourcemaps.write('./'))
+    .pipe(through2.obj(function(file, enc, cb) {
+    	var date = new Date()
+    	file.stat.atime = date
+    	file.stat.mtime = date
+    	cb(null, file)
+    }))
     .pipe(gulp.dest(config.styles.dest))
 }
 
@@ -52,6 +59,12 @@ const styles_prod = () => {
       extname: '.min.css'
     }))
     .pipe(sourcemaps.write('./'))
+    .pipe(through2.obj(function(file, enc, cb) {
+    	var date = new Date()
+    	file.stat.atime = date
+    	file.stat.mtime = date
+    	cb(null, file)
+    }))
     .pipe(gulp.dest(config.styles.dest))
 }
 

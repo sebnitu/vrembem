@@ -35,9 +35,10 @@
     "gulp-sourcemaps": "^2.6.3",
     "gulp-svg-symbols": "^3.2.0",
     "gulp-uglify": "^3.0.1",
+    "list.js": "^1.5.0",
     "svgxuse": "^1.2.6",
+    "through2": "^2.0.3",
     "vinyl-buffer": "^1.0.1",
-    "vinyl-source-stream": "^2.0.0",
-    "list.js": "^1.5.0"
+    "vinyl-source-stream": "^2.0.0"
   }
 }
