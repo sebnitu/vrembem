@@ -2,21 +2,28 @@
   position: sticky;
   z-index: 1;
   top: 0;
-  padding: 0.5em;
   background: $white;
   border-bottom: $border;
 
-  > * + * {
-    margin-top: 0.25em;
+  .input {
+    padding: 1.25em 1.5em;
+    background: $background-color;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+
+    &:focus {
+      color: $primary;
+      background: $white;
+      box-shadow: none;
+    }
   }
 }
 
 @include media-min('xs') {
   .jumbo-filter {
-    padding: 1em;
-
-    > * + * {
-      margin-top: 0.5em;
+    .input {
+      padding: 1.5em 2em;
     }
   }
 }

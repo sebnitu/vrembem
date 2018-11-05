@@ -9,13 +9,21 @@
 
 .jumbo-list__link {
   display: flex;
-  justify-content: space-between;
   padding: 1.25em 1.5em;
   line-height: 1.325em;
   background-color: $white;
   transition: background-color 0.5s linear;
 
+  > * + * {
+    margin-left: 0.5em;
+  }
+
+  .name {
+    flex-grow: 1;
+  }
+
   .tag {
+    flex-grow: 0;
     color: $color-light;
     transition: color 0.5s linear;
   }

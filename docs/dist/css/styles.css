@@ -6563,21 +6563,29 @@ pre {
   position: sticky;
   z-index: 1;
   top: 0;
-  padding: 0.5em;
   background: #ffffff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.jumbo-filter > * + * {
-  margin-top: 0.25em;
+.jumbo-filter .input {
+  padding: 1.25em 1.5em;
+  background: #f5f5f5;
+  border: none;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.jumbo-filter .input:focus {
+  color: #2196f3;
+  background: #ffffff;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 @media (min-width: 480px) {
-  .jumbo-filter {
-    padding: 1em;
-  }
-  .jumbo-filter > * + * {
-    margin-top: 0.5em;
+  .jumbo-filter .input {
+    padding: 1.5em 2em;
   }
 }
 
@@ -6594,9 +6602,6 @@ pre {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   padding: 1.25em 1.5em;
   line-height: 1.325em;
   background-color: #ffffff;
@@ -6604,7 +6609,20 @@ pre {
   transition: background-color 0.5s linear;
 }
 
+.jumbo-list__link > * + * {
+  margin-left: 0.5em;
+}
+
+.jumbo-list__link .name {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
 .jumbo-list__link .tag {
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
   color: #bdbdbd;
   -webkit-transition: color 0.5s linear;
   transition: color 0.5s linear;
