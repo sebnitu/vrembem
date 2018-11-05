@@ -245,14 +245,14 @@ pre {
 /**
  * Link
  */
-.link, .breadcrumb__link,
-.type .link, .type .breadcrumb__link, .type a:not(.button) {
+.link,
+.type .link, .type a:not(.button) {
   color: #2196f3;
   text-decoration: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.link:hover, .breadcrumb__link:hover, .type a:hover:not(.button), .link:focus, .breadcrumb__link:focus, .type a:focus:not(.button) {
+.link:focus, .type a:focus:not(.button), .link:hover, .type a:hover:not(.button) {
   color: #0c7cd5;
   border-bottom: 1px solid #0c7cd5;
 }
@@ -266,7 +266,7 @@ pre {
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-.link_invert:hover, .type_invert a:hover:not(.button), .notice_type_primary a:hover:not(.button), .notice_type_secondary a:hover:not(.button), .notice_type_dark a:hover:not(.button), .link_invert:focus, .type_invert a:focus:not(.button), .notice_type_primary a:focus:not(.button), .notice_type_secondary a:focus:not(.button), .notice_type_dark a:focus:not(.button) {
+.link_invert:focus, .type_invert a:focus:not(.button), .notice_type_primary a:focus:not(.button), .notice_type_secondary a:focus:not(.button), .notice_type_dark a:focus:not(.button), .link_invert:hover, .type_invert a:hover:not(.button), .notice_type_primary a:hover:not(.button), .notice_type_secondary a:hover:not(.button), .notice_type_dark a:hover:not(.button) {
   color: #ffffff;
   border-bottom: 1px solid white;
 }
@@ -279,7 +279,7 @@ pre {
   color: inherit;
 }
 
-.link_subtle:hover, .link_subtle:focus {
+.link_subtle:focus, .link_subtle:hover {
   color: #2196f3;
   border-color: #2196f3;
 }
@@ -2619,6 +2619,9 @@ pre {
 
 /**
  * Breadcrumb
+ * ---
+ * The breadcrumb component is a navigation component that shows the
+ * hierarchical path to a users current location.
  */
 .breadcrumb {
   display: -webkit-inline-box;
@@ -2630,7 +2633,7 @@ pre {
       -ms-flex-align: center;
           align-items: center;
   list-style: none;
-  color: #212121;
+  color: #bdbdbd;
 }
 
 .breadcrumb__item {
@@ -2653,8 +2656,37 @@ pre {
   color: #bdbdbd;
 }
 
-.breadcrumb__item:last-child::after {
-  content: none;
+.breadcrumb__link {
+  color: #2196f3;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.breadcrumb__link:focus, .breadcrumb__link:hover {
+  color: #0c7cd5;
+  border-bottom: 1px solid #0c7cd5;
+}
+
+/**
+ * Breadcrumb invert modifier
+ * ---
+ * A modifier for displaying this component on a dark background.
+ */
+.breadcrumb_invert {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.breadcrumb_invert .breadcrumb__item::after {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.breadcrumb_invert .breadcrumb__link {
+  color: rgba(255, 255, 255, 0.75);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.breadcrumb_invert .breadcrumb__link:focus, .breadcrumb_invert .breadcrumb__link:hover {
+  color: white;
+  border-bottom: 1px solid white;
 }
 
 /**

@@ -2,6 +2,9 @@
 
 /**
  * Breadcrumb
+ * ---
+ * The breadcrumb component is a navigation component that shows the
+ * hierarchical path to a users current location.
  */
 
 .breadcrumb {
@@ -9,7 +12,7 @@
   flex-wrap: wrap;
   align-items: center;
   list-style: none;
-  color: $color;
+  color: $breadcrumb-color;
 }
 
 .breadcrumb__item {
@@ -27,11 +30,20 @@
     color: $breadcrumb-delimiter-color;
   }
 
-  &:last-child::after {
-    content: none;
+  @if ($breadcrumb-delimiter-last != true) {
+    &:last-child::after {
+      content: none;
+    }
   }
 }
 
 .breadcrumb__link {
-  @extend .link;
+  color: $breadcrumb__link-color;
+  border-bottom: 1px solid $breadcrumb__link-border-color;
+
+  &:focus,
+  &:hover {
+    color: $breadcrumb__link-color-hover;
+    border-bottom: 1px solid $breadcrumb__link-border-color-hover;
+  }
 }

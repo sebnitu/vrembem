@@ -1,0 +1,32 @@
+@import 'variables';
+
+/**
+ * Breadcrumb invert modifier
+ * ---
+ * A modifier for displaying this component on a dark background.
+ */
+
+.breadcrumb_invert {
+  color: $breadcrumb-color-invert;
+
+  .breadcrumb__item {
+    &::after {
+      color: $breadcrumb-delimiter-color-invert;
+    }
+  }
+
+  .breadcrumb__link {
+    color: $breadcrumb__link-color-invert;
+    border-bottom: 1px solid $breadcrumb__link-border-color-invert;
+
+    &:focus,
+    &:hover {
+      color: $breadcrumb__link-color-invert-hover;
+      border-bottom: 1px solid $breadcrumb__link-border-color-invert-hover;
+    }
+  }
+}
+
+
+
+

@@ -8,8 +8,8 @@
   border-bottom: $link-border;
   transition: $link-transition;
 
-  &:hover,
-  &:focus {
+  &:focus,
+  &:hover {
     color: $link-color-hover;
     text-decoration: $link-text-decoration-hover;
     border-bottom: $link-border-hover;
@@ -29,8 +29,8 @@
   color: $link-color-invert;
   border-bottom: $link-border-invert;
 
-  &:hover,
-  &:focus {
+  &:focus,
+  &:hover {
     color: $link-color-invert-hover;
     border-bottom: $link-border-invert-hover;
   }
@@ -48,8 +48,8 @@
 %link_subtle {
   color: inherit;
 
-  &:hover,
-  &:focus {
+  &:focus,
+  &:hover {
     color: $link-color;
     border-color: $link-color;
   }
