@@ -2583,6 +2583,8 @@ pre {
 
 /**
  * Arrow
+ * ---
+ * A directional triangle drawn with CSS.
  */
 .arrow {
   pointer-events: none;
