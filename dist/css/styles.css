@@ -3060,6 +3060,8 @@ pre {
 
 /**
  * Button-group
+ * ---
+ * A component for displaying groups of buttons.
  */
 .button-group {
   display: -webkit-inline-box;
@@ -3071,23 +3073,18 @@ pre {
 }
 
 .button-group > .button {
-  border-radius: 0;
+  border-radius: 3px;
 }
 
-.button-group > .button:first-child {
-  border-radius: 3px 0 0 3px;
-}
-
-.button-group > .button:last-child {
-  border-radius: 0 3px 3px 0;
+.button-group > .button + .button {
+  margin: 0 0 0 0.5rem;
 }
 
 .button-group > .button {
   z-index: 1;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 auto;
-          flex: 1 1 auto;
-  margin: 0;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
 }
 
 .button-group > .button:hover {
@@ -3106,27 +3103,10 @@ pre {
   z-index: 5;
 }
 
-.button-group > .button + .button {
-  margin: 0 0 0 -1px;
-}
-
-.button-group_gap > .button + .button {
-  margin: 0 0 0 1px;
-}
-
-.button-group > .button_equal {
-  -ms-flex-preferred-size: 0;
-      flex-basis: 0;
-}
-
-.button-group > .button_static {
-  -webkit-box-flex: 0;
-      -ms-flex-positive: 0;
-          flex-grow: 0;
-}
-
 /**
  * Button-group full modifier
+ * ---
+ * Makes the button-group component span the full width of it's container.
  */
 .button-group_full {
   display: -webkit-box;
@@ -3135,13 +3115,134 @@ pre {
   -webkit-box-align: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+}
+
+.button-group_full > .button {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
+
+/**
+ * Button-group gap modifier
+ * ---
+ * Changes the gap (gutter) space between buttons.
+ */
+.button-group_gap_xs > .button + .button {
+  margin: 0 0 0 1px;
+}
+
+.button-group_gap_xs.button-group_stack > .button + .button {
+  margin: 1px 0 0 0;
+}
+
+.button-group_gap_xs.button-group_wrap {
+  margin: -0.5px;
+}
+
+.button-group_gap_xs.button-group_wrap > .button,
+.button-group_gap_xs.button-group_wrap > .button + .button {
+  margin: 0.5px;
+}
+
+.button-group_gap_sm > .button + .button {
+  margin: 0 0 0 0.25rem;
+}
+
+.button-group_gap_sm.button-group_stack > .button + .button {
+  margin: 0.25rem 0 0 0;
+}
+
+.button-group_gap_sm.button-group_wrap {
+  margin: -0.125rem;
+}
+
+.button-group_gap_sm.button-group_wrap > .button,
+.button-group_gap_sm.button-group_wrap > .button + .button {
+  margin: 0.125rem;
+}
+
+.button-group_gap_md > .button + .button {
+  margin: 0 0 0 0.5rem;
+}
+
+.button-group_gap_md.button-group_stack > .button + .button {
+  margin: 0.5rem 0 0 0;
+}
+
+.button-group_gap_md.button-group_wrap {
+  margin: -0.25rem;
+}
+
+.button-group_gap_md.button-group_wrap > .button,
+.button-group_gap_md.button-group_wrap > .button + .button {
+  margin: 0.25rem;
+}
+
+.button-group_gap_lg > .button + .button {
+  margin: 0 0 0 1rem;
+}
+
+.button-group_gap_lg.button-group_stack > .button + .button {
+  margin: 1rem 0 0 0;
+}
+
+.button-group_gap_lg.button-group_wrap {
+  margin: -0.5rem;
+}
+
+.button-group_gap_lg.button-group_wrap > .button,
+.button-group_gap_lg.button-group_wrap > .button + .button {
+  margin: 0.5rem;
+}
+
+/**
+ * Button-group join modifier
+ * ---
+ * Removes the gap between buttons and instead attaches them together.
+ */
+.button-group_join > .button {
+  margin: 0;
+  border-radius: 0;
+}
+
+.button-group_join > .button + .button {
+  margin: 0 0 0 -1px;
+}
+
+.button-group_join > .button:first-child {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.button-group_join > .button:last-child {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.button-group_join.button-group_stack > .button {
+  margin: 0;
+  border-radius: 0;
+}
+
+.button-group_join.button-group_stack > .button + .button {
+  margin: -1px 0 0 0;
+}
+
+.button-group_join.button-group_stack > .button:first-child {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.button-group_join.button-group_stack > .button:last-child {
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 
 /**
  * Button-group stack modifier
+ * ---
+ * Stacks the buttons on top of one another.
  */
 .button-group_stack {
   -webkit-box-orient: vertical;
@@ -3150,20 +3251,25 @@ pre {
           flex-direction: column;
 }
 
-.button-group_stack > .button:first-child {
-  border-radius: 3px 3px 0 0;
-}
-
-.button-group_stack > .button:last-child {
-  border-radius: 0 0 3px 3px;
-}
-
 .button-group_stack > .button + .button {
-  margin: -1px 0 0;
+  margin: 0.5rem 0 0 0;
 }
 
-.button-group_stack.button-group_gap > .button + .button {
-  margin: 1px 0 0;
+/**
+ * Button-group wrap modifier
+ * ---
+ * Allows buttons to wrap if they no longer fit in their container. Requires
+ * that you wrap this component with an empty <div>
+ */
+.button-group_wrap {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: -0.25rem;
+}
+
+.button-group_wrap > .button,
+.button-group_wrap > .button + .button {
+  margin: 0.25rem;
 }
 
 /**

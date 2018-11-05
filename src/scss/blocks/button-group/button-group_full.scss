@@ -2,10 +2,15 @@
 
 /**
  * Button-group full modifier
+ * ---
+ * Makes the button-group component span the full width of it's container.
  */
 
 .button-group_full {
   display: flex;
   align-items: stretch;
-  justify-content: space-between;
+
+  > .button {
+    flex: 1 1 auto;
+  }
 }

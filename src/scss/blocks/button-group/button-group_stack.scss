@@ -2,28 +2,14 @@
 
 /**
  * Button-group stack modifier
+ * ---
+ * Stacks the buttons on top of one another.
  */
 
 .button-group_stack {
   flex-direction: column;
 
-  > .button {
-    &:first-child {
-      border-radius: $button-group-bro $button-group-bro $button-group-bri $button-group-bri;
-    }
-
-    &:last-child {
-      border-radius: $button-group-bri $button-group-bri $button-group-bro $button-group-bro;
-    }
-
-    + .button {
-      margin: $button-group-spacing 0 0;
-    }
-  }
-}
-
-.button-group_stack.button-group_gap > .button {
-  + .button {
-    margin: $button-group_gap-spacing 0 0;
+  > .button + .button {
+    margin: $button-group-gap 0 0 0;
   }
 }

@@ -2,6 +2,8 @@
 
 /**
  * Button-group
+ * ---
+ * A component for displaying groups of buttons.
  */
 
 .button-group {
@@ -9,22 +11,17 @@
   align-items: center;
 
   > .button {
-    border-radius: $button-group-bri;
+    border-radius: $button-group-border-radius;
 
-    &:first-child {
-      border-radius: $button-group-bro $button-group-bri $button-group-bri $button-group-bro;
-    }
-
-    &:last-child {
-      border-radius: $button-group-bri $button-group-bro $button-group-bro $button-group-bri;
+    + .button {
+      margin: 0 0 0 $button-group-gap;
     }
   }
 }
 
 .button-group > .button {
   z-index: 1;
-  flex: 1 1 auto;
-  margin: 0;
+  flex: 0 0 auto;
 
   &:hover {
     z-index: 2;
@@ -41,22 +38,4 @@
   &.is-active {
     z-index: 5;
   }
-
-  + .button {
-    margin: 0 0 0 $button-group-spacing;
-  }
-}
-
-.button-group_gap > .button {
-  + .button {
-    margin: 0 0 0 $button-group_gap-spacing;
-  }
-}
-
-.button-group > .button_equal {
-  flex-basis: 0;
-}
-
-.button-group > .button_static {
-  flex-grow: 0;
 }

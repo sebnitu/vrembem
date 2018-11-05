@@ -7,7 +7,8 @@ description: "The breadcrumb is a navigation component that shows the hierarchic
 ## `breadcrumb`
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item">
+  <div class="grid__item">
+  <div class="demo__render">
     <ol class="breadcrumb">
       <li class="breadcrumb__item">
         <a href="#" class="breadcrumb__link">Home</a>
@@ -22,6 +23,7 @@ description: "The breadcrumb is a navigation component that shows the hierarchic
         <span class="breadcrumb__text">Current Page</span>
       </li>
     </ol>
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
