@@ -1,6 +1,7 @@
+// Button-group gap (gutter) spacing
+// ---
 $button-group-gap: 0.5rem !default;
 $button-group_join-gap: -1px !default;
-
 $button-group-gap-scale: (
   'xs': 1px,
   'sm': 0.25rem,
@@ -8,4 +9,6 @@ $button-group-gap-scale: (
   'lg': 1rem
 ) !default;
 
+// Button-group box styles
+// ---
 $button-group-border-radius: $border-radius !default;

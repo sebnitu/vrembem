@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Button-group
-description: "A container component for groups of buttons."
+description: "A component for displaying groups of buttons."
 ---
 
 ## `button-group`

@@ -1,7 +1,9 @@
-$button_outline-border-width: 1px !default;
+@import 'variables';
 
 /**
  * Button outline modifier
+ * ---
+ * Outline modifiers add a different style variation to buttons.
  */
 
 .button_outline {
@@ -9,26 +11,22 @@ $button_outline-border-width: 1px !default;
   background: none;
   border: $button_outline-border-width solid rgba($black, 0.2);
 
-  &:hover,
-  &:focus {
-    color: color-switch($white, $button-color, $button-color-invert);
+  &:focus,
+  &:hover {
+    color: color-switch($white, $button-color-hover, $button-color-invert-hover);
     background: $white;
     border-color: rgba($primary, 1);
   }
 }
-
-/**
- * Colors
- */
 
 .button_outline_primary {
   color: $primary;
   background: none;
   border: $button_outline-border-width solid $primary;
 
-  &:hover,
-  &:focus {
-    color: color-switch($primary, $button-color, $button-color-invert);
+  &:focus,
+  &:hover {
+    color: color-switch($primary, $button-color-hover, $button-color-invert-hover);
     background: $primary;
     border-color: $primary;
   }
@@ -39,9 +37,9 @@ $button_outline-border-width: 1px !default;
   background: none;
   border: $button_outline-border-width solid $secondary;
 
-  &:hover,
-  &:focus {
-    color: color-switch($secondary, $button-color, $button-color-invert);
+  &:focus,
+  &:hover {
+    color: color-switch($secondary, $button-color-hover, $button-color-invert-hover);
     background: $secondary;
     border-color: $secondary;
   }
@@ -52,26 +50,22 @@ $button_outline-border-width: 1px !default;
   background: none;
   border: $button_outline-border-width solid $accent;
 
-  &:hover,
-  &:focus {
-    color: color-switch($accent, $button-color, $button-color-invert);
+  &:focus,
+  &:hover {
+    color: color-switch($accent, $button-color-hover, $button-color-invert-hover);
     background: $accent;
     border-color: $accent;
   }
 }
-
-/**
- * Shade & Dark
- */
 
 .button_outline_shade {
   color: $shade;
   background: none;
   border: $button_outline-border-width solid $shade;
 
-  &:hover,
-  &:focus {
-    color: color-switch($shade, $button-color, $button-color-invert);
+  &:focus,
+  &:hover {
+    color: color-switch($shade, $button-color-hover, $button-color-invert-hover);
     background: $shade;
     border-color: $shade;
   }
@@ -82,25 +76,21 @@ $button_outline-border-width: 1px !default;
   background: none;
   border: $button_outline-border-width solid $dark;
 
-  &:hover,
-  &:focus {
-    color: color-switch($dark, $button-color, $button-color-invert);
+  &:focus,
+  &:hover {
+    color: color-switch($dark, $button-color-hover, $button-color-invert-hover);
     background: $dark;
     border-color: $dark;
   }
 }
-
-/**
- * Utility
- */
 
 .button_outline_subtle {
   color: $color-light;
   background: none;
   border: $button_outline-border-width solid rgba($black, 0.1);
 
-  &:hover,
-  &:focus {
+  &:focus,
+  &:hover {
     color: $button-color;
     background: none;
     border-color: rgba($black, 0.2);
@@ -112,8 +102,8 @@ $button_outline-border-width: 1px !default;
   background: none;
   border: $button_outline-border-width solid rgba($white, 0.25);
 
-  &:hover,
-  &:focus {
+  &:focus,
+  &:hover {
     color: $button-color;
     background: $white;
     border-color: $white;
@@ -125,8 +115,8 @@ $button_outline-border-width: 1px !default;
   background: none;
   border: $button_outline-border-width solid rgba($white, 0.2);
 
-  &:hover,
-  &:focus {
+  &:focus,
+  &:hover {
     color: $white;
     background: none;
     border-color: rgba($white, 0.5);

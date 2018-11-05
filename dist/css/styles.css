@@ -2658,6 +2658,8 @@ pre {
 
 /**
  * Button
+ * ---
+ * Buttons are a simple component that allow users to take actions.
  */
 .button {
   cursor: pointer;
@@ -2703,12 +2705,11 @@ pre {
 
 /**
  * Button icon modifier
+ * ---
+ * A modifier for styling a button which only contains an icon.
  */
 .button_icon {
   padding: 0.438em;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 
 .button_icon.button_size_sm {
@@ -2720,33 +2721,9 @@ pre {
 }
 
 /**
- * Button size modifier
- */
-.button_size_sm {
-  padding: 0.215em 0.5em;
-  font-size: 0.875em;
-  line-height: 1.6em;
-}
-
-.button_size_sm .icon {
-  padding: 0.129em;
-}
-
-.button_size_lg {
-  padding: 0.75em 1.75em;
-  font-size: 16px;
-}
-
-.button_size_lg:not(.button_icon) .icon:first-child {
-  margin-left: -0.25em;
-}
-
-.button_size_lg:not(.button_icon) .icon:last-child {
-  margin-right: -0.25em;
-}
-
-/**
  * Button block modifier
+ * ---
+ * A modifier that makes a button span the full width of it's container.
  */
 .button_block {
   display: -webkit-box;
@@ -2755,9 +2732,6 @@ pre {
   width: 100%;
 }
 
-/**
- * Button block breakpoint modifiers
- */
 .button_block_xs {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2839,22 +2813,44 @@ pre {
 }
 
 /**
- * Button min-width modifier
+ * Button size modifier
+ * ---
+ * Size modifiers add different size variations to buttons.
  */
-.button_min-width {
-  max-width: 100%;
-  min-width: 8em;
+.button_size_sm {
+  padding: 0.215em 0.5em;
+  font-size: 0.875em;
+  line-height: 1.6;
+}
+
+.button_size_sm .icon {
+  padding: 0.129em;
+}
+
+.button_size_lg {
+  padding: 0.75em 1.75em;
+  font-size: 16px;
+}
+
+.button_size_lg:not(.button_icon) .icon:first-child {
+  margin-left: -0.25em;
+}
+
+.button_size_lg:not(.button_icon) .icon:last-child {
+  margin-right: -0.25em;
 }
 
 /**
- * Colors
+ * Button color modifier
+ * ---
+ * Color modifiers add different color variations to buttons.
  */
 .button_color_primary {
   color: #ffffff;
   background: #2196f3;
 }
 
-.button_color_primary:hover, .button_color_primary:focus {
+.button_color_primary:focus, .button_color_primary:hover {
   color: #ffffff;
   background: #0d8aee;
 }
@@ -2864,7 +2860,7 @@ pre {
   background: #607d8b;
 }
 
-.button_color_secondary:hover, .button_color_secondary:focus {
+.button_color_secondary:focus, .button_color_secondary:hover {
   color: #ffffff;
   background: #566f7c;
 }
@@ -2874,20 +2870,17 @@ pre {
   background: #ffee58;
 }
 
-.button_color_accent:hover, .button_color_accent:focus {
+.button_color_accent:focus, .button_color_accent:hover {
   color: #212121;
   background: #ffeb3f;
 }
 
-/**
- * Shade & Dark
- */
 .button_color_shade {
   color: #212121;
   background: #eceff1;
 }
 
-.button_color_shade:hover, .button_color_shade:focus {
+.button_color_shade:focus, .button_color_shade:hover {
   color: #212121;
   background: #dde3e6;
 }
@@ -2897,20 +2890,17 @@ pre {
   background: #37474f;
 }
 
-.button_color_dark:hover, .button_color_dark:focus {
+.button_color_dark:focus, .button_color_dark:hover {
   color: #ffffff;
   background: #41555e;
 }
 
-/**
- * Utility
- */
 .button_color_subtle {
   color: #bdbdbd;
   background: none;
 }
 
-.button_color_subtle:hover, .button_color_subtle:focus {
+.button_color_subtle:focus, .button_color_subtle:hover {
   color: #212121;
   background: rgba(0, 0, 0, 0.05);
 }
@@ -2921,7 +2911,7 @@ pre {
   border-color: rgba(255, 255, 255, 0);
 }
 
-.button_color_invert:hover, .button_color_invert:focus {
+.button_color_invert:focus, .button_color_invert:hover {
   color: #ffffff;
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0);
@@ -2932,7 +2922,7 @@ pre {
   background: none;
 }
 
-.button_color_invert_subtle:hover, .button_color_invert_subtle:focus {
+.button_color_invert_subtle:focus, .button_color_invert_subtle:hover {
   color: #ffffff;
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0);
@@ -2940,6 +2930,8 @@ pre {
 
 /**
  * Button outline modifier
+ * ---
+ * Outline modifiers add a different style variation to buttons.
  */
 .button_outline {
   color: #212121;
@@ -2947,22 +2939,19 @@ pre {
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.button_outline:hover, .button_outline:focus {
+.button_outline:focus, .button_outline:hover {
   color: #212121;
   background: #ffffff;
   border-color: #2196f3;
 }
 
-/**
- * Colors
- */
 .button_outline_primary {
   color: #2196f3;
   background: none;
   border: 1px solid #2196f3;
 }
 
-.button_outline_primary:hover, .button_outline_primary:focus {
+.button_outline_primary:focus, .button_outline_primary:hover {
   color: #ffffff;
   background: #2196f3;
   border-color: #2196f3;
@@ -2974,7 +2963,7 @@ pre {
   border: 1px solid #607d8b;
 }
 
-.button_outline_secondary:hover, .button_outline_secondary:focus {
+.button_outline_secondary:focus, .button_outline_secondary:hover {
   color: #ffffff;
   background: #607d8b;
   border-color: #607d8b;
@@ -2986,22 +2975,19 @@ pre {
   border: 1px solid #ffee58;
 }
 
-.button_outline_accent:hover, .button_outline_accent:focus {
+.button_outline_accent:focus, .button_outline_accent:hover {
   color: #212121;
   background: #ffee58;
   border-color: #ffee58;
 }
 
-/**
- * Shade & Dark
- */
 .button_outline_shade {
   color: #eceff1;
   background: none;
   border: 1px solid #eceff1;
 }
 
-.button_outline_shade:hover, .button_outline_shade:focus {
+.button_outline_shade:focus, .button_outline_shade:hover {
   color: #212121;
   background: #eceff1;
   border-color: #eceff1;
@@ -3013,22 +2999,19 @@ pre {
   border: 1px solid #37474f;
 }
 
-.button_outline_dark:hover, .button_outline_dark:focus {
+.button_outline_dark:focus, .button_outline_dark:hover {
   color: #ffffff;
   background: #37474f;
   border-color: #37474f;
 }
 
-/**
- * Utility
- */
 .button_outline_subtle {
   color: #bdbdbd;
   background: none;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.button_outline_subtle:hover, .button_outline_subtle:focus {
+.button_outline_subtle:focus, .button_outline_subtle:hover {
   color: #212121;
   background: none;
   border-color: rgba(0, 0, 0, 0.2);
@@ -3040,7 +3023,7 @@ pre {
   border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
-.button_outline_invert:hover, .button_outline_invert:focus {
+.button_outline_invert:focus, .button_outline_invert:hover {
   color: #212121;
   background: #ffffff;
   border-color: #ffffff;
@@ -3052,7 +3035,7 @@ pre {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.button_outline_invert_subtle:hover, .button_outline_invert_subtle:focus {
+.button_outline_invert_subtle:focus, .button_outline_invert_subtle:hover {
   color: #ffffff;
   background: none;
   border-color: rgba(255, 255, 255, 0.5);

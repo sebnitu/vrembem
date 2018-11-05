@@ -2,16 +2,14 @@
 
 /**
  * Button block modifier
+ * ---
+ * A modifier that makes a button span the full width of it's container.
  */
 
 .button_block {
   display: flex;
   width: 100%;
 }
-
-/**
- * Button block breakpoint modifiers
- */
 
 @each $name, $value in $breakpoints {
   .button_block_#{$name} {

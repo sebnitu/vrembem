@@ -2,12 +2,14 @@
 
 /**
  * Button size modifier
+ * ---
+ * Size modifiers add different size variations to buttons.
  */
 
 .button_size_sm {
   padding: $button_size_sm-padding;
   font-size: $button_size_sm-font-size;
-  line-height: 1.6em;
+  line-height: 1.6;
 
   .icon {
     padding: 0.129em;

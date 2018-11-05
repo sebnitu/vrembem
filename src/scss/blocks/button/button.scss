@@ -2,6 +2,8 @@
 
 /**
  * Button
+ * ---
+ * Buttons are a simple component that allow users to take actions.
  */
 
 .button {
@@ -28,7 +30,7 @@
 
   &:hover,
   &:focus {
-    color: $button-color;
+    color: $button-color-hover;
     background-color: $button-background-hover;
     border-color: $button-border-color-hover;
   }

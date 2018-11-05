@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Button
-description: "The most basic of UI components. Buttons represent an action that a user can take."
+description: "Buttons are a simple component that allow users to take actions."
 ---
 
 ## `button`
@@ -10,7 +10,7 @@ description: "The most basic of UI components. Buttons represent an action that 
   <div class="grid__item">
   <div class="demo__render">
     <div class="level level_wrap">
-      <a class="button" href="#">Button</a>
+      <a href="#" class="button">Button</a>
       <button class="button">Button</button>
     </div>
   </div>
@@ -18,7 +18,7 @@ description: "The most basic of UI components. Buttons represent an action that 
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
 ```html
-<a class="button" href="#">Button</a>
+<a href="#" class="button">Button</a>
 <button class="button">Button</button>
 ```
   </div>
@@ -66,8 +66,6 @@ Elements inside the button component receive appropriate spacing using the `> * 
 </div>
 
 ## `button_icon`
-
-Used for when displaying a button with only an icon and no text.
 
 <div class="demo grid grid_md">
   <div class="grid__item">
@@ -160,21 +158,36 @@ Used for when displaying a button with only an icon and no text.
   </div>
 </div>
 
-## `button_min-width`
+## `button_block_[key]`
 
 <div class="demo grid grid_md">
   <div class="grid__item">
-  <div class="demo__render">
-    <div class="level level_wrap">
-      <button class="button button_min-width button_color_primary">Button</button>
-      <button class="button button_min-width button_color_secondary">Button</button>
+  <div class="demo__render spacing">
+    <div class="demo__group">
+      <button class="button button_block_xs button_color_secondary">Block XS</button>
+    </div>
+    <div class="demo__group">
+      <button class="button button_block_sm button_color_secondary">Block SM</button>
+    </div>
+    <div class="demo__group">
+      <button class="button button_block_md button_color_secondary">Block MD</button>
+    </div>
+    <div class="demo__group">
+      <button class="button button_block_lg button_color_secondary">Block LG</button>
+    </div>
+    <div class="demo__group">
+      <button class="button button_block_xl button_color_secondary">Block XL</button>
     </div>
   </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
 ```html
-<button class="button button_min-width">Button</button>
+<button class="button button_block_xs">...</button>
+<button class="button button_block_sm">...</button>
+<button class="button button_block_md">...</button>
+<button class="button button_block_lg">...</button>
+<button class="button button_block_xl">...</button>
 ```
   </div>
   </div>

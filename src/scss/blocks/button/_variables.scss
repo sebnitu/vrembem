@@ -1,28 +1,41 @@
+// Button padding and spacing
+// ---
 $button-padding: $padding !default;
 $button-icon-padding: 0.1em !default;
 $button-inner-spacing: 0.5em !default;
 
+// Button typography
+// ---
 $button-font-size: 1em !default;
 $button-line-height: 1.5 !default;
 $button-font-weight: inherit !default;
 $button-text-transform: null !default;
 $button-letter-spacing: null !default;
 
+// Button color
+// ---
 $button-color: $color !default;
+$button-color-hover: $color !default;
 $button-color-invert: $white !default;
+$button-color-invert-hover: $white !default;
 
+// Button box styles
+// ---
 $button-background: none !default;
 $button-background-hover: rgba($black, 0.05) !default;
-
-$button-border-width: 1px !default;
 $button-border-color: transparent !default;
 $button-border-color-hover: transparent !default;
+$button-border-width: 1px !default;
 $button-border-radius: $border-radius !default;
-
 $button-focus-outline: null !default;
 
+// Button size modifier
+// ---
 $button_size_sm-font-size: $font-size-sm !default;
 $button_size_sm-padding: $padding-sm !default;
-
 $button_size_lg-font-size: $font-size !default;
 $button_size_lg-padding: $padding-lg !default;
+
+// Button outline modifier
+// ---
+$button_outline-border-width: 1px !default;
