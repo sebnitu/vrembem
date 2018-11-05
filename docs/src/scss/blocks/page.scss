@@ -69,6 +69,12 @@ html {
   .menu__link {
     padding: 0.5em;
     justify-content: flex-start;
+
+    &:focus,
+    &:hover {
+      color: $link-color-hover;
+      background: $white;
+    }
   }
 
   .menu__item:last-child .menu__link {

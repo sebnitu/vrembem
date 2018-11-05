@@ -6709,6 +6709,11 @@ html {
           justify-content: flex-start;
 }
 
+.page__footer .menu__link:focus, .page__footer .menu__link:hover {
+  color: #0c7cd5;
+  background: #ffffff;
+}
+
 .page__footer .menu__item:last-child .menu__link {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
