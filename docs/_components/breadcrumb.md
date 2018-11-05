@@ -51,7 +51,7 @@ description: "The breadcrumb component is a navigation component that shows the 
 
 <div class="demo grid grid_md">
   <div class="grid__item">
-  <div class="demo__render bg_dark p_1">
+  <div class="demo__render invert">
     <ol class="breadcrumb breadcrumb_invert">
       <li class="breadcrumb__item">
         <a href="#" class="breadcrumb__link">Home</a>

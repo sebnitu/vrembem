@@ -29,9 +29,9 @@ description: "A component for displaying groups of buttons."
   <div class="demo__code" markdown="1">
 ```html
 <div class="button-group">
-  <button class="button button_color_primary">Button</button>
-  <button class="button button_color_primary">Button</button>
-  <button class="button button_color_primary">Button</button>
+  <button class="button button_color_primary">...</button>
+  <button class="button button_color_primary">...</button>
+  <button class="button button_color_primary">...</button>
 </div>
 ```
   </div>
@@ -63,9 +63,9 @@ description: "A component for displaying groups of buttons."
   <div class="demo__code" markdown="1">
 ```html
 <div class="button-group button-group_full">
-  <button class="button button_color_primary">Button</button>
-  <button class="button button_color_primary">Button</button>
-  <button class="button button_color_primary">Button</button>
+  <button class="button button_color_primary">...</button>
+  <button class="button button_color_primary">...</button>
+  <button class="button button_color_primary">...</button>
 </div>
 ```
   </div>
@@ -95,9 +95,9 @@ description: "A component for displaying groups of buttons."
   <div class="demo__code" markdown="1">
 ```html
 <div class="button-group button-group_stack">
-  <button class="button button_color_primary">Button</button>
-  <button class="button button_color_primary">Button</button>
-  <button class="button button_color_primary">Button</button>
+  <button class="button button_color_primary">...</button>
+  <button class="button button_color_primary">...</button>
+  <button class="button button_color_primary">...</button>
 </div>
 ```
   </div>
@@ -129,9 +129,9 @@ description: "A component for displaying groups of buttons."
   <div class="demo__code" markdown="1">
 ```html
 <div class="button-group button-group_stack button-group_full">
-  <button class="button button_color_primary">Button</button>
-  <button class="button button_color_primary">Button</button>
-  <button class="button button_color_primary">Button</button>
+  <button class="button button_color_primary">...</button>
+  <button class="button button_color_primary">...</button>
+  <button class="button button_color_primary">...</button>
 </div>
 ```
   </div>
@@ -167,11 +167,11 @@ description: "A component for displaying groups of buttons."
   <div class="demo__code" markdown="1">
 ```html
 <div class="button-group button-group_wrap">
-  <button class="button button_color_primary">Button</button>
-  <button class="button button_color_primary">Button</button>
-  <button class="button button_color_primary">Button</button>
-  <button class="button button_color_primary">Button</button>
-  <button class="button button_color_primary">Button</button>
+  <button class="button button_color_primary">...</button>
+  <button class="button button_color_primary">...</button>
+  <button class="button button_color_primary">...</button>
+  <button class="button button_color_primary">...</button>
+  <button class="button button_color_primary">...</button>
 </div>
 ```
   </div>
@@ -184,7 +184,7 @@ description: "A component for displaying groups of buttons."
   <div class="grid__item">
   <div class="demo__render spacing">
     <div class="demo__group">
-      <div class="button-group button-group_full button-group_wrap">
+      <div class="button-group button-group_wrap button-group_full">
         <button class="button button_color_primary">Button</button>
         <button class="button button_color_primary">Button</button>
         <button class="button button_color_primary">Button</button>
@@ -193,7 +193,7 @@ description: "A component for displaying groups of buttons."
       </div>
     </div>
     <div class="demo__group">
-      <div class="button-group button-group_full button-group_wrap">
+      <div class="button-group button-group_wrap button-group_full">
         <button class="button button_outline">Button</button>
         <button class="button button_outline">Button</button>
         <button class="button button_outline">Button</button>
@@ -206,12 +206,12 @@ description: "A component for displaying groups of buttons."
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
 ```html
-<div class="button-group button-group_full button-group_wrap">
-  <button class="button button_color_primary">Button</button>
-  <button class="button button_color_primary">Button</button>
-  <button class="button button_color_primary">Button</button>
-  <button class="button button_color_primary">Button</button>
-  <button class="button button_color_primary">Button</button>
+<div class="button-group button-group_wrap button-group_full">
+  <button class="button button_color_primary">...</button>
+  <button class="button button_color_primary">...</button>
+  <button class="button button_color_primary">...</button>
+  <button class="button button_color_primary">...</button>
+  <button class="button button_color_primary">...</button>
 </div>
 ```
   </div>
@@ -243,9 +243,9 @@ description: "A component for displaying groups of buttons."
   <div class="demo__code" markdown="1">
 ```html
 <div class="button-group button-group_join">
-  <button class="button button_color_primary">Button</button>
-  <button class="button button_color_primary">Button</button>
-  <button class="button button_color_primary">Button</button>
+  <button class="button button_color_primary">...</button>
+  <button class="button button_color_primary">...</button>
+  <button class="button button_color_primary">...</button>
 </div>
 ```
   </div>
@@ -275,9 +275,9 @@ description: "A component for displaying groups of buttons."
   <div class="demo__code" markdown="1">
 ```html
 <div class="button-group button-group_join button-group_stack">
-  <button class="button button_color_primary">Button</button>
-  <button class="button button_color_primary">Button</button>
-  <button class="button button_color_primary">Button</button>
+  <button class="button button_color_primary">...</button>
+  <button class="button button_color_primary">...</button>
+  <button class="button button_color_primary">...</button>
 </div>
 ```
   </div>

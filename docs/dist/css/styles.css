@@ -6741,23 +6741,28 @@ html {
   width: 100%;
 }
 
-.demo__render.invert {
-  padding: 1rem;
-  background: #424242;
-  border-radius: 3px;
+.demo__render.invert,
+.demo__group.invert {
+  background: #37474f;
 }
 
 .demo__code {
   overflow: auto;
-  padding: 1rem;
   background: #f5f5f5;
+}
+
+.demo__render.invert,
+.demo__group.invert,
+.demo__code {
+  padding: 1em;
   border-radius: 3px;
 }
 
 @media (min-width: 760px) {
   .demo__render.invert,
+  .demo__group.invert,
   .demo__code {
-    padding: 1.5rem;
+    padding: 1.5em;
   }
 }
 

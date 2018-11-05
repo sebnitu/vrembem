@@ -126,9 +126,9 @@ Elements inside the button component receive appropriate spacing using the `> * 
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
 ```html
-<button class="button button_size_sm button_color_primary">Button</button>
-<button class="button button_color_primary">Button</button>
-<button class="button button_size_lg button_color_primary">Button</button>
+<button class="button button_size_sm button_color_primary">...</button>
+<button class="button button_color_primary">...</button>
+<button class="button button_size_lg button_color_primary">...</button>
 ```
   </div>
   </div>
@@ -150,9 +150,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
 ```html
-<button class="button button_block">
-  Button
-</button>
+<button class="button button_block">...</button>
 ```
   </div>
   </div>
@@ -193,67 +191,97 @@ Elements inside the button component receive appropriate spacing using the `> * 
   </div>
 </div>
 
-## `button_color`
+## `button_color_[key]`
 
 <div class="demo grid grid_md">
   <div class="grid__item">
   <div class="demo__render spacing">
-
-    <div class="demo__group level level_wrap">
-      <button class="button button_color_primary">Button</button>
-      <button class="button button_color_secondary">Button</button>
-      <button class="button button_color_accent">Button</button>
-      <button class="button button_color_shade">Button</button>
-      <button class="button button_color_dark">Button</button>
+    <div class="demo__group">
+    <div class="level level_wrap">
+      <button class="button button_color_primary">Color Primary</button>
+      <button class="button button_color_secondary">Color Secondary</button>
+      <button class="button button_color_accent">Color Accent</button>
+      <button class="button button_color_shade">Color Shade</button>
+      <button class="button button_color_dark">Color Dark</button>
     </div>
-
-    <div class="demo__group level level_wrap">
-      <button class="button">Button</button>
-      <button class="button button_color_subtle">Button</button>
     </div>
-
-    <div class="demo__group level level_wrap bg_dark p_1">
-      <button class="button button_color_invert">Button</button>
-      <button class="button button_color_invert_subtle">Button</button>
+    <div class="demo__group">
+    <div class="level level_wrap">
+      <button class="button">Default</button>
+      <button class="button button_color_subtle">Color Subtle</button>
     </div>
-
+    </div>
+    <div class="demo__group invert">
+    <div class="level level_wrap">
+      <button class="button button_color_invert">Color Invert</button>
+      <button class="button button_color_invert_subtle">Color Invert Subtle</button>
+    </div>
+    </div>
   </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
 ```html
-...
+<!-- Colors -->
+<button class="button button_color_primary">...</button>
+<button class="button button_color_secondary">...</button>
+<button class="button button_color_accent">...</button>
+<button class="button button_color_shade">...</button>
+<button class="button button_color_dark">...</button>
+
+<!-- Utility -->
+<button class="button button_color">...</button>
+<button class="button button_color_subtle">...</button>
+<button class="button button_color_invert">...</button>
+<button class="button button_color_invert_subtle">...</button>
 ```
   </div>
   </div>
 </div>
 
-## `button_outline`
+## `button_outline_[key]`
 
 <div class="demo grid grid_md">
   <div class="grid__item">
   <div class="demo__render spacing">
-    <div class="demo__group level level_wrap">
-      <button class="button button_outline_primary">Button</button>
-      <button class="button button_outline_secondary">Button</button>
-      <button class="button button_outline_accent">Button</button>
-      <button class="button button_outline_shade">Button</button>
-      <button class="button button_outline_dark">Button</button>
+    <div class="demo__group">
+    <div class="level level_wrap">
+      <button class="button button_outline_primary">Outline Primary</button>
+      <button class="button button_outline_secondary">Outline Secondary</button>
+      <button class="button button_outline_accent">Outline Accent</button>
+      <button class="button button_outline_shade">Outline Shade</button>
+      <button class="button button_outline_dark">Outline Dark</button>
     </div>
-    <div class="demo__group level level_wrap">
-      <button class="button button_outline">Button</button>
-      <button class="button button_outline_subtle">Button</button>
     </div>
-    <div class="demo__group level level_wrap bg_dark p_1">
-      <button class="button button_outline_invert">Button</button>
-      <button class="button button_outline_invert_subtle">Button</button>
+    <div class="demo__group">
+    <div class="level level_wrap">
+      <button class="button button_outline">Default Outline</button>
+      <button class="button button_outline_subtle">Outline Subtle</button>
+    </div>
+    </div>
+    <div class="demo__group invert">
+    <div class="level level_wrap">
+      <button class="button button_outline_invert">Outline Invert</button>
+      <button class="button button_outline_invert_subtle">Outline Invert Subtle</button>
+    </div>
     </div>
   </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
 ```html
-...
+<!-- Colors -->
+<button class="button button_outline_primary">...</button>
+<button class="button button_outline_secondary">...</button>
+<button class="button button_outline_accent">...</button>
+<button class="button button_outline_shade">...</button>
+<button class="button button_outline_dark">...</button>
+
+<!-- Utility -->
+<button class="button button_outline">...</button>
+<button class="button button_outline_subtle">...</button>
+<button class="button button_outline_invert">...</button>
+<button class="button button_outline_invert_subtle">...</button>
 ```
   </div>
   </div>
