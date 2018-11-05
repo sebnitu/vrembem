@@ -2,6 +2,7 @@
 layout: page
 title: "Spacing"
 description: "A simple layout component that gives vertical spacing to all of an elements children."
+tags: layout
 ---
 
 ## `.spacing`

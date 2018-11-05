@@ -2,6 +2,9 @@
 
 /**
  * Card
+ * ---
+ * The cards component provides a flexible and extensive content container with
+ * multiple variants and options.
  */
 
 .card {
@@ -16,8 +19,6 @@
   overflow: hidden;
   transition: $card-transition;
 }
-
-/* Card Elements */
 
 .card__header,
 .card__body,
@@ -35,13 +36,6 @@
 
 .card__body {
   flex: 1 1 auto;
-}
-
-.card__body_center {
-  flex-basis: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .card__image {
@@ -83,7 +77,9 @@
   line-height: 1.35em;
 }
 
-/* Section Background and Screens */
+/**
+ * Card screen and background
+ */
 
 .card__background,
 .card__screen {

@@ -19,35 +19,37 @@ layout: compress
   </header>
 
   <div id="listjs" class="content cover__content">
+
     <div class="jumbo-filter">
       <div class="input-group">
         <input class="search input input-group__item" type="text" placeholder="Search..." />
-      </div><!-- .input-group -->
-    </div><!-- .jumbo-filter -->
+      </div>
+    </div>
 
     <div class="notice notice_type_caution notice_empty d_none">
       No results found for "<span class="search_text"></span>"
     </div>
 
     <ul class="jumbo-list">
-      {%- for item in site.components -%}
+    {%- for item in site.components -%}
+      {%- assign tags_count = item.tags | size -%}
+      {% if tags_count > 0 %}
+        {%- assign tags = item.tags | sort -%}
+      {% else %}
+        {%- assign tags = false -%}
+      {% endif %}
+      <li class="jumbo-list__item">
+        <a class="jumbo-list__link" href="{{ item.url }}">
+          <span class="name">{{ item.title }}</span>
+          {%- for tag in tags -%}
+            <span class="tag">{{ tag }}</span>
+          {%- endfor -%}
+        </a>
+      </li>
+    {%- endfor -%}
+    </ul>
 
-        <li class="jumbo-list__item" data-tags="">
-          <a class="jumbo-list__link" href="{{ item.url }}">
-            <span class="name">{{ item.title }}</span>
-            {%- assign tags_count = item.tags | size -%}
-            {% if tags_count > 0 %}
-              {%- assign tags = item.tags | sort -%}
-              {%- for tag in tags -%}
-                <span class="text_sublte">{{ tag }}</span>
-              {%- endfor -%}
-            {% endif %}
-          </a>
-        </li>
-
-      {%- endfor -%}
-    </ul><!-- .jumbo-list -->
-  </div><!-- .vrembem-blocks -->
+  </div><!-- #listjs -->
 
 </div>
 

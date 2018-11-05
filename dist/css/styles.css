@@ -3287,6 +3287,9 @@ pre {
 
 /**
  * Card
+ * ---
+ * The cards component provides a flexible and extensive content container with
+ * multiple variants and options.
  */
 .card {
   position: relative;
@@ -3307,7 +3310,6 @@ pre {
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* Card Elements */
 .card__header,
 .card__body,
 .card__footer,
@@ -3326,21 +3328,6 @@ pre {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
-}
-
-.card__body_center {
-  -ms-flex-preferred-size: auto;
-      flex-basis: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 
 .card__image {
@@ -3384,7 +3371,9 @@ pre {
   line-height: 1.35em;
 }
 
-/* Section Background and Screens */
+/**
+ * Card screen and background
+ */
 .card__background,
 .card__screen {
   position: absolute;
@@ -3424,13 +3413,6 @@ pre {
 .card_size_xl .card__header,
 .card_size_xl .card__footer {
   padding: 4em 2em;
-}
-
-/**
- * Card max modifier
- */
-.card_max {
-  max-width: 20rem;
 }
 
 /**

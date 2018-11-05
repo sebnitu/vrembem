@@ -7,7 +7,10 @@ const modal = new Modal()
 const dismissible = new Dismissible()
 
 /**
- * Check if listjs should be run
+ * List.js
+ * ---
+ * Adds list functionality along with search.
+ * list.js docs: http://listjs.com/
  */
 if (document.getElementById('listjs')) {
 
@@ -15,9 +18,16 @@ if (document.getElementById('listjs')) {
    * Init our list.js component
    */
   const list = new listjs('listjs', {
+    fuzzySearch: {
+      searchClass: 'search',
+      location: 0,
+      distance: 100,
+      threshold: 0.4,
+      multiSearch: true
+    },
     valueNames: [
       'name',
-      { data: ['tags'] }
+      'tag'
     ],
     listClass: 'jumbo-list'
   })

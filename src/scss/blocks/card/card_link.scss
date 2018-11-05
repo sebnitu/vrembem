@@ -1,4 +1,7 @@
-$card_link-extend: 'card_lift', 'card_zoom' !default;
+$card_link-extend: (
+  'card_lift',
+  'card_zoom'
+) !default;
 
 /**
  * Card links

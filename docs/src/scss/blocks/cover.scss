@@ -12,7 +12,8 @@
   .cover {
     flex-direction: row;
     height: 100%;
-    overflow: hidden;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
 
@@ -25,24 +26,24 @@
   position: relative;
 }
 
-.cover__content {
-  position: relative;
-  flex: 1 1 auto;
-}
-
 .cover__header {
+  position: sticky;
+  top: 0;
   flex: 0 0 auto;
   display: flex;
   color: $white;
   background: $primary-dark;
 }
 
+.cover__content {
+  position: relative;
+  flex: 1 1 auto;
+}
+
 @include media-min('md') {
   .cover__header,
   .cover__content {
     flex: 1 0 0;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
   }
 
   .cover__header {

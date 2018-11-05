@@ -2,6 +2,7 @@
 layout: page
 title: "Container"
 description: "A container component for general page composition purposes."
+tags: layout
 ---
 
 <div class="page__section">

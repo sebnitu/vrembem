@@ -2,6 +2,7 @@
 layout: page
 title: "Section"
 description: "A container component for wrapping distinct sections of a project."
+tags: layout
 ---
 
 <div class="section section_size_xl">

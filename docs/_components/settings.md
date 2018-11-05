@@ -2,6 +2,7 @@
 layout: page
 title: Settings
 description: "These are the core settings for Vrembem and are made available to all components."
+tags: core
 ---
 
 ## `box-shadow`

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Card
-description: "The cards component provide a flexible and extensible content container with multiple variants and options."
+description: "The cards component provides a flexible and extensive content container with multiple variants and options."
 ---
 
 ## `.card`
@@ -43,7 +43,6 @@ description: "The cards component provide a flexible and extensible content cont
   - card_fade
 
   - card_tall
-  - card_max
   - card_size_lg
   - card_size_xl
 {%- endcomment -%}
@@ -67,6 +66,38 @@ description: "The cards component provide a flexible and extensible content cont
               {%- include icon.html icon="arrow-right" -%}
             </h3>
             <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et.</p>
+          </div>
+        </a>
+      </div>
+      {%- endfor -%}
+
+    </div>
+
+  </div>
+</div>
+
+## `.card_step`
+
+<div class="demo">
+  <div class="demp__render">
+
+    <div class="grid grid_md">
+
+      {%- assign card_class = 'card_link card_step' -%}
+
+      {%- for counter in (1..3) -%}
+      <div class="grid__item grid__item_fill">
+        <a href="#" class="card card_theme_shade {{ card_class }}">
+          <div class="card__body">
+            <div class="media">
+              <div class="media__image">
+                {%- include icon.html icon="check-circle" class="icon_size_lg" -%}
+              </div>
+              <div class="media__body">
+                <h3 class="card__title">Card Title</h3>
+                <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui.</p>
+              </div>
+            </div>
           </div>
         </a>
       </div>
@@ -110,54 +141,22 @@ description: "The cards component provide a flexible and extensible content cont
   </div>
 </div>
 
-## `.card_step`
-
-<div class="demo">
-  <div class="demp__render">
-
-    <div class="grid grid_md">
-
-      {%- assign card_class = 'card_step' -%}
-
-      {%- for counter in (1..3) -%}
-      <div class="grid__item grid__item_fill">
-        <a href="#" class="card card_theme_shade {{ card_class }}">
-          <div class="card__body">
-            <div class="media">
-              <div class="media__image">
-                {%- include icon.html icon="check-circle" class="icon_size_lg" -%}
-              </div>
-              <div class="media__body">
-                <h3 class="card__title">Card Title</h3>
-                <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui.</p>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-      {%- endfor -%}
-
-    </div>
-
-  </div>
-</div>
-
 ## `.card__screen` `+` `.card__background`
 
 <div class="demo grid grid_md">
   <div class="grid__item">
   <div class="demp__render">
-    <a href="#" class="card card_theme_dark">
+    <div class="card card_theme_dark">
       <div class="card__body spacing text_align_center">
         <h3 class="card__title">Card Title</h3>
         <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
         <p>
-          <button class="button button_color_secondary">Card Action</button>
+          <button class="button button_color_accent">Card Action</button>
         </p>
       </div>
       <img src="https://picsum.photos/600/400/?20" class="card__background" width="600" height="400">
       <div class="card__screen"></div>
-    </a>
+    </div>
   </div>
   </div>
   <div class="grid__item size_6">
@@ -249,7 +248,7 @@ Below are a few examples of different ways to build a card.
       <div class="card__body spacing">
         <h3 class="card__title">Card Title</h3>
         <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
-        <p><button class="button button_color_primary">Card Action</button></p>
+        <p><button class="button button_color_secondary">Card Action</button></p>
       </div>
       <img src="https://picsum.photos/600/400/?3" class="card__image" width="600" height="400">
     </div>
@@ -264,7 +263,7 @@ Below are a few examples of different ways to build a card.
         <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
       </div>
       <div class="card__footer">
-        <p><button class="button button_color_primary">Card Action</button></p>
+        <p><button class="button button_outline_accent">Card Action</button></p>
       </div>
     </div>
   </div>
@@ -279,7 +278,7 @@ Below are a few examples of different ways to build a card.
         <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
       </div>
       <div class="card__footer">
-        <p><button class="button button_color_primary">Card Action</button></p>
+        <p><button class="button button_color_accent">Card Action</button></p>
       </div>
       <img src="https://picsum.photos/600/400/?4" class="card__background" width="600" height="400">
       <div class="card__screen"></div>
@@ -338,7 +337,7 @@ Below are a few examples of different ways to build a card.
         <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
       </div>
       <div class="card__footer">
-        <p><button class="button button_outline_success">Card Action</button></p>
+        <p><button class="button button_outline_primary">Card Action</button></p>
       </div>
       <img src="https://picsum.photos/600/400/?13" class="card__image d_none_xs d_block_md" width="600" height="400">
     </a>

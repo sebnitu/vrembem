@@ -2,6 +2,7 @@
 layout: page
 title: "Grid"
 description: "A flexbox based grid system."
+tags: layout
 ---
 
 ## `.grid` `+` `.grid__item`

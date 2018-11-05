@@ -2,6 +2,7 @@
 layout: page
 title: "Size"
 description: "A flexbox based grid system."
+tags: layout
 ---
 
 ## `.size_auto`
