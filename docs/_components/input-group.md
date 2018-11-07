@@ -2,6 +2,7 @@
 layout: page
 title: Input-group
 description: "A container component for grouping inputs and buttons together."
+tags: block compound
 ---
 
 ## `input-group`

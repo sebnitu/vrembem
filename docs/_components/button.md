@@ -2,6 +2,7 @@
 layout: page
 title: Button
 description: "Buttons are a simple component that allow users to take actions."
+tags: block simple
 ---
 
 ## `button`

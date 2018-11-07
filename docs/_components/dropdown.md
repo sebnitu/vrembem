@@ -2,6 +2,7 @@
 layout: page
 title: Dropdown
 description: "A component that is initially hidden and revealed upon user interaction either through a click or hover event. Dropdown components typically display lists of possible actions or navigation but this is not always the case."
+tags: block compound
 ---
 
 ## `dropdown`

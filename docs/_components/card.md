@@ -2,6 +2,7 @@
 layout: page
 title: Card
 description: "The cards component provides a flexible and extensive content container with multiple variants and options."
+tags: block compound
 ---
 
 ## `.card`
@@ -32,20 +33,6 @@ description: "The cards component provides a flexible and extensive content cont
   </div>
   </div>
 </div>
-
-{%- comment -%}
-  Available Classes:
-  - card_link
-  - ---
-  - card_lift
-  - card_step
-  - card_zoom
-  - card_fade
-
-  - card_tall
-  - card_size_lg
-  - card_size_xl
-{%- endcomment -%}
 
 ## `.card_link`
 

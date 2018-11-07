@@ -2,6 +2,7 @@
 layout: page
 title: Input
 description: "The default component for user input."
+tags: block simple
 ---
 
 ## `input`

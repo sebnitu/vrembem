@@ -2,6 +2,7 @@
 layout: page
 title: Breadcrumb
 description: "The breadcrumb component is a navigation component that shows the hierarchical path to a users current location."
+tags: block compound
 ---
 
 ## `breadcrumb`

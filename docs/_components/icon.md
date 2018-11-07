@@ -2,6 +2,7 @@
 layout: page
 title: Icon
 description: "A component for displaying glyphs that convey meaning through iconography."
+tags: block simple
 ---
 
 <div class="notice notice_type_info">You can use any icon set but may require changing default icon variables. Default styles are intended for <a href="https://feathericons.com/">feather icons</a> which is a great open source option.</div>

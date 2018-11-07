@@ -2,7 +2,7 @@
 layout: page
 title: Arrow
 description: "A directional triangle drawn with CSS."
-tags: block
+tags: block simple
 ---
 
 ## `arrow`

@@ -2,6 +2,7 @@
 layout: page
 title: Media
 description: "The media component allows the composition of content which contains images, thumbnails or other media related to the content."
+tags: block compound
 ---
 
 ## `.media`

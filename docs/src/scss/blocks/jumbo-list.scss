@@ -1,3 +1,7 @@
+/**
+ * Jumbo-list
+ */
+
 .jumbo-list {
   position: relative;
   list-style: none;
@@ -20,9 +24,10 @@
 
   .name {
     flex-grow: 1;
+    white-space: nowrap;
   }
 
-  .tag {
+  .tags {
     flex-grow: 0;
     color: $color-light;
     transition: color 0.5s linear;
@@ -34,7 +39,7 @@
     background-color: rgba($blue, 0.1);
     transition: background-color 0s linear;
 
-    .tag {
+    .tags {
       color: $primary;
       transition: color 0s linear;
     }
@@ -44,5 +49,29 @@
 @include media-min('xs') {
   .jumbo-list__link {
     padding: 1.5em 2em;
+  }
+}
+
+/**
+ * Tags
+ */
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+
+  .tag {
+    margin: -0.5em;
+    padding: 0.5em;
+    border-radius: $border-radius;
+
+    &:hover {
+      background: $white;
+    }
+  }
+
+  .tag + .tag {
+    margin-left: 0.5em;
   }
 }
