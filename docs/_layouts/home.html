@@ -56,19 +56,19 @@ layout: compress
           <ul class="tags">
           {%- for tag in tags -%}
             {%- if tag == 'layout' -%}
-              <li class="tag" data-tag="{{ tag }}">
+              <li class="tag" data-tag="{{ tag }}" data-tooltip="{{ tag }}" data-tooltip-pos="left">
                 {%- include icon.html icon="layout" -%}
               </li>
             {%- elsif tag == 'compound' -%}
-              <li class="tag" data-tag="{{ tag }}">
+              <li class="tag" data-tag="{{ tag }}" data-tooltip="{{ tag }}" data-tooltip-pos="left">
                 {%- include icon.html icon="layers" -%}
               </li>
             {%- elsif tag == 'simple' -%}
-              <li class="tag" data-tag="{{ tag }}">
+              <li class="tag" data-tag="{{ tag }}" data-tooltip="{{ tag }}" data-tooltip-pos="left">
                 {%- include icon.html icon="box" -%}
               </li>
             {%- elsif tag == 'core' -%}
-              <li class="tag" data-tag="{{ tag }}">
+              <li class="tag" data-tag="{{ tag }}" data-tooltip="{{ tag }}" data-tooltip-pos="left">
                 {%- include icon.html icon="sliders" -%}
               </li>
             {%- endif -%}

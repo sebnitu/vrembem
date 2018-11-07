@@ -6573,7 +6573,7 @@ pre {
 
 .jumbo-filter .search {
   padding: 1.25em 3em;
-  background: #ffffff;
+  background: #f2f4f5;
   border: none;
   border-radius: 0;
   -webkit-box-shadow: none;
@@ -6582,7 +6582,7 @@ pre {
 
 .jumbo-filter .search:focus, .jumbo-filter .search.is-active {
   color: #2196f3;
-  background: #ffffff;
+  background: #f2f4f5;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
@@ -6604,7 +6604,7 @@ pre {
 }
 
 .jumbo-filter .search_clear {
-  right: 1em;
+  right: 1.125em;
 }
 
 @media (min-width: 480px) {
@@ -6615,7 +6615,7 @@ pre {
     left: 1.5em;
   }
   .jumbo-filter .search_clear {
-    right: 1.5em;
+    right: 1.65em;
   }
 }
 

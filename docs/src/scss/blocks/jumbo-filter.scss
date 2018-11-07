@@ -11,7 +11,7 @@
 
   .search {
     padding: 1.25em 3em;
-    background: $white;
+    background: lighten($shade, 2%);
     border: none;
     border-radius: 0;
     box-shadow: none;
@@ -19,7 +19,7 @@
     &:focus,
     &.is-active {
       color: $primary;
-      background: $white;
+      background: lighten($shade, 2%);
       box-shadow: none;
     }
   }
@@ -38,7 +38,7 @@
   }
 
   .search_clear {
-    right: 1em;
+    right: 1.125em;
   }
 }
 
@@ -53,7 +53,7 @@
     }
 
     .search_clear {
-      right: 1.5em;
+      right: 1.65em;
     }
   }
 }
