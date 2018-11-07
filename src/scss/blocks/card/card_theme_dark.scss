@@ -1,14 +1,18 @@
+@import 'variables';
+
 /**
- * Card Theme: Dark
+ * Card theme dark
+ * ---
+ * Theme that adds the $dark variable as background and inverts content color.
  */
 
 .card_theme_dark {
   background: $dark;
   color: color-switch($dark);
 
-  .card__header,
-  .card__footer {
-    @if (is-dark($dark)) {
+  @if (is-dark($dark)) {
+    .card__header,
+    .card__footer {
       border-color: $border-color-invert;
     }
   }

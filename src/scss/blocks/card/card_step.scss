@@ -1,7 +1,9 @@
-$card-step-offset: 5px !default;
+@import 'variables';
 
 /**
  * Card Step
+ * ---
+ * Adds styles for card link that animates the card up when hovered or focused.
  */
 
 .card_step {

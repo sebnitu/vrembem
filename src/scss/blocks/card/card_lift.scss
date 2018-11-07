@@ -1,8 +1,10 @@
-$card-lift-shadow: $box-shadow-1dp !default;
-$card-lift-shadow-hover: $box-shadow-8dp !default;
+@import 'variables';
 
 /**
  * Card lift
+ * ---
+ * Adds styles for card link that make the card look like it's being lifted up
+ * when hovered or focused.
  */
 
 .card_lift {

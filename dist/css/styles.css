@@ -3401,22 +3401,65 @@ pre {
 }
 
 /**
+ * Card invert modifier
+ * ---
+ * A modifier to switch the typography color to better suite a dark background.
+ */
+.card_invert {
+  background: #37474f;
+  color: #ffffff;
+}
+
+.card_invert .card__header,
+.card_invert .card__footer {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/**
  * Card size modifiers
+ * ---
+ * Used to change the padding of card elements.
  */
 .card_size_lg .card__body,
 .card_size_lg .card__header,
 .card_size_lg .card__footer {
-  padding: 2em;
+  padding: 1.25em;
+}
+
+@media (min-width: 620px) {
+  .card_size_lg .card__body,
+  .card_size_lg .card__header,
+  .card_size_lg .card__footer {
+    padding: 2em;
+  }
 }
 
 .card_size_xl .card__body,
 .card_size_xl .card__header,
 .card_size_xl .card__footer {
-  padding: 4em 2em;
+  padding: 1.25em;
+}
+
+@media (min-width: 620px) {
+  .card_size_xl .card__body,
+  .card_size_xl .card__header,
+  .card_size_xl .card__footer {
+    padding: 2em;
+  }
+}
+
+@media (min-width: 760px) {
+  .card_size_xl .card__body,
+  .card_size_xl .card__header,
+  .card_size_xl .card__footer {
+    padding: 4em 2.5em;
+  }
 }
 
 /**
- * Card Tall
+ * Card tall modifier
+ * ---
+ * Adds a minimum height to a card and centers the contents of card__body.
  */
 .card_tall .card__body {
   -webkit-box-flex: 1;
@@ -3449,6 +3492,9 @@ pre {
 
 /**
  * Card lift
+ * ---
+ * Adds styles for card link that make the card look like it's being lifted up
+ * when hovered or focused.
  */
 .card_lift, .card_link {
   -webkit-box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
@@ -3462,6 +3508,8 @@ pre {
 
 /**
  * Card Step
+ * ---
+ * Adds styles for card link that animates the card up when hovered or focused.
  */
 .card_step {
   -webkit-transform: translate(0, 0);
@@ -3475,6 +3523,9 @@ pre {
 
 /**
  * Card Fade
+ * ---
+ * Adds styles for card link which hides elements only to reveal them when
+ * hovered or focused. Based used with card__background and card__screen.
  */
 @media (min-width: 760px) {
   .card_fade .card__header,
@@ -3499,6 +3550,9 @@ pre {
 
 /**
  * Card Zoom
+ * ---
+ * Adds styles for card link which zooms the card__background image in when
+ * hovered or focused.
  */
 .card_zoom .card__background, .card_link .card__background {
   -webkit-transition: -webkit-transform 1s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -3514,9 +3568,13 @@ pre {
 
 /**
  * Card links
+ * ---
+ * A shorthand class that combines various card link modifiers via @expand.
  */
 /**
- * Card Theme: Shade
+ * Card theme shade
+ * ---
+ * Theme that adds the $shade variable as background and inverts content color.
  */
 .card_theme_shade {
   background: #eceff1;
@@ -3528,7 +3586,9 @@ pre {
 }
 
 /**
- * Card Theme: Dark
+ * Card theme dark
+ * ---
+ * Theme that adds the $dark variable as background and inverts content color.
  */
 .card_theme_dark {
   background: #37474f;
@@ -3545,13 +3605,20 @@ pre {
 }
 
 /**
- * Card Theme: Bordered
+ * Card theme bordered
+ * ---
+ * Theme that adds a border around cards along with custom card_link styles.
  */
 .card_theme_bordered {
   background: rgba(236, 239, 241, 0);
   border: 2px solid #eceff1;
   -webkit-box-shadow: none;
           box-shadow: none;
+  color: #212121;
+}
+
+.card_theme_bordered .card__screen {
+  background: rgba(236, 239, 241, 0);
 }
 
 .card_theme_bordered.card_link:hover, .card_theme_bordered.card_link:focus {

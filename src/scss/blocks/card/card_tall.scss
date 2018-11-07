@@ -1,7 +1,9 @@
-$card_tall-min-height: 18em !default;
+@import 'variables';
 
 /**
- * Card Tall
+ * Card tall modifier
+ * ---
+ * Adds a minimum height to a card and centers the contents of card__body.
  */
 
 .card_tall {
@@ -20,8 +22,6 @@ $card_tall-min-height: 18em !default;
 
 @include media-min('md') {
   .card_tall {
-    min-height: $card_tall-min-height;
-    .card__body {
-    }
+    min-height: $card-tall-min-height;
   }
 }

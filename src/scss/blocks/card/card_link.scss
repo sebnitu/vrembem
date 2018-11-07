@@ -1,14 +1,13 @@
-$card_link-extend: (
-  'card_lift',
-  'card_zoom'
-) !default;
+@import 'variables';
 
 /**
  * Card links
+ * ---
+ * A shorthand class that combines various card link modifiers via @expand.
  */
 
 .card_link {
-  @each $class in $card_link-extend {
+  @each $class in $card-link-extend {
     @extend .#{$class};
   }
 }

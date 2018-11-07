@@ -1,0 +1,19 @@
+@import 'variables';
+
+/**
+ * Card invert modifier
+ * ---
+ * A modifier to switch the typography color to better suite a dark background.
+ */
+
+.card_invert {
+  background: $card__screen-background;
+  color: color-switch($card__screen-background);
+
+  .card__header,
+  .card__footer {
+    @if (is-dark($card__screen-background)) {
+      border-color: $border-color-invert;
+    }
+  }
+}

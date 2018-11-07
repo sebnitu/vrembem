@@ -1,13 +1,15 @@
-$card_zoom-transition: transform 1s $transition-timing-function;
+@import 'variables';
 
 /**
  * Card Zoom
+ * ---
+ * Adds styles for card link which zooms the card__background image in when
+ * hovered or focused.
  */
 
 .card_zoom {
-
   .card__background {
-    transition: $card_zoom-transition;
+    transition: $card-zoom-transition;
   }
 
   &:hover,

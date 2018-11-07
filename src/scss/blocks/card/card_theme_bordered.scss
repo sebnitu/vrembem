@@ -1,18 +1,35 @@
+@import 'variables';
+
 $card_theme_bordered-background: rgba($shade, 0) !default;
-$card_theme_bordered-background-hover: rgba($shade, 0.75) !default;
 $card_theme_bordered-border: 2px solid $shade !default;
-$card_theme_bordered-border-color-hover: darken($shade, 5%) !default;
 $card_theme_bordered-box-shadow: none !default;
+
+$card_theme_bordered-background-hover: rgba($shade, 0.75) !default;
+$card_theme_bordered-border-color-hover: darken($shade, 5%) !default;
 $card_theme_bordered-box-shadow-hover: none !default;
 
 /**
- * Card Theme: Bordered
+ * Card theme bordered
+ * ---
+ * Theme that adds a border around cards along with custom card_link styles.
  */
 
 .card_theme_bordered {
   background: $card_theme_bordered-background;
   border: $card_theme_bordered-border;
   box-shadow: $card_theme_bordered-box-shadow;
+  color: color-switch($card_theme_bordered-background);
+
+  @if (is-dark($card_theme_bordered-background)) {
+    .card__header,
+    .card__footer {
+      border-color: $border-color-invert;
+    }
+  }
+
+  .card__screen {
+    background: $card_theme_bordered-background;
+  }
 
   &.card_link:hover,
   &.card_link:focus {

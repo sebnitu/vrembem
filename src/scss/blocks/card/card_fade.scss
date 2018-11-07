@@ -1,7 +1,10 @@
-$card_fade-transition: opacity $transition-duration $transition-timing-function;
+@import 'variables';
 
 /**
  * Card Fade
+ * ---
+ * Adds styles for card link which hides elements only to reveal them when
+ * hovered or focused. Based used with card__background and card__screen.
  */
 
 @include media-min('md') {
@@ -12,7 +15,7 @@ $card_fade-transition: opacity $transition-duration $transition-timing-function;
     .card__footer,
     .card__screen {
       opacity: 0;
-      transition: $card_fade-transition;
+      transition: $card-fade-transition;
     }
 
     &:hover,
