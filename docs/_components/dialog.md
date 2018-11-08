@@ -5,22 +5,6 @@ description: "A component that facilitates a conversation between the system and
 tags: block compound
 ---
 
-<div class="bg_shade p_2">
-
-<div class="shadow"></div>
-
-<div class="shadow shadow-depth-1"></div>
-
-<div class="shadow shadow-depth-2"></div>
-
-<div class="shadow shadow-depth-3"></div>
-
-<div class="shadow shadow-depth-4"></div>
-
-<div class="shadow shadow-depth-5"></div>
-
-</div>
-
 ## `dialog + dialog__body`
 
 <div class="demo grid grid_md">
@@ -47,8 +31,6 @@ tags: block compound
 </div>
 
 ## `dialog__close`
-
-In this example, I'm including the `icon-action` component in our `dialog__close` composition.
 
 <div class="demo grid grid_md">
   <div class="grid__item">
@@ -90,7 +72,7 @@ In this example, I'm including the `icon-action` component in our `dialog__close
       <button class="dialog__close icon-action icon-action_color_fade">
         {% include icon.html icon="x" %}
       </button>
-      <div class="dialog__body">
+      <div class="dialog__body spacing">
         <h2 class="dialog__title">Dialog Title</h2>
         <p>This is some dialog content...</p>
       </div>
@@ -112,21 +94,21 @@ In this example, I'm including the `icon-action` component in our `dialog__close
   </div>
 </div>
 
-## `dialog__group`
+## `dialog__group > level`
 
 <div class="demo grid grid_md">
   <div class="grid__item">
   <div class="demo__render">
     <div class="dialog">
-      <div class="dialog__body">
-        <div class="dialog__group">
+      <div class="dialog__body spacing">
+        <div class="level">
           <h2 class="dialog__title">Dialog Conditions</h2>
           <button class="dialog__close icon-action icon-action_color_fade">
             {% include icon.html icon="x" %}
           </button>
         </div>
         <p>Do you accept the conditions of this dialog?</p>
-        <div class="dialog__group">
+        <div class="level">
           <button class="button button_color_primary">Accept</button>
           <button class="button">Decline</button>
         </div>
@@ -139,11 +121,11 @@ In this example, I'm including the `icon-action` component in our `dialog__close
 ```html
 <div class="dialog">
   <div class="dialog__body">
-    <div class="dialog__group">
+    <div class="level">
       ...
     </div>
     ...
-    <div class="dialog__group">
+    <div class="level">
       ...
     </div>
   </div>
@@ -159,15 +141,15 @@ In this example, I'm including the `icon-action` component in our `dialog__close
   <div class="grid__item">
   <div class="demo__render">
     <div class="dialog">
-      <div class="dialog__body">
-        <div class="dialog__group">
+      <div class="dialog__body spacing">
+        <div class="dialog__group level justify_between">
           <h2 class="dialog__title">Dialog Conditions</h2>
           <button class="dialog__close icon-action icon-action_color_fade">
             {% include icon.html icon="x" %}
           </button>
         </div>
         <p>Do you accept the conditions of this dialog?</p>
-        <div class="dialog__group justify_between">
+        <div class="dialog__group level justify_between">
           <button class="button button_color_primary">Accept</button>
           <button class="button">Decline</button>
         </div>
@@ -333,9 +315,15 @@ These elements are unique because they should only be used as direct children of
   </div>
 </div>
 
-## Examples
+<div class="type" markdown="1">
 
-<p class="text_lead">The dialog is a very flexible component and can be used in many different contexts. Below are more compositional examples of the dialog component.</p>
+---
+
+## Dialog examples
+
+The dialog is a very flexible component and can be used in many different contexts. Below are more compositional examples of the dialog component.
+
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">
@@ -355,7 +343,7 @@ These elements are unique because they should only be used as direct children of
           </button>
         </div>
       </div>
-      <form class="dialog__body">
+      <form class="dialog__body spacing">
         <input type="text" class="input" placeholder="Recipients" />
         <input type="text" class="input" placeholder="Subjects" />
         <textarea class="input input_type_textarea" placeholder="..."></textarea>
@@ -453,7 +441,7 @@ These elements are unique because they should only be used as direct children of
           <use xlink:href="#x"></use>
         </svg>
       </button>
-      <div class="dialog__body p_2">
+      <div class="dialog__body spacing p_2">
         <h2 class="dialog__title">Did you forget an attachment?</h2>
         <p>You wrote "I have attached" in your message, but there are no files attached. Send anyway?</p>
       </div>

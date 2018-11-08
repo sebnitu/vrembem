@@ -1,15 +1,18 @@
-$dialog-zindex: 500 !default;
-
-$dialog-spacing: $spacing !default;
-$dialog-inner-spacing: 0.5em !default;
+// Dialog
+// ---
 $dialog-padding: 1em !default;
 $dialog-background: $white !default;
 $dialog-border: null !default;
-$dialog-inner-border: $border !default;
+$dialog-sep-border: $border !default;
 $dialog-border-radius: $border-radius !default;
 $dialog-box-shadow: $box-shadow-24dp !default;
 $dialog-transition-duration: 0.5s !default;
 $dialog-transition-timing-function: $transition-timing-function !default;
 
-$dialog__title-font-size: 1.125em !default;
-$dialog__title-line-height: 1.45em !default;
+// Dialog z-index
+// ---
+$dialog-zindex: 500 !default;
+
+// Dialog elements
+// ---
+$dialog__title-font-size: 1.2em !default;

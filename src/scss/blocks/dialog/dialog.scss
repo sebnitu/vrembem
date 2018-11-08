@@ -2,6 +2,9 @@
 
 /**
  * Dialog
+ * ---
+ * A component that facilitates a conversation between the system and the user.
+ * They often request information or an action from the user.
  */
 
 .dialog {
@@ -16,6 +19,16 @@
   border-radius: $dialog-border-radius;
   box-shadow: $dialog-box-shadow;
   transition: all $dialog-transition-duration $dialog-transition-timing-function;
+
+  > .dialog__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+
+    + .dialog__body {
+      padding-right: 3.5em;
+    }
+  }
 }
 
 .dialog__header,
@@ -25,20 +38,16 @@
 }
 
 .dialog__header,
-.dialog__footer,
-.dialog__group {
+.dialog__body,
+.dialog__footer {
   flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  vertical-align: middle;
-
-  > * + * {
-    margin-left: $dialog-inner-spacing;
-  }
 }
 
 .dialog__header,
 .dialog__footer {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
   position: sticky;
   z-index: 1;
   background: $dialog-background;
@@ -46,56 +55,23 @@
 
 .dialog__header {
   top: 0;
-  border-bottom: $dialog-inner-border;
+  border-bottom: $dialog-sep-border;
 }
 
 .dialog__body {
   flex-grow: 1;
 
-  > * {
-    margin: 0;
-  }
-
-  > * + * {
-    margin-top: $dialog-spacing;
-  }
-
   + .dialog__body {
-    border-top: $dialog-inner-border;
+    border-top: $dialog-sep-border;
   }
 }
 
 .dialog__footer {
   bottom: 0;
-  border-top: $dialog-inner-border;
+  border-top: $dialog-sep-border;
 }
-
-/* Dialog close */
-
-.dialog__close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-
-  + .dialog__body {
-    padding-right: 3.5em;
-  }
-}
-
-.dialog__header,
-.dialog__group {
-  .dialog__close {
-    position: relative;
-    top: auto;
-    right: auto;
-    flex-grow: 0;
-  }
-}
-
-/* Dialog title */
 
 .dialog__title {
-  flex: 1 1 0;
+  flex-grow: 1;
   font-size: $dialog__title-font-size;
-  line-height: $dialog__title-line-height;
 }

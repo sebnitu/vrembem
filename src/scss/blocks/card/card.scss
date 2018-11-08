@@ -73,8 +73,8 @@
 }
 
 .card__title {
-  font-size: 1.2em;
-  line-height: 1.35em;
+  flex-grow: 1;
+  font-size: $card__title-font-size;
 }
 
 /**

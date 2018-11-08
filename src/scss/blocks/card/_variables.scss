@@ -1,9 +1,6 @@
-// Card padding
+// Card
 // ---
 $card-padding: 1.25em !default;
-
-// Card box styles
-// ---
 $card-background: $white !default;
 $card-border: null !default;
 $card-sep-border: $border !default;
@@ -11,8 +8,9 @@ $card-border-radius: $border-radius !default;
 $card-box-shadow: $box-shadow-1dp !default;
 $card-transition: all $transition-duration $transition-timing-function !default;
 
-// Card screen
+// Card elements
 // ---
+$card__title-font-size: 1.2em !default;
 $card__screen-opacity: 0.7 !default;
 $card__screen-background: $dark !default;
 
