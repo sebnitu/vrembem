@@ -5,7 +5,9 @@ description: "A component for displaying groups of buttons."
 tags: block compound
 ---
 
-## `button-group`
+<div class="flag">
+  <h2>button-group</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">
@@ -39,7 +41,9 @@ tags: block compound
   </div>
 </div>
 
-## `button-group_full`
+<div class="flag">
+  <h2>button-group_full</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">
@@ -73,7 +77,9 @@ tags: block compound
   </div>
 </div>
 
-## `button-group_stack`
+<div class="flag">
+  <h2>button-group_stack</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">
@@ -105,7 +111,9 @@ tags: block compound
   </div>
 </div>
 
-## `button-group_stack + button-group_full`
+<div class="flag">
+  <h2>button-group_stack + button-group_full</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">
@@ -139,7 +147,9 @@ tags: block compound
   </div>
 </div>
 
-## `button-group_wrap`
+<div class="flag">
+  <h2>button-group_wrap</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">
@@ -179,7 +189,9 @@ tags: block compound
   </div>
 </div>
 
-## `button-group_wrap + button-group_full`
+<div class="flag">
+  <h2>button-group_wrap + button-group_full</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">
@@ -219,7 +231,9 @@ tags: block compound
   </div>
 </div>
 
-## `button-group_join`
+<div class="flag">
+  <h2>button-group_join</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">
@@ -253,7 +267,9 @@ tags: block compound
   </div>
 </div>
 
-## `button-group_join + button-group_stack`
+<div class="flag">
+  <h2>button-group_join + button-group_stack</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">
@@ -285,7 +301,9 @@ tags: block compound
   </div>
 </div>
 
-## `button-group_gap_[key]`
+<div class="flag">
+  <h2>button-group_gap_[key]</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">

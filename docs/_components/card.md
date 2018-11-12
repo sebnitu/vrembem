@@ -5,7 +5,9 @@ description: "The cards component provides a flexible and extensive content cont
 tags: block compound
 ---
 
-## `card`
+<div class="flag">
+  <h2>card</h2>
+</div>
 
 <div class="type" markdown="1">
 
@@ -47,7 +49,9 @@ The base card component comes with a number of elements for card composition. Th
   </div>
 </div>
 
-## `card__header + card__footer`
+<div class="flag">
+  <h2>card__header + card__footer</h2>
+</div>
 
 <div class="type" markdown="1">
 
@@ -93,7 +97,9 @@ These are used for when you need separated card headers and footers.
   </div>
 </div>
 
-## `card__screen + card__background`
+<div class="flag">
+  <h2>card__screen + card__background</h2>
+</div>
 
 <div class="type" markdown="1">
 
@@ -145,7 +151,9 @@ There are a number of card modifiers that can help with your card compositions.
 
 </div>
 
-## `card_invert`
+<div class="flag">
+  <h2>card_invert</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item size_4">
@@ -182,7 +190,9 @@ There are a number of card modifiers that can help with your card compositions.
   </div>
 </div>
 
-## `card_tall`
+<div class="flag">
+  <h2>card_tall</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item size_4">
@@ -209,7 +219,9 @@ There are a number of card modifiers that can help with your card compositions.
   </div>
 </div>
 
-## `card_size_[value]`
+<div class="flag">
+  <h2>card_size_[value]</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="demp__render grid__item">
@@ -271,7 +283,9 @@ These are modifiers that enhance linked cards. These change how the card looks w
 
 </div>
 
-## `card_lift`
+<div class="flag">
+  <h2>card_lift</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item size_4">
@@ -298,7 +312,9 @@ These are modifiers that enhance linked cards. These change how the card looks w
   </div>
 </div>
 
-## `card_step`
+<div class="flag">
+  <h2>card_step</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item size_4">
@@ -325,7 +341,9 @@ These are modifiers that enhance linked cards. These change how the card looks w
   </div>
 </div>
 
-## `card_fade`
+<div class="flag">
+  <h2>card_fade</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item size_4">
@@ -356,7 +374,9 @@ These are modifiers that enhance linked cards. These change how the card looks w
   </div>
 </div>
 
-## `card_zoom`
+<div class="flag">
+  <h2>card_zoom</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item size_4">
@@ -387,7 +407,9 @@ These are modifiers that enhance linked cards. These change how the card looks w
   </div>
 </div>
 
-## `card_link`
+<div class="flag">
+  <h2>card_link</h2>
+</div>
 
 <div class="type" markdown="1">
 
@@ -443,7 +465,9 @@ Available themes:
 
 </div>
 
-## `card_theme_[key]`
+<div class="flag">
+  <h2>card_theme_[key]</h2>
+</div>
 
 <div class="grid grid_md">
   <div class="grid__item size_4 spacing">
@@ -533,6 +557,10 @@ Below are a few examples of different ways to build a card using various card el
 
 </div>
 
+<div class="flag">
+  <h2>card_tall card_fade card_zoom</h2>
+</div>
+
 <div class="demo">
   <div class="demp__render">
 
@@ -564,6 +592,10 @@ Below are a few examples of different ways to build a card using various card el
   </div>
 </div>
 
+<div class="flag">
+  <h2>card_link</h2>
+</div>
+
 <div class="demo">
   <div class="demp__render">
 
@@ -587,6 +619,10 @@ Below are a few examples of different ways to build a card using various card el
     </div>
 
   </div>
+</div>
+
+<div class="flag">
+  <h2>card_link card_step</h2>
 </div>
 
 <div class="demo">
@@ -617,6 +653,10 @@ Below are a few examples of different ways to build a card using various card el
     </div>
 
   </div>
+</div>
+
+<div class="flag">
+  <h2>Random</h2>
 </div>
 
 <div class="grid">
@@ -733,4 +773,3 @@ Below are a few examples of different ways to build a card using various card el
   </div>
 
 </div><!-- .grid -->
-

@@ -2,6 +2,8 @@
 
 /**
  * Container size modifiers
+ * ---
+ * A size modifier that changes the max width of containers using a size key.
  */
 
 @each $key, $value in $container-scale {

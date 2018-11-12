@@ -2,10 +2,13 @@
 
 /**
  * Section
+ * ---
+ * A container component for wrapping distinct sections of a page.
  */
 
 .section {
   position: relative;
+  padding: map-get($section-padding, 'base');
 }
 
 .section__container {
@@ -17,6 +20,16 @@
   text-align: center;
   margin: 0 auto;
   max-width: $section__intro-max-width;
+}
+
+@each $bp, $value in $section-padding {
+  @if ($bp != 'base') {
+    @include media-min($bp) {
+      .section {
+        padding: $value;
+      }
+    }
+  }
 }
 
 /**

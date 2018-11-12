@@ -5,7 +5,9 @@ description: "A component that facilitates a conversation between the system and
 tags: block compound
 ---
 
-## `dialog + dialog__body`
+<div class="flag">
+  <h2>dialog + dialog__body</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">
@@ -30,7 +32,9 @@ tags: block compound
   </div>
 </div>
 
-## `dialog__close`
+<div class="flag">
+  <h2>dialog__close</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">
@@ -63,7 +67,9 @@ tags: block compound
   </div>
 </div>
 
-## `dialog__title`
+<div class="flag">
+  <h2>dialog__title</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">
@@ -94,162 +100,9 @@ tags: block compound
   </div>
 </div>
 
-## `dialog__group > level`
-
-<div class="demo grid grid_md">
-  <div class="grid__item">
-  <div class="demo__render">
-    <div class="dialog">
-      <div class="dialog__body spacing">
-        <div class="level">
-          <h2 class="dialog__title">Dialog Conditions</h2>
-          <button class="dialog__close icon-action icon-action_color_fade">
-            {% include icon.html icon="x" %}
-          </button>
-        </div>
-        <p>Do you accept the conditions of this dialog?</p>
-        <div class="level">
-          <button class="button button_color_primary">Accept</button>
-          <button class="button">Decline</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
-```html
-<div class="dialog">
-  <div class="dialog__body">
-    <div class="level">
-      ...
-    </div>
-    ...
-    <div class="level">
-      ...
-    </div>
-  </div>
+<div class="flag">
+  <h2>dialog__header + dialog__footer</h2>
 </div>
-```
-  </div>
-  </div>
-</div>
-
-## `justify_[value]`
-
-<div class="demo grid grid_md">
-  <div class="grid__item">
-  <div class="demo__render">
-    <div class="dialog">
-      <div class="dialog__body spacing">
-        <div class="dialog__group level justify_between">
-          <h2 class="dialog__title">Dialog Conditions</h2>
-          <button class="dialog__close icon-action icon-action_color_fade">
-            {% include icon.html icon="x" %}
-          </button>
-        </div>
-        <p>Do you accept the conditions of this dialog?</p>
-        <div class="dialog__group level justify_between">
-          <button class="button button_color_primary">Accept</button>
-          <button class="button">Decline</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
-```html
-<div class="dialog">
-  <div class="dialog__body">
-    ...
-    <div class="dialog__group justify_between">
-      ...
-    </div>
-  </div>
-</div>
-```
-  </div>
-  </div>
-</div>
-
-<div class="demo grid grid_md">
-  <div class="grid__item">
-  <div class="demo__render">
-    <div class="dialog">
-      <div class="dialog__body">
-        <div class="dialog__group">
-          <h2 class="dialog__title">Dialog Conditions</h2>
-          <button class="dialog__close icon-action icon-action_color_fade">
-            {% include icon.html icon="x" %}
-          </button>
-        </div>
-        <p>Do you accept the conditions of this dialog?</p>
-        <div class="dialog__group justify_center">
-          <button class="button button_color_primary">Accept</button>
-          <button class="button">Decline</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
-```html
-<div class="dialog">
-  <div class="dialog__body">
-    ...
-    <div class="dialog__group justify_center">
-      ...
-    </div>
-  </div>
-</div>
-```
-  </div>
-  </div>
-</div>
-
-<div class="demo grid grid_md">
-  <div class="grid__item">
-  <div class="demo__render">
-    <div class="dialog">
-      <div class="dialog__body">
-        <div class="dialog__group">
-          <h2 class="dialog__title">Dialog Conditions</h2>
-          <button class="dialog__close icon-action icon-action_color_fade">
-            {% include icon.html icon="x" %}
-          </button>
-        </div>
-        <p>Do you accept the conditions of this dialog?</p>
-        <div class="dialog__group justify_end">
-          <button class="button button_color_primary">Accept</button>
-          <button class="button">Decline</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
-```html
-<div class="dialog">
-  <div class="dialog__body">
-    ...
-    <div class="dialog__group justify_end">
-      ...
-    </div>
-  </div>
-</div>
-```
-  </div>
-  </div>
-</div>
-
-## Dialog Structural Elements
-
-These elements are unique because they should only be used as direct children of the `dialog` element.
-
-## `dialog__header`
 
 <div class="demo grid grid_md">
   <div class="grid__item">
@@ -264,6 +117,12 @@ These elements are unique because they should only be used as direct children of
       <div class="dialog__body">
         <p>This is some dialog content...</p>
       </div>
+      <div class="dialog__footer">
+        <div class="button-group">
+          <button class="button button_color_primary">Accept</button>
+          <button class="button">Cancel</button>
+        </div>
+      </div>
     </div>
   </div>
   </div>
@@ -274,35 +133,6 @@ These elements are unique because they should only be used as direct children of
   <div class="dialog__header">
     ...
   </div>
-  <div class="dialog__body">
-    ...
-  </div>
-</div>
-```
-  </div>
-  </div>
-</div>
-
-## `dialog__footer`
-
-<div class="demo grid grid_md">
-  <div class="grid__item">
-  <div class="demo__render">
-    <div class="dialog">
-      <div class="dialog__body">
-        <p>This is some dialog content...</p>
-      </div>
-      <div class="dialog__footer">
-        <button class="button button_color_primary">Accept</button>
-        <button class="button">Cancel</button>
-      </div>
-    </div>
-  </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
-```html
-<div class="dialog">
   <div class="dialog__body">
     ...
   </div>
@@ -325,10 +155,14 @@ The dialog is a very flexible component and can be used in many different contex
 
 </div>
 
+<div class="flag">
+  <h2>Message</h2>
+</div>
+
 <div class="demo grid grid_md">
   <div class="grid__item">
   <div class="demo__render">
-    <div class="dialog" data-dismissible>
+    <div class="dialog">
       <div class="dialog__header">
         <h2 class="dialog__title">New Message</h2>
         <div class="dialog__group">
@@ -338,7 +172,7 @@ The dialog is a very flexible component and can be used in many different contex
           <button class="dialog__group-item icon-action icon-action_color_fade">
             {% include icon.html icon="maximize-2" %}
           </button>
-          <button class="dialog__group-item dialog__close icon-action icon-action_color_fade" data-dismiss>
+          <button class="dialog__group-item dialog__close icon-action icon-action_color_fade">
             {% include icon.html icon="x" %}
           </button>
         </div>
@@ -349,7 +183,7 @@ The dialog is a very flexible component and can be used in many different contex
         <textarea class="input input_type_textarea" placeholder="..."></textarea>
       </form>
       <div class="dialog__footer justify_between">
-        <div class="dialog__group">
+        <div class="button-group">
           <button class="button button_color_primary">Send</button>
           <button class="button button_icon">
             {% include icon.html icon="paperclip" %}
@@ -358,7 +192,7 @@ The dialog is a very flexible component and can be used in many different contex
             {% include icon.html icon="image" %}
           </button>
         </div>
-        <div class="dialog__group">
+        <div class="button-group">
           <button class="button button_icon">
             {% include icon.html icon="trash" %}
           </button>
@@ -373,11 +207,11 @@ The dialog is a very flexible component and can be used in many different contex
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
 ```html
-<div class="dialog" data-dismissible>
+<div class="dialog">
   <div class="dialog__header">
     <h2 class="dialog__title">New Message</h2>
     <div class="dialog__group">
-      <button class="dialog__group-item icon-action icon-action_color_fade" data-dismiss>
+      <button class="dialog__group-item icon-action icon-action_color_fade">
         <svg role="img" class="icon">
           <use xlink:href="#minus"></use>
         </svg>
@@ -400,7 +234,7 @@ The dialog is a very flexible component and can be used in many different contex
     <textarea class="input input_type_textarea" placeholder="..."></textarea>
   </form>
   <div class="dialog__footer justify_between">
-    <div class="dialog__group">
+    <div class="button-group">
       <button class="button button_color_primary">Send</button>
       <button class="button button_icon">
         <svg role="img" class="icon">
@@ -413,7 +247,7 @@ The dialog is a very flexible component and can be used in many different contex
         </svg>
       </button>
     </div>
-    <div class="dialog__group">
+    <div class="button-group">
       <button class="button button_icon">
         <svg role="img" class="icon">
           <use xlink:href="#trash"></use>
@@ -432,11 +266,15 @@ The dialog is a very flexible component and can be used in many different contex
   </div>
 </div>
 
+<div class="flag">
+  <h2>Confirmation</h2>
+</div>
+
 <div class="demo grid grid_md">
   <div class="grid__item">
   <div class="demo__render">
-    <div class="dialog" data-dismissible>
-      <button class="dialog__close icon-action icon-action_color_fade" data-dismiss>
+    <div class="dialog">
+      <button class="dialog__close icon-action icon-action_color_fade">
         <svg role="img" class="icon">
           <use xlink:href="#x"></use>
         </svg>
@@ -446,8 +284,10 @@ The dialog is a very flexible component and can be used in many different contex
         <p>You wrote "I have attached" in your message, but there are no files attached. Send anyway?</p>
       </div>
       <div class="dialog__footer justify_end">
-        <button class="button button_min-width">Cancel</button>
-        <button class="button button_min-width button_color_primary">Ok</button>
+        <div class="button-group">
+          <button class="button">Cancel</button>
+          <button class="button button_color_primary">Send</button>
+        </div>
       </div>
     </div>
   </div>
@@ -455,8 +295,8 @@ The dialog is a very flexible component and can be used in many different contex
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
 ```html
-<div class="dialog" data-dismissible>
-  <button class="dialog__close icon-action icon-action_color_fade" data-dismiss>
+<div class="dialog">
+  <button class="dialog__close icon-action icon-action_color_fade">
     <svg role="img" class="icon">
       <use xlink:href="#x"></use>
     </svg>
@@ -466,8 +306,10 @@ The dialog is a very flexible component and can be used in many different contex
     <p>You wrote "I have attached" in your message, but there are no files attached. Send anyway?</p>
   </div>
   <div class="dialog__footer justify_end">
-    <button class="button button_min-width">Cancel</button>
-    <button class="button button_min-width button_color_primary">Ok</button>
+    <div class="button-group">
+      <button class="button">Cancel</button>
+      <button class="button button_color_primary">Send</button>
+    </div>
   </div>
 </div>
 ```

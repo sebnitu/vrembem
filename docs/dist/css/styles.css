@@ -1494,9 +1494,12 @@ pre {
 
 /**
  * Section
+ * ---
+ * A container component for wrapping distinct sections of a page.
  */
 .section {
   position: relative;
+  padding: 1.5em;
 }
 
 .section__container {
@@ -1508,6 +1511,18 @@ pre {
   text-align: center;
   margin: 0 auto;
   max-width: 45rem;
+}
+
+@media (min-width: 760px) {
+  .section {
+    padding: 2em 1.5em;
+  }
+}
+
+@media (min-width: 990px) {
+  .section {
+    padding: 3em 1.5em;
+  }
 }
 
 /**
@@ -1538,23 +1553,9 @@ pre {
 
 /**
  * Section size modifiers
+ * ---
+ * A size modifier that changes the padding scale of sections using a size key.
  */
-.section {
-  padding: 1.5em;
-}
-
-@media (min-width: 760px) {
-  .section {
-    padding: 2em 1.5em;
-  }
-}
-
-@media (min-width: 990px) {
-  .section {
-    padding: 3em 1.5em;
-  }
-}
-
 .section_size_xs {
   padding: 0;
 }
@@ -1584,6 +1585,22 @@ pre {
 @media (min-width: 990px) {
   .section_size_sm {
     padding: 1em;
+  }
+}
+
+.section_size_md {
+  padding: 1.5em;
+}
+
+@media (min-width: 760px) {
+  .section_size_md {
+    padding: 2em 1.5em;
+  }
+}
+
+@media (min-width: 990px) {
+  .section_size_md {
+    padding: 3em 1.5em;
   }
 }
 
@@ -1620,7 +1637,9 @@ pre {
 }
 
 /**
- * Section theme primary
+ * Section theme modifiers
+ * ---
+ * Adds a variety of color variations for the section component.
  */
 .section_theme_primary {
   background: #2196f3;
@@ -1687,10 +1706,37 @@ pre {
 
 /**
  * Container
+ * ---
+ * A component for giving content a max width and centered within it's parent.
  */
 .container {
   max-width: 70rem;
   margin: 0 auto;
+}
+
+/**
+ * Container size modifiers
+ * ---
+ * A size modifier that changes the max width of containers using a size key.
+ */
+.container_size_xs {
+  max-width: 45rem;
+}
+
+.container_size_sm {
+  max-width: 60rem;
+}
+
+.container_size_md {
+  max-width: 70rem;
+}
+
+.container_size_lg {
+  max-width: 80rem;
+}
+
+.container_size_xl {
+  max-width: 90rem;
 }
 
 /**
@@ -3484,6 +3530,9 @@ pre {
 }
 
 .card_tall .card__body > * {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
   width: 100%;
 }
 
@@ -6473,7 +6522,78 @@ pre {
 }
 
 /**
+ * Box
+ * ---
+ * Styles a generic box for displaying none-visual components.
+ */
+.box {
+  padding: 1em;
+  background: rgba(76, 175, 80, 0.2);
+  border-radius: 3px;
+}
+
+/**
+ * Code
+ * ---
+ * Adds a few simple components for displaying code examples such as:
+ *  - labels
+ *  - output
+ */
+/**
+ * Code Label
+ */
+.code-label,
+.type .code-label {
+  padding: 0.5rem 1rem;
+  margin: 1.5rem 0 -1.5rem;
+  background: -webkit-gradient(linear, left top, right top, from(#ebebeb), to(#f2f2f2));
+  background: linear-gradient(to right, #ebebeb, #f2f2f2);
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  font-size: 0.875em;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  color: #e91e63;
+}
+
+.code-label + div pre,
+.code-label + .code-output {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top: 0;
+}
+
+/**
+ * Code Output
+ */
+.type pre,
+.code-output {
+  padding: 1rem;
+}
+
+.type pre {
+  font-size: 0.875em;
+}
+
+.code-output {
+  margin: 1.5rem 0;
+  border: 2px solid #f2f2f2;
+  border-radius: 3px;
+}
+
+@media (min-width: 760px) {
+  .type pre,
+  .code-output {
+    padding: 1.5rem;
+  }
+  .type pre {
+    font-size: 16px;
+  }
+}
+
+/**
  * Cover
+ * ---
+ * Creates styles for the cover component which is the layout for the home page.
  */
 .cover {
   display: -webkit-box;
@@ -6603,253 +6723,10 @@ pre {
   }
 }
 
-.jumbo-filter {
-  position: -webkit-sticky;
-  position: sticky;
-  z-index: 1;
-  top: 0;
-  background: #ffffff;
-  border-bottom: 3px solid #eceff1;
-}
-
-.jumbo-filter.is-active {
-  border-color: #2196f3;
-}
-
-.jumbo-filter .search {
-  padding: 1.25em 3em;
-  background: #f2f4f5;
-  border: none;
-  border-radius: 0;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-
-.jumbo-filter .search:focus, .jumbo-filter .search.is-active {
-  color: #2196f3;
-  background: #f2f4f5;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-
-.jumbo-filter .search_label,
-.jumbo-filter .search_clear {
-  position: absolute;
-  z-index: 5;
-  top: 50%;
-  -webkit-transform: translate(0, -50%);
-          transform: translate(0, -50%);
-}
-
-.jumbo-filter .search_label {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  left: 1em;
-}
-
-.jumbo-filter .search_clear {
-  right: 1.125em;
-}
-
-@media (min-width: 480px) {
-  .jumbo-filter .search {
-    padding: 1.5em 4em;
-  }
-  .jumbo-filter .search_label {
-    left: 1.5em;
-  }
-  .jumbo-filter .search_clear {
-    right: 1.65em;
-  }
-}
-
-/**
- * Jumbo-list
- */
-.jumbo-list {
-  position: relative;
-  list-style: none;
-}
-
-.jumbo-list__item {
-  position: relative;
-}
-
-.jumbo-list__link {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  padding: 1.25em 1.5em;
-  line-height: 1.325em;
-  background-color: #ffffff;
-  -webkit-transition: background-color 0.5s linear;
-  transition: background-color 0.5s linear;
-}
-
-.jumbo-list__link > * + * {
-  margin-left: 0.5em;
-}
-
-.jumbo-list__link .name {
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  white-space: nowrap;
-}
-
-.jumbo-list__link .tags {
-  -webkit-box-flex: 0;
-      -ms-flex-positive: 0;
-          flex-grow: 0;
-  color: #bdbdbd;
-  -webkit-transition: color 0.5s linear;
-  transition: color 0.5s linear;
-}
-
-.jumbo-list__link:hover, .jumbo-list__link:focus {
-  outline: none;
-  background-color: rgba(33, 150, 243, 0.1);
-  -webkit-transition: background-color 0s linear;
-  transition: background-color 0s linear;
-}
-
-.jumbo-list__link:hover .tags, .jumbo-list__link:focus .tags {
-  color: #2196f3;
-  -webkit-transition: color 0s linear;
-  transition: color 0s linear;
-}
-
-@media (min-width: 480px) {
-  .jumbo-list__link {
-    padding: 1.5em 2em;
-  }
-}
-
-/**
- * Tags
- */
-.tags {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  list-style: none;
-}
-
-.tags .tag {
-  margin: -0.5em;
-  padding: 0.5em;
-  border-radius: 3px;
-}
-
-.tags .tag:hover {
-  background: #ffffff;
-}
-
-.tags .tag + .tag {
-  margin-left: 0.5em;
-}
-
-/**
- * Body
- */
-body,
-html {
-  height: 100%;
-}
-
-/**
- * Page
- */
-.page {
-  min-height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-/**
- * Header and Footer
- */
-.page__header,
-.page__footer {
-  z-index: 600;
-  position: -webkit-sticky;
-  position: sticky;
-  left: 0;
-  right: 0;
-  padding: 0.5em;
-  -webkit-box-flex: 0;
-      -ms-flex-positive: 0;
-          flex-grow: 0;
-}
-
-.page__header {
-  top: 0;
-  background: #0a6ebd;
-  color: #ffffff;
-}
-
-.page__footer {
-  bottom: 0;
-  background: #eceff1;
-}
-
-@media (min-width: 760px) {
-  .page__header,
-  .page__footer {
-    padding: 1em;
-  }
-}
-
-/**
- * Main
- */
-.page__main {
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-}
-
-.page__section {
-  padding: 1.5em;
-}
-
-/**
- * Footer Menu
- */
-.page__footer .menu__link {
-  padding: 0.5em;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-}
-
-.page__footer .menu__link:focus, .page__footer .menu__link:hover {
-  color: #0c7cd5;
-  background: #ffffff;
-}
-
-.page__footer .menu__item:last-child .menu__link {
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-}
-
-@media (min-width: 760px) {
-  .page__footer .menu__link {
-    padding: 0.75em;
-  }
-}
-
 /**
  * Demo
+ * ---
+ * Styles demos with both the code and rendered examples.
  */
 .demo .grid__item {
   display: -webkit-box;
@@ -6887,16 +6764,39 @@ html {
 }
 
 /**
- * Box
+ * Flag
+ * ---
+ * Creates an emphasized heading that clearly labels following content.
  */
-.box {
-  padding: 1em;
-  background: rgba(76, 175, 80, 0.2);
-  border-radius: 3px;
+.flag,
+.type .flag {
+  margin: 4em 0 2em;
+  border-top: 1px solid #ffeb3b;
+}
+
+.flag > *,
+.type .flag > * {
+  display: inline-block;
+  margin: 0;
+  padding: 0.25em 0.75em;
+  background: #ffeb3b;
+  font-size: 16px;
+}
+
+.flag:first-child,
+.type .flag:first-child {
+  margin-top: 0;
+}
+
+.flag:last-child,
+.type .flag:last-child {
+  margin-bottom: 0;
 }
 
 /**
  * Syntax highlighting
+ * ---
+ * Adds the styles required for syntax highlighter: http://rouge.jneen.net/
  */
 .highlight .c {
   color: #998;
@@ -7145,15 +7045,6 @@ html {
 }
 
 /**
- * Figure Overrides
- */
-.type figure.highlight {
-  padding: 0;
-  border: none;
-  text-align: left;
-}
-
-/**
  * Custom highlighting styles
  */
 .language-console .highlight .gp {
@@ -7164,54 +7055,257 @@ html {
 }
 
 /**
- * Code Label
+ * Jumbo Filter
+ * ---
+ * Handles the styles of the search filter displayed above the jumbo list.
  */
-.code-label,
-.type .code-label {
-  padding: 0.5rem 1rem;
-  margin: 1.5rem 0 -1.5rem;
-  background: -webkit-gradient(linear, left top, right top, from(#ebebeb), to(#f2f2f2));
-  background: linear-gradient(to right, #ebebeb, #f2f2f2);
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  font-size: 0.875em;
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  color: #e91e63;
+.jumbo-filter {
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  background: #ffffff;
+  border-bottom: 3px solid #eceff1;
 }
 
-.code-label + div pre,
-.code-label + .code-output {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-top: 0;
+.jumbo-filter.is-active {
+  border-color: #2196f3;
+}
+
+.jumbo-filter .search {
+  padding: 1.25em 3em;
+  background: #ffffff;
+  border: none;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.jumbo-filter .search:focus, .jumbo-filter .search.is-active {
+  color: #2196f3;
+  background: #ffffff;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.jumbo-filter .search_label,
+.jumbo-filter .search_clear {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+
+.jumbo-filter .search_label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  left: 1em;
+}
+
+.jumbo-filter .search_clear {
+  right: 1.125em;
+}
+
+@media (min-width: 480px) {
+  .jumbo-filter .search {
+    padding: 1.5em 4em;
+  }
+  .jumbo-filter .search_label {
+    left: 1.5em;
+  }
+  .jumbo-filter .search_clear {
+    right: 1.65em;
+  }
 }
 
 /**
- * Code Output
+ * Jumbo List
+ * ---
+ * Handles the styles of the component list.
  */
-.type pre,
-.code-output {
-  padding: 1rem;
+.jumbo-list {
+  position: relative;
+  list-style: none;
 }
 
-.type pre {
-  font-size: 0.875em;
+.jumbo-list__item {
+  position: relative;
 }
 
-.code-output {
-  margin: 1.5rem 0;
-  border: 2px solid #f2f2f2;
+.jumbo-list__link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1.25em 1.5em;
+  line-height: 1.325em;
+  background-color: #ffffff;
+  -webkit-transition: background-color 0.5s linear;
+  transition: background-color 0.5s linear;
+}
+
+.jumbo-list__link > * + * {
+  margin-left: 0.5em;
+}
+
+.jumbo-list__link .name {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  white-space: nowrap;
+}
+
+.jumbo-list__link .tags {
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+  color: #bdbdbd;
+  -webkit-transition: color 0.5s linear;
+  transition: color 0.5s linear;
+}
+
+.jumbo-list__link:hover, .jumbo-list__link:focus {
+  outline: none;
+  background-color: rgba(33, 150, 243, 0.1);
+  -webkit-transition: background-color 0s linear;
+  transition: background-color 0s linear;
+}
+
+.jumbo-list__link:hover .tags, .jumbo-list__link:focus .tags {
+  color: #2196f3;
+  -webkit-transition: color 0s linear;
+  transition: color 0s linear;
+}
+
+@media (min-width: 480px) {
+  .jumbo-list__link {
+    padding: 1.5em 2em;
+  }
+}
+
+/**
+ * Tags
+ */
+.tags {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  list-style: none;
+}
+
+.tags .tag {
+  margin: -0.5em;
+  padding: 0.5em;
   border-radius: 3px;
 }
 
+.tags .tag:hover {
+  background: #ffffff;
+}
+
+.tags .tag + .tag {
+  margin-left: 0.5em;
+}
+
+/**
+ * Page
+ * ---
+ * The page component which handles layout for a general page document.
+ */
+.page {
+  min-height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+/**
+ * Header and Footer
+ */
+.page__header,
+.page__footer {
+  z-index: 600;
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  right: 0;
+  padding: 0.5em;
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+}
+
+.page__header {
+  top: 0;
+  background: #0a6ebd;
+  color: #ffffff;
+}
+
+.page__footer {
+  bottom: 0;
+  background: #eceff1;
+}
+
 @media (min-width: 760px) {
-  .type pre,
-  .code-output {
-    padding: 1.5rem;
+  .page__header,
+  .page__footer {
+    padding: 1em;
   }
-  .type pre {
-    font-size: 16px;
+}
+
+/**
+ * Main
+ */
+.page__main {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.page__section {
+  padding: 1.5em;
+}
+
+/**
+ * Footer Menu
+ */
+.page__footer .menu__link {
+  padding: 0.5em;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.page__footer .menu__link:focus, .page__footer .menu__link:hover {
+  color: #0c7cd5;
+  background: #ffffff;
+}
+
+.page__footer .menu__item:last-child .menu__link {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+@media (min-width: 760px) {
+  .page__footer .menu__link {
+    padding: 0.75em;
   }
+}
+
+/**
+ * Global styles
+ */
+body,
+html {
+  height: 100%;
 }
 
 /*# sourceMappingURL=styles.css.map */

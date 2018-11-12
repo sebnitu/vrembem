@@ -5,7 +5,9 @@ description: "The breadcrumb component is a navigation component that shows the 
 tags: block compound
 ---
 
-## `breadcrumb`
+<div class="flag">
+  <h2>breadcrumb</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">
@@ -48,7 +50,9 @@ tags: block compound
   </div>
 </div>
 
-## `breadcrumb_invert`
+<div class="flag">
+  <h2>breadcrumb_invert</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">

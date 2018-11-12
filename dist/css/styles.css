@@ -1493,9 +1493,12 @@ pre {
 
 /**
  * Section
+ * ---
+ * A container component for wrapping distinct sections of a page.
  */
 .section {
   position: relative;
+  padding: 1.5em;
 }
 
 .section__container {
@@ -1507,6 +1510,18 @@ pre {
   text-align: center;
   margin: 0 auto;
   max-width: 45rem;
+}
+
+@media (min-width: 760px) {
+  .section {
+    padding: 2em 1.5em;
+  }
+}
+
+@media (min-width: 990px) {
+  .section {
+    padding: 3em 1.5em;
+  }
 }
 
 /**
@@ -1537,23 +1552,9 @@ pre {
 
 /**
  * Section size modifiers
+ * ---
+ * A size modifier that changes the padding scale of sections using a size key.
  */
-.section {
-  padding: 1.5em;
-}
-
-@media (min-width: 760px) {
-  .section {
-    padding: 2em 1.5em;
-  }
-}
-
-@media (min-width: 990px) {
-  .section {
-    padding: 3em 1.5em;
-  }
-}
-
 .section_size_xs {
   padding: 0;
 }
@@ -1583,6 +1584,22 @@ pre {
 @media (min-width: 990px) {
   .section_size_sm {
     padding: 1em;
+  }
+}
+
+.section_size_md {
+  padding: 1.5em;
+}
+
+@media (min-width: 760px) {
+  .section_size_md {
+    padding: 2em 1.5em;
+  }
+}
+
+@media (min-width: 990px) {
+  .section_size_md {
+    padding: 3em 1.5em;
   }
 }
 
@@ -1619,7 +1636,9 @@ pre {
 }
 
 /**
- * Section theme primary
+ * Section theme modifiers
+ * ---
+ * Adds a variety of color variations for the section component.
  */
 .section_theme_primary {
   background: #2196f3;
@@ -1686,10 +1705,37 @@ pre {
 
 /**
  * Container
+ * ---
+ * A component for giving content a max width and centered within it's parent.
  */
 .container {
   max-width: 70rem;
   margin: 0 auto;
+}
+
+/**
+ * Container size modifiers
+ * ---
+ * A size modifier that changes the max width of containers using a size key.
+ */
+.container_size_xs {
+  max-width: 45rem;
+}
+
+.container_size_sm {
+  max-width: 60rem;
+}
+
+.container_size_md {
+  max-width: 70rem;
+}
+
+.container_size_lg {
+  max-width: 80rem;
+}
+
+.container_size_xl {
+  max-width: 90rem;
 }
 
 /**
@@ -3483,6 +3529,9 @@ pre {
 }
 
 .card_tall .card__body > * {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
   width: 100%;
 }
 

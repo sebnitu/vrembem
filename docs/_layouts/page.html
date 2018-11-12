@@ -2,13 +2,17 @@
 layout: default
 ---
 
-<div class="page__section">
-  <div class="page__container container spacing">
+<header class="section section_size_lg bg_shade">
+  <div class="container spacing">
     <h1 class="h1">{{ page.title }}</h1>
     {% if page.description %}
       <p class="text_lead">{{ page.description }}</p>
     {% endif %}
-    <hr class="hr" />
+  </div>
+</header>
+
+<div class="section">
+  <div class="container spacing spacing_xl">
     {{ content }}
   </div>
 </div>

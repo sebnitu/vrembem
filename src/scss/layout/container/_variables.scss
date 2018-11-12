@@ -1,6 +1,10 @@
+// Container
+// ---
 $container-max-width: 70rem !default;
 $container-margin: 0 auto !default;
 
+// Container size scaling
+// ---
 $container-scale: (
   'xs': 45rem,
   'sm': 60rem,

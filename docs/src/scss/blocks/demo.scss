@@ -1,5 +1,7 @@
 /**
  * Demo
+ * ---
+ * Styles demos with both the code and rendered examples.
  */
 
 .demo .grid__item {
@@ -33,14 +35,4 @@
   .demo__code {
     padding: 1.5em;
   }
-}
-
-/**
- * Box
- */
-
-.box {
-  padding: 1em;
-  background: rgba($green, 0.2);
-  border-radius: $border-radius;
 }

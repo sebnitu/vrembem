@@ -5,7 +5,9 @@ description: "A directional triangle drawn with CSS."
 tags: block simple
 ---
 
-## `arrow`
+<div class="flag">
+  <h2>arrow</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">
@@ -28,27 +30,31 @@ tags: block simple
   </div>
 </div>
 
-## `button > arrow`
+<div class="flag">
+  <h2>button > arrow</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">
   <div class="demo__render">
-    <button class="button button_color_primary">
-      <span>Button</span>
-      <span class="arrow"></span>
-    </button>
-    <button class="button button_outline_dark">
-      <span class="arrow arrow_up"></span>
-      <span>Button</span>
-    </button>
-    <button class="button button_color_primary">
-      {% include icon.html icon="github" %}
-      <span class="arrow arrow_right"></span>
-    </button>
-    <button class="button button_outline_dark">
-      <span class="arrow arrow_left"></span>
-      {% include icon.html icon="github" %}
-    </button>
+    <div class="button-group button-group_wrap">
+      <button class="button button_color_primary">
+        <span>Button</span>
+        <span class="arrow"></span>
+      </button>
+      <button class="button button_outline_dark">
+        <span class="arrow arrow_up"></span>
+        <span>Button</span>
+      </button>
+      <button class="button button_color_primary">
+        {% include icon.html icon="github" %}
+        <span class="arrow arrow_right"></span>
+      </button>
+      <button class="button button_outline_dark">
+        <span class="arrow arrow_left"></span>
+        {% include icon.html icon="github" %}
+      </button>
+    </div>
   </div>
   </div>
   <div class="grid__item size_6">
@@ -63,12 +69,14 @@ tags: block simple
   </div>
 </div>
 
-## `menu > arrow`
+<div class="flag">
+  <h2>menu > arrow</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">
   <div class="demo__render">
-    <ul class="menu">
+    <ul class="menu menu_wrap">
       <li class="menu__item">
         <a class="menu__link" href="#">
           <span>Create</span>

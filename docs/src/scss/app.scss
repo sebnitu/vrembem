@@ -1,14 +1,26 @@
-// Overrides & Libraries
+// Libraries & Overrides
 // ---
+// Overrides are loaded first to make sure we set our library defaults.
 @import 'overrides';
 @import 'vrembem';
 
 // Custom components
 // ---
+@import 'blocks/box';
+@import 'blocks/code';
 @import 'blocks/cover';
+@import 'blocks/demo';
+@import 'blocks/flag';
+@import 'blocks/highlight';
 @import 'blocks/jumbo-filter';
 @import 'blocks/jumbo-list';
-
 @import 'blocks/page';
-@import 'blocks/demo';
-@import 'blocks/highlight';
+
+/**
+ * Global styles
+ */
+
+body,
+html {
+  height: 100%;
+}

@@ -5,7 +5,9 @@ description: "Buttons are a simple component that allow users to take actions."
 tags: block simple
 ---
 
-## `button`
+<div class="flag">
+  <h2>button</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">
@@ -26,7 +28,9 @@ tags: block simple
   </div>
 </div>
 
-## `button__item`
+<div class="flag">
+  <h2>button__item</h2>
+</div>
 
 Elements inside the button component receive appropriate spacing using the `> * + *` selector rule. You can also use the `.button__item` element for more specificity.
 
@@ -66,7 +70,9 @@ Elements inside the button component receive appropriate spacing using the `> * 
   </div>
 </div>
 
-## `button_icon`
+<div class="flag">
+  <h2>button_icon</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">
@@ -106,7 +112,9 @@ Elements inside the button component receive appropriate spacing using the `> * 
   </div>
 </div>
 
-## `button_size`
+<div class="flag">
+  <h2>button_size</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">
@@ -135,7 +143,9 @@ Elements inside the button component receive appropriate spacing using the `> * 
   </div>
 </div>
 
-## `button_block`
+<div class="flag">
+  <h2>button_block</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">
@@ -157,7 +167,9 @@ Elements inside the button component receive appropriate spacing using the `> * 
   </div>
 </div>
 
-## `button_block_[key]`
+<div class="flag">
+  <h2>button_block_[key]</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">
@@ -192,7 +204,9 @@ Elements inside the button component receive appropriate spacing using the `> * 
   </div>
 </div>
 
-## `button_color_[key]`
+<div class="flag">
+  <h2>button_color_[key]</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">
@@ -240,7 +254,9 @@ Elements inside the button component receive appropriate spacing using the `> * 
   </div>
 </div>
 
-## `button_outline_[key]`
+<div class="flag">
+  <h2>button_outline_[key]</h2>
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">

@@ -2,29 +2,22 @@
 
 /**
  * Section size modifiers
+ * ---
+ * A size modifier that changes the padding scale of sections using a size key.
  */
 
-@each $name, $group in $section-scale {
-
-  @if ($name == 'default') {
-    $name: '.section';
-  } @else {
-    $name: '.section_size_#{$name}';
-  }
-
+@each $name, $group in $section-padding-scale {
   @each $bp, $value in $group {
-
     @if ($bp == 'base') {
-      #{$name} {
+      .section_size_#{$name} {
         padding: $value;
       }
     } @else {
       @include media-min($bp) {
-        #{$name} {
+        .section_size_#{$name} {
           padding: $value;
         }
       }
     }
-
   }
 }

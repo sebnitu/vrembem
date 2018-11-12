@@ -1,3 +1,9 @@
+/**
+ * Jumbo Filter
+ * ---
+ * Handles the styles of the search filter displayed above the jumbo list.
+ */
+
 .jumbo-filter {
   position: sticky;
   z-index: 1;
@@ -11,7 +17,8 @@
 
   .search {
     padding: 1.25em 3em;
-    background: lighten($shade, 2%);
+    // background: lighten($shade, 2%);
+    background: $white;
     border: none;
     border-radius: 0;
     box-shadow: none;
@@ -19,7 +26,7 @@
     &:focus,
     &.is-active {
       color: $primary;
-      background: lighten($shade, 2%);
+      background: $white;
       box-shadow: none;
     }
   }
