@@ -19,8 +19,8 @@
     "gulpfile.babel.js"
   ],
   "devDependencies": {
-    "@babel/core": "^7.1.2",
-    "@babel/preset-env": "^7.1.0",
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
     "@babel/register": "^7.0.0",
     "autoprefixer": "^9.3.1",
     "babelify": "^10.0.0",
@@ -28,7 +28,7 @@
     "del": "^3.0.0",
     "feather-icons": "^4.9.0",
     "gulp": "^4.0.0",
-    "gulp-imagemin": "^4.1.0",
+    "gulp-imagemin": "^5.0.3",
     "gulp-postcss": "^8.0.0",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
@@ -37,7 +37,7 @@
     "gulp-uglify": "^3.0.1",
     "list.js": "^1.5.0",
     "svgxuse": "^1.2.6",
-    "through2": "^2.0.3",
+    "through2": "^3.0.0",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   }
