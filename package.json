@@ -25,7 +25,7 @@
     "autoprefixer": "^9.5.1",
     "babelify": "^10.0.0",
     "browserify": "^16.2.3",
-    "del": "^3.0.0",
+    "del": "^4.1.1",
     "feather-icons": "^4.21.0",
     "gulp": "^4.0.2",
     "gulp-imagemin": "^5.0.3",
