@@ -1,5 +1,7 @@
-import Modal from './modal.js'
-import Dismissible from './dismissible.js'
+import Dismissible from './dismissible'
+import Modal from './modal'
+import Toggle from './toggle'
 
-const modal = new Modal()
 const dismissible = new Dismissible()
+const modal = new Modal()
+const toggle = new Toggle()

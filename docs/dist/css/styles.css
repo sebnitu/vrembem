@@ -3418,6 +3418,7 @@ pre {
       -ms-flex-positive: 1;
           flex-grow: 1;
   font-size: 1.2em;
+  font-weight: 600;
 }
 
 /**
@@ -3770,10 +3771,15 @@ pre {
       -ms-flex-positive: 1;
           flex-grow: 1;
   font-size: 1.2em;
+  font-weight: 600;
 }
 
 /**
  * Dropdown
+ * ---
+ * A component that is initially hidden and revealed upon user interaction
+ * either through a click or hover event. Dropdown components typically display
+ * lists of possible actions or navigation.
  */
 .dropdown {
   position: relative;
@@ -3790,7 +3796,6 @@ pre {
   margin: 0.5em 0 0;
   padding: 0.5em 0;
   font-size: 0.9375rem;
-  line-height: 1.5;
   text-align: left;
   list-style: none;
   white-space: normal;

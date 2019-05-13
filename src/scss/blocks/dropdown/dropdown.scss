@@ -2,6 +2,10 @@
 
 /**
  * Dropdown
+ * ---
+ * A component that is initially hidden and revealed upon user interaction
+ * either through a click or hover event. Dropdown components typically display
+ * lists of possible actions or navigation.
  */
 
 .dropdown {
@@ -148,8 +152,8 @@
 }
 
 .dropdown__title {
-  font-size: 1.2em;
-  font-weight: font-weight('semi-bold');
+  font-size: $dropdown__title-font-size;
+  font-weight: $dropdown__title-font-weight;
 }
 
 /**

@@ -1,10 +1,17 @@
 import u from 'utility'
-import Modal from 'modal'
 import Dismissible from 'dismissible'
+import Modal from 'modal'
+import Toggle from 'toggle'
 import listjs from 'list.js'
 
-const modal = new Modal()
 const dismissible = new Dismissible()
+const modal = new Modal()
+const toggle = new Toggle()
+const dropdown = new Toggle({
+  trigger: '.dropdown.on-click',
+  targets: '',
+  class: 'is-active'
+})
 
 /**
  * List.js

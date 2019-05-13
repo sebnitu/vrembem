@@ -1,11 +1,62 @@
 ---
 layout: page
 title: Dropdown
-description: "A component that is initially hidden and revealed upon user interaction either through a click or hover event. Dropdown components typically display lists of possible actions or navigation but this is not always the case."
+description: "A component that is initially hidden and revealed upon user interaction either through a click or hover event. Dropdown components typically display lists of possible actions or navigation."
 tags: block compound
 ---
 
-## `dropdown`
+<div id="box_toggle" class="box type">
+  <p>...</p>
+</div>
+
+<div>
+
+  <button class="button button_outline_primary" data-toggle-class="bg_primary" data-toggle-target="#box_toggle">
+    Example toggle
+  </button>
+
+  <button class="button button_outline_primary" data-toggle-class="c_white" data-toggle-target="#box_toggle">
+    Example toggle
+  </button>
+
+  <button class="button button_outline_primary" data-toggle-class="bg_secondary">
+    Example toggle
+  </button>
+
+</div>
+
+<div class="dropdown on-click" style="display: inline-block;">
+  <button class="dropdown__trigger button button_color_primary">Trigger</button>
+  <ul class="dropdown__menu">
+    <li class="dropdown__item">
+      <div class="dropdown__content">
+        <h2 class="dropdown__title">Dropdown Title</h2>
+        <p>This is some content for a dropdown...</p>
+      </div>
+    </li>
+    <li class="dropdown__sep"></li>
+    <li class="dropdown__item">
+      <a href="#" class="dropdown__link">Dropdown Item</a>
+    </li>
+    <li class="dropdown__item">
+      <a href="#" class="dropdown__link is-active">Dropdown Item</a>
+    </li>
+    <li class="dropdown__item">
+      <a href="#" class="dropdown__link">Dropdown Item</a>
+    </li>
+    <li class="dropdown__sep"></li>
+    <li class="dropdown__item">
+      <a href="#" class="dropdown__link is-disabled">Dropdown Item</a>
+    </li>
+    <li class="dropdown__item">
+      <a href="#" class="dropdown__link">Dropdown Item</a>
+    </li>
+  </ul>
+</div>
+
+<div class="flag">
+  <h2>dropdown</h2>
+</div>
 
 <div class="type" markdown="1">
 
@@ -65,7 +116,7 @@ Trigger classes:
     </div>
   </div>
   </div>
-  <div class="grid__item size_6">
+  <div class="grid__item size_8">
   <div class="demo__code" markdown="1">
 ```html
 <div class="dropdown is-active">
@@ -101,9 +152,15 @@ Trigger classes:
   </div>
 </div>
 
-## `dropdown__item > dropdown__menu`
+<div class="flag">
+  <h2>dropdown__item > dropdown__menu</h2>
+</div>
+
+<div class="type" markdown="1">
 
 This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_switch` class for reversing the direction of a sub dropdown.
+
+</div>
 
 <div class="demo grid grid_md">
   <div class="grid__item">
@@ -167,7 +224,7 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
     </div>
   </div>
   </div>
-  <div class="grid__item size_6">
+  <div class="grid__item size_8">
   <div class="demo__code" markdown="1">
 ```html
 <div class="dropdown is-active">
@@ -303,7 +360,7 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
     </div><!-- .demo__group -->
   </div>
   </div>
-  <div class="grid__item size_6">
+  <div class="grid__item size_8">
   <div class="demo__code" markdown="1">
 ```html
 <ul class="dropdown__menu dropdown__menu_pos_up-left">...</ul>
@@ -323,11 +380,18 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
   </div>
 </div>
 
-## Examples
+<div class="type" markdown="1">
+
+---
+
+## Dialog examples
 
 Below are some examples of complex dropdowns and how they may be composed using this component along with some utility modifiers.
 
-<div class="demo spacing">
+</div>
+
+<div class="demo grid grid_md">
+  <div class="grid__item">
   <div class="demo__render">
     <div class="dropdown on-hover" style="display:inline-block;">
       <button class="dropdown__trigger button button_color_primary">Twitter</button>
@@ -415,6 +479,8 @@ Below are some examples of complex dropdowns and how they may be composed using 
       </ul>
     </div>
   </div>
+  </div>
+  <div class="grid__item size_8">
   <div class="demo__code" markdown="1">
 ```html
 <div class="dropdown on-hover">
@@ -489,5 +555,6 @@ Below are some examples of complex dropdowns and how they may be composed using 
   </ul>
 </div>
 ```
+  </div>
   </div>
 </div>
