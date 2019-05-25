@@ -7077,7 +7077,7 @@ pre {
 .jumbo-filter {
   position: -webkit-sticky;
   position: sticky;
-  z-index: 2;
+  z-index: 4;
   top: 0;
   background: #ffffff;
   border-bottom: 3px solid #eceff1;
@@ -7142,7 +7142,7 @@ pre {
  */
 .jumbo-list {
   position: relative;
-  z-index: 1;
+  z-index: 3;
   list-style: none;
 }
 
