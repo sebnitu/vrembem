@@ -35,11 +35,13 @@
   display: flex;
   color: $white;
   background: $primary-dark;
+  z-index: 1;
 }
 
 .cover__content {
   position: relative;
   flex: 1 1 auto;
+  z-index: 2;
 }
 
 @include media-min('md') {

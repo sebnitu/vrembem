@@ -8,11 +8,13 @@ tags: block compound
 ## `input-group`
 
 <div class="demo grid grid_md">
-  <div class="demo__render grid__item">
+  <div class="grid__item">
+  <div class="demo__render">
     <div class="input-group">
       <input class="input-group__item input" placeholder="..." type="text" />
       <button class="input-group__item button button_color_primary">Submit</button>
     </div>
+  </div>
   </div>
   <div class="grid__item size_6">
   <div class="demo__code" markdown="1">
@@ -28,11 +30,15 @@ tags: block compound
 
 ## `input-group__item_grow`
 
+<div class="type" markdown="1">
+
 You can adjust the flex grow property on items using the following modifiers:
 
 * `input-group__item_grow_lg`
 * `input-group__item_grow_sm`
 * `input-group__item_grow_none`
+
+</div>
 
 <div class="demo grid grid_md">
   <div class="demo__render grid__item spacing">

@@ -5,26 +5,6 @@ description: "A component that is initially hidden and revealed upon user intera
 tags: block compound
 ---
 
-<div id="box_toggle" class="box type">
-  <p>...</p>
-</div>
-
-<div>
-
-  <button class="button button_outline_primary" data-toggle-class="bg_primary" data-toggle-target="#box_toggle">
-    Example toggle
-  </button>
-
-  <button class="button button_outline_primary" data-toggle-class="c_white" data-toggle-target="#box_toggle">
-    Example toggle
-  </button>
-
-  <button class="button button_outline_primary" data-toggle-class="bg_secondary">
-    Example toggle
-  </button>
-
-</div>
-
 <div class="dropdown on-click" style="display: inline-block;">
   <button class="dropdown__trigger button button_color_primary">Trigger</button>
   <ul class="dropdown__menu">
