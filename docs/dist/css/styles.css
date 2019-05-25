@@ -7144,6 +7144,7 @@ pre {
   position: relative;
   z-index: 3;
   list-style: none;
+  background-color: #ffffff;
 }
 
 .jumbo-list__item {
