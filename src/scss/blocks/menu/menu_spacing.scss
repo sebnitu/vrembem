@@ -1,7 +1,9 @@
 @import 'variables';
 
 /**
- * Menu Spacing Modifier
+ * Menu spacing modifiers
+ * ---
+ * A modifier for changing the spacing between menu items.
  */
 
 @each $menu_name, $menu_value in $menu-spacing-scale {
@@ -70,5 +72,4 @@
       }
     }
   }
-
 }

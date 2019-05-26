@@ -1,13 +1,19 @@
+// Input
+// ---
 $input-padding: nth($padding, 1) 0.5em !default;
 $input-font-size: 1em !default;
 $input-line-height: 1.5em !default;
 
+// Input size modifiers
+// ---
 $input_size_sm-padding: $padding-sm !default;
 $input_size_sm-font-size: $font-size-sm !default;
 
 $input_size_lg-padding: nth($padding-lg, 1) (nth($padding-lg, 1) * 1.3) !default;
 $input_size_lg-font-size: $font-size !default;
 
+// Input box styles
+// ---
 $input-background: $white !default;
 $input-background-focus: $white !default;
 $input-box-shadow-values: 0 0 0 0 !default;
@@ -18,4 +24,6 @@ $input-box-shadow-focus-color: rgba($blue, 0.1) !default;
 $input-border: 1px solid $gray-400 !default;
 $input-border-focus: 1px solid $blue !default;
 
+// Input select image
+// ---
 $input_type_select-image: 'data:image/svg+xml;utf8,<svg width="36px" height="10px" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" stroke-width="2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" points="15 4 18 7 21 4"></polyline></svg>' !default;

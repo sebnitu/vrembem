@@ -3544,7 +3544,7 @@ pre {
 }
 
 /**
- * Card lift
+ * Card lift modifier
  * ---
  * Adds styles for card link that make the card look like it's being lifted up
  * when hovered or focused.
@@ -3560,7 +3560,7 @@ pre {
 }
 
 /**
- * Card Step
+ * Card step modifier
  * ---
  * Adds styles for card link that animates the card up when hovered or focused.
  */
@@ -3575,7 +3575,7 @@ pre {
 }
 
 /**
- * Card Fade
+ * Card fade modifier
  * ---
  * Adds styles for card link which hides elements only to reveal them when
  * hovered or focused. Based used with card__background and card__screen.
@@ -3602,7 +3602,7 @@ pre {
 }
 
 /**
- * Card Zoom
+ * Card zoom modifier
  * ---
  * Adds styles for card link which zooms the card__background image in when
  * hovered or focused.
@@ -3620,7 +3620,7 @@ pre {
 }
 
 /**
- * Card links
+ * Card link modifier
  * ---
  * A shorthand class that combines various card link modifiers via @expand.
  */
@@ -3964,7 +3964,9 @@ pre {
 }
 
 /**
- * Dropdown size modifiers
+ * Dropdown menu size modifiers
+ * ---
+ * Used to change the size of the dropdown menu. Currently only modifies width.
  */
 .dropdown__menu_size_sm {
   width: 12em;
@@ -3979,9 +3981,10 @@ pre {
 }
 
 /**
- * Dropdown menu position
+ * Dropdown menu position modifiers
+ * ---
+ * Used to change the position that dropdowns fall relative to their trigger.
  */
-/* Down */
 .dropdown__menu_pos_down-left,
 .dropdown__menu_pos_down-right,
 .dropdown__menu_pos_down {
@@ -4018,7 +4021,6 @@ pre {
           transform: translate3d(-50%, 0, 0);
 }
 
-/* Up */
 .dropdown__menu_pos_up-left,
 .dropdown__menu_pos_up-right,
 .dropdown__menu_pos_up {
@@ -4055,7 +4057,6 @@ pre {
           transform: translate3d(-50%, 0, 0);
 }
 
-/* Right */
 .dropdown__menu_pos_right-down,
 .dropdown__menu_pos_right-up,
 .dropdown__menu_pos_right {
@@ -4092,7 +4093,6 @@ pre {
           transform: translate3d(0, -50%, 0);
 }
 
-/* Left */
 .dropdown__menu_pos_left-down,
 .dropdown__menu_pos_left-up,
 .dropdown__menu_pos_left {
@@ -4130,7 +4130,10 @@ pre {
 }
 
 /**
- * embed
+ * Embed
+ * ---
+ * A component used for displaying fixed, ratio based content in a fluid way
+ * such as video and iframe embeds.
  */
 .embed {
   position: relative;
@@ -4165,6 +4168,8 @@ pre {
 
 /**
  * Icon
+ * ---
+ * The icon component provides a consistent way to style icons.
  */
 .icon {
   display: inline-block;
@@ -4185,6 +4190,8 @@ pre {
 
 /**
  * Icon absolute size modifier
+ * ---
+ * Used to set an absolute size to an icon regardless of it's context.
  */
 .icon_abs {
   font-size: 1.25rem;
@@ -4192,6 +4199,8 @@ pre {
 
 /**
  * Icon size modifiers
+ * ---
+ * Size modifiers add different size variations to icons.
  */
 .icon_size_sm {
   font-size: 1em;
@@ -4211,6 +4220,8 @@ pre {
 
 /**
  * Icon fill modifier
+ * ---
+ * Switches an stroke based icon into a fill icon.
  */
 .icon_fill {
   fill: currentColor;
@@ -4222,6 +4233,8 @@ pre {
 
 /**
  * Icon-action
+ * ---
+ * A component for displaying simple action buttons using icons.
  */
 .icon-action {
   cursor: pointer;
@@ -4258,6 +4271,8 @@ pre {
 
 /**
  * Icon-action size modifiers
+ * ---
+ * Size modifiers add different size variations to icon-actions.
  */
 .icon-action_size_sm {
   padding: 0.125rem;
@@ -4275,6 +4290,8 @@ pre {
 
 /**
  * Icon-action color modifiers
+ * ---
+ * Color modifiers add different color variations to icon-actions.
  */
 .icon-action_color_invert {
   color: #212121;
@@ -4286,9 +4303,6 @@ pre {
   background: rgba(255, 255, 255, 0.75);
 }
 
-/**
- * Subtle
- */
 .icon-action_color_subtle {
   color: #212121;
   background: none;
@@ -4309,9 +4323,6 @@ pre {
   background: rgba(255, 255, 255, 0.1);
 }
 
-/**
- * Fade
- */
 .icon-action_color_fade {
   color: #212121;
   background: none;
@@ -4336,9 +4347,6 @@ pre {
   opacity: 1;
 }
 
-/**
- * Semantic
- */
 .icon-action_color_danger {
   background: #f44336;
   color: #ffffff;
@@ -4371,6 +4379,8 @@ pre {
 
 /**
  * Input
+ * ---
+ * A component for displaying form input elements.
  */
 .input {
   position: relative;
@@ -4460,6 +4470,8 @@ pre {
 
 /**
  * Input size modifiers
+ * ---
+ * Size modifiers add different size variations to input fields.
  */
 .input_size_sm {
   padding: 0.215em 0.5em;
@@ -4473,6 +4485,8 @@ pre {
 
 /**
  * Input state modifiers
+ * ---
+ * Modifiers that visually changes the state of an input field.
  */
 .input_state_success {
   border-color: #4caf50;
@@ -4512,6 +4526,8 @@ pre {
 
 /**
  * Input type modifiers
+ * ---
+ * Defines unique styles for specific types of input fields.
  */
 .input_type_select {
   cursor: pointer;
@@ -4530,6 +4546,8 @@ pre {
 
 /**
  * Input-group
+ * ---
+ * A component for displaying groups of input fields.
  */
 .input-group {
   display: -webkit-box;
@@ -4606,6 +4624,9 @@ pre {
 
 /**
  * Media
+ * ---
+ * The media component is used for displaying groups of content with a
+ * corresponding media asset, such as an image or avatar.
  */
 .media {
   display: -webkit-box;
@@ -4641,6 +4662,8 @@ pre {
 
 /**
  * Media reverse modifier
+ * ---
+ * A media modifier that will swap the media to the opposite side.
  */
 .media_reverse {
   -webkit-box-orient: horizontal;
@@ -4661,6 +4684,8 @@ pre {
 
 /**
  * Media stack modifier
+ * ---
+ * A modifier that stacks the media elements optionally based on a breakpoint.
  */
 .media_stack {
   -webkit-box-orient: vertical;
@@ -4869,6 +4894,10 @@ pre {
 
 /**
  * Menu
+ * ---
+ * Menus represent groups of links, actions or navigation that a user can
+ * interact with. They come with a variety of elements and modifiers to
+ * facilitate many contexts and roles.
  */
 .menu {
   display: -webkit-box;
@@ -4977,6 +5006,8 @@ pre {
 
 /**
  * Menu full modifier
+ * ---
+ * Allows a menu to span the full width of it's container.
  */
 .menu_full {
   -webkit-box-pack: justify;
@@ -5003,45 +5034,9 @@ pre {
 }
 
 /**
- * Menu theme invert modifier
- */
-.menu_invert .menu__link {
-  color: #ffffff;
-}
-
-.menu_invert .menu__link:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.menu_invert .menu__link.is-active, .menu_invert .menu__link.is-parent {
-  color: #2196f3;
-}
-
-.menu_invert .menu__link.is-active:hover, .menu_invert .menu__link.is-active:focus, .menu_invert .menu__link.is-parent:hover, .menu_invert .menu__link.is-parent:focus {
-  background: none;
-}
-
-.menu_invert .menu__link.is-disabled {
-  color: rgba(255, 255, 255, 0.5);
-  background: none;
-}
-
-.menu_invert .menu__link.is-disabled:hover, .menu_invert .menu__link.is-disabled:focus {
-  color: rgba(255, 255, 255, 0.5);
-  background: none;
-}
-
-.menu_invert .menu__text {
-  color: #ffffff;
-}
-
-.menu_invert .menu__sep {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-/**
  * Menu scroll modifier
+ * ---
+ * Allows a menu to scroll once it no longer fits in it's container.
  */
 .menu_scroll {
   overflow-x: auto;
@@ -5049,7 +5044,9 @@ pre {
 }
 
 /**
- * Menu size modifier
+ * Menu size modifiers
+ * ---
+ * Size modifiers add different size variations to menus.
  */
 .menu_size_sm .menu__link {
   font-size: 0.875em;
@@ -5061,7 +5058,9 @@ pre {
 }
 
 /**
- * Menu Spacing Modifier
+ * Menu spacing modifiers
+ * ---
+ * A modifier for changing the spacing between menu items.
  */
 .menu_spacing_xs .menu__sep {
   margin: 0 1px;
@@ -5789,7 +5788,9 @@ pre {
 }
 
 /**
- * Menu stack modifier
+ * Menu stack modifiers
+ * ---
+ * A modifier for stacking menu items vertically.
  */
 .menu_stack, .menu_stack_xs, .menu_stack_sm, .menu_stack_md, .menu_stack_lg, .menu_stack_xl {
   -webkit-box-orient: vertical;
@@ -5879,6 +5880,8 @@ pre {
 
 /**
  * Menu stack modifier
+ * ---
+ * A modifier to allow menu items to wrap.
  */
 .menu_wrap {
   -ms-flex-wrap: wrap;
@@ -5886,7 +5889,51 @@ pre {
 }
 
 /**
+ * Menu invert theme
+ * ---
+ * A theme that styles a menu to better fit a dark background.
+ */
+.menu_invert .menu__link {
+  color: #ffffff;
+}
+
+.menu_invert .menu__link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.menu_invert .menu__link.is-active, .menu_invert .menu__link.is-parent {
+  color: #2196f3;
+}
+
+.menu_invert .menu__link.is-active:hover, .menu_invert .menu__link.is-active:focus, .menu_invert .menu__link.is-parent:hover, .menu_invert .menu__link.is-parent:focus {
+  background: none;
+}
+
+.menu_invert .menu__link.is-disabled {
+  color: rgba(255, 255, 255, 0.5);
+  background: none;
+}
+
+.menu_invert .menu__link.is-disabled:hover, .menu_invert .menu__link.is-disabled:focus {
+  color: rgba(255, 255, 255, 0.5);
+  background: none;
+}
+
+.menu_invert .menu__text {
+  color: #ffffff;
+}
+
+.menu_invert .menu__sep {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/**
  * Modal
+ * ---
+ * A component for changing the mode of a page to complete a critical task.
+ * This is usually used in conjunction with the Dialog component to make
+ * modal dialogs.
  */
 .modal {
   display: -webkit-box;
@@ -5955,6 +6002,8 @@ pre {
 
 /**
  * Modal full modifier
+ * ---
+ * A modal modifier which allows the dialog to fill the entire view.
  */
 .modal_full .modal__dialog {
   position: absolute;
@@ -5973,6 +6022,8 @@ pre {
 
 /**
  * Modal position modifiers
+ * ---
+ * Provides a variety of options for positioning dialogs within a modal.
  */
 .modal_pos_top {
   -webkit-box-pack: start;
@@ -6019,6 +6070,8 @@ pre {
 
 /**
  * Modal size modifiers
+ * ---
+ * Changes the size of the dialog within a modal.
  */
 .modal_size_sm .modal__dialog {
   width: 18em;
@@ -6030,6 +6083,8 @@ pre {
 
 /**
  * Notice
+ * ---
+ * A component for highlighting (optionally dismissible) messages to the user. 
  */
 .notice {
   display: block;
@@ -6093,6 +6148,8 @@ pre {
 
 /**
  * Notice type modifiers
+ * ---
+ * A modifier that changes the color palette of a notice.
  */
 .notice_type_primary {
   background-color: #2196f3;
@@ -6114,9 +6171,6 @@ pre {
   background-color: #37474f;
 }
 
-/**
- * Semantic type modifiers
- */
 .notice_type_info {
   background-color: rgba(33, 150, 243, 0.1);
   color: #08528d;
@@ -6139,6 +6193,9 @@ pre {
 
 /**
  * Tooltip
+ * ---
+ * Text labels that appear when a user hovers over, focuses on or touches
+ * an element.
  */
 [data-tooltip] {
   position: relative;
@@ -6181,6 +6238,8 @@ pre {
 
 /**
  * Tooltip position modifiers
+ * ---
+ * Changes the position a tooltip will show relative to it's trigger.
  */
 [data-tooltip-pos="up"]::after {
   top: auto;
@@ -6227,7 +6286,6 @@ pre {
           transform: translate(1px, -5px) scale(1);
 }
 
-/* Left */
 [data-tooltip-pos="left"]::after {
   top: 50%;
   left: auto;
@@ -6270,7 +6328,6 @@ pre {
           transform: translate(-5px, 1px) scale(1);
 }
 
-/* Right */
 [data-tooltip-pos="right"]::after {
   top: auto;
   left: 100%;
@@ -6313,7 +6370,6 @@ pre {
           transform: translate(5px, 1px) scale(1);
 }
 
-/* Down */
 [data-tooltip-pos="down"]::after {
   top: 100%;
   left: auto;
@@ -6361,6 +6417,8 @@ pre {
 
 /**
  * Type
+ * ---
+ * A component that applies general typographic styles to semantic markup.
  */
 .type::after {
   content: '';
@@ -6505,6 +6563,8 @@ pre {
 
 /**
  * Type invert modifier
+ * ---
+ * Adds styles to the component for better fitting a dark background.
  */
 .type_invert, .notice_type_primary, .notice_type_secondary, .notice_type_dark {
   color: #ffffff;
@@ -6651,6 +6711,7 @@ pre {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  overflow: hidden;
   color: #ffffff;
   background: -webkit-gradient(linear, left top, right top, color-stop(0, #09273F), to(#124064));
   background: linear-gradient(to right, #09273F 0, #124064 100%);

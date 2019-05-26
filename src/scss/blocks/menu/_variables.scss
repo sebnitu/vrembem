@@ -1,7 +1,11 @@
+// Menu
+// ---
 $menu-padding: $padding !default;
 $menu-icon-padding: 0.1em !default;
 $menu-inner-spacing: 0.5em !default;
 
+// Menu typography
+// ---
 $menu-font-size: 1em !default;
 $menu-line-height: 1.5 !default;
 $menu-color: $color !default;
@@ -9,6 +13,8 @@ $menu-color_hover: $color !default;
 $menu-color_active: $primary !default;
 $menu-color_disabled: $color-light !default;
 
+// Menu box styles
+// ---
 $menu-border-width: 1px !default;
 $menu-border-radius: $border-radius !default;
 $menu-border-color: transparent !default;
@@ -21,15 +27,16 @@ $menu-background_hover: rgba($black, 0.05) !default;
 $menu-background_active: none !default;
 $menu-background_disabled: none !default;
 
+// Menu elements
+// ---
 $menu__text-color: $color !default;
 
 $menu__sep-spacing: 0.5em !default;
 $menu__sep-width: 1px !default;
 $menu__sep-background: rgba($black, 0.1) !default;
 
-$menu_stack-indent: 1em !default;
-$menu_stack__text-spacing: 1em !default;
-
+// Menu spacing
+// ---
 $menu-spacing: 1px !default;
 $menu-spacing-scale: (
   'xs': 1px,
@@ -38,3 +45,28 @@ $menu-spacing-scale: (
   'lg': 1rem,
   'xl': 1.5rem
 ) !default;
+
+// Menu stack modifier
+// ---
+$menu_stack-indent: 1em !default;
+$menu_stack__text-spacing: 1em !default;
+
+// Menu invert modifier
+// ---
+$menu_invert-color: $white !default;
+$menu_invert-color_hover: $white !default;
+$menu_invert-background: null !default;
+$menu_invert-background_hover: rgba($white, 0.1) !default;
+
+$menu_invert-color_active: $primary !default;
+$menu_invert-color_active_hover: null !default;
+$menu_invert-background_active: null !default;
+$menu_invert-background_active_hover: none !default;
+
+$menu_invert-color_disabled: rgba($white, 0.5) !default;
+$menu_invert-color_disabled_hover: rgba($white, 0.5) !default;
+$menu_invert-background_disabled: none !default;
+$menu_invert-background_disabled_hover: none !default;
+
+$menu_invert__sep-background: rgba($white, 0.1) !default;
+$menu_invert__text-color: $white !default;

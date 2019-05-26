@@ -2,6 +2,8 @@
 
 /**
  * Notice type modifiers
+ * ---
+ * A modifier that changes the color palette of a notice.
  */
 
 .notice_type_primary {
@@ -38,10 +40,6 @@
     @extend .type_invert;
   }
 }
-
-/**
- * Semantic type modifiers
- */
 
 .notice_type_info {
   background-color: rgba($info, 0.1);

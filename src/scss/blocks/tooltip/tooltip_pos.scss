@@ -2,6 +2,8 @@
 
 /**
  * Tooltip position modifiers
+ * ---
+ * Changes the position a tooltip will show relative to it's trigger.
  */
 
 [data-tooltip-pos="up"] {
@@ -52,8 +54,6 @@
   }
 }
 
-/* Left */
-
 [data-tooltip-pos="left"] {
   &::after {
     top: 50%;
@@ -99,8 +99,6 @@
   }
 }
 
-/* Right */
-
 [data-tooltip-pos="right"] {
   &::after {
     top: auto;
@@ -145,8 +143,6 @@
     transform: translate($tooltip-distance, $tooltip-offset) scale(1);
   }
 }
-
-/* Down */
 
 [data-tooltip-pos="down"] {
   &::after {

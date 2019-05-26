@@ -2,6 +2,8 @@
 
 /**
  * Icon-action color modifiers
+ * ---
+ * Color modifiers add different color variations to icon-actions.
  */
 
 .icon-action_color_invert {
@@ -14,10 +16,6 @@
     background: rgba($white, 0.75);
   }
 }
-
-/**
- * Subtle
- */
 
 .icon-action_color_subtle {
   color: $icon-action-color-invert;
@@ -40,10 +38,6 @@
     background: rgba($white, 0.1);
   }
 }
-
-/**
- * Fade
- */
 
 .icon-action_color_fade {
   color: $icon-action-color-invert;
@@ -70,10 +64,6 @@
     opacity: 1;
   }
 }
-
-/**
- * Semantic
- */
 
 .icon-action_color_danger {
   background: $danger;

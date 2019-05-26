@@ -2,13 +2,14 @@
 
 /**
  * Type invert modifier
+ * ---
+ * Adds styles to the component for better fitting a dark background.
  */
 
 .type_invert {
   color: $white;
 
   // Headings
-
   h1,
   h2,
   h3,
@@ -19,13 +20,11 @@
   }
 
   // Inline elements
-
   a:not(.button) {
     @extend %link_invert;
   }
 
   // Horizontal Rule
-
   hr {
     @extend %hr_invert;
   }
