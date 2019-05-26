@@ -2,6 +2,8 @@
 
 /**
  * Spacing
+ * ---
+ * A component that adds vertical spacing between it's direct children.
  */
 
 .spacing {
@@ -12,6 +14,8 @@
 
 /**
  * Spacing scale modifiers
+ * ---
+ * Size modifiers add different spacing variations.
  */
 
 @each $key, $value in $spacing-scale {

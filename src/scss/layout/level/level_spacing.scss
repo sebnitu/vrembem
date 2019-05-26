@@ -2,6 +2,8 @@
 
 /**
  * Level spacing modifiers
+ * ---
+ * A modifier to change the spacing between level items.
  */
 
 @each $key, $value in $level-spacing-scale {

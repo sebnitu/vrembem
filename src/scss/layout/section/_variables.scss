@@ -4,7 +4,7 @@ $section__intro-max-width: 45rem !default;
 $section__screen-opacity: 0.6 !default;
 $section__screen-background: $dark !default;
 
-// Section Padding
+// Section padding
 // ---
 $section-padding: (
   'base': 1.5em,
@@ -12,6 +12,7 @@ $section-padding: (
   'lg': 3em 1.5em
 ) !default;
 
+// Section padding scale
 $section-padding-scale: (
   'xs': (
     'base': 0,

@@ -2,6 +2,8 @@
 
 /**
  * Grid Size Modifiers
+ * ---
+ * Size modifiers add different size variations to grids.
  */
 
 @each $key, $value in $grid-spacing-scale {

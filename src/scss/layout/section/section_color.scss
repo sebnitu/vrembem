@@ -1,12 +1,12 @@
 @import 'variables';
 
 /**
- * Section theme modifiers
+ * Section color modifiers
  * ---
  * Adds a variety of color variations for the section component.
  */
 
-.section_theme_primary {
+.section_color_primary {
   background: $primary;
 
   .section__screen {
@@ -14,11 +14,7 @@
   }
 }
 
-/**
- * Section theme secondary
- */
-
-.section_theme_secondary {
+.section_color_secondary {
   background: $secondary;
 
   .section__screen {
@@ -26,11 +22,7 @@
   }
 }
 
-/**
- * Section theme accent
- */
-
-.section_theme_accent {
+.section_color_accent {
   background: $accent;
 
   .section__screen {
@@ -38,11 +30,7 @@
   }
 }
 
-/**
- * Section theme shade
- */
-
-.section_theme_shade {
+.section_color_shade {
   background: $shade;
 
   .section__screen {
@@ -50,11 +38,7 @@
   }
 }
 
-/**
- * Section theme dark
- */
-
-.section_theme_dark {
+.section_color_dark {
   background: $dark;
 
   .section__screen {
@@ -62,11 +46,7 @@
   }
 }
 
-/**
- * Section theme light
- */
-
-.section_theme_light {
+.section_color_light {
   background: $white;
 
   .section__screen {

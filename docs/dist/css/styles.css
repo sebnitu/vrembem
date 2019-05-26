@@ -1637,70 +1637,55 @@ pre {
 }
 
 /**
- * Section theme modifiers
+ * Section color modifiers
  * ---
  * Adds a variety of color variations for the section component.
  */
-.section_theme_primary {
+.section_color_primary {
   background: #2196f3;
 }
 
-.section_theme_primary .section__screen {
+.section_color_primary .section__screen {
   background: #2196f3;
 }
 
-/**
- * Section theme secondary
- */
-.section_theme_secondary {
+.section_color_secondary {
   background: #607d8b;
 }
 
-.section_theme_secondary .section__screen {
+.section_color_secondary .section__screen {
   background: #607d8b;
 }
 
-/**
- * Section theme accent
- */
-.section_theme_accent {
+.section_color_accent {
   background: #ffee58;
 }
 
-.section_theme_accent .section__screen {
+.section_color_accent .section__screen {
   background: #ffee58;
 }
 
-/**
- * Section theme shade
- */
-.section_theme_shade {
+.section_color_shade {
   background: #eceff1;
 }
 
-.section_theme_shade .section__screen {
+.section_color_shade .section__screen {
   background: #eceff1;
 }
 
-/**
- * Section theme dark
- */
-.section_theme_dark {
+.section_color_dark {
   background: #37474f;
 }
 
-.section_theme_dark .section__screen {
+.section_color_dark .section__screen {
   background: #37474f;
 }
 
-/**
- * Section theme light
- */
-.section_theme_light {
+.section_color_light {
   background: #ffffff;
 }
 
-.section_theme_light .section__screen {
+.section_color_light .section__screen {
   background: #ffffff;
 }
 
@@ -1741,6 +1726,8 @@ pre {
 
 /**
  * Grid
+ * ---
+ * A flexbox based grid system component.
  */
 .grid {
   display: -webkit-box;
@@ -1784,6 +1771,8 @@ pre {
 
 /**
  * Grid Breakpoints Modifiers
+ * ---
+ * Adds a breakpoint to a grid for when grid items should be stacked vertically.
  */
 .grid_xs {
   -webkit-box-orient: vertical;
@@ -1916,7 +1905,9 @@ pre {
 }
 
 /**
- * Grid Flush Modifier
+ * Grid flush modifier
+ * ---
+ * Removes the spacing between grid items.
  */
 .grid_flush {
   margin: 0;
@@ -1932,6 +1923,8 @@ pre {
 
 /**
  * Grid Size Modifiers
+ * ---
+ * Size modifiers add different size variations to grids.
  */
 .grid_size_xs {
   margin: 0 -0.25rem;
@@ -1982,7 +1975,9 @@ pre {
 }
 
 /**
- * Size Modifiers
+ * Size
+ * ---
+ * A component that sets the max width of an element based on a column set.
  */
 .size_auto {
   -webkit-box-flex: 0;
@@ -2089,7 +2084,9 @@ pre {
 }
 
 /**
- * Size Breakpoints Modifiers
+ * Size breakpoints modifiers
+ * ---
+ * Adds a breakpoint to a specific size element.
  */
 @media (min-width: 480px) {
   .size_auto_xs {
@@ -2503,6 +2500,8 @@ pre {
 
 /**
  * Level
+ * ---
+ * A component that enables flexbox to center it's children horizontally.
  */
 .level {
   display: -webkit-box;
@@ -2520,6 +2519,8 @@ pre {
 
 /**
  * Level spacing modifiers
+ * ---
+ * A modifier to change the spacing between level items.
  */
 .level_spacing_xs > * + * {
   margin-left: 1px;
@@ -2583,6 +2584,8 @@ pre {
 
 /**
  * Level wrap modifier
+ * ---
+ * Allows level items to wrap when they can no longer fill their container.
  */
 .level_wrap {
   -ms-flex-wrap: wrap;
@@ -2596,6 +2599,8 @@ pre {
 
 /**
  * Spacing
+ * ---
+ * A component that adds vertical spacing between it's direct children.
  */
 .spacing > * + * {
   margin-top: 1rem;
@@ -2603,6 +2608,8 @@ pre {
 
 /**
  * Spacing scale modifiers
+ * ---
+ * Size modifiers add different spacing variations.
  */
 .spacing_xs > * + * {
   margin-top: 0.5rem;

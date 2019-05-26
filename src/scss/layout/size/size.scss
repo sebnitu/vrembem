@@ -1,7 +1,9 @@
 @import 'variables';
 
 /**
- * Size Modifiers
+ * Size
+ * ---
+ * A component that sets the max width of an element based on a column set.
  */
 
 .size_auto {
@@ -19,7 +21,9 @@
 }
 
 /**
- * Size Breakpoints Modifiers
+ * Size breakpoints modifiers
+ * ---
+ * Adds a breakpoint to a specific size element.
  */
 
 @each $name, $value in $breakpoints {
