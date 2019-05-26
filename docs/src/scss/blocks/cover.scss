@@ -34,7 +34,11 @@
   flex: 0 0 auto;
   display: flex;
   color: $white;
-  background: $primary-dark;
+  background: linear-gradient(
+    to right,
+    #09273F 0,
+    #124064 100%
+  );
   z-index: 1;
 }
 
@@ -92,10 +96,10 @@
 
 .cover__desc {
   line-height: 1.6em;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
-.cover__version a {
+.cover__version {
   color: rgba($white, 0.5);
 
   &:hover span {

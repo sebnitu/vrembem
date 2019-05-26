@@ -12,8 +12,12 @@ layout: compress
       {%- if site.description -%}
         <p class="cover__desc">{{ site.description }}</p>
       {%- endif -%}
-      <p class="cover__version">
-        <a data-tooltip="View releases on Github" data-tooltip-pos="right" href="http://github.com/{{ site.repository }}/releases" target="_blank">Version <span class="version-number">{{ site.version }}</span></a>
+      <p class="level">
+        <a href="http://github.com/{{ site.repository }}" class="button button_outline_accent" target="_blank">
+          {% include icon.html icon="github" %}
+          <span class="button__item">GitHub Repo</span>
+        </a>
+        <a class="cover__version" data-tooltip="View releases on Github" data-tooltip-pos="right" href="http://github.com/{{ site.repository }}/releases" target="_blank">Version <span class="version-number">{{ site.version }}</span></a>
       </p>
     </div>
   </header>

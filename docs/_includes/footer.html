@@ -1,5 +1,5 @@
 {%- if page.previous or page.next -%}
-<ul class="menu menu_full">
+<ul class="menu">
 
   <li class="menu__item">
     {%- if page.previous -%}
@@ -9,6 +9,10 @@
     </a>
     {%- endif -%}
   </li>
+
+  {%- if page.previous and page.next -%}
+  <li class="menu__sep"></li>
+  {%- endif -%}
 
   <li class="menu__item">
     {%- if page.next -%}

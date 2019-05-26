@@ -2,16 +2,26 @@
 layout: default
 ---
 
-<header class="section section_size_lg bg_shade">
+<header class="page__header">
   <div class="container spacing">
-    <h1 class="h1">{{ page.title }}</h1>
-    {% if page.description %}
-      <p class="text_lead">{{ page.description }}</p>
-    {% endif %}
+    <div class="grid grid_md">
+      <div class="grid__item">
+        <h1 class="page__title">{{ page.title }}</h1>
+        {% if page.description %}
+          <p class="page__intro">{{ page.description }}</p>
+        {% endif %}
+      </div>
+      {% if page.usage %}
+      <div class="grid__item">
+        {% capture usage %}{% include usage.md %}{% endcapture %}
+        {{ usage | markdownify }}
+      </div>
+      {% endif %}
+    </div>
   </div>
 </header>
 
-<div class="section">
+<div class="page__content">
   <div class="container spacing spacing_xl">
     {{ content }}
   </div>

@@ -1,0 +1,29 @@
+/**
+ * Toolbar
+ * ---
+ * A toolbar component that sits at the top of a page. Contains important
+ * information and navigational tools.
+ */
+
+.toolbar {
+  z-index: 600;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5em;
+  flex-grow: 0;
+  background: linear-gradient(
+    to right,
+    #09273F 0,
+    #124064 100%
+  );
+  color: $white;
+  box-shadow: $box-shadow-4dp;
+}
+
+@include media-min('md') {
+  .toolbar {
+    padding: 1em;
+  }
+}
