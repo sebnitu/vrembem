@@ -3,9 +3,9 @@ layout: page
 title: Dropdown
 description: "A component that is initially hidden and revealed upon user interaction either through a click or hover event. Dropdown components typically display lists of possible actions or navigation."
 tags: block compound
-usage:
-  npm: "@vrembem/dropdown"
-  scss: "vrembem/blocks/dropdown/all"
+# usage:
+  # npm: "@vrembem/dropdown"
+  # scss: "vrembem/src/scss/blocks/dropdown/all"
 ---
 
 <div class="dropdown on-click" style="display: inline-block;">

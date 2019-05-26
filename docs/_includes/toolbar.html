@@ -17,9 +17,36 @@
       </div>
 
       <div>
-        <a href="https://github.com/{{ site.repository }}" class="button button_color_invert button_icon">
-          {% include icon.html icon="github" %}
-        </a>
+        <ul class="menu menu_invert">
+
+          <li class="menu__item">
+            {%- if page.previous -%}
+            <a href="{{ page.previous.url }}" class="menu__link menu__link_icon">
+              {% include icon.html icon="arrow-left" %}
+            </a>
+            {%- endif -%}
+          </li>
+
+          <li class="menu__item">
+            {%- if page.next -%}
+            <a href="{{ page.next.url }}" class="menu__link menu__link_icon">
+              {% include icon.html icon="arrow-right" %}
+            </a>
+            {%- endif -%}
+          </li>
+
+          {%- if page.previous or page.next -%}
+          <li class="menu__sep"></li>
+          {%- endif -%}
+
+          <li class="menu__item">
+            <a href="https://github.com/{{ site.repository }}" class="menu__link menu__link_icon">
+              {% include icon.html icon="github" %}
+            </a>
+          </li>
+
+        </ul>
+
       </div>
 
     </div>
