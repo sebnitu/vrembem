@@ -7,6 +7,7 @@
 .flag,
 .type .flag {
   margin: 4em 0 2em;
+  border-top: 1px solid rgba($black, 0.1);
 
   > * {
     display: block;
@@ -14,8 +15,7 @@
     padding: 0.25em 0;
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-weight: 600;
-    border-top: 1px solid rgba($black, 0.1);
+    font-weight: font-weight('semi-bold');
   }
 
   &:first-child {

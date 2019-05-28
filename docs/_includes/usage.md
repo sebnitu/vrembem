@@ -1,4 +1,3 @@
-
 <div class="type" markdown="1">
 
 <div class="flag">

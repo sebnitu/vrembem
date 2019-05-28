@@ -4,36 +4,25 @@ title: Functions
 description: "These are Sass specific functions that are made available anywhere the Vrembem core is imported."
 tags: core
 published: false
+# usage:
+  # npm: "@vrembem/core"
+  # scss: "vrembem/core/all"
 ---
 
-<div class="flag">
-  <h2>map-extend</h2>
-</div>
+{% include flag.html heading="map-extend" %}
 
-<div class="flag">
-  <h2>map-fetch</h2>
-</div>
+{% include flag.html heading="map-fetch" %}
 
-<div class="flag">
-  <h2>map-set</h2>
-</div>
+{% include flag.html heading="map-set" %}
 
-<div class="flag">
-  <h2>strip-unit</h2>
-</div>
+{% include flag.html heading="strip-unit" %}
 
-<div class="flag">
-  <h2>px-to-em</h2>
-</div>
+{% include flag.html heading="px-to-em" %}
 
-<div class="flag">
-  <h2>px-to-rem</h2>
-</div>
+{% include flag.html heading="px-to-rem" %}
 
-<div class="flag">
-  <h2>em-to-px</h2>
-</div>
+{% include flag.html heading="em-to-px" %}
 
-<div class="flag">
-  <h2>font-weight</h2>
-</div>
+{% include flag.html heading="font-weight" %}
+
+{% include flag.html heading="aspect-ratio" %}

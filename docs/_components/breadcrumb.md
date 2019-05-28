@@ -3,33 +3,33 @@ layout: page
 title: Breadcrumb
 description: "The breadcrumb component is a navigation component that shows the hierarchical path to a users current location."
 tags: block compound
+# usage:
+  # npm: "@vrembem/breadcrumb"
+  # scss: "vrembem/breadcrumb/all"
 ---
 
-<div class="flag">
-  <h2>breadcrumb</h2>
-</div>
+{% include flag.html heading="breadcrumb" %}
 
-<div class="demo grid grid_md">
-  <div class="grid__item">
-  <div class="demo__render">
-    <ol class="breadcrumb">
-      <li class="breadcrumb__item">
-        <a href="#" class="breadcrumb__link">Home</a>
-      </li>
-      <li class="breadcrumb__item">
-        <a href="#" class="breadcrumb__link">Blog</a>
-      </li>
-      <li class="breadcrumb__item">
-        <a href="#" class="breadcrumb__link">Category</a>
-      </li>
-      <li class="breadcrumb__item">
-        <span class="breadcrumb__text">Current Page</span>
-      </li>
-    </ol>
-  </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
+
+{% include demo_open.html class_grid="grid_lg" %}
+
+<ol class="breadcrumb">
+  <li class="breadcrumb__item">
+    <a href="#" class="breadcrumb__link">Home</a>
+  </li>
+  <li class="breadcrumb__item">
+    <a href="#" class="breadcrumb__link">Blog</a>
+  </li>
+  <li class="breadcrumb__item">
+    <a href="#" class="breadcrumb__link">Category</a>
+  </li>
+  <li class="breadcrumb__item">
+    <span class="breadcrumb__text">Current Page</span>
+  </li>
+</ol>
+
+{% include demo_switch.html %}
+
 ```html
 <ol class="breadcrumb">
   <li class="breadcrumb__item">
@@ -46,40 +46,34 @@ tags: block compound
   </li>
 </ol>
 ```
-  </div>
-  </div>
-</div>
 
-<div class="flag">
-  <h2>breadcrumb_invert</h2>
-</div>
+{% include demo_close.html %}
 
-<div class="demo grid grid_md">
-  <div class="grid__item">
-  <div class="demo__render invert">
-    <ol class="breadcrumb breadcrumb_invert">
-      <li class="breadcrumb__item">
-        <a href="#" class="breadcrumb__link">Home</a>
-      </li>
-      <li class="breadcrumb__item">
-        <a href="#" class="breadcrumb__link">Blog</a>
-      </li>
-      <li class="breadcrumb__item">
-        <a href="#" class="breadcrumb__link">Category</a>
-      </li>
-      <li class="breadcrumb__item">
-        <span class="breadcrumb__text">Current Page</span>
-      </li>
-    </ol>
-  </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
+{% include flag.html heading="breadcrumb_invert" %}
+
+{% include demo_open.html class_grid="grid_lg" class_parent="invert" %}
+
+<ol class="breadcrumb breadcrumb_invert">
+  <li class="breadcrumb__item">
+    <a href="#" class="breadcrumb__link">Home</a>
+  </li>
+  <li class="breadcrumb__item">
+    <a href="#" class="breadcrumb__link">Blog</a>
+  </li>
+  <li class="breadcrumb__item">
+    <a href="#" class="breadcrumb__link">Category</a>
+  </li>
+  <li class="breadcrumb__item">
+    <span class="breadcrumb__text">Current Page</span>
+  </li>
+</ol>
+
+{% include demo_switch.html %}
+
 ```html
 <ol class="breadcrumb breadcrumb_invert">
   ...
 </ol>
 ```
-  </div>
-  </div>
-</div>
+
+{% include demo_close.html %}

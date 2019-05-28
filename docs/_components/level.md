@@ -3,142 +3,159 @@ layout: page
 title: "Level"
 description: "A simple layout component that helps center children in an element vertically and gives them horizontal spacing."
 tags: layout
+# usage:
+  # npm: "@vrembem/level"
+  # scss: "vrembem/level/all"
 ---
 
-## `.level`
+{% include flag.html heading="level" %}
 
-<div class="demo grid grid_md">
-  <div class="demo__render grid__item">
-    <div class="level">
-      <div class="box">...</div>
-      <div class="box">...</div>
-      <div class="box">...</div>
-    </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
+{% include demo_open.html %}
+
+<div class="level">
+  <div class="box">...</div>
+  <div class="box">...</div>
+  <div class="box">...</div>
+</div>
+
+{% include demo_switch.html %}
+
 ```html
 <div class="level">
   ...
 </div>
 ```
-  </div>
-  </div>
+
+{% include demo_close.html %}
+
+{% include flag.html heading="level_block" %}
+
+{% include demo_open.html %}
+
+<div class="level level_block">
+  <div class="box">...</div>
+  <div class="box">...</div>
+  <div class="box">...</div>
 </div>
 
-## `.level_wrap`
+{% include demo_switch.html %}
 
-<div class="demo grid grid_md">
-  <div class="grid__item">
-  <div class="demo__render">
-    <div>
-    <div class="level level_wrap">
-      <div class="box">This</div>
-      <div class="box">Group</div>
-      <div class="box">of</div>
-      <div class="box">Items</div>
-      <div class="box">Will</div>
-      <div class="box">Wrap</div>
-    </div>
-    </div>
-  </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
 ```html
-<div>
-  <div class="level level_wrap">
-    ...
-  </div>
+<div class="level level_block">
+  ...
 </div>
 ```
-  </div>
-  </div>
+
+{% include demo_close.html %}
+
+{% include flag.html heading="level_wrap" %}
+
+{% include demo_open.html %}
+
+<div class="level level_wrap">
+  <div class="box">...</div>
+  <div class="box">...</div>
+  <div class="box">...</div>
+  <div class="box">...</div>
+  <div class="box">...</div>
+  <div class="box">...</div>
+  <div class="box">...</div>
+  <div class="box">...</div>
+  <div class="box">...</div>
+  <div class="box">...</div>
+  <div class="box">...</div>
+  <div class="box">...</div>
+  <div class="box">...</div>
 </div>
 
-## `.level_block` `+` `.level_spacing_[key]`
+{% include demo_switch.html %}
 
-<div class="demo grid grid_md">
-  <div class="demo__render grid__item spacing">
-    <div class="level level_block level_spacing_xs">
-      <div class="box">...</div>
-      <div class="box">...</div>
-      <div class="box">...</div>
-    </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
 ```html
-<div class="level level_block level_spacing_xs">...</div>
+<div class="level level_wrap">
+  ...
+</div>
 ```
-  </div>
-  </div>
+
+{% include demo_close.html %}
+
+{% include flag.html heading="level_spacing_[key]" %}
+
+{% include demo_open.html class_parent="spacing" %}
+
+<div class="level level_spacing_xs">
+  <div class="box">...</div>
+  <div class="box">...</div>
+  <div class="box">...</div>
 </div>
 
-<div class="demo grid grid_md">
-  <div class="demo__render grid__item spacing">
-    <div class="level level_block level_spacing_sm">
-      <div class="box">...</div>
-      <div class="box">...</div>
-      <div class="box">...</div>
-    </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
+{% include demo_switch.html %}
+
 ```html
-<div class="level level_block level_spacing_sm">...</div>
+<div class="level level_spacing_xs">...</div>
 ```
-  </div>
-  </div>
+
+{% include demo_close.html %}
+
+{% include demo_open.html class_parent="spacing" %}
+
+<div class="level level_spacing_sm">
+  <div class="box">...</div>
+  <div class="box">...</div>
+  <div class="box">...</div>
 </div>
 
-<div class="demo grid grid_md">
-  <div class="demo__render grid__item spacing">
-    <div class="level level_block level_spacing_md">
-      <div class="box">...</div>
-      <div class="box">...</div>
-      <div class="box">...</div>
-    </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
+{% include demo_switch.html %}
+
 ```html
-<div class="level level_block level_spacing_md">...</div>
+<div class="level level_spacing_sm">...</div>
 ```
-  </div>
-  </div>
+
+{% include demo_close.html %}
+
+{% include demo_open.html class_parent="spacing" %}
+
+<div class="level level_spacing_md">
+  <div class="box">...</div>
+  <div class="box">...</div>
+  <div class="box">...</div>
 </div>
 
-<div class="demo grid grid_md">
-  <div class="demo__render grid__item spacing">
-    <div class="level level_block level_spacing_lg">
-      <div class="box">...</div>
-      <div class="box">...</div>
-      <div class="box">...</div>
-    </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
+{% include demo_switch.html %}
+
 ```html
-<div class="level level_block level_spacing_lg">...</div>
+<div class="level level_spacing_md">...</div>
 ```
-  </div>
-  </div>
+
+{% include demo_close.html %}
+
+{% include demo_open.html class_parent="spacing" %}
+
+<div class="level level_spacing_lg">
+  <div class="box">...</div>
+  <div class="box">...</div>
+  <div class="box">...</div>
 </div>
 
-<div class="demo grid grid_md">
-  <div class="demo__render grid__item spacing">
-    <div class="level level_block level_spacing_xl">
-      <div class="box">...</div>
-      <div class="box">...</div>
-      <div class="box">...</div>
-    </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
+{% include demo_switch.html %}
+
 ```html
-<div class="level level_block level_spacing_xl">...</div>
+<div class="level level_spacing_lg">...</div>
 ```
-  </div>
-  </div>
+
+{% include demo_close.html %}
+
+{% include demo_open.html class_parent="spacing" %}
+
+<div class="level level_spacing_xl">
+  <div class="box">...</div>
+  <div class="box">...</div>
+  <div class="box">...</div>
 </div>
+
+{% include demo_switch.html %}
+
+```html
+<div class="level level_spacing_xl">...</div>
+```
+
+{% include demo_close.html %}

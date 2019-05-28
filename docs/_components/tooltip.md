@@ -3,32 +3,31 @@ layout: page
 title: Tooltip
 description: "Text labels that appear when a user hovers over, focuses on or touches an element."
 tags: block simple
+# usage:
+  # npm: "@vrembem/tooltip"
+  # scss: "vrembem/tooltip/all"
 ---
 
-## `[data-tooltip]`
+{% include flag.html heading="[data-tooltip]" %}
 
-<div class="demo grid grid_md">
-  <div class="grid__item">
-  <div class="demo__render">
-    <button class="button button_color_primary" data-tooltip="Some tooltip">Tooltip</button>
-  </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
+{% include demo_open.html %}
+
+<button class="button button_color_primary" data-tooltip="Some tooltip">Tooltip</button>
+
+{% include demo_switch.html %}
+
 ```html
 <button data-tooltip="Some tooltip">
   ...
 </button>
 ```
-  </div>
-  </div>
-</div>
 
-## `[data-tooltip-pos]`
+{% include demo_close.html %}
 
-<div class="demo grid grid_md">
-  <div class="grid__item">
-  <div class="demo__render spacing_xs">
+{% include flag.html heading="[data-tooltip-pos]" %}
+
+{% include demo_open.html class_parent="spacing_xs" %}
+
   <div class="demo__group level level_wrap">
     <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="up">
       {% include icon.html icon="chevron-up" %}
@@ -49,6 +48,7 @@ tags: block simple
       {% include icon.html icon="chevron-down" %}
     </button>
   </div>
+
   <div class="demo__group level level_wrap">
     <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="right">
       {% include icon.html icon="chevron-right" %}
@@ -69,16 +69,14 @@ tags: block simple
       {% include icon.html icon="chevron-left" %}
     </button>
   </div>
-  </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
+
+{% include demo_switch.html %}
+
 ```html
 <button data-tooltip="..." data-tooltip-pos="down">...</button>
 <button data-tooltip="..." data-tooltip-pos="down-left">...</button>
 <button data-tooltip="..." data-tooltip-pos="down-right">...</button>
 ...
 ```
-  </div>
-  </div>
-</div>
+
+{% include demo_close.html %}

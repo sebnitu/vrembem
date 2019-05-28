@@ -1,0 +1,13 @@
+@import 'variables';
+
+/**
+ * Level block modifier
+ * ---
+ * Spans children of the level component to fill the width of their container.
+ */
+
+.level_block {
+  > * {
+    flex-grow: 1;
+  }
+}

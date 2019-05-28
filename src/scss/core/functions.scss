@@ -174,7 +174,7 @@
 /// Returns the aspect ratio in the form of a percentage.
 /// @param {Number} $width
 /// @param {Number} $height
-/// @return {Percent}
+/// @return {Percent} $value - Aspect ratio as a percentage
 @function aspect-ratio($width, $height) {
   @return (($height / $width) * 100%);
 }

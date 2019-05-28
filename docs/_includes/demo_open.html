@@ -1,0 +1,21 @@
+{%- assign class_grid = '' -%}
+{%- assign class_gridItem = '' -%}
+{%- assign class_parent = '' -%}
+
+{%- if include.class_grid -%}
+  {%- assign class_grid = ' ' | append: include.class_grid -%}
+{%- else -%}
+  {%- assign class_grid = ' grid_md' -%}
+{%- endif -%}
+
+{%- if include.class_gridItem -%}
+  {%- assign class_gridItem = ' ' | append: include.class_gridItem -%}
+{%- endif -%}
+
+{%- if include.class_parent -%}
+  {%- assign class_parent = ' ' | append: include.class_parent -%}
+{%- endif -%}
+
+<div class="demo grid{{ class_grid | rstrip }}">
+<div class="grid__item{{ class_gridItem | rstrip }}">
+<div class="demo__render{{ class_parent | rstrip }}">

@@ -77,6 +77,11 @@
   figure {
     padding: 1em;
     border: $border;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
   }
 
   figcaption {

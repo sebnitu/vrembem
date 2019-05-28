@@ -288,15 +288,13 @@ pre {
  * Text Utility
  */
 .text_lead {
-  font-size: 1.25em;
-  line-height: 1.5;
+  font-size: 1.1em;
   font-weight: 300;
 }
 
 @media (min-width: 760px) {
   .text_lead {
-    font-size: 1.5em;
-    line-height: 1.6;
+    font-size: 1.2em;
   }
 }
 
@@ -1495,7 +1493,7 @@ pre {
 /**
  * Section
  * ---
- * A container component for wrapping distinct sections of a page.
+ * A container component for wrapping distinct sections of a view.
  */
 .section, .page__header, .page__content, .page__footer {
   position: relative;
@@ -1972,6 +1970,23 @@ pre {
 
 .grid_size_xl.grid_flatten {
   margin: -1.5rem;
+}
+
+/**
+ * Grid stack modifier
+ * ---
+ * Forces the grid to stack.
+ */
+.grid_stack {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.grid_stack > .grid__item {
+  width: 100%;
+  max-width: 100%;
 }
 
 /**
@@ -2515,6 +2530,17 @@ pre {
 
 .level > * + * {
   margin-left: 1rem;
+}
+
+/**
+ * Level block modifier
+ * ---
+ * Spans children of the level component to fill the width of their container.
+ */
+.level_block > * {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
 }
 
 /**
@@ -4742,12 +4768,12 @@ pre {
     margin-left: 0;
   }
   .media_stack_xs .media__image:first-child {
-    margin-top: 1.5rem;
-    margin-bottom: 0;
-  }
-  .media_stack_xs .media__image:last-child {
     margin-top: 0;
     margin-bottom: 1.5rem;
+  }
+  .media_stack_xs .media__image:last-child {
+    margin-top: 1.5rem;
+    margin-bottom: 0;
   }
 }
 
@@ -4779,12 +4805,12 @@ pre {
     margin-left: 0;
   }
   .media_stack_sm .media__image:first-child {
-    margin-top: 1.5rem;
-    margin-bottom: 0;
-  }
-  .media_stack_sm .media__image:last-child {
     margin-top: 0;
     margin-bottom: 1.5rem;
+  }
+  .media_stack_sm .media__image:last-child {
+    margin-top: 1.5rem;
+    margin-bottom: 0;
   }
 }
 
@@ -4816,12 +4842,12 @@ pre {
     margin-left: 0;
   }
   .media_stack_md .media__image:first-child {
-    margin-top: 1.5rem;
-    margin-bottom: 0;
-  }
-  .media_stack_md .media__image:last-child {
     margin-top: 0;
     margin-bottom: 1.5rem;
+  }
+  .media_stack_md .media__image:last-child {
+    margin-top: 1.5rem;
+    margin-bottom: 0;
   }
 }
 
@@ -4853,12 +4879,12 @@ pre {
     margin-left: 0;
   }
   .media_stack_lg .media__image:first-child {
-    margin-top: 1.5rem;
-    margin-bottom: 0;
-  }
-  .media_stack_lg .media__image:last-child {
     margin-top: 0;
     margin-bottom: 1.5rem;
+  }
+  .media_stack_lg .media__image:last-child {
+    margin-top: 1.5rem;
+    margin-bottom: 0;
   }
 }
 
@@ -4890,12 +4916,12 @@ pre {
     margin-left: 0;
   }
   .media_stack_xl .media__image:first-child {
-    margin-top: 1.5rem;
-    margin-bottom: 0;
-  }
-  .media_stack_xl .media__image:last-child {
     margin-top: 0;
     margin-bottom: 1.5rem;
+  }
+  .media_stack_xl .media__image:last-child {
+    margin-top: 1.5rem;
+    margin-bottom: 0;
   }
 }
 
@@ -5900,38 +5926,38 @@ pre {
  * ---
  * A theme that styles a menu to better fit a dark background.
  */
-.menu_invert .menu__link {
+.menu_theme_invert .menu__link {
   color: #ffffff;
 }
 
-.menu_invert .menu__link:hover {
+.menu_theme_invert .menu__link:hover {
   color: #ffffff;
   background: rgba(255, 255, 255, 0.1);
 }
 
-.menu_invert .menu__link.is-active, .menu_invert .menu__link.is-parent {
+.menu_theme_invert .menu__link.is-active, .menu_theme_invert .menu__link.is-parent {
   color: #2196f3;
 }
 
-.menu_invert .menu__link.is-active:hover, .menu_invert .menu__link.is-active:focus, .menu_invert .menu__link.is-parent:hover, .menu_invert .menu__link.is-parent:focus {
+.menu_theme_invert .menu__link.is-active:hover, .menu_theme_invert .menu__link.is-active:focus, .menu_theme_invert .menu__link.is-parent:hover, .menu_theme_invert .menu__link.is-parent:focus {
   background: none;
 }
 
-.menu_invert .menu__link.is-disabled {
+.menu_theme_invert .menu__link.is-disabled {
   color: rgba(255, 255, 255, 0.5);
   background: none;
 }
 
-.menu_invert .menu__link.is-disabled:hover, .menu_invert .menu__link.is-disabled:focus {
+.menu_theme_invert .menu__link.is-disabled:hover, .menu_theme_invert .menu__link.is-disabled:focus {
   color: rgba(255, 255, 255, 0.5);
   background: none;
 }
 
-.menu_invert .menu__text {
+.menu_theme_invert .menu__text {
   color: #ffffff;
 }
 
-.menu_invert .menu__sep {
+.menu_theme_invert .menu__sep {
   background: rgba(255, 255, 255, 0.1);
 }
 
@@ -6471,6 +6497,11 @@ pre {
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.type figure img {
+  width: 100%;
+  height: auto;
+}
+
 .type figcaption {
   margin: 1em 0.5em;
   font-size: 0.875em;
@@ -6855,6 +6886,7 @@ pre {
 .flag,
 .type .flag {
   margin: 4em 0 2em;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .flag > *,
@@ -6865,7 +6897,6 @@ pre {
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 600;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .flag:first-child,
@@ -7279,12 +7310,8 @@ pre {
   font-weight: normal;
 }
 
-.page__intro {
-  max-width: 600px;
-}
-
-.page__title + .page__intro {
-  margin-top: 1em;
+.page__content .type {
+  max-width: 544px;
 }
 
 .page__main {

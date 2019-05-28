@@ -3,11 +3,12 @@ layout: page
 title: "Container"
 description: "A container component for general page composition purposes."
 tags: layout
+# usage:
+  # npm: "@vrembem/container"
+  # scss: "vrembem/container/all"
 ---
 
-<div class="flag">
-  <h2>container</h2>
-</div>
+{% include flag.html heading="container" %}
 
 <div class="demo spacing">
   <div class="demo__render">
@@ -22,9 +23,7 @@ tags: layout
   </div>
 </div>
 
-<div class="flag">
-  <h2>container_size_[key]</h2>
-</div>
+{% include flag.html heading="container_size_[key]" %}
 
 <div class="demo spacing">
   <div class="demo__render spacing">

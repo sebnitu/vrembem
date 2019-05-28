@@ -6,46 +6,46 @@
  * A theme that styles a menu to better fit a dark background.
  */
 
-.menu_invert {
+.menu_theme_invert {
   .menu__link {
-    color: $menu_invert-color;
-    background: $menu_invert-background;
+    color: $menu_theme_invert-color;
+    background: $menu_theme_invert-background;
 
     &:hover {
-      color: $menu_invert-color_hover;
-      background: $menu_invert-background_hover;
+      color: $menu_theme_invert-color_hover;
+      background: $menu_theme_invert-background_hover;
     }
 
     &.is-active,
     &.is-parent {
-      color: $menu_invert-color_active;
-      background: $menu_invert-background_active;
+      color: $menu_theme_invert-color_active;
+      background: $menu_theme_invert-background_active;
 
       &:hover,
       &:focus {
-        color: $menu_invert-color_active_hover;
-        background: $menu_invert-background_active_hover;
+        color: $menu_theme_invert-color_active_hover;
+        background: $menu_theme_invert-background_active_hover;
       }
     }
 
     &.is-disabled {
-      color: $menu_invert-color_disabled;
-      background: $menu_invert-background_disabled;
+      color: $menu_theme_invert-color_disabled;
+      background: $menu_theme_invert-background_disabled;
 
       &:hover,
       &:focus {
-        color: $menu_invert-color_disabled_hover;
-        background: $menu_invert-background_disabled_hover;
+        color: $menu_theme_invert-color_disabled_hover;
+        background: $menu_theme_invert-background_disabled_hover;
       }
     }
   }
 
   .menu__text {
-    color: $menu_invert__text-color;
-    background: $menu_invert-background;
+    color: $menu_theme_invert__text-color;
+    background: $menu_theme_invert-background;
   }
 
   .menu__sep {
-    background: $menu_invert__sep-background;
+    background: $menu_theme_invert__sep-background;
   }
 }

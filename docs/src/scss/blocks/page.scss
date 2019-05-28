@@ -20,16 +20,12 @@
   font-weight: normal;
 }
 
-.page__intro {
-  max-width: 600px;
-}
-
-.page__title + .page__intro {
-  margin-top: 1em;
-}
-
 .page__content {
   @extend .section;
+
+  .type {
+    max-width: 544px;
+  }
 }
 
 .page__main {

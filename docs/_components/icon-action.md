@@ -3,28 +3,29 @@ layout: page
 title: Icon-action
 dsc: "A minimal container component for icon based actions."
 tags: block simple
+# usage:
+  # npm: "@vrembem/icon-action"
+  # scss: "vrembem/icon-action/all"
 ---
 
-## `icon-action`
+{% include flag.html heading="icon-action" %}
 
-<div class="demo grid grid_md">
-  <div class="grid__item">
-  <div class="demo__render">
-    <div class="demo__group level level_wrap">
-      <button class="icon-action">
-        {% include icon.html icon="x" %}
-      </button>
-      <button class="icon-action">
-        {% include icon.html icon="minus" %}
-      </button>
-      <button class="icon-action">
-        {% include icon.html icon="maximize-2" %}
-      </button>
-    </div>
-  </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
+{% include demo_open.html %}
+
+<div class="demo__group level level_wrap">
+  <button class="icon-action">
+    {% include icon.html icon="x" %}
+  </button>
+  <button class="icon-action">
+    {% include icon.html icon="minus" %}
+  </button>
+  <button class="icon-action">
+    {% include icon.html icon="maximize-2" %}
+  </button>
+</div>
+
+{% include demo_switch.html %}
+
 ```html
 <button class="icon-action">
   <svg role="img" class="icon">
@@ -32,83 +33,77 @@ tags: block simple
   </svg>
 </button>
 ```
-  </div>
-  </div>
+
+{% include demo_close.html %}
+
+{% include flag.html heading="icon-action_size" %}
+
+{% include demo_open.html %}
+
+<div class="demo__group level level_wrap">
+  <button class="icon-action icon-action_size_sm">
+    {% include icon.html icon="x" %}
+  </button>
+  <button class="icon-action">
+    {% include icon.html icon="x" %}
+  </button>
+  <button class="icon-action icon-action_size_lg">
+    {% include icon.html icon="x" %}
+  </button>
 </div>
 
-## `icon-action_size`
+{% include demo_switch.html %}
 
-<div class="demo grid grid_md">
-  <div class="grid__item">
-  <div class="demo__render">
-    <div class="demo__group level level_wrap">
-      <button class="icon-action icon-action_size_sm">
-        {% include icon.html icon="x" %}
-      </button>
-      <button class="icon-action">
-        {% include icon.html icon="x" %}
-      </button>
-      <button class="icon-action icon-action_size_lg">
-        {% include icon.html icon="x" %}
-      </button>
-    </div>
-  </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
 ```html
 <button class="icon-action icon-action_size_sm">...</button>
 <button class="icon-action">...</button>
 <button class="icon-action icon-action_size_lg">...</button>
 ```
-  </div>
+
+{% include demo_close.html %}
+
+{% include flag.html heading="icon-action_color" %}
+
+{% include demo_open.html class_parent="spacing" %}
+
+<div class="demo__group level level_wrap">
+  <button class="icon-action">
+    {% include icon.html icon="x" %}
+  </button>
+  <button class="icon-action icon-action_color_subtle">
+    {% include icon.html icon="x" %}
+  </button>
+  <button class="icon-action icon-action_color_fade">
+    {% include icon.html icon="x" %}
+  </button>
+
+  <button class="icon-action icon-action_color_danger">
+    {% include icon.html icon="x" %}
+  </button>
+  <button class="icon-action icon-action_color_caution">
+    {% include icon.html icon="minus" %}
+  </button>
+  <button class="icon-action icon-action_color_success">
+    {% include icon.html icon="maximize-2" %}
+  </button>
+</div>
+
+<div class="demo__group invert">
+  <div class="level level_wrap">
+    <button class="icon-action icon-action_color_invert">
+      {% include icon.html icon="x" %}
+    </button>
+    <button class="icon-action icon-action_color_invert_subtle">
+      {% include icon.html icon="x" %}
+    </button>
+    <button class="icon-action icon-action_color_invert_fade">
+      {% include icon.html icon="x" %}
+    </button>
   </div>
 </div>
 
-## `icon-action_color`
+{% include demo_switch.html %}
 
-<div class="demo grid grid_md">
-  <div class="grid__item">
-  <div class="demo__render spacing">
-
-    <div class="demo__group level level_wrap p_1">
-      <button class="icon-action">
-        {% include icon.html icon="x" %}
-      </button>
-      <button class="icon-action icon-action_color_subtle">
-        {% include icon.html icon="x" %}
-      </button>
-      <button class="icon-action icon-action_color_fade">
-        {% include icon.html icon="x" %}
-      </button>
-
-      <button class="icon-action icon-action_color_danger">
-        {% include icon.html icon="x" %}
-      </button>
-      <button class="icon-action icon-action_color_caution">
-        {% include icon.html icon="minus" %}
-      </button>
-      <button class="icon-action icon-action_color_success">
-        {% include icon.html icon="maximize-2" %}
-      </button>
-    </div>
-
-    <div class="demo__group level level_wrap bg_dark p_1">
-      <button class="icon-action icon-action_color_invert">
-        {% include icon.html icon="x" %}
-      </button>
-      <button class="icon-action icon-action_color_invert_subtle">
-        {% include icon.html icon="x" %}
-      </button>
-      <button class="icon-action icon-action_color_invert_fade">
-        {% include icon.html icon="x" %}
-      </button>
-    </div>
-
-  </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
 ```html
 <button class="icon-action">...</button>
 <button class="icon-action icon-action_color_subtle">...</button>
@@ -118,6 +113,5 @@ tags: block simple
 <button class="icon-action icon-action_color_invert">...</button>
 <button class="icon-action icon-action_color_invert_subtle">...</button>
 ```
-  </div>
-  </div>
-</div>
+
+{% include demo_close.html %}

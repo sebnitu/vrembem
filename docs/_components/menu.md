@@ -3,32 +3,33 @@ layout: page
 title: Menu
 description: "Menus represent groups of links, actions or navigation that a user can interact with. They come with a variety of elements and modifiers to facilitate many contexts and roles."
 tags: block compound
+# usage:
+  # npm: "@vrembem/menu"
+  # scss: "vrembem/menu/all"
 ---
 
-## `menu`
+{% include flag.html heading="menu" %}
 
-<div class="demo grid grid_md">
-  <div class="grid__item">
-  <div class="demo__render">
-    <ul class="menu">
-      <li class="menu__item">
-        <a class="menu__link" href="#">Create</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Edit</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Delete</a>
-      </li>
-      <li class="menu__sep"></li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Logout</a>
-      </li>
-    </ul>
-  </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
+{% include demo_open.html %}
+
+<ul class="menu">
+  <li class="menu__item">
+    <a class="menu__link" href="#">Create</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Edit</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Delete</a>
+  </li>
+  <li class="menu__sep"></li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Logout</a>
+  </li>
+</ul>
+
+{% include demo_switch.html %}
+
 ```html
 <ul class="menu">
   <li class="menu__item">
@@ -37,54 +38,49 @@ tags: block compound
   <li class="menu__sep"></li>
 </ul>
 ```
-  </div>
-  </div>
-</div>
 
-## `menu__link_icon`
+{% include demo_close.html %}
 
-Used for displaying icon-only links.
+{% include flag.html heading="menu__link_icon" %}
 
-<div class="demo grid grid_md">
-  <div class="grid__item">
-  <div class="demo__render">
-    <ul class="menu">
-      <li class="menu__item">
-        <a class="menu__link menu__link_icon" href="#">
-          {% include icon.html icon="arrow-left" %}
-        </a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link menu__link_icon" href="#">
-          {% include icon.html icon="arrow-right" %}
-        </a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link menu__link_icon" href="#">
-          {% include icon.html icon="rotate-cw" %}
-        </a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link menu__link_icon" href="#">
-          {% include icon.html icon="home" %}
-        </a>
-      </li>
-      <li class="menu__sep"></li>
-      <li class="menu__item">
-        <a class="menu__link menu__link_icon" href="#">
-          {% include icon.html icon="at-sign" %}
-        </a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link menu__link_icon" href="#">
-          {% include icon.html icon="more-vertical" %}
-        </a>
-      </li>
-    </ul>
-  </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
+{% include demo_open.html %}
+
+<ul class="menu">
+  <li class="menu__item">
+    <a class="menu__link menu__link_icon" href="#">
+      {% include icon.html icon="arrow-left" %}
+    </a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link menu__link_icon" href="#">
+      {% include icon.html icon="arrow-right" %}
+    </a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link menu__link_icon" href="#">
+      {% include icon.html icon="rotate-cw" %}
+    </a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link menu__link_icon" href="#">
+      {% include icon.html icon="home" %}
+    </a>
+  </li>
+  <li class="menu__sep"></li>
+  <li class="menu__item">
+    <a class="menu__link menu__link_icon" href="#">
+      {% include icon.html icon="at-sign" %}
+    </a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link menu__link_icon" href="#">
+      {% include icon.html icon="more-vertical" %}
+    </a>
+  </li>
+</ul>
+
+{% include demo_switch.html %}
+
 ```html
 <ul class="menu">
   <li class="menu__item">
@@ -96,35 +92,30 @@ Used for displaying icon-only links.
   </li>
 </ul>
 ```
-  </div>
-  </div>
-</div>
 
-## `menu__text`
+{% include demo_close.html %}
 
-For creating non-link menu item content.
+{% include flag.html heading="menu__text" %}
 
-<div class="demo grid grid_md">
-  <div class="grid__item">
-  <div class="demo__render">
-    <ul class="menu">
-      <li class="menu__item">
-        <strong class="menu__text">Actions:</strong>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Create</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Update</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Delete</a>
-      </li>
-    </ul>
-  </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
+{% include demo_open.html %}
+
+<ul class="menu">
+  <li class="menu__item">
+    <strong class="menu__text">Actions:</strong>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Create</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Update</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Delete</a>
+  </li>
+</ul>
+
+{% include demo_switch.html %}
+
 ```html
 <ul class="menu">
   <li class="menu__item">
@@ -132,47 +123,46 @@ For creating non-link menu item content.
   </li>
 </ul>
 ```
-  </div>
-  </div>
+
+{% include demo_close.html %}
+
+{% include flag.html heading="menu > *" %}
+
+<div class="type" markdown="1">
+Elements inside the `menu__link` and `menu__text` elements receive appropriate spacing.
 </div>
 
-## `menu > *`
+{% include demo_open.html %}
 
-Elements inside the menu__link and menu__text elements receive appropriate spacing.
+<ul class="menu">
+  <li class="menu__item">
+    <a class="menu__link" href="#">
+      {% include icon.html icon="thumbs-up" %}
+      <span>30k</span>
+    </a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">
+      {% include icon.html icon="thumbs-down" %}
+      <span>1k</span>
+    </a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">
+      {% include icon.html icon="share" %}
+      <span>Share</span>
+    </a>
+  </li>
+  <li class="menu__sep"></li>
+  <li class="menu__item">
+    <a class="menu__link menu__link_icon" href="#">
+      {% include icon.html icon="more-horizontal" %}
+    </a>
+  </li>
+</ul>
 
-<div class="demo grid grid_md">
-  <div class="grid__item">
-  <div class="demo__render">
-    <ul class="menu">
-      <li class="menu__item">
-        <a class="menu__link" href="#">
-          {% include icon.html icon="thumbs-up" %}
-          <span>30k</span>
-        </a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">
-          {% include icon.html icon="thumbs-down" %}
-          <span>1k</span>
-        </a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">
-          {% include icon.html icon="share" %}
-          <span>Share</span>
-        </a>
-      </li>
-      <li class="menu__sep"></li>
-      <li class="menu__item">
-        <a class="menu__link menu__link_icon" href="#">
-          {% include icon.html icon="more-horizontal" %}
-        </a>
-      </li>
-    </ul>
-  </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
+{% include demo_switch.html %}
+
 ```html
 <ul class="menu">
   <li class="menu__item">
@@ -185,34 +175,31 @@ Elements inside the menu__link and menu__text elements receive appropriate spaci
   </li>
 </ul>
 ```
-  </div>
-  </div>
-</div>
 
-## `is-active` `is-disabled`
+{% include demo_close.html %}
 
-<div class="demo grid grid_md">
-  <div class="grid__item">
-  <div class="demo__render">
-    <ul class="menu">
-      <li class="menu__item">
-        <a class="menu__link is-active" href="#">Create</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link is-disabled" href="#">Edit</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Delete</a>
-      </li>
-      <li class="menu__sep"></li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Logout</a>
-      </li>
-    </ul>
-  </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
+{% include flag.html heading="is-active is-disabled" %}
+
+{% include demo_open.html %}
+
+<ul class="menu">
+  <li class="menu__item">
+    <a class="menu__link is-active" href="#">Create</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link is-disabled" href="#">Edit</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Delete</a>
+  </li>
+  <li class="menu__sep"></li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Logout</a>
+  </li>
+</ul>
+
+{% include demo_switch.html %}
+
 ```html
 <ul class="menu">
   <li class="menu__item">
@@ -227,247 +214,237 @@ Elements inside the menu__link and menu__text elements receive appropriate spaci
   </li>
 </ul>
 ```
-  </div>
-  </div>
-</div>
 
-<div class="type" markdown="1">
-## Menu Modifiers
-</div>
+{% include demo_close.html %}
 
-## `menu_full`
+{% include flag.html heading="menu_full" %}
 
-Allows a horizontal menu to span the full width of it's container.
+{% include demo_open.html %}
 
-<div class="demo spacing">
-  <div class="demo__render">
-    <ul class="menu menu_full">
-      <li class="menu__item">
-        <a class="menu__link" href="#">Create</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Edit</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Delete</a>
-      </li>
-      <li class="menu__sep"></li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Logout</a>
-      </li>
-    </ul>
-  </div>
-  <div class="demo__code" markdown="1">
+<ul class="menu menu_full">
+  <li class="menu__item">
+    <a class="menu__link" href="#">Create</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Edit</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Delete</a>
+  </li>
+  <li class="menu__sep"></li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Logout</a>
+  </li>
+</ul>
+
+{% include demo_switch.html %}
+
 ```html
 <ul class="menu menu_full">
   ...
 </ul>
 ```
-  </div>
+
+{% include demo_close.html %}
+
+{% include flag.html heading="menu_scroll" %}
+
+<div class="type" markdown="1">
+Allows a horizontal menu to scroll if it exceeds the full width of it's container.
 </div>
 
-## `menu_scroll`
+{% include demo_open.html class_gridItem="size_6" %}
 
-Allows a horizontal menu to scroll if it exceeds the full width of it's container.
+<ul class="menu menu_scroll">
+  <li class="menu__item">
+    <a class="menu__link" href="#">Create</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Edit</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Update</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Read</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Delete</a>
+  </li>
+  <li class="menu__sep"></li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Create</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Edit</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Update</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Read</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Delete</a>
+  </li>
+  <li class="menu__sep"></li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Settings</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Logout</a>
+  </li>
+</ul>
 
-<div class="demo spacing">
-  <div class="demo__render">
-    <ul class="menu menu_scroll">
-      <li class="menu__item">
-        <a class="menu__link" href="#">Create</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Edit</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Update</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Read</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Delete</a>
-      </li>
-      <li class="menu__sep"></li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Create</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Edit</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Update</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Read</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Delete</a>
-      </li>
-      <li class="menu__sep"></li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Settings</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Logout</a>
-      </li>
-    </ul>
-  </div>
-  <div class="demo__code" markdown="1">
+{% include demo_switch.html %}
+
 ```html
 <ul class="menu menu_scroll">
   ...
 </ul>
 ```
-  </div>
-</div>
 
-## `menu_wrap`
+{% include demo_close.html %}
 
-Allows a horizontal menus to wrap if it exceeds the full width of it's container.
+{% include flag.html heading="menu_wrap" %}
 
-<div class="demo spacing">
-  <div class="demo__render">
-    <div>
-    <ul class="menu menu_wrap">
-      <li class="menu__item">
-        <a class="menu__link" href="#">Create</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Edit</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Update</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Read</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Delete</a>
-      </li>
-      <li class="menu__sep"></li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Create</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Edit</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Update</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Read</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Delete</a>
-      </li>
-      <li class="menu__sep"></li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Settings</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Logout</a>
-      </li>
-    </ul>
-    </div>
-  </div>
-  <div class="demo__code" markdown="1">
+{% include demo_open.html %}
+
+<ul class="menu menu_wrap">
+  <li class="menu__item">
+    <a class="menu__link" href="#">Create</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Edit</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Update</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Read</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Delete</a>
+  </li>
+  <li class="menu__sep"></li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Create</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Edit</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Update</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Read</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Delete</a>
+  </li>
+  <li class="menu__sep"></li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Settings</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Logout</a>
+  </li>
+</ul>
+
+{% include demo_switch.html %}
+
 ```html
-<div>
-  <ul class="menu menu_wrap">
-    ...
-  </ul>
-</div>
+<ul class="menu menu_wrap">
+  ...
+</ul>
 ```
-  </div>
-</div>
 
-## `menu_stack`
+{% include demo_close.html %}
 
-<div class="demo grid grid_md">
-<div class="grid__item">
-  <div class="demo__render">
-    <ul class="menu menu_stack">
-      <li class="menu__item">
-        <a class="menu__link" href="#">Create</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Edit</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Delete</a>
-      </li>
-      <li class="menu__sep"></li>
-      <li class="menu__item">
-        <a class="menu__link" href="#">Logout</a>
-      </li>
-    </ul>
-  </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
+{% include flag.html heading="menu_stack" %}
+
+{% include demo_open.html %}
+
+<ul class="menu menu_stack">
+  <li class="menu__item">
+    <a class="menu__link" href="#">Create</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Edit</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Delete</a>
+  </li>
+  <li class="menu__sep"></li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Logout</a>
+  </li>
+</ul>
+
+{% include demo_switch.html %}
+
 ```html
 <ul class="menu menu_stack">
   ...
 </ul>
 ```
-  </div>
-  </div>
+
+{% include demo_close.html %}
+
+{% include flag.html heading="menu_theme_invert" %}
+
+<div class="type" markdown="1">
+This theme is perfect for using menus on a dark background.
 </div>
 
-## `menu_invert`
+{% include demo_open.html class_parent="invert" %}
 
-This theme is perfect for using menus on a dark background.
+<div class="demo__group">
+  <ul class="menu menu_theme_invert">
+    <li class="menu__item">
+      <a class="menu__link is-active" href="#">Create</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Read</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__link is-disabled" href="#">Update</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Delete</a>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Logout</a>
+    </li>
+  </ul>
+</div>
 
-<div class="demo grid grid_md">
-  <div class="grid__item">
-    <div class="demo__render invert">
-      <div class="demo__group">
-        <ul class="menu menu_invert">
-          <li class="menu__item">
-            <a class="menu__link is-active" href="#">Create</a>
-          </li>
-          <li class="menu__item">
-            <a class="menu__link" href="#">Read</a>
-          </li>
-          <li class="menu__item">
-            <a class="menu__link is-disabled" href="#">Update</a>
-          </li>
-          <li class="menu__item">
-            <a class="menu__link" href="#">Delete</a>
-          </li>
-          <li class="menu__sep"></li>
-          <li class="menu__item">
-            <a class="menu__link" href="#">Logout</a>
-          </li>
-        </ul>
-      </div>
-      <div class="demo__group">
-        <ul class="menu menu_stack menu_invert">
-          <li class="menu__item">
-            <a class="menu__link is-active" href="#">Create</a>
-          </li>
-          <li class="menu__item">
-            <a class="menu__link" href="#">Read</a>
-          </li>
-          <li class="menu__item">
-            <a class="menu__link is-disabled" href="#">Update</a>
-          </li>
-          <li class="menu__item">
-            <a class="menu__link" href="#">Delete</a>
-          </li>
-          <li class="menu__sep"></li>
-          <li class="menu__item">
-            <a class="menu__link" href="#">Logout</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="grid__item size_6">
-  <div class="demo__code" markdown="1">
+<div class="demo__group">
+  <ul class="menu menu_stack menu_theme_invert">
+    <li class="menu__item">
+      <a class="menu__link is-active" href="#">Create</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Read</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__link is-disabled" href="#">Update</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Delete</a>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Logout</a>
+    </li>
+  </ul>
+</div>
+
+{% include demo_switch.html %}
+
 ```html
-<ul class="menu menu_invert">
+<ul class="menu menu_theme_invert">
   <li class="menu__item">
     <a class="menu__link is-active" href="#">Create</a>
   </li>
@@ -486,6 +463,5 @@ This theme is perfect for using menus on a dark background.
   </li>
 </ul>
 ```
-  </div>
-  </div>
-</div>
+
+{% include demo_close.html %}
