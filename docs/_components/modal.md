@@ -94,93 +94,96 @@ The core parts of a modal include the following elements:
 {% include demo_close.html %}
 
 <!-- modal -->
+<div>
 
-<div class="modal" id="modal-default" tabindex="-1">
-  <div class="modal__dialog dialog">
-    <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
-      {% include icon.html icon="x" %}
-    </button>
-    <div class="dialog__body">
-      <p>This is using the dialog component...</p>
+  <div class="modal" id="modal-default" tabindex="-1">
+    <div class="modal__dialog dialog">
+      <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
+        {% include icon.html icon="x" %}
+      </button>
+      <div class="dialog__body">
+        <p>This is using the dialog component...</p>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="modal modal_size_sm" id="modal-size-sm" tabindex="-1">
-  <div class="modal__dialog dialog">
-    <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
-      {% include icon.html icon="x" %}
-    </button>
-    <div class="dialog__body">
-      <p>This is using the dialog component...</p>
+  <div class="modal modal_size_sm" id="modal-size-sm" tabindex="-1">
+    <div class="modal__dialog dialog">
+      <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
+        {% include icon.html icon="x" %}
+      </button>
+      <div class="dialog__body">
+        <p>This is using the dialog component...</p>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="modal modal_size_lg" id="modal-size-lg" tabindex="-1">
-  <div class="modal__dialog dialog">
-    <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
-      {% include icon.html icon="x" %}
-    </button>
-    <div class="dialog__body">
-      <p>This is using the dialog component...</p>
+  <div class="modal modal_size_lg" id="modal-size-lg" tabindex="-1">
+    <div class="modal__dialog dialog">
+      <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
+        {% include icon.html icon="x" %}
+      </button>
+      <div class="dialog__body">
+        <p>This is using the dialog component...</p>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="modal modal_full" id="modal-full" tabindex="-1">
-  <div class="modal__dialog dialog">
-    <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
-      {% include icon.html icon="x" %}
-    </button>
-    <div class="dialog__body">
-      <p>This is using the dialog component...</p>
+  <div class="modal modal_full" id="modal-full" tabindex="-1">
+    <div class="modal__dialog dialog">
+      <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
+        {% include icon.html icon="x" %}
+      </button>
+      <div class="dialog__body">
+        <p>This is using the dialog component...</p>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- modal_pos_[key] -->
+  <!-- modal_pos_[key] -->
 
-<div class="modal modal_pos_top" id="modal-pos-top" tabindex="-1">
-  <div class="modal__dialog dialog">
-    <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
-      {% include icon.html icon="x" %}
-    </button>
-    <div class="dialog__body">
-      <p>This is using the dialog component...</p>
+  <div class="modal modal_pos_top" id="modal-pos-top" tabindex="-1">
+    <div class="modal__dialog dialog">
+      <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
+        {% include icon.html icon="x" %}
+      </button>
+      <div class="dialog__body">
+        <p>This is using the dialog component...</p>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="modal modal_pos_bottom" id="modal-pos-bottom" tabindex="-1">
-  <div class="modal__dialog dialog">
-    <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
-      {% include icon.html icon="x" %}
-    </button>
-    <div class="dialog__body">
-      <p>This is using the dialog component...</p>
+  <div class="modal modal_pos_bottom" id="modal-pos-bottom" tabindex="-1">
+    <div class="modal__dialog dialog">
+      <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
+        {% include icon.html icon="x" %}
+      </button>
+      <div class="dialog__body">
+        <p>This is using the dialog component...</p>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="modal modal_pos_left" id="modal-pos-left" tabindex="-1">
-  <div class="modal__dialog dialog">
-    <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
-      {% include icon.html icon="x" %}
-    </button>
-    <div class="dialog__body">
-      <p>This is using the dialog component...</p>
+  <div class="modal modal_pos_left" id="modal-pos-left" tabindex="-1">
+    <div class="modal__dialog dialog">
+      <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
+        {% include icon.html icon="x" %}
+      </button>
+      <div class="dialog__body">
+        <p>This is using the dialog component...</p>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="modal modal_pos_right" id="modal-pos-right" tabindex="-1">
-  <div class="modal__dialog dialog">
-    <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
-      {% include icon.html icon="x" %}
-    </button>
-    <div class="dialog__body">
-      <p>This is using the dialog component...</p>
+  <div class="modal modal_pos_right" id="modal-pos-right" tabindex="-1">
+    <div class="modal__dialog dialog">
+      <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
+        {% include icon.html icon="x" %}
+      </button>
+      <div class="dialog__body">
+        <p>This is using the dialog component...</p>
+      </div>
     </div>
   </div>
+
 </div>
