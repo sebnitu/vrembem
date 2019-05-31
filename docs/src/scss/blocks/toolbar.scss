@@ -7,7 +7,7 @@
 
 .toolbar {
   z-index: 600;
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -22,8 +22,16 @@
   box-shadow: $box-shadow-4dp;
 }
 
+.toolbar + .page {
+  padding-top: 3.5em;
+}
+
 @include media-min('md') {
   .toolbar {
     padding: 1em;
+  }
+
+  .toolbar + .page {
+    padding-top: 4.5em;
   }
 }

@@ -4,19 +4,34 @@ layout: compress
 
 {%- include head.html -%}
 
+{%- include toolbar.html -%}
+
 <div class="page">
 
-  {%- include toolbar.html -%}
+  <div class="page__drawer drawer drawer_dismissible">
+    <div class="drawer__content">
+      <ul class="menu menu_stack">
+        <li class="menu__item">
+          <a class="menu__link" href="{{ site.url }}{{ site.baseurl }}">
+            {% include icon.html icon="arrow-left" %}
+            <span>Home</span>
+          </a>
+        </li>
+        <li class="menu__sep"></li>
+        {%- for item in site.components -%}
+        <li class="menu__item">
+          <a class="menu__link" href="{{ item.url }}">
+            {{ item.title }}
+          </a>
+        </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
 
   <section class="page__main">
     {{ content }}
   </section>
-
-  <footer class="page__footer">
-    <div class="container">
-      {%- include footer.html -%}
-    </div>
-  </footer>
 
 </div>
 

@@ -3807,6 +3807,55 @@ pre {
 }
 
 /**
+ * Drawer
+ * ---
+ * The navigation drawer slides in from the left and contains the navigation
+ * destinations for your app.
+ */
+.drawer {
+  position: relative;
+  width: 16em;
+  height: 100%;
+  background: #eceff1;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -ms-flex-line-pack: stretch;
+      align-content: stretch;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  overflow: hidden;
+  display: none;
+}
+
+.drawer__content {
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 1em;
+}
+
+.drawer_dismissible {
+  position: absolute;
+  left: 0;
+  right: auto;
+}
+
+.drawer_dismissible.drawer_open {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.drawer_dismissible.drawer_open + .page__main {
+  margin-left: 16em;
+}
+
+/**
  * Dropdown
  * ---
  * A component that is initially hidden and revealed upon user interaction

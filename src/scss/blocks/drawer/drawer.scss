@@ -1,0 +1,43 @@
+@import 'variables';
+
+/**
+ * Drawer
+ * ---
+ * The navigation drawer slides in from the left and contains the navigation
+ * destinations for your app.
+ */
+
+.drawer {
+  position: relative;
+  width: $drawer-width;
+  height: 100%;
+  background: $shade;
+  // border-right: $border;
+  align-items: stretch;
+  align-content: stretch;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow: hidden;
+  display: none;
+}
+
+.drawer__content {
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 1em;
+}
+
+.drawer_dismissible {
+  position: absolute;
+  left: 0;
+  right: auto;
+}
+
+.drawer_dismissible.drawer_open {
+  display: flex;
+}
+
+.drawer_dismissible.drawer_open + .page__main {
+  margin-left: $drawer-width;
+}

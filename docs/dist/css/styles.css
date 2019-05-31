@@ -3808,6 +3808,55 @@ pre {
 }
 
 /**
+ * Drawer
+ * ---
+ * The navigation drawer slides in from the left and contains the navigation
+ * destinations for your app.
+ */
+.drawer {
+  position: relative;
+  width: 16em;
+  height: 100%;
+  background: #eceff1;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -ms-flex-line-pack: stretch;
+      align-content: stretch;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  overflow: hidden;
+  display: none;
+}
+
+.drawer__content {
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 1em;
+}
+
+.drawer_dismissible {
+  position: absolute;
+  left: 0;
+  right: auto;
+}
+
+.drawer_dismissible.drawer_open {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.drawer_dismissible.drawer_open + .page__main {
+  margin-left: 16em;
+}
+
+/**
  * Dropdown
  * ---
  * A component that is initially hidden and revealed upon user interaction
@@ -7296,7 +7345,8 @@ pre {
  * The page component which handles layout for a general page document.
  */
 .page {
-  min-height: 100%;
+  position: relative;
+  height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -7304,6 +7354,7 @@ pre {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  overflow: hidden;
 }
 
 .page__title {
@@ -7318,6 +7369,7 @@ pre {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+  overflow: auto;
 }
 
 .page__section {
@@ -7336,8 +7388,7 @@ pre {
  */
 .toolbar {
   z-index: 600;
-  position: -webkit-sticky;
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -7352,9 +7403,16 @@ pre {
           box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1), 0 4px 5px 0 rgba(0, 0, 0, 0.07), 0 1px 10px 0 rgba(0, 0, 0, 0.06);
 }
 
+.toolbar + .page {
+  padding-top: 3.5em;
+}
+
 @media (min-width: 760px) {
   .toolbar {
     padding: 1em;
+  }
+  .toolbar + .page {
+    padding-top: 4.5em;
   }
 }
 

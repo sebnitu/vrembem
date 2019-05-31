@@ -5,9 +5,11 @@
  */
 
 .page {
-  min-height: 100%;
+  position: relative;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .page__header {
@@ -30,6 +32,7 @@
 
 .page__main {
   flex-grow: 1;
+  overflow: auto;
 }
 
 .page__section {
