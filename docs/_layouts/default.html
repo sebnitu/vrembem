@@ -6,9 +6,9 @@ layout: compress
 
 {%- include toolbar.html -%}
 
-<div class="page">
+<div class="drawer drawer_dismissible">
 
-  <div id="listjs" class="page__drawer drawer drawer_dismissible">
+  <div id="listjs" class="drawer__left">
     <div class="drawer__header spacing">
       {%- include filter.html -%}
     </div>
@@ -17,7 +17,7 @@ layout: compress
     </div>
   </div>
 
-  <section class="page__main">
+  <section class="page">
     {{ content }}
   </section>
 

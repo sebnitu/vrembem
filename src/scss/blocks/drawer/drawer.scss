@@ -3,27 +3,48 @@
 /**
  * Drawer
  * ---
- * The navigation drawer slides in from the left and contains the navigation
- * destinations for your app.
+ * The navigation drawer slides in from the left and/or right and contains the
+ * navigation or other content for your app.
  */
 
 .drawer {
   position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.drawer__left,
+.drawer__right {
+  position: relative;
   width: $drawer-width;
-  background: $shade;
+  background: $drawer-background;
   align-items: stretch;
   align-content: stretch;
   flex-direction: column;
   flex: 0 0 $drawer-width;
-  display: none;
+  display: flex;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 
+.drawer__left {
+
+}
+
+.drawer__right {
+
+}
+
+/**
+ * Content elements
+ */
+
 .drawer__header,
 .drawer__content {
   padding: 1em;
-  background: $shade;
+  background: $drawer-background;
 }
 
 .drawer__header {
@@ -38,10 +59,18 @@
   z-index: 1;
 }
 
-.drawer_dismissible {
+/**
+ * Toggle modifiers
+ */
 
+.drawer_dismissible {
+  .drawer__left.drawer_open,
+  .drawer__right.drawer_open {
+    display: flex;
+  }
 }
 
-.drawer_dismissible.drawer_open {
-  display: flex;
+.drawer__left.drawer_close,
+.drawer__right.drawer_close {
+  display: none;
 }

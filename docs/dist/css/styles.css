@@ -3810,10 +3810,24 @@ pre {
 /**
  * Drawer
  * ---
- * The navigation drawer slides in from the left and contains the navigation
- * destinations for your app.
+ * The navigation drawer slides in from the left and/or right and contains the
+ * navigation or other content for your app.
  */
 .drawer {
+  position: relative;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  overflow: hidden;
+}
+
+.drawer__left,
+.drawer__right {
   position: relative;
   width: 16em;
   background: #eceff1;
@@ -3829,11 +3843,16 @@ pre {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 16em;
           flex: 0 0 16em;
-  display: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 
+/**
+ * Content elements
+ */
 .drawer__header,
 .drawer__content {
   padding: 1em;
@@ -3853,10 +3872,19 @@ pre {
   z-index: 1;
 }
 
-.drawer_dismissible.drawer_open {
+/**
+ * Toggle modifiers
+ */
+.drawer_dismissible .drawer__left.drawer_open,
+.drawer_dismissible .drawer__right.drawer_open {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.drawer__left.drawer_close,
+.drawer__right.drawer_close {
+  display: none;
 }
 
 /**
@@ -6787,7 +6815,7 @@ pre {
  * Header and Content
  */
 .cover__hero,
-.cover__menu {
+.cover__aside {
   position: relative;
 }
 
@@ -6808,7 +6836,7 @@ pre {
   z-index: 1;
 }
 
-.cover__menu {
+.cover__aside {
   position: relative;
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
@@ -6819,7 +6847,7 @@ pre {
 
 @media (min-width: 760px) {
   .cover__hero,
-  .cover__menu {
+  .cover__aside {
     -webkit-box-flex: 1;
         -ms-flex: 1 0 0px;
             flex: 1 0 0;
@@ -7307,16 +7335,10 @@ pre {
  * The page component which handles layout for a general page document.
  */
 .page {
-  position: relative;
-  height: 100vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  overflow: hidden;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  overflow: auto;
 }
 
 .page__title {
@@ -7325,13 +7347,6 @@ pre {
 
 .page__content .type {
   max-width: 544px;
-}
-
-.page__main {
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  overflow: auto;
 }
 
 .page__section {
@@ -7365,7 +7380,7 @@ pre {
           box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1), 0 4px 5px 0 rgba(0, 0, 0, 0.07), 0 1px 10px 0 rgba(0, 0, 0, 0.06);
 }
 
-.toolbar + .page {
+.toolbar + * {
   padding-top: 3.5em;
 }
 
@@ -7373,7 +7388,7 @@ pre {
   .toolbar {
     padding: 1em;
   }
-  .toolbar + .page {
+  .toolbar + * {
     padding-top: 4.5em;
   }
 }

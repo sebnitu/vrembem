@@ -22,7 +22,7 @@
   box-shadow: $box-shadow-4dp;
 }
 
-.toolbar + .page {
+.toolbar + * {
   padding-top: 3.5em;
 }
 
@@ -31,7 +31,7 @@
     padding: 1em;
   }
 
-  .toolbar + .page {
+  .toolbar + * {
     padding-top: 4.5em;
   }
 }

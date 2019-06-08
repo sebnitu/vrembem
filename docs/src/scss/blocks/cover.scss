@@ -24,7 +24,7 @@
  */
 
 .cover__hero,
-.cover__menu {
+.cover__aside {
   position: relative;
 }
 
@@ -43,7 +43,7 @@
   z-index: 1;
 }
 
-.cover__menu {
+.cover__aside {
   position: relative;
   flex: 1 1 auto;
   z-index: 2;
@@ -52,7 +52,7 @@
 
 @include media-min('md') {
   .cover__hero,
-  .cover__menu {
+  .cover__aside {
     flex: 1 0 0;
   }
 

@@ -3809,10 +3809,24 @@ pre {
 /**
  * Drawer
  * ---
- * The navigation drawer slides in from the left and contains the navigation
- * destinations for your app.
+ * The navigation drawer slides in from the left and/or right and contains the
+ * navigation or other content for your app.
  */
 .drawer {
+  position: relative;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  overflow: hidden;
+}
+
+.drawer__left,
+.drawer__right {
   position: relative;
   width: 16em;
   background: #eceff1;
@@ -3828,11 +3842,16 @@ pre {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 16em;
           flex: 0 0 16em;
-  display: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 
+/**
+ * Content elements
+ */
 .drawer__header,
 .drawer__content {
   padding: 1em;
@@ -3852,10 +3871,19 @@ pre {
   z-index: 1;
 }
 
-.drawer_dismissible.drawer_open {
+/**
+ * Toggle modifiers
+ */
+.drawer_dismissible .drawer__left.drawer_open,
+.drawer_dismissible .drawer__right.drawer_open {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.drawer__left.drawer_close,
+.drawer__right.drawer_close {
+  display: none;
 }
 
 /**

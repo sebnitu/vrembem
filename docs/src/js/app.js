@@ -32,7 +32,7 @@ const dropdown = new Toggle({
 // Init: Setup our variables
 
 let drawer_state
-let drawer = document.querySelector('.drawer')
+let drawer = document.querySelector('.drawer__left')
 
 if (drawer) {
 
