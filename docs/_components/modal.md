@@ -2,7 +2,7 @@
 layout: page
 title: Modal
 description: "A component for changing the mode of a page to complete a critical task. This is usually used in conjunction with the Dialog component to make modal dialogs."
-tags: block compound
+category: compound
 # usage:
   # npm: "@vrembem/modal"
   # scss: "vrembem/modal/all"

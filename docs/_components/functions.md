@@ -2,7 +2,7 @@
 layout: page
 title: Functions
 description: "These are Sass specific functions that are made available anywhere the Vrembem core is imported."
-tags: core
+category: core
 published: false
 # usage:
   # npm: "@vrembem/core"

@@ -6,13 +6,13 @@ export default function() {
 
   let api = {}
   let settings
-  let defaults = {
+  const defaults = {
     trigger: '[data-dismiss]',
     target: '[data-dismissible]',
     classToggle: 'dismiss'
   }
 
-  let run = () => {
+  const run = () => {
     let trigger = event.target.closest(settings.trigger)
     if (trigger) {
       let target = trigger.closest(settings.target)

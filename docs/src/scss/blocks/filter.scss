@@ -1,26 +1,23 @@
 /**
- * Jumbo Filter
+ * Menu Filter
  * ---
  * Handles the styles of the search filter displayed above the jumbo list.
  */
 
-.jumbo-filter {
-  position: sticky;
+.filter {
+  position: relative;
   z-index: 4;
-  top: 0;
-  background: $white;
-  border-bottom: 3px solid $shade;
+  background: $shade;
 
   &.is-active {
     border-color: $primary;
   }
 
   .search {
-    padding: 1.25em 3em;
-    // background: lighten($shade, 2%);
+    padding: 0.75em 1.5em;
     background: $white;
+    border-radius: $border-radius;
     border: none;
-    border-radius: 0;
     box-shadow: none;
 
     &:focus,
@@ -45,22 +42,22 @@
   }
 
   .search_clear {
-    right: 1.125em;
+    right: 1em;
   }
 }
 
 @include media-min('xs') {
-  .jumbo-filter {
+  .filter {
     .search {
-      padding: 1.5em 4em;
+      padding: 1em 3.25em;
     }
 
     .search_label {
-      left: 1.5em;
+      left: 1em;
     }
 
     .search_clear {
-      right: 1.65em;
+      right: 1em;
     }
   }
 }

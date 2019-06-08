@@ -2,7 +2,7 @@
 layout: page
 title: Dropdown
 description: "A component that is initially hidden and revealed upon user interaction either through a click or hover event. Dropdown components typically display lists of possible actions or navigation."
-tags: block compound
+category: compound
 # usage:
   # npm: "@vrembem/dropdown"
   # scss: "vrembem/dropdown/all"

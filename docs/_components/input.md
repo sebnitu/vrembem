@@ -2,7 +2,7 @@
 layout: page
 title: Input
 description: "The default component for user input."
-tags: block simple
+category: simple
 # usage:
   # npm: "@vrembem/input"
   # scss: "vrembem/input/all"

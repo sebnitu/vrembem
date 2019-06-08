@@ -2,7 +2,7 @@
 layout: page
 title: Button-group
 description: "A component for displaying groups of buttons."
-tags: block compound
+category: compound
 # usage:
   # npm: "@vrembem/button-group"
   # scss: "vrembem/button-group/all"

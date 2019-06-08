@@ -1,0 +1,30 @@
+/**
+ * Menu drawer modifier
+ * ---
+ * Custom styles for the menu which appears in the drawer component.
+ */
+
+.menu_drawer {
+
+  .menu__link {
+    padding: 1em;
+  }
+
+  .menu__link:hover {
+    background: $white;
+  }
+
+  .menu__icon {
+    margin: -0.5em;
+    padding: 0.5em;
+    color: $color-light;
+  }
+
+  .menu__link:hover,
+  .menu__link.is-active {
+    .menu__icon {
+      color: $primary;
+    }
+  }
+
+}

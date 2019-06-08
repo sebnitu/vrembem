@@ -1,38 +1,38 @@
 <div class="toolbar">
   <div class="level justify_between">
 
-    <div>
+    <div class="level__item">
       <ul class="menu menu_theme_invert">
         <li class="menu__item">
-          <a data-toggle-class="drawer_open" data-toggle-target=".page__drawer" href="#" class="menu__link menu__link_icon">
+          <button data-toggle-class="drawer_open drawer_close" data-toggle-target=".page__drawer" class="menu__link menu__link_icon drawer__toggle">
             {% include icon.html icon="menu" %}
-          </a>
+          </button>
         </li>
         <li class="menu__sep"></li>
         <li class="menu__item">
-          <span class="menu__text">{{ page.title }}</span>
+          <a href="{{ site.url }}{{ site.baseurl }}" class="menu__link">{{ site.title }}</a>
         </li>
       </ul>
     </div>
 
-    <div>
+    <div class="level__item">
       <ul class="menu menu_theme_invert">
 
+        {%- if page.previous -%}
         <li class="menu__item">
-          {%- if page.previous -%}
           <a href="{{ page.previous.url }}" class="menu__link menu__link_icon">
             {% include icon.html icon="arrow-left" %}
           </a>
-          {%- endif -%}
         </li>
+        {%- endif -%}
 
+        {%- if page.next -%}
         <li class="menu__item">
-          {%- if page.next -%}
           <a href="{{ page.next.url }}" class="menu__link menu__link_icon">
             {% include icon.html icon="arrow-right" %}
           </a>
-          {%- endif -%}
         </li>
+        {%- endif -%}
 
         {%- if page.previous or page.next -%}
         <li class="menu__sep"></li>
@@ -45,7 +45,6 @@
         </li>
 
       </ul>
-
     </div>
 
   </div>

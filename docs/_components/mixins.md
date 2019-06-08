@@ -2,7 +2,7 @@
 layout: page
 title: Mixins
 description: "..."
-tags: core
+category: core
 published: false
 # usage:
   # npm: "@vrembem/core"

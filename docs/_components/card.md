@@ -2,7 +2,7 @@
 layout: page
 title: Card
 description: "The cards component provides a flexible and extensive content container with multiple variants and options."
-tags: block compound
+category: compound
 # usage:
   # npm: "@vrembem/card"
   # scss: "vrembem/card/all"

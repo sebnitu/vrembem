@@ -2,7 +2,7 @@
 layout: page
 title: Icon
 description: "A component for displaying glyphs that convey meaning through iconography."
-tags: block simple
+category: simple
 # usage:
   # npm: "@vrembem/icon"
   # scss: "vrembem/icon/all"

@@ -10,34 +10,38 @@
 .drawer {
   position: relative;
   width: $drawer-width;
-  height: 100%;
   background: $shade;
-  // border-right: $border;
   align-items: stretch;
   align-content: stretch;
   flex-direction: column;
-  flex-shrink: 0;
-  overflow: hidden;
+  flex: 0 0 $drawer-width;
   display: none;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.drawer__header,
+.drawer__content {
+  padding: 1em;
+  background: $shade;
+}
+
+.drawer__header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  border-bottom: 1px solid rgba($black, 0.05);
 }
 
 .drawer__content {
-  height: 100%;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 1em;
+  position: relative;
+  z-index: 1;
 }
 
 .drawer_dismissible {
-  position: absolute;
-  left: 0;
-  right: auto;
+
 }
 
 .drawer_dismissible.drawer_open {
   display: flex;
-}
-
-.drawer_dismissible.drawer_open + .page__main {
-  margin-left: $drawer-width;
 }

@@ -32,14 +32,14 @@ export default function(options) {
       }
 
       if (targets.length) {
-        targets.forEach(function(target) {
-          u.toggleClass(target, trigger.dataset.toggleClass)
+        targets.forEach((target) => {
+          u.toggleClass(target, trigger.dataset.toggleClass.split(' '))
         })
       } else {
         if (settings.class) {
           u.toggleClass(trigger, settings.class)
         } else {
-          u.toggleClass(trigger, trigger.dataset.toggleClass)
+          u.toggleClass(trigger, trigger.dataset.toggleClass.split(' '))
         }
       }
 

@@ -2,7 +2,7 @@
 layout: page
 title: Dialog
 description: "A component that facilitates a conversation between the system and the user. They often request information or an action from the user."
-tags: block compound
+category: compound
 # usage:
   # npm: "@vrembem/dialog"
   # scss: "vrembem/dialog/all"

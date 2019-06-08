@@ -16,7 +16,7 @@ export default class {
 
     c = this.toArray(c)
 
-    return c.every( function (c) {
+    return c.every((c) => {
       return el.classList.contains(c)
     })
   }
@@ -31,7 +31,7 @@ export default class {
 
     c = this.toArray(c)
 
-    c.forEach( function(c) {
+    c.forEach((c) => {
       el.classList.add(c)
     })
   }
@@ -45,7 +45,7 @@ export default class {
 
     c = this.toArray(c)
 
-    c.forEach( function(c) {
+    c.forEach((c) => {
       el.classList.remove(c)
     })
   }
@@ -60,7 +60,7 @@ export default class {
 
     c = this.toArray(c)
 
-    c.forEach( function(c) {
+    c.forEach((c) => {
       el.classList.toggle(c)
     })
   }

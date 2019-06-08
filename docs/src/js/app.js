@@ -14,6 +14,61 @@ const dropdown = new Toggle({
 })
 
 /**
+ * Local storage
+ * ---
+ * This is we save the state of our drawer component.
+ * https://gomakethings.com/using-localstorage-to-save-user-data-with-vanilla-javascript/
+ */
+
+// Set
+// localStorage.setItem('drawer_state', drawer_state)
+// ---
+// Get
+// localStorage.getItem('drawer_state')
+// ---
+// Remove
+// localStorage.removeItem('drawer_state')
+
+// Init: Setup our variables
+
+let drawer_state
+let drawer = document.querySelector('.drawer')
+
+if (drawer) {
+
+  // Step 1: Check if local storage variable is set, otherwise set default.
+  if (localStorage.getItem('drawer_state')) {
+    drawer_state = localStorage.getItem('drawer_state')
+  } else {
+    drawer_state = 'close'
+    localStorage.setItem('drawer_state', drawer_state)
+  }
+
+  // Step 2: Check local storage and toggle classes based on drawer state
+  if (drawer_state === 'close') {
+    u.addClass(drawer, 'drawer_close')
+    u.removeClass(drawer, 'drawer_open')
+  } else {
+    u.removeClass(drawer, 'drawer_close')
+    u.addClass(drawer, 'drawer_open')
+  }
+
+  // Step 3: Add listener to drawer toggle button
+  document.addEventListener('click', () => {
+    let trigger = event.target.closest('.drawer__toggle')
+    if (trigger) {
+      if (u.hasClass(drawer, 'drawer_close')) {
+        drawer_state = 'close'
+      } else if (u.hasClass(drawer, 'drawer_open')) {
+        drawer_state = 'open'
+      }
+      localStorage.setItem('drawer_state', drawer_state)
+    }
+  }, false)
+
+}
+
+/**
  * List.js
  * ---
  * Adds list functionality along with search.
@@ -34,9 +89,9 @@ if (document.getElementById('listjs')) {
     },
     valueNames: [
       'name',
-      { data: ['tags'] }
+      { data: ['category'] }
     ],
-    listClass: 'jumbo-list'
+    listClass: 'menu'
   })
 
   /**
@@ -49,14 +104,14 @@ if (document.getElementById('listjs')) {
   /**
    * Clear search button
    */
-  let filter = document.querySelector('.jumbo-filter')
-  let search = document.querySelector('.jumbo-filter .search')
-  let search_clear = document.querySelector('.jumbo-filter .search_clear')
+  let filter = document.querySelector('.filter')
+  let search = document.querySelector('.filter .search')
+  let search_clear = document.querySelector('.filter .search_clear')
 
   /**
    * On search complete callback
    */
-  list.on('searchComplete', function() {
+  list.on('searchComplete', () => {
 
     // Update the search text in empty notice
     let value = search.value
@@ -82,11 +137,11 @@ if (document.getElementById('listjs')) {
   })
 
   /**
-   * Click events for tags and clears
+   * Click events for category and clears
    */
-  document.addEventListener('click', function() {
+  document.addEventListener('click', () => {
     let trigger_search_clear = event.target.closest('.search_clear')
-    let trigger_search_tag = event.target.closest('.tag')
+    let trigger_search_cat = event.target.closest('.category')
 
     if (trigger_search_clear) {
       search.value = ''
@@ -94,8 +149,8 @@ if (document.getElementById('listjs')) {
       event.preventDefault()
     }
 
-    if (trigger_search_tag) {
-      search.value = trigger_search_tag.dataset.tag
+    if (trigger_search_cat) {
+      search.value = trigger_search_cat.dataset.category
       list.search(search.value)
       event.preventDefault()
     }

@@ -8,7 +8,7 @@
   position: relative;
   height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   overflow: hidden;
 }
 
@@ -28,6 +28,10 @@
   .type {
     max-width: 544px;
   }
+}
+
+.page__drawer {
+
 }
 
 .page__main {
