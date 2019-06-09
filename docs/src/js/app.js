@@ -14,7 +14,7 @@ const dropdown = new Toggle({
 })
 
 /**
- * Local storage
+ * Drawer JavaScript (Pre-plugin)
  * ---
  * This is we save the state of our drawer component.
  * https://gomakethings.com/using-localstorage-to-save-user-data-with-vanilla-javascript/
@@ -32,9 +32,22 @@ const dropdown = new Toggle({
 // Init: Setup our variables
 
 let drawer_state
-let drawer = document.querySelector('.drawer__left')
+let drawer = document.querySelector('.drawer__item')
 
 if (drawer) {
+
+  // Toggle methods
+  let drawer_open = (item) => {
+    console.log('open: ', item)
+    u.addClass(drawer, 'drawer_open')
+    u.removeClass(drawer, 'drawer_close')
+  }
+
+  let drawer_close = (item) => {
+    console.log('close: ', item)
+    u.addClass(drawer, 'drawer_close')
+    u.removeClass(drawer, 'drawer_open')
+  }
 
   // Step 1: Check if local storage variable is set, otherwise set default.
   if (localStorage.getItem('drawer_state')) {
@@ -46,11 +59,9 @@ if (drawer) {
 
   // Step 2: Check local storage and toggle classes based on drawer state
   if (drawer_state === 'close') {
-    u.addClass(drawer, 'drawer_close')
-    u.removeClass(drawer, 'drawer_open')
+    drawer_close(drawer)
   } else {
-    u.removeClass(drawer, 'drawer_close')
-    u.addClass(drawer, 'drawer_open')
+    drawer_open(drawer)
   }
 
   // Step 3: Add listener to drawer toggle button
@@ -65,6 +76,37 @@ if (drawer) {
       localStorage.setItem('drawer_state', drawer_state)
     }
   }, false)
+
+
+
+  /**
+   * Draw state based on screen size
+   * ---
+   * Swaps out classes on the draw element to convert it into modal or
+   * dismissible style.
+   */
+
+  let breakpoints = {
+    'xs': '480px',
+    'sm': '620px',
+    'md': '760px',
+    'lg': '990px',
+    'xl': '1380px'
+  }
+
+  let minWidth = breakpoints.xl
+  let mq = window.matchMedia( "(min-width:" + minWidth + ")" )
+
+  let widthChange = (mq) => {
+    if (mq.matches) {
+      console.log('window width > ' + minWidth)
+    } else {
+      console.log('window width < ' + minWidth)
+    }
+  }
+
+  mq.addListener(widthChange)
+  widthChange(mq)
 
 }
 

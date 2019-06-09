@@ -40,6 +40,7 @@
     color: $menu-color_hover;
     background: $menu-background_hover;
     border-color: $menu-border-color_hover;
+    outline: none;
   }
 
   > * + * {

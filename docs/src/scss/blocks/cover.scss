@@ -147,3 +147,17 @@
     font-size: 1.4em;
   }
 }
+
+/**
+ * Cover menu and filter
+ */
+
+.cover__aside {
+  .filter .search {
+    padding: 1em 3.25em;
+  }
+
+  .menu_drawer .menu__link {
+    padding: 1em;
+  }
+}

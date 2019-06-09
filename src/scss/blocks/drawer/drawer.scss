@@ -15,8 +15,7 @@
   overflow: hidden;
 }
 
-.drawer__left,
-.drawer__right {
+.drawer__item {
   position: relative;
   width: $drawer-width;
   background: $drawer-background;
@@ -27,14 +26,6 @@
   display: flex;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-}
-
-.drawer__left {
-
-}
-
-.drawer__right {
-
 }
 
 /**
@@ -60,17 +51,76 @@
 }
 
 /**
- * Toggle modifiers
+ * drawer close modifier
+ */
+
+.drawer_close {
+  display: none;
+}
+
+.drawer_open {
+  display: flex;
+}
+
+/**
+ * Drawer dismissible modifier
+ * ---
+ * Dismissible drawers should be hidden on this media query in favor of modals.
  */
 
 .drawer_dismissible {
-  .drawer__left.drawer_open,
-  .drawer__right.drawer_open {
+  .drawer_open {
+    display: none;
+  }
+}
+
+@include media-min('xl') {
+  .drawer_dismissible {
+    .drawer_open {
+      display: flex;
+    }
+  }
+}
+
+/**
+ * Drawer modal modifier
+ * ---
+ * Used when the screen side no longer allows for the drawer to appear along
+ * side the document's primary content.
+ */
+
+.drawer_modal {
+  .drawer__item {
+    position: absolute;
+    z-index: 1000;
+    height: 100vh;
+  }
+}
+
+/**
+ * Drawer switch
+ * ---
+ * Switches between the modal and dismissible toggle drawer buttons
+ */
+
+.drawer__switch {
+  .drawer__trigger {
+    display: none;
+  }
+
+  .modal__trigger {
     display: flex;
   }
 }
 
-.drawer__left.drawer_close,
-.drawer__right.drawer_close {
-  display: none;
+@include media-min('xl') {
+  .drawer__switch {
+    .drawer__trigger {
+      display: flex;
+    }
+
+    .modal__trigger {
+      display: none;
+    }
+  }
 }

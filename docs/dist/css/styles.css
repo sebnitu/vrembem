@@ -3826,8 +3826,7 @@ pre {
   overflow: hidden;
 }
 
-.drawer__left,
-.drawer__right {
+.drawer__item {
   position: relative;
   width: 16em;
   background: #eceff1;
@@ -3873,18 +3872,71 @@ pre {
 }
 
 /**
- * Toggle modifiers
+ * drawer close modifier
  */
-.drawer_dismissible .drawer__left.drawer_open,
-.drawer_dismissible .drawer__right.drawer_open {
+.drawer_close {
+  display: none;
+}
+
+.drawer_open {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.drawer__left.drawer_close,
-.drawer__right.drawer_close {
+/**
+ * Drawer dismissible modifier
+ * ---
+ * Dismissible drawers should be hidden on this media query in favor of modals.
+ */
+.drawer_dismissible .drawer_open {
   display: none;
+}
+
+@media (min-width: 1380px) {
+  .drawer_dismissible .drawer_open {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+/**
+ * Drawer modal modifier
+ * ---
+ * Used when the screen side no longer allows for the drawer to appear along
+ * side the document's primary content.
+ */
+.drawer_modal .drawer__item {
+  position: absolute;
+  z-index: 1000;
+  height: 100vh;
+}
+
+/**
+ * Drawer switch
+ * ---
+ * Switches between the modal and dismissible toggle drawer buttons
+ */
+.drawer__switch .drawer__trigger {
+  display: none;
+}
+
+.drawer__switch .modal__trigger {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media (min-width: 1380px) {
+  .drawer__switch .drawer__trigger {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .drawer__switch .modal__trigger {
+    display: none;
+  }
 }
 
 /**
@@ -5052,6 +5104,7 @@ pre {
   color: #212121;
   background: rgba(0, 0, 0, 0.05);
   border-color: transparent;
+  outline: none;
 }
 
 .menu__link > * + * {
@@ -6010,7 +6063,7 @@ pre {
   color: #ffffff;
 }
 
-.menu_theme_invert .menu__link:hover {
+.menu_theme_invert .menu__link:hover, .menu_theme_invert .menu__link:focus {
   color: #ffffff;
   background: rgba(255, 255, 255, 0.1);
 }
@@ -6949,6 +7002,17 @@ pre {
 }
 
 /**
+ * Cover menu and filter
+ */
+.cover__aside .filter .search {
+  padding: 1em 3.25em;
+}
+
+.cover__aside .menu_drawer .menu__link {
+  padding: 1em;
+}
+
+/**
  * Demo
  * ---
  * Styles demos with both the code and rendered examples.
@@ -7004,7 +7068,7 @@ pre {
 }
 
 .filter .search {
-  padding: 0.75em 1.5em;
+  padding: 0.75em 3.25em;
   background: #ffffff;
   border-radius: 3px;
   border: none;
@@ -7037,18 +7101,6 @@ pre {
 
 .filter .search_clear {
   right: 1em;
-}
-
-@media (min-width: 480px) {
-  .filter .search {
-    padding: 1em 3.25em;
-  }
-  .filter .search_label {
-    left: 1em;
-  }
-  .filter .search_clear {
-    right: 1em;
-  }
 }
 
 /**
@@ -7311,7 +7363,7 @@ pre {
  * Custom styles for the menu which appears in the drawer component.
  */
 .menu_drawer .menu__link {
-  padding: 1em;
+  padding: 0.75em 1em;
 }
 
 .menu_drawer .menu__link:hover {

@@ -14,7 +14,7 @@
   }
 
   .search {
-    padding: 0.75em 1.5em;
+    padding: 0.75em 3.25em;
     background: $white;
     border-radius: $border-radius;
     border: none;
@@ -43,21 +43,5 @@
 
   .search_clear {
     right: 1em;
-  }
-}
-
-@include media-min('xs') {
-  .filter {
-    .search {
-      padding: 1em 3.25em;
-    }
-
-    .search_label {
-      left: 1em;
-    }
-
-    .search_clear {
-      right: 1em;
-    }
   }
 }
