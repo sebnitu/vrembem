@@ -7,10 +7,7 @@
 
 .toolbar {
   z-index: 600;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: relative;
   padding: 0.5em;
   flex-grow: 0;
   background: linear-gradient(
@@ -22,16 +19,8 @@
   box-shadow: $box-shadow-4dp;
 }
 
-.toolbar + * {
-  padding-top: 3.5em;
-}
-
 @include media-min('md') {
   .toolbar {
     padding: 1em;
-  }
-
-  .toolbar + * {
-    padding-top: 4.5em;
   }
 }

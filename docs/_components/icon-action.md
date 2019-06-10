@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: article
 title: Icon-action
 dsc: "A minimal container component for icon based actions."
 category: simple

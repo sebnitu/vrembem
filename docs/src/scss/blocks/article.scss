@@ -1,0 +1,36 @@
+/**
+ * Article
+ * ---
+ * The article component handles styles for the main content area.
+ */
+
+.article {
+
+}
+
+.article__section {
+  padding: 1.5em;
+}
+
+.article__intro {
+  @extend .section;
+  @extend .section_size_lg;
+}
+
+.article__title {
+  @extend %h1;
+  font-weight: normal;
+}
+
+.article__body {
+  @extend .section;
+
+  .type {
+    max-width: 544px;
+  }
+}
+
+.article__footer {
+  @extend .section;
+  border-top: $border;
+}

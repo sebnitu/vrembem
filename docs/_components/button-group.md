@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: article
 title: Button-group
 description: "A component for displaying groups of buttons."
 category: compound

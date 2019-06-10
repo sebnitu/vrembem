@@ -1,37 +1,31 @@
 /**
  * Page
  * ---
- * The page component which handles layout for a general page document.
+ * The page component handles general layout for the application.
  */
 
 .page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.page__toolbar {
+  flex-grow: 0;
+}
+
+.page__main {
   flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+.page__aside {
+  flex-grow: 0;
   overflow: auto;
 }
 
-.page__header {
-  @extend .section;
-  @extend .section_size_lg;
-}
-
-.page__title {
-  @extend %h1;
-  font-weight: normal;
-}
-
-.page__content {
-  @extend .section;
-
-  .type {
-    max-width: 544px;
-  }
-}
-
-.page__section {
-  padding: 1.5em;
-}
-
-.page__footer {
-  @extend .section;
-  border-top: $border;
+.page__article {
+  flex-grow: 1;
+  overflow: auto;
 }

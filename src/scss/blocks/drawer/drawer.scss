@@ -54,11 +54,11 @@
  * drawer close modifier
  */
 
-.drawer_close {
+.drawer__item.is-closed {
   display: none;
 }
 
-.drawer_open {
+.drawer__item.is-open {
   display: flex;
 }
 
@@ -69,14 +69,14 @@
  */
 
 .drawer_dismissible {
-  .drawer_open {
+  .is-open {
     display: none;
   }
 }
 
 @include media-min('xl') {
   .drawer_dismissible {
-    .drawer_open {
+    .is-open {
       display: flex;
     }
   }

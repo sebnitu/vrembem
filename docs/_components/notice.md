@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: article
 title: Notice
 description: "A component for highlighting messages to the user."
 category: simple

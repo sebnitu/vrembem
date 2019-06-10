@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: article
 title: Input-group
 description: "A container component for grouping inputs and buttons together."
 category: compound

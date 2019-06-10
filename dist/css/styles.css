@@ -3873,11 +3873,11 @@ pre {
 /**
  * drawer close modifier
  */
-.drawer_close {
+.drawer__item.is-closed {
   display: none;
 }
 
-.drawer_open {
+.drawer__item.is-open {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3888,12 +3888,12 @@ pre {
  * ---
  * Dismissible drawers should be hidden on this media query in favor of modals.
  */
-.drawer_dismissible .drawer_open {
+.drawer_dismissible .is-open {
   display: none;
 }
 
 @media (min-width: 1380px) {
-  .drawer_dismissible .drawer_open {
+  .drawer_dismissible .is-open {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: article
 title: Input
 description: "The default component for user input."
 category: simple

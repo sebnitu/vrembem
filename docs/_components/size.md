@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: article
 title: "Size"
 description: "A flexbox based grid system."
 category: layout

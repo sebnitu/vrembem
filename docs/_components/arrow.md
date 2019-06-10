@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: article
 title: Arrow
 description: "A directional triangle drawn with CSS."
 category: simple

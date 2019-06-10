@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: article
 title: "Level"
 description: "A simple layout component that helps center children in an element vertically and gives them horizontal spacing."
 category: layout

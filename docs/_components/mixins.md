@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: article
 title: Mixins
 description: "..."
 category: core

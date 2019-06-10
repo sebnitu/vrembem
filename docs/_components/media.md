@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: article
 title: Media
 description: "The media component allows the composition of content which contains images, thumbnails or other media related to the content."
 category: compound

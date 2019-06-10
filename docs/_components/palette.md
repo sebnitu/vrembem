@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: article
 title: Palette
 description: "..."
 category: core

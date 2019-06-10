@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: article
 title: Icon
 description: "A component for displaying glyphs that convey meaning through iconography."
 category: simple

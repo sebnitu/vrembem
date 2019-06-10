@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: article
 title: "Container"
 description: "A container component for general page composition purposes."
 category: layout

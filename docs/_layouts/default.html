@@ -4,30 +4,42 @@ layout: compress
 
 {%- include head.html -%}
 
-{%- include toolbar.html -%}
+<div class="page">
 
-<div class="drawer drawer_dismissible">
+  {%- include toolbar.html class="page__toolbar" -%}
 
-  <div id="listjs" class="drawer__item">
-    <div class="drawer__header spacing">
-      {%- include filter.html -%}
+  <div class="page__main drawer">
+
+    <aside id="listjs" class="page__aside drawer__item is-dismissible is-open">
+      <div class="drawer__header spacing">
+        {%- include filter.html -%}
+      </div>
+      <div class="drawer__content">
+        {%- include menu.html -%}
+      </div>
+    </aside>
+
+    <aside id="second-drawer" class="page__aside drawer__item is-closed">
+      Second drawer
+    </aside>
+
+    <div id="modal-drawer" class="modal modal_pos_left">
+      <div class="modal__dialog dialog">
+
+        ...
+
+      </div>
     </div>
-    <div class="drawer__content">
-      {%- include menu.html -%}
+
+    <div class="page__article">
+      {{ content }}
     </div>
+
+    <aside id="third-drawer" class="page__aside drawer__item is-dismissible is-open">
+      Third drawer
+    </aside>
+
   </div>
-
-  <div id="modal-drawer" class="modal modal_pos_left">
-    <div class="modal__dialog dialog">
-
-      ...
-
-    </div>
-  </div>
-
-  <section class="page">
-    {{ content }}
-  </section>
 
 </div>
 

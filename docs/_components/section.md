@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: article
 layout_options:
   section: false
   container: false

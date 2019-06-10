@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: article
 title: Embed
 description: "A container component for wrapping embeded media content in order to make them responsive."
 category: simple
