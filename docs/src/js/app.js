@@ -16,101 +16,89 @@ const dropdown = new Toggle({
 /**
  * Drawer JavaScript (Pre-plugin)
  * ---
- * This is we save the state of our drawer component.
- * https://gomakethings.com/using-localstorage-to-save-user-data-with-vanilla-javascript/
+ * Creates the drawer toggle functionality along with save state.
  */
 
-// Set
-// localStorage.setItem('drawer_state', drawer_state)
-// ---
-// Get
-// localStorage.getItem('drawer_state')
-// ---
-// Remove
-// localStorage.removeItem('drawer_state')
-
 // Init: Setup our variables
+// Get the drawer state from local storage
 let drawer_state = localStorage.getItem('drawer_state')
+
+// Check if drawer state was saved otherwise init a new object
 if (drawer_state) {
   drawer_state = JSON.parse(drawer_state)
 } else {
   drawer_state = {}
 }
+
+// Get all the drawers on the page
 let drawers = document.querySelectorAll('.drawer__item')
 
 // Drawer open method
 let drawer_open = (item) => {
-  console.log('open: ', item)
   u.addClass(item, 'is-open')
   u.removeClass(item, 'is-closed')
   drawer_state[item.id] = u.hasClass(item, 'is-open')
   localStorage.setItem('drawer_state', JSON.stringify(drawer_state))
+  console.log('open: ', item)
   console.log('drawer_state: ', drawer_state)
 }
 
 // Drawer close method
 let drawer_close = (item) => {
-  console.log('close: ', item)
   u.addClass(item, 'is-closed')
   u.removeClass(item, 'is-open')
   drawer_state[item.id] = u.hasClass(item, 'is-open')
   localStorage.setItem('drawer_state', JSON.stringify(drawer_state))
+  console.log('close: ', item)
   console.log('drawer_state: ', drawer_state)
 }
 
-// Step 3: Add listener to drawer toggle button
-document.addEventListener('click', () => {
-  let trigger = event.target.closest('.drawer__trigger')
-  if (trigger) {
-    let dataDrawer = trigger.dataset.drawer
-    if (dataDrawer) {
-      let drawer = document.getElementById(dataDrawer)
-      if (drawer) {
-        if (u.hasClass(drawer, 'is-closed')) {
-          drawer_open(drawer)
-        } else if (u.hasClass(drawer, 'is-open')) {
-          drawer_close(drawer)
-        }
-      }
+let drawer_init = (drawers) => {
+  // Loop through all drawers and save/init their state
+  for (let i = 0; i < drawers.length; ++i) {
+    let drawer = drawers[i]
+
+    // Step 1: Set the default state if one is not set
+    if (drawer.id in drawer_state === false) {
+      drawer_state[drawer.id] = u.hasClass(drawer, 'is-open')
     }
-  }
-}, false)
 
-// Loop through all drawers and save/init their state
-for (let i = 0; i < drawers.length; ++i) {
-  let drawer = drawers[i]
-
-  // Step 1: Set the default state if one is not set
-  if (drawer.id in drawer_state === false) {
-    drawer_state[drawer.id] = u.hasClass(drawer, 'is-open')
-  }
-
-  // Step 2: Toggle our drawer state based on the saved state
-  if (drawer_state[drawer.id] === false) {
-    drawer_close(drawer)
-  } else {
-    drawer_open(drawer)
+    // Step 2: Toggle our drawer state based on the saved state
+    if (drawer_state[drawer.id] === false) {
+      drawer_close(drawer)
+    } else {
+      drawer_open(drawer)
+    }
   }
 }
 
-// if (drawer) {
-//
-//   // Step 1: Check if local storage variable is set, otherwise set default.
-//   if (localStorage.getItem('drawer_state')) {
-//     drawer_state = localStorage.getItem('drawer_state')
-//   } else {
-//     drawer_state = 'close'
-//     localStorage.setItem('drawer_state', drawer_state)
-//   }
-//
-//   // Step 2: Check local storage and toggle classes based on drawer state
-//   if (drawer_state === 'close') {
-//     drawer_close(drawer)
-//   } else {
-//     drawer_open(drawer)
-//   }
-//
-// }
+// Adds event listener detect drawer triggers
+let drawer_trigger = () => {
+  document.addEventListener('click', () => {
+    let trigger = event.target.closest('.drawer__trigger')
+    if (trigger) {
+      let dataDrawer = trigger.dataset.drawer
+      if (dataDrawer) {
+        let drawer = document.getElementById(dataDrawer)
+        if (drawer) {
+          if (u.hasClass(drawer, 'is-closed')) {
+            drawer_open(drawer)
+          } else if (u.hasClass(drawer, 'is-open')) {
+            drawer_close(drawer)
+          }
+        }
+      }
+    }
+  }, false)
+}
+
+// ---
+// Run our drawer methods
+// ---
+
+// drawer_state = {}
+drawer_init(drawers)
+drawer_trigger()
 
 /**
  * Draw state based on screen size
@@ -119,27 +107,27 @@ for (let i = 0; i < drawers.length; ++i) {
  * dismissible style.
  */
 
-// let breakpoints = {
-//   'xs': '480px',
-//   'sm': '620px',
-//   'md': '760px',
-//   'lg': '990px',
-//   'xl': '1380px'
-// }
-//
-// let minWidth = breakpoints.xl
-// let mq = window.matchMedia( "(min-width:" + minWidth + ")" )
-//
-// let widthChange = (mq) => {
-//   if (mq.matches) {
-//     console.log('window width > ' + minWidth)
-//   } else {
-//     console.log('window width < ' + minWidth)
-//   }
-// }
-//
-// mq.addListener(widthChange)
-// widthChange(mq)
+let breakpoints = {
+  'xs': '480px',
+  'sm': '620px',
+  'md': '760px',
+  'lg': '990px',
+  'xl': '1380px'
+}
+
+let minWidth = breakpoints.xl
+let mq = window.matchMedia( "(min-width:" + minWidth + ")" )
+
+let widthChange = (mq) => {
+  if (mq.matches) {
+    console.log('window width > ' + minWidth)
+  } else {
+    console.log('window width < ' + minWidth)
+  }
+}
+
+mq.addListener(widthChange)
+widthChange(mq)
 
 /**
  * List.js
@@ -149,9 +137,7 @@ for (let i = 0; i < drawers.length; ++i) {
  */
 if (document.getElementById('listjs')) {
 
-  /**
-   * Init our list.js component
-   */
+  // Init our list.js component
   const list = new listjs('listjs', {
     fuzzySearch: {
       searchClass: 'search',
@@ -167,23 +153,17 @@ if (document.getElementById('listjs')) {
     listClass: 'menu'
   })
 
-  /**
-   * Empty Notice
-   * Displayed when the search returns no results
-   */
+  // Empty Notice
+  // Displayed when the search returns no results
   let notice_empty = document.querySelector('.notice_empty')
   let notice_empty_text = notice_empty.querySelector('.search_text')
 
-  /**
-   * Clear search button
-   */
+  // Clear search button
   let filter = document.querySelector('.filter')
   let search = document.querySelector('.filter .search')
   let search_clear = document.querySelector('.filter .search_clear')
 
-  /**
-   * On search complete callback
-   */
+  // On search complete callback
   list.on('searchComplete', () => {
 
     // Update the search text in empty notice
@@ -209,9 +189,7 @@ if (document.getElementById('listjs')) {
     }
   })
 
-  /**
-   * Click events for category and clears
-   */
+  // Click events for category and clears
   document.addEventListener('click', () => {
     let trigger_search_clear = event.target.closest('.search_clear')
     let trigger_search_cat = event.target.closest('.category')
