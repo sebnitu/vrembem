@@ -18,69 +18,60 @@
 .drawer__item {
   position: relative;
   width: $drawer-width;
-  background: $drawer-background;
   align-items: stretch;
   align-content: stretch;
   flex-direction: column;
   flex: 0 0 $drawer-width;
-  display: flex;
+  display: none;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 
 /**
- * Content elements
+ * Drawer dialog elements
  */
 
-.drawer__header,
-.drawer__content {
-  padding: 1em;
-  background: $drawer-background;
-}
+.drawer__dialog {
+  background: $drawer__dialog-background;
+  box-shadow: $drawer__dialog-box-shadow;
+  min-height: 100%;
 
-.drawer__header {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  border-bottom: 1px solid rgba($black, 0.05);
-}
 
-.drawer__content {
-  position: relative;
-  z-index: 1;
+  .dialog__header,
+  .dialog__footer {
+    background: $drawer__dialog-background;
+    border-color: $drawer__dialog-sep-border-color;
+  }
+
+  .dialog__body {
+    background: $drawer__dialog-background;
+  }
 }
 
 /**
- * drawer close modifier
+ * drawer toggle modifiers
  */
 
-.drawer__item.is-closed {
-  display: none;
-}
-
-.drawer__item.is-open {
+.drawer__item.is-active {
   display: flex;
 }
 
 /**
  * Drawer dismissible modifier
  * ---
- * Dismissible drawers should be hidden on this media query in favor of modals.
+ * Dismissible drawers should be hidden below the set media query in favor of
+ * the modals based drawer.
  */
 
-.drawer_dismissible {
-  .is-open {
-    display: none;
-  }
-}
-
-@include media-min('xl') {
-  .drawer_dismissible {
-    .is-open {
-      display: flex;
-    }
-  }
-}
+// .drawer__item.is-dismissible.is-active {
+//   display: none;
+// }
+//
+// @include media-min('xl') {
+//   .drawer__item.is-dismissible.is-active {
+//     display: flex;
+//   }
+// }
 
 /**
  * Drawer modal modifier

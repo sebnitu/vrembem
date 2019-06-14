@@ -3829,7 +3829,6 @@ pre {
 .drawer__item {
   position: relative;
   width: 16em;
-  background: #eceff1;
   -webkit-box-align: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
@@ -3842,43 +3841,35 @@ pre {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 16em;
           flex: 0 0 16em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 
 /**
- * Content elements
+ * Drawer dialog elements
  */
-.drawer__header,
-.drawer__content {
-  padding: 1em;
+.drawer__dialog {
+  background: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  min-height: 100%;
+}
+
+.drawer__dialog .dialog__header,
+.drawer__dialog .dialog__footer {
+  background: #eceff1;
+  border-color: rgba(0, 0, 0, 0.05);
+}
+
+.drawer__dialog .dialog__body {
   background: #eceff1;
 }
 
-.drawer__header {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.drawer__content {
-  position: relative;
-  z-index: 1;
-}
-
 /**
- * drawer close modifier
+ * drawer toggle modifiers
  */
-.drawer__item.is-closed {
-  display: none;
-}
-
-.drawer__item.is-open {
+.drawer__item.is-active {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3887,20 +3878,9 @@ pre {
 /**
  * Drawer dismissible modifier
  * ---
- * Dismissible drawers should be hidden on this media query in favor of modals.
+ * Dismissible drawers should be hidden below the set media query in favor of
+ * the modals based drawer.
  */
-.drawer_dismissible .is-open {
-  display: none;
-}
-
-@media (min-width: 1380px) {
-  .drawer_dismissible .is-open {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-  }
-}
-
 /**
  * Drawer modal modifier
  * ---
@@ -4557,7 +4537,7 @@ pre {
   font-size: 1em;
   line-height: 1.5em;
   background: #ffffff;
-  border: 1px solid #bdbdbd;
+  border: 1px solid rgba(0, 0, 0, 0.25);
   -webkit-box-shadow: 0 0 0 0 rgba(33, 150, 243, 0);
           box-shadow: 0 0 0 0 rgba(33, 150, 243, 0);
   border-radius: 3px;

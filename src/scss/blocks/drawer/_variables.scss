@@ -1,4 +1,9 @@
 // Drawer
 // ---
 $drawer-width: 16em !default;
-$drawer-background: $shade !default;
+
+// Drawer dialog
+// ---
+$drawer__dialog-background: $shade !default;
+$drawer__dialog-box-shadow: none !default;
+$drawer__dialog-sep-border-color: $border-color-light !default;

@@ -35,9 +35,8 @@ let drawers = document.querySelectorAll('.drawer__item')
 
 // Drawer open method
 let drawer_open = (item) => {
-  u.addClass(item, 'is-open')
-  u.removeClass(item, 'is-closed')
-  drawer_state[item.id] = u.hasClass(item, 'is-open')
+  u.addClass(item, 'is-active')
+  drawer_state[item.id] = u.hasClass(item, 'is-active')
   localStorage.setItem('drawer_state', JSON.stringify(drawer_state))
   console.log('open: ', item)
   console.log('drawer_state: ', drawer_state)
@@ -45,12 +44,28 @@ let drawer_open = (item) => {
 
 // Drawer close method
 let drawer_close = (item) => {
-  u.addClass(item, 'is-closed')
-  u.removeClass(item, 'is-open')
-  drawer_state[item.id] = u.hasClass(item, 'is-open')
+  u.removeClass(item, 'is-active')
+  drawer_state[item.id] = u.hasClass(item, 'is-active')
   localStorage.setItem('drawer_state', JSON.stringify(drawer_state))
   console.log('close: ', item)
   console.log('drawer_state: ', drawer_state)
+}
+
+let drawer_run = () => {
+  let trigger = event.target.closest('.drawer__trigger')
+  if (trigger) {
+    let dataDrawer = trigger.dataset.drawer
+    if (dataDrawer) {
+      let drawer = document.getElementById(dataDrawer)
+      if (drawer) {
+        if (u.hasClass(drawer, 'is-active')) {
+          drawer_close(drawer)
+        } else {
+          drawer_open(drawer)
+        }
+      }
+    }
+  }
 }
 
 let drawer_init = (drawers) => {
@@ -58,47 +73,36 @@ let drawer_init = (drawers) => {
   for (let i = 0; i < drawers.length; ++i) {
     let drawer = drawers[i]
 
-    // Step 1: Set the default state if one is not set
+    // Set the default state if one is not set
     if (drawer.id in drawer_state === false) {
-      drawer_state[drawer.id] = u.hasClass(drawer, 'is-open')
+      drawer_state[drawer.id] = u.hasClass(drawer, 'is-active')
     }
 
-    // Step 2: Toggle our drawer state based on the saved state
+    // Toggle our drawer state based on the saved state
     if (drawer_state[drawer.id] === false) {
       drawer_close(drawer)
     } else {
       drawer_open(drawer)
     }
   }
+
+  // Add our drawer trigger event listener
+  document.addEventListener('click', drawer_run, false)
 }
 
-// Adds event listener detect drawer triggers
-let drawer_trigger = () => {
-  document.addEventListener('click', () => {
-    let trigger = event.target.closest('.drawer__trigger')
-    if (trigger) {
-      let dataDrawer = trigger.dataset.drawer
-      if (dataDrawer) {
-        let drawer = document.getElementById(dataDrawer)
-        if (drawer) {
-          if (u.hasClass(drawer, 'is-closed')) {
-            drawer_open(drawer)
-          } else if (u.hasClass(drawer, 'is-open')) {
-            drawer_close(drawer)
-          }
-        }
-      }
-    }
-  }, false)
+let drawer_destroy = () => {
+  // Reset the drawer state variable and remove localstorage veriable
+  drawer_state = {}
+  localStorage.removeItem('drawer_state')
+  // Remove the drawer trigger event listener
+  document.removeEventListener('click', drawer_run, false)
 }
 
-// ---
 // Run our drawer methods
 // ---
 
-// drawer_state = {}
+// drawer_destroy = {}
 drawer_init(drawers)
-drawer_trigger()
 
 /**
  * Draw state based on screen size

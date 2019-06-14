@@ -10,13 +10,16 @@ layout: compress
 
   <div class="page__main drawer">
 
-    <aside id="listjs" class="page__aside drawer__item is-dismissible is-open">
-      <div class="drawer__header spacing">
-        {%- include filter.html -%}
+    <aside id="listjs" class="page__aside drawer__item is-dismissible is-active">
+      <div class="drawer__dialog dialog">
+        <div class="dialog__header spacing">
+          {%- include filter.html -%}
+        </div>
+        <div class="dialog__body">
+          {%- include menu.html -%}
+        </div>
       </div>
-      <div class="drawer__content">
-        {%- include menu.html -%}
-      </div>
+
     </aside>
 
     <div id="modal-drawer" class="modal modal_pos_left">

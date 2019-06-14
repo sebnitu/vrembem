@@ -21,7 +21,7 @@ $input-box-shadow-color: rgba($blue, 0) !default;
 $input-box-shadow-focus-values: 0 0 0 3px !default;
 $input-box-shadow-focus-color: rgba($blue, 0.1) !default;
 
-$input-border: 1px solid $gray-400 !default;
+$input-border: $border-dark !default;
 $input-border-focus: 1px solid $blue !default;
 
 // Input select image

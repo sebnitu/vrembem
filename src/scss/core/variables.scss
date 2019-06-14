@@ -111,6 +111,10 @@ $border-color: rgba($black, 0.1) !default;
 $border-color-invert: rgba($white, 0.1) !default;
 $border: 1px solid rgba($black, 0.1) !default;
 $border-invert: 1px solid rgba($white, 0.1) !default;
+$border-color-light: rgba($black, 0.05);
+$border-color-dark: rgba($black, 0.25);
+$border-light: 1px solid rgba($black, 0.05);
+$border-dark: 1px solid rgba($black, 0.25);
 
 // Headings
 $heading-font-family: null !default;
