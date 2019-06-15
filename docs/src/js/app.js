@@ -54,9 +54,9 @@ let drawer_close = (item) => {
 let drawer_run = () => {
   let trigger = event.target.closest('.drawer__trigger')
   if (trigger) {
-    let dataDrawer = trigger.dataset.drawer
+    let dataDrawer = trigger.dataset.target
     if (dataDrawer) {
-      let drawer = document.getElementById(dataDrawer)
+      let drawer = document.querySelectorAll(dataDrawer)
       if (drawer) {
         if (u.hasClass(drawer, 'is-active')) {
           drawer_close(drawer)
@@ -101,7 +101,7 @@ let drawer_destroy = () => {
 // Run our drawer methods
 // ---
 
-// drawer_destroy = {}
+drawer_destroy()
 drawer_init(drawers)
 
 /**

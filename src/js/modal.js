@@ -27,31 +27,35 @@ export default function() {
 
   let open = (target) => {
     u.addClass(target, settings.classActive)
-    let focus = target.querySelector(settings.focus)
-    target.addEventListener('transitionend', function _listener() {
-      if (focus) {
-        focus.focus()
-      } else {
-        target.focus()
-      }
-      this.removeEventListener('transitionend', _listener, true)
-    }, true);
+    if (target.length === 1) {
+      target = target.item(0)
+      let focus = target.querySelector(settings.focus)
+      target.addEventListener('transitionend', function _listener() {
+        if (focus) {
+          focus.focus()
+        } else {
+          target.focus()
+        }
+        this.removeEventListener('transitionend', _listener, true)
+      }, true);
+    }
   }
 
   let close = (clear = false) => {
     let modals = document.querySelectorAll('.' + settings.classModal)
-    for (let i = 0; i < modals.length; ++i) {
-      u.removeClass(modals[i], settings.classActive)
-    }
+    u.removeClass(modals, settings.classActive)
     if (clear == false && memoryTrigger && memoryTarget) {
-      memoryTarget.addEventListener('transitionend', function _listener() {
-        if (memoryTrigger) {
-          memoryTrigger.focus()
-        }
-        memoryTarget = null
-        memoryTrigger = null
-        this.removeEventListener('transitionend', _listener, true)
-      }, true);
+      if (memoryTarget.length === 1) {
+        memoryTarget = memoryTarget.item(0)
+        memoryTarget.addEventListener('transitionend', function _listener() {
+          if (memoryTrigger) {
+            memoryTrigger.focus()
+          }
+          memoryTarget = null
+          memoryTrigger = null
+          this.removeEventListener('transitionend', _listener, true)
+        }, true);
+      }
     } else if (clear == true) {
       memoryTarget = null
       memoryTrigger = null
@@ -70,9 +74,9 @@ export default function() {
     let dialog = event.target.closest('.' + settings.classDialog)
     if (trigger) {
       close()
-      let dataModal = trigger.dataset.modal
+      let dataModal = trigger.dataset.target
       if (dataModal) {
-        memoryTarget = document.getElementById(dataModal)
+        memoryTarget = document.querySelectorAll(dataModal)
         memoryTrigger = trigger
         open(memoryTarget)
       }

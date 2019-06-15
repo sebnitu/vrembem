@@ -3,15 +3,16 @@
 
     <div class="level__item">
       <ul class="menu menu_theme_invert">
-        <li class="menu__item drawer__switch">
-          <button class="menu__link menu__link_icon drawer__trigger" data-drawer="listjs">
-            {% include icon.html icon="menu" %}
-          </button>
-          <button class="menu__link menu__link_icon modal__trigger" data-modal="modal-drawer">
+        <li class="menu__item">
+          <button class="menu__link menu__link_icon drawer__trigger" data-target="#listjs">
             {% include icon.html icon="menu" %}
           </button>
         </li>
-
+        <li class="menu__item">
+          <button class="menu__link menu__link_icon modal__trigger" data-target="#modal-drawer">
+            {% include icon.html icon="log-out" %}
+          </button>
+        </li>
         <li class="menu__sep"></li>
         <li class="menu__item">
           <a href="{{ site.url }}{{ site.baseurl }}" class="menu__link">{{ site.title }}</a>

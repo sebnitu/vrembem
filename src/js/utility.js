@@ -8,60 +8,72 @@ export default class {
   /**
    * Checks if an element has a class or not
    * ---
-   * @param {Element} Element to check class(es) on
+   * @param {Object} || {Nodelist} Element(s) to check class(es) on
    * @param {String} || {Array} Class(es) to check
    * @returns {Boolean} Returns true if class exists on element, otherwise false
    */
   static hasClass(el, c) {
-
+    if (!el.forEach) {
+      el = this.toArray(el)
+    }
     c = this.toArray(c)
-
-    return c.every((c) => {
-      return el.classList.contains(c)
+    el.forEach((el) => {
+      return c.forEach((c) => {
+        return el.classList.contains(c)
+      })
     })
   }
 
   /**
    * Adds a class or classes to an element
    * ---
-   * @param {Element} Element to add class(es) on
+   * @param {Object} || {Nodelist} Element(s) to add class(es) on
    * @param {String} || {Array} Class(es) to add
    */
   static addClass(el, c) {
-
+    if (!el.forEach) {
+      el = this.toArray(el)
+    }
     c = this.toArray(c)
-
-    c.forEach((c) => {
-      el.classList.add(c)
+    el.forEach((el) => {
+      c.forEach((c) => {
+        el.classList.add(c)
+      })
     })
   }
   /**
    * Remove a class or classes from an element
    * ---
-   * @param {Element} Element to remove class(es) from
+   * @param {Object} || {Nodelist} Element(s) to remove class(es) from
    * @param {String} || {Array} Class(es) to remove
    */
   static removeClass(el, c) {
-
+    if (!el.forEach) {
+      el = this.toArray(el)
+    }
     c = this.toArray(c)
-
-    c.forEach((c) => {
-      el.classList.remove(c)
+    el.forEach((el) => {
+      c.forEach((c) => {
+        el.classList.remove(c)
+      })
     })
   }
 
   /**
    * Toggle a class or classes on an element
    * ---
-   * @param {Element} Element to toggle class(es) on
+   * @param {Object} || {Nodelist} Element(s) to toggle class(es) on
    * @param {String} || {Array} Class(es) to toggle
    */
   static toggleClass(el, c) {
-
+    if (!el.forEach) {
+      el = this.toArray(el)
+    }
     c = this.toArray(c)
-
-    c.forEach((c) => {
-      el.classList.toggle(c)
+    el.forEach((el) => {
+      c.forEach((c) => {
+        el.classList.toggle(c)
+      })
     })
   }
 
@@ -69,7 +81,7 @@ export default class {
    * Find the closest parent element based on class. This is different from the
    * native .closest() method in that it doesn't check the current element.
    * ---
-   * @param {Element} Element to start search on
+   * @param {Object} Element to start search on
    * @param {String} || {Array} Class(es) to check for
    * @return {Element} Closest parent element
    */
@@ -93,6 +105,8 @@ export default class {
       array.push(string)
     } else if (Array.isArray(string)) {
       array = string
+    } else if (typeof string === 'object') {
+      array.push(string)
     } else {
       return false
     }
