@@ -95,24 +95,20 @@ export default class {
   }
 
   /**
-   * Converts a string to an array. If an array is passed, it's returned as is.
-   * Anything else is returned as false.
+   * Converts a string or object to an array. If an array is passed, it's
+   * returned as is. Anything else is returned as an array.
    * ---
-   * @param {String} || {Array} String to convert to an array
+   * @param {String} || {Object} String or object to convert to an array
    * @return {Array} Return the converted array
    */
   static toArray(string) {
 
     var array = []
 
-    if (typeof string === 'string') {
-      array.push(string)
-    } else if (Array.isArray(string)) {
+    if (Array.isArray(string)) {
       array = string
-    } else if (typeof string === 'object') {
-      array.push(string)
     } else {
-      return false
+      array.push(string)
     }
 
     return array
