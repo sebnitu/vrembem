@@ -17,10 +17,14 @@ export default class {
       el = this.toArray(el)
     }
     c = this.toArray(c)
-    el.forEach((el) => {
-      return c.forEach((c) => {
-        return el.classList.contains(c)
+    return c.some( function (c) {
+      let has = false
+      el.forEach((el) => {
+        if (el.classList.contains(c)) {
+          has = true
+        }
       })
+      return has
     })
   }
 

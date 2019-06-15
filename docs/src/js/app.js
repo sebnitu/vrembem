@@ -33,22 +33,33 @@ if (drawer_state) {
 // Get all the drawers on the page
 let drawers = document.querySelectorAll('.drawer__item')
 
-// Drawer open method
+// Drawer methods
+//---
+
 let drawer_open = (item) => {
   u.addClass(item, 'is-active')
-  drawer_state[item.id] = u.hasClass(item, 'is-active')
-  localStorage.setItem('drawer_state', JSON.stringify(drawer_state))
-  console.log('open: ', item)
-  console.log('drawer_state: ', drawer_state)
+  if (!item.forEach) {
+    item = u.toArray(item)
+  }
+  item.forEach((item) => {
+    drawer_state[item.id] = u.hasClass(item, 'is-active')
+    localStorage.setItem('drawer_state', JSON.stringify(drawer_state))
+    // console.log('open: ', item)
+    // console.log('drawer_state: ', drawer_state)
+  })
 }
 
-// Drawer close method
 let drawer_close = (item) => {
   u.removeClass(item, 'is-active')
-  drawer_state[item.id] = u.hasClass(item, 'is-active')
-  localStorage.setItem('drawer_state', JSON.stringify(drawer_state))
-  console.log('close: ', item)
-  console.log('drawer_state: ', drawer_state)
+  if (!item.forEach) {
+    item = u.toArray(item)
+  }
+  item.forEach((item) => {
+    drawer_state[item.id] = u.hasClass(item, 'is-active')
+    localStorage.setItem('drawer_state', JSON.stringify(drawer_state))
+    // console.log('close: ', item)
+    // console.log('drawer_state: ', drawer_state)
+  })
 }
 
 let drawer_run = () => {
@@ -69,9 +80,9 @@ let drawer_run = () => {
 }
 
 let drawer_init = (drawers) => {
+
   // Loop through all drawers and save/init their state
-  for (let i = 0; i < drawers.length; ++i) {
-    let drawer = drawers[i]
+  drawers.forEach((drawer) => {
 
     // Set the default state if one is not set
     if (drawer.id in drawer_state === false) {
@@ -84,7 +95,7 @@ let drawer_init = (drawers) => {
     } else {
       drawer_open(drawer)
     }
-  }
+  })
 
   // Add our drawer trigger event listener
   document.addEventListener('click', drawer_run, false)
@@ -98,10 +109,10 @@ let drawer_destroy = () => {
   document.removeEventListener('click', drawer_run, false)
 }
 
-// Run our drawer methods
+// Run our drawer init
 // ---
 
-drawer_destroy()
+// drawer_destroy()
 drawer_init(drawers)
 
 /**
@@ -124,9 +135,9 @@ let mq = window.matchMedia( "(min-width:" + minWidth + ")" )
 
 let widthChange = (mq) => {
   if (mq.matches) {
-    console.log('window width > ' + minWidth)
+    // console.log('window width > ' + minWidth)
   } else {
-    console.log('window width < ' + minWidth)
+    // console.log('window width < ' + minWidth)
   }
 }
 
