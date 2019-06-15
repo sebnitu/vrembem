@@ -101,14 +101,14 @@ export default class {
    * @param {String} || {Object} String or object to convert to an array
    * @return {Array} Return the converted array
    */
-  static toArray(string) {
+  static toArray(item) {
 
-    var array = []
+    let array = []
 
-    if (Array.isArray(string)) {
-      array = string
+    if (Array.isArray(item)) {
+      array = item
     } else {
-      array.push(string)
+      array.push(item)
     }
 
     return array
