@@ -1,6 +1,6 @@
 import u from './utility.js'
 
-export default function() {
+export default function(options) {
 
   'use strict'
 
@@ -34,7 +34,6 @@ export default function() {
     document.removeEventListener('click', run, false)
   }
 
-  api.init()
-
+  api.init(options)
   return api
 }

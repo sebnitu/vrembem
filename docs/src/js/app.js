@@ -1,10 +1,13 @@
 import u from 'utility'
 import Dismissible from 'dismissible'
+import Drawer from 'drawer'
 import Modal from 'modal'
 import Toggle from 'toggle'
 import listjs from 'list.js'
+import Experiment from 'class'
 
 const dismissible = new Dismissible()
+const drawer = new Drawer()
 const modal = new Modal()
 const toggle = new Toggle()
 const dropdown = new Toggle({
@@ -12,137 +15,6 @@ const dropdown = new Toggle({
   targets: '',
   class: 'is-active'
 })
-
-/**
- * Drawer JavaScript (Pre-plugin)
- * ---
- * Creates the drawer toggle functionality along with save state.
- */
-
-// Init: Setup our variables
-// Get the drawer state from local storage
-let drawer_state = localStorage.getItem('drawer_state')
-
-// Check if drawer state was saved otherwise init a new object
-if (drawer_state) {
-  drawer_state = JSON.parse(drawer_state)
-} else {
-  drawer_state = {}
-}
-
-// Get all the drawers on the page
-let drawers = document.querySelectorAll('.drawer__item')
-
-// Drawer methods
-//---
-
-let drawer_open = (item) => {
-  u.addClass(item, 'is-active')
-  if (!item.forEach) {
-    item = u.toArray(item)
-  }
-  item.forEach((item) => {
-    drawer_state[item.id] = u.hasClass(item, 'is-active')
-    localStorage.setItem('drawer_state', JSON.stringify(drawer_state))
-    // console.log('open: ', item)
-    // console.log('drawer_state: ', drawer_state)
-  })
-}
-
-let drawer_close = (item) => {
-  u.removeClass(item, 'is-active')
-  if (!item.forEach) {
-    item = u.toArray(item)
-  }
-  item.forEach((item) => {
-    drawer_state[item.id] = u.hasClass(item, 'is-active')
-    localStorage.setItem('drawer_state', JSON.stringify(drawer_state))
-    // console.log('close: ', item)
-    // console.log('drawer_state: ', drawer_state)
-  })
-}
-
-let drawer_run = () => {
-  let trigger = event.target.closest('.drawer__trigger')
-  if (trigger) {
-    let dataDrawer = trigger.dataset.target
-    if (dataDrawer) {
-      let drawer = document.querySelectorAll(dataDrawer)
-      if (drawer) {
-        if (u.hasClass(drawer, 'is-active')) {
-          drawer_close(drawer)
-        } else {
-          drawer_open(drawer)
-        }
-      }
-    }
-  }
-}
-
-let drawer_init = (drawers) => {
-
-  // Loop through all drawers and save/init their state
-  drawers.forEach((drawer) => {
-
-    // Set the default state if one is not set
-    if (drawer.id in drawer_state === false) {
-      drawer_state[drawer.id] = u.hasClass(drawer, 'is-active')
-    }
-
-    // Toggle our drawer state based on the saved state
-    if (drawer_state[drawer.id] === false) {
-      drawer_close(drawer)
-    } else {
-      drawer_open(drawer)
-    }
-  })
-
-  // Add our drawer trigger event listener
-  document.addEventListener('click', drawer_run, false)
-}
-
-let drawer_destroy = () => {
-  // Reset the drawer state variable and remove localstorage veriable
-  drawer_state = {}
-  localStorage.removeItem('drawer_state')
-  // Remove the drawer trigger event listener
-  document.removeEventListener('click', drawer_run, false)
-}
-
-// Run our drawer init
-// ---
-
-// drawer_destroy()
-drawer_init(drawers)
-
-/**
- * Draw state based on screen size
- * ---
- * Swaps out classes on the draw element to convert it into modal or
- * dismissible style.
- */
-
-let breakpoints = {
-  'xs': '480px',
-  'sm': '620px',
-  'md': '760px',
-  'lg': '990px',
-  'xl': '1380px'
-}
-
-let minWidth = breakpoints.xl
-let mq = window.matchMedia( "(min-width:" + minWidth + ")" )
-
-let widthChange = (mq) => {
-  if (mq.matches) {
-    // console.log('window width > ' + minWidth)
-  } else {
-    // console.log('window width < ' + minWidth)
-  }
-}
-
-mq.addListener(widthChange)
-widthChange(mq)
 
 /**
  * List.js

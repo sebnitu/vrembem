@@ -1,16 +1,12 @@
 import u from './utility.js'
 
-export default function() {
+export default function(options) {
 
   'use strict'
 
-  /**
-   * Variables
-   */
-
   let api = {}
   let settings
-  let defaults = {
+  const defaults = {
     classTrigger: 'modal__trigger',
     classModal: 'modal',
     classDialog: 'modal__dialog',
@@ -21,11 +17,7 @@ export default function() {
   let memoryTrigger
   let memoryTarget
 
-  /**
-   * Private functions
-   */
-
-  let open = (target) => {
+  const open = (target) => {
     u.addClass(target, settings.classActive)
     if (target.length === 1) {
       target = target.item(0)
@@ -41,7 +33,7 @@ export default function() {
     }
   }
 
-  let close = (clear = false) => {
+  const close = (clear = false) => {
     let modals = document.querySelectorAll('.' + settings.classModal)
     u.removeClass(modals, settings.classActive)
     if (clear == false && memoryTrigger && memoryTarget) {
@@ -62,13 +54,13 @@ export default function() {
     }
   }
 
-  let escape = () => {
+  const escape = () => {
     if (event.keyCode == 27) {
       close()
     }
   }
 
-  let run = () => {
+  const run = () => {
     let trigger = event.target.closest('.' + settings.classTrigger)
     let modal = event.target.closest('.' + settings.classModal)
     let dialog = event.target.closest('.' + settings.classDialog)
@@ -86,12 +78,8 @@ export default function() {
     }
   }
 
-  /**
-   * Public functions
-   */
-
   api.open = (target) => {
-    open(document.getElementById(target))
+    open(document.querySelectorAll(target))
   }
 
   api.close = (clear) => {
@@ -115,13 +103,6 @@ export default function() {
     document.removeEventListener('keyup', escape, false)
   }
 
-  /**
-   * Init the plugin
-   */
-  api.init()
-
-  /**
-   * Return the API
-   */
+  api.init(options)
   return api
 }

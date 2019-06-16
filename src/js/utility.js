@@ -45,6 +45,7 @@ export default class {
       })
     })
   }
+
   /**
    * Remove a class or classes from an element
    * ---

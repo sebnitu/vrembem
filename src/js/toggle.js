@@ -1,23 +1,18 @@
 import u from './utility.js'
 
-/**
- * Toggle
- * ---
- * A general class toggle script.
- */
 export default function(options) {
 
   'use strict'
 
   let api = {}
-  let defaults = {
+  let settings
+  const defaults = {
     trigger: '[data-toggle-class]',
     targets: '',
     class: ''
   }
-  let settings
 
-  let run = () => {
+  const run = () => {
 
     let trigger = event.target.closest(settings.trigger)
 
@@ -59,6 +54,5 @@ export default function(options) {
   }
 
   api.init(options)
-
   return api
 }
