@@ -3730,7 +3730,6 @@ pre {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  overflow: auto;
   background: #ffffff;
   background-clip: padding-box;
   border-radius: 3px;
@@ -3738,6 +3737,8 @@ pre {
           box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.1), 0 24px 38px 3px rgba(0, 0, 0, 0.07), 0 9px 46px 8px rgba(0, 0, 0, 0.06);
   -webkit-transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
   transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .dialog > .dialog__close {
@@ -7436,6 +7437,7 @@ pre {
       -ms-flex-positive: 0;
           flex-grow: 0;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .page__article {
@@ -7443,6 +7445,7 @@ pre {
       -ms-flex-positive: 1;
           flex-grow: 1;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /**
