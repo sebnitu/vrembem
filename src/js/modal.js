@@ -17,6 +17,30 @@ export default function(options) {
   let memoryTrigger
   let memoryTarget
 
+  api.init = (options) => {
+    settings = u.extend( defaults, options || {} )
+    document.addEventListener('click', run, false)
+    document.addEventListener('touchend', run, false)
+    document.addEventListener('keyup', escape, false)
+  }
+
+  api.destroy = () => {
+    settings = null
+    memoryTarget = null
+    memoryTrigger = null
+    document.removeEventListener('click', run, false)
+    document.removeEventListener('touchend', run, false)
+    document.removeEventListener('keyup', escape, false)
+  }
+
+  api.open = (selector) => {
+    open(document.querySelectorAll(selector))
+  }
+
+  api.close = (clear) => {
+    close(clear)
+  }
+
   const open = (target) => {
     u.addClass(target, settings.classActive)
     if (target.length === 1) {
@@ -76,31 +100,6 @@ export default function(options) {
     } else if (modal && !dialog) {
       close()
     }
-  }
-
-  api.open = (target) => {
-    open(document.querySelectorAll(target))
-  }
-
-  api.close = (clear) => {
-    close(clear)
-  }
-
-  api.init = (options) => {
-    api.destroy()
-    settings = u.extend( defaults, options || {} )
-    document.addEventListener('click', run, false)
-    document.addEventListener('touchend', run, false)
-    document.addEventListener('keyup', escape, false)
-  }
-
-  api.destroy = () => {
-    settings = null
-    memoryTarget = null
-    memoryTrigger = null
-    document.removeEventListener('click', run, false)
-    document.removeEventListener('touchend', run, false)
-    document.removeEventListener('keyup', escape, false)
   }
 
   api.init(options)

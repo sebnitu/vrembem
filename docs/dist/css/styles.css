@@ -3849,7 +3849,8 @@ pre {
 /**
  * Drawer dialog elements
  */
-.drawer__dialog {
+.drawer__dialog,
+.drawer .modal__dialog {
   background: #eceff1;
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -3857,12 +3858,15 @@ pre {
 }
 
 .drawer__dialog .dialog__header,
-.drawer__dialog .dialog__footer {
+.drawer__dialog .dialog__footer,
+.drawer .modal__dialog .dialog__header,
+.drawer .modal__dialog .dialog__footer {
   background: #eceff1;
   border-color: rgba(0, 0, 0, 0.05);
 }
 
-.drawer__dialog .dialog__body {
+.drawer__dialog .dialog__body,
+.drawer .modal__dialog .dialog__body {
   background: #eceff1;
 }
 
@@ -3875,12 +3879,6 @@ pre {
   display: flex;
 }
 
-/**
- * Drawer dismissible modifier
- * ---
- * Dismissible drawers should be hidden below the set media query in favor of
- * the modals based drawer.
- */
 /**
  * Drawer modal modifier
  * ---
@@ -7059,6 +7057,9 @@ pre {
  * Handles the styles of the search filter displayed above the jumbo list.
  */
 .filter {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
   position: relative;
   z-index: 4;
   background: #eceff1;

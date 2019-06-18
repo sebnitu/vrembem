@@ -12,6 +12,16 @@ export default function(options) {
     classToggle: 'dismiss'
   }
 
+  api.init = (options) => {
+    settings = u.extend( defaults, options || {} )
+    document.addEventListener('click', run, false)
+  }
+
+  api.destroy = () => {
+    settings = null
+    document.removeEventListener('click', run, false)
+  }
+
   const run = () => {
     let trigger = event.target.closest(settings.trigger)
     if (trigger) {
@@ -21,17 +31,6 @@ export default function(options) {
       }
       event.preventDefault()
     }
-  }
-
-  api.init = (options) => {
-    api.destroy()
-    settings = u.extend( defaults, options || {} )
-    document.addEventListener('click', run, false)
-  }
-
-  api.destroy = () => {
-    settings = null
-    document.removeEventListener('click', run, false)
   }
 
   api.init(options)

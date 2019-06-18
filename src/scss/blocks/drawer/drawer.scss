@@ -31,7 +31,8 @@
  * Drawer dialog elements
  */
 
-.drawer__dialog {
+.drawer__dialog,
+.drawer .modal__dialog {
   background: $drawer__dialog-background;
   box-shadow: $drawer__dialog-box-shadow;
   min-height: 100%;
@@ -55,23 +56,6 @@
 .drawer__item.is-active {
   display: flex;
 }
-
-/**
- * Drawer dismissible modifier
- * ---
- * Dismissible drawers should be hidden below the set media query in favor of
- * the modals based drawer.
- */
-
-// .drawer__item.is-dismissible.is-active {
-//   display: none;
-// }
-//
-// @include media-min('xl') {
-//   .drawer__item.is-dismissible.is-active {
-//     display: flex;
-//   }
-// }
 
 /**
  * Drawer modal modifier

@@ -1,9 +1,21 @@
+import config from 'config'
+
 /**
  * Utility
  * ---
  * A set of helper methods for general javascript plugin use.
  */
 export default class {
+
+  /**
+   * Get and output a breakpoint using it's key found in config.json
+   * ---
+   * @param {String} The key to search for in the breakpoints object
+   * @returns {String} The pixel value of the breakpoint as a string
+   */
+  static getBreakpoint(key) {
+    return config.breakpoints[key]
+  }
 
   /**
    * Checks if an element has a class or not
@@ -125,10 +137,10 @@ export default class {
    */
   static extend() {
 
-    var extended = {}
-    var deep = false
-    var i = 0
-    var length = arguments.length
+    let extended = {}
+    let deep = false
+    let i = 0
+    let length = arguments.length
 
     if ( Object.prototype.toString.call( arguments[0] ) === '[object Boolean]' ) {
       deep = arguments[0]
@@ -136,7 +148,7 @@ export default class {
     }
 
     let merge = ( obj ) => {
-      for ( var prop in obj ) {
+      for ( let prop in obj ) {
         if ( Object.prototype.hasOwnProperty.call( obj, prop ) ) {
           if ( deep && Object.prototype.toString.call(obj[prop]) === '[object Object]' ) {
             extended[prop] = extend( true, extended[prop], obj[prop] )
@@ -148,7 +160,7 @@ export default class {
     }
 
     for ( ; i < length; i++ ) {
-      var obj = arguments[i]
+      let obj = arguments[i]
       merge(obj)
     }
 

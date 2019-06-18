@@ -5,6 +5,7 @@
  */
 
 .filter {
+  flex-grow: 1;
   position: relative;
   z-index: 4;
   background: $shade;
