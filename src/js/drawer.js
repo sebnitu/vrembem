@@ -5,11 +5,6 @@ import u from './utility.js'
  * ---
  * The drawer component is used to create hidden but toggle-able content for an
  * application. This is typically used for a long form naivation list.
- *
- * Key features:
- * [x] Save state via localhost
- * [x] Modal switch between drawer and modal styles
- * [ ] Animations (fade and/or slide in)
  */
 export default function(options) {
 
@@ -22,15 +17,8 @@ export default function(options) {
     classDrawer: 'drawer',
     classDialog: 'drawer__dialog',
     classActive: 'is-active',
-    classModalPos: {
-      'top': 'modal_pos_top',
-      'bottom': 'modal_pos_bottom',
-      'left': 'modal_pos_left',
-      'right': 'modal_pos_right'
-    },
-    modalPosition: '[data-modal-pos]',
-    modalSwitch: '[data-modal-switch]',
-    modalSwitchBreakpoint: '1200px',
+    switch: '[data-drawer-switch]',
+    switchBreakpoint: '1200px',
     saveState: true
   }
 
@@ -45,7 +33,7 @@ export default function(options) {
     settings = u.extend( defaults, options || {} )
 
     // Get all the drawers on the page
-    drawers = document.querySelectorAll('.drawer__item')
+    drawers = document.querySelectorAll('.drawer')
 
     // Init save state if it's enabled
     if (settings.saveState) {
@@ -53,8 +41,8 @@ export default function(options) {
     }
 
     // Init modal switch if it's enabled
-    if (settings.modalSwitch) {
-      initModalSwitch()
+    if (settings.switch) {
+      initSwitch()
     }
 
     // Add our drawer trigger event listener
@@ -73,7 +61,7 @@ export default function(options) {
     }
 
     // Check if modal switch is enabled
-    if (settings.modalSwitch) {
+    if (settings.switch) {
       modalDrawers = null
       bp = null
       mq = null
@@ -91,7 +79,7 @@ export default function(options) {
     close(document.querySelectorAll(selector))
   }
 
-  const open = (target) => {
+  const open = (target, callback) => {
     u.addClass(target, 'is-active')
     if (!target.forEach) {
       target = u.toArray(target)
@@ -101,11 +89,12 @@ export default function(options) {
         drawer_state[target.id] = u.hasClass(target, 'is-active')
         localStorage.setItem('drawer_state', JSON.stringify(drawer_state))
       }
-      // debug('open', target)
     })
+    // Fire the callback if one was passed
+    typeof callback === 'function' && callback()
   }
 
-  const close = (target) => {
+  const close = (target, callback) => {
     u.removeClass(target, 'is-active')
     if (!target.forEach) {
       target = u.toArray(target)
@@ -115,8 +104,9 @@ export default function(options) {
         drawer_state[target.id] = u.hasClass(target, 'is-active')
         localStorage.setItem('drawer_state', JSON.stringify(drawer_state))
       }
-      // debug('close', target)
     })
+    // Fire the callback if one was passed
+    typeof callback === 'function' && callback()
   }
 
   const debug = (event, element) => {
@@ -161,21 +151,34 @@ export default function(options) {
         drawer_state[drawer.id] = u.hasClass(drawer, 'is-active')
       }
 
+      // Get our drawer dialog element
+      let dialog = drawer.querySelector('.drawer__dialog')
+
+      // Add a no-transition class and remove it within a transition duration
+      u.addClass(dialog, 'no-transition')
+      let revert = () => {
+        setTimeout(
+          function() {
+            u.removeClass(dialog, 'no-transition')
+          }, 500
+        )
+      }
+
       // Toggle our drawer state based on the saved state
       if (drawer_state[drawer.id] === false) {
-        close(drawer)
+        close(drawer, revert)
       } else {
-        open(drawer)
+        open(drawer, revert)
       }
     })
   }
 
-  const initModalSwitch = () => {
-    modalDrawers = document.querySelectorAll(settings.modalSwitch)
+  const initSwitch = () => {
+    modalDrawers = document.querySelectorAll(settings.switch)
     modalDrawers.forEach((drawer) => {
       // Get the local breakpoint if one is set
       // Remove brackets and the intial data flag
-      let clean = settings.modalSwitch
+      let clean = settings.switch
         .replace('[', '')
         .replace(']', '')
         .replace('data-', '')
@@ -196,7 +199,7 @@ export default function(options) {
           bp = drawer.dataset[clean]
         }
       } else {
-        bp = settings.modalSwitchBreakpoint
+        bp = settings.switchBreakpoint
       }
 
       // Media query listener
@@ -217,30 +220,15 @@ export default function(options) {
   }
 
   const switchDrawer = (drawer) => {
-    let inner = drawer.querySelector('.dialog')
+    let dialog = drawer.querySelector('.dialog')
+    let triggers = document.querySelectorAll('[data-target="#' + drawer.id + '"]')
+    let regex = /modal/gi
 
-    // Remove modal classes
-    u.removeClass(drawer, 'modal')
-    u.removeClass(inner, 'modal__dialog')
-
-    // Add drawer classes
-    u.addClass(drawer, 'drawer__item')
-    u.addClass(inner, 'drawer__dialog')
-
-    // Switch trigger class
-    let trigger = document.querySelectorAll('[data-target="#' + drawer.id + '"]')
-    u.addClass(trigger, 'drawer__trigger')
-    u.removeClass(trigger, 'modal__trigger')
-
-    // Remove the modal position class via [data-modal-pos]
-    let pos = drawer.dataset.modalPos
-    if (pos) {
-      if (settings.classModalPos[pos]) {
-        u.removeClass(drawer, settings.classModalPos[pos])
-      } else {
-        u.removeClass(drawer, pos)
-      }
-    }
+    drawer.className = drawer.className.replace(regex, 'drawer')
+    dialog.className = dialog.className.replace(regex, 'drawer')
+    triggers.forEach((trigger) => {
+      trigger.className = trigger.className.replace(regex, 'drawer')
+    })
 
     // Open or close drawer based on save state
     if (settings.saveState) {
@@ -253,33 +241,18 @@ export default function(options) {
   }
 
   const switchModal = (drawer) => {
-    let inner = drawer.querySelector('.dialog')
+    let dialog = drawer.querySelector('.dialog')
+    let triggers = document.querySelectorAll('[data-target="#' + drawer.id + '"]')
+    let regex = /drawer/gi
+
+    drawer.className = drawer.className.replace(regex, 'modal')
+    dialog.className = dialog.className.replace(regex, 'modal')
+    triggers.forEach((trigger) => {
+      trigger.className = trigger.className.replace(regex, 'modal')
+    })
 
     // Remove active class for modal styles by default
     u.removeClass(drawer, 'is-active')
-
-    // Remove drawer classes
-    u.removeClass(drawer, 'drawer__item')
-    u.removeClass(inner, 'drawer__dialog')
-
-    // Add modal classes
-    u.addClass(drawer, 'modal')
-    u.addClass(inner, 'modal__dialog')
-
-    // Switch trigger class
-    let trigger = document.querySelectorAll('[data-target="#' + drawer.id + '"]')
-    u.addClass(trigger, 'modal__trigger')
-    u.removeClass(trigger, 'drawer__trigger')
-
-    // Add the modal position class via [data-modal-pos]
-    let pos = drawer.dataset.modalPos
-    if (pos) {
-      if (settings.classModalPos[pos]) {
-        u.addClass(drawer, settings.classModalPos[pos])
-      } else {
-        u.addClass(drawer, pos)
-      }
-    }
   }
 
   api.init(options)

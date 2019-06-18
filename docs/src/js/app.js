@@ -9,11 +9,6 @@ const dismissible = new Dismissible
 const drawer = new Drawer()
 const modal = new Modal()
 const toggle = new Toggle()
-const dropdown = new Toggle({
-  trigger: '.dropdown.on-click',
-  targets: '',
-  class: 'is-active'
-})
 
 /**
  * List.js

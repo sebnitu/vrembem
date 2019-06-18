@@ -9,20 +9,12 @@
 
 .drawer {
   position: relative;
-  height: 100vh;
-  display: flex;
-  flex-direction: row;
-  overflow: hidden;
-}
-
-.drawer__item {
-  position: relative;
   width: $drawer-width;
   align-items: stretch;
   align-content: stretch;
   flex-direction: column;
-  flex: 0 0 $drawer-width;
-  display: none;
+  flex: 0 0 0;
+  display: flex;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -31,12 +23,17 @@
  * Drawer dialog elements
  */
 
-.drawer__dialog,
-.drawer .modal__dialog {
+.drawer__dialog {
+  width: $drawer-width;
+  transform: translate3d(0, -$drawer-travel, 0);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.drawer__dialog {
   background: $drawer__dialog-background;
   box-shadow: $drawer__dialog-box-shadow;
   min-height: 100%;
-
 
   .dialog__header,
   .dialog__footer {
@@ -50,52 +47,23 @@
 }
 
 /**
- * drawer toggle modifiers
+ * Active state
  */
 
-.drawer__item.is-active {
-  display: flex;
-}
+.drawer.is-active {
+  flex: 0 0 $drawer-width;
 
-/**
- * Drawer modal modifier
- * ---
- * Used when the screen side no longer allows for the drawer to appear along
- * side the document's primary content.
- */
-
-.drawer_modal {
-  .drawer__item {
-    position: absolute;
-    z-index: 1000;
-    height: 100vh;
+  .drawer__dialog {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    visibility: visible;
   }
 }
 
 /**
- * Drawer switch
- * ---
- * Switches between the modal and dismissible toggle drawer buttons
+ * Disable the transition styles for initial page load
  */
 
-.drawer__switch {
-  .drawer__trigger {
-    display: none;
-  }
-
-  .modal__trigger {
-    display: flex;
-  }
-}
-
-@include media-min('xl') {
-  .drawer__switch {
-    .drawer__trigger {
-      display: flex;
-    }
-
-    .modal__trigger {
-      display: none;
-    }
-  }
+.no-transition {
+  transition: none !important;
 }

@@ -3814,19 +3814,6 @@ pre {
  */
 .drawer {
   position: relative;
-  height: 100vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  overflow: hidden;
-}
-
-.drawer__item {
-  position: relative;
   width: 16em;
   -webkit-box-align: stretch;
       -ms-flex-align: stretch;
@@ -3838,9 +3825,11 @@ pre {
       -ms-flex-direction: column;
           flex-direction: column;
   -webkit-box-flex: 0;
-      -ms-flex: 0 0 16em;
-          flex: 0 0 16em;
-  display: none;
+      -ms-flex: 0 0 0px;
+          flex: 0 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -3848,8 +3837,15 @@ pre {
 /**
  * Drawer dialog elements
  */
-.drawer__dialog,
-.drawer .modal__dialog {
+.drawer__dialog {
+  width: 16em;
+  -webkit-transform: translate3d(0, -5em, 0);
+          transform: translate3d(0, -5em, 0);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.drawer__dialog {
   background: #eceff1;
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -3857,63 +3853,78 @@ pre {
 }
 
 .drawer__dialog .dialog__header,
-.drawer__dialog .dialog__footer,
-.drawer .modal__dialog .dialog__header,
-.drawer .modal__dialog .dialog__footer {
+.drawer__dialog .dialog__footer {
   background: #eceff1;
   border-color: rgba(0, 0, 0, 0.05);
 }
 
-.drawer__dialog .dialog__body,
-.drawer .modal__dialog .dialog__body {
+.drawer__dialog .dialog__body {
   background: #eceff1;
 }
 
 /**
- * drawer toggle modifiers
+ * Active state
  */
-.drawer__item.is-active {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.drawer.is-active {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 16em;
+          flex: 0 0 16em;
+}
+
+.drawer.is-active .drawer__dialog {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  opacity: 1;
+  visibility: visible;
 }
 
 /**
- * Drawer modal modifier
- * ---
- * Used when the screen side no longer allows for the drawer to appear along
- * side the document's primary content.
+ * Disable the transition styles for initial page load
  */
-.drawer_modal .drawer__item {
+.no-transition {
+  -webkit-transition: none !important;
+  transition: none !important;
+}
+
+/**
+ * Drawer position modifiers
+ * ---
+ * Provides a variety of options for positioning drawers.
+ */
+.drawer_pos_left,
+.drawer_pos_right {
   position: absolute;
-  z-index: 1000;
-  height: 100vh;
+  top: 0;
+  left: 0;
+  bottom: 0;
 }
 
-/**
- * Drawer switch
- * ---
- * Switches between the modal and dismissible toggle drawer buttons
- */
-.drawer__switch .drawer__trigger {
-  display: none;
+.drawer_pos_left {
+  left: 0;
+  right: auto;
 }
 
-.drawer__switch .modal__trigger {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.drawer_pos_left .drawer__dialog {
+  -webkit-transform: translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0);
 }
 
-@media (min-width: 1380px) {
-  .drawer__switch .drawer__trigger {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-  }
-  .drawer__switch .modal__trigger {
-    display: none;
-  }
+.drawer_pos_left.is-active ~ .drawer-sibling {
+  margin-left: 16em;
+}
+
+.drawer_pos_right {
+  left: auto;
+  right: 0;
+}
+
+.drawer_pos_right .drawer__dialog {
+  -webkit-transform: translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0);
+}
+
+.drawer_pos_right.is-active ~ .drawer-sibling {
+  margin-right: 16em;
 }
 
 /**
@@ -6110,10 +6121,10 @@ pre {
   z-index: 1001;
   width: 38em;
   max-width: 100%;
-  -webkit-transform: translate3d(0, -5em, 0);
-          transform: translate3d(0, -5em, 0);
   -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
           box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  -webkit-transform: translate3d(0, -5em, 0);
+          transform: translate3d(0, -5em, 0);
   opacity: 0;
   visibility: hidden;
 }
@@ -6135,10 +6146,10 @@ pre {
 }
 
 .modal.is-active .modal__dialog {
-  -webkit-transform: translate3d(0, 0, 0);
-          transform: translate3d(0, 0, 0);
   -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.1), 0 24px 38px 3px rgba(0, 0, 0, 0.07), 0 9px 46px 8px rgba(0, 0, 0, 0.06);
           box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.1), 0 24px 38px 3px rgba(0, 0, 0, 0.07), 0 9px 46px 8px rgba(0, 0, 0, 0.06);
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
   opacity: 1;
   visibility: visible;
 }
