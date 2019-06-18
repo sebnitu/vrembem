@@ -12,13 +12,14 @@
   z-index: $dialog-zindex;
   display: flex;
   flex-direction: column;
-  overflow: auto;
   background: $dialog-background;
   background-clip: padding-box;
   border: $dialog-border;
   border-radius: $dialog-border-radius;
   box-shadow: $dialog-box-shadow;
   transition: all $dialog-transition-duration $dialog-transition-timing-function;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 
   > .dialog__close {
     position: absolute;

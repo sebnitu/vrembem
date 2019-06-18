@@ -25,11 +25,13 @@
 .page__aside {
   flex-grow: 0;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .page__article {
   flex-grow: 1;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /**
