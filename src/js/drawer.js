@@ -134,13 +134,12 @@ export default function(options) {
   }
 
   const initSaveState = () => {
+
     // Init: Setup our variables
     // Get the drawer state from local storage
-    drawer_state = localStorage.getItem('drawer_state')
-
     // Check if drawer state was saved otherwise init a new object
-    if (drawer_state) {
-      drawer_state = JSON.parse(drawer_state)
+    if (localStorage.getItem('drawer_state')) {
+      drawer_state = JSON.parse(localStorage.getItem('drawer_state'))
     }
 
     // Loop through all drawers and save/init their state
