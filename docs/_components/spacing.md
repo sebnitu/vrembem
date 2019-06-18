@@ -1,8 +1,8 @@
 ---
-layout: page
+layout: article
 title: "Spacing"
 description: "A simple layout component that gives vertical spacing to all of an elements children."
-tags: layout
+category: layout
 # usage:
   # npm: "@vrembem/spacing"
   # scss: "vrembem/spacing/all"

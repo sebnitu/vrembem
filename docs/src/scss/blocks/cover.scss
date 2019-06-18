@@ -23,12 +23,12 @@
  * Header and Content
  */
 
-.cover__header,
-.cover__content {
+.cover__hero,
+.cover__aside {
   position: relative;
 }
 
-.cover__header {
+.cover__hero {
   position: sticky;
   top: 0;
   flex: 0 0 auto;
@@ -43,19 +43,20 @@
   z-index: 1;
 }
 
-.cover__content {
+.cover__aside {
   position: relative;
   flex: 1 1 auto;
   z-index: 2;
+  background: $shade;
 }
 
 @include media-min('md') {
-  .cover__header,
-  .cover__content {
+  .cover__hero,
+  .cover__aside {
     flex: 1 0 0;
   }
 
-  .cover__header {
+  .cover__hero {
     flex-grow: 2;
     flex-direction: column;
     justify-content: center;
@@ -63,7 +64,7 @@
 }
 
 /**
- * Inner
+ * Cover hero content
  */
 
 .cover__inner {
@@ -80,6 +81,35 @@
   .cover__inner {
     max-width: 46em;
     padding: 4em;
+  }
+}
+
+/**
+ * Cover menu content
+ */
+
+.cover__header,
+.cover__content {
+  padding: 0.5em;
+  background: $shade;
+}
+
+.cover__header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  border-bottom: 1px solid rgba($black, 0.05);
+}
+
+.cover__content {
+  position: relative;
+  z-index: 1;
+}
+
+@include media-min('lg') {
+  .cover__header,
+  .cover__content {
+    padding: 1em;
   }
 }
 
@@ -115,5 +145,19 @@
 
   .cover__desc {
     font-size: 1.4em;
+  }
+}
+
+/**
+ * Cover menu and filter
+ */
+
+.cover__aside {
+  .filter .search {
+    padding: 1em 3.25em;
+  }
+
+  .menu_drawer .menu__link {
+    padding: 1em;
   }
 }

@@ -1,3 +1,5 @@
+import config from 'config'
+
 /**
  * Utility
  * ---
@@ -6,62 +8,89 @@
 export default class {
 
   /**
+   * Get and output a breakpoint using it's key found in config.json
+   * ---
+   * @param {String} The key to search for in the breakpoints object
+   * @returns {String} The pixel value of the breakpoint as a string
+   */
+  static getBreakpoint(key) {
+    return config.breakpoints[key]
+  }
+
+  /**
    * Checks if an element has a class or not
    * ---
-   * @param {Element} Element to check class(es) on
+   * @param {Object} || {Nodelist} Element(s) to check class(es) on
    * @param {String} || {Array} Class(es) to check
    * @returns {Boolean} Returns true if class exists on element, otherwise false
    */
   static hasClass(el, c) {
-
+    if (!el.forEach) {
+      el = this.toArray(el)
+    }
     c = this.toArray(c)
-
-    return c.every( function (c) {
-      return el.classList.contains(c)
+    return c.some( function (c) {
+      let has = false
+      el.forEach((el) => {
+        if (el.classList.contains(c)) {
+          has = true
+        }
+      })
+      return has
     })
   }
 
   /**
    * Adds a class or classes to an element
    * ---
-   * @param {Element} Element to add class(es) on
+   * @param {Object} || {Nodelist} Element(s) to add class(es) on
    * @param {String} || {Array} Class(es) to add
    */
   static addClass(el, c) {
-
+    if (!el.forEach) {
+      el = this.toArray(el)
+    }
     c = this.toArray(c)
-
-    c.forEach( function(c) {
-      el.classList.add(c)
+    el.forEach((el) => {
+      c.forEach((c) => {
+        el.classList.add(c)
+      })
     })
   }
+
   /**
    * Remove a class or classes from an element
    * ---
-   * @param {Element} Element to remove class(es) from
+   * @param {Object} || {Nodelist} Element(s) to remove class(es) from
    * @param {String} || {Array} Class(es) to remove
    */
   static removeClass(el, c) {
-
+    if (!el.forEach) {
+      el = this.toArray(el)
+    }
     c = this.toArray(c)
-
-    c.forEach( function(c) {
-      el.classList.remove(c)
+    el.forEach((el) => {
+      c.forEach((c) => {
+        el.classList.remove(c)
+      })
     })
   }
 
   /**
    * Toggle a class or classes on an element
    * ---
-   * @param {Element} Element to toggle class(es) on
+   * @param {Object} || {Nodelist} Element(s) to toggle class(es) on
    * @param {String} || {Array} Class(es) to toggle
    */
   static toggleClass(el, c) {
-
+    if (!el.forEach) {
+      el = this.toArray(el)
+    }
     c = this.toArray(c)
-
-    c.forEach( function(c) {
-      el.classList.toggle(c)
+    el.forEach((el) => {
+      c.forEach((c) => {
+        el.classList.toggle(c)
+      })
     })
   }
 
@@ -69,7 +98,7 @@ export default class {
    * Find the closest parent element based on class. This is different from the
    * native .closest() method in that it doesn't check the current element.
    * ---
-   * @param {Element} Element to start search on
+   * @param {Object} Element to start search on
    * @param {String} || {Array} Class(es) to check for
    * @return {Element} Closest parent element
    */
@@ -79,22 +108,20 @@ export default class {
   }
 
   /**
-   * Converts a string to an array. If an array is passed, it's returned as is.
-   * Anything else is returned as false.
+   * Converts a string or object to an array. If an array is passed, it's
+   * returned as is. Anything else is returned as an array.
    * ---
-   * @param {String} || {Array} String to convert to an array
+   * @param {String} || {Object} String or object to convert to an array
    * @return {Array} Return the converted array
    */
-  static toArray(string) {
+  static toArray(item) {
 
-    var array = []
+    let array = []
 
-    if (typeof string === 'string') {
-      array.push(string)
-    } else if (Array.isArray(string)) {
-      array = string
+    if (Array.isArray(item)) {
+      array = item
     } else {
-      return false
+      array.push(item)
     }
 
     return array
@@ -110,10 +137,10 @@ export default class {
    */
   static extend() {
 
-    var extended = {}
-    var deep = false
-    var i = 0
-    var length = arguments.length
+    let extended = {}
+    let deep = false
+    let i = 0
+    let length = arguments.length
 
     if ( Object.prototype.toString.call( arguments[0] ) === '[object Boolean]' ) {
       deep = arguments[0]
@@ -121,7 +148,7 @@ export default class {
     }
 
     let merge = ( obj ) => {
-      for ( var prop in obj ) {
+      for ( let prop in obj ) {
         if ( Object.prototype.hasOwnProperty.call( obj, prop ) ) {
           if ( deep && Object.prototype.toString.call(obj[prop]) === '[object Object]' ) {
             extended[prop] = extend( true, extended[prop], obj[prop] )
@@ -133,7 +160,7 @@ export default class {
     }
 
     for ( ; i < length; i++ ) {
-      var obj = arguments[i]
+      let obj = arguments[i]
       merge(obj)
     }
 

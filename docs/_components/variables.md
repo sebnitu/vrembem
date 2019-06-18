@@ -1,8 +1,8 @@
 ---
-layout: page
+layout: article
 title: Variables
 description: "These are the default variables. They are made available to all components."
-tags: core
+category: core
 published: false
 # usage:
   # npm: "@vrembem/core"

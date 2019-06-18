@@ -3807,6 +3807,127 @@ pre {
 }
 
 /**
+ * Drawer
+ * ---
+ * The navigation drawer slides in from the left and/or right and contains the
+ * navigation or other content for your app.
+ */
+.drawer {
+  position: relative;
+  width: 16em;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -ms-flex-line-pack: stretch;
+      align-content: stretch;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 0px;
+          flex: 0 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/**
+ * Drawer dialog elements
+ */
+.drawer__dialog {
+  width: 16em;
+  -webkit-transform: translate3d(0, -5em, 0);
+          transform: translate3d(0, -5em, 0);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.drawer__dialog {
+  background: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  min-height: 100%;
+}
+
+.drawer__dialog .dialog__header,
+.drawer__dialog .dialog__footer {
+  background: #eceff1;
+  border-color: rgba(0, 0, 0, 0.05);
+}
+
+.drawer__dialog .dialog__body {
+  background: #eceff1;
+}
+
+/**
+ * Active state
+ */
+.drawer.is-active {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 16em;
+          flex: 0 0 16em;
+}
+
+.drawer.is-active .drawer__dialog {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  opacity: 1;
+  visibility: visible;
+}
+
+/**
+ * Disable the transition styles for initial page load
+ */
+.no-transition {
+  -webkit-transition: none !important;
+  transition: none !important;
+}
+
+/**
+ * Drawer position modifiers
+ * ---
+ * Provides a variety of options for positioning drawers.
+ */
+.drawer_pos_left,
+.drawer_pos_right {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.drawer_pos_left {
+  left: 0;
+  right: auto;
+}
+
+.drawer_pos_left .drawer__dialog {
+  -webkit-transform: translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0);
+}
+
+.drawer_pos_left.is-active ~ .drawer-sibling {
+  margin-left: 16em;
+}
+
+.drawer_pos_right {
+  left: auto;
+  right: 0;
+}
+
+.drawer_pos_right .drawer__dialog {
+  -webkit-transform: translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0);
+}
+
+.drawer_pos_right.is-active ~ .drawer-sibling {
+  margin-right: 16em;
+}
+
+/**
  * Dropdown
  * ---
  * A component that is initially hidden and revealed upon user interaction
@@ -4424,7 +4545,7 @@ pre {
   font-size: 1em;
   line-height: 1.5em;
   background: #ffffff;
-  border: 1px solid #bdbdbd;
+  border: 1px solid rgba(0, 0, 0, 0.25);
   -webkit-box-shadow: 0 0 0 0 rgba(33, 150, 243, 0);
           box-shadow: 0 0 0 0 rgba(33, 150, 243, 0);
   border-radius: 3px;
@@ -4971,6 +5092,7 @@ pre {
   color: #212121;
   background: rgba(0, 0, 0, 0.05);
   border-color: transparent;
+  outline: none;
 }
 
 .menu__link > * + * {
@@ -5929,7 +6051,7 @@ pre {
   color: #ffffff;
 }
 
-.menu_theme_invert .menu__link:hover {
+.menu_theme_invert .menu__link:hover, .menu_theme_invert .menu__link:focus {
   color: #ffffff;
   background: rgba(255, 255, 255, 0.1);
 }
@@ -5999,10 +6121,10 @@ pre {
   z-index: 1001;
   width: 38em;
   max-width: 100%;
-  -webkit-transform: translate3d(0, -5em, 0);
-          transform: translate3d(0, -5em, 0);
   -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
           box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  -webkit-transform: translate3d(0, -5em, 0);
+          transform: translate3d(0, -5em, 0);
   opacity: 0;
   visibility: hidden;
 }
@@ -6024,10 +6146,10 @@ pre {
 }
 
 .modal.is-active .modal__dialog {
-  -webkit-transform: translate3d(0, 0, 0);
-          transform: translate3d(0, 0, 0);
   -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.1), 0 24px 38px 3px rgba(0, 0, 0, 0.07), 0 9px 46px 8px rgba(0, 0, 0, 0.06);
           box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.1), 0 24px 38px 3px rgba(0, 0, 0, 0.07), 0 9px 46px 8px rgba(0, 0, 0, 0.06);
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
   opacity: 1;
   visibility: visible;
 }

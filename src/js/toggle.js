@@ -1,23 +1,28 @@
 import u from './utility.js'
 
-/**
- * Toggle
- * ---
- * A general class toggle script.
- */
 export default function(options) {
 
   'use strict'
 
   let api = {}
-  let defaults = {
+  let settings
+  const defaults = {
     trigger: '[data-toggle-class]',
     targets: '',
     class: ''
   }
-  let settings
 
-  let run = () => {
+  api.init = (options) => {
+    settings = u.extend( defaults, options || {} )
+    document.addEventListener('click', run, false)
+  }
+
+  api.destroy = () => {
+    settings = null
+    document.removeEventListener('click', run, false)
+  }
+
+  const run = () => {
 
     let trigger = event.target.closest(settings.trigger)
 
@@ -32,14 +37,14 @@ export default function(options) {
       }
 
       if (targets.length) {
-        targets.forEach(function(target) {
-          u.toggleClass(target, trigger.dataset.toggleClass)
+        targets.forEach((target) => {
+          u.toggleClass(target, trigger.dataset.toggleClass.split(' '))
         })
       } else {
         if (settings.class) {
           u.toggleClass(trigger, settings.class)
         } else {
-          u.toggleClass(trigger, trigger.dataset.toggleClass)
+          u.toggleClass(trigger, trigger.dataset.toggleClass.split(' '))
         }
       }
 
@@ -47,18 +52,6 @@ export default function(options) {
     }
   }
 
-  api.init = (options) => {
-    api.destroy()
-    settings = u.extend( defaults, options || {} )
-    document.addEventListener('click', run, false)
-  }
-
-  api.destroy = () => {
-    settings = null
-    document.removeEventListener('click', run, false)
-  }
-
   api.init(options)
-
   return api
 }

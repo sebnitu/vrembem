@@ -1,8 +1,8 @@
 ---
-layout: page
+layout: article
 title: Notice
 description: "A component for highlighting messages to the user."
-tags: block simple
+category: simple
 # usage:
   # npm: "@vrembem/notice"
   # scss: "vrembem/notice/all"

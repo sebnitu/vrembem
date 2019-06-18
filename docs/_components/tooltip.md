@@ -1,8 +1,8 @@
 ---
-layout: page
+layout: article
 title: Tooltip
 description: "Text labels that appear when a user hovers over, focuses on or touches an element."
-tags: block simple
+category: simple
 # usage:
   # npm: "@vrembem/tooltip"
   # scss: "vrembem/tooltip/all"

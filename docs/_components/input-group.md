@@ -1,8 +1,8 @@
 ---
-layout: page
+layout: article
 title: Input-group
 description: "A container component for grouping inputs and buttons together."
-tags: block compound
+category: compound
 # usage:
   # npm: "@vrembem/input-group"
   # scss: "vrembem/input-group/all"

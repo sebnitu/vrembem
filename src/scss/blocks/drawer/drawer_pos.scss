@@ -1,0 +1,45 @@
+@import 'variables';
+
+/**
+ * Drawer position modifiers
+ * ---
+ * Provides a variety of options for positioning drawers.
+ */
+
+.drawer_pos_left,
+.drawer_pos_right {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.drawer_pos_left {
+  left: 0;
+  right: auto;
+
+  .drawer__dialog {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.drawer_pos_left.is-active {
+  & ~ #{$drawer-sibling} {
+    margin-left: $drawer-width;
+  }
+}
+
+.drawer_pos_right {
+  left: auto;
+  right: 0;
+
+  .drawer__dialog {
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+.drawer_pos_right.is-active {
+  & ~ #{$drawer-sibling} {
+    margin-right: $drawer-width;
+  }
+}

@@ -1,8 +1,8 @@
 ---
-layout: page
+layout: article
 title: Icon-action
 dsc: "A minimal container component for icon based actions."
-tags: block simple
+category: simple
 # usage:
   # npm: "@vrembem/icon-action"
   # scss: "vrembem/icon-action/all"

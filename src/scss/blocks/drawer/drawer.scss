@@ -1,0 +1,69 @@
+@import 'variables';
+
+/**
+ * Drawer
+ * ---
+ * The navigation drawer slides in from the left and/or right and contains the
+ * navigation or other content for your app.
+ */
+
+.drawer {
+  position: relative;
+  width: $drawer-width;
+  align-items: stretch;
+  align-content: stretch;
+  flex-direction: column;
+  flex: 0 0 0;
+  display: flex;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/**
+ * Drawer dialog elements
+ */
+
+.drawer__dialog {
+  width: $drawer-width;
+  transform: translate3d(0, -$drawer-travel, 0);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.drawer__dialog {
+  background: $drawer__dialog-background;
+  box-shadow: $drawer__dialog-box-shadow;
+  min-height: 100%;
+
+  .dialog__header,
+  .dialog__footer {
+    background: $drawer__dialog-background;
+    border-color: $drawer__dialog-sep-border-color;
+  }
+
+  .dialog__body {
+    background: $drawer__dialog-background;
+  }
+}
+
+/**
+ * Active state
+ */
+
+.drawer.is-active {
+  flex: 0 0 $drawer-width;
+
+  .drawer__dialog {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/**
+ * Disable the transition styles for initial page load
+ */
+
+.no-transition {
+  transition: none !important;
+}

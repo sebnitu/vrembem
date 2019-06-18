@@ -1,8 +1,8 @@
 ---
-layout: page
+layout: article
 title: "Grid"
 description: "A flexbox based grid system."
-tags: layout
+category: layout
 # usage:
   # npm: "@vrembem/grid"
   # scss: "vrembem/grid/all"

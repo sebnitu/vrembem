@@ -1,8 +1,8 @@
 ---
-layout: page
+layout: article
 title: "Size"
 description: "A flexbox based grid system."
-tags: layout
+category: layout
 # usage:
   # npm: "@vrembem/size"
   # scss: "vrembem/size/all"

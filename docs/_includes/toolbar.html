@@ -1,54 +1,51 @@
-<div class="toolbar">
-  <div class="container">
-    <div class="level justify_between">
+<div class="toolbar{% if include.class %} {{ include.class }}{% endif %}">
+  <div class="level justify_between">
 
-      <div>
-        <ul class="menu menu_theme_invert">
-          <li class="menu__item">
-            <a href="{{ site.url }}{{ site.baseurl }}" class="menu__link menu__link_icon">
-              {% include icon.html icon="x" %}
-            </a>
-          </li>
-          <li class="menu__sep"></li>
-          <li class="menu__item">
-            <span class="menu__text">{{ page.title }}</span>
-          </li>
-        </ul>
-      </div>
-
-      <div>
-        <ul class="menu menu_theme_invert">
-
-          <li class="menu__item">
-            {%- if page.previous -%}
-            <a href="{{ page.previous.url }}" class="menu__link menu__link_icon">
-              {% include icon.html icon="arrow-left" %}
-            </a>
-            {%- endif -%}
-          </li>
-
-          <li class="menu__item">
-            {%- if page.next -%}
-            <a href="{{ page.next.url }}" class="menu__link menu__link_icon">
-              {% include icon.html icon="arrow-right" %}
-            </a>
-            {%- endif -%}
-          </li>
-
-          {%- if page.previous or page.next -%}
-          <li class="menu__sep"></li>
-          {%- endif -%}
-
-          <li class="menu__item">
-            <a href="https://github.com/{{ site.repository }}" class="menu__link menu__link_icon">
-              {% include icon.html icon="github" %}
-            </a>
-          </li>
-
-        </ul>
-
-      </div>
-
+    <div class="level__item">
+      <ul class="menu menu_theme_invert">
+        <li class="menu__item">
+          <button class="menu__link menu__link_icon drawer__trigger" data-target="#listjs">
+            {% include icon.html icon="menu" %}
+          </button>
+        </li>
+        <li class="menu__sep"></li>
+        <li class="menu__item">
+          <a href="{{ site.url }}{{ site.baseurl }}" class="menu__link">{{ site.title }}</a>
+        </li>
+      </ul>
     </div>
+
+    <div class="level__item">
+      <ul class="menu menu_theme_invert">
+
+        {%- if page.previous -%}
+        <li class="menu__item">
+          <a href="{{ page.previous.url }}" class="menu__link menu__link_icon">
+            {% include icon.html icon="arrow-left" %}
+          </a>
+        </li>
+        {%- endif -%}
+
+        {%- if page.next -%}
+        <li class="menu__item">
+          <a href="{{ page.next.url }}" class="menu__link menu__link_icon">
+            {% include icon.html icon="arrow-right" %}
+          </a>
+        </li>
+        {%- endif -%}
+
+        {%- if page.previous or page.next -%}
+        <li class="menu__sep"></li>
+        {%- endif -%}
+
+        <li class="menu__item">
+          <a href="https://github.com/{{ site.repository }}" class="menu__link menu__link_icon">
+            {% include icon.html icon="github" %}
+          </a>
+        </li>
+
+      </ul>
+    </div>
+
   </div>
 </div>

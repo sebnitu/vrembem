@@ -1,11 +1,11 @@
 ---
-layout: page
+layout: article
 layout_options:
   section: false
   container: false
 title: "Section"
 description: "A container component for wrapping distinct sections of a view."
-tags: layout
+category: layout
 # usage:
   # npm: "@vrembem/section"
   # scss: "vrembem/section/all"

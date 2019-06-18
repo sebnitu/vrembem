@@ -1,8 +1,8 @@
 ---
-layout: page
+layout: article
 title: Mixins
 description: "..."
-tags: core
+category: core
 published: false
 # usage:
   # npm: "@vrembem/core"

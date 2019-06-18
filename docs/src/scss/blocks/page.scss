@@ -1,42 +1,65 @@
 /**
  * Page
  * ---
- * The page component which handles layout for a general page document.
+ * The page component handles general layout for the application.
  */
 
 .page {
-  min-height: 100%;
   display: flex;
   flex-direction: column;
+  height: 100vh;
 }
 
-.page__header {
-  @extend .section;
-  @extend .section_size_lg;
-}
-
-.page__title {
-  @extend %h1;
-  font-weight: normal;
-}
-
-.page__content {
-  @extend .section;
-
-  .type {
-    max-width: 544px;
-  }
+.page__toolbar {
+  flex-grow: 0;
 }
 
 .page__main {
+  position: relative;
   flex-grow: 1;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
 }
 
-.page__section {
-  padding: 1.5em;
+.page__aside {
+  flex-grow: 0;
+  overflow: auto;
 }
 
-.page__footer {
-  @extend .section;
-  border-top: $border;
+.page__article {
+  flex-grow: 1;
+  overflow: auto;
+}
+
+/**
+ * Toolbar spacing
+ */
+
+.page__toolbar + .page__main {
+  margin-top: 56px;
+  height: calc(100vh - 56px);
+}
+
+@include media-min('md') {
+  .page__toolbar + .page__main {
+    margin-top: 72px;
+    height: calc(100vh - 72px);
+  }
+}
+
+/**
+ * Custom modal styles
+ */
+
+.page__aside {
+  .dialog__header,
+  .dialog__footer {
+    background: $shade;
+    border-color: $border-color-light;
+  }
+
+  .dialog__body {
+    background: $shade;
+  }
 }

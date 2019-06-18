@@ -1,8 +1,8 @@
 ---
-layout: page
+layout: article
 title: "Level"
 description: "A simple layout component that helps center children in an element vertically and gives them horizontal spacing."
-tags: layout
+category: layout
 # usage:
   # npm: "@vrembem/level"
   # scss: "vrembem/level/all"

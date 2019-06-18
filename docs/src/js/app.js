@@ -1,17 +1,14 @@
 import u from 'utility'
 import Dismissible from 'dismissible'
+import Drawer from 'drawer'
 import Modal from 'modal'
 import Toggle from 'toggle'
 import listjs from 'list.js'
 
-const dismissible = new Dismissible()
+const dismissible = new Dismissible
+const drawer = new Drawer()
 const modal = new Modal()
 const toggle = new Toggle()
-const dropdown = new Toggle({
-  trigger: '.dropdown.on-click',
-  targets: '',
-  class: 'is-active'
-})
 
 /**
  * List.js
@@ -21,9 +18,7 @@ const dropdown = new Toggle({
  */
 if (document.getElementById('listjs')) {
 
-  /**
-   * Init our list.js component
-   */
+  // Init our list.js component
   const list = new listjs('listjs', {
     fuzzySearch: {
       searchClass: 'search',
@@ -34,29 +29,23 @@ if (document.getElementById('listjs')) {
     },
     valueNames: [
       'name',
-      { data: ['tags'] }
+      { data: ['category'] }
     ],
-    listClass: 'jumbo-list'
+    listClass: 'menu'
   })
 
-  /**
-   * Empty Notice
-   * Displayed when the search returns no results
-   */
+  // Empty Notice
+  // Displayed when the search returns no results
   let notice_empty = document.querySelector('.notice_empty')
   let notice_empty_text = notice_empty.querySelector('.search_text')
 
-  /**
-   * Clear search button
-   */
-  let filter = document.querySelector('.jumbo-filter')
-  let search = document.querySelector('.jumbo-filter .search')
-  let search_clear = document.querySelector('.jumbo-filter .search_clear')
+  // Clear search button
+  let filter = document.querySelector('.filter')
+  let search = document.querySelector('.filter .search')
+  let search_clear = document.querySelector('.filter .search_clear')
 
-  /**
-   * On search complete callback
-   */
-  list.on('searchComplete', function() {
+  // On search complete callback
+  list.on('searchComplete', () => {
 
     // Update the search text in empty notice
     let value = search.value
@@ -81,12 +70,10 @@ if (document.getElementById('listjs')) {
     }
   })
 
-  /**
-   * Click events for tags and clears
-   */
-  document.addEventListener('click', function() {
+  // Click events for category and clears
+  document.addEventListener('click', () => {
     let trigger_search_clear = event.target.closest('.search_clear')
-    let trigger_search_tag = event.target.closest('.tag')
+    let trigger_search_cat = event.target.closest('.category')
 
     if (trigger_search_clear) {
       search.value = ''
@@ -94,8 +81,8 @@ if (document.getElementById('listjs')) {
       event.preventDefault()
     }
 
-    if (trigger_search_tag) {
-      search.value = trigger_search_tag.dataset.tag
+    if (trigger_search_cat) {
+      search.value = trigger_search_cat.dataset.category
       list.search(search.value)
       event.preventDefault()
     }

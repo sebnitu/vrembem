@@ -1,18 +1,28 @@
 import u from './utility.js'
 
-export default function() {
+export default function(options) {
 
   'use strict'
 
   let api = {}
   let settings
-  let defaults = {
+  const defaults = {
     trigger: '[data-dismiss]',
     target: '[data-dismissible]',
     classToggle: 'dismiss'
   }
 
-  let run = () => {
+  api.init = (options) => {
+    settings = u.extend( defaults, options || {} )
+    document.addEventListener('click', run, false)
+  }
+
+  api.destroy = () => {
+    settings = null
+    document.removeEventListener('click', run, false)
+  }
+
+  const run = () => {
     let trigger = event.target.closest(settings.trigger)
     if (trigger) {
       let target = trigger.closest(settings.target)
@@ -23,18 +33,6 @@ export default function() {
     }
   }
 
-  api.init = (options) => {
-    api.destroy()
-    settings = u.extend( defaults, options || {} )
-    document.addEventListener('click', run, false)
-  }
-
-  api.destroy = () => {
-    settings = null
-    document.removeEventListener('click', run, false)
-  }
-
-  api.init()
-
+  api.init(options)
   return api
 }

@@ -1,8 +1,8 @@
 ---
-layout: page
+layout: article
 title: "Container"
 description: "A container component for general page composition purposes."
-tags: layout
+category: layout
 # usage:
   # npm: "@vrembem/container"
   # scss: "vrembem/container/all"

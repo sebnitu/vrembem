@@ -1,16 +1,12 @@
 import u from './utility.js'
 
-export default function() {
+export default function(options) {
 
   'use strict'
 
-  /**
-   * Variables
-   */
-
   let api = {}
   let settings
-  let defaults = {
+  const defaults = {
     classTrigger: 'modal__trigger',
     classModal: 'modal',
     classDialog: 'modal__dialog',
@@ -21,81 +17,7 @@ export default function() {
   let memoryTrigger
   let memoryTarget
 
-  /**
-   * Private functions
-   */
-
-  let open = (target) => {
-    u.addClass(target, settings.classActive)
-    let focus = target.querySelector(settings.focus)
-    target.addEventListener('transitionend', function _listener() {
-      if (focus) {
-        focus.focus()
-      } else {
-        target.focus()
-      }
-      this.removeEventListener('transitionend', _listener, true)
-    }, true);
-  }
-
-  let close = (clear = false) => {
-    let modals = document.querySelectorAll('.' + settings.classModal)
-    for (let i = 0; i < modals.length; ++i) {
-      u.removeClass(modals[i], settings.classActive)
-    }
-    if (clear == false && memoryTrigger && memoryTarget) {
-      memoryTarget.addEventListener('transitionend', function _listener() {
-        if (memoryTrigger) {
-          memoryTrigger.focus()
-        }
-        memoryTarget = null
-        memoryTrigger = null
-        this.removeEventListener('transitionend', _listener, true)
-      }, true);
-    } else if (clear == true) {
-      memoryTarget = null
-      memoryTrigger = null
-    }
-  }
-
-  let escape = () => {
-    if (event.keyCode == 27) {
-      close()
-    }
-  }
-
-  let run = () => {
-    let trigger = event.target.closest('.' + settings.classTrigger)
-    let modal = event.target.closest('.' + settings.classModal)
-    let dialog = event.target.closest('.' + settings.classDialog)
-    if (trigger) {
-      close()
-      let dataModal = trigger.dataset.modal
-      if (dataModal) {
-        memoryTarget = document.getElementById(dataModal)
-        memoryTrigger = trigger
-        open(memoryTarget)
-      }
-      event.preventDefault()
-    } else if (modal && !dialog) {
-      close()
-    }
-  }
-
-  /**
-   * Public functions
-   */
-
-  api.open = (target) => {
-    open(document.getElementById(target))
-  }
-
-  api.close = (clear) => {
-    close(clear)
-  }
-
   api.init = (options) => {
-    api.destroy()
     settings = u.extend( defaults, options || {} )
     document.addEventListener('click', run, false)
     document.addEventListener('touchend', run, false)
@@ -111,13 +33,75 @@ export default function() {
     document.removeEventListener('keyup', escape, false)
   }
 
-  /**
-   * Init the plugin
-   */
-  api.init()
+  api.open = (selector) => {
+    open(document.querySelectorAll(selector))
+  }
 
-  /**
-   * Return the API
-   */
+  api.close = (clear) => {
+    close(clear)
+  }
+
+  const open = (target) => {
+    u.addClass(target, settings.classActive)
+    if (target.length === 1) {
+      target = target.item(0)
+      let focus = target.querySelector(settings.focus)
+      target.addEventListener('transitionend', function _listener() {
+        if (focus) {
+          focus.focus()
+        } else {
+          target.focus()
+        }
+        this.removeEventListener('transitionend', _listener, true)
+      }, true);
+    }
+  }
+
+  const close = (clear = false) => {
+    let modals = document.querySelectorAll('.' + settings.classModal)
+    u.removeClass(modals, settings.classActive)
+    if (clear == false && memoryTrigger && memoryTarget) {
+      if (memoryTarget.length === 1) {
+        memoryTarget = memoryTarget.item(0)
+        memoryTarget.addEventListener('transitionend', function _listener() {
+          if (memoryTrigger) {
+            memoryTrigger.focus()
+          }
+          memoryTarget = null
+          memoryTrigger = null
+          this.removeEventListener('transitionend', _listener, true)
+        }, true);
+      }
+    } else if (clear == true) {
+      memoryTarget = null
+      memoryTrigger = null
+    }
+  }
+
+  const escape = () => {
+    if (event.keyCode == 27) {
+      close()
+    }
+  }
+
+  const run = () => {
+    let trigger = event.target.closest('.' + settings.classTrigger)
+    let modal = event.target.closest('.' + settings.classModal)
+    let dialog = event.target.closest('.' + settings.classDialog)
+    if (trigger) {
+      close()
+      let dataModal = trigger.dataset.target
+      if (dataModal) {
+        memoryTarget = document.querySelectorAll(dataModal)
+        memoryTrigger = trigger
+        open(memoryTarget)
+      }
+      event.preventDefault()
+    } else if (modal && !dialog) {
+      close()
+    }
+  }
+
+  api.init(options)
   return api
 }

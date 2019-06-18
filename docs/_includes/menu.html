@@ -1,0 +1,40 @@
+<div class="notice notice_type_accent notice_empty d_none">
+  No results found for "<span class="search_text"></span>"
+</div>
+
+<ul class="menu menu_drawer menu_stack">
+{%- for item in site.components -%}
+
+  {%- assign class = '' -%}
+
+  {%- if item.url != '/' and page.url == item.url -%}
+    {%- assign class = class | append: ' is-active' -%}
+  {%- elsif item.url != '/' and page.url contains item.url or item.url contains page.parent -%}
+    {%- assign class = class | append: ' is-parent' -%}
+  {%- endif -%}
+
+  <li class="menu__item" data-category="{{ item.category }}">
+    <a class="menu__link{{ class }} justify_between" href="{{ item.url }}">
+      <span class="name">{{ item.title }}</span>
+      {%- if item.category == 'layout' -%}
+        <span class="menu__icon category" data-category="{{ item.category }}" data-tooltip="{{ item.category }}" data-tooltip-pos="left">
+          {%- include icon.html icon="layout" -%}
+        </span>
+      {%- elsif item.category == 'compound' -%}
+        <span class="menu__icon category" data-category="{{ item.category }}" data-tooltip="{{ item.category }}" data-tooltip-pos="left">
+          {%- include icon.html icon="layers" -%}
+        </span>
+      {%- elsif item.category == 'simple' -%}
+        <span class="menu__icon category" data-category="{{ item.category }}" data-tooltip="{{ item.category }}" data-tooltip-pos="left">
+          {%- include icon.html icon="box" -%}
+        </span>
+      {%- elsif item.category == 'core' -%}
+        <span class="menu__icon category" data-category="{{ item.category }}" data-tooltip="{{ item.category }}" data-tooltip-pos="left">
+          {%- include icon.html icon="sliders" -%}
+        </span>
+      {%- endif -%}
+    </a>
+  </li>
+
+{%- endfor -%}
+</ul>

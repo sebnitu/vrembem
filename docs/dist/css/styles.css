@@ -117,13 +117,13 @@ pre {
  * H1 Heading
  */
 .h1,
-.type .h1, .type h1, .page__title {
+.type .h1, .type h1, .article__title {
   font-size: 2em;
 }
 
 @media (min-width: 760px) {
   .h1,
-  .type .h1, .type h1, .page__title {
+  .type .h1, .type h1, .article__title {
     font-size: 2.5em;
   }
 }
@@ -1495,7 +1495,7 @@ pre {
  * ---
  * A container component for wrapping distinct sections of a view.
  */
-.section, .page__header, .page__content, .page__footer {
+.section, .article__intro, .article__body, .article__footer {
   position: relative;
   padding: 1.5em;
 }
@@ -1512,13 +1512,13 @@ pre {
 }
 
 @media (min-width: 760px) {
-  .section, .page__header, .page__content, .page__footer {
+  .section, .article__intro, .article__body, .article__footer {
     padding: 2em 1.5em;
   }
 }
 
 @media (min-width: 990px) {
-  .section, .page__header, .page__content, .page__footer {
+  .section, .article__intro, .article__body, .article__footer {
     padding: 3em 1.5em;
   }
 }
@@ -1602,18 +1602,18 @@ pre {
   }
 }
 
-.section_size_lg, .page__header {
+.section_size_lg, .article__intro {
   padding: 1.5em;
 }
 
 @media (min-width: 760px) {
-  .section_size_lg, .page__header {
+  .section_size_lg, .article__intro {
     padding: 4em 1.5em;
   }
 }
 
 @media (min-width: 990px) {
-  .section_size_lg, .page__header {
+  .section_size_lg, .article__intro {
     padding: 6em 1.5em;
   }
 }
@@ -3808,6 +3808,127 @@ pre {
 }
 
 /**
+ * Drawer
+ * ---
+ * The navigation drawer slides in from the left and/or right and contains the
+ * navigation or other content for your app.
+ */
+.drawer {
+  position: relative;
+  width: 16em;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -ms-flex-line-pack: stretch;
+      align-content: stretch;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 0px;
+          flex: 0 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/**
+ * Drawer dialog elements
+ */
+.drawer__dialog {
+  width: 16em;
+  -webkit-transform: translate3d(0, -5em, 0);
+          transform: translate3d(0, -5em, 0);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.drawer__dialog {
+  background: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  min-height: 100%;
+}
+
+.drawer__dialog .dialog__header,
+.drawer__dialog .dialog__footer {
+  background: #eceff1;
+  border-color: rgba(0, 0, 0, 0.05);
+}
+
+.drawer__dialog .dialog__body {
+  background: #eceff1;
+}
+
+/**
+ * Active state
+ */
+.drawer.is-active {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 16em;
+          flex: 0 0 16em;
+}
+
+.drawer.is-active .drawer__dialog {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  opacity: 1;
+  visibility: visible;
+}
+
+/**
+ * Disable the transition styles for initial page load
+ */
+.no-transition {
+  -webkit-transition: none !important;
+  transition: none !important;
+}
+
+/**
+ * Drawer position modifiers
+ * ---
+ * Provides a variety of options for positioning drawers.
+ */
+.drawer_pos_left,
+.drawer_pos_right {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.drawer_pos_left {
+  left: 0;
+  right: auto;
+}
+
+.drawer_pos_left .drawer__dialog {
+  -webkit-transform: translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0);
+}
+
+.drawer_pos_left.is-active ~ .drawer-sibling {
+  margin-left: 16em;
+}
+
+.drawer_pos_right {
+  left: auto;
+  right: 0;
+}
+
+.drawer_pos_right .drawer__dialog {
+  -webkit-transform: translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0);
+}
+
+.drawer_pos_right.is-active ~ .drawer-sibling {
+  margin-right: 16em;
+}
+
+/**
  * Dropdown
  * ---
  * A component that is initially hidden and revealed upon user interaction
@@ -4425,7 +4546,7 @@ pre {
   font-size: 1em;
   line-height: 1.5em;
   background: #ffffff;
-  border: 1px solid #bdbdbd;
+  border: 1px solid rgba(0, 0, 0, 0.25);
   -webkit-box-shadow: 0 0 0 0 rgba(33, 150, 243, 0);
           box-shadow: 0 0 0 0 rgba(33, 150, 243, 0);
   border-radius: 3px;
@@ -4972,6 +5093,7 @@ pre {
   color: #212121;
   background: rgba(0, 0, 0, 0.05);
   border-color: transparent;
+  outline: none;
 }
 
 .menu__link > * + * {
@@ -5930,7 +6052,7 @@ pre {
   color: #ffffff;
 }
 
-.menu_theme_invert .menu__link:hover {
+.menu_theme_invert .menu__link:hover, .menu_theme_invert .menu__link:focus {
   color: #ffffff;
   background: rgba(255, 255, 255, 0.1);
 }
@@ -6000,10 +6122,10 @@ pre {
   z-index: 1001;
   width: 38em;
   max-width: 100%;
-  -webkit-transform: translate3d(0, -5em, 0);
-          transform: translate3d(0, -5em, 0);
   -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
           box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  -webkit-transform: translate3d(0, -5em, 0);
+          transform: translate3d(0, -5em, 0);
   opacity: 0;
   visibility: hidden;
 }
@@ -6025,10 +6147,10 @@ pre {
 }
 
 .modal.is-active .modal__dialog {
-  -webkit-transform: translate3d(0, 0, 0);
-          transform: translate3d(0, 0, 0);
   -webkit-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.1), 0 24px 38px 3px rgba(0, 0, 0, 0.07), 0 9px 46px 8px rgba(0, 0, 0, 0.06);
           box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.1), 0 24px 38px 3px rgba(0, 0, 0, 0.07), 0 9px 46px 8px rgba(0, 0, 0, 0.06);
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
   opacity: 1;
   visibility: visible;
 }
@@ -6633,6 +6755,27 @@ pre {
 }
 
 /**
+ * Article
+ * ---
+ * The article component handles styles for the main content area.
+ */
+.article__section {
+  padding: 1.5em;
+}
+
+.article__title {
+  font-weight: normal;
+}
+
+.article__body .type {
+  max-width: 544px;
+}
+
+.article__footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/**
  * Box
  * ---
  * Styles a generic box for displaying none-visual components.
@@ -6734,12 +6877,12 @@ pre {
 /**
  * Header and Content
  */
-.cover__header,
-.cover__content {
+.cover__hero,
+.cover__aside {
   position: relative;
 }
 
-.cover__header {
+.cover__hero {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
@@ -6756,22 +6899,23 @@ pre {
   z-index: 1;
 }
 
-.cover__content {
+.cover__aside {
   position: relative;
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
   z-index: 2;
+  background: #eceff1;
 }
 
 @media (min-width: 760px) {
-  .cover__header,
-  .cover__content {
+  .cover__hero,
+  .cover__aside {
     -webkit-box-flex: 1;
         -ms-flex: 1 0 0px;
             flex: 1 0 0;
   }
-  .cover__header {
+  .cover__hero {
     -webkit-box-flex: 2;
         -ms-flex-positive: 2;
             flex-grow: 2;
@@ -6786,7 +6930,7 @@ pre {
 }
 
 /**
- * Inner
+ * Cover hero content
  */
 .cover__inner {
   padding: 1.5em;
@@ -6802,6 +6946,35 @@ pre {
   .cover__inner {
     max-width: 46em;
     padding: 4em;
+  }
+}
+
+/**
+ * Cover menu content
+ */
+.cover__header,
+.cover__content {
+  padding: 0.5em;
+  background: #eceff1;
+}
+
+.cover__header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.cover__content {
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 990px) {
+  .cover__header,
+  .cover__content {
+    padding: 1em;
   }
 }
 
@@ -6836,6 +7009,17 @@ pre {
   .cover__desc {
     font-size: 1.4em;
   }
+}
+
+/**
+ * Cover menu and filter
+ */
+.cover__aside .filter .search {
+  padding: 1em 3.25em;
+}
+
+.cover__aside .menu_drawer .menu__link {
+  padding: 1em;
 }
 
 /**
@@ -6876,6 +7060,60 @@ pre {
   .demo__code {
     padding: 1.5em;
   }
+}
+
+/**
+ * Menu Filter
+ * ---
+ * Handles the styles of the search filter displayed above the jumbo list.
+ */
+.filter {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  position: relative;
+  z-index: 4;
+  background: #eceff1;
+}
+
+.filter.is-active {
+  border-color: #2196f3;
+}
+
+.filter .search {
+  padding: 0.75em 3.25em;
+  background: #ffffff;
+  border-radius: 3px;
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.filter .search:focus, .filter .search.is-active {
+  color: #2196f3;
+  background: #ffffff;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.filter .search_label,
+.filter .search_clear {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+
+.filter .search_label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  left: 1em;
+}
+
+.filter .search_clear {
+  right: 1em;
 }
 
 /**
@@ -7133,170 +7371,35 @@ pre {
 }
 
 /**
- * Jumbo Filter
+ * Menu drawer modifier
  * ---
- * Handles the styles of the search filter displayed above the jumbo list.
+ * Custom styles for the menu which appears in the drawer component.
  */
-.jumbo-filter {
-  position: -webkit-sticky;
-  position: sticky;
-  z-index: 4;
-  top: 0;
-  background: #ffffff;
-  border-bottom: 3px solid #eceff1;
+.menu_drawer .menu__link {
+  padding: 0.75em 1em;
 }
 
-.jumbo-filter.is-active {
-  border-color: #2196f3;
-}
-
-.jumbo-filter .search {
-  padding: 1.25em 3em;
-  background: #ffffff;
-  border: none;
-  border-radius: 0;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-
-.jumbo-filter .search:focus, .jumbo-filter .search.is-active {
-  color: #2196f3;
-  background: #ffffff;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-
-.jumbo-filter .search_label,
-.jumbo-filter .search_clear {
-  position: absolute;
-  z-index: 5;
-  top: 50%;
-  -webkit-transform: translate(0, -50%);
-          transform: translate(0, -50%);
-}
-
-.jumbo-filter .search_label {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  left: 1em;
-}
-
-.jumbo-filter .search_clear {
-  right: 1.125em;
-}
-
-@media (min-width: 480px) {
-  .jumbo-filter .search {
-    padding: 1.5em 4em;
-  }
-  .jumbo-filter .search_label {
-    left: 1.5em;
-  }
-  .jumbo-filter .search_clear {
-    right: 1.65em;
-  }
-}
-
-/**
- * Jumbo List
- * ---
- * Handles the styles of the component list.
- */
-.jumbo-list {
-  position: relative;
-  z-index: 3;
-  list-style: none;
+.menu_drawer .menu__link:hover {
   background: #ffffff;
 }
 
-.jumbo-list__item {
-  position: relative;
-}
-
-.jumbo-list__link {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  padding: 1.25em 1.5em;
-  line-height: 1.325em;
-  background-color: #ffffff;
-  -webkit-transition: background-color 0.5s linear;
-  transition: background-color 0.5s linear;
-}
-
-.jumbo-list__link > * + * {
-  margin-left: 0.5em;
-}
-
-.jumbo-list__link .name {
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  white-space: nowrap;
-}
-
-.jumbo-list__link .tags {
-  -webkit-box-flex: 0;
-      -ms-flex-positive: 0;
-          flex-grow: 0;
-  color: #bdbdbd;
-  -webkit-transition: color 0.5s linear;
-  transition: color 0.5s linear;
-}
-
-.jumbo-list__link:hover, .jumbo-list__link:focus {
-  outline: none;
-  background-color: rgba(33, 150, 243, 0.1);
-  -webkit-transition: background-color 0s linear;
-  transition: background-color 0s linear;
-}
-
-.jumbo-list__link:hover .tags, .jumbo-list__link:focus .tags {
-  color: #2196f3;
-  -webkit-transition: color 0s linear;
-  transition: color 0s linear;
-}
-
-@media (min-width: 480px) {
-  .jumbo-list__link {
-    padding: 1.5em 2em;
-  }
-}
-
-/**
- * Tags
- */
-.tags {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  list-style: none;
-}
-
-.tags .tag {
+.menu_drawer .menu__icon {
   margin: -0.5em;
   padding: 0.5em;
-  border-radius: 3px;
+  color: #bdbdbd;
 }
 
-.tags .tag:hover {
-  background: #ffffff;
-}
-
-.tags .tag + .tag {
-  margin-left: 0.5em;
+.menu_drawer .menu__link:hover .menu__icon,
+.menu_drawer .menu__link.is-active .menu__icon {
+  color: #2196f3;
 }
 
 /**
  * Page
  * ---
- * The page component which handles layout for a general page document.
+ * The page component handles general layout for the application.
  */
 .page {
-  min-height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -7304,28 +7407,70 @@ pre {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  height: 100vh;
 }
 
-.page__title {
-  font-weight: normal;
-}
-
-.page__content .type {
-  max-width: 544px;
+.page__toolbar {
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
 }
 
 .page__main {
+  position: relative;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 
-.page__section {
-  padding: 1.5em;
+.page__aside {
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+  overflow: auto;
 }
 
-.page__footer {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+.page__article {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  overflow: auto;
+}
+
+/**
+ * Toolbar spacing
+ */
+.page__toolbar + .page__main {
+  margin-top: 56px;
+  height: calc(100vh - 56px);
+}
+
+@media (min-width: 760px) {
+  .page__toolbar + .page__main {
+    margin-top: 72px;
+    height: calc(100vh - 72px);
+  }
+}
+
+/**
+ * Custom modal styles
+ */
+.page__aside .dialog__header,
+.page__aside .dialog__footer {
+  background: #eceff1;
+  border-color: rgba(0, 0, 0, 0.05);
+}
+
+.page__aside .dialog__body {
+  background: #eceff1;
 }
 
 /**
@@ -7336,8 +7481,7 @@ pre {
  */
 .toolbar {
   z-index: 600;
-  position: -webkit-sticky;
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;

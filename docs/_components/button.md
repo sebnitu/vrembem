@@ -1,8 +1,8 @@
 ---
-layout: page
+layout: article
 title: Button
 description: "Buttons are a simple component that allow users to take actions."
-tags: block simple
+category: simple
 # usage:
   # npm: "@vrembem/button"
   # scss: "vrembem/button/all"

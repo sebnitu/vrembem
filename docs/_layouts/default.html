@@ -6,17 +6,26 @@ layout: compress
 
 <div class="page">
 
-  {%- include toolbar.html -%}
+  {%- include toolbar.html class="page__toolbar" -%}
 
-  <section class="page__main">
-    {{ content }}
-  </section>
+  <div class="page__main">
 
-  <footer class="page__footer">
-    <div class="container">
-      {%- include footer.html -%}
+    <aside id="listjs" class="page__aside drawer drawer_pos_left is-active" data-drawer-switch="1100px">
+      <div class="drawer__dialog dialog">
+        <div class="dialog__header spacing">
+          {%- include filter.html -%}
+        </div>
+        <div class="dialog__body">
+          {%- include menu.html -%}
+        </div>
+      </div>
+    </aside>
+
+    <div class="page__article drawer-sibling">
+      {{ content }}
     </div>
-  </footer>
+
+  </div>
 
 </div>
 
