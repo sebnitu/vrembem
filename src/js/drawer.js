@@ -154,11 +154,11 @@ export default function(options) {
       let dialog = drawer.querySelector('.drawer__dialog')
 
       // Add a no-transition class and remove it within a transition duration
-      u.addClass(dialog, 'no-transition')
+      u.addClass(dialog, 'transition_none')
       let revert = () => {
         setTimeout(
           function() {
-            u.removeClass(dialog, 'no-transition')
+            u.removeClass(dialog, 'transition_none')
           }, 500
         )
       }
