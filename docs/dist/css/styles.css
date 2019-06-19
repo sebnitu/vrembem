@@ -6775,6 +6775,15 @@ pre {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+@media (min-width: 760px) {
+  .article__intro,
+  .article__body,
+  .article__footer {
+    padding-left: 3em;
+    padding-right: 3em;
+  }
+}
+
 /**
  * Box
  * ---
