@@ -23,10 +23,8 @@ export default function(options) {
   }
 
   let drawers
+  let drawers_switch
   let drawer_state = {}
-  let modalDrawers
-  let bp
-  let mq
 
   api.init = (options) => {
 
@@ -50,23 +48,13 @@ export default function(options) {
   }
 
   api.destroy = () => {
-
+    // Clear our variables
     settings = null
     drawers = null
-
-    // Check if save state is enabled
-    if (settings.saveState) {
-      drawer_state = {}
-      localStorage.removeItem('drawer_state')
-    }
-
-    // Check if modal switch is enabled
-    if (settings.switch) {
-      modalDrawers = null
-      bp = null
-      mq = null
-    }
-
+    drawers_switch = null
+    drawer_state = {}
+    // Delete the local storage data
+    localStorage.removeItem('drawer_state')
     // Remove the drawer trigger event listener
     document.removeEventListener('click', trigger, false)
   }
@@ -166,8 +154,8 @@ export default function(options) {
   }
 
   const initSwitch = () => {
-    modalDrawers = document.querySelectorAll(settings.switch)
-    modalDrawers.forEach((drawer) => {
+    drawers_switch = document.querySelectorAll(settings.switch)
+    drawers_switch.forEach((drawer) => {
       // Get the local breakpoint if one is set
       // Remove brackets and the intial data flag
       let clean = settings.switch
@@ -184,7 +172,7 @@ export default function(options) {
       // a) The local bp set on the drawer
       // b) The bp available in config using a key
       // c) The raw pixel value provided in settings
-      bp = drawer.dataset[clean]
+      let bp = drawer.dataset[clean]
       if (bp) {
         bp = u.getBreakpoint(bp)
         if (!bp) {
@@ -198,7 +186,7 @@ export default function(options) {
       }
 
       // Media query listener
-      mq = window.matchMedia( "(min-width:" + bp + ")" )
+      let mq = window.matchMedia( "(min-width:" + bp + ")" )
       mq.addListener((mq) => {
         switchCheck(mq, drawer)
       })
