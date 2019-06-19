@@ -3,8 +3,8 @@ import u from './utility.js'
 /**
  * Drawer plugin
  * ---
- * The drawer component is used to create hidden but toggle-able content for an
- * application. This is typically used for a long form naivation list.
+ * A container component that slides in from the left or right. It typically
+ * contains menus, search or other content for your app.
  */
 export default function(options) {
 
@@ -18,7 +18,7 @@ export default function(options) {
     classDialog: 'drawer__dialog',
     classActive: 'is-active',
     switch: '[data-drawer-switch]',
-    switchBreakpoint: '1200px',
+    switchBreakpoint: 'lg',
     saveState: true
   }
 
@@ -33,7 +33,7 @@ export default function(options) {
     settings = u.extend( defaults, options || {} )
 
     // Get all the drawers on the page
-    drawers = document.querySelectorAll('.drawer')
+    drawers = document.querySelectorAll('.' + settings.classDrawer)
 
     // Init save state if it's enabled
     if (settings.saveState) {
@@ -80,13 +80,13 @@ export default function(options) {
   }
 
   const open = (target, callback) => {
-    u.addClass(target, 'is-active')
+    u.addClass(target, settings.classActive)
     if (!target.forEach) {
       target = u.toArray(target)
     }
     target.forEach((target) => {
       if (settings.saveState) {
-        drawer_state[target.id] = u.hasClass(target, 'is-active')
+        drawer_state[target.id] = u.hasClass(target, settings.classActive)
         localStorage.setItem('drawer_state', JSON.stringify(drawer_state))
       }
     })
@@ -95,13 +95,13 @@ export default function(options) {
   }
 
   const close = (target, callback) => {
-    u.removeClass(target, 'is-active')
+    u.removeClass(target, settings.classActive)
     if (!target.forEach) {
       target = u.toArray(target)
     }
     target.forEach((target) => {
       if (settings.saveState) {
-        drawer_state[target.id] = u.hasClass(target, 'is-active')
+        drawer_state[target.id] = u.hasClass(target, settings.classActive)
         localStorage.setItem('drawer_state', JSON.stringify(drawer_state))
       }
     })
@@ -109,21 +109,14 @@ export default function(options) {
     typeof callback === 'function' && callback()
   }
 
-  const debug = (event, element) => {
-    console.log(`${event}: ` , element)
-    if (settings.saveState) {
-      console.log('drawer_state: ', drawer_state)
-    }
-  }
-
   const trigger = () => {
-    let trigger = event.target.closest('.drawer__trigger')
+    let trigger = event.target.closest('.' + settings.classTrigger)
     if (trigger) {
       let dataDrawer = trigger.dataset.target
       if (dataDrawer) {
         let drawer = document.querySelectorAll(dataDrawer)
         if (drawer) {
-          if (u.hasClass(drawer, 'is-active')) {
+          if (u.hasClass(drawer, settings.classActive)) {
             close(drawer)
           } else {
             open(drawer)
@@ -147,11 +140,11 @@ export default function(options) {
 
       // Set the default state if one is not set
       if (drawer.id in drawer_state === false) {
-        drawer_state[drawer.id] = u.hasClass(drawer, 'is-active')
+        drawer_state[drawer.id] = u.hasClass(drawer, settings.classActive)
       }
 
       // Get our drawer dialog element
-      let dialog = drawer.querySelector('.drawer__dialog')
+      let dialog = drawer.querySelector('.' + settings.classDialog)
 
       // Add a no-transition class and remove it within a transition duration
       u.addClass(dialog, 'transition_none')
@@ -198,7 +191,10 @@ export default function(options) {
           bp = drawer.dataset[clean]
         }
       } else {
-        bp = settings.switchBreakpoint
+        bp = u.getBreakpoint(settings.switchBreakpoint)
+        if (!bp) {
+          bp = settings.switchBreakpoint
+        }
       }
 
       // Media query listener
@@ -223,10 +219,10 @@ export default function(options) {
     let triggers = document.querySelectorAll('[data-target="#' + drawer.id + '"]')
     let regex = /modal/gi
 
-    drawer.className = drawer.className.replace(regex, 'drawer')
-    dialog.className = dialog.className.replace(regex, 'drawer')
+    drawer.className = drawer.className.replace(regex, settings.classDrawer)
+    dialog.className = dialog.className.replace(regex, settings.classDrawer)
     triggers.forEach((trigger) => {
-      trigger.className = trigger.className.replace(regex, 'drawer')
+      trigger.className = trigger.className.replace(regex, settings.classDrawer)
     })
 
     // Open or close drawer based on save state
@@ -251,7 +247,7 @@ export default function(options) {
     })
 
     // Remove active class for modal styles by default
-    u.removeClass(drawer, 'is-active')
+    u.removeClass(drawer, settings.classActive)
   }
 
   api.init(options)
