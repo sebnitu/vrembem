@@ -3,8 +3,8 @@
 /**
  * Drawer
  * ---
- * The navigation drawer slides in from the left and/or right and contains the
- * navigation or other content for your app.
+ * A container component that slides in from the left or right. It typically
+ * contains menus, search or other content for your app.
  */
 
 .drawer {
@@ -19,8 +19,12 @@
   -webkit-overflow-scrolling: touch;
 }
 
+.drawer.is-active {
+  flex: 0 0 $drawer-width;
+}
+
 /**
- * Drawer dialog elements
+ * Drawer dialog
  */
 
 .drawer__dialog {
@@ -28,9 +32,6 @@
   transform: translate3d(0, -$drawer-travel, 0);
   opacity: 0;
   visibility: hidden;
-}
-
-.drawer__dialog {
   background: $drawer__dialog-background;
   box-shadow: $drawer__dialog-box-shadow;
   min-height: 100%;
@@ -46,24 +47,10 @@
   }
 }
 
-/**
- * Active state
- */
-
 .drawer.is-active {
-  flex: 0 0 $drawer-width;
-
   .drawer__dialog {
     transform: translate3d(0, 0, 0);
     opacity: 1;
     visibility: visible;
   }
-}
-
-/**
- * Disable the transition styles for initial page load
- */
-
-.no-transition {
-  transition: none !important;
 }

@@ -27,7 +27,7 @@ $brands: (
 ) !default;
 
 /**
- * Brands Utility
+ * Brands utility
  */
 
 @each $key, $value in $brands {
