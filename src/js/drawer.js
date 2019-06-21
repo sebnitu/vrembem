@@ -18,6 +18,7 @@ export default function(options) {
 
   // The default settings of the component
   const defaults = {
+
     // Class options
     // {string} The class name to be searched for or used
     classTrigger: 'drawer__trigger',
@@ -81,13 +82,16 @@ export default function(options) {
    * The deconstructor method, used to reset or destory the drawer instance
    */
   api.destroy = () => {
+
     // Clear our variables
     settings = null
     drawers = null
     switchDrawers = null
     drawerState = {}
+
     // Delete the local storage data
     localStorage.removeItem(settings.saveState)
+
     // Remove the drawer trigger event listener
     document.removeEventListener('click', trigger, false)
   }
@@ -165,13 +169,26 @@ export default function(options) {
     typeof callback === 'function' && callback()
   }
 
+  /**
+   * Private function to toggle drawer via a trigger
+   */
   const trigger = () => {
+
+    // Get the closest trigger element from the click event
     let trigger = event.target.closest('.' + settings.classTrigger)
+
+    // Check that the class trigger was clicked
     if (trigger) {
+
+      // Get the drawer selector from the trigger via [data-target]
       let dataDrawer = trigger.dataset.target
+
+      // Check that a drawer target was given
       if (dataDrawer) {
+
+        // Query the drawer element and toggle it if it exists
         let drawer = document.querySelectorAll(dataDrawer)
-        if (drawer) {
+        if (drawer.length) {
           toggle(drawer)
         }
       }
@@ -222,6 +239,7 @@ export default function(options) {
 
   const stateSave = (items) => {
 
+    // Save all drawers if an items arg wasn't passed
     items = (items) ? items : drawers
 
     // Convert to array if only one drawer is passed
@@ -241,15 +259,19 @@ export default function(options) {
 
   const stateReset = () => {
 
-    // Reset our local drawer state variable
-    // Delete the local storage data
+    // Reset our local drawer state variable and delete the local storage data
     drawerState = {}
     localStorage.removeItem(settings.saveState)
   }
 
   const initSwitch = () => {
+
+    // Query all the drawers with the switch feature enabled
     switchDrawers = document.querySelectorAll(settings.switch)
+
+    // Loop through the switch drawers
     switchDrawers.forEach((drawer) => {
+
       // Get the local breakpoint if one is set
       // Remove brackets and the intial data flag
       let clean = settings.switch
