@@ -10,35 +10,65 @@ export default function(options) {
 
   'use strict'
 
+  // The api where we assign our methods to and return after running init
   let api = {}
+
+  // The settings object which will contain our merged options and defaults obj
   let settings
+
+  // The default settings of the component
   const defaults = {
+    // Class options
+    // {string} The class name to be searched for or used
     classTrigger: 'drawer__trigger',
     classDrawer: 'drawer',
     classDialog: 'drawer__dialog',
+    classModal: 'modal',
     classActive: 'is-active',
+
+    // Whether or not to enable the switch functionality
+    // {false} || {string} e.g. '[data-drawer-switch]'
     switch: '[data-drawer-switch]',
+
+    // The default break point for when to switch to drawer or modal classes
+    // {string} Either a breakpoint key or pixel value
     switchBreakpoint: 'lg',
-    saveState: true
+
+    // Whether or not to store the save state in local storage
+    // {false} || {string} The string to save our state object as
+    saveState: 'drawerState',
+
+    // Whether or not to output component behavior in console
+    debug: true
   }
 
+  // Drawer specific variables
+  // Where we store all our drawers available in the DOM
   let drawers
-  let drawers_switch
-  let drawer_state = {}
+  // Where we store all our switch drawers available in the DOM
+  let switchDrawers
+  // Where we store a save state object before we pass it to local storage
+  let drawerState = {}
 
+  /**
+   * The constructor method, run as soon as an instance is created
+   * ---
+   * @param {Object} - A json object with your custom settings
+   */
   api.init = (options) => {
 
+    // Merge the defaults and passed options into our settings obj
     settings = u.extend( defaults, options || {} )
 
     // Get all the drawers on the page
     drawers = document.querySelectorAll('.' + settings.classDrawer)
 
-    // Init save state if it's enabled
+    // Init save state functionality if it's enabled
     if (settings.saveState) {
       initSaveState()
     }
 
-    // Init modal switch if it's enabled
+    // Init switch functionality if it's enabled
     if (settings.switch) {
       initSwitch()
     }
@@ -47,53 +77,91 @@ export default function(options) {
     document.addEventListener('click', trigger, false)
   }
 
+  /**
+   * The deconstructor method, used to reset or destory the drawer instance
+   */
   api.destroy = () => {
     // Clear our variables
     settings = null
     drawers = null
-    drawers_switch = null
-    drawer_state = {}
+    switchDrawers = null
+    drawerState = {}
     // Delete the local storage data
-    localStorage.removeItem('drawer_state')
+    localStorage.removeItem(settings.saveState)
     // Remove the drawer trigger event listener
     document.removeEventListener('click', trigger, false)
   }
 
+  /**
+   * Public method to open a drawer or group of drawers
+   * ---
+   * @param {String} - A valid CSS selector
+   */
   api.open = (selector) => {
-    open(document.querySelectorAll(selector))
+    selector = (selector) ? selector : '.' + settings.classDrawer
+    toggle(document.querySelectorAll(selector), 'open')
   }
 
+  /**
+   * Public method to close a drawer or group of drawers
+   * ---
+   * @param {String} - A valid CSS selector
+   */
   api.close = (selector) => {
-    close(document.querySelectorAll(selector))
+    selector = (selector) ? selector : '.' + settings.classDrawer
+    toggle(document.querySelectorAll(selector), 'close')
   }
 
-  const open = (target, callback) => {
-    u.addClass(target, settings.classActive)
-    if (!target.forEach) {
-      target = u.toArray(target)
-    }
-    target.forEach((target) => {
-      if (settings.saveState) {
-        drawer_state[target.id] = u.hasClass(target, settings.classActive)
-        localStorage.setItem('drawer_state', JSON.stringify(drawer_state))
-      }
-    })
-    // Fire the callback if one was passed
-    typeof callback === 'function' && callback()
+  /**
+   * Public method to toggle a drawer or group of drawers
+   * ---
+   * @param {String} - A valid CSS selector
+   */
+  api.toggle = (selector) => {
+    selector = (selector) ? selector : '.' + settings.classDrawer
+    toggle(document.querySelectorAll(selector))
   }
 
-  const close = (target, callback) => {
-    u.removeClass(target, settings.classActive)
-    if (!target.forEach) {
-      target = u.toArray(target)
+  /**
+   * Save the drawer current drawer state
+   */
+  api.stateSave = () => {
+    stateSave()
+  }
+
+  /**
+   * Return to drawer default state
+   */
+  api.stateReset = () => {
+    stateReset()
+  }
+
+  /**
+   * Private function to close a drawer or group of drawers
+   * ---
+   * @param {Object} || {Nodelist} - The drawer element(s) to close
+   * @param {String} ['open' || 'close' || 'toggle'] - Whether to open, close
+   *  or toggle the drawer(s)
+   * @param {Function} - The callback function
+   */
+  const toggle = (drawer, state, callback) => {
+
+    // Check if drawer(s) should be opened, closed or toggled and either add or
+    // remove the active class to the passed drawer(s)
+    if (state === 'open') {
+      u.addClass(drawer, settings.classActive)
+    } else if (state === 'close') {
+      u.removeClass(drawer, settings.classActive)
+    } else {
+      u.toggleClass(drawer, settings.classActive)
     }
-    target.forEach((target) => {
-      if (settings.saveState) {
-        drawer_state[target.id] = u.hasClass(target, settings.classActive)
-        localStorage.setItem('drawer_state', JSON.stringify(drawer_state))
-      }
-    })
-    // Fire the callback if one was passed
+
+    // Check if save state is enabled
+    if (settings.saveState) {
+      stateSave(drawer)
+    }
+
+    // Fire the callback function if one was passed
     typeof callback === 'function' && callback()
   }
 
@@ -104,11 +172,7 @@ export default function(options) {
       if (dataDrawer) {
         let drawer = document.querySelectorAll(dataDrawer)
         if (drawer) {
-          if (u.hasClass(drawer, settings.classActive)) {
-            close(drawer)
-          } else {
-            open(drawer)
-          }
+          toggle(drawer)
         }
       }
     }
@@ -119,16 +183,19 @@ export default function(options) {
     // Init: Setup our variables
     // Get the drawer state from local storage
     // Check if drawer state was saved otherwise init a new object
-    if (localStorage.getItem('drawer_state')) {
-      drawer_state = JSON.parse(localStorage.getItem('drawer_state'))
+    if (localStorage.getItem(settings.saveState)) {
+      drawerState = JSON.parse(localStorage.getItem(settings.saveState))
     }
 
     // Loop through all drawers and save/init their state
     drawers.forEach((drawer) => {
 
       // Set the default state if one is not set
-      if (drawer.id in drawer_state === false) {
-        drawer_state[drawer.id] = u.hasClass(drawer, settings.classActive)
+      if (drawer.id in drawerState === false) {
+        if (drawer.id) {
+          drawerState[drawer.id] = u.hasClass(drawer, settings.classActive)
+          localStorage.setItem(settings.saveState, JSON.stringify(drawerState))
+        }
       }
 
       // Get our drawer dialog element
@@ -145,17 +212,44 @@ export default function(options) {
       }
 
       // Toggle our drawer state based on the saved state
-      if (drawer_state[drawer.id] === false) {
-        close(drawer, revert)
+      if (drawerState[drawer.id] === false) {
+        toggle(drawer, 'close', revert)
       } else {
-        open(drawer, revert)
+        toggle(drawer, 'open', revert)
       }
     })
   }
 
+  const stateSave = (items) => {
+
+    items = (items) ? items : drawers
+
+    // Convert to array if only one drawer is passed
+    if (!items.forEach) {
+      items = u.toArray(items)
+    }
+
+    // Loop through our drawers and save their new state to local storage
+    items.forEach((item) => {
+      // Only save drawer state if an id exists
+      if (item.id) {
+        drawerState[item.id] = u.hasClass(item, settings.classActive)
+        localStorage.setItem(settings.saveState, JSON.stringify(drawerState))
+      }
+    })
+  }
+
+  const stateReset = () => {
+
+    // Reset our local drawer state variable
+    // Delete the local storage data
+    drawerState = {}
+    localStorage.removeItem(settings.saveState)
+  }
+
   const initSwitch = () => {
-    drawers_switch = document.querySelectorAll(settings.switch)
-    drawers_switch.forEach((drawer) => {
+    switchDrawers = document.querySelectorAll(settings.switch)
+    switchDrawers.forEach((drawer) => {
       // Get the local breakpoint if one is set
       // Remove brackets and the intial data flag
       let clean = settings.switch
@@ -215,10 +309,10 @@ export default function(options) {
 
     // Open or close drawer based on save state
     if (settings.saveState) {
-      if (drawer_state[drawer.id] === false) {
-        close(drawer)
+      if (drawerState[drawer.id] === false) {
+        toggle(drawer, 'close')
       } else {
-        open(drawer)
+        toggle(drawer, 'open')
       }
     }
   }
@@ -228,16 +322,19 @@ export default function(options) {
     let triggers = document.querySelectorAll('[data-target="#' + drawer.id + '"]')
     let regex = /drawer/gi
 
-    drawer.className = drawer.className.replace(regex, 'modal')
-    dialog.className = dialog.className.replace(regex, 'modal')
+    drawer.className = drawer.className.replace(regex, settings.classModal)
+    dialog.className = dialog.className.replace(regex, settings.classModal)
     triggers.forEach((trigger) => {
-      trigger.className = trigger.className.replace(regex, 'modal')
+      trigger.className = trigger.className.replace(regex, settings.classModal)
     })
 
     // Remove active class for modal styles by default
     u.removeClass(drawer, settings.classActive)
   }
 
+  // Run the constructor method
   api.init(options)
+
+  // Return the API for running public methods
   return api
 }
