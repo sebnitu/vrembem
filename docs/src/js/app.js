@@ -25,6 +25,12 @@ document.addEventListener('click', function() {
   } else if (u.hasClass(trigger, 'drawer--toggle')) {
     console.log('drawer.toggle()')
     drawer.toggle()
+  } else if (u.hasClass(trigger, 'drawer--switch-drawer')) {
+    console.log('drawer.switchDrawer()')
+    drawer.switchDrawer()
+  } else if (u.hasClass(trigger, 'drawer--switch-modal')) {
+    console.log('drawer.switchModal()')
+    drawer.switchModal()
   } else if (u.hasClass(trigger, 'drawer--reset')) {
     console.log('drawer.stateReset()')
     drawer.stateReset()

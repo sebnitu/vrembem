@@ -54,7 +54,7 @@ export default function(options) {
   /**
    * The constructor method, run as soon as an instance is created
    * ---
-   * @param {Object} - A json object with your custom settings
+   * @param {Object} options - A json object with your custom settings
    */
   api.init = (options) => {
 
@@ -79,7 +79,7 @@ export default function(options) {
   }
 
   /**
-   * The deconstructor method, used to reset or destory the drawer instance
+   * The deconstructor method, used to reset and destory the drawer instance
    */
   api.destroy = () => {
 
@@ -99,7 +99,7 @@ export default function(options) {
   /**
    * Public method to open a drawer or group of drawers
    * ---
-   * @param {String} - A valid CSS selector
+   * @param {String} selector - A valid CSS selector
    */
   api.open = (selector) => {
     selector = (selector) ? selector : '.' + settings.classDrawer
@@ -109,7 +109,7 @@ export default function(options) {
   /**
    * Public method to close a drawer or group of drawers
    * ---
-   * @param {String} - A valid CSS selector
+   * @param {String} selector - A valid CSS selector
    */
   api.close = (selector) => {
     selector = (selector) ? selector : '.' + settings.classDrawer
@@ -119,11 +119,53 @@ export default function(options) {
   /**
    * Public method to toggle a drawer or group of drawers
    * ---
-   * @param {String} - A valid CSS selector
+   * @param {String} selector - A valid CSS selector
    */
   api.toggle = (selector) => {
     selector = (selector) ? selector : '.' + settings.classDrawer
     toggle(document.querySelectorAll(selector))
+  }
+
+  /**
+   * Public method to switch a drawer into modal
+   * ---
+   * @param {String} selector - A valid CSS selector
+   */
+  api.switchDrawer = (selector) => {
+
+    // Use default selector if one isn't passed
+    selector = (selector) ? selector : settings.switch
+
+    // Query our elements using the provided selector
+    let items = document.querySelectorAll(selector)
+
+    // Convert to array if only one drawer is passed
+    items = (items.forEach) ? items : u.toArray(items)
+
+    items.forEach((item) => {
+      switchDrawer(item)
+    })
+  }
+
+  /**
+   * Public method to switch a drawer into modal
+   * ---
+   * @param {String} selector - A valid CSS selector
+   */
+  api.switchModal = (selector) => {
+
+    // Use default selector if one isn't passed
+    selector = (selector) ? selector : settings.switch
+
+    // Query our elements using the provided selector
+    let items = document.querySelectorAll(selector)
+
+    // Convert to array if only one drawer is passed
+    items = (items.forEach) ? items : u.toArray(items)
+
+    items.forEach((item) => {
+      switchModal(item)
+    })
   }
 
   /**
@@ -143,10 +185,9 @@ export default function(options) {
   /**
    * Private function to close a drawer or group of drawers
    * ---
-   * @param {Object} || {Nodelist} - The drawer element(s) to close
-   * @param {String} ['open' || 'close' || 'toggle'] - Whether to open, close
-   *  or toggle the drawer(s)
-   * @param {Function} - The callback function
+   * @param {Node} drawer - The drawer element(s) to close
+   * @param {String} state - Whether to open, close or toggle the drawer(s)
+   * @param {Function} callback - The callback function
    */
   const toggle = (drawer, state, callback) => {
 
@@ -195,30 +236,29 @@ export default function(options) {
     }
   }
 
+  /**
+   * Private function that initializes the save state functionality
+   */
   const initSaveState = () => {
 
-    // Init: Setup our variables
-    // Get the drawer state from local storage
-    // Check if drawer state was saved otherwise init a new object
+    // Check if a drawer state is already saved in local storage and save the
+    // json parsed data to our local variable if it does
     if (localStorage.getItem(settings.saveState)) {
       drawerState = JSON.parse(localStorage.getItem(settings.saveState))
     }
 
-    // Loop through all drawers and save/init their state
+    // Loop through all drawers
     drawers.forEach((drawer) => {
 
       // Set the default state if one is not set
       if (drawer.id in drawerState === false) {
-        if (drawer.id) {
-          drawerState[drawer.id] = u.hasClass(drawer, settings.classActive)
-          localStorage.setItem(settings.saveState, JSON.stringify(drawerState))
-        }
+        stateSave(drawer)
       }
 
       // Get our drawer dialog element
       let dialog = drawer.querySelector('.' + settings.classDialog)
 
-      // Add a no-transition class and remove it within a transition duration
+      // Disable transitions and enable them again within a transition duration
       u.addClass(dialog, 'transition_none')
       let revert = () => {
         setTimeout(
@@ -237,15 +277,18 @@ export default function(options) {
     })
   }
 
+  /**
+   * Private function that saves the state of a specific or all drawers
+   * ---
+   * @param {Node} items - The drawer element(s) to save state
+   */
   const stateSave = (items) => {
 
     // Save all drawers if an items arg wasn't passed
     items = (items) ? items : drawers
 
     // Convert to array if only one drawer is passed
-    if (!items.forEach) {
-      items = u.toArray(items)
-    }
+    items = (items.forEach) ? items : u.toArray(items)
 
     // Loop through our drawers and save their new state to local storage
     items.forEach((item) => {
@@ -257,6 +300,9 @@ export default function(options) {
     })
   }
 
+  /**
+   * Private function that clears the drawer state
+   */
   const stateReset = () => {
 
     // Reset our local drawer state variable and delete the local storage data
@@ -264,6 +310,9 @@ export default function(options) {
     localStorage.removeItem(settings.saveState)
   }
 
+  /**
+   * Private function that initializes the switch functionality
+   */
   const initSwitch = () => {
 
     // Query all the drawers with the switch feature enabled
@@ -274,13 +323,13 @@ export default function(options) {
 
       // Get the local breakpoint if one is set
       // Remove brackets and the intial data flag
-      let clean = settings.switch
+      let cleanSelector = settings.switch
         .replace('[', '')
         .replace(']', '')
         .replace('data-', '')
 
       // Convert sring to camelCase
-      clean = clean.replace(/-([a-z])/g, function (g) {
+      cleanSelector = cleanSelector.replace(/-([a-z])/g, function (g) {
         return g[1].toUpperCase()
       })
 
@@ -288,11 +337,11 @@ export default function(options) {
       // a) The local bp set on the drawer
       // b) The bp available in config using a key
       // c) The raw pixel value provided in settings
-      let bp = drawer.dataset[clean]
+      let bp = drawer.dataset[cleanSelector]
       if (bp) {
         bp = u.getBreakpoint(bp)
         if (!bp) {
-          bp = drawer.dataset[clean]
+          bp = drawer.dataset[cleanSelector]
         }
       } else {
         bp = u.getBreakpoint(settings.switchBreakpoint)
@@ -310,6 +359,13 @@ export default function(options) {
     })
   }
 
+  /**
+   * Private function that checks when a media query hits a match and switches
+   * the component from drawer to modal as needed
+   * ---
+   * @param {MediaQueryList} mq - The MediaQueryList object for the media query
+   * @param {Node} drawer - The drawer element to switch
+   */
   const switchCheck = (mq, drawer) => {
     if (mq.matches) {
       switchDrawer(drawer)
@@ -318,11 +374,21 @@ export default function(options) {
     }
   }
 
+  /**
+   * Private function that switches a modal into a drawer component
+   * ---
+   * @param {Node} drawer - The element to switch
+   */
   const switchDrawer = (drawer) => {
+
+    // Get the dialog and trigger elements related to this component
     let dialog = drawer.querySelector('.dialog')
     let triggers = document.querySelectorAll('[data-target="#' + drawer.id + '"]')
+
+    // Set our search term
     let regex = /modal/gi
 
+    // Switch the modal component to drawer
     drawer.className = drawer.className.replace(regex, settings.classDrawer)
     dialog.className = dialog.className.replace(regex, settings.classDrawer)
     triggers.forEach((trigger) => {
@@ -339,11 +405,21 @@ export default function(options) {
     }
   }
 
+  /**
+   * Private function that switches a drawer into a modal component
+   * ---
+   * @param {Node} drawer - The element to switch
+   */
   const switchModal = (drawer) => {
+
+    // Get the dialog and trigger elements related to this component
     let dialog = drawer.querySelector('.dialog')
     let triggers = document.querySelectorAll('[data-target="#' + drawer.id + '"]')
+
+    // Set our search term
     let regex = /drawer/gi
 
+    // Switch the drawer component to modal
     drawer.className = drawer.className.replace(regex, settings.classModal)
     dialog.className = dialog.className.replace(regex, settings.classModal)
     triggers.forEach((trigger) => {
