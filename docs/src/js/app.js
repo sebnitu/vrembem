@@ -11,6 +11,30 @@ const modal = new Modal()
 const toggle = new Toggle()
 
 /**
+ * Test
+ */
+
+document.addEventListener('click', function() {
+  let trigger = event.target
+  if (u.hasClass(trigger, 'drawer--open')) {
+    console.log('drawer.open()')
+    drawer.open()
+  } else if (u.hasClass(trigger, 'drawer--close')) {
+    console.log('drawer.close()')
+    drawer.close()
+  } else if (u.hasClass(trigger, 'drawer--toggle')) {
+    console.log('drawer.toggle()')
+    drawer.toggle()
+  } else if (u.hasClass(trigger, 'drawer--reset')) {
+    console.log('drawer.stateReset()')
+    drawer.stateReset()
+  } else if (u.hasClass(trigger, 'drawer--save')) {
+    console.log('drawer.stateSave()')
+    drawer.stateSave()
+  }
+})
+
+/**
  * List.js
  * ---
  * Adds list functionality along with search.
