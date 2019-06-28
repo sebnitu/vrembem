@@ -18,24 +18,23 @@ category: compound
         <a href="/components/dialog"><strong>Dialog</strong></a> - Drawers are a container component. You can add any content you'd like but wrapping your content with the dialog component allows for the most flexibility and consistent layouts.
       </li>
       <li>
-        <a href="/components/modal">Modal</a> - Used for switch functionality.
+        <a href="/components/modal"><strong>Modal</strong></a> - Used for switch functionality.
       </li>
     </ul>
   </div>
 </div>
 
-{% include flag.html heading="Dependencies" %}
-
-<div class="type" markdown="1">
-
-The drawer component uses the following components:
-
-* **[Dialog](/components/dialog)** - Drawers are a container component. You can add any content you'd like but wrapping your content with the dialog component allows for the most flexibility and consistent layouts.
-* **[Modal](/components/modal)** - Used for switch functionality.
-
-</div>
-
 {% include flag.html heading="drawer" %}
+
+<div class="type type_maxWidth" markdown="1">
+Composing a drawer requires a few basic styles to be applied to it's parent and the main content sibling which exists within a drawer set. Because of this, drawers make available the primary component along with optional sub-components:
+
+* `drawer` - the primary component of the drawer functionality.
+* `drawer-parent` - defines the wrapper which contains a drawer set.
+* `drawer-sibling` - defines the main content area that drawers are siblings to.
+
+To create a trigger for your drawer, simply use the `drawer__trigger` element class along with a `[data-target]` attribute containing a valid drawer selector as it's value.
+</div>
 
 {% include demo_open.html class_gridItem="size_12" %}
 
@@ -44,7 +43,7 @@ The drawer component uses the following components:
   <aside class="drawer drawer-demo-left">
     <div class="drawer__dialog dialog">
       <div class="dialog__body">
-        <p>The is a drawer</p>
+        <p>Hi! I'm a drawer</p>
       </div>
     </div>
   </aside>
@@ -55,27 +54,22 @@ The drawer component uses the following components:
       <button class="button button_color_primary drawer__trigger" data-target=".drawer-demo-left">
         Drawer left
       </button>
-      <button class="button button_color_primary drawer__trigger" data-target=".drawer-demo-right">
-        Drawer right
-      </button>
     </div>
   </div>
-
-  <aside class="drawer drawer-demo-right">
-    <div class="drawer__dialog dialog">
-      <div class="dialog__body">
-        <p>The is a drawer</p>
-      </div>
-    </div>
-  </aside>
 
 </div>
 
 {% include demo_switch.html class_gridItem="size_12" %}
 
 ```html
-<div class="drawer">
-  ...
+<div class="drawer-parent">
+  <div class="drawer">
+    ...
+  </div>
+  <div class="drawer-sibling">
+    ...
+    <button class="drawer__trigger" data-trigger=".drawer">...</button>
+  </div>
 </div>
 ```
 

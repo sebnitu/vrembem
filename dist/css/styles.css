@@ -3911,7 +3911,8 @@ pre {
 /**
  * Drawer sibling
  * ---
- * This is the main content area of a drawer set
+ * This is the optional main content area of a drawer set. It applies the only
+ * necessary styles for a drawer's sibling.
  */
 .drawer-sibling {
   -webkit-box-flex: 1;
