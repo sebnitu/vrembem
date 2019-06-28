@@ -66,6 +66,41 @@ category: simple
 
 {% include demo_close.html %}
 
+{% include flag.html heading="notice__title + notice__group" %}
+
+{% include demo_open.html %}
+
+<div class="notice" data-dismissible>
+  <div class="notice__group">
+    <h2 class="notice__title">Notice Title</h2>
+    <button class="notice__close icon-action">
+      {% include icon.html icon="minus" class="icon" %}
+    </button>
+    <button class="notice__close icon-action" data-dismiss>
+      {% include icon.html icon="x" class="icon" %}
+    </button>
+  </div>
+  <p>This is some notice content...</p>
+</div>
+
+{% include demo_switch.html %}
+
+```html
+<div class="notice" data-dismissible>
+  <div class="notice__group">
+    <h2 class="notice__title">Notice Title</h2>
+    <button class="notice__close icon-action" data-dismiss>
+      <svg role="img" class="icon">
+        <use xlink:href="#x"></use>
+      </svg>
+    </button>
+  </div>
+  ...
+</div>
+```
+
+{% include demo_close.html %}
+
 {% include flag.html heading="notice_type_[name]" %}
 
 {% include demo_open.html class_parent="type" %}
@@ -163,7 +198,7 @@ category: simple
   <span class="notice__close" data-dismiss>
   {% include icon.html icon="x" class="icon" %}
   </span>
-  <h4>Heading</h4>
+  <h2 class="notice__title">Heading</h2>
   <p>Lorem ipsum dolor sit amet, <a href="#">consectetur adipiscing</a> elit. Etiam sed semper dui. Donec malesuada, augue sit amet auctor elementum, est sem consectetur nisi, ac pretium massa sapien eu quam.</p>
 </div>
 
@@ -171,7 +206,7 @@ category: simple
   <span class="notice__close" data-dismiss>
   {% include icon.html icon="x" class="icon" %}
   </span>
-  <h4>Heading</h4>
+  <h2 class="notice__title">Heading</h2>
   <p>Lorem ipsum dolor sit amet, <a href="#">consectetur adipiscing</a> elit. Etiam sed semper dui. Donec malesuada, augue sit amet auctor elementum, est sem consectetur nisi, ac pretium massa sapien eu quam.</p>
 </div>
 
@@ -179,7 +214,7 @@ category: simple
   <span class="notice__close" data-dismiss>
   {% include icon.html icon="x" class="icon" %}
   </span>
-  <h4>Heading</h4>
+  <h2 class="notice__title">Heading</h2>
   <p>Lorem ipsum dolor sit amet, <a href="#">consectetur adipiscing</a> elit. Etiam sed semper dui. Donec malesuada, augue sit amet auctor elementum, est sem consectetur nisi, ac pretium massa sapien eu quam.</p>
 </div>
 
@@ -187,7 +222,7 @@ category: simple
   <span class="notice__close" data-dismiss>
   {% include icon.html icon="x" class="icon" %}
   </span>
-  <h4>Heading</h4>
+  <h2 class="notice__title">Heading</h2>
   <p>Lorem ipsum dolor sit amet, <a href="#">consectetur adipiscing</a> elit. Etiam sed semper dui. Donec malesuada, augue sit amet auctor elementum, est sem consectetur nisi, ac pretium massa sapien eu quam.</p>
 </div>
 

@@ -11,33 +11,54 @@ const modal = new Modal()
 const toggle = new Toggle()
 
 /**
- * Test
+ * General event trigger for testing
  */
 
 document.addEventListener('click', function() {
+
+  // Get the element that triggered the event
   let trigger = event.target
+
   if (u.hasClass(trigger, 'drawer--open')) {
     console.log('drawer.open()')
     drawer.open()
-  } else if (u.hasClass(trigger, 'drawer--close')) {
+  }
+
+  if (u.hasClass(trigger, 'drawer--close')) {
     console.log('drawer.close()')
     drawer.close()
-  } else if (u.hasClass(trigger, 'drawer--toggle')) {
+  }
+
+  if (u.hasClass(trigger, 'drawer--toggle')) {
     console.log('drawer.toggle()')
     drawer.toggle()
-  } else if (u.hasClass(trigger, 'drawer--switch-drawer')) {
+  }
+
+  if (u.hasClass(trigger, 'drawer--toggle-example')) {
+    console.log('drawer.toggle("#drawer-example")')
+    drawer.toggle('#drawer-example')
+  }
+
+  if (u.hasClass(trigger, 'drawer--switch-drawer')) {
     console.log('drawer.switchDrawer()')
     drawer.switchDrawer()
-  } else if (u.hasClass(trigger, 'drawer--switch-modal')) {
+  }
+
+  if (u.hasClass(trigger, 'drawer--switch-modal')) {
     console.log('drawer.switchModal()')
     drawer.switchModal()
-  } else if (u.hasClass(trigger, 'drawer--reset')) {
+  }
+
+  if (u.hasClass(trigger, 'drawer--reset')) {
     console.log('drawer.stateReset()')
     drawer.stateReset()
-  } else if (u.hasClass(trigger, 'drawer--save')) {
+  }
+
+  if (u.hasClass(trigger, 'drawer--save')) {
     console.log('drawer.stateSave()')
     drawer.stateSave()
   }
+
 })
 
 /**
