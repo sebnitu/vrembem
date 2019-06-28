@@ -12,7 +12,7 @@ category: compound
 <div class="notice notice_type_caution">
   <h2 class="notice__title">Dependencies</h2>
   <div class="type">
-    <p>The drawer component uses the following components:</p>
+    <p>The drawer component depends on the following components to be imported:</p>
     <ul>
       <li>
         <a href="/components/dialog"><strong>Dialog</strong></a> - Drawers are a container component. You can add any content you'd like but wrapping your content with the dialog component allows for the most flexibility and consistent layouts.
