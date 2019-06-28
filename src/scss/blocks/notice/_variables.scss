@@ -11,3 +11,8 @@ $notice-border: null !default;
 $notice-border-radius: null !default;
 $notice-color: $color !default;
 $notice-color-invert: $white !default;
+
+// Notice elements
+// ---
+$notice__title-font-size: 1.2em !default;
+$notice__title-font-weight: font-weight('semi-bold') !default;

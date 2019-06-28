@@ -3753,6 +3753,12 @@ pre {
   -webkit-overflow-scrolling: touch;
 }
 
+/**
+ * Dialog close element
+ * ---
+ * Styles for the close element are only applied if it's a direct child,
+ * otherwise you can use other elements to compose a close button.
+ */
 .dialog > .dialog__close {
   position: absolute;
   top: 1rem;
@@ -3763,6 +3769,9 @@ pre {
   padding-right: 3.5em;
 }
 
+/**
+ * Dialog elements
+ */
 .dialog__header,
 .dialog__body,
 .dialog__footer {
@@ -3866,6 +3875,7 @@ pre {
   background: #eceff1;
   -webkit-box-shadow: none;
           box-shadow: none;
+  border-radius: 0;
   min-height: 100%;
 }
 
@@ -3884,6 +3894,29 @@ pre {
           transform: translate3d(0, 0, 0);
   opacity: 1;
   visibility: visible;
+}
+
+/**
+ * Drawer wrapper
+ * ---
+ * An optional wrapper element for drawer sets. This applies the absolutely
+ * necessary styles for a drawer element's parent to have.
+ */
+.drawer-parent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+/**
+ * Drawer sibling
+ * ---
+ * This is the main content area of a drawer set
+ */
+.drawer-sibling {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
 }
 
 /**
@@ -6238,7 +6271,7 @@ pre {
 /**
  * Notice
  * ---
- * A component for highlighting (optionally dismissible) messages to the user. 
+ * A component for highlighting (optionally dismissible) messages to the user.
  */
 .notice {
   display: block;
@@ -6261,6 +6294,9 @@ pre {
   margin-bottom: 0;
 }
 
+/**
+ * Notice elements
+ */
 .notice__close {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -6291,6 +6327,15 @@ pre {
 .notice__group > *:nth-child(1n + 1) {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.notice__title,
+.type .notice__title {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  font-size: 1.2em;
+  font-weight: 600;
 }
 
 /**
@@ -6751,6 +6796,15 @@ pre {
 .notice_type_secondary h6,
 .notice_type_dark h6 {
   color: inherit;
+}
+
+/**
+ * Type max-width modifier
+ * ---
+ * Adds a max width to the type component
+ */
+.type_maxWidth {
+  max-width: 544px;
 }
 
 /*# sourceMappingURL=styles.css.map */

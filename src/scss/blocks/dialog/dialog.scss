@@ -20,17 +20,28 @@
   transition: all $dialog-transition-duration $dialog-transition-timing-function;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
+}
 
-  > .dialog__close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
+/**
+ * Dialog close element
+ * ---
+ * Styles for the close element are only applied if it's a direct child,
+ * otherwise you can use other elements to compose a close button.
+ */
 
-    + .dialog__body {
-      padding-right: 3.5em;
-    }
+.dialog > .dialog__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  + .dialog__body {
+    padding-right: 3.5em;
   }
 }
+
+/**
+ * Dialog elements
+ */
 
 .dialog__header,
 .dialog__body,

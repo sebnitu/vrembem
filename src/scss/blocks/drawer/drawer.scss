@@ -34,6 +34,7 @@
   visibility: hidden;
   background: $drawer__dialog-background;
   box-shadow: $drawer__dialog-box-shadow;
+  border-radius: 0;
   min-height: 100%;
 
   .dialog__header,
@@ -53,4 +54,25 @@
     opacity: 1;
     visibility: visible;
   }
+}
+
+/**
+ * Drawer wrapper
+ * ---
+ * An optional wrapper element for drawer sets. This applies the absolutely
+ * necessary styles for a drawer element's parent to have.
+ */
+
+#{$drawer-parent} {
+  display: flex;
+}
+
+/**
+ * Drawer sibling
+ * ---
+ * This is the main content area of a drawer set
+ */
+
+#{$drawer-sibling} {
+  flex-grow: 1;
 }

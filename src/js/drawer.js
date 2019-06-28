@@ -39,8 +39,8 @@ export default function(options) {
     // {false} || {string} The string to save our state object as
     saveState: 'drawerState',
 
-    // Whether or not to output component behavior in console
-    debug: true
+    // Transition options
+    transitionDuration: 500
   }
 
   // Drawer specific variables
@@ -258,21 +258,21 @@ export default function(options) {
       // Get our drawer dialog element
       let dialog = drawer.querySelector('.' + settings.classDialog)
 
-      // Disable transitions and enable them again within a transition duration
-      u.addClass(dialog, 'transition_none')
-      let revert = () => {
+      // Transition delay: disables transitions as default states are being set
+      let transitionDelay = () => {
+        u.addClass(dialog, 'transition_none')
         setTimeout(
           function() {
             u.removeClass(dialog, 'transition_none')
-          }, 500
+          }, settings.transitionDuration
         )
       }
 
       // Toggle our drawer state based on the saved state
       if (drawerState[drawer.id] === false) {
-        toggle(drawer, 'close', revert)
-      } else {
-        toggle(drawer, 'open', revert)
+        toggle(drawer, 'close', transitionDelay)
+      } else if (drawerState[drawer.id]) {
+        toggle(drawer, 'open', transitionDelay)
       }
     })
   }

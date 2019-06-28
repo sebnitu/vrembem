@@ -3,7 +3,7 @@
 /**
  * Notice
  * ---
- * A component for highlighting (optionally dismissible) messages to the user. 
+ * A component for highlighting (optionally dismissible) messages to the user.
  */
 
 .notice {
@@ -29,6 +29,10 @@
   }
 }
 
+/**
+ * Notice elements
+ */
+
 .notice__close {
   display: inline-flex;
   align-items: center;
@@ -47,6 +51,13 @@
     margin-top: 0;
     margin-bottom: 0;
   }
+}
+
+.notice__title,
+.type .notice__title {
+  flex-grow: 1;
+  font-size: $notice__title-font-size;
+  font-weight: $notice__title-font-weight;
 }
 
 /**
