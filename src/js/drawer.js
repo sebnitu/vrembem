@@ -260,12 +260,14 @@ export default function(options) {
 
       // Transition delay: disables transitions as default states are being set
       let transitionDelay = () => {
-        u.addClass(dialog, 'transition_none')
-        setTimeout(
-          function() {
-            u.removeClass(dialog, 'transition_none')
-          }, settings.transitionDuration
-        )
+        if (dialog) {
+          u.addClass(dialog, 'transition_none')
+          setTimeout(
+            function() {
+              u.removeClass(dialog, 'transition_none')
+            }, settings.transitionDuration
+          )
+        }
       }
 
       // Toggle our drawer state based on the saved state
