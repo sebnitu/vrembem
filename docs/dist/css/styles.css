@@ -6801,15 +6801,6 @@ pre {
 }
 
 /**
- * Type max-width modifier
- * ---
- * Adds a max width to the type component
- */
-.type_maxWidth {
-  max-width: 544px;
-}
-
-/**
  * Article
  * ---
  * The article component handles styles for the main content area.

@@ -6799,13 +6799,4 @@ pre {
   color: inherit;
 }
 
-/**
- * Type max-width modifier
- * ---
- * Adds a max width to the type component
- */
-.type_maxWidth {
-  max-width: 544px;
-}
-
 /*# sourceMappingURL=styles.css.map */

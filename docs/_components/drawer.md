@@ -9,7 +9,7 @@ category: compound
   # js: "vrembem/drawer"
 ---
 
-<div class="notice notice_type_caution">
+<div class="notice notice_type_caution size_8_lg">
   <h2 class="notice__title">Dependencies</h2>
   <div class="type">
     <p>The drawer component depends on the following components to be imported:</p>
@@ -26,7 +26,7 @@ category: compound
 
 {% include flag.html heading="drawer" %}
 
-<div class="type type_maxWidth" markdown="1">
+<div class="type size_8_lg" markdown="1">
 Composing a drawer requires a few basic styles to be applied to it's parent and the main content sibling which exists within a drawer set. Because of this, drawers make available the primary component along with optional sub-components:
 
 * `drawer` - the primary component of the drawer functionality.
