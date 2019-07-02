@@ -68,12 +68,59 @@ To create a trigger for your drawer, simply use the `drawer__trigger` element cl
   </div>
   <div class="drawer-sibling">
     ...
-    <button class="drawer__trigger" data-trigger=".drawer">...</button>
+    <button class="drawer__trigger" data-target=".drawer">...</button>
   </div>
 </div>
 ```
 
 {% include demo_close.html %}
+
+{% include flag.html heading="drawer_pos_[location]" %}
+
+{% include demo_open.html class_gridItem="size_12" %}
+
+<div class="drawer-parent">
+
+  <aside class="drawer drawer_pos_left drawer-demo-pos-left">
+    <div class="drawer__dialog dialog">
+      <div class="dialog__body">
+        <p>Hi! I'm a drawer</p>
+      </div>
+    </div>
+  </aside>
+
+  <aside class="drawer drawer_pos_right drawer-demo-pos-right">
+    <div class="drawer__dialog dialog">
+      <div class="dialog__body">
+        <p>Hi! I'm a drawer</p>
+      </div>
+    </div>
+  </aside>
+
+  <div class="drawer-sibling box box_bordered type">
+    <p>This is the content inside of <code>drawer-sibling</code></p>
+    <p><a href="#">test test test test test test test test test test test test test test test test test test test test test test test </a></p>
+    <div class="button-group">
+      <button class="button button_color_primary drawer__trigger" data-target=".drawer-demo-pos-left">
+        Drawer left
+      </button>
+      <button class="button button_color_primary drawer__trigger" data-target=".drawer-demo-pos-right">
+        Drawer right
+      </button>
+    </div>
+  </div>
+
+</div>
+
+{% include demo_switch.html class_gridItem="size_12" %}
+
+```html
+...
+```
+
+{% include demo_close.html %}
+
+
 
 {% include flag.html heading="Public API" %}
 

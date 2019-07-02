@@ -3838,7 +3838,13 @@ pre {
  */
 .drawer {
   position: relative;
-  width: 16em;
+  width: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 0px;
+          flex: 0 0 0;
   -webkit-box-align: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
@@ -3848,20 +3854,19 @@ pre {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 0px;
-          flex: 0 0 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  overflow-y: auto;
+  overflow: hidden auto;
   -webkit-overflow-scrolling: touch;
+  -webkit-transition: width 0s 0.5s;
+  transition: width 0s 0.5s;
 }
 
 .drawer.is-active {
+  width: 16em;
   -webkit-box-flex: 0;
       -ms-flex: 0 0 16em;
           flex: 0 0 16em;
+  -webkit-transition: none;
+  transition: none;
 }
 
 /**
@@ -3901,12 +3906,13 @@ pre {
  * Drawer wrapper
  * ---
  * An optional wrapper element for drawer sets. This applies the absolutely
- * necessary styles for a drawer element's parent to have.
+ * necessary styles for a drawer's parent.
  */
 .drawer-parent {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: relative;
 }
 
 /**
@@ -3930,13 +3936,11 @@ pre {
 .drawer_pos_right {
   position: absolute;
   top: 0;
-  left: 0;
   bottom: 0;
 }
 
 .drawer_pos_left {
   left: 0;
-  right: auto;
 }
 
 .drawer_pos_left .drawer__dialog {
@@ -3949,7 +3953,6 @@ pre {
 }
 
 .drawer_pos_right {
-  left: auto;
   right: 0;
 }
 
@@ -6148,8 +6151,8 @@ pre {
   background-color: rgba(55, 71, 79, 0);
   -webkit-backdrop-filter: blur(4px);
           backdrop-filter: blur(4px);
-  -webkit-transition: background-color 0.5s, width 0.1s 0.5s, height 0.1s 0.5s, padding 0.1s 0.5s;
-  transition: background-color 0.5s, width 0.1s 0.5s, height 0.1s 0.5s, padding 0.1s 0.5s;
+  -webkit-transition: background-color 0.5s, width 0s 0.5s, height 0s 0.5s, padding 0s 0.5s;
+  transition: background-color 0.5s, width 0s 0.5s, height 0s 0.5s, padding 0s 0.5s;
 }
 
 .modal__dialog {

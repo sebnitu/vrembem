@@ -22,7 +22,7 @@
   overflow: hidden;
   background-color: rgba($modal-background, 0);
   backdrop-filter: blur(4px);
-  transition: background-color $modal-transition-duration, width 0.1s $modal-transition-duration, height 0.1s $modal-transition-duration, padding 0.1s $modal-transition-duration;
+  transition: background-color $modal-transition-duration, width 0s $modal-transition-duration, height 0s $modal-transition-duration, padding 0s $modal-transition-duration;
 }
 
 .modal__dialog {

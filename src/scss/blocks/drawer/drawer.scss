@@ -9,18 +9,21 @@
 
 .drawer {
   position: relative;
-  width: $drawer-width;
+  width: 0;
+  display: flex;
+  flex: 0 0 0;
   align-items: stretch;
   align-content: stretch;
   flex-direction: column;
-  flex: 0 0 0;
-  display: flex;
-  overflow-y: auto;
+  overflow: hidden auto;
   -webkit-overflow-scrolling: touch;
+  transition: width 0s $drawer-transition-duration;
 }
 
 .drawer.is-active {
+  width: $drawer-width;
   flex: 0 0 $drawer-width;
+  transition: none;
 }
 
 /**
@@ -60,11 +63,12 @@
  * Drawer wrapper
  * ---
  * An optional wrapper element for drawer sets. This applies the absolutely
- * necessary styles for a drawer element's parent to have.
+ * necessary styles for a drawer's parent.
  */
 
 #{$drawer-parent} {
   display: flex;
+  position: relative;
 }
 
 /**
