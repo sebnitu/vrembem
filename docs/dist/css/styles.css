@@ -3837,6 +3837,13 @@ pre {
  * contains menus, search or other content for your app.
  */
 .drawer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+
+.drawer__item {
   position: relative;
   width: 0;
   display: -webkit-box;
@@ -3860,13 +3867,10 @@ pre {
   transition: width 0s 0.5s;
 }
 
-.drawer.is-active {
-  width: 16em;
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 16em;
-          flex: 0 0 16em;
-  -webkit-transition: none;
-  transition: none;
+.drawer__main {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
 }
 
 /**
@@ -3895,36 +3899,23 @@ pre {
   background: #eceff1;
 }
 
-.drawer.is-active .drawer__dialog {
+/**
+ * Drawer active state
+ */
+.drawer__item.is-active {
+  width: 16em;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 16em;
+          flex: 0 0 16em;
+  -webkit-transition: none;
+  transition: none;
+}
+
+.drawer__item.is-active .drawer__dialog {
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
   opacity: 1;
   visibility: visible;
-}
-
-/**
- * Drawer wrapper
- * ---
- * An optional wrapper element for drawer sets. This applies the absolutely
- * necessary styles for a drawer's parent.
- */
-.drawer-parent {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  position: relative;
-}
-
-/**
- * Drawer sibling
- * ---
- * This is the optional main content area of a drawer set. It applies the only
- * necessary styles for a drawer's sibling.
- */
-.drawer-sibling {
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
 }
 
 /**

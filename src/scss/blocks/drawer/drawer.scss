@@ -8,6 +8,11 @@
  */
 
 .drawer {
+  display: flex;
+  position: relative;
+}
+
+.drawer__item {
   position: relative;
   width: 0;
   display: flex;
@@ -20,10 +25,8 @@
   transition: width 0s $drawer-transition-duration;
 }
 
-.drawer.is-active {
-  width: $drawer-width;
-  flex: 0 0 $drawer-width;
-  transition: none;
+.drawer__main {
+  flex-grow: 1;
 }
 
 /**
@@ -51,33 +54,18 @@
   }
 }
 
-.drawer.is-active {
+/**
+ * Drawer active state
+ */
+
+.drawer__item.is-active {
+  width: $drawer-width;
+  flex: 0 0 $drawer-width;
+  transition: none;
+
   .drawer__dialog {
     transform: translate3d(0, 0, 0);
     opacity: 1;
     visibility: visible;
   }
-}
-
-/**
- * Drawer wrapper
- * ---
- * An optional wrapper element for drawer sets. This applies the absolutely
- * necessary styles for a drawer's parent.
- */
-
-#{$drawer-parent} {
-  display: flex;
-  position: relative;
-}
-
-/**
- * Drawer sibling
- * ---
- * This is the optional main content area of a drawer set. It applies the only
- * necessary styles for a drawer's sibling.
- */
-
-#{$drawer-sibling} {
-  flex-grow: 1;
 }
