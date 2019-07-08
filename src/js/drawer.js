@@ -409,13 +409,13 @@ export default function(options) {
     )
 
     dialog.className = dialog.className.replace(
-      settings.classSwitch.dialog.modal,
+      new RegExp(settings.classSwitch.dialog.modal, 'gi'),
       settings.classSwitch.dialog.drawer
     )
 
     triggers.forEach((trigger) => {
       trigger.className = trigger.className.replace(
-        settings.classSwitch.trigger.modal,
+        new RegExp(settings.classSwitch.trigger.modal, 'gi'),
         settings.classSwitch.trigger.drawer
       )
     })
@@ -448,13 +448,13 @@ export default function(options) {
     )
 
     dialog.className = dialog.className.replace(
-      settings.classSwitch.dialog.drawer,
+      new RegExp(settings.classSwitch.dialog.drawer, 'gi'),
       settings.classSwitch.dialog.modal
     )
 
     triggers.forEach((trigger) => {
       trigger.className = trigger.className.replace(
-        settings.classSwitch.trigger.drawer,
+        new RegExp(settings.classSwitch.trigger.drawer, 'gi'),
         settings.classSwitch.trigger.modal
       )
     })
