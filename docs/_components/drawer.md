@@ -9,7 +9,7 @@ category: compound
   # js: "vrembem/drawer"
 ---
 
-<div class="notice notice_type_caution size_8_lg">
+<div class="notice notice_type_info">
   <h2 class="notice__title">Dependencies</h2>
   <div class="type">
     <p>The drawer component depends on the following components to be imported:</p>
@@ -18,7 +18,7 @@ category: compound
         <a href="/components/dialog"><strong>Dialog</strong></a> - Drawers are a container component. You can add any content you'd like but wrapping your content with the dialog component allows for the most flexibility and consistent layouts.
       </li>
       <li>
-        <a href="/components/modal"><strong>Modal</strong></a> - Used for switch functionality.
+        <a href="/components/modal"><strong>Modal</strong></a> - Used for switch functionality. If enabled, drawer items get switched into modals for smaller screens.
       </li>
     </ul>
   </div>
@@ -26,15 +26,16 @@ category: compound
 
 {% include flag.html heading="drawer" %}
 
-<div class="type size_8_lg" markdown="1">
+<div class="type" markdown="1">
 
-Composing a drawer requires at minimum three elements:
+A drawer component is composed of at minimum three elements:
 
-* `drawer` - defines the wrapper which contains a drawer set.
-  * `drawer__item` - the primary component of the drawer functionality.
-  * `drawer__main` - defines the main content area that drawers are siblings to.
+* `drawer`: Defines the wrapper which contains a drawer set.
+  * `drawer__item`: The primary component of the drawer functionality. You can have one or many drawer items per drawer component.
+  * `drawer__main`: Defines the main content area that drawers are siblings to. Only one of these should exist per drawer component.
 
-To create a trigger for your drawer, simply use the `drawer__trigger` element class along with a `[data-target]` attribute containing a valid drawer selector as it's value.
+To create a trigger for your drawer, create a link or button and use the `drawer__trigger` class along with a `[data-target]` attribute containing a valid drawer selector as it's value.
+
 </div>
 
 {% include demo_open.html class_gridItem="size_12" %}
