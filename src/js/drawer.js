@@ -21,11 +21,26 @@ export default function(options) {
 
     // Class options
     // {string} The class name to be searched for or used
+    classDrawer: 'drawer__item',
     classTrigger: 'drawer__trigger',
-    classDrawer: 'drawer',
     classDialog: 'drawer__dialog',
-    classModal: 'modal',
     classActive: 'is-active',
+
+    // The classes that get switched depending on the element
+    classSwitch: {
+      'item': {
+        'drawer': 'drawer__item',
+        'modal': 'modal'
+      },
+      'trigger': {
+        'drawer': 'drawer__trigger',
+        'modal': 'modal__trigger'
+      },
+      'dialog': {
+        'drawer': 'drawer__dialog',
+        'modal': 'modal__dialog'
+      }
+    },
 
     // Whether or not to enable the switch functionality
     // {false} || {string} e.g. '[data-drawer-switch]'
@@ -387,14 +402,22 @@ export default function(options) {
     let dialog = drawer.querySelector('.dialog')
     let triggers = document.querySelectorAll('[data-target="#' + drawer.id + '"]')
 
-    // Set our search term
-    let regex = /modal/gi
-
     // Switch the modal component to drawer
-    drawer.className = drawer.className.replace(regex, settings.classDrawer)
-    dialog.className = dialog.className.replace(regex, settings.classDrawer)
+    drawer.className = drawer.className.replace(
+      new RegExp(settings.classSwitch.item.modal, 'gi'),
+      settings.classSwitch.item.drawer
+    )
+
+    dialog.className = dialog.className.replace(
+      settings.classSwitch.dialog.modal,
+      settings.classSwitch.dialog.drawer
+    )
+
     triggers.forEach((trigger) => {
-      trigger.className = trigger.className.replace(regex, settings.classDrawer)
+      trigger.className = trigger.className.replace(
+        settings.classSwitch.trigger.modal,
+        settings.classSwitch.trigger.drawer
+      )
     })
 
     // Open or close drawer based on save state
@@ -418,14 +441,22 @@ export default function(options) {
     let dialog = drawer.querySelector('.dialog')
     let triggers = document.querySelectorAll('[data-target="#' + drawer.id + '"]')
 
-    // Set our search term
-    let regex = /drawer/gi
-
     // Switch the drawer component to modal
-    drawer.className = drawer.className.replace(regex, settings.classModal)
-    dialog.className = dialog.className.replace(regex, settings.classModal)
+    drawer.className = drawer.className.replace(
+      new RegExp(settings.classSwitch.item.drawer, 'gi'),
+      settings.classSwitch.item.modal
+    )
+
+    dialog.className = dialog.className.replace(
+      settings.classSwitch.dialog.drawer,
+      settings.classSwitch.dialog.modal
+    )
+
     triggers.forEach((trigger) => {
-      trigger.className = trigger.className.replace(regex, settings.classModal)
+      trigger.className = trigger.className.replace(
+        settings.classSwitch.trigger.drawer,
+        settings.classSwitch.trigger.modal
+      )
     })
 
     // Remove active class for modal styles by default
