@@ -44,7 +44,7 @@ To create a trigger for your drawer, create a link or button and use the `drawer
 
   <aside class="drawer__item drawer-demo-left">
     <div class="drawer__dialog dialog">
-      <div class="dialog__body">
+      <div class="dialog__body type">
         <p>Hi! I'm a drawer. I have the following class(es):</p>
         <ul>
           <li><code>drawer__item</code></li>
@@ -67,15 +67,75 @@ To create a trigger for your drawer, create a link or button and use the `drawer
 {% include demo_switch.html class_gridItem="size_12" %}
 
 ```html
-<div class="drawer-parent">
-  <div class="drawer">
+<div class="drawer">
+  <div class="drawer__item">
     ...
   </div>
-  <div class="drawer-sibling">
+  <div class="drawer__main">
     ...
     <button class="drawer__trigger" data-target=".drawer">...</button>
   </div>
 </div>
+```
+
+{% include demo_close.html %}
+
+<div class="type" markdown="1">
+
+Although you can use any content within a drawer, the [dialog component](/components/dialog) is recommeneded for properly formatted content.
+
+</div>
+
+{% include demo_open.html class_gridItem="size_12" %}
+
+<div class="drawer">
+
+  <div class="drawer__item drawer-demo-dialog is-active">
+    <div class="drawer__dialog dialog">
+      <div class="dialog__header">
+        <h2 class="dialog__title">Dialog Title</h2>
+        <button class="dialog__close icon-action icon-action_color_fade drawer__trigger" data-target=".drawer-demo-dialog">
+          {% include icon.html icon="x" %}
+        </button>
+      </div>
+      <div class="dialog__body">
+        <p>This is the dialog body area...</p>
+      </div>
+      <div class="dialog__footer">
+        <p>This is the dialog footer area...</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="drawer__main box box_bordered type">
+    <p>This is the content inside of <code>drawer__main</code></p>
+    <div class="button-group">
+      <button class="button button_color_primary drawer__trigger" data-target=".drawer-demo-dialog">
+        Drawer left
+      </button>
+    </div>
+  </div>
+
+</div>
+
+{% include demo_switch.html class_gridItem="size_12" %}
+
+```html
+...
+<div class="drawer__item">
+  <div class="drawer__dialog dialog">
+    <div class="dialog__header">
+      ...
+    </div>
+    <div class="dialog__body">
+      ...
+    </div>
+    <div class="dialog__footer">
+      ...
+    </div>
+  </div>
+</div>
+...
 ```
 
 {% include demo_close.html %}
@@ -144,14 +204,79 @@ To create a trigger for your drawer, create a link or button and use the `drawer
 
 {% include demo_close.html %}
 
-{% include flag.html heading="Documentation TODOs" %}
+<div class="notice notice_type_info type" markdown="1">
+If a position modifier is not provided, the drawer will appear based on it's location in the DOM relative to the main content area.
+</div>
+
+{% include flag.html heading="Drawer save state" %}
 
 <div class="type" markdown="1">
 
-* Explain drawer save state via providing an id
-* Explain default state using `is-active` class
-* Explain media query modal switching
-* Explain the public api
+You can save the state of your drawers by enabling it in your JavaScript instantiation (pass the `saveState` option a string) and giving the drawers you want saved an `id` attribute.
+
+</div>
+
+{% include demo_open.html class_gridItem="size_12" %}
+
+<div class="drawer">
+
+  <aside id="custom-drawer" class="drawer__item drawer__item_pos_left is-active">
+    <div class="drawer__dialog dialog">
+      <div class="dialog__body type">
+        <p>Hi! I'm a drawer. My state will be saved!</p>
+      </div>
+    </div>
+  </aside>
+
+  <div class="drawer__main box box_bordered type">
+    <p>This is the content inside of <code>drawer__main</code></p>
+    <div class="button-group">
+      <button class="button button_color_primary drawer__trigger" data-target="#custom-drawer">
+        Drawer left
+      </button>
+    </div>
+  </div>
+
+</div>
+
+{% include demo_switch.html class_gridItem="size_12" %}
+
+```html
+<div class="drawer">
+  <aside id="custom-drawer" class="drawer__item drawer__item_pos_left is-active">
+    ...
+  </aside>
+
+  <div class="drawer__main box box_bordered type">
+    <p>This is the content inside of <code>drawer__main</code></p>
+    <div class="button-group">
+      <button class="button button_color_primary drawer__trigger" data-target="#custom-drawer">
+        Drawer left
+      </button>
+    </div>
+  </div>
+</div>
+```
+
+{% include demo_close.html %}
+
+<div class="type" markdown="1">
+
+The default state of a drawer is given by the `is-active` class in your raw markup. If this class is not present, the default state is closed.
+
+</div>
+
+---
+
+{% include flag.html heading="TODOs" %}
+
+<div class="type" markdown="1">
+
+* [x] Explain drawer save state via providing an id
+* [x] Explain default state using `is-active` class
+* [x] Explain `drawer__dialog` and ref the markup to use it
+* [ ] Explain media query modal switching
+* [ ] Explain the public api
 
 </div>
 
