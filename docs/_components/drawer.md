@@ -34,7 +34,7 @@ A drawer component is composed of at minimum three elements:
   * `drawer__item`: The primary component of the drawer functionality. You can have one or many drawer items per drawer component.
   * `drawer__main`: Defines the main content area that drawers are siblings to. Only one of these should exist per drawer component.
 
-To create a trigger for your drawer, create a link or button and use the `drawer__trigger` class along with a `[data-target]` attribute containing a valid drawer selector as it's value.
+To create a trigger for your drawer, give a link or button the `drawer__trigger` class along with a `[data-target]` attribute containing a valid drawer selector as it's value.
 
 </div>
 
@@ -45,10 +45,7 @@ To create a trigger for your drawer, create a link or button and use the `drawer
   <aside class="drawer__item drawer-demo-left">
     <div class="drawer__dialog dialog">
       <div class="dialog__body type">
-        <p>Hi! I'm a drawer. I have the following class(es):</p>
-        <ul>
-          <li><code>drawer__item</code></li>
-        </ul>
+        <p>Hi! I'm a <code>drawer__item</code></p>
       </div>
     </div>
   </aside>
@@ -56,7 +53,9 @@ To create a trigger for your drawer, create a link or button and use the `drawer
   <div class="drawer__main box box_bordered type">
     <p>This is the content inside of <code>drawer__main</code></p>
     <div class="button-group">
-      <button class="button button_color_primary drawer__trigger" data-target=".drawer-demo-left">
+      <button
+        class="button button_color_primary drawer__trigger"
+        data-target=".drawer-demo-left">
         Drawer left
       </button>
     </div>
@@ -67,13 +66,14 @@ To create a trigger for your drawer, create a link or button and use the `drawer
 {% include demo_switch.html class_gridItem="size_12" %}
 
 ```html
+<button class="drawer__trigger" data-target=".drawer__item">...</button>
+
 <div class="drawer">
   <div class="drawer__item">
     ...
   </div>
   <div class="drawer__main">
     ...
-    <button class="drawer__trigger" data-target=".drawer">...</button>
   </div>
 </div>
 ```
@@ -82,7 +82,7 @@ To create a trigger for your drawer, create a link or button and use the `drawer
 
 <div class="type" markdown="1">
 
-Although you can use any content within a drawer, the [dialog component](/components/dialog) is recommeneded for properly formatted content.
+Although you can use any content within a drawer, the [dialog component](/components/dialog) is recommeneded. You'll just need to add the `drawer__dialog` element class to the base `dialog` component.
 
 </div>
 
@@ -142,6 +142,15 @@ Although you can use any content within a drawer, the [dialog component](/compon
 
 {% include flag.html heading="drawer__item_pos_[location]" %}
 
+<div class="type" markdown="1">
+
+Drawer items can slide in from the left or right using the position modifiers:
+
+* `drawer__item_pos_left`
+* `drawer__item_pos_right`
+
+</div>
+
 {% include demo_open.html class_gridItem="size_12" %}
 
 <div class="drawer">
@@ -149,11 +158,7 @@ Although you can use any content within a drawer, the [dialog component](/compon
   <aside class="drawer__item drawer__item_pos_left drawer-demo-pos-left">
     <div class="drawer__dialog dialog">
       <div class="dialog__body type">
-        <p>Hi! I'm a drawer. I have the following class(es):</p>
-        <ul>
-          <li><code>drawer__item</code></li>
-          <li><code>drawer__item_pos_left</code></li>
-        </ul>
+        <p>Hi! I'm a <code>drawer__item</code>. I'm positioned using the <code>drawer__item_pos_left</code> modifier.</p>
       </div>
     </div>
   </aside>
@@ -161,11 +166,7 @@ Although you can use any content within a drawer, the [dialog component](/compon
   <aside class="drawer__item drawer__item_pos_right drawer-demo-pos-right">
     <div class="drawer__dialog dialog">
       <div class="dialog__body type">
-        <p>Hi! I'm a drawer. I have the following class(es):</p>
-        <ul>
-          <li><code>drawer__item</code></li>
-          <li><code>drawer__item_pos_right</code></li>
-        </ul>
+        <p>Hi! I'm a <code>drawer__item</code>. I'm positioned using the <code>drawer__item_pos_right</code> modifier.</p>
       </div>
     </div>
   </aside>
@@ -196,8 +197,6 @@ Although you can use any content within a drawer, the [dialog component](/compon
   </div>
   <div class="drawer__main">
     ...
-    <button class="drawer__trigger" data-target=".drawer__item_pos_left">...</button>
-    <button class="drawer__trigger" data-target=".drawer__item_pos_right">...</button>
   </div>
 </div>
 ```
@@ -212,7 +211,7 @@ If a position modifier is not provided, the drawer will appear based on it's loc
 
 <div class="type" markdown="1">
 
-You can save the state of your drawers by enabling it in your JavaScript instantiation (pass the `saveState` option a string) and giving the drawers you want saved an `id` attribute.
+By default the state of your drawers are saved when a unique identifier is provided using the `id` attribute. States are saved using [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
 
 </div>
 
@@ -223,7 +222,7 @@ You can save the state of your drawers by enabling it in your JavaScript instant
   <aside id="custom-drawer" class="drawer__item drawer__item_pos_left is-active">
     <div class="drawer__dialog dialog">
       <div class="dialog__body type">
-        <p>Hi! I'm a drawer. My state will be saved!</p>
+        <p>Hi! I'm a <code>drawer__item</code>. My state will be saved!</p>
       </div>
     </div>
   </aside>
@@ -242,18 +241,14 @@ You can save the state of your drawers by enabling it in your JavaScript instant
 {% include demo_switch.html class_gridItem="size_12" %}
 
 ```html
+<button class="drawer__trigger" data-target="#custom-drawer">...</button>
+
 <div class="drawer">
-  <aside id="custom-drawer" class="drawer__item drawer__item_pos_left is-active">
+  <aside id="custom-drawer" class="drawer__item is-active">
     ...
   </aside>
-
-  <div class="drawer__main box box_bordered type">
-    <p>This is the content inside of <code>drawer__main</code></p>
-    <div class="button-group">
-      <button class="button button_color_primary drawer__trigger" data-target="#custom-drawer">
-        Drawer left
-      </button>
-    </div>
+  <div class="drawer__main">
+    ...
   </div>
 </div>
 ```
@@ -266,7 +261,125 @@ The default state of a drawer is given by the `is-active` class in your raw mark
 
 </div>
 
----
+{% include flag.html heading="Drawer media switch" %}
+
+<div class="type" markdown="1">
+
+Drawer items have the ability to switch between drawer or modal modes by default using the `[data-drawer-switch]`. The default breakpoint that drawer items get switched is `990px`.
+
+</div>
+
+{% include demo_open.html class_gridItem="size_12" %}
+
+<div class="drawer">
+
+  <aside id="custom-switch-drawer" class="drawer__item drawer__item_pos_left is-active" data-drawer-switch>
+    <div class="drawer__dialog dialog">
+      <div class="dialog__body type">
+        <p>Hi! I'm a <code>drawer__item</code>. My default switch breakpoint is <code>lg</code></p>
+      </div>
+    </div>
+  </aside>
+
+  <div class="drawer__main box box_bordered type">
+    <p>This is the content inside of <code>drawer__main</code></p>
+    <div class="button-group">
+      <button class="button button_color_primary drawer__trigger" data-target="#custom-switch-drawer">
+        Drawer left
+      </button>
+    </div>
+  </div>
+
+</div>
+
+{% include demo_switch.html class_gridItem="size_12" %}
+
+```html
+<div class="drawer">
+  <aside class="drawer__item" data-drawer-switch>
+    ...
+  </aside>
+  <div class="drawer__main">
+    ...
+  </div>
+</div>
+```
+
+{% include demo_close.html %}
+
+<div class="type" markdown="1">
+
+Define the breakpoint that drawers get switched by passing a breakpoint as the `[data-drawer-switch]` value. Valid breakpoint values are either breakpoint keys as found in [`src/js/config.json`](https://github.com/sebnitu/vrembem/blob/master/src/js/config.json) or an explicit pixel value, e.g: `"720px"`, `"1200px"`, etc.
+
+</div>
+
+{% include demo_open.html class_gridItem="size_12" %}
+
+<div class="drawer">
+
+  <aside
+    id="custom-switch-drawer-01"
+    class="drawer__item drawer__item_pos_left is-active"
+    data-drawer-switch="xl">
+    <div class="drawer__dialog dialog">
+      <div class="dialog__body type">
+        <p>Hi! I'm a <code>drawer__item</code>. My switch breakpoint is set to <code>xl</code></p>
+      </div>
+    </div>
+  </aside>
+
+  <aside
+    id="custom-switch-drawer-02"
+    class="drawer__item drawer__item_pos_right is-active"
+    data-drawer-switch="800px">
+    <div class="drawer__dialog dialog">
+      <div class="dialog__body type">
+        <p>Hi! I'm a <code>drawer__item</code>. My switch breakpoint is set to <code>800px</code></p>
+      </div>
+    </div>
+  </aside>
+
+  <div class="drawer__main box box_bordered type">
+    <p>This is the content inside of <code>drawer__main</code></p>
+    <div class="button-group">
+      <button class="button button_color_primary drawer__trigger" data-target="#custom-switch-drawer-01">
+        Drawer left
+      </button>
+      <button class="button button_color_primary drawer__trigger" data-target="#custom-switch-drawer-02">
+        Drawer right
+      </button>
+    </div>
+  </div>
+
+</div>
+
+{% include demo_switch.html class_gridItem="size_12" %}
+
+```html
+<div class="drawer">
+  <aside class="drawer__item" data-drawer-switch="xl">
+    ...
+  </aside>
+  <aside class="drawer__item" data-drawer-switch="800px">
+    ...
+  </aside>
+  ...
+</div>
+```
+
+{% include demo_switch.html class_gridItem="size_12" %}
+
+```js
+// Import our drawer component
+import Drawer from 'drawer'
+
+// Initialize a drawer instance with a custom default switch breakpoint
+const drawer = new Drawer({
+  switchBreakpoint: "900px"
+})
+```
+
+{% include demo_close.html %}
 
 {% include flag.html heading="TODOs" %}
 
@@ -275,7 +388,7 @@ The default state of a drawer is given by the `is-active` class in your raw mark
 * [x] Explain drawer save state via providing an id
 * [x] Explain default state using `is-active` class
 * [x] Explain `drawer__dialog` and ref the markup to use it
-* [ ] Explain media query modal switching
+* [x] Explain media query modal switching
 * [ ] Explain the public api
 
 </div>
