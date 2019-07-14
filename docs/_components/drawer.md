@@ -438,7 +438,7 @@ const drawer = new Drawer(options)
   </tr>
   <tr>
     <td><code class="text_nowrap">init</code></td>
-    <td>Initializes the drawer component. This is used when a drawer is first created.</td>
+    <td>...</td>
     <td><code class="text_nowrap">n/a</code></td>
     <td>
       <a href="#" class="drawer--init">
@@ -448,7 +448,7 @@ const drawer = new Drawer(options)
   </tr>
   <tr>
     <td><code class="text_nowrap">destroy</code></td>
-    <td>Destroys this instance of the drawer.</td>
+    <td>...</td>
     <td><code class="text_nowrap">n/a</code></td>
     <td>
       <a href="#" class="drawer--destroy">
@@ -458,7 +458,7 @@ const drawer = new Drawer(options)
   </tr>
   <tr>
     <td><code class="text_nowrap">open</code></td>
-    <td>Opens a specified drawer, or all if no selector is passed.</td>
+    <td>...</td>
     <td><code class="text_nowrap">selector</code></td>
     <td>
       <a href="#" class="drawer--open">
@@ -468,7 +468,7 @@ const drawer = new Drawer(options)
   </tr>
   <tr>
     <td><code class="text_nowrap">close</code></td>
-    <td>Closes a specified drawer, or all if no selector is passed.</td>
+    <td>...</td>
     <td><code class="text_nowrap">selector</code></td>
     <td>
       <a href="#" class="drawer--close">

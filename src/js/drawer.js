@@ -7,9 +7,7 @@ import u from './utility.js'
  * contains menus, search or other content for your app.
  *
  * Todos:
- * [ ] Animations in JavaScript components need to be handled differently. There should the Classes specific for animation and removed when the component is existing in its current state.
- * [ ] Debug why I'm getting "TypeError: s is null" on lines 396 and 433
- * [ ] Write a promise and run switch method after default save states are set
+ * [ ] Debug why I'm getting "TypeError: s is null" on lines 396 and 433. This is probably do to not removing the media query event listener on destroy
  */
 export default function(options) {
 
@@ -32,6 +30,10 @@ export default function(options) {
     classActive: 'is-active',
     classTransitionNone: 'transition_none',
 
+    // Whether or not to store the save state in local storage
+    // {boolean} The string to save our state object as
+    saveState: true,
+
     // Whether or not to enable the switch functionality
     // If enabled, a string selector to check for should be passed.
     // {false} || {string} e.g. '[data-drawer-switch]'
@@ -40,10 +42,6 @@ export default function(options) {
     // The default break point for when to switch to drawer or modal classes
     // {string} Either a breakpoint key or pixel value
     switchBreakpoint: 'lg',
-
-    // Whether or not to store the save state in local storage
-    // {boolean} The string to save our state object as
-    saveState: true,
 
     // Duration before removing the transition_none class on initial load
     transitionDuration: 500
@@ -70,15 +68,21 @@ export default function(options) {
     // Get all the drawers on the page
     drawers = document.querySelectorAll('.' + settings.classTarget)
 
-    // Init save state functionality if it's enabled
-    if (settings.saveState) {
-      initSaveState()
-    }
+    // Initialize a promise and init save state if it's enabled
+    let promiseSaveState = new Promise(function(resolve) {
+      if (settings.saveState) {
+        initSaveState(resolve)
+      } else {
+        resolve()
+      }
+    })
 
-    // Init switch functionality if it's enabled
-    if (settings.switch) {
-      initSwitch()
-    }
+    // After promise is resolved and switch is enabled, initialize switch
+    promiseSaveState.then(function() {
+      if (settings.switch) {
+        initSwitch()
+      }
+    })
 
     // Add our drawer trigger event listener
     document.addEventListener('click', trigger, false)
@@ -244,8 +248,10 @@ export default function(options) {
 
   /**
    * Private function that initializes the save state functionality
+   * ---
+   * @param {Function} callback - The callback function
    */
-  const initSaveState = () => {
+  const initSaveState = (callback) => {
 
     // Check if a drawer state is already saved in local storage and save the
     // json parsed data to our local variable if it does
@@ -283,6 +289,9 @@ export default function(options) {
         toggle(drawer, 'open', transitionDelay)
       }
     })
+
+    // Fire the callback function if one was passed and return our state object
+    typeof callback === 'function' && callback(drawerState)
   }
 
   /**
