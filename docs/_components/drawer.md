@@ -219,7 +219,7 @@ By default the state of your drawers are saved when a unique identifier is provi
 
 <div class="drawer">
 
-  <aside id="custom-drawer" class="drawer__item drawer__item_pos_left is-active">
+  <aside id="demo-drawer" class="drawer__item drawer__item_pos_left is-active">
     <div class="drawer__dialog dialog">
       <div class="dialog__body type">
         <p>Hi! I'm a <code>drawer__item</code>. My state will be saved!</p>
@@ -230,7 +230,7 @@ By default the state of your drawers are saved when a unique identifier is provi
   <div class="drawer__main box box_bordered type">
     <p>This is the content inside of <code>drawer__main</code></p>
     <div class="button-group">
-      <button class="button button_color_primary drawer__trigger" data-target="#custom-drawer">
+      <button class="button button_color_primary drawer__trigger" data-target="#demo-drawer">
         Drawer left
       </button>
     </div>
@@ -273,7 +273,7 @@ Drawer items have the ability to switch between drawer or modal modes by default
 
 <div class="drawer">
 
-  <aside id="custom-switch-drawer" class="drawer__item drawer__item_pos_left is-active" data-drawer-switch>
+  <aside id="demo-drawer-switch" class="drawer__item drawer__item_pos_left is-active" data-drawer-switch>
     <div class="drawer__dialog dialog">
       <div class="dialog__body type">
         <p>Hi! I'm a <code>drawer__item</code>. My default switch breakpoint is <code>lg</code></p>
@@ -284,7 +284,7 @@ Drawer items have the ability to switch between drawer or modal modes by default
   <div class="drawer__main box box_bordered type">
     <p>This is the content inside of <code>drawer__main</code></p>
     <div class="button-group">
-      <button class="button button_color_primary drawer__trigger" data-target="#custom-switch-drawer">
+      <button class="button button_color_primary drawer__trigger" data-target="#demo-drawer-switch">
         Drawer left
       </button>
     </div>
@@ -318,7 +318,7 @@ Define the breakpoint that drawers get switched by passing a breakpoint as the `
 <div class="drawer">
 
   <aside
-    id="custom-switch-drawer-01"
+    id="demo-drawer-switch-01"
     class="drawer__item drawer__item_pos_left is-active"
     data-drawer-switch="xl">
     <div class="drawer__dialog dialog">
@@ -329,7 +329,7 @@ Define the breakpoint that drawers get switched by passing a breakpoint as the `
   </aside>
 
   <aside
-    id="custom-switch-drawer-02"
+    id="demo-drawer-switch-02"
     class="drawer__item drawer__item_pos_right is-active"
     data-drawer-switch="800px">
     <div class="drawer__dialog dialog">
@@ -342,10 +342,10 @@ Define the breakpoint that drawers get switched by passing a breakpoint as the `
   <div class="drawer__main box box_bordered type">
     <p>This is the content inside of <code>drawer__main</code></p>
     <div class="button-group">
-      <button class="button button_color_primary drawer__trigger" data-target="#custom-switch-drawer-01">
+      <button class="button button_color_primary drawer__trigger" data-target="#demo-drawer-switch-01">
         Drawer left
       </button>
-      <button class="button button_color_primary drawer__trigger" data-target="#custom-switch-drawer-02">
+      <button class="button button_color_primary drawer__trigger" data-target="#demo-drawer-switch-02">
         Drawer right
       </button>
     </div>
@@ -381,61 +381,151 @@ const drawer = new Drawer({
 
 {% include demo_close.html %}
 
-{% include flag.html heading="TODOs" %}
+{% include flag.html heading="Usage" %}
 
 <div class="type" markdown="1">
 
-* [x] Explain drawer save state via providing an id
-* [x] Explain default state using `is-active` class
-* [x] Explain `drawer__dialog` and ref the markup to use it
-* [x] Explain media query modal switching
-* [ ] Explain the public api
+```js
+import Drawer from 'drawer'
+const drawer = new Drawer(options)
+```
 
 </div>
 
-{% include flag.html heading="Public API" %}
+{% include flag.html heading="Options" %}
 
-<div class="type">
-  <ul>
-    <li>
+<div class="type" markdown="1">
+
+<table class="table_responsive">
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+    <th>Type</th>
+    <th>Default</th>
+  </tr>
+  <tr>
+    <td><code>classTarget</code></td>
+    <td>...</td>
+    <td>String</td>
+    <td><code>'drawer__item'</code></td>
+  </tr>
+  <tr>
+    <td><code>classTrigger</code></td>
+    <td>...</td>
+    <td>String</td>
+    <td><code>'drawer__trigger'</code></td>
+  </tr>
+  <tr>
+    <td><code>classInner</code></td>
+    <td>...</td>
+    <td>String</td>
+    <td><code>'drawer__dialog'</code></td>
+  </tr>
+</table>
+
+</div>
+
+{% include flag.html heading="Methods" %}
+
+<div class="type" markdown="1">
+
+<table class="table_responsive">
+  <tr>
+    <th>Method</th>
+    <th>Description</th>
+    <th>Params</th>
+    <th>Test</th>
+  </tr>
+  <tr>
+    <td><code class="text_nowrap">init</code></td>
+    <td>Initializes the drawer component. This is used when a drawer is first created.</td>
+    <td><code class="text_nowrap">n/a</code></td>
+    <td>
+      <a href="#" class="drawer--init">
+        drawer.init
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td><code class="text_nowrap">destroy</code></td>
+    <td>Destroys this instance of the drawer.</td>
+    <td><code class="text_nowrap">n/a</code></td>
+    <td>
+      <a href="#" class="drawer--destroy">
+        drawer.destroy
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td><code class="text_nowrap">open</code></td>
+    <td>Opens a specified drawer, or all if no selector is passed.</td>
+    <td><code class="text_nowrap">selector</code></td>
+    <td>
       <a href="#" class="drawer--open">
         drawer.open
       </a>
-    </li>
-    <li>
+    </td>
+  </tr>
+  <tr>
+    <td><code class="text_nowrap">close</code></td>
+    <td>Closes a specified drawer, or all if no selector is passed.</td>
+    <td><code class="text_nowrap">selector</code></td>
+    <td>
       <a href="#" class="drawer--close">
         drawer.close
       </a>
-    </li>
-    <li>
+    </td>
+  </tr>
+  <tr>
+    <td><code class="text_nowrap">toggle</code></td>
+    <td>...</td>
+    <td><code class="text_nowrap">selector</code></td>
+    <td>
       <a href="#" class="drawer--toggle">
         drawer.toggle
       </a>
-    </li>
-    <li>
-      <a href="#" class="drawer--toggle-example">
-        drawer.toggle('#drawer-example')
-      </a>
-    </li>
-    <li>
+    </td>
+  </tr>
+  <tr>
+    <td><code class="text_nowrap">switchDrawer</code></td>
+    <td>...</td>
+    <td><code class="text_nowrap">selector</code></td>
+    <td>
       <a href="#" class="drawer--switch-drawer">
         drawer.switchDrawer
       </a>
-    </li>
-    <li>
+    </td>
+  </tr>
+  <tr>
+    <td><code class="text_nowrap">switchModal</code></td>
+    <td>...</td>
+    <td><code class="text_nowrap">selector</code></td>
+    <td>
       <a href="#" class="drawer--switch-modal">
         drawer.switchModal
       </a>
-    </li>
-    <li>
+    </td>
+  </tr>
+  <tr>
+    <td><code class="text_nowrap">stateSave</code></td>
+    <td>...</td>
+    <td><code class="text_nowrap">selector</code></td>
+    <td>
       <a href="#" class="drawer--save">
         drawer.stateSave
       </a>
-    </li>
-    <li>
+    </td>
+  </tr>
+  <tr>
+    <td><code class="text_nowrap">stateReset</code></td>
+    <td>...</td>
+    <td><code class="text_nowrap">selector</code></td>
+    <td>
       <a href="#" class="drawer--reset">
         drawer.stateReset
       </a>
-    </li>
-  </ul>
+    </td>
+  </tr>
+</table>
+
 </div>

@@ -5,44 +5,35 @@ import u from './utility.js'
  * ---
  * A container component that slides in from the left or right. It typically
  * contains menus, search or other content for your app.
+ *
+ * Todos:
+ * [ ] Animations in JavaScript components need to be handled differently. There should the Classes specific for animation and removed when the component is existing in its current state.
+ * [ ] Debug why I'm getting "TypeError: s is null" on lines 396 and 433
+ * [ ] Write a promise and run switch method after default save states are set
  */
 export default function(options) {
 
   'use strict'
 
-  // The api where we assign our methods to and return after running init
   let api = {}
-
-  // The settings object which will contain our merged options and defaults obj
   let settings
-
-  // The default settings of the component
   const defaults = {
-
-    // Class options
-    // {string} The class name to be searched for or used
-    classDrawer: 'drawer__item',
+    // Element classes
+    classTarget: 'drawer__item',
     classTrigger: 'drawer__trigger',
-    classDialog: 'drawer__dialog',
-    classActive: 'is-active',
+    classInner: 'drawer__dialog',
 
-    // The classes that get switched depending on the element
-    classSwitch: {
-      'item': {
-        'drawer': 'drawer__item',
-        'modal': 'modal'
-      },
-      'trigger': {
-        'drawer': 'drawer__trigger',
-        'modal': 'modal__trigger'
-      },
-      'dialog': {
-        'drawer': 'drawer__dialog',
-        'modal': 'modal__dialog'
-      }
-    },
+    // Used with RegExp to search and replace element classes
+    classTargetSwitch: 'modal',
+    classTriggerSwitch: 'modal__trigger',
+    classInnerSwitch: 'modal__dialog',
+
+    // The class that is used to make an item active
+    classActive: 'is-active',
+    classTransitionNone: 'transition_none',
 
     // Whether or not to enable the switch functionality
+    // If enabled, a string selector to check for should be passed.
     // {false} || {string} e.g. '[data-drawer-switch]'
     switch: '[data-drawer-switch]',
 
@@ -51,10 +42,10 @@ export default function(options) {
     switchBreakpoint: 'lg',
 
     // Whether or not to store the save state in local storage
-    // {false} || {string} The string to save our state object as
-    saveState: 'drawerState',
+    // {boolean} The string to save our state object as
+    saveState: true,
 
-    // Transition options
+    // Duration before removing the transition_none class on initial load
     transitionDuration: 500
   }
 
@@ -63,7 +54,7 @@ export default function(options) {
   let drawers
   // Where we store all our switch drawers available in the DOM
   let switchDrawers
-  // Where we store a save state object before we pass it to local storage
+  // Where we build the save state object before we pass it to local storage
   let drawerState = {}
 
   /**
@@ -77,7 +68,7 @@ export default function(options) {
     settings = u.extend( defaults, options || {} )
 
     // Get all the drawers on the page
-    drawers = document.querySelectorAll('.' + settings.classDrawer)
+    drawers = document.querySelectorAll('.' + settings.classTarget)
 
     // Init save state functionality if it's enabled
     if (settings.saveState) {
@@ -105,7 +96,7 @@ export default function(options) {
     drawerState = {}
 
     // Delete the local storage data
-    localStorage.removeItem(settings.saveState)
+    localStorage.removeItem('drawerState')
 
     // Remove the drawer trigger event listener
     document.removeEventListener('click', trigger, false)
@@ -117,7 +108,7 @@ export default function(options) {
    * @param {String} selector - A valid CSS selector
    */
   api.open = (selector) => {
-    selector = (selector) ? selector : '.' + settings.classDrawer
+    selector = (selector) ? selector : '.' + settings.classTarget
     toggle(document.querySelectorAll(selector), 'open')
   }
 
@@ -127,7 +118,7 @@ export default function(options) {
    * @param {String} selector - A valid CSS selector
    */
   api.close = (selector) => {
-    selector = (selector) ? selector : '.' + settings.classDrawer
+    selector = (selector) ? selector : '.' + settings.classTarget
     toggle(document.querySelectorAll(selector), 'close')
   }
 
@@ -137,7 +128,7 @@ export default function(options) {
    * @param {String} selector - A valid CSS selector
    */
   api.toggle = (selector) => {
-    selector = (selector) ? selector : '.' + settings.classDrawer
+    selector = (selector) ? selector : '.' + settings.classTarget
     toggle(document.querySelectorAll(selector))
   }
 
@@ -258,8 +249,8 @@ export default function(options) {
 
     // Check if a drawer state is already saved in local storage and save the
     // json parsed data to our local variable if it does
-    if (localStorage.getItem(settings.saveState)) {
-      drawerState = JSON.parse(localStorage.getItem(settings.saveState))
+    if (localStorage.getItem('drawerState')) {
+      drawerState = JSON.parse(localStorage.getItem('drawerState'))
     }
 
     // Loop through all drawers
@@ -271,15 +262,15 @@ export default function(options) {
       }
 
       // Get our drawer dialog element
-      let dialog = drawer.querySelector('.' + settings.classDialog)
+      let dialog = drawer.querySelector('.' + settings.classInner)
 
       // Transition delay: disables transitions as default states are being set
       let transitionDelay = () => {
         if (dialog) {
-          u.addClass(dialog, 'transition_none')
+          u.addClass(dialog, settings.classTransitionNone)
           setTimeout(
             function() {
-              u.removeClass(dialog, 'transition_none')
+              u.removeClass(dialog, settings.classTransitionNone)
             }, settings.transitionDuration
           )
         }
@@ -312,7 +303,7 @@ export default function(options) {
       // Only save drawer state if an id exists
       if (item.id) {
         drawerState[item.id] = u.hasClass(item, settings.classActive)
-        localStorage.setItem(settings.saveState, JSON.stringify(drawerState))
+        localStorage.setItem('drawerState', JSON.stringify(drawerState))
       }
     })
   }
@@ -324,7 +315,7 @@ export default function(options) {
 
     // Reset our local drawer state variable and delete the local storage data
     drawerState = {}
-    localStorage.removeItem(settings.saveState)
+    localStorage.removeItem('drawerState')
   }
 
   /**
@@ -404,19 +395,17 @@ export default function(options) {
 
     // Switch the modal component to drawer
     drawer.className = drawer.className.replace(
-      new RegExp(settings.classSwitch.item.modal, 'gi'),
-      settings.classSwitch.item.drawer
+      new RegExp(settings.classTargetSwitch, 'gi'),
+      settings.classTarget
     )
-
     dialog.className = dialog.className.replace(
-      new RegExp(settings.classSwitch.dialog.modal, 'gi'),
-      settings.classSwitch.dialog.drawer
+      new RegExp(settings.classInnerSwitch, 'gi'),
+      settings.classInner
     )
-
     triggers.forEach((trigger) => {
       trigger.className = trigger.className.replace(
-        new RegExp(settings.classSwitch.trigger.modal, 'gi'),
-        settings.classSwitch.trigger.drawer
+        new RegExp(settings.classTriggerSwitch, 'gi'),
+        settings.classTrigger
       )
     })
 
@@ -443,19 +432,17 @@ export default function(options) {
 
     // Switch the drawer component to modal
     drawer.className = drawer.className.replace(
-      new RegExp(settings.classSwitch.item.drawer, 'gi'),
-      settings.classSwitch.item.modal
+      new RegExp(settings.classTarget, 'gi'),
+      settings.classTargetSwitch
     )
-
     dialog.className = dialog.className.replace(
-      new RegExp(settings.classSwitch.dialog.drawer, 'gi'),
-      settings.classSwitch.dialog.modal
+      new RegExp(settings.classInner, 'gi'),
+      settings.classInnerSwitch
     )
-
     triggers.forEach((trigger) => {
       trigger.className = trigger.className.replace(
-        new RegExp(settings.classSwitch.trigger.drawer, 'gi'),
-        settings.classSwitch.trigger.modal
+        new RegExp(settings.classTrigger, 'gi'),
+        settings.classTriggerSwitch
       )
     })
 
@@ -463,6 +450,9 @@ export default function(options) {
     u.removeClass(drawer, settings.classActive)
   }
 
+  /**
+   *
+   */
   // Run the constructor method
   api.init(options)
 

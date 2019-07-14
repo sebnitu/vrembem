@@ -5,7 +5,7 @@ import Modal from 'modal'
 import Toggle from 'toggle'
 import listjs from 'list.js'
 
-const dismissible = new Dismissible
+const dismissible = new Dismissible()
 const drawer = new Drawer()
 const modal = new Modal()
 const toggle = new Toggle()
@@ -18,6 +18,16 @@ document.addEventListener('click', function() {
 
   // Get the element that triggered the event
   let trigger = event.target
+
+  if (u.hasClass(trigger, 'drawer--init')) {
+    console.log('drawer.init()')
+    drawer.init()
+  }
+
+  if (u.hasClass(trigger, 'drawer--destroy')) {
+    console.log('drawer.destroy()')
+    drawer.destroy()
+  }
 
   if (u.hasClass(trigger, 'drawer--open')) {
     console.log('drawer.open()')
