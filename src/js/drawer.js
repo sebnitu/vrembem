@@ -47,7 +47,7 @@ export default function(options) {
 
   // Drawer specific variables
   // Where we store all our drawers available in the DOM
-  let drawers
+  let drawers = []
 
   // Where we build the save state object before we pass it to local storage
   let drawerState = {}
@@ -68,11 +68,17 @@ export default function(options) {
     // Merge the defaults and passed options into our settings obj
     settings = u.extend( defaults, options || {} )
 
-    // Get all the drawers on the page
-    drawers = document.querySelectorAll('.' + settings.classTarget)
+    // Get all the drawers on the page and save them with their default state
+    document.querySelectorAll('.' + settings.classTarget)
+      .forEach((drawer) => {
+      drawers.push({
+        'drawer': drawer,
+        'defaultState': u.hasClass(drawer, settings.classActive)
+      })
+    })
 
     // Initialize a promise and init save state if it's enabled
-    let promiseSaveState = new Promise(function(resolve) {
+    let promiseSaveState = new Promise((resolve) => {
       if (settings.saveState) {
         initSaveState(resolve)
       } else {
@@ -81,7 +87,7 @@ export default function(options) {
     })
 
     // After promise is resolved and switch is enabled, initialize switch
-    promiseSaveState.then(function() {
+    promiseSaveState.then(() => {
       if (settings.switch) {
         initSwitch()
       }
@@ -93,8 +99,10 @@ export default function(options) {
 
   /**
    * The deconstructor method, used to reset and destroy the drawer instance
+   * ---
+   * @param {Boolean} defaultState - Return drawers to their default state?
    */
-  api.destroy = () => {
+  api.destroy = (defaultState = true) => {
 
     // Destroy our switch
     destroySwitch()
@@ -102,9 +110,18 @@ export default function(options) {
     // Destroy our state
     stateClear()
 
+    // Return drawrs to their default state
+    if (defaultState) {
+      drawers.forEach((item) => {
+        if (item.defaultState) {
+          u.addClass(item.drawer, settings.classActive)
+        }
+      })
+    }
+
     // Clear our variables
     settings = null
-    drawers = null
+    drawers = []
 
     // Remove the drawer trigger event listener
     document.removeEventListener('click', trigger, false)
@@ -264,7 +281,9 @@ export default function(options) {
     }
 
     // Loop through all drawers
-    drawers.forEach((drawer) => {
+    drawers.forEach((item) => {
+
+      let drawer = item.drawer
 
       // Set the default state if one is not set
       if (drawer.id in drawerState === false) {
@@ -278,11 +297,9 @@ export default function(options) {
       let transitionDelay = () => {
         if (dialog) {
           u.addClass(dialog, settings.classTransitionNone)
-          setTimeout(
-            function() {
-              u.removeClass(dialog, settings.classTransitionNone)
-            }, settings.transitionDuration
-          )
+          setTimeout(() => {
+            u.removeClass(dialog, settings.classTransitionNone)
+          }, settings.transitionDuration)
         }
       }
 
@@ -348,7 +365,7 @@ export default function(options) {
         .replace('data-', '')
 
       // Convert sring to camelCase
-      cleanSelector = cleanSelector.replace(/-([a-z])/g, function (g) {
+      cleanSelector = cleanSelector.replace(/-([a-z])/g, (g) => {
         return g[1].toUpperCase()
       })
 
@@ -399,7 +416,7 @@ export default function(options) {
     })
 
     // Remove the media query listeners
-    mqlArray.forEach(function(item) {
+    mqlArray.forEach((item) => {
       item.mql.removeListener(switchCheck)
     })
 
@@ -416,7 +433,7 @@ export default function(options) {
    * @param {Node} drawer - The drawer element to switch
    */
   const switchCheck = () => {
-    mqlArray.forEach(function(item) {
+    mqlArray.forEach((item) => {
       if (item.mql.matches) {
         switchToDrawer(item.drawer)
       } else {
