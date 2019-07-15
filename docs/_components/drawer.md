@@ -421,6 +421,63 @@ const drawer = new Drawer(options)
     <td>String</td>
     <td><code>'drawer__dialog'</code></td>
   </tr>
+
+  <tr>
+    <td><code>classTargetSwitch</code></td>
+    <td>...</td>
+    <td>String</td>
+    <td><code>'modal'</code></td>
+  </tr>
+  <tr>
+    <td><code>classTriggerSwitch</code></td>
+    <td>...</td>
+    <td>String</td>
+    <td><code>'modal__trigger'</code></td>
+  </tr>
+  <tr>
+    <td><code>classInnerSwitch</code></td>
+    <td>...</td>
+    <td>String</td>
+    <td><code>'modal__dialog'</code></td>
+  </tr>
+
+  <tr>
+    <td><code>classActive</code></td>
+    <td>...</td>
+    <td>String</td>
+    <td><code>'is-active'</code></td>
+  </tr>
+  <tr>
+    <td><code>classTransitionNone</code></td>
+    <td>...</td>
+    <td>String</td>
+    <td><code>'transition_none'</code></td>
+  </tr>
+
+  <tr>
+    <td><code>saveState</code></td>
+    <td>...</td>
+    <td>Boolean</td>
+    <td><code>true</code></td>
+  </tr>
+  <tr>
+    <td><code>switch</code></td>
+    <td>...</td>
+    <td>String</td>
+    <td><code>'[data-drawer-switch]'</code></td>
+  </tr>
+  <tr>
+    <td><code>switchBreakpoint</code></td>
+    <td>...</td>
+    <td>String</td>
+    <td><code>'lg'</code></td>
+  </tr>
+  <tr>
+    <td><code>transitionDuration</code></td>
+    <td>...</td>
+    <td>Milisecond</td>
+    <td><code>500</code></td>
+  </tr>
 </table>
 
 </div>
@@ -449,7 +506,7 @@ const drawer = new Drawer(options)
   <tr>
     <td><code class="text_nowrap">destroy</code></td>
     <td>...</td>
-    <td><code class="text_nowrap">n/a</code></td>
+    <td><code class="text_nowrap">defaultState</code></td>
     <td>
       <a href="#" class="drawer--destroy">
         drawer.destroy

@@ -7082,6 +7082,10 @@ pre {
   width: 100%;
 }
 
+.demo__render {
+  overflow: auto;
+}
+
 .demo__render.invert,
 .demo__group.invert {
   background: #37474f;

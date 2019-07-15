@@ -10,6 +10,11 @@ const drawer = new Drawer()
 const modal = new Modal()
 const toggle = new Toggle()
 
+// console.log('drawer', drawer)
+// console.log('modal', modal)
+// console.log('dismissible', dismissible)
+// console.log('toggle', toggle)
+
 /**
  * General event trigger for testing
  */

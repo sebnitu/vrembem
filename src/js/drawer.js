@@ -32,8 +32,8 @@ export default function(options) {
     // {boolean} The string to save our state object as
     saveState: true,
 
-    // Whether or not to enable the switch functionality
-    // If enabled, a string selector to check for should be passed.
+    // Whether or not to enable the switch functionality. If enabled, a string
+    // selector to check for should be passed.
     // {false} || {string} e.g. '[data-drawer-switch]'
     switch: '[data-drawer-switch]',
 
