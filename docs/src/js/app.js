@@ -59,9 +59,9 @@ document.addEventListener('click', function() {
     drawer.switchModal()
   }
 
-  if (u.hasClass(trigger, 'drawer--reset')) {
-    console.log('drawer.stateReset()')
-    drawer.stateReset()
+  if (u.hasClass(trigger, 'drawer--clear')) {
+    console.log('drawer.stateClear()')
+    drawer.stateClear()
   }
 
   if (u.hasClass(trigger, 'drawer--save')) {

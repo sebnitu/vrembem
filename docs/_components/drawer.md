@@ -517,12 +517,12 @@ const drawer = new Drawer(options)
     </td>
   </tr>
   <tr>
-    <td><code class="text_nowrap">stateReset</code></td>
+    <td><code class="text_nowrap">stateClear</code></td>
     <td>...</td>
     <td><code class="text_nowrap">selector</code></td>
     <td>
-      <a href="#" class="drawer--reset">
-        drawer.stateReset
+      <a href="#" class="drawer--clear">
+        drawer.stateClear
       </a>
     </td>
   </tr>

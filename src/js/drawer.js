@@ -5,9 +5,6 @@ import u from './utility.js'
  * ---
  * A container component that slides in from the left or right. It typically
  * contains menus, search or other content for your app.
- *
- * Todos:
- * [ ] Debug why I'm getting "TypeError: s is null" on lines 396 and 433. This is probably do to not removing the media query event listener on destroy
  */
 export default function(options) {
 
@@ -15,6 +12,7 @@ export default function(options) {
 
   let api = {}
   let settings
+
   const defaults = {
     // Element classes
     classTarget: 'drawer__item',
@@ -50,10 +48,15 @@ export default function(options) {
   // Drawer specific variables
   // Where we store all our drawers available in the DOM
   let drawers
-  // Where we store all our switch drawers available in the DOM
-  let switchDrawers
+
   // Where we build the save state object before we pass it to local storage
   let drawerState = {}
+
+  // Where we store all our switch drawers available in the DOM
+  let switchDrawers
+
+  // Where we store all our media query lists along with their drawers
+  let mqlArray = []
 
   /**
    * The constructor method, run as soon as an instance is created
@@ -89,18 +92,19 @@ export default function(options) {
   }
 
   /**
-   * The deconstructor method, used to reset and destory the drawer instance
+   * The deconstructor method, used to reset and destroy the drawer instance
    */
   api.destroy = () => {
+
+    // Destroy our switch
+    destroySwitch()
+
+    // Destroy our state
+    stateClear()
 
     // Clear our variables
     settings = null
     drawers = null
-    switchDrawers = null
-    drawerState = {}
-
-    // Delete the local storage data
-    localStorage.removeItem('drawerState')
 
     // Remove the drawer trigger event listener
     document.removeEventListener('click', trigger, false)
@@ -188,8 +192,8 @@ export default function(options) {
   /**
    * Return to drawer default state
    */
-  api.stateReset = () => {
-    stateReset()
+  api.stateClear = () => {
+    stateClear()
   }
 
   /**
@@ -270,7 +274,7 @@ export default function(options) {
       // Get our drawer dialog element
       let dialog = drawer.querySelector('.' + settings.classInner)
 
-      // Transition delay: disables transitions as default states are being set
+      // Disables transitions as default states are being set
       let transitionDelay = () => {
         if (dialog) {
           u.addClass(dialog, settings.classTransitionNone)
@@ -320,9 +324,7 @@ export default function(options) {
   /**
    * Private function that clears the drawer state
    */
-  const stateReset = () => {
-
-    // Reset our local drawer state variable and delete the local storage data
+  const stateClear = () => {
     drawerState = {}
     localStorage.removeItem('drawerState')
   }
@@ -368,27 +370,59 @@ export default function(options) {
       }
 
       // Media query listener
-      let mq = window.matchMedia( "(min-width:" + bp + ")" )
-      mq.addListener((mq) => {
-        switchCheck(mq, drawer)
+      let mql = window.matchMedia( "(min-width:" + bp + ")" )
+
+      // Switch to modal if media doesn't match (< bp)
+      if (!mql.matches) {
+        switchModal(drawer)
+      }
+
+      // Add our media query listener
+      mql.addListener(switchCheck)
+
+      // Push the mql to our array along with it's drawer
+      mqlArray.push({
+        'drawer' : drawer,
+        'mql': mql
       })
-      switchCheck(mq, drawer)
     })
+  }
+
+  /**
+   * Private function that destroys the switch functionality
+   */
+  const destroySwitch = () => {
+
+    // Switch all modals back to their original drawer state
+    switchDrawers.forEach((drawer) => {
+      switchDrawer(drawer)
+    })
+
+    // Remove the media query listeners
+    mqlArray.forEach(function(item) {
+      item.mql.removeListener(switchCheck)
+    })
+
+    // Return switch variables to their original state
+    switchDrawers = null
+    mqlArray = []
   }
 
   /**
    * Private function that checks when a media query hits a match and switches
    * the component from drawer to modal as needed
    * ---
-   * @param {MediaQueryList} mq - The MediaQueryList object for the media query
+   * @param {MediaQueryList} mql - The MediaQueryList object for the media query
    * @param {Node} drawer - The drawer element to switch
    */
-  const switchCheck = (mq, drawer) => {
-    if (mq.matches) {
-      switchDrawer(drawer)
-    } else {
-      switchModal(drawer)
-    }
+  const switchCheck = () => {
+    mqlArray.forEach(function(item) {
+      if (item.mql.matches) {
+        switchDrawer(item.drawer)
+      } else {
+        switchModal(item.drawer)
+      }
+    })
   }
 
   /**
@@ -460,11 +494,8 @@ export default function(options) {
   }
 
   /**
-   *
+   * Initialize our component and return the api
    */
-  // Run the constructor method
   api.init(options)
-
-  // Return the API for running public methods
   return api
 }
