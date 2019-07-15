@@ -145,7 +145,7 @@ export default function(options) {
    * ---
    * @param {String} selector - A valid CSS selector
    */
-  api.switchDrawer = (selector) => {
+  api.switchToDrawer = (selector) => {
 
     // Use default selector if one isn't passed
     selector = (selector) ? selector : settings.switch
@@ -157,7 +157,7 @@ export default function(options) {
     items = (items.forEach) ? items : u.toArray(items)
 
     items.forEach((item) => {
-      switchDrawer(item)
+      switchToDrawer(item)
     })
   }
 
@@ -166,7 +166,7 @@ export default function(options) {
    * ---
    * @param {String} selector - A valid CSS selector
    */
-  api.switchModal = (selector) => {
+  api.switchToModal = (selector) => {
 
     // Use default selector if one isn't passed
     selector = (selector) ? selector : settings.switch
@@ -178,7 +178,7 @@ export default function(options) {
     items = (items.forEach) ? items : u.toArray(items)
 
     items.forEach((item) => {
-      switchModal(item)
+      switchToModal(item)
     })
   }
 
@@ -374,7 +374,7 @@ export default function(options) {
 
       // Switch to modal if media doesn't match (< bp)
       if (!mql.matches) {
-        switchModal(drawer)
+        switchToModal(drawer)
       }
 
       // Add our media query listener
@@ -395,7 +395,7 @@ export default function(options) {
 
     // Switch all modals back to their original drawer state
     switchDrawers.forEach((drawer) => {
-      switchDrawer(drawer)
+      switchToDrawer(drawer)
     })
 
     // Remove the media query listeners
@@ -418,9 +418,9 @@ export default function(options) {
   const switchCheck = () => {
     mqlArray.forEach(function(item) {
       if (item.mql.matches) {
-        switchDrawer(item.drawer)
+        switchToDrawer(item.drawer)
       } else {
-        switchModal(item.drawer)
+        switchToModal(item.drawer)
       }
     })
   }
@@ -430,7 +430,7 @@ export default function(options) {
    * ---
    * @param {Node} drawer - The element to switch
    */
-  const switchDrawer = (drawer) => {
+  const switchToDrawer = (drawer) => {
 
     // Get the dialog and trigger elements related to this component
     let dialog = drawer.querySelector('.dialog')
@@ -467,7 +467,7 @@ export default function(options) {
    * ---
    * @param {Node} drawer - The element to switch
    */
-  const switchModal = (drawer) => {
+  const switchToModal = (drawer) => {
 
     // Get the dialog and trigger elements related to this component
     let dialog = drawer.querySelector('.dialog')

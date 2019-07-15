@@ -487,22 +487,22 @@ const drawer = new Drawer(options)
     </td>
   </tr>
   <tr>
-    <td><code class="text_nowrap">switchDrawer</code></td>
+    <td><code class="text_nowrap">switchToDrawer</code></td>
     <td>...</td>
     <td><code class="text_nowrap">selector</code></td>
     <td>
       <a href="#" class="drawer--switch-drawer">
-        drawer.switchDrawer
+        drawer.switchToDrawer
       </a>
     </td>
   </tr>
   <tr>
-    <td><code class="text_nowrap">switchModal</code></td>
+    <td><code class="text_nowrap">switchToModal</code></td>
     <td>...</td>
     <td><code class="text_nowrap">selector</code></td>
     <td>
       <a href="#" class="drawer--switch-modal">
-        drawer.switchModal
+        drawer.switchToModal
       </a>
     </td>
   </tr>

@@ -50,13 +50,13 @@ document.addEventListener('click', function() {
   }
 
   if (u.hasClass(trigger, 'drawer--switch-drawer')) {
-    console.log('drawer.switchDrawer()')
-    drawer.switchDrawer()
+    console.log('drawer.switchToDrawer()')
+    drawer.switchToDrawer()
   }
 
   if (u.hasClass(trigger, 'drawer--switch-modal')) {
-    console.log('drawer.switchModal()')
-    drawer.switchModal()
+    console.log('drawer.switchToModal()')
+    drawer.switchToModal()
   }
 
   if (u.hasClass(trigger, 'drawer--clear')) {
