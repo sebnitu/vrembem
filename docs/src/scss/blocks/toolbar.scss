@@ -13,10 +13,11 @@
   right: 0;
   padding: 0.5em;
   flex-grow: 0;
+  background-color: #09273F;
   background: linear-gradient(
-    to right,
-    #09273F 0,
-    #124064 100%
+    148deg,
+    #124064 0,
+    #09273F 100%
   );
   color: $white;
   box-shadow: $box-shadow-4dp;

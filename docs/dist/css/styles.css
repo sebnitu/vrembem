@@ -6939,8 +6939,8 @@ pre {
   display: flex;
   overflow: hidden;
   color: #ffffff;
-  background: -webkit-gradient(linear, left top, right top, color-stop(0, #09273F), to(#124064));
-  background: linear-gradient(to right, #09273F 0, #124064 100%);
+  background-color: #09273F;
+  background: linear-gradient(148deg, #124064 0, #09273F 100%);
   z-index: 1;
 }
 
@@ -7080,10 +7080,6 @@ pre {
 
 .demo .grid__item > * {
   width: 100%;
-}
-
-.demo__render {
-  overflow: auto;
 }
 
 .demo__render.invert,
@@ -7540,8 +7536,8 @@ pre {
   -webkit-box-flex: 0;
       -ms-flex-positive: 0;
           flex-grow: 0;
-  background: -webkit-gradient(linear, left top, right top, color-stop(0, #09273F), to(#124064));
-  background: linear-gradient(to right, #09273F 0, #124064 100%);
+  background-color: #09273F;
+  background: linear-gradient(148deg, #124064 0, #09273F 100%);
   color: #ffffff;
   -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1), 0 4px 5px 0 rgba(0, 0, 0, 0.07), 0 1px 10px 0 rgba(0, 0, 0, 0.06);
           box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1), 0 4px 5px 0 rgba(0, 0, 0, 0.07), 0 1px 10px 0 rgba(0, 0, 0, 0.06);

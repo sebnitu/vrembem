@@ -14,17 +14,18 @@ export default function(options) {
   let settings
 
   const defaults = {
-    // Element classes
+    // Component element classes
     classTarget: 'drawer__item',
     classTrigger: 'drawer__trigger',
     classInner: 'drawer__dialog',
 
+    // Component element switch classes
     // Used with RegExp to search and replace element classes
     classTargetSwitch: 'modal',
     classTriggerSwitch: 'modal__trigger',
     classInnerSwitch: 'modal__dialog',
 
-    // The class that is used to make an item active
+    // State and utility classes
     classActive: 'is-active',
     classTransitionNone: 'transition_none',
 
@@ -45,7 +46,6 @@ export default function(options) {
     transitionDuration: 500
   }
 
-  // Drawer specific variables
   // Where we store all our drawers available in the DOM
   let drawers = []
 
@@ -115,6 +115,8 @@ export default function(options) {
       drawers.forEach((item) => {
         if (item.defaultState) {
           u.addClass(item.drawer, settings.classActive)
+        } else {
+          u.removeClass(item.drawer, settings.classActive)
         }
       })
     }
@@ -158,7 +160,7 @@ export default function(options) {
   }
 
   /**
-   * Public method to switch a drawer into modal
+   * Public method to switch a modal into drawer
    * ---
    * @param {String} selector - A valid CSS selector
    */
@@ -207,7 +209,7 @@ export default function(options) {
   }
 
   /**
-   * Return to drawer default state
+   * Clears drawer state from local storage
    */
   api.stateClear = () => {
     stateClear()
@@ -232,7 +234,7 @@ export default function(options) {
       u.toggleClass(drawer, settings.classActive)
     }
 
-    // Check if save state is enabled
+    // Save state if feature is enabled
     if (settings.saveState) {
       stateSave(drawer)
     }
@@ -330,6 +332,11 @@ export default function(options) {
 
     // Loop through our drawers and save their new state to local storage
     items.forEach((item) => {
+
+      if (item.drawer) {
+        item = item.drawer
+      }
+
       // Only save drawer state if an id exists
       if (item.id) {
         drawerState[item.id] = u.hasClass(item, settings.classActive)

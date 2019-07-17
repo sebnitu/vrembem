@@ -1,0 +1,21 @@
+<div class="card card_theme_bordered">
+  <div class="card__body spacing">
+    {% if include.title %}
+      <h3 class="card__title">{{ include.title }}</h3>
+    {% endif %}
+    {% if include.desc %}
+      <p>{{ include.desc }}</p>
+    {% endif %}
+    {% if include.param %}
+      <p>{{ include.param }}</p>
+    {% endif %}
+    {% if include.script %}
+      <div>
+        <p class="level level_wrap level_block">
+          <code>{{ include.script }}</code>
+          <a href="#" class="button button_outline button_size_sm grow_0" data-script="{{ include.script }}">Run</a>
+        </p>
+      </div>
+    {% endif %}
+  </div>
+</div>

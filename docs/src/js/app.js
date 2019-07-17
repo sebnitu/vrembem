@@ -10,11 +10,6 @@ const drawer = new Drawer()
 const modal = new Modal()
 const toggle = new Toggle()
 
-// console.log('drawer', drawer)
-// console.log('modal', modal)
-// console.log('dismissible', dismissible)
-// console.log('toggle', toggle)
-
 /**
  * General event trigger for testing
  */
@@ -24,54 +19,32 @@ document.addEventListener('click', function() {
   // Get the element that triggered the event
   let trigger = event.target
 
-  if (u.hasClass(trigger, 'drawer--init')) {
-    console.log('drawer.init()')
-    drawer.init()
-  }
+  // Run the script if it exists as a data attribute
+  if (trigger.dataset.script) {
+    // Get our script string for processing
+    let string = trigger.dataset.script
+    
+    // console.log('Run: ', string)
 
-  if (u.hasClass(trigger, 'drawer--destroy')) {
-    console.log('drawer.destroy()')
-    drawer.destroy()
-  }
+    // Get indexes of string
+    let indexObject = string.indexOf('.')
+    let indexMethod = string.indexOf('(')
+    let indexParamStart = string.indexOf('\'')
+    let indexParamEnd = string.indexOf('\'', indexParamStart + 1)
 
-  if (u.hasClass(trigger, 'drawer--open')) {
-    console.log('drawer.open()')
-    drawer.open()
-  }
+    // Get the object, method and if params are passed
+    let obj = string.substring(0, indexObject)
+    let method = string.substring(indexObject + 1, indexMethod)
+    let params = string.substring(indexParamStart + 1, indexParamEnd)
 
-  if (u.hasClass(trigger, 'drawer--close')) {
-    console.log('drawer.close()')
-    drawer.close()
-  }
+    // console.log('Obj: ', obj)
+    // console.log('Method: ', method)
+    // console.log('Params: ', params)
 
-  if (u.hasClass(trigger, 'drawer--toggle')) {
-    console.log('drawer.toggle()')
-    drawer.toggle()
-  }
-
-  if (u.hasClass(trigger, 'drawer--toggle-example')) {
-    console.log('drawer.toggle("#drawer-example")')
-    drawer.toggle('#drawer-example')
-  }
-
-  if (u.hasClass(trigger, 'drawer--switch-drawer')) {
-    console.log('drawer.switchToDrawer()')
-    drawer.switchToDrawer()
-  }
-
-  if (u.hasClass(trigger, 'drawer--switch-modal')) {
-    console.log('drawer.switchToModal()')
-    drawer.switchToModal()
-  }
-
-  if (u.hasClass(trigger, 'drawer--clear')) {
-    console.log('drawer.stateClear()')
-    drawer.stateClear()
-  }
-
-  if (u.hasClass(trigger, 'drawer--save')) {
-    console.log('drawer.stateSave()')
-    drawer.stateSave()
+    // Run our data script
+    if (obj === 'drawer') {
+      drawer[method](params)
+    }
   }
 
 })

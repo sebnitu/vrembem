@@ -392,13 +392,11 @@ const drawer = new Drawer(options)
 
 </div>
 
-{% include flag.html heading="Options" %}
-
 <div class="type" markdown="1">
 
-<table class="table_responsive">
+<table class="table table_rowed table_zebra_remove table_responsive">
   <tr>
-    <th>Option</th>
+    <th>Options</th>
     <th>Description</th>
     <th>Type</th>
     <th>Default</th>
@@ -482,107 +480,87 @@ const drawer = new Drawer(options)
 
 </div>
 
-{% include flag.html heading="Methods" %}
+<div class="grid">
 
-<div class="type" markdown="1">
+  <div class="grid__item grid__item_fill size_12 size_6_md size_4_xl">
+    {% include card_method.html
+      title="init"
+      desc="The constructor method, run as soon as an instance is created."
+      param="@param {Object} options - A json object with your custom settings"
+      script="drawer.init()"
+    %}
+  </div>
 
-<table class="table_responsive">
-  <tr>
-    <th>Method</th>
-    <th>Description</th>
-    <th>Params</th>
-    <th>Test</th>
-  </tr>
-  <tr>
-    <td><code class="text_nowrap">init</code></td>
-    <td>...</td>
-    <td><code class="text_nowrap">n/a</code></td>
-    <td>
-      <a href="#" class="drawer--init">
-        drawer.init
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td><code class="text_nowrap">destroy</code></td>
-    <td>...</td>
-    <td><code class="text_nowrap">defaultState</code></td>
-    <td>
-      <a href="#" class="drawer--destroy">
-        drawer.destroy
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td><code class="text_nowrap">open</code></td>
-    <td>...</td>
-    <td><code class="text_nowrap">selector</code></td>
-    <td>
-      <a href="#" class="drawer--open">
-        drawer.open
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td><code class="text_nowrap">close</code></td>
-    <td>...</td>
-    <td><code class="text_nowrap">selector</code></td>
-    <td>
-      <a href="#" class="drawer--close">
-        drawer.close
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td><code class="text_nowrap">toggle</code></td>
-    <td>...</td>
-    <td><code class="text_nowrap">selector</code></td>
-    <td>
-      <a href="#" class="drawer--toggle">
-        drawer.toggle
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td><code class="text_nowrap">switchToDrawer</code></td>
-    <td>...</td>
-    <td><code class="text_nowrap">selector</code></td>
-    <td>
-      <a href="#" class="drawer--switch-drawer">
-        drawer.switchToDrawer
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td><code class="text_nowrap">switchToModal</code></td>
-    <td>...</td>
-    <td><code class="text_nowrap">selector</code></td>
-    <td>
-      <a href="#" class="drawer--switch-modal">
-        drawer.switchToModal
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td><code class="text_nowrap">stateSave</code></td>
-    <td>...</td>
-    <td><code class="text_nowrap">selector</code></td>
-    <td>
-      <a href="#" class="drawer--save">
-        drawer.stateSave
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td><code class="text_nowrap">stateClear</code></td>
-    <td>...</td>
-    <td><code class="text_nowrap">selector</code></td>
-    <td>
-      <a href="#" class="drawer--clear">
-        drawer.stateClear
-      </a>
-    </td>
-  </tr>
-</table>
+  <div class="grid__item grid__item_fill size_12 size_6_md size_4_xl">
+    {% include card_method.html
+      title="destroy"
+      desc="The deconstructor method, used to reset and destroy the drawer instance."
+      param="@param {Boolean} defaultState - Return drawers to their default state?"
+      script="drawer.destroy()"
+    %}
+  </div>
+
+  <div class="grid__item grid__item_fill size_12 size_6_md size_4_xl">
+    {% include card_method.html
+      title="open"
+      desc="Public method to open a drawer or group of drawers."
+      param="@param {String} selector - A valid CSS selector"
+      script="drawer.open()"
+    %}
+  </div>
+
+  <div class="grid__item grid__item_fill size_12 size_6_md size_4_xl">
+    {% include card_method.html
+      title="close"
+      desc="Public method to close a drawer or group of drawers."
+      param="@param {String} selector - A valid CSS selector"
+      script="drawer.close()"
+    %}
+  </div>
+
+  <div class="grid__item grid__item_fill size_12 size_6_md size_4_xl">
+    {% include card_method.html
+      title="toggle"
+      desc="Public method to toggle a drawer or group of drawers."
+      param="@param {String} selector - A valid CSS selector"
+      script="drawer.toggle()"
+    %}
+  </div>
+
+  <div class="grid__item grid__item_fill size_12 size_6_md size_4_xl">
+    {% include card_method.html
+      title="switchToDrawer"
+      desc="Public method to switch a modal into drawer."
+      param="@param {String} selector - A valid CSS selector"
+      script="drawer.switchToDrawer()"
+    %}
+  </div>
+
+  <div class="grid__item grid__item_fill size_12 size_6_md size_4_xl">
+    {% include card_method.html
+      title="switchToModal"
+      desc="Public method to switch a drawer into modal."
+      param="@param {String} selector - A valid CSS selector"
+      script="drawer.switchToModal()"
+    %}
+  </div>
+
+  <div class="grid__item grid__item_fill size_12 size_6_md size_4_xl">
+    {% include card_method.html
+      title="stateSave"
+      desc="Save the drawer current drawer state."
+      param="n/a"
+      script="drawer.stateSave()"
+    %}
+  </div>
+
+  <div class="grid__item grid__item_fill size_12 size_6_md size_4_xl">
+    {% include card_method.html
+      title="stateClear"
+      desc="Clears drawer state from local storage."
+      param="n/a"
+      script="drawer.stateClear()"
+    %}
+  </div>
 
 </div>
