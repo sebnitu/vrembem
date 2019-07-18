@@ -16,4 +16,10 @@ npm install {{ page.usage.npm }}
 ```
 {% endif %}
 
+{% if page.usage.js %}
+```js
+import {{ page.title }} from '{{ page.usage.js }}'
+```
+{% endif %}
+
 </div>

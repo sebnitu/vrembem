@@ -1,5 +1,12 @@
 import u from './utility.js'
 
+/**
+ * Modal plugin
+ * ---
+ * A component for changing the mode of a page to complete a critical task.
+ * This is usually used in conjunction with the Dialog component to make
+ * modal dialogs.
+ */
 export default function(options) {
 
   'use strict'
@@ -7,9 +14,9 @@ export default function(options) {
   let api = {}
   let settings
   const defaults = {
+    classTarget: 'modal',
     classTrigger: 'modal__trigger',
-    classModal: 'modal',
-    classDialog: 'modal__dialog',
+    classInner: 'modal__dialog',
     classActive: 'is-active',
     focus: '[data-focus]'
   }
@@ -58,8 +65,8 @@ export default function(options) {
   }
 
   const close = (clear = false) => {
-    let modals = document.querySelectorAll('.' + settings.classModal)
-    u.removeClass(modals, settings.classActive)
+    let target = document.querySelectorAll('.' + settings.classTarget)
+    u.removeClass(target, settings.classActive)
     if (clear == false && memoryTrigger && memoryTarget) {
       if (memoryTarget.length === 1) {
         memoryTarget = memoryTarget.item(0)
@@ -85,19 +92,19 @@ export default function(options) {
   }
 
   const run = () => {
+    let target = event.target.closest('.' + settings.classTarget)
     let trigger = event.target.closest('.' + settings.classTrigger)
-    let modal = event.target.closest('.' + settings.classModal)
-    let dialog = event.target.closest('.' + settings.classDialog)
+    let inner = event.target.closest('.' + settings.classInner)
     if (trigger) {
       close()
-      let dataModal = trigger.dataset.target
-      if (dataModal) {
-        memoryTarget = document.querySelectorAll(dataModal)
+      let targetData = trigger.dataset.target
+      if (targetData) {
+        memoryTarget = document.querySelectorAll(targetData)
         memoryTrigger = trigger
         open(memoryTarget)
       }
       event.preventDefault()
-    } else if (modal && !dialog) {
+    } else if (target && !inner) {
       close()
     }
   }

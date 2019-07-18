@@ -35,10 +35,11 @@
   display: flex;
   overflow: hidden;
   color: $white;
+  background-color: #09273F;
   background: linear-gradient(
-    to right,
-    #09273F 0,
-    #124064 100%
+    148deg,
+    #124064 0,
+    #09273F 100%
   );
   z-index: 1;
 }
@@ -158,6 +159,6 @@
   }
 
   .menu_drawer .menu__link {
-    padding: 1em;
+    padding: 0.75em 1em;
   }
 }

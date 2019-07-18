@@ -8,9 +8,9 @@ layout: compress
 
   {%- include toolbar.html class="page__toolbar" -%}
 
-  <div class="page__main">
+  <div class="page__main drawer">
 
-    <aside id="listjs" class="page__aside drawer drawer_pos_left is-active" data-drawer-switch="1100px">
+    <aside id="listjs" class="page__aside drawer__item drawer__item_pos_left is-active" data-drawer-switch>
       <div class="drawer__dialog dialog">
         <div class="dialog__header spacing">
           {%- include filter.html -%}
@@ -21,7 +21,7 @@ layout: compress
       </div>
     </aside>
 
-    <div class="page__article drawer-sibling">
+    <div class="page__article drawer__main">
       {{ content }}
     </div>
 

@@ -21,7 +21,6 @@
   }
 
   // Headings
-
   h1,
   h2,
   h3,
@@ -57,7 +56,6 @@
   }
 
   // Block elements
-
   p {
     margin: $type-spacing 0;
   }
@@ -101,7 +99,6 @@
   }
 
   // Inline elements
-
   a:not(.button) {
     @extend %link;
   }
@@ -113,7 +110,6 @@
   }
 
   // Code
-
   code {
     padding: $code-padding;
     background: $code-background;
@@ -138,14 +134,12 @@
   }
 
   // Horizontal Rule
-
   hr {
     @extend %hr;
     margin: $type-hr-margin;
   }
 
   // Lists
-
   ul, ol {
     margin: $type-spacing 0 $type-spacing ($type-spacing * 2);
     padding: 0;
@@ -194,7 +188,6 @@
   }
 
   // Tables
-
   table {
     @extend %table;
     @extend %table_bordered;

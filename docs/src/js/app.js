@@ -5,10 +5,49 @@ import Modal from 'modal'
 import Toggle from 'toggle'
 import listjs from 'list.js'
 
-const dismissible = new Dismissible
+const dismissible = new Dismissible()
 const drawer = new Drawer()
 const modal = new Modal()
 const toggle = new Toggle()
+
+/**
+ * General event trigger for testing
+ */
+
+document.addEventListener('click', function() {
+
+  // Get the element that triggered the event
+  let trigger = event.target
+
+  // Run the script if it exists as a data attribute
+  if (trigger.dataset.script) {
+    // Get our script string for processing
+    let string = trigger.dataset.script
+    
+    // console.log('Run: ', string)
+
+    // Get indexes of string
+    let indexObject = string.indexOf('.')
+    let indexMethod = string.indexOf('(')
+    let indexParamStart = string.indexOf('\'')
+    let indexParamEnd = string.indexOf('\'', indexParamStart + 1)
+
+    // Get the object, method and if params are passed
+    let obj = string.substring(0, indexObject)
+    let method = string.substring(indexObject + 1, indexMethod)
+    let params = string.substring(indexParamStart + 1, indexParamEnd)
+
+    // console.log('Obj: ', obj)
+    // console.log('Method: ', method)
+    // console.log('Params: ', params)
+
+    // Run our data script
+    if (obj === 'drawer') {
+      drawer[method](params)
+    }
+  }
+
+})
 
 /**
  * List.js
