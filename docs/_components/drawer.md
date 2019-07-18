@@ -386,8 +386,11 @@ const drawer = new Drawer({
 <div class="type" markdown="1">
 
 ```js
+// Import our drawer component
 import Drawer from 'drawer'
-const drawer = new Drawer(options)
+
+// Initialize a new instance of our drawer component with default settings
+const drawer = new Drawer()
 ```
 
 </div>
@@ -402,79 +405,76 @@ const drawer = new Drawer(options)
     <th>Default</th>
   </tr>
   <tr>
-    <td><code>classTarget</code></td>
-    <td>...</td>
+    <td><code class="text_nowrap">classTarget</code></td>
+    <td>Class used for the target element</td>
     <td>String</td>
-    <td><code>'drawer__item'</code></td>
+    <td><code class="text_nowrap">'drawer__item'</code></td>
   </tr>
   <tr>
-    <td><code>classTrigger</code></td>
-    <td>...</td>
+    <td><code class="text_nowrap">classTrigger</code></td>
+    <td>Class used for the trigger element</td>
     <td>String</td>
-    <td><code>'drawer__trigger'</code></td>
+    <td><code class="text_nowrap">'drawer__trigger'</code></td>
   </tr>
   <tr>
-    <td><code>classInner</code></td>
-    <td>...</td>
+    <td><code class="text_nowrap">classInner</code></td>
+    <td>Class used for the inner component for transitions</td>
     <td>String</td>
-    <td><code>'drawer__dialog'</code></td>
-  </tr>
-
-  <tr>
-    <td><code>classTargetSwitch</code></td>
-    <td>...</td>
-    <td>String</td>
-    <td><code>'modal'</code></td>
+    <td><code class="text_nowrap">'drawer__dialog'</code></td>
   </tr>
   <tr>
-    <td><code>classTriggerSwitch</code></td>
-    <td>...</td>
+    <td><code class="text_nowrap">classTargetSwitch</code></td>
+    <td>Class that gets switched to on the target element</td>
     <td>String</td>
-    <td><code>'modal__trigger'</code></td>
+    <td><code class="text_nowrap">'modal'</code></td>
   </tr>
   <tr>
-    <td><code>classInnerSwitch</code></td>
-    <td>...</td>
+    <td><code class="text_nowrap">classTriggerSwitch</code></td>
+    <td>Class that gets switched to on the trigger element</td>
     <td>String</td>
-    <td><code>'modal__dialog'</code></td>
-  </tr>
-
-  <tr>
-    <td><code>classActive</code></td>
-    <td>...</td>
-    <td>String</td>
-    <td><code>'is-active'</code></td>
+    <td><code class="text_nowrap">'modal__trigger'</code></td>
   </tr>
   <tr>
-    <td><code>classTransitionNone</code></td>
-    <td>...</td>
+    <td><code class="text_nowrap">classInnerSwitch</code></td>
+    <td>Class that gets switched to on the inner element</td>
     <td>String</td>
-    <td><code>'transition_none'</code></td>
+    <td><code class="text_nowrap">'modal__dialog'</code></td>
   </tr>
-
   <tr>
-    <td><code>saveState</code></td>
-    <td>...</td>
+    <td><code class="text_nowrap">classActive</code></td>
+    <td>Class the applied when a drawer is active</td>
+    <td>String</td>
+    <td><code class="text_nowrap">'is-active'</code></td>
+  </tr>
+  <tr>
+    <td><code class="text_nowrap">classTransitionNone</code></td>
+    <td>Class to disable transitions during initial state load</td>
+    <td>String</td>
+    <td><code class="text_nowrap">'transition_none'</code></td>
+  </tr>
+  <tr>
+    <td><code class="text_nowrap">saveState</code></td>
+    <td>Whether or not to enable save state feature</td>
     <td>Boolean</td>
-    <td><code>true</code></td>
+    <td><code class="text_nowrap">true</code></td>
   </tr>
   <tr>
-    <td><code>switch</code></td>
-    <td>...</td>
+    <td><code class="text_nowrap">switch</code></td>
+    <td>False to disable switch functionality, or a valid selector</td>
     <td>String</td>
-    <td><code>'[data-drawer-switch]'</code></td>
+    <td><code class="text_nowrap">'[data-drawer-switch]'</code></td>
   </tr>
   <tr>
-    <td><code>switchBreakpoint</code></td>
-    <td>...</td>
+    <td><code class="text_nowrap">switchBreakpoint</code></td>
+    <td>The breakpoint to switch between display modes</td>
     <td>String</td>
-    <td><code>'lg'</code></td>
+    <td><code class="text_nowrap">'lg'</code></td>
   </tr>
   <tr>
-    <td><code>transitionDuration</code></td>
-    <td>...</td>
+    <td><code class="text_nowrap">transitionDuration</code></td>
+    <td>Duration in miliseconds that a drawer transitions</td>
     <td>Milisecond</td>
-    <td><code>500</code></td>
+    <td><code class="text_nowrap">500</code></td>
   </tr>
 </table>
 
