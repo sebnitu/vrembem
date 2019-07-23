@@ -2,7 +2,6 @@
   "name": "vrembem",
   "version": "0.7.0",
   "private": true,
-  "description": "A CSS component library based on the BEM methodology.",
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
