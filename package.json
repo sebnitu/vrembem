@@ -2,22 +2,6 @@
   "name": "vrembem",
   "version": "0.7.0",
   "description": "A CSS component library based on the BEM methodology.",
-  "author": {
-    "name": "Sebastian Nitu",
-    "email": "me@sebnitu.com",
-    "url": "http://sebnitu.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/sebnitu/vrembem.git"
-  },
-  "license": "MIT",
-  "files": [
-    "dist",
-    "src",
-    ".babelrc",
-    "gulpfile.babel.js"
-  ],
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
@@ -35,6 +19,7 @@
     "gulp-sourcemaps": "^2.6.5",
     "gulp-svg-symbols": "^3.2.3",
     "gulp-uglify": "^3.0.2",
+    "lerna": "^3.15.0",
     "list.js": "^1.5.0",
     "svgxuse": "^1.2.6",
     "through2": "^3.0.1",
