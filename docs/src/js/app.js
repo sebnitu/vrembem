@@ -23,7 +23,7 @@ document.addEventListener('click', function() {
   if (trigger.dataset.script) {
     // Get our script string for processing
     let string = trigger.dataset.script
-    
+
     // console.log('Run: ', string)
 
     // Get indexes of string
@@ -89,6 +89,7 @@ if (document.getElementById('listjs')) {
     // Update the search text in empty notice
     let value = search.value
     notice_empty_text.innerHTML = value
+    localStorage.setItem('searchValue', value)
 
     // Show clear search button if a value there is something in search
     if (value) {
@@ -128,4 +129,9 @@ if (document.getElementById('listjs')) {
 
   }, false)
 
+  // Restore our local storage value
+  if (localStorage.getItem('searchValue')) {
+    search.value = localStorage.getItem('searchValue')
+    list.search(search.value)
+  }
 }
