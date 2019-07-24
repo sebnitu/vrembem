@@ -8,18 +8,18 @@ layout: default
     <div class="container spacing">
       <div class="grid grid_lg">
 
-        <div class="grid__item size_12">
+        <div class="grid__item span_12">
           <h1 class="article__title">{{ page.title }}</h1>
         </div>
 
         {% if page.description %}
-        <div class="grid__item size_6">
+        <div class="grid__item span_6">
           <p>{{ page.description }}</p>
         </div>
         {% endif %}
 
         {% if page.usage %}
-        <div class="grid__item size_6">
+        <div class="grid__item span_6">
           {% capture usage %}{% include usage.md %}{% endcapture %}
           {{ usage | markdownify }}
         </div>

@@ -411,7 +411,7 @@ Available themes:
 {% include flag.html heading="card_theme_[key]" %}
 
 <div class="grid grid_md">
-  <div class="grid__item size_4 spacing">
+  <div class="grid__item span_4 spacing">
     <div class="card card_theme_dark">
       <img src="https://picsum.photos/600/400/?random" class="card__image" width="600" height="400">
       <div class="card__body spacing">
@@ -432,7 +432,7 @@ Available themes:
       </div>
     </a>
   </div>
-  <div class="grid__item size_4 spacing">
+  <div class="grid__item span_4 spacing">
     <div>
     <div class="card card_theme_shade">
       <img src="https://picsum.photos/600/400/?random" class="card__image" width="600" height="400">
@@ -457,7 +457,7 @@ Available themes:
     </a>
     </div>
   </div>
-  <div class="grid__item size_4 spacing">
+  <div class="grid__item span_4 spacing">
     <div class="card card_theme_bordered">
       <img src="https://picsum.photos/600/400/?random" class="card__image" width="600" height="400">
       <div class="card__body spacing">
@@ -578,7 +578,7 @@ Below are a few examples of different ways to build a card using various card el
 
 <div class="grid">
 
-  <div class="grid__item size_12 size_6_xs size_4_md grid__item_fill">
+  <div class="grid__item span_12 span_6_xs span_4_md grid__item_fill">
     <div class="card">
       <img src="https://picsum.photos/600/400/?2" class="card__image" width="600" height="400">
       <div class="card__body spacing">
@@ -589,7 +589,7 @@ Below are a few examples of different ways to build a card using various card el
     </div>
   </div>
 
-  <div class="grid__item size_12 size_6_xs size_4_md grid__item_fill">
+  <div class="grid__item span_12 span_6_xs span_4_md grid__item_fill">
     <div class="card">
       <div class="card__body spacing">
         <h3 class="card__title">Card Title</h3>
@@ -600,7 +600,7 @@ Below are a few examples of different ways to build a card using various card el
     </div>
   </div>
 
-  <div class="grid__item size_12 size_6_xs size_4_md grid__item_fill">
+  <div class="grid__item span_12 span_6_xs span_4_md grid__item_fill">
     <div class="card card_theme_dark">
       <div class="card__header">
         <h3 class="card__title">Card Title</h3>
@@ -614,7 +614,7 @@ Below are a few examples of different ways to build a card using various card el
     </div>
   </div>
 
-  <div class="grid__item size_12 size_6_xs grid__item_fill">
+  <div class="grid__item span_12 span_6_xs grid__item_fill">
     <a href="#" class="card card_theme_dark card_tall card_link card_fade">
       <div class="card__header level justify_between">
         <h3 class="card__title">Card Title</h3>
@@ -631,7 +631,7 @@ Below are a few examples of different ways to build a card using various card el
     </a>
   </div>
 
-  <div class="grid__item size_12 size_6_md grid__item_fill">
+  <div class="grid__item span_12 span_6_md grid__item_fill">
     <a href="#" class="card card_theme_bordered card_link card_size_lg">
       <div class="card__body spacing">
         <blockquote>
@@ -644,7 +644,7 @@ Below are a few examples of different ways to build a card using various card el
     </a>
   </div>
 
-  <div class="grid__item size_12 size_6_xs size_4_md grid__item_fill">
+  <div class="grid__item span_12 span_6_xs span_4_md grid__item_fill">
     <div class="card card_theme_shade">
       <img src="https://picsum.photos/600/400/?11" class="card__image" width="600" height="400">
       <div class="card__header">
@@ -659,7 +659,7 @@ Below are a few examples of different ways to build a card using various card el
     </div>
   </div>
 
-  <div class="grid__item size_12 size_6_xs size_4_md grid__item_fill">
+  <div class="grid__item span_12 span_6_xs span_4_md grid__item_fill">
     <div class="card">
       <div class="card__header">
         <h3 class="card__title">Card Title</h3>
@@ -674,7 +674,7 @@ Below are a few examples of different ways to build a card using various card el
     </div>
   </div>
 
-  <div class="grid__item size_12 size_4_md grid__item_fill">
+  <div class="grid__item span_12 span_4_md grid__item_fill">
     <a href="#" class="card card_theme_bordered card_link">
       <div class="card__header">
         <h3 class="card__title">Card Title</h3>
