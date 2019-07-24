@@ -38,7 +38,7 @@ To create a trigger for your drawer, give a link or button the `drawer__trigger`
 
 </div>
 
-{% include demo_open.html class_gridItem="size_12" %}
+{% include demo_open.html class_gridItem="span_12" %}
 
 <div class="drawer">
 
@@ -63,7 +63,7 @@ To create a trigger for your drawer, give a link or button the `drawer__trigger`
 
 </div>
 
-{% include demo_switch.html class_gridItem="size_12" %}
+{% include demo_switch.html class_gridItem="span_12" %}
 
 ```html
 <button class="drawer__trigger" data-target=".drawer__item">...</button>
@@ -86,7 +86,7 @@ Although you can use any content within a drawer, the [dialog component](/compon
 
 </div>
 
-{% include demo_open.html class_gridItem="size_12" %}
+{% include demo_open.html class_gridItem="span_12" %}
 
 <div class="drawer">
 
@@ -118,7 +118,7 @@ Although you can use any content within a drawer, the [dialog component](/compon
 
 </div>
 
-{% include demo_switch.html class_gridItem="size_12" %}
+{% include demo_switch.html class_gridItem="span_12" %}
 
 ```html
 ...
@@ -151,7 +151,7 @@ Drawer items can slide in from the left or right using the position modifiers:
 
 </div>
 
-{% include demo_open.html class_gridItem="size_12" %}
+{% include demo_open.html class_gridItem="span_12" %}
 
 <div class="drawer">
 
@@ -185,7 +185,7 @@ Drawer items can slide in from the left or right using the position modifiers:
 
 </div>
 
-{% include demo_switch.html class_gridItem="size_12" %}
+{% include demo_switch.html class_gridItem="span_12" %}
 
 ```html
 <div class="drawer">
@@ -215,7 +215,7 @@ By default the state of your drawers are saved when a unique identifier is provi
 
 </div>
 
-{% include demo_open.html class_gridItem="size_12" %}
+{% include demo_open.html class_gridItem="span_12" %}
 
 <div class="drawer">
 
@@ -238,7 +238,7 @@ By default the state of your drawers are saved when a unique identifier is provi
 
 </div>
 
-{% include demo_switch.html class_gridItem="size_12" %}
+{% include demo_switch.html class_gridItem="span_12" %}
 
 ```html
 <button class="drawer__trigger" data-target="#custom-drawer">...</button>
@@ -269,7 +269,7 @@ Drawer items have the ability to switch between drawer or modal modes by default
 
 </div>
 
-{% include demo_open.html class_gridItem="size_12" %}
+{% include demo_open.html class_gridItem="span_12" %}
 
 <div class="drawer">
 
@@ -292,7 +292,7 @@ Drawer items have the ability to switch between drawer or modal modes by default
 
 </div>
 
-{% include demo_switch.html class_gridItem="size_12" %}
+{% include demo_switch.html class_gridItem="span_12" %}
 
 ```html
 <div class="drawer">
@@ -313,7 +313,7 @@ Define the breakpoint that drawers get switched by passing a breakpoint as the `
 
 </div>
 
-{% include demo_open.html class_gridItem="size_12" %}
+{% include demo_open.html class_gridItem="span_12" %}
 
 <div class="drawer">
 
@@ -353,7 +353,7 @@ Define the breakpoint that drawers get switched by passing a breakpoint as the `
 
 </div>
 
-{% include demo_switch.html class_gridItem="size_12" %}
+{% include demo_switch.html class_gridItem="span_12" %}
 
 ```html
 <div class="drawer">
@@ -367,7 +367,7 @@ Define the breakpoint that drawers get switched by passing a breakpoint as the `
 </div>
 ```
 
-{% include demo_switch.html class_gridItem="size_12" %}
+{% include demo_switch.html class_gridItem="span_12" %}
 
 ```js
 // Import our drawer component

@@ -3,16 +3,18 @@
 /**
  * Span
  * ---
- * A component that sets the flex-basis of an element.
+ * A component that sets the flex-basis and max-width of a flexed element.
  */
 
 .span_auto {
   flex: 0 0 auto;
+  max-width: none;
 }
 
 @for $i from 1 through $span-columns {
   .span_#{$i} {
     flex: 0 0 (100% * ($i/$span-columns));
+    max-width: (100% * ($i/$span-columns));
   }
 }
 
@@ -27,11 +29,13 @@
 
     .span_auto_#{$name} {
       flex: 0 0 auto;
+      max-width: none;
     }
 
     @for $i from 1 through $span-columns {
       .span_#{$i}_#{$name} {
         flex-basis: (100% * ($i/$span-columns));
+        max-width: (100% * ($i/$span-columns));
       }
     }
   }
