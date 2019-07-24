@@ -482,7 +482,7 @@ const drawer = new Drawer()
 
 <div class="grid">
 
-  <div class="grid__item grid__item_fill size_12 size_6_md size_4_xl">
+  <div class="grid__item grid__item_fill span_12 span_6_md span_4_xl">
     {% include card_method.html
       title="init"
       desc="The constructor method, run as soon as an instance is created."
@@ -491,7 +491,7 @@ const drawer = new Drawer()
     %}
   </div>
 
-  <div class="grid__item grid__item_fill size_12 size_6_md size_4_xl">
+  <div class="grid__item grid__item_fill span_12 span_6_md span_4_xl">
     {% include card_method.html
       title="destroy"
       desc="The deconstructor method, used to reset and destroy the drawer instance."
@@ -500,7 +500,7 @@ const drawer = new Drawer()
     %}
   </div>
 
-  <div class="grid__item grid__item_fill size_12 size_6_md size_4_xl">
+  <div class="grid__item grid__item_fill span_12 span_6_md span_4_xl">
     {% include card_method.html
       title="open"
       desc="Public method to open a drawer or group of drawers."
@@ -509,7 +509,7 @@ const drawer = new Drawer()
     %}
   </div>
 
-  <div class="grid__item grid__item_fill size_12 size_6_md size_4_xl">
+  <div class="grid__item grid__item_fill span_12 span_6_md span_4_xl">
     {% include card_method.html
       title="close"
       desc="Public method to close a drawer or group of drawers."
@@ -518,7 +518,7 @@ const drawer = new Drawer()
     %}
   </div>
 
-  <div class="grid__item grid__item_fill size_12 size_6_md size_4_xl">
+  <div class="grid__item grid__item_fill span_12 span_6_md span_4_xl">
     {% include card_method.html
       title="toggle"
       desc="Public method to toggle a drawer or group of drawers."
@@ -527,7 +527,7 @@ const drawer = new Drawer()
     %}
   </div>
 
-  <div class="grid__item grid__item_fill size_12 size_6_md size_4_xl">
+  <div class="grid__item grid__item_fill span_12 span_6_md span_4_xl">
     {% include card_method.html
       title="switchToDrawer"
       desc="Public method to switch a modal into drawer."
@@ -536,7 +536,7 @@ const drawer = new Drawer()
     %}
   </div>
 
-  <div class="grid__item grid__item_fill size_12 size_6_md size_4_xl">
+  <div class="grid__item grid__item_fill span_12 span_6_md span_4_xl">
     {% include card_method.html
       title="switchToModal"
       desc="Public method to switch a drawer into modal."
@@ -545,7 +545,7 @@ const drawer = new Drawer()
     %}
   </div>
 
-  <div class="grid__item grid__item_fill size_12 size_6_md size_4_xl">
+  <div class="grid__item grid__item_fill span_12 span_6_md span_4_xl">
     {% include card_method.html
       title="stateSave"
       desc="Save the drawer current drawer state."
@@ -554,7 +554,7 @@ const drawer = new Drawer()
     %}
   </div>
 
-  <div class="grid__item grid__item_fill size_12 size_6_md size_4_xl">
+  <div class="grid__item grid__item_fill span_12 span_6_md span_4_xl">
     {% include card_method.html
       title="stateClear"
       desc="Clears drawer state from local storage."
