@@ -2148,8 +2148,7 @@ pre {
 /**
  * Span
  * ---
- * A component that sets the flex-basis, width and max width of an element based
- * on a column set.
+ * A component that sets the flex-basis of an element.
  */
 .span_auto {
   -webkit-box-flex: 0;

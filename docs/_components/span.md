@@ -1,7 +1,7 @@
 ---
 layout: article
 title: "Span"
-description: "A component that sets the flex-basis, width and max width of an element based on a column set."
+description: "A component that sets the flex-basis of an element."
 category: layout
 # usage:
   # npm: "@vrembem/span"
