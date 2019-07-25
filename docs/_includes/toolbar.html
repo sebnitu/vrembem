@@ -1,7 +1,7 @@
 <div class="toolbar{% if include.class %} {{ include.class }}{% endif %}">
-  <div class="level justify_between">
+  <div class="grid grid_auto grid_hori_between grid_gap_none">
 
-    <div class="level__item">
+    <div class="grid__item">
       <ul class="menu menu_theme_invert">
         <li class="menu__item">
           <button class="menu__link menu__link_icon drawer__trigger" data-target="#listjs">
@@ -15,7 +15,7 @@
       </ul>
     </div>
 
-    <div class="level__item">
+    <div class="grid__item">
       <ul class="menu menu_theme_invert">
 
         {%- if page.previous -%}

@@ -18,7 +18,7 @@ You can inject svg icons directly or use svg sprites. The only requirement is th
 
 {% include demo_open.html %}
 
-<div class="demo__group level level_wrap">
+<div class="demo__group level">
   {% include icon.html icon="anchor" %}
   {% include icon.html icon="arrow-left" %}
   {% include icon.html icon="arrow-right" %}
@@ -45,7 +45,7 @@ You can inject svg icons directly or use svg sprites. The only requirement is th
 
 {% include demo_open.html class_parent="spacing" %}
 
-<div class="demo__group level level_wrap">
+<div class="demo__group level">
   {% include icon.html icon="anchor" class="icon_size_sm" %}
   {% include icon.html icon="anchor" %}
   {% include icon.html icon="anchor" class="icon_size_lg" %}

@@ -1,133 +1,51 @@
 /**
  * Flex utility
- * ---
- * Used to add specific styles to flexbox based components
  */
 
-/**
- * Justify Content
- */
+// Horizontal flex utility
 
-.justify_start {
+.flex_hori_start {
   justify-content: flex-start !important;
 }
 
-.justify_center {
+.flex_hori_center {
   justify-content: center !important;
 }
 
-.justify_end {
+.flex_hori_end {
   justify-content: flex-end !important;
 }
 
-.justify_between {
+.flex_hori_between {
   justify-content: space-between !important;
 }
 
-.justify_around {
+.flex_hori_around {
   justify-content: space-around !important;
 }
 
-.justify_evenly {
+.flex_hori_evenly {
   justify-content: space-evenly !important;
 }
 
-/**
- * Align Items
- */
+// Vertical flex utility
 
-.items_start {
+.flex_vert_start {
   align-items: flex-start !important;
 }
 
-.items_center {
+.flex_vert_center {
   align-items: center !important;
 }
 
-.items_end {
+.flex_vert_end {
   align-items: flex-end !important;
 }
 
-.items_stretch {
+.flex_vert_stretch {
   align-items: stretch !important;
 }
 
-.items_baseline {
+.flex_vert_baseline {
   align-items: baseline !important;
-}
-
-/**
- * Align Self
- */
-
-.self_auto {
-  align-self: auto !important;
-}
-
-.self_start {
-  align-self: flex-start !important;
-}
-
-.self_center {
-  align-self: center !important;
-}
-
-.self_end {
-  align-self: flex-end !important;
-}
-
-.self_stretch {
-  align-self: stretch !important;
-}
-
-.self_baseline {
-  align-self: baseline !important;
-}
-
-/**
- * Flex grow
- */
-
-.grow_0 {
-  flex-grow: 0 !important;
-}
-
-.grow_1 {
-  flex-grow: 1 !important;
-}
-
-.grow_2 {
-  flex-grow: 2 !important;
-}
-
-.grow_3 {
-  flex-grow: 3 !important;
-}
-
-/**
- * Flex order
- */
-
-.order_n1 {
-  order: -1 !important;
-}
-
-.order_n2 {
-  order: -2 !important;
-}
-
-.order_n3 {
-  order: -3 !important;
-}
-
-.order_p1 {
-  order: 1 !important;
-}
-
-.order_p2 {
-  order: 2 !important;
-}
-
-.order_p3 {
-  order: 3 !important;
 }

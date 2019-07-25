@@ -3,15 +3,19 @@
 /**
  * Level
  * ---
- * A component that enables flexbox to center it's children horizontally.
+ * A simple flexbox based layout component.
  */
 
 .level {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  vertical-align: middle;
+  margin-top: ($level-gap * -1);
+  margin-left: ($level-gap * -1);
 
-  > * + * {
-    margin-left: $level-spacing;
+  > * {
+    flex: 0 0 auto;
+    margin-top: $level-gap;
+    margin-left: $level-gap;
   }
 }

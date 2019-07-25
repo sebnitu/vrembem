@@ -212,7 +212,7 @@ The dialog is a very flexible component and can be used in many different contex
 {% include demo_open.html %}
 
 <div class="dialog">
-  <div class="dialog__body spacing p_2">
+  <div class="dialog__body spacing padding_md">
     <h2 class="dialog__title">Did you forget an attachment?</h2>
     <p>You wrote "I have attached" in your message, but there are no files attached. Send anyway?</p>
   </div>
@@ -228,7 +228,7 @@ The dialog is a very flexible component and can be used in many different contex
 
 ```html
 <div class="dialog">
-  <div class="dialog__body p_2">
+  <div class="dialog__body padding_md">
     ...
   </div>
   <div class="dialog__footer justify_end">

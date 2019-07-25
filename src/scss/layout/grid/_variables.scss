@@ -1,12 +1,13 @@
 // Grid
 // ---
-$grid-spacing: 2rem !default;
+$grid-gap: 2rem !default;
 
 // Grid modifiers
 // ---
-$grid-spacing-scale: (
+$grid-gap-scale: (
   'xs': 0.5rem,
   'sm': 1rem,
-  'lg': 2.5rem,
-  'xl': 3rem,
+  'md': 2rem,
+  'lg': 3rem,
+  'xl': 4rem,
 ) !default;

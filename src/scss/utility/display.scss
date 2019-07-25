@@ -3,15 +3,15 @@
  */
 
 @each $display in $utility-display {
-  .d_#{$display} {
+  .display_#{$display} {
     display: $display !important;
   }
 }
 
-@each $name, $value in $breakpoints {
-  @include media-min($name) {
+@each $key, $value in $breakpoints {
+  @include media-min($key) {
     @each $display in $utility-display {
-      .d_#{$display}_#{$name} {
+      .display_#{$display}_#{$key} {
         display: $display !important;
       }
     }

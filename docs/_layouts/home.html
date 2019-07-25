@@ -12,13 +12,17 @@ layout: compress
       {%- if site.description -%}
         <p class="cover__desc">{{ site.description }}</p>
       {%- endif -%}
-      <p class="level">
-        <a href="http://github.com/{{ site.repository }}" class="button button_outline_accent" target="_blank">
-          {% include icon.html icon="github" %}
-          <span class="button__item">GitHub Repo</span>
-        </a>
-        <a class="cover__version" data-tooltip="View releases on Github" data-tooltip-pos="down-left" href="http://github.com/{{ site.repository }}/releases" target="_blank">Version <span class="version-number">{{ site.version }}</span></a>
-      </p>
+      <div class="grid grid_auto grid_vert_center grid_gap_sm">
+        <div class="grid__item">
+          <a href="http://github.com/{{ site.repository }}" class="button button_block button_outline_accent" target="_blank">
+            {% include icon.html icon="github" %}
+            <span class="button__item">GitHub Repo</span>
+          </a>
+        </div>
+        <div class="grid__item">
+          <a class="cover__version" data-tooltip="View releases on Github" data-tooltip-pos="down-left" href="http://github.com/{{ site.repository }}/releases" target="_blank">Version <span class="version-number">{{ site.version }}</span></a>
+        </div>
+      </div>
     </div>
   </header>
 

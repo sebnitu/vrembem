@@ -1,0 +1,38 @@
+@import 'variables';
+
+/**
+ * Grid breakpoints modifiers
+ * ---
+ * Adds a breakpoint for when grid items should be stacked vertically.
+ */
+
+.grid_break {
+  flex-direction: column;
+
+  > .grid__item {
+    flex: 1 0 100%;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+ @each $key, $value in $breakpoints {
+   .grid_break_#{$key} {
+     flex-direction: column;
+   }
+
+   @include media-min($key) {
+     .grid_break_#{$key} {
+       flex-direction: row;
+     }
+   }
+
+   @include media-max($key) {
+     // Add stack styles using media-max so span utility can still be set.
+     .grid_break_#{$key} > .grid__item {
+       flex: 1 0 100%;
+       width: 100%;
+       max-width: 100%;
+     }
+   }
+ }

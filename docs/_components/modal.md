@@ -43,7 +43,7 @@ The core parts of a modal include the following elements:
 
 {% include demo_open.html %}
 
-<div class="level level_wrap">
+<div class="level">
   <button class="modal__trigger button button_color_primary" data-target="#modal-size-sm">Small Modal</button>
   <button class="modal__trigger button button_color_primary" data-target="#modal-size-lg">Large Modal</button>
 </div>
@@ -75,7 +75,7 @@ The core parts of a modal include the following elements:
 
 {% include demo_open.html %}
 
-<div class="level level_wrap">
+<div class="level">
   <button class="modal__trigger button button_color_primary" data-target="#modal-pos-top">Modal Top</button>
   <button class="modal__trigger button button_color_primary" data-target="#modal-pos-bottom">Modal Bottom</button>
   <button class="modal__trigger button button_color_primary" data-target="#modal-pos-left">Modal Left</button>

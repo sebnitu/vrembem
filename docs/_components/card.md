@@ -410,7 +410,7 @@ Available themes:
 
 {% include flag.html heading="card_theme_[key]" %}
 
-<div class="grid grid_md">
+<div class="grid grid_break_md">
   <div class="grid__item span_4 spacing">
     <div class="card card_theme_dark">
       <img src="https://picsum.photos/600/400/?random" class="card__image" width="600" height="400">
@@ -500,7 +500,7 @@ Below are a few examples of different ways to build a card using various card el
 
 <div class="demo">
   <div class="demp__render">
-    <div class="grid grid_md">
+    <div class="grid grid_break_md">
       {%- assign card_class = 'card_tall card_fade card_zoom' -%}
       {%- for counter in (1..3) -%}
       <div class="grid__item grid__item_fill">
@@ -528,7 +528,7 @@ Below are a few examples of different ways to build a card using various card el
 
 <div class="demo">
   <div class="demp__render">
-    <div class="grid grid_md">
+    <div class="grid grid_break_md">
       {%- for counter in (1..3) -%}
       <div class="grid__item grid__item_fill">
         <a href="#" class="card card_link">
@@ -551,7 +551,7 @@ Below are a few examples of different ways to build a card using various card el
 
 <div class="demo">
   <div class="demp__render">
-    <div class="grid grid_md">
+    <div class="grid grid_break_md">
       {%- assign card_class = 'card_link card_step' -%}
       {%- for counter in (1..3) -%}
       <div class="grid__item grid__item_fill">

@@ -28,7 +28,7 @@ category: simple
 
 {% include demo_open.html class_parent="spacing_xs" %}
 
-  <div class="demo__group level level_wrap">
+  <div class="demo__group level">
     <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="up">
       {% include icon.html icon="chevron-up" %}
     </button>
@@ -49,7 +49,7 @@ category: simple
     </button>
   </div>
 
-  <div class="demo__group level level_wrap">
+  <div class="demo__group level">
     <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="right">
       {% include icon.html icon="chevron-right" %}
     </button>

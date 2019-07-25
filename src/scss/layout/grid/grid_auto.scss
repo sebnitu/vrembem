@@ -1,0 +1,11 @@
+@import 'variables';
+
+/**
+ * Grid auto modifiers
+ * ---
+ * Gives grid items a basis of auto so their content dictates their width.
+ */
+
+.grid_auto > .grid__item {
+  flex: 0 0 auto;
+}

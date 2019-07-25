@@ -83,6 +83,12 @@ if (document.getElementById('listjs')) {
   let search = document.querySelector('.filter .search')
   let search_clear = document.querySelector('.filter .search_clear')
 
+  let isMenuLinkActive = () => {
+    let menuLinks = document.querySelectorAll('#listjs .menu__link')
+    let isActive = u.hasClass(menuLinks, 'is-active')
+    return isActive
+  }
+
   // On search complete callback
   list.on('searchComplete', () => {
 
@@ -95,18 +101,18 @@ if (document.getElementById('listjs')) {
     if (value) {
       u.addClass(filter, 'is-active')
       u.addClass(search, 'is-active')
-      u.removeClass(search_clear, 'd_none')
+      u.removeClass(search_clear, 'dismiss')
     } else {
       u.removeClass(filter, 'is-active')
       u.removeClass(search, 'is-active')
-      u.addClass(search_clear, 'd_none')
+      u.addClass(search_clear, 'dismiss')
     }
 
     // Toggle notice depending on the number of visible items
     if (list.visibleItems.length > 0) {
-      u.addClass(notice_empty, 'd_none')
+      u.addClass(notice_empty, 'dismiss')
     } else {
-      u.removeClass(notice_empty, 'd_none')
+      u.removeClass(notice_empty, 'dismiss')
     }
   })
 
@@ -133,5 +139,9 @@ if (document.getElementById('listjs')) {
   if (localStorage.getItem('searchValue')) {
     search.value = localStorage.getItem('searchValue')
     list.search(search.value)
+    if (!isMenuLinkActive()) {
+      search.value = ''
+      list.search()
+    }
   }
 }

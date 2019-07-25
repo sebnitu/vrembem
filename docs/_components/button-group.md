@@ -76,16 +76,20 @@ category: compound
 
 {% include demo_open.html %}
 
-<div class="level">
-  <div class="button-group button-group_stack">
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_color_primary">Button</button>
+<div class="grid grid_auto">
+  <div class="grid__item">
+    <div class="button-group button-group_stack">
+      <button class="button button_color_primary">Button</button>
+      <button class="button button_color_primary">Button</button>
+      <button class="button button_color_primary">Button</button>
+    </div>
   </div>
-  <div class="button-group button-group_stack">
-    <button class="button button_outline">Button</button>
-    <button class="button button_outline">Button</button>
-    <button class="button button_outline">Button</button>
+  <div class="grid__item">
+    <div class="button-group button-group_stack">
+      <button class="button button_outline">Button</button>
+      <button class="button button_outline">Button</button>
+      <button class="button button_outline">Button</button>
+    </div>
   </div>
 </div>
 
@@ -245,16 +249,20 @@ category: compound
 
 {% include demo_open.html %}
 
-<div class="level">
-  <div class="button-group button-group_join button-group_stack">
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_color_primary">Button</button>
+<div class="grid grid_auto">
+  <div class="grid__item">
+    <div class="button-group button-group_join button-group_stack">
+      <button class="button button_color_primary">Button</button>
+      <button class="button button_color_primary">Button</button>
+      <button class="button button_color_primary">Button</button>
+    </div>
   </div>
-  <div class="button-group button-group_join button-group_stack">
-    <button class="button button_outline">Button</button>
-    <button class="button button_outline">Button</button>
-    <button class="button button_outline">Button</button>
+  <div class="grid__item">
+    <div class="button-group button-group_join button-group_stack">
+      <button class="button button_outline">Button</button>
+      <button class="button button_outline">Button</button>
+      <button class="button button_outline">Button</button>
+    </div>
   </div>
 </div>
 
@@ -306,6 +314,14 @@ category: compound
   </div>
 </div>
 
+<div class="demo__group">
+  <div class="button-group button-group_gap_xl">
+    <button class="button button_outline">Button</button>
+    <button class="button button_outline">Button</button>
+    <button class="button button_outline">Button</button>
+  </div>
+</div>
+
 {% include demo_switch.html %}
 
 ```html
@@ -313,6 +329,7 @@ category: compound
 <div class="button-group button-group_gap_sm">...</div>
 <div class="button-group button-group_gap_md">...</div>
 <div class="button-group button-group_gap_lg">...</div>
+<div class="button-group button-group_gap_xl">...</div>
 ```
 
 {% include demo_close.html %}

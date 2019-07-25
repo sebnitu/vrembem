@@ -73,9 +73,6 @@ category: simple
 <div class="notice" data-dismissible>
   <div class="notice__group">
     <h2 class="notice__title">Notice Title</h2>
-    <button class="notice__close icon-action">
-      {% include icon.html icon="minus" class="icon" %}
-    </button>
     <button class="notice__close icon-action" data-dismiss>
       {% include icon.html icon="x" class="icon" %}
     </button>

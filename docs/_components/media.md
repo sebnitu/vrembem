@@ -262,7 +262,7 @@ Here are a few examples of where you could use the media component in different 
 
 {% include flag.html heading="Quotes listing" %}
 
-{% include demo_open.html class_grid="grid_stack" class_parent="spacing spacing_xl" %}
+{% include demo_open.html class_grid="grid_break" class_parent="spacing spacing_xl" %}
 
 <h2 class="h2 text_align_center">Tweet Quotes</h2>
 

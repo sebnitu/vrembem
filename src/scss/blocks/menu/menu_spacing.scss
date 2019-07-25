@@ -42,9 +42,9 @@
     }
   }
 
-  @each $name, $value in $breakpoints {
+  @each $key, $value in $breakpoints {
 
-    .menu_spacing_#{$menu_name}.menu_stack_#{$name} {
+    .menu_spacing_#{$menu_name}.menu_stack_#{$key} {
       .menu__sep {
         margin: $menu_value 0;
         width: 0;
@@ -57,8 +57,8 @@
       }
     }
 
-    @include media-min($name) {
-      .menu_spacing_#{$menu_name}.menu_stack_#{$name} {
+    @include media-min($key) {
+      .menu_spacing_#{$menu_name}.menu_stack_#{$key} {
         .menu__sep {
           margin: 0 $menu_value;
           width: $menu__sep-width;
