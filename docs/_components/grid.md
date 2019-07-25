@@ -1,7 +1,7 @@
 ---
 layout: article
 title: "Grid"
-description: "A flexbox based grid system."
+description: "A flexbox based grid system component."
 category: layout
 # usage:
   # npm: "@vrembem/grid"
@@ -10,21 +10,19 @@ category: layout
 
 {% include flag.html heading="grid + grid__item" %}
 
-<div class="demo spacing">
-  <div class="demo__render">
-    <div class="grid grid_flatten">
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-    </div>
+{% include demo_open.html class_grid="grid_break" %}
+<div class="grid">
+  <div class="grid__item">
+    <div class="box">...</div>
   </div>
-  <div class="demo__code" markdown="1">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+{% include demo_switch.html %}
 ```html
 <div class="grid">
   <div class="grid__item">...</div>
@@ -32,245 +30,529 @@ category: layout
   <div class="grid__item">...</div>
 </div>
 ```
-  </div>
-</div>
+{% include demo_close.html %}
 
 {% include flag.html heading="grid__item_fill" %}
 
 <div class="type" markdown="1">
-The fill modifier class creates equal height columns for a grid.
+The fill modifier stretches a grid item's contents to fill it's container.
 </div>
 
-<div class="demo spacing">
-  <div class="demo__render">
-    <div class="grid grid_flatten">
-      <div class="grid__item grid__item_fill">
-        <div class="box">
-          Duis nec augue nec massa feugiat bibendum eu et nisl. Vivamus accumsan consequat justo, sed faucibus lorem sodales vitae. Integer et consectetur tellus. Aliquam pellentesque est id sapien tristique, eget lobortis enim luctus.
-        </div>
-      </div>
-      <div class="grid__item grid__item_fill">
-        <div class="box">
-          ...
-        </div>
-      </div>
-      <div class="grid__item grid__item_fill">
-        <div class="box">
-          ...
-        </div>
-      </div>
+{% include demo_open.html class_grid="grid_break" %}
+<div class="grid">
+  <div class="grid__item">
+    <div class="box" style="height: 200px;">...</div>
+  </div>
+  <div class="grid__item grid__item_fill">
+    <div class="box">
+      ...
     </div>
   </div>
-  <div class="demo__code" markdown="1">
+  <div class="grid__item">
+    <div class="box">
+      ...
+    </div>
+  </div>
+</div>
+{% include demo_switch.html %}
 ```html
 <div class="grid">
+  <div class="grid__item" style="height: 200px;">...</div>
   <div class="grid__item grid__item_fill">...</div>
-  <div class="grid__item grid__item_fill">...</div>
-  <div class="grid__item grid__item_fill">...</div>
+  <div class="grid__item">...</div>
 </div>
 ```
-  </div>
+{% include demo_close.html %}
+
+{% include flag.html heading="grid__clear" %}
+
+<div class="type" markdown="1">
+The clear element allows you to start a new row at any point in a column set.
 </div>
 
-{% include flag.html heading="grid__break" %}
-
-<div class="demo spacing">
-  <div class="demo__render">
-
-    <div class="grid grid_flatten">
-
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-
-      <div class="grid__break"></div>
-
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-
-    </div>
+{% include demo_open.html class_grid="grid_break" %}
+<div class="grid">
+  <div class="grid__item">
+    <div class="box">...</div>
   </div>
-  <div class="demo__code" markdown="1">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__clear"></div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+{% include demo_switch.html %}
 ```html
 <div class="grid">
   <div class="grid__item">...</div>
   <div class="grid__item">...</div>
-  <div class="grid__break"></div>
+  <div class="grid__clear"></div>
   <div class="grid__item">...</div>
   <div class="grid__item">...</div>
   <div class="grid__item">...</div>
 </div>
 ```
-  </div>
+{% include demo_close.html %}
+
+{% include flag.html heading="grid_auto" %}
+
+<div class="type" markdown="1">
+Gives grid items a basis of auto so their content dictates their width.
 </div>
 
-{% include flag.html heading="grid_[breakpoint]" %}
-
-<div class="demo spacing">
-  <div class="demo__render spacing">
-
-    <div class="grid grid_flatten grid_lg">
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-    </div>
-
-    <div class="grid grid_flatten grid_md">
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-    </div>
-
-    <div class="grid grid_flatten grid_sm">
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-    </div>
-
+{% include demo_open.html %}
+<div class="grid grid_auto">
+  <div class="grid__item">
+    <div class="box">...</div>
   </div>
-  <div class="demo__code" markdown="1">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+{% include demo_switch.html %}
 ```html
-<div class="grid grid_lg">...</div>
-<div class="grid grid_md">...</div>
-<div class="grid grid_sm">...</div>
+<div class="grid grid_auto">
+  <div class="grid__item">...</div>
+  <div class="grid__item">...</div>
+  <div class="grid__item">...</div>
+  <div class="grid__item">...</div>
+  <div class="grid__item">...</div>
+</div>
 ```
-  </div>
+{% include demo_close.html %}
+
+{% include flag.html heading="grid_hori_[value]" %}
+
+<div class="type" markdown="1">
+Adjust the vertical orientation of grid columns. Best used along with the `grid_auto` modifier. Avaliable values are:
+
+* `grid_hori_start`
+* `grid_hori_center`
+* `grid_hori_end`
+* `grid_hori_between`
 </div>
 
-{% include flag.html heading="grid_size_[type]" %}
-
-<div class="demo spacing">
-  <div class="demo__render">
-
-    <div class="grid grid_size_xs">
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-    </div>
-
-    <div class="grid grid_size_sm">
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-    </div>
-
-    <div class="grid grid_size_lg">
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-    </div>
-
-    <div class="grid grid_size_xl">
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-    </div>
-
+{% include demo_open.html %}
+<div class="grid grid_auto grid_hori_start">
+  <div class="grid__item">
+    <div class="box">...</div>
   </div>
-  <div class="demo__code" markdown="1">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+{% include demo_switch.html %}
 ```html
-<div class="grid grid_size_xs">...</div>
-<div class="grid grid_size_sm">...</div>
-<div class="grid grid_size_lg">...</div>
-<div class="grid grid_size_xl">...</div>
+<div class="grid grid_hori_start">...</div>
 ```
+{% include demo_close.html %}
+
+{% include demo_open.html %}
+<div class="grid grid_auto grid_hori_center">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
   </div>
 </div>
-
-{% include flag.html heading="grid_flush" %}
-
-<div class="demo spacing">
-  <div class="demo__render">
-
-    <div class="grid grid_flush">
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-    </div>
-
-    <div class="grid grid_flush">
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-      <div class="grid__item">
-        <div class="box">...</div>
-      </div>
-    </div>
-
-  </div>
-  <div class="demo__code" markdown="1">
+{% include demo_switch.html %}
 ```html
-<div class="grid grid_flush">...</div>
+<div class="grid grid_hori_center">...</div>
 ```
+{% include demo_close.html %}
+
+{% include demo_open.html %}
+<div class="grid grid_auto grid_hori_end">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
   </div>
 </div>
+{% include demo_switch.html %}
+```html
+<div class="grid grid_hori_end">...</div>
+```
+{% include demo_close.html %}
+
+{% include demo_open.html %}
+<div class="grid grid_auto grid_hori_between">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="grid grid_hori_between">...</div>
+```
+{% include demo_close.html %}
+
+{% include flag.html heading="grid_vert_[value]" %}
+
+<div class="type" markdown="1">
+Adjust the vertical orientation of grid columns. Avaliable values are:
+
+* `grid_vert_start`
+* `grid_vert_center`
+* `grid_vert_end`
+</div>
+
+{% include demo_open.html %}
+<div class="grid grid_vert_start">
+  <div class="grid__item">
+    <div class="box" style="height: 100px;">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">
+      ...
+    </div>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="grid grid_vert_start">
+  <div class="grid__item" style="height: 100px;">...</div>
+  <div class="grid__item">...</div>
+</div>
+```
+{% include demo_close.html %}
+
+{% include demo_open.html %}
+<div class="grid grid_vert_center">
+  <div class="grid__item">
+    <div class="box" style="height: 100px;">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">
+      ...
+    </div>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="grid grid_vert_center">
+  <div class="grid__item" style="height: 100px;">...</div>
+  <div class="grid__item">...</div>
+</div>
+```
+{% include demo_close.html %}
+
+{% include demo_open.html %}
+<div class="grid grid_vert_end">
+  <div class="grid__item">
+    <div class="box" style="height: 100px;">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">
+      ...
+    </div>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="grid grid_vert_end">
+  <div class="grid__item" style="height: 100px;">...</div>
+  <div class="grid__item">...</div>
+</div>
+```
+{% include demo_close.html %}
+
+{% include flag.html heading="grid_break_[breakpoint]" %}
+
+<div class="type" markdown="1">
+Adds a breakpoint for when grid items should be stacked vertically. Also available is the `grid_break` modifier which stacks grid items under all conditions.
+</div>
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="grid grid_break_xs">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+
+<div class="grid grid_break_sm">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+
+<div class="grid grid_break_md">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+
+<div class="grid grid_break_lg">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+
+<div class="grid grid_break_xl">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="grid grid_break">...</div>
+<div class="grid grid_break_xs">...</div>
+<div class="grid grid_break_sm">...</div>
+<div class="grid grid_break_md">...</div>
+<div class="grid grid_break_lg">...</div>
+<div class="grid grid_break_xl">...</div>
+```
+{% include demo_close.html %}
+
+{% include flag.html heading="grid_gap_[type]" %}
+
+<div class="type" markdown="1">
+Modifiers that adjust the gutters between content tracks.
+</div>
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="grid grid_gap_none">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__clear"></div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+
+<div class="grid grid_gap_none">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="grid grid_gap_none">...</div>
+```
+{% include demo_close.html %}
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="grid grid_gap_xs">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__clear"></div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+
+<div class="grid grid_gap_xs">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="grid grid_gap_xs">...</div>
+```
+{% include demo_close.html %}
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="grid grid_gap_sm">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__clear"></div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+
+<div class="grid grid_gap_sm">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="grid grid_gap_sm">...</div>
+```
+{% include demo_close.html %}
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="grid grid_gap_md">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__clear"></div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+
+<div class="grid grid_gap_md">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="grid grid_gap_md">...</div>
+```
+{% include demo_close.html %}
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="grid grid_gap_lg">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__clear"></div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+
+<div class="grid grid_gap_lg">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="grid grid_gap_lg">...</div>
+```
+{% include demo_close.html %}
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="grid grid_gap_xl">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__clear"></div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+
+<div class="grid grid_gap_xl">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="grid grid_gap_xl">...</div>
+```
+{% include demo_close.html %}

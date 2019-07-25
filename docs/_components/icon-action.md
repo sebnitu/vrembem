@@ -12,7 +12,7 @@ category: simple
 
 {% include demo_open.html %}
 
-<div class="demo__group level level_wrap">
+<div class="demo__group level">
   <button class="icon-action">
     {% include icon.html icon="x" %}
   </button>
@@ -40,7 +40,7 @@ category: simple
 
 {% include demo_open.html %}
 
-<div class="demo__group level level_wrap">
+<div class="demo__group level">
   <button class="icon-action icon-action_size_sm">
     {% include icon.html icon="x" %}
   </button>
@@ -66,7 +66,7 @@ category: simple
 
 {% include demo_open.html class_parent="spacing" %}
 
-<div class="demo__group level level_wrap">
+<div class="demo__group level">
   <button class="icon-action">
     {% include icon.html icon="x" %}
   </button>
@@ -89,7 +89,7 @@ category: simple
 </div>
 
 <div class="demo__group invert">
-  <div class="level level_wrap">
+  <div class="level">
     <button class="icon-action icon-action_color_invert">
       {% include icon.html icon="x" %}
     </button>

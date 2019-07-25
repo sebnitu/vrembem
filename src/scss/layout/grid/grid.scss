@@ -9,54 +9,31 @@
 .grid {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 (-($grid-spacing * 0.5));
-}
+  margin-top: ($grid-gap * -1);
+  margin-left: ($grid-gap * -1);
 
-.grid_flatten {
-  margin: (-($grid-spacing * 0.5));
+  & + & {
+    margin-top: 0;
+  }
 }
 
 .grid__item {
   flex: 1 1 0;
-  padding: ($grid-spacing * 0.5);
-}
-
-.grid__item_fill {
-  display: flex;
-
-  > * {
-    flex: 1 0 0;
-  }
-}
-
-.grid__break {
-  flex: none;
-  width: 100%;
+  width: auto;
   max-width: 100%;
+  padding-top: $grid-gap;
+  padding-left: $grid-gap;
+
+  &_fill {
+    display: flex;
+    flex-direction: column;
+
+    > * {
+      flex-basis: 100%;
+    }
+  }
 }
 
-/**
- * Grid Breakpoints Modifiers
- * ---
- * Adds a breakpoint to a grid for when grid items should be stacked vertically.
- */
-
-@each $name, $value in $breakpoints {
-  .grid_#{$name} {
-    flex-direction: column;
-  }
-
-  @include media-min($name) {
-    .grid_#{$name} {
-      flex-direction: row;
-    }
-  }
-
-  @include media-max($name) {
-    .grid_#{$name} > .grid__item {
-      flex: none;
-      width: 100%;
-      max-width: 100%;
-    }
-  }
+.grid__clear {
+  flex: 1 0 100%;
 }

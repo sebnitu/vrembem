@@ -12,7 +12,7 @@ category: simple
 
 {% include demo_open.html %}
 
-<div class="level level_wrap">
+<div class="level">
   <a href="#" class="button">Button</a>
   <button class="button">Button</button>
 </div>
@@ -34,7 +34,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
 
 {% include demo_open.html %}
 
-<div class="level level_wrap">
+<div class="level">
   <button class="button button_color_primary">
     {% include icon.html icon="anchor" %}
     <span class="button__item">Button</span>
@@ -69,7 +69,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
 
 {% include demo_open.html %}
 
-<div class="level level_wrap">
+<div class="level">
   <button class="button button_size_sm button_icon">
     {% include icon.html icon="anchor" %}
   </button>
@@ -106,7 +106,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
 
 {% include demo_open.html %}
 
-<div class="level level_wrap">
+<div class="level">
   <button class="button button_size_sm button_color_primary">
     <span>Button</span>
   </button>
@@ -189,7 +189,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
 {% include demo_open.html class_parent="spacing" %}
 
 <div class="demo__group">
-  <div class="level level_wrap">
+  <div class="level">
     <button class="button button_color_primary">Color Primary</button>
     <button class="button button_color_secondary">Color Secondary</button>
     <button class="button button_color_accent">Color Accent</button>
@@ -199,14 +199,14 @@ Elements inside the button component receive appropriate spacing using the `> * 
 </div>
 
 <div class="demo__group">
-  <div class="level level_wrap">
+  <div class="level">
     <button class="button">Default</button>
     <button class="button button_color_subtle">Color Subtle</button>
   </div>
 </div>
 
 <div class="demo__group invert">
-  <div class="level level_wrap">
+  <div class="level">
     <button class="button button_color_invert">Color Invert</button>
     <button class="button button_color_invert_subtle">Color Invert Subtle</button>
   </div>
@@ -236,7 +236,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
 {% include demo_open.html class_parent="spacing" %}
 
 <div class="demo__group">
-  <div class="level level_wrap">
+  <div class="level">
     <button class="button button_outline_primary">Outline Primary</button>
     <button class="button button_outline_secondary">Outline Secondary</button>
     <button class="button button_outline_accent">Outline Accent</button>
@@ -246,14 +246,14 @@ Elements inside the button component receive appropriate spacing using the `> * 
 </div>
 
 <div class="demo__group">
-  <div class="level level_wrap">
+  <div class="level">
     <button class="button button_outline">Default Outline</button>
     <button class="button button_outline_subtle">Outline Subtle</button>
   </div>
 </div>
 
 <div class="demo__group invert">
-  <div class="level level_wrap">
+  <div class="level">
     <button class="button button_outline_invert">Outline Invert</button>
     <button class="button button_outline_invert_subtle">Outline Invert Subtle</button>
   </div>

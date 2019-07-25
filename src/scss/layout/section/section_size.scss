@@ -6,15 +6,15 @@
  * A size modifier that changes the padding scale of sections using a size key.
  */
 
-@each $name, $group in $section-padding-scale {
+@each $key, $group in $section-padding-scale {
   @each $bp, $value in $group {
     @if ($bp == 'base') {
-      .section_size_#{$name} {
+      .section_size_#{$key} {
         padding: $value;
       }
     } @else {
       @include media-min($bp) {
-        .section_size_#{$name} {
+        .section_size_#{$key} {
           padding: $value;
         }
       }

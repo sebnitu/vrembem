@@ -1,4 +1,4 @@
-<div class="notice notice_type_accent notice_empty d_none">
+<div class="notice notice_type_accent notice_empty dismiss">
   No results found for "<span class="search_text"></span>"
 </div>
 
@@ -14,8 +14,8 @@
   {%- endif -%}
 
   <li class="menu__item" data-category="{{ item.category }}">
-    <a class="menu__link{{ class }} justify_between" href="{{ item.url }}">
-      <span class="name">{{ item.title }}</span>
+    <a class="menu__link{{ class }}" href="{{ item.url }}">
+      <span class="name span">{{ item.title }}</span>
       {%- if item.category == 'layout' -%}
         <span class="menu__icon category" data-category="{{ item.category }}" data-tooltip="{{ item.category }}" data-tooltip-pos="left">
           {%- include icon.html icon="layout" -%}

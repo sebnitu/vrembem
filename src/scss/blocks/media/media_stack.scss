@@ -23,14 +23,14 @@
   }
 }
 
-@each $name, $value in $breakpoints {
+@each $key, $value in $breakpoints {
 
-  .media_stack_#{$name} {
+  .media_stack_#{$key} {
     flex-direction: column;
   }
 
-  @include media-min($name) {
-    .media_stack_#{$name} {
+  @include media-min($key) {
+    .media_stack_#{$key} {
       flex-direction: row;
 
       &.media_reverse {
@@ -39,8 +39,8 @@
     }
   }
 
-  @include media-max($name) {
-    .media_stack_#{$name} {
+  @include media-max($key) {
+    .media_stack_#{$key} {
       .media__image {
         margin-right: 0;
         margin-left: 0;

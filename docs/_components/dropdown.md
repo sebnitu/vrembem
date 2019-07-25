@@ -66,7 +66,7 @@ Trigger classes:
   </ul>
 </div>
 
-{% include demo_switch.html class_gridItem="size_8" %}
+{% include demo_switch.html class_gridItem="span_8" %}
 
 ```html
 <div class="dropdown is-active">
@@ -169,7 +169,7 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
   </ul>
 </div>
 
-{% include demo_switch.html class_gridItem="size_8" %}
+{% include demo_switch.html class_gridItem="span_8" %}
 
 ```html
 <div class="dropdown is-active">
@@ -201,7 +201,7 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
 
 {% include demo_open.html class_parent="spacing spacing_xs" %}
 
-<div class="demo__group level level_wrap">
+<div class="demo__group level">
   <div class="dropdown on-hover">
     <button class="button button_icon">
       {% include icon.html icon="chevron-down" %}
@@ -252,7 +252,7 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
   </div><!-- .dropdown -->
 </div><!-- .demo__group -->
 
-<div class="demo__group level level_wrap">
+<div class="demo__group level">
   <div class="dropdown on-hover">
     <button class="button button_icon">
       {% include icon.html icon="chevron-up" %}
@@ -303,7 +303,7 @@ This illustrates the use of sub dropdown menus and also the `dropdown__menu_pos_
   </div><!-- .dropdown -->
 </div><!-- .demo__group -->
 
-{% include demo_switch.html class_gridItem="size_8" %}
+{% include demo_switch.html class_gridItem="span_8" %}
 
 ```html
 <ul class="dropdown__menu dropdown__menu_pos_up-left">...</ul>
@@ -423,7 +423,7 @@ Here are some examples of complex dropdowns and how they can be used along with 
   </ul>
 </div>
 
-{% include demo_switch.html class_gridItem="size_8" %}
+{% include demo_switch.html class_gridItem="span_8" %}
 
 ```html
 <div class="dropdown on-hover">

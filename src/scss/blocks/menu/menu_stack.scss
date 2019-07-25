@@ -43,13 +43,13 @@
  * Menu stack breakpoint modifiers
  */
 
-@each $name, $value in $breakpoints {
-  .menu_stack_#{$name} {
+@each $key, $value in $breakpoints {
+  .menu_stack_#{$key} {
     @extend .menu_stack;
   }
 
-  @include media-min($name) {
-    .menu_stack_#{$name} {
+  @include media-min($key) {
+    .menu_stack_#{$key} {
       flex-direction: row;
     }
   }

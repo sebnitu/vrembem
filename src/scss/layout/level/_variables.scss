@@ -1,12 +1,13 @@
 // Level
 // ---
-$level-spacing: 1rem !default;
+$level-gap: 0.5rem !default;
 
-// Level modifiers
-$level-spacing-scale: (
+// Grid modifiers
+// ---
+$level-gap-scale: (
   'xs': 1px,
   'sm': 0.25rem,
   'md': 0.5rem,
   'lg': 1rem,
-  'xl': 1.5rem
+  'xl': 1.5rem,
 ) !default;

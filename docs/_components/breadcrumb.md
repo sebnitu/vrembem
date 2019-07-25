@@ -11,7 +11,7 @@ category: compound
 {% include flag.html heading="breadcrumb" %}
 
 
-{% include demo_open.html class_grid="grid_lg" %}
+{% include demo_open.html class_grid="grid_break_lg" %}
 
 <ol class="breadcrumb">
   <li class="breadcrumb__item">
@@ -51,7 +51,7 @@ category: compound
 
 {% include flag.html heading="breadcrumb_invert" %}
 
-{% include demo_open.html class_grid="grid_lg" class_parent="invert" %}
+{% include demo_open.html class_grid="grid_break_lg" class_parent="invert" %}
 
 <ol class="breadcrumb breadcrumb_invert">
   <li class="breadcrumb__item">

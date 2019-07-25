@@ -2,65 +2,51 @@
  * Margin utility
  */
 
-@each $name, $value in $utility-spacing {
-  .m_#{$name} {
+@each $key, $value in $utility-spacing {
+  .margin_#{$key} {
     margin: $value !important;
   }
 }
 
-/* Margin Top */
-
-@each $name, $value in $utility-spacing {
-  .mt_#{$name} {
+@each $key, $value in $utility-spacing {
+  .margin_top_#{$key} {
     margin-top: $value !important;
   }
 }
 
-/* Margin Bottom */
-
-@each $name, $value in $utility-spacing {
-  .mb_#{$name} {
+@each $key, $value in $utility-spacing {
+  .margin_bottom_#{$key} {
     margin-bottom: $value !important;
   }
 }
 
-/* Margin Left */
-
-@each $name, $value in $utility-spacing {
-  .ml_#{$name} {
+@each $key, $value in $utility-spacing {
+  .margin_left_#{$key} {
     margin-left: $value !important;
   }
 }
 
-/* Margin Right */
-
-@each $name, $value in $utility-spacing {
-  .mr_#{$name} {
+@each $key, $value in $utility-spacing {
+  .margin_right_#{$key} {
     margin-right: $value !important;
   }
 }
 
-/* Margin X Axes */
-
-@each $name, $value in $utility-spacing {
-  .mx_#{$name} {
+@each $key, $value in $utility-spacing {
+  .margin_hori_#{$key} {
     margin-left: $value !important;
     margin-right: $value !important;
   }
 }
 
-/* Margin Y Axes */
-
-@each $name, $value in $utility-spacing {
-  .my_#{$name} {
+@each $key, $value in $utility-spacing {
+  .margin_vert_#{$key} {
     margin-top: $value !important;
     margin-bottom: $value !important;
   }
 }
 
-/* Margin Auto */
-
-.mx_auto {
+.margin_auto {
   margin-left: auto;
   margin-right: auto;
 }

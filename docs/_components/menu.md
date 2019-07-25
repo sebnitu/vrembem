@@ -253,7 +253,7 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate s
 Allows a horizontal menu to scroll if it exceeds the full width of it's container.
 </div>
 
-{% include demo_open.html class_gridItem="size_6" %}
+{% include demo_open.html class_gridItem="span_6" %}
 
 <ul class="menu menu_scroll">
   <li class="menu__item">
