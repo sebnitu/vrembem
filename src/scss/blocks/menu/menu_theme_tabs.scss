@@ -1,0 +1,34 @@
+@import 'variables';
+
+/**
+ * Menu tabs theme
+ * ---
+ * A theme that styles a menu to generate a tabbed interface.
+ */
+
+.menu_theme_tabs {
+  border-bottom: 1px solid $border-color;
+  padding: 0.5em 0.5em 0 0.5em;
+
+  .menu__item + .menu__item {
+    margin-left: 0.25em;
+  }
+
+  .menu__link {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-bottom: -1px;
+
+    &:hover,
+    &:focus {
+      border-bottom-color: $primary;
+    }
+
+    &.is-active {
+      background: $white;
+      background-clip: padding-box;
+      border: 1px solid $border-color;
+      border-bottom-color: $white;
+    }
+  }
+}

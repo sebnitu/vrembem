@@ -5688,6 +5688,37 @@ pre {
 }
 
 /**
+ * Menu tabs theme
+ * ---
+ * A theme that styles a menu to generate a tabbed interface.
+ */
+.menu_theme_tabs {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0.5em 0.5em 0 0.5em;
+}
+
+.menu_theme_tabs .menu__item + .menu__item {
+  margin-left: 0.25em;
+}
+
+.menu_theme_tabs .menu__link {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-bottom: -1px;
+}
+
+.menu_theme_tabs .menu__link:hover, .menu_theme_tabs .menu__link:focus {
+  border-bottom-color: #2196f3;
+}
+
+.menu_theme_tabs .menu__link.is-active {
+  background: #ffffff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom-color: #ffffff;
+}
+
+/**
  * Modal
  * ---
  * A component for changing the mode of a page to complete a critical task.
