@@ -3429,15 +3429,10 @@ pre {
 .dialog__header,
 .dialog__body,
 .dialog__footer {
-  padding: 1em;
-}
-
-.dialog__header,
-.dialog__body,
-.dialog__footer {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
+  padding: 1em;
 }
 
 .dialog__header,
@@ -5692,7 +5687,7 @@ pre {
  * A theme that styles a menu to generate a tabbed interface.
  */
 .menu_theme_tabs {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #eceff1;
   padding: 0.5em 0.5em 0 0.5em;
 }
 
@@ -5703,18 +5698,36 @@ pre {
 .menu_theme_tabs .menu__link {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  margin-bottom: -1px;
+  border-bottom: 0;
+  padding-bottom: calc(inherit + 0.5em);
+  background-clip: padding-box;
+}
+
+.menu_theme_tabs .menu__link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  margin-bottom: -2px;
 }
 
 .menu_theme_tabs .menu__link:hover, .menu_theme_tabs .menu__link:focus {
-  border-bottom-color: #2196f3;
+  background: none;
+}
+
+.menu_theme_tabs .menu__link:hover::after, .menu_theme_tabs .menu__link:focus::after {
+  background: #2196f3;
 }
 
 .menu_theme_tabs .menu__link.is-active {
   background: #ffffff;
-  background-clip: padding-box;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-bottom-color: #ffffff;
+  border-bottom: 0;
+}
+
+.menu_theme_tabs .menu__link.is-active::after {
+  background: #ffffff;
 }
 
 /**

@@ -1,5 +1,11 @@
 @import 'variables';
 
+// Menu theme tabs variables
+// ---
+$menu_theme_tabs-background: $shade !default;
+$menu_theme_tabs-adjust: null !default; // 2px
+$menu_theme_tabs-border: null !default; // 2px solid $shade
+
 /**
  * Menu tabs theme
  * ---
@@ -7,7 +13,8 @@
  */
 
 .menu_theme_tabs {
-  border-bottom: 1px solid $border-color;
+  background-color: $menu_theme_tabs-background;
+  border-bottom: $menu_theme_tabs-border;
   padding: 0.5em 0.5em 0 0.5em;
 
   .menu__item + .menu__item {
@@ -17,18 +24,40 @@
   .menu__link {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    margin-bottom: -1px;
+    border-bottom: 0;
+    padding-bottom: calc(inherit + 0.5em);
+    background-clip: padding-box;
+    @if ($menu_theme_tabs-adjust) {
+      margin-bottom: ($menu_theme_tabs-adjust * -1);
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      margin-bottom: -2px;
+    }
 
     &:hover,
     &:focus {
-      border-bottom-color: $primary;
+      background: none;
+
+      &::after {
+        background: $primary;
+      }
     }
 
     &.is-active {
       background: $white;
-      background-clip: padding-box;
-      border: 1px solid $border-color;
-      border-bottom-color: $white;
+      border: $menu_theme_tabs-border;
+      border-bottom: 0;
+
+      &::after {
+        background: $white;
+      }
     }
   }
 }
