@@ -2,12 +2,15 @@
 
 // Menu theme tabs variables
 // ---
+$menu_theme_tabs-padding: 0.5em !default;
 $menu_theme_tabs-background: $shade !default;
-$menu_theme_tabs-adjust: null !default; // 2px
-$menu_theme_tabs-border: null !default; // 2px solid $shade
+$menu_theme_tabs-adjust: 1px !default;
+$menu_theme_tabs-border: 1px solid $menu__sep-background !default;
+$menu_theme_tabs-border-radius: $menu-border-radius !default;
+$menu_theme_tabs-menu__link-padding: null !default;
 
 /**
- * Menu tabs theme
+ * Menu theme tabs
  * ---
  * A theme that styles a menu to generate a tabbed interface.
  */
@@ -15,49 +18,61 @@ $menu_theme_tabs-border: null !default; // 2px solid $shade
 .menu_theme_tabs {
   background-color: $menu_theme_tabs-background;
   border-bottom: $menu_theme_tabs-border;
-  padding: 0.5em 0.5em 0 0.5em;
+  padding: $menu_theme_tabs-padding $menu_theme_tabs-padding 0 $menu_theme_tabs-padding;
 
   .menu__item + .menu__item {
-    margin-left: 0.25em;
+    margin-left: ($menu_theme_tabs-padding * 0.5);
   }
 
   .menu__link {
+    border-radius: $menu_theme_tabs-border-radius;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     border-bottom: 0;
-    padding-bottom: calc(inherit + 0.5em);
-    background-clip: padding-box;
+    padding: $menu_theme_tabs-menu__link-padding;
     @if ($menu_theme_tabs-adjust) {
       margin-bottom: ($menu_theme_tabs-adjust * -1);
     }
 
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      margin-bottom: -2px;
+    &.is-active {
+      background: $white;
+      background-clip: padding-box;
+      border: $menu_theme_tabs-border;
+      border-bottom: 0;
     }
+  }
+}
 
-    &:hover,
-    &:focus {
-      background: none;
+/**
+ * Support for menu stack + menu theme tabs
+ */
 
-      &::after {
-        background: $primary;
-      }
+.menu_stack.menu_theme_tabs {
+  border-bottom: 0;
+  border-right: $menu_theme_tabs-border;
+  padding: $menu_theme_tabs-padding 0 $menu_theme_tabs-padding $menu_theme_tabs-padding;
+
+  .menu__item + .menu__item {
+    margin-left: inherit;
+    margin-top: ($menu_theme_tabs-padding * 0.5);
+  }
+
+  .menu__link {
+    border-radius: $menu_theme_tabs-border-radius;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom: inherit;
+    border-right: 0;
+    @if ($menu_theme_tabs-adjust) {
+      margin-bottom: inherit;
+      margin-right: ($menu_theme_tabs-adjust * -1);
     }
 
     &.is-active {
       background: $white;
+      background-clip: padding-box;
       border: $menu_theme_tabs-border;
-      border-bottom: 0;
-
-      &::after {
-        background: $white;
-      }
+      border-right: 0;
     }
   }
 }

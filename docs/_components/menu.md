@@ -11,21 +11,40 @@ category: compound
 {% include flag.html heading="menu_theme_tabs" %}
 
 {% include demo_open.html %}
-<ul class="menu menu_theme_tabs">
-  <li class="menu__item">
-    <a class="menu__link is-active" href="#">Create</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Edit</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Delete</a>
-  </li>
-  <li class="menu__sep"></li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Logout</a>
-  </li>
-</ul>
+<div class="demo__group">
+  <ul class="menu menu_theme_tabs">
+    <li class="menu__item">
+      <a class="menu__link is-active" href="#">Create</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Edit</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Delete</a>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Logout</a>
+    </li>
+  </ul>
+</div>
+<div class="demo__group">
+  <ul class="menu menu_stack menu_theme_tabs">
+    <li class="menu__item">
+      <a class="menu__link is-active" href="#">Create</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Edit</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Delete</a>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Logout</a>
+    </li>
+  </ul>
+</div>
 {% include demo_switch.html %}
 ```html
 <ul class="menu">
