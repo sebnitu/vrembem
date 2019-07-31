@@ -1,5 +1,15 @@
 @import 'variables';
 
+// Card theme bordered variables
+// ---
+$card_theme_bordered-background: rgba($shade, 0) !default;
+$card_theme_bordered-border: 2px solid $shade !default;
+$card_theme_bordered-box-shadow: none !default;
+
+$card_theme_bordered-background-hover: rgba($shade, 0.75) !default;
+$card_theme_bordered-border-color-hover: darken($shade, 5%) !default;
+$card_theme_bordered-box-shadow-hover: none !default;
+
 /**
  * Card theme bordered
  * ---

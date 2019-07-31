@@ -14,6 +14,10 @@
   max-width: 100%;
 }
 
+.demo__group + .demo__group {
+  margin-top: 1em;
+}
+
 .demo__render.invert,
 .demo__group.invert {
   background: $dark;

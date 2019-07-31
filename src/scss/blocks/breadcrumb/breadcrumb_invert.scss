@@ -1,5 +1,14 @@
 @import 'variables';
 
+// Breadcrumb theme invert variables
+// ---
+$breadcrumb_theme_invert-color: rgba($white, 0.5) !default;
+$breadcrumb_theme_invert-delimiter-color: rgba($white, 0.25) !default;
+$breadcrumb_theme_invert__link-color: rgba($white, 0.75) !default;
+$breadcrumb_theme_invert__link-color-hover: rgba($white, 1) !default;
+$breadcrumb_theme_invert__link-border-color: rgba($white, 0.2) !default;
+$breadcrumb_theme_invert__link-border-color-hover: rgba($white, 1) !default;
+
 /**
  * Breadcrumb invert modifier
  * ---
@@ -7,26 +16,22 @@
  */
 
 .breadcrumb_invert {
-  color: $breadcrumb-color-invert;
+  color: $breadcrumb_theme_invert-color;
 
   .breadcrumb__item {
     &::after {
-      color: $breadcrumb-delimiter-color-invert;
+      color: $breadcrumb_theme_invert-delimiter-color;
     }
   }
 
   .breadcrumb__link {
-    color: $breadcrumb__link-color-invert;
-    border-bottom: 1px solid $breadcrumb__link-border-color-invert;
+    color: $breadcrumb_theme_invert__link-color;
+    border-bottom: 1px solid $breadcrumb_theme_invert__link-border-color;
 
     &:focus,
     &:hover {
-      color: $breadcrumb__link-color-invert-hover;
-      border-bottom: 1px solid $breadcrumb__link-border-color-invert-hover;
+      color: $breadcrumb_theme_invert__link-color-hover;
+      border-bottom: 1px solid $breadcrumb_theme_invert__link-border-color-hover;
     }
   }
 }
-
-
-
-

@@ -3430,15 +3430,10 @@ pre {
 .dialog__header,
 .dialog__body,
 .dialog__footer {
-  padding: 1em;
-}
-
-.dialog__header,
-.dialog__body,
-.dialog__footer {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
+  padding: 1em;
 }
 
 .dialog__header,
@@ -5648,7 +5643,7 @@ pre {
 }
 
 /**
- * Menu invert theme
+ * Menu theme invert
  * ---
  * A theme that styles a menu to better fit a dark background.
  */
@@ -5685,6 +5680,67 @@ pre {
 
 .menu_theme_invert .menu__sep {
   background: rgba(255, 255, 255, 0.1);
+}
+
+/**
+ * Menu theme tabs
+ * ---
+ * A theme that styles a menu to generate a tabbed interface.
+ */
+.menu_theme_tabs {
+  background-color: #eceff1;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0.5em 0.5em 0 0.5em;
+}
+
+.menu_theme_tabs .menu__item + .menu__item {
+  margin-left: 0.25em;
+}
+
+.menu_theme_tabs .menu__link {
+  border-radius: 3px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: 0;
+  margin-bottom: -1px;
+}
+
+.menu_theme_tabs .menu__link.is-active {
+  background: #ffffff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 0;
+}
+
+/**
+ * Support for menu stack + menu theme tabs
+ */
+.menu_stack.menu_theme_tabs, .menu_theme_tabs.menu_stack_xs, .menu_theme_tabs.menu_stack_sm, .menu_theme_tabs.menu_stack_md, .menu_theme_tabs.menu_stack_lg, .menu_theme_tabs.menu_stack_xl {
+  border-bottom: 0;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0.5em 0 0.5em 0.5em;
+}
+
+.menu_stack.menu_theme_tabs .menu__item + .menu__item, .menu_theme_tabs.menu_stack_xs .menu__item + .menu__item, .menu_theme_tabs.menu_stack_sm .menu__item + .menu__item, .menu_theme_tabs.menu_stack_md .menu__item + .menu__item, .menu_theme_tabs.menu_stack_lg .menu__item + .menu__item, .menu_theme_tabs.menu_stack_xl .menu__item + .menu__item {
+  margin-left: inherit;
+  margin-top: 0.25em;
+}
+
+.menu_stack.menu_theme_tabs .menu__link, .menu_theme_tabs.menu_stack_xs .menu__link, .menu_theme_tabs.menu_stack_sm .menu__link, .menu_theme_tabs.menu_stack_md .menu__link, .menu_theme_tabs.menu_stack_lg .menu__link, .menu_theme_tabs.menu_stack_xl .menu__link {
+  border-radius: 3px;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom: inherit;
+  border-right: 0;
+  margin-bottom: inherit;
+  margin-right: -1px;
+}
+
+.menu_stack.menu_theme_tabs .menu__link.is-active, .menu_theme_tabs.menu_stack_xs .menu__link.is-active, .menu_theme_tabs.menu_stack_sm .menu__link.is-active, .menu_theme_tabs.menu_stack_md .menu__link.is-active, .menu_theme_tabs.menu_stack_lg .menu__link.is-active, .menu_theme_tabs.menu_stack_xl .menu__link.is-active {
+  background: #ffffff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: 0;
 }
 
 /**
@@ -6660,6 +6716,10 @@ pre {
       -ms-flex: 1 0 100%;
           flex: 1 0 100%;
   max-width: 100%;
+}
+
+.demo__group + .demo__group {
+  margin-top: 1em;
 }
 
 .demo__render.invert,

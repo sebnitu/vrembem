@@ -11,7 +11,6 @@ category: compound
 {% include flag.html heading="menu" %}
 
 {% include demo_open.html %}
-
 <ul class="menu">
   <li class="menu__item">
     <a class="menu__link" href="#">Create</a>
@@ -27,9 +26,7 @@ category: compound
     <a class="menu__link" href="#">Logout</a>
   </li>
 </ul>
-
 {% include demo_switch.html %}
-
 ```html
 <ul class="menu">
   <li class="menu__item">
@@ -38,7 +35,6 @@ category: compound
   <li class="menu__sep"></li>
 </ul>
 ```
-
 {% include demo_close.html %}
 
 {% include flag.html heading="menu__link_icon" %}
@@ -398,7 +394,6 @@ This theme is perfect for using menus on a dark background.
 </div>
 
 {% include demo_open.html class_parent="invert" %}
-
 <div class="demo__group">
   <ul class="menu menu_theme_invert">
     <li class="menu__item">
@@ -419,7 +414,6 @@ This theme is perfect for using menus on a dark background.
     </li>
   </ul>
 </div>
-
 <div class="demo__group">
   <ul class="menu menu_stack menu_theme_invert">
     <li class="menu__item">
@@ -440,9 +434,7 @@ This theme is perfect for using menus on a dark background.
     </li>
   </ul>
 </div>
-
 {% include demo_switch.html %}
-
 ```html
 <ul class="menu menu_theme_invert">
   <li class="menu__item">
@@ -463,5 +455,52 @@ This theme is perfect for using menus on a dark background.
   </li>
 </ul>
 ```
+{% include demo_close.html %}
 
+{% include flag.html heading="menu_theme_tabs" %}
+
+{% include demo_open.html %}
+<div class="demo__group">
+  <ul class="menu menu_theme_tabs">
+    <li class="menu__item">
+      <a class="menu__link is-active" href="#">Create</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Edit</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Delete</a>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Logout</a>
+    </li>
+  </ul>
+</div>
+<div class="demo__group">
+  <ul class="menu menu_stack menu_theme_tabs">
+    <li class="menu__item">
+      <a class="menu__link is-active" href="#">Create</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Edit</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Delete</a>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">Logout</a>
+    </li>
+  </ul>
+</div>
+{% include demo_switch.html %}
+```html
+<ul class="menu menu_theme_tabs">
+  <li class="menu__item">
+    <a class="menu__link" href="#">Menu Item</a>
+  </li>
+  <li class="menu__sep"></li>
+</ul>
+```
 {% include demo_close.html %}

@@ -46,13 +46,8 @@
 .dialog__header,
 .dialog__body,
 .dialog__footer {
-  padding: $dialog-padding;
-}
-
-.dialog__header,
-.dialog__body,
-.dialog__footer {
   flex: 0 0 auto;
+  padding: $dialog-padding;
 }
 
 .dialog__header,
@@ -73,7 +68,7 @@
 .dialog__body {
   flex-grow: 1;
 
-  + .dialog__body {
+  & + & {
     border-top: $dialog-sep-border;
   }
 }
