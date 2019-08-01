@@ -1,0 +1,19 @@
+{
+  "name": "@vrembem/utility",
+  "description": "Components that add one off styles or are geared to styling specific html elements and can be extended in other places.",
+  "version": "0.0.0",
+  "style": "index.scss",
+  "scripts": {
+    "css": "node-sass index.scss dist/styles.css --include-path node_modules --source-map true --output-style expanded",
+    "css:min": "node-sass index.scss dist/styles.min.css --include-path node_modules  --source-map true --output-style compressed",
+    "clean": "del dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebnitu/vrembem.git",
+    "directory": "packages/span"
+  },
+  "dependencies": {
+    "@vrembem/core": "^0.0.0"
+  }
+}

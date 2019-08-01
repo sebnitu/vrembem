@@ -1,0 +1,33 @@
+@import 'variables';
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: ($grid-gap * -1);
+  margin-left: ($grid-gap * -1);
+
+  & + & {
+    margin-top: 0;
+  }
+}
+
+.grid__item {
+  flex: 1 1 0;
+  width: auto;
+  max-width: 100%;
+  padding-top: $grid-gap;
+  padding-left: $grid-gap;
+
+  &_fill {
+    display: flex;
+    flex-direction: column;
+
+    > * {
+      flex-basis: 100%;
+    }
+  }
+}
+
+.grid__clear {
+  flex: 1 0 100%;
+}

@@ -1,0 +1,7 @@
+.transition_all {
+  transition: all $transition-duration $transition-timing-function !important;
+}
+
+.transition_none {
+  transition: none !important;
+}

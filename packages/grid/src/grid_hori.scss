@@ -1,0 +1,17 @@
+@import 'variables';
+
+.grid_hori_start {
+  justify-content: flex-start;
+}
+
+.grid_hori_center {
+  justify-content: center;
+}
+
+.grid_hori_end {
+  justify-content: flex-end;
+}
+
+.grid_hori_between {
+  justify-content: space-between;
+}

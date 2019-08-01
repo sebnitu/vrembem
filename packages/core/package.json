@@ -1,0 +1,11 @@
+{
+  "name": "@vrembem/core",
+  "description": "The core variables, functions and mixins for Vrembem components.",
+  "version": "0.0.0",
+  "style": "index.scss",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebnitu/vrembem.git",
+    "directory": "packages/core"
+  }
+}

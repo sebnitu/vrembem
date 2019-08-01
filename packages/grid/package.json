@@ -1,0 +1,19 @@
+{
+  "name": "@vrembem/grid",
+  "description": "A flexbox based grid system component.",
+  "version": "0.0.0",
+  "style": "index.scss",
+  "scripts": {
+    "css": "node-sass index.scss dist/styles.css --include-path node_modules --source-map true --output-style expanded",
+    "css:min": "node-sass index.scss dist/styles.min.css --include-path node_modules  --source-map true --output-style compressed",
+    "clean": "del dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebnitu/vrembem.git",
+    "directory": "packages/grid"
+  },
+  "dependencies": {
+    "@vrembem/core": "^0.0.0"
+  }
+}

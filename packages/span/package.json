@@ -1,0 +1,19 @@
+{
+  "name": "@vrembem/span",
+  "description": "A multi-purpose component for setting width, max-width and flex basis based on a column set.",
+  "version": "0.0.0",
+  "style": "index.scss",
+  "scripts": {
+    "css": "node-sass index.scss dist/styles.css --include-path node_modules --source-map true --output-style expanded",
+    "css:min": "node-sass index.scss dist/styles.min.css --include-path node_modules  --source-map true --output-style compressed",
+    "clean": "del dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebnitu/vrembem.git",
+    "directory": "packages/span"
+  },
+  "dependencies": {
+    "@vrembem/core": "^0.0.0"
+  }
+}

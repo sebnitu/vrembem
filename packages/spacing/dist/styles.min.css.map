@@ -1,0 +1,16 @@
+{
+	"version": 3,
+	"file": "styles.min.css",
+	"sources": [
+		"../index.scss",
+		"../node_modules/@vrembem/core/index.scss",
+		"../node_modules/@vrembem/core/src/palette.scss",
+		"../node_modules/@vrembem/core/src/functions.scss",
+		"../node_modules/@vrembem/core/src/variables.scss",
+		"../node_modules/@vrembem/core/src/mixins.scss",
+		"../src/spacing.scss",
+		"../src/_variables.scss"
+	],
+	"names": [],
+	"mappings": "AMEA,AACE,QADM,CACJ,CAAC,CAAG,CAAC,AAAC,CACN,UAAU,CCJJ,IAAI,CDKX,AAID,AACE,WADS,CACP,CAAC,CAAG,CAAC,AAAC,CACN,UAAU,CCTR,KAAM,CDUT,AAHH,AACE,WADS,CACP,CAAC,CAAG,CAAC,AAAC,CACN,UAAU,CCRR,IAAI,CDSP,AAHH,AACE,WADS,CACP,CAAC,CAAG,CAAC,AAAC,CACN,UAAU,CCPR,MAAM,CDQT,AAHH,AACE,WADS,CACP,CAAC,CAAG,CAAC,AAAC,CACN,UAAU,CCNR,IAAI,CDOP,AAHH,AACE,WADS,CACP,CAAC,CAAG,CAAC,AAAC,CACN,UAAU,CCLR,IAAI,CDMP"
+}

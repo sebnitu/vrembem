@@ -1,0 +1,15 @@
+@import 'variables';
+
+.spacing {
+  > * + * {
+    margin-top: $spacing;
+  }
+}
+
+@each $key, $value in $spacing-scale {
+  .spacing_#{$key} {
+    > * + * {
+      margin-top: $value;
+    }
+  }
+}

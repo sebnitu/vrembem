@@ -1,0 +1,20 @@
+%hr {
+  display: block;
+  height: 1px;
+  background: $border-color;
+  border: none;
+}
+
+.hr,
+.type .hr {
+  @extend %hr;
+}
+
+%hr_invert {
+  background-color: $border-color-invert;
+}
+
+.hr_invert,
+.type .hr_invert {
+  @extend %hr_invert;
+}

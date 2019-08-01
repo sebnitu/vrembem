@@ -1,0 +1,81 @@
+html,
+body {
+  height: 100%;
+}
+
+html {
+  box-sizing: $box-sizing;
+  font-size: $font-size;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: $font-family;
+  line-height: $line-height;
+  font-weight: $font-weight;
+  color: $color;
+  background: $body-background;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: $heading-font-weight;
+}
+
+img {
+  border: 0;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+strong {
+  font-weight: font-weight('semi-bold');
+}
+
+a,
+button {
+  color: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: 0;
+  text-align: inherit;
+  text-transform: inherit;
+  font: inherit;
+  -webkit-font-smoothing: inherit;
+  letter-spacing: inherit;
+  background: none;
+  cursor: pointer;
+  overflow: visible;
+}
+
+code,
+pre {
+  font-family: $font-family-mono;
+}
+
+::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}

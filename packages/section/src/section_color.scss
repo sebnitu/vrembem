@@ -1,0 +1,49 @@
+@import 'variables';
+
+.section_color_primary {
+  background: $primary;
+
+  .section__screen {
+    background: $primary;
+  }
+}
+
+.section_color_secondary {
+  background: $secondary;
+
+  .section__screen {
+    background: $secondary;
+  }
+}
+
+.section_color_accent {
+  background: $accent;
+
+  .section__screen {
+    background: $accent;
+  }
+}
+
+.section_color_shade {
+  background: $shade;
+
+  .section__screen {
+    background: $shade;
+  }
+}
+
+.section_color_dark {
+  background: $dark;
+
+  .section__screen {
+    background: $dark;
+  }
+}
+
+.section_color_light {
+  background: $white;
+
+  .section__screen {
+    background: $white;
+  }
+}
