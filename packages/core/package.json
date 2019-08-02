@@ -2,7 +2,11 @@
   "name": "@vrembem/core",
   "description": "The core variables, functions and mixins for Vrembem components.",
   "version": "0.0.0",
-  "style": "index.scss",
+  "main": "scripts.js",
+  "scripts": {
+    "clean": "del dist",
+    "js": "babel index.js --out-file dist/scripts.js --source-maps --presets=@babel/preset-env"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sebnitu/vrembem.git",

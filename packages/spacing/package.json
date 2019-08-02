@@ -2,7 +2,7 @@
   "name": "@vrembem/spacing",
   "description": "A component that adds vertical spacing between it's direct children.",
   "version": "0.0.0",
-  "style": "index.scss",
+  "style": "styles.css",
   "scripts": {
     "css": "node-sass index.scss dist/styles.css --include-path node_modules --source-map true --output-style expanded",
     "css:min": "node-sass index.scss dist/styles.min.css --include-path node_modules  --source-map true --output-style compressed",

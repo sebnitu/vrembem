@@ -2,7 +2,7 @@
   "name": "@vrembem/container",
   "description": "A component for giving content a max width and centered within it's parent.",
   "version": "0.0.0",
-  "style": "index.scss",
+  "style": "styles.css",
   "scripts": {
     "css": "node-sass index.scss dist/styles.css --include-path node_modules --source-map true --output-style expanded",
     "css:min": "node-sass index.scss dist/styles.min.css --include-path node_modules  --source-map true --output-style compressed",

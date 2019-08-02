@@ -1,4 +1,4 @@
-import config from 'config'
+import breakpoints from "breakpoints"
 
 /**
  * Utility
@@ -14,7 +14,7 @@ export default class {
    * @returns {String} - The pixel value of the breakpoint as a string
    */
   static getBreakpoint(key) {
-    return config.breakpoints[key]
+    return breakpoints[key]
   }
 
   /**

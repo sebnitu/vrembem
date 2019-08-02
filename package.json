@@ -3,9 +3,14 @@
   "version": "0.7.0",
   "private": true,
   "scripts": {
-    "css": "lerna run css && lerna run css:min"
+    "build": "npm run css && npm run js",
+    "css": "lerna run css && lerna run css:min",
+    "js": "lerna run js && lerna run js:min"
   },
   "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "del-cli": "^2.0.0",
     "lerna": "^3.15.0",
     "node-sass": "^4.12.0"
