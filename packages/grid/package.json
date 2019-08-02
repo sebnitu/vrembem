@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "style": "styles.css",
   "scripts": {
-    "css": "node-sass index.scss dist/styles.css --include-path node_modules --source-map true --output-style expanded",
-    "css:min": "node-sass index.scss dist/styles.min.css --include-path node_modules  --source-map true --output-style compressed",
+    "css": "sass index.scss dist/styles.css --load-path node_modules --source-map",
+    "css:min": "sass index.scss dist/styles.min.css --load-path node_modules  --source-map --style compressed",
     "clean": "del dist"
   },
   "repository": {

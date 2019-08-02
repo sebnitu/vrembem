@@ -1,16 +1,1 @@
-{
-	"version": 3,
-	"file": "styles.css",
-	"sources": [
-		"../index.scss",
-		"../node_modules/@vrembem/core/index.scss",
-		"../node_modules/@vrembem/core/src/palette.scss",
-		"../node_modules/@vrembem/core/src/functions.scss",
-		"../node_modules/@vrembem/core/src/variables.scss",
-		"../node_modules/@vrembem/core/src/mixins.scss",
-		"../src/spacing.scss",
-		"../src/_variables.scss"
-	],
-	"names": [],
-	"mappings": "AMEA,AACE,QADM,GACJ,CAAC,GAAG,CAAC,CAAC;EACN,UAAU,ECJJ,IAAI;CDKX;;AAID,AACE,WADS,GACP,CAAC,GAAG,CAAC,CAAC;EACN,UAAU,ECTR,MAAM;CDUT;;AAHH,AACE,WADS,GACP,CAAC,GAAG,CAAC,CAAC;EACN,UAAU,ECRR,IAAI;CDSP;;AAHH,AACE,WADS,GACP,CAAC,GAAG,CAAC,CAAC;EACN,UAAU,ECPR,MAAM;CDQT;;AAHH,AACE,WADS,GACP,CAAC,GAAG,CAAC,CAAC;EACN,UAAU,ECNR,IAAI;CDOP;;AAHH,AACE,WADS,GACP,CAAC,GAAG,CAAC,CAAC;EACN,UAAU,ECLR,IAAI;CDMP"
-}
+{"version":3,"sourceRoot":"","sources":["../src/spacing.scss","../src/_variables.scss"],"names":[],"mappings":"AAGE;EACE,YCJM;;;ADUN;EACE,YCVU;;;ADSZ;EACE,YCVU;;;ADSZ;EACE,YCVU;;;ADSZ;EACE,YCVU;;;ADSZ;EACE,YCVU","file":"styles.css"}

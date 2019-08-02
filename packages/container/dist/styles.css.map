@@ -1,17 +1,1 @@
-{
-	"version": 3,
-	"file": "styles.css",
-	"sources": [
-		"../index.scss",
-		"../node_modules/@vrembem/core/index.scss",
-		"../node_modules/@vrembem/core/src/palette.scss",
-		"../node_modules/@vrembem/core/src/functions.scss",
-		"../node_modules/@vrembem/core/src/variables.scss",
-		"../node_modules/@vrembem/core/src/mixins.scss",
-		"../src/container.scss",
-		"../src/_variables.scss",
-		"../src/container_size.scss"
-	],
-	"names": [],
-	"mappings": "AMEA,AAAA,UAAU,CAAC;EACT,SAAS,ECHW,KAAK;EDIzB,MAAM,ECHW,CAAC,CAAC,IAAI;CDIxB;;AEFC,AAAA,kBAAkB,CAAM;EACtB,SAAS,EDDL,KAAK;CCEV;;AAFD,AAAA,kBAAkB,CAAM;EACtB,SAAS,EDAL,KAAK;CCCV;;AAFD,AAAA,kBAAkB,CAAM;EACtB,SAAS,EDCL,KAAK;CCAV;;AAFD,AAAA,kBAAkB,CAAM;EACtB,SAAS,EDEL,KAAK;CCDV;;AAFD,AAAA,kBAAkB,CAAM;EACtB,SAAS,EDGL,KAAK;CCFV"
-}
+{"version":3,"sourceRoot":"","sources":["../src/container.scss","../src/_variables.scss","../src/container_size.scss"],"names":[],"mappings":"AAEA;EACE,WCHoB;EDIpB,QCHiB;;;ACEjB;EACE,WDFc;;;ACChB;EACE,WDFc;;;ACChB;EACE,WDFc;;;ACChB;EACE,WDFc;;;ACChB;EACE,WDFc","file":"styles.css"}

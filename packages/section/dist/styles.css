@@ -19,13 +19,11 @@
     padding: 2em 1.5em;
   }
 }
-
 @media (min-width: 990px) {
   .section {
     padding: 3em 1.5em;
   }
 }
-
 .section__background,
 .section__screen {
   position: absolute;
@@ -57,13 +55,11 @@
     padding: 0;
   }
 }
-
 @media (min-width: 990px) {
   .section_size_xs {
     padding: 0;
   }
 }
-
 .section_size_sm {
   padding: 1em;
 }
@@ -73,13 +69,11 @@
     padding: 1em;
   }
 }
-
 @media (min-width: 990px) {
   .section_size_sm {
     padding: 1em;
   }
 }
-
 .section_size_md {
   padding: 1.5em;
 }
@@ -89,13 +83,11 @@
     padding: 2em 1.5em;
   }
 }
-
 @media (min-width: 990px) {
   .section_size_md {
     padding: 3em 1.5em;
   }
 }
-
 .section_size_lg {
   padding: 1.5em;
 }
@@ -105,13 +97,11 @@
     padding: 4em 1.5em;
   }
 }
-
 @media (min-width: 990px) {
   .section_size_lg {
     padding: 6em 1.5em;
   }
 }
-
 .section_size_xl {
   padding: 3em 1.5em;
 }
@@ -121,17 +111,14 @@
     padding: 8em 2em;
   }
 }
-
 @media (min-width: 990px) {
   .section_size_xl {
     padding: 12em 2em;
   }
 }
-
 .section_color_primary {
   background: #2196f3;
 }
-
 .section_color_primary .section__screen {
   background: #2196f3;
 }
@@ -139,7 +126,6 @@
 .section_color_secondary {
   background: #607d8b;
 }
-
 .section_color_secondary .section__screen {
   background: #607d8b;
 }
@@ -147,7 +133,6 @@
 .section_color_accent {
   background: #ffee58;
 }
-
 .section_color_accent .section__screen {
   background: #ffee58;
 }
@@ -155,7 +140,6 @@
 .section_color_shade {
   background: #eceff1;
 }
-
 .section_color_shade .section__screen {
   background: #eceff1;
 }
@@ -163,7 +147,6 @@
 .section_color_dark {
   background: #37474f;
 }
-
 .section_color_dark .section__screen {
   background: #37474f;
 }
@@ -171,7 +154,6 @@
 .section_color_light {
   background: #ffffff;
 }
-
 .section_color_light .section__screen {
   background: #ffffff;
 }

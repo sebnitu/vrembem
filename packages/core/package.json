@@ -5,7 +5,7 @@
   "main": "scripts.js",
   "scripts": {
     "clean": "del dist",
-    "js": "babel index.js --out-file dist/scripts.js --source-maps --presets=@babel/preset-env"
+    "js": "mkdirp dist && babel index.js --out-file dist/scripts.js --source-maps --presets=@babel/preset-env"
   },
   "repository": {
     "type": "git",

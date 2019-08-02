@@ -5,7 +5,6 @@
   margin-top: -0.5rem;
   margin-left: -0.5rem;
 }
-
 .level > * {
   flex: 0 0 auto;
   margin-top: 0.5rem;
@@ -16,7 +15,6 @@
   margin-top: 0;
   margin-left: 0;
 }
-
 .level_gap_none > * {
   margin-top: 0;
   margin-left: 0;
@@ -26,7 +24,6 @@
   margin-top: -1px;
   margin-left: -1px;
 }
-
 .level_gap_xs > * {
   margin-top: 1px;
   margin-left: 1px;
@@ -36,7 +33,6 @@
   margin-top: -0.25rem;
   margin-left: -0.25rem;
 }
-
 .level_gap_sm > * {
   margin-top: 0.25rem;
   margin-left: 0.25rem;
@@ -46,7 +42,6 @@
   margin-top: -0.5rem;
   margin-left: -0.5rem;
 }
-
 .level_gap_md > * {
   margin-top: 0.5rem;
   margin-left: 0.5rem;
@@ -56,7 +51,6 @@
   margin-top: -1rem;
   margin-left: -1rem;
 }
-
 .level_gap_lg > * {
   margin-top: 1rem;
   margin-left: 1rem;
@@ -66,7 +60,6 @@
   margin-top: -1.5rem;
   margin-left: -1.5rem;
 }
-
 .level_gap_xl > * {
   margin-top: 1.5rem;
   margin-left: 1.5rem;
