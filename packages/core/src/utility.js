@@ -1,4 +1,4 @@
-import breakpoints from "breakpoints"
+import breakpoints from "./breakpoints"
 
 /**
  * Utility

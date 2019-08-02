@@ -8,12 +8,15 @@
     "js": "lerna run js && lerna run js:min"
   },
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+    "babelify": "^10.0.0",
+    "browserify": "^16.3.0",
     "del-cli": "^2.0.0",
+    "exorcist": "^1.0.1",
     "lerna": "^3.15.0",
     "mkdirp": "^0.5.1",
-    "sass": "^1.22.9"
+    "sass": "^1.22.9",
+    "uglifyify": "^5.0.1"
   }
 }

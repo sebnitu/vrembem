@@ -5,7 +5,8 @@
   "main": "scripts.js",
   "scripts": {
     "clean": "del dist",
-    "js": "mkdirp dist && babel index.js --out-file dist/scripts.js --source-maps --presets=@babel/preset-env"
+    "js": "browserify index.js -d dist/scripts.js -t [ babelify --presets [ @babel/preset-env ] ] | exorcist dist/scripts.js.map > dist/scripts.js",
+    "js:min": "browserify index.js -d dist/scripts.min.js -t [ babelify --presets [ @babel/preset-env ] ] -t uglifyify --compress --mangle | exorcist dist/scripts.min.js.map > dist/scripts.min.js"
   },
   "repository": {
     "type": "git",
