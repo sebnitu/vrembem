@@ -1,1 +1,1 @@
-import Utility from "./js/utility"
+import Utility from "src/utility"

@@ -1,1 +1,1 @@
-{"version":3,"sources":["../index.js"],"names":[],"mappings":";;AAAA;;AACA;;AAEA","file":"scripts.js","sourcesContent":["import \"core-js/stable\";\nimport \"regenerator-runtime/runtime\";\n\nimport Utility from \"./js/utility\"\n"]}
+{"version":3,"sources":["../index.js"],"names":[],"mappings":";;AAAA","file":"scripts.js","sourcesContent":["import Utility from \"src/utility\"\n"]}
