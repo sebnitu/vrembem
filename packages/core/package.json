@@ -2,7 +2,8 @@
   "name": "@vrembem/core",
   "description": "The core variables, functions and mixins for Vrembem components.",
   "version": "0.0.0",
-  "main": "scripts.js",
+  "main": "index.js",
+  "style": "index.scss",
   "scripts": {
     "clean": "del dist",
     "js": "browserify index.js -d dist/scripts.js -t [ babelify --presets [ @babel/preset-env ] ] | exorcist dist/scripts.js.map > dist/scripts.js",
