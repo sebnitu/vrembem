@@ -2,11 +2,15 @@
   "name": "@vrembem/level",
   "description": "A simple flexbox based layout component.",
   "version": "0.0.0",
-  "style": "styles.css",
+  "style": "index.scss",
   "scripts": {
-    "css": "sass index.scss dist/styles.css --load-path node_modules --source-map",
-    "css:min": "sass index.scss dist/styles.min.css --load-path node_modules  --source-map --style compressed",
-    "clean": "del dist"
+    "clean": "del dist",
+    "styles:compile": "sass index.scss dist/styles.css --load-path node_modules",
+    "styles:prefix": "postcss dist/styles.css --map --use autoprefixer --output dist/styles.css",
+    "styles:min": "sass dist/styles.css dist/styles.min.css --style compressed",
+    "styles": "npm-run-all styles:compile styles:prefix styles:min",
+    "build": "npm-run-all clean styles",
+    "watch": "nodemon -e scss -x 'npm run styles'"
   },
   "repository": {
     "type": "git",

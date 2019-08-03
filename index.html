@@ -3,13 +3,57 @@
 <head>
   <meta charset="utf-8">
   <title>Test</title>
-  <link rel="stylesheet" href="https://unpkg.com/vrembem@0.7.0/dist/css/styles.min.css">
+  <!-- <link rel="stylesheet" href="https://unpkg.com/vrembem@0.7.0/dist/css/styles.min.css"> -->
+  <link rel="stylesheet" href="./packages/container/dist/styles.min.css">
+  <link rel="stylesheet" href="./packages/grid/dist/styles.min.css">
+  <link rel="stylesheet" href="./packages/level/dist/styles.min.css">
+  <link rel="stylesheet" href="./packages/section/dist/styles.min.css">
+  <link rel="stylesheet" href="./packages/spacing/dist/styles.min.css">
+  <link rel="stylesheet" href="./packages/span/dist/styles.min.css">
+  <link rel="stylesheet" href="./packages/utility/dist/styles.min.css">
 </head>
 <body>
 
 <div class="section">
-  <div class="container">
-    <p>Hello, world!</p>
+  <div class="container type">
+
+    <div class="grid">
+      <div class="grid__item span_full">
+        <h1 class="h1">Todo</h1>
+        <p>These are tasks I need to setup with NPM scripts and sorting the output and how to use them.</p>
+      </div>
+      <div class="grid__item">
+        <div class="box">
+          <p><strong>Sass</strong> file compilation steps:</p>
+          <ul class="ul">
+            <li>compilation</li>
+            <li><s>concatenation</s></li>
+            <li>prefixing</li>
+            <li>compressing</li>
+          </ul>
+          <p><a href="https://itnext.io/the-power-of-npm-scripts-57aaad9f038d" target="_blank">Reference</a></p>
+        </div>
+      </div>
+      <div class="grid__item">
+        <div class="box">
+          <p><strong>JavaScript</strong> file compilation steps:</p>
+          <ul class="ul">
+            <li>Browserify</li>
+            <li>Transform: Babel</li>
+            <li>Transform: Uglify</li>
+          </ul>
+        </div>
+      </div>
+      <div class="grid__item">
+        <div class="box">
+          <p><strong>Global</strong> tasks and scripts:</p>
+          <ul class="ul">
+            <li>clean</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 

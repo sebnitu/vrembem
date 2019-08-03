@@ -37,7 +37,8 @@
 
 .section__background {
   z-index: 1;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .section__screen {
