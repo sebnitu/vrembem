@@ -4,58 +4,175 @@
   <meta charset="utf-8">
   <title>Test</title>
   <!-- <link rel="stylesheet" href="https://unpkg.com/vrembem@0.7.0/dist/css/styles.min.css"> -->
-  <link rel="stylesheet" href="./packages/container/dist/styles.min.css">
+  <!-- Base & Utilities -->
+  <link rel="stylesheet" href="./packages/base/dist/styles.min.css">
+  <link rel="stylesheet" href="./packages/utility/dist/styles.min.css">
+
+  <!-- Layout -->
   <link rel="stylesheet" href="./packages/grid/dist/styles.min.css">
   <link rel="stylesheet" href="./packages/level/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/section/dist/styles.min.css">
   <link rel="stylesheet" href="./packages/spacing/dist/styles.min.css">
   <link rel="stylesheet" href="./packages/span/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/utility/dist/styles.min.css">
+
+  <!-- Components -->
+  <link rel="stylesheet" href="./packages/container/dist/styles.min.css">
+  <link rel="stylesheet" href="./packages/section/dist/styles.min.css">
+
+  <style>
+
+    .subtitle {
+      padding-bottom: 0.5em;
+      border-bottom: 1px solid rgba(0,0,0, 0.1);
+    }
+
+    .code {
+      padding: 1em;
+      border-radius: 4px;
+      background: rgba(0,0,0, 0.025);
+      overflow: auto;
+    }
+
+    .subtitle,
+    .list__title {
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .list {
+      list-style: none;
+    }
+
+    .list li {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      padding: 0.5em 0;
+      border-bottom: 1px solid rgba(0,0,0, 0.1);
+    }
+
+    .list__icon {
+      width: 25px;
+      height: 25px;
+      padding: 0.25em;
+      margin-right: 0.75em;
+      border: 1px solid red;
+      border-radius: 4px;
+      color: red;
+      font-size: 1.2em;
+      line-height: 10px;
+      text-align: center;
+    }
+
+    .list__icon.is-done {
+      color: green;
+      border-color: green;
+    }
+
+    .list__icon::before {
+      content: "✕";
+    }
+
+    .list__icon.is-done::before {
+      content: "✔";
+    }
+
+  </style>
+
 </head>
 <body>
 
-<div class="section">
-  <div class="container type">
+<section class="section">
+  <div class="container spacing_xl">
 
-    <div class="grid">
-      <div class="grid__item span_full">
-        <h1 class="h1">Todo</h1>
-        <p>These are tasks I need to setup with NPM scripts and sorting the output and how to use them.</p>
-      </div>
-      <div class="grid__item">
-        <div class="box">
-          <p><strong>Sass</strong> file compilation steps:</p>
-          <ul class="ul">
-            <li>compilation</li>
-            <li><s>concatenation</s></li>
-            <li>prefixing</li>
-            <li>compressing</li>
-          </ul>
-          <p><a href="https://itnext.io/the-power-of-npm-scripts-57aaad9f038d" target="_blank">Reference</a></p>
+    <div class="header">
+      <h1 class="h2">Build processes to implement</h1>
+      <p class="text_lead">These are tasks I need to setup with NPM scripts and sorting the output and how to use them.</p>
+    </div>
+
+    <div class="content">
+      <div class="grid grid_break_sm">
+
+        <div class="grid__item">
+          <div class="box">
+            <ul class="list list_todo">
+              <li class="list__title">Global</li>
+              <li><span class="list__icon is-done"></span> clean</li>
+              <li><span class="list__icon"></span> watch</li>
+              <li><span class="list__icon"></span> build</li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div class="grid__item">
-        <div class="box">
-          <p><strong>JavaScript</strong> file compilation steps:</p>
-          <ul class="ul">
-            <li>Browserify</li>
-            <li>Transform: Babel</li>
-            <li>Transform: Uglify</li>
-          </ul>
+
+        <div class="grid__item">
+          <div class="box">
+            <ul class="list list_todo">
+              <li class="list__title">Styles</li>
+              <li><span class="list__icon is-done"></span> Compilation</li>
+              <li><span class="list__icon is-done"></span> Prefix</li>
+              <li><span class="list__icon is-done"></span> Compression</li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div class="grid__item">
-        <div class="box">
-          <p><strong>Global</strong> tasks and scripts:</p>
-          <ul class="ul">
-            <li>clean</li>
-          </ul>
+
+        <div class="grid__item">
+          <div class="box">
+            <ul class="list list_todo">
+              <li class="list__title">Scripts</li>
+              <li><span class="list__icon"></span> Browserify</li>
+              <li><span class="list__icon"></span> Babel</li>
+              <li><span class="list__icon"></span> Uglify</li>
+            </ul>
+          </div>
         </div>
+
       </div>
     </div>
 
   </div>
-</div>
+</section>
+
+<section class="section">
+  <div class="container spacing_xl">
+
+    <div class="header">
+      <h1 class="h2">Current scripts</h1>
+      <p class="text_lead">The NPM scripts that I've added for each package.</p>
+    </div>
+
+    <div class="content spacing">
+
+      <h2 class="subtitle">Global</h2>
+
+<pre class="code"><code>"scripts": {
+  "watch": "lerna run watch --parallel"
+}</code></pre>
+
+<pre class="code"><code>"scripts": {
+  "clean": "del dist",
+  "watch": "npm-run-all watch:styles watch:scripts",
+  "build": "npm-run-all clean styles scripts"
+}</code></pre>
+
+      <h2 class="subtitle">Styles</h2>
+
+<pre class="code"><code>"scripts": {
+  "styles:compile": "sass index.scss dist/styles.css --load-path node_modules",
+  "styles:prefix": "postcss dist/styles.css --map --use autoprefixer --output dist/styles.css",
+  "styles:min": "sass dist/styles.css dist/styles.min.css --style compressed",
+  "styles": "npm-run-all styles:compile styles:prefix styles:min",
+  "lint:styles": "stylelint '**/*.scss'",
+  "lint": "npm run lint:styles",
+  "watch:styles": "nodemon -e scss -x 'npm run styles'",
+}</code></pre>
+
+      <h2 class="subtitle">Scripts</h2>
+
+<pre class="code"><code>"scripts": { ... }</code></pre>
+
+    </div>
+
+  </div>
+</section>
 
 <script src="./packages/core/dist/scripts.min.js"></script>
 
