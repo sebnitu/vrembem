@@ -11,9 +11,9 @@
     "styles": "npm-run-all styles:compile styles:prefix styles:min",
     "lint:styles": "stylelint '**/*.scss'",
     "lint": "npm run lint:styles",
+    "build": "npm-run-all clean styles",
     "watch:styles": "nodemon -e scss -x 'npm run styles'",
-    "watch": "npm run watch:styles'",
-    "build": "npm-run-all clean styles"
+    "watch": "npm run watch:styles'"
   },
   "repository": {
     "type": "git",

@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <title>Test</title>
+  <title>@vrembem/todos</title>
   <!-- <link rel="stylesheet" href="https://unpkg.com/vrembem@0.7.0/dist/css/styles.min.css"> -->
   <!-- Base & Utilities -->
   <link rel="stylesheet" href="./packages/base/dist/styles.min.css">
@@ -19,6 +19,10 @@
   <link rel="stylesheet" href="./packages/section/dist/styles.min.css">
 
   <style>
+
+    .header {
+      max-width: 740px;
+    }
 
     .subtitle {
       padding-bottom: 0.5em;
@@ -69,11 +73,11 @@
     }
 
     .list__icon::before {
-      content: "✕";
+      content: "-";
     }
 
     .list__icon.is-done::before {
-      content: "✔";
+      content: "+";
     }
 
   </style>
@@ -81,12 +85,23 @@
 </head>
 <body>
 
+<section class="section section_color_shade">
+  <div class="container spacing_xl">
+
+    <div class="header">
+      <h1 class="h2">@vrembem/todo</h1>
+      <p class="text_lead">While in the process of transitioning the <a class="link" href="https://vrembem.sebnitu.com/" target="_blank">Vrembem project</a> into a <a class="link" href="https://lerna.js.org/" target="_blank">monorepo using Lerna</a>, this file will document the progress and keep track of remaining tasks.</p>
+    </div>
+
+  </div>
+</section>
+
 <section class="section">
   <div class="container spacing_xl">
 
     <div class="header">
-      <h1 class="h2">Build processes to implement</h1>
-      <p class="text_lead">These are tasks I need to setup with NPM scripts and sorting the output and how to use them.</p>
+      <h2 class="h3">Build processes to implement</h2>
+      <p>These are tasks I need to setup with NPM scripts and sorting the output and how to use them.</p>
     </div>
 
     <div class="content">
@@ -96,9 +111,11 @@
           <div class="box">
             <ul class="list list_todo">
               <li class="list__title">Global</li>
+              <li><span class="list__icon is-done"></span> watch --parallel</li>
               <li><span class="list__icon is-done"></span> clean</li>
-              <li><span class="list__icon"></span> watch</li>
+              <li><span class="list__icon"></span> lint</li>
               <li><span class="list__icon"></span> build</li>
+              <li><span class="list__icon"></span> watch</li>
             </ul>
           </div>
         </div>
@@ -107,9 +124,12 @@
           <div class="box">
             <ul class="list list_todo">
               <li class="list__title">Styles</li>
-              <li><span class="list__icon is-done"></span> Compilation</li>
-              <li><span class="list__icon is-done"></span> Prefix</li>
-              <li><span class="list__icon is-done"></span> Compression</li>
+              <li><span class="list__icon is-done"></span> compile</li>
+              <li><span class="list__icon is-done"></span> prefix</li>
+              <li><span class="list__icon is-done"></span> minify</li>
+              <li><span class="list__icon is-done"></span> lint</li>
+              <li><span class="list__icon is-done"></span> build</li>
+              <li><span class="list__icon is-done"></span> watch</li>
             </ul>
           </div>
         </div>
@@ -118,9 +138,12 @@
           <div class="box">
             <ul class="list list_todo">
               <li class="list__title">Scripts</li>
-              <li><span class="list__icon"></span> Browserify</li>
-              <li><span class="list__icon"></span> Babel</li>
-              <li><span class="list__icon"></span> Uglify</li>
+              <li><span class="list__icon"></span> browserify</li>
+              <li><span class="list__icon"></span> transpile babel</li>
+              <li><span class="list__icon"></span> uglify minify</li>
+              <li><span class="list__icon"></span> lint</li>
+              <li><span class="list__icon"></span> build</li>
+              <li><span class="list__icon"></span> watch</li>
             </ul>
           </div>
         </div>
@@ -135,39 +158,41 @@
   <div class="container spacing_xl">
 
     <div class="header">
-      <h1 class="h2">Current scripts</h1>
-      <p class="text_lead">The NPM scripts that I've added for each package.</p>
+      <h2 class="h3">Current scripts</h2>
+      <p>The NPM scripts that I've added for each package so far.</p>
     </div>
 
     <div class="content spacing">
 
       <h2 class="subtitle">Global</h2>
 
-<pre class="code"><code>"scripts": {
+<pre class="code"><code>// root package.json
+"scripts": {
   "watch": "lerna run watch --parallel"
 }</code></pre>
 
-<pre class="code"><code>"scripts": {
+<pre class="code"><code>// component package.json
+"scripts": {
   "clean": "del dist",
-  "watch": "npm-run-all watch:styles watch:scripts",
-  "build": "npm-run-all clean styles scripts"
+  "lint": "npm-run-all lint:styles lint:scripts",
+  "build": "npm-run-all clean styles scripts",
+  "watch": "npm-run-all watch:styles watch:scripts"
 }</code></pre>
 
       <h2 class="subtitle">Styles</h2>
-
-<pre class="code"><code>"scripts": {
+<pre class="code"><code>// component package.json
+"scripts": {
   "styles:compile": "sass index.scss dist/styles.css --load-path node_modules",
   "styles:prefix": "postcss dist/styles.css --map --use autoprefixer --output dist/styles.css",
   "styles:min": "sass dist/styles.css dist/styles.min.css --style compressed",
   "styles": "npm-run-all styles:compile styles:prefix styles:min",
   "lint:styles": "stylelint '**/*.scss'",
-  "lint": "npm run lint:styles",
   "watch:styles": "nodemon -e scss -x 'npm run styles'",
 }</code></pre>
 
       <h2 class="subtitle">Scripts</h2>
-
-<pre class="code"><code>"scripts": { ... }</code></pre>
+<pre class="code"><code>// component package.json
+"scripts": { ... }</code></pre>
 
     </div>
 

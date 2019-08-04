@@ -314,6 +314,10 @@
   border-color: #2196f3;
 }
 
+.margin_0 {
+  margin: 0 !important;
+}
+
 .margin_xs {
   margin: 0.5rem !important;
 }
@@ -332,6 +336,10 @@
 
 .margin_xl {
   margin: 6rem !important;
+}
+
+.margin_top_0 {
+  margin-top: 0 !important;
 }
 
 .margin_top_xs {
@@ -354,6 +362,10 @@
   margin-top: 6rem !important;
 }
 
+.margin_bottom_0 {
+  margin-bottom: 0 !important;
+}
+
 .margin_bottom_xs {
   margin-bottom: 0.5rem !important;
 }
@@ -372,6 +384,10 @@
 
 .margin_bottom_xl {
   margin-bottom: 6rem !important;
+}
+
+.margin_left_0 {
+  margin-left: 0 !important;
 }
 
 .margin_left_xs {
@@ -394,6 +410,10 @@
   margin-left: 6rem !important;
 }
 
+.margin_right_0 {
+  margin-right: 0 !important;
+}
+
 .margin_right_xs {
   margin-right: 0.5rem !important;
 }
@@ -412,6 +432,11 @@
 
 .margin_right_xl {
   margin-right: 6rem !important;
+}
+
+.margin_hori_0 {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 .margin_hori_xs {
@@ -437,6 +462,11 @@
 .margin_hori_xl {
   margin-left: 6rem !important;
   margin-right: 6rem !important;
+}
+
+.margin_vert_0 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .margin_vert_xs {
@@ -469,6 +499,10 @@
   margin-right: auto;
 }
 
+.padding_0 {
+  padding: 0 !important;
+}
+
 .padding_xs {
   padding: 0.5rem !important;
 }
@@ -487,6 +521,10 @@
 
 .padding_xl {
   padding: 6rem !important;
+}
+
+.padding_top_0 {
+  padding-top: 0 !important;
 }
 
 .padding_top_xs {
@@ -509,6 +547,10 @@
   padding-top: 6rem !important;
 }
 
+.padding_bottom_0 {
+  padding-bottom: 0 !important;
+}
+
 .padding_bottom_xs {
   padding-bottom: 0.5rem !important;
 }
@@ -527,6 +569,10 @@
 
 .padding_bottom_xl {
   padding-bottom: 6rem !important;
+}
+
+.padding_left_0 {
+  padding-left: 0 !important;
 }
 
 .padding_left_xs {
@@ -549,6 +595,10 @@
   padding-left: 6rem !important;
 }
 
+.padding_right_0 {
+  padding-right: 0 !important;
+}
+
 .padding_right_xs {
   padding-right: 0.5rem !important;
 }
@@ -567,6 +617,11 @@
 
 .padding_right_xl {
   padding-right: 6rem !important;
+}
+
+.padding_hori_0 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .padding_hori_xs {
@@ -592,6 +647,11 @@
 .padding_hori_xl {
   padding-left: 6rem !important;
   padding-right: 6rem !important;
+}
+
+.padding_vert_0 {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 .padding_vert_xs {
