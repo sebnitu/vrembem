@@ -110,12 +110,11 @@
         <div class="grid__item">
           <div class="box">
             <ul class="list list_todo">
-              <li class="list__title">Global</li>
-              <li><span class="list__icon is-done"></span> watch --parallel</li>
+              <li class="list__title">Shared</li>
               <li><span class="list__icon is-done"></span> clean</li>
-              <li><span class="list__icon"></span> lint</li>
-              <li><span class="list__icon"></span> build</li>
-              <li><span class="list__icon"></span> watch</li>
+              <li><span class="list__icon"></span> lint [styles, scripts]</li>
+              <li><span class="list__icon"></span> watch [styles, scripts]</li>
+              <li><span class="list__icon"></span> build [styles, scripts]</li>
             </ul>
           </div>
         </div>
@@ -124,12 +123,12 @@
           <div class="box">
             <ul class="list list_todo">
               <li class="list__title">Styles</li>
-              <li><span class="list__icon is-done"></span> compile</li>
-              <li><span class="list__icon is-done"></span> prefix</li>
-              <li><span class="list__icon is-done"></span> minify</li>
-              <li><span class="list__icon is-done"></span> lint</li>
-              <li><span class="list__icon is-done"></span> build</li>
-              <li><span class="list__icon is-done"></span> watch</li>
+              <li><span class="list__icon is-done"></span> styles:compile</li>
+              <li><span class="list__icon is-done"></span> styles:prefix</li>
+              <li><span class="list__icon is-done"></span> styles:min</li>
+              <li><span class="list__icon is-done"></span> styles</li>
+              <li><span class="list__icon is-done"></span> lint:styles</li>
+              <li><span class="list__icon is-done"></span> watch:styles</li>
             </ul>
           </div>
         </div>
@@ -138,12 +137,12 @@
           <div class="box">
             <ul class="list list_todo">
               <li class="list__title">Scripts</li>
-              <li><span class="list__icon"></span> browserify</li>
-              <li><span class="list__icon"></span> transpile babel</li>
-              <li><span class="list__icon"></span> uglify minify</li>
-              <li><span class="list__icon"></span> lint</li>
-              <li><span class="list__icon"></span> build</li>
-              <li><span class="list__icon"></span> watch</li>
+              <li><span class="list__icon"></span> scripts:browserify</li>
+              <li><span class="list__icon"></span> scripts:babel</li>
+              <li><span class="list__icon"></span> scripts:min</li>
+              <li><span class="list__icon"></span> scripts</li>
+              <li><span class="list__icon"></span> lint:scripts</li>
+              <li><span class="list__icon"></span> watch:scripts</li>
             </ul>
           </div>
         </div>
@@ -164,19 +163,14 @@
 
     <div class="content spacing">
 
-      <h2 class="subtitle">Global</h2>
-
-<pre class="code"><code>// root package.json
-"scripts": {
-  "watch": "lerna run watch --parallel"
-}</code></pre>
+      <h2 class="subtitle">Shared</h2>
 
 <pre class="code"><code>// component package.json
 "scripts": {
   "clean": "del dist",
   "lint": "npm-run-all lint:styles lint:scripts",
-  "build": "npm-run-all clean styles scripts",
   "watch": "npm-run-all watch:styles watch:scripts"
+  "build": "npm-run-all clean styles scripts",
 }</code></pre>
 
       <h2 class="subtitle">Styles</h2>
