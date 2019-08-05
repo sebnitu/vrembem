@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "lint:styles": "stylelint \"packages/**/*.scss\"",
-    "lint:scripts": "eslint \"packages/**/*.js\"",
+    "lint:scripts": "eslint packages",
     "lint": "npm-run-all lint:styles lint:scripts",
     "fix:styles": "stylelint --fix \"packages/**/*.scss\"",
-    "fix:scripts": "eslint --fix \"packages/**/*.js\"",
+    "fix:scripts": "eslint --fix packages",
     "fix": "npm-run-all fix:styles fix:scripts"
   },
   "devDependencies": {
