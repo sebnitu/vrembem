@@ -5,13 +5,13 @@
   "main": "index.js",
   "style": "index.scss",
   "scripts": {
+    "build": "npm-run-all clean scripts",
     "clean": "del dist",
+    "scripts": "npm-run-all scripts:compile scripts:min",
     "scripts:compile": "mkdirp dist && browserify index.js --debug dist/scripts.js -t [ babelify --presets [ @babel/preset-env ] ] | exorcist dist/scripts.js.map > dist/scripts.js ",
     "scripts:min": "mkdirp dist && browserify index.js --debug dist/scripts.min.js -t [ babelify --presets [ @babel/preset-env ] ] -p tinyify | exorcist dist/scripts.min.js.map > dist/scripts.min.js",
-    "scripts": "npm-run-all scripts:compile scripts:min",
-    "watch:scripts": "nodemon -e js -x 'npm run scripts'",
     "watch": "npm run watch:scripts",
-    "build": "npm-run-all clean scripts"
+    "watch:scripts": "nodemon -e js -x 'npm run scripts' -i dist"
   },
   "repository": {
     "type": "git",

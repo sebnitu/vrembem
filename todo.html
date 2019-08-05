@@ -111,15 +111,15 @@
           <div class="box">
             <ul class="list list_todo">
               <li class="list__title">Root</li>
-              <li><span class="list__icon is-done"></span> lint:styles</li>
-              <li><span class="list__icon is-done"></span> lint:scripts</li>
-              <li><span class="list__icon is-done"></span> lint</li>
-              <li><span class="list__icon is-done"></span> fix:styles</li>
-              <li><span class="list__icon is-done"></span> fix:scripts</li>
+              <li><span class="list__icon is-done"></span> build [--parallel]</li>
+              <li><span class="list__icon is-done"></span> clean [--parallel]</li>
               <li><span class="list__icon is-done"></span> fix</li>
-              <li><span class="list__icon"></span> clean [--parallel]</li>
-              <li><span class="list__icon"></span> watch [--parallel]</li>
-              <li><span class="list__icon"></span> build [--parallel]</li>
+              <li><span class="list__icon is-done"></span> fix:scripts</li>
+              <li><span class="list__icon is-done"></span> fix:styles</li>
+              <li><span class="list__icon is-done"></span> lint</li>
+              <li><span class="list__icon is-done"></span> lint:scripts</li>
+              <li><span class="list__icon is-done"></span> lint:styles</li>
+              <li><span class="list__icon is-done"></span> watch [--parallel]</li>
             </ul>
           </div>
         </div>
@@ -128,13 +128,14 @@
           <div class="box">
             <ul class="list list_todo">
               <li class="list__title">Styles</li>
+              <li><span class="list__icon is-done"></span> build</li>
               <li><span class="list__icon is-done"></span> clean</li>
-              <li><span class="list__icon is-done"></span> styles:compile</li>
-              <li><span class="list__icon is-done"></span> styles:prefix</li>
-              <li><span class="list__icon is-done"></span> styles:min</li>
               <li><span class="list__icon is-done"></span> styles</li>
+              <li><span class="list__icon is-done"></span> styles:compile</li>
+              <li><span class="list__icon is-done"></span> styles:min</li>
+              <li><span class="list__icon is-done"></span> styles:prefix</li>
+              <li><span class="list__icon is-done"></span> watch</li>
               <li><span class="list__icon is-done"></span> watch:styles</li>
-              <li><span class="list__icon"></span> build</li>
             </ul>
           </div>
         </div>
@@ -143,12 +144,13 @@
           <div class="box">
             <ul class="list list_todo">
               <li class="list__title">Scripts</li>
+              <li><span class="list__icon is-done"></span> build</li>
               <li><span class="list__icon is-done"></span> clean</li>
+              <li><span class="list__icon is-done"></span> scripts</li>
               <li><span class="list__icon is-done"></span> scripts:compile</li>
               <li><span class="list__icon is-done"></span> scripts:min</li>
-              <li><span class="list__icon is-done"></span> scripts</li>
-              <li><span class="list__icon"></span> watch:scripts</li>
-              <li><span class="list__icon"></span> build</li>
+              <li><span class="list__icon is-done"></span> watch</li>
+              <li><span class="list__icon is-done"></span> watch:scripts</li>
             </ul>
           </div>
         </div>
@@ -172,15 +174,50 @@
       <h2 class="subtitle">Root</h2>
 
 <pre class="code"><code>// component package.json
-"scripts": {...}</code></pre>
+"scripts": {
+  "build": "lerna run build --parallel",
+  "clean": "lerna run clean --parallel",
+  "fix": "npm-run-all fix:styles fix:scripts",
+  "fix:scripts": "eslint --fix packages",
+  "fix:styles": "stylelint --fix \"packages/**/*.scss\"",
+  "lint": "npm-run-all lint:styles lint:scripts",
+  "lint:scripts": "eslint packages",
+  "lint:styles": "stylelint \"packages/**/*.scss\"",
+  "watch": "lerna run watch --parallel"
+}</code></pre>
 
       <h2 class="subtitle">Styles</h2>
 <pre class="code"><code>// component package.json
-"scripts": {...}</code></pre>
+"scripts": {
+  "build": "npm-run-all clean styles",
+  "clean": "del dist",
+  "styles": "npm-run-all styles:compile styles:prefix styles:min",
+  "styles:compile": "sass index.scss dist/styles.css --load-path node_modules",
+  "styles:min": "sass dist/styles.css dist/styles.min.css --style compressed",
+  "styles:prefix": "postcss dist/styles.css --map --use autoprefixer --output dist/styles.css",
+  "watch": "npm run watch:styles",
+  "watch:styles": "nodemon -e scss -x 'npm run styles'"
+}</code></pre>
 
       <h2 class="subtitle">Scripts</h2>
 <pre class="code"><code>// component package.json
-"scripts": {...}</code></pre>
+"scripts": {
+  "build": "npm-run-all clean scripts",
+  "clean": "del dist",
+  "scripts": "npm-run-all scripts:compile scripts:min",
+  "scripts:compile": "mkdirp dist && browserify index.js --debug dist/scripts.js -t [ babelify --presets [ @babel/preset-env ] ] | exorcist dist/scripts.js.map > dist/scripts.js ",
+  "scripts:min": "mkdirp dist && browserify index.js --debug dist/scripts.min.js -t [ babelify --presets [ @babel/preset-env ] ] -p tinyify | exorcist dist/scripts.min.js.map > dist/scripts.min.js",
+  "watch": "npm run watch:scripts",
+  "watch:scripts": "nodemon -e js -x 'npm run scripts' -i dist"
+  }</code></pre>
+
+      <h2 class="subtitle">All</h2>
+<pre class="code"><code>// component package.json
+"scripts": {
+  ...
+  "build": "npm-run-all clean scripts styles",
+  "watch": "npm run watch:scripts watch:styles"
+}</code></pre>
 
     </div>
 

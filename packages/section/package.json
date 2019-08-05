@@ -4,14 +4,14 @@
   "version": "0.0.0",
   "style": "index.scss",
   "scripts": {
+    "build": "npm-run-all clean styles",
     "clean": "del dist",
-    "styles:compile": "sass index.scss dist/styles.css --load-path node_modules",
-    "styles:prefix": "postcss dist/styles.css --map --use autoprefixer --output dist/styles.css",
-    "styles:min": "sass dist/styles.css dist/styles.min.css --style compressed",
     "styles": "npm-run-all styles:compile styles:prefix styles:min",
-    "watch:styles": "nodemon -e scss -x 'npm run styles'",
+    "styles:compile": "sass index.scss dist/styles.css --load-path node_modules",
+    "styles:min": "sass dist/styles.css dist/styles.min.css --style compressed",
+    "styles:prefix": "postcss dist/styles.css --map --use autoprefixer --output dist/styles.css",
     "watch": "npm run watch:styles",
-    "build": "npm-run-all clean styles"
+    "watch:styles": "nodemon -e scss -x 'npm run styles'"
   },
   "repository": {
     "type": "git",
