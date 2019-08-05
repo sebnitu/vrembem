@@ -1,6 +1,6 @@
 .container {
-  max-width: 70rem;
   margin: 0 auto;
+  max-width: 70rem;
 }
 
 .container_size_xs {

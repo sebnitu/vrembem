@@ -1,8 +1,8 @@
 @import 'variables';
 
 .section {
-  position: relative;
   padding: map-get($section-padding, 'base');
+  position: relative;
 }
 
 .section__container {
@@ -11,9 +11,9 @@
 }
 
 .section__intro {
-  text-align: center;
   margin: 0 auto;
   max-width: $section__intro-max-width;
+  text-align: center;
 }
 
 @each $bp, $value in $section-padding {
@@ -28,22 +28,22 @@
 
 .section__background,
 .section__screen {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
   bottom: 0;
-  width: 100%;
   height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
 }
 
 .section__background {
-  z-index: 1;
   object-fit: cover;
+  z-index: 1;
 }
 
 .section__screen {
-  z-index: 2;
-  opacity: $section__screen-opacity;
   background: $section__screen-background;
+  opacity: $section__screen-opacity;
+  z-index: 2;
 }

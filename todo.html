@@ -110,11 +110,16 @@
         <div class="grid__item">
           <div class="box">
             <ul class="list list_todo">
-              <li class="list__title">Shared</li>
-              <li><span class="list__icon is-done"></span> clean</li>
-              <li><span class="list__icon"></span> lint [styles, scripts]</li>
-              <li><span class="list__icon"></span> watch [styles, scripts]</li>
-              <li><span class="list__icon"></span> build [styles, scripts]</li>
+              <li class="list__title">Root</li>
+              <li><span class="list__icon is-done"></span> lint:styles</li>
+              <li><span class="list__icon is-done"></span> lint:scripts</li>
+              <li><span class="list__icon is-done"></span> lint</li>
+              <li><span class="list__icon is-done"></span> fix:styles</li>
+              <li><span class="list__icon is-done"></span> fix:scripts</li>
+              <li><span class="list__icon is-done"></span> fix</li>
+              <li><span class="list__icon"></span> clean [--parallel]</li>
+              <li><span class="list__icon"></span> watch [--parallel]</li>
+              <li><span class="list__icon"></span> build [--parallel]</li>
             </ul>
           </div>
         </div>
@@ -123,12 +128,13 @@
           <div class="box">
             <ul class="list list_todo">
               <li class="list__title">Styles</li>
-              <li><span class="list__icon is-done"></span> styles:compile [sass]</li>
-              <li><span class="list__icon is-done"></span> styles:prefix [postcss + autoprefixer]</li>
-              <li><span class="list__icon is-done"></span> styles:min [sass compress]</li>
+              <li><span class="list__icon is-done"></span> clean</li>
+              <li><span class="list__icon is-done"></span> styles:compile</li>
+              <li><span class="list__icon is-done"></span> styles:prefix</li>
+              <li><span class="list__icon is-done"></span> styles:min</li>
               <li><span class="list__icon is-done"></span> styles</li>
-              <li><span class="list__icon is-done"></span> lint:styles</li>
               <li><span class="list__icon is-done"></span> watch:styles</li>
+              <li><span class="list__icon"></span> build</li>
             </ul>
           </div>
         </div>
@@ -137,12 +143,12 @@
           <div class="box">
             <ul class="list list_todo">
               <li class="list__title">Scripts</li>
-              <li><span class="list__icon"></span> scripts:concat [browserify]</li>
-              <li><span class="list__icon"></span> scripts:compile [babel]</li>
-              <li><span class="list__icon"></span> scripts:min [uglify]</li>
-              <li><span class="list__icon"></span> scripts</li>
-              <li><span class="list__icon"></span> lint:scripts</li>
+              <li><span class="list__icon is-done"></span> clean</li>
+              <li><span class="list__icon is-done"></span> scripts:compile</li>
+              <li><span class="list__icon is-done"></span> scripts:min</li>
+              <li><span class="list__icon is-done"></span> scripts</li>
               <li><span class="list__icon"></span> watch:scripts</li>
+              <li><span class="list__icon"></span> build</li>
             </ul>
           </div>
         </div>
@@ -163,30 +169,18 @@
 
     <div class="content spacing">
 
-      <h2 class="subtitle">Shared</h2>
+      <h2 class="subtitle">Root</h2>
 
 <pre class="code"><code>// component package.json
-"scripts": {
-  "clean": "del dist",
-  "lint": "npm-run-all lint:styles lint:scripts",
-  "watch": "npm-run-all watch:styles watch:scripts"
-  "build": "npm-run-all clean styles scripts",
-}</code></pre>
+"scripts": {...}</code></pre>
 
       <h2 class="subtitle">Styles</h2>
 <pre class="code"><code>// component package.json
-"scripts": {
-  "styles:compile": "sass index.scss dist/styles.css --load-path node_modules",
-  "styles:prefix": "postcss dist/styles.css --map --use autoprefixer --output dist/styles.css",
-  "styles:min": "sass dist/styles.css dist/styles.min.css --style compressed",
-  "styles": "npm-run-all styles:compile styles:prefix styles:min",
-  "lint:styles": "stylelint '**/*.scss'",
-  "watch:styles": "nodemon -e scss -x 'npm run styles'",
-}</code></pre>
+"scripts": {...}</code></pre>
 
       <h2 class="subtitle">Scripts</h2>
 <pre class="code"><code>// component package.json
-"scripts": { ... }</code></pre>
+"scripts": {...}</code></pre>
 
     </div>
 

@@ -1,14 +1,14 @@
 %link {
+  border-bottom: $link-border;
   color: $link-color;
   text-decoration: $link-text-decoration;
-  border-bottom: $link-border;
   transition: $link-transition;
 
   &:focus,
   &:hover {
+    border-bottom: $link-border-hover;
     color: $link-color-hover;
     text-decoration: $link-text-decoration-hover;
-    border-bottom: $link-border-hover;
   }
 }
 
@@ -18,13 +18,13 @@
 }
 
 %link_invert {
-  color: $link-color-invert;
   border-bottom: $link-border-invert;
+  color: $link-color-invert;
 
   &:focus,
   &:hover {
-    color: $link-color-invert-hover;
     border-bottom: $link-border-invert-hover;
+    color: $link-color-invert-hover;
   }
 }
 
@@ -38,8 +38,8 @@
 
   &:focus,
   &:hover {
-    color: $link-color;
     border-color: $link-color;
+    color: $link-color;
   }
 }
 

@@ -37,8 +37,8 @@
 
 @each $key, $value in $utility-spacing {
   .margin_vert_#{$key} {
-    margin-top: $value !important;
     margin-bottom: $value !important;
+    margin-top: $value !important;
   }
 }
 

@@ -2,16 +2,16 @@
 
 .span_auto {
   flex: 0 0 auto;
-  width: auto;
   max-width: none;
+  width: auto;
 }
 
 @each $key, $value in $breakpoints {
   @include media-min($key) {
     .span_auto_#{$key} {
       flex: 0 0 auto;
-      width: auto;
       max-width: none;
+      width: auto;
     }
   }
 }

@@ -9,10 +9,8 @@
     "styles:prefix": "postcss dist/styles.css --map --use autoprefixer --output dist/styles.css",
     "styles:min": "sass dist/styles.css dist/styles.min.css --style compressed",
     "styles": "npm-run-all styles:compile styles:prefix styles:min",
-    "lint:styles": "stylelint '**/*.scss'",
-    "lint": "npm run lint:styles",
     "watch:styles": "nodemon -e scss -x 'npm run styles'",
-    "watch": "npm run watch:styles'",
+    "watch": "npm run watch:styles",
     "build": "npm-run-all clean styles"
   },
   "repository": {

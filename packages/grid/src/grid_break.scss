@@ -5,8 +5,8 @@
 
   > .grid__item {
     flex: 1 0 100%;
-    width: 100%;
     max-width: 100%;
+    width: 100%;
   }
 }
 
@@ -24,8 +24,8 @@
   @include media-max($key) {
     .grid_break_#{$key} > .grid__item {
       flex: 1 0 100%;
-      width: 100%;
       max-width: 100%;
+      width: 100%;
     }
   }
 }

@@ -37,7 +37,7 @@
 
 @each $key, $value in $utility-spacing {
   .padding_vert_#{$key} {
-    padding-top: $value !important;
     padding-bottom: $value !important;
+    padding-top: $value !important;
   }
 }

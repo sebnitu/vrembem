@@ -3,7 +3,12 @@
   "version": "0.7.0",
   "private": true,
   "scripts": {
-    "watch": "lerna run watch --parallel"
+    "lint:styles": "stylelint \"packages/**/*.scss\"",
+    "lint:scripts": "eslint \"packages/**/*.js\"",
+    "lint": "npm-run-all lint:styles lint:scripts",
+    "fix:styles": "stylelint --fix \"packages/**/*.scss\"",
+    "fix:scripts": "eslint --fix \"packages/**/*.js\"",
+    "fix": "npm-run-all fix:styles fix:scripts"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -11,7 +16,9 @@
     "autoprefixer": "^9.6.1",
     "babelify": "^10.0.0",
     "browserify": "^16.3.0",
+    "deepmerge": "^4.0.0",
     "del-cli": "^2.0.0",
+    "eslint": "^6.1.0",
     "exorcist": "^1.0.1",
     "lerna": "^3.15.0",
     "mkdirp": "^0.5.1",
@@ -21,6 +28,9 @@
     "sass": "^1.22.9",
     "stylelint": "^10.1.0",
     "stylelint-config-standard": "^18.3.0",
-    "uglifyify": "^5.0.1"
+    "stylelint-order": "^3.0.1",
+    "stylelint-scss": "^3.9.3",
+    "stylelint-selector-bem-pattern": "^2.1.0",
+    "tinyify": "^2.5.1"
   }
 }

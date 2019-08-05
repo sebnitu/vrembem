@@ -1,23 +1,23 @@
 @import "variables";
 
 .grid_gap_none {
-  margin-top: 0;
   margin-left: 0;
+  margin-top: 0;
 
   > .grid__item {
-    padding-top: 0;
     padding-left: 0;
+    padding-top: 0;
   }
 }
 
 @each $key, $value in $grid-gap-scale {
   .grid_gap_#{$key} {
-    margin-top: ($value * -1);
     margin-left: ($value * -1);
+    margin-top: ($value * -1);
 
     > .grid__item {
-      padding-top: $value;
       padding-left: $value;
+      padding-top: $value;
     }
   }
 }
