@@ -6,16 +6,16 @@
 }
 
 .drawer__item {
-  position: relative;
-  width: 0;
+  align-content: stretch;
+  align-items: stretch;
   display: flex;
   flex: 0 0 0;
-  align-items: stretch;
-  align-content: stretch;
   flex-direction: column;
   overflow: hidden auto;
   -webkit-overflow-scrolling: touch;
+  position: relative;
   transition: width 0s $drawer-transition-duration;
+  width: 0;
 }
 
 .drawer__main {
@@ -23,14 +23,14 @@
 }
 
 .drawer__dialog {
-  width: $drawer-width;
-  transform: translate3d(0, -$drawer-travel, 0);
-  opacity: 0;
-  visibility: hidden;
   background: $drawer__dialog-background;
-  box-shadow: $drawer__dialog-box-shadow;
   border-radius: 0;
+  box-shadow: $drawer__dialog-box-shadow;
   min-height: 100%;
+  opacity: 0;
+  transform: translate3d(0, -$drawer-travel, 0);
+  visibility: hidden;
+  width: $drawer-width;
 
   .dialog__header,
   .dialog__footer {
@@ -44,13 +44,13 @@
 }
 
 .drawer__item.is-active {
-  width: $drawer-width;
   flex: 0 0 $drawer-width;
   transition: none;
+  width: $drawer-width;
 
   .drawer__dialog {
-    transform: translate3d(0, 0, 0);
     opacity: 1;
+    transform: translate3d(0, 0, 0);
     visibility: visible;
   }
 }

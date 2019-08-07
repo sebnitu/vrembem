@@ -4,16 +4,16 @@
 }
 
 .drawer__item {
-  position: relative;
-  width: 0;
+  align-content: stretch;
+  align-items: stretch;
   display: flex;
   flex: 0 0 0;
-  align-items: stretch;
-  align-content: stretch;
   flex-direction: column;
   overflow: hidden auto;
   -webkit-overflow-scrolling: touch;
+  position: relative;
   transition: width 0s 0.5s;
+  width: 0;
 }
 
 .drawer__main {
@@ -21,14 +21,14 @@
 }
 
 .drawer__dialog {
-  width: 16em;
-  transform: translate3d(0, -5em, 0);
-  opacity: 0;
-  visibility: hidden;
   background: #eceff1;
-  box-shadow: none;
   border-radius: 0;
+  box-shadow: none;
   min-height: 100%;
+  opacity: 0;
+  transform: translate3d(0, -5em, 0);
+  visibility: hidden;
+  width: 16em;
 }
 .drawer__dialog .dialog__header,
 .drawer__dialog .dialog__footer {
@@ -40,21 +40,21 @@
 }
 
 .drawer__item.is-active {
-  width: 16em;
   flex: 0 0 16em;
   transition: none;
+  width: 16em;
 }
 .drawer__item.is-active .drawer__dialog {
-  transform: translate3d(0, 0, 0);
   opacity: 1;
+  transform: translate3d(0, 0, 0);
   visibility: visible;
 }
 
 .drawer__item_pos_left,
 .drawer__item_pos_right {
+  bottom: 0;
   position: absolute;
   top: 0;
-  bottom: 0;
 }
 
 .drawer__item_pos_left {

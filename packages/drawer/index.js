@@ -69,8 +69,7 @@ export default function(options) {
     settings = u.extend( defaults, options || {} )
 
     // Get all the drawers on the page and save them with their default state
-    document.querySelectorAll("." + settings.classTarget)
-      .forEach((drawer) => {
+    document.querySelectorAll("." + settings.classTarget).forEach((drawer) => {
       drawers.push({
         "drawer": drawer,
         "defaultState": u.hasClass(drawer, settings.classActive)

@@ -8,8 +8,8 @@
     "build": "npm-run-all clean scripts styles",
     "clean": "del dist",
     "scripts": "npm-run-all scripts:compile scripts:min",
-    "scripts:compile": "mkdirp dist && browserify index.js --debug dist/scripts.js -t [ babelify --presets [ @babel/preset-env ] ] | exorcist dist/scripts.js.map > dist/scripts.js",
-    "scripts:min": "mkdirp dist && browserify index.js --debug dist/scripts.min.js -t [ babelify --presets [ @babel/preset-env ] ] -p tinyify | exorcist dist/scripts.min.js.map > dist/scripts.min.js",
+    "scripts:compile": "mkdirp dist && browserify index.js --debug dist/scripts.js -t [ babelify --global --presets [ @babel/preset-env ] ] | exorcist dist/scripts.js.map > dist/scripts.js",
+    "scripts:min": "mkdirp dist && browserify index.js --debug dist/scripts.min.js -t [ babelify --global --presets [ @babel/preset-env ] ] -p tinyify | exorcist dist/scripts.min.js.map > dist/scripts.min.js",
     "styles": "npm-run-all styles:compile styles:prefix styles:min",
     "styles:compile": "sass index.scss dist/styles.css --load-path node_modules",
     "styles:min": "sass dist/styles.css dist/styles.min.css --style compressed",
@@ -25,10 +25,5 @@
   },
   "dependencies": {
     "@vrembem/core": "^0.0.0"
-  },
-  "browserify": {
-    "transform": [
-      [ "babelify", { "presets": ["@babel/preset-env"] } ]
-    ]
   }
 }

@@ -29,19 +29,14 @@ exports["default"] = _default;
 
 var _utility = _interopRequireDefault(require("@vrembem/utility"));
 
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    "default": obj
-  };
-}
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 /**
  * Drawer plugin
  * ---
  * A container component that slides in from the left or right. It typically
  * contains menus, search or other content for your app.
  */
-
-
 function _default(options) {
   "use strict";
 
@@ -122,8 +117,8 @@ function _default(options) {
 
 
   api.destroy = function () {
-    var defaultState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true; // Destroy our switch
-
+    var defaultState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+    // Destroy our switch
     destroySwitch(); // Destroy our state
 
     stateClear(); // Return drawrs to their default state

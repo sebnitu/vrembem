@@ -2,9 +2,9 @@
 
 .drawer__item_pos_left,
 .drawer__item_pos_right {
+  bottom: 0;
   position: absolute;
   top: 0;
-  bottom: 0;
 }
 
 .drawer__item_pos_left {
@@ -15,7 +15,7 @@
   }
 
   &.is-active {
-    & ~ .drawer__main {
+    ~ .drawer__main {
       margin-left: $drawer-width;
     }
   }
@@ -29,7 +29,7 @@
   }
 
   &.is-active {
-    & ~ .drawer__main {
+    ~ .drawer__main {
       margin-right: $drawer-width;
     }
   }

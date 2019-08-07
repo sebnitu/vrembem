@@ -29,11 +29,8 @@ exports["default"] = _default;
 
 var _utility = _interopRequireDefault(require("@vrembem/utility"));
 
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    "default": obj
-  };
-}
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 /**
  * Modal plugin
  * ---
@@ -41,8 +38,6 @@ function _interopRequireDefault(obj) {
  * This is usually used in conjunction with the Dialog component to make
  * modal dialogs.
  */
-
-
 function _default(options) {
   "use strict";
 

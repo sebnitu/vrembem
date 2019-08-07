@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8">
   <title>@vrembem/todos</title>
+
   <!-- <link rel="stylesheet" href="https://unpkg.com/vrembem@0.7.0/dist/css/styles.min.css"> -->
+
   <!-- Base & Utilities -->
   <link rel="stylesheet" href="./packages/base/dist/styles.min.css">
   <link rel="stylesheet" href="./packages/utility/dist/styles.min.css">
@@ -16,6 +18,8 @@
 
   <!-- Components -->
   <link rel="stylesheet" href="./packages/container/dist/styles.min.css">
+  <link rel="stylesheet" href="./packages/drawer/dist/styles.min.css">
+  <link rel="stylesheet" href="./packages/modal/dist/styles.min.css">
   <link rel="stylesheet" href="./packages/section/dist/styles.min.css">
 
   <style>
@@ -25,8 +29,10 @@
     }
 
     .subtitle {
-      padding-bottom: 0.5em;
-      border-bottom: 1px solid rgba(0,0,0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1em;
     }
 
     .code {
@@ -51,7 +57,6 @@
       align-items: center;
       margin: 0;
       padding: 0.5em 0;
-      border-bottom: 1px solid rgba(0,0,0, 0.1);
     }
 
     .list__icon {
@@ -80,6 +85,88 @@
       content: "+";
     }
 
+    .list_rowed {
+      border-top: 1px solid rgba(0,0,0, 0.1);
+    }
+
+    .list_rowed li {
+      border-bottom: 1px solid rgba(0,0,0, 0.1);
+    }
+
+    .list_inline {
+      margin: -0.5em 0 0 -1em;
+    }
+
+    .list_inline li {
+      display: inline-flex;
+      margin: 0.5em 0 0 1em;
+    }
+
+    .list_inline .list__icon {
+      margin-right: 0.5em;
+    }
+
+    .list_grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+      grid-column-gap: 30px;
+    }
+
+    .list_count {
+      counter-reset: list_index;
+    }
+
+    .list_count li {
+      counter-increment: list_index;
+    }
+
+    .list_count li::after {
+      content: counter(list_index);
+      flex: 1 0 auto;
+      text-align: right;
+      color: #ccc;
+      margin-left: 0.5em;
+    }
+
+    .count {
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: flex-end;
+    }
+
+    .sep {
+      content: "";
+      height: 1px;
+      flex-basis: 100%;
+      margin: 0 1em;
+      border-bottom: 1px solid rgba(0,0,0, 0.1);
+    }
+
+    .count__total::after,
+    .count-group__total::after {
+      font-weight: normal;
+    }
+
+    .count {
+      counter-reset: index;
+    }
+
+    .count-group {
+      counter-reset: total;
+    }
+
+    .count li {
+      counter-increment: index total list_index;
+    }
+
+    .count__total::after {
+      content: counter(index);
+    }
+
+    .count-group__total::after {
+      content: counter(total);
+    }
+
   </style>
 
 </head>
@@ -88,11 +175,20 @@
 <section class="section section_color_shade">
   <div class="container spacing_xl">
 
-    <div class="header">
+    <div class="header spacing">
       <h1 class="h2">@vrembem/todo</h1>
       <p class="text_lead">While in the process of transitioning the <a class="link" href="https://vrembem.sebnitu.com/" target="_blank">Vrembem project</a> into a <a class="link" href="https://lerna.js.org/" target="_blank">monorepo using Lerna</a>, this file will document the progress and keep track of remaining tasks.</p>
     </div>
 
+    <div class="content">
+      <ol class="list list_inline">
+        <li><span class="list__icon is-done"></span> Scripts</li>
+        <li><span class="list__icon is-done"></span> Linting</li>
+        <li><span class="list__icon"></span> Components</li>
+        <li><span class="list__icon"></span> Tests</li>
+      </ol>
+    </div>
+
   </div>
 </section>
 
@@ -100,70 +196,67 @@
   <div class="container spacing_xl">
 
     <div class="header">
-      <h2 class="h3">Components to import</h2>
+      <h2 class="h3">Components</h2>
       <p>I'm starting to import the rest of my components into their own package file.</p>
     </div>
 
-  </div>
-</section>
-
-<section class="section">
-  <div class="container spacing_xl">
-
-    <div class="header">
-      <h2 class="h3">Build processes to implement</h2>
-      <p>These are tasks I need to setup with NPM scripts and sorting the output and how to use them.</p>
-    </div>
-
     <div class="content">
-      <div class="grid grid_break_sm">
 
-        <div class="grid__item">
-          <div class="box">
-            <ul class="list list_todo">
-              <li class="list__title">Root</li>
-              <li><span class="list__icon is-done"></span> build [--parallel]</li>
-              <li><span class="list__icon is-done"></span> clean [--parallel]</li>
-              <li><span class="list__icon is-done"></span> fix</li>
-              <li><span class="list__icon is-done"></span> fix:scripts</li>
-              <li><span class="list__icon is-done"></span> fix:styles</li>
-              <li><span class="list__icon is-done"></span> lint</li>
-              <li><span class="list__icon is-done"></span> lint:scripts</li>
-              <li><span class="list__icon is-done"></span> lint:styles</li>
-              <li><span class="list__icon is-done"></span> watch [--parallel]</li>
-            </ul>
-          </div>
+      <div class="grid grid_break_sm count-group">
+
+        <div class="grid__item count count_done">
+          <ol class="list list_count list_grid">
+            <li><span class="list__icon is-done"></span> base</li>
+            <li><span class="list__icon is-done"></span> container</li>
+            <li><span class="list__icon is-done"></span> core</li>
+            <li><span class="list__icon is-done"></span> drawer</li>
+            <li><span class="list__icon is-done"></span> grid</li>
+            <li><span class="list__icon is-done"></span> level</li>
+            <li><span class="list__icon is-done"></span> modal</li>
+            <li><span class="list__icon is-done"></span> section</li>
+            <li><span class="list__icon is-done"></span> spacing</li>
+            <li><span class="list__icon is-done"></span> span</li>
+            <li><span class="list__icon is-done"></span> utility</li>
+          </ol>
+          <h3 class="subtitle">
+            Processed
+            <span class="sep"></span>
+            <span class="count__total"></span>
+          </h3>
         </div>
 
-        <div class="grid__item">
-          <div class="box">
-            <ul class="list list_todo">
-              <li class="list__title">Scripts</li>
-              <li><span class="list__icon is-done"></span> build</li>
-              <li><span class="list__icon is-done"></span> clean</li>
-              <li><span class="list__icon is-done"></span> scripts</li>
-              <li><span class="list__icon is-done"></span> scripts:compile</li>
-              <li><span class="list__icon is-done"></span> scripts:min</li>
-              <li><span class="list__icon is-done"></span> watch</li>
-              <li><span class="list__icon is-done"></span> watch:scripts</li>
-            </ul>
-          </div>
+        <div class="grid__item count count_queue">
+          <ol class="list list_count list_grid">
+            <li><span class="list__icon"></span> arrow</li>
+            <li><span class="list__icon"></span> breadcrumb</li>
+            <li><span class="list__icon"></span> button</li>
+            <li><span class="list__icon"></span> button-group</li>
+            <li><span class="list__icon"></span> card</li>
+            <li><span class="list__icon"></span> dialog</li>
+            <li><span class="list__icon"></span> dropdown</li>
+            <li><span class="list__icon"></span> embed</li>
+            <li><span class="list__icon"></span> icon</li>
+            <li><span class="list__icon"></span> icon-action</li>
+            <li><span class="list__icon"></span> input</li>
+            <li><span class="list__icon"></span> media</li>
+            <li><span class="list__icon"></span> menu</li>
+            <li><span class="list__icon"></span> notice</li>
+            <li><span class="list__icon"></span> tooltip</li>
+            <li><span class="list__icon"></span> type</li>
+          </ol>
+          <h3 class="subtitle">
+            Queue
+            <span class="sep"></span>
+            <span class="count__total"></span>
+          </h3>
         </div>
 
-        <div class="grid__item">
-          <div class="box">
-            <ul class="list list_todo">
-              <li class="list__title">Styles</li>
-              <li><span class="list__icon is-done"></span> build</li>
-              <li><span class="list__icon is-done"></span> clean</li>
-              <li><span class="list__icon is-done"></span> styles</li>
-              <li><span class="list__icon is-done"></span> styles:compile</li>
-              <li><span class="list__icon is-done"></span> styles:min</li>
-              <li><span class="list__icon is-done"></span> styles:prefix</li>
-              <li><span class="list__icon is-done"></span> watch</li>
-              <li><span class="list__icon is-done"></span> watch:styles</li>
-            </ul>
-          </div>
+        <div class="grid__item span_full">
+          <h3 class="subtitle">
+            <span class="text_nowrap">Total components</span>
+            <span class="sep"></span>
+            <span class="count-group__total"></span>
+          </h3>
         </div>
 
       </div>
@@ -176,8 +269,87 @@
   <div class="container spacing_xl">
 
     <div class="header">
-      <h2 class="h3">Current scripts</h2>
-      <p>The NPM scripts that I've added for each package so far.</p>
+      <h2 class="h3">Build scripts</h2>
+      <p>These are tasks I need to setup with NPM scripts and sorting the output and how to use them.</p>
+    </div>
+
+    <div class="content">
+      <div class="grid grid_break_sm count-group">
+
+        <div class="grid__item count">
+          <ul class="list list_count">
+            <li><span class="list__icon is-done"></span> build [--parallel]</li>
+            <li><span class="list__icon is-done"></span> clean [--parallel]</li>
+            <li><span class="list__icon is-done"></span> fix</li>
+            <li><span class="list__icon is-done"></span> fix:scripts</li>
+            <li><span class="list__icon is-done"></span> fix:styles</li>
+            <li><span class="list__icon is-done"></span> lint</li>
+            <li><span class="list__icon is-done"></span> lint:scripts</li>
+            <li><span class="list__icon is-done"></span> lint:styles</li>
+            <li><span class="list__icon is-done"></span> watch [--parallel]</li>
+          </ul>
+          <h3 class="subtitle">
+            Root
+            <span class="sep"></span>
+            <span class="count__total"></span>
+          </h3>
+        </div>
+
+        <div class="grid__item count">
+          <ul class="list list_count">
+            <li><span class="list__icon is-done"></span> build</li>
+            <li><span class="list__icon is-done"></span> clean</li>
+            <li><span class="list__icon is-done"></span> scripts</li>
+            <li><span class="list__icon is-done"></span> scripts:compile</li>
+            <li><span class="list__icon is-done"></span> scripts:min</li>
+            <li><span class="list__icon is-done"></span> watch</li>
+            <li><span class="list__icon is-done"></span> watch:scripts</li>
+          </ul>
+          <h3 class="subtitle">
+            Scripts
+            <span class="sep"></span>
+            <span class="count__total"></span>
+          </h3>
+        </div>
+
+        <div class="grid__item count">
+          <ul class="list list_count">
+            <li><span class="list__icon is-done"></span> build</li>
+            <li><span class="list__icon is-done"></span> clean</li>
+            <li><span class="list__icon is-done"></span> styles</li>
+            <li><span class="list__icon is-done"></span> styles:compile</li>
+            <li><span class="list__icon is-done"></span> styles:min</li>
+            <li><span class="list__icon is-done"></span> styles:prefix</li>
+            <li><span class="list__icon is-done"></span> watch</li>
+            <li><span class="list__icon is-done"></span> watch:styles</li>
+          </ul>
+          <h3 class="subtitle">
+            Styles
+            <span class="sep"></span>
+            <span class="count__total"></span>
+          </h3>
+        </div>
+
+        <div class="grid__item span_full">
+          <h3 class="subtitle">
+            <span class="text_nowrap">Total Scripts</span>
+            <span class="sep"></span>
+            <span class="count-group__total"></span>
+          </h3>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container spacing_xl">
+
+    <div class="header">
+      <h2 class="h3">Script groups</h2>
+      <p>The set of scripts that are to be used depending on the package type.</p>
     </div>
 
     <div class="content spacing">
@@ -197,15 +369,14 @@
   "watch": "lerna run watch --parallel"
 }</code></pre>
 
-
       <h2 class="subtitle">Scripts</h2>
 <pre class="code"><code>// component package.json
 "scripts": {
   "build": "npm-run-all clean scripts",
   "clean": "del dist",
   "scripts": "npm-run-all scripts:compile scripts:min",
-  "scripts:compile": "mkdirp dist && browserify index.js --debug dist/scripts.js -t [ babelify --presets [ @babel/preset-env ] ] | exorcist dist/scripts.js.map > dist/scripts.js",
-  "scripts:min": "mkdirp dist && browserify index.js --debug dist/scripts.min.js -t [ babelify --presets [ @babel/preset-env ] ] -p tinyify | exorcist dist/scripts.min.js.map > dist/scripts.min.js",
+  "scripts:compile": "mkdirp dist && browserify index.js --debug dist/scripts.js -t [ babelify --global --presets [ @babel/preset-env ] ] | exorcist dist/scripts.js.map > dist/scripts.js",
+  "scripts:min": "mkdirp dist && browserify index.js --debug dist/scripts.min.js -t [ babelify --global --presets [ @babel/preset-env ] ] -p tinyify | exorcist dist/scripts.min.js.map > dist/scripts.min.js",
   "watch": "npm run watch:scripts",
   "watch:scripts": "nodemon -e js -x 'npm run scripts' -i dist"
 }</code></pre>
@@ -223,14 +394,14 @@
   "watch:styles": "nodemon -e scss -x 'npm run styles'"
 }</code></pre>
 
-      <h2 class="subtitle">All</h2>
+      <h2 class="subtitle">Both</h2>
 <pre class="code"><code>// component package.json
 "scripts": {
   "build": "npm-run-all clean scripts styles",
   "clean": "del dist",
   "scripts": "npm-run-all scripts:compile scripts:min",
-  "scripts:compile": "mkdirp dist && browserify index.js --debug dist/scripts.js -t [ babelify --presets [ @babel/preset-env ] ] | exorcist dist/scripts.js.map > dist/scripts.js",
-  "scripts:min": "mkdirp dist && browserify index.js --debug dist/scripts.min.js -t [ babelify --presets [ @babel/preset-env ] ] -p tinyify | exorcist dist/scripts.min.js.map > dist/scripts.min.js",
+  "scripts:compile": "mkdirp dist && browserify index.js --debug dist/scripts.js -t [ babelify --global --presets [ @babel/preset-env ] ] | exorcist dist/scripts.js.map > dist/scripts.js",
+  "scripts:min": "mkdirp dist && browserify index.js --debug dist/scripts.min.js -t [ babelify --global --presets [ @babel/preset-env ] ] -p tinyify | exorcist dist/scripts.min.js.map > dist/scripts.min.js",
   "styles": "npm-run-all styles:compile styles:prefix styles:min",
   "styles:compile": "sass index.scss dist/styles.css --load-path node_modules",
   "styles:min": "sass dist/styles.css dist/styles.min.css --style compressed",
@@ -245,7 +416,11 @@
   </div>
 </section>
 
-<script src="./packages/core/dist/scripts.min.js"></script>
+<div class="modal" id="modal-id">
+  <div class="modal__dialog">
+    ...
+  </div>
+</div>
 
 </body>
 </html>

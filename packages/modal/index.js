@@ -60,7 +60,7 @@ export default function(options) {
           target.focus()
         }
         this.removeEventListener("transitionend", _listener, true)
-      }, true);
+      }, true)
     }
   }
 
@@ -77,7 +77,7 @@ export default function(options) {
           memoryTarget = null
           memoryTrigger = null
           this.removeEventListener("transitionend", _listener, true)
-        }, true);
+        }, true)
       }
     } else if (clear == true) {
       memoryTarget = null

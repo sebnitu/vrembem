@@ -1,48 +1,48 @@
 @import "variables";
 
 .modal {
+  align-items: center;
+  backdrop-filter: blur(4px);
+  background-color: rgba($modal-background, 0);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  z-index: $modal-zindex;
-  top: 0;
-  right: 0;
-  width: 0;
   height: 0;
+  justify-content: center;
   overflow: hidden;
-  background-color: rgba($modal-background, 0);
-  backdrop-filter: blur(4px);
+  position: fixed;
+  right: 0;
+  top: 0;
   transition: background-color $modal-transition-duration, width 0s $modal-transition-duration, height 0s $modal-transition-duration, padding 0s $modal-transition-duration;
+  width: 0;
+  z-index: $modal-zindex;
 }
 
 .modal__dialog {
-  z-index: 1001;
-  width: $modal-width;
-  max-width: 100%;
   box-shadow: $box-shadow-flat;
-  transform: translate3d(0, -$modal-travel, 0);
+  max-width: 100%;
   opacity: 0;
+  transform: translate3d(0, -$modal-travel, 0);
   visibility: hidden;
+  width: $modal-width;
+  z-index: 1001;
 }
 
 // Remove outline on focused items with tabindex of "-1"
 [tabindex="-1"]:focus {
-  outline: 0!important;
+  outline: 0 !important;
 }
 
 .modal.is-active {
-  width: 100%;
+  background-color: rgba($modal-background, 0.75);
   height: 100%;
   padding: 1em;
-  background-color: rgba($modal-background, 0.75);
   transition: background-color $modal-transition-duration;
+  width: 100%;
 
   .modal__dialog {
     box-shadow: $modal__dialog-box-shadow;
-    transform: translate3d(0, 0, 0);
     opacity: 1;
+    transform: translate3d(0, 0, 0);
     visibility: visible;
   }
 }
