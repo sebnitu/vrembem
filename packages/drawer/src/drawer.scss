@@ -1,11 +1,4 @@
-@import 'variables';
-
-/**
- * Drawer
- * ---
- * A container component that slides in from the left or right. It typically
- * contains menus, search or other content for your app.
- */
+@import "variables";
 
 .drawer {
   display: flex;
@@ -29,10 +22,6 @@
   flex-grow: 1;
 }
 
-/**
- * Drawer dialog
- */
-
 .drawer__dialog {
   width: $drawer-width;
   transform: translate3d(0, -$drawer-travel, 0);
@@ -53,10 +42,6 @@
     background: $drawer__dialog-background;
   }
 }
-
-/**
- * Drawer active state
- */
 
 .drawer__item.is-active {
   width: $drawer-width;

@@ -1,4 +1,4 @@
-import u from './utility.js'
+import u from "@vrembem/utility"
 
 /**
  * Modal plugin
@@ -9,16 +9,16 @@ import u from './utility.js'
  */
 export default function(options) {
 
-  'use strict'
+  "use strict"
 
   let api = {}
   let settings
   const defaults = {
-    classTarget: 'modal',
-    classTrigger: 'modal__trigger',
-    classInner: 'modal__dialog',
-    classActive: 'is-active',
-    focus: '[data-focus]'
+    classTarget: "modal",
+    classTrigger: "modal__trigger",
+    classInner: "modal__dialog",
+    classActive: "is-active",
+    focus: "[data-focus]"
   }
 
   let memoryTrigger
@@ -26,18 +26,18 @@ export default function(options) {
 
   api.init = (options) => {
     settings = u.extend( defaults, options || {} )
-    document.addEventListener('click', run, false)
-    document.addEventListener('touchend', run, false)
-    document.addEventListener('keyup', escape, false)
+    document.addEventListener("click", run, false)
+    document.addEventListener("touchend", run, false)
+    document.addEventListener("keyup", escape, false)
   }
 
   api.destroy = () => {
     settings = null
     memoryTarget = null
     memoryTrigger = null
-    document.removeEventListener('click', run, false)
-    document.removeEventListener('touchend', run, false)
-    document.removeEventListener('keyup', escape, false)
+    document.removeEventListener("click", run, false)
+    document.removeEventListener("touchend", run, false)
+    document.removeEventListener("keyup", escape, false)
   }
 
   api.open = (selector) => {
@@ -53,30 +53,30 @@ export default function(options) {
     if (target.length === 1) {
       target = target.item(0)
       let focus = target.querySelector(settings.focus)
-      target.addEventListener('transitionend', function _listener() {
+      target.addEventListener("transitionend", function _listener() {
         if (focus) {
           focus.focus()
         } else {
           target.focus()
         }
-        this.removeEventListener('transitionend', _listener, true)
+        this.removeEventListener("transitionend", _listener, true)
       }, true);
     }
   }
 
   const close = (clear = false) => {
-    let target = document.querySelectorAll('.' + settings.classTarget)
+    let target = document.querySelectorAll("." + settings.classTarget)
     u.removeClass(target, settings.classActive)
     if (clear == false && memoryTrigger && memoryTarget) {
       if (memoryTarget.length === 1) {
         memoryTarget = memoryTarget.item(0)
-        memoryTarget.addEventListener('transitionend', function _listener() {
+        memoryTarget.addEventListener("transitionend", function _listener() {
           if (memoryTrigger) {
             memoryTrigger.focus()
           }
           memoryTarget = null
           memoryTrigger = null
-          this.removeEventListener('transitionend', _listener, true)
+          this.removeEventListener("transitionend", _listener, true)
         }, true);
       }
     } else if (clear == true) {
@@ -92,9 +92,9 @@ export default function(options) {
   }
 
   const run = () => {
-    let target = event.target.closest('.' + settings.classTarget)
-    let trigger = event.target.closest('.' + settings.classTrigger)
-    let inner = event.target.closest('.' + settings.classInner)
+    let target = event.target.closest("." + settings.classTarget)
+    let trigger = event.target.closest("." + settings.classTrigger)
+    let inner = event.target.closest("." + settings.classInner)
     if (trigger) {
       close()
       let targetData = trigger.dataset.target

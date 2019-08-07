@@ -1,10 +1,4 @@
-@import 'variables';
-
-/**
- * Modal size modifiers
- * ---
- * Changes the size of the dialog within a modal.
- */
+@import "variables";
 
 .modal_size_sm .modal__dialog {
   width: $modal-width-sm;

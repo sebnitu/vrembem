@@ -1,6 +1,6 @@
 {
-  "name": "@vrembem/utility",
-  "description": "Components that add one off styles or are geared to styling specific html elements and can be extended in other places.",
+  "name": "@vrembem/modal",
+  "description": "A component for changing the mode of a page to complete a critical task. This is usually used in conjunction with the Dialog component to make modal dialogs.",
   "version": "0.0.0",
   "main": "index.js",
   "style": "index.scss",
@@ -21,10 +21,11 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sebnitu/vrembem.git",
-    "directory": "packages/utility"
+    "directory": "packages/modal"
   },
   "dependencies": {
-    "@vrembem/core": "^0.0.0"
+    "@vrembem/core": "^0.0.0",
+    "@vrembem/utility": "^0.0.0"
   },
   "browserify": {
     "transform": [

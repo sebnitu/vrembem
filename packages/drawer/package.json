@@ -1,6 +1,6 @@
 {
-  "name": "@vrembem/utility",
-  "description": "Components that add one off styles or are geared to styling specific html elements and can be extended in other places.",
+  "name": "@vrembem/drawer",
+  "description": "A container component that slides in from the left or right. It typically contains menus, search or other content for your app.",
   "version": "0.0.0",
   "main": "index.js",
   "style": "index.scss",
@@ -21,10 +21,11 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sebnitu/vrembem.git",
-    "directory": "packages/utility"
+    "directory": "packages/drawer"
   },
   "dependencies": {
-    "@vrembem/core": "^0.0.0"
+    "@vrembem/core": "^0.0.0",
+    "@vrembem/utility": "^0.0.0"
   },
   "browserify": {
     "transform": [

@@ -1,10 +1,4 @@
-@import 'variables';
-
-/**
- * Modal full modifier
- * ---
- * A modal modifier which allows the dialog to fill the entire view.
- */
+@import "variables";
 
 .modal_full .modal__dialog {
   position: absolute;

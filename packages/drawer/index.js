@@ -1,4 +1,4 @@
-import u from './utility.js'
+import u from "@vrembem/utility"
 
 /**
  * Drawer plugin
@@ -8,26 +8,26 @@ import u from './utility.js'
  */
 export default function(options) {
 
-  'use strict'
+  "use strict"
 
   let api = {}
   let settings
 
   const defaults = {
     // Component element classes
-    classTarget: 'drawer__item',
-    classTrigger: 'drawer__trigger',
-    classInner: 'drawer__dialog',
+    classTarget: "drawer__item",
+    classTrigger: "drawer__trigger",
+    classInner: "drawer__dialog",
 
     // Component element switch classes
     // Used with RegExp to search and replace element classes
-    classTargetSwitch: 'modal',
-    classTriggerSwitch: 'modal__trigger',
-    classInnerSwitch: 'modal__dialog',
+    classTargetSwitch: "modal",
+    classTriggerSwitch: "modal__trigger",
+    classInnerSwitch: "modal__dialog",
 
     // State and utility classes
-    classActive: 'is-active',
-    classTransitionNone: 'transition_none',
+    classActive: "is-active",
+    classTransitionNone: "transition_none",
 
     // Whether or not to store the save state in local storage
     // {boolean} The string to save our state object as
@@ -35,12 +35,12 @@ export default function(options) {
 
     // Whether or not to enable the switch functionality. If enabled, a string
     // selector to check for should be passed.
-    // {false} || {string} e.g. '[data-drawer-switch]'
-    switch: '[data-drawer-switch]',
+    // {false} || {string} e.g. "[data-drawer-switch]"
+    switch: "[data-drawer-switch]",
 
     // The default break point for when to switch to drawer or modal classes
     // {string} Either a breakpoint key or pixel value
-    switchBreakpoint: 'lg',
+    switchBreakpoint: "lg",
 
     // Duration before removing the transition_none class on initial load
     transitionDuration: 500
@@ -69,11 +69,11 @@ export default function(options) {
     settings = u.extend( defaults, options || {} )
 
     // Get all the drawers on the page and save them with their default state
-    document.querySelectorAll('.' + settings.classTarget)
+    document.querySelectorAll("." + settings.classTarget)
       .forEach((drawer) => {
       drawers.push({
-        'drawer': drawer,
-        'defaultState': u.hasClass(drawer, settings.classActive)
+        "drawer": drawer,
+        "defaultState": u.hasClass(drawer, settings.classActive)
       })
     })
 
@@ -94,7 +94,7 @@ export default function(options) {
     })
 
     // Add our drawer trigger event listener
-    document.addEventListener('click', trigger, false)
+    document.addEventListener("click", trigger, false)
   }
 
   /**
@@ -126,7 +126,7 @@ export default function(options) {
     drawers = []
 
     // Remove the drawer trigger event listener
-    document.removeEventListener('click', trigger, false)
+    document.removeEventListener("click", trigger, false)
   }
 
   /**
@@ -135,8 +135,8 @@ export default function(options) {
    * @param {String} selector - A valid CSS selector
    */
   api.open = (selector) => {
-    selector = (selector) ? selector : '.' + settings.classTarget
-    toggle(document.querySelectorAll(selector), 'open')
+    selector = (selector) ? selector : "." + settings.classTarget
+    toggle(document.querySelectorAll(selector), "open")
   }
 
   /**
@@ -145,8 +145,8 @@ export default function(options) {
    * @param {String} selector - A valid CSS selector
    */
   api.close = (selector) => {
-    selector = (selector) ? selector : '.' + settings.classTarget
-    toggle(document.querySelectorAll(selector), 'close')
+    selector = (selector) ? selector : "." + settings.classTarget
+    toggle(document.querySelectorAll(selector), "close")
   }
 
   /**
@@ -155,7 +155,7 @@ export default function(options) {
    * @param {String} selector - A valid CSS selector
    */
   api.toggle = (selector) => {
-    selector = (selector) ? selector : '.' + settings.classTarget
+    selector = (selector) ? selector : "." + settings.classTarget
     toggle(document.querySelectorAll(selector))
   }
 
@@ -226,9 +226,9 @@ export default function(options) {
 
     // Check if drawer(s) should be opened, closed or toggled and either add or
     // remove the active class to the passed drawer(s)
-    if (state === 'open') {
+    if (state === "open") {
       u.addClass(drawer, settings.classActive)
-    } else if (state === 'close') {
+    } else if (state === "close") {
       u.removeClass(drawer, settings.classActive)
     } else {
       u.toggleClass(drawer, settings.classActive)
@@ -240,7 +240,7 @@ export default function(options) {
     }
 
     // Fire the callback function if one was passed
-    typeof callback === 'function' && callback()
+    typeof callback === "function" && callback()
   }
 
   /**
@@ -249,7 +249,7 @@ export default function(options) {
   const trigger = () => {
 
     // Get the closest trigger element from the click event
-    let trigger = event.target.closest('.' + settings.classTrigger)
+    let trigger = event.target.closest("." + settings.classTrigger)
 
     // Check that the class trigger was clicked
     if (trigger) {
@@ -278,8 +278,8 @@ export default function(options) {
 
     // Check if a drawer state is already saved in local storage and save the
     // json parsed data to our local variable if it does
-    if (localStorage.getItem('drawerState')) {
-      drawerState = JSON.parse(localStorage.getItem('drawerState'))
+    if (localStorage.getItem("drawerState")) {
+      drawerState = JSON.parse(localStorage.getItem("drawerState"))
     }
 
     // Loop through all drawers
@@ -293,7 +293,7 @@ export default function(options) {
       }
 
       // Get our drawer dialog element
-      let dialog = drawer.querySelector('.' + settings.classInner)
+      let dialog = drawer.querySelector("." + settings.classInner)
 
       // Disables transitions as default states are being set
       let transitionDelay = () => {
@@ -307,14 +307,14 @@ export default function(options) {
 
       // Toggle our drawer state based on the saved state
       if (drawerState[drawer.id] === false) {
-        toggle(drawer, 'close', transitionDelay)
+        toggle(drawer, "close", transitionDelay)
       } else if (drawerState[drawer.id]) {
-        toggle(drawer, 'open', transitionDelay)
+        toggle(drawer, "open", transitionDelay)
       }
     })
 
     // Fire the callback function if one was passed and return our state object
-    typeof callback === 'function' && callback(drawerState)
+    typeof callback === "function" && callback(drawerState)
   }
 
   /**
@@ -340,7 +340,7 @@ export default function(options) {
       // Only save drawer state if an id exists
       if (item.id) {
         drawerState[item.id] = u.hasClass(item, settings.classActive)
-        localStorage.setItem('drawerState', JSON.stringify(drawerState))
+        localStorage.setItem("drawerState", JSON.stringify(drawerState))
       }
     })
   }
@@ -350,7 +350,7 @@ export default function(options) {
    */
   const stateClear = () => {
     drawerState = {}
-    localStorage.removeItem('drawerState')
+    localStorage.removeItem("drawerState")
   }
 
   /**
@@ -367,9 +367,9 @@ export default function(options) {
       // Get the local breakpoint if one is set
       // Remove brackets and the intial data flag
       let cleanSelector = settings.switch
-        .replace('[', '')
-        .replace(']', '')
-        .replace('data-', '')
+        .replace("[", "")
+        .replace("]", "")
+        .replace("data-", "")
 
       // Convert sring to camelCase
       cleanSelector = cleanSelector.replace(/-([a-z])/g, (g) => {
@@ -406,8 +406,8 @@ export default function(options) {
 
       // Push the mql to our array along with it's drawer
       mqlArray.push({
-        'drawer' : drawer,
-        'mql': mql
+        "drawer" : drawer,
+        "mql": mql
       })
     })
   }
@@ -457,21 +457,21 @@ export default function(options) {
   const switchToDrawer = (drawer) => {
 
     // Get the dialog and trigger elements related to this component
-    let dialog = drawer.querySelector('.dialog')
-    let triggers = document.querySelectorAll('[data-target="#' + drawer.id + '"]')
+    let dialog = drawer.querySelector(".dialog")
+    let triggers = document.querySelectorAll("[data-target=\"#" + drawer.id + "\"]")
 
     // Switch the modal component to drawer
     drawer.className = drawer.className.replace(
-      new RegExp(settings.classTargetSwitch, 'gi'),
+      new RegExp(settings.classTargetSwitch, "gi"),
       settings.classTarget
     )
     dialog.className = dialog.className.replace(
-      new RegExp(settings.classInnerSwitch, 'gi'),
+      new RegExp(settings.classInnerSwitch, "gi"),
       settings.classInner
     )
     triggers.forEach((trigger) => {
       trigger.className = trigger.className.replace(
-        new RegExp(settings.classTriggerSwitch, 'gi'),
+        new RegExp(settings.classTriggerSwitch, "gi"),
         settings.classTrigger
       )
     })
@@ -479,9 +479,9 @@ export default function(options) {
     // Open or close drawer based on save state
     if (settings.saveState) {
       if (drawerState[drawer.id] === false) {
-        toggle(drawer, 'close')
+        toggle(drawer, "close")
       } else {
-        toggle(drawer, 'open')
+        toggle(drawer, "open")
       }
     }
   }
@@ -494,21 +494,21 @@ export default function(options) {
   const switchToModal = (drawer) => {
 
     // Get the dialog and trigger elements related to this component
-    let dialog = drawer.querySelector('.dialog')
-    let triggers = document.querySelectorAll('[data-target="#' + drawer.id + '"]')
+    let dialog = drawer.querySelector(".dialog")
+    let triggers = document.querySelectorAll("[data-target=\"#" + drawer.id + "\"]")
 
     // Switch the drawer component to modal
     drawer.className = drawer.className.replace(
-      new RegExp(settings.classTarget, 'gi'),
+      new RegExp(settings.classTarget, "gi"),
       settings.classTargetSwitch
     )
     dialog.className = dialog.className.replace(
-      new RegExp(settings.classInner, 'gi'),
+      new RegExp(settings.classInner, "gi"),
       settings.classInnerSwitch
     )
     triggers.forEach((trigger) => {
       trigger.className = trigger.className.replace(
-        new RegExp(settings.classTrigger, 'gi'),
+        new RegExp(settings.classTrigger, "gi"),
         settings.classTriggerSwitch
       )
     })

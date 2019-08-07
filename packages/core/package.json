@@ -8,7 +8,7 @@
     "build": "npm-run-all clean scripts",
     "clean": "del dist",
     "scripts": "npm-run-all scripts:compile scripts:min",
-    "scripts:compile": "mkdirp dist && browserify index.js --debug dist/scripts.js -t [ babelify --presets [ @babel/preset-env ] ] | exorcist dist/scripts.js.map > dist/scripts.js ",
+    "scripts:compile": "mkdirp dist && browserify index.js --debug dist/scripts.js -t [ babelify --presets [ @babel/preset-env ] ] | exorcist dist/scripts.js.map > dist/scripts.js",
     "scripts:min": "mkdirp dist && browserify index.js --debug dist/scripts.min.js -t [ babelify --presets [ @babel/preset-env ] ] -p tinyify | exorcist dist/scripts.min.js.map > dist/scripts.min.js",
     "watch": "npm run watch:scripts",
     "watch:scripts": "nodemon -e js -x 'npm run scripts' -i dist"
@@ -17,5 +17,10 @@
     "type": "git",
     "url": "git+https://github.com/sebnitu/vrembem.git",
     "directory": "packages/core"
+  },
+  "browserify": {
+    "transform": [
+      [ "babelify", { "presets": ["@babel/preset-env"] } ]
+    ]
   }
 }
