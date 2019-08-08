@@ -1,0 +1,67 @@
+@import "variables";
+
+.dialog {
+  background: $dialog-background;
+  background-clip: padding-box;
+  border: $dialog-border;
+  border-radius: $dialog-border-radius;
+  box-shadow: $dialog-box-shadow;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  transition: all $dialog-transition-duration $dialog-transition-timing-function;
+  z-index: $dialog-zindex;
+}
+
+.dialog__header,
+.dialog__body,
+.dialog__footer {
+  flex: 0 0 auto;
+  padding: $dialog-padding;
+}
+
+.dialog__header,
+.dialog__footer {
+  align-items: center;
+  background: $dialog-background;
+  display: flex;
+  position: sticky;
+  vertical-align: middle;
+  z-index: 1;
+}
+
+.dialog__header {
+  border-bottom: $dialog-sep-border;
+  top: 0;
+}
+
+.dialog__body {
+  flex-grow: 1;
+
+  & + & {
+    border-top: $dialog-sep-border;
+  }
+}
+
+.dialog__footer {
+  border-top: $dialog-sep-border;
+  bottom: 0;
+}
+
+.dialog__title {
+  flex-grow: 1;
+  font-size: $dialog__title-font-size;
+  font-weight: $dialog__title-font-weight;
+}
+
+.dialog > .dialog__close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+
+  + .dialog__body {
+    padding-right: 3.5em;
+  }
+}

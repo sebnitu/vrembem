@@ -1,0 +1,24 @@
+{
+  "name": "@vrembem/dialog",
+  "description": "A component that facilitates a conversation between the system and the user. They often request information or an action from the user.",
+  "version": "0.0.0",
+  "style": "index.scss",
+  "scripts": {
+    "build": "npm-run-all clean styles",
+    "clean": "del dist",
+    "styles": "npm-run-all styles:compile styles:prefix styles:min",
+    "styles:compile": "sass index.scss dist/styles.css --load-path node_modules",
+    "styles:min": "sass dist/styles.css dist/styles.min.css --style compressed",
+    "styles:prefix": "postcss dist/styles.css --map --use autoprefixer --output dist/styles.css",
+    "watch": "npm run watch:styles",
+    "watch:styles": "nodemon -e scss -x 'npm run styles'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebnitu/vrembem.git",
+    "directory": "packages/dialog"
+  },
+  "dependencies": {
+    "@vrembem/core": "^0.0.0"
+  }
+}

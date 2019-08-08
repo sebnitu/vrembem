@@ -1,17 +1,14 @@
 .button-group {
-  display: inline-flex;
   align-items: center;
+  display: inline-flex;
 }
 .button-group > .button {
   border-radius: 3px;
+  flex: 0 0 auto;
+  z-index: 1;
 }
 .button-group > .button + .button {
   margin: 0 0 0 0.5rem;
-}
-
-.button-group > .button {
-  z-index: 1;
-  flex: 0 0 auto;
 }
 .button-group > .button:hover {
   z-index: 2;
@@ -27,8 +24,8 @@
 }
 
 .button-group_full {
-  display: flex;
   align-items: stretch;
+  display: flex;
 }
 .button-group_full > .button {
   flex: 1 1 auto;
@@ -115,24 +112,24 @@
 }
 
 .button-group_join > .button {
-  margin: 0;
   border-radius: 0;
+  margin: 0;
 }
 .button-group_join > .button + .button {
   margin: 0 0 0 -1px;
 }
 .button-group_join > .button:first-child {
-  border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
 }
 .button-group_join > .button:last-child {
-  border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
 }
 
 .button-group_join.button-group_stack > .button {
-  margin: 0;
   border-radius: 0;
+  margin: 0;
 }
 .button-group_join.button-group_stack > .button + .button {
   margin: -1px 0 0 0;
