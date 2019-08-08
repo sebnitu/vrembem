@@ -1,10 +1,4 @@
-@import 'variables';
-
-/**
- * Button icon modifier
- * ---
- * A modifier for styling a button which only contains an icon.
- */
+@import "variables";
 
 .button_icon {
   padding: nth($button-padding, 1);

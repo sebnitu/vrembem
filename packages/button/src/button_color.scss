@@ -1,98 +1,92 @@
-@import 'variables';
-
-/**
- * Button color modifier
- * ---
- * Color modifiers add different color variations to buttons.
- */
+@import "variables";
 
 .button_color_primary {
-  color: color-switch($primary, $button-color, $button-color-invert);
   background: $primary;
+  color: color-switch($primary, $button-color, $button-color-invert);
 
   &:focus,
   &:hover {
-    color: color-switch($primary, $button-color-hover, $button-color-invert-hover);
     background: darken($primary, 5%);
+    color: color-switch($primary, $button-color-hover, $button-color-invert-hover);
   }
 }
 
 .button_color_secondary {
-  color: color-switch($secondary, $button-color, $button-color-invert);
   background: $secondary;
+  color: color-switch($secondary, $button-color, $button-color-invert);
 
   &:focus,
   &:hover {
-    color: color-switch($secondary, $button-color-hover, $button-color-invert-hover);
     background: darken($secondary, 5%);
+    color: color-switch($secondary, $button-color-hover, $button-color-invert-hover);
   }
 }
 
 .button_color_accent {
-  color: color-switch($accent, $button-color, $button-color-invert);
   background: $accent;
+  color: color-switch($accent, $button-color, $button-color-invert);
 
   &:focus,
   &:hover {
-    color: color-switch($accent, $button-color-hover, $button-color-invert-hover);
     background: darken($accent, 5%);
+    color: color-switch($accent, $button-color-hover, $button-color-invert-hover);
   }
 }
 
 .button_color_shade {
-  color: color-switch($shade, $button-color, $button-color-invert);
   background: $shade;
+  color: color-switch($shade, $button-color, $button-color-invert);
 
   &:focus,
   &:hover {
-    color: color-switch($shade, $button-color-hover, $button-color-invert-hover);
     background: darken($shade, 5%);
+    color: color-switch($shade, $button-color-hover, $button-color-invert-hover);
   }
 }
 
 .button_color_dark {
-  color: color-switch($dark, $button-color, $button-color-invert);
   background: $dark;
+  color: color-switch($dark, $button-color, $button-color-invert);
 
   &:focus,
   &:hover {
-    color: color-switch($dark, $button-color-hover, $button-color-invert-hover);
     background: lighten($dark, 5%);
+    color: color-switch($dark, $button-color-hover, $button-color-invert-hover);
   }
 }
 
 .button_color_subtle {
-  color: $color-light;
   background: none;
+  color: $color-light;
 
   &:focus,
   &:hover {
-    color: $color;
     background: rgba($black, 0.05);
+    color: $color;
   }
 }
 
 .button_color_invert {
-  color: $white;
   background: none;
   border-color: rgba($white, 0);
+  color: $white;
 
   &:focus,
   &:hover {
-    color: $white;
     background: rgba($white, 0.1);
     border-color: rgba($white, 0);
+    color: $white;
   }
 }
 
 .button_color_invert_subtle {
-  color: rgba($white, 0.5);
   background: none;
+  color: rgba($white, 0.5);
 
   &:focus,
   &:hover {
-    color: $white;
     background: rgba($white, 0.1);
     border-color: rgba($white, 0);
+    color: $white;
   }
 }

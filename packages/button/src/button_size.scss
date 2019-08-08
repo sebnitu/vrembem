@@ -1,15 +1,9 @@
-@import 'variables';
-
-/**
- * Button size modifier
- * ---
- * Size modifiers add different size variations to buttons.
- */
+@import "variables";
 
 .button_size_sm {
-  padding: $button_size_sm-padding;
   font-size: $button_size_sm-font-size;
   line-height: 1.6;
+  padding: $button_size_sm-padding;
 
   .icon {
     padding: 0.129em;
@@ -17,8 +11,8 @@
 }
 
 .button_size_lg {
-  padding: $button_size_lg-padding;
   font-size: $button_size_lg-font-size;
+  padding: $button_size_lg-padding;
 
   &:not(.button_icon) .icon:first-child {
     margin-left: -0.25em;
