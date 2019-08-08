@@ -1,5 +1,6 @@
 {
   "name": "vrembem",
+  "description": "A CSS component library based on the BEM methodology.",
   "version": "0.7.0",
   "private": true,
   "scripts": {
