@@ -1,0 +1,1 @@
+.arrow{pointer-events:none;display:inline-block;flex-grow:0;flex-shrink:0;width:0;height:0;border-top:4px solid currentColor;border-left:4px solid transparent;border-right:4px solid transparent;transform-origin:center}.arrow_up{transform:rotate(180deg)}.arrow_left{transform:rotate(90deg)}.arrow_right{transform:rotate(-90deg)}/*# sourceMappingURL=styles.min.css.map */

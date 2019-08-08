@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="./packages/span/dist/styles.min.css">
 
   <!-- Components -->
+  <link rel="stylesheet" href="./packages/arrow/dist/styles.min.css">
   <link rel="stylesheet" href="./packages/container/dist/styles.min.css">
   <link rel="stylesheet" href="./packages/drawer/dist/styles.min.css">
   <link rel="stylesheet" href="./packages/modal/dist/styles.min.css">
@@ -206,6 +207,7 @@
 
         <div class="grid__item count count_done">
           <ol class="list list_count list_grid">
+            <li><span class="list__icon is-done"></span> arrow</li>
             <li><span class="list__icon is-done"></span> base</li>
             <li><span class="list__icon is-done"></span> container</li>
             <li><span class="list__icon is-done"></span> core</li>
@@ -227,7 +229,6 @@
 
         <div class="grid__item count count_queue">
           <ol class="list list_count list_grid">
-            <li><span class="list__icon"></span> arrow</li>
             <li><span class="list__icon"></span> breadcrumb</li>
             <li><span class="list__icon"></span> button</li>
             <li><span class="list__icon"></span> button-group</li>
@@ -354,8 +355,12 @@
 
     <div class="content spacing">
 
-      <h2 class="subtitle">Root</h2>
-
+      <h2 class="subtitle">
+        <span class="level">
+          <span>Root</span>
+          <span class="arrow"></span>
+        </span>
+      </h2>
 <pre class="code"><code>// component package.json
 "scripts": {
   "build": "lerna run build --parallel",
@@ -369,7 +374,12 @@
   "watch": "lerna run watch --parallel"
 }</code></pre>
 
-      <h2 class="subtitle">Scripts</h2>
+      <h2 class="subtitle">
+        <span class="level">
+          <span>Scripts</span>
+          <span class="arrow"></span>
+        </span>
+      </h2>
 <pre class="code"><code>// component package.json
 "scripts": {
   "build": "npm-run-all clean scripts",
@@ -381,7 +391,12 @@
   "watch:scripts": "nodemon -e js -x 'npm run scripts' -i dist"
 }</code></pre>
 
-      <h2 class="subtitle">Styles</h2>
+      <h2 class="subtitle">
+        <span class="level">
+          <span>Styles</span>
+          <span class="arrow"></span>
+        </span>
+      </h2>
 <pre class="code"><code>// component package.json
 "scripts": {
   "build": "npm-run-all clean styles",
@@ -394,7 +409,12 @@
   "watch:styles": "nodemon -e scss -x 'npm run styles'"
 }</code></pre>
 
-      <h2 class="subtitle">Both</h2>
+      <h2 class="subtitle">
+        <span class="level">
+          <span>Both</span>
+          <span class="arrow"></span>
+        </span>
+      </h2>
 <pre class="code"><code>// component package.json
 "scripts": {
   "build": "npm-run-all clean scripts styles",
