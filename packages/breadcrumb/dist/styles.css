@@ -1,32 +1,32 @@
 .breadcrumb {
+  align-items: center;
+  color: #bdbdbd;
   display: inline-flex;
   flex-wrap: wrap;
-  align-items: center;
   list-style: none;
-  color: #bdbdbd;
 }
 
 .breadcrumb__item {
-  margin: 0;
-  display: flex;
   align-items: center;
+  display: flex;
+  margin: 0;
 }
 .breadcrumb__item > * + * {
   margin-left: 0.5em;
 }
 .breadcrumb__item::after {
+  color: #bdbdbd;
   content: "/";
   padding: 0 0.5em;
-  color: #bdbdbd;
 }
 
 .breadcrumb__link {
-  color: #2196f3;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: #2196f3;
 }
 .breadcrumb__link:focus, .breadcrumb__link:hover {
-  color: #0c7cd5;
   border-bottom: 1px solid #0c7cd5;
+  color: #0c7cd5;
 }
 
 .breadcrumb_invert {
@@ -36,12 +36,12 @@
   color: rgba(255, 255, 255, 0.25);
 }
 .breadcrumb_invert .breadcrumb__link {
-  color: rgba(255, 255, 255, 0.75);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.75);
 }
 .breadcrumb_invert .breadcrumb__link:focus, .breadcrumb_invert .breadcrumb__link:hover {
-  color: white;
   border-bottom: 1px solid white;
+  color: white;
 }
 
 /*# sourceMappingURL=styles.css.map */

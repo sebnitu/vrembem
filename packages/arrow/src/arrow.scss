@@ -1,16 +1,16 @@
 @import "variables";
 
 .arrow {
-  pointer-events: none;
+  border-left: $arrow-size solid transparent;
+  border-right: $arrow-size solid transparent;
+  border-top: $arrow-size solid $arrow-color;
   display: inline-block;
   flex-grow: 0;
   flex-shrink: 0;
-  width: 0;
   height: 0;
-  border-top: $arrow-size solid $arrow-color;
-  border-left: $arrow-size solid transparent;
-  border-right: $arrow-size solid transparent;
+  pointer-events: none;
   transform-origin: center;
+  width: 0;
 }
 
 .arrow_up {

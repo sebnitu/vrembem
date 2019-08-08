@@ -1,26 +1,26 @@
 @import "variables";
 
 .breadcrumb {
+  align-items: center;
+  color: $breadcrumb-color;
   display: inline-flex;
   flex-wrap: wrap;
-  align-items: center;
   list-style: none;
-  color: $breadcrumb-color;
 }
 
 .breadcrumb__item {
-  margin: 0;
-  display: flex;
   align-items: center;
+  display: flex;
+  margin: 0;
 
   > * + * {
     margin-left: 0.5em;
   }
 
   &::after {
+    color: $breadcrumb-delimiter-color;
     content: $breadcrumb-delimiter;
     padding: $breadcrumb-delimiter-padding;
-    color: $breadcrumb-delimiter-color;
   }
 
   @if ($breadcrumb-delimiter-last != true) {
@@ -31,12 +31,12 @@
 }
 
 .breadcrumb__link {
-  color: $breadcrumb__link-color;
   border-bottom: 1px solid $breadcrumb__link-border-color;
+  color: $breadcrumb__link-color;
 
   &:focus,
   &:hover {
-    color: $breadcrumb__link-color-hover;
     border-bottom: 1px solid $breadcrumb__link-border-color-hover;
+    color: $breadcrumb__link-color-hover;
   }
 }
