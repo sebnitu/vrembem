@@ -1,19 +1,11 @@
-@import 'variables';
+@import "variables";
 
-// Breadcrumb theme invert variables
-// ---
 $breadcrumb_theme_invert-color: rgba($white, 0.5) !default;
 $breadcrumb_theme_invert-delimiter-color: rgba($white, 0.25) !default;
 $breadcrumb_theme_invert__link-color: rgba($white, 0.75) !default;
 $breadcrumb_theme_invert__link-color-hover: rgba($white, 1) !default;
 $breadcrumb_theme_invert__link-border-color: rgba($white, 0.2) !default;
 $breadcrumb_theme_invert__link-border-color-hover: rgba($white, 1) !default;
-
-/**
- * Breadcrumb invert modifier
- * ---
- * A modifier for displaying this component on a dark background.
- */
 
 .breadcrumb_invert {
   color: $breadcrumb_theme_invert-color;
