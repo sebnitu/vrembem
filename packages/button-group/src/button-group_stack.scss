@@ -1,10 +1,4 @@
-@import 'variables';
-
-/**
- * Button-group stack modifier
- * ---
- * Stacks the buttons on top of one another.
- */
+@import "variables";
 
 .button-group_stack {
   flex-direction: column;

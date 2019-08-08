@@ -1,0 +1,10 @@
+@import "variables";
+
+.button-group_full {
+  align-items: stretch;
+  display: flex;
+
+  > .button {
+    flex: 1 1 auto;
+  }
+}

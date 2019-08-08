@@ -1,0 +1,10 @@
+$button-group-border-radius: $border-radius !default;
+$button-group-gap: 0.5rem !default;
+$button-group_join-gap: -1px !default;
+$button-group-gap-scale: (
+  "xs": 1px,
+  "sm": 0.25rem,
+  "md": 0.5rem,
+  "lg": 1rem,
+  "xl": 1.5rem
+) !default;

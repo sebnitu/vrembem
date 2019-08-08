@@ -1,0 +1,32 @@
+@import "variables";
+
+.button-group {
+  align-items: center;
+  display: inline-flex;
+
+  > .button {
+    border-radius: $button-group-border-radius;
+    flex: 0 0 auto;
+    z-index: 1;
+
+    + .button {
+      margin: 0 0 0 $button-group-gap;
+    }
+
+    &:hover {
+      z-index: 2;
+    }
+
+    &:focus {
+      z-index: 3;
+    }
+
+    &:active {
+      z-index: 4;
+    }
+
+    &.is-active {
+      z-index: 5;
+    }
+  }
+}
