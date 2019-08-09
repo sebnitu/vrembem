@@ -7,11 +7,11 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = void 0;
 var _default = {
   "breakpoints": {
-    "xs": "480",
-    "sm": "620",
-    "md": "760",
-    "lg": "990",
-    "xl": "1380"
+    "xs": "480px",
+    "sm": "620px",
+    "md": "760px",
+    "lg": "990px",
+    "xl": "1380px"
   }
 };
 exports["default"] = _default;
@@ -20,6 +20,15 @@ exports["default"] = _default;
 "use strict";
 
 },{}],3:[function(require,module,exports){
+"use strict";
+
+var _modal = _interopRequireDefault(require("./src/modal"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+window.Modal = _modal["default"];
+
+},{"./src/modal":4}],4:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -151,7 +160,7 @@ function _default(options) {
   return api;
 }
 
-},{"@vrembem/utility":4}],4:[function(require,module,exports){
+},{"@vrembem/utility":5}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

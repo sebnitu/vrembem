@@ -22,6 +22,7 @@
 }
 
 .drawer__item_pos_right {
+  left: auto;
   right: 0;
 
   .drawer__dialog {
@@ -30,6 +31,7 @@
 
   &.is-active {
     ~ .drawer__main {
+      margin-left: 0;
       margin-right: $drawer-width;
     }
   }

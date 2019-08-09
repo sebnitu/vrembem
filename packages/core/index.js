@@ -1,9 +1,9 @@
 export default {
   "breakpoints": {
-    "xs": "480",
-    "sm": "620",
-    "md": "760",
-    "lg": "990",
-    "xl": "1380"
+    "xs": "480px",
+    "sm": "620px",
+    "md": "760px",
+    "lg": "990px",
+    "xl": "1380px"
   }
 }

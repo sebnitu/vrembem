@@ -2,7 +2,7 @@
   "name": "@vrembem/modal",
   "description": "A component for changing the mode of a page to complete a critical task. This is usually used in conjunction with the Dialog component to make modal dialogs.",
   "version": "0.0.0",
-  "main": "index.js",
+  "main": "src/modal.js",
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean scripts styles",
@@ -25,7 +25,6 @@
   },
   "dependencies": {
     "@vrembem/core": "^0.0.0",
-    "@vrembem/dialog": "^0.0.0",
     "@vrembem/utility": "^0.0.0"
   }
 }

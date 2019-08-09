@@ -1,25 +1,30 @@
 @import "variables";
 
 .drawer {
-  display: flex;
   position: relative;
 }
 
 .drawer__item {
   align-content: stretch;
   align-items: stretch;
+  bottom: 0;
   display: flex;
-  flex: 0 0 0;
   flex-direction: column;
+  left: 0;
   overflow: hidden auto;
   -webkit-overflow-scrolling: touch;
+  position: absolute;
   position: relative;
+  top: 0;
   transition: width 0s $drawer-transition-duration;
   width: 0;
 }
 
 .drawer__main {
-  flex-grow: 1;
+  height: 100vh;
+  overflow: hidden auto;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
 }
 
 .drawer__dialog {
@@ -28,7 +33,7 @@
   box-shadow: $drawer__dialog-box-shadow;
   min-height: 100%;
   opacity: 0;
-  transform: translate3d(0, -$drawer-travel, 0);
+  transform: translate3d(-100%, 0, 0);
   visibility: hidden;
   width: $drawer-width;
 
@@ -52,5 +57,9 @@
     opacity: 1;
     transform: translate3d(0, 0, 0);
     visibility: visible;
+  }
+
+  ~ .drawer__main {
+    margin-left: $drawer-width;
   }
 }

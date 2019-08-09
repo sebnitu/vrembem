@@ -177,6 +177,22 @@
 </head>
 <body>
 
+<div class="drawer">
+<div class="drawer__item drawer__item_pos_right" id="example-drawer" data-drawer-switch="md">
+  <div class="drawer__dialog dialog">
+    <div class="dialog__header">
+      <h2 class="dialog__title">Drawer Dialog Title</h2>
+    </div>
+    <div class="dialog__body">
+      If you can see this, that means the drawer component is working properly!
+    </div>
+    <div class="dialog__footer">
+      This is a dialog footer.
+    </div>
+  </div>
+</div><!-- .drawer__item -->
+<div class="drawer__main">
+
 <section class="section section_color_shade">
   <div class="container spacing_xl">
 
@@ -185,7 +201,7 @@
       <p class="text_lead">While in the process of transitioning the <a class="link" href="https://vrembem.sebnitu.com/" target="_blank">Vrembem project</a> into a <a class="link" href="https://lerna.js.org/" target="_blank">monorepo using Lerna</a>, this file will document the progress and keep track of remaining tasks.</p>
       <div class="button-group">
         <a class="button button_color_primary button_size_sm" href="https://vrembem.sebnitu.com/" target="_blank">Homepage</a>
-        <a class="button button_color_secondary button_size_sm" href="https://github.com/sebnitu/vrembem" target="_blank">GitHub</a>
+        <a class="button button_color_primary button_size_sm" href="https://github.com/sebnitu/vrembem" target="_blank">GitHub</a>
       </div>
     </div>
 
@@ -196,6 +212,28 @@
         <li><span class="list__icon"></span> Components</li>
         <li><span class="list__icon"></span> Tests</li>
       </ol>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container spacing_xl">
+
+    <div class="header">
+      <h2 class="h3">Tests</h2>
+      <p>Here's where I can test that the imported JavaScript is working properly.</p>
+    </div>
+
+    <div class="content">
+      <div class="button-group">
+        <button class="button button_outline modal__trigger" data-target="[data-modal='example']">
+          Modal
+        </button>
+        <button class="button button_outline drawer__trigger" data-target="#example-drawer">
+          Drawer
+        </button>
+      </div>
     </div>
 
   </div>
@@ -444,11 +482,33 @@
   </div>
 </section>
 
-<div class="modal" id="modal-id">
-  <div class="modal__dialog">
-    ...
+</div><!-- .drawer__main -->
+</div><!-- .drawer -->
+
+<div class="modal" data-modal="example">
+  <div class="modal__dialog dialog">
+    <div class="dialog__header">
+      <h2 class="dialog__title">Modal Dialog Title</h2>
+      <button class="dialog__close button modal__trigger button_color_subtle">
+        Close
+      </button>
+    </div>
+    <div class="dialog__body">
+      This is great! If you can see this, it means that the modal script is working properly. Hurray!
+    </div>
+    <div class="dialog__footer flex_hori_between">
+      <button class="button button_outline modal__trigger">Cancel</button>
+      <button class="button button_color_primary">Some Action</button>
+    </div>
   </div>
 </div>
+
+<script src="./packages/modal/dist/scripts.min.js"></script>
+<script src="./packages/drawer/dist/scripts.min.js"></script>
+<script>
+  var modal = new Modal();
+  var drawer = new Drawer();
+</script>
 
 </body>
 </html>

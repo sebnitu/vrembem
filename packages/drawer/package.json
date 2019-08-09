@@ -2,7 +2,7 @@
   "name": "@vrembem/drawer",
   "description": "A container component that slides in from the left or right. It typically contains menus, search or other content for your app.",
   "version": "0.0.0",
-  "main": "index.js",
+  "main": "src/drawer.js",
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean scripts styles",
@@ -25,8 +25,6 @@
   },
   "dependencies": {
     "@vrembem/core": "^0.0.0",
-    "@vrembem/dialog": "^0.0.0",
-    "@vrembem/modal": "^0.0.0",
     "@vrembem/utility": "^0.0.0"
   }
 }
