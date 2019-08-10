@@ -47,8 +47,7 @@
       overflow: auto;
     }
 
-    .subtitle,
-    .list__title {
+    .subtitle {
       text-transform: uppercase;
       font-weight: bold;
     }
@@ -59,9 +58,17 @@
 
     .list li {
       display: flex;
-      align-items: center;
       margin: 0;
       padding: 0.5em 0;
+    }
+
+    .list__title {
+      margin-right: 0.75em;
+      color: red;
+    }
+
+    .is-done .list__title {
+      color: green;
     }
 
     .list__icon {
@@ -75,9 +82,10 @@
       font-size: 1.2em;
       line-height: 10px;
       text-align: center;
+      flex-shrink: 0;
     }
 
-    .list__icon.is-done {
+    .is-done .list__icon {
       color: green;
       border-color: green;
     }
@@ -86,7 +94,7 @@
       content: "-";
     }
 
-    .list__icon.is-done::before {
+    .is-done .list__icon::before {
       content: "+";
     }
 
@@ -172,16 +180,71 @@
       content: counter(total);
     }
 
+    /**
+     * Toolbar
+     */
+
+    .toolbar {
+      background: #fff;
+      box-shadow: 0 1px 6px rgba(0,0,0, 0.1);
+      display: flex;
+      position: absolute;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 60px;
+      padding: 0 1em;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .toolbar > * {
+      width: 100%;
+    }
+
+    /**
+     * Adjust method one
+     * Apply adjust modifier to the children of the `drawer` component
+     */
+
+    .toolbar--adjust-children {
+      padding-top: 60px;
+    }
+
+    /**
+     * Adjust method two
+     * Requires a wrapper element
+     * Apply adjust modifier to the `drawer` component
+     */
+
+    .toolbar_wrapper {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .toolbar--adjust-sibling {
+      margin-top: 60px;
+      height: calc(100vh - 60px);
+    }
+
   </style>
 
 </head>
 <body>
 
+<div class="toolbar">
+  <p>What happens if there's something else on the page?</p>
+</div>
+
 <div class="drawer">
-<div class="drawer__item drawer__item_pos_right" id="example-drawer" data-drawer-switch="md">
+
+<div class="drawer__item drawer__item_pos_left toolbar--adjust-children" id="example-drawer-left" data-drawer-switch="md">
   <div class="drawer__dialog dialog">
     <div class="dialog__header">
-      <h2 class="dialog__title">Drawer Dialog Title</h2>
+      <h2 class="dialog__title">Left Drawer Dialog</h2>
     </div>
     <div class="dialog__body">
       If you can see this, that means the drawer component is working properly!
@@ -191,7 +254,22 @@
     </div>
   </div>
 </div><!-- .drawer__item -->
-<div class="drawer__main">
+
+<div class="drawer__item drawer__item_pos_right toolbar--adjust-children" id="example-drawer-right" data-drawer-switch="md">
+  <div class="drawer__dialog dialog">
+    <div class="dialog__header">
+      <h2 class="dialog__title">Right Drawer Dialog</h2>
+    </div>
+    <div class="dialog__body spacing">
+      If you can see this, that means the drawer component is working properly!
+    </div>
+    <div class="dialog__footer">
+      This is a dialog footer.
+    </div>
+  </div>
+</div><!-- .drawer__item -->
+
+<div class="drawer__main toolbar--adjust-children">
 
 <section class="section section_color_shade">
   <div class="container spacing_xl">
@@ -207,8 +285,8 @@
 
     <div class="content">
       <ol class="list list_inline">
-        <li><span class="list__icon is-done"></span> Scripts</li>
-        <li><span class="list__icon is-done"></span> Linting</li>
+        <li class="is-done"><span class="list__icon"></span> Scripts</li>
+        <li class="is-done"><span class="list__icon"></span> Linting</li>
         <li><span class="list__icon"></span> Components</li>
         <li><span class="list__icon"></span> Tests</li>
       </ol>
@@ -230,8 +308,11 @@
         <button class="button button_outline modal__trigger" data-target="[data-modal='example']">
           Modal
         </button>
-        <button class="button button_outline drawer__trigger" data-target="#example-drawer">
-          Drawer
+        <button class="button button_outline drawer__trigger" data-target="#example-drawer-left">
+          Left Drawer
+        </button>
+        <button class="button button_outline drawer__trigger" data-target="#example-drawer-right">
+          Right Drawer
         </button>
       </div>
     </div>
@@ -253,22 +334,22 @@
 
         <div class="grid__item count count_done">
           <ol class="list list_count list_grid">
-            <li><span class="list__icon is-done"></span> arrow</li>
-            <li><span class="list__icon is-done"></span> base</li>
-            <li><span class="list__icon is-done"></span> breadcrumb</li>
-            <li><span class="list__icon is-done"></span> button</li>
-            <li><span class="list__icon is-done"></span> button-group</li>
-            <li><span class="list__icon is-done"></span> container</li>
-            <li><span class="list__icon is-done"></span> core</li>
-            <li><span class="list__icon is-done"></span> dialog</li>
-            <li><span class="list__icon is-done"></span> drawer</li>
-            <li><span class="list__icon is-done"></span> grid</li>
-            <li><span class="list__icon is-done"></span> level</li>
-            <li><span class="list__icon is-done"></span> modal</li>
-            <li><span class="list__icon is-done"></span> section</li>
-            <li><span class="list__icon is-done"></span> spacing</li>
-            <li><span class="list__icon is-done"></span> span</li>
-            <li><span class="list__icon is-done"></span> utility</li>
+            <li class="is-done"><span class="list__icon"></span> arrow</li>
+            <li class="is-done"><span class="list__icon"></span> base</li>
+            <li class="is-done"><span class="list__icon"></span> breadcrumb</li>
+            <li class="is-done"><span class="list__icon"></span> button</li>
+            <li class="is-done"><span class="list__icon"></span> button-group</li>
+            <li class="is-done"><span class="list__icon"></span> container</li>
+            <li class="is-done"><span class="list__icon"></span> core</li>
+            <li class="is-done"><span class="list__icon"></span> dialog</li>
+            <li class="is-done"><span class="list__icon"></span> drawer</li>
+            <li class="is-done"><span class="list__icon"></span> grid</li>
+            <li class="is-done"><span class="list__icon"></span> level</li>
+            <li class="is-done"><span class="list__icon"></span> modal</li>
+            <li class="is-done"><span class="list__icon"></span> section</li>
+            <li class="is-done"><span class="list__icon"></span> spacing</li>
+            <li class="is-done"><span class="list__icon"></span> span</li>
+            <li class="is-done"><span class="list__icon"></span> utility</li>
           </ol>
           <h3 class="subtitle">
             Processed
@@ -306,6 +387,17 @@
           </h3>
         </div>
 
+        <div class="grid__item span_full">
+          <h3 class="subtitle">Notes</h3>
+          <ul class="list">
+            <li>
+              <span class="list__icon"></span>
+              <strong class="list__title">@vrembem/drawer</strong>
+              <p>Change the way that drawers are saved via saveState. Instead of requiring an ID, maybe use a data attribute.</p>
+            </li>
+          </ul>
+        </div>
+
       </div>
     </div>
 
@@ -325,15 +417,15 @@
 
         <div class="grid__item count">
           <ul class="list list_count">
-            <li><span class="list__icon is-done"></span> build [--parallel]</li>
-            <li><span class="list__icon is-done"></span> clean [--parallel]</li>
-            <li><span class="list__icon is-done"></span> fix</li>
-            <li><span class="list__icon is-done"></span> fix:scripts</li>
-            <li><span class="list__icon is-done"></span> fix:styles</li>
-            <li><span class="list__icon is-done"></span> lint</li>
-            <li><span class="list__icon is-done"></span> lint:scripts</li>
-            <li><span class="list__icon is-done"></span> lint:styles</li>
-            <li><span class="list__icon is-done"></span> watch [--parallel]</li>
+            <li class="is-done"><span class="list__icon"></span> build [--parallel]</li>
+            <li class="is-done"><span class="list__icon"></span> clean [--parallel]</li>
+            <li class="is-done"><span class="list__icon"></span> fix</li>
+            <li class="is-done"><span class="list__icon"></span> fix:scripts</li>
+            <li class="is-done"><span class="list__icon"></span> fix:styles</li>
+            <li class="is-done"><span class="list__icon"></span> lint</li>
+            <li class="is-done"><span class="list__icon"></span> lint:scripts</li>
+            <li class="is-done"><span class="list__icon"></span> lint:styles</li>
+            <li class="is-done"><span class="list__icon"></span> watch [--parallel]</li>
           </ul>
           <h3 class="subtitle">
             Root
@@ -344,13 +436,13 @@
 
         <div class="grid__item count">
           <ul class="list list_count">
-            <li><span class="list__icon is-done"></span> build</li>
-            <li><span class="list__icon is-done"></span> clean</li>
-            <li><span class="list__icon is-done"></span> scripts</li>
-            <li><span class="list__icon is-done"></span> scripts:compile</li>
-            <li><span class="list__icon is-done"></span> scripts:min</li>
-            <li><span class="list__icon is-done"></span> watch</li>
-            <li><span class="list__icon is-done"></span> watch:scripts</li>
+            <li class="is-done"><span class="list__icon"></span> build</li>
+            <li class="is-done"><span class="list__icon"></span> clean</li>
+            <li class="is-done"><span class="list__icon"></span> scripts</li>
+            <li class="is-done"><span class="list__icon"></span> scripts:compile</li>
+            <li class="is-done"><span class="list__icon"></span> scripts:min</li>
+            <li class="is-done"><span class="list__icon"></span> watch</li>
+            <li class="is-done"><span class="list__icon"></span> watch:scripts</li>
           </ul>
           <h3 class="subtitle">
             Scripts
@@ -361,14 +453,14 @@
 
         <div class="grid__item count">
           <ul class="list list_count">
-            <li><span class="list__icon is-done"></span> build</li>
-            <li><span class="list__icon is-done"></span> clean</li>
-            <li><span class="list__icon is-done"></span> styles</li>
-            <li><span class="list__icon is-done"></span> styles:compile</li>
-            <li><span class="list__icon is-done"></span> styles:min</li>
-            <li><span class="list__icon is-done"></span> styles:prefix</li>
-            <li><span class="list__icon is-done"></span> watch</li>
-            <li><span class="list__icon is-done"></span> watch:styles</li>
+            <li class="is-done"><span class="list__icon"></span> build</li>
+            <li class="is-done"><span class="list__icon"></span> clean</li>
+            <li class="is-done"><span class="list__icon"></span> styles</li>
+            <li class="is-done"><span class="list__icon"></span> styles:compile</li>
+            <li class="is-done"><span class="list__icon"></span> styles:min</li>
+            <li class="is-done"><span class="list__icon"></span> styles:prefix</li>
+            <li class="is-done"><span class="list__icon"></span> watch</li>
+            <li class="is-done"><span class="list__icon"></span> watch:styles</li>
           </ul>
           <h3 class="subtitle">
             Styles
@@ -496,9 +588,11 @@
     <div class="dialog__body">
       This is great! If you can see this, it means that the modal script is working properly. Hurray!
     </div>
-    <div class="dialog__footer flex_hori_between">
-      <button class="button button_outline modal__trigger">Cancel</button>
-      <button class="button button_color_primary">Some Action</button>
+    <div class="dialog__footer">
+      <div class="button-group">
+        <button class="button button_color_primary">Some Action</button>
+        <button class="button button_outline modal__trigger">Cancel</button>
+      </div>
     </div>
   </div>
 </div>

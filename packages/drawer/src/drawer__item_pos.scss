@@ -2,7 +2,6 @@
 
 .drawer__item_pos_left,
 .drawer__item_pos_right {
-  bottom: 0;
   position: absolute;
   top: 0;
 }
@@ -11,28 +10,36 @@
   left: 0;
 
   .drawer__dialog {
+    border-right: $drawer__dialog-border;
     transform: translate3d(-100%, 0, 0);
-  }
-
-  &.is-active {
-    ~ .drawer__main {
-      margin-left: $drawer-width;
-    }
   }
 }
 
 .drawer__item_pos_right {
-  left: auto;
   right: 0;
 
   .drawer__dialog {
+    border-left: $drawer__dialog-border;
     transform: translate3d(100%, 0, 0);
   }
+}
 
-  &.is-active {
-    ~ .drawer__main {
-      margin-left: 0;
-      margin-right: $drawer-width;
-    }
+.drawer__item_pos_left.is-active {
+  .drawer__dialog {
+    transform: translate3d(0, 0, 0);
+  }
+
+  ~ .drawer__main {
+    margin-left: $drawer-width;
+  }
+}
+
+.drawer__item_pos_right.is-active {
+  .drawer__dialog {
+    transform: translate3d(0, 0, 0);
+  }
+
+  ~ .drawer__main {
+    margin-right: $drawer-width;
   }
 }
