@@ -10,10 +10,42 @@
   color: $primary !important;
 }
 
+.c_primary_light {
+  color: $primary-light !important;
+}
+
+.c_primary_dark {
+  color: $primary-dark !important;
+}
+
 .c_secondary {
   color: $secondary !important;
 }
 
+.c_secondary_light {
+  color: $secondary-light !important;
+}
+
+.c_secondary_dark {
+  color: $secondary-dark !important;
+}
+
 .c_accent {
   color: $accent !important;
+}
+
+.c_accent_light {
+  color: $accent-light !important;
+}
+
+.c_accent_dark {
+  color: $accent-dark !important;
+}
+
+.c_shade {
+  color: $shade !important;
+}
+
+.c_dark {
+  color: $dark !important;
 }
