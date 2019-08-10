@@ -1,14 +1,6 @@
-@import 'variables';
+@import "variables";
 
-/**
- * Card fade modifier
- * ---
- * Adds styles for card link which hides elements only to reveal them when
- * hovered or focused. Based used with card__background and card__screen.
- */
-
-@include media-min('md') {
-
+@include media-min("md") {
   .card_fade {
     .card__header,
     .card__body,
@@ -25,10 +17,10 @@
       .card__footer {
         opacity: 1;
       }
+
       .card__screen {
         opacity: $card__screen-opacity;
       }
     }
   }
-
 }

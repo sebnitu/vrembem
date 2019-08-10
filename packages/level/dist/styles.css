@@ -11,11 +11,11 @@
   margin-top: 0.5rem;
 }
 
-.level_gap_none {
+.level_gap_0 {
   margin-left: 0;
   margin-top: 0;
 }
-.level_gap_none > * {
+.level_gap_0 > * {
   margin-left: 0;
   margin-top: 0;
 }

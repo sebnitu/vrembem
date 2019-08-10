@@ -1,11 +1,4 @@
-@import 'variables';
-
-/**
- * Card zoom modifier
- * ---
- * Adds styles for card link which zooms the card__background image in when
- * hovered or focused.
- */
+@import "variables";
 
 .card_zoom {
   .card__background {

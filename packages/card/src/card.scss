@@ -1,22 +1,15 @@
-@import 'variables';
-
-/**
- * Card
- * ---
- * The cards component provides a flexible and extensive content container with
- * multiple variants and options.
- */
+@import "variables";
 
 .card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
   background: $card-background;
   border: $card-border;
   border-radius: $card-border-radius;
   box-shadow: $card-box-shadow;
   color: color-switch($card-background);
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
+  position: relative;
   transition: $card-transition;
 }
 
@@ -40,8 +33,8 @@
 
 .card__image {
   flex: 0 1 auto;
-  width: 100%;
   height: auto;
+  width: 100%;
 
   &:first-child {
     border-top-left-radius: $card-border-radius;
@@ -78,30 +71,26 @@
   font-weight: $card__title-font-weight;
 }
 
-/**
- * Card background and screen
- */
-
 .card__background,
 .card__screen {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
   border-radius: $card-border-radius;
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
   transition: $card-transition;
+  width: 100%;
 }
 
 .card__background {
-  z-index: 1;
   object-fit: cover;
+  z-index: 1;
 }
 
 .card__screen {
-  z-index: 2;
-  opacity: $card__screen-opacity;
   background: $card__screen-background;
+  opacity: $card__screen-opacity;
+  z-index: 2;
 }

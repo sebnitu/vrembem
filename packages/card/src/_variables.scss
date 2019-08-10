@@ -1,5 +1,3 @@
-// Card
-// ---
 $card-padding: 1.25em !default;
 $card-background: $white !default;
 $card-border: null !default;
@@ -8,24 +6,20 @@ $card-border-radius: $border-radius !default;
 $card-box-shadow: $box-shadow-1dp !default;
 $card-transition: all $transition-duration $transition-timing-function !default;
 
-// Card elements
-// ---
 $card__title-font-size: 1.2em !default;
-$card__title-font-weight: font-weight('semi-bold') !default;
+$card__title-font-weight: font-weight("semi-bold") !default;
 $card__screen-opacity: 0.7 !default;
 $card__screen-background: $dark !default;
 
-// Card modifiers
-// ---
 $card-size-scale: (
-  'lg': (
-    'base': $card-padding,
-    'sm': 2em
+  "lg": (
+    "base": $card-padding,
+    "sm": 2em
   ),
-  'xl': (
-    'base': $card-padding,
-    'sm': 2em,
-    'md': 4em 2.5em,
+  "xl": (
+    "base": $card-padding,
+    "sm": 2em,
+    "md": 4em 2.5em,
   )
 ) !default;
 $card-tall-min-height: 18em !default;
@@ -35,6 +29,6 @@ $card-step-offset: 5px !default;
 $card-fade-transition: opacity $transition-duration $transition-timing-function !default;
 $card-zoom-transition: transform 1s $transition-timing-function;
 $card-link-extend: (
-  'card_lift',
-  'card_zoom'
+  "card_lift",
+  "card_zoom"
 ) !default;

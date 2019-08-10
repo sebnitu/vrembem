@@ -1,10 +1,4 @@
-@import 'variables';
-
-/**
- * Card invert modifier
- * ---
- * A modifier to switch the typography color to better suite a dark background.
- */
+@import "variables";
 
 .card_invert {
   background: $card__screen-background;

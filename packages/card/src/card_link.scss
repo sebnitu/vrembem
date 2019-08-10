@@ -1,0 +1,7 @@
+@import "variables";
+
+.card_link {
+  @each $class in $card-link-extend {
+    @extend .#{$class};
+  }
+}

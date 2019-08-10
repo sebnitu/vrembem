@@ -1,14 +1,8 @@
-@import 'variables';
-
-/**
- * Card size modifiers
- * ---
- * Used to change the padding of card elements.
- */
+@import "variables";
 
 @each $key, $set in $card-size-scale {
   @each $media, $value in $set {
-    @if ($media == 'base') {
+    @if ($media == "base") {
       .card_size_#{$key} {
         .card__body,
         .card__header,

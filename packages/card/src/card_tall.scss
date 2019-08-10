@@ -1,17 +1,11 @@
-@import 'variables';
-
-/**
- * Card tall modifier
- * ---
- * Adds a minimum height to a card and centers the contents of card__body.
- */
+@import "variables";
 
 .card_tall {
   .card__body {
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
     align-items: center;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
     justify-content: center;
 
     > * {
@@ -21,7 +15,7 @@
   }
 }
 
-@include media-min('md') {
+@include media-min("md") {
   .card_tall {
     min-height: $card-tall-min-height;
   }

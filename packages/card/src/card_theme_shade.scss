@@ -1,10 +1,4 @@
-@import 'variables';
-
-/**
- * Card theme shade
- * ---
- * Theme that adds the $shade variable as background and inverts content color.
- */
+@import "variables";
 
 .card_theme_shade {
   background: $shade;

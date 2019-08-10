@@ -1,10 +1,4 @@
-@import 'variables';
-
-/**
- * Card theme dark
- * ---
- * Theme that adds the $dark variable as background and inverts content color.
- */
+@import "variables";
 
 .card_theme_dark {
   background: $dark;
@@ -21,4 +15,3 @@
     background: $dark;
   }
 }
-
