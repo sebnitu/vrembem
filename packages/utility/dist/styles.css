@@ -50,6 +50,46 @@
   background-color: #37474f !important;
 }
 
+.b_info {
+  background-color: #00bcd4 !important;
+}
+
+.b_info_light {
+  background-color: #d4faff !important;
+}
+
+.b_success {
+  background-color: #4caf50 !important;
+}
+
+.b_success_light {
+  background-color: #d9eeda !important;
+}
+
+.b_caution {
+  background-color: #f9a825 !important;
+}
+
+.b_caution_light {
+  background-color: #feedd3 !important;
+}
+
+.b_danger {
+  background-color: #f44336 !important;
+}
+
+.b_danger_light {
+  background-color: #fde1df !important;
+}
+
+.b_error {
+  background-color: #f44336 !important;
+}
+
+.b_error_light {
+  background-color: #fde1df !important;
+}
+
 .c_white {
   color: #fff !important;
 }
@@ -100,6 +140,46 @@
 
 .c_dark {
   color: #37474f !important;
+}
+
+.c_info {
+  color: #00bcd4 !important;
+}
+
+.c_info_light {
+  color: #d4faff !important;
+}
+
+.c_success {
+  color: #4caf50 !important;
+}
+
+.c_success_light {
+  color: #d9eeda !important;
+}
+
+.c_caution {
+  color: #f9a825 !important;
+}
+
+.c_caution_light {
+  color: #feedd3 !important;
+}
+
+.c_danger {
+  color: #f44336 !important;
+}
+
+.c_danger_light {
+  color: #fde1df !important;
+}
+
+.c_error {
+  color: #f44336 !important;
+}
+
+.c_error_light {
+  color: #fde1df !important;
 }
 
 .dismiss {

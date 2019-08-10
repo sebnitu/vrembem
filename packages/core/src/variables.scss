@@ -18,10 +18,20 @@ $dark: $blue-gray-800 !default;
 
 // Semantic type colors
 
-$info: $blue !default;
+$info: $cyan !default;
+$info-light: lighten($info, 50%) !default;
+
 $success: $green !default;
+$success-light: lighten($success, 40%) !default;
+
 $caution: $yellow-800 !default;
+$caution-light: lighten($caution, 35%) !default;
+
 $danger: $red !default;
+$danger-light: lighten($danger, 35%) !default;
+
+$error: $red !default;
+$error-light: lighten($error, 35%) !default;
 
 // Global Properties
 // ---

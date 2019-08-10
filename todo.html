@@ -180,6 +180,11 @@
       content: counter(total);
     }
 
+    .swatch {
+      padding: 0.5em 1em;
+      border-radius: 3px;
+    }
+
     /**
      * Toolbar
      */
@@ -302,7 +307,7 @@
 
     <div class="header">
       <h2 class="h3">Tests</h2>
-      <p>Here's where I can test that the imported JavaScript is working properly.</p>
+      <p>Here's where I can test that the imported components and JavaScript are working properly.</p>
     </div>
 
     <div class="content">
@@ -316,6 +321,44 @@
         <button class="button button_outline drawer__trigger" data-target="#example-drawer-right">
           Right Drawer
         </button>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="level">
+        <span class="b_primary_dark c_white swatch">P Dark</span>
+        <span class="b_primary c_white swatch">Primary</span>
+        <span class="b_primary_light c_white swatch">P Light</span>
+
+        <span class="b_secondary_dark c_white swatch">S Dark</span>
+        <span class="b_secondary c_white swatch">Secondary</span>
+        <span class="b_secondary_light c_white swatch">S Light</span>
+
+        <span class="b_accent_dark swatch">A Dark</span>
+        <span class="b_accent swatch">Accent</span>
+        <span class="b_accent_light swatch">A Light</span>
+
+        <span class="b_shade swatch">Shade</span>
+        <span class="b_dark c_white swatch">Dark</span>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="level">
+        <span class="b_info c_info_light swatch">Info</span>
+        <span class="b_info_light c_info swatch">Info</span>
+
+        <span class="b_success c_success_light swatch">Success</span>
+        <span class="b_success_light c_success swatch">Success</span>
+
+        <span class="b_caution c_caution_light swatch">Caution</span>
+        <span class="b_caution_light c_caution swatch">Caution</span>
+
+        <span class="b_danger c_danger_light swatch">Danger</span>
+        <span class="b_danger_light c_danger swatch">Danger</span>
+
+        <span class="b_error c_error_light swatch">Error</span>
+        <span class="b_error_light c_error swatch">Error</span>
       </div>
     </div>
 
