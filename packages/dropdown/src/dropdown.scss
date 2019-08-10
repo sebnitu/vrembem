@@ -1,47 +1,40 @@
-@import 'variables';
-
-/**
- * Dropdown
- * ---
- * A component that is initially hidden and revealed upon user interaction
- * either through a click or hover event. Dropdown components typically display
- * lists of possible actions or navigation.
- */
+@import "variables";
 
 .dropdown {
   position: relative;
 }
 
 .dropdown__menu {
-  position: absolute;
-  z-index: 10;
-  top: 100%;
-  left: 0;
-  right: auto;
-  bottom: auto;
-  width: $dropdown-width;
-  margin: $dropdown__menu_pos_spacing 0 0;
-  padding: $dropdown-spacing 0;
-  font-size: $dropdown-font-size;
-  line-height: $dropdown-line-height;
-  text-align: left;
-  list-style: none;
-  white-space: normal;
   background: $dropdown-background;
   background-clip: padding-box;
   border: $dropdown-border;
   border-radius: $dropdown-border-radius;
+  bottom: auto;
   box-shadow: $dropdown-box-shadow;
+  display: none;
+  font-size: $dropdown-font-size;
+  left: 0;
+  line-height: $dropdown-line-height;
+  list-style: none;
+  margin: $dropdown__menu_pos_spacing 0 0;
+  padding: $dropdown-spacing 0;
+  position: absolute;
+  right: auto;
+  text-align: left;
+  top: 100%;
+  white-space: normal;
+  width: $dropdown-width;
+  z-index: 10;
 
   &::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: $dropdown__menu_pos_spacing;
-    top: auto;
-    left: 0;
-    right: 0;
     bottom: 100%;
+    content: "";
+    height: $dropdown__menu_pos_spacing;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: auto;
+    width: 100%;
   }
 
   &.dropdown__menu_pos_switch {
@@ -50,54 +43,25 @@
   }
 }
 
-/**
- * On Hover Trigger
- */
-
-.dropdown__menu {
-  display: none;
-}
-
-.on-hover:hover > .dropdown__menu,
-.dropdown__item:hover > .dropdown__menu,
-.is-active > .dropdown__menu {
-  display: block;
-}
-
-.on-hover:hover > .dropdown__menu,
-.dropdown__item:hover > .dropdown__menu {
-  z-index: 12;
-}
-
-/**
- * Dropdown Elements
- */
-
-.dropdown__item {
-  position: relative;
-  display: block;
-  margin: $dropdown__item-margin;
-}
-
 .dropdown__sep {
-  margin: $dropdown-spacing 0;
   border-bottom: $dropdown__sep-border;
+  margin: $dropdown-spacing 0;
 }
 
 .dropdown__link {
-  position: relative;
-  display: flex;
   align-items: center;
-  vertical-align: middle;
-  padding: $dropdown__link-padding;
-  color: $dropdown__link-color;
   background: $dropdown__link-background;
   border: none;
+  color: $dropdown__link-color;
+  display: flex;
+  padding: $dropdown__link-padding;
+  position: relative;
+  vertical-align: middle;
 
   &:hover,
   &:focus {
-    color: $dropdown__link-color-hover;
     background: $dropdown__link-background-hover;
+    color: $dropdown__link-color-hover;
   }
 
   > * + * {
@@ -105,36 +69,32 @@
   }
 
   &.is-active {
-    color: $dropdown__link-color-active;
     background: $dropdown__link-background-active;
+    color: $dropdown__link-color-active;
 
     &:hover,
     &:focus {
-      color: $dropdown__link-color-active;
       background: $dropdown__link-background-active;
+      color: $dropdown__link-color-active;
     }
   }
 
   &.is-disabled {
-    cursor: auto;
-    color: $dropdown__link-color-disabled;
     background: $dropdown__link-background-disabled;
+    color: $dropdown__link-color-disabled;
+    cursor: auto;
 
     &:hover,
     &:focus {
-      color: $dropdown__link-color-disabled;
       background: $dropdown__link-background-disabled;
+      color: $dropdown__link-color-disabled;
     }
   }
 }
 
-.dropdown__link_align_top {
-  align-items: flex-start;
-}
-
 .dropdown__link_stack {
-  flex-direction: column;
   align-items: flex-start;
+  flex-direction: column;
 
   > * + * {
     margin-left: 0;
@@ -156,36 +116,45 @@
   font-weight: $dropdown__title-font-weight;
 }
 
-/**
- * Default position and switch modifier
- */
-
 .dropdown__item {
+  display: block;
+  margin: $dropdown__item-margin;
+  position: relative;
 
   > .dropdown__menu {
-    top: -$dropdown-spacing;
     left: 100%;
-    right: auto;
     margin: -1px 0 0 $dropdown__menu_pos_margin;
+    right: auto;
+    top: -$dropdown-spacing;
 
     &::before {
-      width: 1px;
+      bottom: 0;
       height: 100%;
-      top: 0;
       left: auto;
       right: 100%;
-      bottom: 0;
+      top: 0;
+      width: 1px;
     }
   }
 
   > .dropdown__menu_pos_switch {
     left: auto;
-    right: 100%;
     margin: -1px $dropdown__menu_pos_margin 0 0;
+    right: 100%;
 
     &::before {
       left: 100%;
       right: auto;
     }
   }
+}
+
+.is-active > .dropdown__menu {
+  display: block;
+}
+
+.on-hover:hover > .dropdown__menu,
+.dropdown__item:hover > .dropdown__menu {
+  display: block;
+  z-index: 12;
 }

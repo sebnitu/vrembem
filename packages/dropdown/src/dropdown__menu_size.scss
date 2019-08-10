@@ -1,10 +1,4 @@
-@import 'variables';
-
-/**
- * Dropdown menu size modifiers
- * ---
- * Used to change the size of the dropdown menu. Currently only modifies width.
- */
+@import "variables";
 
 .dropdown__menu_size_sm {
   width: $dropdown_size_sm-width;

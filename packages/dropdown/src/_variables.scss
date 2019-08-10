@@ -1,5 +1,3 @@
-// Dropdown
-// ---
 $dropdown-spacing: 0.5em !default;
 $dropdown-width: 16em !default;
 $dropdown-font-size: px-to-rem(15px) !default;
@@ -9,8 +7,6 @@ $dropdown-border: null !default;
 $dropdown-border-radius: $border-radius !default;
 $dropdown-box-shadow: $box-shadow-8dp !default;
 
-// Dropdown elements
-// ---
 $dropdown__item-margin: 1px 0 !default;
 $dropdown__item-background: null !default;
 $dropdown__item-background-hover: $gray-100 !default;
@@ -18,12 +14,10 @@ $dropdown__item-background-active: $white !default;
 
 $dropdown__link-inner-spacing: 0.5em !default;
 $dropdown__link-padding: 0.679em 1.375em !default;
-
 $dropdown__link-color: $color !default;
 $dropdown__link-color-hover: $color !default;
 $dropdown__link-color-active: $primary !default;
 $dropdown__link-color-disabled: $color-light !default;
-
 $dropdown__link-background: null !default;
 $dropdown__link-background-hover: $gray-100 !default;
 $dropdown__link-background-active: $white !default;
@@ -35,9 +29,7 @@ $dropdown__menu_pos_spacing: 0.5em !default;
 $dropdown__menu_pos_margin: 1px !default;
 
 $dropdown__title-font-size: 1.2em !default;
-$dropdown__title-font-weight: font-weight('semi-bold') !default;
+$dropdown__title-font-weight: font-weight("semi-bold") !default;
 
-// Dropdown modifiers
-// ---
 $dropdown_size_sm-width: 12em !default;
 $dropdown_size_lg-width: 20em !default;
