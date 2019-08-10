@@ -1,42 +1,42 @@
 @each $key, $value in $utility-spacing {
-  .padding_#{$key} {
+  .p_#{$key} {
     padding: $value !important;
   }
 }
 
 @each $key, $value in $utility-spacing {
-  .padding_top_#{$key} {
+  .p_top_#{$key} {
     padding-top: $value !important;
   }
 }
 
 @each $key, $value in $utility-spacing {
-  .padding_bottom_#{$key} {
+  .p_bottom_#{$key} {
     padding-bottom: $value !important;
   }
 }
 
 @each $key, $value in $utility-spacing {
-  .padding_left_#{$key} {
+  .p_left_#{$key} {
     padding-left: $value !important;
   }
 }
 
 @each $key, $value in $utility-spacing {
-  .padding_right_#{$key} {
+  .p_right_#{$key} {
     padding-right: $value !important;
   }
 }
 
 @each $key, $value in $utility-spacing {
-  .padding_hori_#{$key} {
+  .p_hori_#{$key} {
     padding-left: $value !important;
     padding-right: $value !important;
   }
 }
 
 @each $key, $value in $utility-spacing {
-  .padding_vert_#{$key} {
+  .p_vert_#{$key} {
     padding-bottom: $value !important;
     padding-top: $value !important;
   }

@@ -281,6 +281,7 @@
   background: #fff;
   border-color: #fff;
   color: #212121;
+  mix-blend-mode: screen;
 }
 
 .button_outline_invert_subtle {

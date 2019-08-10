@@ -103,6 +103,7 @@ $button_outline-border-width: 1px !default;
     background: $white;
     border-color: $white;
     color: $button-color;
+    mix-blend-mode: screen;
   }
 }
 

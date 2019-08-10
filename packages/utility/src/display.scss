@@ -1,5 +1,5 @@
 @each $display in $utility-display {
-  .display_#{$display} {
+  .d_#{$display} {
     display: $display !important;
   }
 }
@@ -7,7 +7,7 @@
 @each $key, $value in $breakpoints {
   @include media-min($key) {
     @each $display in $utility-display {
-      .display_#{$display}_#{$key} {
+      .d_#{$display}_#{$key} {
         display: $display !important;
       }
     }
