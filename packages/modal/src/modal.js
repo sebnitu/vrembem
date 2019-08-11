@@ -7,6 +7,7 @@ import u from "@vrembem/utility"
  * This is usually used in conjunction with the Dialog component to make
  * modal dialogs.
  */
+
 export default function(options) {
 
   "use strict"
