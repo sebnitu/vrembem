@@ -1,43 +1,37 @@
-@import 'variables';
-
-/**
- * Notice type modifiers
- * ---
- * A modifier that changes the color palette of a notice.
- */
+@import "variables";
 
 .notice_type_primary {
   background-color: $primary;
   @if (lightness($primary) < $lightness-threshold) {
-    @extend .type_invert;
+    @extend .type_invert !optional;
   }
 }
 
 .notice_type_secondary {
   background-color: $secondary;
   @if (lightness($secondary) < $lightness-threshold) {
-    @extend .type_invert;
+    @extend .type_invert !optional;
   }
 }
 
 .notice_type_accent {
   background-color: $accent;
   @if (lightness($accent) < $lightness-threshold) {
-    @extend .type_invert;
+    @extend .type_invert !optional;
   }
 }
 
 .notice_type_shade {
   background-color: $shade;
   @if (lightness($shade) < $lightness-threshold) {
-    @extend .type_invert;
+    @extend .type_invert !optional;
   }
 }
 
 .notice_type_dark {
   background-color: $dark;
   @if (lightness($dark) < $lightness-threshold) {
-    @extend .type_invert;
+    @extend .type_invert !optional;
   }
 }
 

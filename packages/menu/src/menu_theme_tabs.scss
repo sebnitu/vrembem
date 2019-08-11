@@ -17,10 +17,10 @@ $menu_theme_tabs-menu__link-padding: null !default;
   }
 
   .menu__link {
+    border-bottom: 0;
     border-radius: $menu_theme_tabs-border-radius;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    border-bottom: 0;
     padding: $menu_theme_tabs-menu__link-padding;
     @if ($menu_theme_tabs-adjust) {
       margin-bottom: ($menu_theme_tabs-adjust * -1);
@@ -46,11 +46,11 @@ $menu_theme_tabs-menu__link-padding: null !default;
   }
 
   .menu__link {
+    border-bottom: inherit;
     border-radius: $menu_theme_tabs-border-radius;
     border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom: inherit;
     border-right: 0;
+    border-top-right-radius: 0;
     @if ($menu_theme_tabs-adjust) {
       margin-bottom: inherit;
       margin-right: ($menu_theme_tabs-adjust * -1);

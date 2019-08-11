@@ -4,8 +4,8 @@ $menu_stack-indent: 1em !default;
 $menu_stack__text-spacing: 1em !default;
 
 .menu_stack {
-  flex-direction: column;
   align-items: stretch;
+  flex-direction: column;
   overflow: visible;
 
   .menu__item + .menu__item {
@@ -30,9 +30,9 @@ $menu_stack__text-spacing: 1em !default;
   }
 
   .menu__sep {
+    height: $menu__sep-width;
     margin: $menu__sep-spacing 0;
     width: auto;
-    height: $menu__sep-width;
   }
 }
 

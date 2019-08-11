@@ -1,8 +1,8 @@
 @import "variables";
 
 .menu {
-  display: flex;
   align-items: center;
+  display: flex;
   font-size: $menu-font-size;
   line-height: $menu-line-height;
   list-style: none;
@@ -17,21 +17,21 @@
 }
 
 .menu__link {
-  position: relative;
-  display: flex;
   align-items: center;
-  padding: $menu-padding;
-  color: $menu-color;
-  white-space: nowrap;
   background: $menu-background;
   border: $menu-border-width solid $menu-border-color;
   border-radius: $menu-border-radius;
+  color: $menu-color;
+  display: flex;
+  padding: $menu-padding;
+  position: relative;
+  white-space: nowrap;
 
   &:hover,
   &:focus {
-    color: $menu-color_hover;
     background: $menu-background_hover;
     border-color: $menu-border-color_hover;
+    color: $menu-color_hover;
     outline: none;
   }
 
@@ -41,29 +41,29 @@
 
   &.is-active,
   &.is-parent {
-    color: $menu-color_active;
     background: $menu-background_active;
     border-color: $menu-border-color_active;
+    color: $menu-color_active;
 
     &:hover,
     &:focus {
-      color: $menu-color_active;
       background: $menu-background_active;
       border-color: $menu-border-color_active;
+      color: $menu-color_active;
     }
   }
 
   &.is-disabled {
-    cursor: default;
-    color: $menu-color_disabled;
     background: $menu-background_disabled;
     border-color: $menu-border-color_disabled;
+    color: $menu-color_disabled;
+    cursor: default;
 
     &:hover,
     &:focus {
-      color: $menu-color_disabled;
       background: $menu-background_disabled;
       border-color: $menu-border-color_disabled;
+      color: $menu-color_disabled;
     }
   }
 }
@@ -74,23 +74,23 @@
 
 .menu__sep {
   align-self: stretch;
+  background: $menu__sep-background;
+  height: auto;
   margin: 0 $menu__sep-spacing;
   width: $menu__sep-width;
-  height: auto;
-  background: $menu__sep-background;
 }
 
 .menu__text {
-  position: relative;
-  display: flex;
   align-items: center;
-  padding: $menu-padding;
-  color: $menu__text-color;
-  white-space: nowrap;
-  text-decoration: none;
   background: $menu-background;
   border: $menu-border-width solid $menu-border-color;
   border-radius: $menu-border-radius;
+  color: $menu__text-color;
+  display: flex;
+  padding: $menu-padding;
+  position: relative;
+  text-decoration: none;
+  white-space: nowrap;
 
   > * + * {
     margin-left: $menu-inner-spacing;

@@ -1,22 +1,16 @@
-@import 'variables';
-
-/**
- * Notice
- * ---
- * A component for highlighting (optionally dismissible) messages to the user.
- */
+@import "variables";
 
 .notice {
-  display: block;
-  position: relative;
-  padding: $notice-padding;
   background: $notice-background;
   border: $notice-border;
   border-radius: $notice-border-radius;
+  display: block;
+  padding: $notice-padding;
+  position: relative;
 
   > * {
-    margin-top: $notice-spacing;
     margin-bottom: $notice-spacing;
+    margin-top: $notice-spacing;
   }
 
   > .notice__close + *,
@@ -29,27 +23,23 @@
   }
 }
 
-/**
- * Notice elements
- */
-
 .notice__close {
-  display: inline-flex;
   align-items: center;
-  justify-content: center;
   cursor: pointer;
+  display: inline-flex;
   float: right;
+  justify-content: center;
   margin: 0 0 0.5rem 1rem;
 }
 
 .notice__group {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: space-between;
 
   > *:nth-child(1n + 1) {
-    margin-top: 0;
     margin-bottom: 0;
+    margin-top: 0;
   }
 }
 
@@ -59,10 +49,6 @@
   font-size: $notice__title-font-size;
   font-weight: $notice__title-font-weight;
 }
-
-/**
- * Box inside of type component
- */
 
 .type .notice {
   margin: 1.5em 0;
