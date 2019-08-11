@@ -58,6 +58,14 @@
       font-weight: bold;
     }
 
+    .swatch {
+      padding: 0.5em 1em;
+    }
+
+    /**
+     * List component
+     */
+
     .list {
       list-style: none;
     }
@@ -104,6 +112,10 @@
       content: "+";
     }
 
+    /**
+     * List rowed modifier
+     */
+
     .list_rowed {
       border-top: 1px solid rgba(0,0,0, 0.1);
     }
@@ -111,6 +123,10 @@
     .list_rowed li {
       border-bottom: 1px solid rgba(0,0,0, 0.1);
     }
+
+    /**
+     * List inline modifier
+     */
 
     .list_inline {
       margin: -0.5em 0 0 -1em;
@@ -138,11 +154,27 @@
       }
     }
 
+    /**
+     * List grid modifier
+     */
+
     .list_grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
       grid-column-gap: 30px;
     }
+
+    /**
+     * List todo modifier
+     */
+
+    .list_todo .is-done p {
+      text-decoration: line-through;
+    }
+
+    /**
+     * List count modifier
+     */
 
     .list_count {
       counter-reset: list_index;
@@ -159,6 +191,10 @@
       color: #ccc;
       margin-left: 0.5em;
     }
+
+    /**
+     * Count component
+     */
 
     .count {
       display: flex;
@@ -197,10 +233,6 @@
 
     .count-group__total::after {
       content: counter(total);
-    }
-
-    .swatch {
-      padding: 0.5em 1em;
     }
 
     /**
@@ -463,7 +495,7 @@
         <div class="grid__item span_full">
           <div class="notice notice_theme_paper">
             <h3 class="notice__title">Notes</h3>
-            <ul class="list">
+            <ul class="list list_todo">
               <li class="is-done">
                 <span class="list__icon"></span>
                 <p><strong class="list__title">@vrembem/utility</strong> Update the utility classes to have use the short name patterns.</p>
@@ -566,7 +598,7 @@
         <div class="grid__item span_full">
           <div class="notice notice_theme_paper">
             <h3 class="notice__title">Notes</h3>
-            <ul class="list">
+            <ul class="list list_todo">
               <li>
                 <span class="list__icon"></span>
                 <p>Incorporate UMD (Universal Module Definition) for JavaScript plugins. Look into using this Babel transform: <a class="link" target="_blank" href="https://babeljs.io/docs/en/babel-plugin-transform-modules-umd">@babel/plugin-transform-modules-umd</a></p>
