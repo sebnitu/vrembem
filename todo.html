@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="./packages/spacing/dist/styles.min.css">
   <link rel="stylesheet" href="./packages/span/dist/styles.min.css">
   <link rel="stylesheet" href="./packages/tooltip/dist/styles.min.css">
+  <link rel="stylesheet" href="./packages/type/dist/styles.min.css">
   <link rel="stylesheet" href="./packages/utility/dist/styles.min.css">
 
   <style>
@@ -252,6 +253,25 @@
       height: calc(100vh - 60px);
     }
 
+    /**
+     * Notice
+     */
+
+    .notice_theme_paper {
+      background: LemonChiffon;
+    }
+
+    .notice_theme_paper .notice__title {
+      padding: 0 1.5rem 0.5rem;
+      margin-left: -1.5rem;
+      margin-right: -1.5rem;
+      border-bottom: 6px double rgba(255,69,0, 0.15);
+    }
+
+    .notice_theme_paper li + li {
+      border-top: 1px solid rgba(32,178,170, 0.2);
+    }
+
   </style>
 
 </head>
@@ -311,7 +331,7 @@
       <ol class="list list_inline">
         <li class="is-done"><span class="list__icon"></span> Scripts</li>
         <li class="is-done"><span class="list__icon"></span> Linting</li>
-        <li><span class="list__icon"></span> Components</li>
+        <li class="is-done"><span class="list__icon"></span> Components</li>
         <li><span class="list__icon"></span> Audit</li>
         <li><span class="list__icon"></span> Refactor</li>
         <li><span class="list__icon"></span> Readme</li>
@@ -393,7 +413,7 @@
 
       <div class="grid grid_break_md count-group">
 
-        <div class="grid__item span_9 count count_done">
+        <div class="grid__item count count_done">
           <ol class="list list_count list_grid">
             <li class="is-done"><span class="list__icon"></span> arrow</li>
             <li class="is-done"><span class="list__icon"></span> base</li>
@@ -421,20 +441,10 @@
             <li class="is-done"><span class="list__icon"></span> span</li>
             <li class="is-done"><span class="list__icon"></span> tooltip</li>
             <li class="is-done"><span class="list__icon"></span> utility</li>
+            <li class="is-done"><span class="list__icon"></span> type</li>
           </ol>
           <h3 class="subtitle">
             Processed
-            <span class="sep"></span>
-            <span class="count__total"></span>
-          </h3>
-        </div>
-
-        <div class="grid__item span_3 count count_queue">
-          <ol class="list list_count list_grid">
-            <li><span class="list__icon"></span> type</li>
-          </ol>
-          <h3 class="subtitle">
-            Queue
             <span class="sep"></span>
             <span class="count__total"></span>
           </h3>
@@ -449,25 +459,27 @@
         </div>
 
         <div class="grid__item span_full">
-          <h3 class="subtitle">Notes</h3>
-          <ul class="list">
-            <li class="is-done">
-              <span class="list__icon"></span>
-              <p><strong class="list__title">@vrembem/utility</strong> Update the utility classes to have use the short name patterns.</p>
-            </li>
-            <li>
-              <span class="list__icon"></span>
-              <p><strong class="list__title">@vrembem/utility</strong> Add border and border-radius modifiers.</p>
-            </li>
-            <li>
-              <span class="list__icon"></span>
-              <p><strong class="list__title">@vrembem/drawer</strong> Change the way that drawers are saved via saveState. Instead of requiring an ID, maybe use a data attribute.</p>
-            </li>
-            <li>
-              <span class="list__icon"></span>
-              <p><strong class="list__title">@vrembem/drawer</strong> Refactor the drawer to better define "left" and "right" drawers and only allow one of the same drawer position type to be open at a time.</p>
-            </li>
-          </ul>
+          <div class="notice notice_theme_paper">
+            <h3 class="notice__title">Notes</h3>
+            <ul class="list">
+              <li class="is-done">
+                <span class="list__icon"></span>
+                <p><strong class="list__title">@vrembem/utility</strong> Update the utility classes to have use the short name patterns.</p>
+              </li>
+              <li>
+                <span class="list__icon"></span>
+                <p><strong class="list__title">@vrembem/utility</strong> Add border and border-radius modifiers.</p>
+              </li>
+              <li>
+                <span class="list__icon"></span>
+                <p><strong class="list__title">@vrembem/drawer</strong> Change the way that drawers are saved via saveState. Instead of requiring an ID, maybe use a data attribute.</p>
+              </li>
+              <li>
+                <span class="list__icon"></span>
+                <p><strong class="list__title">@vrembem/drawer</strong> Refactor the drawer to better define "left" and "right" drawers and only allow one of the same drawer position type to be open at a time.</p>
+              </li>
+            </ul>
+          </div>
         </div>
 
       </div>
@@ -550,13 +562,15 @@
         </div>
 
         <div class="grid__item span_full">
-          <h3 class="subtitle">Notes</h3>
-          <ul class="list">
-            <li>
-              <span class="list__icon"></span>
-              <p>Incorporate UMD (Universal Module Definition) for JavaScript plugins. Look into using this Babel transform: <a class="link" target="_blank" href="https://babeljs.io/docs/en/babel-plugin-transform-modules-umd">@babel/plugin-transform-modules-umd</a></p>
-            </li>
-          </ul>
+          <div class="notice notice_theme_paper">
+            <h3 class="notice__title">Notes</h3>
+            <ul class="list">
+              <li>
+                <span class="list__icon"></span>
+                <p>Incorporate UMD (Universal Module Definition) for JavaScript plugins. Look into using this Babel transform: <a class="link" target="_blank" href="https://babeljs.io/docs/en/babel-plugin-transform-modules-umd">@babel/plugin-transform-modules-umd</a></p>
+              </li>
+            </ul>
+          </div>
         </div>
 
       </div>
