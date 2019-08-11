@@ -1,10 +1,4 @@
-@import 'variables';
-
-/**
- * Media reverse modifier
- * ---
- * A media modifier that will swap the media to the opposite side.
- */
+@import "variables";
 
 .media_reverse {
   flex-direction: row-reverse;

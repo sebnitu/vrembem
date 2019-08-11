@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="./packages/icon-action/dist/styles.min.css">
   <link rel="stylesheet" href="./packages/input/dist/styles.min.css">
   <link rel="stylesheet" href="./packages/level/dist/styles.min.css">
+  <link rel="stylesheet" href="./packages/media/dist/styles.min.css">
   <link rel="stylesheet" href="./packages/modal/dist/styles.min.css">
   <link rel="stylesheet" href="./packages/section/dist/styles.min.css">
   <link rel="stylesheet" href="./packages/spacing/dist/styles.min.css">
@@ -118,6 +119,19 @@
 
     .list_inline .list__icon {
       margin-right: 0.5em;
+    }
+
+    @media (max-width: 480px) {
+      .list_inline {
+        margin: 0;
+      }
+      .list_inline li {
+        display: flex;
+        margin: 0;
+      }
+      .list_inline li + li {
+        border-top: 1px dashed rgba(0,0,0, 0.1);
+      }
     }
 
     .list_grid {
@@ -297,6 +311,7 @@
         <li><span class="list__icon"></span> Components</li>
         <li><span class="list__icon"></span> Audit</li>
         <li><span class="list__icon"></span> Refactor</li>
+        <li><span class="list__icon"></span> Readme</li>
         <li><span class="list__icon"></span> Tests</li>
       </ol>
     </div>
@@ -313,7 +328,7 @@
     </div>
 
     <div class="content">
-      <div class="button-group">
+      <div class="button-group button-group_wrap">
         <button class="button button_outline modal__trigger" data-target="[data-modal='example']">
           Modal
         </button>
@@ -394,6 +409,7 @@
             <li class="is-done"><span class="list__icon"></span> icon-action</li>
             <li class="is-done"><span class="list__icon"></span> input</li>
             <li class="is-done"><span class="list__icon"></span> level</li>
+            <li class="is-done"><span class="list__icon"></span> media</li>
             <li class="is-done"><span class="list__icon"></span> modal</li>
             <li class="is-done"><span class="list__icon"></span> section</li>
             <li class="is-done"><span class="list__icon"></span> spacing</li>
@@ -409,7 +425,6 @@
 
         <div class="grid__item span_3 count count_queue">
           <ol class="list list_count list_grid">
-            <li><span class="list__icon"></span> media</li>
             <li><span class="list__icon"></span> menu</li>
             <li><span class="list__icon"></span> notice</li>
             <li><span class="list__icon"></span> tooltip</li>

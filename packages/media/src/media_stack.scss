@@ -1,10 +1,4 @@
-@import 'variables';
-
-/**
- * Media stack modifier
- * ---
- * A modifier that stacks the media elements optionally based on a breakpoint.
- */
+@import "variables";
 
 .media_stack {
   flex-direction: column;

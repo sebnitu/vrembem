@@ -152,11 +152,11 @@
 
 .button-group_wrap {
   flex-wrap: wrap;
-  margin: -0.25rem;
+  margin: -0.5rem 0 0 -0.5rem;
 }
 .button-group_wrap > .button,
 .button-group_wrap > .button + .button {
-  margin: 0.25rem;
+  margin: 0.5rem 0 0 0.5rem;
 }
 
 /*# sourceMappingURL=styles.css.map */
