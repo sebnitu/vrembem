@@ -1,18 +1,11 @@
-@import 'variables';
-
-/**
- * Embed
- * ---
- * A component used for displaying fixed, ratio based content in a fluid way
- * such as video and iframe embeds.
- */
+@import "variables";
 
 .embed {
-  position: relative;
   display: block;
   height: 0;
-  padding: 0 0 $embed-ratio;
   overflow: hidden;
+  padding: 0 0 $embed-ratio;
+  position: relative;
 }
 
 .embed_ratio_16x9 {
@@ -28,12 +21,12 @@
 }
 
 .embed__item {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  border: none;
   height: 100%;
+  left: 0;
   margin: 0;
   padding: 0;
-  border: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
