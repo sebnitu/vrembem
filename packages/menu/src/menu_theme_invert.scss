@@ -1,17 +1,13 @@
-@import 'variables';
+@import "variables";
 
-// Menu theme invert variables
-// ---
 $menu_theme_invert-color: $white !default;
 $menu_theme_invert-color_hover: $white !default;
 $menu_theme_invert-background: null !default;
 $menu_theme_invert-background_hover: rgba($white, 0.1) !default;
-
 $menu_theme_invert-color_active: $primary !default;
 $menu_theme_invert-color_active_hover: null !default;
 $menu_theme_invert-background_active: null !default;
 $menu_theme_invert-background_active_hover: none !default;
-
 $menu_theme_invert-color_disabled: rgba($white, 0.5) !default;
 $menu_theme_invert-color_disabled_hover: rgba($white, 0.5) !default;
 $menu_theme_invert-background_disabled: none !default;
@@ -19,12 +15,6 @@ $menu_theme_invert-background_disabled_hover: none !default;
 
 $menu_theme_invert__sep-background: rgba($white, 0.1) !default;
 $menu_theme_invert__text-color: $white !default;
-
-/**
- * Menu theme invert
- * ---
- * A theme that styles a menu to better fit a dark background.
- */
 
 .menu_theme_invert {
   .menu__link {

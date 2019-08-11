@@ -1,10 +1,7 @@
-@import 'variables';
+@import "variables";
 
-/**
- * Menu stack modifiers
- * ---
- * A modifier for stacking menu items vertically.
- */
+$menu_stack-indent: 1em !default;
+$menu_stack__text-spacing: 1em !default;
 
 .menu_stack {
   flex-direction: column;
@@ -38,10 +35,6 @@
     height: $menu__sep-width;
   }
 }
-
-/**
- * Menu stack breakpoint modifiers
- */
 
 @each $key, $value in $breakpoints {
   .menu_stack_#{$key} {
