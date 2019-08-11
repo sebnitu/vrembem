@@ -1,66 +1,60 @@
-@import 'variables';
-
-/**
- * Icon-action color modifiers
- * ---
- * Color modifiers add different color variations to icon-actions.
- */
+@import "variables";
 
 .icon-action_color_invert {
-  color: $icon-action-color-invert;
   background: rgba($white, 0.5);
+  color: $icon-action-color-invert;
 
   &:hover,
   &:focus {
-    color: $icon-action-color-invert;
     background: rgba($white, 0.75);
+    color: $icon-action-color-invert;
   }
 }
 
 .icon-action_color_subtle {
-  color: $icon-action-color-invert;
   background: none;
+  color: $icon-action-color-invert;
 
   &:hover,
   &:focus {
-    color: $icon-action-color-invert;
     background: rgba($black, 0.1);
+    color: $icon-action-color-invert;
   }
 }
 
 .icon-action_color_invert_subtle {
-  color: $icon-action-color;
   background: none;
+  color: $icon-action-color;
 
   &:hover,
   &:focus {
-    color: $icon-action-color;
     background: rgba($white, 0.1);
+    color: $icon-action-color;
   }
 }
 
 .icon-action_color_fade {
-  color: $icon-action-color-invert;
   background: none;
+  color: $icon-action-color-invert;
   opacity: 0.5;
 
   &:hover,
   &:focus {
-    color: $icon-action-color-invert;
     background: none;
+    color: $icon-action-color-invert;
     opacity: 1;
   }
 }
 
 .icon-action_color_invert_fade {
-  color: $icon-action-color;
   background: none;
+  color: $icon-action-color;
   opacity: 0.5;
 
   &:hover,
   &:focus {
-    color: $icon-action-color;
     background: none;
+    color: $icon-action-color;
     opacity: 1;
   }
 }

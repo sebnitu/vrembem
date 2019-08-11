@@ -1,0 +1,29 @@
+@import "variables";
+
+.icon-action {
+  align-items: center;
+  background: $icon-action-background;
+  border: $icon-action-border;
+  border-radius: $icon-action-border-radius;
+  color: $icon-action-color;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: $icon-action-font-size;
+  justify-content: center;
+  padding: $icon-action-padding;
+  vertical-align: top;
+
+  &:hover,
+  &:focus {
+    background: $icon-action-background-hover;
+    border: $icon-action-border-hover;
+    color: $icon-action-color;
+    cursor: pointer;
+  }
+
+  > .icon {
+    font-size: 1em;
+    margin: 0;
+    padding: 0;
+  }
+}
