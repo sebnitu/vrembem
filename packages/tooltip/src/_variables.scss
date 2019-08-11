@@ -1,20 +1,9 @@
-// Tooltip
-// ---
 $tooltip-max-width: 20em !default;
 $tooltip-padding: 0.334em 0.75em !default;
-
-// Tooltip typography
-// ---
 $tooltip-font-size: px-to-em(12px) !default;
 $tooltip-color: $white !default;
-
-// Tooltip box styles
-// ---
 $tooltip-background: rgba($gray-700, 0.9) !default;
 $tooltip-border-radius: $border-radius !default;
-
-// Tooltip spacing
-// ---
 $tooltip-offset: 1px !default;
 $tooltip-scale: 0.75 !default;
 $tooltip-distance: 5px !default;
