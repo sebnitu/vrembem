@@ -1,23 +1,17 @@
-@import 'variables';
-
-/**
- * Icon
- * ---
- * The icon component provides a consistent way to style icons.
- */
+@import "variables";
 
 .icon {
+  box-sizing: content-box;
   display: inline-block;
+  fill: $icon-fill;
   flex-shrink: 0;
-  width: 1em;
+  font-size: $icon-font-size;
   height: 1em;
   padding: $icon-padding;
-  fill: $icon-fill;
   stroke: $icon-stroke;
   stroke-linecap: $icon-stroke-linecap;
   stroke-linejoin: $icon-stroke-linejoin;
   stroke-width: $icon-stroke-width;
-  font-size: $icon-font-size;
-  box-sizing: content-box;
   vertical-align: middle;
+  width: 1em;
 }
