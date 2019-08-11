@@ -1,0 +1,11 @@
+@import "variables";
+
+.input_size_sm {
+  font-size: $input_size_sm-font-size;
+  padding: $input_size_sm-padding;
+}
+
+.input_size_lg {
+  font-size: $input_size_lg-font-size;
+  padding: $input_size_lg-padding;
+}

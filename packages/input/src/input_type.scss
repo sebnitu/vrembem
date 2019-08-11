@@ -1,19 +1,12 @@
-@import 'variables';
-
-/**
- * Input type modifiers
- * ---
- * Defines unique styles for specific types of input fields.
- */
+@import "variables";
 
 .input_type_select {
-  // sass-lint:disable no-vendor-prefixes
-  cursor: pointer;
   -webkit-appearance: none;
   -moz-appearance: none;
   background-image: url($input_type_select-image);
   background-position: 100% center;
   background-repeat: no-repeat;
+  cursor: pointer;
   padding-right: 2em;
 }
 

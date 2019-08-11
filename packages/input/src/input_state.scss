@@ -1,10 +1,4 @@
-@import 'variables';
-
-/**
- * Input state modifiers
- * ---
- * Modifiers that visually changes the state of an input field.
- */
+@import "variables";
 
 .input_state_success {
   border-color: $success;
