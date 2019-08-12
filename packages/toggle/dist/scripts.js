@@ -22,6 +22,15 @@ exports["default"] = _default;
 },{}],3:[function(require,module,exports){
 "use strict";
 
+var _toggle = _interopRequireDefault(require("./src/toggle"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+window.Toggle = _toggle["default"];
+
+},{"./src/toggle":4}],4:[function(require,module,exports){
+"use strict";
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -84,7 +93,7 @@ function _default(options) {
   return api;
 }
 
-},{"@vrembem/utility":4}],4:[function(require,module,exports){
+},{"@vrembem/utility":5}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
