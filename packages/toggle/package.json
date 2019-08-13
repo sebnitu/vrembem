@@ -2,7 +2,7 @@
   "name": "@vrembem/toggle",
   "description": "A JavaScript plugin to toggle components in the DOM.",
   "version": "0.0.0",
-  "main": "index.js",
+  "main": "src/toggle.js",
   "scripts": {
     "build": "npm-run-all clean scripts",
     "clean": "del dist",

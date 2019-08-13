@@ -5,21 +5,39 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = void 0;
-var _default = {
-  "breakpoints": {
-    "xs": "480px",
-    "sm": "620px",
-    "md": "760px",
-    "lg": "990px",
-    "xl": "1380px"
-  }
+
+var _breakpoints = _interopRequireDefault(require("./src/breakpoints"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var _default = core = {
+  "breakpoints": _breakpoints["default"]
 };
+
 exports["default"] = _default;
 
-},{}],2:[function(require,module,exports){
+},{"./src/breakpoints":2}],2:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _default = breakpoints = {
+  "xs": "480px",
+  "sm": "620px",
+  "md": "760px",
+  "lg": "990px",
+  "xl": "1380px"
+};
+
+exports["default"] = _default;
+
 },{}],3:[function(require,module,exports){
+"use strict";
+
+},{}],4:[function(require,module,exports){
 "use strict";
 
 var _drawer = _interopRequireDefault(require("./src/drawer"));
@@ -28,7 +46,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 window.Drawer = _drawer["default"];
 
-},{"./src/drawer":4}],4:[function(require,module,exports){
+},{"./src/drawer":5}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -507,7 +525,7 @@ function _default(options) {
   return api;
 }
 
-},{"@vrembem/utility":5}],5:[function(require,module,exports){
+},{"@vrembem/utility":6}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -723,5 +741,5 @@ function () {
 
 exports["default"] = _default;
 
-},{"@vrembem/core":1}]},{},[3,2])
+},{"@vrembem/core":1}]},{},[4,3])
 //# sourceMappingURL=scripts.js.map

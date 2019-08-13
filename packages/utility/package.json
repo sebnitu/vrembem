@@ -2,7 +2,7 @@
   "name": "@vrembem/utility",
   "description": "Components that add one off styles or are geared to styling specific html elements and can be extended in other places.",
   "version": "0.0.0",
-  "main": "index.js",
+  "main": "src/utility.js",
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean scripts styles",
