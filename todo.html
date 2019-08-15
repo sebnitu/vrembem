@@ -6,6 +6,9 @@
 
   <!-- <link rel="stylesheet" href="https://unpkg.com/vrembem@0.7.0/dist/css/styles.min.css"> -->
 
+  <link rel="stylesheet" href="./packages/all/dist/styles.min.css">
+
+  <!--
   <link rel="stylesheet" href="./packages/arrow/dist/styles.min.css">
   <link rel="stylesheet" href="./packages/base/dist/styles.min.css">
   <link rel="stylesheet" href="./packages/breadcrumb/dist/styles.min.css">
@@ -32,6 +35,7 @@
   <link rel="stylesheet" href="./packages/tooltip/dist/styles.min.css">
   <link rel="stylesheet" href="./packages/type/dist/styles.min.css">
   <link rel="stylesheet" href="./packages/utility/dist/styles.min.css">
+  -->
 
   <style>
 
@@ -382,7 +386,7 @@
       <ol class="list list_inline">
         <li class="is-done"><span class="list__icon"></span> Scripts</li>
         <li class="is-done"><span class="list__icon"></span> Linting</li>
-        <li class=""><span class="list__icon"></span> Components</li>
+        <li class="is-done"><span class="list__icon"></span> Components</li>
         <li class=""><span class="list__icon"></span> Audit</li>
         <li class=""><span class="list__icon"></span> Refactor</li>
         <li class=""><span class="list__icon"></span> Readme</li>
@@ -441,8 +445,9 @@
 
       <div class="grid grid_break_md count-group">
 
-        <div class="grid__item span_8 count count_done">
+        <div class="grid__item count count_done">
           <ol class="list list_count list_grid">
+            <li class="is-done"><span class="list__icon"></span> all</li>
             <li class="is-done"><span class="list__icon"></span> arrow</li>
             <li class="is-done"><span class="list__icon"></span> base</li>
             <li class="is-done"><span class="list__icon"></span> breadcrumb</li>
@@ -475,18 +480,6 @@
           </ol>
           <h3 class="subtitle">
             Processed
-            <span class="sep"></span>
-            <span class="count__total"></span>
-          </h3>
-        </div>
-
-        <div class="grid__item count count_queue">
-          <ol class="list list_count list_grid">
-            <li class=""><span class="list__icon"></span> all</li>
-            <li class=""><span class="list__icon"></span> layout</li>
-          </ol>
-          <h3 class="subtitle">
-            Queue
             <span class="sep"></span>
             <span class="count__total"></span>
           </h3>
@@ -737,11 +730,15 @@
   </div>
 </div>
 
+<script src="./packages/all/dist/scripts.min.js"></script>
+
+<!--
 <script src="./packages/core/dist/scripts.min.js"></script>
 <script src="./packages/dismissible/dist/scripts.min.js"></script>
 <script src="./packages/drawer/dist/scripts.min.js"></script>
 <script src="./packages/modal/dist/scripts.min.js"></script>
 <script src="./packages/toggle/dist/scripts.min.js"></script>
+-->
 
 <script>
 console.log("Vrembem:", vrembem);
