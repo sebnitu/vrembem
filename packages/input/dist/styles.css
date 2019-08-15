@@ -1,7 +1,5 @@
 .input {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  appearance: none;
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.25);
   border-radius: 3px;
@@ -22,18 +20,6 @@
   box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
   outline: none;
 }
-.input::-webkit-input-placeholder {
-  color: #bdbdbd;
-}
-.input::-moz-placeholder {
-  color: #bdbdbd;
-}
-.input:-ms-input-placeholder {
-  color: #bdbdbd;
-}
-.input::-ms-input-placeholder {
-  color: #bdbdbd;
-}
 .input::placeholder {
   color: #bdbdbd;
 }
@@ -48,18 +34,6 @@
   background: rgba(255, 255, 255, 0.2);
   border-color: rgba(255, 255, 255, 0);
   box-shadow: none;
-}
-.input_color_invert::-webkit-input-placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-.input_color_invert::-moz-placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-.input_color_invert:-ms-input-placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-.input_color_invert::-ms-input-placeholder {
-  color: rgba(255, 255, 255, 0.5);
 }
 .input_color_invert::placeholder {
   color: rgba(255, 255, 255, 0.5);

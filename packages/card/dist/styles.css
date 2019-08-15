@@ -78,8 +78,7 @@
 }
 
 .card__background {
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   z-index: 1;
 }
 

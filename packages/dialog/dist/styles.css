@@ -24,7 +24,6 @@
   align-items: center;
   background: #fff;
   display: flex;
-  position: -webkit-sticky;
   position: sticky;
   vertical-align: middle;
   z-index: 1;

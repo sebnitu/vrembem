@@ -1,7 +1,6 @@
 .modal {
   align-items: center;
-  -webkit-backdrop-filter: blur(4px);
-          backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
   background-color: rgba(55, 71, 79, 0);
   display: flex;
   flex-direction: column;

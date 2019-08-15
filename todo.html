@@ -382,11 +382,11 @@
       <ol class="list list_inline">
         <li class="is-done"><span class="list__icon"></span> Scripts</li>
         <li class="is-done"><span class="list__icon"></span> Linting</li>
-        <li class="is-done"><span class="list__icon"></span> Components</li>
-        <li><span class="list__icon"></span> Audit</li>
-        <li><span class="list__icon"></span> Refactor</li>
-        <li><span class="list__icon"></span> Readme</li>
-        <li><span class="list__icon"></span> Tests</li>
+        <li class=""><span class="list__icon"></span> Components</li>
+        <li class=""><span class="list__icon"></span> Audit</li>
+        <li class=""><span class="list__icon"></span> Refactor</li>
+        <li class=""><span class="list__icon"></span> Readme</li>
+        <li class=""><span class="list__icon"></span> Tests</li>
       </ol>
     </div>
 
@@ -436,7 +436,7 @@
 
       <div class="grid grid_break_md count-group">
 
-        <div class="grid__item count count_done">
+        <div class="grid__item span_8 count count_done">
           <ol class="list list_count list_grid">
             <li class="is-done"><span class="list__icon"></span> arrow</li>
             <li class="is-done"><span class="list__icon"></span> base</li>
@@ -470,6 +470,18 @@
           </ol>
           <h3 class="subtitle">
             Processed
+            <span class="sep"></span>
+            <span class="count__total"></span>
+          </h3>
+        </div>
+
+        <div class="grid__item count count_queue">
+          <ol class="list list_count list_grid">
+            <li class=""><span class="list__icon"></span> all</li>
+            <li class=""><span class="list__icon"></span> layout</li>
+          </ol>
+          <h3 class="subtitle">
+            Queue
             <span class="sep"></span>
             <span class="count__total"></span>
           </h3>
@@ -556,8 +568,6 @@
             <li class="is-done"><span class="list__icon"></span> build</li>
             <li class="is-done"><span class="list__icon"></span> clean</li>
             <li class="is-done"><span class="list__icon"></span> scripts</li>
-            <li class="is-done"><span class="list__icon"></span> scripts:compile</li>
-            <li class="is-done"><span class="list__icon"></span> scripts:min</li>
             <li class="is-done"><span class="list__icon"></span> watch</li>
             <li class="is-done"><span class="list__icon"></span> watch:scripts</li>
           </ul>
@@ -575,7 +585,6 @@
             <li class="is-done"><span class="list__icon"></span> styles</li>
             <li class="is-done"><span class="list__icon"></span> styles:compile</li>
             <li class="is-done"><span class="list__icon"></span> styles:min</li>
-            <li class="is-done"><span class="list__icon"></span> styles:prefix</li>
             <li class="is-done"><span class="list__icon"></span> watch</li>
             <li class="is-done"><span class="list__icon"></span> watch:styles</li>
           </ul>
@@ -669,10 +678,9 @@
 "scripts": {
   "build": "npm-run-all clean styles",
   "clean": "del dist",
-  "styles": "npm-run-all styles:compile styles:prefix styles:min",
+  "styles": "npm-run-all styles:compile styles:min",
   "styles:compile": "sass index.scss dist/styles.css --load-path node_modules",
   "styles:min": "sass dist/styles.css dist/styles.min.css --style compressed",
-  "styles:prefix": "postcss dist/styles.css --map --use autoprefixer --output dist/styles.css",
   "watch": "npm run watch:styles",
   "watch:styles": "nodemon -e scss -x 'npm run styles'"
 }</code></pre>
@@ -688,10 +696,9 @@
   "build": "npm-run-all clean scripts styles",
   "clean": "del dist",
   "scripts": "rollup -c",
-  "styles": "npm-run-all styles:compile styles:prefix styles:min",
+  "styles": "npm-run-all styles:compile styles:min",
   "styles:compile": "sass index.scss dist/styles.css --load-path node_modules",
   "styles:min": "sass dist/styles.css dist/styles.min.css --style compressed",
-  "styles:prefix": "postcss dist/styles.css --map --use autoprefixer --output dist/styles.css",
   "watch": "npm run watch:scripts watch:styles",
   "watch:scripts": "rollup -c -w"
   "watch:styles": "nodemon -e scss -x 'npm run styles'"
@@ -741,11 +748,9 @@
 
 <script src="./packages/core/dist/scripts.min.js"></script>
 <script src="./packages/dismissible/dist/scripts.min.js"></script>
-<script src="./packages/toggle/dist/scripts.min.js"></script>
-<!--
 <script src="./packages/drawer/dist/scripts.min.js"></script>
 <script src="./packages/modal/dist/scripts.min.js"></script>
--->
+<script src="./packages/toggle/dist/scripts.min.js"></script>
 
 <script>
 
@@ -765,8 +770,12 @@ let toggleDefault = new vrembem.toggle();
 
 console.log("toggleDefault:", toggleDefault);
 
-// var drawer = new Drawer();
-// var modal = new Modal();
+let drawer = new vrembem.drawer();
+console.log("drawer:", drawer);
+
+var modal = new vrembem.modal();
+console.log("modal:", modal);
+
 </script>
 
 </body>
