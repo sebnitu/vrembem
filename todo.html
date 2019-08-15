@@ -618,17 +618,20 @@
     <div class="header">
       <h2 class="h3">Script groups</h2>
       <p>The set of scripts that are to be used depending on the package type.</p>
+      <div class="m_top_md">
+        <button class="button button_outline" data-toggle-target=".code" data-toggle-class="dismiss">Toggle Scripts</button>
+      </div>
     </div>
 
     <div class="content spacing">
 
-      <h2 class="subtitle">
+      <h2 class="subtitle" data-toggle-target=".code_root" data-toggle-class="dismiss">
         <span class="level">
           <span>Root</span>
           <span class="arrow"></span>
         </span>
       </h2>
-<pre class="code"><code>// component package.json
+<pre class="code code_root"><code>// component package.json
 "scripts": {
   "build": "lerna run build --parallel",
   "clean": "lerna run clean --parallel",
@@ -641,13 +644,13 @@
   "watch": "lerna run watch --parallel"
 }</code></pre>
 
-      <h2 class="subtitle">
+      <h2 class="subtitle" data-toggle-target=".code_scripts" data-toggle-class="dismiss">
         <span class="level">
           <span>Scripts</span>
           <span class="arrow"></span>
         </span>
       </h2>
-<pre class="code"><code>// component package.json
+<pre class="code code_scripts"><code>// component package.json
 "scripts": {
   "build": "npm-run-all clean scripts",
   "clean": "del dist",
@@ -656,13 +659,13 @@
   "watch:scripts": "rollup -c -w"
 }</code></pre>
 
-      <h2 class="subtitle">
+      <h2 class="subtitle" data-toggle-target=".code_styles" data-toggle-class="dismiss">
         <span class="level">
           <span>Styles</span>
           <span class="arrow"></span>
         </span>
       </h2>
-<pre class="code"><code>// component package.json
+<pre class="code code_styles"><code>// component package.json
 "scripts": {
   "build": "npm-run-all clean styles",
   "clean": "del dist",
@@ -674,13 +677,13 @@
   "watch:styles": "nodemon -e scss -x 'npm run styles'"
 }</code></pre>
 
-      <h2 class="subtitle subtitle_accordion">
+      <h2 class="subtitle" data-toggle-target=".code_both" data-toggle-class="dismiss">
         <span class="level">
           <span>Both</span>
           <span class="arrow"></span>
         </span>
       </h2>
-<pre class="code code_accordion"><code>// component package.json
+<pre class="code code_both"><code>// component package.json
 "scripts": {
   "build": "npm-run-all clean scripts styles",
   "clean": "del dist",
@@ -738,10 +741,10 @@
 
 <script src="./packages/core/dist/scripts.min.js"></script>
 <script src="./packages/dismissible/dist/scripts.min.js"></script>
+<script src="./packages/toggle/dist/scripts.min.js"></script>
 <!--
 <script src="./packages/drawer/dist/scripts.min.js"></script>
 <script src="./packages/modal/dist/scripts.min.js"></script>
-<script src="./packages/toggle/dist/scripts.min.js"></script>
 -->
 
 <script>
@@ -755,12 +758,15 @@ let dismissCustom = new vrembem.dismissible({
   target: ".test-wrapper"
 });
 
-console.log(dismissDefault);
-console.log(dismissCustom);
+console.log("dismissDefault:", dismissDefault);
+console.log("dismissCustom:", dismissCustom);
+
+let toggleDefault = new vrembem.toggle();
+
+console.log("toggleDefault:", toggleDefault);
 
 // var drawer = new Drawer();
 // var modal = new Modal();
-// var toggle = new Toggle();
 </script>
 
 </body>

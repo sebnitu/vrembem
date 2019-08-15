@@ -141,13 +141,14 @@ var scripts_module_7 = scripts_module.removeClass;
 var scripts_module_8 = scripts_module.toArray;
 var scripts_module_9 = scripts_module.toggleClass;
 
-var index = (function (options) {
+function index (options) {
+
   var api = {};
   var settings;
   var defaults = {
-    trigger: "[data-dismiss]",
-    target: "[data-dismissible]",
-    classToggle: "dismiss"
+    trigger: "[data-toggle-class]",
+    targets: "",
+    "class": ""
   };
 
   api.init = function (options) {
@@ -164,10 +165,24 @@ var index = (function (options) {
     var trigger = event.target.closest(settings.trigger);
 
     if (trigger) {
-      var target = trigger.closest(settings.target);
+      var targets;
 
-      if (target) {
-        scripts_module_9(target, settings.classToggle);
+      if (settings.targets) {
+        targets = document.querySelectorAll(settings.targets);
+      } else {
+        targets = document.querySelectorAll(trigger.dataset.toggleTarget);
+      }
+
+      if (targets.length) {
+        targets.forEach(function (target) {
+          scripts_module_9(target, trigger.dataset.toggleClass.split(" "));
+        });
+      } else {
+        if (settings["class"]) {
+          scripts_module_9(trigger, settings["class"]);
+        } else {
+          scripts_module_9(trigger, trigger.dataset.toggleClass.split(" "));
+        }
       }
 
       event.preventDefault();
@@ -176,6 +191,6 @@ var index = (function (options) {
 
   api.init(options);
   return api;
-});
+}
 
 module.exports = index;
