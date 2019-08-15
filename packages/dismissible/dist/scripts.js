@@ -1,317 +1,246 @@
-(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-"use strict";
+this.vrembem = this.vrembem || {};
+this.vrembem.dismissible = (function () {
+	'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
+	function unwrapExports (x) {
+		return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+	}
 
-var _breakpoints = _interopRequireDefault(require("./src/breakpoints"));
+	function createCommonjsModule(fn, module) {
+		return module = { exports: {} }, fn(module, module.exports), module.exports;
+	}
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	var scripts_module = createCommonjsModule(function (module, exports) {
 
-var _default = core = {
-  "breakpoints": _breakpoints["default"]
-};
+	  Object.defineProperty(exports, '__esModule', {
+	    value: true
+	  });
+	  var config = {
+	    breakpoints: {
+	      xs: "480px",
+	      sm: "620px",
+	      md: "760px",
+	      lg: "990px",
+	      xl: "1380px"
+	    }
+	  };
+	  /**
+	   * Converts a string or object to an array. If an array is passed, it's
+	   * returned as is. Anything else is returned as an array.
+	   * ---
+	   * @param {Object} item - String or object to convert to an array
+	   * @return {Array} - Return the converted array
+	   */
 
-exports["default"] = _default;
+	  var toArray = function toArray(item) {
+	    var array = [];
 
-},{"./src/breakpoints":2}],2:[function(require,module,exports){
-"use strict";
+	    if (Array.isArray(item)) {
+	      array = item;
+	    } else {
+	      array.push(item);
+	    }
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
+	    return array;
+	  };
+	  /**
+	   * Adds a class or classes to an element
+	   * ---
+	   * @param {Node} el - Element(s) to add class(es) on
+	   * @param {String || Array} c - Class(es) to add
+	   */
 
-var _default = breakpoints = {
-  "xs": "480px",
-  "sm": "620px",
-  "md": "760px",
-  "lg": "990px",
-  "xl": "1380px"
-};
 
-exports["default"] = _default;
+	  var addClass = function addClass(el, c) {
+	    el = el.forEach ? el : toArray(el);
+	    c = toArray(c);
+	    el.forEach(function (el) {
+	      c.forEach(function (c) {
+	        el.classList.add(c);
+	      });
+	    });
+	  };
+	  /**
+	   * Checks if an element has a class or not
+	   * ---
+	   * @param {Node} el - Element(s) to check class(es) on
+	   * @param {String || Array} c - Class(es) to check
+	   * @returns {Boolean} - Returns true if class exists, otherwise false
+	   */
 
-},{}],3:[function(require,module,exports){
-"use strict";
 
-},{}],4:[function(require,module,exports){
-"use strict";
+	  var hasClass = function hasClass(el, c) {
+	    el = el.forEach ? el : toArray(el);
+	    c = toArray(c);
+	    return c.some(function (c) {
+	      var has = false;
+	      el.forEach(function (el) {
+	        if (el.classList.contains(c)) {
+	          has = true;
+	        }
+	      });
+	      return has;
+	    });
+	  };
+	  /**
+	   * Find the closest parent element based on class. This is different from the
+	   * native .closest() method in that it doesn't check the current element.
+	   * ---
+	   * @param {Node} el - Element to start search on
+	   * @param {String || Array} c - Class(es) to check for
+	   * @return {Node} - Closest parent element
+	   */
 
-var _dismissible = _interopRequireDefault(require("./src/dismissible"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	  var closest = function closest(el, c) {
+	    while ((el = el.parentElement) && !hasClass(el, c)) {
+	      return el;
+	    }
+	  };
+	  /**
+	   * Merge two or more objects. Returns a new object. Set the first argument
+	   * to `true` for a deep or recursive merge.
+	   * ---
+	   * @param {Boolean} [Optional] - If true, do a deep (or recursive) merge
+	   * @param {Object} - The objects to merge together; each overriding the next
+	   * @returns {Object} - Merged values of defaults and options
+	   */
 
-window.Dismissible = _dismissible["default"];
 
-},{"./src/dismissible":5}],5:[function(require,module,exports){
-"use strict";
+	  var extend = function extend() {
+	    var extended = {};
+	    var deep = false;
+	    var i = 0;
+	    var length = arguments.length;
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = _default;
+	    if (Object.prototype.toString.call(arguments.length <= 0 ? undefined : arguments[0]) === "[object Boolean]") {
+	      deep = arguments.length <= 0 ? undefined : arguments[0];
+	      i++;
+	    }
 
-var _utility = _interopRequireDefault(require("@vrembem/utility"));
+	    var merge = function merge(obj) {
+	      for (var prop in obj) {
+	        if (Object.prototype.hasOwnProperty.call(obj, prop)) {
+	          if (deep && Object.prototype.toString.call(obj[prop]) === "[object Object]") {
+	            extended[prop] = extend(true, extended[prop], obj[prop]);
+	          } else {
+	            extended[prop] = obj[prop];
+	          }
+	        }
+	      }
+	    };
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	    for (; i < length; i++) {
+	      var obj = i < 0 || arguments.length <= i ? undefined : arguments[i];
+	      merge(obj);
+	    }
 
-function _default(options) {
-  "use strict";
+	    return extended;
+	  };
+	  /**
+	   * Get and output a breakpoint using it"s key found in core.json
+	   * ---
+	   * @param {String} key - The key to search for in the breakpoints object
+	   * @returns {String} - The pixel value of the breakpoint as a string
+	   */
 
-  var api = {};
-  var settings;
-  var defaults = {
-    trigger: "[data-dismiss]",
-    target: "[data-dismissible]",
-    classToggle: "dismiss"
-  };
 
-  api.init = function (options) {
-    settings = _utility["default"].extend(defaults, options || {});
-    document.addEventListener("click", run, false);
-  };
+	  var getBreakpoint = function getBreakpoint(key) {
+	    return config.breakpoints[key];
+	  };
+	  /**
+	   * Remove a class or classes from an element
+	   * ---
+	   * @param {Node} el - Element(s) to remove class(es) from
+	   * @param {String || Array} c - Class(es) to remove
+	   */
 
-  api.destroy = function () {
-    settings = null;
-    document.removeEventListener("click", run, false);
-  };
 
-  var run = function run() {
-    var trigger = event.target.closest(settings.trigger);
+	  var removeClass = function removeClass(el, c) {
+	    el = el.forEach ? el : toArray(el);
+	    c = toArray(c);
+	    el.forEach(function (el) {
+	      c.forEach(function (c) {
+	        el.classList.remove(c);
+	      });
+	    });
+	  };
+	  /**
+	   * Toggle a class or classes on an element
+	   * ---
+	   * @param {Node} el - Element(s) to toggle class(es) on
+	   * @param {String || Array} c - Class(es) to toggle
+	   */
 
-    if (trigger) {
-      var target = trigger.closest(settings.target);
 
-      if (target) {
-        _utility["default"].toggleClass(target, settings.classToggle);
-      }
+	  var toggleClass = function toggleClass(el, c) {
+	    el = el.forEach ? el : toArray(el);
+	    c = toArray(c);
+	    el.forEach(function (el) {
+	      c.forEach(function (c) {
+	        el.classList.toggle(c);
+	      });
+	    });
+	  };
 
-      event.preventDefault();
-    }
-  };
+	  exports.addClass = addClass;
+	  exports.closest = closest;
+	  exports.config = config;
+	  exports.extend = extend;
+	  exports.getBreakpoint = getBreakpoint;
+	  exports.hasClass = hasClass;
+	  exports.removeClass = removeClass;
+	  exports.toArray = toArray;
+	  exports.toggleClass = toggleClass;
+	});
+	unwrapExports(scripts_module);
+	var scripts_module_1 = scripts_module.addClass;
+	var scripts_module_2 = scripts_module.closest;
+	var scripts_module_3 = scripts_module.config;
+	var scripts_module_4 = scripts_module.extend;
+	var scripts_module_5 = scripts_module.getBreakpoint;
+	var scripts_module_6 = scripts_module.hasClass;
+	var scripts_module_7 = scripts_module.removeClass;
+	var scripts_module_8 = scripts_module.toArray;
+	var scripts_module_9 = scripts_module.toggleClass;
 
-  api.init(options);
-  return api;
-}
+	var index = (function (options) {
+	  var api = {};
+	  var settings;
+	  var defaults = {
+	    trigger: "[data-dismiss]",
+	    target: "[data-dismissible]",
+	    classToggle: "dismiss"
+	  };
 
-},{"@vrembem/utility":6}],6:[function(require,module,exports){
-"use strict";
+	  api.init = function (options) {
+	    settings = scripts_module_4(defaults, options || {});
+	    document.addEventListener("click", run, false);
+	  };
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
+	  api.destroy = function () {
+	    settings = null;
+	    document.removeEventListener("click", run, false);
+	  };
 
-var _core = _interopRequireDefault(require("@vrembem/core"));
+	  var run = function run() {
+	    var trigger = event.target.closest(settings.trigger);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	    if (trigger) {
+	      var target = trigger.closest(settings.target);
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	      if (target) {
+	        scripts_module_9(target, settings.classToggle);
+	      }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+	      event.preventDefault();
+	    }
+	  };
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+	  api.init(options);
+	  return api;
+	});
 
-/**
- * Utility
- * ---
- * A set of helper methods for general javascript plugin use.
- */
-var _default =
-/*#__PURE__*/
-function () {
-  function _default() {
-    _classCallCheck(this, _default);
-  }
+	return index;
 
-  _createClass(_default, null, [{
-    key: "getBreakpoint",
-
-    /**
-     * Get and output a breakpoint using it"s key found in core.json
-     * ---
-     * @param {String} key - The key to search for in the breakpoints object
-     * @returns {String} - The pixel value of the breakpoint as a string
-     */
-    value: function getBreakpoint(key) {
-      return _core["default"].breakpoints[key];
-    }
-    /**
-     * Checks if an element has a class or not
-     * ---
-     * @param {Node} el - Element(s) to check class(es) on
-     * @param {String || Array} c - Class(es) to check
-     * @returns {Boolean} - Returns true if class exists, otherwise false
-     */
-
-  }, {
-    key: "hasClass",
-    value: function hasClass(el, c) {
-      el = el.forEach ? el : this.toArray(el);
-      c = this.toArray(c);
-      return c.some(function (c) {
-        var has = false;
-        el.forEach(function (el) {
-          if (el.classList.contains(c)) {
-            has = true;
-          }
-        });
-        return has;
-      });
-    }
-    /**
-     * Adds a class or classes to an element
-     * ---
-     * @param {Node} el - Element(s) to add class(es) on
-     * @param {String || Array} c - Class(es) to add
-     */
-
-  }, {
-    key: "addClass",
-    value: function addClass(el, c) {
-      el = el.forEach ? el : this.toArray(el);
-      c = this.toArray(c);
-      el.forEach(function (el) {
-        c.forEach(function (c) {
-          el.classList.add(c);
-        });
-      });
-    }
-    /**
-     * Remove a class or classes from an element
-     * ---
-     * @param {Node} el - Element(s) to remove class(es) from
-     * @param {String || Array} c - Class(es) to remove
-     */
-
-  }, {
-    key: "removeClass",
-    value: function removeClass(el, c) {
-      el = el.forEach ? el : this.toArray(el);
-      c = this.toArray(c);
-      el.forEach(function (el) {
-        c.forEach(function (c) {
-          el.classList.remove(c);
-        });
-      });
-    }
-    /**
-     * Toggle a class or classes on an element
-     * ---
-     * @param {Node} el - Element(s) to toggle class(es) on
-     * @param {String || Array} c - Class(es) to toggle
-     */
-
-  }, {
-    key: "toggleClass",
-    value: function toggleClass(el, c) {
-      el = el.forEach ? el : this.toArray(el);
-      c = this.toArray(c);
-      el.forEach(function (el) {
-        c.forEach(function (c) {
-          el.classList.toggle(c);
-        });
-      });
-    }
-    /**
-     * Find the closest parent element based on class. This is different from the
-     * native .closest() method in that it doesn"t check the current element.
-     * ---
-     * @param {Node} el - Element to start search on
-     * @param {String || Array} c - Class(es) to check for
-     * @return {Node} - Closest parent element
-     */
-
-  }, {
-    key: "closest",
-    value: function closest(el, c) {
-      while ((el = el.parentElement) && !this.hasClass(el, c)) {
-        return el;
-      }
-    }
-    /**
-     * Converts a string or object to an array. If an array is passed, it"s
-     * returned as is. Anything else is returned as an array.
-     * ---
-     * @param {Object} item - String or object to convert to an array
-     * @return {Array} - Return the converted array
-     */
-
-  }, {
-    key: "toArray",
-    value: function toArray(item) {
-      var array = [];
-
-      if (Array.isArray(item)) {
-        array = item;
-      } else {
-        array.push(item);
-      }
-
-      return array;
-    }
-    /**
-     * Merge two or more objects. Returns a new object. Set the first argument
-     * to `true` for a deep or recursive merge.
-     * ---
-     * @param {Boolean} [Optional] - If true, do a deep (or recursive) merge
-     * @param {Object} - The objects to merge together; each overriding the next
-     * @returns {Object} - Merged values of defaults and options
-     */
-
-    /* global extend */
-
-  }, {
-    key: "extend",
-    value: function (_extend) {
-      function extend() {
-        return _extend.apply(this, arguments);
-      }
-
-      extend.toString = function () {
-        return _extend.toString();
-      };
-
-      return extend;
-    }(function () {
-      var extended = {};
-      var deep = false;
-      var i = 0;
-      var length = arguments.length;
-
-      if (Object.prototype.toString.call(arguments[0]) === "[object Boolean]") {
-        deep = arguments[0];
-        i++;
-      }
-
-      var merge = function merge(obj) {
-        for (var prop in obj) {
-          if (Object.prototype.hasOwnProperty.call(obj, prop)) {
-            if (deep && Object.prototype.toString.call(obj[prop]) === "[object Object]") {
-              extended[prop] = extend(true, extended[prop], obj[prop]);
-            } else {
-              extended[prop] = obj[prop];
-            }
-          }
-        }
-      };
-
-      for (; i < length; i++) {
-        var obj = arguments[i];
-        merge(obj);
-      }
-
-      return extended;
-    })
-  }]);
-
-  return _default;
-}();
-
-exports["default"] = _default;
-
-},{"@vrembem/core":1}]},{},[4,3])
-//# sourceMappingURL=scripts.js.map
+}());

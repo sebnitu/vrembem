@@ -24,7 +24,6 @@
     "directory": "packages/drawer"
   },
   "dependencies": {
-    "@vrembem/core": "^0.0.0",
-    "@vrembem/utility": "^0.0.0"
+    "@vrembem/core": "^0.0.0"
   }
 }

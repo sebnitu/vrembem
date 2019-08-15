@@ -338,13 +338,32 @@
 <div class="drawer__item drawer__item_pos_right toolbar--adjust-child" id="example-drawer-right" data-drawer-switch="md">
   <div class="drawer__dialog dialog">
     <div class="dialog__header">
-      <h2 class="dialog__title">Right Drawer Dialog</h2>
+      <h2 class="dialog__title">Utility examples</h2>
     </div>
-    <div class="dialog__body spacing">
-      If you can see this, that means the drawer component is working properly!
-    </div>
-    <div class="dialog__footer">
-      This is a dialog footer.
+    <div class="dialog__body">
+      <div class="level">
+        <span class="b_primary_dark c_white swatch">P Dark</span>
+        <span class="b_primary c_white swatch">Primary</span>
+        <span class="b_primary_light c_white swatch">P Light</span>
+        <span class="b_secondary_dark c_white swatch">S Dark</span>
+        <span class="b_secondary c_white swatch">Secondary</span>
+        <span class="b_secondary_light c_white swatch">S Light</span>
+        <span class="b_accent_dark swatch">A Dark</span>
+        <span class="b_accent swatch">Accent</span>
+        <span class="b_accent_light swatch">A Light</span>
+        <span class="b_shade swatch">Shade</span>
+        <span class="b_dark c_white swatch">Dark</span>
+        <span class="b_info c_info_light swatch">Info</span>
+        <span class="b_info_light c_info swatch">Info</span>
+        <span class="b_success c_success_light swatch">Success</span>
+        <span class="b_success_light c_success swatch">Success</span>
+        <span class="b_caution c_caution_light swatch">Caution</span>
+        <span class="b_caution_light c_caution swatch">Caution</span>
+        <span class="b_danger c_danger_light swatch">Danger</span>
+        <span class="b_danger_light c_danger swatch">Danger</span>
+        <span class="b_error c_error_light swatch">Error</span>
+        <span class="b_error_light c_error swatch">Error</span>
+      </div>
     </div>
   </div>
 </div><!-- .drawer__item -->
@@ -397,36 +416,8 @@
     </div>
 
     <div class="content">
-      <div class="level">
-        <span class="b_primary_dark c_white swatch">P Dark</span>
-        <span class="b_primary c_white swatch">Primary</span>
-        <span class="b_primary_light c_white swatch">P Light</span>
-
-        <span class="b_secondary_dark c_white swatch">S Dark</span>
-        <span class="b_secondary c_white swatch">Secondary</span>
-        <span class="b_secondary_light c_white swatch">S Light</span>
-
-        <span class="b_accent_dark swatch">A Dark</span>
-        <span class="b_accent swatch">Accent</span>
-        <span class="b_accent_light swatch">A Light</span>
-
-        <span class="b_shade swatch">Shade</span>
-        <span class="b_dark c_white swatch">Dark</span>
-
-        <span class="b_info c_info_light swatch">Info</span>
-        <span class="b_info_light c_info swatch">Info</span>
-
-        <span class="b_success c_success_light swatch">Success</span>
-        <span class="b_success_light c_success swatch">Success</span>
-
-        <span class="b_caution c_caution_light swatch">Caution</span>
-        <span class="b_caution_light c_caution swatch">Caution</span>
-
-        <span class="b_danger c_danger_light swatch">Danger</span>
-        <span class="b_danger_light c_danger swatch">Danger</span>
-
-        <span class="b_error c_error_light swatch">Error</span>
-        <span class="b_error_light c_error swatch">Error</span>
+      <div class="notice" data-dismissible>
+        <a href="#" class="link" data-dismiss>Dismiss</a>
       </div>
     </div>
 
@@ -660,11 +651,9 @@
 "scripts": {
   "build": "npm-run-all clean scripts",
   "clean": "del dist",
-  "scripts": "npm-run-all scripts:compile scripts:min",
-  "scripts:compile": "mkdirp dist && browserify index.js --debug dist/scripts.js -t [ babelify --global --presets [ @babel/preset-env ] ] | exorcist dist/scripts.js.map > dist/scripts.js",
-  "scripts:min": "mkdirp dist && browserify index.js --debug dist/scripts.min.js -t [ babelify --global --presets [ @babel/preset-env ] ] -p tinyify | exorcist dist/scripts.min.js.map > dist/scripts.min.js",
+  "scripts": "rollup -c",
   "watch": "npm run watch:scripts",
-  "watch:scripts": "nodemon -e js -x 'npm run scripts' -i dist"
+  "watch:scripts": "rollup -c -w"
 }</code></pre>
 
       <h2 class="subtitle">
@@ -685,28 +674,40 @@
   "watch:styles": "nodemon -e scss -x 'npm run styles'"
 }</code></pre>
 
-      <h2 class="subtitle">
+      <h2 class="subtitle subtitle_accordion">
         <span class="level">
           <span>Both</span>
           <span class="arrow"></span>
         </span>
       </h2>
-<pre class="code"><code>// component package.json
+<pre class="code code_accordion"><code>// component package.json
 "scripts": {
   "build": "npm-run-all clean scripts styles",
   "clean": "del dist",
-  "scripts": "npm-run-all scripts:compile scripts:min",
-  "scripts:compile": "mkdirp dist && browserify index.js --debug dist/scripts.js -t [ babelify --global --presets [ @babel/preset-env ] ] | exorcist dist/scripts.js.map > dist/scripts.js",
-  "scripts:min": "mkdirp dist && browserify index.js --debug dist/scripts.min.js -t [ babelify --global --presets [ @babel/preset-env ] ] -p tinyify | exorcist dist/scripts.min.js.map > dist/scripts.min.js",
+  "scripts": "rollup -c",
   "styles": "npm-run-all styles:compile styles:prefix styles:min",
   "styles:compile": "sass index.scss dist/styles.css --load-path node_modules",
   "styles:min": "sass dist/styles.css dist/styles.min.css --style compressed",
   "styles:prefix": "postcss dist/styles.css --map --use autoprefixer --output dist/styles.css",
   "watch": "npm run watch:scripts watch:styles",
-  "watch:scripts": "nodemon -e js -x 'npm run scripts' -i dist",
+  "watch:scripts": "rollup -c -w"
   "watch:styles": "nodemon -e scss -x 'npm run styles'"
 }</code></pre>
 
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container spacing">
+
+    <div class="notice" data-dismissible>
+      <button class="button button_color_primary" data-dismiss>Dismiss</button>
+    </div>
+
+    <div class="notice notice_type_success test-wrapper">
+      <button class="button button_color_primary test">Custom Dismiss</button>
     </div>
 
   </div>
@@ -735,16 +736,31 @@
   </div>
 </div>
 
+<script src="./packages/core/dist/scripts.min.js"></script>
 <script src="./packages/dismissible/dist/scripts.min.js"></script>
+<!--
 <script src="./packages/drawer/dist/scripts.min.js"></script>
 <script src="./packages/modal/dist/scripts.min.js"></script>
 <script src="./packages/toggle/dist/scripts.min.js"></script>
+-->
 
 <script>
-var dismissible = new Dismissible();
-var drawer = new Drawer();
-var modal = new Modal();
-var toggle = new Toggle();
+
+console.log("Vrembem:", vrembem);
+
+let dismissDefault = new vrembem.dismissible();
+
+let dismissCustom = new vrembem.dismissible({
+  trigger: ".test",
+  target: ".test-wrapper"
+});
+
+console.log(dismissDefault);
+console.log(dismissCustom);
+
+// var drawer = new Drawer();
+// var modal = new Modal();
+// var toggle = new Toggle();
 </script>
 
 </body>

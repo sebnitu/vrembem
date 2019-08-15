@@ -10,8 +10,6 @@ import u from "@vrembem/utility"
 
 export default function(options) {
 
-  "use strict"
-
   let api = {}
   let settings
   const defaults = {

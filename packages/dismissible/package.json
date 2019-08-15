@@ -2,15 +2,15 @@
   "name": "@vrembem/dismissible",
   "description": "A JavaScript plugin to dismiss components in the DOM.",
   "version": "0.0.0",
-  "main": "src/dismissible.js",
+  "main": "index.js",
+  "module": "dist/scripts.module.js",
+  "browser": "dist/scripts.js",
   "scripts": {
     "build": "npm-run-all clean scripts",
     "clean": "del dist",
-    "scripts": "npm-run-all scripts:compile scripts:min",
-    "scripts:compile": "mkdirp dist && browserify index.js --debug dist/scripts.js -t [ babelify --global --presets [ @babel/preset-env ] ] | exorcist dist/scripts.js.map > dist/scripts.js",
-    "scripts:min": "mkdirp dist && browserify index.js --debug dist/scripts.min.js -t [ babelify --global --presets [ @babel/preset-env ] ] -p tinyify | exorcist dist/scripts.min.js.map > dist/scripts.min.js",
+    "scripts": "rollup -c",
     "watch": "npm run watch:scripts",
-    "watch:scripts": "nodemon -e js -x 'npm run scripts' -i dist"
+    "watch:scripts": "rollup -c -w"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,6 @@
     "directory": "packages/dismissible"
   },
   "dependencies": {
-    "@vrembem/core": "^0.0.0",
-    "@vrembem/utility": "^0.0.0"
+    "@vrembem/core": "^0.0.0"
   }
 }
