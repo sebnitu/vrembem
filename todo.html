@@ -401,23 +401,28 @@
       <p>Here's where I can test that the imported components and JavaScript are working properly.</p>
     </div>
 
-    <div class="content">
-      <div class="button-group button-group_wrap">
-        <button class="button button_outline modal__trigger" data-target="[data-modal='example']">
-          Modal
-        </button>
-        <button class="button button_outline drawer__trigger" data-target="#example-drawer-left">
-          Left Drawer
-        </button>
-        <button class="button button_outline drawer__trigger" data-target="#example-drawer-right">
-          Right Drawer
-        </button>
+    <div class="content spacing">
+      <div>
+        <div class="button-group button-group_wrap">
+          <button class="button button_outline modal__trigger" data-target="[data-modal='example']">
+            Modal
+          </button>
+          <button class="button button_outline drawer__trigger" data-target="#example-drawer-left">
+            Left Drawer
+          </button>
+          <button class="button button_outline drawer__trigger" data-target="#example-drawer-right">
+            Right Drawer
+          </button>
+        </div>
       </div>
-    </div>
-
-    <div class="content">
       <div class="notice" data-dismissible>
         <a href="#" class="link" data-dismiss>Dismiss</a>
+      </div>
+      <button class="button button_outline" data-toggle-target=".notice_background" data-toggle-class="b_primary">
+        Toggle notice background
+      </button>
+      <div class="notice notice_background">
+        <p>This background should change on toggle...</p>
       </div>
     </div>
 
@@ -709,20 +714,6 @@
   </div>
 </section>
 
-<section class="section">
-  <div class="container spacing">
-
-    <div class="notice" data-dismissible>
-      <button class="button button_color_primary" data-dismiss>Dismiss</button>
-    </div>
-
-    <div class="notice notice_type_success test-wrapper">
-      <button class="button button_color_primary test">Custom Dismiss</button>
-    </div>
-
-  </div>
-</section>
-
 </div><!-- .drawer__main -->
 </div><!-- .drawer -->
 
@@ -753,29 +744,11 @@
 <script src="./packages/toggle/dist/scripts.min.js"></script>
 
 <script>
-
 console.log("Vrembem:", vrembem);
-
-let dismissDefault = new vrembem.dismissible();
-
-let dismissCustom = new vrembem.dismissible({
-  trigger: ".test",
-  target: ".test-wrapper"
-});
-
-console.log("dismissDefault:", dismissDefault);
-console.log("dismissCustom:", dismissCustom);
-
-let toggleDefault = new vrembem.toggle();
-
-console.log("toggleDefault:", toggleDefault);
-
+let dismissible = new vrembem.dismissible();
+let toggle = new vrembem.toggle();
 let drawer = new vrembem.drawer();
-console.log("drawer:", drawer);
-
 var modal = new vrembem.modal();
-console.log("modal:", modal);
-
 </script>
 
 </body>
