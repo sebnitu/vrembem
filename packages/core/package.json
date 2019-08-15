@@ -2,8 +2,8 @@
   "name": "@vrembem/core",
   "description": "The core variables, functions and mixins for Vrembem components.",
   "version": "0.0.0",
-  "main": "index.js",
-  "module": "dist/scripts.module.js",
+  "main": "dist/scripts.cjs.js",
+  "module": "index.js",
   "browser": "dist/scripts.js",
   "style": "index.scss",
   "scripts": {

@@ -2,8 +2,8 @@
   "name": "@vrembem/dismissible",
   "description": "A JavaScript plugin to dismiss components in the DOM.",
   "version": "0.0.0",
-  "main": "index.js",
-  "module": "dist/scripts.module.js",
+  "main": "dist/scripts.cjs.js",
+  "module": "index.js",
   "browser": "dist/scripts.js",
   "scripts": {
     "build": "npm-run-all clean scripts",

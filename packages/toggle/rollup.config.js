@@ -7,24 +7,25 @@ import pkg from "./package.json"
 let name = pkg.name.replace("@", "").replace("/", ".")
 
 export default [{
-  input: pkg.main,
+  input: pkg.module,
   output: [{
-    file: pkg.module,
-    format: "cjs"
-  }, {
     file: pkg.browser,
     format: "iife",
+    name: name
+  }, {
+    file: pkg.main,
+    format: "cjs",
     name: name
   }],
   plugins: [
     resolve(),
     commonjs(),
     babel({
-      configFile: "../../.babelrc",
+      configFile: "../../.babelrc"
     })
   ]
 }, {
-  input: pkg.main,
+  input: pkg.module,
   output: {
     file: pkg.browser.replace(".js", ".min.js"),
     format: "iife",
@@ -34,7 +35,7 @@ export default [{
     resolve(),
     commonjs(),
     babel({
-      configFile: "../../.babelrc",
+      configFile: "../../.babelrc"
     }),
     minify()
   ]
