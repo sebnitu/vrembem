@@ -4,7 +4,10 @@ import commonjs from "rollup-plugin-commonjs"
 import resolve from "rollup-plugin-node-resolve"
 import pkg from "./package.json"
 
-let name = pkg.name.replace("@", "").replace("/", ".")
+let name = pkg.name
+  .replace("@", "")
+  .replace("/all", "")
+  .replace("/", ".")
 
 export default [{
   input: pkg.module,
