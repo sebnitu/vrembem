@@ -1,20 +1,27 @@
-import u from 'utility'
-import Dismissible from 'dismissible'
-import Drawer from 'drawer'
-import Modal from 'modal'
-import Toggle from 'toggle'
-import listjs from 'list.js'
+import { hasClass, addClass, removeClass } from "@vrembem/core"
+import {
+  dismissible,
+  drawer,
+  modal,
+  toggle
+} from "@vrembem/all"
+import listjs from "list.js"
 
-const dismissible = new Dismissible()
-const drawer = new Drawer()
-const modal = new Modal()
-const toggle = new Toggle()
+let dismissibleDefault = new dismissible()
+let drawerDefault = new drawer()
+let modalDefault = new modal()
+let toggleDefault = new toggle()
+
+console.log("dismissible:", dismissibleDefault)
+console.log("drawer:", drawerDefault)
+console.log("modal:", modalDefault)
+console.log("toggle:", toggleDefault)
 
 /**
  * General event trigger for testing
  */
 
-document.addEventListener('click', function() {
+document.addEventListener("click", function() {
 
   // Get the element that triggered the event
   let trigger = event.target
@@ -24,25 +31,25 @@ document.addEventListener('click', function() {
     // Get our script string for processing
     let string = trigger.dataset.script
 
-    // console.log('Run: ', string)
+    // console.log("Run: ", string)
 
     // Get indexes of string
-    let indexObject = string.indexOf('.')
-    let indexMethod = string.indexOf('(')
-    let indexParamStart = string.indexOf('\'')
-    let indexParamEnd = string.indexOf('\'', indexParamStart + 1)
+    let indexObject = string.indexOf(".")
+    let indexMethod = string.indexOf("(")
+    let indexParamStart = string.indexOf("\"")
+    let indexParamEnd = string.indexOf("\"", indexParamStart + 1)
 
     // Get the object, method and if params are passed
     let obj = string.substring(0, indexObject)
     let method = string.substring(indexObject + 1, indexMethod)
     let params = string.substring(indexParamStart + 1, indexParamEnd)
 
-    // console.log('Obj: ', obj)
-    // console.log('Method: ', method)
-    // console.log('Params: ', params)
+    // console.log("Obj: ", obj)
+    // console.log("Method: ", method)
+    // console.log("Params: ", params)
 
     // Run our data script
-    if (obj === 'drawer') {
+    if (obj === "drawer") {
       drawer[method](params)
     }
   }
@@ -55,74 +62,74 @@ document.addEventListener('click', function() {
  * Adds list functionality along with search.
  * list.js docs: http://listjs.com/
  */
-if (document.getElementById('listjs')) {
+if (document.getElementById("listjs")) {
 
   // Init our list.js component
-  const list = new listjs('listjs', {
+  const list = new listjs("listjs", {
     fuzzySearch: {
-      searchClass: 'search',
+      searchClass: "search",
       location: 0,
       distance: 100,
       threshold: 0.4,
       multiSearch: true
     },
     valueNames: [
-      'name',
-      { data: ['category'] }
+      "name",
+      { data: ["category"] }
     ],
-    listClass: 'menu'
+    listClass: "menu"
   })
 
   // Empty Notice
   // Displayed when the search returns no results
-  let notice_empty = document.querySelector('.notice_empty')
-  let notice_empty_text = notice_empty.querySelector('.search_text')
+  let notice_empty = document.querySelector(".notice_empty")
+  let notice_empty_text = notice_empty.querySelector(".search_text")
 
   // Clear search button
-  let filter = document.querySelector('.filter')
-  let search = document.querySelector('.filter .search')
-  let search_clear = document.querySelector('.filter .search_clear')
+  let filter = document.querySelector(".filter")
+  let search = document.querySelector(".filter .search")
+  let search_clear = document.querySelector(".filter .search_clear")
 
   let isMenuLinkActive = () => {
-    let menuLinks = document.querySelectorAll('#listjs .menu__link')
-    let isActive = u.hasClass(menuLinks, 'is-active')
+    let menuLinks = document.querySelectorAll("#listjs .menu__link")
+    let isActive = hasClass(menuLinks, "is-active")
     return isActive
   }
 
   // On search complete callback
-  list.on('searchComplete', () => {
+  list.on("searchComplete", () => {
 
     // Update the search text in empty notice
     let value = search.value
     notice_empty_text.innerHTML = value
-    localStorage.setItem('searchValue', value)
+    localStorage.setItem("searchValue", value)
 
     // Show clear search button if a value there is something in search
     if (value) {
-      u.addClass(filter, 'is-active')
-      u.addClass(search, 'is-active')
-      u.removeClass(search_clear, 'dismiss')
+      addClass(filter, "is-active")
+      addClass(search, "is-active")
+      removeClass(search_clear, "dismiss")
     } else {
-      u.removeClass(filter, 'is-active')
-      u.removeClass(search, 'is-active')
-      u.addClass(search_clear, 'dismiss')
+      removeClass(filter, "is-active")
+      removeClass(search, "is-active")
+      addClass(search_clear, "dismiss")
     }
 
     // Toggle notice depending on the number of visible items
     if (list.visibleItems.length > 0) {
-      u.addClass(notice_empty, 'dismiss')
+      addClass(notice_empty, "dismiss")
     } else {
-      u.removeClass(notice_empty, 'dismiss')
+      removeClass(notice_empty, "dismiss")
     }
   })
 
   // Click events for category and clears
-  document.addEventListener('click', () => {
-    let trigger_search_clear = event.target.closest('.search_clear')
-    let trigger_search_cat = event.target.closest('.category')
+  document.addEventListener("click", () => {
+    let trigger_search_clear = event.target.closest(".search_clear")
+    let trigger_search_cat = event.target.closest(".category")
 
     if (trigger_search_clear) {
-      search.value = ''
+      search.value = ""
       list.search()
       event.preventDefault()
     }
@@ -136,11 +143,11 @@ if (document.getElementById('listjs')) {
   }, false)
 
   // Restore our local storage value
-  if (localStorage.getItem('searchValue')) {
-    search.value = localStorage.getItem('searchValue')
+  if (localStorage.getItem("searchValue")) {
+    search.value = localStorage.getItem("searchValue")
     list.search(search.value)
     if (!isMenuLinkActive()) {
-      search.value = ''
+      search.value = ""
       list.search()
     }
   }

@@ -1,0 +1,32 @@
+{
+  "name": "@vrembem/docs",
+  "description": "A container component that slides in from the left or right. It typically contains menus, search or other content for your app.",
+  "version": "0.0.0",
+  "private": true,
+  "main": "dist/scripts.cjs.js",
+  "module": "src/js/app.js",
+  "browser": "dist/scripts.js",
+  "style": "src/css/app.scss",
+  "scripts": {
+    "build": "npm-run-all clean scripts styles",
+    "clean": "del dist",
+    "scripts": "rollup -c",
+    "styles": "npm-run-all styles:compile styles:min",
+    "styles:compile": "sass src/css/app.scss dist/styles.css --load-path node_modules --load-path node_modules/@vrembem/all/node_modules",
+    "styles:min": "sass dist/styles.css dist/styles.min.css --style compressed",
+    "watch": "npm run watch:scripts watch:styles",
+    "watch:scripts": "rollup -c -w",
+    "watch:styles": "nodemon -e scss -x 'npm run styles'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebnitu/vrembem.git",
+    "directory": "packages/docs"
+  },
+  "dependencies": {
+    "@vrembem/all": "^0.0.0",
+    "feather-icons": "^4.21.0",
+    "list.js": "^1.5.0",
+    "svgxuse": "^1.2.6"
+  }
+}

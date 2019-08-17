@@ -9,6 +9,8 @@ let name = pkg.name
   .replace("/all", "")
   .replace("/", ".")
 
+let babelConfig = "../../.babelrc"
+
 export default [{
   input: pkg.module,
   output: [{
@@ -24,7 +26,7 @@ export default [{
     resolve(),
     commonjs(),
     babel({
-      configFile: "../../.babelrc"
+      configFile: babelConfig
     })
   ]
 }, {
@@ -38,7 +40,7 @@ export default [{
     resolve(),
     commonjs(),
     babel({
-      configFile: "../../.babelrc"
+      configFile: babelConfig
     }),
     minify()
   ]

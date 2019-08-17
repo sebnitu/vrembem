@@ -27,8 +27,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - src
-  - tasks
-  - gulpfile.babel.js
+  - rollup.config.js
 
 # Collections
 collections:

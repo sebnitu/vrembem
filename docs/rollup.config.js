@@ -9,7 +9,7 @@ let name = pkg.name
   .replace("/all", "")
   .replace("/", ".")
 
-let babelConfig = "../../.babelrc"
+let babelConfig = "../.babelrc"
 
 export default [{
   input: pkg.module,

@@ -698,7 +698,7 @@
   "styles:compile": "sass index.scss dist/styles.css --load-path node_modules",
   "styles:min": "sass dist/styles.css dist/styles.min.css --style compressed",
   "watch": "npm run watch:scripts watch:styles",
-  "watch:scripts": "rollup -c -w"
+  "watch:scripts": "rollup -c -w",
   "watch:styles": "nodemon -e scss -x 'npm run styles'"
 }</code></pre>
 
@@ -745,7 +745,7 @@ console.log("Vrembem:", vrembem);
 let dismissible = new vrembem.dismissible();
 let toggle = new vrembem.toggle();
 let drawer = new vrembem.drawer();
-var modal = new vrembem.modal();
+let modal = new vrembem.modal();
 </script>
 
 </body>
