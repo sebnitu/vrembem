@@ -1,7 +1,6 @@
 .subtitle {
   align-items: center;
   display: flex;
-  font-weight: bold;
   justify-content: space-between;
   padding: 1em 0;
   text-transform: uppercase;
@@ -37,7 +36,7 @@
   flex-shrink: 0;
   font-size: 1.2em;
   height: 25px;
-  line-height: 10px;
+  line-height: 11px;
   margin-right: 0.75em;
   padding: 0.25em;
   text-align: center;

@@ -6,6 +6,8 @@ include:
   css: "styles.css"
 ---
 
+{% include flag.html heading="General tasks" %}
+
 <div class="content">
   <ol class="list list_inline">
     <li class="is-done"><span class="list__icon"></span> Scripts</li>
@@ -19,7 +21,7 @@ include:
   </ol>
 </div>
 
-<h2 class="h3">Components</h2>
+{% include flag.html heading="Components" %}
 
 I'm starting to import the rest of my components into their own package file.
 
@@ -111,7 +113,7 @@ I'm starting to import the rest of my components into their own package file.
 
 </div>
 
-<h2 class="h3">Build scripts</h2>
+{% include flag.html heading="Build scripts" %}
 
 These are tasks I need to setup with NPM scripts and sorting the output and how to use them.
 
@@ -190,45 +192,31 @@ These are tasks I need to setup with NPM scripts and sorting the output and how 
 
 </div>
 
-<h2 class="h3">Script groups</h2>
+{% include flag.html heading="Script groups" %}
 
 The set of scripts that are to be used depending on the package type.
 
-<div class="m_top_md">
-  <button class="button button_outline" data-toggle-target=".code" data-toggle-class="dismiss">Toggle Scripts</button>
-</div>
+<div class="spacing" markdown="1">
 
-<h2 class="subtitle" data-toggle-target=".code_root" data-toggle-class="dismiss">
-  <span class="level">
-    <span>Root</span>
-    <span class="arrow"></span>
-  </span>
-</h2>
+<h2 class="subtitle">Root</h2>
 
 ```js
-// component package.json
 "scripts": {
   "build": "lerna run build --parallel",
   "clean": "lerna run clean --parallel",
   "fix": "npm-run-all fix:styles fix:scripts",
   "fix:scripts": "eslint --fix packages",
-  "fix:styles": "stylelint --fix \"packages/**/*.scss\"",
+  "fix:styles": "stylelint --fix 'packages/**/*.scss'",
   "lint": "npm-run-all lint:styles lint:scripts",
   "lint:scripts": "eslint packages",
-  "lint:styles": "stylelint \"packages/**/*.scss\"",
+  "lint:styles": "stylelint 'packages/**/*.scss'",
   "watch": "lerna run watch --parallel"
 }
 ```
 
-<h2 class="subtitle" data-toggle-target=".code_scripts" data-toggle-class="dismiss">
-  <span class="level">
-    <span>Scripts</span>
-    <span class="arrow"></span>
-  </span>
-</h2>
+<h2 class="subtitle">Scripts</h2>
 
 ```js
-// component package.json
 "scripts": {
   "build": "npm-run-all clean scripts",
   "clean": "del dist",
@@ -238,15 +226,9 @@ The set of scripts that are to be used depending on the package type.
 }
 ```
 
-<h2 class="subtitle" data-toggle-target=".code_styles" data-toggle-class="dismiss">
-  <span class="level">
-    <span>Styles</span>
-    <span class="arrow"></span>
-  </span>
-</h2>
+<h2 class="subtitle">Styles</h2>
 
 ```js
-// component package.json
 "scripts": {
   "build": "npm-run-all clean styles",
   "clean": "del dist",
@@ -258,15 +240,9 @@ The set of scripts that are to be used depending on the package type.
 }
 ```
 
-<h2 class="subtitle" data-toggle-target=".code_both" data-toggle-class="dismiss">
-  <span class="level">
-    <span>Both</span>
-    <span class="arrow"></span>
-  </span>
-</h2>
+<h2 class="subtitle">Both</h2>
 
 ```js
-// component package.json
 "scripts": {
   "build": "npm-run-all clean scripts styles",
   "clean": "del dist",
@@ -279,3 +255,5 @@ The set of scripts that are to be used depending on the package type.
   "watch:styles": "nodemon -e scss -x 'npm run styles'"
 }
 ```
+
+</div>
