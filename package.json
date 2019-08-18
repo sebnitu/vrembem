@@ -1,7 +1,7 @@
 {
   "name": "vrembem",
   "description": "A CSS component library based on the BEM methodology.",
-  "version": "0.7.0",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "build": "lerna run build --parallel",

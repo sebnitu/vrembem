@@ -82,6 +82,10 @@ I'm starting to import the rest of my components into their own package file.
           <span class="list__icon"></span>
           <p><strong class="list__title">@vrembem/utility</strong> Update the utility classes to have use the short name patterns.</p>
         </li>
+        <li class="is-done">
+          <span class="list__icon"></span>
+          <p><strong class="list__title">@vrembem/all</strong> Create package that incorporates and compiles everything. Maybe this can be done in root? Otherwise, use "all" package.</p>
+        </li>
         <li class="">
           <span class="list__icon"></span>
           <p><strong class="list__title">@vrembem/utility</strong> Add border and border-radius modifiers.</p>
@@ -96,15 +100,11 @@ I'm starting to import the rest of my components into their own package file.
         </li>
         <li class="">
           <span class="list__icon"></span>
-          <p><strong class="list__title">@vrembem/all</strong> Create package that incorporates and compiles everything. Maybe this can be done in root? Otherwise, use "all" package.</p>
-        </li>
-        <li class="">
-          <span class="list__icon"></span>
-          <p><strong class="list__title">@vrembem/layout</strong> Create package that incorporates and compiles all layout components. This would include things like "container", "grid", "level", "section", "spacing" and "span".</p>
-        </li>
-        <li class="">
-          <span class="list__icon"></span>
           <p><strong class="list__title">@vrembem/dropdown</strong> Create a JavaScript dropdown component for <code>on-click</code> event handling.</p>
+        </li>
+        <li class="">
+          <span class="list__icon"></span>
+          <p><strong class="list__title">@vrembem/list</strong> Creat a list component that creates a stylized list with multiple modifier options.</p>
         </li>
         <li class="">
           <span class="list__icon"></span>
@@ -125,6 +125,10 @@ I'm starting to import the rest of my components into their own package file.
         <li class="">
           <span class="list__icon"></span>
           <p><strong class="list__title">@vrembem/docs</strong> Create a page that lists all available components along with tags.</p>
+        </li>
+        <li class="">
+          <span class="list__icon"></span>
+          <p><strong class="list__title">@vrembem/docs</strong> Add a "getting started" page to the docs.</p>
         </li>
       </ul>
     </div>
