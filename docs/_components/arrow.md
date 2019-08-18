@@ -3,9 +3,9 @@ layout: article
 title: Arrow
 description: "A directional triangle drawn with CSS."
 category: simple
-# usage:
-  # npm: "@vrembem/arrow"
-  # scss: "vrembem/arrow/all"
+usage:
+  npm: "@vrembem/arrow"
+  scss: "@vrembem/arrow/index"
 ---
 
 {% include flag.html heading="arrow" %}

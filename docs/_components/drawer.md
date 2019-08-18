@@ -3,10 +3,10 @@ layout: article
 title: Drawer
 description: "A container component that slides in from the left or right. It typically contains menus, search or other content for your app."
 category: compound
-# usage:
-  # npm: "@vrembem/drawer"
-  # scss: "vrembem/drawer/all"
-  # js: "vrembem/drawer"
+usage:
+  npm: "@vrembem/drawer"
+  scss: "@vrembem/drawer/index"
+  js: "@vrembem/drawer"
 ---
 
 <div class="notice notice_type_info">
