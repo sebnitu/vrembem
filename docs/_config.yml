@@ -28,10 +28,13 @@ exclude:
   - Gemfile.lock
   - src
   - rollup.config.js
+  - node_modules
 
 # Collections
 collections:
   components:
+    output: true
+  examples:
     output: true
 
 # Theme settings
