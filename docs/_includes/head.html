@@ -15,14 +15,14 @@
   {%- feed_meta -%}
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ site.url }}{{ site.baseurl }}/favicon.png?v={{ site.version }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ site.url }}{{ site.baseurl }}/assets/favicon.png?v={{ site.version }}">
 
   <!-- Styles -->
   <link rel="stylesheet" href="{{ site.url }}{{ site.baseurl }}/dist/styles.min.css?v={{ site.version }}">
 
   {%- if page.include.css -%}
     {%- for file in page.include.css -%}
-      <link rel="stylesheet" href="{%- include asset.html file=file -%}">
+      <link rel="stylesheet" href="{%- include asset.html src=file -%}">
     {%- endfor -%}
   {%- endif -%}
 

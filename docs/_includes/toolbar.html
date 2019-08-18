@@ -10,7 +10,20 @@
         </li>
         <li class="menu__sep"></li>
         <li class="menu__item">
-          <a href="{{ site.url }}{{ site.baseurl }}" class="menu__link">{{ site.title }}</a>
+          <div class="dropdown on-hover">
+            <a href="{{ site.url }}{{ site.baseurl }}" class="menu__link dropdown__trigger">
+              <span>{{ site.title }}</span>
+              <span class="arrow"></span>
+            </a>
+            <ul class="dropdown__menu">
+              <li class="dropdown__item">
+                <a class="dropdown__link" href="{{ site.url }}{{ site.baseurl }}">Home</a>
+              </li>
+              <li class="dropdown__item">
+                <a class="dropdown__link" href="{{ site.url }}{{ site.baseurl }}/roadmap/">Roadmap</a>
+              </li>
+            </ul>
+          </div>
         </li>
       </ul>
     </div>
