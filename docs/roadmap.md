@@ -56,8 +56,8 @@ I'm starting to import the rest of my components into their own package file.
       <li class="is-done"><span class="list__icon"></span> span</li>
       <li class="is-done"><span class="list__icon"></span> toggle</li>
       <li class="is-done"><span class="list__icon"></span> tooltip</li>
-      <li class="is-done"><span class="list__icon"></span> utility</li>
       <li class="is-done"><span class="list__icon"></span> type</li>
+      <li class="is-done"><span class="list__icon"></span> utility</li>
     </ol>
     <h3 class="subtitle">
       Processed
@@ -110,9 +110,17 @@ I'm starting to import the rest of my components into their own package file.
           <span class="list__icon"></span>
           <p><strong class="list__title">@vrembem/panel</strong> Creat a panel component whos purpose is a general wrapper element more generic than the card component.</p>
         </li>
-        <li class="">
+        <li class="is-done">
           <span class="list__icon"></span>
-          <p><strong class="list__title">@vrembem/docs</strong> Look into switching the docs from using Jekyll to use Gatsby instead.</p>
+          <p><strong class="list__title">@vrembem/docs</strong> Create docs pages for core, base, utiltiy, dismissible and toggle.</p>
+        </li>
+        <li class="is-done">
+          <span class="list__icon"></span>
+          <p><strong class="list__title">@vrembem/docs</strong> Create an index page that lists all available components along with tags and descriptions.</p>
+        </li>
+        <li class="is-done">
+          <span class="list__icon"></span>
+          <p><strong class="list__title">@vrembem/docs</strong> Add a "getting started" page to the docs.</p>
         </li>
         <li class="">
           <span class="list__icon"></span>
@@ -120,15 +128,7 @@ I'm starting to import the rest of my components into their own package file.
         </li>
         <li class="">
           <span class="list__icon"></span>
-          <p><strong class="list__title">@vrembem/docs</strong> Create docs pages for core, base, utiltiy, dismissible and toggle.</p>
-        </li>
-        <li class="">
-          <span class="list__icon"></span>
-          <p><strong class="list__title">@vrembem/docs</strong> Create a page that lists all available components along with tags.</p>
-        </li>
-        <li class="">
-          <span class="list__icon"></span>
-          <p><strong class="list__title">@vrembem/docs</strong> Add a "getting started" page to the docs.</p>
+          <p><strong class="list__title">@vrembem/docs</strong> Look into switching the docs from using Jekyll to use Gatsby instead.</p>
         </li>
       </ul>
     </div>

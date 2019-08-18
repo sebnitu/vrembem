@@ -11,6 +11,7 @@ layout: compress
       <h1 class="cover__title">{{ site.title }}</h1>
       {%- if site.description -%}
         <p class="cover__desc">{{ site.description }}</p>
+        <p class="cover__desc"><em>There are currently {{ site.components | size }} available components.</em></p>
       {%- endif -%}
       <div class="grid grid_auto grid_vert_center grid_gap_sm">
         <div class="grid__item">
