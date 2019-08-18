@@ -13,10 +13,9 @@ include:
     <li class="is-done"><span class="list__icon"></span> Scripts</li>
     <li class="is-done"><span class="list__icon"></span> Linting</li>
     <li class="is-done"><span class="list__icon"></span> Components</li>
+    <li class=""><span class="list__icon"></span> Tests</li>
     <li class=""><span class="list__icon"></span> Audit</li>
     <li class=""><span class="list__icon"></span> Refactor</li>
-    <li class=""><span class="list__icon"></span> Readme</li>
-    <li class=""><span class="list__icon"></span> Test</li>
     <li class=""><span class="list__icon"></span> Docs</li>
   </ol>
 </div>
@@ -77,35 +76,51 @@ I'm starting to import the rest of my components into their own package file.
 
   <div class="grid__item span_full">
     <div class="notice notice_theme_paper">
-      <h3 class="notice__title">Notes</h3>
+      <h3 class="notice__title">Task notes</h3>
       <ul class="list list_todo">
         <li class="is-done">
           <span class="list__icon"></span>
           <p><strong class="list__title">@vrembem/utility</strong> Update the utility classes to have use the short name patterns.</p>
         </li>
-        <li>
+        <li class="">
           <span class="list__icon"></span>
           <p><strong class="list__title">@vrembem/utility</strong> Add border and border-radius modifiers.</p>
         </li>
-        <li>
+        <li class="">
           <span class="list__icon"></span>
           <p><strong class="list__title">@vrembem/drawer</strong> Change the way that drawers are saved via saveState. Instead of requiring an ID, maybe use a data attribute.</p>
         </li>
-        <li>
+        <li class="">
           <span class="list__icon"></span>
           <p><strong class="list__title">@vrembem/drawer</strong> Refactor the drawer to better define "left" and "right" drawers and only allow one of the same drawer position type to be open at a time.</p>
         </li>
-        <li>
+        <li class="">
           <span class="list__icon"></span>
           <p><strong class="list__title">@vrembem/all</strong> Create package that incorporates and compiles everything. Maybe this can be done in root? Otherwise, use "all" package.</p>
         </li>
-        <li>
+        <li class="">
           <span class="list__icon"></span>
           <p><strong class="list__title">@vrembem/layout</strong> Create package that incorporates and compiles all layout components. This would include things like "container", "grid", "level", "section", "spacing" and "span".</p>
         </li>
-        <li>
+        <li class="">
           <span class="list__icon"></span>
           <p><strong class="list__title">@vrembem/dropdown</strong> Create a JavaScript dropdown component for <code>on-click</code> event handling.</p>
+        </li>
+        <li class="">
+          <span class="list__icon"></span>
+          <p><strong class="list__title">@vrembem/docs</strong> Look into switching the docs from using Jekyll to use Gatsby instead.</p>
+        </li>
+        <li class="">
+          <span class="list__icon"></span>
+          <p><strong class="list__title">@vrembem/docs</strong> Tie together the README.md files that exist per package into the documentation.</p>
+        </li>
+        <li class="">
+          <span class="list__icon"></span>
+          <p><strong class="list__title">@vrembem/docs</strong> Create docs pages for core, base, utiltiy, dismissible and toggle.</p>
+        </li>
+        <li class="">
+          <span class="list__icon"></span>
+          <p><strong class="list__title">@vrembem/docs</strong> Create a page that lists all available components along with tags.</p>
         </li>
       </ul>
     </div>
@@ -176,18 +191,6 @@ These are tasks I need to setup with NPM scripts and sorting the output and how 
       <span class="sep"></span>
       <span class="count-group__total"></span>
     </h3>
-  </div>
-
-  <div class="grid__item span_full">
-    <div class="notice notice_theme_paper">
-      <h3 class="notice__title">Notes</h3>
-      <ul class="list list_todo">
-        <li class="is-done">
-          <span class="list__icon"></span>
-          <p>Incorporate UMD (Universal Module Definition) for JavaScript plugins. Look into using this Babel transform: <a class="link" target="_blank" href="https://babeljs.io/docs/en/babel-plugin-transform-modules-umd">@babel/plugin-transform-modules-umd</a></p>
-        </li>
-      </ul>
-    </div>
   </div>
 
 </div>
