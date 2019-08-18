@@ -5,12 +5,8 @@
   position: relative;
 }
 
-.drawer__main,
-.drawer__item {
-  flex: 1 1 auto;
-}
-
 .drawer__main {
+  flex: 1 1 auto;
   height: 100%;
   overflow: hidden auto;
   -webkit-overflow-scrolling: touch;
@@ -49,7 +45,7 @@
 }
 
 .drawer__item.is-active {
-  flex: 1 0 auto;
+  flex: 0 0 auto;
   transition: none;
   width: 16em;
 }

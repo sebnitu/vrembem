@@ -1148,12 +1148,8 @@ pre {
   position: relative;
 }
 
-.drawer__main,
-.drawer__item {
-  flex: 1 1 auto;
-}
-
 .drawer__main {
+  flex: 1 1 auto;
   height: 100%;
   overflow: hidden auto;
   -webkit-overflow-scrolling: touch;
@@ -1192,7 +1188,7 @@ pre {
 }
 
 .drawer__item.is-active {
-  flex: 1 0 auto;
+  flex: 0 0 auto;
   transition: none;
   width: 16em;
 }
@@ -5539,6 +5535,22 @@ pre {
   display: flex;
 }
 
+.demo__code {
+  background: #f5f5f5;
+  overflow: auto;
+}
+
+.demo__render .drawer {
+  height: 100%;
+}
+
+.demo__render.invert,
+.demo__group.invert,
+.demo__code {
+  border-radius: 3px;
+  padding: 1em;
+}
+
 .grid__item > .demo__render,
 .grid__item > .demo__code {
   flex: 1 0 100%;
@@ -5552,18 +5564,6 @@ pre {
 .demo__render.invert,
 .demo__group.invert {
   background: #37474f;
-}
-
-.demo__code {
-  overflow: auto;
-  background: #f5f5f5;
-}
-
-.demo__render.invert,
-.demo__group.invert,
-.demo__code {
-  padding: 1em;
-  border-radius: 3px;
 }
 
 @media (min-width: 760px) {

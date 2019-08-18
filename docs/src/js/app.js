@@ -6,16 +6,12 @@ import {
   toggle
 } from "@vrembem/all"
 import listjs from "list.js"
+import "svgxuse"
 
-let dismissibleDefault = new dismissible()
+new dismissible()
 let drawerDefault = new drawer()
-let modalDefault = new modal()
-let toggleDefault = new toggle()
-
-console.log("dismissible:", dismissibleDefault)
-console.log("drawer:", drawerDefault)
-console.log("modal:", modalDefault)
-console.log("toggle:", toggleDefault)
+new modal()
+new toggle()
 
 /**
  * General event trigger for testing
@@ -50,7 +46,7 @@ document.addEventListener("click", function() {
 
     // Run our data script
     if (obj === "drawer") {
-      drawer[method](params)
+      drawerDefault[method](params)
     }
   }
 

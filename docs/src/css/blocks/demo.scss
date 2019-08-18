@@ -8,6 +8,24 @@
   display: flex;
 }
 
+.demo__code {
+  background: $pre-background;
+  overflow: auto;
+}
+
+.demo__render {
+  .drawer {
+    height: 100%;
+  }
+}
+
+.demo__render.invert,
+.demo__group.invert,
+.demo__code {
+  border-radius: $border-radius;
+  padding: 1em;
+}
+
 .grid__item > .demo__render,
 .grid__item > .demo__code {
   flex: 1 0 100%;
@@ -21,18 +39,6 @@
 .demo__render.invert,
 .demo__group.invert {
   background: $dark;
-}
-
-.demo__code {
-  overflow: auto;
-  background: $pre-background;
-}
-
-.demo__render.invert,
-.demo__group.invert,
-.demo__code {
-  padding: 1em;
-  border-radius: $border-radius;
 }
 
 @include media-min('md') {
