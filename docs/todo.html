@@ -1,41 +1,28 @@
+---
+layout: compress
+title: "Todo"
+---
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="{{ page.lang | default: site.lang | default: "en" }}" {% if page.class %}class="{{ page.class }}"{% endif %}>
 <head>
   <meta charset="utf-8">
-  <title>@vrembem/todos</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- <link rel="stylesheet" href="https://unpkg.com/vrembem@0.7.0/dist/css/styles.min.css"> -->
+  {%- if site.google_analytics and jekyll.environment == 'production' -%}
+    {%- include google-analytics.html -%}
+  {%- endif -%}
 
-  <link rel="stylesheet" href="./packages/all/dist/styles.min.css">
+  {%- include seo.html -%}
 
-  <!--
-  <link rel="stylesheet" href="./packages/arrow/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/base/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/breadcrumb/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/button/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/button-group/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/card/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/container/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/dialog/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/drawer/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/dropdown/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/embed/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/grid/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/icon/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/icon-action/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/input/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/level/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/media/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/menu/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/modal/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/notice/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/section/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/spacing/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/span/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/tooltip/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/type/dist/styles.min.css">
-  <link rel="stylesheet" href="./packages/utility/dist/styles.min.css">
-  -->
+  <!-- RSS -->
+  {%- feed_meta -%}
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ site.url }}{{ site.baseurl }}/favicon.png?v={{ site.version }}">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="{{ site.url }}{{ site.baseurl }}/dist/styles.min.css?v={{ site.version }}">
 
   <style>
 
@@ -730,23 +717,8 @@
   </div>
 </div>
 
-<script src="./packages/all/dist/scripts.min.js"></script>
-
-<!--
-<script src="./packages/core/dist/scripts.min.js"></script>
-<script src="./packages/dismissible/dist/scripts.min.js"></script>
-<script src="./packages/drawer/dist/scripts.min.js"></script>
-<script src="./packages/modal/dist/scripts.min.js"></script>
-<script src="./packages/toggle/dist/scripts.min.js"></script>
--->
-
-<script>
-console.log("Vrembem:", vrembem);
-let dismissible = new vrembem.dismissible();
-let toggle = new vrembem.toggle();
-let drawer = new vrembem.drawer();
-let modal = new vrembem.modal();
-</script>
+<!-- Scripts -->
+<script src="{{ site.url }}{{ site.baseurl }}/dist/scripts.min.js?v={{ site.version }}"></script>
 
 </body>
 </html>
