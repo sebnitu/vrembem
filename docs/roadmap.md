@@ -108,6 +108,10 @@ I'm starting to import the rest of my components into their own package file.
         </li>
         <li class="">
           <span class="list__icon"></span>
+          <p><strong class="list__title">@vrembem/panel</strong> Creat a panel component whos purpose is a general wrapper element more generic than the card component.</p>
+        </li>
+        <li class="">
+          <span class="list__icon"></span>
           <p><strong class="list__title">@vrembem/docs</strong> Look into switching the docs from using Jekyll to use Gatsby instead.</p>
         </li>
         <li class="">
