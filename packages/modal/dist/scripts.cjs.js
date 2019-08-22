@@ -1,5 +1,7 @@
 'use strict';
 
+Object.defineProperty(exports, '__esModule', { value: true });
+
 var toArray = function toArray(item) {
   var array = [];
 
@@ -63,7 +65,7 @@ var removeClass = function removeClass(el, c) {
   });
 };
 
-function index (options) {
+var Modal = function Modal(options) {
   var api = {};
   var settings;
   var defaults = {
@@ -171,6 +173,6 @@ function index (options) {
 
   api.init(options);
   return api;
-}
+};
 
-module.exports = index;
+exports.Modal = Modal;

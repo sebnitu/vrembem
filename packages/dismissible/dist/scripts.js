@@ -1,5 +1,5 @@
 this.vrembem = this.vrembem || {};
-this.vrembem.dismissible = (function () {
+this.vrembem.dismissible = (function (exports) {
   'use strict';
 
   var toArray = function toArray(item) {
@@ -55,7 +55,7 @@ this.vrembem.dismissible = (function () {
     });
   };
 
-  var index = (function (options) {
+  var Dismissible = function Dismissible(options) {
     var api = {};
     var settings;
     var defaults = {
@@ -90,8 +90,10 @@ this.vrembem.dismissible = (function () {
 
     api.init(options);
     return api;
-  });
+  };
 
-  return index;
+  exports.Dismissible = Dismissible;
 
-}());
+  return exports;
+
+}({}));

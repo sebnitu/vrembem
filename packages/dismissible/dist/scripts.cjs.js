@@ -1,5 +1,7 @@
 'use strict';
 
+Object.defineProperty(exports, '__esModule', { value: true });
+
 var toArray = function toArray(item) {
   var array = [];
 
@@ -53,7 +55,7 @@ var toggleClass = function toggleClass(el, c) {
   });
 };
 
-var index = (function (options) {
+var Dismissible = function Dismissible(options) {
   var api = {};
   var settings;
   var defaults = {
@@ -88,6 +90,6 @@ var index = (function (options) {
 
   api.init(options);
   return api;
-});
+};
 
-module.exports = index;
+exports.Dismissible = Dismissible;

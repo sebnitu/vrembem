@@ -8,7 +8,7 @@ import { extend, addClass, removeClass } from "@vrembem/core"
  * modal dialogs.
  */
 
-export default function(options) {
+export const Modal = (options) => {
 
   let api = {}
   let settings

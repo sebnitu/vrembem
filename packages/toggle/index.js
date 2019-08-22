@@ -1,6 +1,6 @@
 import { extend, toggleClass } from "@vrembem/core"
 
-export default function(options) {
+export const Toggle = (options) => {
 
   "use strict"
 

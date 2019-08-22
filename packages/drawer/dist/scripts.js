@@ -1,5 +1,5 @@
 this.vrembem = this.vrembem || {};
-this.vrembem.drawer = (function () {
+this.vrembem.drawer = (function (exports) {
   'use strict';
 
   var config = {
@@ -103,7 +103,7 @@ this.vrembem.drawer = (function () {
     });
   };
 
-  function index (options) {
+  var Drawer = function Drawer(options) {
 
     var api = {};
     var settings;
@@ -383,8 +383,10 @@ this.vrembem.drawer = (function () {
 
     api.init(options);
     return api;
-  }
+  };
 
-  return index;
+  exports.Drawer = Drawer;
 
-}());
+  return exports;
+
+}({}));

@@ -101,7 +101,7 @@ var toggleClass = function toggleClass(el, c) {
   });
 };
 
-var dismissible = (function (options) {
+var Dismissible = function Dismissible(options) {
   var api = {};
   var settings;
   var defaults = {
@@ -136,9 +136,9 @@ var dismissible = (function (options) {
 
   api.init(options);
   return api;
-});
+};
 
-function drawer (options) {
+var Drawer = function Drawer(options) {
 
   var api = {};
   var settings;
@@ -418,9 +418,9 @@ function drawer (options) {
 
   api.init(options);
   return api;
-}
+};
 
-function modal (options) {
+var Modal = function Modal(options) {
   var api = {};
   var settings;
   var defaults = {
@@ -528,9 +528,9 @@ function modal (options) {
 
   api.init(options);
   return api;
-}
+};
 
-function toggle (options) {
+var Toggle = function Toggle(options) {
 
   var api = {};
   var settings;
@@ -580,7 +580,7 @@ function toggle (options) {
 
   api.init(options);
   return api;
-}
+};
 
 var alphabet;
 var alphabetIndexMap;
@@ -2273,10 +2273,10 @@ var src = function src(id, options, values) {
   }
 })();
 
-new dismissible();
-var drawerDefault = new drawer();
-new modal();
-new toggle();
+new Dismissible();
+var drawer = new Drawer();
+new Modal();
+new Toggle();
 document.addEventListener("click", function () {
   var trigger = event.target;
 
@@ -2291,7 +2291,7 @@ document.addEventListener("click", function () {
     var params = string.substring(indexParamStart + 1, indexParamEnd);
 
     if (obj === "drawer") {
-      drawerDefault[method](params);
+      drawer[method](params);
     }
   }
 });

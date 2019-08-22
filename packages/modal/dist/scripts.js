@@ -1,5 +1,5 @@
 this.vrembem = this.vrembem || {};
-this.vrembem.modal = (function () {
+this.vrembem.modal = (function (exports) {
   'use strict';
 
   var toArray = function toArray(item) {
@@ -65,7 +65,7 @@ this.vrembem.modal = (function () {
     });
   };
 
-  function index (options) {
+  var Modal = function Modal(options) {
     var api = {};
     var settings;
     var defaults = {
@@ -173,8 +173,10 @@ this.vrembem.modal = (function () {
 
     api.init(options);
     return api;
-  }
+  };
 
-  return index;
+  exports.Modal = Modal;
 
-}());
+  return exports;
+
+}({}));

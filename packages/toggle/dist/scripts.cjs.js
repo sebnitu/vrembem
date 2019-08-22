@@ -1,5 +1,7 @@
 'use strict';
 
+Object.defineProperty(exports, '__esModule', { value: true });
+
 var toArray = function toArray(item) {
   var array = [];
 
@@ -53,7 +55,7 @@ var toggleClass = function toggleClass(el, c) {
   });
 };
 
-function index (options) {
+var Toggle = function Toggle(options) {
 
   var api = {};
   var settings;
@@ -103,6 +105,6 @@ function index (options) {
 
   api.init(options);
   return api;
-}
+};
 
-module.exports = index;
+exports.Toggle = Toggle;

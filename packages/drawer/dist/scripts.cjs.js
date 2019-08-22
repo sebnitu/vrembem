@@ -1,5 +1,7 @@
 'use strict';
 
+Object.defineProperty(exports, '__esModule', { value: true });
+
 var config = {
   breakpoints: {
     xs: "480px",
@@ -101,7 +103,7 @@ var toggleClass = function toggleClass(el, c) {
   });
 };
 
-function index (options) {
+var Drawer = function Drawer(options) {
 
   var api = {};
   var settings;
@@ -381,6 +383,6 @@ function index (options) {
 
   api.init(options);
   return api;
-}
+};
 
-module.exports = index;
+exports.Drawer = Drawer;

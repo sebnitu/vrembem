@@ -102,7 +102,7 @@
     });
   };
 
-  var dismissible = (function (options) {
+  var Dismissible = function Dismissible(options) {
     var api = {};
     var settings;
     var defaults = {
@@ -137,9 +137,9 @@
 
     api.init(options);
     return api;
-  });
+  };
 
-  function drawer (options) {
+  var Drawer = function Drawer(options) {
 
     var api = {};
     var settings;
@@ -419,9 +419,9 @@
 
     api.init(options);
     return api;
-  }
+  };
 
-  function modal (options) {
+  var Modal = function Modal(options) {
     var api = {};
     var settings;
     var defaults = {
@@ -529,9 +529,9 @@
 
     api.init(options);
     return api;
-  }
+  };
 
-  function toggle (options) {
+  var Toggle = function Toggle(options) {
 
     var api = {};
     var settings;
@@ -581,7 +581,7 @@
 
     api.init(options);
     return api;
-  }
+  };
 
   var alphabet;
   var alphabetIndexMap;
@@ -2274,10 +2274,10 @@
     }
   })();
 
-  new dismissible();
-  var drawerDefault = new drawer();
-  new modal();
-  new toggle();
+  new Dismissible();
+  var drawer = new Drawer();
+  new Modal();
+  new Toggle();
   document.addEventListener("click", function () {
     var trigger = event.target;
 
@@ -2292,7 +2292,7 @@
       var params = string.substring(indexParamStart + 1, indexParamEnd);
 
       if (obj === "drawer") {
-        drawerDefault[method](params);
+        drawer[method](params);
       }
     }
   });

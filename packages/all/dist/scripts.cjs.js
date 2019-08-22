@@ -103,7 +103,7 @@ var toggleClass = function toggleClass(el, c) {
   });
 };
 
-var index = (function (options) {
+var Dismissible = function Dismissible(options) {
   var api = {};
   var settings;
   var defaults = {
@@ -138,9 +138,9 @@ var index = (function (options) {
 
   api.init(options);
   return api;
-});
+};
 
-function index$1 (options) {
+var Drawer = function Drawer(options) {
 
   var api = {};
   var settings;
@@ -420,9 +420,9 @@ function index$1 (options) {
 
   api.init(options);
   return api;
-}
+};
 
-function index$2 (options) {
+var Modal = function Modal(options) {
   var api = {};
   var settings;
   var defaults = {
@@ -530,9 +530,9 @@ function index$2 (options) {
 
   api.init(options);
   return api;
-}
+};
 
-function index$3 (options) {
+var Toggle = function Toggle(options) {
 
   var api = {};
   var settings;
@@ -582,9 +582,9 @@ function index$3 (options) {
 
   api.init(options);
   return api;
-}
+};
 
-exports.dismissible = index;
-exports.drawer = index$1;
-exports.modal = index$2;
-exports.toggle = index$3;
+exports.Dismissible = Dismissible;
+exports.Drawer = Drawer;
+exports.Modal = Modal;
+exports.Toggle = Toggle;

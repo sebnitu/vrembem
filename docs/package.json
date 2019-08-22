@@ -17,7 +17,7 @@
     "watch": "npm run watch:scripts watch:styles",
     "watch:scripts": "rollup -c -w",
     "watch:styles": "nodemon -e scss -x 'npm run styles'",
-    "serve": "bundle exec jekyll serve --livereload"
+    "server": "bundle exec jekyll serve --livereload"
   },
   "repository": {
     "type": "git",

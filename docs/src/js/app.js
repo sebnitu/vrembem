@@ -1,17 +1,17 @@
 import { hasClass, addClass, removeClass } from "@vrembem/core"
 import {
-  dismissible,
-  drawer,
-  modal,
-  toggle
+  Dismissible,
+  Drawer,
+  Modal,
+  Toggle
 } from "@vrembem/all"
 import listjs from "list.js"
 import "svgxuse"
 
-new dismissible()
-let drawerDefault = new drawer()
-new modal()
-new toggle()
+new Dismissible()
+let drawer = new Drawer()
+new Modal()
+new Toggle()
 
 /**
  * General event trigger for testing
@@ -46,7 +46,7 @@ document.addEventListener("click", function() {
 
     // Run our data script
     if (obj === "drawer") {
-      drawerDefault[method](params)
+      drawer[method](params)
     }
   }
 

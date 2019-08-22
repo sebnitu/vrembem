@@ -1,11 +1,11 @@
-import dismissible from "@vrembem/dismissible/index"
-import drawer from "@vrembem/drawer/index"
-import modal from "@vrembem/modal/index"
-import toggle from "@vrembem/toggle/index"
+import { Dismissible } from "@vrembem/dismissible/index"
+import { Drawer } from "@vrembem/drawer/index"
+import { Modal } from "@vrembem/modal/index"
+import { Toggle } from "@vrembem/toggle/index"
 
 export {
-  dismissible,
-  drawer,
-  modal,
-  toggle
+  Dismissible,
+  Drawer,
+  Modal,
+  Toggle
 }

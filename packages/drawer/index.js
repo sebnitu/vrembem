@@ -15,7 +15,7 @@ import {
  * contains menus, search or other content for your app.
  */
 
-export default function(options) {
+export const Drawer = (options) => {
 
   "use strict"
 

@@ -1,6 +1,6 @@
 import { extend, toggleClass } from "@vrembem/core"
 
-export default (options) => {
+export const Dismissible = (options) => {
 
   let api = {}
   let settings
