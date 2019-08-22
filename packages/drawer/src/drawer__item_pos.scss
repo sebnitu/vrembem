@@ -11,7 +11,7 @@
 
   .drawer__dialog {
     border-right: $drawer__dialog-border;
-    transform: translate3d(-100%, 0, 0);
+    transform: translateX(-100%);
   }
 }
 
@@ -20,13 +20,13 @@
 
   .drawer__dialog {
     border-left: $drawer__dialog-border;
-    transform: translate3d(100%, 0, 0);
+    transform: translateX(100%);
   }
 }
 
 .drawer__item_pos_left.is-active {
   .drawer__dialog {
-    transform: translate3d(0, 0, 0);
+    transform: translateX(0);
   }
 
   ~ .drawer__main {
@@ -36,7 +36,7 @@
 
 .drawer__item_pos_right.is-active {
   .drawer__dialog {
-    transform: translate3d(0, 0, 0);
+    transform: translateX(0);
   }
 
   ~ .drawer__main {

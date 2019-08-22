@@ -21,7 +21,7 @@
   box-shadow: $box-shadow-flat;
   max-width: 100%;
   opacity: 0;
-  transform: translate3d(0, -$modal-travel, 0);
+  transform: translateY(-$modal-travel);
   visibility: hidden;
   width: $modal-width;
   z-index: 1001;
@@ -42,7 +42,7 @@
   .modal__dialog {
     box-shadow: $modal__dialog-box-shadow;
     opacity: 1;
-    transform: translate3d(0, 0, 0);
+    transform: translateY(0);
     visibility: visible;
   }
 }

@@ -30,7 +30,7 @@
 .dropdown__menu_pos_down {
   left: 50%;
   right: auto;
-  transform: translate3d(-50%, 0, 0);
+  transform: translateX(-50%);
 }
 
 .dropdown__menu_pos_up-left,
@@ -63,7 +63,7 @@
 .dropdown__menu_pos_up {
   left: 50%;
   right: auto;
-  transform: translate3d(-50%, 0, 0);
+  transform: translateX(-50%);
 }
 
 .dropdown__menu_pos_right-down,
@@ -96,7 +96,7 @@
 .dropdown__menu_pos_right {
   bottom: auto;
   top: 50%;
-  transform: translate3d(0, -50%, 0);
+  transform: translateY(-50%);
 }
 
 .dropdown__menu_pos_left-down,
@@ -129,5 +129,5 @@
 .dropdown__menu_pos_left {
   bottom: auto;
   top: 50%;
-  transform: translate3d(0, -50%, 0);
+  transform: translateY(-50%);
 }

@@ -1183,7 +1183,7 @@ pre {
   flex-direction: column;
   overflow: hidden auto;
   -webkit-overflow-scrolling: touch;
-  transition: width 0s 0.5s;
+  transition: width 0s 0.3s;
   width: 0;
 }
 
@@ -1207,25 +1207,25 @@ pre {
   left: 0;
 }
 .drawer__item_pos_left .drawer__dialog {
-  transform: translate3d(-100%, 0, 0);
+  transform: translateX(-100%);
 }
 
 .drawer__item_pos_right {
   right: 0;
 }
 .drawer__item_pos_right .drawer__dialog {
-  transform: translate3d(100%, 0, 0);
+  transform: translateX(100%);
 }
 
 .drawer__item_pos_left.is-active .drawer__dialog {
-  transform: translate3d(0, 0, 0);
+  transform: translateX(0);
 }
 .drawer__item_pos_left.is-active ~ .drawer__main {
   margin-left: 16em;
 }
 
 .drawer__item_pos_right.is-active .drawer__dialog {
-  transform: translate3d(0, 0, 0);
+  transform: translateX(0);
 }
 .drawer__item_pos_right.is-active ~ .drawer__main {
   margin-right: 16em;
@@ -1413,7 +1413,7 @@ pre {
 .dropdown__menu_pos_down {
   left: 50%;
   right: auto;
-  transform: translate3d(-50%, 0, 0);
+  transform: translateX(-50%);
 }
 
 .dropdown__menu_pos_up-left,
@@ -1447,7 +1447,7 @@ pre {
 .dropdown__menu_pos_up {
   left: 50%;
   right: auto;
-  transform: translate3d(-50%, 0, 0);
+  transform: translateX(-50%);
 }
 
 .dropdown__menu_pos_right-down,
@@ -1481,7 +1481,7 @@ pre {
 .dropdown__menu_pos_right {
   bottom: auto;
   top: 50%;
-  transform: translate3d(0, -50%, 0);
+  transform: translateY(-50%);
 }
 
 .dropdown__menu_pos_left-down,
@@ -1515,7 +1515,7 @@ pre {
 .dropdown__menu_pos_left {
   bottom: auto;
   top: 50%;
-  transform: translate3d(0, -50%, 0);
+  transform: translateY(-50%);
 }
 
 .embed {
@@ -3294,7 +3294,7 @@ pre {
   position: fixed;
   right: 0;
   top: 0;
-  transition: background-color 0.5s, width 0s 0.5s, height 0s 0.5s, padding 0s 0.5s;
+  transition: background-color 0.3s, width 0s 0.3s, height 0s 0.3s, padding 0s 0.3s;
   width: 0;
   z-index: 1000;
 }
@@ -3303,7 +3303,7 @@ pre {
   box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
   max-width: 100%;
   opacity: 0;
-  transform: translate3d(0, -5em, 0);
+  transform: translateY(-5em);
   visibility: hidden;
   width: 38em;
   z-index: 1001;
@@ -3317,13 +3317,13 @@ pre {
   background-color: rgba(55, 71, 79, 0.75);
   height: 100%;
   padding: 1em;
-  transition: background-color 0.5s;
+  transition: background-color 0.3s;
   width: 100%;
 }
 .modal.is-active .modal__dialog {
   box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.1), 0 24px 38px 3px rgba(0, 0, 0, 0.07), 0 9px 46px 8px rgba(0, 0, 0, 0.06);
   opacity: 1;
-  transform: translate3d(0, 0, 0);
+  transform: translateY(0);
   visibility: visible;
 }
 
@@ -3337,7 +3337,7 @@ pre {
   position: absolute;
   right: 0;
   top: 0;
-  transform: translate3d(0, -5em, 0);
+  transform: translateY(-5em);
   width: 100%;
 }
 
@@ -3349,7 +3349,7 @@ pre {
   justify-content: flex-end;
 }
 .modal_pos_bottom .modal__dialog {
-  transform: translate3d(0, 5em, 0);
+  transform: translateY(5em);
 }
 
 .modal_pos_left .modal__dialog,
@@ -3368,12 +3368,12 @@ pre {
 
 .modal_pos_left .modal__dialog {
   left: 0;
-  transform: translate3d(-100%, 0, 0);
+  transform: translateX(-100%);
 }
 
 .modal_pos_right .modal__dialog {
   right: 0;
-  transform: translate3d(100%, 0, 0);
+  transform: translateX(100%);
 }
 
 .modal_size_sm .modal__dialog {

@@ -8,7 +8,7 @@
   justify-content: flex-end;
 
   .modal__dialog {
-    transform: translate3d(0, $modal-travel, 0);
+    transform: translateY($modal-travel);
   }
 }
 
@@ -30,10 +30,10 @@
 
 .modal_pos_left .modal__dialog {
   left: 0;
-  transform: translate3d(-100%, 0, 0);
+  transform: translateX(-100%);
 }
 
 .modal_pos_right .modal__dialog {
   right: 0;
-  transform: translate3d(100%, 0, 0);
+  transform: translateX(100%);
 }

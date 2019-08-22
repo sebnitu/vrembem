@@ -10,6 +10,6 @@
   position: absolute;
   right: 0;
   top: 0;
-  transform: translate3d(0, -$modal-travel, 0);
+  transform: translateY(-$modal-travel);
   width: 100%;
 }
