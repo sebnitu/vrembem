@@ -10,7 +10,7 @@
     "clean": "del dist",
     "scripts": "rollup -c",
     "watch": "npm run watch:scripts",
-    "watch:scripts": "rollup -c -w"
+    "watch:scripts": "nodemon -e js -x 'npm run scripts' -i dist"
   },
   "repository": {
     "type": "git",

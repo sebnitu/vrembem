@@ -221,7 +221,10 @@ The set of scripts that are to be used depending on the package type.
   "lint": "npm-run-all lint:styles lint:scripts",
   "lint:scripts": "eslint packages",
   "lint:styles": "stylelint 'packages/**/*.scss'",
-  "watch": "lerna run watch --parallel"
+  "server": "lerna run server",
+  "watch": "lerna run watch --parallel",
+  "watch:scripts": "lerna run watch:scripts --parallel",
+  "watch:styles": "lerna run watch:styles --parallel"
 }
 ```
 
@@ -233,7 +236,7 @@ The set of scripts that are to be used depending on the package type.
   "clean": "del dist",
   "scripts": "rollup -c",
   "watch": "npm run watch:scripts",
-  "watch:scripts": "rollup -c -w"
+  "watch:scripts": "nodemon -e js -x 'npm run scripts' -i dist"
 }
 ```
 
@@ -261,8 +264,8 @@ The set of scripts that are to be used depending on the package type.
   "styles": "npm-run-all styles:compile styles:min",
   "styles:compile": "sass index.scss dist/styles.css --load-path node_modules",
   "styles:min": "sass dist/styles.css dist/styles.min.css --style compressed",
-  "watch": "npm run watch:scripts watch:styles",
-  "watch:scripts": "rollup -c -w",
+  "watch": "concurrently --kill-others 'npm run watch:scripts' 'npm run watch:styles'",
+  "watch:scripts": "nodemon -e js -x 'npm run scripts' -i dist",
   "watch:styles": "nodemon -e scss -x 'npm run styles'"
 }
 ```

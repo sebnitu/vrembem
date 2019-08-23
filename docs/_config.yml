@@ -29,6 +29,7 @@ exclude:
   - src
   - rollup.config.js
   - node_modules
+  - _site
 
 # Collections
 collections:

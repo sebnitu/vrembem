@@ -12,11 +12,15 @@
     "lint": "npm-run-all lint:styles lint:scripts",
     "lint:scripts": "eslint packages",
     "lint:styles": "stylelint 'packages/**/*.scss'",
-    "watch": "lerna run watch --parallel"
+    "watch": "lerna run watch --parallel",
+    "watch:scripts": "lerna run watch:scripts --parallel",
+    "watch:styles": "lerna run watch:styles --parallel",
+    "server": "lerna run server --parallel"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+    "concurrently": "^4.1.2",
     "del-cli": "^2.0.0",
     "eslint": "^6.1.0",
     "lerna": "^3.15.0",
