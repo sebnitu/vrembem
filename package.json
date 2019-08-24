@@ -15,7 +15,8 @@
     "watch": "lerna run watch --parallel",
     "watch:scripts": "lerna run watch:scripts --parallel",
     "watch:styles": "lerna run watch:styles --parallel",
-    "server": "lerna run server --parallel"
+    "server": "lerna run server --parallel",
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -23,6 +24,8 @@
     "concurrently": "^4.1.2",
     "del-cli": "^2.0.0",
     "eslint": "^6.1.0",
+    "eslint-plugin-jest": "^22.15.2",
+    "jest": "^24.9.0",
     "lerna": "^3.15.0",
     "nodemon": "^1.19.1",
     "npm-run-all": "^4.1.5",
