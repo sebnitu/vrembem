@@ -1,7 +1,9 @@
 module.exports = {
   "env": {
+    "amd": true,
     "browser": true,
     "es6": true,
+    "node": true,
     "jest/globals": true
   },
   "plugins": ["jest"],
