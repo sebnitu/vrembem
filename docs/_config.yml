@@ -33,7 +33,7 @@ exclude:
 
 # Collections
 collections:
-  components:
+  packages:
     output: true
   examples:
     output: true

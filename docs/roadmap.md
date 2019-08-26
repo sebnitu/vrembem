@@ -28,7 +28,6 @@ I'm starting to import the rest of my components into their own package file.
 
   <div class="grid__item count count_done">
     <ol class="list list_count list_grid">
-      <li class="is-done"><span class="list__icon"></span> all</li>
       <li class="is-done"><span class="list__icon"></span> arrow</li>
       <li class="is-done"><span class="list__icon"></span> base</li>
       <li class="is-done"><span class="list__icon"></span> breadcrumb</li>
@@ -58,6 +57,7 @@ I'm starting to import the rest of my components into their own package file.
       <li class="is-done"><span class="list__icon"></span> tooltip</li>
       <li class="is-done"><span class="list__icon"></span> type</li>
       <li class="is-done"><span class="list__icon"></span> utility</li>
+      <li class="is-done"><span class="list__icon"></span> vrembem</li>
     </ol>
     <h3 class="subtitle">
       Processed
@@ -84,7 +84,7 @@ I'm starting to import the rest of my components into their own package file.
         </li>
         <li class="is-done">
           <span class="list__icon"></span>
-          <p><strong class="list__title">@vrembem/all</strong> Create package that incorporates and compiles everything. Maybe this can be done in root? Otherwise, use "all" package.</p>
+          <p><strong class="list__title">vrembem</strong> Create package that incorporates and compiles everything. Maybe this can be done in root? Otherwise, use "all" package.</p>
         </li>
         <li class="">
           <span class="list__icon"></span>
