@@ -4,7 +4,7 @@ import {
   Drawer,
   Modal,
   Toggle
-} from "@vrembem/all"
+} from "vrembem"
 import listjs from "list.js"
 import "svgxuse"
 

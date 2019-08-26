@@ -1,6 +1,6 @@
 {
-  "name": "@vrembem/all",
-  "description": "A container component that slides in from the left or right. It typically contains menus, search or other content for your app.",
+  "name": "vrembem",
+  "description": "A CSS component library based on the BEM methodology.",
   "version": "0.0.0",
   "main": "dist/scripts.cjs.js",
   "module": "index.js",

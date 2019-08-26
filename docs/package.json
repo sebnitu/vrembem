@@ -12,7 +12,7 @@
     "clean": "del dist",
     "scripts": "rollup -c",
     "styles": "npm-run-all styles:compile styles:min",
-    "styles:compile": "sass src/css/app.scss dist/styles.css --load-path node_modules --load-path node_modules/@vrembem/all/node_modules",
+    "styles:compile": "sass src/css/app.scss dist/styles.css --load-path node_modules --load-path node_modules/vrembem/node_modules",
     "styles:min": "sass dist/styles.css dist/styles.min.css --style compressed",
     "watch": "concurrently --kill-others 'npm run watch:scripts' 'npm run watch:styles'",
     "watch:scripts": "nodemon -e js -x 'npm run scripts'",
@@ -25,8 +25,7 @@
     "directory": "packages/docs"
   },
   "dependencies": {
-    "@vrembem/all": "^0.0.0",
-    "@vrembem/core": "^0.0.0",
+    "vrembem": "^0.0.0",
     "feather-icons": "^4.21.0",
     "list.js": "^1.5.0",
     "svgxuse": "^1.2.6"
