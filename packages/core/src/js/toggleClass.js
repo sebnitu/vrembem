@@ -1,20 +1,15 @@
-import { toArray } from "./toArray"
-
 /**
- * Toggle a class or classes on an element
+ * Toggle a class or classes on an element or NodeList
  * ---
- * @param {Node} el - Element(s) to toggle class(es) on
- * @param {String || Array} c - Class(es) to toggle
+ * @param {Node || NodeList} el - Element(s) to toggle class(es) on
+ * @param {String || Array} cl - Class(es) to toggle
  */
 
-export const toggleClass = (el, c) => {
-
-  el = (el.forEach) ? el : toArray(el)
-  c = toArray(c)
-
+export const toggleClass = (el, ...cl) => {
+  el = (el.forEach) ? el : [el]
   el.forEach((el) => {
-    c.forEach((c) => {
-      el.classList.toggle(c)
+    cl.forEach((cl) => {
+      el.classList.toggle(cl)
     })
   })
 }

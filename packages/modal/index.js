@@ -1,4 +1,4 @@
-import { extend, addClass, removeClass } from "@vrembem/core"
+import { addClass, removeClass } from "@vrembem/core"
 
 /**
  * Modal plugin
@@ -24,7 +24,7 @@ export const Modal = (options) => {
   let memoryTarget
 
   api.init = (options) => {
-    settings = extend( defaults, options || {} )
+    settings = { ...defaults, ...options }
     document.addEventListener("click", run, false)
     document.addEventListener("touchend", run, false)
     document.addEventListener("keyup", escape, false)

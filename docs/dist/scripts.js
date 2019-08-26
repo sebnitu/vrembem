@@ -1,106 +1,116 @@
 (function () {
   'use strict';
 
-  var config = {
-    breakpoints: {
-      xs: "480px",
-      sm: "620px",
-      md: "760px",
-      lg: "990px",
-      xl: "1380px"
-    }
+  var breakpoints = {
+    xs: "480px",
+    sm: "620px",
+    md: "760px",
+    lg: "990px",
+    xl: "1380px"
   };
 
-  var toArray = function toArray(item) {
-    var array = [];
+  var addClass = function addClass(el) {
+    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      cl[_key - 1] = arguments[_key];
+    }
 
-    if (Array.isArray(item)) {
-      array = item;
+    el = el.forEach ? el : [el];
+    el.forEach(function (el) {
+      var _el$classList;
+
+      (_el$classList = el.classList).add.apply(_el$classList, cl);
+    });
+  };
+
+  var hasClass = function hasClass(el) {
+    el = el.forEach ? el : [el];
+    el = [].slice.call(el);
+
+    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      cl[_key - 1] = arguments[_key];
+    }
+
+    return cl.some(function (cl) {
+      return el.some(function (el) {
+        if (el.classList.contains(cl)) return true;
+      });
+    });
+  };
+
+  var removeClass = function removeClass(el) {
+    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      cl[_key - 1] = arguments[_key];
+    }
+
+    el = el.forEach ? el : [el];
+    el.forEach(function (el) {
+      var _el$classList;
+
+      (_el$classList = el.classList).remove.apply(_el$classList, cl);
+    });
+  };
+
+  var toggleClass = function toggleClass(el) {
+    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      cl[_key - 1] = arguments[_key];
+    }
+
+    el = el.forEach ? el : [el];
+    el.forEach(function (el) {
+      cl.forEach(function (cl) {
+        el.classList.toggle(cl);
+      });
+    });
+  };
+
+  function _defineProperty(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
     } else {
-      array.push(item);
+      obj[key] = value;
     }
 
-    return array;
-  };
+    return obj;
+  }
 
-  var addClass = function addClass(el, c) {
-    el = el.forEach ? el : toArray(el);
-    c = toArray(c);
-    el.forEach(function (el) {
-      c.forEach(function (c) {
-        el.classList.add(c);
+  function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
+
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly) symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
       });
-    });
-  };
-
-  var hasClass = function hasClass(el, c) {
-    el = el.forEach ? el : toArray(el);
-    c = toArray(c);
-    return c.some(function (c) {
-      var has = false;
-      el.forEach(function (el) {
-        if (el.classList.contains(c)) {
-          has = true;
-        }
-      });
-      return has;
-    });
-  };
-
-  var extend = function extend() {
-    var extended = {};
-    var deep = false;
-    var i = 0;
-    var length = arguments.length;
-
-    if (Object.prototype.toString.call(arguments.length <= 0 ? undefined : arguments[0]) === "[object Boolean]") {
-      deep = arguments.length <= 0 ? undefined : arguments[0];
-      i++;
+      keys.push.apply(keys, symbols);
     }
 
-    var merge = function merge(obj) {
-      for (var prop in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, prop)) {
-          if (deep && Object.prototype.toString.call(obj[prop]) === "[object Object]") {
-            extended[prop] = extend(true, extended[prop], obj[prop]);
-          } else {
-            extended[prop] = obj[prop];
-          }
-        }
+    return keys;
+  }
+
+  function _objectSpread2(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+
+      if (i % 2) {
+        ownKeys(source, true).forEach(function (key) {
+          _defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys(source).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
       }
-    };
-
-    for (; i < length; i++) {
-      var obj = i < 0 || arguments.length <= i ? undefined : arguments[i];
-      merge(obj);
     }
 
-    return extended;
-  };
-
-  var getBreakpoint = function getBreakpoint(key) {
-    return config.breakpoints[key];
-  };
-
-  var removeClass = function removeClass(el, c) {
-    el = el.forEach ? el : toArray(el);
-    c = toArray(c);
-    el.forEach(function (el) {
-      c.forEach(function (c) {
-        el.classList.remove(c);
-      });
-    });
-  };
-
-  var toggleClass = function toggleClass(el, c) {
-    el = el.forEach ? el : toArray(el);
-    c = toArray(c);
-    el.forEach(function (el) {
-      c.forEach(function (c) {
-        el.classList.toggle(c);
-      });
-    });
-  };
+    return target;
+  }
 
   var Dismissible = function Dismissible(options) {
     var api = {};
@@ -112,7 +122,7 @@
     };
 
     api.init = function (options) {
-      settings = extend(defaults, options || {});
+      settings = _objectSpread2({}, defaults, {}, options);
       document.addEventListener("click", run, false);
     };
 
@@ -140,7 +150,6 @@
   };
 
   var Drawer = function Drawer(options) {
-
     var api = {};
     var settings;
     var defaults = {
@@ -163,7 +172,7 @@
     var mqlArray = [];
 
     api.init = function (options) {
-      settings = extend(defaults, options || {});
+      settings = _objectSpread2({}, defaults, {}, options);
       document.querySelectorAll("." + settings.classTarget).forEach(function (drawer) {
         drawers.push({
           "drawer": drawer,
@@ -223,7 +232,7 @@
     api.switchToDrawer = function (selector) {
       selector = selector ? selector : settings["switch"];
       var items = document.querySelectorAll(selector);
-      items = items.forEach ? items : toArray(items);
+      items = items.forEach ? items : [items];
       items.forEach(function (item) {
         switchToDrawer(item);
       });
@@ -232,7 +241,7 @@
     api.switchToModal = function (selector) {
       selector = selector ? selector : settings["switch"];
       var items = document.querySelectorAll(selector);
-      items = items.forEach ? items : toArray(items);
+      items = items.forEach ? items : [items];
       items.forEach(function (item) {
         switchToModal(item);
       });
@@ -312,7 +321,7 @@
 
     var stateSave = function stateSave(items) {
       items = items ? items : drawers;
-      items = items.forEach ? items : toArray(items);
+      items = items.forEach ? items : [items];
       items.forEach(function (item) {
         if (item.drawer) {
           item = item.drawer;
@@ -340,13 +349,13 @@
         var bp = drawer.dataset[cleanSelector];
 
         if (bp) {
-          bp = getBreakpoint(bp);
+          bp = breakpoints[bp];
 
           if (!bp) {
             bp = drawer.dataset[cleanSelector];
           }
         } else {
-          bp = getBreakpoint(settings.switchBreakpoint);
+          bp = breakpoints[settings.switchBreakpoint];
 
           if (!bp) {
             bp = settings.switchBreakpoint;
@@ -435,7 +444,7 @@
     var memoryTarget;
 
     api.init = function (options) {
-      settings = extend(defaults, options || {});
+      settings = _objectSpread2({}, defaults, {}, options);
       document.addEventListener("click", run, false);
       document.addEventListener("touchend", run, false);
       document.addEventListener("keyup", escape, false);
@@ -532,7 +541,6 @@
   };
 
   var Toggle = function Toggle(options) {
-
     var api = {};
     var settings;
     var defaults = {
@@ -542,7 +550,7 @@
     };
 
     api.init = function (options) {
-      settings = extend(defaults, options || {});
+      settings = _objectSpread2({}, defaults, {}, options);
       document.addEventListener("click", run, false);
     };
 
@@ -755,7 +763,7 @@
     };
   }();
 
-  var extend$1 = function extend(object) {
+  var extend = function extend(object) {
     var args = Array.prototype.slice.call(arguments, 1);
 
     for (var i = 0, source; source = args[i]; i++) {
@@ -781,7 +789,7 @@
     return -1;
   };
 
-  var toArray$1 = function toArray(collection) {
+  var toArray = function toArray(collection) {
     if (typeof collection === 'undefined') return [];
     if (collection === null) return [null];
     if (collection === window) return [window];
@@ -810,7 +818,7 @@
       prefix = bind !== 'addEventListener' ? 'on' : '';
 
   var bind_1 = function bind_1(el, type, fn, capture) {
-    el = toArray$1(el);
+    el = toArray(el);
 
     for (var i = 0; i < el.length; i++) {
       el[i][bind](prefix + type, fn, capture || false);
@@ -818,7 +826,7 @@
   };
 
   var unbind_1 = function unbind_1(el, type, fn, capture) {
-    el = toArray$1(el);
+    el = toArray(el);
 
     for (var i = 0; i < el.length; i++) {
       el[i][unbind](prefix + type, fn, capture || false);
@@ -1718,7 +1726,7 @@
 
   var fuzzySearch = function fuzzySearch(list, options) {
     options = options || {};
-    options = extend$1({
+    options = extend({
       location: 0,
       distance: 100,
       threshold: 0.4,
@@ -1798,14 +1806,14 @@
         self.valueNames = [];
         self.utils = {
           getByClass: getByClass,
-          extend: extend$1,
+          extend: extend,
           indexOf: indexOf_1,
           events: events,
           toString: toString_1,
           naturalSort: naturalCompare_1,
           classes: classes,
           getAttribute: getAttribute,
-          toArray: toArray$1
+          toArray: toArray
         };
         self.utils.extend(self, options);
         self.listContainer = typeof id === 'string' ? document.getElementById(id) : id;

@@ -1,8 +1,6 @@
-import { extend, toggleClass } from "@vrembem/core"
+import { toggleClass } from "@vrembem/core"
 
 export const Toggle = (options) => {
-
-  "use strict"
 
   let api = {}
   let settings
@@ -13,7 +11,7 @@ export const Toggle = (options) => {
   }
 
   api.init = (options) => {
-    settings = extend( defaults, options || {} )
+    settings = { ...defaults, ...options }
     document.addEventListener("click", run, false)
   }
 

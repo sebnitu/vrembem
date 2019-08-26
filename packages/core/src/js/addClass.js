@@ -1,20 +1,13 @@
-import { toArray } from "./toArray"
-
 /**
- * Adds a class or classes to an element
+ * Adds a class or classes to an element or NodeList
  * ---
- * @param {Node} el - Element(s) to add class(es) on
- * @param {String || Array} c - Class(es) to add
+ * @param {Node || NodeList} el - Element(s) to add class(es) to
+ * @param {String || Array} cl - Class(es) to add
  */
 
-export const addClass = (el, c) => {
-
-  el = (el.forEach) ? el : toArray(el)
-  c = toArray(c)
-
+export const addClass = (el, ...cl) => {
+  el = (el.forEach) ? el : [el]
   el.forEach((el) => {
-    c.forEach((c) => {
-      el.classList.add(c)
-    })
+    el.classList.add(...cl)
   })
 }

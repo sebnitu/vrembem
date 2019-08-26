@@ -2,103 +2,113 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var config = {
-  breakpoints: {
-    xs: "480px",
-    sm: "620px",
-    md: "760px",
-    lg: "990px",
-    xl: "1380px"
-  }
-};
-
-var toArray = function toArray(item) {
-  var array = [];
-
-  if (Array.isArray(item)) {
-    array = item;
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
   } else {
-    array.push(item);
+    obj[key] = value;
   }
 
-  return array;
-};
+  return obj;
+}
 
-var addClass = function addClass(el, c) {
-  el = el.forEach ? el : toArray(el);
-  c = toArray(c);
-  el.forEach(function (el) {
-    c.forEach(function (c) {
-      el.classList.add(c);
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
     });
-  });
-};
-
-var hasClass = function hasClass(el, c) {
-  el = el.forEach ? el : toArray(el);
-  c = toArray(c);
-  return c.some(function (c) {
-    var has = false;
-    el.forEach(function (el) {
-      if (el.classList.contains(c)) {
-        has = true;
-      }
-    });
-    return has;
-  });
-};
-
-var extend = function extend() {
-  var extended = {};
-  var deep = false;
-  var i = 0;
-  var length = arguments.length;
-
-  if (Object.prototype.toString.call(arguments.length <= 0 ? undefined : arguments[0]) === "[object Boolean]") {
-    deep = arguments.length <= 0 ? undefined : arguments[0];
-    i++;
+    keys.push.apply(keys, symbols);
   }
 
-  var merge = function merge(obj) {
-    for (var prop in obj) {
-      if (Object.prototype.hasOwnProperty.call(obj, prop)) {
-        if (deep && Object.prototype.toString.call(obj[prop]) === "[object Object]") {
-          extended[prop] = extend(true, extended[prop], obj[prop]);
-        } else {
-          extended[prop] = obj[prop];
-        }
-      }
+  return keys;
+}
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(source, true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(source).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
     }
-  };
-
-  for (; i < length; i++) {
-    var obj = i < 0 || arguments.length <= i ? undefined : arguments[i];
-    merge(obj);
   }
 
-  return extended;
+  return target;
+}
+
+var breakpoints = {
+  xs: "480px",
+  sm: "620px",
+  md: "760px",
+  lg: "990px",
+  xl: "1380px"
 };
 
-var getBreakpoint = function getBreakpoint(key) {
-  return config.breakpoints[key];
-};
+var addClass = function addClass(el) {
+  for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    cl[_key - 1] = arguments[_key];
+  }
 
-var removeClass = function removeClass(el, c) {
-  el = el.forEach ? el : toArray(el);
-  c = toArray(c);
+  el = el.forEach ? el : [el];
   el.forEach(function (el) {
-    c.forEach(function (c) {
-      el.classList.remove(c);
+    var _el$classList;
+
+    (_el$classList = el.classList).add.apply(_el$classList, cl);
+  });
+};
+
+var hasClass = function hasClass(el) {
+  el = el.forEach ? el : [el];
+  el = [].slice.call(el);
+
+  for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    cl[_key - 1] = arguments[_key];
+  }
+
+  return cl.some(function (cl) {
+    return el.some(function (el) {
+      if (el.classList.contains(cl)) return true;
     });
   });
 };
 
-var toggleClass = function toggleClass(el, c) {
-  el = el.forEach ? el : toArray(el);
-  c = toArray(c);
+var removeClass = function removeClass(el) {
+  for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    cl[_key - 1] = arguments[_key];
+  }
+
+  el = el.forEach ? el : [el];
   el.forEach(function (el) {
-    c.forEach(function (c) {
-      el.classList.toggle(c);
+    var _el$classList;
+
+    (_el$classList = el.classList).remove.apply(_el$classList, cl);
+  });
+};
+
+var toggleClass = function toggleClass(el) {
+  for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    cl[_key - 1] = arguments[_key];
+  }
+
+  el = el.forEach ? el : [el];
+  el.forEach(function (el) {
+    cl.forEach(function (cl) {
+      el.classList.toggle(cl);
     });
   });
 };
@@ -113,7 +123,7 @@ var Dismissible = function Dismissible(options) {
   };
 
   api.init = function (options) {
-    settings = extend(defaults, options || {});
+    settings = _objectSpread2({}, defaults, {}, options);
     document.addEventListener("click", run, false);
   };
 
@@ -141,7 +151,6 @@ var Dismissible = function Dismissible(options) {
 };
 
 var Drawer = function Drawer(options) {
-
   var api = {};
   var settings;
   var defaults = {
@@ -164,7 +173,7 @@ var Drawer = function Drawer(options) {
   var mqlArray = [];
 
   api.init = function (options) {
-    settings = extend(defaults, options || {});
+    settings = _objectSpread2({}, defaults, {}, options);
     document.querySelectorAll("." + settings.classTarget).forEach(function (drawer) {
       drawers.push({
         "drawer": drawer,
@@ -224,7 +233,7 @@ var Drawer = function Drawer(options) {
   api.switchToDrawer = function (selector) {
     selector = selector ? selector : settings["switch"];
     var items = document.querySelectorAll(selector);
-    items = items.forEach ? items : toArray(items);
+    items = items.forEach ? items : [items];
     items.forEach(function (item) {
       switchToDrawer(item);
     });
@@ -233,7 +242,7 @@ var Drawer = function Drawer(options) {
   api.switchToModal = function (selector) {
     selector = selector ? selector : settings["switch"];
     var items = document.querySelectorAll(selector);
-    items = items.forEach ? items : toArray(items);
+    items = items.forEach ? items : [items];
     items.forEach(function (item) {
       switchToModal(item);
     });
@@ -313,7 +322,7 @@ var Drawer = function Drawer(options) {
 
   var stateSave = function stateSave(items) {
     items = items ? items : drawers;
-    items = items.forEach ? items : toArray(items);
+    items = items.forEach ? items : [items];
     items.forEach(function (item) {
       if (item.drawer) {
         item = item.drawer;
@@ -341,13 +350,13 @@ var Drawer = function Drawer(options) {
       var bp = drawer.dataset[cleanSelector];
 
       if (bp) {
-        bp = getBreakpoint(bp);
+        bp = breakpoints[bp];
 
         if (!bp) {
           bp = drawer.dataset[cleanSelector];
         }
       } else {
-        bp = getBreakpoint(settings.switchBreakpoint);
+        bp = breakpoints[settings.switchBreakpoint];
 
         if (!bp) {
           bp = settings.switchBreakpoint;
@@ -436,7 +445,7 @@ var Modal = function Modal(options) {
   var memoryTarget;
 
   api.init = function (options) {
-    settings = extend(defaults, options || {});
+    settings = _objectSpread2({}, defaults, {}, options);
     document.addEventListener("click", run, false);
     document.addEventListener("touchend", run, false);
     document.addEventListener("keyup", escape, false);
@@ -533,7 +542,6 @@ var Modal = function Modal(options) {
 };
 
 var Toggle = function Toggle(options) {
-
   var api = {};
   var settings;
   var defaults = {
@@ -543,7 +551,7 @@ var Toggle = function Toggle(options) {
   };
 
   api.init = function (options) {
-    settings = extend(defaults, options || {});
+    settings = _objectSpread2({}, defaults, {}, options);
     document.addEventListener("click", run, false);
   };
 

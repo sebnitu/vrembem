@@ -1,4 +1,4 @@
-import { extend, toggleClass } from "@vrembem/core"
+import { toggleClass } from "@vrembem/core"
 
 export const Dismissible = (options) => {
 
@@ -11,7 +11,7 @@ export const Dismissible = (options) => {
   }
 
   api.init = (options) => {
-    settings = extend( defaults, options || {} )
+    settings = { ...defaults, ...options }
     document.addEventListener("click", run, false)
   }
 

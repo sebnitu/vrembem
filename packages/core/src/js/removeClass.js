@@ -1,20 +1,13 @@
-import { toArray } from "./toArray"
-
 /**
- * Remove a class or classes from an element
+ * Remove a class or classes from an element or NodeList
  * ---
- * @param {Node} el - Element(s) to remove class(es) from
- * @param {String || Array} c - Class(es) to remove
+ * @param {Node || NodeList} el - Element(s) to remove class(es) from
+ * @param {String || Array} cl - Class(es) to remove
  */
 
-export const removeClass = (el, c) => {
-
-  el = (el.forEach) ? el : toArray(el)
-  c = toArray(c)
-
+export const removeClass = (el, ...cl) => {
+  el = (el.forEach) ? el : [el]
   el.forEach((el) => {
-    c.forEach((c) => {
-      el.classList.remove(c)
-    })
+    el.classList.remove(...cl)
   })
 }

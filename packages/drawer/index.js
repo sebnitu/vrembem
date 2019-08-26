@@ -1,11 +1,9 @@
 import {
-  extend,
-  toArray,
-  hasClass,
   addClass,
+  breakpoints,
+  hasClass,
   removeClass,
-  toggleClass,
-  getBreakpoint
+  toggleClass
 } from "@vrembem/core"
 
 /**
@@ -16,8 +14,6 @@ import {
  */
 
 export const Drawer = (options) => {
-
-  "use strict"
 
   let api = {}
   let settings
@@ -75,7 +71,7 @@ export const Drawer = (options) => {
   api.init = (options) => {
 
     // Merge the defaults and passed options into our settings obj
-    settings = extend( defaults, options || {} )
+    settings = { ...defaults, ...options }
 
     // Get all the drawers on the page and save them with their default state
     document.querySelectorAll("." + settings.classTarget).forEach((drawer) => {
@@ -181,7 +177,7 @@ export const Drawer = (options) => {
     let items = document.querySelectorAll(selector)
 
     // Convert to array if only one drawer is passed
-    items = (items.forEach) ? items : toArray(items)
+    items = (items.forEach) ? items : [items]
 
     items.forEach((item) => {
       switchToDrawer(item)
@@ -202,7 +198,7 @@ export const Drawer = (options) => {
     let items = document.querySelectorAll(selector)
 
     // Convert to array if only one drawer is passed
-    items = (items.forEach) ? items : toArray(items)
+    items = (items.forEach) ? items : [items]
 
     items.forEach((item) => {
       switchToModal(item)
@@ -336,7 +332,7 @@ export const Drawer = (options) => {
     items = (items) ? items : drawers
 
     // Convert to array if only one drawer is passed
-    items = (items.forEach) ? items : toArray(items)
+    items = (items.forEach) ? items : [items]
 
     // Loop through our drawers and save their new state to local storage
     items.forEach((item) => {
@@ -390,12 +386,12 @@ export const Drawer = (options) => {
       // c) The raw pixel value provided in settings
       let bp = drawer.dataset[cleanSelector]
       if (bp) {
-        bp = getBreakpoint(bp)
+        bp = breakpoints[bp]
         if (!bp) {
           bp = drawer.dataset[cleanSelector]
         }
       } else {
-        bp = getBreakpoint(settings.switchBreakpoint)
+        bp = breakpoints[settings.switchBreakpoint]
         if (!bp) {
           bp = settings.switchBreakpoint
         }
