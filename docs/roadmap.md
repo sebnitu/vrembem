@@ -77,6 +77,7 @@ I'm starting to import the rest of my components into their own package file.
   <div class="grid__item span_full">
     <div class="notice notice_theme_paper">
       <h3 class="notice__title">Task notes</h3>
+      <p>Some of these may need to be pushed until after the monorepo update. Especially the component refactoring tasks, which should have corresponding issues in GitHub and tracked that way.</p>
       <ul class="list list_todo">
         <li class="is-done">
           <span class="list__icon"></span>
@@ -101,6 +102,22 @@ I'm starting to import the rest of my components into their own package file.
         <li class="">
           <span class="list__icon"></span>
           <p><strong class="list__title">@vrembem/dropdown</strong> Create a JavaScript dropdown component for <code>on-click</code> event handling.</p>
+        </li>
+        <li class="">
+          <span class="list__icon"></span>
+          <p><strong class="list__title">@vrembem/dropdown</strong> Extract menu styles from dropdowns and simplify it to the most basic functionality.</p>
+        </li>
+        <li class="">
+          <span class="list__icon"></span>
+          <p><strong class="list__title">@vrembem/menu</strong> Create a <code>menu_theme_dropdown</code> modifier for menus inside dropdowns.</p>
+        </li>
+        <li class="">
+          <span class="list__icon"></span>
+          <p><strong class="list__title">@vrembem/menu</strong> Make stacked menus the default and horizontal created using a modifier.</p>
+        </li>
+        <li class="">
+          <span class="list__icon"></span>
+          <p><strong class="list__title">@vrembem/tooltip</strong> Refactor tooltips to include JavaScript for tooltips that follow the mouse cursor and/or auto reposition depending on available space.</p>
         </li>
         <li class="">
           <span class="list__icon"></span>
@@ -207,10 +224,13 @@ These are tasks I need to setup with NPM scripts and sorting the output and how 
 
 The set of scripts that are to be used depending on the package type.
 
-<div class="spacing" markdown="1">
+<div class="spacing">
 
-<h2 class="subtitle">Root</h2>
-
+<details>
+  <summary>
+    <h2 class="subtitle">Root</h2>
+  </summary>
+<div class="content" markdown="1">
 ```js
 "scripts": {
   "build": "lerna run build --parallel",
@@ -227,9 +247,14 @@ The set of scripts that are to be used depending on the package type.
   "watch:styles": "lerna run watch:styles --parallel"
 }
 ```
+</div>
+</details>
 
-<h2 class="subtitle">Scripts</h2>
-
+<details>
+  <summary>
+    <h2 class="subtitle">Scripts</h2>
+  </summary>
+<div class="content" markdown="1">
 ```js
 "scripts": {
   "build": "npm-run-all clean scripts",
@@ -239,9 +264,14 @@ The set of scripts that are to be used depending on the package type.
   "watch:scripts": "nodemon -e js -x 'npm run scripts' -i dist"
 }
 ```
+</div>
+</details>
 
-<h2 class="subtitle">Styles</h2>
-
+<details>
+  <summary>
+    <h2 class="subtitle">Styles</h2>
+  </summary>
+<div class="content" markdown="1">
 ```js
 "scripts": {
   "build": "npm-run-all clean styles",
@@ -253,9 +283,14 @@ The set of scripts that are to be used depending on the package type.
   "watch:styles": "nodemon -e scss -x 'npm run styles'"
 }
 ```
+</div>
+</details>
 
-<h2 class="subtitle">Both</h2>
-
+<details>
+  <summary>
+    <h2 class="subtitle">Both</h2>
+  </summary>
+<div class="content" markdown="1">
 ```js
 "scripts": {
   "build": "npm-run-all clean scripts styles",
@@ -269,5 +304,7 @@ The set of scripts that are to be used depending on the package type.
   "watch:styles": "nodemon -e scss -x 'npm run styles'"
 }
 ```
+</div>
+</details>
 
 </div>

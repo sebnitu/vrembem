@@ -6,6 +6,41 @@
   text-transform: uppercase;
 }
 
+details {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  padding: 1em;
+}
+
+summary {
+
+}
+
+summary .subtitle {
+  display: inline-block;
+  padding: 0;
+}
+
+details .content {
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 1em;
+}
+
+details[open] {
+  background: #eceff1;
+  border-color: transparent;
+}
+
+details[open] summary {
+  margin-bottom: 1em;
+}
+
+details[open] .content {
+
+}
+
 /**
  * List component
  */
