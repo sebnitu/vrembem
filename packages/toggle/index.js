@@ -3,47 +3,49 @@ import { toggleClass } from "@vrembem/core"
 export const Toggle = (options) => {
 
   let api = {}
-  let settings
   const defaults = {
-    trigger: "[data-toggle-class]",
-    targets: "",
-    class: ""
+    autoInit: false,
+    class: "is-active",
+    target: "[data-toggle-target]",
+    trigger: "[data-toggle]"
   }
 
-  api.init = (options) => {
-    settings = { ...defaults, ...options }
+  api.settings = { ...defaults, ...options }
+
+  api.init = () => {
     document.addEventListener("click", run, false)
   }
 
   api.destroy = () => {
-    settings = null
     document.removeEventListener("click", run, false)
   }
 
-  const run = () => {
-    let trigger = event.target.closest(settings.trigger)
+  const run = (e) => {
+    let trigger = e.target.closest(api.settings.trigger)
     if (trigger) {
-      let targets
-      if (settings.targets) {
-        targets = document.querySelectorAll(settings.targets)
+
+      let target
+      if (api.settings.target) {
+        target = document.querySelectorAll(api.settings.target)
       } else {
-        targets = document.querySelectorAll(trigger.dataset.toggleTarget)
+        target = document.querySelectorAll(trigger.dataset.toggleTarget)
       }
-      if (targets.length) {
-        targets.forEach((target) => {
-          toggleClass(target, trigger.dataset.toggleClass.split(" "))
-        })
+
+      if (target.length) {
+        toggleClass(target, trigger.dataset.toggle.split(" "))
       } else {
-        if (settings.class) {
-          toggleClass(trigger, settings.class)
+        if (api.settings.class) {
+          toggleClass(trigger, api.settings.class)
         } else {
-          toggleClass(trigger, trigger.dataset.toggleClass.split(" "))
+          toggleClass(trigger, trigger.dataset.toggle.split(" "))
         }
       }
-      event.preventDefault()
+
+      e.preventDefault()
     }
   }
 
-  api.init(options)
+  if (api.settings.autoInit) api.init()
+
   return api
 }

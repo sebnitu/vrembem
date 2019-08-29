@@ -68,11 +68,19 @@ var Dismissible = function Dismissible(options) {
   var api = {};
   var defaults = {
     autoInit: false,
-    classToggle: "dismiss",
+    "class": "dismiss",
     target: "[data-dismissible]",
     trigger: "[data-dismiss]"
   };
   api.settings = _objectSpread2({}, defaults, {}, options);
+
+  api.init = function () {
+    document.addEventListener("click", run, false);
+  };
+
+  api.destroy = function () {
+    document.removeEventListener("click", run, false);
+  };
 
   var run = function run(e) {
     var trigger = e.target.closest(api.settings.trigger);
@@ -81,19 +89,11 @@ var Dismissible = function Dismissible(options) {
       var target = trigger.closest(api.settings.target);
 
       if (target) {
-        toggleClass(target, api.settings.classToggle);
+        toggleClass(target, api.settings["class"]);
       }
 
       e.preventDefault();
     }
-  };
-
-  api.init = function () {
-    document.addEventListener("click", run, false);
-  };
-
-  api.destroy = function () {
-    document.removeEventListener("click", run, false);
   };
 
   if (api.settings.autoInit) api.init();

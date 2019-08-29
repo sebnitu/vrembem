@@ -3,7 +3,7 @@ import "@testing-library/jest-dom/extend-expect"
 
 document.body.innerHTML = `
   <div data-dismissible>
-    <button data-dismiss>Close</button>
+    <button data-dismiss></button>
   </div>
   <div class="a">
     <button class="b"></button>
@@ -24,7 +24,7 @@ test("dismiss using default settings", () => {
 test("dismiss using custom settings and auto init", () => {
   new Dismissible({
     autoInit: true,
-    classToggle: "c",
+    class: "c",
     target: ".a",
     trigger: ".b"
   })
@@ -39,7 +39,7 @@ test("dismiss using custom settings and auto init", () => {
 test("dismissible destroy method removes event listener", () => {
   const dismissible = new Dismissible({
     autoInit: true,
-    classToggle: "a"
+    class: "a"
   })
   const el = document.querySelector("[data-dismissible]")
   const button = document.querySelector("[data-dismiss]")
