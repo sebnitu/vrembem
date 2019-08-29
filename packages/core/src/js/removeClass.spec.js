@@ -1,12 +1,11 @@
 import { removeClass } from "./removeClass"
-import { JSDOM } from "jsdom"
 import "@testing-library/jest-dom/extend-expect"
 
-const { document } = (new JSDOM(`<!DOCTYPE html>
+document.body.innerHTML = `<!DOCTYPE html>
   <h1 class="a b c">Hello world</h1>
   <p class="a b c">...</p>
   <p class="a b c">...</p>
-`)).window
+`
 
 const h1 = document.querySelector("h1")
 const p = document.querySelectorAll("p")

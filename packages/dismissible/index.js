@@ -3,34 +3,35 @@ import { toggleClass } from "@vrembem/core"
 export const Dismissible = (options) => {
 
   let api = {}
-  let settings
   const defaults = {
-    trigger: "[data-dismiss]",
+    autoInit: false,
+    classToggle: "dismiss",
     target: "[data-dismissible]",
-    classToggle: "dismiss"
+    trigger: "[data-dismiss]"
   }
 
-  api.init = (options) => {
-    settings = { ...defaults, ...options }
+  api.settings = { ...defaults, ...options }
+
+  const run = (e) => {
+    let trigger = e.target.closest(api.settings.trigger)
+    if (trigger) {
+      let target = trigger.closest(api.settings.target)
+      if (target) {
+        toggleClass(target, api.settings.classToggle)
+      }
+      e.preventDefault()
+    }
+  }
+
+  api.init = () => {
     document.addEventListener("click", run, false)
   }
 
   api.destroy = () => {
-    settings = null
     document.removeEventListener("click", run, false)
   }
 
-  const run = () => {
-    let trigger = event.target.closest(settings.trigger)
-    if (trigger) {
-      let target = trigger.closest(settings.target)
-      if (target) {
-        toggleClass(target, settings.classToggle)
-      }
-      event.preventDefault()
-    }
-  }
+  if (api.settings.autoInit) api.init()
 
-  api.init(options)
   return api
 }

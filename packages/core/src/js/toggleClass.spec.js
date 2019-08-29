@@ -1,12 +1,11 @@
 import { toggleClass } from "./toggleClass"
-import { JSDOM } from "jsdom"
 import "@testing-library/jest-dom/extend-expect"
 
-const { document } = (new JSDOM(`<!DOCTYPE html>
+document.body.innerHTML = `<!DOCTYPE html>
   <h1 class="b c">Hello world</h1>
   <p class="b c">...</p>
   <p class="b c">...</p>
-`)).window
+`
 
 const h1 = document.querySelector("h1")
 const p = document.querySelectorAll("p")

@@ -1,11 +1,10 @@
 import { hasClass } from "./hasClass"
-import { JSDOM } from "jsdom"
 
-const { document } = (new JSDOM(`<!DOCTYPE html>
+document.body.innerHTML = `<!DOCTYPE html>
   <h1 class="a">Hello world</h1>
   <p class="b">...</p>
   <p class="b e">...</p>
-`)).window
+`
 
 const h1 = document.querySelector("h1")
 const p = document.querySelectorAll("p")

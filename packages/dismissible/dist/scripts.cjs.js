@@ -66,38 +66,37 @@ var toggleClass = function toggleClass(el) {
 
 var Dismissible = function Dismissible(options) {
   var api = {};
-  var settings;
   var defaults = {
-    trigger: "[data-dismiss]",
+    autoInit: false,
+    classToggle: "dismiss",
     target: "[data-dismissible]",
-    classToggle: "dismiss"
+    trigger: "[data-dismiss]"
+  };
+  api.settings = _objectSpread2({}, defaults, {}, options);
+
+  var run = function run(e) {
+    var trigger = e.target.closest(api.settings.trigger);
+
+    if (trigger) {
+      var target = trigger.closest(api.settings.target);
+
+      if (target) {
+        toggleClass(target, api.settings.classToggle);
+      }
+
+      e.preventDefault();
+    }
   };
 
-  api.init = function (options) {
-    settings = _objectSpread2({}, defaults, {}, options);
+  api.init = function () {
     document.addEventListener("click", run, false);
   };
 
   api.destroy = function () {
-    settings = null;
     document.removeEventListener("click", run, false);
   };
 
-  var run = function run() {
-    var trigger = event.target.closest(settings.trigger);
-
-    if (trigger) {
-      var target = trigger.closest(settings.target);
-
-      if (target) {
-        toggleClass(target, settings.classToggle);
-      }
-
-      event.preventDefault();
-    }
-  };
-
-  api.init(options);
+  if (api.settings.autoInit) api.init();
   return api;
 };
 
