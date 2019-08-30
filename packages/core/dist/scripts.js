@@ -10,6 +10,12 @@ this.vrembem.core = (function (exports) {
     xl: "1380px"
   };
 
+  var camelCase = function camelCase(str) {
+    return str.replace(/-([a-z])/g, function (g) {
+      return g[1].toUpperCase();
+    });
+  };
+
   var addClass = function addClass(el) {
     for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       cl[_key - 1] = arguments[_key];
@@ -35,6 +41,12 @@ this.vrembem.core = (function (exports) {
       return el.some(function (el) {
         if (el.classList.contains(cl)) return true;
       });
+    });
+  };
+
+  var hyphenCase = function hyphenCase(str) {
+    return str.replace(/([a-z][A-Z])/g, function (g) {
+      return g[0] + "-" + g[1].toLowerCase();
     });
   };
 
@@ -66,7 +78,9 @@ this.vrembem.core = (function (exports) {
 
   exports.addClass = addClass;
   exports.breakpoints = breakpoints;
+  exports.camelCase = camelCase;
   exports.hasClass = hasClass;
+  exports.hyphenCase = hyphenCase;
   exports.removeClass = removeClass;
   exports.toggleClass = toggleClass;
 

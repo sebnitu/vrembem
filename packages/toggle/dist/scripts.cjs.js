@@ -51,6 +51,12 @@ function _objectSpread2(target) {
   return target;
 }
 
+var camelCase = function camelCase(str) {
+  return str.replace(/-([a-z])/g, function (g) {
+    return g[1].toUpperCase();
+  });
+};
+
 var toggleClass = function toggleClass(el) {
   for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
     cl[_key - 1] = arguments[_key];
@@ -66,52 +72,39 @@ var toggleClass = function toggleClass(el) {
 
 var Toggle = function Toggle(options) {
   var api = {};
-  var settings;
   var defaults = {
-    trigger: "[data-toggle-class]",
-    targets: "",
-    "class": ""
+    autoInit: false,
+    "class": "is-active",
+    dataClass: "toggle",
+    dataTarget: "toggle-target",
+    selectorTarget: "[data-toggle-target]",
+    selectorTrigger: "[data-toggle]"
   };
+  api.settings = _objectSpread2({}, defaults, {}, options);
 
-  api.init = function (options) {
-    settings = _objectSpread2({}, defaults, {}, options);
+  api.init = function () {
     document.addEventListener("click", run, false);
   };
 
   api.destroy = function () {
-    settings = null;
     document.removeEventListener("click", run, false);
   };
 
-  var run = function run() {
-    var trigger = event.target.closest(settings.trigger);
+  var run = function run(e) {
+    var trigger = e.target.closest(api.settings.selectorTrigger);
 
     if (trigger) {
-      var targets;
-
-      if (settings.targets) {
-        targets = document.querySelectorAll(settings.targets);
-      } else {
-        targets = document.querySelectorAll(trigger.dataset.toggleTarget);
-      }
-
-      if (targets.length) {
-        targets.forEach(function (target) {
-          toggleClass(target, trigger.dataset.toggleClass.split(" "));
-        });
-      } else {
-        if (settings["class"]) {
-          toggleClass(trigger, settings["class"]);
-        } else {
-          toggleClass(trigger, trigger.dataset.toggleClass.split(" "));
-        }
-      }
-
-      event.preventDefault();
+      var cl = trigger.dataset[camelCase(api.settings.dataClass)];
+      cl = cl ? cl : api.settings["class"];
+      var target = trigger.dataset[camelCase(api.settings.dataTarget)];
+      target = document.querySelectorAll(target);
+      target = target.length ? target : trigger;
+      toggleClass(target, cl);
+      e.preventDefault();
     }
   };
 
-  api.init(options);
+  if (api.settings.autoInit) api.init();
   return api;
 };
 
