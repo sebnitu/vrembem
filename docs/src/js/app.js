@@ -8,10 +8,10 @@ import {
 import listjs from "list.js"
 import "svgxuse"
 
-new Dismissible()
-let drawer = new Drawer()
-new Modal()
-new Toggle()
+new Dismissible({ autoInit: true })
+let drawer = new Drawer({ autoInit: true })
+new Modal({ autoInit: true })
+new Toggle({ autoInit: true })
 
 /**
  * General event trigger for testing

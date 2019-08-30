@@ -6,8 +6,10 @@ export const Toggle = (options) => {
   const defaults = {
     autoInit: false,
     class: "is-active",
-    target: "[data-toggle-target]",
-    trigger: "[data-toggle]"
+    dataClass: "toggle",
+    dataTarget: "toggle-target",
+    selectorTarget: "[data-toggle-target]",
+    selectorTrigger: "[data-toggle]"
   }
 
   api.settings = { ...defaults, ...options }
@@ -20,27 +22,34 @@ export const Toggle = (options) => {
     document.removeEventListener("click", run, false)
   }
 
+  // Move me to core
+  const camelCase = (str) => {
+    return str.replace(/-([a-z])/g, function (g) {
+      return g[1].toUpperCase()
+    })
+  }
+
+  // Move me to core
+  const hyphenCase = (str) => {
+    return str.replace(/([a-z][A-Z])/g, function (g) {
+      return g[0] + "-" + g[1].toLowerCase()
+    })
+  }
+
   const run = (e) => {
-    let trigger = e.target.closest(api.settings.trigger)
+    let trigger = e.target.closest(api.settings.selectorTrigger)
     if (trigger) {
 
-      let target
-      if (api.settings.target) {
-        target = document.querySelectorAll(api.settings.target)
-      } else {
-        target = document.querySelectorAll(trigger.dataset.toggleTarget)
-      }
+      // Get the class to toggle via dataClass or class
+      let cl = trigger.dataset[camelCase(api.settings.dataClass)]
+      cl = (cl) ? cl : api.settings.class
 
-      if (target.length) {
-        toggleClass(target, trigger.dataset.toggle.split(" "))
-      } else {
-        if (api.settings.class) {
-          toggleClass(trigger, api.settings.class)
-        } else {
-          toggleClass(trigger, trigger.dataset.toggle.split(" "))
-        }
-      }
+      // Resolve the target
+      let target = trigger.dataset[camelCase(api.settings.dataTarget)]
+      target = document.querySelectorAll(target)
+      target = (target.length) ? target : trigger
 
+      toggleClass(target, cl)
       e.preventDefault()
     }
   }

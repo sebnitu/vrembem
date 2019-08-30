@@ -113,38 +113,37 @@ function _objectSpread2(target) {
 
 var Dismissible = function Dismissible(options) {
   var api = {};
-  var settings;
   var defaults = {
-    trigger: "[data-dismiss]",
+    autoInit: false,
+    "class": "dismiss",
     target: "[data-dismissible]",
-    classToggle: "dismiss"
+    trigger: "[data-dismiss]"
   };
+  api.settings = _objectSpread2({}, defaults, {}, options);
 
-  api.init = function (options) {
-    settings = _objectSpread2({}, defaults, {}, options);
+  api.init = function () {
     document.addEventListener("click", run, false);
   };
 
   api.destroy = function () {
-    settings = null;
     document.removeEventListener("click", run, false);
   };
 
-  var run = function run() {
-    var trigger = event.target.closest(settings.trigger);
+  var run = function run(e) {
+    var trigger = e.target.closest(api.settings.trigger);
 
     if (trigger) {
-      var target = trigger.closest(settings.target);
+      var target = trigger.closest(api.settings.target);
 
       if (target) {
-        toggleClass(target, settings.classToggle);
+        toggleClass(target, api.settings["class"]);
       }
 
-      event.preventDefault();
+      e.preventDefault();
     }
   };
 
-  api.init(options);
+  if (api.settings.autoInit) api.init();
   return api;
 };
 
@@ -541,52 +540,45 @@ var Modal = function Modal(options) {
 
 var Toggle = function Toggle(options) {
   var api = {};
-  var settings;
   var defaults = {
-    trigger: "[data-toggle-class]",
-    targets: "",
-    "class": ""
+    autoInit: false,
+    "class": "is-active",
+    dataClass: "toggle",
+    dataTarget: "toggle-target",
+    selectorTarget: "[data-toggle-target]",
+    selectorTrigger: "[data-toggle]"
   };
+  api.settings = _objectSpread2({}, defaults, {}, options);
 
-  api.init = function (options) {
-    settings = _objectSpread2({}, defaults, {}, options);
+  api.init = function () {
     document.addEventListener("click", run, false);
   };
 
   api.destroy = function () {
-    settings = null;
     document.removeEventListener("click", run, false);
   };
 
-  var run = function run() {
-    var trigger = event.target.closest(settings.trigger);
+  var camelCase = function camelCase(str) {
+    return str.replace(/-([a-z])/g, function (g) {
+      return g[1].toUpperCase();
+    });
+  };
+
+  var run = function run(e) {
+    var trigger = e.target.closest(api.settings.selectorTrigger);
 
     if (trigger) {
-      var targets;
-
-      if (settings.targets) {
-        targets = document.querySelectorAll(settings.targets);
-      } else {
-        targets = document.querySelectorAll(trigger.dataset.toggleTarget);
-      }
-
-      if (targets.length) {
-        targets.forEach(function (target) {
-          toggleClass(target, trigger.dataset.toggleClass.split(" "));
-        });
-      } else {
-        if (settings["class"]) {
-          toggleClass(trigger, settings["class"]);
-        } else {
-          toggleClass(trigger, trigger.dataset.toggleClass.split(" "));
-        }
-      }
-
-      event.preventDefault();
+      var cl = trigger.dataset[camelCase(api.settings.dataClass)];
+      cl = cl ? cl : api.settings["class"];
+      var target = trigger.dataset[camelCase(api.settings.dataTarget)];
+      target = document.querySelectorAll(target);
+      target = target.length ? target : trigger;
+      toggleClass(target, cl);
+      e.preventDefault();
     }
   };
 
-  api.init(options);
+  if (api.settings.autoInit) api.init();
   return api;
 };
 
@@ -2281,10 +2273,18 @@ var src = function src(id, options, values) {
   }
 })();
 
-new Dismissible();
-var drawer = new Drawer();
-new Modal();
-new Toggle();
+new Dismissible({
+  autoInit: true
+});
+var drawer = new Drawer({
+  autoInit: true
+});
+new Modal({
+  autoInit: true
+});
+new Toggle({
+  autoInit: true
+});
 document.addEventListener("click", function () {
   var trigger = event.target;
 

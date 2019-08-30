@@ -4471,95 +4471,95 @@ pre {
 .notice_type_dark h6 {
   color: inherit;
 }
-.b_white {
+.bg_white {
   background-color: #fff !important;
 }
 
-.b_black {
+.bg_black {
   background-color: #000 !important;
 }
 
-.b_primary {
+.bg_primary {
   background-color: #2196f3 !important;
 }
 
-.b_primary_light {
+.bg_primary_light {
   background-color: #6ab8f7 !important;
 }
 
-.b_primary_dark {
+.bg_primary_dark {
   background-color: #0a6ebd !important;
 }
 
-.b_secondary {
+.bg_secondary {
   background-color: #607d8b !important;
 }
 
-.b_secondary_light {
+.bg_secondary_light {
   background-color: #8aa2ae !important;
 }
 
-.b_secondary_dark {
+.bg_secondary_dark {
   background-color: #41545e !important;
 }
 
-.b_accent {
+.bg_accent {
   background-color: #ffee58 !important;
 }
 
-.b_accent_light {
+.bg_accent_light {
   background-color: #fff6a5 !important;
 }
 
-.b_accent_dark {
+.bg_accent_dark {
   background-color: #ffe60c !important;
 }
 
-.b_shade {
+.bg_shade {
   background-color: #eceff1 !important;
 }
 
-.b_dark {
+.bg_dark {
   background-color: #37474f !important;
 }
 
-.b_info {
+.bg_info {
   background-color: #00bcd4 !important;
 }
 
-.b_info_light {
+.bg_info_light {
   background-color: #d4faff !important;
 }
 
-.b_success {
+.bg_success {
   background-color: #4caf50 !important;
 }
 
-.b_success_light {
+.bg_success_light {
   background-color: #d9eeda !important;
 }
 
-.b_caution {
+.bg_caution {
   background-color: #f9a825 !important;
 }
 
-.b_caution_light {
+.bg_caution_light {
   background-color: #feedd3 !important;
 }
 
-.b_danger {
+.bg_danger {
   background-color: #f44336 !important;
 }
 
-.b_danger_light {
+.bg_danger_light {
   background-color: #fde1df !important;
 }
 
-.b_error {
+.bg_error {
   background-color: #f44336 !important;
 }
 
-.b_error_light {
+.bg_error_light {
   background-color: #fde1df !important;
 }
 
