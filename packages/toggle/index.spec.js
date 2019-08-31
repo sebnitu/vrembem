@@ -244,11 +244,59 @@ describe("the kitchen sink", () => {
     const target = document.getElementById("target")
     const parent = document.querySelector("div.c")
     const sibling = document.querySelectorAll("target")
-    const children = document.querySelectorAll("[data-toggle] span")
+    const children = document.querySelectorAll("button span")
     const div = document.querySelector("div.d")
 
     button.click()
     expect(button).toHaveClass("b")
+    expect(target).toHaveClass("a")
+    expect(parent).toHaveClass("a")
+    expect(div).not.toHaveClass("a")
+    sibling.forEach((el) => {
+      expect(el).toHaveClass("a")
+    })
+    children.forEach((el) => {
+      expect(el).toHaveClass("a")
+    })
+  })
+
+  test("override component defaults", () => {
+    toggle = new Toggle({
+      autoInit: true,
+      class: "b",
+      dataClass: "class",
+      dataTarget: "target",
+      dataTargetSelf: "self",
+      dataTargetParent: "parent",
+      dataTargetSibling: "sibling",
+      dataTargetChild: "child",
+      selectorTrigger: ".toggle-trigger"
+    })
+    document.body.innerHTML = `
+    <div class="c">
+      <button class="toggle-trigger" data-class="a" data-self
+        data-parent=".c"
+        data-sibling="p"
+        data-child="span"
+        data-target="#target">
+        <span>@</span>
+        <span>Button</span>
+      </button>
+      <p>...</p>
+      <p>...</p>
+      <div class="d"></div>
+    </div>
+    <div id="target"></div>
+    `
+    const button = document.querySelector("button")
+    const target = document.getElementById("target")
+    const parent = document.querySelector("div.c")
+    const sibling = document.querySelectorAll("target")
+    const children = document.querySelectorAll("button span")
+    const div = document.querySelector("div.d")
+
+    button.click()
+    expect(button).toHaveClass("a")
     expect(target).toHaveClass("a")
     expect(parent).toHaveClass("a")
     expect(div).not.toHaveClass("a")
