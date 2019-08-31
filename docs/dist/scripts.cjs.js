@@ -117,6 +117,26 @@ function _objectSpread2(target) {
   return target;
 }
 
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
+}
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+
+    return arr2;
+  }
+}
+
+function _iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+
 var Dismissible = function Dismissible(options) {
   var api = {};
   var defaults = {
@@ -551,7 +571,10 @@ var Toggle = function Toggle(options) {
     "class": "is-active",
     dataClass: "toggle",
     dataTarget: "toggle-target",
-    selectorTarget: "[data-toggle-target]",
+    dataTargetSelf: "toggle-self",
+    dataTargetParent: "toggle-parent",
+    dataTargetSibling: "toggle-sibling",
+    dataTargetChild: "toggle-child",
     selectorTrigger: "[data-toggle]"
   };
   api.settings = _objectSpread2({}, defaults, {}, options);
@@ -570,10 +593,55 @@ var Toggle = function Toggle(options) {
     if (trigger) {
       var cl = trigger.dataset[camelCase(api.settings.dataClass)];
       cl = cl ? cl : api.settings["class"];
+      cl = cl.split(/[ ,]+/);
+      var targetParent = trigger.hasAttribute("data-".concat(api.settings.dataTargetParent));
+
+      if (targetParent) {
+        targetParent = trigger.dataset[camelCase(api.settings.dataTargetParent)];
+        targetParent = trigger.closest(targetParent);
+
+        if (targetParent) {
+          toggleClass.apply(void 0, [targetParent].concat(_toConsumableArray(cl)));
+        }
+      }
+
+      var targetSibling = trigger.hasAttribute("data-".concat(api.settings.dataTargetSibling));
+
+      if (targetSibling) {
+        targetSibling = trigger.dataset[camelCase(api.settings.dataTargetSibling)];
+        targetSibling = trigger.parentElement.querySelectorAll(":scope > ".concat(targetSibling));
+
+        if (targetSibling) {
+          toggleClass.apply(void 0, [targetSibling].concat(_toConsumableArray(cl)));
+        }
+      }
+
+      var targetChild = trigger.hasAttribute("data-".concat(api.settings.dataTargetChild));
+
+      if (targetChild) {
+        targetChild = trigger.dataset[camelCase(api.settings.dataTargetChild)];
+        targetChild = trigger.querySelectorAll(targetChild);
+
+        if (targetChild) {
+          toggleClass.apply(void 0, [targetChild].concat(_toConsumableArray(cl)));
+        }
+      }
+
       var target = trigger.dataset[camelCase(api.settings.dataTarget)];
       target = document.querySelectorAll(target);
-      target = target.length ? target : trigger;
-      toggleClass(target, cl);
+
+      if (!target.length && !targetParent && !targetSibling && !targetChild) {
+        target = trigger;
+      }
+
+      toggleClass.apply(void 0, [target].concat(_toConsumableArray(cl)));
+
+      if (trigger.hasAttribute("data-".concat(api.settings.dataTargetSelf))) {
+        var targetSelf = trigger.dataset[camelCase(api.settings.dataTargetSelf)];
+        var clSelf = targetSelf ? targetSelf.split("/[ ,]+/") : cl;
+        toggleClass.apply(void 0, [trigger].concat(_toConsumableArray(clSelf)));
+      }
+
       e.preventDefault();
     }
   };
