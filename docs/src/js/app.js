@@ -3,6 +3,7 @@ import {
   Dismissible,
   Drawer,
   Modal,
+  Todo,
   Toggle
 } from "vrembem"
 import listjs from "list.js"
@@ -11,6 +12,7 @@ import "svgxuse"
 new Dismissible({ autoInit: true })
 let drawer = new Drawer({ autoInit: true })
 new Modal({ autoInit: true })
+new Todo({ autoInit: true })
 new Toggle({ autoInit: true })
 
 /**

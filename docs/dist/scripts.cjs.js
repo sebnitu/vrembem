@@ -570,6 +570,60 @@ var Modal = function Modal(options) {
   return api;
 };
 
+var Todo = function Todo(options) {
+  var api = {};
+  var defaults = {
+    selectorTodo: "[data-todo]",
+    selectorTodoList: "[data-todo-open]",
+    selectorTodoDone: "[data-todo-done]",
+    selectorNotice: "[data-todo-notice]",
+    selectorToggle: "[data-todo-toggle]",
+    transitionDuration: 500
+  };
+  api.settings = _objectSpread2({}, defaults, {}, options);
+
+  api.init = function () {
+    updateLists();
+    document.addEventListener("change", run, false);
+  };
+
+  api.destroy = function () {
+    document.removeEventListener("change", run, false);
+  };
+
+  var todoList = document.querySelector(api.settings.selectorTodoList);
+  var todoListDone = document.querySelector(api.settings.selectorTodoDone);
+  var todoLists = [todoList, todoListDone];
+
+  var updateLists = function updateLists() {
+    todoLists.forEach(function (list) {
+      if (list.childElementCount <= 1) {
+        removeClass(list.querySelector(api.settings.selectorNotice), "d_none");
+      } else {
+        addClass(list.querySelector(api.settings.selectorNotice), "d_none");
+      }
+    });
+  };
+
+  var moveTodo = function moveTodo(item) {
+    var list = item.querySelector("input").checked ? api.settings.selectorTodoDone : api.settings.selectorTodoList;
+    console.log(item);
+    document.querySelector(list).append(item);
+    updateLists();
+  };
+
+  var run = function run() {
+    var trigger = event.target.closest(api.settings.selectorTodo);
+
+    if (trigger) {
+      moveTodo(trigger);
+    }
+  };
+
+  if (api.settings.autoInit) api.init();
+  return api;
+};
+
 var Toggle = function Toggle(options) {
   var api = {};
   var defaults = {
@@ -2389,6 +2443,9 @@ var drawer = new Drawer({
   autoInit: true
 });
 new Modal({
+  autoInit: true
+});
+new Todo({
   autoInit: true
 });
 new Toggle({
