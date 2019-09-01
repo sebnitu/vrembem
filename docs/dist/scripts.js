@@ -43,6 +43,12 @@
     });
   };
 
+  var hyphenCase = function hyphenCase(str) {
+    return str.replace(/([a-z][A-Z])/g, function (g) {
+      return g[0] + "-" + g[1].toLowerCase();
+    });
+  };
+
   var removeClass = function removeClass(el) {
     for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       cl[_key - 1] = arguments[_key];
@@ -570,12 +576,12 @@
     var defaults = {
       autoInit: false,
       "class": "is-active",
-      dataClass: "toggle",
+      dataChild: "toggle-child",
+      dataParent: "toggle-parent",
+      dataSelf: "toggle-self",
+      dataSibling: "toggle-sibling",
       dataTarget: "toggle-target",
-      dataTargetSelf: "toggle-self",
-      dataTargetParent: "toggle-parent",
-      dataTargetSibling: "toggle-sibling",
-      dataTargetChild: "toggle-child",
+      dataTrigger: "toggle",
       selectorTrigger: "[data-toggle]"
     };
     api.settings = _objectSpread2({}, defaults, {}, options);
@@ -588,59 +594,94 @@
       document.removeEventListener("click", run, false);
     };
 
+    var resolveClass = function resolveClass(trigger) {
+      var cl = trigger.dataset[camelCase(api.settings.dataTrigger)];
+      cl = cl ? cl : api.settings["class"];
+      return cl.split(/[ ,]+/);
+    };
+
+    var toggleChild = function toggleChild(trigger, cl) {
+      var target = trigger.dataset[camelCase(api.settings.dataChild)];
+      target = trigger.querySelectorAll(target);
+
+      if (target) {
+        toggleClass.apply(void 0, [target].concat(_toConsumableArray(cl)));
+      }
+    };
+
+    var toggleParent = function toggleParent(trigger, cl) {
+      var target = trigger.dataset[camelCase(api.settings.dataParent)];
+      target = trigger.closest(target);
+
+      if (target) {
+        toggleClass.apply(void 0, [target].concat(_toConsumableArray(cl)));
+      }
+    };
+
+    var toggleSelf = function toggleSelf(trigger, cl) {
+      var clSelf = trigger.dataset[camelCase(api.settings.dataSelf)];
+      clSelf = clSelf ? clSelf.split(/[ ,]+/) : cl;
+      toggleClass.apply(void 0, [trigger].concat(_toConsumableArray(clSelf)));
+    };
+
+    var toggleSibling = function toggleSibling(trigger, cl) {
+      var target = trigger.dataset[camelCase(api.settings.dataSibling)];
+      target = trigger.parentElement.querySelectorAll(":scope > ".concat(target));
+
+      if (target) {
+        toggleClass.apply(void 0, [target].concat(_toConsumableArray(cl)));
+      }
+    };
+
+    var toggleTarget = function toggleTarget(trigger, cl) {
+      var target = trigger.dataset[camelCase(api.settings.dataTarget)];
+      target = document.querySelectorAll(target);
+
+      if (target) {
+        toggleClass.apply(void 0, [target].concat(_toConsumableArray(cl)));
+      }
+    };
+
+    var toggle = function toggle(trigger, cl, dataKey) {
+      var hasAttr = trigger.hasAttribute("data-".concat(hyphenCase(dataKey)));
+
+      if (hasAttr) {
+        switch (dataKey) {
+          case api.settings.dataChild:
+            toggleChild(trigger, cl);
+            break;
+
+          case api.settings.dataParent:
+            toggleParent(trigger, cl);
+            break;
+
+          case api.settings.dataSelf:
+            toggleSelf(trigger, cl);
+            break;
+
+          case api.settings.dataSibling:
+            toggleSibling(trigger, cl);
+            break;
+
+          case api.settings.dataTarget:
+            toggleTarget(trigger, cl);
+        }
+      }
+
+      return hasAttr;
+    };
+
     var run = function run(e) {
       var trigger = e.target.closest(api.settings.selectorTrigger);
 
       if (trigger) {
-        var cl = trigger.dataset[camelCase(api.settings.dataClass)];
-        cl = cl ? cl : api.settings["class"];
-        cl = cl.split(/[ ,]+/);
-        var targetParent = trigger.hasAttribute("data-".concat(api.settings.dataTargetParent));
+        var cl = resolveClass(trigger);
+        var toggleConditions = [toggle(trigger, cl, api.settings.dataChild), toggle(trigger, cl, api.settings.dataParent), toggle(trigger, cl, api.settings.dataSelf), toggle(trigger, cl, api.settings.dataSibling), toggle(trigger, cl, api.settings.dataTarget)];
 
-        if (targetParent) {
-          targetParent = trigger.dataset[camelCase(api.settings.dataTargetParent)];
-          targetParent = trigger.closest(targetParent);
-
-          if (targetParent) {
-            toggleClass.apply(void 0, [targetParent].concat(_toConsumableArray(cl)));
-          }
-        }
-
-        var targetSibling = trigger.hasAttribute("data-".concat(api.settings.dataTargetSibling));
-
-        if (targetSibling) {
-          targetSibling = trigger.dataset[camelCase(api.settings.dataTargetSibling)];
-          targetSibling = trigger.parentElement.querySelectorAll(":scope > ".concat(targetSibling));
-
-          if (targetSibling) {
-            toggleClass.apply(void 0, [targetSibling].concat(_toConsumableArray(cl)));
-          }
-        }
-
-        var targetChild = trigger.hasAttribute("data-".concat(api.settings.dataTargetChild));
-
-        if (targetChild) {
-          targetChild = trigger.dataset[camelCase(api.settings.dataTargetChild)];
-          targetChild = trigger.querySelectorAll(targetChild);
-
-          if (targetChild) {
-            toggleClass.apply(void 0, [targetChild].concat(_toConsumableArray(cl)));
-          }
-        }
-
-        var target = trigger.dataset[camelCase(api.settings.dataTarget)];
-        target = document.querySelectorAll(target);
-
-        if (!target.length && !targetParent && !targetSibling && !targetChild) {
-          target = trigger;
-        }
-
-        toggleClass.apply(void 0, [target].concat(_toConsumableArray(cl)));
-
-        if (trigger.hasAttribute("data-".concat(api.settings.dataTargetSelf))) {
-          var targetSelf = trigger.dataset[camelCase(api.settings.dataTargetSelf)];
-          var clSelf = targetSelf ? targetSelf.split("/[ ,]+/") : cl;
-          toggleClass.apply(void 0, [trigger].concat(_toConsumableArray(clSelf)));
+        if (toggleConditions.every(function (i) {
+          return i === false;
+        })) {
+          toggleClass.apply(void 0, [trigger].concat(_toConsumableArray(cl)));
         }
 
         e.preventDefault();

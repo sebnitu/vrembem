@@ -264,12 +264,12 @@ describe("the kitchen sink", () => {
     toggle = new Toggle({
       autoInit: true,
       class: "b",
-      dataClass: "class",
+      dataTrigger: "class",
       dataTarget: "target",
-      dataTargetSelf: "self",
-      dataTargetParent: "parent",
-      dataTargetSibling: "sibling",
-      dataTargetChild: "child",
+      dataSelf: "self",
+      dataParent: "parent",
+      dataSibling: "sibling",
+      dataChild: "child",
       selectorTrigger: ".toggle-trigger"
     })
     document.body.innerHTML = `

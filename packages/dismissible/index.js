@@ -32,6 +32,5 @@ export const Dismissible = (options) => {
   }
 
   if (api.settings.autoInit) api.init()
-
   return api
 }
