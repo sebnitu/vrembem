@@ -591,25 +591,37 @@ var Todo = function Todo(options) {
     document.removeEventListener("change", run, false);
   };
 
-  var todoList = document.querySelector(api.settings.selectorTodoList);
-  var todoListDone = document.querySelector(api.settings.selectorTodoDone);
-  var todoLists = [todoList, todoListDone];
-
   var updateLists = function updateLists() {
-    todoLists.forEach(function (list) {
-      if (list.childElementCount <= 1) {
-        removeClass(list.querySelector(api.settings.selectorNotice), "d_none");
-      } else {
-        addClass(list.querySelector(api.settings.selectorNotice), "d_none");
-      }
-    });
+    var todoList = document.querySelector(api.settings.selectorTodoList);
+    var todoDone = document.querySelector(api.settings.selectorTodoDone);
+    var todoLists = [todoList, todoDone];
+
+    if (todoList && todoDone) {
+      todoLists.forEach(function (list) {
+        var item = list.querySelector(api.settings.selectorNotice);
+
+        if (list.childElementCount <= 1) {
+          addClass(item, "is-block");
+          setTimeout(function () {
+            toggleClass(item, "is-block", "is-active");
+          }, 50);
+        } else {
+          removeClass(item, "is-active");
+        }
+      });
+    }
   };
 
   var moveTodo = function moveTodo(item) {
     var list = item.querySelector("input").checked ? api.settings.selectorTodoDone : api.settings.selectorTodoList;
-    console.log(item);
-    document.querySelector(list).append(item);
-    updateLists();
+    toggleClass(item, "is-animating");
+    setTimeout(function () {
+      document.querySelector(list).append(item);
+      setTimeout(function () {
+        toggleClass(item, "is-animating");
+        updateLists();
+      }, 50);
+    }, 300);
   };
 
   var run = function run() {

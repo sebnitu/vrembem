@@ -110,9 +110,12 @@ $box-shadow-flat: 0 0 0 0 rgba($white, 0) !default;
 
 // Transition
 // property | duration | timing-function | delay
-// https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions
+// $deceleration-curve-timing-function: cubic-bezier(0, 0, 0.2, 1) !default;
+// $standard-curve-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !default;
+// $acceleration-curve-timing-function: cubic-bezier(0.4, 0, 1, 1) !default;
+// $sharp-curve-timing-function: cubic-bezier(0.4, 0, 0.6, 1) !default;
 $transition-duration: 0.3s !default;
-$transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1) !default;
+$transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !default;
 
 // Border
 $border-width: 1px !default;

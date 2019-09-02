@@ -1,4 +1,4 @@
-import { addClass, removeClass } from "@vrembem/core"
+import { addClass, removeClass, toggleClass } from "@vrembem/core"
 
 export const Todo = (options) => {
 
@@ -23,18 +23,24 @@ export const Todo = (options) => {
     document.removeEventListener("change", run, false)
   }
 
-  const todoList = document.querySelector(api.settings.selectorTodoList)
-  const todoListDone = document.querySelector(api.settings.selectorTodoDone)
-  const todoLists = [todoList, todoListDone]
-
   const updateLists = () => {
-    todoLists.forEach((list) => {
-      if (list.childElementCount <= 1) {
-        removeClass(list.querySelector(api.settings.selectorNotice), "d_none")
-      } else {
-        addClass(list.querySelector(api.settings.selectorNotice), "d_none")
-      }
-    })
+    const todoList = document.querySelector(api.settings.selectorTodoList)
+    const todoDone = document.querySelector(api.settings.selectorTodoDone)
+    const todoLists = [todoList, todoDone]
+
+    if (todoList && todoDone) {
+      todoLists.forEach((list) => {
+        const item = list.querySelector(api.settings.selectorNotice)
+        if (list.childElementCount <= 1) {
+          addClass(item, "is-block")
+          setTimeout(() => {
+            toggleClass(item, "is-block", "is-active")
+          }, 50)
+        } else {
+          removeClass(item, "is-active")
+        }
+      })
+    }
   }
 
   const moveTodo = (item) => {
@@ -42,9 +48,14 @@ export const Todo = (options) => {
       api.settings.selectorTodoDone:
       api.settings.selectorTodoList
 
-    console.log(item)
-    document.querySelector(list).append(item)
-    updateLists()
+    toggleClass(item, "is-animating")
+    setTimeout(() => {
+      document.querySelector(list).append(item)
+      setTimeout(() => {
+        toggleClass(item, "is-animating")
+        updateLists()
+      }, 50)
+    }, 300)
   }
 
   const run = () => {
