@@ -2,12 +2,16 @@ this.vrembem = this.vrembem || {};
 this.vrembem.core = (function (exports) {
   'use strict';
 
-  var breakpoints = {
+  var breakpoint = {
     xs: "480px",
     sm: "620px",
     md: "760px",
     lg: "990px",
     xl: "1380px"
+  };
+  var transition = {
+    duration: 300,
+    tick: 30
   };
 
   var camelCase = function camelCase(str) {
@@ -77,12 +81,13 @@ this.vrembem.core = (function (exports) {
   };
 
   exports.addClass = addClass;
-  exports.breakpoints = breakpoints;
+  exports.breakpoint = breakpoint;
   exports.camelCase = camelCase;
   exports.hasClass = hasClass;
   exports.hyphenCase = hyphenCase;
   exports.removeClass = removeClass;
   exports.toggleClass = toggleClass;
+  exports.transition = transition;
 
   return exports;
 

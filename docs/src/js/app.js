@@ -1,5 +1,6 @@
 import { hasClass, addClass, removeClass } from "@vrembem/core"
 import {
+  Choice,
   Dismissible,
   Drawer,
   Modal,
@@ -9,6 +10,7 @@ import {
 import listjs from "list.js"
 import "svgxuse"
 
+new Choice({ autoInit: true })
 new Dismissible({ autoInit: true })
 let drawer = new Drawer({ autoInit: true })
 new Modal({ autoInit: true })

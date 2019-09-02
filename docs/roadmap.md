@@ -34,6 +34,7 @@ I'm starting to import the rest of my components into their own package file.
       <li class="is-done"><span class="list__icon"></span> button</li>
       <li class="is-done"><span class="list__icon"></span> button-group</li>
       <li class="is-done"><span class="list__icon"></span> card</li>
+      <li class="is-done"><span class="list__icon"></span> choice</li>
       <li class="is-done"><span class="list__icon"></span> container</li>
       <li class="is-done"><span class="list__icon"></span> core</li>
       <li class="is-done"><span class="list__icon"></span> dialog</li>
@@ -53,6 +54,7 @@ I'm starting to import the rest of my components into their own package file.
       <li class="is-done"><span class="list__icon"></span> section</li>
       <li class="is-done"><span class="list__icon"></span> spacing</li>
       <li class="is-done"><span class="list__icon"></span> span</li>
+      <li class="is-done"><span class="list__icon"></span> todo</li>
       <li class="is-done"><span class="list__icon"></span> toggle</li>
       <li class="is-done"><span class="list__icon"></span> tooltip</li>
       <li class="is-done"><span class="list__icon"></span> type</li>

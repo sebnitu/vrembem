@@ -1,4 +1,4 @@
-export * from "./src/js/breakpoints"
+export * from "./src/js/variables"
 export * from "./src/js/camelCase"
 export * from "./src/js/addClass"
 export * from "./src/js/hasClass"

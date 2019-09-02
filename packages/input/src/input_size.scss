@@ -2,10 +2,12 @@
 
 .input_size_sm {
   font-size: $input_size_sm-font-size;
+  height: $input_size_sm-height;
   padding: $input_size_sm-padding;
 }
 
 .input_size_lg {
   font-size: $input_size_lg-font-size;
+  height: $input_size_lg-height;
   padding: $input_size_lg-padding;
 }

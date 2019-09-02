@@ -98,7 +98,41 @@ category: simple
 
 {% include demo_close.html %}
 
-{% include flag.html heading="notice_type_[name]" %}
+{% include flag.html heading="notice_size_[key]" %}
+
+{% include demo_open.html class_parent="type" %}
+
+<div class="notice notice_size_sm" data-dismissible>
+  Notice <a href="#">content</a> goes here...
+</div>
+
+<div class="notice" data-dismissible>
+  Notice <a href="#">content</a> goes here...
+</div>
+
+<div class="notice notice_size_lg" data-dismissible>
+  Notice <a href="#">content</a> goes here...
+</div>
+
+{% include demo_switch.html %}
+
+```html
+<div class="notice notice_size_sm">
+  ...
+</div>
+
+<div class="notice">
+  ...
+</div>
+
+<div class="notice notice_size_lg">
+  ...
+</div>
+```
+
+{% include demo_close.html %}
+
+{% include flag.html heading="notice_type_[key]" %}
 
 {% include demo_open.html class_parent="type" %}
 

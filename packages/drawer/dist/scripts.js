@@ -51,7 +51,7 @@ this.vrembem.drawer = (function (exports) {
     return target;
   }
 
-  var breakpoints = {
+  var breakpoint = {
     xs: "480px",
     sm: "620px",
     md: "760px",
@@ -313,13 +313,13 @@ this.vrembem.drawer = (function (exports) {
         var bp = drawer.dataset[cleanSelector];
 
         if (bp) {
-          bp = breakpoints[bp];
+          bp = breakpoint[bp];
 
           if (!bp) {
             bp = drawer.dataset[cleanSelector];
           }
         } else {
-          bp = breakpoints[settings.switchBreakpoint];
+          bp = breakpoint[settings.switchBreakpoint];
 
           if (!bp) {
             bp = settings.switchBreakpoint;

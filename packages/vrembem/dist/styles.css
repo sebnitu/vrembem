@@ -380,8 +380,9 @@ pre {
   cursor: pointer;
   display: inline-flex;
   font-family: inherit;
-  font-size: 1em;
+  font-size: 16px;
   font-weight: inherit;
+  height: 2.5rem;
   justify-content: center;
   line-height: 1.5;
   padding: 0.438em 0.75em;
@@ -403,13 +404,19 @@ pre {
 }
 
 .button_icon {
+  height: 2.5rem;
   padding: 0.438em;
+  width: 2.5rem;
 }
 .button_icon.button_size_sm {
+  height: 2rem;
   padding: 0.1375em;
+  width: 2rem;
 }
 .button_icon.button_size_lg {
+  height: 3rem;
   padding: 0.75em;
+  width: 3rem;
 }
 
 .button_block {
@@ -473,8 +480,8 @@ pre {
   }
 }
 .button_size_sm {
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 0.875em;
+  height: 2rem;
   padding: 0.1375em 0.5em;
 }
 .button_size_sm .icon {
@@ -482,7 +489,7 @@ pre {
 }
 
 .button_size_lg {
-  font-size: 16px;
+  height: 3rem;
   padding: 0.75em 1.75em;
 }
 .button_size_lg:not(.button_icon) .icon:first-child {
@@ -837,7 +844,7 @@ pre {
   flex-direction: column;
   overflow: hidden;
   position: relative;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card__header,
@@ -903,7 +910,7 @@ pre {
   position: absolute;
   right: 0;
   top: 0;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
 }
 
@@ -997,7 +1004,7 @@ pre {
 .card_fade .card__footer,
 .card_fade .card__screen {
     opacity: 0;
-    transition: opacity 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .card_fade:hover .card__header,
 .card_fade:hover .card__body,
@@ -1011,7 +1018,7 @@ pre {
   }
 }
 .card_zoom .card__background, .card_link .card__background {
-  transition: transform 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .card_zoom:hover .card__background, .card_link:hover .card__background, .card_zoom:focus .card__background, .card_link:focus .card__background {
   transform: scale(1.1);
@@ -1052,6 +1059,46 @@ pre {
   box-shadow: none;
 }
 
+.choice {
+  align-items: center;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  cursor: pointer;
+  display: flex;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 0.438em 0.75em;
+}
+.choice * + * {
+  margin-left: 0.5em;
+}
+.choice:hover {
+  background: #fff;
+  border-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.choice.is-active {
+  background: rgba(33, 150, 243, 0.025);
+  border-color: rgba(33, 150, 243, 0.5);
+}
+.choice.is-active:hover {
+  border-color: #2196f3;
+  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+}
+
+.choice_size_sm {
+  font-size: 0.875em;
+  height: 2rem;
+  padding: 0.1375em 0.5em;
+}
+
+.choice_size_lg {
+  height: 3rem;
+  padding: 0.75em 0.975em;
+}
+
 .container {
   margin: 0 auto;
   max-width: 70rem;
@@ -1087,7 +1134,7 @@ pre {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   position: relative;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 500;
 }
 
@@ -1917,11 +1964,11 @@ pre {
   color: #212121;
   display: block;
   font-family: BlinkMacSystemFont, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
-  font-size: 1em;
-  line-height: 1.5em;
+  font-size: 16px;
+  height: 2.5rem;
+  line-height: 1.5;
   padding: 0.438em 0.5em;
   position: relative;
-  transition: border-color 0.25s, background-color 0.25s, box-shadow 0.25s;
   width: 100%;
 }
 .input:focus {
@@ -1932,6 +1979,10 @@ pre {
 }
 .input::placeholder {
   color: #bdbdbd;
+}
+
+.input_auto {
+  width: auto;
 }
 
 .input_color_invert {
@@ -1951,11 +2002,12 @@ pre {
 
 .input_size_sm {
   font-size: 0.875em;
+  height: 2rem;
   padding: 0.1375em 0.5em;
 }
 
 .input_size_lg {
-  font-size: 16px;
+  height: 3rem;
   padding: 0.75em 0.975em;
 }
 
@@ -1997,6 +2049,7 @@ pre {
 }
 
 .input_type_textarea {
+  height: auto;
   max-width: 100%;
   min-height: 2.375em;
 }
@@ -3385,6 +3438,7 @@ pre {
 
 .notice {
   background: #f5f5f5;
+  border-radius: 3px;
   display: block;
   padding: 1.5em;
   position: relative;
@@ -3429,6 +3483,16 @@ pre {
 
 .type .notice {
   margin: 1.5em 0;
+}
+
+.notice_size_sm {
+  font-size: 1em;
+  padding: 0.75em 1em;
+}
+
+.notice_size_lg {
+  font-size: 1.25em;
+  padding: 2em;
 }
 
 .notice_type_primary {
@@ -4174,6 +4238,62 @@ pre {
     width: 100%;
   }
 }
+.todo {
+  position: relative;
+}
+
+.todo__list {
+  list-style: none;
+  position: relative;
+}
+
+.todo__item {
+  transition: opacity 0.3s, transform 0.3s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.todo__item.is-animating {
+  opacity: 0;
+  transform: translateY(1em);
+}
+
+.todo__list_done .todo__item {
+  opacity: 1;
+  transform: translateY(0);
+}
+.todo__list_done .todo__item.is-animating {
+  opacity: 0;
+  transform: translateY(-1em);
+}
+
+.todo__empty {
+  display: none;
+  opacity: 0;
+  transform: translateY(-1em);
+  transition: opacity 0.3s, transform 0.3s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.todo__empty.is-animating {
+  display: block;
+  opacity: 0;
+  transform: translateY(-1em);
+}
+.todo__empty.is-active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.todo__list_done .choice {
+  background: rgba(0, 0, 0, 0.025);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #bdbdbd;
+}
+.todo__list_done .choice:hover {
+  background: rgba(0, 0, 0, 0.025);
+  border-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
 [data-tooltip] {
   position: relative;
 }
@@ -4197,7 +4317,7 @@ pre {
   text-overflow: ellipsis;
   top: auto;
   transform: translate(-50%, 0) scale(0.75);
-  transition: opacity 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
   z-index: 100;
 }
@@ -5280,7 +5400,7 @@ pre {
 }
 
 .transition_all {
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .transition_none {

@@ -29,6 +29,7 @@
     "@vrembem/button": "^0.0.0",
     "@vrembem/button-group": "^0.0.0",
     "@vrembem/card": "^0.0.0",
+    "@vrembem/choice": "^0.0.0",
     "@vrembem/container": "^0.0.0",
     "@vrembem/core": "^0.0.0",
     "@vrembem/dialog": "^0.0.0",

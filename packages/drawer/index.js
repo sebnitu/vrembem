@@ -1,6 +1,6 @@
 import {
   addClass,
-  breakpoints,
+  breakpoint,
   hasClass,
   removeClass,
   toggleClass
@@ -386,12 +386,12 @@ export const Drawer = (options) => {
       // c) The raw pixel value provided in settings
       let bp = drawer.dataset[cleanSelector]
       if (bp) {
-        bp = breakpoints[bp]
+        bp = breakpoint[bp]
         if (!bp) {
           bp = drawer.dataset[cleanSelector]
         }
       } else {
-        bp = breakpoints[settings.switchBreakpoint]
+        bp = breakpoint[settings.switchBreakpoint]
         if (!bp) {
           bp = settings.switchBreakpoint
         }

@@ -1,13 +1,19 @@
 @import "variables";
 
 .button_icon {
+  height: $button-height;
   padding: nth($button-padding, 1);
+  width: $button-height;
 
   &.button_size_sm {
+    height: $button_size_sm-height;
     padding: nth($button_size_sm-padding, 1);
+    width: $button_size_sm-height;
   }
 
   &.button_size_lg {
+    height: $button_size_lg-height;
     padding: nth($button_size_lg-padding, 1);
+    width: $button_size_lg-height;
   }
 }

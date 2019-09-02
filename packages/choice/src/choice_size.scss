@@ -1,0 +1,13 @@
+@import "variables";
+
+.choice_size_sm {
+  font-size: $choice_size_sm-font-size;
+  height: $choice_size_sm-height;
+  padding: $choice_size_sm-padding;
+}
+
+.choice_size_lg {
+  font-size: $choice_size_lg-font-size;
+  height: $choice_size_lg-height;
+  padding: $choice_size_lg-padding;
+}

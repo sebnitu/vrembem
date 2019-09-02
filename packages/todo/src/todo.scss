@@ -1,86 +1,49 @@
 @import 'variables';
 
-.todo {}
-.todo__list {}
+.todo {
+  position: relative;
+}
 
-/*
-Default state:
-Closed
-
----
-
-Step 1:
---open
-
-Step 2:
---open
---closing
-
-Step 3:
-empty
-
----
-
-Step 1: (fast)
---open
---animate
-
-Step 2:
---open
---animate
---opening
-
-Step 3:
---open
-
-*/
+.todo__list {
+  list-style: none;
+  position: relative;
+}
 
 .todo__item {
-  align-items: center;
-  border: 1px solid rgba($black, 0.1);
-  border-radius: $border-radius;
-  display: flex;
-  padding: 1em;
   transition: opacity $transition-duration, transform $transition-duration;
   transition-timing-function: $transition-timing-function;
 
-  * + * {
-    margin-left: 1em;
-  }
-
-  & + & {
-    margin-top: 0.5em;
-  }
-
   &.is-animating {
     opacity: 0;
-    transform: translateY(1em);
+    transform: translateY($todo-travel);
   }
 }
 
 .todo__list_done {
   .todo__item {
-    background: rgba($black, 0.025);
-    color: $color-light;
     opacity: 1;
     transform: translateY(0);
 
     &.is-animating {
       opacity: 0;
-      transform: translateY(-1em);
+      transform: translateY(-$todo-travel);
     }
   }
 }
 
-.todo__notice {
+.todo__empty {
   display: none;
   opacity: 0;
-  transform: translateY(-1em);
-  transition: opacity $transition-duration, transform $transition-duration;
+  transform: translateY(-$todo-travel);
+  transition:
+    opacity $transition-duration,
+    transform $transition-duration;
   transition-timing-function: $transition-timing-function;
 
-  &.is-block {
+  &.is-animating {
     display: block;
+    opacity: 0;
+    transform: translateY(-$todo-travel);
   }
 
   &.is-active {

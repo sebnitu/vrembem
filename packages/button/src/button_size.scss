@@ -2,7 +2,7 @@
 
 .button_size_sm {
   font-size: $button_size_sm-font-size;
-  line-height: 1.6;
+  height: $button_size_sm-height;
   padding: $button_size_sm-padding;
 
   .icon {
@@ -12,6 +12,7 @@
 
 .button_size_lg {
   font-size: $button_size_lg-font-size;
+  height: $button_size_lg-height;
   padding: $button_size_lg-padding;
 
   &:not(.button_icon) .icon:first-child {

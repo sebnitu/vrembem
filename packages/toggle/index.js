@@ -101,7 +101,6 @@ export const Toggle = (options) => {
       if (toggleConditions.every((i) => i === false)) {
         toggleClass(trigger, ...cl)
       }
-      e.preventDefault()
     }
   }
 

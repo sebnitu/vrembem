@@ -11,33 +11,43 @@ category: compound
 
 {% include flag.html heading="todo" %}
 
-<form>
-  <div class="grid todo">
-    <div class="grid__item todo__list todo__list_open" data-todo-open>
-      <div class="todo__notice notice notice_type_success" data-todo-notice>
-        <p>Todo list is empty!</p>
-      </div>
-      <label class="todo__item" data-todo>
-        <input type="checkbox" class="todo__input" data-todo-toggle>
-        <span class="todo__text">Todo item 1</span>
-      </label>
-      <label class="todo__item" data-todo>
-        <input type="checkbox" class="todo__input" data-todo-toggle>
-        <span class="todo__text">Todo item 2</span>
-      </label>
-      <label class="todo__item" data-todo>
-        <input type="checkbox" class="todo__input" data-todo-toggle>
-        <span class="todo__text">Todo item 3</span>
-      </label>
+<div class="todo todo_theme_boxed grid" data-todo-block>
+  <div class="grid__item">
+    <div class="todo__empty notice notice_size_sm notice_type_success" data-todo-empty>
+      <p>All todo's have been completed!</p>
     </div>
-    <div class="grid__item todo__list todo__list_done" data-todo-done>
-      <div class="todo__notice notice" data-todo-notice>
-        <p>No todos have been finished yet.</p>
-      </div>
-      <label class="todo__item" data-todo>
-        <input type="checkbox" class="todo__input" data-todo-toggle checked>
-        <span class="todo__text">Todo item 4</span>
-      </label>
-    </div>
+    <ul class="todo__list todo__list_open spacing_xs" data-todo-open>
+      <li class="todo__item" data-todo>
+        <label class="choice choice_size_lg">
+          <input type="checkbox">
+          <span>Todo item 1</span>
+        </label>
+      </li>
+      <li class="todo__item" data-todo>
+        <label class="choice choice_size_lg">
+          <input type="checkbox">
+          <span>Todo item 2</span>
+        </label>
+      </li>
+      <li class="todo__item" data-todo>
+        <label class="choice choice_size_lg">
+          <input type="checkbox">
+          <span>Todo item 3</span>
+        </label>
+      </li>
+    </ul>
   </div>
-</form>
+  <div class="grid__item">
+    <div class="todo__empty notice notice_size_sm" data-todo-empty>
+      <p>No todos have been completed yet.</p>
+    </div>
+    <ul class="todo__list todo__list_done spacing_xs" data-todo-done>
+      <li class="todo__item" data-todo>
+        <label class="choice choice_size_lg">
+          <input type="checkbox" checked>
+          <span>Todo item 4</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+</div>

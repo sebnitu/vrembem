@@ -21,7 +21,7 @@
   text-overflow: ellipsis;
   top: auto;
   transform: translate(-50%, 0) scale(0.75);
-  transition: opacity 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
   z-index: 100;
 }

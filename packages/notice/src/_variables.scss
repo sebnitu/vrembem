@@ -3,9 +3,15 @@ $notice-spacing: 1rem !default;
 $notice-background: $background !default;
 $notice-box-shadow: 0 0 20px rgba($black, 0.1) !default;
 $notice-border: null !default;
-$notice-border-radius: null !default;
+$notice-border-radius: $border-radius !default;
 $notice-color: $color !default;
 $notice-color-invert: $white !default;
 
 $notice__title-font-size: 1.2em !default;
 $notice__title-font-weight: font-weight("semi-bold") !default;
+
+$notice_size_sm-padding: nth($padding-lg, 1) 1em !default;
+$notice_size_sm-font-size: 1em !default;
+
+$notice_size_lg-padding: 2em !default;
+$notice_size_lg-font-size: $font-size-lg !default;

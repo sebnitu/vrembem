@@ -208,8 +208,6 @@ var Toggle = function Toggle(options) {
       })) {
         toggleClass.apply(void 0, [trigger].concat(_toConsumableArray(cl)));
       }
-
-      e.preventDefault();
     }
   };
 

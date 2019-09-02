@@ -30,6 +30,10 @@ exclude:
   - rollup.config.js
   - node_modules
   - _site
+  - dist/scripts.cjs.js
+  - dist/scripts.js
+  - dist/styles.css
+  - dist/styles.css.map
 
 # Collections
 collections:

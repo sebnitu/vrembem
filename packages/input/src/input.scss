@@ -10,10 +10,10 @@
   display: block;
   font-family: $font-family;
   font-size: $input-font-size;
+  height: $input-height;
   line-height: $input-line-height;
   padding: $input-padding;
   position: relative;
-  transition: border-color 0.25s, background-color 0.25s, box-shadow 0.25s;
   width: 100%;
 
   &:focus {
@@ -26,6 +26,10 @@
   &::placeholder {
     color: $color-light;
   }
+}
+
+.input_auto {
+  width: auto;
 }
 
 .input_color_invert {

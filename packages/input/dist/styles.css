@@ -7,11 +7,11 @@
   color: #212121;
   display: block;
   font-family: BlinkMacSystemFont, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
-  font-size: 1em;
-  line-height: 1.5em;
+  font-size: 16px;
+  height: 2.5rem;
+  line-height: 1.5;
   padding: 0.438em 0.5em;
   position: relative;
-  transition: border-color 0.25s, background-color 0.25s, box-shadow 0.25s;
   width: 100%;
 }
 .input:focus {
@@ -22,6 +22,10 @@
 }
 .input::placeholder {
   color: #bdbdbd;
+}
+
+.input_auto {
+  width: auto;
 }
 
 .input_color_invert {
@@ -41,11 +45,12 @@
 
 .input_size_sm {
   font-size: 0.875em;
+  height: 2rem;
   padding: 0.1375em 0.5em;
 }
 
 .input_size_lg {
-  font-size: 16px;
+  height: 3rem;
   padding: 0.75em 0.975em;
 }
 
@@ -87,6 +92,7 @@
 }
 
 .input_type_textarea {
+  height: auto;
   max-width: 100%;
   min-height: 2.375em;
 }
