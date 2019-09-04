@@ -12,6 +12,7 @@
     "lint:scripts": "eslint packages",
     "lint:styles": "stylelint 'packages/**/*.scss'",
     "watch": "lerna run watch --parallel",
+    "watch:docs": "lerna run watch --scope @vrembem/docs --parallel",
     "watch:scripts": "lerna run watch:scripts --parallel",
     "watch:styles": "lerna run watch:styles --parallel",
     "server": "lerna run server --parallel",
