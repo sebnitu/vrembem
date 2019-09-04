@@ -1,0 +1,28 @@
+.todo__control {
+  .checkbox:hover,
+  .radio:hover {
+    background: none;
+  }
+
+  &:hover {
+    .checkbox__background,
+    .radio__background {
+      border-color: $primary;
+    }
+  }
+}
+
+.todo__list_done {
+  .todo__control:hover {
+    .checkbox__background,
+    .radio__background {
+      border-color: $color-light;
+    }
+  }
+
+  .checkbox__native:checked + .checkbox__background {
+    background-color: $color-light;
+    border-color: $color-light;
+    color: $white;
+  }
+}

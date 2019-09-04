@@ -1,7 +1,7 @@
 .choice {
   align-items: center;
   background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 3px;
   box-shadow: 0 0 0 rgba(0, 0, 0, 0);
   cursor: pointer;
@@ -10,13 +10,28 @@
   line-height: 1.5;
   padding: 0.438em 0.75em;
 }
-.choice * + * {
+.choice > * + * {
   margin-left: 0.5em;
 }
+.choice .checkbox,
+.choice .radio {
+  margin: -0.6em -0.6em -0.6em -0.8em;
+}
+.choice .checkbox:hover,
+.choice .radio:hover {
+  background-color: none;
+}
 .choice:hover {
-  background: #fff;
-  border-color: rgba(0, 0, 0, 0.2);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  background: rgba(33, 150, 243, 0.025);
+  border-color: rgba(33, 150, 243, 0.5);
+}
+.choice:hover .checkbox:hover,
+.choice:hover .radio:hover {
+  background: none;
+}
+.choice:hover .checkbox__background,
+.choice:hover .radio__background {
+  border-color: #2196f3;
 }
 .choice.is-active {
   background: rgba(33, 150, 243, 0.025);
@@ -25,6 +40,11 @@
 .choice.is-active:hover {
   border-color: #2196f3;
   box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+}
+
+.choice_inline {
+  display: inline-flex;
+  padding-right: 1.5em;
 }
 
 .choice_size_sm {

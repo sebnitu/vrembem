@@ -1,0 +1,15 @@
+@import "./variables";
+
+.list {
+  list-style: none;
+}
+
+.list__item {
+  background-clip: padding-box;
+  border-top: $list-border;
+  display: relative;
+
+  &:last-child {
+    border-bottom: $list-border;
+  }
+}

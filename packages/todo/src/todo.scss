@@ -19,6 +19,15 @@
   }
 }
 
+.todo__control {
+  cursor: pointer;
+  display: block;
+
+  &:hover {
+    background: rgba($black, 0.025);
+  }
+}
+
 .todo__list_done {
   .todo__item {
     opacity: 1;
@@ -28,6 +37,11 @@
       opacity: 0;
       transform: translateY(-$todo-travel);
     }
+  }
+
+  .todo__control {
+    background: rgba($black, 0.025);
+    color: $color-light;
   }
 }
 

@@ -1,0 +1,61 @@
+@import "./variables";
+
+.checkbox {
+  border-radius: 2em;
+  display: inline-block;
+  flex-grow: 0;
+  padding: 0.75em;
+  position: relative;
+
+  &:hover,
+  &:focus {
+    background: rgba($black, 0.03);
+  }
+
+  &:active {
+    background: rgba($black, 0.06);
+  }
+}
+
+.checkbox__native {
+  cursor: pointer;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.checkbox__background {
+  align-items: center;
+  background: transparent;
+  border: 2px solid rgba($black, 0.2);
+  border-radius: $border-radius;
+  color: transparent;
+  display: flex;
+  height: 17px;
+  justify-content: center;
+  width: 17px;
+
+  &:hover {
+    background-color: $checkbox-color;
+  }
+
+  .checkbox__icon {
+    font-size: $font-size-sm;
+    stroke-width: 4px;
+  }
+
+  .checkbox:hover &,
+  .checkbox:focus &,
+  .checkbox__native:focus + & {
+    border-color: $checkbox-color;
+  }
+
+  .checkbox__native:checked + & {
+    background-color: $checkbox-color;
+    border-color: $checkbox-color;
+    color: $white;
+  }
+}

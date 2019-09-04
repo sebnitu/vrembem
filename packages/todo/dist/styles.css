@@ -16,6 +16,14 @@
   transform: translateY(1em);
 }
 
+.todo__control {
+  cursor: pointer;
+  display: block;
+}
+.todo__control:hover {
+  background: rgba(0, 0, 0, 0.025);
+}
+
 .todo__list_done .todo__item {
   opacity: 1;
   transform: translateY(0);
@@ -23,6 +31,10 @@
 .todo__list_done .todo__item.is-animating {
   opacity: 0;
   transform: translateY(-1em);
+}
+.todo__list_done .todo__control {
+  background: rgba(0, 0, 0, 0.025);
+  color: #bdbdbd;
 }
 
 .todo__empty {
@@ -43,6 +55,25 @@
   transform: translateY(0);
 }
 
+.todo__control .checkbox:hover,
+.todo__control .radio:hover {
+  background: none;
+}
+.todo__control:hover .checkbox__background,
+.todo__control:hover .radio__background {
+  border-color: #2196f3;
+}
+
+.todo__list_done .todo__control:hover .checkbox__background,
+.todo__list_done .todo__control:hover .radio__background {
+  border-color: #bdbdbd;
+}
+.todo__list_done .checkbox__native:checked + .checkbox__background {
+  background-color: #bdbdbd;
+  border-color: #bdbdbd;
+  color: #fff;
+}
+
 .todo__list_done .choice {
   background: rgba(0, 0, 0, 0.025);
   border-color: rgba(0, 0, 0, 0.1);
@@ -52,6 +83,10 @@
   background: rgba(0, 0, 0, 0.025);
   border-color: rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+.todo__list_done .choice:hover .checkbox__background,
+.todo__list_done .choice:hover .radio__background {
+  border-color: #bdbdbd;
 }
 
 /*# sourceMappingURL=styles.css.map */

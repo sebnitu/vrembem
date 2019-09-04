@@ -3,7 +3,7 @@
 .choice {
   align-items: center;
   background: $white;
-  border: 1px solid rgba($black, 0.1);
+  border: 1px solid rgba($black, 0.2);
   border-radius: $border-radius;
   box-shadow: 0 0 0 rgba($black, 0);
   cursor: pointer;
@@ -12,14 +12,32 @@
   line-height: $choice-line-height;
   padding: $choice-padding;
 
-  * + * {
+  > * + * {
     margin-left: 0.5em;
   }
 
+  .checkbox,
+  .radio {
+    margin: -0.6em -0.6em -0.6em -0.8em;
+
+    &:hover {
+      background-color: none;
+    }
+  }
+
   &:hover {
-    background: $white;
-    border-color: rgba($black, 0.2);
-    box-shadow: 0 1px 2px rgba($black, 0.05);
+    background: rgba($primary, 0.025);
+    border-color: rgba($primary, 0.5);
+
+    .checkbox:hover,
+    .radio:hover {
+      background: none;
+    }
+
+    .checkbox__background,
+    .radio__background {
+      border-color: $primary;
+    }
   }
 
   &.is-active {
@@ -31,4 +49,9 @@
       box-shadow: 0 0 0 3px rgba($primary, 0.1);
     }
   }
+}
+
+.choice_inline {
+  display: inline-flex;
+  padding-right: 1.5em;
 }
