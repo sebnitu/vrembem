@@ -373,7 +373,7 @@ pre {
 
 .button {
   align-items: center;
-  background: none;
+  background: rgba(0, 0, 0, 0.05);
   background-clip: border-box;
   border: 1px solid transparent;
   border-radius: 3px;
@@ -393,7 +393,7 @@ pre {
   white-space: nowrap;
 }
 .button:hover, .button:focus {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(0, 0, 0, 0.075);
   border-color: transparent;
   color: #212121;
 }

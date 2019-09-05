@@ -14,8 +14,8 @@ $button-color-hover: $color !default;
 $button-color-invert: $white !default;
 $button-color-invert-hover: $white !default;
 
-$button-background: none !default;
-$button-background-hover: rgba($black, 0.05) !default;
+$button-background: rgba($black, 0.05) !default;
+$button-background-hover: rgba($black, 0.075) !default;
 $button-border-color: transparent !default;
 $button-border-color-hover: transparent !default;
 $button-border-width: 1px !default;
