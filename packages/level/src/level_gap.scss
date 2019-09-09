@@ -1,4 +1,4 @@
-@import 'variables';
+@import "./variables";
 
 @each $key, $value in $level-gap-scale {
   .level_gap_#{$key} {

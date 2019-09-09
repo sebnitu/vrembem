@@ -1,12 +1,10 @@
-@import 'variables';
-
 .spacing {
   > * + * {
-    margin-top: $spacing;
+    margin-top: $vertical-spacing;
   }
 }
 
-@each $key, $value in $spacing-scale {
+@each $key, $value in $vertical-spacing-scale {
   .spacing_#{$key} {
     > * + * {
       margin-top: $value;

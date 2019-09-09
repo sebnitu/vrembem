@@ -1,4 +1,4 @@
-@import "variables";
+@import "./variables";
 
 @each $key, $value in $button-group-gap-scale {
   .button-group_gap_#{$key} {

@@ -1,4 +1,4 @@
-@import "variables";
+@import "./variables";
 
 @each $key, $set in $card-size-scale {
   @each $media, $value in $set {

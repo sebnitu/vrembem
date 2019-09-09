@@ -219,6 +219,16 @@ $utility-spacing: (
   "xl": 6rem
 ) !default;
 
+$vertical-spacing: 1rem !default;
+
+$vertical-spacing-scale: (
+  'xs': 0.5rem,
+  'sm': 1rem,
+  'md': 1.5rem,
+  'lg': 2rem,
+  'xl': 3rem
+) !default;
+
 $lightness-threshold: 60 !default;
 
 // Variable Dependent Functions

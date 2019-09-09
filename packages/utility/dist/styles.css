@@ -752,6 +752,30 @@
   padding-top: 6rem !important;
 }
 
+.spacing > * + * {
+  margin-top: 1rem;
+}
+
+.spacing_xs > * + * {
+  margin-top: 0.5rem;
+}
+
+.spacing_sm > * + * {
+  margin-top: 1rem;
+}
+
+.spacing_md > * + * {
+  margin-top: 1.5rem;
+}
+
+.spacing_lg > * + * {
+  margin-top: 2rem;
+}
+
+.spacing_xl > * + * {
+  margin-top: 3rem;
+}
+
 .symbols {
   height: 0 !important;
   overflow: hidden !important;

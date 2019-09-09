@@ -1,4 +1,4 @@
-@import 'variables';
+@import "./variables";
 
 @each $key, $group in $section-padding-scale {
   @each $bp, $value in $group {

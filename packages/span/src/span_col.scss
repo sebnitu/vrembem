@@ -1,4 +1,4 @@
-@import 'variables';
+@import "./variables";
 
 @for $i from 1 through $span-columns {
   .span_#{$i} {

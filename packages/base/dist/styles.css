@@ -79,6 +79,37 @@ pre {
   padding: 0;
 }
 
+.embed {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  padding: 0 0 56.25%;
+  position: relative;
+}
+
+.embed_ratio_16x9 {
+  padding-bottom: 56.25%;
+}
+
+.embed_ratio_4x3 {
+  padding-bottom: 75%;
+}
+
+.embed_ratio_3x2 {
+  padding-bottom: 66.6666666667%;
+}
+
+.embed__item {
+  border: none;
+  height: 100%;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
 .h1,
 .h2,
 .h3,
@@ -196,6 +227,19 @@ pre {
 .link_subtle:focus, .link_subtle:hover {
   border-color: #2196f3;
   color: #2196f3;
+}
+
+.list {
+  list-style: none;
+}
+
+.list__item {
+  background-clip: padding-box;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  display: relative;
+}
+.list__item:last-child {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .table,

@@ -1,4 +1,4 @@
-@import "variables";
+@import "./variables";
 
 @each $menu_name, $menu_value in $menu-spacing-scale {
   .menu_spacing_#{$menu_name} {

@@ -1,15 +1,13 @@
 'use strict';
 
+var index = require('@vrembem/todo/index');
+
 var breakpoint = {
   xs: "480px",
   sm: "620px",
   md: "760px",
   lg: "990px",
   xl: "1380px"
-};
-var transition = {
-  duration: 300,
-  tick: 30
 };
 
 var camelCase = function camelCase(str) {
@@ -637,181 +635,6 @@ var Modal = function Modal(options) {
   };
 
   api.init(options);
-  return api;
-};
-
-var Todo = function Todo(options) {
-  var api = {};
-  var defaults = {
-    classStateActive: "is-active",
-    classStateTransition: "is-animating",
-    selectorTodo: "[data-todo]",
-    selectorTodoBlock: "[data-todo-block]",
-    selectorTodoList: "[data-todo-open]",
-    selectorTodoDone: "[data-todo-done]",
-    selectorNotice: "[data-todo-empty]",
-    transition: true,
-    transitionDuration: transition.duration,
-    transitionTick: transition.tick
-  };
-  api.settings = _objectSpread2({}, defaults, {}, options);
-
-  api.init = function () {
-    var todos = document.querySelectorAll(api.settings.selectorTodoBlock);
-
-    if (todos.length) {
-      updateSort(todos);
-      var delay = api.settings.transition ? api.settings.transitionDuration * 3 : 0;
-      setTimeout(function () {
-        updateNotice(todos);
-      }, delay);
-    }
-
-    document.addEventListener("change", run, false);
-  };
-
-  api.destroy = function () {
-    document.removeEventListener("change", run, false);
-  };
-
-  var updateSort = function updateSort(todos) {
-    todos.forEach(function (todo) {
-      var listItems = todo.querySelectorAll("\n        ".concat(api.settings.selectorTodoList, "\n        ").concat(api.settings.selectorTodo, "\n      "));
-      listItems.forEach(function (item) {
-        if (item.querySelector("input").checked) {
-          moveTodo(item, false);
-        }
-      });
-      var doneItems = todo.querySelectorAll("\n        ".concat(api.settings.selectorTodoDone, "\n        ").concat(api.settings.selectorTodo, "\n      "));
-      doneItems.forEach(function (item) {
-        if (!item.querySelector("input").checked) {
-          moveTodo(item, false);
-        }
-      });
-    });
-  };
-
-  var updateNotice = function updateNotice(todos) {
-    todos.forEach(function (todo) {
-      var todoList = todo.querySelector(api.settings.selectorTodoList);
-      var countList = todoList.querySelectorAll(api.settings.selectorTodo).length;
-
-      if (countList === 0) {
-        showNotice(todoList);
-      } else {
-        hideNotice(todoList);
-      }
-
-      var todoDone = todo.querySelector(api.settings.selectorTodoDone);
-      var countDone = todoDone.querySelectorAll(api.settings.selectorTodo).length;
-
-      if (countDone === 0) {
-        showNotice(todoDone);
-      } else {
-        hideNotice(todoDone);
-      }
-    });
-  };
-
-  var showNotice = function showNotice(list) {
-    var msg = list.querySelector(api.settings.selectorNotice);
-
-    if (!msg) {
-      msg = list.parentNode.querySelector(api.settings.selectorNotice);
-    }
-
-    if (msg) {
-      if (api.settings.transition) {
-        if (!hasClass(msg, api.settings.classStateActive)) {
-          addClass(msg, api.settings.classStateTransition);
-          setTimeout(function () {
-            addClass(msg, api.settings.classStateActive);
-            removeClass(msg, api.settings.classStateTransition);
-          }, api.settings.transitionTick);
-        }
-      } else {
-        addClass(msg, api.settings.classStateActive);
-      }
-    }
-  };
-
-  var hideNotice = function hideNotice(list) {
-    var msg = list.querySelector(api.settings.selectorNotice);
-
-    if (!msg) {
-      msg = list.parentNode.querySelector(api.settings.selectorNotice);
-    }
-
-    if (msg) {
-      if (api.settings.transition) {
-        if (hasClass(msg, api.settings.classStateActive)) {
-          addClass(msg, api.settings.classStateTransition);
-          setTimeout(function () {
-            removeClass(msg, api.settings.classStateActive);
-            setTimeout(function () {
-              removeClass(msg, api.settings.classStateTransition);
-            }, api.settings.transitionDuration);
-          }, api.settings.transitionTick);
-        }
-      } else {
-        removeClass(msg, api.settings.classStateActive);
-      }
-    }
-  };
-
-  var moveTodo = function moveTodo(item) {
-    var toggleNotice = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-    var todo = item.closest(api.settings.selectorTodoBlock);
-    var todoList = todo.querySelector(api.settings.selectorTodoList);
-    var todoDone = todo.querySelector(api.settings.selectorTodoDone);
-    var itemInput = item.querySelector("input");
-    var listTo = itemInput.checked ? todoDone : todoList;
-    var listFrom = itemInput.checked ? todoList : todoDone;
-    var listToCount = listTo.querySelectorAll(api.settings.selectorTodo).length;
-    var listFromCount = listFrom.querySelectorAll(api.settings.selectorTodo).length;
-
-    if (api.settings.transition) {
-      itemInput.setAttribute("disabled", true);
-      addClass(item, api.settings.classStateTransition);
-
-      if (toggleNotice && listToCount === 0) {
-        hideNotice(listTo);
-      }
-
-      setTimeout(function () {
-        listTo.append(item);
-        setTimeout(function () {
-          removeClass(item, api.settings.classStateTransition);
-          itemInput.removeAttribute("disabled");
-          setTimeout(function () {
-            if (toggleNotice && listFromCount <= 1) {
-              showNotice(listFrom);
-            }
-          }, api.settings.transitionDuration);
-        }, api.settings.transitionTick);
-      }, api.settings.transitionDuration);
-    } else {
-      listTo.append(item);
-
-      if (listToCount === 0) {
-        hideNotice(listTo);
-      }
-
-      if (listFromCount <= 1) {
-        showNotice(listFrom);
-      }
-    }
-  };
-
-  var run = function run() {
-    var trigger = event.target.closest(api.settings.selectorTodo);
-
-    if (trigger) {
-      moveTodo(trigger);
-    }
-  };
-
-  if (api.settings.autoInit) api.init();
   return api;
 };
 
@@ -2637,7 +2460,7 @@ var drawer = new Drawer({
 new Modal({
   autoInit: true
 });
-new Todo({
+new index.Todo({
   autoInit: true
 });
 new Toggle({
