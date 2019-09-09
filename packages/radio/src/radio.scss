@@ -1,66 +1,99 @@
 @import "./variables";
 
 .radio {
-  border-radius: 2em;
-  display: inline-block;
+  @include size($radio-size);
+  align-items: center;
+  display: inline-flex;
   flex-grow: 0;
-  padding: 0.625em;
+  justify-content: center;
+  padding: 0;
   position: relative;
+  top: -2px;
+  vertical-align: middle;
+}
 
-  &:hover,
-  &:focus {
-    background: rgba($black, 0.03);
-  }
+.radio__background {
+  @include size(100%);
+  align-items: center;
+  background: $radio__background;
+  border-radius: $radio__background-border-radius;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
 
-  &:active {
-    background: rgba($black, 0.06);
-  }
+.radio__circle {
+  @include size($radio__circle-size);
+  align-items: center;
+  background: $radio__circle-background;
+  border: $radio__circle-border-width solid $radio__circle-border-color;
+  border-radius: $radio__circle-size;
+  color: transparent;
+  display: flex;
+  justify-content: center;
+}
+
+.radio__dot {
+  @include size(0);
+  background: $radio__dot-color;
+  border-radius: $radio__dot-size;
+  opacity: 0;
 }
 
 .radio__native {
+  @include size(100%);
   cursor: pointer;
-  height: 100%;
   left: 0;
   opacity: 0;
   position: absolute;
   top: 0;
-  width: 100%;
-}
+  z-index: 2;
 
-.radio__background {
-  align-items: center;
-  background: transparent;
-  border: 2px solid rgba($black, 0.2);
-  border-radius: 2em;
-  color: transparent;
-  display: flex;
-  height: 21px;
-  justify-content: center;
-  width: 21px;
-
-  &:hover {
-    background-color: $radio-color;
-  }
-
-  .radio__circle {
-    background-color: transparent;
-    border-radius: 2em;
-    height: 8px;
-    width: 8px;
-  }
-
-  .radio:hover &,
-  .radio:focus &,
-  .radio__native:focus + & {
-    border-color: $radio-color;
-  }
-
-  .radio__native:checked + & {
-    background-color: $radio-color;
-    border-color: $radio-color;
+  &:hover + .radio__background {
+    background: $radio__background-hover;
 
     .radio__circle {
-      background-color: $white;
+      background-color: $radio__circle-background-hover;
+      border-color: $radio__circle-border-color-hover;
+    }
+  }
+
+  &:focus + .radio__background {
+    background: $radio__background-focus;
+
+    .radio__circle {
+      background-color: $radio__circle-background-focus;
+      border-color: $radio__circle-border-color-focus;
+    }
+  }
+
+  &:active + .radio__background {
+    background: $radio__background-active;
+
+    .radio__circle {
+      background-color: $radio__circle-background-active;
+      border-color: $radio__circle-border-color-active;
+    }
+  }
+
+  &:checked + .radio__background {
+    background: $radio__background-checked;
+
+    .radio__circle {
+      background-color: $radio__circle-background-checked;
+      border-color: $radio__circle-border-color-checked;
+    }
+
+    .radio__dot {
+      @include size($radio__dot-size);
+      background-position: center center;
+      opacity: 1;
+      transition-duration: $radio__dot-transition-duration;
+      transition-property: opacity, width, height;
+      transition-timing-function: $radio__dot-transition-timing-function;
     }
   }
 }

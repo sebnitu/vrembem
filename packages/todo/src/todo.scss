@@ -1,5 +1,7 @@
 @import 'variables';
 
+// TODO: Add nested component styles for checkbox and choice
+
 .todo {
   position: relative;
 }
@@ -20,8 +22,13 @@
 }
 
 .todo__control {
+  align-items: center;
   cursor: pointer;
-  display: block;
+  display: flex;
+
+  > * {
+    top: 0;
+  }
 
   &:hover {
     background: rgba($black, 0.025);

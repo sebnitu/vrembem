@@ -1,7 +1,10 @@
 @import "variables";
 
+// TODO: Extract settings into variables
+// TODO: Refactor size modifier so the text line-height aligns with other form elements
+
 .choice {
-  align-items: center;
+  align-items: flex-start;
   background: $white;
   border: 1px solid rgba($black, 0.2);
   border-radius: $border-radius;
@@ -10,48 +13,61 @@
   display: flex;
   font-size: $choice-font-size;
   line-height: $choice-line-height;
+  overflow: hidden;
   padding: $choice-padding;
-
-  > * + * {
-    margin-left: 0.5em;
-  }
-
-  .checkbox,
-  .radio {
-    margin: -0.6em -0.6em -0.6em -0.8em;
-
-    &:hover {
-      background-color: none;
-    }
-  }
+  position: relative;
 
   &:hover {
-    background: rgba($primary, 0.025);
-    border-color: rgba($primary, 0.5);
+    border-color: rgba($black, 0.4);
+  }
 
-    .checkbox:hover,
-    .radio:hover {
-      background: none;
-    }
-
-    .checkbox__background,
-    .radio__background {
-      border-color: $primary;
-    }
+  &.is-focus {
+    background: rgba($yellow, 0.1);
+    border-color: rgba($black, 0.4);
+    box-shadow: 0 0 0 3px rgba($black, 0.05);
   }
 
   &.is-active {
-    background: rgba($primary, 0.025);
-    border-color: rgba($primary, 0.5);
+    background: rgba($primary, 0.05);
+    border-color: rgba($primary, 1);
 
-    &:hover {
-      border-color: rgba($primary, 1);
+    &:hover,
+    &.is-focus {
       box-shadow: 0 0 0 3px rgba($primary, 0.1);
     }
   }
 }
 
+.choice__input {
+  @include size(13px);
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  top: 6px;
+
+  &:first-child {
+    margin-right: 1em;
+  }
+
+  &:last-child {
+    margin-left: 1em;
+  }
+}
+
+.choice__hidden {
+  left: -9999px;
+  position: absolute;
+}
+
+.choice__text {
+  flex-grow: 1;
+}
+
+.choice_block {
+  display: flex;
+}
+
 .choice_inline {
   display: inline-flex;
-  padding-right: 1.5em;
 }

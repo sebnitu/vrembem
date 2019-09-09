@@ -3,10 +3,10 @@ layout: article
 title: "Todo"
 description: "A todo list component."
 category: compound
-# usage:
-  # npm: "@vrembem/todo"
-  # scss: "vrembem/todo/all"
-  # js: "vrembem/todo"
+usage:
+  npm: "@vrembem/todo"
+  scss: "vrembem/todo/index"
+  js: "vrembem/todo"
 ---
 
 {% include flag.html heading="todo" %}
@@ -19,34 +19,19 @@ category: compound
     <ul class="todo__list todo__list_open list" data-todo-open>
       <li class="todo__item list__item" data-todo>
         <label class="todo__control">
-          <div class="checkbox">
-            <input type="checkbox" class="checkbox__native">
-            <div class="checkbox__background">
-              {% include icon.html icon="check" class="checkbox__icon" %}
-            </div>
-          </div>
+          {% include checkbox.html %}
           <span>Todo item 1</span>
         </label>
       </li>
       <li class="todo__item list__item" data-todo>
         <label class="todo__control">
-          <div class="checkbox">
-            <input type="checkbox" class="checkbox__native">
-            <div class="checkbox__background">
-              {% include icon.html icon="check" class="checkbox__icon" %}
-            </div>
-          </div>
+          {% include checkbox.html %}
           <span>Todo item 2</span>
         </label>
       </li>
       <li class="todo__item list__item" data-todo>
         <label class="todo__control">
-          <div class="checkbox">
-            <input type="checkbox" class="checkbox__native">
-            <div class="checkbox__background">
-              {% include icon.html icon="check" class="checkbox__icon" %}
-            </div>
-          </div>
+          {% include checkbox.html %}
           <span>Todo item 3</span>
         </label>
       </li>
@@ -59,12 +44,7 @@ category: compound
     <ul class="todo__list todo__list_done list" data-todo-done>
       <li class="todo__item list__item" data-todo>
         <label class="todo__control">
-          <div class="checkbox">
-            <input type="checkbox" class="checkbox__native" checked>
-            <div class="checkbox__background">
-              {% include icon.html icon="check" class="checkbox__icon" %}
-            </div>
-          </div>
+          {% include checkbox.html checked="" %}
           <span>Todo item 4</span>
         </label>
       </li>
@@ -80,34 +60,19 @@ category: compound
     <ul class="todo__list todo__list_open spacing_xs" data-todo-open>
       <li class="todo__item" data-todo>
         <label class="choice choice_size_lg">
-          <div class="checkbox">
-            <input type="checkbox" class="checkbox__native">
-            <div class="checkbox__background">
-              {% include icon.html icon="check" class="checkbox__icon" %}
-            </div>
-          </div>
+          {% include checkbox.html %}
           <span>Todo item 1</span>
         </label>
       </li>
       <li class="todo__item" data-todo>
         <label class="choice choice_size_lg">
-          <div class="checkbox">
-            <input type="checkbox" class="checkbox__native">
-            <div class="checkbox__background">
-              {% include icon.html icon="check" class="checkbox__icon" %}
-            </div>
-          </div>
+          {% include checkbox.html %}
           <span>Todo item 2</span>
         </label>
       </li>
       <li class="todo__item" data-todo>
         <label class="choice choice_size_lg">
-          <div class="checkbox">
-            <input type="checkbox" class="checkbox__native">
-            <div class="checkbox__background">
-              {% include icon.html icon="check" class="checkbox__icon" %}
-            </div>
-          </div>
+          {% include checkbox.html %}
           <span>Todo item 3</span>
         </label>
       </li>
@@ -120,12 +85,7 @@ category: compound
     <ul class="todo__list todo__list_done spacing_xs" data-todo-done>
       <li class="todo__item" data-todo>
         <label class="choice choice_size_lg">
-          <div class="checkbox">
-            <input type="checkbox" class="checkbox__native" checked>
-            <div class="checkbox__background">
-              {% include icon.html icon="check" class="checkbox__icon" %}
-            </div>
-          </div>
+          {% include checkbox.html checked="" %}
           <span>Todo item 4</span>
         </label>
       </li>

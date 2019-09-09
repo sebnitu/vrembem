@@ -1,61 +1,100 @@
 @import "./variables";
 
 .checkbox {
-  border-radius: 2em;
-  display: inline-block;
-  flex-grow: 0;
-  padding: 0.75em;
+  @include size($checkbox-size);
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  padding: 0;
   position: relative;
+  top: -2px;
+  vertical-align: middle;
+}
 
-  &:hover,
-  &:focus {
-    background: rgba($black, 0.03);
-  }
+.checkbox__background {
+  @include size(100%);
+  align-items: center;
+  background: $checkbox__background;
+  border-radius: $checkbox__background-border-radius;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
 
-  &:active {
-    background: rgba($black, 0.06);
-  }
+.checkbox__box {
+  @include size($checkbox__box-size);
+  align-items: center;
+  background: $checkbox__box-background;
+  border: $checkbox__box-border-width solid $checkbox__box-border-color;
+  border-radius: $checkbox__box-border-radius;
+  color: transparent;
+  display: flex;
+  justify-content: center;
+}
+
+.checkbox__icon {
+  @include size($checkbox__icon-size);
+  background-image: url($checkbox__icon-image);
+  background-position: center ($checkbox__icon-size * -1);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  opacity: 0;
 }
 
 .checkbox__native {
+  @include size(100%);
   cursor: pointer;
-  height: 100%;
   left: 0;
   opacity: 0;
   position: absolute;
   top: 0;
-  width: 100%;
-}
+  z-index: 2;
 
-.checkbox__background {
-  align-items: center;
-  background: transparent;
-  border: 2px solid rgba($black, 0.2);
-  border-radius: $border-radius;
-  color: transparent;
-  display: flex;
-  height: 17px;
-  justify-content: center;
-  width: 17px;
+  &:hover + .checkbox__background {
+    background: $checkbox__background-hover;
 
-  &:hover {
-    background-color: $checkbox-color;
+    .checkbox__box {
+      background-color: $checkbox__box-background-hover;
+      border-color: $checkbox__box-border-color-hover;
+    }
   }
 
-  .checkbox__icon {
-    font-size: $font-size-sm;
-    stroke-width: 4px;
+  &:focus + .checkbox__background {
+    background: $checkbox__background-focus;
+
+    .checkbox__box {
+      background-color: $checkbox__box-background-focus;
+      border-color: $checkbox__box-border-color-focus;
+    }
   }
 
-  .checkbox:hover &,
-  .checkbox:focus &,
-  .checkbox__native:focus + & {
-    border-color: $checkbox-color;
+  &:active + .checkbox__background {
+    background: $checkbox__background-active;
+
+    .checkbox__box {
+      background-color: $checkbox__box-background-active;
+      border-color: $checkbox__box-border-color-active;
+    }
   }
 
-  .checkbox__native:checked + & {
-    background-color: $checkbox-color;
-    border-color: $checkbox-color;
-    color: $white;
+  &:checked + .checkbox__background {
+    background: $checkbox__background-checked;
+
+    .checkbox__box {
+      background-color: $checkbox__box-background-checked;
+      border-color: $checkbox__box-border-color-checked;
+    }
+
+    .checkbox__icon {
+      background-position: center center;
+      opacity: 1;
+      transition-duration: $checkbox__icon-transition-duration;
+      transition-property: opacity, background-position;
+      transition-timing-function: $checkbox__icon-transition-timing-function;
+    }
   }
 }

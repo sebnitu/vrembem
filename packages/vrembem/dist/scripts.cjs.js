@@ -154,28 +154,39 @@ var Choice = function Choice(options) {
   var defaults = {
     autoInit: false,
     classStateActive: "is-active",
+    classStateFocus: "is-focus",
     trigger: ".choice"
   };
   api.settings = _objectSpread2({}, defaults, {}, options);
 
   api.init = function () {
-    initChoice();
-    document.addEventListener("change", run, false);
-  };
-
-  api.destroy = function () {
-    document.removeEventListener("change", run, false);
-  };
-
-  var initChoice = function initChoice() {
     var choice = document.querySelectorAll(api.settings.trigger);
     choice.forEach(function (item) {
       updateChoice(item);
+      item.querySelector("input").addEventListener("focus", onFocus, false);
+      item.querySelector("input").addEventListener("blur", onBlur, false);
     });
+    document.addEventListener("change", onChange, false);
+  };
+
+  api.destroy = function () {
+    var choice = document.querySelectorAll(api.settings.trigger);
+    choice.forEach(function (item) {
+      item.querySelector("input").removeEventListener("focus", onFocus, false);
+      item.querySelector("input").removeEventListener("blur", onBlur, false);
+    });
+    document.removeEventListener("change", onChange, false);
   };
 
   var updateChoice = function updateChoice(item) {
     var input = item.querySelector("input");
+
+    if (input.type === "radio") {
+      var radioInput = document.querySelectorAll("[name=\"".concat(input.name, "\"]"));
+      radioInput.forEach(function (el) {
+        removeClass(el.closest(api.settings.trigger), api.settings.classStateActive);
+      });
+    }
 
     if (input.checked) {
       addClass(item, api.settings.classStateActive);
@@ -184,12 +195,20 @@ var Choice = function Choice(options) {
     }
   };
 
-  var run = function run(e) {
+  var onChange = function onChange(e) {
     var trigger = e.target.closest(api.settings.trigger);
 
     if (trigger) {
       updateChoice(trigger);
     }
+  };
+
+  var onFocus = function onFocus(e) {
+    addClass(e.target.closest(api.settings.trigger), api.settings.classStateFocus);
+  };
+
+  var onBlur = function onBlur(e) {
+    removeClass(e.target.closest(api.settings.trigger), api.settings.classStateFocus);
   };
 
   if (api.settings.autoInit) api.init();

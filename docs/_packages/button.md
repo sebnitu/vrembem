@@ -3,9 +3,9 @@ layout: article
 title: Button
 description: "Buttons are a simple component that allow users to take actions."
 category: simple
-# usage:
-  # npm: "@vrembem/button"
-  # scss: "vrembem/button/all"
+usage:
+  npm: "@vrembem/button"
+  scss: "vrembem/button/index"
 ---
 
 {% include flag.html heading="button" %}

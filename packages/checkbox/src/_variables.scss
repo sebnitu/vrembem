@@ -1,1 +1,30 @@
 $checkbox-color: $primary !default;
+$checkbox-size: $height !default;
+
+$checkbox__background: transparent !default;
+$checkbox__background-hover: rgba($black, 0.03) !default;
+$checkbox__background-focus: rgba($black, 0.03) !default;
+$checkbox__background-active: rgba($black, 0.06) !default;
+$checkbox__background-checked: null !default;
+$checkbox__background-border-radius: 2em !default;
+
+$checkbox__box-size: 17px !default;
+$checkbox__box-background: $white !default;
+$checkbox__box-background-hover: null !default;
+$checkbox__box-background-focus: null !default;
+$checkbox__box-background-active: null !default;
+$checkbox__box-background-checked: $checkbox-color !default;
+$checkbox__box-border-color: rgba($black, 0.2) !default;
+$checkbox__box-border-color-hover: $checkbox-color !default;
+$checkbox__box-border-color-focus: $checkbox-color !default;
+$checkbox__box-border-color-active: $checkbox-color !default;
+$checkbox__box-border-color-checked: $checkbox-color !default;
+$checkbox__box-border-width: 2px !default;
+$checkbox__box-border-radius: $border-radius !default;
+
+$checkbox__icon-size: 13px !default;
+$checkbox__icon-color: white !default;
+$checkbox__icon-stroke: 4 !default;
+$checkbox__icon-transition-duration: $transition-duration-short !default;
+$checkbox__icon-transition-timing-function: $transition-timing-function-sharp !default;
+$checkbox__icon-image: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#{$checkbox__icon-color}" stroke-width="#{$checkbox__icon-stroke}" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>' !default;

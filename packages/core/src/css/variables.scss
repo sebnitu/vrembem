@@ -41,6 +41,16 @@ $padding-sm: 0.1375em 0.5em !default;
 $padding: 0.438em 0.75em !default;
 $padding-lg: 0.75em 1.75em !default;
 
+// Height
+$height-sm: 2rem !default;
+$height: 2.5rem !default;
+$height-lg: 3rem !default;
+
+// Size
+$width-sm: 2rem !default;
+$width: 2.5rem !default;
+$width-lg: 3rem !default;
+
 // Fonts
 $font-family-sans: BlinkMacSystemFont, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif !default;
 $font-family-serif: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif !default;
@@ -73,33 +83,26 @@ $box-sizing: border-box !default;
 // https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow
 $box-shadow-color: $black !default;
 
-// Material design alpha: 0.20
 $box-shadow-shade-1: rgba($box-shadow-color, 0.1) !default;
-// Material design alpha: 0.14
 $box-shadow-shade-2: rgba($box-shadow-color, 0.07) !default;
-// Material design alpha: 0.12
 $box-shadow-shade-3: rgba($box-shadow-color, 0.06) !default;
 
 $box-shadow-1dp:
   0 2px 1px -1px $box-shadow-shade-1,
   0 1px 1px 0 $box-shadow-shade-2,
   0 1px 3px 0 $box-shadow-shade-3 !default;
-
 $box-shadow-4dp:
   0 2px 4px -1px $box-shadow-shade-1,
   0 4px 5px 0 $box-shadow-shade-2,
   0 1px 10px 0 $box-shadow-shade-3 !default;
-
 $box-shadow-8dp:
   0 5px 5px -3px $box-shadow-shade-1,
   0 8px 10px 1px $box-shadow-shade-2,
   0 3px 14px 2px $box-shadow-shade-3 !default;
-
 $box-shadow-16dp:
   0 8px 10px -5px $box-shadow-shade-1,
   0 16px 24px 2px $box-shadow-shade-2,
   0 6px 30px 5px $box-shadow-shade-3 !default;
-
 $box-shadow-24dp:
   0 11px 15px -7px $box-shadow-shade-1,
   0 24px 38px 3px $box-shadow-shade-2,
@@ -110,12 +113,13 @@ $box-shadow-flat: 0 0 0 0 rgba($white, 0) !default;
 
 // Transition
 // property | duration | timing-function | delay
-// $deceleration-curve-timing-function: cubic-bezier(0, 0, 0.2, 1) !default;
-// $standard-curve-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !default;
-// $acceleration-curve-timing-function: cubic-bezier(0.4, 0, 1, 1) !default;
-// $sharp-curve-timing-function: cubic-bezier(0.4, 0, 0.6, 1) !default;
 $transition-duration: 0.3s !default;
+$transition-duration-short: 0.15s !default;
+$transition-duration-long: 0.6s !default;
 $transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !default;
+$transition-timing-function-deceleration: cubic-bezier(0, 0, 0.2, 1) !default;
+$transition-timing-function-acceleration: cubic-bezier(0.4, 0, 1, 1) !default;
+$transition-timing-function-sharp: cubic-bezier(0.4, 0, 0.6, 1) !default;
 
 // Border
 $border-width: 1px !default;

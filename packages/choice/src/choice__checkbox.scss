@@ -1,0 +1,24 @@
+.choice {
+  .checkbox {
+    margin-bottom: -0.5em;
+    margin-top: -0.5em;
+    top: 0;
+
+    &:first-child {
+      margin-left: -0.75em;
+    }
+
+    &:last-child {
+      margin-right: -0.75em;
+    }
+  }
+
+  .checkbox__native {
+    &:hover + .checkbox__background,
+    &:focus + .checkbox__background,
+    &:active + .checkbox__background,
+    &:checked + .checkbox__background {
+      background: transparent;
+    }
+  }
+}

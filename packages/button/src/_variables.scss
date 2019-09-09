@@ -1,10 +1,10 @@
 $button-padding: $padding !default;
 $button-icon-padding: 0.1em !default;
 $button-inner-spacing: 0.5em !default;
-$button-height: 2.5rem !default;
+$button-height: $height !default;
 
 $button-font-size: $font-size !default;
-$button-line-height: 1.5 !default;
+$button-line-height: $line-height !default;
 $button-font-weight: inherit !default;
 $button-text-transform: null !default;
 $button-letter-spacing: null !default;
@@ -22,9 +22,9 @@ $button-border-width: 1px !default;
 $button-border-radius: $border-radius !default;
 $button-focus-outline: null !default;
 
-$button_size_sm-height: 2rem !default;
+$button_size_sm-height: $height-sm !default;
 $button_size_sm-font-size: $font-size-sm !default;
 $button_size_sm-padding: $padding-sm !default;
-$button_size_lg-height: 3rem !default;
+$button_size_lg-height: $height-lg !default;
 $button_size_lg-font-size: null !default;
 $button_size_lg-padding: $padding-lg !default;

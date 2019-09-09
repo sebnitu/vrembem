@@ -12,13 +12,13 @@ npm install {{ page.usage.npm }}
 
 {% if page.usage.scss %}
 ```scss
-@import '{{ page.usage.scss }}';
+@import "{{ page.usage.scss }}";
 ```
 {% endif %}
 
 {% if page.usage.js %}
 ```js
-import { {{ page.title }} } from '{{ page.usage.js }}'
+import { {{ page.title }} } from "{{ page.usage.js }}"
 ```
 {% endif %}
 
