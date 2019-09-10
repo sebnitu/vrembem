@@ -35,27 +35,27 @@
 
 .icon-action_color_fade {
   background: none;
-  color: $icon-action-color-invert;
   opacity: 0.5;
+  color: $icon-action-color-invert;
 
   &:hover,
   &:focus {
     background: none;
-    color: $icon-action-color-invert;
     opacity: 1;
+    color: $icon-action-color-invert;
   }
 }
 
 .icon-action_color_invert_fade {
   background: none;
-  color: $icon-action-color;
   opacity: 0.5;
+  color: $icon-action-color;
 
   &:hover,
   &:focus {
     background: none;
-    color: $icon-action-color;
     opacity: 1;
+    color: $icon-action-color;
   }
 }
 

@@ -1,15 +1,15 @@
 @import "./variables";
 
 .level {
-  align-items: center;
   display: flex;
   flex-wrap: wrap;
-  margin-left: ($level-gap * -1);
+  align-items: center;
   margin-top: ($level-gap * -1);
+  margin-left: ($level-gap * -1);
 
   > * {
     flex: 0 0 auto;
-    margin-left: $level-gap;
     margin-top: $level-gap;
+    margin-left: $level-gap;
   }
 }

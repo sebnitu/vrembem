@@ -1,13 +1,13 @@
 @import "./variables";
 
 .button-group {
-  align-items: center;
   display: inline-flex;
+  align-items: center;
 
   > .button {
-    border-radius: $button-group-border-radius;
-    flex: 0 0 auto;
     z-index: 1;
+    flex: 0 0 auto;
+    border-radius: $button-group-border-radius;
 
     + .button {
       margin: 0 0 0 $button-group-gap;

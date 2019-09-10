@@ -30,19 +30,19 @@
 
 @each $key, $value in $utility-spacing {
   .m_hori_#{$key} {
-    margin-left: $value !important;
     margin-right: $value !important;
+    margin-left: $value !important;
   }
 }
 
 @each $key, $value in $utility-spacing {
   .m_vert_#{$key} {
-    margin-bottom: $value !important;
     margin-top: $value !important;
+    margin-bottom: $value !important;
   }
 }
 
 .m_auto {
-  margin-left: auto;
   margin-right: auto;
+  margin-left: auto;
 }

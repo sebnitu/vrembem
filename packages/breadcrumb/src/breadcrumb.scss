@@ -1,16 +1,16 @@
 @import "variables";
 
 .breadcrumb {
-  align-items: center;
-  color: $breadcrumb-color;
   display: inline-flex;
   flex-wrap: wrap;
+  align-items: center;
+  color: $breadcrumb-color;
   list-style: none;
 }
 
 .breadcrumb__item {
-  align-items: center;
   display: flex;
+  align-items: center;
   margin: 0;
 
   > * + * {
@@ -18,9 +18,9 @@
   }
 
   &::after {
-    color: $breadcrumb-delimiter-color;
     content: $breadcrumb-delimiter;
     padding: $breadcrumb-delimiter-padding;
+    color: $breadcrumb-delimiter-color;
   }
 
   @if ($breadcrumb-delimiter-last != true) {

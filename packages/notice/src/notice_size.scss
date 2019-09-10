@@ -1,11 +1,11 @@
 @import "./variables";
 
 .notice_size_sm {
-  font-size: $notice_size_sm-font-size;
   padding: $notice_size_sm-padding;
+  font-size: $notice_size_sm-font-size;
 }
 
 .notice_size_lg {
-  font-size: $notice_size_lg-font-size;
   padding: $notice_size_lg-padding;
+  font-size: $notice_size_lg-font-size;
 }

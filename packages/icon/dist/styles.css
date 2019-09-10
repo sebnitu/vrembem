@@ -1,16 +1,16 @@
 .icon {
-  box-sizing: content-box;
   display: inline-block;
-  fill: none;
+  box-sizing: content-box;
   flex-shrink: 0;
-  font-size: 1.25em;
+  width: 1em;
   height: 1em;
   stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
   stroke-width: 2px;
+  stroke-linecap: round;
+  fill: none;
+  font-size: 1.25em;
   vertical-align: middle;
-  width: 1em;
+  stroke-linejoin: round;
 }
 
 .icon_abs {
@@ -32,11 +32,11 @@
 }
 
 .icon_fill {
-  fill: currentColor;
   stroke: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
   stroke-width: 0;
+  stroke-linecap: round;
+  fill: currentColor;
+  stroke-linejoin: round;
 }
 
 /*# sourceMappingURL=styles.css.map */

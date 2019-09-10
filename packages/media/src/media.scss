@@ -1,8 +1,8 @@
 @import "./variables";
 
 .media {
-  align-items: flex-start;
   display: flex;
+  align-items: flex-start;
 }
 
 .media__body {
@@ -14,8 +14,8 @@
 }
 
 .media__image {
-  border-radius: $media__image-border-radius;
   max-width: $media__image-max-width;
+  border-radius: $media__image-border-radius;
 
   &:first-child {
     margin-right: $media-spacing;

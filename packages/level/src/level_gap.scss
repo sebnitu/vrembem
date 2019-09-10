@@ -2,12 +2,12 @@
 
 @each $key, $value in $level-gap-scale {
   .level_gap_#{$key} {
-    margin-left: ($value * -1);
     margin-top: ($value * -1);
+    margin-left: ($value * -1);
 
     > * {
-      margin-left: $value;
       margin-top: $value;
+      margin-left: $value;
     }
   }
 }

@@ -1,20 +1,20 @@
 .panel {
-  background: #fff;
-  border-radius: 3px;
-  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.1), 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 1px 3px 0 rgba(0, 0, 0, 0.06);
-  color: #212121;
+  position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  position: relative;
+  border-radius: 3px;
+  background: #fff;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.1), 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 1px 3px 0 rgba(0, 0, 0, 0.06);
+  color: #212121;
 }
 
 .panel__section,
 .panel__header,
 .panel__footer {
-  padding: 1.5em;
   position: relative;
   z-index: 3;
+  padding: 1.5em;
 }
 
 .panel__section {
@@ -81,8 +81,8 @@
 }
 
 .panel_theme_bordered {
-  background: rgba(236, 239, 241, 0);
   border: 2px solid #eceff1;
+  background: rgba(236, 239, 241, 0);
   box-shadow: none;
   color: #212121;
 }

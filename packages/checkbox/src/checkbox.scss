@@ -2,64 +2,64 @@
 
 .checkbox {
   @include size($checkbox-size);
-  align-items: center;
-  display: inline-flex;
-  flex: 0 0 auto;
-  justify-content: center;
-  padding: 0;
   position: relative;
   top: -2px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
   vertical-align: middle;
 }
 
 .checkbox__background {
   @include size(100%);
-  align-items: center;
-  background: $checkbox__background;
-  border-radius: $checkbox__background-border-radius;
-  display: flex;
-  justify-content: center;
-  left: 0;
   position: absolute;
-  top: 0;
   z-index: 1;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $checkbox__background-border-radius;
+  background: $checkbox__background;
 }
 
 .checkbox__box {
   @include size($checkbox__box-size);
+  display: flex;
   align-items: center;
-  background: $checkbox__box-background;
+  justify-content: center;
   border: $checkbox__box-border-width solid $checkbox__box-border-color;
   border-radius: $checkbox__box-border-radius;
+  background: $checkbox__box-background;
   color: transparent;
-  display: flex;
-  justify-content: center;
 }
 
 .checkbox__icon {
   @include size($checkbox__icon-size);
   background-image: url($checkbox__icon-image);
-  background-position: center ($checkbox__icon-size * -1);
   background-repeat: no-repeat;
+  background-position: center ($checkbox__icon-size * -1);
   background-size: 100%;
   opacity: 0;
 }
 
 .checkbox__native {
   @include size(100%);
-  cursor: pointer;
+  position: absolute;
+  z-index: 2;
+  top: 0;
   left: 0;
   opacity: 0;
-  position: absolute;
-  top: 0;
-  z-index: 2;
+  cursor: pointer;
 
   &:hover + .checkbox__background {
     background: $checkbox__background-hover;
 
     .checkbox__box {
-      background-color: $checkbox__box-background-hover;
       border-color: $checkbox__box-border-color-hover;
+      background-color: $checkbox__box-background-hover;
     }
   }
 
@@ -67,8 +67,8 @@
     background: $checkbox__background-focus;
 
     .checkbox__box {
-      background-color: $checkbox__box-background-focus;
       border-color: $checkbox__box-border-color-focus;
+      background-color: $checkbox__box-background-focus;
     }
   }
 
@@ -76,8 +76,8 @@
     background: $checkbox__background-active;
 
     .checkbox__box {
-      background-color: $checkbox__box-background-active;
       border-color: $checkbox__box-border-color-active;
+      background-color: $checkbox__box-background-active;
     }
   }
 
@@ -85,16 +85,16 @@
     background: $checkbox__background-checked;
 
     .checkbox__box {
-      background-color: $checkbox__box-background-checked;
       border-color: $checkbox__box-border-color-checked;
+      background-color: $checkbox__box-background-checked;
     }
 
     .checkbox__icon {
+      transition-property: opacity, background-position;
+      transition-duration: $checkbox__icon-transition-duration;
+      transition-timing-function: $checkbox__icon-transition-timing-function;
       background-position: center center;
       opacity: 1;
-      transition-duration: $checkbox__icon-transition-duration;
-      transition-property: opacity, background-position;
-      transition-timing-function: $checkbox__icon-transition-timing-function;
     }
   }
 }

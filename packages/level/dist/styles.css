@@ -1,68 +1,68 @@
 .level {
-  align-items: center;
   display: flex;
   flex-wrap: wrap;
-  margin-left: -0.5rem;
+  align-items: center;
   margin-top: -0.5rem;
+  margin-left: -0.5rem;
 }
 .level > * {
   flex: 0 0 auto;
-  margin-left: 0.5rem;
   margin-top: 0.5rem;
+  margin-left: 0.5rem;
 }
 
 .level_gap_0 {
-  margin-left: 0;
   margin-top: 0;
+  margin-left: 0;
 }
 .level_gap_0 > * {
-  margin-left: 0;
   margin-top: 0;
+  margin-left: 0;
 }
 
 .level_gap_xs {
-  margin-left: -1px;
   margin-top: -1px;
+  margin-left: -1px;
 }
 .level_gap_xs > * {
-  margin-left: 1px;
   margin-top: 1px;
+  margin-left: 1px;
 }
 
 .level_gap_sm {
-  margin-left: -0.25rem;
   margin-top: -0.25rem;
+  margin-left: -0.25rem;
 }
 .level_gap_sm > * {
-  margin-left: 0.25rem;
   margin-top: 0.25rem;
+  margin-left: 0.25rem;
 }
 
 .level_gap_md {
-  margin-left: -0.5rem;
   margin-top: -0.5rem;
+  margin-left: -0.5rem;
 }
 .level_gap_md > * {
-  margin-left: 0.5rem;
   margin-top: 0.5rem;
+  margin-left: 0.5rem;
 }
 
 .level_gap_lg {
-  margin-left: -1rem;
   margin-top: -1rem;
+  margin-left: -1rem;
 }
 .level_gap_lg > * {
-  margin-left: 1rem;
   margin-top: 1rem;
+  margin-left: 1rem;
 }
 
 .level_gap_xl {
-  margin-left: -1.5rem;
   margin-top: -1.5rem;
+  margin-left: -1.5rem;
 }
 .level_gap_xl > * {
-  margin-left: 1.5rem;
   margin-top: 1.5rem;
+  margin-left: 1.5rem;
 }
 
 /*# sourceMappingURL=styles.css.map */

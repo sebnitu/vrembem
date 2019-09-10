@@ -1,57 +1,57 @@
 .drawer {
+  position: relative;
   display: flex;
   height: 100vh;
   overflow: hidden;
-  position: relative;
 }
 
 .drawer__main {
+  position: relative;
   flex: 1 1 auto;
   height: 100%;
   overflow: hidden auto;
   -webkit-overflow-scrolling: touch;
-  position: relative;
 }
 
 .drawer__dialog {
-  background: #eceff1;
-  border-radius: 0;
-  box-shadow: none;
-  height: 100%;
-  opacity: 0;
   visibility: hidden;
   width: 16em;
+  height: 100%;
+  border-radius: 0;
+  background: #eceff1;
+  box-shadow: none;
+  opacity: 0;
 }
 .drawer__dialog .dialog__header,
 .drawer__dialog .dialog__footer {
-  background: #eceff1;
   border-color: rgba(0, 0, 0, 0.05);
+  background: #eceff1;
 }
 .drawer__dialog .dialog__body {
   background: #eceff1;
 }
 
 .drawer__item {
-  align-content: stretch;
-  align-items: stretch;
   bottom: 0;
   display: flex;
   flex: 0 0 0;
   flex-direction: column;
-  overflow: hidden auto;
-  -webkit-overflow-scrolling: touch;
-  transition: width 0s 0.3s;
+  align-content: stretch;
+  align-items: stretch;
   width: 0;
+  overflow: hidden auto;
+  transition: width 0s 0.3s;
+  -webkit-overflow-scrolling: touch;
 }
 
 .drawer__item.is-active {
   flex: 0 0 auto;
-  transition: none;
   width: 16em;
+  transition: none;
 }
 .drawer__item.is-active .drawer__dialog {
-  opacity: 1;
   visibility: visible;
+  opacity: 1;
 }
 
 .drawer__item_pos_left,

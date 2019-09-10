@@ -1,8 +1,8 @@
 @import "./variables";
 
 .menu {
-  align-items: center;
   display: flex;
+  align-items: center;
   font-size: $menu-font-size;
   line-height: $menu-line-height;
   list-style: none;
@@ -17,22 +17,22 @@
 }
 
 .menu__link {
+  position: relative;
+  display: flex;
   align-items: center;
-  background: $menu-background;
+  padding: $menu-padding;
   border: $menu-border-width solid $menu-border-color;
   border-radius: $menu-border-radius;
+  background: $menu-background;
   color: $menu-color;
-  display: flex;
-  padding: $menu-padding;
-  position: relative;
   white-space: nowrap;
 
   &:hover,
   &:focus {
-    background: $menu-background_hover;
-    border-color: $menu-border-color_hover;
-    color: $menu-color_hover;
     outline: none;
+    border-color: $menu-border-color_hover;
+    background: $menu-background_hover;
+    color: $menu-color_hover;
   }
 
   > * + * {
@@ -41,28 +41,28 @@
 
   &.is-active,
   &.is-parent {
-    background: $menu-background_active;
     border-color: $menu-border-color_active;
+    background: $menu-background_active;
     color: $menu-color_active;
 
     &:hover,
     &:focus {
-      background: $menu-background_active;
       border-color: $menu-border-color_active;
+      background: $menu-background_active;
       color: $menu-color_active;
     }
   }
 
   &.is-disabled {
-    background: $menu-background_disabled;
     border-color: $menu-border-color_disabled;
+    background: $menu-background_disabled;
     color: $menu-color_disabled;
     cursor: default;
 
     &:hover,
     &:focus {
-      background: $menu-background_disabled;
       border-color: $menu-border-color_disabled;
+      background: $menu-background_disabled;
       color: $menu-color_disabled;
     }
   }
@@ -74,21 +74,21 @@
 
 .menu__sep {
   align-self: stretch;
-  background: $menu__sep-background;
+  width: $menu__sep-width;
   height: auto;
   margin: 0 $menu__sep-spacing;
-  width: $menu__sep-width;
+  background: $menu__sep-background;
 }
 
 .menu__text {
+  position: relative;
+  display: flex;
   align-items: center;
-  background: $menu-background;
+  padding: $menu-padding;
   border: $menu-border-width solid $menu-border-color;
   border-radius: $menu-border-radius;
+  background: $menu-background;
   color: $menu__text-color;
-  display: flex;
-  padding: $menu-padding;
-  position: relative;
   text-decoration: none;
   white-space: nowrap;
 

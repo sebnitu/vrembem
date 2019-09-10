@@ -1,8 +1,8 @@
 %link {
+  transition: $link-transition;
   border-bottom: $link-border;
   color: $link-color;
   text-decoration: $link-text-decoration;
-  transition: $link-transition;
 
   &:focus,
   &:hover {

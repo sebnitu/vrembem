@@ -1,9 +1,9 @@
 /// Adds clearfix styles
 @mixin add-clearfix() {
   &::after {
-    clear: both;
     content: "";
     display: table;
+    clear: both;
   }
 }
 
@@ -59,6 +59,6 @@
 /// @param {number (with unit) | string} $width - width size unit
 /// @param {number (with unit) | string} $height - height size unit
 @mixin size($width, $height: $width) {
-  height: $height;
   width: $width;
+  height: $height;
 }

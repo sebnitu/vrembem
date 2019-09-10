@@ -1,7 +1,7 @@
 .type::after {
-  clear: both;
   content: "";
   display: table;
+  clear: both;
 }
 .type h1,
 .type h2,
@@ -15,25 +15,25 @@
   margin: 1rem 0;
 }
 .type blockquote {
-  background: #eceff1;
-  border-radius: 3px;
-  color: #000;
   margin: 1.5rem 0;
   padding: 0.5rem 1.5rem;
+  border-radius: 3px;
+  background: #eceff1;
+  color: #000;
 }
 .type figure {
-  border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 1em;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 .type figure img {
-  height: auto;
   width: 100%;
+  height: auto;
 }
 .type figcaption {
+  margin: 1em 0.5em;
   color: #bdbdbd;
   font-size: 0.875em;
   font-style: italic;
-  margin: 1em 0.5em;
   text-align: center;
 }
 .type figcaption:first-child {
@@ -52,17 +52,17 @@
   word-break: break-word;
 }
 .type pre {
-  background: #f5f5f5;
-  border-radius: 3px;
   margin: 1.5rem 0;
-  overflow: auto;
   padding: 1.5rem;
+  overflow: auto;
+  border-radius: 3px;
+  background: #f5f5f5;
 }
 .type pre code {
+  padding: 0;
   background: none;
   color: inherit;
   font-size: 1em;
-  padding: 0;
 }
 .type hr {
   margin: 2rem 0;
@@ -82,8 +82,8 @@
   margin: 1rem 0;
 }
 .type dl dt {
-  font-weight: bold;
   margin: 1rem 0 0;
+  font-weight: bold;
 }
 .type dl dd {
   margin: 0 0 1rem 1rem;

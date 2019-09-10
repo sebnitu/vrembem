@@ -4,35 +4,35 @@
   position: relative;
 
   &::after {
-    background: $tooltip-background;
-    border-radius: $tooltip-border-radius;
-    bottom: 100%;
-    color: $tooltip-color;
     content: attr(data-tooltip);
-    display: block;
-    font-size: $tooltip-font-size;
-    left: 50%;
-    margin: 0;
-    max-width: $tooltip-max-width;
-    opacity: 0;
-    overflow: hidden;
-    padding: $tooltip-padding;
-    pointer-events: none;
     position: absolute;
-    right: auto;
-    text-overflow: ellipsis;
+    z-index: 100;
     top: auto;
+    right: auto;
+    bottom: 100%;
+    left: 50%;
+    display: block;
+    max-width: $tooltip-max-width;
+    margin: 0;
+    padding: $tooltip-padding;
+    overflow: hidden;
     transform: translate(-50%, 0) scale($tooltip-scale);
     transition:
       opacity $transition-duration $transition-timing-function,
       transform $transition-duration $transition-timing-function;
+    border-radius: $tooltip-border-radius;
+    background: $tooltip-background;
+    opacity: 0;
+    color: $tooltip-color;
+    font-size: $tooltip-font-size;
+    text-overflow: ellipsis;
     white-space: nowrap;
-    z-index: 100;
+    pointer-events: none;
   }
 
   &:hover::after,
   &:focus::after {
-    opacity: 1;
     transform: translate(-50%, -$tooltip-distance) scale(1);
+    opacity: 1;
   }
 }

@@ -3,9 +3,9 @@
 }
 
 .list__item {
-  background-clip: padding-box;
-  border-top: $border-light;
   display: relative;
+  border-top: $border-light;
+  background-clip: padding-box;
 
   &:last-child {
     border-bottom: $border-light;

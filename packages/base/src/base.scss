@@ -39,9 +39,9 @@ h6 {
 }
 
 img {
-  border: 0;
-  height: auto;
   max-width: 100%;
+  height: auto;
+  border: 0;
   vertical-align: middle;
 }
 
@@ -59,15 +59,15 @@ a {
 }
 
 button {
-  background: none;
-  border: 0;
-  cursor: pointer;
-  font: inherit;
-  -webkit-font-smoothing: inherit;
-  letter-spacing: inherit;
   overflow: visible;
+  border: 0;
+  background: none;
+  font: inherit;
+  letter-spacing: inherit;
   text-align: inherit;
   text-transform: inherit;
+  cursor: pointer;
+  -webkit-font-smoothing: inherit;
 }
 
 code,
@@ -76,6 +76,6 @@ pre {
 }
 
 ::-moz-focus-inner {
-  border: 0;
   padding: 0;
+  border: 0;
 }

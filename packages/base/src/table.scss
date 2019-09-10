@@ -1,6 +1,6 @@
 %table {
-  text-align: left;
   width: 100%;
+  text-align: left;
 
   th,
   td {
@@ -15,24 +15,24 @@
 }
 
 %table_bordered {
-  border-bottom: $table-border;
-  border-collapse: collapse;
-  border-spacing: 0;
   overflow: auto;
+  border-spacing: 0;
+  border-collapse: collapse;
+  border-bottom: $table-border;
 
   tr {
-    background-color: $table-background;
     border-top: $table-border;
+    background-color: $table-background;
   }
 
   th {
-    border: $table-border;
     padding: $table-padding;
+    border: $table-border;
   }
 
   td {
-    border: $table-border;
     padding: $table-padding;
+    border: $table-border;
   }
 }
 
@@ -89,8 +89,8 @@
 
 @include media-max('md') {
   %table_responsive {
-    border-bottom: $table-border;
     display: block;
+    border-bottom: $table-border;
     text-align: left;
 
     > * {
@@ -98,18 +98,18 @@
     }
 
     tr {
-      border-top: $table-border;
       display: block;
       padding: 0.5em;
+      border-top: $table-border;
     }
 
     th,
     td {
+      display: block;
+      width: 100%;
+      padding: 0.5em 0;
       border: none;
       border-top: 1px dashed $table-border-color;
-      display: block;
-      padding: 0.5em 0;
-      width: 100%;
 
       &:first-child {
         border-top: none;

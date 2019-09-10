@@ -6,8 +6,8 @@
     .card__body,
     .card__footer,
     .card__screen {
-      opacity: 0;
       transition: $card-fade-transition;
+      opacity: 0;
     }
 
     &:hover,

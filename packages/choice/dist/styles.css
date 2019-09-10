@@ -1,41 +1,41 @@
 .choice {
+  position: relative;
+  display: flex;
   align-items: flex-start;
-  background: #fff;
+  padding: 0.438em 0.75em;
+  overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 3px;
+  background: #fff;
   box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-  cursor: pointer;
-  display: flex;
   font-size: 16px;
   line-height: 1.5;
-  overflow: hidden;
-  padding: 0.438em 0.75em;
-  position: relative;
+  cursor: pointer;
 }
 .choice:hover {
   border-color: rgba(0, 0, 0, 0.4);
 }
 .choice.is-focus {
-  background: rgba(255, 235, 59, 0.1);
   border-color: rgba(0, 0, 0, 0.4);
+  background: rgba(255, 235, 59, 0.1);
   box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
 }
 .choice.is-active {
-  background: rgba(33, 150, 243, 0.05);
   border-color: #2196f3;
+  background: rgba(33, 150, 243, 0.05);
 }
 .choice.is-active:hover, .choice.is-active.is-focus {
   box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
 }
 
 .choice__input {
-  height: 13px;
   width: 13px;
+  height: 13px;
+  position: relative;
+  top: 6px;
   flex: 0 0 auto;
   margin: 0;
   padding: 0;
-  position: relative;
-  top: 6px;
 }
 .choice__input:first-child {
   margin-right: 1em;
@@ -45,8 +45,8 @@
 }
 
 .choice__hidden {
-  left: -9999px;
   position: absolute;
+  left: -9999px;
 }
 
 .choice__text {
@@ -62,9 +62,9 @@
 }
 
 .choice_size_sm {
-  font-size: 0.875em;
   height: 2rem;
   padding: 0.1375em 0.5em;
+  font-size: 0.875em;
 }
 
 .choice_size_lg {
@@ -73,9 +73,9 @@
 }
 
 .choice .checkbox {
-  margin-bottom: -0.5em;
-  margin-top: -0.5em;
   top: 0;
+  margin-top: -0.5em;
+  margin-bottom: -0.5em;
 }
 .choice .checkbox:first-child {
   margin-left: -0.75em;
@@ -88,9 +88,9 @@
 }
 
 .choice .radio {
-  margin-bottom: -0.5em;
-  margin-top: -0.5em;
   top: 0;
+  margin-top: -0.5em;
+  margin-bottom: -0.5em;
 }
 .choice .radio:first-child {
   margin-left: -0.75em;

@@ -45,28 +45,28 @@
   }
 
   blockquote {
-    background: $blockquote-background;
-    border-radius: $blockquote-border-radius;
-    color: $blockquote-color;
     margin: ($type-spacing * 1.5) 0;
     padding: ($type-spacing * 0.5) ($type-spacing * 1.5);
+    border-radius: $blockquote-border-radius;
+    background: $blockquote-background;
+    color: $blockquote-color;
   }
 
   figure {
-    border: $border;
     padding: 1em;
+    border: $border;
 
     img {
-      height: auto;
       width: 100%;
+      height: auto;
     }
   }
 
   figcaption {
+    margin: 1em 0.5em;
     color: $color-light;
     font-size: $font-size-sm;
     font-style: italic;
-    margin: 1em 0.5em;
     text-align: center;
 
     &:first-child {
@@ -83,31 +83,31 @@
   }
 
   mark {
+    padding: $mark-padding;
     background-color: $mark-background;
     color: $mark-color;
-    padding: $mark-padding;
   }
 
   code {
+    padding: $code-padding;
     background: $code-background;
     color: $code-color;
     font-size: 0.9em;
-    padding: $code-padding;
     word-break: break-word;
   }
 
   pre {
-    background: $pre-background;
-    border-radius: $pre-border-radius;
     margin: ($type-spacing * 1.5) 0;
-    overflow: auto;
     padding: ($type-spacing * 1.5);
+    overflow: auto;
+    border-radius: $pre-border-radius;
+    background: $pre-background;
 
     code {
+      padding: 0;
       background: none;
       color: inherit;
       font-size: 1em;
-      padding: 0;
     }
   }
 
@@ -134,8 +134,8 @@
     margin: $type-spacing 0;
 
     dt {
-      font-weight: bold;
       margin: $type-spacing 0 0;
+      font-weight: bold;
     }
 
     dd {

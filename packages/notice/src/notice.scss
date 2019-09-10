@@ -1,16 +1,16 @@
 @import "./variables";
 
 .notice {
-  background: $notice-background;
-  border: $notice-border;
-  border-radius: $notice-border-radius;
+  position: relative;
   display: block;
   padding: $notice-padding;
-  position: relative;
+  border: $notice-border;
+  border-radius: $notice-border-radius;
+  background: $notice-background;
 
   > * {
-    margin-bottom: $notice-spacing;
     margin-top: $notice-spacing;
+    margin-bottom: $notice-spacing;
   }
 
   > .notice__close + *,
@@ -24,22 +24,22 @@
 }
 
 .notice__close {
-  align-items: center;
-  cursor: pointer;
   display: inline-flex;
-  float: right;
+  align-items: center;
   justify-content: center;
   margin: 0 0 0.5rem 1rem;
+  float: right;
+  cursor: pointer;
 }
 
 .notice__group {
-  align-items: center;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 
   > *:nth-child(1n + 1) {
-    margin-bottom: 0;
     margin-top: 0;
+    margin-bottom: 0;
   }
 }
 

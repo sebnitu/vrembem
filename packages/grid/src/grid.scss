@@ -3,8 +3,8 @@
 .grid {
   display: flex;
   flex-wrap: wrap;
-  margin-left: ($grid-gap * -1);
   margin-top: ($grid-gap * -1);
+  margin-left: ($grid-gap * -1);
   padding: 0;
 
   & + & {
@@ -14,10 +14,10 @@
 
 .grid__item {
   flex: 1 1 0;
-  max-width: 100%;
-  padding-left: $grid-gap;
-  padding-top: $grid-gap;
   width: auto;
+  max-width: 100%;
+  padding-top: $grid-gap;
+  padding-left: $grid-gap;
 
   &_fill {
     display: flex;

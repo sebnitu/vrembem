@@ -4,8 +4,8 @@
   flex-direction: column;
 
   .media__image {
-    margin-left: 0;
     margin-right: 0;
+    margin-left: 0;
 
     &:first-child {
       margin-bottom: $media-spacing;
@@ -35,17 +35,17 @@
   @include media-max($key) {
     .media_stack_#{$key} {
       .media__image {
-        margin-left: 0;
         margin-right: 0;
+        margin-left: 0;
 
         &:first-child {
-          margin-bottom: $media-spacing;
           margin-top: 0;
+          margin-bottom: $media-spacing;
         }
 
         &:last-child {
-          margin-bottom: 0;
           margin-top: $media-spacing;
+          margin-bottom: 0;
         }
       }
     }

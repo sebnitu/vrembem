@@ -8,59 +8,60 @@ $menu_theme_tabs-border-radius: $menu-border-radius !default;
 $menu_theme_tabs-menu__link-padding: null !default;
 
 .menu_theme_tabs {
-  background-color: $menu_theme_tabs-background;
-  border-bottom: $menu_theme_tabs-border;
   padding: $menu_theme_tabs-padding $menu_theme_tabs-padding 0 $menu_theme_tabs-padding;
+  border-bottom: $menu_theme_tabs-border;
+  background-color: $menu_theme_tabs-background;
 
   .menu__item + .menu__item {
     margin-left: ($menu_theme_tabs-padding * 0.5);
   }
 
   .menu__link {
+    padding: $menu_theme_tabs-menu__link-padding;
     border-bottom: 0;
     border-radius: $menu_theme_tabs-border-radius;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    padding: $menu_theme_tabs-menu__link-padding;
     @if ($menu_theme_tabs-adjust) {
       margin-bottom: ($menu_theme_tabs-adjust * -1);
     }
 
     &.is-active {
-      background: $white;
-      background-clip: padding-box;
       border: $menu_theme_tabs-border;
       border-bottom: 0;
+      background: $white;
+      background-clip: padding-box;
     }
   }
 }
 
 .menu_stack.menu_theme_tabs {
-  border-bottom: 0;
-  border-right: $menu_theme_tabs-border;
   padding: $menu_theme_tabs-padding 0 $menu_theme_tabs-padding $menu_theme_tabs-padding;
+  border-right: $menu_theme_tabs-border;
+  border-bottom: 0;
 
   .menu__item + .menu__item {
-    margin-left: inherit;
     margin-top: ($menu_theme_tabs-padding * 0.5);
+    margin-left: inherit;
   }
 
   .menu__link {
+    border-right: 0;
     border-bottom: inherit;
     border-radius: $menu_theme_tabs-border-radius;
-    border-bottom-right-radius: 0;
-    border-right: 0;
     border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
     @if ($menu_theme_tabs-adjust) {
-      margin-bottom: inherit;
       margin-right: ($menu_theme_tabs-adjust * -1);
+      margin-bottom: inherit;
     }
 
     &.is-active {
-      background: $white;
-      background-clip: padding-box;
       border: $menu_theme_tabs-border;
       border-right: 0;
+      background: $white;
+      background-clip: padding-box;
     }
   }
 }

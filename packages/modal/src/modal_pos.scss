@@ -15,16 +15,16 @@
 .modal_pos_left,
 .modal_pos_right {
   .modal__dialog {
-    border: none;
-    border-radius: 0;
-    bottom: 0;
-    height: 100%;
-    margin: 0;
-    max-width: $modal-max-width-aside;
-    opacity: 1;
     position: absolute;
     top: 0;
+    bottom: 0;
     width: $modal-width-aside;
+    max-width: $modal-max-width-aside;
+    height: 100%;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    opacity: 1;
   }
 }
 

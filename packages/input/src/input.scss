@@ -1,26 +1,26 @@
 @import "./variables";
 
 .input {
-  appearance: none;
-  background: $input-background;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: $input-height;
+  padding: $input-padding;
   border: $input-border;
   border-radius: 3px;
+  background: $input-background;
   box-shadow: $input-box-shadow-values $input-box-shadow-color;
   color: $color;
-  display: block;
   font-family: $font-family;
   font-size: $input-font-size;
-  height: $input-height;
   line-height: $input-line-height;
-  padding: $input-padding;
-  position: relative;
-  width: 100%;
+  appearance: none;
 
   &:focus {
-    background-color: $input-background-focus;
-    border: $input-border-focus;
-    box-shadow: $input-box-shadow-focus-values $input-box-shadow-focus-color;
     outline: none;
+    border: $input-border-focus;
+    background-color: $input-background-focus;
+    box-shadow: $input-box-shadow-focus-values $input-box-shadow-focus-color;
   }
 
   &::placeholder {
@@ -33,14 +33,14 @@
 }
 
 .input_color_invert {
-  background: rgba($white, 0.1);
   border-color: rgba($white, 0);
+  background: rgba($white, 0.1);
   box-shadow: none;
   color: $white;
 
   &:focus {
-    background: rgba($white, 0.2);
     border-color: rgba($white, 0);
+    background: rgba($white, 0.2);
     box-shadow: none;
   }
 

@@ -1,16 +1,16 @@
 @import "./variables";
 
 .card {
-  background: $card-background;
-  border: $card-border;
-  border-radius: $card-border-radius;
-  box-shadow: $card-box-shadow;
-  color: color-switch($card-background);
+  position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  position: relative;
   transition: $card-transition;
+  border: $card-border;
+  border-radius: $card-border-radius;
+  background: $card-background;
+  box-shadow: $card-box-shadow;
+  color: color-switch($card-background);
 }
 
 .card__header,
@@ -33,8 +33,8 @@
 
 .card__image {
   flex: 0 1 auto;
-  height: auto;
   width: 100%;
+  height: auto;
 
   &:first-child {
     border-top-left-radius: $card-border-radius;
@@ -73,15 +73,15 @@
 
 .card__background,
 .card__screen {
-  border-radius: $card-border-radius;
-  bottom: 0;
-  height: 100%;
-  left: 0;
   position: absolute;
-  right: 0;
   top: 0;
-  transition: $card-transition;
+  right: 0;
+  bottom: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  transition: $card-transition;
+  border-radius: $card-border-radius;
 }
 
 .card__background {
@@ -90,7 +90,7 @@
 }
 
 .card__screen {
+  z-index: 2;
   background: $card__screen-background;
   opacity: $card__screen-opacity;
-  z-index: 2;
 }

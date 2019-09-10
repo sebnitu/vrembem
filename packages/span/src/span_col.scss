@@ -3,8 +3,8 @@
 @for $i from 1 through $span-columns {
   .span_#{$i} {
     flex: 0 0 (100% * ($i/$span-columns));
-    max-width: (100% * ($i/$span-columns));
     width: (100% * ($i/$span-columns));
+    max-width: (100% * ($i/$span-columns));
   }
 }
 
@@ -13,8 +13,8 @@
     @for $i from 1 through $span-columns {
       .span_#{$i}_#{$key} {
         flex-basis: (100% * ($i/$span-columns));
-        max-width: (100% * ($i/$span-columns));
         width: (100% * ($i/$span-columns));
+        max-width: (100% * ($i/$span-columns));
       }
     }
   }

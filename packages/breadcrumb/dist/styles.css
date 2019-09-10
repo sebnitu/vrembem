@@ -1,23 +1,23 @@
 .breadcrumb {
-  align-items: center;
-  color: #bdbdbd;
   display: inline-flex;
   flex-wrap: wrap;
+  align-items: center;
+  color: #bdbdbd;
   list-style: none;
 }
 
 .breadcrumb__item {
-  align-items: center;
   display: flex;
+  align-items: center;
   margin: 0;
 }
 .breadcrumb__item > * + * {
   margin-left: 0.5em;
 }
 .breadcrumb__item::after {
-  color: #bdbdbd;
   content: "/";
   padding: 0 0.5em;
+  color: #bdbdbd;
 }
 
 .breadcrumb__link {

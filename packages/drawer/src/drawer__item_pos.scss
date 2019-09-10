@@ -10,8 +10,8 @@
   left: 0;
 
   .drawer__dialog {
-    border-right: $drawer__dialog-border;
     transform: translateX(-100%);
+    border-right: $drawer__dialog-border;
   }
 }
 
@@ -19,8 +19,8 @@
   right: 0;
 
   .drawer__dialog {
-    border-left: $drawer__dialog-border;
     transform: translateX(100%);
+    border-left: $drawer__dialog-border;
   }
 }
 

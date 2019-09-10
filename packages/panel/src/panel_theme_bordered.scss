@@ -9,8 +9,8 @@ $panel_theme_bordered-border-color-hover: darken($shade, 5%) !default;
 $panel_theme_bordered-box-shadow-hover: none !default;
 
 .panel_theme_bordered {
-  background: $panel_theme_bordered-background;
   border: $panel_theme_bordered-border;
+  background: $panel_theme_bordered-background;
   box-shadow: $panel_theme_bordered-box-shadow;
   color: color-switch($panel_theme_bordered-background);
 

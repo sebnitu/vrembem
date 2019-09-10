@@ -1,18 +1,18 @@
 @import "./variables";
 
 .dialog {
-  background: $dialog-background;
-  background-clip: padding-box;
-  border: $dialog-border;
-  border-radius: $dialog-border-radius;
-  box-shadow: $dialog-box-shadow;
+  position: relative;
+  z-index: $dialog-zindex;
   display: flex;
   flex-direction: column;
   overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  position: relative;
   transition: all $dialog-transition-duration $dialog-transition-timing-function;
-  z-index: $dialog-zindex;
+  border: $dialog-border;
+  border-radius: $dialog-border-radius;
+  background: $dialog-background;
+  background-clip: padding-box;
+  box-shadow: $dialog-box-shadow;
+  -webkit-overflow-scrolling: touch;
 }
 
 .dialog__header,
@@ -24,17 +24,17 @@
 
 .dialog__header,
 .dialog__footer {
+  position: sticky;
+  z-index: 1;
+  display: flex;
   align-items: center;
   background: $dialog-background;
-  display: flex;
-  position: sticky;
   vertical-align: middle;
-  z-index: 1;
 }
 
 .dialog__header {
-  border-bottom: $dialog-sep-border;
   top: 0;
+  border-bottom: $dialog-sep-border;
 }
 
 .dialog__body {
@@ -46,8 +46,8 @@
 }
 
 .dialog__footer {
-  border-top: $dialog-sep-border;
   bottom: 0;
+  border-top: $dialog-sep-border;
 }
 
 .dialog__title {
@@ -58,8 +58,8 @@
 
 .dialog > .dialog__close {
   position: absolute;
-  right: 1rem;
   top: 1rem;
+  right: 1rem;
 
   + .dialog__body {
     padding-right: 3.5em;

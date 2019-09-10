@@ -9,8 +9,8 @@ $card_theme_bordered-border-color-hover: darken($shade, 5%) !default;
 $card_theme_bordered-box-shadow-hover: none !default;
 
 .card_theme_bordered {
-  background: $card_theme_bordered-background;
   border: $card_theme_bordered-border;
+  background: $card_theme_bordered-background;
   box-shadow: $card_theme_bordered-box-shadow;
   color: color-switch($card_theme_bordered-background);
 
@@ -27,8 +27,8 @@ $card_theme_bordered-box-shadow-hover: none !default;
 
   &.card_link:hover,
   &.card_link:focus {
-    background: $card_theme_bordered-background-hover;
     border-color: $card_theme_bordered-border-color-hover;
+    background: $card_theme_bordered-background-hover;
     box-shadow: $card_theme_bordered-box-shadow-hover;
   }
 }

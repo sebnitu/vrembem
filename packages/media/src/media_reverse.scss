@@ -5,13 +5,13 @@
 
   .media__image {
     &:first-child {
-      margin-left: $media-spacing;
       margin-right: 0;
+      margin-left: $media-spacing;
     }
 
     &:last-child {
-      margin-left: 0;
       margin-right: $media-spacing;
+      margin-left: 0;
     }
   }
 }

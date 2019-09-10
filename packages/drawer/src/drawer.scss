@@ -1,33 +1,33 @@
 @import "./variables";
 
 .drawer {
+  position: relative;
   display: flex;
   height: 100vh;
   overflow: hidden;
-  position: relative;
 }
 
 .drawer__main {
+  position: relative;
   flex: 1 1 auto;
   height: 100%;
   overflow: hidden auto;
   -webkit-overflow-scrolling: touch;
-  position: relative;
 }
 
 .drawer__dialog {
-  background: $drawer__dialog-background;
-  border-radius: 0;
-  box-shadow: $drawer__dialog-box-shadow;
-  height: 100%;
-  opacity: 0;
   visibility: hidden;
   width: $drawer-width;
+  height: 100%;
+  border-radius: 0;
+  background: $drawer__dialog-background;
+  box-shadow: $drawer__dialog-box-shadow;
+  opacity: 0;
 
   .dialog__header,
   .dialog__footer {
-    background: $drawer__dialog-background;
     border-color: $drawer__dialog-sep-border-color;
+    background: $drawer__dialog-background;
   }
 
   .dialog__body {
@@ -36,25 +36,25 @@
 }
 
 .drawer__item {
-  align-content: stretch;
-  align-items: stretch;
   bottom: 0;
   display: flex;
   flex: 0 0 0;
   flex-direction: column;
-  overflow: hidden auto;
-  -webkit-overflow-scrolling: touch;
-  transition: width 0s $drawer-transition-duration;
+  align-content: stretch;
+  align-items: stretch;
   width: 0;
+  overflow: hidden auto;
+  transition: width 0s $drawer-transition-duration;
+  -webkit-overflow-scrolling: touch;
 }
 
 .drawer__item.is-active {
   flex: 0 0 auto;
-  transition: none;
   width: $drawer-width;
+  transition: none;
 
   .drawer__dialog {
-    opacity: 1;
     visibility: visible;
+    opacity: 1;
   }
 }

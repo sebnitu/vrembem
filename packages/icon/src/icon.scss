@@ -1,17 +1,17 @@
 @import "./variables";
 
 .icon {
-  box-sizing: content-box;
   display: inline-block;
-  fill: $icon-fill;
+  box-sizing: content-box;
   flex-shrink: 0;
-  font-size: $icon-font-size;
+  width: 1em;
   height: 1em;
   padding: $icon-padding;
   stroke: $icon-stroke;
-  stroke-linecap: $icon-stroke-linecap;
-  stroke-linejoin: $icon-stroke-linejoin;
   stroke-width: $icon-stroke-width;
+  stroke-linecap: $icon-stroke-linecap;
+  fill: $icon-fill;
+  font-size: $icon-font-size;
   vertical-align: middle;
-  width: 1em;
+  stroke-linejoin: $icon-stroke-linejoin;
 }

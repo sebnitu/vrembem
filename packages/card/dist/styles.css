@@ -1,13 +1,13 @@
 .card {
-  background: #fff;
-  border-radius: 3px;
-  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.1), 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 1px 3px 0 rgba(0, 0, 0, 0.06);
-  color: #212121;
+  position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  position: relative;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 3px;
+  background: #fff;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.1), 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 1px 3px 0 rgba(0, 0, 0, 0.06);
+  color: #212121;
 }
 
 .card__header,
@@ -30,8 +30,8 @@
 
 .card__image {
   flex: 0 1 auto;
-  height: auto;
   width: 100%;
+  height: auto;
 }
 .card__image:first-child {
   border-top-left-radius: 3px;
@@ -66,15 +66,15 @@
 
 .card__background,
 .card__screen {
-  border-radius: 3px;
-  bottom: 0;
-  height: 100%;
-  left: 0;
   position: absolute;
-  right: 0;
   top: 0;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  right: 0;
+  bottom: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 3px;
 }
 
 .card__background {
@@ -83,9 +83,9 @@
 }
 
 .card__screen {
+  z-index: 2;
   background: #37474f;
   opacity: 0.7;
-  z-index: 2;
 }
 
 .card_invert {
@@ -131,10 +131,10 @@
   }
 }
 .card_tall .card__body {
-  align-items: center;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 .card_tall .card__body > * {
@@ -166,8 +166,8 @@
 .card_fade .card__body,
 .card_fade .card__footer,
 .card_fade .card__screen {
-    opacity: 0;
     transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
   }
   .card_fade:hover .card__header,
 .card_fade:hover .card__body,
@@ -208,8 +208,8 @@
 }
 
 .card_theme_bordered {
-  background: rgba(236, 239, 241, 0);
   border: 2px solid #eceff1;
+  background: rgba(236, 239, 241, 0);
   box-shadow: none;
   color: #212121;
 }
@@ -217,8 +217,8 @@
   background: rgba(236, 239, 241, 0);
 }
 .card_theme_bordered.card_link:hover, .card_theme_bordered.card_link:focus {
-  background: rgba(236, 239, 241, 0.75);
   border-color: #dde3e6;
+  background: rgba(236, 239, 241, 0.75);
   box-shadow: none;
 }
 

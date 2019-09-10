@@ -3,119 +3,119 @@
 $button_outline-border-width: 1px !default;
 
 .button_outline {
-  background: none;
   border: $button_outline-border-width solid rgba($black, 0.2);
+  background: none;
   color: $button-color;
 
   &:focus,
   &:hover {
-    background: $white;
     border-color: rgba($primary, 1);
+    background: $white;
     color: color-switch($white, $button-color-hover, $button-color-invert-hover);
   }
 }
 
 .button_outline_primary {
-  background: none;
   border: $button_outline-border-width solid $primary;
+  background: none;
   color: $primary;
 
   &:focus,
   &:hover {
-    background: $primary;
     border-color: $primary;
+    background: $primary;
     color: color-switch($primary, $button-color-hover, $button-color-invert-hover);
   }
 }
 
 .button_outline_secondary {
-  background: none;
   border: $button_outline-border-width solid $secondary;
+  background: none;
   color: $secondary;
 
   &:focus,
   &:hover {
-    background: $secondary;
     border-color: $secondary;
+    background: $secondary;
     color: color-switch($secondary, $button-color-hover, $button-color-invert-hover);
   }
 }
 
 .button_outline_accent {
-  background: none;
   border: $button_outline-border-width solid $accent;
+  background: none;
   color: $accent;
 
   &:focus,
   &:hover {
-    background: $accent;
     border-color: $accent;
+    background: $accent;
     color: color-switch($accent, $button-color-hover, $button-color-invert-hover);
   }
 }
 
 .button_outline_shade {
-  background: none;
   border: $button_outline-border-width solid $shade;
+  background: none;
   color: $shade;
 
   &:focus,
   &:hover {
-    background: $shade;
     border-color: $shade;
+    background: $shade;
     color: color-switch($shade, $button-color-hover, $button-color-invert-hover);
   }
 }
 
 .button_outline_dark {
-  background: none;
   border: $button_outline-border-width solid $dark;
+  background: none;
   color: $dark;
 
   &:focus,
   &:hover {
-    background: $dark;
     border-color: $dark;
+    background: $dark;
     color: color-switch($dark, $button-color-hover, $button-color-invert-hover);
   }
 }
 
 .button_outline_subtle {
-  background: none;
   border: $button_outline-border-width solid rgba($black, 0.1);
+  background: none;
   color: $color-light;
 
   &:focus,
   &:hover {
-    background: none;
     border-color: rgba($black, 0.2);
+    background: none;
     color: $button-color;
   }
 }
 
 .button_outline_invert {
-  background: none;
   border: $button_outline-border-width solid rgba($white, 0.25);
+  background: none;
   color: $white;
 
   &:focus,
   &:hover {
-    background: $white;
     border-color: $white;
+    background: $white;
     color: $button-color;
     mix-blend-mode: screen;
   }
 }
 
 .button_outline_invert_subtle {
-  background: none;
   border: $button_outline-border-width solid rgba($white, 0.2);
+  background: none;
   color: rgba($white, 0.5);
 
   &:focus,
   &:hover {
-    background: none;
     border-color: rgba($white, 0.5);
+    background: none;
     color: $white;
   }
 }

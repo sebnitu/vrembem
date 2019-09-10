@@ -1,44 +1,48 @@
 @import "./variables";
 
 .button {
+  position: relative;
+  display: inline-flex;
   align-items: center;
-  background: $button-background;
-  background-clip: border-box;
+  justify-content: center;
+  height: $button-height;
+  padding: $button-padding;
   border: $button-border-width solid $button-border-color;
   border-radius: $button-border-radius;
+  background: $button-background;
+  background-clip: border-box;
   color: $button-color;
-  cursor: pointer;
-  display: inline-flex;
   font-family: inherit;
   font-size: $button-font-size;
   font-weight: $button-font-weight;
-  height: $button-height;
-  justify-content: center;
   letter-spacing: $button-letter-spacing;
   line-height: $button-line-height;
-  padding: $button-padding;
-  position: relative;
   text-decoration: none;
   text-transform: $button-text-transform;
   vertical-align: top;
   white-space: nowrap;
+  cursor: pointer;
 
-  &:hover,
-  &:focus {
-    background-color: $button-background-hover;
+  &:hover {
     border-color: $button-border-color-hover;
+    background-color: $button-background-hover;
     color: $button-color-hover;
   }
 
   &:focus {
     outline: $button-focus-outline;
+    border-color: $button-border-color-focus;
+    background-color: $button-background-focus;
+    color: $button-color-focus;
+  }
+
+  &:active {
+    border-color: $button-border-color-active;
+    background-color: $button-background-active;
+    color: $button-color-active;
   }
 
   > * + * {
     margin-left: $button-inner-spacing;
-  }
-
-  .icon {
-    padding: $button-icon-padding;
   }
 }

@@ -1,59 +1,59 @@
 .radio {
-  height: 2.5rem;
   width: 2.5rem;
-  align-items: center;
-  display: inline-flex;
-  flex-grow: 0;
-  justify-content: center;
-  padding: 0;
+  height: 2.5rem;
   position: relative;
   top: -2px;
+  display: inline-flex;
+  flex-grow: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
   vertical-align: middle;
 }
 
 .radio__background {
-  height: 100%;
   width: 100%;
-  align-items: center;
-  background: transparent;
-  border-radius: 2em;
-  display: flex;
-  justify-content: center;
-  left: 0;
+  height: 100%;
   position: absolute;
-  top: 0;
   z-index: 1;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2em;
+  background: transparent;
 }
 
 .radio__circle {
-  height: 21px;
   width: 21px;
+  height: 21px;
+  display: flex;
   align-items: center;
-  background: #fff;
+  justify-content: center;
   border: 2px solid rgba(0, 0, 0, 0.2);
   border-radius: 21px;
+  background: #fff;
   color: transparent;
-  display: flex;
-  justify-content: center;
 }
 
 .radio__dot {
-  height: 0;
   width: 0;
-  background: white;
+  height: 0;
   border-radius: 9px;
+  background: white;
   opacity: 0;
 }
 
 .radio__native {
-  height: 100%;
   width: 100%;
-  cursor: pointer;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  top: 0;
   left: 0;
   opacity: 0;
-  position: absolute;
-  top: 0;
-  z-index: 2;
+  cursor: pointer;
 }
 .radio__native:hover + .radio__background {
   background: rgba(0, 0, 0, 0.03);
@@ -74,17 +74,17 @@
   border-color: #2196f3;
 }
 .radio__native:checked + .radio__background .radio__circle {
-  background-color: #2196f3;
   border-color: #2196f3;
+  background-color: #2196f3;
 }
 .radio__native:checked + .radio__background .radio__dot {
-  height: 9px;
   width: 9px;
+  height: 9px;
+  transition-property: opacity, width, height;
+  transition-duration: 0.15s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
   background-position: center center;
   opacity: 1;
-  transition-duration: 0.15s;
-  transition-property: opacity, width, height;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
 }
 
 /*# sourceMappingURL=styles.css.map */

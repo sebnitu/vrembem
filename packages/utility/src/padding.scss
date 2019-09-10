@@ -30,14 +30,14 @@
 
 @each $key, $value in $utility-spacing {
   .p_hori_#{$key} {
-    padding-left: $value !important;
     padding-right: $value !important;
+    padding-left: $value !important;
   }
 }
 
 @each $key, $value in $utility-spacing {
   .p_vert_#{$key} {
-    padding-bottom: $value !important;
     padding-top: $value !important;
+    padding-bottom: $value !important;
   }
 }

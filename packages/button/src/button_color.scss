@@ -67,14 +67,14 @@
 }
 
 .button_color_invert {
-  background: none;
   border-color: rgba($white, 0);
+  background: none;
   color: $white;
 
   &:focus,
   &:hover {
-    background: rgba($white, 0.1);
     border-color: rgba($white, 0);
+    background: rgba($white, 0.1);
     color: $white;
   }
 }
@@ -85,8 +85,8 @@
 
   &:focus,
   &:hover {
-    background: rgba($white, 0.1);
     border-color: rgba($white, 0);
+    background: rgba($white, 0.1);
     color: $white;
   }
 }
