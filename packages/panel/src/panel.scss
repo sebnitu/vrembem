@@ -1,0 +1,53 @@
+@import "./variables";
+
+.panel {
+  background: $panel-background;
+  border: $panel-border;
+  border-radius: $panel-border-radius;
+  box-shadow: $panel-box-shadow;
+  color: color-switch($panel-background);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.panel__section,
+.panel__header,
+.panel__footer {
+  padding: $panel-padding;
+  position: relative;
+  z-index: 3;
+}
+
+.panel__section {
+  flex: 1 1 auto;
+
+  & + & {
+    border-top: $panel-sep-border;
+  }
+}
+
+.panel__header {
+  border-bottom: $panel-sep-border;
+
+  &:first-child {
+    border-top-left-radius: $panel-border-radius;
+    border-top-right-radius: $panel-border-radius;
+  }
+}
+
+.panel__footer {
+  border-top: $panel-sep-border;
+
+  &:last-child {
+    border-bottom-left-radius: $panel-border-radius;
+    border-bottom-right-radius: $panel-border-radius;
+  }
+}
+
+.panel__title {
+  flex-grow: 1;
+  font-size: $panel__title-font-size;
+  font-weight: $panel__title-font-weight;
+}

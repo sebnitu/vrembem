@@ -1,0 +1,18 @@
+@import "./variables";
+
+.panel_theme_dark {
+  background: $dark;
+  box-shadow: none;
+  color: color-switch($dark);
+
+  @if (is-dark($dark)) {
+    .panel__header,
+    .panel__footer {
+      border-color: $border-color-invert;
+    }
+  }
+
+  .panel__screen {
+    background: $dark;
+  }
+}

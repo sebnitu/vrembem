@@ -3,9 +3,9 @@ layout: article
 title: Notice
 description: "A component for highlighting messages to the user."
 category: simple
-# usage:
-  # npm: "@vrembem/notice"
-  # scss: "vrembem/notice/all"
+usage:
+  npm: "@vrembem/notice"
+  scss: "vrembem/notice/index"
 ---
 
 {% include flag.html heading="notice" %}

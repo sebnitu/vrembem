@@ -1,0 +1,29 @@
+@import "variables";
+
+$breadcrumb_theme_invert-color: rgba($white, 0.5) !default;
+$breadcrumb_theme_invert-delimiter-color: rgba($white, 0.25) !default;
+$breadcrumb_theme_invert__link-color: rgba($white, 0.75) !default;
+$breadcrumb_theme_invert__link-color-hover: rgba($white, 1) !default;
+$breadcrumb_theme_invert__link-border-color: rgba($white, 0.2) !default;
+$breadcrumb_theme_invert__link-border-color-hover: rgba($white, 1) !default;
+
+.breadcrumb_invert {
+  color: $breadcrumb_theme_invert-color;
+
+  .breadcrumb__item {
+    &::after {
+      color: $breadcrumb_theme_invert-delimiter-color;
+    }
+  }
+
+  .breadcrumb__link {
+    border-bottom: 1px solid $breadcrumb_theme_invert__link-border-color;
+    color: $breadcrumb_theme_invert__link-color;
+
+    &:focus,
+    &:hover {
+      border-bottom: 1px solid $breadcrumb_theme_invert__link-border-color-hover;
+      color: $breadcrumb_theme_invert__link-color-hover;
+    }
+  }
+}

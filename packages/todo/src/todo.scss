@@ -1,0 +1,75 @@
+@import 'variables';
+
+// TODO: Add nested component styles for checkbox and choice
+
+.todo {
+  position: relative;
+}
+
+.todo__list {
+  list-style: none;
+  position: relative;
+}
+
+.todo__item {
+  transition: opacity $transition-duration, transform $transition-duration;
+  transition-timing-function: $transition-timing-function;
+
+  &.is-animating {
+    opacity: 0;
+    transform: translateY($todo-travel);
+  }
+}
+
+.todo__control {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+
+  > * {
+    top: 0;
+  }
+
+  &:hover {
+    background: rgba($black, 0.025);
+  }
+}
+
+.todo__list_done {
+  .todo__item {
+    opacity: 1;
+    transform: translateY(0);
+
+    &.is-animating {
+      opacity: 0;
+      transform: translateY(-$todo-travel);
+    }
+  }
+
+  .todo__control {
+    background: rgba($black, 0.025);
+    color: $color-light;
+  }
+}
+
+.todo__empty {
+  display: none;
+  opacity: 0;
+  transform: translateY(-$todo-travel);
+  transition:
+    opacity $transition-duration,
+    transform $transition-duration;
+  transition-timing-function: $transition-timing-function;
+
+  &.is-animating {
+    display: block;
+    opacity: 0;
+    transform: translateY(-$todo-travel);
+  }
+
+  &.is-active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

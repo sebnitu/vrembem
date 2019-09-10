@@ -369,6 +369,52 @@ pre {
     border-top: none;
   }
 }
+.breadcrumb {
+  align-items: center;
+  color: #bdbdbd;
+  display: inline-flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.breadcrumb__item {
+  align-items: center;
+  display: flex;
+  margin: 0;
+}
+.breadcrumb__item > * + * {
+  margin-left: 0.5em;
+}
+.breadcrumb__item::after {
+  color: #bdbdbd;
+  content: "/";
+  padding: 0 0.5em;
+}
+
+.breadcrumb__link {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: #2196f3;
+}
+.breadcrumb__link:focus, .breadcrumb__link:hover {
+  border-bottom: 1px solid #0c7cd5;
+  color: #0c7cd5;
+}
+
+.breadcrumb_invert {
+  color: rgba(255, 255, 255, 0.5);
+}
+.breadcrumb_invert .breadcrumb__item::after {
+  color: rgba(255, 255, 255, 0.25);
+}
+.breadcrumb_invert .breadcrumb__link {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.75);
+}
+.breadcrumb_invert .breadcrumb__link:focus, .breadcrumb_invert .breadcrumb__link:hover {
+  border-bottom: 1px solid white;
+  color: white;
+}
+
 .button {
   align-items: center;
   background: rgba(0, 0, 0, 0.05);
@@ -3656,6 +3702,95 @@ pre {
   color: #a21309;
 }
 
+.panel {
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.1), 0 1px 1px 0 rgba(0, 0, 0, 0.07), 0 1px 3px 0 rgba(0, 0, 0, 0.06);
+  color: #212121;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.panel__section,
+.panel__header,
+.panel__footer {
+  padding: 1.5em;
+  position: relative;
+  z-index: 3;
+}
+
+.panel__section {
+  flex: 1 1 auto;
+}
+.panel__section + .panel__section {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.panel__header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.panel__header:first-child {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.panel__footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.panel__footer:last-child {
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.panel__title {
+  flex-grow: 1;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.panel_size_sm .panel__section,
+.panel_size_sm .panel__header,
+.panel_size_sm .panel__footer {
+  padding: 1em;
+}
+
+.panel_size_lg .panel__section,
+.panel_size_lg .panel__header,
+.panel_size_lg .panel__footer {
+  padding: 2em;
+}
+
+.panel_theme_shade {
+  background: #eceff1;
+  box-shadow: none;
+  color: #212121;
+}
+.panel_theme_shade .panel__screen {
+  background: #eceff1;
+}
+
+.panel_theme_dark {
+  background: #37474f;
+  box-shadow: none;
+  color: #fff;
+}
+.panel_theme_dark .panel__header,
+.panel_theme_dark .panel__footer {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.panel_theme_dark .panel__screen {
+  background: #37474f;
+}
+
+.panel_theme_bordered {
+  background: rgba(236, 239, 241, 0);
+  border: 2px solid #eceff1;
+  box-shadow: none;
+  color: #212121;
+}
+
 .radio {
   height: 2.5rem;
   width: 2.5rem;
@@ -4424,6 +4559,67 @@ pre {
     width: 100%;
   }
 }
+.todo {
+  position: relative;
+}
+
+.todo__list {
+  list-style: none;
+  position: relative;
+}
+
+.todo__item {
+  transition: opacity 0.3s, transform 0.3s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.todo__item.is-animating {
+  opacity: 0;
+  transform: translateY(1em);
+}
+
+.todo__control {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+}
+.todo__control > * {
+  top: 0;
+}
+.todo__control:hover {
+  background: rgba(0, 0, 0, 0.025);
+}
+
+.todo__list_done .todo__item {
+  opacity: 1;
+  transform: translateY(0);
+}
+.todo__list_done .todo__item.is-animating {
+  opacity: 0;
+  transform: translateY(-1em);
+}
+.todo__list_done .todo__control {
+  background: rgba(0, 0, 0, 0.025);
+  color: #bdbdbd;
+}
+
+.todo__empty {
+  display: none;
+  opacity: 0;
+  transform: translateY(-1em);
+  transition: opacity 0.3s, transform 0.3s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.todo__empty.is-animating {
+  display: block;
+  opacity: 0;
+  transform: translateY(-1em);
+}
+.todo__empty.is-active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
 [data-tooltip] {
   position: relative;
 }
