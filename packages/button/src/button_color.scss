@@ -13,7 +13,7 @@
   }
 
   &.is-loading::after {
-    border-color: transparent transparent $color-light $color-light;
+    border-color: set-border-color($button-loading-border-tpl, $color-light);
   }
 
   &.button_invert {
@@ -30,7 +30,7 @@
     }
 
     &.is-loading::after {
-      border-color: transparent transparent $color-invert-subtle $color-invert-subtle;
+      border-color: set-border-color($button-loading-border-tpl, $color-invert-subtle);
     }
   }
 }
@@ -51,7 +51,7 @@
   }
 
   &.is-loading::after {
-    border-color: transparent transparent $white $white;
+    border-color: set-border-color($button-loading-border-tpl, $white);
   }
 }
 
@@ -71,7 +71,7 @@
   }
 
   &.is-loading::after {
-    border-color: transparent transparent $white $white;
+    border-color: set-border-color($button-loading-border-tpl, $white);
   }
 }
 

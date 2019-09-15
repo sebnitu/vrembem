@@ -62,20 +62,20 @@
     pointer-events: none;
 
     &::after {
-      @include size(1em);
+      @include size($button-loading-size);
       content: "";
       position: absolute;
-      top: calc(50% - (1em * 0.5));
-      left: calc(50% - (1em * 0.5));
-      animation: spin 0.6s infinite linear;
-      border: 2px solid $button-color;
-      border-radius: 9999px;
-      border-color: transparent transparent $button-color $button-color;
+      top: calc(50% - ($button-loading-size * 0.5));
+      left: calc(50% - ($button-loading-size * 0.5));
+      animation: spin $button-loading-animation-duration infinite linear;
+      border: $button-loading-border;
+      border-radius: $border-radius-circle;
+      border-color: set-border-color($button-loading-border-tpl, $button-loading-border-color);
     }
   }
 
   &[disabled] {
-    opacity: 0.5;
+    opacity: $button-disabled-opacity;
     pointer-events: none;
   }
 

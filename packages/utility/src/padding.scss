@@ -1,3 +1,7 @@
+.p {
+  padding: $utility-spacing;
+}
+
 @each $key, $value in $utility-spacing-map {
   .p_#{$key} {
     padding: $value !important;

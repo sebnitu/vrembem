@@ -336,7 +336,7 @@ Here are some examples of complex dropdowns and how they can be used along with 
 
 <div class="dropdown on-hover" style="display:inline-block;">
   <button class="dropdown__trigger button button_outline">
-    <img class="radius_circle" src="https://picsum.photos/id/237/32/32" alt="" />
+    <img class="br_circle" src="https://picsum.photos/id/237/32/32" alt="" />
     <span>@sebnitu</span>
   </button>
   <ul class="dropdown__menu">

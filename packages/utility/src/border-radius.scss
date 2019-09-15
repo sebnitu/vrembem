@@ -1,0 +1,11 @@
+.br {
+  border-radius: $border-radius !important;
+}
+
+.br_square {
+  border-radius: 0 !important;
+}
+
+.br_circle {
+  border-radius: $border-radius-circle !important;
+}

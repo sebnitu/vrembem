@@ -16,6 +16,6 @@
   }
 
   &.is-loading::after {
-    border-color: transparent transparent $white $white;
+    border-color: set-border-color($button-loading-border-tpl, $white);
   }
 }

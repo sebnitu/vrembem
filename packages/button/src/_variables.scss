@@ -31,6 +31,14 @@ $button-color-hover: $color !default;
 $button-color-focus: $color !default;
 $button-color-active: $color !default;
 
+$button-loading-size: 1em !default;
+$button-loading-animation-duration: 0.6s !default;
+$button-loading-border-color: $button-color !default;
+$button-loading-border: 2px solid !default;
+$button-loading-border-tpl: 1 1 0 0;
+
+$button-disabled-opacity: 0.5 !default;
+
 $button_size_sm-height: $height-sm !default;
 $button_size_sm-padding: $padding-sm !default;
 $button_size_sm-font-size: $font-size-sm !default;

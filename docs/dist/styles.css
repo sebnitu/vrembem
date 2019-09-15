@@ -473,12 +473,12 @@ pre {
   height: 1em;
   content: "";
   position: absolute;
-  top: calc(50% - (1em * 0.5));
-  left: calc(50% - (1em * 0.5));
+  top: calc(50% - ($button-loading-size * 0.5));
+  left: calc(50% - ($button-loading-size * 0.5));
   animation: spin 0.6s infinite linear;
-  border: 2px solid #212121;
+  border: 2px solid;
   border-radius: 9999px;
-  border-color: transparent transparent #212121 #212121;
+  border-color: #212121 #212121 transparent transparent;
 }
 .button[disabled] {
   opacity: 0.5;
@@ -558,7 +558,7 @@ pre {
   background: rgba(0, 0, 0, 0.1);
 }
 .button_color_subtle.is-loading::after {
-  border-color: transparent transparent #bdbdbd #bdbdbd;
+  border-color: #bdbdbd #bdbdbd transparent transparent;
 }
 .button_color_subtle.button_invert {
   background: none;
@@ -571,7 +571,7 @@ pre {
   background: rgba(255, 255, 255, 0.1);
 }
 .button_color_subtle.button_invert.is-loading::after {
-  border-color: transparent transparent rgba(255, 255, 255, 0.4) rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.4) rgba(255, 255, 255, 0.4) transparent transparent;
 }
 
 .button_color_primary {
@@ -587,7 +587,7 @@ pre {
   color: #fff;
 }
 .button_color_primary.is-loading::after {
-  border-color: transparent transparent #fff #fff;
+  border-color: #fff #fff transparent transparent;
 }
 
 .button_color_secondary {
@@ -603,7 +603,7 @@ pre {
   color: #fff;
 }
 .button_color_secondary.is-loading::after {
-  border-color: transparent transparent #fff #fff;
+  border-color: #fff #fff transparent transparent;
 }
 
 .button_color_accent {
@@ -648,7 +648,7 @@ pre {
   color: #fff;
 }
 .button_invert.is-loading::after {
-  border-color: transparent transparent #fff #fff;
+  border-color: #fff #fff transparent transparent;
 }
 
 .button_outline {
@@ -689,7 +689,7 @@ pre {
   color: #fff;
 }
 .button_outline_primary.is-loading::after {
-  border-color: transparent transparent #2196f3 #2196f3;
+  border-color: #2196f3 #2196f3 transparent transparent;
 }
 
 .button_outline_secondary {
@@ -708,7 +708,7 @@ pre {
   color: #fff;
 }
 .button_outline_secondary.is-loading::after {
-  border-color: transparent transparent #607d8b #607d8b;
+  border-color: #607d8b #607d8b transparent transparent;
 }
 .button_outline_secondary.button_invert {
   color: #fff;
@@ -742,7 +742,7 @@ pre {
   color: #212121;
 }
 .button_outline_accent.button_invert.is-loading::after {
-  border-color: transparent transparent #ffee58 #ffee58;
+  border-color: #ffee58 #ffee58 transparent transparent;
 }
 
 .button_size_sm {
@@ -5056,6 +5056,38 @@ pre {
   background-color: #fde1df !important;
 }
 
+.b {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.b_top {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.b_bottom {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.b_left {
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.b_right {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.br {
+  border-radius: 3px !important;
+}
+
+.br_square {
+  border-radius: 0 !important;
+}
+
+.br_circle {
+  border-radius: 9999px !important;
+}
+
 .c_white {
   color: #fff !important;
 }
@@ -5353,6 +5385,10 @@ pre {
   align-items: baseline !important;
 }
 
+.m {
+  margin: 1rem;
+}
+
 .m_0 {
   margin: 0 !important;
 }
@@ -5534,8 +5570,12 @@ pre {
 }
 
 .m_auto {
-  margin-right: auto;
-  margin-left: auto;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+.p {
+  padding: 1rem;
 }
 
 .p_0 {

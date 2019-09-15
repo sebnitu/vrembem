@@ -56,7 +56,6 @@
 /// @param {List} $keys
 /// @return {Map} $result
 @function map-set($map, $value, $keys) {
-  // sass-lint:disable no-warn
   $maps: ($map,);
   $result: null;
 
@@ -146,7 +145,7 @@
 /// @param {String} $weight - Font weight keyword
 /// @return {Number} $value - Font weight value
 @function font-weight($keyword) {
-  $value: null !default;
+  $value: null;
 
   @if ($keyword == 'hairline' or $keyword == 'thin') {
     $value: 100;
@@ -177,4 +176,42 @@
 /// @return {Percent} $value - Aspect ratio as a percentage
 @function aspect-ratio($width, $height) {
   @return (($height / $width) * 100%);
+}
+
+/// Replacing values from list.
+/// @param {List} $list
+/// @param {Value} $old-value
+/// @param {Value} $new-value
+/// @param {Boolean} $recursive [false]
+/// @return {List} $result - list with replaced values
+@function replace($list, $old-value, $new-value, $recursive: false) {
+  $result: ();
+
+  @for $i from 1 through length($list) {
+    @if type-of(nth($list, $i)) == list and $recursive {
+      $result: append(
+        $result,
+        replace(nth($list, $i), $old-value, $new-value, $recursive)
+      );
+    } @else {
+      @if nth($list, $i) == $old-value {
+        $result: append($result, $new-value);
+      } @else {
+        $result: append($result, nth($list, $i));
+      }
+    }
+  }
+
+  @return $result;
+}
+
+/// Replaces a boolean list template with two values.
+/// @param {List} $tpl - A boolean list template
+/// @param {Color} $color-1 - Color to replace 1 from template
+/// @param {Color} $color-0 [transparent] - Color to replace 0 from template
+/// @return {List} $result - New list with replaced values
+@function set-border-color($tpl, $color-1, $color-0: transparent) {
+  $result: replace($tpl, 0, $color-0);
+  $result: replace($result, 1, $color-1);
+  @return $result;
 }
