@@ -1,41 +1,41 @@
-$button-padding: $padding !default;
-$button-icon-padding: 0.1em !default;
-$button-inner-spacing: 0.5em !default;
 $button-height: $height !default;
-
+$button-padding: $padding !default;
+$button-inner-spacing: 0.5em !default;
 $button-font-size: $font-size !default;
 $button-line-height: $line-height !default;
 $button-font-weight: inherit !default;
 $button-text-transform: null !default;
 $button-letter-spacing: null !default;
+$button-border-width: 1px !default;
+$button-border-radius: $border-radius !default;
+$button-focus-outline: currentColor dotted 1px !default;
+$button-focus-outline-offset: -4px !default;
+
+$button-background: rgba($black, 0.05) !default;
+$button-background-hover: rgba($black, 0.1) !default;
+$button-background-focus: rgba($black, 0.1) !default;
+$button-background-active: rgba($black, 0.15) !default;
+
+$button-box-shadow: null !default;
+$button-box-shadow-hover: null !default;
+$button-box-shadow-focus: null !default;
+$button-box-shadow-active: null !default;
+
+$button-border-color: transparent !default;
+$button-border-color-hover: null !default;
+$button-border-color-focus: null !default;
+$button-border-color-active: null !default;
 
 $button-color: $color !default;
 $button-color-hover: $color !default;
 $button-color-focus: $color !default;
 $button-color-active: $color !default;
 
-$button-color-invert: $white !default;
-$button-color-invert-hover: $white !default;
-$button-color-invert-focus: $white !default;
-$button-color-invert-active: $white !default;
-
-$button-background: rgba($black, 0.05) !default;
-$button-background-hover: rgba($black, 0.075) !default;
-$button-background-focus: rgba($black, 0.075) !default;
-$button-background-active: rgba($black, 0.1) !default;
-
-$button-border-color: transparent !default;
-$button-border-color-hover: transparent !default;
-$button-border-color-focus: transparent !default;
-$button-border-color-active: transparent !default;
-
-$button-border-width: 1px !default;
-$button-border-radius: $border-radius !default;
-$button-focus-outline: null !default;
-
 $button_size_sm-height: $height-sm !default;
-$button_size_sm-font-size: $font-size-sm !default;
 $button_size_sm-padding: $padding-sm !default;
+$button_size_sm-font-size: $font-size-sm !default;
 $button_size_lg-height: $height-lg !default;
-$button_size_lg-font-size: null !default;
 $button_size_lg-padding: $padding-lg !default;
+$button_size_lg-font-size: null !default;
+
+$button_outline-border-width: 1px !default;

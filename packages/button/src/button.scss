@@ -11,6 +11,7 @@
   border-radius: $button-border-radius;
   background: $button-background;
   background-clip: border-box;
+  box-shadow: $button-box-shadow;
   color: $button-color;
   font-family: inherit;
   font-size: $button-font-size;
@@ -26,19 +27,23 @@
   &:hover {
     border-color: $button-border-color-hover;
     background-color: $button-background-hover;
+    box-shadow: $button-box-shadow-hover;
     color: $button-color-hover;
   }
 
   &:focus {
     outline: $button-focus-outline;
+    outline-offset: $button-focus-outline-offset;
     border-color: $button-border-color-focus;
     background-color: $button-background-focus;
+    box-shadow: $button-box-shadow-focus;
     color: $button-color-focus;
   }
 
   &:active {
     border-color: $button-border-color-active;
     background-color: $button-background-active;
+    box-shadow: $button-box-shadow-active;
     color: $button-color-active;
   }
 

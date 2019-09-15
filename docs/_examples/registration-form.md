@@ -28,7 +28,7 @@ include:
 
   <div class="field field_action">
     <div class="field__group">
-      <input class="button button_color_primary" type="submit" value="Register">
+      <button class="button button_color_primary">Register</button>
       <a class="link link_subtle" href="#">Cancel</a>
     </div>
   </div>

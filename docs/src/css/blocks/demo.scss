@@ -9,8 +9,8 @@
 }
 
 .demo__code {
-  background: $pre-background;
   overflow: auto;
+  background: $pre-background;
 }
 
 .demo__render {
@@ -22,8 +22,8 @@
 .demo__render.invert,
 .demo__group.invert,
 .demo__code {
-  border-radius: $border-radius;
   padding: 1em;
+  border-radius: $border-radius;
 }
 
 .grid__item > .demo__render,
@@ -39,12 +39,4 @@
 .demo__render.invert,
 .demo__group.invert {
   background: $dark;
-}
-
-@include media-min('md') {
-  .demo__render.invert,
-  .demo__group.invert,
-  .demo__code {
-    padding: 1.5em;
-  }
 }

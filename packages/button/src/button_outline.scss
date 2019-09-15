@@ -1,121 +1,109 @@
 @import "./variables";
 
-$button_outline-border-width: 1px !default;
-
 .button_outline {
-  border: $button_outline-border-width solid rgba($black, 0.2);
+  border: $button_outline-border-width solid rgba($color, 0.1);
   background: none;
-  color: $button-color;
 
-  &:focus,
-  &:hover {
-    border-color: rgba($primary, 1);
-    background: $white;
-    color: color-switch($white, $button-color-hover, $button-color-invert-hover);
+  &:hover,
+  &:focus {
+    border-color: rgba($color, 0.2);
+    background: none;
+  }
+
+  &:active {
+    border-color: $color;
+    background: none;
+  }
+
+  &.button_invert {
+    border-color: rgba($white, 0.15);
+
+    &:hover,
+    &:focus {
+      border-color: rgba($white, 0.25);
+    }
+
+    &:active {
+      border-color: $white;
+    }
   }
 }
 
 .button_outline_primary {
-  border: $button_outline-border-width solid $primary;
+  border: $button_outline-border-width solid rgba($primary, 0.5);
   background: none;
   color: $primary;
 
-  &:focus,
-  &:hover {
+  &:hover,
+  &:focus {
+    border-color: $primary;
+    background: none;
+    color: $primary;
+  }
+
+  &:active {
     border-color: $primary;
     background: $primary;
-    color: color-switch($primary, $button-color-hover, $button-color-invert-hover);
+    color: $white;
   }
 }
 
 .button_outline_secondary {
-  border: $button_outline-border-width solid $secondary;
+  border: $button_outline-border-width solid rgba($secondary, 0.5);
   background: none;
   color: $secondary;
 
-  &:focus,
-  &:hover {
+  &:hover,
+  &:focus {
+    border-color: $secondary;
+    background: none;
+    color: $secondary;
+  }
+
+  &:active {
     border-color: $secondary;
     background: $secondary;
-    color: color-switch($secondary, $button-color-hover, $button-color-invert-hover);
+    color: $white;
+  }
+
+  &.button_invert {
+    color: $white;
+
+    &:hover,
+    &:focus {
+      color: $white;
+    }
   }
 }
 
 .button_outline_accent {
-  border: $button_outline-border-width solid $accent;
+  border: $button_outline-border-width solid rgba($accent, 0.5);
   background: none;
-  color: $accent;
+  color: $color;
 
-  &:focus,
-  &:hover {
+  &:hover,
+  &:focus {
+    border-color: $accent;
+    background: none;
+    color: $color;
+  }
+
+  &:active {
     border-color: $accent;
     background: $accent;
-    color: color-switch($accent, $button-color-hover, $button-color-invert-hover);
+    color: $color;
   }
-}
 
-.button_outline_shade {
-  border: $button_outline-border-width solid $shade;
-  background: none;
-  color: $shade;
+  &.button_invert {
+    color: $accent;
 
-  &:focus,
-  &:hover {
-    border-color: $shade;
-    background: $shade;
-    color: color-switch($shade, $button-color-hover, $button-color-invert-hover);
-  }
-}
+    &:hover,
+    &:focus {
+      color: $accent;
+    }
 
-.button_outline_dark {
-  border: $button_outline-border-width solid $dark;
-  background: none;
-  color: $dark;
-
-  &:focus,
-  &:hover {
-    border-color: $dark;
-    background: $dark;
-    color: color-switch($dark, $button-color-hover, $button-color-invert-hover);
-  }
-}
-
-.button_outline_subtle {
-  border: $button_outline-border-width solid rgba($black, 0.1);
-  background: none;
-  color: $color-light;
-
-  &:focus,
-  &:hover {
-    border-color: rgba($black, 0.2);
-    background: none;
-    color: $button-color;
-  }
-}
-
-.button_outline_invert {
-  border: $button_outline-border-width solid rgba($white, 0.25);
-  background: none;
-  color: $white;
-
-  &:focus,
-  &:hover {
-    border-color: $white;
-    background: $white;
-    color: $button-color;
-    mix-blend-mode: screen;
-  }
-}
-
-.button_outline_invert_subtle {
-  border: $button_outline-border-width solid rgba($white, 0.2);
-  background: none;
-  color: rgba($white, 0.5);
-
-  &:focus,
-  &:hover {
-    border-color: rgba($white, 0.5);
-    background: none;
-    color: $white;
+    &:active {
+      color: $color;
+    }
   }
 }

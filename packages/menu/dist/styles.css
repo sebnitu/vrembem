@@ -960,29 +960,27 @@
 .menu_theme_invert .menu__link {
   color: #fff;
 }
-.menu_theme_invert .menu__link:hover, .menu_theme_invert .menu__link:focus {
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+.menu_theme_invert .menu__link:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.menu_theme_invert .menu__link:focus {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.menu_theme_invert .menu__link:active {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 .menu_theme_invert .menu__link.is-active, .menu_theme_invert .menu__link.is-parent {
-  color: #2196f3;
-}
-.menu_theme_invert .menu__link.is-active:hover, .menu_theme_invert .menu__link.is-active:focus, .menu_theme_invert .menu__link.is-parent:hover, .menu_theme_invert .menu__link.is-parent:focus {
-  background: none;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 .menu_theme_invert .menu__link.is-disabled {
-  background: none;
-  color: rgba(255, 255, 255, 0.5);
-}
-.menu_theme_invert .menu__link.is-disabled:hover, .menu_theme_invert .menu__link.is-disabled:focus {
-  background: none;
+  background-color: none;
   color: rgba(255, 255, 255, 0.5);
 }
 .menu_theme_invert .menu__text {
   color: #fff;
 }
 .menu_theme_invert .menu__sep {
-  background: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .menu_theme_tabs {

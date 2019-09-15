@@ -205,7 +205,13 @@ pre {
   color: #2196f3;
   text-decoration: none;
 }
-.link:focus, .link:hover {
+.link:hover {
+  border-bottom: 1px solid #0c7cd5;
+  color: #0c7cd5;
+}
+.link:focus {
+  outline: currentColor dotted 1px;
+  outline-offset: 3px;
   border-bottom: 1px solid #0c7cd5;
   color: #0c7cd5;
 }
@@ -215,7 +221,7 @@ pre {
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   color: #fff;
 }
-.link_invert:focus, .link_invert:hover {
+.link_invert:hover, .link_invert:focus {
   border-bottom: 1px solid white;
   color: #fff;
 }
@@ -224,7 +230,7 @@ pre {
 .type .link_subtle {
   color: inherit;
 }
-.link_subtle:focus, .link_subtle:hover {
+.link_subtle:hover, .link_subtle:focus {
   border-color: #2196f3;
   color: #2196f3;
 }

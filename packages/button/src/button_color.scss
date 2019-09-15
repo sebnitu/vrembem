@@ -1,92 +1,76 @@
 @import "./variables";
 
-.button_color_primary {
-  background: $primary;
-  color: color-switch($primary, $button-color, $button-color-invert);
+.button_color_subtle {
+  background: none;
 
-  &:focus,
-  &:hover {
-    background: darken($primary, 5%);
-    color: color-switch($primary, $button-color-hover, $button-color-invert-hover);
+  &:hover,
+  &:focus {
+    background: rgba($black, 0.05);
+  }
+
+  &:active {
+    background: rgba($black, 0.1);
+  }
+
+  &.button_invert {
+    background: none;
+    color: $white;
+
+    &:hover,
+    &:focus {
+      background: rgba($white, 0.05);
+    }
+
+    &:active {
+      background: rgba($white, 0.1);
+    }
+  }
+}
+
+.button_color_primary {
+  background-color: $primary;
+  color: $white;
+
+  &:hover,
+  &:focus {
+    background-color: darken($primary, 5%);
+    color: $white;
+  }
+
+  &:active {
+    background-color: darken($primary, 10%);
+    color: $white;
   }
 }
 
 .button_color_secondary {
-  background: $secondary;
-  color: color-switch($secondary, $button-color, $button-color-invert);
+  background-color: $secondary;
+  color: $white;
 
-  &:focus,
-  &:hover {
-    background: darken($secondary, 5%);
-    color: color-switch($secondary, $button-color-hover, $button-color-invert-hover);
+  &:hover,
+  &:focus {
+    background-color: darken($secondary, 5%);
+    color: $white;
+  }
+
+  &:active {
+    background-color: darken($secondary, 10%);
+    color: $white;
   }
 }
 
 .button_color_accent {
-  background: $accent;
-  color: color-switch($accent, $button-color, $button-color-invert);
+  background-color: $accent;
+  color: $color;
 
-  &:focus,
-  &:hover {
-    background: darken($accent, 5%);
-    color: color-switch($accent, $button-color-hover, $button-color-invert-hover);
-  }
-}
-
-.button_color_shade {
-  background: $shade;
-  color: color-switch($shade, $button-color, $button-color-invert);
-
-  &:focus,
-  &:hover {
-    background: darken($shade, 5%);
-    color: color-switch($shade, $button-color-hover, $button-color-invert-hover);
-  }
-}
-
-.button_color_dark {
-  background: $dark;
-  color: color-switch($dark, $button-color, $button-color-invert);
-
-  &:focus,
-  &:hover {
-    background: lighten($dark, 5%);
-    color: color-switch($dark, $button-color-hover, $button-color-invert-hover);
-  }
-}
-
-.button_color_subtle {
-  background: none;
-  color: $color-light;
-
-  &:focus,
-  &:hover {
-    background: rgba($black, 0.05);
+  &:hover,
+  &:focus {
+    background-color: darken($accent, 10%);
     color: $color;
   }
-}
 
-.button_color_invert {
-  border-color: rgba($white, 0);
-  background: none;
-  color: $white;
-
-  &:focus,
-  &:hover {
-    border-color: rgba($white, 0);
-    background: rgba($white, 0.1);
-    color: $white;
-  }
-}
-
-.button_color_invert_subtle {
-  background: none;
-  color: rgba($white, 0.5);
-
-  &:focus,
-  &:hover {
-    border-color: rgba($white, 0);
-    background: rgba($white, 0.1);
-    color: $white;
+  &:active {
+    background-color: darken($accent, 20%);
+    color: $color;
   }
 }
