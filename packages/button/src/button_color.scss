@@ -13,7 +13,7 @@
   }
 
   &.is-loading::after {
-    border-color: set-border-color($button-loading-border-tpl, $color-light);
+    border-color: set-border-color($button-loading-border-tpl, $color-subtle);
   }
 
   &.button_invert {

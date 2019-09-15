@@ -19,7 +19,7 @@
   padding: 0.5rem 1.5rem;
   border-radius: 3px;
   background: #eceff1;
-  color: #000;
+  color: #212121;
 }
 .type figure {
   padding: 1em;
@@ -44,7 +44,7 @@
 }
 .type mark {
   background-color: #fff59d;
-  color: #000;
+  color: #212121;
 }
 .type code {
   color: #e91e63;

@@ -46,8 +46,24 @@
   background-color: #eceff1 !important;
 }
 
-.bg_dark {
+.bg_shade_light {
+  background-color: #f5f6f7 !important;
+}
+
+.bg_shade_dark {
+  background-color: #dde3e6 !important;
+}
+
+.bg_night {
   background-color: #37474f !important;
+}
+
+.bg_night_light {
+  background-color: #41555e !important;
+}
+
+.bg_night_dark {
+  background-color: #2d3940 !important;
 }
 
 .bg_info {
@@ -58,12 +74,20 @@
   background-color: #d4faff !important;
 }
 
+.bg_info_dark {
+  background-color: #007888 !important;
+}
+
 .bg_success {
   background-color: #4caf50 !important;
 }
 
 .bg_success_light {
   background-color: #d9eeda !important;
+}
+
+.bg_success_dark {
+  background-color: #357a38 !important;
 }
 
 .bg_caution {
@@ -74,12 +98,20 @@
   background-color: #feedd3 !important;
 }
 
+.bg_caution_dark {
+  background-color: #cc8006 !important;
+}
+
 .bg_danger {
   background-color: #f44336 !important;
 }
 
 .bg_danger_light {
   background-color: #fde1df !important;
+}
+
+.bg_danger_dark {
+  background-color: #d2190b !important;
 }
 
 .bg_error {
@@ -90,15 +122,51 @@
   background-color: #fde1df !important;
 }
 
-.c_white {
-  color: #fff !important;
+.bg_error_dark {
+  background-color: #d2190b !important;
+}
+
+.b {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.b_top {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.b_bottom {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.b_left {
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.b_right {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.br {
+  border-radius: 3px !important;
+}
+
+.br_square {
+  border-radius: 0 !important;
+}
+
+.br_circle {
+  border-radius: 9999px !important;
 }
 
 .c_black {
   color: #000 !important;
 }
 
-.c_light {
+.c_white {
+  color: #fff !important;
+}
+
+.c_subtle {
   color: #bdbdbd !important;
 }
 
@@ -343,6 +411,10 @@
   flex-wrap: wrap !important;
 }
 
+.f_nowrap {
+  flex-wrap: nowrap !important;
+}
+
 .f_justify_start {
   justify-content: flex-start !important;
 }
@@ -385,6 +457,10 @@
 
 .f_align_baseline {
   align-items: baseline !important;
+}
+
+.m {
+  margin: 1rem;
 }
 
 .m_0 {
@@ -568,8 +644,12 @@
 }
 
 .m_auto {
-  margin-right: auto;
-  margin-left: auto;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+.p {
+  padding: 1rem;
 }
 
 .p_0 {

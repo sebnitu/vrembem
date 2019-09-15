@@ -14,12 +14,12 @@ $accent-light: lighten($accent, 15%) !default;
 $accent-dark: darken($accent, 15%) !default;
 
 $shade: $blue-gray-50 !default;
-$shade-light: lighten($shade, 15%) !default;
-$shade-dark: darken($shade, 15%) !default;
+$shade-light: lighten($shade, 3%) !default;
+$shade-dark: darken($shade, 5%) !default;
 
-$dark: $blue-gray-800 !default;
-$dark-light: lighten($dark, 15%) !default;
-$dark-dark: darken($dark, 15%) !default;
+$night: $blue-gray-800 !default;
+$night-light: lighten($night, 5%) !default;
+$night-dark: darken($night, 5%) !default;
 
 // State colors
 // ---
@@ -74,15 +74,14 @@ $font-weight: font-weight("normal") !default;
 
 // Color
 $color: $gray-900 !default;
-$color-light: $gray-400 !default;
-$color-dark: $black !default;
+$color-subtle: $gray-400 !default;
 
 $color-invert: $white !default;
 $color-invert-subtle: rgba($white, 0.4) !default;
 
 // Box styles
 $background: $gray-100 !default;
-$background-invert: $dark !default;
+$background-invert: $night !default;
 $border-radius: 3px !default;
 $border-radius-circle: 9999px !default;
 $box-sizing: border-box !default;
@@ -149,7 +148,7 @@ $heading-color: inherit !default;
 $heading-font-weight: font-weight("semi-bold") !default;
 
 // Mark
-$mark-color: $color-dark !default;
+$mark-color: $color !default;
 $mark-background: $yellow-200 !default;
 $mark-padding: null !default;
 
@@ -159,12 +158,12 @@ $code-background: null !default;
 $code-padding: null !default;
 
 // Pre
-$pre-color: $color-dark !default;
+$pre-color: $color !default;
 $pre-background: $background !default;
 $pre-border-radius: $border-radius !default;
 
 // Blockquotes
-$blockquote-color: $color-dark !default;
+$blockquote-color: $color !default;
 $blockquote-background: $shade !default;
 $blockquote-border-radius: $border-radius !default;
 
@@ -240,13 +239,13 @@ $lightness-threshold: 60 !default;
 
 @function color-switch(
   $base,
-  $dark: $color,
+  $night: $color,
   $light: $color-invert
 ) {
   // Checkout base color to lightness threshold
   @if (lightness($base) > $lightness-threshold) {
     // Lighter backgorund, return dark color
-    @return $dark;
+    @return $night;
   } @else {
     // Darker background, return light color
     @return $light;

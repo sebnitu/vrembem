@@ -4859,7 +4859,7 @@ pre {
   padding: 0.5rem 1.5rem;
   border-radius: 3px;
   background: #eceff1;
-  color: #000;
+  color: #212121;
 }
 .type figure {
   padding: 1em;
@@ -4884,7 +4884,7 @@ pre {
 }
 .type mark {
   background-color: #fff59d;
-  color: #000;
+  color: #212121;
 }
 .type code {
   color: #e91e63;
@@ -5012,8 +5012,24 @@ pre {
   background-color: #eceff1 !important;
 }
 
-.bg_dark {
+.bg_shade_light {
+  background-color: #f5f6f7 !important;
+}
+
+.bg_shade_dark {
+  background-color: #dde3e6 !important;
+}
+
+.bg_night {
   background-color: #37474f !important;
+}
+
+.bg_night_light {
+  background-color: #41555e !important;
+}
+
+.bg_night_dark {
+  background-color: #2d3940 !important;
 }
 
 .bg_info {
@@ -5024,12 +5040,20 @@ pre {
   background-color: #d4faff !important;
 }
 
+.bg_info_dark {
+  background-color: #007888 !important;
+}
+
 .bg_success {
   background-color: #4caf50 !important;
 }
 
 .bg_success_light {
   background-color: #d9eeda !important;
+}
+
+.bg_success_dark {
+  background-color: #357a38 !important;
 }
 
 .bg_caution {
@@ -5040,6 +5064,10 @@ pre {
   background-color: #feedd3 !important;
 }
 
+.bg_caution_dark {
+  background-color: #cc8006 !important;
+}
+
 .bg_danger {
   background-color: #f44336 !important;
 }
@@ -5048,12 +5076,20 @@ pre {
   background-color: #fde1df !important;
 }
 
+.bg_danger_dark {
+  background-color: #d2190b !important;
+}
+
 .bg_error {
   background-color: #f44336 !important;
 }
 
 .bg_error_light {
   background-color: #fde1df !important;
+}
+
+.bg_error_dark {
+  background-color: #d2190b !important;
 }
 
 .b {
@@ -5088,15 +5124,15 @@ pre {
   border-radius: 9999px !important;
 }
 
-.c_white {
-  color: #fff !important;
-}
-
 .c_black {
   color: #000 !important;
 }
 
-.c_light {
+.c_white {
+  color: #fff !important;
+}
+
+.c_subtle {
   color: #bdbdbd !important;
 }
 
@@ -5339,6 +5375,10 @@ pre {
 }
 .f_wrap {
   flex-wrap: wrap !important;
+}
+
+.f_nowrap {
+  flex-wrap: nowrap !important;
 }
 
 .f_justify_start {
@@ -5853,11 +5893,6 @@ pre {
   transition: none !important;
 }
 
-/**
- * Article
- * ---
- * The article component handles styles for the main content area.
- */
 .article__section {
   padding: 1.5em;
 }
@@ -5874,48 +5909,14 @@ pre {
   .article__intro,
 .article__body,
 .article__footer {
-    padding-left: 3em;
     padding-right: 3em;
+    padding-left: 3em;
   }
 }
-/**
- * Box
- * ---
- * Styles a generic box for displaying none-visual components.
- */
 .box {
   padding: 1em;
-  background: rgba(76, 175, 80, 0.1);
   border: 2px solid rgba(76, 175, 80, 0.5);
-}
-
-/**
- * Code
- * ---
- * Adds a few simple components for displaying code examples such as:
- *  - labels
- *  - output
- */
-/**
- * Code Label
- */
-.code-label,
-.type .code-label {
-  padding: 0.5rem 1rem;
-  margin: 1.5rem 0 -1.5rem;
-  background: linear-gradient(to right, #ebebeb, #f2f2f2);
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  font-size: 0.875em;
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  color: #e91e63;
-}
-
-.code-label + div pre,
-.code-label + .code-output {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-top: 0;
+  background: rgba(76, 175, 80, 0.1);
 }
 
 /**
@@ -5946,6 +5947,28 @@ pre {
     font-size: 16px;
   }
 }
+/**
+ * Code Label
+ */
+.code-label,
+.type .code-label {
+  margin: 1.5rem 0 -1.5rem;
+  padding: 0.5rem 1rem;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  background: linear-gradient(to right, #ebebeb, #f2f2f2);
+  color: #e91e63;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.875em;
+}
+
+.code-label + div pre,
+.code-label + .code-output {
+  border-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
 /**
  * Cover
  * ---
@@ -6265,6 +6288,10 @@ pre {
 }
 .highlight .m {
   color: #099;
+  margin: 0 !important;
+}
+.highlight .p {
+  padding: 0 !important;
 }
 .highlight .s {
   color: #d14;
@@ -6376,8 +6403,8 @@ pre {
  * Custom styles for the menu which appears in the drawer component.
  */
 .menu_drawer .menu__link {
-  padding: 0.75em 1em;
   justify-content: space-between;
+  padding: 0.75em 1em;
 }
 .menu_drawer .menu__link:hover {
   background: #fff;
@@ -6451,6 +6478,27 @@ pre {
 }
 .page__aside .dialog__body {
   background: #eceff1;
+}
+
+.swatch {
+  width: 4rem;
+  height: 4rem;
+  display: inline-flex;
+}
+
+.swatch-group {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -2em 0 0 -2em;
+}
+.swatch-group > * {
+  margin: 2em 0 0 2em;
+}
+.swatch-group .swatch-group {
+  flex-wrap: nowrap;
+}
+.swatch-group .swatch-group > * {
+  margin: 0;
 }
 
 /**

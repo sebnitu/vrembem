@@ -1,10 +1,10 @@
 @import "./variables";
 
 .card_theme_dark {
-  background: $dark;
-  color: color-switch($dark);
+  background: $night;
+  color: color-switch($night);
 
-  @if (is-dark($dark)) {
+  @if (is-dark($night)) {
     .card__header,
     .card__footer {
       border-color: $border-color-invert;
@@ -12,6 +12,6 @@
   }
 
   .card__screen {
-    background: $dark;
+    background: $night;
   }
 }

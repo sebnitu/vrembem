@@ -46,8 +46,24 @@
   background-color: $shade !important;
 }
 
-.bg_dark {
-  background-color: $dark !important;
+.bg_shade_light {
+  background-color: $shade_light !important;
+}
+
+.bg_shade_dark {
+  background-color: $shade_dark !important;
+}
+
+.bg_night {
+  background-color: $night !important;
+}
+
+.bg_night_light {
+  background-color: $night-light !important;
+}
+
+.bg_night_dark {
+  background-color: $night-dark !important;
 }
 
 .bg_info {
@@ -58,12 +74,20 @@
   background-color: $info-light !important;
 }
 
+.bg_info_dark {
+  background-color: $info-dark !important;
+}
+
 .bg_success {
   background-color: $success !important;
 }
 
 .bg_success_light {
   background-color: $success-light !important;
+}
+
+.bg_success_dark {
+  background-color: $success-dark !important;
 }
 
 .bg_caution {
@@ -74,6 +98,10 @@
   background-color: $caution-light !important;
 }
 
+.bg_caution_dark {
+  background-color: $caution-dark !important;
+}
+
 .bg_danger {
   background-color: $danger !important;
 }
@@ -82,10 +110,18 @@
   background-color: $danger-light !important;
 }
 
+.bg_danger_dark {
+  background-color: $danger-dark !important;
+}
+
 .bg_error {
   background-color: $error !important;
 }
 
 .bg_error_light {
   background-color: $error-light !important;
+}
+
+.bg_error_dark {
+  background-color: $error-dark !important;
 }

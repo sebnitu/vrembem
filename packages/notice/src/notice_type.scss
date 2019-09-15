@@ -29,8 +29,8 @@
 }
 
 .notice_type_dark {
-  background-color: $dark;
-  @if (lightness($dark) < $lightness-threshold) {
+  background-color: $night;
+  @if (lightness($night) < $lightness-threshold) {
     @extend .type_invert !optional;
   }
 }

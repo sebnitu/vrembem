@@ -1,35 +1,4 @@
 /**
- * Code
- * ---
- * Adds a few simple components for displaying code examples such as:
- *  - labels
- *  - output
- */
-
-/**
- * Code Label
- */
-
-.code-label,
-.type .code-label {
-  padding: 0.5rem 1rem;
-  margin: 1.5rem 0 -1.5rem;
-  background: linear-gradient(to right, darken($pre-background, 4%), darken($pre-background, 1%));
-  border-top-left-radius: $pre-border-radius;
-  border-top-right-radius: $pre-border-radius;
-  font-size: $font-size-sm;
-  font-family: $font-family-mono;
-  color: $code-color;
-}
-
-.code-label + div pre,
-.code-label + .code-output {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-top: 0;
-}
-
-/**
  * Code Output
  */
 
@@ -57,4 +26,27 @@
   .type pre {
     font-size: $font-size;
   }
+}
+
+/**
+ * Code Label
+ */
+
+.code-label,
+.type .code-label {
+  margin: 1.5rem 0 -1.5rem;
+  padding: 0.5rem 1rem;
+  border-top-left-radius: $pre-border-radius;
+  border-top-right-radius: $pre-border-radius;
+  background: linear-gradient(to right, darken($pre-background, 4%), darken($pre-background, 1%));
+  color: $code-color;
+  font-family: $font-family-mono;
+  font-size: $font-size-sm;
+}
+
+.code-label + div pre,
+.code-label + .code-output {
+  border-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }

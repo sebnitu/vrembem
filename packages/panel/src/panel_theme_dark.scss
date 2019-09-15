@@ -1,11 +1,11 @@
 @import "./variables";
 
 .panel_theme_dark {
-  background: $dark;
+  background: $night;
   box-shadow: none;
-  color: color-switch($dark);
+  color: color-switch($night);
 
-  @if (is-dark($dark)) {
+  @if (is-dark($night)) {
     .panel__header,
     .panel__footer {
       border-color: $border-color-invert;
@@ -13,6 +13,6 @@
   }
 
   .panel__screen {
-    background: $dark;
+    background: $night;
   }
 }

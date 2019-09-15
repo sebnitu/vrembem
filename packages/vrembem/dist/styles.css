@@ -472,12 +472,12 @@ pre {
   height: 1em;
   content: "";
   position: absolute;
-  top: calc(50% - (1em * 0.5));
-  left: calc(50% - (1em * 0.5));
+  top: calc(50% - ($button-loading-size * 0.5));
+  left: calc(50% - ($button-loading-size * 0.5));
   animation: spin 0.6s infinite linear;
-  border: 2px solid #212121;
+  border: 2px solid;
   border-radius: 9999px;
-  border-color: transparent transparent #212121 #212121;
+  border-color: #212121 #212121 transparent transparent;
 }
 .button[disabled] {
   opacity: 0.5;
@@ -557,7 +557,7 @@ pre {
   background: rgba(0, 0, 0, 0.1);
 }
 .button_color_subtle.is-loading::after {
-  border-color: transparent transparent #bdbdbd #bdbdbd;
+  border-color: #bdbdbd #bdbdbd transparent transparent;
 }
 .button_color_subtle.button_invert {
   background: none;
@@ -570,7 +570,7 @@ pre {
   background: rgba(255, 255, 255, 0.1);
 }
 .button_color_subtle.button_invert.is-loading::after {
-  border-color: transparent transparent rgba(255, 255, 255, 0.4) rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.4) rgba(255, 255, 255, 0.4) transparent transparent;
 }
 
 .button_color_primary {
@@ -586,7 +586,7 @@ pre {
   color: #fff;
 }
 .button_color_primary.is-loading::after {
-  border-color: transparent transparent #fff #fff;
+  border-color: #fff #fff transparent transparent;
 }
 
 .button_color_secondary {
@@ -602,7 +602,7 @@ pre {
   color: #fff;
 }
 .button_color_secondary.is-loading::after {
-  border-color: transparent transparent #fff #fff;
+  border-color: #fff #fff transparent transparent;
 }
 
 .button_color_accent {
@@ -647,7 +647,7 @@ pre {
   color: #fff;
 }
 .button_invert.is-loading::after {
-  border-color: transparent transparent #fff #fff;
+  border-color: #fff #fff transparent transparent;
 }
 
 .button_outline {
@@ -688,7 +688,7 @@ pre {
   color: #fff;
 }
 .button_outline_primary.is-loading::after {
-  border-color: transparent transparent #2196f3 #2196f3;
+  border-color: #2196f3 #2196f3 transparent transparent;
 }
 
 .button_outline_secondary {
@@ -707,7 +707,7 @@ pre {
   color: #fff;
 }
 .button_outline_secondary.is-loading::after {
-  border-color: transparent transparent #607d8b #607d8b;
+  border-color: #607d8b #607d8b transparent transparent;
 }
 .button_outline_secondary.button_invert {
   color: #fff;
@@ -741,7 +741,7 @@ pre {
   color: #212121;
 }
 .button_outline_accent.button_invert.is-loading::after {
-  border-color: transparent transparent #ffee58 #ffee58;
+  border-color: #ffee58 #ffee58 transparent transparent;
 }
 
 .button_size_sm {
@@ -4858,7 +4858,7 @@ pre {
   padding: 0.5rem 1.5rem;
   border-radius: 3px;
   background: #eceff1;
-  color: #000;
+  color: #212121;
 }
 .type figure {
   padding: 1em;
@@ -4883,7 +4883,7 @@ pre {
 }
 .type mark {
   background-color: #fff59d;
-  color: #000;
+  color: #212121;
 }
 .type code {
   color: #e91e63;
@@ -5011,8 +5011,24 @@ pre {
   background-color: #eceff1 !important;
 }
 
-.bg_dark {
+.bg_shade_light {
+  background-color: #f5f6f7 !important;
+}
+
+.bg_shade_dark {
+  background-color: #dde3e6 !important;
+}
+
+.bg_night {
   background-color: #37474f !important;
+}
+
+.bg_night_light {
+  background-color: #41555e !important;
+}
+
+.bg_night_dark {
+  background-color: #2d3940 !important;
 }
 
 .bg_info {
@@ -5023,12 +5039,20 @@ pre {
   background-color: #d4faff !important;
 }
 
+.bg_info_dark {
+  background-color: #007888 !important;
+}
+
 .bg_success {
   background-color: #4caf50 !important;
 }
 
 .bg_success_light {
   background-color: #d9eeda !important;
+}
+
+.bg_success_dark {
+  background-color: #357a38 !important;
 }
 
 .bg_caution {
@@ -5039,12 +5063,20 @@ pre {
   background-color: #feedd3 !important;
 }
 
+.bg_caution_dark {
+  background-color: #cc8006 !important;
+}
+
 .bg_danger {
   background-color: #f44336 !important;
 }
 
 .bg_danger_light {
   background-color: #fde1df !important;
+}
+
+.bg_danger_dark {
+  background-color: #d2190b !important;
 }
 
 .bg_error {
@@ -5055,15 +5087,51 @@ pre {
   background-color: #fde1df !important;
 }
 
-.c_white {
-  color: #fff !important;
+.bg_error_dark {
+  background-color: #d2190b !important;
+}
+
+.b {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.b_top {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.b_bottom {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.b_left {
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.b_right {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.br {
+  border-radius: 3px !important;
+}
+
+.br_square {
+  border-radius: 0 !important;
+}
+
+.br_circle {
+  border-radius: 9999px !important;
 }
 
 .c_black {
   color: #000 !important;
 }
 
-.c_light {
+.c_white {
+  color: #fff !important;
+}
+
+.c_subtle {
   color: #bdbdbd !important;
 }
 
@@ -5308,6 +5376,10 @@ pre {
   flex-wrap: wrap !important;
 }
 
+.f_nowrap {
+  flex-wrap: nowrap !important;
+}
+
 .f_justify_start {
   justify-content: flex-start !important;
 }
@@ -5350,6 +5422,10 @@ pre {
 
 .f_align_baseline {
   align-items: baseline !important;
+}
+
+.m {
+  margin: 1rem;
 }
 
 .m_0 {
@@ -5533,8 +5609,12 @@ pre {
 }
 
 .m_auto {
-  margin-right: auto;
-  margin-left: auto;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+.p {
+  padding: 1rem;
 }
 
 .p_0 {
