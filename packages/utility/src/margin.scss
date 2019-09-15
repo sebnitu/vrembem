@@ -1,41 +1,41 @@
-@each $key, $value in $utility-spacing {
+@each $key, $value in $utility-spacing-map {
   .m_#{$key} {
     margin: $value !important;
   }
 }
 
-@each $key, $value in $utility-spacing {
+@each $key, $value in $utility-spacing-map {
   .m_top_#{$key} {
     margin-top: $value !important;
   }
 }
 
-@each $key, $value in $utility-spacing {
+@each $key, $value in $utility-spacing-map {
   .m_bottom_#{$key} {
     margin-bottom: $value !important;
   }
 }
 
-@each $key, $value in $utility-spacing {
+@each $key, $value in $utility-spacing-map {
   .m_left_#{$key} {
     margin-left: $value !important;
   }
 }
 
-@each $key, $value in $utility-spacing {
+@each $key, $value in $utility-spacing-map {
   .m_right_#{$key} {
     margin-right: $value !important;
   }
 }
 
-@each $key, $value in $utility-spacing {
+@each $key, $value in $utility-spacing-map {
   .m_hori_#{$key} {
     margin-right: $value !important;
     margin-left: $value !important;
   }
 }
 
-@each $key, $value in $utility-spacing {
+@each $key, $value in $utility-spacing-map {
   .m_vert_#{$key} {
     margin-top: $value !important;
     margin-bottom: $value !important;

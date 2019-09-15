@@ -154,7 +154,11 @@
 }
 
 .on-hover:hover > .dropdown__menu,
-.dropdown__item:hover > .dropdown__menu {
+.dropdown__item:hover > .dropdown__menu,
+.on-hover:focus-within > .dropdown__menu,
+.dropdown__item:focus-within > .dropdown__menu,
+.on-hover .dropdown__trigger:focus + .dropdown__menu,
+.dropdown__item .dropdown__trigger:focus + .dropdown__menu {
   z-index: 12;
   display: block;
 }

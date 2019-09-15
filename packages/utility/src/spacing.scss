@@ -1,10 +1,10 @@
 .spacing {
   > * + * {
-    margin-top: $vertical-spacing;
+    margin-top: $utility-spacing;
   }
 }
 
-@each $key, $value in $vertical-spacing-scale {
+@each $key, $value in $utility-spacing-map {
   .spacing_#{$key} {
     > * + * {
       margin-top: $value;

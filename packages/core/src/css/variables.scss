@@ -14,24 +14,35 @@ $accent-light: lighten($accent, 15%) !default;
 $accent-dark: darken($accent, 15%) !default;
 
 $shade: $blue-gray-50 !default;
-$dark: $blue-gray-800 !default;
+$shade-light: lighten($shade, 15%) !default;
+$shade-dark: darken($shade, 15%) !default;
 
-// Semantic type colors
+$dark: $blue-gray-800 !default;
+$dark-light: lighten($dark, 15%) !default;
+$dark-dark: darken($dark, 15%) !default;
+
+// State colors
+// ---
 
 $info: $cyan !default;
 $info-light: lighten($info, 50%) !default;
+$info-dark: darken($info, 15%) !default;
 
 $success: $green !default;
 $success-light: lighten($success, 40%) !default;
+$success-dark: darken($success, 15%) !default;
 
 $caution: $yellow-800 !default;
 $caution-light: lighten($caution, 35%) !default;
+$caution-dark: darken($caution, 15%) !default;
 
 $danger: $red !default;
 $danger-light: lighten($danger, 35%) !default;
+$danger-dark: darken($danger, 15%) !default;
 
 $error: $red !default;
 $error-light: lighten($error, 35%) !default;
+$error-dark: darken($error, 15%) !default;
 
 // Global Properties
 // ---
@@ -45,11 +56,6 @@ $padding-lg: 0.75em 1.75em !default;
 $height-sm: 2rem !default;
 $height: 2.5rem !default;
 $height-lg: 3rem !default;
-
-// Size
-$width-sm: 2rem !default;
-$width: 2.5rem !default;
-$width-lg: 3rem !default;
 
 // Fonts
 $font-family-sans: BlinkMacSystemFont, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif !default;
@@ -210,24 +216,19 @@ $utility-display: (
   none
 ) !default;
 
-$utility-spacing: (
+$utility-spacing: 1rem !default;
+
+$utility-spacing-map: (
   "0": 0,
   "xs": 0.5rem,
   "sm": 1rem,
-  "md": 2rem,
-  "lg": 3rem,
-  "xl": 6rem
+  "md": 1.5rem,
+  "lg": 2rem,
+  "xl": 3rem
 ) !default;
 
-$vertical-spacing: 1rem !default;
-
-$vertical-spacing-scale: (
-  'xs': 0.5rem,
-  'sm': 1rem,
-  'md': 1.5rem,
-  'lg': 2rem,
-  'xl': 3rem
-) !default;
+// Miscellaneous
+// ---
 
 $lightness-threshold: 60 !default;
 
