@@ -46,6 +46,10 @@
     background: $primary;
     color: $white;
   }
+
+  &.is-loading::after {
+    border-color: transparent transparent $primary $primary;
+  }
 }
 
 .button_outline_secondary {
@@ -64,6 +68,10 @@
     border-color: $secondary;
     background: $secondary;
     color: $white;
+  }
+
+  &.is-loading::after {
+    border-color: transparent transparent $secondary $secondary;
   }
 
   &.button_invert {
@@ -104,6 +112,10 @@
 
     &:active {
       color: $color;
+    }
+
+    &.is-loading::after {
+      border-color: transparent transparent $accent $accent;
     }
   }
 }

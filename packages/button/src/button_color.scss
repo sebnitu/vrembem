@@ -12,6 +12,10 @@
     background: rgba($black, 0.1);
   }
 
+  &.is-loading::after {
+    border-color: transparent transparent $color-light $color-light;
+  }
+
   &.button_invert {
     background: none;
     color: $white;
@@ -23,6 +27,10 @@
 
     &:active {
       background: rgba($white, 0.1);
+    }
+
+    &.is-loading::after {
+      border-color: transparent transparent $color-invert-subtle $color-invert-subtle;
     }
   }
 }
@@ -41,6 +49,10 @@
     background-color: darken($primary, 10%);
     color: $white;
   }
+
+  &.is-loading::after {
+    border-color: transparent transparent $white $white;
+  }
 }
 
 .button_color_secondary {
@@ -56,6 +68,10 @@
   &:active {
     background-color: darken($secondary, 10%);
     color: $white;
+  }
+
+  &.is-loading::after {
+    border-color: transparent transparent $white $white;
   }
 }
 

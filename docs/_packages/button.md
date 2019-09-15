@@ -22,6 +22,20 @@ usage:
 ```
 {% include demo_close.html %}
 
+{% include flag.html heading="button disabled" %}
+
+{% include demo_open.html %}
+<div class="level">
+  <a href="#" class="button" disabled>Button</a>
+  <button class="button" disabled>Button</button>
+</div>
+{% include demo_switch.html %}
+```html
+<a href="#" class="button" disabled>Button</a>
+<button class="button" disabled>Button</button>
+```
+{% include demo_close.html %}
+
 {% include flag.html heading="button > [elements]" %}
 
 <div class="type" markdown="1">
@@ -226,5 +240,41 @@ Elements inside the button component receive appropriate spacing using the `> * 
 <button class="button button_outline_primary">Outline Primary</button>
 <button class="button button_invert button_outline_secondary">Outline Secondary Invert</button>
 <button class="button button_invert button_outline_accent">Outline Accent Invert</button>
+```
+{% include demo_close.html %}
+
+{% include flag.html heading="button is-loading" %}
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="bg_white p_md">
+  <div class="level">
+    <button class="is-loading button">Button</button>
+    <button class="is-loading button button_color_subtle">Button</button>
+    <button class="is-loading button button_color_primary">Button</button>
+    <button class="is-loading button button_color_secondary">Button</button>
+    <button class="is-loading button button_color_accent">Button</button>
+    <button class="is-loading button button_outline">Button</button>
+    <button class="is-loading button button_outline_primary">Button</button>
+    <button class="is-loading button button_outline_secondary">Button</button>
+    <button class="is-loading button button_outline_accent">Button</button>
+  </div>
+</div>
+<div class="bg_dark p_md">
+  <div class="level">
+    <button class="is-loading button button_invert">Button</button>
+    <button class="is-loading button button_invert button_color_subtle">Button</button>
+    <button class="is-loading button button_color_primary">Button</button>
+    <button class="is-loading button button_color_secondary">Button</button>
+    <button class="is-loading button button_color_accent">Button</button>
+    <button class="is-loading button button_invert button_outline">Button</button>
+    <button class="is-loading button button_outline_primary">Button</button>
+    <button class="is-loading button button_invert button_outline_secondary">Button</button>
+    <button class="is-loading button button_invert button_outline_accent">Button</button>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<a href="#" class="button is-loading">Button</a>
+<button class="button is-loading">Button</button>
 ```
 {% include demo_close.html %}

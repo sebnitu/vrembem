@@ -76,7 +76,9 @@ $font-weight: font-weight("normal") !default;
 $color: $gray-900 !default;
 $color-light: $gray-400 !default;
 $color-dark: $black !default;
+
 $color-invert: $white !default;
+$color-invert-subtle: rgba($white, 0.4) !default;
 
 // Box styles
 $background: $gray-100 !default;

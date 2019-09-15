@@ -421,6 +421,14 @@ pre {
   color: white;
 }
 
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .button {
   position: relative;
   display: inline-flex;
@@ -455,6 +463,26 @@ pre {
 .button:active {
   background-color: rgba(0, 0, 0, 0.15);
   color: #212121;
+}
+.button.is-loading {
+  color: transparent !important;
+  pointer-events: none;
+}
+.button.is-loading::after {
+  width: 1em;
+  height: 1em;
+  content: "";
+  position: absolute;
+  top: calc(50% - (1em * 0.5));
+  left: calc(50% - (1em * 0.5));
+  animation: spin 0.6s infinite linear;
+  border: 2px solid #212121;
+  border-radius: 9999px;
+  border-color: transparent transparent #212121 #212121;
+}
+.button[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
 }
 .button > * + * {
   margin-left: 0.5em;
@@ -529,6 +557,9 @@ pre {
 .button_color_subtle:active {
   background: rgba(0, 0, 0, 0.1);
 }
+.button_color_subtle.is-loading::after {
+  border-color: transparent transparent #bdbdbd #bdbdbd;
+}
 .button_color_subtle.button_invert {
   background: none;
   color: #fff;
@@ -538,6 +569,9 @@ pre {
 }
 .button_color_subtle.button_invert:active {
   background: rgba(255, 255, 255, 0.1);
+}
+.button_color_subtle.button_invert.is-loading::after {
+  border-color: transparent transparent rgba(255, 255, 255, 0.4) rgba(255, 255, 255, 0.4);
 }
 
 .button_color_primary {
@@ -552,6 +586,9 @@ pre {
   background-color: #0c7cd5;
   color: #fff;
 }
+.button_color_primary.is-loading::after {
+  border-color: transparent transparent #fff #fff;
+}
 
 .button_color_secondary {
   background-color: #607d8b;
@@ -564,6 +601,9 @@ pre {
 .button_color_secondary:active {
   background-color: #4b626d;
   color: #fff;
+}
+.button_color_secondary.is-loading::after {
+  border-color: transparent transparent #fff #fff;
 }
 
 .button_color_accent {
@@ -607,6 +647,9 @@ pre {
   background: rgba(255, 255, 255, 0.15);
   color: #fff;
 }
+.button_invert.is-loading::after {
+  border-color: transparent transparent #fff #fff;
+}
 
 .button_outline {
   border: 1px solid rgba(33, 33, 33, 0.1);
@@ -645,6 +688,9 @@ pre {
   background: #2196f3;
   color: #fff;
 }
+.button_outline_primary.is-loading::after {
+  border-color: transparent transparent #2196f3 #2196f3;
+}
 
 .button_outline_secondary {
   border: 1px solid rgba(96, 125, 139, 0.5);
@@ -660,6 +706,9 @@ pre {
   border-color: #607d8b;
   background: #607d8b;
   color: #fff;
+}
+.button_outline_secondary.is-loading::after {
+  border-color: transparent transparent #607d8b #607d8b;
 }
 .button_outline_secondary.button_invert {
   color: #fff;
@@ -691,6 +740,9 @@ pre {
 }
 .button_outline_accent.button_invert:active {
   color: #212121;
+}
+.button_outline_accent.button_invert.is-loading::after {
+  border-color: transparent transparent #ffee58 #ffee58;
 }
 
 .button_size_sm {
