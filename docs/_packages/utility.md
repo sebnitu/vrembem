@@ -64,8 +64,8 @@ usage:
   </div>
   <div class="swatch-group">
     <div class="swatch background_black"></div>
-    <div class="swatch border_top border_right border_bottom background_white"></div>
-    <div class="swatch border_top border_right border_bottom background_transparent"></div>
+    <div class="swatch border border_left_0 background_white"></div>
+    <div class="swatch border border_left_0 background_transparent"></div>
   </div>
 </div>
 {% include demo_switch.html class_gridItem="" %}
@@ -91,6 +91,24 @@ usage:
 <div class="border_right"></div>
 <div class="border_bottom"></div>
 <div class="border_left"></div>
+```
+{% include demo_close.html %}
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="swatch-group">
+  <div class="swatch background_shade_light border border_0"></div>
+  <div class="swatch background_shade_light border border_top_0"></div>
+  <div class="swatch background_shade_light border border_right_0"></div>
+  <div class="swatch background_shade_light border border_bottom_0"></div>
+  <div class="swatch background_shade_light border border_left_0"></div>
+</div>
+{% include demo_switch.html class_gridItem="" %}
+```html
+<div class="border_0"></div>
+<div class="border_top_0"></div>
+<div class="border_right_0"></div>
+<div class="border_bottom_0"></div>
+<div class="border_left_0"></div>
 ```
 {% include demo_close.html %}
 

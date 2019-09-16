@@ -5039,6 +5039,26 @@ pre {
   border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.border_0 {
+  border: 0;
+}
+
+.border_top_0 {
+  border-top: 0;
+}
+
+.border_bottom_0 {
+  border-bottom: 0;
+}
+
+.border_left_0 {
+  border-left: 0;
+}
+
+.border_right_0 {
+  border-right: 0;
+}
+
 .radius {
   border-radius: 3px !important;
 }
