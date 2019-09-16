@@ -86,11 +86,11 @@
 }
 
 .icon-action_color_danger {
-  background: #f44336;
+  background: #e91e63;
   color: #fff;
 }
 .icon-action_color_danger:hover, .icon-action_color_danger:focus {
-  background: #ea1c0d;
+  background: #c1134e;
   color: #fff;
 }
 

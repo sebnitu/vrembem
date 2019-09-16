@@ -5,7 +5,9 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition: $card-transition;
+  transition-property: $card-transition-property;
+  transition-duration: $card-transition-duration;
+  transition-timing-function: $card-transition-timing-function;
   border: $card-border;
   border-radius: $card-border-radius;
   background: $card-background;
@@ -73,14 +75,15 @@
 
 .card__background,
 .card__screen {
+  @include size(100%);
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  transition: $card-transition;
+  transition-property: $card-transition-property;
+  transition-duration: $card-transition-duration;
+  transition-timing-function: $card-transition-timing-function;
   border-radius: $card-border-radius;
 }
 

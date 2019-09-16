@@ -6,12 +6,13 @@
     .card__body,
     .card__footer,
     .card__screen {
-      transition: $card-fade-transition;
+      transition: $card_fade-transition;
       opacity: 0;
     }
 
     &:hover,
-    &:focus {
+    &:focus,
+    &:focus-within {
       .card__header,
       .card__body,
       .card__footer {

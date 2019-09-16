@@ -73,12 +73,12 @@
 }
 
 .input_state_danger {
-  border-color: #f44336;
-  box-shadow: 0 0 0 0 rgba(244, 67, 54, 0);
+  border-color: #e91e63;
+  box-shadow: 0 0 0 0 rgba(233, 30, 99, 0);
 }
 .input_state_danger:focus {
-  border-color: #f44336;
-  box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.2);
+  border-color: #e91e63;
+  box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.2);
 }
 
 .input_type_select {

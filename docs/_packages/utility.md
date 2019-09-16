@@ -108,3 +108,21 @@ usage:
 <div class="br_circle"></div>
 ```
 {% include demo_close.html %}
+
+{% include flag.html heading="box-shadow" %}
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="swatch-group">
+  <div class="swatch bg_white bs"></div>
+  <div class="swatch bg_white bs_flat"></div>
+  <div class="swatch bg_white bs_1dp"></div>
+  <div class="swatch bg_white bs_4dp"></div>
+  <div class="swatch bg_white bs_8dp"></div>
+  <div class="swatch bg_white bs_16dp"></div>
+  <div class="swatch bg_white bs_24dp"></div>
+</div>
+{% include demo_switch.html class_gridItem="" %}
+```html
+...
+```
+{% include demo_close.html %}

@@ -6,7 +6,8 @@
   }
 
   &:hover,
-  &:focus {
+  &:focus,
+  &:focus-within {
     .card__background {
       transform: scale(1.1);
     }

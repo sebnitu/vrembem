@@ -296,11 +296,11 @@ pre {
 }
 
 .table_zebra tr:nth-child(even) {
-  background-color: #f5f5f5;
+  background-color: #f5f6f7;
 }
 .table_zebra thead tr,
 .type .table_zebra thead tr {
-  background-color: #f5f5f5;
+  background-color: #f5f6f7;
 }
 
 .table_zebra_remove tr:nth-child(even) {
