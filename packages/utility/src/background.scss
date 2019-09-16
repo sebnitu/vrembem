@@ -1,131 +1,133 @@
-.bg_black {
+@import "./variables";
+
+.#{$class-background}_black {
   background-color: $black !important;
 }
 
-.bg_white {
+.#{$class-background}_white {
   background-color: $white !important;
 }
 
-.bg_transparent {
+.#{$class-background}_transparent {
   background-color: transparent !important;
 }
 
-.bg_primary {
+.#{$class-background}_primary {
   background-color: $primary !important;
 }
 
-.bg_primary_light {
+.#{$class-background}_primary_light {
   background-color: $primary-light !important;
 }
 
-.bg_primary_dark {
+.#{$class-background}_primary_dark {
   background-color: $primary-dark !important;
 }
 
-.bg_secondary {
+.#{$class-background}_secondary {
   background-color: $secondary !important;
 }
 
-.bg_secondary_light {
+.#{$class-background}_secondary_light {
   background-color: $secondary-light !important;
 }
 
-.bg_secondary_dark {
+.#{$class-background}_secondary_dark {
   background-color: $secondary-dark !important;
 }
 
-.bg_accent {
+.#{$class-background}_accent {
   background-color: $accent !important;
 }
 
-.bg_accent_light {
+.#{$class-background}_accent_light {
   background-color: $accent-light !important;
 }
 
-.bg_accent_dark {
+.#{$class-background}_accent_dark {
   background-color: $accent-dark !important;
 }
 
-.bg_shade {
+.#{$class-background}_shade {
   background-color: $shade !important;
 }
 
-.bg_shade_light {
+.#{$class-background}_shade_light {
   background-color: $shade_light !important;
 }
 
-.bg_shade_dark {
+.#{$class-background}_shade_dark {
   background-color: $shade_dark !important;
 }
 
-.bg_night {
+.#{$class-background}_night {
   background-color: $night !important;
 }
 
-.bg_night_light {
+.#{$class-background}_night_light {
   background-color: $night-light !important;
 }
 
-.bg_night_dark {
+.#{$class-background}_night_dark {
   background-color: $night-dark !important;
 }
 
-.bg_info {
+.#{$class-background}_info {
   background-color: $info !important;
 }
 
-.bg_info_light {
+.#{$class-background}_info_light {
   background-color: $info-light !important;
 }
 
-.bg_info_dark {
+.#{$class-background}_info_dark {
   background-color: $info-dark !important;
 }
 
-.bg_success {
+.#{$class-background}_success {
   background-color: $success !important;
 }
 
-.bg_success_light {
+.#{$class-background}_success_light {
   background-color: $success-light !important;
 }
 
-.bg_success_dark {
+.#{$class-background}_success_dark {
   background-color: $success-dark !important;
 }
 
-.bg_caution {
+.#{$class-background}_caution {
   background-color: $caution !important;
 }
 
-.bg_caution_light {
+.#{$class-background}_caution_light {
   background-color: $caution-light !important;
 }
 
-.bg_caution_dark {
+.#{$class-background}_caution_dark {
   background-color: $caution-dark !important;
 }
 
-.bg_danger {
+.#{$class-background}_danger {
   background-color: $danger !important;
 }
 
-.bg_danger_light {
+.#{$class-background}_danger_light {
   background-color: $danger-light !important;
 }
 
-.bg_danger_dark {
+.#{$class-background}_danger_dark {
   background-color: $danger-dark !important;
 }
 
-.bg_error {
+.#{$class-background}_error {
   background-color: $error !important;
 }
 
-.bg_error_light {
+.#{$class-background}_error_light {
   background-color: $error-light !important;
 }
 
-.bg_error_dark {
+.#{$class-background}_error_dark {
   background-color: $error-dark !important;
 }

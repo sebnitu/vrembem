@@ -1,51 +1,53 @@
-.f_wrap {
+@import "./variables";
+
+.#{$class-flex}_wrap {
   flex-wrap: wrap !important;
 }
 
-.f_nowrap {
+.#{$class-flex}_nowrap {
   flex-wrap: nowrap !important;
 }
 
-.f_justify_start {
+.#{$class-flex}_justify_start {
   justify-content: flex-start !important;
 }
 
-.f_justify_center {
+.#{$class-flex}_justify_center {
   justify-content: center !important;
 }
 
-.f_justify_end {
+.#{$class-flex}_justify_end {
   justify-content: flex-end !important;
 }
 
-.f_justify_between {
+.#{$class-flex}_justify_between {
   justify-content: space-between !important;
 }
 
-.f_justify_around {
+.#{$class-flex}_justify_around {
   justify-content: space-around !important;
 }
 
-.f_justify_evenly {
+.#{$class-flex}_justify_evenly {
   justify-content: space-evenly !important;
 }
 
-.f_align_start {
+.#{$class-flex}_align_start {
   align-items: flex-start !important;
 }
 
-.f_align_center {
+.#{$class-flex}_align_center {
   align-items: center !important;
 }
 
-.f_align_end {
+.#{$class-flex}_align_end {
   align-items: flex-end !important;
 }
 
-.f_align_stretch {
+.#{$class-flex}_align_stretch {
   align-items: stretch !important;
 }
 
-.f_align_baseline {
+.#{$class-flex}_align_baseline {
   align-items: baseline !important;
 }

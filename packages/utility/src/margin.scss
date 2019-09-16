@@ -1,52 +1,54 @@
-.m {
+@import "./variables";
+
+.#{$class-margin} {
   margin: $utility-spacing;
 }
 
 @each $key, $value in $utility-spacing-map {
-  .m_#{$key} {
+  .#{$class-margin}_#{$key} {
     margin: $value !important;
   }
 }
 
 @each $key, $value in $utility-spacing-map {
-  .m_top_#{$key} {
+  .#{$class-margin}_top_#{$key} {
     margin-top: $value !important;
   }
 }
 
 @each $key, $value in $utility-spacing-map {
-  .m_bottom_#{$key} {
+  .#{$class-margin}_bottom_#{$key} {
     margin-bottom: $value !important;
   }
 }
 
 @each $key, $value in $utility-spacing-map {
-  .m_left_#{$key} {
+  .#{$class-margin}_left_#{$key} {
     margin-left: $value !important;
   }
 }
 
 @each $key, $value in $utility-spacing-map {
-  .m_right_#{$key} {
+  .#{$class-margin}_right_#{$key} {
     margin-right: $value !important;
   }
 }
 
 @each $key, $value in $utility-spacing-map {
-  .m_hori_#{$key} {
+  .#{$class-margin}_hori_#{$key} {
     margin-right: $value !important;
     margin-left: $value !important;
   }
 }
 
 @each $key, $value in $utility-spacing-map {
-  .m_vert_#{$key} {
+  .#{$class-margin}_vert_#{$key} {
     margin-top: $value !important;
     margin-bottom: $value !important;
   }
 }
 
-.m_auto {
+.#{$class-margin}_auto {
   margin-right: auto !important;
   margin-left: auto !important;
 }

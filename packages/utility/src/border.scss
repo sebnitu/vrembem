@@ -1,19 +1,21 @@
-.b {
+@import "./variables";
+
+.#{$class-border} {
   border: $border;
 }
 
-.b_top {
+.#{$class-border}_top {
   border-top: $border;
 }
 
-.b_bottom {
+.#{$class-border}_bottom {
   border-bottom: $border;
 }
 
-.b_left {
+.#{$class-border}_left {
   border-left: $border;
 }
 
-.b_right {
+.#{$class-border}_right {
   border-right: $border;
 }

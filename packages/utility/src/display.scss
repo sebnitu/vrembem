@@ -1,5 +1,7 @@
+@import "./variables";
+
 @each $display in $utility-display {
-  .d_#{$display} {
+  .#{$class-display}_#{$display} {
     display: $display !important;
   }
 }
@@ -7,7 +9,7 @@
 @each $key, $value in $breakpoints {
   @include media-min($key) {
     @each $display in $utility-display {
-      .d_#{$display}_#{$key} {
+      .#{$class-display}_#{$display}_#{$key} {
         display: $display !important;
       }
     }

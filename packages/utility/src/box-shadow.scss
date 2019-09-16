@@ -1,27 +1,29 @@
-.bs {
+@import "./variables";
+
+.#{$class-box-shadow} {
   box-shadow: $box-shadow !important;
 }
 
-.bs_flat {
+.#{$class-box-shadow}_flat {
   box-shadow: $box-shadow-flat !important;
 }
 
-.bs_1dp {
+.#{$class-box-shadow}_1dp {
   box-shadow: $box-shadow-1dp !important;
 }
 
-.bs_4dp {
+.#{$class-box-shadow}_4dp {
   box-shadow: $box-shadow-4dp !important;
 }
 
-.bs_8dp {
+.#{$class-box-shadow}_8dp {
   box-shadow: $box-shadow-8dp !important;
 }
 
-.bs_16dp {
+.#{$class-box-shadow}_16dp {
   box-shadow: $box-shadow-16dp !important;
 }
 
-.bs_24dp {
+.#{$class-box-shadow}_24dp {
   box-shadow: $box-shadow-24dp !important;
 }

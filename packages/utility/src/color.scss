@@ -1,99 +1,149 @@
-.c_black {
-  color: $black !important;
+@import "./variables";
+
+.#{$class-color} {
+  color: $color !important;
 }
 
-.c_white {
-  color: $white !important;
-}
-
-.c_transparent {
-  color: transparent !important;
-}
-
-.c_subtle {
+.#{$class-color}_subtle {
   color: $color-subtle !important;
 }
 
-.c_primary {
+.#{$class-color}_invert {
+  color: $color-invert !important;
+}
+
+.#{$class-color}_invert_subtle {
+  color: $color-invert-subtle !important;
+}
+
+.#{$class-color}_black {
+  color: $black !important;
+}
+
+.#{$class-color}_white {
+  color: $white !important;
+}
+
+.#{$class-color}_transparent {
+  color: transparent !important;
+}
+
+.#{$class-color}_primary {
   color: $primary !important;
 }
 
-.c_primary_light {
+.#{$class-color}_primary_light {
   color: $primary-light !important;
 }
 
-.c_primary_dark {
+.#{$class-color}_primary_dark {
   color: $primary-dark !important;
 }
 
-.c_secondary {
+.#{$class-color}_secondary {
   color: $secondary !important;
 }
 
-.c_secondary_light {
+.#{$class-color}_secondary_light {
   color: $secondary-light !important;
 }
 
-.c_secondary_dark {
+.#{$class-color}_secondary_dark {
   color: $secondary-dark !important;
 }
 
-.c_accent {
+.#{$class-color}_accent {
   color: $accent !important;
 }
 
-.c_accent_light {
+.#{$class-color}_accent_light {
   color: $accent-light !important;
 }
 
-.c_accent_dark {
+.#{$class-color}_accent_dark {
   color: $accent-dark !important;
 }
 
-.c_shade {
+.#{$class-color}_shade {
   color: $shade !important;
 }
 
-.c_dark {
+.#{$class-color}_shade_light {
+  color: $shade_light !important;
+}
+
+.#{$class-color}_shade_dark {
+  color: $shade_dark !important;
+}
+
+.#{$class-color}_night {
   color: $night !important;
 }
 
-.c_info {
+.#{$class-color}_night_light {
+  color: $night_light !important;
+}
+
+.#{$class-color}_night_dark {
+  color: $night_dark !important;
+}
+
+.#{$class-color}_info {
   color: $info !important;
 }
 
-.c_info_light {
+.#{$class-color}_info_light {
   color: $info-light !important;
 }
 
-.c_success {
+.#{$class-color}_info_dark {
+  color: $info-dark !important;
+}
+
+.#{$class-color}_success {
   color: $success !important;
 }
 
-.c_success_light {
+.#{$class-color}_success_light {
   color: $success-light !important;
 }
 
-.c_caution {
+.#{$class-color}_success_dark {
+  color: $success-dark !important;
+}
+
+.#{$class-color}_caution {
   color: $caution !important;
 }
 
-.c_caution_light {
+.#{$class-color}_caution_light {
   color: $caution-light !important;
 }
 
-.c_danger {
+.#{$class-color}_caution_dark {
+  color: $caution-dark !important;
+}
+
+.#{$class-color}_danger {
   color: $danger !important;
 }
 
-.c_danger_light {
+.#{$class-color}_danger_light {
   color: $danger-light !important;
 }
 
-.c_error {
+.#{$class-color}_danger_dark {
+  color: $danger-dark !important;
+}
+
+.#{$class-color}_error {
   color: $error !important;
 }
 
-.c_error_light {
+.#{$class-color}_error_light {
   color: $error-light !important;
+}
+
+.#{$class-color}_error_dark {
+  color: $error-dark !important;
 }

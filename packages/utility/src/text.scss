@@ -1,12 +1,10 @@
-.t_subtle {
-  color: $color-subtle !important;
-}
+@import "./variables";
 
-.t_uppercase {
+.#{$class-text}_uppercase {
   text-transform: uppercase !important;
 }
 
-.t_lead {
+.#{$class-text}_lead {
   font-size: 1.1em;
   font-weight: font-weight('light');
 
@@ -15,35 +13,35 @@
   }
 }
 
-.t_align_left {
+.#{$class-text}_align_left {
   text-align: left !important;
 }
 
-.t_align_center {
+.#{$class-text}_align_center {
   text-align: center !important;
 }
 
-.t_align_right {
+.#{$class-text}_align_right {
   text-align: right !important;
 }
 
-.t_size_sm {
+.#{$class-text}_size_sm {
   font-size: $font-size-sm !important;
 }
 
-.t_size_lg {
+.#{$class-text}_size_lg {
   font-size: $font-size-lg !important;
 }
 
-.t_nowrap {
+.#{$class-text}_nowrap {
   white-space: nowrap !important;
 }
 
-.t_wrap {
+.#{$class-text}_wrap {
   white-space: normal !important;
 }
 
-.t_overflow_ellipsis {
+.#{$class-text}_overflow_ellipsis {
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   white-space: nowrap !important;

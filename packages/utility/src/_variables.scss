@@ -1,0 +1,31 @@
+$class-background: "background" !default;
+$class-border: "border" !default;
+$class-border-radius: "radius" !default;
+$class-box-shadow: "elevate" !default;
+$class-color: "color" !default;
+$class-display: "display" !default;
+$class-flex: "flex" !default;
+$class-margin: "margin" !default;
+$class-padding: "padding" !default;
+$class-spacing: "spacing" !default;
+$class-symbols: "symbols" !default;
+$class-text: "text" !default;
+$class-transition: "transition" !default;
+
+$utility-display: (
+  inline,
+  flex,
+  inline-flex,
+  block,
+  inline-block,
+  none
+) !default;
+$utility-spacing: 1rem !default;
+$utility-spacing-map: (
+  "0": 0,
+  "xs": 0.5rem,
+  "sm": 1rem,
+  "md": 1.5rem,
+  "lg": 2rem,
+  "xl": 3rem
+) !default;
