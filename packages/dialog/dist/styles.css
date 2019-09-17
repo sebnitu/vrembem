@@ -4,7 +4,9 @@
   display: flex;
   flex-direction: column;
   overflow: auto;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-property: box-shadow, opacity, transform;
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 3px;
   background: #fff;
   background-clip: padding-box;

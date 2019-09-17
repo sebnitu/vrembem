@@ -22,7 +22,7 @@
       @each $key, $value in $current {
 
         // If value is a nested map and same key from map is a nested map as well
-        @if type-of($value) == 'map' and type-of(map-get($map, $key)) == 'map' {
+        @if type-of($value) == "map" and type-of(map-get($map, $key)) == "map" {
           // Recursive extend
           $value: map-extend(map-get($map, $key), $value, true);
         }
@@ -59,8 +59,8 @@
   $maps: ($map,);
   $result: null;
 
-  @if type-of(nth($keys, -1)) == 'map' {
-    @warn 'The last key you specified is a map; it will be overrided with `#{$value}`.';
+  @if type-of(nth($keys, -1)) == "map" {
+    @warn "The last key you specified is a map; it will be overrided with `#{$value}`.";
   }
 
   @if length($keys) == 1 {
@@ -72,7 +72,7 @@
     $current-map: nth($maps, -1);
     $current-get: map-get($current-map, $current-key);
     @if $current-get == null {
-      @error 'Key `#{$key}` doesn\'t exist at current level in map.';
+      @error "Key `#{$key}` doesn't exist at current level in map.";
     }
     $maps: append($maps, $current-get);
   }
@@ -91,7 +91,7 @@
 /// @param {Number} $number - Number to remove unit from
 /// @return {Number} - Unitless number
 @function strip-unit($number) {
-  @if type-of($number) == 'number' and not unitless($number) {
+  @if type-of($number) == "number" and not unitless($number) {
     @return $number / ($number * 0 + 1);
   }
   @return $number;
@@ -147,23 +147,23 @@
 @function font-weight($keyword) {
   $value: null;
 
-  @if ($keyword == 'hairline' or $keyword == 'thin') {
+  @if ($keyword == "hairline" or $keyword == "thin") {
     $value: 100;
-  } @else if ($keyword == 'extra-light') {
+  } @else if ($keyword == "extra-light") {
     $value: 200;
-  } @else if ($keyword == 'light') {
+  } @else if ($keyword == "light") {
     $value: 300;
-  } @else if ($keyword == 'regular' or $keyword == 'normal') {
+  } @else if ($keyword == "regular" or $keyword == "normal") {
     $value: 400;
-  } @else if ($keyword == 'medium') {
+  } @else if ($keyword == "medium") {
     $value: 500;
-  } @else if ($keyword == 'semi-bold') {
+  } @else if ($keyword == "semi-bold") {
     $value: 600;
-  } @else if ($keyword == 'bold') {
+  } @else if ($keyword == "bold") {
     $value: 700;
-  } @else if ($keyword == 'extra-bold') {
+  } @else if ($keyword == "extra-bold") {
     $value: 800;
-  } @else if ($keyword == 'black') {
+  } @else if ($keyword == "black") {
     $value: 900;
   }
 

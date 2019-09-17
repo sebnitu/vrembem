@@ -1,16 +1,23 @@
 @import "./variables";
 
-.#{$class-text}_uppercase {
-  text-transform: uppercase !important;
+.#{$class-text}_size_sm {
+  font-size: $font-size-sm !important;
 }
 
-.#{$class-text}_lead {
-  font-size: 1.1em;
-  font-weight: font-weight('light');
+.#{$class-text}_size_lg {
+  font-size: $font-size-lg !important;
+}
 
-  @include media-min('md') {
-    font-size: 1.2em;
-  }
+.#{$class-text}_capitalize {
+  text-transform: capitalize !important;
+}
+
+.#{$class-text}_lowercase {
+  text-transform: lowercase !important;
+}
+
+.#{$class-text}_uppercase {
+  text-transform: uppercase !important;
 }
 
 .#{$class-text}_align_left {
@@ -25,24 +32,45 @@
   text-align: right !important;
 }
 
-.#{$class-text}_size_sm {
-  font-size: $font-size-sm !important;
+.#{$class-text}_bold {
+  font-weight: font-weight("bold") !important;
 }
 
-.#{$class-text}_size_lg {
-  font-size: $font-size-lg !important;
+.#{$class-text}_italic {
+  font-style: italic !important;
 }
 
-.#{$class-text}_nowrap {
-  white-space: nowrap !important;
+.#{$class-text}_strike {
+  text-decoration: line-through !important;
+}
+
+.#{$class-text}_overline {
+  text-decoration: overline !important;
+}
+
+.#{$class-text}_underline {
+  text-decoration: underline !important;
 }
 
 .#{$class-text}_wrap {
   white-space: normal !important;
 }
 
-.#{$class-text}_overflow_ellipsis {
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
+.#{$class-text}_nowrap {
   white-space: nowrap !important;
+}
+
+.#{$class-text}_lead {
+  font-size: 1.1em;
+  font-weight: font-weight("light");
+
+  @include media-min("md") {
+    font-size: 1.2em;
+  }
+}
+
+.#{$class-text}_overflow_ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

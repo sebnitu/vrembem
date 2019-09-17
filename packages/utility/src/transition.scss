@@ -1,9 +1,0 @@
-@import "./variables";
-
-.#{$class-transition}_all {
-  transition: all $transition-duration $transition-timing-function !important;
-}
-
-.#{$class-transition}_none {
-  transition: none !important;
-}

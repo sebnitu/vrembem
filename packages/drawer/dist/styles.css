@@ -40,18 +40,20 @@
   align-items: stretch;
   width: 0;
   overflow: hidden auto;
-  transition: width 0s 0.3s;
   -webkit-overflow-scrolling: touch;
 }
 
 .drawer__item.is-active {
   flex: 0 0 auto;
   width: 16em;
-  transition: none;
 }
 .drawer__item.is-active .drawer__dialog {
   visibility: visible;
   opacity: 1;
+}
+
+.transition_none {
+  transition: none !important;
 }
 
 .drawer__item_pos_left,

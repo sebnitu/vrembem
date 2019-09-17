@@ -12,14 +12,15 @@
   width: 0;
   height: 0;
   overflow: hidden;
-  transition: background-color $modal-transition-duration, width 0s $modal-transition-duration, height 0s $modal-transition-duration, padding 0s $modal-transition-duration;
+  transition:
+    background-color $modal-transition-duration $modal-transition-timing-function,
+    width 0s $modal-transition-duration $modal-transition-timing-function,
+    height 0s $modal-transition-duration $modal-transition-timing-function,
+    padding 0s $modal-transition-duration $modal-transition-timing-function;
   background-color: rgba($modal-background, 0);
-  backdrop-filter: blur(4px);
 }
 
 .modal__dialog {
-  z-index: 1001;
-  visibility: hidden;
   width: $modal-width;
   max-width: 100%;
   transform: translateY(-$modal-travel);
@@ -27,28 +28,20 @@
   opacity: 0;
 }
 
-// Remove outline on focused items with tabindex of "-1"
-[tabindex="-1"]:focus {
-  outline: 0 !important;
-}
-
 .modal.is-active {
   width: 100%;
   height: 100%;
   padding: 1em;
-  transition: background-color $modal-transition-duration;
+  transition: background-color $modal-transition-duration $modal-transition-timing-function;
   background-color: rgba($modal-background, 0.75);
 
+  @include media-min("medium") {
+    padding: 2em;
+  }
+
   .modal__dialog {
-    visibility: visible;
     transform: translateY(0);
     box-shadow: $modal__dialog-box-shadow;
     opacity: 1;
-  }
-}
-
-@include media-min("medium") {
-  .modal.is-active {
-    padding: 2em;
   }
 }

@@ -972,25 +972,24 @@
   margin-top: 3rem;
 }
 
-.symbols {
-  position: absolute !important;
-  width: 0 !important;
-  height: 0 !important;
-  overflow: hidden !important;
+.text_size_sm {
+  font-size: 0.875em !important;
+}
+
+.text_size_lg {
+  font-size: 1.25em !important;
+}
+
+.text_capitalize {
+  text-transform: capitalize !important;
+}
+
+.text_lowercase {
+  text-transform: lowercase !important;
 }
 
 .text_uppercase {
   text-transform: uppercase !important;
-}
-
-.text_lead {
-  font-size: 1.1em;
-  font-weight: 300;
-}
-@media (min-width: 760px) {
-  .text_lead {
-    font-size: 1.2em;
-  }
 }
 
 .text_align_left {
@@ -1005,34 +1004,48 @@
   text-align: right !important;
 }
 
-.text_size_sm {
-  font-size: 0.875em !important;
+.text_bold {
+  font-weight: 700 !important;
 }
 
-.text_size_lg {
-  font-size: 1.25em !important;
+.text_italic {
+  font-style: italic !important;
 }
 
-.text_nowrap {
-  white-space: nowrap !important;
+.text_strike {
+  text-decoration: line-through !important;
+}
+
+.text_overline {
+  text-decoration: overline !important;
+}
+
+.text_underline {
+  text-decoration: underline !important;
 }
 
 .text_wrap {
   white-space: normal !important;
 }
 
-.text_overflow_ellipsis {
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
+.text_nowrap {
   white-space: nowrap !important;
 }
 
-.transition_all {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+.text_lead {
+  font-size: 1.1em;
+  font-weight: 300;
+}
+@media (min-width: 760px) {
+  .text_lead {
+    font-size: 1.2em;
+  }
 }
 
-.transition_none {
-  transition: none !important;
+.text_overflow_ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /*# sourceMappingURL=styles.css.map */
