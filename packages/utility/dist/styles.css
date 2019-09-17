@@ -511,14 +511,6 @@
   display: flex !important;
 }
 
-.flex_wrap {
-  flex-wrap: wrap !important;
-}
-
-.flex_nowrap {
-  flex-wrap: nowrap !important;
-}
-
 .flex_justify_start {
   justify-content: flex-start !important;
 }
@@ -561,6 +553,22 @@
 
 .flex_align_baseline {
   align-items: baseline !important;
+}
+
+.flex_wrap {
+  flex-wrap: wrap !important;
+}
+
+.flex_nowrap {
+  flex-wrap: nowrap !important;
+}
+
+.flex_items_equal > * {
+  flex: 1 1 0 !important;
+}
+
+.flex_items_auto > * {
+  flex: 0 0 auto !important;
 }
 
 .margin {

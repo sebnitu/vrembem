@@ -312,9 +312,49 @@ usage:
 <div class="notice notice_type_success display_block display_none_md display_block_lg">
   Hide between <b>medium</b> and <b>large</b> breakpoints
 </div>
+<div class="notice notice_type_caution display_block display_none_md">
+  Mobile only
+</div>
+<div class="notice notice_type_danger display_none display_block_md">
+  Desktop only
+</div>
 {% include demo_switch.html class_gridItem="" %}
 ```html
 <div class="display_none display_block_sm display_none_xl"></div>
 <div class="display_block display_none_md display_block_lg"></div>
+<div class="display_block display_none_md"></div>
+<div class="display_none display_block_md"></div>
+```
+{% include demo_close.html %}
+
+{% include flag.html heading="flex" %}
+
+{% include demo_open.html class_grid="grid_break" class_parent="spacing" %}
+<div class="flex flex_justify_between flex_align_end border padding">
+  <div class="swatch background_primary_light" style="height: 2em"></div>
+  <div class="swatch background_primary" style="height: 3em"></div>
+  <div class="swatch background_primary_dark" style="height: 4em"></div>
+</div>
+<div class="flex flex_justify_around flex_align_stretch border padding">
+  <div class="swatch background_secondary_light" style="height: auto"></div>
+  <div class="swatch background_secondary" style="height: auto"></div>
+  <div class="swatch background_secondary_dark" style="height: 6em"></div>
+</div>
+<div class="flex flex_justify_center flex_align_center border padding">
+  <div class="swatch background_accent_light" style="height: 2em"></div>
+  <div class="swatch background_accent" style="height: 3em"></div>
+  <div class="swatch background_accent_dark" style="height: 4em"></div>
+</div>
+<div class="flex flex_items_equal border padding">
+  <div class="swatch background_info_light"></div>
+  <div class="swatch background_info"></div>
+  <div class="swatch background_info_dark"></div>
+</div>
+{% include demo_switch.html class_gridItem="" %}
+```html
+<div class="flex flex_justify_between flex_align_end"></div>
+<div class="flex flex_justify_around flex_align_stretch"></div>
+<div class="flex flex_justify_center flex_align_center"></div>
+<div class="flex flex_items_equal"></div>
 ```
 {% include demo_close.html %}

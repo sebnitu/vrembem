@@ -4,14 +4,6 @@
   display: flex !important;
 }
 
-.#{$class-flex}_wrap {
-  flex-wrap: wrap !important;
-}
-
-.#{$class-flex}_nowrap {
-  flex-wrap: nowrap !important;
-}
-
 .#{$class-flex}_justify_start {
   justify-content: flex-start !important;
 }
@@ -54,4 +46,24 @@
 
 .#{$class-flex}_align_baseline {
   align-items: baseline !important;
+}
+
+.#{$class-flex}_wrap {
+  flex-wrap: wrap !important;
+}
+
+.#{$class-flex}_nowrap {
+  flex-wrap: nowrap !important;
+}
+
+.#{$class-flex}_items_equal {
+  > * {
+    flex: 1 1 0 !important;
+  }
+}
+
+.#{$class-flex}_items_auto {
+  > * {
+    flex: 0 0 auto !important;
+  }
 }
