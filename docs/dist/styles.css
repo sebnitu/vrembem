@@ -272,11 +272,19 @@ pre {
 
 .list__item {
   display: relative;
+  padding: 0.438em 0.75em;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   background-clip: padding-box;
 }
 .list__item:last-child {
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.list_between .list__item:first-child {
+  border-top: 0;
+}
+.list_between .list__item:last-child {
+  border-bottom: 0;
 }
 
 .type table, .table,
@@ -5396,6 +5404,10 @@ pre {
     display: none !important;
   }
 }
+.flex {
+  display: flex !important;
+}
+
 .flex_wrap {
   flex-wrap: wrap !important;
 }

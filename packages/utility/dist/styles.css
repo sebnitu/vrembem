@@ -507,6 +507,10 @@
     display: none !important;
   }
 }
+.flex {
+  display: flex !important;
+}
+
 .flex_wrap {
   flex-wrap: wrap !important;
 }

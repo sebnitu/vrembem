@@ -70,6 +70,9 @@ usage:
 </div>
 {% include demo_switch.html class_gridItem="" %}
 ```html
+<div class="background_primary_light"></div>
+<div class="background_primary"></div>
+<div class="background_primary_dark"></div>
 ...
 ```
 {% include demo_close.html %}
@@ -144,7 +147,13 @@ usage:
 </div>
 {% include demo_switch.html class_gridItem="" %}
 ```html
-...
+<div class="elevate"></div>
+<div class="elevate_flat"></div>
+<div class="elevate_1dp"></div>
+<div class="elevate_4dp"></div>
+<div class="elevate_8dp"></div>
+<div class="elevate_16dp"></div>
+<div class="elevate_24dp"></div>
 ```
 {% include demo_close.html %}
 
@@ -231,6 +240,81 @@ usage:
 </div>
 {% include demo_switch.html class_gridItem="" %}
 ```html
+<span class="color"></span>
+<span class="color_subtle"></span>
+<span class="color_primary_light"></span>
+<span class="color_primary"></span>
+<span class="color_primary_dark"></span>
 ...
+```
+{% include demo_close.html %}
+
+{% include flag.html heading="display" %}
+
+<div class="spacing">
+  <div class="type spacing">
+    <p>Display utilities allow you to quickly toggle the display property on an element with an optional breakpoint conditional.</p>
+    <pre><code>.display_<span class="color_success">{property}</span>_<span class="color_danger">{breakpoint}</span></code></pre>
+  </div>
+  <div>
+    <div class="grid grid_break_xs">
+      <div class="grid__item grid__item_fill">
+        <div class="card">
+          <div class="card__header">
+            <code class="color_success">{property}</code>
+          </div>
+          <div class="card__body spacing">
+            <ul class="list list_between">
+              <li class="list__item"><code>inline</code></li>
+              <li class="list__item"><code>flex</code></li>
+              <li class="list__item"><code>inline-flex</code></li>
+              <li class="list__item"><code>block</code></li>
+              <li class="list__item"><code>inline-block</code></li>
+              <li class="list__item"><code>none</code></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="grid__item grid__item_fill">
+        <div class="card">
+          <div class="card__header">
+            <code class="color_danger">{breakpoint}</code>
+          </div>
+          <div class="card__body">
+            <ul class="list list_between">
+              <li class="list__item">
+                <code>xs <span class="color_subtle">...480px</span></code>
+              </li>
+              <li class="list__item">
+                <code>sm <span class="color_subtle">...620px</span></code>
+              </li>
+              <li class="list__item">
+                <code>md <span class="color_subtle">...760px</span></code>
+              </li>
+              <li class="list__item">
+                <code>lg <span class="color_subtle">...990px</span></code>
+              </li>
+              <li class="list__item">
+                <code>xl <span class="color_subtle">...1380px</span></code>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include demo_open.html class_grid="grid_break" class_parent="spacing" %}
+<div class="notice notice_type_info display_none display_block_sm display_none_xl">
+  Display between <b>small</b> and <b>extra large</b> breakpoints
+</div>
+<div class="notice notice_type_success display_block display_none_md display_block_lg">
+  Hide between <b>medium</b> and <b>large</b> breakpoints
+</div>
+{% include demo_switch.html class_gridItem="" %}
+```html
+<div class="display_none display_block_sm display_none_xl"></div>
+<div class="display_block display_none_md display_block_lg"></div>
 ```
 {% include demo_close.html %}

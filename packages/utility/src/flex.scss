@@ -1,5 +1,9 @@
 @import "./variables";
 
+.#{$class-flex} {
+  display: flex !important;
+}
+
 .#{$class-flex}_wrap {
   flex-wrap: wrap !important;
 }
