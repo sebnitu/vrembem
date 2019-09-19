@@ -361,7 +361,121 @@ usage:
 
 {% include flag.html heading="margin" %}
 
+<div class="spacing">
+  <div class="type spacing">
+    <p>Add margin to an element using directional and size modifiers.</p>
+    <pre><code>.margin
+.margin_<span class="color_danger">{size}</span>
+.margin_<span class="color_success">{direction}</span>_<span class="color_danger">{size}</span></code></pre>
+  </div>
+  <div>
+    <div class="grid grid_break_xs">
+      <div class="grid__item grid__item_fill">
+        <div class="card">
+          <div class="card__header">
+            <code class="color_success">{direction}</code>
+          </div>
+          <div class="card__body spacing">
+            <ul class="list list_between">
+              <li class="list__item"><code>top</code></li>
+              <li class="list__item"><code>right</code></li>
+              <li class="list__item"><code>bottom</code></li>
+              <li class="list__item"><code>left</code></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="grid__item grid__item_fill">
+        <div class="card">
+          <div class="card__header">
+            <code class="color_danger">{size}</code>
+          </div>
+          <div class="card__body">
+            <ul class="list list_between">
+              <li class="list__item">
+                <code>0 <span class="color_subtle">...0</span></code>
+              </li>
+              <li class="list__item">
+                <code>xs <span class="color_subtle">...0.5rem</span></code>
+              </li>
+              <li class="list__item">
+                <code>sm <span class="color_subtle">...1rem</span></code>
+              </li>
+              <li class="list__item">
+                <code>md <span class="color_subtle">...1.5rem</span></code>
+              </li>
+              <li class="list__item">
+                <code>lg <span class="color_subtle">...2rem</span></code>
+              </li>
+              <li class="list__item">
+                <code>xl <span class="color_subtle">...3rem</span></code>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% include flag.html heading="padding" %}
+
+<div class="spacing">
+  <div class="type spacing">
+    <p>Add padding to an element using directional and size modifiers.</p>
+    <pre><code>.padding
+.padding_<span class="color_danger">{size}</span>
+.padding_<span class="color_success">{direction}</span>_<span class="color_danger">{size}</span></code></pre>
+  </div>
+  <div>
+    <div class="grid grid_break_xs">
+      <div class="grid__item grid__item_fill">
+        <div class="card">
+          <div class="card__header">
+            <code class="color_success">{direction}</code>
+          </div>
+          <div class="card__body spacing">
+            <ul class="list list_between">
+              <li class="list__item"><code>top</code></li>
+              <li class="list__item"><code>right</code></li>
+              <li class="list__item"><code>bottom</code></li>
+              <li class="list__item"><code>left</code></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="grid__item grid__item_fill">
+        <div class="card">
+          <div class="card__header">
+            <code class="color_danger">{size}</code>
+          </div>
+          <div class="card__body">
+            <ul class="list list_between">
+              <li class="list__item">
+                <code>0 <span class="color_subtle">...0</span></code>
+              </li>
+              <li class="list__item">
+                <code>xs <span class="color_subtle">...0.5rem</span></code>
+              </li>
+              <li class="list__item">
+                <code>sm <span class="color_subtle">...1rem</span></code>
+              </li>
+              <li class="list__item">
+                <code>md <span class="color_subtle">...1.5rem</span></code>
+              </li>
+              <li class="list__item">
+                <code>lg <span class="color_subtle">...2rem</span></code>
+              </li>
+              <li class="list__item">
+                <code>xl <span class="color_subtle">...3rem</span></code>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% include flag.html heading="spacing" %}
 

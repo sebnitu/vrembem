@@ -49,6 +49,8 @@ $error-dark: darken($error, 15%) !default;
 
 // Box styles
 $box-sizing: border-box !default;
+
+// Height
 $height-sm: 2rem !default;
 $height: 2.5rem !default;
 $height-lg: 3rem !default;
@@ -72,13 +74,15 @@ $transition-timing-function-sharp: cubic-bezier(0.4, 0, 0.6, 1) !default;
 $border-width: 1px !default;
 $border-style: solid !default;
 $border-color: rgba($black, 0.1) !default;
+$border-color-light: rgba($black, 0.05) !default;
+$border-color-dark: rgba($black, 0.2) !default;
 $border-color-invert: rgba($white, 0.1) !default;
-$border: 1px solid rgba($black, 0.1) !default;
-$border-invert: 1px solid rgba($white, 0.1) !default;
-$border-color-light: rgba($black, 0.05);
-$border-color-dark: rgba($black, 0.2);
-$border-light: 1px solid rgba($black, 0.05);
-$border-dark: 1px solid rgba($black, 0.2);
+
+$border: $border-width $border-style $border-color !default;
+$border-light: $border-width $border-style $border-color-light !default;
+$border-dark: $border-width $border-style $border-color-dark !default;
+$border-invert: $border-width $border-style $border-color-invert !default;
+
 $border-radius: 3px !default;
 $border-radius-circle: 9999px !default;
 
@@ -135,14 +139,12 @@ $font-size-sm: 0.875em !default;
 $font-size: 16px !default;
 $font-size-lg: 1.25em !default;
 
-// Typography
 $line-height: 1.5 !default;
 $font-weight: font-weight("normal") !default;
 
 // Color
 $color: $gray-900 !default;
 $color-subtle: $gray-400 !default;
-
 $color-invert: $white !default;
 $color-invert-subtle: rgba($white, 0.4) !default;
 
