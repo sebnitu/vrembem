@@ -44,10 +44,6 @@
   text-decoration: line-through !important;
 }
 
-.#{$class-text}_overline {
-  text-decoration: overline !important;
-}
-
 .#{$class-text}_underline {
   text-decoration: underline !important;
 }
@@ -60,6 +56,12 @@
   white-space: nowrap !important;
 }
 
+.#{$class-text}_overflow_ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .#{$class-text}_lead {
   font-size: 1.1em;
   font-weight: font-weight("light");
@@ -67,10 +69,4 @@
   @include media-min("md") {
     font-size: 1.2em;
   }
-}
-
-.#{$class-text}_overflow_ellipsis {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }

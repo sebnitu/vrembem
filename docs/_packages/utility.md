@@ -479,4 +479,108 @@ usage:
 
 {% include flag.html heading="spacing" %}
 
+{% include demo_open.html class_grid="grid_break" class_parent="spacing" %}
+<div class="border padding spacing">
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+</div>
+
+<div class="border padding spacing_xl">
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+</div>
+{% include demo_switch.html class_gridItem="" %}
+```html
+<div class="spacing">...</div>
+<div class="spacing_xl">...</div>
+```
+{% include demo_close.html %}
+
 {% include flag.html heading="text" %}
+
+{% include demo_open.html class_gridItem="span_6" %}
+<ul class="list list_between">
+  <li class="list__item">
+    <p class="text_size_sm">Text size small</p>
+  </li>
+  <li class="list__item">
+    <p class="text_size_lg">Text size large</p>
+  </li>
+  <li class="list__item">
+    <p class="text_capitalize">Text capitalize</p>
+  </li>
+  <li class="list__item">
+    <p class="text_lowercase">Text lowercase</p>
+  </li>
+  <li class="list__item">
+    <p class="text_uppercase">Text uppercase</p>
+  </li>
+  <li class="list__item">
+    <p class="text_align_left">Text align left</p>
+  </li>
+  <li class="list__item">
+    <p class="text_align_center">Text align center</p>
+  </li>
+  <li class="list__item">
+    <p class="text_align_right">Text align right</p>
+  </li>
+  <li class="list__item">
+    <p class="text_bold">Text bold</p>
+  </li>
+  <li class="list__item">
+    <p class="text_italic">Text italic</p>
+  </li>
+  <li class="list__item">
+    <p class="text_strike">Text strike</p>
+  </li>
+  <li class="list__item">
+    <p class="text_underline">Text underline</p>
+  </li>
+  <li class="list__item">
+    <p class="text_wrap">Text wrap</p>
+  </li>
+  <li class="list__item">
+    <p class="text_nowrap">Text nowrap</p>
+  </li>
+  <li class="list__item">
+    <p class="text_overflow_ellipsis">Text overflow ellipsis text overflow ellipsis text overflow ellipsis text overflow ellipsis</p>
+  </li>
+  <li class="list__item">
+    <p class="text_lead">Text lead</p>
+  </li>
+</ul>
+{% include demo_switch.html %}
+```html
+<!-- Size -->
+<p class="text_size_sm">...</p>
+<p class="text_size_lg">...</p>
+
+<!-- Transform -->
+<p class="text_capitalize">...</p>
+<p class="text_lowercase">...</p>
+<p class="text_uppercase">...</p>
+
+<!-- Align -->
+<p class="text_align_left">...</p>
+<p class="text_align_center">...</p>
+<p class="text_align_right">...</p>
+
+<!-- Weight & Style -->
+<p class="text_bold">...</p>
+<p class="text_italic">...</p>
+
+<!-- Decoration -->
+<p class="text_strike">...</p>
+<p class="text_underline">...</p>
+
+<!-- Wrap -->
+<p class="text_wrap">...</p>
+<p class="text_nowrap">...</p>
+<p class="text_overflow_ellipsis">...</p>
+
+<!-- Other -->
+<p class="text_lead">...</p>
+```
+{% include demo_close.html %}
