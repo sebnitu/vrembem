@@ -1,7 +1,7 @@
 ---
 layout: article
 title: Utility
-description: "Utility components do one thing, but do them very well. These are great for prototyping or applying one-off properties to existing components."
+description: "The utility component provides a set of atomic classes that specialize in a single function."
 category: simple
 usage:
   npm: "@vrembem/utility"

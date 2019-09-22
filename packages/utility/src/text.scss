@@ -57,16 +57,12 @@
 }
 
 .#{$class-text}_overflow_ellipsis {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
 }
 
 .#{$class-text}_lead {
-  font-size: 1.1em;
-  font-weight: font-weight("light");
-
-  @include media-min("md") {
-    font-size: 1.2em;
-  }
+  font-size: 1.2em !important;
+  font-weight: font-weight("light") !important;
 }

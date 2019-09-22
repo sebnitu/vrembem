@@ -5929,19 +5929,14 @@ pre {
 }
 
 .text_overflow_ellipsis {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
 }
 
 .text_lead {
-  font-size: 1.1em;
-  font-weight: 300;
-}
-@media (min-width: 760px) {
-  .text_lead {
-    font-size: 1.2em;
-  }
+  font-size: 1.2em !important;
+  font-weight: 300 !important;
 }
 
 .article__section {
