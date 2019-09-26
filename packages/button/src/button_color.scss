@@ -3,11 +3,11 @@
 .button_color_subtle {
   background: none;
 
-  &:hover,
-  &:focus {
+  &:hover {
     background: rgba($black, 0.05);
   }
 
+  &:focus,
   &:active {
     background: rgba($black, 0.1);
   }
@@ -20,11 +20,11 @@
     background: none;
     color: $white;
 
-    &:hover,
-    &:focus {
+    &:hover {
       background: rgba($white, 0.05);
     }
 
+    &:focus,
     &:active {
       background: rgba($white, 0.1);
     }
@@ -39,12 +39,12 @@
   background-color: $primary;
   color: $white;
 
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: darken($primary, 5%);
     color: $white;
   }
 
+  &:focus,
   &:active {
     background-color: darken($primary, 10%);
     color: $white;
@@ -59,12 +59,12 @@
   background-color: $secondary;
   color: $white;
 
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: darken($secondary, 5%);
     color: $white;
   }
 
+  &:focus,
   &:active {
     background-color: darken($secondary, 10%);
     color: $white;
@@ -79,12 +79,12 @@
   background-color: $accent;
   color: $color;
 
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: darken($accent, 10%);
     color: $color;
   }
 
+  &:focus,
   &:active {
     background-color: darken($accent, 20%);
     color: $color;

@@ -8,7 +8,7 @@
 }
 
 .article__title {
-  @extend %h1;
+  @include heading(1);
   font-weight: normal;
 }
 

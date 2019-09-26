@@ -211,7 +211,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
 {% include flag.html heading="button_outline_[key]" %}
 
 {% include demo_open.html class_grid="grid_break" class_parent="spacing" %}
-<div class="demo__group p_sm">
+<div class="background_white padding_md radius">
   <div class="level">
     <button class="button button_outline">Default Outline</button>
     <button class="button button_outline_primary">Outline Primary</button>
@@ -219,7 +219,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
     <button class="button button_outline_accent">Outline Accent</button>
   </div>
 </div>
-<div class="demo__group invert">
+<div class="background_night padding_md radius">
   <div class="level">
     <button class="button button_invert button_outline">Default Outline Invert</button>
     <button class="button button_outline_primary">Outline Primary</button>
@@ -246,7 +246,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
 {% include flag.html heading="button is-loading" %}
 
 {% include demo_open.html class_grid="grid_break" %}
-<div class="bg_white p_md">
+<div class="background_white padding_md radius">
   <div class="level">
     <button class="is-loading button">Button</button>
     <button class="is-loading button button_color_subtle">Button</button>
@@ -259,7 +259,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
     <button class="is-loading button button_outline_accent">Button</button>
   </div>
 </div>
-<div class="bg_dark p_md">
+<div class="background_night padding_md radius">
   <div class="level">
     <button class="is-loading button button_invert">Button</button>
     <button class="is-loading button button_invert button_color_subtle">Button</button>

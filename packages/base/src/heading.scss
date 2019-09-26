@@ -1,8 +1,56 @@
-%h {
+@mixin base-heading() {
   color: $heading-color;
   font-family: $heading-font-family;
   font-weight: $heading-font-weight;
   line-height: $heading-line-height;
+}
+
+@mixin heading($level, $base: false) {
+  @if $base {
+    @include base-heading();
+  }
+
+  @if $level == 1 {
+    font-size: 2em;
+    @include media-min("md") {
+      font-size: 2.5em;
+    }
+  }
+
+  @else if $level == 2 {
+    font-size: 1.75em;
+    @include media-min("md") {
+      font-size: 2em;
+    }
+  }
+
+  @else if $level == 3 {
+    font-size: 1.5em;
+    @include media-min("md") {
+      font-size: 1.75em;
+    }
+  }
+
+  @else if $level == 4 {
+    font-size: 1.25em;
+    @include media-min("md") {
+      font-size: 1.5em;
+    }
+  }
+
+  @else if $level == 5 {
+    font-size: 1em;
+    @include media-min("md") {
+      font-size: 1.25em;
+    }
+  }
+
+  @else if $level == 6 {
+    font-size: 1em;
+    @include media-min("md") {
+      font-size: 1.25em;
+    }
+  }
 }
 
 .h1,
@@ -11,95 +59,29 @@
 .h4,
 .h5,
 .h6 {
-  @extend %h;
+  @include base-heading;
 }
 
-%h1 {
-  font-size: 2em;
+.h1 {
+  @include heading(1);
 }
 
-@include media-min('md') {
-  %h1 {
-    font-size: 2.5em;
-  }
+.h2 {
+  @include heading(2);
 }
 
-.h1,
-.type .h1 {
-  @extend %h1;
+.h3 {
+  @include heading(3);
 }
 
-%h2 {
-  font-size: 1.75em;
+.h4 {
+  @include heading(4);
 }
 
-@include media-min('md') {
-  %h2 {
-    font-size: 2em;
-  }
+.h5 {
+  @include heading(5);
 }
 
-.h2,
-.type .h2 {
-  @extend %h2;
-}
-
-%h3 {
-  font-size: 1.5em;
-}
-
-@include media-min('md') {
-  %h3 {
-    font-size: 1.75em;
-  }
-}
-
-.h3,
-.type .h3 {
-  @extend %h3;
-}
-
-%h4 {
-  font-size: 1.25em;
-}
-
-@include media-min('md') {
-  %h4 {
-    font-size: 1.5em;
-  }
-}
-
-.h4,
-.type .h4 {
-  @extend %h4;
-}
-
-%h5 {
-  font-size: 1em;
-}
-
-@include media-min('md') {
-  %h5 {
-    font-size: 1.25em;
-  }
-}
-
-.h5,
-.type .h5 {
-  @extend %h5;
-}
-
-%h6 {
-  font-size: 1em;
-}
-
-@include media-min('md') {
-  %h6 {
-    font-size: 1.25em;
-  }
-}
-
-.h6,
-.type .h6 {
-  @extend %h6;
+.h6 {
+  @include heading(6);
 }

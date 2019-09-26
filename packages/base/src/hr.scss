@@ -1,20 +1,14 @@
-%hr {
+@mixin divider() {
   display: block;
   height: 1px;
   border: none;
   background: $border-color;
 }
 
-.hr,
-.type .hr {
-  @extend %hr;
+.hr {
+  @include divider();
 }
 
-%hr_invert {
+.hr_invert {
   background-color: $border-color-invert;
-}
-
-.hr_invert,
-.type .hr_invert {
-  @extend %hr_invert;
 }

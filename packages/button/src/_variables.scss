@@ -8,12 +8,12 @@ $button-text-transform: null !default;
 $button-letter-spacing: null !default;
 $button-border-width: 1px !default;
 $button-border-radius: $border-radius !default;
-$button-focus-outline: currentColor dotted 1px !default;
-$button-focus-outline-offset: -4px !default;
+$button-focus-outline: null !default;
+$button-focus-outline-offset: null !default;
 
 $button-background: rgba($black, 0.05) !default;
 $button-background-hover: rgba($black, 0.1) !default;
-$button-background-focus: rgba($black, 0.1) !default;
+$button-background-focus: rgba($black, 0.15) !default;
 $button-background-active: rgba($black, 0.15) !default;
 
 $button-box-shadow: null !default;

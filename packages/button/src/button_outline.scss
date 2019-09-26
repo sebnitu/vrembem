@@ -4,12 +4,12 @@
   border: $button_outline-border-width solid rgba($color, 0.1);
   background: none;
 
-  &:hover,
-  &:focus {
+  &:hover {
     border-color: rgba($color, 0.2);
     background: none;
   }
 
+  &:focus,
   &:active {
     border-color: $color;
     background: none;
@@ -18,11 +18,11 @@
   &.button_invert {
     border-color: rgba($white, 0.15);
 
-    &:hover,
-    &:focus {
+    &:hover {
       border-color: rgba($white, 0.25);
     }
 
+    &:focus,
     &:active {
       border-color: $white;
     }
@@ -34,13 +34,13 @@
   background: none;
   color: $primary;
 
-  &:hover,
-  &:focus {
+  &:hover {
     border-color: $primary;
     background: none;
     color: $primary;
   }
 
+  &:focus,
   &:active {
     border-color: $primary;
     background: $primary;
@@ -50,6 +50,10 @@
   &.is-loading::after {
     border-color: set-border-color($button-loading-border-tpl, $primary);
   }
+
+  &.is-loading:focus::after {
+    border-color: set-border-color($button-loading-border-tpl, $white);
+  }
 }
 
 .button_outline_secondary {
@@ -57,13 +61,13 @@
   background: none;
   color: $secondary;
 
-  &:hover,
-  &:focus {
+  &:hover {
     border-color: $secondary;
     background: none;
     color: $secondary;
   }
 
+  &:focus,
   &:active {
     border-color: $secondary;
     background: $secondary;
@@ -74,11 +78,14 @@
     border-color: set-border-color($button-loading-border-tpl, $secondary);
   }
 
+  &.is-loading:focus::after {
+    border-color: set-border-color($button-loading-border-tpl, $white);
+  }
+
   &.button_invert {
     color: $white;
 
-    &:hover,
-    &:focus {
+    &:hover {
       color: $white;
     }
   }
@@ -89,13 +96,13 @@
   background: none;
   color: $color;
 
-  &:hover,
-  &:focus {
+  &:hover {
     border-color: $accent;
     background: none;
     color: $color;
   }
 
+  &:focus,
   &:active {
     border-color: $accent;
     background: $accent;
@@ -105,17 +112,21 @@
   &.button_invert {
     color: $accent;
 
-    &:hover,
-    &:focus {
+    &:hover {
       color: $accent;
     }
 
+    &:focus,
     &:active {
       color: $color;
     }
 
     &.is-loading::after {
       border-color: set-border-color($button-loading-border-tpl, $accent);
+    }
+
+    &.is-loading:focus::after {
+      border-color: set-border-color($button-loading-border-tpl, $color);
     }
   }
 }
