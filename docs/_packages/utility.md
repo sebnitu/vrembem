@@ -23,11 +23,6 @@ usage:
     <div class="swatch background_secondary_dark"></div>
   </div>
   <div class="swatch-group">
-    <div class="swatch background_accent_light"></div>
-    <div class="swatch background_accent"></div>
-    <div class="swatch background_accent_dark"></div>
-  </div>
-  <div class="swatch-group">
     <div class="swatch background_shade_light"></div>
     <div class="swatch background_shade"></div>
     <div class="swatch background_shade_dark"></div>
@@ -170,9 +165,6 @@ usage:
     <span class="color_secondary_light">Color secondary</span>
     <span class="color_secondary">Color secondary</span>
     <span class="color_secondary_dark">Color secondary</span>
-    <span class="color_accent_light">Color accent</span>
-    <span class="color_accent">Color accent</span>
-    <span class="color_accent_dark">Color accent</span>
     <span class="color_shade_light">Color shade</span>
     <span class="color_shade">Color shade</span>
     <span class="color_shade_dark">Color shade</span>
@@ -209,9 +201,6 @@ usage:
     <span class="color_secondary_light">Color secondary</span>
     <span class="color_secondary">Color secondary</span>
     <span class="color_secondary_dark">Color secondary</span>
-    <span class="color_accent_light">Color accent</span>
-    <span class="color_accent">Color accent</span>
-    <span class="color_accent_dark">Color accent</span>
     <span class="color_shade_light">Color shade</span>
     <span class="color_shade">Color shade</span>
     <span class="color_shade_dark">Color shade</span>

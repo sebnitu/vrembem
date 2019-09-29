@@ -178,7 +178,6 @@ Elements inside the button component receive appropriate spacing using the `> * 
     <button class="button button_color_subtle">Color Subtle</button>
     <button class="button button_color_primary">Color Primary</button>
     <button class="button button_color_secondary">Color Secondary</button>
-    <button class="button button_color_accent">Color Accent</button>
   </div>
 </div>
 <div class="demo__group invert">
@@ -187,7 +186,6 @@ Elements inside the button component receive appropriate spacing using the `> * 
     <button class="button button_invert button_color_subtle">Color Subtle Invert</button>
     <button class="button button_color_primary">Color Primary</button>
     <button class="button button_color_secondary">Color Secondary</button>
-    <button class="button button_color_accent">Color Accent</button>
   </div>
 </div>
 {% include demo_switch.html %}
@@ -197,14 +195,12 @@ Elements inside the button component receive appropriate spacing using the `> * 
 <button class="button button_color_subtle">Color Subtle</button>
 <button class="button button_color_primary">Color Primary</button>
 <button class="button button_color_secondary">Color Secondary</button>
-<button class="button button_color_accent">Color Accent</button>
 
 <!-- Invert -->
 <button class="button button_invert">Default Invert</button>
 <button class="button button_invert button_color_subtle">Color Subtle Invert</button>
 <button class="button button_color_primary">Color Primary</button>
 <button class="button button_color_secondary">Color Secondary</button>
-<button class="button button_color_accent">Color Accent</button>
 ```
 {% include demo_close.html %}
 
@@ -216,7 +212,6 @@ Elements inside the button component receive appropriate spacing using the `> * 
     <button class="button button_outline">Default Outline</button>
     <button class="button button_outline_primary">Outline Primary</button>
     <button class="button button_outline_secondary">Outline Secondary</button>
-    <button class="button button_outline_accent">Outline Accent</button>
   </div>
 </div>
 <div class="background_night padding_md radius">
@@ -224,7 +219,6 @@ Elements inside the button component receive appropriate spacing using the `> * 
     <button class="button button_invert button_outline">Default Outline Invert</button>
     <button class="button button_outline_primary">Outline Primary</button>
     <button class="button button_invert button_outline_secondary">Outline Secondary Invert</button>
-    <button class="button button_invert button_outline_accent">Outline Accent Invert</button>
   </div>
 </div>
 {% include demo_switch.html %}
@@ -233,13 +227,11 @@ Elements inside the button component receive appropriate spacing using the `> * 
 <button class="button button_outline">Default Outline</button>
 <button class="button button_outline_primary">Outline Primary</button>
 <button class="button button_outline_secondary">Outline Secondary</button>
-<button class="button button_outline_accent">Outline Accent</button>
 
 <!-- Invert -->
 <button class="button button_invert button_outline">Default Outline Invert</button>
 <button class="button button_outline_primary">Outline Primary</button>
 <button class="button button_invert button_outline_secondary">Outline Secondary Invert</button>
-<button class="button button_invert button_outline_accent">Outline Accent Invert</button>
 ```
 {% include demo_close.html %}
 
@@ -252,11 +244,9 @@ Elements inside the button component receive appropriate spacing using the `> * 
     <button class="is-loading button button_color_subtle">Button</button>
     <button class="is-loading button button_color_primary">Button</button>
     <button class="is-loading button button_color_secondary">Button</button>
-    <button class="is-loading button button_color_accent">Button</button>
     <button class="is-loading button button_outline">Button</button>
     <button class="is-loading button button_outline_primary">Button</button>
     <button class="is-loading button button_outline_secondary">Button</button>
-    <button class="is-loading button button_outline_accent">Button</button>
   </div>
 </div>
 <div class="background_night padding_md radius">
@@ -265,11 +255,9 @@ Elements inside the button component receive appropriate spacing using the `> * 
     <button class="is-loading button button_invert button_color_subtle">Button</button>
     <button class="is-loading button button_color_primary">Button</button>
     <button class="is-loading button button_color_secondary">Button</button>
-    <button class="is-loading button button_color_accent">Button</button>
     <button class="is-loading button button_invert button_outline">Button</button>
     <button class="is-loading button button_outline_primary">Button</button>
     <button class="is-loading button button_invert button_outline_secondary">Button</button>
-    <button class="is-loading button button_invert button_outline_accent">Button</button>
   </div>
 </div>
 {% include demo_switch.html %}
