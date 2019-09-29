@@ -6,7 +6,7 @@
   width: 100%;
   height: $input-height;
   padding: $input-padding;
-  border: $input-border;
+  border: $input-border-width $input-border-style $input-border-color;
   border-radius: 3px;
   background: $input-background;
   box-shadow: $input-box-shadow-values $input-box-shadow-color;
@@ -16,9 +16,13 @@
   line-height: $input-line-height;
   appearance: none;
 
+  &:hover {
+    border-color: $input-border-color-hover;
+  }
+
   &:focus {
     outline: none;
-    border: $input-border-focus;
+    border-color: $input-border-color-focus;
     background-color: $input-background-focus;
     box-shadow: $input-box-shadow-focus-values $input-box-shadow-focus-color;
   }

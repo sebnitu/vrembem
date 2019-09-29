@@ -54,6 +54,22 @@
   &.is-loading:focus::after {
     border-color: set-border-color($button-loading-border-tpl, $white);
   }
+
+  &.button_invert {
+    border-color: $primary-light;
+    color: $primary-light;
+
+    &:hover {
+      color: $white;
+    }
+
+    &:focus,
+    &:active {
+      border-color: $primary;
+      background-color: $primary;
+      color: $white;
+    }
+  }
 }
 
 .button_outline_secondary {
@@ -83,9 +99,17 @@
   }
 
   &.button_invert {
-    color: $white;
+    border-color: $secondary-light;
+    color: $secondary-light;
 
     &:hover {
+      color: $white;
+    }
+
+    &:focus,
+    &:active {
+      border-color: $secondary;
+      background-color: $secondary;
       color: $white;
     }
   }

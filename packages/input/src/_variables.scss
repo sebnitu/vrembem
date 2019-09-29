@@ -17,7 +17,12 @@ $input-box-shadow-color: rgba($primary, 0) !default;
 $input-box-shadow-focus-values: 0 0 0 3px !default;
 $input-box-shadow-focus-color: rgba($primary, 0.1) !default;
 
-$input-border: $border-dark !default;
-$input-border-focus: 1px solid $primary !default;
+$input-border-width: 1px !default;
+$input-border-style: solid !default;
+$input-border-color: $border-color-dark !default;
+$input-border-color-hover: rgba($black, 0.4) !default;
+$input-border-color-focus: $primary !default;
 
-$input_type_select-image: 'data:image/svg+xml;utf8,<svg width="36px" height="10px" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" stroke-width="2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" points="15 4 18 7 21 4"></polyline></svg>' !default;
+$input_type_select-icon-color: black !default;
+
+$input_type_select-icon: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="#{$input_type_select-icon-color}"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>' !default;
