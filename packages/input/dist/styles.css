@@ -14,9 +14,12 @@
   line-height: 1.5;
   appearance: none;
 }
+.input:hover {
+  border-color: rgba(0, 0, 0, 0.4);
+}
 .input:focus {
   outline: none;
-  border: 1px solid #2196f3;
+  border-color: #2196f3;
   background-color: #fff;
   box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
 }
@@ -58,6 +61,9 @@
   border-color: #4caf50;
   box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
 }
+.input_state_success:hover {
+  border-color: #4caf50;
+}
 .input_state_success:focus {
   border-color: #4caf50;
   box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
@@ -66,6 +72,9 @@
 .input_state_caution {
   border-color: #f9a825;
   box-shadow: 0 0 0 0 rgba(249, 168, 37, 0);
+}
+.input_state_caution:hover {
+  border-color: #f9a825;
 }
 .input_state_caution:focus {
   border-color: #f9a825;
@@ -76,6 +85,9 @@
   border-color: #e91e63;
   box-shadow: 0 0 0 0 rgba(233, 30, 99, 0);
 }
+.input_state_danger:hover {
+  border-color: #e91e63;
+}
 .input_state_danger:focus {
   border-color: #e91e63;
   box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.2);
@@ -83,7 +95,7 @@
 
 .input_type_select {
   padding-right: 2em;
-  background-image: url('data:image/svg+xml;utf8,<svg width="36px" height="10px" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" stroke-width="2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" points="15 4 18 7 21 4"></polyline></svg>');
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="%23212121"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>');
   background-repeat: no-repeat;
   background-position: 100% center;
   cursor: pointer;

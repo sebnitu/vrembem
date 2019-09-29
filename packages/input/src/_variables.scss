@@ -23,6 +23,6 @@ $input-border-color: $border-color-dark !default;
 $input-border-color-hover: rgba($black, 0.4) !default;
 $input-border-color-focus: $primary !default;
 
-$input_type_select-icon-color: black !default;
+$input_type_select-icon-color: $color !default;
 
-$input_type_select-icon: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="#{$input_type_select-icon-color}"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>' !default;
+$input_type_select-icon: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="#{encodecolor($input_type_select-icon-color)}"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>' !default;

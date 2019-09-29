@@ -256,6 +256,18 @@
 .button_outline_primary.is-loading:focus::after {
   border-color: #fff #fff transparent transparent;
 }
+.button_outline_primary.button_invert {
+  border-color: #51adf6;
+  color: #51adf6;
+}
+.button_outline_primary.button_invert:hover {
+  color: #fff;
+}
+.button_outline_primary.button_invert:focus, .button_outline_primary.button_invert:active {
+  border-color: #2196f3;
+  background-color: #2196f3;
+  color: #fff;
+}
 
 .button_outline_secondary {
   border: 1px solid rgba(96, 125, 139, 0.5);
@@ -279,9 +291,15 @@
   border-color: #fff #fff transparent transparent;
 }
 .button_outline_secondary.button_invert {
-  color: #fff;
+  border-color: #7b96a3;
+  color: #7b96a3;
 }
 .button_outline_secondary.button_invert:hover {
+  color: #fff;
+}
+.button_outline_secondary.button_invert:focus, .button_outline_secondary.button_invert:active {
+  border-color: #607d8b;
+  background-color: #607d8b;
   color: #fff;
 }
 

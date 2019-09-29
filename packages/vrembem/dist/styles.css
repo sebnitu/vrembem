@@ -674,6 +674,18 @@ pre {
 .button_outline_primary.is-loading:focus::after {
   border-color: #fff #fff transparent transparent;
 }
+.button_outline_primary.button_invert {
+  border-color: #51adf6;
+  color: #51adf6;
+}
+.button_outline_primary.button_invert:hover {
+  color: #fff;
+}
+.button_outline_primary.button_invert:focus, .button_outline_primary.button_invert:active {
+  border-color: #2196f3;
+  background-color: #2196f3;
+  color: #fff;
+}
 
 .button_outline_secondary {
   border: 1px solid rgba(96, 125, 139, 0.5);
@@ -697,9 +709,15 @@ pre {
   border-color: #fff #fff transparent transparent;
 }
 .button_outline_secondary.button_invert {
-  color: #fff;
+  border-color: #7b96a3;
+  color: #7b96a3;
 }
 .button_outline_secondary.button_invert:hover {
+  color: #fff;
+}
+.button_outline_secondary.button_invert:focus, .button_outline_secondary.button_invert:active {
+  border-color: #607d8b;
+  background-color: #607d8b;
   color: #fff;
 }
 
@@ -1069,7 +1087,7 @@ pre {
 .checkbox__icon {
   width: 13px;
   height: 13px;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>');
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="13px" height="13px" fill="none" stroke="%23FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="10.5 3.5 5 9 2.5 6.5"></polyline></svg>');
   background-repeat: no-repeat;
   background-position: center -13px;
   background-size: 100%;
@@ -2073,9 +2091,12 @@ pre {
   line-height: 1.5;
   appearance: none;
 }
+.input:hover {
+  border-color: rgba(0, 0, 0, 0.4);
+}
 .input:focus {
   outline: none;
-  border: 1px solid #2196f3;
+  border-color: #2196f3;
   background-color: #fff;
   box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
 }
@@ -2117,6 +2138,9 @@ pre {
   border-color: #4caf50;
   box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
 }
+.input_state_success:hover {
+  border-color: #4caf50;
+}
 .input_state_success:focus {
   border-color: #4caf50;
   box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
@@ -2125,6 +2149,9 @@ pre {
 .input_state_caution {
   border-color: #f9a825;
   box-shadow: 0 0 0 0 rgba(249, 168, 37, 0);
+}
+.input_state_caution:hover {
+  border-color: #f9a825;
 }
 .input_state_caution:focus {
   border-color: #f9a825;
@@ -2135,6 +2162,9 @@ pre {
   border-color: #e91e63;
   box-shadow: 0 0 0 0 rgba(233, 30, 99, 0);
 }
+.input_state_danger:hover {
+  border-color: #e91e63;
+}
 .input_state_danger:focus {
   border-color: #e91e63;
   box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.2);
@@ -2142,7 +2172,7 @@ pre {
 
 .input_type_select {
   padding-right: 2em;
-  background-image: url('data:image/svg+xml;utf8,<svg width="36px" height="10px" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" stroke-width="2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" points="15 4 18 7 21 4"></polyline></svg>');
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="%23212121"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>');
   background-repeat: no-repeat;
   background-position: 100% center;
   cursor: pointer;
@@ -4847,11 +4877,11 @@ pre {
 }
 
 .background_primary_light {
-  background-color: #6ab8f7 !important;
+  background-color: #51adf6 !important;
 }
 
 .background_primary_dark {
-  background-color: #0a6ebd !important;
+  background-color: #0c7cd5 !important;
 }
 
 .background_secondary {
@@ -4859,11 +4889,11 @@ pre {
 }
 
 .background_secondary_light {
-  background-color: #8aa2ae !important;
+  background-color: #7b96a3 !important;
 }
 
 .background_secondary_dark {
-  background-color: #41545e !important;
+  background-color: #4b626d !important;
 }
 
 .background_shade {
@@ -5063,11 +5093,11 @@ pre {
 }
 
 .color_primary_light {
-  color: #6ab8f7 !important;
+  color: #51adf6 !important;
 }
 
 .color_primary_dark {
-  color: #0a6ebd !important;
+  color: #0c7cd5 !important;
 }
 
 .color_secondary {
@@ -5075,11 +5105,11 @@ pre {
 }
 
 .color_secondary_light {
-  color: #8aa2ae !important;
+  color: #7b96a3 !important;
 }
 
 .color_secondary_dark {
-  color: #41545e !important;
+  color: #4b626d !important;
 }
 
 .color_shade {

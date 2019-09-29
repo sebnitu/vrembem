@@ -1088,7 +1088,7 @@ pre {
 .checkbox__icon {
   width: 13px;
   height: 13px;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="13px" height="13px" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="10.5 3.5 5 9 2.5 6.5"></polyline></svg>');
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="13px" height="13px" fill="none" stroke="%23FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="10.5 3.5 5 9 2.5 6.5"></polyline></svg>');
   background-repeat: no-repeat;
   background-position: center -13px;
   background-size: 100%;
@@ -2173,7 +2173,7 @@ pre {
 
 .input_type_select {
   padding-right: 2em;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="black"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>');
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="%23212121"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>');
   background-repeat: no-repeat;
   background-position: 100% center;
   cursor: pointer;
