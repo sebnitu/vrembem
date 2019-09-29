@@ -6096,16 +6096,6 @@ pre {
   }
 }
 /**
- * Cover menu and filter
- */
-.cover__aside .filter .search {
-  padding: 1em 3.25em;
-}
-.cover__aside .menu_drawer .menu__link {
-  padding: 0.75em 1em;
-}
-
-/**
  * Demo
  * ---
  * Styles demos with both the code and rendered examples.
@@ -6151,25 +6141,25 @@ pre {
  * Handles the styles of the search filter displayed above the jumbo list.
  */
 .filter {
-  flex-grow: 1;
   position: relative;
   z-index: 4;
+  flex-grow: 1;
   background: #eceff1;
 }
 .filter.is-active {
   border-color: #2196f3;
 }
 .filter .search {
-  padding: 0.75em 3.25em;
-  background: #fff;
-  border-radius: 3px;
+  padding: 0.75em 2.5em;
   border: none;
+  border-radius: 3px;
+  background: #fff;
   box-shadow: none;
 }
 .filter .search:focus, .filter .search.is-active {
-  color: #2196f3;
   background: #fff;
   box-shadow: none;
+  color: #2196f3;
 }
 .filter .search_label,
 .filter .search_clear {
@@ -6179,11 +6169,11 @@ pre {
   transform: translate(0, -50%);
 }
 .filter .search_label {
+  left: 0.5em;
   display: flex;
-  left: 1em;
 }
 .filter .search_clear {
-  right: 1em;
+  right: 0.5em;
 }
 
 /**
