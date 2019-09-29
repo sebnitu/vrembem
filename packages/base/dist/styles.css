@@ -120,82 +120,68 @@ pre {
   font-weight: 600;
 }
 
-.h1,
-.type .h1 {
+.h1 {
   font-size: 2em;
 }
-
 @media (min-width: 760px) {
-  .h1,
-.type .h1 {
+  .h1 {
     font-size: 2.5em;
   }
 }
-.h2,
-.type .h2 {
+
+.h2 {
   font-size: 1.75em;
 }
-
 @media (min-width: 760px) {
-  .h2,
-.type .h2 {
+  .h2 {
     font-size: 2em;
   }
 }
-.h3,
-.type .h3 {
+
+.h3 {
   font-size: 1.5em;
 }
-
 @media (min-width: 760px) {
-  .h3,
-.type .h3 {
+  .h3 {
     font-size: 1.75em;
   }
 }
-.h4,
-.type .h4 {
+
+.h4 {
   font-size: 1.25em;
 }
-
 @media (min-width: 760px) {
-  .h4,
-.type .h4 {
+  .h4 {
     font-size: 1.5em;
   }
 }
-.h5,
-.type .h5 {
+
+.h5 {
   font-size: 1em;
 }
-
 @media (min-width: 760px) {
-  .h5,
-.type .h5 {
+  .h5 {
     font-size: 1.25em;
   }
 }
-.h6,
-.type .h6 {
+
+.h6 {
   font-size: 1em;
 }
-
 @media (min-width: 760px) {
-  .h6,
-.type .h6 {
+  .h6 {
     font-size: 1.25em;
   }
 }
-.hr,
-.type .hr {
+
+.hr {
   display: block;
   height: 1px;
   border: none;
   background: rgba(0, 0, 0, 0.1);
 }
 
-.hr_invert,
-.type .hr_invert {
+.hr_invert {
   background-color: rgba(255, 255, 255, 0.1);
 }
 

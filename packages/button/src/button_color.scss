@@ -74,19 +74,3 @@
     border-color: set-border-color($button-loading-border-tpl, $white);
   }
 }
-
-.button_color_accent {
-  background-color: $accent;
-  color: $color;
-
-  &:hover {
-    background-color: darken($accent, 10%);
-    color: $color;
-  }
-
-  &:focus,
-  &:active {
-    background-color: darken($accent, 20%);
-    color: $color;
-  }
-}

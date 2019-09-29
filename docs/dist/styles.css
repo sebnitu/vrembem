@@ -600,19 +600,6 @@ pre {
   border-color: #fff #fff transparent transparent;
 }
 
-.button_color_accent {
-  background-color: #ffee58;
-  color: #212121;
-}
-.button_color_accent:hover {
-  background-color: #ffe925;
-  color: #212121;
-}
-.button_color_accent:focus, .button_color_accent:active {
-  background-color: #f1d800;
-  color: #212121;
-}
-
 .button_icon {
   width: 2.5rem;
   height: 2.5rem;
@@ -715,37 +702,6 @@ pre {
 }
 .button_outline_secondary.button_invert:hover {
   color: #fff;
-}
-
-.button_outline_accent {
-  border: 1px solid rgba(255, 238, 88, 0.5);
-  background: none;
-  color: #212121;
-}
-.button_outline_accent:hover {
-  border-color: #ffee58;
-  background: none;
-  color: #212121;
-}
-.button_outline_accent:focus, .button_outline_accent:active {
-  border-color: #ffee58;
-  background: #ffee58;
-  color: #212121;
-}
-.button_outline_accent.button_invert {
-  color: #ffee58;
-}
-.button_outline_accent.button_invert:hover {
-  color: #ffee58;
-}
-.button_outline_accent.button_invert:focus, .button_outline_accent.button_invert:active {
-  color: #212121;
-}
-.button_outline_accent.button_invert.is-loading::after {
-  border-color: #ffee58 #ffee58 transparent transparent;
-}
-.button_outline_accent.button_invert.is-loading:focus::after {
-  border-color: #212121 #212121 transparent transparent;
 }
 
 .button_size_sm {
@@ -3640,10 +3596,6 @@ pre {
   background-color: #607d8b;
 }
 
-.notice_type_accent {
-  background-color: #ffee58;
-}
-
 .notice_type_shade {
   background-color: #eceff1;
 }
@@ -3980,13 +3932,6 @@ pre {
 }
 .section_color_secondary .section__screen {
   background: #607d8b;
-}
-
-.section_color_accent {
-  background: #ffee58;
-}
-.section_color_accent .section__screen {
-  background: #ffee58;
 }
 
 .section_color_shade {
@@ -4922,18 +4867,6 @@ pre {
   background-color: #41545e !important;
 }
 
-.background_accent {
-  background-color: #ffee58 !important;
-}
-
-.background_accent_light {
-  background-color: #fff6a5 !important;
-}
-
-.background_accent_dark {
-  background-color: #ffe60c !important;
-}
-
 .background_shade {
   background-color: #eceff1 !important;
 }
@@ -5148,18 +5081,6 @@ pre {
 
 .color_secondary_dark {
   color: #41545e !important;
-}
-
-.color_accent {
-  color: #ffee58 !important;
-}
-
-.color_accent_light {
-  color: #fff6a5 !important;
-}
-
-.color_accent_dark {
-  color: #ffe60c !important;
 }
 
 .color_shade {

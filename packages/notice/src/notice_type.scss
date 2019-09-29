@@ -14,13 +14,6 @@
   }
 }
 
-.notice_type_accent {
-  background-color: $accent;
-  @if (lightness($accent) < $lightness-threshold) {
-    @extend .type_invert !optional;
-  }
-}
-
 .notice_type_shade {
   background-color: $shade;
   @if (lightness($shade) < $lightness-threshold) {

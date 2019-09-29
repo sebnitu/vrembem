@@ -34,18 +34,6 @@
   background-color: #41545e !important;
 }
 
-.background_accent {
-  background-color: #ffee58 !important;
-}
-
-.background_accent_light {
-  background-color: #fff6a5 !important;
-}
-
-.background_accent_dark {
-  background-color: #ffe60c !important;
-}
-
 .background_shade {
   background-color: #eceff1 !important;
 }
@@ -260,18 +248,6 @@
 
 .color_secondary_dark {
   color: #41545e !important;
-}
-
-.color_accent {
-  color: #ffee58 !important;
-}
-
-.color_accent_light {
-  color: #fff6a5 !important;
-}
-
-.color_accent_dark {
-  color: #ffe60c !important;
 }
 
 .color_shade {
