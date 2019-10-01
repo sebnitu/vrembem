@@ -51,24 +51,10 @@ this.vrembem.dismissible = (function (exports) {
     return target;
   }
 
-  var toggleClass = function toggleClass(el) {
-    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      cl[_key - 1] = arguments[_key];
-    }
-
-    el = el.forEach ? el : [el];
-    el.forEach(function (el) {
-      cl.forEach(function (cl) {
-        el.classList.toggle(cl);
-      });
-    });
-  };
-
   var Dismissible = function Dismissible(options) {
     var api = {};
     var defaults = {
       autoInit: false,
-      "class": "dismiss",
       target: "[data-dismissible]",
       trigger: "[data-dismiss]"
     };
@@ -89,7 +75,7 @@ this.vrembem.dismissible = (function (exports) {
         var target = trigger.closest(api.settings.target);
 
         if (target) {
-          toggleClass(target, api.settings["class"]);
+          target.remove();
         }
 
         e.preventDefault();

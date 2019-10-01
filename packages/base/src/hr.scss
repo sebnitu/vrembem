@@ -1,14 +1,18 @@
-@mixin divider() {
+@mixin hr() {
   display: block;
   height: 1px;
   border: none;
   background: $border-color;
 }
 
+@mixin hr-invert() {
+  background-color: $border-color-invert;
+}
+
 .hr {
-  @include divider();
+  @include hr();
 }
 
 .hr_invert {
-  background-color: $border-color-invert;
+  @include hr-invert();
 }

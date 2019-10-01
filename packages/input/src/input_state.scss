@@ -1,43 +1,37 @@
 @import "./variables";
 
 .input_state_success {
-  border-color: $success;
-  box-shadow: $input-box-shadow-values rgba($success, 0);
+  box-shadow: $input-box-shadow-values rgba($success, 1);
 
   &:hover {
-    border-color: $success;
+    box-shadow: $input-box-shadow-hover-values rgba($success, 1);
   }
 
   &:focus {
-    border-color: $success;
-    box-shadow: $input-box-shadow-focus-values rgba($success, 0.2);
+    box-shadow: $input-box-shadow-focus-values rgba($success, 1);
   }
 }
 
 .input_state_caution {
-  border-color: $caution;
-  box-shadow: $input-box-shadow-values rgba($caution, 0);
+  box-shadow: $input-box-shadow-values rgba($caution, 1);
 
   &:hover {
-    border-color: $caution;
+    box-shadow: $input-box-shadow-hover-values rgba($caution, 1);
   }
 
   &:focus {
-    border-color: $caution;
-    box-shadow: $input-box-shadow-focus-values rgba($caution, 0.2);
+    box-shadow: $input-box-shadow-focus-values rgba($caution, 1);
   }
 }
 
 .input_state_danger {
-  border-color: $danger;
-  box-shadow: $input-box-shadow-values rgba($danger, 0);
+  box-shadow: $input-box-shadow-values rgba($danger, 1);
 
   &:hover {
-    border-color: $danger;
+    box-shadow: $input-box-shadow-hover-values rgba($danger, 1);
   }
 
   &:focus {
-    border-color: $danger;
-    box-shadow: $input-box-shadow-focus-values rgba($danger, 0.2);
+    box-shadow: $input-box-shadow-focus-values rgba($danger, 1);
   }
 }

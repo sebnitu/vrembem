@@ -9,16 +9,16 @@ usage:
   js: "@vrembem/drawer"
 ---
 
-<div class="notice notice_type_info">
-  <h2 class="notice__title">Dependencies</h2>
-  <div class="type">
+<div class="notice notice_state_info">
+  <div class="notice__body type">
+    <h2 class="notice__label">Dependencies</h2>
     <p>The drawer component depends on the following components to be imported:</p>
     <ul>
       <li>
-        <a href="/components/dialog"><strong>Dialog</strong></a> - Drawers are a container component. You can add any content you'd like but wrapping your content with the dialog component allows for the most flexibility and consistent layouts.
+        <a class="link" href="/components/dialog">Dialog</a> - Drawers are a container component. You can add any content you'd like but wrapping your content with the dialog component allows for the most flexibility and consistent layouts.
       </li>
       <li>
-        <a href="/components/modal"><strong>Modal</strong></a> - Used for switch functionality. If enabled, drawer items get switched into modals for smaller screens.
+        <a class="link" href="/components/modal">Modal</a> - Used for switch functionality. If enabled, drawer items get switched into modals for smaller screens.
       </li>
     </ul>
   </div>
@@ -203,7 +203,7 @@ Drawer items can slide in from the left or right using the position modifiers:
 
 {% include demo_close.html %}
 
-<div class="notice notice_type_info type" markdown="1">
+<div class="notice notice_state_info type" markdown="1">
 If a position modifier is not provided, the drawer will appear based on it's location in the DOM relative to the main content area.
 </div>
 

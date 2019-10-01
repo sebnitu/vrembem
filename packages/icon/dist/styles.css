@@ -1,42 +1,29 @@
 .icon {
+  stroke: currentColor;
+  stroke-width: 2px;
+  fill: none;
   display: inline-block;
   box-sizing: content-box;
   flex-shrink: 0;
   width: 1em;
   height: 1em;
-  stroke: currentColor;
   stroke-width: 2px;
   stroke-linecap: round;
-  fill: none;
-  font-size: 1.25em;
-  vertical-align: middle;
   stroke-linejoin: round;
+  font-size: 1.25em;
+  vertical-align: top;
 }
 
-.icon_abs {
-  font-size: 1.25rem;
+.icon_style_stroke {
+  stroke: currentColor;
+  stroke-width: 2px;
+  fill: none;
 }
 
-.icon_size_sm {
-  font-size: 1em;
-}
-.icon_size_sm.icon_abs {
-  font-size: 1rem;
-}
-
-.icon_size_lg {
-  font-size: 2em;
-}
-.icon_size_lg.icon_abs {
-  font-size: 2rem;
-}
-
-.icon_fill {
+.icon_style_fill {
   stroke: none;
   stroke-width: 0;
-  stroke-linecap: round;
   fill: currentColor;
-  stroke-linejoin: round;
 }
 
 /*# sourceMappingURL=styles.css.map */

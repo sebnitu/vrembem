@@ -2,62 +2,67 @@
 // ---
 
 $primary: $blue !default;
-$primary-light: lighten($primary, 10%) !default;
-$primary-dark: darken($primary, 10%) !default;
+$primary-light: $blue-300 !default;
+$primary-dark: $blue-700 !default;
 
 $secondary: $blue-gray !default;
-$secondary-light: lighten($secondary, 10%) !default;
-$secondary-dark: darken($secondary, 10%) !default;
+$secondary-light: $blue-gray-300 !default;
+$secondary-dark: $blue-gray-700 !default;
 
-$shade: $blue-gray-50 !default;
-$shade-light: lighten($shade, 3%) !default;
-$shade-dark: darken($shade, 5%) !default;
+$shade: $gray-100 !default;
+$shade-light: $gray-50 !default;
+$shade-dark: $gray-300 !default;
 
-$night: $blue-gray-800 !default;
-$night-light: lighten($night, 5%) !default;
-$night-dark: darken($night, 5%) !default;
+$night: $gray-800 !default;
+$night-light: $gray-700 !default;
+$night-dark: $gray-900 !default;
 
 // State colors
 // ---
 
-$info: $cyan !default;
-$info-light: lighten($info, 50%) !default;
-$info-dark: darken($info, 15%) !default;
+$info: $blue !default;
+$info-light: $blue-50 !default;
+$info-dark: $blue-900 !default;
 
 $success: $green !default;
-$success-light: lighten($success, 40%) !default;
-$success-dark: darken($success, 15%) !default;
+$success-light: $green-50 !default;
+$success-dark: $green-900 !default;
 
-$caution: $yellow-800 !default;
-$caution-light: lighten($caution, 35%) !default;
-$caution-dark: darken($caution, 15%) !default;
+$caution: $orange !default;
+$caution-light: $orange-50 !default;
+$caution-dark: $deep-orange-900 !default;
 
-$danger: $pink !default;
-$danger-light: lighten($danger, 35%) !default;
-$danger-dark: darken($danger, 15%) !default;
+$danger: $red !default;
+$danger-light: $red-50 !default;
+$danger-dark: $red-900 !default;
 
-$error: $red !default;
-$error-light: lighten($error, 35%) !default;
-$error-dark: darken($error, 15%) !default;
-
-// Global Properties
+// Global properties
 // ---
 
 // Box styles
+
 $box-sizing: border-box !default;
 
+// Body
+
+$body-background: null !default;
+
 // Height
-$height-sm: 2rem !default;
+
 $height: 2.5rem !default;
+$height-sm: 2rem !default;
 $height-lg: 3rem !default;
 
 // Padding
-$padding-sm: 0.1375em 0.5em !default;
-$padding: 0.438em 0.75em !default;
+
+$padding: 0.5em 0.75em !default;
+$padding-sm: 0.25em 0.5em !default;
 $padding-lg: 0.75em 1.75em !default;
 
 // Transition
+// ---
 // property | duration | timing-function | delay
+
 $transition-duration: 0.3s !default;
 $transition-duration-short: 0.15s !default;
 $transition-duration-long: 0.6s !default;
@@ -67,23 +72,45 @@ $transition-timing-function-acceleration: cubic-bezier(0.4, 0, 1, 1) !default;
 $transition-timing-function-sharp: cubic-bezier(0.4, 0, 0.6, 1) !default;
 
 // Border
+// ---
+
 $border-width: 1px !default;
 $border-style: solid !default;
+
+// Border color
+
 $border-color: rgba($black, 0.1) !default;
 $border-color-light: rgba($black, 0.05) !default;
 $border-color-dark: rgba($black, 0.2) !default;
-$border-color-invert: rgba($white, 0.1) !default;
+$border-color-darker: rgba($black, 0.5) !default;
 
 $border: $border-width $border-style $border-color !default;
 $border-light: $border-width $border-style $border-color-light !default;
 $border-dark: $border-width $border-style $border-color-dark !default;
-$border-invert: $border-width $border-style $border-color-invert !default;
+$border-darker: $border-width $border-style $border-color-darker !default;
 
-$border-radius: 3px !default;
+// Invert
+
+$border-color-invert: rgba($white, 0.15) !default;
+$border-color-invert-dark: rgba($white, 0.075) !default;
+$border-color-invert-light: rgba($white, 0.25) !default;
+$border-color-invert-lighter: rgba($white, 0.5) !default;
+
+$border-invert: $border-width $border-style $border-color-invert !default;
+$border-invert-dark: $border-width $border-style $border-color-invert-dark !default;
+$border-invert-light: $border-width $border-style $border-color-invert-light !default;
+$border-invert-lighter: $border-width $border-style $border-color-invert-lighter !default;
+
+// Border radius
+// ---
+
+$border-radius: 4px !default;
 $border-radius-circle: 9999px !default;
 
-// Box Shadow
+// Box shadow
+// ---
 // [inset] | offset-x | offset-y | blur-radius | spread-radius | color
+
 $box-shadow-color: $night-dark !default;
 $box-shadow-shade-outline: rgba($box-shadow-color, 0.05) !default;
 $box-shadow-shade-primary: rgba($box-shadow-color, 0.1) !default;
@@ -124,62 +151,80 @@ $box-shadow-24dp:
 
 $box-shadow: $box-shadow-4dp !default;
 
-// Fonts
+// Font families
+// ---
+
 $font-family-sans: BlinkMacSystemFont, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif !default;
 $font-family-serif: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif !default;
 $font-family-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 $font-family: $font-family-sans !default;
 
-// Front Size
-$font-size-sm: 0.875em !default;
+// Front size
+// ---
+
 $font-size: 16px !default;
-$font-size-lg: 1.25em !default;
+$font-size-sm: 0.875em !default; // 14px
+$font-size-lg: 1.125em !default;  // 18px
+
+// Line height
 
 $line-height: 1.5 !default;
-$font-weight: font-weight("normal") !default;
 
 // Color
+// ---
+
 $color: $gray-900 !default;
-$color-subtle: $gray-400 !default;
+$color-light: $gray-500 !default;
+
+// Invert
+
 $color-invert: $white !default;
-$color-invert-subtle: rgba($white, 0.4) !default;
+$color-invert-dark: rgba($white, 0.4) !default;
 
 // Headings
+// ---
+
 $heading-font-family: null !default;
 $heading-line-height: null !default;
 $heading-color: inherit !default;
+$heading-color-invert: null !default;
 $heading-font-weight: font-weight("semi-bold") !default;
 
+// Elements
+// ---
+
 // Mark
+
 $mark-color: $color !default;
 $mark-background: $yellow-200 !default;
 $mark-padding: null !default;
 
 // Code
+
 $code-color: $pink !default;
 $code-background: null !default;
 $code-padding: null !default;
 
 // Pre
+
 $pre-color: $color !default;
-$pre-background: $shade-light !default;
+$pre-background: $shade !default;
 $pre-border-radius: $border-radius !default;
 
 // Blockquotes
+
 $blockquote-color: $color !default;
 $blockquote-background: $shade !default;
 $blockquote-border-radius: $border-radius !default;
 
 // Tables
+
 $table-color: $color !default;
 $table-border-color: $gray-300 !default;
 $table-border: 1px solid $table-border-color !default;
 $table-background: $white !default;
 $table-background-alt: $shade-light !default;
 $table-padding: $padding !default;
-
-// Body
-$body-background: null !default;
 
 // Link
 // ---
@@ -193,6 +238,7 @@ $link-text-decoration-hover: null !default;
 $link-transition: null !default;
 
 // Invert
+
 $link-color-invert: $white !default;
 $link-color-invert-hover: $white !default;
 $link-border-invert: 1px solid rgba($white, 0.5) !default;
@@ -213,29 +259,3 @@ $breakpoints: (
 // ---
 
 $lightness-threshold: 60 !default;
-
-// Variable Dependent Functions
-// ---
-
-@function color-switch(
-  $base,
-  $night: $color,
-  $light: $color-invert
-) {
-  // Checkout base color to lightness threshold
-  @if (lightness($base) > $lightness-threshold) {
-    // Lighter backgorund, return dark color
-    @return $night;
-  } @else {
-    // Darker background, return light color
-    @return $light;
-  }
-}
-
-@function is-dark($base) {
-  @return (lightness($base) < $lightness-threshold);
-}
-
-@function is-light($base) {
-  @return (lightness($base) > $lightness-threshold);
-}

@@ -1,11 +1,8 @@
-import { toggleClass } from "@vrembem/core"
-
 export const Dismissible = (options) => {
 
   let api = {}
   const defaults = {
     autoInit: false,
-    class: "dismiss",
     target: "[data-dismissible]",
     trigger: "[data-dismiss]"
   }
@@ -25,7 +22,7 @@ export const Dismissible = (options) => {
     if (trigger) {
       let target = trigger.closest(api.settings.target)
       if (target) {
-        toggleClass(target, api.settings.class)
+        target.remove()
       }
       e.preventDefault()
     }

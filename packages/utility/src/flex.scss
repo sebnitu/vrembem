@@ -67,3 +67,35 @@
     flex: 0 0 auto !important;
   }
 }
+
+.#{$class-flex}_grow_0 {
+  flex-grow: 0 !important;
+}
+
+.#{$class-flex}_grow_1 {
+  flex-grow: 1 !important;
+}
+
+.#{$class-flex}_grow_2 {
+  flex-grow: 2 !important;
+}
+
+.#{$class-flex}_shrink_0 {
+  flex-shrink: 0 !important;
+}
+
+.#{$class-flex}_shrink_1 {
+  flex-shrink: 1 !important;
+}
+
+.#{$class-flex}_shrink_2 {
+  flex-shrink: 2 !important;
+}
+
+.#{$class-flex}_basis_0 {
+  flex-basis: 0 !important;
+}
+
+.#{$class-flex}_basis_auto {
+  flex-basis: auto !important;
+}

@@ -4,16 +4,16 @@
   color: $color !important;
 }
 
-.#{$class-color}_subtle {
-  color: $color-subtle !important;
+.#{$class-color}_light {
+  color: $color-light !important;
 }
 
 .#{$class-color}_invert {
   color: $color-invert !important;
 }
 
-.#{$class-color}_invert_subtle {
-  color: $color-invert-subtle !important;
+.#{$class-color}_invert_dark {
+  color: $color-invert-dark !important;
 }
 
 .#{$class-color}_black {
@@ -122,16 +122,4 @@
 
 .#{$class-color}_danger_dark {
   color: $danger-dark !important;
-}
-
-.#{$class-color}_error {
-  color: $error !important;
-}
-
-.#{$class-color}_error_light {
-  color: $error-light !important;
-}
-
-.#{$class-color}_error_dark {
-  color: $error-dark !important;
 }

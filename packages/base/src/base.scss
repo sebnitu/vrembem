@@ -1,24 +1,6 @@
-html,
-body {
-  height: 100%;
-}
-
-html {
-  box-sizing: $box-sizing;
-  font-size: $font-size;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-tap-highlight-color: transparent;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
-
-body {
-  background: $body-background;
-  color: $color;
-  font-family: $font-family;
-  font-weight: $font-weight;
-  line-height: $line-height;
-}
+/**
+ * Remove all spacing and inherit box-sizing on everything.
+ */
 
 *,
 *::before,
@@ -28,6 +10,33 @@ body {
   padding: 0;
 }
 
+/**
+ * Default html (root) and body styles.
+ */
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  box-sizing: $box-sizing;
+  font-size: $font-size;
+  line-height: $line-height;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: $body-background;
+  color: $color;
+  font-family: $font-family;
+}
+
+/**
+ * Reset font-size for headings
+ */
+
 h1,
 h2,
 h3,
@@ -35,19 +44,32 @@ h4,
 h5,
 h6 {
   font-size: inherit;
-  font-weight: $heading-font-weight;
 }
+
+/**
+ * Better default styles for images
+ */
 
 img {
   max-width: 100%;
   height: auto;
   border: 0;
+  border-style: none;
   vertical-align: middle;
 }
 
+/**
+ * Add a global font weight in Chrome, Edge, and Safari.
+ */
+
+b,
 strong {
   font-weight: bold;
 }
+
+/**
+ * Default anchor and button styles.
+ */
 
 a,
 button {
@@ -58,24 +80,90 @@ a {
   text-decoration: none;
 }
 
-button {
-  overflow: visible;
-  border: 0;
-  background: none;
-  font: inherit;
-  letter-spacing: inherit;
-  text-align: inherit;
-  text-transform: inherit;
-  cursor: pointer;
-  -webkit-font-smoothing: inherit;
-}
+/**
+ * Set a global font family and font size in all browsers.
+ */
 
 code,
 pre {
   font-family: $font-family-mono;
+  font-size: 1em;
 }
 
-::-moz-focus-inner {
-  padding: 0;
+/**
+ * Add a global font size for all browsers.
+ */
+
+small {
+  font-size: $font-size-sm;
+}
+
+/**
+ * Default form input elements styles.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: inherit;
+}
+
+button,
+input {
+  overflow: visible;
+}
+
+button {
   border: 0;
+  background: none;
+  letter-spacing: inherit;
+  text-align: inherit;
+  text-transform: none;
+  cursor: pointer;
+  -webkit-font-smoothing: inherit;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  padding: 0;
+  border-style: none;
+}
+
+/**
+ * Correct placeholder text opacity in Firefox.
+ */
+
+input::-moz-placeholder {
+  opacity: 1;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
 }

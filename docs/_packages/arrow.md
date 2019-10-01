@@ -11,21 +11,17 @@ usage:
 {% include flag.html heading="arrow" %}
 
 {% include demo_open.html %}
-
 <span class="arrow"></span>
 <span class="arrow arrow_up"></span>
 <span class="arrow arrow_left"></span>
 <span class="arrow arrow_right"></span>
-
 {% include demo_switch.html %}
-
 ```html
 <span class="arrow"></span>
 <span class="arrow arrow_up"></span>
 <span class="arrow arrow_left"></span>
 <span class="arrow arrow_right"></span>
 ```
-
 {% include demo_close.html %}
 
 {% include flag.html heading="button > arrow" %}

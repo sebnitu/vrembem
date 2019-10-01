@@ -1,15 +1,14 @@
 @import "./variables";
 
 .icon-action {
+  @include size($icon-action-size);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: $icon-action-padding;
   border: $icon-action-border;
   border-radius: $icon-action-border-radius;
   background: $icon-action-background;
-  color: $icon-action-color;
-  font-size: $icon-action-font-size;
+  color: $white;
   vertical-align: top;
   cursor: pointer;
 
@@ -17,13 +16,12 @@
   &:focus {
     border: $icon-action-border-hover;
     background: $icon-action-background-hover;
-    color: $icon-action-color;
+    color: $white;
     cursor: pointer;
   }
 
-  > .icon {
-    margin: 0;
-    padding: 0;
-    font-size: 1em;
+  .icon {
+    stroke-width: $icon-action_icon-stroke-width;
+    font-size: $icon-action_icon-font-size;
   }
 }

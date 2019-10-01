@@ -1,0 +1,14 @@
+@import "./variables";
+
+@mixin icon-style($style) {
+  @if ($style == "stroke") {
+    stroke: currentColor;
+    stroke-width: $icon-stroke-width;
+    fill: none;
+  }
+  @else if ($style == "fill") {
+    stroke: none;
+    stroke-width: 0;
+    fill: currentColor;
+  }
+}

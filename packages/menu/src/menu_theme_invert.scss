@@ -11,7 +11,7 @@ $menu_theme_invert-background-focus: rgba($white, 0.05) !default;
 $menu_theme_invert-background-active: rgba($white, 0.1) !default;
 $menu_theme_invert-background-disabled: none !default;
 
-$menu_theme_invert__sep-background: rgba($white, 0.1) !default;
+$menu_theme_invert__sep-background: $border-color-invert !default;
 $menu_theme_invert__text-color: $white !default;
 
 .menu_theme_invert {

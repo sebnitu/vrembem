@@ -12,7 +12,7 @@
 
 .media__image {
   max-width: 30%;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 .media__image:first-child {
   margin-right: 1.5rem;

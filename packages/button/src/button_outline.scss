@@ -1,11 +1,11 @@
 @import "./variables";
 
 .button_outline {
-  border: $button_outline-border-width solid rgba($color, 0.1);
+  border: $button_outline-border-width solid $border-color-dark;
   background: none;
 
   &:hover {
-    border-color: rgba($color, 0.2);
+    border-color: $border-color-darker;
     background: none;
   }
 
@@ -19,7 +19,7 @@
     border-color: rgba($white, 0.15);
 
     &:hover {
-      border-color: rgba($white, 0.25);
+      border-color: rgba($white, 0.5);
     }
 
     &:focus,

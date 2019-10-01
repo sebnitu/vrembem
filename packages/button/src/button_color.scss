@@ -13,7 +13,7 @@
   }
 
   &.is-loading::after {
-    border-color: set-border-color($button-loading-border-tpl, $color-subtle);
+    border-color: set-border-color($button-loading-border-tpl, $color-light);
   }
 
   &.button_invert {
@@ -30,7 +30,7 @@
     }
 
     &.is-loading::after {
-      border-color: set-border-color($button-loading-border-tpl, $color-invert-subtle);
+      border-color: set-border-color($button-loading-border-tpl, $color-invert-dark);
     }
   }
 }

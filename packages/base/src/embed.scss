@@ -6,6 +6,17 @@
   overflow: hidden;
 }
 
+.embed__item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
 .embed_ratio_16x9 {
   padding-bottom: aspect-ratio(16, 9);
 }
@@ -16,15 +27,4 @@
 
 .embed_ratio_3x2 {
   padding-bottom: aspect-ratio(3, 2);
-}
-
-.embed__item {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  border: none;
 }

@@ -6,7 +6,7 @@ $menu-line-height: 1.5 !default;
 $menu-color: $color !default;
 $menu-color_hover: $color !default;
 $menu-color_active: $primary !default;
-$menu-color_disabled: $color-subtle !default;
+$menu-color_disabled: $color-light !default;
 $menu-border-width: 1px !default;
 $menu-border-radius: $border-radius !default;
 $menu-border-color: transparent !default;
@@ -21,7 +21,7 @@ $menu-background_disabled: none !default;
 $menu__text-color: $color !default;
 $menu__sep-spacing: 0.5em !default;
 $menu__sep-width: 1px !default;
-$menu__sep-background: rgba($black, 0.1) !default;
+$menu__sep-background: $border-color !default;
 
 $menu-spacing: 1px !default;
 $menu-spacing-scale: (

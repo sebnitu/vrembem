@@ -8,4 +8,4 @@ $choice_size_sm-padding: $padding-sm !default;
 $choice_size_sm-font-size: $font-size-sm !default;
 $choice_size_lg-height: $height-lg !default;
 $choice_size_lg-padding: nth($padding-lg, 1) (nth($padding-lg, 1) * 1.3) !default;
-$choice_size_lg-font-size: null !default;
+$choice_size_lg-font-size: $font-size-lg !default;

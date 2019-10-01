@@ -1,24 +1,6 @@
-html,
-body {
-  height: 100%;
-}
-
-html {
-  box-sizing: border-box;
-  font-size: 16px;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-tap-highlight-color: transparent;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
-
-body {
-  color: #212121;
-  font-family: BlinkMacSystemFont, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
-  font-weight: 400;
-  line-height: 1.5;
-}
-
+/**
+ * Remove all spacing and inherit box-sizing on everything.
+ */
 *,
 *::before,
 *::after {
@@ -27,6 +9,30 @@ body {
   padding: 0;
 }
 
+/**
+ * Default html (root) and body styles.
+ */
+html,
+body {
+  height: 100%;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+  line-height: 1.5;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  color: #212121;
+  font-family: BlinkMacSystemFont, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+}
+
+/**
+ * Reset font-size for headings
+ */
 h1,
 h2,
 h3,
@@ -34,20 +40,30 @@ h4,
 h5,
 h6 {
   font-size: inherit;
-  font-weight: 600;
 }
 
+/**
+ * Better default styles for images
+ */
 img {
   max-width: 100%;
   height: auto;
   border: 0;
+  border-style: none;
   vertical-align: middle;
 }
 
+/**
+ * Add a global font weight in Chrome, Edge, and Safari.
+ */
+b,
 strong {
   font-weight: bold;
 }
 
+/**
+ * Default anchor and button styles.
+ */
 a,
 button {
   color: inherit;
@@ -57,26 +73,87 @@ a {
   text-decoration: none;
 }
 
-button {
+/**
+ * Set a global font family and font size in all browsers.
+ */
+code,
+pre {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 1em;
+}
+
+/**
+ * Add a global font size for all browsers.
+ */
+small {
+  font-size: 0.875em;
+}
+
+/**
+ * Default form input elements styles.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: inherit;
+}
+
+button,
+input {
   overflow: visible;
+}
+
+button {
   border: 0;
   background: none;
-  font: inherit;
   letter-spacing: inherit;
   text-align: inherit;
-  text-transform: inherit;
+  text-transform: none;
   cursor: pointer;
   -webkit-font-smoothing: inherit;
 }
 
-code,
-pre {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+button,
+[type=button],
+[type=reset],
+[type=submit] {
+  -webkit-appearance: button;
 }
 
-::-moz-focus-inner {
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+button::-moz-focus-inner,
+[type=button]::-moz-focus-inner,
+[type=reset]::-moz-focus-inner,
+[type=submit]::-moz-focus-inner {
   padding: 0;
-  border: 0;
+  border-style: none;
+}
+
+/**
+ * Correct placeholder text opacity in Firefox.
+ */
+input::-moz-placeholder {
+  opacity: 1;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
 }
 
 .embed {
@@ -85,6 +162,17 @@ pre {
   height: 0;
   padding: 0 0 56.25%;
   overflow: hidden;
+}
+
+.embed__item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 
 .embed_ratio_16x9 {
@@ -97,17 +185,6 @@ pre {
 
 .embed_ratio_3x2 {
   padding-bottom: 66.6666666667%;
-}
-
-.embed__item {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  border: none;
 }
 
 .h1,
@@ -182,11 +259,10 @@ pre {
 }
 
 .hr_invert {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
-.link,
-.type .link {
+.link {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   color: #2196f3;
   text-decoration: none;
@@ -202,8 +278,7 @@ pre {
   color: #0c7cd5;
 }
 
-.link_invert,
-.type .link_invert {
+.link_invert {
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   color: #fff;
 }
@@ -212,8 +287,7 @@ pre {
   color: #fff;
 }
 
-.link_subtle,
-.type .link_subtle {
+.link_subtle {
   color: inherit;
 }
 .link_subtle:hover, .link_subtle:focus {
@@ -227,7 +301,7 @@ pre {
 
 .list__item {
   display: relative;
-  padding: 0.438em 0.75em;
+  padding: 0.5em 0.75em;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   background-clip: padding-box;
 }
@@ -276,12 +350,12 @@ pre {
 }
 .table_bordered th,
 .type .table_bordered th {
-  padding: 0.438em 0.75em;
+  padding: 0.5em 0.75em;
   border: 1px solid #e0e0e0;
 }
 .table_bordered td,
 .type .table_bordered td {
-  padding: 0.438em 0.75em;
+  padding: 0.5em 0.75em;
   border: 1px solid #e0e0e0;
 }
 
@@ -297,11 +371,11 @@ pre {
 }
 
 .table_zebra tr:nth-child(even) {
-  background-color: #f5f6f7;
+  background-color: #fafafa;
 }
 .table_zebra thead tr,
 .type .table_zebra thead tr {
-  background-color: #f5f6f7;
+  background-color: #fafafa;
 }
 
 .table_zebra_remove tr:nth-child(even) {

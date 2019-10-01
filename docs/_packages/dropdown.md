@@ -3,9 +3,9 @@ layout: article
 title: Dropdown
 description: "A component that is initially hidden and revealed upon user interaction either through a click or hover event. Dropdown components typically display lists of possible actions or navigation."
 category: compound
-# usage:
-  # npm: "@vrembem/dropdown"
-  # scss: "vrembem/dropdown/all"
+usage:
+  npm: "@vrembem/dropdown"
+  scss: "vrembem/dropdown/all"
 ---
 
 {% include flag.html heading="dropdown" %}
@@ -335,8 +335,8 @@ Here are some examples of complex dropdowns and how they can be used along with 
 {% include demo_open.html %}
 
 <div class="dropdown on-hover" style="display:inline-block;">
-  <button class="dropdown__trigger button button_outline">
-    <img class="br_circle" src="https://picsum.photos/id/237/32/32" alt="" />
+  <button class="dropdown__trigger button button_color_secondary">
+    <img class="radius_circle" src="https://picsum.photos/id/237/32/32" alt="" />
     <span>@sebnitu</span>
   </button>
   <ul class="dropdown__menu">
@@ -413,7 +413,7 @@ Here are some examples of complex dropdowns and how they can be used along with 
     </li>
     <li class="dropdown__sep"></li>
     <li class="dropdown__item">
-      <a href="#" class="dropdown__link justify_between">
+      <a href="#" class="dropdown__link flex_justify_between">
         <span class="dropdown__text">Night mode</span>
         <span class="text_subtle">
           {% include icon.html icon="moon" %}

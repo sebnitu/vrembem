@@ -1,93 +1,80 @@
 @import "./variables";
 
-.icon-action_color_invert {
-  background: rgba($white, 0.5);
-  color: $icon-action-color-invert;
-
-  &:hover,
-  &:focus {
-    background: rgba($white, 0.75);
-    color: $icon-action-color-invert;
-  }
-}
-
 .icon-action_color_subtle {
   background: none;
-  color: $icon-action-color-invert;
+  color: $color;
 
   &:hover,
   &:focus {
     background: rgba($black, 0.1);
-    color: $icon-action-color-invert;
+    color: $color;
   }
-}
 
-.icon-action_color_invert_subtle {
-  background: none;
-  color: $icon-action-color;
+  &.icon-action_invert {
+    background: none;
+    color: $color-invert;
 
-  &:hover,
-  &:focus {
-    background: rgba($white, 0.1);
-    color: $icon-action-color;
+    &:hover,
+    &:focus {
+      background: rgba($white, 0.1);
+      color: $color-invert;
+    }
   }
 }
 
 .icon-action_color_fade {
   background: none;
   opacity: 0.5;
-  color: $icon-action-color-invert;
+  color: $color;
 
   &:hover,
   &:focus {
     background: none;
     opacity: 1;
-    color: $icon-action-color-invert;
+    color: $color;
   }
-}
 
-.icon-action_color_invert_fade {
-  background: none;
-  opacity: 0.5;
-  color: $icon-action-color;
-
-  &:hover,
-  &:focus {
+  &.icon-action_invert {
     background: none;
-    opacity: 1;
-    color: $icon-action-color;
+    color: $color-invert;
+
+    &:hover,
+    &:focus {
+      background: none;
+      color: $color-invert;
+    }
   }
 }
 
 .icon-action_color_danger {
   background: $danger;
-  color: color-switch($danger, $icon-action-color-invert, $icon-action-color);
+  color: color-switch($danger);
 
   &:hover,
   &:focus {
-    background: darken($danger, 10%);
-    color: color-switch($danger, $icon-action-color-invert, $icon-action-color);
+    background: $danger-dark;
+    color: color-switch($danger);
   }
 }
 
 .icon-action_color_caution {
   background: $caution;
-  color: color-switch($caution, $icon-action-color-invert, $icon-action-color);
+  color: color-switch($caution);
 
   &:hover,
   &:focus {
-    background: darken($caution, 10%);
-    color: color-switch($caution, $icon-action-color-invert, $icon-action-color);
+    background: $caution-dark;
+    color: color-switch($caution);
   }
 }
 
 .icon-action_color_success {
   background: $success;
-  color: color-switch($success, $icon-action-color-invert, $icon-action-color);
+  color: color-switch($success);
 
   &:hover,
   &:focus {
-    background: darken($success, 10%);
-    color: color-switch($success, $icon-action-color-invert, $icon-action-color);
+    background: $success-dark;
+    color: color-switch($success);
   }
 }

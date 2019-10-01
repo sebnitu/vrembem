@@ -1,55 +1,35 @@
 @import "./variables";
 
 .notice {
-  position: relative;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   padding: $notice-padding;
   border: $notice-border;
   border-radius: $notice-border-radius;
   background: $notice-background;
+  box-shadow: $notice-box-shadow;
+}
 
-  > * {
-    margin-top: $notice-spacing;
-    margin-bottom: $notice-spacing;
-  }
+.notice__body {
+  flex: 1 1 auto;
+  margin-right: $notice__body-spacing;
 
-  > .notice__close + *,
-  > *:first-child {
-    margin-top: 0;
-  }
-
-  > *:last-child {
-    margin-bottom: 0;
+  &:last-child {
+    margin-right: 0;
   }
 }
 
-.notice__close {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 0 0.5rem 1rem;
-  float: right;
-  cursor: pointer;
-}
-
-.notice__group {
+.notice__actions {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex: 0 0 auto;
 
-  > *:nth-child(1n + 1) {
-    margin-top: 0;
-    margin-bottom: 0;
+  > * + * {
+    margin-left: $notice__actions-spacing;
   }
 }
 
-.notice__title,
-.type .notice__title {
-  flex-grow: 1;
-  font-size: $notice__title-font-size;
-  font-weight: $notice__title-font-weight;
-}
-
-.type .notice {
-  margin: 1.5em 0;
+.notice__label {
+  font-size: $notice__label-font-size;
+  font-weight: $notice__label-font-weight;
 }

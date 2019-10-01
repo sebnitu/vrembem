@@ -8,7 +8,7 @@ $button-text-transform: null !default;
 $button-letter-spacing: null !default;
 $button-border-width: 1px !default;
 $button-border-radius: $border-radius !default;
-$button-focus-outline: null !default;
+$button-focus-outline: none !default;
 $button-focus-outline-offset: null !default;
 
 $button-background: rgba($black, 0.05) !default;
@@ -44,6 +44,6 @@ $button_size_sm-padding: $padding-sm !default;
 $button_size_sm-font-size: $font-size-sm !default;
 $button_size_lg-height: $height-lg !default;
 $button_size_lg-padding: $padding-lg !default;
-$button_size_lg-font-size: null !default;
+$button_size_lg-font-size: $font-size-lg !default;
 
 $button_outline-border-width: 1px !default;

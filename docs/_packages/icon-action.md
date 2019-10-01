@@ -11,8 +11,7 @@ category: simple
 {% include flag.html heading="icon-action" %}
 
 {% include demo_open.html %}
-
-<div class="demo__group level">
+<div class="level">
   <button class="icon-action">
     {% include icon.html icon="x" %}
   </button>
@@ -23,9 +22,7 @@ category: simple
     {% include icon.html icon="maximize-2" %}
   </button>
 </div>
-
 {% include demo_switch.html %}
-
 ```html
 <button class="icon-action">
   <svg role="img" class="icon">
@@ -33,77 +30,48 @@ category: simple
   </svg>
 </button>
 ```
-
-{% include demo_close.html %}
-
-{% include flag.html heading="icon-action_size" %}
-
-{% include demo_open.html %}
-
-<div class="demo__group level">
-  <button class="icon-action icon-action_size_sm">
-    {% include icon.html icon="x" %}
-  </button>
-  <button class="icon-action">
-    {% include icon.html icon="x" %}
-  </button>
-  <button class="icon-action icon-action_size_lg">
-    {% include icon.html icon="x" %}
-  </button>
-</div>
-
-{% include demo_switch.html %}
-
-```html
-<button class="icon-action icon-action_size_sm">...</button>
-<button class="icon-action">...</button>
-<button class="icon-action icon-action_size_lg">...</button>
-```
-
 {% include demo_close.html %}
 
 {% include flag.html heading="icon-action_color" %}
 
 {% include demo_open.html class_parent="spacing" %}
-
-<div class="demo__group level">
-  <button class="icon-action">
-    {% include icon.html icon="x" %}
-  </button>
-  <button class="icon-action icon-action_color_subtle">
-    {% include icon.html icon="x" %}
-  </button>
-  <button class="icon-action icon-action_color_fade">
-    {% include icon.html icon="x" %}
-  </button>
-
-  <button class="icon-action icon-action_color_danger">
-    {% include icon.html icon="x" %}
-  </button>
-  <button class="icon-action icon-action_color_caution">
-    {% include icon.html icon="minus" %}
-  </button>
-  <button class="icon-action icon-action_color_success">
-    {% include icon.html icon="maximize-2" %}
-  </button>
-</div>
-
-<div class="demo__group invert">
+<div class="padding radius background_white">
   <div class="level">
-    <button class="icon-action icon-action_color_invert">
+    <button class="icon-action">
       {% include icon.html icon="x" %}
     </button>
-    <button class="icon-action icon-action_color_invert_subtle">
+    <button class="icon-action icon-action_color_subtle">
       {% include icon.html icon="x" %}
     </button>
-    <button class="icon-action icon-action_color_invert_fade">
+    <button class="icon-action icon-action_color_fade">
+      {% include icon.html icon="x" %}
+    </button>
+
+    <button class="icon-action icon-action_color_danger">
+      {% include icon.html icon="x" %}
+    </button>
+    <button class="icon-action icon-action_color_caution">
+      {% include icon.html icon="minus" %}
+    </button>
+    <button class="icon-action icon-action_color_success">
+      {% include icon.html icon="maximize-2" %}
+    </button>
+  </div>
+</div>
+<div class="padding radius background_night">
+  <div class="level">
+    <button class="icon-action icon-action_invert">
+      {% include icon.html icon="x" %}
+    </button>
+    <button class="icon-action icon-action_invert icon-action_color_subtle">
+      {% include icon.html icon="x" %}
+    </button>
+    <button class="icon-action icon-action_invert icon-action_color_fade">
       {% include icon.html icon="x" %}
     </button>
   </div>
 </div>
-
 {% include demo_switch.html %}
-
 ```html
 <button class="icon-action">...</button>
 <button class="icon-action icon-action_color_subtle">...</button>
@@ -113,5 +81,4 @@ category: simple
 <button class="icon-action icon-action_color_invert">...</button>
 <button class="icon-action icon-action_color_invert_subtle">...</button>
 ```
-
 {% include demo_close.html %}

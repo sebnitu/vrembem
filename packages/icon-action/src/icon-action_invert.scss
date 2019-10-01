@@ -1,0 +1,12 @@
+@import "./variables";
+
+.icon-action_invert {
+  background: rgba($white, 0.5);
+  color: $color;
+
+  &:hover,
+  &:focus {
+    background: rgba($white, 0.75);
+    color: $color;
+  }
+}

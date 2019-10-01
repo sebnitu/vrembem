@@ -11,7 +11,7 @@
   height: 0;
   overflow: hidden;
   transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0s 0.3s cubic-bezier(0.4, 0, 0.2, 1), height 0s 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0s 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: rgba(55, 71, 79, 0);
+  background-color: rgba(66, 66, 66, 0);
 }
 
 .modal__dialog {
@@ -27,11 +27,11 @@
   height: 100%;
   padding: 1em;
   transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: rgba(55, 71, 79, 0.75);
+  background-color: rgba(66, 66, 66, 0.75);
 }
 .modal.is-active .modal__dialog {
   transform: translateY(0);
-  box-shadow: 0 0 0 1px rgba(45, 57, 64, 0.05), 0 11px 15px -7px rgba(45, 57, 64, 0.1), 0 24px 38px 3px rgba(45, 57, 64, 0.08), 0 9px 46px 8px rgba(45, 57, 64, 0.06);
+  box-shadow: 0 0 0 1px rgba(33, 33, 33, 0.05), 0 11px 15px -7px rgba(33, 33, 33, 0.1), 0 24px 38px 3px rgba(33, 33, 33, 0.08), 0 9px 46px 8px rgba(33, 33, 33, 0.06);
   opacity: 1;
 }
 

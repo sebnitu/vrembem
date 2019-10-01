@@ -62,3 +62,35 @@
   width: $width;
   height: $height;
 }
+
+/// Switch type text color to inverted styles for dark backgrounds.
+/// @param {Colors} $color - The background color to test against
+@mixin type-invert($color: black) {
+  @if (lightness($color) < $lightness-threshold) {
+    color: $color-invert;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: $heading-color-invert;
+    }
+
+    a:not(.button) {
+      border-bottom: $link-border-invert;
+      color: $link-color-invert;
+
+      &:hover,
+      &:focus {
+        border-bottom: $link-border-invert-hover;
+        color: $link-color-invert-hover;
+      }
+    }
+
+    hr {
+      background-color: $border-color-invert;
+    }
+  }
+}

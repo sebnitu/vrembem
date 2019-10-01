@@ -53,11 +53,6 @@ usage:
     <div class="swatch background_danger_dark"></div>
   </div>
   <div class="swatch-group">
-    <div class="swatch background_error_light"></div>
-    <div class="swatch background_error"></div>
-    <div class="swatch background_error_dark"></div>
-  </div>
-  <div class="swatch-group">
     <div class="swatch background_black"></div>
     <div class="swatch border border_left_0 background_white"></div>
     <div class="swatch border border_left_0 background_transparent"></div>
@@ -110,6 +105,29 @@ usage:
 ```
 {% include demo_close.html %}
 
+{% include demo_open.html class_grid="grid_break" %}
+<div class="padding radius background_light">
+  <div class="swatch-group">
+    <div class="swatch background_shade_light border border_color_light"></div>
+    <div class="swatch background_shade_light border"></div>
+    <div class="swatch background_shade_light border border_color_dark"></div>
+    <div class="swatch background_shade_light border border_color_darker"></div>
+  </div>
+</div>
+<div class="padding radius background_night">
+  <div class="swatch-group">
+    <div class="swatch border border_color_invert-dark"></div>
+    <div class="swatch border border_color_invert"></div>
+    <div class="swatch border border_color_invert-light"></div>
+    <div class="swatch border border_color_invert-lighter"></div>
+  </div>
+</div>
+{% include demo_switch.html class_gridItem="" %}
+```html
+...
+```
+{% include demo_close.html %}
+
 {% include flag.html heading="radius" %}
 
 {% include demo_open.html class_grid="grid_break" %}
@@ -129,7 +147,7 @@ usage:
 {% include flag.html heading="elevate" %}
 
 {% include demo_open.html class_grid="grid_break" %}
-<div class="padding_lg background_shade_light">
+<div class="padding_lg background_shade radius">
   <div class="swatch-group">
     <div class="swatch background_white elevate"></div>
     <div class="swatch background_white elevate_flat"></div>
@@ -158,7 +176,7 @@ usage:
 <div class="padding background_white">
   <div class="swatch-group">
     <span class="color">Color</span>
-    <span class="color_subtle">Color subtle</span>
+    <span class="color_light">Color light</span>
     <span class="color_primary_light">Color primary</span>
     <span class="color_primary">Color primary</span>
     <span class="color_primary_dark">Color primary</span>
@@ -183,18 +201,15 @@ usage:
     <span class="color_danger_light">Color danger</span>
     <span class="color_danger">Color danger</span>
     <span class="color_danger_dark">Color danger</span>
-    <span class="color_error_light">Color error</span>
-    <span class="color_error">Color error</span>
-    <span class="color_error_dark">Color error</span>
     <span class="color_black">Color black</span>
     <span class="color_white">Color white</span>
     <span class="color_transparent">Color transparent</span>
   </div>
 </div>
-<div class="padding radius background_night">
+<div class="padding radius background_night_dark">
   <div class="swatch-group">
     <span class="color_invert">Color invert</span>
-    <span class="color_invert_subtle">Color invert subtle</span>
+    <span class="color_invert_dark">Color invert dark</span>
     <span class="color_primary_light">Color primary</span>
     <span class="color_primary">Color primary</span>
     <span class="color_primary_dark">Color primary</span>
@@ -219,9 +234,6 @@ usage:
     <span class="color_danger_light">Color danger</span>
     <span class="color_danger">Color danger</span>
     <span class="color_danger_dark">Color danger</span>
-    <span class="color_error_light">Color error</span>
-    <span class="color_error">Color error</span>
-    <span class="color_error_dark">Color error</span>
     <span class="color_black">Color black</span>
     <span class="color_white">Color white</span>
     <span class="color_transparent">Color transparent</span>
@@ -230,7 +242,7 @@ usage:
 {% include demo_switch.html class_gridItem="" %}
 ```html
 <span class="color"></span>
-<span class="color_subtle"></span>
+<span class="color_light"></span>
 <span class="color_primary_light"></span>
 <span class="color_primary"></span>
 <span class="color_primary_dark"></span>
@@ -272,19 +284,19 @@ usage:
           <div class="card__body">
             <ul class="list list_between">
               <li class="list__item">
-                <code>xs <span class="color_subtle">...480px</span></code>
+                <code>xs <span class="color_light">...480px</span></code>
               </li>
               <li class="list__item">
-                <code>sm <span class="color_subtle">...620px</span></code>
+                <code>sm <span class="color_light">...620px</span></code>
               </li>
               <li class="list__item">
-                <code>md <span class="color_subtle">...760px</span></code>
+                <code>md <span class="color_light">...760px</span></code>
               </li>
               <li class="list__item">
-                <code>lg <span class="color_subtle">...990px</span></code>
+                <code>lg <span class="color_light">...990px</span></code>
               </li>
               <li class="list__item">
-                <code>xl <span class="color_subtle">...1380px</span></code>
+                <code>xl <span class="color_light">...1380px</span></code>
               </li>
             </ul>
           </div>
@@ -295,7 +307,7 @@ usage:
 </div>
 
 {% include demo_open.html class_grid="grid_break" class_parent="spacing" %}
-<div class="notice notice_type_info display_none display_block_sm display_none_xl">
+<div class="notice notice_state_info display_none display_block_sm display_none_xl">
   Display between <b>small</b> and <b>extra large</b> breakpoints
 </div>
 <div class="notice notice_type_success display_block display_none_md display_block_lg">
@@ -382,22 +394,22 @@ usage:
           <div class="card__body">
             <ul class="list list_between">
               <li class="list__item">
-                <code>0 <span class="color_subtle">...0</span></code>
+                <code>0 <span class="color_light">...0</span></code>
               </li>
               <li class="list__item">
-                <code>xs <span class="color_subtle">...0.5rem</span></code>
+                <code>xs <span class="color_light">...0.5rem</span></code>
               </li>
               <li class="list__item">
-                <code>sm <span class="color_subtle">...1rem</span></code>
+                <code>sm <span class="color_light">...1rem</span></code>
               </li>
               <li class="list__item">
-                <code>md <span class="color_subtle">...1.5rem</span></code>
+                <code>md <span class="color_light">...1.5rem</span></code>
               </li>
               <li class="list__item">
-                <code>lg <span class="color_subtle">...2rem</span></code>
+                <code>lg <span class="color_light">...2rem</span></code>
               </li>
               <li class="list__item">
-                <code>xl <span class="color_subtle">...3rem</span></code>
+                <code>xl <span class="color_light">...3rem</span></code>
               </li>
             </ul>
           </div>
@@ -441,22 +453,22 @@ usage:
           <div class="card__body">
             <ul class="list list_between">
               <li class="list__item">
-                <code>0 <span class="color_subtle">...0</span></code>
+                <code>0 <span class="color_light">...0</span></code>
               </li>
               <li class="list__item">
-                <code>xs <span class="color_subtle">...0.5rem</span></code>
+                <code>xs <span class="color_light">...0.5rem</span></code>
               </li>
               <li class="list__item">
-                <code>sm <span class="color_subtle">...1rem</span></code>
+                <code>sm <span class="color_light">...1rem</span></code>
               </li>
               <li class="list__item">
-                <code>md <span class="color_subtle">...1.5rem</span></code>
+                <code>md <span class="color_light">...1.5rem</span></code>
               </li>
               <li class="list__item">
-                <code>lg <span class="color_subtle">...2rem</span></code>
+                <code>lg <span class="color_light">...2rem</span></code>
               </li>
               <li class="list__item">
-                <code>xl <span class="color_subtle">...3rem</span></code>
+                <code>xl <span class="color_light">...3rem</span></code>
               </li>
             </ul>
           </div>

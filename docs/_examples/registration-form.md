@@ -26,6 +26,11 @@ include:
     <input class="input" type="password" name="password" id="password" aria-describedby="passwordhint" required>
   </div>
 
+  <div class="field level">
+    <input class="input" type="text" name="example" id="example" required>
+    <button class="button button_color_primary">Reset</button>
+  </div>
+
   <div class="field field_action">
     <div class="field__group">
       <button class="button button_color_primary">Register</button>

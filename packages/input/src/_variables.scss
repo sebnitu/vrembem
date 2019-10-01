@@ -8,20 +8,24 @@ $input_size_sm-padding: $padding-sm !default;
 $input_size_sm-font-size: $font-size-sm !default;
 $input_size_lg-height: $height-lg !default;
 $input_size_lg-padding: nth($padding-lg, 1) (nth($padding-lg, 1) * 1.3) !default;
-$input_size_lg-font-size: null !default;
+$input_size_lg-font-size: $font-size-lg !default;
+
+$input-color: $color !default;
+$input-color-placeholder: $color-light !default;
 
 $input-background: $white !default;
 $input-background-focus: $white !default;
-$input-box-shadow-values: 0 0 0 0 !default;
-$input-box-shadow-color: rgba($primary, 0) !default;
-$input-box-shadow-focus-values: 0 0 0 3px !default;
-$input-box-shadow-focus-color: rgba($primary, 0.1) !default;
+$input-box-shadow-values: 0 0 0 1px !default;
+$input-box-shadow-color: $border-color-dark !default;
+$input-box-shadow-hover-values: 0 0 0 1px !default;
+$input-box-shadow-hover-color: $border-color-darker !default;
+$input-box-shadow-focus-values: 0 0 0 2px !default;
+$input-box-shadow-focus-color: $primary !default;
 
-$input-border-width: 1px !default;
-$input-border-style: solid !default;
-$input-border-color: $border-color-dark !default;
-$input-border-color-hover: rgba($black, 0.4) !default;
-$input-border-color-focus: $primary !default;
+$input-border: none !default;
+$input-border-color-hover: null !default;
+$input-border-color-focus: null !default;
+$input-border-radius: $border-radius !default;
 
 $input_type_select-icon-color: $color !default;
 

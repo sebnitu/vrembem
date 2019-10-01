@@ -39,3 +39,31 @@
 .#{$class-border}_right_0 {
   border-right: 0;
 }
+
+.#{$class-border}_color_light {
+  border-color: $border-color-light;
+}
+
+.#{$class-border}_color_dark {
+  border-color: $border-color-dark;
+}
+
+.#{$class-border}_color_darker {
+  border-color: $border-color-darker;
+}
+
+.#{$class-border}_color_invert {
+  border-color: $border-color-invert;
+}
+
+.#{$class-border}_color_invert-dark {
+  border-color: $border-color-invert-dark;
+}
+
+.#{$class-border}_color_invert-light {
+  border-color: $border-color-invert-light;
+}
+
+.#{$class-border}_color_invert-lighter {
+  border-color: $border-color-invert-lighter;
+}

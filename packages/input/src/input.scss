@@ -6,8 +6,9 @@
   width: 100%;
   height: $input-height;
   padding: $input-padding;
-  border: $input-border-width $input-border-style $input-border-color;
-  border-radius: 3px;
+  transition: box-shadow $transition-duration $transition-timing-function;
+  border: $input-border;
+  border-radius: $input-border-radius;
   background: $input-background;
   box-shadow: $input-box-shadow-values $input-box-shadow-color;
   color: $color;
@@ -18,6 +19,7 @@
 
   &:hover {
     border-color: $input-border-color-hover;
+    box-shadow: $input-box-shadow-hover-values $input-box-shadow-hover-color;
   }
 
   &:focus {
@@ -28,7 +30,7 @@
   }
 
   &::placeholder {
-    color: $color-subtle;
+    color: $color-light;
   }
 }
 

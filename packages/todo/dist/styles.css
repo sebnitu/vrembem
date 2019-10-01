@@ -38,7 +38,7 @@
 }
 .todo__list_done .todo__control {
   background: rgba(0, 0, 0, 0.025);
-  color: #bdbdbd;
+  color: #9e9e9e;
 }
 
 .todo__empty {

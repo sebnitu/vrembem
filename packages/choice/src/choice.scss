@@ -9,32 +9,22 @@
   align-items: flex-start;
   padding: $choice-padding;
   overflow: hidden;
-  border: 1px solid rgba($black, 0.2);
+  transition: box-shadow $transition-duration $transition-timing-function;
+  border: none;
   border-radius: $border-radius;
   background: $white;
-  box-shadow: 0 0 0 rgba($black, 0);
+  box-shadow: 0 0 0 1px $border-color-dark;
   font-size: $choice-font-size;
   line-height: $choice-line-height;
   cursor: pointer;
 
-  &:hover {
-    border-color: rgba($black, 0.4);
-  }
-
+  &:hover,
   &.is-focus {
-    border-color: rgba($black, 0.4);
-    background: rgba($yellow, 0.1);
-    box-shadow: 0 0 0 3px rgba($black, 0.05);
+    box-shadow: 0 0 0 1px $border-color-darker;
   }
 
   &.is-active {
-    border-color: rgba($primary, 1);
-    background: rgba($primary, 0.05);
-
-    &:hover,
-    &.is-focus {
-      box-shadow: 0 0 0 3px rgba($primary, 0.1);
-    }
+    box-shadow: 0 0 0 2px $primary;
   }
 }
 

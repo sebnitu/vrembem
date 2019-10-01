@@ -2,30 +2,22 @@
   position: relative;
   display: flex;
   align-items: flex-start;
-  padding: 0.438em 0.75em;
+  padding: 0.5em 0.75em;
   overflow: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  border-radius: 4px;
   background: #fff;
-  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
   font-size: 16px;
   line-height: 1.5;
   cursor: pointer;
 }
-.choice:hover {
-  border-color: rgba(0, 0, 0, 0.4);
-}
-.choice.is-focus {
-  border-color: rgba(0, 0, 0, 0.4);
-  background: rgba(255, 235, 59, 0.1);
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+.choice:hover, .choice.is-focus {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
 }
 .choice.is-active {
-  border-color: #2196f3;
-  background: rgba(33, 150, 243, 0.05);
-}
-.choice.is-active:hover, .choice.is-active.is-focus {
-  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+  box-shadow: 0 0 0 2px #2196f3;
 }
 
 .choice__input {
@@ -63,13 +55,14 @@
 
 .choice_size_sm {
   height: 2rem;
-  padding: 0.1375em 0.5em;
+  padding: 0.25em 0.5em;
   font-size: 0.875em;
 }
 
 .choice_size_lg {
   height: 3rem;
   padding: 0.75em 0.975em;
+  font-size: 1.125em;
 }
 
 .choice .checkbox {

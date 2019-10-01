@@ -218,7 +218,6 @@
     var api = {};
     var defaults = {
       autoInit: false,
-      "class": "dismiss",
       target: "[data-dismissible]",
       trigger: "[data-dismiss]"
     };
@@ -239,7 +238,7 @@
         var target = trigger.closest(api.settings.target);
 
         if (target) {
-          toggleClass(target, api.settings["class"]);
+          target.remove();
         }
 
         e.preventDefault();

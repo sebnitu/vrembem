@@ -16,16 +16,25 @@
 
 .page__main {
   position: relative;
-  flex-grow: 1;
-  height: 100vh;
   display: flex;
   flex-direction: row;
+  flex-grow: 1;
+  height: 100vh;
 }
 
 .page__aside {
   flex-grow: 0;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
+
+  .dialog__header,
+  .dialog__footer {
+    background: $shade;
+  }
+
+  .dialog__body {
+    background: $shade;
+  }
 }
 
 .page__article {
@@ -39,29 +48,13 @@
  */
 
 .page__toolbar + .page__main {
-  margin-top: 56px;
   height: calc(100vh - 56px);
+  margin-top: 56px;
 }
 
 @include media-min('md') {
   .page__toolbar + .page__main {
-    margin-top: 72px;
     height: calc(100vh - 72px);
-  }
-}
-
-/**
- * Custom modal styles
- */
-
-.page__aside {
-  .dialog__header,
-  .dialog__footer {
-    background: $shade;
-    border-color: $border-color-light;
-  }
-
-  .dialog__body {
-    background: $shade;
+    margin-top: 72px;
   }
 }

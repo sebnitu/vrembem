@@ -1,9 +1,9 @@
-$panel-padding: 1.5em !default;
+$panel-padding: 1em !default;
 $panel-background: $white !default;
-$panel-border: null !default;
-$panel-sep-border: $border !default;
+$panel-border: $border-dark !default;
+$panel-sep-border: $border-dark !default;
 $panel-border-radius: $border-radius !default;
-$panel-box-shadow: $box-shadow-1dp !default;
+$panel-box-shadow: null !default;
 
 $panel__title-font-size: 1.2em !default;
 $panel__title-font-weight: font-weight("semi-bold") !default;

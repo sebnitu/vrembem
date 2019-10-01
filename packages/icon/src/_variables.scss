@@ -1,10 +1,6 @@
+$icon-style: "stroke" !default;
 $icon-font-size: 1.25em !default;
-$icon-font-size-sm: 1em !default;
-$icon-font-size-lg: 2em !default;
-$icon-padding: null !default;
-
-$icon-fill: none !default;
-$icon-stroke: currentColor !default;
+$icon-stroke-width: 2px !default;
 $icon-stroke-linecap: round !default;
 $icon-stroke-linejoin: round !default;
-$icon-stroke-width: 2px !default;
+$icon-vertical-align: top !default;

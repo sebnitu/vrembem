@@ -3,7 +3,7 @@ import "@testing-library/jest-dom/extend-expect"
 
 let dismissible
 
-document.body.innerHTML = `
+const dismissContent = `
   <div data-dismissible>
     <button data-dismiss></button>
   </div>
@@ -12,44 +12,49 @@ document.body.innerHTML = `
   </div>
 `
 
+afterEach(() => {
+  dismissible.destroy()
+  document.body.innerHTML = null
+})
+
 test("dismiss using default settings", () => {
   dismissible = new Dismissible()
+  document.body.innerHTML = dismissContent
   const el = document.querySelector("[data-dismissible]")
   const button = document.querySelector("[data-dismiss]")
 
   dismissible.init()
-  expect(el).not.toHaveClass("dismiss")
+  expect(el).toBeInTheDocument()
   button.click()
-  expect(el).toHaveClass("dismiss")
+  expect(el).not.toBeInTheDocument()
 })
 
 test("dismiss using custom settings and auto init", () => {
-  new Dismissible({
+  dismissible = new Dismissible({
     autoInit: true,
     class: "c",
     target: ".a",
     trigger: ".b"
   })
+  document.body.innerHTML = dismissContent
   const el = document.querySelector(".a")
   const button = document.querySelector(".b")
 
-  expect(el).not.toHaveClass("c")
+  expect(el).toBeInTheDocument()
   button.click()
-  expect(el).toHaveClass("c")
+  expect(el).not.toBeInTheDocument()
 })
 
 test("dismissible destroy method removes event listener", () => {
   dismissible = new Dismissible({
-    autoInit: true,
-    class: "a"
+    autoInit: true
   })
+  document.body.innerHTML = dismissContent
   const el = document.querySelector("[data-dismissible]")
   const button = document.querySelector("[data-dismiss]")
 
-  expect(el).not.toHaveClass("a")
-  button.click()
-  expect(el).toHaveClass("a")
+  expect(el).toBeInTheDocument()
   dismissible.destroy()
   button.click()
-  expect(el).toHaveClass("a")
+  expect(el).toBeInTheDocument()
 })

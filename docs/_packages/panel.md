@@ -23,7 +23,7 @@ usage:
   <div class="panel__header">
     <h3 class="panel__title">Panel header</h3>
   </div>
-  <div class="panel__section">
+  <div class="panel__section background_shade_light">
     <p>Aliquam vitae sapien vehicula, viverra massa non, gravida lacus. Nam facilisis dictum felis, quis lacinia elit rhoncus eget. Donec id pellentesque lorem.</p>
   </div>
   <div class="panel__footer">

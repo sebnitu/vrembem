@@ -1,0 +1,16 @@
+@import "./variables";
+
+.notice_color_primary {
+  @include type-invert($primary);
+  background-color: $primary;
+}
+
+.notice_color_secondary {
+  @include type-invert($secondary);
+  background-color: $secondary;
+}
+
+.notice_color_dark {
+  @include type-invert($night);
+  background-color: $night;
+}

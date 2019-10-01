@@ -1,0 +1,41 @@
+@import "./variables";
+
+.notice_state_info {
+  background-color: $info-light;
+  color: $info-dark;
+
+  &.notice_bold {
+    @include type-invert($info);
+    background-color: $info;
+  }
+}
+
+.notice_state_success {
+  background-color: $success-light;
+  color: $success-dark;
+
+  &.notice_bold {
+    @include type-invert($success);
+    background-color: $success;
+  }
+}
+
+.notice_state_caution {
+  background-color: $caution-light;
+  color: $caution-dark;
+
+  &.notice_bold {
+    @include type-invert($caution);
+    background-color: $caution;
+  }
+}
+
+.notice_state_danger {
+  background-color: $danger-light;
+  color: $danger-dark;
+
+  &.notice_bold {
+    @include type-invert($danger);
+    background-color: $danger;
+  }
+}
