@@ -17,7 +17,7 @@
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
 }
 .choice.is-active {
-  box-shadow: 0 0 0 2px #2196f3;
+  box-shadow: 0 0 0 2px #009688;
 }
 
 .choice__input {

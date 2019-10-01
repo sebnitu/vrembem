@@ -30,7 +30,7 @@
     }
 
     &.is-loading::after {
-      border-color: set-border-color($button-loading-border-tpl, $color-invert-dark);
+      border-color: set-border-color($button-loading-border-tpl, $color-invert-light);
     }
   }
 }

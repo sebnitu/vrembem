@@ -56,14 +56,14 @@
   border-color: $border-color-invert;
 }
 
-.#{$class-border}_color_invert-dark {
-  border-color: $border-color-invert-dark;
-}
-
 .#{$class-border}_color_invert-light {
   border-color: $border-color-invert-light;
 }
 
-.#{$class-border}_color_invert-lighter {
-  border-color: $border-color-invert-lighter;
+.#{$class-border}_color_invert-dark {
+  border-color: $border-color-invert-dark;
+}
+
+.#{$class-border}_color_invert-darker {
+  border-color: $border-color-invert-darker;
 }

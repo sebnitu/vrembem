@@ -1,11 +1,13 @@
 // Colors
 // ---
 
-$primary: $blue !default;
-$primary-light: $blue-300 !default;
-$primary-dark: $blue-700 !default;
+$primary: $teal !default;
+$primary-pale: $teal-50 !default;
+$primary-light: $teal-300 !default;
+$primary-dark: $teal-700 !default;
 
 $secondary: $blue-gray !default;
+$secondary-pale: $blue-gray-50 !default;
 $secondary-light: $blue-gray-300 !default;
 $secondary-dark: $blue-gray-700 !default;
 
@@ -20,20 +22,24 @@ $night-dark: $gray-900 !default;
 // State colors
 // ---
 
-$info: $blue !default;
-$info-light: $blue-50 !default;
-$info-dark: $blue-900 !default;
+$info: $light-blue !default;
+$info-pale: $light-blue-50 !default;
+$info-light: $light-blue-300 !default;
+$info-dark: $light-blue-900 !default;
 
 $success: $green !default;
-$success-light: $green-50 !default;
+$success-pale: $green-50 !default;
+$success-light: $green-300 !default;
 $success-dark: $green-900 !default;
 
 $caution: $orange !default;
-$caution-light: $orange-50 !default;
+$caution-pale: $orange-50 !default;
+$caution-light: $orange-300 !default;
 $caution-dark: $deep-orange-900 !default;
 
 $danger: $red !default;
-$danger-light: $red-50 !default;
+$danger-pale: $red-50 !default;
+$danger-light: $red-300 !default;
 $danger-dark: $red-900 !default;
 
 // Global properties
@@ -92,14 +98,14 @@ $border-darker: $border-width $border-style $border-color-darker !default;
 // Invert
 
 $border-color-invert: rgba($white, 0.15) !default;
-$border-color-invert-dark: rgba($white, 0.075) !default;
-$border-color-invert-light: rgba($white, 0.25) !default;
-$border-color-invert-lighter: rgba($white, 0.5) !default;
+$border-color-invert-light: rgba($white, 0.075) !default;
+$border-color-invert-dark: rgba($white, 0.25) !default;
+$border-color-invert-darker: rgba($white, 0.5) !default;
 
 $border-invert: $border-width $border-style $border-color-invert !default;
-$border-invert-dark: $border-width $border-style $border-color-invert-dark !default;
 $border-invert-light: $border-width $border-style $border-color-invert-light !default;
-$border-invert-lighter: $border-width $border-style $border-color-invert-lighter !default;
+$border-invert-dark: $border-width $border-style $border-color-invert-dark !default;
+$border-invert-darker: $border-width $border-style $border-color-invert-darker !default;
 
 // Border radius
 // ---
@@ -179,7 +185,7 @@ $color-light: $gray-500 !default;
 // Invert
 
 $color-invert: $white !default;
-$color-invert-dark: rgba($white, 0.4) !default;
+$color-invert-light: rgba($white, 0.4) !default;
 
 // Headings
 // ---
@@ -189,6 +195,24 @@ $heading-line-height: null !default;
 $heading-color: inherit !default;
 $heading-color-invert: null !default;
 $heading-font-weight: font-weight("semi-bold") !default;
+
+// Link
+// ---
+
+$link-color: $primary !default;
+$link-color-hover: darken($link-color, 10%) !default;
+$link-border: 1px solid rgba($black, 0.1) !default;
+$link-border-hover: 1px solid darken($primary, 10%) !default;
+$link-text-decoration: none !default;
+$link-text-decoration-hover: null !default;
+$link-transition: null !default;
+
+// Invert
+
+$link-color-invert: $white !default;
+$link-color-invert-hover: $white !default;
+$link-border-invert: 1px solid rgba($white, 0.5) !default;
+$link-border-invert-hover: 1px solid rgba($white, 1) !default;
 
 // Elements
 // ---
@@ -225,24 +249,6 @@ $table-border: 1px solid $table-border-color !default;
 $table-background: $white !default;
 $table-background-alt: $shade-light !default;
 $table-padding: $padding !default;
-
-// Link
-// ---
-
-$link-color: $primary !default;
-$link-color-hover: darken($link-color, 10%) !default;
-$link-border: 1px solid rgba($black, 0.1) !default;
-$link-border-hover: 1px solid darken($primary, 10%) !default;
-$link-text-decoration: none !default;
-$link-text-decoration-hover: null !default;
-$link-transition: null !default;
-
-// Invert
-
-$link-color-invert: $white !default;
-$link-color-invert-hover: $white !default;
-$link-border-invert: 1px solid rgba($white, 0.5) !default;
-$link-border-invert-hover: 1px solid rgba($white, 1) !default;
 
 // Breakpoints
 // ---

@@ -264,18 +264,18 @@ input::-moz-placeholder {
 
 .link {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  color: #2196f3;
+  color: #009688;
   text-decoration: none;
 }
 .link:hover {
-  border-bottom: 1px solid #0c7cd5;
-  color: #0c7cd5;
+  border-bottom: 1px solid #00635a;
+  color: #00635a;
 }
 .link:focus {
   outline: currentColor dotted 1px;
   outline-offset: 3px;
-  border-bottom: 1px solid #0c7cd5;
-  color: #0c7cd5;
+  border-bottom: 1px solid #00635a;
+  color: #00635a;
 }
 
 .link_invert {
@@ -291,8 +291,8 @@ input::-moz-placeholder {
   color: inherit;
 }
 .link_subtle:hover, .link_subtle:focus {
-  border-color: #2196f3;
-  color: #2196f3;
+  border-color: #009688;
+  color: #009688;
 }
 
 .list {

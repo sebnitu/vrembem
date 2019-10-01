@@ -319,7 +319,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
         <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
       </div>
       <div class="card__footer">
-        <p><button class="button button_color_accent">Card Action</button></p>
+        <p><button class="button button_color_primary">Card Action</button></p>
       </div>
     </div>
   </div>
@@ -334,7 +334,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
         <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
       </div>
       <div class="card__footer">
-        <button class="button button_color_accent">Card Action</button>
+        <button class="button button_invert">Card Action</button>
       </div>
       <img src="https://picsum.photos/600/400/?4" class="card__background" width="600" height="400">
       <div class="card__screen"></div>

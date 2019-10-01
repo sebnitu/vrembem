@@ -35,12 +35,12 @@
 .menu__link.is-active, .menu__link.is-parent {
   border-color: transparent;
   background: none;
-  color: #2196f3;
+  color: #009688;
 }
 .menu__link.is-active:hover, .menu__link.is-active:focus, .menu__link.is-parent:hover, .menu__link.is-parent:focus {
   border-color: transparent;
   background: none;
-  color: #2196f3;
+  color: #009688;
 }
 .menu__link.is-disabled {
   border-color: transparent;

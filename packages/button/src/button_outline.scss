@@ -16,10 +16,10 @@
   }
 
   &.button_invert {
-    border-color: rgba($white, 0.15);
+    border-color: $border-color-invert-dark;
 
     &:hover {
-      border-color: rgba($white, 0.5);
+      border-color: $border-color-invert-darker;
     }
 
     &:focus,

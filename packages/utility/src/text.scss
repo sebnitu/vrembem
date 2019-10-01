@@ -36,6 +36,10 @@
   font-weight: font-weight("bold") !important;
 }
 
+.#{$class-text}_normal {
+  font-weight: font-weight("normal") !important;
+}
+
 .#{$class-text}_italic {
   font-style: italic !important;
 }

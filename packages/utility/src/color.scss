@@ -12,8 +12,8 @@
   color: $color-invert !important;
 }
 
-.#{$class-color}_invert_dark {
-  color: $color-invert-dark !important;
+.#{$class-color}_invert_light {
+  color: $color-invert-light !important;
 }
 
 .#{$class-color}_black {
@@ -28,8 +28,14 @@
   color: transparent !important;
 }
 
+// Brand colors
+
 .#{$class-color}_primary {
   color: $primary !important;
+}
+
+.#{$class-color}_primary_pale {
+  color: $primary-pale !important;
 }
 
 .#{$class-color}_primary_light {
@@ -42,6 +48,10 @@
 
 .#{$class-color}_secondary {
   color: $secondary !important;
+}
+
+.#{$class-color}_secondary_pale {
+  color: $secondary-pale !important;
 }
 
 .#{$class-color}_secondary_light {
@@ -76,8 +86,14 @@
   color: $night_dark !important;
 }
 
+// State colors
+
 .#{$class-color}_info {
   color: $info !important;
+}
+
+.#{$class-color}_info_pale {
+  color: $info-pale !important;
 }
 
 .#{$class-color}_info_light {
@@ -92,6 +108,10 @@
   color: $success !important;
 }
 
+.#{$class-color}_success_pale {
+  color: $success-pale !important;
+}
+
 .#{$class-color}_success_light {
   color: $success-light !important;
 }
@@ -104,6 +124,10 @@
   color: $caution !important;
 }
 
+.#{$class-color}_caution_pale {
+  color: $caution-pale !important;
+}
+
 .#{$class-color}_caution_light {
   color: $caution-light !important;
 }
@@ -114,6 +138,10 @@
 
 .#{$class-color}_danger {
   color: $danger !important;
+}
+
+.#{$class-color}_danger_pale {
+  color: $danger-pale !important;
 }
 
 .#{$class-color}_danger_light {

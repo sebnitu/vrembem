@@ -12,8 +12,14 @@
   background-color: transparent !important;
 }
 
+// Brand colors
+
 .#{$class-background}_primary {
   background-color: $primary !important;
+}
+
+.#{$class-background}_primary_pale {
+  background-color: $primary-pale !important;
 }
 
 .#{$class-background}_primary_light {
@@ -26,6 +32,10 @@
 
 .#{$class-background}_secondary {
   background-color: $secondary !important;
+}
+
+.#{$class-background}_secondary_pale {
+  background-color: $secondary-pale !important;
 }
 
 .#{$class-background}_secondary_light {
@@ -60,8 +70,14 @@
   background-color: $night-dark !important;
 }
 
+// State colors
+
 .#{$class-background}_info {
   background-color: $info !important;
+}
+
+.#{$class-background}_info_pale {
+  background-color: $info-pale !important;
 }
 
 .#{$class-background}_info_light {
@@ -76,6 +92,10 @@
   background-color: $success !important;
 }
 
+.#{$class-background}_success_pale {
+  background-color: $success-pale !important;
+}
+
 .#{$class-background}_success_light {
   background-color: $success-light !important;
 }
@@ -88,6 +108,10 @@
   background-color: $caution !important;
 }
 
+.#{$class-background}_caution_pale {
+  background-color: $caution-pale !important;
+}
+
 .#{$class-background}_caution_light {
   background-color: $caution-light !important;
 }
@@ -98,6 +122,10 @@
 
 .#{$class-background}_danger {
   background-color: $danger !important;
+}
+
+.#{$class-background}_danger_pale {
+  background-color: $danger-pale !important;
 }
 
 .#{$class-background}_danger_light {

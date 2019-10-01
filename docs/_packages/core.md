@@ -1,7 +1,7 @@
 ---
 layout: article
 title: Core
-description: "..."
+description: "The core variables, functions and mixins for Vrembem components."
 category: simple
 usage:
   npm: "@vrembem/core"

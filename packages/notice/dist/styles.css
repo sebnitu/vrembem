@@ -30,7 +30,7 @@
 
 .notice_color_primary {
   color: #fff;
-  background-color: #2196f3;
+  background-color: #009688;
 }
 .notice_color_primary a:not(.button) {
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
@@ -90,12 +90,12 @@
 }
 
 .notice_state_info {
-  background-color: #e3f2fd;
-  color: #0d47a1;
+  background-color: #e1f5fe;
+  color: #01579b;
 }
 .notice_state_info.notice_bold {
   color: #fff;
-  background-color: #2196f3;
+  background-color: #03a9f4;
 }
 .notice_state_info.notice_bold a:not(.button) {
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
