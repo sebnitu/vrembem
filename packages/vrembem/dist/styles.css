@@ -1041,7 +1041,7 @@ input::-moz-placeholder {
 
 .card__title {
   flex-grow: 1;
-  font-size: 1.2em;
+  font-size: 1.125em;
   font-weight: 600;
 }
 
@@ -3612,7 +3612,7 @@ input::-moz-placeholder {
 }
 
 .notice__label {
-  font-size: 1em;
+  font-size: 1.125em;
   font-weight: 600;
 }
 
@@ -3801,7 +3801,7 @@ input::-moz-placeholder {
 
 .panel__title {
   flex-grow: 1;
-  font-size: 1.2em;
+  font-size: 1.125em;
   font-weight: 600;
 }
 

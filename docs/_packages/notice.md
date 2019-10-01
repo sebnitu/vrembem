@@ -70,7 +70,7 @@ usage:
 
 {% include demo_open.html %}
 <div class="notice flex_align_start" data-dismissible>
-  <div class="notice__body">
+  <div class="notice__body spacing_sm">
     <h2 class="notice__label">Oops, wait what?</h2>
     <p>You should know that the action you just did had some consequences.</p>
   </div>
