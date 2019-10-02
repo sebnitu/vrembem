@@ -6,21 +6,17 @@
  */
 
 .toolbar {
-  z-index: 600;
   position: fixed;
+  z-index: 600;
   top: 0;
-  left: 0;
   right: 0;
-  padding: 0.5em;
+  left: 0;
   flex-grow: 0;
-  background-color: #09273F;
-  background: linear-gradient(
-    148deg,
-    #124064 0,
-    #09273F 100%
-  );
-  color: $white;
+  padding: 0.5em;
+  background: $background-gradient;
+  background-color: $background-color;
   box-shadow: $box-shadow-4dp;
+  color: $white;
 }
 
 @include media-min('md') {

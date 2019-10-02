@@ -1,4 +1,4 @@
-@mixin base-heading() {
+@mixin heading-base() {
   color: $heading-color;
   font-family: $heading-font-family;
   font-weight: $heading-font-weight;
@@ -7,7 +7,7 @@
 
 @mixin heading($level, $base: false) {
   @if $base {
-    @include base-heading();
+    @include heading-base();
   }
 
   @if $level == 1 {
@@ -59,7 +59,7 @@
 .h4,
 .h5,
 .h6 {
-  @include base-heading;
+  @include heading-base();
 }
 
 .h1 {

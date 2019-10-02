@@ -1,22 +1,5 @@
 @import "./variables";
 
 .type_invert {
-  color: $white;
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: inherit;
-  }
-
-  a:not(.button) {
-    @extend %link_invert !optional;
-  }
-
-  hr {
-    @extend %hr_invert !optional;
-  }
+  @include type-invert();
 }

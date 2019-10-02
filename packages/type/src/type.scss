@@ -12,32 +12,32 @@
   h4,
   h5,
   h6 {
-    @extend %h !optional;
+    @include heading-base();
     margin: ($type-spacing * 1.5) 0 $type-spacing;
   }
 
   h1 {
-    @extend %h1 !optional;
+    @include heading(1);
   }
 
   h2 {
-    @extend %h2 !optional;
+    @include heading(2);
   }
 
   h3 {
-    @extend %h3 !optional;
+    @include heading(3);
   }
 
   h4 {
-    @extend %h4 !optional;
+    @include heading(4);
   }
 
   h5 {
-    @extend %h5 !optional;
+    @include heading(5);
   }
 
   h6 {
-    @extend %h6 !optional;
+    @include heading(6);
   }
 
   p {
