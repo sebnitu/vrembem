@@ -18,6 +18,7 @@
     "directory": "packages/notice"
   },
   "dependencies": {
-    "@vrembem/core": "^0.0.0"
+    "@vrembem/core": "^0.0.0",
+    "@vrembem/type": "^0.0.0"
   }
 }
