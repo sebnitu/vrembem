@@ -18,6 +18,7 @@
     "directory": "packages/type"
   },
   "dependencies": {
-    "@vrembem/core": "^0.0.0"
+    "@vrembem/core": "^0.0.0",
+    "@vrembem/base": "^0.0.0"
   }
 }

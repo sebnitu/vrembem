@@ -118,7 +118,7 @@
 }
 .card_invert .card__header,
 .card_invert .card__footer {
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 .card_invert .card__screen {
   background: #424242;

@@ -9,7 +9,57 @@
 .type h4,
 .type h5,
 .type h6 {
+  color: inherit;
+  font-weight: 600;
   margin: 1.5rem 0 1rem;
+}
+.type h1 {
+  font-size: 2em;
+}
+@media (min-width: 760px) {
+  .type h1 {
+    font-size: 2.5em;
+  }
+}
+.type h2 {
+  font-size: 1.75em;
+}
+@media (min-width: 760px) {
+  .type h2 {
+    font-size: 2em;
+  }
+}
+.type h3 {
+  font-size: 1.5em;
+}
+@media (min-width: 760px) {
+  .type h3 {
+    font-size: 1.75em;
+  }
+}
+.type h4 {
+  font-size: 1.25em;
+}
+@media (min-width: 760px) {
+  .type h4 {
+    font-size: 1.5em;
+  }
+}
+.type h5 {
+  font-size: 1em;
+}
+@media (min-width: 760px) {
+  .type h5 {
+    font-size: 1.25em;
+  }
+}
+.type h6 {
+  font-size: 1em;
+}
+@media (min-width: 760px) {
+  .type h6 {
+    font-size: 1.25em;
+  }
 }
 .type p {
   margin: 1rem 0;
@@ -101,13 +151,16 @@
 .type_invert {
   color: #fff;
 }
-.type_invert h1,
-.type_invert h2,
-.type_invert h3,
-.type_invert h4,
-.type_invert h5,
-.type_invert h6 {
-  color: inherit;
+.type_invert a:not(.button) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+}
+.type_invert a:not(.button):hover, .type_invert a:not(.button):focus {
+  border-bottom: 1px solid white;
+  color: #fff;
+}
+.type_invert hr {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 /*# sourceMappingURL=styles.css.map */

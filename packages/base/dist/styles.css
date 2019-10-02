@@ -259,23 +259,23 @@ input::-moz-placeholder {
 }
 
 .hr_invert {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .link {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  color: #009688;
+  color: #00bcd4;
   text-decoration: none;
 }
 .link:hover {
-  border-bottom: 1px solid #00635a;
-  color: #00635a;
+  border-bottom: 1px solid #0097a7;
+  color: #0097a7;
 }
 .link:focus {
   outline: currentColor dotted 1px;
   outline-offset: 3px;
-  border-bottom: 1px solid #00635a;
-  color: #00635a;
+  border-bottom: 1px solid #0097a7;
+  color: #0097a7;
 }
 
 .link_invert {
@@ -291,8 +291,8 @@ input::-moz-placeholder {
   color: inherit;
 }
 .link_subtle:hover, .link_subtle:focus {
-  border-color: #009688;
-  color: #009688;
+  border-color: #00bcd4;
+  color: #00bcd4;
 }
 
 .list {
@@ -341,27 +341,27 @@ input::-moz-placeholder {
   overflow: auto;
   border-spacing: 0;
   border-collapse: collapse;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 .table_bordered tr,
 .type .table_bordered tr {
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
   background-color: #fff;
 }
 .table_bordered th,
 .type .table_bordered th {
   padding: 0.5em 0.75em;
-  border: 1px solid #e0e0e0;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 .table_bordered td,
 .type .table_bordered td {
   padding: 0.5em 0.75em;
-  border: 1px solid #e0e0e0;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .table_rowed tr,
 .type .table_rowed tr {
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 .table_rowed th,
 .type .table_rowed th,
@@ -390,7 +390,7 @@ input::-moz-placeholder {
   .table_responsive,
 .type .table_responsive {
     display: block;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     text-align: left;
   }
   .table_responsive > *,
@@ -401,7 +401,7 @@ input::-moz-placeholder {
 .type .table_responsive tr {
     display: block;
     padding: 0.5em;
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
   }
   .table_responsive th,
 .type .table_responsive th,
@@ -411,7 +411,7 @@ input::-moz-placeholder {
     width: 100%;
     padding: 0.5em 0;
     border: none;
-    border-top: 1px dashed #e0e0e0;
+    border-top: 1px dashed rgba(0, 0, 0, 0.05);
   }
   .table_responsive th:first-child,
 .table_responsive td:first-child {

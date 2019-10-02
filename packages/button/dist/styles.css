@@ -151,15 +151,15 @@
 }
 
 .button_color_primary {
-  background-color: #009688;
+  background-color: #00bcd4;
   color: #fff;
 }
 .button_color_primary:hover {
-  background-color: #007d71;
+  background-color: #00a5bb;
   color: #fff;
 }
 .button_color_primary:focus, .button_color_primary:active {
-  background-color: #00635a;
+  background-color: #008fa1;
   color: #fff;
 }
 .button_color_primary.is-loading::after {
@@ -227,7 +227,7 @@
   background: none;
 }
 .button_outline.button_invert {
-  border-color: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 .button_outline.button_invert:hover {
   border-color: rgba(255, 255, 255, 0.5);
@@ -237,36 +237,36 @@
 }
 
 .button_outline_primary {
-  border: 1px solid rgba(0, 150, 136, 0.5);
+  border: 1px solid rgba(0, 188, 212, 0.5);
   background: none;
-  color: #009688;
+  color: #00bcd4;
 }
 .button_outline_primary:hover {
-  border-color: #009688;
+  border-color: #00bcd4;
   background: none;
-  color: #009688;
+  color: #00bcd4;
 }
 .button_outline_primary:focus, .button_outline_primary:active {
-  border-color: #009688;
-  background: #009688;
+  border-color: #00bcd4;
+  background: #00bcd4;
   color: #fff;
 }
 .button_outline_primary.is-loading::after {
-  border-color: #009688 #009688 transparent transparent;
+  border-color: #00bcd4 #00bcd4 transparent transparent;
 }
 .button_outline_primary.is-loading:focus::after {
   border-color: #fff #fff transparent transparent;
 }
 .button_outline_primary.button_invert {
-  border-color: #4db6ac;
-  color: #4db6ac;
+  border-color: #4dd0e1;
+  color: #4dd0e1;
 }
 .button_outline_primary.button_invert:hover {
   color: #fff;
 }
 .button_outline_primary.button_invert:focus, .button_outline_primary.button_invert:active {
-  border-color: #009688;
-  background-color: #009688;
+  border-color: #00bcd4;
+  background-color: #00bcd4;
   color: #fff;
 }
 

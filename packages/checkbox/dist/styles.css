@@ -60,23 +60,23 @@
   background: rgba(0, 0, 0, 0.03);
 }
 .checkbox__native:hover + .checkbox__background .checkbox__box {
-  border-color: #009688;
+  border-color: #00bcd4;
 }
 .checkbox__native:focus + .checkbox__background {
   background: rgba(0, 0, 0, 0.03);
 }
 .checkbox__native:focus + .checkbox__background .checkbox__box {
-  border-color: #009688;
+  border-color: #00bcd4;
 }
 .checkbox__native:active + .checkbox__background {
   background: rgba(0, 0, 0, 0.06);
 }
 .checkbox__native:active + .checkbox__background .checkbox__box {
-  border-color: #009688;
+  border-color: #00bcd4;
 }
 .checkbox__native:checked + .checkbox__background .checkbox__box {
-  border-color: #009688;
-  background-color: #009688;
+  border-color: #00bcd4;
+  background-color: #00bcd4;
 }
 .checkbox__native:checked + .checkbox__background .checkbox__icon {
   transition-property: opacity, background-position;

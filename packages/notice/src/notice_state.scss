@@ -1,8 +1,8 @@
 @import "./variables";
 
 .notice_state_info {
-  background-color: $info-pale;
-  color: $info-dark;
+  background-color: $info-lighter;
+  color: $info-darker;
 
   &.notice_bold {
     @include type-invert($info);
@@ -11,8 +11,8 @@
 }
 
 .notice_state_success {
-  background-color: $success-pale;
-  color: $success-dark;
+  background-color: $success-lighter;
+  color: $success-darker;
 
   &.notice_bold {
     @include type-invert($success);
@@ -21,8 +21,8 @@
 }
 
 .notice_state_caution {
-  background-color: $caution-pale;
-  color: $caution-dark;
+  background-color: $caution-lighter;
+  color: $caution-darker;
 
   &.notice_bold {
     @include type-invert($caution);
@@ -31,8 +31,8 @@
 }
 
 .notice_state_danger {
-  background-color: $danger-pale;
-  color: $danger-dark;
+  background-color: $danger-lighter;
+  color: $danger-darker;
 
   &.notice_bold {
     @include type-invert($danger);

@@ -1,46 +1,52 @@
 // Colors
 // ---
 
-$primary: $cyan !default;
-$primary-pale: $cyan-50 !default;
+$primary-lighter: $cyan-50 !default;
 $primary-light: $cyan-300 !default;
+$primary: $cyan-500 !default;
 $primary-dark: $cyan-700 !default;
+$primary-darker: $cyan-900 !default;
 
-$secondary: $blue-gray !default;
-$secondary-pale: $blue-gray-50 !default;
+$secondary-lighter: $blue-gray-50 !default;
 $secondary-light: $blue-gray-300 !default;
+$secondary: $blue-gray-500 !default;
 $secondary-dark: $blue-gray-700 !default;
+$secondary-darker: $blue-gray-900 !default;
 
-$shade: $gray-100 !default;
 $shade-light: $gray-50 !default;
+$shade: $gray-100 !default;
 $shade-dark: $gray-300 !default;
 
-$night: $gray-800 !default;
 $night-light: $gray-700 !default;
+$night: $gray-800 !default;
 $night-dark: $gray-900 !default;
 
 // State colors
 // ---
 
-$info: $light-blue !default;
-$info-pale: $light-blue-50 !default;
+$info-lighter: $light-blue-50 !default;
 $info-light: $light-blue-300 !default;
-$info-dark: $light-blue-900 !default;
+$info: $light-blue-500 !default;
+$info-dark: $light-blue-700 !default;
+$info-darker: $light-blue-900 !default;
 
-$success: $green !default;
-$success-pale: $green-50 !default;
+$success-lighter: $green-50 !default;
 $success-light: $green-300 !default;
-$success-dark: $green-900 !default;
+$success: $green-500 !default;
+$success-dark: $green-700 !default;
+$success-darker: $green-900 !default;
 
-$caution: $orange !default;
-$caution-pale: $orange-50 !default;
+$caution-lighter: $orange-50 !default;
 $caution-light: $orange-300 !default;
-$caution-dark: $deep-orange-900 !default;
+$caution: $orange-500 !default;
+$caution-dark: $deep-orange-700 !default;
+$caution-darker: $deep-orange-900 !default;
 
-$danger: $red !default;
-$danger-pale: $red-50 !default;
+$danger-lighter: $red-50 !default;
 $danger-light: $red-300 !default;
-$danger-dark: $red-900 !default;
+$danger: $red-500 !default;
+$danger-dark: $red-700 !default;
+$danger-darker: $red-900 !default;
 
 // Global properties
 // ---
@@ -85,8 +91,8 @@ $border-style: solid !default;
 
 // Border color
 
-$border-color: rgba($black, 0.1) !default;
 $border-color-light: rgba($black, 0.05) !default;
+$border-color: rgba($black, 0.1) !default;
 $border-color-dark: rgba($black, 0.2) !default;
 $border-color-darker: rgba($black, 0.5) !default;
 
@@ -97,9 +103,9 @@ $border-darker: $border-width $border-style $border-color-darker !default;
 
 // Invert
 
-$border-color-invert: rgba($white, 0.15) !default;
-$border-color-invert-light: rgba($white, 0.075) !default;
-$border-color-invert-dark: rgba($white, 0.25) !default;
+$border-color-invert-light: rgba($white, 0.05) !default;
+$border-color-invert: rgba($white, 0.1) !default;
+$border-color-invert-dark: rgba($white, 0.2) !default;
 $border-color-invert-darker: rgba($white, 0.5) !default;
 
 $border-invert: $border-width $border-style $border-color-invert !default;
@@ -179,13 +185,13 @@ $line-height: 1.5 !default;
 // Color
 // ---
 
-$color: $gray-900 !default;
-$color-light: $gray-500 !default;
+$color: $night-dark !default;
+$color-subtle: $gray-500 !default;
 
 // Invert
 
 $color-invert: $white !default;
-$color-invert-light: rgba($white, 0.4) !default;
+$color-invert-subtle: rgba($white, 0.4) !default;
 
 // Headings
 // ---
@@ -200,9 +206,9 @@ $heading-font-weight: font-weight("semi-bold") !default;
 // ---
 
 $link-color: $primary !default;
-$link-color-hover: darken($link-color, 10%) !default;
-$link-border: 1px solid rgba($black, 0.1) !default;
-$link-border-hover: 1px solid darken($primary, 10%) !default;
+$link-color-hover: $primary-dark !default;
+$link-border: 1px solid $border-color !default;
+$link-border-hover: 1px solid $primary-dark !default;
 $link-text-decoration: none !default;
 $link-text-decoration-hover: null !default;
 $link-transition: null !default;
@@ -244,7 +250,7 @@ $blockquote-border-radius: $border-radius !default;
 // Tables
 
 $table-color: $color !default;
-$table-border-color: $gray-300 !default;
+$table-border-color: $border-color-light !default;
 $table-border: 1px solid $table-border-color !default;
 $table-background: $white !default;
 $table-background-alt: $shade-light !default;

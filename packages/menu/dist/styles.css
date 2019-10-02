@@ -35,12 +35,12 @@
 .menu__link.is-active, .menu__link.is-parent {
   border-color: transparent;
   background: none;
-  color: #009688;
+  color: #00bcd4;
 }
 .menu__link.is-active:hover, .menu__link.is-active:focus, .menu__link.is-parent:hover, .menu__link.is-parent:focus {
   border-color: transparent;
   background: none;
-  color: #009688;
+  color: #00bcd4;
 }
 .menu__link.is-disabled {
   border-color: transparent;
@@ -980,7 +980,7 @@
   color: #fff;
 }
 .menu_theme_invert .menu__sep {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .menu_theme_tabs {

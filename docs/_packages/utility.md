@@ -13,16 +13,18 @@ usage:
 {% include demo_open.html class_grid="grid_break" %}
 <div class="swatch-group">
   <div class="swatch-group">
-    <div class="swatch background_primary_pale"></div>
+    <div class="swatch background_primary_lighter"></div>
     <div class="swatch background_primary_light"></div>
     <div class="swatch background_primary"></div>
     <div class="swatch background_primary_dark"></div>
+    <div class="swatch background_primary_darker"></div>
   </div>
   <div class="swatch-group">
-    <div class="swatch background_secondary_pale"></div>
+    <div class="swatch background_secondary_lighter"></div>
     <div class="swatch background_secondary_light"></div>
     <div class="swatch background_secondary"></div>
     <div class="swatch background_secondary_dark"></div>
+    <div class="swatch background_secondary_darker"></div>
   </div>
   <div class="swatch-group">
     <div class="swatch background_shade_light"></div>
@@ -35,28 +37,32 @@ usage:
     <div class="swatch background_night_dark"></div>
   </div>
   <div class="swatch-group">
-    <div class="swatch background_info_pale"></div>
+    <div class="swatch background_info_lighter"></div>
     <div class="swatch background_info_light"></div>
     <div class="swatch background_info"></div>
     <div class="swatch background_info_dark"></div>
+    <div class="swatch background_info_darker"></div>
   </div>
   <div class="swatch-group">
-    <div class="swatch background_success_pale"></div>
+    <div class="swatch background_success_lighter"></div>
     <div class="swatch background_success_light"></div>
     <div class="swatch background_success"></div>
     <div class="swatch background_success_dark"></div>
+    <div class="swatch background_success_darker"></div>
   </div>
   <div class="swatch-group">
-    <div class="swatch background_caution_pale"></div>
+    <div class="swatch background_caution_lighter"></div>
     <div class="swatch background_caution_light"></div>
     <div class="swatch background_caution"></div>
     <div class="swatch background_caution_dark"></div>
+    <div class="swatch background_caution_darker"></div>
   </div>
   <div class="swatch-group">
-    <div class="swatch background_danger_pale"></div>
+    <div class="swatch background_danger_lighter"></div>
     <div class="swatch background_danger_light"></div>
     <div class="swatch background_danger"></div>
     <div class="swatch background_danger_dark"></div>
+    <div class="swatch background_danger_darker"></div>
   </div>
   <div class="swatch-group">
     <div class="swatch background_black"></div>
@@ -66,9 +72,11 @@ usage:
 </div>
 {% include demo_switch.html class_gridItem="" %}
 ```html
+<div class="background_primary_lighter"></div>
 <div class="background_primary_light"></div>
 <div class="background_primary"></div>
 <div class="background_primary_dark"></div>
+<div class="background_primary_darker"></div>
 ...
 ```
 {% include demo_close.html %}
@@ -113,14 +121,14 @@ usage:
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="swatch-group">
-  <div class="swatch background_shade_light border border_color_light"></div>
+  <div class="swatch background_shade_light border border_color_subtle"></div>
   <div class="swatch background_shade_light border"></div>
   <div class="swatch background_shade_light border border_color_dark"></div>
   <div class="swatch background_shade_light border border_color_darker"></div>
 </div>
 {% include demo_switch.html class_gridItem="" %}
 ```html
-<div class="border border_color_light"></div>
+<div class="border border_color_subtle"></div>
 <div class="border"></div>
 <div class="border border_color_dark"></div>
 <div class="border border_color_darker"></div>
@@ -193,37 +201,43 @@ usage:
 <div class="padding radius background_shade_light">
   <div class="swatch-group">
     <span class="color">Color</span>
-    <span class="color_light">Color light</span>
-    <span class="color_primary_pale">Color primary</span>
+    <span class="color_subtle">Color light</span>
+    <span class="color_primary_lighter">Color primary</span>
     <span class="color_primary_light">Color primary</span>
     <span class="color_primary">Color primary</span>
     <span class="color_primary_dark">Color primary</span>
-    <span class="color_secondary_pale">Color secondary</span>
+    <span class="color_primary_darker">Color primary</span>
+    <span class="color_secondary_lighter">Color secondary</span>
     <span class="color_secondary_light">Color secondary</span>
     <span class="color_secondary">Color secondary</span>
     <span class="color_secondary_dark">Color secondary</span>
+    <span class="color_secondary_darker">Color secondary</span>
     <span class="color_shade_light">Color shade</span>
     <span class="color_shade">Color shade</span>
     <span class="color_shade_dark">Color shade</span>
     <span class="color_night_light">Color night</span>
     <span class="color_night">Color night</span>
     <span class="color_night_dark">Color night</span>
-    <span class="color_info_pale">Color info</span>
+    <span class="color_info_lighter">Color info</span>
     <span class="color_info_light">Color info</span>
     <span class="color_info">Color info</span>
     <span class="color_info_dark">Color info</span>
-    <span class="color_success_pale">Color success</span>
+    <span class="color_info_darker">Color info</span>
+    <span class="color_success_lighter">Color success</span>
     <span class="color_success_light">Color success</span>
     <span class="color_success">Color success</span>
     <span class="color_success_dark">Color success</span>
-    <span class="color_caution_pale">Color caution</span>
+    <span class="color_success_darker">Color success</span>
+    <span class="color_caution_lighter">Color caution</span>
     <span class="color_caution_light">Color caution</span>
     <span class="color_caution">Color caution</span>
     <span class="color_caution_dark">Color caution</span>
-    <span class="color_danger_pale">Color danger</span>
+    <span class="color_caution_darker">Color caution</span>
+    <span class="color_danger_lighter">Color danger</span>
     <span class="color_danger_light">Color danger</span>
     <span class="color_danger">Color danger</span>
     <span class="color_danger_dark">Color danger</span>
+    <span class="color_danger_darker">Color danger</span>
     <span class="color_black">Color black</span>
     <span class="color_white">Color white</span>
     <span class="color_transparent">Color transparent</span>
@@ -232,37 +246,43 @@ usage:
 <div class="padding radius background_night">
   <div class="swatch-group">
     <span class="color_invert">Color invert</span>
-    <span class="color_invert_light">Color invert dark</span>
-    <span class="color_primary_pale">Color primary</span>
+    <span class="color_invert_subtle">Color invert dark</span>
+    <span class="color_primary_lighter">Color primary</span>
     <span class="color_primary_light">Color primary</span>
     <span class="color_primary">Color primary</span>
     <span class="color_primary_dark">Color primary</span>
-    <span class="color_secondary_pale">Color secondary</span>
+    <span class="color_primary_darker">Color primary</span>
+    <span class="color_secondary_lighter">Color secondary</span>
     <span class="color_secondary_light">Color secondary</span>
     <span class="color_secondary">Color secondary</span>
     <span class="color_secondary_dark">Color secondary</span>
+    <span class="color_secondary_darker">Color secondary</span>
     <span class="color_shade_light">Color shade</span>
     <span class="color_shade">Color shade</span>
     <span class="color_shade_dark">Color shade</span>
     <span class="color_night_light">Color night</span>
     <span class="color_night">Color night</span>
     <span class="color_night_dark">Color night</span>
-    <span class="color_info_pale">Color info</span>
+    <span class="color_info_lighter">Color info</span>
     <span class="color_info_light">Color info</span>
     <span class="color_info">Color info</span>
     <span class="color_info_dark">Color info</span>
-    <span class="color_success_pale">Color success</span>
+    <span class="color_info_darker">Color info</span>
+    <span class="color_success_lighter">Color success</span>
     <span class="color_success_light">Color success</span>
     <span class="color_success">Color success</span>
     <span class="color_success_dark">Color success</span>
-    <span class="color_caution_pale">Color caution</span>
+    <span class="color_success_darker">Color success</span>
+    <span class="color_caution_lighter">Color caution</span>
     <span class="color_caution_light">Color caution</span>
     <span class="color_caution">Color caution</span>
     <span class="color_caution_dark">Color caution</span>
-    <span class="color_danger_pale">Color danger</span>
+    <span class="color_caution_darker">Color caution</span>
+    <span class="color_danger_lighter">Color danger</span>
     <span class="color_danger_light">Color danger</span>
     <span class="color_danger">Color danger</span>
     <span class="color_danger_dark">Color danger</span>
+    <span class="color_danger_darker">Color danger</span>
     <span class="color_black">Color black</span>
     <span class="color_white">Color white</span>
     <span class="color_transparent">Color transparent</span>
@@ -271,7 +291,7 @@ usage:
 {% include demo_switch.html class_gridItem="" %}
 ```html
 <span class="color"></span>
-<span class="color_light"></span>
+<span class="color_subtle"></span>
 <span class="color_primary_light"></span>
 <span class="color_primary"></span>
 <span class="color_primary_dark"></span>
@@ -313,19 +333,19 @@ usage:
           <div class="card__body">
             <ul class="list list_between">
               <li class="list__item">
-                <code>xs <span class="color_light">...480px</span></code>
+                <code>xs <span class="color_subtle">...480px</span></code>
               </li>
               <li class="list__item">
-                <code>sm <span class="color_light">...620px</span></code>
+                <code>sm <span class="color_subtle">...620px</span></code>
               </li>
               <li class="list__item">
-                <code>md <span class="color_light">...760px</span></code>
+                <code>md <span class="color_subtle">...760px</span></code>
               </li>
               <li class="list__item">
-                <code>lg <span class="color_light">...990px</span></code>
+                <code>lg <span class="color_subtle">...990px</span></code>
               </li>
               <li class="list__item">
-                <code>xl <span class="color_light">...1380px</span></code>
+                <code>xl <span class="color_subtle">...1380px</span></code>
               </li>
             </ul>
           </div>
@@ -452,22 +472,22 @@ usage:
           <div class="card__body">
             <ul class="list list_between">
               <li class="list__item">
-                <code>0 <span class="color_light">...0</span></code>
+                <code>0 <span class="color_subtle">...0</span></code>
               </li>
               <li class="list__item">
-                <code>xs <span class="color_light">...0.5rem</span></code>
+                <code>xs <span class="color_subtle">...0.5rem</span></code>
               </li>
               <li class="list__item">
-                <code>sm <span class="color_light">...1rem</span></code>
+                <code>sm <span class="color_subtle">...1rem</span></code>
               </li>
               <li class="list__item">
-                <code>md <span class="color_light">...1.5rem</span></code>
+                <code>md <span class="color_subtle">...1.5rem</span></code>
               </li>
               <li class="list__item">
-                <code>lg <span class="color_light">...2rem</span></code>
+                <code>lg <span class="color_subtle">...2rem</span></code>
               </li>
               <li class="list__item">
-                <code>xl <span class="color_light">...3rem</span></code>
+                <code>xl <span class="color_subtle">...3rem</span></code>
               </li>
             </ul>
           </div>
@@ -511,22 +531,22 @@ usage:
           <div class="card__body">
             <ul class="list list_between">
               <li class="list__item">
-                <code>0 <span class="color_light">...0</span></code>
+                <code>0 <span class="color_subtle">...0</span></code>
               </li>
               <li class="list__item">
-                <code>xs <span class="color_light">...0.5rem</span></code>
+                <code>xs <span class="color_subtle">...0.5rem</span></code>
               </li>
               <li class="list__item">
-                <code>sm <span class="color_light">...1rem</span></code>
+                <code>sm <span class="color_subtle">...1rem</span></code>
               </li>
               <li class="list__item">
-                <code>md <span class="color_light">...1.5rem</span></code>
+                <code>md <span class="color_subtle">...1.5rem</span></code>
               </li>
               <li class="list__item">
-                <code>lg <span class="color_light">...2rem</span></code>
+                <code>lg <span class="color_subtle">...2rem</span></code>
               </li>
               <li class="list__item">
-                <code>xl <span class="color_light">...3rem</span></code>
+                <code>xl <span class="color_subtle">...3rem</span></code>
               </li>
             </ul>
           </div>

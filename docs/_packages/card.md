@@ -268,7 +268,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
         <a href="#" class="card card_link">
           <div class="card__body">
             <div class="media">
-              <div class="media__image">
+              <div class="media__image text_size_lg">
                 {%- include icon.html icon="check-circle" -%}
               </div>
               <div class="media__body">

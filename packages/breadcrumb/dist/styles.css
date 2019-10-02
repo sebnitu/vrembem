@@ -22,11 +22,11 @@
 
 .breadcrumb__link {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  color: #009688;
+  color: #00bcd4;
 }
 .breadcrumb__link:focus, .breadcrumb__link:hover {
-  border-bottom: 1px solid #00635a;
-  color: #00635a;
+  border-bottom: 1px solid #0097a7;
+  color: #0097a7;
 }
 
 .breadcrumb_invert {

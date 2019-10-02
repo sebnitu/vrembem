@@ -30,7 +30,7 @@
 
 .notice_color_primary {
   color: #fff;
-  background-color: #009688;
+  background-color: #00bcd4;
 }
 .notice_color_primary a:not(.button) {
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
@@ -41,7 +41,7 @@
   color: #fff;
 }
 .notice_color_primary hr {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .notice_color_secondary {
@@ -57,7 +57,7 @@
   color: #fff;
 }
 .notice_color_secondary hr {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .notice_color_dark {
@@ -73,7 +73,7 @@
   color: #fff;
 }
 .notice_color_dark hr {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .notice_stack {
@@ -106,7 +106,7 @@
   color: #fff;
 }
 .notice_state_info.notice_bold hr {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .notice_state_success {
@@ -126,7 +126,7 @@
   color: #fff;
 }
 .notice_state_success.notice_bold hr {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .notice_state_caution {
@@ -146,7 +146,7 @@
   color: #fff;
 }
 .notice_state_caution.notice_bold hr {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .notice_state_danger {
@@ -166,7 +166,7 @@
   color: #fff;
 }
 .notice_state_danger.notice_bold hr {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 /*# sourceMappingURL=styles.css.map */

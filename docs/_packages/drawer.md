@@ -10,17 +10,19 @@ usage:
 ---
 
 <div class="notice notice_state_info">
-  <div class="notice__body type">
+  <div class="notice__body spacing">
     <h2 class="notice__label">Dependencies</h2>
-    <p>The drawer component depends on the following components to be imported:</p>
-    <ul>
-      <li>
-        <a class="link" href="/components/dialog">Dialog</a> - Drawers are a container component. You can add any content you'd like but wrapping your content with the dialog component allows for the most flexibility and consistent layouts.
-      </li>
-      <li>
-        <a class="link" href="/components/modal">Modal</a> - Used for switch functionality. If enabled, drawer items get switched into modals for smaller screens.
-      </li>
-    </ul>
+    <div class="type">
+      <p>The drawer component depends on the following components to be imported:</p>
+      <ul>
+        <li>
+          <a class="link" href="/components/dialog">Dialog</a> - Drawers are a container component. You can add any content you'd like but wrapping your content with the dialog component allows for the most flexibility and consistent layouts.
+        </li>
+        <li>
+          <a class="link" href="/components/modal">Modal</a> - Used for switch functionality. If enabled, drawer items get switched into modals for smaller screens.
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
 

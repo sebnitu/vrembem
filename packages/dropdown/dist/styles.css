@@ -60,11 +60,11 @@
 }
 .dropdown__link.is-active {
   background: #fff;
-  color: #009688;
+  color: #00bcd4;
 }
 .dropdown__link.is-active:hover, .dropdown__link.is-active:focus {
   background: #fff;
-  color: #009688;
+  color: #00bcd4;
 }
 .dropdown__link.is-disabled {
   background: #fff;

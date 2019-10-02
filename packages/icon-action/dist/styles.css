@@ -61,7 +61,7 @@
   color: #fff;
 }
 .icon-action_color_danger:hover, .icon-action_color_danger:focus {
-  background: #b71c1c;
+  background: #d32f2f;
   color: #fff;
 }
 
@@ -70,7 +70,7 @@
   color: #fff;
 }
 .icon-action_color_caution:hover, .icon-action_color_caution:focus {
-  background: #bf360c;
+  background: #e64a19;
   color: #fff;
 }
 
@@ -79,7 +79,7 @@
   color: #fff;
 }
 .icon-action_color_success:hover, .icon-action_color_success:focus {
-  background: #1b5e20;
+  background: #388e3c;
   color: #fff;
 }
 
