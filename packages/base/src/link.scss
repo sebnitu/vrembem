@@ -1,53 +1,17 @@
-@mixin link() {
-  transition: $link-transition;
-  border-bottom: $link-border;
-  color: $link-color;
-  text-decoration: $link-text-decoration;
-
-  &:hover {
-    border-bottom: $link-border-hover;
-    color: $link-color-hover;
-    text-decoration: $link-text-decoration-hover;
-  }
-
-  &:focus {
-    outline: currentColor dotted 1px;
-    outline-offset: 3px;
-    border-bottom: $link-border-hover;
-    color: $link-color-hover;
-    text-decoration: $link-text-decoration-hover;
-  }
-}
-
-@mixin link-invert() {
-  border-bottom: $link-border-invert;
-  color: $link-color-invert;
-
-  &:hover,
-  &:focus {
-    border-bottom: $link-border-invert-hover;
-    color: $link-color-invert-hover;
-  }
-}
-
-@mixin link-subtle() {
-  color: inherit;
-
-  &:hover,
-  &:focus {
-    border-color: $link-color;
-    color: $link-color;
-  }
-}
+@import "./mixins";
 
 .link {
   @include link();
 }
 
-.link_invert {
-  @include link-invert();
+.link_subtle {
+  @include link-modifier("subtle");
 }
 
-.link_subtle {
-  @include link-subtle;
+.link_invert {
+  @include link-modifier("invert");
+}
+
+.link_invert-subtle {
+  @include link-modifier("invert-subtle");
 }

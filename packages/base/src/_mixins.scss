@@ -52,3 +52,59 @@
     }
   }
 }
+
+@mixin link() {
+  transition: $link-transition;
+  border-bottom: $link-border;
+  color: $link-color;
+  text-decoration: $link-text-decoration;
+
+  &:hover {
+    border-bottom: $link-border-hover;
+    color: $link-color-hover;
+    text-decoration: $link-text-decoration-hover;
+  }
+
+  &:focus {
+    outline: currentColor dotted 1px;
+    outline-offset: 3px;
+    border-bottom: $link-border-hover;
+    color: $link-color-hover;
+    text-decoration: $link-text-decoration-hover;
+  }
+}
+
+@mixin link-modifier($modifier) {
+  @if $modifier == "subtle" {
+    border-color: $link-subtle-border-color;
+    color: $link-subtle-color;
+
+    &:hover,
+    &:focus {
+      border-color: $link-subtle-border-color-hover;
+      color: $link-subtle-color-hover;
+    }
+  }
+
+  @else if $modifier == "invert" {
+    border-color: $link-invert-border-color;
+    color: $link-invert-color;
+
+    &:hover,
+    &:focus {
+      border-color: $link-invert-border-color-hover;
+      color: $link-invert-color-hover;
+    }
+  }
+
+  @else if $modifier == "invert-subtle" {
+    border-color: $link-invert-subtle-border-color;
+    color: $link-invert-subtle-color;
+
+    &:hover,
+    &:focus {
+      border-color: $link-invert-subtle-border-color-hover;
+      color: $link-invert-subtle-color-hover;
+    }
+  }
+}

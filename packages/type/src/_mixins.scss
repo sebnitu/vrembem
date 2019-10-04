@@ -12,14 +12,8 @@
     }
 
     a:not(.button) {
-      border-bottom: $link-border-invert;
-      color: $link-color-invert;
-
-      &:hover,
-      &:focus {
-        border-bottom: $link-border-invert-hover;
-        color: $link-color-invert-hover;
-      }
+      @include link;
+      @include link-modifier("invert");
     }
 
     hr {

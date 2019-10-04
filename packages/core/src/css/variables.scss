@@ -208,17 +208,32 @@ $heading-font-weight: font-weight("semi-bold") !default;
 $link-color: $primary !default;
 $link-color-hover: $primary-dark !default;
 $link-border: 1px solid $border-color !default;
-$link-border-hover: 1px solid $primary-dark !default;
+$link-border-hover: 1px solid currentColor !default;
+
 $link-text-decoration: none !default;
 $link-text-decoration-hover: null !default;
 $link-transition: null !default;
 
+// Subtle
+
+$link-subtle-color: $color-subtle !default;
+$link-subtle-color-hover: $link-color-hover !default;
+$link-subtle-border-color: $border-color !default;
+$link-subtle-border-color-hover: currentColor !default;
+
 // Invert
 
-$link-color-invert: $white !default;
-$link-color-invert-hover: $white !default;
-$link-border-invert: 1px solid rgba($white, 0.5) !default;
-$link-border-invert-hover: 1px solid rgba($white, 1) !default;
+$link-invert-color: $white !default;
+$link-invert-color-hover: $white !default;
+$link-invert-border-color: rgba($white, 0.5) !default;
+$link-invert-border-color-hover: currentColor !default;
+
+// Invert subtle
+
+$link-invert-subtle-color: $color-invert-subtle !default;
+$link-invert-subtle-color-hover: $color-invert !default;
+$link-invert-subtle-border-color: rgba($white, 0.5) !default;
+$link-invert-subtle-border-color-hover: currentColor !default;
 
 // Elements
 // ---

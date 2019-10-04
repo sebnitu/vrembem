@@ -27,3 +27,23 @@ usage:
 <p class="h6">...</p>
 ```
 {% include demo_close.html %}
+
+{% include flag.html heading="link" %}
+
+{% include demo_open.html %}
+<div class="spacing padding">
+  <p><a href="#" class="link">Default link</a></p>
+  <p><a href="#" class="link link_subtle">Subtle link</a></p>
+</div>
+<div class="spacing padding radius background_night">
+  <p><a href="#" class="link link_invert">Inverted link</a></p>
+  <p><a href="#" class="link link_invert-subtle">Inverted link</a></p>
+</div>
+{% include demo_switch.html %}
+```html
+<a href="#" class="link">Link</p>
+<a href="#" class="link link_subtle">Link</a>
+<a href="#" class="link link_invert">Link</a>
+<a href="#" class="link link_invert-subtle">Link</a>
+```
+{% include demo_close.html %}
