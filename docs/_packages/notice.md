@@ -226,10 +226,10 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="notice_bold + notice_state_[key]" %}
+{% include flag.html heading="notice_state_[key]-bold" %}
 
 {% include demo_open.html class_parent="spacing" %}
-<div class="notice notice_state_info notice_bold" data-dismissible>
+<div class="notice notice_state_info-bold" data-dismissible>
   <div class="notice__body">
     <p>Notice <a href="#">content</a> goes here...</p>
   </div>
@@ -240,7 +240,7 @@ usage:
   </div>
 </div>
 
-<div class="notice notice_state_success notice_bold" data-dismissible>
+<div class="notice notice_state_success-bold" data-dismissible>
   <div class="notice__body">
     <p>Notice <a href="#">content</a> goes here...</p>
   </div>
@@ -251,7 +251,7 @@ usage:
   </div>
 </div>
 
-<div class="notice notice_state_caution notice_bold" data-dismissible>
+<div class="notice notice_state_caution-bold" data-dismissible>
   <div class="notice__body">
     <p>Notice <a href="#">content</a> goes here...</p>
   </div>
@@ -262,7 +262,7 @@ usage:
   </div>
 </div>
 
-<div class="notice notice_state_danger notice_bold" data-dismissible>
+<div class="notice notice_state_danger-bold" data-dismissible>
   <div class="notice__body">
     <p>Notice <a href="#">content</a> goes here...</p>
   </div>
@@ -274,10 +274,10 @@ usage:
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="notice notice_bold notice_state_info">...</div>
-<div class="notice notice_bold notice_state_success">...</div>
-<div class="notice notice_bold notice_state_caution">...</div>
-<div class="notice notice_bold notice_state_danger">...</div>
+<div class="notice notice_state_info-bold">...</div>
+<div class="notice notice_state_success-bold">...</div>
+<div class="notice notice_state_caution-bold">...</div>
+<div class="notice notice_state_danger-bold">...</div>
 ```
 {% include demo_close.html %}
 

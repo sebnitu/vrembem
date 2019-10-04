@@ -3652,19 +3652,20 @@ input::-moz-placeholder {
   background-color: #e1f5fe;
   color: #01579b;
 }
-.notice_state_info.notice_bold {
+
+.notice_state_info-bold {
   color: #fff;
   background-color: #03a9f4;
 }
-.notice_state_info.notice_bold a:not(.button) {
+.notice_state_info-bold a:not(.button) {
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   color: #fff;
 }
-.notice_state_info.notice_bold a:not(.button):hover, .notice_state_info.notice_bold a:not(.button):focus {
+.notice_state_info-bold a:not(.button):hover, .notice_state_info-bold a:not(.button):focus {
   border-bottom: 1px solid white;
   color: #fff;
 }
-.notice_state_info.notice_bold hr {
+.notice_state_info-bold hr {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -3672,19 +3673,20 @@ input::-moz-placeholder {
   background-color: #e8f5e9;
   color: #1b5e20;
 }
-.notice_state_success.notice_bold {
+
+.notice_state_success-bold {
   color: #fff;
   background-color: #4caf50;
 }
-.notice_state_success.notice_bold a:not(.button) {
+.notice_state_success-bold a:not(.button) {
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   color: #fff;
 }
-.notice_state_success.notice_bold a:not(.button):hover, .notice_state_success.notice_bold a:not(.button):focus {
+.notice_state_success-bold a:not(.button):hover, .notice_state_success-bold a:not(.button):focus {
   border-bottom: 1px solid white;
   color: #fff;
 }
-.notice_state_success.notice_bold hr {
+.notice_state_success-bold hr {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -3692,19 +3694,20 @@ input::-moz-placeholder {
   background-color: #fff3e0;
   color: #bf360c;
 }
-.notice_state_caution.notice_bold {
+
+.notice_state_caution-bold {
   color: #fff;
   background-color: #ff9800;
 }
-.notice_state_caution.notice_bold a:not(.button) {
+.notice_state_caution-bold a:not(.button) {
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   color: #fff;
 }
-.notice_state_caution.notice_bold a:not(.button):hover, .notice_state_caution.notice_bold a:not(.button):focus {
+.notice_state_caution-bold a:not(.button):hover, .notice_state_caution-bold a:not(.button):focus {
   border-bottom: 1px solid white;
   color: #fff;
 }
-.notice_state_caution.notice_bold hr {
+.notice_state_caution-bold hr {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -3712,19 +3715,20 @@ input::-moz-placeholder {
   background-color: #ffebee;
   color: #b71c1c;
 }
-.notice_state_danger.notice_bold {
+
+.notice_state_danger-bold {
   color: #fff;
   background-color: #f44336;
 }
-.notice_state_danger.notice_bold a:not(.button) {
+.notice_state_danger-bold a:not(.button) {
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   color: #fff;
 }
-.notice_state_danger.notice_bold a:not(.button):hover, .notice_state_danger.notice_bold a:not(.button):focus {
+.notice_state_danger-bold a:not(.button):hover, .notice_state_danger-bold a:not(.button):focus {
   border-bottom: 1px solid white;
   color: #fff;
 }
-.notice_state_danger.notice_bold hr {
+.notice_state_danger-bold hr {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
