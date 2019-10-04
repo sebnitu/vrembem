@@ -3,9 +3,9 @@ layout: article
 title: "Container"
 description: "A container component for general page composition purposes."
 category: layout
-# usage:
-  # npm: "@vrembem/container"
-  # scss: "vrembem/container/all"
+usage:
+  npm: "@vrembem/container"
+  scss: "vrembem/container/index"
 ---
 
 {% include flag.html heading="container" %}

@@ -3,9 +3,9 @@ layout: article
 title: "Grid"
 description: "A flexbox based grid system component."
 category: layout
-# usage:
-  # npm: "@vrembem/grid"
-  # scss: "vrembem/grid/all"
+usage:
+  npm: "@vrembem/grid"
+  scss: "vrembem/grid/index"
 ---
 
 {% include flag.html heading="grid + grid__item" %}
@@ -138,19 +138,21 @@ Gives grid items a basis of auto so their content dictates their width.
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="grid_hori_[value]" %}
+{% include flag.html heading="flex_justify_[value]" %}
 
 <div class="type" markdown="1">
-Adjust the vertical orientation of grid columns. Best used along with the `grid_auto` modifier. Avaliable values are:
+Change the `justify-content` property of grid columns using the `flex_justify_[value]` utility. Best used along with the `grid_auto` modifier. Avaliable values are:
 
-* `grid_hori_start`
-* `grid_hori_center`
-* `grid_hori_end`
-* `grid_hori_between`
+* `flex_justify_start`
+* `flex_justify_center`
+* `flex_justify_end`
+* `flex_justify_between`
+* `flex_justify_around`
+* `flex_justify_evenly`
 </div>
 
 {% include demo_open.html %}
-<div class="grid grid_auto grid_hori_start">
+<div class="grid grid_auto flex_justify_start">
   <div class="grid__item">
     <div class="box">...</div>
   </div>
@@ -160,12 +162,12 @@ Adjust the vertical orientation of grid columns. Best used along with the `grid_
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="grid grid_hori_start">...</div>
+<div class="grid flex_justify_start">...</div>
 ```
 {% include demo_close.html %}
 
 {% include demo_open.html %}
-<div class="grid grid_auto grid_hori_center">
+<div class="grid grid_auto flex_justify_center">
   <div class="grid__item">
     <div class="box">...</div>
   </div>
@@ -175,12 +177,12 @@ Adjust the vertical orientation of grid columns. Best used along with the `grid_
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="grid grid_hori_center">...</div>
+<div class="grid flex_justify_center">...</div>
 ```
 {% include demo_close.html %}
 
 {% include demo_open.html %}
-<div class="grid grid_auto grid_hori_end">
+<div class="grid grid_auto flex_justify_end">
   <div class="grid__item">
     <div class="box">...</div>
   </div>
@@ -190,12 +192,12 @@ Adjust the vertical orientation of grid columns. Best used along with the `grid_
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="grid grid_hori_end">...</div>
+<div class="grid flex_justify_end">...</div>
 ```
 {% include demo_close.html %}
 
 {% include demo_open.html %}
-<div class="grid grid_auto grid_hori_between">
+<div class="grid grid_auto flex_justify_between">
   <div class="grid__item">
     <div class="box">...</div>
   </div>
@@ -205,22 +207,24 @@ Adjust the vertical orientation of grid columns. Best used along with the `grid_
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="grid grid_hori_between">...</div>
+<div class="grid flex_justify_between">...</div>
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="grid_vert_[value]" %}
+{% include flag.html heading="flex_align_[value]" %}
 
 <div class="type" markdown="1">
-Adjust the vertical orientation of grid columns. Avaliable values are:
+Adjust the `align-items` property of grid columns using the `flex_align_[value]` utility. Avaliable values are:
 
-* `grid_vert_start`
-* `grid_vert_center`
-* `grid_vert_end`
+* `flex_align_start`
+* `flex_align_center`
+* `flex_align_end`
+* `flex_align_stretch`
+* `flex_align_baseline`
 </div>
 
 {% include demo_open.html %}
-<div class="grid grid_vert_start">
+<div class="grid flex_align_start">
   <div class="grid__item">
     <div class="box" style="height: 100px;">...</div>
   </div>
@@ -232,7 +236,7 @@ Adjust the vertical orientation of grid columns. Avaliable values are:
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="grid grid_vert_start">
+<div class="grid flex_align_start">
   <div class="grid__item" style="height: 100px;">...</div>
   <div class="grid__item">...</div>
 </div>
@@ -240,7 +244,7 @@ Adjust the vertical orientation of grid columns. Avaliable values are:
 {% include demo_close.html %}
 
 {% include demo_open.html %}
-<div class="grid grid_vert_center">
+<div class="grid flex_align_center">
   <div class="grid__item">
     <div class="box" style="height: 100px;">...</div>
   </div>
@@ -252,7 +256,7 @@ Adjust the vertical orientation of grid columns. Avaliable values are:
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="grid grid_vert_center">
+<div class="grid flex_align_center">
   <div class="grid__item" style="height: 100px;">...</div>
   <div class="grid__item">...</div>
 </div>
@@ -260,7 +264,7 @@ Adjust the vertical orientation of grid columns. Avaliable values are:
 {% include demo_close.html %}
 
 {% include demo_open.html %}
-<div class="grid grid_vert_end">
+<div class="grid flex_align_end">
   <div class="grid__item">
     <div class="box" style="height: 100px;">...</div>
   </div>
@@ -272,7 +276,7 @@ Adjust the vertical orientation of grid columns. Avaliable values are:
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="grid grid_vert_end">
+<div class="grid flex_align_end">
   <div class="grid__item" style="height: 100px;">...</div>
   <div class="grid__item">...</div>
 </div>

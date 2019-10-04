@@ -3,9 +3,9 @@ layout: article
 title: "Span"
 description: "A multi-purpose component for setting width, max-width and flex basis based on a column set."
 category: layout
-# usage:
-  # npm: "@vrembem/span"
-  # scss: "vrembem/span/all"
+usage:
+  npm: "@vrembem/span"
+  scss: "vrembem/span/index"
 ---
 
 {% include flag.html heading="span_auto" %}

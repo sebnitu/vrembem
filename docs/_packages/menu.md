@@ -3,9 +3,9 @@ layout: article
 title: Menu
 description: "Menus represent groups of links, actions or navigation that a user can interact with. They come with a variety of elements and modifiers to facilitate many contexts and roles."
 category: compound
-# usage:
-  # npm: "@vrembem/menu"
-  # scss: "vrembem/menu/all"
+usage:
+  npm: "@vrembem/menu"
+  scss: "vrembem/menu/index"
 ---
 
 {% include flag.html heading="menu" %}

@@ -5,7 +5,7 @@ description: "A component that is initially hidden and revealed upon user intera
 category: compound
 usage:
   npm: "@vrembem/dropdown"
-  scss: "vrembem/dropdown/all"
+  scss: "vrembem/dropdown/index"
 ---
 
 {% include flag.html heading="dropdown" %}

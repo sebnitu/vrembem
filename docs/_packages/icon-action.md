@@ -1,11 +1,11 @@
 ---
 layout: article
 title: Icon-action
-dsc: "A minimal container component for icon based actions."
+description: "A minimal container component for icon based actions."
 category: simple
-# usage:
-  # npm: "@vrembem/icon-action"
-  # scss: "vrembem/icon-action/all"
+usage:
+  npm: "@vrembem/icon-action"
+  scss: "vrembem/icon-action/index"
 ---
 
 {% include flag.html heading="icon-action" %}

@@ -6,9 +6,9 @@ layout_options:
 title: "Section"
 description: "A container component for wrapping distinct sections of a view."
 category: layout
-# usage:
-  # npm: "@vrembem/section"
-  # scss: "vrembem/section/all"
+usage:
+  npm: "@vrembem/section"
+  scss: "vrembem/section/index"
 ---
 
 {% include section_open.html %}
@@ -58,7 +58,7 @@ category: layout
 
 <div class="type" markdown="1">
 
-Sections have a few size modifier options to help adjust the space that is used based on how prominent the section needs to be:
+Sections have a few size modifier options to help adjust the space that is used based on how prominent the section needs to be. These are optimized for all screen sizes to avoid oversized areas on mobile:
 
 * `section_size_xl`
 * `section_size_lg`

@@ -3,9 +3,9 @@ layout: article
 title: Media
 description: "The media component allows the composition of content which contains images, thumbnails or other media related to the content."
 category: compound
-# usage:
-  # npm: "@vrembem/media"
-  # scss: "vrembem/media/all"
+usage:
+  npm: "@vrembem/media"
+  scss: "vrembem/media/index"
 ---
 
 {% include flag.html heading="media" %}

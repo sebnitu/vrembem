@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/panel",
-  "description": "Panels are flexible view container with auto-expand content section.",
+  "description": "Panels are a compositional container component that allows you to wrap and theme groups of content.",
   "version": "0.0.0",
   "style": "index.scss",
   "scripts": {

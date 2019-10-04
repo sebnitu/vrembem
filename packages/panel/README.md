@@ -1,3 +1,3 @@
 # Panel
 
-Panels are flexible view container with auto-expand content section.
+Panels are a compositional container component that allows you to wrap and theme groups of content.

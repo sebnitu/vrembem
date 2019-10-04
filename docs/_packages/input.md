@@ -3,9 +3,9 @@ layout: article
 title: Input
 description: "The default component for user input."
 category: simple
-# usage:
-  # npm: "@vrembem/input"
-  # scss: "vrembem/input/all"
+usage:
+  npm: "@vrembem/input"
+  scss: "vrembem/input/index"
 ---
 
 {% include flag.html heading="input" %}

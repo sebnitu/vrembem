@@ -5,7 +5,7 @@ description: "A component for displaying glyphs that convey meaning through icon
 category: simple
 usage:
   npm: "@vrembem/icon"
-  scss: "vrembem/icon/all"
+  scss: "vrembem/icon/index"
 ---
 
 <div class="notice notice_state_info" data-dismissible>
