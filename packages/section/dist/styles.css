@@ -116,39 +116,5 @@
     padding: 12em 2em;
   }
 }
-.section_color_primary {
-  background: #00bcd4;
-}
-.section_color_primary .section__screen {
-  background: #00bcd4;
-}
-
-.section_color_secondary {
-  background: #607d8b;
-}
-.section_color_secondary .section__screen {
-  background: #607d8b;
-}
-
-.section_color_shade {
-  background: #f5f5f5;
-}
-.section_color_shade .section__screen {
-  background: #f5f5f5;
-}
-
-.section_color_dark {
-  background: #424242;
-}
-.section_color_dark .section__screen {
-  background: #424242;
-}
-
-.section_color_light {
-  background: #fff;
-}
-.section_color_light .section__screen {
-  background: #fff;
-}
 
 /*# sourceMappingURL=styles.css.map */

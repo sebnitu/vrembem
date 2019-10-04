@@ -3,7 +3,6 @@
   flex-wrap: wrap;
   margin-top: -2rem;
   margin-left: -2rem;
-  padding: 0;
 }
 .grid + .grid {
   margin-top: 0;
@@ -173,34 +172,6 @@
 .grid_gap_xl > .grid__item {
   padding-top: 4rem;
   padding-left: 4rem;
-}
-
-.grid_hori_start {
-  justify-content: flex-start;
-}
-
-.grid_hori_center {
-  justify-content: center;
-}
-
-.grid_hori_end {
-  justify-content: flex-end;
-}
-
-.grid_hori_between {
-  justify-content: space-between;
-}
-
-.grid_vert_start {
-  align-items: flex-start;
-}
-
-.grid_vert_center {
-  align-items: center;
-}
-
-.grid_vert_end {
-  align-items: flex-end;
 }
 
 /*# sourceMappingURL=styles.css.map */
