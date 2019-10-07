@@ -8,7 +8,7 @@ usage:
   scss: "@vrembem/base/index"
 ---
 
-{% include flag.html heading="heading" %}
+{% include flag.html heading="Heading" %}
 
 {% include demo_open.html class_parent="spacing" %}
 <p class="h1">Heading</p>
@@ -28,7 +28,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="link" %}
+{% include flag.html heading="Link" %}
 
 {% include demo_open.html %}
 <div class="spacing padding">
@@ -45,5 +45,90 @@ usage:
 <a href="#" class="link link_subtle">Link</a>
 <a href="#" class="link link_invert">Link</a>
 <a href="#" class="link link_invert-subtle">Link</a>
+```
+{% include demo_close.html %}
+
+{% include flag.html heading="List" %}
+
+{% include demo_open.html %}
+<div class="spacing_xl">
+  <ul class="list">
+    <li>One</li>
+    <li>Two
+      <ul>
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+      </ul>
+    </li>
+    <li>Three</li>
+  </ul>
+
+  <ol class="list">
+    <li>One</li>
+    <li>Two
+      <ol>
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+      </ol>
+    </li>
+    <li>Three</li>
+  </ol>
+</div>
+{% include demo_switch.html %}
+```html
+<ul class="list">
+  <li>One</li>
+  <li>Two
+    <ul>
+      <li>One</li>
+      <li>Two</li>
+      <li>Three</li>
+    </ul>
+  </li>
+  <li>Three</li>
+</ul>
+
+<ol class="list">
+  ...
+</ol>
+```
+{% include demo_close.html %}
+
+{% include flag.html heading="Separator" %}
+
+<div class="type" markdown="1">
+
+Typically used on an `<hr>` HTML element representing a thematic break between paragraph-level elements.
+
+</div>
+
+{% include demo_open.html %}
+<div class="spacing padding">
+  <hr class="sep sep_light">
+  <hr class="sep">
+  <hr class="sep sep_dark">
+  <hr class="sep sep_darker">
+</div>
+<div class="spacing padding radius background_night">
+  <hr class="sep sep_invert-light">
+  <hr class="sep sep_invert">
+  <hr class="sep sep_invert-dark">
+  <hr class="sep sep_invert-darker">
+</div>
+{% include demo_switch.html %}
+```html
+<!-- Separator -->
+<hr class="sep sep_light">
+<hr class="sep">
+<hr class="sep sep_dark">
+<hr class="sep sep_darker">
+
+<!-- Invert separator -->
+<hr class="sep sep_invert-light">
+<hr class="sep sep_invert">
+<hr class="sep sep_invert-dark">
+<hr class="sep sep_invert-darker">
 ```
 {% include demo_close.html %}

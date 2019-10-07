@@ -1,10 +1,11 @@
 @import "@vrembem/core/index";
+@import "./src/mixins";
 
 @import "./src/base";
 @import "./src/embed";
 @import "./src/heading";
-@import "./src/hr";
 @import "./src/link";
 @import "./src/list";
+@import "./src/separator";
 @import "./src/symbols";
 @import "./src/table";

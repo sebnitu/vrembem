@@ -108,3 +108,23 @@
     }
   }
 }
+
+@mixin separator() {
+  display: block;
+  height: 0;
+  border: none;
+  border-top: 1px solid $border-color;
+}
+
+@mixin list() {
+  margin-left: $list-spacing;
+
+  ul,
+  ol {
+    margin-left: $list-spacing;
+  }
+
+  li {
+    margin: $list-item-spacing 0;
+  }
+}

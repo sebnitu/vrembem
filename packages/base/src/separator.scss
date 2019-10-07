@@ -1,0 +1,31 @@
+.sep {
+  @include separator();
+}
+
+.sep_light {
+  border-color: $border-color-light;
+}
+
+.sep_dark {
+  border-color: $border-color-dark;
+}
+
+.sep_darker {
+  border-color: $border-color-darker;
+}
+
+.sep_invert {
+  border-color: $border-color-invert;
+}
+
+.sep_invert-light {
+  border-color: $border-color-invert-light;
+}
+
+.sep_invert-dark {
+  border-color: $border-color-invert-dark;
+}
+
+.sep_invert-darker {
+  border-color: $border-color-invert-darker;
+}

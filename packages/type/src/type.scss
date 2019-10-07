@@ -79,7 +79,7 @@
   }
 
   a:not(.button) {
-    @extend %link !optional;
+    @include link();
   }
 
   mark {

@@ -238,11 +238,19 @@ $link-invert-subtle-border-color-hover: currentColor !default;
 // Elements
 // ---
 
-// Mark
+// List
 
-$mark-color: $color !default;
-$mark-background: $yellow-200 !default;
-$mark-padding: null !default;
+$list-spacing: 1.5em !default;
+$list-item-spacing: 0.5em !default;
+
+// Tables
+
+$table-color: $color !default;
+$table-border-color: $border-color-light !default;
+$table-border: 1px solid $table-border-color !default;
+$table-background: $white !default;
+$table-background-alt: $shade-light !default;
+$table-padding: $padding !default;
 
 // Code
 
@@ -262,14 +270,11 @@ $blockquote-color: $color !default;
 $blockquote-background: $shade !default;
 $blockquote-border-radius: $border-radius !default;
 
-// Tables
+// Mark
 
-$table-color: $color !default;
-$table-border-color: $border-color-light !default;
-$table-border: 1px solid $table-border-color !default;
-$table-background: $white !default;
-$table-background-alt: $shade-light !default;
-$table-padding: $padding !default;
+$mark-color: $color !default;
+$mark-background: $yellow-200 !default;
+$mark-padding: null !default;
 
 // Breakpoints
 // ---

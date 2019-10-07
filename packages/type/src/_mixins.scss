@@ -12,7 +12,7 @@
     }
 
     a:not(.button) {
-      @include link;
+      @include link();
       @include link-modifier("invert");
     }
 

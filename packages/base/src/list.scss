@@ -1,26 +1,3 @@
 .list {
-  list-style: none;
-}
-
-.list__item {
-  display: relative;
-  padding: $padding;
-  border-top: $border-light;
-  background-clip: padding-box;
-
-  &:last-child {
-    border-bottom: $border-light;
-  }
-}
-
-.list_between {
-  .list__item {
-    &:first-child {
-      border-top: 0;
-    }
-
-    &:last-child {
-      border-bottom: 0;
-    }
-  }
+  @include list();
 }

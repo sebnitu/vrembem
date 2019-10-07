@@ -121,14 +121,14 @@ usage:
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="swatch-group">
-  <div class="swatch background_shade_light border border_color_subtle"></div>
+  <div class="swatch background_shade_light border border_color_light"></div>
   <div class="swatch background_shade_light border"></div>
   <div class="swatch background_shade_light border border_color_dark"></div>
   <div class="swatch background_shade_light border border_color_darker"></div>
 </div>
 {% include demo_switch.html class_gridItem="" %}
 ```html
-<div class="border border_color_subtle"></div>
+<div class="border border_color_light"></div>
 <div class="border"></div>
 <div class="border border_color_dark"></div>
 <div class="border border_color_darker"></div>

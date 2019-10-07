@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@vrembem/core": "^0.0.0",
+    "@vrembem/base": "^0.0.0",
     "@vrembem/type": "^0.0.0"
   }
 }

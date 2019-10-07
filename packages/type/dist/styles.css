@@ -92,6 +92,21 @@
 .type figcaption:last-child {
   margin-bottom: 0;
 }
+.type a:not(.button) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: #00bcd4;
+  text-decoration: none;
+}
+.type a:not(.button):hover {
+  border-bottom: 1px solid currentColor;
+  color: #0097a7;
+}
+.type a:not(.button):focus {
+  outline: currentColor dotted 1px;
+  outline-offset: 3px;
+  border-bottom: 1px solid currentColor;
+  color: #0097a7;
+}
 .type mark {
   background-color: #fff59d;
   color: #212121;
@@ -152,11 +167,24 @@
   color: #fff;
 }
 .type_invert a:not(.button) {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: #00bcd4;
+  text-decoration: none;
+  border-color: rgba(255, 255, 255, 0.5);
   color: #fff;
 }
+.type_invert a:not(.button):hover {
+  border-bottom: 1px solid currentColor;
+  color: #0097a7;
+}
+.type_invert a:not(.button):focus {
+  outline: currentColor dotted 1px;
+  outline-offset: 3px;
+  border-bottom: 1px solid currentColor;
+  color: #0097a7;
+}
 .type_invert a:not(.button):hover, .type_invert a:not(.button):focus {
-  border-bottom: 1px solid white;
+  border-color: currentColor;
   color: #fff;
 }
 .type_invert hr {
