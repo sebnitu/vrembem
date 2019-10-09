@@ -132,3 +132,70 @@ Typically used on an `<hr>` HTML element representing a thematic break between p
 <hr class="sep sep_invert-darker">
 ```
 {% include demo_close.html %}
+
+{% include flag.html heading="Table" %}
+
+<!--
+table_rowed
+table_bordered
+table_zebra
+table_hover
+-->
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="scroll-box">
+  <table class="table table_bordered table_zebra table_hover">
+    <caption>List of anarchists</caption>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>First</th>
+        <th>Last</th>
+        <th>Email</th>
+        <th>Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Noam</td>
+        <td>Chomsky</td>
+        <td>noam@chomsky.com</td>
+        <td>@chomsky</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Howard</td>
+        <td>Zinn</td>
+        <td>howard@zinn.com</td>
+        <td>@zinn</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Pierre-Joseph</td>
+        <td>Proudhon</td>
+        <td>pierre@proudhon.com</td>
+        <td>@proudhon</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>George</td>
+        <td>Orwell</td>
+        <td>george@orwell.com</td>
+        <td>@orwell</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Rudolf</td>
+        <td>Rocker</td>
+        <td>rudolf@rocker.com</td>
+        <td>@rocker</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% include demo_switch.html %}
+```html
+...
+```
+{% include demo_close.html %}

@@ -1,20 +1,44 @@
-%table {
+.table {
   width: 100%;
+  background-color: $table-background;
   text-align: left;
+
+  tr {
+    position: relative;
+    z-index: 1;
+    background-color: $table-row-background;
+  }
 
   th,
   td {
-    padding: 0.75em;
+    padding: $table-padding;
     vertical-align: top;
+  }
+
+  th {
+    font-weight: $table-header-font-weight;
+  }
+
+  caption {
+    padding: $table-padding;
+    caption-side: bottom;
+    color: $color-subtle;
+    text-align: left;
   }
 }
 
-.table,
-.type .table {
-  @extend %table;
+.table_rowed {
+  tr {
+    border-top: $table-border;
+  }
+
+  th,
+  td {
+    border: none;
+  }
 }
 
-%table_bordered {
+.table_bordered {
   overflow: auto;
   border-spacing: 0;
   border-collapse: collapse;
@@ -22,7 +46,6 @@
 
   tr {
     border-top: $table-border;
-    background-color: $table-background;
   }
 
   th {
@@ -36,89 +59,22 @@
   }
 }
 
-.table_bordered,
-.type .table_bordered {
-  @extend %table_bordered;
-}
-
-%table_rowed {
-  tr {
-    border-top: $table-border;
+.table_zebra {
+  th {
+    background-color: $table-row-background-alt;
   }
 
-  th,
-  td {
-    border: none;
-  }
-}
-
-.table_rowed,
-.type .table_rowed {
-  @extend %table_rowed;
-}
-
-%table_zebra {
   tr:nth-child(even) {
-    background-color: $table-background-alt;
-  }
-
-  thead tr {
-    background-color: $table-background-alt;
+    background-color: $table-row-background-alt;
   }
 }
 
-.table_zebra,
-.type .table_zebra {
-  @extend %table_zebra;
-}
+.table_hover {
+  tr:hover {
+    z-index: 2;
 
-%table_zebra_remove {
-  tr:nth-child(even) {
-    background-color: $table-background;
-  }
-
-  thead tr {
-    background-color: $table-background;
-  }
-}
-
-.table_zebra_remove,
-.type .table_zebra_remove {
-  @extend %table_zebra_remove;
-}
-
-@include media-max('md') {
-  %table_responsive {
-    display: block;
-    border-bottom: $table-border;
-    text-align: left;
-
-    > * {
-      display: block;
-    }
-
-    tr {
-      display: block;
-      padding: 0.5em;
-      border-top: $table-border;
-    }
-
-    th,
     td {
-      display: block;
-      width: 100%;
-      padding: 0.5em 0;
-      border: none;
-      border-top: 1px dashed $table-border-color;
-
-      &:first-child {
-        border-top: none;
-      }
+      background-color: $table-row-background-hover;
     }
   }
-}
-
-.table_responsive,
-.type .table_responsive {
-  @extend %table_responsive;
 }
