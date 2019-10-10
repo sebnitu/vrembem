@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/base",
-  "description": "Includes the base styles for a project.",
+  "description": "Includes useful default styles and base components for common HTML elements.",
   "version": "0.0.0",
   "style": "index.scss",
   "scripts": {

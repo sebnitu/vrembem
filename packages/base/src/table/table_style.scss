@@ -1,0 +1,16 @@
+@import "./variables";
+
+.table_style_rowed {
+  border-bottom: $table-border;
+
+  tr {
+    border-top: $table-border;
+  }
+}
+
+.table_style_bordered {
+  th,
+  td {
+    border: $table-border;
+  }
+}

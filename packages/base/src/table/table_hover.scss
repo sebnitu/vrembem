@@ -1,0 +1,15 @@
+@import "./variables";
+
+.table_hover {
+  tr {
+    position: relative;
+    z-index: 1;
+  }
+
+  tbody tr:hover {
+    z-index: 2;
+    background-color: $table-background-hover;
+    box-shadow: $table-box-shadow-hover;
+    color: $table-color-hover;
+  }
+}

@@ -8,8 +8,7 @@
 }
 
 .article__title {
-  @include heading(1);
-  font-weight: normal;
+  @include heading(1, true);
 }
 
 .article__body {

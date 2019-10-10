@@ -1,3 +1,3 @@
 # Base
 
-Includes the base styles for a project.
+Includes useful default styles and base components for common HTML elements.

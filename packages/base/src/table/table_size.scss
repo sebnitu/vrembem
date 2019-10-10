@@ -1,0 +1,17 @@
+@import "./variables";
+
+.table_size_sm {
+  th,
+  td,
+  caption {
+    padding: $table-padding-sm;
+  }
+}
+
+.table_size_lg {
+  th,
+  td,
+  caption {
+    padding: $table-padding-lg;
+  }
+}

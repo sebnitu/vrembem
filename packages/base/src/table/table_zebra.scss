@@ -1,0 +1,11 @@
+@import "./variables";
+
+.table_zebra {
+  thead tr {
+    background-color: $table-background-zebra;
+  }
+
+  tr:nth-child(even) {
+    background-color: $table-background-zebra;
+  }
+}

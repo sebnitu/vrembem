@@ -9,10 +9,9 @@ title: "Home"
     <div class="cover__inner">
       <h1 class="cover__title">{{ site.title }}</h1>
       {%- if site.description -%}
-        <p class="cover__desc">{{ site.description }}</p>
-        <p class="cover__desc">There are currently {{ site.packages | size }} available components.</p>
+        <p class="cover__desc">{{ site.description }} Currently {{ site.packages | size }} available components.</p>
       {%- endif -%}
-      <div class="grid grid_auto grid_vert_center grid_gap_sm">
+      <div class="grid grid_auto grid_gap_sm flex_align_center">
         <div class="grid__item">
           <a href="http://github.com/{{ site.repository }}" class="button button_color_primary" target="_blank">
             {% include icon.html icon="github" %}

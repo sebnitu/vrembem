@@ -68,7 +68,7 @@ h6 {
 }
 
 /**
- * Better default styles for images
+ * Better default styles for images.
  */
 img {
   max-width: 100%;
@@ -115,10 +115,16 @@ small {
 }
 
 /**
- * Table styles
+ * Better default table styles.
  */
 table {
   border-collapse: collapse;
+}
+
+caption {
+  caption-side: bottom;
+  color: #9e9e9e;
+  text-align: left;
 }
 
 /**
@@ -390,63 +396,68 @@ input::-moz-placeholder {
   width: 100%;
   text-align: left;
 }
-.table tr {
-  position: relative;
-  z-index: 1;
-}
 .table th,
-.table td {
+.table td,
+.table caption {
   padding: 0.5em 0.75em;
   vertical-align: top;
 }
 .table th {
   font-weight: 700;
 }
-.table caption {
-  padding: 0.5em 0.75em;
-  caption-side: bottom;
-  color: #9e9e9e;
-  text-align: left;
+.col_auto {
+  width: 0;
+  white-space: nowrap;
 }
 
-.table_rowed tr {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+.table_ellipsis {
+  table-layout: fixed;
 }
-.table_rowed th,
-.table_rowed td {
-  border: none;
+.table_ellipsis th,
+.table_ellipsis td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.table_bordered {
-  overflow: auto;
-  border-spacing: 0;
-  border-collapse: collapse;
+.table_hover tr {
+  position: relative;
+  z-index: 1;
+}
+.table_hover tbody tr:hover {
+  z-index: 2;
+  background-color: rgba(255, 235, 59, 0.3);
+}
+
+.table_size_sm th,
+.table_size_sm td,
+.table_size_sm caption {
+  padding: 0.25em 0.5em;
+}
+
+.table_size_lg th,
+.table_size_lg td,
+.table_size_lg caption {
+  padding: 0.75em 1.75em;
+}
+
+.table_style_rowed {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
-.table_bordered tr {
+.table_style_rowed tr {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
-.table_bordered th {
-  padding: 0.5em 0.75em;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-.table_bordered td {
-  padding: 0.5em 0.75em;
+
+.table_style_bordered th,
+.table_style_bordered td {
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.table_zebra th {
-  background-color: rgba(0, 0, 0, 0.05);
+.table_zebra thead tr {
+  background-color: rgba(0, 0, 0, 0.03);
 }
 .table_zebra tr:nth-child(even) {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-.table_hover tr:hover {
-  z-index: 2;
-}
-.table_hover tr:hover td {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(0, 0, 0, 0.03);
 }
 
 .breadcrumb {
@@ -6176,8 +6187,9 @@ input::-moz-placeholder {
 }
 
 .article__title {
+  color: inherit;
+  font-weight: 600;
   font-size: 2em;
-  font-weight: normal;
 }
 @media (min-width: 760px) {
   .article__title {
@@ -6362,7 +6374,6 @@ input::-moz-placeholder {
 .cover__title {
   margin-bottom: 1rem;
   font-size: 2.5em;
-  font-style: italic;
   font-weight: 600;
   line-height: 1.325em;
 }

@@ -243,22 +243,6 @@ $link-invert-subtle-border-color-hover: currentColor !default;
 $list-spacing: 1.5em !default;
 $list-item-spacing: 0.5em !default;
 
-// Tables
-
-$table-padding: $padding !default;
-$table-header-font-weight: font-weight("bold") !default;
-
-$table-border-color: $border-color !default;
-$table-border: 1px solid $table-border-color !default;
-
-$table-background: null !default;
-$table-row-background: null !default;
-$table-row-background-alt: rgba($black, 0.05) !default;
-$table-row-background-hover: rgba($black, 0.05) !default;
-
-$table-row-box-shadow: null !default;
-$table-row-box-shadow-hover: null !default;
-
 // Code
 
 $code-color: $pink !default;

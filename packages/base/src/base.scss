@@ -47,7 +47,7 @@ h6 {
 }
 
 /**
- * Better default styles for images
+ * Better default styles for images.
  */
 
 img {
@@ -99,11 +99,17 @@ small {
 }
 
 /**
- * Table styles
+ * Better default table styles.
  */
 
 table {
   border-collapse: collapse;
+}
+
+caption {
+  caption-side: bottom;
+  color: $color-subtle;
+  text-align: left;
 }
 
 /**
