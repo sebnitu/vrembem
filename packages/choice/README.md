@@ -1,3 +1,3 @@
 # Choice
 
-A component for form radio and checkbox patterns.
+A component for form checkbox and radio button patterns.

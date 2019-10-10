@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/choice",
-  "description": "A component for form radio and checkbox patterns.",
+  "description": "A component for form checkbox and radio button patterns.",
   "version": "0.0.0",
   "main": "dist/scripts.cjs.js",
   "module": "index.js",

@@ -1,7 +1,7 @@
 ---
 layout: article
 title: Choice
-description: "A wrapper component for radio button and checkbox with labels pattern."
+description: "A component for form checkbox and radio button patterns."
 category: simple
 usage:
   npm: "@vrembem/choice"
