@@ -1,14 +1,14 @@
-@import "@vrembem/core/index";
+@import "./variables";
 
-.embed {
+.#{$class-embed} {
   position: relative;
   display: block;
   height: 0;
-  padding: 0 0 aspect-ratio(16, 9);
+  padding: 0 0 $embed-ratio;
   overflow: hidden;
 }
 
-.embed__item {
+.#{$class-embed}__item {
   position: absolute;
   top: 0;
   left: 0;
@@ -17,16 +17,4 @@
   margin: 0;
   padding: 0;
   border: none;
-}
-
-.embed_ratio_16x9 {
-  padding-bottom: aspect-ratio(16, 9);
-}
-
-.embed_ratio_4x3 {
-  padding-bottom: aspect-ratio(4, 3);
-}
-
-.embed_ratio_3x2 {
-  padding-bottom: aspect-ratio(3, 2);
 }

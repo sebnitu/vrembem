@@ -1,4 +1,5 @@
 @import "@vrembem/core/index";
+@import "./variables";
 
 @mixin heading-base() {
   color: $heading-color;

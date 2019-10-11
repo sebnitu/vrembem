@@ -1,4 +1,13 @@
-@import "./palette";
+// Breakpoints
+// ---
+
+$breakpoints: (
+  "xs": 480px,
+  "sm": 620px,
+  "md": 760px,
+  "lg": 990px,
+  "xl": 1380px
+) !default;
 
 // Colors
 // ---
@@ -53,63 +62,42 @@ $danger-darker: $red-900 !default;
 // Global properties
 // ---
 
-// Box sizing
-
-$box-sizing: border-box !default;
-
-// Body
-
-$body-background: null !default;
-
 // Height
-
 $height: 2.5rem !default;
 $height-sm: 2rem !default;
 $height-lg: 3rem !default;
 
 // Padding
-
 $padding: 0.5em 0.75em !default;
 $padding-sm: 0.25em 0.5em !default;
 $padding-lg: 0.75em 1.75em !default;
 
-// Transition
-// ---
-// property | duration | timing-function | delay
-
-$transition-duration: 0.3s !default;
-$transition-duration-short: 0.15s !default;
-$transition-duration-long: 0.6s !default;
-$transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !default;
-$transition-timing-function-deceleration: cubic-bezier(0, 0, 0.2, 1) !default;
-$transition-timing-function-acceleration: cubic-bezier(0.4, 0, 1, 1) !default;
-$transition-timing-function-sharp: cubic-bezier(0.4, 0, 0.6, 1) !default;
-
 // Border
 // ---
 
+// Border styles
 $border-width: 1px !default;
 $border-style: solid !default;
 
 // Border color
-
 $border-color-light: rgba($black, 0.05) !default;
 $border-color: rgba($black, 0.1) !default;
 $border-color-dark: rgba($black, 0.2) !default;
 $border-color-darker: rgba($black, 0.5) !default;
 
+// Compiled border
 $border: $border-width $border-style $border-color !default;
 $border-light: $border-width $border-style $border-color-light !default;
 $border-dark: $border-width $border-style $border-color-dark !default;
 $border-darker: $border-width $border-style $border-color-darker !default;
 
 // Invert
-
 $border-color-invert-light: rgba($white, 0.05) !default;
 $border-color-invert: rgba($white, 0.1) !default;
 $border-color-invert-dark: rgba($white, 0.2) !default;
 $border-color-invert-darker: rgba($white, 0.5) !default;
 
+// Cimpiled invert border
 $border-invert: $border-width $border-style $border-color-invert !default;
 $border-invert-light: $border-width $border-style $border-color-invert-light !default;
 $border-invert-dark: $border-width $border-style $border-color-invert-dark !default;
@@ -120,6 +108,70 @@ $border-invert-darker: $border-width $border-style $border-color-invert-darker !
 
 $border-radius: 4px !default;
 $border-radius-circle: 9999px !default;
+
+// Typography
+// ---
+
+$font-family-sans: BlinkMacSystemFont, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif !default;
+$font-family-serif: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif !default;
+$font-family-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+$font-family: $font-family-sans !default;
+
+// Front size
+$font-size: 16px !default;
+$font-size-sm: 0.875em !default; // 14px
+$font-size-lg: 1.125em !default;  // 18px
+
+// Line height
+$line-height: 1.5 !default;
+
+// Color
+$color: $night-dark !default;
+$color-subtle: $gray-500 !default;
+
+// Color invert
+$color-invert: $white !default;
+$color-invert-subtle: rgba($white, 0.4) !default;
+
+// Heading
+// ---
+
+$heading-font-family: null !default;
+$heading-line-height: null !default;
+$heading-color: inherit !default;
+$heading-color-invert: null !default;
+$heading-font-weight: font-weight("semi-bold") !default;
+
+// Link
+// ---
+
+$link-text-decoration: none !default;
+$link-text-decoration-hover: null !default;
+$link-transition: null !default;
+
+// Color
+$link-color: $primary !default;
+$link-color-hover: $primary-dark !default;
+$link-border: 1px solid $border-color !default;
+$link-border-hover: 1px solid currentColor !default;
+
+// Subtle
+$link-subtle-color: $color-subtle !default;
+$link-subtle-color-hover: $link-color-hover !default;
+$link-subtle-border-color: $border-color !default;
+$link-subtle-border-color-hover: currentColor !default;
+
+// Invert
+$link-invert-color: $white !default;
+$link-invert-color-hover: $white !default;
+$link-invert-border-color: rgba($white, 0.5) !default;
+$link-invert-border-color-hover: currentColor !default;
+
+// Invert subtle
+$link-invert-subtle-color: $color-invert-subtle !default;
+$link-invert-subtle-color-hover: $color-invert !default;
+$link-invert-subtle-border-color: rgba($white, 0.5) !default;
+$link-invert-subtle-border-color-hover: currentColor !default;
 
 // Box shadow
 // ---
@@ -165,129 +217,17 @@ $box-shadow-24dp:
 
 $box-shadow: $box-shadow-4dp !default;
 
-// Font families
+// Transition
 // ---
+// property | duration | timing-function | delay
 
-$font-family-sans: BlinkMacSystemFont, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif !default;
-$font-family-serif: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif !default;
-$font-family-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
-$font-family: $font-family-sans !default;
-
-// Front size
-// ---
-
-$font-size: 16px !default;
-$font-size-sm: 0.875em !default; // 14px
-$font-size-lg: 1.125em !default;  // 18px
-
-// Line height
-
-$line-height: 1.5 !default;
-
-// Color
-// ---
-
-$color: $night-dark !default;
-$color-subtle: $gray-500 !default;
-
-// Invert
-
-$color-invert: $white !default;
-$color-invert-subtle: rgba($white, 0.4) !default;
-
-// Headings
-// ---
-
-$heading-font-family: null !default;
-$heading-line-height: null !default;
-$heading-color: inherit !default;
-$heading-color-invert: null !default;
-$heading-font-weight: font-weight("semi-bold") !default;
-
-// Link
-// ---
-
-$link-color: $primary !default;
-$link-color-hover: $primary-dark !default;
-$link-border: 1px solid $border-color !default;
-$link-border-hover: 1px solid currentColor !default;
-
-$link-text-decoration: none !default;
-$link-text-decoration-hover: null !default;
-$link-transition: null !default;
-
-// Subtle
-
-$link-subtle-color: $color-subtle !default;
-$link-subtle-color-hover: $link-color-hover !default;
-$link-subtle-border-color: $border-color !default;
-$link-subtle-border-color-hover: currentColor !default;
-
-// Invert
-
-$link-invert-color: $white !default;
-$link-invert-color-hover: $white !default;
-$link-invert-border-color: rgba($white, 0.5) !default;
-$link-invert-border-color-hover: currentColor !default;
-
-// Invert subtle
-
-$link-invert-subtle-color: $color-invert-subtle !default;
-$link-invert-subtle-color-hover: $color-invert !default;
-$link-invert-subtle-border-color: rgba($white, 0.5) !default;
-$link-invert-subtle-border-color-hover: currentColor !default;
-
-// Elements
-// ---
-
-// List
-
-$list-spacing: 1.5em !default;
-$list-item-spacing: 0.5em !default;
-
-// Code
-
-$code-color: $pink !default;
-$code-background: null !default;
-$code-padding: null !default;
-
-// Pre
-
-$pre-color: $color !default;
-$pre-background: $shade !default;
-$pre-border-radius: $border-radius !default;
-
-// Blockquotes
-
-$blockquote-color: $color !default;
-$blockquote-background: $shade !default;
-$blockquote-border-radius: $border-radius !default;
-
-// Mark
-
-$mark-color: $color !default;
-$mark-background: $yellow-200 !default;
-$mark-padding: null !default;
-
-// Type
-// ---
-
-$type-font-family: null !default;
-$type-font-size: null !default;
-$type-line-height: null !default;
-$type-spacing: 1rem !default;
-$type-hr-margin: 2rem 0 !default;
-
-// Breakpoints
-// ---
-
-$breakpoints: (
-  "xs": 480px,
-  "sm": 620px,
-  "md": 760px,
-  "lg": 990px,
-  "xl": 1380px
-) !default;
+$transition-duration: 0.3s !default;
+$transition-duration-short: 0.15s !default;
+$transition-duration-long: 0.6s !default;
+$transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !default;
+$transition-timing-function-deceleration: cubic-bezier(0, 0, 0.2, 1) !default;
+$transition-timing-function-acceleration: cubic-bezier(0.4, 0, 1, 1) !default;
+$transition-timing-function-sharp: cubic-bezier(0.4, 0, 0.6, 1) !default;
 
 // Miscellaneous
 // ---

@@ -213,18 +213,6 @@ input::-moz-placeholder {
   border: none;
 }
 
-.embed_ratio_16x9 {
-  padding-bottom: 56.25%;
-}
-
-.embed_ratio_4x3 {
-  padding-bottom: 75%;
-}
-
-.embed_ratio_3x2 {
-  padding-bottom: 66.6666666667%;
-}
-
 .h1,
 .h2,
 .h3,

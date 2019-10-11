@@ -16,5 +16,8 @@
     "type": "git",
     "url": "git+https://github.com/sebnitu/vrembem.git",
     "directory": "packages/level"
+  },
+  "dependencies": {
+    "@vrembem/core": "^0.0.0"
   }
 }

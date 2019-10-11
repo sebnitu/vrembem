@@ -1,1 +1,38 @@
+@import "@vrembem/core/index";
+
+$class-embed: "embed" !default;
 $class-symbols: "symbols" !default;
+
+$box-sizing: border-box !default;
+$font-size: $font-size !default;
+$line-height: $line-height !default;
+$color: $color !default;
+$font-family: $font-family !default;
+
+$body-background: null !default;
+$embed-ratio: aspect-ratio(16, 9) !default;
+
+$list-spacing: 1.5em !default;
+$list-item-spacing: 0.5em !default;
+
+$code-color: $pink !default;
+$code-background: null !default;
+$code-padding: null !default;
+
+$pre-color: $color !default;
+$pre-background: $shade !default;
+$pre-border-radius: $border-radius !default;
+
+$blockquote-color: $color !default;
+$blockquote-background: $shade !default;
+$blockquote-border-radius: $border-radius !default;
+
+$mark-color: $color !default;
+$mark-background: $yellow-200 !default;
+$mark-padding: null !default;
+
+$type-font-family: null !default;
+$type-font-size: null !default;
+$type-line-height: null !default;
+$type-spacing: 1rem !default;
+$type-hr-margin: 2rem 0 !default;
