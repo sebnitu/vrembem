@@ -1,0 +1,7 @@
+.type {
+  @include type();
+}
+
+.type_invert {
+  @include type-invert();
+}

@@ -53,7 +53,6 @@
     "@vrembem/todo": "^0.0.0",
     "@vrembem/toggle": "^0.0.0",
     "@vrembem/tooltip": "^0.0.0",
-    "@vrembem/type": "^0.0.0",
     "@vrembem/utility": "^0.0.0"
   }
 }

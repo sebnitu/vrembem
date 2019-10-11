@@ -1,7 +1,0 @@
-@import "@vrembem/base/src/mixins";
-@import "./variables";
-@import "./mixins";
-
-.type_invert {
-  @include type-invert();
-}

@@ -367,6 +367,195 @@ input::-moz-placeholder {
   overflow: hidden !important;
 }
 
+.type::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.type h1,
+.type h2,
+.type h3,
+.type h4,
+.type h5,
+.type h6 {
+  color: inherit;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+.type h1 {
+  font-size: 2em;
+}
+@media (min-width: 760px) {
+  .type h1 {
+    font-size: 2.5em;
+  }
+}
+.type h2 {
+  font-size: 1.75em;
+}
+@media (min-width: 760px) {
+  .type h2 {
+    font-size: 2em;
+  }
+}
+.type h3 {
+  font-size: 1.5em;
+}
+@media (min-width: 760px) {
+  .type h3 {
+    font-size: 1.75em;
+  }
+}
+.type h4 {
+  font-size: 1.25em;
+}
+@media (min-width: 760px) {
+  .type h4 {
+    font-size: 1.5em;
+  }
+}
+.type h5 {
+  font-size: 1em;
+}
+@media (min-width: 760px) {
+  .type h5 {
+    font-size: 1.25em;
+  }
+}
+.type h6 {
+  font-size: 1em;
+}
+@media (min-width: 760px) {
+  .type h6 {
+    font-size: 1.25em;
+  }
+}
+.type p {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.type a:not(.button) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: #00bcd4;
+  text-decoration: none;
+}
+.type a:not(.button):hover {
+  border-bottom: 1px solid currentColor;
+  color: #0097a7;
+}
+.type a:not(.button):focus {
+  outline: currentColor dotted 1px;
+  outline-offset: 3px;
+  border-bottom: 1px solid currentColor;
+  color: #0097a7;
+}
+.type hr {
+  display: block;
+  height: 0;
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 2rem 0;
+}
+.type ul,
+.type ol {
+  margin-left: 1.5em;
+}
+.type ul ul,
+.type ul ol,
+.type ol ul,
+.type ol ol {
+  margin-left: 1.5em;
+}
+.type ul li,
+.type ol li {
+  margin: 0.5em 0;
+}
+.type blockquote {
+  margin: 1.5rem 0;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  background: #f5f5f5;
+  color: #212121;
+}
+.type figure {
+  padding: 1em;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.type figure img {
+  width: 100%;
+  height: auto;
+}
+.type figcaption {
+  margin: 1em 0.5em;
+  color: #9e9e9e;
+  font-size: 0.875em;
+  font-style: italic;
+  text-align: center;
+}
+.type figcaption:first-child {
+  margin-top: 0;
+}
+.type figcaption:last-child {
+  margin-bottom: 0;
+}
+.type mark {
+  background-color: #fff59d;
+  color: #212121;
+}
+.type code {
+  color: #e91e63;
+  font-size: 0.9em;
+  word-break: break-word;
+}
+.type pre {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  overflow: auto;
+  border-radius: 4px;
+  background: #f5f5f5;
+}
+.type pre code {
+  padding: 0;
+  background: none;
+  color: inherit;
+  font-size: 1em;
+}
+.type > *:first-child {
+  margin-top: 0;
+}
+.type > *:last-child {
+  margin-bottom: 0;
+}
+
+.type_invert {
+  color: #fff;
+}
+.type_invert a:not(.button) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: #00bcd4;
+  text-decoration: none;
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
+}
+.type_invert a:not(.button):hover {
+  border-bottom: 1px solid currentColor;
+  color: #0097a7;
+}
+.type_invert a:not(.button):focus {
+  outline: currentColor dotted 1px;
+  outline-offset: 3px;
+  border-bottom: 1px solid currentColor;
+  color: #0097a7;
+}
+.type_invert a:not(.button):hover, .type_invert a:not(.button):focus {
+  border-color: currentColor;
+  color: #fff;
+}
+.type_invert hr {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
 .table {
   width: 100%;
   text-align: left;
