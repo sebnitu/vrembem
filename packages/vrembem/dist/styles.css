@@ -2373,6 +2373,7 @@ input::-moz-placeholder {
 }
 
 .media__image {
+  flex: 0 0 auto;
   max-width: 30%;
   border-radius: 4px;
 }
