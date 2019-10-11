@@ -9,8 +9,7 @@
 }
 
 .demo__code {
-  overflow: auto;
-  background: $pre-background;
+  @include pre();
 }
 
 .demo__render {
@@ -20,10 +19,10 @@
 }
 
 .demo__render.invert,
-.demo__group.invert,
-.demo__code {
+.demo__group.invert {
   padding: 1em;
   border-radius: $border-radius;
+  background: $night;
 }
 
 .grid__item > .demo__render,
@@ -34,9 +33,4 @@
 
 .demo__group + .demo__group {
   margin-top: 1em;
-}
-
-.demo__render.invert,
-.demo__group.invert {
-  background: $night;
 }

@@ -1,15 +1,18 @@
 ---
 layout: article
 title: "Examples"
-description: "A list of all the examples..."
+description: "..."
 ---
 
+{% assign size = site.examples | size %}
+{% if size != 0 %}
 <div class="type">
-  <ol class="list">
+  <ol>
     {% for item in site.examples %}
-      <li class="list__item">
-        <a href="{{ item.url }}" class="list__link">{{ item.title }}</a>
+      <li>
+        <a href="{{ item.url }}">{{ item.title }}</a>
       </li>
     {% endfor %}
   </ol>
 </div>
+{% endif %}

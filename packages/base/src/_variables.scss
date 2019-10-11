@@ -1,38 +1,46 @@
 @import "@vrembem/core/index";
 
 $class-embed: "embed" !default;
+$class-separator: "sep" !default;
 $class-symbols: "symbols" !default;
+$class-type: "type" !default;
 
 $box-sizing: border-box !default;
 $font-size: $font-size !default;
 $line-height: $line-height !default;
 $color: $color !default;
 $font-family: $font-family !default;
-
 $body-background: null !default;
+
 $embed-ratio: aspect-ratio(16, 9) !default;
 
 $list-spacing: 1.5em !default;
 $list-item-spacing: 0.5em !default;
 
-$code-color: $pink !default;
-$code-background: null !default;
-$code-padding: null !default;
-
-$pre-color: $color !default;
-$pre-background: $shade !default;
-$pre-border-radius: $border-radius !default;
-
+$blockquote-padding: 1.5em !default;
+$blockquote-spacing: 1em !default;
 $blockquote-color: $color !default;
-$blockquote-background: $shade !default;
-$blockquote-border-radius: $border-radius !default;
+$blockquote-background: null !default;
+$blockquote-border: $border-light !default;
+$blockquote-border-radius: null !default;
+$blockquote-accent-width: 4px !default;
+$blockquote-accent-offset: -1px !default;
+$blockquote-accent-color: $primary !default;
 
-$mark-color: $color !default;
-$mark-background: $yellow-200 !default;
-$mark-padding: null !default;
+$code-padding: null !default;
+$code-background: null !default;
+$code-border: null !default;
+$code-color: $pink !default;
+
+$pre-padding: 1em !default;
+$pre-background: $shade !default;
+$pre-border: null !default;
+$pre-border-radius: $border-radius !default;
+$pre-color: inherit !default;
 
 $type-font-family: null !default;
 $type-font-size: null !default;
 $type-line-height: null !default;
 $type-spacing: 1rem !default;
+$type-spacing-lg: 1.5rem !default;
 $type-hr-margin: 2rem 0 !default;

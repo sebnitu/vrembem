@@ -144,3 +144,148 @@ Typically used on an `<hr>` HTML element representing a thematic break between p
 </div>
 ```
 {% include demo_close.html %}
+
+{% include flag.html heading="blockquote" %}
+
+{% include demo_open.html class_parent="spacing" %}
+<blockquote class="blockquote" cite="https://ideapod.com/35-noam-chomsky-quotes-will-make-question-everything-society/">
+  <p>"All over the place, from the popular culture to the propaganda system, there is constant pressure to make people feel that they are helpless, that the only role they can have is to ratify decisions and to consume."</p>
+  <footer>Noam Chomsky, <cite>On Keeping the Population Passive</cite></footer>
+</blockquote>
+{% include demo_switch.html %}
+```html
+<blockquote class="blockquote" cite="...">
+  <p>...</p>
+  <footer>
+    ...,
+    <cite>...</cite>
+  </footer>
+</blockquote>
+```
+{% include demo_close.html %}
+
+{% include flag.html heading="code" %}
+
+{% include demo_open.html class_parent="spacing" %}
+<code class="code">a = 17</code>
+{% include demo_switch.html %}
+```html
+<code class="code">a = 17</code>
+```
+{% include demo_close.html %}
+
+{% include flag.html heading="pre" %}
+
+{% include demo_open.html class_parent="spacing" %}
+<pre class="pre"><code>a = 17
+print "a = #{a}";</code></pre>
+{% include demo_switch.html %}
+```html
+<pre class="pre"><code>...</code></pre>
+```
+{% include demo_close.html %}
+
+{% include flag.html heading="type" %}
+
+<div class="type" markdown="1">
+The `type` component is a quick way to apply all base styles to components directy based on their respective HTML elements. Base component modifiers will override a parent `type` component when explicitly set. Other components will run into style conflicts unless written with `type` inheritance in mind.
+</div>
+
+{% include demo_open.html class_parent="spacing" %}
+<div class="type">
+
+  <h1>Heading</h1>
+  <h2>Heading</h2>
+  <h3>Heading</h3>
+  <h4>Heading</h4>
+  <h5>Heading</h5>
+  <h6>Heading</h6>
+
+  <p>This is a paragraph <code>$code-example</code> and some other things. <a href="#">Click here</a> for a link example. You can still apply <a class="link_subtle" href="#">link modifiers</a> inside of a type component.</p>
+
+  <hr>
+
+  <ul>
+    <li>One</li>
+    <li>Two
+      <ul>
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+      </ul>
+    </li>
+    <li>Three</li>
+  </ul>
+
+  <ol>
+    <li>One</li>
+    <li>Two
+      <ol>
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+      </ol>
+    </li>
+    <li>Three</li>
+  </ol>
+
+  <blockquote cite="https://ideapod.com/35-noam-chomsky-quotes-will-make-question-everything-society/">
+    <p>"History shows that, more often than not, loss of sovereignty leads to liberalization imposed in the interests of the powerful."</p>
+    <footer>Noam Chomsky, <cite>On Authority</cite></footer>
+  </blockquote>
+
+<pre class="pre"><code>a = 17
+print "a = #{a}";</code></pre>
+
+</div>
+{% include demo_switch.html %}
+```html
+<div class="type">
+
+  <h1>Heading</h1>
+  <h2>Heading</h2>
+  <h3>Heading</h3>
+  <h4>Heading</h4>
+  <h5>Heading</h5>
+  <h6>Heading</h6>
+
+  <p>This is a paragraph <code>$code-example</code> and some other things. <a href="#">Click here</a> for a link example. You can still apply <a class="link_subtle" href="#">link modifiers</a> inside of a type component.</p>
+
+  <hr>
+
+  <ul>
+    <li>One</li>
+    <li>Two
+      <ul>
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+      </ul>
+    </li>
+    <li>Three</li>
+  </ul>
+
+  <ol>
+    <li>One</li>
+    <li>Two
+      <ol>
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+      </ol>
+    </li>
+    <li>Three</li>
+  </ol>
+
+  <blockquote cite="...">
+    <p>"..."</p>
+    <footer>..., <cite>...</cite></footer>
+  </blockquote>
+
+  <pre class="pre"><code>
+    ...
+  </code></pre>
+
+</div>
+```
+{% include demo_close.html %}

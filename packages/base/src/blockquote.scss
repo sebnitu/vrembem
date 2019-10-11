@@ -1,0 +1,5 @@
+@import "./mixins";
+
+.blockquote {
+  @include blockquote();
+}

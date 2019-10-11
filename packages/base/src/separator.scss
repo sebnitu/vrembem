@@ -1,34 +1,33 @@
-@import "./variables";
 @import "./mixins";
 
-.sep {
+.#{$class-separator} {
   @include separator();
 }
 
-.sep_light {
-  border-color: $border-color-light;
+.#{$class-separator}_light {
+  border-color: $border-color-light !important;
 }
 
-.sep_dark {
-  border-color: $border-color-dark;
+.#{$class-separator}_dark {
+  border-color: $border-color-dark !important;
 }
 
-.sep_darker {
-  border-color: $border-color-darker;
+.#{$class-separator}_darker {
+  border-color: $border-color-darker !important;
 }
 
-.sep_invert {
-  border-color: $border-color-invert;
+.#{$class-separator}_invert {
+  border-color: $border-color-invert !important;
 }
 
-.sep_invert-light {
-  border-color: $border-color-invert-light;
+.#{$class-separator}_invert-light {
+  border-color: $border-color-invert-light !important;
 }
 
-.sep_invert-dark {
-  border-color: $border-color-invert-dark;
+.#{$class-separator}_invert-dark {
+  border-color: $border-color-invert-dark !important;
 }
 
-.sep_invert-darker {
-  border-color: $border-color-invert-darker;
+.#{$class-separator}_invert-darker {
+  border-color: $border-color-invert-darker !important;
 }

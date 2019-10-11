@@ -8,7 +8,8 @@
 }
 
 .article__title {
-  @include heading(1, true);
+  @include heading-base();
+  @include heading(1);
 }
 
 .article__body {
