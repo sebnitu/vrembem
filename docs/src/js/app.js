@@ -102,18 +102,18 @@ if (document.getElementById("listjs")) {
     if (value) {
       addClass(filter, "is-active")
       addClass(search, "is-active")
-      removeClass(search_clear, "dismiss")
+      removeClass(search_clear, "display_none")
     } else {
       removeClass(filter, "is-active")
       removeClass(search, "is-active")
-      addClass(search_clear, "dismiss")
+      addClass(search_clear, "display_none")
     }
 
     // Toggle notice depending on the number of visible items
     if (list.visibleItems.length > 0) {
-      addClass(notice_empty, "dismiss")
+      addClass(notice_empty, "display_none")
     } else {
-      removeClass(notice_empty, "dismiss")
+      removeClass(notice_empty, "display_none")
     }
   })
 

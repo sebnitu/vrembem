@@ -2291,17 +2291,17 @@
       if (value) {
         addClass(filter$1, "is-active");
         addClass(search$1, "is-active");
-        removeClass(search_clear, "dismiss");
+        removeClass(search_clear, "display_none");
       } else {
         removeClass(filter$1, "is-active");
         removeClass(search$1, "is-active");
-        addClass(search_clear, "dismiss");
+        addClass(search_clear, "display_none");
       }
 
       if (list.visibleItems.length > 0) {
-        addClass(notice_empty, "dismiss");
+        addClass(notice_empty, "display_none");
       } else {
-        removeClass(notice_empty, "dismiss");
+        removeClass(notice_empty, "display_none");
       }
     });
     document.addEventListener("click", function () {
