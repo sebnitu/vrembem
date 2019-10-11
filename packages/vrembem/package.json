@@ -30,7 +30,6 @@
     "@vrembem/button-group": "^0.0.0",
     "@vrembem/card": "^0.0.0",
     "@vrembem/checkbox": "^0.0.0",
-    "@vrembem/choice": "^0.0.0",
     "@vrembem/container": "^0.0.0",
     "@vrembem/core": "^0.0.0",
     "@vrembem/dialog": "^0.0.0",
@@ -50,8 +49,6 @@
     "@vrembem/radio": "^0.0.0",
     "@vrembem/section": "^0.0.0",
     "@vrembem/span": "^0.0.0",
-    "@vrembem/todo": "^0.0.0",
-    "@vrembem/toggle": "^0.0.0",
     "@vrembem/tooltip": "^0.0.0",
     "@vrembem/utility": "^0.0.0"
   }
