@@ -13,7 +13,7 @@ usage:
 {% include demo_open.html %}
 <div class="notice">
   <div class="notice__body">
-    <p>Notice content goes here... <a href="#">Test</a></p>
+    <p>Notice content goes here...</p>
   </div>
 </div>
 {% include demo_switch.html %}
