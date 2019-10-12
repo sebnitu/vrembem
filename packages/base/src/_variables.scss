@@ -4,6 +4,7 @@
 // ---
 
 $class-embed: "embed" !default;
+$class-scroll-box: "scroll-box" !default;
 $class-separator: "sep" !default;
 $class-symbols: "symbols" !default;
 $class-type: "type" !default;
@@ -85,6 +86,7 @@ $blockquote-accent-color: $primary !default;
 $code-padding: null !default;
 $code-background: null !default;
 $code-border: null !default;
+$code-border-radius: $border-radius !default;
 $code-color: $pink !default;
 $code-color-invert: $pink-300 !default;
 

@@ -91,13 +91,13 @@ $border-light: $border-width $border-style $border-color-light !default;
 $border-dark: $border-width $border-style $border-color-dark !default;
 $border-darker: $border-width $border-style $border-color-darker !default;
 
-// Invert
+// Border color invert
 $border-color-invert-light: rgba($white, 0.05) !default;
 $border-color-invert: rgba($white, 0.1) !default;
 $border-color-invert-dark: rgba($white, 0.2) !default;
 $border-color-invert-darker: rgba($white, 0.5) !default;
 
-// Compiled invert border
+// Compiled border invert
 $border-invert: $border-width $border-style $border-color-invert !default;
 $border-invert-light: $border-width $border-style $border-color-invert-light !default;
 $border-invert-dark: $border-width $border-style $border-color-invert-dark !default;
@@ -120,7 +120,7 @@ $font-family: $font-family-sans !default;
 // Front size
 $font-size: 16px !default;
 $font-size-sm: 0.875em !default; // 14px
-$font-size-lg: 1.125em !default;  // 18px
+$font-size-lg: 1.125em !default; // 18px
 
 // Line height
 $line-height: 1.5 !default;

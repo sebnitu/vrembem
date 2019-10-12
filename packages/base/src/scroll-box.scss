@@ -1,4 +1,6 @@
-.scroll-box {
+@import "./variables";
+
+.#{$class-scroll-box} {
   display: block;
   width: 100%;
   overflow: auto;
