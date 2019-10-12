@@ -318,8 +318,8 @@ print "a = #{a}";</code></pre>
   </ol>
 
   <blockquote cite="https://ideapod.com/35-noam-chomsky-quotes-will-make-question-everything-society/">
-    <p>"History shows that, more often than not, loss of sovereignty leads to liberalization imposed in the interests of the powerful."</p>
-    <footer>Noam Chomsky, <cite>On Authority</cite></footer>
+    <p>"It is quite possible–overwhelmingly probable, one might guess–that we will always learn more about human life and personality from novels than from scientific psychology."</p>
+    <footer>Noam Chomsky, <cite>On Science</cite></footer>
   </blockquote>
 
 <pre><code>a = 17
