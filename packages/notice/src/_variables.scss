@@ -8,7 +8,7 @@ $notice-border: null !default;
 $notice-border-radius: $border-radius !default;
 
 $notice__label-font-size: $font-size-lg !default;
-$notice__label-font-weight: $heading-font-weight !default;
+$notice__label-font-weight: font-weight("semi-bold") !default;
 
 $notice__body-spacing: 1rem !default;
 $notice__actions-spacing: 0.5rem !default;

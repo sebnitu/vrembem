@@ -133,46 +133,6 @@ $color-subtle: $gray-500 !default;
 $color-invert: $white !default;
 $color-invert-subtle: rgba($white, 0.6) !default;
 
-// Heading
-// ---
-
-$heading-font-family: null !default;
-$heading-line-height: null !default;
-$heading-color: inherit !default;
-$heading-color-invert: null !default;
-$heading-font-weight: font-weight("semi-bold") !default;
-
-// Link
-// ---
-
-$link-text-decoration: none !default;
-$link-text-decoration-hover: null !default;
-$link-transition: null !default;
-
-// Color
-$link-color: $primary !default;
-$link-color-hover: $primary-dark !default;
-$link-border: 1px solid $border-color !default;
-$link-border-hover: 1px solid currentColor !default;
-
-// Subtle
-$link-subtle-color: $color-subtle !default;
-$link-subtle-color-hover: $link-color-hover !default;
-$link-subtle-border-color: $border-color !default;
-$link-subtle-border-color-hover: currentColor !default;
-
-// Invert
-$link-invert-color: $white !default;
-$link-invert-color-hover: $white !default;
-$link-invert-border-color: rgba($white, 0.5) !default;
-$link-invert-border-color-hover: currentColor !default;
-
-// Invert subtle
-$link-invert-subtle-color: $color-invert-subtle !default;
-$link-invert-subtle-color-hover: $color-invert !default;
-$link-invert-subtle-border-color: rgba($white, 0.5) !default;
-$link-invert-subtle-border-color-hover: currentColor !default;
-
 // Box shadow
 // ---
 // [inset] | offset-x | offset-y | blur-radius | spread-radius | color

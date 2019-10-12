@@ -280,7 +280,7 @@ print "a = #{a}";</code></pre>
 {% include flag.html heading="type_invert" %}
 
 {% include demo_open.html class_parent="spacing" %}
-<div class="type type_invert background_night_dark padding radius">
+<div class="type type_invert background_night padding radius">
 
   <h1>Heading</h1>
   <h2>Heading</h2>

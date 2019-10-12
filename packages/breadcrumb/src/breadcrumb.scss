@@ -31,12 +31,12 @@
 }
 
 .breadcrumb__link {
-  border-bottom: 1px solid $breadcrumb__link-border-color;
+  border-bottom: $breadcrumb__link-border;
   color: $breadcrumb__link-color;
 
   &:focus,
   &:hover {
-    border-bottom: 1px solid $breadcrumb__link-border-color-hover;
+    border-bottom: $breadcrumb__link-border-hover;
     color: $breadcrumb__link-color-hover;
   }
 }

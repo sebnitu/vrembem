@@ -637,7 +637,10 @@ input::-moz-placeholder {
 .breadcrumb__item::after {
   content: "/";
   padding: 0 0.5em;
-  color: #9e9e9e;
+  color: rgba(0, 0, 0, 0.2);
+}
+.breadcrumb__item:last-child::after {
+  content: none;
 }
 
 .breadcrumb__link {
@@ -650,18 +653,18 @@ input::-moz-placeholder {
 }
 
 .breadcrumb_invert {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.6);
 }
 .breadcrumb_invert .breadcrumb__item::after {
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.2);
 }
 .breadcrumb_invert .breadcrumb__link {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.75);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
 }
 .breadcrumb_invert .breadcrumb__link:focus, .breadcrumb_invert .breadcrumb__link:hover {
-  border-bottom: 1px solid white;
-  color: white;
+  border-bottom: 1px solid #fff;
+  color: #fff;
 }
 
 @keyframes spin {
