@@ -49,6 +49,7 @@
     "@vrembem/radio": "^0.0.0",
     "@vrembem/section": "^0.0.0",
     "@vrembem/span": "^0.0.0",
+    "@vrembem/switch": "^0.0.0",
     "@vrembem/table": "^0.0.0",
     "@vrembem/tooltip": "^0.0.0",
     "@vrembem/utility": "^0.0.0"
