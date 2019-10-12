@@ -22,11 +22,23 @@
   justify-content: center;
   border-radius: $switch__background-border-radius;
   background: $switch__background;
+
+  &::after {
+    @include size($switch-size);
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -10px;
+    transition: left $transition-duration $transition-timing-function;
+    border-radius: $border-radius-circle;
+    background: transition;
+  }
 }
 
 .switch__track {
   @include size(100%, 20px);
   position: relative;
+  z-index: 2;
   display: block;
   border: 2px solid $gray-400;
   border-radius: $border-radius-circle;
@@ -39,10 +51,7 @@
   top: 0;
   left: 0;
   display: block;
-  transform: translateX(0);
-  transition-property: transform;
-  transition-duration: $transition-duration-short;
-  transition-timing-function: $transition-timing-function;
+  transition: left $transition-duration $transition-timing-function;
   border-radius: $border-radius-circle;
   background: $white;
   box-shadow: 0 0 0 2px $gray-400;
@@ -51,13 +60,17 @@
 .switch__native {
   @include size(100%);
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   top: 0;
   left: 0;
   opacity: 0;
   cursor: pointer;
 
   &:hover + .switch__background {
+    &::after {
+      background: rgba($black, 0.03);
+    }
+
     .switch__track {
       border-color: $gray-400;
     }
@@ -68,6 +81,10 @@
   }
 
   &:focus + .switch__background {
+    &::after {
+      background: rgba($black, 0.03);
+    }
+
     .switch__track {
       border-color: $gray-400;
     }
@@ -78,19 +95,27 @@
   }
 
   &:active + .switch__background {
+    &::after {
+      background: rgba($black, 0.06);
+    }
+
     .switch__track {
       background: $gray-200;
     }
   }
 
   &:checked + .switch__background {
+    &::after {
+      left: calc(100% - 30px);
+    }
+
     .switch__track {
       border-color: $primary;
       background: $primary-lighter;
     }
 
     .switch__thumb {
-      transform: translateX(20px);
+      left: calc(100% - 16px);
       box-shadow: 0 0 0 2px $primary;
     }
   }

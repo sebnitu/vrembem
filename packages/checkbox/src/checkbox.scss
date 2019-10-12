@@ -47,7 +47,7 @@
 .checkbox__native {
   @include size(100%);
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   top: 0;
   left: 0;
   opacity: 0;

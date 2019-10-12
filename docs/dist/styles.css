@@ -1348,7 +1348,7 @@ input::-moz-placeholder {
   width: 100%;
   height: 100%;
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   top: 0;
   left: 0;
   opacity: 0;
@@ -3947,7 +3947,7 @@ input::-moz-placeholder {
   width: 100%;
   height: 100%;
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   top: 0;
   left: 0;
   opacity: 0;
@@ -4647,11 +4647,23 @@ input::-moz-placeholder {
   border-radius: 9999px;
   background: transparent;
 }
+.switch__background::after {
+  width: 2.5rem;
+  height: 2.5rem;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -10px;
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 9999px;
+  background: transition;
+}
 
 .switch__track {
   width: 100%;
   height: 20px;
   position: relative;
+  z-index: 2;
   display: block;
   border: 2px solid #bdbdbd;
   border-radius: 9999px;
@@ -4665,10 +4677,7 @@ input::-moz-placeholder {
   top: 0;
   left: 0;
   display: block;
-  transform: translateX(0);
-  transition-property: transform;
-  transition-duration: 0.15s;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 9999px;
   background: #fff;
   box-shadow: 0 0 0 2px #bdbdbd;
@@ -4678,11 +4687,14 @@ input::-moz-placeholder {
   width: 100%;
   height: 100%;
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   top: 0;
   left: 0;
   opacity: 0;
   cursor: pointer;
+}
+.switch__native:hover + .switch__background::after {
+  background: rgba(0, 0, 0, 0.03);
 }
 .switch__native:hover + .switch__background .switch__track {
   border-color: #bdbdbd;
@@ -4690,21 +4702,30 @@ input::-moz-placeholder {
 .switch__native:hover + .switch__background .switch__thumb {
   box-shadow: 0 0 0 2px #00bcd4;
 }
+.switch__native:focus + .switch__background::after {
+  background: rgba(0, 0, 0, 0.03);
+}
 .switch__native:focus + .switch__background .switch__track {
   border-color: #bdbdbd;
 }
 .switch__native:focus + .switch__background .switch__thumb {
   box-shadow: 0 0 0 2px #00bcd4;
 }
+.switch__native:active + .switch__background::after {
+  background: rgba(0, 0, 0, 0.06);
+}
 .switch__native:active + .switch__background .switch__track {
   background: #eeeeee;
+}
+.switch__native:checked + .switch__background::after {
+  left: calc(100% - 30px);
 }
 .switch__native:checked + .switch__background .switch__track {
   border-color: #00bcd4;
   background: #e0f7fa;
 }
 .switch__native:checked + .switch__background .switch__thumb {
-  transform: translateX(20px);
+  left: calc(100% - 16px);
   box-shadow: 0 0 0 2px #00bcd4;
 }
 
