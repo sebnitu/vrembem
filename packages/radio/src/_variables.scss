@@ -8,15 +8,15 @@ $radio__background-hover: rgba($black, 0.03) !default;
 $radio__background-focus: rgba($black, 0.03) !default;
 $radio__background-active: rgba($black, 0.06) !default;
 $radio__background-checked: null !default;
-$radio__background-border-radius: 2em !default;
+$radio__background-border-radius: $border-radius-circle !default;
 
-$radio__circle-size: 21px !default;
+$radio__circle-size: 20px !default;
 $radio__circle-background: null !default;
 $radio__circle-background-hover: null !default;
 $radio__circle-background-focus: null !default;
 $radio__circle-background-active: null !default;
 $radio__circle-background-checked: $radio-color !default;
-$radio__circle-border-color: rgba($black, 0.2) !default;
+$radio__circle-border-color: $gray-400 !default;
 $radio__circle-border-color-hover: $radio-color !default;
 $radio__circle-border-color-focus: $radio-color !default;
 $radio__circle-border-color-active: $radio-color !default;
@@ -24,7 +24,7 @@ $radio__circle-border-color-checked: $radio-color !default;
 $radio__circle-border-width: 2px !default;
 $radio__circle-border-radius: $border-radius !default;
 
-$radio__dot-size: 9px !default;
+$radio__dot-size: 8px !default;
 $radio__dot-color: white !default;
 $radio__dot-transition-duration: $transition-duration-short !default;
 $radio__dot-transition-timing-function: $transition-timing-function-sharp !default;

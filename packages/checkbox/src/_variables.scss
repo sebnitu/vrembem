@@ -8,15 +8,15 @@ $checkbox__background-hover: rgba($black, 0.03) !default;
 $checkbox__background-focus: rgba($black, 0.03) !default;
 $checkbox__background-active: rgba($black, 0.06) !default;
 $checkbox__background-checked: null !default;
-$checkbox__background-border-radius: 2em !default;
+$checkbox__background-border-radius: $border-radius-circle !default;
 
-$checkbox__box-size: 17px !default;
+$checkbox__box-size: 18px !default;
 $checkbox__box-background: null !default;
 $checkbox__box-background-hover: null !default;
 $checkbox__box-background-focus: null !default;
 $checkbox__box-background-active: null !default;
 $checkbox__box-background-checked: $checkbox-color !default;
-$checkbox__box-border-color: rgba($black, 0.2) !default;
+$checkbox__box-border-color: $gray-400 !default;
 $checkbox__box-border-color-hover: $checkbox-color !default;
 $checkbox__box-border-color-focus: $checkbox-color !default;
 $checkbox__box-border-color-active: $checkbox-color !default;
@@ -24,10 +24,10 @@ $checkbox__box-border-color-checked: $checkbox-color !default;
 $checkbox__box-border-width: 2px !default;
 $checkbox__box-border-radius: $border-radius !default;
 
-$checkbox__icon-size: 13px !default;
+$checkbox__icon-size: 12px !default;
 $checkbox__icon-color: $white !default;
-$checkbox__icon-stroke: 2 !default;
+$checkbox__icon-stroke: 2.5 !default;
 $checkbox__icon-transition-duration: $transition-duration-short !default;
 $checkbox__icon-transition-timing-function: $transition-timing-function-sharp !default;
 
-$checkbox__icon-image: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="#{$checkbox__icon-size}" height="#{$checkbox__icon-size}" fill="none" stroke="#{encodecolor($checkbox__icon-color)}" stroke-width="#{$checkbox__icon-stroke}" stroke-linecap="round" stroke-linejoin="round"><polyline points="10.5 3.5 5 9 2.5 6.5"></polyline></svg>' !default;
+$checkbox__icon-image: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="#{$checkbox__icon-size}" height="#{$checkbox__icon-size}" fill="none" stroke="#{encodecolor($checkbox__icon-color)}" stroke-width="#{$checkbox__icon-stroke}" stroke-linecap="round" stroke-linejoin="round"><polyline points="9.5 3 4.5 8.5 2 6"></polyline></svg>' !default;

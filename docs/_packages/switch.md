@@ -11,8 +11,41 @@ usage:
 {% include flag.html heading="switch" %}
 
 {% include demo_open.html %}
-<div class="switch">
-  This is a switch...
+<div>
+  <span class="checkbox">
+    <input type="checkbox" class="checkbox__native">
+    <span class="checkbox__background">
+      <span class="checkbox__box">
+        <span class="checkbox__icon"></span>
+      </span>
+    </span>
+  </span>
+  <span class="switch">
+    <input type="checkbox" class="switch__native">
+    <span class="switch__background">
+      <span class="switch__track">
+        <span class="switch__thumb"></span>
+      </span>
+    </span>
+  </span>
+</div>
+<div>
+  <span class="radio">
+    <input type="radio" class="radio__native" name="radio">
+    <span class="radio__background">
+      <span class="radio__circle">
+        <span class="radio__dot"></span>
+      </span>
+    </span>
+  </span>
+  <span class="radio">
+    <input type="radio" class="radio__native" name="radio">
+    <span class="radio__background">
+      <span class="radio__circle">
+        <span class="radio__dot"></span>
+      </span>
+    </span>
+  </span>
 </div>
 {% include demo_switch.html %}
 ```html
