@@ -147,7 +147,7 @@
   background: rgba(255, 255, 255, 0.1);
 }
 .button_color_subtle.button_invert.is-loading::after {
-  border-color: rgba(255, 255, 255, 0.4) rgba(255, 255, 255, 0.4) transparent transparent;
+  border-color: rgba(255, 255, 255, 0.6) rgba(255, 255, 255, 0.6) transparent transparent;
 }
 
 .button_color_primary {

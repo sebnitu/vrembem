@@ -152,6 +152,10 @@
   }
 }
 
+@mixin blockquote-invert() {
+  border: $blockquote-border-invert;
+}
+
 @mixin code() {
   padding: $code-padding;
   border: $code-border;
@@ -284,6 +288,14 @@
 
     hr {
       background-color: $border-color-invert;
+    }
+
+    blockquote {
+      @include blockquote-invert();
+    }
+
+    code {
+      color: $code-color-invert;
     }
   }
 }

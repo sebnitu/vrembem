@@ -234,7 +234,7 @@ The `type` component is a quick way to apply all base styles to components direc
     <footer>Noam Chomsky, <cite>On Authority</cite></footer>
   </blockquote>
 
-<pre class="pre"><code>a = 17
+<pre><code>a = 17
 print "a = #{a}";</code></pre>
 
 </div>
@@ -249,7 +249,47 @@ print "a = #{a}";</code></pre>
   <h5>Heading</h5>
   <h6>Heading</h6>
 
-  <p>This is a paragraph <code>$code-example</code> and some other things. <a href="#">Click here</a> for a link example. You can still apply <a class="link_subtle" href="#">link modifiers</a> inside of a type component.</p>
+  <p>...</p>
+
+  <hr>
+
+  <ul>
+    <li>One</li>
+    ...
+  </ul>
+
+  <ol>
+    <li>One</li>
+    ...
+  </ol>
+
+  <blockquote cite="...">
+    ...
+  </blockquote>
+
+  <pre>
+    <code>
+      ...
+    </code>
+  </pre>
+
+</div>
+```
+{% include demo_close.html %}
+
+{% include flag.html heading="type_invert" %}
+
+{% include demo_open.html class_parent="spacing" %}
+<div class="type type_invert background_night_dark padding radius">
+
+  <h1>Heading</h1>
+  <h2>Heading</h2>
+  <h3>Heading</h3>
+  <h4>Heading</h4>
+  <h5>Heading</h5>
+  <h6>Heading</h6>
+
+  <p>This is a paragraph <code>$code-example</code> and some other things. <a href="#">Click here</a> for a link example. You can still apply <a class="link_invert-subtle" href="#">link modifiers</a> inside of a type component.</p>
 
   <hr>
 
@@ -277,14 +317,49 @@ print "a = #{a}";</code></pre>
     <li>Three</li>
   </ol>
 
-  <blockquote cite="...">
-    <p>"..."</p>
-    <footer>..., <cite>...</cite></footer>
+  <blockquote cite="https://ideapod.com/35-noam-chomsky-quotes-will-make-question-everything-society/">
+    <p>"History shows that, more often than not, loss of sovereignty leads to liberalization imposed in the interests of the powerful."</p>
+    <footer>Noam Chomsky, <cite>On Authority</cite></footer>
   </blockquote>
 
-  <pre class="pre"><code>
+<pre><code>a = 17
+print "a = #{a}";</code></pre>
+
+</div>
+{% include demo_switch.html %}
+```html
+<div class="type type_invert">
+
+  <h1>Heading</h1>
+  <h2>Heading</h2>
+  <h3>Heading</h3>
+  <h4>Heading</h4>
+  <h5>Heading</h5>
+  <h6>Heading</h6>
+
+  <p>...</p>
+
+  <hr>
+
+  <ul>
+    <li>One</li>
     ...
-  </code></pre>
+  </ul>
+
+  <ol>
+    <li>One</li>
+    ...
+  </ol>
+
+  <blockquote cite="...">
+    ...
+  </blockquote>
+
+  <pre>
+    <code>
+      ...
+    </code>
+  </pre>
 
 </div>
 ```

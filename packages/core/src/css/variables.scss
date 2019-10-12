@@ -97,7 +97,7 @@ $border-color-invert: rgba($white, 0.1) !default;
 $border-color-invert-dark: rgba($white, 0.2) !default;
 $border-color-invert-darker: rgba($white, 0.5) !default;
 
-// Cimpiled invert border
+// Compiled invert border
 $border-invert: $border-width $border-style $border-color-invert !default;
 $border-invert-light: $border-width $border-style $border-color-invert-light !default;
 $border-invert-dark: $border-width $border-style $border-color-invert-dark !default;
@@ -131,7 +131,7 @@ $color-subtle: $gray-500 !default;
 
 // Color invert
 $color-invert: $white !default;
-$color-invert-subtle: rgba($white, 0.4) !default;
+$color-invert-subtle: rgba($white, 0.6) !default;
 
 // Heading
 // ---

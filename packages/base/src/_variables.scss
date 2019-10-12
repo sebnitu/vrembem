@@ -19,9 +19,10 @@ $list-item-spacing: 0.5em !default;
 
 $blockquote-padding: 1.5em !default;
 $blockquote-spacing: 1em !default;
-$blockquote-color: $color !default;
+$blockquote-color: inherit !default;
 $blockquote-background: null !default;
 $blockquote-border: $border-light !default;
+$blockquote-border-invert: $border-invert !default;
 $blockquote-border-radius: null !default;
 $blockquote-accent-width: 4px !default;
 $blockquote-accent-offset: -1px !default;
@@ -31,12 +32,13 @@ $code-padding: null !default;
 $code-background: null !default;
 $code-border: null !default;
 $code-color: $pink !default;
+$code-color-invert: $pink-300 !default;
 
 $pre-padding: 1em !default;
 $pre-background: $shade !default;
 $pre-border: null !default;
 $pre-border-radius: $border-radius !default;
-$pre-color: inherit !default;
+$pre-color: $color !default;
 
 $type-font-family: null !default;
 $type-font-size: null !default;

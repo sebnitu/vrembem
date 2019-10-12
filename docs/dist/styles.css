@@ -198,7 +198,7 @@ input::-moz-placeholder {
   position: relative;
   padding: 1.5em;
   border: 1px solid rgba(0, 0, 0, 0.05);
-  color: #212121;
+  color: inherit;
 }
 .blockquote::before {
   content: "";
@@ -358,7 +358,7 @@ input::-moz-placeholder {
 .link_invert-subtle,
 .type .link_invert-subtle {
   border-color: rgba(255, 255, 255, 0.5);
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.6);
 }
 .link_invert-subtle:hover, .link_invert-subtle:focus,
 .type .link_invert-subtle:hover,
@@ -383,7 +383,7 @@ input::-moz-placeholder {
   overflow: auto;
   border-radius: 4px;
   background: #f5f5f5;
-  color: inherit;
+  color: #212121;
   font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 .pre code {
@@ -551,7 +551,7 @@ input::-moz-placeholder {
   position: relative;
   padding: 1.5em;
   border: 1px solid rgba(0, 0, 0, 0.05);
-  color: #212121;
+  color: inherit;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 }
@@ -578,7 +578,7 @@ input::-moz-placeholder {
   overflow: auto;
   border-radius: 4px;
   background: #f5f5f5;
-  color: inherit;
+  color: #212121;
   font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
@@ -610,6 +610,12 @@ input::-moz-placeholder {
 }
 .type_invert hr {
   background-color: rgba(255, 255, 255, 0.1);
+}
+.type_invert blockquote {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.type_invert code {
+  color: #f06292;
 }
 
 .breadcrumb {
@@ -807,7 +813,7 @@ input::-moz-placeholder {
   background: rgba(255, 255, 255, 0.1);
 }
 .button_color_subtle.button_invert.is-loading::after {
-  border-color: rgba(255, 255, 255, 0.4) rgba(255, 255, 255, 0.4) transparent transparent;
+  border-color: rgba(255, 255, 255, 0.6) rgba(255, 255, 255, 0.6) transparent transparent;
 }
 
 .button_color_primary {
@@ -3670,6 +3676,12 @@ input::-moz-placeholder {
 .notice_color_primary hr {
   background-color: rgba(255, 255, 255, 0.1);
 }
+.notice_color_primary blockquote {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.notice_color_primary code {
+  color: #f06292;
+}
 
 .notice_color_secondary {
   color: #fff;
@@ -3686,6 +3698,12 @@ input::-moz-placeholder {
 .notice_color_secondary hr {
   background-color: rgba(255, 255, 255, 0.1);
 }
+.notice_color_secondary blockquote {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.notice_color_secondary code {
+  color: #f06292;
+}
 
 .notice_color_dark {
   color: #fff;
@@ -3701,6 +3719,12 @@ input::-moz-placeholder {
 }
 .notice_color_dark hr {
   background-color: rgba(255, 255, 255, 0.1);
+}
+.notice_color_dark blockquote {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.notice_color_dark code {
+  color: #f06292;
 }
 
 .notice_stack {
@@ -3736,6 +3760,12 @@ input::-moz-placeholder {
 .notice_state_info-bold hr {
   background-color: rgba(255, 255, 255, 0.1);
 }
+.notice_state_info-bold blockquote {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.notice_state_info-bold code {
+  color: #f06292;
+}
 
 .notice_state_success {
   background-color: #e8f5e9;
@@ -3756,6 +3786,12 @@ input::-moz-placeholder {
 }
 .notice_state_success-bold hr {
   background-color: rgba(255, 255, 255, 0.1);
+}
+.notice_state_success-bold blockquote {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.notice_state_success-bold code {
+  color: #f06292;
 }
 
 .notice_state_caution {
@@ -3778,6 +3814,12 @@ input::-moz-placeholder {
 .notice_state_caution-bold hr {
   background-color: rgba(255, 255, 255, 0.1);
 }
+.notice_state_caution-bold blockquote {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.notice_state_caution-bold code {
+  color: #f06292;
+}
 
 .notice_state_danger {
   background-color: #ffebee;
@@ -3798,6 +3840,12 @@ input::-moz-placeholder {
 }
 .notice_state_danger-bold hr {
   background-color: rgba(255, 255, 255, 0.1);
+}
+.notice_state_danger-bold blockquote {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.notice_state_danger-bold code {
+  color: #f06292;
 }
 
 .panel {
@@ -5088,7 +5136,7 @@ input::-moz-placeholder {
 }
 
 .color_invert_subtle {
-  color: rgba(255, 255, 255, 0.4) !important;
+  color: rgba(255, 255, 255, 0.6) !important;
 }
 
 .color_black {
@@ -6195,7 +6243,7 @@ input::-moz-placeholder {
   overflow: auto;
   border-radius: 4px;
   background: #f5f5f5;
-  color: inherit;
+  color: #212121;
   font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 .demo__code code {
