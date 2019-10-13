@@ -1,9 +1,7 @@
 @import "./variables";
 
 .checkbox {
-  @include size($checkbox-size);
   position: relative;
-  top: -2px;
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
@@ -12,16 +10,14 @@
 }
 
 .checkbox__background {
-  @include size(100%);
-  position: absolute;
+  @include size($checkbox-size);
+  position: relative;
   z-index: 1;
-  top: 0;
-  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: $checkbox__background-border-radius;
-  background: $checkbox__background;
+  background-color: $checkbox__background;
 }
 
 .checkbox__box {
@@ -31,7 +27,7 @@
   justify-content: center;
   border: $checkbox__box-border-width solid $checkbox__box-border-color;
   border-radius: $checkbox__box-border-radius;
-  background: $checkbox__box-background;
+  background-color: $checkbox__box-background;
   color: transparent;
 }
 
@@ -54,7 +50,7 @@
   cursor: pointer;
 
   &:hover + .checkbox__background {
-    background: $checkbox__background-hover;
+    background-color: $checkbox__background-hover;
 
     .checkbox__box {
       border-color: $checkbox__box-border-color-hover;
@@ -63,7 +59,7 @@
   }
 
   &:focus + .checkbox__background {
-    background: $checkbox__background-focus;
+    background-color: $checkbox__background-focus;
 
     .checkbox__box {
       border-color: $checkbox__box-border-color-focus;
@@ -72,7 +68,7 @@
   }
 
   &:active + .checkbox__background {
-    background: $checkbox__background-active;
+    background-color: $checkbox__background-active;
 
     .checkbox__box {
       border-color: $checkbox__box-border-color-active;
@@ -81,7 +77,7 @@
   }
 
   &:checked + .checkbox__background {
-    background: $checkbox__background-checked;
+    background-color: $checkbox__background-checked;
 
     .checkbox__box {
       border-color: $checkbox__box-border-color-checked;

@@ -1,9 +1,7 @@
 @import "./variables";
 
 .radio {
-  @include size($radio-size);
   position: relative;
-  top: -2px;
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
@@ -12,16 +10,14 @@
 }
 
 .radio__background {
-  @include size(100%);
-  position: absolute;
+  @include size($radio-size);
+  position: relative;
   z-index: 1;
-  top: 0;
-  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: $radio__background-border-radius;
-  background: $radio__background;
+  background-color: $radio__background;
 }
 
 .radio__circle {
@@ -31,14 +27,14 @@
   justify-content: center;
   border: $radio__circle-border-width solid $radio__circle-border-color;
   border-radius: $radio__circle-size;
-  background: $radio__circle-background;
+  background-color: $radio__circle-background;
   color: transparent;
 }
 
 .radio__dot {
   @include size(0);
   border-radius: $radio__dot-size;
-  background: $radio__dot-color;
+  background-color: $radio__dot-color;
   opacity: 0;
 }
 
@@ -52,7 +48,7 @@
   cursor: pointer;
 
   &:hover + .radio__background {
-    background: $radio__background-hover;
+    background-color: $radio__background-hover;
 
     .radio__circle {
       border-color: $radio__circle-border-color-hover;
@@ -61,7 +57,7 @@
   }
 
   &:focus + .radio__background {
-    background: $radio__background-focus;
+    background-color: $radio__background-focus;
 
     .radio__circle {
       border-color: $radio__circle-border-color-focus;
@@ -70,7 +66,7 @@
   }
 
   &:active + .radio__background {
-    background: $radio__background-active;
+    background-color: $radio__background-active;
 
     .radio__circle {
       border-color: $radio__circle-border-color-active;
@@ -79,7 +75,7 @@
   }
 
   &:checked + .radio__background {
-    background: $radio__background-checked;
+    background-color: $radio__background-checked;
 
     .radio__circle {
       border-color: $radio__circle-border-color-checked;

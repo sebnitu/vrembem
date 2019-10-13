@@ -11,7 +11,7 @@ usage:
 {% include flag.html heading="switch" %}
 
 {% include demo_open.html %}
-<div>
+<div class="level">
   <span class="checkbox">
     <input type="checkbox" class="checkbox__native">
     <span class="checkbox__background">
@@ -28,8 +28,6 @@ usage:
       </span>
     </span>
   </span>
-</div>
-<div>
   <span class="radio">
     <input type="radio" class="radio__native" name="radio">
     <span class="radio__background">

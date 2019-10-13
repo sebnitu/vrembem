@@ -1,22 +1,20 @@
 @import "./variables";
 
 .switch {
-  @include size($switch-size);
   position: relative;
-  top: -2px;
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
+  padding-right: ($switch-size * 0.25);
+  padding-left: ($switch-size * 0.25);
   vertical-align: middle;
 }
 
 .switch__background {
-  @include size(100%);
-  position: absolute;
+  @include size($switch-size);
+  position: relative;
   z-index: 1;
-  top: 0;
-  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,7 +29,7 @@
     left: -10px;
     transition: left $transition-duration $transition-timing-function;
     border-radius: $border-radius-circle;
-    background: transition;
+    background-color: transparent;
   }
 }
 
