@@ -29,20 +29,18 @@ usage:
 {% include flag.html heading="radio + label" %}
 
 {% include demo_open.html %}
-<div>
-  <p>
-    <label>
-      {% include radio.html name="radio-2" checked="" %}
-      Radio with a label
-    </label>
-  </p>
-  <p>
-    <label>
-      {% include radio.html name="radio-2" %}
-      Radio with a label
-    </label>
-  </p>
-</div>
+<p>
+  <label>
+    {% include radio.html name="radio-2" checked="" %}
+    Radio with a label
+  </label>
+</p>
+<p>
+  <label>
+    {% include radio.html name="radio-2" %}
+    Radio with a label
+  </label>
+</p>
 {% include demo_switch.html %}
 ```html
 <label>

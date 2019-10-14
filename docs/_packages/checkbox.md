@@ -29,20 +29,18 @@ usage:
 {% include flag.html heading="checkbox + label" %}
 
 {% include demo_open.html %}
-<div>
-  <p>
-    <label>
-      {% include checkbox.html checked="" %}
-      Checkbox with a label
-    </label>
-  </p>
-  <p>
-    <label>
-      {% include checkbox.html %}
-      Checkbox with a label
-    </label>
-  </p>
-</div>
+<p>
+  <label>
+    {% include checkbox.html checked="" %}
+    Checkbox with a label
+  </label>
+</p>
+<p>
+  <label>
+    {% include checkbox.html %}
+    Checkbox with a label
+  </label>
+</p>
 {% include demo_switch.html %}
 ```html
 <label>
