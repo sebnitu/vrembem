@@ -2,6 +2,8 @@
 
 $radio-color: $primary !default;
 $radio-size: $height !default;
+$radio-transition-duration: $transition-duration-short !default;
+$radio-transition-timing-function: $transition-timing-function-sharp !default;
 
 $radio__background: transparent !default;
 $radio__background-hover: rgba($black, 0.03) !default;
@@ -26,5 +28,3 @@ $radio__circle-border-radius: $border-radius !default;
 
 $radio__dot-size: 8px !default;
 $radio__dot-color: white !default;
-$radio__dot-transition-duration: $transition-duration-short !default;
-$radio__dot-transition-timing-function: $transition-timing-function-sharp !default;

@@ -85,8 +85,8 @@
     .radio__dot {
       @include size($radio__dot-size);
       transition-property: opacity, width, height;
-      transition-duration: $radio__dot-transition-duration;
-      transition-timing-function: $radio__dot-transition-timing-function;
+      transition-duration: $radio-transition-duration;
+      transition-timing-function: $radio-transition-timing-function;
       background-position: center center;
       opacity: 1;
     }

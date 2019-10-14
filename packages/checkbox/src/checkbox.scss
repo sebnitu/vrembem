@@ -86,8 +86,8 @@
 
     .checkbox__icon {
       transition-property: opacity, background-position;
-      transition-duration: $checkbox__icon-transition-duration;
-      transition-timing-function: $checkbox__icon-transition-timing-function;
+      transition-duration: $checkbox-transition-duration;
+      transition-timing-function: $checkbox-transition-timing-function;
       background-position: center center;
       opacity: 1;
     }

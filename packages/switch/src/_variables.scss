@@ -2,6 +2,38 @@
 
 $switch-color: $primary !default;
 $switch-size: $height !default;
+$switch-transition-duration: $transition-duration !default;
+$switch-transition-timing-function: $transition-timing-function !default;
 
 $switch__background: transparent !default;
+$switch__background-hover: rgba($black, 0.03) !default;
+$switch__background-focus: rgba($black, 0.03) !default;
+$switch__background-active: rgba($black, 0.06) !default;
+$switch__background-checked: null !default;
 $switch__background-border-radius: $border-radius-circle !default;
+
+$switch__track-size: 20px !default;
+$switch__track-background: $gray-200 !default;
+$switch__track-background-hover: null !default;
+$switch__track-background-focus: null !default;
+$switch__track-background-active: null !default;
+$switch__track-background-checked: $primary-lighter !default;
+$switch__track-border-color: $gray-400 !default;
+$switch__track-border-color-hover: null !default;
+$switch__track-border-color-focus: null !default;
+$switch__track-border-color-active: null !default;
+$switch__track-border-color-checked: $primary !default;
+$switch__track-border-width: 2px !default;
+$switch__track-border-radius: $border-radius-circle !default;
+
+$switch__thumb-size: 16px !default;
+$switch__thumb-background: $white !default;
+$switch__thumb-background-hover: null !default;
+$switch__thumb-background-focus: null !default;
+$switch__thumb-background-active: null !default;
+$switch__thumb-background-checked: null !default;
+$switch__thumb-box-shadow: 0 0 0 2px $gray-400 !default;
+$switch__thumb-box-shadow-hover: 0 0 0 2px $primary !default;
+$switch__thumb-box-shadow-focus: 0 0 0 2px $primary !default;
+$switch__thumb-box-shadow-active: 0 0 0 2px $primary !default;
+$switch__thumb-box-shadow-checked: 0 0 0 2px $primary !default;

@@ -4631,8 +4631,6 @@ input::-moz-placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 9999px;
-  background: transparent;
 }
 .switch__background::after {
   width: 2.5rem;
@@ -4640,7 +4638,7 @@ input::-moz-placeholder {
   content: "";
   position: absolute;
   top: 0;
-  left: -10px;
+  left: -0.625rem;
   transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 9999px;
   background-color: transparent;
@@ -4654,7 +4652,7 @@ input::-moz-placeholder {
   display: block;
   border: 2px solid #bdbdbd;
   border-radius: 9999px;
-  background: #eeeeee;
+  background-color: #eeeeee;
 }
 
 .switch__thumb {
@@ -4666,7 +4664,7 @@ input::-moz-placeholder {
   display: block;
   transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 9999px;
-  background: #fff;
+  background-color: #fff;
   box-shadow: 0 0 0 2px #bdbdbd;
 }
 
@@ -4681,35 +4679,29 @@ input::-moz-placeholder {
   cursor: pointer;
 }
 .switch__native:hover + .switch__background::after {
-  background: rgba(0, 0, 0, 0.03);
-}
-.switch__native:hover + .switch__background .switch__track {
-  border-color: #bdbdbd;
+  background-color: rgba(0, 0, 0, 0.03);
 }
 .switch__native:hover + .switch__background .switch__thumb {
   box-shadow: 0 0 0 2px #00bcd4;
 }
 .switch__native:focus + .switch__background::after {
-  background: rgba(0, 0, 0, 0.03);
-}
-.switch__native:focus + .switch__background .switch__track {
-  border-color: #bdbdbd;
+  background-color: rgba(0, 0, 0, 0.03);
 }
 .switch__native:focus + .switch__background .switch__thumb {
   box-shadow: 0 0 0 2px #00bcd4;
 }
 .switch__native:active + .switch__background::after {
-  background: rgba(0, 0, 0, 0.06);
+  background-color: rgba(0, 0, 0, 0.06);
 }
-.switch__native:active + .switch__background .switch__track {
-  background: #eeeeee;
+.switch__native:active + .switch__background .switch__thumb {
+  box-shadow: 0 0 0 2px #00bcd4;
 }
 .switch__native:checked + .switch__background::after {
-  left: calc(100% - 30px);
+  left: calc(100% - 1.875rem);
 }
 .switch__native:checked + .switch__background .switch__track {
   border-color: #00bcd4;
-  background: #e0f7fa;
+  background-color: #e0f7fa;
 }
 .switch__native:checked + .switch__background .switch__thumb {
   left: calc(100% - 16px);
