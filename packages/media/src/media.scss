@@ -20,11 +20,11 @@
   min-height: $media__icon-height;
 
   &:first-child {
-    margin-right: $media__icon-spacing;
+    margin: 0 $media__icon-spacing 0 0;
   }
 
   &:last-child {
-    margin-left: $media__icon-spacing;
+    margin: 0 0 0 $media__icon-spacing;
   }
 }
 
@@ -32,10 +32,10 @@
   max-width: $media__image-max-width;
 
   &:first-child {
-    margin-right: $media__image-spacing;
+    margin: 0 $media__image-spacing 0 0;
   }
 
   &:last-child {
-    margin-left: $media__image-spacing;
+    margin: 0 0 0 $media__image-spacing;
   }
 }

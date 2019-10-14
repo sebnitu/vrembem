@@ -6,46 +6,64 @@
 .media__body {
   flex: 1 1 auto;
 }
-.media__body > * + * {
-  margin-top: 0.5rem;
+
+.media__icon,
+.media__image {
+  flex: 0 0 auto;
+}
+
+.media__icon {
+  display: flex;
+  align-items: center;
+  min-height: 1.5rem;
+}
+.media__icon:first-child {
+  margin: 0 0.75rem 0 0;
+}
+.media__icon:last-child {
+  margin: 0 0 0 0.75rem;
 }
 
 .media__image {
-  flex: 0 0 auto;
   max-width: 30%;
-  border-radius: 4px;
 }
 .media__image:first-child {
-  margin-right: 1.5rem;
+  margin: 0 1.5rem 0 0;
 }
 .media__image:last-child {
-  margin-left: 1.5rem;
+  margin: 0 0 0 1.5rem;
 }
 
 .media_reverse {
   flex-direction: row-reverse;
 }
+.media_reverse .media__icon:first-child {
+  margin: 0 0 0 0.75rem;
+}
+.media_reverse .media__icon:last-child {
+  margin: 0 0.75rem 0 0;
+}
 .media_reverse .media__image:first-child {
-  margin-right: 0;
-  margin-left: 1.5rem;
+  margin: 0 0 0 1.5rem;
 }
 .media_reverse .media__image:last-child {
-  margin-right: 1.5rem;
-  margin-left: 0;
+  margin: 0 1.5rem 0 0;
 }
 
 .media_stack {
   flex-direction: column;
 }
-.media_stack .media__image {
-  margin-right: 0;
-  margin-left: 0;
+.media_stack .media__icon:first-child {
+  margin: 0 0 0.75rem 0;
+}
+.media_stack .media__icon:last-child {
+  margin: 0.75rem 0 0 0;
 }
 .media_stack .media__image:first-child {
-  margin-bottom: 1.5rem;
+  margin: 0 0 1.5rem 0;
 }
 .media_stack .media__image:last-child {
-  margin-top: 1.5rem;
+  margin: 1.5rem 0 0 0;
 }
 
 .media_stack_xs {
@@ -61,17 +79,17 @@
   }
 }
 @media (max-width: 479px) {
-  .media_stack_xs .media__image {
-    margin-right: 0;
-    margin-left: 0;
+  .media_stack_xs .media__icon:first-child {
+    margin: 0 0 0.75rem 0;
+  }
+  .media_stack_xs .media__icon:last-child {
+    margin: 0.75rem 0 0 0;
   }
   .media_stack_xs .media__image:first-child {
-    margin-top: 0;
-    margin-bottom: 1.5rem;
+    margin: 0 0 1.5rem 0;
   }
   .media_stack_xs .media__image:last-child {
-    margin-top: 1.5rem;
-    margin-bottom: 0;
+    margin: 1.5rem 0 0 0;
   }
 }
 .media_stack_sm {
@@ -87,17 +105,17 @@
   }
 }
 @media (max-width: 619px) {
-  .media_stack_sm .media__image {
-    margin-right: 0;
-    margin-left: 0;
+  .media_stack_sm .media__icon:first-child {
+    margin: 0 0 0.75rem 0;
+  }
+  .media_stack_sm .media__icon:last-child {
+    margin: 0.75rem 0 0 0;
   }
   .media_stack_sm .media__image:first-child {
-    margin-top: 0;
-    margin-bottom: 1.5rem;
+    margin: 0 0 1.5rem 0;
   }
   .media_stack_sm .media__image:last-child {
-    margin-top: 1.5rem;
-    margin-bottom: 0;
+    margin: 1.5rem 0 0 0;
   }
 }
 .media_stack_md {
@@ -113,17 +131,17 @@
   }
 }
 @media (max-width: 759px) {
-  .media_stack_md .media__image {
-    margin-right: 0;
-    margin-left: 0;
+  .media_stack_md .media__icon:first-child {
+    margin: 0 0 0.75rem 0;
+  }
+  .media_stack_md .media__icon:last-child {
+    margin: 0.75rem 0 0 0;
   }
   .media_stack_md .media__image:first-child {
-    margin-top: 0;
-    margin-bottom: 1.5rem;
+    margin: 0 0 1.5rem 0;
   }
   .media_stack_md .media__image:last-child {
-    margin-top: 1.5rem;
-    margin-bottom: 0;
+    margin: 1.5rem 0 0 0;
   }
 }
 .media_stack_lg {
@@ -139,17 +157,17 @@
   }
 }
 @media (max-width: 989px) {
-  .media_stack_lg .media__image {
-    margin-right: 0;
-    margin-left: 0;
+  .media_stack_lg .media__icon:first-child {
+    margin: 0 0 0.75rem 0;
+  }
+  .media_stack_lg .media__icon:last-child {
+    margin: 0.75rem 0 0 0;
   }
   .media_stack_lg .media__image:first-child {
-    margin-top: 0;
-    margin-bottom: 1.5rem;
+    margin: 0 0 1.5rem 0;
   }
   .media_stack_lg .media__image:last-child {
-    margin-top: 1.5rem;
-    margin-bottom: 0;
+    margin: 1.5rem 0 0 0;
   }
 }
 .media_stack_xl {
@@ -165,17 +183,17 @@
   }
 }
 @media (max-width: 1379px) {
-  .media_stack_xl .media__image {
-    margin-right: 0;
-    margin-left: 0;
+  .media_stack_xl .media__icon:first-child {
+    margin: 0 0 0.75rem 0;
+  }
+  .media_stack_xl .media__icon:last-child {
+    margin: 0.75rem 0 0 0;
   }
   .media_stack_xl .media__image:first-child {
-    margin-top: 0;
-    margin-bottom: 1.5rem;
+    margin: 0 0 1.5rem 0;
   }
   .media_stack_xl .media__image:last-child {
-    margin-top: 1.5rem;
-    margin-bottom: 0;
+    margin: 1.5rem 0 0 0;
   }
 }
 

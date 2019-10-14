@@ -5,25 +5,21 @@
 
   .media__icon {
     &:first-child {
-      margin-right: 0;
-      margin-left: $media__icon-spacing;
+      margin: 0 0 0 $media__icon-spacing;
     }
 
     &:last-child {
-      margin-right: $media__icon-spacing;
-      margin-left: 0;
+      margin: 0 $media__icon-spacing 0 0;
     }
   }
 
   .media__image {
     &:first-child {
-      margin-right: 0;
-      margin-left: $media__image-spacing;
+      margin: 0 0 0 $media__image-spacing;
     }
 
     &:last-child {
-      margin-right: $media__image-spacing;
-      margin-left: 0;
+      margin: 0 $media__image-spacing 0 0;
     }
   }
 }
