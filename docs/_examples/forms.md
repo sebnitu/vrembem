@@ -52,13 +52,13 @@ description: "A playground for testing form and form control styles."
     </label>
   </p>
   <p class="level">
-    {% include radio.html name="radio-2" id="radio-example-1" %}
+    {% include radio.html name="radio-3" id="radio-example-1" %}
     <label for="radio-example-1">
       Generic label text
     </label>
   </p>
   <p class="level">
-    {% include radio.html name="radio-2" id="radio-example-2" %}
+    {% include radio.html name="radio-3" id="radio-example-2" %}
     <label for="radio-example-2">
       Generic label text
     </label>
