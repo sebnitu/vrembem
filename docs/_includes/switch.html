@@ -1,5 +1,5 @@
 <span class="switch">
-  <input type="checkbox" class="switch__native"{% if include.checked %} checked{% endif %}>
+  <input type="checkbox" class="switch__native"{% if include.checked %} checked{% endif %}{% if include.id %} id="{{ include.id }}"{% endif %}>
   <span class="switch__background">
     <span class="switch__track">
       <span class="switch__thumb"></span>
