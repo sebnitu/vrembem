@@ -1,7 +1,7 @@
 ---
 layout: article
 title: "Forms example"
-description: "..."
+description: "A playground for testing form and form control styles."
 ---
 
 {% include flag.html heading="Constrols" %}
