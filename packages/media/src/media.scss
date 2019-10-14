@@ -1,4 +1,4 @@
-@use "variables" as media;
+@import "./variables";
 
 .media {
   display: flex;
@@ -17,25 +17,25 @@
 .media__icon {
   display: flex;
   align-items: center;
-  min-height: media.$icon-height;
+  min-height: $media__icon-height;
 
   &:first-child {
-    margin: 0 media.$icon-spacing 0 0;
+    margin: 0 $media__icon-spacing 0 0;
   }
 
   &:last-child {
-    margin: 0 0 0 media.$icon-spacing;
+    margin: 0 0 0 $media__icon-spacing;
   }
 }
 
 .media__image {
-  max-width: media.$image-max-width;
+  max-width: $media__image-max-width;
 
   &:first-child {
-    margin: 0 media.$image-spacing 0 0;
+    margin: 0 $media__image-spacing 0 0;
   }
 
   &:last-child {
-    margin: 0 0 0 media.$image-spacing;
+    margin: 0 0 0 $media__image-spacing;
   }
 }

@@ -1,36 +1,35 @@
-@use "@vrembem/core/index" as core;
-@use "variables" as media;
+@import "./variables";
 
 .media_stack {
   flex-direction: column;
 
   .media__icon {
     &:first-child {
-      margin: 0 0 media.$icon-spacing 0;
+      margin: 0 0 $media__icon-spacing 0;
     }
 
     &:last-child {
-      margin: media.$icon-spacing 0 0 0;
+      margin: $media__icon-spacing 0 0 0;
     }
   }
 
   .media__image {
     &:first-child {
-      margin: 0 0 media.$image-spacing 0;
+      margin: 0 0 $media__image-spacing 0;
     }
 
     &:last-child {
-      margin: media.$image-spacing 0 0 0;
+      margin: $media__image-spacing 0 0 0;
     }
   }
 }
 
-@each $key, $value in core.$breakpoints {
+@each $key, $value in $breakpoints {
   .media_stack_#{$key} {
     flex-direction: column;
   }
 
-  @include core.media-min($key) {
+  @include media-min($key) {
     .media_stack_#{$key} {
       flex-direction: row;
 
@@ -40,25 +39,25 @@
     }
   }
 
-  @include core.media-max($key) {
+  @include media-max($key) {
     .media_stack_#{$key} {
       .media__icon {
         &:first-child {
-          margin: 0 0 media.$icon-spacing 0;
+          margin: 0 0 $media__icon-spacing 0;
         }
 
         &:last-child {
-          margin: media.$icon-spacing 0 0 0;
+          margin: $media__icon-spacing 0 0 0;
         }
       }
 
       .media__image {
         &:first-child {
-          margin: 0 0 media.$image-spacing 0;
+          margin: 0 0 $media__image-spacing 0;
         }
 
         &:last-child {
-          margin: media.$image-spacing 0 0 0;
+          margin: $media__image-spacing 0 0 0;
         }
       }
     }

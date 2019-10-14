@@ -1,25 +1,25 @@
-@use "variables" as media;
+@import "./variables";
 
 .media_reverse {
   flex-direction: row-reverse;
 
   .media__icon {
     &:first-child {
-      margin: 0 0 0 media.$icon-spacing;
+      margin: 0 0 0 $media__icon-spacing;
     }
 
     &:last-child {
-      margin: 0 media.$icon-spacing 0 0;
+      margin: 0 $media__icon-spacing 0 0;
     }
   }
 
   .media__image {
     &:first-child {
-      margin: 0 0 0 media.$image-spacing;
+      margin: 0 0 0 $media__image-spacing;
     }
 
     &:last-child {
-      margin: 0 media.$image-spacing 0 0;
+      margin: 0 $media__image-spacing 0 0;
     }
   }
 }
