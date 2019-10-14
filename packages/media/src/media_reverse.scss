@@ -3,14 +3,26 @@
 .media_reverse {
   flex-direction: row-reverse;
 
-  .media__image {
+  .media__icon {
     &:first-child {
       margin-right: 0;
-      margin-left: $media-spacing;
+      margin-left: $media__icon-spacing;
     }
 
     &:last-child {
-      margin-right: $media-spacing;
+      margin-right: $media__icon-spacing;
+      margin-left: 0;
+    }
+  }
+
+  .media__image {
+    &:first-child {
+      margin-right: 0;
+      margin-left: $media__image-spacing;
+    }
+
+    &:last-child {
+      margin-right: $media__image-spacing;
       margin-left: 0;
     }
   }

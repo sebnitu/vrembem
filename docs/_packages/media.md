@@ -10,112 +10,122 @@ usage:
 
 {% include flag.html heading="media" %}
 
-{% include demo_open.html %}
-
+{% include demo_open.html class_parent="spacing" %}
 <div class="media">
-  <img class="media__image" src="https://picsum.photos/90/90/?11" width="90" height="90" />
+  <div class="media__image">
+    <img class="radius" src="https://picsum.photos/90/90/?11" width="90" height="90" />
+  </div>
   <div class="media__body">
     <h2 class="h4"><a href="#">Media Content Title</a></h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
   </div>
 </div>
-
+<div class="media">
+  <div class="media__icon">
+    {% include icon.html icon="alert-circle" %}
+  </div>
+  <div class="media__body">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
+  </div>
+</div>
 {% include demo_switch.html %}
-
 ```html
 <div class="media">
-  <img class="media__image" src="..." />
+  <div class="media__image">
+    ...
+  </div>
   <div class="media__body">
     ...
   </div>
 </div>
+
 <div class="media">
-  ...
+  <div class="media__icon">
+    ...
+  </div>
+  <div class="media__body">
+    ...
+  </div>
 </div>
 ```
-
 {% include demo_close.html %}
 
 {% include flag.html heading="media_reverse" %}
 
-{% include demo_open.html %}
-
+{% include demo_open.html class_parent="spacing" %}
 <div class="media media_reverse">
-  <img class="media__image" src="https://picsum.photos/90/90/?12" width="90" height="90" />
+  <img class="media__image radius" src="https://picsum.photos/90/90/?12" width="90" height="90" />
   <div class="media__body">
     <h2 class="h4"><a href="#">Media Content Title</a></h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
   </div>
 </div>
-
+<div class="media media_reverse">
+  <div class="media__icon">
+    {% include icon.html icon="alert-circle" %}
+  </div>
+  <div class="media__body">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
+  </div>
+</div>
 {% include demo_switch.html %}
-
 ```html
 <div class="media media_reverse">
   ...
 </div>
 ```
-
 {% include demo_close.html %}
 
 {% include flag.html heading="media_stack_[bp]" %}
 
-{% include demo_open.html %}
-
+{% include demo_open.html class_parent="spacing" %}
 <div class="media media_stack_md">
-  <img class="media__image" src="https://picsum.photos/90/90/?15" width="90" height="90" />
+  <img class="media__image radius" src="https://picsum.photos/90/90/?15" width="90" height="90" />
   <div class="media__body">
     <h2 class="h4"><a href="#">Media Content Title</a></h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
   </div>
 </div>
-
+<div class="media media_reverse media_stack_md">
+  <img class="media__image radius" src="https://picsum.photos/90/90/?15" width="90" height="90" />
+  <div class="media__body">
+    <h2 class="h4"><a href="#">Media Content Title</a></h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
+  </div>
+</div>
 {% include demo_switch.html %}
-
 ```html
 <div class="media media_stack_md">
   ...
 </div>
 ```
-
 {% include demo_close.html %}
-
-<div class="type" markdown="1">
-## Media examples
-
-Here are a few examples of where you could use the media component in different contexts.
-</div>
 
 {% include flag.html heading="Blog listing" %}
 
 {% include demo_open.html class_parent="spacing spacing_xl" %}
-
 <div class="media items_center">
-  <img class="media__image" src="https://picsum.photos/90/90/?21" width="90" height="90" />
+  <img class="media__image radius" src="https://picsum.photos/90/90/?21" width="90" height="90" />
   <div class="media__body">
     <h2 class="h4"><a href="#">Suspendisse elementum pharetra risus sed commodo</a></h2>
     <p class="text_subtle">December 24th, 2017</p>
   </div>
 </div>
-
 <div class="media items_center">
-  <img class="media__image" src="https://picsum.photos/90/90/?22" width="90" height="90" />
+  <img class="media__image radius" src="https://picsum.photos/90/90/?22" width="90" height="90" />
   <div class="media__body">
     <h2 class="h4"><a href="#">Aliquam vehicula eros eget neque aliquet</a></h2>
     <p class="text_subtle">October 13th, 2018</p>
   </div>
 </div>
-
 <div class="media items_center">
-  <img class="media__image" src="https://picsum.photos/90/90/?23" width="90" height="90" />
+  <img class="media__image radius" src="https://picsum.photos/90/90/?23" width="90" height="90" />
   <div class="media__body">
     <h2 class="h4"><a href="#">Integer ullamcorper eget est nec libero est</a></h2>
     <p class="text_subtle">November 16th, 2018</p>
   </div>
 </div>
-
 {% include demo_switch.html %}
-
 ```html
 <div class="media items_center">
   <img class="media__image" src="..." />
@@ -125,35 +135,33 @@ Here are a few examples of where you could use the media component in different 
   </div>
 </div>
 ```
-
 {% include demo_close.html %}
 
 {% include flag.html heading="Comments section" %}
 
 {% include demo_open.html class_parent="spacing spacing_xl" %}
-
-<div class="level justify_between">
+<div class="level flex_justify_between">
   <h2 class="h4">3 Comments</h2>
-  <button class="button button_outline_subtle">
-    {% include icon.html icon="menu" %}
+  <button class="button button_outline">
+    {% include icon.html icon="sliders" %}
     <span>Sort by</span>
   </button>
 </div>
-
 <div class="media">
   <img class="media__image radius_circle" src="https://picsum.photos/40/40/?30" width="40" height="40" />
   <div class="media__body">
     <textarea class="input input_textarea" placeholder="Add a public comment..."></textarea>
   </div>
 </div><!-- .media -->
-
 <div class="media">
   <img class="media__image radius_circle" src="https://picsum.photos/40/40/?31" width="40" height="40" />
-  <div class="media__body">
-    <h2 class="level align-items_start">
-      <a href="#">Noam Chomsky</a>
+  <div class="media__body spacing">
+    <div class="level flex_justify_between">
+      <h2>
+        <a href="#">Noam Chomsky</a>
+      </h2>
       <a class="link link_subtle" href="#">47 minutes ago</a>
-    </h2>
+    </div>
     <p>Suspendisse potenti. Nullam tincidunt venenatis urna, at pharetra justo imperdiet vehicula. Morbi rutrum dapibus placerat. Maecenas a neque ut dui tincidunt pharetra et fermentum diam.</p>
     <ul class="menu">
       <li class="menu__item">
@@ -175,14 +183,15 @@ Here are a few examples of where you could use the media component in different 
     </ul>
   </div>
 </div><!-- .media -->
-
 <div class="media">
   <img class="media__image radius_circle" src="https://picsum.photos/40/40/?32" width="40" height="40" />
-  <div class="media__body">
-    <h2 class="level align-items_start">
-      <a href="#">Howard Zinn</a>
+  <div class="media__body spacing">
+    <div class="level flex_justify_between">
+      <h2>
+        <a href="#">Howard Zinn</a>
+      </h2>
       <a class="link link_subtle" href="#">18 hours ago</a>
-    </h2>
+    </div>
     <p>Suspendisse potenti. Nullam tincidunt venenatis urna, at pharetra justo imperdiet vehicula. Morbi rutrum dapibus placerat. Maecenas a neque ut dui tincidunt pharetra et fermentum diam.</p>
     <ul class="menu">
       <li class="menu__item">
@@ -204,14 +213,15 @@ Here are a few examples of where you could use the media component in different 
     </ul>
   </div>
 </div><!-- .media -->
-
 <div class="media">
   <img class="media__image radius_circle" src="https://picsum.photos/40/40/?33" width="40" height="40" />
-  <div class="media__body">
-    <h2 class="level align-items_start">
-      <a href="#">Emma Goldman</a>
+  <div class="media__body spacing">
+    <div class="level flex_justify_between">
+      <h2>
+        <a href="#">Emma Goldman</a>
+      </h2>
       <a class="link link_subtle" href="#">4 days ago</a>
-    </h2>
+    </div>
     <p>Suspendisse potenti. Nullam tincidunt venenatis urna, at pharetra justo imperdiet vehicula. Morbi rutrum dapibus placerat. Maecenas a neque ut dui tincidunt pharetra et fermentum diam.</p>
     <ul class="menu">
       <li class="menu__item">
@@ -233,9 +243,7 @@ Here are a few examples of where you could use the media component in different 
     </ul>
   </div>
 </div><!-- .media -->
-
 {% include demo_switch.html %}
-
 ```html
 <div class="media">
   <img class="media__image radius_circle" src="..." />
@@ -246,7 +254,7 @@ Here are a few examples of where you could use the media component in different 
 <div class="media">
   <img class="media__image radius_circle" src="" />
   <div class="media__body">
-    <h2 class="level align-items_start">
+    <h2 class="level flex_justify_between">
       <a href="#">[name]</a>
       <a class="link link_subtle" href="#">[timestamp]</a>
     </h2>
@@ -257,7 +265,6 @@ Here are a few examples of where you could use the media component in different 
   </div>
 </div>
 ```
-
 {% include demo_close.html %}
 
 {% include flag.html heading="Quotes listing" %}

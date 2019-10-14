@@ -7,22 +7,35 @@
 
 .media__body {
   flex: 1 1 auto;
+}
 
-  > * + * {
-    margin-top: $media__body-spacing;
+.media__icon,
+.media__image {
+  flex: 0 0 auto;
+}
+
+.media__icon {
+  display: flex;
+  align-items: center;
+  min-height: $media__icon-height;
+
+  &:first-child {
+    margin-right: $media__icon-spacing;
+  }
+
+  &:last-child {
+    margin-left: $media__icon-spacing;
   }
 }
 
 .media__image {
-  flex: 0 0 auto;
   max-width: $media__image-max-width;
-  border-radius: $media__image-border-radius;
 
   &:first-child {
-    margin-right: $media-spacing;
+    margin-right: $media__image-spacing;
   }
 
   &:last-child {
-    margin-left: $media-spacing;
+    margin-left: $media__image-spacing;
   }
 }

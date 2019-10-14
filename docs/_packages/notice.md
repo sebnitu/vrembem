@@ -2,7 +2,7 @@
 layout: article
 title: Notice
 description: "A component for highlighting messages to the user."
-category: simple
+category: compound
 usage:
   npm: "@vrembem/notice"
   scss: "vrembem/notice/index"
@@ -21,6 +21,44 @@ usage:
 <div class="notice">
   <div class="notice__body">
     ...
+  </div>
+</div>
+```
+{% include demo_close.html %}
+
+{% include flag.html heading="notice + media" %}
+
+{% include demo_open.html class_parent="spacing" %}
+<div class="notice notice_state_danger">
+  <div class="media">
+    <div class="media__icon">
+      {% include icon.html icon="alert-circle" %}
+    </div>
+    <div class="media__body">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
+    </div>
+  </div>
+</div>
+<div class="notice notice_state_info">
+  <div class="media">
+    <div class="media__body">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
+    </div>
+    <div class="media__icon">
+      {% include icon.html icon="archive" %}
+    </div>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="notice">
+  <div class="media">
+    <div class="media__icon">
+      ...
+    </div>
+    <div class="media__body">
+      ...
+    </div>
   </div>
 </div>
 ```
