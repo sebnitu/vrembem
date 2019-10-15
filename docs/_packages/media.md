@@ -22,7 +22,7 @@ usage:
 </div>
 <div class="media">
   <div class="media__icon">
-    {% include icon.html icon="alert-circle" %}
+    {% include icon.html icon="settings" %}
   </div>
   <div class="media__body">
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
@@ -62,7 +62,7 @@ usage:
 </div>
 <div class="media media_reverse">
   <div class="media__icon">
-    {% include icon.html icon="alert-circle" %}
+    {% include icon.html icon="settings" %}
   </div>
   <div class="media__body">
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
@@ -104,21 +104,21 @@ usage:
 {% include flag.html heading="Blog listing" %}
 
 {% include demo_open.html class_parent="spacing spacing_xl" %}
-<div class="media items_center">
+<div class="media flex_align_center">
   <img class="media__image radius" src="https://picsum.photos/90/90/?21" width="90" height="90" />
   <div class="media__body">
     <h2 class="h4"><a href="#">Suspendisse elementum pharetra risus sed commodo</a></h2>
     <p class="text_subtle">December 24th, 2017</p>
   </div>
 </div>
-<div class="media items_center">
+<div class="media flex_align_center">
   <img class="media__image radius" src="https://picsum.photos/90/90/?22" width="90" height="90" />
   <div class="media__body">
     <h2 class="h4"><a href="#">Aliquam vehicula eros eget neque aliquet</a></h2>
     <p class="text_subtle">October 13th, 2018</p>
   </div>
 </div>
-<div class="media items_center">
+<div class="media flex_align_center">
   <img class="media__image radius" src="https://picsum.photos/90/90/?23" width="90" height="90" />
   <div class="media__body">
     <h2 class="h4"><a href="#">Integer ullamcorper eget est nec libero est</a></h2>
@@ -127,7 +127,7 @@ usage:
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="media items_center">
+<div class="media flex_align_center">
   <img class="media__image" src="..." />
   <div class="media__body">
     <h2 class="h3"><a href="#">...</a></h2>
@@ -273,7 +273,7 @@ usage:
 
 <h2 class="h2 text_align_center">Tweet Quotes</h2>
 
-<div class="media media_stack_md items_center">
+<div class="media media_stack_md flex_align_center">
   <img class="media__image radius_circle" src="https://picsum.photos/200/200/?41" width="200" height="200" />
   <blockquote class="media__body text_lead">
     <p>For those who stubbornly seek freedom there can be no more urgent task than to come to understand the mechanisms & practices of indoctrination.These are easy to perceive in totalitarian societies, much less so in the system of brainwashing under freedom to which we are subjected.</p>
@@ -283,7 +283,7 @@ usage:
   </blockquote>
 </div><!-- .media -->
 
-<div class="media media_stack_md media_reverse items_center">
+<div class="media media_stack_md media_reverse flex_align_center">
   <img class="media__image radius_circle" src="https://picsum.photos/200/200/?42" width="200" height="200" />
   <blockquote class="media__body text_lead">
     <p>Hitler, Mussolini, Japanese fascists - all of them - are all full of humanitarian rhetoric. States are not moral agents. They can be compelled to observe legal and other requirements, but that can only be either by countervailing force or by their own citizens.</p>
@@ -293,7 +293,7 @@ usage:
   </blockquote>
 </div><!-- .media -->
 
-<div class="media media_stack_md items_center">
+<div class="media media_stack_md flex_align_center">
   <img class="media__image radius_circle" src="https://picsum.photos/200/200/?43" width="200" height="200" />
   <blockquote class="media__body text_lead">
     <p>The UN outlawed the use of threat of intervention unless authorized by the UN Security Council or in self-defence against armed attack.That system did not survive for a second. It was violated immediately by the great powers, any power that could get away with it.</p>
@@ -306,7 +306,7 @@ usage:
 {% include demo_switch.html %}
 
 ```html
-<div class="media media_stack_md items_center">
+<div class="media media_stack_md flex_align_center">
   <img class="media__image radius_circle" src="..." />
   <blockquote class="media__body text_lead">
     <p>[quote]</p>

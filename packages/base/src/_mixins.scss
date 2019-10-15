@@ -31,7 +31,6 @@
 
   @else if $level == 4 {
     font-size: 1.25em;
-    line-height: inherit;
     @include media-min("md") {
       font-size: 1.5em;
     }
