@@ -1,5 +1,17 @@
 <span class="checkbox">
-  <input type="checkbox" class="checkbox__native"{% if include.checked %} checked{% endif %}{% if include.id %} id="{{ include.id }}"{% endif %}>
+  <input
+    type="checkbox"
+    class="checkbox__native"
+    {% if include.id %}
+      id="{{ include.id }}"
+    {% endif %}
+    {% if include.checked %}
+      checked
+    {% endif %}
+    {% if include.indeterminate %}
+      aria-checked="mixed"
+    {% endif %}
+  >
   <span class="checkbox__background">
     <span class="checkbox__box">
       <span class="checkbox__icon"></span>

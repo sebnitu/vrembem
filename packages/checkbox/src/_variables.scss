@@ -30,4 +30,8 @@ $checkbox__icon-size: 12px !default;
 $checkbox__icon-color: $white !default;
 $checkbox__icon-stroke: 2.5 !default;
 
-$checkbox__icon-image: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="#{$checkbox__icon-size}" height="#{$checkbox__icon-size}" fill="none" stroke="#{encodecolor($checkbox__icon-color)}" stroke-width="#{$checkbox__icon-stroke}" stroke-linecap="round" stroke-linejoin="round"><polyline points="9.5 3 4.5 8.5 2 6"></polyline></svg>' !default;
+$checkbox__icon-checked:
+  'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="#{$checkbox__icon-size}" height="#{$checkbox__icon-size}" fill="none" stroke="#{encodecolor($checkbox__icon-color)}" stroke-width="#{$checkbox__icon-stroke}" stroke-linecap="round" stroke-linejoin="round"><polyline points="9.5,3 4.5,8.5 2,6"></polyline></svg>' !default;
+
+$checkbox__icon-indeterminate:
+  'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="#{$checkbox__icon-size}" height="#{$checkbox__icon-size}" fill="none" stroke="#{encodecolor($checkbox__icon-color)}" stroke-width="#{$checkbox__icon-stroke}" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6" /></svg>' !default;

@@ -33,7 +33,7 @@
 
 .checkbox__icon {
   @include size($checkbox__icon-size);
-  background-image: url($checkbox__icon-image);
+  background-image: url($checkbox__icon-checked);
   background-repeat: no-repeat;
   background-position: center ($checkbox__icon-size * -1);
   background-size: 100%;
@@ -88,6 +88,24 @@
       transition-property: opacity, background-position;
       transition-duration: $checkbox-transition-duration;
       transition-timing-function: $checkbox-transition-timing-function;
+      background-position: center center;
+      opacity: 1;
+    }
+  }
+
+  &:indeterminate + .checkbox__background {
+    background-color: $checkbox__background-checked;
+
+    .checkbox__box {
+      border-color: $checkbox__box-border-color-checked;
+      background-color: $checkbox__box-background-checked;
+    }
+
+    .checkbox__icon {
+      transition-property: opacity, background-position;
+      transition-duration: $checkbox-transition-duration;
+      transition-timing-function: $checkbox-transition-timing-function;
+      background-image: url($checkbox__icon-indeterminate);
       background-position: center center;
       opacity: 1;
     }

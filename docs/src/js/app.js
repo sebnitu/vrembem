@@ -1,5 +1,6 @@
 import { hasClass, addClass, removeClass } from "@vrembem/core"
 import {
+  Checkbox,
   Dismissible,
   Drawer,
   Modal
@@ -7,9 +8,24 @@ import {
 import listjs from "list.js"
 import "svgxuse"
 
+let checkbox = new Checkbox({ autoInit: true })
 new Dismissible({ autoInit: true })
 let drawer = new Drawer({ autoInit: true })
 new Modal({ autoInit: true })
+
+const buttonSetInd = document.querySelector(".button_set_indeterminate")
+const buttonRemoveInd = document.querySelector(".button_remove_indeterminate")
+const checkboxToggle = document.querySelectorAll("[type='checkbox']")
+
+buttonSetInd.addEventListener("click", () => {
+  checkbox.setAriaState(checkboxToggle)
+  checkbox.setIndeterminate(checkboxToggle)
+})
+
+buttonRemoveInd.addEventListener("click", () => {
+  checkbox.removeAriaState(checkboxToggle)
+  checkbox.setIndeterminate(checkboxToggle)
+})
 
 /**
  * General event trigger for testing

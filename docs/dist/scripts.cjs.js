@@ -111,6 +111,64 @@ function _objectSpread2(target) {
   return target;
 }
 
+var Checkbox = function Checkbox(options) {
+  var api = {};
+  var defaults = {
+    autoInit: false,
+    ariaState: "aria-checked",
+    ariaStateMixed: "mixed"
+  };
+  api.settings = _objectSpread2({}, defaults, {}, options);
+  api.settings.selector = "[".concat(api.settings.ariaState, "=\"").concat(api.settings.ariaStateMixed, "\"]");
+
+  api.init = function () {
+    var mixed = document.querySelectorAll(api.settings.selector);
+    api.setIndeterminate(mixed);
+    document.addEventListener("click", removeAriaState, false);
+  };
+
+  api.destroy = function () {
+    document.removeEventListener("click", removeAriaState, false);
+  };
+
+  api.setAriaState = function (el) {
+    var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : api.settings.ariaStateMixed;
+    el = el.forEach ? el : [el];
+    el.forEach(function (el) {
+      el.setAttribute(api.settings.ariaState, value);
+    });
+  };
+
+  api.removeAriaState = function (el) {
+    el = el.forEach ? el : [el];
+    el.forEach(function (el) {
+      el.removeAttribute(api.settings.ariaState);
+    });
+  };
+
+  api.setIndeterminate = function (el) {
+    el = el.forEach ? el : [el];
+    el.forEach(function (el) {
+      if (el.hasAttribute(api.settings.ariaState)) {
+        el.indeterminate = true;
+      } else {
+        el.indeterminate = false;
+      }
+    });
+  };
+
+  var removeAriaState = function removeAriaState() {
+    var el = event.target.closest(api.settings.selector);
+
+    if (el) {
+      api.removeAriaState(el);
+    }
+  };
+
+  if (api.settings.autoInit) api.init();
+  return api;
+};
+
 var Dismissible = function Dismissible(options) {
   var api = {};
   var defaults = {
@@ -2228,6 +2286,9 @@ var src = function src(id, options, values) {
   }
 })();
 
+var checkbox = new Checkbox({
+  autoInit: true
+});
 new Dismissible({
   autoInit: true
 });
@@ -2236,6 +2297,17 @@ var drawer = new Drawer({
 });
 new Modal({
   autoInit: true
+});
+var buttonSetInd = document.querySelector(".button_set_indeterminate");
+var buttonRemoveInd = document.querySelector(".button_remove_indeterminate");
+var checkboxToggle = document.querySelectorAll("[type='checkbox']");
+buttonSetInd.addEventListener("click", function () {
+  checkbox.setAriaState(checkboxToggle);
+  checkbox.setIndeterminate(checkboxToggle);
+});
+buttonRemoveInd.addEventListener("click", function () {
+  checkbox.removeAriaState(checkboxToggle);
+  checkbox.setIndeterminate(checkboxToggle);
 });
 document.addEventListener("click", function () {
   var trigger = event.target;
