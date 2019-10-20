@@ -115,8 +115,8 @@ this.vrembem.drawer = (function (exports) {
 
   var Drawer = function Drawer(options) {
     var api = {};
-    var settings;
     var defaults = {
+      autoInit: false,
       classTarget: "drawer__item",
       classTrigger: "drawer__trigger",
       classInner: "drawer__dialog",
@@ -130,28 +130,28 @@ this.vrembem.drawer = (function (exports) {
       switchBreakpoint: "lg",
       transitionDuration: 500
     };
+    api.settings = _objectSpread2({}, defaults, {}, options);
     var drawers = [];
     var drawerState = {};
     var switchDrawers;
     var mqlArray = [];
 
-    api.init = function (options) {
-      settings = _objectSpread2({}, defaults, {}, options);
-      document.querySelectorAll("." + settings.classTarget).forEach(function (drawer) {
+    api.init = function () {
+      document.querySelectorAll("." + api.settings.classTarget).forEach(function (drawer) {
         drawers.push({
           "drawer": drawer,
-          "defaultState": hasClass(drawer, settings.classActive)
+          "defaultState": hasClass(drawer, api.settings.classActive)
         });
       });
       var promiseSaveState = new Promise(function (resolve) {
-        if (settings.saveState) {
+        if (api.settings.saveState) {
           initSaveState(resolve);
         } else {
           resolve();
         }
       });
       promiseSaveState.then(function () {
-        if (settings["switch"]) {
+        if (api.settings["switch"]) {
           initSwitch();
         }
       });
@@ -166,35 +166,34 @@ this.vrembem.drawer = (function (exports) {
       if (defaultState) {
         drawers.forEach(function (item) {
           if (item.defaultState) {
-            addClass(item.drawer, settings.classActive);
+            addClass(item.drawer, api.settings.classActive);
           } else {
-            removeClass(item.drawer, settings.classActive);
+            removeClass(item.drawer, api.settings.classActive);
           }
         });
       }
 
-      settings = null;
       drawers = [];
       document.removeEventListener("click", trigger, false);
     };
 
     api.open = function (selector) {
-      selector = selector ? selector : "." + settings.classTarget;
+      selector = selector ? selector : "." + api.settings.classTarget;
       toggle(document.querySelectorAll(selector), "open");
     };
 
     api.close = function (selector) {
-      selector = selector ? selector : "." + settings.classTarget;
+      selector = selector ? selector : "." + api.settings.classTarget;
       toggle(document.querySelectorAll(selector), "close");
     };
 
     api.toggle = function (selector) {
-      selector = selector ? selector : "." + settings.classTarget;
+      selector = selector ? selector : "." + api.settings.classTarget;
       toggle(document.querySelectorAll(selector));
     };
 
     api.switchToDrawer = function (selector) {
-      selector = selector ? selector : settings["switch"];
+      selector = selector ? selector : api.settings["switch"];
       var items = document.querySelectorAll(selector);
       items = items.forEach ? items : [items];
       items.forEach(function (item) {
@@ -203,7 +202,7 @@ this.vrembem.drawer = (function (exports) {
     };
 
     api.switchToModal = function (selector) {
-      selector = selector ? selector : settings["switch"];
+      selector = selector ? selector : api.settings["switch"];
       var items = document.querySelectorAll(selector);
       items = items.forEach ? items : [items];
       items.forEach(function (item) {
@@ -221,14 +220,14 @@ this.vrembem.drawer = (function (exports) {
 
     var toggle = function toggle(drawer, state, callback) {
       if (state === "open") {
-        addClass(drawer, settings.classActive);
+        addClass(drawer, api.settings.classActive);
       } else if (state === "close") {
-        removeClass(drawer, settings.classActive);
+        removeClass(drawer, api.settings.classActive);
       } else {
-        toggleClass(drawer, settings.classActive);
+        toggleClass(drawer, api.settings.classActive);
       }
 
-      if (settings.saveState) {
+      if (api.settings.saveState) {
         stateSave(drawer);
       }
 
@@ -236,7 +235,7 @@ this.vrembem.drawer = (function (exports) {
     };
 
     var trigger = function trigger() {
-      var trigger = event.target.closest("." + settings.classTrigger);
+      var trigger = event.target.closest("." + api.settings.classTrigger);
 
       if (trigger) {
         var dataDrawer = trigger.dataset.target;
@@ -263,14 +262,14 @@ this.vrembem.drawer = (function (exports) {
           stateSave(drawer);
         }
 
-        var dialog = drawer.querySelector("." + settings.classInner);
+        var dialog = drawer.querySelector("." + api.settings.classInner);
 
         var transitionDelay = function transitionDelay() {
           if (dialog) {
-            addClass(dialog, settings.classTransitionNone);
+            addClass(dialog, api.settings.classTransitionNone);
             setTimeout(function () {
-              removeClass(dialog, settings.classTransitionNone);
-            }, settings.transitionDuration);
+              removeClass(dialog, api.settings.classTransitionNone);
+            }, api.settings.transitionDuration);
           }
         };
 
@@ -292,7 +291,7 @@ this.vrembem.drawer = (function (exports) {
         }
 
         if (item.id) {
-          drawerState[item.id] = hasClass(item, settings.classActive);
+          drawerState[item.id] = hasClass(item, api.settings.classActive);
           localStorage.setItem("drawerState", JSON.stringify(drawerState));
         }
       });
@@ -304,9 +303,9 @@ this.vrembem.drawer = (function (exports) {
     };
 
     var initSwitch = function initSwitch() {
-      switchDrawers = document.querySelectorAll(settings["switch"]);
+      switchDrawers = document.querySelectorAll(api.settings["switch"]);
       switchDrawers.forEach(function (drawer) {
-        var cleanSelector = settings["switch"].replace("[", "").replace("]", "").replace("data-", "");
+        var cleanSelector = api.settings["switch"].replace("[", "").replace("]", "").replace("data-", "");
         cleanSelector = cleanSelector.replace(/-([a-z])/g, function (g) {
           return g[1].toUpperCase();
         });
@@ -319,10 +318,10 @@ this.vrembem.drawer = (function (exports) {
             bp = drawer.dataset[cleanSelector];
           }
         } else {
-          bp = breakpoint[settings.switchBreakpoint];
+          bp = breakpoint[api.settings.switchBreakpoint];
 
           if (!bp) {
-            bp = settings.switchBreakpoint;
+            bp = api.settings.switchBreakpoint;
           }
         }
 
@@ -364,13 +363,13 @@ this.vrembem.drawer = (function (exports) {
     var switchToDrawer = function switchToDrawer(drawer) {
       var dialog = drawer.querySelector(".dialog");
       var triggers = document.querySelectorAll("[data-target=\"#" + drawer.id + "\"]");
-      drawer.className = drawer.className.replace(new RegExp(settings.classTargetSwitch, "gi"), settings.classTarget);
-      dialog.className = dialog.className.replace(new RegExp(settings.classInnerSwitch, "gi"), settings.classInner);
+      drawer.className = drawer.className.replace(new RegExp(api.settings.classTargetSwitch, "gi"), api.settings.classTarget);
+      dialog.className = dialog.className.replace(new RegExp(api.settings.classInnerSwitch, "gi"), api.settings.classInner);
       triggers.forEach(function (trigger) {
-        trigger.className = trigger.className.replace(new RegExp(settings.classTriggerSwitch, "gi"), settings.classTrigger);
+        trigger.className = trigger.className.replace(new RegExp(api.settings.classTriggerSwitch, "gi"), api.settings.classTrigger);
       });
 
-      if (settings.saveState) {
+      if (api.settings.saveState) {
         if (drawerState[drawer.id] === false) {
           toggle(drawer, "close");
         } else {
@@ -382,15 +381,15 @@ this.vrembem.drawer = (function (exports) {
     var switchToModal = function switchToModal(drawer) {
       var dialog = drawer.querySelector(".dialog");
       var triggers = document.querySelectorAll("[data-target=\"#" + drawer.id + "\"]");
-      drawer.className = drawer.className.replace(new RegExp(settings.classTarget, "gi"), settings.classTargetSwitch);
-      dialog.className = dialog.className.replace(new RegExp(settings.classInner, "gi"), settings.classInnerSwitch);
+      drawer.className = drawer.className.replace(new RegExp(api.settings.classTarget, "gi"), api.settings.classTargetSwitch);
+      dialog.className = dialog.className.replace(new RegExp(api.settings.classInner, "gi"), api.settings.classInnerSwitch);
       triggers.forEach(function (trigger) {
-        trigger.className = trigger.className.replace(new RegExp(settings.classTrigger, "gi"), settings.classTriggerSwitch);
+        trigger.className = trigger.className.replace(new RegExp(api.settings.classTrigger, "gi"), api.settings.classTriggerSwitch);
       });
-      removeClass(drawer, settings.classActive);
+      removeClass(drawer, api.settings.classActive);
     };
 
-    api.init(options);
+    if (api.settings.autoInit) api.init();
     return api;
   };
 
