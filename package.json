@@ -5,6 +5,7 @@
   "scripts": {
     "build": "lerna run build --parallel",
     "clean": "lerna run clean --parallel",
+    "docs": "concurrently --kill-others 'npm run server' 'npm run watch:docs'",
     "fix": "npm run fix:styles || true && npm run fix:scripts || true",
     "fix:scripts": "eslint --fix packages || true",
     "fix:styles": "stylelint --fix 'packages/**/*.scss' || true",
