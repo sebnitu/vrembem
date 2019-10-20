@@ -1,11 +1,9 @@
-// Test
-
 describe("Google", () => {
   beforeAll(async () => {
-    await page.goto("https://google.com")
+    await page.goto("file:///Users/sebnitu/dev/vrembem/packages/modal/test.html")
   })
 
   it("should be titled 'Google'", async () => {
-    await expect(page.title()).resolves.toMatch("Google")
+    await expect(page.title()).resolves.toMatch("Modal Test")
   })
 })
