@@ -1,18 +1,10 @@
 import { addClass, removeClass } from "@vrembem/core"
 
-/**
- * Modal plugin
- * ---
- * A component for changing the mode of a page to complete a critical task.
- * This is usually used in conjunction with the Dialog component to make
- * modal dialogs.
- */
-
 export const Modal = (options) => {
 
   let api = {}
-  let settings
   const defaults = {
+    autoInit: false,
     classTarget: "modal",
     classTrigger: "modal__trigger",
     classInner: "modal__dialog",
@@ -20,18 +12,18 @@ export const Modal = (options) => {
     focus: "[data-focus]"
   }
 
+  api.settings = { ...defaults, ...options }
+
   let memoryTrigger
   let memoryTarget
 
-  api.init = (options) => {
-    settings = { ...defaults, ...options }
+  api.init = () => {
     document.addEventListener("click", run, false)
     document.addEventListener("touchend", run, false)
     document.addEventListener("keyup", escape, false)
   }
 
   api.destroy = () => {
-    settings = null
     memoryTarget = null
     memoryTrigger = null
     document.removeEventListener("click", run, false)
@@ -48,10 +40,10 @@ export const Modal = (options) => {
   }
 
   const open = (target) => {
-    addClass(target, settings.classActive)
+    addClass(target, api.settings.classActive)
     if (target.length === 1) {
       target = target.item(0)
-      let focus = target.querySelector(settings.focus)
+      let focus = target.querySelector(api.settings.focus)
       target.addEventListener("transitionend", function _listener() {
         if (focus) {
           focus.focus()
@@ -64,8 +56,8 @@ export const Modal = (options) => {
   }
 
   const close = (clear = false) => {
-    let target = document.querySelectorAll("." + settings.classTarget)
-    removeClass(target, settings.classActive)
+    let target = document.querySelectorAll("." + api.settings.classTarget)
+    removeClass(target, api.settings.classActive)
     if (clear == false && memoryTrigger && memoryTarget) {
       if (memoryTarget.length === 1) {
         memoryTarget = memoryTarget.item(0)
@@ -91,9 +83,9 @@ export const Modal = (options) => {
   }
 
   const run = () => {
-    let target = event.target.closest("." + settings.classTarget)
-    let trigger = event.target.closest("." + settings.classTrigger)
-    let inner = event.target.closest("." + settings.classInner)
+    let target = event.target.closest("." + api.settings.classTarget)
+    let trigger = event.target.closest("." + api.settings.classTrigger)
+    let inner = event.target.closest("." + api.settings.classInner)
     if (trigger) {
       close()
       let targetData = trigger.dataset.target
@@ -108,6 +100,6 @@ export const Modal = (options) => {
     }
   }
 
-  api.init(options)
+  if (api.settings.autoInit) api.init()
   return api
 }

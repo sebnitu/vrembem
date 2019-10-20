@@ -79,26 +79,25 @@ var removeClass = function removeClass(el) {
 
 var Modal = function Modal(options) {
   var api = {};
-  var settings;
   var defaults = {
+    autoInit: false,
     classTarget: "modal",
     classTrigger: "modal__trigger",
     classInner: "modal__dialog",
     classActive: "is-active",
     focus: "[data-focus]"
   };
+  api.settings = _objectSpread2({}, defaults, {}, options);
   var memoryTrigger;
   var memoryTarget;
 
-  api.init = function (options) {
-    settings = _objectSpread2({}, defaults, {}, options);
+  api.init = function () {
     document.addEventListener("click", run, false);
     document.addEventListener("touchend", run, false);
     document.addEventListener("keyup", escape, false);
   };
 
   api.destroy = function () {
-    settings = null;
     memoryTarget = null;
     memoryTrigger = null;
     document.removeEventListener("click", run, false);
@@ -115,11 +114,11 @@ var Modal = function Modal(options) {
   };
 
   var open = function open(target) {
-    addClass(target, settings.classActive);
+    addClass(target, api.settings.classActive);
 
     if (target.length === 1) {
       target = target.item(0);
-      var focus = target.querySelector(settings.focus);
+      var focus = target.querySelector(api.settings.focus);
       target.addEventListener("transitionend", function _listener() {
         if (focus) {
           focus.focus();
@@ -134,8 +133,8 @@ var Modal = function Modal(options) {
 
   var close = function close() {
     var clear = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-    var target = document.querySelectorAll("." + settings.classTarget);
-    removeClass(target, settings.classActive);
+    var target = document.querySelectorAll("." + api.settings.classTarget);
+    removeClass(target, api.settings.classActive);
 
     if (clear == false && memoryTrigger && memoryTarget) {
       if (memoryTarget.length === 1) {
@@ -163,9 +162,9 @@ var Modal = function Modal(options) {
   };
 
   var run = function run() {
-    var target = event.target.closest("." + settings.classTarget);
-    var trigger = event.target.closest("." + settings.classTrigger);
-    var inner = event.target.closest("." + settings.classInner);
+    var target = event.target.closest("." + api.settings.classTarget);
+    var trigger = event.target.closest("." + api.settings.classTrigger);
+    var inner = event.target.closest("." + api.settings.classInner);
 
     if (trigger) {
       close();
@@ -183,7 +182,7 @@ var Modal = function Modal(options) {
     }
   };
 
-  api.init(options);
+  if (api.settings.autoInit) api.init();
   return api;
 };
 
