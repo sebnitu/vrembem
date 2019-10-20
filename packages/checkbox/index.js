@@ -3,12 +3,13 @@ export const Checkbox = (options) => {
   let api = {}
   const defaults = {
     autoInit: false,
-    ariaState: "aria-checked",
-    ariaStateMixed: "mixed"
+    stateAttr: "aria-checked",
+    stateValue: "mixed"
   }
 
   api.settings = { ...defaults, ...options }
-  api.settings.selector = `[${api.settings.ariaState}="${api.settings.ariaStateMixed}"]`
+  api.settings.selector = 
+    `[${api.settings.stateAttr}="${api.settings.stateValue}"]`
 
   api.init = () => {
     let mixed = document.querySelectorAll(api.settings.selector)
@@ -20,24 +21,24 @@ export const Checkbox = (options) => {
     document.removeEventListener("click", removeAriaState, false)
   }
 
-  api.setAriaState = (el, value = api.settings.ariaStateMixed) => {
+  api.setAriaState = (el, value = api.settings.stateValue) => {
     el = (el.forEach) ? el : [el]
     el.forEach((el) => {
-      el.setAttribute(api.settings.ariaState, value)
+      el.setAttribute(api.settings.stateAttr, value)
     })
   }
 
   api.removeAriaState = (el) => {
     el = (el.forEach) ? el : [el]
     el.forEach((el) => {
-      el.removeAttribute(api.settings.ariaState)
+      el.removeAttribute(api.settings.stateAttr)
     })
   }
 
   api.setIndeterminate = (el) => {
     el = (el.forEach) ? el : [el]
     el.forEach((el) => {
-      if (el.hasAttribute(api.settings.ariaState)) {
+      if (el.hasAttribute(api.settings.stateAttr)) {
         el.indeterminate = true
       } else {
         el.indeterminate = false
@@ -45,10 +46,11 @@ export const Checkbox = (options) => {
     })
   }
 
-  const removeAriaState = () => {
+  const removeAriaState = (event) => {
     let el = event.target.closest(api.settings.selector)
     if (el) {
       api.removeAriaState(el)
+      api.setIndeterminate(el)
     }
   }
 

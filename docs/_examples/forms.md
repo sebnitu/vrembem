@@ -7,18 +7,13 @@ description: "A playground for testing form and form control styles."
 {% include flag.html heading="Constrols" %}
 
 <div>
-  {% include checkbox.html checked="" id="checkbox-toggle" %}
+  {% include checkbox.html checked="" %}
   {% include checkbox.html indeterminate="true" checked="" %}
   {% include checkbox.html indeterminate="true" %}
   {% include checkbox.html %}
   {% include radio.html name="radio-1" %}
   {% include radio.html name="radio-1" %}
   {% include switch.html %}
-</div>
-
-<div>
-  <button class="button button_set_indeterminate">Set mixed</button>
-  <button class="button button_remove_indeterminate">Remove mixed</button>
 </div>
 
 {% include flag.html heading="Constrols + label" %}

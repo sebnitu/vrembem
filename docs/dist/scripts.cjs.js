@@ -115,11 +115,11 @@ var Checkbox = function Checkbox(options) {
   var api = {};
   var defaults = {
     autoInit: false,
-    ariaState: "aria-checked",
-    ariaStateMixed: "mixed"
+    stateAttr: "aria-checked",
+    stateValue: "mixed"
   };
   api.settings = _objectSpread2({}, defaults, {}, options);
-  api.settings.selector = "[".concat(api.settings.ariaState, "=\"").concat(api.settings.ariaStateMixed, "\"]");
+  api.settings.selector = "[".concat(api.settings.stateAttr, "=\"").concat(api.settings.stateValue, "\"]");
 
   api.init = function () {
     var mixed = document.querySelectorAll(api.settings.selector);
@@ -132,24 +132,24 @@ var Checkbox = function Checkbox(options) {
   };
 
   api.setAriaState = function (el) {
-    var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : api.settings.ariaStateMixed;
+    var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : api.settings.stateValue;
     el = el.forEach ? el : [el];
     el.forEach(function (el) {
-      el.setAttribute(api.settings.ariaState, value);
+      el.setAttribute(api.settings.stateAttr, value);
     });
   };
 
   api.removeAriaState = function (el) {
     el = el.forEach ? el : [el];
     el.forEach(function (el) {
-      el.removeAttribute(api.settings.ariaState);
+      el.removeAttribute(api.settings.stateAttr);
     });
   };
 
   api.setIndeterminate = function (el) {
     el = el.forEach ? el : [el];
     el.forEach(function (el) {
-      if (el.hasAttribute(api.settings.ariaState)) {
+      if (el.hasAttribute(api.settings.stateAttr)) {
         el.indeterminate = true;
       } else {
         el.indeterminate = false;
@@ -157,11 +157,12 @@ var Checkbox = function Checkbox(options) {
     });
   };
 
-  var removeAriaState = function removeAriaState() {
+  var removeAriaState = function removeAriaState(event) {
     var el = event.target.closest(api.settings.selector);
 
     if (el) {
       api.removeAriaState(el);
+      api.setIndeterminate(el);
     }
   };
 
@@ -2286,7 +2287,7 @@ var src = function src(id, options, values) {
   }
 })();
 
-var checkbox = new Checkbox({
+new Checkbox({
   autoInit: true
 });
 new Dismissible({
@@ -2297,17 +2298,6 @@ var drawer = new Drawer({
 });
 new Modal({
   autoInit: true
-});
-var buttonSetInd = document.querySelector(".button_set_indeterminate");
-var buttonRemoveInd = document.querySelector(".button_remove_indeterminate");
-var checkboxToggle = document.querySelectorAll("[type='checkbox']");
-buttonSetInd.addEventListener("click", function () {
-  checkbox.setAriaState(checkboxToggle);
-  checkbox.setIndeterminate(checkboxToggle);
-});
-buttonRemoveInd.addEventListener("click", function () {
-  checkbox.removeAriaState(checkboxToggle);
-  checkbox.setIndeterminate(checkboxToggle);
 });
 document.addEventListener("click", function () {
   var trigger = event.target;
