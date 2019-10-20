@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { toggleClass } from "./toggleClass"
 import "@testing-library/jest-dom/extend-expect"
 

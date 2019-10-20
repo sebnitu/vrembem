@@ -82,7 +82,7 @@ export const Modal = (options) => {
     }
   }
 
-  const run = () => {
+  const run = (event) => {
     let target = event.target.closest("." + api.settings.classTarget)
     let trigger = event.target.closest("." + api.settings.classTrigger)
     let inner = event.target.closest("." + api.settings.classInner)

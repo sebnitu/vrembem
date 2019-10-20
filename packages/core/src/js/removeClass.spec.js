@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { removeClass } from "./removeClass"
 import "@testing-library/jest-dom/extend-expect"
 
