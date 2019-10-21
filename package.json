@@ -16,7 +16,7 @@
     "watch:docs": "lerna run watch --scope @vrembem/docs --parallel",
     "watch:scripts": "lerna run watch:scripts --parallel",
     "watch:styles": "lerna run watch:styles --parallel",
-    "server": "lerna run server --parallel",
+    "server": "lerna run server --scope @vrembem/docs --parallel",
     "test": "jest || true",
     "test:watch": "jest --watch || true"
   },

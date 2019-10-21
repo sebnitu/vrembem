@@ -77,39 +77,11 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 
-function ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
+var defineProperty = _defineProperty;
 
-  if (Object.getOwnPropertySymbols) {
-    var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly) symbols = symbols.filter(function (sym) {
-      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-    });
-    keys.push.apply(keys, symbols);
-  }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-  return keys;
-}
-
-function _objectSpread2(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-
-    if (i % 2) {
-      ownKeys(source, true).forEach(function (key) {
-        _defineProperty(target, key, source[key]);
-      });
-    } else if (Object.getOwnPropertyDescriptors) {
-      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-    } else {
-      ownKeys(source).forEach(function (key) {
-        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-      });
-    }
-  }
-
-  return target;
-}
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var Checkbox = function Checkbox(options) {
   var api = {};
@@ -118,7 +90,7 @@ var Checkbox = function Checkbox(options) {
     stateAttr: "aria-checked",
     stateValue: "mixed"
   };
-  api.settings = _objectSpread2({}, defaults, {}, options);
+  api.settings = _objectSpread({}, defaults, {}, options);
   api.settings.selector = "[".concat(api.settings.stateAttr, "=\"").concat(api.settings.stateValue, "\"]");
 
   api.init = function () {
@@ -170,6 +142,10 @@ var Checkbox = function Checkbox(options) {
   return api;
 };
 
+function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
 var Dismissible = function Dismissible(options) {
   var api = {};
   var defaults = {
@@ -177,7 +153,7 @@ var Dismissible = function Dismissible(options) {
     target: "[data-dismissible]",
     trigger: "[data-dismiss]"
   };
-  api.settings = _objectSpread2({}, defaults, {}, options);
+  api.settings = _objectSpread$1({}, defaults, {}, options);
 
   api.init = function () {
     document.addEventListener("click", run, false);
@@ -205,6 +181,9 @@ var Dismissible = function Dismissible(options) {
   return api;
 };
 
+function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 var Drawer = function Drawer(options) {
   var api = {};
   var defaults = {
@@ -222,7 +201,7 @@ var Drawer = function Drawer(options) {
     switchBreakpoint: "lg",
     transitionDuration: 500
   };
-  api.settings = _objectSpread2({}, defaults, {}, options);
+  api.settings = _objectSpread$2({}, defaults, {}, options);
   var drawers = [];
   var drawerState = {};
   var switchDrawers;
@@ -485,6 +464,9 @@ var Drawer = function Drawer(options) {
   return api;
 };
 
+function ownKeys$3(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread$3(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$3(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$3(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 var Modal = function Modal(options) {
   var api = {};
   var defaults = {
@@ -495,7 +477,7 @@ var Modal = function Modal(options) {
     classActive: "is-active",
     focus: "[data-focus]"
   };
-  api.settings = _objectSpread2({}, defaults, {}, options);
+  api.settings = _objectSpread$3({}, defaults, {}, options);
   var memoryTrigger;
   var memoryTarget;
 
@@ -569,7 +551,7 @@ var Modal = function Modal(options) {
     }
   };
 
-  var run = function run() {
+  var run = function run(event) {
     var target = event.target.closest("." + api.settings.classTarget);
     var trigger = event.target.closest("." + api.settings.classTrigger);
     var inner = event.target.closest("." + api.settings.classInner);

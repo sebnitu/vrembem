@@ -24,7 +24,8 @@ export default [{
     resolve(),
     commonjs(),
     babel({
-      rootMode: "upward"
+      rootMode: "upward",
+      runtimeHelpers: true
     })
   ]
 }, {
@@ -38,7 +39,8 @@ export default [{
     resolve(),
     commonjs(),
     babel({
-      rootMode: "upward"
+      rootMode: "upward",
+      runtimeHelpers: true
     }),
     minify()
   ]
