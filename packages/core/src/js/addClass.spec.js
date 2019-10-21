@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import { addClass } from "./addClass"
 import "@testing-library/jest-dom/extend-expect"
 

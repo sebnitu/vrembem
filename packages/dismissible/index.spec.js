@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import { Dismissible } from "./index.js"
 import "@testing-library/jest-dom/extend-expect"
 

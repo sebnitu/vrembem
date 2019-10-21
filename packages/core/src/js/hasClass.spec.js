@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import { hasClass } from "./hasClass"
 
 document.body.innerHTML = `<!DOCTYPE html>

@@ -10,11 +10,7 @@ module.exports = {
   "extends": "eslint:recommended",
   "globals": {
     "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly",
-    "page": true,
-    "browser": true,
-    "context": true,
-    "jestPuppeteer": true,
+    "SharedArrayBuffer": "readonly"
   },
   "parserOptions": {
     "ecmaVersion": 2018,

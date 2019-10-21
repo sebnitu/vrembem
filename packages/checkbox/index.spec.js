@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import { Checkbox } from "./index.js"
 
 let checkbox
