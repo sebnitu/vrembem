@@ -1,10 +1,10 @@
+const puppeteer = require("puppeteer")
 
-beforeAll(async () => {
-  // await page.goto(`file:///${__dirname}/test.html`)
-})
-
-it("should be titled 'Modal Test'", async () => {
-  // console.log(await page.title())
-  // await page.screenshot({ path: "./test.png" })
-  // await expect(page.title()).resolves.toMatch("Modal Test")
+test("should be titled 'Modal Test'", async () => {
+  const browser = await puppeteer.launch() // { headless: false }
+  const page = await browser.newPage()
+  await page.goto(`file:///${__dirname}/test.html`)
+  await page.screenshot({ path: `${__dirname}/screenshot.png` })
+  await expect(page.title()).resolves.toMatch("Modal Test")
+  await browser.close()
 })
