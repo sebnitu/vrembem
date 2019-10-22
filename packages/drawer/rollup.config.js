@@ -4,17 +4,15 @@ import commonjs from "rollup-plugin-commonjs"
 import resolve from "rollup-plugin-node-resolve"
 import pkg from "./package.json"
 
-let name = pkg.name
-  .replace("@", "")
-  .replace("/all", "")
-  .replace("/", ".")
+const name = "vrembem"
 
 export default [{
   input: pkg.module,
   output: [{
     file: pkg.browser,
     format: "iife",
-    name: name
+    name: name,
+    extend: true
   }, {
     file: pkg.main,
     format: "cjs",
@@ -33,7 +31,8 @@ export default [{
   output: {
     file: pkg.browser.replace(".js", ".min.js"),
     format: "iife",
-    name: name
+    name: name,
+    extend: true
   },
   plugins: [
     resolve(),

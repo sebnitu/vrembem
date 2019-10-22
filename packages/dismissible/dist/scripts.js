@@ -1,5 +1,4 @@
-this.vrembem = this.vrembem || {};
-this.vrembem.dismissible = (function (exports) {
+(function (exports) {
   'use strict';
 
   function _defineProperty(obj, key, value) {
@@ -60,6 +59,4 @@ this.vrembem.dismissible = (function (exports) {
 
   exports.Dismissible = Dismissible;
 
-  return exports;
-
-}({}));
+}(this.vrembem = this.vrembem || {}));

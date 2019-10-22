@@ -1,5 +1,96 @@
-var vrembem = (function (exports) {
+(function (exports) {
   'use strict';
+
+  var breakpoint = {
+    xs: "480px",
+    sm: "620px",
+    md: "760px",
+    lg: "990px",
+    xl: "1380px"
+  };
+  var transition = {
+    duration: 300,
+    tick: 30
+  };
+
+  var camelCase = function camelCase(str) {
+    return str.replace(/-([a-z])/g, function (g) {
+      return g[1].toUpperCase();
+    });
+  };
+
+  var addClass = function addClass(el) {
+    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      cl[_key - 1] = arguments[_key];
+    }
+
+    el = el.forEach ? el : [el];
+    el.forEach(function (el) {
+      var _el$classList;
+
+      (_el$classList = el.classList).add.apply(_el$classList, cl);
+    });
+  };
+
+  var hasClass = function hasClass(el) {
+    el = el.forEach ? el : [el];
+    el = [].slice.call(el);
+
+    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      cl[_key - 1] = arguments[_key];
+    }
+
+    return cl.some(function (cl) {
+      return el.some(function (el) {
+        if (el.classList.contains(cl)) return true;
+      });
+    });
+  };
+
+  var hyphenCase = function hyphenCase(str) {
+    return str.replace(/([a-z][A-Z])/g, function (g) {
+      return g[0] + "-" + g[1].toLowerCase();
+    });
+  };
+
+  var removeClass = function removeClass(el) {
+    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      cl[_key - 1] = arguments[_key];
+    }
+
+    el = el.forEach ? el : [el];
+    el.forEach(function (el) {
+      var _el$classList;
+
+      (_el$classList = el.classList).remove.apply(_el$classList, cl);
+    });
+  };
+
+  var toggleClass = function toggleClass(el) {
+    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      cl[_key - 1] = arguments[_key];
+    }
+
+    el = el.forEach ? el : [el];
+    el.forEach(function (el) {
+      cl.forEach(function (cl) {
+        el.classList.toggle(cl);
+      });
+    });
+  };
+
+
+
+  var index = /*#__PURE__*/Object.freeze({
+    breakpoint: breakpoint,
+    transition: transition,
+    camelCase: camelCase,
+    addClass: addClass,
+    hasClass: hasClass,
+    hyphenCase: hyphenCase,
+    removeClass: removeClass,
+    toggleClass: toggleClass
+  });
 
   function _defineProperty(obj, key, value) {
     if (key in obj) {
@@ -118,68 +209,6 @@ var vrembem = (function (exports) {
 
     if (api.settings.autoInit) api.init();
     return api;
-  };
-
-  var breakpoint = {
-    xs: "480px",
-    sm: "620px",
-    md: "760px",
-    lg: "990px",
-    xl: "1380px"
-  };
-
-  var addClass = function addClass(el) {
-    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      cl[_key - 1] = arguments[_key];
-    }
-
-    el = el.forEach ? el : [el];
-    el.forEach(function (el) {
-      var _el$classList;
-
-      (_el$classList = el.classList).add.apply(_el$classList, cl);
-    });
-  };
-
-  var hasClass = function hasClass(el) {
-    el = el.forEach ? el : [el];
-    el = [].slice.call(el);
-
-    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      cl[_key - 1] = arguments[_key];
-    }
-
-    return cl.some(function (cl) {
-      return el.some(function (el) {
-        if (el.classList.contains(cl)) return true;
-      });
-    });
-  };
-
-  var removeClass = function removeClass(el) {
-    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      cl[_key - 1] = arguments[_key];
-    }
-
-    el = el.forEach ? el : [el];
-    el.forEach(function (el) {
-      var _el$classList;
-
-      (_el$classList = el.classList).remove.apply(_el$classList, cl);
-    });
-  };
-
-  var toggleClass = function toggleClass(el) {
-    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      cl[_key - 1] = arguments[_key];
-    }
-
-    el = el.forEach ? el : [el];
-    el.forEach(function (el) {
-      cl.forEach(function (cl) {
-        el.classList.toggle(cl);
-      });
-    });
   };
 
   function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -581,7 +610,6 @@ var vrembem = (function (exports) {
   exports.Dismissible = Dismissible;
   exports.Drawer = Drawer;
   exports.Modal = Modal;
+  exports.utility = index;
 
-  return exports;
-
-}({}));
+}(this.vrembem = this.vrembem || {}));

@@ -1,10 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Modal Test</title>
-  </head>
-  <body>
-    <p>Hello, World!</p>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="./dist/styles.min.css">
+  <title>Modal Test</title>
+</head>
+<body>
+
+  <button class="modal__trigger" data-target="#modal-default">Modal</button>
+
+  <div class="modal" id="modal-default" tabindex="-1">
+    <div class="modal__dialog dialog">
+      <button class="modal__trigger dialog__close">
+        Close
+      </button>
+      <div class="dialog__body">
+        <p>This is using the dialog component...</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="./dist/scripts.min.js"></script>
+  <script>
+    new vrembem.Modal({ autoInit: true });
+  </script>
+</body>
 </html>

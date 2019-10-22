@@ -1,5 +1,4 @@
-this.vrembem = this.vrembem || {};
-this.vrembem.drawer = (function (exports) {
+(function (exports) {
   'use strict';
 
   function _defineProperty(obj, key, value) {
@@ -366,6 +365,4 @@ this.vrembem.drawer = (function (exports) {
 
   exports.Drawer = Drawer;
 
-  return exports;
-
-}({}));
+}(this.vrembem = this.vrembem || {}));

@@ -1,5 +1,4 @@
-this.vrembem = this.vrembem || {};
-this.vrembem.core = (function (exports) {
+(function (exports) {
   'use strict';
 
   var breakpoint = {
@@ -89,6 +88,4 @@ this.vrembem.core = (function (exports) {
   exports.toggleClass = toggleClass;
   exports.transition = transition;
 
-  return exports;
-
-}({}));
+}(this.vrembem = this.vrembem || {}));

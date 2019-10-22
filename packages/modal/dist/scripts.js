@@ -1,5 +1,4 @@
-this.vrembem = this.vrembem || {};
-this.vrembem.modal = (function (exports) {
+(function (exports) {
   'use strict';
 
   function _defineProperty(obj, key, value) {
@@ -159,6 +158,4 @@ this.vrembem.modal = (function (exports) {
 
   exports.Modal = Modal;
 
-  return exports;
-
-}({}));
+}(this.vrembem = this.vrembem || {}));

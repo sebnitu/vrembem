@@ -1,5 +1,4 @@
-this.vrembem = this.vrembem || {};
-this.vrembem.checkbox = (function (exports) {
+(function (exports) {
   'use strict';
 
   function _defineProperty(obj, key, value) {
@@ -84,6 +83,4 @@ this.vrembem.checkbox = (function (exports) {
 
   exports.Checkbox = Checkbox;
 
-  return exports;
-
-}({}));
+}(this.vrembem = this.vrembem || {}));
