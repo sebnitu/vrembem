@@ -10,7 +10,7 @@
   width: 0;
   height: 0;
   overflow: hidden;
-  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0s 0.3s cubic-bezier(0.4, 0, 0.2, 1), height 0s 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0s 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   background-color: rgba(66, 66, 66, 0);
 }
 
@@ -18,21 +18,41 @@
   width: 38em;
   max-width: 100%;
   transform: translateY(-5em);
-  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  box-shadow: 0 0 0 1px rgba(33, 33, 33, 0.05), 0 11px 15px -7px rgba(33, 33, 33, 0.1), 0 24px 38px 3px rgba(33, 33, 33, 0.08), 0 9px 46px 8px rgba(33, 33, 33, 0.06);
   opacity: 0;
 }
 
-.modal.is-active {
+.modal.is-opening,
+.modal.is-open,
+.modal.is-closing {
   width: 100%;
   height: 100%;
   padding: 1em;
-  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal.is-opening {
+  z-index: 1001;
   background-color: rgba(66, 66, 66, 0.75);
 }
-.modal.is-active .modal__dialog {
+.modal.is-opening .modal__dialog {
   transform: translateY(0);
-  box-shadow: 0 0 0 1px rgba(33, 33, 33, 0.05), 0 11px 15px -7px rgba(33, 33, 33, 0.1), 0 24px 38px 3px rgba(33, 33, 33, 0.08), 0 9px 46px 8px rgba(33, 33, 33, 0.06);
   opacity: 1;
+}
+
+.modal.is-open {
+  z-index: 1000;
+  background-color: rgba(66, 66, 66, 0.75);
+}
+.modal.is-open .modal__dialog {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.modal.is-closing {
+  z-index: 999;
+}
+.modal.is-closing .modal__dialog {
+  transform: translateY(-5em);
 }
 
 .modal_full .modal__dialog {

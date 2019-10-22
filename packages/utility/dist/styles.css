@@ -1081,11 +1081,11 @@
 }
 
 .text_size_sm {
-  font-size: 0.875em !important;
+  font-size: 14px !important;
 }
 
 .text_size_lg {
-  font-size: 1.125em !important;
+  font-size: 18px !important;
 }
 
 .text_capitalize {

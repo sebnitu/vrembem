@@ -15,9 +15,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: $button-height;
   padding: $button-padding;
-  border: $button-border-width solid $button-border-color;
+  border: $button-border;
   border-radius: $button-border-radius;
   background: $button-background;
   background-clip: border-box;

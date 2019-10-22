@@ -11,9 +11,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 2.5rem;
-  padding: 0.5em 0.75em;
-  border: 1px solid transparent;
+  padding: 0.5em 1em;
+  border: none;
   border-radius: 4px;
   background: rgba(0, 0, 0, 0.05);
   background-clip: border-box;
@@ -183,19 +182,13 @@
 }
 
 .button_icon {
-  width: 2.5rem;
-  height: 2.5rem;
   padding: 0.5em;
 }
 .button_icon.button_size_sm {
-  width: 2rem;
-  height: 2rem;
-  padding: 0.25em;
+  padding: 0.25rem;
 }
 .button_icon.button_size_lg {
-  width: 3rem;
-  height: 3rem;
-  padding: 0.75em;
+  padding: 0.75rem;
 }
 
 .button_invert {
@@ -305,18 +298,18 @@
 }
 
 .button_size_sm {
-  height: 2rem;
-  padding: 0.25em 0.5em;
-  font-size: 0.875em;
+  padding: 0.25rem 0.5rem;
+  font-size: 14px;
+  line-height: 22px;
 }
 .button_size_sm .icon {
   padding: 0.129em;
 }
 
 .button_size_lg {
-  height: 3rem;
-  padding: 0.75em 1.75em;
-  font-size: 1.125em;
+  padding: 0.75rem 1.5rem;
+  font-size: 18px;
+  line-height: 26px;
 }
 .button_size_lg:not(.button_icon) .icon:first-child {
   margin-left: -0.25em;

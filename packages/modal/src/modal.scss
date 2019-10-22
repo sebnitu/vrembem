@@ -12,11 +12,7 @@
   width: 0;
   height: 0;
   overflow: hidden;
-  transition:
-    background-color $modal-transition-duration $modal-transition-timing-function,
-    width 0s $modal-transition-duration $modal-transition-timing-function,
-    height 0s $modal-transition-duration $modal-transition-timing-function,
-    padding 0s $modal-transition-duration $modal-transition-timing-function;
+  transition: background-color $modal-transition-duration $modal-transition-timing-function;
   background-color: rgba($modal-background, 0);
 }
 
@@ -24,24 +20,46 @@
   width: $modal-width;
   max-width: 100%;
   transform: translateY(-$modal-travel);
-  box-shadow: $box-shadow-flat;
+  box-shadow: $modal__dialog-box-shadow;
   opacity: 0;
 }
 
-.modal.is-active {
+.modal.is-opening,
+.modal.is-open,
+.modal.is-closing {
   width: 100%;
   height: 100%;
   padding: 1em;
-  transition: background-color $modal-transition-duration $modal-transition-timing-function;
-  background-color: rgba($modal-background, 0.75);
 
   @include media-min("medium") {
     padding: 2em;
   }
+}
+
+.modal.is-opening {
+  z-index: ($modal-zindex + 1);
+  background-color: rgba($modal-background, 0.75);
 
   .modal__dialog {
     transform: translateY(0);
-    box-shadow: $modal__dialog-box-shadow;
     opacity: 1;
+  }
+}
+
+.modal.is-open {
+  z-index: $modal-zindex;
+  background-color: rgba($modal-background, 0.75);
+
+  .modal__dialog {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal.is-closing {
+  z-index: ($modal-zindex - 1);
+
+  .modal__dialog {
+    transform: translateY(-$modal-travel);
   }
 }

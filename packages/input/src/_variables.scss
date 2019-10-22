@@ -1,16 +1,16 @@
 @import "@vrembem/core/index";
 
-$input-height: $height !default;
 $input-padding: nth($padding, 1) 0.5em !default;
 $input-font-size: $font-size !default;
 $input-line-height: $line-height !default;
 
-$input_size_sm-height: $height-sm !default;
 $input_size_sm-padding: $padding-sm !default;
 $input_size_sm-font-size: $font-size-sm !default;
-$input_size_lg-height: $height-lg !default;
-$input_size_lg-padding: nth($padding-lg, 1) (nth($padding-lg, 1) * 1.3) !default;
+$input_size_sm-line-height: $line-height-sm !default;
+
+$input_size_lg-padding: nth($padding-lg, 1) !default;
 $input_size_lg-font-size: $font-size-lg !default;
+$input_size_lg-line-height: $line-height-lg !default;
 
 $input-color: $color !default;
 $input-color-placeholder: $color-subtle !default;

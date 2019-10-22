@@ -8,8 +8,8 @@
 }
 
 .radio__background {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.5em;
+  height: 2.5em;
   position: relative;
   z-index: 1;
   display: flex;

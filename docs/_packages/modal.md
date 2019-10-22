@@ -23,7 +23,9 @@ The core parts of a modal include the following elements:
 
 {% include demo_open.html %}
 
-<button class="modal__trigger button button_color_primary" data-target="#modal-default">Modal</button>
+<button class="button button_color_primary" data-modal-open="modal-default">
+  Modal
+</button>
 
 {% include demo_switch.html %}
 
@@ -93,16 +95,53 @@ The core parts of a modal include the following elements:
 
 {% include demo_close.html %}
 
-<!-- modal -->
+<!-- modals -->
 <div>
 
-  <div class="modal" id="modal-default" tabindex="-1">
+  <div class="modal" data-modal="modal-default" tabindex="-1">
     <div class="modal__dialog dialog">
-      <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
-        {% include icon.html icon="x" %}
-      </button>
-      <div class="dialog__body">
+      <div class="dialog__header">
+        <h2 class="dialog__title">Dialog Header</h2>
+        <button class="dialog__close icon-action icon-action_color_fade" data-modal-close>
+          {% include icon.html icon="x" %}
+        </button>
+      </div>
+      <div class="dialog__body spacing">
+        <label>Text Input</label>
+        <input class="input" type="text" data-modal-focus />
         <p>This is using the dialog component...</p>
+      </div>
+      <div class="dialog__footer flex_justify_between">
+        <button class="button" data-modal-close>
+          Cancel
+        </button>
+        <button class="button button_color_primary" data-modal-open="modal-default-second">
+          Next Modal
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" data-modal="modal-default-second" tabindex="-1">
+    <div class="modal__dialog dialog">
+      <div class="dialog__header">
+        <h2 class="dialog__title">Dialog Header</h2>
+        <button class="dialog__close icon-action icon-action_color_fade" data-modal-close>
+          {% include icon.html icon="x" %}
+        </button>
+      </div>
+      <div class="dialog__body spacing">
+        <label>Text Input</label>
+        <input class="input" type="text" data-modal-focus />
+        <p>This is using the dialog component...</p>
+      </div>
+      <div class="dialog__footer flex_justify_between">
+        <button class="button button_color_primary" data-modal-open="modal-default">
+          Previous Modal
+        </button>
+        <button class="button" data-modal-close>
+          Done
+        </button>
       </div>
     </div>
   </div>

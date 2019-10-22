@@ -62,15 +62,10 @@ $danger-darker: $red-900 !default;
 // Global properties
 // ---
 
-// Height
-$height: 2.5rem !default;
-$height-sm: 2rem !default;
-$height-lg: 3rem !default;
-
 // Padding
-$padding: 0.5em 0.75em !default;
-$padding-sm: 0.25em 0.5em !default;
-$padding-lg: 0.75em 1.75em !default;
+$padding: 0.5em 1em !default;
+$padding-sm: 0.25rem 0.5rem !default;
+$padding-lg: 0.75rem 1.5rem !default;
 
 // Border
 // ---
@@ -119,11 +114,13 @@ $font-family: $font-family-sans !default;
 
 // Front size
 $font-size: 16px !default;
-$font-size-sm: 0.875em !default; // 14px
-$font-size-lg: 1.125em !default; // 18px
+$font-size-sm: 14px !default;
+$font-size-lg: 18px !default;
 
 // Line height
 $line-height: 1.5 !default;
+$line-height-sm: 22px !default;
+$line-height-lg: 26px !default;
 
 // Color
 $color: $night-dark !default;

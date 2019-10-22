@@ -4,14 +4,14 @@
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  padding-right: 0.625rem;
-  padding-left: 0.625rem;
+  padding-right: 0.625em;
+  padding-left: 0.625em;
   vertical-align: middle;
 }
 
 .switch__background {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.5em;
+  height: 2.5em;
   position: relative;
   z-index: 1;
   display: flex;
@@ -19,12 +19,12 @@
   justify-content: center;
 }
 .switch__background::after {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.5em;
+  height: 2.5em;
   content: "";
   position: absolute;
   top: 0;
-  left: -0.625rem;
+  left: -0.625em;
   transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 9999px;
   background-color: transparent;
@@ -83,7 +83,7 @@
   box-shadow: 0 0 0 2px #00bcd4;
 }
 .switch__native:checked + .switch__background::after {
-  left: calc(100% - 1.875rem);
+  left: calc(100% - 1.875em);
 }
 .switch__native:checked + .switch__background .switch__track {
   border-color: #00bcd4;

@@ -16,7 +16,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  padding: 0.5em 0.75em;
+  padding: 0.5em 1em;
   border: 1px solid transparent;
   border-radius: 4px;
   background: none;
@@ -70,7 +70,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  padding: 0.5em 0.75em;
+  padding: 0.5em 1em;
   border: 1px solid transparent;
   border-radius: 4px;
   background: none;
@@ -101,8 +101,8 @@
 }
 
 .menu_size_sm .menu__link {
-  padding: 0.25em 0.5em;
-  font-size: 0.875em;
+  padding: 0.25rem 0.5rem;
+  font-size: 14px;
 }
 
 .menu_size_lg .menu__link {

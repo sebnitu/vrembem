@@ -501,11 +501,13 @@
     var api = {};
     var defaults = {
       autoInit: false,
-      classTarget: "modal",
-      classTrigger: "modal__trigger",
-      classInner: "modal__dialog",
-      classActive: "is-active",
-      focus: "[data-focus]"
+      selectorModal: "[data-modal]",
+      selectorOpen: "[data-modal-open]",
+      selectorClose: "[data-modal-close]",
+      selectorFocus: "[data-modal-focus]",
+      stateOpen: "is-open",
+      stateOpening: "is-opening",
+      stateClosing: "is-closing"
     };
     api.settings = _objectSpread$3({}, defaults, {}, options);
     var memoryTrigger;
@@ -529,49 +531,40 @@
       open(document.querySelectorAll(selector));
     };
 
-    api.close = function (clear) {
-      close(clear);
-    };
-
     var open = function open(target) {
-      addClass(target, api.settings.classActive);
+      addClass(target, api.settings.stateOpening);
+      var focus = target.querySelector(api.settings.selectorFocus);
+      target.addEventListener("transitionend", function _listener() {
+        addClass(target, api.settings.stateOpen);
+        removeClass(target, api.settings.stateOpening);
 
-      if (target.length === 1) {
-        target = target.item(0);
-        var focus = target.querySelector(api.settings.focus);
-        target.addEventListener("transitionend", function _listener() {
-          if (focus) {
-            focus.focus();
-          } else {
-            target.focus();
-          }
+        if (focus) {
+          focus.focus();
+        } else {
+          target.focus();
+        }
 
-          this.removeEventListener("transitionend", _listener, true);
-        }, true);
-      }
+        this.removeEventListener("transitionend", _listener, true);
+      }, true);
     };
 
     var close = function close() {
-      var clear = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-      var target = document.querySelectorAll("." + api.settings.classTarget);
-      removeClass(target, api.settings.classActive);
+      var target = document.querySelector("".concat(api.settings.selectorModal, ".").concat(api.settings.stateOpen));
 
-      if (clear == false && memoryTrigger && memoryTarget) {
-        if (memoryTarget.length === 1) {
-          memoryTarget = memoryTarget.item(0);
-          memoryTarget.addEventListener("transitionend", function _listener() {
-            if (memoryTrigger) {
-              memoryTrigger.focus();
-            }
+      if (target) {
+        addClass(target, api.settings.stateClosing);
+        removeClass(target, api.settings.stateOpen);
+        target.addEventListener("transitionend", function _listener() {
+          removeClass(target, api.settings.stateClosing);
 
-            memoryTarget = null;
-            memoryTrigger = null;
-            this.removeEventListener("transitionend", _listener, true);
-          }, true);
-        }
-      } else if (clear == true) {
-        memoryTarget = null;
-        memoryTrigger = null;
+          if (memoryTrigger) {
+            memoryTrigger.focus();
+          }
+
+          memoryTarget = null;
+          memoryTrigger = null;
+          this.removeEventListener("transitionend", _listener, true);
+        }, true);
       }
     };
 
@@ -582,23 +575,29 @@
     };
 
     var run = function run(event) {
-      var target = event.target.closest("." + api.settings.classTarget);
-      var trigger = event.target.closest("." + api.settings.classTrigger);
-      var inner = event.target.closest("." + api.settings.classInner);
+      var trigger = event.target.closest(api.settings.selectorOpen);
 
       if (trigger) {
         close();
-        var targetData = trigger.dataset.target;
+        var targetData = trigger.dataset.modalOpen;
 
         if (targetData) {
-          memoryTarget = document.querySelectorAll(targetData);
+          memoryTarget = document.querySelector("[data-modal=\"".concat(targetData, "\"]"));
           memoryTrigger = trigger;
           open(memoryTarget);
-        }
+        } else {
+            close();
+          }
 
         event.preventDefault();
-      } else if (target && !inner) {
-        close();
+      } else {
+        if (event.target.closest(api.settings.selectorClose)) {
+          close();
+        }
+
+        if (event.target.dataset.modal) {
+          close();
+        }
       }
     };
 

@@ -1,14 +1,12 @@
 @import "@vrembem/core/index";
 
-$button-height: $height !default;
 $button-padding: $padding !default;
 $button-inner-spacing: 0.5em !default;
 $button-font-size: $font-size !default;
-$button-line-height: $line-height !default;
+$button-line-height: 1.5 !default;
 $button-font-weight: inherit !default;
 $button-text-transform: null !default;
 $button-letter-spacing: null !default;
-$button-border-width: 1px !default;
 $button-border-radius: $border-radius !default;
 $button-focus-outline: none !default;
 $button-focus-outline-offset: null !default;
@@ -23,7 +21,7 @@ $button-box-shadow-hover: null !default;
 $button-box-shadow-focus: null !default;
 $button-box-shadow-active: null !default;
 
-$button-border-color: transparent !default;
+$button-border: none !default;
 $button-border-color-hover: null !default;
 $button-border-color-focus: null !default;
 $button-border-color-active: null !default;
@@ -41,11 +39,12 @@ $button-loading-border-tpl: 1 1 0 0;
 
 $button-disabled-opacity: 0.5 !default;
 
-$button_size_sm-height: $height-sm !default;
 $button_size_sm-padding: $padding-sm !default;
 $button_size_sm-font-size: $font-size-sm !default;
-$button_size_lg-height: $height-lg !default;
+$button_size_sm-line-height: $line-height-sm !default;
+
 $button_size_lg-padding: $padding-lg !default;
 $button_size_lg-font-size: $font-size-lg !default;
+$button_size_lg-line-height: $line-height-lg !default;
 
 $button_outline-border-width: 1px !default;
