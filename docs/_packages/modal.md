@@ -98,7 +98,7 @@ The core parts of a modal include the following elements:
 <!-- modals -->
 <div>
 
-  <div class="modal" data-modal="modal-default" tabindex="-1">
+  <div class="modal" data-modal="modal-default" data-modal-required="true" tabindex="-1">
     <div class="modal__dialog dialog">
       <div class="dialog__header">
         <h2 class="dialog__title">Dialog Header</h2>
