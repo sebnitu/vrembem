@@ -1,24 +1,31 @@
 import { addClass, removeClass } from "@vrembem/core"
 
-// TODO: Add ability to disable "modal" screen close
-// TODO: Add ability to disable focus feature
-// TODO: Figure out how to handle trigger memory for triggers inside modals
-// TODO: Open a modal via URL hash or other params via URL
-// TODO: Modal updates URL
+// TODO: Ability to toggle focus feature [1]
+// TODO: Maybe move focus functionality into it's own methods [2]
+// TODO: Make the selector params more usable [3]
 
 export const Modal = (options) => {
 
   let api = {}
   const defaults = {
     autoInit: false,
-    selectorModal: "[data-modal]",
-    selectorOpen: "[data-modal-open]",
-    selectorClose: "[data-modal-close]",
-    selectorFocus: "[data-modal-focus]",
-    selectorRequired: "[data-modal-required]",
+
+    // Data attributes
+    selectorModal: "[data-modal]", // dataModal: "modal"
+    selectorOpen: "[data-modal-open]", // dataOpen: "modal-open"
+    selectorClose: "[data-modal-close]", // dataClose: "modal-close"
+    selectorFocus: "[data-modal-focus]", // dataFocus: "modal-focus"
+    selectorRequired: "[data-modal-required]", // dataRequired: "modal-required"
+
+    // State classes
+    // Default state: stateClosed: is-closed
     stateOpen: "is-open",
     stateOpening: "is-opening",
-    stateClosing: "is-closing"
+    stateClosing: "is-closing",
+    // stateClosed: "is-closed",
+
+    // Feature toggle
+    focus: true // TODO: [1]
   }
 
   api.settings = { ...defaults, ...options }
@@ -56,13 +63,13 @@ export const Modal = (options) => {
     if (target) {
       addClass(target, api.settings.stateOpening)
 
-      // TODO: Maybe move focus to it's own function
-      // Search for the focus item if one exists
-      let focus = target.querySelector(api.settings.selectorFocus)
-
       target.addEventListener("transitionend", function _listener() {
         addClass(target, api.settings.stateOpen)
         removeClass(target, api.settings.stateOpening)
+
+        // TODO: [2]
+        // Search for the focus item if one exists
+        let focus = target.querySelector(api.settings.selectorFocus)
 
         // Set the focus
         if (focus) {
@@ -79,7 +86,6 @@ export const Modal = (options) => {
     }
   }
 
-  // TODO: Maybe add queue param for opening second modal?
   const close = (fromModal = false) => {
 
     // Get the open modal
@@ -95,6 +101,7 @@ export const Modal = (options) => {
       target.addEventListener("transitionend", function _listener() {
         removeClass(target, api.settings.stateClosing)
 
+        // TODO: [2]
         // If it's not from modal and a trigger is saved to memory, focus it
         if (!fromModal && memoryTrigger) {
           // Set focus on initial trigger
@@ -112,25 +119,22 @@ export const Modal = (options) => {
   }
 
   const escape = () => {
-    if (memoryTarget && event.keyCode == 27) {
-      // If the open target is not required
-      if (!memoryTarget.closest(api.settings.selectorRequired)) {
-        close()
-      }
+    // If the escape key is pressed
+    // and there's an open modal
+    // and the modal is not required
+    if (
+      event.keyCode == 27 &&
+      memoryTarget &&
+      !memoryTarget.hasAttribute("data-modal-required")
+    ) {
+      close()
     }
   }
 
   const run = (event) => {
-    // Save the trigger
-    let trigger = event.target.closest(api.settings.selectorOpen)
-
-    // If a trigger was clicked
+    const trigger = event.target.closest(api.settings.selectorOpen)
     if (trigger) {
-
-      // Get the target data from the trigger
-      let targetData = trigger.dataset.modalOpen
-
-      // Trigger with target value
+      const targetData = trigger.dataset.modalOpen // TODO: [3]
       if (targetData) {
 
         // Is the trigger coming from a modal?
@@ -160,7 +164,7 @@ export const Modal = (options) => {
       // If the root modal is clicked (screen)
       if (
         event.target.dataset.modal &&
-        !event.target.closest(api.settings.selectorRequired)
+        !event.target.hasAttribute("data-modal-required")
       ) {
         close()
       }

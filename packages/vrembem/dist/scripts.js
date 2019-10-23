@@ -508,7 +508,8 @@
       selectorRequired: "[data-modal-required]",
       stateOpen: "is-open",
       stateOpening: "is-opening",
-      stateClosing: "is-closing"
+      stateClosing: "is-closing",
+      focus: true
     };
     api.settings = _objectSpread$3({}, defaults, {}, options);
     var memoryTrigger;
@@ -541,10 +542,10 @@
 
       if (target) {
         addClass(target, api.settings.stateOpening);
-        var focus = target.querySelector(api.settings.selectorFocus);
         target.addEventListener("transitionend", function _listener() {
           addClass(target, api.settings.stateOpen);
           removeClass(target, api.settings.stateOpening);
+          var focus = target.querySelector(api.settings.selectorFocus);
 
           if (focus) {
             focus.focus();
@@ -580,10 +581,8 @@
     };
 
     var escape = function escape() {
-      if (memoryTarget && event.keyCode == 27) {
-        if (!memoryTarget.closest(api.settings.selectorRequired)) {
-          close();
-        }
+      if (event.keyCode == 27 && memoryTarget && !memoryTarget.hasAttribute("data-modal-required")) {
+        close();
       }
     };
 
@@ -611,7 +610,7 @@
           event.preventDefault();
         }
 
-        if (event.target.dataset.modal && !event.target.closest(api.settings.selectorRequired)) {
+        if (event.target.dataset.modal && !event.target.hasAttribute("data-modal-required")) {
           close();
         }
       }

@@ -6,6 +6,9 @@ import {
   toggleClass
 } from "@vrembem/core"
 
+// TODO: Remove the switch feature and build the drawer styles directly into
+//       the drawer componnent itself so it doesn't rely on modals.
+
 export const Drawer = (options) => {
 
   let api = {}
