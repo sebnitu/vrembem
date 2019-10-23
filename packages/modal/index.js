@@ -1,6 +1,5 @@
 import { addClass, removeClass } from "@vrembem/core"
 
-// TODO: Ability to toggle focus feature [1]
 // TODO: Maybe move focus functionality into it's own methods [2]
 // TODO: Make the selector params more usable [3]
 
@@ -25,7 +24,7 @@ export const Modal = (options) => {
     // stateClosed: "is-closed",
 
     // Feature toggle
-    focus: true // TODO: [1]
+    focus: true
   }
 
   api.settings = { ...defaults, ...options }
@@ -68,14 +67,16 @@ export const Modal = (options) => {
         removeClass(target, api.settings.stateOpening)
 
         // TODO: [2]
-        // Search for the focus item if one exists
-        let focus = target.querySelector(api.settings.selectorFocus)
+        if (api.settings.focus) {
+          // Search for the focus item if one exists
+          let focus = target.querySelector(api.settings.selectorFocus)
 
-        // Set the focus
-        if (focus) {
-          focus.focus()
-        } else {
-          target.focus()
+          // Set the focus
+          if (focus) {
+            focus.focus()
+          } else {
+            target.focus()
+          }
         }
 
         // Save the open modal
@@ -102,12 +103,14 @@ export const Modal = (options) => {
         removeClass(target, api.settings.stateClosing)
 
         // TODO: [2]
-        // If it's not from modal and a trigger is saved to memory, focus it
-        if (!fromModal && memoryTrigger) {
-          // Set focus on initial trigger
-          memoryTrigger.focus()
-          // Clear the trigger from memory
-          memoryTrigger = null
+        if (api.settings.focus) {
+          // If it's not from modal and a trigger is saved to memory, focus it
+          if (!fromModal && memoryTrigger) {
+            // Set focus on initial trigger
+            memoryTrigger.focus()
+            // Clear the trigger from memory
+            memoryTrigger = null
+          }
         }
 
         // Clear the target from memory
@@ -141,14 +144,14 @@ export const Modal = (options) => {
         let fromModal = event.target.closest(api.settings.selectorModal)
 
         // If it's not from a modal, save the trigger to memory
-        if (!fromModal) {
+        // TODO: [2]
+        if (api.settings.focus && !fromModal) {
           memoryTrigger = trigger
         }
 
-        // Close modal and pass the context
-        close(fromModal)
-
+        // Close open modal with context
         // Open the target modal
+        close(fromModal)
         open(`[data-modal="${targetData}"]`)
       }
 

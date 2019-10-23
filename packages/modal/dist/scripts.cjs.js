@@ -96,12 +96,15 @@ var Modal = function Modal(options) {
       target.addEventListener("transitionend", function _listener() {
         addClass(target, api.settings.stateOpen);
         removeClass(target, api.settings.stateOpening);
-        var focus = target.querySelector(api.settings.selectorFocus);
 
-        if (focus) {
-          focus.focus();
-        } else {
-          target.focus();
+        if (api.settings.focus) {
+          var focus = target.querySelector(api.settings.selectorFocus);
+
+          if (focus) {
+            focus.focus();
+          } else {
+            target.focus();
+          }
         }
 
         memoryTarget = target;
@@ -120,9 +123,11 @@ var Modal = function Modal(options) {
       target.addEventListener("transitionend", function _listener() {
         removeClass(target, api.settings.stateClosing);
 
-        if (!fromModal && memoryTrigger) {
-          memoryTrigger.focus();
-          memoryTrigger = null;
+        if (api.settings.focus) {
+          if (!fromModal && memoryTrigger) {
+            memoryTrigger.focus();
+            memoryTrigger = null;
+          }
         }
 
         memoryTarget = null;
@@ -146,7 +151,7 @@ var Modal = function Modal(options) {
       if (targetData) {
         var fromModal = event.target.closest(api.settings.selectorModal);
 
-        if (!fromModal) {
+        if (api.settings.focus && !fromModal) {
           memoryTrigger = trigger;
         }
 
