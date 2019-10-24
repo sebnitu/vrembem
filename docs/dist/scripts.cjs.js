@@ -485,11 +485,12 @@ var Modal = function Modal(options) {
     stateOpen: "is-open",
     stateOpening: "is-opening",
     stateClosing: "is-closing",
+    stateClosed: "is-closed",
     focus: true
   };
   api.settings = _objectSpread$3({}, defaults, {}, options);
-  var memoryTrigger;
-  var memoryTarget;
+  api.memoryTrigger = null;
+  api.memoryTarget = null;
 
   api.init = function () {
     document.addEventListener("click", run, false);
@@ -498,8 +499,8 @@ var Modal = function Modal(options) {
   };
 
   api.destroy = function () {
-    memoryTrigger = null;
-    memoryTarget = null;
+    api.memoryTrigger = null;
+    api.memoryTarget = null;
     document.removeEventListener("click", run, false);
     document.removeEventListener("touchend", run, false);
     document.removeEventListener("keyup", escape, false);
@@ -522,7 +523,7 @@ var Modal = function Modal(options) {
         addClass(target, api.settings.stateOpen);
         removeClass(target, api.settings.stateOpening);
         getFocus(target);
-        memoryTarget = target;
+        api.memoryTarget = target;
         this.removeEventListener("transitionend", _listener, true);
       }, true);
     }
@@ -538,7 +539,7 @@ var Modal = function Modal(options) {
       target.addEventListener("transitionend", function _listener() {
         removeClass(target, api.settings.stateClosing);
         returnFocus(fromModal);
-        memoryTarget = null;
+        api.memoryTarget = null;
         this.removeEventListener("transitionend", _listener, true);
       }, true);
     }
@@ -558,15 +559,15 @@ var Modal = function Modal(options) {
 
   var returnFocus = function returnFocus(fromModal) {
     if (api.settings.focus) {
-      if (!fromModal && memoryTrigger) {
-        memoryTrigger.focus();
-        memoryTrigger = null;
+      if (!fromModal && api.memoryTrigger) {
+        api.memoryTrigger.focus();
+        api.memoryTrigger = null;
       }
     }
   };
 
   var escape = function escape() {
-    if (event.keyCode == 27 && memoryTarget && !memoryTarget.hasAttribute("data-".concat(api.settings.dataRequired))) {
+    if (event.keyCode == 27 && api.memoryTarget && !api.memoryTarget.hasAttribute("data-".concat(api.settings.dataRequired))) {
       close();
     }
   };
@@ -581,7 +582,7 @@ var Modal = function Modal(options) {
         var fromModal = event.target.closest("[data-".concat(api.settings.dataModal, "]"));
 
         if (api.settings.focus && !fromModal) {
-          memoryTrigger = trigger;
+          api.memoryTrigger = trigger;
         }
 
         close(fromModal);

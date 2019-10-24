@@ -17,6 +17,7 @@ export const Modal = (options) => {
     stateOpen: "is-open",
     stateOpening: "is-opening",
     stateClosing: "is-closing",
+    stateClosed: "is-closed", // Default state
 
     // Feature toggle
     focus: true
@@ -24,8 +25,8 @@ export const Modal = (options) => {
 
   api.settings = { ...defaults, ...options }
 
-  let memoryTrigger
-  let memoryTarget
+  api.memoryTrigger = null
+  api.memoryTarget = null
 
   api.init = () => {
     document.addEventListener("click", run, false)
@@ -34,8 +35,8 @@ export const Modal = (options) => {
   }
 
   api.destroy = () => {
-    memoryTrigger = null
-    memoryTarget = null
+    api.memoryTrigger = null
+    api.memoryTarget = null
     document.removeEventListener("click", run, false)
     document.removeEventListener("touchend", run, false)
     document.removeEventListener("keyup", escape, false)
@@ -56,12 +57,11 @@ export const Modal = (options) => {
     // If modal exists
     if (target) {
       addClass(target, api.settings.stateOpening)
-
       target.addEventListener("transitionend", function _listener() {
         addClass(target, api.settings.stateOpen)
         removeClass(target, api.settings.stateOpening)
         getFocus(target)
-        memoryTarget = target
+        api.memoryTarget = target
         this.removeEventListener("transitionend", _listener, true)
       }, true)
     }
@@ -78,11 +78,10 @@ export const Modal = (options) => {
     if (target) {
       addClass(target, api.settings.stateClosing)
       removeClass(target, api.settings.stateOpen)
-
       target.addEventListener("transitionend", function _listener() {
         removeClass(target, api.settings.stateClosing)
         returnFocus(fromModal)
-        memoryTarget = null
+        api.memoryTarget = null
         this.removeEventListener("transitionend", _listener, true)
       }, true)
     }
@@ -104,11 +103,11 @@ export const Modal = (options) => {
   const returnFocus = (fromModal) => {
     if (api.settings.focus) {
       // If it's not from modal and a trigger is saved to memory, focus it
-      if (!fromModal && memoryTrigger) {
+      if (!fromModal && api.memoryTrigger) {
         // Set focus on initial trigger
-        memoryTrigger.focus()
+        api.memoryTrigger.focus()
         // Clear the trigger from memory
-        memoryTrigger = null
+        api.memoryTrigger = null
       }
     }
   }
@@ -119,8 +118,8 @@ export const Modal = (options) => {
     // and the modal is not required
     if (
       event.keyCode == 27 &&
-      memoryTarget &&
-      !memoryTarget.hasAttribute(`data-${api.settings.dataRequired}`)
+      api.memoryTarget &&
+      !api.memoryTarget.hasAttribute(`data-${api.settings.dataRequired}`)
     ) {
       close()
     }
@@ -131,32 +130,26 @@ export const Modal = (options) => {
     if (trigger) {
       const targetData = trigger.dataset[camelCase(api.settings.dataOpen)]
       if (targetData) {
-
         // Is the trigger coming from a modal?
         let fromModal = event.target.closest(
           `[data-${api.settings.dataModal}]`
         )
-
         // If it's not from a modal, save the trigger to memory
         if (api.settings.focus && !fromModal) {
-          memoryTrigger = trigger
+          api.memoryTrigger = trigger
         }
-
         // Close open modal with context
         // Open the target modal
         close(fromModal)
         open(`[data-modal="${targetData}"]`)
       }
-
       event.preventDefault()
     } else {
-
       // If it's a close button
       if (event.target.closest(`[data-${api.settings.dataClose}]`)) {
         close()
         event.preventDefault()
       }
-
       // If the root modal is clicked (screen)
       if (
         event.target.dataset[camelCase(api.settings.dataModal)] &&
