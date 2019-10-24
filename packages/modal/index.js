@@ -1,7 +1,4 @@
-import { addClass, removeClass } from "@vrembem/core"
-
-// TODO: Maybe move focus functionality into it's own methods [2]
-// TODO: Make the selector params more usable [3]
+import { addClass, camelCase, removeClass } from "@vrembem/core"
 
 export const Modal = (options) => {
 
@@ -10,18 +7,16 @@ export const Modal = (options) => {
     autoInit: false,
 
     // Data attributes
-    selectorModal: "[data-modal]", // dataModal: "modal"
-    selectorOpen: "[data-modal-open]", // dataOpen: "modal-open"
-    selectorClose: "[data-modal-close]", // dataClose: "modal-close"
-    selectorFocus: "[data-modal-focus]", // dataFocus: "modal-focus"
-    selectorRequired: "[data-modal-required]", // dataRequired: "modal-required"
+    dataModal: "modal",
+    dataOpen: "modal-open",
+    dataClose: "modal-close",
+    dataFocus: "modal-focus",
+    dataRequired: "modal-required",
 
     // State classes
-    // Default state: stateClosed: is-closed
     stateOpen: "is-open",
     stateOpening: "is-opening",
     stateClosing: "is-closing",
-    // stateClosed: "is-closed",
 
     // Feature toggle
     focus: true
@@ -65,23 +60,8 @@ export const Modal = (options) => {
       target.addEventListener("transitionend", function _listener() {
         addClass(target, api.settings.stateOpen)
         removeClass(target, api.settings.stateOpening)
-
-        // TODO: [2]
-        if (api.settings.focus) {
-          // Search for the focus item if one exists
-          let focus = target.querySelector(api.settings.selectorFocus)
-
-          // Set the focus
-          if (focus) {
-            focus.focus()
-          } else {
-            target.focus()
-          }
-        }
-
-        // Save the open modal
+        getFocus(target)
         memoryTarget = target
-
         this.removeEventListener("transitionend", _listener, true)
       }, true)
     }
@@ -91,7 +71,7 @@ export const Modal = (options) => {
 
     // Get the open modal
     let target = document.querySelector(
-      `${api.settings.selectorModal}.${api.settings.stateOpen}`
+      `[data-${api.settings.dataModal}].${api.settings.stateOpen}`
     )
 
     // If an open modal exists
@@ -101,23 +81,35 @@ export const Modal = (options) => {
 
       target.addEventListener("transitionend", function _listener() {
         removeClass(target, api.settings.stateClosing)
-
-        // TODO: [2]
-        if (api.settings.focus) {
-          // If it's not from modal and a trigger is saved to memory, focus it
-          if (!fromModal && memoryTrigger) {
-            // Set focus on initial trigger
-            memoryTrigger.focus()
-            // Clear the trigger from memory
-            memoryTrigger = null
-          }
-        }
-
-        // Clear the target from memory
+        returnFocus(fromModal)
         memoryTarget = null
-
         this.removeEventListener("transitionend", _listener, true)
       }, true)
+    }
+  }
+
+  const getFocus = (target) => {
+    if (api.settings.focus) {
+      // Search for the focus item if one exists
+      let focus = target.querySelector(`[data-${api.settings.dataFocus}]`)
+      // Set the focus
+      if (focus) {
+        focus.focus()
+      } else {
+        target.focus()
+      }
+    }
+  }
+
+  const returnFocus = (fromModal) => {
+    if (api.settings.focus) {
+      // If it's not from modal and a trigger is saved to memory, focus it
+      if (!fromModal && memoryTrigger) {
+        // Set focus on initial trigger
+        memoryTrigger.focus()
+        // Clear the trigger from memory
+        memoryTrigger = null
+      }
     }
   }
 
@@ -128,23 +120,24 @@ export const Modal = (options) => {
     if (
       event.keyCode == 27 &&
       memoryTarget &&
-      !memoryTarget.hasAttribute("data-modal-required")
+      !memoryTarget.hasAttribute(`data-${api.settings.dataRequired}`)
     ) {
       close()
     }
   }
 
   const run = (event) => {
-    const trigger = event.target.closest(api.settings.selectorOpen)
+    const trigger = event.target.closest(`[data-${api.settings.dataOpen}]`)
     if (trigger) {
-      const targetData = trigger.dataset.modalOpen // TODO: [3]
+      const targetData = trigger.dataset[camelCase(api.settings.dataOpen)]
       if (targetData) {
 
         // Is the trigger coming from a modal?
-        let fromModal = event.target.closest(api.settings.selectorModal)
+        let fromModal = event.target.closest(
+          `[data-${api.settings.dataModal}]`
+        )
 
         // If it's not from a modal, save the trigger to memory
-        // TODO: [2]
         if (api.settings.focus && !fromModal) {
           memoryTrigger = trigger
         }
@@ -159,15 +152,15 @@ export const Modal = (options) => {
     } else {
 
       // If it's a close button
-      if (event.target.closest(api.settings.selectorClose)) {
+      if (event.target.closest(`[data-${api.settings.dataClose}]`)) {
         close()
         event.preventDefault()
       }
 
       // If the root modal is clicked (screen)
       if (
-        event.target.dataset.modal &&
-        !event.target.hasAttribute("data-modal-required")
+        event.target.dataset[camelCase(api.settings.dataModal)] &&
+        !event.target.hasAttribute(`data-${api.settings.dataRequired}`)
       ) {
         close()
       }

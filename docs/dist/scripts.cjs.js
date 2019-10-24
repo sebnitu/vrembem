@@ -8,6 +8,12 @@ var breakpoint = {
   xl: "1380px"
 };
 
+var camelCase = function camelCase(str) {
+  return str.replace(/-([a-z])/g, function (g) {
+    return g[1].toUpperCase();
+  });
+};
+
 var addClass = function addClass(el) {
   for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
     cl[_key - 1] = arguments[_key];
@@ -471,11 +477,11 @@ var Modal = function Modal(options) {
   var api = {};
   var defaults = {
     autoInit: false,
-    selectorModal: "[data-modal]",
-    selectorOpen: "[data-modal-open]",
-    selectorClose: "[data-modal-close]",
-    selectorFocus: "[data-modal-focus]",
-    selectorRequired: "[data-modal-required]",
+    dataModal: "modal",
+    dataOpen: "modal-open",
+    dataClose: "modal-close",
+    dataFocus: "modal-focus",
+    dataRequired: "modal-required",
     stateOpen: "is-open",
     stateOpening: "is-opening",
     stateClosing: "is-closing",
@@ -515,17 +521,7 @@ var Modal = function Modal(options) {
       target.addEventListener("transitionend", function _listener() {
         addClass(target, api.settings.stateOpen);
         removeClass(target, api.settings.stateOpening);
-
-        if (api.settings.focus) {
-          var focus = target.querySelector(api.settings.selectorFocus);
-
-          if (focus) {
-            focus.focus();
-          } else {
-            target.focus();
-          }
-        }
-
+        getFocus(target);
         memoryTarget = target;
         this.removeEventListener("transitionend", _listener, true);
       }, true);
@@ -534,41 +530,55 @@ var Modal = function Modal(options) {
 
   var close = function close() {
     var fromModal = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-    var target = document.querySelector("".concat(api.settings.selectorModal, ".").concat(api.settings.stateOpen));
+    var target = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpen));
 
     if (target) {
       addClass(target, api.settings.stateClosing);
       removeClass(target, api.settings.stateOpen);
       target.addEventListener("transitionend", function _listener() {
         removeClass(target, api.settings.stateClosing);
-
-        if (api.settings.focus) {
-          if (!fromModal && memoryTrigger) {
-            memoryTrigger.focus();
-            memoryTrigger = null;
-          }
-        }
-
+        returnFocus(fromModal);
         memoryTarget = null;
         this.removeEventListener("transitionend", _listener, true);
       }, true);
     }
   };
 
+  var getFocus = function getFocus(target) {
+    if (api.settings.focus) {
+      var focus = target.querySelector("[data-".concat(api.settings.dataFocus, "]"));
+
+      if (focus) {
+        focus.focus();
+      } else {
+        target.focus();
+      }
+    }
+  };
+
+  var returnFocus = function returnFocus(fromModal) {
+    if (api.settings.focus) {
+      if (!fromModal && memoryTrigger) {
+        memoryTrigger.focus();
+        memoryTrigger = null;
+      }
+    }
+  };
+
   var escape = function escape() {
-    if (event.keyCode == 27 && memoryTarget && !memoryTarget.hasAttribute("data-modal-required")) {
+    if (event.keyCode == 27 && memoryTarget && !memoryTarget.hasAttribute("data-".concat(api.settings.dataRequired))) {
       close();
     }
   };
 
   var run = function run(event) {
-    var trigger = event.target.closest(api.settings.selectorOpen);
+    var trigger = event.target.closest("[data-".concat(api.settings.dataOpen, "]"));
 
     if (trigger) {
-      var targetData = trigger.dataset.modalOpen;
+      var targetData = trigger.dataset[camelCase(api.settings.dataOpen)];
 
       if (targetData) {
-        var fromModal = event.target.closest(api.settings.selectorModal);
+        var fromModal = event.target.closest("[data-".concat(api.settings.dataModal, "]"));
 
         if (api.settings.focus && !fromModal) {
           memoryTrigger = trigger;
@@ -580,12 +590,12 @@ var Modal = function Modal(options) {
 
       event.preventDefault();
     } else {
-      if (event.target.closest(api.settings.selectorClose)) {
+      if (event.target.closest("[data-".concat(api.settings.dataClose, "]"))) {
         close();
         event.preventDefault();
       }
 
-      if (event.target.dataset.modal && !event.target.hasAttribute("data-modal-required")) {
+      if (event.target.dataset[camelCase(api.settings.dataModal)] && !event.target.hasAttribute("data-".concat(api.settings.dataRequired))) {
         close();
       }
     }
