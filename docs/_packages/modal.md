@@ -30,9 +30,9 @@ The core parts of a modal include the following elements:
 {% include demo_switch.html %}
 
 ```html
-<button class="modal__trigger" data-target="#modal-id">Modal</button>
+<button class="modal__trigger" data-modal-open="modal-default">Modal</button>
 
-<div class="modal" id="modal-id">
+<div class="modal" data-modal="modal-default">
   <div class="modal__dialog">
     ...
   </div>
@@ -46,15 +46,15 @@ The core parts of a modal include the following elements:
 {% include demo_open.html %}
 
 <div class="level">
-  <button class="modal__trigger button button_color_primary" data-target="#modal-size-sm">Small Modal</button>
-  <button class="modal__trigger button button_color_primary" data-target="#modal-size-lg">Large Modal</button>
+  <button class="button button_color_primary" data-modal-open="modal-size-sm">Small Modal</button>
+  <button class="button button_color_primary" data-modal-open="modal-size-lg">Large Modal</button>
 </div>
 
 {% include demo_switch.html %}
 
 ```html
-<div class="modal modal_size_sm" id="modal-size-sm">...</div>
-<div class="modal modal_size_lg" id="modal-size-lg">...</div>
+<div class="modal modal_size_sm" data-modal="modal-size-sm">...</div>
+<div class="modal modal_size_lg" data-modal="modal-size-lg">...</div>
 ```
 
 {% include demo_close.html %}
@@ -63,12 +63,12 @@ The core parts of a modal include the following elements:
 
 {% include demo_open.html %}
 
-<button class="modal__trigger button button_color_primary" data-target="#modal-full">Modal</button>
+<button class="button button_color_primary" data-modal-open="modal-full">Modal</button>
 
 {% include demo_switch.html %}
 
 ```html
-<div class="modal modal_full" id="modal-full">...</div>
+<div class="modal modal_full" data-modal="modal-full">...</div>
 ```
 
 {% include demo_close.html %}
@@ -78,19 +78,19 @@ The core parts of a modal include the following elements:
 {% include demo_open.html %}
 
 <div class="level">
-  <button class="modal__trigger button button_color_primary" data-target="#modal-pos-top">Modal Top</button>
-  <button class="modal__trigger button button_color_primary" data-target="#modal-pos-bottom">Modal Bottom</button>
-  <button class="modal__trigger button button_color_primary" data-target="#modal-pos-left">Modal Left</button>
-  <button class="modal__trigger button button_color_primary" data-target="#modal-pos-right">Modal Right</button>
+  <button class="button button_color_primary" data-modal-open="modal-pos-top">Modal Top</button>
+  <button class="button button_color_primary" data-modal-open="modal-pos-bottom">Modal Bottom</button>
+  <button class="button button_color_primary" data-modal-open="modal-pos-left">Modal Left</button>
+  <button class="button button_color_primary" data-modal-open="modal-pos-right">Modal Right</button>
 </div>
 
 {% include demo_switch.html %}
 
 ```html
-<div class="modal modal_pos_top" id="modal-pos-top">...</div>
-<div class="modal modal_pos_bottom" id="modal-pos-bottom">...</div>
-<div class="modal modal_pos_left" id="modal-pos-left">...</div>
-<div class="modal modal_pos_right" id="modal-pos-right">...</div>
+<div class="modal modal_pos_top" data-modal="modal-pos-top">...</div>
+<div class="modal modal_pos_bottom" data-modal="modal-pos-bottom">...</div>
+<div class="modal modal_pos_left" data-modal="modal-pos-left">...</div>
+<div class="modal modal_pos_right" data-modal="modal-pos-right">...</div>
 ```
 
 {% include demo_close.html %}
@@ -98,10 +98,10 @@ The core parts of a modal include the following elements:
 <!-- modals -->
 <div>
 
-  <div class="modal" data-modal="modal-default" data-modal-required="true" tabindex="-1">
+  <div class="modal" data-modal="modal-default" tabindex="-1">
     <div class="modal__dialog dialog">
       <div class="dialog__header">
-        <h2 class="dialog__title">Dialog Header</h2>
+        <h2 class="dialog__title">Modal Dialog</h2>
         <button class="dialog__close icon-action icon-action_color_fade" data-modal-close>
           {% include icon.html icon="x" %}
         </button>
@@ -122,10 +122,10 @@ The core parts of a modal include the following elements:
     </div>
   </div>
 
-  <div class="modal" data-modal="modal-default-second" tabindex="-1">
+  <div class="modal" data-modal="modal-default-second" data-modal-required="true" tabindex="-1">
     <div class="modal__dialog dialog">
       <div class="dialog__header">
-        <h2 class="dialog__title">Dialog Header</h2>
+        <h2 class="dialog__title">Required Modal Dialog</h2>
         <button class="dialog__close icon-action icon-action_color_fade" data-modal-close>
           {% include icon.html icon="x" %}
         </button>
@@ -146,9 +146,11 @@ The core parts of a modal include the following elements:
     </div>
   </div>
 
-  <div class="modal modal_size_sm" id="modal-size-sm" tabindex="-1">
+  <!-- modal_size_[key] -->
+
+  <div class="modal modal_size_sm" data-modal="modal-size-sm" tabindex="-1">
     <div class="modal__dialog dialog">
-      <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
+      <button class="dialog__close icon-action icon-action_color_fade" data-modal-close>
         {% include icon.html icon="x" %}
       </button>
       <div class="dialog__body">
@@ -157,9 +159,9 @@ The core parts of a modal include the following elements:
     </div>
   </div>
 
-  <div class="modal modal_size_lg" id="modal-size-lg" tabindex="-1">
+  <div class="modal modal_size_lg" data-modal="modal-size-lg" tabindex="-1">
     <div class="modal__dialog dialog">
-      <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
+      <button class="dialog__close icon-action icon-action_color_fade" data-modal-close>
         {% include icon.html icon="x" %}
       </button>
       <div class="dialog__body">
@@ -168,9 +170,9 @@ The core parts of a modal include the following elements:
     </div>
   </div>
 
-  <div class="modal modal_full" id="modal-full" tabindex="-1">
+  <div class="modal modal_full" data-modal="modal-full" tabindex="-1">
     <div class="modal__dialog dialog">
-      <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
+      <button class="dialog__close icon-action icon-action_color_fade" data-modal-close>
         {% include icon.html icon="x" %}
       </button>
       <div class="dialog__body">
@@ -181,9 +183,9 @@ The core parts of a modal include the following elements:
 
   <!-- modal_pos_[key] -->
 
-  <div class="modal modal_pos_top" id="modal-pos-top" tabindex="-1">
+  <div class="modal modal_pos_top" data-modal="modal-pos-top" tabindex="-1">
     <div class="modal__dialog dialog">
-      <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
+      <button class="dialog__close icon-action icon-action_color_fade" data-modal-close>
         {% include icon.html icon="x" %}
       </button>
       <div class="dialog__body">
@@ -192,9 +194,9 @@ The core parts of a modal include the following elements:
     </div>
   </div>
 
-  <div class="modal modal_pos_bottom" id="modal-pos-bottom" tabindex="-1">
+  <div class="modal modal_pos_bottom" data-modal="modal-pos-bottom" tabindex="-1">
     <div class="modal__dialog dialog">
-      <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
+      <button class="dialog__close icon-action icon-action_color_fade" data-modal-close>
         {% include icon.html icon="x" %}
       </button>
       <div class="dialog__body">
@@ -203,9 +205,9 @@ The core parts of a modal include the following elements:
     </div>
   </div>
 
-  <div class="modal modal_pos_left" id="modal-pos-left" tabindex="-1">
+  <div class="modal modal_pos_left" data-modal="modal-pos-left" tabindex="-1">
     <div class="modal__dialog dialog">
-      <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
+      <button class="dialog__close icon-action icon-action_color_fade" data-modal-close>
         {% include icon.html icon="x" %}
       </button>
       <div class="dialog__body">
@@ -214,9 +216,9 @@ The core parts of a modal include the following elements:
     </div>
   </div>
 
-  <div class="modal modal_pos_right" id="modal-pos-right" tabindex="-1">
+  <div class="modal modal_pos_right" data-modal="modal-pos-right" tabindex="-1">
     <div class="modal__dialog dialog">
-      <button class="modal__trigger dialog__close icon-action icon-action_color_fade">
+      <button class="dialog__close icon-action icon-action_color_fade" data-modal-close>
         {% include icon.html icon="x" %}
       </button>
       <div class="dialog__body">
