@@ -38,7 +38,7 @@
 
 .modal.is-opening {
   z-index: ($modal-zindex + 1);
-  background-color: rgba($modal-background, 0.75);
+  background-color: rgba($modal-background, $modal-background-alpha);
 
   .modal__dialog {
     transform: translateY(0);
@@ -48,7 +48,7 @@
 
 .modal.is-open {
   z-index: $modal-zindex;
-  background-color: rgba($modal-background, 0.75);
+  background-color: rgba($modal-background, $modal-background-alpha);
 
   .modal__dialog {
     transform: translateY(0);

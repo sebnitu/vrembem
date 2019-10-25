@@ -7,6 +7,7 @@ $dialog-border: null !default;
 $dialog-sep-border: $border !default;
 $dialog-border-radius: $border-radius !default;
 $dialog-box-shadow: $box-shadow-16dp !default;
+$dialog-transition-property: box-shadow, opacity, transform !default;
 $dialog-transition-duration: $transition-duration !default;
 $dialog-transition-timing-function: $transition-timing-function !default;
 

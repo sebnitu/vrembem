@@ -10,30 +10,49 @@
   .modal__dialog {
     transform: translateY($modal-travel);
   }
+
+  &.is-closing {
+    .modal__dialog {
+      transform: translateY($modal-travel);
+    }
+  }
 }
 
 .modal_pos_left,
 .modal_pos_right {
   .modal__dialog {
-    position: absolute;
-    top: 0;
-    bottom: 0;
     width: $modal_aside-width;
     max-width: $modal_aside-max-width;
     height: 100%;
-    margin: 0;
-    border: none;
-    border-radius: 0;
-    opacity: 1;
   }
 }
 
-.modal_pos_left .modal__dialog {
-  left: 0;
-  transform: translateX(-100%);
+.modal_pos_left {
+  align-items: flex-start;
+
+  .modal__dialog {
+    left: 0;
+    transform: translateX(-100%);
+  }
+
+  &.is-closing {
+    .modal__dialog {
+      transform: translateX(-100%);
+    }
+  }
 }
 
-.modal_pos_right .modal__dialog {
-  right: 0;
-  transform: translateX(100%);
+.modal_pos_right {
+  align-items: flex-end;
+
+  .modal__dialog {
+    right: 0;
+    transform: translateX(100%);
+  }
+
+  &.is-closing {
+    .modal__dialog {
+      transform: translateX(100%);
+    }
+  }
 }

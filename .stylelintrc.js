@@ -25,6 +25,7 @@ module.exports = {
     ],
     "color-hex-length": null,
     "declaration-empty-line-before": "never",
+    "no-descending-specificity": null,
     "property-no-unknown": true,
     "selector-max-compound-selectors": 3,
     "selector-max-id": 0,
