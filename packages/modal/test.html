@@ -2,27 +2,36 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <!-- Setup styles -->
+  <link rel="stylesheet" href="./node_modules/@vrembem/base/dist/styles.min.css">
+  <link rel="stylesheet" href="./node_modules/@vrembem/utility/dist/styles.min.css">
+  <!-- Component styles -->
   <link rel="stylesheet" href="./dist/styles.min.css">
-  <title>Modal Test</title>
+  <title>@vrembem/modal</title>
 </head>
 <body>
+<div class="padding_xl">
+  <h1 class="margin_bottom_md">@vrembem/modal</h1>
+  <p>A component for changing the mode of a page to complete a critical task. This is usually used in conjunction with the Dialog component to make modal dialogs.</p>
+  <hr class="sep margin_vert_lg">
 
-  <h1>Modal Test</h1>
-  <button data-modal-open="modal-default">Modal</button>
-
+  <!-- Component markup -->
+  <button data-modal-open="modal-default" class="link">Modal</button>
   <div data-modal="modal-default" class="modal" tabindex="-1">
-    <div class="modal__dialog">
-      <button data-modal-close>Close</button>
-      <h2>Modal Dialog</h2>
-      <p>This is a modal dialog. Click anywhere outside to close, or press the escape key.</p>
+    <div class="modal__dialog padding background_white radius spacing">
+      <div class="flex flex_justify_between">
+        <p>This is a modal dialog</p>
+        <button data-modal-close data-modal-focus class="link">Close</button>
+      </div>
     </div>
   </div>
 
-  <script src="./dist/scripts.min.js"></script>
-  <script>
-    var modal = new vrembem.Modal({ autoInit: true });
-    console.log(modal)
-  </script>
-
+</div>
+<!-- Component scripts -->
+<script src="./dist/scripts.min.js"></script>
+<script>
+  var modal = new vrembem.Modal();
+  modal.init();
+</script>
 </body>
 </html>
