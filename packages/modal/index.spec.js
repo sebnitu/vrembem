@@ -1,10 +1,39 @@
-const puppeteer = require("puppeteer")
+import puppeteer from "puppeteer"
+import fs from "fs"
 
-test("should be titled 'Modal Test'", async () => {
-  const browser = await puppeteer.launch({ headless: false }) // { headless: false }
-  const page = await browser.newPage()
+let browser
+let page
+
+beforeAll( async () => {
+  if (!fs.existsSync(`${__dirname}/screenshots`)) {
+    fs.mkdirSync(`${__dirname}/screenshots`)
+  }
+  browser = await puppeteer.launch() // { headless: false }
+})
+
+beforeEach( async () => {
+  page = await browser.newPage()
   await page.goto(`file:///${__dirname}/test.html`)
-  // await page.screenshot({ path: `${__dirname}/screenshot.png` })
-  await expect(page.title()).resolves.toMatch("Modal Test")
-  // await browser.close()
+  await expect(page.title()).resolves.toMatch("@vrembem/modal")
+})
+
+describe("Default modals", () => {
+
+  test("should open [data-modal] when [data-modal-open] is clicked", async () => {
+    await page.click("[data-modal-open]")
+    const open = await page.waitForSelector("[data-modal]", {
+      visible: true
+    })
+    await expect(open)
+    await page.screenshot({ path: `${__dirname}/screenshots/modal-open.png` })
+  })
+
+})
+
+afterEach( async () => {
+  await page.close()
+})
+
+afterAll( async () => {
+  await browser.close()
 })
