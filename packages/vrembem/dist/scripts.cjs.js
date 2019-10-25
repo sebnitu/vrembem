@@ -591,7 +591,7 @@ var Modal = function Modal(options) {
     }
   };
 
-  var escape = function escape() {
+  var escape = function escape(event) {
     if (event.keyCode == 27 && api.memoryTarget && !api.memoryTarget.hasAttribute("data-".concat(api.settings.dataRequired))) {
       close();
     }
@@ -611,7 +611,7 @@ var Modal = function Modal(options) {
         }
 
         close(fromModal);
-        open("[data-modal=\"".concat(targetData, "\"]"));
+        open("[data-".concat(api.settings.dataModal, "=\"").concat(targetData, "\"]"));
       }
 
       event.preventDefault();

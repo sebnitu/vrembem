@@ -53,7 +53,6 @@ export const Modal = (options) => {
   const open = (selector) => {
     // Query the modal
     let target = document.querySelector(selector)
-
     // If modal exists
     if (target) {
       addClass(target, api.settings.stateOpening)
@@ -112,7 +111,7 @@ export const Modal = (options) => {
     }
   }
 
-  const escape = () => {
+  const escape = (event) => {
     // If the escape key is pressed
     // and there's an open modal
     // and the modal is not required
@@ -141,7 +140,7 @@ export const Modal = (options) => {
         // Close open modal with context
         // Open the target modal
         close(fromModal)
-        open(`[data-modal="${targetData}"]`)
+        open(`[data-${api.settings.dataModal}="${targetData}"]`)
       }
       event.preventDefault()
     } else {
