@@ -6,18 +6,20 @@ category: compound
 usage:
   npm: "@vrembem/modal"
   scss: "vrembem/modal/index"
+  js: "@vrembem/modal"
 ---
 
 {% include flag.html heading="modal" %}
 
 <div class="type" markdown="1">
 
-The core parts of a modal include the following elements:
+Modals are comprised using the following data attributes for JavaScript functionality:
 
-* `modal__trigger`: The initial modal trigger. Uses the `data-target` attribute to set trigger target.
-* `modal`
-  * `modal__dialog`
-    * `modal__trigger`: Used without the `data-target` attribute for closing modal from within a dialog.
+* `data-modal="[modal-identifier]"`: Apply to a modal as a unique identifier.
+* `data-modal-open="[modal-identifier]"`: Apply to a button or link with the value of a modal's unique identifier to open modal.
+* `data-modal-close`: Apply to a button or link to close any open modals.
+* `data-modal-required="true"`: When applied to a modal and set to true, prevents the ability to dismiss the modal via escape key or clicking outside the dialog.
+* `data-modal-focus`: When applied to an element inside the modal, is focused on open.
 
 </div>
 
