@@ -6,9 +6,6 @@
   display: flex;
   flex-direction: column;
   overflow: auto;
-  transition-property: $dialog-transition-property;
-  transition-duration: $dialog-transition-duration;
-  transition-timing-function: $dialog-transition-timing-function;
   border: $dialog-border;
   border-radius: $dialog-border-radius;
   background: $dialog-background;

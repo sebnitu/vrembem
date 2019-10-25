@@ -20,6 +20,9 @@
   width: $modal-width;
   max-width: 100%;
   transform: translateY(-$modal-travel);
+  transition-property: opacity, transform;
+  transition-duration: $modal-transition-duration;
+  transition-timing-function: $modal-transition-timing-function;
   box-shadow: $modal__dialog-box-shadow;
   opacity: 0;
 }

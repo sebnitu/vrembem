@@ -11,6 +11,7 @@ usage:
 
 {% include flag.html heading="modal" %}
 
+{% comment %}
 <div class="type" markdown="1">
 
 Modals are comprised using the following data attributes for JavaScript functionality:
@@ -21,7 +22,13 @@ Modals are comprised using the following data attributes for JavaScript function
 * `data-modal-required="true"`: When applied to a modal and set to true, prevents the ability to dismiss the modal via escape key or clicking outside the dialog.
 * `data-modal-focus`: When applied to an element inside the modal, is focused on open.
 
+The styles for a modal require the following classes:
+
+* `modal`
+* `modal__dialog`
+
 </div>
+{% endcomment %}
 
 {% include demo_open.html %}
 

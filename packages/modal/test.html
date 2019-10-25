@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="./dist/styles.min.css">
@@ -7,19 +7,22 @@
 </head>
 <body>
 
-  <button class="modal__trigger" data-target="#modal-default">Modal</button>
+  <h1>Modal Test</h1>
+  <button data-modal-open="modal-default">Modal</button>
 
-  <div class="modal" id="modal-default" tabindex="-1">
+  <div data-modal="modal-default" class="modal" tabindex="-1">
     <div class="modal__dialog">
-      <button class="modal__trigger">
-        Close
-      </button>
+      <button data-modal-close>Close</button>
+      <h2>Modal Dialog</h2>
+      <p>This is a modal dialog. Click anywhere outside to close, or press the escape key.</p>
     </div>
   </div>
 
   <script src="./dist/scripts.min.js"></script>
   <script>
-    new vrembem.Modal({ autoInit: true });
+    var modal = new vrembem.Modal({ autoInit: true });
+    console.log(modal)
   </script>
+
 </body>
 </html>
