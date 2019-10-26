@@ -169,6 +169,35 @@ test("setting focus to 'false' should disable focus handling", () => {
   expect(btnOpen).not.toHaveFocus()
 })
 
+test("should open modal using api", () => {
+  document.body.innerHTML = modalDefault
+  modal = new Modal({ autoInit: true })
+  const el = document.querySelector("[data-modal]")
+
+  modal.open("[data-modal]")
+  el.dispatchEvent(ev)
+
+  expect(el).toHaveClass("modal is-open")
+  expect(el.classList.length).toBe(2)
+})
+
+test("should close modal using api", () => {
+  document.body.innerHTML = modalDefault
+  modal = new Modal({ autoInit: true })
+  const el = document.querySelector("[data-modal]")
+  const btnOpen = document.querySelector("[data-modal-open]")
+
+  btnOpen.click()
+  el.dispatchEvent(ev)
+  expect(el).toHaveClass("modal is-open")
+  expect(el.classList.length).toBe(2)
+
+  modal.close()
+  el.dispatchEvent(ev)
+  expect(el).toHaveClass("modal")
+  expect(el.classList.length).toBe(1)
+})
+
 test("destroy should remove event listeners", () => {
   document.body.innerHTML = modalRequired
   modal = new Modal({ autoInit: true })
