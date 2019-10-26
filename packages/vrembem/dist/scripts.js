@@ -8,10 +8,6 @@
     lg: "990px",
     xl: "1380px"
   };
-  var transition = {
-    duration: 300,
-    tick: 30
-  };
 
   var camelCase = function camelCase(str) {
     return str.replace(/-([a-z])/g, function (g) {
@@ -83,7 +79,6 @@
 
   var index = /*#__PURE__*/Object.freeze({
     breakpoint: breakpoint,
-    transition: transition,
     camelCase: camelCase,
     addClass: addClass,
     hasClass: hasClass,

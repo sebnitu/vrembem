@@ -9,10 +9,6 @@ var breakpoint = {
   lg: "990px",
   xl: "1380px"
 };
-var transition = {
-  duration: 300,
-  tick: 30
-};
 
 var camelCase = function camelCase(str) {
   return str.replace(/-([a-z])/g, function (g) {
@@ -87,4 +83,3 @@ exports.hasClass = hasClass;
 exports.hyphenCase = hyphenCase;
 exports.removeClass = removeClass;
 exports.toggleClass = toggleClass;
-exports.transition = transition;

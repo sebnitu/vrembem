@@ -8,10 +8,6 @@
     lg: "990px",
     xl: "1380px"
   };
-  var transition = {
-    duration: 300,
-    tick: 30
-  };
 
   var camelCase = function camelCase(str) {
     return str.replace(/-([a-z])/g, function (g) {
@@ -86,6 +82,5 @@
   exports.hyphenCase = hyphenCase;
   exports.removeClass = removeClass;
   exports.toggleClass = toggleClass;
-  exports.transition = transition;
 
 }(this.vrembem = this.vrembem || {}));

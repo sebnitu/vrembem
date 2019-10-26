@@ -1,4 +1,4 @@
-import { breakpoint, transition } from "./variables"
+import { breakpoint } from "./variables"
 
 test("breakpoint has all size keys with a px value", () => {
   expect(breakpoint).toHaveProperty("xs", expect.stringContaining("px"))
@@ -17,9 +17,4 @@ test("breakpoints increment in the order of their keys", () => {
   expect(intObj.sm).toBeLessThan(intObj.md)
   expect(intObj.md).toBeLessThan(intObj.lg)
   expect(intObj.lg).toBeLessThan(intObj.xl)
-})
-
-test("transition duration and tick return a milisecond value", () => {
-  expect(transition).toHaveProperty("duration")
-  expect(transition).toHaveProperty("tick")
 })

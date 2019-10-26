@@ -6,12 +6,6 @@ const breakpoint = {
   xl: "1380px"
 }
 
-const transition = {
-  duration: 300,
-  tick: 30
-}
-
 export {
-  breakpoint,
-  transition
+  breakpoint
 }
