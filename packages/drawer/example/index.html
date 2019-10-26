@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Setup styles -->
+  <link rel="stylesheet" href="../node_modules/@vrembem/base/dist/styles.min.css">
+  <link rel="stylesheet" href="../node_modules/@vrembem/utility/dist/styles.min.css">
+  <!-- Component styles -->
+  <link rel="stylesheet" href="../dist/styles.min.css">
+  <title>@vrembem/drawer</title>
+</head>
+<body>
+
+<div class="drawer">
+
+  <aside data-drawer="drawer-default" class="drawer__item is-open">
+    <div class="drawer__dialog padding">
+      <div class="flex flex_justify_between">
+        <p>Drawer Default</p>
+        <button data-drawer-close data-drawer-focus class="link">Close</button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="drawer__main">
+    <div class="padding_xl">
+      <h1 class="margin_bottom_md">@vrembem/drawer</h1>
+      <p>A container component that slides in from the left or right. It typically contains menus, search or other content for your app.</p>
+      <hr class="sep margin_vert_lg">
+      <button class="link" data-drawer-open="drawer-default">
+        Drawer Default
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<!-- Component scripts -->
+<script src="../dist/scripts.min.js"></script>
+<script>
+  new vrembem.Drawer({ autoInit: true });
+</script>
+</body>
+</html>

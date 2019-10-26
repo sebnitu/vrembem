@@ -219,13 +219,20 @@ var Drawer = function Drawer(options) {
   var api = {};
   var defaults = {
     autoInit: false,
+    dataDrawer: "drawer",
+    dataOpen: "drawer-open",
+    dataClose: "drawer-close",
+    dataFocus: "drawer-focus",
+    stateOpen: "is-open",
+    stateOpening: "is-opening",
+    stateClosing: "is-closing",
+    stateClosed: "is-closed",
     classTarget: "drawer__item",
     classTrigger: "drawer__trigger",
     classInner: "drawer__dialog",
     classTargetSwitch: "modal",
     classTriggerSwitch: "modal__trigger",
     classInnerSwitch: "modal__dialog",
-    classActive: "is-active",
     classTransitionNone: "transition_none",
     saveState: true,
     "switch": "[data-drawer-switch]",
@@ -242,7 +249,7 @@ var Drawer = function Drawer(options) {
     document.querySelectorAll("." + api.settings.classTarget).forEach(function (drawer) {
       drawers.push({
         "drawer": drawer,
-        "defaultState": hasClass(drawer, api.settings.classActive)
+        "defaultState": hasClass(drawer, api.settings.stateOpen)
       });
     });
     var promiseSaveState = new Promise(function (resolve) {
@@ -268,9 +275,9 @@ var Drawer = function Drawer(options) {
     if (defaultState) {
       drawers.forEach(function (item) {
         if (item.defaultState) {
-          addClass(item.drawer, api.settings.classActive);
+          addClass(item.drawer, api.settings.stateOpen);
         } else {
-          removeClass(item.drawer, api.settings.classActive);
+          removeClass(item.drawer, api.settings.stateOpen);
         }
       });
     }
@@ -322,11 +329,11 @@ var Drawer = function Drawer(options) {
 
   var toggle = function toggle(drawer, state, callback) {
     if (state === "open") {
-      addClass(drawer, api.settings.classActive);
+      addClass(drawer, api.settings.stateOpen);
     } else if (state === "close") {
-      removeClass(drawer, api.settings.classActive);
+      removeClass(drawer, api.settings.stateOpen);
     } else {
-      toggleClass(drawer, api.settings.classActive);
+      toggleClass(drawer, api.settings.stateOpen);
     }
 
     if (api.settings.saveState) {
@@ -393,7 +400,7 @@ var Drawer = function Drawer(options) {
       }
 
       if (item.id) {
-        drawerState[item.id] = hasClass(item, api.settings.classActive);
+        drawerState[item.id] = hasClass(item, api.settings.stateOpen);
         localStorage.setItem("drawerState", JSON.stringify(drawerState));
       }
     });
@@ -488,7 +495,7 @@ var Drawer = function Drawer(options) {
     triggers.forEach(function (trigger) {
       trigger.className = trigger.className.replace(new RegExp(api.settings.classTrigger, "gi"), api.settings.classTriggerSwitch);
     });
-    removeClass(drawer, api.settings.classActive);
+    removeClass(drawer, api.settings.stateOpen);
   };
 
   if (api.settings.autoInit) api.init();

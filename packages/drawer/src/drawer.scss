@@ -47,7 +47,7 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.drawer__item.is-active {
+.drawer__item.is-open {
   flex: 0 0 auto;
   width: $drawer-width;
 
@@ -55,8 +55,4 @@
     visibility: visible;
     opacity: 1;
   }
-}
-
-.transition_none {
-  transition: none !important;
 }

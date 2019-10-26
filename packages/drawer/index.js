@@ -6,15 +6,24 @@ import {
   toggleClass
 } from "@vrembem/core"
 
-// TODO: Remove the switch feature and build the drawer styles directly into
-//       the drawer componnent itself so it doesn't rely on modals.
-
 export const Drawer = (options) => {
 
   let api = {}
-
   const defaults = {
     autoInit: false,
+
+    // Data attributes
+    dataDrawer: "drawer",
+    dataOpen: "drawer-open",
+    dataClose: "drawer-close",
+    dataFocus: "drawer-focus",
+
+    // State classes
+    stateOpen: "is-open",
+    stateOpening: "is-opening",
+    stateClosing: "is-closing",
+    stateClosed: "is-closed", // Default state
+
     // Component element classes
     classTarget: "drawer__item",
     classTrigger: "drawer__trigger",
@@ -27,7 +36,6 @@ export const Drawer = (options) => {
     classInnerSwitch: "modal__dialog",
 
     // State and utility classes
-    classActive: "is-active",
     classTransitionNone: "transition_none",
 
     // Whether or not to store the save state in local storage
@@ -61,18 +69,13 @@ export const Drawer = (options) => {
   // Where we store all our media query lists along with their drawers
   let mqlArray = []
 
-  /**
-   * The constructor method, run as soon as an instance is created
-   * ---
-   * @param {Object} options - A json object with your custom settings
-   */
   api.init = () => {
 
     // Get all the drawers on the page and save them with their default state
     document.querySelectorAll("." + api.settings.classTarget).forEach((drawer) => {
       drawers.push({
         "drawer": drawer,
-        "defaultState": hasClass(drawer, api.settings.classActive)
+        "defaultState": hasClass(drawer, api.settings.stateOpen)
       })
     })
 
@@ -96,11 +99,6 @@ export const Drawer = (options) => {
     document.addEventListener("click", trigger, false)
   }
 
-  /**
-   * The deconstructor method, used to reset and destroy the drawer instance
-   * ---
-   * @param {Boolean} defaultState - Return drawers to their default state?
-   */
   api.destroy = (defaultState = true) => {
 
     // Destroy our switch
@@ -113,9 +111,9 @@ export const Drawer = (options) => {
     if (defaultState) {
       drawers.forEach((item) => {
         if (item.defaultState) {
-          addClass(item.drawer, api.settings.classActive)
+          addClass(item.drawer, api.settings.stateOpen)
         } else {
-          removeClass(item.drawer, api.settings.classActive)
+          removeClass(item.drawer, api.settings.stateOpen)
         }
       })
     }
@@ -127,41 +125,21 @@ export const Drawer = (options) => {
     document.removeEventListener("click", trigger, false)
   }
 
-  /**
-   * Public method to open a drawer or group of drawers
-   * ---
-   * @param {String} selector - A valid CSS selector
-   */
   api.open = (selector) => {
     selector = (selector) ? selector : "." + api.settings.classTarget
     toggle(document.querySelectorAll(selector), "open")
   }
 
-  /**
-   * Public method to close a drawer or group of drawers
-   * ---
-   * @param {String} selector - A valid CSS selector
-   */
   api.close = (selector) => {
     selector = (selector) ? selector : "." + api.settings.classTarget
     toggle(document.querySelectorAll(selector), "close")
   }
 
-  /**
-   * Public method to toggle a drawer or group of drawers
-   * ---
-   * @param {String} selector - A valid CSS selector
-   */
   api.toggle = (selector) => {
     selector = (selector) ? selector : "." + api.settings.classTarget
     toggle(document.querySelectorAll(selector))
   }
 
-  /**
-   * Public method to switch a modal into drawer
-   * ---
-   * @param {String} selector - A valid CSS selector
-   */
   api.switchToDrawer = (selector) => {
 
     // Use default selector if one isn't passed
@@ -178,11 +156,6 @@ export const Drawer = (options) => {
     })
   }
 
-  /**
-   * Public method to switch a drawer into modal
-   * ---
-   * @param {String} selector - A valid CSS selector
-   */
   api.switchToModal = (selector) => {
 
     // Use default selector if one isn't passed
@@ -199,37 +172,24 @@ export const Drawer = (options) => {
     })
   }
 
-  /**
-   * Save the drawer current drawer state
-   */
   api.stateSave = () => {
     stateSave()
   }
 
-  /**
-   * Clears drawer state from local storage
-   */
   api.stateClear = () => {
     stateClear()
   }
 
-  /**
-   * Private function to close a drawer or group of drawers
-   * ---
-   * @param {Node} drawer - The drawer element(s) to close
-   * @param {String} state - Whether to open, close or toggle the drawer(s)
-   * @param {Function} callback - The callback function
-   */
   const toggle = (drawer, state, callback) => {
 
     // Check if drawer(s) should be opened, closed or toggled and either add or
     // remove the active class to the passed drawer(s)
     if (state === "open") {
-      addClass(drawer, api.settings.classActive)
+      addClass(drawer, api.settings.stateOpen)
     } else if (state === "close") {
-      removeClass(drawer, api.settings.classActive)
+      removeClass(drawer, api.settings.stateOpen)
     } else {
-      toggleClass(drawer, api.settings.classActive)
+      toggleClass(drawer, api.settings.stateOpen)
     }
 
     // Save state if feature is enabled
@@ -241,9 +201,6 @@ export const Drawer = (options) => {
     typeof callback === "function" && callback()
   }
 
-  /**
-   * Private function to toggle drawer via a trigger
-   */
   const trigger = () => {
 
     // Get the closest trigger element from the click event
@@ -267,11 +224,6 @@ export const Drawer = (options) => {
     }
   }
 
-  /**
-   * Private function that initializes the save state functionality
-   * ---
-   * @param {Function} callback - The callback function
-   */
   const initSaveState = (callback) => {
 
     // Check if a drawer state is already saved in local storage and save the
@@ -315,11 +267,6 @@ export const Drawer = (options) => {
     typeof callback === "function" && callback(drawerState)
   }
 
-  /**
-   * Private function that saves the state of a specific or all drawers
-   * ---
-   * @param {Node} items - The drawer element(s) to save state
-   */
   const stateSave = (items) => {
 
     // Save all drawers if an items arg wasn't passed
@@ -337,23 +284,17 @@ export const Drawer = (options) => {
 
       // Only save drawer state if an id exists
       if (item.id) {
-        drawerState[item.id] = hasClass(item, api.settings.classActive)
+        drawerState[item.id] = hasClass(item, api.settings.stateOpen)
         localStorage.setItem("drawerState", JSON.stringify(drawerState))
       }
     })
   }
 
-  /**
-   * Private function that clears the drawer state
-   */
   const stateClear = () => {
     drawerState = {}
     localStorage.removeItem("drawerState")
   }
 
-  /**
-   * Private function that initializes the switch functionality
-   */
   const initSwitch = () => {
 
     // Query all the drawers with the switch feature enabled
@@ -410,9 +351,6 @@ export const Drawer = (options) => {
     })
   }
 
-  /**
-   * Private function that destroys the switch functionality
-   */
   const destroySwitch = () => {
 
     // Switch all modals back to their original drawer state
@@ -430,13 +368,6 @@ export const Drawer = (options) => {
     mqlArray = []
   }
 
-  /**
-   * Private function that checks when a media query hits a match and switches
-   * the component from drawer to modal as needed
-   * ---
-   * @param {MediaQueryList} mql - The MediaQueryList object for the media query
-   * @param {Node} drawer - The drawer element to switch
-   */
   const switchCheck = () => {
     mqlArray.forEach((item) => {
       if (item.mql.matches) {
@@ -447,11 +378,6 @@ export const Drawer = (options) => {
     })
   }
 
-  /**
-   * Private function that switches a modal into a drawer component
-   * ---
-   * @param {Node} drawer - The element to switch
-   */
   const switchToDrawer = (drawer) => {
 
     // Get the dialog and trigger elements related to this component
@@ -484,11 +410,6 @@ export const Drawer = (options) => {
     }
   }
 
-  /**
-   * Private function that switches a drawer into a modal component
-   * ---
-   * @param {Node} drawer - The element to switch
-   */
   const switchToModal = (drawer) => {
 
     // Get the dialog and trigger elements related to this component
@@ -512,7 +433,7 @@ export const Drawer = (options) => {
     })
 
     // Remove active class for modal styles by default
-    removeClass(drawer, api.settings.classActive)
+    removeClass(drawer, api.settings.stateOpen)
   }
 
   if (api.settings.autoInit) api.init()

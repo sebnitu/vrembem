@@ -24,7 +24,7 @@
   }
 }
 
-.drawer__item_pos_left.is-active {
+.drawer__item_pos_left.is-open {
   .drawer__dialog {
     transform: translateX(0);
   }
@@ -34,7 +34,7 @@
   }
 }
 
-.drawer__item_pos_right.is-active {
+.drawer__item_pos_right.is-open {
   .drawer__dialog {
     transform: translateX(0);
   }
