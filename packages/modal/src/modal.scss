@@ -12,7 +12,6 @@
   width: 0;
   height: 0;
   overflow: hidden;
-  transition: background-color $modal-transition-duration $modal-transition-timing-function;
   background-color: rgba($modal-background, 0);
 }
 
@@ -20,9 +19,6 @@
   width: $modal-width;
   max-width: 100%;
   transform: translateY(-$modal-travel);
-  transition-property: opacity, transform;
-  transition-duration: $modal-transition-duration;
-  transition-timing-function: $modal-transition-timing-function;
   box-shadow: $modal__dialog-box-shadow;
   opacity: 0;
 }
@@ -40,6 +36,17 @@
 
   @include media-min("medium") {
     padding: 2em;
+  }
+}
+
+.modal.is-opening,
+.modal.is-closing {
+  transition: background-color $modal-transition-duration $modal-transition-timing-function;
+
+  .modal__dialog {
+    transition-property: opacity, transform;
+    transition-duration: $modal-transition-duration;
+    transition-timing-function: $modal-transition-timing-function;
   }
 }
 

@@ -81,38 +81,4 @@
   opacity: 0;
 }
 
-.drawer__item_pos_left,
-.drawer__item_pos_right {
-  position: absolute;
-  top: 0;
-}
-
-.drawer__item_pos_left {
-  left: 0;
-}
-.drawer__item_pos_left .drawer__dialog {
-  transform: translateX(-100%);
-}
-
-.drawer__item_pos_right {
-  right: 0;
-}
-.drawer__item_pos_right .drawer__dialog {
-  transform: translateX(100%);
-}
-
-.drawer__item_pos_left.is-open .drawer__dialog {
-  transform: translateX(0);
-}
-.drawer__item_pos_left.is-open ~ .drawer__main {
-  margin-left: 16em;
-}
-
-.drawer__item_pos_right.is-open .drawer__dialog {
-  transform: translateX(0);
-}
-.drawer__item_pos_right.is-open ~ .drawer__main {
-  margin-right: 16em;
-}
-
 /*# sourceMappingURL=styles.css.map */

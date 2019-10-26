@@ -10,7 +10,6 @@
   width: 0;
   height: 0;
   overflow: hidden;
-  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   background-color: rgba(66, 66, 66, 0);
 }
 
@@ -18,9 +17,6 @@
   width: 38em;
   max-width: 100%;
   transform: translateY(-5em);
-  transition-property: opacity, transform;
-  transition-duration: 0.3s;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 0 0 1px rgba(33, 33, 33, 0.05), 0 11px 15px -7px rgba(33, 33, 33, 0.1), 0 24px 38px 3px rgba(33, 33, 33, 0.08), 0 9px 46px 8px rgba(33, 33, 33, 0.06);
   opacity: 0;
 }
@@ -34,6 +30,17 @@
   width: 100%;
   height: 100%;
   padding: 1em;
+}
+
+.modal.is-opening,
+.modal.is-closing {
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal.is-opening .modal__dialog,
+.modal.is-closing .modal__dialog {
+  transition-property: opacity, transform;
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modal.is-opening {
