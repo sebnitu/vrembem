@@ -3,8 +3,6 @@
 $drawer-zindex: 900 !default;
 $drawer-width: 16em !default;
 $drawer-travel: 5em !default;
-$drawer-background: $night !default;
-$drawer-background-alpha: 0.8 !default;
 $drawer-transition-duration: $transition-duration !default;
 $drawer-transition-timing-function: $transition-timing-function !default;
 
@@ -12,3 +10,8 @@ $drawer__item-background: $shade !default;
 $drawer__item-border: null !default;
 $drawer__item-box-shadow: none !default;
 $drawer__item-sep-border-color: null !default;
+
+$drawer_modal-background: $night !default;
+$drawer_modal-background-alpha: 0.8 !default;
+$drawer_modal-item-background: $white !default;
+$drawer_modal-item-box-shadow: $box-shadow-24dp !default;

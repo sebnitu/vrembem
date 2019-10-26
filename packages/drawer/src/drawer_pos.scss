@@ -31,14 +31,14 @@
 
 .drawer_pos_left.is-opening,
 .drawer_pos_left.is-open {
-  ~ .drawer__main {
+  &:not(.drawer_modal) ~ .drawer__main {
     margin-left: $drawer-width;
   }
 }
 
 .drawer_pos_right.is-opening,
 .drawer_pos_right.is-open {
-  ~ .drawer__main {
+  &:not(.drawer_modal) ~ .drawer__main {
     margin-right: $drawer-width;
   }
 }

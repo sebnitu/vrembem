@@ -1553,6 +1553,43 @@ input::-moz-placeholder {
   opacity: 0;
 }
 
+.drawer_modal {
+  position: fixed;
+  z-index: 900;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  background-color: rgba(66, 66, 66, 0);
+}
+.drawer_modal .drawer__item {
+  background-color: #fff;
+  box-shadow: 0 0 0 1px rgba(33, 33, 33, 0.05), 0 11px 15px -7px rgba(33, 33, 33, 0.1), 0 24px 38px 3px rgba(33, 33, 33, 0.08), 0 9px 46px 8px rgba(33, 33, 33, 0.06);
+}
+
+/**
+ * Drawer state classes
+ */
+.drawer_modal.is-opening,
+.drawer_modal.is-open,
+.drawer_modal.is-closing {
+  width: 100%;
+  height: 100%;
+}
+
+.drawer_modal.is-opening,
+.drawer_modal.is-closing {
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.drawer_modal.is-opening,
+.drawer_modal.is-open {
+  background-color: rgba(66, 66, 66, 0.8);
+}
+
+.drawer_modal.is-closing {
+  background-color: rgba(66, 66, 66, 0);
+}
+
 .drawer_pos_left,
 .drawer_pos_right {
   position: absolute;
@@ -1577,13 +1614,13 @@ input::-moz-placeholder {
 /**
  * Drawer state classes
  */
-.drawer_pos_left.is-opening ~ .drawer__main,
-.drawer_pos_left.is-open ~ .drawer__main {
+.drawer_pos_left.is-opening:not(.drawer_modal) ~ .drawer__main,
+.drawer_pos_left.is-open:not(.drawer_modal) ~ .drawer__main {
   margin-left: 16em;
 }
 
-.drawer_pos_right.is-opening ~ .drawer__main,
-.drawer_pos_right.is-open ~ .drawer__main {
+.drawer_pos_right.is-opening:not(.drawer_modal) ~ .drawer__main,
+.drawer_pos_right.is-open:not(.drawer_modal) ~ .drawer__main {
   margin-right: 16em;
 }
 
@@ -3638,22 +3675,22 @@ input::-moz-placeholder {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.modal.is-opening {
-  z-index: 1001;
+.modal.is-opening,
+.modal.is-open {
   background-color: rgba(66, 66, 66, 0.8);
 }
-.modal.is-opening .modal__dialog {
+.modal.is-opening .modal__dialog,
+.modal.is-open .modal__dialog {
   transform: translateY(0);
   opacity: 1;
 }
 
+.modal.is-opening {
+  z-index: 1001;
+}
+
 .modal.is-open {
   z-index: 1000;
-  background-color: rgba(66, 66, 66, 0.8);
-}
-.modal.is-open .modal__dialog {
-  transform: translateY(0);
-  opacity: 1;
 }
 
 .modal.is-closing {

@@ -1,10 +1,40 @@
 @import "./variables";
 
 .drawer_modal {
-  // position: fixed;
-  // z-index: $drawer-zindex;
-  // width: 0;
-  // height: 0;
-  // overflow: hidden;
-  // background-color: rgba($drawer-background, 0);
+  position: fixed;
+  z-index: $drawer-zindex;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  background-color: rgba($drawer_modal-background, 0);
+
+  .drawer__item {
+    background-color: $drawer_modal-item-background;
+    box-shadow: $drawer_modal-item-box-shadow;
+  }
+}
+
+/**
+ * Drawer state classes
+ */
+
+.drawer_modal.is-opening,
+.drawer_modal.is-open,
+.drawer_modal.is-closing {
+  width: 100%;
+  height: 100%;
+}
+
+.drawer_modal.is-opening,
+.drawer_modal.is-closing {
+  transition: background-color $drawer-transition-duration $drawer-transition-timing-function;
+}
+
+.drawer_modal.is-opening,
+.drawer_modal.is-open {
+  background-color: rgba($drawer_modal-background, $drawer_modal-background-alpha);
+}
+
+.drawer_modal.is-closing {
+  background-color: rgba($drawer_modal-background, 0);
 }

@@ -50,8 +50,8 @@
   }
 }
 
-.modal.is-opening {
-  z-index: ($modal-zindex + 1);
+.modal.is-opening,
+.modal.is-open {
   background-color: rgba($modal-background, $modal-background-alpha);
 
   .modal__dialog {
@@ -60,14 +60,12 @@
   }
 }
 
+.modal.is-opening {
+  z-index: ($modal-zindex + 1);
+}
+
 .modal.is-open {
   z-index: $modal-zindex;
-  background-color: rgba($modal-background, $modal-background-alpha);
-
-  .modal__dialog {
-    transform: translateY(0);
-    opacity: 1;
-  }
 }
 
 .modal.is-closing {
