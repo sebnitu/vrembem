@@ -11,12 +11,30 @@
 </head>
 <body>
 
-<div class="drawer">
+<div class="drawer__wrapper">
 
-  <aside data-drawer="drawer-default" class="drawer__item is-open">
-    <div class="drawer__dialog padding">
+  <aside data-drawer="drawer-default-left" class="drawer drawer_pos_left is-open">
+    <div class="drawer__item padding">
       <div class="flex flex_justify_between">
-        <p>Drawer Default</p>
+        <p>Drawer Pos Left</p>
+        <button data-drawer-close data-drawer-focus class="link">Close</button>
+      </div>
+    </div>
+  </aside>
+
+  <aside data-drawer="drawer-default-left" class="drawer drawer_pos_right is-open">
+    <div class="drawer__item padding">
+      <div class="flex flex_justify_between">
+        <p>Drawer Pos Left</p>
+        <button data-drawer-close data-drawer-focus class="link">Close</button>
+      </div>
+    </div>
+  </aside>
+
+  <aside data-drawer="drawer-default-left" class="drawer">
+    <div class="drawer__item padding">
+      <div class="flex flex_justify_between">
+        <p>Drawer Default Left</p>
         <button data-drawer-close data-drawer-focus class="link">Close</button>
       </div>
     </div>
@@ -27,11 +45,33 @@
       <h1 class="margin_bottom_md">@vrembem/drawer</h1>
       <p>A container component that slides in from the left or right. It typically contains menus, search or other content for your app.</p>
       <hr class="sep margin_vert_lg">
-      <button class="link" data-drawer-open="drawer-default">
-        Drawer Default
-      </button>
+      <p class="margin_top_md">
+        <button class="link" data-drawer-open="drawer-default-left">
+          Drawer Default Left
+        </button>
+        <button class="link" data-drawer-open="drawer-default-right">
+          Drawer Default Right
+        </button>
+      </p>
+      <p class="margin_top_md">
+        <button class="link" data-drawer-open="drawer-pos-left">
+          Drawer Pos Left
+        </button>
+        <button class="link" data-drawer-open="drawer-pos-right">
+          Drawer Pos Right
+        </button>
+      </p>
     </div>
   </div>
+
+  <aside data-drawer="drawer-default-right" class="drawer">
+    <div class="drawer__item padding">
+      <div class="flex flex_justify_between">
+        <p>Drawer Default Right</p>
+        <button data-drawer-close data-drawer-focus class="link">Close</button>
+      </div>
+    </div>
+  </aside>
 
 </div>
 

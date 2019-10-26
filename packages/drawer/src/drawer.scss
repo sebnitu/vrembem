@@ -3,6 +3,39 @@
 .drawer {
   position: relative;
   display: flex;
+  flex: 0 0 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: stretch;
+  width: 0;
+  overflow: hidden auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.drawer__item {
+  width: $drawer-width;
+  height: 100%;
+  transform: translateY(-$drawer-travel);
+  border-right: $drawer__item-border;
+  border-radius: 0;
+  background: $drawer__item-background;
+  box-shadow: $drawer__item-box-shadow;
+  opacity: 0;
+
+  .dialog__header,
+  .dialog__footer {
+    border-color: $drawer__item-sep-border-color;
+    background: $drawer__item-background;
+  }
+
+  .dialog__body {
+    background: $drawer__item-background;
+  }
+}
+
+.drawer__wrapper {
+  position: relative;
+  display: flex;
   height: 100vh;
   overflow: hidden;
 }
@@ -15,83 +48,43 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.drawer__item {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  display: flex;
-  flex: 0 0 0;
-  flex-direction: column;
-  align-content: stretch;
-  align-items: stretch;
-  width: 0;
-  overflow: hidden auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.drawer__dialog {
-  width: $drawer-width;
-  height: 100%;
-  transform: translateX(-100%);
-  border-right: $drawer__dialog-border;
-  border-radius: 0;
-  background: $drawer__dialog-background;
-  box-shadow: $drawer__dialog-box-shadow;
-  opacity: 0;
-
-  .dialog__header,
-  .dialog__footer {
-    border-color: $drawer__dialog-sep-border-color;
-    background: $drawer__dialog-background;
-  }
-
-  .dialog__body {
-    background: $drawer__dialog-background;
-  }
-}
-
 /**
  * Drawer state classes
  */
 
-.drawer__item.is-opening,
-.drawer__item.is-open,
-.drawer__item.is-closing {
+.drawer.is-opening,
+.drawer.is-open,
+.drawer.is-closing {
   flex: 0 0 auto;
   width: $drawer-width;
 }
 
-.drawer__item.is-opening,
-.drawer__item.is-closing {
-  .drawer__dialog {
+.drawer.is-opening,
+.drawer.is-closing {
+  .drawer__item {
     transition-property: opacity, transform;
     transition-duration: $drawer-transition-duration;
     transition-timing-function: $drawer-transition-timing-function;
   }
 }
 
-.drawer__item.is-opening,
-.drawer__item.is-open {
-  .drawer__dialog {
-    transform: translateX(0);
-    opacity: 1;
-  }
-
-  ~ .drawer__main {
-    margin-left: $drawer-width;
-  }
-}
-
-.drawer__item.is-open {
-  .drawer__dialog {
-    visibility: visible;
+.drawer.is-opening,
+.drawer.is-open {
+  .drawer__item {
+    transform: translateY(0);
     opacity: 1;
   }
 }
 
-.drawer__item.is-closing {
-  .drawer__dialog {
-    transform: translateX(-100%);
+.drawer.is-open {
+  .drawer__item {
+    opacity: 1;
+  }
+}
+
+.drawer.is-closing {
+  .drawer__item {
+    transform: translateY(-$drawer-travel);
     opacity: 0;
   }
 }
