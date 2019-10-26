@@ -2,6 +2,10 @@
 
 $drawer-width: 16em !default;
 $drawer-travel: 5em !default;
+$drawer-background: $night !default;
+$drawer-background-alpha: 0.8 !default;
+$drawer-transition-duration: $transition-duration !default;
+$drawer-transition-timing-function: $transition-timing-function !default;
 
 $drawer__dialog-background: $shade !default;
 $drawer__dialog-border: null !default;
