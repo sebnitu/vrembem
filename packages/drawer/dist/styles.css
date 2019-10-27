@@ -6,6 +6,7 @@
   align-content: stretch;
   align-items: stretch;
   width: 0;
+  height: 0;
   overflow: hidden auto;
   outline: none;
   -webkit-overflow-scrolling: touch;
@@ -51,6 +52,7 @@
 .drawer.is-closing {
   flex: 0 0 auto;
   width: 16em;
+  height: 100%;
 }
 
 .drawer.is-opening .drawer__item,
