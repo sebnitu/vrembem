@@ -5,12 +5,18 @@
   position: absolute;
   top: 0;
   bottom: 0;
+
+  .drawer__item {
+    position: absolute;
+    top: 0;
+  }
 }
 
 .drawer_pos_left {
   left: 0;
 
   .drawer__item {
+    left: 0;
     transform: translateX(-100%);
     border-right: $drawer__item-border;
   }
@@ -20,6 +26,7 @@
   right: 0;
 
   .drawer__item {
+    right: 0;
     transform: translateX(100%);
     border-left: $drawer__item-border;
   }

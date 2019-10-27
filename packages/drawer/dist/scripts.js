@@ -18,12 +18,10 @@
 
   var defineProperty = _defineProperty;
 
-  var breakpoint = {
-    xs: "480px",
-    sm: "620px",
-    md: "760px",
-    lg: "990px",
-    xl: "1380px"
+  var camelCase = function camelCase(str) {
+    return str.replace(/-([a-z])/g, function (g) {
+      return g[1].toUpperCase();
+    });
   };
 
   var addClass = function addClass(el) {
@@ -67,19 +65,6 @@
     });
   };
 
-  var toggleClass = function toggleClass(el) {
-    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      cl[_key - 1] = arguments[_key];
-    }
-
-    el = el.forEach ? el : [el];
-    el.forEach(function (el) {
-      cl.forEach(function (cl) {
-        el.classList.toggle(cl);
-      });
-    });
-  };
-
   function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
   function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -88,282 +73,93 @@
     var defaults = {
       autoInit: false,
       dataDrawer: "drawer",
-      dataOpen: "drawer-open",
+      dataModal: "drawer-modal",
+      dataTrigger: "drawer-trigger",
       dataClose: "drawer-close",
       dataFocus: "drawer-focus",
       stateOpen: "is-open",
       stateOpening: "is-opening",
       stateClosing: "is-closing",
       stateClosed: "is-closed",
-      classTarget: "drawer__item",
-      classTrigger: "drawer__trigger",
-      classInner: "drawer__dialog",
-      classTargetSwitch: "modal",
-      classTriggerSwitch: "modal__trigger",
-      classInnerSwitch: "modal__dialog",
-      classTransitionNone: "transition_none",
-      saveState: true,
-      "switch": "[data-drawer-switch]",
-      switchBreakpoint: "lg",
-      transitionDuration: 500
+      classModal: "drawer_modal",
+      focus: true
     };
     api.settings = _objectSpread({}, defaults, {}, options);
-    var drawers = [];
-    var drawerState = {};
-    var switchDrawers;
-    var mqlArray = [];
 
     api.init = function () {
-      document.querySelectorAll("." + api.settings.classTarget).forEach(function (drawer) {
-        drawers.push({
-          "drawer": drawer,
-          "defaultState": hasClass(drawer, api.settings.stateOpen)
-        });
-      });
-      var promiseSaveState = new Promise(function (resolve) {
-        if (api.settings.saveState) {
-          initSaveState(resolve);
-        } else {
-          resolve();
-        }
-      });
-      promiseSaveState.then(function () {
-        if (api.settings["switch"]) {
-          initSwitch();
-        }
-      });
-      document.addEventListener("click", trigger, false);
+      document.addEventListener("click", run, false);
+      document.addEventListener("touchend", run, false);
+      document.addEventListener("keyup", escape, false);
     };
 
     api.destroy = function () {
-      var defaultState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-      destroySwitch();
-      stateClear();
-
-      if (defaultState) {
-        drawers.forEach(function (item) {
-          if (item.defaultState) {
-            addClass(item.drawer, api.settings.stateOpen);
-          } else {
-            removeClass(item.drawer, api.settings.stateOpen);
-          }
-        });
-      }
-
-      drawers = [];
-      document.removeEventListener("click", trigger, false);
+      document.removeEventListener("click", run, false);
+      document.removeEventListener("touchend", run, false);
+      document.removeEventListener("keyup", escape, false);
     };
 
-    api.open = function (selector) {
-      selector = selector ? selector : "." + api.settings.classTarget;
-      toggle(document.querySelectorAll(selector), "open");
-    };
-
-    api.close = function (selector) {
-      selector = selector ? selector : "." + api.settings.classTarget;
-      toggle(document.querySelectorAll(selector), "close");
-    };
-
-    api.toggle = function (selector) {
-      selector = selector ? selector : "." + api.settings.classTarget;
-      toggle(document.querySelectorAll(selector));
-    };
-
-    api.switchToDrawer = function (selector) {
-      selector = selector ? selector : api.settings["switch"];
-      var items = document.querySelectorAll(selector);
-      items = items.forEach ? items : [items];
-      items.forEach(function (item) {
-        switchToDrawer(item);
-      });
-    };
-
-    api.switchToModal = function (selector) {
-      selector = selector ? selector : api.settings["switch"];
-      var items = document.querySelectorAll(selector);
-      items = items.forEach ? items : [items];
-      items.forEach(function (item) {
-        switchToModal(item);
-      });
-    };
-
-    api.stateSave = function () {
-      stateSave();
-    };
-
-    api.stateClear = function () {
-      stateClear();
-    };
-
-    var toggle = function toggle(drawer, state, callback) {
-      if (state === "open") {
-        addClass(drawer, api.settings.stateOpen);
-      } else if (state === "close") {
-        removeClass(drawer, api.settings.stateOpen);
-      } else {
-        toggleClass(drawer, api.settings.stateOpen);
-      }
-
-      if (api.settings.saveState) {
-        stateSave(drawer);
-      }
-
-      typeof callback === "function" && callback();
-    };
-
-    var trigger = function trigger() {
-      var trigger = event.target.closest("." + api.settings.classTrigger);
+    var run = function run(event) {
+      var trigger = event.target.closest("[data-".concat(api.settings.dataTrigger, "]"));
 
       if (trigger) {
-        var dataDrawer = trigger.dataset.target;
+        var selector = event.target.dataset[camelCase(api.settings.dataTrigger)];
+        toggle(selector);
+        event.preventDefault();
+      } else {
+        trigger = event.target.closest("[data-".concat(api.settings.dataClose, "]"));
 
-        if (dataDrawer) {
-          var drawer = document.querySelectorAll(dataDrawer);
+        if (trigger) {
+          var target = event.target.closest("[data-".concat(api.settings.dataDrawer, "]"));
+          close(target);
+          event.preventDefault();
+        }
 
-          if (drawer.length) {
-            toggle(drawer);
-          }
+        if (event.target.dataset[camelCase(api.settings.dataDrawer)]) {
+          close(event.target);
         }
       }
     };
 
-    var initSaveState = function initSaveState(callback) {
-      if (localStorage.getItem("drawerState")) {
-        drawerState = JSON.parse(localStorage.getItem("drawerState"));
-      }
+    var escape = function escape(event) {
+      if (event.keyCode == 27) {
+        var target = document.querySelector(".".concat(api.settings.classModal, ".").concat(api.settings.stateOpen));
 
-      drawers.forEach(function (item) {
-        var drawer = item.drawer;
-
-        if (drawer.id in drawerState === false) {
-          stateSave(drawer);
-        }
-
-        var dialog = drawer.querySelector("." + api.settings.classInner);
-
-        var transitionDelay = function transitionDelay() {
-          if (dialog) {
-            addClass(dialog, api.settings.classTransitionNone);
-            setTimeout(function () {
-              removeClass(dialog, api.settings.classTransitionNone);
-            }, api.settings.transitionDuration);
-          }
-        };
-
-        if (drawerState[drawer.id] === false) {
-          toggle(drawer, "close", transitionDelay);
-        } else if (drawerState[drawer.id]) {
-          toggle(drawer, "open", transitionDelay);
-        }
-      });
-      typeof callback === "function" && callback(drawerState);
-    };
-
-    var stateSave = function stateSave(items) {
-      items = items ? items : drawers;
-      items = items.forEach ? items : [items];
-      items.forEach(function (item) {
-        if (item.drawer) {
-          item = item.drawer;
-        }
-
-        if (item.id) {
-          drawerState[item.id] = hasClass(item, api.settings.stateOpen);
-          localStorage.setItem("drawerState", JSON.stringify(drawerState));
-        }
-      });
-    };
-
-    var stateClear = function stateClear() {
-      drawerState = {};
-      localStorage.removeItem("drawerState");
-    };
-
-    var initSwitch = function initSwitch() {
-      switchDrawers = document.querySelectorAll(api.settings["switch"]);
-      switchDrawers.forEach(function (drawer) {
-        var cleanSelector = api.settings["switch"].replace("[", "").replace("]", "").replace("data-", "");
-        cleanSelector = cleanSelector.replace(/-([a-z])/g, function (g) {
-          return g[1].toUpperCase();
-        });
-        var bp = drawer.dataset[cleanSelector];
-
-        if (bp) {
-          bp = breakpoint[bp];
-
-          if (!bp) {
-            bp = drawer.dataset[cleanSelector];
-          }
-        } else {
-          bp = breakpoint[api.settings.switchBreakpoint];
-
-          if (!bp) {
-            bp = api.settings.switchBreakpoint;
-          }
-        }
-
-        var mql = window.matchMedia("(min-width:" + bp + ")");
-
-        if (!mql.matches) {
-          switchToModal(drawer);
-        }
-
-        mql.addListener(switchCheck);
-        mqlArray.push({
-          "drawer": drawer,
-          "mql": mql
-        });
-      });
-    };
-
-    var destroySwitch = function destroySwitch() {
-      switchDrawers.forEach(function (drawer) {
-        switchToDrawer(drawer);
-      });
-      mqlArray.forEach(function (item) {
-        item.mql.removeListener(switchCheck);
-      });
-      switchDrawers = null;
-      mqlArray = [];
-    };
-
-    var switchCheck = function switchCheck() {
-      mqlArray.forEach(function (item) {
-        if (item.mql.matches) {
-          switchToDrawer(item.drawer);
-        } else {
-          switchToModal(item.drawer);
-        }
-      });
-    };
-
-    var switchToDrawer = function switchToDrawer(drawer) {
-      var dialog = drawer.querySelector(".dialog");
-      var triggers = document.querySelectorAll("[data-target=\"#" + drawer.id + "\"]");
-      drawer.className = drawer.className.replace(new RegExp(api.settings.classTargetSwitch, "gi"), api.settings.classTarget);
-      dialog.className = dialog.className.replace(new RegExp(api.settings.classInnerSwitch, "gi"), api.settings.classInner);
-      triggers.forEach(function (trigger) {
-        trigger.className = trigger.className.replace(new RegExp(api.settings.classTriggerSwitch, "gi"), api.settings.classTrigger);
-      });
-
-      if (api.settings.saveState) {
-        if (drawerState[drawer.id] === false) {
-          toggle(drawer, "close");
-        } else {
-          toggle(drawer, "open");
+        if (target) {
+          close(target);
         }
       }
     };
 
-    var switchToModal = function switchToModal(drawer) {
-      var dialog = drawer.querySelector(".dialog");
-      var triggers = document.querySelectorAll("[data-target=\"#" + drawer.id + "\"]");
-      drawer.className = drawer.className.replace(new RegExp(api.settings.classTarget, "gi"), api.settings.classTargetSwitch);
-      dialog.className = dialog.className.replace(new RegExp(api.settings.classInner, "gi"), api.settings.classInnerSwitch);
-      triggers.forEach(function (trigger) {
-        trigger.className = trigger.className.replace(new RegExp(api.settings.classTrigger, "gi"), api.settings.classTriggerSwitch);
-      });
+    var toggle = function toggle(selector) {
+      var target = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(selector, "\"]"));
+
+      if (target) {
+        var isOpen = hasClass(target, api.settings.stateOpen);
+
+        if (!isOpen) {
+          open(target);
+        } else {
+          close(target);
+        }
+      }
+    };
+
+    var open = function open(drawer) {
+      addClass(drawer, api.settings.stateOpening);
+      drawer.addEventListener("transitionend", function _listener() {
+        addClass(drawer, api.settings.stateOpen);
+        removeClass(drawer, api.settings.stateOpening);
+        this.removeEventListener("transitionend", _listener, true);
+      }, true);
+    };
+
+    var close = function close(drawer) {
+      addClass(drawer, api.settings.stateClosing);
       removeClass(drawer, api.settings.stateOpen);
+      drawer.addEventListener("transitionend", function _listener() {
+        removeClass(drawer, api.settings.stateClosing);
+        this.removeEventListener("transitionend", _listener, true);
+      }, true);
     };
 
     if (api.settings.autoInit) api.init();

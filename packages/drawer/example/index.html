@@ -13,7 +13,7 @@
 
 <div class="drawer__wrapper">
 
-  <aside data-drawer="drawer-default-left" class="drawer drawer_pos_left drawer_modal is-open">
+  <aside data-drawer="drawer-modal-left" data-drawer-modal class="drawer drawer_pos_left drawer_modal">
     <div class="drawer__item padding">
       <div class="flex flex_justify_between">
         <p>Drawer Modal Left</p>
@@ -22,7 +22,16 @@
     </div>
   </aside>
 
-  <aside data-drawer="drawer-default-left" class="drawer drawer_pos_left">
+  <aside data-drawer="drawer-modal-right" data-drawer-modal class="drawer drawer_pos_right drawer_modal">
+    <div class="drawer__item padding">
+      <div class="flex flex_justify_between">
+        <p>Drawer Modal Right</p>
+        <button data-drawer-close data-drawer-focus class="link">Close</button>
+      </div>
+    </div>
+  </aside>
+
+  <aside data-drawer="drawer-pos-left" class="drawer drawer_pos_left">
     <div class="drawer__item padding">
       <div class="flex flex_justify_between">
         <p>Drawer Pos Left</p>
@@ -31,10 +40,10 @@
     </div>
   </aside>
 
-  <aside data-drawer="drawer-default-left" class="drawer drawer_pos_right">
+  <aside data-drawer="drawer-pos-right" class="drawer drawer_pos_right">
     <div class="drawer__item padding">
       <div class="flex flex_justify_between">
-        <p>Drawer Pos Left</p>
+        <p>Drawer Pos Right</p>
         <button data-drawer-close data-drawer-focus class="link">Close</button>
       </div>
     </div>
@@ -55,24 +64,27 @@
       <p>A container component that slides in from the left or right. It typically contains menus, search or other content for your app.</p>
       <hr class="sep margin_vert_lg">
       <p class="margin_top_md">
-        <button class="link" data-drawer-open="drawer-default-left">
+        <button class="link" data-drawer-trigger="drawer-default-left">
           Drawer Default Left
         </button>
-        <button class="link" data-drawer-open="drawer-default-right">
+        <button class="link" data-drawer-trigger="drawer-default-right">
           Drawer Default Right
         </button>
       </p>
       <p class="margin_top_md">
-        <button class="link" data-drawer-open="drawer-pos-left">
+        <button class="link" data-drawer-trigger="drawer-pos-left">
           Drawer Pos Left
         </button>
-        <button class="link" data-drawer-open="drawer-pos-right">
+        <button class="link" data-drawer-trigger="drawer-pos-right">
           Drawer Pos Right
         </button>
       </p>
       <p class="margin_top_md">
-        <button class="link" data-drawer-open="drawer-modal">
+        <button class="link" data-drawer-trigger="drawer-modal-left">
           Drawer Modal Left
+        </button>
+        <button class="link" data-drawer-trigger="drawer-modal-right">
+          Drawer Modal Right
         </button>
       </p>
     </div>

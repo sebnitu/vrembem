@@ -94,6 +94,42 @@
       close(focus);
     };
 
+    var run = function run(event) {
+      var trigger = event.target.closest("[data-".concat(api.settings.dataOpen, "]"));
+
+      if (trigger) {
+        var targetData = trigger.dataset[camelCase(api.settings.dataOpen)];
+
+        if (targetData) {
+          var fromModal = event.target.closest("[data-".concat(api.settings.dataModal, "]"));
+
+          if (api.settings.focus && !fromModal) {
+            api.memoryTrigger = trigger;
+          }
+
+          close(fromModal);
+          open("[data-".concat(api.settings.dataModal, "=\"").concat(targetData, "\"]"));
+        }
+
+        event.preventDefault();
+      } else {
+        if (event.target.closest("[data-".concat(api.settings.dataClose, "]"))) {
+          close();
+          event.preventDefault();
+        }
+
+        if (event.target.dataset[camelCase(api.settings.dataModal)] && !event.target.hasAttribute("data-".concat(api.settings.dataRequired))) {
+          close();
+        }
+      }
+    };
+
+    var escape = function escape(event) {
+      if (event.keyCode == 27 && api.memoryTarget && !api.memoryTarget.hasAttribute("data-".concat(api.settings.dataRequired))) {
+        close();
+      }
+    };
+
     var open = function open(selector) {
       var target = document.querySelector(selector);
 
@@ -142,42 +178,6 @@
         if (!fromModal && api.memoryTrigger) {
           api.memoryTrigger.focus();
           api.memoryTrigger = null;
-        }
-      }
-    };
-
-    var escape = function escape(event) {
-      if (event.keyCode == 27 && api.memoryTarget && !api.memoryTarget.hasAttribute("data-".concat(api.settings.dataRequired))) {
-        close();
-      }
-    };
-
-    var run = function run(event) {
-      var trigger = event.target.closest("[data-".concat(api.settings.dataOpen, "]"));
-
-      if (trigger) {
-        var targetData = trigger.dataset[camelCase(api.settings.dataOpen)];
-
-        if (targetData) {
-          var fromModal = event.target.closest("[data-".concat(api.settings.dataModal, "]"));
-
-          if (api.settings.focus && !fromModal) {
-            api.memoryTrigger = trigger;
-          }
-
-          close(fromModal);
-          open("[data-".concat(api.settings.dataModal, "=\"").concat(targetData, "\"]"));
-        }
-
-        event.preventDefault();
-      } else {
-        if (event.target.closest("[data-".concat(api.settings.dataClose, "]"))) {
-          close();
-          event.preventDefault();
-        }
-
-        if (event.target.dataset[camelCase(api.settings.dataModal)] && !event.target.hasAttribute("data-".concat(api.settings.dataRequired))) {
-          close();
         }
       }
     };

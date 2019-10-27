@@ -83,6 +83,8 @@
   background-color: rgba(66, 66, 66, 0);
 }
 .drawer_modal .drawer__item {
+  position: relative;
+  z-index: 901;
   background-color: #fff;
   box-shadow: 0 0 0 1px rgba(33, 33, 33, 0.05), 0 11px 15px -7px rgba(33, 33, 33, 0.1), 0 24px 38px 3px rgba(33, 33, 33, 0.08), 0 9px 46px 8px rgba(33, 33, 33, 0.06);
 }
@@ -117,11 +119,17 @@
   top: 0;
   bottom: 0;
 }
+.drawer_pos_left .drawer__item,
+.drawer_pos_right .drawer__item {
+  position: absolute;
+  top: 0;
+}
 
 .drawer_pos_left {
   left: 0;
 }
 .drawer_pos_left .drawer__item {
+  left: 0;
   transform: translateX(-100%);
 }
 
@@ -129,6 +137,7 @@
   right: 0;
 }
 .drawer_pos_right .drawer__item {
+  right: 0;
   transform: translateX(100%);
 }
 

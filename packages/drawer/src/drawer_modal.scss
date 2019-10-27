@@ -9,6 +9,8 @@
   background-color: rgba($drawer_modal-background, 0);
 
   .drawer__item {
+    position: relative;
+    z-index: ($drawer-zindex + 1);
     background-color: $drawer_modal-item-background;
     box-shadow: $drawer_modal-item-box-shadow;
   }

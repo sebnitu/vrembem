@@ -19,7 +19,7 @@ export const Modal = (options) => {
     stateClosing: "is-closing",
     stateClosed: "is-closed", // Default state
 
-    // Feature toggle
+    // Feature toggles
     focus: true
   }
 
@@ -50,6 +50,54 @@ export const Modal = (options) => {
     close(focus)
   }
 
+  const run = (event) => {
+    const trigger = event.target.closest(`[data-${api.settings.dataOpen}]`)
+    if (trigger) {
+      const targetData = trigger.dataset[camelCase(api.settings.dataOpen)]
+      if (targetData) {
+        // Is the trigger coming from a modal?
+        let fromModal = event.target.closest(
+          `[data-${api.settings.dataModal}]`
+        )
+        // If it's not from a modal, save the trigger to memory
+        if (api.settings.focus && !fromModal) {
+          api.memoryTrigger = trigger
+        }
+        // Close open modal with context
+        // Open the target modal
+        close(fromModal)
+        open(`[data-${api.settings.dataModal}="${targetData}"]`)
+      }
+      event.preventDefault()
+    } else {
+      // If it's a close button
+      if (event.target.closest(`[data-${api.settings.dataClose}]`)) {
+        close()
+        event.preventDefault()
+      }
+      // If the root modal is clicked (screen)
+      if (
+        event.target.dataset[camelCase(api.settings.dataModal)] &&
+        !event.target.hasAttribute(`data-${api.settings.dataRequired}`)
+      ) {
+        close()
+      }
+    }
+  }
+
+  const escape = (event) => {
+    // If the escape key is pressed
+    // and there's an open modal
+    // and the modal is not required
+    if (
+      event.keyCode == 27 &&
+      api.memoryTarget &&
+      !api.memoryTarget.hasAttribute(`data-${api.settings.dataRequired}`)
+    ) {
+      close()
+    }
+  }
+
   const open = (selector) => {
     // Query the modal
     let target = document.querySelector(selector)
@@ -67,12 +115,10 @@ export const Modal = (options) => {
   }
 
   const close = (fromModal = false) => {
-
     // Get the open modal
     let target = document.querySelector(
       `[data-${api.settings.dataModal}].${api.settings.stateOpen}`
     )
-
     // If an open modal exists
     if (target) {
       addClass(target, api.settings.stateClosing)
@@ -107,54 +153,6 @@ export const Modal = (options) => {
         api.memoryTrigger.focus()
         // Clear the trigger from memory
         api.memoryTrigger = null
-      }
-    }
-  }
-
-  const escape = (event) => {
-    // If the escape key is pressed
-    // and there's an open modal
-    // and the modal is not required
-    if (
-      event.keyCode == 27 &&
-      api.memoryTarget &&
-      !api.memoryTarget.hasAttribute(`data-${api.settings.dataRequired}`)
-    ) {
-      close()
-    }
-  }
-
-  const run = (event) => {
-    const trigger = event.target.closest(`[data-${api.settings.dataOpen}]`)
-    if (trigger) {
-      const targetData = trigger.dataset[camelCase(api.settings.dataOpen)]
-      if (targetData) {
-        // Is the trigger coming from a modal?
-        let fromModal = event.target.closest(
-          `[data-${api.settings.dataModal}]`
-        )
-        // If it's not from a modal, save the trigger to memory
-        if (api.settings.focus && !fromModal) {
-          api.memoryTrigger = trigger
-        }
-        // Close open modal with context
-        // Open the target modal
-        close(fromModal)
-        open(`[data-${api.settings.dataModal}="${targetData}"]`)
-      }
-      event.preventDefault()
-    } else {
-      // If it's a close button
-      if (event.target.closest(`[data-${api.settings.dataClose}]`)) {
-        close()
-        event.preventDefault()
-      }
-      // If the root modal is clicked (screen)
-      if (
-        event.target.dataset[camelCase(api.settings.dataModal)] &&
-        !event.target.hasAttribute(`data-${api.settings.dataRequired}`)
-      ) {
-        close()
       }
     }
   }
