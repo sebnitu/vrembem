@@ -24,15 +24,17 @@ export const Drawer = (options) => {
 
     // Feature toggles
     focus: true,
-    saveState: true // TODO: Add save state via local storage
+    saveState: true
   }
 
   api.settings = { ...defaults, ...options }
 
   api.memoryTrigger = null
   api.memoryTarget = null
+  api.state = {}
 
   api.init = () => {
+    applyState()
     document.addEventListener("click", run, false)
     document.addEventListener("touchend", run, false)
     document.addEventListener("keyup", escape, false)
@@ -87,7 +89,7 @@ export const Drawer = (options) => {
     if (target) {
       const isOpen = hasClass(target, api.settings.stateOpen)
       if (!isOpen) {
-        open(target, setFocus())
+        open(target)
       } else {
         close(target)
       }
@@ -101,6 +103,7 @@ export const Drawer = (options) => {
       drawer.addEventListener("transitionend", function _listener() {
         addClass(drawer, api.settings.stateOpen)
         removeClass(drawer, api.settings.stateOpening)
+        saveState(drawer)
         setFocus()
         typeof callback === "function" && callback()
         this.removeEventListener("transitionend", _listener, true)
@@ -114,6 +117,7 @@ export const Drawer = (options) => {
       removeClass(drawer, api.settings.stateOpen)
       drawer.addEventListener("transitionend", function _listener() {
         removeClass(drawer, api.settings.stateClosing)
+        saveState(drawer)
         returnFocus()
         typeof callback === "function" && callback()
         this.removeEventListener("transitionend", _listener, true)
@@ -151,6 +155,49 @@ export const Drawer = (options) => {
     if (api.settings.focus && api.memoryTrigger) {
       api.memoryTrigger.focus()
       api.memoryTrigger = null
+    }
+  }
+
+  const saveState = (target = false) => {
+    if (api.settings.saveState) {
+      const drawers = (!target) ?
+        document.querySelectorAll(`[data-${api.settings.dataDrawer}]`):
+        (target.forEach) ? target : [target]
+      drawers.forEach((el) => {
+        if (!hasClass(el, api.settings.classModal)) {
+          api.state[el.dataset[camelCase(api.settings.dataDrawer)]] =
+            (hasClass(el, api.settings.stateOpen)) ?
+              api.settings.stateOpen:
+              api.settings.stateClosed
+        }
+      })
+      localStorage.setItem("DrawerState", JSON.stringify(api.state))
+    }
+  }
+
+  const applyState = () => {
+    if (api.settings.saveState) {
+      if (localStorage.getItem("DrawerState")) {
+        api.state = JSON.parse(localStorage.getItem("DrawerState"))
+        Object.keys(api.state).forEach((key) => {
+          const item = document.querySelector(
+            `[data-${api.settings.dataDrawer}="${key}"]`
+          )
+          if (item) {
+            if (api.state[key] == api.settings.stateOpen) {
+              addClass(item, api.settings.stateOpen)
+            } else {
+              removeClass(item, api.settings.stateOpen)
+            }
+          }
+        })
+      } else {
+        saveState()
+      }
+    } else {
+      if (localStorage.getItem("DrawerState")) {
+        localStorage.removeItem("DrawerState")
+      }
     }
   }
 

@@ -88,8 +88,10 @@
     api.settings = _objectSpread({}, defaults, {}, options);
     api.memoryTrigger = null;
     api.memoryTarget = null;
+    api.state = {};
 
     api.init = function () {
+      applyState();
       document.addEventListener("click", run, false);
       document.addEventListener("touchend", run, false);
       document.addEventListener("keyup", escape, false);
@@ -143,7 +145,7 @@
         var isOpen = hasClass(target, api.settings.stateOpen);
 
         if (!isOpen) {
-          open(target, setFocus());
+          open(target);
         } else {
           close(target);
         }
@@ -157,6 +159,7 @@
         drawer.addEventListener("transitionend", function _listener() {
           addClass(drawer, api.settings.stateOpen);
           removeClass(drawer, api.settings.stateOpening);
+          saveState(drawer);
           setFocus();
           typeof callback === "function" && callback();
           this.removeEventListener("transitionend", _listener, true);
@@ -170,6 +173,7 @@
         removeClass(drawer, api.settings.stateOpen);
         drawer.addEventListener("transitionend", function _listener() {
           removeClass(drawer, api.settings.stateClosing);
+          saveState(drawer);
           returnFocus();
           typeof callback === "function" && callback();
           this.removeEventListener("transitionend", _listener, true);
@@ -207,6 +211,45 @@
       if (api.settings.focus && api.memoryTrigger) {
         api.memoryTrigger.focus();
         api.memoryTrigger = null;
+      }
+    };
+
+    var saveState = function saveState() {
+      var target = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+      if (api.settings.saveState) {
+        var drawers = !target ? document.querySelectorAll("[data-".concat(api.settings.dataDrawer, "]")) : target.forEach ? target : [target];
+        drawers.forEach(function (el) {
+          if (!hasClass(el, api.settings.classModal)) {
+            api.state[el.dataset[camelCase(api.settings.dataDrawer)]] = hasClass(el, api.settings.stateOpen) ? api.settings.stateOpen : api.settings.stateClosed;
+          }
+        });
+        localStorage.setItem("DrawerState", JSON.stringify(api.state));
+      }
+    };
+
+    var applyState = function applyState() {
+      if (api.settings.saveState) {
+        if (localStorage.getItem("DrawerState")) {
+          api.state = JSON.parse(localStorage.getItem("DrawerState"));
+          Object.keys(api.state).forEach(function (key) {
+            var item = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(key, "\"]"));
+
+            if (item) {
+              if (api.state[key] == api.settings.stateOpen) {
+                addClass(item, api.settings.stateOpen);
+              } else {
+                removeClass(item, api.settings.stateOpen);
+              }
+            }
+          });
+        } else {
+          saveState();
+        }
+      } else {
+        if (localStorage.getItem("DrawerState")) {
+          localStorage.removeItem("DrawerState");
+        }
       }
     };
 
