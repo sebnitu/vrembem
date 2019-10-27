@@ -1486,6 +1486,7 @@ input::-moz-placeholder {
   align-items: stretch;
   width: 0;
   overflow: hidden auto;
+  outline: none;
   -webkit-overflow-scrolling: touch;
 }
 

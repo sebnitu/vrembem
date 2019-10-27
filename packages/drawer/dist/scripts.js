@@ -82,9 +82,12 @@
       stateClosing: "is-closing",
       stateClosed: "is-closed",
       classModal: "drawer_modal",
-      focus: true
+      focus: true,
+      saveState: true
     };
     api.settings = _objectSpread({}, defaults, {}, options);
+    api.memoryTrigger = null;
+    api.memoryTarget = null;
 
     api.init = function () {
       document.addEventListener("click", run, false);
@@ -93,6 +96,8 @@
     };
 
     api.destroy = function () {
+      api.memoryTrigger = null;
+      api.memoryTarget = null;
       document.removeEventListener("click", run, false);
       document.removeEventListener("touchend", run, false);
       document.removeEventListener("keyup", escape, false);
@@ -103,6 +108,7 @@
 
       if (trigger) {
         var selector = event.target.dataset[camelCase(api.settings.dataTrigger)];
+        saveTrigger(trigger);
         toggle(selector);
         event.preventDefault();
       } else {
@@ -137,29 +143,71 @@
         var isOpen = hasClass(target, api.settings.stateOpen);
 
         if (!isOpen) {
-          open(target);
+          open(target, setFocus());
         } else {
           close(target);
         }
       }
     };
 
-    var open = function open(drawer) {
-      addClass(drawer, api.settings.stateOpening);
-      drawer.addEventListener("transitionend", function _listener() {
-        addClass(drawer, api.settings.stateOpen);
-        removeClass(drawer, api.settings.stateOpening);
-        this.removeEventListener("transitionend", _listener, true);
-      }, true);
+    var open = function open(drawer, callback) {
+      if (!hasClass(drawer, api.settings.stateOpen)) {
+        saveTarget(drawer);
+        addClass(drawer, api.settings.stateOpening);
+        drawer.addEventListener("transitionend", function _listener() {
+          addClass(drawer, api.settings.stateOpen);
+          removeClass(drawer, api.settings.stateOpening);
+          setFocus();
+          typeof callback === "function" && callback();
+          this.removeEventListener("transitionend", _listener, true);
+        }, true);
+      }
     };
 
-    var close = function close(drawer) {
-      addClass(drawer, api.settings.stateClosing);
-      removeClass(drawer, api.settings.stateOpen);
-      drawer.addEventListener("transitionend", function _listener() {
-        removeClass(drawer, api.settings.stateClosing);
-        this.removeEventListener("transitionend", _listener, true);
-      }, true);
+    var close = function close(drawer, callback) {
+      if (hasClass(drawer, api.settings.stateOpen)) {
+        addClass(drawer, api.settings.stateClosing);
+        removeClass(drawer, api.settings.stateOpen);
+        drawer.addEventListener("transitionend", function _listener() {
+          removeClass(drawer, api.settings.stateClosing);
+          returnFocus();
+          typeof callback === "function" && callback();
+          this.removeEventListener("transitionend", _listener, true);
+        }, true);
+      }
+    };
+
+    var saveTarget = function saveTarget(target) {
+      if (api.settings.focus) {
+        api.memoryTarget = target;
+      }
+    };
+
+    var saveTrigger = function saveTrigger(trigger) {
+      if (api.settings.focus) {
+        api.memoryTrigger = trigger;
+      }
+    };
+
+    var setFocus = function setFocus() {
+      if (api.settings.focus && api.memoryTarget) {
+        var innerFocus = api.memoryTarget.querySelector("[data-".concat(api.settings.dataFocus, "]"));
+
+        if (innerFocus) {
+          innerFocus.focus();
+        } else {
+          api.memoryTarget.focus();
+        }
+
+        api.memoryTarget = null;
+      }
+    };
+
+    var returnFocus = function returnFocus() {
+      if (api.settings.focus && api.memoryTrigger) {
+        api.memoryTrigger.focus();
+        api.memoryTrigger = null;
+      }
     };
 
     if (api.settings.autoInit) api.init();

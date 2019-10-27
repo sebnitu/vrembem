@@ -11,7 +11,7 @@ export const Drawer = (options) => {
     dataModal: "drawer-modal", // TODO: Add modal feature
     dataTrigger: "drawer-trigger",
     dataClose: "drawer-close",
-    dataFocus: "drawer-focus", // TODO: Add focus feature
+    dataFocus: "drawer-focus",
 
     // State classes
     stateOpen: "is-open",
@@ -20,13 +20,17 @@ export const Drawer = (options) => {
     stateClosed: "is-closed", // Default state
 
     // Classes
-    classModal: "drawer_modal",
+    classModal: "drawer_modal", // TODO: Apply class on breakpoint
 
     // Feature toggles
-    focus: true // TODO: Add focus feature
+    focus: true,
+    saveState: true // TODO: Add save state via local storage
   }
 
   api.settings = { ...defaults, ...options }
+
+  api.memoryTrigger = null
+  api.memoryTarget = null
 
   api.init = () => {
     document.addEventListener("click", run, false)
@@ -35,6 +39,8 @@ export const Drawer = (options) => {
   }
 
   api.destroy = () => {
+    api.memoryTrigger = null
+    api.memoryTarget = null
     document.removeEventListener("click", run, false)
     document.removeEventListener("touchend", run, false)
     document.removeEventListener("keyup", escape, false)
@@ -45,6 +51,7 @@ export const Drawer = (options) => {
     let trigger = event.target.closest(`[data-${api.settings.dataTrigger}]`)
     if (trigger) {
       const selector = event.target.dataset[camelCase(api.settings.dataTrigger)]
+      saveTrigger(trigger)
       toggle(selector)
       event.preventDefault()
     } else {
@@ -80,29 +87,71 @@ export const Drawer = (options) => {
     if (target) {
       const isOpen = hasClass(target, api.settings.stateOpen)
       if (!isOpen) {
-        open(target)
+        open(target, setFocus())
       } else {
         close(target)
       }
     }
   }
 
-  const open = (drawer) => {
-    addClass(drawer, api.settings.stateOpening)
-    drawer.addEventListener("transitionend", function _listener() {
-      addClass(drawer, api.settings.stateOpen)
-      removeClass(drawer, api.settings.stateOpening)
-      this.removeEventListener("transitionend", _listener, true)
-    }, true)
+  const open = (drawer, callback) => {
+    if (!hasClass(drawer, api.settings.stateOpen)) {
+      saveTarget(drawer)
+      addClass(drawer, api.settings.stateOpening)
+      drawer.addEventListener("transitionend", function _listener() {
+        addClass(drawer, api.settings.stateOpen)
+        removeClass(drawer, api.settings.stateOpening)
+        setFocus()
+        typeof callback === "function" && callback()
+        this.removeEventListener("transitionend", _listener, true)
+      }, true)
+    }
   }
 
-  const close = (drawer) => {
-    addClass(drawer, api.settings.stateClosing)
-    removeClass(drawer, api.settings.stateOpen)
-    drawer.addEventListener("transitionend", function _listener() {
-      removeClass(drawer, api.settings.stateClosing)
-      this.removeEventListener("transitionend", _listener, true)
-    }, true)
+  const close = (drawer, callback) => {
+    if (hasClass(drawer, api.settings.stateOpen)) {
+      addClass(drawer, api.settings.stateClosing)
+      removeClass(drawer, api.settings.stateOpen)
+      drawer.addEventListener("transitionend", function _listener() {
+        removeClass(drawer, api.settings.stateClosing)
+        returnFocus()
+        typeof callback === "function" && callback()
+        this.removeEventListener("transitionend", _listener, true)
+      }, true)
+    }
+  }
+
+  const saveTarget = (target) => {
+    if (api.settings.focus) {
+      api.memoryTarget = target
+    }
+  }
+
+  const saveTrigger = (trigger) => {
+    if (api.settings.focus) {
+      api.memoryTrigger = trigger
+    }
+  }
+
+  const setFocus = () => {
+    if (api.settings.focus && api.memoryTarget) {
+      const innerFocus = api.memoryTarget.querySelector(
+        `[data-${api.settings.dataFocus}]`
+      )
+      if (innerFocus) {
+        innerFocus.focus()
+      } else {
+        api.memoryTarget.focus()
+      }
+      api.memoryTarget = null
+    }
+  }
+
+  const returnFocus = () => {
+    if (api.settings.focus && api.memoryTrigger) {
+      api.memoryTrigger.focus()
+      api.memoryTrigger = null
+    }
   }
 
   if (api.settings.autoInit) api.init()
