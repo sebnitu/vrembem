@@ -1,5 +1,5 @@
-import { hasClass, addClass, removeClass } from "@vrembem/core"
 import {
+  utility,
   Checkbox,
   Dismissible,
   Drawer,
@@ -8,49 +8,14 @@ import {
 import listjs from "list.js"
 import "svgxuse"
 
-new Checkbox({ autoInit: true })
-new Dismissible({ autoInit: true })
-let drawer = new Drawer({ autoInit: true })
-new Modal({ autoInit: true })
-
 /**
- * General event trigger for testing
+ * Initialize Vrembem scripts
  */
 
-document.addEventListener("click", function() {
-
-  // Get the element that triggered the event
-  let trigger = event.target
-
-  // Run the script if it exists as a data attribute
-  if (trigger.dataset.script) {
-    // Get our script string for processing
-    let string = trigger.dataset.script
-
-    // console.log("Run: ", string)
-
-    // Get indexes of string
-    let indexObject = string.indexOf(".")
-    let indexMethod = string.indexOf("(")
-    let indexParamStart = string.indexOf("\"")
-    let indexParamEnd = string.indexOf("\"", indexParamStart + 1)
-
-    // Get the object, method and if params are passed
-    let obj = string.substring(0, indexObject)
-    let method = string.substring(indexObject + 1, indexMethod)
-    let params = string.substring(indexParamStart + 1, indexParamEnd)
-
-    // console.log("Obj: ", obj)
-    // console.log("Method: ", method)
-    // console.log("Params: ", params)
-
-    // Run our data script
-    if (obj === "drawer") {
-      drawer[method](params)
-    }
-  }
-
-})
+new Checkbox({ autoInit: true })
+new Dismissible({ autoInit: true })
+new Drawer({ autoInit: true })
+new Modal({ autoInit: true })
 
 /**
  * List.js
@@ -88,7 +53,7 @@ if (document.getElementById("listjs")) {
 
   let isMenuLinkActive = () => {
     let menuLinks = document.querySelectorAll("#listjs .menu__link")
-    let isActive = hasClass(menuLinks, "is-active")
+    let isActive = utility.hasClass(menuLinks, "is-active")
     return isActive
   }
 
@@ -102,20 +67,20 @@ if (document.getElementById("listjs")) {
 
     // Show clear search button if a value there is something in search
     if (value) {
-      addClass(filter, "is-active")
-      addClass(search, "is-active")
-      removeClass(search_clear, "display_none")
+      utility.addClass(filter, "is-active")
+      utility.addClass(search, "is-active")
+      utility.removeClass(search_clear, "display_none")
     } else {
-      removeClass(filter, "is-active")
-      removeClass(search, "is-active")
-      addClass(search_clear, "display_none")
+      utility.removeClass(filter, "is-active")
+      utility.removeClass(search, "is-active")
+      utility.addClass(search_clear, "display_none")
     }
 
     // Toggle notice depending on the number of visible items
     if (list.visibleItems.length > 0) {
-      addClass(notice_empty, "display_none")
+      utility.addClass(notice_empty, "display_none")
     } else {
-      removeClass(notice_empty, "display_none")
+      utility.removeClass(notice_empty, "display_none")
     }
   })
 

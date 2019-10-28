@@ -15,7 +15,7 @@ export const Drawer = (options) => {
     // Data attributes
     dataDrawer: "drawer",
     dataModal: "drawer-modal",
-    dataTrigger: "drawer-trigger",
+    dataToggle: "drawer-toggle",
     dataClose: "drawer-close",
     dataFocus: "drawer-focus",
 
@@ -72,9 +72,9 @@ export const Drawer = (options) => {
 
   const run = (event) => {
     // Trigger click
-    let trigger = event.target.closest(`[data-${api.settings.dataTrigger}]`)
+    let trigger = event.target.closest(`[data-${api.settings.dataToggle}]`)
     if (trigger) {
-      const selector = event.target.dataset[camelCase(api.settings.dataTrigger)]
+      const selector = trigger.dataset[camelCase(api.settings.dataToggle)]
       saveTrigger(trigger)
       toggle(selector)
       event.preventDefault()

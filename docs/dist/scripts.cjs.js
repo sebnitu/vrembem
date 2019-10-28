@@ -1,7 +1,5 @@
 'use strict';
 
-var core = require('@vrembem/core');
-
 var breakpoint = {
   xs: "480px",
   sm: "620px",
@@ -185,7 +183,7 @@ var Drawer = function Drawer(options) {
     autoInit: false,
     dataDrawer: "drawer",
     dataModal: "drawer-modal",
-    dataTrigger: "drawer-trigger",
+    dataToggle: "drawer-toggle",
     dataClose: "drawer-close",
     dataFocus: "drawer-focus",
     stateOpen: "is-open",
@@ -233,10 +231,10 @@ var Drawer = function Drawer(options) {
   };
 
   var run = function run(event) {
-    var trigger = event.target.closest("[data-".concat(api.settings.dataTrigger, "]"));
+    var trigger = event.target.closest("[data-".concat(api.settings.dataToggle, "]"));
 
     if (trigger) {
-      var selector = event.target.dataset[camelCase(api.settings.dataTrigger)];
+      var selector = trigger.dataset[camelCase(api.settings.dataToggle)];
       saveTrigger(trigger);
       toggle(selector);
       event.preventDefault();
@@ -2271,29 +2269,11 @@ new Checkbox({
 new Dismissible({
   autoInit: true
 });
-var drawer = new Drawer({
+new Drawer({
   autoInit: true
 });
 new Modal({
   autoInit: true
-});
-document.addEventListener("click", function () {
-  var trigger = event.target;
-
-  if (trigger.dataset.script) {
-    var string = trigger.dataset.script;
-    var indexObject = string.indexOf(".");
-    var indexMethod = string.indexOf("(");
-    var indexParamStart = string.indexOf("\"");
-    var indexParamEnd = string.indexOf("\"", indexParamStart + 1);
-    var obj = string.substring(0, indexObject);
-    var method = string.substring(indexObject + 1, indexMethod);
-    var params = string.substring(indexParamStart + 1, indexParamEnd);
-
-    if (obj === "drawer") {
-      drawer[method](params);
-    }
-  }
 });
 
 if (document.getElementById("listjs")) {
@@ -2318,7 +2298,7 @@ if (document.getElementById("listjs")) {
 
   var isMenuLinkActive = function isMenuLinkActive() {
     var menuLinks = document.querySelectorAll("#listjs .menu__link");
-    var isActive = core.hasClass(menuLinks, "is-active");
+    var isActive = hasClass(menuLinks, "is-active");
     return isActive;
   };
 
@@ -2328,19 +2308,19 @@ if (document.getElementById("listjs")) {
     localStorage.setItem("searchValue", value);
 
     if (value) {
-      core.addClass(filter$1, "is-active");
-      core.addClass(search$1, "is-active");
-      core.removeClass(search_clear, "display_none");
+      addClass(filter$1, "is-active");
+      addClass(search$1, "is-active");
+      removeClass(search_clear, "display_none");
     } else {
-      core.removeClass(filter$1, "is-active");
-      core.removeClass(search$1, "is-active");
-      core.addClass(search_clear, "display_none");
+      removeClass(filter$1, "is-active");
+      removeClass(search$1, "is-active");
+      addClass(search_clear, "display_none");
     }
 
     if (list.visibleItems.length > 0) {
-      core.addClass(notice_empty, "display_none");
+      addClass(notice_empty, "display_none");
     } else {
-      core.removeClass(notice_empty, "display_none");
+      removeClass(notice_empty, "display_none");
     }
   });
   document.addEventListener("click", function () {

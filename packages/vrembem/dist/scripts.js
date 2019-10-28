@@ -215,7 +215,7 @@
       autoInit: false,
       dataDrawer: "drawer",
       dataModal: "drawer-modal",
-      dataTrigger: "drawer-trigger",
+      dataToggle: "drawer-toggle",
       dataClose: "drawer-close",
       dataFocus: "drawer-focus",
       stateOpen: "is-open",
@@ -263,10 +263,10 @@
     };
 
     var run = function run(event) {
-      var trigger = event.target.closest("[data-".concat(api.settings.dataTrigger, "]"));
+      var trigger = event.target.closest("[data-".concat(api.settings.dataToggle, "]"));
 
       if (trigger) {
-        var selector = event.target.dataset[camelCase(api.settings.dataTrigger)];
+        var selector = trigger.dataset[camelCase(api.settings.dataToggle)];
         saveTrigger(trigger);
         toggle(selector);
         event.preventDefault();
