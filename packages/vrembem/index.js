@@ -1,8 +1,8 @@
-import * as utility from "@vrembem/core/index"
-import { Checkbox } from "@vrembem/checkbox/index"
-import { Dismissible } from "@vrembem/dismissible/index"
-import { Drawer } from "@vrembem/drawer/index"
-import { Modal } from "@vrembem/modal/index"
+import * as utility from "@vrembem/core"
+import { Checkbox } from "@vrembem/checkbox"
+import { Dismissible } from "@vrembem/dismissible"
+import { Drawer } from "@vrembem/drawer"
+import { Modal } from "@vrembem/modal"
 
 export {
   utility,
