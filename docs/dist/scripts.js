@@ -1,6 +1,14 @@
 (function (core) {
   'use strict';
 
+  var breakpoint = {
+    xs: "480px",
+    sm: "620px",
+    md: "760px",
+    lg: "990px",
+    xl: "1380px"
+  };
+
   var camelCase = function camelCase(str) {
     return str.replace(/-([a-z])/g, function (g) {
       return g[1].toUpperCase();
@@ -184,6 +192,7 @@
       stateClosing: "is-closing",
       stateClosed: "is-closed",
       classModal: "drawer_modal",
+      breakpoint: breakpoint,
       focus: true,
       saveState: true
     };
@@ -191,9 +200,11 @@
     api.memoryTrigger = null;
     api.memoryTarget = null;
     api.state = {};
+    api.mediaQueryLists = [];
 
     api.init = function () {
       applyState();
+      switchInit();
       document.addEventListener("click", run, false);
       document.addEventListener("touchend", run, false);
       document.addEventListener("keyup", escape, false);
@@ -202,9 +213,22 @@
     api.destroy = function () {
       api.memoryTrigger = null;
       api.memoryTarget = null;
+      api.state = {};
       document.removeEventListener("click", run, false);
       document.removeEventListener("touchend", run, false);
       document.removeEventListener("keyup", escape, false);
+    };
+
+    api.toggle = function (selector) {
+      toggle(selector);
+    };
+
+    api.open = function (drawer, callback) {
+      open(drawer, callback);
+    };
+
+    api.close = function (drawer, callback) {
+      close(drawer, callback);
     };
 
     var run = function run(event) {
@@ -241,15 +265,15 @@
     };
 
     var toggle = function toggle(selector) {
-      var target = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(selector, "\"]"));
+      var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(selector, "\"]"));
 
-      if (target) {
-        var isOpen = hasClass(target, api.settings.stateOpen);
+      if (drawer) {
+        var isOpen = hasClass(drawer, api.settings.stateOpen);
 
         if (!isOpen) {
-          open(target);
+          open(drawer);
         } else {
-          close(target);
+          close(drawer);
         }
       }
     };
@@ -352,6 +376,54 @@
         if (localStorage.getItem("DrawerState")) {
           localStorage.removeItem("DrawerState");
         }
+      }
+    };
+
+    var switchInit = function switchInit() {
+      var drawers = document.querySelectorAll("[data-".concat(api.settings.dataModal, "]"));
+
+      if (drawers) {
+        drawers.forEach(function (drawer) {
+          var key = drawer.dataset[camelCase(api.settings.dataModal)];
+          var bp = api.settings.breakpoint[key] ? api.settings.breakpoint[key] : key;
+          var mqList = window.matchMedia("(min-width:" + bp + ")");
+
+          if (!mqList.matches) {
+            switchToModal(drawer);
+          }
+
+          mqList.addListener(switchCheck);
+          api.mediaQueryLists.push({
+            "drawer": drawer,
+            "mqList": mqList
+          });
+        });
+      }
+    };
+
+    var switchCheck = function switchCheck(event) {
+      api.mediaQueryLists.forEach(function (item) {
+        if (event.target == item.mqList) {
+          if (item.mqList.matches) {
+            switchToDrawer(item.drawer);
+          } else {
+            switchToModal(item.drawer);
+          }
+        }
+      });
+    };
+
+    var switchToModal = function switchToModal(drawer) {
+      addClass(drawer, api.settings.classModal);
+      removeClass(drawer, api.settings.stateOpen);
+    };
+
+    var switchToDrawer = function switchToDrawer(drawer) {
+      removeClass(drawer, api.settings.classModal);
+      var drawerState = api.state[drawer.dataset[camelCase(api.settings.dataDrawer)]];
+
+      if (drawerState == api.settings.stateOpen) {
+        addClass(drawer, api.settings.stateOpen);
       }
     };
 

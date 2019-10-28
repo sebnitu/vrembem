@@ -1,4 +1,10 @@
-import { addClass, camelCase, hasClass, removeClass } from "@vrembem/core"
+import {
+  addClass,
+  breakpoint,
+  camelCase,
+  hasClass,
+  removeClass
+} from "@vrembem/core"
 
 export const Drawer = (options) => {
 
@@ -8,7 +14,7 @@ export const Drawer = (options) => {
 
     // Data attributes
     dataDrawer: "drawer",
-    dataModal: "drawer-modal", // TODO: Add modal feature
+    dataModal: "drawer-modal",
     dataTrigger: "drawer-trigger",
     dataClose: "drawer-close",
     dataFocus: "drawer-focus",
@@ -20,9 +26,10 @@ export const Drawer = (options) => {
     stateClosed: "is-closed", // Default state
 
     // Classes
-    classModal: "drawer_modal", // TODO: Apply class on breakpoint
+    classModal: "drawer_modal",
 
     // Feature toggles
+    breakpoint: breakpoint,
     focus: true,
     saveState: true
   }
@@ -32,9 +39,11 @@ export const Drawer = (options) => {
   api.memoryTrigger = null
   api.memoryTarget = null
   api.state = {}
+  api.mediaQueryLists = []
 
   api.init = () => {
     applyState()
+    switchInit()
     document.addEventListener("click", run, false)
     document.addEventListener("touchend", run, false)
     document.addEventListener("keyup", escape, false)
@@ -43,9 +52,22 @@ export const Drawer = (options) => {
   api.destroy = () => {
     api.memoryTrigger = null
     api.memoryTarget = null
+    api.state = {}
     document.removeEventListener("click", run, false)
     document.removeEventListener("touchend", run, false)
     document.removeEventListener("keyup", escape, false)
+  }
+
+  api.toggle = (selector) => {
+    toggle(selector)
+  }
+
+  api.open = (drawer, callback) => {
+    open(drawer, callback)
+  }
+
+  api.close = (drawer, callback) => {
+    close(drawer, callback)
   }
 
   const run = (event) => {
@@ -83,15 +105,15 @@ export const Drawer = (options) => {
   }
 
   const toggle = (selector) => {
-    const target = document.querySelector(
+    const drawer = document.querySelector(
       `[data-${api.settings.dataDrawer}="${selector}"]`
     )
-    if (target) {
-      const isOpen = hasClass(target, api.settings.stateOpen)
+    if (drawer) {
+      const isOpen = hasClass(drawer, api.settings.stateOpen)
       if (!isOpen) {
-        open(target)
+        open(drawer)
       } else {
-        close(target)
+        close(drawer)
       }
     }
   }
@@ -125,6 +147,10 @@ export const Drawer = (options) => {
     }
   }
 
+  /**
+   * Focus functionality
+   */
+
   const saveTarget = (target) => {
     if (api.settings.focus) {
       api.memoryTarget = target
@@ -157,6 +183,10 @@ export const Drawer = (options) => {
       api.memoryTrigger = null
     }
   }
+
+  /**
+   * Save state functionality
+   */
 
   const saveState = (target = false) => {
     if (api.settings.saveState) {
@@ -198,6 +228,55 @@ export const Drawer = (options) => {
       if (localStorage.getItem("DrawerState")) {
         localStorage.removeItem("DrawerState")
       }
+    }
+  }
+
+  /**
+   * Switch functionality
+   */
+
+  const switchInit = () => {
+    const drawers = document.querySelectorAll(`[data-${api.settings.dataModal}]`)
+    if (drawers) {
+      drawers.forEach((drawer) => {
+        const key = drawer.dataset[camelCase(api.settings.dataModal)]
+        const bp = (api.settings.breakpoint[key]) ?
+          api.settings.breakpoint[key] : key
+        const mqList = window.matchMedia( "(min-width:" + bp + ")" )
+        if (!mqList.matches) {
+          switchToModal(drawer)
+        }
+        mqList.addListener(switchCheck)
+        api.mediaQueryLists.push({
+          "drawer": drawer,
+          "mqList": mqList
+        })
+      })
+    }
+  }
+
+  const switchCheck = (event) => {
+    api.mediaQueryLists.forEach((item) => {
+      if (event.target == item.mqList) {
+        if (item.mqList.matches) {
+          switchToDrawer(item.drawer)
+        } else {
+          switchToModal(item.drawer)
+        }
+      }
+    })
+  }
+
+  const switchToModal = (drawer) => {
+    addClass(drawer, api.settings.classModal)
+    removeClass(drawer, api.settings.stateOpen)
+  }
+
+  const switchToDrawer = (drawer) => {
+    removeClass(drawer, api.settings.classModal)
+    const drawerState = api.state[drawer.dataset[camelCase(api.settings.dataDrawer)]]
+    if (drawerState == api.settings.stateOpen) {
+      addClass(drawer, api.settings.stateOpen)
     }
   }
 

@@ -13,7 +13,16 @@
 
 <div class="drawer__wrapper">
 
-  <aside data-drawer="drawer-modal-left" data-drawer-modal class="drawer drawer_pos_left drawer_modal" tabindex="-1">
+  <aside data-drawer="drawer-modal-always" class="drawer drawer_modal drawer_pos_left" tabindex="-1">
+    <div class="drawer__item padding">
+      <div class="flex flex_justify_between">
+        <p>Drawer Modal Always</p>
+        <button data-drawer-close class="link">Close</button>
+      </div>
+    </div>
+  </aside>
+
+  <aside data-drawer="drawer-modal-left" data-drawer-modal="md" class="drawer drawer_pos_left" tabindex="-1">
     <div class="drawer__item padding">
       <div class="flex flex_justify_between">
         <p>Drawer Modal Left</p>
@@ -22,7 +31,7 @@
     </div>
   </aside>
 
-  <aside data-drawer="drawer-modal-right" data-drawer-modal class="drawer drawer_pos_right drawer_modal" tabindex="-1">
+  <aside data-drawer="drawer-modal-right" data-drawer-modal="1200px" class="drawer drawer_pos_right" tabindex="-1">
     <div class="drawer__item padding">
       <div class="flex flex_justify_between">
         <p>Drawer Modal Right</p>
@@ -31,7 +40,7 @@
     </div>
   </aside>
 
-  <aside data-drawer="drawer-pos-left" class="drawer drawer_pos_left is-open" tabindex="-1">
+  <aside data-drawer="drawer-pos-left" class="drawer drawer_pos_left" tabindex="-1">
     <div class="drawer__item padding">
       <div class="flex flex_justify_between">
         <p>Drawer Pos Left</p>
@@ -86,6 +95,14 @@
         <button class="link" data-drawer-trigger="drawer-modal-right">
           Drawer Modal Right
         </button>
+        <button class="link" data-drawer-trigger="drawer-modal-always">
+          Drawer Modal Always
+        </button>
+      </p>
+      <p class="margin_top_md">
+        <button class="link api-test-toggle">API Toggle</button>
+        <button class="link api-test-open">API Open</button>
+        <button class="link api-test-close">API Close</button>
       </p>
     </div>
   </div>
@@ -104,7 +121,25 @@
 <!-- Component scripts -->
 <script src="../dist/scripts.min.js"></script>
 <script>
-  new vrembem.Drawer({ autoInit: true });
+  const drawer = new vrembem.Drawer({ autoInit: true });
+
+  const apiToggle = document.querySelector(".api-test-toggle")
+  const apiOpen = document.querySelector(".api-test-open")
+  const apiClose = document.querySelector(".api-test-close")
+
+  apiToggle.addEventListener("click", function(event) {
+    drawer.toggle("drawer-pos-right")
+  })
+
+  apiOpen.addEventListener("click", function(event) {
+    const el = document.querySelector('[data-drawer="drawer-pos-right"]')
+    drawer.open(el)
+  })
+
+  apiClose.addEventListener("click", function(event) {
+    const el = document.querySelector('[data-drawer="drawer-pos-right"]')
+    drawer.close(el)
+  })
 </script>
 </body>
 </html>
