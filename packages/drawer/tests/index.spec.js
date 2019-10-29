@@ -1,4 +1,4 @@
-import { Drawer } from "./index.js"
+import { Drawer } from "../index.js"
 import "@testing-library/jest-dom/extend-expect"
 
 let drawer
@@ -35,19 +35,23 @@ const drawerModal = `
 
 const drawerModalSwitch = `
   <div class="drawer__wrapper">
-    <div class="drawer" data-drawer="drawer-default" data-drawer-modal="md">
+    <div class="drawer" data-drawer="drawer-key" data-drawer-modal="md">
+      <div class="drawer__item">
+        <button data-drawer-close data-drawer-focus>Close</button>
+      </div>
+    </div>
+    <div class="drawer" data-drawer="drawer-exp" data-drawer-modal="300px">
       <div class="drawer__item">
         <button data-drawer-close data-drawer-focus>Close</button>
       </div>
     </div>
     <div class="drawer__main">
-      <button data-drawer-toggle="drawer-default">Drawer Toggle</button>
+      <button data-drawer-toggle="drawer-key">Drawer Toggle</button>
+      <button data-drawer-toggle="drawer-exp">Drawer Toggle</button>
     </div>
   </div>
 `
 
-// Mocking methods which are not implemented in JSDOM
-// https://jestjs.io/docs/en/manual-mocks#mocking-methods-which-are-not-implemented-in-jsdom
 window.matchMedia = jest.fn().mockImplementation((query) => {
   let op = (query.includes("min-width")) ? ">" : "<"
   let value = query.replace("px)", "")
@@ -162,15 +166,29 @@ test("should close when the escape key is pressed", () => {
 test("should switch to modal when below media breakpoint", () => {
   document.body.innerHTML = drawerModalSwitch
   drawer = new Drawer({ autoInit: true })
-  const el = document.querySelector("[data-drawer]")
+  const elKey = document.querySelector("[data-drawer='drawer-key']")
+  const elExp = document.querySelector("[data-drawer='drawer-exp']")
 
-  expect(el).not.toHaveClass("drawer_modal")
-  expect(el.classList.length).toBe(1)
+  expect(elKey).not.toHaveClass("drawer_modal")
+  expect(elKey.classList.length).toBe(1)
+  expect(elExp).not.toHaveClass("drawer_modal")
+  expect(elExp.classList.length).toBe(1)
 
   window.innerWidth = 600
   window.dispatchEvent(new Event("resize"))
 
   drawer.init()
-  expect(el).toHaveClass("drawer drawer_modal")
-  expect(el.classList.length).toBe(2)
+  expect(elKey).toHaveClass("drawer drawer_modal")
+  expect(elKey.classList.length).toBe(2)
+  expect(elExp).not.toHaveClass("drawer_modal")
+  expect(elExp.classList.length).toBe(1)
+
+  window.innerWidth = 200
+  window.dispatchEvent(new Event("resize"))
+
+  drawer.init()
+  expect(elKey).toHaveClass("drawer drawer_modal")
+  expect(elKey.classList.length).toBe(2)
+  expect(elExp).toHaveClass("drawer drawer_modal")
+  expect(elExp.classList.length).toBe(2)
 })
