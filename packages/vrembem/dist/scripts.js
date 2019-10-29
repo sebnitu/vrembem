@@ -419,7 +419,9 @@
           var bp = api.settings.breakpoint[key] ? api.settings.breakpoint[key] : key;
           var mqList = window.matchMedia("(min-width:" + bp + ")");
 
-          if (!mqList.matches) {
+          if (mqList.matches) {
+            switchToDrawer(drawer);
+          } else {
             switchToModal(drawer);
           }
 

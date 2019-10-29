@@ -243,7 +243,9 @@ export const Drawer = (options) => {
         const bp = (api.settings.breakpoint[key]) ?
           api.settings.breakpoint[key] : key
         const mqList = window.matchMedia( "(min-width:" + bp + ")" )
-        if (!mqList.matches) {
+        if (mqList.matches) {
+          switchToDrawer(drawer)
+        } else {
           switchToModal(drawer)
         }
         mqList.addListener(switchCheck)
