@@ -321,7 +321,8 @@
 
     var switchToDrawer = function switchToDrawer(drawer) {
       removeClass(drawer, api.settings.classModal);
-      var drawerState = api.state[drawer.dataset[camelCase(api.settings.dataDrawer)]];
+      var drawerKey = drawer.dataset[camelCase(api.settings.dataDrawer)];
+      var drawerState = api.state[drawerKey];
 
       if (drawerState == api.settings.stateOpen) {
         addClass(drawer, api.settings.stateOpen);

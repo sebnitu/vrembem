@@ -277,7 +277,8 @@ export const Drawer = (options) => {
 
   const switchToDrawer = (drawer) => {
     removeClass(drawer, api.settings.classModal)
-    const drawerState = api.state[drawer.dataset[camelCase(api.settings.dataDrawer)]]
+    const drawerKey = drawer.dataset[camelCase(api.settings.dataDrawer)]
+    const drawerState = api.state[drawerKey]
     if (drawerState == api.settings.stateOpen) {
       addClass(drawer, api.settings.stateOpen)
     }
