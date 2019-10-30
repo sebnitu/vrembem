@@ -183,9 +183,9 @@
     var defaults = {
       autoInit: false,
       dataDrawer: "drawer",
-      dataModal: "drawer-modal",
       dataToggle: "drawer-toggle",
       dataClose: "drawer-close",
+      dataBreakpoint: "drawer-breakpoint",
       dataFocus: "drawer-focus",
       stateOpen: "is-open",
       stateOpening: "is-opening",
@@ -194,7 +194,8 @@
       classModal: "drawer_modal",
       breakpoint: breakpoint,
       focus: true,
-      saveState: true
+      saveState: true,
+      saveKey: "DrawerState"
     };
     api.settings = _objectSpread$2({}, defaults, {}, options);
     api.memoryTrigger = null;
@@ -204,7 +205,7 @@
 
     api.init = function () {
       applyState();
-      switchInit();
+      breakpointInit();
       document.addEventListener("click", run, false);
       document.addEventListener("touchend", run, false);
       document.addEventListener("keyup", escape, false);
@@ -350,14 +351,14 @@
             api.state[el.dataset[camelCase(api.settings.dataDrawer)]] = hasClass(el, api.settings.stateOpen) ? api.settings.stateOpen : api.settings.stateClosed;
           }
         });
-        localStorage.setItem("DrawerState", JSON.stringify(api.state));
+        localStorage.setItem(api.settings.saveKey, JSON.stringify(api.state));
       }
     };
 
     var applyState = function applyState() {
       if (api.settings.saveState) {
-        if (localStorage.getItem("DrawerState")) {
-          api.state = JSON.parse(localStorage.getItem("DrawerState"));
+        if (localStorage.getItem(api.settings.saveKey)) {
+          api.state = JSON.parse(localStorage.getItem(api.settings.saveKey));
           Object.keys(api.state).forEach(function (key) {
             var item = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(key, "\"]"));
 
@@ -373,18 +374,18 @@
           saveState();
         }
       } else {
-        if (localStorage.getItem("DrawerState")) {
-          localStorage.removeItem("DrawerState");
+        if (localStorage.getItem(api.settings.saveKey)) {
+          localStorage.removeItem(api.settings.saveKey);
         }
       }
     };
 
-    var switchInit = function switchInit() {
-      var drawers = document.querySelectorAll("[data-".concat(api.settings.dataModal, "]"));
+    var breakpointInit = function breakpointInit() {
+      var drawers = document.querySelectorAll("[data-".concat(api.settings.dataBreakpoint, "]"));
 
       if (drawers) {
         drawers.forEach(function (drawer) {
-          var key = drawer.dataset[camelCase(api.settings.dataModal)];
+          var key = drawer.dataset[camelCase(api.settings.dataBreakpoint)];
           var bp = api.settings.breakpoint[key] ? api.settings.breakpoint[key] : key;
           var mqList = window.matchMedia("(min-width:" + bp + ")");
 
@@ -394,7 +395,7 @@
             switchToModal(drawer);
           }
 
-          mqList.addListener(switchCheck);
+          mqList.addListener(breakpointCheck);
           api.mediaQueryLists.push({
             "drawer": drawer,
             "mqList": mqList
@@ -403,7 +404,7 @@
       }
     };
 
-    var switchCheck = function switchCheck(event) {
+    var breakpointCheck = function breakpointCheck(event) {
       api.mediaQueryLists.forEach(function (item) {
         if (event.target == item.mqList) {
           if (item.mqList.matches) {
