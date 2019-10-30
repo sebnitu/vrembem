@@ -1,4 +1,4 @@
-import { toggleClass } from "./toggleClass"
+import { toggleClass } from "../index"
 import "@testing-library/jest-dom/extend-expect"
 
 document.body.innerHTML = `<!DOCTYPE html>

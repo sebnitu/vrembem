@@ -1,4 +1,4 @@
-import { Dismissible } from "./index.js"
+import { Dismissible } from "../index.js"
 import "@testing-library/jest-dom/extend-expect"
 
 let dismissible

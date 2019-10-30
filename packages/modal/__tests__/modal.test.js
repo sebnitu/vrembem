@@ -1,4 +1,4 @@
-import { Modal } from "./index.js"
+import { Modal } from "../index.js"
 import "@testing-library/jest-dom/extend-expect"
 
 let modal

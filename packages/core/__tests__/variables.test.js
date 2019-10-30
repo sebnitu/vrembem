@@ -1,4 +1,4 @@
-import { breakpoint } from "./variables"
+import { breakpoint } from "../index"
 
 test("breakpoint has all size keys with a px value", () => {
   expect(breakpoint).toHaveProperty("xs", expect.stringContaining("px"))

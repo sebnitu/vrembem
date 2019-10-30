@@ -1,4 +1,4 @@
-import { removeClass } from "./removeClass"
+import { removeClass } from "../index"
 import "@testing-library/jest-dom/extend-expect"
 
 document.body.innerHTML = `<!DOCTYPE html>

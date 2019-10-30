@@ -1,4 +1,4 @@
-import { Checkbox } from "./index.js"
+import { Checkbox } from "../index.js"
 
 let checkbox
 

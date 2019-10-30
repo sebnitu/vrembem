@@ -35,19 +35,19 @@ const drawerModal = `
 
 const drawerModalSwitch = `
   <div class="drawer__wrapper">
-    <div class="drawer" data-drawer="drawer-key" data-drawer-modal="md">
+    <div class="drawer" data-drawer="drawer-one" data-drawer-modal="md">
       <div class="drawer__item">
         <button data-drawer-close data-drawer-focus>Close</button>
       </div>
     </div>
-    <div class="drawer" data-drawer="drawer-exp" data-drawer-modal="300px">
+    <div class="drawer" data-drawer="drawer-two" data-drawer-modal="300px">
       <div class="drawer__item">
         <button data-drawer-close data-drawer-focus>Close</button>
       </div>
     </div>
     <div class="drawer__main">
-      <button data-drawer-toggle="drawer-key">Drawer Toggle</button>
-      <button data-drawer-toggle="drawer-exp">Drawer Toggle</button>
+      <button data-drawer-toggle="drawer-one">Drawer Toggle</button>
+      <button data-drawer-toggle="drawer-two">Drawer Toggle</button>
     </div>
   </div>
 `
@@ -166,29 +166,29 @@ test("should close when the escape key is pressed", () => {
 test("should switch to modal when below media breakpoint", () => {
   document.body.innerHTML = drawerModalSwitch
   drawer = new Drawer({ autoInit: true })
-  const elKey = document.querySelector("[data-drawer='drawer-key']")
-  const elExp = document.querySelector("[data-drawer='drawer-exp']")
+  const drawerOne = document.querySelector("[data-drawer='drawer-one']")
+  const drawerTwo = document.querySelector("[data-drawer='drawer-two']")
 
-  expect(elKey).not.toHaveClass("drawer_modal")
-  expect(elKey.classList.length).toBe(1)
-  expect(elExp).not.toHaveClass("drawer_modal")
-  expect(elExp.classList.length).toBe(1)
+  expect(drawerOne).not.toHaveClass("drawer_modal")
+  expect(drawerOne.classList.length).toBe(1)
+  expect(drawerTwo).not.toHaveClass("drawer_modal")
+  expect(drawerTwo.classList.length).toBe(1)
 
   window.innerWidth = 600
   window.dispatchEvent(new Event("resize"))
 
   drawer.init()
-  expect(elKey).toHaveClass("drawer drawer_modal")
-  expect(elKey.classList.length).toBe(2)
-  expect(elExp).not.toHaveClass("drawer_modal")
-  expect(elExp.classList.length).toBe(1)
+  expect(drawerOne).toHaveClass("drawer drawer_modal")
+  expect(drawerOne.classList.length).toBe(2)
+  expect(drawerTwo).not.toHaveClass("drawer_modal")
+  expect(drawerTwo.classList.length).toBe(1)
 
   window.innerWidth = 200
   window.dispatchEvent(new Event("resize"))
 
   drawer.init()
-  expect(elKey).toHaveClass("drawer drawer_modal")
-  expect(elKey.classList.length).toBe(2)
-  expect(elExp).toHaveClass("drawer drawer_modal")
-  expect(elExp.classList.length).toBe(2)
+  expect(drawerOne).toHaveClass("drawer drawer_modal")
+  expect(drawerOne.classList.length).toBe(2)
+  expect(drawerTwo).toHaveClass("drawer drawer_modal")
+  expect(drawerTwo.classList.length).toBe(2)
 })

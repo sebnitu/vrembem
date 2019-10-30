@@ -1,4 +1,4 @@
-import { hasClass } from "./hasClass"
+import { hasClass } from "../index"
 
 document.body.innerHTML = `<!DOCTYPE html>
   <h1 class="a">Hello world</h1>

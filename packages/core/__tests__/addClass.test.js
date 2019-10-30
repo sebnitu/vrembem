@@ -1,4 +1,4 @@
-import { addClass } from "./addClass"
+import { addClass } from "../index"
 import "@testing-library/jest-dom/extend-expect"
 
 document.body.innerHTML = `
