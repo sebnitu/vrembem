@@ -219,16 +219,24 @@ var Drawer = function Drawer(options) {
     document.removeEventListener("keyup", escape, false);
   };
 
-  api.toggle = function (selector) {
-    toggle(selector);
+  api.toggle = function (drawerKey) {
+    toggle(drawerKey);
   };
 
-  api.open = function (drawer, callback) {
-    open(drawer, callback);
+  api.open = function (drawerKey, callback) {
+    var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
+
+    if (drawer) {
+      open(drawer, callback);
+    }
   };
 
-  api.close = function (drawer, callback) {
-    close(drawer, callback);
+  api.close = function (drawerKey, callback) {
+    var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
+
+    if (drawer) {
+      close(drawer, callback);
+    }
   };
 
   var run = function run(event) {
@@ -264,8 +272,8 @@ var Drawer = function Drawer(options) {
     }
   };
 
-  var toggle = function toggle(selector) {
-    var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(selector, "\"]"));
+  var toggle = function toggle(drawerKey) {
+    var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
 
     if (drawer) {
       var isOpen = hasClass(drawer, api.settings.stateOpen);

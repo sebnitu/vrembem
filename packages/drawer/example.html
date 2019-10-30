@@ -132,13 +132,11 @@
   })
 
   apiOpen.addEventListener("click", function(event) {
-    const el = document.querySelector('[data-drawer="drawer-pos-right"]')
-    drawer.open(el)
+    drawer.open("drawer-pos-right")
   })
 
   apiClose.addEventListener("click", function(event) {
-    const el = document.querySelector('[data-drawer="drawer-pos-right"]')
-    drawer.close(el)
+    drawer.close("drawer-pos-right")
   })
 </script>
 </body>

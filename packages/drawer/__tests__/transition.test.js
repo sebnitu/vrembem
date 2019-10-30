@@ -33,6 +33,7 @@ const markupCustomAttr = `
 afterEach(() => {
   drawer.destroy()
   drawer = null
+  localStorage.clear()
   document.body.innerHTML = null
 })
 
