@@ -6,14 +6,19 @@ const ev = new Event("transitionend")
 
 const markup = `
   <div class="drawer__wrapper">
-    <div class="drawer drawer_pos_left" data-drawer="drawer-one">
+    <div class="drawer" data-drawer="drawer-one">
       <div class="drawer__item">
         <button class="close-one" data-drawer-close>Close</button>
       </div>
     </div>
-    <div class="drawer drawer_pos_right" data-drawer="drawer-two">
+    <div class="drawer" data-drawer="drawer-two">
       <div class="drawer__item">
         <button class="close-two" data-drawer-close>Close</button>
+      </div>
+    </div>
+    <div class="drawer drawer_modal" data-drawer="drawer-three">
+      <div class="drawer__item">
+        <button class="close-three" data-drawer-close>Close</button>
       </div>
     </div>
     <div class="drawer__main">
@@ -23,6 +28,9 @@ const markup = `
       <button class="toggle-two" data-drawer-toggle="drawer-two">
         Drawer Toggle
       </button>
+      <button class="toggle-three" data-drawer-toggle="drawer-three">
+        Drawer Toggle
+      </button>
     </div>
   </div>
 `
@@ -30,6 +38,7 @@ const markup = `
 afterEach(() => {
   drawer.destroy()
   drawer = null
+  localStorage.clear()
   document.body.innerHTML = null
 })
 
@@ -122,6 +131,28 @@ test("should update local storage when close button changes state", () => {
   expect(state["drawer-two"]).toMatch("is-closed")
 })
 
-// TODO: Test that disabling the state feature works
-// TODO: Test that using a custom localStorage key name works
-// TODO: Test that the state is not saved for drawer_modal drawers
+test("should remove localStorage when state is disabled", () => {
+  document.body.innerHTML = markup
+  drawer = new Drawer({
+    autoInit: true,
+    saveState: false
+  })
+  expect(Object.getOwnPropertyNames(localStorage).length).toBe(0)
+  expect(Object.getOwnPropertyNames(drawer.state).length).toBe(0)
+})
+
+test("should remove localStorage when state is disabled", () => {
+  document.body.innerHTML = markup
+  drawer = new Drawer({
+    autoInit: true,
+    saveKey: "awesome"
+  })
+  expect(localStorage).toHaveProperty("awesome")
+})
+
+test("should not save state if a modal drawer", () => {
+  document.body.innerHTML = markup
+  drawer = new Drawer({ autoInit: true })
+  const state = JSON.parse(localStorage.getItem("DrawerState"))
+  expect(state).not.toHaveProperty("drawer-three")
+})

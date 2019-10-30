@@ -67,4 +67,24 @@ test("should close when the escape key is pressed", () => {
   expect(el.classList.length).toBe(2)
 })
 
-// TODO: Test that the escape key DOESNT close a none-modal drawer
+test("should not close when missing modal modifier and escape key is pressed", () => {
+  document.body.innerHTML = markup
+  drawer = new Drawer({ autoInit: true })
+  const el = document.querySelector("[data-drawer]")
+  const btnOpen = document.querySelector("[data-drawer-toggle]")
+
+  el.classList.remove("drawer_modal")
+
+  btnOpen.click()
+  expect(el).toHaveClass("drawer is-opening")
+
+  el.dispatchEvent(ev)
+  expect(el).toHaveClass("drawer is-open")
+
+  document.dispatchEvent(keyEv)
+  expect(el).not.toHaveClass("is-closing")
+
+  el.dispatchEvent(ev)
+  expect(el).toHaveClass("drawer is-open")
+  expect(el.classList.length).toBe(2)
+})

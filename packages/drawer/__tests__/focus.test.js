@@ -29,6 +29,21 @@ const markup = `
   </div>
 `
 
+const markupCustomAttr = `
+  <div class="drawer__wrapper">
+    <div class="drawer" data-drawer="drawer-one" tabindex="-1">
+      <div class="drawer__item">
+        <button class="close-one" data-drawer-close data-focus>Close</button>
+      </div>
+    </div>
+    <div class="drawer__main">
+      <button class="toggle-one" data-drawer-toggle="drawer-one">
+        Drawer Toggle
+      </button>
+    </div>
+  </div>
+`
+
 afterEach(() => {
   drawer.destroy()
   drawer = null
@@ -86,4 +101,21 @@ test("should not change focus when feature is disabled", () => {
   expect(btn).not.toHaveFocus()
 })
 
-// TODO: Test that using a custom dataFocus options works
+test("should focus custom data element and refocus trigger when closed", () => {
+  document.body.innerHTML = markupCustomAttr
+  drawer = new Drawer({
+    autoInit: true,
+    dataFocus: "focus"
+  })
+  const el = document.querySelector("[data-drawer]")
+  const btn = document.querySelector("[data-drawer-toggle]")
+  const btnClose = document.querySelector("[data-focus]")
+
+  btn.click()
+  el.dispatchEvent(ev)
+  expect(btnClose).toHaveFocus()
+
+  btnClose.click()
+  el.dispatchEvent(ev)
+  expect(btn).toHaveFocus()
+})
