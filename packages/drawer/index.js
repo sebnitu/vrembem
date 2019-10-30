@@ -31,7 +31,8 @@ export const Drawer = (options) => {
     // Feature toggles
     breakpoint: breakpoint,
     focus: true,
-    saveState: true
+    saveState: true,
+    saveKey: "DrawerState"
   }
 
   api.settings = { ...defaults, ...options }
@@ -201,14 +202,14 @@ export const Drawer = (options) => {
               api.settings.stateClosed
         }
       })
-      localStorage.setItem("DrawerState", JSON.stringify(api.state))
+      localStorage.setItem(api.settings.saveKey, JSON.stringify(api.state))
     }
   }
 
   const applyState = () => {
     if (api.settings.saveState) {
-      if (localStorage.getItem("DrawerState")) {
-        api.state = JSON.parse(localStorage.getItem("DrawerState"))
+      if (localStorage.getItem(api.settings.saveKey)) {
+        api.state = JSON.parse(localStorage.getItem(api.settings.saveKey))
         Object.keys(api.state).forEach((key) => {
           const item = document.querySelector(
             `[data-${api.settings.dataDrawer}="${key}"]`
@@ -225,8 +226,8 @@ export const Drawer = (options) => {
         saveState()
       }
     } else {
-      if (localStorage.getItem("DrawerState")) {
-        localStorage.removeItem("DrawerState")
+      if (localStorage.getItem(api.settings.saveKey)) {
+        localStorage.removeItem(api.settings.saveKey)
       }
     }
   }

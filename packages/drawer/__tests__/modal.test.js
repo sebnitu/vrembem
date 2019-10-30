@@ -1,0 +1,70 @@
+import { Drawer } from "../index.js"
+import "@testing-library/jest-dom/extend-expect"
+
+let drawer
+const ev = new Event("transitionend")
+const keyEv = new KeyboardEvent("keyup", {
+  keyCode: 27
+})
+
+const markup = `
+  <div class="drawer__wrapper">
+    <div class="drawer drawer_modal" data-drawer="drawer-default">
+      <div class="drawer__item">
+        <button data-drawer-close data-drawer-focus>Close</button>
+      </div>
+    </div>
+    <div class="drawer__main">
+      <button data-drawer-toggle="drawer-default">Drawer Toggle</button>
+    </div>
+  </div>
+`
+
+afterEach(() => {
+  drawer.destroy()
+  drawer = null
+  document.body.innerHTML = null
+})
+
+test("should close when root modal (screen) is clicked", () => {
+  document.body.innerHTML = markup
+  drawer = new Drawer({ autoInit: true })
+  const el = document.querySelector("[data-drawer]")
+  const item = document.querySelector(".drawer__item")
+  const btnOpen = document.querySelector("[data-drawer-toggle]")
+
+  btnOpen.click()
+  el.dispatchEvent(ev)
+
+  item.click()
+  expect(el).toHaveClass("is-open")
+
+  el.click()
+  expect(el).toHaveClass("is-closing")
+
+  el.dispatchEvent(ev)
+  expect(el).toHaveClass("drawer drawer_modal")
+  expect(el.classList.length).toBe(2)
+})
+
+test("should close when the escape key is pressed", () => {
+  document.body.innerHTML = markup
+  drawer = new Drawer({ autoInit: true })
+  const el = document.querySelector("[data-drawer]")
+  const btnOpen = document.querySelector("[data-drawer-toggle]")
+
+  btnOpen.click()
+  expect(el).toHaveClass("drawer is-opening")
+
+  el.dispatchEvent(ev)
+  expect(el).toHaveClass("drawer is-open")
+
+  document.dispatchEvent(keyEv)
+  expect(el).toHaveClass("drawer is-closing")
+
+  el.dispatchEvent(ev)
+  expect(el).toHaveClass("drawer drawer_modal")
+  expect(el.classList.length).toBe(2)
+})
+
+// TODO: Test that the escape key DOESNT close a none-modal drawer
