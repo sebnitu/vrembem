@@ -17,6 +17,7 @@
 
   <!-- Modal Triggers -->
   <button data-modal-open="modal-default" class="link">Modal Default</button>
+  <button data-modal-open="modal-focus" class="link">Modal Focus</button>
   <button data-modal-open="modal-required" class="link">Modal Required</button>
   <button data-a-o="modal-custom" class="link">Modal Custom</button>
 
@@ -28,6 +29,16 @@
     <div class="flex flex_justify_between">
       <p>Modal Default</p>
       <button data-modal-close class="link">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Focus -->
+<div data-modal="modal-focus" class="modal" tabindex="-1">
+  <div class="modal__dialog padding background_white radius spacing">
+    <div class="flex flex_justify_between">
+      <p>Modal Focus</p>
+      <button data-modal-close data-modal-focus class="link">Close</button>
     </div>
   </div>
 </div>
