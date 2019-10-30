@@ -20,7 +20,6 @@ const markup = `
 afterEach(() => {
   drawer.destroy()
   drawer = null
-  localStorage.clear()
   document.body.innerHTML = null
 })
 
@@ -90,4 +89,18 @@ test("should close drawer using api call", () => {
   expect(el).not.toHaveClass("is-open")
   expect(el).not.toHaveClass("is-opening")
   expect(el).not.toHaveClass("is-closing")
+})
+
+test("should properly destroy drawer instance on api call", () => {
+  document.body.innerHTML = markup
+  drawer = new Drawer({ autoInit: true })
+  const el = document.querySelector("[data-drawer]")
+  const btnOpen = document.querySelector("[data-drawer-toggle]")
+
+  drawer.destroy()
+  btnOpen.click()
+  el.dispatchEvent(ev)
+  expect(el).not.toHaveClass("is-open")
+  expect(Object.getOwnPropertyNames(localStorage).length).toBe(0)
+  expect(Object.getOwnPropertyNames(drawer.state).length).toBe(0)
 })

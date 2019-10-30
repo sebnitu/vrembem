@@ -114,6 +114,7 @@ var Drawer = function Drawer(options) {
     api.memoryTrigger = null;
     api.memoryTarget = null;
     api.state = {};
+    localStorage.removeItem(api.settings.saveKey);
     document.removeEventListener("click", run, false);
     document.removeEventListener("touchend", run, false);
     document.removeEventListener("keyup", escape, false);

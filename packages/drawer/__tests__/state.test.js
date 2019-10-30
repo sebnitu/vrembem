@@ -38,7 +38,6 @@ const markup = `
 afterEach(() => {
   drawer.destroy()
   drawer = null
-  localStorage.clear()
   document.body.innerHTML = null
 })
 
