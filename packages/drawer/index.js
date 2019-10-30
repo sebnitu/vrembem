@@ -14,9 +14,9 @@ export const Drawer = (options) => {
 
     // Data attributes
     dataDrawer: "drawer",
-    dataModal: "drawer-modal",
     dataToggle: "drawer-toggle",
     dataClose: "drawer-close",
+    dataBreakpoint: "drawer-breakpoint",
     dataFocus: "drawer-focus",
 
     // State classes
@@ -44,7 +44,7 @@ export const Drawer = (options) => {
 
   api.init = () => {
     applyState()
-    switchInit()
+    breakpointInit()
     document.addEventListener("click", run, false)
     document.addEventListener("touchend", run, false)
     document.addEventListener("keyup", escape, false)
@@ -233,14 +233,14 @@ export const Drawer = (options) => {
   }
 
   /**
-   * Switch functionality
+   * Breakpoint functionality
    */
 
-  const switchInit = () => {
-    const drawers = document.querySelectorAll(`[data-${api.settings.dataModal}]`)
+  const breakpointInit = () => {
+    const drawers = document.querySelectorAll(`[data-${api.settings.dataBreakpoint}]`)
     if (drawers) {
       drawers.forEach((drawer) => {
-        const key = drawer.dataset[camelCase(api.settings.dataModal)]
+        const key = drawer.dataset[camelCase(api.settings.dataBreakpoint)]
         const bp = (api.settings.breakpoint[key]) ?
           api.settings.breakpoint[key] : key
         const mqList = window.matchMedia( "(min-width:" + bp + ")" )
@@ -249,7 +249,7 @@ export const Drawer = (options) => {
         } else {
           switchToModal(drawer)
         }
-        mqList.addListener(switchCheck)
+        mqList.addListener(breakpointCheck)
         api.mediaQueryLists.push({
           "drawer": drawer,
           "mqList": mqList
@@ -258,7 +258,7 @@ export const Drawer = (options) => {
     }
   }
 
-  const switchCheck = (event) => {
+  const breakpointCheck = (event) => {
     api.mediaQueryLists.forEach((item) => {
       if (event.target == item.mqList) {
         if (item.mqList.matches) {
