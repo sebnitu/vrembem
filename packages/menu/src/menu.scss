@@ -21,7 +21,7 @@
   display: flex;
   align-items: center;
   padding: $menu-padding;
-  border: $menu-border-width solid $menu-border-color;
+  border: $menu-border;
   border-radius: $menu-border-radius;
   background: $menu-background;
   color: $menu-color;
@@ -85,7 +85,7 @@
   display: flex;
   align-items: center;
   padding: $menu-padding;
-  border: $menu-border-width solid $menu-border-color;
+  border: $menu-border;
   border-radius: $menu-border-radius;
   background: $menu-background;
   color: $menu__text-color;

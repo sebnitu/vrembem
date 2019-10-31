@@ -11,6 +11,16 @@ usage:
 
 {% include flag.html heading="drawer" %}
 
+<div class="type" markdown="1">
+Drawers are composed with the following elements:
+* drawer__wrapper
+  * drawer [data-drawer="[unique-id]"]
+    * drawer__item
+      * [data-drawer-close]
+  * drawer__main
+    *  [data-drawer-toggle="[unique-id]"
+</div>
+
 {% include demo_open.html class_grid="grid_break" %}
 <div class="drawer__wrapper border radius">
   <aside data-drawer="drawer-key" class="drawer" tabindex="-1">
