@@ -310,14 +310,11 @@ If a drawer has the attribute `tabindex="-1"`, it will be given focus when it's 
 By default, the state of a drawer is saved to local storage and applied persistently under the `"DrawerState"` local storage variable. Set `{ saveState: false }` to disable save state. Use `{ saveKey: "[customKey]" }` to change the key that save state is stored under.
 </div>
 
-{% include flag.html heading="Drawer API" %}
+{% include flag.html heading="Drawer Settings" %}
 
-<table class="table table_style_rowed">
+<table class="table table_zebra">
   <thead>
     <tr class="border_top_0">
-      <th colspan="3">Settings</th>
-    </tr>
-    <tr>
       <th>Key</th>
       <th>Default</th>
       <th>Description</th>
@@ -395,7 +392,7 @@ By default, the state of a drawer is saved to local storage and applied persiste
   </tr>
   <tr>
     <td><code class="code text_nowrap">focus</code></td>
-    <td><code class="code text_nowrap">core.breakpoint</code></td>
+    <td><code class="code text_nowrap">true</code></td>
     <td>Toggles the focus handling feature</td>
   </tr>
   <tr>
@@ -410,10 +407,35 @@ By default, the state of a drawer is saved to local storage and applied persiste
   </tr>
 </table>
 
-<table class="table table_style_rowed">
+{% include flag.html heading="Drawer Methods" %}
+
+<table class="table table_zebra">
   <thead>
     <tr class="border_top_0">
-      <th colspan="3">Methods</th>
+      <th>Name</th>
+      <th>Description</th>
     </tr>
   </thead>
+  <tbody>
+    <tr>
+      <td><code class="code text_nowrap">drawer.init()</code></td>
+      <td>Initializes the drawer script</td>
+    </tr>
+    <tr>
+      <td><code class="code text_nowrap">drawer.destroy()</code></td>
+      <td>Destroys and cleans up the drawer instantiation</td>
+    </tr>
+    <tr>
+      <td><code class="code text_nowrap">drawer.toggle(drawerKey)</code></td>
+      <td>Toggles a drawer provided the drawer key</td>
+    </tr>
+    <tr>
+      <td><code class="code text_nowrap">drawer.open(drawerKey, callback)</code></td>
+      <td>Opens a drawer provided the drawer key and optional callback</td>
+    </tr>
+    <tr>
+      <td><code class="code text_nowrap">drawer.close(drawerKey, callback)</code></td>
+      <td>Closes a drawer provided the drawer key and optional callback</td>
+    </tr>
+  </tbody>
 </table>
