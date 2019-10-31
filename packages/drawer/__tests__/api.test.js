@@ -91,6 +91,48 @@ test("should close drawer using api call", () => {
   expect(el).not.toHaveClass("is-closing")
 })
 
+test("should fire callback when using toggle api", () => {
+  document.body.innerHTML = markup
+  drawer = new Drawer({ autoInit: true })
+  const el = document.querySelector("[data-drawer]")
+  let callbackCheck = false
+
+  drawer.toggle("drawer-default", () => {
+    callbackCheck = true
+  })
+  el.dispatchEvent(ev)
+  expect(callbackCheck).toBe(true)
+})
+
+test("should fire callback when using open api", () => {
+  document.body.innerHTML = markup
+  drawer = new Drawer({ autoInit: true })
+  const el = document.querySelector("[data-drawer]")
+  let callbackCheck = false
+
+  drawer.open("drawer-default", () => {
+    callbackCheck = true
+  })
+  el.dispatchEvent(ev)
+  expect(callbackCheck).toBe(true)
+})
+
+test("should fire callback when using close api", () => {
+  document.body.innerHTML = markup
+  drawer = new Drawer({ autoInit: true })
+  const el = document.querySelector("[data-drawer]")
+  let callbackCheck = false
+
+  drawer.open("drawer-default")
+  el.dispatchEvent(ev)
+
+  drawer.close("drawer-default", () => {
+    callbackCheck = true
+  })
+  el.dispatchEvent(ev)
+  expect(callbackCheck).toBe(true)
+})
+
 test("should properly destroy drawer instance on api call", () => {
   document.body.innerHTML = markup
   drawer = new Drawer({ autoInit: true })

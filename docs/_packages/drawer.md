@@ -439,8 +439,8 @@ By default, the state of a drawer is saved to local storage and applied persiste
       <td>Destroys and cleans up the drawer instantiation</td>
     </tr>
     <tr>
-      <td><code class="code text_nowrap">drawer.toggle(drawerKey)</code></td>
-      <td>Toggles a drawer provided the drawer key</td>
+      <td><code class="code text_nowrap">drawer.toggle(drawerKey, callback)</code></td>
+      <td>Toggles a drawer provided the drawer key and optional callback</td>
     </tr>
     <tr>
       <td><code class="code text_nowrap">drawer.open(drawerKey, callback)</code></td>

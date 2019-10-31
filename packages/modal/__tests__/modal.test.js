@@ -198,6 +198,35 @@ test("should close modal using api call", () => {
   expect(el.classList.length).toBe(1)
 })
 
+test("should fire callback when using open api", () => {
+  document.body.innerHTML = modalDefault
+  modal = new Modal({ autoInit: true })
+  const el = document.querySelector("[data-modal]")
+  let callbackCheck = false
+
+  modal.open("modal-default", () => {
+    callbackCheck = true
+  })
+  el.dispatchEvent(ev)
+  expect(callbackCheck).toBe(true)
+})
+
+test("should fire callback when using close api", () => {
+  document.body.innerHTML = modalDefault
+  modal = new Modal({ autoInit: true })
+  const el = document.querySelector("[data-modal]")
+  let callbackCheck = false
+
+  modal.open("modal-default")
+  el.dispatchEvent(ev)
+
+  modal.close(true, () => {
+    callbackCheck = true
+  })
+  el.dispatchEvent(ev)
+  expect(callbackCheck).toBe(true)
+})
+
 test("destroy should remove event listeners", () => {
   document.body.innerHTML = modalRequired
   modal = new Modal({ autoInit: true })
