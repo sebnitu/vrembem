@@ -48,13 +48,13 @@
  */
 
 .page__toolbar + .page__main {
-  height: calc(100vh - 56px);
-  margin-top: 56px;
+  height: calc(100vh - 58px);
+  margin-top: 58px;
 }
 
 @include media-min('md') {
   .page__toolbar + .page__main {
-    height: calc(100vh - 72px);
-    margin-top: 72px;
+    height: calc(100vh - 74px);
+    margin-top: 74px;
   }
 }

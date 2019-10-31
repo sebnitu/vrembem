@@ -32,13 +32,13 @@ usage:
 {% include demo_switch.html class_gridItem="span_12" %}
 ```html
 <div class="drawer__wrapper">
-  <aside data-drawer="drawer-default" class="drawer" tabindex="-1">
+  <aside data-drawer="[unique-id]" class="drawer" tabindex="-1">
     <div class="drawer__item">
       <button data-drawer-close>...</button>
     </div>
   </aside>
   <div class="drawer__main">
-    <button data-drawer-toggle="drawer-default">...</button>
+    <button data-drawer-toggle="[unique-id]">...</button>
   </div>
 </div>
 ```
@@ -99,7 +99,7 @@ Drawers can slide in from the left or right using the position modifiers:
 
 {% include demo_open.html class_gridItem="span_12" %}
 <div class="drawer__wrapper border radius">
-  <aside data-drawer="drawer-left" class="drawer drawer_pos_left">
+  <aside data-drawer="drawer-left" class="drawer drawer_pos_left" tabindex="-1">
     <div class="drawer__item padding">
       <div class="flex flex_justify_between">
         <p>Drawer Left</p>
@@ -107,7 +107,7 @@ Drawers can slide in from the left or right using the position modifiers:
       </div>
     </div>
   </aside>
-  <aside data-drawer="drawer-right" class="drawer drawer_pos_right">
+  <aside data-drawer="drawer-right" class="drawer drawer_pos_right" tabindex="-1">
     <div class="drawer__item padding">
       <div class="flex flex_justify_between">
         <p>Drawer Right</p>
@@ -127,17 +127,17 @@ Drawers can slide in from the left or right using the position modifiers:
 {% include demo_switch.html class_gridItem="span_12" %}
 ```html
 <div class="drawer__wrapper">
-  <div data-drawer="drawer-left" class="drawer drawer_pos_left">
+  <div data-drawer="[unique-id]" class="drawer drawer_pos_left">
     ...
   </div>
-  <div data-drawer="drawer-right" class="drawer drawer_pos_right">
+  <div data-drawer="[unique-id]" class="drawer drawer_pos_right">
     ...
   </div>
   <div class="drawer__main">
-    <button data-drawer-toggle="drawer-left">
+    <button data-drawer-toggle="[unique-id]">
       ...
     </button>
-    <button data-drawer-toggle="drawer-right">
+    <button data-drawer-toggle="[unique-id]">
       ...
     </button>
   </div>
@@ -145,7 +145,59 @@ Drawers can slide in from the left or right using the position modifiers:
 ```
 {% include demo_close.html %}
 
-If a position modifier is not provided, the drawer will appear based on it's location in the DOM relative to the main content area.
+<p>If a position modifier is not provided, the drawer will appear based on it's location in the DOM relative to the main content area.</p>
+
+{% include flag.html heading="Drawer Modals" %}
+
+{% include demo_open.html class_gridItem="span_12" %}
+<div class="drawer__wrapper border radius">
+  <aside data-drawer="drawer-modal-left" class="drawer drawer_modal drawer_pos_left" tabindex="-1">
+    <div class="drawer__item padding">
+      <div class="flex flex_justify_between">
+        <p>Drawer Left</p>
+        <button data-drawer-close class="link">Close</button>
+      </div>
+    </div>
+  </aside>
+  <aside data-drawer="drawer-modal-right" class="drawer drawer_modal drawer_pos_right" tabindex="-1">
+    <div class="drawer__item padding">
+      <div class="flex flex_justify_between">
+        <p>Drawer Right</p>
+        <button data-drawer-close class="link">Close</button>
+      </div>
+    </div>
+  </aside>
+  <div class="drawer__main padding_xl">
+    <button class="link" data-drawer-toggle="drawer-modal-left">
+      Drawer modal left
+    </button>
+    <button class="link" data-drawer-toggle="drawer-modal-right">
+      Drawer modal right
+    </button>
+  </div>
+</div>
+{% include demo_switch.html class_gridItem="span_12" %}
+```html
+<div class="drawer__wrapper">
+  <div data-drawer="[unique-id]" class="drawer drawer_modal drawer_pos_left">
+    ...
+  </div>
+  <div data-drawer="[unique-id]" class="drawer drawer_modal drawer_pos_right">
+    ...
+  </div>
+  <div class="drawer__main">
+    <button data-drawer-toggle="[unique-id]">
+      ...
+    </button>
+    <button data-drawer-toggle="[unique-id]">
+      ...
+    </button>
+  </div>
+</div>
+```
+{% include demo_close.html %}
+
+{% include flag.html heading="Drawer Breakpoints" %}
 
 {% include flag.html heading="Drawer Focus" %}
 
@@ -173,10 +225,10 @@ If a drawer has the attribute `tabindex="-1"`, it will be given focus when it's 
   </aside>
   <div class="drawer__main padding_xl">
     <button class="link" data-drawer-toggle="drawer-focus-self">
-      Focus Self
+      Focus self
     </button>
     <button class="link" data-drawer-toggle="drawer-focus-close">
-      Focus Close
+      Focus close
     </button>
   </div>
 </div>
@@ -184,7 +236,7 @@ If a drawer has the attribute `tabindex="-1"`, it will be given focus when it's 
 ```html
 <div cass="drawer__wrapper">
   <!-- Focus the drawer on open -->
-  <div data-drawer="[unique-id]" class="drawer"  tabindex="-1">
+  <div data-drawer="[unique-id]" class="drawer" tabindex="-1">
     ...
   </div>
   <!-- Focus the close button on open -->
@@ -200,7 +252,6 @@ If a drawer has the attribute `tabindex="-1"`, it will be given focus when it's 
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="Drawer Save State" %}
+{% include flag.html heading="Drawer State" %}
 
-
-{% include flag.html heading="Drawer breakpoints" %}
+{% include flag.html heading="Drawer API" %}
