@@ -11,7 +11,7 @@ usage:
 
 {% include flag.html heading="drawer" %}
 
-{% include demo_open.html class_gridItem="span_12" %}
+{% include demo_open.html class_grid="grid_break" %}
 <div class="drawer__wrapper border radius">
   <aside data-drawer="drawer-key" class="drawer" tabindex="-1">
     <div class="drawer__item padding">
@@ -29,7 +29,7 @@ usage:
     </div>
   </div>
 </div>
-{% include demo_switch.html class_gridItem="span_12" %}
+{% include demo_switch.html %}
 ```html
 <div class="drawer__wrapper">
   <aside data-drawer="[unique-id]" class="drawer" tabindex="-1">
@@ -48,9 +48,9 @@ usage:
 The [dialog component](/packages/dialog) is a great fit for composing a drawer's content.
 </div>
 
-{% include demo_open.html %}
+{% include demo_open.html class_grid="grid_break" %}
 <div class="drawer__wrapper border radius">
-  <div data-drawer="drawer-dialog" class="drawer is-open">
+  <div data-drawer="drawer-dialog" class="drawer is-open" tabindex="-1">
     <div class="drawer__item dialog">
       <div class="dialog__header">
         <h2 class="dialog__title">Drawer Dialog</h2>
@@ -72,7 +72,7 @@ The [dialog component](/packages/dialog) is a great fit for composing a drawer's
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="drawer">
+<div data-drawer="[unique-id]" class="drawer" tabindex="-1">
   <div class="drawer__item dialog">
     <div class="dialog__header">
       ...
@@ -97,7 +97,7 @@ Drawers can slide in from the left or right using the position modifiers:
 * `drawer_pos_right`
 </div>
 
-{% include demo_open.html class_gridItem="span_12" %}
+{% include demo_open.html class_grid="grid_break" %}
 <div class="drawer__wrapper border radius">
   <aside data-drawer="drawer-left" class="drawer drawer_pos_left" tabindex="-1">
     <div class="drawer__item padding">
@@ -124,7 +124,7 @@ Drawers can slide in from the left or right using the position modifiers:
     </button>
   </div>
 </div>
-{% include demo_switch.html class_gridItem="span_12" %}
+{% include demo_switch.html %}
 ```html
 <div class="drawer__wrapper">
   <div data-drawer="[unique-id]" class="drawer drawer_pos_left">
@@ -147,9 +147,9 @@ Drawers can slide in from the left or right using the position modifiers:
 
 <p>If a position modifier is not provided, the drawer will appear based on it's location in the DOM relative to the main content area.</p>
 
-{% include flag.html heading="Drawer Modals" %}
+{% include flag.html heading="drawer_modal" %}
 
-{% include demo_open.html class_gridItem="span_12" %}
+{% include demo_open.html class_grid="grid_break" %}
 <div class="drawer__wrapper border radius">
   <aside data-drawer="drawer-modal-left" class="drawer drawer_modal drawer_pos_left" tabindex="-1">
     <div class="drawer__item padding">
@@ -176,7 +176,7 @@ Drawers can slide in from the left or right using the position modifiers:
     </button>
   </div>
 </div>
-{% include demo_switch.html class_gridItem="span_12" %}
+{% include demo_switch.html %}
 ```html
 <div class="drawer__wrapper">
   <div data-drawer="[unique-id]" class="drawer drawer_modal drawer_pos_left">
@@ -197,9 +197,61 @@ Drawers can slide in from the left or right using the position modifiers:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="Drawer Breakpoints" %}
+{% include flag.html heading="data-drawer-breakpoint" %}
 
-{% include flag.html heading="Drawer Focus" %}
+<div class="type" markdown="1">
+In cases where you'd like a drawer to switch to a drawer modal on a specific breakpoint, use the `data-drawer-breakpoint` data attribute with either a breakpoint key or a specific pixel value.
+</div>
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="drawer__wrapper border radius">
+  <aside data-drawer="drawer-bp-left" data-drawer-breakpoint="md" class="drawer drawer_pos_left" tabindex="-1">
+    <div class="drawer__item padding">
+      <div class="flex flex_justify_between">
+        <p>Drawer Left</p>
+        <button data-drawer-close class="link">Close</button>
+      </div>
+    </div>
+  </aside>
+  <aside data-drawer="drawer-bp-right" data-drawer-breakpoint="900px" class="drawer drawer_pos_right" tabindex="-1">
+    <div class="drawer__item padding">
+      <div class="flex flex_justify_between">
+        <p>Drawer Right</p>
+        <button data-drawer-close class="link">Close</button>
+      </div>
+    </div>
+  </aside>
+  <div class="drawer__main padding_xl">
+    <button class="link" data-drawer-toggle="drawer-bp-left">
+      Drawer breakpoint left
+    </button>
+    <button class="link" data-drawer-toggle="drawer-bp-right">
+      Drawer breakpoint right
+    </button>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="drawer__wrapper">
+  <div data-drawer="[unique-id]" data-drawer-breakpoint="md" class="drawer drawer_pos_left">
+    ...
+  </div>
+  <div data-drawer="[unique-id]" data-drawer-breakpoint="900px" class="drawer drawer_pos_right">
+    ...
+  </div>
+  <div class="drawer__main">
+    <button data-drawer-toggle="[unique-id]">
+      ...
+    </button>
+    <button data-drawer-toggle="[unique-id]">
+      ...
+    </button>
+  </div>
+</div>
+```
+{% include demo_close.html %}
+
+{% include flag.html heading="data-drawer-focus" %}
 
 <div class="type" markdown="1">
 If a drawer has the attribute `tabindex="-1"`, it will be given focus when it's opened. If focus on a specific element inside a drawer is prefered, give it the `data-drawer-focus` attribute. The focus in either case is returned to the trigger element once the drawer is closed. Focus handling can be disabled using the `{ focus: false }` setting.
@@ -254,4 +306,114 @@ If a drawer has the attribute `tabindex="-1"`, it will be given focus when it's 
 
 {% include flag.html heading="Drawer State" %}
 
+<div class="type" markdown="1">
+By default, the state of a drawer is saved to local storage and applied persistently under the `"DrawerState"` local storage variable. Set `{ saveState: false }` to disable save state. Use `{ saveKey: "[customKey]" }` to change the key that save state is stored under.
+</div>
+
 {% include flag.html heading="Drawer API" %}
+
+<table class="table table_style_rowed">
+  <thead>
+    <tr class="border_top_0">
+      <th colspan="3">Settings</th>
+    </tr>
+    <tr>
+      <th>Key</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="code text_nowrap">autoInit</code></td>
+      <td><code class="code text_nowrap">false</code></td>
+      <td>Automatically instantiates the script</td>
+    </tr>
+
+    <!-- Data attributes -->
+    <tr>
+      <td><code class="code text_nowrap">dataDrawer</code></td>
+      <td><code class="code text_nowrap">"drawer"</code></td>
+      <td>Data attribute for a drawer</td>
+    </tr>
+    <tr>
+      <td><code class="code text_nowrap">dataToggle</code></td>
+      <td><code class="code text_nowrap">"drawer-toggle"</code></td>
+      <td>Data attribute for a drawer toggle trigger</td>
+    </tr>
+    <tr>
+      <td><code class="code text_nowrap">dataClose</code></td>
+      <td><code class="code text_nowrap">"drawer-close"</code></td>
+      <td>Data attribute for a drawer close trigger</td>
+    </tr>
+    <tr>
+      <td><code class="code text_nowrap">dataBreakpoint</code></td>
+      <td><code class="code text_nowrap">"drawer-breakpoint"</code></td>
+      <td>Data attribute for setting a drawer's breakpoint</td>
+    </tr>
+    <tr>
+      <td><code class="code text_nowrap">dataFocus</code></td>
+      <td><code class="code text_nowrap">"drawer-focus"</code></td>
+      <td>Data attribute for setting a drawer's focus element</td>
+    </tr>
+  </tbody>
+
+  <!-- State classes -->
+  <tr>
+    <td><code class="code text_nowrap">stateOpen</code></td>
+    <td><code class="code text_nowrap">"is-open"</code></td>
+    <td>Class used for open state</td>
+  </tr>
+  <tr>
+    <td><code class="code text_nowrap">stateOpening</code></td>
+    <td><code class="code text_nowrap">"is-opening"</code></td>
+    <td>Class used for transitioning to open state</td>
+  </tr>
+  <tr>
+    <td><code class="code text_nowrap">stateClosing</code></td>
+    <td><code class="code text_nowrap">"is-closing"</code></td>
+    <td>Class used for transitioning to closed state</td>
+  </tr>
+  <tr>
+    <td><code class="code text_nowrap">stateClosed</code></td>
+    <td><code class="code text_nowrap">"is-closed"</code></td>
+    <td>Class used for closed state (is ommitted in application)</td>
+  </tr>
+
+  <!-- Classes -->
+  <tr>
+    <td><code class="code text_nowrap">classModal</code></td>
+    <td><code class="code text_nowrap">"drawer_modal"</code></td>
+    <td>Class used for toggling the drawer modal state</td>
+  </tr>
+
+  <!-- Feature toggles -->
+  <tr>
+    <td><code class="code text_nowrap">breakpoint</code></td>
+    <td><code class="code text_nowrap">core.breakpoint</code></td>
+    <td>An object with key/value pairs defining a breakpoint set</td>
+  </tr>
+  <tr>
+    <td><code class="code text_nowrap">focus</code></td>
+    <td><code class="code text_nowrap">core.breakpoint</code></td>
+    <td>Toggles the focus handling feature</td>
+  </tr>
+  <tr>
+    <td><code class="code text_nowrap">saveState</code></td>
+    <td><code class="code text_nowrap">true</code></td>
+    <td>Toggles the save state feature</td>
+  </tr>
+  <tr>
+    <td><code class="code text_nowrap">saveKey</code></td>
+    <td><code class="code text_nowrap">"DrawerState"</code></td>
+    <td>Defines the localStorage key where drawer states are saved</td>
+  </tr>
+</table>
+
+<table class="table table_style_rowed">
+  <thead>
+    <tr class="border_top_0">
+      <th colspan="3">Methods</th>
+    </tr>
+  </thead>
+</table>
