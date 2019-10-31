@@ -16,10 +16,15 @@
   <hr class="sep margin_vert_lg">
 
   <!-- Modal Triggers -->
-  <button data-modal-open="modal-default" class="link">Modal Default</button>
-  <button data-modal-open="modal-focus" class="link">Modal Focus</button>
-  <button data-modal-open="modal-required" class="link">Modal Required</button>
-  <button data-a-o="modal-custom" class="link">Modal Custom</button>
+  <p class="margin_top_md">
+    <button data-modal-open="modal-default" class="link">Modal Default</button>
+    <button data-modal-open="modal-focus" class="link">Modal Focus</button>
+    <button data-modal-open="modal-required" class="link">Modal Required</button>
+  </p>
+
+  <p class="margin_top_md">
+    <button class="link api-test-open">API Open</button>
+  </p>
 
 </div>
 
@@ -30,12 +35,16 @@
       <p>Modal Default</p>
       <button data-modal-close class="link">Close</button>
     </div>
+    <p>
+      <button data-modal-open="modal-focus" class="link">Modal Focus</button>
+      <button class="link api-test-close">API Close</button>
+    </p>
   </div>
 </div>
 
 <!-- Modal Focus -->
 <div data-modal="modal-focus" class="modal" tabindex="-1">
-  <div class="modal__dialog padding background_white radius spacing">
+  <div class="modal__dialog padding background_white radius">
     <div class="flex flex_justify_between">
       <p>Modal Focus</p>
       <button data-modal-close data-modal-focus class="link">Close</button>
@@ -49,7 +58,7 @@
   data-modal-required="true"
   class="modal" tabindex="-1"
 >
-  <div class="modal__dialog padding background_white radius spacing">
+  <div class="modal__dialog padding background_white radius">
     <div class="flex flex_justify_between">
       <p>Modal Required</p>
       <button data-modal-close data-modal-focus class="link">Close</button>
@@ -57,28 +66,25 @@
   </div>
 </div>
 
-<!-- Modal Custom -->
-<div data-a="modal-custom" class="modal" tabindex="-1">
-  <div class="modal__dialog padding background_white radius spacing">
-    <div class="flex flex_justify_between">
-      <p>Modal Custom</p>
-      <button data-a-c data-a-f class="link">Close</button>
-    </div>
-  </div>
-</div>
-
 <!-- Component scripts -->
 <script src="./dist/scripts.min.js"></script>
 <script>
-  new vrembem.Modal({ autoInit: true });
-  new vrembem.Modal({
-    autoInit: true,
-    dataModal: "a",
-    dataOpen: "a-o",
-    dataClose: "a-c",
-    dataFocus: "a-f",
-    dataRequired: "a-r"
-  });
+  const modal = new vrembem.Modal({ autoInit: true });
+
+  const apiOpen = document.querySelector(".api-test-open")
+  const apiClose = document.querySelector(".api-test-close")
+
+  apiOpen.addEventListener("click", function(event) {
+    modal.open("modal-default", function() {
+      console.log("Open API called")
+    })
+  })
+
+  apiClose.addEventListener("click", function(event) {
+    modal.close(true, function() {
+      console.log("Close API called")
+    })
+  })
 </script>
 </body>
 </html>

@@ -220,8 +220,8 @@ var Drawer = function Drawer(options) {
     document.removeEventListener("keyup", escape, false);
   };
 
-  api.toggle = function (drawerKey) {
-    toggle(drawerKey);
+  api.toggle = function (drawerKey, callback) {
+    toggle(drawerKey, callback);
   };
 
   api.open = function (drawerKey, callback) {
@@ -273,16 +273,16 @@ var Drawer = function Drawer(options) {
     }
   };
 
-  var toggle = function toggle(drawerKey) {
+  var toggle = function toggle(drawerKey, callback) {
     var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
 
     if (drawer) {
       var isOpen = hasClass(drawer, api.settings.stateOpen);
 
       if (!isOpen) {
-        open(drawer);
+        open(drawer, callback);
       } else {
-        close(drawer);
+        close(drawer, callback);
       }
     }
   };
@@ -479,12 +479,12 @@ var Modal = function Modal(options) {
     document.removeEventListener("keyup", escape, false);
   };
 
-  api.open = function (selector) {
-    open(selector);
+  api.open = function (modalKey, callback) {
+    open(modalKey, callback);
   };
 
-  api.close = function (focus) {
-    close();
+  api.close = function (focus, callback) {
+    close(focus, callback);
   };
 
   var run = function run(event) {
@@ -493,9 +493,9 @@ var Modal = function Modal(options) {
     if (trigger) {
       var targetData = trigger.dataset[camelCase(api.settings.dataOpen)];
       var fromModal = event.target.closest("[data-".concat(api.settings.dataModal, "]"));
-      saveTrigger(trigger);
-      close();
-      open("[data-".concat(api.settings.dataModal, "=\"").concat(targetData, "\"]"));
+      if (!fromModal) saveTrigger(trigger);
+      close(!fromModal);
+      open(targetData);
       event.preventDefault();
     } else {
       if (event.target.closest("[data-".concat(api.settings.dataClose, "]"))) {
@@ -519,22 +519,25 @@ var Modal = function Modal(options) {
     }
   };
 
-  var open = function open(selector) {
-    var target = document.querySelector(selector);
+  var open = function open(modalKey, callback) {
+    var target = document.querySelector("[data-".concat(api.settings.dataModal, "=\"").concat(modalKey, "\"]"));
 
-    if (target) {
+    if (target && !hasClass(target, api.settings.stateOpen)) {
       saveTarget(target);
       addClass(target, api.settings.stateOpening);
       target.addEventListener("transitionend", function _listener() {
         addClass(target, api.settings.stateOpen);
         removeClass(target, api.settings.stateOpening);
         setFocus();
+        typeof callback === "function" && callback();
         this.removeEventListener("transitionend", _listener, true);
       }, true);
     }
   };
 
   var close = function close() {
+    var focus = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+    var callback = arguments.length > 1 ? arguments[1] : undefined;
     var target = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpen));
 
     if (target) {
@@ -542,7 +545,8 @@ var Modal = function Modal(options) {
       removeClass(target, api.settings.stateOpen);
       target.addEventListener("transitionend", function _listener() {
         removeClass(target, api.settings.stateClosing);
-        returnFocus();
+        if (focus) returnFocus();
+        typeof callback === "function" && callback();
         this.removeEventListener("transitionend", _listener, true);
       }, true);
     }

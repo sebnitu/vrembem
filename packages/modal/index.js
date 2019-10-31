@@ -1,4 +1,4 @@
-import { addClass, camelCase, removeClass } from "@vrembem/core"
+import { addClass, camelCase, hasClass, removeClass } from "@vrembem/core"
 
 export const Modal = (options) => {
 
@@ -42,12 +42,12 @@ export const Modal = (options) => {
     document.removeEventListener("keyup", escape, false)
   }
 
-  api.open = (selector) => {
-    open(selector)
+  api.open = (modalKey, callback) => {
+    open(modalKey, callback)
   }
 
-  api.close = (focus) => {
-    close(focus)
+  api.close = (focus, callback) => {
+    close(focus, callback)
   }
 
   const run = (event) => {
@@ -58,9 +58,9 @@ export const Modal = (options) => {
       const fromModal = event.target.closest(
         `[data-${api.settings.dataModal}]`
       )
-      saveTrigger(trigger)
-      close(fromModal)
-      open(`[data-${api.settings.dataModal}="${targetData}"]`)
+      if (!fromModal) saveTrigger(trigger)
+      close(!fromModal)
+      open(targetData)
       event.preventDefault()
     } else {
       // Close click
@@ -89,21 +89,24 @@ export const Modal = (options) => {
     }
   }
 
-  const open = (selector) => {
-    const target = document.querySelector(selector)
-    if (target) {
+  const open = (modalKey, callback) => {
+    const target = document.querySelector(
+      `[data-${api.settings.dataModal}="${modalKey}"]`
+    )
+    if (target && !hasClass(target, api.settings.stateOpen)) {
       saveTarget(target)
       addClass(target, api.settings.stateOpening)
       target.addEventListener("transitionend", function _listener() {
         addClass(target, api.settings.stateOpen)
         removeClass(target, api.settings.stateOpening)
         setFocus(target)
+        typeof callback === "function" && callback()
         this.removeEventListener("transitionend", _listener, true)
       }, true)
     }
   }
 
-  const close = (fromModal = false) => {
+  const close = (focus = true, callback) => {
     const target = document.querySelector(
       `[data-${api.settings.dataModal}].${api.settings.stateOpen}`
     )
@@ -112,11 +115,16 @@ export const Modal = (options) => {
       removeClass(target, api.settings.stateOpen)
       target.addEventListener("transitionend", function _listener() {
         removeClass(target, api.settings.stateClosing)
-        returnFocus(fromModal)
+        if (focus) returnFocus()
+        typeof callback === "function" && callback()
         this.removeEventListener("transitionend", _listener, true)
       }, true)
     }
   }
+
+  /**
+   * Focus functionality
+   */
 
   const saveTarget = (target) => {
     if (api.settings.focus) {

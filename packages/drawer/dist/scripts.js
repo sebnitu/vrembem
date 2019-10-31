@@ -119,8 +119,8 @@
       document.removeEventListener("keyup", escape, false);
     };
 
-    api.toggle = function (drawerKey) {
-      toggle(drawerKey);
+    api.toggle = function (drawerKey, callback) {
+      toggle(drawerKey, callback);
     };
 
     api.open = function (drawerKey, callback) {
@@ -172,16 +172,16 @@
       }
     };
 
-    var toggle = function toggle(drawerKey) {
+    var toggle = function toggle(drawerKey, callback) {
       var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
 
       if (drawer) {
         var isOpen = hasClass(drawer, api.settings.stateOpen);
 
         if (!isOpen) {
-          open(drawer);
+          open(drawer, callback);
         } else {
-          close(drawer);
+          close(drawer, callback);
         }
       }
     };

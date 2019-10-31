@@ -38,6 +38,21 @@ var addClass = function addClass(el) {
   });
 };
 
+var hasClass = function hasClass(el) {
+  el = el.forEach ? el : [el];
+  el = [].slice.call(el);
+
+  for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    cl[_key - 1] = arguments[_key];
+  }
+
+  return cl.some(function (cl) {
+    return el.some(function (el) {
+      if (el.classList.contains(cl)) return true;
+    });
+  });
+};
+
 var removeClass = function removeClass(el) {
   for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
     cl[_key - 1] = arguments[_key];
@@ -87,12 +102,12 @@ var Modal = function Modal(options) {
     document.removeEventListener("keyup", escape, false);
   };
 
-  api.open = function (selector) {
-    open(selector);
+  api.open = function (modalKey, callback) {
+    open(modalKey, callback);
   };
 
-  api.close = function (focus) {
-    close();
+  api.close = function (focus, callback) {
+    close(focus, callback);
   };
 
   var run = function run(event) {
@@ -101,9 +116,9 @@ var Modal = function Modal(options) {
     if (trigger) {
       var targetData = trigger.dataset[camelCase(api.settings.dataOpen)];
       var fromModal = event.target.closest("[data-".concat(api.settings.dataModal, "]"));
-      saveTrigger(trigger);
-      close();
-      open("[data-".concat(api.settings.dataModal, "=\"").concat(targetData, "\"]"));
+      if (!fromModal) saveTrigger(trigger);
+      close(!fromModal);
+      open(targetData);
       event.preventDefault();
     } else {
       if (event.target.closest("[data-".concat(api.settings.dataClose, "]"))) {
@@ -127,22 +142,25 @@ var Modal = function Modal(options) {
     }
   };
 
-  var open = function open(selector) {
-    var target = document.querySelector(selector);
+  var open = function open(modalKey, callback) {
+    var target = document.querySelector("[data-".concat(api.settings.dataModal, "=\"").concat(modalKey, "\"]"));
 
-    if (target) {
+    if (target && !hasClass(target, api.settings.stateOpen)) {
       saveTarget(target);
       addClass(target, api.settings.stateOpening);
       target.addEventListener("transitionend", function _listener() {
         addClass(target, api.settings.stateOpen);
         removeClass(target, api.settings.stateOpening);
         setFocus();
+        typeof callback === "function" && callback();
         this.removeEventListener("transitionend", _listener, true);
       }, true);
     }
   };
 
   var close = function close() {
+    var focus = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+    var callback = arguments.length > 1 ? arguments[1] : undefined;
     var target = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpen));
 
     if (target) {
@@ -150,7 +168,8 @@ var Modal = function Modal(options) {
       removeClass(target, api.settings.stateOpen);
       target.addEventListener("transitionend", function _listener() {
         removeClass(target, api.settings.stateClosing);
-        returnFocus();
+        if (focus) returnFocus();
+        typeof callback === "function" && callback();
         this.removeEventListener("transitionend", _listener, true);
       }, true);
     }

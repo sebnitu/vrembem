@@ -169,19 +169,19 @@ test("setting focus to 'false' should disable focus handling", () => {
   expect(btnOpen).not.toHaveFocus()
 })
 
-test("should open modal using api", () => {
+test("should open modal using api call", () => {
   document.body.innerHTML = modalDefault
   modal = new Modal({ autoInit: true })
   const el = document.querySelector("[data-modal]")
 
-  modal.open("[data-modal]")
+  modal.open("modal-default")
   el.dispatchEvent(ev)
 
   expect(el).toHaveClass("modal is-open")
   expect(el.classList.length).toBe(2)
 })
 
-test("should close modal using api", () => {
+test("should close modal using api call", () => {
   document.body.innerHTML = modalDefault
   modal = new Modal({ autoInit: true })
   const el = document.querySelector("[data-modal]")

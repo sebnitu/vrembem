@@ -128,15 +128,21 @@
   const apiClose = document.querySelector(".api-test-close")
 
   apiToggle.addEventListener("click", function(event) {
-    drawer.toggle("drawer-pos-right")
+    drawer.toggle("drawer-pos-right", function() {
+      console.log("Toggle API called")
+    })
   })
 
   apiOpen.addEventListener("click", function(event) {
-    drawer.open("drawer-pos-right")
+    drawer.open("drawer-pos-right", function() {
+      console.log("Open API called")
+    })
   })
 
   apiClose.addEventListener("click", function(event) {
-    drawer.close("drawer-pos-right")
+    drawer.close("drawer-pos-right", function() {
+      console.log("Close API called")
+    })
   })
 </script>
 </body>

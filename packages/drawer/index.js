@@ -60,8 +60,8 @@ export const Drawer = (options) => {
     document.removeEventListener("keyup", escape, false)
   }
 
-  api.toggle = (drawerKey) => {
-    toggle(drawerKey)
+  api.toggle = (drawerKey, callback) => {
+    toggle(drawerKey, callback)
   }
 
   api.open = (drawerKey, callback) => {
@@ -116,16 +116,16 @@ export const Drawer = (options) => {
     }
   }
 
-  const toggle = (drawerKey) => {
+  const toggle = (drawerKey, callback) => {
     const drawer = document.querySelector(
       `[data-${api.settings.dataDrawer}="${drawerKey}"]`
     )
     if (drawer) {
       const isOpen = hasClass(drawer, api.settings.stateOpen)
       if (!isOpen) {
-        open(drawer)
+        open(drawer, callback)
       } else {
-        close(drawer)
+        close(drawer, callback)
       }
     }
   }
