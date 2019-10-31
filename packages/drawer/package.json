@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/drawer",
-  "description": "A container component that slides in from the left or right. It typically contains menus, search or other content for your app.",
+  "description": "A container component that slides in from the left or right. Typically containing menus, search or other content.",
   "version": "0.0.0",
   "main": "dist/scripts.cjs.js",
   "module": "index.js",

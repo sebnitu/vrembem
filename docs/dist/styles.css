@@ -6517,7 +6517,7 @@ input::-moz-placeholder {
   font-size: 1em;
 }
 
-.demo__render .drawer {
+.demo__render .drawer__wrapper {
   height: 100%;
 }
 
