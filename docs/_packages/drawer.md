@@ -12,18 +12,16 @@ usage:
 {% include flag.html heading="drawer" %}
 
 <div class="type" markdown="1">
-Drawers are composed with the following elements:
-* drawer__wrapper
-  * drawer [data-drawer="[unique-id]"]
-    * drawer__item
-      * [data-drawer-close]
-  * drawer__main
-    *  [data-drawer-toggle="[unique-id]"
+Drawers are composed using classes for styling and data attributes for JavaScript functionality. To link a drawer toggle to a drawer, use a unique identifier as the values for both of their respective data attributes. Close buttons are left value-less and should be placed inside the drawer element they're meant to close.
+
+* `data-drawer="[unique-id]"`
+* `data-drawer-toggle="[unique-id]"`
+* `data-drawer-close`
 </div>
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="drawer__wrapper border radius">
-  <aside data-drawer="drawer-key" class="drawer" tabindex="-1">
+  <aside data-drawer="drawer-key" class="drawer">
     <div class="drawer__item padding">
       <div class="flex flex_justify_between">
         <p>Drawer Default</p>
@@ -42,7 +40,7 @@ Drawers are composed with the following elements:
 {% include demo_switch.html %}
 ```html
 <div class="drawer__wrapper">
-  <aside data-drawer="[unique-id]" class="drawer" tabindex="-1">
+  <aside data-drawer="[unique-id]" class="drawer">
     <div class="drawer__item">
       <button data-drawer-close>...</button>
     </div>
@@ -60,7 +58,7 @@ The [dialog component](/packages/dialog) is a great fit for composing a drawer's
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="drawer__wrapper border radius">
-  <div data-drawer="drawer-dialog" class="drawer is-open" tabindex="-1">
+  <div data-drawer="drawer-dialog" class="drawer is-open">
     <div class="drawer__item dialog">
       <div class="dialog__header">
         <h2 class="dialog__title">Drawer Dialog</h2>
@@ -82,10 +80,11 @@ The [dialog component](/packages/dialog) is a great fit for composing a drawer's
 </div>
 {% include demo_switch.html %}
 ```html
-<div data-drawer="[unique-id]" class="drawer" tabindex="-1">
+<div data-drawer="[unique-id]" class="drawer">
   <div class="drawer__item dialog">
     <div class="dialog__header">
       ...
+      <button data-drawer-close>...</button>
     </div>
     <div class="dialog__body">
       ...
@@ -158,6 +157,10 @@ Drawers can slide in from the left or right using the position modifiers:
 <p>If a position modifier is not provided, the drawer will appear based on it's location in the DOM relative to the main content area.</p>
 
 {% include flag.html heading="drawer_modal" %}
+
+<div class="type" markdown="1">
+To convert a drawer into it's modal state, use the `drawer_modal` modifier class.
+</div>
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="drawer__wrapper border radius">
@@ -417,7 +420,7 @@ By default, the state of a drawer is saved to local storage and applied persiste
   </tr>
 </table>
 
-{% include flag.html heading="Drawer Methods" %}
+{% include flag.html heading="Drawer API" %}
 
 <table class="table table_zebra">
   <thead>
