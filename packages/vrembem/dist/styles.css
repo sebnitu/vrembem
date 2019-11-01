@@ -3715,7 +3715,7 @@ input::-moz-placeholder {
   transform: scale(1);
 }
 .modal_full.is-closing .modal__dialog {
-  transform: scale(0.7);
+  transform: scale(1);
 }
 
 .modal_pos_top {

@@ -270,7 +270,7 @@ In cases where you'd like a drawer to switch to a drawer modal on a specific bre
 If a drawer has the attribute `tabindex="-1"`, it will be given focus when it's opened. If focus on a specific element inside a drawer is prefered, give it the `data-drawer-focus` attribute. The focus in either case is returned to the trigger element once the drawer is closed. Focus handling can be disabled using the `{ focus: false }` setting.
 </div>
 
-{% include demo_open.html class_gridItem="span_12" %}
+{% include demo_open.html class_grid="grid_break" %}
 <div class="drawer__wrapper border radius">
   <aside data-drawer="drawer-focus-self" class="drawer drawer_pos_left" tabindex="-1">
     <div class="drawer__item padding">
@@ -297,7 +297,7 @@ If a drawer has the attribute `tabindex="-1"`, it will be given focus when it's 
     </button>
   </div>
 </div>
-{% include demo_switch.html class_gridItem="span_12" %}
+{% include demo_switch.html %}
 ```html
 <div cass="drawer__wrapper">
   <!-- Focus the drawer on open -->

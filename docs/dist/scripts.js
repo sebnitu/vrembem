@@ -484,8 +484,8 @@
       open(modalKey, callback);
     };
 
-    api.close = function (focus, callback) {
-      close(focus, callback);
+    api.close = function (returnFocus, callback) {
+      close(returnFocus, callback);
     };
 
     var run = function run(event) {

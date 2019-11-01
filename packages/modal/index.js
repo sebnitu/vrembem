@@ -46,8 +46,8 @@ export const Modal = (options) => {
     open(modalKey, callback)
   }
 
-  api.close = (focus, callback) => {
-    close(focus, callback)
+  api.close = (returnFocus, callback) => {
+    close(returnFocus, callback)
   }
 
   const run = (event) => {
