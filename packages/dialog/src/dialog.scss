@@ -53,6 +53,7 @@
   flex-grow: 1;
   font-size: $dialog__title-font-size;
   font-weight: $dialog__title-font-weight;
+  line-height: $dialog__title-line-height;
 }
 
 .dialog > .dialog__close {
