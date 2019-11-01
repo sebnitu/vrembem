@@ -10,7 +10,7 @@ usage:
 
 {% include flag.html heading="breadcrumb" %}
 
-{% include demo_open.html %}
+{% include demo_open.html class_grid="grid_break" %}
 <ol class="breadcrumb">
   <li class="breadcrumb__item">
     <a href="#" class="breadcrumb__link">&larr; Home</a>
@@ -29,14 +29,9 @@ usage:
 ```html
 <ol class="breadcrumb">
   <li class="breadcrumb__item">
-    <a href="#" class="breadcrumb__link">Home</a>
+    <a href="/" class="breadcrumb__link">Home</a>
   </li>
-  <li class="breadcrumb__item">
-    <a href="#" class="breadcrumb__link">Blog</a>
-  </li>
-  <li class="breadcrumb__item">
-    <a href="#" class="breadcrumb__link">Category</a>
-  </li>
+  ...
   <li class="breadcrumb__item">
     Current Page
   </li>
@@ -46,7 +41,7 @@ usage:
 
 {% include flag.html heading="breadcrumb_invert" %}
 
-{% include demo_open.html class_parent="invert" %}
+{% include demo_open.html class_grid="grid_break" class_parent="invert" %}
 <ol class="breadcrumb breadcrumb_invert">
   <li class="breadcrumb__item">
     <a href="#" class="breadcrumb__link">&larr; Home</a>
