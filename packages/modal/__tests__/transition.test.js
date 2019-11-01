@@ -6,16 +6,16 @@ const ev = new Event("transitionend")
 
 const markup = `
   <button data-modal-open="modal-default">Modal Default</button>
-  <div data-modal="modal-default" class="modal" tabindex="-1">
+  <div data-modal="modal-default" class="modal">
     <div class="modal__dialog">
-      <button data-modal-close data-modal-focus>Close</button>
+      <button data-modal-close>Close</button>
     </div>
   </div>
 `
 
 const markupCustomAttr = `
   <button data-a-o="modal-default">Modal Custom</button>
-  <div data-a="modal-default" class="modal" tabindex="-1">
+  <div data-a="modal-default" class="modal">
     <div class="modal__dialog">
       <button data-a-c data-a-f>Close</button>
     </div>
@@ -33,7 +33,7 @@ test("should apply state classes on 'click' and 'transition end' events", () => 
   modal = new Modal()
   const el = document.querySelector("[data-modal]")
   const btnOpen = document.querySelector("[data-modal-open]")
-  const btnClose = document.querySelector("[data-modal-close]")
+  const btnClose = el.querySelector("[data-modal-close]")
 
   modal.init()
   expect(el).toHaveClass("modal")
@@ -66,7 +66,7 @@ test("should apply state classes with custom data attributes", () => {
   })
   const el = document.querySelector("[data-a]")
   const btnOpen = document.querySelector("[data-a-o]")
-  const btnClose = document.querySelector("[data-a-c]")
+  const btnClose = el.querySelector("[data-a-c]")
 
   expect(el).toHaveClass("modal")
 
@@ -97,7 +97,7 @@ test("should apply custom state classes", () => {
   })
   const el = document.querySelector("[data-modal]")
   const btnOpen = document.querySelector("[data-modal-open]")
-  const btnClose = document.querySelector("[data-modal-close]")
+  const btnClose = el.querySelector("[data-modal-close]")
 
   btnOpen.click()
   expect(el).toHaveClass("enable")

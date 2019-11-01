@@ -27,7 +27,7 @@ test("should prevent escape or screen click closing modal if required", () => {
   modal = new Modal({ autoInit: true })
   const el = document.querySelector("[data-modal]")
   const btnOpen = document.querySelector("[data-modal-open]")
-  const btnClose = document.querySelector("[data-modal-close]")
+  const btnClose = el.querySelector("[data-modal-close]")
 
   btnOpen.click()
   el.dispatchEvent(ev)

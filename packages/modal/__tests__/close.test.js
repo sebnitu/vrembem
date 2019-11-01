@@ -7,11 +7,11 @@ const keyEv = new KeyboardEvent("keyup", {
   keyCode: 27
 })
 
-const modalDefault = `
+const markup = `
   <button data-modal-open="modal-default">Modal Default</button>
-  <div data-modal="modal-default" class="modal" tabindex="-1">
+  <div data-modal="modal-default" class="modal">
     <div class="modal__dialog">
-      <button data-modal-close data-modal-focus>Close</button>
+      <button data-modal-close>Close</button>
     </div>
   </div>
 `
@@ -23,7 +23,7 @@ afterEach(() => {
 })
 
 test("should close when root modal (screen) is clicked", () => {
-  document.body.innerHTML = modalDefault
+  document.body.innerHTML = markup
   modal = new Modal({ autoInit: true })
   const el = document.querySelector("[data-modal]")
   const dialog = document.querySelector(".modal__dialog")
@@ -44,7 +44,7 @@ test("should close when root modal (screen) is clicked", () => {
 })
 
 test("should close when the escape key is pressed", () => {
-  document.body.innerHTML = modalDefault
+  document.body.innerHTML = markup
   modal = new Modal({ autoInit: true })
   const el = document.querySelector("[data-modal]")
   const btnOpen = document.querySelector("[data-modal-open]")

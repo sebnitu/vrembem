@@ -6,7 +6,7 @@ const ev = new Event("transitionend")
 
 const markup = `
   <button data-modal-open="modal-default">Modal Default</button>
-  <div data-modal="modal-default" class="modal" tabindex="-1">
+  <div data-modal="modal-default" class="modal">
     <div class="modal__dialog">
       <button data-modal-close>Close</button>
     </div>
@@ -77,7 +77,7 @@ test("should fire callback when using close api", () => {
   expect(callbackCheck).toBe(true)
 })
 
-test("destroy should remove event listeners", () => {
+test("should properly destroy drawer instance on api call", () => {
   document.body.innerHTML = markup
   modal = new Modal({ autoInit: true })
   const el = document.querySelector("[data-modal]")
