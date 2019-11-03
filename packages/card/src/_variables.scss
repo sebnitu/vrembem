@@ -17,9 +17,7 @@ $card__title-line-height: 1.4444 !default;
 $card__screen-opacity: 0.7 !default;
 $card__screen-background: $night !default;
 
-$card_fade-transition: opacity $card-transition-duration $card-transition-timing-function !default;
 $card_invert-background: $night !default;
 $card_link-shadow: $box-shadow-4dp !default;
 $card_link-shadow-hover: $box-shadow-8dp !default;
-$card_link-offset: 5px !default;
-$card_zoom-transition: transform $card-transition-duration $card-transition-timing-function !default;
+$card_link-offset: 0.5em !default;

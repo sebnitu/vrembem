@@ -6,7 +6,7 @@
     .card__body,
     .card__footer,
     .card__screen {
-      transition: $card_fade-transition;
+      transition: opacity $card-transition-duration $card-transition-timing-function;
       opacity: 0;
     }
 

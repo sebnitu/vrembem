@@ -2,7 +2,7 @@
 
 .card_zoom {
   .card__background {
-    transition: $card-zoom-transition;
+    transition: transform $card-transition-duration $card-transition-timing-function;
   }
 
   &:hover,
