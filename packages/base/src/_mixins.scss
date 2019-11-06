@@ -205,6 +205,10 @@
   h6 {
     @include heading-base();
     margin-top: $type-spacing-lg;
+
+    &:first-child {
+      margin-top: 0;
+    }
   }
 
   h1 {
@@ -237,8 +241,6 @@
 
   hr {
     @include separator();
-    margin-top: $type-spacing-lg;
-    margin-bottom: $type-spacing-lg;
   }
 
   ul,
@@ -248,8 +250,6 @@
 
   blockquote {
     @include blockquote();
-    margin-top: $type-spacing-lg;
-    margin-bottom: $type-spacing-lg;
   }
 
   code {
@@ -258,8 +258,21 @@
 
   pre {
     @include pre();
+  }
+
+  hr,
+  blockquote,
+  pre {
     margin-top: $type-spacing-lg;
     margin-bottom: $type-spacing-lg;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   > *:first-child {
