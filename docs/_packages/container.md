@@ -1,7 +1,7 @@
 ---
 layout: article
 title: "Container"
-description: "A container component for general page composition purposes."
+description: "A component for giving content a max width and centered within it's parent."
 category: layout
 usage:
   npm: "@vrembem/container"
