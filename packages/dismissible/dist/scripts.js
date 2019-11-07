@@ -53,7 +53,6 @@
 
         if (target) {
           var method = target.dataset[camelCase(api.settings.dataTarget)];
-          console.log(method);
 
           if (method == "remove") {
             target.remove();

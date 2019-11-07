@@ -28,7 +28,6 @@ export const Dismissible = (options) => {
       )
       if (target) {
         const method = target.dataset[camelCase(api.settings.dataTarget)]
-        console.log(method)
         if (method == "remove") {
           target.remove()
         } else if (method == "hide") {
