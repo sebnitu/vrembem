@@ -175,7 +175,7 @@ Required modals can not be closed without an explicit action. That means clickin
     <tr>
       <td><code class="code text_nowrap">autoInit</code></td>
       <td><code class="code text_nowrap">false</code></td>
-      <td>Automatically instantiates the script</td>
+      <td>Automatically instantiates the instance</td>
     </tr>
 
     <!-- Data attributes -->
@@ -248,7 +248,7 @@ Required modals can not be closed without an explicit action. That means clickin
   <tbody>
     <tr>
       <td><code class="code text_nowrap">modal.init()</code></td>
-      <td>Initializes the modal script</td>
+      <td>Initializes the modal instance</td>
     </tr>
     <tr>
       <td><code class="code text_nowrap">modal.destroy()</code></td>

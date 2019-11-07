@@ -118,9 +118,9 @@ $font-size-sm: 14px !default;
 $font-size-lg: 18px !default;
 
 // Line height
-$line-height: 1.5 !default;
-$line-height-sm: 22px !default;
-$line-height-lg: 26px !default;
+$line-height: 1.5 !default; // 24px
+$line-height-sm: 1.5714 !default; // 22px
+$line-height-lg: 1.4444 !default; // 26px
 
 // Color
 $color: $night-dark !default;

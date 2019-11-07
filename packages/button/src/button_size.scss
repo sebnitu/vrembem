@@ -1,6 +1,8 @@
 @import "./variables";
 
 .button_size_sm {
+  min-width: $button_size_sm-min-size;
+  min-height: $button_size_sm-min-size;
   padding: $button_size_sm-padding;
   font-size: $button_size_sm-font-size;
   line-height: $button_size_sm-line-height;
@@ -11,6 +13,8 @@
 }
 
 .button_size_lg {
+  min-width: $button_size_lg-min-size;
+  min-height: $button_size_lg-min-size;
   padding: $button_size_lg-padding;
   font-size: $button_size_lg-font-size;
   line-height: $button_size_lg-line-height;

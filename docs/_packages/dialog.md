@@ -11,15 +11,12 @@ usage:
 {% include flag.html heading="dialog + dialog__body" %}
 
 {% include demo_open.html %}
-
 <div class="dialog">
   <div class="dialog__body">
     <p>This is some dialog content...</p>
   </div>
 </div>
-
 {% include demo_switch.html %}
-
 ```html
 <div class="dialog">
   <div class="dialog__body">
@@ -27,13 +24,11 @@ usage:
   </div>
 </div>
 ```
-
 {% include demo_close.html %}
 
 {% include flag.html heading="dialog__close" %}
 
 {% include demo_open.html %}
-
 <div class="dialog">
   <button class="dialog__close icon-action icon-action_color_fade">
     {% include icon.html icon="x" %}
@@ -42,9 +37,7 @@ usage:
     <p>This is some dialog content...</p>
   </div>
 </div>
-
 {% include demo_switch.html %}
-
 ```html
 <div class="dialog">
   <button class="dialog__close icon-action icon-action_color_fade">
@@ -57,13 +50,11 @@ usage:
   </div>
 </div>
 ```
-
 {% include demo_close.html %}
 
 {% include flag.html heading="dialog__title" %}
 
 {% include demo_open.html %}
-
 <div class="dialog">
   <button class="dialog__close icon-action icon-action_color_fade">
     {% include icon.html icon="x" %}
@@ -73,9 +64,7 @@ usage:
     <p>This is some dialog content...</p>
   </div>
 </div>
-
 {% include demo_switch.html %}
-
 ```html
 <div class="dialog">
   <button class="dialog__close">...</button>
@@ -85,13 +74,11 @@ usage:
   </div>
 </div>
 ```
-
 {% include demo_close.html %}
 
 {% include flag.html heading="dialog__header + dialog__footer" %}
 
 {% include demo_open.html %}
-
 <div class="dialog">
   <div class="dialog__header">
     <h2 class="dialog__title">Dialog Title</h2>
@@ -109,9 +96,7 @@ usage:
     </div>
   </div>
 </div>
-
 {% include demo_switch.html %}
-
 ```html
 <div class="dialog">
   <div class="dialog__header">
@@ -125,7 +110,6 @@ usage:
   </div>
 </div>
 ```
-
 {% include demo_close.html %}
 
 <div class="type" markdown="1">
@@ -206,7 +190,6 @@ The dialog is a very flexible component and can be used in many different contex
 {% include flag.html heading="Confirmation" %}
 
 {% include demo_open.html %}
-
 <div class="dialog">
   <div class="dialog__body spacing padding_lg">
     <h2 class="dialog__title">Did you forget an attachment?</h2>
@@ -219,9 +202,7 @@ The dialog is a very flexible component and can be used in many different contex
     </div>
   </div>
 </div>
-
 {% include demo_switch.html %}
-
 ```html
 <div class="dialog">
   <div class="dialog__body padding_lg">
@@ -234,5 +215,4 @@ The dialog is a very flexible component and can be used in many different contex
   </div>
 </div>
 ```
-
 {% include demo_close.html %}

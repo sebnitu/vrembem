@@ -337,7 +337,7 @@ By default, the state of a drawer is saved to local storage and applied persiste
     <tr>
       <td><code class="code text_nowrap">autoInit</code></td>
       <td><code class="code text_nowrap">false</code></td>
-      <td>Automatically instantiates the script</td>
+      <td>Automatically instantiates the instance</td>
     </tr>
 
     <!-- Data attributes -->
@@ -432,7 +432,7 @@ By default, the state of a drawer is saved to local storage and applied persiste
   <tbody>
     <tr>
       <td><code class="code text_nowrap">drawer.init()</code></td>
-      <td>Initializes the drawer script</td>
+      <td>Initializes the drawer instance</td>
     </tr>
     <tr>
       <td><code class="code text_nowrap">drawer.destroy()</code></td>

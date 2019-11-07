@@ -704,6 +704,8 @@ input::-moz-placeholder {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
   padding: 0.5em 1em;
   border: none;
   border-radius: 4px;
@@ -991,18 +993,22 @@ input::-moz-placeholder {
 }
 
 .button_size_sm {
+  min-width: 1.875rem;
+  min-height: 1.875rem;
   padding: 0.25rem 0.5rem;
   font-size: 14px;
-  line-height: 22px;
+  line-height: 1.5714;
 }
 .button_size_sm .icon {
   padding: 0.129em;
 }
 
 .button_size_lg {
+  min-width: 3.125rem;
+  min-height: 3.125rem;
   padding: 0.75rem 1.5rem;
   font-size: 18px;
-  line-height: 26px;
+  line-height: 1.4444;
 }
 .button_size_lg:not(.button_icon) .icon:first-child {
   margin-left: -0.25em;
@@ -2310,13 +2316,13 @@ input::-moz-placeholder {
 .input_size_sm {
   padding: 0.25rem 0.5rem;
   font-size: 14px;
-  line-height: 22px;
+  line-height: 1.5714;
 }
 
 .input_size_lg {
   padding: 0.75rem;
   font-size: 18px;
-  line-height: 26px;
+  line-height: 1.4444;
 }
 
 .input_state_success {

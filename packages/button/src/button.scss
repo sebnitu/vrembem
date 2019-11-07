@@ -15,6 +15,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-width: $button-min-size;
+  min-height: $button-min-size;
   padding: $button-padding;
   border: $button-border;
   border-radius: $button-border-radius;

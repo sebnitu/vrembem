@@ -1,3 +1,3 @@
 # Dismissible
 
-A JavaScript plugin to dismiss components in the DOM.
+A component for either removing an element from the DOM or hiding it with a CSS class.

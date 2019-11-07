@@ -78,20 +78,38 @@ Elements inside the button component receive appropriate spacing using the `> * 
   <button class="button button_size_sm button_icon">
     {% include icon.html icon="anchor" %}
   </button>
+  <button class="button button_size_sm button_icon">
+    <span class="arrow"></span>
+  </button>
   <button class="button button_size_sm button_icon button_color_primary">
     {% include icon.html icon="anchor" %}
+  </button>
+  <button class="button button_size_sm button_icon button_color_primary">
+    <span class="arrow"></span>
   </button>
   <button class="button button_icon">
     {% include icon.html icon="anchor" %}
   </button>
+  <button class="button button_icon">
+    <span class="arrow"></span>
+  </button>
   <button class="button button_icon button_color_primary">
     {% include icon.html icon="anchor" %}
+  </button>
+  <button class="button button_icon button_color_primary">
+    <span class="arrow"></span>
   </button>
   <button class="button button_size_lg button_icon">
     {% include icon.html icon="anchor" %}
   </button>
+  <button class="button button_size_lg button_icon">
+    <span class="arrow"></span>
+  </button>
   <button class="button button_size_lg button_icon button_color_primary">
     {% include icon.html icon="anchor" %}
+  </button>
+  <button class="button button_size_lg button_icon button_color_primary">
+    <span class="arrow"></span>
   </button>
 </div>
 {% include demo_switch.html %}
