@@ -34,7 +34,8 @@ var Dismissible = function Dismissible(options) {
     autoInit: false,
     dataTrigger: "dismiss",
     dataTarget: "dismissible",
-    classHide: "display_none"
+    classHide: "display_none",
+    method: "hide"
   };
   api.settings = _objectSpread({}, defaults, {}, options);
 
@@ -54,10 +55,11 @@ var Dismissible = function Dismissible(options) {
 
       if (target) {
         var method = target.dataset[camelCase(api.settings.dataTarget)];
+        var defaultMethod = api.settings.method;
 
-        if (method == "remove") {
+        if (method == "remove" || !method && defaultMethod == "remove") {
           target.remove();
-        } else if (method == "hide") {
+        } else if (method == "hide" || !method && defaultMethod == "hide") {
           target.classList.add(api.settings.classHide);
         }
 

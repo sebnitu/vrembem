@@ -1,20 +1,6 @@
 (function (exports) {
   'use strict';
 
-  var breakpoint = {
-    xs: "480px",
-    sm: "620px",
-    md: "760px",
-    lg: "990px",
-    xl: "1380px"
-  };
-
-  var camelCase = function camelCase(str) {
-    return str.replace(/-([a-z])/g, function (g) {
-      return g[1].toUpperCase();
-    });
-  };
-
   var addClass = function addClass(el) {
     for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       cl[_key - 1] = arguments[_key];
@@ -25,6 +11,12 @@
       var _el$classList;
 
       (_el$classList = el.classList).add.apply(_el$classList, cl);
+    });
+  };
+
+  var camelCase = function camelCase(str) {
+    return str.replace(/-([a-z])/g, function (g) {
+      return g[1].toUpperCase();
     });
   };
 
@@ -73,6 +65,14 @@
         el.classList.toggle(cl);
       });
     });
+  };
+
+  var breakpoint = {
+    xs: "480px",
+    sm: "620px",
+    md: "760px",
+    lg: "990px",
+    xl: "1380px"
   };
 
   exports.addClass = addClass;

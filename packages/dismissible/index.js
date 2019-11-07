@@ -7,7 +7,8 @@ export const Dismissible = (options) => {
     autoInit: false,
     dataTrigger: "dismiss",
     dataTarget: "dismissible",
-    classHide: "display_none"
+    classHide: "display_none",
+    method: "hide"
   }
 
   api.settings = { ...defaults, ...options }
@@ -28,9 +29,10 @@ export const Dismissible = (options) => {
       )
       if (target) {
         const method = target.dataset[camelCase(api.settings.dataTarget)]
-        if (method == "remove") {
+        const defaultMethod = api.settings.method
+        if (method == "remove" || (!method && defaultMethod == "remove")) {
           target.remove()
-        } else if (method == "hide") {
+        } else if (method == "hide" || (!method && defaultMethod == "hide")) {
           target.classList.add(api.settings.classHide)
         }
         event.preventDefault()
