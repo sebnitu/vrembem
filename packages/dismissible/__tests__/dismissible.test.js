@@ -7,8 +7,8 @@ const dismissContent = `
   <div data-dismissible>
     <button data-dismiss></button>
   </div>
-  <div class="a">
-    <button class="b"></button>
+  <div data-a>
+    <button data-b></button>
   </div>
 `
 
@@ -32,13 +32,12 @@ test("dismiss using default settings", () => {
 test("dismiss using custom settings and auto init", () => {
   dismissible = new Dismissible({
     autoInit: true,
-    class: "c",
-    target: ".a",
-    trigger: ".b"
+    dataTarget: "a",
+    dataTrigger: "b"
   })
   document.body.innerHTML = dismissContent
-  const el = document.querySelector(".a")
-  const button = document.querySelector(".b")
+  const el = document.querySelector("[data-a]")
+  const button = document.querySelector("[data-b]")
 
   expect(el).toBeInTheDocument()
   button.click()

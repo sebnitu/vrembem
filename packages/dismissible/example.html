@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Setup styles -->
+  <link rel="stylesheet" href="./node_modules/@vrembem/base/dist/styles.min.css">
+  <link rel="stylesheet" href="./node_modules/@vrembem/utility/dist/styles.min.css">
+  <title>@vrembem/dismissible</title>
+</head>
+<body>
+
+<div class="padding_xl">
+  <h1 class="margin_bottom_md">@vrembem/dismissible</h1>
+  <p>A JavaScript plugin to dismiss components in the DOM.</p>
+  <hr class="sep margin_vert_lg">
+
+  <div class="padding background_shade" data-dismissible="remove">
+    <a class="link" href="#" data-dismiss>Dismiss</a>
+  </div>
+
+  <div class="padding background_shade" data-dismissible="hide">
+    <a class="link" href="#" data-dismiss>Dismiss</a>
+  </div>
+
+</div>
+
+<!-- Component scripts -->
+<script src="./dist/scripts.min.js"></script>
+<script>
+  new vrembem.Dismissible({ autoInit: true });
+</script>
+</body>
+</html>

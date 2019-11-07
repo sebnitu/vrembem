@@ -19,16 +19,22 @@ function _defineProperty(obj, key, value) {
 
 var defineProperty = _defineProperty;
 
+var camelCase = function camelCase(str) {
+  return str.replace(/-([a-z])/g, function (g) {
+    return g[1].toUpperCase();
+  });
+};
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
 var Dismissible = function Dismissible(options) {
   var api = {};
   var defaults = {
     autoInit: false,
-    target: "[data-dismissible]",
-    trigger: "[data-dismiss]"
+    dataTrigger: "dismiss",
+    dataTarget: "dismissible",
+    classHide: "display_none"
   };
   api.settings = _objectSpread({}, defaults, {}, options);
 
@@ -40,17 +46,24 @@ var Dismissible = function Dismissible(options) {
     document.removeEventListener("click", run, false);
   };
 
-  var run = function run(e) {
-    var trigger = e.target.closest(api.settings.trigger);
+  var run = function run(event) {
+    var trigger = event.target.closest("[data-".concat(api.settings.dataTrigger, "]"));
 
     if (trigger) {
-      var target = trigger.closest(api.settings.target);
+      var target = trigger.closest("[data-".concat(api.settings.dataTarget, "]"));
 
       if (target) {
-        target.remove();
-      }
+        var method = target.dataset[camelCase(api.settings.dataTarget)];
+        console.log(method);
 
-      e.preventDefault();
+        if (method == "remove") {
+          target.remove();
+        } else if (method == "hide") {
+          target.classList.add(api.settings.classHide);
+        }
+
+        event.preventDefault();
+      }
     }
   };
 

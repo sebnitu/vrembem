@@ -1,7 +1,7 @@
 ---
 layout: article
 title: Dismissible
-description: "..."
+description: "A JavaScript plugin to dismiss components in the DOM."
 category: simple
 usage:
   npm: "@vrembem/dismissible"

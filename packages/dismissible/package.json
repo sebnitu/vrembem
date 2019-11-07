@@ -17,6 +17,10 @@
     "url": "git+https://github.com/sebnitu/vrembem.git",
     "directory": "packages/dismissible"
   },
+  "devDependencies": {
+    "@vrembem/base": "^0.0.0",
+    "@vrembem/utility": "^0.0.0"
+  },
   "dependencies": {
     "@vrembem/core": "^0.0.0"
   }

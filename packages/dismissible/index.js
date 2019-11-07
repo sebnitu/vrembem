@@ -1,10 +1,13 @@
+import { camelCase } from "@vrembem/core"
+
 export const Dismissible = (options) => {
 
   let api = {}
   const defaults = {
     autoInit: false,
-    target: "[data-dismissible]",
-    trigger: "[data-dismiss]"
+    dataTrigger: "dismiss",
+    dataTarget: "dismissible",
+    classHide: "display_none"
   }
 
   api.settings = { ...defaults, ...options }
@@ -17,14 +20,22 @@ export const Dismissible = (options) => {
     document.removeEventListener("click", run, false)
   }
 
-  const run = (e) => {
-    let trigger = e.target.closest(api.settings.trigger)
+  const run = (event) => {
+    const trigger = event.target.closest(`[data-${api.settings.dataTrigger}]`)
     if (trigger) {
-      let target = trigger.closest(api.settings.target)
+      const target = trigger.closest(
+        `[data-${api.settings.dataTarget}]`
+      )
       if (target) {
-        target.remove()
+        const method = target.dataset[camelCase(api.settings.dataTarget)]
+        console.log(method)
+        if (method == "remove") {
+          target.remove()
+        } else if (method == "hide") {
+          target.classList.add(api.settings.classHide)
+        }
+        event.preventDefault()
       }
-      e.preventDefault()
     }
   }
 
