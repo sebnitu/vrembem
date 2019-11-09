@@ -14,6 +14,11 @@
 .notice__body {
   flex: 1 1 auto;
   margin-right: $notice__body-spacing;
+  margin-left: $notice__body-spacing;
+
+  &:first-child {
+    margin-left: 0;
+  }
 
   &:last-child {
     margin-right: 0;

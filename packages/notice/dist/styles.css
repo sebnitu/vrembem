@@ -10,6 +10,10 @@
 .notice__body {
   flex: 1 1 auto;
   margin-right: 1rem;
+  margin-left: 1rem;
+}
+.notice__body:first-child {
+  margin-left: 0;
 }
 .notice__body:last-child {
   margin-right: 0;
