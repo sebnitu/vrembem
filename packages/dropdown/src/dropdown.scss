@@ -2,6 +2,7 @@
 
 .dropdown {
   position: relative;
+  display: inline-flex;
 }
 
 .dropdown__menu {
@@ -13,7 +14,7 @@
   left: 0;
   display: none;
   width: $dropdown-width;
-  margin: $dropdown__menu_pos_spacing 0 0;
+  margin: $dropdown_pos_spacing 0 0;
   padding: $dropdown-spacing 0;
   border: $dropdown-border;
   border-radius: $dropdown-border-radius;
@@ -34,10 +35,10 @@
     bottom: 100%;
     left: 0;
     width: 100%;
-    height: $dropdown__menu_pos_spacing;
+    height: $dropdown_pos_spacing;
   }
 
-  &.dropdown__menu_pos_switch {
+  &.dropdown_pos_switch {
     right: 0;
     left: auto;
   }
@@ -114,6 +115,7 @@
 .dropdown__title {
   font-size: $dropdown__title-font-size;
   font-weight: $dropdown__title-font-weight;
+  line-height: $dropdown__title-line-height;
 }
 
 .dropdown__item {
@@ -125,7 +127,7 @@
     top: -$dropdown-spacing;
     right: auto;
     left: 100%;
-    margin: -1px 0 0 $dropdown__menu_pos_margin;
+    margin: -1px 0 0 $dropdown_pos_margin;
 
     &::before {
       top: 0;
@@ -137,10 +139,10 @@
     }
   }
 
-  > .dropdown__menu_pos_switch {
+  > .dropdown_pos_switch {
     right: 100%;
     left: auto;
-    margin: -1px $dropdown__menu_pos_margin 0 0;
+    margin: -1px $dropdown_pos_margin 0 0;
 
     &::before {
       right: auto;

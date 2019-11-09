@@ -8,6 +8,7 @@
   border-top: 5px solid currentColor;
   border-right: 4px solid transparent;
   border-left: 4px solid transparent;
+  border-radius: 2px;
   pointer-events: none;
 }
 
