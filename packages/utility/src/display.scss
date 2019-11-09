@@ -1,16 +1,16 @@
 @import "./variables";
 
-@each $display in $utility-display {
-  .#{$class-display}_#{$display} {
-    display: $display !important;
+@each $property in $utility-display-properties {
+  .#{$class-display}_#{$property} {
+    display: $property !important;
   }
 }
 
 @each $key, $value in $breakpoints {
   @include media-min($key) {
-    @each $display in $utility-display {
-      .#{$class-display}_#{$display}_#{$key} {
-        display: $display !important;
+    @each $property in $utility-display-properties {
+      .#{$class-display}_#{$property}_#{$key} {
+        display: $property !important;
       }
     }
   }
