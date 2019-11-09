@@ -10,6 +10,7 @@
   border-top: $arrow-size-pointer solid $arrow-color;
   border-right: $arrow-size solid transparent;
   border-left: $arrow-size solid transparent;
+  border-radius: $arrow-radius;
   pointer-events: none;
 }
 
