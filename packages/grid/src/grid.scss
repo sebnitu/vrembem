@@ -17,15 +17,6 @@
   max-width: 100%;
   padding-top: $grid-gap;
   padding-left: $grid-gap;
-
-  &_fill {
-    display: flex;
-    flex-direction: column;
-
-    > * {
-      flex-basis: 100%;
-    }
-  }
 }
 
 .grid__clear {
