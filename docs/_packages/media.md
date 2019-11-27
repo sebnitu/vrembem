@@ -1,7 +1,7 @@
 ---
 layout: article
 title: Media
-description: "The media component allows the composition of content which contains images, thumbnails or other media related to the content."
+description: "The media component is used for displaying groups of content with a corresponding media asset, such as an image, avatar or icon."
 category: compound
 usage:
   npm: "@vrembem/media"

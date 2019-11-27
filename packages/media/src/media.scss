@@ -17,7 +17,7 @@
 .media__icon {
   display: flex;
   align-items: center;
-  min-height: $media__icon-height;
+  min-height: $media__icon-min-height;
 
   &:first-child {
     margin: 0 $media__icon-spacing 0 0;
