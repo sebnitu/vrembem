@@ -22,30 +22,6 @@
   }
 }
 
-.icon-action_color_fade {
-  background: none;
-  opacity: 0.5;
-  color: $color;
-
-  &:hover,
-  &:focus {
-    background: none;
-    opacity: 1;
-    color: $color;
-  }
-
-  &.icon-action_invert {
-    background: none;
-    color: $color-invert;
-
-    &:hover,
-    &:focus {
-      background: none;
-      color: $color-invert;
-    }
-  }
-}
-
 .icon-action_color_danger {
   background: $danger;
   color: color-switch($danger);

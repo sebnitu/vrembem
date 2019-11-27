@@ -1,12 +1,12 @@
 @import "@vrembem/core/index";
 
 $icon-action-size: ($font-size * $line-height) !default;
-$icon-action-font-size: 1em !default;
-$icon-action-background: rgba($black, 0.3) !default;
-$icon-action-background-hover: rgba($black, 0.6) !default;
-$icon-action-border: null !default;
-$icon-action-border-hover: null !default;
 $icon-action-border-radius: $border-radius-circle !default;
+
+$icon-action-background: rgba($black, 0.3) !default;
+$icon-action-background-hover: rgba($black, 0.4) !default;
+$icon-action-background-focus: rgba($black, 0.5) !default;
+$icon-action-background-active: rgba($black, 0.5) !default;
 
 $icon-action_icon-font-size: $font-size-sm !default;
 $icon-action_icon-stroke-width: 2.5px !default;

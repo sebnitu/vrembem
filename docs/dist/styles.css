@@ -2191,10 +2191,14 @@ input::-moz-placeholder {
   vertical-align: top;
   cursor: pointer;
 }
-.icon-action:hover, .icon-action:focus {
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  cursor: pointer;
+.icon-action:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+.icon-action:focus {
+  background: rgba(0, 0, 0, 0.5);
+}
+.icon-action:active {
+  background: rgba(0, 0, 0, 0.5);
 }
 .icon-action .icon {
   stroke-width: 2.5px;
@@ -2215,25 +2219,6 @@ input::-moz-placeholder {
 }
 .icon-action_color_subtle.icon-action_invert:hover, .icon-action_color_subtle.icon-action_invert:focus {
   background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-}
-
-.icon-action_color_fade {
-  background: none;
-  opacity: 0.5;
-  color: #212121;
-}
-.icon-action_color_fade:hover, .icon-action_color_fade:focus {
-  background: none;
-  opacity: 1;
-  color: #212121;
-}
-.icon-action_color_fade.icon-action_invert {
-  background: none;
-  color: #fff;
-}
-.icon-action_color_fade.icon-action_invert:hover, .icon-action_color_fade.icon-action_invert:focus {
-  background: none;
   color: #fff;
 }
 
@@ -2265,12 +2250,17 @@ input::-moz-placeholder {
 }
 
 .icon-action_invert {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.3);
   color: #212121;
 }
-.icon-action_invert:hover, .icon-action_invert:focus {
-  background: rgba(255, 255, 255, 0.75);
-  color: #212121;
+.icon-action_invert:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+.icon-action_invert:focus {
+  background: rgba(255, 255, 255, 0.5);
+}
+.icon-action_invert:active {
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .input {

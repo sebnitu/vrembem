@@ -1,7 +1,7 @@
 ---
 layout: article
 title: Icon-action
-description: "A minimal container component for icon based actions."
+description: "A component for displaying simple action buttons using icons."
 category: simple
 usage:
   npm: "@vrembem/icon-action"
@@ -34,16 +34,13 @@ usage:
 
 {% include flag.html heading="icon-action_color" %}
 
-{% include demo_open.html class_parent="spacing" %}
+{% include demo_open.html class_grid="grid_break" %}
 <div class="padding radius background_white">
   <div class="level">
     <button class="icon-action">
       {% include icon.html icon="x" %}
     </button>
     <button class="icon-action icon-action_color_subtle">
-      {% include icon.html icon="x" %}
-    </button>
-    <button class="icon-action icon-action_color_fade">
       {% include icon.html icon="x" %}
     </button>
 
@@ -58,6 +55,19 @@ usage:
     </button>
   </div>
 </div>
+{% include demo_switch.html %}
+```html
+<button class="icon-action">...</button>
+<button class="icon-action icon-action_color_subtle">...</button>
+<button class="icon-action icon-action_color_danger">...</button>
+<button class="icon-action icon-action_color_caution">...</button>
+<button class="icon-action icon-action_color_success">...</button>
+```
+{% include demo_close.html %}
+
+{% include flag.html heading="icon-action_invert" %}
+
+{% include demo_open.html class_grid="grid_break" %}
 <div class="padding radius background_night">
   <div class="level">
     <button class="icon-action icon-action_invert">
@@ -66,19 +76,27 @@ usage:
     <button class="icon-action icon-action_invert icon-action_color_subtle">
       {% include icon.html icon="x" %}
     </button>
-    <button class="icon-action icon-action_invert icon-action_color_fade">
+
+    <button class="icon-action icon-action_color_danger">
       {% include icon.html icon="x" %}
+    </button>
+    <button class="icon-action icon-action_color_caution">
+      {% include icon.html icon="minus" %}
+    </button>
+    <button class="icon-action icon-action_color_success">
+      {% include icon.html icon="maximize-2" %}
     </button>
   </div>
 </div>
 {% include demo_switch.html %}
 ```html
-<button class="icon-action">...</button>
-<button class="icon-action icon-action_color_subtle">...</button>
+<!-- Use the invert modifier for dark backgrounds -->
+<button class="icon-action icon-action_invert">...</button>
+<button class="icon-action icon-action_invert icon-action_color_subtle">...</button>
+
+<!-- Some color modifiers work on any color contrast -->
 <button class="icon-action icon-action_color_danger">...</button>
 <button class="icon-action icon-action_color_caution">...</button>
 <button class="icon-action icon-action_color_success">...</button>
-<button class="icon-action icon-action_color_invert">...</button>
-<button class="icon-action icon-action_color_invert_subtle">...</button>
 ```
 {% include demo_close.html %}
