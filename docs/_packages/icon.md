@@ -20,7 +20,7 @@ usage:
 You can inject svg icons directly or use svg sprites. The only requirement is the `icon` component class.
 </div>
 
-{% include demo_open.html %}
+{% include demo_open.html class_grid="grid_break" %}
 <div class="level">
   {% include icon.html icon="anchor" %}
   {% include icon.html icon="arrow-left" %}
@@ -35,39 +35,29 @@ You can inject svg icons directly or use svg sprites. The only requirement is th
 </div>
 {% include demo_switch.html %}
 ```html
-<svg role="img" class="icon">
-  <use xlink:href="#github"></use>
+<svg class="icon" role="img">
+  <use xlink:href="#icon-anchor"></use>
 </svg>
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="icon + heading" %}
+{% include flag.html heading="icon_style_[key]" %}
 
-{% include demo_open.html %}
-<div class="spacing">
-  <h1 class="h1">
-    {% include icon.html icon="anchor" %}
-    Heading example
-  </h1>
-  <h2 class="h2">
-    {% include icon.html icon="anchor" %}
-    Heading example
-  </h2>
+<div class="type" markdown="1">
+The default icon style is set using the `$icon-style` variable. You can also explicity style an icon using the style modifier.
 </div>
+
+{% include demo_open.html class_grid="grid_break" %}
+{% include icon.html icon="heart" class="icon_style_stroke" %}
+{% include icon.html icon="heart" class="icon_style_fill" %}
 {% include demo_switch.html %}
 ```html
-<h1>
-  <svg role="img" class="icon">
-    <use xlink:href="#anchor"></use>
-  </svg>
-  ...
-</h1>
+<svg class="icon icon_style_stroke" role="img">
+  <use xlink:href="#icon-heart"></use>
+</svg>
 
-<h2>
-  <svg role="img" class="icon">
-    <use xlink:href="#anchor"></use>
-  </svg>
-  ...
-</h2>
+<svg class="icon icon_style_fill" role="img">
+  <use xlink:href="#icon-heart"></use>
+</svg>
 ```
 {% include demo_close.html %}
