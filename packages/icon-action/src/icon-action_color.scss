@@ -1,35 +1,19 @@
 @import "./variables";
 
-.icon-action_color_subtle {
-  background: none;
-  color: $color;
-
-  &:hover,
-  &:focus {
-    background: rgba($black, 0.1);
-    color: $color;
-  }
-
-  &.icon-action_invert {
-    background: none;
-    color: $color-invert;
-
-    &:hover,
-    &:focus {
-      background: rgba($white, 0.1);
-      color: $color-invert;
-    }
-  }
-}
-
 .icon-action_color_danger {
   background: $danger;
   color: color-switch($danger);
 
-  &:hover,
+  &:hover {
+    background: darken($danger, 10%);
+  }
+
   &:focus {
-    background: $danger-dark;
-    color: color-switch($danger);
+    background: darken($danger, 20%);
+  }
+
+  &:active {
+    background: darken($danger, 20%);
   }
 }
 
@@ -37,10 +21,16 @@
   background: $caution;
   color: color-switch($caution);
 
-  &:hover,
+  &:hover {
+    background: darken($caution, 5%);
+  }
+
   &:focus {
-    background: $caution-dark;
-    color: color-switch($caution);
+    background: darken($caution, 10%);
+  }
+
+  &:active {
+    background: darken($caution, 10%);
   }
 }
 
@@ -48,9 +38,15 @@
   background: $success;
   color: color-switch($success);
 
-  &:hover,
+  &:hover {
+    background: darken($success, 10%);
+  }
+
   &:focus {
-    background: $success-dark;
-    color: color-switch($success);
+    background: darken($success, 20%);
+  }
+
+  &:active {
+    background: darken($success, 20%);
   }
 }

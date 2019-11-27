@@ -1,0 +1,35 @@
+@import "./variables";
+
+.icon-action_subtle {
+  background: none;
+  color: $color;
+
+  &:hover {
+    background: rgba($black, 0.1);
+  }
+
+  &:focus {
+    background: rgba($black, 0.2);
+  }
+
+  &:active {
+    background: rgba($black, 0.2);
+  }
+
+  &.icon-action_invert {
+    background: none;
+    color: $color-invert;
+
+    &:hover {
+      background: rgba($white, 0.1);
+    }
+
+    &:focus {
+      background: rgba($white, 0.2);
+    }
+
+    &:active {
+      background: rgba($white, 0.2);
+    }
+  }
+}

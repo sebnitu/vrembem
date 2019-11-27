@@ -10,23 +10,23 @@ usage:
 
 {% include flag.html heading="icon-action" %}
 
-{% include demo_open.html %}
+{% include demo_open.html class_grid="grid_break" %}
 <div class="level">
-  <button class="icon-action">
+  <button class="icon-action" aria-label="Close">
     {% include icon.html icon="x" %}
   </button>
-  <button class="icon-action">
+  <button class="icon-action" aria-label="Minimize">
     {% include icon.html icon="minus" %}
   </button>
-  <button class="icon-action">
+  <button class="icon-action" aria-label="Fullscreen">
     {% include icon.html icon="maximize-2" %}
   </button>
 </div>
 {% include demo_switch.html %}
 ```html
-<button class="icon-action">
+<button class="icon-action" aria-label="Close">
   <svg role="img" class="icon">
-    <use xlink:href="#x"></use>
+    <!-- SVG markup or link ID goes here.. -->
   </svg>
 </button>
 ```
@@ -35,33 +35,22 @@ usage:
 {% include flag.html heading="icon-action_color" %}
 
 {% include demo_open.html class_grid="grid_break" %}
-<div class="padding radius background_white">
-  <div class="level">
-    <button class="icon-action">
-      {% include icon.html icon="x" %}
-    </button>
-    <button class="icon-action icon-action_color_subtle">
-      {% include icon.html icon="x" %}
-    </button>
-
-    <button class="icon-action icon-action_color_danger">
-      {% include icon.html icon="x" %}
-    </button>
-    <button class="icon-action icon-action_color_caution">
-      {% include icon.html icon="minus" %}
-    </button>
-    <button class="icon-action icon-action_color_success">
-      {% include icon.html icon="maximize-2" %}
-    </button>
-  </div>
+<div class="level">
+  <button class="icon-action icon-action_color_danger" aria-label="Close">
+    {% include icon.html icon="x" %}
+  </button>
+  <button class="icon-action icon-action_color_caution" aria-label="Minimize">
+    {% include icon.html icon="minus" %}
+  </button>
+  <button class="icon-action icon-action_color_success" aria-label="Fullscreen">
+    {% include icon.html icon="maximize-2" %}
+  </button>
 </div>
 {% include demo_switch.html %}
 ```html
-<button class="icon-action">...</button>
-<button class="icon-action icon-action_color_subtle">...</button>
-<button class="icon-action icon-action_color_danger">...</button>
-<button class="icon-action icon-action_color_caution">...</button>
-<button class="icon-action icon-action_color_success">...</button>
+<button class="icon-action icon-action_color_danger" aria-label="Close">...</button>
+<button class="icon-action icon-action_color_caution" aria-label="Minimize">...</button>
+<button class="icon-action icon-action_color_success" aria-label="Fullscreen">...</button>
 ```
 {% include demo_close.html %}
 
@@ -69,34 +58,33 @@ usage:
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="padding radius background_night">
-  <div class="level">
-    <button class="icon-action icon-action_invert">
-      {% include icon.html icon="x" %}
-    </button>
-    <button class="icon-action icon-action_invert icon-action_color_subtle">
-      {% include icon.html icon="x" %}
-    </button>
-
-    <button class="icon-action icon-action_color_danger">
-      {% include icon.html icon="x" %}
-    </button>
-    <button class="icon-action icon-action_color_caution">
-      {% include icon.html icon="minus" %}
-    </button>
-    <button class="icon-action icon-action_color_success">
-      {% include icon.html icon="maximize-2" %}
-    </button>
-  </div>
+  <button class="icon-action icon-action_invert" aria-label="Close">
+    {% include icon.html icon="x" %}
+  </button>
 </div>
 {% include demo_switch.html %}
 ```html
-<!-- Use the invert modifier for dark backgrounds -->
-<button class="icon-action icon-action_invert">...</button>
-<button class="icon-action icon-action_invert icon-action_color_subtle">...</button>
+<button class="icon-action" aria-label="Close">...</button>
+<button class="icon-action icon-action_invert" aria-label="Close">...</button>
+```
+{% include demo_close.html %}
 
-<!-- Some color modifiers work on any color contrast -->
-<button class="icon-action icon-action_color_danger">...</button>
-<button class="icon-action icon-action_color_caution">...</button>
-<button class="icon-action icon-action_color_success">...</button>
+{% include flag.html heading="icon-action_subtle" %}
+
+{% include demo_open.html class_grid="grid_break" class_parent="flex flex_items_equal" %}
+<div class="padding radius background_white">
+  <button class="icon-action icon-action_subtle" aria-label="Close">
+    {% include icon.html icon="x" %}
+  </button>
+</div>
+<div class="padding radius background_night">
+  <button class="icon-action icon-action_invert icon-action_subtle" aria-label="Close">
+    {% include icon.html icon="x" %}
+  </button>
+</div>
+{% include demo_switch.html %}
+```html
+<button class="icon-action icon-action_subtle" aria-label="Close">...</button>
+<button class="icon-action icon-action_subtle icon-action_invert" aria-label="Close">...</button>
 ```
 {% include demo_close.html %}
