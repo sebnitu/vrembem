@@ -1,7 +1,7 @@
 ---
 layout: article
 title: Input
-description: "The default component for user input."
+description: "A component for displaying form input elements."
 category: simple
 usage:
   npm: "@vrembem/input"
