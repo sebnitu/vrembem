@@ -40,7 +40,6 @@ usage:
 {% include flag.html heading="menu__link_icon" %}
 
 {% include demo_open.html %}
-
 <ul class="menu">
   <li class="menu__item">
     <a class="menu__link menu__link_icon" href="#">
@@ -74,9 +73,7 @@ usage:
     </a>
   </li>
 </ul>
-
 {% include demo_switch.html %}
-
 ```html
 <ul class="menu">
   <li class="menu__item">
@@ -88,13 +85,11 @@ usage:
   </li>
 </ul>
 ```
-
 {% include demo_close.html %}
 
 {% include flag.html heading="menu__text" %}
 
 {% include demo_open.html %}
-
 <ul class="menu">
   <li class="menu__item">
     <strong class="menu__text">Actions:</strong>
@@ -109,9 +104,7 @@ usage:
     <a class="menu__link" href="#">Delete</a>
   </li>
 </ul>
-
 {% include demo_switch.html %}
-
 ```html
 <ul class="menu">
   <li class="menu__item">
@@ -119,17 +112,13 @@ usage:
   </li>
 </ul>
 ```
-
 {% include demo_close.html %}
-
-{% include flag.html heading="menu > *" %}
 
 <div class="type" markdown="1">
 Elements inside the `menu__link` and `menu__text` elements receive appropriate spacing.
 </div>
 
 {% include demo_open.html %}
-
 <ul class="menu">
   <li class="menu__item">
     <a class="menu__link" href="#">
@@ -156,28 +145,24 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate s
     </a>
   </li>
 </ul>
-
 {% include demo_switch.html %}
-
 ```html
 <ul class="menu">
   <li class="menu__item">
     <a class="menu__link" href="#">
       <svg role="img" class="icon">
-        <use xlink:href="#thumbs-up"></use>
+        <use xlink:href="#icon-thumbs-up"></use>
       </svg>
       <span>30k</span>
     </a>
   </li>
 </ul>
 ```
-
 {% include demo_close.html %}
 
 {% include flag.html heading="is-active is-disabled" %}
 
 {% include demo_open.html %}
-
 <ul class="menu">
   <li class="menu__item">
     <a class="menu__link is-active" href="#">Create</a>
@@ -193,9 +178,7 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate s
     <a class="menu__link" href="#">Logout</a>
   </li>
 </ul>
-
 {% include demo_switch.html %}
-
 ```html
 <ul class="menu">
   <li class="menu__item">
@@ -210,13 +193,11 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate s
   </li>
 </ul>
 ```
-
 {% include demo_close.html %}
 
 {% include flag.html heading="menu_full" %}
 
 {% include demo_open.html %}
-
 <ul class="menu menu_full">
   <li class="menu__item">
     <a class="menu__link" href="#">Create</a>
@@ -232,135 +213,15 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate s
     <a class="menu__link" href="#">Logout</a>
   </li>
 </ul>
-
 {% include demo_switch.html %}
-
 ```html
-<ul class="menu menu_full">
-  ...
-</ul>
+<ul class="menu menu_full">...</ul>
 ```
-
-{% include demo_close.html %}
-
-{% include flag.html heading="menu_scroll" %}
-
-<div class="type" markdown="1">
-Allows a horizontal menu to scroll if it exceeds the full width of it's container.
-</div>
-
-{% include demo_open.html class_gridItem="span_6" %}
-
-<ul class="menu menu_scroll">
-  <li class="menu__item">
-    <a class="menu__link" href="#">Create</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Edit</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Update</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Read</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Delete</a>
-  </li>
-  <li class="menu__sep"></li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Create</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Edit</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Update</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Read</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Delete</a>
-  </li>
-  <li class="menu__sep"></li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Settings</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Logout</a>
-  </li>
-</ul>
-
-{% include demo_switch.html %}
-
-```html
-<ul class="menu menu_scroll">
-  ...
-</ul>
-```
-
-{% include demo_close.html %}
-
-{% include flag.html heading="menu_wrap" %}
-
-{% include demo_open.html %}
-
-<ul class="menu menu_wrap">
-  <li class="menu__item">
-    <a class="menu__link" href="#">Create</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Edit</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Update</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Read</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Delete</a>
-  </li>
-  <li class="menu__sep"></li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Create</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Edit</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Update</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Read</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Delete</a>
-  </li>
-  <li class="menu__sep"></li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Settings</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Logout</a>
-  </li>
-</ul>
-
-{% include demo_switch.html %}
-
-```html
-<ul class="menu menu_wrap">
-  ...
-</ul>
-```
-
 {% include demo_close.html %}
 
 {% include flag.html heading="menu_stack" %}
 
 {% include demo_open.html %}
-
 <ul class="menu menu_stack">
   <li class="menu__item">
     <a class="menu__link" href="#">Create</a>
@@ -376,15 +237,12 @@ Allows a horizontal menu to scroll if it exceeds the full width of it's containe
     <a class="menu__link" href="#">Logout</a>
   </li>
 </ul>
-
 {% include demo_switch.html %}
-
 ```html
 <ul class="menu menu_stack">
   ...
 </ul>
 ```
-
 {% include demo_close.html %}
 
 {% include flag.html heading="menu_theme_invert" %}
@@ -393,7 +251,7 @@ Allows a horizontal menu to scroll if it exceeds the full width of it's containe
 This theme is perfect for using menus on a dark background.
 </div>
 
-{% include demo_open.html class_parent="invert" %}
+{% include demo_open.html class_grid="grid_break" class_parent="invert" %}
 <div class="demo__group">
   <ul class="menu menu_theme_invert">
     <li class="menu__item">
@@ -437,36 +295,24 @@ This theme is perfect for using menus on a dark background.
 {% include demo_switch.html %}
 ```html
 <ul class="menu menu_theme_invert">
-  <li class="menu__item">
-    <a class="menu__link is-active" href="#">Create</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Read</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link is-disabled" href="#">Edit</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Delete</a>
-  </li>
-  <li class="menu__sep"></li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Logout</a>
-  </li>
+  ...
 </ul>
 ```
 {% include demo_close.html %}
 
 {% include flag.html heading="menu_theme_tabs" %}
 
-{% include demo_open.html %}
+{% include demo_open.html class_grid="grid_break" %}
 <div class="demo__group">
   <ul class="menu menu_theme_tabs">
     <li class="menu__item">
       <a class="menu__link is-active" href="#">Create</a>
     </li>
     <li class="menu__item">
-      <a class="menu__link" href="#">Edit</a>
+      <a class="menu__link" href="#">Read</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__link is-disabled" href="#">Update</a>
     </li>
     <li class="menu__item">
       <a class="menu__link" href="#">Delete</a>
@@ -483,7 +329,10 @@ This theme is perfect for using menus on a dark background.
       <a class="menu__link is-active" href="#">Create</a>
     </li>
     <li class="menu__item">
-      <a class="menu__link" href="#">Edit</a>
+      <a class="menu__link" href="#">Read</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__link is-disabled" href="#">Update</a>
     </li>
     <li class="menu__item">
       <a class="menu__link" href="#">Delete</a>
@@ -497,10 +346,7 @@ This theme is perfect for using menus on a dark background.
 {% include demo_switch.html %}
 ```html
 <ul class="menu menu_theme_tabs">
-  <li class="menu__item">
-    <a class="menu__link" href="#">Menu Item</a>
-  </li>
-  <li class="menu__sep"></li>
+  ...
 </ul>
 ```
 {% include demo_close.html %}

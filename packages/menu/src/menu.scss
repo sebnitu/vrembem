@@ -8,7 +8,7 @@
   list-style: none;
 
   .menu__item + .menu__item {
-    margin-left: $menu-spacing;
+    margin-left: $menu-gap;
   }
 
   .icon {

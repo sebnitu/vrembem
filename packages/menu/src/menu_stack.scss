@@ -1,44 +1,13 @@
 @import "./variables";
-
-$menu_stack-indent: 1em !default;
-$menu_stack__text-spacing: 1em !default;
+@import "./mixins";
 
 .menu_stack {
-  flex-direction: column;
-  align-items: stretch;
-  overflow: visible;
-
-  .menu__item + .menu__item {
-    margin-top: $menu-spacing;
-    margin-left: 0;
-  }
-
-  .menu__link {
-    white-space: normal;
-  }
-
-  .menu__text {
-    margin: 0 $menu_stack__text-spacing;
-
-    &:first-child {
-      margin-left: 0;
-    }
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
-
-  .menu__sep {
-    width: auto;
-    height: $menu__sep-width;
-    margin: $menu__sep-spacing 0;
-  }
+  @include menu-stack();
 }
 
 @each $key, $value in $breakpoints {
   .menu_stack_#{$key} {
-    @extend .menu_stack;
+    @include menu-stack();
   }
 
   @include media-min($key) {

@@ -24,8 +24,8 @@ $menu__sep-spacing: 0.5em !default;
 $menu__sep-width: 1px !default;
 $menu__sep-background: $border-color !default;
 
-$menu-spacing: 1px !default;
-$menu-spacing-scale: (
+$menu-gap: 1px !default;
+$menu-gap-scale: (
   "0": 0,
   "xs": 1px,
   "sm": 0.25rem,

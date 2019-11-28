@@ -1,0 +1,30 @@
+@mixin menu-full() {
+  .menu__item {
+    flex: 1 1 auto;
+  }
+
+  .menu__link {
+    justify-content: center;
+  }
+}
+
+@mixin menu-stack() {
+  flex-direction: column;
+  align-items: stretch;
+  overflow: visible;
+
+  .menu__item + .menu__item {
+    margin-top: $menu-gap;
+    margin-left: 0;
+  }
+
+  .menu__link {
+    white-space: normal;
+  }
+
+  .menu__sep {
+    width: auto;
+    height: $menu__sep-width;
+    margin: $menu__sep-spacing 0;
+  }
+}

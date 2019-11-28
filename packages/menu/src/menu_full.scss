@@ -1,17 +1,14 @@
 @import "./variables";
+@import "./mixins";
 
 .menu_full {
-  justify-content: space-between;
+  @include menu-full();
+}
 
-  .menu__item {
-    flex: 1 1 auto;
-  }
-
-  .menu__item_static {
-    flex-grow: 0;
-  }
-
-  .menu__link {
-    justify-content: center;
+@each $key, $value in $breakpoints {
+  @include media-max($key) {
+    .menu_full_#{$key} {
+      @include menu-full();
+    }
   }
 }
