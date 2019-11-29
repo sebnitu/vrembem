@@ -435,7 +435,6 @@ Modifiers that adjust the gutters between content tracks.
     <div class="box">...</div>
   </div>
 </div>
-
 <div class="grid grid_gap_none">
   <div class="grid__item">
     <div class="box">...</div>
@@ -469,7 +468,6 @@ Modifiers that adjust the gutters between content tracks.
     <div class="box">...</div>
   </div>
 </div>
-
 <div class="grid grid_gap_xs">
   <div class="grid__item">
     <div class="box">...</div>
@@ -503,7 +501,6 @@ Modifiers that adjust the gutters between content tracks.
     <div class="box">...</div>
   </div>
 </div>
-
 <div class="grid grid_gap_sm">
   <div class="grid__item">
     <div class="box">...</div>
@@ -537,7 +534,6 @@ Modifiers that adjust the gutters between content tracks.
     <div class="box">...</div>
   </div>
 </div>
-
 <div class="grid grid_gap_md">
   <div class="grid__item">
     <div class="box">...</div>
@@ -571,7 +567,6 @@ Modifiers that adjust the gutters between content tracks.
     <div class="box">...</div>
   </div>
 </div>
-
 <div class="grid grid_gap_lg">
   <div class="grid__item">
     <div class="box">...</div>
@@ -605,7 +600,6 @@ Modifiers that adjust the gutters between content tracks.
     <div class="box">...</div>
   </div>
 </div>
-
 <div class="grid grid_gap_xl">
   <div class="grid__item">
     <div class="box">...</div>

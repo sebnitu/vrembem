@@ -129,7 +129,7 @@ For simple responsive table styles you can wrap your tables in the `scroll-box` 
 
 {% include flag.html heading="table_overflow_ellipsis" %}
 
-{% include demo_open.html class_gridItem="span_6" %}
+{% include demo_open.html %}
 <table class="table table_ellipsis">
   <colgroup>
     <col style="width:50px;">

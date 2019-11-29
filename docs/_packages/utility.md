@@ -70,7 +70,7 @@ usage:
     <div class="swatch border border_left_0 background_transparent"></div>
   </div>
 </div>
-{% include demo_switch.html class_gridItem="" %}
+{% include demo_switch.html %}
 ```html
 <div class="background_primary_lighter"></div>
 <div class="background_primary_light"></div>
@@ -91,7 +91,7 @@ usage:
   <div class="swatch background_shade_light border_bottom"></div>
   <div class="swatch background_shade_light border_left"></div>
 </div>
-{% include demo_switch.html class_gridItem="" %}
+{% include demo_switch.html %}
 ```html
 <div class="border"></div>
 <div class="border_top"></div>
@@ -109,7 +109,7 @@ usage:
   <div class="swatch background_shade_light border border_bottom_0"></div>
   <div class="swatch background_shade_light border border_left_0"></div>
 </div>
-{% include demo_switch.html class_gridItem="" %}
+{% include demo_switch.html %}
 ```html
 <div class="border_0"></div>
 <div class="border_top_0"></div>
@@ -126,7 +126,7 @@ usage:
   <div class="swatch background_shade_light border border_color_dark"></div>
   <div class="swatch background_shade_light border border_color_darker"></div>
 </div>
-{% include demo_switch.html class_gridItem="" %}
+{% include demo_switch.html %}
 ```html
 <div class="border border_color_light"></div>
 <div class="border"></div>
@@ -144,7 +144,7 @@ usage:
     <div class="swatch border border_color_invert-darker"></div>
   </div>
 </div>
-{% include demo_switch.html class_gridItem="" %}
+{% include demo_switch.html %}
 ```html
 <div class="border border_color_invert-light"></div>
 <div class="border border_color_invert"></div>
@@ -161,7 +161,7 @@ usage:
   <div class="swatch background_secondary radius_square"></div>
   <div class="swatch background_secondary radius_circle"></div>
 </div>
-{% include demo_switch.html class_gridItem="" %}
+{% include demo_switch.html %}
 ```html
 <div class="radius"></div>
 <div class="radius_square"></div>
@@ -183,7 +183,7 @@ usage:
     <div class="swatch background_white elevate_24dp"></div>
   </div>
 </div>
-{% include demo_switch.html class_gridItem="" %}
+{% include demo_switch.html %}
 ```html
 <div class="elevate"></div>
 <div class="elevate_flat"></div>
@@ -288,7 +288,7 @@ usage:
     <span class="color_transparent">Color transparent</span>
   </div>
 </div>
-{% include demo_switch.html class_gridItem="" %}
+{% include demo_switch.html %}
 ```html
 <span class="color"></span>
 <span class="color_subtle"></span>
@@ -383,7 +383,7 @@ usage:
     </div>
   </div>
 </div>
-{% include demo_switch.html class_gridItem="" %}
+{% include demo_switch.html %}
 ```html
 <div class="display_block display_none_xs">
   <p>Small Mobile</p>
@@ -429,7 +429,7 @@ usage:
   <div class="swatch box margin_xs"></div>
   <div class="swatch box margin_xs"></div>
 </div>
-{% include demo_switch.html class_gridItem="" %}
+{% include demo_switch.html %}
 ```html
 <div class="flex flex_justify_between flex_align_end"></div>
 <div class="flex flex_justify_end flex_align_stretch"></div>
@@ -570,7 +570,7 @@ usage:
   <div class="box"></div>
   <div class="box"></div>
 </div>
-{% include demo_switch.html class_gridItem="" %}
+{% include demo_switch.html %}
 ```html
 <div class="spacing">...</div>
 <div class="spacing_xl">...</div>
@@ -579,7 +579,7 @@ usage:
 
 {% include flag.html heading="text" %}
 
-{% include demo_open.html class_gridItem="span_6" %}
+{% include demo_open.html %}
 <ul class="list list_between">
   <li class="list__item">
     <p class="text_size_sm">Text size small</p>

@@ -27,7 +27,6 @@ usage:
 {% include flag.html heading="button > arrow" %}
 
 {% include demo_open.html %}
-
 <div class="button-group button-group_wrap">
   <button class="button button_color_primary">
     <span>Button</span>
@@ -46,22 +45,18 @@ usage:
     {% include icon.html icon="github" %}
   </button>
 </div>
-
 {% include demo_switch.html %}
-
 ```html
 <button class="button">
   <span>Button</span>
   <span class="arrow"></span>
 </button>
 ```
-
 {% include demo_close.html %}
 
 {% include flag.html heading="menu > arrow" %}
 
 {% include demo_open.html %}
-
 <ul class="menu menu_wrap">
   <li class="menu__item">
     <a class="menu__link" href="#">
@@ -89,9 +84,7 @@ usage:
     </a>
   </li>
 </ul>
-
 {% include demo_switch.html %}
-
 ```html
 <ul class="menu">
   <li class="menu__item">
@@ -102,5 +95,4 @@ usage:
   </li>
 </ul>
 ```
-
 {% include demo_close.html %}

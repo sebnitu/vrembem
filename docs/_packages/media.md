@@ -270,9 +270,7 @@ usage:
 {% include flag.html heading="Quotes listing" %}
 
 {% include demo_open.html class_grid="grid_break" class_parent="spacing spacing_xl" %}
-
 <h2 class="h2 text_align_center">Tweet Quotes</h2>
-
 <div class="media media_stack_md flex_align_center">
   <img class="media__image radius_circle" src="https://picsum.photos/200/200/?41" width="200" height="200" />
   <blockquote class="media__body text_lead">
@@ -282,7 +280,6 @@ usage:
     </footer>
   </blockquote>
 </div><!-- .media -->
-
 <div class="media media_stack_md media_reverse flex_align_center">
   <img class="media__image radius_circle" src="https://picsum.photos/200/200/?42" width="200" height="200" />
   <blockquote class="media__body text_lead">
@@ -292,7 +289,6 @@ usage:
     </footer>
   </blockquote>
 </div><!-- .media -->
-
 <div class="media media_stack_md flex_align_center">
   <img class="media__image radius_circle" src="https://picsum.photos/200/200/?43" width="200" height="200" />
   <blockquote class="media__body text_lead">
@@ -302,9 +298,7 @@ usage:
     </footer>
   </blockquote>
 </div><!-- .media -->
-
 {% include demo_switch.html %}
-
 ```html
 <div class="media media_stack_md flex_align_center">
   <img class="media__image radius_circle" src="..." />
@@ -316,5 +310,4 @@ usage:
   </blockquote>
 </div>
 ```
-
 {% include demo_close.html %}

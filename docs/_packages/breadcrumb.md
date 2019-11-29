@@ -41,21 +41,23 @@ usage:
 
 {% include flag.html heading="breadcrumb_invert" %}
 
-{% include demo_open.html class_grid="grid_break" class_parent="invert" %}
-<ol class="breadcrumb breadcrumb_invert">
-  <li class="breadcrumb__item">
-    <a href="#" class="breadcrumb__link">&larr; Home</a>
-  </li>
-  <li class="breadcrumb__item">
-    <a href="#" class="breadcrumb__link">Blog</a>
-  </li>
-  <li class="breadcrumb__item">
-    <a href="#" class="breadcrumb__link">Category</a>
-  </li>
-  <li class="breadcrumb__item">
-    <span class="breadcrumb__text">Current Page</span>
-  </li>
-</ol>
+{% include demo_open.html class_grid="grid_break" %}
+<div class="padding background_night radius">
+  <ol class="breadcrumb breadcrumb_invert">
+    <li class="breadcrumb__item">
+      <a href="#" class="breadcrumb__link">&larr; Home</a>
+    </li>
+    <li class="breadcrumb__item">
+      <a href="#" class="breadcrumb__link">Blog</a>
+    </li>
+    <li class="breadcrumb__item">
+      <a href="#" class="breadcrumb__link">Category</a>
+    </li>
+    <li class="breadcrumb__item">
+      <span class="breadcrumb__text">Current Page</span>
+    </li>
+  </ol>
+</div>
 {% include demo_switch.html %}
 ```html
 <ol class="breadcrumb breadcrumb_invert">

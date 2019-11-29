@@ -5848,14 +5848,6 @@ input::-moz-placeholder {
  * ---
  * Styles demos with both the code and rendered examples.
  */
-.demo__render,
-.demo__code {
-  width: 100%;
-  max-width: 100%;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
 .demo__code {
   padding: 1em;
   overflow: auto;

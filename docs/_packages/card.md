@@ -11,13 +11,11 @@ usage:
 {% include flag.html heading="card" %}
 
 <div class="type" markdown="1">
-
 The base card component comes with a number of elements for card composition. The three most basic being:
 
 * `card__body`
 * `card__image`
 * `card__title`
-
 </div>
 
 {% include demo_open.html %}
@@ -46,12 +44,10 @@ The base card component comes with a number of elements for card composition. Th
 {% include flag.html heading="card__header + card__footer" %}
 
 <div class="type" markdown="1">
-
 These are used for when you need separated card headers and footers.
 
 * `card__header`
 * `card__footer`
-
 </div>
 
 {% include demo_open.html %}
@@ -85,12 +81,10 @@ These are used for when you need separated card headers and footers.
 {% include flag.html heading="card__screen + card__background" %}
 
 <div class="type" markdown="1">
-
 Card screens and backgrounds are displayed behind the other card elements. These are typically paired with `.card_invert` which switches text colors to better suite a dark background.
 
 * `card__screen`
 * `card__background`
-
 </div>
 
 {% include demo_open.html %}

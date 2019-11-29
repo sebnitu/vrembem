@@ -154,7 +154,9 @@ Drawers can slide in from the left or right using the position modifiers:
 ```
 {% include demo_close.html %}
 
-<p>If a position modifier is not provided, the drawer will appear based on it's location in the DOM relative to the main content area.</p>
+<div class="type" markdown="1">
+If a position modifier is not provided, the drawer will appear based on it's location in the DOM relative to the main content area.
+</div>
 
 {% include flag.html heading="drawer_modal" %}
 

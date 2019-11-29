@@ -113,11 +113,9 @@ usage:
 {% include demo_close.html %}
 
 <div class="type" markdown="1">
-
 ## Dialog examples
 
 The dialog is a very flexible component and can be used in many different contexts. Here are more examples of the dialog component.
-
 </div>
 
 {% include flag.html heading="Message" %}

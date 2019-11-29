@@ -10,33 +10,7 @@ usage:
 
 {% include flag.html heading="dropdown" %}
 
-<div class="type" markdown="1">
-
-The dropdown component provides the following elements:
-
-* `dropdown`
-  * `dropdown__trigger`
-  * `dropdown__menu`
-    * `dropdown__item`
-      * `dropdown__link`
-      * `dropdown__content`
-        * `dropdown__title`
-    * `dropdown__sep`
-
-State classes:
-
-* `is-active`
-* `is-disabled`
-
-Trigger classes:
-
-* `on-hover`
-* `on-focus`
-
-</div>
-
 {% include demo_open.html %}
-
 <div class="dropdown is-active">
   <button class="dropdown__trigger button button_color_primary">Trigger</button>
   <ul class="dropdown__menu">
@@ -65,9 +39,7 @@ Trigger classes:
     </li>
   </ul>
 </div>
-
-{% include demo_switch.html class_gridItem="span_8" %}
-
+{% include demo_switch.html %}
 ```html
 <div class="dropdown is-active">
   <button class="dropdown__trigger button button_color_primary">Dropdown</button>
@@ -98,15 +70,12 @@ Trigger classes:
   </ul>
 </div>
 ```
-
 {% include demo_close.html %}
 
 {% include flag.html heading="dropdown__item > dropdown__menu" %}
 
 <div class="type" markdown="1">
-
 This illustrates the use of sub dropdown menus and also the `dropdown_pos_switch` class for reversing the direction of a sub dropdown.
-
 </div>
 
 {% include demo_open.html %}
@@ -167,7 +136,7 @@ This illustrates the use of sub dropdown menus and also the `dropdown_pos_switch
     </li>
   </ul>
 </div>
-{% include demo_switch.html class_gridItem="span_8" %}
+{% include demo_switch.html %}
 ```html
 <div class="dropdown is-active">
   <button class="dropdown__trigger button button_color_primary">Trigger</button>
@@ -294,7 +263,7 @@ This illustrates the use of sub dropdown menus and also the `dropdown_pos_switch
     </ul>
   </div><!-- .dropdown -->
 </div><!-- .demo__group -->
-{% include demo_switch.html class_gridItem="span_8" %}
+{% include demo_switch.html %}
 ```html
 <div class="dropdown dropdown_pos_up-left">...</div>
 <div class="dropdown dropdown_pos_up">...</div>

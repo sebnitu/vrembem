@@ -63,7 +63,6 @@ usage:
     </li>
     <li>Three</li>
   </ul>
-
   <ol class="list">
     <li>One</li>
     <li>Two
@@ -133,7 +132,7 @@ Typically used on an `<hr>` HTML element representing a thematic break between p
 
 {% include flag.html heading="embed" %}
 
-{% include demo_open.html class_gridItem="span_6" %}
+{% include demo_open.html %}
 <div class="embed">
   <iframe class="embed__item" src="https://www.youtube.com/embed/YTsf-OAaoKc?rel=0&showinfo=0" width="560" height="315" frameborder="0" scrolling="no" allowfullscreen></iframe>
 </div>

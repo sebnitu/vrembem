@@ -47,15 +47,15 @@ usage:
 
 {% include demo_open.html class_parent="spacing" %}
 
-<div class="demo__group">
+<div>
   <textarea class="input input_type_textarea" rows="3"></textarea>
 </div>
 
-<div class="demo__group">
+<div>
   <textarea class="input input_type_textarea" rows="2"></textarea>
 </div>
 
-<div class="demo__group">
+<div>
   <textarea class="input input_type_textarea" rows="1"></textarea>
 </div>
 
@@ -73,19 +73,19 @@ usage:
 
 {% include demo_open.html class_parent="spacing" %}
 
-<div class="demo__group">
+<div>
   <input class="input input_size_sm" placeholder="Default input..." type="text" />
 </div>
 
-<div class="demo__group">
+<div>
   <input class="input" placeholder="Default input..." type="text" />
 </div>
 
-<div class="demo__group">
+<div>
   <input class="input input_size_lg" placeholder="Default input..." type="text" />
 </div>
 
-<div class="demo__group">
+<div>
   <select class="input input_type_select input_size_sm">
     <option>Option 1</option>
     <option>Option 2</option>
@@ -93,7 +93,7 @@ usage:
   </select>
 </div>
 
-<div class="demo__group">
+<div>
   <select class="input input_type_select">
     <option>Option 1</option>
     <option>Option 2</option>
@@ -101,7 +101,7 @@ usage:
   </select>
 </div>
 
-<div class="demo__group">
+<div>
   <select class="input input_type_select input_size_lg">
     <option>Option 1</option>
     <option>Option 2</option>
@@ -124,11 +124,11 @@ usage:
 
 {% include demo_open.html class_parent="spacing" %}
 
-<div class="demo__group">
+<div>
   <input class="input input_state_success" type="text" />
 </div>
 
-<div class="demo__group">
+<div>
   <select class="input input_state_success input_type_select">
     <option>Option 1</option>
     <option>Option 2</option>
@@ -136,7 +136,7 @@ usage:
   </select>
 </div>
 
-<div class="demo__group">
+<div>
   <textarea class="input input_state_success input_type_textarea" rows="3"></textarea>
 </div>
 
@@ -158,11 +158,11 @@ usage:
 
 {% include demo_open.html class_parent="spacing" %}
 
-<div class="demo__group">
+<div>
   <input class="input input_state_caution" type="text" />
 </div>
 
-<div class="demo__group">
+<div>
   <select class="input input_state_caution input_type_select">
     <option>Option 1</option>
     <option>Option 2</option>
@@ -170,7 +170,7 @@ usage:
   </select>
 </div>
 
-<div class="demo__group">
+<div>
   <textarea class="input input_state_caution input_type_textarea" rows="3"></textarea>
 </div>
 
@@ -192,11 +192,11 @@ usage:
 
 {% include demo_open.html class_parent="spacing" %}
 
-<div class="demo__group">
+<div>
   <input class="input input_state_danger" type="text" />
 </div>
 
-<div class="demo__group">
+<div>
   <select class="input input_state_danger input_type_select">
     <option>Option 1</option>
     <option>Option 2</option>
@@ -204,7 +204,7 @@ usage:
   </select>
 </div>
 
-<div class="demo__group">
+<div>
   <textarea class="input input_state_danger input_type_textarea" rows="3"></textarea>
 </div>
 
