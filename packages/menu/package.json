@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/menu",
-  "description": "Menus represent groups of links, actions or navigation that a user can interact with.",
+  "description": "Menus represent groups of links, actions or tools that a user can interact with.",
   "version": "0.0.0",
   "style": "index.scss",
   "scripts": {

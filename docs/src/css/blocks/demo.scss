@@ -4,8 +4,12 @@
  * Styles demos with both the code and rendered examples.
  */
 
-.demo > .grid__item {
-  display: flex;
+.demo__render,
+.demo__code {
+  width: 100%;
+  max-width: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .demo__code {
@@ -16,21 +20,4 @@
   .drawer__wrapper {
     height: 100%;
   }
-}
-
-.demo__render.invert,
-.demo__group.invert {
-  padding: 1em;
-  border-radius: $border-radius;
-  background: $night;
-}
-
-.grid__item > .demo__render,
-.grid__item > .demo__code {
-  flex: 1 0 100%;
-  max-width: 100%;
-}
-
-.demo__group + .demo__group {
-  margin-top: 1em;
 }

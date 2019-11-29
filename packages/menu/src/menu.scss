@@ -17,6 +17,7 @@
 }
 
 .menu__sep {
+  flex-shrink: 0;
   align-self: stretch;
   width: $menu__sep-width;
   height: auto;

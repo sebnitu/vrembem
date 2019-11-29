@@ -1,7 +1,7 @@
 ---
 layout: article
 title: Menu
-description: "Menus represent groups of links, actions or navigation that a user can interact with."
+description: "Menus represent groups of links, actions or tools that a user can interact with."
 category: compound
 usage:
   npm: "@vrembem/menu"
@@ -44,7 +44,7 @@ The primary elements when composing the `menu` component are `menu__item`'s cont
 {% include demo_close.html %}
 
 <div class="type" markdown="1">
-For links that only contain an icon, you can use the `menu__link_icon` modifier to create a square link similar to the `button_link` modifier.
+For links that only contain an icon, you can use the `menu__link_icon` modifier to create a square link similar to the `button_icon` modifier.
 </div>
 
 {% include demo_open.html %}
@@ -164,7 +164,7 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate c
 
 {% include flag.html heading="menu_full" %}
 
-{% include demo_open.html %}
+{% include demo_open.html class_grid="grid_break" %}
 <ul class="menu menu_full">
   <li class="menu__item">
     <a class="menu__link" href="#">Create</a>
@@ -180,15 +180,41 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate c
     <a class="menu__link" href="#">Logout</a>
   </li>
 </ul>
-{% include demo_switch.html class_gridItem="" %}
+{% include demo_switch.html %}
 ```html
 <ul class="menu menu_full">...</ul>
 ```
 {% include demo_close.html %}
 
+<div class="type" markdown="1">
+To set a menu to full below a specific breakpoint, use the full breakpoint modifier: `menu_full_[key]`
+</div>
+
+{% include demo_open.html class_grid="grid_break" %}
+<ul class="menu menu_full_lg">
+  <li class="menu__item">
+    <a class="menu__link" href="#">Create</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Edit</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Delete</a>
+  </li>
+  <li class="menu__sep"></li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Logout</a>
+  </li>
+</ul>
+{% include demo_switch.html %}
+```html
+<ul class="menu menu_full_lg">...</ul>
+```
+{% include demo_close.html %}
+
 {% include flag.html heading="menu_stack" %}
 
-{% include demo_open.html %}
+{% include demo_open.html class_grid="grid_break" %}
 <ul class="menu menu_stack">
   <li class="menu__item">
     <a class="menu__link" href="#">Create</a>
@@ -204,9 +230,37 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate c
     <a class="menu__link" href="#">Logout</a>
   </li>
 </ul>
-{% include demo_switch.html class_gridItem="" %}
+{% include demo_switch.html %}
 ```html
 <ul class="menu menu_stack">
+  ...
+</ul>
+```
+{% include demo_close.html %}
+
+<div class="type" markdown="1">
+To create a stacked menu below a specific breakpoint, use the stack breakpoint modifier: `menu_stack_[key]`
+</div>
+
+{% include demo_open.html class_grid="grid_break" %}
+<ul class="menu menu_stack_lg">
+  <li class="menu__item">
+    <a class="menu__link" href="#">Create</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Edit</a>
+  </li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Delete</a>
+  </li>
+  <li class="menu__sep"></li>
+  <li class="menu__item">
+    <a class="menu__link" href="#">Logout</a>
+  </li>
+</ul>
+{% include demo_switch.html %}
+```html
+<ul class="menu menu_stack_lg">
   ...
 </ul>
 ```
@@ -218,8 +272,8 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate c
 A theme for using menus on a dark background.
 </div>
 
-{% include demo_open.html class_grid="grid_break" class_parent="invert" %}
-<div class="demo__group">
+{% include demo_open.html class_grid="grid_break" %}
+<div class="padding background_night radius spacing">
   <ul class="menu menu_theme_invert">
     <li class="menu__item">
       <a class="menu__link is-active" href="#">Create</a>
@@ -238,8 +292,6 @@ A theme for using menus on a dark background.
       <a class="menu__link" href="#">Logout</a>
     </li>
   </ul>
-</div>
-<div class="demo__group">
   <ul class="menu menu_stack menu_theme_invert">
     <li class="menu__item">
       <a class="menu__link is-active" href="#">Create</a>
@@ -269,8 +321,12 @@ A theme for using menus on a dark background.
 
 {% include flag.html heading="menu_theme_tabs" %}
 
+<div class="type" markdown="1">
+A theme for creating tab styled menus.
+</div>
+
 {% include demo_open.html class_grid="grid_break" %}
-<div class="demo__group">
+<div class="spacing">
   <ul class="menu menu_theme_tabs">
     <li class="menu__item">
       <a class="menu__link is-active" href="#">Create</a>
@@ -289,8 +345,6 @@ A theme for using menus on a dark background.
       <a class="menu__link" href="#">Logout</a>
     </li>
   </ul>
-</div>
-<div class="demo__group">
   <ul class="menu menu_stack menu_theme_tabs">
     <li class="menu__item">
       <a class="menu__link is-active" href="#">Create</a>

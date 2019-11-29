@@ -2679,6 +2679,7 @@ input::-moz-placeholder {
 }
 
 .menu__sep {
+  flex-shrink: 0;
   align-self: stretch;
   width: 1px;
   height: auto;

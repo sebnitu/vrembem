@@ -2679,6 +2679,7 @@ input::-moz-placeholder {
 }
 
 .menu__sep {
+  flex-shrink: 0;
   align-self: stretch;
   width: 1px;
   height: auto;
@@ -5681,56 +5682,6 @@ input::-moz-placeholder {
 }
 
 /**
- * Code Output
- */
-.type pre,
-.code-output {
-  padding: 1rem;
-}
-
-.type pre {
-  font-size: 14px;
-}
-
-.code-output {
-  margin: 1.5rem 0;
-  border: 2px solid #f2f2f2;
-  border-radius: 3px;
-}
-
-@media (min-width: 760px) {
-  .type pre,
-.code-output {
-    padding: 1.5rem;
-  }
-
-  .type pre {
-    font-size: 16px;
-  }
-}
-/**
- * Code Label
- */
-.code-label,
-.type .code-label {
-  margin: 1.5rem 0 -1.5rem;
-  padding: 0.5rem 1rem;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  background: linear-gradient(to right, #ebebeb, #f2f2f2);
-  color: #e91e63;
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 14px;
-}
-
-.code-label + div pre,
-.code-label + .code-output {
-  border-top: 0;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
-/**
  * Cover
  * ---
  * Creates styles for the cover component which is the layout for the home page.
@@ -5897,8 +5848,12 @@ input::-moz-placeholder {
  * ---
  * Styles demos with both the code and rendered examples.
  */
-.demo > .grid__item {
-  display: flex;
+.demo__render,
+.demo__code {
+  width: 100%;
+  max-width: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .demo__code {
@@ -5919,23 +5874,6 @@ input::-moz-placeholder {
 
 .demo__render .drawer__wrapper {
   height: 100%;
-}
-
-.demo__render.invert,
-.demo__group.invert {
-  padding: 1em;
-  border-radius: 4px;
-  background: #424242;
-}
-
-.grid__item > .demo__render,
-.grid__item > .demo__code {
-  flex: 1 0 100%;
-  max-width: 100%;
-}
-
-.demo__group + .demo__group {
-  margin-top: 1em;
 }
 
 /**
