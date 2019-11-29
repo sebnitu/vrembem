@@ -4,12 +4,15 @@
   background: none;
 
   &:hover {
-    background: rgba($black, 0.05);
+    background: rgba($black, 0.06);
   }
 
-  &:focus,
+  &:focus {
+    background: rgba($black, 0.09);
+  }
+
   &:active {
-    background: rgba($black, 0.1);
+    background: rgba($black, 0.12);
   }
 
   &.is-loading::after {
@@ -21,12 +24,15 @@
     color: $white;
 
     &:hover {
-      background: rgba($white, 0.05);
+      background: rgba($white, 0.06);
     }
 
-    &:focus,
+    &:focus {
+      background: rgba($white, 0.09);
+    }
+
     &:active {
-      background: rgba($white, 0.1);
+      background: rgba($white, 0.12);
     }
 
     &.is-loading::after {
@@ -36,18 +42,19 @@
 }
 
 .button_color_primary {
-  background-color: $primary;
+  background: $primary;
   color: $white;
 
   &:hover {
-    background-color: darken($primary, 5%);
-    color: $white;
+    background: darken($primary, 6%);
   }
 
-  &:focus,
+  &:focus {
+    background: darken($primary, 9%);
+  }
+
   &:active {
-    background-color: darken($primary, 10%);
-    color: $white;
+    background: darken($primary, 12%);
   }
 
   &.is-loading::after {
@@ -56,18 +63,19 @@
 }
 
 .button_color_secondary {
-  background-color: $secondary;
+  background: $secondary;
   color: $white;
 
   &:hover {
-    background-color: darken($secondary, 5%);
-    color: $white;
+    background: darken($secondary, 6%);
   }
 
-  &:focus,
+  &:focus {
+    background: darken($secondary, 9%);
+  }
+
   &:active {
-    background-color: darken($secondary, 10%);
-    color: $white;
+    background: darken($secondary, 12%);
   }
 
   &.is-loading::after {

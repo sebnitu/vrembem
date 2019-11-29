@@ -6,70 +6,14 @@
   font-size: $menu-font-size;
   line-height: $menu-line-height;
   list-style: none;
+}
 
-  .menu__item + .menu__item {
+.menu__item {
+  position: relative;
+
+  & + & {
     margin-left: $menu-gap;
   }
-
-  .icon {
-    padding: $menu-icon-padding;
-  }
-}
-
-.menu__link {
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding: $menu-padding;
-  border: $menu-border;
-  border-radius: $menu-border-radius;
-  background: $menu-background;
-  color: $menu-color;
-  white-space: nowrap;
-
-  &:hover,
-  &:focus {
-    outline: none;
-    border-color: $menu-border-color_hover;
-    background: $menu-background_hover;
-    color: $menu-color_hover;
-  }
-
-  > * + * {
-    margin-left: $menu-inner-spacing;
-  }
-
-  &.is-active,
-  &.is-parent {
-    border-color: $menu-border-color_active;
-    background: $menu-background_active;
-    color: $menu-color_active;
-
-    &:hover,
-    &:focus {
-      border-color: $menu-border-color_active;
-      background: $menu-background_active;
-      color: $menu-color_active;
-    }
-  }
-
-  &.is-disabled {
-    border-color: $menu-border-color_disabled;
-    background: $menu-background_disabled;
-    color: $menu-color_disabled;
-    cursor: default;
-
-    &:hover,
-    &:focus {
-      border-color: $menu-border-color_disabled;
-      background: $menu-background_disabled;
-      color: $menu-color_disabled;
-    }
-  }
-}
-
-.menu__link_icon {
-  padding: nth($menu-padding, 1);
 }
 
 .menu__sep {
@@ -78,21 +22,86 @@
   height: auto;
   margin: 0 $menu__sep-spacing;
   background: $menu__sep-background;
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
 }
 
+.menu__link,
 .menu__text {
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
+  min-width: $menu-min-size;
+  min-height: $menu-min-size;
   padding: $menu-padding;
-  border: $menu-border;
   border-radius: $menu-border-radius;
-  background: $menu-background;
-  color: $menu__text-color;
-  text-decoration: none;
   white-space: nowrap;
 
   > * + * {
     margin-left: $menu-inner-spacing;
   }
+}
+
+.menu__link {
+  background: $menu-background;
+  color: $menu-color;
+
+  &_icon {
+    padding: nth($menu-padding, 1);
+  }
+
+  &:hover {
+    background: $menu-background-hover;
+    color: $menu-color-hover;
+  }
+
+  &:focus {
+    outline: $menu-outline-focus;
+    outline-offset: $menu-outline-focus-offset;
+    background: $menu-background-focus;
+    color: $menu-color-focus;
+  }
+
+  &:active {
+    background: $menu-background-active;
+    color: $menu-color-active;
+  }
+
+  &.is-active {
+    background: $menu-background-is-active;
+    color: $menu-color-is-active;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: $menu-background-is-active;
+      color: $menu-color-is-active;
+    }
+  }
+
+  &.is-disabled {
+    background: $menu-background-is-disabled;
+    color: $menu-color-is-disabled;
+    cursor: default;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: $menu-background-is-disabled;
+      color: $menu-color-is-disabled;
+    }
+  }
+}
+
+.menu__text {
+  background: $menu__text-background;
+  color: $menu__text-color;
+  text-decoration: none;
 }

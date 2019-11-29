@@ -18,13 +18,23 @@
     margin-left: 0;
   }
 
-  .menu__link {
-    white-space: normal;
-  }
-
   .menu__sep {
     width: auto;
     height: $menu__sep-width;
     margin: $menu__sep-spacing 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .menu__link,
+  .menu__text {
+    justify-content: flex-start;
+    white-space: normal;
   }
 }

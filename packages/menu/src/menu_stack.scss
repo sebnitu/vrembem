@@ -6,13 +6,9 @@
 }
 
 @each $key, $value in $breakpoints {
-  .menu_stack_#{$key} {
-    @include menu-stack();
-  }
-
-  @include media-min($key) {
+  @include media-max($key) {
     .menu_stack_#{$key} {
-      flex-direction: row;
+      @include menu-stack();
     }
   }
 }

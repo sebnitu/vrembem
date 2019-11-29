@@ -35,6 +35,15 @@
   white-space: nowrap;
   cursor: pointer;
 
+  &[disabled] {
+    opacity: $button-disabled-opacity;
+    pointer-events: none;
+  }
+
+  > * + * {
+    margin-left: $button-inner-spacing;
+  }
+
   &:hover {
     border-color: $button-border-color-hover;
     background-color: $button-background-hover;
@@ -43,8 +52,8 @@
   }
 
   &:focus {
-    outline: $button-focus-outline;
-    outline-offset: $button-focus-outline-offset;
+    outline: $button-outline-focus;
+    outline-offset: $button-outline-focus-offset;
     border-color: $button-border-color-focus;
     background-color: $button-background-focus;
     box-shadow: $button-box-shadow-focus;
@@ -73,14 +82,5 @@
       border-radius: $border-radius-circle;
       border-color: set-border-color($button-loading-border-tpl, $button-loading-border-color);
     }
-  }
-
-  &[disabled] {
-    opacity: $button-disabled-opacity;
-    pointer-events: none;
-  }
-
-  > * + * {
-    margin-left: $button-inner-spacing;
   }
 }

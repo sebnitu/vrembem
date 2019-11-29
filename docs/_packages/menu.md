@@ -1,7 +1,7 @@
 ---
 layout: article
 title: Menu
-description: "Menus represent groups of links, actions or navigation that a user can interact with. They come with a variety of elements and modifiers to facilitate many contexts and roles."
+description: "Menus represent groups of links, actions or navigation that a user can interact with."
 category: compound
 usage:
   npm: "@vrembem/menu"
@@ -213,7 +213,7 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate s
     <a class="menu__link" href="#">Logout</a>
   </li>
 </ul>
-{% include demo_switch.html %}
+{% include demo_switch.html class_gridItem="" %}
 ```html
 <ul class="menu menu_full">...</ul>
 ```
@@ -237,7 +237,7 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate s
     <a class="menu__link" href="#">Logout</a>
   </li>
 </ul>
-{% include demo_switch.html %}
+{% include demo_switch.html class_gridItem="" %}
 ```html
 <ul class="menu menu_stack">
   ...
