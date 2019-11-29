@@ -10,6 +10,10 @@ usage:
 
 {% include flag.html heading="menu" %}
 
+<div class="type" markdown="1">
+The primary elements when composing the `menu` component are `menu__item`'s containing `menu__link`'s. Use the optional `menu__sep` in between `menu__item`'s to create separators.
+</div>
+
 {% include demo_open.html %}
 <ul class="menu">
   <li class="menu__item">
@@ -30,14 +34,18 @@ usage:
 ```html
 <ul class="menu">
   <li class="menu__item">
-    <a class="menu__link" href="#">Menu Item</a>
+    <a class="menu__link" href="#">
+      ...
+    </a>
   </li>
   <li class="menu__sep"></li>
 </ul>
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="menu__link_icon" %}
+<div class="type" markdown="1">
+For links that only contain an icon, you can use the `menu__link_icon` modifier to create a square link similar to the `button_link` modifier.
+</div>
 
 {% include demo_open.html %}
 <ul class="menu">
@@ -75,47 +83,14 @@ usage:
 </ul>
 {% include demo_switch.html %}
 ```html
-<ul class="menu">
-  <li class="menu__item">
-    <a class="menu__link menu__link_icon" href="#">
-      <svg role="img" class="icon">
-        <use xlink:href="#arrow-left"></use>
-      </svg>
-    </a>
-  </li>
-</ul>
-```
-{% include demo_close.html %}
-
-{% include flag.html heading="menu__text" %}
-
-{% include demo_open.html %}
-<ul class="menu">
-  <li class="menu__item">
-    <strong class="menu__text">Actions:</strong>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Create</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Update</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Delete</a>
-  </li>
-</ul>
-{% include demo_switch.html %}
-```html
-<ul class="menu">
-  <li class="menu__item">
-    <strong class="menu__text">Actions:</strong>
-  </li>
-</ul>
+<a class="menu__link menu__link_icon" href="#">
+  ...
+</a>
 ```
 {% include demo_close.html %}
 
 <div class="type" markdown="1">
-Elements inside the `menu__link` and `menu__text` elements receive appropriate spacing.
+Elements inside the `menu__link` and `menu__text` elements receive appropriate children spacing as long as text nodes are wrapped with `span` elements.
 </div>
 
 {% include demo_open.html %}
@@ -147,16 +122,12 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate s
 </ul>
 {% include demo_switch.html %}
 ```html
-<ul class="menu">
-  <li class="menu__item">
-    <a class="menu__link" href="#">
-      <svg role="img" class="icon">
-        <use xlink:href="#icon-thumbs-up"></use>
-      </svg>
-      <span>30k</span>
-    </a>
-  </li>
-</ul>
+<a class="menu__link" href="#">
+  <svg class="icon" role="img">
+    <!-- Icon markup... -->
+  </svg>
+  <span>Text node...</span>
+</a>
 ```
 {% include demo_close.html %}
 
@@ -165,17 +136,13 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate s
 {% include demo_open.html %}
 <ul class="menu">
   <li class="menu__item">
-    <a class="menu__link is-active" href="#">Create</a>
+    <a class="menu__link is-active" href="#">Active</a>
   </li>
   <li class="menu__item">
-    <a class="menu__link is-disabled" href="#">Edit</a>
+    <a class="menu__link is-disabled" href="#">Disabled</a>
   </li>
   <li class="menu__item">
-    <a class="menu__link" href="#">Delete</a>
-  </li>
-  <li class="menu__sep"></li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">Logout</a>
+    <a class="menu__link" href="#">Normal</a>
   </li>
 </ul>
 {% include demo_switch.html %}
@@ -183,12 +150,12 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate s
 <ul class="menu">
   <li class="menu__item">
     <a class="menu__link is-active" href="#">
-      Create
+      ...
     </a>
   </li>
   <li class="menu__item">
     <a class="menu__link is-disabled" href="#">
-      Edit
+      ...
     </a>
   </li>
 </ul>
@@ -248,7 +215,7 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate s
 {% include flag.html heading="menu_theme_invert" %}
 
 <div class="type" markdown="1">
-This theme is perfect for using menus on a dark background.
+A theme for using menus on a dark background.
 </div>
 
 {% include demo_open.html class_grid="grid_break" class_parent="invert" %}
