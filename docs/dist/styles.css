@@ -6194,6 +6194,7 @@ input::-moz-placeholder {
   background: #fff;
 }
 .menu_drawer .menu__icon {
+  display: flex;
   margin: -0.5em;
   padding: 0.5em;
   color: #bdbdbd;

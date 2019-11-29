@@ -51,6 +51,7 @@
 
 .menu__link {
   background: $menu-background;
+  box-shadow: $menu-box-shadow;
   color: $menu-color;
 
   &_icon {
@@ -59,6 +60,7 @@
 
   &:hover {
     background: $menu-background-hover;
+    box-shadow: $menu-box-shadow-hover;
     color: $menu-color-hover;
   }
 
@@ -66,11 +68,13 @@
     outline: $menu-outline-focus;
     outline-offset: $menu-outline-focus-offset;
     background: $menu-background-focus;
+    box-shadow: $menu-box-shadow-focus;
     color: $menu-color-focus;
   }
 
   &:active {
     background: $menu-background-active;
+    box-shadow: $menu-box-shadow-active;
     color: $menu-color-active;
   }
 

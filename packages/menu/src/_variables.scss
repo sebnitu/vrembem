@@ -18,6 +18,11 @@ $menu-background-active: rgba($black, 0.12) !default;
 $menu-background-is-active: none !default;
 $menu-background-is-disabled: none !default;
 
+$menu-box-shadow: null !default;
+$menu-box-shadow-hover: null !default;
+$menu-box-shadow-focus: null !default;
+$menu-box-shadow-active: null !default;
+
 $menu-color: $color !default;
 $menu-color-hover: null !default;
 $menu-color-focus: null !default;
