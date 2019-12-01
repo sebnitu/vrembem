@@ -4,7 +4,7 @@ layout_options:
   section: false
   container: false
 title: "Section"
-description: "A container component for wrapping distinct sections of a view."
+description: "A container component for wrapping distinct sections of a page."
 category: layout
 usage:
   npm: "@vrembem/section"

@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/section",
-  "description": "A container component for wrapping distinct sections of a view.",
+  "description": "A container component for wrapping distinct sections of a page.",
   "version": "0.0.0",
   "style": "index.scss",
   "scripts": {

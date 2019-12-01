@@ -1,3 +1,3 @@
 # Section
 
-A container component for wrapping distinct sections of a view.
+A container component for wrapping distinct sections of a page.
