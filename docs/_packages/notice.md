@@ -8,7 +8,7 @@ usage:
   scss: "vrembem/notice/index"
 ---
 
-{% include flag.html heading="notice + notice__body" %}
+{% include flag.html heading="notice" %}
 
 {% include demo_open.html %}
 <div class="notice">
@@ -77,7 +77,6 @@ usage:
     </button>
   </div>
 </div>
-
 <div class="notice" data-dismissible>
   <div class="notice__body">
     <p>Did you mean to do this action?</p>
@@ -179,7 +178,6 @@ usage:
     </button>
   </div>
 </div>
-
 <div class="notice notice_color_secondary" data-dismissible>
   <div class="notice__body">
     <p>Notice <a href="#">content</a> goes here...</p>
@@ -190,7 +188,6 @@ usage:
     </button>
   </div>
 </div>
-
 <div class="notice notice_color_dark" data-dismissible>
   <div class="notice__body">
     <p>Notice <a href="#">content</a> goes here...</p>
@@ -222,7 +219,6 @@ usage:
     </button>
   </div>
 </div>
-
 <div class="notice notice_state_success" data-dismissible>
   <div class="notice__body">
     <p>Notice <a href="#">content</a> goes here...</p>
@@ -233,7 +229,6 @@ usage:
     </button>
   </div>
 </div>
-
 <div class="notice notice_state_caution" data-dismissible>
   <div class="notice__body">
     <p>Notice <a href="#">content</a> goes here...</p>
@@ -244,7 +239,6 @@ usage:
     </button>
   </div>
 </div>
-
 <div class="notice notice_state_danger" data-dismissible>
   <div class="notice__body">
     <p>Notice <a href="#">content</a> goes here...</p>
@@ -277,7 +271,6 @@ usage:
     </button>
   </div>
 </div>
-
 <div class="notice notice_state_success-bold" data-dismissible>
   <div class="notice__body">
     <p>Notice <a href="#">content</a> goes here...</p>
@@ -288,7 +281,6 @@ usage:
     </button>
   </div>
 </div>
-
 <div class="notice notice_state_caution-bold" data-dismissible>
   <div class="notice__body">
     <p>Notice <a href="#">content</a> goes here...</p>
@@ -299,7 +291,6 @@ usage:
     </button>
   </div>
 </div>
-
 <div class="notice notice_state_danger-bold" data-dismissible>
   <div class="notice__body">
     <p>Notice <a href="#">content</a> goes here...</p>

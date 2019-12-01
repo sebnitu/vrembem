@@ -22,7 +22,7 @@ Drawers are composed using classes for styling and data attributes for JavaScrip
 {% include demo_open.html class_grid="grid_break" %}
 <div class="drawer__wrapper border radius">
   <aside data-drawer="drawer-key" class="drawer">
-    <div class="drawer__item padding">
+    <div class="drawer__item padding_xl">
       <div class="flex flex_justify_between">
         <p>Drawer Default</p>
         <button data-drawer-close class="link">Close</button>
