@@ -67,7 +67,7 @@ Sections have a few size modifier options to help adjust the space that is used 
 <hr class="sep" />
 
 <div class="section section_size_xs">
-  <div class="section__container container">
+<div class="section__container container">
 <div class="demo">
 <div class="demo__code" markdown="1">
 ```html
@@ -77,41 +77,69 @@ Sections have a few size modifier options to help adjust the space that is used 
 ```
 </div>
 </div>
-  </div>
+</div>
 </div>
 
 <hr class="sep" />
 
 <div class="section section_size_sm">
-  <div class="section__container container type">
-    <h1>Small section</h1>
-    <p class="text_lead">Vestibulum a arcu mi. Integer tempus scelerisque turpis, nec sodales eros facilisis non. Nam pulvinar vel quam in eleifend. Nunc ullamcorper aliquet tellus vitae euismod.</p>
-  </div>
+<div class="section__container container">
+<div class="demo">
+<div class="demo__code" markdown="1">
+```html
+<div class="section section_size_sm">
+...
+</div>
+```
+</div>
+</div>
+</div>
 </div>
 
 <hr class="sep" />
 
 <div class="section section_size_md">
-  <div class="section__container container type">
-    <h1>Medium section</h1>
-    <p class="text_lead">Vestibulum a arcu mi. Integer tempus scelerisque turpis, nec sodales eros facilisis non. Nam pulvinar vel quam in eleifend. Nunc ullamcorper aliquet tellus vitae euismod.</p>
-  </div>
+<div class="section__container container">
+<div class="demo">
+<div class="demo__code" markdown="1">
+```html
+<div class="section section_size_md">
+...
+</div>
+```
+</div>
+</div>
+</div>
 </div>
 
 <hr class="sep" />
 
 <div class="section section_size_lg">
-  <div class="section__container container type">
-    <h1>Large section</h1>
-    <p class="text_lead">Vestibulum a arcu mi. Integer tempus scelerisque turpis, nec sodales eros facilisis non. Nam pulvinar vel quam in eleifend. Nunc ullamcorper aliquet tellus vitae euismod.</p>
-  </div>
+<div class="section__container container">
+<div class="demo">
+<div class="demo__code" markdown="1">
+```html
+<div class="section section_size_lg">
+...
+</div>
+```
+</div>
+</div>
+</div>
 </div>
 
 <hr class="sep" />
 
 <div class="section section_size_xl">
-  <div class="section__container container type">
-    <h1>Extra large section</h1>
-    <p class="text_lead">Vestibulum a arcu mi. Integer tempus scelerisque turpis, nec sodales eros facilisis non. Nam pulvinar vel quam in eleifend. Nunc ullamcorper aliquet tellus vitae euismod.</p>
-  </div>
+<div class="section__container container">
+<div class="demo">
+<div class="demo__code" markdown="1">
+```html
+<div class="section section_size_xl">
+...
+</div>
+```
+</div>
+</div>
+</div>
 </div>
