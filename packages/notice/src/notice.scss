@@ -34,7 +34,8 @@
   }
 }
 
-.notice__label {
-  font-size: $notice__label-font-size;
-  font-weight: $notice__label-font-weight;
+.notice__title {
+  font-size: $notice__title-font-size;
+  font-weight: $notice__title-font-weight;
+  line-height: $notice__title-line-height;
 }

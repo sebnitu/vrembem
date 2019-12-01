@@ -3202,9 +3202,10 @@ input::-moz-placeholder {
   margin-left: 0.5rem;
 }
 
-.notice__label {
+.notice__title {
   font-size: 18px;
   font-weight: 600;
+  line-height: 1.4444;
 }
 
 .notice_color_primary {
@@ -3440,6 +3441,7 @@ input::-moz-placeholder {
   flex-grow: 1;
   font-size: 18px;
   font-weight: 600;
+  line-height: 1.4444;
 }
 
 .radio {

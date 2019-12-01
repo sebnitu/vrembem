@@ -10,20 +10,13 @@ usage:
 
 {% include flag.html heading="panel" %}
 
-<div class="type" markdown="1">
-
-Along with example `panel__section` usage.
-
-</div>
-
 {% include demo_open.html class_parent="spacing" %}
 <div class="panel">
-  <div class="panel__section spacing">
+  <div class="panel__section spacing_sm">
     <h3 class="panel__title">Panel header</h3>
     <p>Aliquam vitae sapien vehicula, viverra massa non, gravida lacus. Nam facilisis dictum felis, quis lacinia elit rhoncus eget. Donec id pellentesque lorem.</p>
   </div>
 </div>
-
 <div class="panel">
   <div class="panel__section">
     Item One

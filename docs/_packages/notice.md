@@ -103,12 +103,12 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="notice__label" %}
+{% include flag.html heading="notice__title" %}
 
 {% include demo_open.html %}
 <div class="notice flex_align_start" data-dismissible>
   <div class="notice__body spacing_sm">
-    <h2 class="notice__label">Oops, wait what?</h2>
+    <h2 class="notice__title">Oops, wait what?</h2>
     <p>You should know that the action you just did had some consequences.</p>
   </div>
   <div class="notice__actions">
@@ -121,7 +121,7 @@ usage:
 ```html
 <div class="notice flex_align_start">
   <div class="notice__body">
-    <h2 class="notice__label">...</h2>
+    <h2 class="notice__title">...</h2>
     <p>...</p>
   </div>
   <div class="notice__actions">
@@ -136,7 +136,7 @@ usage:
 {% include demo_open.html class_parent="spacing" %}
 <div class="notice notice_stack" data-dismissible>
   <div class="notice__body spacing_sm">
-    <h2 class="notice__label">Oops, wait what?</h2>
+    <h2 class="notice__title">Oops, wait what?</h2>
     <p>You should know that the action you just did had some consequences.</p>
   </div>
   <div class="notice__actions">
@@ -155,7 +155,7 @@ usage:
 ```html
 <div class="notice notice_stack" data-dismissible>
   <div class="notice__body spacing_sm">
-    <h2 class="notice__label">...</h2>
+    <h2 class="notice__title">...</h2>
     <p>...</p>
   </div>
   <div class="notice__actions">
@@ -315,7 +315,7 @@ usage:
 {% include demo_open.html %}
 <div class="notice notice_stack notice_color_dark elevate_16dp" data-dismissible>
   <div class="notice__body margin_bottom_lg spacing_sm">
-    <h2 class="notice__label flex">
+    <h2 class="notice__title flex">
       <span class="flex_grow_1">This site uses cookies</span>
       <button class="icon-action icon-action_invert icon-action_color_subtle" data-dismiss>
         {% include icon.html icon="x" %}
@@ -338,7 +338,7 @@ usage:
 ```html
 <div class="notice notice_stack notice_color_dark elevate_16dp" data-dismissible>
   <div class="notice__body margin_bottom_lg spacing_sm">
-    <h2 class="notice__label flex">
+    <h2 class="notice__title flex">
       <span class="flex_grow_1">...</span>
       <button class="icon-action icon-action_invert icon-action_color_subtle" data-dismiss>
         ...
