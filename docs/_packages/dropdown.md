@@ -11,7 +11,7 @@ usage:
 {% include flag.html heading="dropdown" %}
 
 {% include demo_open.html class_grid="grid_break" %}
-<div class="dropdown on-hover">
+<div class="dropdown">
   <button class="dropdown__trigger button button_color_primary">Trigger</button>
   <ul class="dropdown__menu">
     <li class="dropdown__item">
@@ -41,7 +41,7 @@ usage:
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="dropdown is-active">
+<div class="dropdown">
   <button class="dropdown__trigger button button_color_primary">Dropdown</button>
   <ul class="dropdown__menu">
     <li class="dropdown__item">
@@ -76,7 +76,7 @@ usage:
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="level">
-  <div class="dropdown dropdown_pos_down-left on-hover">
+  <div class="dropdown dropdown_pos_down-left">
     <button class="button">
       <span>Down left</span>
       {% include icon.html icon="chevron-down" %}
@@ -85,7 +85,7 @@ usage:
       <li class="dropdown__item dropdown__content">This is a dropdown...</li>
     </ul>
   </div><!-- .dropdown -->
-  <div class="dropdown dropdown_pos_down on-hover">
+  <div class="dropdown dropdown_pos_down">
     <button class="button">
       <span>Down</span>
       {% include icon.html icon="chevron-down" %}
@@ -94,7 +94,7 @@ usage:
       <li class="dropdown__item dropdown__content">This is a dropdown...</li>
     </ul>
   </div><!-- .dropdown -->
-  <div class="dropdown dropdown_pos_down-right on-hover">
+  <div class="dropdown dropdown_pos_down-right">
     <button class="button">
       <span>Down right</span>
       {% include icon.html icon="chevron-down" %}
@@ -114,7 +114,7 @@ usage:
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="level">
-  <div class="dropdown dropdown_pos_up-left on-hover">
+  <div class="dropdown dropdown_pos_up-left">
     <button class="button">
       <span>Up left</span>
       {% include icon.html icon="chevron-up" %}
@@ -123,7 +123,7 @@ usage:
       <li class="dropdown__item dropdown__content">This is a dropdown...</li>
     </ul>
   </div><!-- .dropdown -->
-  <div class="dropdown dropdown_pos_up on-hover">
+  <div class="dropdown dropdown_pos_up">
     <button class="button">
       <span>Up</span>
       {% include icon.html icon="chevron-up" %}
@@ -132,7 +132,7 @@ usage:
       <li class="dropdown__item dropdown__content">This is a dropdown...</li>
     </ul>
   </div><!-- .dropdown -->
-  <div class="dropdown dropdown_pos_up-right on-hover">
+  <div class="dropdown dropdown_pos_up-right">
     <button class="button">
       <span>Up right</span>
       {% include icon.html icon="chevron-up" %}
@@ -152,7 +152,7 @@ usage:
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="level flex_justify_end">
-  <div class="dropdown dropdown_pos_left-up on-hover">
+  <div class="dropdown dropdown_pos_left-up">
     <button class="button">
       {% include icon.html icon="chevron-left" %}
       <span>Left up</span>
@@ -161,7 +161,7 @@ usage:
       <li class="dropdown__item dropdown__content">This is a dropdown...</li>
     </ul>
   </div><!-- .dropdown -->
-  <div class="dropdown dropdown_pos_left on-hover">
+  <div class="dropdown dropdown_pos_left">
     <button class="button">
       {% include icon.html icon="chevron-left" %}
       <span>Left</span>
@@ -170,7 +170,7 @@ usage:
       <li class="dropdown__item dropdown__content">This is a dropdown...</li>
     </ul>
   </div><!-- .dropdown -->
-  <div class="dropdown dropdown_pos_left-down on-hover">
+  <div class="dropdown dropdown_pos_left-down">
     <button class="button">
       {% include icon.html icon="chevron-left" %}
       <span>Left down</span>
@@ -190,7 +190,7 @@ usage:
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="level">
-  <div class="dropdown dropdown_pos_right-up on-hover">
+  <div class="dropdown dropdown_pos_right-up">
     <button class="button">
       <span>Right up</span>
       {% include icon.html icon="chevron-right" %}
@@ -199,7 +199,7 @@ usage:
       <li class="dropdown__item dropdown__content">This is a dropdown...</li>
     </ul>
   </div><!-- .dropdown -->
-  <div class="dropdown dropdown_pos_right on-hover">
+  <div class="dropdown dropdown_pos_right">
     <button class="button">
       <span>Right</span>
       {% include icon.html icon="chevron-right" %}
@@ -208,7 +208,7 @@ usage:
       <li class="dropdown__item dropdown__content">This is a dropdown...</li>
     </ul>
   </div><!-- .dropdown -->
-  <div class="dropdown dropdown_pos_right-down on-hover">
+  <div class="dropdown dropdown_pos_right-down">
     <button class="button">
       <span>Right down</span>
       {% include icon.html icon="chevron-right" %}

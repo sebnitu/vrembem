@@ -7,7 +7,7 @@
 
 .dropdown__menu {
   position: absolute;
-  z-index: 10;
+  z-index: $dropdown-z-index;
   top: 100%;
   right: auto;
   bottom: auto;
@@ -37,11 +37,6 @@
     width: 100%;
     height: $dropdown_pos_spacing;
   }
-
-  &.dropdown_pos_switch {
-    right: 0;
-    left: auto;
-  }
 }
 
 .dropdown__sep {
@@ -59,47 +54,48 @@
   color: $dropdown__link-color;
   vertical-align: middle;
 
-  &:hover,
-  &:focus {
-    background: $dropdown__link-background-hover;
-    color: $dropdown__link-color-hover;
-  }
-
   > * + * {
     margin-left: $dropdown__link-inner-spacing;
   }
 
-  &.is-active {
+  &:hover {
+    background: $dropdown__link-background-hover;
+    color: $dropdown__link-color-hover;
+  }
+
+  &:focus {
+    background: $dropdown__link-background-focus;
+    color: $dropdown__link-color-focus;
+  }
+
+  &:active {
     background: $dropdown__link-background-active;
     color: $dropdown__link-color-active;
+  }
+
+  &.is-active {
+    background: $dropdown__link-background-is-active;
+    color: $dropdown__link-color-is-active;
 
     &:hover,
-    &:focus {
-      background: $dropdown__link-background-active;
-      color: $dropdown__link-color-active;
+    &:focus,
+    &:active {
+      background: $dropdown__link-background-is-active;
+      color: $dropdown__link-color-is-active;
     }
   }
 
   &.is-disabled {
-    background: $dropdown__link-background-disabled;
-    color: $dropdown__link-color-disabled;
+    background: $dropdown__link-background-is-disabled;
+    color: $dropdown__link-color-is-disabled;
     cursor: auto;
 
     &:hover,
-    &:focus {
-      background: $dropdown__link-background-disabled;
-      color: $dropdown__link-color-disabled;
+    &:focus,
+    &:active {
+      background: $dropdown__link-background-is-disabled;
+      color: $dropdown__link-color-is-disabled;
     }
-  }
-}
-
-.dropdown__link_stack {
-  flex-direction: column;
-  align-items: flex-start;
-
-  > * + * {
-    margin-top: $dropdown-spacing;
-    margin-left: 0;
   }
 }
 
@@ -122,45 +118,28 @@
   position: relative;
   display: block;
   margin: $dropdown__item-margin;
+}
 
-  > .dropdown__menu {
-    top: -$dropdown-spacing;
-    right: auto;
-    left: 100%;
-    margin: -1px 0 0 $dropdown_pos_margin;
+/**
+ * Active states
+ */
 
-    &::before {
-      top: 0;
-      right: 100%;
-      bottom: 0;
-      left: auto;
-      width: 1px;
-      height: 100%;
-    }
-  }
-
-  > .dropdown_pos_switch {
-    right: 100%;
-    left: auto;
-    margin: -1px $dropdown_pos_margin 0 0;
-
-    &::before {
-      right: auto;
-      left: 100%;
-    }
-  }
+.is-active > .dropdown__menu,
+.dropdown:not(.on-click):hover > .dropdown__menu,
+.dropdown:not(.on-click):focus > .dropdown__menu,
+.dropdown:not(.on-click):focus-within > .dropdown__menu {
+  display: block;
 }
 
 .is-active > .dropdown__menu {
-  display: block;
+  z-index: ($dropdown-z-index + 1);
 }
 
-.on-hover:hover > .dropdown__menu,
-.dropdown__item:hover > .dropdown__menu,
-.on-hover:focus-within > .dropdown__menu,
-.dropdown__item:focus-within > .dropdown__menu,
-.on-hover .dropdown__trigger:focus + .dropdown__menu,
-.dropdown__item .dropdown__trigger:focus + .dropdown__menu {
-  z-index: 12;
-  display: block;
+.dropdown:not(.on-click):focus > .dropdown__menu,
+.dropdown:not(.on-click):focus-within > .dropdown__menu {
+  z-index: ($dropdown-z-index + 2);
+}
+
+.dropdown:not(.on-click):hover > .dropdown__menu {
+  z-index: ($dropdown-z-index + 3);
 }

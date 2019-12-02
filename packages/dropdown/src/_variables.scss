@@ -1,5 +1,6 @@
 @import "@vrembem/core/index";
 
+$dropdown-z-index: 10 !default;
 $dropdown-spacing: 0.5em !default;
 $dropdown-width: 16em !default;
 $dropdown-font-size: $font-size-sm !default;
@@ -11,19 +12,23 @@ $dropdown-box-shadow: $box-shadow-8dp !default;
 
 $dropdown__item-margin: 1px 0 !default;
 $dropdown__item-background: null !default;
-$dropdown__item-background-hover: $gray-100 !default;
-$dropdown__item-background-active: $white !default;
 
 $dropdown__link-inner-spacing: 0.5em !default;
 $dropdown__link-padding: $padding !default;
+
 $dropdown__link-color: $color !default;
-$dropdown__link-color-hover: $color !default;
-$dropdown__link-color-active: $primary !default;
-$dropdown__link-color-disabled: $color-subtle !default;
+$dropdown__link-color-hover: null !default;
+$dropdown__link-color-focus: null !default;
+$dropdown__link-color-active: null !default;
+$dropdown__link-color-is-active: $primary !default;
+$dropdown__link-color-is-disabled: $color-subtle !default;
+
 $dropdown__link-background: null !default;
-$dropdown__link-background-hover: $gray-100 !default;
-$dropdown__link-background-active: $white !default;
-$dropdown__link-background-disabled: $white !default;
+$dropdown__link-background-hover: rgba($black, 0.06) !default;
+$dropdown__link-background-focus: rgba($black, 0.09) !default;
+$dropdown__link-background-active: rgba($black, 0.12) !default;
+$dropdown__link-background-is-active: $white !default;
+$dropdown__link-background-is-disabled: $white !default;
 
 $dropdown__sep-border: $border !default;
 
