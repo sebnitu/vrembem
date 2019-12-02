@@ -1132,6 +1132,16 @@
   text-decoration: underline !important;
 }
 
+.text_underline_dotted {
+  text-decoration: underline !important;
+  text-decoration-style: dotted !important;
+}
+
+.text_underline_dashed {
+  text-decoration: underline !important;
+  text-decoration-style: dashed !important;
+}
+
 .text_wrap {
   white-space: normal !important;
 }

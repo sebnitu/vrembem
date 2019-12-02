@@ -52,6 +52,16 @@
   text-decoration: underline !important;
 }
 
+.#{$class-text}_underline_dotted {
+  text-decoration: underline !important;
+  text-decoration-style: dotted !important;
+}
+
+.#{$class-text}_underline_dashed {
+  text-decoration: underline !important;
+  text-decoration-style: dashed !important;
+}
+
 .#{$class-text}_wrap {
   white-space: normal !important;
 }

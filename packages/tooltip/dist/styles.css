@@ -15,7 +15,9 @@
   padding: 0.334em 0.75em;
   overflow: hidden;
   transform: translate(-50%, 0) scale(0.75);
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-property: opacity, transform;
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 4px;
   background: rgba(33, 33, 33, 0.9);
   opacity: 0;

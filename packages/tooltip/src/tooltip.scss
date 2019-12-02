@@ -17,9 +17,9 @@
     padding: $tooltip-padding;
     overflow: hidden;
     transform: translate(-50%, 0) scale($tooltip-scale);
-    transition:
-      opacity $transition-duration $transition-timing-function,
-      transform $transition-duration $transition-timing-function;
+    transition-property: opacity, transform;
+    transition-duration: $transition-duration;
+    transition-timing-function: $transition-timing-function;
     border-radius: $tooltip-border-radius;
     background: $tooltip-background;
     opacity: 0;

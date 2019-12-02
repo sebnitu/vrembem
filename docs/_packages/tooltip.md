@@ -11,14 +11,12 @@ usage:
 {% include flag.html heading="[data-tooltip]" %}
 
 {% include demo_open.html class_grid="grid_break" %}
-<button class="button button_color_primary" data-tooltip="Hypertext markup language" data-tooltip-pos="up-left">
-  HTML
-</button>
+<div class="level">
+  <span class="text_underline_dotted" data-tooltip="Tooltip">Example tooltip</span>
+</div>
 {% include demo_switch.html %}
 ```html
-<button data-tooltip="Hypertext markup language" data-tooltip-pos="up-left">
-  HTML
-</button>
+<span data-tooltip="...">...</span>
 ```
 {% include demo_close.html %}
 
@@ -26,48 +24,80 @@ usage:
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="level">
-  <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="up">
-    {% include icon.html icon="chevron-up" %}
-  </button>
-  <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="up-left">
-    {% include icon.html icon="chevron-up" %}
-  </button>
-  <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="up-right">
-    {% include icon.html icon="chevron-up" %}
-  </button>
-  <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="down">
-    {% include icon.html icon="chevron-down" %}
-  </button>
-  <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="down-left">
-    {% include icon.html icon="chevron-down" %}
-  </button>
-  <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="down-right">
-    {% include icon.html icon="chevron-down" %}
-  </button>
-  <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="right">
-    {% include icon.html icon="chevron-right" %}
-  </button>
-  <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="right-up">
-    {% include icon.html icon="chevron-right" %}
-  </button>
-  <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="right-down">
-    {% include icon.html icon="chevron-right" %}
-  </button>
-  <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="left">
-    {% include icon.html icon="chevron-left" %}
-  </button>
-  <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="left-up">
-    {% include icon.html icon="chevron-left" %}
-  </button>
-  <button class="button button_size_large button_icon" data-tooltip="Some tooltip" data-tooltip-pos="left-down">
-    {% include icon.html icon="chevron-left" %}
-  </button>
+  <span class="text_underline_dotted" data-tooltip="Tooltip" data-tooltip-pos="up">
+    Tooltip up
+  </span>
+  <span class="text_underline_dotted" data-tooltip="Tooltip" data-tooltip-pos="up-left">
+    Tooltip up left
+  </span>
+  <span class="text_underline_dotted" data-tooltip="Tooltip" data-tooltip-pos="up-right">
+    Tooltip up right
+  </span>
 </div>
 {% include demo_switch.html %}
 ```html
-<button data-tooltip="..." data-tooltip-pos="down">...</button>
-<button data-tooltip="..." data-tooltip-pos="down-left">...</button>
-<button data-tooltip="..." data-tooltip-pos="down-right">...</button>
-...
+<span data-tooltip="..." data-tooltip-pos="up">...</span>
+<span data-tooltip="..." data-tooltip-pos="up-left">...</span>
+<span data-tooltip="..." data-tooltip-pos="up-right">...</span>
+```
+{% include demo_close.html %}
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="level">
+  <span class="text_underline_dotted" data-tooltip="Tooltip" data-tooltip-pos="down">
+    Tooltip down
+  </span>
+  <span class="text_underline_dotted" data-tooltip="Tooltip" data-tooltip-pos="down-left">
+    Tooltip down left
+  </span>
+  <span class="text_underline_dotted" data-tooltip="Tooltip" data-tooltip-pos="down-right">
+    Tooltip down right
+  </span>
+</div>
+{% include demo_switch.html %}
+```html
+<span data-tooltip="..." data-tooltip-pos="down">...</span>
+<span data-tooltip="..." data-tooltip-pos="down-left">...</span>
+<span data-tooltip="..." data-tooltip-pos="down-right">...</span>
+```
+{% include demo_close.html %}
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="level flex_justify_end">
+  <span class="text_underline_dotted" data-tooltip="Tooltip" data-tooltip-pos="left">
+    Tooltip<br>left
+  </span>
+  <span class="text_underline_dotted" data-tooltip="Tooltip" data-tooltip-pos="left-up">
+    Tooltip<br>left up
+  </span>
+  <span class="text_underline_dotted" data-tooltip="Tooltip" data-tooltip-pos="left-down">
+    Tooltip<br>left down
+  </span>
+</div>
+{% include demo_switch.html %}
+```html
+<span data-tooltip="..." data-tooltip-pos="left">...</span>
+<span data-tooltip="..." data-tooltip-pos="left-up">...</span>
+<span data-tooltip="..." data-tooltip-pos="left-down">...</span>
+```
+{% include demo_close.html %}
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="level">
+  <span class="text_underline_dotted" data-tooltip="Tooltip" data-tooltip-pos="right">
+    Tooltip<br>right
+  </span>
+  <span class="text_underline_dotted" data-tooltip="Tooltip" data-tooltip-pos="right-up">
+    Tooltip<br>right up
+  </span>
+  <span class="text_underline_dotted" data-tooltip="Tooltip" data-tooltip-pos="right-down">
+    Tooltip<br>right down
+  </span>
+</div>
+{% include demo_switch.html %}
+```html
+<span data-tooltip="..." data-tooltip-pos="right">...</span>
+<span data-tooltip="..." data-tooltip-pos="right-up">...</span>
+<span data-tooltip="..." data-tooltip-pos="right-down">...</span>
 ```
 {% include demo_close.html %}
