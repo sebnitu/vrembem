@@ -621,6 +621,12 @@ usage:
     <p class="text_underline">Text underline</p>
   </li>
   <li class="list__item">
+    <p class="text_underline_dotted">Text underline dotted</p>
+  </li>
+  <li class="list__item">
+    <p class="text_underline_dashed">Text underline dashed</p>
+  </li>
+  <li class="list__item">
     <p class="text_wrap">Text wrap</p>
   </li>
   <li class="list__item">
@@ -657,6 +663,8 @@ usage:
 <!-- Decoration -->
 <p class="text_strike">...</p>
 <p class="text_underline">...</p>
+<p class="text_underline_dotted">...</p>
+<p class="text_underline_dashed">...</p>
 
 <!-- Wrap -->
 <p class="text_wrap">...</p>
