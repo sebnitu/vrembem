@@ -39,8 +39,6 @@ exclude:
 collections:
   packages:
     output: true
-  examples:
-    output: true
 
 # Theme settings
 ###
