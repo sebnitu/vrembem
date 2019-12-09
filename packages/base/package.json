@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/base",
   "description": "Includes useful default styles and base components for common HTML elements.",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",
@@ -18,6 +18,6 @@
     "directory": "packages/base"
   },
   "dependencies": {
-    "@vrembem/core": "^0.0.0"
+    "@vrembem/core": "^1.0.0"
   }
 }

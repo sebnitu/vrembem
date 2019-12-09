@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/panel",
   "description": "Panels are a compositional container component that allows you to wrap and theme groups of content.",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",
@@ -18,6 +18,6 @@
     "directory": "packages/panel"
   },
   "dependencies": {
-    "@vrembem/core": "^0.0.0"
+    "@vrembem/core": "^1.0.0"
   }
 }

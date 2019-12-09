@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/media",
   "description": "The media component is used for displaying groups of content with a corresponding media asset, such as an image, avatar or icon.",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",
@@ -18,6 +18,6 @@
     "directory": "packages/media"
   },
   "dependencies": {
-    "@vrembem/core": "^0.0.0"
+    "@vrembem/core": "^1.0.0"
   }
 }
