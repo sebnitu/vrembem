@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/button-group",
   "description": "A component for displaying groups of buttons.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",
@@ -18,7 +18,7 @@
     "directory": "packages/button-group"
   },
   "dependencies": {
-    "@vrembem/core": "^1.0.1"
+    "@vrembem/core": "^1.0.2"
   },
   "publishConfig": {
     "access": "public"
