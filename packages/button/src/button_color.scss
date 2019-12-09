@@ -1,0 +1,84 @@
+@import "./variables";
+
+.button_color_subtle {
+  background: none;
+
+  &:hover {
+    background: rgba($black, 0.06);
+  }
+
+  &:focus {
+    background: rgba($black, 0.09);
+  }
+
+  &:active {
+    background: rgba($black, 0.12);
+  }
+
+  &.is-loading::after {
+    border-color: set-border-color($button-loading-border-tpl, $color-subtle);
+  }
+
+  &.button_invert {
+    background: none;
+    color: $white;
+
+    &:hover {
+      background: rgba($white, 0.06);
+    }
+
+    &:focus {
+      background: rgba($white, 0.09);
+    }
+
+    &:active {
+      background: rgba($white, 0.12);
+    }
+
+    &.is-loading::after {
+      border-color: set-border-color($button-loading-border-tpl, $color-invert-subtle);
+    }
+  }
+}
+
+.button_color_primary {
+  background: $primary;
+  color: $white;
+
+  &:hover {
+    background: darken($primary, 6%);
+  }
+
+  &:focus {
+    background: darken($primary, 9%);
+  }
+
+  &:active {
+    background: darken($primary, 12%);
+  }
+
+  &.is-loading::after {
+    border-color: set-border-color($button-loading-border-tpl, $white);
+  }
+}
+
+.button_color_secondary {
+  background: $secondary;
+  color: $white;
+
+  &:hover {
+    background: darken($secondary, 6%);
+  }
+
+  &:focus {
+    background: darken($secondary, 9%);
+  }
+
+  &:active {
+    background: darken($secondary, 12%);
+  }
+
+  &.is-loading::after {
+    border-color: set-border-color($button-loading-border-tpl, $white);
+  }
+}

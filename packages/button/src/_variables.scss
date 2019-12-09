@@ -1,0 +1,53 @@
+@import "@vrembem/core/index";
+
+$button-min-size: 2.5rem !default; // 40px
+$button-padding: $padding !default;
+$button-inner-spacing: 0.5em !default;
+$button-font-size: $font-size !default;
+$button-line-height: 1.5 !default;
+$button-font-weight: inherit !default;
+$button-text-transform: null !default;
+$button-letter-spacing: null !default;
+$button-border-radius: $border-radius !default;
+$button-outline-focus: none !default;
+$button-outline-focus-offset: null !default;
+
+$button-background: rgba($black, 0.06) !default;
+$button-background-hover: rgba($black, 0.09) !default;
+$button-background-focus: rgba($black, 0.12) !default;
+$button-background-active: rgba($black, 0.15) !default;
+
+$button-box-shadow: null !default;
+$button-box-shadow-hover: null !default;
+$button-box-shadow-focus: null !default;
+$button-box-shadow-active: null !default;
+
+$button-border: none !default;
+$button-border-color-hover: null !default;
+$button-border-color-focus: null !default;
+$button-border-color-active: null !default;
+
+$button-color: $color !default;
+$button-color-hover: null !default;
+$button-color-focus: null !default;
+$button-color-active: null !default;
+
+$button-loading-size: 1em !default;
+$button-loading-animation-duration: 0.6s !default;
+$button-loading-border-color: $button-color !default;
+$button-loading-border: 2px solid !default;
+$button-loading-border-tpl: 1 1 0 0;
+
+$button-disabled-opacity: 0.5 !default;
+
+$button_size_sm-min-size: 1.875rem !default; // 30px
+$button_size_sm-padding: $padding-sm !default;
+$button_size_sm-font-size: $font-size-sm !default;
+$button_size_sm-line-height: $line-height-sm !default;
+
+$button_size_lg-min-size: 3.125rem !default; // 50px
+$button_size_lg-padding: $padding-lg !default;
+$button_size_lg-font-size: $font-size-lg !default;
+$button_size_lg-line-height: $line-height-lg !default;
+
+$button_outline-border-width: 1px !default;

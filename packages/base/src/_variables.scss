@@ -1,0 +1,109 @@
+@import "@vrembem/core/index";
+
+// Base component classes
+// ---
+
+$class-embed: "embed" !default;
+$class-scroll-box: "scroll-box" !default;
+$class-separator: "sep" !default;
+$class-symbols: "symbols" !default;
+$class-type: "type" !default;
+
+// Base settings
+// ---
+
+$box-sizing: border-box !default;
+$body-background: null !default;
+
+// Heading
+// ---
+
+$heading-font-family: null !default;
+$heading-line-height: 1.3 !default;
+$heading-color: inherit !default;
+$heading-color-invert: null !default;
+$heading-font-weight: font-weight("semi-bold") !default;
+
+// Link
+// ---
+
+$link-text-decoration: none !default;
+$link-text-decoration-hover: null !default;
+$link-transition: null !default;
+
+// Color
+$link-color: $primary !default;
+$link-color-hover: $primary-dark !default;
+$link-border: 1px solid $border-color !default;
+$link-border-hover: 1px solid currentColor !default;
+
+// Subtle
+$link-subtle-color: $color-subtle !default;
+$link-subtle-color-hover: $link-color-hover !default;
+$link-subtle-border-color: $border-color !default;
+$link-subtle-border-color-hover: currentColor !default;
+
+// Invert
+$link-invert-color: $white !default;
+$link-invert-color-hover: $white !default;
+$link-invert-border-color: rgba($white, 0.5) !default;
+$link-invert-border-color-hover: currentColor !default;
+
+// Invert subtle
+$link-invert-subtle-color: $color-invert-subtle !default;
+$link-invert-subtle-color-hover: $color-invert !default;
+$link-invert-subtle-border-color: rgba($white, 0.5) !default;
+$link-invert-subtle-border-color-hover: currentColor !default;
+
+// Embed
+// ---
+
+$embed-ratio: aspect-ratio(16, 9) !default;
+
+// List
+// ---
+
+$list-spacing: 1.5em !default;
+$list-item-spacing: 0.5em !default;
+
+// Blockquote
+// ---
+
+$blockquote-padding: 1.5em !default;
+$blockquote-spacing: 1em !default;
+$blockquote-color: inherit !default;
+$blockquote-background: null !default;
+$blockquote-border: $border-light !default;
+$blockquote-border-invert: $border-invert !default;
+$blockquote-border-radius: null !default;
+$blockquote-accent-width: 4px !default;
+$blockquote-accent-offset: -1px !default;
+$blockquote-accent-color: $primary !default;
+
+// Code
+// ---
+
+$code-padding: null !default;
+$code-background: null !default;
+$code-border: null !default;
+$code-border-radius: $border-radius !default;
+$code-color: $pink !default;
+$code-color-invert: $pink-300 !default;
+
+// Pre
+// ---
+
+$pre-padding: 1em !default;
+$pre-background: $shade !default;
+$pre-border: null !default;
+$pre-border-radius: $border-radius !default;
+$pre-color: $color !default;
+
+// Type
+// ---
+
+$type-font-family: null !default;
+$type-font-size: null !default;
+$type-line-height: null !default;
+$type-spacing: 1rem !default;
+$type-spacing-lg: 1.5rem !default;

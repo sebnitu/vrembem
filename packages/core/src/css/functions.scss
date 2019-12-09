@@ -1,0 +1,249 @@
+/// jQuery-style extend function for when `map-merge()` isn't enough. Use when
+/// we need to merge more than two maps and/or need a merge to be recursive.
+/// @param {Map} $map - The first map
+/// @param {Map} $maps - Can be a list of maps
+/// @param {Boolean} $deep [false] - Whether or not to enable recursive mode
+/// @return {Map} - Extended map
+@function map-extend($map, $maps.../*, $deep */) {
+  $last: nth($maps, -1);
+  $deep: $last == true;
+  $max: if($deep, length($maps) - 1, length($maps));
+  // Loop through all maps in $maps...
+  @for $i from 1 through $max {
+    // Store current map
+    $current: nth($maps, $i);
+    // If not in deep mode, simply merge current map with map
+    @if not $deep {
+      $map: map-merge($map, $current);
+    } @else {
+      // If in deep mode, loop through all tuples in current map
+      @each $key, $value in $current {
+        // If value is a nested map and same key from map is a nested map as well
+        @if type-of($value) == "map" and type-of(map-get($map, $key)) == "map" {
+          // Recursive extend
+          $value: map-extend(map-get($map, $key), $value, true);
+        }
+        // Merge current tuple with map
+        $map: map-merge($map, ($key: $value));
+      }
+    }
+  }
+  @return $map;
+}
+
+/// An easy way to fetch a deep value in a multi-level map. Works much like
+/// map-get() except that you pass multiple keys as the second variable argument
+/// to go down multiple levels in the nested map.
+/// @param {Map} $map
+/// @param {List} $keys
+/// @return {Map} - Requested value from map
+@function map-fetch($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+/// An easy way to set a deep value in a multi-level map. By passing in a map,
+/// value and keys to the original map value you want changed.
+/// @param {Map} $map
+/// @param {Value} $value
+/// @param {List} $keys
+/// @return {Map} - Updated map with new values
+@function map-set($map, $value, $keys) {
+  $maps: ($map,);
+  $result: null;
+  @if type-of(nth($keys, -1)) == "map" {
+    @warn "The last key you specified is a map; it will be overrided with `#{$value}`.";
+  }
+  @if length($keys) == 1 {
+    @return map-merge($map, ($keys: $value));
+  }
+  @for $i from 1 through length($keys) - 1 {
+    $current-key: nth($keys, $i);
+    $current-map: nth($maps, -1);
+    $current-get: map-get($current-map, $current-key);
+    @if $current-get == null {
+      @error "Key `#{$key}` doesn't exist at current level in map.";
+    }
+    $maps: append($maps, $current-get);
+  }
+  @for $i from length($maps) through 1 {
+    $current-map: nth($maps, $i);
+    $current-key: nth($keys, $i);
+    $current-val: if($i == length($maps), $value, $result);
+    $result: map-merge($current-map, ($current-key: $current-val));
+  }
+  @return $result;
+}
+
+/// Remove the unit of a length
+/// @param {Number} $number - Number to remove unit from
+/// @return {Number} - Unitless number
+@function strip-unit($number) {
+  @if type-of($number) == "number" and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+
+/// Converts a pixel value to ems.
+/// @param {Pixel} $px
+/// @param {Pixel} $base [$font-size]
+/// @return {Em} - Calculated em value
+@function px-to-em($px, $base: $font-size) {
+  @if unitless($px) {
+    $px: 1px * $px;
+  }
+  @if unitless($base) {
+    $base: 1px * $base;
+  }
+  $px: ($px / $base) * 1em;
+  @return strip-unit($px) * 1em;
+}
+
+/// Converts a pixel value to rems.
+/// @param {Pixel} $px
+/// @return {Rem} - Calculated rem value
+@function px-to-rem($px) {
+  @if unitless($px) {
+    $px: 1px * $px;
+  }
+  @if unitless($font-size) {
+    $font-size: 1px * $font-size;
+  }
+  $px: ($px / $font-size) * 1rem;
+  @return strip-unit($px) * 1rem;
+}
+
+/// Converts an em value to pixels.
+/// @param {Em} $em
+/// @param {Pixel} $base [$font-size]
+/// @return {Pixel} - Calculated pixel value
+@function em-to-px($em, $base: $font-size) {
+  @if unitless($em) {
+    $em: 1em * $em;
+  }
+  @if unitless($base) {
+    $base: 1px * $base;
+  }
+  $em: ($em * $base) / 1px;
+  @return strip-unit($em) * 1px;
+}
+
+/// Output the font weight value using the a weight keyword.
+/// @param {String} $weight - Font weight keyword
+/// @return {Number} - Font weight value
+@function font-weight($keyword) {
+  $value: null;
+  @if ($keyword == "hairline" or $keyword == "thin") {
+    $value: 100;
+  } @else if ($keyword == "extra-light") {
+    $value: 200;
+  } @else if ($keyword == "light") {
+    $value: 300;
+  } @else if ($keyword == "regular" or $keyword == "normal") {
+    $value: 400;
+  } @else if ($keyword == "medium") {
+    $value: 500;
+  } @else if ($keyword == "semi-bold") {
+    $value: 600;
+  } @else if ($keyword == "bold") {
+    $value: 700;
+  } @else if ($keyword == "extra-bold") {
+    $value: 800;
+  } @else if ($keyword == "black") {
+    $value: 900;
+  }
+  @return $value;
+}
+
+/// Returns the aspect ratio in the form of a percentage.
+/// @param {Number} $width
+/// @param {Number} $height
+/// @return {Percent} - Aspect ratio as a percentage
+@function aspect-ratio($width, $height) {
+  @return (($height / $width) * 100%);
+}
+
+/// Encodes a color for use in data-uri
+/// @param {String} $string - The color to encode
+/// @return {String} - Encoded color
+@function encodecolor($string) {
+  @if type-of($string) == "color" {
+    $hex: str-slice(ie-hex-str($string), 4);
+    $string:unquote("#{$hex}");
+  }
+  $string: "%23" + $string;
+  @return $string;
+}
+
+/// Replacing values from list.
+/// @param {List} $list
+/// @param {Value} $old-value
+/// @param {Value} $new-value
+/// @param {Boolean} $recursive [false]
+/// @return {List} - list with replaced values
+@function replace($list, $old-value, $new-value, $recursive: false) {
+  $result: ();
+  @for $i from 1 through length($list) {
+    @if type-of(nth($list, $i)) == list and $recursive {
+      $result: append(
+        $result,
+        replace(nth($list, $i), $old-value, $new-value, $recursive)
+      );
+    } @else {
+      @if nth($list, $i) == $old-value {
+        $result: append($result, $new-value);
+      } @else {
+        $result: append($result, nth($list, $i));
+      }
+    }
+  }
+  @return $result;
+}
+
+/// Replaces a boolean list template with two values.
+/// @param {List} $tpl - A boolean list template
+/// @param {Color} $color-1 - Color to replace 1 from template
+/// @param {Color} $color-0 [transparent] - Color to replace 0 from template
+/// @return {List} - New list with replaced values
+@function set-border-color($tpl, $color-1, $color-0: transparent) {
+  $result: replace($tpl, 0, $color-0);
+  $result: replace($result, 1, $color-1);
+  @return $result;
+}
+
+/// Switch between a dark or light color based on the provided background color
+/// @param {Color} $color - The color to check against a lightness threshold
+/// @param {Color} $color-subtle - The light color to use
+/// @param {Color} $color-dark - The dark color to use
+/// @return {Color} - A light or dark text color based on lightness test
+@function color-switch(
+  $background-color,
+  $color-dark: $color,
+  $color-light: $color-invert
+) {
+  // Checkout base color to lightness threshold
+  @if (lightness($background-color) > $lightness-threshold) {
+    // Lighter backgorund, return dark color
+    @return $color-dark;
+  } @else {
+    // Darker background, return light color
+    @return $color-light;
+  }
+}
+
+/// Check whether or not a color is dark
+/// @param {Color} $color - The color to check against a lightness threshold
+/// @return {Boolean} - The result
+@function is-dark($color) {
+  @return (lightness($color) < $lightness-threshold);
+}
+
+/// Check whether or not a color is light
+/// @param {Color} $color - The color to check against a lightness threshold
+/// @return {Boolean} - The result
+@function is-light($color) {
+  @return (lightness($color) > $lightness-threshold);
+}

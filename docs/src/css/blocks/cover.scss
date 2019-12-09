@@ -1,0 +1,145 @@
+/**
+ * Cover
+ * ---
+ * Creates styles for the cover component which is the layout for the home page.
+ */
+
+.cover {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+@include media-min('md') {
+  .cover {
+    flex-direction: row;
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/**
+ * Header and Content
+ */
+
+.cover__hero,
+.cover__aside {
+  position: relative;
+}
+
+.cover__hero {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  display: flex;
+  flex: 0 0 auto;
+  overflow: hidden;
+  background: $background-gradient;
+  background-color: $background-color;
+  color: $white;
+}
+
+.cover__aside {
+  position: relative;
+  z-index: 2;
+  flex: 1 1 auto;
+  background: $shade;
+}
+
+@include media-min('md') {
+  .cover__hero,
+  .cover__aside {
+    flex: 1 0 0;
+  }
+
+  .cover__hero {
+    flex-direction: column;
+    flex-grow: 2;
+    justify-content: center;
+  }
+}
+
+/**
+ * Cover hero content
+ */
+
+.cover__inner {
+  padding: 1.5em;
+}
+
+@include media-min('xs') {
+  .cover__inner {
+    padding: 2em;
+  }
+}
+
+@include media-min('md') {
+  .cover__inner {
+    max-width: 46em;
+    padding: 4em;
+  }
+}
+
+/**
+ * Cover menu content
+ */
+
+.cover__header,
+.cover__content {
+  padding: 0.5em;
+  background: $shade;
+}
+
+.cover__header {
+  position: sticky;
+  z-index: 2;
+  top: 0;
+  border-bottom: 1px solid rgba($black, 0.05);
+}
+
+.cover__content {
+  position: relative;
+  z-index: 1;
+}
+
+@include media-min('lg') {
+  .cover__header,
+  .cover__content {
+    padding: 1em;
+  }
+}
+
+/**
+ * Title, description and version
+ */
+
+.cover__title {
+  margin-bottom: 1rem;
+  font-size: 2.5em;
+  font-weight: $heading-font-weight;
+  line-height: 1.325em;
+}
+
+.cover__desc {
+  margin-bottom: 1.5rem;
+  line-height: 1.6em;
+}
+
+.cover__version {
+  color: rgba($white, 0.5);
+
+  &:hover span {
+    color: rgba($white, 1);
+  }
+}
+
+@include media-min('md') {
+  .cover__title {
+    font-size: 5em;
+  }
+
+  .cover__desc {
+    font-size: 1.4em;
+  }
+}

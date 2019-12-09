@@ -1,0 +1,40 @@
+@import "./mixins";
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  @include heading-base();
+}
+
+.h1,
+.#{$class-type} .h1 {
+  @include heading(1);
+}
+
+.h2,
+.#{$class-type} .h2 {
+  @include heading(2);
+}
+
+.h3,
+.#{$class-type} .h3 {
+  @include heading(3);
+}
+
+.h4,
+.#{$class-type} .h4 {
+  @include heading(4);
+}
+
+.h5,
+.#{$class-type} .h5 {
+  @include heading(5);
+}
+
+.h6,
+.#{$class-type} .h6 {
+  @include heading(6);
+}

@@ -1,0 +1,31 @@
+@import "./variables";
+
+.grid_break {
+  flex-direction: column;
+
+  > .grid__item {
+    flex: 1 0 100%;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@each $key, $value in $breakpoints {
+  .grid_break_#{$key} {
+    flex-direction: column;
+  }
+
+  @include media-min($key) {
+    .grid_break_#{$key} {
+      flex-direction: row;
+    }
+  }
+
+  @include media-max($key) {
+    .grid_break_#{$key} > .grid__item {
+      flex: 1 0 100%;
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+}

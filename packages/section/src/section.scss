@@ -1,0 +1,49 @@
+@import "./variables";
+
+.section {
+  position: relative;
+  padding: map-get($section-padding, 'base');
+}
+
+.section__container {
+  position: relative;
+  z-index: 3;
+}
+
+.section__intro {
+  max-width: $section__intro-max-width;
+  margin: 0 auto;
+  text-align: center;
+}
+
+@each $bp, $value in $section-padding {
+  @if ($bp != 'base') {
+    @include media-min($bp) {
+      .section {
+        padding: $value;
+      }
+    }
+  }
+}
+
+.section__background,
+.section__screen {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.section__background {
+  object-fit: cover;
+  z-index: 1;
+}
+
+.section__screen {
+  z-index: 2;
+  background: $section__screen-background;
+  opacity: $section__screen-opacity;
+}

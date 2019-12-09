@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Setup styles -->
+  <link rel="stylesheet" href="./node_modules/@vrembem/base/dist/styles.min.css">
+  <link rel="stylesheet" href="./node_modules/@vrembem/utility/dist/styles.min.css">
+  <!-- Component styles -->
+  <link rel="stylesheet" href="./dist/styles.min.css">
+  <title>@vrembem/modal</title>
+</head>
+<body>
+<div class="padding_xl">
+  <h1 class="margin_bottom_md">@vrembem/modal</h1>
+  <p>A component for changing the mode of a page to complete a critical task. This is usually used in conjunction with the Dialog component to make modal dialogs.</p>
+  <hr class="sep margin_vert_lg">
+
+  <!-- Modal Triggers -->
+  <p class="margin_top_md">
+    <button data-modal-open="modal-default" class="link">Modal Default</button>
+    <button data-modal-open="modal-focus" class="link">Modal Focus</button>
+    <button data-modal-open="modal-required" class="link">Modal Required</button>
+  </p>
+
+  <p class="margin_top_md">
+    <button class="link api-test-open">API Open</button>
+  </p>
+
+</div>
+
+<!-- Modal Default -->
+<div data-modal="modal-default" class="modal" tabindex="-1">
+  <div class="modal__dialog padding background_white radius spacing">
+    <div class="flex flex_justify_between">
+      <p>Modal Default</p>
+      <button data-modal-close class="link">Close</button>
+    </div>
+    <p>
+      <button data-modal-open="modal-focus" class="link">Modal Focus</button>
+      <button class="link api-test-close">API Close</button>
+    </p>
+  </div>
+</div>
+
+<!-- Modal Focus -->
+<div data-modal="modal-focus" class="modal" tabindex="-1">
+  <div class="modal__dialog padding background_white radius">
+    <div class="flex flex_justify_between">
+      <p>Modal Focus</p>
+      <button data-modal-close data-modal-focus class="link">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Required -->
+<div data-modal="modal-required" data-modal-required class="modal" tabindex="-1">
+  <div class="modal__dialog padding background_white radius">
+    <div class="flex flex_justify_between">
+      <p>Modal Required</p>
+      <button data-modal-close data-modal-focus class="link">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Component scripts -->
+<script src="./dist/scripts.min.js"></script>
+<script>
+  const modal = new vrembem.Modal({ autoInit: true });
+
+  const apiOpen = document.querySelector(".api-test-open")
+  const apiClose = document.querySelector(".api-test-close")
+
+  apiOpen.addEventListener("click", function(event) {
+    modal.open("modal-default", function() {
+      console.log("Open API called")
+    })
+  })
+
+  apiClose.addEventListener("click", function(event) {
+    modal.close(true, function() {
+      console.log("Close API called")
+    })
+  })
+</script>
+</body>
+</html>

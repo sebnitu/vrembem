@@ -1,0 +1,10 @@
+@import "./variables";
+@import "./mixins";
+
+.icon_style_stroke {
+  @include icon-style("stroke");
+}
+
+.icon_style_fill {
+  @include icon-style("fill");
+}

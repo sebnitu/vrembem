@@ -1,0 +1,15 @@
+@import "./variables";
+
+.#{$class-spacing} {
+  > * + * {
+    margin-top: $utility-spacing;
+  }
+}
+
+@each $key, $value in $utility-spacing-map {
+  .#{$class-spacing}_#{$key} {
+    > * + * {
+      margin-top: $value;
+    }
+  }
+}

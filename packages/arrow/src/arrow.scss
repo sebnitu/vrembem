@@ -1,0 +1,27 @@
+@import "./variables";
+
+.arrow {
+  display: inline-block;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 0;
+  height: 0;
+  transform-origin: center;
+  border-top: $arrow-size-pointer solid $arrow-color;
+  border-right: $arrow-size solid transparent;
+  border-left: $arrow-size solid transparent;
+  border-radius: $arrow-radius;
+  pointer-events: none;
+}
+
+.arrow_up {
+  transform: rotate(180deg);
+}
+
+.arrow_left {
+  transform: rotate(90deg);
+}
+
+.arrow_right {
+  transform: rotate(-90deg);
+}

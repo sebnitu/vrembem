@@ -1,0 +1,17 @@
+@import "./variables";
+
+@each $key, $group in $section-padding-scale {
+  @each $bp, $value in $group {
+    @if ($bp == 'base') {
+      .section_size_#{$key} {
+        padding: $value;
+      }
+    } @else {
+      @include media-min($bp) {
+        .section_size_#{$key} {
+          padding: $value;
+        }
+      }
+    }
+  }
+}

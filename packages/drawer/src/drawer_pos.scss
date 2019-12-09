@@ -1,0 +1,72 @@
+@import "./variables";
+
+.drawer_pos_left,
+.drawer_pos_right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+
+  .drawer__item {
+    position: absolute;
+    top: 0;
+  }
+}
+
+.drawer_pos_left {
+  left: 0;
+
+  .drawer__item {
+    left: 0;
+    transform: translateX(-100%);
+    border-right: $drawer__item-border;
+  }
+}
+
+.drawer_pos_right {
+  right: 0;
+
+  .drawer__item {
+    right: 0;
+    transform: translateX(100%);
+    border-left: $drawer__item-border;
+  }
+}
+
+/**
+ * Drawer state classes
+ */
+
+.drawer_pos_left.is-opening,
+.drawer_pos_left.is-open {
+  &:not(.drawer_modal) ~ .drawer__main {
+    margin-left: $drawer-width;
+  }
+}
+
+.drawer_pos_right.is-opening,
+.drawer_pos_right.is-open {
+  &:not(.drawer_modal) ~ .drawer__main {
+    margin-right: $drawer-width;
+  }
+}
+
+.drawer_pos_left.is-opening,
+.drawer_pos_right.is-opening,
+.drawer_pos_left.is-open,
+.drawer_pos_right.is-open {
+  .drawer__item {
+    transform: translateX(0);
+  }
+}
+
+.drawer_pos_left.is-closing {
+  .drawer__item {
+    transform: translateX(-100%);
+  }
+}
+
+.drawer_pos_right.is-closing {
+  .drawer__item {
+    transform: translateX(100%);
+  }
+}

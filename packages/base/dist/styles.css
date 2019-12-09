@@ -1,0 +1,620 @@
+/**
+ * Remove all spacing and inherit box-sizing on everything.
+ */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+/**
+ * Default html (root) and body styles.
+ */
+html,
+body {
+  height: 100%;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+  line-height: 1.5;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  color: #212121;
+  font-family: BlinkMacSystemFont, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+}
+
+/**
+ * Reset font-size for headings
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+}
+
+/**
+ * Better default styles for images.
+ */
+img {
+  max-width: 100%;
+  height: auto;
+  border: 0;
+  border-style: none;
+  vertical-align: middle;
+}
+
+/**
+ * Add a global font weight in Chrome, Edge, and Safari.
+ */
+b,
+strong {
+  font-weight: bold;
+}
+
+/**
+ * Default anchor and button styles.
+ */
+a,
+button {
+  color: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+/**
+ * Set a global font family and font size in all browsers.
+ */
+code,
+pre {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 1em;
+}
+
+/**
+ * Add a global font size for all browsers.
+ */
+small {
+  font-size: 14px;
+}
+
+/**
+ * Better default table styles.
+ */
+table {
+  border-collapse: collapse;
+}
+
+caption {
+  caption-side: bottom;
+  color: #9e9e9e;
+  text-align: left;
+}
+
+/**
+ * Default form input elements styles.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: inherit;
+}
+
+button,
+input {
+  overflow: visible;
+}
+
+button {
+  border: 0;
+  background: none;
+  letter-spacing: inherit;
+  text-align: inherit;
+  text-transform: none;
+  cursor: pointer;
+  -webkit-font-smoothing: inherit;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+button,
+[type=button],
+[type=reset],
+[type=submit] {
+  -webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+button::-moz-focus-inner,
+[type=button]::-moz-focus-inner,
+[type=reset]::-moz-focus-inner,
+[type=submit]::-moz-focus-inner {
+  padding: 0;
+  border-style: none;
+}
+
+/**
+ * Correct placeholder text opacity in Firefox.
+ */
+input::-moz-placeholder {
+  opacity: 1;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+.blockquote {
+  position: relative;
+  padding: 1.5em;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  color: inherit;
+}
+.blockquote::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: -1px;
+  width: 4px;
+  background-color: #00bcd4;
+}
+.blockquote > * + * {
+  margin-top: 1em;
+}
+
+.code {
+  color: #e91e63;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.9em;
+  word-break: break-word;
+}
+
+.embed {
+  position: relative;
+  display: block;
+  height: 0;
+  padding: 0 0 56.25%;
+  overflow: hidden;
+}
+
+.embed__item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  color: inherit;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.h1,
+.type .h1 {
+  font-size: 2em;
+}
+@media (min-width: 760px) {
+  .h1,
+.type .h1 {
+    font-size: 2.5em;
+  }
+}
+
+.h2,
+.type .h2 {
+  font-size: 1.75em;
+}
+@media (min-width: 760px) {
+  .h2,
+.type .h2 {
+    font-size: 2em;
+  }
+}
+
+.h3,
+.type .h3 {
+  font-size: 1.5em;
+}
+@media (min-width: 760px) {
+  .h3,
+.type .h3 {
+    font-size: 1.75em;
+  }
+}
+
+.h4,
+.type .h4 {
+  font-size: 1.25em;
+}
+@media (min-width: 760px) {
+  .h4,
+.type .h4 {
+    font-size: 1.5em;
+  }
+}
+
+.h5,
+.type .h5 {
+  font-size: 1.1em;
+  line-height: inherit;
+}
+@media (min-width: 760px) {
+  .h5,
+.type .h5 {
+    font-size: 1.25em;
+  }
+}
+
+.h6,
+.type .h6 {
+  font-size: 1em;
+  line-height: inherit;
+}
+@media (min-width: 760px) {
+  .h6,
+.type .h6 {
+    font-size: 1em;
+  }
+}
+
+.link {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: #00bcd4;
+  text-decoration: none;
+}
+.link:hover {
+  border-bottom: 1px solid currentColor;
+  color: #0097a7;
+}
+.link:focus {
+  outline: currentColor dotted 1px;
+  outline-offset: 3px;
+  border-bottom: 1px solid currentColor;
+  color: #0097a7;
+}
+
+.link_subtle,
+.type .link_subtle {
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #9e9e9e;
+}
+.link_subtle:hover, .link_subtle:focus,
+.type .link_subtle:hover,
+.type .link_subtle:focus {
+  border-color: currentColor;
+  color: #0097a7;
+}
+
+.link_invert,
+.type .link_invert {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
+}
+.link_invert:hover, .link_invert:focus,
+.type .link_invert:hover,
+.type .link_invert:focus {
+  border-color: currentColor;
+  color: #fff;
+}
+
+.link_invert-subtle,
+.type .link_invert-subtle {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.6);
+}
+.link_invert-subtle:hover, .link_invert-subtle:focus,
+.type .link_invert-subtle:hover,
+.type .link_invert-subtle:focus {
+  border-color: currentColor;
+  color: #fff;
+}
+
+.list {
+  margin-left: 1.5em;
+}
+.list ul,
+.list ol {
+  margin-left: 1.5em;
+}
+.list li {
+  margin: 0.5em 0;
+}
+
+.pre {
+  padding: 1em;
+  overflow: auto;
+  border-radius: 4px;
+  background: #f5f5f5;
+  color: #212121;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.pre code {
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font-size: 1em;
+}
+
+.scroll-box {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sep {
+  display: block;
+  height: 0;
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.sep_light {
+  border-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.sep_dark {
+  border-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.sep_darker {
+  border-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.sep_invert {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.sep_invert-light {
+  border-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.sep_invert-dark {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.sep_invert-darker {
+  border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.symbols {
+  position: absolute !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+.type::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.type > * {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.type h1,
+.type h2,
+.type h3,
+.type h4,
+.type h5,
+.type h6 {
+  color: inherit;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-top: 1.5rem;
+}
+.type h1:first-child,
+.type h2:first-child,
+.type h3:first-child,
+.type h4:first-child,
+.type h5:first-child,
+.type h6:first-child {
+  margin-top: 0;
+}
+.type h1 {
+  font-size: 2em;
+}
+@media (min-width: 760px) {
+  .type h1 {
+    font-size: 2.5em;
+  }
+}
+.type h2 {
+  font-size: 1.75em;
+}
+@media (min-width: 760px) {
+  .type h2 {
+    font-size: 2em;
+  }
+}
+.type h3 {
+  font-size: 1.5em;
+}
+@media (min-width: 760px) {
+  .type h3 {
+    font-size: 1.75em;
+  }
+}
+.type h4 {
+  font-size: 1.25em;
+}
+@media (min-width: 760px) {
+  .type h4 {
+    font-size: 1.5em;
+  }
+}
+.type h5 {
+  font-size: 1.1em;
+  line-height: inherit;
+}
+@media (min-width: 760px) {
+  .type h5 {
+    font-size: 1.25em;
+  }
+}
+.type h6 {
+  font-size: 1em;
+  line-height: inherit;
+}
+@media (min-width: 760px) {
+  .type h6 {
+    font-size: 1em;
+  }
+}
+.type a {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: #00bcd4;
+  text-decoration: none;
+}
+.type a:hover {
+  border-bottom: 1px solid currentColor;
+  color: #0097a7;
+}
+.type a:focus {
+  outline: currentColor dotted 1px;
+  outline-offset: 3px;
+  border-bottom: 1px solid currentColor;
+  color: #0097a7;
+}
+.type hr {
+  display: block;
+  height: 0;
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.type ul,
+.type ol {
+  margin-left: 1.5em;
+}
+.type ul ul,
+.type ul ol,
+.type ol ul,
+.type ol ol {
+  margin-left: 1.5em;
+}
+.type ul li,
+.type ol li {
+  margin: 0.5em 0;
+}
+.type blockquote {
+  position: relative;
+  padding: 1.5em;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  color: inherit;
+}
+.type blockquote::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: -1px;
+  width: 4px;
+  background-color: #00bcd4;
+}
+.type blockquote > * + * {
+  margin-top: 1em;
+}
+.type code {
+  color: #e91e63;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.9em;
+  word-break: break-word;
+}
+.type pre {
+  padding: 1em;
+  overflow: auto;
+  border-radius: 4px;
+  background: #f5f5f5;
+  color: #212121;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.type pre code {
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font-size: 1em;
+}
+.type hr,
+.type blockquote,
+.type pre {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.type hr:first-child,
+.type blockquote:first-child,
+.type pre:first-child {
+  margin-top: 0;
+}
+.type hr:last-child,
+.type blockquote:last-child,
+.type pre:last-child {
+  margin-bottom: 0;
+}
+.type > *:first-child {
+  margin-top: 0;
+}
+.type > *:last-child {
+  margin-bottom: 0;
+}
+
+.type_invert {
+  color: #fff;
+}
+.type_invert a {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
+}
+.type_invert a:hover, .type_invert a:focus {
+  border-color: currentColor;
+  color: #fff;
+}
+.type_invert hr {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.type_invert blockquote {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.type_invert code {
+  color: #f06292;
+}
+
+/*# sourceMappingURL=styles.css.map */

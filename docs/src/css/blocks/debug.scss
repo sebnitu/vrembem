@@ -1,0 +1,29 @@
+.debug {
+  position: absolute;
+  right: 1em;
+  bottom: 1em;
+  display: flex;
+  border-radius: $border-radius;
+  background: rgba($white, 0.9);
+  box-shadow: $box-shadow-8dp;
+  font-family: $font-family-mono;
+  font-size: $font-size-sm;
+
+  &::before {
+    content: "Debug";
+    padding: $padding;
+    border-top-left-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
+    background: $pink;
+    color: $white;
+    font-weight: bold;
+  }
+
+  &::after {
+    content: "#{$padding}";
+    padding: $padding;
+    border-top-right-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    color: $pink;
+  }
+}

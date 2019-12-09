@@ -1,0 +1,13 @@
+@import "./variables";
+
+.#{$class-border-radius} {
+  border-radius: $border-radius !important;
+}
+
+.#{$class-border-radius}_square {
+  border-radius: 0 !important;
+}
+
+.#{$class-border-radius}_circle {
+  border-radius: $border-radius-circle !important;
+}

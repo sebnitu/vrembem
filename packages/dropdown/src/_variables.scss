@@ -1,0 +1,43 @@
+@import "@vrembem/core/index";
+
+$dropdown-z-index: 10 !default;
+$dropdown-spacing: 0.5em !default;
+$dropdown-width: 16em !default;
+$dropdown-font-size: $font-size-sm !default;
+$dropdown-line-height: null !default;
+$dropdown-background: $white !default;
+$dropdown-border: null !default;
+$dropdown-border-radius: $border-radius !default;
+$dropdown-box-shadow: $box-shadow-8dp !default;
+
+$dropdown__item-margin: 1px 0 !default;
+$dropdown__item-background: null !default;
+
+$dropdown__link-inner-spacing: 0.5em !default;
+$dropdown__link-padding: $padding !default;
+
+$dropdown__link-color: $color !default;
+$dropdown__link-color-hover: null !default;
+$dropdown__link-color-focus: null !default;
+$dropdown__link-color-active: null !default;
+$dropdown__link-color-is-active: $primary !default;
+$dropdown__link-color-is-disabled: $color-subtle !default;
+
+$dropdown__link-background: null !default;
+$dropdown__link-background-hover: rgba($black, 0.06) !default;
+$dropdown__link-background-focus: rgba($black, 0.09) !default;
+$dropdown__link-background-active: rgba($black, 0.12) !default;
+$dropdown__link-background-is-active: $white !default;
+$dropdown__link-background-is-disabled: $white !default;
+
+$dropdown__sep-border: $border !default;
+
+$dropdown__title-font-size: $font-size-lg !default;
+$dropdown__title-line-height: $line-height-lg !default;
+$dropdown__title-font-weight: font-weight("semi-bold") !default;
+
+$dropdown_pos_spacing: 0.5em !default;
+$dropdown_pos_margin: 1px !default;
+
+$dropdown_size_sm-width: 12em !default;
+$dropdown_size_lg-width: 20em !default;

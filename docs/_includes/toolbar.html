@@ -1,16 +1,18 @@
 <div class="toolbar{% if include.class %} {{ include.class }}{% endif %}">
-  <div class="grid grid_auto grid_hori_between grid_gap_none">
+  <div class="grid grid_auto flex_justify_between grid_gap_none">
 
     <div class="grid__item">
       <ul class="menu menu_theme_invert">
         <li class="menu__item">
-          <button class="menu__link menu__link_icon drawer__trigger" data-target="#listjs">
+          <button class="menu__link menu__link_icon" data-drawer-toggle="drawer-menu">
             {% include icon.html icon="menu" %}
           </button>
         </li>
         <li class="menu__sep"></li>
         <li class="menu__item">
-          <a href="{{ site.url }}{{ site.baseurl }}" class="menu__link">{{ site.title }}</a>
+          <a href="{{ site.url }}{{ site.baseurl }}" class="menu__link">
+            <span>{{ site.title }}</span>
+          </a>
         </li>
       </ul>
     </div>

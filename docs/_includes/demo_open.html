@@ -10,12 +10,15 @@
 
 {%- if include.class_gridItem -%}
   {%- assign class_gridItem = ' ' | append: include.class_gridItem -%}
+{%- else -%}
+  {%- assign class_gridItem = ' span_6' -%}
 {%- endif -%}
 
 {%- if include.class_parent -%}
   {%- assign class_parent = ' ' | append: include.class_parent -%}
 {%- endif -%}
 
+<div>
 <div class="demo grid{{ class_grid | rstrip }}">
 <div class="grid__item{{ class_gridItem | rstrip }}">
 <div class="demo__render{{ class_parent | rstrip }}">

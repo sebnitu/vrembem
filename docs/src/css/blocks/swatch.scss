@@ -1,0 +1,4 @@
+.swatch {
+  @include size(4rem);
+  display: inline-flex;
+}

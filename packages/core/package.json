@@ -1,0 +1,21 @@
+{
+  "name": "@vrembem/core",
+  "description": "The core variables, functions and mixins for Vrembem components.",
+  "version": "1.0.0",
+  "main": "dist/scripts.cjs.js",
+  "module": "index.js",
+  "browser": "dist/scripts.js",
+  "style": "index.scss",
+  "scripts": {
+    "build": "npm-run-all clean scripts",
+    "clean": "del dist",
+    "scripts": "rollup -c",
+    "watch": "npm run watch:scripts",
+    "watch:scripts": "nodemon -e js -x 'npm run scripts' -i dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebnitu/vrembem.git",
+    "directory": "packages/core"
+  }
+}

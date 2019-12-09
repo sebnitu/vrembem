@@ -1,0 +1,116 @@
+@import "./variables";
+
+.button_outline {
+  border: $button_outline-border-width solid $border-color-dark;
+  background: none;
+
+  &:hover {
+    border-color: $border-color-darker;
+    background: none;
+  }
+
+  &:focus,
+  &:active {
+    border-color: $color;
+    background: none;
+  }
+
+  &.button_invert {
+    border-color: $border-color-invert-dark;
+
+    &:hover {
+      border-color: $border-color-invert-darker;
+    }
+
+    &:focus,
+    &:active {
+      border-color: $white;
+    }
+  }
+}
+
+.button_outline_primary {
+  border: $button_outline-border-width solid rgba($primary, 0.5);
+  background: none;
+  color: $primary;
+
+  &:hover {
+    border-color: $primary;
+    background: none;
+    color: $primary;
+  }
+
+  &:focus,
+  &:active {
+    border-color: $primary;
+    background: $primary;
+    color: $white;
+  }
+
+  &.is-loading::after {
+    border-color: set-border-color($button-loading-border-tpl, $primary);
+  }
+
+  &.is-loading:focus::after {
+    border-color: set-border-color($button-loading-border-tpl, $white);
+  }
+
+  &.button_invert {
+    border-color: $primary-light;
+    color: $primary-light;
+
+    &:hover {
+      color: $white;
+    }
+
+    &:focus,
+    &:active {
+      border-color: $primary;
+      background-color: $primary;
+      color: $white;
+    }
+  }
+}
+
+.button_outline_secondary {
+  border: $button_outline-border-width solid rgba($secondary, 0.5);
+  background: none;
+  color: $secondary;
+
+  &:hover {
+    border-color: $secondary;
+    background: none;
+    color: $secondary;
+  }
+
+  &:focus,
+  &:active {
+    border-color: $secondary;
+    background: $secondary;
+    color: $white;
+  }
+
+  &.is-loading::after {
+    border-color: set-border-color($button-loading-border-tpl, $secondary);
+  }
+
+  &.is-loading:focus::after {
+    border-color: set-border-color($button-loading-border-tpl, $white);
+  }
+
+  &.button_invert {
+    border-color: $secondary-light;
+    color: $secondary-light;
+
+    &:hover {
+      color: $white;
+    }
+
+    &:focus,
+    &:active {
+      border-color: $secondary;
+      background-color: $secondary;
+      color: $white;
+    }
+  }
+}

@@ -1,0 +1,7 @@
+@import "./variables";
+
+@each $key, $value in $container-scale {
+  .container_size_#{$key} {
+    max-width: $value;
+  }
+}

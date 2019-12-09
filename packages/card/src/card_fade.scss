@@ -1,0 +1,27 @@
+@import "./variables";
+
+@include media-min("md") {
+  .card_fade {
+    .card__header,
+    .card__body,
+    .card__footer,
+    .card__screen {
+      transition: opacity $card-transition-duration $card-transition-timing-function;
+      opacity: 0;
+    }
+
+    &:hover,
+    &:focus,
+    &:focus-within {
+      .card__header,
+      .card__body,
+      .card__footer {
+        opacity: 1;
+      }
+
+      .card__screen {
+        opacity: $card__screen-opacity;
+      }
+    }
+  }
+}

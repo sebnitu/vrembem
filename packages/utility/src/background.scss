@@ -1,0 +1,161 @@
+@import "./variables";
+
+.#{$class-background}_black {
+  background-color: $black !important;
+}
+
+.#{$class-background}_white {
+  background-color: $white !important;
+}
+
+.#{$class-background}_transparent {
+  background-color: transparent !important;
+}
+
+// Brand colors
+
+.#{$class-background}_primary_lighter {
+  background-color: $primary-lighter !important;
+}
+
+.#{$class-background}_primary_light {
+  background-color: $primary-light !important;
+}
+
+.#{$class-background}_primary {
+  background-color: $primary !important;
+}
+
+.#{$class-background}_primary_dark {
+  background-color: $primary-dark !important;
+}
+
+.#{$class-background}_primary_darker {
+  background-color: $primary-darker !important;
+}
+
+.#{$class-background}_secondary_lighter {
+  background-color: $secondary-lighter !important;
+}
+
+.#{$class-background}_secondary_light {
+  background-color: $secondary-light !important;
+}
+
+.#{$class-background}_secondary {
+  background-color: $secondary !important;
+}
+
+.#{$class-background}_secondary_dark {
+  background-color: $secondary-dark !important;
+}
+
+.#{$class-background}_secondary_darker {
+  background-color: $secondary-darker !important;
+}
+
+.#{$class-background}_shade_light {
+  background-color: $shade_light !important;
+}
+
+.#{$class-background}_shade {
+  background-color: $shade !important;
+}
+
+.#{$class-background}_shade_dark {
+  background-color: $shade_dark !important;
+}
+
+.#{$class-background}_night_light {
+  background-color: $night-light !important;
+}
+
+.#{$class-background}_night {
+  background-color: $night !important;
+}
+
+.#{$class-background}_night_dark {
+  background-color: $night-dark !important;
+}
+
+// State colors
+
+.#{$class-background}_info_lighter {
+  background-color: $info-lighter !important;
+}
+
+.#{$class-background}_info_light {
+  background-color: $info-light !important;
+}
+
+.#{$class-background}_info {
+  background-color: $info !important;
+}
+
+.#{$class-background}_info_dark {
+  background-color: $info-dark !important;
+}
+
+.#{$class-background}_info_darker {
+  background-color: $info-darker !important;
+}
+
+.#{$class-background}_success_lighter {
+  background-color: $success-lighter !important;
+}
+
+.#{$class-background}_success_light {
+  background-color: $success-light !important;
+}
+
+.#{$class-background}_success {
+  background-color: $success !important;
+}
+
+.#{$class-background}_success_dark {
+  background-color: $success-dark !important;
+}
+
+.#{$class-background}_success_darker {
+  background-color: $success-darker !important;
+}
+
+.#{$class-background}_caution_lighter {
+  background-color: $caution-lighter !important;
+}
+
+.#{$class-background}_caution_light {
+  background-color: $caution-light !important;
+}
+
+.#{$class-background}_caution {
+  background-color: $caution !important;
+}
+
+.#{$class-background}_caution_dark {
+  background-color: $caution-dark !important;
+}
+
+.#{$class-background}_caution_darker {
+  background-color: $caution-darker !important;
+}
+
+.#{$class-background}_danger_lighter {
+  background-color: $danger-lighter !important;
+}
+
+.#{$class-background}_danger_light {
+  background-color: $danger-light !important;
+}
+
+.#{$class-background}_danger {
+  background-color: $danger !important;
+}
+
+.#{$class-background}_danger_dark {
+  background-color: $danger-dark !important;
+}
+
+.#{$class-background}_danger_darker {
+  background-color: $danger-darker !important;
+}

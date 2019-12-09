@@ -1,0 +1,17 @@
+@import "./variables";
+
+.input_type_select {
+  padding-right: 2em;
+  background-image: url($input_type_select-icon);
+  background-repeat: no-repeat;
+  background-position: 100% center;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.input_type_textarea {
+  max-width: 100%;
+  height: auto;
+  min-height: 2.375em; // rows="2"
+}

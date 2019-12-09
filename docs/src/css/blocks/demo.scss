@@ -1,0 +1,15 @@
+/**
+ * Demo
+ * ---
+ * Styles demos with both the code and rendered examples.
+ */
+
+.demo__code {
+  @include pre();
+}
+
+.demo__render {
+  .drawer__wrapper {
+    height: 100%;
+  }
+}

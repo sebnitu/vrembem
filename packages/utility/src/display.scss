@@ -1,0 +1,17 @@
+@import "./variables";
+
+@each $property in $utility-display-properties {
+  .#{$class-display}_#{$property} {
+    display: $property !important;
+  }
+}
+
+@each $key, $value in $breakpoints {
+  @include media-min($key) {
+    @each $property in $utility-display-properties {
+      .#{$class-display}_#{$property}_#{$key} {
+        display: $property !important;
+      }
+    }
+  }
+}

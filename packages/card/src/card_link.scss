@@ -1,0 +1,13 @@
+@import "./variables";
+
+.card_link {
+  transform: translate(0, 0);
+  box-shadow: $card_link-shadow;
+
+  &:hover,
+  &:focus,
+  &:focus-within {
+    transform: translate(0, -($card_link-offset));
+    box-shadow: $card_link-shadow-hover;
+  }
+}

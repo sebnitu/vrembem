@@ -1,0 +1,93 @@
+@import "./variables";
+
+.drawer {
+  position: relative;
+  display: flex;
+  flex: 0 0 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: stretch;
+  width: 0;
+  height: 0;
+  overflow: hidden auto;
+  outline: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.drawer__item {
+  width: $drawer-width;
+  height: 100%;
+  transform: translateY(-$drawer-travel);
+  border-right: $drawer__item-border;
+  border-radius: 0;
+  background: $drawer__item-background;
+  box-shadow: $drawer__item-box-shadow;
+  opacity: 0;
+
+  .dialog__header,
+  .dialog__footer {
+    border-color: $drawer__item-sep-border-color;
+    background: $drawer__item-background;
+  }
+
+  .dialog__body {
+    background: $drawer__item-background;
+  }
+}
+
+.drawer__wrapper {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.drawer__main {
+  position: relative;
+  flex: 1 1 auto;
+  height: 100%;
+  overflow: hidden auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/**
+ * Drawer state classes
+ */
+
+.drawer.is-opening,
+.drawer.is-open,
+.drawer.is-closing {
+  flex: 0 0 auto;
+  width: $drawer-width;
+  height: 100%;
+}
+
+.drawer.is-opening,
+.drawer.is-closing {
+  .drawer__item {
+    transition-property: opacity, transform;
+    transition-duration: $drawer-transition-duration;
+    transition-timing-function: $drawer-transition-timing-function;
+  }
+}
+
+.drawer.is-opening,
+.drawer.is-open {
+  .drawer__item {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.drawer.is-open {
+  .drawer__item {
+    opacity: 1;
+  }
+}
+
+.drawer.is-closing {
+  .drawer__item {
+    transform: translateY(-$drawer-travel);
+    opacity: 0;
+  }
+}

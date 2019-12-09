@@ -1,0 +1,30 @@
+@import "./variables";
+
+.icon-action {
+  @include size($icon-action-size);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $icon-action-border-radius;
+  background: $icon-action-background;
+  color: $white;
+  vertical-align: top;
+  cursor: pointer;
+
+  &:hover {
+    background: $icon-action-background-hover;
+  }
+
+  &:focus {
+    background: $icon-action-background-focus;
+  }
+
+  &:active {
+    background: $icon-action-background-active;
+  }
+
+  .icon {
+    stroke-width: $icon-action_icon-stroke-width;
+    font-size: $icon-action_icon-font-size;
+  }
+}

@@ -1,0 +1,129 @@
+@import "./variables";
+
+.switch {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding-right: ($switch-size * 0.25);
+  padding-left: ($switch-size * 0.25);
+  vertical-align: middle;
+}
+
+.switch__background {
+  @include size($switch-size);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::after {
+    @include size($switch-size);
+    content: "";
+    position: absolute;
+    top: 0;
+    left: (($switch-size * 0.25) * -1);
+    transition: left $switch-transition-duration $switch-transition-timing-function;
+    border-radius: $switch__background-border-radius;
+    background-color: $switch__background;
+  }
+}
+
+.switch__track {
+  @include size(100%, $switch__track-size);
+  position: relative;
+  display: block;
+  border: $switch__track-border-width solid $switch__track-border-color;
+  border-radius: $switch__track-border-radius;
+  background-color: $switch__track-background;
+}
+
+.switch__thumb {
+  @include size($switch__thumb-size);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  transition: left $transition-duration $transition-timing-function;
+  border-radius: $border-radius-circle;
+  background-color: $switch__thumb-background;
+  box-shadow: $switch__thumb-box-shadow;
+}
+
+.switch__native {
+  @include size(100%);
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+
+  &:hover + .switch__background {
+    &::after {
+      background-color: $switch__background-hover;
+    }
+
+    .switch__track {
+      border-color: $switch__track-border-color-hover;
+      background-color: $switch__track-background-hover;
+    }
+
+    .switch__thumb {
+      background-color: $switch__thumb-background-hover;
+      box-shadow: $switch__thumb-box-shadow-hover;
+    }
+  }
+
+  &:focus + .switch__background {
+    &::after {
+      background-color: $switch__background-focus;
+    }
+
+    .switch__track {
+      border-color: $switch__track-border-color-focus;
+      background-color: $switch__track-background-focus;
+    }
+
+    .switch__thumb {
+      background-color: $switch__thumb-background-focus;
+      box-shadow: $switch__thumb-box-shadow-focus;
+    }
+  }
+
+  &:active + .switch__background {
+    &::after {
+      background-color: $switch__background-active;
+    }
+
+    .switch__track {
+      border-color: $switch__track-border-color-active;
+      background-color: $switch__track-background-active;
+    }
+
+    .switch__thumb {
+      background-color: $switch__thumb-background-active;
+      box-shadow: $switch__thumb-box-shadow-active;
+    }
+  }
+
+  &:checked + .switch__background {
+    &::after {
+      left: calc(100% - #{($switch-size * 0.75)});
+      background-color: $switch__background-checked;
+    }
+
+    .switch__track {
+      border-color: $switch__track-border-color-checked;
+      background-color: $switch__track-background-checked;
+    }
+
+    .switch__thumb {
+      left: calc(100% - #{$switch__thumb-size});
+      background-color: $switch__thumb-background-checked;
+      box-shadow: $switch__thumb-box-shadow-checked;
+    }
+  }
+}

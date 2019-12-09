@@ -1,0 +1,316 @@
+@import "./variables";
+
+@mixin heading-base() {
+  color: $heading-color;
+  font-family: $heading-font-family;
+  font-weight: $heading-font-weight;
+  line-height: $heading-line-height;
+}
+
+@mixin heading($level) {
+  @if $level == 1 {
+    font-size: 2em;
+    @include media-min("md") {
+      font-size: 2.5em;
+    }
+  }
+
+  @else if $level == 2 {
+    font-size: 1.75em;
+    @include media-min("md") {
+      font-size: 2em;
+    }
+  }
+
+  @else if $level == 3 {
+    font-size: 1.5em;
+    @include media-min("md") {
+      font-size: 1.75em;
+    }
+  }
+
+  @else if $level == 4 {
+    font-size: 1.25em;
+    @include media-min("md") {
+      font-size: 1.5em;
+    }
+  }
+
+  @else if $level == 5 {
+    font-size: 1.1em;
+    line-height: inherit;
+    @include media-min("md") {
+      font-size: 1.25em;
+    }
+  }
+
+  @else if $level == 6 {
+    font-size: 1em;
+    line-height: inherit;
+    @include media-min("md") {
+      font-size: 1em;
+    }
+  }
+}
+
+@mixin link() {
+  transition: $link-transition;
+  border-bottom: $link-border;
+  color: $link-color;
+  text-decoration: $link-text-decoration;
+
+  &:hover {
+    border-bottom: $link-border-hover;
+    color: $link-color-hover;
+    text-decoration: $link-text-decoration-hover;
+  }
+
+  &:focus {
+    outline: currentColor dotted 1px;
+    outline-offset: 3px;
+    border-bottom: $link-border-hover;
+    color: $link-color-hover;
+    text-decoration: $link-text-decoration-hover;
+  }
+}
+
+@mixin link-modifier($modifier) {
+  @if $modifier == "subtle" {
+    border-color: $link-subtle-border-color;
+    color: $link-subtle-color;
+
+    &:hover,
+    &:focus {
+      border-color: $link-subtle-border-color-hover;
+      color: $link-subtle-color-hover;
+    }
+  }
+
+  @else if $modifier == "invert" {
+    border-color: $link-invert-border-color;
+    color: $link-invert-color;
+
+    &:hover,
+    &:focus {
+      border-color: $link-invert-border-color-hover;
+      color: $link-invert-color-hover;
+    }
+  }
+
+  @else if $modifier == "invert-subtle" {
+    border-color: $link-invert-subtle-border-color;
+    color: $link-invert-subtle-color;
+
+    &:hover,
+    &:focus {
+      border-color: $link-invert-subtle-border-color-hover;
+      color: $link-invert-subtle-color-hover;
+    }
+  }
+}
+
+@mixin separator() {
+  display: block;
+  height: 0;
+  border: none;
+  border-top: 1px solid $border-color;
+}
+
+@mixin list() {
+  margin-left: $list-spacing;
+
+  ul,
+  ol {
+    margin-left: $list-spacing;
+  }
+
+  li {
+    margin: $list-item-spacing 0;
+  }
+}
+
+@mixin blockquote() {
+  position: relative;
+  padding: $blockquote-padding;
+  border: $blockquote-border;
+  border-radius: $blockquote-border-radius;
+  background: $blockquote-background;
+  color: $blockquote-color;
+
+  @if $blockquote-accent-color {
+    &::before {
+      content: "";
+      position: absolute;
+      top: $blockquote-accent-offset;
+      bottom: $blockquote-accent-offset;
+      left: $blockquote-accent-offset;
+      width: $blockquote-accent-width;
+      background-color: $blockquote-accent-color;
+    }
+  }
+
+  > * + * {
+    margin-top: $blockquote-spacing;
+  }
+}
+
+@mixin blockquote-invert() {
+  border: $blockquote-border-invert;
+}
+
+@mixin code() {
+  padding: $code-padding;
+  border: $code-border;
+  background: $code-background;
+  color: $code-color;
+  font-family: $font-family-mono;
+  font-size: 0.9em;
+  word-break: break-word;
+}
+
+@mixin pre() {
+  padding: $pre-padding;
+  overflow: auto;
+  border: $pre-border;
+  border-radius: $pre-border-radius;
+  background: $pre-background;
+  color: $pre-color;
+  font-family: $font-family-mono;
+
+  code {
+    padding: 0;
+    border: none;
+    background: none;
+    color: inherit;
+    font-size: 1em;
+  }
+}
+
+@mixin type() {
+  @include add-clearfix();
+  font-family: $type-font-family;
+  font-size: $type-font-size;
+  line-height: $type-line-height;
+
+  > * {
+    margin-top: $type-spacing;
+    margin-bottom: $type-spacing;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @include heading-base();
+    margin-top: $type-spacing-lg;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h1 {
+    @include heading(1);
+  }
+
+  h2 {
+    @include heading(2);
+  }
+
+  h3 {
+    @include heading(3);
+  }
+
+  h4 {
+    @include heading(4);
+  }
+
+  h5 {
+    @include heading(5);
+  }
+
+  h6 {
+    @include heading(6);
+  }
+
+  a {
+    @include link();
+  }
+
+  hr {
+    @include separator();
+  }
+
+  ul,
+  ol {
+    @include list();
+  }
+
+  blockquote {
+    @include blockquote();
+  }
+
+  code {
+    @include code();
+  }
+
+  pre {
+    @include pre();
+  }
+
+  hr,
+  blockquote,
+  pre {
+    margin-top: $type-spacing-lg;
+    margin-bottom: $type-spacing-lg;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@mixin type-invert($color: black) {
+  @if (lightness($color) < $lightness-threshold) {
+    color: $color-invert;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: $heading-color-invert;
+    }
+
+    a {
+      @include link-modifier("invert");
+    }
+
+    hr {
+      background-color: $border-color-invert;
+    }
+
+    blockquote {
+      @include blockquote-invert();
+    }
+
+    code {
+      color: $code-color-invert;
+    }
+  }
+}

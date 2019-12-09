@@ -1,0 +1,14 @@
+@import "./variables";
+@import "./mixins";
+
+.menu_stack {
+  @include menu-stack();
+}
+
+@each $key, $value in $breakpoints {
+  @include media-max($key) {
+    .menu_stack_#{$key} {
+      @include menu-stack();
+    }
+  }
+}

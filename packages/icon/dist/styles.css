@@ -1,0 +1,29 @@
+.icon {
+  stroke: currentColor;
+  stroke-width: 2px;
+  fill: none;
+  display: inline-block;
+  box-sizing: content-box;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  font-size: 1.25em;
+  vertical-align: top;
+}
+
+.icon_style_stroke {
+  stroke: currentColor;
+  stroke-width: 2px;
+  fill: none;
+}
+
+.icon_style_fill {
+  stroke: none;
+  stroke-width: 0;
+  fill: currentColor;
+}
+
+/*# sourceMappingURL=styles.css.map */

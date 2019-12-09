@@ -1,0 +1,86 @@
+@import "./variables";
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: $button-min-size;
+  min-height: $button-min-size;
+  padding: $button-padding;
+  border: $button-border;
+  border-radius: $button-border-radius;
+  background: $button-background;
+  background-clip: border-box;
+  box-shadow: $button-box-shadow;
+  color: $button-color;
+  font-family: inherit;
+  font-size: $button-font-size;
+  font-weight: $button-font-weight;
+  letter-spacing: $button-letter-spacing;
+  line-height: $button-line-height;
+  text-decoration: none;
+  text-transform: $button-text-transform;
+  vertical-align: top;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &[disabled] {
+    opacity: $button-disabled-opacity;
+    pointer-events: none;
+  }
+
+  > * + * {
+    margin-left: $button-inner-spacing;
+  }
+
+  &:hover {
+    border-color: $button-border-color-hover;
+    background-color: $button-background-hover;
+    box-shadow: $button-box-shadow-hover;
+    color: $button-color-hover;
+  }
+
+  &:focus {
+    outline: $button-outline-focus;
+    outline-offset: $button-outline-focus-offset;
+    border-color: $button-border-color-focus;
+    background-color: $button-background-focus;
+    box-shadow: $button-box-shadow-focus;
+    color: $button-color-focus;
+  }
+
+  &:active {
+    border-color: $button-border-color-active;
+    background-color: $button-background-active;
+    box-shadow: $button-box-shadow-active;
+    color: $button-color-active;
+  }
+
+  &.is-loading {
+    color: transparent !important;
+    pointer-events: none;
+
+    &::after {
+      @include size($button-loading-size);
+      content: "";
+      position: absolute;
+      top: calc(50% - ($button-loading-size * 0.5));
+      left: calc(50% - ($button-loading-size * 0.5));
+      animation: spin $button-loading-animation-duration infinite linear;
+      border: $button-loading-border;
+      border-radius: $border-radius-circle;
+      border-color: set-border-color($button-loading-border-tpl, $button-loading-border-color);
+    }
+  }
+}

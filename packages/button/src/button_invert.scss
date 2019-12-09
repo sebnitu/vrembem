@@ -1,0 +1,21 @@
+@import "./variables";
+
+.button_invert {
+  background: rgba($white, 0.05);
+  color: $white;
+
+  &:hover {
+    background: rgba($white, 0.1);
+    color: $white;
+  }
+
+  &:focus,
+  &:active {
+    background: rgba($white, 0.15);
+    color: $white;
+  }
+
+  &.is-loading::after {
+    border-color: set-border-color($button-loading-border-tpl, $white);
+  }
+}

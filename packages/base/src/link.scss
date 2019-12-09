@@ -1,0 +1,20 @@
+@import "./mixins";
+
+.link {
+  @include link();
+}
+
+.link_subtle,
+.#{$class-type} .link_subtle {
+  @include link-modifier("subtle");
+}
+
+.link_invert,
+.#{$class-type} .link_invert {
+  @include link-modifier("invert");
+}
+
+.link_invert-subtle,
+.#{$class-type} .link_invert-subtle {
+  @include link-modifier("invert-subtle");
+}

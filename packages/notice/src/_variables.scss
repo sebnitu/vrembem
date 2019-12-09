@@ -1,0 +1,15 @@
+@import "@vrembem/core/index";
+
+$notice-padding: 1em !default;
+$notice-spacing: 0.5em !default;
+$notice-background: $shade !default;
+$notice-box-shadow: null !default;
+$notice-border: null !default;
+$notice-border-radius: $border-radius !default;
+
+$notice__title-font-size: $font-size-lg !default;
+$notice__title-line-height: $line-height-lg !default;
+$notice__title-font-weight: font-weight("semi-bold") !default;
+
+$notice__body-spacing: 1rem !default;
+$notice__actions-spacing: 0.5rem !default;

@@ -1,0 +1,58 @@
+@import "./variables";
+
+.modal_pos_top {
+  justify-content: flex-start;
+}
+
+.modal_pos_bottom {
+  justify-content: flex-end;
+
+  .modal__dialog {
+    transform: translateY($modal-travel);
+  }
+
+  &.is-closing {
+    .modal__dialog {
+      transform: translateY($modal-travel);
+    }
+  }
+}
+
+.modal_pos_left,
+.modal_pos_right {
+  .modal__dialog {
+    width: $modal_aside-width;
+    max-width: $modal_aside-max-width;
+    height: 100%;
+  }
+}
+
+.modal_pos_left {
+  align-items: flex-start;
+
+  .modal__dialog {
+    left: 0;
+    transform: translateX(-100%);
+  }
+
+  &.is-closing {
+    .modal__dialog {
+      transform: translateX(-100%);
+    }
+  }
+}
+
+.modal_pos_right {
+  align-items: flex-end;
+
+  .modal__dialog {
+    right: 0;
+    transform: translateX(100%);
+  }
+
+  &.is-closing {
+    .modal__dialog {
+      transform: translateX(100%);
+    }
+  }
+}

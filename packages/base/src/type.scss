@@ -1,0 +1,9 @@
+@import "./mixins";
+
+.#{$class-type} {
+  @include type();
+}
+
+.#{$class-type}_invert {
+  @include type-invert();
+}

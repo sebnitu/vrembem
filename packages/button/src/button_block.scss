@@ -1,0 +1,20 @@
+@import "./variables";
+
+.button_block {
+  display: flex;
+  width: 100%;
+}
+
+@each $key, $value in $breakpoints {
+  .button_block_#{$key} {
+    display: flex;
+    width: 100%;
+  }
+
+  @include media-min($key) {
+    .button_block_#{$key} {
+      display: inline-flex;
+      width: auto;
+    }
+  }
+}

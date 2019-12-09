@@ -1,0 +1,15 @@
+@import "./variables";
+
+.card_zoom {
+  .card__background {
+    transition: transform $card-transition-duration $card-transition-timing-function;
+  }
+
+  &:hover,
+  &:focus,
+  &:focus-within {
+    .card__background {
+      transform: scale(1.1);
+    }
+  }
+}

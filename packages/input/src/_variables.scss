@@ -1,0 +1,34 @@
+@import "@vrembem/core/index";
+
+$input-padding: nth($padding, 1) 0.5em !default;
+$input-font-size: $font-size !default;
+$input-line-height: $line-height !default;
+
+$input_size_sm-padding: $padding-sm !default;
+$input_size_sm-font-size: $font-size-sm !default;
+$input_size_sm-line-height: $line-height-sm !default;
+
+$input_size_lg-padding: nth($padding-lg, 1) !default;
+$input_size_lg-font-size: $font-size-lg !default;
+$input_size_lg-line-height: $line-height-lg !default;
+
+$input-color: $color !default;
+$input-color-placeholder: $color-subtle !default;
+
+$input-background: $white !default;
+$input-background-focus: $white !default;
+$input-box-shadow-values: 0 0 0 1px !default;
+$input-box-shadow-color: $border-color-dark !default;
+$input-box-shadow-hover-values: 0 0 0 1px !default;
+$input-box-shadow-hover-color: $border-color-darker !default;
+$input-box-shadow-focus-values: 0 0 0 2px !default;
+$input-box-shadow-focus-color: $primary !default;
+
+$input-border: none !default;
+$input-border-color-hover: null !default;
+$input-border-color-focus: null !default;
+$input-border-radius: $border-radius !default;
+
+$input_type_select-icon-color: $color !default;
+
+$input_type_select-icon: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="#{encodecolor($input_type_select-icon-color)}"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>' !default;

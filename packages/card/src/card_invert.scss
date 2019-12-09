@@ -1,0 +1,17 @@
+@import "./variables";
+
+.card_invert {
+  background: $card_invert-background;
+  color: color-switch($card_invert-background);
+
+  @if (is-dark($card_invert-background)) {
+    .card__header,
+    .card__footer {
+      border-color: $border-color-invert;
+    }
+  }
+
+  .card__screen {
+    background: $card_invert-background;
+  }
+}

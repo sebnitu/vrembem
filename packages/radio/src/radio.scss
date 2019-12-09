@@ -1,0 +1,94 @@
+@import "./variables";
+
+.radio {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.radio__background {
+  @include size($radio-size);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radio__background-border-radius;
+  background-color: $radio__background;
+}
+
+.radio__circle {
+  @include size($radio__circle-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: $radio__circle-border-width solid $radio__circle-border-color;
+  border-radius: $radio__circle-size;
+  background-color: $radio__circle-background;
+  color: transparent;
+}
+
+.radio__dot {
+  @include size(0);
+  border-radius: $radio__dot-size;
+  background-color: $radio__dot-color;
+  opacity: 0;
+}
+
+.radio__native {
+  @include size(100%);
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+
+  &:hover + .radio__background {
+    background-color: $radio__background-hover;
+
+    .radio__circle {
+      border-color: $radio__circle-border-color-hover;
+      background-color: $radio__circle-background-hover;
+    }
+  }
+
+  &:focus + .radio__background {
+    background-color: $radio__background-focus;
+
+    .radio__circle {
+      border-color: $radio__circle-border-color-focus;
+      background-color: $radio__circle-background-focus;
+    }
+  }
+
+  &:active + .radio__background {
+    background-color: $radio__background-active;
+
+    .radio__circle {
+      border-color: $radio__circle-border-color-active;
+      background-color: $radio__circle-background-active;
+    }
+  }
+
+  &:checked + .radio__background {
+    background-color: $radio__background-checked;
+
+    .radio__circle {
+      border-color: $radio__circle-border-color-checked;
+      background-color: $radio__circle-background-checked;
+    }
+
+    .radio__dot {
+      @include size($radio__dot-size);
+      transition-property: opacity, width, height;
+      transition-duration: $radio-transition-duration;
+      transition-timing-function: $radio-transition-timing-function;
+      background-position: center center;
+      opacity: 1;
+    }
+  }
+}

@@ -1,0 +1,48 @@
+/**
+ * Menu Filter
+ * ---
+ * Handles the styles of the search filter displayed above the jumbo list.
+ */
+
+.filter {
+  position: relative;
+  z-index: 4;
+  flex-grow: 1;
+  background: $shade;
+
+  &.is-active {
+    border-color: $primary;
+  }
+
+  .search {
+    padding: 0.75em 2.75em;
+    border: none;
+    border-radius: $border-radius;
+    background: $white;
+    box-shadow: none;
+
+    &:focus,
+    &.is-active {
+      background: $white;
+      box-shadow: none;
+      color: $primary;
+    }
+  }
+
+  .search_label,
+  .search_clear {
+    position: absolute;
+    z-index: 5;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+
+  .search_label {
+    left: 0.75em;
+    display: flex;
+  }
+
+  .search_clear {
+    right: 0.75em;
+  }
+}

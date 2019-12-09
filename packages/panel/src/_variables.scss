@@ -1,0 +1,12 @@
+@import "@vrembem/core/index";
+
+$panel-padding: 1em !default;
+$panel-background: $white !default;
+$panel-border: $border !default;
+$panel-sep-border: $border !default;
+$panel-border-radius: $border-radius !default;
+$panel-box-shadow: null !default;
+
+$panel__title-font-size: $font-size-lg !default;
+$panel__title-line-height: $line-height-lg !default;
+$panel__title-font-weight: font-weight("semi-bold") !default;

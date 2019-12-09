@@ -1,0 +1,33 @@
+@import "./mixins";
+
+.#{$class-separator} {
+  @include separator();
+}
+
+.#{$class-separator}_light {
+  border-color: $border-color-light !important;
+}
+
+.#{$class-separator}_dark {
+  border-color: $border-color-dark !important;
+}
+
+.#{$class-separator}_darker {
+  border-color: $border-color-darker !important;
+}
+
+.#{$class-separator}_invert {
+  border-color: $border-color-invert !important;
+}
+
+.#{$class-separator}_invert-light {
+  border-color: $border-color-invert-light !important;
+}
+
+.#{$class-separator}_invert-dark {
+  border-color: $border-color-invert-dark !important;
+}
+
+.#{$class-separator}_invert-darker {
+  border-color: $border-color-invert-darker !important;
+}

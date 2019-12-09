@@ -1,0 +1,32 @@
+@import "@vrembem/core/index";
+
+$class-background: "background" !default;
+$class-border: "border" !default;
+$class-border-radius: "radius" !default;
+$class-box-shadow: "elevate" !default;
+$class-color: "color" !default;
+$class-display: "display" !default;
+$class-flex: "flex" !default;
+$class-margin: "margin" !default;
+$class-padding: "padding" !default;
+$class-spacing: "spacing" !default;
+$class-text: "text" !default;
+
+$utility-display-properties: (
+  inline,
+  flex,
+  inline-flex,
+  block,
+  inline-block,
+  none
+) !default;
+
+$utility-spacing: 1rem !default;
+$utility-spacing-map: (
+  "0": 0,
+  "xs": 0.25rem,
+  "sm": 0.5rem,
+  "md": 1rem,
+  "lg": 1.5rem,
+  "xl": 2rem
+) !default;

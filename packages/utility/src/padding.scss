@@ -1,0 +1,49 @@
+@import "./variables";
+
+.#{$class-padding} {
+  padding: $utility-spacing;
+}
+
+@each $key, $value in $utility-spacing-map {
+  .#{$class-padding}_#{$key} {
+    padding: $value !important;
+  }
+}
+
+@each $key, $value in $utility-spacing-map {
+  .#{$class-padding}_top_#{$key} {
+    padding-top: $value !important;
+  }
+}
+
+@each $key, $value in $utility-spacing-map {
+  .#{$class-padding}_bottom_#{$key} {
+    padding-bottom: $value !important;
+  }
+}
+
+@each $key, $value in $utility-spacing-map {
+  .#{$class-padding}_left_#{$key} {
+    padding-left: $value !important;
+  }
+}
+
+@each $key, $value in $utility-spacing-map {
+  .#{$class-padding}_right_#{$key} {
+    padding-right: $value !important;
+  }
+}
+
+@each $key, $value in $utility-spacing-map {
+  .#{$class-padding}_hori_#{$key} {
+    padding-right: $value !important;
+    padding-left: $value !important;
+  }
+}
+
+@each $key, $value in $utility-spacing-map {
+  .#{$class-padding}_vert_#{$key} {
+    padding-top: $value !important;
+    padding-bottom: $value !important;
+  }
+}

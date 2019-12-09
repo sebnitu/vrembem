@@ -1,0 +1,145 @@
+@import "./variables";
+
+.dropdown {
+  position: relative;
+  display: inline-flex;
+}
+
+.dropdown__menu {
+  position: absolute;
+  z-index: $dropdown-z-index;
+  top: 100%;
+  right: auto;
+  bottom: auto;
+  left: 0;
+  display: none;
+  width: $dropdown-width;
+  margin: $dropdown_pos_spacing 0 0;
+  padding: $dropdown-spacing 0;
+  border: $dropdown-border;
+  border-radius: $dropdown-border-radius;
+  background: $dropdown-background;
+  background-clip: padding-box;
+  box-shadow: $dropdown-box-shadow;
+  font-size: $dropdown-font-size;
+  line-height: $dropdown-line-height;
+  list-style: none;
+  text-align: left;
+  white-space: normal;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: auto;
+    right: 0;
+    bottom: 100%;
+    left: 0;
+    width: 100%;
+    height: $dropdown_pos_spacing;
+  }
+}
+
+.dropdown__sep {
+  margin: $dropdown-spacing 0;
+  border-bottom: $dropdown__sep-border;
+}
+
+.dropdown__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: $dropdown__link-padding;
+  border: none;
+  background: $dropdown__link-background;
+  color: $dropdown__link-color;
+  vertical-align: middle;
+
+  > * + * {
+    margin-left: $dropdown__link-inner-spacing;
+  }
+
+  &:hover {
+    background: $dropdown__link-background-hover;
+    color: $dropdown__link-color-hover;
+  }
+
+  &:focus {
+    background: $dropdown__link-background-focus;
+    color: $dropdown__link-color-focus;
+  }
+
+  &:active {
+    background: $dropdown__link-background-active;
+    color: $dropdown__link-color-active;
+  }
+
+  &.is-active {
+    background: $dropdown__link-background-is-active;
+    color: $dropdown__link-color-is-active;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: $dropdown__link-background-is-active;
+      color: $dropdown__link-color-is-active;
+    }
+  }
+
+  &.is-disabled {
+    background: $dropdown__link-background-is-disabled;
+    color: $dropdown__link-color-is-disabled;
+    cursor: auto;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: $dropdown__link-background-is-disabled;
+      color: $dropdown__link-color-is-disabled;
+    }
+  }
+}
+
+.dropdown__content {
+  display: block;
+  padding: $dropdown__link-padding;
+
+  > * + * {
+    margin-top: $dropdown-spacing;
+  }
+}
+
+.dropdown__title {
+  font-size: $dropdown__title-font-size;
+  font-weight: $dropdown__title-font-weight;
+  line-height: $dropdown__title-line-height;
+}
+
+.dropdown__item {
+  position: relative;
+  display: block;
+  margin: $dropdown__item-margin;
+}
+
+/**
+ * Active states
+ */
+
+.is-active > .dropdown__menu,
+.dropdown:not(.on-click):hover > .dropdown__menu,
+.dropdown:not(.on-click):focus > .dropdown__menu,
+.dropdown:not(.on-click):focus-within > .dropdown__menu {
+  display: block;
+}
+
+.is-active > .dropdown__menu {
+  z-index: ($dropdown-z-index + 1);
+}
+
+.dropdown:not(.on-click):focus > .dropdown__menu,
+.dropdown:not(.on-click):focus-within > .dropdown__menu {
+  z-index: ($dropdown-z-index + 2);
+}
+
+.dropdown:not(.on-click):hover > .dropdown__menu {
+  z-index: ($dropdown-z-index + 3);
+}

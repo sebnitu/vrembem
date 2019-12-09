@@ -1,0 +1,54 @@
+@import "./variables";
+
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: $panel-border;
+  border-radius: $panel-border-radius;
+  background: $panel-background;
+  box-shadow: $panel-box-shadow;
+  color: color-switch($panel-background);
+}
+
+.panel__section,
+.panel__header,
+.panel__footer {
+  position: relative;
+  z-index: 3;
+  padding: $panel-padding;
+}
+
+.panel__section {
+  flex: 1 1 auto;
+
+  & + & {
+    border-top: $panel-sep-border;
+  }
+}
+
+.panel__header {
+  border-bottom: $panel-sep-border;
+
+  &:first-child {
+    border-top-left-radius: $panel-border-radius;
+    border-top-right-radius: $panel-border-radius;
+  }
+}
+
+.panel__footer {
+  border-top: $panel-sep-border;
+
+  &:last-child {
+    border-bottom-left-radius: $panel-border-radius;
+    border-bottom-right-radius: $panel-border-radius;
+  }
+}
+
+.panel__title {
+  flex-grow: 1;
+  font-size: $panel__title-font-size;
+  font-weight: $panel__title-font-weight;
+  line-height: $panel__title-line-height;
+}

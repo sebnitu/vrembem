@@ -1,0 +1,16 @@
+@import "./variables";
+@import "./mixins";
+
+.icon {
+  @include icon-style($icon-style);
+  display: inline-block;
+  box-sizing: content-box;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  stroke-width: $icon-stroke-width;
+  stroke-linecap: $icon-stroke-linecap;
+  stroke-linejoin: $icon-stroke-linejoin;
+  font-size: $icon-font-size;
+  vertical-align: $icon-vertical-align;
+}
