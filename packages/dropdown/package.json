@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/dropdown",
   "description": "A component that is initially hidden and revealed upon user interaction either through a click or hover event. Dropdown components typically display lists of possible actions or navigation.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",
@@ -18,6 +18,6 @@
     "directory": "packages/dropdown"
   },
   "dependencies": {
-    "@vrembem/core": "^1.0.0"
+    "@vrembem/core": "^1.0.1"
   }
 }

@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/utility",
   "description": "The utility component provides a set of atomic classes that specialize in a single function.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",
@@ -18,6 +18,6 @@
     "directory": "packages/utility"
   },
   "dependencies": {
-    "@vrembem/core": "^1.0.0"
+    "@vrembem/core": "^1.0.1"
   }
 }
