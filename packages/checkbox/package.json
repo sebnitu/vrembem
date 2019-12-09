@@ -24,5 +24,9 @@
   },
   "dependencies": {
     "@vrembem/core": "^1.0.1"
-  }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "d966f513f86f66dddf93ed60ddefe51124562dc0"
 }

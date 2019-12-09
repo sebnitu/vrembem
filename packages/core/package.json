@@ -17,5 +17,9 @@
     "type": "git",
     "url": "git+https://github.com/sebnitu/vrembem.git",
     "directory": "packages/core"
-  }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "d966f513f86f66dddf93ed60ddefe51124562dc0"
 }
