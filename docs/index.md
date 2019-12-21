@@ -19,7 +19,12 @@ title: "Home"
           </a>
         </div>
         <div class="grid__item">
+          {% comment %}
           <a href="http://github.com/{{ site.repository }}/releases" class="cover__version" data-tooltip="View releases on Github" data-tooltip-pos="down-left" target="_blank">Version <span class="version-number">{{ site.version }}</span></a>
+          {% endcomment %}
+          <a href="https://www.npmjs.com/package/vrembem" data-tooltip="View releases on Github" data-tooltip-pos="down-left" target="_blank">
+            <img src="https://img.shields.io/npm/v/vrembem.svg" alt="npm version" />
+          </a>
         </div>
       </div>
     </div>
