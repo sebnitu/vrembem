@@ -5798,7 +5798,7 @@ input::-moz-placeholder {
   color: rgba(255, 255, 255, 0.5);
 }
 .cover__version > * + * {
-  margin-left: 1em;
+  margin-left: 0.5em;
 }
 
 @media (min-width: 760px) {

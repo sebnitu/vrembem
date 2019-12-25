@@ -2296,12 +2296,29 @@
   var Version = function Version(options) {
     var api = {};
     var defaults = {
-      autoInit: false
+      autoInit: false,
+      url: "https://api.github.com/repos/sebnitu/vrembem/contents/packages/vrembem/package.json?ref=master"
     };
     api.settings = _objectSpread$4({}, defaults, {}, options);
 
     api.init = function () {
-      console.log("Things are happening...");
+      var ajax = new XMLHttpRequest();
+      var el = document.querySelector("[data-role='version']");
+
+      ajax.onload = function () {
+        if (ajax.status >= 200 && ajax.status < 300) {
+          var response = JSON.parse(ajax.response);
+          var decode = window.atob(response.content);
+          var pkg = JSON.parse(decode);
+          el.classList.remove("loading");
+          el.innerHTML = pkg.version;
+        } else {
+          console.log("The request failed!");
+        }
+      };
+
+      ajax.open("GET", api.settings.url);
+      ajax.send();
     };
 
     api.destroy = function () {};
