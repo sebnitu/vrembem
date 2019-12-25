@@ -2310,17 +2310,18 @@ var Version = function Version(options) {
         var decode = window.atob(response.content);
         var pkg = JSON.parse(decode);
         el.classList.remove("loading");
+        el.classList.add("success");
         el.innerHTML = pkg.version;
       } else {
-        console.log("The request failed!");
+        el.classList.remove("loading");
+        el.classList.add("error");
+        el.innerHTML = "Error!";
       }
     };
 
     ajax.open("GET", api.settings.url);
     ajax.send();
   };
-
-  api.destroy = function () {};
 
   if (api.settings.autoInit) api.init();
   return api;

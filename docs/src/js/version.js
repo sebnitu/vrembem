@@ -23,12 +23,14 @@ export const Version = (options) => {
         const response = JSON.parse(ajax.response)
         const decode = window.atob(response.content)
         const pkg = JSON.parse(decode)
-        // console.log(pkg.version)
         el.classList.remove("loading")
+        el.classList.add("success")
         el.innerHTML = pkg.version
       } else {
         // What do when the request fails
-        console.log("The request failed!")
+        el.classList.remove("loading")
+        el.classList.add("error")
+        el.innerHTML = "Error!"
       }
     }
 
@@ -37,17 +39,7 @@ export const Version = (options) => {
     // The second argument is the endpoint URL
     ajax.open("GET", api.settings.url)
     ajax.send()
-
-    // document.addEventListener("click", run, false)
   }
-
-  api.destroy = () => {
-    // document.removeEventListener("click", run, false)
-  }
-
-  // const run = (event) => {
-  //
-  // }
 
   if (api.settings.autoInit) api.init()
   return api

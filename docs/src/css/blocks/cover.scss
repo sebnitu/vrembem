@@ -135,6 +135,12 @@
   > * + * {
     margin-left: 0.5em;
   }
+
+  &:hover {
+    .version-number {
+      color: $white;
+    }
+  }
 }
 
 @include media-min('md') {
