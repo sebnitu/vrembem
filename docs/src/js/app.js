@@ -7,6 +7,7 @@ import {
 } from "vrembem"
 import listjs from "list.js"
 import "svgxuse"
+import { Version } from "./version"
 
 /**
  * Initialize Vrembem scripts
@@ -16,6 +17,7 @@ new Checkbox({ autoInit: true })
 new Dismissible({ autoInit: true })
 new Drawer({ autoInit: true })
 new Modal({ autoInit: true })
+new Version({ autoInit: true })
 
 /**
  * List.js
