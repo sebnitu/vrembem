@@ -6234,13 +6234,13 @@ input::-moz-placeholder {
     padding: 1em;
   }
 }
-.version-number.loading {
+.version.loading {
   position: relative;
   display: inline-block;
   min-width: 1.5em;
   min-height: 1.5em;
 }
-.version-number.loading::after {
+.version.loading::after {
   width: 1.25em;
   height: 1.25em;
   content: "";
@@ -6252,7 +6252,7 @@ input::-moz-placeholder {
   border-radius: 9999px;
   border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.15) #fff;
 }
-.version-number.error {
+.version.error {
   color: #f44336;
 }
 
