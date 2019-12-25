@@ -5792,10 +5792,13 @@ input::-moz-placeholder {
 }
 
 .cover__version {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: rgba(255, 255, 255, 0.5);
 }
-.cover__version:hover span {
-  color: white;
+.cover__version > * + * {
+  margin-left: 1em;
 }
 
 @media (min-width: 760px) {
@@ -6227,6 +6230,24 @@ input::-moz-placeholder {
   .toolbar {
     padding: 1em;
   }
+}
+.version-number.loading {
+  position: relative;
+  display: inline-block;
+  min-width: 1.5em;
+  min-height: 1.5em;
+}
+.version-number.loading::after {
+  width: 1.25em;
+  height: 1.25em;
+  content: "";
+  position: absolute;
+  top: calc(50% - (1.25em * 0.5));
+  left: calc(50% - (1.25em * 0.5));
+  animation: spin 0.6s infinite linear;
+  border: 2px solid;
+  border-radius: 9999px;
+  border-color: #fff #fff transparent transparent;
 }
 
 /*# sourceMappingURL=styles.css.map */

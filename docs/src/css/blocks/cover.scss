@@ -127,10 +127,13 @@
 }
 
 .cover__version {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: rgba($white, 0.5);
 
-  &:hover span {
-    color: rgba($white, 1);
+  > * + * {
+    margin-left: 1em;
   }
 }
 

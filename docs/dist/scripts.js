@@ -2289,6 +2289,27 @@
     }
   })();
 
+  function ownKeys$4(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+  function _objectSpread$4(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$4(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$4(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+  var Version = function Version(options) {
+    var api = {};
+    var defaults = {
+      autoInit: false
+    };
+    api.settings = _objectSpread$4({}, defaults, {}, options);
+
+    api.init = function () {
+      console.log("Things are happening...");
+    };
+
+    api.destroy = function () {};
+
+    if (api.settings.autoInit) api.init();
+    return api;
+  };
+
   new Checkbox({
     autoInit: true
   });
@@ -2299,6 +2320,9 @@
     autoInit: true
   });
   new Modal({
+    autoInit: true
+  });
+  new Version({
     autoInit: true
   });
 
