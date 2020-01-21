@@ -4,8 +4,8 @@ title: Icon-action
 description: "A component for displaying simple action buttons using icons."
 category: simple
 usage:
-  npm: "@vrembem/icon-action"
-  scss: "vrembem/icon-action/index"
+  npm: "icon-action"
+  scss: "icon-action"
 ---
 
 {% include flag.html heading="icon-action" %}

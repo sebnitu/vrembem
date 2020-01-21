@@ -4,8 +4,8 @@ title: Base
 description: "Includes useful default styles and base components for common HTML elements."
 category: simple
 usage:
-  npm: "@vrembem/base"
-  scss: "@vrembem/base/index"
+  npm: "base"
+  scss: "base"
 ---
 
 {% include flag.html heading="Heading" %}

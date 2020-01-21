@@ -4,8 +4,8 @@ title: Button-group
 description: "A component for displaying groups of buttons."
 category: compound
 usage:
-  npm: "@vrembem/button-group"
-  scss: "vrembem/button-group/index"
+  npm: "button-group"
+  scss: "button-group"
 ---
 
 {% include flag.html heading="button-group" %}

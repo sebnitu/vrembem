@@ -4,8 +4,8 @@ title: Menu
 description: "Menus represent groups of links, actions or tools that a user can interact with."
 category: compound
 usage:
-  npm: "@vrembem/menu"
-  scss: "vrembem/menu/index"
+  npm: "menu"
+  scss: "menu"
 ---
 
 {% include flag.html heading="menu" %}

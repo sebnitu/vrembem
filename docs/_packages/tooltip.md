@@ -4,8 +4,8 @@ title: Tooltip
 description: "Text labels that appear when a user hovers over, focuses on or touches an element."
 category: simple
 usage:
-  npm: "@vrembem/tooltip"
-  scss: "vrembem/tooltip/index"
+  npm: "tooltip"
+  scss: "tooltip"
 ---
 
 {% include flag.html heading="[data-tooltip]" %}

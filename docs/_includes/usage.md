@@ -8,19 +8,19 @@
 
 {% if page.usage.npm %}
 ```
-npm install {{ page.usage.npm }}
+npm install @vrembem/{{ page.usage.npm }}
 ```
 {% endif %}
 
 {% if page.usage.scss and page.title != "Core" %}
 ```scss
-@import "{{ page.usage.scss }}";
+@import "@vrembem/{{ page.usage.scss }}/index";
 ```
 {% endif %}
 
 {% if page.usage.js and page.title != "Core" %}
 ```js
-import { {{ page.title }} } from "{{ page.usage.js }}"
+import { {{ page.title }} } from "@vrembem/{{ page.usage.js }}"
 ```
 {% endif %}
 

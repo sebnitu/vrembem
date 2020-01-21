@@ -4,8 +4,8 @@ title: Checkbox
 description: "Checkboxes allow the user to select multiple options from a set."
 category: simple
 usage:
-  npm: "@vrembem/checkbox"
-  scss: "@vrembem/checkbox/index"
+  npm: "checkbox"
+  scss: "checkbox"
 ---
 
 {% include flag.html heading="checkbox" %}

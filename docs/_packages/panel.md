@@ -4,8 +4,8 @@ title: Panel
 description: "Panels are a compositional container component that allows you to wrap and theme groups of content."
 category: layout
 usage:
-  npm: "@vrembem/panel"
-  scss: "vrembem/panel/index"
+  npm: "panel"
+  scss: "panel"
 ---
 
 {% include flag.html heading="panel" %}
