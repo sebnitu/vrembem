@@ -14,7 +14,7 @@ npm install @vrembem/{{ page.usage.npm }}
 
 {% if page.usage.scss and page.title != "Core" %}
 ```scss
-@import "vrembem/{{ page.usage.scss }}/index";
+@import "@vrembem/{{ page.usage.scss }}/index";
 ```
 {% endif %}
 
