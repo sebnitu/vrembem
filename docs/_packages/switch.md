@@ -4,8 +4,8 @@ title: "Switch"
 description: "Switches are a binary form element used to toggle between two options."
 category: simple
 usage:
-  npm: "@vrembem/switch"
-  scss: "vrembem/switch/index"
+  npm: "switch"
+  scss: "switch"
 ---
 
 {% include flag.html heading="switch" %}

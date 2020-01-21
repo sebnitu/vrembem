@@ -4,8 +4,8 @@ title: Table
 description: "A table component for displaying HTML tables."
 category: simple
 usage:
-  npm: "@vrembem/table"
-  scss: "@vrembem/table/index"
+  npm: "table"
+  scss: "table"
 ---
 
 {% include flag.html heading="table" %}

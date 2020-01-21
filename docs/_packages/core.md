@@ -4,9 +4,9 @@ title: Core
 description: "The core variables, functions and mixins for Vrembem components."
 category: simple
 usage:
-  npm: "@vrembem/core"
-  scss: "@vrembem/core/index"
-  js: "@vrembem/core"
+  npm: "core"
+  scss: "core"
+  js: "core"
 ---
 
 {% include flag.html heading="Sass" %}
@@ -16,7 +16,7 @@ To make use of global Vrembem functions, mixins and variables, it is recommended
 <div class="demo">
 <div class="demo__code" markdown="1">
 ```scss
-@import "@vrembem/core/index";
+@import "@vrembem/core";
 ```
 </div>
 </div>

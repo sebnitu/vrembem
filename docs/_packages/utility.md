@@ -4,8 +4,8 @@ title: Utility
 description: "The utility component provides a set of atomic classes that specialize in a single function."
 category: simple
 usage:
-  npm: "@vrembem/utility"
-  scss: "@vrembem/utility/index"
+  npm: "utility"
+  scss: "utility"
 ---
 
 {% include flag.html heading="background" %}

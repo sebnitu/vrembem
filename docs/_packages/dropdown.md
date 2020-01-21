@@ -4,8 +4,8 @@ title: Dropdown
 description: "A component that is initially hidden and revealed upon user interaction either through a click or hover event. Dropdown components typically display lists of possible actions or navigation."
 category: compound
 usage:
-  npm: "@vrembem/dropdown"
-  scss: "vrembem/dropdown/index"
+  npm: "dropdown"
+  scss: "dropdown"
 ---
 
 {% include flag.html heading="dropdown" %}

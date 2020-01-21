@@ -4,8 +4,8 @@ title: "Grid"
 description: "A flexbox based grid system component."
 category: layout
 usage:
-  npm: "@vrembem/grid"
-  scss: "vrembem/grid/index"
+  npm: "grid"
+  scss: "grid"
 ---
 
 {% include flag.html heading="grid + grid__item" %}

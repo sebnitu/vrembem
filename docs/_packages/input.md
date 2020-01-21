@@ -4,8 +4,8 @@ title: Input
 description: "A component for displaying form input elements."
 category: simple
 usage:
-  npm: "@vrembem/input"
-  scss: "vrembem/input/index"
+  npm: "input"
+  scss: "input"
 ---
 
 {% include flag.html heading="input" %}

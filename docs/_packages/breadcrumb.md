@@ -4,8 +4,8 @@ title: Breadcrumb
 description: "The breadcrumb component is a navigation component that shows the hierarchical path to a users current location."
 category: compound
 usage:
-  npm: "@vrembem/breadcrumb"
-  scss: "vrembem/breadcrumb/index"
+  npm: "breadcrumb"
+  scss: "breadcrumb"
 ---
 
 {% include flag.html heading="breadcrumb" %}

@@ -4,8 +4,8 @@ title: Dismissible
 description: "A component for removing an element from the DOM or hiding it with a CSS class."
 category: simple
 usage:
-  npm: "@vrembem/dismissible"
-  js: "@vrembem/dismissible"
+  npm: "dismissible"
+  js: "dismissible"
 ---
 
 {% include flag.html heading="dismissible" %}

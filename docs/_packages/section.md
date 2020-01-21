@@ -7,8 +7,8 @@ title: "Section"
 description: "A container component for wrapping distinct sections of a page."
 category: layout
 usage:
-  npm: "@vrembem/section"
-  scss: "vrembem/section/index"
+  npm: "section"
+  scss: "section"
 ---
 
 {% include section_open.html %}

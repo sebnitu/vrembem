@@ -4,8 +4,8 @@ title: Media
 description: "The media component is used for displaying groups of content with a corresponding media asset, such as an image, avatar or icon."
 category: compound
 usage:
-  npm: "@vrembem/media"
-  scss: "vrembem/media/index"
+  npm: "media"
+  scss: "media"
 ---
 
 {% include flag.html heading="media" %}

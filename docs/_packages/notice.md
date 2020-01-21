@@ -4,8 +4,8 @@ title: Notice
 description: "A component for highlighting messages to the user."
 category: compound
 usage:
-  npm: "@vrembem/notice"
-  scss: "vrembem/notice/index"
+  npm: "notice"
+  scss: "notice"
 ---
 
 {% include flag.html heading="notice" %}

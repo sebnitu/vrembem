@@ -4,8 +4,8 @@ title: Radio Button
 description: "Radios allow the user to select a single option from a set."
 category: simple
 usage:
-  npm: "@vrembem/radio"
-  scss: "@vrembem/radio/index"
+  npm: "radio"
+  scss: "radio"
 ---
 
 {% include flag.html heading="radio" %}

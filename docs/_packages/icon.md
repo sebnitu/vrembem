@@ -4,8 +4,8 @@ title: Icon
 description: "A component for displaying glyphs that convey meaning through iconography."
 category: simple
 usage:
-  npm: "@vrembem/icon"
-  scss: "vrembem/icon/index"
+  npm: "icon"
+  scss: "icon"
 ---
 
 <div class="notice notice_state_info" data-dismissible>

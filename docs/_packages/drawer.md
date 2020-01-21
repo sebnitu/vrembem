@@ -4,9 +4,9 @@ title: Drawer
 description: "A container component that slides in from the left or right. Typically containing menus, search or other content."
 category: compound
 usage:
-  npm: "@vrembem/drawer"
-  scss: "@vrembem/drawer/index"
-  js: "@vrembem/drawer"
+  npm: "drawer"
+  scss: "drawer"
+  js: "drawer"
 ---
 
 {% include flag.html heading="drawer" %}

@@ -4,8 +4,8 @@ title: "Level"
 description: "A simple flexbox based layout component."
 category: layout
 usage:
-  npm: "@vrembem/level"
-  scss: "vrembem/level/index"
+  npm: "level"
+  scss: "level"
 ---
 
 {% include flag.html heading="level" %}

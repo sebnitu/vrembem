@@ -4,8 +4,8 @@ title: Card
 description: "The cards component provides a flexible and extensive content container with multiple variants and options."
 category: compound
 usage:
-  npm: "@vrembem/card"
-  scss: "vrembem/card/index"
+  npm: "card"
+  scss: "card"
 ---
 
 {% include flag.html heading="card" %}
