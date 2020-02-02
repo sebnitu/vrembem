@@ -1,6 +1,6 @@
-@import "./variables";
+@use "./variables" as media;
 
-@each $key, $value in $media-spacing-map {
+@each $key, $value in media.$spacing-map {
   .media_gap_#{$key} {
     > * + * {
       margin-left: $value;

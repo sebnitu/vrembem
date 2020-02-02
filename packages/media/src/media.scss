@@ -1,11 +1,11 @@
-@import "./variables";
+@use "./variables" as media;
 
 .media {
   display: flex;
   align-items: flex-start;
 
   > * + * {
-    margin-left: $media-spacing;
+    margin-left: media.$spacing;
   }
 }
 
@@ -17,6 +17,6 @@
   display: flex;
   flex: 0 0 auto;
   align-items: center;
-  max-width: $media-max-width;
-  min-height: $media-min-height;
+  max-width: media.$max-width;
+  min-height: media.$min-height;
 }

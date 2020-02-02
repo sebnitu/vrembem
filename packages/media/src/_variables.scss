@@ -1,9 +1,9 @@
-@import "@vrembem/core/index";
+@use "@vrembem/core/index" as core;
 
-$media-min-height: ($line-height * 1rem) !default;
-$media-max-width: 30% !default;
-$media-spacing: 1.5rem !default;
-$media-spacing-map: (
+$min-height: (core.$line-height * 1rem) !default;
+$max-width: 30% !default;
+$spacing: 1.5rem !default;
+$spacing-map: (
   "0": 0,
   "xs": 0.5rem,
   "sm": 1rem,
