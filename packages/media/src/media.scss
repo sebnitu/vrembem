@@ -9,33 +9,18 @@
   flex: 1 1 auto;
 }
 
-.media__icon,
-.media__image {
-  flex: 0 0 auto;
-}
-
-.media__icon {
+.media__obj {
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
-  min-height: $media__icon-min-height;
+  max-width: $media__max-width;
+  min-height: $media__min-height;
 
   &:first-child {
-    margin: 0 $media__icon-spacing 0 0;
+    margin: 0 $media__spacing 0 0;
   }
 
   &:last-child {
-    margin: 0 0 0 $media__icon-spacing;
-  }
-}
-
-.media__image {
-  max-width: $media__image-max-width;
-
-  &:first-child {
-    margin: 0 $media__image-spacing 0 0;
-  }
-
-  &:last-child {
-    margin: 0 0 0 $media__image-spacing;
+    margin: 0 0 0 $media__spacing;
   }
 }
