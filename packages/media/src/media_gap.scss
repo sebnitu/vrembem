@@ -1,0 +1,9 @@
+@import "./variables";
+
+@each $key, $value in $media-spacing-map {
+  .media_gap_#{$key} {
+    > * + * {
+      margin-left: $value;
+    }
+  }
+}

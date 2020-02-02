@@ -5,6 +5,8 @@
 
   > * + * {
     margin-top: $media-spacing;
+    margin-right: 0;
+    margin-left: 0;
   }
 }
 
@@ -27,6 +29,8 @@
     .media_stack_#{$key} {
       > * + * {
         margin-top: $media-spacing;
+        margin-right: 0;
+        margin-left: 0;
       }
     }
   }

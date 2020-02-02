@@ -2,4 +2,9 @@
 
 .media_reverse {
   flex-direction: row-reverse;
+
+  > * + * {
+    margin-right: $media-spacing;
+    margin-left: 0;
+  }
 }

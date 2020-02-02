@@ -12,7 +12,7 @@ usage:
 
 {% include demo_open.html class_parent="spacing" %}
 <div class="media">
-  <div class="media__image">
+  <div class="media__obj">
     <img class="radius" src="https://picsum.photos/90/90/?11" width="90" height="90" />
   </div>
   <div class="media__body">
@@ -21,7 +21,7 @@ usage:
   </div>
 </div>
 <div class="media">
-  <div class="media__icon">
+  <div class="media__obj">
     {% include icon.html icon="settings" %}
   </div>
   <div class="media__body">
@@ -31,16 +31,7 @@ usage:
 {% include demo_switch.html %}
 ```html
 <div class="media">
-  <div class="media__image">
-    ...
-  </div>
-  <div class="media__body">
-    ...
-  </div>
-</div>
-
-<div class="media">
-  <div class="media__icon">
+  <div class="media__obj">
     ...
   </div>
   <div class="media__body">
@@ -54,14 +45,14 @@ usage:
 
 {% include demo_open.html class_parent="spacing" %}
 <div class="media media_reverse">
-  <img class="media__image radius" src="https://picsum.photos/90/90/?12" width="90" height="90" />
+  <img class="media__obj radius" src="https://picsum.photos/90/90/?12" width="90" height="90" />
   <div class="media__body">
     <h2 class="h4"><a href="#">Media Content Title</a></h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
   </div>
 </div>
 <div class="media media_reverse">
-  <div class="media__icon">
+  <div class="media__obj">
     {% include icon.html icon="settings" %}
   </div>
   <div class="media__body">
@@ -80,14 +71,14 @@ usage:
 
 {% include demo_open.html class_parent="spacing" %}
 <div class="media media_stack_md">
-  <img class="media__image radius" src="https://picsum.photos/90/90/?15" width="90" height="90" />
+  <img class="media__obj radius" src="https://picsum.photos/90/90/?15" width="90" height="90" />
   <div class="media__body">
     <h2 class="h4"><a href="#">Media Content Title</a></h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
   </div>
 </div>
 <div class="media media_reverse media_stack_md">
-  <img class="media__image radius" src="https://picsum.photos/90/90/?15" width="90" height="90" />
+  <img class="media__obj radius" src="https://picsum.photos/90/90/?15" width="90" height="90" />
   <div class="media__body">
     <h2 class="h4"><a href="#">Media Content Title</a></h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
@@ -105,21 +96,21 @@ usage:
 
 {% include demo_open.html class_parent="spacing spacing_xl" %}
 <div class="media flex_align_center">
-  <img class="media__image radius" src="https://picsum.photos/90/90/?21" width="90" height="90" />
+  <img class="media__obj radius" src="https://picsum.photos/90/90/?21" width="90" height="90" />
   <div class="media__body">
     <h2 class="h4"><a href="#">Suspendisse elementum pharetra risus sed commodo</a></h2>
     <p class="text_subtle">December 24th, 2017</p>
   </div>
 </div>
 <div class="media flex_align_center">
-  <img class="media__image radius" src="https://picsum.photos/90/90/?22" width="90" height="90" />
+  <img class="media__obj radius" src="https://picsum.photos/90/90/?22" width="90" height="90" />
   <div class="media__body">
     <h2 class="h4"><a href="#">Aliquam vehicula eros eget neque aliquet</a></h2>
     <p class="text_subtle">October 13th, 2018</p>
   </div>
 </div>
 <div class="media flex_align_center">
-  <img class="media__image radius" src="https://picsum.photos/90/90/?23" width="90" height="90" />
+  <img class="media__obj radius" src="https://picsum.photos/90/90/?23" width="90" height="90" />
   <div class="media__body">
     <h2 class="h4"><a href="#">Integer ullamcorper eget est nec libero est</a></h2>
     <p class="text_subtle">November 16th, 2018</p>
@@ -128,7 +119,7 @@ usage:
 {% include demo_switch.html %}
 ```html
 <div class="media flex_align_center">
-  <img class="media__image" src="..." />
+  <img class="media__obj" src="..." />
   <div class="media__body">
     <h2 class="h3"><a href="#">...</a></h2>
     <p class="text_subtle">...</p>
@@ -148,13 +139,13 @@ usage:
   </button>
 </div>
 <div class="media">
-  <img class="media__image radius_circle" src="https://picsum.photos/40/40/?30" width="40" height="40" />
+  <img class="media__obj radius_circle" src="https://picsum.photos/40/40/?30" width="40" height="40" />
   <div class="media__body">
     <textarea class="input input_textarea" placeholder="Add a public comment..."></textarea>
   </div>
 </div><!-- .media -->
 <div class="media">
-  <img class="media__image radius_circle" src="https://picsum.photos/40/40/?31" width="40" height="40" />
+  <img class="media__obj radius_circle" src="https://picsum.photos/40/40/?31" width="40" height="40" />
   <div class="media__body spacing">
     <div class="level flex_justify_between">
       <h2>
@@ -184,7 +175,7 @@ usage:
   </div>
 </div><!-- .media -->
 <div class="media">
-  <img class="media__image radius_circle" src="https://picsum.photos/40/40/?32" width="40" height="40" />
+  <img class="media__obj radius_circle" src="https://picsum.photos/40/40/?32" width="40" height="40" />
   <div class="media__body spacing">
     <div class="level flex_justify_between">
       <h2>
@@ -214,7 +205,7 @@ usage:
   </div>
 </div><!-- .media -->
 <div class="media">
-  <img class="media__image radius_circle" src="https://picsum.photos/40/40/?33" width="40" height="40" />
+  <img class="media__obj radius_circle" src="https://picsum.photos/40/40/?33" width="40" height="40" />
   <div class="media__body spacing">
     <div class="level flex_justify_between">
       <h2>
@@ -246,13 +237,13 @@ usage:
 {% include demo_switch.html %}
 ```html
 <div class="media">
-  <img class="media__image radius_circle" src="..." />
+  <img class="media__obj radius_circle" src="..." />
   <div class="media__body">
     <textarea class="input input_textarea" placeholder="Add a public comment..."></textarea>
   </div>
 </div><!-- .media -->
 <div class="media">
-  <img class="media__image radius_circle" src="" />
+  <img class="media__obj radius_circle" src="" />
   <div class="media__body">
     <h2 class="level flex_justify_between">
       <a href="#">[name]</a>
@@ -272,8 +263,8 @@ usage:
 {% include demo_open.html class_grid="grid_break" class_parent="spacing spacing_xl" %}
 <h2 class="h2 text_align_center">Tweet Quotes</h2>
 <div class="media media_stack_md flex_align_center">
-  <img class="media__image radius_circle" src="https://picsum.photos/200/200/?41" width="200" height="200" />
-  <blockquote class="media__body text_lead">
+  <img class="media__obj radius_circle" src="https://picsum.photos/200/200/?41" width="200" height="200" />
+  <blockquote class="media__body text_lead spacing">
     <p>For those who stubbornly seek freedom there can be no more urgent task than to come to understand the mechanisms & practices of indoctrination.These are easy to perceive in totalitarian societies, much less so in the system of brainwashing under freedom to which we are subjected.</p>
     <footer>
       <cite>Chomsky Quotes <a class="link link_subtle" href="#">@quotes_chomsky</a></cite>
@@ -281,8 +272,8 @@ usage:
   </blockquote>
 </div><!-- .media -->
 <div class="media media_stack_md media_reverse flex_align_center">
-  <img class="media__image radius_circle" src="https://picsum.photos/200/200/?42" width="200" height="200" />
-  <blockquote class="media__body text_lead">
+  <img class="media__obj radius_circle" src="https://picsum.photos/200/200/?42" width="200" height="200" />
+  <blockquote class="media__body text_lead spacing">
     <p>Hitler, Mussolini, Japanese fascists - all of them - are all full of humanitarian rhetoric. States are not moral agents. They can be compelled to observe legal and other requirements, but that can only be either by countervailing force or by their own citizens.</p>
     <footer>
       <cite>Chomsky Quotes <a class="link link_subtle" href="#">@quotes_chomsky</a></cite>
@@ -290,9 +281,9 @@ usage:
   </blockquote>
 </div><!-- .media -->
 <div class="media media_stack_md flex_align_center">
-  <img class="media__image radius_circle" src="https://picsum.photos/200/200/?43" width="200" height="200" />
-  <blockquote class="media__body text_lead">
-    <p>The UN outlawed the use of threat of intervention unless authorized by the UN Security Council or in self-defence against armed attack.That system did not survive for a second. It was violated immediately by the great powers, any power that could get away with it.</p>
+  <img class="media__obj radius_circle" src="https://picsum.photos/200/200/?43" width="200" height="200" />
+  <blockquote class="media__body text_lead spacing">
+    <p>The UN outlawed the use of threat of intervention unless authorized by the UN Security Council or in self-defence against armed attack. That system did not survive for a second. It was violated immediately by the great powers, any power that could get away with it.</p>
     <footer>
       <cite>Chomsky Quotes <a class="link link_subtle" href="#">@quotes_chomsky</a></cite>
     </footer>
@@ -301,8 +292,8 @@ usage:
 {% include demo_switch.html %}
 ```html
 <div class="media media_stack_md flex_align_center">
-  <img class="media__image radius_circle" src="..." />
-  <blockquote class="media__body text_lead">
+  <img class="media__obj radius_circle" src="..." />
+  <blockquote class="media__body text_lead spacing">
     <p>[quote]</p>
     <footer>
       <cite>[name] <a class="link link_subtle" href="#">@[handle]</a></cite>
