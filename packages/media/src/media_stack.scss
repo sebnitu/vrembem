@@ -3,24 +3,8 @@
 .media_stack {
   flex-direction: column;
 
-  .media__icon {
-    &:first-child {
-      margin: 0 0 $media__icon-spacing 0;
-    }
-
-    &:last-child {
-      margin: $media__icon-spacing 0 0 0;
-    }
-  }
-
-  .media__image {
-    &:first-child {
-      margin: 0 0 $media__image-spacing 0;
-    }
-
-    &:last-child {
-      margin: $media__image-spacing 0 0 0;
-    }
+  > * + * {
+    margin-top: $media-spacing;
   }
 }
 
@@ -41,24 +25,8 @@
 
   @include media-max($key) {
     .media_stack_#{$key} {
-      .media__icon {
-        &:first-child {
-          margin: 0 0 $media__icon-spacing 0;
-        }
-
-        &:last-child {
-          margin: $media__icon-spacing 0 0 0;
-        }
-      }
-
-      .media__image {
-        &:first-child {
-          margin: 0 0 $media__image-spacing 0;
-        }
-
-        &:last-child {
-          margin: $media__image-spacing 0 0 0;
-        }
+      > * + * {
+        margin-top: $media-spacing;
       }
     }
   }

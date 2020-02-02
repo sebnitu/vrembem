@@ -3,6 +3,10 @@
 .media {
   display: flex;
   align-items: flex-start;
+
+  > * + * {
+    margin-left: $media-spacing;
+  }
 }
 
 .media__body {
@@ -13,14 +17,6 @@
   display: flex;
   flex: 0 0 auto;
   align-items: center;
-  max-width: $media__max-width;
-  min-height: $media__min-height;
-
-  &:first-child {
-    margin: 0 $media__spacing 0 0;
-  }
-
-  &:last-child {
-    margin: 0 0 0 $media__spacing;
-  }
+  max-width: $media-max-width;
+  min-height: $media-min-height;
 }
