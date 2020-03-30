@@ -2447,68 +2447,61 @@ input::-moz-placeholder {
   display: flex;
   align-items: flex-start;
 }
+.media > * + * {
+  margin-left: 1.5rem;
+}
 
 .media__body {
   flex: 1 1 auto;
 }
 
-.media__icon,
-.media__image {
-  flex: 0 0 auto;
-}
-
-.media__icon {
+.media__obj {
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
+  max-width: 30%;
   min-height: 1.5rem;
 }
-.media__icon:first-child {
-  margin: 0 0.75rem 0 0;
-}
-.media__icon:last-child {
-  margin: 0 0 0 0.75rem;
+
+.media_gap_0 > * + * {
+  margin-left: 0;
 }
 
-.media__image {
-  max-width: 30%;
+.media_gap_xs > * + * {
+  margin-left: 0.5rem;
 }
-.media__image:first-child {
-  margin: 0 1.5rem 0 0;
+
+.media_gap_sm > * + * {
+  margin-left: 1rem;
 }
-.media__image:last-child {
-  margin: 0 0 0 1.5rem;
+
+.media_gap_md > * + * {
+  margin-left: 1.5rem;
+}
+
+.media_gap_lg > * + * {
+  margin-left: 2rem;
+}
+
+.media_gap_xl > * + * {
+  margin-left: 3rem;
 }
 
 .media_reverse {
   flex-direction: row-reverse;
 }
-.media_reverse .media__icon:first-child {
-  margin: 0 0 0 0.75rem;
-}
-.media_reverse .media__icon:last-child {
-  margin: 0 0.75rem 0 0;
-}
-.media_reverse .media__image:first-child {
-  margin: 0 0 0 1.5rem;
-}
-.media_reverse .media__image:last-child {
-  margin: 0 1.5rem 0 0;
+.media_reverse > * + * {
+  margin-right: 1.5rem;
+  margin-left: 0;
 }
 
 .media_stack {
   flex-direction: column;
 }
-.media_stack .media__icon:first-child {
-  margin: 0 0 0.75rem 0;
-}
-.media_stack .media__icon:last-child {
-  margin: 0.75rem 0 0 0;
-}
-.media_stack .media__image:first-child {
-  margin: 0 0 1.5rem 0;
-}
-.media_stack .media__image:last-child {
-  margin: 1.5rem 0 0 0;
+.media_stack > * + * {
+  margin-top: 1.5rem;
+  margin-right: 0;
+  margin-left: 0;
 }
 
 .media_stack_xs {
@@ -2524,17 +2517,10 @@ input::-moz-placeholder {
   }
 }
 @media (max-width: 479px) {
-  .media_stack_xs .media__icon:first-child {
-    margin: 0 0 0.75rem 0;
-  }
-  .media_stack_xs .media__icon:last-child {
-    margin: 0.75rem 0 0 0;
-  }
-  .media_stack_xs .media__image:first-child {
-    margin: 0 0 1.5rem 0;
-  }
-  .media_stack_xs .media__image:last-child {
-    margin: 1.5rem 0 0 0;
+  .media_stack_xs > * + * {
+    margin-top: 1.5rem;
+    margin-right: 0;
+    margin-left: 0;
   }
 }
 .media_stack_sm {
@@ -2550,17 +2536,10 @@ input::-moz-placeholder {
   }
 }
 @media (max-width: 619px) {
-  .media_stack_sm .media__icon:first-child {
-    margin: 0 0 0.75rem 0;
-  }
-  .media_stack_sm .media__icon:last-child {
-    margin: 0.75rem 0 0 0;
-  }
-  .media_stack_sm .media__image:first-child {
-    margin: 0 0 1.5rem 0;
-  }
-  .media_stack_sm .media__image:last-child {
-    margin: 1.5rem 0 0 0;
+  .media_stack_sm > * + * {
+    margin-top: 1.5rem;
+    margin-right: 0;
+    margin-left: 0;
   }
 }
 .media_stack_md {
@@ -2576,17 +2555,10 @@ input::-moz-placeholder {
   }
 }
 @media (max-width: 759px) {
-  .media_stack_md .media__icon:first-child {
-    margin: 0 0 0.75rem 0;
-  }
-  .media_stack_md .media__icon:last-child {
-    margin: 0.75rem 0 0 0;
-  }
-  .media_stack_md .media__image:first-child {
-    margin: 0 0 1.5rem 0;
-  }
-  .media_stack_md .media__image:last-child {
-    margin: 1.5rem 0 0 0;
+  .media_stack_md > * + * {
+    margin-top: 1.5rem;
+    margin-right: 0;
+    margin-left: 0;
   }
 }
 .media_stack_lg {
@@ -2602,17 +2574,10 @@ input::-moz-placeholder {
   }
 }
 @media (max-width: 989px) {
-  .media_stack_lg .media__icon:first-child {
-    margin: 0 0 0.75rem 0;
-  }
-  .media_stack_lg .media__icon:last-child {
-    margin: 0.75rem 0 0 0;
-  }
-  .media_stack_lg .media__image:first-child {
-    margin: 0 0 1.5rem 0;
-  }
-  .media_stack_lg .media__image:last-child {
-    margin: 1.5rem 0 0 0;
+  .media_stack_lg > * + * {
+    margin-top: 1.5rem;
+    margin-right: 0;
+    margin-left: 0;
   }
 }
 .media_stack_xl {
@@ -2628,17 +2593,10 @@ input::-moz-placeholder {
   }
 }
 @media (max-width: 1379px) {
-  .media_stack_xl .media__icon:first-child {
-    margin: 0 0 0.75rem 0;
-  }
-  .media_stack_xl .media__icon:last-child {
-    margin: 0.75rem 0 0 0;
-  }
-  .media_stack_xl .media__image:first-child {
-    margin: 0 0 1.5rem 0;
-  }
-  .media_stack_xl .media__image:last-child {
-    margin: 1.5rem 0 0 0;
+  .media_stack_xl > * + * {
+    margin-top: 1.5rem;
+    margin-right: 0;
+    margin-left: 0;
   }
 }
 .menu {

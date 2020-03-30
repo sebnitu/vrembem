@@ -1,3 +1,4 @@
+@use "@vrembem/core/index" as core;
 @use "./variables" as media;
 
 // TODO: Add media_gap modifiers to spacing here
@@ -12,12 +13,12 @@
   }
 }
 
-@each $key, $value in $breakpoints {
+@each $key, $value in core.$breakpoints {
   .media_stack_#{$key} {
     flex-direction: column;
   }
 
-  @include media-min($key) {
+  @include core.media-min($key) {
     .media_stack_#{$key} {
       flex-direction: row;
 
@@ -27,7 +28,7 @@
     }
   }
 
-  @include media-max($key) {
+  @include core.media-max($key) {
     .media_stack_#{$key} {
       > * + * {
         margin-top: media.$spacing;

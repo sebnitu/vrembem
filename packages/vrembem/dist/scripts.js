@@ -75,8 +75,6 @@
     xl: "1380px"
   };
 
-
-
   var index = /*#__PURE__*/Object.freeze({
     __proto__: null,
     addClass: addClass,
