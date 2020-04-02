@@ -1,5 +1,5 @@
 @use "@vrembem/core/index" as core;
-@use "./variables" as media;
+@use "./variables";
 
 // TODO: Add media_gap modifiers to spacing here
 
@@ -7,7 +7,7 @@
   flex-direction: column;
 
   > * + * {
-    margin-top: media.$spacing;
+    margin-top: variables.$spacing;
     margin-right: 0;
     margin-left: 0;
   }
@@ -31,7 +31,7 @@
   @include core.media-max($key) {
     .media_stack_#{$key} {
       > * + * {
-        margin-top: media.$spacing;
+        margin-top: variables.$spacing;
         margin-right: 0;
         margin-left: 0;
       }

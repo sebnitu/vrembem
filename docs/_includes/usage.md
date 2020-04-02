@@ -18,6 +18,12 @@ npm install @vrembem/{{ page.usage.npm }}
 ```
 {% endif %}
 
+{% if page.usage.sass and page.title != "Core" %}
+```sass
+@use "@vrembem/{{ page.usage.sass }}/index";
+```
+{% endif %}
+
 {% if page.usage.js and page.title != "Core" %}
 ```js
 import { {{ page.title }} } from "@vrembem/{{ page.usage.js }}"

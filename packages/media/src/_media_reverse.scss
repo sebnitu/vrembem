@@ -1,4 +1,4 @@
-@use "./variables" as media;
+@use "./variables";
 
 // TODO: Add media_gap modifiers to spacing here
 
@@ -6,7 +6,7 @@
   flex-direction: row-reverse;
 
   > * + * {
-    margin-right: media.$spacing;
+    margin-right: variables.$spacing;
     margin-left: 0;
   }
 }

@@ -5,7 +5,7 @@ description: "The media component is used for displaying groups of content with 
 category: compound
 usage:
   npm: "media"
-  scss: "media"
+  sass: "media"
 ---
 
 {% include flag.html heading="media" %}

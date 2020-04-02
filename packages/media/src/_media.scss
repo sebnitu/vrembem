@@ -1,11 +1,11 @@
-@use "./variables" as media;
+@use "./variables";
 
 .media {
   display: flex;
   align-items: flex-start;
 
   > * + * {
-    margin-left: media.$spacing;
+    margin-left: variables.$spacing;
   }
 }
 
@@ -17,6 +17,6 @@
   display: flex;
   flex: 0 0 auto;
   align-items: center;
-  max-width: media.$max-width;
-  min-height: media.$min-height;
+  max-width: variables.$max-width;
+  min-height: variables.$min-height;
 }
