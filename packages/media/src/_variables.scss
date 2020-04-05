@@ -1,4 +1,4 @@
-@use "@vrembem/core/index" as core;
+@use "@vrembem/core";
 
 $min-height: (core.$line-height * 1rem) !default;
 $max-width: 30% !default;
