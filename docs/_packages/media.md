@@ -16,7 +16,7 @@ usage:
     <img class="radius" src="https://picsum.photos/90/90/?11" width="90" height="90" />
   </div>
   <div class="media__body">
-    <h2 class="h4"><a href="#">Media Content Title</a></h2>
+    <h2 class="h5">Media Content Title</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
   </div>
 </div>
@@ -41,13 +41,70 @@ usage:
 ```
 {% include demo_close.html %}
 
+{% include flag.html heading="media_gap_[key]" %}
+
+Changes the spacing between media elements.
+
+{% include demo_open.html class_parent="spacing" %}
+<div class="media media_gap_xs">
+  <div class="media__obj">
+    {% include icon.html icon="settings" %}
+  </div>
+  <div class="media__body">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="media media_gap_xs">
+  ...
+</div>
+```
+{% include demo_close.html %}
+
+{% include demo_open.html class_parent="spacing" %}
+<div class="media media_gap_xl">
+  <div class="media__obj">
+    {% include icon.html icon="settings" %}
+  </div>
+  <div class="media__body">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="media media_gap_xl">
+  ...
+</div>
+```
+{% include demo_close.html %}
+
+<div class="type" markdown="1">
+The key is based on the spacing map: `$spacing-map`:
+</div>
+
+<div class="demo">
+<div class="demo__code" markdown="1">
+```scss
+$spacing-map: (
+  "0": 0,
+  "xs": 0.5rem,
+  "sm": 1rem,
+  "md": 1.5rem,
+  "lg": 2rem,
+  "xl": 3rem
+) !default;
+```
+</div>
+</div>
+
 {% include flag.html heading="media_reverse" %}
 
 {% include demo_open.html class_parent="spacing" %}
 <div class="media media_reverse">
   <img class="media__obj radius" src="https://picsum.photos/90/90/?12" width="90" height="90" />
   <div class="media__body">
-    <h2 class="h4"><a href="#">Media Content Title</a></h2>
+    <h2 class="h5">Media Content Title</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
   </div>
 </div>
@@ -73,14 +130,14 @@ usage:
 <div class="media media_stack_md">
   <img class="media__obj radius" src="https://picsum.photos/90/90/?15" width="90" height="90" />
   <div class="media__body">
-    <h2 class="h4"><a href="#">Media Content Title</a></h2>
+    <h2 class="h5">Media Content Title</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
   </div>
 </div>
 <div class="media media_reverse media_stack_md">
   <img class="media__obj radius" src="https://picsum.photos/90/90/?15" width="90" height="90" />
   <div class="media__body">
-    <h2 class="h4"><a href="#">Media Content Title</a></h2>
+    <h2 class="h5">Media Content Title</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
   </div>
 </div>
@@ -130,7 +187,7 @@ usage:
 
 {% include flag.html heading="Comments section" %}
 
-{% include demo_open.html class_parent="spacing spacing_xl" %}
+{% include demo_open.html class_grid="grid_break" class_parent="spacing spacing_xl" %}
 <div class="level flex_justify_between">
   <h2 class="h4">3 Comments</h2>
   <button class="button button_outline">
