@@ -1,12 +1,19 @@
 @use "./variables";
 
-// TODO: Add media_gap modifiers to spacing here
-
 .media_reverse {
   flex-direction: row-reverse;
 
   > * + * {
     margin-right: variables.$spacing;
     margin-left: 0;
+  }
+
+  @each $key, $value in variables.$spacing-map {
+    &.media_gap_#{$key} {
+      > * + * {
+        margin-right: $value;
+        margin-left: 0;
+      }
+    }
   }
 }

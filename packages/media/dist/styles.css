@@ -49,6 +49,30 @@
   margin-right: 1.5rem;
   margin-left: 0;
 }
+.media_reverse.media_gap_0 > * + * {
+  margin-right: 0;
+  margin-left: 0;
+}
+.media_reverse.media_gap_xs > * + * {
+  margin-right: 0.5rem;
+  margin-left: 0;
+}
+.media_reverse.media_gap_sm > * + * {
+  margin-right: 1rem;
+  margin-left: 0;
+}
+.media_reverse.media_gap_md > * + * {
+  margin-right: 1.5rem;
+  margin-left: 0;
+}
+.media_reverse.media_gap_lg > * + * {
+  margin-right: 2rem;
+  margin-left: 0;
+}
+.media_reverse.media_gap_xl > * + * {
+  margin-right: 3rem;
+  margin-left: 0;
+}
 
 .media_stack {
   flex-direction: column;
