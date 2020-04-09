@@ -24,7 +24,7 @@
     "@babel/core": "^7.8.7",
     "@babel/plugin-transform-runtime": "^7.8.3",
     "@babel/preset-env": "^7.8.7",
-    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/jest-dom": "^5.4.0",
     "babel-jest": "^25.2.4",
     "concurrently": "^5.1.0",
     "del-cli": "^3.0.0",
