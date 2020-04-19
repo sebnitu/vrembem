@@ -24,7 +24,7 @@
     &:focus,
     &.is-active {
       background: $white;
-      box-shadow: none;
+      box-shadow: $box-shadow;
       color: $primary;
     }
   }
