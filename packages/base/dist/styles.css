@@ -27,7 +27,7 @@ html {
 
 body {
   color: #212121;
-  font-family: BlinkMacSystemFont, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+  font-family: blinkmacsystemfont, -apple-system, system-ui, "Segoe UI", "Roboto", "Helvetica Neue", arial, sans-serif;
 }
 
 /**
@@ -78,7 +78,7 @@ a {
  */
 code,
 pre {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 1em;
 }
 
@@ -190,7 +190,7 @@ input::-moz-placeholder {
 
 .code {
   color: #e91e63;
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 0.9em;
   word-break: break-word;
 }
@@ -362,7 +362,7 @@ input::-moz-placeholder {
   border-radius: 4px;
   background: #f5f5f5;
   color: #212121;
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
 }
 .pre code {
   padding: 0;
@@ -554,7 +554,7 @@ input::-moz-placeholder {
 }
 .type code {
   color: #e91e63;
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 0.9em;
   word-break: break-word;
 }
@@ -564,7 +564,7 @@ input::-moz-placeholder {
   border-radius: 4px;
   background: #f5f5f5;
   color: #212121;
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
 }
 .type pre code {
   padding: 0;
