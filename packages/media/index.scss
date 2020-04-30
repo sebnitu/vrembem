@@ -1,3 +1,4 @@
-@import "./src/media";
-@import "./src/media_reverse";
-@import "./src/media_stack";
+@use "./src/media";
+@use "./src/media_gap";
+@use "./src/media_reverse";
+@use "./src/media_stack";

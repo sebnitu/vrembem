@@ -75,8 +75,8 @@
       @include size($button-loading-size);
       content: "";
       position: absolute;
-      top: calc(50% - ($button-loading-size * 0.5));
-      left: calc(50% - ($button-loading-size * 0.5));
+      top: calc(50% - (#{$button-loading-size} * 0.5));
+      left: calc(50% - (#{$button-loading-size} * 0.5));
       animation: spin $button-loading-animation-duration infinite linear;
       border: $button-loading-border;
       border-radius: $border-radius-circle;

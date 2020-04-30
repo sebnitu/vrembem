@@ -30,8 +30,8 @@ usage:
 
 {% include demo_open.html class_parent="spacing" %}
 <div class="notice notice_state_danger">
-  <div class="media">
-    <div class="media__icon">
+  <div class="media media_gap_sm">
+    <div class="media__obj">
       {% include icon.html icon="alert-circle" %}
     </div>
     <div class="media__body">
@@ -40,11 +40,11 @@ usage:
   </div>
 </div>
 <div class="notice notice_state_info">
-  <div class="media">
+  <div class="media media_gap_sm">
     <div class="media__body">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
     </div>
-    <div class="media__icon">
+    <div class="media__obj">
       {% include icon.html icon="archive" %}
     </div>
   </div>
@@ -52,8 +52,8 @@ usage:
 {% include demo_switch.html %}
 ```html
 <div class="notice">
-  <div class="media">
-    <div class="media__icon">
+  <div class="media media_gap_sm">
+    <div class="media__obj">
       ...
     </div>
     <div class="media__body">
