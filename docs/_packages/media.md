@@ -41,9 +41,19 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="media_gap_[key]" %}
+<div class="type" markdown="1">
+The default space is set using the spacing variable: `$spacing`:
+</div>
 
-Changes the spacing between media elements.
+<div class="demo">
+<div class="demo__code" markdown="1">
+```scss
+$spacing: 1.5rem !default;
+```
+</div>
+</div>
+
+{% include flag.html heading="media_gap_[key]" %}
 
 {% include demo_open.html class_parent="spacing" %}
 <div class="media media_gap_xs">
@@ -157,3 +167,21 @@ $spacing-map: (
 </div>
 ```
 {% include demo_close.html %}
+
+<div class="type" markdown="1">
+Stack breakpoints key is based on the core breakpoints map: `$breakpoints`:
+</div>
+
+<div class="demo">
+<div class="demo__code" markdown="1">
+```scss
+$breakpoints: (
+  "xs": 480px,
+  "sm": 620px,
+  "md": 760px,
+  "lg": 990px,
+  "xl": 1380px
+) !default;
+```
+</div>
+</div>
