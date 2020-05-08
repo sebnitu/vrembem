@@ -37,7 +37,7 @@ var Dismissible = function Dismissible(options) {
     classHide: "display_none",
     method: "hide"
   };
-  api.settings = _objectSpread({}, defaults, {}, options);
+  api.settings = _objectSpread(_objectSpread({}, defaults), options);
 
   api.init = function () {
     document.addEventListener("click", run, false);

@@ -30,7 +30,7 @@ var Checkbox = function Checkbox(options) {
     stateAttr: "aria-checked",
     stateValue: "mixed"
   };
-  api.settings = _objectSpread({}, defaults, {}, options);
+  api.settings = _objectSpread(_objectSpread({}, defaults), options);
   api.settings.selector = "[".concat(api.settings.stateAttr, "=\"").concat(api.settings.stateValue, "\"]");
 
   api.init = function () {

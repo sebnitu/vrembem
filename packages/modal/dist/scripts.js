@@ -83,7 +83,7 @@
       stateClosed: "is-closed",
       focus: true
     };
-    api.settings = _objectSpread({}, defaults, {}, options);
+    api.settings = _objectSpread(_objectSpread({}, defaults), options);
     api.memoryTrigger = null;
     api.memoryTarget = null;
 

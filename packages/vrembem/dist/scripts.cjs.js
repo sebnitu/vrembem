@@ -115,7 +115,7 @@ var Checkbox = function Checkbox(options) {
     stateAttr: "aria-checked",
     stateValue: "mixed"
   };
-  api.settings = _objectSpread({}, defaults, {}, options);
+  api.settings = _objectSpread(_objectSpread({}, defaults), options);
   api.settings.selector = "[".concat(api.settings.stateAttr, "=\"").concat(api.settings.stateValue, "\"]");
 
   api.init = function () {
@@ -179,7 +179,7 @@ var Dismissible = function Dismissible(options) {
     classHide: "display_none",
     method: "hide"
   };
-  api.settings = _objectSpread$1({}, defaults, {}, options);
+  api.settings = _objectSpread$1(_objectSpread$1({}, defaults), options);
 
   api.init = function () {
     document.addEventListener("click", run, false);
@@ -236,7 +236,7 @@ var Drawer = function Drawer(options) {
     saveState: true,
     saveKey: "DrawerState"
   };
-  api.settings = _objectSpread$2({}, defaults, {}, options);
+  api.settings = _objectSpread$2(_objectSpread$2({}, defaults), options);
   api.memoryTrigger = null;
   api.memoryTarget = null;
   api.state = {};
@@ -501,7 +501,7 @@ var Modal = function Modal(options) {
     stateClosed: "is-closed",
     focus: true
   };
-  api.settings = _objectSpread$3({}, defaults, {}, options);
+  api.settings = _objectSpread$3(_objectSpread$3({}, defaults), options);
   api.memoryTrigger = null;
   api.memoryTarget = null;
 

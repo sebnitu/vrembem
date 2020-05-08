@@ -95,7 +95,7 @@
       saveState: true,
       saveKey: "DrawerState"
     };
-    api.settings = _objectSpread({}, defaults, {}, options);
+    api.settings = _objectSpread(_objectSpread({}, defaults), options);
     api.memoryTrigger = null;
     api.memoryTarget = null;
     api.state = {};
