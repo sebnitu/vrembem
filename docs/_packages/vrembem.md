@@ -11,6 +11,8 @@ usage:
 
 {% include flag.html heading="Sass" %}
 
+To include all Vrembem components into your styles, just import the vrembem package in your Sass manifest file.
+
 <div class="demo">
 <div class="demo__code" markdown="1">
 ```scss
