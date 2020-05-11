@@ -29,7 +29,7 @@
     "concurrently": "^5.2.0",
     "del-cli": "^3.0.0",
     "eslint": "^7.0.0",
-    "eslint-plugin-jest": "^23.9.0",
+    "eslint-plugin-jest": "^23.10.0",
     "jest": "^26.0.1",
     "lerna": "^3.20.2",
     "nodemon": "^2.0.3",
