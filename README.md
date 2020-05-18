@@ -52,7 +52,7 @@ Vrembem is a front-end CSS component library written with the goal of making ava
 1. [`tooltip`](./packages/tooltip#readme)
 1. [`utility`](./packages/utility#readme)
 
-*To include all packages in a single dependency, use the [`vrembem`](./packages/vrembem#readme) package directly.*
+*To include all packages in a single dependency, include the [`vrembem`](./packages/vrembem#readme) package directly.*
 
 ## Copyright and License
 
