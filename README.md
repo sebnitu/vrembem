@@ -17,7 +17,7 @@
 
 ## About
 
-Vrembem is a front-end CSS component library written with the goal of making available common web interface patterns. This allows developers to implement some robust components and allows them to be customized or themed easily.
+Vrembem is a front-end CSS component library written with the goal of making available common web interface patterns. This allows developers to implement robust components while keeping them flexible and customizable through the use of the BEM methodology.
 
 ## Packages
 
