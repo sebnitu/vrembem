@@ -1,6 +1,6 @@
 <h1 align="center">
   Vrembem
-<h1 align="center">
+</h1>
 
 <p align="center">
   A CSS component library based on the BEM methodology.
