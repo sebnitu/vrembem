@@ -1,10 +1,23 @@
-# Vrembem
+<h1 align="center">
+  Vrembem
+<h1 align="center">
 
-[![npm version](https://img.shields.io/npm/v/vrembem.svg)](https://www.npmjs.com/package/vrembem)
-[![devDependency Status](https://img.shields.io/david/dev/sebnitu/vrembem.svg)](https://david-dm.org/sebnitu/vrembem?type=dev)
+<p align="center">
+  A CSS component library based on the BEM methodology.
+</p>
 
+<p align="center">
+  <a href="https://www.npmjs.com/package/vrembem">
+    <img src="https://img.shields.io/npm/v/vrembem.svg" alt="npm version">
+  </a>
+  <a href="https://david-dm.org/sebnitu/vrembem?type=dev">
+    <img src="https://img.shields.io/david/dev/sebnitu/vrembem.svg" alt="devDependency Status">
+  </a>
+</p>
 
-A CSS component library based on the BEM methodology.
+## About
+
+Vrembem is a front-end CSS component library written with the goal of making available common web interface patterns. This allows developers to implement some robust components and allows them to be customized or themed easily.
 
 ## Packages
 
@@ -38,7 +51,8 @@ A CSS component library based on the BEM methodology.
 1. [`table`](./packages/table#readme)
 1. [`tooltip`](./packages/tooltip#readme)
 1. [`utility`](./packages/utility#readme)
-1. [`vrembem`](./packages/vrembem#readme)
+
+*To include all packages in a single dependency, use the [`vrembem`](./packages/vrembem#readme) package directly.*
 
 ## Copyright and License
 
