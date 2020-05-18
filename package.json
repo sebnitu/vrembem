@@ -27,7 +27,7 @@
     "@testing-library/jest-dom": "^5.7.0",
     "babel-jest": "^26.0.1",
     "concurrently": "^5.2.0",
-    "del-cli": "^3.0.0",
+    "del-cli": "^3.0.1",
     "eslint": "^7.0.0",
     "eslint-plugin-jest": "^23.13.0",
     "jest": "^26.0.1",
