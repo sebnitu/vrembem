@@ -11,7 +11,7 @@ Vrembem is a front-end CSS component library written with the goal of making ava
 
 Vrembem is the passion project of Sebastian Nitu, UI designer and front-end developer. It was created out of the need to reduce repetitive work and allow the focus of unique aspects in a project. Vrembem is constantly being improved and tweaked to make it's use as delightful as possible.
 
-> A full list of available packages can be found either in the [web documentation](https://vrembem.sebnitu.com/) or at the bottom of [this readme](#packages).
+> A full list of available packages can be found either in the [web documentation](https://vrembem.com/) or at the bottom of [this readme](#packages).
 
 ## Usage
 
@@ -35,7 +35,7 @@ This will include all styles, mixins, functions and variables related to the res
 
 ### HTML
 
-Include the component's markup into your project. Use the [online docs](https://vrembem.sebnitu.com) for information and code examples such as markup and available modifiers for each component.
+Include the component's markup into your project. Use the [online docs](https://vrembem.com) for information and code examples such as markup and available modifiers for each component.
 
 ```html
 <ul class="menu">
