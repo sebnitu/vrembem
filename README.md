@@ -72,7 +72,7 @@ Some packages also have included JavaScript components, such as the `@vrembem/ch
 import { Checkbox } from "@vrembem/checkbox"
 
 // Create an instance
-const checkbox = Checkbox()
+const checkbox = new Checkbox()
 
 // Initialize
 checkbox.init()
