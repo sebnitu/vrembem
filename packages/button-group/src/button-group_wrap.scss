@@ -2,7 +2,7 @@
 
 .button-group_wrap {
   flex-wrap: wrap;
-  margin: ($button-group-gap * -1) 0 0 ($button-group-gap * -1);
+  margin: (-$button-group-gap) 0 0 (-$button-group-gap);
 
   > .button,
   > .button + .button {

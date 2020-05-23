@@ -14,11 +14,11 @@
   }
 
   .button-group_gap_#{$key}.button-group_wrap {
-    margin: -($value * 0.5);
+    margin: (-$value) 0 0 (-$value);
 
     > .button,
     > .button + .button {
-      margin: ($value * 0.5);
+      margin: $value 0 0 $value;
     }
   }
 }

@@ -1065,11 +1065,11 @@ input::-moz-placeholder {
 }
 
 .button-group_gap_xs.button-group_wrap {
-  margin: -0.5px;
+  margin: -1px 0 0 -1px;
 }
 .button-group_gap_xs.button-group_wrap > .button,
 .button-group_gap_xs.button-group_wrap > .button + .button {
-  margin: 0.5px;
+  margin: 1px 0 0 1px;
 }
 
 .button-group_gap_sm > .button + .button {
@@ -1081,11 +1081,11 @@ input::-moz-placeholder {
 }
 
 .button-group_gap_sm.button-group_wrap {
-  margin: -0.125rem;
+  margin: -0.25rem 0 0 -0.25rem;
 }
 .button-group_gap_sm.button-group_wrap > .button,
 .button-group_gap_sm.button-group_wrap > .button + .button {
-  margin: 0.125rem;
+  margin: 0.25rem 0 0 0.25rem;
 }
 
 .button-group_gap_md > .button + .button {
@@ -1097,11 +1097,11 @@ input::-moz-placeholder {
 }
 
 .button-group_gap_md.button-group_wrap {
-  margin: -0.25rem;
+  margin: -0.5rem 0 0 -0.5rem;
 }
 .button-group_gap_md.button-group_wrap > .button,
 .button-group_gap_md.button-group_wrap > .button + .button {
-  margin: 0.25rem;
+  margin: 0.5rem 0 0 0.5rem;
 }
 
 .button-group_gap_lg > .button + .button {
@@ -1113,11 +1113,11 @@ input::-moz-placeholder {
 }
 
 .button-group_gap_lg.button-group_wrap {
-  margin: -0.5rem;
+  margin: -1rem 0 0 -1rem;
 }
 .button-group_gap_lg.button-group_wrap > .button,
 .button-group_gap_lg.button-group_wrap > .button + .button {
-  margin: 0.5rem;
+  margin: 1rem 0 0 1rem;
 }
 
 .button-group_gap_xl > .button + .button {
@@ -1129,11 +1129,11 @@ input::-moz-placeholder {
 }
 
 .button-group_gap_xl.button-group_wrap {
-  margin: -0.75rem;
+  margin: -1.5rem 0 0 -1.5rem;
 }
 .button-group_gap_xl.button-group_wrap > .button,
 .button-group_gap_xl.button-group_wrap > .button + .button {
-  margin: 0.75rem;
+  margin: 1.5rem 0 0 1.5rem;
 }
 
 .button-group_join > .button {
