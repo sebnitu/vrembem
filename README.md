@@ -33,7 +33,7 @@ npm install @vrembem/menu
 
 ### CSS
 
-Next, you'll just need to include the component in your build's Sass manifest file:
+Include the component in your build's Sass manifest file:
 
 ```scss
 @import "@vrembem/menu";
