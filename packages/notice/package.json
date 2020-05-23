@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/notice",
   "description": "A component for highlighting (optionally dismissible) messages to the user.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",
@@ -18,8 +18,8 @@
     "directory": "packages/notice"
   },
   "dependencies": {
-    "@vrembem/base": "^1.2.0",
-    "@vrembem/core": "^1.1.0"
+    "@vrembem/base": "^1.2.1",
+    "@vrembem/core": "^1.2.1"
   },
   "publishConfig": {
     "access": "public"

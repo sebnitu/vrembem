@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/grid",
   "description": "A flexbox based grid system component.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",
@@ -18,7 +18,7 @@
     "directory": "packages/grid"
   },
   "dependencies": {
-    "@vrembem/core": "^1.1.0"
+    "@vrembem/core": "^1.2.1"
   },
   "publishConfig": {
     "access": "public"

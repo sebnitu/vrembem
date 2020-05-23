@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/checkbox",
   "description": "Checkboxes allow the user to select multiple options from a set.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "main": "dist/scripts.cjs.js",
   "module": "index.js",
   "browser": "dist/scripts.js",
@@ -23,7 +23,7 @@
     "directory": "packages/checkbox"
   },
   "dependencies": {
-    "@vrembem/core": "^1.1.0"
+    "@vrembem/core": "^1.2.1"
   },
   "publishConfig": {
     "access": "public"

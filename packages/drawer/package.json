@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/drawer",
   "description": "A container component that slides in from the left or right. Typically containing menus, search or other content.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "main": "dist/scripts.cjs.js",
   "module": "index.js",
   "browser": "dist/scripts.js",
@@ -23,11 +23,11 @@
     "directory": "packages/drawer"
   },
   "devDependencies": {
-    "@vrembem/base": "^1.2.0",
-    "@vrembem/utility": "^1.2.0"
+    "@vrembem/base": "^1.2.1",
+    "@vrembem/utility": "^1.2.1"
   },
   "dependencies": {
-    "@vrembem/core": "^1.1.0"
+    "@vrembem/core": "^1.2.1"
   },
   "publishConfig": {
     "access": "public"

@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/container",
   "description": "A component for giving content a max width and centered within it's parent.",
-  "version": "1.1.0",
+  "version": "1.2.1",
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",
@@ -18,7 +18,7 @@
     "directory": "packages/container"
   },
   "dependencies": {
-    "@vrembem/core": "^1.1.0"
+    "@vrembem/core": "^1.2.1"
   },
   "publishConfig": {
     "access": "public"
