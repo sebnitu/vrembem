@@ -1,6 +1,6 @@
-@import "./variables";
+@use "./variables";
 
-@each $key, $value in $button-group-gap-scale {
+@each $key, $value in variables.$gap-scale {
   .button-group_gap_#{$key} {
     > .button + .button {
       margin: 0 0 0 $value;
@@ -14,11 +14,11 @@
   }
 
   .button-group_gap_#{$key}.button-group_wrap {
-    margin: -($value * 0.5);
+    margin: (-$value) 0 0 (-$value);
 
     > .button,
     > .button + .button {
-      margin: ($value * 0.5);
+      margin: $value 0 0 $value;
     }
   }
 }

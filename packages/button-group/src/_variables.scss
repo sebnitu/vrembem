@@ -1,9 +1,9 @@
-@import "@vrembem/core/index";
+@use "@vrembem/core";
 
-$button-group-border-radius: $border-radius !default;
-$button-group-gap: 0.5rem !default;
-$button-group_join-gap: -1px !default;
-$button-group-gap-scale: (
+$border-radius: core.$border-radius !default;
+$gap: 0.5rem !default;
+$gap-join: -1px !default;
+$gap-scale: (
   "xs": 1px,
   "sm": 0.25rem,
   "md": 0.5rem,
