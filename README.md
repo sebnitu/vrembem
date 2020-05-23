@@ -19,6 +19,10 @@
 
 Vrembem is a front-end CSS component library written with the goal of making available common web interface patterns. This allows developers and designers to implement robust components into their web projects while keeping them flexible and customizable through the use of the [BEM methodology](https://en.bem.info/methodology/) and [Sass](https://sass-lang.com/)<a href="#user-content-n-1" name="nref-1">\*</a>.
 
+Vrembem is the passion project of Sebastian Nitu, UI designer and front-end developer. It was created out of the need to reduce repetitive work and allow for designers to focus on the unique aspects of a project. Vrembem is constantly being improved and
+
+> A full list of available packages can be found either in the [web documentation](https://vrembem.sebnitu.com/) or at the bottom of [this readme](#packages).
+
 ## Usage
 
 To use a Vrembem component, you'll first need to install it as a dependency. For this example we'll be using the `@vrembem/menu` component:
@@ -26,8 +30,6 @@ To use a Vrembem component, you'll first need to install it as a dependency. For
 ```
 npm install @vrembem/menu
 ```
-
-> A full list of available packages can be found either in the [web documentation](https://vrembem.sebnitu.com/) or at the bottom of [this readme](#packages).
 
 ### CSS
 
@@ -63,13 +65,20 @@ Include the component's markup into your project. Use the [online docs](https://
 
 ### JavaScript
 
-Some packages also have included JavaScript components, such as the `@vrembem/checkbox` package. You can include these in your JavaScript files by importing:
+Some packages also have included JavaScript components, such as the `@vrembem/checkbox` package. You can include these in your JavaScript files by importing, creating an instance and initialize:
 
 ```js
+# Import your component
 import { Checkbox } from "@vrembem/checkbox"
+
+# Create an instance
+const checkbox = Checkbox()
+
+# Initialize
+checkbox.init()
 ```
 
-Create an instance of the component either by saving it to a variable for later use or with the auto initialization option set to true.
+Alternatively, you can use the `autoInit` option to auto initialize and optionally omit saving the instance to a variable if it won't be used later.
 
 ```js
 new Checkbox({ autoInit: true })
