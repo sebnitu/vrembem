@@ -68,13 +68,13 @@ Include the component's markup into your project. Use the [online docs](https://
 Some packages also have included JavaScript components, such as the `@vrembem/checkbox` package. You can include these in your JavaScript files by importing, creating an instance and initialize:
 
 ```js
-# Import your component
+// Import your component
 import { Checkbox } from "@vrembem/checkbox"
 
-# Create an instance
+// Create an instance
 const checkbox = Checkbox()
 
-# Initialize
+// Initialize
 checkbox.init()
 ```
 
