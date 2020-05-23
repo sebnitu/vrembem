@@ -6,6 +6,7 @@ category: simple
 usage:
   npm: "checkbox"
   scss: "checkbox"
+  js: "checkbox"
 ---
 
 {% include flag.html heading="checkbox" %}
