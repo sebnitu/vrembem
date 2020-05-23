@@ -27,6 +27,8 @@ To use a Vrembem component, you'll first need to install it as a dependency. For
 npm install @vrembem/menu
 ```
 
+> A full list of available packages can be found either in the [web documentation](https://vrembem.sebnitu.com/) or at the bottom of [this readme](#packages).
+
 ### CSS
 
 Next, you'll just need to include the component in your build's Sass manifest file:
