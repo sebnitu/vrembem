@@ -10,7 +10,7 @@ import "svgxuse"
 import { Version } from "./version"
 
 /**
- * Initialize Vrembem scripts
+ * Initialize Vrembem components
  */
 
 new Checkbox({ autoInit: true })
