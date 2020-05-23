@@ -19,7 +19,7 @@
 
 Vrembem is a front-end CSS component library written with the goal of making available common web interface patterns. This allows developers and designers to implement robust components into their web projects while keeping them flexible and customizable through the use of the [BEM methodology](https://en.bem.info/methodology/) and [Sass](https://sass-lang.com/)<a href="#user-content-n-1" name="nref-1">\*</a>.
 
-Vrembem is the passion project of Sebastian Nitu, UI designer and front-end developer. It was created out of the need to reduce repetitive work and allow for designers to focus on the unique aspects of a project. Vrembem is constantly being improved upon and tweaked to make it's use as pleasurable as possible.
+Vrembem is the passion project of Sebastian Nitu, UI designer and front-end developer. It was created out of the need to reduce repetitive work and allow the focus of unique aspects in a project. Vrembem is constantly being improved and tweaked to make it's use as delightful as possible.
 
 > A full list of available packages can be found either in the [web documentation](https://vrembem.sebnitu.com/) or at the bottom of [this readme](#packages).
 
