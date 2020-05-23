@@ -17,13 +17,13 @@
 
 ## About
 
-Vrembem is a front-end CSS component library written with the goal of making available common web interface patterns. This allows developers and designers to implement robust components into their web projects while keeping them flexible and customizable through the use of the BEM methodology.
+Vrembem is a front-end CSS component library written with the goal of making available common web interface patterns. This allows developers and designers to implement robust components into their web projects while keeping them flexible and customizable through the use of the BEM methodology and Sass module system<a href="#user-content-n-1" name="nref-1">\*</a>.
 
 ## Usage
 
 To use a Vrembem component, you'll first need to install it as a dependency. For this example we'll be using the `@vrembem/menu` component:
 
-```shell
+```
 npm install @vrembem/menu
 ```
 
@@ -35,7 +35,7 @@ Next, you'll just need to include the component in your build's Sass manifest fi
 @import "@vrembem/menu";
 ```
 
-> Note: Vrembem is currently in the process of being converted to [Sass' new module system](https://sass-lang.com/blog/the-module-system-is-launched) where you'll be able to include components using the `@use` and `@forward` features.
+> <a href="#user-content-nref-1" name="n-1">\*</a> Note: Vrembem is currently in the process of being converted to [Sass' new module system](https://sass-lang.com/blog/the-module-system-is-launched) where you'll be able to include components using the `@use` and `@forward` features.
 
 This will include all styles and variables related to the respective component you're installing to use. Make sure to include variable overrides before the import or with the `with` keyword if you're [Sass' module system](https://sass-lang.com/blog/the-module-system-is-launched).
 
@@ -77,7 +77,7 @@ new Checkbox({ autoInit: true })
 
 It's also possible to include all Vrembem components using the single all-in-one `vrembem` package:
 
-```shell
+```
 npm install vrembem
 ```
 
