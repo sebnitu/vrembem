@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/dismissible",
   "description": "A component for removing an element from the DOM or hiding it with a CSS class.",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "main": "dist/scripts.cjs.js",
   "module": "index.js",
   "browser": "dist/scripts.js",
@@ -18,8 +18,8 @@
     "directory": "packages/dismissible"
   },
   "devDependencies": {
-    "@vrembem/base": "^1.1.0",
-    "@vrembem/utility": "^1.1.0"
+    "@vrembem/base": "^1.2.0",
+    "@vrembem/utility": "^1.2.0"
   },
   "dependencies": {
     "@vrembem/core": "^1.1.0"
