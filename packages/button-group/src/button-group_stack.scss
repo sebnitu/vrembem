@@ -1,9 +1,9 @@
-@import "./variables";
+@use "./variables";
 
 .button-group_stack {
   flex-direction: column;
 
   > .button + .button {
-    margin: $button-group-gap 0 0 0;
+    margin: variables.$gap 0 0 0;
   }
 }

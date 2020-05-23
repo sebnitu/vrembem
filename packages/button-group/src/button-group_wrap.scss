@@ -1,11 +1,11 @@
-@import "./variables";
+@use "./variables";
 
 .button-group_wrap {
   flex-wrap: wrap;
-  margin: (-$button-group-gap) 0 0 (-$button-group-gap);
+  margin: (variables.$gap * -1) 0 0 (variables.$gap * -1);
 
   > .button,
   > .button + .button {
-    margin: $button-group-gap 0 0 $button-group-gap;
+    margin: variables.$gap 0 0 variables.$gap;
   }
 }

@@ -1,4 +1,4 @@
-@import "./variables";
+@use "./variables";
 
 .button-group {
   display: inline-flex;
@@ -7,10 +7,10 @@
   > .button {
     z-index: 1;
     flex: 0 0 auto;
-    border-radius: $button-group-border-radius;
+    border-radius: variables.$border-radius;
 
     + .button {
-      margin: 0 0 0 $button-group-gap;
+      margin: 0 0 0 variables.$gap;
     }
 
     &:hover {
