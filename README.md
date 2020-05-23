@@ -1,19 +1,9 @@
-<h1 align="center">
-  Vrembem
-</h1>
+## Vrembem
 
-<p align="center">
-  A CSS component library based on the BEM methodology.
-</p>
+A CSS component library based on the BEM methodology.
 
-<p align="center">
-  <a href="https://www.npmjs.com/package/vrembem">
-    <img src="https://img.shields.io/npm/v/vrembem.svg" alt="npm version">
-  </a>
-  <a href="https://david-dm.org/sebnitu/vrembem?type=dev">
-    <img src="https://img.shields.io/david/dev/sebnitu/vrembem.svg" alt="devDependency Status">
-  </a>
-</p>
+[![npm version](https://img.shields.io/npm/v/vrembem.svg)](https://www.npmjs.com/package/vrembem)
+[![devDependency Status](https://img.shields.io/david/dev/sebnitu/vrembem.svg)](https://david-dm.org/sebnitu/vrembem?type=dev)
 
 ## About
 
