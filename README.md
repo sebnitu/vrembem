@@ -137,7 +137,7 @@ new Modal({ autoInit: true })
 1. [`tooltip`](./packages/tooltip#readme)
 1. [`utility`](./packages/utility#readme)
 
-*To include all packages in a single dependency, use the [`vrembem`](./packages/vrembem#readme) package directly.*
+> Include all packages in a single dependency with the single all-in-one [`vrembem`](./packages/vrembem#readme) package.
 
 ## Copyright and License
 
