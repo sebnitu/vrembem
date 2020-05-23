@@ -17,7 +17,51 @@
 
 ## About
 
-Vrembem is a front-end CSS component library written with the goal of making available common web interface patterns. This allows developers to implement robust components while keeping them flexible and customizable through the use of the BEM methodology.
+Vrembem is a front-end CSS component library written with the goal of making available common web interface patterns. This allows developers and designers to implement robust components into their web projects while keeping them flexible and customizable through the use of the BEM methodology.
+
+## Usage
+
+To use a Vrembem component, you'll first need to install it as a dependency. For this example, we'll be using the menu component:
+
+```shell
+npm install @vrembem/menu
+```
+
+Next, you'll just need to include the component in your build's Sass manifest file:
+
+```scss
+@import "@vrembem/menu";
+```
+
+*Vrembem is currently in the process of being converted to [Sass' new module system](https://sass-lang.com/blog/the-module-system-is-launched) where you'll be able to include components using the `@use` and `@forward` features.*
+
+This will include all styles and variables related to the respective component you're installing to use. Make sure to include variable overrides before the import or with the `with` keyword if you're [Sass' module system](https://sass-lang.com/blog/the-module-system-is-launched).
+
+Lastly, you can just include the component's markup into your project. Use the [online docs](https://vrembem.sebnitu.com) if you need examples of markup and available modifiers for each component.
+
+```html
+<ul class="menu">
+  <li class="menu__item">
+    <a class="menu__link" href="#">
+      Create
+    </a>
+    <a class="menu__link" href="#">
+      Update
+    </a>
+    <a class="menu__link" href="#">
+      Delete
+    </a>
+  </li>
+</ul>
+```
+
+Some packages also have included JavaScript components.
+
+It's also possible to include all Vrembem components using the single all-in-one package `vrembem`:
+
+```shell
+npm install vrembem
+```
 
 ## Packages
 
