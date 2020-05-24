@@ -327,130 +327,134 @@ By default, the state of a drawer is saved to local storage and applied persiste
 
 {% include flag.html heading="Drawer Settings" %}
 
-<table class="table table_zebra">
-  <thead>
-    <tr class="border_top_0">
-      <th>Key</th>
-      <th>Default</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
+<div class="scroll-box">
+  <table class="table table_zebra">
+    <thead>
+      <tr class="border_top_0">
+        <th>Key</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code class="code text_nowrap">autoInit</code></td>
+        <td><code class="code text_nowrap">false</code></td>
+        <td>Automatically instantiates the instance</td>
+      </tr>
+
+      <!-- Data attributes -->
+      <tr>
+        <td><code class="code text_nowrap">dataDrawer</code></td>
+        <td><code class="code text_nowrap">"drawer"</code></td>
+        <td>Data attribute for a drawer</td>
+      </tr>
+      <tr>
+        <td><code class="code text_nowrap">dataToggle</code></td>
+        <td><code class="code text_nowrap">"drawer-toggle"</code></td>
+        <td>Data attribute for a drawer toggle trigger</td>
+      </tr>
+      <tr>
+        <td><code class="code text_nowrap">dataClose</code></td>
+        <td><code class="code text_nowrap">"drawer-close"</code></td>
+        <td>Data attribute for a drawer close trigger</td>
+      </tr>
+      <tr>
+        <td><code class="code text_nowrap">dataBreakpoint</code></td>
+        <td><code class="code text_nowrap">"drawer-breakpoint"</code></td>
+        <td>Data attribute for setting a drawer's breakpoint</td>
+      </tr>
+      <tr>
+        <td><code class="code text_nowrap">dataFocus</code></td>
+        <td><code class="code text_nowrap">"drawer-focus"</code></td>
+        <td>Data attribute for setting a drawer's focus element</td>
+      </tr>
+    </tbody>
+
+    <!-- State classes -->
     <tr>
-      <td><code class="code text_nowrap">autoInit</code></td>
-      <td><code class="code text_nowrap">false</code></td>
-      <td>Automatically instantiates the instance</td>
+      <td><code class="code text_nowrap">stateOpen</code></td>
+      <td><code class="code text_nowrap">"is-open"</code></td>
+      <td>Class used for open state</td>
+    </tr>
+    <tr>
+      <td><code class="code text_nowrap">stateOpening</code></td>
+      <td><code class="code text_nowrap">"is-opening"</code></td>
+      <td>Class used for transitioning to open state</td>
+    </tr>
+    <tr>
+      <td><code class="code text_nowrap">stateClosing</code></td>
+      <td><code class="code text_nowrap">"is-closing"</code></td>
+      <td>Class used for transitioning to closed state</td>
+    </tr>
+    <tr>
+      <td><code class="code text_nowrap">stateClosed</code></td>
+      <td><code class="code text_nowrap">"is-closed"</code></td>
+      <td>Class used for closed state (is ommitted in application)</td>
     </tr>
 
-    <!-- Data attributes -->
+    <!-- Classes -->
     <tr>
-      <td><code class="code text_nowrap">dataDrawer</code></td>
-      <td><code class="code text_nowrap">"drawer"</code></td>
-      <td>Data attribute for a drawer</td>
+      <td><code class="code text_nowrap">classModal</code></td>
+      <td><code class="code text_nowrap">"drawer_modal"</code></td>
+      <td>Class used for toggling the drawer modal state</td>
     </tr>
-    <tr>
-      <td><code class="code text_nowrap">dataToggle</code></td>
-      <td><code class="code text_nowrap">"drawer-toggle"</code></td>
-      <td>Data attribute for a drawer toggle trigger</td>
-    </tr>
-    <tr>
-      <td><code class="code text_nowrap">dataClose</code></td>
-      <td><code class="code text_nowrap">"drawer-close"</code></td>
-      <td>Data attribute for a drawer close trigger</td>
-    </tr>
-    <tr>
-      <td><code class="code text_nowrap">dataBreakpoint</code></td>
-      <td><code class="code text_nowrap">"drawer-breakpoint"</code></td>
-      <td>Data attribute for setting a drawer's breakpoint</td>
-    </tr>
-    <tr>
-      <td><code class="code text_nowrap">dataFocus</code></td>
-      <td><code class="code text_nowrap">"drawer-focus"</code></td>
-      <td>Data attribute for setting a drawer's focus element</td>
-    </tr>
-  </tbody>
 
-  <!-- State classes -->
-  <tr>
-    <td><code class="code text_nowrap">stateOpen</code></td>
-    <td><code class="code text_nowrap">"is-open"</code></td>
-    <td>Class used for open state</td>
-  </tr>
-  <tr>
-    <td><code class="code text_nowrap">stateOpening</code></td>
-    <td><code class="code text_nowrap">"is-opening"</code></td>
-    <td>Class used for transitioning to open state</td>
-  </tr>
-  <tr>
-    <td><code class="code text_nowrap">stateClosing</code></td>
-    <td><code class="code text_nowrap">"is-closing"</code></td>
-    <td>Class used for transitioning to closed state</td>
-  </tr>
-  <tr>
-    <td><code class="code text_nowrap">stateClosed</code></td>
-    <td><code class="code text_nowrap">"is-closed"</code></td>
-    <td>Class used for closed state (is ommitted in application)</td>
-  </tr>
-
-  <!-- Classes -->
-  <tr>
-    <td><code class="code text_nowrap">classModal</code></td>
-    <td><code class="code text_nowrap">"drawer_modal"</code></td>
-    <td>Class used for toggling the drawer modal state</td>
-  </tr>
-
-  <!-- Feature toggles -->
-  <tr>
-    <td><code class="code text_nowrap">breakpoint</code></td>
-    <td><code class="code text_nowrap">core.breakpoint</code></td>
-    <td>An object with key/value pairs defining a breakpoint set</td>
-  </tr>
-  <tr>
-    <td><code class="code text_nowrap">focus</code></td>
-    <td><code class="code text_nowrap">true</code></td>
-    <td>Toggles the focus handling feature</td>
-  </tr>
-  <tr>
-    <td><code class="code text_nowrap">saveState</code></td>
-    <td><code class="code text_nowrap">true</code></td>
-    <td>Toggles the save state feature</td>
-  </tr>
-  <tr>
-    <td><code class="code text_nowrap">saveKey</code></td>
-    <td><code class="code text_nowrap">"DrawerState"</code></td>
-    <td>Defines the localStorage key where drawer states are saved</td>
-  </tr>
-</table>
+    <!-- Feature toggles -->
+    <tr>
+      <td><code class="code text_nowrap">breakpoint</code></td>
+      <td><code class="code text_nowrap">core.breakpoint</code></td>
+      <td>An object with key/value pairs defining a breakpoint set</td>
+    </tr>
+    <tr>
+      <td><code class="code text_nowrap">focus</code></td>
+      <td><code class="code text_nowrap">true</code></td>
+      <td>Toggles the focus handling feature</td>
+    </tr>
+    <tr>
+      <td><code class="code text_nowrap">saveState</code></td>
+      <td><code class="code text_nowrap">true</code></td>
+      <td>Toggles the save state feature</td>
+    </tr>
+    <tr>
+      <td><code class="code text_nowrap">saveKey</code></td>
+      <td><code class="code text_nowrap">"DrawerState"</code></td>
+      <td>Defines the localStorage key where drawer states are saved</td>
+    </tr>
+  </table>
+</div>
 
 {% include flag.html heading="Drawer API" %}
 
-<table class="table table_zebra">
-  <thead>
-    <tr class="border_top_0">
-      <th>Name</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="code text_nowrap">drawer.init()</code></td>
-      <td>Initializes the drawer instance</td>
-    </tr>
-    <tr>
-      <td><code class="code text_nowrap">drawer.destroy()</code></td>
-      <td>Destroys and cleans up the drawer instantiation</td>
-    </tr>
-    <tr>
-      <td><code class="code text_nowrap">drawer.toggle(drawerKey, callback)</code></td>
-      <td>Toggles a drawer provided the drawer key and optional callback</td>
-    </tr>
-    <tr>
-      <td><code class="code text_nowrap">drawer.open(drawerKey, callback)</code></td>
-      <td>Opens a drawer provided the drawer key and optional callback</td>
-    </tr>
-    <tr>
-      <td><code class="code text_nowrap">drawer.close(drawerKey, callback)</code></td>
-      <td>Closes a drawer provided the drawer key and optional callback</td>
-    </tr>
-  </tbody>
-</table>
+<div class="scroll-box">
+  <table class="table table_zebra">
+    <thead>
+      <tr class="border_top_0">
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code class="code text_nowrap">drawer.init()</code></td>
+        <td>Initializes the drawer instance</td>
+      </tr>
+      <tr>
+        <td><code class="code text_nowrap">drawer.destroy()</code></td>
+        <td>Destroys and cleans up the drawer instantiation</td>
+      </tr>
+      <tr>
+        <td><code class="code text_nowrap">drawer.toggle(drawerKey, callback)</code></td>
+        <td>Toggles a drawer provided the drawer key and optional callback</td>
+      </tr>
+      <tr>
+        <td><code class="code text_nowrap">drawer.open(drawerKey, callback)</code></td>
+        <td>Opens a drawer provided the drawer key and optional callback</td>
+      </tr>
+      <tr>
+        <td><code class="code text_nowrap">drawer.close(drawerKey, callback)</code></td>
+        <td>Closes a drawer provided the drawer key and optional callback</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
