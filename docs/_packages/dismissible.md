@@ -121,52 +121,64 @@ Dismissible uses two data attributes to utilize it's functionality. The first is
 
 {% include flag.html heading="Dismissible Settings" %}
 
-<table class="table table_zebra">
-  <thead>
-    <tr class="border_top_0">
-      <th>Key</th>
-      <th>Default</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="code text_nowrap">autoInit</code></td>
-      <td><code class="code text_nowrap">false</code></td>
-      <td>Automatically instantiates the instance</td>
-    </tr>
-
-    <!-- Data attributes -->
-    <tr>
-      <td><code class="code text_nowrap">dataTrigger</code></td>
-      <td><code class="code text_nowrap">"dismiss"</code></td>
-      <td>Data attribute for a dismiss trigger</td>
-    </tr>
-    <tr>
-      <td><code class="code text_nowrap">dataTarget</code></td>
-      <td><code class="code text_nowrap">"dismissible"</code></td>
-      <td>Data attribute for a dismissible element</td>
-    </tr>
-  </tbody>
-</table>
+<div class="scroll-box">
+  <table class="table table_zebra">
+    <thead>
+      <tr class="border_top_0">
+        <th>Key</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code class="code text_nowrap">autoInit</code></td>
+        <td><code class="code text_nowrap">false</code></td>
+        <td>Automatically instantiates the instance</td>
+      </tr>
+      <tr>
+        <td><code class="code text_nowrap">dataTrigger</code></td>
+        <td><code class="code text_nowrap">"dismiss"</code></td>
+        <td>Data attribute for a dismiss trigger</td>
+      </tr>
+      <tr>
+        <td><code class="code text_nowrap">dataTarget</code></td>
+        <td><code class="code text_nowrap">"dismissible"</code></td>
+        <td>Data attribute for a dismissible element</td>
+      </tr>
+      <tr>
+        <td><code class="code text_nowrap">classHide</code></td>
+        <td><code class="code text_nowrap">"display_none"</code></td>
+        <td>The class to apply for hiding an element</td>
+      </tr>
+      <tr>
+        <td><code class="code text_nowrap">method</code></td>
+        <td><code class="code text_nowrap">"hide"</code></td>
+        <td>The method of dismissing an element. Either "hide" or "remove".</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 {% include flag.html heading="Dismissible API" %}
 
-<table class="table table_zebra">
-  <thead>
-    <tr class="border_top_0">
-      <th>Name</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="code text_nowrap">modal.init()</code></td>
-      <td>Initializes the dismissible instance</td>
-    </tr>
-    <tr>
-      <td><code class="code text_nowrap">modal.destroy()</code></td>
-      <td>Destroys and cleans up the dismissible instantiation</td>
-    </tr>
-  </tbody>
-</table>
+<div class="scroll-box">
+  <table class="table table_zebra">
+    <thead>
+      <tr class="border_top_0">
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code class="code text_nowrap">dismissible.init()</code></td>
+        <td>Initializes the dismissible instance</td>
+      </tr>
+      <tr>
+        <td><code class="code text_nowrap">dismissible.destroy()</code></td>
+        <td>Destroys and cleans up the dismissible instantiation</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

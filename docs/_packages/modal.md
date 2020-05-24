@@ -163,107 +163,111 @@ Required modals can not be closed without an explicit action. That means clickin
 
 {% include flag.html heading="Modal settings" %}
 
-<table class="table table_zebra">
-  <thead>
-    <tr class="border_top_0">
-      <th>Key</th>
-      <th>Default</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
+<div class="scroll-box">
+  <table class="table table_zebra">
+    <thead>
+      <tr class="border_top_0">
+        <th>Key</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code class="code text_nowrap">autoInit</code></td>
+        <td><code class="code text_nowrap">false</code></td>
+        <td>Automatically instantiates the instance</td>
+      </tr>
+
+      <!-- Data attributes -->
+      <tr>
+        <td><code class="code text_nowrap">dataModal</code></td>
+        <td><code class="code text_nowrap">"modal"</code></td>
+        <td>Data attribute for a modal</td>
+      </tr>
+      <tr>
+        <td><code class="code text_nowrap">dataOpen</code></td>
+        <td><code class="code text_nowrap">"modal-open"</code></td>
+        <td>Data attribute for a modal open trigger</td>
+      </tr>
+      <tr>
+        <td><code class="code text_nowrap">dataClose</code></td>
+        <td><code class="code text_nowrap">"modal-close"</code></td>
+        <td>Data attribute for a modal close trigger</td>
+      </tr>
+      <tr>
+        <td><code class="code text_nowrap">dataFocus</code></td>
+        <td><code class="code text_nowrap">"modal-focus"</code></td>
+        <td>Data attribute for setting a modal's focus element</td>
+      </tr>
+      <tr>
+        <td><code class="code text_nowrap">dataRequired</code></td>
+        <td><code class="code text_nowrap">"modal-required"</code></td>
+        <td>Data attribute for making a modal required</td>
+      </tr>
+    </tbody>
+
+    <!-- State classes -->
     <tr>
-      <td><code class="code text_nowrap">autoInit</code></td>
-      <td><code class="code text_nowrap">false</code></td>
-      <td>Automatically instantiates the instance</td>
+      <td><code class="code text_nowrap">stateOpen</code></td>
+      <td><code class="code text_nowrap">"is-open"</code></td>
+      <td>Class used for open state</td>
+    </tr>
+    <tr>
+      <td><code class="code text_nowrap">stateOpening</code></td>
+      <td><code class="code text_nowrap">"is-opening"</code></td>
+      <td>Class used for transitioning to open state</td>
+    </tr>
+    <tr>
+      <td><code class="code text_nowrap">stateClosing</code></td>
+      <td><code class="code text_nowrap">"is-closing"</code></td>
+      <td>Class used for transitioning to closed state</td>
+    </tr>
+    <tr>
+      <td><code class="code text_nowrap">stateClosed</code></td>
+      <td><code class="code text_nowrap">"is-closed"</code></td>
+      <td>Class used for closed state (is ommitted in application)</td>
     </tr>
 
-    <!-- Data attributes -->
+    <!-- Feature toggles -->
     <tr>
-      <td><code class="code text_nowrap">dataModal</code></td>
-      <td><code class="code text_nowrap">"modal"</code></td>
-      <td>Data attribute for a modal</td>
+      <td><code class="code text_nowrap">focus</code></td>
+      <td><code class="code text_nowrap">true</code></td>
+      <td>Toggles the focus handling feature</td>
     </tr>
-    <tr>
-      <td><code class="code text_nowrap">dataOpen</code></td>
-      <td><code class="code text_nowrap">"modal-open"</code></td>
-      <td>Data attribute for a modal open trigger</td>
-    </tr>
-    <tr>
-      <td><code class="code text_nowrap">dataClose</code></td>
-      <td><code class="code text_nowrap">"modal-close"</code></td>
-      <td>Data attribute for a modal close trigger</td>
-    </tr>
-    <tr>
-      <td><code class="code text_nowrap">dataFocus</code></td>
-      <td><code class="code text_nowrap">"modal-focus"</code></td>
-      <td>Data attribute for setting a modal's focus element</td>
-    </tr>
-    <tr>
-      <td><code class="code text_nowrap">dataRequired</code></td>
-      <td><code class="code text_nowrap">"modal-required"</code></td>
-      <td>Data attribute for making a modal required</td>
-    </tr>
-  </tbody>
-
-  <!-- State classes -->
-  <tr>
-    <td><code class="code text_nowrap">stateOpen</code></td>
-    <td><code class="code text_nowrap">"is-open"</code></td>
-    <td>Class used for open state</td>
-  </tr>
-  <tr>
-    <td><code class="code text_nowrap">stateOpening</code></td>
-    <td><code class="code text_nowrap">"is-opening"</code></td>
-    <td>Class used for transitioning to open state</td>
-  </tr>
-  <tr>
-    <td><code class="code text_nowrap">stateClosing</code></td>
-    <td><code class="code text_nowrap">"is-closing"</code></td>
-    <td>Class used for transitioning to closed state</td>
-  </tr>
-  <tr>
-    <td><code class="code text_nowrap">stateClosed</code></td>
-    <td><code class="code text_nowrap">"is-closed"</code></td>
-    <td>Class used for closed state (is ommitted in application)</td>
-  </tr>
-
-  <!-- Feature toggles -->
-  <tr>
-    <td><code class="code text_nowrap">focus</code></td>
-    <td><code class="code text_nowrap">true</code></td>
-    <td>Toggles the focus handling feature</td>
-  </tr>
-</table>
+  </table>
+</div>
 
 {% include flag.html heading="Modal API" %}
 
-<table class="table table_zebra">
-  <thead>
-    <tr class="border_top_0">
-      <th>Name</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="code text_nowrap">modal.init()</code></td>
-      <td>Initializes the modal instance</td>
-    </tr>
-    <tr>
-      <td><code class="code text_nowrap">modal.destroy()</code></td>
-      <td>Destroys and cleans up the modal instantiation</td>
-    </tr>
-    <tr>
-      <td><code class="code text_nowrap">modal.open(modalKey, callback)</code></td>
-      <td>Opens a modal provided the modal key and optional callback</td>
-    </tr>
-    <tr>
-      <td><code class="code text_nowrap">modal.close(returnFocus, callback)</code></td>
-      <td>Closes a modal and returns focus to trigger element with optional callback</td>
-    </tr>
-  </tbody>
-</table>
+<div class="scroll-box">
+  <table class="table table_zebra">
+    <thead>
+      <tr class="border_top_0">
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code class="code text_nowrap">modal.init()</code></td>
+        <td>Initializes the modal instance</td>
+      </tr>
+      <tr>
+        <td><code class="code text_nowrap">modal.destroy()</code></td>
+        <td>Destroys and cleans up the modal instantiation</td>
+      </tr>
+      <tr>
+        <td><code class="code text_nowrap">modal.open(modalKey, callback)</code></td>
+        <td>Opens a modal provided the modal key and optional callback</td>
+      </tr>
+      <tr>
+        <td><code class="code text_nowrap">modal.close(returnFocus, callback)</code></td>
+        <td>Closes a modal and returns focus to trigger element with optional callback</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <!-- modals -->
 <div>

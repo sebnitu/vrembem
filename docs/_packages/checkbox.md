@@ -75,3 +75,71 @@ new Checkbox({ autoInit: true })
 </label>
 ```
 {% include demo_close.html %}
+
+{% include flag.html heading="Checkbox Settings" %}
+
+<div class="scroll-box">
+  <table class="table table_zebra">
+    <thead>
+      <tr class="border_top_0">
+        <th>Key</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code class="code text_nowrap">autoInit</code></td>
+        <td><code class="code text_nowrap">false</code></td>
+        <td>Automatically instantiates the instance</td>
+      </tr>
+
+      <tr>
+        <td><code class="code text_nowrap">stateAttr</code></td>
+        <td><code class="code text_nowrap">"aria-checked"</code></td>
+        <td>Attribute to check mixed against</td>
+      </tr>
+
+      <tr>
+        <td><code class="code text_nowrap">stateValue</code></td>
+        <td><code class="code text_nowrap">"mixed"</code></td>
+        <td>Mixed value to check for</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% include flag.html heading="Checkbox API" %}
+
+<div class="scroll-box">
+  <table class="table table_zebra">
+    <thead>
+      <tr class="border_top_0">
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code class="code text_nowrap">checkbox.init()</code></td>
+        <td>Initializes the checkbox instance</td>
+      </tr>
+      <tr>
+        <td><code class="code text_nowrap">checkbox.destroy()</code></td>
+        <td>Destroys and cleans up the checkbox instantiation</td>
+      </tr>
+      <tr>
+        <td><code class="code text_nowrap">checkbox.setAriaState(el, value)</code></td>
+        <td>Sets the attribute value for mixed checkboxes</td>
+      </tr>
+      <tr>
+        <td><code class="code text_nowrap">checkbox.removeAriaState(el)</code></td>
+        <td>Removes the mixed checkbox attribute</td>
+      </tr>
+      <tr>
+        <td><code class="code text_nowrap">checkbox.setIndeterminate(el)</code></td>
+        <td>Sets the checkbox to an indeterminate (mixed) state</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
