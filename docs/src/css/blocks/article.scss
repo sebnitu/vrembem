@@ -1,27 +1,20 @@
+@use "@vrembem/core";
+@use "@vrembem/base/src/mixins" as base;
+
 .article__section {
   padding: 1.5em;
 }
 
-.article__intro {
-  @extend .section;
-  @extend .section_size_lg;
-}
-
 .article__title {
-  @include heading-base();
-  @include heading(1);
-}
-
-.article__body {
-  @extend .section;
+  @include base.heading-base();
+  @include base.heading(1);
 }
 
 .article__footer {
-  @extend .section;
-  border-top: $border;
+  border-top: core.$border;
 }
 
-@include media-min('md') {
+@include core.media-min('md') {
   .article__intro,
   .article__body,
   .article__footer {

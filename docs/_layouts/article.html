@@ -4,7 +4,7 @@ layout: default
 
 <article class="article">
 
-  <header class="article__intro">
+  <header class="article__intro section section_size_lg">
     <div class="container spacing">
       <div class="grid grid_break_lg">
 
@@ -41,7 +41,7 @@ layout: default
   </header>
 
   {% if page.layout_options.section != false %}
-  <div class="article__body">
+  <div class="article__body section">
   {% endif %}
 
     {% if page.layout_options.container != false %}
@@ -59,7 +59,7 @@ layout: default
   {% endif %}
 
   {% comment %}
-  <footer class="article__footer">
+  <footer class="article__footer section">
     <div class="container">
       {%- include footer.html -%}
     </div>

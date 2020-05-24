@@ -1,11 +1,8 @@
-/**
- * Demo
- * ---
- * Styles demos with both the code and rendered examples.
- */
+@use "@vrembem/core";
+@use "@vrembem/base/src/mixins" as base;
 
 .demo__code {
-  @include pre();
+  @include base.pre();
 }
 
 .demo__render {

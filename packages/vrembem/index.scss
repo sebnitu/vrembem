@@ -1,8 +1,11 @@
+@forward "@vrembem/button-group" as button-group-*;
+@forward "@vrembem/media" as media-*;
+
 @import "@vrembem/arrow";
 @import "@vrembem/base";
 @import "@vrembem/breadcrumb";
 @import "@vrembem/button";
-@import "@vrembem/button-group";
+// @import "@vrembem/button-group";
 @import "@vrembem/card";
 @import "@vrembem/checkbox";
 @import "@vrembem/container";
@@ -14,7 +17,7 @@
 @import "@vrembem/icon-action";
 @import "@vrembem/input";
 @import "@vrembem/level";
-@import "@vrembem/media";
+// @import "@vrembem/media";
 @import "@vrembem/menu";
 @import "@vrembem/modal";
 @import "@vrembem/notice";
