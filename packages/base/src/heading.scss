@@ -1,4 +1,5 @@
-@import "./mixins";
+@use "./variables";
+@use "./mixins";
 
 .h1,
 .h2,
@@ -6,35 +7,35 @@
 .h4,
 .h5,
 .h6 {
-  @include heading-base();
+  @include mixins.heading-base();
 }
 
 .h1,
-.#{$class-type} .h1 {
-  @include heading(1);
+.#{variables.$class-type} .h1 {
+  @include mixins.heading(1);
 }
 
 .h2,
-.#{$class-type} .h2 {
-  @include heading(2);
+.#{variables.$class-type} .h2 {
+  @include mixins.heading(2);
 }
 
 .h3,
-.#{$class-type} .h3 {
-  @include heading(3);
+.#{variables.$class-type} .h3 {
+  @include mixins.heading(3);
 }
 
 .h4,
-.#{$class-type} .h4 {
-  @include heading(4);
+.#{variables.$class-type} .h4 {
+  @include mixins.heading(4);
 }
 
 .h5,
-.#{$class-type} .h5 {
-  @include heading(5);
+.#{variables.$class-type} .h5 {
+  @include mixins.heading(5);
 }
 
 .h6,
-.#{$class-type} .h6 {
-  @include heading(6);
+.#{variables.$class-type} .h6 {
+  @include mixins.heading(6);
 }

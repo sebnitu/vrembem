@@ -1,9 +1,10 @@
-@import "./mixins";
+@use "./variables";
+@use "./mixins";
 
-.#{$class-type} {
-  @include type();
+.#{variables.$class-type} {
+  @include mixins.type();
 }
 
-.#{$class-type}_invert {
-  @include type-invert();
+.#{variables.$class-type}_invert {
+  @include mixins.type-invert();
 }

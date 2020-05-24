@@ -1,20 +1,21 @@
-@import "./mixins";
+@use "./variables";
+@use "./mixins";
 
 .link {
-  @include link();
+  @include mixins.link();
 }
 
 .link_subtle,
-.#{$class-type} .link_subtle {
-  @include link-modifier("subtle");
+.#{variables.$class-type} .link_subtle {
+  @include mixins.link-modifier("subtle");
 }
 
 .link_invert,
-.#{$class-type} .link_invert {
-  @include link-modifier("invert");
+.#{variables.$class-type} .link_invert {
+  @include mixins.link-modifier("invert");
 }
 
 .link_invert-subtle,
-.#{$class-type} .link_invert-subtle {
-  @include link-modifier("invert-subtle");
+.#{variables.$class-type} .link_invert-subtle {
+  @include mixins.link-modifier("invert-subtle");
 }

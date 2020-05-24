@@ -1,4 +1,5 @@
-@import "./variables";
+@use "@vrembem/core";
+@use "./variables";
 
 /**
  * Remove all spacing and inherit box-sizing on everything.
@@ -22,17 +23,17 @@ body {
 }
 
 html {
-  box-sizing: $box-sizing;
-  font-size: $font-size;
-  line-height: $line-height;
+  box-sizing: variables.$box-sizing;
+  font-size: core.$font-size;
+  line-height: core.$line-height;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: $body-background;
-  color: $color;
-  font-family: $font-family;
+  background: variables.$body-background;
+  color: core.$color;
+  font-family: core.$font-family;
 }
 
 /**
@@ -88,7 +89,7 @@ a {
 
 code,
 pre {
-  font-family: $font-family-mono;
+  font-family: core.$font-family-mono;
   font-size: 1em;
 }
 
@@ -97,7 +98,7 @@ pre {
  */
 
 small {
-  font-size: $font-size-sm;
+  font-size: core.$font-size-sm;
 }
 
 /**
@@ -110,7 +111,7 @@ table {
 
 caption {
   caption-side: bottom;
-  color: $color-subtle;
+  color: core.$color-subtle;
   text-align: left;
 }
 
