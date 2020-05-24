@@ -17,9 +17,6 @@
     "url": "git+https://github.com/sebnitu/vrembem.git",
     "directory": "packages/arrow"
   },
-  "dependencies": {
-    "@vrembem/core": "^1.2.1"
-  },
   "publishConfig": {
     "access": "public"
   },
