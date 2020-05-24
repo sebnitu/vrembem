@@ -57,33 +57,35 @@ usage:
 {% include flag.html heading="menu > arrow" %}
 
 {% include demo_open.html %}
-<ul class="menu menu_wrap">
-  <li class="menu__item">
-    <a class="menu__link" href="#">
-      <span>Create</span>
-      <span class="arrow"></span>
-    </a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link is-active" href="#">
-      <span class="arrow arrow_up"></span>
-      <span>Update</span>
-    </a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__link is-disabled" href="#">
-      <span>Delete</span>
-      <span class="arrow arrow_right"></span>
-    </a>
-  </li>
-  <li class="menu__sep"></li>
-  <li class="menu__item">
-    <a class="menu__link" href="#">
-      <span class="arrow arrow_left"></span>
-      <span>Logout</span>
-    </a>
-  </li>
-</ul>
+<div class="scroll-box">
+  <ul class="menu menu_wrap">
+    <li class="menu__item">
+      <a class="menu__link" href="#">
+        <span>Create</span>
+        <span class="arrow"></span>
+      </a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__link is-active" href="#">
+        <span class="arrow arrow_up"></span>
+        <span>Update</span>
+      </a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__link is-disabled" href="#">
+        <span>Delete</span>
+        <span class="arrow arrow_right"></span>
+      </a>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <a class="menu__link" href="#">
+        <span class="arrow arrow_left"></span>
+        <span>Logout</span>
+      </a>
+    </li>
+  </ul>
+</div>
 {% include demo_switch.html %}
 ```html
 <ul class="menu">
