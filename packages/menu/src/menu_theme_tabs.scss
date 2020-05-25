@@ -1,66 +1,67 @@
-@import "./variables";
+@use "@vrembem/core";
+@use "./variables";
 
-$menu_theme_tabs-padding: 0.5em !default;
-$menu_theme_tabs-background: $shade !default;
-$menu_theme_tabs-adjust: 1px !default;
-$menu_theme_tabs-border: 1px solid $menu__sep-background !default;
-$menu_theme_tabs-border-radius: $menu-border-radius !default;
-$menu_theme_tabs-menu__link-padding: null !default;
+$padding: 0.5em !default;
+$background: core.$shade !default;
+$adjust: 1px !default;
+$border: 1px solid variables.$sep-background !default;
+$border-radius: variables.$border-radius !default;
+$menu__link-padding: null !default;
 
 .menu_theme_tabs {
-  padding: $menu_theme_tabs-padding $menu_theme_tabs-padding 0 $menu_theme_tabs-padding;
-  border-bottom: $menu_theme_tabs-border;
-  background-color: $menu_theme_tabs-background;
+  padding: $padding $padding 0 $padding;
+  border-bottom: $border;
+  background-color: $background;
 
   .menu__item + .menu__item {
-    margin-left: ($menu_theme_tabs-padding * 0.5);
+    margin-left: ($padding * 0.5);
   }
 
   .menu__link {
-    padding: $menu_theme_tabs-menu__link-padding;
+    padding: $menu__link-padding;
     border-bottom: 0;
-    border-radius: $menu_theme_tabs-border-radius;
+    border-radius: $border-radius;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    @if ($menu_theme_tabs-adjust) {
-      margin-bottom: ($menu_theme_tabs-adjust * -1);
+    @if ($adjust) {
+      margin-bottom: ($adjust * -1);
     }
 
     &.is-active {
-      border: $menu_theme_tabs-border;
+      border: $border;
       border-bottom: 0;
-      background: $white;
+      background: core.$white;
       background-clip: padding-box;
     }
   }
 }
 
 .menu_stack.menu_theme_tabs {
-  padding: $menu_theme_tabs-padding 0 $menu_theme_tabs-padding $menu_theme_tabs-padding;
-  border-right: $menu_theme_tabs-border;
+  padding: $padding 0 $padding $padding;
+  border-right: $border;
   border-bottom: 0;
 
   .menu__item + .menu__item {
-    margin-top: ($menu_theme_tabs-padding * 0.5);
+    margin-top: ($padding * 0.5);
     margin-left: inherit;
   }
 
   .menu__link {
     border-right: 0;
     border-bottom: inherit;
-    border-radius: $menu_theme_tabs-border-radius;
+    border-radius: $border-radius;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 
-    @if ($menu_theme_tabs-adjust) {
-      margin-right: ($menu_theme_tabs-adjust * -1);
+    @if ($adjust) {
+      margin-right: ($adjust * -1);
       margin-bottom: inherit;
     }
 
     &.is-active {
-      border: $menu_theme_tabs-border;
+      border: $border;
       border-right: 0;
-      background: $white;
+      background: core.$white;
       background-clip: padding-box;
     }
   }
