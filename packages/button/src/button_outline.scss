@@ -1,116 +1,117 @@
-@import "./variables";
+@use "@vrembem/core";
+@use "./variables";
 
 .button_outline {
-  border: $button_outline-border-width solid $border-color-dark;
+  border: variables.$outline-border-width solid core.$border-color-dark;
   background: none;
 
   &:hover {
-    border-color: $border-color-darker;
+    border-color: core.$border-color-darker;
     background: none;
   }
 
   &:focus,
   &:active {
-    border-color: $color;
+    border-color: core.$color;
     background: none;
   }
 
   &.button_invert {
-    border-color: $border-color-invert-dark;
+    border-color: core.$border-color-invert-dark;
 
     &:hover {
-      border-color: $border-color-invert-darker;
+      border-color: core.$border-color-invert-darker;
     }
 
     &:focus,
     &:active {
-      border-color: $white;
+      border-color: core.$white;
     }
   }
 }
 
 .button_outline_primary {
-  border: $button_outline-border-width solid rgba($primary, 0.5);
+  border: variables.$outline-border-width solid rgba(core.$primary, 0.5);
   background: none;
-  color: $primary;
+  color: core.$primary;
 
   &:hover {
-    border-color: $primary;
+    border-color: core.$primary;
     background: none;
-    color: $primary;
+    color: core.$primary;
   }
 
   &:focus,
   &:active {
-    border-color: $primary;
-    background: $primary;
-    color: $white;
+    border-color: core.$primary;
+    background: core.$primary;
+    color: core.$white;
   }
 
   &.is-loading::after {
-    border-color: set-border-color($button-loading-border-tpl, $primary);
+    border-color: set-border-color(variables.$loading-border-tpl, core.$primary);
   }
 
   &.is-loading:focus::after {
-    border-color: set-border-color($button-loading-border-tpl, $white);
+    border-color: set-border-color(variables.$loading-border-tpl, core.$white);
   }
 
   &.button_invert {
-    border-color: $primary-light;
-    color: $primary-light;
+    border-color: core.$primary-light;
+    color: core.$primary-light;
 
     &:hover {
-      color: $white;
+      color: core.$white;
     }
 
     &:focus,
     &:active {
-      border-color: $primary;
-      background-color: $primary;
-      color: $white;
+      border-color: core.$primary;
+      background-color: core.$primary;
+      color: core.$white;
     }
   }
 }
 
 .button_outline_secondary {
-  border: $button_outline-border-width solid rgba($secondary, 0.5);
+  border: variables.$outline-border-width solid rgba(core.$secondary, 0.5);
   background: none;
-  color: $secondary;
+  color: core.$secondary;
 
   &:hover {
-    border-color: $secondary;
+    border-color: core.$secondary;
     background: none;
-    color: $secondary;
+    color: core.$secondary;
   }
 
   &:focus,
   &:active {
-    border-color: $secondary;
-    background: $secondary;
-    color: $white;
+    border-color: core.$secondary;
+    background: core.$secondary;
+    color: core.$white;
   }
 
   &.is-loading::after {
-    border-color: set-border-color($button-loading-border-tpl, $secondary);
+    border-color: set-border-color(variables.$loading-border-tpl, core.$secondary);
   }
 
   &.is-loading:focus::after {
-    border-color: set-border-color($button-loading-border-tpl, $white);
+    border-color: set-border-color(variables.$loading-border-tpl, core.$white);
   }
 
   &.button_invert {
-    border-color: $secondary-light;
-    color: $secondary-light;
+    border-color: core.$secondary-light;
+    color: core.$secondary-light;
 
     &:hover {
-      color: $white;
+      color: core.$white;
     }
 
     &:focus,
     &:active {
-      border-color: $secondary;
-      background-color: $secondary;
-      color: $white;
+      border-color: core.$secondary;
+      background-color: core.$secondary;
+      color: core.$white;
     }
   }
 }

@@ -753,7 +753,7 @@ input::-moz-placeholder {
   animation: spin 0.6s infinite linear;
   border: 2px solid;
   border-radius: 9999px;
-  border-color: #212121 #212121 transparent transparent;
+  border-color: set-border-color(1 1 0 0, #212121);
 }
 
 .button_block {
@@ -829,7 +829,7 @@ input::-moz-placeholder {
   background: rgba(0, 0, 0, 0.12);
 }
 .button_color_subtle.is-loading::after {
-  border-color: #9e9e9e #9e9e9e transparent transparent;
+  border-color: set-border-color(1 1 0 0, #9e9e9e);
 }
 .button_color_subtle.button_invert {
   background: none;
@@ -845,7 +845,7 @@ input::-moz-placeholder {
   background: rgba(255, 255, 255, 0.12);
 }
 .button_color_subtle.button_invert.is-loading::after {
-  border-color: rgba(255, 255, 255, 0.6) rgba(255, 255, 255, 0.6) transparent transparent;
+  border-color: set-border-color(1 1 0 0, rgba(255, 255, 255, 0.6));
 }
 
 .button_color_primary {
@@ -862,7 +862,7 @@ input::-moz-placeholder {
   background: #008697;
 }
 .button_color_primary.is-loading::after {
-  border-color: #fff #fff transparent transparent;
+  border-color: set-border-color(1 1 0 0, #fff);
 }
 
 .button_color_secondary {
@@ -879,7 +879,7 @@ input::-moz-placeholder {
   background: #475c67;
 }
 .button_color_secondary.is-loading::after {
-  border-color: #fff #fff transparent transparent;
+  border-color: set-border-color(1 1 0 0, #fff);
 }
 
 .button_icon {
@@ -905,7 +905,7 @@ input::-moz-placeholder {
   color: #fff;
 }
 .button_invert.is-loading::after {
-  border-color: #fff #fff transparent transparent;
+  border-color: set-border-color(1 1 0 0, #fff);
 }
 
 .button_outline {
@@ -946,10 +946,10 @@ input::-moz-placeholder {
   color: #fff;
 }
 .button_outline_primary.is-loading::after {
-  border-color: #00bcd4 #00bcd4 transparent transparent;
+  border-color: set-border-color(1 1 0 0, #00bcd4);
 }
 .button_outline_primary.is-loading:focus::after {
-  border-color: #fff #fff transparent transparent;
+  border-color: set-border-color(1 1 0 0, #fff);
 }
 .button_outline_primary.button_invert {
   border-color: #4dd0e1;
@@ -980,10 +980,10 @@ input::-moz-placeholder {
   color: #fff;
 }
 .button_outline_secondary.is-loading::after {
-  border-color: #607d8b #607d8b transparent transparent;
+  border-color: set-border-color(1 1 0 0, #607d8b);
 }
 .button_outline_secondary.is-loading:focus::after {
-  border-color: #fff #fff transparent transparent;
+  border-color: set-border-color(1 1 0 0, #fff);
 }
 .button_outline_secondary.button_invert {
   border-color: #90a4ae;
