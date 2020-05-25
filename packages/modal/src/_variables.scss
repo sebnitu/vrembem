@@ -1,16 +1,16 @@
-@import "@vrembem/core";
+@use "@vrembem/core";
 
-$modal-zindex: 1000 !default;
-$modal-width: 38em !default;
-$modal-width-sm: 18em !default;
-$modal-width-lg: 56em !default;
-$modal-travel: 5em !default;
-$modal-background: $night !default;
-$modal-background-alpha: 0.8 !default;
-$modal-transition-duration: $transition-duration !default;
-$modal-transition-timing-function: $transition-timing-function !default;
+$zindex: 1000 !default;
+$width: 38em !default;
+$width-sm: 18em !default;
+$width-lg: 56em !default;
+$travel: 5em !default;
+$background: core.$night !default;
+$background-alpha: 0.8 !default;
+$transition-duration: core.$transition-duration !default;
+$transition-timing-function: core.$transition-timing-function !default;
 
-$modal__dialog-box-shadow: $box-shadow-24dp !default;
+$dialog-box-shadow: core.$box-shadow-24dp !default;
 
-$modal_aside-width: 16em !default;
-$modal_aside-max-width: 90% !default;
+$aside-width: 16em !default;
+$aside-max-width: 90% !default;

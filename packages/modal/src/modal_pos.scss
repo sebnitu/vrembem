@@ -1,4 +1,4 @@
-@import "./variables";
+@use "./variables";
 
 .modal_pos_top {
   justify-content: flex-start;
@@ -8,12 +8,12 @@
   justify-content: flex-end;
 
   .modal__dialog {
-    transform: translateY($modal-travel);
+    transform: translateY(variables.$travel);
   }
 
   &.is-closing {
     .modal__dialog {
-      transform: translateY($modal-travel);
+      transform: translateY(variables.$travel);
     }
   }
 }
@@ -21,8 +21,8 @@
 .modal_pos_left,
 .modal_pos_right {
   .modal__dialog {
-    width: $modal_aside-width;
-    max-width: $modal_aside-max-width;
+    width: variables.$aside-width;
+    max-width: variables.$aside-max-width;
     height: 100%;
   }
 }

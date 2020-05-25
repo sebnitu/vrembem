@@ -1,8 +1,9 @@
-@import "./variables";
+@use "@vrembem/core";
+@use "./variables";
 
 .modal {
   position: fixed;
-  z-index: $modal-zindex;
+  z-index: variables.$zindex;
   top: 0;
   right: 0;
   display: flex;
@@ -12,14 +13,14 @@
   width: 0;
   height: 0;
   overflow: hidden;
-  background-color: rgba($modal-background, 0);
+  background-color: rgba(variables.$background, 0);
 }
 
 .modal__dialog {
-  width: $modal-width;
+  width: variables.$width;
   max-width: 100%;
-  transform: translateY(-$modal-travel);
-  box-shadow: $modal__dialog-box-shadow;
+  transform: translateY(-(variables.$travel));
+  box-shadow: variables.$dialog-box-shadow;
   opacity: 0;
 }
 
@@ -34,25 +35,25 @@
   height: 100%;
   padding: 1em;
 
-  @include media-min("medium") {
+  @include core.media-min("medium") {
     padding: 2em;
   }
 }
 
 .modal.is-opening,
 .modal.is-closing {
-  transition: background-color $modal-transition-duration $modal-transition-timing-function;
+  transition: background-color variables.$transition-duration variables.$transition-timing-function;
 
   .modal__dialog {
     transition-property: opacity, transform;
-    transition-duration: $modal-transition-duration;
-    transition-timing-function: $modal-transition-timing-function;
+    transition-duration: variables.$transition-duration;
+    transition-timing-function: variables.$transition-timing-function;
   }
 }
 
 .modal.is-opening,
 .modal.is-open {
-  background-color: rgba($modal-background, $modal-background-alpha);
+  background-color: rgba(variables.$background, variables.$background-alpha);
 
   .modal__dialog {
     transform: translateY(0);
@@ -61,17 +62,17 @@
 }
 
 .modal.is-opening {
-  z-index: ($modal-zindex + 1);
+  z-index: (variables.$zindex + 1);
 }
 
 .modal.is-open {
-  z-index: $modal-zindex;
+  z-index: variables.$zindex;
 }
 
 .modal.is-closing {
-  z-index: ($modal-zindex - 1);
+  z-index: (variables.$zindex - 1);
 
   .modal__dialog {
-    transform: translateY(-$modal-travel);
+    transform: translateY(-(variables.$travel));
   }
 }
