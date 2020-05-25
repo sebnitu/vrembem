@@ -26,7 +26,7 @@ npm install @vrembem/{{ page.usage.npm }}
 
 {% if page.usage.js and page.title != "Core" and page.title != "Vrembem" %}
 ```js
-import { {{ page.title }} } from "@vrembem/{{ page.usage.js }}"
+import { {{ page.title }} } from '@vrembem/{{ page.usage.js }}';
 ```
 {% endif %}
 

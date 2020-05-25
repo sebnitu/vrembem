@@ -1,8 +1,8 @@
-import { Drawer } from "../index.js"
-import "@testing-library/jest-dom/extend-expect"
+import { Drawer } from '../index.js';
+import '@testing-library/jest-dom/extend-expect';
 
-let drawer
-const ev = new Event("transitionend")
+let drawer;
+const ev = new Event('transitionend');
 
 const markup = `
   <div class="drawer__wrapper">
@@ -27,7 +27,7 @@ const markup = `
       </button>
     </div>
   </div>
-`
+`;
 
 const markupCustomAttr = `
   <div class="drawer__wrapper">
@@ -42,80 +42,80 @@ const markupCustomAttr = `
       </button>
     </div>
   </div>
-`
+`;
 
 afterEach(() => {
-  drawer.destroy()
-  drawer = null
-  document.body.innerHTML = null
-})
+  drawer.destroy();
+  drawer = null;
+  document.body.innerHTML = null;
+});
 
-test("should focus drawer element and refocus trigger when closed", () => {
-  document.body.innerHTML = markup
-  drawer = new Drawer({ autoInit: true })
-  const el = document.querySelector("[data-drawer='drawer-one']")
-  const btn = document.querySelector(".toggle-one")
-  const btnClose = document.querySelector(".close-one")
+test('should focus drawer element and refocus trigger when closed', () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer({ autoInit: true });
+  const el = document.querySelector('[data-drawer=\'drawer-one\']');
+  const btn = document.querySelector('.toggle-one');
+  const btnClose = document.querySelector('.close-one');
 
-  btn.click()
-  el.dispatchEvent(ev)
-  expect(el).toHaveFocus()
+  btn.click();
+  el.dispatchEvent(ev);
+  expect(el).toHaveFocus();
 
-  btnClose.click()
-  el.dispatchEvent(ev)
-  expect(btn).toHaveFocus()
-})
+  btnClose.click();
+  el.dispatchEvent(ev);
+  expect(btn).toHaveFocus();
+});
 
-test("should focus data-drawer-focus element and refocus trigger when closed", () => {
-  document.body.innerHTML = markup
-  drawer = new Drawer({ autoInit: true })
-  const el = document.querySelector("[data-drawer='drawer-two']")
-  const btn = document.querySelector(".toggle-two")
-  const btnClose = document.querySelector(".close-two")
+test('should focus data-drawer-focus element and refocus trigger when closed', () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer({ autoInit: true });
+  const el = document.querySelector('[data-drawer=\'drawer-two\']');
+  const btn = document.querySelector('.toggle-two');
+  const btnClose = document.querySelector('.close-two');
 
-  btn.click()
-  el.dispatchEvent(ev)
-  expect(btnClose).toHaveFocus()
+  btn.click();
+  el.dispatchEvent(ev);
+  expect(btnClose).toHaveFocus();
 
-  btnClose.click()
-  el.dispatchEvent(ev)
-  expect(btn).toHaveFocus()
-})
+  btnClose.click();
+  el.dispatchEvent(ev);
+  expect(btn).toHaveFocus();
+});
 
-test("should not change focus when feature is disabled", () => {
-  document.body.innerHTML = markup
+test('should not change focus when feature is disabled', () => {
+  document.body.innerHTML = markup;
   drawer = new Drawer({
     autoInit: true,
     focus: false
-  })
-  const el = document.querySelector("[data-drawer='drawer-two']")
-  const btn = document.querySelector(".toggle-two")
-  const btnClose = document.querySelector(".close-two")
+  });
+  const el = document.querySelector('[data-drawer=\'drawer-two\']');
+  const btn = document.querySelector('.toggle-two');
+  const btnClose = document.querySelector('.close-two');
 
-  btn.click()
-  el.dispatchEvent(ev)
-  expect(btnClose).not.toHaveFocus()
+  btn.click();
+  el.dispatchEvent(ev);
+  expect(btnClose).not.toHaveFocus();
 
-  btnClose.click()
-  el.dispatchEvent(ev)
-  expect(btn).not.toHaveFocus()
-})
+  btnClose.click();
+  el.dispatchEvent(ev);
+  expect(btn).not.toHaveFocus();
+});
 
-test("should focus custom data element and refocus trigger when closed", () => {
-  document.body.innerHTML = markupCustomAttr
+test('should focus custom data element and refocus trigger when closed', () => {
+  document.body.innerHTML = markupCustomAttr;
   drawer = new Drawer({
     autoInit: true,
-    dataFocus: "focus"
-  })
-  const el = document.querySelector("[data-drawer]")
-  const btn = document.querySelector("[data-drawer-toggle]")
-  const btnClose = document.querySelector("[data-focus]")
+    dataFocus: 'focus'
+  });
+  const el = document.querySelector('[data-drawer]');
+  const btn = document.querySelector('[data-drawer-toggle]');
+  const btnClose = document.querySelector('[data-focus]');
 
-  btn.click()
-  el.dispatchEvent(ev)
-  expect(btnClose).toHaveFocus()
+  btn.click();
+  el.dispatchEvent(ev);
+  expect(btnClose).toHaveFocus();
 
-  btnClose.click()
-  el.dispatchEvent(ev)
-  expect(btn).toHaveFocus()
-})
+  btnClose.click();
+  el.dispatchEvent(ev);
+  expect(btn).toHaveFocus();
+});

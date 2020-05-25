@@ -6,10 +6,10 @@
  */
 
 export const toggleClass = (el, ...cl) => {
-  el = (el.forEach) ? el : [el]
+  el = (el.forEach) ? el : [el];
   el.forEach((el) => {
     cl.forEach((cl) => {
-      el.classList.toggle(cl)
-    })
-  })
-}
+      el.classList.toggle(cl);
+    });
+  });
+};

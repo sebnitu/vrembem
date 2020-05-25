@@ -6,8 +6,8 @@
  */
 
 export const removeClass = (el, ...cl) => {
-  el = (el.forEach) ? el : [el]
+  el = (el.forEach) ? el : [el];
   el.forEach((el) => {
-    el.classList.remove(...cl)
-  })
-}
+    el.classList.remove(...cl);
+  });
+};
