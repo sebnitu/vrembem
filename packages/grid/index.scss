@@ -1,5 +1,6 @@
-@import "./src/grid";
-@import "./src/grid_auto";
-@import "./src/grid_break";
-@import "./src/grid_fill";
-@import "./src/grid_gap";
+@forward "./src/variables";
+@forward "./src/grid";
+@forward "./src/grid_auto";
+@forward "./src/grid_break";
+@forward "./src/grid_fill";
+@forward "./src/grid_gap";
