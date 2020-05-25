@@ -1,17 +1,17 @@
-@import "@vrembem/base/src/mixins";
-@import "./variables";
+@use "@vrembem/core";
+@use "@vrembem/base/src/mixins" as base;
 
 .notice_color_primary {
-  @include type-invert($primary);
-  background-color: $primary;
+  @include base.type-invert(core.$primary);
+  background-color: core.$primary;
 }
 
 .notice_color_secondary {
-  @include type-invert($secondary);
-  background-color: $secondary;
+  @include base.type-invert(core.$secondary);
+  background-color: core.$secondary;
 }
 
 .notice_color_dark {
-  @include type-invert($night);
-  background-color: $night;
+  @include base.type-invert(core.$night);
+  background-color: core.$night;
 }

@@ -1,42 +1,42 @@
-@import "@vrembem/base/src/mixins";
-@import "./variables";
+@use "@vrembem/core";
+@use "@vrembem/base/src/mixins" as base;
 
 .notice_state_info {
-  background-color: $info-lighter;
-  color: $info-darker;
+  background-color: core.$info-lighter;
+  color: core.$info-darker;
 }
 
 .notice_state_info-bold {
-  @include type-invert($info);
-  background-color: $info;
+  @include base.type-invert(core.$info);
+  background-color: core.$info;
 }
 
 .notice_state_success {
-  background-color: $success-lighter;
-  color: $success-darker;
+  background-color: core.$success-lighter;
+  color: core.$success-darker;
 }
 
 .notice_state_success-bold {
-  @include type-invert($success);
-  background-color: $success;
+  @include base.type-invert(core.$success);
+  background-color: core.$success;
 }
 
 .notice_state_caution {
-  background-color: $caution-lighter;
-  color: $caution-darker;
+  background-color: core.$caution-lighter;
+  color: core.$caution-darker;
 }
 
 .notice_state_caution-bold {
-  @include type-invert($caution);
-  background-color: $caution;
+  @include base.type-invert(core.$caution);
+  background-color: core.$caution;
 }
 
 .notice_state_danger {
-  background-color: $danger-lighter;
-  color: $danger-darker;
+  background-color: core.$danger-lighter;
+  color: core.$danger-darker;
 }
 
 .notice_state_danger-bold {
-  @include type-invert($danger);
-  background-color: $danger;
+  @include base.type-invert(core.$danger);
+  background-color: core.$danger;
 }

@@ -1,20 +1,20 @@
-@import "./variables";
+@use "./variables";
 
 .notice {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: $notice-padding;
-  border: $notice-border;
-  border-radius: $notice-border-radius;
-  background: $notice-background;
-  box-shadow: $notice-box-shadow;
+  padding: variables.$padding;
+  border: variables.$border;
+  border-radius: variables.$border-radius;
+  background: variables.$background;
+  box-shadow: variables.$box-shadow;
 }
 
 .notice__body {
   flex: 1 1 auto;
-  margin-right: $notice__body-spacing;
-  margin-left: $notice__body-spacing;
+  margin-right: variables.$body-spacing;
+  margin-left: variables.$body-spacing;
 
   &:first-child {
     margin-left: 0;
@@ -30,12 +30,12 @@
   flex: 0 0 auto;
 
   > * + * {
-    margin-left: $notice__actions-spacing;
+    margin-left: variables.$actions-spacing;
   }
 }
 
 .notice__title {
-  font-size: $notice__title-font-size;
-  font-weight: $notice__title-font-weight;
-  line-height: $notice__title-line-height;
+  font-size: variables.$title-font-size;
+  font-weight: variables.$title-font-weight;
+  line-height: variables.$title-line-height;
 }
