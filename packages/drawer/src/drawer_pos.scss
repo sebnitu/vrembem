@@ -1,4 +1,4 @@
-@import "./variables";
+@use "./variables";
 
 .drawer_pos_left,
 .drawer_pos_right {
@@ -18,7 +18,7 @@
   .drawer__item {
     left: 0;
     transform: translateX(-100%);
-    border-right: $drawer__item-border;
+    border-right: variables.$item-border;
   }
 }
 
@@ -28,7 +28,7 @@
   .drawer__item {
     right: 0;
     transform: translateX(100%);
-    border-left: $drawer__item-border;
+    border-left: variables.$item-border;
   }
 }
 
@@ -39,14 +39,14 @@
 .drawer_pos_left.is-opening,
 .drawer_pos_left.is-open {
   &:not(.drawer_modal) ~ .drawer__main {
-    margin-left: $drawer-width;
+    margin-left: variables.$width;
   }
 }
 
 .drawer_pos_right.is-opening,
 .drawer_pos_right.is-open {
   &:not(.drawer_modal) ~ .drawer__main {
-    margin-right: $drawer-width;
+    margin-right: variables.$width;
   }
 }
 

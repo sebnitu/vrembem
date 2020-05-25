@@ -1,4 +1,4 @@
-@import "./variables";
+@use "./variables";
 
 .drawer {
   position: relative;
@@ -15,23 +15,23 @@
 }
 
 .drawer__item {
-  width: $drawer-width;
+  width: variables.$width;
   height: 100%;
-  transform: translateY(-$drawer-travel);
-  border-right: $drawer__item-border;
+  transform: translateY(-(variables.$travel));
+  border-right: variables.$item-border;
   border-radius: 0;
-  background: $drawer__item-background;
-  box-shadow: $drawer__item-box-shadow;
+  background: variables.$item-background;
+  box-shadow: variables.$item-box-shadow;
   opacity: 0;
 
   .dialog__header,
   .dialog__footer {
-    border-color: $drawer__item-sep-border-color;
-    background: $drawer__item-background;
+    border-color: variables.$item-sep-border-color;
+    background: variables.$item-background;
   }
 
   .dialog__body {
-    background: $drawer__item-background;
+    background: variables.$item-background;
   }
 }
 
@@ -58,7 +58,7 @@
 .drawer.is-open,
 .drawer.is-closing {
   flex: 0 0 auto;
-  width: $drawer-width;
+  width: variables.$width;
   height: 100%;
 }
 
@@ -66,8 +66,8 @@
 .drawer.is-closing {
   .drawer__item {
     transition-property: opacity, transform;
-    transition-duration: $drawer-transition-duration;
-    transition-timing-function: $drawer-transition-timing-function;
+    transition-duration: variables.$transition-duration;
+    transition-timing-function: variables.$transition-timing-function;
   }
 }
 
@@ -87,7 +87,7 @@
 
 .drawer.is-closing {
   .drawer__item {
-    transform: translateY(-$drawer-travel);
+    transform: translateY(-(variables.$travel));
     opacity: 0;
   }
 }
