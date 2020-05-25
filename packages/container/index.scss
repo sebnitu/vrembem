@@ -1,2 +1,3 @@
-@import "./src/container";
-@import "./src/container_size";
+@forward "./src/variables";
+@forward "./src/container";
+@forward "./src/container_size";
