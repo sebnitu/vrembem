@@ -3363,7 +3363,7 @@ input::-moz-placeholder {
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   background: #fff;
-  color: #212121;
+  color: color-switch(#fff);
 }
 
 .panel__section,
