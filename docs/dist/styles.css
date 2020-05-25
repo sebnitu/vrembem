@@ -1248,7 +1248,7 @@ input::-moz-placeholder {
 .card__title {
   flex-grow: 1;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: font-weight("semi-bold");
   line-height: 1.4444;
 }
 
@@ -1301,7 +1301,7 @@ input::-moz-placeholder {
 }
 .card_invert {
   background: #424242;
-  color: #fff;
+  color: color-switch(#424242);
 }
 .card_invert .card__header,
 .card_invert .card__footer {

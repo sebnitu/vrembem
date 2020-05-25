@@ -1,8 +1,8 @@
-@import "./variables";
+@use "./variables";
 
 .card_zoom {
   .card__background {
-    transition: transform $card-transition-duration $card-transition-timing-function;
+    transition: transform variables.$transition-duration variables.$transition-timing-function;
   }
 
   &:hover,

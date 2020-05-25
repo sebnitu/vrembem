@@ -1,5 +1,6 @@
-@import "./src/card";
-@import "./src/card_fade";
-@import "./src/card_invert";
-@import "./src/card_link";
-@import "./src/card_zoom";
+@forward "./src/variables";
+@forward "./src/card";
+@forward "./src/card_fade";
+@forward "./src/card_invert";
+@forward "./src/card_link";
+@forward "./src/card_zoom";
