@@ -1,35 +1,36 @@
-@import "./variables";
+@use "@vrembem/core";
+@use "./variables";
 
 .icon-action_subtle {
   background: none;
-  color: $color;
+  color: core.$color;
 
   &:hover {
-    background: rgba($black, 0.1);
+    background: rgba(variables.$black, 0.1);
   }
 
   &:focus {
-    background: rgba($black, 0.2);
+    background: rgba(variables.$black, 0.2);
   }
 
   &:active {
-    background: rgba($black, 0.2);
+    background: rgba(variables.$black, 0.2);
   }
 
   &.icon-action_invert {
     background: none;
-    color: $color-invert;
+    color: core.$color-invert;
 
     &:hover {
-      background: rgba($white, 0.1);
+      background: rgba(variables.$white, 0.1);
     }
 
     &:focus {
-      background: rgba($white, 0.2);
+      background: rgba(variables.$white, 0.2);
     }
 
     &:active {
-      background: rgba($white, 0.2);
+      background: rgba(variables.$white, 0.2);
     }
   }
 }

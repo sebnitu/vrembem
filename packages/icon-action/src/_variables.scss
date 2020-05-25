@@ -1,12 +1,15 @@
-@import "@vrembem/core";
+@use "@vrembem/core";
 
-$icon-action-size: ($font-size * $line-height) !default;
-$icon-action-border-radius: $border-radius-circle !default;
+$black: core.$black !default;
+$white: core.$white !default;
 
-$icon-action-background: rgba($black, 0.3) !default;
-$icon-action-background-hover: rgba($black, 0.4) !default;
-$icon-action-background-focus: rgba($black, 0.5) !default;
-$icon-action-background-active: rgba($black, 0.5) !default;
+$action-size: (core.$font-size * core.$line-height) !default;
+$action-border-radius: core.$border-radius-circle !default;
 
-$icon-action_icon-font-size: $font-size-sm !default;
-$icon-action_icon-stroke-width: 2.5px !default;
+$action-background: rgba(core.$black, 0.3) !default;
+$action-background-hover: rgba(core.$black, 0.4) !default;
+$action-background-focus: rgba(core.$black, 0.5) !default;
+$action-background-active: rgba(core.$black, 0.5) !default;
+
+$action_icon-font-size: core.$font-size-sm !default;
+$action_icon-stroke-width: 2.5px !default;

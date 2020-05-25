@@ -1,52 +1,52 @@
-@import "./variables";
+@use "@vrembem/core";
 
 .icon-action_color_danger {
-  background: $danger;
-  color: color-switch($danger);
+  background: core.$danger;
+  color: color-switch(core.$danger);
 
   &:hover {
-    background: darken($danger, 10%);
+    background: darken(core.$danger, 10%);
   }
 
   &:focus {
-    background: darken($danger, 20%);
+    background: darken(core.$danger, 20%);
   }
 
   &:active {
-    background: darken($danger, 20%);
+    background: darken(core.$danger, 20%);
   }
 }
 
 .icon-action_color_caution {
-  background: $caution;
-  color: color-switch($caution);
+  background: core.$caution;
+  color: color-switch(core.$caution);
 
   &:hover {
-    background: darken($caution, 5%);
+    background: darken(core.$caution, 5%);
   }
 
   &:focus {
-    background: darken($caution, 10%);
+    background: darken(core.$caution, 10%);
   }
 
   &:active {
-    background: darken($caution, 10%);
+    background: darken(core.$caution, 10%);
   }
 }
 
 .icon-action_color_success {
-  background: $success;
-  color: color-switch($success);
+  background: core.$success;
+  color: color-switch(core.$success);
 
   &:hover {
-    background: darken($success, 10%);
+    background: darken(core.$success, 10%);
   }
 
   &:focus {
-    background: darken($success, 20%);
+    background: darken(core.$success, 20%);
   }
 
   &:active {
-    background: darken($success, 20%);
+    background: darken(core.$success, 20%);
   }
 }

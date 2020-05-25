@@ -1,18 +1,19 @@
-@import "./variables";
+@use "@vrembem/core";
+@use "./variables";
 
 .icon-action_invert {
-  background: rgba($white, 0.5);
-  color: $color;
+  background: rgba(variables.$white, 0.5);
+  color: core.$color;
 
   &:hover {
-    background: rgba($white, 0.6);
+    background: rgba(variables.$white, 0.6);
   }
 
   &:focus {
-    background: rgba($white, 0.7);
+    background: rgba(variables.$white, 0.7);
   }
 
   &:active {
-    background: rgba($white, 0.7);
+    background: rgba(variables.$white, 0.7);
   }
 }

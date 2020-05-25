@@ -1,4 +1,5 @@
-@import "./src/icon-action";
-@import "./src/icon-action_color";
-@import "./src/icon-action_invert";
-@import "./src/icon-action_subtle";
+@forward "./src/variables";
+@forward "./src/icon-action";
+@forward "./src/icon-action_color";
+@forward "./src/icon-action_invert";
+@forward "./src/icon-action_subtle";
