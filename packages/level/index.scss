@@ -1,2 +1,3 @@
-@import "./src/level";
-@import "./src/level_gap";
+@forward "./src/variables";
+@forward "./src/level";
+@forward "./src/level_gap";
