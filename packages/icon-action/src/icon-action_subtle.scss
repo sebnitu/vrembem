@@ -1,20 +1,19 @@
 @use "@vrembem/core";
-@use "./variables";
 
 .icon-action_subtle {
   background: none;
   color: core.$color;
 
   &:hover {
-    background: rgba(variables.$black, 0.1);
+    background: rgba(core.$black, 0.1);
   }
 
   &:focus {
-    background: rgba(variables.$black, 0.2);
+    background: rgba(core.$black, 0.2);
   }
 
   &:active {
-    background: rgba(variables.$black, 0.2);
+    background: rgba(core.$black, 0.2);
   }
 
   &.icon-action_invert {
@@ -22,15 +21,15 @@
     color: core.$color-invert;
 
     &:hover {
-      background: rgba(variables.$white, 0.1);
+      background: rgba(core.$white, 0.1);
     }
 
     &:focus {
-      background: rgba(variables.$white, 0.2);
+      background: rgba(core.$white, 0.2);
     }
 
     &:active {
-      background: rgba(variables.$white, 0.2);
+      background: rgba(core.$white, 0.2);
     }
   }
 }

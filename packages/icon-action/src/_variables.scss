@@ -1,8 +1,5 @@
 @use "@vrembem/core";
 
-$black: core.$black !default;
-$white: core.$white !default;
-
 $action-size: (core.$font-size * core.$line-height) !default;
 $action-border-radius: core.$border-radius-circle !default;
 
