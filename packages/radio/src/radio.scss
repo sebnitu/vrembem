@@ -1,4 +1,5 @@
-@import "./variables";
+@use "@vrembem/core";
+@use "./variables";
 
 .radio {
   position: relative;
@@ -10,36 +11,36 @@
 }
 
 .radio__background {
-  @include size($radio-size);
+  @include core.size(variables.$size);
   position: relative;
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: $radio__background-border-radius;
-  background-color: $radio__background;
+  border-radius: variables.$background-border-radius;
+  background-color: variables.$background;
 }
 
 .radio__circle {
-  @include size($radio__circle-size);
+  @include core.size(variables.$circle-size);
   display: flex;
   align-items: center;
   justify-content: center;
-  border: $radio__circle-border-width solid $radio__circle-border-color;
-  border-radius: $radio__circle-size;
-  background-color: $radio__circle-background;
+  border: variables.$circle-border-width solid variables.$circle-border-color;
+  border-radius: variables.$circle-size;
+  background-color: variables.$circle-background;
   color: transparent;
 }
 
 .radio__dot {
-  @include size(0);
-  border-radius: $radio__dot-size;
-  background-color: $radio__dot-color;
+  @include core.size(0);
+  border-radius: variables.$dot-size;
+  background-color: variables.$dot-color;
   opacity: 0;
 }
 
 .radio__native {
-  @include size(100%);
+  @include core.size(100%);
   position: absolute;
   z-index: 2;
   top: 0;
@@ -48,45 +49,45 @@
   cursor: pointer;
 
   &:hover + .radio__background {
-    background-color: $radio__background-hover;
+    background-color: variables.$background-hover;
 
     .radio__circle {
-      border-color: $radio__circle-border-color-hover;
-      background-color: $radio__circle-background-hover;
+      border-color: variables.$circle-border-color-hover;
+      background-color: variables.$circle-background-hover;
     }
   }
 
   &:focus + .radio__background {
-    background-color: $radio__background-focus;
+    background-color: variables.$background-focus;
 
     .radio__circle {
-      border-color: $radio__circle-border-color-focus;
-      background-color: $radio__circle-background-focus;
+      border-color: variables.$circle-border-color-focus;
+      background-color: variables.$circle-background-focus;
     }
   }
 
   &:active + .radio__background {
-    background-color: $radio__background-active;
+    background-color: variables.$background-active;
 
     .radio__circle {
-      border-color: $radio__circle-border-color-active;
-      background-color: $radio__circle-background-active;
+      border-color: variables.$circle-border-color-active;
+      background-color: variables.$circle-background-active;
     }
   }
 
   &:checked + .radio__background {
-    background-color: $radio__background-checked;
+    background-color: variables.$background-checked;
 
     .radio__circle {
-      border-color: $radio__circle-border-color-checked;
-      background-color: $radio__circle-background-checked;
+      border-color: variables.$circle-border-color-checked;
+      background-color: variables.$circle-background-checked;
     }
 
     .radio__dot {
-      @include size($radio__dot-size);
+      @include core.size(variables.$dot-size);
       transition-property: opacity, width, height;
-      transition-duration: $radio-transition-duration;
-      transition-timing-function: $radio-transition-timing-function;
+      transition-duration: variables.$transition-duration;
+      transition-timing-function: variables.$transition-timing-function;
       background-position: center center;
       opacity: 1;
     }
