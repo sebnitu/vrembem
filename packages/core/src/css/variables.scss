@@ -1,3 +1,5 @@
+@use "./palette";
+
 // Breakpoints
 // ---
 
@@ -12,52 +14,52 @@ $breakpoints: (
 // Colors
 // ---
 
-$primary-lighter: $cyan-50 !default;
-$primary-light: $cyan-300 !default;
-$primary: $cyan-500 !default;
-$primary-dark: $cyan-700 !default;
-$primary-darker: $cyan-900 !default;
+$primary-lighter: palette.$cyan-50 !default;
+$primary-light: palette.$cyan-300 !default;
+$primary: palette.$cyan-500 !default;
+$primary-dark: palette.$cyan-700 !default;
+$primary-darker: palette.$cyan-900 !default;
 
-$secondary-lighter: $blue-gray-50 !default;
-$secondary-light: $blue-gray-300 !default;
-$secondary: $blue-gray-500 !default;
-$secondary-dark: $blue-gray-700 !default;
-$secondary-darker: $blue-gray-900 !default;
+$secondary-lighter: palette.$blue-gray-50 !default;
+$secondary-light: palette.$blue-gray-300 !default;
+$secondary: palette.$blue-gray-500 !default;
+$secondary-dark: palette.$blue-gray-700 !default;
+$secondary-darker: palette.$blue-gray-900 !default;
 
-$shade-light: $gray-50 !default;
-$shade: $gray-100 !default;
-$shade-dark: $gray-300 !default;
+$shade-light: palette.$gray-50 !default;
+$shade: palette.$gray-100 !default;
+$shade-dark: palette.$gray-300 !default;
 
-$night-light: $gray-700 !default;
-$night: $gray-800 !default;
-$night-dark: $gray-900 !default;
+$night-light: palette.$gray-700 !default;
+$night: palette.$gray-800 !default;
+$night-dark: palette.$gray-900 !default;
 
 // State colors
 // ---
 
-$info-lighter: $light-blue-50 !default;
-$info-light: $light-blue-300 !default;
-$info: $light-blue-500 !default;
-$info-dark: $light-blue-700 !default;
-$info-darker: $light-blue-900 !default;
+$info-lighter: palette.$light-blue-50 !default;
+$info-light: palette.$light-blue-300 !default;
+$info: palette.$light-blue-500 !default;
+$info-dark: palette.$light-blue-700 !default;
+$info-darker: palette.$light-blue-900 !default;
 
-$success-lighter: $green-50 !default;
-$success-light: $green-300 !default;
-$success: $green-500 !default;
-$success-dark: $green-700 !default;
-$success-darker: $green-900 !default;
+$success-lighter: palette.$green-50 !default;
+$success-light: palette.$green-300 !default;
+$success: palette.$green-500 !default;
+$success-dark: palette.$green-700 !default;
+$success-darker: palette.$green-900 !default;
 
-$caution-lighter: $orange-50 !default;
-$caution-light: $orange-300 !default;
-$caution: $orange-500 !default;
-$caution-dark: $deep-orange-700 !default;
-$caution-darker: $deep-orange-900 !default;
+$caution-lighter: palette.$orange-50 !default;
+$caution-light: palette.$orange-300 !default;
+$caution: palette.$orange-500 !default;
+$caution-dark: palette.$deep-orange-700 !default;
+$caution-darker: palette.$deep-orange-900 !default;
 
-$danger-lighter: $red-50 !default;
-$danger-light: $red-300 !default;
-$danger: $red-500 !default;
-$danger-dark: $red-700 !default;
-$danger-darker: $red-900 !default;
+$danger-lighter: palette.$red-50 !default;
+$danger-light: palette.$red-300 !default;
+$danger: palette.$red-500 !default;
+$danger-dark: palette.$red-700 !default;
+$danger-darker: palette.$red-900 !default;
 
 // Global properties
 // ---
@@ -75,10 +77,10 @@ $border-width: 1px !default;
 $border-style: solid !default;
 
 // Border color
-$border-color-light: rgba($black, 0.05) !default;
-$border-color: rgba($black, 0.1) !default;
-$border-color-dark: rgba($black, 0.2) !default;
-$border-color-darker: rgba($black, 0.5) !default;
+$border-color-light: rgba(palette.$black, 0.05) !default;
+$border-color: rgba(palette.$black, 0.1) !default;
+$border-color-dark: rgba(palette.$black, 0.2) !default;
+$border-color-darker: rgba(palette.$black, 0.5) !default;
 
 // Compiled border
 $border: $border-width $border-style $border-color !default;
@@ -87,10 +89,10 @@ $border-dark: $border-width $border-style $border-color-dark !default;
 $border-darker: $border-width $border-style $border-color-darker !default;
 
 // Border color invert
-$border-color-invert-light: rgba($white, 0.05) !default;
-$border-color-invert: rgba($white, 0.1) !default;
-$border-color-invert-dark: rgba($white, 0.2) !default;
-$border-color-invert-darker: rgba($white, 0.5) !default;
+$border-color-invert-light: rgba(palette.$white, 0.05) !default;
+$border-color-invert: rgba(palette.$white, 0.1) !default;
+$border-color-invert-dark: rgba(palette.$white, 0.2) !default;
+$border-color-invert-darker: rgba(palette.$white, 0.5) !default;
 
 // Compiled border invert
 $border-invert: $border-width $border-style $border-color-invert !default;
@@ -124,11 +126,11 @@ $line-height-lg: 1.4444 !default; // 26px
 
 // Color
 $color: $night-dark !default;
-$color-subtle: $gray-500 !default;
+$color-subtle: palette.$gray-500 !default;
 
 // Color invert
-$color-invert: $white !default;
-$color-invert-subtle: rgba($white, 0.6) !default;
+$color-invert: palette.$white !default;
+$color-invert-subtle: rgba(palette.$white, 0.6) !default;
 
 // Box shadow
 // ---
@@ -140,7 +142,7 @@ $box-shadow-shade-primary: rgba($box-shadow-color, 0.1) !default;
 $box-shadow-shade-secondary: rgba($box-shadow-color, 0.08) !default;
 $box-shadow-shade-ambient: rgba($box-shadow-color, 0.06) !default;
 
-$box-shadow-flat: 0 0 0 0 rgba($white, 0) !default;
+$box-shadow-flat: 0 0 0 0 rgba(palette.$white, 0) !default;
 
 $box-shadow-1dp:
   0 0 0 1px $box-shadow-shade-outline,

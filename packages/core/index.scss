@@ -1,4 +1,4 @@
-@import "./src/css/palette";
-@import "./src/css/functions";
-@import "./src/css/variables";
-@import "./src/css/mixins";
+@forward "./src/css/functions";
+@forward "./src/css/mixins";
+@forward "./src/css/palette";
+@forward "./src/css/variables";
