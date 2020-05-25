@@ -1,16 +1,16 @@
-@import "./variables";
+@use "./variables";
 
 .dialog {
   position: relative;
-  z-index: $dialog-zindex;
+  z-index: variables.$zindex;
   display: flex;
   flex-direction: column;
   overflow: auto;
-  border: $dialog-border;
-  border-radius: $dialog-border-radius;
-  background: $dialog-background;
+  border: variables.$border;
+  border-radius: variables.$border-radius;
+  background: variables.$background;
   background-clip: padding-box;
-  box-shadow: $dialog-box-shadow;
+  box-shadow: variables.$box-shadow;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -18,7 +18,7 @@
 .dialog__body,
 .dialog__footer {
   flex: 0 0 auto;
-  padding: $dialog-padding;
+  padding: variables.$padding;
 }
 
 .dialog__header,
@@ -27,33 +27,33 @@
   z-index: 1;
   display: flex;
   align-items: center;
-  background: $dialog-background;
+  background: variables.$background;
   vertical-align: middle;
 }
 
 .dialog__header {
   top: 0;
-  border-bottom: $dialog-sep-border;
+  border-bottom: variables.$sep-border;
 }
 
 .dialog__body {
   flex-grow: 1;
 
   & + & {
-    border-top: $dialog-sep-border;
+    border-top: variables.$sep-border;
   }
 }
 
 .dialog__footer {
   bottom: 0;
-  border-top: $dialog-sep-border;
+  border-top: variables.$sep-border;
 }
 
 .dialog__title {
   flex-grow: 1;
-  font-size: $dialog__title-font-size;
-  font-weight: $dialog__title-font-weight;
-  line-height: $dialog__title-line-height;
+  font-size: variables.$title-font-size;
+  font-weight: variables.$title-font-weight;
+  line-height: variables.$title-line-height;
 }
 
 .dialog > .dialog__close {
