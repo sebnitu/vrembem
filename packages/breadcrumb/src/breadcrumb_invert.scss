@@ -1,22 +1,22 @@
-@import "./variables";
+@use "./variables";
 
 .breadcrumb_invert {
-  color: $breadcrumb_invert-color;
+  color: variables.$invert-color;
 
   .breadcrumb__item {
     &::after {
-      color: $breadcrumb_invert-delimiter-color;
+      color: variables.$invert-delimiter-color;
     }
   }
 
   .breadcrumb__link {
-    border-bottom: $breadcrumb_invert__link-border;
-    color: $breadcrumb_invert__link-color;
+    border-bottom: variables.$invert__link-border;
+    color: variables.$invert__link-color;
 
     &:focus,
     &:hover {
-      border-bottom: $breadcrumb_invert__link-border-hover;
-      color: $breadcrumb_invert__link-color-hover;
+      border-bottom: variables.$invert__link-border-hover;
+      color: variables.$invert__link-color-hover;
     }
   }
 }

@@ -1,20 +1,20 @@
-@import "@vrembem/core";
-@import "@vrembem/base/src/variables";
+@use "@vrembem/core";
+@use "@vrembem/base/src/variables" as base;
 
-$breadcrumb-color: $color-subtle !default;
-$breadcrumb-delimiter: "/" !default;
-$breadcrumb-delimiter-color: $border-color-dark !default;
-$breadcrumb-delimiter-padding: 0 0.5em !default;
-$breadcrumb-delimiter-last: false !default;
+$color: core.$color-subtle !default;
+$delimiter: "/" !default;
+$delimiter-color: core.$border-color-dark !default;
+$delimiter-padding: 0 0.5em !default;
+$delimiter-last: false !default;
 
-$breadcrumb__link-color: $link-color !default;
-$breadcrumb__link-color-hover: $link-color-hover !default;
-$breadcrumb__link-border: $border !default;
-$breadcrumb__link-border-hover: 1px solid $link-color-hover !default;
+$link-color: base.$link-color !default;
+$link-color-hover: base.$link-color-hover !default;
+$link-border: core.$border !default;
+$link-border-hover: 1px solid base.$link-color-hover !default;
 
-$breadcrumb_invert-color: $color-invert-subtle !default;
-$breadcrumb_invert-delimiter-color: $border-color-invert-dark !default;
-$breadcrumb_invert__link-color: $link-invert-color !default;
-$breadcrumb_invert__link-color-hover: $link-invert-color-hover !default;
-$breadcrumb_invert__link-border: $border-invert !default;
-$breadcrumb_invert__link-border-hover: 1px solid $white !default;
+$invert-color: core.$color-invert-subtle !default;
+$invert-delimiter-color: core.$border-color-invert-dark !default;
+$invert__link-color: base.$link-invert-color !default;
+$invert__link-color-hover: base.$link-invert-color-hover !default;
+$invert__link-border: core.$border-invert !default;
+$invert__link-border-hover: 1px solid core.$white !default;

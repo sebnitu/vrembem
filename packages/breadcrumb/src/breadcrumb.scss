@@ -1,10 +1,10 @@
-@import "./variables";
+@use "./variables";
 
 .breadcrumb {
   display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
-  color: $breadcrumb-color;
+  color: variables.$color;
   list-style: none;
 }
 
@@ -18,12 +18,12 @@
   }
 
   &::after {
-    content: $breadcrumb-delimiter;
-    padding: $breadcrumb-delimiter-padding;
-    color: $breadcrumb-delimiter-color;
+    content: variables.$delimiter;
+    padding: variables.$delimiter-padding;
+    color: variables.$delimiter-color;
   }
 
-  @if ($breadcrumb-delimiter-last != true) {
+  @if (variables.$delimiter-last != true) {
     &:last-child::after {
       content: none;
     }
@@ -31,12 +31,12 @@
 }
 
 .breadcrumb__link {
-  border-bottom: $breadcrumb__link-border;
-  color: $breadcrumb__link-color;
+  border-bottom: variables.$link-border;
+  color: variables.$link-color;
 
   &:focus,
   &:hover {
-    border-bottom: $breadcrumb__link-border-hover;
-    color: $breadcrumb__link-color-hover;
+    border-bottom: variables.$link-border-hover;
+    color: variables.$link-color-hover;
   }
 }
