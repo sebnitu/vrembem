@@ -1,4 +1,5 @@
-@import "./variables";
+@use "@vrembem/core";
+@use "./variables";
 
 .checkbox {
   position: relative;
@@ -10,38 +11,38 @@
 }
 
 .checkbox__background {
-  @include size($checkbox-size);
+  @include core.size(variables.$size);
   position: relative;
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: $checkbox__background-border-radius;
-  background-color: $checkbox__background;
+  border-radius: variables.$background-border-radius;
+  background-color: variables.$background;
 }
 
 .checkbox__box {
-  @include size($checkbox__box-size);
+  @include core.size(variables.$box-size);
   display: flex;
   align-items: center;
   justify-content: center;
-  border: $checkbox__box-border-width solid $checkbox__box-border-color;
-  border-radius: $checkbox__box-border-radius;
-  background-color: $checkbox__box-background;
+  border: variables.$box-border-width solid variables.$box-border-color;
+  border-radius: variables.$box-border-radius;
+  background-color: variables.$box-background;
   color: transparent;
 }
 
 .checkbox__icon {
-  @include size($checkbox__icon-size);
-  background-image: url($checkbox__icon-checked);
+  @include core.size(variables.$icon-size);
+  background-image: url(variables.$icon-checked);
   background-repeat: no-repeat;
-  background-position: center ($checkbox__icon-size * -1);
+  background-position: center (variables.$icon-size * -1);
   background-size: 100%;
   opacity: 0;
 }
 
 .checkbox__native {
-  @include size(100%);
+  @include core.size(100%);
   position: absolute;
   z-index: 2;
   top: 0;
@@ -50,62 +51,62 @@
   cursor: pointer;
 
   &:hover + .checkbox__background {
-    background-color: $checkbox__background-hover;
+    background-color: variables.$background-hover;
 
     .checkbox__box {
-      border-color: $checkbox__box-border-color-hover;
-      background-color: $checkbox__box-background-hover;
+      border-color: variables.$box-border-color-hover;
+      background-color: variables.$box-background-hover;
     }
   }
 
   &:focus + .checkbox__background {
-    background-color: $checkbox__background-focus;
+    background-color: variables.$background-focus;
 
     .checkbox__box {
-      border-color: $checkbox__box-border-color-focus;
-      background-color: $checkbox__box-background-focus;
+      border-color: variables.$box-border-color-focus;
+      background-color: variables.$box-background-focus;
     }
   }
 
   &:active + .checkbox__background {
-    background-color: $checkbox__background-active;
+    background-color: variables.$background-active;
 
     .checkbox__box {
-      border-color: $checkbox__box-border-color-active;
-      background-color: $checkbox__box-background-active;
+      border-color: variables.$box-border-color-active;
+      background-color: variables.$box-background-active;
     }
   }
 
   &:checked + .checkbox__background {
-    background-color: $checkbox__background-checked;
+    background-color: variables.$background-checked;
 
     .checkbox__box {
-      border-color: $checkbox__box-border-color-checked;
-      background-color: $checkbox__box-background-checked;
+      border-color: variables.$box-border-color-checked;
+      background-color: variables.$box-background-checked;
     }
 
     .checkbox__icon {
       transition-property: opacity, background-position;
-      transition-duration: $checkbox-transition-duration;
-      transition-timing-function: $checkbox-transition-timing-function;
+      transition-duration: variables.$transition-duration;
+      transition-timing-function: variables.$transition-timing-function;
       background-position: center center;
       opacity: 1;
     }
   }
 
   &:indeterminate + .checkbox__background {
-    background-color: $checkbox__background-checked;
+    background-color: variables.$background-checked;
 
     .checkbox__box {
-      border-color: $checkbox__box-border-color-checked;
-      background-color: $checkbox__box-background-checked;
+      border-color: variables.$box-border-color-checked;
+      background-color: variables.$box-background-checked;
     }
 
     .checkbox__icon {
       transition-property: opacity, background-position;
-      transition-duration: $checkbox-transition-duration;
-      transition-timing-function: $checkbox-transition-timing-function;
-      background-image: url($checkbox__icon-indeterminate);
+      transition-duration: variables.$transition-duration;
+      transition-timing-function: variables.$transition-timing-function;
+      background-image: url(variables.$icon-indeterminate);
       background-position: center center;
       opacity: 1;
     }
