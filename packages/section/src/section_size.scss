@@ -1,13 +1,14 @@
-@import "./variables";
+@use "@vrembem/core";
+@use "./variables";
 
-@each $key, $group in $section-padding-scale {
+@each $key, $group in variables.$padding-scale {
   @each $bp, $value in $group {
     @if ($bp == 'base') {
       .section_size_#{$key} {
         padding: $value;
       }
     } @else {
-      @include media-min($bp) {
+      @include core.media-min($bp) {
         .section_size_#{$key} {
           padding: $value;
         }
