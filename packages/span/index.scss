@@ -1,3 +1,4 @@
-@import "./src/span_auto";
-@import "./src/span_col";
-@import "./src/span_full";
+@forward "./src/variables";
+@forward "./src/span_auto";
+@forward "./src/span_col";
+@forward "./src/span_full";
