@@ -1,25 +1,25 @@
-@import "./variables";
+@use "./variables";
 
 .table {
   width: 100%;
-  background-color: $table-background;
-  color: $table-color;
+  background-color: variables.$background;
+  color: variables.$color;
   text-align: left;
 
   th,
   td,
   caption {
-    padding: $table-padding;
+    padding: variables.$padding;
     vertical-align: top;
   }
 
   th {
-    background-color: $table-th-background;
-    font-weight: $table-th-font-weight;
+    background-color: variables.$th-background;
+    font-weight: variables.$th-font-weight;
   }
 
   td {
-    background-color: $table-td-background;
+    background-color: variables.$td-background;
   }
 }
 
