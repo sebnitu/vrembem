@@ -1,4 +1,5 @@
-@import "./variables";
+@use "@vrembem/core";
+@use "./variables";
 
 .switch {
   position: relative;
@@ -6,13 +7,13 @@
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  padding-right: ($switch-size * 0.25);
-  padding-left: ($switch-size * 0.25);
+  padding-right: (variables.$size * 0.25);
+  padding-left: (variables.$size * 0.25);
   vertical-align: middle;
 }
 
 .switch__background {
-  @include size($switch-size);
+  @include core.size(variables.$size);
   position: relative;
   z-index: 1;
   display: flex;
@@ -20,40 +21,40 @@
   justify-content: center;
 
   &::after {
-    @include size($switch-size);
+    @include core.size(variables.$size);
     content: "";
     position: absolute;
     top: 0;
-    left: (($switch-size * 0.25) * -1);
-    transition: left $switch-transition-duration $switch-transition-timing-function;
-    border-radius: $switch__background-border-radius;
-    background-color: $switch__background;
+    left: ((variables.$size * 0.25) * -1);
+    transition: left variables.$transition-duration variables.$transition-timing-function;
+    border-radius: variables.$background-border-radius;
+    background-color: variables.$background;
   }
 }
 
 .switch__track {
-  @include size(100%, $switch__track-size);
+  @include core.size(100%, variables.$track-size);
   position: relative;
   display: block;
-  border: $switch__track-border-width solid $switch__track-border-color;
-  border-radius: $switch__track-border-radius;
-  background-color: $switch__track-background;
+  border: variables.$track-border-width solid variables.$track-border-color;
+  border-radius: variables.$track-border-radius;
+  background-color: variables.$track-background;
 }
 
 .switch__thumb {
-  @include size($switch__thumb-size);
+  @include core.size(variables.$thumb-size);
   position: absolute;
   top: 0;
   left: 0;
   display: block;
-  transition: left $transition-duration $transition-timing-function;
-  border-radius: $border-radius-circle;
-  background-color: $switch__thumb-background;
-  box-shadow: $switch__thumb-box-shadow;
+  transition: left variables.$transition-duration variables.$transition-timing-function;
+  border-radius: core.$border-radius-circle;
+  background-color: variables.$thumb-background;
+  box-shadow: variables.$thumb-box-shadow;
 }
 
 .switch__native {
-  @include size(100%);
+  @include core.size(100%);
   position: absolute;
   z-index: 2;
   top: 0;
@@ -63,67 +64,67 @@
 
   &:hover + .switch__background {
     &::after {
-      background-color: $switch__background-hover;
+      background-color: variables.$background-hover;
     }
 
     .switch__track {
-      border-color: $switch__track-border-color-hover;
-      background-color: $switch__track-background-hover;
+      border-color: variables.$track-border-color-hover;
+      background-color: variables.$track-background-hover;
     }
 
     .switch__thumb {
-      background-color: $switch__thumb-background-hover;
-      box-shadow: $switch__thumb-box-shadow-hover;
+      background-color: variables.$thumb-background-hover;
+      box-shadow: variables.$thumb-box-shadow-hover;
     }
   }
 
   &:focus + .switch__background {
     &::after {
-      background-color: $switch__background-focus;
+      background-color: variables.$background-focus;
     }
 
     .switch__track {
-      border-color: $switch__track-border-color-focus;
-      background-color: $switch__track-background-focus;
+      border-color: variables.$track-border-color-focus;
+      background-color: variables.$track-background-focus;
     }
 
     .switch__thumb {
-      background-color: $switch__thumb-background-focus;
-      box-shadow: $switch__thumb-box-shadow-focus;
+      background-color: variables.$thumb-background-focus;
+      box-shadow: variables.$thumb-box-shadow-focus;
     }
   }
 
   &:active + .switch__background {
     &::after {
-      background-color: $switch__background-active;
+      background-color: variables.$background-active;
     }
 
     .switch__track {
-      border-color: $switch__track-border-color-active;
-      background-color: $switch__track-background-active;
+      border-color: variables.$track-border-color-active;
+      background-color: variables.$track-background-active;
     }
 
     .switch__thumb {
-      background-color: $switch__thumb-background-active;
-      box-shadow: $switch__thumb-box-shadow-active;
+      background-color: variables.$thumb-background-active;
+      box-shadow: variables.$thumb-box-shadow-active;
     }
   }
 
   &:checked + .switch__background {
     &::after {
-      left: calc(100% - #{($switch-size * 0.75)});
-      background-color: $switch__background-checked;
+      left: calc(100% - #{(variables.$size * 0.75)});
+      background-color: variables.$background-checked;
     }
 
     .switch__track {
-      border-color: $switch__track-border-color-checked;
-      background-color: $switch__track-background-checked;
+      border-color: variables.$track-border-color-checked;
+      background-color: variables.$track-background-checked;
     }
 
     .switch__thumb {
-      left: calc(100% - #{$switch__thumb-size});
-      background-color: $switch__thumb-background-checked;
-      box-shadow: $switch__thumb-box-shadow-checked;
+      left: calc(100% - #{variables.$thumb-size});
+      background-color: variables.$thumb-background-checked;
+      box-shadow: variables.$thumb-box-shadow-checked;
     }
   }
 }
