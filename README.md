@@ -29,7 +29,14 @@ Include the component in your build's Sass manifest file:
 @use "@vrembem/menu";
 ```
 
-> Vrembem uses [Sass' module system](https://sass-lang.com/blog/the-module-system-is-launched) so you can pass custom variables using the `with` keyword.
+Vrembem uses [Sass' module system](https://sass-lang.com/blog/the-module-system-is-launched), pass in custom variables using the [`with` keyword](https://sass-lang.com/documentation/at-rules/use#configuration).
+
+```scss
+@use "@vrembem/menu" with (
+  $background: #efefef,
+  $background-hover: #e0e0e0
+);
+```
 
 ### HTML
 
