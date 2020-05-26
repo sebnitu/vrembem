@@ -1,15 +1,16 @@
-@import "./variables";
+@use "@vrembem/core";
+@use "./variables";
 
-@each $property in $utility-display-properties {
-  .#{$class-display}_#{$property} {
+@each $property in variables.$display-properties {
+  .#{variables.$class-display}_#{$property} {
     display: $property !important;
   }
 }
 
-@each $key, $value in $breakpoints {
-  @include media-min($key) {
-    @each $property in $utility-display-properties {
-      .#{$class-display}_#{$property}_#{$key} {
+@each $key, $value in core.$breakpoints {
+  @include core.media-min($key) {
+    @each $property in variables.$display-properties {
+      .#{variables.$class-display}_#{$property}_#{$key} {
         display: $property !important;
       }
     }

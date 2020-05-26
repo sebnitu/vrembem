@@ -1,29 +1,30 @@
-@import "./variables";
+@use "@vrembem/core";
+@use "./variables";
 
-.#{$class-box-shadow} {
-  box-shadow: $box-shadow !important;
+.#{variables.$class-box-shadow} {
+  box-shadow: core.$box-shadow !important;
 }
 
-.#{$class-box-shadow}_flat {
-  box-shadow: $box-shadow-flat !important;
+.#{variables.$class-box-shadow}_flat {
+  box-shadow: core.$box-shadow-flat !important;
 }
 
-.#{$class-box-shadow}_1dp {
-  box-shadow: $box-shadow-1dp !important;
+.#{variables.$class-box-shadow}_1dp {
+  box-shadow: core.$box-shadow-1dp !important;
 }
 
-.#{$class-box-shadow}_4dp {
-  box-shadow: $box-shadow-4dp !important;
+.#{variables.$class-box-shadow}_4dp {
+  box-shadow: core.$box-shadow-4dp !important;
 }
 
-.#{$class-box-shadow}_8dp {
-  box-shadow: $box-shadow-8dp !important;
+.#{variables.$class-box-shadow}_8dp {
+  box-shadow: core.$box-shadow-8dp !important;
 }
 
-.#{$class-box-shadow}_16dp {
-  box-shadow: $box-shadow-16dp !important;
+.#{variables.$class-box-shadow}_16dp {
+  box-shadow: core.$box-shadow-16dp !important;
 }
 
-.#{$class-box-shadow}_24dp {
-  box-shadow: $box-shadow-24dp !important;
+.#{variables.$class-box-shadow}_24dp {
+  box-shadow: core.$box-shadow-24dp !important;
 }
