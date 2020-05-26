@@ -1,2 +1,3 @@
-@import "./src/tooltip";
-@import "./src/tooltip_pos";
+@forward "./src/variables";
+@forward "./src/tooltip";
+@forward "./src/tooltip_pos";
