@@ -37,7 +37,7 @@
 
   var hyphenCase = function hyphenCase(str) {
     return str.replace(/([a-z][A-Z])/g, function (g) {
-      return g[0] + "-" + g[1].toLowerCase();
+      return g[0] + '-' + g[1].toLowerCase();
     });
   };
 
@@ -68,11 +68,11 @@
   };
 
   var breakpoint = {
-    xs: "480px",
-    sm: "620px",
-    md: "760px",
-    lg: "990px",
-    xl: "1380px"
+    xs: '480px',
+    sm: '620px',
+    md: '760px',
+    lg: '990px',
+    xl: '1380px'
   };
 
   exports.addClass = addClass;

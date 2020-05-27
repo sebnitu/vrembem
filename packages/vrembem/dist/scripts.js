@@ -37,7 +37,7 @@
 
   var hyphenCase = function hyphenCase(str) {
     return str.replace(/([a-z][A-Z])/g, function (g) {
-      return g[0] + "-" + g[1].toLowerCase();
+      return g[0] + '-' + g[1].toLowerCase();
     });
   };
 
@@ -68,11 +68,11 @@
   };
 
   var breakpoint = {
-    xs: "480px",
-    sm: "620px",
-    md: "760px",
-    lg: "990px",
-    xl: "1380px"
+    xs: '480px',
+    sm: '620px',
+    md: '760px',
+    lg: '990px',
+    xl: '1380px'
   };
 
   var index = /*#__PURE__*/Object.freeze({
@@ -111,8 +111,8 @@
     var api = {};
     var defaults = {
       autoInit: false,
-      stateAttr: "aria-checked",
-      stateValue: "mixed"
+      stateAttr: 'aria-checked',
+      stateValue: 'mixed'
     };
     api.settings = _objectSpread(_objectSpread({}, defaults), options);
     api.settings.selector = "[".concat(api.settings.stateAttr, "=\"").concat(api.settings.stateValue, "\"]");
@@ -120,11 +120,11 @@
     api.init = function () {
       var mixed = document.querySelectorAll(api.settings.selector);
       api.setIndeterminate(mixed);
-      document.addEventListener("click", removeAriaState, false);
+      document.addEventListener('click', removeAriaState, false);
     };
 
     api.destroy = function () {
-      document.removeEventListener("click", removeAriaState, false);
+      document.removeEventListener('click', removeAriaState, false);
     };
 
     api.setAriaState = function (el) {
@@ -173,19 +173,19 @@
     var api = {};
     var defaults = {
       autoInit: false,
-      dataTrigger: "dismiss",
-      dataTarget: "dismissible",
-      classHide: "display_none",
-      method: "hide"
+      dataTrigger: 'dismiss',
+      dataTarget: 'dismissible',
+      classHide: 'display_none',
+      method: 'hide'
     };
     api.settings = _objectSpread$1(_objectSpread$1({}, defaults), options);
 
     api.init = function () {
-      document.addEventListener("click", run, false);
+      document.addEventListener('click', run, false);
     };
 
     api.destroy = function () {
-      document.removeEventListener("click", run, false);
+      document.removeEventListener('click', run, false);
     };
 
     var run = function run(event) {
@@ -198,9 +198,9 @@
           var method = target.dataset[camelCase(api.settings.dataTarget)];
           var defaultMethod = api.settings.method;
 
-          if (method == "remove" || !method && defaultMethod == "remove") {
+          if (method == 'remove' || !method && defaultMethod == 'remove') {
             target.remove();
-          } else if (method == "hide" || !method && defaultMethod == "hide") {
+          } else if (method == 'hide' || !method && defaultMethod == 'hide') {
             target.classList.add(api.settings.classHide);
           }
 
@@ -220,20 +220,20 @@
     var api = {};
     var defaults = {
       autoInit: false,
-      dataDrawer: "drawer",
-      dataToggle: "drawer-toggle",
-      dataClose: "drawer-close",
-      dataBreakpoint: "drawer-breakpoint",
-      dataFocus: "drawer-focus",
-      stateOpen: "is-open",
-      stateOpening: "is-opening",
-      stateClosing: "is-closing",
-      stateClosed: "is-closed",
-      classModal: "drawer_modal",
+      dataDrawer: 'drawer',
+      dataToggle: 'drawer-toggle',
+      dataClose: 'drawer-close',
+      dataBreakpoint: 'drawer-breakpoint',
+      dataFocus: 'drawer-focus',
+      stateOpen: 'is-open',
+      stateOpening: 'is-opening',
+      stateClosing: 'is-closing',
+      stateClosed: 'is-closed',
+      classModal: 'drawer_modal',
       breakpoint: breakpoint,
       focus: true,
       saveState: true,
-      saveKey: "DrawerState"
+      saveKey: 'DrawerState'
     };
     api.settings = _objectSpread$2(_objectSpread$2({}, defaults), options);
     api.memoryTrigger = null;
@@ -244,9 +244,9 @@
     api.init = function () {
       applyState();
       breakpointInit();
-      document.addEventListener("click", run, false);
-      document.addEventListener("touchend", run, false);
-      document.addEventListener("keyup", escape, false);
+      document.addEventListener('click', run, false);
+      document.addEventListener('touchend', run, false);
+      document.addEventListener('keyup', escape, false);
     };
 
     api.destroy = function () {
@@ -254,9 +254,9 @@
       api.memoryTarget = null;
       api.state = {};
       localStorage.removeItem(api.settings.saveKey);
-      document.removeEventListener("click", run, false);
-      document.removeEventListener("touchend", run, false);
-      document.removeEventListener("keyup", escape, false);
+      document.removeEventListener('click', run, false);
+      document.removeEventListener('touchend', run, false);
+      document.removeEventListener('keyup', escape, false);
     };
 
     api.toggle = function (drawerKey, callback) {
@@ -330,13 +330,13 @@
       if (!hasClass(drawer, api.settings.stateOpen)) {
         saveTarget(drawer);
         addClass(drawer, api.settings.stateOpening);
-        drawer.addEventListener("transitionend", function _listener() {
+        drawer.addEventListener('transitionend', function _listener() {
           addClass(drawer, api.settings.stateOpen);
           removeClass(drawer, api.settings.stateOpening);
           saveState(drawer);
           setFocus();
-          typeof callback === "function" && callback();
-          this.removeEventListener("transitionend", _listener, true);
+          typeof callback === 'function' && callback();
+          this.removeEventListener('transitionend', _listener, true);
         }, true);
       }
     };
@@ -345,12 +345,12 @@
       if (hasClass(drawer, api.settings.stateOpen)) {
         addClass(drawer, api.settings.stateClosing);
         removeClass(drawer, api.settings.stateOpen);
-        drawer.addEventListener("transitionend", function _listener() {
+        drawer.addEventListener('transitionend', function _listener() {
           removeClass(drawer, api.settings.stateClosing);
           saveState(drawer);
           returnFocus();
-          typeof callback === "function" && callback();
-          this.removeEventListener("transitionend", _listener, true);
+          typeof callback === 'function' && callback();
+          this.removeEventListener('transitionend', _listener, true);
         }, true);
       }
     };
@@ -434,7 +434,7 @@
         drawers.forEach(function (drawer) {
           var key = drawer.dataset[camelCase(api.settings.dataBreakpoint)];
           var bp = api.settings.breakpoint[key] ? api.settings.breakpoint[key] : key;
-          var mqList = window.matchMedia("(min-width:" + bp + ")");
+          var mqList = window.matchMedia('(min-width:' + bp + ')');
 
           if (mqList.matches) {
             switchToDrawer(drawer);
@@ -444,8 +444,8 @@
 
           mqList.addListener(breakpointCheck);
           api.mediaQueryLists.push({
-            "drawer": drawer,
-            "mqList": mqList
+            'drawer': drawer,
+            'mqList': mqList
           });
         });
       }
@@ -489,15 +489,15 @@
     var api = {};
     var defaults = {
       autoInit: false,
-      dataModal: "modal",
-      dataOpen: "modal-open",
-      dataClose: "modal-close",
-      dataFocus: "modal-focus",
-      dataRequired: "modal-required",
-      stateOpen: "is-open",
-      stateOpening: "is-opening",
-      stateClosing: "is-closing",
-      stateClosed: "is-closed",
+      dataModal: 'modal',
+      dataOpen: 'modal-open',
+      dataClose: 'modal-close',
+      dataFocus: 'modal-focus',
+      dataRequired: 'modal-required',
+      stateOpen: 'is-open',
+      stateOpening: 'is-opening',
+      stateClosing: 'is-closing',
+      stateClosed: 'is-closed',
       focus: true
     };
     api.settings = _objectSpread$3(_objectSpread$3({}, defaults), options);
@@ -505,17 +505,17 @@
     api.memoryTarget = null;
 
     api.init = function () {
-      document.addEventListener("click", run, false);
-      document.addEventListener("touchend", run, false);
-      document.addEventListener("keyup", escape, false);
+      document.addEventListener('click', run, false);
+      document.addEventListener('touchend', run, false);
+      document.addEventListener('keyup', escape, false);
     };
 
     api.destroy = function () {
       api.memoryTrigger = null;
       api.memoryTarget = null;
-      document.removeEventListener("click", run, false);
-      document.removeEventListener("touchend", run, false);
-      document.removeEventListener("keyup", escape, false);
+      document.removeEventListener('click', run, false);
+      document.removeEventListener('touchend', run, false);
+      document.removeEventListener('keyup', escape, false);
     };
 
     api.open = function (modalKey, callback) {
@@ -564,12 +564,12 @@
       if (target && !hasClass(target, api.settings.stateOpen)) {
         saveTarget(target);
         addClass(target, api.settings.stateOpening);
-        target.addEventListener("transitionend", function _listener() {
+        target.addEventListener('transitionend', function _listener() {
           addClass(target, api.settings.stateOpen);
           removeClass(target, api.settings.stateOpening);
           setFocus();
-          typeof callback === "function" && callback();
-          this.removeEventListener("transitionend", _listener, true);
+          typeof callback === 'function' && callback();
+          this.removeEventListener('transitionend', _listener, true);
         }, true);
       }
     };
@@ -582,11 +582,11 @@
       if (target) {
         addClass(target, api.settings.stateClosing);
         removeClass(target, api.settings.stateOpen);
-        target.addEventListener("transitionend", function _listener() {
+        target.addEventListener('transitionend', function _listener() {
           removeClass(target, api.settings.stateClosing);
           if (focus) returnFocus();
-          typeof callback === "function" && callback();
-          this.removeEventListener("transitionend", _listener, true);
+          typeof callback === 'function' && callback();
+          this.removeEventListener('transitionend', _listener, true);
         }, true);
       }
     };

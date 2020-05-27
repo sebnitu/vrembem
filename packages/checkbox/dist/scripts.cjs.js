@@ -27,8 +27,8 @@ var Checkbox = function Checkbox(options) {
   var api = {};
   var defaults = {
     autoInit: false,
-    stateAttr: "aria-checked",
-    stateValue: "mixed"
+    stateAttr: 'aria-checked',
+    stateValue: 'mixed'
   };
   api.settings = _objectSpread(_objectSpread({}, defaults), options);
   api.settings.selector = "[".concat(api.settings.stateAttr, "=\"").concat(api.settings.stateValue, "\"]");
@@ -36,11 +36,11 @@ var Checkbox = function Checkbox(options) {
   api.init = function () {
     var mixed = document.querySelectorAll(api.settings.selector);
     api.setIndeterminate(mixed);
-    document.addEventListener("click", removeAriaState, false);
+    document.addEventListener('click', removeAriaState, false);
   };
 
   api.destroy = function () {
-    document.removeEventListener("click", removeAriaState, false);
+    document.removeEventListener('click', removeAriaState, false);
   };
 
   api.setAriaState = function (el) {

@@ -32,19 +32,19 @@ var Dismissible = function Dismissible(options) {
   var api = {};
   var defaults = {
     autoInit: false,
-    dataTrigger: "dismiss",
-    dataTarget: "dismissible",
-    classHide: "display_none",
-    method: "hide"
+    dataTrigger: 'dismiss',
+    dataTarget: 'dismissible',
+    classHide: 'display_none',
+    method: 'hide'
   };
   api.settings = _objectSpread(_objectSpread({}, defaults), options);
 
   api.init = function () {
-    document.addEventListener("click", run, false);
+    document.addEventListener('click', run, false);
   };
 
   api.destroy = function () {
-    document.removeEventListener("click", run, false);
+    document.removeEventListener('click', run, false);
   };
 
   var run = function run(event) {
@@ -57,9 +57,9 @@ var Dismissible = function Dismissible(options) {
         var method = target.dataset[camelCase(api.settings.dataTarget)];
         var defaultMethod = api.settings.method;
 
-        if (method == "remove" || !method && defaultMethod == "remove") {
+        if (method == 'remove' || !method && defaultMethod == 'remove') {
           target.remove();
-        } else if (method == "hide" || !method && defaultMethod == "hide") {
+        } else if (method == 'hide' || !method && defaultMethod == 'hide') {
           target.classList.add(api.settings.classHide);
         }
 

@@ -67,11 +67,11 @@ var removeClass = function removeClass(el) {
 };
 
 var breakpoint = {
-  xs: "480px",
-  sm: "620px",
-  md: "760px",
-  lg: "990px",
-  xl: "1380px"
+  xs: '480px',
+  sm: '620px',
+  md: '760px',
+  lg: '990px',
+  xl: '1380px'
 };
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -81,20 +81,20 @@ var Drawer = function Drawer(options) {
   var api = {};
   var defaults = {
     autoInit: false,
-    dataDrawer: "drawer",
-    dataToggle: "drawer-toggle",
-    dataClose: "drawer-close",
-    dataBreakpoint: "drawer-breakpoint",
-    dataFocus: "drawer-focus",
-    stateOpen: "is-open",
-    stateOpening: "is-opening",
-    stateClosing: "is-closing",
-    stateClosed: "is-closed",
-    classModal: "drawer_modal",
+    dataDrawer: 'drawer',
+    dataToggle: 'drawer-toggle',
+    dataClose: 'drawer-close',
+    dataBreakpoint: 'drawer-breakpoint',
+    dataFocus: 'drawer-focus',
+    stateOpen: 'is-open',
+    stateOpening: 'is-opening',
+    stateClosing: 'is-closing',
+    stateClosed: 'is-closed',
+    classModal: 'drawer_modal',
     breakpoint: breakpoint,
     focus: true,
     saveState: true,
-    saveKey: "DrawerState"
+    saveKey: 'DrawerState'
   };
   api.settings = _objectSpread(_objectSpread({}, defaults), options);
   api.memoryTrigger = null;
@@ -105,9 +105,9 @@ var Drawer = function Drawer(options) {
   api.init = function () {
     applyState();
     breakpointInit();
-    document.addEventListener("click", run, false);
-    document.addEventListener("touchend", run, false);
-    document.addEventListener("keyup", escape, false);
+    document.addEventListener('click', run, false);
+    document.addEventListener('touchend', run, false);
+    document.addEventListener('keyup', escape, false);
   };
 
   api.destroy = function () {
@@ -115,9 +115,9 @@ var Drawer = function Drawer(options) {
     api.memoryTarget = null;
     api.state = {};
     localStorage.removeItem(api.settings.saveKey);
-    document.removeEventListener("click", run, false);
-    document.removeEventListener("touchend", run, false);
-    document.removeEventListener("keyup", escape, false);
+    document.removeEventListener('click', run, false);
+    document.removeEventListener('touchend', run, false);
+    document.removeEventListener('keyup', escape, false);
   };
 
   api.toggle = function (drawerKey, callback) {
@@ -191,13 +191,13 @@ var Drawer = function Drawer(options) {
     if (!hasClass(drawer, api.settings.stateOpen)) {
       saveTarget(drawer);
       addClass(drawer, api.settings.stateOpening);
-      drawer.addEventListener("transitionend", function _listener() {
+      drawer.addEventListener('transitionend', function _listener() {
         addClass(drawer, api.settings.stateOpen);
         removeClass(drawer, api.settings.stateOpening);
         saveState(drawer);
         setFocus();
-        typeof callback === "function" && callback();
-        this.removeEventListener("transitionend", _listener, true);
+        typeof callback === 'function' && callback();
+        this.removeEventListener('transitionend', _listener, true);
       }, true);
     }
   };
@@ -206,12 +206,12 @@ var Drawer = function Drawer(options) {
     if (hasClass(drawer, api.settings.stateOpen)) {
       addClass(drawer, api.settings.stateClosing);
       removeClass(drawer, api.settings.stateOpen);
-      drawer.addEventListener("transitionend", function _listener() {
+      drawer.addEventListener('transitionend', function _listener() {
         removeClass(drawer, api.settings.stateClosing);
         saveState(drawer);
         returnFocus();
-        typeof callback === "function" && callback();
-        this.removeEventListener("transitionend", _listener, true);
+        typeof callback === 'function' && callback();
+        this.removeEventListener('transitionend', _listener, true);
       }, true);
     }
   };
@@ -295,7 +295,7 @@ var Drawer = function Drawer(options) {
       drawers.forEach(function (drawer) {
         var key = drawer.dataset[camelCase(api.settings.dataBreakpoint)];
         var bp = api.settings.breakpoint[key] ? api.settings.breakpoint[key] : key;
-        var mqList = window.matchMedia("(min-width:" + bp + ")");
+        var mqList = window.matchMedia('(min-width:' + bp + ')');
 
         if (mqList.matches) {
           switchToDrawer(drawer);
@@ -305,8 +305,8 @@ var Drawer = function Drawer(options) {
 
         mqList.addListener(breakpointCheck);
         api.mediaQueryLists.push({
-          "drawer": drawer,
-          "mqList": mqList
+          'drawer': drawer,
+          'mqList': mqList
         });
       });
     }

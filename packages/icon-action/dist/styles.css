@@ -26,7 +26,7 @@
 
 .icon-action_color_danger {
   background: #f44336;
-  color: #fff;
+  color: color-switch(#f44336);
 }
 .icon-action_color_danger:hover {
   background: #ea1c0d;
@@ -40,7 +40,7 @@
 
 .icon-action_color_caution {
   background: #ff9800;
-  color: #fff;
+  color: color-switch(#ff9800);
 }
 .icon-action_color_caution:hover {
   background: #e68900;
@@ -54,7 +54,7 @@
 
 .icon-action_color_success {
   background: #4caf50;
-  color: #fff;
+  color: color-switch(#4caf50);
 }
 .icon-action_color_success:hover {
   background: #3d8b40;

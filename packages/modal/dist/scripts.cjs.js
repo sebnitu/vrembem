@@ -73,15 +73,15 @@ var Modal = function Modal(options) {
   var api = {};
   var defaults = {
     autoInit: false,
-    dataModal: "modal",
-    dataOpen: "modal-open",
-    dataClose: "modal-close",
-    dataFocus: "modal-focus",
-    dataRequired: "modal-required",
-    stateOpen: "is-open",
-    stateOpening: "is-opening",
-    stateClosing: "is-closing",
-    stateClosed: "is-closed",
+    dataModal: 'modal',
+    dataOpen: 'modal-open',
+    dataClose: 'modal-close',
+    dataFocus: 'modal-focus',
+    dataRequired: 'modal-required',
+    stateOpen: 'is-open',
+    stateOpening: 'is-opening',
+    stateClosing: 'is-closing',
+    stateClosed: 'is-closed',
     focus: true
   };
   api.settings = _objectSpread(_objectSpread({}, defaults), options);
@@ -89,17 +89,17 @@ var Modal = function Modal(options) {
   api.memoryTarget = null;
 
   api.init = function () {
-    document.addEventListener("click", run, false);
-    document.addEventListener("touchend", run, false);
-    document.addEventListener("keyup", escape, false);
+    document.addEventListener('click', run, false);
+    document.addEventListener('touchend', run, false);
+    document.addEventListener('keyup', escape, false);
   };
 
   api.destroy = function () {
     api.memoryTrigger = null;
     api.memoryTarget = null;
-    document.removeEventListener("click", run, false);
-    document.removeEventListener("touchend", run, false);
-    document.removeEventListener("keyup", escape, false);
+    document.removeEventListener('click', run, false);
+    document.removeEventListener('touchend', run, false);
+    document.removeEventListener('keyup', escape, false);
   };
 
   api.open = function (modalKey, callback) {
@@ -148,12 +148,12 @@ var Modal = function Modal(options) {
     if (target && !hasClass(target, api.settings.stateOpen)) {
       saveTarget(target);
       addClass(target, api.settings.stateOpening);
-      target.addEventListener("transitionend", function _listener() {
+      target.addEventListener('transitionend', function _listener() {
         addClass(target, api.settings.stateOpen);
         removeClass(target, api.settings.stateOpening);
         setFocus();
-        typeof callback === "function" && callback();
-        this.removeEventListener("transitionend", _listener, true);
+        typeof callback === 'function' && callback();
+        this.removeEventListener('transitionend', _listener, true);
       }, true);
     }
   };
@@ -166,11 +166,11 @@ var Modal = function Modal(options) {
     if (target) {
       addClass(target, api.settings.stateClosing);
       removeClass(target, api.settings.stateOpen);
-      target.addEventListener("transitionend", function _listener() {
+      target.addEventListener('transitionend', function _listener() {
         removeClass(target, api.settings.stateClosing);
         if (focus) returnFocus();
-        typeof callback === "function" && callback();
-        this.removeEventListener("transitionend", _listener, true);
+        typeof callback === 'function' && callback();
+        this.removeEventListener('transitionend', _listener, true);
       }, true);
     }
   };
