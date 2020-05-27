@@ -1,21 +1,22 @@
-@import "./variables";
+@use "@vrembem/core";
+@use "./variables";
 
 .button_invert {
-  background: rgba($white, 0.05);
-  color: $white;
+  background: rgba(core.$white, 0.05);
+  color: core.$white;
 
   &:hover {
-    background: rgba($white, 0.1);
-    color: $white;
+    background: rgba(core.$white, 0.1);
+    color: core.$white;
   }
 
   &:focus,
   &:active {
-    background: rgba($white, 0.15);
-    color: $white;
+    background: rgba(core.$white, 0.15);
+    color: core.$white;
   }
 
   &.is-loading::after {
-    border-color: set-border-color($button-loading-border-tpl, $white);
+    border-color: set-border-color(variables.$loading-border-tpl, core.$white);
   }
 }

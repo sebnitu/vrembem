@@ -1,37 +1,38 @@
-@import "./variables";
+@use "@vrembem/core";
+@use "./variables";
 
 .input_state_success {
-  box-shadow: $input-box-shadow-values rgba($success, 1);
+  box-shadow: variables.$box-shadow-values rgba(core.$success, 1);
 
   &:hover {
-    box-shadow: $input-box-shadow-hover-values rgba($success, 1);
+    box-shadow: variables.$box-shadow-hover-values rgba(core.$success, 1);
   }
 
   &:focus {
-    box-shadow: $input-box-shadow-focus-values rgba($success, 1);
+    box-shadow: variables.$box-shadow-focus-values rgba(core.$success, 1);
   }
 }
 
 .input_state_caution {
-  box-shadow: $input-box-shadow-values rgba($caution, 1);
+  box-shadow: variables.$box-shadow-values rgba(core.$caution, 1);
 
   &:hover {
-    box-shadow: $input-box-shadow-hover-values rgba($caution, 1);
+    box-shadow: variables.$box-shadow-hover-values rgba(core.$caution, 1);
   }
 
   &:focus {
-    box-shadow: $input-box-shadow-focus-values rgba($caution, 1);
+    box-shadow: variables.$box-shadow-focus-values rgba(core.$caution, 1);
   }
 }
 
 .input_state_danger {
-  box-shadow: $input-box-shadow-values rgba($danger, 1);
+  box-shadow: variables.$box-shadow-values rgba(core.$danger, 1);
 
   &:hover {
-    box-shadow: $input-box-shadow-hover-values rgba($danger, 1);
+    box-shadow: variables.$box-shadow-hover-values rgba(core.$danger, 1);
   }
 
   &:focus {
-    box-shadow: $input-box-shadow-focus-values rgba($danger, 1);
+    box-shadow: variables.$box-shadow-focus-values rgba(core.$danger, 1);
   }
 }

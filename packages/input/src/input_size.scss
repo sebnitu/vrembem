@@ -1,13 +1,13 @@
-@import "./variables";
+@use "./variables";
 
 .input_size_sm {
-  padding: $input_size_sm-padding;
-  font-size: $input_size_sm-font-size;
-  line-height: $input_size_sm-line-height;
+  padding: variables.$size_sm-padding;
+  font-size: variables.$size_sm-font-size;
+  line-height: variables.$size_sm-line-height;
 }
 
 .input_size_lg {
-  padding: $input_size_lg-padding;
-  font-size: $input_size_lg-font-size;
-  line-height: $input_size_lg-line-height;
+  padding: variables.$size_lg-padding;
+  font-size: variables.$size_lg-font-size;
+  line-height: variables.$size_lg-line-height;
 }

@@ -1,6 +1,6 @@
-@import "./variables";
+@use "./variables";
 
-.#{$class-scroll-box} {
+.#{variables.$class-scroll-box} {
   display: block;
   width: 100%;
   overflow: auto;

@@ -1,7 +1,8 @@
-@import "./src/button";
-@import "./src/button_block";
-@import "./src/button_color";
-@import "./src/button_icon";
-@import "./src/button_invert";
-@import "./src/button_outline";
-@import "./src/button_size";
+@forward "./src/variables";
+@forward "./src/button";
+@forward "./src/button_block";
+@forward "./src/button_color";
+@forward "./src/button_icon";
+@forward "./src/button_invert";
+@forward "./src/button_outline";
+@forward "./src/button_size";

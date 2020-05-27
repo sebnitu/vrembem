@@ -1,3 +1,5 @@
+@use "./variables";
+
 @mixin menu-full() {
   .menu__item {
     flex: 1 1 auto;
@@ -14,14 +16,14 @@
   overflow: visible;
 
   .menu__item + .menu__item {
-    margin-top: $menu-gap;
+    margin-top: variables.$gap;
     margin-left: 0;
   }
 
   .menu__sep {
     width: auto;
-    height: $menu__sep-width;
-    margin: $menu__sep-spacing 0;
+    height: variables.$sep-width;
+    margin: variables.$sep-spacing 0;
 
     &:first-child {
       margin-top: 0;

@@ -1,23 +1,23 @@
-@import "@vrembem/core/";
+@use "@vrembem/core";
 
-$card-padding: 1.25em !default;
-$card-background: $white !default;
-$card-border: null !default;
-$card-sep-border: $border !default;
-$card-border-radius: $border-radius !default;
-$card-box-shadow: $box-shadow-1dp !default;
-$card-transition-property: background-color, border-color, box-shadow, transform !default;
-$card-transition-duration: $transition-duration !default;
-$card-transition-timing-function: $transition-timing-function !default;
+$padding: 1.25em !default;
+$background: core.$white !default;
+$border: null !default;
+$sep-border: core.$border !default;
+$border-radius: core.$border-radius !default;
+$box-shadow: core.$box-shadow-1dp !default;
+$transition-property: background-color, border-color, box-shadow, transform !default;
+$transition-duration: core.$transition-duration !default;
+$transition-timing-function: core.$transition-timing-function !default;
 
-$card__title-font-size: $font-size-lg !default;
-$card__title-line-height: $line-height-lg !default;
-$card__title-font-weight: font-weight("semi-bold") !default;
+$title-font-size: core.$font-size-lg !default;
+$title-line-height: core.$line-height-lg !default;
+$title-font-weight: font-weight("semi-bold") !default;
 
-$card__screen-opacity: 0.7 !default;
-$card__screen-background: $night !default;
+$screen-opacity: 0.7 !default;
+$screen-background: core.$night !default;
 
-$card_invert-background: $night !default;
-$card_link-shadow: $box-shadow-4dp !default;
-$card_link-shadow-hover: $box-shadow-8dp !default;
-$card_link-offset: 0.25em !default;
+$invert-background: core.$night !default;
+$link-shadow: core.$box-shadow-4dp !default;
+$link-shadow-hover: core.$box-shadow-8dp !default;
+$link-offset: 0.25em !default;

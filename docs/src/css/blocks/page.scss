@@ -1,8 +1,4 @@
-/**
- * Page
- * ---
- * The page component handles general layout for the application.
- */
+@use "@vrembem/core";
 
 .page {
   display: flex;
@@ -29,11 +25,11 @@
 
   .dialog__header,
   .dialog__footer {
-    background: $shade;
+    background: core.$shade;
   }
 
   .dialog__body {
-    background: $shade;
+    background: core.$shade;
   }
 }
 
@@ -43,16 +39,12 @@
   -webkit-overflow-scrolling: touch;
 }
 
-/**
- * Toolbar spacing
- */
-
 .page__toolbar + .page__main {
   height: calc(100vh - 56px);
   margin-top: 56px;
 }
 
-@include media-min('md') {
+@include core.media-min('md') {
   .page__toolbar + .page__main {
     height: calc(100vh - 72px);
     margin-top: 72px;

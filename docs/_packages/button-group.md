@@ -5,7 +5,7 @@ description: "A component for displaying groups of buttons."
 category: compound
 usage:
   npm: "button-group"
-  sass: "button-group"
+  scss: "button-group"
 ---
 
 {% include flag.html heading="button-group" %}

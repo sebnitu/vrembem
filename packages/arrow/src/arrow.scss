@@ -1,4 +1,4 @@
-@import "./variables";
+@use "./variables";
 
 .arrow {
   display: inline-block;
@@ -7,10 +7,10 @@
   width: 0;
   height: 0;
   transform-origin: center;
-  border-top: $arrow-size-pointer solid $arrow-color;
-  border-right: $arrow-size solid transparent;
-  border-left: $arrow-size solid transparent;
-  border-radius: $arrow-radius;
+  border-top: variables.$size-pointer solid variables.$color;
+  border-right: variables.$size solid transparent;
+  border-left: variables.$size solid transparent;
+  border-radius: variables.$radius;
   pointer-events: none;
 }
 

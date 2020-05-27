@@ -1,37 +1,38 @@
-@import "./variables";
+@use "@vrembem/core";
+@use "./variables";
 
 @mixin heading-base() {
-  color: $heading-color;
-  font-family: $heading-font-family;
-  font-weight: $heading-font-weight;
-  line-height: $heading-line-height;
+  color: variables.$heading-color;
+  font-family: variables.$heading-font-family;
+  font-weight: variables.$heading-font-weight;
+  line-height: variables.$heading-line-height;
 }
 
 @mixin heading($level) {
   @if $level == 1 {
     font-size: 2em;
-    @include media-min("md") {
+    @include core.media-min("md") {
       font-size: 2.5em;
     }
   }
 
   @else if $level == 2 {
     font-size: 1.75em;
-    @include media-min("md") {
+    @include core.media-min("md") {
       font-size: 2em;
     }
   }
 
   @else if $level == 3 {
     font-size: 1.5em;
-    @include media-min("md") {
+    @include core.media-min("md") {
       font-size: 1.75em;
     }
   }
 
   @else if $level == 4 {
     font-size: 1.25em;
-    @include media-min("md") {
+    @include core.media-min("md") {
       font-size: 1.5em;
     }
   }
@@ -39,7 +40,7 @@
   @else if $level == 5 {
     font-size: 1.1em;
     line-height: inherit;
-    @include media-min("md") {
+    @include core.media-min("md") {
       font-size: 1.25em;
     }
   }
@@ -47,64 +48,64 @@
   @else if $level == 6 {
     font-size: 1em;
     line-height: inherit;
-    @include media-min("md") {
+    @include core.media-min("md") {
       font-size: 1em;
     }
   }
 }
 
 @mixin link() {
-  transition: $link-transition;
-  border-bottom: $link-border;
-  color: $link-color;
-  text-decoration: $link-text-decoration;
+  transition: variables.$link-transition;
+  border-bottom: variables.$link-border;
+  color: variables.$link-color;
+  text-decoration: variables.$link-text-decoration;
 
   &:hover {
-    border-bottom: $link-border-hover;
-    color: $link-color-hover;
-    text-decoration: $link-text-decoration-hover;
+    border-bottom: variables.$link-border-hover;
+    color: variables.$link-color-hover;
+    text-decoration: variables.$link-text-decoration-hover;
   }
 
   &:focus {
     outline: currentColor dotted 1px;
     outline-offset: 3px;
-    border-bottom: $link-border-hover;
-    color: $link-color-hover;
-    text-decoration: $link-text-decoration-hover;
+    border-bottom: variables.$link-border-hover;
+    color: variables.$link-color-hover;
+    text-decoration: variables.$link-text-decoration-hover;
   }
 }
 
 @mixin link-modifier($modifier) {
   @if $modifier == "subtle" {
-    border-color: $link-subtle-border-color;
-    color: $link-subtle-color;
+    border-color: variables.$link-subtle-border-color;
+    color: variables.$link-subtle-color;
 
     &:hover,
     &:focus {
-      border-color: $link-subtle-border-color-hover;
-      color: $link-subtle-color-hover;
+      border-color: variables.$link-subtle-border-color-hover;
+      color: variables.$link-subtle-color-hover;
     }
   }
 
   @else if $modifier == "invert" {
-    border-color: $link-invert-border-color;
-    color: $link-invert-color;
+    border-color: variables.$link-invert-border-color;
+    color: variables.$link-invert-color;
 
     &:hover,
     &:focus {
-      border-color: $link-invert-border-color-hover;
-      color: $link-invert-color-hover;
+      border-color: variables.$link-invert-border-color-hover;
+      color: variables.$link-invert-color-hover;
     }
   }
 
   @else if $modifier == "invert-subtle" {
-    border-color: $link-invert-subtle-border-color;
-    color: $link-invert-subtle-color;
+    border-color: variables.$link-invert-subtle-border-color;
+    color: variables.$link-invert-subtle-color;
 
     &:hover,
     &:focus {
-      border-color: $link-invert-subtle-border-color-hover;
-      color: $link-invert-subtle-color-hover;
+      border-color: variables.$link-invert-subtle-border-color-hover;
+      color: variables.$link-invert-subtle-color-hover;
     }
   }
 }
@@ -113,69 +114,69 @@
   display: block;
   height: 0;
   border: none;
-  border-top: 1px solid $border-color;
+  border-top: 1px solid core.$border-color;
 }
 
 @mixin list() {
-  margin-left: $list-spacing;
+  margin-left: variables.$list-spacing;
 
   ul,
   ol {
-    margin-left: $list-spacing;
+    margin-left: variables.$list-spacing;
   }
 
   li {
-    margin: $list-item-spacing 0;
+    margin: variables.$list-item-spacing 0;
   }
 }
 
 @mixin blockquote() {
   position: relative;
-  padding: $blockquote-padding;
-  border: $blockquote-border;
-  border-radius: $blockquote-border-radius;
-  background: $blockquote-background;
-  color: $blockquote-color;
+  padding: variables.$blockquote-padding;
+  border: variables.$blockquote-border;
+  border-radius: variables.$blockquote-border-radius;
+  background: variables.$blockquote-background;
+  color: variables.$blockquote-color;
 
-  @if $blockquote-accent-color {
+  @if variables.$blockquote-accent-color {
     &::before {
       content: "";
       position: absolute;
-      top: $blockquote-accent-offset;
-      bottom: $blockquote-accent-offset;
-      left: $blockquote-accent-offset;
-      width: $blockquote-accent-width;
-      background-color: $blockquote-accent-color;
+      top: variables.$blockquote-accent-offset;
+      bottom: variables.$blockquote-accent-offset;
+      left: variables.$blockquote-accent-offset;
+      width: variables.$blockquote-accent-width;
+      background-color: variables.$blockquote-accent-color;
     }
   }
 
   > * + * {
-    margin-top: $blockquote-spacing;
+    margin-top: variables.$blockquote-spacing;
   }
 }
 
 @mixin blockquote-invert() {
-  border: $blockquote-border-invert;
+  border: variables.$blockquote-border-invert;
 }
 
 @mixin code() {
-  padding: $code-padding;
-  border: $code-border;
-  background: $code-background;
-  color: $code-color;
-  font-family: $font-family-mono;
+  padding: variables.$code-padding;
+  border: variables.$code-border;
+  background: variables.$code-background;
+  color: variables.$code-color;
+  font-family: core.$font-family-mono;
   font-size: 0.9em;
   word-break: break-word;
 }
 
 @mixin pre() {
-  padding: $pre-padding;
+  padding: variables.$pre-padding;
   overflow: auto;
-  border: $pre-border;
-  border-radius: $pre-border-radius;
-  background: $pre-background;
-  color: $pre-color;
-  font-family: $font-family-mono;
+  border: variables.$pre-border;
+  border-radius: variables.$pre-border-radius;
+  background: variables.$pre-background;
+  color: variables.$pre-color;
+  font-family: core.$font-family-mono;
 
   code {
     padding: 0;
@@ -187,14 +188,14 @@
 }
 
 @mixin type() {
-  @include add-clearfix();
-  font-family: $type-font-family;
-  font-size: $type-font-size;
-  line-height: $type-line-height;
+  @include core.add-clearfix();
+  font-family: variables.$type-font-family;
+  font-size: variables.$type-font-size;
+  line-height: variables.$type-line-height;
 
   > * {
-    margin-top: $type-spacing;
-    margin-bottom: $type-spacing;
+    margin-top: variables.$type-spacing;
+    margin-bottom: variables.$type-spacing;
   }
 
   h1,
@@ -204,7 +205,7 @@
   h5,
   h6 {
     @include heading-base();
-    margin-top: $type-spacing-lg;
+    margin-top: variables.$type-spacing-lg;
 
     &:first-child {
       margin-top: 0;
@@ -263,8 +264,8 @@
   hr,
   blockquote,
   pre {
-    margin-top: $type-spacing-lg;
-    margin-bottom: $type-spacing-lg;
+    margin-top: variables.$type-spacing-lg;
+    margin-bottom: variables.$type-spacing-lg;
 
     &:first-child {
       margin-top: 0;
@@ -285,8 +286,8 @@
 }
 
 @mixin type-invert($color: black) {
-  @if (lightness($color) < $lightness-threshold) {
-    color: $color-invert;
+  @if (lightness($color) < core.$lightness-threshold) {
+    color: core.$color-invert;
 
     h1,
     h2,
@@ -294,7 +295,7 @@
     h4,
     h5,
     h6 {
-      color: $heading-color-invert;
+      color: variables.$heading-color-invert;
     }
 
     a {
@@ -302,7 +303,7 @@
     }
 
     hr {
-      background-color: $border-color-invert;
+      background-color: core.$border-color-invert;
     }
 
     blockquote {
@@ -310,7 +311,7 @@
     }
 
     code {
-      color: $code-color-invert;
+      color: variables.$code-color-invert;
     }
   }
 }

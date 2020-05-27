@@ -1,17 +1,18 @@
-@import "./variables";
+@use "@vrembem/core";
+@use "./variables";
 
 .card {
   position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition-property: $card-transition-property;
-  transition-duration: $card-transition-duration;
-  transition-timing-function: $card-transition-timing-function;
-  border: $card-border;
-  border-radius: $card-border-radius;
-  background: $card-background;
-  box-shadow: $card-box-shadow;
+  transition-property: variables.$transition-property;
+  transition-duration: variables.$transition-duration;
+  transition-timing-function: variables.$transition-timing-function;
+  border: variables.$border;
+  border-radius: variables.$border-radius;
+  background: variables.$background;
+  box-shadow: variables.$box-shadow;
 }
 
 .card__header,
@@ -25,7 +26,7 @@
 .card__body,
 .card__header,
 .card__footer {
-  padding: $card-padding;
+  padding: variables.$padding;
 }
 
 .card__body {
@@ -38,53 +39,53 @@
   height: auto;
 
   &:first-child {
-    border-top-left-radius: $card-border-radius;
-    border-top-right-radius: $card-border-radius;
+    border-top-left-radius: variables.$border-radius;
+    border-top-right-radius: variables.$border-radius;
   }
 
   &:last-child {
-    border-bottom-left-radius: $card-border-radius;
-    border-bottom-right-radius: $card-border-radius;
+    border-bottom-left-radius: variables.$border-radius;
+    border-bottom-right-radius: variables.$border-radius;
   }
 }
 
 .card__header {
-  border-bottom: $card-sep-border;
+  border-bottom: variables.$sep-border;
 
   &:first-child {
-    border-top-left-radius: $card-border-radius;
-    border-top-right-radius: $card-border-radius;
+    border-top-left-radius: variables.$border-radius;
+    border-top-right-radius: variables.$border-radius;
   }
 }
 
 .card__footer {
-  border-top: $card-sep-border;
+  border-top: variables.$sep-border;
 
   &:last-child {
-    border-bottom-left-radius: $card-border-radius;
-    border-bottom-right-radius: $card-border-radius;
+    border-bottom-left-radius: variables.$border-radius;
+    border-bottom-right-radius: variables.$border-radius;
   }
 }
 
 .card__title {
   flex-grow: 1;
-  font-size: $card__title-font-size;
-  font-weight: $card__title-font-weight;
-  line-height: $card__title-line-height;
+  font-size: variables.$title-font-size;
+  font-weight: variables.$title-font-weight;
+  line-height: variables.$title-line-height;
 }
 
 .card__background,
 .card__screen {
-  @include size(100%);
+  @include core.size(100%);
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  transition-property: $card-transition-property;
-  transition-duration: $card-transition-duration;
-  transition-timing-function: $card-transition-timing-function;
-  border-radius: $card-border-radius;
+  transition-property: variables.$transition-property;
+  transition-duration: variables.$transition-duration;
+  transition-timing-function: variables.$transition-timing-function;
+  border-radius: variables.$border-radius;
 }
 
 .card__background {
@@ -94,6 +95,6 @@
 
 .card__screen {
   z-index: 2;
-  background: $card__screen-background;
-  opacity: $card__screen-opacity;
+  background: variables.$screen-background;
+  opacity: variables.$screen-opacity;
 }

@@ -1,8 +1,9 @@
-@import "./variables";
+@use "@vrembem/core";
+@use "./variables";
 
 .section {
   position: relative;
-  padding: map-get($section-padding, 'base');
+  padding: map-get(variables.$padding, 'base');
 }
 
 .section__container {
@@ -11,14 +12,14 @@
 }
 
 .section__intro {
-  max-width: $section__intro-max-width;
+  max-width: variables.$intro-max-width;
   margin: 0 auto;
   text-align: center;
 }
 
-@each $bp, $value in $section-padding {
+@each $bp, $value in variables.$padding {
   @if ($bp != 'base') {
-    @include media-min($bp) {
+    @include core.media-min($bp) {
       .section {
         padding: $value;
       }
@@ -44,6 +45,6 @@
 
 .section__screen {
   z-index: 2;
-  background: $section__screen-background;
-  opacity: $section__screen-opacity;
+  background: variables.$screen-background;
+  opacity: variables.$screen-opacity;
 }

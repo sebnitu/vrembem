@@ -1,30 +1,30 @@
-@import "@vrembem/core/";
+@use "@vrembem/core";
 
-$radio-color: $primary !default;
-$radio-size: 2.5em !default;
-$radio-transition-duration: $transition-duration-short !default;
-$radio-transition-timing-function: $transition-timing-function-sharp !default;
+$color: core.$primary !default;
+$size: 2.5em !default;
+$transition-duration: core.$transition-duration-short !default;
+$transition-timing-function: core.$transition-timing-function-sharp !default;
 
-$radio__background: transparent !default;
-$radio__background-hover: rgba($black, 0.03) !default;
-$radio__background-focus: rgba($black, 0.03) !default;
-$radio__background-active: rgba($black, 0.06) !default;
-$radio__background-checked: null !default;
-$radio__background-border-radius: $border-radius-circle !default;
+$background: transparent !default;
+$background-hover: rgba(core.$black, 0.03) !default;
+$background-focus: rgba(core.$black, 0.03) !default;
+$background-active: rgba(core.$black, 0.06) !default;
+$background-checked: null !default;
+$background-border-radius: core.$border-radius-circle !default;
 
-$radio__circle-size: 20px !default;
-$radio__circle-background: null !default;
-$radio__circle-background-hover: null !default;
-$radio__circle-background-focus: null !default;
-$radio__circle-background-active: null !default;
-$radio__circle-background-checked: $radio-color !default;
-$radio__circle-border-color: $gray-400 !default;
-$radio__circle-border-color-hover: $radio-color !default;
-$radio__circle-border-color-focus: $radio-color !default;
-$radio__circle-border-color-active: $radio-color !default;
-$radio__circle-border-color-checked: $radio-color !default;
-$radio__circle-border-width: 2px !default;
-$radio__circle-border-radius: $border-radius !default;
+$circle-size: 20px !default;
+$circle-background: null !default;
+$circle-background-hover: null !default;
+$circle-background-focus: null !default;
+$circle-background-active: null !default;
+$circle-background-checked: $color !default;
+$circle-border-color: core.$gray-400 !default;
+$circle-border-color-hover: $color !default;
+$circle-border-color-focus: $color !default;
+$circle-border-color-active: $color !default;
+$circle-border-color-checked: $color !default;
+$circle-border-width: 2px !default;
+$circle-border-radius: core.$border-radius !default;
 
-$radio__dot-size: 8px !default;
-$radio__dot-color: white !default;
+$dot-size: 8px !default;
+$dot-color: core.$white !default;

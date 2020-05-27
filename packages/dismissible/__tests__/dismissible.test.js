@@ -1,7 +1,7 @@
-import { Dismissible } from "../index.js"
-import "@testing-library/jest-dom/extend-expect"
+import { Dismissible } from '../index.js';
+import '@testing-library/jest-dom/extend-expect';
 
-let dismissible
+let dismissible;
 
 const dismissContent = `
   <div data-dismissible>
@@ -16,86 +16,86 @@ const dismissContent = `
   <div data-a>
     <button data-b></button>
   </div>
-`
+`;
 
 afterEach(() => {
-  dismissible.destroy()
-  document.body.innerHTML = null
-})
+  dismissible.destroy();
+  document.body.innerHTML = null;
+});
 
-test("dismiss using default settings and method", () => {
-  document.body.innerHTML = dismissContent
-  dismissible = new Dismissible()
-  const el = document.querySelector("[data-dismissible]")
-  const button = el.querySelector("[data-dismiss]")
+test('dismiss using default settings and method', () => {
+  document.body.innerHTML = dismissContent;
+  dismissible = new Dismissible();
+  const el = document.querySelector('[data-dismissible]');
+  const button = el.querySelector('[data-dismiss]');
 
-  dismissible.init()
-  expect(el).not.toHaveClass("display_none")
-  button.click()
-  expect(el).toHaveClass("display_none")
-})
+  dismissible.init();
+  expect(el).not.toHaveClass('display_none');
+  button.click();
+  expect(el).toHaveClass('display_none');
+});
 
-test("dismiss explicitly using the hide method", () => {
-  document.body.innerHTML = dismissContent
-  dismissible = new Dismissible({ autoInit: true })
-  const el = document.querySelector("[data-dismissible='hide']")
-  const button = el.querySelector("[data-dismiss]")
+test('dismiss explicitly using the hide method', () => {
+  document.body.innerHTML = dismissContent;
+  dismissible = new Dismissible({ autoInit: true });
+  const el = document.querySelector('[data-dismissible=\'hide\']');
+  const button = el.querySelector('[data-dismiss]');
 
-  dismissible.init()
-  expect(el).not.toHaveClass("display_none")
-  button.click()
-  expect(el).toHaveClass("display_none")
-})
+  dismissible.init();
+  expect(el).not.toHaveClass('display_none');
+  button.click();
+  expect(el).toHaveClass('display_none');
+});
 
-test("dismiss explicitly using the remove method", () => {
-  document.body.innerHTML = dismissContent
-  dismissible = new Dismissible({ autoInit: true })
-  const el = document.querySelector("[data-dismissible='remove']")
-  const button = el.querySelector("[data-dismiss]")
+test('dismiss explicitly using the remove method', () => {
+  document.body.innerHTML = dismissContent;
+  dismissible = new Dismissible({ autoInit: true });
+  const el = document.querySelector('[data-dismissible=\'remove\']');
+  const button = el.querySelector('[data-dismiss]');
 
-  expect(el).toBeInTheDocument()
-  button.click()
-  expect(el).not.toBeInTheDocument()
-})
+  expect(el).toBeInTheDocument();
+  button.click();
+  expect(el).not.toBeInTheDocument();
+});
 
-test("dismiss using custom settings and auto init", () => {
-  document.body.innerHTML = dismissContent
+test('dismiss using custom settings and auto init', () => {
+  document.body.innerHTML = dismissContent;
   dismissible = new Dismissible({
     autoInit: true,
-    dataTarget: "a",
-    dataTrigger: "b",
-    classHide: "hide"
-  })
-  const el = document.querySelector("[data-a]")
-  const button = document.querySelector("[data-b]")
+    dataTarget: 'a',
+    dataTrigger: 'b',
+    classHide: 'hide'
+  });
+  const el = document.querySelector('[data-a]');
+  const button = document.querySelector('[data-b]');
 
-  expect(el).not.toHaveClass("hide")
-  button.click()
-  expect(el).toHaveClass("hide")
-})
+  expect(el).not.toHaveClass('hide');
+  button.click();
+  expect(el).toHaveClass('hide');
+});
 
-test("dismiss using the remove method via settings", () => {
+test('dismiss using the remove method via settings', () => {
   dismissible = new Dismissible({
     autoInit: true,
-    method: "remove"
-  })
-  document.body.innerHTML = dismissContent
-  const el = document.querySelector("[data-dismissible]")
-  const button = document.querySelector("[data-dismiss]")
+    method: 'remove'
+  });
+  document.body.innerHTML = dismissContent;
+  const el = document.querySelector('[data-dismissible]');
+  const button = document.querySelector('[data-dismiss]');
 
-  expect(el).toBeInTheDocument()
-  button.click()
-  expect(el).not.toBeInTheDocument()
-})
+  expect(el).toBeInTheDocument();
+  button.click();
+  expect(el).not.toBeInTheDocument();
+});
 
-test("dismissible destroy method removes event listener", () => {
-  dismissible = new Dismissible({ autoInit: true })
-  document.body.innerHTML = dismissContent
-  const el = document.querySelector("[data-dismissible]")
-  const button = document.querySelector("[data-dismiss]")
+test('dismissible destroy method removes event listener', () => {
+  dismissible = new Dismissible({ autoInit: true });
+  document.body.innerHTML = dismissContent;
+  const el = document.querySelector('[data-dismissible]');
+  const button = document.querySelector('[data-dismiss]');
 
-  expect(el).not.toHaveClass("hide")
-  dismissible.destroy()
-  button.click()
-  expect(el).not.toHaveClass("hide")
-})
+  expect(el).not.toHaveClass('hide');
+  dismissible.destroy();
+  button.click();
+  expect(el).not.toHaveClass('hide');
+});

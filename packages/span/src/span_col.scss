@@ -1,20 +1,21 @@
-@import "./variables";
+@use "@vrembem/core";
+@use "./variables";
 
-@for $i from 1 through $span-columns {
+@for $i from 1 through variables.$columns {
   .span_#{$i} {
-    flex: 0 0 (100% * ($i/$span-columns));
-    width: (100% * ($i/$span-columns));
-    max-width: (100% * ($i/$span-columns));
+    flex: 0 0 (100% * ($i/variables.$columns));
+    width: (100% * ($i/variables.$columns));
+    max-width: (100% * ($i/variables.$columns));
   }
 }
 
-@each $key, $value in $breakpoints {
-  @include media-min($key) {
-    @for $i from 1 through $span-columns {
+@each $key, $value in core.$breakpoints {
+  @include core.media-min($key) {
+    @for $i from 1 through variables.$columns {
       .span_#{$i}_#{$key} {
-        flex-basis: (100% * ($i/$span-columns));
-        width: (100% * ($i/$span-columns));
-        max-width: (100% * ($i/$span-columns));
+        flex-basis: (100% * ($i/variables.$columns));
+        width: (100% * ($i/variables.$columns));
+        max-width: (100% * ($i/variables.$columns));
       }
     }
   }

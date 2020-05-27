@@ -1,4 +1,5 @@
-@import "./src/notice";
-@import "./src/notice_color";
-@import "./src/notice_stack";
-@import "./src/notice_state";
+@forward "./src/variables";
+@forward "./src/notice";
+@forward "./src/notice_color";
+@forward "./src/notice_stack";
+@forward "./src/notice_state";

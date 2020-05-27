@@ -1,9 +1,5 @@
-/**
- * Toolbar
- * ---
- * A toolbar component that sits at the top of a page. Contains important
- * information and navigational tools.
- */
+@use "@vrembem/core";
+@use "../variables";
 
 .toolbar {
   position: fixed;
@@ -13,13 +9,13 @@
   left: 0;
   flex-grow: 0;
   padding: 0.5em;
-  background: $background-gradient;
-  background-color: $background-color;
-  box-shadow: $box-shadow-4dp;
-  color: $white;
+  background: variables.$background-gradient;
+  background-color: variables.$background-color;
+  box-shadow: core.$box-shadow-4dp;
+  color: core.$white;
 }
 
-@include media-min('md') {
+@include core.media-min('md') {
   .toolbar {
     padding: 1em;
   }

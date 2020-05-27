@@ -1,73 +1,74 @@
-@import "./variables";
+@use "@vrembem/core";
+@use "./variables";
 
-$menu_theme_invert-color: $white !default;
-$menu_theme_invert-color-hover: null !default;
-$menu_theme_invert-color-focus: null !default;
-$menu_theme_invert-color-active: null !default;
-$menu_theme_invert-color-is-active: $primary !default;
-$menu_theme_invert-color-is-disabled: rgba($white, 0.5) !default;
+$color: core.$white !default;
+$color-hover: null !default;
+$color-focus: null !default;
+$color-active: null !default;
+$color-is-active: core.$primary !default;
+$color-is-disabled: rgba(core.$white, 0.5) !default;
 
-$menu_theme_invert-background: null !default;
-$menu_theme_invert-background-hover: rgba($white, 0.06) !default;
-$menu_theme_invert-background-focus: rgba($white, 0.09) !default;
-$menu_theme_invert-background-active: rgba($white, 0.12) !default;
-$menu_theme_invert-background-is-active: none !default;
-$menu_theme_invert-background-is-disabled: none !default;
+$background: null !default;
+$background-hover: rgba(core.$white, 0.06) !default;
+$background-focus: rgba(core.$white, 0.09) !default;
+$background-active: rgba(core.$white, 0.12) !default;
+$background-is-active: none !default;
+$background-is-disabled: none !default;
 
-$menu_theme_invert__sep-background: $border-color-invert !default;
-$menu_theme_invert__text-color: $white !default;
+$theme__sep-background: core.$border-color-invert !default;
+$theme__text-color: core.$white !default;
 
 .menu_theme_invert {
   .menu__sep {
-    background: $menu_theme_invert__sep-background;
+    background: $theme__sep-background;
   }
 
   .menu__link {
-    background: $menu_theme_invert-background;
-    color: $menu_theme_invert-color;
+    background: $background;
+    color: $color;
 
     &:hover {
-      background: $menu_theme_invert-background-hover;
-      color: $menu_theme_invert-color-hover;
+      background: $background-hover;
+      color: $color-hover;
     }
 
     &:focus {
-      background: $menu_theme_invert-background-focus;
-      color: $menu_theme_invert-color-focus;
+      background: $background-focus;
+      color: $color-focus;
     }
 
     &:active {
-      background: $menu_theme_invert-background-active;
-      color: $menu_theme_invert-color-active;
+      background: $background-active;
+      color: $color-active;
     }
 
     &.is-active {
-      background: $menu_theme_invert-background-is-active;
-      color: $menu_theme_invert-color-is-active;
+      background: $background-is-active;
+      color: $color-is-active;
 
       &:hover,
       &:focus,
       &:active {
-        background: $menu_theme_invert-background-is-active;
-        color: $menu_theme_invert-color-is-active;
+        background: $background-is-active;
+        color: $color-is-active;
       }
     }
 
     &.is-disabled {
-      background: $menu_theme_invert-background-is-disabled;
-      color: $menu_theme_invert-color-is-disabled;
+      background: $background-is-disabled;
+      color: $color-is-disabled;
 
       &:hover,
       &:focus,
       &:active {
-        background: $menu_theme_invert-background-is-disabled;
-        color: $menu_theme_invert-color-is-disabled;
+        background: $background-is-disabled;
+        color: $color-is-disabled;
       }
     }
   }
 
   .menu__text {
-    background: $menu_theme_invert-background;
-    color: $menu_theme_invert__text-color;
+    background: $background;
+    color: $theme__text-color;
   }
 }

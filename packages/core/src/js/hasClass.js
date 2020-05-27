@@ -8,12 +8,12 @@
  */
 
 export const hasClass = (el, ...cl) => {
-  el = (el.forEach) ? el : [el]
-  el = [].slice.call(el)
+  el = (el.forEach) ? el : [el];
+  el = [].slice.call(el);
 
   return cl.some((cl) => {
     return el.some((el) => {
-      if (el.classList.contains(cl)) return true
-    })
-  })
-}
+      if (el.classList.contains(cl)) return true;
+    });
+  });
+};

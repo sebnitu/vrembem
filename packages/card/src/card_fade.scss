@@ -1,12 +1,13 @@
-@import "./variables";
+@use "@vrembem/core";
+@use "./variables";
 
-@include media-min("md") {
+@include core.media-min("md") {
   .card_fade {
     .card__header,
     .card__body,
     .card__footer,
     .card__screen {
-      transition: opacity $card-transition-duration $card-transition-timing-function;
+      transition: opacity variables.$transition-duration variables.$transition-timing-function;
       opacity: 0;
     }
 
@@ -20,7 +21,7 @@
       }
 
       .card__screen {
-        opacity: $card__screen-opacity;
+        opacity: variables.$screen-opacity;
       }
     }
   }

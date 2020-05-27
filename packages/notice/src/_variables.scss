@@ -1,15 +1,15 @@
-@import "@vrembem/core/";
+@use "@vrembem/core";
 
-$notice-padding: 1em !default;
-$notice-spacing: 0.5em !default;
-$notice-background: $shade !default;
-$notice-box-shadow: null !default;
-$notice-border: null !default;
-$notice-border-radius: $border-radius !default;
+$padding: 1em !default;
+$spacing: 0.5em !default;
+$background: core.$shade !default;
+$box-shadow: null !default;
+$border: null !default;
+$border-radius: core.$border-radius !default;
 
-$notice__title-font-size: $font-size-lg !default;
-$notice__title-line-height: $line-height-lg !default;
-$notice__title-font-weight: font-weight("semi-bold") !default;
+$title-font-size: core.$font-size-lg !default;
+$title-line-height: core.$line-height-lg !default;
+$title-font-weight: core.font-weight("semi-bold") !default;
 
-$notice__body-spacing: 1rem !default;
-$notice__actions-spacing: 0.5rem !default;
+$body-spacing: 1rem !default;
+$actions-spacing: 0.5rem !default;

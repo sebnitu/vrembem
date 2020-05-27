@@ -1,5 +1,5 @@
-@import "./mixins";
+@use "./mixins";
 
 .code {
-  @include code();
+  @include mixins.code();
 }

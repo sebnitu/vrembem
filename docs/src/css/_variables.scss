@@ -1,7 +1,9 @@
-$background-color: $blue-gray-900;
+@use "@vrembem/core";
+
+$background-color: core.$blue-gray-900;
 $background-gradient:
   linear-gradient(
     148deg,
-    $blue-gray-700 0,
-    $blue-gray-900 100%
+    core.$blue-gray-700 0,
+    core.$blue-gray-900 100%
   );

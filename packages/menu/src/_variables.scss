@@ -1,38 +1,38 @@
-@import "@vrembem/core/";
+@use "@vrembem/core";
 
-$menu-min-size: 2.5rem !default;
-$menu-gap: 1px !default;
-$menu-padding: $padding !default;
-$menu-icon-padding: 0.1em !default;
-$menu-inner-spacing: 0.5em !default;
-$menu-font-size: 1em !default;
-$menu-line-height: 1.5 !default;
-$menu-border-radius: $border-radius !default;
-$menu-outline-focus: none !default;
-$menu-outline-focus-offset: null !default;
+$min-size: 2.5rem !default;
+$gap: 1px !default;
+$padding: core.$padding !default;
+$icon-padding: 0.1em !default;
+$inner-spacing: 0.5em !default;
+$font-size: 1em !default;
+$line-height: 1.5 !default;
+$border-radius: core.$border-radius !default;
+$outline-focus: none !default;
+$outline-focus-offset: null !default;
 
-$menu-background: none !default;
-$menu-background-hover: rgba($black, 0.06) !default;
-$menu-background-focus: rgba($black, 0.09) !default;
-$menu-background-active: rgba($black, 0.12) !default;
-$menu-background-is-active: none !default;
-$menu-background-is-disabled: none !default;
+$background: none !default;
+$background-hover: rgba(core.$black, 0.06) !default;
+$background-focus: rgba(core.$black, 0.09) !default;
+$background-active: rgba(core.$black, 0.12) !default;
+$background-is-active: none !default;
+$background-is-disabled: none !default;
 
-$menu-box-shadow: null !default;
-$menu-box-shadow-hover: null !default;
-$menu-box-shadow-focus: null !default;
-$menu-box-shadow-active: null !default;
+$box-shadow: null !default;
+$box-shadow-hover: null !default;
+$box-shadow-focus: null !default;
+$box-shadow-active: null !default;
 
-$menu-color: $color !default;
-$menu-color-hover: null !default;
-$menu-color-focus: null !default;
-$menu-color-active: null !default;
-$menu-color-is-active: $primary !default;
-$menu-color-is-disabled: $color-subtle !default;
+$color: core.$color !default;
+$color-hover: null !default;
+$color-focus: null !default;
+$color-active: null !default;
+$color-is-active: core.$primary !default;
+$color-is-disabled: core.$color-subtle !default;
 
-$menu__text-background: null !default;
-$menu__text-color: $color !default;
+$text-background: null !default;
+$text-color: core.$color !default;
 
-$menu__sep-spacing: 0.5em !default;
-$menu__sep-width: 1px !default;
-$menu__sep-background: $border-color !default;
+$sep-spacing: 0.5em !default;
+$sep-width: 1px !default;
+$sep-background: core.$border-color !default;

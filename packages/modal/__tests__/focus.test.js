@@ -1,8 +1,8 @@
-import { Modal } from "../index.js"
-import "@testing-library/jest-dom/extend-expect"
+import { Modal } from '../index.js';
+import '@testing-library/jest-dom/extend-expect';
 
-let modal
-const ev = new Event("transitionend")
+let modal;
+const ev = new Event('transitionend');
 
 const markup = `
   <button data-modal-open="modal-one">Modal One</button>
@@ -19,80 +19,80 @@ const markup = `
       <button data-modal-open="modal-one">Modal One</button>
     </div>
   </div>
-`
+`;
 
 afterEach(() => {
-  modal.destroy()
-  modal = null
-  document.body.innerHTML = null
-})
+  modal.destroy();
+  modal = null;
+  document.body.innerHTML = null;
+});
 
-test("should focus modal when opened and refocus trigger when closed", () => {
-  document.body.innerHTML = markup
-  modal = new Modal({ autoInit: true })
-  const el = document.querySelector("[data-modal='modal-one']")
-  const btnOpen = document.querySelector("[data-modal-open='modal-one']")
+test('should focus modal when opened and refocus trigger when closed', () => {
+  document.body.innerHTML = markup;
+  modal = new Modal({ autoInit: true });
+  const el = document.querySelector('[data-modal=\'modal-one\']');
+  const btnOpen = document.querySelector('[data-modal-open=\'modal-one\']');
 
-  btnOpen.click()
-  el.dispatchEvent(ev)
-  expect(el).toHaveFocus()
-})
+  btnOpen.click();
+  el.dispatchEvent(ev);
+  expect(el).toHaveFocus();
+});
 
-test("should focus inner modal element and refocus trigger when closed", () => {
-  document.body.innerHTML = markup
-  modal = new Modal({ autoInit: true })
-  const el = document.querySelector("[data-modal='modal-two']")
-  const btnOpen = document.querySelector("[data-modal-open='modal-two']")
-  const btnClose = el.querySelector("[data-modal-close]")
+test('should focus inner modal element and refocus trigger when closed', () => {
+  document.body.innerHTML = markup;
+  modal = new Modal({ autoInit: true });
+  const el = document.querySelector('[data-modal=\'modal-two\']');
+  const btnOpen = document.querySelector('[data-modal-open=\'modal-two\']');
+  const btnClose = el.querySelector('[data-modal-close]');
 
-  btnOpen.click()
-  el.dispatchEvent(ev)
-  expect(btnClose).toHaveFocus()
+  btnOpen.click();
+  el.dispatchEvent(ev);
+  expect(btnClose).toHaveFocus();
 
-  btnClose.click()
-  el.dispatchEvent(ev)
-  expect(btnOpen).toHaveFocus()
-})
+  btnClose.click();
+  el.dispatchEvent(ev);
+  expect(btnOpen).toHaveFocus();
+});
 
-test("should remember initial trigger when opening modal through another modal", () => {
-  document.body.innerHTML = markup
-  modal = new Modal({ autoInit: true })
-  const elOne = document.querySelector("[data-modal='modal-one']")
-  const elTwo = document.querySelector("[data-modal='modal-two']")
-  const btnOpen = document.querySelector("[data-modal-open='modal-one']")
-  const btnTwo = elOne.querySelector("[data-modal-open='modal-two']")
-  const btnClose = elTwo.querySelector("[data-modal-close]")
+test('should remember initial trigger when opening modal through another modal', () => {
+  document.body.innerHTML = markup;
+  modal = new Modal({ autoInit: true });
+  const elOne = document.querySelector('[data-modal=\'modal-one\']');
+  const elTwo = document.querySelector('[data-modal=\'modal-two\']');
+  const btnOpen = document.querySelector('[data-modal-open=\'modal-one\']');
+  const btnTwo = elOne.querySelector('[data-modal-open=\'modal-two\']');
+  const btnClose = elTwo.querySelector('[data-modal-close]');
 
-  btnOpen.click()
-  elOne.dispatchEvent(ev)
+  btnOpen.click();
+  elOne.dispatchEvent(ev);
 
-  btnTwo.click()
-  elOne.dispatchEvent(ev)
-  elTwo.dispatchEvent(ev)
+  btnTwo.click();
+  elOne.dispatchEvent(ev);
+  elTwo.dispatchEvent(ev);
 
-  btnClose.click()
-  elTwo.dispatchEvent(ev)
+  btnClose.click();
+  elTwo.dispatchEvent(ev);
 
-  expect(btnOpen).toHaveFocus()
-})
+  expect(btnOpen).toHaveFocus();
+});
 
-test("should disable focus handling when setting focus false", () => {
-  document.body.innerHTML = markup
+test('should disable focus handling when setting focus false', () => {
+  document.body.innerHTML = markup;
   modal = new Modal({
     autoInit: true,
     focus: false
-  })
-  const el = document.querySelector("[data-modal='modal-two']")
-  const btnOpen = document.querySelector("[data-modal-open='modal-two']")
-  const btnClose = el.querySelector("[data-modal-close]")
+  });
+  const el = document.querySelector('[data-modal=\'modal-two\']');
+  const btnOpen = document.querySelector('[data-modal-open=\'modal-two\']');
+  const btnClose = el.querySelector('[data-modal-close]');
 
-  btnOpen.click()
-  el.dispatchEvent(ev)
-  expect(el).toHaveClass("is-open")
-  expect(btnClose).not.toHaveFocus()
+  btnOpen.click();
+  el.dispatchEvent(ev);
+  expect(el).toHaveClass('is-open');
+  expect(btnClose).not.toHaveFocus();
 
-  btnClose.click()
-  el.dispatchEvent(ev)
-  expect(el).not.toHaveClass("is-open")
-  expect(btnOpen).not.toHaveFocus()
-})
+  btnClose.click();
+  el.dispatchEvent(ev);
+  expect(el).not.toHaveClass('is-open');
+  expect(btnOpen).not.toHaveFocus();
+});

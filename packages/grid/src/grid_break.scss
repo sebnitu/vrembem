@@ -1,4 +1,4 @@
-@import "./variables";
+@use "@vrembem/core";
 
 .grid_break {
   flex-direction: column;
@@ -10,18 +10,18 @@
   }
 }
 
-@each $key, $value in $breakpoints {
+@each $key, $value in core.$breakpoints {
   .grid_break_#{$key} {
     flex-direction: column;
   }
 
-  @include media-min($key) {
+  @include core.media-min($key) {
     .grid_break_#{$key} {
       flex-direction: row;
     }
   }
 
-  @include media-max($key) {
+  @include core.media-max($key) {
     .grid_break_#{$key} > .grid__item {
       flex: 1 0 100%;
       width: 100%;

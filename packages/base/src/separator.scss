@@ -1,33 +1,35 @@
-@import "./mixins";
+@use "@vrembem/core";
+@use "./variables";
+@use "./mixins";
 
-.#{$class-separator} {
-  @include separator();
+.#{variables.$class-separator} {
+  @include mixins.separator();
 }
 
-.#{$class-separator}_light {
-  border-color: $border-color-light !important;
+.#{variables.$class-separator}_light {
+  border-color: core.$border-color-light !important;
 }
 
-.#{$class-separator}_dark {
-  border-color: $border-color-dark !important;
+.#{variables.$class-separator}_dark {
+  border-color: core.$border-color-dark !important;
 }
 
-.#{$class-separator}_darker {
-  border-color: $border-color-darker !important;
+.#{variables.$class-separator}_darker {
+  border-color: core.$border-color-darker !important;
 }
 
-.#{$class-separator}_invert {
-  border-color: $border-color-invert !important;
+.#{variables.$class-separator}_invert {
+  border-color: core.$border-color-invert !important;
 }
 
-.#{$class-separator}_invert-light {
-  border-color: $border-color-invert-light !important;
+.#{variables.$class-separator}_invert-light {
+  border-color: core.$border-color-invert-light !important;
 }
 
-.#{$class-separator}_invert-dark {
-  border-color: $border-color-invert-dark !important;
+.#{variables.$class-separator}_invert-dark {
+  border-color: core.$border-color-invert-dark !important;
 }
 
-.#{$class-separator}_invert-darker {
-  border-color: $border-color-invert-darker !important;
+.#{variables.$class-separator}_invert-darker {
+  border-color: core.$border-color-invert-darker !important;
 }

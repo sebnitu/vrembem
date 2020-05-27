@@ -1,35 +1,36 @@
-@import "./variables";
+@use "@vrembem/core";
+@use "./variables";
 
 .input {
   position: relative;
   display: block;
   width: 100%;
-  padding: $input-padding;
-  transition: box-shadow $transition-duration $transition-timing-function;
-  border: $input-border;
-  border-radius: $input-border-radius;
-  background: $input-background;
-  box-shadow: $input-box-shadow-values $input-box-shadow-color;
-  color: $color;
-  font-family: $font-family;
-  font-size: $input-font-size;
-  line-height: $input-line-height;
+  padding: variables.$padding;
+  transition: box-shadow core.$transition-duration core.$transition-timing-function;
+  border: variables.$border;
+  border-radius: variables.$border-radius;
+  background: variables.$background;
+  box-shadow: variables.$box-shadow-values variables.$box-shadow-color;
+  color: core.$color;
+  font-family: core.$font-family;
+  font-size: variables.$font-size;
+  line-height: variables.$line-height;
   appearance: none;
 
   &:hover {
-    border-color: $input-border-color-hover;
-    box-shadow: $input-box-shadow-hover-values $input-box-shadow-hover-color;
+    border-color: variables.$border-color-hover;
+    box-shadow: variables.$box-shadow-hover-values variables.$box-shadow-hover-color;
   }
 
   &:focus {
     outline: none;
-    border-color: $input-border-color-focus;
-    background-color: $input-background-focus;
-    box-shadow: $input-box-shadow-focus-values $input-box-shadow-focus-color;
+    border-color: variables.$border-color-focus;
+    background-color: variables.$background-focus;
+    box-shadow: variables.$box-shadow-focus-values variables.$box-shadow-focus-color;
   }
 
   &::placeholder {
-    color: $color-subtle;
+    color: core.$color-subtle;
   }
 }
 
@@ -38,18 +39,18 @@
 }
 
 .input_color_invert {
-  border-color: rgba($white, 0);
-  background: rgba($white, 0.1);
+  border-color: rgba(core.$white, 0);
+  background: rgba(core.$white, 0.1);
   box-shadow: none;
-  color: $white;
+  color: core.$white;
 
   &:focus {
-    border-color: rgba($white, 0);
-    background: rgba($white, 0.2);
+    border-color: rgba(core.$white, 0);
+    background: rgba(core.$white, 0.2);
     box-shadow: none;
   }
 
   &::placeholder {
-    color: rgba($white, 0.5);
+    color: rgba(core.$white, 0.5);
   }
 }

@@ -1,11 +1,11 @@
-@import "./variables";
+@use "./variables";
 
 .dropdown_size_sm .dropdown__menu {
-  width: $dropdown_size_sm-width;
+  width: variables.$size_sm-width;
 }
 
 .dropdown_size_lg .dropdown__menu {
-  width: $dropdown_size_lg-width;
+  width: variables.$size_lg-width;
 }
 
 .dropdown_size_auto .dropdown__menu {

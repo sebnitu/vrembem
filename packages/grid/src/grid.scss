@@ -1,10 +1,10 @@
-@import "./variables";
+@use "./variables";
 
 .grid {
   display: flex;
   flex-wrap: wrap;
-  margin-top: ($grid-gap * -1);
-  margin-left: ($grid-gap * -1);
+  margin-top: (variables.$gap * -1);
+  margin-left: (variables.$gap * -1);
 
   & + & {
     margin-top: 0;
@@ -15,8 +15,8 @@
   flex: 1 1 0;
   width: auto;
   max-width: 100%;
-  padding-top: $grid-gap;
-  padding-left: $grid-gap;
+  padding-top: variables.$gap;
+  padding-left: variables.$gap;
 }
 
 .grid__clear {

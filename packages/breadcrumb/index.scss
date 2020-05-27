@@ -1,2 +1,3 @@
-@import "./src/breadcrumb";
-@import "./src/breadcrumb_invert";
+@forward "./src/variables";
+@forward "./src/breadcrumb";
+@forward "./src/breadcrumb_invert";

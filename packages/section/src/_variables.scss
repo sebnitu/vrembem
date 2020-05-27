@@ -1,16 +1,16 @@
-@import "@vrembem/core/";
+@use "@vrembem/core";
 
-$section__intro-max-width: 45rem !default;
-$section__screen-opacity: 0.6 !default;
-$section__screen-background: $night !default;
+$intro-max-width: 45rem !default;
+$screen-opacity: 0.6 !default;
+$screen-background: core.$night !default;
 
-$section-padding: (
+$padding: (
   'base': 1.5em,
   'md': 2em 1.5em,
   'lg': 3em 1.5em
 ) !default;
 
-$section-padding-scale: (
+$padding-scale: (
   'xs': (
     'base': 0,
     'md': 0,

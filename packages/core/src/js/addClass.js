@@ -6,8 +6,8 @@
  */
 
 export const addClass = (el, ...cl) => {
-  el = (el.forEach) ? el : [el]
+  el = (el.forEach) ? el : [el];
   el.forEach((el) => {
-    el.classList.add(...cl)
-  })
-}
+    el.classList.add(...cl);
+  });
+};

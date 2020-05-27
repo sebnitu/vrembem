@@ -1,4 +1,4 @@
-@import "./variables";
+@use "@vrembem/core";
 
 .span_auto {
   flex: 0 0 auto;
@@ -6,8 +6,8 @@
   max-width: none;
 }
 
-@each $key, $value in $breakpoints {
-  @include media-min($key) {
+@each $key, $value in core.$breakpoints {
+  @include core.media-min($key) {
     .span_auto_#{$key} {
       flex: 0 0 auto;
       width: auto;

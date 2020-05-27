@@ -7,7 +7,7 @@ A CSS component library based on the BEM methodology.
 
 ## About
 
-Vrembem is a front-end CSS component library written with the goal of making available common web interface patterns. This allows developers and designers to implement robust components into their web projects while keeping them flexible and customizable through the use of the [BEM methodology](https://en.bem.info/methodology/) and [Sass](https://sass-lang.com/)<a href="#user-content-n-1" name="nref-1">\*</a>.
+Vrembem is a front-end CSS component library written with the goal of making available common web interface patterns. This allows developers and designers to implement robust components into their web projects while keeping them flexible and customizable through the use of the [BEM methodology](https://en.bem.info/methodology/) and [Sass CSS extension language](https://sass-lang.com/).
 
 Vrembem is the passion project of Sebastian Nitu, UI designer and front-end developer. It was created out of the need to reduce repetitive work and allow the focus of unique aspects in a project. Vrembem is constantly being improved and tweaked to make it's use as delightful as possible.
 
@@ -26,12 +26,17 @@ npm install @vrembem/menu
 Include the component in your build's Sass manifest file:
 
 ```scss
-@import "@vrembem/menu";
+@use "@vrembem/menu";
 ```
 
-> <a href="#user-content-nref-1" name="n-1">\*</a> Note: Vrembem is currently in the process of being converted to [Sass' new module system](https://sass-lang.com/blog/the-module-system-is-launched) where you'll be able to include components using the `@use` and `@forward` features.
+Vrembem uses [Sass' module system](https://sass-lang.com/blog/the-module-system-is-launched), pass in custom variables using the [`with` keyword](https://sass-lang.com/documentation/at-rules/use#configuration).
 
-This will include all styles, mixins, functions and variables related to the respective component you've installed and imported. Make sure to include variable overrides before the import or using the `with` keyword if you're using [Sass' module system](https://sass-lang.com/blog/the-module-system-is-launched).
+```scss
+@use "@vrembem/menu" with (
+  $background: #efefef,
+  $background-hover: #e0e0e0
+);
+```
 
 ### HTML
 
@@ -85,7 +90,7 @@ npm install vrembem
 Via your project's Sass manifest file:
 
 ```scss
-@import "vrembem";
+@use "vrembem";
 ```
 
 Via your project's JavaScript manifest file:

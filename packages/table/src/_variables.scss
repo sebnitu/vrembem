@@ -1,20 +1,20 @@
-@import "@vrembem/core/";
+@use "@vrembem/core";
 
-$table-padding: $padding !default;
-$table-padding-sm: $padding-sm !default;
-$table-padding-lg: $padding-lg !default;
+$padding: core.$padding !default;
+$padding-sm: core.$padding-sm !default;
+$padding-lg: core.$padding-lg !default;
 
-$table-border-color: $border-color !default;
-$table-border: 1px solid $table-border-color !default;
+$border-color: core.$border-color !default;
+$border: 1px solid $border-color !default;
 
-$table-background: null !default;
-$table-background-zebra: rgba($black, 0.03) !default;
-$table-background-hover: rgba($yellow, 0.3) !default;
-$table-box-shadow-hover: null !default;
+$background: null !default;
+$background-zebra: rgba(core.$black, 0.03) !default;
+$background-hover: rgba(core.$yellow, 0.3) !default;
+$box-shadow-hover: null !default;
 
-$table-color: null !default;
-$table-color-hover: null !default;
+$color: null !default;
+$color-hover: null !default;
 
-$table-th-font-weight: font-weight("bold") !default;
-$table-th-background: null !default;
-$table-td-background: null !default;
+$th-font-weight: core.font-weight("bold") !default;
+$th-background: null !default;
+$td-background: null !default;

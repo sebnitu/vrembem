@@ -1,3 +1,4 @@
-@import "./src/dropdown";
-@import "./src/dropdown_size";
-@import "./src/dropdown_pos";
+@forward "./src/variables";
+@forward "./src/dropdown";
+@forward "./src/dropdown_size";
+@forward "./src/dropdown_pos";

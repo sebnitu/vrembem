@@ -1,4 +1,5 @@
-@import "./src/modal";
-@import "./src/modal_full";
-@import "./src/modal_pos";
-@import "./src/modal_size";
+@forward "./src/variables";
+@forward "./src/modal";
+@forward "./src/modal_full";
+@forward "./src/modal_pos";
+@forward "./src/modal_size";

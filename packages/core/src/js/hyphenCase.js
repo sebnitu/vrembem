@@ -7,6 +7,6 @@
 
 export const hyphenCase = (str) => {
   return str.replace(/([a-z][A-Z])/g, function (g) {
-    return g[0] + "-" + g[1].toLowerCase()
-  })
-}
+    return g[0] + '-' + g[1].toLowerCase();
+  });
+};

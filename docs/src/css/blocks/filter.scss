@@ -1,31 +1,27 @@
-/**
- * Menu Filter
- * ---
- * Handles the styles of the search filter displayed above the jumbo list.
- */
+@use "@vrembem/core";
 
 .filter {
   position: relative;
   z-index: 4;
   flex-grow: 1;
-  background: $shade;
+  background: core.$shade;
 
   &.is-active {
-    border-color: $primary;
+    border-color: core.$primary;
   }
 
   .search {
     padding: 0.75em 2.75em;
     border: none;
-    border-radius: $border-radius;
-    background: $white;
+    border-radius: core.$border-radius;
+    background: core.$white;
     box-shadow: none;
 
     &:focus,
     &.is-active {
-      background: $white;
-      box-shadow: $box-shadow;
-      color: $primary;
+      background: core.$white;
+      box-shadow: core.$box-shadow;
+      color: core.$primary;
     }
   }
 

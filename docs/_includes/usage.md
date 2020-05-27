@@ -20,19 +20,13 @@ npm install @vrembem/{{ page.usage.npm }}
 
 {% if page.usage.scss and page.title != "Core" and page.title != "Vrembem" %}
 ```scss
-@import "@vrembem/{{ page.usage.scss }}";
-```
-{% endif %}
-
-{% if page.usage.sass and page.title != "Core" and page.title != "Vrembem" %}
-```sass
-@use "@vrembem/{{ page.usage.sass }}";
+@use "@vrembem/{{ page.usage.scss }}";
 ```
 {% endif %}
 
 {% if page.usage.js and page.title != "Core" and page.title != "Vrembem" %}
 ```js
-import { {{ page.title }} } from "@vrembem/{{ page.usage.js }}"
+import { {{ page.title }} } from '@vrembem/{{ page.usage.js }}';
 ```
 {% endif %}
 

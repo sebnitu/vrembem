@@ -1,11 +1,11 @@
-@import "@vrembem/core/";
+@use "@vrembem/core";
 
-$tooltip-max-width: 20em !default;
-$tooltip-padding: 0.334em 0.75em !default;
-$tooltip-font-size: px-to-em(12px) !default;
-$tooltip-color: $white !default;
-$tooltip-background: rgba($color, 0.9) !default;
-$tooltip-border-radius: $border-radius !default;
-$tooltip-offset: 1px !default;
-$tooltip-scale: 0.75 !default;
-$tooltip-distance: 5px !default;
+$max-width: 20em !default;
+$padding: 0.334em 0.75em !default;
+$font-size: core.px-to-em(12px) !default;
+$color: core.$white !default;
+$background: rgba(core.$color, 0.9) !default;
+$border-radius: core.$border-radius !default;
+$offset: 1px !default;
+$scale: 0.75 !default;
+$distance: 5px !default;

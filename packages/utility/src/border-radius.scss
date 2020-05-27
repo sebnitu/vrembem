@@ -1,13 +1,14 @@
-@import "./variables";
+@use "@vrembem/core";
+@use "./variables";
 
-.#{$class-border-radius} {
-  border-radius: $border-radius !important;
+.#{variables.$class-border-radius} {
+  border-radius: core.$border-radius !important;
 }
 
-.#{$class-border-radius}_square {
+.#{variables.$class-border-radius}_square {
   border-radius: 0 !important;
 }
 
-.#{$class-border-radius}_circle {
-  border-radius: $border-radius-circle !important;
+.#{variables.$class-border-radius}_circle {
+  border-radius: core.$border-radius-circle !important;
 }

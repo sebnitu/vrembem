@@ -1,13 +1,13 @@
-@import "./variables";
+@use "./variables";
 
-.#{$class-spacing} {
+.#{variables.$class-spacing} {
   > * + * {
-    margin-top: $utility-spacing;
+    margin-top: variables.$spacing;
   }
 }
 
-@each $key, $value in $utility-spacing-map {
-  .#{$class-spacing}_#{$key} {
+@each $key, $value in variables.$spacing-map {
+  .#{variables.$class-spacing}_#{$key} {
     > * + * {
       margin-top: $value;
     }

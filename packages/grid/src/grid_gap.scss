@@ -1,4 +1,4 @@
-@import "./variables";
+@use "./variables";
 
 .grid_gap_none {
   margin-top: 0;
@@ -10,7 +10,7 @@
   }
 }
 
-@each $key, $value in $grid-gap-scale {
+@each $key, $value in variables.$gap-scale {
   .grid_gap_#{$key} {
     margin-top: ($value * -1);
     margin-left: ($value * -1);

@@ -1,4 +1,4 @@
-@import "./variables";
+@use "./variables";
 
 .dropdown {
   position: relative;
@@ -7,22 +7,22 @@
 
 .dropdown__menu {
   position: absolute;
-  z-index: $dropdown-z-index;
+  z-index: variables.$z-index;
   top: 100%;
   right: auto;
   bottom: auto;
   left: 0;
   display: none;
-  width: $dropdown-width;
-  margin: $dropdown_pos_spacing 0 0;
-  padding: $dropdown-spacing 0;
-  border: $dropdown-border;
-  border-radius: $dropdown-border-radius;
-  background: $dropdown-background;
+  width: variables.$width;
+  margin: variables.$pos_spacing 0 0;
+  padding: variables.$spacing 0;
+  border: variables.$border;
+  border-radius: variables.$border-radius;
+  background: variables.$background;
   background-clip: padding-box;
-  box-shadow: $dropdown-box-shadow;
-  font-size: $dropdown-font-size;
-  line-height: $dropdown-line-height;
+  box-shadow: variables.$box-shadow;
+  font-size: variables.$font-size;
+  line-height: variables.$line-height;
   list-style: none;
   text-align: left;
   white-space: normal;
@@ -35,89 +35,89 @@
     bottom: 100%;
     left: 0;
     width: 100%;
-    height: $dropdown_pos_spacing;
+    height: variables.$pos_spacing;
   }
 }
 
 .dropdown__sep {
-  margin: $dropdown-spacing 0;
-  border-bottom: $dropdown__sep-border;
+  margin: variables.$spacing 0;
+  border-bottom: variables.$sep-border;
 }
 
 .dropdown__link {
   position: relative;
   display: flex;
   align-items: center;
-  padding: $dropdown__link-padding;
+  padding: variables.$link-padding;
   border: none;
-  background: $dropdown__link-background;
-  color: $dropdown__link-color;
+  background: variables.$link-background;
+  color: variables.$link-color;
   vertical-align: middle;
 
   > * + * {
-    margin-left: $dropdown__link-inner-spacing;
+    margin-left: variables.$link-inner-spacing;
   }
 
   &:hover {
-    background: $dropdown__link-background-hover;
-    color: $dropdown__link-color-hover;
+    background: variables.$link-background-hover;
+    color: variables.$link-color-hover;
   }
 
   &:focus {
-    background: $dropdown__link-background-focus;
-    color: $dropdown__link-color-focus;
+    background: variables.$link-background-focus;
+    color: variables.$link-color-focus;
   }
 
   &:active {
-    background: $dropdown__link-background-active;
-    color: $dropdown__link-color-active;
+    background: variables.$link-background-active;
+    color: variables.$link-color-active;
   }
 
   &.is-active {
-    background: $dropdown__link-background-is-active;
-    color: $dropdown__link-color-is-active;
+    background: variables.$link-background-is-active;
+    color: variables.$link-color-is-active;
 
     &:hover,
     &:focus,
     &:active {
-      background: $dropdown__link-background-is-active;
-      color: $dropdown__link-color-is-active;
+      background: variables.$link-background-is-active;
+      color: variables.$link-color-is-active;
     }
   }
 
   &.is-disabled {
-    background: $dropdown__link-background-is-disabled;
-    color: $dropdown__link-color-is-disabled;
+    background: variables.$link-background-is-disabled;
+    color: variables.$link-color-is-disabled;
     cursor: auto;
 
     &:hover,
     &:focus,
     &:active {
-      background: $dropdown__link-background-is-disabled;
-      color: $dropdown__link-color-is-disabled;
+      background: variables.$link-background-is-disabled;
+      color: variables.$link-color-is-disabled;
     }
   }
 }
 
 .dropdown__content {
   display: block;
-  padding: $dropdown__link-padding;
+  padding: variables.$link-padding;
 
   > * + * {
-    margin-top: $dropdown-spacing;
+    margin-top: variables.$spacing;
   }
 }
 
 .dropdown__title {
-  font-size: $dropdown__title-font-size;
-  font-weight: $dropdown__title-font-weight;
-  line-height: $dropdown__title-line-height;
+  font-size: variables.$title-font-size;
+  font-weight: variables.$title-font-weight;
+  line-height: variables.$title-line-height;
 }
 
 .dropdown__item {
   position: relative;
   display: block;
-  margin: $dropdown__item-margin;
+  margin: variables.$item-margin;
 }
 
 /**
@@ -132,14 +132,14 @@
 }
 
 .is-active > .dropdown__menu {
-  z-index: ($dropdown-z-index + 1);
+  z-index: (variables.$z-index + 1);
 }
 
 .dropdown:not(.on-click):focus > .dropdown__menu,
 .dropdown:not(.on-click):focus-within > .dropdown__menu {
-  z-index: ($dropdown-z-index + 2);
+  z-index: (variables.$z-index + 2);
 }
 
 .dropdown:not(.on-click):hover > .dropdown__menu {
-  z-index: ($dropdown-z-index + 3);
+  z-index: (variables.$z-index + 3);
 }

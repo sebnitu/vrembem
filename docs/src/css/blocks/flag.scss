@@ -1,21 +1,17 @@
-/**
- * Flag
- * ---
- * Creates an emphasized heading that clearly labels following content.
- */
+@use "@vrembem/core";
 
 .flag,
 .type .flag {
   margin: 4em 0 2em;
-  border-top: 1px solid rgba($black, 0.1);
+  border-top: 1px solid rgba(core.$black, 0.1);
 
   > * {
     display: block;
     margin: 0;
     padding: 0.25em 0;
-    text-transform: uppercase;
+    font-weight: core.font-weight('semi-bold');
     letter-spacing: 1px;
-    font-weight: font-weight('semi-bold');
+    text-transform: uppercase;
   }
 
   &:first-child {

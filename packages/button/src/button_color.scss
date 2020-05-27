@@ -1,84 +1,85 @@
-@import "./variables";
+@use "@vrembem/core";
+@use "./variables";
 
 .button_color_subtle {
   background: none;
 
   &:hover {
-    background: rgba($black, 0.06);
+    background: rgba(core.$black, 0.06);
   }
 
   &:focus {
-    background: rgba($black, 0.09);
+    background: rgba(core.$black, 0.09);
   }
 
   &:active {
-    background: rgba($black, 0.12);
+    background: rgba(core.$black, 0.12);
   }
 
   &.is-loading::after {
-    border-color: set-border-color($button-loading-border-tpl, $color-subtle);
+    border-color: set-border-color(variables.$loading-border-tpl, core.$color-subtle);
   }
 
   &.button_invert {
     background: none;
-    color: $white;
+    color: core.$white;
 
     &:hover {
-      background: rgba($white, 0.06);
+      background: rgba(core.$white, 0.06);
     }
 
     &:focus {
-      background: rgba($white, 0.09);
+      background: rgba(core.$white, 0.09);
     }
 
     &:active {
-      background: rgba($white, 0.12);
+      background: rgba(core.$white, 0.12);
     }
 
     &.is-loading::after {
-      border-color: set-border-color($button-loading-border-tpl, $color-invert-subtle);
+      border-color: set-border-color(variables.$loading-border-tpl, core.$color-invert-subtle);
     }
   }
 }
 
 .button_color_primary {
-  background: $primary;
-  color: $white;
+  background: core.$primary;
+  color: core.$white;
 
   &:hover {
-    background: darken($primary, 6%);
+    background: darken(core.$primary, 6%);
   }
 
   &:focus {
-    background: darken($primary, 9%);
+    background: darken(core.$primary, 9%);
   }
 
   &:active {
-    background: darken($primary, 12%);
+    background: darken(core.$primary, 12%);
   }
 
   &.is-loading::after {
-    border-color: set-border-color($button-loading-border-tpl, $white);
+    border-color: set-border-color(variables.$loading-border-tpl, core.$white);
   }
 }
 
 .button_color_secondary {
-  background: $secondary;
-  color: $white;
+  background: core.$secondary;
+  color: core.$white;
 
   &:hover {
-    background: darken($secondary, 6%);
+    background: darken(core.$secondary, 6%);
   }
 
   &:focus {
-    background: darken($secondary, 9%);
+    background: darken(core.$secondary, 9%);
   }
 
   &:active {
-    background: darken($secondary, 12%);
+    background: darken(core.$secondary, 12%);
   }
 
   &.is-loading::after {
-    border-color: set-border-color($button-loading-border-tpl, $white);
+    border-color: set-border-color(variables.$loading-border-tpl, core.$white);
   }
 }

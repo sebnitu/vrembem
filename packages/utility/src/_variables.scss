@@ -1,5 +1,3 @@
-@import "@vrembem/core/";
-
 $class-background: "background" !default;
 $class-border: "border" !default;
 $class-border-radius: "radius" !default;
@@ -12,7 +10,7 @@ $class-padding: "padding" !default;
 $class-spacing: "spacing" !default;
 $class-text: "text" !default;
 
-$utility-display-properties: (
+$display-properties: (
   inline,
   flex,
   inline-flex,
@@ -21,8 +19,8 @@ $utility-display-properties: (
   none
 ) !default;
 
-$utility-spacing: 1rem !default;
-$utility-spacing-map: (
+$spacing: 1rem !default;
+$spacing-map: (
   "0": 0,
   "xs": 0.25rem,
   "sm": 0.5rem,
