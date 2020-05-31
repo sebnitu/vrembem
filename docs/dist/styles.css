@@ -24,6 +24,12 @@
   transform: rotate(-90deg);
 }
 
+/* @use "@vrembem/core" with (
+  $prefix-block: "vb-",
+  $prefix-element: "__",
+  $prefix-modifier: "--",
+  $prefix-modifier-value: "-"
+); */
 /**
  * Remove all spacing and inherit box-sizing on everything.
  */
@@ -5695,6 +5701,12 @@ input::-moz-placeholder {
   font-weight: 300 !important;
 }
 
+/* @use "@vrembem/core" with (
+  $prefix-block: "vb-",
+  $prefix-element: "__",
+  $prefix-modifier: "--",
+  $prefix-modifier-value: "-"
+); */
 .article__section {
   padding: 1.5em;
 }
@@ -6267,5 +6279,12 @@ input::-moz-placeholder {
 .version.error {
   color: #f44336;
 }
+
+/* @use "@vrembem/core" with (
+  $prefix-block: "vb-",
+  $prefix-element: "__",
+  $prefix-modifier: "--",
+  $prefix-modifier-value: "-"
+); */
 
 /*# sourceMappingURL=styles.css.map */

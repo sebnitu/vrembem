@@ -1,3 +1,10 @@
+/* @use "@vrembem/core" with (
+  $prefix-block: "vb-",
+  $prefix-element: "__",
+  $prefix-modifier: "--",
+  $prefix-modifier-value: "-"
+); */
+
 @use "vrembem";
 @use "blocks/article";
 @use "blocks/box";

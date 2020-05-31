@@ -24,6 +24,12 @@
   transform: rotate(-90deg);
 }
 
+/* @use "@vrembem/core" with (
+  $prefix-block: "vb-",
+  $prefix-element: "__",
+  $prefix-modifier: "--",
+  $prefix-modifier-value: "-"
+); */
 /**
  * Remove all spacing and inherit box-sizing on everything.
  */
@@ -5694,5 +5700,12 @@ input::-moz-placeholder {
   font-size: 1.2em !important;
   font-weight: 300 !important;
 }
+
+/* @use "@vrembem/core" with (
+  $prefix-block: "vb-",
+  $prefix-element: "__",
+  $prefix-modifier: "--",
+  $prefix-modifier-value: "-"
+); */
 
 /*# sourceMappingURL=styles.css.map */
