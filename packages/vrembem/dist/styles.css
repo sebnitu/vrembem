@@ -12,15 +12,15 @@
   pointer-events: none;
 }
 
-.arrow_up {
+.arrow_dir_up {
   transform: rotate(180deg);
 }
 
-.arrow_left {
+.arrow_dir_left {
   transform: rotate(90deg);
 }
 
-.arrow_right {
+.arrow_dir_right {
   transform: rotate(-90deg);
 }
 

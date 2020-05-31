@@ -1,0 +1,42 @@
+@use "./variables" as var;
+
+.#{var.$prefix-block}breadcrumb {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  color: var.$color;
+  list-style: none;
+}
+
+.#{var.$prefix-block}breadcrumb#{var.$prefix-element}item {
+  display: flex;
+  align-items: center;
+  margin: 0;
+
+  > * + * {
+    margin-left: 0.5em;
+  }
+
+  &::after {
+    content: var.$delimiter;
+    padding: var.$delimiter-padding;
+    color: var.$delimiter-color;
+  }
+
+  @if (var.$delimiter-last != true) {
+    &:last-child::after {
+      content: none;
+    }
+  }
+}
+
+.#{var.$prefix-block}breadcrumb#{var.$prefix-element}link {
+  border-bottom: var.$link-border;
+  color: var.$link-color;
+
+  &:focus,
+  &:hover {
+    border-bottom: var.$link-border-hover;
+    color: var.$link-color-hover;
+  }
+}
