@@ -1,6 +1,7 @@
 @use "@vrembem/core";
 
 $border-radius: core.$border-radius !default;
+$children-selector: "> *";
 $gap: 0.5rem !default;
 $gap-join: -1px !default;
 $gap-scale: (

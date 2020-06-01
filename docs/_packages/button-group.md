@@ -62,6 +62,37 @@ usage:
 ```
 {% include demo_close.html %}
 
+<div class="type" markdown="1">
+Optionally provide a `$breakpoints` key to the `_full` modifier to only have these styles applied below a specific breakpoint:
+</div>
+
+{% include demo_open.html class_parent="spacing" %}
+<div>
+  <div class="button-group button-group_full_sm">
+    <button class="button button_color_primary">Button</button>
+    <button class="button button_color_primary">Button</button>
+    <button class="button button_color_primary">Button</button>
+  </div>
+</div>
+<div>
+  <div class="button-group button-group_full_md">
+    <button class="button button_outline">Button</button>
+    <button class="button button_outline">Button</button>
+    <button class="button button_outline">Button</button>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="button-group button-group_full_sm">
+  ...
+</div>
+
+<div class="button-group button-group_full_md">
+  ...
+</div>
+```
+{% include demo_close.html %}
+
 {% include flag.html heading="button-group_stack" %}
 
 {% include demo_open.html %}
@@ -91,7 +122,40 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="button-group_stack + button-group_full" %}
+<div class="type" markdown="1">
+Optionally provide a `$breakpoints` key to the `_stack` modifier to only have these styles applied below a specific breakpoint:
+</div>
+
+{% include demo_open.html class_parent="spacing" %}
+<div>
+  <div class="button-group button-group_stack_xs">
+    <button class="button button_color_primary">Button</button>
+    <button class="button button_color_primary">Button</button>
+    <button class="button button_color_primary">Button</button>
+  </div>
+</div>
+<div>
+  <div class="button-group button-group_stack_sm">
+    <button class="button button_outline">Button</button>
+    <button class="button button_outline">Button</button>
+    <button class="button button_outline">Button</button>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="button-group button-group_stack_xs">
+  ...
+</div>
+
+<div class="button-group button-group_stack_sm">
+  ...
+</div>
+```
+{% include demo_close.html %}
+
+<div class="type" markdown="1">
+Combine `_stack` and `_full` modifiers to apply both effects:
+</div>
 
 {% include demo_open.html class_parent="spacing" %}
 <div>
@@ -111,72 +175,6 @@ usage:
 {% include demo_switch.html %}
 ```html
 <div class="button-group button-group_stack button-group_full">
-  <button class="button button_color_primary">...</button>
-  <button class="button button_color_primary">...</button>
-  <button class="button button_color_primary">...</button>
-</div>
-```
-{% include demo_close.html %}
-
-{% include flag.html heading="button-group_wrap" %}
-
-{% include demo_open.html class_parent="spacing" %}
-<div>
-  <div class="button-group button-group_wrap">
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_color_primary">Button</button>
-  </div>
-</div>
-<div>
-  <div class="button-group button-group_wrap">
-    <button class="button button_outline">Button</button>
-    <button class="button button_outline">Button</button>
-    <button class="button button_outline">Button</button>
-    <button class="button button_outline">Button</button>
-    <button class="button button_outline">Button</button>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="button-group button-group_wrap">
-  <button class="button button_color_primary">...</button>
-  <button class="button button_color_primary">...</button>
-  <button class="button button_color_primary">...</button>
-  <button class="button button_color_primary">...</button>
-  <button class="button button_color_primary">...</button>
-</div>
-```
-{% include demo_close.html %}
-
-{% include flag.html heading="button-group_wrap + button-group_full" %}
-
-{% include demo_open.html class_parent="spacing" %}
-<div>
-  <div class="button-group button-group_wrap button-group_full">
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_color_primary">Button</button>
-  </div>
-</div>
-<div>
-  <div class="button-group button-group_wrap button-group_full">
-    <button class="button button_outline">Button</button>
-    <button class="button button_outline">Button</button>
-    <button class="button button_outline">Button</button>
-    <button class="button button_outline">Button</button>
-    <button class="button button_outline">Button</button>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="button-group button-group_wrap button-group_full">
-  <button class="button button_color_primary">...</button>
-  <button class="button button_color_primary">...</button>
   <button class="button button_color_primary">...</button>
   <button class="button button_color_primary">...</button>
   <button class="button button_color_primary">...</button>
@@ -211,7 +209,9 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="button-group_join + button-group_stack" %}
+<div class="type" markdown="1">
+Combine `_join` and `_stack` modifiers to apply both effects:
+</div>
 
 {% include demo_open.html %}
 <div class="grid grid_auto">
