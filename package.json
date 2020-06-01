@@ -21,7 +21,7 @@
     "test:watch": "jest --watch || true"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.1",
+    "@babel/core": "^7.10.2",
     "@babel/plugin-transform-runtime": "^7.10.1",
     "@babel/preset-env": "^7.10.2",
     "@testing-library/jest-dom": "^5.9.0",
