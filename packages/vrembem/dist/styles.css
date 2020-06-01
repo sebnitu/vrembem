@@ -1029,22 +1029,22 @@ input::-moz-placeholder {
   align-items: center;
   margin: -0.5rem 0 0 -0.5rem;
 }
-.button-group > .button {
+.button-group > * {
   z-index: 1;
   flex: 0 0 auto;
   margin: 0.5rem 0 0 0.5rem;
   border-radius: 4px;
 }
-.button-group > .button:hover {
+.button-group > *:hover {
   z-index: 2;
 }
-.button-group > .button:focus {
+.button-group > *:focus {
   z-index: 3;
 }
-.button-group > .button:active {
+.button-group > *:active {
   z-index: 4;
 }
-.button-group > .button.is-active {
+.button-group > *.is-active {
   z-index: 5;
 }
 
@@ -1052,7 +1052,7 @@ input::-moz-placeholder {
   display: flex;
   align-items: stretch;
 }
-.button-group_full > .button {
+.button-group_full > * {
   flex: 1 1 auto;
 }
 
@@ -1061,7 +1061,7 @@ input::-moz-placeholder {
     display: flex;
     align-items: stretch;
   }
-  .button-group_full_xs > .button {
+  .button-group_full_xs > * {
     flex: 1 1 auto;
   }
 }
@@ -1070,7 +1070,7 @@ input::-moz-placeholder {
     display: flex;
     align-items: stretch;
   }
-  .button-group_full_sm > .button {
+  .button-group_full_sm > * {
     flex: 1 1 auto;
   }
 }
@@ -1079,7 +1079,7 @@ input::-moz-placeholder {
     display: flex;
     align-items: stretch;
   }
-  .button-group_full_md > .button {
+  .button-group_full_md > * {
     flex: 1 1 auto;
   }
 }
@@ -1088,7 +1088,7 @@ input::-moz-placeholder {
     display: flex;
     align-items: stretch;
   }
-  .button-group_full_lg > .button {
+  .button-group_full_lg > * {
     flex: 1 1 auto;
   }
 }
@@ -1097,134 +1097,134 @@ input::-moz-placeholder {
     display: flex;
     align-items: stretch;
   }
-  .button-group_full_xl > .button {
+  .button-group_full_xl > * {
     flex: 1 1 auto;
   }
 }
 .button-group_gap_xs {
   margin: -1px 0 0 -1px;
 }
-.button-group_gap_xs > .button {
+.button-group_gap_xs > * {
   margin: 1px 0 0 1px;
 }
 
 .button-group_gap_sm {
   margin: -0.25rem 0 0 -0.25rem;
 }
-.button-group_gap_sm > .button {
+.button-group_gap_sm > * {
   margin: 0.25rem 0 0 0.25rem;
 }
 
 .button-group_gap_md {
   margin: -0.5rem 0 0 -0.5rem;
 }
-.button-group_gap_md > .button {
+.button-group_gap_md > * {
   margin: 0.5rem 0 0 0.5rem;
 }
 
 .button-group_gap_lg {
   margin: -1rem 0 0 -1rem;
 }
-.button-group_gap_lg > .button {
+.button-group_gap_lg > * {
   margin: 1rem 0 0 1rem;
 }
 
 .button-group_gap_xl {
   margin: -1.5rem 0 0 -1.5rem;
 }
-.button-group_gap_xl > .button {
+.button-group_gap_xl > * {
   margin: 1.5rem 0 0 1.5rem;
 }
 
 .button-group_join {
   margin: 1px 0 0 1px;
 }
-.button-group_join > .button {
+.button-group_join > * {
   margin: -1px 0 0 -1px;
   border-radius: 0;
 }
-.button-group_join > .button:first-child {
+.button-group_join > *:first-child {
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
 }
-.button-group_join > .button:last-child {
+.button-group_join > *:last-child {
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
 }
 
-.button-group_join.button-group_stack > .button {
+.button-group_join.button-group_stack > * {
   border-radius: 0;
 }
-.button-group_join.button-group_stack > .button:first-child {
+.button-group_join.button-group_stack > *:first-child {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 }
-.button-group_join.button-group_stack > .button:last-child {
+.button-group_join.button-group_stack > *:last-child {
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
 }
 
 @media (max-width: 480px) {
-  .button-group_join.button-group_stack_xs > .button {
+  .button-group_join.button-group_stack_xs > * {
     border-radius: 0;
   }
-  .button-group_join.button-group_stack_xs > .button:first-child {
+  .button-group_join.button-group_stack_xs > *:first-child {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
   }
-  .button-group_join.button-group_stack_xs > .button:last-child {
+  .button-group_join.button-group_stack_xs > *:last-child {
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
   }
 }
 @media (max-width: 620px) {
-  .button-group_join.button-group_stack_sm > .button {
+  .button-group_join.button-group_stack_sm > * {
     border-radius: 0;
   }
-  .button-group_join.button-group_stack_sm > .button:first-child {
+  .button-group_join.button-group_stack_sm > *:first-child {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
   }
-  .button-group_join.button-group_stack_sm > .button:last-child {
+  .button-group_join.button-group_stack_sm > *:last-child {
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
   }
 }
 @media (max-width: 760px) {
-  .button-group_join.button-group_stack_md > .button {
+  .button-group_join.button-group_stack_md > * {
     border-radius: 0;
   }
-  .button-group_join.button-group_stack_md > .button:first-child {
+  .button-group_join.button-group_stack_md > *:first-child {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
   }
-  .button-group_join.button-group_stack_md > .button:last-child {
+  .button-group_join.button-group_stack_md > *:last-child {
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
   }
 }
 @media (max-width: 990px) {
-  .button-group_join.button-group_stack_lg > .button {
+  .button-group_join.button-group_stack_lg > * {
     border-radius: 0;
   }
-  .button-group_join.button-group_stack_lg > .button:first-child {
+  .button-group_join.button-group_stack_lg > *:first-child {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
   }
-  .button-group_join.button-group_stack_lg > .button:last-child {
+  .button-group_join.button-group_stack_lg > *:last-child {
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
   }
 }
 @media (max-width: 1380px) {
-  .button-group_join.button-group_stack_xl > .button {
+  .button-group_join.button-group_stack_xl > * {
     border-radius: 0;
   }
-  .button-group_join.button-group_stack_xl > .button:first-child {
+  .button-group_join.button-group_stack_xl > *:first-child {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
   }
-  .button-group_join.button-group_stack_xl > .button:last-child {
+  .button-group_join.button-group_stack_xl > *:last-child {
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
   }

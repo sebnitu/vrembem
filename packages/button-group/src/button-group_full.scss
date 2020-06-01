@@ -1,10 +1,11 @@
 @use "@vrembem/core";
+@use "./variables";
 
 .button-group_full {
   display: flex;
   align-items: stretch;
 
-  > .button {
+  #{variables.$selector-children} {
     flex: 1 1 auto;
   }
 }
@@ -15,7 +16,7 @@
       display: flex;
       align-items: stretch;
 
-      > .button {
+      #{variables.$selector-children} {
         flex: 1 1 auto;
       }
     }

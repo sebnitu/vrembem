@@ -4,7 +4,7 @@
   .button-group_gap_#{$key} {
     margin: (-$value) 0 0 (-$value);
 
-    > .button {
+    #{variables.$selector-children} {
       margin: $value 0 0 $value;
     }
   }
