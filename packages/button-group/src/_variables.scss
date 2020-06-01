@@ -1,6 +1,5 @@
 @use "@vrembem/core";
 
-$selector-children: "> *";
 $border-radius: core.$border-radius !default;
 $gap: 0.5rem !default;
 $gap-join: -1px !default;
@@ -11,3 +10,4 @@ $gap-scale: (
   "lg": 1rem,
   "xl": 1.5rem
 ) !default;
+$selector-children: "> *";
