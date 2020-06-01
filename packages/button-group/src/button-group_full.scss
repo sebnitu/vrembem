@@ -1,8 +1,23 @@
+@use "@vrembem/core";
+
 .button-group_full {
   display: flex;
   align-items: stretch;
 
   > .button {
     flex: 1 1 auto;
+  }
+}
+
+@each $key, $value in core.$breakpoints {
+  @include core.media-max($value) {
+    .button-group_full_#{$key} {
+      display: flex;
+      align-items: stretch;
+
+      > .button {
+        flex: 1 1 auto;
+      }
+    }
   }
 }
