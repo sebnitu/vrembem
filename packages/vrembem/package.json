@@ -1,7 +1,7 @@
 {
   "name": "vrembem",
   "description": "A CSS component library based on the BEM methodology.",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "main": "dist/scripts.cjs.js",
   "module": "index.js",
   "browser": "dist/scripts.js",
@@ -27,7 +27,7 @@
     "@vrembem/base": "^1.3.0",
     "@vrembem/breadcrumb": "^1.3.0",
     "@vrembem/button": "^1.3.0",
-    "@vrembem/button-group": "^1.3.0",
+    "@vrembem/button-group": "^1.4.0",
     "@vrembem/card": "^1.3.0",
     "@vrembem/checkbox": "^1.3.0",
     "@vrembem/container": "^1.3.0",
