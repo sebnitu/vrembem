@@ -3,20 +3,12 @@
 
 .button-group_stack {
   flex-direction: column;
-
-  > .button + .button {
-    margin: variables.$gap 0 0 0;
-  }
 }
 
 @each $key, $value in core.$breakpoints {
   @include core.media-max($value) {
     .button-group_stack_#{$key} {
       flex-direction: column;
-
-      > .button + .button {
-        margin: variables.$gap 0 0 0;
-      }
     }
   }
 }

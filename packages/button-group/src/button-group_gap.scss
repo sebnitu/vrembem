@@ -2,22 +2,9 @@
 
 @each $key, $value in variables.$gap-scale {
   .button-group_gap_#{$key} {
-    > .button + .button {
-      margin: 0 0 0 $value;
-    }
-  }
-
-  .button-group_gap_#{$key}.button-group_stack {
-    > .button + .button {
-      margin: $value 0 0 0;
-    }
-  }
-
-  .button-group_gap_#{$key}.button-group_wrap {
     margin: (-$value) 0 0 (-$value);
 
-    > .button,
-    > .button + .button {
+    > .button {
       margin: $value 0 0 $value;
     }
   }

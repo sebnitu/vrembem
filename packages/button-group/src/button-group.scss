@@ -2,16 +2,15 @@
 
 .button-group {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
+  margin: (variables.$gap * -1) 0 0 (variables.$gap * -1);
 
   > .button {
     z-index: 1;
     flex: 0 0 auto;
+    margin: variables.$gap 0 0 variables.$gap;
     border-radius: variables.$border-radius;
-
-    + .button {
-      margin: 0 0 0 variables.$gap;
-    }
 
     &:hover {
       z-index: 2;
