@@ -6,7 +6,7 @@
   align-items: center;
   margin: (variables.$gap * -1) 0 0 (variables.$gap * -1);
 
-  #{variables.$selector-children} {
+  #{variables.$children-selector} {
     z-index: 1;
     flex: 0 0 auto;
     margin: variables.$gap 0 0 variables.$gap;

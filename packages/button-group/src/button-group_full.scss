@@ -5,7 +5,7 @@
   display: flex;
   align-items: stretch;
 
-  #{variables.$selector-children} {
+  #{variables.$children-selector} {
     flex: 1 1 auto;
   }
 }
@@ -16,7 +16,7 @@
       display: flex;
       align-items: stretch;
 
-      #{variables.$selector-children} {
+      #{variables.$children-selector} {
         flex: 1 1 auto;
       }
     }
