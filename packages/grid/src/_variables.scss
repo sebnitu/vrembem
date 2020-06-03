@@ -1,3 +1,10 @@
+@use "@vrembem/core";
+
+$prefix-block: core.$prefix-block !default;
+$prefix-element: core.$prefix-element !default;
+$prefix-modifier: core.$prefix-modifier !default;
+$prefix-modifier-value: core.$prefix-modifier-value !default;
+
 $gap: 2rem !default;
 $gap-scale: (
   "xs": 0.5rem,

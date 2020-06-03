@@ -1,10 +1,3 @@
-/* @use "@vrembem/core" with (
-  $prefix-block: "vb-",
-  $prefix-element: "__",
-  $prefix-modifier: "--",
-  $prefix-modifier-value: "-"
-); */
-
 @forward "@vrembem/arrow" as arrow-*;
 @forward "@vrembem/base" as base-*;
 @forward "@vrembem/breadcrumb" as breadcrumb-*;

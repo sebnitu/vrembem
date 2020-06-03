@@ -5701,11 +5701,4 @@ input::-moz-placeholder {
   font-weight: 300 !important;
 }
 
-/* @use "@vrembem/core" with (
-  $prefix-block: "vb-",
-  $prefix-element: "__",
-  $prefix-modifier: "--",
-  $prefix-modifier-value: "-"
-); */
-
 /*# sourceMappingURL=styles.css.map */

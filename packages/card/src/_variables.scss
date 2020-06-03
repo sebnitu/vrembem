@@ -1,5 +1,10 @@
 @use "@vrembem/core";
 
+$prefix-block: core.$prefix-block !default;
+$prefix-element: core.$prefix-element !default;
+$prefix-modifier: core.$prefix-modifier !default;
+$prefix-modifier-value: core.$prefix-modifier-value !default;
+
 $padding: 1.25em !default;
 $background: core.$white !default;
 $border: null !default;
