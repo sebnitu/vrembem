@@ -1,19 +1,23 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-.#{var.$prefix-block}button#{var.$prefix-modifier}block {
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}button#{$_m}block {
   display: flex;
   width: 100%;
 }
 
 @each $key, $value in core.$breakpoints {
-  .#{var.$prefix-block}button#{var.$prefix-modifier}block#{var.$prefix-modifier-value}#{$key} {
+  .#{$_b}button#{$_m}block#{$_v}#{$key} {
     display: flex;
     width: 100%;
   }
 
   @include core.media-min($key) {
-    .#{var.$prefix-block}button#{var.$prefix-modifier}block#{var.$prefix-modifier-value}#{$key} {
+    .#{$_b}button#{$_m}block#{$_v}#{$key} {
       display: inline-flex;
       width: auto;
     }

@@ -24,7 +24,7 @@ $_v: var.$prefix-modifier-value;
     border-color: core.set-border-color(var.$loading-border-tpl, core.$color-subtle);
   }
 
-  &.#{var.$prefix-block}button#{var.$prefix-modifier}invert {
+  &.#{$_b}button#{$_m}invert {
     background: none;
     color: core.$white;
 
@@ -46,7 +46,7 @@ $_v: var.$prefix-modifier-value;
   }
 }
 
-.#{var.$prefix-block}button#{var.$prefix-modifier}color#{var.$prefix-modifier-value}primary {
+.#{$_b}button#{$_m}color#{$_v}primary {
   background: core.$primary;
   color: core.$white;
 
@@ -67,7 +67,7 @@ $_v: var.$prefix-modifier-value;
   }
 }
 
-.#{var.$prefix-block}button#{var.$prefix-modifier}color#{var.$prefix-modifier-value}secondary {
+.#{$_b}button#{$_m}color#{$_v}secondary {
   background: core.$secondary;
   color: core.$white;
 
