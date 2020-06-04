@@ -1,7 +1,11 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
 
-.button_color_subtle {
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}button#{$_m}color#{$_v}subtle {
   background: none;
 
   &:hover {
@@ -17,10 +21,10 @@
   }
 
   &.is-loading::after {
-    border-color: set-border-color(variables.$loading-border-tpl, core.$color-subtle);
+    border-color: core.set-border-color(var.$loading-border-tpl, core.$color-subtle);
   }
 
-  &.button_invert {
+  &.#{var.$prefix-block}button#{var.$prefix-modifier}invert {
     background: none;
     color: core.$white;
 
@@ -37,12 +41,12 @@
     }
 
     &.is-loading::after {
-      border-color: set-border-color(variables.$loading-border-tpl, core.$color-invert-subtle);
+      border-color: core.set-border-color(var.$loading-border-tpl, core.$color-invert-subtle);
     }
   }
 }
 
-.button_color_primary {
+.#{var.$prefix-block}button#{var.$prefix-modifier}color#{var.$prefix-modifier-value}primary {
   background: core.$primary;
   color: core.$white;
 
@@ -59,11 +63,11 @@
   }
 
   &.is-loading::after {
-    border-color: set-border-color(variables.$loading-border-tpl, core.$white);
+    border-color: core.set-border-color(var.$loading-border-tpl, core.$white);
   }
 }
 
-.button_color_secondary {
+.#{var.$prefix-block}button#{var.$prefix-modifier}color#{var.$prefix-modifier-value}secondary {
   background: core.$secondary;
   color: core.$white;
 
@@ -80,6 +84,6 @@
   }
 
   &.is-loading::after {
-    border-color: set-border-color(variables.$loading-border-tpl, core.$white);
+    border-color: core.set-border-color(var.$loading-border-tpl, core.$white);
   }
 }

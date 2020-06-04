@@ -1,5 +1,5 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
 
 @keyframes spin {
   from {
@@ -11,61 +11,61 @@
   }
 }
 
-.button {
+.#{var.$prefix-block}button {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: variables.$min-size;
-  min-height: variables.$min-size;
-  padding: variables.$padding;
-  border: variables.$border;
-  border-radius: variables.$border-radius;
-  background: variables.$background;
+  min-width: var.$min-size;
+  min-height: var.$min-size;
+  padding: var.$padding;
+  border: var.$border;
+  border-radius: var.$border-radius;
+  background: var.$background;
   background-clip: border-box;
-  box-shadow: variables.$box-shadow;
-  color: variables.$color;
+  box-shadow: var.$box-shadow;
+  color: var.$color;
   font-family: inherit;
-  font-size: variables.$font-size;
-  font-weight: variables.$font-weight;
-  letter-spacing: variables.$letter-spacing;
-  line-height: variables.$line-height;
+  font-size: var.$font-size;
+  font-weight: var.$font-weight;
+  letter-spacing: var.$letter-spacing;
+  line-height: var.$line-height;
   text-decoration: none;
-  text-transform: variables.$text-transform;
+  text-transform: var.$text-transform;
   vertical-align: top;
   white-space: nowrap;
   cursor: pointer;
 
   &[disabled] {
-    opacity: variables.$disabled-opacity;
+    opacity: var.$disabled-opacity;
     pointer-events: none;
   }
 
   > * + * {
-    margin-left: variables.$inner-spacing;
+    margin-left: var.$inner-spacing;
   }
 
   &:hover {
-    border-color: variables.$border-color-hover;
-    background-color: variables.$background-hover;
-    box-shadow: variables.$box-shadow-hover;
-    color: variables.$color-hover;
+    border-color: var.$border-color-hover;
+    background-color: var.$background-hover;
+    box-shadow: var.$box-shadow-hover;
+    color: var.$color-hover;
   }
 
   &:focus {
-    outline: variables.$outline-focus;
-    outline-offset: variables.$outline-focus-offset;
-    border-color: variables.$border-color-focus;
-    background-color: variables.$background-focus;
-    box-shadow: variables.$box-shadow-focus;
-    color: variables.$color-focus;
+    outline: var.$outline-focus;
+    outline-offset: var.$outline-focus-offset;
+    border-color: var.$border-color-focus;
+    background-color: var.$background-focus;
+    box-shadow: var.$box-shadow-focus;
+    color: var.$color-focus;
   }
 
   &:active {
-    border-color: variables.$border-color-active;
-    background-color: variables.$background-active;
-    box-shadow: variables.$box-shadow-active;
-    color: variables.$color-active;
+    border-color: var.$border-color-active;
+    background-color: var.$background-active;
+    box-shadow: var.$box-shadow-active;
+    color: var.$color-active;
   }
 
   &.is-loading {
@@ -73,15 +73,15 @@
     pointer-events: none;
 
     &::after {
-      @include core.size(variables.$loading-size);
+      @include core.size(var.$loading-size);
       content: "";
       position: absolute;
-      top: calc(50% - (#{variables.$loading-size} * 0.5));
-      left: calc(50% - (#{variables.$loading-size} * 0.5));
-      animation: spin variables.$loading-animation-duration infinite linear;
-      border: variables.$loading-border;
+      top: calc(50% - (#{var.$loading-size} * 0.5));
+      left: calc(50% - (#{var.$loading-size} * 0.5));
+      animation: spin var.$loading-animation-duration infinite linear;
+      border: var.$loading-border;
       border-radius: core.$border-radius-circle;
-      border-color: set-border-color(variables.$loading-border-tpl, variables.$loading-border-color);
+      border-color: core.set-border-color(var.$loading-border-tpl, var.$loading-border-color);
     }
   }
 }

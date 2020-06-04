@@ -1,7 +1,7 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
 
-.button_invert {
+.#{var.$prefix-block}button#{var.$prefix-modifier}invert {
   background: rgba(core.$white, 0.05);
   color: core.$white;
 
@@ -17,6 +17,6 @@
   }
 
   &.is-loading::after {
-    border-color: set-border-color(variables.$loading-border-tpl, core.$white);
+    border-color: core.set-border-color(var.$loading-border-tpl, core.$white);
   }
 }

@@ -1,8 +1,8 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
 
-.button_outline {
-  border: variables.$outline-border-width solid core.$border-color-dark;
+.#{var.$prefix-block}button#{var.$prefix-modifier}outline {
+  border: var.$outline-border-width solid core.$border-color-dark;
   background: none;
 
   &:hover {
@@ -16,7 +16,7 @@
     background: none;
   }
 
-  &.button_invert {
+  &.#{var.$prefix-block}button#{var.$prefix-modifier}invert {
     border-color: core.$border-color-invert-dark;
 
     &:hover {
@@ -30,8 +30,8 @@
   }
 }
 
-.button_outline_primary {
-  border: variables.$outline-border-width solid rgba(core.$primary, 0.5);
+.#{var.$prefix-block}button#{var.$prefix-modifier}outline#{var.$prefix-modifier-value}primary {
+  border: var.$outline-border-width solid rgba(core.$primary, 0.5);
   background: none;
   color: core.$primary;
 
@@ -49,14 +49,14 @@
   }
 
   &.is-loading::after {
-    border-color: set-border-color(variables.$loading-border-tpl, core.$primary);
+    border-color: core.set-border-color(var.$loading-border-tpl, core.$primary);
   }
 
   &.is-loading:focus::after {
-    border-color: set-border-color(variables.$loading-border-tpl, core.$white);
+    border-color: core.set-border-color(var.$loading-border-tpl, core.$white);
   }
 
-  &.button_invert {
+  &.#{var.$prefix-block}button#{var.$prefix-modifier}invert {
     border-color: core.$primary-light;
     color: core.$primary-light;
 
@@ -73,8 +73,8 @@
   }
 }
 
-.button_outline_secondary {
-  border: variables.$outline-border-width solid rgba(core.$secondary, 0.5);
+.#{var.$prefix-block}button#{var.$prefix-modifier}outline#{var.$prefix-modifier-value}secondary {
+  border: var.$outline-border-width solid rgba(core.$secondary, 0.5);
   background: none;
   color: core.$secondary;
 
@@ -92,14 +92,14 @@
   }
 
   &.is-loading::after {
-    border-color: set-border-color(variables.$loading-border-tpl, core.$secondary);
+    border-color: core.set-border-color(var.$loading-border-tpl, core.$secondary);
   }
 
   &.is-loading:focus::after {
-    border-color: set-border-color(variables.$loading-border-tpl, core.$white);
+    border-color: core.set-border-color(var.$loading-border-tpl, core.$white);
   }
 
-  &.button_invert {
+  &.#{var.$prefix-block}button#{var.$prefix-modifier}invert {
     border-color: core.$secondary-light;
     color: core.$secondary-light;
 

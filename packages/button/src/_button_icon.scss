@@ -1,13 +1,13 @@
-@use "./variables";
+@use "./variables" as var;
 
-.button_icon {
-  padding: nth(variables.$padding, 1);
+.#{var.$prefix-block}button#{var.$prefix-modifier}icon {
+  padding: nth(var.$padding, 1);
 
-  &.button_size_sm {
-    padding: nth(variables.$size_sm-padding, 1);
+  &.#{var.$prefix-block}button#{var.$prefix-modifier}size#{var.$prefix-modifier-value}sm {
+    padding: nth(var.$size_sm-padding, 1);
   }
 
-  &.button_size_lg {
-    padding: nth(variables.$size_lg-padding, 1);
+  &.#{var.$prefix-block}button#{var.$prefix-modifier}size#{var.$prefix-modifier-value}lg {
+    padding: nth(var.$size_lg-padding, 1);
   }
 }
