@@ -1,42 +1,47 @@
 @use "@vrembem/core";
 @use "@vrembem/base/src/mixins" as base;
+@use "./variables" as var;
 
-.notice_state_info {
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}notice#{$_m}state#{$_v}info {
   background-color: core.$info-lighter;
   color: core.$info-darker;
 }
 
-.notice_state_info-bold {
+.#{$_b}notice#{$_m}state#{$_v}info-bold {
   @include base.type-invert(core.$info);
   background-color: core.$info;
 }
 
-.notice_state_success {
+.#{$_b}notice#{$_m}state#{$_v}success {
   background-color: core.$success-lighter;
   color: core.$success-darker;
 }
 
-.notice_state_success-bold {
+.#{$_b}notice#{$_m}state#{$_v}success-bold {
   @include base.type-invert(core.$success);
   background-color: core.$success;
 }
 
-.notice_state_caution {
+.#{$_b}notice#{$_m}state#{$_v}caution {
   background-color: core.$caution-lighter;
   color: core.$caution-darker;
 }
 
-.notice_state_caution-bold {
+.#{$_b}notice#{$_m}state#{$_v}caution-bold {
   @include base.type-invert(core.$caution);
   background-color: core.$caution;
 }
 
-.notice_state_danger {
+.#{$_b}notice#{$_m}state#{$_v}danger {
   background-color: core.$danger-lighter;
   color: core.$danger-darker;
 }
 
-.notice_state_danger-bold {
+.#{$_b}notice#{$_m}state#{$_v}danger-bold {
   @include base.type-invert(core.$danger);
   background-color: core.$danger;
 }
