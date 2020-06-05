@@ -14,13 +14,13 @@ $_m: var.$prefix-modifier;
   }
 
   .#{$_b}breadcrumb#{$_e}link {
-    border-bottom: var.$invert__link-border;
-    color: var.$invert__link-color;
+    border-bottom: var.$invert-link-border;
+    color: var.$invert-link-color;
 
     &:focus,
     &:hover {
-      border-bottom: var.$invert__link-border-hover;
-      color: var.$invert__link-color-hover;
+      border-bottom: var.$invert-link-border-hover;
+      color: var.$invert-link-color-hover;
     }
   }
 }

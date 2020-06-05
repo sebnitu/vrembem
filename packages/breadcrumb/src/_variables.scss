@@ -19,7 +19,7 @@ $link-border-hover: 1px solid base.$link-color-hover !default;
 
 $invert-color: core.$color-invert-subtle !default;
 $invert-delimiter-color: core.$border-color-invert-dark !default;
-$invert__link-color: base.$link-invert-color !default;
-$invert__link-color-hover: base.$link-invert-color-hover !default;
-$invert__link-border: core.$border-invert !default;
-$invert__link-border-hover: 1px solid core.$white !default;
+$invert-link-color: base.$link-invert-color !default;
+$invert-link-color-hover: base.$link-invert-color-hover !default;
+$invert-link-border: core.$border-invert !default;
+$invert-link-border-hover: 1px solid core.$white !default;
