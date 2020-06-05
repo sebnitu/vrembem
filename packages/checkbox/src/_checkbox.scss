@@ -1,7 +1,10 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
 
-.checkbox {
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+
+.#{$_b}checkbox {
   position: relative;
   display: inline-flex;
   flex: 0 0 auto;
@@ -10,38 +13,38 @@
   vertical-align: middle;
 }
 
-.checkbox__background {
-  @include core.size(variables.$size);
+.#{$_b}checkbox#{$_e}background {
+  @include core.size(var.$size);
   position: relative;
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: variables.$background-border-radius;
-  background-color: variables.$background;
+  border-radius: var.$background-border-radius;
+  background-color: var.$background;
 }
 
-.checkbox__box {
-  @include core.size(variables.$box-size);
+.#{$_b}checkbox#{$_e}box {
+  @include core.size(var.$box-size);
   display: flex;
   align-items: center;
   justify-content: center;
-  border: variables.$box-border-width solid variables.$box-border-color;
-  border-radius: variables.$box-border-radius;
-  background-color: variables.$box-background;
+  border: var.$box-border-width solid var.$box-border-color;
+  border-radius: var.$box-border-radius;
+  background-color: var.$box-background;
   color: transparent;
 }
 
-.checkbox__icon {
-  @include core.size(variables.$icon-size);
-  background-image: url(variables.$icon-checked);
+.#{$_b}checkbox#{$_e}icon {
+  @include core.size(var.$icon-size);
+  background-image: url(var.$icon-checked);
   background-repeat: no-repeat;
-  background-position: center (variables.$icon-size * -1);
+  background-position: center (var.$icon-size * -1);
   background-size: 100%;
   opacity: 0;
 }
 
-.checkbox__native {
+.#{$_b}checkbox#{$_e}native {
   @include core.size(100%);
   position: absolute;
   z-index: 2;
@@ -50,63 +53,63 @@
   opacity: 0;
   cursor: pointer;
 
-  &:hover + .checkbox__background {
-    background-color: variables.$background-hover;
+  &:hover + .#{$_b}checkbox#{$_e}background {
+    background-color: var.$background-hover;
 
-    .checkbox__box {
-      border-color: variables.$box-border-color-hover;
-      background-color: variables.$box-background-hover;
+    .#{$_b}checkbox#{$_e}box {
+      border-color: var.$box-border-color-hover;
+      background-color: var.$box-background-hover;
     }
   }
 
-  &:focus + .checkbox__background {
-    background-color: variables.$background-focus;
+  &:focus + .#{$_b}checkbox#{$_e}background {
+    background-color: var.$background-focus;
 
-    .checkbox__box {
-      border-color: variables.$box-border-color-focus;
-      background-color: variables.$box-background-focus;
+    .#{$_b}checkbox#{$_e}box {
+      border-color: var.$box-border-color-focus;
+      background-color: var.$box-background-focus;
     }
   }
 
-  &:active + .checkbox__background {
-    background-color: variables.$background-active;
+  &:active + .#{$_b}checkbox#{$_e}background {
+    background-color: var.$background-active;
 
-    .checkbox__box {
-      border-color: variables.$box-border-color-active;
-      background-color: variables.$box-background-active;
+    .#{$_b}checkbox#{$_e}box {
+      border-color: var.$box-border-color-active;
+      background-color: var.$box-background-active;
     }
   }
 
-  &:checked + .checkbox__background {
-    background-color: variables.$background-checked;
+  &:checked + .#{$_b}checkbox#{$_e}background {
+    background-color: var.$background-checked;
 
-    .checkbox__box {
-      border-color: variables.$box-border-color-checked;
-      background-color: variables.$box-background-checked;
+    .#{$_b}checkbox#{$_e}box {
+      border-color: var.$box-border-color-checked;
+      background-color: var.$box-background-checked;
     }
 
-    .checkbox__icon {
+    .#{$_b}checkbox#{$_e}icon {
       transition-property: opacity, background-position;
-      transition-duration: variables.$transition-duration;
-      transition-timing-function: variables.$transition-timing-function;
+      transition-duration: var.$transition-duration;
+      transition-timing-function: var.$transition-timing-function;
       background-position: center center;
       opacity: 1;
     }
   }
 
-  &:indeterminate + .checkbox__background {
-    background-color: variables.$background-checked;
+  &:indeterminate + .#{$_b}checkbox#{$_e}background {
+    background-color: var.$background-checked;
 
-    .checkbox__box {
-      border-color: variables.$box-border-color-checked;
-      background-color: variables.$box-background-checked;
+    .#{$_b}checkbox#{$_e}box {
+      border-color: var.$box-border-color-checked;
+      background-color: var.$box-background-checked;
     }
 
-    .checkbox__icon {
+    .#{$_b}checkbox#{$_e}icon {
       transition-property: opacity, background-position;
-      transition-duration: variables.$transition-duration;
-      transition-timing-function: variables.$transition-timing-function;
-      background-image: url(variables.$icon-indeterminate);
+      transition-duration: var.$transition-duration;
+      transition-timing-function: var.$transition-timing-function;
+      background-image: url(var.$icon-indeterminate);
       background-position: center center;
       opacity: 1;
     }
