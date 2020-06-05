@@ -1,21 +1,25 @@
-@use "./variables";
-@use "./mixins";
+@use "./variables" as var;
+@use "./mixins" as mix;
 
-.link {
-  @include mixins.link();
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_c: var.$class-type;
+
+.#{$_b}link {
+  @include mix.link();
 }
 
-.link_subtle,
-.#{variables.$class-type} .link_subtle {
-  @include mixins.link-modifier("subtle");
+.#{$_b}link#{$_m}subtle,
+.#{$_b}#{$_c} .#{$_b}link#{$_m}subtle {
+  @include mix.link-modifier("subtle");
 }
 
-.link_invert,
-.#{variables.$class-type} .link_invert {
-  @include mixins.link-modifier("invert");
+.#{$_b}link#{$_m}invert,
+.#{$_b}#{$_c} .#{$_b}link#{$_m}invert {
+  @include mix.link-modifier("invert");
 }
 
-.link_invert-subtle,
-.#{variables.$class-type} .link_invert-subtle {
-  @include mixins.link-modifier("invert-subtle");
+.#{$_b}link#{$_m}invert-subtle,
+.#{$_b}#{$_c} .#{$_b}link#{$_m}invert-subtle {
+  @include mix.link-modifier("invert-subtle");
 }

@@ -1,5 +1,6 @@
-@use "./mixins";
+@use "./variables" as var;
+@use "./mixins" as mix;
 
-.code {
-  @include mixins.code();
+.#{var.$prefix-block}code {
+  @include mix.code();
 }

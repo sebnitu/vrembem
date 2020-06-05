@@ -1,10 +1,14 @@
-@use "./variables";
-@use "./mixins";
+@use "./variables" as var;
+@use "./mixins" as mix;
 
-.#{variables.$class-type} {
-  @include mixins.type();
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_c: var.$class-type;
+
+.#{$_b}#{$_c} {
+  @include mix.type();
 }
 
-.#{variables.$class-type}_invert {
-  @include mixins.type-invert();
+.#{$_b}#{$_c}#{$_m}invert {
+  @include mix.type-invert();
 }

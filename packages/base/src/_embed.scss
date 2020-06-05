@@ -1,14 +1,19 @@
-@use "./variables";
+@use "./variables" as var;
+@use "./mixins" as mix;
 
-.#{variables.$class-embed} {
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+$_c: var.$class-embed;
+
+.#{$_b}#{$_c} {
   position: relative;
   display: block;
   height: 0;
-  padding: 0 0 variables.$embed-ratio;
+  padding: 0 0 var.$embed-ratio;
   overflow: hidden;
 }
 
-.#{variables.$class-embed}__item {
+.#{$_b}#{$_c}#{$_e}item {
   position: absolute;
   top: 0;
   left: 0;

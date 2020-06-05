@@ -1,6 +1,6 @@
-@use "./variables";
+@use "./variables" as var;
 
-.#{variables.$class-symbols} {
+.#{var.$prefix-block}#{var.$class-symbols} {
   position: absolute !important;
   width: 0 !important;
   height: 0 !important;

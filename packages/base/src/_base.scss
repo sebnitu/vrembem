@@ -1,5 +1,5 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
 
 /**
  * Remove all spacing and inherit box-sizing on everything.
@@ -23,7 +23,7 @@ body {
 }
 
 html {
-  box-sizing: variables.$box-sizing;
+  box-sizing: var.$box-sizing;
   font-size: core.$font-size;
   line-height: core.$line-height;
   -moz-osx-font-smoothing: grayscale;
@@ -31,7 +31,7 @@ html {
 }
 
 body {
-  background: variables.$body-background;
+  background: var.$body-background;
   color: core.$color;
   font-family: core.$font-family;
 }

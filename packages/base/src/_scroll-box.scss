@@ -1,6 +1,6 @@
-@use "./variables";
+@use "./variables" as var;
 
-.#{variables.$class-scroll-box} {
+.#{var.$prefix-block}#{var.$class-scroll-box} {
   display: block;
   width: 100%;
   overflow: auto;
