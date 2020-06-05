@@ -1,16 +1,16 @@
-@use "./variables";
-@use "./mixins";
+@use "./variables" as var;
+@use "./mixins" as mix;
 
-.icon {
-  @include mixins.icon-style(variables.$style);
+.#{var.$prefix-block}icon {
+  @include mix.icon-style(var.$style);
   display: inline-block;
   box-sizing: content-box;
   flex-shrink: 0;
   width: 1em;
   height: 1em;
-  stroke-width: variables.$stroke-width;
-  stroke-linecap: variables.$stroke-linecap;
-  stroke-linejoin: variables.$stroke-linejoin;
-  font-size: variables.$font-size;
-  vertical-align: variables.$vertical-align;
+  stroke-width: var.$stroke-width;
+  stroke-linecap: var.$stroke-linecap;
+  stroke-linejoin: var.$stroke-linejoin;
+  font-size: var.$font-size;
+  vertical-align: var.$vertical-align;
 }

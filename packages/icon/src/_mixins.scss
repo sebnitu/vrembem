@@ -1,9 +1,9 @@
-@use "./variables";
+@use "./variables" as var;
 
 @mixin icon-style($style) {
   @if ($style == "stroke") {
     stroke: currentColor;
-    stroke-width: variables.$stroke-width;
+    stroke-width: var.$stroke-width;
     fill: none;
   }
   @else if ($style == "fill") {

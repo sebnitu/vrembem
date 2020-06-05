@@ -1,9 +1,14 @@
-@use "./mixins";
+@use "./variables" as var;
+@use "./mixins" as mix;
 
-.icon_style_stroke {
-  @include mixins.icon-style("stroke");
+$_b: #{var.$prefix-block};
+$_m: #{var.$prefix-modifier};
+$_v: #{var.$prefix-modifier-value};
+
+.#{$_b}icon#{$_m}style#{$_v}stroke {
+  @include mix.icon-style("stroke");
 }
 
-.icon_style_fill {
-  @include mixins.icon-style("fill");
+.#{$_b}icon#{$_m}style#{$_v}fill {
+  @include mix.icon-style("fill");
 }
