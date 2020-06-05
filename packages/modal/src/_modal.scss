@@ -1,9 +1,12 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
 
-.modal {
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+
+.#{$_b}modal {
   position: fixed;
-  z-index: variables.$zindex;
+  z-index: var.$zindex;
   top: 0;
   right: 0;
   display: flex;
@@ -13,14 +16,14 @@
   width: 0;
   height: 0;
   overflow: hidden;
-  background-color: rgba(variables.$background, 0);
+  background-color: rgba(var.$background, 0);
 }
 
-.modal__dialog {
-  width: variables.$width;
+.#{$_b}modal#{$_e}dialog {
+  width: var.$width;
   max-width: 100%;
-  transform: translateY(-(variables.$travel));
-  box-shadow: variables.$dialog-box-shadow;
+  transform: translateY(-(var.$travel));
+  box-shadow: var.$dialog-box-shadow;
   opacity: 0;
 }
 
@@ -28,9 +31,9 @@
  * Modal state classes
  */
 
-.modal.is-opening,
-.modal.is-open,
-.modal.is-closing {
+.#{$_b}modal.is-opening,
+.#{$_b}modal.is-open,
+.#{$_b}modal.is-closing {
   width: 100%;
   height: 100%;
   padding: 1em;
@@ -40,39 +43,39 @@
   }
 }
 
-.modal.is-opening,
-.modal.is-closing {
-  transition: background-color variables.$transition-duration variables.$transition-timing-function;
+.#{$_b}modal.is-opening,
+.#{$_b}modal.is-closing {
+  transition: background-color var.$transition-duration var.$transition-timing-function;
 
-  .modal__dialog {
+  .#{$_b}modal#{$_e}dialog {
     transition-property: opacity, transform;
-    transition-duration: variables.$transition-duration;
-    transition-timing-function: variables.$transition-timing-function;
+    transition-duration: var.$transition-duration;
+    transition-timing-function: var.$transition-timing-function;
   }
 }
 
-.modal.is-opening,
-.modal.is-open {
-  background-color: rgba(variables.$background, variables.$background-alpha);
+.#{$_b}modal.is-opening,
+.#{$_b}modal.is-open {
+  background-color: rgba(var.$background, var.$background-alpha);
 
-  .modal__dialog {
+  .#{$_b}modal#{$_e}dialog {
     transform: translateY(0);
     opacity: 1;
   }
 }
 
-.modal.is-opening {
-  z-index: (variables.$zindex + 1);
+.#{$_b}modal.is-opening {
+  z-index: (var.$zindex + 1);
 }
 
-.modal.is-open {
-  z-index: variables.$zindex;
+.#{$_b}modal.is-open {
+  z-index: var.$zindex;
 }
 
-.modal.is-closing {
-  z-index: (variables.$zindex - 1);
+.#{$_b}modal.is-closing {
+  z-index: (var.$zindex - 1);
 
-  .modal__dialog {
-    transform: translateY(-(variables.$travel));
+  .#{$_b}modal#{$_e}dialog {
+    transform: translateY(-(var.$travel));
   }
 }

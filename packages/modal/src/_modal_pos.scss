@@ -1,57 +1,62 @@
-@use "./variables";
+@use "./variables" as var;
 
-.modal_pos_top {
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}modal#{$_m}pos#{$_v}top {
   justify-content: flex-start;
 }
 
-.modal_pos_bottom {
+.#{$_b}modal#{$_m}pos#{$_v}bottom {
   justify-content: flex-end;
 
-  .modal__dialog {
-    transform: translateY(variables.$travel);
+  .#{$_b}modal#{$_e}dialog {
+    transform: translateY(var.$travel);
   }
 
   &.is-closing {
-    .modal__dialog {
-      transform: translateY(variables.$travel);
+    .#{$_b}modal#{$_e}dialog {
+      transform: translateY(var.$travel);
     }
   }
 }
 
-.modal_pos_left,
-.modal_pos_right {
-  .modal__dialog {
-    width: variables.$aside-width;
-    max-width: variables.$aside-max-width;
+.#{$_b}modal#{$_m}pos#{$_v}left,
+.#{$_b}modal#{$_m}pos#{$_v}right {
+  .#{$_b}modal#{$_e}dialog {
+    width: var.$aside-width;
+    max-width: var.$aside-max-width;
     height: 100%;
   }
 }
 
-.modal_pos_left {
+.#{$_b}modal#{$_m}pos#{$_v}left {
   align-items: flex-start;
 
-  .modal__dialog {
+  .#{$_b}modal#{$_e}dialog {
     left: 0;
     transform: translateX(-100%);
   }
 
   &.is-closing {
-    .modal__dialog {
+    .#{$_b}modal#{$_e}dialog {
       transform: translateX(-100%);
     }
   }
 }
 
-.modal_pos_right {
+.#{$_b}modal#{$_m}pos#{$_v}right {
   align-items: flex-end;
 
-  .modal__dialog {
+  .#{$_b}modal#{$_e}dialog {
     right: 0;
     transform: translateX(100%);
   }
 
   &.is-closing {
-    .modal__dialog {
+    .#{$_b}modal#{$_e}dialog {
       transform: translateX(100%);
     }
   }
