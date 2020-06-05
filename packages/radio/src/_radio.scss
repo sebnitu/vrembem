@@ -1,7 +1,10 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
 
-.radio {
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+
+.#{$_b}radio {
   position: relative;
   display: inline-flex;
   flex: 0 0 auto;
@@ -10,36 +13,36 @@
   vertical-align: middle;
 }
 
-.radio__background {
-  @include core.size(variables.$size);
+.#{$_b}radio#{$_e}background {
+  @include core.size(var.$size);
   position: relative;
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: variables.$background-border-radius;
-  background-color: variables.$background;
+  border-radius: var.$background-border-radius;
+  background-color: var.$background;
 }
 
-.radio__circle {
-  @include core.size(variables.$circle-size);
+.#{$_b}radio#{$_e}circle {
+  @include core.size(var.$circle-size);
   display: flex;
   align-items: center;
   justify-content: center;
-  border: variables.$circle-border-width solid variables.$circle-border-color;
-  border-radius: variables.$circle-size;
-  background-color: variables.$circle-background;
+  border: var.$circle-border-width solid var.$circle-border-color;
+  border-radius: var.$circle-size;
+  background-color: var.$circle-background;
   color: transparent;
 }
 
-.radio__dot {
+.#{$_b}radio#{$_e}dot {
   @include core.size(0);
-  border-radius: variables.$dot-size;
-  background-color: variables.$dot-color;
+  border-radius: var.$dot-size;
+  background-color: var.$dot-color;
   opacity: 0;
 }
 
-.radio__native {
+.#{$_b}radio#{$_e}native {
   @include core.size(100%);
   position: absolute;
   z-index: 2;
@@ -48,46 +51,46 @@
   opacity: 0;
   cursor: pointer;
 
-  &:hover + .radio__background {
-    background-color: variables.$background-hover;
+  &:hover + .#{$_b}radio#{$_e}background {
+    background-color: var.$background-hover;
 
-    .radio__circle {
-      border-color: variables.$circle-border-color-hover;
-      background-color: variables.$circle-background-hover;
+    .#{$_b}radio#{$_e}circle {
+      border-color: var.$circle-border-color-hover;
+      background-color: var.$circle-background-hover;
     }
   }
 
-  &:focus + .radio__background {
-    background-color: variables.$background-focus;
+  &:focus + .#{$_b}radio#{$_e}background {
+    background-color: var.$background-focus;
 
-    .radio__circle {
-      border-color: variables.$circle-border-color-focus;
-      background-color: variables.$circle-background-focus;
+    .#{$_b}radio#{$_e}circle {
+      border-color: var.$circle-border-color-focus;
+      background-color: var.$circle-background-focus;
     }
   }
 
-  &:active + .radio__background {
-    background-color: variables.$background-active;
+  &:active + .#{$_b}radio#{$_e}background {
+    background-color: var.$background-active;
 
-    .radio__circle {
-      border-color: variables.$circle-border-color-active;
-      background-color: variables.$circle-background-active;
+    .#{$_b}radio#{$_e}circle {
+      border-color: var.$circle-border-color-active;
+      background-color: var.$circle-background-active;
     }
   }
 
-  &:checked + .radio__background {
-    background-color: variables.$background-checked;
+  &:checked + .#{$_b}radio#{$_e}background {
+    background-color: var.$background-checked;
 
-    .radio__circle {
-      border-color: variables.$circle-border-color-checked;
-      background-color: variables.$circle-background-checked;
+    .#{$_b}radio#{$_e}circle {
+      border-color: var.$circle-border-color-checked;
+      background-color: var.$circle-background-checked;
     }
 
-    .radio__dot {
-      @include core.size(variables.$dot-size);
+    .#{$_b}radio#{$_e}dot {
+      @include core.size(var.$dot-size);
       transition-property: opacity, width, height;
-      transition-duration: variables.$transition-duration;
-      transition-timing-function: variables.$transition-timing-function;
+      transition-duration: var.$transition-duration;
+      transition-timing-function: var.$transition-timing-function;
       background-position: center center;
       opacity: 1;
     }
