@@ -1,24 +1,29 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
 
 $padding: 0.5em !default;
 $background: core.$shade !default;
 $adjust: 1px !default;
-$border: 1px solid variables.$sep-background !default;
-$border-radius: variables.$border-radius !default;
-$menu__link-padding: null !default;
+$border: 1px solid var.$sep-background !default;
+$border-radius: var.$border-radius !default;
+$link-padding: null !default;
 
-.menu_theme_tabs {
+.#{$_b}menu#{$_m}theme#{$_v}tabs {
   padding: $padding $padding 0 $padding;
   border-bottom: $border;
   background-color: $background;
 
-  .menu__item + .menu__item {
+  .#{$_b}menu#{$_e}item + .#{$_b}menu#{$_e}item {
     margin-left: ($padding * 0.5);
   }
 
-  .menu__link {
-    padding: $menu__link-padding;
+  .#{$_b}menu#{$_e}link {
+    padding: $link-padding;
     border-bottom: 0;
     border-radius: $border-radius;
     border-bottom-left-radius: 0;
@@ -36,17 +41,17 @@ $menu__link-padding: null !default;
   }
 }
 
-.menu_stack.menu_theme_tabs {
+.#{$_b}menu#{$_m}stack.#{$_b}menu#{$_m}theme#{$_v}tabs {
   padding: $padding 0 $padding $padding;
   border-right: $border;
   border-bottom: 0;
 
-  .menu__item + .menu__item {
+  .#{$_b}menu#{$_e}item + .#{$_b}menu#{$_e}item {
     margin-top: ($padding * 0.5);
     margin-left: inherit;
   }
 
-  .menu__link {
+  .#{$_b}menu#{$_e}link {
     border-right: 0;
     border-bottom: inherit;
     border-radius: $border-radius;

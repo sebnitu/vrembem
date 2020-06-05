@@ -1,5 +1,10 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
 
 $color: core.$white !default;
 $color-hover: null !default;
@@ -15,15 +20,15 @@ $background-active: rgba(core.$white, 0.12) !default;
 $background-is-active: none !default;
 $background-is-disabled: none !default;
 
-$theme__sep-background: core.$border-color-invert !default;
-$theme__text-color: core.$white !default;
+$text-color: core.$white !default;
+$sep-background: core.$border-color-invert !default;
 
-.menu_theme_invert {
-  .menu__sep {
-    background: $theme__sep-background;
+.#{$_b}menu#{$_m}theme#{$_v}invert {
+  .#{$_b}menu#{$_e}sep {
+    background: $sep-background;
   }
 
-  .menu__link {
+  .#{$_b}menu#{$_e}link {
     background: $background;
     color: $color;
 
@@ -67,8 +72,8 @@ $theme__text-color: core.$white !default;
     }
   }
 
-  .menu__text {
+  .#{$_b}menu#{$_e}text {
     background: $background;
-    color: $theme__text-color;
+    color: $text-color;
   }
 }

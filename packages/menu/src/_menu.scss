@@ -1,28 +1,31 @@
-@use "./variables";
+@use "./variables" as var;
 
-.menu {
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+
+.#{$_b}menu {
   display: flex;
   align-items: center;
-  font-size: variables.$font-size;
-  line-height: variables.$line-height;
+  font-size: var.$font-size;
+  line-height: var.$line-height;
   list-style: none;
 }
 
-.menu__item {
+.#{$_b}menu#{$_e}item {
   position: relative;
 
   & + & {
-    margin-left: variables.$gap;
+    margin-left: var.$gap;
   }
 }
 
-.menu__sep {
+.#{$_b}menu#{$_e}sep {
   flex-shrink: 0;
   align-self: stretch;
-  width: variables.$sep-width;
+  width: var.$sep-width;
   height: auto;
-  margin: 0 variables.$sep-spacing;
-  background: variables.$sep-background;
+  margin: 0 var.$sep-spacing;
+  background: var.$sep-background;
 
   &:first-child {
     margin-left: 0;
@@ -33,80 +36,80 @@
   }
 }
 
-.menu__link,
-.menu__text {
+.#{$_b}menu#{$_e}link,
+.#{$_b}menu#{$_e}text {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: variables.$min-size;
-  min-height: variables.$min-size;
-  padding: variables.$padding;
-  border-radius: variables.$border-radius;
+  min-width: var.$min-size;
+  min-height: var.$min-size;
+  padding: var.$padding;
+  border-radius: var.$border-radius;
   white-space: nowrap;
 
   > * + * {
-    margin-left: variables.$inner-spacing;
+    margin-left: var.$inner-spacing;
   }
 }
 
-.menu__link {
-  background: variables.$background;
-  box-shadow: variables.$box-shadow;
-  color: variables.$color;
+.#{$_b}menu#{$_e}link {
+  background: var.$background;
+  box-shadow: var.$box-shadow;
+  color: var.$color;
 
   &_icon {
-    padding: nth(variables.$padding, 1);
+    padding: nth(var.$padding, 1);
   }
 
   &:hover {
-    background: variables.$background-hover;
-    box-shadow: variables.$box-shadow-hover;
-    color: variables.$color-hover;
+    background: var.$background-hover;
+    box-shadow: var.$box-shadow-hover;
+    color: var.$color-hover;
   }
 
   &:focus {
-    outline: variables.$outline-focus;
-    outline-offset: variables.$outline-focus-offset;
-    background: variables.$background-focus;
-    box-shadow: variables.$box-shadow-focus;
-    color: variables.$color-focus;
+    outline: var.$outline-focus;
+    outline-offset: var.$outline-focus-offset;
+    background: var.$background-focus;
+    box-shadow: var.$box-shadow-focus;
+    color: var.$color-focus;
   }
 
   &:active {
-    background: variables.$background-active;
-    box-shadow: variables.$box-shadow-active;
-    color: variables.$color-active;
+    background: var.$background-active;
+    box-shadow: var.$box-shadow-active;
+    color: var.$color-active;
   }
 
   &.is-active {
-    background: variables.$background-is-active;
-    color: variables.$color-is-active;
+    background: var.$background-is-active;
+    color: var.$color-is-active;
 
     &:hover,
     &:focus,
     &:active {
-      background: variables.$background-is-active;
-      color: variables.$color-is-active;
+      background: var.$background-is-active;
+      color: var.$color-is-active;
     }
   }
 
   &.is-disabled {
-    background: variables.$background-is-disabled;
-    color: variables.$color-is-disabled;
+    background: var.$background-is-disabled;
+    color: var.$color-is-disabled;
     cursor: default;
 
     &:hover,
     &:focus,
     &:active {
-      background: variables.$background-is-disabled;
-      color: variables.$color-is-disabled;
+      background: var.$background-is-disabled;
+      color: var.$color-is-disabled;
     }
   }
 }
 
-.menu__text {
-  background: variables.$text-background;
-  color: variables.$text-color;
+.#{$_b}menu#{$_e}text {
+  background: var.$text-background;
+  color: var.$text-color;
   text-decoration: none;
 }

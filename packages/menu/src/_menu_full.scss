@@ -1,14 +1,19 @@
 @use "@vrembem/core";
-@use "./mixins";
+@use "./variables" as var;
+@use "./mixins" as mix;
 
-.menu_full {
-  @include mixins.menu-full();
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}menu#{$_m}full {
+  @include mix.menu-full();
 }
 
 @each $key, $value in core.$breakpoints {
   @include core.media-max($key) {
-    .menu_full_#{$key} {
-      @include mixins.menu-full();
+    .#{$_b}menu#{$_m}full#{$_v}#{$key} {
+      @include mix.menu-full();
     }
   }
 }
