@@ -1,22 +1,26 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
 
-.button-group_full {
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}button-group#{$_m}full {
   display: flex;
   align-items: stretch;
 
-  #{variables.$children-selector} {
+  #{var.$children-selector} {
     flex: 1 1 auto;
   }
 }
 
 @each $key, $value in core.$breakpoints {
   @include core.media-max($value) {
-    .button-group_full_#{$key} {
+    .#{$_b}button-group#{$_m}full#{$_v}#{$key} {
       display: flex;
       align-items: stretch;
 
-      #{variables.$children-selector} {
+      #{var.$children-selector} {
         flex: 1 1 auto;
       }
     }

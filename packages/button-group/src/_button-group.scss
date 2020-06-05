@@ -1,16 +1,16 @@
-@use "./variables";
+@use "./variables" as var;
 
-.button-group {
+.#{var.$prefix-block}button-group {
   display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
-  margin: (variables.$gap * -1) 0 0 (variables.$gap * -1);
+  margin: (var.$gap * -1) 0 0 (var.$gap * -1);
 
-  #{variables.$children-selector} {
+  #{var.$children-selector} {
     z-index: 1;
     flex: 0 0 auto;
-    margin: variables.$gap 0 0 variables.$gap;
-    border-radius: variables.$border-radius;
+    margin: var.$gap 0 0 var.$gap;
+    border-radius: var.$border-radius;
 
     &:hover {
       z-index: 2;
