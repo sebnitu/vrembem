@@ -1,13 +1,17 @@
-@use "./variables";
+@use "./variables" as var;
 
-.input_size_sm {
-  padding: variables.$size_sm-padding;
-  font-size: variables.$size_sm-font-size;
-  line-height: variables.$size_sm-line-height;
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}input#{$_m}size#{$_v}sm {
+  padding: var.$size-sm-padding;
+  font-size: var.$size-sm-font-size;
+  line-height: var.$size-sm-line-height;
 }
 
-.input_size_lg {
-  padding: variables.$size_lg-padding;
-  font-size: variables.$size_lg-font-size;
-  line-height: variables.$size_lg-line-height;
+.#{$_b}input#{$_m}size#{$_v}lg {
+  padding: var.$size-lg-padding;
+  font-size: var.$size-lg-font-size;
+  line-height: var.$size-lg-line-height;
 }

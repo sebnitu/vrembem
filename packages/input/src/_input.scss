@@ -1,56 +1,38 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
+@use "./mixins" as mix;
 
-.input {
+$_b: var.$prefix-block;
+
+.#{$_b}input {
+  @include mix.box-shadow();
   position: relative;
   display: block;
   width: 100%;
-  padding: variables.$padding;
+  padding: var.$padding;
   transition: box-shadow core.$transition-duration core.$transition-timing-function;
-  border: variables.$border;
-  border-radius: variables.$border-radius;
-  background: variables.$background;
-  box-shadow: variables.$box-shadow-values variables.$box-shadow-color;
+  border: var.$border;
+  border-radius: var.$border-radius;
+  background: var.$background;
   color: core.$color;
   font-family: core.$font-family;
-  font-size: variables.$font-size;
-  line-height: variables.$line-height;
+  font-size: var.$font-size;
+  line-height: var.$line-height;
   appearance: none;
 
   &:hover {
-    border-color: variables.$border-color-hover;
-    box-shadow: variables.$box-shadow-hover-values variables.$box-shadow-hover-color;
+    @include mix.box-shadow("hover");
+    border-color: var.$border-color-hover;
   }
 
   &:focus {
+    @include mix.box-shadow("focus");
     outline: none;
-    border-color: variables.$border-color-focus;
-    background-color: variables.$background-focus;
-    box-shadow: variables.$box-shadow-focus-values variables.$box-shadow-focus-color;
+    border-color: var.$border-color-focus;
+    background-color: var.$background-focus;
   }
 
   &::placeholder {
     color: core.$color-subtle;
-  }
-}
-
-.input_auto {
-  width: auto;
-}
-
-.input_color_invert {
-  border-color: rgba(core.$white, 0);
-  background: rgba(core.$white, 0.1);
-  box-shadow: none;
-  color: core.$white;
-
-  &:focus {
-    border-color: rgba(core.$white, 0);
-    background: rgba(core.$white, 0.2);
-    box-shadow: none;
-  }
-
-  &::placeholder {
-    color: rgba(core.$white, 0.5);
   }
 }

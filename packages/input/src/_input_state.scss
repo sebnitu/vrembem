@@ -1,38 +1,43 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
+@use "./mixins" as mix;
 
-.input_state_success {
-  box-shadow: variables.$box-shadow-values rgba(core.$success, 1);
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}input#{$_m}state#{$_v}success {
+  @include mix.box-shadow("default", rgba(core.$success, 1));
 
   &:hover {
-    box-shadow: variables.$box-shadow-hover-values rgba(core.$success, 1);
+    @include mix.box-shadow("hover", rgba(core.$success, 1));
   }
 
   &:focus {
-    box-shadow: variables.$box-shadow-focus-values rgba(core.$success, 1);
+    @include mix.box-shadow("focus", rgba(core.$success, 1));
   }
 }
 
-.input_state_caution {
-  box-shadow: variables.$box-shadow-values rgba(core.$caution, 1);
+.#{$_b}input#{$_m}state#{$_v}caution {
+  @include mix.box-shadow("default", rgba(core.$caution, 1));
 
   &:hover {
-    box-shadow: variables.$box-shadow-hover-values rgba(core.$caution, 1);
+    @include mix.box-shadow("hover", rgba(core.$caution, 1));
   }
 
   &:focus {
-    box-shadow: variables.$box-shadow-focus-values rgba(core.$caution, 1);
+    @include mix.box-shadow("focus", rgba(core.$caution, 1));
   }
 }
 
-.input_state_danger {
-  box-shadow: variables.$box-shadow-values rgba(core.$danger, 1);
+.#{$_b}input#{$_m}state#{$_v}danger {
+  @include mix.box-shadow("default", rgba(core.$danger, 1));
 
   &:hover {
-    box-shadow: variables.$box-shadow-hover-values rgba(core.$danger, 1);
+    @include mix.box-shadow("hover", rgba(core.$danger, 1));
   }
 
   &:focus {
-    box-shadow: variables.$box-shadow-focus-values rgba(core.$danger, 1);
+    @include mix.box-shadow("focus", rgba(core.$danger, 1));
   }
 }

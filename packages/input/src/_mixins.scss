@@ -1,0 +1,39 @@
+@use "./variables" as var;
+
+@mixin box-shadow($state: "default", $color: null) {
+  @if ($state == "hover") {
+    $_color: var.$box-shadow-hover-color;
+    @if $color {
+      $_color: $color;
+    }
+    $_value: var.$box-shadow-hover-values $_color;
+    @if var.$box-shadow-hover-inner {
+      $_value: $_value, inset var.$box-shadow-hover-inner;
+    }
+    box-shadow: $_value;
+  }
+
+  @else if ($state == "focus") {
+    $_color: var.$box-shadow-focus-color;
+    @if $color {
+      $_color: $color;
+    }
+    $_value: var.$box-shadow-focus-values $_color;
+    @if var.$box-shadow-focus-inner {
+      $_value: $_value, inset var.$box-shadow-focus-inner;
+    }
+    box-shadow: $_value;
+  }
+
+  @else {
+    $_color: var.$box-shadow-color;
+    @if $color {
+      $_color: $color;
+    }
+    $_value: var.$box-shadow-values $_color;
+    @if var.$box-shadow-inner {
+      $_value: $_value, inset var.$box-shadow-inner;
+    }
+    box-shadow: $_value;
+  }
+}
