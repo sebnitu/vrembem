@@ -1,18 +1,22 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
 
-.card_invert {
-  background: variables.$invert-background;
-  color: color-switch(variables.$invert-background);
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+$_m: var.$prefix-modifier;
 
-  @if (is-dark(variables.$invert-background)) {
-    .card__header,
-    .card__footer {
+.#{$_b}card#{$_m}invert {
+  background: var.$invert-background;
+  color: color-switch(var.$invert-background);
+
+  @if (core.is-dark(var.$invert-background)) {
+    .#{$_b}card#{$_e}header,
+    .#{$_b}card#{$_e}footer {
       border-color: core.$border-color-invert;
     }
   }
 
-  .card__screen {
-    background: variables.$invert-background;
+  .#{$_b}card#{$_e}screen {
+    background: var.$invert-background;
   }
 }

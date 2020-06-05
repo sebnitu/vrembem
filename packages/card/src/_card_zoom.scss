@@ -1,14 +1,18 @@
-@use "./variables";
+@use "./variables" as var;
 
-.card_zoom {
-  .card__background {
-    transition: transform variables.$transition-duration variables.$transition-timing-function;
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+$_m: var.$prefix-modifier;
+
+.#{$_b}card#{$_m}zoom {
+  .#{$_b}card#{$_e}background {
+    transition: transform var.$transition-duration var.$transition-timing-function;
   }
 
   &:hover,
   &:focus,
   &:focus-within {
-    .card__background {
+    .#{$_b}card#{$_e}background {
       transform: scale(1.1);
     }
   }

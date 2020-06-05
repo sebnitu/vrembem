@@ -1,27 +1,31 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+$_m: var.$prefix-modifier;
 
 @include core.media-min("md") {
-  .card_fade {
-    .card__header,
-    .card__body,
-    .card__footer,
-    .card__screen {
-      transition: opacity variables.$transition-duration variables.$transition-timing-function;
+  .#{$_b}card#{$_m}fade {
+    .#{$_b}card#{$_e}header,
+    .#{$_b}card#{$_e}body,
+    .#{$_b}card#{$_e}footer,
+    .#{$_b}card#{$_e}screen {
+      transition: opacity var.$transition-duration var.$transition-timing-function;
       opacity: 0;
     }
 
     &:hover,
     &:focus,
     &:focus-within {
-      .card__header,
-      .card__body,
-      .card__footer {
+      .#{$_b}card#{$_e}header,
+      .#{$_b}card#{$_e}body,
+      .#{$_b}card#{$_e}footer {
         opacity: 1;
       }
 
-      .card__screen {
-        opacity: variables.$screen-opacity;
+      .#{$_b}card#{$_e}screen {
+        opacity: var.$screen-opacity;
       }
     }
   }

@@ -1,100 +1,103 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
 
-.card {
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+
+.#{$_b}card {
   position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition-property: variables.$transition-property;
-  transition-duration: variables.$transition-duration;
-  transition-timing-function: variables.$transition-timing-function;
-  border: variables.$border;
-  border-radius: variables.$border-radius;
-  background: variables.$background;
-  box-shadow: variables.$box-shadow;
+  transition-property: var.$transition-property;
+  transition-duration: var.$transition-duration;
+  transition-timing-function: var.$transition-timing-function;
+  border: var.$border;
+  border-radius: var.$border-radius;
+  background: var.$background;
+  box-shadow: var.$box-shadow;
 }
 
-.card__header,
-.card__body,
-.card__footer,
-.card__image {
+.#{$_b}card#{$_e}header,
+.#{$_b}card#{$_e}body,
+.#{$_b}card#{$_e}footer,
+.#{$_b}card#{$_e}image {
   position: relative;
   z-index: 3;
 }
 
-.card__body,
-.card__header,
-.card__footer {
-  padding: variables.$padding;
+.#{$_b}card#{$_e}body,
+.#{$_b}card#{$_e}header,
+.#{$_b}card#{$_e}footer {
+  padding: var.$padding;
 }
 
-.card__body {
+.#{$_b}card#{$_e}body {
   flex: 1 1 auto;
 }
 
-.card__image {
+.#{$_b}card#{$_e}image {
   flex: 0 1 auto;
   width: 100%;
   height: auto;
 
   &:first-child {
-    border-top-left-radius: variables.$border-radius;
-    border-top-right-radius: variables.$border-radius;
+    border-top-left-radius: var.$border-radius;
+    border-top-right-radius: var.$border-radius;
   }
 
   &:last-child {
-    border-bottom-left-radius: variables.$border-radius;
-    border-bottom-right-radius: variables.$border-radius;
+    border-bottom-left-radius: var.$border-radius;
+    border-bottom-right-radius: var.$border-radius;
   }
 }
 
-.card__header {
-  border-bottom: variables.$sep-border;
+.#{$_b}card#{$_e}header {
+  border-bottom: var.$sep-border;
 
   &:first-child {
-    border-top-left-radius: variables.$border-radius;
-    border-top-right-radius: variables.$border-radius;
+    border-top-left-radius: var.$border-radius;
+    border-top-right-radius: var.$border-radius;
   }
 }
 
-.card__footer {
-  border-top: variables.$sep-border;
+.#{$_b}card#{$_e}footer {
+  border-top: var.$sep-border;
 
   &:last-child {
-    border-bottom-left-radius: variables.$border-radius;
-    border-bottom-right-radius: variables.$border-radius;
+    border-bottom-left-radius: var.$border-radius;
+    border-bottom-right-radius: var.$border-radius;
   }
 }
 
-.card__title {
+.#{$_b}card#{$_e}title {
   flex-grow: 1;
-  font-size: variables.$title-font-size;
-  font-weight: variables.$title-font-weight;
-  line-height: variables.$title-line-height;
+  font-size: var.$title-font-size;
+  font-weight: var.$title-font-weight;
+  line-height: var.$title-line-height;
 }
 
-.card__background,
-.card__screen {
+.#{$_b}card#{$_e}background,
+.#{$_b}card#{$_e}screen {
   @include core.size(100%);
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  transition-property: variables.$transition-property;
-  transition-duration: variables.$transition-duration;
-  transition-timing-function: variables.$transition-timing-function;
-  border-radius: variables.$border-radius;
+  transition-property: var.$transition-property;
+  transition-duration: var.$transition-duration;
+  transition-timing-function: var.$transition-timing-function;
+  border-radius: var.$border-radius;
 }
 
-.card__background {
+.#{$_b}card#{$_e}background {
   object-fit: cover;
   z-index: 1;
 }
 
-.card__screen {
+.#{$_b}card#{$_e}screen {
   z-index: 2;
-  background: variables.$screen-background;
-  opacity: variables.$screen-opacity;
+  background: var.$screen-background;
+  opacity: var.$screen-opacity;
 }

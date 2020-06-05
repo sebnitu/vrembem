@@ -1,8 +1,8 @@
 @use "./variables" as var;
 
 $_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
 $_e: var.$prefix-element;
+$_m: var.$prefix-modifier;
 
 .#{$_b}breadcrumb#{$_m}invert {
   color: var.$invert-color;
