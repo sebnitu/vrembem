@@ -1,34 +1,39 @@
-@use "./variables";
+@use "./variables" as var;
 
-.drawer_pos_left,
-.drawer_pos_right {
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}drawer#{$_m}pos#{$_v}left,
+.#{$_b}drawer#{$_m}pos#{$_v}right {
   position: absolute;
   top: 0;
   bottom: 0;
 
-  .drawer__item {
+  .#{$_b}drawer#{$_e}item {
     position: absolute;
     top: 0;
   }
 }
 
-.drawer_pos_left {
+.#{$_b}drawer#{$_m}pos#{$_v}left {
   left: 0;
 
-  .drawer__item {
+  .#{$_b}drawer#{$_e}item {
     left: 0;
     transform: translateX(-100%);
-    border-right: variables.$item-border;
+    border-right: var.$item-border;
   }
 }
 
-.drawer_pos_right {
+.#{$_b}drawer#{$_m}pos#{$_v}right {
   right: 0;
 
-  .drawer__item {
+  .#{$_b}drawer#{$_e}item {
     right: 0;
     transform: translateX(100%);
-    border-left: variables.$item-border;
+    border-left: var.$item-border;
   }
 }
 
@@ -36,37 +41,37 @@
  * Drawer state classes
  */
 
-.drawer_pos_left.is-opening,
-.drawer_pos_left.is-open {
-  &:not(.drawer_modal) ~ .drawer__main {
-    margin-left: variables.$width;
+.#{$_b}drawer#{$_m}pos#{$_v}left.is-opening,
+.#{$_b}drawer#{$_m}pos#{$_v}left.is-open {
+  &:not(.#{$_b}drawer#{$_m}modal) ~ .#{$_b}drawer#{$_e}main {
+    margin-left: var.$width;
   }
 }
 
-.drawer_pos_right.is-opening,
-.drawer_pos_right.is-open {
-  &:not(.drawer_modal) ~ .drawer__main {
-    margin-right: variables.$width;
+.#{$_b}drawer#{$_m}pos#{$_v}right.is-opening,
+.#{$_b}drawer#{$_m}pos#{$_v}right.is-open {
+  &:not(.#{$_b}drawer#{$_m}modal) ~ .#{$_b}drawer#{$_e}main {
+    margin-right: var.$width;
   }
 }
 
-.drawer_pos_left.is-opening,
-.drawer_pos_right.is-opening,
-.drawer_pos_left.is-open,
-.drawer_pos_right.is-open {
-  .drawer__item {
+.#{$_b}drawer#{$_m}pos#{$_v}left.is-opening,
+.#{$_b}drawer#{$_m}pos#{$_v}right.is-opening,
+.#{$_b}drawer#{$_m}pos#{$_v}left.is-open,
+.#{$_b}drawer#{$_m}pos#{$_v}right.is-open {
+  .#{$_b}drawer#{$_e}item {
     transform: translateX(0);
   }
 }
 
-.drawer_pos_left.is-closing {
-  .drawer__item {
+.#{$_b}drawer#{$_m}pos#{$_v}left.is-closing {
+  .#{$_b}drawer#{$_e}item {
     transform: translateX(-100%);
   }
 }
 
-.drawer_pos_right.is-closing {
-  .drawer__item {
+.#{$_b}drawer#{$_m}pos#{$_v}right.is-closing {
+  .#{$_b}drawer#{$_e}item {
     transform: translateX(100%);
   }
 }

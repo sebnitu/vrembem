@@ -1,18 +1,22 @@
-@use "./variables";
+@use "./variables" as var;
 
-.drawer_modal {
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+$_m: var.$prefix-modifier;
+
+.#{$_b}drawer#{$_m}modal {
   position: fixed;
-  z-index: variables.$zindex;
+  z-index: var.$zindex;
   width: 0;
   height: 0;
   overflow: hidden;
-  background-color: rgba(variables.$modal-background, 0);
+  background-color: rgba(var.$modal-background, 0);
 
-  .drawer__item {
+  .#{$_b}drawer#{$_e}item {
     position: relative;
-    z-index: (variables.$zindex + 1);
-    background-color: variables.$modal-item-background;
-    box-shadow: variables.$modal-item-box-shadow;
+    z-index: (var.$zindex + 1);
+    background-color: var.$modal-item-background;
+    box-shadow: var.$modal-item-box-shadow;
   }
 }
 
@@ -20,23 +24,23 @@
  * Drawer state classes
  */
 
-.drawer_modal.is-opening,
-.drawer_modal.is-open,
-.drawer_modal.is-closing {
+.#{$_b}drawer#{$_m}modal.is-opening,
+.#{$_b}drawer#{$_m}modal.is-open,
+.#{$_b}drawer#{$_m}modal.is-closing {
   width: 100%;
   height: 100%;
 }
 
-.drawer_modal.is-opening,
-.drawer_modal.is-closing {
-  transition: background-color variables.$transition-duration variables.$transition-timing-function;
+.#{$_b}drawer#{$_m}modal.is-opening,
+.#{$_b}drawer#{$_m}modal.is-closing {
+  transition: background-color var.$transition-duration var.$transition-timing-function;
 }
 
-.drawer_modal.is-opening,
-.drawer_modal.is-open {
-  background-color: rgba(variables.$modal-background, variables.$modal-background-alpha);
+.#{$_b}drawer#{$_m}modal.is-opening,
+.#{$_b}drawer#{$_m}modal.is-open {
+  background-color: rgba(var.$modal-background, var.$modal-background-alpha);
 }
 
-.drawer_modal.is-closing {
-  background-color: rgba(variables.$modal-background, 0);
+.#{$_b}drawer#{$_m}modal.is-closing {
+  background-color: rgba(var.$modal-background, 0);
 }

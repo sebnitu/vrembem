@@ -1,6 +1,9 @@
-@use "./variables";
+@use "./variables" as var;
 
-.drawer {
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+
+.#{$_b}drawer {
   position: relative;
   display: flex;
   flex: 0 0 0;
@@ -14,35 +17,35 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.drawer__item {
-  width: variables.$width;
+.#{$_b}drawer#{$_e}item {
+  width: var.$width;
   height: 100%;
-  transform: translateY(-(variables.$travel));
-  border-right: variables.$item-border;
+  transform: translateY(-(var.$travel));
+  border-right: var.$item-border;
   border-radius: 0;
-  background: variables.$item-background;
-  box-shadow: variables.$item-box-shadow;
+  background: var.$item-background;
+  box-shadow: var.$item-box-shadow;
   opacity: 0;
 
-  .dialog__header,
-  .dialog__footer {
-    border-color: variables.$item-sep-border-color;
-    background: variables.$item-background;
+  .#{$_b}dialog#{$_e}header,
+  .#{$_b}dialog#{$_e}footer {
+    border-color: var.$item-sep-border-color;
+    background: var.$item-background;
   }
 
-  .dialog__body {
-    background: variables.$item-background;
+  .#{$_b}dialog#{$_e}body {
+    background: var.$item-background;
   }
 }
 
-.drawer__wrapper {
+.#{$_b}drawer#{$_e}wrapper {
   position: relative;
   display: flex;
   height: 100vh;
   overflow: hidden;
 }
 
-.drawer__main {
+.#{$_b}drawer#{$_e}main {
   position: relative;
   flex: 1 1 auto;
   height: 100%;
@@ -54,40 +57,40 @@
  * Drawer state classes
  */
 
-.drawer.is-opening,
-.drawer.is-open,
-.drawer.is-closing {
+.#{$_b}drawer.is-opening,
+.#{$_b}drawer.is-open,
+.#{$_b}drawer.is-closing {
   flex: 0 0 auto;
-  width: variables.$width;
+  width: var.$width;
   height: 100%;
 }
 
-.drawer.is-opening,
-.drawer.is-closing {
-  .drawer__item {
+.#{$_b}drawer.is-opening,
+.#{$_b}drawer.is-closing {
+  .#{$_b}drawer#{$_e}item {
     transition-property: opacity, transform;
-    transition-duration: variables.$transition-duration;
-    transition-timing-function: variables.$transition-timing-function;
+    transition-duration: var.$transition-duration;
+    transition-timing-function: var.$transition-timing-function;
   }
 }
 
-.drawer.is-opening,
-.drawer.is-open {
-  .drawer__item {
+.#{$_b}drawer.is-opening,
+.#{$_b}drawer.is-open {
+  .#{$_b}drawer#{$_e}item {
     transform: translateY(0);
     opacity: 1;
   }
 }
 
-.drawer.is-open {
-  .drawer__item {
+.#{$_b}drawer.is-open {
+  .#{$_b}drawer#{$_e}item {
     opacity: 1;
   }
 }
 
-.drawer.is-closing {
-  .drawer__item {
-    transform: translateY(-(variables.$travel));
+.#{$_b}drawer.is-closing {
+  .#{$_b}drawer#{$_e}item {
+    transform: translateY(-(var.$travel));
     opacity: 0;
   }
 }
