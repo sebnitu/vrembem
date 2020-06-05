@@ -1,34 +1,37 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
 
-.section {
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+
+.#{$_b}section {
   position: relative;
-  padding: map-get(variables.$padding, 'base');
+  padding: map-get(var.$padding, 'base');
 }
 
-.section__container {
+.#{$_b}section#{$_e}container {
   position: relative;
   z-index: 3;
 }
 
-.section__intro {
-  max-width: variables.$intro-max-width;
+.#{$_b}section#{$_e}intro {
+  max-width: var.$intro-max-width;
   margin: 0 auto;
   text-align: center;
 }
 
-@each $bp, $value in variables.$padding {
+@each $bp, $value in var.$padding {
   @if ($bp != 'base') {
     @include core.media-min($bp) {
-      .section {
+      .#{$_b}section {
         padding: $value;
       }
     }
   }
 }
 
-.section__background,
-.section__screen {
+.#{$_b}section#{$_e}background,
+.#{$_b}section#{$_e}screen {
   position: absolute;
   top: 0;
   right: 0;
@@ -38,13 +41,13 @@
   height: 100%;
 }
 
-.section__background {
+.#{$_b}section#{$_e}background {
   object-fit: cover;
   z-index: 1;
 }
 
-.section__screen {
+.#{$_b}section#{$_e}screen {
   z-index: 2;
-  background: variables.$screen-background;
-  opacity: variables.$screen-opacity;
+  background: var.$screen-background;
+  opacity: var.$screen-opacity;
 }

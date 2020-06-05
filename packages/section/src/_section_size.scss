@@ -1,15 +1,19 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
 
-@each $key, $group in variables.$padding-scale {
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+@each $key, $group in var.$padding-scale {
   @each $bp, $value in $group {
     @if ($bp == 'base') {
-      .section_size_#{$key} {
+      .#{$_b}section#{$_m}size#{$_v}#{$key} {
         padding: $value;
       }
     } @else {
       @include core.media-min($bp) {
-        .section_size_#{$key} {
+        .#{$_b}section#{$_m}size#{$_v}#{$key} {
           padding: $value;
         }
       }
