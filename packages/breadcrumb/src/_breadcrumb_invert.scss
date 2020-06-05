@@ -1,15 +1,19 @@
 @use "./variables" as var;
 
-.#{var.$prefix-block}breadcrumb#{var.$prefix-modifier}invert {
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_e: var.$prefix-element;
+
+.#{$_b}breadcrumb#{$_m}invert {
   color: var.$invert-color;
 
-  .#{var.$prefix-block}breadcrumb#{var.$prefix-element}item {
+  .#{$_b}breadcrumb#{$_e}item {
     &::after {
       color: var.$invert-delimiter-color;
     }
   }
 
-  .#{var.$prefix-block}breadcrumb#{var.$prefix-element}link {
+  .#{$_b}breadcrumb#{$_e}link {
     border-bottom: var.$invert__link-border;
     color: var.$invert__link-color;
 

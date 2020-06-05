@@ -1,6 +1,9 @@
 @use "./variables" as var;
 
-.#{var.$prefix-block}breadcrumb {
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+
+.#{$_b}breadcrumb {
   display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
@@ -8,7 +11,7 @@
   list-style: none;
 }
 
-.#{var.$prefix-block}breadcrumb#{var.$prefix-element}item {
+.#{$_b}breadcrumb#{$_e}item {
   display: flex;
   align-items: center;
   margin: 0;
@@ -30,7 +33,7 @@
   }
 }
 
-.#{var.$prefix-block}breadcrumb#{var.$prefix-element}link {
+.#{$_b}breadcrumb#{$_e}link {
   border-bottom: var.$link-border;
   color: var.$link-color;
 

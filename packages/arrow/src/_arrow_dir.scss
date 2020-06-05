@@ -1,13 +1,17 @@
 @use "./variables" as var;
 
-.#{var.$prefix-block}arrow#{var.$prefix-modifier}dir#{var.$prefix-modifier-value}up {
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}arrow#{$_m}dir#{$_v}up {
   transform: rotate(180deg);
 }
 
-.#{var.$prefix-block}arrow#{var.$prefix-modifier}dir#{var.$prefix-modifier-value}left {
+.#{$_b}arrow#{$_m}dir#{$_v}left {
   transform: rotate(90deg);
 }
 
-.#{var.$prefix-block}arrow#{var.$prefix-modifier}dir#{var.$prefix-modifier-value}right {
+.#{$_b}arrow#{$_m}dir#{$_v}right {
   transform: rotate(-90deg);
 }
