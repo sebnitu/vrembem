@@ -1,15 +1,19 @@
-@use "./variables";
+@use "./variables" as var;
 
-.media_reverse {
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}media#{$_m}reverse {
   flex-direction: row-reverse;
 
   > * + * {
-    margin-right: variables.$spacing;
+    margin-right: var.$spacing;
     margin-left: 0;
   }
 
-  @each $key, $value in variables.$spacing-map {
-    &.media_gap_#{$key} {
+  @each $key, $value in var.$spacing-map {
+    &.#{$_b}media#{$_m}gap#{$_v}#{$key} {
       > * + * {
         margin-right: $value;
         margin-left: 0;

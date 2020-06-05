@@ -1,22 +1,25 @@
-@use "./variables";
+@use "./variables" as var;
 
-.media {
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+
+.#{$_b}media {
   display: flex;
   align-items: flex-start;
 
   > * + * {
-    margin-left: variables.$spacing;
+    margin-left: var.$spacing;
   }
 }
 
-.media__body {
+.#{$_b}media#{$_e}body {
   flex: 1 1 auto;
 }
 
-.media__obj {
+.#{$_b}media#{$_e}obj {
   display: flex;
   flex: 0 0 auto;
   align-items: center;
-  max-width: variables.$max-width;
-  min-height: variables.$min-height;
+  max-width: var.$max-width;
+  min-height: var.$min-height;
 }

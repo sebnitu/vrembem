@@ -1,35 +1,39 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
 
-.media_stack {
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}media#{$_m}stack {
   flex-direction: column;
 
   > * + * {
-    margin-top: variables.$spacing;
+    margin-top: var.$spacing;
     margin-right: 0;
     margin-left: 0;
   }
 }
 
 @each $key, $value in core.$breakpoints {
-  .media_stack_#{$key} {
+  .#{$_b}media#{$_m}stack#{$_v}#{$key} {
     flex-direction: column;
   }
 
   @include core.media-min($key) {
-    .media_stack_#{$key} {
+    .#{$_b}media#{$_m}stack#{$_v}#{$key} {
       flex-direction: row;
 
-      &.media_reverse {
+      &.#{$_b}media#{$_m}reverse {
         flex-direction: row-reverse;
       }
     }
   }
 
   @include core.media-max($key) {
-    .media_stack_#{$key} {
+    .#{$_b}media#{$_m}stack#{$_v}#{$key} {
       > * + * {
-        margin-top: variables.$spacing;
+        margin-top: var.$spacing;
         margin-right: 0;
         margin-left: 0;
       }
