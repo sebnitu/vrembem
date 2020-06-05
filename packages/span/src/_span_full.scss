@@ -1,6 +1,11 @@
 @use "@vrembem/core";
+@use "./variables" as var;
 
-.span_full {
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}span#{$_m}full {
   flex: 0 0 100%;
   width: 100%;
   max-width: 100%;
@@ -8,7 +13,7 @@
 
 @each $key, $value in core.$breakpoints {
   @include core.media-min($key) {
-    .span_full_#{$key} {
+    .#{$_b}span#{$_m}full#{$_v}#{$key} {
       flex: 0 0 100%;
       width: 100%;
       max-width: 100%;
