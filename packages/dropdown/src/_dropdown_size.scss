@@ -1,13 +1,18 @@
 @use "./variables" as var;
 
-.dropdown_size_sm .dropdown__menu {
-  width: var.$size_sm-width;
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}dropdown#{$_m}size#{$_v}sm .#{$_b}dropdown#{$_e}menu {
+  width: var.$size-sm-width;
 }
 
-.dropdown_size_lg .dropdown__menu {
-  width: var.$size_lg-width;
+.#{$_b}dropdown#{$_m}size#{$_v}lg .#{$_b}dropdown#{$_e}menu {
+  width: var.$size-lg-width;
 }
 
-.dropdown_size_auto .dropdown__menu {
+.#{$_b}dropdown#{$_m}size#{$_v}auto .#{$_b}dropdown#{$_e}menu {
   width: auto;
 }

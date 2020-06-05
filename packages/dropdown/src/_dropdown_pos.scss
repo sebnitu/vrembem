@@ -1,11 +1,16 @@
 @use "./variables" as var;
 
-.dropdown_pos_down-left .dropdown__menu,
-.dropdown_pos_down-right .dropdown__menu,
-.dropdown_pos_down .dropdown__menu {
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}dropdown#{$_m}pos#{$_v}down-left .#{$_b}dropdown#{$_e}menu,
+.#{$_b}dropdown#{$_m}pos#{$_v}down-right .#{$_b}dropdown#{$_e}menu,
+.#{$_b}dropdown#{$_m}pos#{$_v}down .#{$_b}dropdown#{$_e}menu {
   top: 100%;
   bottom: auto;
-  margin: var.$pos_spacing 0 0;
+  margin: var.$pos-spacing 0 0;
 
   &::before {
     top: auto;
@@ -13,32 +18,32 @@
     bottom: 100%;
     left: 0;
     width: 100%;
-    height: var.$pos_spacing;
+    height: var.$pos-spacing;
   }
 }
 
-.dropdown_pos_down-left .dropdown__menu {
+.#{$_b}dropdown#{$_m}pos#{$_v}down-left .#{$_b}dropdown#{$_e}menu {
   right: auto;
   left: 0;
 }
 
-.dropdown_pos_down-right .dropdown__menu {
+.#{$_b}dropdown#{$_m}pos#{$_v}down-right .#{$_b}dropdown#{$_e}menu {
   right: 0;
   left: auto;
 }
 
-.dropdown_pos_down .dropdown__menu {
+.#{$_b}dropdown#{$_m}pos#{$_v}down .#{$_b}dropdown#{$_e}menu {
   right: auto;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.dropdown_pos_up-left .dropdown__menu,
-.dropdown_pos_up-right .dropdown__menu,
-.dropdown_pos_up .dropdown__menu {
+.#{$_b}dropdown#{$_m}pos#{$_v}up-left .#{$_b}dropdown#{$_e}menu,
+.#{$_b}dropdown#{$_m}pos#{$_v}up-right .#{$_b}dropdown#{$_e}menu,
+.#{$_b}dropdown#{$_m}pos#{$_v}up .#{$_b}dropdown#{$_e}menu {
   top: auto;
   bottom: 100%;
-  margin: 0 0 var.$pos_spacing;
+  margin: 0 0 var.$pos-spacing;
 
   &::before {
     top: 100%;
@@ -46,87 +51,87 @@
     bottom: auto;
     left: 0;
     width: 100%;
-    height: var.$pos_spacing;
+    height: var.$pos-spacing;
   }
 }
 
-.dropdown_pos_up-left .dropdown__menu {
+.#{$_b}dropdown#{$_m}pos#{$_v}up-left .#{$_b}dropdown#{$_e}menu {
   right: auto;
   left: 0;
 }
 
-.dropdown_pos_up-right .dropdown__menu {
+.#{$_b}dropdown#{$_m}pos#{$_v}up-right .#{$_b}dropdown#{$_e}menu {
   right: 0;
   left: auto;
 }
 
-.dropdown_pos_up .dropdown__menu {
+.#{$_b}dropdown#{$_m}pos#{$_v}up .#{$_b}dropdown#{$_e}menu {
   right: auto;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.dropdown_pos_right-down .dropdown__menu,
-.dropdown_pos_right-up .dropdown__menu,
-.dropdown_pos_right .dropdown__menu {
+.#{$_b}dropdown#{$_m}pos#{$_v}right-down .#{$_b}dropdown#{$_e}menu,
+.#{$_b}dropdown#{$_m}pos#{$_v}right-up .#{$_b}dropdown#{$_e}menu,
+.#{$_b}dropdown#{$_m}pos#{$_v}right .#{$_b}dropdown#{$_e}menu {
   right: auto;
   left: 100%;
-  margin: 0 0 0 var.$pos_spacing;
+  margin: 0 0 0 var.$pos-spacing;
 
   &::before {
     top: 0;
     right: 100%;
     bottom: 0;
     left: auto;
-    width: var.$pos_spacing;
+    width: var.$pos-spacing;
     height: 100%;
   }
 }
 
-.dropdown_pos_right-down .dropdown__menu {
+.#{$_b}dropdown#{$_m}pos#{$_v}right-down .#{$_b}dropdown#{$_e}menu {
   top: 0;
   bottom: auto;
 }
 
-.dropdown_pos_right-up .dropdown__menu {
+.#{$_b}dropdown#{$_m}pos#{$_v}right-up .#{$_b}dropdown#{$_e}menu {
   top: auto;
   bottom: 0;
 }
 
-.dropdown_pos_right .dropdown__menu {
+.#{$_b}dropdown#{$_m}pos#{$_v}right .#{$_b}dropdown#{$_e}menu {
   top: 50%;
   bottom: auto;
   transform: translateY(-50%);
 }
 
-.dropdown_pos_left-down .dropdown__menu,
-.dropdown_pos_left-up .dropdown__menu,
-.dropdown_pos_left .dropdown__menu {
+.#{$_b}dropdown#{$_m}pos#{$_v}left-down .#{$_b}dropdown#{$_e}menu,
+.#{$_b}dropdown#{$_m}pos#{$_v}left-up .#{$_b}dropdown#{$_e}menu,
+.#{$_b}dropdown#{$_m}pos#{$_v}left .#{$_b}dropdown#{$_e}menu {
   right: 100%;
   left: auto;
-  margin: 0 var.$pos_spacing 0 0;
+  margin: 0 var.$pos-spacing 0 0;
 
   &::before {
     top: 0;
     right: auto;
     bottom: 0;
     left: 100%;
-    width: var.$pos_spacing;
+    width: var.$pos-spacing;
     height: 100%;
   }
 }
 
-.dropdown_pos_left-down .dropdown__menu {
+.#{$_b}dropdown#{$_m}pos#{$_v}left-down .#{$_b}dropdown#{$_e}menu {
   top: 0;
   bottom: auto;
 }
 
-.dropdown_pos_left-up .dropdown__menu {
+.#{$_b}dropdown#{$_m}pos#{$_v}left-up .#{$_b}dropdown#{$_e}menu {
   top: auto;
   bottom: 0;
 }
 
-.dropdown_pos_left .dropdown__menu {
+.#{$_b}dropdown#{$_m}pos#{$_v}left .#{$_b}dropdown#{$_e}menu {
   top: 50%;
   bottom: auto;
   transform: translateY(-50%);

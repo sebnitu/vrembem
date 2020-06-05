@@ -1,11 +1,14 @@
 @use "./variables" as var;
 
-.dropdown {
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+
+.#{$_b}dropdown {
   position: relative;
   display: inline-flex;
 }
 
-.dropdown__menu {
+.#{$_b}dropdown#{$_e}menu {
   position: absolute;
   z-index: var.$z-index;
   top: 100%;
@@ -14,7 +17,7 @@
   left: 0;
   display: none;
   width: var.$width;
-  margin: var.$pos_spacing 0 0;
+  margin: var.$pos-spacing 0 0;
   padding: var.$spacing 0;
   border: var.$border;
   border-radius: var.$border-radius;
@@ -35,16 +38,16 @@
     bottom: 100%;
     left: 0;
     width: 100%;
-    height: var.$pos_spacing;
+    height: var.$pos-spacing;
   }
 }
 
-.dropdown__sep {
+.#{$_b}dropdown#{$_e}sep {
   margin: var.$spacing 0;
   border-bottom: var.$sep-border;
 }
 
-.dropdown__link {
+.#{$_b}dropdown#{$_e}link {
   position: relative;
   display: flex;
   align-items: center;
@@ -99,7 +102,7 @@
   }
 }
 
-.dropdown__content {
+.#{$_b}dropdown#{$_e}content {
   display: block;
   padding: var.$link-padding;
 
@@ -108,13 +111,13 @@
   }
 }
 
-.dropdown__title {
+.#{$_b}dropdown#{$_e}title {
   font-size: var.$title-font-size;
   font-weight: var.$title-font-weight;
   line-height: var.$title-line-height;
 }
 
-.dropdown__item {
+.#{$_b}dropdown#{$_e}item {
   position: relative;
   display: block;
   margin: var.$item-margin;
@@ -124,22 +127,22 @@
  * Active states
  */
 
-.is-active > .dropdown__menu,
-.dropdown:not(.on-click):hover > .dropdown__menu,
-.dropdown:not(.on-click):focus > .dropdown__menu,
-.dropdown:not(.on-click):focus-within > .dropdown__menu {
+.is-active > .#{$_b}dropdown#{$_e}menu,
+.#{$_b}dropdown:not(.on-click):hover > .#{$_b}dropdown#{$_e}menu,
+.#{$_b}dropdown:not(.on-click):focus > .#{$_b}dropdown#{$_e}menu,
+.#{$_b}dropdown:not(.on-click):focus-within > .#{$_b}dropdown#{$_e}menu {
   display: block;
 }
 
-.is-active > .dropdown__menu {
+.is-active > .#{$_b}dropdown#{$_e}menu {
   z-index: (var.$z-index + 1);
 }
 
-.dropdown:not(.on-click):focus > .dropdown__menu,
-.dropdown:not(.on-click):focus-within > .dropdown__menu {
+.#{$_b}dropdown:not(.on-click):focus > .#{$_b}dropdown#{$_e}menu,
+.#{$_b}dropdown:not(.on-click):focus-within > .#{$_b}dropdown#{$_e}menu {
   z-index: (var.$z-index + 2);
 }
 
-.dropdown:not(.on-click):hover > .dropdown__menu {
+.#{$_b}dropdown:not(.on-click):hover > .#{$_b}dropdown#{$_e}menu {
   z-index: (var.$z-index + 3);
 }
