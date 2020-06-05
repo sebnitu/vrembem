@@ -7,7 +7,7 @@ $_m: var.$prefix-modifier;
 
 .#{$_b}card#{$_m}invert {
   background: var.$invert-background;
-  color: color-switch(var.$invert-background);
+  color: core.color-switch(var.$invert-background);
 
   @if (core.is-dark(var.$invert-background)) {
     .#{$_b}card#{$_e}header,

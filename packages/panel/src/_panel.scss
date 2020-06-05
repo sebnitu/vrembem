@@ -1,3 +1,4 @@
+@use "@vrembem/core";
 @use "./variables";
 
 .panel {
@@ -9,7 +10,7 @@
   border-radius: variables.$border-radius;
   background: variables.$background;
   box-shadow: variables.$box-shadow;
-  color: color-switch(variables.$background);
+  color: core.color-switch(variables.$background);
 }
 
 .panel__section,
