@@ -1,55 +1,58 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
 
-.panel {
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+
+.#{$_b}panel {
   position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  border: variables.$border;
-  border-radius: variables.$border-radius;
-  background: variables.$background;
-  box-shadow: variables.$box-shadow;
-  color: core.color-switch(variables.$background);
+  border: var.$border;
+  border-radius: var.$border-radius;
+  background: var.$background;
+  box-shadow: var.$box-shadow;
+  color: core.color-switch(var.$background);
 }
 
-.panel__section,
-.panel__header,
-.panel__footer {
+.#{$_b}panel#{$_e}section,
+.#{$_b}panel#{$_e}header,
+.#{$_b}panel#{$_e}footer {
   position: relative;
   z-index: 3;
-  padding: variables.$padding;
+  padding: var.$padding;
 }
 
-.panel__section {
+.#{$_b}panel#{$_e}section {
   flex: 1 1 auto;
 
   & + & {
-    border-top: variables.$sep-border;
+    border-top: var.$sep-border;
   }
 }
 
-.panel__header {
-  border-bottom: variables.$sep-border;
+.#{$_b}panel#{$_e}header {
+  border-bottom: var.$sep-border;
 
   &:first-child {
-    border-top-left-radius: variables.$border-radius;
-    border-top-right-radius: variables.$border-radius;
+    border-top-left-radius: var.$border-radius;
+    border-top-right-radius: var.$border-radius;
   }
 }
 
-.panel__footer {
-  border-top: variables.$sep-border;
+.#{$_b}panel#{$_e}footer {
+  border-top: var.$sep-border;
 
   &:last-child {
-    border-bottom-left-radius: variables.$border-radius;
-    border-bottom-right-radius: variables.$border-radius;
+    border-bottom-left-radius: var.$border-radius;
+    border-bottom-right-radius: var.$border-radius;
   }
 }
 
-.panel__title {
+.#{$_b}panel#{$_e}title {
   flex-grow: 1;
-  font-size: variables.$title-font-size;
-  font-weight: variables.$title-font-weight;
-  line-height: variables.$title-line-height;
+  font-size: var.$title-font-size;
+  font-weight: var.$title-font-weight;
+  line-height: var.$title-line-height;
 }
