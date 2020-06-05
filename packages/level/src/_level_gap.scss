@@ -1,6 +1,10 @@
-@use "./variables";
+@use "./variables" as var;
 
-.level_gap_none {
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}level#{$_m}gap#{$_v}none {
   margin-top: 0;
   margin-left: 0;
 
@@ -10,8 +14,8 @@
   }
 }
 
-@each $key, $value in variables.$gap-scale {
-  .level_gap_#{$key} {
+@each $key, $value in var.$gap-scale {
+  .#{$_b}level#{$_m}gap#{$_v}#{$key} {
     margin-top: ($value * -1);
     margin-left: ($value * -1);
 

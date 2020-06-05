@@ -1,15 +1,15 @@
-@use "./variables";
+@use "./variables" as var;
 
-.level {
+.#{var.$prefix-block}level {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin-top: (variables.$gap * -1);
-  margin-left: (variables.$gap * -1);
+  margin-top: (var.$gap * -1);
+  margin-left: (var.$gap * -1);
 
   > * {
     flex: 0 0 auto;
-    margin-top: variables.$gap;
-    margin-left: variables.$gap;
+    margin-top: var.$gap;
+    margin-left: var.$gap;
   }
 }
