@@ -1,6 +1,6 @@
-@use "./variables";
+@use "./variables" as var;
 
-.container {
-  max-width: variables.$max-width;
-  margin: variables.$margin;
+.#{var.$prefix-block}container {
+  max-width: var.$max-width;
+  margin: var.$margin;
 }
