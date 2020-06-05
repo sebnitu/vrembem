@@ -1,67 +1,70 @@
-@use "./variables";
+@use "./variables" as var;
 
-.dialog {
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+
+.#{$_b}dialog {
   position: relative;
-  z-index: variables.$zindex;
+  z-index: var.$zindex;
   display: flex;
   flex-direction: column;
   overflow: auto;
-  border: variables.$border;
-  border-radius: variables.$border-radius;
-  background: variables.$background;
+  border: var.$border;
+  border-radius: var.$border-radius;
+  background: var.$background;
   background-clip: padding-box;
-  box-shadow: variables.$box-shadow;
+  box-shadow: var.$box-shadow;
   -webkit-overflow-scrolling: touch;
 }
 
-.dialog__header,
-.dialog__body,
-.dialog__footer {
+.#{$_b}dialog#{$_e}header,
+.#{$_b}dialog#{$_e}body,
+.#{$_b}dialog#{$_e}footer {
   flex: 0 0 auto;
-  padding: variables.$padding;
+  padding: var.$padding;
 }
 
-.dialog__header,
-.dialog__footer {
+.#{$_b}dialog#{$_e}header,
+.#{$_b}dialog#{$_e}footer {
   position: sticky;
   z-index: 1;
   display: flex;
   align-items: center;
-  background: variables.$background;
+  background: var.$background;
   vertical-align: middle;
 }
 
-.dialog__header {
+.#{$_b}dialog#{$_e}header {
   top: 0;
-  border-bottom: variables.$sep-border;
+  border-bottom: var.$sep-border;
 }
 
-.dialog__body {
+.#{$_b}dialog#{$_e}body {
   flex-grow: 1;
 
   & + & {
-    border-top: variables.$sep-border;
+    border-top: var.$sep-border;
   }
 }
 
-.dialog__footer {
+.#{$_b}dialog#{$_e}footer {
   bottom: 0;
-  border-top: variables.$sep-border;
+  border-top: var.$sep-border;
 }
 
-.dialog__title {
+.#{$_b}dialog#{$_e}title {
   flex-grow: 1;
-  font-size: variables.$title-font-size;
-  font-weight: variables.$title-font-weight;
-  line-height: variables.$title-line-height;
+  font-size: var.$title-font-size;
+  font-weight: var.$title-font-weight;
+  line-height: var.$title-line-height;
 }
 
-.dialog > .dialog__close {
+.#{$_b}dialog > .#{$_b}dialog#{$_e}close {
   position: absolute;
   top: 1rem;
   right: 1rem;
 
-  + .dialog__body {
+  + .#{$_b}dialog#{$_e}body {
     padding-right: 3.5em;
   }
 }
