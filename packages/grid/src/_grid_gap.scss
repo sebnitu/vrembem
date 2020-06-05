@@ -1,21 +1,26 @@
-@use "./variables";
+@use "./variables" as var;
 
-.grid_gap_none {
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}grid#{$_m}gap#{$_v}none {
   margin-top: 0;
   margin-left: 0;
 
-  > .grid__item {
+  > .#{$_b}grid#{$_e}item {
     padding-top: 0;
     padding-left: 0;
   }
 }
 
-@each $key, $value in variables.$gap-scale {
-  .grid_gap_#{$key} {
+@each $key, $value in var.$gap-scale {
+  .#{$_b}grid#{$_m}gap#{$_v}#{$key} {
     margin-top: ($value * -1);
     margin-left: ($value * -1);
 
-    > .grid__item {
+    > .#{$_b}grid#{$_e}item {
       padding-top: $value;
       padding-left: $value;
     }
