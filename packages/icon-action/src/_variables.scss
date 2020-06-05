@@ -5,13 +5,13 @@ $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
-$action-size: (core.$font-size * core.$line-height) !default;
-$action-border-radius: core.$border-radius-circle !default;
+$size: (core.$font-size * core.$line-height) !default;
+$border-radius: core.$border-radius-circle !default;
 
-$action-background: rgba(core.$black, 0.3) !default;
-$action-background-hover: rgba(core.$black, 0.4) !default;
-$action-background-focus: rgba(core.$black, 0.5) !default;
-$action-background-active: rgba(core.$black, 0.5) !default;
+$background: rgba(core.$black, 0.3) !default;
+$background-hover: rgba(core.$black, 0.4) !default;
+$background-focus: rgba(core.$black, 0.5) !default;
+$background-active: rgba(core.$black, 0.5) !default;
 
-$action_icon-font-size: core.$font-size-sm !default;
-$action_icon-stroke-width: 2.5px !default;
+$icon-font-size: core.$font-size-sm !default;
+$icon-stroke-width: 2.5px !default;

@@ -1,6 +1,10 @@
 @use "@vrembem/core";
+@use "./variables" as var;
 
-.icon-action_subtle {
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+
+.#{$_b}icon-action#{$_m}subtle {
   background: none;
   color: core.$color;
 
@@ -16,7 +20,7 @@
     background: rgba(core.$black, 0.2);
   }
 
-  &.icon-action_invert {
+  &.#{$_b}icon-action#{$_m}invert {
     background: none;
     color: core.$color-invert;
 

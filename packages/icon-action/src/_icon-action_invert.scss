@@ -1,6 +1,7 @@
 @use "@vrembem/core";
+@use "./variables" as var;
 
-.icon-action_invert {
+.#{var.$prefix-block}icon-action#{var.$prefix-modifier}invert {
   background: rgba(core.$white, 0.5);
   color: core.$color;
 

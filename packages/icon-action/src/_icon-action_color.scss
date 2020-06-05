@@ -1,8 +1,13 @@
 @use "@vrembem/core";
+@use "./variables" as var;
 
-.icon-action_color_danger {
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}icon-action#{$_m}color#{$_v}danger {
   background: core.$danger;
-  color: color-switch(core.$danger);
+  color: core.color-switch(core.$danger);
 
   &:hover {
     background: darken(core.$danger, 10%);
@@ -17,9 +22,9 @@
   }
 }
 
-.icon-action_color_caution {
+.#{$_b}icon-action#{$_m}color#{$_v}caution {
   background: core.$caution;
-  color: color-switch(core.$caution);
+  color: core.color-switch(core.$caution);
 
   &:hover {
     background: darken(core.$caution, 5%);
@@ -34,9 +39,9 @@
   }
 }
 
-.icon-action_color_success {
+.#{$_b}icon-action#{$_m}color#{$_v}success {
   background: core.$success;
-  color: color-switch(core.$success);
+  color: core.color-switch(core.$success);
 
   &:hover {
     background: darken(core.$success, 10%);
