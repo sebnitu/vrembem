@@ -1,4 +1,4 @@
-@use "./variables";
+@use "./variables" as var;
 
 /// jQuery-style extend function for when `map-merge()` isn't enough. Use when
 /// we need to merge more than two maps and/or need a merge to be recursive.
@@ -93,7 +93,7 @@
 /// @param {Pixel} $px
 /// @param {Pixel} $base [$font-size]
 /// @return {Em} - Calculated em value
-@function px-to-em($px, $base: variables.$font-size) {
+@function px-to-em($px, $base: var.$font-size) {
   @if unitless($px) {
     $px: 1px * $px;
   }
@@ -111,8 +111,8 @@
   @if unitless($px) {
     $px: 1px * $px;
   }
-  @if unitless(variables.$font-size) {
-    $font-size: 1px * variables.$font-size;
+  @if unitless(var.$font-size) {
+    $font-size: 1px * var.$font-size;
   }
   $px: ($px / $font-size) * 1rem;
   @return strip-unit($px) * 1rem;
@@ -122,7 +122,7 @@
 /// @param {Em} $em
 /// @param {Pixel} $base [$font-size]
 /// @return {Pixel} - Calculated pixel value
-@function em-to-px($em, $base: variables.$font-size) {
+@function em-to-px($em, $base: var.$font-size) {
   @if unitless($em) {
     $em: 1em * $em;
   }
@@ -223,11 +223,11 @@
 /// @return {Color} - A light or dark text color based on lightness test
 @function color-switch(
   $background-color,
-  $color-dark: variables.$color,
-  $color-light: variables.$color-invert
+  $color-dark: var.$color,
+  $color-light: var.$color-invert
 ) {
   // Checkout base color to lightness threshold
-  @if (lightness($background-color) > variables.$lightness-threshold) {
+  @if (lightness($background-color) > var.$lightness-threshold) {
     // Lighter backgorund, return dark color
     @return $color-dark;
   } @else {
@@ -240,12 +240,12 @@
 /// @param {Color} $color - The color to check against a lightness threshold
 /// @return {Boolean} - The result
 @function is-dark($color) {
-  @return (lightness($color) < variables.$lightness-threshold);
+  @return (lightness($color) < var.$lightness-threshold);
 }
 
 /// Check whether or not a color is light
 /// @param {Color} $color - The color to check against a lightness threshold
 /// @return {Boolean} - The result
 @function is-light($color) {
-  @return (lightness($color) > variables.$lightness-threshold);
+  @return (lightness($color) > var.$lightness-threshold);
 }

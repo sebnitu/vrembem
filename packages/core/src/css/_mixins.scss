@@ -1,4 +1,4 @@
-@use "./variables";
+@use "./variables" as var;
 
 /// A media query mixin that deifnes a query using min-width. You can pass in a
 /// key to the `$breakpoints()` map to access that value, or pass a value to
@@ -6,8 +6,8 @@
 /// @param {string | unit} $point
 /// @param {style block} @content - passed in brackets
 @mixin media-min($point) {
-  @if map-has-key(variables.$breakpoints, $point) {
-    @media (min-width: map-get(variables.$breakpoints, $point)) {
+  @if map-has-key(var.$breakpoints, $point) {
+    @media (min-width: map-get(var.$breakpoints, $point)) {
       @content;
     }
   } @else {
@@ -26,8 +26,8 @@
 /// @param {string | unit} $point
 /// @param {style block} @content - passed in brackets
 @mixin media-max($point) {
-  @if map-has-key(variables.$breakpoints, $point) {
-    @media (max-width: (map-get(variables.$breakpoints, $point) - 1)) {
+  @if map-has-key(var.$breakpoints, $point) {
+    @media (max-width: (map-get(var.$breakpoints, $point) - 1)) {
       @content;
     }
   } @else {
