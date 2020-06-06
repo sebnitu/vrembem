@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/table",
   "description": "A table component for displaying HTML tables.",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",
@@ -18,7 +18,7 @@
     "directory": "packages/table"
   },
   "dependencies": {
-    "@vrembem/core": "^1.4.1"
+    "@vrembem/core": "^1.5.0"
   },
   "publishConfig": {
     "access": "public"

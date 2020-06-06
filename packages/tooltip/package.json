@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/tooltip",
   "description": "Text labels that appear when a user hovers over, focuses on or touches an element.",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",
@@ -18,7 +18,7 @@
     "directory": "packages/tooltip"
   },
   "dependencies": {
-    "@vrembem/core": "^1.4.1"
+    "@vrembem/core": "^1.5.0"
   },
   "publishConfig": {
     "access": "public"
