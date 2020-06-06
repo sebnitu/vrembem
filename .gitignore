@@ -2,6 +2,7 @@ node_modules/
 screenshots/
 docs/_site
 docs/.jekyll-metadata
+.changelog
 
 # Numerous always-ignore extensions
 *.diff
