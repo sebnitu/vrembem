@@ -1,17 +1,21 @@
-@use "./variables";
+@use "./variables" as var;
 
-.table_size_sm {
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}table#{$_m}size#{$_v}sm {
   th,
   td,
   caption {
-    padding: variables.$padding-sm;
+    padding: var.$padding-sm;
   }
 }
 
-.table_size_lg {
+.#{$_b}table#{$_m}size#{$_v}lg {
   th,
   td,
   caption {
-    padding: variables.$padding-lg;
+    padding: var.$padding-lg;
   }
 }

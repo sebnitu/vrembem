@@ -1,6 +1,9 @@
-@use "./variables";
+@use "./variables" as var;
 
-.table_hover {
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+
+.#{$_b}table#{$_m}hover {
   tr {
     position: relative;
     z-index: 1;
@@ -8,8 +11,8 @@
 
   tbody tr:hover {
     z-index: 2;
-    background-color: variables.$background-hover;
-    box-shadow: variables.$box-shadow-hover;
-    color: variables.$color-hover;
+    background-color: var.$background-hover;
+    box-shadow: var.$box-shadow-hover;
+    color: var.$color-hover;
   }
 }

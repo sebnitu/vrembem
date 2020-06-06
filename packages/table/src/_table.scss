@@ -1,29 +1,31 @@
-@use "./variables";
+@use "./variables" as var;
 
-.table {
+$_b: var.$prefix-block;
+
+.#{$_b}table {
   width: 100%;
-  background-color: variables.$background;
-  color: variables.$color;
+  background-color: var.$background;
+  color: var.$color;
   text-align: left;
 
   th,
   td,
   caption {
-    padding: variables.$padding;
+    padding: var.$padding;
     vertical-align: top;
   }
 
   th {
-    background-color: variables.$th-background;
-    font-weight: variables.$th-font-weight;
+    background-color: var.$th-background;
+    font-weight: var.$th-font-weight;
   }
 
   td {
-    background-color: variables.$td-background;
+    background-color: var.$td-background;
   }
 }
 
-.col_auto {
+.#{$_b}col_auto {
   width: 0;
   white-space: nowrap;
 }

@@ -1,11 +1,14 @@
-@use "./variables";
+@use "./variables" as var;
 
-.table_zebra {
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+
+.#{$_b}table#{$_m}zebra {
   thead tr {
-    background-color: variables.$background-zebra;
+    background-color: var.$background-zebra;
   }
 
   tr:nth-child(even) {
-    background-color: variables.$background-zebra;
+    background-color: var.$background-zebra;
   }
 }

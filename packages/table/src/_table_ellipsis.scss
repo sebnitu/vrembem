@@ -1,4 +1,9 @@
-.table_ellipsis {
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+
+.#{$_b}table#{$_m}ellipsis {
   table-layout: fixed;
 
   th,
