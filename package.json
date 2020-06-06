@@ -9,9 +9,11 @@
   "changelog": {
     "labels": {
       "bug": "Bug Fix",
+      "break": "Breaking Change",
       "chore": "Chore",
       "docs": "Documentation",
-      "feat": "New Feature"
+      "feat": "New Feature",
+      "imp": "Improve Feature"
     },
     "ignoreCommitters": "[bot]"
   },
