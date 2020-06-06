@@ -1,19 +1,22 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
 
-.switch {
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+
+.#{$_b}switch {
   position: relative;
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  padding-right: (variables.$size * 0.25);
-  padding-left: (variables.$size * 0.25);
+  padding-right: (var.$size * 0.25);
+  padding-left: (var.$size * 0.25);
   vertical-align: middle;
 }
 
-.switch__background {
-  @include core.size(variables.$size);
+.#{$_b}switch#{$_e}background {
+  @include core.size(var.$size);
   position: relative;
   z-index: 1;
   display: flex;
@@ -21,39 +24,39 @@
   justify-content: center;
 
   &::after {
-    @include core.size(variables.$size);
+    @include core.size(var.$size);
     content: "";
     position: absolute;
     top: 0;
-    left: ((variables.$size * 0.25) * -1);
-    transition: left variables.$transition-duration variables.$transition-timing-function;
-    border-radius: variables.$background-border-radius;
-    background-color: variables.$background;
+    left: ((var.$size * 0.25) * -1);
+    transition: left var.$transition-duration var.$transition-timing-function;
+    border-radius: var.$background-border-radius;
+    background-color: var.$background;
   }
 }
 
-.switch__track {
-  @include core.size(100%, variables.$track-size);
+.#{$_b}switch#{$_e}track {
+  @include core.size(100%, var.$track-size);
   position: relative;
   display: block;
-  border: variables.$track-border-width solid variables.$track-border-color;
-  border-radius: variables.$track-border-radius;
-  background-color: variables.$track-background;
+  border: var.$track-border-width solid var.$track-border-color;
+  border-radius: var.$track-border-radius;
+  background-color: var.$track-background;
 }
 
-.switch__thumb {
-  @include core.size(variables.$thumb-size);
+.#{$_b}switch#{$_e}thumb {
+  @include core.size(var.$thumb-size);
   position: absolute;
   top: 0;
   left: 0;
   display: block;
-  transition: left variables.$transition-duration variables.$transition-timing-function;
+  transition: left var.$transition-duration var.$transition-timing-function;
   border-radius: core.$border-radius-circle;
-  background-color: variables.$thumb-background;
-  box-shadow: variables.$thumb-box-shadow;
+  background-color: var.$thumb-background;
+  box-shadow: var.$thumb-box-shadow;
 }
 
-.switch__native {
+.#{$_b}switch#{$_e}native {
   @include core.size(100%);
   position: absolute;
   z-index: 2;
@@ -62,69 +65,69 @@
   opacity: 0;
   cursor: pointer;
 
-  &:hover + .switch__background {
+  &:hover + .#{$_b}switch#{$_e}background {
     &::after {
-      background-color: variables.$background-hover;
+      background-color: var.$background-hover;
     }
 
-    .switch__track {
-      border-color: variables.$track-border-color-hover;
-      background-color: variables.$track-background-hover;
+    .#{$_b}switch#{$_e}track {
+      border-color: var.$track-border-color-hover;
+      background-color: var.$track-background-hover;
     }
 
-    .switch__thumb {
-      background-color: variables.$thumb-background-hover;
-      box-shadow: variables.$thumb-box-shadow-hover;
+    .#{$_b}switch#{$_e}thumb {
+      background-color: var.$thumb-background-hover;
+      box-shadow: var.$thumb-box-shadow-hover;
     }
   }
 
-  &:focus + .switch__background {
+  &:focus + .#{$_b}switch#{$_e}background {
     &::after {
-      background-color: variables.$background-focus;
+      background-color: var.$background-focus;
     }
 
-    .switch__track {
-      border-color: variables.$track-border-color-focus;
-      background-color: variables.$track-background-focus;
+    .#{$_b}switch#{$_e}track {
+      border-color: var.$track-border-color-focus;
+      background-color: var.$track-background-focus;
     }
 
-    .switch__thumb {
-      background-color: variables.$thumb-background-focus;
-      box-shadow: variables.$thumb-box-shadow-focus;
+    .#{$_b}switch#{$_e}thumb {
+      background-color: var.$thumb-background-focus;
+      box-shadow: var.$thumb-box-shadow-focus;
     }
   }
 
-  &:active + .switch__background {
+  &:active + .#{$_b}switch#{$_e}background {
     &::after {
-      background-color: variables.$background-active;
+      background-color: var.$background-active;
     }
 
-    .switch__track {
-      border-color: variables.$track-border-color-active;
-      background-color: variables.$track-background-active;
+    .#{$_b}switch#{$_e}track {
+      border-color: var.$track-border-color-active;
+      background-color: var.$track-background-active;
     }
 
-    .switch__thumb {
-      background-color: variables.$thumb-background-active;
-      box-shadow: variables.$thumb-box-shadow-active;
+    .#{$_b}switch#{$_e}thumb {
+      background-color: var.$thumb-background-active;
+      box-shadow: var.$thumb-box-shadow-active;
     }
   }
 
-  &:checked + .switch__background {
+  &:checked + .#{$_b}switch#{$_e}background {
     &::after {
-      left: calc(100% - #{(variables.$size * 0.75)});
-      background-color: variables.$background-checked;
+      left: calc(100% - #{(var.$size * 0.75)});
+      background-color: var.$background-checked;
     }
 
-    .switch__track {
-      border-color: variables.$track-border-color-checked;
-      background-color: variables.$track-background-checked;
+    .#{$_b}switch#{$_e}track {
+      border-color: var.$track-border-color-checked;
+      background-color: var.$track-background-checked;
     }
 
-    .switch__thumb {
-      left: calc(100% - #{variables.$thumb-size});
-      background-color: variables.$thumb-background-checked;
-      box-shadow: variables.$thumb-box-shadow-checked;
+    .#{$_b}switch#{$_e}thumb {
+      left: calc(100% - #{var.$thumb-size});
+      background-color: var.$thumb-background-checked;
+      box-shadow: var.$thumb-box-shadow-checked;
     }
   }
 }
