@@ -1,11 +1,7 @@
 {
   "name": "root",
-  "version": "0.0.0",
   "private": true,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/sebnitu/vrembem.git"
-  },
+  "license": "MIT",
   "scripts": {
     "build": "lerna run build --parallel",
     "clean": "lerna run clean --parallel",
