@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/radio",
   "description": "Radios allow the user to select a single option from a set.",
-  "version": "1.3.0",
+  "version": "1.4.1",
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",
@@ -18,7 +18,7 @@
     "directory": "packages/radio"
   },
   "dependencies": {
-    "@vrembem/core": "^1.3.0"
+    "@vrembem/core": "^1.4.1"
   },
   "publishConfig": {
     "access": "public"
