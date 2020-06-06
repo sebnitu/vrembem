@@ -1,11 +1,11 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
 
 @mixin heading-base() {
-  color: variables.$heading-color;
-  font-family: variables.$heading-font-family;
-  font-weight: variables.$heading-font-weight;
-  line-height: variables.$heading-line-height;
+  color: var.$heading-color;
+  font-family: var.$heading-font-family;
+  font-weight: var.$heading-font-weight;
+  line-height: var.$heading-line-height;
 }
 
 @mixin heading($level) {
@@ -55,57 +55,57 @@
 }
 
 @mixin link() {
-  transition: variables.$link-transition;
-  border-bottom: variables.$link-border;
-  color: variables.$link-color;
-  text-decoration: variables.$link-text-decoration;
+  transition: var.$link-transition;
+  border-bottom: var.$link-border;
+  color: var.$link-color;
+  text-decoration: var.$link-text-decoration;
 
   &:hover {
-    border-bottom: variables.$link-border-hover;
-    color: variables.$link-color-hover;
-    text-decoration: variables.$link-text-decoration-hover;
+    border-bottom: var.$link-border-hover;
+    color: var.$link-color-hover;
+    text-decoration: var.$link-text-decoration-hover;
   }
 
   &:focus {
     outline: currentColor dotted 1px;
     outline-offset: 3px;
-    border-bottom: variables.$link-border-hover;
-    color: variables.$link-color-hover;
-    text-decoration: variables.$link-text-decoration-hover;
+    border-bottom: var.$link-border-hover;
+    color: var.$link-color-hover;
+    text-decoration: var.$link-text-decoration-hover;
   }
 }
 
 @mixin link-modifier($modifier) {
   @if $modifier == "subtle" {
-    border-color: variables.$link-subtle-border-color;
-    color: variables.$link-subtle-color;
+    border-color: var.$link-subtle-border-color;
+    color: var.$link-subtle-color;
 
     &:hover,
     &:focus {
-      border-color: variables.$link-subtle-border-color-hover;
-      color: variables.$link-subtle-color-hover;
+      border-color: var.$link-subtle-border-color-hover;
+      color: var.$link-subtle-color-hover;
     }
   }
 
   @else if $modifier == "invert" {
-    border-color: variables.$link-invert-border-color;
-    color: variables.$link-invert-color;
+    border-color: var.$link-invert-border-color;
+    color: var.$link-invert-color;
 
     &:hover,
     &:focus {
-      border-color: variables.$link-invert-border-color-hover;
-      color: variables.$link-invert-color-hover;
+      border-color: var.$link-invert-border-color-hover;
+      color: var.$link-invert-color-hover;
     }
   }
 
   @else if $modifier == "invert-subtle" {
-    border-color: variables.$link-invert-subtle-border-color;
-    color: variables.$link-invert-subtle-color;
+    border-color: var.$link-invert-subtle-border-color;
+    color: var.$link-invert-subtle-color;
 
     &:hover,
     &:focus {
-      border-color: variables.$link-invert-subtle-border-color-hover;
-      color: variables.$link-invert-subtle-color-hover;
+      border-color: var.$link-invert-subtle-border-color-hover;
+      color: var.$link-invert-subtle-color-hover;
     }
   }
 }
@@ -118,64 +118,64 @@
 }
 
 @mixin list() {
-  margin-left: variables.$list-spacing;
+  margin-left: var.$list-spacing;
 
   ul,
   ol {
-    margin-left: variables.$list-spacing;
+    margin-left: var.$list-spacing;
   }
 
   li {
-    margin: variables.$list-item-spacing 0;
+    margin: var.$list-item-spacing 0;
   }
 }
 
 @mixin blockquote() {
   position: relative;
-  padding: variables.$blockquote-padding;
-  border: variables.$blockquote-border;
-  border-radius: variables.$blockquote-border-radius;
-  background: variables.$blockquote-background;
-  color: variables.$blockquote-color;
+  padding: var.$blockquote-padding;
+  border: var.$blockquote-border;
+  border-radius: var.$blockquote-border-radius;
+  background: var.$blockquote-background;
+  color: var.$blockquote-color;
 
-  @if variables.$blockquote-accent-color {
+  @if var.$blockquote-accent-color {
     &::before {
       content: "";
       position: absolute;
-      top: variables.$blockquote-accent-offset;
-      bottom: variables.$blockquote-accent-offset;
-      left: variables.$blockquote-accent-offset;
-      width: variables.$blockquote-accent-width;
-      background-color: variables.$blockquote-accent-color;
+      top: var.$blockquote-accent-offset;
+      bottom: var.$blockquote-accent-offset;
+      left: var.$blockquote-accent-offset;
+      width: var.$blockquote-accent-width;
+      background-color: var.$blockquote-accent-color;
     }
   }
 
   > * + * {
-    margin-top: variables.$blockquote-spacing;
+    margin-top: var.$blockquote-spacing;
   }
 }
 
 @mixin blockquote-invert() {
-  border: variables.$blockquote-border-invert;
+  border: var.$blockquote-border-invert;
 }
 
 @mixin code() {
-  padding: variables.$code-padding;
-  border: variables.$code-border;
-  background: variables.$code-background;
-  color: variables.$code-color;
+  padding: var.$code-padding;
+  border: var.$code-border;
+  background: var.$code-background;
+  color: var.$code-color;
   font-family: core.$font-family-mono;
   font-size: 0.9em;
   word-break: break-word;
 }
 
 @mixin pre() {
-  padding: variables.$pre-padding;
+  padding: var.$pre-padding;
   overflow: auto;
-  border: variables.$pre-border;
-  border-radius: variables.$pre-border-radius;
-  background: variables.$pre-background;
-  color: variables.$pre-color;
+  border: var.$pre-border;
+  border-radius: var.$pre-border-radius;
+  background: var.$pre-background;
+  color: var.$pre-color;
   font-family: core.$font-family-mono;
 
   code {
@@ -189,13 +189,13 @@
 
 @mixin type() {
   @include core.add-clearfix();
-  font-family: variables.$type-font-family;
-  font-size: variables.$type-font-size;
-  line-height: variables.$type-line-height;
+  font-family: var.$type-font-family;
+  font-size: var.$type-font-size;
+  line-height: var.$type-line-height;
 
   > * {
-    margin-top: variables.$type-spacing;
-    margin-bottom: variables.$type-spacing;
+    margin-top: var.$type-spacing;
+    margin-bottom: var.$type-spacing;
   }
 
   h1,
@@ -205,7 +205,7 @@
   h5,
   h6 {
     @include heading-base();
-    margin-top: variables.$type-spacing-lg;
+    margin-top: var.$type-spacing-lg;
 
     &:first-child {
       margin-top: 0;
@@ -264,8 +264,8 @@
   hr,
   blockquote,
   pre {
-    margin-top: variables.$type-spacing-lg;
-    margin-bottom: variables.$type-spacing-lg;
+    margin-top: var.$type-spacing-lg;
+    margin-bottom: var.$type-spacing-lg;
 
     &:first-child {
       margin-top: 0;
@@ -295,7 +295,7 @@
     h4,
     h5,
     h6 {
-      color: variables.$heading-color-invert;
+      color: var.$heading-color-invert;
     }
 
     a {
@@ -311,7 +311,7 @@
     }
 
     code {
-      color: variables.$code-color-invert;
+      color: var.$code-color-invert;
     }
   }
 }

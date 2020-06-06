@@ -1,0 +1,19 @@
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_c: var.$class-spacing;
+
+.#{$_b}#{$_c} {
+  > * + * {
+    margin-top: var.$spacing;
+  }
+}
+
+@each $key, $value in var.$spacing-map {
+  .#{$_b}#{$_c}#{$_m}#{$key} {
+    > * + * {
+      margin-top: $value;
+    }
+  }
+}

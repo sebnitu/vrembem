@@ -1,0 +1,27 @@
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+
+.#{$_b}grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: (var.$gap * -1);
+  margin-left: (var.$gap * -1);
+
+  & + & {
+    margin-top: 0;
+  }
+}
+
+.#{$_b}grid#{$_e}item {
+  flex: 1 1 0;
+  width: auto;
+  max-width: 100%;
+  padding-top: var.$gap;
+  padding-left: var.$gap;
+}
+
+.#{$_b}grid#{$_e}clear {
+  flex: 1 0 100%;
+}

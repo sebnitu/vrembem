@@ -1,0 +1,133 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+
+.#{$_b}switch {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding-right: (var.$size * 0.25);
+  padding-left: (var.$size * 0.25);
+  vertical-align: middle;
+}
+
+.#{$_b}switch#{$_e}background {
+  @include core.size(var.$size);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::after {
+    @include core.size(var.$size);
+    content: "";
+    position: absolute;
+    top: 0;
+    left: ((var.$size * 0.25) * -1);
+    transition: left var.$transition-duration var.$transition-timing-function;
+    border-radius: var.$background-border-radius;
+    background-color: var.$background;
+  }
+}
+
+.#{$_b}switch#{$_e}track {
+  @include core.size(100%, var.$track-size);
+  position: relative;
+  display: block;
+  border: var.$track-border-width solid var.$track-border-color;
+  border-radius: var.$track-border-radius;
+  background-color: var.$track-background;
+}
+
+.#{$_b}switch#{$_e}thumb {
+  @include core.size(var.$thumb-size);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  transition: left var.$transition-duration var.$transition-timing-function;
+  border-radius: core.$border-radius-circle;
+  background-color: var.$thumb-background;
+  box-shadow: var.$thumb-box-shadow;
+}
+
+.#{$_b}switch#{$_e}native {
+  @include core.size(100%);
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+
+  &:hover + .#{$_b}switch#{$_e}background {
+    &::after {
+      background-color: var.$background-hover;
+    }
+
+    .#{$_b}switch#{$_e}track {
+      border-color: var.$track-border-color-hover;
+      background-color: var.$track-background-hover;
+    }
+
+    .#{$_b}switch#{$_e}thumb {
+      background-color: var.$thumb-background-hover;
+      box-shadow: var.$thumb-box-shadow-hover;
+    }
+  }
+
+  &:focus + .#{$_b}switch#{$_e}background {
+    &::after {
+      background-color: var.$background-focus;
+    }
+
+    .#{$_b}switch#{$_e}track {
+      border-color: var.$track-border-color-focus;
+      background-color: var.$track-background-focus;
+    }
+
+    .#{$_b}switch#{$_e}thumb {
+      background-color: var.$thumb-background-focus;
+      box-shadow: var.$thumb-box-shadow-focus;
+    }
+  }
+
+  &:active + .#{$_b}switch#{$_e}background {
+    &::after {
+      background-color: var.$background-active;
+    }
+
+    .#{$_b}switch#{$_e}track {
+      border-color: var.$track-border-color-active;
+      background-color: var.$track-background-active;
+    }
+
+    .#{$_b}switch#{$_e}thumb {
+      background-color: var.$thumb-background-active;
+      box-shadow: var.$thumb-box-shadow-active;
+    }
+  }
+
+  &:checked + .#{$_b}switch#{$_e}background {
+    &::after {
+      left: calc(100% - #{(var.$size * 0.75)});
+      background-color: var.$background-checked;
+    }
+
+    .#{$_b}switch#{$_e}track {
+      border-color: var.$track-border-color-checked;
+      background-color: var.$track-background-checked;
+    }
+
+    .#{$_b}switch#{$_e}thumb {
+      left: calc(100% - #{var.$thumb-size});
+      background-color: var.$thumb-background-checked;
+      box-shadow: var.$thumb-box-shadow-checked;
+    }
+  }
+}

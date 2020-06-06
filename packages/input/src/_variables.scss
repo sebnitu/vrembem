@@ -1,34 +1,43 @@
 @use "@vrembem/core";
 
+$prefix-block: core.$prefix-block !default;
+$prefix-element: core.$prefix-element !default;
+$prefix-modifier: core.$prefix-modifier !default;
+$prefix-modifier-value: core.$prefix-modifier-value !default;
+
 $padding: nth(core.$padding, 1) 0.5em !default;
 $font-size: core.$font-size !default;
 $line-height: core.$line-height !default;
 
-$size_sm-padding: core.$padding-sm !default;
-$size_sm-font-size: core.$font-size-sm !default;
-$size_sm-line-height: core.$line-height-sm !default;
+$size-sm-padding: core.$padding-sm !default;
+$size-sm-font-size: core.$font-size-sm !default;
+$size-sm-line-height: core.$line-height-sm !default;
 
-$size_lg-padding: nth(core.$padding-lg, 1) !default;
-$size_lg-font-size: core.$font-size-lg !default;
-$size_lg-line-height: core.$line-height-lg !default;
+$size-lg-padding: nth(core.$padding-lg, 1) !default;
+$size-lg-font-size: core.$font-size-lg !default;
+$size-lg-line-height: core.$line-height-lg !default;
 
 $color: core.$color !default;
 $color-placeholder: core.$color-subtle !default;
 
 $background: core.$white !default;
 $background-focus: core.$white !default;
+
 $box-shadow-values: 0 0 0 1px !default;
 $box-shadow-color: core.$border-color-dark !default;
+$box-shadow-inner: 0 1px 3px rgba(core.$black, 0.1) !default;
 $box-shadow-hover-values: 0 0 0 1px !default;
 $box-shadow-hover-color: core.$border-color-darker !default;
+$box-shadow-hover-inner: 0 1px 3px rgba(core.$black, 0.1) !default;
 $box-shadow-focus-values: 0 0 0 2px !default;
 $box-shadow-focus-color: core.$primary !default;
+$box-shadow-focus-inner: null !default;
 
 $border: none !default;
 $border-color-hover: null !default;
 $border-color-focus: null !default;
-$border-radius: core.$border-radius !default;
+$border-radius: (core.$border-radius - 1px) !default;
 
-$type_select-icon-color: core.$color !default;
+$type-select-icon-color: core.$color !default;
 
-$type_select-icon: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="#{core.encodecolor($type_select-icon-color)}"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>' !default;
+$type-select-icon: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="#{core.encodecolor($type-select-icon-color)}"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>' !default;

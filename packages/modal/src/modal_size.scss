@@ -1,9 +1,0 @@
-@use "./variables";
-
-.modal_size_sm .modal__dialog {
-  width: variables.$width-sm;
-}
-
-.modal_size_lg .modal__dialog {
-  width: variables.$width-lg;
-}

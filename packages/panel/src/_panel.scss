@@ -1,0 +1,58 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+
+.#{$_b}panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: var.$border;
+  border-radius: var.$border-radius;
+  background: var.$background;
+  box-shadow: var.$box-shadow;
+  color: core.color-switch(var.$background);
+}
+
+.#{$_b}panel#{$_e}section,
+.#{$_b}panel#{$_e}header,
+.#{$_b}panel#{$_e}footer {
+  position: relative;
+  z-index: 3;
+  padding: var.$padding;
+}
+
+.#{$_b}panel#{$_e}section {
+  flex: 1 1 auto;
+
+  & + & {
+    border-top: var.$sep-border;
+  }
+}
+
+.#{$_b}panel#{$_e}header {
+  border-bottom: var.$sep-border;
+
+  &:first-child {
+    border-top-left-radius: var.$border-radius;
+    border-top-right-radius: var.$border-radius;
+  }
+}
+
+.#{$_b}panel#{$_e}footer {
+  border-top: var.$sep-border;
+
+  &:last-child {
+    border-bottom-left-radius: var.$border-radius;
+    border-bottom-right-radius: var.$border-radius;
+  }
+}
+
+.#{$_b}panel#{$_e}title {
+  flex-grow: 1;
+  font-size: var.$title-font-size;
+  font-weight: var.$title-font-weight;
+  line-height: var.$title-line-height;
+}

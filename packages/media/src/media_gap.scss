@@ -1,9 +1,0 @@
-@use "./variables";
-
-@each $key, $value in variables.$spacing-map {
-  .media_gap_#{$key} {
-    > * + * {
-      margin-left: $value;
-    }
-  }
-}

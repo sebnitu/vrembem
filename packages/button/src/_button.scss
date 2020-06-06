@@ -1,0 +1,87 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.#{var.$prefix-block}button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var.$min-size;
+  min-height: var.$min-size;
+  padding: var.$padding;
+  border: var.$border;
+  border-radius: var.$border-radius;
+  background: var.$background;
+  background-clip: border-box;
+  box-shadow: var.$box-shadow;
+  color: var.$color;
+  font-family: inherit;
+  font-size: var.$font-size;
+  font-weight: var.$font-weight;
+  letter-spacing: var.$letter-spacing;
+  line-height: var.$line-height;
+  text-decoration: none;
+  text-transform: var.$text-transform;
+  vertical-align: top;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &[disabled] {
+    opacity: var.$disabled-opacity;
+    pointer-events: none;
+  }
+
+  > * + * {
+    margin-left: var.$inner-spacing;
+  }
+
+  &:hover {
+    border-color: var.$border-color-hover;
+    background-color: var.$background-hover;
+    box-shadow: var.$box-shadow-hover;
+    color: var.$color-hover;
+  }
+
+  &:focus {
+    outline: var.$outline-focus;
+    outline-offset: var.$outline-focus-offset;
+    border-color: var.$border-color-focus;
+    background-color: var.$background-focus;
+    box-shadow: var.$box-shadow-focus;
+    color: var.$color-focus;
+  }
+
+  &:active {
+    border-color: var.$border-color-active;
+    background-color: var.$background-active;
+    box-shadow: var.$box-shadow-active;
+    color: var.$color-active;
+  }
+
+  &.is-loading {
+    color: transparent !important;
+    pointer-events: none;
+
+    &::after {
+      @include core.size(var.$loading-size);
+      content: "";
+      position: absolute;
+      top: calc(50% - (#{var.$loading-size} * 0.5));
+      left: calc(50% - (#{var.$loading-size} * 0.5));
+      animation: spin var.$loading-animation-duration infinite linear;
+      border: var.$loading-border;
+      border-radius: core.$border-radius-circle;
+      border-color: core.set-border-color(var.$loading-border-tpl, var.$loading-border-color);
+    }
+  }
+}

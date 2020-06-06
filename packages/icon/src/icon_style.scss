@@ -1,9 +1,0 @@
-@use "./mixins";
-
-.icon_style_stroke {
-  @include mixins.icon-style("stroke");
-}
-
-.icon_style_fill {
-  @include mixins.icon-style("fill");
-}

@@ -1,0 +1,77 @@
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}drawer#{$_m}pos#{$_v}left,
+.#{$_b}drawer#{$_m}pos#{$_v}right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+
+  .#{$_b}drawer#{$_e}item {
+    position: absolute;
+    top: 0;
+  }
+}
+
+.#{$_b}drawer#{$_m}pos#{$_v}left {
+  left: 0;
+
+  .#{$_b}drawer#{$_e}item {
+    left: 0;
+    transform: translateX(-100%);
+    border-right: var.$item-border;
+  }
+}
+
+.#{$_b}drawer#{$_m}pos#{$_v}right {
+  right: 0;
+
+  .#{$_b}drawer#{$_e}item {
+    right: 0;
+    transform: translateX(100%);
+    border-left: var.$item-border;
+  }
+}
+
+/**
+ * Drawer state classes
+ */
+
+.#{$_b}drawer#{$_m}pos#{$_v}left.is-opening,
+.#{$_b}drawer#{$_m}pos#{$_v}left.is-open {
+  &:not(.#{$_b}drawer#{$_m}modal) ~ .#{$_b}drawer#{$_e}main {
+    margin-left: var.$width;
+  }
+}
+
+.#{$_b}drawer#{$_m}pos#{$_v}right.is-opening,
+.#{$_b}drawer#{$_m}pos#{$_v}right.is-open {
+  &:not(.#{$_b}drawer#{$_m}modal) ~ .#{$_b}drawer#{$_e}main {
+    margin-right: var.$width;
+  }
+}
+
+.#{$_b}drawer#{$_m}pos#{$_v}left.is-opening,
+.#{$_b}drawer#{$_m}pos#{$_v}right.is-opening,
+.#{$_b}drawer#{$_m}pos#{$_v}left.is-open,
+.#{$_b}drawer#{$_m}pos#{$_v}right.is-open {
+  .#{$_b}drawer#{$_e}item {
+    transform: translateX(0);
+  }
+}
+
+.#{$_b}drawer#{$_m}pos#{$_v}left.is-closing {
+  .#{$_b}drawer#{$_e}item {
+    transform: translateX(-100%);
+  }
+}
+
+.#{$_b}drawer#{$_m}pos#{$_v}right.is-closing {
+  .#{$_b}drawer#{$_e}item {
+    transform: translateX(100%);
+  }
+}

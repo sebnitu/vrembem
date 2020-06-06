@@ -1,0 +1,22 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
+.#{var.$prefix-block}button#{var.$prefix-modifier}invert {
+  background: rgba(core.$white, 0.05);
+  color: core.$white;
+
+  &:hover {
+    background: rgba(core.$white, 0.1);
+    color: core.$white;
+  }
+
+  &:focus,
+  &:active {
+    background: rgba(core.$white, 0.15);
+    color: core.$white;
+  }
+
+  &.is-loading::after {
+    border-color: core.set-border-color(var.$loading-border-tpl, core.$white);
+  }
+}

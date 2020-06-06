@@ -1,0 +1,17 @@
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}button#{$_m}icon {
+  padding: nth(var.$padding, 1);
+
+  &.#{$_b}button#{$_m}size#{$_v}sm {
+    padding: nth(var.$size_sm-padding, 1);
+  }
+
+  &.#{$_b}button#{$_m}size#{$_v}lg {
+    padding: nth(var.$size_lg-padding, 1);
+  }
+}

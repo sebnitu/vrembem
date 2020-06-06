@@ -1,0 +1,88 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+$_c: var.$class-text;
+
+.#{$_b}#{$_c}#{$_m}size#{$_v}sm {
+  font-size: core.$font-size-sm !important;
+}
+
+.#{$_b}#{$_c}#{$_m}size#{$_v}lg {
+  font-size: core.$font-size-lg !important;
+}
+
+.#{$_b}#{$_c}#{$_m}capitalize {
+  text-transform: capitalize !important;
+}
+
+.#{$_b}#{$_c}#{$_m}lowercase {
+  text-transform: lowercase !important;
+}
+
+.#{$_b}#{$_c}#{$_m}uppercase {
+  text-transform: uppercase !important;
+}
+
+.#{$_b}#{$_c}#{$_m}align#{$_v}left {
+  text-align: left !important;
+}
+
+.#{$_b}#{$_c}#{$_m}align#{$_v}center {
+  text-align: center !important;
+}
+
+.#{$_b}#{$_c}#{$_m}align#{$_v}right {
+  text-align: right !important;
+}
+
+.#{$_b}#{$_c}#{$_m}bold {
+  font-weight: core.font-weight("bold") !important;
+}
+
+.#{$_b}#{$_c}#{$_m}normal {
+  font-weight: core.font-weight("normal") !important;
+}
+
+.#{$_b}#{$_c}#{$_m}italic {
+  font-style: italic !important;
+}
+
+.#{$_b}#{$_c}#{$_m}strike {
+  text-decoration: line-through !important;
+}
+
+.#{$_b}#{$_c}#{$_m}underline {
+  text-decoration: underline !important;
+}
+
+.#{$_b}#{$_c}#{$_m}underline#{$_v}dotted {
+  text-decoration: underline !important;
+  text-decoration-style: dotted !important;
+}
+
+.#{$_b}#{$_c}#{$_m}underline#{$_v}dashed {
+  text-decoration: underline !important;
+  text-decoration-style: dashed !important;
+}
+
+.#{$_b}#{$_c}#{$_m}wrap {
+  white-space: normal !important;
+}
+
+.#{$_b}#{$_c}#{$_m}nowrap {
+  white-space: nowrap !important;
+}
+
+.#{$_b}#{$_c}#{$_m}overflow#{$_v}ellipsis {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.#{$_b}#{$_c}#{$_m}lead {
+  font-size: 1.2em !important;
+  font-weight: core.font-weight("light") !important;
+}

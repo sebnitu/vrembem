@@ -1,0 +1,16 @@
+@use "./variables" as var;
+@use "./mixins" as mix;
+
+.#{var.$prefix-block}icon {
+  @include mix.icon-style(var.$style);
+  display: inline-block;
+  box-sizing: content-box;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  stroke-width: var.$stroke-width;
+  stroke-linecap: var.$stroke-linecap;
+  stroke-linejoin: var.$stroke-linejoin;
+  font-size: var.$font-size;
+  vertical-align: var.$vertical-align;
+}

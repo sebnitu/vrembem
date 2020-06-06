@@ -11,16 +11,16 @@ usage:
 {% include flag.html heading="arrow" %}
 
 {% include demo_open.html %}
-<span class="arrow"></span>
-<span class="arrow arrow_up"></span>
-<span class="arrow arrow_left"></span>
-<span class="arrow arrow_right"></span>
+<span class="vb-arrow"></span>
+<span class="vb-arrow vb-arrow--dir-up"></span>
+<span class="vb-arrow vb-arrow--dir-left"></span>
+<span class="vb-arrow vb-arrow--dir-right"></span>
 {% include demo_switch.html %}
 ```html
-<span class="arrow"></span>
-<span class="arrow arrow_up"></span>
-<span class="arrow arrow_left"></span>
-<span class="arrow arrow_right"></span>
+<span class="vb-arrow"></span>
+<span class="vb-arrow vb-arrow--dir-up"></span>
+<span class="vb-arrow vb-arrow--dir-left"></span>
+<span class="vb-arrow vb-arrow--dir-right"></span>
 ```
 {% include demo_close.html %}
 

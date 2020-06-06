@@ -1,0 +1,121 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}button#{$_m}outline {
+  border: var.$outline-border-width solid core.$border-color-dark;
+  background: none;
+
+  &:hover {
+    border-color: core.$border-color-darker;
+    background: none;
+  }
+
+  &:focus,
+  &:active {
+    border-color: core.$color;
+    background: none;
+  }
+
+  &.#{$_b}button#{$_m}invert {
+    border-color: core.$border-color-invert-dark;
+
+    &:hover {
+      border-color: core.$border-color-invert-darker;
+    }
+
+    &:focus,
+    &:active {
+      border-color: core.$white;
+    }
+  }
+}
+
+.#{$_b}button#{$_m}outline#{$_v}primary {
+  border: var.$outline-border-width solid rgba(core.$primary, 0.5);
+  background: none;
+  color: core.$primary;
+
+  &:hover {
+    border-color: core.$primary;
+    background: none;
+    color: core.$primary;
+  }
+
+  &:focus,
+  &:active {
+    border-color: core.$primary;
+    background: core.$primary;
+    color: core.$white;
+  }
+
+  &.is-loading::after {
+    border-color: core.set-border-color(var.$loading-border-tpl, core.$primary);
+  }
+
+  &.is-loading:focus::after {
+    border-color: core.set-border-color(var.$loading-border-tpl, core.$white);
+  }
+
+  &.#{var.$prefix-block}button#{$_m}invert {
+    border-color: core.$primary-light;
+    color: core.$primary-light;
+
+    &:hover {
+      color: core.$white;
+    }
+
+    &:focus,
+    &:active {
+      border-color: core.$primary;
+      background-color: core.$primary;
+      color: core.$white;
+    }
+  }
+}
+
+.#{$_b}button#{$_m}outline#{$_v}secondary {
+  border: var.$outline-border-width solid rgba(core.$secondary, 0.5);
+  background: none;
+  color: core.$secondary;
+
+  &:hover {
+    border-color: core.$secondary;
+    background: none;
+    color: core.$secondary;
+  }
+
+  &:focus,
+  &:active {
+    border-color: core.$secondary;
+    background: core.$secondary;
+    color: core.$white;
+  }
+
+  &.is-loading::after {
+    border-color: core.set-border-color(var.$loading-border-tpl, core.$secondary);
+  }
+
+  &.is-loading:focus::after {
+    border-color: core.set-border-color(var.$loading-border-tpl, core.$white);
+  }
+
+  &.#{$_b}button#{$_m}invert {
+    border-color: core.$secondary-light;
+    color: core.$secondary-light;
+
+    &:hover {
+      color: core.$white;
+    }
+
+    &:focus,
+    &:active {
+      border-color: core.$secondary;
+      background-color: core.$secondary;
+      color: core.$white;
+    }
+  }
+}

@@ -1,0 +1,44 @@
+@use "./variables" as var;
+@use "./mixins" as mix;
+
+$_b: var.$prefix-block;
+$_c: var.$class-type;
+
+.#{$_b}h1,
+.#{$_b}h2,
+.#{$_b}h3,
+.#{$_b}h4,
+.#{$_b}h5,
+.#{$_b}h6 {
+  @include mix.heading-base();
+}
+
+.#{$_b}h1,
+.#{$_b}#{$_c} .#{$_b}h1 {
+  @include mix.heading(1);
+}
+
+.#{$_b}h2,
+.#{$_b}#{$_c} .#{$_b}h2 {
+  @include mix.heading(2);
+}
+
+.#{$_b}h3,
+.#{$_b}#{$_c} .#{$_b}h3 {
+  @include mix.heading(3);
+}
+
+.#{$_b}h4,
+.#{$_b}#{$_c} .#{$_b}h4 {
+  @include mix.heading(4);
+}
+
+.#{$_b}h5,
+.#{$_b}#{$_c} .#{$_b}h5 {
+  @include mix.heading(5);
+}
+
+.#{$_b}h6,
+.#{$_b}#{$_c} .#{$_b}h6 {
+  @include mix.heading(6);
+}

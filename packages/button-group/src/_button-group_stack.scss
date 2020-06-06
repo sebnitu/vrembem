@@ -1,0 +1,18 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}button-group#{$_m}stack {
+  flex-direction: column;
+}
+
+@each $key, $value in core.$breakpoints {
+  @include core.media-max($value) {
+    .#{$_b}button-group#{$_m}stack#{$_v}#{$key} {
+      flex-direction: column;
+    }
+  }
+}

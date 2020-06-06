@@ -1,0 +1,19 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
+.#{var.$prefix-block}icon-action#{var.$prefix-modifier}invert {
+  background: rgba(core.$white, 0.5);
+  color: core.$color;
+
+  &:hover {
+    background: rgba(core.$white, 0.6);
+  }
+
+  &:focus {
+    background: rgba(core.$white, 0.7);
+  }
+
+  &:active {
+    background: rgba(core.$white, 0.7);
+  }
+}

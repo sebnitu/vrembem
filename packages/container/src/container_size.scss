@@ -1,7 +1,0 @@
-@use "./variables";
-
-@each $key, $value in variables.$scale {
-  .container_size_#{$key} {
-    max-width: $value;
-  }
-}

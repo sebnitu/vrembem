@@ -1,0 +1,6 @@
+@use "./variables" as var;
+
+.#{var.$prefix-block}container {
+  max-width: var.$max-width;
+  margin: var.$margin;
+}

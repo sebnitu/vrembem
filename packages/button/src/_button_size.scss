@@ -1,0 +1,33 @@
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}button#{$_m}size#{$_v}sm {
+  min-width: var.$size-sm-min-size;
+  min-height: var.$size-sm-min-size;
+  padding: var.$size-sm-padding;
+  font-size: var.$size-sm-font-size;
+  line-height: var.$size-sm-line-height;
+
+  .#{$_b}icon {
+    padding: 0.129em;
+  }
+}
+
+.#{$_b}button#{$_m}size#{$_v}lg {
+  min-width: var.$size-lg-min-size;
+  min-height: var.$size-lg-min-size;
+  padding: var.$size-lg-padding;
+  font-size: var.$size-lg-font-size;
+  line-height: var.$size-lg-line-height;
+
+  &:not(.#{$_b}button#{$_m}icon) .icon:first-child {
+    margin-left: -0.25em;
+  }
+
+  &:not(.#{$_b}button#{$_m}icon) .icon:last-child {
+    margin-right: -0.25em;
+  }
+}

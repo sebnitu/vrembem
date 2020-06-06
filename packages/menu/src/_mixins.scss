@@ -1,11 +1,14 @@
-@use "./variables";
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
 
 @mixin menu-full() {
-  .menu__item {
+  .#{$_b}menu#{$_e}item {
     flex: 1 1 auto;
   }
 
-  .menu__link {
+  .#{$_b}menu#{$_e}link {
     justify-content: center;
   }
 }
@@ -15,15 +18,15 @@
   align-items: stretch;
   overflow: visible;
 
-  .menu__item + .menu__item {
-    margin-top: variables.$gap;
+  .#{$_b}menu#{$_e}item + .#{$_b}menu#{$_e}item {
+    margin-top: var.$gap;
     margin-left: 0;
   }
 
-  .menu__sep {
+  .#{$_b}menu#{$_e}sep {
     width: auto;
-    height: variables.$sep-width;
-    margin: variables.$sep-spacing 0;
+    height: var.$sep-width;
+    margin: var.$sep-spacing 0;
 
     &:first-child {
       margin-top: 0;
@@ -34,8 +37,8 @@
     }
   }
 
-  .menu__link,
-  .menu__text {
+  .#{$_b}menu#{$_e}link,
+  .#{$_b}menu#{$_e}text {
     justify-content: flex-start;
     white-space: normal;
   }

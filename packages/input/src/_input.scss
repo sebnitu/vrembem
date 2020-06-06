@@ -1,0 +1,38 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+@use "./mixins" as mix;
+
+$_b: var.$prefix-block;
+
+.#{$_b}input {
+  @include mix.box-shadow();
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: var.$padding;
+  transition: box-shadow core.$transition-duration core.$transition-timing-function;
+  border: var.$border;
+  border-radius: var.$border-radius;
+  background: var.$background;
+  color: core.$color;
+  font-family: core.$font-family;
+  font-size: var.$font-size;
+  line-height: var.$line-height;
+  appearance: none;
+
+  &:hover {
+    @include mix.box-shadow("hover");
+    border-color: var.$border-color-hover;
+  }
+
+  &:focus {
+    @include mix.box-shadow("focus");
+    outline: none;
+    border-color: var.$border-color-focus;
+    background-color: var.$background-focus;
+  }
+
+  &::placeholder {
+    color: core.$color-subtle;
+  }
+}

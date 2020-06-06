@@ -1,0 +1,115 @@
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+
+.#{$_b}menu {
+  display: flex;
+  align-items: center;
+  font-size: var.$font-size;
+  line-height: var.$line-height;
+  list-style: none;
+}
+
+.#{$_b}menu#{$_e}item {
+  position: relative;
+
+  & + & {
+    margin-left: var.$gap;
+  }
+}
+
+.#{$_b}menu#{$_e}sep {
+  flex-shrink: 0;
+  align-self: stretch;
+  width: var.$sep-width;
+  height: auto;
+  margin: 0 var.$sep-spacing;
+  background: var.$sep-background;
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.#{$_b}menu#{$_e}link,
+.#{$_b}menu#{$_e}text {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var.$min-size;
+  min-height: var.$min-size;
+  padding: var.$padding;
+  border-radius: var.$border-radius;
+  white-space: nowrap;
+
+  > * + * {
+    margin-left: var.$inner-spacing;
+  }
+}
+
+.#{$_b}menu#{$_e}link {
+  background: var.$background;
+  box-shadow: var.$box-shadow;
+  color: var.$color;
+
+  &_icon {
+    padding: nth(var.$padding, 1);
+  }
+
+  &:hover {
+    background: var.$background-hover;
+    box-shadow: var.$box-shadow-hover;
+    color: var.$color-hover;
+  }
+
+  &:focus {
+    outline: var.$outline-focus;
+    outline-offset: var.$outline-focus-offset;
+    background: var.$background-focus;
+    box-shadow: var.$box-shadow-focus;
+    color: var.$color-focus;
+  }
+
+  &:active {
+    background: var.$background-active;
+    box-shadow: var.$box-shadow-active;
+    color: var.$color-active;
+  }
+
+  &.is-active {
+    background: var.$background-is-active;
+    color: var.$color-is-active;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: var.$background-is-active;
+      color: var.$color-is-active;
+    }
+  }
+
+  &.is-disabled {
+    background: var.$background-is-disabled;
+    color: var.$color-is-disabled;
+    cursor: default;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: var.$background-is-disabled;
+      color: var.$color-is-disabled;
+    }
+  }
+}
+
+.#{$_b}menu#{$_e}text {
+  background: var.$text-background;
+  color: var.$text-color;
+  text-decoration: none;
+}

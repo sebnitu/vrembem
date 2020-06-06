@@ -1,0 +1,106 @@
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+$_c: var.$class-flex;
+
+.#{$_b}#{$_c} {
+  display: flex !important;
+}
+
+.#{$_b}#{$_c}#{$_m}justify#{$_v}start {
+  justify-content: flex-start !important;
+}
+
+.#{$_b}#{$_c}#{$_m}justify#{$_v}center {
+  justify-content: center !important;
+}
+
+.#{$_b}#{$_c}#{$_m}justify#{$_v}end {
+  justify-content: flex-end !important;
+}
+
+.#{$_b}#{$_c}#{$_m}justify#{$_v}between {
+  justify-content: space-between !important;
+}
+
+.#{$_b}#{$_c}#{$_m}justify#{$_v}around {
+  justify-content: space-around !important;
+}
+
+.#{$_b}#{$_c}#{$_m}justify#{$_v}evenly {
+  justify-content: space-evenly !important;
+}
+
+.#{$_b}#{$_c}#{$_m}align#{$_v}start {
+  align-items: flex-start !important;
+}
+
+.#{$_b}#{$_c}#{$_m}align#{$_v}center {
+  align-items: center !important;
+}
+
+.#{$_b}#{$_c}#{$_m}align#{$_v}end {
+  align-items: flex-end !important;
+}
+
+.#{$_b}#{$_c}#{$_m}align#{$_v}stretch {
+  align-items: stretch !important;
+}
+
+.#{$_b}#{$_c}#{$_m}align#{$_v}baseline {
+  align-items: baseline !important;
+}
+
+.#{$_b}#{$_c}#{$_m}wrap {
+  flex-wrap: wrap !important;
+}
+
+.#{$_b}#{$_c}#{$_m}nowrap {
+  flex-wrap: nowrap !important;
+}
+
+.#{$_b}#{$_c}#{$_m}items#{$_v}equal {
+  > * {
+    flex: 1 1 0 !important;
+  }
+}
+
+.#{$_b}#{$_c}#{$_m}items#{$_v}auto {
+  > * {
+    flex: 0 0 auto !important;
+  }
+}
+
+.#{$_b}#{$_c}#{$_m}grow#{$_v}0 {
+  flex-grow: 0 !important;
+}
+
+.#{$_b}#{$_c}#{$_m}grow#{$_v}1 {
+  flex-grow: 1 !important;
+}
+
+.#{$_b}#{$_c}#{$_m}grow#{$_v}2 {
+  flex-grow: 2 !important;
+}
+
+.#{$_b}#{$_c}#{$_m}shrink#{$_v}0 {
+  flex-shrink: 0 !important;
+}
+
+.#{$_b}#{$_c}#{$_m}shrink#{$_v}1 {
+  flex-shrink: 1 !important;
+}
+
+.#{$_b}#{$_c}#{$_m}shrink#{$_v}2 {
+  flex-shrink: 2 !important;
+}
+
+.#{$_b}#{$_c}#{$_m}basis#{$_v}0 {
+  flex-basis: 0 !important;
+}
+
+.#{$_b}#{$_c}#{$_m}basis#{$_v}auto {
+  flex-basis: auto !important;
+}

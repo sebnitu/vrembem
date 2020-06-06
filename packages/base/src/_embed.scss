@@ -1,0 +1,25 @@
+@use "./variables" as var;
+@use "./mixins" as mix;
+
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+$_c: var.$class-embed;
+
+.#{$_b}#{$_c} {
+  position: relative;
+  display: block;
+  height: 0;
+  padding: 0 0 var.$embed-ratio;
+  overflow: hidden;
+}
+
+.#{$_b}#{$_c}#{$_e}item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+}

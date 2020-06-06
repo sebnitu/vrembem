@@ -1,0 +1,89 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}button#{$_m}color#{$_v}subtle {
+  background: none;
+
+  &:hover {
+    background: rgba(core.$black, 0.06);
+  }
+
+  &:focus {
+    background: rgba(core.$black, 0.09);
+  }
+
+  &:active {
+    background: rgba(core.$black, 0.12);
+  }
+
+  &.is-loading::after {
+    border-color: core.set-border-color(var.$loading-border-tpl, core.$color-subtle);
+  }
+
+  &.#{$_b}button#{$_m}invert {
+    background: none;
+    color: core.$white;
+
+    &:hover {
+      background: rgba(core.$white, 0.06);
+    }
+
+    &:focus {
+      background: rgba(core.$white, 0.09);
+    }
+
+    &:active {
+      background: rgba(core.$white, 0.12);
+    }
+
+    &.is-loading::after {
+      border-color: core.set-border-color(var.$loading-border-tpl, core.$color-invert-subtle);
+    }
+  }
+}
+
+.#{$_b}button#{$_m}color#{$_v}primary {
+  background: core.$primary;
+  color: core.$white;
+
+  &:hover {
+    background: darken(core.$primary, 6%);
+  }
+
+  &:focus {
+    background: darken(core.$primary, 9%);
+  }
+
+  &:active {
+    background: darken(core.$primary, 12%);
+  }
+
+  &.is-loading::after {
+    border-color: core.set-border-color(var.$loading-border-tpl, core.$white);
+  }
+}
+
+.#{$_b}button#{$_m}color#{$_v}secondary {
+  background: core.$secondary;
+  color: core.$white;
+
+  &:hover {
+    background: darken(core.$secondary, 6%);
+  }
+
+  &:focus {
+    background: darken(core.$secondary, 9%);
+  }
+
+  &:active {
+    background: darken(core.$secondary, 12%);
+  }
+
+  &.is-loading::after {
+    border-color: core.set-border-color(var.$loading-border-tpl, core.$white);
+  }
+}

@@ -1,0 +1,31 @@
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+
+.#{$_b}table {
+  width: 100%;
+  background-color: var.$background;
+  color: var.$color;
+  text-align: left;
+
+  th,
+  td,
+  caption {
+    padding: var.$padding;
+    vertical-align: top;
+  }
+
+  th {
+    background-color: var.$th-background;
+    font-weight: var.$th-font-weight;
+  }
+
+  td {
+    background-color: var.$td-background;
+  }
+}
+
+.#{$_b}col_auto {
+  width: 0;
+  white-space: nowrap;
+}

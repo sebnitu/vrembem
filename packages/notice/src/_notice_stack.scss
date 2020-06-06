@@ -1,0 +1,20 @@
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+$_m: var.$prefix-modifier;
+
+.#{$_b}notice#{$_m}stack {
+  flex-direction: column;
+  align-items: flex-end;
+
+  .#{$_b}notice#{$_e}body {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: var.$body-spacing;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

@@ -1,0 +1,70 @@
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+
+.#{$_b}dialog {
+  position: relative;
+  z-index: var.$zindex;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  border: var.$border;
+  border-radius: var.$border-radius;
+  background: var.$background;
+  background-clip: padding-box;
+  box-shadow: var.$box-shadow;
+  -webkit-overflow-scrolling: touch;
+}
+
+.#{$_b}dialog#{$_e}header,
+.#{$_b}dialog#{$_e}body,
+.#{$_b}dialog#{$_e}footer {
+  flex: 0 0 auto;
+  padding: var.$padding;
+}
+
+.#{$_b}dialog#{$_e}header,
+.#{$_b}dialog#{$_e}footer {
+  position: sticky;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  background: var.$background;
+  vertical-align: middle;
+}
+
+.#{$_b}dialog#{$_e}header {
+  top: 0;
+  border-bottom: var.$sep-border;
+}
+
+.#{$_b}dialog#{$_e}body {
+  flex-grow: 1;
+
+  & + & {
+    border-top: var.$sep-border;
+  }
+}
+
+.#{$_b}dialog#{$_e}footer {
+  bottom: 0;
+  border-top: var.$sep-border;
+}
+
+.#{$_b}dialog#{$_e}title {
+  flex-grow: 1;
+  font-size: var.$title-font-size;
+  font-weight: var.$title-font-weight;
+  line-height: var.$title-line-height;
+}
+
+.#{$_b}dialog > .#{$_b}dialog#{$_e}close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  + .#{$_b}dialog#{$_e}body {
+    padding-right: 3.5em;
+  }
+}

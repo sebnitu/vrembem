@@ -1,9 +1,0 @@
-.grid_fill > .grid__item,
-.grid__item_fill {
-  display: flex;
-  flex-direction: column;
-
-  > * {
-    flex-basis: 100%;
-  }
-}

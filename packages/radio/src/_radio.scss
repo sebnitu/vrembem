@@ -1,0 +1,98 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+
+.#{$_b}radio {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.#{$_b}radio#{$_e}background {
+  @include core.size(var.$size);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var.$background-border-radius;
+  background-color: var.$background;
+}
+
+.#{$_b}radio#{$_e}circle {
+  @include core.size(var.$circle-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var.$circle-border-width solid var.$circle-border-color;
+  border-radius: var.$circle-size;
+  background-color: var.$circle-background;
+  color: transparent;
+}
+
+.#{$_b}radio#{$_e}dot {
+  @include core.size(0);
+  border-radius: var.$dot-size;
+  background-color: var.$dot-color;
+  opacity: 0;
+}
+
+.#{$_b}radio#{$_e}native {
+  @include core.size(100%);
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+
+  &:hover + .#{$_b}radio#{$_e}background {
+    background-color: var.$background-hover;
+
+    .#{$_b}radio#{$_e}circle {
+      border-color: var.$circle-border-color-hover;
+      background-color: var.$circle-background-hover;
+    }
+  }
+
+  &:focus + .#{$_b}radio#{$_e}background {
+    background-color: var.$background-focus;
+
+    .#{$_b}radio#{$_e}circle {
+      border-color: var.$circle-border-color-focus;
+      background-color: var.$circle-background-focus;
+    }
+  }
+
+  &:active + .#{$_b}radio#{$_e}background {
+    background-color: var.$background-active;
+
+    .#{$_b}radio#{$_e}circle {
+      border-color: var.$circle-border-color-active;
+      background-color: var.$circle-background-active;
+    }
+  }
+
+  &:checked + .#{$_b}radio#{$_e}background {
+    background-color: var.$background-checked;
+
+    .#{$_b}radio#{$_e}circle {
+      border-color: var.$circle-border-color-checked;
+      background-color: var.$circle-background-checked;
+    }
+
+    .#{$_b}radio#{$_e}dot {
+      @include core.size(var.$dot-size);
+      transition-property: opacity, width, height;
+      transition-duration: var.$transition-duration;
+      transition-timing-function: var.$transition-timing-function;
+      background-position: center center;
+      opacity: 1;
+    }
+  }
+}

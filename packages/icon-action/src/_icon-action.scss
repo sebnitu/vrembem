@@ -1,0 +1,31 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
+.#{var.$prefix-block}icon-action {
+  @include core.size(var.$size);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var.$border-radius;
+  background: var.$background;
+  color: core.$white;
+  vertical-align: top;
+  cursor: pointer;
+
+  &:hover {
+    background: var.$background-hover;
+  }
+
+  &:focus {
+    background: var.$background-focus;
+  }
+
+  &:active {
+    background: var.$background-active;
+  }
+
+  .#{var.$prefix-block}icon {
+    stroke-width: var.$icon-stroke-width;
+    font-size: var.$icon-font-size;
+  }
+}

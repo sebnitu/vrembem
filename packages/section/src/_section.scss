@@ -1,0 +1,53 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+
+.#{$_b}section {
+  position: relative;
+  padding: map-get(var.$padding, 'base');
+}
+
+.#{$_b}section#{$_e}container {
+  position: relative;
+  z-index: 3;
+}
+
+.#{$_b}section#{$_e}intro {
+  max-width: var.$intro-max-width;
+  margin: 0 auto;
+  text-align: center;
+}
+
+@each $bp, $value in var.$padding {
+  @if ($bp != 'base') {
+    @include core.media-min($bp) {
+      .#{$_b}section {
+        padding: $value;
+      }
+    }
+  }
+}
+
+.#{$_b}section#{$_e}background,
+.#{$_b}section#{$_e}screen {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.#{$_b}section#{$_e}background {
+  object-fit: cover;
+  z-index: 1;
+}
+
+.#{$_b}section#{$_e}screen {
+  z-index: 2;
+  background: var.$screen-background;
+  opacity: var.$screen-opacity;
+}

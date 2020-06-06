@@ -1,0 +1,39 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
+[data-tooltip] {
+  position: relative;
+
+  &::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    z-index: 100;
+    top: auto;
+    right: auto;
+    bottom: 100%;
+    left: 50%;
+    display: block;
+    max-width: var.$max-width;
+    margin: 0;
+    padding: var.$padding;
+    overflow: hidden;
+    transform: translate(-50%, 0) scale(var.$scale);
+    transition-property: opacity, transform;
+    transition-duration: core.$transition-duration;
+    transition-timing-function: core.$transition-timing-function;
+    border-radius: var.$border-radius;
+    background: var.$background;
+    opacity: 0;
+    color: var.$color;
+    font-size: var.$font-size;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  &:hover::after,
+  &:focus::after {
+    transform: translate(-50%, -(var.$distance)) scale(1);
+    opacity: 1;
+  }
+}

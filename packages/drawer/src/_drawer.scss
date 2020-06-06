@@ -1,0 +1,96 @@
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+
+.#{$_b}drawer {
+  position: relative;
+  display: flex;
+  flex: 0 0 0;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: stretch;
+  width: 0;
+  height: 0;
+  overflow: hidden auto;
+  outline: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.#{$_b}drawer#{$_e}item {
+  width: var.$width;
+  height: 100%;
+  transform: translateY(-(var.$travel));
+  border-right: var.$item-border;
+  border-radius: 0;
+  background: var.$item-background;
+  box-shadow: var.$item-box-shadow;
+  opacity: 0;
+
+  .#{$_b}dialog#{$_e}header,
+  .#{$_b}dialog#{$_e}footer {
+    border-color: var.$item-sep-border-color;
+    background: var.$item-background;
+  }
+
+  .#{$_b}dialog#{$_e}body {
+    background: var.$item-background;
+  }
+}
+
+.#{$_b}drawer#{$_e}wrapper {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.#{$_b}drawer#{$_e}main {
+  position: relative;
+  flex: 1 1 auto;
+  height: 100%;
+  overflow: hidden auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/**
+ * Drawer state classes
+ */
+
+.#{$_b}drawer.is-opening,
+.#{$_b}drawer.is-open,
+.#{$_b}drawer.is-closing {
+  flex: 0 0 auto;
+  width: var.$width;
+  height: 100%;
+}
+
+.#{$_b}drawer.is-opening,
+.#{$_b}drawer.is-closing {
+  .#{$_b}drawer#{$_e}item {
+    transition-property: opacity, transform;
+    transition-duration: var.$transition-duration;
+    transition-timing-function: var.$transition-timing-function;
+  }
+}
+
+.#{$_b}drawer.is-opening,
+.#{$_b}drawer.is-open {
+  .#{$_b}drawer#{$_e}item {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.#{$_b}drawer.is-open {
+  .#{$_b}drawer#{$_e}item {
+    opacity: 1;
+  }
+}
+
+.#{$_b}drawer.is-closing {
+  .#{$_b}drawer#{$_e}item {
+    transform: translateY(-(var.$travel));
+    opacity: 0;
+  }
+}

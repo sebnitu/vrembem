@@ -1,0 +1,5 @@
+@use "./variables" as var;
+
+.#{var.$prefix-block}input#{var.$prefix-modifier}auto {
+  width: auto;
+}

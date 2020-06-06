@@ -1,0 +1,167 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+$_c: var.$class-background;
+
+.#{$_b}#{$_c}#{$_m}black {
+  background-color: core.$black !important;
+}
+
+.#{$_b}#{$_c}#{$_m}white {
+  background-color: core.$white !important;
+}
+
+.#{$_b}#{$_c}#{$_m}transparent {
+  background-color: transparent !important;
+}
+
+// Brand colors
+
+.#{$_b}#{$_c}#{$_m}primary#{$_v}lighter {
+  background-color: core.$primary-lighter !important;
+}
+
+.#{$_b}#{$_c}#{$_m}primary#{$_v}light {
+  background-color: core.$primary-light !important;
+}
+
+.#{$_b}#{$_c}#{$_m}primary {
+  background-color: core.$primary !important;
+}
+
+.#{$_b}#{$_c}#{$_m}primary#{$_v}dark {
+  background-color: core.$primary-dark !important;
+}
+
+.#{$_b}#{$_c}#{$_m}primary#{$_v}darker {
+  background-color: core.$primary-darker !important;
+}
+
+.#{$_b}#{$_c}#{$_m}secondary#{$_v}lighter {
+  background-color: core.$secondary-lighter !important;
+}
+
+.#{$_b}#{$_c}#{$_m}secondary#{$_v}light {
+  background-color: core.$secondary-light !important;
+}
+
+.#{$_b}#{$_c}#{$_m}secondary {
+  background-color: core.$secondary !important;
+}
+
+.#{$_b}#{$_c}#{$_m}secondary#{$_v}dark {
+  background-color: core.$secondary-dark !important;
+}
+
+.#{$_b}#{$_c}#{$_m}secondary#{$_v}darker {
+  background-color: core.$secondary-darker !important;
+}
+
+.#{$_b}#{$_c}#{$_m}shade#{$_v}light {
+  background-color: core.$shade_light !important;
+}
+
+.#{$_b}#{$_c}#{$_m}shade {
+  background-color: core.$shade !important;
+}
+
+.#{$_b}#{$_c}#{$_m}shade#{$_v}dark {
+  background-color: core.$shade_dark !important;
+}
+
+.#{$_b}#{$_c}#{$_m}night#{$_v}light {
+  background-color: core.$night-light !important;
+}
+
+.#{$_b}#{$_c}#{$_m}night {
+  background-color: core.$night !important;
+}
+
+.#{$_b}#{$_c}#{$_m}night#{$_v}dark {
+  background-color: core.$night-dark !important;
+}
+
+// State colors
+
+.#{$_b}#{$_c}#{$_m}info#{$_v}lighter {
+  background-color: core.$info-lighter !important;
+}
+
+.#{$_b}#{$_c}#{$_m}info#{$_v}light {
+  background-color: core.$info-light !important;
+}
+
+.#{$_b}#{$_c}#{$_m}info {
+  background-color: core.$info !important;
+}
+
+.#{$_b}#{$_c}#{$_m}info#{$_v}dark {
+  background-color: core.$info-dark !important;
+}
+
+.#{$_b}#{$_c}#{$_m}info#{$_v}darker {
+  background-color: core.$info-darker !important;
+}
+
+.#{$_b}#{$_c}#{$_m}success#{$_v}lighter {
+  background-color: core.$success-lighter !important;
+}
+
+.#{$_b}#{$_c}#{$_m}success#{$_v}light {
+  background-color: core.$success-light !important;
+}
+
+.#{$_b}#{$_c}#{$_m}success {
+  background-color: core.$success !important;
+}
+
+.#{$_b}#{$_c}#{$_m}success#{$_v}dark {
+  background-color: core.$success-dark !important;
+}
+
+.#{$_b}#{$_c}#{$_m}success#{$_v}darker {
+  background-color: core.$success-darker !important;
+}
+
+.#{$_b}#{$_c}#{$_m}caution#{$_v}lighter {
+  background-color: core.$caution-lighter !important;
+}
+
+.#{$_b}#{$_c}#{$_m}caution#{$_v}light {
+  background-color: core.$caution-light !important;
+}
+
+.#{$_b}#{$_c}#{$_m}caution {
+  background-color: core.$caution !important;
+}
+
+.#{$_b}#{$_c}#{$_m}caution#{$_v}dark {
+  background-color: core.$caution-dark !important;
+}
+
+.#{$_b}#{$_c}#{$_m}caution#{$_v}darker {
+  background-color: core.$caution-darker !important;
+}
+
+.#{$_b}#{$_c}#{$_m}danger#{$_v}lighter {
+  background-color: core.$danger-lighter !important;
+}
+
+.#{$_b}#{$_c}#{$_m}danger#{$_v}light {
+  background-color: core.$danger-light !important;
+}
+
+.#{$_b}#{$_c}#{$_m}danger {
+  background-color: core.$danger !important;
+}
+
+.#{$_b}#{$_c}#{$_m}danger#{$_v}dark {
+  background-color: core.$danger-dark !important;
+}
+
+.#{$_b}#{$_c}#{$_m}danger#{$_v}darker {
+  background-color: core.$danger-darker !important;
+}

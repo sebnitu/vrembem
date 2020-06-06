@@ -1,0 +1,39 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+
+.#{$_b}icon-action#{$_m}subtle {
+  background: none;
+  color: core.$color;
+
+  &:hover {
+    background: rgba(core.$black, 0.1);
+  }
+
+  &:focus {
+    background: rgba(core.$black, 0.2);
+  }
+
+  &:active {
+    background: rgba(core.$black, 0.2);
+  }
+
+  &.#{$_b}icon-action#{$_m}invert {
+    background: none;
+    color: core.$color-invert;
+
+    &:hover {
+      background: rgba(core.$white, 0.1);
+    }
+
+    &:focus {
+      background: rgba(core.$white, 0.2);
+    }
+
+    &:active {
+      background: rgba(core.$white, 0.2);
+    }
+  }
+}

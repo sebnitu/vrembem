@@ -1,5 +1,10 @@
 @use "@vrembem/core";
 
+$prefix-block: core.$prefix-block !default;
+$prefix-element: core.$prefix-element !default;
+$prefix-modifier: core.$prefix-modifier !default;
+$prefix-modifier-value: core.$prefix-modifier-value !default;
+
 $min-size: 2.5rem !default; // 40px
 $padding: core.$padding !default;
 $inner-spacing: 0.5em !default;
@@ -40,14 +45,14 @@ $loading-border-tpl: 1 1 0 0;
 
 $disabled-opacity: 0.5 !default;
 
-$size_sm-min-size: 1.875rem !default; // 30px
-$size_sm-padding: core.$padding-sm !default;
-$size_sm-font-size: core.$font-size-sm !default;
-$size_sm-line-height: core.$line-height-sm !default;
+$size-sm-min-size: 1.875rem !default; // 30px
+$size-sm-padding: core.$padding-sm !default;
+$size-sm-font-size: core.$font-size-sm !default;
+$size-sm-line-height: core.$line-height-sm !default;
 
-$size_lg-min-size: 3.125rem !default; // 50px
-$size_lg-padding: core.$padding-lg !default;
-$size_lg-font-size: core.$font-size-lg !default;
-$size_lg-line-height: core.$line-height-lg !default;
+$size-lg-min-size: 3.125rem !default; // 50px
+$size-lg-padding: core.$padding-lg !default;
+$size-lg-font-size: core.$font-size-lg !default;
+$size-lg-line-height: core.$line-height-lg !default;
 
 $outline-border-width: 1px !default;

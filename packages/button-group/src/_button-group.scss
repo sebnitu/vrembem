@@ -1,0 +1,31 @@
+@use "./variables" as var;
+
+.#{var.$prefix-block}button-group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: (var.$gap * -1) 0 0 (var.$gap * -1);
+
+  #{var.$children-selector} {
+    z-index: 1;
+    flex: 0 0 auto;
+    margin: var.$gap 0 0 var.$gap;
+    border-radius: var.$border-radius;
+
+    &:hover {
+      z-index: 2;
+    }
+
+    &:focus {
+      z-index: 3;
+    }
+
+    &:active {
+      z-index: 4;
+    }
+
+    &.is-active {
+      z-index: 5;
+    }
+  }
+}
