@@ -1,30 +1,34 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-.#{var.$class-box-shadow} {
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_c: var.$class-box-shadow;
+
+.#{$_b}#{$_c} {
   box-shadow: core.$box-shadow !important;
 }
 
-.#{var.$class-box-shadow}_flat {
+.#{$_b}#{$_c}#{$_m}flat {
   box-shadow: core.$box-shadow-flat !important;
 }
 
-.#{var.$class-box-shadow}_1dp {
+.#{$_b}#{$_c}#{$_m}1dp {
   box-shadow: core.$box-shadow-1dp !important;
 }
 
-.#{var.$class-box-shadow}_4dp {
+.#{$_b}#{$_c}#{$_m}4dp {
   box-shadow: core.$box-shadow-4dp !important;
 }
 
-.#{var.$class-box-shadow}_8dp {
+.#{$_b}#{$_c}#{$_m}8dp {
   box-shadow: core.$box-shadow-8dp !important;
 }
 
-.#{var.$class-box-shadow}_16dp {
+.#{$_b}#{$_c}#{$_m}16dp {
   box-shadow: core.$box-shadow-16dp !important;
 }
 
-.#{var.$class-box-shadow}_24dp {
+.#{$_b}#{$_c}#{$_m}24dp {
   box-shadow: core.$box-shadow-24dp !important;
 }

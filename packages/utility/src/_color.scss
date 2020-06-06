@@ -1,178 +1,183 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-.#{var.$class-color} {
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+$_c: var.$class-color;
+
+.#{$_b}#{$_c} {
   color: core.$color !important;
 }
 
-.#{var.$class-color}_subtle {
+.#{$_b}#{$_c}#{$_m}subtle {
   color: core.$color-subtle !important;
 }
 
-.#{var.$class-color}_invert {
+.#{$_b}#{$_c}#{$_m}invert {
   color: core.$color-invert !important;
 }
 
-.#{var.$class-color}_invert_subtle {
+.#{$_b}#{$_c}#{$_m}invert#{$_v}subtle {
   color: core.$color-invert-subtle !important;
 }
 
-.#{var.$class-color}_black {
+.#{$_b}#{$_c}#{$_m}black {
   color: core.$black !important;
 }
 
-.#{var.$class-color}_white {
+.#{$_b}#{$_c}#{$_m}white {
   color: core.$white !important;
 }
 
-.#{var.$class-color}_transparent {
+.#{$_b}#{$_c}#{$_m}transparent {
   color: transparent !important;
 }
 
 // Brand colors
 
-.#{var.$class-color}_primary_lighter {
+.#{$_b}#{$_c}#{$_m}primary#{$_v}lighter {
   color: core.$primary-lighter !important;
 }
 
-.#{var.$class-color}_primary_light {
+.#{$_b}#{$_c}#{$_m}primary#{$_v}light {
   color: core.$primary-light !important;
 }
 
-.#{var.$class-color}_primary {
+.#{$_b}#{$_c}#{$_m}primary {
   color: core.$primary !important;
 }
 
-.#{var.$class-color}_primary_dark {
+.#{$_b}#{$_c}#{$_m}primary#{$_v}dark {
   color: core.$primary-dark !important;
 }
 
-.#{var.$class-color}_primary_darker {
+.#{$_b}#{$_c}#{$_m}primary#{$_v}darker {
   color: core.$primary-darker !important;
 }
 
-.#{var.$class-color}_secondary_lighter {
+.#{$_b}#{$_c}#{$_m}secondary#{$_v}lighter {
   color: core.$secondary-lighter !important;
 }
 
-.#{var.$class-color}_secondary_light {
+.#{$_b}#{$_c}#{$_m}secondary#{$_v}light {
   color: core.$secondary-light !important;
 }
 
-.#{var.$class-color}_secondary {
+.#{$_b}#{$_c}#{$_m}secondary {
   color: core.$secondary !important;
 }
 
-.#{var.$class-color}_secondary_dark {
+.#{$_b}#{$_c}#{$_m}secondary#{$_v}dark {
   color: core.$secondary-dark !important;
 }
 
-.#{var.$class-color}_secondary_darker {
+.#{$_b}#{$_c}#{$_m}secondary#{$_v}darker {
   color: core.$secondary-darker !important;
 }
 
-.#{var.$class-color}_shade_light {
+.#{$_b}#{$_c}#{$_m}shade#{$_v}light {
   color: core.$shade_light !important;
 }
 
-.#{var.$class-color}_shade {
+.#{$_b}#{$_c}#{$_m}shade {
   color: core.$shade !important;
 }
 
-.#{var.$class-color}_shade_dark {
+.#{$_b}#{$_c}#{$_m}shade#{$_v}dark {
   color: core.$shade_dark !important;
 }
 
-.#{var.$class-color}_night_light {
+.#{$_b}#{$_c}#{$_m}night#{$_v}light {
   color: core.$night_light !important;
 }
 
-.#{var.$class-color}_night {
+.#{$_b}#{$_c}#{$_m}night {
   color: core.$night !important;
 }
 
-.#{var.$class-color}_night_dark {
+.#{$_b}#{$_c}#{$_m}night#{$_v}dark {
   color: core.$night_dark !important;
 }
 
 // State colors
 
-.#{var.$class-color}_info_lighter {
+.#{$_b}#{$_c}#{$_m}info#{$_v}lighter {
   color: core.$info-lighter !important;
 }
 
-.#{var.$class-color}_info_light {
+.#{$_b}#{$_c}#{$_m}info#{$_v}light {
   color: core.$info-light !important;
 }
 
-.#{var.$class-color}_info {
+.#{$_b}#{$_c}#{$_m}info {
   color: core.$info !important;
 }
 
-.#{var.$class-color}_info_dark {
+.#{$_b}#{$_c}#{$_m}info#{$_v}dark {
   color: core.$info-dark !important;
 }
 
-.#{var.$class-color}_info_darker {
+.#{$_b}#{$_c}#{$_m}info#{$_v}darker {
   color: core.$info-darker !important;
 }
 
-.#{var.$class-color}_success_lighter {
+.#{$_b}#{$_c}#{$_m}success#{$_v}lighter {
   color: core.$success-lighter !important;
 }
 
-.#{var.$class-color}_success_light {
+.#{$_b}#{$_c}#{$_m}success#{$_v}light {
   color: core.$success-light !important;
 }
 
-.#{var.$class-color}_success {
+.#{$_b}#{$_c}#{$_m}success {
   color: core.$success !important;
 }
 
-.#{var.$class-color}_success_dark {
+.#{$_b}#{$_c}#{$_m}success#{$_v}dark {
   color: core.$success-dark !important;
 }
 
-.#{var.$class-color}_success_darker {
+.#{$_b}#{$_c}#{$_m}success#{$_v}darker {
   color: core.$success-darker !important;
 }
 
-.#{var.$class-color}_caution_lighter {
+.#{$_b}#{$_c}#{$_m}caution#{$_v}lighter {
   color: core.$caution-lighter !important;
 }
 
-.#{var.$class-color}_caution_light {
+.#{$_b}#{$_c}#{$_m}caution#{$_v}light {
   color: core.$caution-light !important;
 }
 
-.#{var.$class-color}_caution {
+.#{$_b}#{$_c}#{$_m}caution {
   color: core.$caution !important;
 }
 
-.#{var.$class-color}_caution_dark {
+.#{$_b}#{$_c}#{$_m}caution#{$_v}dark {
   color: core.$caution-dark !important;
 }
 
-.#{var.$class-color}_caution_darker {
+.#{$_b}#{$_c}#{$_m}caution#{$_v}darker {
   color: core.$caution-darker !important;
 }
 
-.#{var.$class-color}_danger_lighter {
+.#{$_b}#{$_c}#{$_m}danger#{$_v}lighter {
   color: core.$danger-lighter !important;
 }
 
-.#{var.$class-color}_danger_light {
+.#{$_b}#{$_c}#{$_m}danger#{$_v}light {
   color: core.$danger-light !important;
 }
 
-.#{var.$class-color}_danger {
+.#{$_b}#{$_c}#{$_m}danger {
   color: core.$danger !important;
 }
 
-.#{var.$class-color}_danger_dark {
+.#{$_b}#{$_c}#{$_m}danger#{$_v}dark {
   color: core.$danger-dark !important;
 }
 
-.#{var.$class-color}_danger_darker {
+.#{$_b}#{$_c}#{$_m}danger#{$_v}darker {
   color: core.$danger-darker !important;
 }

@@ -1,48 +1,53 @@
 @use "./variables" as var;
 
-.#{var.$class-padding} {
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+$_c: var.$class-padding;
+
+.#{$_b}#{$_c} {
   padding: var.$spacing;
 }
 
 @each $key, $value in var.$spacing-map {
-  .#{var.$class-padding}_#{$key} {
+  .#{$_b}#{$_c}#{$_m}#{$key} {
     padding: $value !important;
   }
 }
 
 @each $key, $value in var.$spacing-map {
-  .#{var.$class-padding}_top_#{$key} {
+  .#{$_b}#{$_c}#{$_m}top#{$_v}#{$key} {
     padding-top: $value !important;
   }
 }
 
 @each $key, $value in var.$spacing-map {
-  .#{var.$class-padding}_bottom_#{$key} {
+  .#{$_b}#{$_c}#{$_m}bottom#{$_v}#{$key} {
     padding-bottom: $value !important;
   }
 }
 
 @each $key, $value in var.$spacing-map {
-  .#{var.$class-padding}_left_#{$key} {
+  .#{$_b}#{$_c}#{$_m}left#{$_v}#{$key} {
     padding-left: $value !important;
   }
 }
 
 @each $key, $value in var.$spacing-map {
-  .#{var.$class-padding}_right_#{$key} {
+  .#{$_b}#{$_c}#{$_m}right#{$_v}#{$key} {
     padding-right: $value !important;
   }
 }
 
 @each $key, $value in var.$spacing-map {
-  .#{var.$class-padding}_hori_#{$key} {
+  .#{$_b}#{$_c}#{$_m}hori#{$_v}#{$key} {
     padding-right: $value !important;
     padding-left: $value !important;
   }
 }
 
 @each $key, $value in var.$spacing-map {
-  .#{var.$class-padding}_vert_#{$key} {
+  .#{$_b}#{$_c}#{$_m}vert#{$_v}#{$key} {
     padding-top: $value !important;
     padding-bottom: $value !important;
   }

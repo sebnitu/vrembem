@@ -1,8 +1,13 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+$_c: var.$class-display;
+
 @each $property in var.$display-properties {
-  .#{var.$class-display}_#{$property} {
+  .#{$_b}#{$_c}#{$_m}#{$property} {
     display: $property !important;
   }
 }
@@ -10,7 +15,7 @@
 @each $key, $value in core.$breakpoints {
   @include core.media-min($key) {
     @each $property in var.$display-properties {
-      .#{var.$class-display}_#{$property}_#{$key} {
+      .#{$_b}#{$_c}#{$_m}#{$property}#{$_v}#{$key} {
         display: $property !important;
       }
     }
