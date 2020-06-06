@@ -7,6 +7,12 @@
     "url": "https://github.com/sebnitu/vrembem.git"
   },
   "changelog": {
+    "labels": {
+      "bug": "Bug Fix",
+      "chore": "Chore",
+      "docs": "Documentation",
+      "feat": "New Feature"
+    },
     "ignoreCommitters": "[bot]"
   },
   "scripts": {
