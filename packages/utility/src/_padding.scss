@@ -1,48 +1,48 @@
-@use "./variables";
+@use "./variables" as var;
 
-.#{variables.$class-padding} {
-  padding: variables.$spacing;
+.#{var.$class-padding} {
+  padding: var.$spacing;
 }
 
-@each $key, $value in variables.$spacing-map {
-  .#{variables.$class-padding}_#{$key} {
+@each $key, $value in var.$spacing-map {
+  .#{var.$class-padding}_#{$key} {
     padding: $value !important;
   }
 }
 
-@each $key, $value in variables.$spacing-map {
-  .#{variables.$class-padding}_top_#{$key} {
+@each $key, $value in var.$spacing-map {
+  .#{var.$class-padding}_top_#{$key} {
     padding-top: $value !important;
   }
 }
 
-@each $key, $value in variables.$spacing-map {
-  .#{variables.$class-padding}_bottom_#{$key} {
+@each $key, $value in var.$spacing-map {
+  .#{var.$class-padding}_bottom_#{$key} {
     padding-bottom: $value !important;
   }
 }
 
-@each $key, $value in variables.$spacing-map {
-  .#{variables.$class-padding}_left_#{$key} {
+@each $key, $value in var.$spacing-map {
+  .#{var.$class-padding}_left_#{$key} {
     padding-left: $value !important;
   }
 }
 
-@each $key, $value in variables.$spacing-map {
-  .#{variables.$class-padding}_right_#{$key} {
+@each $key, $value in var.$spacing-map {
+  .#{var.$class-padding}_right_#{$key} {
     padding-right: $value !important;
   }
 }
 
-@each $key, $value in variables.$spacing-map {
-  .#{variables.$class-padding}_hori_#{$key} {
+@each $key, $value in var.$spacing-map {
+  .#{var.$class-padding}_hori_#{$key} {
     padding-right: $value !important;
     padding-left: $value !important;
   }
 }
 
-@each $key, $value in variables.$spacing-map {
-  .#{variables.$class-padding}_vert_#{$key} {
+@each $key, $value in var.$spacing-map {
+  .#{var.$class-padding}_vert_#{$key} {
     padding-top: $value !important;
     padding-bottom: $value !important;
   }

@@ -1,162 +1,162 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
 
-.#{variables.$class-background}_black {
+.#{var.$class-background}_black {
   background-color: core.$black !important;
 }
 
-.#{variables.$class-background}_white {
+.#{var.$class-background}_white {
   background-color: core.$white !important;
 }
 
-.#{variables.$class-background}_transparent {
+.#{var.$class-background}_transparent {
   background-color: transparent !important;
 }
 
 // Brand colors
 
-.#{variables.$class-background}_primary_lighter {
+.#{var.$class-background}_primary_lighter {
   background-color: core.$primary-lighter !important;
 }
 
-.#{variables.$class-background}_primary_light {
+.#{var.$class-background}_primary_light {
   background-color: core.$primary-light !important;
 }
 
-.#{variables.$class-background}_primary {
+.#{var.$class-background}_primary {
   background-color: core.$primary !important;
 }
 
-.#{variables.$class-background}_primary_dark {
+.#{var.$class-background}_primary_dark {
   background-color: core.$primary-dark !important;
 }
 
-.#{variables.$class-background}_primary_darker {
+.#{var.$class-background}_primary_darker {
   background-color: core.$primary-darker !important;
 }
 
-.#{variables.$class-background}_secondary_lighter {
+.#{var.$class-background}_secondary_lighter {
   background-color: core.$secondary-lighter !important;
 }
 
-.#{variables.$class-background}_secondary_light {
+.#{var.$class-background}_secondary_light {
   background-color: core.$secondary-light !important;
 }
 
-.#{variables.$class-background}_secondary {
+.#{var.$class-background}_secondary {
   background-color: core.$secondary !important;
 }
 
-.#{variables.$class-background}_secondary_dark {
+.#{var.$class-background}_secondary_dark {
   background-color: core.$secondary-dark !important;
 }
 
-.#{variables.$class-background}_secondary_darker {
+.#{var.$class-background}_secondary_darker {
   background-color: core.$secondary-darker !important;
 }
 
-.#{variables.$class-background}_shade_light {
+.#{var.$class-background}_shade_light {
   background-color: core.$shade_light !important;
 }
 
-.#{variables.$class-background}_shade {
+.#{var.$class-background}_shade {
   background-color: core.$shade !important;
 }
 
-.#{variables.$class-background}_shade_dark {
+.#{var.$class-background}_shade_dark {
   background-color: core.$shade_dark !important;
 }
 
-.#{variables.$class-background}_night_light {
+.#{var.$class-background}_night_light {
   background-color: core.$night-light !important;
 }
 
-.#{variables.$class-background}_night {
+.#{var.$class-background}_night {
   background-color: core.$night !important;
 }
 
-.#{variables.$class-background}_night_dark {
+.#{var.$class-background}_night_dark {
   background-color: core.$night-dark !important;
 }
 
 // State colors
 
-.#{variables.$class-background}_info_lighter {
+.#{var.$class-background}_info_lighter {
   background-color: core.$info-lighter !important;
 }
 
-.#{variables.$class-background}_info_light {
+.#{var.$class-background}_info_light {
   background-color: core.$info-light !important;
 }
 
-.#{variables.$class-background}_info {
+.#{var.$class-background}_info {
   background-color: core.$info !important;
 }
 
-.#{variables.$class-background}_info_dark {
+.#{var.$class-background}_info_dark {
   background-color: core.$info-dark !important;
 }
 
-.#{variables.$class-background}_info_darker {
+.#{var.$class-background}_info_darker {
   background-color: core.$info-darker !important;
 }
 
-.#{variables.$class-background}_success_lighter {
+.#{var.$class-background}_success_lighter {
   background-color: core.$success-lighter !important;
 }
 
-.#{variables.$class-background}_success_light {
+.#{var.$class-background}_success_light {
   background-color: core.$success-light !important;
 }
 
-.#{variables.$class-background}_success {
+.#{var.$class-background}_success {
   background-color: core.$success !important;
 }
 
-.#{variables.$class-background}_success_dark {
+.#{var.$class-background}_success_dark {
   background-color: core.$success-dark !important;
 }
 
-.#{variables.$class-background}_success_darker {
+.#{var.$class-background}_success_darker {
   background-color: core.$success-darker !important;
 }
 
-.#{variables.$class-background}_caution_lighter {
+.#{var.$class-background}_caution_lighter {
   background-color: core.$caution-lighter !important;
 }
 
-.#{variables.$class-background}_caution_light {
+.#{var.$class-background}_caution_light {
   background-color: core.$caution-light !important;
 }
 
-.#{variables.$class-background}_caution {
+.#{var.$class-background}_caution {
   background-color: core.$caution !important;
 }
 
-.#{variables.$class-background}_caution_dark {
+.#{var.$class-background}_caution_dark {
   background-color: core.$caution-dark !important;
 }
 
-.#{variables.$class-background}_caution_darker {
+.#{var.$class-background}_caution_darker {
   background-color: core.$caution-darker !important;
 }
 
-.#{variables.$class-background}_danger_lighter {
+.#{var.$class-background}_danger_lighter {
   background-color: core.$danger-lighter !important;
 }
 
-.#{variables.$class-background}_danger_light {
+.#{var.$class-background}_danger_light {
   background-color: core.$danger-light !important;
 }
 
-.#{variables.$class-background}_danger {
+.#{var.$class-background}_danger {
   background-color: core.$danger !important;
 }
 
-.#{variables.$class-background}_danger_dark {
+.#{var.$class-background}_danger_dark {
   background-color: core.$danger-dark !important;
 }
 
-.#{variables.$class-background}_danger_darker {
+.#{var.$class-background}_danger_darker {
   background-color: core.$danger-darker !important;
 }

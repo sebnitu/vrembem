@@ -1,30 +1,30 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
 
-.#{variables.$class-box-shadow} {
+.#{var.$class-box-shadow} {
   box-shadow: core.$box-shadow !important;
 }
 
-.#{variables.$class-box-shadow}_flat {
+.#{var.$class-box-shadow}_flat {
   box-shadow: core.$box-shadow-flat !important;
 }
 
-.#{variables.$class-box-shadow}_1dp {
+.#{var.$class-box-shadow}_1dp {
   box-shadow: core.$box-shadow-1dp !important;
 }
 
-.#{variables.$class-box-shadow}_4dp {
+.#{var.$class-box-shadow}_4dp {
   box-shadow: core.$box-shadow-4dp !important;
 }
 
-.#{variables.$class-box-shadow}_8dp {
+.#{var.$class-box-shadow}_8dp {
   box-shadow: core.$box-shadow-8dp !important;
 }
 
-.#{variables.$class-box-shadow}_16dp {
+.#{var.$class-box-shadow}_16dp {
   box-shadow: core.$box-shadow-16dp !important;
 }
 
-.#{variables.$class-box-shadow}_24dp {
+.#{var.$class-box-shadow}_24dp {
   box-shadow: core.$box-shadow-24dp !important;
 }

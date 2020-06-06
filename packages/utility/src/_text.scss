@@ -1,83 +1,83 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
 
-.#{variables.$class-text}_size_sm {
+.#{var.$class-text}_size_sm {
   font-size: core.$font-size-sm !important;
 }
 
-.#{variables.$class-text}_size_lg {
+.#{var.$class-text}_size_lg {
   font-size: core.$font-size-lg !important;
 }
 
-.#{variables.$class-text}_capitalize {
+.#{var.$class-text}_capitalize {
   text-transform: capitalize !important;
 }
 
-.#{variables.$class-text}_lowercase {
+.#{var.$class-text}_lowercase {
   text-transform: lowercase !important;
 }
 
-.#{variables.$class-text}_uppercase {
+.#{var.$class-text}_uppercase {
   text-transform: uppercase !important;
 }
 
-.#{variables.$class-text}_align_left {
+.#{var.$class-text}_align_left {
   text-align: left !important;
 }
 
-.#{variables.$class-text}_align_center {
+.#{var.$class-text}_align_center {
   text-align: center !important;
 }
 
-.#{variables.$class-text}_align_right {
+.#{var.$class-text}_align_right {
   text-align: right !important;
 }
 
-.#{variables.$class-text}_bold {
+.#{var.$class-text}_bold {
   font-weight: core.font-weight("bold") !important;
 }
 
-.#{variables.$class-text}_normal {
+.#{var.$class-text}_normal {
   font-weight: core.font-weight("normal") !important;
 }
 
-.#{variables.$class-text}_italic {
+.#{var.$class-text}_italic {
   font-style: italic !important;
 }
 
-.#{variables.$class-text}_strike {
+.#{var.$class-text}_strike {
   text-decoration: line-through !important;
 }
 
-.#{variables.$class-text}_underline {
+.#{var.$class-text}_underline {
   text-decoration: underline !important;
 }
 
-.#{variables.$class-text}_underline_dotted {
+.#{var.$class-text}_underline_dotted {
   text-decoration: underline !important;
   text-decoration-style: dotted !important;
 }
 
-.#{variables.$class-text}_underline_dashed {
+.#{var.$class-text}_underline_dashed {
   text-decoration: underline !important;
   text-decoration-style: dashed !important;
 }
 
-.#{variables.$class-text}_wrap {
+.#{var.$class-text}_wrap {
   white-space: normal !important;
 }
 
-.#{variables.$class-text}_nowrap {
+.#{var.$class-text}_nowrap {
   white-space: nowrap !important;
 }
 
-.#{variables.$class-text}_overflow_ellipsis {
+.#{var.$class-text}_overflow_ellipsis {
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
 }
 
-.#{variables.$class-text}_lead {
+.#{var.$class-text}_lead {
   font-size: 1.2em !important;
   font-weight: core.font-weight("light") !important;
 }

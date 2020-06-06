@@ -1,70 +1,70 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
 
-.#{variables.$class-border} {
+.#{var.$class-border} {
   border: core.$border !important;
 }
 
-.#{variables.$class-border}_top {
+.#{var.$class-border}_top {
   border-top: core.$border !important;
 }
 
-.#{variables.$class-border}_bottom {
+.#{var.$class-border}_bottom {
   border-bottom: core.$border !important;
 }
 
-.#{variables.$class-border}_left {
+.#{var.$class-border}_left {
   border-left: core.$border !important;
 }
 
-.#{variables.$class-border}_right {
+.#{var.$class-border}_right {
   border-right: core.$border !important;
 }
 
-.#{variables.$class-border}_0 {
+.#{var.$class-border}_0 {
   border: 0 !important;
 }
 
-.#{variables.$class-border}_top_0 {
+.#{var.$class-border}_top_0 {
   border-top: 0 !important;
 }
 
-.#{variables.$class-border}_bottom_0 {
+.#{var.$class-border}_bottom_0 {
   border-bottom: 0 !important;
 }
 
-.#{variables.$class-border}_left_0 {
+.#{var.$class-border}_left_0 {
   border-left: 0 !important;
 }
 
-.#{variables.$class-border}_right_0 {
+.#{var.$class-border}_right_0 {
   border-right: 0 !important;
 }
 
-.#{variables.$class-border}_color_light {
+.#{var.$class-border}_color_light {
   border-color: core.$border-color-light !important;
 }
 
-.#{variables.$class-border}_color_dark {
+.#{var.$class-border}_color_dark {
   border-color: core.$border-color-dark !important;
 }
 
-.#{variables.$class-border}_color_darker {
+.#{var.$class-border}_color_darker {
   border-color: core.$border-color-darker !important;
 }
 
-.#{variables.$class-border}_color_invert {
+.#{var.$class-border}_color_invert {
   border-color: core.$border-color-invert !important;
 }
 
-.#{variables.$class-border}_color_invert-light {
+.#{var.$class-border}_color_invert-light {
   border-color: core.$border-color-invert-light !important;
 }
 
-.#{variables.$class-border}_color_invert-dark {
+.#{var.$class-border}_color_invert-dark {
   border-color: core.$border-color-invert-dark !important;
 }
 
-.#{variables.$class-border}_color_invert-darker {
+.#{var.$class-border}_color_invert-darker {
   border-color: core.$border-color-invert-darker !important;
 }

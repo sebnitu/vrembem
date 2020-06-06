@@ -1,178 +1,178 @@
 @use "@vrembem/core";
-@use "./variables";
+@use "./variables" as var;
 
-.#{variables.$class-color} {
+.#{var.$class-color} {
   color: core.$color !important;
 }
 
-.#{variables.$class-color}_subtle {
+.#{var.$class-color}_subtle {
   color: core.$color-subtle !important;
 }
 
-.#{variables.$class-color}_invert {
+.#{var.$class-color}_invert {
   color: core.$color-invert !important;
 }
 
-.#{variables.$class-color}_invert_subtle {
+.#{var.$class-color}_invert_subtle {
   color: core.$color-invert-subtle !important;
 }
 
-.#{variables.$class-color}_black {
+.#{var.$class-color}_black {
   color: core.$black !important;
 }
 
-.#{variables.$class-color}_white {
+.#{var.$class-color}_white {
   color: core.$white !important;
 }
 
-.#{variables.$class-color}_transparent {
+.#{var.$class-color}_transparent {
   color: transparent !important;
 }
 
 // Brand colors
 
-.#{variables.$class-color}_primary_lighter {
+.#{var.$class-color}_primary_lighter {
   color: core.$primary-lighter !important;
 }
 
-.#{variables.$class-color}_primary_light {
+.#{var.$class-color}_primary_light {
   color: core.$primary-light !important;
 }
 
-.#{variables.$class-color}_primary {
+.#{var.$class-color}_primary {
   color: core.$primary !important;
 }
 
-.#{variables.$class-color}_primary_dark {
+.#{var.$class-color}_primary_dark {
   color: core.$primary-dark !important;
 }
 
-.#{variables.$class-color}_primary_darker {
+.#{var.$class-color}_primary_darker {
   color: core.$primary-darker !important;
 }
 
-.#{variables.$class-color}_secondary_lighter {
+.#{var.$class-color}_secondary_lighter {
   color: core.$secondary-lighter !important;
 }
 
-.#{variables.$class-color}_secondary_light {
+.#{var.$class-color}_secondary_light {
   color: core.$secondary-light !important;
 }
 
-.#{variables.$class-color}_secondary {
+.#{var.$class-color}_secondary {
   color: core.$secondary !important;
 }
 
-.#{variables.$class-color}_secondary_dark {
+.#{var.$class-color}_secondary_dark {
   color: core.$secondary-dark !important;
 }
 
-.#{variables.$class-color}_secondary_darker {
+.#{var.$class-color}_secondary_darker {
   color: core.$secondary-darker !important;
 }
 
-.#{variables.$class-color}_shade_light {
+.#{var.$class-color}_shade_light {
   color: core.$shade_light !important;
 }
 
-.#{variables.$class-color}_shade {
+.#{var.$class-color}_shade {
   color: core.$shade !important;
 }
 
-.#{variables.$class-color}_shade_dark {
+.#{var.$class-color}_shade_dark {
   color: core.$shade_dark !important;
 }
 
-.#{variables.$class-color}_night_light {
+.#{var.$class-color}_night_light {
   color: core.$night_light !important;
 }
 
-.#{variables.$class-color}_night {
+.#{var.$class-color}_night {
   color: core.$night !important;
 }
 
-.#{variables.$class-color}_night_dark {
+.#{var.$class-color}_night_dark {
   color: core.$night_dark !important;
 }
 
 // State colors
 
-.#{variables.$class-color}_info_lighter {
+.#{var.$class-color}_info_lighter {
   color: core.$info-lighter !important;
 }
 
-.#{variables.$class-color}_info_light {
+.#{var.$class-color}_info_light {
   color: core.$info-light !important;
 }
 
-.#{variables.$class-color}_info {
+.#{var.$class-color}_info {
   color: core.$info !important;
 }
 
-.#{variables.$class-color}_info_dark {
+.#{var.$class-color}_info_dark {
   color: core.$info-dark !important;
 }
 
-.#{variables.$class-color}_info_darker {
+.#{var.$class-color}_info_darker {
   color: core.$info-darker !important;
 }
 
-.#{variables.$class-color}_success_lighter {
+.#{var.$class-color}_success_lighter {
   color: core.$success-lighter !important;
 }
 
-.#{variables.$class-color}_success_light {
+.#{var.$class-color}_success_light {
   color: core.$success-light !important;
 }
 
-.#{variables.$class-color}_success {
+.#{var.$class-color}_success {
   color: core.$success !important;
 }
 
-.#{variables.$class-color}_success_dark {
+.#{var.$class-color}_success_dark {
   color: core.$success-dark !important;
 }
 
-.#{variables.$class-color}_success_darker {
+.#{var.$class-color}_success_darker {
   color: core.$success-darker !important;
 }
 
-.#{variables.$class-color}_caution_lighter {
+.#{var.$class-color}_caution_lighter {
   color: core.$caution-lighter !important;
 }
 
-.#{variables.$class-color}_caution_light {
+.#{var.$class-color}_caution_light {
   color: core.$caution-light !important;
 }
 
-.#{variables.$class-color}_caution {
+.#{var.$class-color}_caution {
   color: core.$caution !important;
 }
 
-.#{variables.$class-color}_caution_dark {
+.#{var.$class-color}_caution_dark {
   color: core.$caution-dark !important;
 }
 
-.#{variables.$class-color}_caution_darker {
+.#{var.$class-color}_caution_darker {
   color: core.$caution-darker !important;
 }
 
-.#{variables.$class-color}_danger_lighter {
+.#{var.$class-color}_danger_lighter {
   color: core.$danger-lighter !important;
 }
 
-.#{variables.$class-color}_danger_light {
+.#{var.$class-color}_danger_light {
   color: core.$danger-light !important;
 }
 
-.#{variables.$class-color}_danger {
+.#{var.$class-color}_danger {
   color: core.$danger !important;
 }
 
-.#{variables.$class-color}_danger_dark {
+.#{var.$class-color}_danger_dark {
   color: core.$danger-dark !important;
 }
 
-.#{variables.$class-color}_danger_darker {
+.#{var.$class-color}_danger_darker {
   color: core.$danger-darker !important;
 }
