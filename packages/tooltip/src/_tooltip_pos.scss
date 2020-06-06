@@ -1,4 +1,4 @@
-@use "./variables";
+@use "./variables" as var;
 
 [data-tooltip-pos="up"] {
   &::after {
@@ -6,12 +6,12 @@
     right: auto;
     bottom: 100%;
     left: 50%;
-    transform: translate(-50%, 0) scale(variables.$scale);
+    transform: translate(-50%, 0) scale(var.$scale);
   }
 
   &:hover::after,
   &:focus::after {
-    transform: translate(-50%, -(variables.$distance)) scale(1);
+    transform: translate(-50%, -(var.$distance)) scale(1);
     opacity: 1;
   }
 }
@@ -22,12 +22,12 @@
     right: auto;
     bottom: 100%;
     left: 0;
-    transform: translate(-(variables.$offset), 0) scale(variables.$scale);
+    transform: translate(-(var.$offset), 0) scale(var.$scale);
   }
 
   &:hover::after,
   &:focus::after {
-    transform: translate(-(variables.$offset), -(variables.$distance)) scale(1);
+    transform: translate(-(var.$offset), -(var.$distance)) scale(1);
     opacity: 1;
   }
 }
@@ -38,12 +38,12 @@
     right: 0;
     bottom: 100%;
     left: auto;
-    transform: translate(variables.$offset, 0) scale(variables.$scale);
+    transform: translate(var.$offset, 0) scale(var.$scale);
   }
 
   &:hover::after,
   &:focus::after {
-    transform: translate(variables.$offset, -(variables.$distance)) scale(1);
+    transform: translate(var.$offset, -(var.$distance)) scale(1);
     opacity: 1;
   }
 }
@@ -54,12 +54,12 @@
     right: 100%;
     bottom: auto;
     left: auto;
-    transform: translate(0, -50%) scale(variables.$scale);
+    transform: translate(0, -50%) scale(var.$scale);
   }
 
   &:hover::after,
   &:focus::after {
-    transform: translate(-(variables.$distance), -50%) scale(1);
+    transform: translate(-(var.$distance), -50%) scale(1);
   }
 }
 
@@ -69,12 +69,12 @@
     right: 100%;
     bottom: auto;
     left: auto;
-    transform: translate(0, -(variables.$offset)) scale(variables.$scale);
+    transform: translate(0, -(var.$offset)) scale(var.$scale);
   }
 
   &:hover::after,
   &:focus::after {
-    transform: translate(-(variables.$distance), -(variables.$offset)) scale(1);
+    transform: translate(-(var.$distance), -(var.$offset)) scale(1);
   }
 }
 
@@ -84,12 +84,12 @@
     right: 100%;
     bottom: 0;
     left: auto;
-    transform: translate(0, variables.$offset) scale(variables.$scale);
+    transform: translate(0, var.$offset) scale(var.$scale);
   }
 
   &:hover::after,
   &:focus::after {
-    transform: translate(-(variables.$distance), variables.$offset) scale(1);
+    transform: translate(-(var.$distance), var.$offset) scale(1);
   }
 }
 
@@ -99,12 +99,12 @@
     right: auto;
     bottom: 50%;
     left: 100%;
-    transform: translate(0, 50%) scale(variables.$scale);
+    transform: translate(0, 50%) scale(var.$scale);
   }
 
   &:hover::after,
   &:focus::after {
-    transform: translate(variables.$distance, 50%) scale(1);
+    transform: translate(var.$distance, 50%) scale(1);
   }
 }
 
@@ -114,12 +114,12 @@
     right: auto;
     bottom: auto;
     left: 100%;
-    transform: translate(0, -(variables.$offset)) scale(variables.$scale);
+    transform: translate(0, -(var.$offset)) scale(var.$scale);
   }
 
   &:hover::after,
   &:focus::after {
-    transform: translate(variables.$distance, -(variables.$offset)) scale(1);
+    transform: translate(var.$distance, -(var.$offset)) scale(1);
   }
 }
 
@@ -129,12 +129,12 @@
     right: auto;
     bottom: 0;
     left: 100%;
-    transform: translate(0, variables.$offset) scale(variables.$scale);
+    transform: translate(0, var.$offset) scale(var.$scale);
   }
 
   &:hover::after,
   &:focus::after {
-    transform: translate(variables.$distance, variables.$offset) scale(1);
+    transform: translate(var.$distance, var.$offset) scale(1);
   }
 }
 
@@ -144,12 +144,12 @@
     right: 50%;
     bottom: auto;
     left: auto;
-    transform: translate(50%, 0) scale(variables.$scale);
+    transform: translate(50%, 0) scale(var.$scale);
   }
 
   &:hover::after,
   &:focus::after {
-    transform: translate(50%, variables.$distance) scale(1);
+    transform: translate(50%, var.$distance) scale(1);
     opacity: 1;
   }
 }
@@ -160,12 +160,12 @@
     right: auto;
     bottom: auto;
     left: 0;
-    transform: translate(-(variables.$offset), 0) scale(variables.$scale);
+    transform: translate(-(var.$offset), 0) scale(var.$scale);
   }
 
   &:hover::after,
   &:focus::after {
-    transform: translate(-(variables.$offset), variables.$distance) scale(1);
+    transform: translate(-(var.$offset), var.$distance) scale(1);
     opacity: 1;
   }
 }
@@ -176,12 +176,12 @@
     right: 0;
     bottom: auto;
     left: auto;
-    transform: translate(variables.$offset, 0) scale(variables.$scale);
+    transform: translate(var.$offset, 0) scale(var.$scale);
   }
 
   &:hover::after,
   &:focus::after {
-    transform: translate(variables.$offset, variables.$distance) scale(1);
+    transform: translate(var.$offset, var.$distance) scale(1);
     opacity: 1;
   }
 }
