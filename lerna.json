@@ -1,5 +1,23 @@
 {
   "version": "1.5.0",
+  "changelog": {
+    "repo": "sebnitu/vrembem",
+    "cacheDir": ".changelog",
+    "ignoreCommitters": ["[bot]"],
+    "command": {
+      "publish": {
+        "conventionalCommits": true
+      }
+    },
+    "labels": {
+      "tag: breaking": "Breaking Changes",
+      "tag: chore": "Chore",
+      "tag: docs": "Documentation",
+      "tag: imp": "Improved Feature",
+      "tag: feat": "New Feature",
+      "tag: fix": "Bug Fix"
+    }
+  },
   "packages": [
     "docs",
     "packages/*"
