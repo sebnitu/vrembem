@@ -64,3 +64,10 @@
     clear: both;
   }
 }
+
+// Add text overflow styles with ellipsis
+@mixin overflow-ellipsis() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

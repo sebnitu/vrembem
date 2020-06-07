@@ -1,0 +1,84 @@
+@use "sass:list";
+@use "@vrembem/core";
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+@each $key, $value in var.$breakpoints {
+  .#{$_b}table#{$_m}responsive#{$_v}#{$key} {
+    @include core.media-max($value) {
+      thead,
+      tbody,
+      tr,
+      th,
+      td {
+        display: block;
+      }
+
+      thead,
+      [rowspan] {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+
+      [#{var.$mobile-label-attr}] {
+        position: relative;
+        padding-left: calc(#{var.$mobile-label-width} + #{list.nth(var.$padding, 2)});
+        white-space: normal;
+
+        &::before {
+          @include core.overflow-ellipsis();
+          content: attr(#{var.$mobile-label-attr});
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          width: var.$mobile-label-width;
+          padding: var.$padding;
+          background-color: var.$th-background;
+          font-weight: var.$th-font-weight;
+        }
+      }
+
+      &.#{$_b}table#{$_m}size#{$_v}sm [#{var.$mobile-label-attr}] {
+        padding-left: calc(#{var.$mobile-label-width} + #{list.nth(var.$padding-sm, 2)});
+
+        &::before {
+          padding: var.$padding-sm;
+        }
+      }
+
+      &.#{$_b}table#{$_m}size#{$_v}lg [#{var.$mobile-label-attr}] {
+        padding-left: calc(#{var.$mobile-label-width} + #{list.nth(var.$padding-lg, 2)});
+
+        &::before {
+          padding: var.$padding-lg;
+        }
+      }
+
+      &.#{$_b}table#{$_m}style#{$_v}bordered {
+        border: var.$border;
+
+        td {
+          border: none;
+        }
+
+        td + td,
+        th + td {
+          border-top: var.$border-alt;
+        }
+
+        [#{var.$mobile-label-attr}]::before {
+          border-right: var.$border;
+        }
+
+        tr + tr {
+          border-top: var.$border;
+        }
+      }
+    }
+  }
+}

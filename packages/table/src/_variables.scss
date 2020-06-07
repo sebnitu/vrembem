@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "@vrembem/core";
 
 $prefix-block: core.$prefix-block !default;
@@ -5,12 +6,15 @@ $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
+$breakpoints: core.$breakpoints !default;
+
 $padding: core.$padding !default;
 $padding-sm: core.$padding-sm !default;
 $padding-lg: core.$padding-lg !default;
 
 $border-color: core.$border-color !default;
 $border: 1px solid $border-color !default;
+$border-alt: 1px dotted $border-color !default;
 
 $background: null !default;
 $background-zebra: rgba(core.$black, 0.03) !default;
@@ -23,3 +27,6 @@ $color-hover: null !default;
 $th-font-weight: core.font-weight("bold") !default;
 $th-background: null !default;
 $td-background: null !default;
+
+$mobile-label-attr: "data-mobile-label" !default;
+$mobile-label-width: 8rem !default;
