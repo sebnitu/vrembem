@@ -103,7 +103,7 @@ For simple responsive table styles you can wrap your tables in the `scroll-box` 
 
 {% include demo_open.html class_grid="grid_break" class_parent="spacing" %}
 <div class="scroll-box">
-  <table class="table table_responsive table_style_bordered table_hover table_zebra table_size_sm">
+  <table class="table table_responsive_xs table_style_bordered table_hover table_zebra">
     <thead>
       <tr>
         <th>#</th>
@@ -131,7 +131,7 @@ For simple responsive table styles you can wrap your tables in the `scroll-box` 
   </table>
 </div>
 <div class="scroll-box">
-  <table class="table table_responsive table_style_bordered table_hover table_zebra">
+  <table class="table table_responsive_md table_style_bordered table_hover table_zebra">
     <thead>
       <tr>
         <th>#</th>
@@ -159,7 +159,7 @@ For simple responsive table styles you can wrap your tables in the `scroll-box` 
   </table>
 </div>
 <div class="scroll-box">
-  <table class="table table_responsive table_style_bordered table_hover table_zebra table_size_lg">
+  <table class="table table_responsive_lg table_style_bordered table_hover table_zebra">
     <thead>
       <tr>
         <th>#</th>
