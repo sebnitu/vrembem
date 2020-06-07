@@ -15,12 +15,12 @@ $_v: var.$prefix-modifier-value;
   }
 }
 
-@each $key, $value in core.$breakpoints {
+@each $key, $value in var.$breakpoints {
   .#{$_b}media#{$_m}stack#{$_v}#{$key} {
     flex-direction: column;
   }
 
-  @include core.media-min($key) {
+  @include core.media-min($value) {
     .#{$_b}media#{$_m}stack#{$_v}#{$key} {
       flex-direction: row;
 
@@ -30,7 +30,7 @@ $_v: var.$prefix-modifier-value;
     }
   }
 
-  @include core.media-max($key) {
+  @include core.media-max($value) {
     .#{$_b}media#{$_m}stack#{$_v}#{$key} {
       > * + * {
         margin-top: var.$spacing;

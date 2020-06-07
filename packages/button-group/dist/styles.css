@@ -31,7 +31,7 @@
   flex: 1 1 auto;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 479px) {
   .button-group_full_xs {
     display: flex;
     align-items: stretch;
@@ -40,7 +40,7 @@
     flex: 1 1 auto;
   }
 }
-@media (max-width: 620px) {
+@media (max-width: 619px) {
   .button-group_full_sm {
     display: flex;
     align-items: stretch;
@@ -49,7 +49,7 @@
     flex: 1 1 auto;
   }
 }
-@media (max-width: 760px) {
+@media (max-width: 759px) {
   .button-group_full_md {
     display: flex;
     align-items: stretch;
@@ -58,7 +58,7 @@
     flex: 1 1 auto;
   }
 }
-@media (max-width: 990px) {
+@media (max-width: 989px) {
   .button-group_full_lg {
     display: flex;
     align-items: stretch;
@@ -67,7 +67,7 @@
     flex: 1 1 auto;
   }
 }
-@media (max-width: 1380px) {
+@media (max-width: 1379px) {
   .button-group_full_xl {
     display: flex;
     align-items: stretch;
@@ -139,7 +139,7 @@
   border-bottom-right-radius: 4px;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 479px) {
   .button-group_join.button-group_stack_xs > * {
     border-radius: 0;
   }
@@ -152,7 +152,7 @@
     border-bottom-right-radius: 4px;
   }
 }
-@media (max-width: 620px) {
+@media (max-width: 619px) {
   .button-group_join.button-group_stack_sm > * {
     border-radius: 0;
   }
@@ -165,7 +165,7 @@
     border-bottom-right-radius: 4px;
   }
 }
-@media (max-width: 760px) {
+@media (max-width: 759px) {
   .button-group_join.button-group_stack_md > * {
     border-radius: 0;
   }
@@ -178,7 +178,7 @@
     border-bottom-right-radius: 4px;
   }
 }
-@media (max-width: 990px) {
+@media (max-width: 989px) {
   .button-group_join.button-group_stack_lg > * {
     border-radius: 0;
   }
@@ -191,7 +191,7 @@
     border-bottom-right-radius: 4px;
   }
 }
-@media (max-width: 1380px) {
+@media (max-width: 1379px) {
   .button-group_join.button-group_stack_xl > * {
     border-radius: 0;
   }
@@ -208,27 +208,27 @@
   flex-direction: column;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 479px) {
   .button-group_stack_xs {
     flex-direction: column;
   }
 }
-@media (max-width: 620px) {
+@media (max-width: 619px) {
   .button-group_stack_sm {
     flex-direction: column;
   }
 }
-@media (max-width: 760px) {
+@media (max-width: 759px) {
   .button-group_stack_md {
     flex-direction: column;
   }
 }
-@media (max-width: 990px) {
+@media (max-width: 989px) {
   .button-group_stack_lg {
     flex-direction: column;
   }
 }
-@media (max-width: 1380px) {
+@media (max-width: 1379px) {
   .button-group_stack_xl {
     flex-direction: column;
   }
