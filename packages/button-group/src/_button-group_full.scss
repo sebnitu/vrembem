@@ -14,7 +14,7 @@ $_v: var.$prefix-modifier-value;
   }
 }
 
-@each $key, $value in core.$breakpoints {
+@each $key, $value in var.$breakpoints {
   @include core.media-max($value) {
     .#{$_b}button-group#{$_m}full#{$_v}#{$key} {
       display: flex;

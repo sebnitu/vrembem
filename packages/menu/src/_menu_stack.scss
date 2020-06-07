@@ -10,8 +10,8 @@ $_v: var.$prefix-modifier-value;
   @include mix.menu-stack();
 }
 
-@each $key, $value in core.$breakpoints {
-  @include core.media-max($key) {
+@each $key, $value in var.$breakpoints {
+  @include core.media-max($value) {
     .#{$_b}menu#{$_m}stack#{$_v}#{$key} {
       @include mix.menu-stack();
     }

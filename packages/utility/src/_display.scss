@@ -12,8 +12,8 @@ $_c: var.$class-display;
   }
 }
 
-@each $key, $value in core.$breakpoints {
-  @include core.media-min($key) {
+@each $key, $value in var.$breakpoints {
+  @include core.media-min($value) {
     @each $property in var.$display-properties {
       .#{$_b}#{$_c}#{$_m}#{$property}#{$_v}#{$key} {
         display: $property !important;
