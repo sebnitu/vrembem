@@ -10,12 +10,12 @@
       }
     },
     "labels": {
-      "tag: breaking": "Breaking Changes",
-      "tag: chore": "Chore",
-      "tag: docs": "Documentation",
-      "tag: imp": "Improved Feature",
-      "tag: feat": "New Feature",
-      "tag: fix": "Bug Fix"
+      "tag: breaking": ":fire: Breaking Changes",
+      "tag: chore": ":hammer: Chore",
+      "tag: docs": ":books: Documentation",
+      "tag: feat": ":tada: New Feature",
+      "tag: fix": ":bug: Bug Fix",
+      "tag: imp": ":balloon: Improved Feature"
     }
   },
   "packages": [
