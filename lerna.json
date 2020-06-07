@@ -10,12 +10,13 @@
       }
     },
     "labels": {
-      "tag: breaking": ":fire: Breaking Changes",
-      "tag: chore": ":hammer: Chore",
-      "tag: docs": ":books: Documentation",
-      "tag: feat": ":tada: New Feature",
-      "tag: fix": ":bug: Bug Fix",
-      "tag: imp": ":balloon: Improved Feature"
+      "PR: breaking": ":fire: Breaking Changes",
+      "PR: chore": ":hammer: Chore",
+      "PR: docs": ":books: Documentation",
+      "PR: feat": ":tada: New Feature",
+      "PR: fix": ":bug: Bug Fix",
+      "PR: improve": ":balloon: Improved Feature",
+      "PR: internal": ":house: Internal"
     }
   },
   "packages": [
