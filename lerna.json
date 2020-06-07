@@ -3,7 +3,7 @@
   "changelog": {
     "repo": "sebnitu/vrembem",
     "cacheDir": ".changelog",
-    "ignoreCommitters": ["dependabot"],
+    "ignoreCommitters": ["[bot]"],
     "command": {
       "publish": {
         "conventionalCommits": true
