@@ -33,7 +33,7 @@
     }
   } @else {
     @if (type-of($point) == number) {
-      @media (max-width: $point) {
+      @media (max-width: ($point - 1)) {
         @content;
       }
     }

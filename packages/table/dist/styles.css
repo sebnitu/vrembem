@@ -35,7 +35,7 @@
   background-color: rgba(255, 235, 59, 0.3);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 479px) {
   .table_responsive_xs thead,
 .table_responsive_xs tbody,
 .table_responsive_xs tr,
@@ -97,7 +97,7 @@
   }
 }
 
-@media (max-width: 620px) {
+@media (max-width: 619px) {
   .table_responsive_sm thead,
 .table_responsive_sm tbody,
 .table_responsive_sm tr,
@@ -159,7 +159,7 @@
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 759px) {
   .table_responsive_md thead,
 .table_responsive_md tbody,
 .table_responsive_md tr,
@@ -221,7 +221,7 @@
   }
 }
 
-@media (max-width: 990px) {
+@media (max-width: 989px) {
   .table_responsive_lg thead,
 .table_responsive_lg tbody,
 .table_responsive_lg tr,
@@ -283,7 +283,7 @@
   }
 }
 
-@media (max-width: 1380px) {
+@media (max-width: 1379px) {
   .table_responsive_xl thead,
 .table_responsive_xl tbody,
 .table_responsive_xl tr,
