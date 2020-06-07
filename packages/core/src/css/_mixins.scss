@@ -23,7 +23,7 @@
 /// A media query mixin that deifnes a query using max-width. You can pass in a
 /// key to the `$breakpoints()` maps to access that value, or pass a value to
 /// create your media query. This mixin will shave a pixel off your breakpoint
-/// map values so that it never overlaps with a min-width usage.
+/// values so that it never overlaps with a min-width usage.
 /// @param {string | unit} $point
 /// @param {style block} @content - passed in brackets
 @mixin media-max($point) {
