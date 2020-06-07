@@ -6,10 +6,11 @@
     "ignoreCommitters": ["dependabot"],
     "command": {
       "publish": {
-        "conventionalCommits": "true"
+        "conventionalCommits": true
       }
     },
     "labels": {
+      "breaking": "Breaking Changes",
       "chore": "Chore",
       "docs": "Documentation",
       "imp": "Improved Feature",
