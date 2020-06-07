@@ -1,6 +1,6 @@
 # Changelog
 
-#### Tags:
+#### Tags
 
 - `tag: breaking`: Breaking Changes
 - `tag: chore`: Chore
