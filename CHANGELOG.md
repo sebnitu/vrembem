@@ -2,8 +2,8 @@
 
 #### Tags
 
-- :bug: Bug Fix
 - :fire: Breaking Changes
+- :bug: Bug Fix
 - :hammer: Chore
 - :books: Documentation
 - :balloon: Improved Feature
