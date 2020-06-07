@@ -1,13 +1,13 @@
 @use "sass:list";
-@use "sass:map";
 @use "@vrembem/core";
 @use "./variables" as var;
 
 $_b: var.$prefix-block;
 $_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
 
 .#{$_b}table#{$_m}responsive {
-  @include core.media-max(map.get(core.$breakpoints, "md")) {
+  @include core.media-max(var.$mobile-breakpoint) {
     thead,
     tbody,
     tr,
@@ -23,21 +23,43 @@ $_m: var.$prefix-modifier;
       left: -9999px;
     }
 
-    [data-mobile-label] {
+    [#{var.$mobile-label-attr}] {
       position: relative;
-      padding-left: calc(120px + #{list.nth(var.$padding, 2)});
+      padding-left: calc(#{var.$mobile-label-width} + #{list.nth(var.$padding, 2)});
       white-space: normal;
 
       &::before {
-        content: attr(data-mobile-label);
+        @include core.overflow-ellipsis();
+        content: attr(#{var.$mobile-label-attr});
         position: absolute;
         top: 0;
         bottom: 0;
         left: 0;
-        width: 120px;
+        width: var.$mobile-label-width;
         padding: var.$padding;
         background-color: var.$th-background;
         font-weight: var.$th-font-weight;
+      }
+    }
+
+    &.#{$_b}table#{$_m}style#{$_v}bordered {
+      border: var.$border;
+
+      td {
+        border: none;
+      }
+
+      td + td,
+      th + td {
+        border-top: var.$border-alt;
+      }
+
+      [#{var.$mobile-label-attr}]::before {
+        border-right: var.$border;
+      }
+
+      tr + tr {
+        border-top: var.$border;
       }
     }
   }

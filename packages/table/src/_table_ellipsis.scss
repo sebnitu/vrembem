@@ -1,3 +1,4 @@
+@use "@vrembem/core";
 @use "./variables" as var;
 
 $_b: var.$prefix-block;
@@ -8,8 +9,6 @@ $_m: var.$prefix-modifier;
 
   th,
   td {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    @include core.overflow-ellipsis();
   }
 }
