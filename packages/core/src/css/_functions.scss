@@ -1,32 +1,36 @@
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
 @use "./variables" as var;
 
-/// jQuery-style extend function for when `map-merge()` isn't enough. Use when
+/// jQuery-style extend function for when `map.merge()` isn't enough. Use when
 /// we need to merge more than two maps and/or need a merge to be recursive.
 /// @param {Map} $map - The first map
 /// @param {Map} $maps - Can be a list of maps
 /// @param {Boolean} $deep [false] - Whether or not to enable recursive mode
 /// @return {Map} - Extended map
 @function map-extend($map, $maps.../*, $deep */) {
-  $last: nth($maps, -1);
+  $last: list.nth($maps, -1);
   $deep: $last == true;
-  $max: if($deep, length($maps) - 1, length($maps));
+  $max: if($deep, list.length($maps) - 1, list.length($maps));
   // Loop through all maps in $maps...
   @for $i from 1 through $max {
     // Store current map
-    $current: nth($maps, $i);
+    $current: list.nth($maps, $i);
     // If not in deep mode, simply merge current map with map
     @if not $deep {
-      $map: map-merge($map, $current);
+      $map: map.merge($map, $current);
     } @else {
       // If in deep mode, loop through all tuples in current map
       @each $key, $value in $current {
         // If value is a nested map and same key from map is a nested map as well
-        @if type-of($value) == "map" and type-of(map-get($map, $key)) == "map" {
+        @if meta.type-of($value) == "map" and meta.type-of(map.get($map, $key)) == "map" {
           // Recursive extend
-          $value: map-extend(map-get($map, $key), $value, true);
+          $value: map-extend(map.get($map, $key), $value, true);
         }
         // Merge current tuple with map
-        $map: map-merge($map, ($key: $value));
+        $map: map.merge($map, ($key: $value));
       }
     }
   }
@@ -34,14 +38,14 @@
 }
 
 /// An easy way to fetch a deep value in a multi-level map. Works much like
-/// map-get() except that you pass multiple keys as the second variable argument
+/// map.get() except that you pass multiple keys as the second variable argument
 /// to go down multiple levels in the nested map.
 /// @param {Map} $map
 /// @param {List} $keys
 /// @return {Map} - Requested value from map
 @function map-fetch($map, $keys...) {
   @each $key in $keys {
-    $map: map-get($map, $key);
+    $map: map.get($map, $key);
   }
   @return $map;
 }
@@ -55,35 +59,35 @@
 @function map-set($map, $value, $keys) {
   $maps: ($map,);
   $result: null;
-  @if type-of(nth($keys, -1)) == "map" {
+  @if meta.type-of(list.nth($keys, -1)) == "map" {
     @warn "The last key you specified is a map; it will be overrided with `#{$value}`.";
   }
-  @if length($keys) == 1 {
-    @return map-merge($map, ($keys: $value));
+  @if list.length($keys) == 1 {
+    @return map.merge($map, ($keys: $value));
   }
-  @for $i from 1 through length($keys) - 1 {
-    $current-key: nth($keys, $i);
-    $current-map: nth($maps, -1);
-    $current-get: map-get($current-map, $current-key);
+  @for $i from 1 through list.length($keys) - 1 {
+    $current-key: list.nth($keys, $i);
+    $current-map: list.nth($maps, -1);
+    $current-get: map.get($current-map, $current-key);
     @if $current-get == null {
       @error "Key `#{$key}` doesn't exist at current level in map.";
     }
     $maps: append($maps, $current-get);
   }
-  @for $i from length($maps) through 1 {
-    $current-map: nth($maps, $i);
-    $current-key: nth($keys, $i);
-    $current-val: if($i == length($maps), $value, $result);
-    $result: map-merge($current-map, ($current-key: $current-val));
+  @for $i from list.length($maps) through 1 {
+    $current-map: list.nth($maps, $i);
+    $current-key: list.nth($keys, $i);
+    $current-val: if($i == list.length($maps), $value, $result);
+    $result: map.merge($current-map, ($current-key: $current-val));
   }
   @return $result;
 }
 
-/// Remove the unit of a length
+/// Remove the unit of a list.length
 /// @param {Number} $number - Number to remove unit from
 /// @return {Number} - Unitless number
 @function strip-unit($number) {
-  @if type-of($number) == "number" and not unitless($number) {
+  @if meta.type-of($number) == "number" and not unitless($number) {
     @return $number / ($number * 0 + 1);
   }
   @return $number;
@@ -172,8 +176,8 @@
 /// @param {String} $string - The color to encode
 /// @return {String} - Encoded color
 @function encodecolor($string) {
-  @if type-of($string) == "color" {
-    $hex: str-slice(ie-hex-str($string), 4);
+  @if meta.type-of($string) == "color" {
+    $hex: string.slice(ie-hex-str($string), 4);
     $string:unquote("#{$hex}");
   }
   $string: "%23" + $string;
@@ -188,17 +192,17 @@
 /// @return {List} - list with replaced values
 @function replace($list, $old-value, $new-value, $recursive: false) {
   $result: ();
-  @for $i from 1 through length($list) {
-    @if type-of(nth($list, $i)) == list and $recursive {
+  @for $i from 1 through list.length($list) {
+    @if meta.type-of(list.nth($list, $i)) == "list" and $recursive {
       $result: append(
         $result,
-        replace(nth($list, $i), $old-value, $new-value, $recursive)
+        replace(list.nth($list, $i), $old-value, $new-value, $recursive)
       );
     } @else {
-      @if nth($list, $i) == $old-value {
+      @if list.nth($list, $i) == $old-value {
         $result: append($result, $new-value);
       } @else {
-        $result: append($result, nth($list, $i));
+        $result: append($result, list.nth($list, $i));
       }
     }
   }
