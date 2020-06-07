@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/dialog",
   "description": "A component that facilitates a conversation between the system and the user. They often request information or an action from the user.",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",
@@ -18,7 +18,7 @@
     "directory": "packages/dialog"
   },
   "dependencies": {
-    "@vrembem/core": "^1.5.0"
+    "@vrembem/core": "^1.5.1"
   },
   "publishConfig": {
     "access": "public"
