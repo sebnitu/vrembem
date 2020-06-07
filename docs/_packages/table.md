@@ -99,6 +99,43 @@ For simple responsive table styles you can wrap your tables in the `scroll-box` 
 ```
 {% include demo_close.html %}
 
+{% include flag.html heading="table_responsive" %}
+
+{% include demo_open.html class_grid="grid_break" %}
+<table class="table table_responsive">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>User</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-mobile-label="#">1</td>
+      <td data-mobile-label="User">someone</td>
+      <td data-mobile-label="Email">someone@email.com</td>
+    </tr>
+    <tr>
+      <td data-mobile-label="#">2</td>
+      <td data-mobile-label="User">else</td>
+      <td data-mobile-label="Email">else@email.com</td>
+    </tr>
+    <tr>
+      <td data-mobile-label="#">3</td>
+      <td data-mobile-label="User">another</td>
+      <td data-mobile-label="Email">another@email.com</td>
+    </tr>
+  </tbody>
+</table>
+{% include demo_switch.html %}
+```html
+<table class="table table_responsive">
+  ...
+</table>
+```
+{% include demo_close.html %}
+
 {% include flag.html heading="table_size_sm" %}
 
 {% include demo_open.html class_grid="grid_break" %}

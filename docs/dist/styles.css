@@ -4329,6 +4329,36 @@ input::-moz-placeholder {
   background-color: rgba(255, 235, 59, 0.3);
 }
 
+@media (max-width: 760px) {
+  .table_responsive thead,
+.table_responsive tbody,
+.table_responsive tr,
+.table_responsive th,
+.table_responsive td {
+    display: block;
+  }
+  .table_responsive thead,
+.table_responsive [rowspan] {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  .table_responsive [data-mobile-label] {
+    position: relative;
+    padding-left: calc(120px + 1em * 3);
+    white-space: normal;
+  }
+  .table_responsive [data-mobile-label]::before {
+    content: attr(data-mobile-label);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 120px;
+    padding: 0.5em 1em;
+  }
+}
+
 .table_size_sm th,
 .table_size_sm td,
 .table_size_sm caption {

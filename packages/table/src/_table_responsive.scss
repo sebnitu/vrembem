@@ -1,0 +1,42 @@
+@use "sass:list";
+@use "sass:map";
+@use "@vrembem/core";
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+
+.#{$_b}table#{$_m}responsive {
+  @include core.media-max(map.get(core.$breakpoints, "md")) {
+    thead,
+    tbody,
+    tr,
+    th,
+    td {
+      display: block;
+    }
+
+    thead,
+    [rowspan] {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+
+    [data-mobile-label] {
+      position: relative;
+      padding-left: calc(120px + #{list.nth(var.$padding, 2)} * 3);
+      white-space: normal;
+
+      &::before {
+        content: attr(data-mobile-label);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 120px;
+        padding: var.$padding;
+      }
+    }
+  }
+}
