@@ -10,12 +10,12 @@
       }
     },
     "labels": {
-      "breaking": "Breaking Changes",
-      "chore": "Chore",
-      "docs": "Documentation",
-      "imp": "Improved Feature",
-      "feat": "New Feature",
-      "fix": "Bug Fix"
+      "tag: breaking": "Breaking Changes",
+      "tag: chore": "Chore",
+      "tag: docs": "Documentation",
+      "tag: imp": "Improved Feature",
+      "tag: feat": "New Feature",
+      "tag: fix": "Bug Fix"
     }
   },
   "packages": [
