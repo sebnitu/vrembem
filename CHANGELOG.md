@@ -1,5 +1,17 @@
 ## Changelog
 
+**Tags:**
+
+- `tag: breaking`: Breaking Changes
+- `tag: chore`: Chore
+- `tag: docs`: Documentation
+- `tag: imp`: Improved Feature
+- `tag: feat`: New Feature
+- `tag: fix`: Bug Fix
+
+
+<!-- ADD-NEW-CHANGELOG-HERE -->
+
 ## v1.5.0 (2020-06-06)
 
 #### New Feature
