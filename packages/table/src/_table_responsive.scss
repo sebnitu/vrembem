@@ -42,6 +42,22 @@ $_v: var.$prefix-modifier-value;
       }
     }
 
+    &.#{$_b}table#{$_m}size#{$_v}sm [#{var.$mobile-label-attr}] {
+      padding-left: calc(#{var.$mobile-label-width} + #{list.nth(var.$padding-sm, 2)});
+
+      &::before {
+        padding: var.$padding-sm;
+      }
+    }
+
+    &.#{$_b}table#{$_m}size#{$_v}lg [#{var.$mobile-label-attr}] {
+      padding-left: calc(#{var.$mobile-label-width} + #{list.nth(var.$padding-lg, 2)});
+
+      &::before {
+        padding: var.$padding-lg;
+      }
+    }
+
     &.#{$_b}table#{$_m}style#{$_v}bordered {
       border: var.$border;
 

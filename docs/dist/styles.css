@@ -4361,6 +4361,18 @@ input::-moz-placeholder {
     padding: 0.5em 1em;
     font-weight: 700;
   }
+  .table_responsive.table_size_sm [data-mobile-label] {
+    padding-left: calc(8rem + 0.5rem);
+  }
+  .table_responsive.table_size_sm [data-mobile-label]::before {
+    padding: 0.25rem 0.5rem;
+  }
+  .table_responsive.table_size_lg [data-mobile-label] {
+    padding-left: calc(8rem + 1.5rem);
+  }
+  .table_responsive.table_size_lg [data-mobile-label]::before {
+    padding: 0.75rem 1.5rem;
+  }
   .table_responsive.table_style_bordered {
     border: 1px solid rgba(0, 0, 0, 0.1);
   }
