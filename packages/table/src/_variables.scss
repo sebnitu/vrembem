@@ -26,6 +26,6 @@ $th-font-weight: core.font-weight("bold") !default;
 $th-background: null !default;
 $td-background: null !default;
 
-$mobile-breakpoint: map.get(core.$breakpoints, "md") !default;
+$breakpoints: core.$breakpoints !default;
 $mobile-label-attr: "data-mobile-label" !default;
 $mobile-label-width: 8rem !default;
