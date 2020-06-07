@@ -7,6 +7,7 @@
 - :hammer: Chore
 - :books: Documentation
 - :balloon: Improved Feature
+- :house: Internal
 - :tada: New Feature
 
 <!-- ADD-NEW-CHANGELOG-HERE -->
