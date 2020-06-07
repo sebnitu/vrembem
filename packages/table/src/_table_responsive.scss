@@ -8,7 +8,7 @@ $_v: var.$prefix-modifier-value;
 
 @each $key, $value in var.$breakpoints {
   .#{$_b}table#{$_m}responsive#{$_v}#{$key} {
-    @include core.media-max($key) {
+    @include core.media-max($value) {
       thead,
       tbody,
       tr,

@@ -4329,7 +4329,7 @@ input::-moz-placeholder {
   background-color: rgba(255, 235, 59, 0.3);
 }
 
-@media (max-width: 479px) {
+@media (max-width: 480px) {
   .table_responsive_xs thead,
 .table_responsive_xs tbody,
 .table_responsive_xs tr,
@@ -4391,7 +4391,7 @@ input::-moz-placeholder {
   }
 }
 
-@media (max-width: 619px) {
+@media (max-width: 620px) {
   .table_responsive_sm thead,
 .table_responsive_sm tbody,
 .table_responsive_sm tr,
@@ -4453,7 +4453,7 @@ input::-moz-placeholder {
   }
 }
 
-@media (max-width: 759px) {
+@media (max-width: 760px) {
   .table_responsive_md thead,
 .table_responsive_md tbody,
 .table_responsive_md tr,
@@ -4515,7 +4515,7 @@ input::-moz-placeholder {
   }
 }
 
-@media (max-width: 989px) {
+@media (max-width: 990px) {
   .table_responsive_lg thead,
 .table_responsive_lg tbody,
 .table_responsive_lg tr,
@@ -4577,7 +4577,7 @@ input::-moz-placeholder {
   }
 }
 
-@media (max-width: 1379px) {
+@media (max-width: 1380px) {
   .table_responsive_xl thead,
 .table_responsive_xl tbody,
 .table_responsive_xl tr,
