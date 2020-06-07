@@ -4345,7 +4345,7 @@ input::-moz-placeholder {
   }
   .table_responsive [data-mobile-label] {
     position: relative;
-    padding-left: calc(120px + 1em * 3);
+    padding-left: calc(120px + 1em);
     white-space: normal;
   }
   .table_responsive [data-mobile-label]::before {
@@ -4356,6 +4356,7 @@ input::-moz-placeholder {
     left: 0;
     width: 120px;
     padding: 0.5em 1em;
+    font-weight: 700;
   }
 }
 

@@ -102,7 +102,7 @@ For simple responsive table styles you can wrap your tables in the `scroll-box` 
 {% include flag.html heading="table_responsive" %}
 
 {% include demo_open.html class_grid="grid_break" %}
-<table class="table table_responsive">
+<table class="table table_responsive table_style_rowed">
   <thead>
     <tr>
       <th>#</th>

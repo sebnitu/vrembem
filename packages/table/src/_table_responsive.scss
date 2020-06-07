@@ -25,7 +25,7 @@ $_m: var.$prefix-modifier;
 
     [data-mobile-label] {
       position: relative;
-      padding-left: calc(120px + #{list.nth(var.$padding, 2)} * 3);
+      padding-left: calc(120px + #{list.nth(var.$padding, 2)});
       white-space: normal;
 
       &::before {
@@ -36,6 +36,8 @@ $_m: var.$prefix-modifier;
         left: 0;
         width: 120px;
         padding: var.$padding;
+        background-color: var.$th-background;
+        font-weight: var.$th-font-weight;
       }
     }
   }
