@@ -1,5 +1,7 @@
+@use "sass:color";
 @use "sass:list";
 @use "sass:map";
+@use "sass:math";
 @use "sass:meta";
 @use "sass:string";
 @use "./variables" as var;
@@ -72,7 +74,7 @@
     @if $current-get == null {
       @error "Key `#{$key}` doesn't exist at current level in map.";
     }
-    $maps: append($maps, $current-get);
+    $maps: list.append($maps, $current-get);
   }
   @for $i from list.length($maps) through 1 {
     $current-map: list.nth($maps, $i);
@@ -87,7 +89,7 @@
 /// @param {Number} $number - Number to remove unit from
 /// @return {Number} - Unitless number
 @function strip-unit($number) {
-  @if meta.type-of($number) == "number" and not unitless($number) {
+  @if meta.type-of($number) == "number" and not math.is-unitless($number) {
     @return $number / ($number * 0 + 1);
   }
   @return $number;
@@ -98,10 +100,10 @@
 /// @param {Pixel} $base [$font-size]
 /// @return {Em} - Calculated em value
 @function px-to-em($px, $base: var.$font-size) {
-  @if unitless($px) {
+  @if math.is-unitless($px) {
     $px: 1px * $px;
   }
-  @if unitless($base) {
+  @if math.is-unitless($base) {
     $base: 1px * $base;
   }
   $px: ($px / $base) * 1em;
@@ -112,10 +114,10 @@
 /// @param {Pixel} $px
 /// @return {Rem} - Calculated rem value
 @function px-to-rem($px) {
-  @if unitless($px) {
+  @if math.is-unitless($px) {
     $px: 1px * $px;
   }
-  @if unitless(var.$font-size) {
+  @if math.is-unitless(var.$font-size) {
     $font-size: 1px * var.$font-size;
   }
   $px: ($px / $font-size) * 1rem;
@@ -127,10 +129,10 @@
 /// @param {Pixel} $base [$font-size]
 /// @return {Pixel} - Calculated pixel value
 @function em-to-px($em, $base: var.$font-size) {
-  @if unitless($em) {
+  @if math.is-unitless($em) {
     $em: 1em * $em;
   }
-  @if unitless($base) {
+  @if math.is-unitless($base) {
     $base: 1px * $base;
   }
   $em: ($em * $base) / 1px;
@@ -177,7 +179,7 @@
 /// @return {String} - Encoded color
 @function encodecolor($string) {
   @if meta.type-of($string) == "color" {
-    $hex: string.slice(ie-hex-str($string), 4);
+    $hex: string.slice(color.ie-hex-str($string), 4);
     $string:unquote("#{$hex}");
   }
   $string: "%23" + $string;
@@ -194,15 +196,15 @@
   $result: ();
   @for $i from 1 through list.length($list) {
     @if meta.type-of(list.nth($list, $i)) == "list" and $recursive {
-      $result: append(
+      $result: list.append(
         $result,
         replace(list.nth($list, $i), $old-value, $new-value, $recursive)
       );
     } @else {
       @if list.nth($list, $i) == $old-value {
-        $result: append($result, $new-value);
+        $result: list.append($result, $new-value);
       } @else {
-        $result: append($result, list.nth($list, $i));
+        $result: list.append($result, list.nth($list, $i));
       }
     }
   }
@@ -231,7 +233,7 @@
   $color-light: var.$color-invert
 ) {
   // Checkout base color to lightness threshold
-  @if (lightness($background-color) > var.$lightness-threshold) {
+  @if (color.lightness($background-color) > var.$lightness-threshold) {
     // Lighter backgorund, return dark color
     @return $color-dark;
   } @else {
@@ -244,12 +246,12 @@
 /// @param {Color} $color - The color to check against a lightness threshold
 /// @return {Boolean} - The result
 @function is-dark($color) {
-  @return (lightness($color) < var.$lightness-threshold);
+  @return (color.lightness($color) < var.$lightness-threshold);
 }
 
 /// Check whether or not a color is light
 /// @param {Color} $color - The color to check against a lightness threshold
 /// @return {Boolean} - The result
 @function is-light($color) {
-  @return (lightness($color) > var.$lightness-threshold);
+  @return (color.lightness($color) > var.$lightness-threshold);
 }
