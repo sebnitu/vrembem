@@ -2,6 +2,13 @@
   "name": "@vrembem/arrow",
   "description": "A directional triangle drawn with CSS.",
   "version": "1.5.1",
+  "license": "MIT",
+  "keywords": [
+    "BEM",
+    "front-end",
+    "component",
+    "arrow"
+  ],
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",

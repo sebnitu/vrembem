@@ -2,6 +2,13 @@
   "name": "@vrembem/panel",
   "description": "Panels are a compositional container component that allows you to wrap and theme groups of content.",
   "version": "1.5.1",
+  "license": "MIT",
+  "keywords": [
+    "BEM",
+    "front-end",
+    "component",
+    "panel"
+  ],
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",

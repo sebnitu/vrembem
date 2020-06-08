@@ -2,6 +2,13 @@
   "name": "@vrembem/grid",
   "description": "A flexbox based grid system component.",
   "version": "1.5.1",
+  "license": "MIT",
+  "keywords": [
+    "BEM",
+    "front-end",
+    "component",
+    "grid"
+  ],
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",

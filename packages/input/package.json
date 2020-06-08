@@ -2,6 +2,13 @@
   "name": "@vrembem/input",
   "description": "A component for displaying form input elements.",
   "version": "1.5.1",
+  "license": "MIT",
+  "keywords": [
+    "BEM",
+    "front-end",
+    "component",
+    "input"
+  ],
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",

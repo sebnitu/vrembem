@@ -2,6 +2,13 @@
   "name": "@vrembem/radio",
   "description": "Radios allow the user to select a single option from a set.",
   "version": "1.5.1",
+  "license": "MIT",
+  "keywords": [
+    "BEM",
+    "front-end",
+    "component",
+    "radio"
+  ],
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",

@@ -2,6 +2,13 @@
   "name": "@vrembem/container",
   "description": "A component for giving content a max width and centered within it's parent.",
   "version": "1.5.1",
+  "license": "MIT",
+  "keywords": [
+    "BEM",
+    "front-end",
+    "component",
+    "container"
+  ],
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",

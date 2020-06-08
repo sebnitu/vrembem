@@ -2,6 +2,13 @@
   "name": "@vrembem/icon-action",
   "description": "A component for displaying simple action buttons using icons.",
   "version": "1.5.1",
+  "license": "MIT",
+  "keywords": [
+    "BEM",
+    "front-end",
+    "component",
+    "icon-action"
+  ],
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",

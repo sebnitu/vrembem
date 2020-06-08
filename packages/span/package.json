@@ -2,6 +2,13 @@
   "name": "@vrembem/span",
   "description": "A multi-purpose component for setting width, max-width and flex basis based on a column set.",
   "version": "1.5.1",
+  "license": "MIT",
+  "keywords": [
+    "BEM",
+    "front-end",
+    "component",
+    "span"
+  ],
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",

@@ -2,6 +2,13 @@
   "name": "@vrembem/utility",
   "description": "The utility component provides a set of atomic classes that specialize in a single function.",
   "version": "1.5.1",
+  "license": "MIT",
+  "keywords": [
+    "BEM",
+    "front-end",
+    "component",
+    "utility"
+  ],
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",

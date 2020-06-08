@@ -2,6 +2,13 @@
   "name": "@vrembem/tooltip",
   "description": "Text labels that appear when a user hovers over, focuses on or touches an element.",
   "version": "1.5.1",
+  "license": "MIT",
+  "keywords": [
+    "BEM",
+    "front-end",
+    "component",
+    "tooltip"
+  ],
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",

@@ -2,6 +2,13 @@
   "name": "@vrembem/section",
   "description": "A container component for wrapping distinct sections of a page.",
   "version": "1.5.1",
+  "license": "MIT",
+  "keywords": [
+    "BEM",
+    "front-end",
+    "component",
+    "section"
+  ],
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",
