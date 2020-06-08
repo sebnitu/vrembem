@@ -16,7 +16,7 @@ To include all Vrembem components into your styles, just import the vrembem pack
 <div class="demo">
 <div class="demo__code" markdown="1">
 ```scss
-@import "vrembem";
+@use "vrembem";
 ```
 </div>
 </div>
