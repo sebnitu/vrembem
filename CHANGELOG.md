@@ -12,6 +12,12 @@
 
 <!-- ADD-NEW-CHANGELOG-HERE -->
 
+## v1.5.2 (2020-06-07)
+
+#### :bug: Bug Fix
+* `vrembem`
+  * [#184](https://github.com/sebnitu/vrembem/pull/184) Fix repository directory value ([@sebnitu](https://github.com/sebnitu))
+
 ## v1.5.1 (2020-06-07)
 
 #### :books: Documentation
