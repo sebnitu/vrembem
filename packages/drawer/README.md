@@ -77,4 +77,10 @@ Key | Default | Description
 
 ### JavaScript API
 
-TBD
+Name | Description
+---|---
+`drawer.init()` | Initializes the drawer instance
+`drawer.destroy()` | Destroys and cleans up the drawer instantiation
+`drawer.toggle(drawerKey, callback)` | Toggles a drawer provided the drawer key and optional callback
+`drawer.open(drawerKey, callback)` | Opens a drawer provided the drawer key and optional callback
+`drawer.close(drawerKey, callback)` | Closes a drawer provided the drawer key and optional callback
