@@ -41,6 +41,12 @@ import { Drawer } from '@vrembem/drawer';
 
 ## Modifiers
 
+### `drawer_modal`
+
+TBD
+
+### `drawer_pos`
+
 TBD
 
 ## Customization
@@ -49,7 +55,7 @@ TBD
 
 TBD
 
-### Drawer Options
+### JavaScript Options
 
 Key | Default | Description
 ---|---|---
@@ -69,6 +75,6 @@ Key | Default | Description
 `saveState` | `true` | Toggles the save state feature
 `saveKey` | `"DrawerState"` | Defines the localStorage key where drawer states are saved
 
-### Drawer API
+### JavaScript API
 
 TBD
