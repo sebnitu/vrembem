@@ -1,7 +1,7 @@
 {
   "name": "vrembem",
   "description": "A CSS component library based on the BEM methodology.",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "main": "dist/scripts.cjs.js",
   "module": "index.js",
   "browser": "dist/scripts.js",
