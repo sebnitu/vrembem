@@ -12,6 +12,12 @@
 
 <!-- ADD-NEW-CHANGELOG-HERE -->
 
+## v1.5.3 (2020-06-08)
+
+#### :books: Documentation
+* `arrow`, `base`, `breadcrumb`, `button-group`, `button`, `card`, `checkbox`, `container`, `core`, `dialog`, `dismissible`, `drawer`, `dropdown`, `grid`, `icon-action`, `icon`, `input`, `level`, `media`, `menu`, `modal`, `notice`, `panel`, `radio`, `section`, `span`, `switch`, `table`, `tooltip`, `utility`, `vrembem`
+  * [#185](https://github.com/sebnitu/vrembem/pull/185) Add links between readme and web documentation ([@sebnitu](https://github.com/sebnitu))
+
 ## v1.5.2 (2020-06-07)
 
 #### :bug: Bug Fix
