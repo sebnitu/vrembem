@@ -2,6 +2,13 @@
   "name": "@vrembem/button",
   "description": "Buttons are a simple component that allow users to take actions.",
   "version": "1.5.1",
+  "license": "MIT",
+  "keywords": [
+    "BEM",
+    "front-end",
+    "component",
+    "button"
+  ],
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",

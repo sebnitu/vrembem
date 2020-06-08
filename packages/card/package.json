@@ -2,6 +2,13 @@
   "name": "@vrembem/card",
   "description": "The cards component provides a flexible and extensive content container with multiple variants and options.",
   "version": "1.5.1",
+  "license": "MIT",
+  "keywords": [
+    "BEM",
+    "front-end",
+    "component",
+    "card"
+  ],
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",

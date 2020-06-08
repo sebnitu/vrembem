@@ -2,6 +2,13 @@
   "name": "@vrembem/notice",
   "description": "A component for highlighting (optionally dismissible) messages to the user.",
   "version": "1.5.1",
+  "license": "MIT",
+  "keywords": [
+    "BEM",
+    "front-end",
+    "component",
+    "notice"
+  ],
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",

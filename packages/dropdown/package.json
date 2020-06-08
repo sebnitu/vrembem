@@ -2,6 +2,13 @@
   "name": "@vrembem/dropdown",
   "description": "A component that is initially hidden and revealed upon user interaction either through a click or hover event. Dropdown components typically display lists of possible actions or navigation.",
   "version": "1.5.1",
+  "license": "MIT",
+  "keywords": [
+    "BEM",
+    "front-end",
+    "component",
+    "dropdown"
+  ],
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",

@@ -2,6 +2,13 @@
   "name": "@vrembem/media",
   "description": "The media component is used for displaying groups of content with a corresponding media asset, such as an image, avatar or icon.",
   "version": "1.5.1",
+  "license": "MIT",
+  "keywords": [
+    "BEM",
+    "front-end",
+    "component",
+    "media"
+  ],
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",

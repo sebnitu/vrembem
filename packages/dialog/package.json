@@ -2,6 +2,13 @@
   "name": "@vrembem/dialog",
   "description": "A component that facilitates a conversation between the system and the user. They often request information or an action from the user.",
   "version": "1.5.1",
+  "license": "MIT",
+  "keywords": [
+    "BEM",
+    "front-end",
+    "component",
+    "dialog"
+  ],
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",

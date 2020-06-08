@@ -2,6 +2,13 @@
   "name": "@vrembem/core",
   "description": "The core variables, functions and mixins for Vrembem components.",
   "version": "1.5.1",
+  "license": "MIT",
+  "keywords": [
+    "BEM",
+    "front-end",
+    "component",
+    "core"
+  ],
   "main": "dist/scripts.cjs.js",
   "module": "index.js",
   "browser": "dist/scripts.js",

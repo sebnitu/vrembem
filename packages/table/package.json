@@ -2,6 +2,13 @@
   "name": "@vrembem/table",
   "description": "A table component for displaying HTML tables.",
   "version": "1.5.1",
+  "license": "MIT",
+  "keywords": [
+    "BEM",
+    "front-end",
+    "component",
+    "table"
+  ],
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",

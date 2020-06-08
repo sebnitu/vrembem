@@ -2,6 +2,13 @@
   "name": "@vrembem/button-group",
   "description": "A component for displaying groups of buttons.",
   "version": "1.5.1",
+  "license": "MIT",
+  "keywords": [
+    "BEM",
+    "front-end",
+    "component",
+    "button-group"
+  ],
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean styles",
