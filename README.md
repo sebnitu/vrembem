@@ -96,18 +96,13 @@ Via your project's Sass manifest file:
 Via your project's JavaScript manifest file:
 
 ```js
-import {
-  utility,
-  Checkbox,
-  Dismissible,
-  Drawer,
-  Modal
-} from "vrembem"
+// Import all under the vb namespace
+import * as vb from "vrembem";
+const drawer = new vb.Drawer({ autoInit: true });
 
-new Checkbox({ autoInit: true })
-new Dismissible({ autoInit: true })
-new Drawer({ autoInit: true })
-new Modal({ autoInit: true })
+// Or import individual components
+import { Drawer } from "vrembem";
+const drawer = new Drawer({ autoInit: true });
 ```
 
 ## Packages
