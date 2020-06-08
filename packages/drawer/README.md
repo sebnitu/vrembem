@@ -45,4 +45,30 @@ TBD
 
 ## Customization
 
+### Sass Variables
+
+TBD
+
+### Drawer Options
+
+Key | Default | Description
+---|---|---
+`autoInit` | `false` | Automatically instantiates the instance
+`dataDrawer` | `"drawer"` | Data attribute for a drawer
+`dataToggle` | `"drawer-toggle"` | Data attribute for a drawer toggle trigger
+`dataClose` | `"drawer-close"` | Data attribute for a drawer close trigger
+`dataBreakpoint` | `"drawer-breakpoint"` | Data attribute for setting a drawer's breakpoint
+`dataFocus` | `"drawer-focus"` | Data attribute for setting a drawer's focus element
+`stateOpen` | `"is-open"` | Class used for open state
+`stateOpening` | `"is-opening"` | Class used for transitioning to open state
+`stateClosing` | `"is-closing"` | Class used for transitioning to closed state
+`stateClosed` | `"is-closed"` | Class used for closed state (is ommitted in application)
+`classModal` | `"drawer_modal"` | Class used for toggling the drawer modal state
+`breakpoint` | `core.breakpoint` | An object with key/value pairs defining a breakpoint set
+`focus` | `true` | Toggles the focus handling feature
+`saveState` | `true` | Toggles the save state feature
+`saveKey` | `"DrawerState"` | Defines the localStorage key where drawer states are saved
+
+### Drawer API
+
 TBD
