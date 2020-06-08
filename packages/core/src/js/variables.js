@@ -1,4 +1,4 @@
-const breakpoint = {
+const breakpoints = {
   xs: '480px',
   sm: '620px',
   md: '760px',
@@ -7,5 +7,5 @@ const breakpoint = {
 };
 
 export {
-  breakpoint
+  breakpoints
 };

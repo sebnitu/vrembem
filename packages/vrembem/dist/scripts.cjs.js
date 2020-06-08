@@ -68,7 +68,7 @@ var toggleClass = function toggleClass(el) {
   });
 };
 
-var breakpoint = {
+var breakpoints = {
   xs: '480px',
   sm: '620px',
   md: '760px',
@@ -84,7 +84,7 @@ var index = /*#__PURE__*/Object.freeze({
   hyphenCase: hyphenCase,
   removeClass: removeClass,
   toggleClass: toggleClass,
-  breakpoint: breakpoint
+  breakpoints: breakpoints
 });
 
 function _defineProperty(obj, key, value) {
@@ -231,7 +231,7 @@ var Drawer = function Drawer(options) {
     stateClosing: 'is-closing',
     stateClosed: 'is-closed',
     classModal: 'drawer_modal',
-    breakpoint: breakpoint,
+    breakpoints: breakpoints,
     focus: true,
     saveState: true,
     saveKey: 'DrawerState'
@@ -434,7 +434,7 @@ var Drawer = function Drawer(options) {
     if (drawers) {
       drawers.forEach(function (drawer) {
         var key = drawer.dataset[camelCase(api.settings.dataBreakpoint)];
-        var bp = api.settings.breakpoint[key] ? api.settings.breakpoint[key] : key;
+        var bp = api.settings.breakpoints[key] ? api.settings.breakpoints[key] : key;
         var mqList = window.matchMedia('(min-width:' + bp + ')');
 
         if (mqList.matches) {
