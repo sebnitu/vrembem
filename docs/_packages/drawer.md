@@ -100,7 +100,7 @@ The [dialog component](/packages/dialog) is a great fit for composing a drawer's
 {% include flag.html heading="drawer_modal" %}
 
 <div class="type" markdown="1">
-Convert a drawer into it’s modal state with the `drawer_modal` modifier class. Only one modal drawer can be open at a time.
+Convert a drawer into it’s modal state with the `drawer_modal` modifier class. Only one modal can be open at a time.
 </div>
 
 {% include demo_open.html class_grid="grid_break" %}

@@ -111,7 +111,7 @@ By default, the state of a drawer is saved to local storage and applied persiste
 
 ### `drawer_modal`
 
-Convert a drawer into it’s modal state with the `drawer_modal` modifier class. Only one modal drawer can be open at a time.
+Convert a drawer into it’s modal state with the `drawer_modal` modifier class. Only one modal can be open at a time.
 
 ```html
 <div class="drawer__wrapper">
@@ -160,10 +160,28 @@ Drawers can slide in from the left or right using the position modifiers:
 
 Variable | Default | Description
 ---|---|---
-`$prefix-block` | `core.$prefix-block` | String to prefix each block with.
-`$prefix-element` | `core.$prefix-element` | String to prefix each element with.
-`$prefix-modifier` | `core.$prefix-modifier` | String to prefix each modifier with.
-`$prefix-modifier-value` | `core.$prefix-modifier-value` | String to prefix each modifier value with.
+`$prefix-block` | `""` via `core.$prefix-block` | String to prefix each block with.
+`$prefix-element` | `"__"` via `core.$prefix-element` | String to prefix each element with.
+`$prefix-modifier` | `"_"` via `core.$prefix-modifier` | String to prefix each modifier with.
+`$prefix-modifier-value` | `"_"` via `core.$prefix-modifier-value` | String to prefix each modifier value with.
+
+```scss
+$zindex: 900 !default;
+$width: 18em !default;
+$travel: 5em !default;
+$transition-duration: core.$transition-duration !default;
+$transition-timing-function: core.$transition-timing-function !default;
+
+$item-background: core.$shade !default;
+$item-border: null !default;
+$item-box-shadow: none !default;
+$item-sep-border-color: null !default;
+
+$modal-background: core.$night !default;
+$modal-background-alpha: 0.8 !default;
+$modal-item-background: core.$white !default;
+$modal-item-box-shadow: core.$box-shadow-24dp !default;
+```
 
 ### JavaScript Options
 
