@@ -17,6 +17,14 @@
     color: core.$gray-400;
   }
 
+  .menu__link.is-active {
+    margin-right: -2rem;
+    padding-right: 3rem;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background: core.$white;
+  }
+
   .menu__link:hover,
   .menu__link.is-active {
     .menu__icon {
