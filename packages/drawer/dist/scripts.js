@@ -65,7 +65,7 @@
     });
   };
 
-  var breakpoint = {
+  var breakpoints = {
     xs: '480px',
     sm: '620px',
     md: '760px',
@@ -90,7 +90,7 @@
       stateClosing: 'is-closing',
       stateClosed: 'is-closed',
       classModal: 'drawer_modal',
-      breakpoint: breakpoint,
+      breakpoints: breakpoints,
       focus: true,
       saveState: true,
       saveKey: 'DrawerState'
@@ -293,7 +293,7 @@
       if (drawers) {
         drawers.forEach(function (drawer) {
           var key = drawer.dataset[camelCase(api.settings.dataBreakpoint)];
-          var bp = api.settings.breakpoint[key] ? api.settings.breakpoint[key] : key;
+          var bp = api.settings.breakpoints[key] ? api.settings.breakpoints[key] : key;
           var mqList = window.matchMedia('(min-width:' + bp + ')');
 
           if (mqList.matches) {

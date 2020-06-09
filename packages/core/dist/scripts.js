@@ -67,7 +67,7 @@
     });
   };
 
-  var breakpoint = {
+  var breakpoints = {
     xs: '480px',
     sm: '620px',
     md: '760px',
@@ -76,7 +76,7 @@
   };
 
   exports.addClass = addClass;
-  exports.breakpoint = breakpoint;
+  exports.breakpoints = breakpoints;
   exports.camelCase = camelCase;
   exports.hasClass = hasClass;
   exports.hyphenCase = hyphenCase;

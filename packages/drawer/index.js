@@ -1,6 +1,6 @@
 import {
   addClass,
-  breakpoint,
+  breakpoints,
   camelCase,
   hasClass,
   removeClass
@@ -29,7 +29,7 @@ export const Drawer = (options) => {
     classModal: 'drawer_modal',
 
     // Feature toggles
-    breakpoint: breakpoint,
+    breakpoints: breakpoints,
     focus: true,
     saveState: true,
     saveKey: 'DrawerState'
@@ -252,8 +252,8 @@ export const Drawer = (options) => {
     if (drawers) {
       drawers.forEach((drawer) => {
         const key = drawer.dataset[camelCase(api.settings.dataBreakpoint)];
-        const bp = (api.settings.breakpoint[key]) ?
-          api.settings.breakpoint[key] : key;
+        const bp = (api.settings.breakpoints[key]) ?
+          api.settings.breakpoints[key] : key;
         const mqList = window.matchMedia( '(min-width:' + bp + ')' );
         if (mqList.matches) {
           switchToDrawer(drawer);

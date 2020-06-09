@@ -402,8 +402,8 @@ By default, the state of a drawer is saved to local storage and applied persiste
 
     <!-- Feature toggles -->
     <tr>
-      <td><code class="code text_nowrap">breakpoint</code></td>
-      <td><code class="code text_nowrap">core.breakpoint</code></td>
+      <td><code class="code text_nowrap">breakpoints</code></td>
+      <td><code class="code text_nowrap">core.breakpoints</code></td>
       <td>An object with key/value pairs defining a breakpoint set</td>
     </tr>
     <tr>

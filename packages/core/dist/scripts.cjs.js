@@ -68,7 +68,7 @@ var toggleClass = function toggleClass(el) {
   });
 };
 
-var breakpoint = {
+var breakpoints = {
   xs: '480px',
   sm: '620px',
   md: '760px',
@@ -77,7 +77,7 @@ var breakpoint = {
 };
 
 exports.addClass = addClass;
-exports.breakpoint = breakpoint;
+exports.breakpoints = breakpoints;
 exports.camelCase = camelCase;
 exports.hasClass = hasClass;
 exports.hyphenCase = hyphenCase;

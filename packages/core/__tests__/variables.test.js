@@ -1,17 +1,17 @@
-import { breakpoint } from '../index';
+import { breakpoints } from '../index';
 
-test('breakpoint has all size keys with a px value', () => {
-  expect(breakpoint).toHaveProperty('xs', expect.stringContaining('px'));
-  expect(breakpoint).toHaveProperty('sm', expect.stringContaining('px'));
-  expect(breakpoint).toHaveProperty('md', expect.stringContaining('px'));
-  expect(breakpoint).toHaveProperty('lg', expect.stringContaining('px'));
-  expect(breakpoint).toHaveProperty('xl', expect.stringContaining('px'));
+test('breakpoints has all size keys with a px value', () => {
+  expect(breakpoints).toHaveProperty('xs', expect.stringContaining('px'));
+  expect(breakpoints).toHaveProperty('sm', expect.stringContaining('px'));
+  expect(breakpoints).toHaveProperty('md', expect.stringContaining('px'));
+  expect(breakpoints).toHaveProperty('lg', expect.stringContaining('px'));
+  expect(breakpoints).toHaveProperty('xl', expect.stringContaining('px'));
 });
 
 test('breakpoints increment in the order of their keys', () => {
   let intObj = {};
-  for (let prop in breakpoint) {
-    intObj[prop] = parseInt(breakpoint[prop]);
+  for (let prop in breakpoints) {
+    intObj[prop] = parseInt(breakpoints[prop]);
   }
   expect(intObj.xs).toBeLessThan(intObj.sm);
   expect(intObj.sm).toBeLessThan(intObj.md);

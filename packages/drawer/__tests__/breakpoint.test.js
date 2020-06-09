@@ -84,7 +84,7 @@ test('should remove default modal modifier when above breakpoint', () => {
   window.dispatchEvent(new Event('resize'));
   drawer = new Drawer();
   const el = document.querySelector('[data-drawer=\'drawer-one\']');
-  const value = drawer.settings.breakpoint[el.dataset.drawerBreakpoint];
+  const value = drawer.settings.breakpoints[el.dataset.drawerBreakpoint];
 
   expect(el).toHaveClass('drawer_modal');
   drawer.init();
@@ -98,7 +98,7 @@ test('should switch to modal when below media breakpoint', () => {
   window.dispatchEvent(new Event('resize'));
   drawer = new Drawer();
   const el = document.querySelector('[data-drawer=\'drawer-one\']');
-  const value = drawer.settings.breakpoint[el.dataset.drawerBreakpoint];
+  const value = drawer.settings.breakpoints[el.dataset.drawerBreakpoint];
 
   drawer.init();
   expect(el).toHaveClass('drawer_modal');
@@ -127,7 +127,7 @@ test('should switch to modal when using a custom data breakpoint attribute', () 
     dataBreakpoint: 'bp'
   });
   const el = document.querySelector('[data-drawer=\'drawer-one\']');
-  const value = drawer.settings.breakpoint[el.dataset.bp];
+  const value = drawer.settings.breakpoints[el.dataset.bp];
 
   expect(el).not.toHaveClass('drawer_modal');
   drawer.init();
@@ -156,19 +156,19 @@ test('should allow using a custom breakpoints object', () => {
   window.innerWidth = 275;
   window.dispatchEvent(new Event('resize'));
   drawer = new Drawer({
-    breakpoint: {
+    breakpoints: {
       xxl: '1600px',
       xxs: '300px'
     }
   });
   const el = document.querySelector('[data-drawer=\'drawer-one\']');
-  const value = drawer.settings.breakpoint[el.dataset.drawerBreakpoint];
+  const value = drawer.settings.breakpoints[el.dataset.drawerBreakpoint];
 
   expect(el).not.toHaveClass('drawer_modal');
   drawer.init();
   expect(el).toHaveClass('drawer_modal');
   expect(parseInt(value)).toBeGreaterThan(window.innerWidth);
-  expect(drawer.settings.breakpoint).toHaveProperty('xxl');
+  expect(drawer.settings.breakpoints).toHaveProperty('xxl');
 });
 
 test('should remove open state class when switching to modal', () => {
