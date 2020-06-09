@@ -115,7 +115,7 @@ When `scroll-box` isn't mobile friendly enough, `table_responsive_[key]` is avai
 
 {% include demo_open.html class_grid="grid_break" class_parent="spacing" %}
 <div class="scroll-box">
-  <table class="table table_responsive_lg table_style_bordered table_hover table_zebra">
+  <table class="table table_responsive_lg table_style_bordered">
     <thead>
       <tr>
         <th>#</th>

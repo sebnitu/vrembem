@@ -38,8 +38,9 @@ $_v: var.$prefix-modifier-value;
           left: 0;
           width: var.$mobile-label-width;
           padding: var.$padding;
-          background-color: var.$th-background;
-          font-weight: var.$th-font-weight;
+          background-color: var.$mobile-label-background;
+          color: var.$mobile-label-color;
+          font-weight: var.$mobile-label-font-weight;
         }
       }
 

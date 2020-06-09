@@ -65,7 +65,7 @@
     left: 0;
     width: 8rem;
     padding: 0.5em 1em;
-    font-weight: 700;
+    font-weight: 600;
   }
   .table_responsive_xs.table_size_sm [data-mobile-label] {
     padding-left: calc(8rem + 0.5rem);
@@ -127,7 +127,7 @@
     left: 0;
     width: 8rem;
     padding: 0.5em 1em;
-    font-weight: 700;
+    font-weight: 600;
   }
   .table_responsive_sm.table_size_sm [data-mobile-label] {
     padding-left: calc(8rem + 0.5rem);
@@ -189,7 +189,7 @@
     left: 0;
     width: 8rem;
     padding: 0.5em 1em;
-    font-weight: 700;
+    font-weight: 600;
   }
   .table_responsive_md.table_size_sm [data-mobile-label] {
     padding-left: calc(8rem + 0.5rem);
@@ -251,7 +251,7 @@
     left: 0;
     width: 8rem;
     padding: 0.5em 1em;
-    font-weight: 700;
+    font-weight: 600;
   }
   .table_responsive_lg.table_size_sm [data-mobile-label] {
     padding-left: calc(8rem + 0.5rem);
@@ -313,7 +313,7 @@
     left: 0;
     width: 8rem;
     padding: 0.5em 1em;
-    font-weight: 700;
+    font-weight: 600;
   }
   .table_responsive_xl.table_size_sm [data-mobile-label] {
     padding-left: calc(8rem + 0.5rem);
