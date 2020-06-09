@@ -158,29 +158,32 @@ Drawers can slide in from the left or right using the position modifiers:
 
 ### Sass Variables
 
-Variable | Default | Description
----|---|---
-`$prefix-block` | `""` via `core.$prefix-block` | String to prefix each block with.
-`$prefix-element` | `"__"` via `core.$prefix-element` | String to prefix each element with.
-`$prefix-modifier` | `"_"` via `core.$prefix-modifier` | String to prefix each modifier with.
-`$prefix-modifier-value` | `"_"` via `core.$prefix-modifier-value` | String to prefix each modifier value with.
-
 ```scss
+// Prefix strings before blocks, elements, modifiers and modifier values
+$prefix-block: core.$prefix-block !default; // null
+$prefix-element: core.$prefix-element !default; // "__"
+$prefix-modifier: core.$prefix-modifier !default; // "_"
+$prefix-modifier-value: core.$prefix-modifier-value !default; // "_"
+
 $zindex: 900 !default;
 $width: 18em !default;
 $travel: 5em !default;
-$transition-duration: core.$transition-duration !default;
-$transition-timing-function: core.$transition-timing-function !default;
+$transition-duration: core.$transition-duration !default; // 0.3s
+$transition-timing-function: core.$transition-timing-function !default; // cubic-bezier(0.4, 0, 0.2, 1)
 
-$item-background: core.$shade !default;
+$item-background: core.$shade !default; // #f5f5f5
 $item-border: null !default;
 $item-box-shadow: none !default;
 $item-sep-border-color: null !default;
 
-$modal-background: core.$night !default;
+$modal-background: core.$night !default; // #424242
 $modal-background-alpha: 0.8 !default;
-$modal-item-background: core.$white !default;
+$modal-item-background: core.$white !default; // #fff
 $modal-item-box-shadow: core.$box-shadow-24dp !default;
+  // 0 0 0 1px rgba(#212121, 0.05),
+  // 0 11px 15px -7px rgba(#212121, 0.1),
+  // 0 24px 38px 3px rgba(#212121, 0.08),
+  // 0 9px 46px 8px rgba(#212121, 0.06)
 ```
 
 ### JavaScript Options
