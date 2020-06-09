@@ -158,40 +158,25 @@ Drawers can slide in from the left or right using the position modifiers:
 
 ### Sass Variables
 
-```scss
-// Prefix strings before blocks, elements, modifiers and modifier values
-$prefix-block: core.$prefix-block !default; // null
-$prefix-element: core.$prefix-element !default; // "__"
-$prefix-modifier: core.$prefix-modifier !default; // "_"
-$prefix-modifier-value: core.$prefix-modifier-value !default; // "_"
-
-// Drawer width
-$width: 18em !default;
-
-// The distance `drawer__item` will travel in transition
-$travel: 5em !default;
-$transition-duration: core.$transition-duration !default; // 0.3s
-$transition-timing-function: core.$transition-timing-function !default; // cubic-bezier(0.4, 0, 0.2, 1)
-
-// Styles applied to `drawer__item`
-$item-background: core.$shade !default; // #f5f5f5
-$item-border: null !default;
-$item-box-shadow: none !default;
-$item-sep-border-color: null !default;
-
-// Styles applied to modal `drawer__item`
-$modal-zindex: 900 !default;
-$modal-item-background: core.$white !default; // #fff
-$modal-item-box-shadow: core.$box-shadow-24dp !default; // Output:
-// 0 0 0 1px rgba(#212121, 0.05),
-// 0 11px 15px -7px rgba(#212121, 0.1),
-// 0 24px 38px 3px rgba(#212121, 0.08),
-// 0 9px 46px 8px rgba(#212121, 0.06)
-
-// Modal screen background styles
-$modal-background: core.$night !default; // #424242
-$modal-background-alpha: 0.8 !default;
-```
+Variable | Default | Description
+---|---|---
+`$prefix-block` | `null` | String to prefix blocks with.
+`$prefix-element` | `"__"` | String to prefix element with.
+`$prefix-modifier` | `"_"` | String to prefix modifier with.
+`$prefix-modifier-value` | `"_"` | String to prefix modifier values with.
+`$width` | `18em` | The width of drawers.
+`$travel` | `5em` | Distance that drawers travel during their transition.
+`$transition-duration` | `0.3s` | Duration of drawer transition.
+`$transition-timing-function` | `cubic-bezier(0.4, 0, 0.2, 1)` | Timing function used for drawer transitions.
+`$item-background` | `#f5f5f5` | Background color applied to drawer items.
+`$item-border` | `null` | Border applied to drawer items with position modifiers. Shown on side of drawers facing drawer main.
+`$item-box-shadow` | `none` | Box shadow applied to drawer items.
+`$item-sep-border-color` | `null` | Border color applied to dialog components within drawer items.
+`$modal-zindex` | `900` | Modal z-index to help control the stack order. Should be highest priority as modal.
+`$modal-item-background` | `#fff` | Background color applied to modal drawer items.
+`$modal-item-box-shadow` | See: `core.$box-shadow-24dp` | Box shadow applied to modal drawer items.
+`$modal-background` | `#424242` | Background color of modal screen.
+`$modal-background-alpha` | `0.8` | The alpha channel for the modal screen.
 
 ### JavaScript Options
 
@@ -215,7 +200,7 @@ Key | Default | Description
 
 ### JavaScript API
 
-Name | Description
+Method | Description
 ---|---
 `drawer.init()` | Initializes the drawer instance
 `drawer.destroy()` | Destroys and cleans up the drawer instantiation
