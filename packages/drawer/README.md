@@ -46,7 +46,7 @@ Drawers are composed using classes for styling and data attributes for JavaScrip
 </div>
 ```
 
-The [dialog component](https://vrembem.com/packages/dialog) is a great fit for composing a drawer’s content.
+The [dialog component](https://github.com/sebnitu/vrembem/tree/master/packages/dialog) is a great fit for composing a drawer’s content.
 
 ```html
 <aside data-drawer="[unique-id]" class="drawer">
