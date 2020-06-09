@@ -2296,30 +2296,30 @@ var Version = function Version(options) {
   var api = {};
   var defaults = {
     autoInit: false,
-    url: "https://api.github.com/repos/sebnitu/vrembem/contents/packages/vrembem/package.json?ref=master"
+    url: 'https://api.github.com/repos/sebnitu/vrembem/contents/packages/vrembem/package.json?ref=master'
   };
   api.settings = _objectSpread$4(_objectSpread$4({}, defaults), options);
 
   api.init = function () {
     var ajax = new XMLHttpRequest();
-    var el = document.querySelector("[data-role='version']");
+    var el = document.querySelector('[data-role="version"]');
 
     ajax.onload = function () {
       if (ajax.status >= 200 && ajax.status < 300) {
         var response = JSON.parse(ajax.response);
         var decode = window.atob(response.content);
         var pkg = JSON.parse(decode);
-        el.classList.remove("loading");
-        el.classList.add("success");
+        el.classList.remove('loading');
+        el.classList.add('success');
         el.innerHTML = pkg.version;
       } else {
-        el.classList.remove("loading");
-        el.classList.add("error");
-        el.innerHTML = "Error!";
+        el.classList.remove('loading');
+        el.classList.add('error');
+        el.innerHTML = 'Error!';
       }
     };
 
-    ajax.open("GET", api.settings.url);
+    ajax.open('GET', api.settings.url);
     ajax.send();
   };
 
@@ -2343,59 +2343,59 @@ new Version({
   autoInit: true
 });
 
-if (document.getElementById("listjs")) {
-  var list = new src("listjs", {
+if (document.getElementById('listjs')) {
+  var list = new src('listjs', {
     fuzzySearch: {
-      searchClass: "search",
+      searchClass: 'search',
       location: 0,
       distance: 100,
       threshold: 0.4,
       multiSearch: true
     },
-    valueNames: ["name", {
-      data: ["category"]
+    valueNames: ['name', {
+      data: ['category']
     }],
-    listClass: "menu"
+    listClass: 'menu'
   });
-  var notice_empty = document.querySelector(".notice_empty");
-  var notice_empty_text = notice_empty.querySelector(".search_text");
-  var filter$1 = document.querySelector(".filter");
-  var search$1 = document.querySelector(".filter .search");
-  var search_clear = document.querySelector(".filter .search_clear");
+  var notice_empty = document.querySelector('.notice_empty');
+  var notice_empty_text = notice_empty.querySelector('.search_text');
+  var filter$1 = document.querySelector('.filter');
+  var search$1 = document.querySelector('.filter .search');
+  var search_clear = document.querySelector('.filter .search_clear');
 
   var isMenuLinkActive = function isMenuLinkActive() {
-    var menuLinks = document.querySelectorAll("#listjs .menu__link");
-    var isActive = hasClass(menuLinks, "is-active");
+    var menuLinks = document.querySelectorAll('#listjs .menu__link');
+    var isActive = hasClass(menuLinks, 'is-active');
     return isActive;
   };
 
-  list.on("searchComplete", function () {
+  list.on('searchComplete', function () {
     var value = search$1.value;
     notice_empty_text.innerHTML = value;
-    localStorage.setItem("searchValue", value);
+    localStorage.setItem('searchValue', value);
 
     if (value) {
-      addClass(filter$1, "is-active");
-      addClass(search$1, "is-active");
-      removeClass(search_clear, "display_none");
+      addClass(filter$1, 'is-active');
+      addClass(search$1, 'is-active');
+      removeClass(search_clear, 'display_none');
     } else {
-      removeClass(filter$1, "is-active");
-      removeClass(search$1, "is-active");
-      addClass(search_clear, "display_none");
+      removeClass(filter$1, 'is-active');
+      removeClass(search$1, 'is-active');
+      addClass(search_clear, 'display_none');
     }
 
     if (list.visibleItems.length > 0) {
-      addClass(notice_empty, "display_none");
+      addClass(notice_empty, 'display_none');
     } else {
-      removeClass(notice_empty, "display_none");
+      removeClass(notice_empty, 'display_none');
     }
   });
-  document.addEventListener("click", function () {
-    var trigger_search_clear = event.target.closest(".search_clear");
-    var trigger_search_cat = event.target.closest(".category");
+  document.addEventListener('click', function () {
+    var trigger_search_clear = event.target.closest('.search_clear');
+    var trigger_search_cat = event.target.closest('.category');
 
     if (trigger_search_clear) {
-      search$1.value = "";
+      search$1.value = '';
       list.search();
       event.preventDefault();
     }
@@ -2407,12 +2407,12 @@ if (document.getElementById("listjs")) {
     }
   }, false);
 
-  if (localStorage.getItem("searchValue")) {
-    search$1.value = localStorage.getItem("searchValue");
+  if (localStorage.getItem('searchValue')) {
+    search$1.value = localStorage.getItem('searchValue');
     list.search(search$1.value);
 
     if (!isMenuLinkActive()) {
-      search$1.value = "";
+      search$1.value = '';
       list.search();
     }
   }
