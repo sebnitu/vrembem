@@ -2293,35 +2293,56 @@
 
   function _objectSpread$4(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$4(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$4(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
+  var StickyScroll = function StickyScroll(options) {
+    var api = {};
+    var defaults = {
+      autoInit: false
+    };
+    api.settings = _objectSpread$4(_objectSpread$4({}, defaults), options);
+
+    api.init = function () {
+      console.log('StickyScroll has loaded!');
+    };
+
+    if (api.settings.autoInit) api.init();
+    return api;
+  };
+
+  function ownKeys$5(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+  function _objectSpread$5(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$5(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$5(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
   var Version = function Version(options) {
     var api = {};
     var defaults = {
       autoInit: false,
       url: 'https://api.github.com/repos/sebnitu/vrembem/contents/packages/vrembem/package.json?ref=master'
     };
-    api.settings = _objectSpread$4(_objectSpread$4({}, defaults), options);
+    api.settings = _objectSpread$5(_objectSpread$5({}, defaults), options);
 
     api.init = function () {
       var ajax = new XMLHttpRequest();
       var el = document.querySelector('[data-role="version"]');
 
-      ajax.onload = function () {
-        if (ajax.status >= 200 && ajax.status < 300) {
-          var response = JSON.parse(ajax.response);
-          var decode = window.atob(response.content);
-          var pkg = JSON.parse(decode);
-          el.classList.remove('loading');
-          el.classList.add('success');
-          el.innerHTML = pkg.version;
-        } else {
-          el.classList.remove('loading');
-          el.classList.add('error');
-          el.innerHTML = 'Error!';
-        }
-      };
+      if (el) {
+        ajax.onload = function () {
+          if (ajax.status >= 200 && ajax.status < 300) {
+            var response = JSON.parse(ajax.response);
+            var decode = window.atob(response.content);
+            var pkg = JSON.parse(decode);
+            el.classList.remove('loading');
+            el.classList.add('success');
+            el.innerHTML = pkg.version;
+          } else {
+            el.classList.remove('loading');
+            el.classList.add('error');
+            el.innerHTML = 'Error!';
+          }
+        };
 
-      ajax.open('GET', api.settings.url);
-      ajax.send();
+        ajax.open('GET', api.settings.url);
+        ajax.send();
+      }
     };
 
     if (api.settings.autoInit) api.init();
@@ -2338,6 +2359,9 @@
     autoInit: true
   });
   new Modal({
+    autoInit: true
+  });
+  new StickyScroll({
     autoInit: true
   });
   new Version({

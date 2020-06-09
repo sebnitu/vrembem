@@ -7,6 +7,7 @@ import {
 } from 'vrembem';
 import listjs from 'list.js';
 import 'svgxuse';
+import { StickyScroll } from './stickyScroll';
 import { Version } from './version';
 
 /**
@@ -17,6 +18,7 @@ new Checkbox({ autoInit: true });
 new Dismissible({ autoInit: true });
 new Drawer({ autoInit: true });
 new Modal({ autoInit: true });
+new StickyScroll({ autoInit: true });
 new Version({ autoInit: true });
 
 /**
