@@ -58,7 +58,7 @@ The [dialog component](/packages/dialog) is a great fit for composing a drawer's
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="drawer__wrapper border radius">
-  <div data-drawer="drawer-dialog" class="drawer is-open">
+  <aside data-drawer="drawer-dialog" class="drawer is-open">
     <div class="drawer__item dialog">
       <div class="dialog__header">
         <h2 class="dialog__title">Drawer Dialog</h2>
@@ -73,14 +73,14 @@ The [dialog component](/packages/dialog) is a great fit for composing a drawer's
         <p>Dialog footer area...</p>
       </div>
     </div>
-  </div>
+  </aside>
   <div class="drawer__main padding_xl type">
     <button class="link" data-drawer-toggle="drawer-dialog">Drawer Dialog</button>
   </div>
 </div>
 {% include demo_switch.html %}
 ```html
-<div data-drawer="[unique-id]" class="drawer">
+<aside data-drawer="[unique-id]" class="drawer">
   <div class="drawer__item dialog">
     <div class="dialog__header">
       ...
@@ -93,11 +93,59 @@ The [dialog component](/packages/dialog) is a great fit for composing a drawer's
       ...
     </div>
   </div>
+</aside>
+```
+{% include demo_close.html %}
+
+{% include flag.html heading="drawer_modal" %}
+
+<div class="type" markdown="1">
+Convert a drawer into it’s modal state with the `drawer_modal` modifier class. Only one modal drawer can be open at a time.
+</div>
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="drawer__wrapper border radius">
+  <aside data-drawer="drawer-modal-left" class="drawer drawer_modal drawer_pos_left" tabindex="-1">
+    <div class="drawer__item padding">
+      <div class="flex flex_justify_between">
+        <p>Drawer Left</p>
+        <button data-drawer-close class="link">Close</button>
+      </div>
+    </div>
+  </aside>
+  <aside data-drawer="drawer-modal-right" class="drawer drawer_modal drawer_pos_right" tabindex="-1">
+    <div class="drawer__item padding">
+      <div class="flex flex_justify_between">
+        <p>Drawer Right</p>
+        <button data-drawer-close class="link">Close</button>
+      </div>
+    </div>
+  </aside>
+  <div class="drawer__main padding_xl">
+    <button class="link" data-drawer-toggle="drawer-modal-left">
+      Drawer modal left
+    </button>
+    <button class="link" data-drawer-toggle="drawer-modal-right">
+      Drawer modal right
+    </button>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="drawer__wrapper">
+  <div data-drawer="[unique-id]" class="drawer drawer_modal">
+    ...
+  </div>
+  <div class="drawer__main">
+    <button data-drawer-toggle="[unique-id]">
+      ...
+    </button>
+  </div>
 </div>
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="drawer_pos_[location]" %}
+{% include flag.html heading="drawer_pos_[value]" %}
 
 <div class="type" markdown="1">
 Drawers can slide in from the left or right using the position modifiers:
@@ -136,12 +184,12 @@ Drawers can slide in from the left or right using the position modifiers:
 {% include demo_switch.html %}
 ```html
 <div class="drawer__wrapper">
-  <div data-drawer="[unique-id]" class="drawer drawer_pos_left">
+  <aside data-drawer="[unique-id]" class="drawer drawer_pos_left">
     ...
-  </div>
-  <div data-drawer="[unique-id]" class="drawer drawer_pos_right">
+  </aside>
+  <aside data-drawer="[unique-id]" class="drawer drawer_pos_right">
     ...
-  </div>
+  </aside>
   <div class="drawer__main">
     <button data-drawer-toggle="[unique-id]">
       ...
@@ -155,62 +203,8 @@ Drawers can slide in from the left or right using the position modifiers:
 {% include demo_close.html %}
 
 <div class="type" markdown="1">
-If a position modifier is not provided, the drawer will appear based on it's location in the DOM relative to the main content area.
+> If a position modifier is not provided, the drawer will appear based on it's location in the DOM relative to the main content area and other drawers.
 </div>
-
-{% include flag.html heading="drawer_modal" %}
-
-<div class="type" markdown="1">
-To convert a drawer into it's modal state, use the `drawer_modal` modifier class.
-</div>
-
-{% include demo_open.html class_grid="grid_break" %}
-<div class="drawer__wrapper border radius">
-  <aside data-drawer="drawer-modal-left" class="drawer drawer_modal drawer_pos_left" tabindex="-1">
-    <div class="drawer__item padding">
-      <div class="flex flex_justify_between">
-        <p>Drawer Left</p>
-        <button data-drawer-close class="link">Close</button>
-      </div>
-    </div>
-  </aside>
-  <aside data-drawer="drawer-modal-right" class="drawer drawer_modal drawer_pos_right" tabindex="-1">
-    <div class="drawer__item padding">
-      <div class="flex flex_justify_between">
-        <p>Drawer Right</p>
-        <button data-drawer-close class="link">Close</button>
-      </div>
-    </div>
-  </aside>
-  <div class="drawer__main padding_xl">
-    <button class="link" data-drawer-toggle="drawer-modal-left">
-      Drawer modal left
-    </button>
-    <button class="link" data-drawer-toggle="drawer-modal-right">
-      Drawer modal right
-    </button>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="drawer__wrapper">
-  <div data-drawer="[unique-id]" class="drawer drawer_modal drawer_pos_left">
-    ...
-  </div>
-  <div data-drawer="[unique-id]" class="drawer drawer_modal drawer_pos_right">
-    ...
-  </div>
-  <div class="drawer__main">
-    <button data-drawer-toggle="[unique-id]">
-      ...
-    </button>
-    <button data-drawer-toggle="[unique-id]">
-      ...
-    </button>
-  </div>
-</div>
-```
-{% include demo_close.html %}
 
 {% include flag.html heading="data-drawer-breakpoint" %}
 
@@ -247,21 +241,14 @@ In cases where you'd like a drawer to switch to a drawer modal on a specific bre
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="drawer__wrapper">
-  <div data-drawer="[unique-id]" data-drawer-breakpoint="md" class="drawer drawer_pos_left">
-    ...
-  </div>
-  <div data-drawer="[unique-id]" data-drawer-breakpoint="900px" class="drawer drawer_pos_right">
-    ...
-  </div>
-  <div class="drawer__main">
-    <button data-drawer-toggle="[unique-id]">
-      ...
-    </button>
-    <button data-drawer-toggle="[unique-id]">
-      ...
-    </button>
-  </div>
+<!-- Switches to modal below `md` breakpoint viewports -->
+<div data-drawer="[unique-id]" data-drawer-breakpoint="md" class="drawer">
+  ...
+</div>
+
+<!-- Switches to modal below 900px viewports -->
+<div data-drawer="[unique-id]" data-drawer-breakpoint="900px" class="drawer">
+  ...
 </div>
 ```
 {% include demo_close.html %}
@@ -322,7 +309,7 @@ If a drawer has the attribute `tabindex="-1"`, it will be given focus when it's 
 {% include flag.html heading="Drawer State" %}
 
 <div class="type" markdown="1">
-By default, the state of a drawer is saved to local storage and applied persistently under the `"DrawerState"` local storage variable. Set `{ saveState: false }` to disable save state. Use `{ saveKey: "[customKey]" }` to change the key that save state is stored under.
+By default, the state of a drawer is saved to local storage and applied persistently under the "DrawerState" local storage variable. Set `saveState: false` to disable save state. Use `saveKey: "[CUSTOM-KEY]"` to change the key that save state is stored under.
 </div>
 
 {% include flag.html heading="Drawer Settings" %}
