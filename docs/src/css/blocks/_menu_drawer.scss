@@ -1,13 +1,20 @@
 @use "@vrembem/core";
 
 .menu_drawer {
+  .menu__item + .menu__item {
+    margin-top: 0;
+  }
+
   .menu__link {
     justify-content: space-between;
-    padding: 0.75em 1em;
+    margin-right: -1rem;
+    padding: 0.75em 2em 0.75em 1em;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
   }
 
   .menu__link:hover {
-    background: core.$white;
+    background: rgba(core.$black, 0.03);
   }
 
   .menu__icon {
@@ -18,10 +25,6 @@
   }
 
   .menu__link.is-active {
-    margin-right: -2rem;
-    padding-right: 3rem;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
     background: core.$white;
   }
 

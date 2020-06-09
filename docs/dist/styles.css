@@ -6441,12 +6441,18 @@ input::-moz-placeholder {
   user-select: none;
 }
 
+.menu_drawer .menu__item + .menu__item {
+  margin-top: 0;
+}
 .menu_drawer .menu__link {
   justify-content: space-between;
-  padding: 0.75em 1em;
+  margin-right: -1rem;
+  padding: 0.75em 2em 0.75em 1em;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 .menu_drawer .menu__link:hover {
-  background: #fff;
+  background: rgba(0, 0, 0, 0.03);
 }
 .menu_drawer .menu__icon {
   display: flex;
@@ -6455,10 +6461,6 @@ input::-moz-placeholder {
   color: #bdbdbd;
 }
 .menu_drawer .menu__link.is-active {
-  margin-right: -2rem;
-  padding-right: 3rem;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
   background: #fff;
 }
 .menu_drawer .menu__link:hover .menu__icon,
