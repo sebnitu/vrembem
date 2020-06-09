@@ -44,9 +44,6 @@
   -webkit-overflow-scrolling: touch;
 }
 
-/**
- * Drawer state classes
- */
 .drawer.is-opening,
 .drawer.is-open,
 .drawer.is-closing {
@@ -92,9 +89,6 @@
   box-shadow: 0 0 0 1px rgba(33, 33, 33, 0.05), 0 11px 15px -7px rgba(33, 33, 33, 0.1), 0 24px 38px 3px rgba(33, 33, 33, 0.08), 0 9px 46px 8px rgba(33, 33, 33, 0.06);
 }
 
-/**
- * Drawer state classes
- */
 .drawer_modal.is-opening,
 .drawer_modal.is-open,
 .drawer_modal.is-closing {
@@ -144,9 +138,6 @@
   transform: translateX(100%);
 }
 
-/**
- * Drawer state classes
- */
 .drawer_pos_left.is-opening:not(.drawer_modal) ~ .drawer__main,
 .drawer_pos_left.is-open:not(.drawer_modal) ~ .drawer__main {
   margin-left: 18em;

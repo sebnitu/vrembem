@@ -12,9 +12,7 @@ A complete collection of all Vrembem components into a single comprehensive libr
 npm install vrembem
 ```
 
-## Usage
-
-### Sass
+### Styles
 
 To include all Vrembem components into your styles, just import the vrembem package in your Sass manifest file.
 
@@ -57,7 +55,7 @@ const drawer = new Drawer({ autoInit: true });
 
 ### Markup
 
-Include the component's markup into your project. Use the [online documentation](https://vrembem.com) for more information, code examples and available modifiers.
+Include the component's markup into your project. Use the [online documentation](https://vrembem.com) for more information, customization options, code examples and available modifiers.
 
 ```html
 <div class="drawer__wrapper">

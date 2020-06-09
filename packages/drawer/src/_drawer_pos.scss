@@ -37,10 +37,6 @@ $_v: var.$prefix-modifier-value;
   }
 }
 
-/**
- * Drawer state classes
- */
-
 .#{$_b}drawer#{$_m}pos#{$_v}left.is-opening,
 .#{$_b}drawer#{$_m}pos#{$_v}left.is-open {
   &:not(.#{$_b}drawer#{$_m}modal) ~ .#{$_b}drawer#{$_e}main {
