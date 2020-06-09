@@ -2300,7 +2300,11 @@ var StickyScroll = function StickyScroll(options) {
   api.settings = _objectSpread$4(_objectSpread$4({}, defaults), options);
 
   api.init = function () {
-    console.log('StickyScroll has loaded!');
+    var el = document.querySelector('[data-drawer="drawer-menu"] .dialog');
+    console.log(el.scrollLeft, el.scrollTop);
+    el.addEventListener('scroll', function () {
+      console.log(el.scrollLeft, el.scrollTop);
+    });
   };
 
   if (api.settings.autoInit) api.init();

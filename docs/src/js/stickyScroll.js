@@ -8,7 +8,11 @@ export const StickyScroll = (options) => {
   api.settings = { ...defaults, ...options };
 
   api.init = () => {
-    console.log('StickyScroll has loaded!');
+    const el = document.querySelector('[data-drawer="drawer-menu"] .dialog');
+    console.log(el.scrollLeft, el.scrollTop);
+    el.addEventListener('scroll', () => {
+      console.log(el.scrollLeft, el.scrollTop);
+    });
   };
 
   if (api.settings.autoInit) api.init();
