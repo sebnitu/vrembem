@@ -70,7 +70,7 @@ Key | Default | Description
 `stateClosing` | `"is-closing"` | Class used for transitioning to closed state
 `stateClosed` | `"is-closed"` | Class used for closed state (is ommitted in application)
 `classModal` | `"drawer_modal"` | Class used for toggling the drawer modal state
-`breakpoint` | `core.breakpoint` | An object with key/value pairs defining a breakpoint set
+`breakpoints` | `core.breakpoints` | An object with key/value pairs defining a breakpoints set
 `focus` | `true` | Toggles the focus handling feature
 `saveState` | `true` | Toggles the save state feature
 `saveKey` | `"DrawerState"` | Defines the localStorage key where drawer states are saved
