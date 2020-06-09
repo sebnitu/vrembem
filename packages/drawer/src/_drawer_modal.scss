@@ -6,7 +6,7 @@ $_m: var.$prefix-modifier;
 
 .#{$_b}drawer#{$_m}modal {
   position: fixed;
-  z-index: var.$zindex;
+  z-index: var.$modal-zindex;
   width: 0;
   height: 0;
   overflow: hidden;
@@ -14,15 +14,11 @@ $_m: var.$prefix-modifier;
 
   .#{$_b}drawer#{$_e}item {
     position: relative;
-    z-index: (var.$zindex + 1);
+    z-index: (var.$modal-zindex + 1);
     background-color: var.$modal-item-background;
     box-shadow: var.$modal-item-box-shadow;
   }
 }
-
-/**
- * Drawer state classes
- */
 
 .#{$_b}drawer#{$_m}modal.is-opening,
 .#{$_b}drawer#{$_m}modal.is-open,

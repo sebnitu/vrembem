@@ -5,7 +5,6 @@ $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
-$zindex: 900 !default;
 $width: 18em !default;
 $travel: 5em !default;
 $transition-duration: core.$transition-duration !default;
@@ -16,7 +15,9 @@ $item-border: null !default;
 $item-box-shadow: none !default;
 $item-sep-border-color: null !default;
 
-$modal-background: core.$night !default;
-$modal-background-alpha: 0.8 !default;
+$modal-zindex: 900 !default;
 $modal-item-background: core.$white !default;
 $modal-item-box-shadow: core.$box-shadow-24dp !default;
+
+$modal-background: core.$night !default;
+$modal-background-alpha: 0.8 !default;
