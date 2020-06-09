@@ -2301,10 +2301,13 @@ var StickyScroll = function StickyScroll(options) {
 
   api.init = function () {
     var el = document.querySelector('[data-drawer="drawer-menu"] .dialog');
-    console.log(el.scrollLeft, el.scrollTop);
-    el.addEventListener('scroll', function () {
+
+    if (el) {
       console.log(el.scrollLeft, el.scrollTop);
-    });
+      el.addEventListener('scroll', function () {
+        console.log(el.scrollLeft, el.scrollTop);
+      });
+    }
   };
 
   if (api.settings.autoInit) api.init();
