@@ -2296,18 +2296,49 @@
   var StickyScroll = function StickyScroll(options) {
     var api = {};
     var defaults = {
-      autoInit: false
+      autoInit: false,
+      throttleDelay: 500
     };
     api.settings = _objectSpread$4(_objectSpread$4({}, defaults), options);
+    api.last_known_scroll_position = 0;
+    api.ticking = false;
 
     api.init = function () {
       var el = document.querySelector('[data-drawer="drawer-menu"] .dialog');
 
       if (el) {
-        console.log(el.scrollLeft, el.scrollTop);
-        el.addEventListener('scroll', function () {
-          console.log(el.scrollLeft, el.scrollTop);
-        });
+        setScrollPosition(el);
+        el.addEventListener('scroll', throttle, false);
+      }
+    };
+
+    api.destroy = function () {
+      var el = document.querySelector('[data-drawer="drawer-menu"] .dialog');
+
+      if (el) {
+        el.removeEventListener('scroll', throttle, false);
+      }
+    };
+
+    var throttle = function throttle(event) {
+      api.last_known_scroll_position = event.target.scrollTop;
+
+      if (!api.ticking) {
+        setTimeout(saveScrollPosition, api.settings.throttleDelay);
+        api.ticking = true;
+      }
+    };
+
+    var saveScrollPosition = function saveScrollPosition() {
+      localStorage.setItem('StickyScroll', api.last_known_scroll_position);
+      api.ticking = false;
+    };
+
+    var setScrollPosition = function setScrollPosition(el) {
+      var pos = localStorage.getItem('StickyScroll');
+
+      if (pos) {
+        el.scrollTop = pos;
       }
     };
 
