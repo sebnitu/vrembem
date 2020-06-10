@@ -12,6 +12,22 @@
 
 <!-- ADD-NEW-CHANGELOG-HERE -->
 
+## v1.5.4 (2020-06-10)
+
+#### :books: Documentation
+* Other
+  * [#194](https://github.com/sebnitu/vrembem/pull/194) Improve UX of docs drawer menu ([@sebnitu](https://github.com/sebnitu))
+* `core`, `drawer`, `vrembem`
+  * [#191](https://github.com/sebnitu/vrembem/pull/191) Update documentation for drawer component ([@sebnitu](https://github.com/sebnitu))
+
+#### :bug: Bug Fix
+* `core`, `drawer`, `vrembem`
+  * [#189](https://github.com/sebnitu/vrembem/pull/189) Use the same variable name for breakpoints in both Sass and JS ([@sebnitu](https://github.com/sebnitu))
+
+#### :balloon: Improved Feature
+* `table`, `vrembem`
+  * [#193](https://github.com/sebnitu/vrembem/pull/193) Make mobile-label styles less heavy ([@sebnitu](https://github.com/sebnitu))
+
 ## v1.5.3 (2020-06-08)
 
 #### :books: Documentation
