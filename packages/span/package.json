@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/span",
   "description": "A multi-purpose component for setting width, max-width and flex basis based on a column set.",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -25,7 +25,7 @@
     "directory": "packages/span"
   },
   "dependencies": {
-    "@vrembem/core": "^1.5.3"
+    "@vrembem/core": "^1.5.4"
   },
   "publishConfig": {
     "access": "public"

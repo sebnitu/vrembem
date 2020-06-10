@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/button",
   "description": "Buttons are a simple component that allow users to take actions.",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -25,7 +25,7 @@
     "directory": "packages/button"
   },
   "dependencies": {
-    "@vrembem/core": "^1.5.3"
+    "@vrembem/core": "^1.5.4"
   },
   "publishConfig": {
     "access": "public"

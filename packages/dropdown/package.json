@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/dropdown",
   "description": "A component that is initially hidden and revealed upon user interaction either through a click or hover event. Dropdown components typically display lists of possible actions or navigation.",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -25,7 +25,7 @@
     "directory": "packages/dropdown"
   },
   "dependencies": {
-    "@vrembem/core": "^1.5.3"
+    "@vrembem/core": "^1.5.4"
   },
   "publishConfig": {
     "access": "public"

@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/notice",
   "description": "A component for highlighting (optionally dismissible) messages to the user.",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -25,8 +25,8 @@
     "directory": "packages/notice"
   },
   "dependencies": {
-    "@vrembem/base": "^1.5.3",
-    "@vrembem/core": "^1.5.3"
+    "@vrembem/base": "^1.5.4",
+    "@vrembem/core": "^1.5.4"
   },
   "publishConfig": {
     "access": "public"
