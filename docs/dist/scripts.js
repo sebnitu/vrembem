@@ -598,6 +598,251 @@
     return api;
   };
 
+  /*!
+   * @copyright Copyright (c) 2017 IcoMoon.io
+   * @license   Licensed under MIT license
+   *            See https://github.com/Keyamoon/svgxuse
+   * @version   1.2.6
+   */
+  (function () {
+
+    if (typeof window !== "undefined" && window.addEventListener) {
+      var cache = Object.create(null);
+      var checkUseElems;
+      var tid;
+
+      var debouncedCheck = function debouncedCheck() {
+        clearTimeout(tid);
+        tid = setTimeout(checkUseElems, 100);
+      };
+
+      var unobserveChanges = function unobserveChanges() {
+        return;
+      };
+
+      var observeChanges = function observeChanges() {
+        var observer;
+        window.addEventListener("resize", debouncedCheck, false);
+        window.addEventListener("orientationchange", debouncedCheck, false);
+
+        if (window.MutationObserver) {
+          observer = new MutationObserver(debouncedCheck);
+          observer.observe(document.documentElement, {
+            childList: true,
+            subtree: true,
+            attributes: true
+          });
+
+          unobserveChanges = function unobserveChanges() {
+            try {
+              observer.disconnect();
+              window.removeEventListener("resize", debouncedCheck, false);
+              window.removeEventListener("orientationchange", debouncedCheck, false);
+            } catch (ignore) {}
+          };
+        } else {
+          document.documentElement.addEventListener("DOMSubtreeModified", debouncedCheck, false);
+
+          unobserveChanges = function unobserveChanges() {
+            document.documentElement.removeEventListener("DOMSubtreeModified", debouncedCheck, false);
+            window.removeEventListener("resize", debouncedCheck, false);
+            window.removeEventListener("orientationchange", debouncedCheck, false);
+          };
+        }
+      };
+
+      var createRequest = function createRequest(url) {
+        function getOrigin(loc) {
+          var a;
+
+          if (loc.protocol !== undefined) {
+            a = loc;
+          } else {
+            a = document.createElement("a");
+            a.href = loc;
+          }
+
+          return a.protocol.replace(/:/g, "") + a.host;
+        }
+
+        var Request;
+        var origin;
+        var origin2;
+
+        if (window.XMLHttpRequest) {
+          Request = new XMLHttpRequest();
+          origin = getOrigin(location);
+          origin2 = getOrigin(url);
+
+          if (Request.withCredentials === undefined && origin2 !== "" && origin2 !== origin) {
+            Request = XDomainRequest || undefined;
+          } else {
+            Request = XMLHttpRequest;
+          }
+        }
+
+        return Request;
+      };
+
+      var xlinkNS = "http://www.w3.org/1999/xlink";
+
+      checkUseElems = function checkUseElems() {
+        var base;
+        var bcr;
+        var hash;
+        var href;
+        var i;
+        var inProgressCount = 0;
+        var isHidden;
+        var Request;
+        var url;
+        var uses;
+        var xhr;
+
+        function observeIfDone() {
+          inProgressCount -= 1;
+
+          if (inProgressCount === 0) {
+            unobserveChanges();
+            observeChanges();
+          }
+        }
+
+        function attrUpdateFunc(spec) {
+          return function () {
+            if (cache[spec.base] !== true) {
+              spec.useEl.setAttributeNS(xlinkNS, "xlink:href", "#" + spec.hash);
+
+              if (spec.useEl.hasAttribute("href")) {
+                spec.useEl.setAttribute("href", "#" + spec.hash);
+              }
+            }
+          };
+        }
+
+        function onloadFunc(xhr) {
+          return function () {
+            var body = document.body;
+            var x = document.createElement("x");
+            var svg;
+            xhr.onload = null;
+            x.innerHTML = xhr.responseText;
+            svg = x.getElementsByTagName("svg")[0];
+
+            if (svg) {
+              svg.setAttribute("aria-hidden", "true");
+              svg.style.position = "absolute";
+              svg.style.width = 0;
+              svg.style.height = 0;
+              svg.style.overflow = "hidden";
+              body.insertBefore(svg, body.firstChild);
+            }
+
+            observeIfDone();
+          };
+        }
+
+        function onErrorTimeout(xhr) {
+          return function () {
+            xhr.onerror = null;
+            xhr.ontimeout = null;
+            observeIfDone();
+          };
+        }
+
+        unobserveChanges();
+        uses = document.getElementsByTagName("use");
+
+        for (i = 0; i < uses.length; i += 1) {
+          try {
+            bcr = uses[i].getBoundingClientRect();
+          } catch (ignore) {
+            bcr = false;
+          }
+
+          href = uses[i].getAttribute("href") || uses[i].getAttributeNS(xlinkNS, "href") || uses[i].getAttribute("xlink:href");
+
+          if (href && href.split) {
+            url = href.split("#");
+          } else {
+            url = ["", ""];
+          }
+
+          base = url[0];
+          hash = url[1];
+          isHidden = bcr && bcr.left === 0 && bcr.right === 0 && bcr.top === 0 && bcr.bottom === 0;
+
+          if (bcr && bcr.width === 0 && bcr.height === 0 && !isHidden) {
+
+            if (uses[i].hasAttribute("href")) {
+              uses[i].setAttributeNS(xlinkNS, "xlink:href", href);
+            }
+
+            if (base.length) {
+              xhr = cache[base];
+
+              if (xhr !== true) {
+                setTimeout(attrUpdateFunc({
+                  useEl: uses[i],
+                  base: base,
+                  hash: hash
+                }), 0);
+              }
+
+              if (xhr === undefined) {
+                Request = createRequest(base);
+
+                if (Request !== undefined) {
+                  xhr = new Request();
+                  cache[base] = xhr;
+                  xhr.onload = onloadFunc(xhr);
+                  xhr.onerror = onErrorTimeout(xhr);
+                  xhr.ontimeout = onErrorTimeout(xhr);
+                  xhr.open("GET", base);
+                  xhr.send();
+                  inProgressCount += 1;
+                }
+              }
+            }
+          } else {
+            if (!isHidden) {
+              if (cache[base] === undefined) {
+                cache[base] = true;
+              } else if (cache[base].onload) {
+                cache[base].abort();
+                delete cache[base].onload;
+                cache[base] = true;
+              }
+            } else if (base.length && cache[base]) {
+              setTimeout(attrUpdateFunc({
+                useEl: uses[i],
+                base: base,
+                hash: hash
+              }), 0);
+            }
+          }
+        }
+
+        uses = "";
+        inProgressCount += 1;
+        observeIfDone();
+      };
+
+      var _winLoad;
+
+      _winLoad = function winLoad() {
+        window.removeEventListener("load", _winLoad, false);
+        tid = setTimeout(checkUseElems, 0);
+      };
+
+      if (document.readyState !== "complete") {
+        window.addEventListener("load", _winLoad, false);
+      } else {
+        _winLoad();
+      }
+    }
+  })();
+
   var alphabet;
   var alphabetIndexMap;
   var alphabetIndexMapLength = 0;
@@ -2044,247 +2289,79 @@
     init.start();
   };
 
-  /*!
-   * @copyright Copyright (c) 2017 IcoMoon.io
-   * @license   Licensed under MIT license
-   *            See https://github.com/Keyamoon/svgxuse
-   * @version   1.2.6
-   */
   (function () {
+    if (document.getElementById('listjs')) {
+      var list = new src('listjs', {
+        fuzzySearch: {
+          searchClass: 'search',
+          location: 0,
+          distance: 100,
+          threshold: 0.4,
+          multiSearch: true
+        },
+        valueNames: ['name', {
+          data: ['category']
+        }],
+        listClass: 'menu'
+      });
+      var notice_empty = document.querySelector('.notice_empty');
+      var notice_empty_text = notice_empty.querySelector('.search_text');
+      var filter = document.querySelector('.filter');
+      var search = document.querySelector('.filter .search');
+      var search_clear = document.querySelector('.filter .search_clear');
 
-    if (typeof window !== "undefined" && window.addEventListener) {
-      var cache = Object.create(null);
-      var checkUseElems;
-      var tid;
-
-      var debouncedCheck = function debouncedCheck() {
-        clearTimeout(tid);
-        tid = setTimeout(checkUseElems, 100);
+      var isMenuLinkActive = function isMenuLinkActive() {
+        var menuLinks = document.querySelectorAll('#listjs .menu__link');
+        var isActive = hasClass(menuLinks, 'is-active');
+        return isActive;
       };
 
-      var unobserveChanges = function unobserveChanges() {
-        return;
-      };
+      list.on('searchComplete', function () {
+        var value = search.value;
+        notice_empty_text.innerHTML = value;
+        localStorage.setItem('SearchValue', value);
 
-      var observeChanges = function observeChanges() {
-        var observer;
-        window.addEventListener("resize", debouncedCheck, false);
-        window.addEventListener("orientationchange", debouncedCheck, false);
-
-        if (window.MutationObserver) {
-          observer = new MutationObserver(debouncedCheck);
-          observer.observe(document.documentElement, {
-            childList: true,
-            subtree: true,
-            attributes: true
-          });
-
-          unobserveChanges = function unobserveChanges() {
-            try {
-              observer.disconnect();
-              window.removeEventListener("resize", debouncedCheck, false);
-              window.removeEventListener("orientationchange", debouncedCheck, false);
-            } catch (ignore) {}
-          };
+        if (value) {
+          addClass(filter, 'is-active');
+          addClass(search, 'is-active');
+          removeClass(search_clear, 'display_none');
         } else {
-          document.documentElement.addEventListener("DOMSubtreeModified", debouncedCheck, false);
-
-          unobserveChanges = function unobserveChanges() {
-            document.documentElement.removeEventListener("DOMSubtreeModified", debouncedCheck, false);
-            window.removeEventListener("resize", debouncedCheck, false);
-            window.removeEventListener("orientationchange", debouncedCheck, false);
-          };
-        }
-      };
-
-      var createRequest = function createRequest(url) {
-        function getOrigin(loc) {
-          var a;
-
-          if (loc.protocol !== undefined) {
-            a = loc;
-          } else {
-            a = document.createElement("a");
-            a.href = loc;
-          }
-
-          return a.protocol.replace(/:/g, "") + a.host;
+          removeClass(filter, 'is-active');
+          removeClass(search, 'is-active');
+          addClass(search_clear, 'display_none');
         }
 
-        var Request;
-        var origin;
-        var origin2;
+        if (list.visibleItems.length > 0) {
+          addClass(notice_empty, 'display_none');
+        } else {
+          removeClass(notice_empty, 'display_none');
+        }
+      });
+      document.addEventListener('click', function () {
+        var trigger_search_clear = event.target.closest('.search_clear');
+        var trigger_search_cat = event.target.closest('.category');
 
-        if (window.XMLHttpRequest) {
-          Request = new XMLHttpRequest();
-          origin = getOrigin(location);
-          origin2 = getOrigin(url);
-
-          if (Request.withCredentials === undefined && origin2 !== "" && origin2 !== origin) {
-            Request = XDomainRequest || undefined;
-          } else {
-            Request = XMLHttpRequest;
-          }
+        if (trigger_search_clear) {
+          search.value = '';
+          list.search();
+          event.preventDefault();
         }
 
-        return Request;
-      };
-
-      var xlinkNS = "http://www.w3.org/1999/xlink";
-
-      checkUseElems = function checkUseElems() {
-        var base;
-        var bcr;
-        var hash;
-        var href;
-        var i;
-        var inProgressCount = 0;
-        var isHidden;
-        var Request;
-        var url;
-        var uses;
-        var xhr;
-
-        function observeIfDone() {
-          inProgressCount -= 1;
-
-          if (inProgressCount === 0) {
-            unobserveChanges();
-            observeChanges();
-          }
+        if (trigger_search_cat) {
+          search.value = trigger_search_cat.dataset.category;
+          list.search(search.value);
+          event.preventDefault();
         }
+      }, false);
 
-        function attrUpdateFunc(spec) {
-          return function () {
-            if (cache[spec.base] !== true) {
-              spec.useEl.setAttributeNS(xlinkNS, "xlink:href", "#" + spec.hash);
+      if (localStorage.getItem('SearchValue')) {
+        search.value = localStorage.getItem('SearchValue');
+        list.search(search.value);
 
-              if (spec.useEl.hasAttribute("href")) {
-                spec.useEl.setAttribute("href", "#" + spec.hash);
-              }
-            }
-          };
+        if (!isMenuLinkActive()) {
+          search.value = '';
+          list.search();
         }
-
-        function onloadFunc(xhr) {
-          return function () {
-            var body = document.body;
-            var x = document.createElement("x");
-            var svg;
-            xhr.onload = null;
-            x.innerHTML = xhr.responseText;
-            svg = x.getElementsByTagName("svg")[0];
-
-            if (svg) {
-              svg.setAttribute("aria-hidden", "true");
-              svg.style.position = "absolute";
-              svg.style.width = 0;
-              svg.style.height = 0;
-              svg.style.overflow = "hidden";
-              body.insertBefore(svg, body.firstChild);
-            }
-
-            observeIfDone();
-          };
-        }
-
-        function onErrorTimeout(xhr) {
-          return function () {
-            xhr.onerror = null;
-            xhr.ontimeout = null;
-            observeIfDone();
-          };
-        }
-
-        unobserveChanges();
-        uses = document.getElementsByTagName("use");
-
-        for (i = 0; i < uses.length; i += 1) {
-          try {
-            bcr = uses[i].getBoundingClientRect();
-          } catch (ignore) {
-            bcr = false;
-          }
-
-          href = uses[i].getAttribute("href") || uses[i].getAttributeNS(xlinkNS, "href") || uses[i].getAttribute("xlink:href");
-
-          if (href && href.split) {
-            url = href.split("#");
-          } else {
-            url = ["", ""];
-          }
-
-          base = url[0];
-          hash = url[1];
-          isHidden = bcr && bcr.left === 0 && bcr.right === 0 && bcr.top === 0 && bcr.bottom === 0;
-
-          if (bcr && bcr.width === 0 && bcr.height === 0 && !isHidden) {
-
-            if (uses[i].hasAttribute("href")) {
-              uses[i].setAttributeNS(xlinkNS, "xlink:href", href);
-            }
-
-            if (base.length) {
-              xhr = cache[base];
-
-              if (xhr !== true) {
-                setTimeout(attrUpdateFunc({
-                  useEl: uses[i],
-                  base: base,
-                  hash: hash
-                }), 0);
-              }
-
-              if (xhr === undefined) {
-                Request = createRequest(base);
-
-                if (Request !== undefined) {
-                  xhr = new Request();
-                  cache[base] = xhr;
-                  xhr.onload = onloadFunc(xhr);
-                  xhr.onerror = onErrorTimeout(xhr);
-                  xhr.ontimeout = onErrorTimeout(xhr);
-                  xhr.open("GET", base);
-                  xhr.send();
-                  inProgressCount += 1;
-                }
-              }
-            }
-          } else {
-            if (!isHidden) {
-              if (cache[base] === undefined) {
-                cache[base] = true;
-              } else if (cache[base].onload) {
-                cache[base].abort();
-                delete cache[base].onload;
-                cache[base] = true;
-              }
-            } else if (base.length && cache[base]) {
-              setTimeout(attrUpdateFunc({
-                useEl: uses[i],
-                base: base,
-                hash: hash
-              }), 0);
-            }
-          }
-        }
-
-        uses = "";
-        inProgressCount += 1;
-        observeIfDone();
-      };
-
-      var _winLoad;
-
-      _winLoad = function winLoad() {
-        window.removeEventListener("load", _winLoad, false);
-        tid = setTimeout(checkUseElems, 0);
-      };
-
-      if (document.readyState !== "complete") {
-        window.addEventListener("load", _winLoad, false);
-      } else {
-        _winLoad();
       }
     }
   })();
@@ -2452,80 +2529,5 @@
     selectorActiveParent: '.menu__item',
     selectorElementPadding: '.dialog__header'
   });
-
-  if (document.getElementById('listjs')) {
-    var list = new src('listjs', {
-      fuzzySearch: {
-        searchClass: 'search',
-        location: 0,
-        distance: 100,
-        threshold: 0.4,
-        multiSearch: true
-      },
-      valueNames: ['name', {
-        data: ['category']
-      }],
-      listClass: 'menu'
-    });
-    var notice_empty = document.querySelector('.notice_empty');
-    var notice_empty_text = notice_empty.querySelector('.search_text');
-    var filter$1 = document.querySelector('.filter');
-    var search$1 = document.querySelector('.filter .search');
-    var search_clear = document.querySelector('.filter .search_clear');
-
-    var isMenuLinkActive = function isMenuLinkActive() {
-      var menuLinks = document.querySelectorAll('#listjs .menu__link');
-      var isActive = hasClass(menuLinks, 'is-active');
-      return isActive;
-    };
-
-    list.on('searchComplete', function () {
-      var value = search$1.value;
-      notice_empty_text.innerHTML = value;
-      localStorage.setItem('SearchValue', value);
-
-      if (value) {
-        addClass(filter$1, 'is-active');
-        addClass(search$1, 'is-active');
-        removeClass(search_clear, 'display_none');
-      } else {
-        removeClass(filter$1, 'is-active');
-        removeClass(search$1, 'is-active');
-        addClass(search_clear, 'display_none');
-      }
-
-      if (list.visibleItems.length > 0) {
-        addClass(notice_empty, 'display_none');
-      } else {
-        removeClass(notice_empty, 'display_none');
-      }
-    });
-    document.addEventListener('click', function () {
-      var trigger_search_clear = event.target.closest('.search_clear');
-      var trigger_search_cat = event.target.closest('.category');
-
-      if (trigger_search_clear) {
-        search$1.value = '';
-        list.search();
-        event.preventDefault();
-      }
-
-      if (trigger_search_cat) {
-        search$1.value = trigger_search_cat.dataset.category;
-        list.search(search$1.value);
-        event.preventDefault();
-      }
-    }, false);
-
-    if (localStorage.getItem('SearchValue')) {
-      search$1.value = localStorage.getItem('SearchValue');
-      list.search(search$1.value);
-
-      if (!isMenuLinkActive()) {
-        search$1.value = '';
-        list.search();
-      }
-    }
-  }
 
 }());
