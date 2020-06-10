@@ -2293,70 +2293,13 @@
 
   function _objectSpread$4(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$4(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$4(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-  var StickyScroll = function StickyScroll(options) {
-    var api = {};
-    var defaults = {
-      autoInit: false,
-      throttleDelay: 500
-    };
-    api.settings = _objectSpread$4(_objectSpread$4({}, defaults), options);
-    api.lastPosition = 0;
-    api.ticking = false;
-
-    api.init = function () {
-      var el = document.querySelector('[data-drawer="drawer-menu"] .dialog');
-
-      if (el) {
-        setScrollPosition(el);
-        el.addEventListener('scroll', throttle, false);
-      }
-    };
-
-    api.destroy = function () {
-      var el = document.querySelector('[data-drawer="drawer-menu"] .dialog');
-
-      if (el) {
-        el.removeEventListener('scroll', throttle, false);
-      }
-    };
-
-    var throttle = function throttle(event) {
-      api.lastPosition = event.target.scrollTop;
-
-      if (!api.ticking) {
-        setTimeout(saveScrollPosition, api.settings.throttleDelay);
-        api.ticking = true;
-      }
-    };
-
-    var saveScrollPosition = function saveScrollPosition() {
-      localStorage.setItem('StickyScroll', api.lastPosition);
-      api.ticking = false;
-    };
-
-    var setScrollPosition = function setScrollPosition(el) {
-      var pos = localStorage.getItem('StickyScroll');
-
-      if (pos) {
-        el.scrollTop = pos;
-      }
-    };
-
-    if (api.settings.autoInit) api.init();
-    return api;
-  };
-
-  function ownKeys$5(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-  function _objectSpread$5(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$5(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$5(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
   var Version = function Version(options) {
     var api = {};
     var defaults = {
       autoInit: false,
       url: 'https://api.github.com/repos/sebnitu/vrembem/contents/packages/vrembem/package.json?ref=master'
     };
-    api.settings = _objectSpread$5(_objectSpread$5({}, defaults), options);
+    api.settings = _objectSpread$4(_objectSpread$4({}, defaults), options);
 
     api.init = function () {
       var ajax = new XMLHttpRequest();
@@ -2387,6 +2330,107 @@
     return api;
   };
 
+  function ownKeys$5(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+  function _objectSpread$5(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$5(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$5(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+  var StickyScroll = function StickyScroll(options) {
+    var api = {};
+    var defaults = {
+      autoInit: false,
+      selector: '[data-sticky-scroll]',
+      selectorActive: '',
+      selectorActiveParent: '',
+      selectorElementPadding: '',
+      saveKey: 'StickyScroll',
+      throttleDelay: 500,
+      padding: 30
+    };
+    api.settings = _objectSpread$5(_objectSpread$5({}, defaults), options);
+    api.lastPosition = 0;
+    api.ticking = false;
+    api.element = false;
+
+    api.init = function () {
+      api.element = document.querySelector(api.settings.selector);
+
+      if (api.element) {
+        setScrollPosition();
+
+        if (api.settings.selectorActive) {
+          setActiveVisible();
+        }
+
+        api.element.addEventListener('scroll', throttle, false);
+      }
+    };
+
+    api.destroy = function () {
+      if (api.element) {
+        api.element.removeEventListener('scroll', throttle, false);
+      }
+    };
+
+    var throttle = function throttle(event) {
+      api.lastPosition = event.target.scrollTop;
+
+      if (!api.ticking) {
+        setTimeout(run, api.settings.throttleDelay);
+        api.ticking = true;
+      }
+    };
+
+    var run = function run() {
+      saveScrollPosition();
+      api.ticking = false;
+    };
+
+    var saveScrollPosition = function saveScrollPosition() {
+      localStorage.setItem(api.settings.saveKey, api.lastPosition);
+    };
+
+    var setScrollPosition = function setScrollPosition() {
+      var pos = localStorage.getItem(api.settings.saveKey);
+
+      if (pos) {
+        api.element.scrollTop = pos;
+      }
+    };
+
+    var setActiveVisible = function setActiveVisible() {
+      var el = api.element.querySelector(api.settings.selectorActive);
+
+      if (api.settings.selectorActiveParent) {
+        el = el.closest(api.settings.selectorActiveParent);
+      }
+
+      if (el) {
+        var adjust = 0;
+
+        if (api.settings.selectorElementPadding) {
+          adjust = api.element.querySelector(api.settings.selectorElementPadding).getBoundingClientRect().height;
+        }
+
+        var bounding = el.getBoundingClientRect();
+        var scrollBounding = api.element.getBoundingClientRect();
+        var maxTop = scrollBounding.top + adjust;
+        var maxBot = window.innerHeight || document.documentElement.clientHeight;
+
+        if (bounding.top < maxTop) {
+          var pos = el.offsetTop - (adjust + api.settings.padding);
+          api.element.scrollTop = pos;
+        } else if (bounding.bottom > maxBot) {
+          var _pos = el.offsetTop + el.getBoundingClientRect().height + api.settings.padding - scrollBounding.height;
+
+          api.element.scrollTop = _pos;
+        }
+      }
+    };
+
+    if (api.settings.autoInit) api.init();
+    return api;
+  };
+
   new Checkbox({
     autoInit: true
   });
@@ -2399,11 +2443,14 @@
   new Modal({
     autoInit: true
   });
-  new StickyScroll({
-    autoInit: true
-  });
   new Version({
     autoInit: true
+  });
+  new StickyScroll({
+    autoInit: true,
+    selectorActive: '.is-active',
+    selectorActiveParent: '.menu__item',
+    selectorElementPadding: '.dialog__header'
   });
 
   if (document.getElementById('listjs')) {
@@ -2435,7 +2482,7 @@
     list.on('searchComplete', function () {
       var value = search$1.value;
       notice_empty_text.innerHTML = value;
-      localStorage.setItem('searchValue', value);
+      localStorage.setItem('SearchValue', value);
 
       if (value) {
         addClass(filter$1, 'is-active');
@@ -2470,8 +2517,8 @@
       }
     }, false);
 
-    if (localStorage.getItem('searchValue')) {
-      search$1.value = localStorage.getItem('searchValue');
+    if (localStorage.getItem('SearchValue')) {
+      search$1.value = localStorage.getItem('SearchValue');
       list.search(search$1.value);
 
       if (!isMenuLinkActive()) {

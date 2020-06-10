@@ -7,8 +7,8 @@ import {
 } from 'vrembem';
 import listjs from 'list.js';
 import 'svgxuse';
-import { StickyScroll } from './stickyScroll';
 import { Version } from './version';
+import { StickyScroll } from './stickyScroll';
 
 /**
  * Initialize Vrembem components
@@ -18,8 +18,18 @@ new Checkbox({ autoInit: true });
 new Dismissible({ autoInit: true });
 new Drawer({ autoInit: true });
 new Modal({ autoInit: true });
-new StickyScroll({ autoInit: true });
+
+/**
+ * Initialize custom components
+ */
+
 new Version({ autoInit: true });
+new StickyScroll({
+  autoInit: true,
+  selectorActive: '.is-active',
+  selectorActiveParent: '.menu__item',
+  selectorElementPadding: '.dialog__header'
+});
 
 /**
  * List.js
@@ -67,7 +77,7 @@ if (document.getElementById('listjs')) {
     // Update the search text in empty notice
     let value = search.value;
     notice_empty_text.innerHTML = value;
-    localStorage.setItem('searchValue', value);
+    localStorage.setItem('SearchValue', value);
 
     // Show clear search button if a value there is something in search
     if (value) {
@@ -108,8 +118,8 @@ if (document.getElementById('listjs')) {
   }, false);
 
   // Restore our local storage value
-  if (localStorage.getItem('searchValue')) {
-    search.value = localStorage.getItem('searchValue');
+  if (localStorage.getItem('SearchValue')) {
+    search.value = localStorage.getItem('SearchValue');
     list.search(search.value);
     if (!isMenuLinkActive()) {
       search.value = '';
