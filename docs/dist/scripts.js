@@ -2300,7 +2300,7 @@
       throttleDelay: 500
     };
     api.settings = _objectSpread$4(_objectSpread$4({}, defaults), options);
-    api.last_known_scroll_position = 0;
+    api.lastPosition = 0;
     api.ticking = false;
 
     api.init = function () {
@@ -2321,7 +2321,7 @@
     };
 
     var throttle = function throttle(event) {
-      api.last_known_scroll_position = event.target.scrollTop;
+      api.lastPosition = event.target.scrollTop;
 
       if (!api.ticking) {
         setTimeout(saveScrollPosition, api.settings.throttleDelay);
@@ -2330,7 +2330,7 @@
     };
 
     var saveScrollPosition = function saveScrollPosition() {
-      localStorage.setItem('StickyScroll', api.last_known_scroll_position);
+      localStorage.setItem('StickyScroll', api.lastPosition);
       api.ticking = false;
     };
 

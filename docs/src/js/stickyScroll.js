@@ -8,7 +8,7 @@ export const StickyScroll = (options) => {
 
   api.settings = { ...defaults, ...options };
 
-  api.last_known_scroll_position = 0;
+  api.lastPosition = 0;
   api.ticking = false;
 
   api.init = () => {
@@ -27,7 +27,7 @@ export const StickyScroll = (options) => {
   };
 
   const throttle = (event) => {
-    api.last_known_scroll_position = event.target.scrollTop;
+    api.lastPosition = event.target.scrollTop;
     if (!api.ticking) {
       setTimeout(saveScrollPosition, api.settings.throttleDelay);
       api.ticking = true;
@@ -35,7 +35,7 @@ export const StickyScroll = (options) => {
   };
 
   const saveScrollPosition = () => {
-    localStorage.setItem('StickyScroll', api.last_known_scroll_position);
+    localStorage.setItem('StickyScroll', api.lastPosition);
     api.ticking = false;
   };
 
