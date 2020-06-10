@@ -9,6 +9,7 @@ export const StickyScroll = (options) => {
     selectorElementPadding: '',
     saveKey: 'StickyScroll',
     throttleDelay: 500,
+    positionBottom: true,
     padding: 30
   };
 
@@ -78,12 +79,13 @@ export const StickyScroll = (options) => {
       const maxTop = scrollBounding.top + adjust;
       const maxBot = (window.innerHeight || document.documentElement.clientHeight);
 
+      const posTop = el.offsetTop - (adjust + api.settings.padding);
+      const posBot = (el.offsetTop + el.getBoundingClientRect().height + api.settings.padding) - (scrollBounding.height);
+
       if (bounding.top < maxTop) {
-        const pos = el.offsetTop - (adjust + api.settings.padding);
-        api.element.scrollTop = pos;
+        api.element.scrollTop = posTop;
       } else if (bounding.bottom > maxBot) {
-        const pos = (el.offsetTop + el.getBoundingClientRect().height + api.settings.padding) - (scrollBounding.height);
-        api.element.scrollTop = pos;
+        api.element.scrollTop = (api.settings.positionBottom ? posBot : posTop);
       }
     }
   };

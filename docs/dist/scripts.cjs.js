@@ -2420,6 +2420,7 @@ var StickyScroll = function StickyScroll(options) {
     selectorElementPadding: '',
     saveKey: 'StickyScroll',
     throttleDelay: 500,
+    positionBottom: true,
     padding: 30
   };
   api.settings = _objectSpread$5(_objectSpread$5({}, defaults), options);
@@ -2491,14 +2492,13 @@ var StickyScroll = function StickyScroll(options) {
       var scrollBounding = api.element.getBoundingClientRect();
       var maxTop = scrollBounding.top + adjust;
       var maxBot = window.innerHeight || document.documentElement.clientHeight;
+      var posTop = el.offsetTop - (adjust + api.settings.padding);
+      var posBot = el.offsetTop + el.getBoundingClientRect().height + api.settings.padding - scrollBounding.height;
 
       if (bounding.top < maxTop) {
-        var pos = el.offsetTop - (adjust + api.settings.padding);
-        api.element.scrollTop = pos;
+        api.element.scrollTop = posTop;
       } else if (bounding.bottom > maxBot) {
-        var _pos = el.offsetTop + el.getBoundingClientRect().height + api.settings.padding - scrollBounding.height;
-
-        api.element.scrollTop = _pos;
+        api.element.scrollTop = api.settings.positionBottom ? posBot : posTop;
       }
     }
   };
