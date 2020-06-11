@@ -34,7 +34,6 @@
       dataTrigger: 'dismiss',
       dataTarget: 'dismissible',
       classHide: 'display_none',
-      customEventPrefix: 'dismissible:',
       method: 'hide'
     };
     api.settings = _objectSpread(_objectSpread({}, defaults), options);

@@ -8,7 +8,6 @@ export const Dismissible = (options) => {
     dataTrigger: 'dismiss',
     dataTarget: 'dismissible',
     classHide: 'display_none',
-    customEventPrefix: 'dismissible:',
     method: 'hide'
   };
 
