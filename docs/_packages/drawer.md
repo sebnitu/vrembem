@@ -513,7 +513,7 @@ By default, the state of a drawer is saved to local storage and applied persiste
     <tr>
       <td data-mobile-label="Key"><code class="code text_nowrap">customEventPrefix</code></td>
       <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'drawer:'</code></td>
-      <td data-mobile-label="Desc">An object with key/value pairs defining a breakpoints set.</td>
+      <td data-mobile-label="Desc">Prefix to be used on custom events.</td>
     </tr>
     <tr>
       <td data-mobile-label="Key"><code class="code text_nowrap">breakpoints</code></td>
