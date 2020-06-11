@@ -11,7 +11,7 @@ $_m: var.$prefix-modifier;
     transform: scale(0.75);
   }
 
-  &.is-open .#{$_b}modal#{$_e}dialog,
+  &.is-opened .#{$_b}modal#{$_e}dialog,
   &.is-opening .#{$_b}modal#{$_e}dialog {
     transform: scale(1);
   }

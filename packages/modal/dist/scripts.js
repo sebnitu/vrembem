@@ -77,7 +77,7 @@
       dataClose: 'modal-close',
       dataFocus: 'modal-focus',
       dataRequired: 'modal-required',
-      stateOpen: 'is-open',
+      stateOpen: 'is-opened',
       stateOpening: 'is-opening',
       stateClosing: 'is-closing',
       stateClosed: 'is-closed',

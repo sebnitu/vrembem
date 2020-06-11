@@ -9,7 +9,7 @@ const keyEv = new KeyboardEvent('keyup', {
 
 const markup = `
   <button data-modal-open="modal-default">Modal Required</button>
-  <div data-modal="modal-default" data-modal-required class="modal" tabindex="-1">
+  <div data-modal="modal-default" data-modal-required class="modal is-closed" tabindex="-1">
     <div class="modal__dialog">
       <button data-modal-close data-modal-focus>Close</button>
     </div>
@@ -34,14 +34,14 @@ test('should prevent escape or screen click closing modal if required', () => {
 
   document.dispatchEvent(keyEv);
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('modal is-open');
+  expect(el).toHaveClass('modal is-opened');
 
   el.click();
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('modal is-open');
+  expect(el).toHaveClass('modal is-opened');
 
   btnClose.click();
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('modal');
-  expect(el.classList.length).toBe(1);
+  expect(el).toHaveClass('modal is-closed');
+  expect(el.classList.length).toBe(2);
 });

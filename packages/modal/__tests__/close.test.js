@@ -9,7 +9,7 @@ const keyEv = new KeyboardEvent('keyup', {
 
 const markup = `
   <button data-modal-open="modal-default">Modal Default</button>
-  <div data-modal="modal-default" class="modal">
+  <div data-modal="modal-default" class="modal is-closed">
     <div class="modal__dialog">
       <button data-modal-close>Close</button>
     </div>
@@ -39,8 +39,8 @@ test('should close when root modal (screen) is clicked', () => {
   expect(el).toHaveClass('is-closing');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('modal');
-  expect(el.classList.length).toBe(1);
+  expect(el).toHaveClass('modal is-closed');
+  expect(el.classList.length).toBe(2);
 });
 
 test('should close when the escape key is pressed', () => {
@@ -53,12 +53,12 @@ test('should close when the escape key is pressed', () => {
   expect(el).toHaveClass('modal is-opening');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('modal is-open');
+  expect(el).toHaveClass('modal is-opened');
 
   document.dispatchEvent(keyEv);
   expect(el).toHaveClass('modal is-closing');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('modal');
-  expect(el.classList.length).toBe(1);
+  expect(el).toHaveClass('modal is-closed');
+  expect(el.classList.length).toBe(2);
 });

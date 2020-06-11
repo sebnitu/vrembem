@@ -6,7 +6,7 @@ const ev = new Event('transitionend');
 
 const markup = `
   <button data-modal-open="modal-default">Modal Default</button>
-  <div data-modal="modal-default" class="modal">
+  <div data-modal="modal-default" class="modal is-closed">
     <div class="modal__dialog">
       <button data-modal-close>Close</button>
     </div>
@@ -15,9 +15,18 @@ const markup = `
 
 const markupCustomAttr = `
   <button data-a-o="modal-default">Modal Custom</button>
-  <div data-a="modal-default" class="modal">
+  <div data-a="modal-default" class="modal is-closed">
     <div class="modal__dialog">
       <button data-a-c data-a-f>Close</button>
+    </div>
+  </div>
+`;
+
+const markupCustomState = `
+  <button data-modal-open="modal-default">Modal Default</button>
+  <div data-modal="modal-default" class="modal off">
+    <div class="modal__dialog">
+      <button data-modal-close>Close</button>
     </div>
   </div>
 `;
@@ -28,7 +37,7 @@ afterEach(() => {
   document.body.innerHTML = null;
 });
 
-test('should apply state classes on \'click\' and \'transition end\' events', () => {
+test('should apply state classes on `click` and `transitionend` events', () => {
   document.body.innerHTML = markup;
   modal = new Modal();
   const el = document.querySelector('[data-modal]');
@@ -42,16 +51,14 @@ test('should apply state classes on \'click\' and \'transition end\' events', ()
   expect(el).toHaveClass('is-opening');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('is-open');
+  expect(el).toHaveClass('is-opened');
 
   btnClose.click();
   expect(el).toHaveClass('is-closing');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('modal');
-  expect(el).not.toHaveClass('is-opening');
-  expect(el).not.toHaveClass('is-open');
-  expect(el).not.toHaveClass('is-closing');
+  expect(el).toHaveClass('modal is-closed');
+  expect(el).not.toHaveClass('is-opening is-opened is-closing');
 });
 
 test('should apply state classes with custom data attributes', () => {
@@ -74,23 +81,21 @@ test('should apply state classes with custom data attributes', () => {
   expect(el).toHaveClass('is-opening');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('is-open');
+  expect(el).toHaveClass('is-opened');
 
   btnClose.click();
   expect(el).toHaveClass('is-closing');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('modal');
-  expect(el).not.toHaveClass('is-opening');
-  expect(el).not.toHaveClass('is-open');
-  expect(el).not.toHaveClass('is-closing');
+  expect(el).toHaveClass('modal is-closed');
+  expect(el).not.toHaveClass('is-opening is-opened is-closing');
 });
 
 test('should apply custom state classes', () => {
-  document.body.innerHTML = markup;
+  document.body.innerHTML = markupCustomState;
   modal = new Modal({
     autoInit: true,
-    stateOpen: 'on',
+    stateOpened: 'on',
     stateOpening: 'enable',
     stateClosing: 'disable',
     stateClosed: 'off'
@@ -109,8 +114,6 @@ test('should apply custom state classes', () => {
   expect(el).toHaveClass('disable');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('modal');
-  expect(el).not.toHaveClass('enable');
-  expect(el).not.toHaveClass('on');
-  expect(el).not.toHaveClass('disable');
+  expect(el).toHaveClass('modal off');
+  expect(el).not.toHaveClass('enable on disable');
 });

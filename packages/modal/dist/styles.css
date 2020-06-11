@@ -21,11 +21,8 @@
   opacity: 0;
 }
 
-/**
- * Modal state classes
- */
 .modal.is-opening,
-.modal.is-open,
+.modal.is-opened,
 .modal.is-closing {
   width: 100%;
   height: 100%;
@@ -44,11 +41,11 @@
 }
 
 .modal.is-opening,
-.modal.is-open {
+.modal.is-opened {
   background-color: rgba(66, 66, 66, 0.8);
 }
 .modal.is-opening .modal__dialog,
-.modal.is-open .modal__dialog {
+.modal.is-opened .modal__dialog {
   transform: translateY(0);
   opacity: 1;
 }
@@ -57,7 +54,7 @@
   z-index: 1001;
 }
 
-.modal.is-open {
+.modal.is-opened {
   z-index: 1000;
 }
 
@@ -73,7 +70,7 @@
   height: 100%;
   transform: scale(0.75);
 }
-.modal_full.is-open .modal__dialog, .modal_full.is-opening .modal__dialog {
+.modal_full.is-opened .modal__dialog, .modal_full.is-opening .modal__dialog {
   transform: scale(1);
 }
 .modal_full.is-closing .modal__dialog {

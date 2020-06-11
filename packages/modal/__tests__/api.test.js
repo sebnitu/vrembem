@@ -6,7 +6,7 @@ const ev = new Event('transitionend');
 
 const markup = `
   <button data-modal-open="modal-default">Modal Default</button>
-  <div data-modal="modal-default" class="modal">
+  <div data-modal="modal-default" class="modal is-closed">
     <div class="modal__dialog">
       <button data-modal-close>Close</button>
     </div>
@@ -27,7 +27,7 @@ test('should open modal using api call', () => {
   modal.open('modal-default');
   el.dispatchEvent(ev);
 
-  expect(el).toHaveClass('modal is-open');
+  expect(el).toHaveClass('modal is-opened');
   expect(el.classList.length).toBe(2);
 });
 
@@ -39,13 +39,13 @@ test('should close modal using api call', () => {
 
   btnOpen.click();
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('modal is-open');
+  expect(el).toHaveClass('modal is-opened');
   expect(el.classList.length).toBe(2);
 
   modal.close();
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('modal');
-  expect(el.classList.length).toBe(1);
+  expect(el).toHaveClass('modal is-closed');
+  expect(el.classList.length).toBe(2);
 });
 
 test('should fire callback when using open api', () => {
@@ -89,6 +89,6 @@ test('should properly destroy drawer instance on api call', () => {
 
   expect(modal.memoryTrigger).toBe(null);
   expect(modal.memoryTarget).toBe(null);
-  expect(el).toHaveClass('modal');
-  expect(el.classList.length).toBe(1);
+  expect(el).toHaveClass('modal is-closed');
+  expect(el.classList.length).toBe(2);
 });

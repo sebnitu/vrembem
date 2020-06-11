@@ -491,7 +491,7 @@ var Modal = function Modal(options) {
     dataClose: 'modal-close',
     dataFocus: 'modal-focus',
     dataRequired: 'modal-required',
-    stateOpen: 'is-open',
+    stateOpened: 'is-opened',
     stateOpening: 'is-opening',
     stateClosing: 'is-closing',
     stateClosed: 'is-closed',
@@ -547,7 +547,7 @@ var Modal = function Modal(options) {
 
   var escape = function escape(event) {
     if (event.keyCode == 27) {
-      var target = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpen));
+      var target = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpened));
 
       if (target && !target.hasAttribute("data-".concat(api.settings.dataRequired))) {
         close();
@@ -558,11 +558,12 @@ var Modal = function Modal(options) {
   var open = function open(modalKey, callback) {
     var target = document.querySelector("[data-".concat(api.settings.dataModal, "=\"").concat(modalKey, "\"]"));
 
-    if (target && !hasClass(target, api.settings.stateOpen)) {
+    if (target && !hasClass(target, api.settings.stateOpened)) {
       saveTarget(target);
       addClass(target, api.settings.stateOpening);
+      removeClass(target, api.settings.stateClosed);
       target.addEventListener('transitionend', function _listener() {
-        addClass(target, api.settings.stateOpen);
+        addClass(target, api.settings.stateOpened);
         removeClass(target, api.settings.stateOpening);
         setFocus();
         typeof callback === 'function' && callback();
@@ -574,12 +575,13 @@ var Modal = function Modal(options) {
   var close = function close() {
     var focus = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
     var callback = arguments.length > 1 ? arguments[1] : undefined;
-    var target = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpen));
+    var target = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpened));
 
     if (target) {
       addClass(target, api.settings.stateClosing);
-      removeClass(target, api.settings.stateOpen);
+      removeClass(target, api.settings.stateOpened);
       target.addEventListener('transitionend', function _listener() {
+        addClass(target, api.settings.stateClosed);
         removeClass(target, api.settings.stateClosing);
         if (focus) returnFocus();
         typeof callback === 'function' && callback();
