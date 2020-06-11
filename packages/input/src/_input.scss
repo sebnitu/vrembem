@@ -18,6 +18,8 @@ $_b: var.$prefix-block;
   font-family: core.$font-family;
   font-size: var.$font-size;
   line-height: var.$line-height;
+  -moz-appearance: none;
+  -webkit-appearance: none;
   appearance: none;
 
   &:hover {
