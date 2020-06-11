@@ -10,7 +10,7 @@ const markup = `
         <button data-drawer-close>Close</button>
       </div>
     </div>
-    <div class="drawer is-open" data-drawer="drawer-two" data-drawer-breakpoint="400px">
+    <div class="drawer is-opened" data-drawer="drawer-two" data-drawer-breakpoint="400px">
       <div class="drawer__item">
         <button data-drawer-close>Close</button>
       </div>
@@ -178,10 +178,10 @@ test('should remove open state class when switching to modal', () => {
   drawer = new Drawer();
   const el = document.querySelector('[data-drawer=\'drawer-two\']');
 
-  expect(el).toHaveClass('is-open');
+  expect(el).toHaveClass('is-opened');
   expect(el).not.toHaveClass('drawer_modal');
   drawer.init();
-  expect(el).not.toHaveClass('is-open');
+  expect(el).not.toHaveClass('is-opened');
   expect(el).toHaveClass('drawer_modal');
 });
 
@@ -193,13 +193,13 @@ test('should apply saved state when switching to drawer', () => {
   const el = document.querySelector('[data-drawer=\'drawer-two\']');
   const state = JSON.parse(localStorage.getItem('DrawerState'));
 
-  expect(state['drawer-two']).toMatch('is-open');
-  expect(el).not.toHaveClass('is-open');
+  expect(state['drawer-two']).toMatch('is-opened');
+  expect(el).not.toHaveClass('is-opened');
   expect(el).toHaveClass('drawer_modal');
 
   window.innerWidth = 600;
   window.dispatchEvent(new Event('resize'));
   drawer.init();
-  expect(el).toHaveClass('is-open');
+  expect(el).toHaveClass('is-opened');
   expect(el).not.toHaveClass('drawer_modal');
 });

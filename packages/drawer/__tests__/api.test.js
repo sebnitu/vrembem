@@ -35,7 +35,7 @@ test('should toggle drawer using api call', () => {
   expect(el).toHaveClass('is-opening');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('is-open');
+  expect(el).toHaveClass('is-opened');
 
   drawer.toggle('drawer-default');
   expect(el).toHaveClass('is-closing');
@@ -43,7 +43,7 @@ test('should toggle drawer using api call', () => {
   el.dispatchEvent(ev);
   expect(el).toHaveClass('drawer');
   expect(el).not.toHaveClass('is-opening');
-  expect(el).not.toHaveClass('is-open');
+  expect(el).not.toHaveClass('is-opened');
   expect(el).not.toHaveClass('is-closing');
 });
 
@@ -59,7 +59,7 @@ test('should open drawer using api call', () => {
   expect(el).toHaveClass('is-opening');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('drawer is-open');
+  expect(el).toHaveClass('drawer is-opened');
   expect(el).not.toHaveClass('is-opening');
   expect(el).not.toHaveClass('is-closing');
 });
@@ -77,7 +77,7 @@ test('should close drawer using api call', () => {
   expect(el).toHaveClass('is-opening');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('drawer is-open');
+  expect(el).toHaveClass('drawer is-opened');
   expect(el).not.toHaveClass('is-opening');
   expect(el).not.toHaveClass('is-closing');
 
@@ -86,7 +86,7 @@ test('should close drawer using api call', () => {
 
   el.dispatchEvent(ev);
   expect(el).toHaveClass('drawer');
-  expect(el).not.toHaveClass('is-open');
+  expect(el).not.toHaveClass('is-opened');
   expect(el).not.toHaveClass('is-opening');
   expect(el).not.toHaveClass('is-closing');
 });
@@ -142,7 +142,7 @@ test('should properly destroy drawer instance on api call', () => {
   drawer.destroy();
   btnOpen.click();
   el.dispatchEvent(ev);
-  expect(el).not.toHaveClass('is-open');
+  expect(el).not.toHaveClass('is-opened');
   expect(Object.getOwnPropertyNames(localStorage).length).toBe(0);
   expect(Object.getOwnPropertyNames(drawer.state).length).toBe(0);
 });

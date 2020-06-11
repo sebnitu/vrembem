@@ -21,7 +21,7 @@ $_m: var.$prefix-modifier;
 }
 
 .#{$_b}drawer#{$_m}modal.is-opening,
-.#{$_b}drawer#{$_m}modal.is-open,
+.#{$_b}drawer#{$_m}modal.is-opened,
 .#{$_b}drawer#{$_m}modal.is-closing {
   width: 100%;
   height: 100%;
@@ -33,7 +33,7 @@ $_m: var.$prefix-modifier;
 }
 
 .#{$_b}drawer#{$_m}modal.is-opening,
-.#{$_b}drawer#{$_m}modal.is-open {
+.#{$_b}drawer#{$_m}modal.is-opened {
   background-color: rgba(var.$modal-background, var.$modal-background-alpha);
 }
 

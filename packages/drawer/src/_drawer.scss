@@ -53,7 +53,7 @@ $_e: var.$prefix-element;
 }
 
 .#{$_b}drawer.is-opening,
-.#{$_b}drawer.is-open,
+.#{$_b}drawer.is-opened,
 .#{$_b}drawer.is-closing {
   flex: 0 0 auto;
   width: var.$width;
@@ -70,14 +70,14 @@ $_e: var.$prefix-element;
 }
 
 .#{$_b}drawer.is-opening,
-.#{$_b}drawer.is-open {
+.#{$_b}drawer.is-opened {
   .#{$_b}drawer#{$_e}item {
     transform: translateY(0);
     opacity: 1;
   }
 }
 
-.#{$_b}drawer.is-open {
+.#{$_b}drawer.is-opened {
   .#{$_b}drawer#{$_e}item {
     opacity: 1;
   }

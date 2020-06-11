@@ -55,18 +55,18 @@ test('should restore state based on existing values in local storage', () => {
   document.body.innerHTML = markup;
   drawer = new Drawer();
   localStorage.setItem('DrawerState', JSON.stringify({
-    'drawer-one': 'is-open',
-    'drawer-two': 'is-open'
+    'drawer-one': 'is-opened',
+    'drawer-two': 'is-opened'
   }));
   const drawerOne = document.querySelector('[data-drawer=\'drawer-one\']');
   const drawerTwo = document.querySelector('[data-drawer=\'drawer-two\']');
 
-  expect(drawerOne).not.toHaveClass('is-open');
-  expect(drawerTwo).not.toHaveClass('is-open');
+  expect(drawerOne).not.toHaveClass('is-opened');
+  expect(drawerTwo).not.toHaveClass('is-opened');
 
   drawer.init();
-  expect(drawerOne).toHaveClass('is-open');
-  expect(drawerTwo).toHaveClass('is-open');
+  expect(drawerOne).toHaveClass('is-opened');
+  expect(drawerTwo).toHaveClass('is-opened');
 
   const state = JSON.parse(localStorage.getItem('DrawerState'));
   expect(state).toMatchObject(drawer.state);
@@ -85,28 +85,28 @@ test('should update local storage when toggle button changes state', () => {
   const drawerTwo = document.querySelector('[data-drawer=\'drawer-two\']');
 
   drawer.init();
-  expect(drawerOne).not.toHaveClass('is-open');
-  expect(drawerTwo).not.toHaveClass('is-open');
+  expect(drawerOne).not.toHaveClass('is-opened');
+  expect(drawerTwo).not.toHaveClass('is-opened');
 
   toggleOne.click();
   drawerOne.dispatchEvent(ev);
   toggleTwo.click();
   drawerTwo.dispatchEvent(ev);
-  expect(drawerOne).toHaveClass('is-open');
-  expect(drawerTwo).toHaveClass('is-open');
+  expect(drawerOne).toHaveClass('is-opened');
+  expect(drawerTwo).toHaveClass('is-opened');
 
   const state = JSON.parse(localStorage.getItem('DrawerState'));
   expect(state).toMatchObject(drawer.state);
-  expect(state['drawer-one']).toMatch('is-open');
-  expect(state['drawer-two']).toMatch('is-open');
+  expect(state['drawer-one']).toMatch('is-opened');
+  expect(state['drawer-two']).toMatch('is-opened');
 });
 
 test('should update local storage when close button changes state', () => {
   document.body.innerHTML = markup;
   drawer = new Drawer();
   localStorage.setItem('DrawerState', JSON.stringify({
-    'drawer-one': 'is-open',
-    'drawer-two': 'is-open'
+    'drawer-one': 'is-opened',
+    'drawer-two': 'is-opened'
   }));
   const closeOne = document.querySelector('.close-one');
   const closeTwo = document.querySelector('.close-two');
@@ -114,15 +114,15 @@ test('should update local storage when close button changes state', () => {
   const drawerTwo = document.querySelector('[data-drawer=\'drawer-two\']');
 
   drawer.init();
-  expect(drawerOne).toHaveClass('is-open');
-  expect(drawerTwo).toHaveClass('is-open');
+  expect(drawerOne).toHaveClass('is-opened');
+  expect(drawerTwo).toHaveClass('is-opened');
 
   closeOne.click();
   drawerOne.dispatchEvent(ev);
   closeTwo.click();
   drawerTwo.dispatchEvent(ev);
-  expect(drawerOne).not.toHaveClass('is-open');
-  expect(drawerTwo).not.toHaveClass('is-open');
+  expect(drawerOne).not.toHaveClass('is-opened');
+  expect(drawerTwo).not.toHaveClass('is-opened');
 
   const state = JSON.parse(localStorage.getItem('DrawerState'));
   expect(state).toMatchObject(drawer.state);

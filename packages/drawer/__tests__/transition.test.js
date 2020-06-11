@@ -50,7 +50,7 @@ test('should apply state classes on \'click\' and \'transition end\' events', ()
   expect(el).toHaveClass('is-opening');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('is-open');
+  expect(el).toHaveClass('is-opened');
 
   btnClose.click();
   expect(el).toHaveClass('is-closing');
@@ -58,7 +58,7 @@ test('should apply state classes on \'click\' and \'transition end\' events', ()
   el.dispatchEvent(ev);
   expect(el).toHaveClass('drawer');
   expect(el).not.toHaveClass('is-opening');
-  expect(el).not.toHaveClass('is-open');
+  expect(el).not.toHaveClass('is-opened');
   expect(el).not.toHaveClass('is-closing');
 });
 
@@ -80,7 +80,7 @@ test('should apply state classes with custom data attributes', () => {
   expect(el).toHaveClass('is-opening');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('is-open');
+  expect(el).toHaveClass('is-opened');
 
   btnClose.click();
   expect(el).toHaveClass('is-closing');
@@ -88,7 +88,7 @@ test('should apply state classes with custom data attributes', () => {
   el.dispatchEvent(ev);
   expect(el).toHaveClass('drawer');
   expect(el).not.toHaveClass('is-opening');
-  expect(el).not.toHaveClass('is-open');
+  expect(el).not.toHaveClass('is-opened');
   expect(el).not.toHaveClass('is-closing');
 });
 
@@ -96,7 +96,7 @@ test('should apply custom state classes', () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({
     autoInit: true,
-    stateOpen: 'on',
+    stateOpened: 'on',
     stateOpening: 'enable',
     stateClosing: 'disable',
     stateClosed: 'off'

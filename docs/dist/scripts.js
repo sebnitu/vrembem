@@ -195,7 +195,7 @@
       dataClose: 'drawer-close',
       dataBreakpoint: 'drawer-breakpoint',
       dataFocus: 'drawer-focus',
-      stateOpen: 'is-open',
+      stateOpened: 'is-opened',
       stateOpening: 'is-opening',
       stateClosing: 'is-closing',
       stateClosed: 'is-closed',
@@ -275,7 +275,7 @@
 
     var escape = function escape(event) {
       if (event.keyCode == 27) {
-        var target = document.querySelector(".".concat(api.settings.classModal, ".").concat(api.settings.stateOpen));
+        var target = document.querySelector(".".concat(api.settings.classModal, ".").concat(api.settings.stateOpened));
 
         if (target) {
           close(target);
@@ -287,7 +287,7 @@
       var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
 
       if (drawer) {
-        var isOpen = hasClass(drawer, api.settings.stateOpen);
+        var isOpen = hasClass(drawer, api.settings.stateOpened);
 
         if (!isOpen) {
           open(drawer, callback);
@@ -298,11 +298,11 @@
     };
 
     var open = function open(drawer, callback) {
-      if (!hasClass(drawer, api.settings.stateOpen)) {
+      if (!hasClass(drawer, api.settings.stateOpened)) {
         saveTarget(drawer);
         addClass(drawer, api.settings.stateOpening);
         drawer.addEventListener('transitionend', function _listener() {
-          addClass(drawer, api.settings.stateOpen);
+          addClass(drawer, api.settings.stateOpened);
           removeClass(drawer, api.settings.stateOpening);
           saveState(drawer);
           setFocus();
@@ -317,9 +317,9 @@
     };
 
     var close = function close(drawer, callback) {
-      if (hasClass(drawer, api.settings.stateOpen)) {
+      if (hasClass(drawer, api.settings.stateOpened)) {
         addClass(drawer, api.settings.stateClosing);
-        removeClass(drawer, api.settings.stateOpen);
+        removeClass(drawer, api.settings.stateOpened);
         drawer.addEventListener('transitionend', function _listener() {
           removeClass(drawer, api.settings.stateClosing);
           saveState(drawer);
@@ -374,7 +374,7 @@
         var drawers = !target ? document.querySelectorAll("[data-".concat(api.settings.dataDrawer, "]")) : target.forEach ? target : [target];
         drawers.forEach(function (el) {
           if (!hasClass(el, api.settings.classModal)) {
-            api.state[el.dataset[camelCase(api.settings.dataDrawer)]] = hasClass(el, api.settings.stateOpen) ? api.settings.stateOpen : api.settings.stateClosed;
+            api.state[el.dataset[camelCase(api.settings.dataDrawer)]] = hasClass(el, api.settings.stateOpened) ? api.settings.stateOpened : api.settings.stateClosed;
           }
         });
         localStorage.setItem(api.settings.saveKey, JSON.stringify(api.state));
@@ -389,10 +389,10 @@
             var item = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(key, "\"]"));
 
             if (item) {
-              if (api.state[key] == api.settings.stateOpen) {
-                addClass(item, api.settings.stateOpen);
+              if (api.state[key] == api.settings.stateOpened) {
+                addClass(item, api.settings.stateOpened);
               } else {
-                removeClass(item, api.settings.stateOpen);
+                removeClass(item, api.settings.stateOpened);
               }
             }
           });
@@ -444,7 +444,7 @@
 
     var switchToModal = function switchToModal(drawer) {
       addClass(drawer, api.settings.classModal);
-      removeClass(drawer, api.settings.stateOpen);
+      removeClass(drawer, api.settings.stateOpened);
       var customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
         bubbles: true,
         detail: {
@@ -459,8 +459,8 @@
       var drawerKey = drawer.dataset[camelCase(api.settings.dataDrawer)];
       var drawerState = api.state[drawerKey];
 
-      if (drawerState == api.settings.stateOpen) {
-        addClass(drawer, api.settings.stateOpen);
+      if (drawerState == api.settings.stateOpened) {
+        addClass(drawer, api.settings.stateOpened);
       }
 
       var customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
