@@ -301,6 +301,7 @@
       if (!hasClass(drawer, api.settings.stateOpened)) {
         saveTarget(drawer);
         addClass(drawer, api.settings.stateOpening);
+        removeClass(drawer, api.settings.stateClosed);
         drawer.addEventListener('transitionend', function _listener() {
           addClass(drawer, api.settings.stateOpened);
           removeClass(drawer, api.settings.stateOpening);
@@ -321,6 +322,7 @@
         addClass(drawer, api.settings.stateClosing);
         removeClass(drawer, api.settings.stateOpened);
         drawer.addEventListener('transitionend', function _listener() {
+          addClass(drawer, api.settings.stateClosed);
           removeClass(drawer, api.settings.stateClosing);
           saveState(drawer);
           returnFocus();
