@@ -10,12 +10,12 @@ $width: 38em !default;
 $width-sm: 18em !default;
 $width-lg: 56em !default;
 $travel: 5em !default;
-$background: core.$night !default;
-$background-alpha: 0.8 !default;
 $transition-duration: core.$transition-duration !default;
 $transition-timing-function: core.$transition-timing-function !default;
 
-$dialog-box-shadow: core.$box-shadow-24dp !default;
+$background: core.$night !default;
+$background-alpha: 0.8 !default;
+$box-shadow: core.$box-shadow-24dp !default;
 
 $aside-width: 16em !default;
 $aside-max-width: 90% !default;

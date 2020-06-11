@@ -23,7 +23,7 @@ $_e: var.$prefix-element;
   width: var.$width;
   max-width: 100%;
   transform: translateY(-(var.$travel));
-  box-shadow: var.$dialog-box-shadow;
+  box-shadow: var.$box-shadow;
   opacity: 0;
 }
 

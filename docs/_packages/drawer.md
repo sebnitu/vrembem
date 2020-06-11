@@ -317,7 +317,7 @@ By default, the state of a drawer is saved to local storage and applied persiste
 <div class="scroll-box">
   <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
     <thead>
-      <tr class="border_top_0">
+      <tr>
         <th>Variable</th>
         <th>Default</th>
         <th>Description</th>
@@ -439,7 +439,7 @@ By default, the state of a drawer is saved to local storage and applied persiste
 <div class="scroll-box">
   <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
     <thead>
-      <tr class="border_top_0">
+      <tr>
         <th>Key</th>
         <th>Default</th>
         <th>Description</th>
@@ -543,51 +543,31 @@ By default, the state of a drawer is saved to local storage and applied persiste
 <div class="scroll-box">
   <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
     <thead>
-      <tr class="border_top_0">
+      <tr>
         <th>Method</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td data-mobile-label="Method">
-          <code class="code text_nowrap">.init()</code>
-        </td>
-        <td data-mobile-label="Desc">
-          Initializes the drawer instance.
-        </td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">.init()</code></td>
+        <td data-mobile-label="Desc">Initializes the drawer instance.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Method">
-          <code class="code text_nowrap">.destroy()</code>
-        </td>
-        <td data-mobile-label="Desc">
-          Destroys and cleans up the drawer instantiation.
-        </td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">.destroy()</code></td>
+        <td data-mobile-label="Desc">Destroys and cleans up the drawer instantiation.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Method">
-          <code class="code text_nowrap">.toggle(drawerKey, callback)</code>
-        </td>
-        <td data-mobile-label="Desc">
-          Toggles a drawer provided the drawer key and optional callback.
-        </td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">.toggle(drawerKey, callback)</code></td>
+        <td data-mobile-label="Desc">Toggles a drawer provided the drawer key and optional callback.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Method">
-          <code class="code text_nowrap">.open(drawerKey, callback)</code>
-        </td>
-        <td data-mobile-label="Desc">
-          Opens a drawer provided the drawer key and optional callback.
-        </td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">.open(drawerKey, callback)</code></td>
+        <td data-mobile-label="Desc">Opens a drawer provided the drawer key and optional callback.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Method">
-          <code class="code text_nowrap">.close(drawerKey, callback)</code>
-        </td>
-        <td data-mobile-label="Desc">
-          Closes a drawer provided the drawer key and optional callback.
-        </td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">.close(drawerKey, callback)</code></td>
+        <td data-mobile-label="Desc">Closes a drawer provided the drawer key and optional callback.</td>
       </tr>
     </tbody>
   </table>
