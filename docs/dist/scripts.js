@@ -2436,7 +2436,7 @@
         setScrollPosition();
 
         if (api.settings.selectorActive) {
-          setActiveVisible();
+          showActive();
         }
 
         api.element.addEventListener('scroll', throttle, false);
@@ -2446,6 +2446,12 @@
     api.destroy = function () {
       if (api.element) {
         api.element.removeEventListener('scroll', throttle, false);
+      }
+    };
+
+    api.showActive = function () {
+      if (api.settings.selectorActive) {
+        showActive();
       }
     };
 
@@ -2475,7 +2481,7 @@
       }
     };
 
-    var setActiveVisible = function setActiveVisible() {
+    var showActive = function showActive() {
       var el = api.element.querySelector(api.settings.selectorActive);
 
       if (api.settings.selectorActiveParent) {
@@ -2523,11 +2529,15 @@
   new Version({
     autoInit: true
   });
-  new StickyScroll({
+  var stickyScroll = new StickyScroll({
     autoInit: true,
     selectorActive: '.is-active',
     selectorActiveParent: '.menu__item',
     selectorElementPadding: '.dialog__header'
+  });
+  var stickyButton = document.querySelector('[data-sticky-scroll-toggle]');
+  stickyButton.addEventListener('click', function () {
+    stickyScroll.showActive();
   });
 
 }());

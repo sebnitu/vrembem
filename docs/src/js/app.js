@@ -15,9 +15,15 @@ new Drawer({ autoInit: true });
 new Modal({ autoInit: true });
 
 new Version({ autoInit: true });
-new StickyScroll({
+const stickyScroll = new StickyScroll({
   autoInit: true,
   selectorActive: '.is-active',
   selectorActiveParent: '.menu__item',
   selectorElementPadding: '.dialog__header'
+});
+
+const stickyButton = document.querySelector('[data-sticky-scroll-toggle]');
+
+stickyButton.addEventListener('click', () => {
+  stickyScroll.showActive();
 });
