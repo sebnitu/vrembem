@@ -29,6 +29,7 @@ export const Drawer = (options) => {
     classModal: 'drawer_modal',
 
     // Feature toggles
+    customEventPrefix: 'drawer:',
     breakpoints: breakpoints,
     focus: true,
     saveState: true,
@@ -141,6 +142,10 @@ export const Drawer = (options) => {
         setFocus();
         typeof callback === 'function' && callback();
         this.removeEventListener('transitionend', _listener, true);
+        const customEvent = new CustomEvent(api.settings.customEventPrefix + 'opened', {
+          bubbles: true
+        });
+        drawer.dispatchEvent(customEvent);
       }, true);
     }
   };
@@ -155,6 +160,10 @@ export const Drawer = (options) => {
         returnFocus();
         typeof callback === 'function' && callback();
         this.removeEventListener('transitionend', _listener, true);
+        const customEvent = new CustomEvent(api.settings.customEventPrefix + 'closed', {
+          bubbles: true
+        });
+        drawer.dispatchEvent(customEvent);
       }, true);
     }
   };
@@ -284,6 +293,13 @@ export const Drawer = (options) => {
   const switchToModal = (drawer) => {
     addClass(drawer, api.settings.classModal);
     removeClass(drawer, api.settings.stateOpen);
+    const customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
+      bubbles: true,
+      detail: {
+        state: 'modal'
+      }
+    });
+    drawer.dispatchEvent(customEvent);
   };
 
   const switchToDrawer = (drawer) => {
@@ -293,6 +309,13 @@ export const Drawer = (options) => {
     if (drawerState == api.settings.stateOpen) {
       addClass(drawer, api.settings.stateOpen);
     }
+    const customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
+      bubbles: true,
+      detail: {
+        state: 'drawer'
+      }
+    });
+    drawer.dispatchEvent(customEvent);
   };
 
   if (api.settings.autoInit) api.init();

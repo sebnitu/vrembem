@@ -231,6 +231,7 @@ var Drawer = function Drawer(options) {
     stateClosing: 'is-closing',
     stateClosed: 'is-closed',
     classModal: 'drawer_modal',
+    customEventPrefix: 'drawer:',
     breakpoints: breakpoints,
     focus: true,
     saveState: true,
@@ -338,6 +339,10 @@ var Drawer = function Drawer(options) {
         setFocus();
         typeof callback === 'function' && callback();
         this.removeEventListener('transitionend', _listener, true);
+        var customEvent = new CustomEvent(api.settings.customEventPrefix + 'opened', {
+          bubbles: true
+        });
+        drawer.dispatchEvent(customEvent);
       }, true);
     }
   };
@@ -352,6 +357,10 @@ var Drawer = function Drawer(options) {
         returnFocus();
         typeof callback === 'function' && callback();
         this.removeEventListener('transitionend', _listener, true);
+        var customEvent = new CustomEvent(api.settings.customEventPrefix + 'closed', {
+          bubbles: true
+        });
+        drawer.dispatchEvent(customEvent);
       }, true);
     }
   };
@@ -467,6 +476,13 @@ var Drawer = function Drawer(options) {
   var switchToModal = function switchToModal(drawer) {
     addClass(drawer, api.settings.classModal);
     removeClass(drawer, api.settings.stateOpen);
+    var customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
+      bubbles: true,
+      detail: {
+        state: 'modal'
+      }
+    });
+    drawer.dispatchEvent(customEvent);
   };
 
   var switchToDrawer = function switchToDrawer(drawer) {
@@ -477,6 +493,14 @@ var Drawer = function Drawer(options) {
     if (drawerState == api.settings.stateOpen) {
       addClass(drawer, api.settings.stateOpen);
     }
+
+    var customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
+      bubbles: true,
+      detail: {
+        state: 'drawer'
+      }
+    });
+    drawer.dispatchEvent(customEvent);
   };
 
   if (api.settings.autoInit) api.init();

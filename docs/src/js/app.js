@@ -22,8 +22,15 @@ const stickyScroll = new StickyScroll({
   selectorElementPadding: '.dialog__header'
 });
 
-const stickyButton = document.querySelector('[data-sticky-scroll-toggle]');
-
-stickyButton.addEventListener('click', () => {
+document.addEventListener('drawer:opened', (event) => {
+  console.log(event);
   stickyScroll.showActive();
+});
+
+document.addEventListener('drawer:closed', (event) => {
+  console.log(event);
+});
+
+document.addEventListener('drawer:breakpoint', (event) => {
+  console.log(event);
 });
