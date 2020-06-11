@@ -42,3 +42,7 @@ document.addEventListener('modal:opened', (event) => {
 document.addEventListener('modal:closed', (event) => {
   console.log(event);
 });
+
+document.addEventListener('dismissible:dismissed', (event) => {
+  console.log(event);
+});

@@ -177,6 +177,7 @@ var Dismissible = function Dismissible(options) {
     dataTrigger: 'dismiss',
     dataTarget: 'dismissible',
     classHide: 'display_none',
+    customEventPrefix: 'dismissible:',
     method: 'hide'
   };
   api.settings = _objectSpread$1(_objectSpread$1({}, defaults), options);
@@ -204,8 +205,6 @@ var Dismissible = function Dismissible(options) {
         } else if (method == 'hide' || !method && defaultMethod == 'hide') {
           target.classList.add(api.settings.classHide);
         }
-
-        event.preventDefault();
       }
     }
   };

@@ -8,6 +8,7 @@ export const Dismissible = (options) => {
     dataTrigger: 'dismiss',
     dataTarget: 'dismissible',
     classHide: 'display_none',
+    customEventPrefix: 'dismissible:',
     method: 'hide'
   };
 
@@ -35,7 +36,6 @@ export const Dismissible = (options) => {
         } else if (method == 'hide' || (!method && defaultMethod == 'hide')) {
           target.classList.add(api.settings.classHide);
         }
-        event.preventDefault();
       }
     }
   };
