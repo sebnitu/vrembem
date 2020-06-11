@@ -58,8 +58,8 @@ test('should restore state based on existing values in local storage', () => {
     'drawer-one': 'is-opened',
     'drawer-two': 'is-opened'
   }));
-  const drawerOne = document.querySelector('[data-drawer=\'drawer-one\']');
-  const drawerTwo = document.querySelector('[data-drawer=\'drawer-two\']');
+  const drawerOne = document.querySelector('[data-drawer="drawer-one"]');
+  const drawerTwo = document.querySelector('[data-drawer="drawer-two"]');
 
   expect(drawerOne).not.toHaveClass('is-opened');
   expect(drawerTwo).not.toHaveClass('is-opened');
@@ -81,8 +81,8 @@ test('should update local storage when toggle button changes state', () => {
   }));
   const toggleOne = document.querySelector('.toggle-one');
   const toggleTwo = document.querySelector('.toggle-two');
-  const drawerOne = document.querySelector('[data-drawer=\'drawer-one\']');
-  const drawerTwo = document.querySelector('[data-drawer=\'drawer-two\']');
+  const drawerOne = document.querySelector('[data-drawer="drawer-one"]');
+  const drawerTwo = document.querySelector('[data-drawer="drawer-two"]');
 
   drawer.init();
   expect(drawerOne).not.toHaveClass('is-opened');
@@ -110,8 +110,8 @@ test('should update local storage when close button changes state', () => {
   }));
   const closeOne = document.querySelector('.close-one');
   const closeTwo = document.querySelector('.close-two');
-  const drawerOne = document.querySelector('[data-drawer=\'drawer-one\']');
-  const drawerTwo = document.querySelector('[data-drawer=\'drawer-two\']');
+  const drawerOne = document.querySelector('[data-drawer="drawer-one"]');
+  const drawerTwo = document.querySelector('[data-drawer="drawer-two"]');
 
   drawer.init();
   expect(drawerOne).toHaveClass('is-opened');

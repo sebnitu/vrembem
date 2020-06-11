@@ -9,7 +9,7 @@ const keyEv = new KeyboardEvent('keyup', {
 
 const markup = `
   <div class="drawer__wrapper">
-    <div class="drawer drawer_modal" data-drawer="drawer-default">
+    <div class="drawer drawer_modal is-closed" data-drawer="drawer-default">
       <div class="drawer__item">
         <button data-drawer-close data-drawer-focus>Close</button>
       </div>
