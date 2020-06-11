@@ -426,6 +426,14 @@ By default, the state of a drawer is saved to local storage and applied persiste
   </table>
 </div>
 
+{% include flag.html heading="JavaScript Events" %}
+
+<div class="type" markdown="1">
+* `drawer:opened` Emits when the drawer has opened.
+* `drawer:closed` Emits when the drawer has closed.
+* `drawer:breakpoint` Emits when the drawer has hit a breakpoint.
+</div>
+
 {% include flag.html heading="JavaScript Options" %}
 
 <div class="scroll-box">
@@ -447,27 +455,27 @@ By default, the state of a drawer is saved to local storage and applied persiste
       <!-- Data attributes -->
       <tr>
         <td data-mobile-label="Key"><code class="code text_nowrap">dataDrawer</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">"drawer"</code></td>
+        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'drawer'</code></td>
         <td data-mobile-label="Desc">Data attribute for a drawer</td>
       </tr>
       <tr>
         <td data-mobile-label="Key"><code class="code text_nowrap">dataToggle</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">"drawer-toggle"</code></td>
+        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'drawer-toggle'</code></td>
         <td data-mobile-label="Desc">Data attribute for a drawer toggle trigger</td>
       </tr>
       <tr>
         <td data-mobile-label="Key"><code class="code text_nowrap">dataClose</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">"drawer-close"</code></td>
+        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'drawer-close'</code></td>
         <td data-mobile-label="Desc">Data attribute for a drawer close trigger</td>
       </tr>
       <tr>
         <td data-mobile-label="Key"><code class="code text_nowrap">dataBreakpoint</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">"drawer-breakpoint"</code></td>
+        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'drawer-breakpoint'</code></td>
         <td data-mobile-label="Desc">Data attribute for setting a drawer's breakpoint</td>
       </tr>
       <tr>
         <td data-mobile-label="Key"><code class="code text_nowrap">dataFocus</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">"drawer-focus"</code></td>
+        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'drawer-focus'</code></td>
         <td data-mobile-label="Desc">Data attribute for setting a drawer's focus element</td>
       </tr>
     </tbody>
@@ -475,33 +483,38 @@ By default, the state of a drawer is saved to local storage and applied persiste
     <!-- State classes -->
     <tr>
       <td data-mobile-label="Key"><code class="code text_nowrap">stateOpen</code></td>
-      <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">"is-open"</code></td>
+      <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'is-open'</code></td>
       <td data-mobile-label="Desc">Class used for open state</td>
     </tr>
     <tr>
       <td data-mobile-label="Key"><code class="code text_nowrap">stateOpening</code></td>
-      <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">"is-opening"</code></td>
+      <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'is-opening'</code></td>
       <td data-mobile-label="Desc">Class used for transitioning to open state</td>
     </tr>
     <tr>
       <td data-mobile-label="Key"><code class="code text_nowrap">stateClosing</code></td>
-      <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">"is-closing"</code></td>
+      <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'is-closing'</code></td>
       <td data-mobile-label="Desc">Class used for transitioning to closed state</td>
     </tr>
     <tr>
       <td data-mobile-label="Key"><code class="code text_nowrap">stateClosed</code></td>
-      <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">"is-closed"</code></td>
+      <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'is-closed'</code></td>
       <td data-mobile-label="Desc">Class used for closed state (is ommitted in application)</td>
     </tr>
 
     <!-- Classes -->
     <tr>
       <td data-mobile-label="Key"><code class="code text_nowrap">classModal</code></td>
-      <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">"drawer_modal"</code></td>
+      <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'drawer_modal'</code></td>
       <td data-mobile-label="Desc">Class used for toggling the drawer modal state</td>
     </tr>
 
     <!-- Feature toggles -->
+    <tr>
+      <td data-mobile-label="Key"><code class="code text_nowrap">customEventPrefix</code></td>
+      <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'drawer:'</code></td>
+      <td data-mobile-label="Desc">An object with key/value pairs defining a breakpoints set</td>
+    </tr>
     <tr>
       <td data-mobile-label="Key"><code class="code text_nowrap">breakpoints</code></td>
       <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">core.breakpoints</code></td>
