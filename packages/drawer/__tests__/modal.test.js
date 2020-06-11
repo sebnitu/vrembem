@@ -43,8 +43,8 @@ test('should close when root modal (screen) is clicked', () => {
   expect(el).toHaveClass('is-closing');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('drawer drawer_modal');
-  expect(el.classList.length).toBe(2);
+  expect(el).toHaveClass('drawer drawer_modal is-closed');
+  expect(el.classList.length).toBe(3);
 });
 
 test('should close when the escape key is pressed', () => {
@@ -63,8 +63,8 @@ test('should close when the escape key is pressed', () => {
   expect(el).toHaveClass('drawer is-closing');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('drawer drawer_modal');
-  expect(el.classList.length).toBe(2);
+  expect(el).toHaveClass('drawer drawer_modal is-closed');
+  expect(el.classList.length).toBe(3);
 });
 
 test('should not close when missing modal modifier and escape key is pressed', () => {
