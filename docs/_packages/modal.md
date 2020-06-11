@@ -209,8 +209,8 @@ Required modals can not be closed without an explicit action. That means clickin
 
     <!-- State classes -->
     <tr>
-      <td><code class="code text_nowrap">stateOpen</code></td>
-      <td><code class="code text_nowrap">"is-open"</code></td>
+      <td><code class="code text_nowrap">stateOpened</code></td>
+      <td><code class="code text_nowrap">"is-opened"</code></td>
       <td>Class used for open state</td>
     </tr>
     <tr>
