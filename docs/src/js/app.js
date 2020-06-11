@@ -22,27 +22,6 @@ const stickyScroll = new StickyScroll({
   selectorElementPadding: '.dialog__header'
 });
 
-document.addEventListener('drawer:opened', (event) => {
-  console.log(event);
+document.addEventListener('drawer:opened', () => {
   stickyScroll.showActive();
-});
-
-document.addEventListener('drawer:closed', (event) => {
-  console.log(event);
-});
-
-document.addEventListener('drawer:breakpoint', (event) => {
-  console.log(event);
-});
-
-document.addEventListener('modal:opened', (event) => {
-  console.log(event);
-});
-
-document.addEventListener('modal:closed', (event) => {
-  console.log(event);
-});
-
-document.addEventListener('dismissible:dismissed', (event) => {
-  console.log(event);
 });

@@ -2572,22 +2572,6 @@ var stickyScroll = new StickyScroll({
   selectorActiveParent: '.menu__item',
   selectorElementPadding: '.dialog__header'
 });
-document.addEventListener('drawer:opened', function (event) {
-  console.log(event);
+document.addEventListener('drawer:opened', function () {
   stickyScroll.showActive();
-});
-document.addEventListener('drawer:closed', function (event) {
-  console.log(event);
-});
-document.addEventListener('drawer:breakpoint', function (event) {
-  console.log(event);
-});
-document.addEventListener('modal:opened', function (event) {
-  console.log(event);
-});
-document.addEventListener('modal:closed', function (event) {
-  console.log(event);
-});
-document.addEventListener('dismissible:dismissed', function (event) {
-  console.log(event);
 });
