@@ -2350,6 +2350,8 @@ input::-moz-placeholder {
   font-family: blinkmacsystemfont, -apple-system, system-ui, "Segoe UI", "Roboto", "Helvetica Neue", arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
+  -moz-appearance: none;
+  -webkit-appearance: none;
   appearance: none;
 }
 .input:hover {
@@ -2431,8 +2433,6 @@ input::-moz-placeholder {
   background-repeat: no-repeat;
   background-position: 100% center;
   cursor: pointer;
-  -webkit-appearance: none;
-  -moz-appearance: none;
 }
 
 .input_type_textarea {
