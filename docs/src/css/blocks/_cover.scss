@@ -85,7 +85,7 @@
 
 .cover__header,
 .cover__content {
-  padding: 0.5em;
+  padding: 1em;
   background: core.$shade;
 }
 
@@ -99,13 +99,6 @@
 .cover__content {
   position: relative;
   z-index: 1;
-}
-
-@include core.media-min('lg') {
-  .cover__header,
-  .cover__content {
-    padding: 1em;
-  }
 }
 
 /**

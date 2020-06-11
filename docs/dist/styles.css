@@ -6106,7 +6106,7 @@ input::-moz-placeholder {
  */
 .cover__header,
 .cover__content {
-  padding: 0.5em;
+  padding: 1em;
   background: #f5f5f5;
 }
 
@@ -6122,12 +6122,6 @@ input::-moz-placeholder {
   z-index: 1;
 }
 
-@media (min-width: 990px) {
-  .cover__header,
-.cover__content {
-    padding: 1em;
-  }
-}
 /**
  * Title, description and version
  */
