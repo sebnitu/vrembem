@@ -6440,7 +6440,7 @@ input::-moz-placeholder {
 }
 .menu_drawer .menu__link {
   justify-content: space-between;
-  margin-right: -1rem;
+  margin-right: -1em;
   padding: 0.75em 2em 0.75em 1em;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
@@ -6460,6 +6460,12 @@ input::-moz-placeholder {
 .menu_drawer .menu__link:hover .menu__icon,
 .menu_drawer .menu__link.is-active .menu__icon {
   color: #00bcd4;
+}
+
+.cover__content .menu_drawer .menu__link {
+  margin-right: 0;
+  padding-right: 1em;
+  border-radius: 4px;
 }
 
 .page {

@@ -7,7 +7,7 @@
 
   .menu__link {
     justify-content: space-between;
-    margin-right: -1rem;
+    margin-right: -1em;
     padding: 0.75em 2em 0.75em 1em;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
@@ -34,4 +34,10 @@
       color: core.$primary;
     }
   }
+}
+
+.cover__content .menu_drawer .menu__link {
+  margin-right: 0;
+  padding-right: 1em;
+  border-radius: core.$border-radius;
 }
