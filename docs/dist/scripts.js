@@ -496,6 +496,7 @@
       stateOpening: 'is-opening',
       stateClosing: 'is-closing',
       stateClosed: 'is-closed',
+      customEventPrefix: 'modal:',
       focus: true
     };
     api.settings = _objectSpread$3(_objectSpread$3({}, defaults), options);
@@ -569,6 +570,10 @@
           setFocus();
           typeof callback === 'function' && callback();
           this.removeEventListener('transitionend', _listener, true);
+          var customEvent = new CustomEvent(api.settings.customEventPrefix + 'opened', {
+            bubbles: true
+          });
+          target.dispatchEvent(customEvent);
         }, true);
       }
     };
@@ -587,6 +592,10 @@
           if (focus) returnFocus();
           typeof callback === 'function' && callback();
           this.removeEventListener('transitionend', _listener, true);
+          var customEvent = new CustomEvent(api.settings.customEventPrefix + 'closed', {
+            bubbles: true
+          });
+          target.dispatchEvent(customEvent);
         }, true);
       }
     };
@@ -2573,6 +2582,12 @@
     console.log(event);
   });
   document.addEventListener('drawer:breakpoint', function (event) {
+    console.log(event);
+  });
+  document.addEventListener('modal:opened', function (event) {
+    console.log(event);
+  });
+  document.addEventListener('modal:closed', function (event) {
     console.log(event);
   });
 

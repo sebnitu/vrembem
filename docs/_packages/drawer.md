@@ -532,7 +532,7 @@ By default, the state of a drawer is saved to local storage and applied persiste
     </tr>
     <tr>
       <td data-mobile-label="Key"><code class="code text_nowrap">saveKey</code></td>
-      <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">"DrawerState"</code></td>
+      <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'DrawerState'</code></td>
       <td data-mobile-label="Desc">Defines the localStorage key where drawer states are saved.</td>
     </tr>
   </table>

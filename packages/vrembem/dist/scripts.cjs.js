@@ -527,6 +527,7 @@ var Modal = function Modal(options) {
     stateOpening: 'is-opening',
     stateClosing: 'is-closing',
     stateClosed: 'is-closed',
+    customEventPrefix: 'modal:',
     focus: true
   };
   api.settings = _objectSpread$3(_objectSpread$3({}, defaults), options);
@@ -600,6 +601,10 @@ var Modal = function Modal(options) {
         setFocus();
         typeof callback === 'function' && callback();
         this.removeEventListener('transitionend', _listener, true);
+        var customEvent = new CustomEvent(api.settings.customEventPrefix + 'opened', {
+          bubbles: true
+        });
+        target.dispatchEvent(customEvent);
       }, true);
     }
   };
@@ -618,6 +623,10 @@ var Modal = function Modal(options) {
         if (focus) returnFocus();
         typeof callback === 'function' && callback();
         this.removeEventListener('transitionend', _listener, true);
+        var customEvent = new CustomEvent(api.settings.customEventPrefix + 'closed', {
+          bubbles: true
+        });
+        target.dispatchEvent(customEvent);
       }, true);
     }
   };

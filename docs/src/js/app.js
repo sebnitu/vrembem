@@ -34,3 +34,11 @@ document.addEventListener('drawer:closed', (event) => {
 document.addEventListener('drawer:breakpoint', (event) => {
   console.log(event);
 });
+
+document.addEventListener('modal:opened', (event) => {
+  console.log(event);
+});
+
+document.addEventListener('modal:closed', (event) => {
+  console.log(event);
+});
