@@ -18,7 +18,8 @@
       "PR: feat": ":tada: New Feature",
       "PR: fix": ":bug: Bug Fix",
       "PR: improve": ":balloon: Improved Feature",
-      "PR: internal": ":house: Internal"
+      "PR: internal": ":house: Internal",
+      "PR: test": ":white_check_mark: Testing"
     }
   },
   "packages": [

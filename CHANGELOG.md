@@ -2,13 +2,14 @@
 
 #### Tags
 
-- :fire: Breaking Changes
-- :bug: Bug Fix
-- :hammer: Chore
-- :books: Documentation
-- :balloon: Improved Feature
-- :house: Internal
-- :tada: New Feature
+- :fire: `breaking:` Breaking Changes
+- :hammer: `chore:` Chore
+- :books: `docs:` Documentation
+- :tada: `feat:` New Feature
+- :bug: `fix:` Bug Fix
+- :balloon: `improve:` Improved Feature
+- :house: `internal:` Internal
+- :white_check_mark: `test:` Testing
 
 <!-- ADD-NEW-CHANGELOG-HERE -->
 
