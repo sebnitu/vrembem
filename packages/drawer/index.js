@@ -294,6 +294,7 @@ export const Drawer = (options) => {
 
   const switchToModal = (drawer) => {
     addClass(drawer, api.settings.classModal);
+    addClass(drawer, api.settings.stateClosed);
     removeClass(drawer, api.settings.stateOpened);
     const customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
       bubbles: true,
@@ -310,6 +311,7 @@ export const Drawer = (options) => {
     const drawerState = api.state[drawerKey];
     if (drawerState == api.settings.stateOpened) {
       addClass(drawer, api.settings.stateOpened);
+      removeClass(drawer, api.settings.stateClosed);
     }
     const customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
       bubbles: true,

@@ -476,6 +476,7 @@
 
     var switchToModal = function switchToModal(drawer) {
       addClass(drawer, api.settings.classModal);
+      addClass(drawer, api.settings.stateClosed);
       removeClass(drawer, api.settings.stateOpened);
       var customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
         bubbles: true,
@@ -493,6 +494,7 @@
 
       if (drawerState == api.settings.stateOpened) {
         addClass(drawer, api.settings.stateOpened);
+        removeClass(drawer, api.settings.stateClosed);
       }
 
       var customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
