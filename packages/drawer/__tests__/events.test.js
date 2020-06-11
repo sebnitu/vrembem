@@ -85,7 +85,6 @@ test('should emit custom event when drawer has closed', () => {
 
 test('should emit custom event with custom data when drawer hits a breakpoint', () => {
   document.body.innerHTML = markup;
-
   drawer = new Drawer();
   const el = document.querySelector('[data-drawer="drawer-one"]');
   let eventFired = false;
