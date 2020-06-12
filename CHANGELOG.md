@@ -11,7 +11,10 @@
 - :house: `internal:` Internal
 - :white_check_mark: `test:` Testing
 
-<!-- Commit template:  -->
+<!--
+Commit template:
+chore: add v1.6.0 to CHANGELOG.md
+-->
 <!-- ADD-NEW-CHANGELOG-HERE -->
 
 ## v1.6.0 (2020-06-12)
