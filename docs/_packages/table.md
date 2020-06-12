@@ -2,17 +2,16 @@
 layout: article
 title: Table
 description: "A table component for displaying HTML tables."
+package: "@vrembem/table"
 category: simple
 usage:
-  npm: "table"
-  scss: "table"
+  npm: true
+  scss: true
 ---
 
 ## table
 
-<div class="type" markdown="1">
 For basic table styles, only the `table` component class is required. Use [proper table markup](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table) and styles should apply as expected.
-</div>
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="scroll-box">
@@ -43,7 +42,6 @@ For basic table styles, only the `table` component class is required. Use [prope
 ```
 {% include demo_close.html %}
 
-<div class="type" markdown="1">
 > For simple responsive table styles, wrap your tables in the `scroll-box` base component.
 >
 > ```html
@@ -51,7 +49,6 @@ For basic table styles, only the `table` component class is required. Use [prope
 >   <table class="table">...</table>
 > </div>
 > ```
-</div>
 
 ## table_style_[key]
 
@@ -109,9 +106,7 @@ For basic table styles, only the `table` component class is required. Use [prope
 
 ## table_responsive_[key]
 
-<div class="type" markdown="1">
 When `scroll-box` isn't mobile friendly enough, `table_responsive_[key]` is available to turn tables into a more readable format on smaller devices. Mobile labels are set using the `data-mobile-lable` attribute.
-</div>
 
 {% include demo_open.html class_grid="grid_break" class_parent="spacing" %}
 <div class="scroll-box">
@@ -162,7 +157,6 @@ When `scroll-box` isn't mobile friendly enough, `table_responsive_[key]` is avai
 ```
 {% include demo_close.html %}
 
-<div class="type" markdown="1">
 > Available modifier keys default to `core.$breakpoints` map but can be overridden by setting component variable `$breakpoints`:
 >
 > ```scss
@@ -174,7 +168,6 @@ When `scroll-box` isn't mobile friendly enough, `table_responsive_[key]` is avai
 >   "xl": 1380px
 > ) !default;
 > ```
-</div>
 
 ## table_size_[key]
 

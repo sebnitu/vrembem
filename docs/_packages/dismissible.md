@@ -2,20 +2,19 @@
 layout: article
 title: Dismissible
 description: "A component for removing an element from the DOM or hiding it with a CSS class."
+package: "@vrembem/dismissible"
 category: simple
 usage:
-  npm: "dismissible"
-  js: "dismissible"
+  npm: true
+  js: true
 ---
 
 ## dismissible
 
-<div class="type" markdown="1">
 Dismissible uses two data attributes to utilize it's functionality. The first is a trigger, created using the `data-dismiss` attribute on a button or anchor element. The second is a parent element of the trigger created using `data-dismissible`. You can optionally pass a dismiss method to either hide an element using a class or remove it from the DOM.
 
 * `data-dismissible="[method]"`
 * `data-dismiss`
-</div>
 
 {% include demo_open.html %}
 <div class="padding background_shade radius" data-dismissible>

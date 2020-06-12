@@ -2,10 +2,11 @@
 layout: article
 title: "Level"
 description: "A simple flexbox based layout component."
+package: "@vrembem/level"
 category: layout
 usage:
-  npm: "level"
-  scss: "level"
+  npm: true
+  scss: true
 ---
 
 ## level

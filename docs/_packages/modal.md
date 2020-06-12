@@ -2,11 +2,12 @@
 layout: article
 title: Modal
 description: "A component for changing the mode of a page to complete a critical task. This is usually used in conjunction with the dialog component to make modal dialogs."
+package: "@vrembem/modal"
 category: compound
 usage:
-  npm: "modal"
-  scss: "modal"
-  js: "modal"
+  npm: true
+  scss: true
+  js: true
 ---
 
 ## modal
@@ -588,7 +589,7 @@ Required modals can not be closed without an explicit action. That means clickin
   <div class="modal" data-modal="modal-required" data-modal-required tabindex="-1">
     <div class="modal__dialog dialog">
       <div class="dialog__body spacing">
-        <h3 class="dialog__title">Required modal</h3>
+        <h2 class="dialog__title">Required modal</h2>
         <p>Required modals can not be closed without an explicit action. That means clicking on the background or pressing the escape key to close is disabled.</p>
         <div class="flex flex_justify_end">
           <div class="button-group">

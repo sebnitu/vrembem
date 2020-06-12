@@ -2,10 +2,11 @@
 layout: article
 title: Base
 description: "Includes useful default styles and base components for common HTML elements."
+package: "@vrembem/base"
 category: simple
 usage:
-  npm: "base"
-  scss: "base"
+  npm: true
+  scss: true
 ---
 
 ## Heading
@@ -97,9 +98,7 @@ usage:
 
 ## Separator
 
-<div class="type" markdown="1">
 Typically used on an `<hr>` HTML element representing a thematic break between paragraph-level elements.
-</div>
 
 {% include demo_open.html %}
 <div class="spacing padding">
@@ -186,9 +185,7 @@ print "a = #{a}";</code></pre>
 
 ## type
 
-<div class="type" markdown="1">
-The `type` component is a quick way to apply all base styles to components directy based on their respective HTML elements. Base component modifiers will override a parent `type` component when explicitly set. Other components will run into style conflicts unless written with `type` inheritance in mind.
-</div>
+The `type` component is a quick way to apply all base styles to components directy based on their respective HTML elements. Base component modifiers will override a parent `type` component when explicitly set.
 
 {% include demo_open.html class_parent="spacing" %}
 <div class="type">

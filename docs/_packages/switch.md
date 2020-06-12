@@ -2,10 +2,11 @@
 layout: article
 title: "Switch"
 description: "Switches are a binary form element used to toggle between two options."
+package: "@vrembem/switch"
 category: simple
 usage:
-  npm: "switch"
-  scss: "switch"
+  npm: true
+  scss: true
 ---
 
 ## switch

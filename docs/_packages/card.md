@@ -2,21 +2,20 @@
 layout: article
 title: Card
 description: "The cards component provides a flexible and extensive content container with multiple variants and options."
+package: "@vrembem/card"
 category: compound
 usage:
-  npm: "card"
-  scss: "card"
+  npm: true
+  scss: true
 ---
 
 ## card
 
-<div class="type" markdown="1">
 The base card component comes with a number of elements for card composition. The three most basic being:
 
 * `card__body`
 * `card__image`
 * `card__title`
-</div>
 
 {% include demo_open.html %}
 <div class="card">
@@ -43,12 +42,10 @@ The base card component comes with a number of elements for card composition. Th
 
 ## card__header + card__footer
 
-<div class="type" markdown="1">
 These are used for when you need separated card headers and footers.
 
 * `card__header`
 * `card__footer`
-</div>
 
 {% include demo_open.html %}
 <div class="card">
@@ -80,12 +77,10 @@ These are used for when you need separated card headers and footers.
 
 ## card__screen + card__background
 
-<div class="type" markdown="1">
 Card screens and backgrounds are displayed behind the other card elements. These are typically paired with `.card_invert` which switches text colors to better suite a dark background.
 
 * `card__screen`
 * `card__background`
-</div>
 
 {% include demo_open.html %}
 <div class="card card_invert">

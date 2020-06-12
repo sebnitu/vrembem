@@ -2,11 +2,12 @@
 layout: article
 title: Checkbox
 description: "Checkboxes allow the user to select multiple options from a set."
+package: "@vrembem/checkbox"
 category: simple
 usage:
-  npm: "checkbox"
-  scss: "checkbox"
-  js: "checkbox"
+  npm: true
+  scss: true
+  js: true
 ---
 
 ## checkbox
@@ -32,12 +33,10 @@ usage:
 For indeterminate checkboxes, apply the `aria-checked="mixed"` attribute and init the checkbox component script.
 </div>
 
-<div class="type" markdown="1">
 ```js
 import { Checkbox } from "@vrembem/checkbox"
 new Checkbox({ autoInit: true })
 ```
-</div>
 
 ## checkbox + label
 

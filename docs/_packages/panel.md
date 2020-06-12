@@ -2,10 +2,11 @@
 layout: article
 title: Panel
 description: "Panels are a compositional container component that allows you to wrap and theme groups of content."
+package: "@vrembem/panel"
 category: layout
 usage:
-  npm: "panel"
-  scss: "panel"
+  npm: true
+  scss: true
 ---
 
 ## panel

@@ -2,22 +2,21 @@
 layout: article
 title: Drawer
 description: "A container component that slides in from the left or right. Typically containing menus, search or other content."
+package: "@vrembem/drawer"
 category: compound
 usage:
-  npm: "drawer"
-  scss: "drawer"
-  js: "drawer"
+  npm: true
+  scss: true
+  js: true
 ---
 
 ## drawer
 
-<div class="type" markdown="1">
 Drawers are composed using classes for styling and data attributes for JavaScript functionality. To link a drawer toggle to a drawer, use a unique identifier as the values for both of their respective data attributes. Close buttons are left value-less and should be placed inside the drawer element they're meant to close.
 
 * `data-drawer="[unique-id]"`
 * `data-drawer-toggle="[unique-id]"`
 * `data-drawer-close`
-</div>
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="drawer__wrapper border radius">
@@ -52,9 +51,7 @@ Drawers are composed using classes for styling and data attributes for JavaScrip
 ```
 {% include demo_close.html %}
 
-<div class="type" markdown="1">
 The [dialog component](/packages/dialog) is a great fit for composing a drawer’s content.
-</div>
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="drawer__wrapper border radius">
@@ -99,9 +96,7 @@ The [dialog component](/packages/dialog) is a great fit for composing a drawer�
 
 ## drawer_modal
 
-<div class="type" markdown="1">
 Convert a drawer into it’s modal state with the `drawer_modal` modifier class. Only one modal can be open at a time.
-</div>
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="drawer__wrapper border radius">
@@ -147,12 +142,10 @@ Convert a drawer into it’s modal state with the `drawer_modal` modifier class.
 
 ## drawer_pos_[value]
 
-<div class="type" markdown="1">
 Drawers can slide in from the left or right using the position modifiers:
 
 * `drawer_pos_left`
 * `drawer_pos_right`
-</div>
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="drawer__wrapper border radius">
@@ -202,15 +195,11 @@ Drawers can slide in from the left or right using the position modifiers:
 ```
 {% include demo_close.html %}
 
-<div class="type" markdown="1">
 > If a position modifier is not provided, the drawer will appear based on it's location in the DOM relative to the main content area and other drawers.
-</div>
 
 ## data-drawer-breakpoint
 
-<div class="type" markdown="1">
 In cases where you'd like a drawer to switch to a drawer modal on a specific breakpoint, use the `data-drawer-breakpoint` data attribute with either a breakpoint key or a specific pixel value.
-</div>
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="drawer__wrapper border radius">
@@ -255,9 +244,7 @@ In cases where you'd like a drawer to switch to a drawer modal on a specific bre
 
 ## data-drawer-focus
 
-<div class="type" markdown="1">
 If a drawer has the attribute `tabindex="-1"`, it will be given focus when it's opened. If focus on a specific element inside a drawer is prefered, give it the `data-drawer-focus` attribute. The focus in either case is returned to the trigger element once the drawer is closed. Focus handling can be disabled using the `{ focus: false }` setting.
-</div>
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="drawer__wrapper border radius">
@@ -308,9 +295,7 @@ If a drawer has the attribute `tabindex="-1"`, it will be given focus when it's 
 
 ## Drawer State
 
-<div class="type" markdown="1">
 By default, the state of a drawer is saved to local storage and applied persistently under the "DrawerState" local storage variable. Set `saveState: false` to disable save state. Use `saveKey: "[CUSTOM-KEY]"` to change the key that save state is stored under.
-</div>
 
 ## Sass variables
 
@@ -428,11 +413,9 @@ By default, the state of a drawer is saved to local storage and applied persiste
 
 ## JavaScript Events
 
-<div class="type" markdown="1">
 * `drawer:opened` Emits when the drawer has opened.
 * `drawer:closed` Emits when the drawer has closed.
 * `drawer:breakpoint` Emits when the drawer has hit a breakpoint.
-</div>
 
 ## JavaScript Options
 

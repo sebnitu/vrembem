@@ -2,10 +2,11 @@
 layout: article
 title: "Grid"
 description: "A flexbox based grid system component."
+package: "@vrembem/grid"
 category: layout
 usage:
-  npm: "grid"
-  scss: "grid"
+  npm: true
+  scss: true
 ---
 
 ## grid + grid__item
@@ -34,9 +35,7 @@ usage:
 
 ## grid__clear
 
-<div class="type" markdown="1">
 The clear element allows you to start a new row at any point in a column set.
-</div>
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="grid">
@@ -72,7 +71,6 @@ The clear element allows you to start a new row at any point in a column set.
 
 ## flex_justify_[value]
 
-<div class="type" markdown="1">
 Change the `justify-content` property of grid columns using the `flex_justify_[value]` utility. Best used along with the `grid_auto` modifier. Avaliable values are:
 
 * `flex_justify_start`
@@ -81,7 +79,6 @@ Change the `justify-content` property of grid columns using the `flex_justify_[v
 * `flex_justify_between`
 * `flex_justify_around`
 * `flex_justify_evenly`
-</div>
 
 {% include demo_open.html %}
 <div class="grid grid_auto flex_justify_start">
@@ -145,7 +142,6 @@ Change the `justify-content` property of grid columns using the `flex_justify_[v
 
 ## flex_align_[value]
 
-<div class="type" markdown="1">
 Adjust the `align-items` property of grid columns using the `flex_align_[value]` utility. Avaliable values are:
 
 * `flex_align_start`
@@ -153,7 +149,6 @@ Adjust the `align-items` property of grid columns using the `flex_align_[value]`
 * `flex_align_end`
 * `flex_align_stretch`
 * `flex_align_baseline`
-</div>
 
 {% include demo_open.html %}
 <div class="grid flex_align_start">
@@ -217,9 +212,7 @@ Adjust the `align-items` property of grid columns using the `flex_align_[value]`
 
 ## grid_auto
 
-<div class="type" markdown="1">
 Gives grid items a basis of auto so their content dictates their width.
-</div>
 
 {% include demo_open.html %}
 <div class="grid grid_auto">
@@ -251,9 +244,7 @@ Gives grid items a basis of auto so their content dictates their width.
 ```
 {% include demo_close.html %}
 
-<div class="type" markdown="1">
 Set an individual grid item to auto using `grid__item_auto` element modifier.
-</div>
 
 {% include demo_open.html %}
 <div class="grid">
@@ -279,9 +270,7 @@ Set an individual grid item to auto using `grid__item_auto` element modifier.
 
 ## grid_break_[breakpoint]
 
-<div class="type" markdown="1">
 Adds a breakpoint for when grid items should be stacked vertically. Also available is the `grid_break` modifier which stacks grid items under all conditions.
-</div>
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="grid grid_break_xs">
@@ -347,9 +336,7 @@ Adds a breakpoint for when grid items should be stacked vertically. Also availab
 
 ## grid_fill
 
-<div class="type" markdown="1">
 The fill modifier stretches grid item's contents to fill the height of it's container.
-</div>
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="grid grid_fill">
@@ -380,9 +367,7 @@ The fill modifier stretches grid item's contents to fill the height of it's cont
 ```
 {% include demo_close.html %}
 
-<div class="type" markdown="1">
 Set an individual grid item to fill using the `grid__item_fill` element modifier.
-</div>
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="grid">
@@ -412,9 +397,7 @@ Set an individual grid item to fill using the `grid__item_fill` element modifier
 
 ## grid_gap_[type]
 
-<div class="type" markdown="1">
 Modifiers that adjust the gutters between content tracks.
-</div>
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="grid grid_gap_none">

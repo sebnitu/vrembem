@@ -2,10 +2,11 @@
 layout: article
 title: Media
 description: "The media component is used for displaying groups of content with a corresponding media asset, such as an image, avatar or icon."
+package: "@vrembem/media"
 category: compound
 usage:
-  npm: "media"
-  scss: "media"
+  npm: true
+  scss: true
 ---
 
 ## media
@@ -41,9 +42,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-<div class="type" markdown="1">
 The default space is set using the spacing variable: `$spacing`:
-</div>
 
 <div class="demo">
 <div class="demo__code" markdown="1">
@@ -89,12 +88,8 @@ $spacing: 1.5rem !default;
 ```
 {% include demo_close.html %}
 
-<div class="type" markdown="1">
 The key is based on the spacing map: `$spacing-map`:
-</div>
 
-<div class="demo">
-<div class="demo__code" markdown="1">
 ```scss
 $spacing-map: (
   "0": 0,
@@ -105,8 +100,6 @@ $spacing-map: (
   "xl": 3rem
 ) !default;
 ```
-</div>
-</div>
 
 ## media_reverse
 
@@ -168,12 +161,8 @@ $spacing-map: (
 ```
 {% include demo_close.html %}
 
-<div class="type" markdown="1">
 Stack breakpoints key is based on the core breakpoints map: `$breakpoints`:
-</div>
 
-<div class="demo">
-<div class="demo__code" markdown="1">
 ```scss
 $breakpoints: (
   "xs": 480px,
@@ -183,5 +172,3 @@ $breakpoints: (
   "xl": 1380px
 ) !default;
 ```
-</div>
-</div>

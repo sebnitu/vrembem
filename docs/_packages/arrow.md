@@ -2,10 +2,11 @@
 layout: article
 title: Arrow
 description: "A directional triangle drawn with CSS."
+package: "@vrembem/arrow"
 category: simple
 usage:
-  npm: "arrow"
-  scss: "arrow"
+  npm: true
+  scss: true
 ---
 
 ## arrow

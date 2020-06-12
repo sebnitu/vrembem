@@ -2,10 +2,11 @@
 layout: article
 title: Notice
 description: "A component for highlighting messages to the user."
+package: "@vrembem/notice"
 category: compound
 usage:
-  npm: "notice"
-  scss: "notice"
+  npm: true
+  scss: true
 ---
 
 ## notice

@@ -198,12 +198,12 @@
     margin-bottom: var.$type-spacing;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  > h1,
+  > h2,
+  > h3,
+  > h4,
+  > h5,
+  > h6 {
     @include heading-base();
     margin-top: var.$type-spacing-lg;
 
@@ -212,58 +212,61 @@
     }
   }
 
-  h1 {
+  > h1 {
     @include heading(1);
   }
 
-  h2 {
+  > h2 {
     @include heading(2);
   }
 
-  h3 {
+  > h3 {
     @include heading(3);
   }
 
-  h4 {
+  > h4 {
     @include heading(4);
   }
 
-  h5 {
+  > h5 {
     @include heading(5);
   }
 
-  h6 {
+  > h6 {
     @include heading(6);
   }
 
-  a {
+  > a {
     @include link();
   }
 
-  hr {
+  > hr {
     @include separator();
   }
 
-  ul,
-  ol {
+  > ul,
+  > ol {
     @include list();
   }
 
-  blockquote {
+  > blockquote {
     @include blockquote();
   }
 
-  code {
+  > code,
+  > p code,
+  > ul code,
+  > ol code {
     @include code();
   }
 
-  pre {
+  > pre {
     @include pre();
   }
 
-  hr,
-  blockquote,
-  pre {
+  > hr,
+  > blockquote,
+  > pre {
     margin-top: var.$type-spacing-lg;
     margin-bottom: var.$type-spacing-lg;
 
@@ -289,28 +292,28 @@
   @if (lightness($color) < core.$lightness-threshold) {
     color: core.$color-invert;
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
+    > h1,
+    > h2,
+    > h3,
+    > h4,
+    > h5,
+    > h6 {
       color: var.$heading-color-invert;
     }
 
-    a {
+    > a {
       @include link-modifier("invert");
     }
 
-    hr {
+    > hr {
       background-color: core.$border-color-invert;
     }
 
-    blockquote {
+    > blockquote {
       @include blockquote-invert();
     }
 
-    code {
+    > code {
       color: var.$code-color-invert;
     }
   }

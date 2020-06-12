@@ -2,10 +2,11 @@
 layout: article
 title: Utility
 description: "The utility component provides a set of atomic classes that specialize in a single function."
+package: "@vrembem/utility"
 category: simple
 usage:
-  npm: "utility"
-  scss: "utility"
+  npm: true
+  scss: true
 ---
 
 ## background
@@ -301,9 +302,10 @@ usage:
 
 ## display
 
+Display utilities allow you to quickly toggle the display property on an element with an optional breakpoint conditional.
+
 <div class="spacing">
   <div class="type spacing">
-    <p>Display utilities allow you to quickly toggle the display property on an element with an optional breakpoint conditional.</p>
     <pre><code>.display_<span class="color_success">{property}</span>_<span class="color_danger">{breakpoint}</span></code></pre>
   </div>
   <div>

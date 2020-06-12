@@ -2,10 +2,11 @@
 layout: article
 title: Button
 description: "Buttons are a simple component that allow users to take actions."
+package: "@vrembem/button"
 category: simple
 usage:
-  npm: "button"
-  scss: "button"
+  npm: true
+  scss: true
 ---
 
 ## button
@@ -38,9 +39,7 @@ usage:
 
 ## button > [elements]
 
-<div class="type" markdown="1">
 Elements inside the button component receive appropriate spacing using the `> * + *` selector rule.
-</div>
 
 {% include demo_open.html %}
 <div class="level">

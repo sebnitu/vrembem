@@ -2,10 +2,11 @@
 layout: article
 title: Icon-action
 description: "A component for displaying simple action buttons using icons."
+package: "@vrembem/icon-action"
 category: simple
 usage:
-  npm: "icon-action"
-  scss: "icon-action"
+  npm: true
+  scss: true
 ---
 
 ## icon-action

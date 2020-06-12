@@ -1,7 +1,6 @@
 @use "vrembem";
 @use "blocks/article";
 @use "blocks/box";
-@use "blocks/content";
 @use "blocks/cover";
 @use "blocks/debug";
 @use "blocks/demo";
@@ -12,4 +11,5 @@
 @use "blocks/swatch";
 @use "blocks/swatch-group";
 @use "blocks/toolbar";
+@use "blocks/type";
 @use "blocks/version";

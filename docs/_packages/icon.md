@@ -2,10 +2,11 @@
 layout: article
 title: Icon
 description: "A component for displaying glyphs that convey meaning through iconography."
+package: "@vrembem/icon"
 category: simple
 usage:
-  npm: "icon"
-  scss: "icon"
+  npm: true
+  scss: true
 ---
 
 <div class="notice notice_state_info" data-dismissible>
@@ -16,9 +17,7 @@ usage:
 
 ## icon
 
-<div class="type" markdown="1">
 You can inject svg icons directly or use svg sprites. The only requirement is the `icon` component class.
-</div>
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="level">
@@ -43,9 +42,7 @@ You can inject svg icons directly or use svg sprites. The only requirement is th
 
 ## icon_style_[key]
 
-<div class="type" markdown="1">
 The default icon style is set using the `$icon-style` variable. You can also explicity style an icon using the style modifier.
-</div>
 
 {% include demo_open.html class_grid="grid_break" %}
 {% include icon.html icon="heart" class="icon_style_stroke" %}

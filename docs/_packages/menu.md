@@ -2,17 +2,16 @@
 layout: article
 title: Menu
 description: "Menus represent groups of links, actions or tools that a user can interact with."
+package: "@vrembem/menu"
 category: compound
 usage:
-  npm: "menu"
-  scss: "menu"
+  npm: true
+  scss: true
 ---
 
 ## menu
 
-<div class="type" markdown="1">
 The primary elements when composing the `menu` component are `menu__item`'s containing `menu__link`'s. Use the optional `menu__sep` in between `menu__item`'s to create separators.
-</div>
 
 {% include demo_open.html %}
 <div class="scroll-box">
@@ -45,9 +44,7 @@ The primary elements when composing the `menu` component are `menu__item`'s cont
 ```
 {% include demo_close.html %}
 
-<div class="type" markdown="1">
 For links that only contain an icon, you can use the `menu__link_icon` modifier to create a square link similar to the `button_icon` modifier.
-</div>
 
 {% include demo_open.html %}
 <div class="scroll-box">
@@ -93,9 +90,7 @@ For links that only contain an icon, you can use the `menu__link_icon` modifier 
 ```
 {% include demo_close.html %}
 
-<div class="type" markdown="1">
 Elements inside the `menu__link` and `menu__text` elements receive appropriate children spacing as long as text nodes are wrapped with `span` elements.
-</div>
 
 {% include demo_open.html %}
 <div class="scroll-box">
@@ -196,9 +191,7 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate c
 ```
 {% include demo_close.html %}
 
-<div class="type" markdown="1">
 To set a menu to full below a specific breakpoint, use the full breakpoint modifier: `menu_full_[key]`
-</div>
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="scroll-box">
@@ -250,9 +243,7 @@ To set a menu to full below a specific breakpoint, use the full breakpoint modif
 ```
 {% include demo_close.html %}
 
-<div class="type" markdown="1">
 To create a stacked menu below a specific breakpoint, use the stack breakpoint modifier: `menu_stack_[key]`
-</div>
 
 {% include demo_open.html class_grid="grid_break" %}
 <ul class="menu menu_stack_lg">
@@ -280,9 +271,7 @@ To create a stacked menu below a specific breakpoint, use the stack breakpoint m
 
 ## menu_theme_invert
 
-<div class="type" markdown="1">
 A theme for using menus on a dark background.
-</div>
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="padding background_night radius spacing">
@@ -335,9 +324,7 @@ A theme for using menus on a dark background.
 
 ## menu_theme_tabs
 
-<div class="type" markdown="1">
 A theme for creating tab styled menus.
-</div>
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="spacing">

@@ -1,0 +1,23 @@
+@use "@vrembem/core";
+
+.type_custom {
+  > *,
+  > hr,
+  > blockquote,
+  > pre {
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+
+  > h2 {
+    margin: 4em 0 2em;
+    margin-top: 4em;
+    padding: 0.25em 0;
+    border-top: 1px solid rgba(core.$black, 0.1);
+    font-size: core.$font-size;
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: core.$line-height;
+    text-transform: uppercase;
+  }
+}
