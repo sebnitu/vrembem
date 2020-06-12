@@ -25,7 +25,8 @@
     "directory": "packages/base"
   },
   "dependencies": {
-    "@vrembem/core": "^1.5.4"
+    "@vrembem/core": "^1.5.4",
+    "@vrembem/utility": "^1.5.4"
   },
   "publishConfig": {
     "access": "public"

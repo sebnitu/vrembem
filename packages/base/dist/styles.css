@@ -430,6 +430,12 @@ input::-moz-placeholder {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+.type > *:first-child {
+  margin-top: 0;
+}
+.type > *:last-child {
+  margin-bottom: 0;
+}
 .type > h1,
 .type > h2,
 .type > h3,
@@ -439,14 +445,6 @@ input::-moz-placeholder {
   color: inherit;
   font-weight: 600;
   line-height: 1.3;
-}
-.type > h1:first-child,
-.type > h2:first-child,
-.type > h3:first-child,
-.type > h4:first-child,
-.type > h5:first-child,
-.type > h6:first-child {
-  margin-top: 0;
 }
 .type > h1 {
   font-size: 2em;
@@ -498,30 +496,6 @@ input::-moz-placeholder {
     font-size: 1em;
   }
 }
-.type > a,
-.type > p a,
-.type > ul a,
-.type > ol a {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  color: #00bcd4;
-  text-decoration: none;
-}
-.type > a:hover,
-.type > p a:hover,
-.type > ul a:hover,
-.type > ol a:hover {
-  border-bottom: 1px solid currentColor;
-  color: #0097a7;
-}
-.type > a:focus,
-.type > p a:focus,
-.type > ul a:focus,
-.type > ol a:focus {
-  outline: currentColor dotted 1px;
-  outline-offset: 3px;
-  border-bottom: 1px solid currentColor;
-  color: #0097a7;
-}
 .type > hr {
   display: block;
   height: 0;
@@ -560,10 +534,26 @@ input::-moz-placeholder {
 .type > blockquote > * + * {
   margin-top: 1em;
 }
+.type > a,
+.type > * > a {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: #00bcd4;
+  text-decoration: none;
+}
+.type > a:hover,
+.type > * > a:hover {
+  border-bottom: 1px solid currentColor;
+  color: #0097a7;
+}
+.type > a:focus,
+.type > * > a:focus {
+  outline: currentColor dotted 1px;
+  outline-offset: 3px;
+  border-bottom: 1px solid currentColor;
+  color: #0097a7;
+}
 .type > code,
-.type > p code,
-.type > ul code,
-.type > ol code {
+.type > * > code {
   color: #e91e63;
   font-family: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 0.9em;
@@ -584,31 +574,29 @@ input::-moz-placeholder {
   color: inherit;
   font-size: 1em;
 }
-.type > *:first-child {
-  margin-top: 0;
-}
-.type > *:last-child {
-  margin-bottom: 0;
-}
 
 .type_invert {
   color: #fff;
 }
-.type_invert > a {
-  border-color: rgba(255, 255, 255, 0.5);
-  color: #fff;
-}
-.type_invert > a:hover, .type_invert > a:focus {
-  border-color: currentColor;
-  color: #fff;
-}
 .type_invert > hr {
-  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 .type_invert > blockquote {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
-.type_invert > code {
+.type_invert > a,
+.type_invert > * > a {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
+}
+.type_invert > a:hover, .type_invert > a:focus,
+.type_invert > * > a:hover,
+.type_invert > * > a:focus {
+  border-color: currentColor;
+  color: #fff;
+}
+.type_invert > code,
+.type_invert > * > code {
   color: #f06292;
 }
 

@@ -560,6 +560,8 @@ Display utilities allow you to quickly toggle the display property on an element
 
 ## spacing
 
+A utility for adding vertical spacing between an element's children.
+
 {% include demo_open.html class_grid="grid_break" class_parent="spacing" %}
 <div class="border padding spacing">
   <div class="box"></div>

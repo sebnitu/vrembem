@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/utility/src/mixins" as utility;
 @use "./variables" as var;
 
 @mixin heading-base() {
@@ -194,8 +195,7 @@
   line-height: var.$type-line-height;
 
   > * {
-    margin-top: var.$type-spacing;
-    margin-bottom: var.$type-spacing;
+    @include utility.spacing(var.$type-spacing);
   }
 
   > h1,
@@ -205,10 +205,6 @@
   > h5,
   > h6 {
     @include heading-base();
-
-    &:first-child {
-      margin-top: 0;
-    }
   }
 
   > h1 {
@@ -235,13 +231,6 @@
     @include heading(6);
   }
 
-  > a,
-  > p a,
-  > ul a,
-  > ol a {
-    @include link();
-  }
-
   > hr {
     @include separator();
   }
@@ -255,23 +244,18 @@
     @include blockquote();
   }
 
+  > a,
+  > * > a {
+    @include link();
+  }
+
   > code,
-  > p code,
-  > ul code,
-  > ol code {
+  > * > code {
     @include code();
   }
 
   > pre {
     @include pre();
-  }
-
-  > *:first-child {
-    margin-top: 0;
-  }
-
-  > *:last-child {
-    margin-bottom: 0;
   }
 }
 
@@ -288,19 +272,21 @@
       color: var.$heading-color-invert;
     }
 
-    > a {
-      @include link-modifier("invert");
-    }
-
     > hr {
-      background-color: core.$border-color-invert;
+      border-color: core.$border-color-invert;
     }
 
     > blockquote {
       @include blockquote-invert();
     }
 
-    > code {
+    > a,
+    > * > a {
+      @include link-modifier("invert");
+    }
+
+    > code,
+    > * > code {
       color: var.$code-color-invert;
     }
   }

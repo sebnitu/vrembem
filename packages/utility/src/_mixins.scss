@@ -1,0 +1,17 @@
+@use "@vrembem/core";
+
+@mixin spacing($spacing, $imp: null) {
+  @if ($imp) {
+    $imp: "!important";
+  }
+  margin-top: $spacing #{$imp};
+  margin-bottom: $spacing #{$imp};
+
+  &:first-child {
+    margin-top: 0 #{$imp};
+  }
+
+  &:last-child {
+    margin-bottom: 0 #{$imp};
+  }
+}

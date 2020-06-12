@@ -683,7 +683,7 @@
   margin: 1rem;
 }
 
-.margin_0 {
+.margin_none {
   margin: 0 !important;
 }
 
@@ -707,7 +707,7 @@
   margin: 2rem !important;
 }
 
-.margin_top_0 {
+.margin_top_none {
   margin-top: 0 !important;
 }
 
@@ -731,7 +731,7 @@
   margin-top: 2rem !important;
 }
 
-.margin_bottom_0 {
+.margin_bottom_none {
   margin-bottom: 0 !important;
 }
 
@@ -755,7 +755,7 @@
   margin-bottom: 2rem !important;
 }
 
-.margin_left_0 {
+.margin_left_none {
   margin-left: 0 !important;
 }
 
@@ -779,7 +779,7 @@
   margin-left: 2rem !important;
 }
 
-.margin_right_0 {
+.margin_right_none {
   margin-right: 0 !important;
 }
 
@@ -803,7 +803,7 @@
   margin-right: 2rem !important;
 }
 
-.margin_hori_0 {
+.margin_hori_none {
   margin-right: 0 !important;
   margin-left: 0 !important;
 }
@@ -833,7 +833,7 @@
   margin-left: 2rem !important;
 }
 
-.margin_vert_0 {
+.margin_vert_none {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
@@ -872,7 +872,7 @@
   padding: 1rem;
 }
 
-.padding_0 {
+.padding_none {
   padding: 0 !important;
 }
 
@@ -896,7 +896,7 @@
   padding: 2rem !important;
 }
 
-.padding_top_0 {
+.padding_top_none {
   padding-top: 0 !important;
 }
 
@@ -920,7 +920,7 @@
   padding-top: 2rem !important;
 }
 
-.padding_bottom_0 {
+.padding_bottom_none {
   padding-bottom: 0 !important;
 }
 
@@ -944,7 +944,7 @@
   padding-bottom: 2rem !important;
 }
 
-.padding_left_0 {
+.padding_left_none {
   padding-left: 0 !important;
 }
 
@@ -968,7 +968,7 @@
   padding-left: 2rem !important;
 }
 
-.padding_right_0 {
+.padding_right_none {
   padding-right: 0 !important;
 }
 
@@ -992,7 +992,7 @@
   padding-right: 2rem !important;
 }
 
-.padding_hori_0 {
+.padding_hori_none {
   padding-right: 0 !important;
   padding-left: 0 !important;
 }
@@ -1022,7 +1022,7 @@
   padding-left: 2rem !important;
 }
 
-.padding_vert_0 {
+.padding_vert_none {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
 }
@@ -1063,14 +1063,14 @@
   margin-bottom: 0 !important;
 }
 
-.spacing-0 > * {
+.spacing-none > * {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
-.spacing-0 > *:first-child {
+.spacing-none > *:first-child {
   margin-top: 0 !important;
 }
-.spacing-0 > *:last-child {
+.spacing-none > *:last-child {
   margin-bottom: 0 !important;
 }
 
