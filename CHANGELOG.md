@@ -11,7 +11,22 @@
 - :house: `internal:` Internal
 - :white_check_mark: `test:` Testing
 
+<!-- Commit template:  -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+## v1.6.0 (2020-06-12)
+
+#### :fire: Breaking Changes
+* `checkbox`, `dismissible`, `drawer`, `modal`, `vrembem`
+  * [#196](https://github.com/sebnitu/vrembem/pull/196) Add drawer and modal custom events ([@sebnitu](https://github.com/sebnitu))
+
+#### :tada: New Feature
+* `checkbox`, `dismissible`, `drawer`, `modal`, `vrembem`
+  * [#196](https://github.com/sebnitu/vrembem/pull/196) Add drawer and modal custom events ([@sebnitu](https://github.com/sebnitu))
+
+#### :bug: Bug Fix
+* `input`, `vrembem`
+  * [#195](https://github.com/sebnitu/vrembem/pull/195) fix: add appearance none to root input component ([@sebnitu](https://github.com/sebnitu))
 
 ## v1.5.4 (2020-06-10)
 
