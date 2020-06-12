@@ -108,7 +108,7 @@ usage:
 
 {% include demo_open.html %}
 <div class="notice flex_align_start" data-dismissible>
-  <div class="notice__body spacing_sm">
+  <div class="notice__body spacing-sm">
     <h2 class="notice__title">Oops, wait what?</h2>
     <p>You should know that the action you just did had some consequences.</p>
   </div>
@@ -136,7 +136,7 @@ usage:
 
 {% include demo_open.html class_parent="spacing" %}
 <div class="notice notice_stack" data-dismissible>
-  <div class="notice__body spacing_sm">
+  <div class="notice__body spacing-sm">
     <h2 class="notice__title">Oops, wait what?</h2>
     <p>You should know that the action you just did had some consequences.</p>
   </div>
@@ -155,7 +155,7 @@ usage:
 {% include demo_switch.html %}
 ```html
 <div class="notice notice_stack" data-dismissible>
-  <div class="notice__body spacing_sm">
+  <div class="notice__body spacing-sm">
     <h2 class="notice__title">...</h2>
     <p>...</p>
   </div>
@@ -315,7 +315,7 @@ usage:
 
 {% include demo_open.html %}
 <div class="notice notice_stack notice_color_dark elevate_16dp" data-dismissible>
-  <div class="notice__body margin_bottom_lg spacing_sm">
+  <div class="notice__body margin_bottom_lg spacing-sm">
     <h2 class="notice__title flex">
       <span class="flex_grow_1">This site uses cookies</span>
       <button class="icon-action icon-action_invert icon-action_color_subtle" data-dismiss>
@@ -338,7 +338,7 @@ usage:
 {% include demo_switch.html %}
 ```html
 <div class="notice notice_stack notice_color_dark elevate_16dp" data-dismissible>
-  <div class="notice__body margin_bottom_lg spacing_sm">
+  <div class="notice__body margin_bottom_lg spacing-sm">
     <h2 class="notice__title flex">
       <span class="flex_grow_1">...</span>
       <button class="icon-action icon-action_invert icon-action_color_subtle" data-dismiss>

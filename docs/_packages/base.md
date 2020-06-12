@@ -52,7 +52,7 @@ usage:
 ## List
 
 {% include demo_open.html %}
-<div class="spacing_xl">
+<div class="spacing-xl">
   <ul class="list">
     <li>One</li>
     <li>Two

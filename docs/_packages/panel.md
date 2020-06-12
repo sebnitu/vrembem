@@ -13,7 +13,7 @@ usage:
 
 {% include demo_open.html class_parent="spacing" %}
 <div class="panel">
-  <div class="panel__section spacing_sm">
+  <div class="panel__section spacing-sm">
     <h3 class="panel__title">Panel header</h3>
     <p>Aliquam vitae sapien vehicula, viverra massa non, gravida lacus. Nam facilisis dictum felis, quis lacinia elit rhoncus eget. Donec id pellentesque lorem.</p>
   </div>

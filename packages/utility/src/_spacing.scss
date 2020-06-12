@@ -6,14 +6,14 @@ $_c: var.$class-spacing;
 
 .#{$_b}#{$_c} {
   > * + * {
-    margin-top: var.$spacing;
+    margin-top: var.$spacing !important;
   }
 }
 
 @each $key, $value in var.$spacing-map {
-  .#{$_b}#{$_c}#{$_m}#{$key} {
+  .#{$_b}#{$_c}-#{$key} {
     > * + * {
-      margin-top: $value;
+      margin-top: $value !important;
     }
   }
 }

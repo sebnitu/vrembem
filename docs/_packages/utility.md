@@ -567,7 +567,7 @@ Display utilities allow you to quickly toggle the display property on an element
   <div class="box"></div>
 </div>
 
-<div class="border padding spacing_xl">
+<div class="border padding spacing-xl">
   <div class="box"></div>
   <div class="box"></div>
   <div class="box"></div>
@@ -575,7 +575,7 @@ Display utilities allow you to quickly toggle the display property on an element
 {% include demo_switch.html %}
 ```html
 <div class="spacing">...</div>
-<div class="spacing_xl">...</div>
+<div class="spacing-xl">...</div>
 ```
 {% include demo_close.html %}
 
