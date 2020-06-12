@@ -137,8 +137,9 @@ const drawer = new Drawer({ autoInit: true });
 1. [`table`](./packages/table#readme)
 1. [`tooltip`](./packages/tooltip#readme)
 1. [`utility`](./packages/utility#readme)
+1. [`vrembem`](./packages/vrembem#readme)
 
-> Include all packages in a single dependency with the single all-in-one [`vrembem`](./packages/vrembem#readme) package.
+> The [`vrembem`](./packages/vrembem#readme) package is a complete collection of all Vrembem components into a single comprehensive package for convenience.
 
 ## Copyright and License
 

@@ -1,7 +1,7 @@
 ---
 layout: article
 title: Vrembem
-description: "A complete collection of all Vrembem components into a single comprehensive library for convenience."
+description: "A complete collection of all Vrembem components into a single comprehensive package for convenience."
 category: compound
 usage:
   npm: "vrembem"

@@ -1,6 +1,6 @@
 # Vrembem
 
-A complete collection of all Vrembem components into a single comprehensive library for convenience.
+A complete collection of all Vrembem components into a single comprehensive package for convenience.
 
 [![npm version](https://img.shields.io/npm/v/vrembem.svg)](https://www.npmjs.com/package/vrembem)
 
