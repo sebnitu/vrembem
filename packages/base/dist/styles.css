@@ -427,8 +427,8 @@ input::-moz-placeholder {
   clear: both;
 }
 .type > * {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .type > h1,
 .type > h2,

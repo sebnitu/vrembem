@@ -453,8 +453,8 @@ input::-moz-placeholder {
   clear: both;
 }
 .type > * {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .type > h1,
 .type > h2,
@@ -5879,32 +5879,81 @@ input::-moz-placeholder {
   padding-bottom: 2rem !important;
 }
 
-.spacing > * + * {
+.spacing > * {
   margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
 }
-
-.spacing-0 > * + * {
+.spacing > *:first-child {
   margin-top: 0 !important;
 }
+.spacing > *:last-child {
+  margin-bottom: 0 !important;
+}
 
-.spacing-xs > * + * {
+.spacing-0 > * {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+.spacing-0 > *:first-child {
+  margin-top: 0 !important;
+}
+.spacing-0 > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+.spacing-xs > * {
   margin-top: 0.25rem !important;
+  margin-bottom: 0.25rem !important;
+}
+.spacing-xs > *:first-child {
+  margin-top: 0 !important;
+}
+.spacing-xs > *:last-child {
+  margin-bottom: 0 !important;
 }
 
-.spacing-sm > * + * {
+.spacing-sm > * {
   margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+.spacing-sm > *:first-child {
+  margin-top: 0 !important;
+}
+.spacing-sm > *:last-child {
+  margin-bottom: 0 !important;
 }
 
-.spacing-md > * + * {
+.spacing-md > * {
   margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+.spacing-md > *:first-child {
+  margin-top: 0 !important;
+}
+.spacing-md > *:last-child {
+  margin-bottom: 0 !important;
 }
 
-.spacing-lg > * + * {
+.spacing-lg > * {
   margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+}
+.spacing-lg > *:first-child {
+  margin-top: 0 !important;
+}
+.spacing-lg > *:last-child {
+  margin-bottom: 0 !important;
 }
 
-.spacing-xl > * + * {
+.spacing-xl > * {
   margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
+}
+.spacing-xl > *:first-child {
+  margin-top: 0 !important;
+}
+.spacing-xl > *:last-child {
+  margin-bottom: 0 !important;
 }
 
 .text_size_sm {
@@ -6524,13 +6573,6 @@ input::-moz-placeholder {
   .toolbar {
     padding: 1em;
   }
-}
-.type_custom > *,
-.type_custom > hr,
-.type_custom > blockquote,
-.type_custom > pre {
-  margin-top: 2em;
-  margin-bottom: 2em;
 }
 .type_custom > h2 {
   margin: 4em 0 2em;

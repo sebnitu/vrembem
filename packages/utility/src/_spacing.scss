@@ -5,15 +5,33 @@ $_m: var.$prefix-modifier;
 $_c: var.$class-spacing;
 
 .#{$_b}#{$_c} {
-  > * + * {
+  > * {
     margin-top: var.$spacing !important;
+    margin-bottom: var.$spacing !important;
+
+    &:first-child {
+      margin-top: 0 !important;
+    }
+
+    &:last-child {
+      margin-bottom: 0 !important;
+    }
   }
 }
 
 @each $key, $value in var.$spacing-map {
   .#{$_b}#{$_c}-#{$key} {
-    > * + * {
+    > * {
       margin-top: $value !important;
+      margin-bottom: $value !important;
+
+      &:first-child {
+        margin-top: 0 !important;
+      }
+
+      &:last-child {
+        margin-bottom: 0 !important;
+      }
     }
   }
 }
