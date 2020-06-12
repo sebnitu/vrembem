@@ -6,7 +6,7 @@ const ev = new Event('transitionend');
 
 const markup = `
   <div class="drawer__wrapper">
-    <div class="drawer" data-drawer="drawer-default">
+    <div class="drawer is-closed" data-drawer="drawer-default">
       <div class="drawer__item">
         <button data-drawer-close>Close</button>
       </div>
@@ -19,7 +19,7 @@ const markup = `
 
 const markupCustomAttr = `
   <div class="drawer__wrapper">
-    <div class="drawer" data-d="drawer-default">
+    <div class="drawer is-closed" data-d="drawer-default">
       <div class="drawer__item">
         <button data-c>Close</button>
       </div>
@@ -30,13 +30,26 @@ const markupCustomAttr = `
   </div>
 `;
 
+const markupCustomState = `
+  <div class="drawer__wrapper">
+    <div class="drawer off" data-drawer="drawer-default">
+      <div class="drawer__item">
+        <button data-drawer-close>Close</button>
+      </div>
+    </div>
+    <div class="drawer__main">
+      <button data-drawer-toggle="drawer-default">Drawer Toggle</button>
+    </div>
+  </div>
+`;
+
 afterEach(() => {
   drawer.destroy();
   drawer = null;
   document.body.innerHTML = null;
 });
 
-test('should apply state classes on \'click\' and \'transition end\' events', () => {
+test('should apply state classes on `click` and `transitionend` events', () => {
   document.body.innerHTML = markup;
   drawer = new Drawer();
   const el = document.querySelector('[data-drawer]');
@@ -44,22 +57,20 @@ test('should apply state classes on \'click\' and \'transition end\' events', ()
   const btnClose = document.querySelector('[data-drawer-close]');
 
   drawer.init();
-  expect(el).toHaveClass('drawer');
+  expect(el).toHaveClass('drawer is-closed');
 
   btnOpen.click();
   expect(el).toHaveClass('is-opening');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('is-open');
+  expect(el).toHaveClass('is-opened');
 
   btnClose.click();
   expect(el).toHaveClass('is-closing');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('drawer');
-  expect(el).not.toHaveClass('is-opening');
-  expect(el).not.toHaveClass('is-open');
-  expect(el).not.toHaveClass('is-closing');
+  expect(el).toHaveClass('drawer is-closed');
+  expect(el).not.toHaveClass('is-opening is-opened is-closing');
 });
 
 test('should apply state classes with custom data attributes', () => {
@@ -74,29 +85,27 @@ test('should apply state classes with custom data attributes', () => {
   const btnOpen = document.querySelector('[data-t]');
   const btnClose = document.querySelector('[data-c]');
 
-  expect(el).toHaveClass('drawer');
+  expect(el).toHaveClass('drawer is-closed');
 
   btnOpen.click();
   expect(el).toHaveClass('is-opening');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('is-open');
+  expect(el).toHaveClass('is-opened');
 
   btnClose.click();
   expect(el).toHaveClass('is-closing');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('drawer');
-  expect(el).not.toHaveClass('is-opening');
-  expect(el).not.toHaveClass('is-open');
-  expect(el).not.toHaveClass('is-closing');
+  expect(el).toHaveClass('drawer is-closed');
+  expect(el).not.toHaveClass('is-opening is-opened is-closing');
 });
 
 test('should apply custom state classes', () => {
-  document.body.innerHTML = markup;
+  document.body.innerHTML = markupCustomState;
   drawer = new Drawer({
     autoInit: true,
-    stateOpen: 'on',
+    stateOpened: 'on',
     stateOpening: 'enable',
     stateClosing: 'disable',
     stateClosed: 'off'
@@ -105,7 +114,7 @@ test('should apply custom state classes', () => {
   const btnOpen = document.querySelector('[data-drawer-toggle]');
   const btnClose = document.querySelector('[data-drawer-close]');
 
-  expect(el).toHaveClass('drawer');
+  expect(el).toHaveClass('drawer off');
 
   btnOpen.click();
   expect(el).toHaveClass('enable');
@@ -117,10 +126,8 @@ test('should apply custom state classes', () => {
   expect(el).toHaveClass('disable');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('drawer');
-  expect(el).not.toHaveClass('on');
-  expect(el).not.toHaveClass('enable');
-  expect(el).not.toHaveClass('disable');
+  expect(el).toHaveClass('drawer off');
+  expect(el).not.toHaveClass('on enable disable');
 
   const state = JSON.parse(localStorage.getItem('DrawerState'));
   expect(state['drawer-default']).toMatch('off');

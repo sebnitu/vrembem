@@ -9,7 +9,7 @@ const keyEv = new KeyboardEvent('keyup', {
 
 const markup = `
   <div class="drawer__wrapper">
-    <div class="drawer drawer_modal" data-drawer="drawer-default">
+    <div class="drawer drawer_modal is-closed" data-drawer="drawer-default">
       <div class="drawer__item">
         <button data-drawer-close data-drawer-focus>Close</button>
       </div>
@@ -37,14 +37,14 @@ test('should close when root modal (screen) is clicked', () => {
   el.dispatchEvent(ev);
 
   item.click();
-  expect(el).toHaveClass('is-open');
+  expect(el).toHaveClass('is-opened');
 
   el.click();
   expect(el).toHaveClass('is-closing');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('drawer drawer_modal');
-  expect(el.classList.length).toBe(2);
+  expect(el).toHaveClass('drawer drawer_modal is-closed');
+  expect(el.classList.length).toBe(3);
 });
 
 test('should close when the escape key is pressed', () => {
@@ -57,14 +57,14 @@ test('should close when the escape key is pressed', () => {
   expect(el).toHaveClass('drawer is-opening');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('drawer is-open');
+  expect(el).toHaveClass('drawer is-opened');
 
   document.dispatchEvent(keyEv);
   expect(el).toHaveClass('drawer is-closing');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('drawer drawer_modal');
-  expect(el.classList.length).toBe(2);
+  expect(el).toHaveClass('drawer drawer_modal is-closed');
+  expect(el.classList.length).toBe(3);
 });
 
 test('should not close when missing modal modifier and escape key is pressed', () => {
@@ -79,12 +79,12 @@ test('should not close when missing modal modifier and escape key is pressed', (
   expect(el).toHaveClass('drawer is-opening');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('drawer is-open');
+  expect(el).toHaveClass('drawer is-opened');
 
   document.dispatchEvent(keyEv);
   expect(el).not.toHaveClass('is-closing');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('drawer is-open');
+  expect(el).toHaveClass('drawer is-opened');
   expect(el.classList.length).toBe(2);
 });

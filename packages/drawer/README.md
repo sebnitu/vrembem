@@ -178,32 +178,39 @@ Variable | Default | Description
 `$modal-background` | `#424242` | Background color of modal screen.
 `$modal-background-alpha` | `0.8` | The alpha channel for the modal screen.
 
+### JavaScript Events
+
+* `drawer:opened` Emits when the drawer has opened.
+* `drawer:closed` Emits when the drawer has closed.
+* `drawer:breakpoint` Emits when the drawer has hit a breakpoint.
+
 ### JavaScript Options
 
 Key | Default | Description
 ---|---|---
-`autoInit` | `false` | Automatically instantiates the instance
-`dataDrawer` | `"drawer"` | Data attribute for a drawer
-`dataToggle` | `"drawer-toggle"` | Data attribute for a drawer toggle trigger
-`dataClose` | `"drawer-close"` | Data attribute for a drawer close trigger
-`dataBreakpoint` | `"drawer-breakpoint"` | Data attribute for setting a drawer's breakpoint
-`dataFocus` | `"drawer-focus"` | Data attribute for setting a drawer's focus element
-`stateOpen` | `"is-open"` | Class used for open state
-`stateOpening` | `"is-opening"` | Class used for transitioning to open state
-`stateClosing` | `"is-closing"` | Class used for transitioning to closed state
-`stateClosed` | `"is-closed"` | Class used for closed state (is ommitted in application)
-`classModal` | `"drawer_modal"` | Class used for toggling the drawer modal state
-`breakpoints` | `core.breakpoints` | An object with key/value pairs defining a breakpoints set
-`focus` | `true` | Toggles the focus handling feature
-`saveState` | `true` | Toggles the save state feature
-`saveKey` | `"DrawerState"` | Defines the localStorage key where drawer states are saved
+`autoInit` | `false` | Automatically instantiates the instance.
+`dataDrawer` | `'drawer'` | Data attribute for a drawer.
+`dataToggle` | `'drawer-toggle'` | Data attribute for a drawer toggle trigger.
+`dataClose` | `'drawer-close'` | Data attribute for a drawer close trigger.
+`dataBreakpoint` | `'drawer-breakpoint'` | Data attribute for setting a drawer's breakpoint.
+`dataFocus` | `'drawer-focus'` | Data attribute for setting a drawer's focus element.
+`stateOpen` | `'is-opened'` | Class used for open state.
+`stateOpening` | `'is-opening'` | Class used for transitioning to open state.
+`stateClosing` | `'is-closing'` | Class used for transitioning to closed state.
+`stateClosed` | `'is-closed'` | Class used for closed state.
+`classModal` | `'drawer_modal'` | Class used for toggling the drawer modal state.
+`customEventPrefix` | `'drawer:'` | Prefix to be used on custom events.
+`breakpoints` | `core.breakpoints` | An object with key/value pairs defining a breakpoints set.
+`focus` | `true` | Toggles the focus handling feature.
+`saveState` | `true` | Toggles the save state feature.
+`saveKey` | `"DrawerState"` | Defines the localStorage key where drawer states are saved.
 
 ### JavaScript API
 
 Method | Description
 ---|---
-`drawer.init()` | Initializes the drawer instance
-`drawer.destroy()` | Destroys and cleans up the drawer instantiation
-`drawer.toggle(drawerKey, callback)` | Toggles a drawer provided the drawer key and optional callback
-`drawer.open(drawerKey, callback)` | Opens a drawer provided the drawer key and optional callback
-`drawer.close(drawerKey, callback)` | Closes a drawer provided the drawer key and optional callback
+`drawer.init()` | Initializes the drawer instance.
+`drawer.destroy()` | Destroys and cleans up the drawer instantiation.
+`drawer.toggle(drawerKey, callback)` | Toggles a drawer provided the drawer key and optional callback.
+`drawer.open(drawerKey, callback)` | Opens a drawer provided the drawer key and optional callback.
+`drawer.close(drawerKey, callback)` | Closes a drawer provided the drawer key and optional callback.

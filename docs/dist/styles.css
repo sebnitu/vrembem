@@ -1630,7 +1630,7 @@ input::-moz-placeholder {
 }
 
 .drawer.is-opening,
-.drawer.is-open,
+.drawer.is-opened,
 .drawer.is-closing {
   flex: 0 0 auto;
   width: 18em;
@@ -1645,12 +1645,12 @@ input::-moz-placeholder {
 }
 
 .drawer.is-opening .drawer__item,
-.drawer.is-open .drawer__item {
+.drawer.is-opened .drawer__item {
   transform: translateY(0);
   opacity: 1;
 }
 
-.drawer.is-open .drawer__item {
+.drawer.is-opened .drawer__item {
   opacity: 1;
 }
 
@@ -1675,7 +1675,7 @@ input::-moz-placeholder {
 }
 
 .drawer_modal.is-opening,
-.drawer_modal.is-open,
+.drawer_modal.is-opened,
 .drawer_modal.is-closing {
   width: 100%;
   height: 100%;
@@ -1687,7 +1687,7 @@ input::-moz-placeholder {
 }
 
 .drawer_modal.is-opening,
-.drawer_modal.is-open {
+.drawer_modal.is-opened {
   background-color: rgba(66, 66, 66, 0.8);
 }
 
@@ -1724,19 +1724,19 @@ input::-moz-placeholder {
 }
 
 .drawer_pos_left.is-opening:not(.drawer_modal) ~ .drawer__main,
-.drawer_pos_left.is-open:not(.drawer_modal) ~ .drawer__main {
+.drawer_pos_left.is-opened:not(.drawer_modal) ~ .drawer__main {
   margin-left: 18em;
 }
 
 .drawer_pos_right.is-opening:not(.drawer_modal) ~ .drawer__main,
-.drawer_pos_right.is-open:not(.drawer_modal) ~ .drawer__main {
+.drawer_pos_right.is-opened:not(.drawer_modal) ~ .drawer__main {
   margin-right: 18em;
 }
 
 .drawer_pos_left.is-opening .drawer__item,
 .drawer_pos_right.is-opening .drawer__item,
-.drawer_pos_left.is-open .drawer__item,
-.drawer_pos_right.is-open .drawer__item {
+.drawer_pos_left.is-opened .drawer__item,
+.drawer_pos_right.is-opened .drawer__item {
   transform: translateX(0);
 }
 
@@ -3088,11 +3088,8 @@ input::-moz-placeholder {
   opacity: 0;
 }
 
-/**
- * Modal state classes
- */
 .modal.is-opening,
-.modal.is-open,
+.modal.is-opened,
 .modal.is-closing {
   width: 100%;
   height: 100%;
@@ -3111,11 +3108,11 @@ input::-moz-placeholder {
 }
 
 .modal.is-opening,
-.modal.is-open {
+.modal.is-opened {
   background-color: rgba(66, 66, 66, 0.8);
 }
 .modal.is-opening .modal__dialog,
-.modal.is-open .modal__dialog {
+.modal.is-opened .modal__dialog {
   transform: translateY(0);
   opacity: 1;
 }
@@ -3124,7 +3121,7 @@ input::-moz-placeholder {
   z-index: 1001;
 }
 
-.modal.is-open {
+.modal.is-opened {
   z-index: 1000;
 }
 
@@ -3140,7 +3137,7 @@ input::-moz-placeholder {
   height: 100%;
   transform: scale(0.75);
 }
-.modal_full.is-open .modal__dialog, .modal_full.is-opening .modal__dialog {
+.modal_full.is-opened .modal__dialog, .modal_full.is-opening .modal__dialog {
   transform: scale(1);
 }
 .modal_full.is-closing .modal__dialog {

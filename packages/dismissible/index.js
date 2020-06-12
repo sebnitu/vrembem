@@ -35,7 +35,6 @@ export const Dismissible = (options) => {
         } else if (method == 'hide' || (!method && defaultMethod == 'hide')) {
           target.classList.add(api.settings.classHide);
         }
-        event.preventDefault();
       }
     }
   };

@@ -24,7 +24,7 @@ export const StickyScroll = (options) => {
     if (api.element) {
       setScrollPosition();
       if (api.settings.selectorActive) {
-        setActiveVisible();
+        showActive();
       }
       api.element.addEventListener('scroll', throttle, false);
     }
@@ -33,6 +33,12 @@ export const StickyScroll = (options) => {
   api.destroy = () => {
     if (api.element) {
       api.element.removeEventListener('scroll', throttle, false);
+    }
+  };
+
+  api.showActive = () => {
+    if (api.settings.selectorActive) {
+      showActive();
     }
   };
 
@@ -60,7 +66,7 @@ export const StickyScroll = (options) => {
     }
   };
 
-  const setActiveVisible = () => {
+  const showActive = () => {
     let el = api.element.querySelector(api.settings.selectorActive);
     if (api.settings.selectorActiveParent) {
       el = el.closest(api.settings.selectorActiveParent);

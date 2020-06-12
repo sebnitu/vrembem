@@ -6,12 +6,12 @@ const ev = new Event('transitionend');
 
 const markup = `
   <div class="drawer__wrapper">
-    <div class="drawer" data-drawer="drawer-one" tabindex="-1">
+    <div class="drawer is-closed" data-drawer="drawer-one" tabindex="-1">
       <div class="drawer__item">
         <button class="close-one" data-drawer-close>Close</button>
       </div>
     </div>
-    <div class="drawer" data-drawer="drawer-two" tabindex="-1">
+    <div class="drawer is-closed" data-drawer="drawer-two" tabindex="-1">
       <div class="drawer__item">
         <button class="close-two" data-drawer-close data-drawer-focus>
           Close
@@ -31,7 +31,7 @@ const markup = `
 
 const markupCustomAttr = `
   <div class="drawer__wrapper">
-    <div class="drawer" data-drawer="drawer-one" tabindex="-1">
+    <div class="drawer is-closed" data-drawer="drawer-one" tabindex="-1">
       <div class="drawer__item">
         <button class="close-one" data-drawer-close data-focus>Close</button>
       </div>
@@ -53,7 +53,7 @@ afterEach(() => {
 test('should focus drawer element and refocus trigger when closed', () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({ autoInit: true });
-  const el = document.querySelector('[data-drawer=\'drawer-one\']');
+  const el = document.querySelector('[data-drawer="drawer-one"]');
   const btn = document.querySelector('.toggle-one');
   const btnClose = document.querySelector('.close-one');
 
@@ -69,7 +69,7 @@ test('should focus drawer element and refocus trigger when closed', () => {
 test('should focus data-drawer-focus element and refocus trigger when closed', () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({ autoInit: true });
-  const el = document.querySelector('[data-drawer=\'drawer-two\']');
+  const el = document.querySelector('[data-drawer="drawer-two"]');
   const btn = document.querySelector('.toggle-two');
   const btnClose = document.querySelector('.close-two');
 
@@ -88,7 +88,7 @@ test('should not change focus when feature is disabled', () => {
     autoInit: true,
     focus: false
   });
-  const el = document.querySelector('[data-drawer=\'drawer-two\']');
+  const el = document.querySelector('[data-drawer="drawer-two"]');
   const btn = document.querySelector('.toggle-two');
   const btnClose = document.querySelector('.close-two');
 

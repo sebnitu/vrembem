@@ -173,8 +173,6 @@
           } else if (method == 'hide' || !method && defaultMethod == 'hide') {
             target.classList.add(api.settings.classHide);
           }
-
-          event.preventDefault();
         }
       }
     };
@@ -195,11 +193,12 @@
       dataClose: 'drawer-close',
       dataBreakpoint: 'drawer-breakpoint',
       dataFocus: 'drawer-focus',
-      stateOpen: 'is-open',
+      stateOpened: 'is-opened',
       stateOpening: 'is-opening',
       stateClosing: 'is-closing',
       stateClosed: 'is-closed',
       classModal: 'drawer_modal',
+      customEventPrefix: 'drawer:',
       breakpoints: breakpoints,
       focus: true,
       saveState: true,
@@ -274,7 +273,7 @@
 
     var escape = function escape(event) {
       if (event.keyCode == 27) {
-        var target = document.querySelector(".".concat(api.settings.classModal, ".").concat(api.settings.stateOpen));
+        var target = document.querySelector(".".concat(api.settings.classModal, ".").concat(api.settings.stateOpened));
 
         if (target) {
           close(target);
@@ -286,7 +285,7 @@
       var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
 
       if (drawer) {
-        var isOpen = hasClass(drawer, api.settings.stateOpen);
+        var isOpen = hasClass(drawer, api.settings.stateOpened);
 
         if (!isOpen) {
           open(drawer, callback);
@@ -297,30 +296,40 @@
     };
 
     var open = function open(drawer, callback) {
-      if (!hasClass(drawer, api.settings.stateOpen)) {
+      if (!hasClass(drawer, api.settings.stateOpened)) {
         saveTarget(drawer);
         addClass(drawer, api.settings.stateOpening);
+        removeClass(drawer, api.settings.stateClosed);
         drawer.addEventListener('transitionend', function _listener() {
-          addClass(drawer, api.settings.stateOpen);
+          addClass(drawer, api.settings.stateOpened);
           removeClass(drawer, api.settings.stateOpening);
           saveState(drawer);
           setFocus();
           typeof callback === 'function' && callback();
           this.removeEventListener('transitionend', _listener, true);
+          var customEvent = new CustomEvent(api.settings.customEventPrefix + 'opened', {
+            bubbles: true
+          });
+          drawer.dispatchEvent(customEvent);
         }, true);
       }
     };
 
     var close = function close(drawer, callback) {
-      if (hasClass(drawer, api.settings.stateOpen)) {
+      if (hasClass(drawer, api.settings.stateOpened)) {
         addClass(drawer, api.settings.stateClosing);
-        removeClass(drawer, api.settings.stateOpen);
+        removeClass(drawer, api.settings.stateOpened);
         drawer.addEventListener('transitionend', function _listener() {
+          addClass(drawer, api.settings.stateClosed);
           removeClass(drawer, api.settings.stateClosing);
           saveState(drawer);
           returnFocus();
           typeof callback === 'function' && callback();
           this.removeEventListener('transitionend', _listener, true);
+          var customEvent = new CustomEvent(api.settings.customEventPrefix + 'closed', {
+            bubbles: true
+          });
+          drawer.dispatchEvent(customEvent);
         }, true);
       }
     };
@@ -365,7 +374,7 @@
         var drawers = !target ? document.querySelectorAll("[data-".concat(api.settings.dataDrawer, "]")) : target.forEach ? target : [target];
         drawers.forEach(function (el) {
           if (!hasClass(el, api.settings.classModal)) {
-            api.state[el.dataset[camelCase(api.settings.dataDrawer)]] = hasClass(el, api.settings.stateOpen) ? api.settings.stateOpen : api.settings.stateClosed;
+            api.state[el.dataset[camelCase(api.settings.dataDrawer)]] = hasClass(el, api.settings.stateOpened) ? api.settings.stateOpened : api.settings.stateClosed;
           }
         });
         localStorage.setItem(api.settings.saveKey, JSON.stringify(api.state));
@@ -380,10 +389,10 @@
             var item = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(key, "\"]"));
 
             if (item) {
-              if (api.state[key] == api.settings.stateOpen) {
-                addClass(item, api.settings.stateOpen);
+              if (api.state[key] == api.settings.stateOpened) {
+                addClass(item, api.settings.stateOpened);
               } else {
-                removeClass(item, api.settings.stateOpen);
+                removeClass(item, api.settings.stateOpened);
               }
             }
           });
@@ -435,7 +444,15 @@
 
     var switchToModal = function switchToModal(drawer) {
       addClass(drawer, api.settings.classModal);
-      removeClass(drawer, api.settings.stateOpen);
+      addClass(drawer, api.settings.stateClosed);
+      removeClass(drawer, api.settings.stateOpened);
+      var customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
+        bubbles: true,
+        detail: {
+          state: 'modal'
+        }
+      });
+      drawer.dispatchEvent(customEvent);
     };
 
     var switchToDrawer = function switchToDrawer(drawer) {
@@ -443,9 +460,18 @@
       var drawerKey = drawer.dataset[camelCase(api.settings.dataDrawer)];
       var drawerState = api.state[drawerKey];
 
-      if (drawerState == api.settings.stateOpen) {
-        addClass(drawer, api.settings.stateOpen);
+      if (drawerState == api.settings.stateOpened) {
+        addClass(drawer, api.settings.stateOpened);
+        removeClass(drawer, api.settings.stateClosed);
       }
+
+      var customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
+        bubbles: true,
+        detail: {
+          state: 'drawer'
+        }
+      });
+      drawer.dispatchEvent(customEvent);
     };
 
     if (api.settings.autoInit) api.init();
@@ -464,10 +490,11 @@
       dataClose: 'modal-close',
       dataFocus: 'modal-focus',
       dataRequired: 'modal-required',
-      stateOpen: 'is-open',
+      stateOpened: 'is-opened',
       stateOpening: 'is-opening',
       stateClosing: 'is-closing',
       stateClosed: 'is-closed',
+      customEventPrefix: 'modal:',
       focus: true
     };
     api.settings = _objectSpread$3(_objectSpread$3({}, defaults), options);
@@ -520,7 +547,7 @@
 
     var escape = function escape(event) {
       if (event.keyCode == 27) {
-        var target = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpen));
+        var target = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpened));
 
         if (target && !target.hasAttribute("data-".concat(api.settings.dataRequired))) {
           close();
@@ -531,15 +558,20 @@
     var open = function open(modalKey, callback) {
       var target = document.querySelector("[data-".concat(api.settings.dataModal, "=\"").concat(modalKey, "\"]"));
 
-      if (target && !hasClass(target, api.settings.stateOpen)) {
+      if (target && !hasClass(target, api.settings.stateOpened)) {
         saveTarget(target);
         addClass(target, api.settings.stateOpening);
+        removeClass(target, api.settings.stateClosed);
         target.addEventListener('transitionend', function _listener() {
-          addClass(target, api.settings.stateOpen);
+          addClass(target, api.settings.stateOpened);
           removeClass(target, api.settings.stateOpening);
           setFocus();
           typeof callback === 'function' && callback();
           this.removeEventListener('transitionend', _listener, true);
+          var customEvent = new CustomEvent(api.settings.customEventPrefix + 'opened', {
+            bubbles: true
+          });
+          target.dispatchEvent(customEvent);
         }, true);
       }
     };
@@ -547,16 +579,21 @@
     var close = function close() {
       var focus = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
       var callback = arguments.length > 1 ? arguments[1] : undefined;
-      var target = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpen));
+      var target = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpened));
 
       if (target) {
         addClass(target, api.settings.stateClosing);
-        removeClass(target, api.settings.stateOpen);
+        removeClass(target, api.settings.stateOpened);
         target.addEventListener('transitionend', function _listener() {
+          addClass(target, api.settings.stateClosed);
           removeClass(target, api.settings.stateClosing);
           if (focus) returnFocus();
           typeof callback === 'function' && callback();
           this.removeEventListener('transitionend', _listener, true);
+          var customEvent = new CustomEvent(api.settings.customEventPrefix + 'closed', {
+            bubbles: true
+          });
+          target.dispatchEvent(customEvent);
         }, true);
       }
     };
@@ -2436,7 +2473,7 @@
         setScrollPosition();
 
         if (api.settings.selectorActive) {
-          setActiveVisible();
+          showActive();
         }
 
         api.element.addEventListener('scroll', throttle, false);
@@ -2446,6 +2483,12 @@
     api.destroy = function () {
       if (api.element) {
         api.element.removeEventListener('scroll', throttle, false);
+      }
+    };
+
+    api.showActive = function () {
+      if (api.settings.selectorActive) {
+        showActive();
       }
     };
 
@@ -2475,7 +2518,7 @@
       }
     };
 
-    var setActiveVisible = function setActiveVisible() {
+    var showActive = function showActive() {
       var el = api.element.querySelector(api.settings.selectorActive);
 
       if (api.settings.selectorActiveParent) {
@@ -2523,11 +2566,14 @@
   new Version({
     autoInit: true
   });
-  new StickyScroll({
+  var stickyScroll = new StickyScroll({
     autoInit: true,
     selectorActive: '.is-active',
     selectorActiveParent: '.menu__item',
     selectorElementPadding: '.dialog__header'
+  });
+  document.addEventListener('drawer:opened', function () {
+    stickyScroll.showActive();
   });
 
 }());

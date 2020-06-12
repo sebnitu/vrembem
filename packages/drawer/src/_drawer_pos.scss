@@ -38,14 +38,14 @@ $_v: var.$prefix-modifier-value;
 }
 
 .#{$_b}drawer#{$_m}pos#{$_v}left.is-opening,
-.#{$_b}drawer#{$_m}pos#{$_v}left.is-open {
+.#{$_b}drawer#{$_m}pos#{$_v}left.is-opened {
   &:not(.#{$_b}drawer#{$_m}modal) ~ .#{$_b}drawer#{$_e}main {
     margin-left: var.$width;
   }
 }
 
 .#{$_b}drawer#{$_m}pos#{$_v}right.is-opening,
-.#{$_b}drawer#{$_m}pos#{$_v}right.is-open {
+.#{$_b}drawer#{$_m}pos#{$_v}right.is-opened {
   &:not(.#{$_b}drawer#{$_m}modal) ~ .#{$_b}drawer#{$_e}main {
     margin-right: var.$width;
   }
@@ -53,8 +53,8 @@ $_v: var.$prefix-modifier-value;
 
 .#{$_b}drawer#{$_m}pos#{$_v}left.is-opening,
 .#{$_b}drawer#{$_m}pos#{$_v}right.is-opening,
-.#{$_b}drawer#{$_m}pos#{$_v}left.is-open,
-.#{$_b}drawer#{$_m}pos#{$_v}right.is-open {
+.#{$_b}drawer#{$_m}pos#{$_v}left.is-opened,
+.#{$_b}drawer#{$_m}pos#{$_v}right.is-opened {
   .#{$_b}drawer#{$_e}item {
     transform: translateX(0);
   }

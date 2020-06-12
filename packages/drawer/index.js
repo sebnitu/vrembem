@@ -20,15 +20,16 @@ export const Drawer = (options) => {
     dataFocus: 'drawer-focus',
 
     // State classes
-    stateOpen: 'is-open',
+    stateOpened: 'is-opened',
     stateOpening: 'is-opening',
     stateClosing: 'is-closing',
-    stateClosed: 'is-closed', // Default state
+    stateClosed: 'is-closed',
 
     // Classes
     classModal: 'drawer_modal',
 
     // Feature toggles
+    customEventPrefix: 'drawer:',
     breakpoints: breakpoints,
     focus: true,
     saveState: true,
@@ -108,7 +109,7 @@ export const Drawer = (options) => {
   const escape = (event) => {
     if (event.keyCode == 27) {
       const target = document.querySelector(
-        `.${api.settings.classModal}.${api.settings.stateOpen}`
+        `.${api.settings.classModal}.${api.settings.stateOpened}`
       );
       if (target) {
         close(target);
@@ -121,7 +122,7 @@ export const Drawer = (options) => {
       `[data-${api.settings.dataDrawer}="${drawerKey}"]`
     );
     if (drawer) {
-      const isOpen = hasClass(drawer, api.settings.stateOpen);
+      const isOpen = hasClass(drawer, api.settings.stateOpened);
       if (!isOpen) {
         open(drawer, callback);
       } else {
@@ -131,30 +132,40 @@ export const Drawer = (options) => {
   };
 
   const open = (drawer, callback) => {
-    if (!hasClass(drawer, api.settings.stateOpen)) {
+    if (!hasClass(drawer, api.settings.stateOpened)) {
       saveTarget(drawer);
       addClass(drawer, api.settings.stateOpening);
+      removeClass(drawer, api.settings.stateClosed);
       drawer.addEventListener('transitionend', function _listener() {
-        addClass(drawer, api.settings.stateOpen);
+        addClass(drawer, api.settings.stateOpened);
         removeClass(drawer, api.settings.stateOpening);
         saveState(drawer);
         setFocus();
         typeof callback === 'function' && callback();
         this.removeEventListener('transitionend', _listener, true);
+        const customEvent = new CustomEvent(api.settings.customEventPrefix + 'opened', {
+          bubbles: true
+        });
+        drawer.dispatchEvent(customEvent);
       }, true);
     }
   };
 
   const close = (drawer, callback) => {
-    if (hasClass(drawer, api.settings.stateOpen)) {
+    if (hasClass(drawer, api.settings.stateOpened)) {
       addClass(drawer, api.settings.stateClosing);
-      removeClass(drawer, api.settings.stateOpen);
+      removeClass(drawer, api.settings.stateOpened);
       drawer.addEventListener('transitionend', function _listener() {
+        addClass(drawer, api.settings.stateClosed);
         removeClass(drawer, api.settings.stateClosing);
         saveState(drawer);
         returnFocus();
         typeof callback === 'function' && callback();
         this.removeEventListener('transitionend', _listener, true);
+        const customEvent = new CustomEvent(api.settings.customEventPrefix + 'closed', {
+          bubbles: true
+        });
+        drawer.dispatchEvent(customEvent);
       }, true);
     }
   };
@@ -208,8 +219,8 @@ export const Drawer = (options) => {
       drawers.forEach((el) => {
         if (!hasClass(el, api.settings.classModal)) {
           api.state[el.dataset[camelCase(api.settings.dataDrawer)]] =
-            (hasClass(el, api.settings.stateOpen)) ?
-              api.settings.stateOpen:
+            (hasClass(el, api.settings.stateOpened)) ?
+              api.settings.stateOpened:
               api.settings.stateClosed;
         }
       });
@@ -226,10 +237,10 @@ export const Drawer = (options) => {
             `[data-${api.settings.dataDrawer}="${key}"]`
           );
           if (item) {
-            if (api.state[key] == api.settings.stateOpen) {
-              addClass(item, api.settings.stateOpen);
+            if (api.state[key] == api.settings.stateOpened) {
+              addClass(item, api.settings.stateOpened);
             } else {
-              removeClass(item, api.settings.stateOpen);
+              removeClass(item, api.settings.stateOpened);
             }
           }
         });
@@ -283,16 +294,32 @@ export const Drawer = (options) => {
 
   const switchToModal = (drawer) => {
     addClass(drawer, api.settings.classModal);
-    removeClass(drawer, api.settings.stateOpen);
+    addClass(drawer, api.settings.stateClosed);
+    removeClass(drawer, api.settings.stateOpened);
+    const customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
+      bubbles: true,
+      detail: {
+        state: 'modal'
+      }
+    });
+    drawer.dispatchEvent(customEvent);
   };
 
   const switchToDrawer = (drawer) => {
     removeClass(drawer, api.settings.classModal);
     const drawerKey = drawer.dataset[camelCase(api.settings.dataDrawer)];
     const drawerState = api.state[drawerKey];
-    if (drawerState == api.settings.stateOpen) {
-      addClass(drawer, api.settings.stateOpen);
+    if (drawerState == api.settings.stateOpened) {
+      addClass(drawer, api.settings.stateOpened);
+      removeClass(drawer, api.settings.stateClosed);
     }
+    const customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
+      bubbles: true,
+      detail: {
+        state: 'drawer'
+      }
+    });
+    drawer.dispatchEvent(customEvent);
   };
 
   if (api.settings.autoInit) api.init();

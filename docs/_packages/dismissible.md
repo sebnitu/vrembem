@@ -119,12 +119,12 @@ Dismissible uses two data attributes to utilize it's functionality. The first is
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="Dismissible Settings" %}
+{% include flag.html heading="JavaScript Options" %}
 
 <div class="scroll-box">
-  <table class="table table_zebra">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
     <thead>
-      <tr class="border_top_0">
+      <tr>
         <th>Key</th>
         <th>Default</th>
         <th>Description</th>
@@ -132,52 +132,52 @@ Dismissible uses two data attributes to utilize it's functionality. The first is
     </thead>
     <tbody>
       <tr>
-        <td><code class="code text_nowrap">autoInit</code></td>
-        <td><code class="code text_nowrap">false</code></td>
-        <td>Automatically instantiates the instance</td>
+        <td data-mobile-label="Key"><code class="code text_nowrap">autoInit</code></td>
+        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">false</code></td>
+        <td data-mobile-label="Desc">Automatically instantiates the instance.</td>
       </tr>
       <tr>
-        <td><code class="code text_nowrap">dataTrigger</code></td>
-        <td><code class="code text_nowrap">"dismiss"</code></td>
-        <td>Data attribute for a dismiss trigger</td>
+        <td data-mobile-label="Key"><code class="code text_nowrap">dataTrigger</code></td>
+        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'dismiss'</code></td>
+        <td data-mobile-label="Desc">Data attribute for a dismiss trigger.</td>
       </tr>
       <tr>
-        <td><code class="code text_nowrap">dataTarget</code></td>
-        <td><code class="code text_nowrap">"dismissible"</code></td>
-        <td>Data attribute for a dismissible element</td>
+        <td data-mobile-label="Key"><code class="code text_nowrap">dataTarget</code></td>
+        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'dismissible'</code></td>
+        <td data-mobile-label="Desc">Data attribute for a dismissible element.</td>
       </tr>
       <tr>
-        <td><code class="code text_nowrap">classHide</code></td>
-        <td><code class="code text_nowrap">"display_none"</code></td>
-        <td>The class to apply for hiding an element</td>
+        <td data-mobile-label="Key"><code class="code text_nowrap">classHide</code></td>
+        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'display_none'</code></td>
+        <td data-mobile-label="Desc">The class to apply for hiding an element.</td>
       </tr>
       <tr>
-        <td><code class="code text_nowrap">method</code></td>
-        <td><code class="code text_nowrap">"hide"</code></td>
-        <td>The method of dismissing an element. Either "hide" or "remove".</td>
+        <td data-mobile-label="Key"><code class="code text_nowrap">method</code></td>
+        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'hide'</code></td>
+        <td data-mobile-label="Desc">The method of dismissing an element. Either 'hide' or 'remove'.</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-{% include flag.html heading="Dismissible API" %}
+{% include flag.html heading="JavaScript API" %}
 
 <div class="scroll-box">
-  <table class="table table_zebra">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
     <thead>
-      <tr class="border_top_0">
-        <th>Name</th>
+      <tr>
+        <th>Method</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><code class="code text_nowrap">dismissible.init()</code></td>
-        <td>Initializes the dismissible instance</td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">.init()</code></td>
+        <td data-mobile-label="Desc">Initializes the dismissible instance.</td>
       </tr>
       <tr>
-        <td><code class="code text_nowrap">dismissible.destroy()</code></td>
-        <td>Destroys and cleans up the dismissible instantiation</td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">.destroy()</code></td>
+        <td data-mobile-label="Desc">Destroys and cleans up the dismissible instantiation.</td>
       </tr>
     </tbody>
   </table>

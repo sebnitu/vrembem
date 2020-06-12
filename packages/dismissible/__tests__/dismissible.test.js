@@ -38,7 +38,7 @@ test('dismiss using default settings and method', () => {
 test('dismiss explicitly using the hide method', () => {
   document.body.innerHTML = dismissContent;
   dismissible = new Dismissible({ autoInit: true });
-  const el = document.querySelector('[data-dismissible=\'hide\']');
+  const el = document.querySelector('[data-dismissible="hide"]');
   const button = el.querySelector('[data-dismiss]');
 
   dismissible.init();
@@ -50,7 +50,7 @@ test('dismiss explicitly using the hide method', () => {
 test('dismiss explicitly using the remove method', () => {
   document.body.innerHTML = dismissContent;
   dismissible = new Dismissible({ autoInit: true });
-  const el = document.querySelector('[data-dismissible=\'remove\']');
+  const el = document.querySelector('[data-dismissible="remove"]');
   const button = el.querySelector('[data-dismiss]');
 
   expect(el).toBeInTheDocument();

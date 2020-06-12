@@ -6,7 +6,7 @@ const ev = new Event('transitionend');
 
 const markup = `
   <div class="drawer__wrapper">
-    <div class="drawer" data-drawer="drawer-default">
+    <div class="drawer is-closed" data-drawer="drawer-default">
       <div class="drawer__item">
         <button data-drawer-close>Close</button>
       </div>
@@ -29,22 +29,20 @@ test('should toggle drawer using api call', () => {
   const el = document.querySelector('[data-drawer]');
 
   drawer.init();
-  expect(el).toHaveClass('drawer');
+  expect(el).toHaveClass('drawer is-closed');
 
   drawer.toggle('drawer-default');
   expect(el).toHaveClass('is-opening');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('is-open');
+  expect(el).toHaveClass('is-opened');
 
   drawer.toggle('drawer-default');
   expect(el).toHaveClass('is-closing');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('drawer');
-  expect(el).not.toHaveClass('is-opening');
-  expect(el).not.toHaveClass('is-open');
-  expect(el).not.toHaveClass('is-closing');
+  expect(el).toHaveClass('drawer is-closed');
+  expect(el).not.toHaveClass('is-opening is-opened is-closing');
 });
 
 test('should open drawer using api call', () => {
@@ -53,15 +51,14 @@ test('should open drawer using api call', () => {
   const el = document.querySelector('[data-drawer]');
 
   drawer.init();
-  expect(el).toHaveClass('drawer');
+  expect(el).toHaveClass('drawer is-closed');
 
   drawer.open('drawer-default');
   expect(el).toHaveClass('is-opening');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('drawer is-open');
-  expect(el).not.toHaveClass('is-opening');
-  expect(el).not.toHaveClass('is-closing');
+  expect(el).toHaveClass('drawer is-opened');
+  expect(el).not.toHaveClass('is-opening is-closing is-closed');
 });
 
 test('should close drawer using api call', () => {
@@ -71,13 +68,13 @@ test('should close drawer using api call', () => {
   const btnOpen = document.querySelector('[data-drawer-toggle]');
 
   drawer.init();
-  expect(el).toHaveClass('drawer');
+  expect(el).toHaveClass('drawer is-closed');
 
   btnOpen.click();
   expect(el).toHaveClass('is-opening');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('drawer is-open');
+  expect(el).toHaveClass('drawer is-opened');
   expect(el).not.toHaveClass('is-opening');
   expect(el).not.toHaveClass('is-closing');
 
@@ -85,10 +82,8 @@ test('should close drawer using api call', () => {
   expect(el).toHaveClass('is-closing');
 
   el.dispatchEvent(ev);
-  expect(el).toHaveClass('drawer');
-  expect(el).not.toHaveClass('is-open');
-  expect(el).not.toHaveClass('is-opening');
-  expect(el).not.toHaveClass('is-closing');
+  expect(el).toHaveClass('drawer is-closed');
+  expect(el).not.toHaveClass('is-opening is-opened is-closing');
 });
 
 test('should fire callback when using toggle api', () => {
@@ -142,7 +137,7 @@ test('should properly destroy drawer instance on api call', () => {
   drawer.destroy();
   btnOpen.click();
   el.dispatchEvent(ev);
-  expect(el).not.toHaveClass('is-open');
+  expect(el).not.toHaveClass('is-opened');
   expect(Object.getOwnPropertyNames(localStorage).length).toBe(0);
   expect(Object.getOwnPropertyNames(drawer.state).length).toBe(0);
 });

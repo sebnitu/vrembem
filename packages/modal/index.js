@@ -14,12 +14,13 @@ export const Modal = (options) => {
     dataRequired: 'modal-required',
 
     // State classes
-    stateOpen: 'is-open',
+    stateOpened: 'is-opened',
     stateOpening: 'is-opening',
     stateClosing: 'is-closing',
-    stateClosed: 'is-closed', // Default state
+    stateClosed: 'is-closed',
 
     // Feature toggles
+    customEventPrefix: 'modal:',
     focus: true
   };
 
@@ -81,7 +82,7 @@ export const Modal = (options) => {
   const escape = (event) => {
     if (event.keyCode == 27) {
       const target = document.querySelector(
-        `[data-${api.settings.dataModal}].${api.settings.stateOpen}`
+        `[data-${api.settings.dataModal}].${api.settings.stateOpened}`
       );
       if (target && !target.hasAttribute(`data-${api.settings.dataRequired}`)) {
         close();
@@ -93,31 +94,41 @@ export const Modal = (options) => {
     const target = document.querySelector(
       `[data-${api.settings.dataModal}="${modalKey}"]`
     );
-    if (target && !hasClass(target, api.settings.stateOpen)) {
+    if (target && !hasClass(target, api.settings.stateOpened)) {
       saveTarget(target);
       addClass(target, api.settings.stateOpening);
+      removeClass(target, api.settings.stateClosed);
       target.addEventListener('transitionend', function _listener() {
-        addClass(target, api.settings.stateOpen);
+        addClass(target, api.settings.stateOpened);
         removeClass(target, api.settings.stateOpening);
         setFocus(target);
         typeof callback === 'function' && callback();
         this.removeEventListener('transitionend', _listener, true);
+        const customEvent = new CustomEvent(api.settings.customEventPrefix + 'opened', {
+          bubbles: true
+        });
+        target.dispatchEvent(customEvent);
       }, true);
     }
   };
 
   const close = (focus = true, callback) => {
     const target = document.querySelector(
-      `[data-${api.settings.dataModal}].${api.settings.stateOpen}`
+      `[data-${api.settings.dataModal}].${api.settings.stateOpened}`
     );
     if (target) {
       addClass(target, api.settings.stateClosing);
-      removeClass(target, api.settings.stateOpen);
+      removeClass(target, api.settings.stateOpened);
       target.addEventListener('transitionend', function _listener() {
+        addClass(target, api.settings.stateClosed);
         removeClass(target, api.settings.stateClosing);
         if (focus) returnFocus();
         typeof callback === 'function' && callback();
         this.removeEventListener('transitionend', _listener, true);
+        const customEvent = new CustomEvent(api.settings.customEventPrefix + 'closed', {
+          bubbles: true
+        });
+        target.dispatchEvent(customEvent);
       }, true);
     }
   };
