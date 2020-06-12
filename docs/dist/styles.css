@@ -453,8 +453,8 @@ input::-moz-placeholder {
   clear: both;
 }
 .type > * {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 .type > h1,
 .type > h2,
@@ -465,7 +465,6 @@ input::-moz-placeholder {
   color: inherit;
   font-weight: 600;
   line-height: 1.3;
-  margin-top: 1.5rem;
 }
 .type > h1:first-child,
 .type > h2:first-child,
@@ -525,16 +524,25 @@ input::-moz-placeholder {
     font-size: 1em;
   }
 }
-.type > a {
+.type > a,
+.type > p a,
+.type > ul a,
+.type > ol a {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   color: #00bcd4;
   text-decoration: none;
 }
-.type > a:hover {
+.type > a:hover,
+.type > p a:hover,
+.type > ul a:hover,
+.type > ol a:hover {
   border-bottom: 1px solid currentColor;
   color: #0097a7;
 }
-.type > a:focus {
+.type > a:focus,
+.type > p a:focus,
+.type > ul a:focus,
+.type > ol a:focus {
   outline: currentColor dotted 1px;
   outline-offset: 3px;
   border-bottom: 1px solid currentColor;
@@ -601,22 +609,6 @@ input::-moz-placeholder {
   background: none;
   color: inherit;
   font-size: 1em;
-}
-.type > hr,
-.type > blockquote,
-.type > pre {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-.type > hr:first-child,
-.type > blockquote:first-child,
-.type > pre:first-child {
-  margin-top: 0;
-}
-.type > hr:last-child,
-.type > blockquote:last-child,
-.type > pre:last-child {
-  margin-bottom: 0;
 }
 .type > *:first-child {
   margin-top: 0;

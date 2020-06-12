@@ -205,7 +205,6 @@
   > h5,
   > h6 {
     @include heading-base();
-    margin-top: var.$type-spacing-lg;
 
     &:first-child {
       margin-top: 0;
@@ -236,7 +235,10 @@
     @include heading(6);
   }
 
-  > a {
+  > a,
+  > p a,
+  > ul a,
+  > ol a {
     @include link();
   }
 
@@ -262,21 +264,6 @@
 
   > pre {
     @include pre();
-  }
-
-  > hr,
-  > blockquote,
-  > pre {
-    margin-top: var.$type-spacing-lg;
-    margin-bottom: var.$type-spacing-lg;
-
-    &:first-child {
-      margin-top: 0;
-    }
-
-    &:last-child {
-      margin-bottom: 0;
-    }
   }
 
   > *:first-child {
