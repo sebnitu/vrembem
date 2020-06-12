@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/input",
   "description": "A component for displaying form input elements.",
-  "version": "1.5.4",
+  "version": "1.6.0",
   "license": "MIT",
   "keywords": [
     "BEM",

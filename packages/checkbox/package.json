@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/checkbox",
   "description": "Checkboxes allow the user to select multiple options from a set.",
-  "version": "1.5.4",
+  "version": "1.6.0",
   "license": "MIT",
   "keywords": [
     "BEM",
