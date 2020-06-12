@@ -55,10 +55,10 @@
   background: rgba(0, 0, 0, 0.06);
 }
 .dropdown__link:focus {
-  background: rgba(0, 0, 0, 0.09);
+  background: rgba(0, 0, 0, 0.06);
 }
 .dropdown__link:active {
-  background: rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.09);
 }
 .dropdown__link.is-active {
   background: #fff;

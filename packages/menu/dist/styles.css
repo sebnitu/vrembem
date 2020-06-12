@@ -57,10 +57,10 @@
 }
 .menu__link:focus {
   outline: none;
-  background: rgba(0, 0, 0, 0.09);
+  background: rgba(0, 0, 0, 0.06);
 }
 .menu__link:active {
-  background: rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.09);
 }
 .menu__link.is-active {
   background: none;

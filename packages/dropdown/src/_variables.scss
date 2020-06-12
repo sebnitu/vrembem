@@ -30,8 +30,8 @@ $link-color-is-disabled: core.$color-subtle !default;
 
 $link-background: null !default;
 $link-background-hover: rgba(core.$black, 0.06) !default;
-$link-background-focus: rgba(core.$black, 0.09) !default;
-$link-background-active: rgba(core.$black, 0.12) !default;
+$link-background-focus: rgba(core.$black, 0.06) !default;
+$link-background-active: rgba(core.$black, 0.09) !default;
 $link-background-is-active: core.$white !default;
 $link-background-is-disabled: core.$white !default;
 
