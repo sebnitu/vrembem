@@ -71,14 +71,14 @@ In cases where you'd like a drawer to switch to a drawer modal on a specific bre
 
 ```html
 <!-- Switches to modal below `md` breakpoint viewports -->
-<div data-drawer="[unique-id]" data-drawer-breakpoint="md" class="drawer">
+<aside data-drawer="[unique-id]" data-drawer-breakpoint="md" class="drawer">
   ...
-</div>
+</aside>
 
 <!-- Switches to modal below 900px viewports -->
-<div data-drawer="[unique-id]" data-drawer-breakpoint="900px" class="drawer">
+<aside data-drawer="[unique-id]" data-drawer-breakpoint="900px" class="drawer">
   ...
-</div>
+</aside>
 ```
 
 #### `data-drawer-focus`
@@ -88,14 +88,14 @@ If a drawer has the attribute `tabindex="-1"`, it will be given focus when it's 
 ```html
 <div cass="drawer__wrapper">
   <!-- Focus the drawer on open -->
-  <div data-drawer="[unique-id]" class="drawer" tabindex="-1">
+  <aside data-drawer="[unique-id]" class="drawer" tabindex="-1">
     ...
-  </div>
+  </aside>
   <!-- Focus the close button on open -->
-  <div data-drawer="[unique-id]" class="drawer">
+  <aside data-drawer="[unique-id]" class="drawer">
     ...
     <button data-drawer-close data-drawer-focus>Close</button>
-  </div>
+  </aside>
   <div class="drawer__main">
     <!-- Return focus to toggle on close -->
     <button data-drawer-toggle="[unique-id]">Drawer Toggle</button>
@@ -115,9 +115,9 @@ Convert a drawer into it’s modal state with the `drawer_modal` modifier class.
 
 ```html
 <div class="drawer__wrapper">
-  <div data-drawer="[unique-id]" class="drawer drawer_modal">
+  <aside data-drawer="[unique-id]" class="drawer drawer_modal">
     ...
-  </div>
+  </aside>
   <div class="drawer__main">
     <button data-drawer-toggle="[unique-id]">
       ...
