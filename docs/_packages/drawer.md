@@ -53,7 +53,7 @@ Drawers are composed using classes for styling and data attributes for JavaScrip
 {% include demo_close.html %}
 
 <div class="type" markdown="1">
-The [dialog component](/packages/dialog) is a great fit for composing a drawer's content.
+The [dialog component](/packages/dialog) is a great fit for composing a drawer’s content.
 </div>
 
 {% include demo_open.html class_grid="grid_break" %}
@@ -550,23 +550,23 @@ By default, the state of a drawer is saved to local storage and applied persiste
     </thead>
     <tbody>
       <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">.init()</code></td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">drawer.init()</code></td>
         <td data-mobile-label="Desc">Initializes the drawer instance.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">.destroy()</code></td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">drawer.destroy()</code></td>
         <td data-mobile-label="Desc">Destroys and cleans up the drawer instantiation.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">.toggle(drawerKey, callback)</code></td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">drawer.toggle(drawerKey, callback)</code></td>
         <td data-mobile-label="Desc">Toggles a drawer provided the drawer key and optional callback.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">.open(drawerKey, callback)</code></td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">drawer.open(drawerKey, callback)</code></td>
         <td data-mobile-label="Desc">Opens a drawer provided the drawer key and optional callback.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">.close(drawerKey, callback)</code></td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">drawer.close(drawerKey, callback)</code></td>
         <td data-mobile-label="Desc">Closes a drawer provided the drawer key and optional callback.</td>
       </tr>
     </tbody>

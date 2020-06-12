@@ -36,7 +36,7 @@ Modals are composed using classes for styling and data attributes for JavaScript
 {% include demo_close.html %}
 
 <div class="type" markdown="1">
-The [dialog component](/packages/dialog) is a great fit for composing a modal's content.
+The [dialog component](/packages/dialog) is a great fit for composing a modal’s content.
 </div>
 
 {% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
@@ -61,21 +61,9 @@ The [dialog component](/packages/dialog) is a great fit for composing a modal's 
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="modal_size_[key]" %}
-
-{% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
-<div class="level">
-  <button class="link" data-modal-open="modal-size-sm">Small modal</button>
-  <button class="link" data-modal-open="modal-size-lg">Large modal</button>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="modal modal_size_sm" data-modal="[unique-id]">...</div>
-<div class="modal modal_size_lg" data-modal="[unique-id]">...</div>
-```
-{% include demo_close.html %}
-
 {% include flag.html heading="modal_full" %}
+
+Adds styles to a modal that make it fill the entire viewport when opened.
 
 {% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
 <button class="link" data-modal-open="modal-full">Modal</button>
@@ -86,6 +74,15 @@ The [dialog component](/packages/dialog) is a great fit for composing a modal's 
 {% include demo_close.html %}
 
 {% include flag.html heading="modal_pos_[key]" %}
+
+<div class="type" markdown="1">
+The default position of modals is in the center of the viewport. The position modifier allows you four other options:
+
+* `modal_pos_top`
+* `modal_pos_left`
+* `modal_pos_right`
+* `modal_pos_bottom`
+</div>
 
 {% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
 <div class="level">
@@ -103,10 +100,28 @@ The [dialog component](/packages/dialog) is a great fit for composing a modal's 
 ```
 {% include demo_close.html %}
 
+{% include flag.html heading="modal_size_[key]" %}
+
+<div class="type" markdown="1">
+Adjusts the size of modals. This modifier provides two options, `modal_size_sm` and `modal_size_lg` all relative to the default modal size.
+</div>
+
+{% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
+<div class="level">
+  <button class="link" data-modal-open="modal-size-sm">Small modal</button>
+  <button class="link" data-modal-open="modal-size-lg">Large modal</button>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="modal modal_size_sm" data-modal="[unique-id]">...</div>
+<div class="modal modal_size_lg" data-modal="[unique-id]">...</div>
+```
+{% include demo_close.html %}
+
 {% include flag.html heading="data-modal-focus" %}
 
 <div class="type" markdown="1">
-If a modal has the attribute `tabindex="-1"`, it will be given focus when it's opened. If focus on a specific element inside a modal is prefered, give it the `data-modal-focus` attribute. The focus in either case is returned to the trigger element once the modal is closed. Focus handling can be disabled using the `{ focus: false }` setting.
+If a modal has the attribute `tabindex="-1"`, it will be given focus when it's opened. If focus on a specific element inside a modal is preferred, give it the `data-modal-focus` attribute. The focus in either case is returned to the trigger element once the modal is closed. Focus handling can be disabled using the `{ focus: false }` setting.
 </div>
 
 {% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
@@ -256,12 +271,12 @@ Required modals can not be closed without an explicit action. That means clickin
       <tr>
         <td data-mobile-label="Var"><code class="code text_nowrap">$aside-width</code></td>
         <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">16em</code></td>
-        <td data-mobile-label="Desc">Width applied to modals using <code class="code">_pos_left</code> and <code class="code">_pos_right</code> modifiers</td>
+        <td data-mobile-label="Desc">Width applied to modals using <code class="code">_pos_left</code> and <code class="code">_pos_right</code> modifiers.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text_nowrap">$aside-max-width</code></td>
         <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">90%</code></td>
-        <td data-mobile-label="Desc">Max width applied to modals using <code class="code">_pos_left</code> and <code class="code">_pos_right</code> modifiers</td>
+        <td data-mobile-label="Desc">Max width applied to modals using <code class="code">_pos_left</code> and <code class="code">_pos_right</code> modifiers.</td>
       </tr>
 
     </tbody>
@@ -369,19 +384,19 @@ Required modals can not be closed without an explicit action. That means clickin
     </thead>
     <tbody>
       <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">.init()</code></td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">modal.init()</code></td>
         <td data-mobile-label="Desc">Initializes the modal instance.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">.destroy()</code></td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">modal.destroy()</code></td>
         <td data-mobile-label="Desc">Destroys and cleans up the modal instantiation.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">.open(modalKey, callback)</code></td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">modal.open(modalKey, callback)</code></td>
         <td data-mobile-label="Desc">Opens a modal provided the modal key and optional callback.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">.close(returnFocus, callback)</code></td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">modal.close(returnFocus, callback)</code></td>
         <td data-mobile-label="Desc">Closes a modal and returns focus to trigger element with optional callback.</td>
       </tr>
     </tbody>
