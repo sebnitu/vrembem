@@ -8,7 +8,7 @@ usage:
   scss: "panel"
 ---
 
-{% include flag.html heading="panel" %}
+## panel
 
 {% include demo_open.html class_parent="spacing" %}
 <div class="panel">
@@ -51,7 +51,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="panel__header + panel__footer" %}
+## panel__header + panel__footer
 
 {% include demo_open.html class_parent="spacing" %}
 <div class="panel">

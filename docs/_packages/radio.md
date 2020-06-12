@@ -8,7 +8,7 @@ usage:
   scss: "radio"
 ---
 
-{% include flag.html heading="radio" %}
+## radio
 
 {% include demo_open.html %}
   {% include radio.html name="radio-1" checked="" %}
@@ -26,7 +26,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="radio + label" %}
+## radio + label
 
 {% include demo_open.html %}
 <p>

@@ -8,7 +8,7 @@ usage:
   scss: "notice"
 ---
 
-{% include flag.html heading="notice" %}
+## notice
 
 {% include demo_open.html %}
 <div class="notice">
@@ -26,7 +26,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="notice + media" %}
+## notice + media
 
 {% include demo_open.html class_parent="spacing" %}
 <div class="notice notice_state_danger">
@@ -64,7 +64,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="notice__actions" %}
+## notice__actions
 
 {% include demo_open.html class_parent="spacing" %}
 <div class="notice" data-dismissible>
@@ -103,7 +103,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="notice__title" %}
+## notice__title
 
 {% include demo_open.html %}
 <div class="notice flex_align_start" data-dismissible>
@@ -131,7 +131,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="notice_stack" %}
+## notice_stack
 
 {% include demo_open.html class_parent="spacing" %}
 <div class="notice notice_stack" data-dismissible>
@@ -165,7 +165,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="notice_color_[key]" %}
+## notice_color_[key]
 
 {% include demo_open.html class_parent="spacing" %}
 <div class="notice notice_color_primary" data-dismissible>
@@ -206,7 +206,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="notice_state_[key]" %}
+## notice_state_[key]
 
 {% include demo_open.html class_parent="spacing" %}
 <div class="notice notice_state_info" data-dismissible>
@@ -258,7 +258,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="notice_state_[key]-bold" %}
+## notice_state_[key]-bold
 
 {% include demo_open.html class_parent="spacing" %}
 <div class="notice notice_state_info-bold" data-dismissible>
@@ -310,7 +310,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="Examples" %}
+## Examples
 
 {% include demo_open.html %}
 <div class="notice notice_stack notice_color_dark elevate_16dp" data-dismissible>

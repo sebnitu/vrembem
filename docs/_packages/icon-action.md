@@ -8,7 +8,7 @@ usage:
   scss: "icon-action"
 ---
 
-{% include flag.html heading="icon-action" %}
+## icon-action
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="level">
@@ -32,7 +32,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="icon-action_color" %}
+## icon-action_color
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="level">
@@ -54,7 +54,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="icon-action_invert" %}
+## icon-action_invert
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="padding radius background_night">
@@ -69,7 +69,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="icon-action_subtle" %}
+## icon-action_subtle
 
 {% include demo_open.html class_grid="grid_break" class_parent="flex flex_items_equal" %}
 <div class="padding radius background_white">

@@ -8,7 +8,7 @@ usage:
   scss: "media"
 ---
 
-{% include flag.html heading="media" %}
+## media
 
 {% include demo_open.html class_parent="spacing" %}
 <div class="media">
@@ -53,7 +53,7 @@ $spacing: 1.5rem !default;
 </div>
 </div>
 
-{% include flag.html heading="media_gap_[key]" %}
+## media_gap_[key]
 
 {% include demo_open.html class_parent="spacing" %}
 <div class="media media_gap_xs">
@@ -108,7 +108,7 @@ $spacing-map: (
 </div>
 </div>
 
-{% include flag.html heading="media_reverse" %}
+## media_reverse
 
 {% include demo_open.html class_parent="spacing" %}
 <div class="media media_reverse">
@@ -134,7 +134,7 @@ $spacing-map: (
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="media_stack_[bp]" %}
+## media_stack_[bp]
 
 {% include demo_open.html class_parent="spacing" %}
 <div class="media media_stack_lg">

@@ -9,7 +9,7 @@ usage:
   js: "modal"
 ---
 
-{% include flag.html heading="modal" %}
+## modal
 
 <div class="type" markdown="1">
 Modals are composed using classes for styling and data attributes for JavaScript functionality. To open a modal using a trigger, use a unique identifier as the values for both of their respective data attributes. Close buttons are left value-less and should be placed inside the modal element they're meant to close.
@@ -61,7 +61,7 @@ The [dialog component](/packages/dialog) is a great fit for composing a modal’
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="modal_full" %}
+## modal_full
 
 Adds styles to a modal that make it fill the entire viewport when opened.
 
@@ -73,7 +73,7 @@ Adds styles to a modal that make it fill the entire viewport when opened.
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="modal_pos_[key]" %}
+## modal_pos_[key]
 
 <div class="type" markdown="1">
 The default position of modals is in the center of the viewport. The position modifier allows you four other options:
@@ -100,7 +100,7 @@ The default position of modals is in the center of the viewport. The position mo
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="modal_size_[key]" %}
+## modal_size_[key]
 
 <div class="type" markdown="1">
 Adjusts the size of modals. This modifier provides two options, `modal_size_sm` and `modal_size_lg` all relative to the default modal size.
@@ -118,7 +118,7 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="data-modal-focus" %}
+## data-modal-focus
 
 <div class="type" markdown="1">
 If a modal has the attribute `tabindex="-1"`, it will be given focus when it's opened. If focus on a specific element inside a modal is preferred, give it the `data-modal-focus` attribute. The focus in either case is returned to the trigger element once the modal is closed. Focus handling can be disabled using the `{ focus: false }` setting.
@@ -156,7 +156,7 @@ If a modal has the attribute `tabindex="-1"`, it will be given focus when it's o
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="data-modal-required" %}
+## data-modal-required
 
 <div class="type" markdown="1">
 Required modals can not be closed without an explicit action. That means clicking on the background or pressing the escape key to close is disabled. Add the `data-modal-required` data attribute to a modal to enable this behavior.
@@ -176,7 +176,7 @@ Required modals can not be closed without an explicit action. That means clickin
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="Sass variables" %}
+## Sass variables
 
 <div class="scroll-box">
   <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
@@ -283,14 +283,14 @@ Required modals can not be closed without an explicit action. That means clickin
   </table>
 </div>
 
-{% include flag.html heading="JavaScript Events" %}
+## JavaScript Events
 
 <div class="type" markdown="1">
 * `modal:opened` Emits when the modal has opened.
 * `modal:closed` Emits when the modal has closed.
 </div>
 
-{% include flag.html heading="JavaScript Options" %}
+## JavaScript Options
 
 <div class="scroll-box">
   <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
@@ -372,7 +372,7 @@ Required modals can not be closed without an explicit action. That means clickin
   </table>
 </div>
 
-{% include flag.html heading="JavaScript API" %}
+## JavaScript API
 
 <div class="scroll-box">
   <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">

@@ -8,7 +8,7 @@ usage:
   scss: "container"
 ---
 
-{% include flag.html heading="container" %}
+## container
 
 <div class="demo spacing">
   <div class="demo__render">
@@ -23,7 +23,7 @@ usage:
   </div>
 </div>
 
-{% include flag.html heading="container_size_[key]" %}
+## container_size_[key]
 
 <div class="demo spacing">
   <div class="demo__render spacing">

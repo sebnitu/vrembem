@@ -8,7 +8,7 @@ usage:
   scss: "dialog"
 ---
 
-{% include flag.html heading="dialog + dialog__body" %}
+## dialog + dialog__body
 
 {% include demo_open.html %}
 <div class="dialog">
@@ -26,7 +26,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="dialog__close" %}
+## dialog__close
 
 {% include demo_open.html %}
 <div class="dialog">
@@ -52,7 +52,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="dialog__title" %}
+## dialog__title
 
 {% include demo_open.html %}
 <div class="dialog">
@@ -76,7 +76,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="dialog__header + dialog__footer" %}
+## dialog__header + dialog__footer
 
 {% include demo_open.html %}
 <div class="dialog">
@@ -112,13 +112,11 @@ usage:
 ```
 {% include demo_close.html %}
 
-<div class="type" markdown="1">
 ## Dialog examples
 
 The dialog is a very flexible component and can be used in many different contexts. Here are more examples of the dialog component.
-</div>
 
-{% include flag.html heading="Message" %}
+## Message
 
 {% include demo_open.html %}
 <div class="dialog">
@@ -185,7 +183,7 @@ The dialog is a very flexible component and can be used in many different contex
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="Confirmation" %}
+## Confirmation
 
 {% include demo_open.html %}
 <div class="dialog">

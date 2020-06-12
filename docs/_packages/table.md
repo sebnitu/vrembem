@@ -8,7 +8,7 @@ usage:
   scss: "table"
 ---
 
-{% include flag.html heading="table" %}
+## table
 
 <div class="type" markdown="1">
 For basic table styles, only the `table` component class is required. Use [proper table markup](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table) and styles should apply as expected.
@@ -53,7 +53,7 @@ For basic table styles, only the `table` component class is required. Use [prope
 > ```
 </div>
 
-{% include flag.html heading="table_style_[key]" %}
+## table_style_[key]
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="scroll-box">
@@ -79,7 +79,7 @@ For basic table styles, only the `table` component class is required. Use [prope
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="table_zebra" %}
+## table_zebra
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="scroll-box">
@@ -93,7 +93,7 @@ For basic table styles, only the `table` component class is required. Use [prope
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="table_hover" %}
+## table_hover
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="scroll-box">
@@ -107,7 +107,7 @@ For basic table styles, only the `table` component class is required. Use [prope
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="table_responsive_[key]" %}
+## table_responsive_[key]
 
 <div class="type" markdown="1">
 When `scroll-box` isn't mobile friendly enough, `table_responsive_[key]` is available to turn tables into a more readable format on smaller devices. Mobile labels are set using the `data-mobile-lable` attribute.
@@ -176,7 +176,7 @@ When `scroll-box` isn't mobile friendly enough, `table_responsive_[key]` is avai
 > ```
 </div>
 
-{% include flag.html heading="table_size_[key]" %}
+## table_size_[key]
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="scroll-box">
@@ -202,7 +202,7 @@ When `scroll-box` isn't mobile friendly enough, `table_responsive_[key]` is avai
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="table_overflow_ellipsis" %}
+## table_overflow_ellipsis
 
 {% include demo_open.html %}
 <table class="table table_ellipsis">

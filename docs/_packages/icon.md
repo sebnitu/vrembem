@@ -14,7 +14,7 @@ usage:
   </div>
 </div>
 
-{% include flag.html heading="icon" %}
+## icon
 
 <div class="type" markdown="1">
 You can inject svg icons directly or use svg sprites. The only requirement is the `icon` component class.
@@ -41,7 +41,7 @@ You can inject svg icons directly or use svg sprites. The only requirement is th
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="icon_style_[key]" %}
+## icon_style_[key]
 
 <div class="type" markdown="1">
 The default icon style is set using the `$icon-style` variable. You can also explicity style an icon using the style modifier.

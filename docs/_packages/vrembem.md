@@ -9,7 +9,7 @@ usage:
   js: "vrembem"
 ---
 
-{% include flag.html heading="Sass" %}
+## Sass
 
 <div class="type" markdown="1">
 To include all Vrembem components into your styles, just import the vrembem package in your Sass manifest file.
@@ -52,7 +52,7 @@ Customize core variables which all components inherit from. The example below wi
 </div>
 </div>
 
-{% include flag.html heading="JavaScript" %}
+## JavaScript
 
 <div class="type" markdown="1">
 Import and initialize the components you'll need:
@@ -89,7 +89,7 @@ modal.init()
 > Note that `utility` component does not need to be initialized since it's just a set of helpful utility functions.
 </div>
 
-{% include flag.html heading="Markup" %}
+## Markup
 
 <div class="type" markdown="1">
 Include the component's markup into your project. Use the [online documentation](https://vrembem.com) for more information, code examples and available modifiers.

@@ -9,7 +9,7 @@ usage:
   js: "drawer"
 ---
 
-{% include flag.html heading="drawer" %}
+## drawer
 
 <div class="type" markdown="1">
 Drawers are composed using classes for styling and data attributes for JavaScript functionality. To link a drawer toggle to a drawer, use a unique identifier as the values for both of their respective data attributes. Close buttons are left value-less and should be placed inside the drawer element they're meant to close.
@@ -97,7 +97,7 @@ The [dialog component](/packages/dialog) is a great fit for composing a drawer�
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="drawer_modal" %}
+## drawer_modal
 
 <div class="type" markdown="1">
 Convert a drawer into it’s modal state with the `drawer_modal` modifier class. Only one modal can be open at a time.
@@ -145,7 +145,7 @@ Convert a drawer into it’s modal state with the `drawer_modal` modifier class.
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="drawer_pos_[value]" %}
+## drawer_pos_[value]
 
 <div class="type" markdown="1">
 Drawers can slide in from the left or right using the position modifiers:
@@ -206,7 +206,7 @@ Drawers can slide in from the left or right using the position modifiers:
 > If a position modifier is not provided, the drawer will appear based on it's location in the DOM relative to the main content area and other drawers.
 </div>
 
-{% include flag.html heading="data-drawer-breakpoint" %}
+## data-drawer-breakpoint
 
 <div class="type" markdown="1">
 In cases where you'd like a drawer to switch to a drawer modal on a specific breakpoint, use the `data-drawer-breakpoint` data attribute with either a breakpoint key or a specific pixel value.
@@ -253,7 +253,7 @@ In cases where you'd like a drawer to switch to a drawer modal on a specific bre
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="data-drawer-focus" %}
+## data-drawer-focus
 
 <div class="type" markdown="1">
 If a drawer has the attribute `tabindex="-1"`, it will be given focus when it's opened. If focus on a specific element inside a drawer is prefered, give it the `data-drawer-focus` attribute. The focus in either case is returned to the trigger element once the drawer is closed. Focus handling can be disabled using the `{ focus: false }` setting.
@@ -306,13 +306,13 @@ If a drawer has the attribute `tabindex="-1"`, it will be given focus when it's 
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="Drawer State" %}
+## Drawer State
 
 <div class="type" markdown="1">
 By default, the state of a drawer is saved to local storage and applied persistently under the "DrawerState" local storage variable. Set `saveState: false` to disable save state. Use `saveKey: "[CUSTOM-KEY]"` to change the key that save state is stored under.
 </div>
 
-{% include flag.html heading="Sass variables" %}
+## Sass variables
 
 <div class="scroll-box">
   <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
@@ -426,7 +426,7 @@ By default, the state of a drawer is saved to local storage and applied persiste
   </table>
 </div>
 
-{% include flag.html heading="JavaScript Events" %}
+## JavaScript Events
 
 <div class="type" markdown="1">
 * `drawer:opened` Emits when the drawer has opened.
@@ -434,7 +434,7 @@ By default, the state of a drawer is saved to local storage and applied persiste
 * `drawer:breakpoint` Emits when the drawer has hit a breakpoint.
 </div>
 
-{% include flag.html heading="JavaScript Options" %}
+## JavaScript Options
 
 <div class="scroll-box">
   <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
@@ -538,7 +538,7 @@ By default, the state of a drawer is saved to local storage and applied persiste
   </table>
 </div>
 
-{% include flag.html heading="JavaScript API" %}
+## JavaScript API
 
 <div class="scroll-box">
   <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">

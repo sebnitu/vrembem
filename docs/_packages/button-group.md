@@ -8,7 +8,7 @@ usage:
   scss: "button-group"
 ---
 
-{% include flag.html heading="button-group" %}
+## button-group
 
 {% include demo_open.html class_parent="spacing" %}
 <div>
@@ -35,7 +35,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="button-group_full" %}
+## button-group_full
 
 {% include demo_open.html class_parent="spacing" %}
 <div>
@@ -93,7 +93,7 @@ Optionally provide a `$breakpoints` key to the `_full` modifier to only have the
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="button-group_stack" %}
+## button-group_stack
 
 {% include demo_open.html %}
 <div class="grid grid_auto">
@@ -182,7 +182,7 @@ Combine `_stack` and `_full` modifiers to apply both effects:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="button-group_join" %}
+## button-group_join
 
 {% include demo_open.html class_parent="spacing" %}
 <div>
@@ -240,7 +240,7 @@ Combine `_join` and `_stack` modifiers to apply both effects:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="button-group_gap_[key]" %}
+## button-group_gap_[key]
 
 {% include demo_open.html class_parent="spacing" %}
 <div>

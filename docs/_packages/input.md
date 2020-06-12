@@ -8,7 +8,7 @@ usage:
   scss: "input"
 ---
 
-{% include flag.html heading="input" %}
+## input
 
 {% include demo_open.html %}
 
@@ -21,7 +21,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="input_type_select" %}
+## input_type_select
 
 {% include demo_open.html %}
 
@@ -43,7 +43,7 @@ usage:
 
 {% include demo_close.html %}
 
-{% include flag.html heading="input_type_textarea" %}
+## input_type_textarea
 
 {% include demo_open.html class_parent="spacing" %}
 
@@ -69,7 +69,7 @@ usage:
 
 {% include demo_close.html %}
 
-{% include flag.html heading="input_size" %}
+## input_size
 
 {% include demo_open.html class_parent="spacing" %}
 
@@ -120,7 +120,7 @@ usage:
 
 {% include demo_close.html %}
 
-{% include flag.html heading="input_state_success" %}
+## input_state_success
 
 {% include demo_open.html class_parent="spacing" %}
 
@@ -154,7 +154,7 @@ usage:
 
 {% include demo_close.html %}
 
-{% include flag.html heading="input_state_caution" %}
+## input_state_caution
 
 {% include demo_open.html class_parent="spacing" %}
 
@@ -188,7 +188,7 @@ usage:
 
 {% include demo_close.html %}
 
-{% include flag.html heading="input_state_danger" %}
+## input_state_danger
 
 {% include demo_open.html class_parent="spacing" %}
 

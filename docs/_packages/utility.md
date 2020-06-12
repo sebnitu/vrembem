@@ -8,7 +8,7 @@ usage:
   scss: "utility"
 ---
 
-{% include flag.html heading="background" %}
+## background
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="swatch-group">
@@ -81,7 +81,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="border" %}
+## border
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="swatch-group">
@@ -153,7 +153,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="radius" %}
+## radius
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="swatch-group">
@@ -169,7 +169,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="elevate" %}
+## elevate
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="padding_lg background_shade radius">
@@ -195,7 +195,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="color" %}
+## color
 
 {% include demo_open.html class_grid="grid_break" class_parent="spacing" %}
 <div class="padding radius background_shade_light">
@@ -299,7 +299,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="display" %}
+## display
 
 <div class="spacing">
   <div class="type spacing">
@@ -406,7 +406,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="flex" %}
+## flex
 
 {% include demo_open.html class_grid="grid_break" class_parent="spacing" %}
 <div class="flex flex_justify_between flex_align_end border padding_xs">
@@ -438,7 +438,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="margin" %}
+## margin
 
 <div class="spacing">
   <div class="type spacing">
@@ -497,7 +497,7 @@ usage:
   </div>
 </div>
 
-{% include flag.html heading="padding" %}
+## padding
 
 <div class="spacing">
   <div class="type spacing">
@@ -556,7 +556,7 @@ usage:
   </div>
 </div>
 
-{% include flag.html heading="spacing" %}
+## spacing
 
 {% include demo_open.html class_grid="grid_break" class_parent="spacing" %}
 <div class="border padding spacing">
@@ -577,7 +577,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="text" %}
+## text
 
 {% include demo_open.html %}
 <ul class="list list_between">

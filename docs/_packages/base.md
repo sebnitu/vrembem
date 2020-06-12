@@ -8,7 +8,7 @@ usage:
   scss: "base"
 ---
 
-{% include flag.html heading="Heading" %}
+## Heading
 
 {% include demo_open.html class_parent="spacing" %}
 <p class="h1">Heading</p>
@@ -28,7 +28,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="Link" %}
+## Link
 
 {% include demo_open.html %}
 <div class="spacing padding">
@@ -48,7 +48,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="List" %}
+## List
 
 {% include demo_open.html %}
 <div class="spacing_xl">
@@ -95,7 +95,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="Separator" %}
+## Separator
 
 <div class="type" markdown="1">
 Typically used on an `<hr>` HTML element representing a thematic break between paragraph-level elements.
@@ -130,7 +130,7 @@ Typically used on an `<hr>` HTML element representing a thematic break between p
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="embed" %}
+## embed
 
 {% include demo_open.html %}
 <div class="embed">
@@ -144,7 +144,7 @@ Typically used on an `<hr>` HTML element representing a thematic break between p
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="blockquote" %}
+## blockquote
 
 {% include demo_open.html class_parent="spacing" %}
 <blockquote class="blockquote" cite="https://ideapod.com/35-noam-chomsky-quotes-will-make-question-everything-society/">
@@ -163,7 +163,7 @@ Typically used on an `<hr>` HTML element representing a thematic break between p
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="code" %}
+## code
 
 {% include demo_open.html class_parent="spacing" %}
 <code class="code">a = 17</code>
@@ -173,7 +173,7 @@ Typically used on an `<hr>` HTML element representing a thematic break between p
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="pre" %}
+## pre
 
 {% include demo_open.html class_parent="spacing" %}
 <pre class="pre"><code>a = 17
@@ -184,7 +184,7 @@ print "a = #{a}";</code></pre>
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="type" %}
+## type
 
 <div class="type" markdown="1">
 The `type` component is a quick way to apply all base styles to components directy based on their respective HTML elements. Base component modifiers will override a parent `type` component when explicitly set. Other components will run into style conflicts unless written with `type` inheritance in mind.
@@ -276,7 +276,7 @@ print "a = #{a}";</code></pre>
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="type_invert" %}
+## type_invert
 
 {% include demo_open.html class_parent="spacing" %}
 <div class="type type_invert background_night padding radius">

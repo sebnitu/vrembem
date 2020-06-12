@@ -8,7 +8,7 @@ usage:
   scss: "level"
 ---
 
-{% include flag.html heading="level" %}
+## level
 
 {% include demo_open.html %}
 <div class="level">
@@ -22,7 +22,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="level_gap_[key]" %}
+## level_gap_[key]
 
 {% include demo_open.html %}
 <div class="level level_gap_none">

@@ -8,7 +8,7 @@ usage:
   js: "dismissible"
 ---
 
-{% include flag.html heading="dismissible" %}
+## dismissible
 
 <div class="type" markdown="1">
 Dismissible uses two data attributes to utilize it's functionality. The first is a trigger, created using the `data-dismiss` attribute on a button or anchor element. The second is a parent element of the trigger created using `data-dismissible`. You can optionally pass a dismiss method to either hide an element using a class or remove it from the DOM.
@@ -53,7 +53,7 @@ Dismissible uses two data attributes to utilize it's functionality. The first is
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="dismissible + notice" %}
+## dismissible + notice
 
 {% include demo_open.html %}
 <div data-dismissible class="notice notice_state_success">
@@ -77,7 +77,7 @@ Dismissible uses two data attributes to utilize it's functionality. The first is
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="dismissible + dialog" %}
+## dismissible + dialog
 
 {% include demo_open.html %}
 <div data-dismissible class="dialog">
@@ -119,7 +119,7 @@ Dismissible uses two data attributes to utilize it's functionality. The first is
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="JavaScript Options" %}
+## JavaScript Options
 
 <div class="scroll-box">
   <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
@@ -160,7 +160,7 @@ Dismissible uses two data attributes to utilize it's functionality. The first is
   </table>
 </div>
 
-{% include flag.html heading="JavaScript API" %}
+## JavaScript API
 
 <div class="scroll-box">
   <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">

@@ -8,7 +8,7 @@ usage:
   scss: "breadcrumb"
 ---
 
-{% include flag.html heading="breadcrumb" %}
+## breadcrumb
 
 {% include demo_open.html class_grid="grid_break" %}
 <ol class="breadcrumb">
@@ -39,7 +39,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="breadcrumb_invert" %}
+## breadcrumb_invert
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="padding background_night radius">

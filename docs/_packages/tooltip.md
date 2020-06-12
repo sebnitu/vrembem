@@ -8,7 +8,7 @@ usage:
   scss: "tooltip"
 ---
 
-{% include flag.html heading="[data-tooltip]" %}
+## [data-tooltip]
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="level">
@@ -20,7 +20,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="[data-tooltip-pos]" %}
+## [data-tooltip-pos]
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="level">

@@ -8,7 +8,7 @@ usage:
   scss: "grid"
 ---
 
-{% include flag.html heading="grid + grid__item" %}
+## grid + grid__item
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="grid">
@@ -32,7 +32,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="grid__clear" %}
+## grid__clear
 
 <div class="type" markdown="1">
 The clear element allows you to start a new row at any point in a column set.
@@ -70,7 +70,7 @@ The clear element allows you to start a new row at any point in a column set.
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="flex_justify_[value]" %}
+## flex_justify_[value]
 
 <div class="type" markdown="1">
 Change the `justify-content` property of grid columns using the `flex_justify_[value]` utility. Best used along with the `grid_auto` modifier. Avaliable values are:
@@ -143,7 +143,7 @@ Change the `justify-content` property of grid columns using the `flex_justify_[v
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="flex_align_[value]" %}
+## flex_align_[value]
 
 <div class="type" markdown="1">
 Adjust the `align-items` property of grid columns using the `flex_align_[value]` utility. Avaliable values are:
@@ -215,7 +215,7 @@ Adjust the `align-items` property of grid columns using the `flex_align_[value]`
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="grid_auto" %}
+## grid_auto
 
 <div class="type" markdown="1">
 Gives grid items a basis of auto so their content dictates their width.
@@ -277,7 +277,7 @@ Set an individual grid item to auto using `grid__item_auto` element modifier.
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="grid_break_[breakpoint]" %}
+## grid_break_[breakpoint]
 
 <div class="type" markdown="1">
 Adds a breakpoint for when grid items should be stacked vertically. Also available is the `grid_break` modifier which stacks grid items under all conditions.
@@ -345,7 +345,7 @@ Adds a breakpoint for when grid items should be stacked vertically. Also availab
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="grid_fill" %}
+## grid_fill
 
 <div class="type" markdown="1">
 The fill modifier stretches grid item's contents to fill the height of it's container.
@@ -410,7 +410,7 @@ Set an individual grid item to fill using the `grid__item_fill` element modifier
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="grid_gap_[type]" %}
+## grid_gap_[type]
 
 <div class="type" markdown="1">
 Modifiers that adjust the gutters between content tracks.

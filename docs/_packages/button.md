@@ -8,7 +8,7 @@ usage:
   scss: "button"
 ---
 
-{% include flag.html heading="button" %}
+## button
 
 {% include demo_open.html %}
 <div class="level">
@@ -22,7 +22,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="button disabled" %}
+## button disabled
 
 {% include demo_open.html %}
 <div class="level">
@@ -36,7 +36,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="button > [elements]" %}
+## button > [elements]
 
 <div class="type" markdown="1">
 Elements inside the button component receive appropriate spacing using the `> * + *` selector rule.
@@ -71,7 +71,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="button_icon" %}
+## button_icon
 
 {% include demo_open.html %}
 <div class="level">
@@ -122,7 +122,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="button_size_[key]" %}
+## button_size_[key]
 
 {% include demo_open.html %}
 <div class="level">
@@ -144,7 +144,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="button_block" %}
+## button_block
 
 {% include demo_open.html class_parent="spacing" %}
 <div>
@@ -159,7 +159,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="button_block_[key]" %}
+## button_block_[key]
 
 {% include demo_open.html class_parent="spacing" %}
 <div>
@@ -187,7 +187,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="button_color_[key]" %}
+## button_color_[key]
 
 {% include demo_open.html class_grid="grid_break" class_parent="spacing" %}
 <div class="padding background_white radius">
@@ -222,7 +222,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="button_outline_[key]" %}
+## button_outline_[key]
 
 {% include demo_open.html class_grid="grid_break" class_parent="spacing" %}
 <div class="padding background_white radius">
@@ -253,7 +253,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="button is-loading" %}
+## button is-loading
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="padding background_white radius">

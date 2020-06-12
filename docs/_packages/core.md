@@ -9,7 +9,7 @@ usage:
   js: "core"
 ---
 
-{% include flag.html heading="Sass" %}
+## Sass
 
 To make use of global Vrembem functions, mixins and variables, it is recommended to import the core index file:
 
@@ -34,7 +34,7 @@ You could also import these files individually, but the order of imports matters
 </div>
 </div>
 
-{% include flag.html heading="JavaScript" %}
+## JavaScript
 
 To make use of the core JavaScript modules, import the specific named export you need:
 
@@ -64,44 +64,42 @@ core.removeClass(el, "some-class");
 </div>
 </div>
 
-Available named exports:
-
 <div class="scroll-box">
-  <table class="table table_zebra">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
     <thead>
       <tr>
-        <th>Name</th>
+        <th>Method</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><code class="code text_nowrap">addClass</code></td>
-        <td>Adds a class or classes to an element or NodeList</td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">addClass(el, ...cl)</code></td>
+        <td data-mobile-label="Desc">Adds a class or classes to an element or NodeList</td>
       </tr>
       <tr>
-        <td><code class="code text_nowrap">camelCase</code></td>
-        <td>Takes a hyphen cased string and converts it to camel case</td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">camelCase(str)</code></td>
+        <td data-mobile-label="Desc">Takes a hyphen cased string and converts it to camel case</td>
       </tr>
       <tr>
-        <td><code class="code text_nowrap">hasClass</code></td>
-        <td>Checks an element or NodeList whether they contain a class or classes</td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">hasClass(el, ...cl)</code></td>
+        <td data-mobile-label="Desc">Checks an element or NodeList whether they contain a class or classes</td>
       </tr>
       <tr>
-        <td><code class="code text_nowrap">hyphenCase</code></td>
-        <td>Takes a camel cased string and converts it to hyphen case</td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">hyphenCase(str)</code></td>
+        <td data-mobile-label="Desc">Takes a camel cased string and converts it to hyphen case</td>
       </tr>
       <tr>
-        <td><code class="code text_nowrap">removeClass</code></td>
-        <td>Remove a class or classes from an element or NodeList</td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">removeClass(el, ...cl)</code></td>
+        <td data-mobile-label="Desc">Remove a class or classes from an element or NodeList</td>
       </tr>
       <tr>
-        <td><code class="code text_nowrap">toggleClass</code></td>
-        <td>Toggle a class or classes on an element or NodeList</td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">toggleClass(el, ...cl)</code></td>
+        <td data-mobile-label="Desc">Toggle a class or classes on an element or NodeList</td>
       </tr>
       <tr>
-        <td><code class="code text_nowrap">variables</code></td>
-        <td>Exposes CSS variables in JavaScript</td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">variables</code></td>
+        <td data-mobile-label="Desc">Exposes CSS variables in JavaScript</td>
       </tr>
     </tbody>
   </table>

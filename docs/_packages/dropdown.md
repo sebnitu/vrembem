@@ -8,7 +8,7 @@ usage:
   scss: "dropdown"
 ---
 
-{% include flag.html heading="dropdown" %}
+## dropdown
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="dropdown">
@@ -72,7 +72,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="dropdown_pos_[key]" %}
+## dropdown_pos_[key]
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="level">

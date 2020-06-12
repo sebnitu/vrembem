@@ -12,7 +12,6 @@ layout: default
           <h1 class="article__title">{{ page.title }}</h1>
         </div>
 
-        {% if page.description %}
         <div class="grid__item span_6 spacing">
           <p>{{ page.description }}</p>
           <p>
@@ -28,7 +27,6 @@ layout: default
           </p>
           <p><a href="https://github.com/{{ site.repository }}/tree/master/packages/{{ page.usage.npm }}" class="link">Source Code</a></p>
         </div>
-        {% endif %}
 
         {% if page.usage %}
         <div class="grid__item span_6">
@@ -41,23 +39,11 @@ layout: default
     </div>
   </header>
 
-  {% if page.layout_options.section != false %}
   <div class="article__body section">
-  {% endif %}
-
-    {% if page.layout_options.container != false %}
-    <div class="container spacing spacing_xl">
-    {% endif %}
-
+    <div class="content container spacing spacing_xl">
       {{ content }}
-
-    {% if page.layout_options.container != false %}
     </div>
-    {% endif %}
-
-  {% if page.layout_options.section != false %}
   </div>
-  {% endif %}
 
   {% comment %}
   <footer class="article__footer section">

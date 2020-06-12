@@ -8,7 +8,7 @@ usage:
   scss: "arrow"
 ---
 
-{% include flag.html heading="arrow" %}
+## arrow
 
 {% include demo_open.html %}
 <span class="arrow"></span>
@@ -24,7 +24,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="button > arrow" %}
+## button > arrow
 
 {% include demo_open.html %}
 <div class="button-group button-group_wrap">
@@ -54,7 +54,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="menu > arrow" %}
+## menu > arrow
 
 {% include demo_open.html %}
 <div class="scroll-box">

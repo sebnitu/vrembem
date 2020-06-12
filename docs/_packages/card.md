@@ -8,7 +8,7 @@ usage:
   scss: "card"
 ---
 
-{% include flag.html heading="card" %}
+## card
 
 <div class="type" markdown="1">
 The base card component comes with a number of elements for card composition. The three most basic being:
@@ -41,7 +41,7 @@ The base card component comes with a number of elements for card composition. Th
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="card__header + card__footer" %}
+## card__header + card__footer
 
 <div class="type" markdown="1">
 These are used for when you need separated card headers and footers.
@@ -78,7 +78,7 @@ These are used for when you need separated card headers and footers.
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="card__screen + card__background" %}
+## card__screen + card__background
 
 <div class="type" markdown="1">
 Card screens and backgrounds are displayed behind the other card elements. These are typically paired with `.card_invert` which switches text colors to better suite a dark background.
@@ -111,7 +111,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="card_invert" %}
+## card_invert
 
 {% include demo_open.html %}
 <div class="card card_invert">
@@ -141,7 +141,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="card_link" %}
+## card_link
 
 {% include demo_open.html %}
 <a href="#" class="card card_link">
@@ -161,7 +161,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="card_fade" %}
+## card_fade
 
 {% include demo_open.html %}
 <div class="card card_invert card_fade">
@@ -185,7 +185,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="card_zoom" %}
+## card_zoom
 
 {% include demo_open.html %}
 <div class="card card_invert card_zoom">
@@ -209,7 +209,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="card_invert card_fade card_zoom" %}
+## card_invert card_fade card_zoom
 
 <div class="demo">
   <div class="demp__render">
@@ -236,7 +236,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
   </div>
 </div>
 
-{% include flag.html heading="card_link" %}
+## card_link
 
 <div class="demo">
   <div class="demp__render">
@@ -278,7 +278,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
   </div>
 </div>
 
-{% include flag.html heading="Demos" %}
+## Demos
 
 <div class="grid">
 

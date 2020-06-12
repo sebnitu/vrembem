@@ -9,7 +9,7 @@ usage:
   js: "checkbox"
 ---
 
-{% include flag.html heading="checkbox" %}
+## checkbox
 
 {% include demo_open.html %}
   {% include checkbox.html checked="" %}
@@ -39,7 +39,7 @@ new Checkbox({ autoInit: true })
 ```
 </div>
 
-{% include flag.html heading="checkbox + label" %}
+## checkbox + label
 
 {% include demo_open.html %}
 <p>
@@ -76,10 +76,10 @@ new Checkbox({ autoInit: true })
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="Checkbox Settings" %}
+## JavaScript Options
 
 <div class="scroll-box">
-  <table class="table table_zebra">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
     <thead>
       <tr class="border_top_0">
         <th>Key</th>
@@ -89,56 +89,54 @@ new Checkbox({ autoInit: true })
     </thead>
     <tbody>
       <tr>
-        <td><code class="code text_nowrap">autoInit</code></td>
-        <td><code class="code text_nowrap">false</code></td>
-        <td>Automatically instantiates the instance</td>
+        <td data-mobile-label="Key"><code class="code text_nowrap">autoInit</code></td>
+        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">false</code></td>
+        <td data-mobile-label="Desc">Automatically instantiates the instance</td>
       </tr>
-
       <tr>
-        <td><code class="code text_nowrap">stateAttr</code></td>
-        <td><code class="code text_nowrap">"aria-checked"</code></td>
-        <td>Attribute to check mixed against</td>
+        <td data-mobile-label="Key"><code class="code text_nowrap">stateAttr</code></td>
+        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'aria-checked'</code></td>
+        <td data-mobile-label="Desc">Attribute to check mixed against</td>
       </tr>
-
       <tr>
-        <td><code class="code text_nowrap">stateValue</code></td>
-        <td><code class="code text_nowrap">"mixed"</code></td>
-        <td>Mixed value to check for</td>
+        <td data-mobile-label="Key"><code class="code text_nowrap">stateValue</code></td>
+        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'mixed'</code></td>
+        <td data-mobile-label="Desc">Mixed value to check for</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-{% include flag.html heading="Checkbox API" %}
+## JavaScript API
 
 <div class="scroll-box">
-  <table class="table table_zebra">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
     <thead>
       <tr class="border_top_0">
-        <th>Name</th>
+        <th>Method</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><code class="code text_nowrap">checkbox.init()</code></td>
-        <td>Initializes the checkbox instance</td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">checkbox.init()</code></td>
+        <td data-mobile-label="Desc">Initializes the checkbox instance</td>
       </tr>
       <tr>
-        <td><code class="code text_nowrap">checkbox.destroy()</code></td>
-        <td>Destroys and cleans up the checkbox instantiation</td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">checkbox.destroy()</code></td>
+        <td data-mobile-label="Desc">Destroys and cleans up the checkbox instantiation</td>
       </tr>
       <tr>
-        <td><code class="code text_nowrap">checkbox.setAriaState(el, value)</code></td>
-        <td>Sets the attribute value for mixed checkboxes</td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">checkbox.setAriaState(el, value)</code></td>
+        <td data-mobile-label="Desc">Sets the attribute value for mixed checkboxes</td>
       </tr>
       <tr>
-        <td><code class="code text_nowrap">checkbox.removeAriaState(el)</code></td>
-        <td>Removes the mixed checkbox attribute</td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">checkbox.removeAriaState(el)</code></td>
+        <td data-mobile-label="Desc">Removes the mixed checkbox attribute</td>
       </tr>
       <tr>
-        <td><code class="code text_nowrap">checkbox.setIndeterminate(el)</code></td>
-        <td>Sets the checkbox to an indeterminate (mixed) state</td>
+        <td data-mobile-label="Method"><code class="code text_nowrap">checkbox.setIndeterminate(el)</code></td>
+        <td data-mobile-label="Desc">Sets the checkbox to an indeterminate (mixed) state</td>
       </tr>
     </tbody>
   </table>

@@ -8,7 +8,7 @@ usage:
   scss: "menu"
 ---
 
-{% include flag.html heading="menu" %}
+## menu
 
 <div class="type" markdown="1">
 The primary elements when composing the `menu` component are `menu__item`'s containing `menu__link`'s. Use the optional `menu__sep` in between `menu__item`'s to create separators.
@@ -137,7 +137,7 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate c
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="is-active is-disabled" %}
+## is-active is-disabled
 
 {% include demo_open.html %}
 <div class="scroll-box">
@@ -170,7 +170,7 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate c
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="menu_full" %}
+## menu_full
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="scroll-box">
@@ -224,7 +224,7 @@ To set a menu to full below a specific breakpoint, use the full breakpoint modif
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="menu_stack" %}
+## menu_stack
 
 {% include demo_open.html class_grid="grid_break" %}
 <ul class="menu menu_stack">
@@ -278,7 +278,7 @@ To create a stacked menu below a specific breakpoint, use the stack breakpoint m
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="menu_theme_invert" %}
+## menu_theme_invert
 
 <div class="type" markdown="1">
 A theme for using menus on a dark background.
@@ -333,7 +333,7 @@ A theme for using menus on a dark background.
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="menu_theme_tabs" %}
+## menu_theme_tabs
 
 <div class="type" markdown="1">
 A theme for creating tab styled menus.

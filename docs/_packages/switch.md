@@ -8,7 +8,7 @@ usage:
   scss: "switch"
 ---
 
-{% include flag.html heading="switch" %}
+## switch
 
 {% include demo_open.html %}
   {% include switch.html checked="" %}
@@ -26,7 +26,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include flag.html heading="switch + label" %}
+## switch + label
 
 {% include demo_open.html %}
 <p>

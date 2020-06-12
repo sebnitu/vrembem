@@ -1,8 +1,5 @@
 ---
 layout: article
-layout_options:
-  section: false
-  container: false
 title: "Section"
 description: "A container component for wrapping distinct sections of a page."
 category: layout
@@ -11,11 +8,7 @@ usage:
   scss: "section"
 ---
 
-{% include section_open.html %}
-
-{% include flag.html heading="section" %}
-
-{% include section_close.html %}
+## section
 
 <div class="section section_size_xl">
   <div class="section__container container">
@@ -48,9 +41,7 @@ usage:
   <div class="section__screen"></div>
 </div>
 
-{% include section_open.html %}
-
-{% include flag.html heading="section_size_[type]" %}
+## section_size_[type]
 
 <div class="type" markdown="1">
 Sections have a few size modifier options to help adjust the space that is used based on how prominent the section needs to be. These are optimized for all screen sizes to avoid oversized areas on mobile:
@@ -62,7 +53,7 @@ Sections have a few size modifier options to help adjust the space that is used 
 * `section_size_lg`
 </div>
 
-{% include section_close.html %}
+
 
 <hr class="sep" />
 
