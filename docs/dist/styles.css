@@ -6463,8 +6463,12 @@ input::-moz-placeholder {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.menu_drawer .menu__link:hover {
+.menu_drawer .menu__link:hover,
+.menu_drawer .menu__link:focus {
   background: rgba(0, 0, 0, 0.03);
+}
+.menu_drawer .menu__link:active {
+  background: rgba(0, 0, 0, 0.06);
 }
 .menu_drawer .menu__icon {
   display: flex;
