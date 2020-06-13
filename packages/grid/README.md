@@ -70,12 +70,6 @@ Variable | Default | Description
 `$prefix-element` | `"__"` | String to prefix element with.
 `$prefix-modifier` | `"_"` | String to prefix modifier with.
 `$prefix-modifier-value` | `"_"` | String to prefix modifier values with.
-`$breakpoints` | See: `core.$breakpoints` | The breakpoints map the `_break_[key]` modifier usees to build it's styles.
+`$breakpoints` | [See: `core.$breakpoints`](https://github.com/sebnitu/vrembem/blob/08eb7b3b55e9c55ed0027e8d9cee3d24b2ac86d6/packages/core/src/css/_variables.scss#L14-L20) | The breakpoints map the `_break_[key]` modifier usees to build it's styles.
 `$gap` | `2rem` | String to prefix modifier values with.
-`$gap-scale` | `(
-  "xs": 0.5rem,
-  "sm": 1rem,
-  "md": 2rem,
-  "lg": 3rem,
-  "xl": 4rem,
-)` | A scale map the `_gap_[key]` modifier uses to build it's styles.
+`$gap-scale` | [Sass Map...](https://github.com/sebnitu/vrembem/blob/08eb7b3b55e9c55ed0027e8d9cee3d24b2ac86d6/packages/grid/src/_variables.scss#L11-L15) | A scale map the `_gap_[key]` modifier uses to build it's styles.
