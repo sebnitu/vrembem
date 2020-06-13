@@ -1,76 +1,75 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
 $_u: var.$prefix-utility;
 $_c: var.$class-border;
 
 @if (var.$class-border) {
-  .#{$_b}#{$_u}#{$_c} {
+  .#{$_u}#{$_c} {
     border: core.$border !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-top {
+  .#{$_u}#{$_c}-top {
     border-top: core.$border !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-bottom {
+  .#{$_u}#{$_c}-bottom {
     border-bottom: core.$border !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-left {
+  .#{$_u}#{$_c}-left {
     border-left: core.$border !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-right {
+  .#{$_u}#{$_c}-right {
     border-right: core.$border !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-none {
+  .#{$_u}#{$_c}-none {
     border: 0 !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-top-none {
+  .#{$_u}#{$_c}-top-none {
     border-top: 0 !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-bottom-none {
+  .#{$_u}#{$_c}-bottom-none {
     border-bottom: 0 !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-left-none {
+  .#{$_u}#{$_c}-left-none {
     border-left: 0 !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-right-none {
+  .#{$_u}#{$_c}-right-none {
     border-right: 0 !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-color-light {
+  .#{$_u}#{$_c}-color-light {
     border-color: core.$border-color-light !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-color-dark {
+  .#{$_u}#{$_c}-color-dark {
     border-color: core.$border-color-dark !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-color-darker {
+  .#{$_u}#{$_c}-color-darker {
     border-color: core.$border-color-darker !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-color-invert {
+  .#{$_u}#{$_c}-color-invert {
     border-color: core.$border-color-invert !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-color-invert-light {
+  .#{$_u}#{$_c}-color-invert-light {
     border-color: core.$border-color-invert-light !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-color-invert-dark {
+  .#{$_u}#{$_c}-color-invert-dark {
     border-color: core.$border-color-invert-dark !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-color-invert-darker {
+  .#{$_u}#{$_c}-color-invert-darker {
     border-color: core.$border-color-invert-darker !important;
   }
 }

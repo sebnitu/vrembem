@@ -1,164 +1,163 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
 $_u: var.$prefix-utility;
 $_c: var.$class-background;
 
 @if (var.$class-background) {
-  .#{$_b}#{$_u}#{$_c}-black {
+  .#{$_u}#{$_c}-black {
     background-color: core.$black !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-white {
+  .#{$_u}#{$_c}-white {
     background-color: core.$white !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-transparent {
+  .#{$_u}#{$_c}-transparent {
     background-color: transparent !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-primary-lighter {
+  .#{$_u}#{$_c}-primary-lighter {
     background-color: core.$primary-lighter !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-primary-light {
+  .#{$_u}#{$_c}-primary-light {
     background-color: core.$primary-light !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-primary {
+  .#{$_u}#{$_c}-primary {
     background-color: core.$primary !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-primary-dark {
+  .#{$_u}#{$_c}-primary-dark {
     background-color: core.$primary-dark !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-primary-darker {
+  .#{$_u}#{$_c}-primary-darker {
     background-color: core.$primary-darker !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-secondary-lighter {
+  .#{$_u}#{$_c}-secondary-lighter {
     background-color: core.$secondary-lighter !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-secondary-light {
+  .#{$_u}#{$_c}-secondary-light {
     background-color: core.$secondary-light !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-secondary {
+  .#{$_u}#{$_c}-secondary {
     background-color: core.$secondary !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-secondary-dark {
+  .#{$_u}#{$_c}-secondary-dark {
     background-color: core.$secondary-dark !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-secondary-darker {
+  .#{$_u}#{$_c}-secondary-darker {
     background-color: core.$secondary-darker !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-shade-light {
+  .#{$_u}#{$_c}-shade-light {
     background-color: core.$shade_light !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-shade {
+  .#{$_u}#{$_c}-shade {
     background-color: core.$shade !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-shade-dark {
+  .#{$_u}#{$_c}-shade-dark {
     background-color: core.$shade_dark !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-night-light {
+  .#{$_u}#{$_c}-night-light {
     background-color: core.$night-light !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-night {
+  .#{$_u}#{$_c}-night {
     background-color: core.$night !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-night-dark {
+  .#{$_u}#{$_c}-night-dark {
     background-color: core.$night-dark !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-info-lighter {
+  .#{$_u}#{$_c}-info-lighter {
     background-color: core.$info-lighter !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-info-light {
+  .#{$_u}#{$_c}-info-light {
     background-color: core.$info-light !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-info {
+  .#{$_u}#{$_c}-info {
     background-color: core.$info !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-info-dark {
+  .#{$_u}#{$_c}-info-dark {
     background-color: core.$info-dark !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-info-darker {
+  .#{$_u}#{$_c}-info-darker {
     background-color: core.$info-darker !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-success-lighter {
+  .#{$_u}#{$_c}-success-lighter {
     background-color: core.$success-lighter !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-success-light {
+  .#{$_u}#{$_c}-success-light {
     background-color: core.$success-light !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-success {
+  .#{$_u}#{$_c}-success {
     background-color: core.$success !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-success-dark {
+  .#{$_u}#{$_c}-success-dark {
     background-color: core.$success-dark !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-success-darker {
+  .#{$_u}#{$_c}-success-darker {
     background-color: core.$success-darker !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-caution-lighter {
+  .#{$_u}#{$_c}-caution-lighter {
     background-color: core.$caution-lighter !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-caution-light {
+  .#{$_u}#{$_c}-caution-light {
     background-color: core.$caution-light !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-caution {
+  .#{$_u}#{$_c}-caution {
     background-color: core.$caution !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-caution-dark {
+  .#{$_u}#{$_c}-caution-dark {
     background-color: core.$caution-dark !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-caution-darker {
+  .#{$_u}#{$_c}-caution-darker {
     background-color: core.$caution-darker !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-danger-lighter {
+  .#{$_u}#{$_c}-danger-lighter {
     background-color: core.$danger-lighter !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-danger-light {
+  .#{$_u}#{$_c}-danger-light {
     background-color: core.$danger-light !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-danger {
+  .#{$_u}#{$_c}-danger {
     background-color: core.$danger !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-danger-dark {
+  .#{$_u}#{$_c}-danger-dark {
     background-color: core.$danger-dark !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-danger-darker {
+  .#{$_u}#{$_c}-danger-darker {
     background-color: core.$danger-darker !important;
   }
 }

@@ -1,88 +1,87 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
 $_u: var.$prefix-utility;
 $_c: var.$class-text;
 
 @if (var.$class-text) {
-  .#{$_b}#{$_u}#{$_c}-size-sm {
+  .#{$_u}#{$_c}-size-sm {
     font-size: core.$font-size-sm !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-size-lg {
+  .#{$_u}#{$_c}-size-lg {
     font-size: core.$font-size-lg !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-capitalize {
+  .#{$_u}#{$_c}-capitalize {
     text-transform: capitalize !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-lowercase {
+  .#{$_u}#{$_c}-lowercase {
     text-transform: lowercase !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-uppercase {
+  .#{$_u}#{$_c}-uppercase {
     text-transform: uppercase !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-align-left {
+  .#{$_u}#{$_c}-align-left {
     text-align: left !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-align-center {
+  .#{$_u}#{$_c}-align-center {
     text-align: center !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-align-right {
+  .#{$_u}#{$_c}-align-right {
     text-align: right !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-bold {
+  .#{$_u}#{$_c}-bold {
     font-weight: core.font-weight("bold") !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-normal {
+  .#{$_u}#{$_c}-normal {
     font-weight: core.font-weight("normal") !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-italic {
+  .#{$_u}#{$_c}-italic {
     font-style: italic !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-strike {
+  .#{$_u}#{$_c}-strike {
     text-decoration: line-through !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-underline {
+  .#{$_u}#{$_c}-underline {
     text-decoration: underline !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-underline-dotted {
+  .#{$_u}#{$_c}-underline-dotted {
     text-decoration: underline !important;
     text-decoration-style: dotted !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-underline-dashed {
+  .#{$_u}#{$_c}-underline-dashed {
     text-decoration: underline !important;
     text-decoration-style: dashed !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-wrap {
+  .#{$_u}#{$_c}-wrap {
     white-space: normal !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-nowrap {
+  .#{$_u}#{$_c}-nowrap {
     white-space: nowrap !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-overflow-ellipsis {
+  .#{$_u}#{$_c}-overflow-ellipsis {
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-lead {
+  .#{$_u}#{$_c}-lead {
     font-size: 1.2em !important;
     font-weight: core.font-weight("light") !important;
   }

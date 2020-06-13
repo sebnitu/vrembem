@@ -1,59 +1,58 @@
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
 $_u: var.$prefix-utility;
 $_c: var.$class-margin;
 
 @if (var.$class-margin) {
-  .#{$_b}#{$_u}#{$_c} {
+  .#{$_u}#{$_c} {
     margin: var.$spacing;
   }
 
   @each $key, $value in var.$spacing-map {
-    .#{$_b}#{$_u}#{$_c}-#{$key} {
+    .#{$_u}#{$_c}-#{$key} {
       margin: $value !important;
     }
   }
 
   @each $key, $value in var.$spacing-map {
-    .#{$_b}#{$_u}#{$_c}-top-#{$key} {
+    .#{$_u}#{$_c}-top-#{$key} {
       margin-top: $value !important;
     }
   }
 
   @each $key, $value in var.$spacing-map {
-    .#{$_b}#{$_u}#{$_c}-bottom-#{$key} {
+    .#{$_u}#{$_c}-bottom-#{$key} {
       margin-bottom: $value !important;
     }
   }
 
   @each $key, $value in var.$spacing-map {
-    .#{$_b}#{$_u}#{$_c}-left-#{$key} {
+    .#{$_u}#{$_c}-left-#{$key} {
       margin-left: $value !important;
     }
   }
 
   @each $key, $value in var.$spacing-map {
-    .#{$_b}#{$_u}#{$_c}-right-#{$key} {
+    .#{$_u}#{$_c}-right-#{$key} {
       margin-right: $value !important;
     }
   }
 
   @each $key, $value in var.$spacing-map {
-    .#{$_b}#{$_u}#{$_c}-hori-#{$key} {
+    .#{$_u}#{$_c}-hori-#{$key} {
       margin-right: $value !important;
       margin-left: $value !important;
     }
   }
 
   @each $key, $value in var.$spacing-map {
-    .#{$_b}#{$_u}#{$_c}-vert-#{$key} {
+    .#{$_u}#{$_c}-vert-#{$key} {
       margin-top: $value !important;
       margin-bottom: $value !important;
     }
   }
 
-  .#{$_b}#{$_u}#{$_c}-auto {
+  .#{$_u}#{$_c}-auto {
     margin-right: auto !important;
     margin-left: auto !important;
   }

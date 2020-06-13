@@ -23,6 +23,12 @@ npm install @vrembem/utility
 Once loaded, the utility component provides a number of classes that can be used independently or to supplement other loaded components.
 
 ```html
+<!-- Using utility classes independently -->
+<div class="">
+  <p class="text-align-center">...</p>
+</div>
+
+<!-- Using utility classes with other components -->
 <div class="grid flex-justify-center">
   <div class="grid__item span-auto">...</div>
   <div class="grid__item span-auto">...</div>
@@ -45,6 +51,7 @@ Once loaded, the utility component provides a number of classes that can be used
 Each utility has a corresponding `$class-[property]` variable that determines the class name used in output. Setting it's value to `null` will omit their style output.
 
 ```scss
+// Excludes the `color` utilities from being output
 @use "@vrembem/utility" with (
   $class-color: null
 );
@@ -106,7 +113,4 @@ TBD
 
 Variable | Default | Description
 ---|---|---
-`$prefix-block` | `null` | String to prefix blocks with.
-`$prefix-element` | `"__"` | String to prefix element with.
-`$prefix-modifier` | `"_"` | String to prefix modifier with.
-`$prefix-modifier-value` | `"_"` | String to prefix modifier values with.
+`$prefix-utility` | `null` | String to prefix utilities with.
