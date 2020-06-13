@@ -2,10 +2,11 @@
 layout: article
 title: Base
 description: "Includes useful default styles and base components for common HTML elements."
+package: "@vrembem/base"
 category: simple
 usage:
-  npm: "base"
-  scss: "base"
+  npm: true
+  scss: true
 ---
 
 ## Heading
@@ -35,7 +36,7 @@ usage:
   <p><a href="#" class="link">Default link</a></p>
   <p><a href="#" class="link link_subtle">Subtle link</a></p>
 </div>
-<div class="spacing padding radius background_night">
+<div class="spacing padding radius background-night">
   <p><a href="#" class="link link_invert">Inverted link</a></p>
   <p><a href="#" class="link link_invert-subtle">Inverted link</a></p>
 </div>
@@ -51,7 +52,7 @@ usage:
 ## List
 
 {% include demo_open.html %}
-<div class="spacing_xl">
+<div class="spacing-xl">
   <ul class="list">
     <li>One</li>
     <li>Two
@@ -97,9 +98,7 @@ usage:
 
 ## Separator
 
-<div class="type" markdown="1">
 Typically used on an `<hr>` HTML element representing a thematic break between paragraph-level elements.
-</div>
 
 {% include demo_open.html %}
 <div class="spacing padding">
@@ -108,7 +107,7 @@ Typically used on an `<hr>` HTML element representing a thematic break between p
   <hr class="sep sep_dark">
   <hr class="sep sep_darker">
 </div>
-<div class="spacing padding radius background_night">
+<div class="spacing padding radius background-night">
   <hr class="sep sep_invert-light">
   <hr class="sep sep_invert">
   <hr class="sep sep_invert-dark">
@@ -186,12 +185,10 @@ print "a = #{a}";</code></pre>
 
 ## type
 
-<div class="type" markdown="1">
-The `type` component is a quick way to apply all base styles to components directy based on their respective HTML elements. Base component modifiers will override a parent `type` component when explicitly set. Other components will run into style conflicts unless written with `type` inheritance in mind.
-</div>
+The `type` component is a quick way to apply all base styles to components directy based on their respective HTML elements. Base component modifiers will override a parent `type` component when explicitly set.
 
 {% include demo_open.html class_parent="spacing" %}
-<div class="type">
+<div class="type spacing">
 
   <h1>Heading</h1>
   <h2>Heading</h2>
@@ -276,10 +273,14 @@ print "a = #{a}";</code></pre>
 ```
 {% include demo_close.html %}
 
+<div class="notice notice_type_info type" markdown="1">
+Note: `type` does not add vertical spacing between elements by default. You can either add it by giving `$type-spacing` a value or by applying the [`spacing` utility class](/packages/utility#spacing).
+</div>
+
 ## type_invert
 
 {% include demo_open.html class_parent="spacing" %}
-<div class="type type_invert background_night padding radius">
+<div class="type type_invert spacing background-night-dark padding radius">
 
   <h1>Heading</h1>
   <h2>Heading</h2>

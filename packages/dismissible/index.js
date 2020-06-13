@@ -7,7 +7,7 @@ export const Dismissible = (options) => {
     autoInit: false,
     dataTrigger: 'dismiss',
     dataTarget: 'dismissible',
-    classHide: 'display_none',
+    classHide: 'display-none',
     method: 'hide'
   };
 

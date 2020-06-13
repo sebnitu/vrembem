@@ -2,23 +2,22 @@
 layout: article
 title: Dismissible
 description: "A component for removing an element from the DOM or hiding it with a CSS class."
+package: "@vrembem/dismissible"
 category: simple
 usage:
-  npm: "dismissible"
-  js: "dismissible"
+  npm: true
+  js: true
 ---
 
 ## dismissible
 
-<div class="type" markdown="1">
 Dismissible uses two data attributes to utilize it's functionality. The first is a trigger, created using the `data-dismiss` attribute on a button or anchor element. The second is a parent element of the trigger created using `data-dismissible`. You can optionally pass a dismiss method to either hide an element using a class or remove it from the DOM.
 
 * `data-dismissible="[method]"`
 * `data-dismiss`
-</div>
 
 {% include demo_open.html %}
-<div class="padding background_shade radius" data-dismissible>
+<div class="padding background-shade radius" data-dismissible>
   <button class="link" data-dismiss>Dismiss</button>
 </div>
 {% include demo_switch.html %}
@@ -30,7 +29,7 @@ Dismissible uses two data attributes to utilize it's functionality. The first is
 {% include demo_close.html %}
 
 {% include demo_open.html %}
-<div class="padding background_shade radius" data-dismissible="hide">
+<div class="padding background-shade radius" data-dismissible="hide">
   <button class="link" data-dismiss>Hide method</button>
 </div>
 {% include demo_switch.html %}
@@ -42,7 +41,7 @@ Dismissible uses two data attributes to utilize it's functionality. The first is
 {% include demo_close.html %}
 
 {% include demo_open.html %}
-<div class="padding background_shade radius" data-dismissible="remove">
+<div class="padding background-shade radius" data-dismissible="remove">
   <button class="link" data-dismiss>Remove method</button>
 </div>
 {% include demo_switch.html %}
@@ -56,7 +55,7 @@ Dismissible uses two data attributes to utilize it's functionality. The first is
 ## dismissible + notice
 
 {% include demo_open.html %}
-<div data-dismissible class="notice notice_state_success">
+<div data-dismissible class="notice notice_type_success">
   <div class="notice__body">
     <p>This is a notice message</p>
   </div>
@@ -68,7 +67,7 @@ Dismissible uses two data attributes to utilize it's functionality. The first is
 </div>
 {% include demo_switch.html %}
 ```html
-<div data-dismissible class="notice notice_state_success">
+<div data-dismissible class="notice notice_type_success">
   <div class="notice__body">...</div>
   <div class="notice__actions">
     <button data-dismiss class="icon-action">...</button>
@@ -90,7 +89,7 @@ Dismissible uses two data attributes to utilize it's functionality. The first is
   <div class="dialog__body">
     <p>This is a sample dialog using the dismissible component.</p>
   </div>
-  <div class="dialog__footer flex_justify_end">
+  <div class="dialog__footer flex-justify-end">
     <div class="button-group">
       <button data-dismiss class="button button_color_primary">
         Do Action
@@ -109,7 +108,7 @@ Dismissible uses two data attributes to utilize it's functionality. The first is
     <button data-dismiss class="icon-action icon-action_color_subtle">...</button>
   </div>
   <div class="dialog__body">...</div>
-  <div class="dialog__footer flex_justify_end">
+  <div class="dialog__footer flex-justify-end">
     <div class="button-group">
       <button data-dismiss class="button button_color_primary">...</button>
       <button data-dismiss class="button">...</button>
@@ -132,28 +131,28 @@ Dismissible uses two data attributes to utilize it's functionality. The first is
     </thead>
     <tbody>
       <tr>
-        <td data-mobile-label="Key"><code class="code text_nowrap">autoInit</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">false</code></td>
+        <td data-mobile-label="Key"><code class="code text-nowrap">autoInit</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">false</code></td>
         <td data-mobile-label="Desc">Automatically instantiates the instance.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Key"><code class="code text_nowrap">dataTrigger</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'dismiss'</code></td>
+        <td data-mobile-label="Key"><code class="code text-nowrap">dataTrigger</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'dismiss'</code></td>
         <td data-mobile-label="Desc">Data attribute for a dismiss trigger.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Key"><code class="code text_nowrap">dataTarget</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'dismissible'</code></td>
+        <td data-mobile-label="Key"><code class="code text-nowrap">dataTarget</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'dismissible'</code></td>
         <td data-mobile-label="Desc">Data attribute for a dismissible element.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Key"><code class="code text_nowrap">classHide</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'display_none'</code></td>
+        <td data-mobile-label="Key"><code class="code text-nowrap">classHide</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'display-none'</code></td>
         <td data-mobile-label="Desc">The class to apply for hiding an element.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Key"><code class="code text_nowrap">method</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'hide'</code></td>
+        <td data-mobile-label="Key"><code class="code text-nowrap">method</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'hide'</code></td>
         <td data-mobile-label="Desc">The method of dismissing an element. Either 'hide' or 'remove'.</td>
       </tr>
     </tbody>
@@ -172,11 +171,11 @@ Dismissible uses two data attributes to utilize it's functionality. The first is
     </thead>
     <tbody>
       <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">.init()</code></td>
+        <td data-mobile-label="Method"><code class="code text-nowrap">.init()</code></td>
         <td data-mobile-label="Desc">Initializes the dismissible instance.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">.destroy()</code></td>
+        <td data-mobile-label="Method"><code class="code text-nowrap">.destroy()</code></td>
         <td data-mobile-label="Desc">Destroys and cleans up the dismissible instantiation.</td>
       </tr>
     </tbody>

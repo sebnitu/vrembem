@@ -2,74 +2,72 @@
 @use "./variables" as var;
 
 $_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
 $_c: var.$class-border;
 
 .#{$_b}#{$_c} {
   border: core.$border !important;
 }
 
-.#{$_b}#{$_c}#{$_m}top {
+.#{$_b}#{$_c}-top {
   border-top: core.$border !important;
 }
 
-.#{$_b}#{$_c}#{$_m}bottom {
+.#{$_b}#{$_c}-bottom {
   border-bottom: core.$border !important;
 }
 
-.#{$_b}#{$_c}#{$_m}left {
+.#{$_b}#{$_c}-left {
   border-left: core.$border !important;
 }
 
-.#{$_b}#{$_c}#{$_m}right {
+.#{$_b}#{$_c}-right {
   border-right: core.$border !important;
 }
 
-.#{$_b}#{$_c}#{$_m}0 {
+.#{$_b}#{$_c}-none {
   border: 0 !important;
 }
 
-.#{$_b}#{$_c}#{$_m}top#{$_v}0 {
+.#{$_b}#{$_c}-top-none {
   border-top: 0 !important;
 }
 
-.#{$_b}#{$_c}#{$_m}bottom#{$_v}0 {
+.#{$_b}#{$_c}-bottom-none {
   border-bottom: 0 !important;
 }
 
-.#{$_b}#{$_c}#{$_m}left#{$_v}0 {
+.#{$_b}#{$_c}-left-none {
   border-left: 0 !important;
 }
 
-.#{$_b}#{$_c}#{$_m}right#{$_v}0 {
+.#{$_b}#{$_c}-right-none {
   border-right: 0 !important;
 }
 
-.#{$_b}#{$_c}#{$_m}color#{$_v}light {
+.#{$_b}#{$_c}-color-light {
   border-color: core.$border-color-light !important;
 }
 
-.#{$_b}#{$_c}#{$_m}color#{$_v}dark {
+.#{$_b}#{$_c}-color-dark {
   border-color: core.$border-color-dark !important;
 }
 
-.#{$_b}#{$_c}#{$_m}color#{$_v}darker {
+.#{$_b}#{$_c}-color-darker {
   border-color: core.$border-color-darker !important;
 }
 
-.#{$_b}#{$_c}#{$_m}color#{$_v}invert {
+.#{$_b}#{$_c}-color-invert {
   border-color: core.$border-color-invert !important;
 }
 
-.#{$_b}#{$_c}#{$_m}color#{$_v}invert-light {
+.#{$_b}#{$_c}-color-invert-light {
   border-color: core.$border-color-invert-light !important;
 }
 
-.#{$_b}#{$_c}#{$_m}color#{$_v}invert-dark {
+.#{$_b}#{$_c}-color-invert-dark {
   border-color: core.$border-color-invert-dark !important;
 }
 
-.#{$_b}#{$_c}#{$_m}color#{$_v}invert-darker {
+.#{$_b}#{$_c}-color-invert-darker {
   border-color: core.$border-color-invert-darker !important;
 }

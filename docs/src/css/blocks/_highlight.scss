@@ -1,3 +1,9 @@
+@use "@vrembem/base/src/mixins" as base;
+
+.highlight pre {
+  @include base.pre();
+}
+
 .highlight {
   .c     { color: #998; font-style: italic } // Comment
   .err   { color: #a61717} // Error

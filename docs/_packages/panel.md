@@ -2,17 +2,18 @@
 layout: article
 title: Panel
 description: "Panels are a compositional container component that allows you to wrap and theme groups of content."
+package: "@vrembem/panel"
 category: layout
 usage:
-  npm: "panel"
-  scss: "panel"
+  npm: true
+  scss: true
 ---
 
 ## panel
 
 {% include demo_open.html class_parent="spacing" %}
 <div class="panel">
-  <div class="panel__section spacing_sm">
+  <div class="panel__section spacing-sm">
     <h3 class="panel__title">Panel header</h3>
     <p>Aliquam vitae sapien vehicula, viverra massa non, gravida lacus. Nam facilisis dictum felis, quis lacinia elit rhoncus eget. Donec id pellentesque lorem.</p>
   </div>

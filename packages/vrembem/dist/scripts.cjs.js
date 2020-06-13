@@ -176,7 +176,7 @@ var Dismissible = function Dismissible(options) {
     autoInit: false,
     dataTrigger: 'dismiss',
     dataTarget: 'dismissible',
-    classHide: 'display_none',
+    classHide: 'display-none',
     method: 'hide'
   };
   api.settings = _objectSpread$1(_objectSpread$1({}, defaults), options);

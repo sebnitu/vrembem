@@ -2,10 +2,11 @@
 layout: article
 title: Dropdown
 description: "A component that is initially hidden and revealed upon user interaction either through a click or hover event. Dropdown components typically display lists of possible actions or navigation."
+package: "@vrembem/dropdown"
 category: compound
 usage:
-  npm: "dropdown"
-  scss: "dropdown"
+  npm: true
+  scss: true
 ---
 
 ## dropdown
@@ -151,7 +152,7 @@ usage:
 {% include demo_close.html %}
 
 {% include demo_open.html class_grid="grid_break" %}
-<div class="level flex_justify_end">
+<div class="level flex-justify-end">
   <div class="dropdown dropdown_pos_left-up">
     <button class="button">
       {% include icon.html icon="chevron-left" %}

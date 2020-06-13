@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/utility/src/mixins" as utility;
 @use "./variables" as var;
 
 @mixin heading-base() {
@@ -194,94 +195,67 @@
   line-height: var.$type-line-height;
 
   > * {
-    margin-top: var.$type-spacing;
-    margin-bottom: var.$type-spacing;
+    @include utility.spacing(var.$type-spacing);
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  > h1,
+  > h2,
+  > h3,
+  > h4,
+  > h5,
+  > h6 {
     @include heading-base();
-    margin-top: var.$type-spacing-lg;
-
-    &:first-child {
-      margin-top: 0;
-    }
   }
 
-  h1 {
+  > h1 {
     @include heading(1);
   }
 
-  h2 {
+  > h2 {
     @include heading(2);
   }
 
-  h3 {
+  > h3 {
     @include heading(3);
   }
 
-  h4 {
+  > h4 {
     @include heading(4);
   }
 
-  h5 {
+  > h5 {
     @include heading(5);
   }
 
-  h6 {
+  > h6 {
     @include heading(6);
   }
 
-  a {
+  > a,
+  > :not(div) a {
     @include link();
   }
 
-  hr {
-    @include separator();
-  }
-
-  ul,
-  ol {
-    @include list();
-  }
-
-  blockquote {
-    @include blockquote();
-  }
-
-  code {
+  > code,
+  > :not(div) code {
     @include code();
   }
 
-  pre {
+  > hr {
+    @include separator();
+  }
+
+  > ul,
+  > ol {
+    @include list();
+  }
+
+  > blockquote {
+    @include blockquote();
+  }
+
+  > pre {
     @include pre();
-  }
-
-  hr,
-  blockquote,
-  pre {
-    margin-top: var.$type-spacing-lg;
-    margin-bottom: var.$type-spacing-lg;
-
-    &:first-child {
-      margin-top: 0;
-    }
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  > *:first-child {
-    margin-top: 0;
-  }
-
-  > *:last-child {
-    margin-bottom: 0;
   }
 }
 
@@ -289,29 +263,39 @@
   @if (lightness($color) < core.$lightness-threshold) {
     color: core.$color-invert;
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
+    > h1,
+    > h2,
+    > h3,
+    > h4,
+    > h5,
+    > h6 {
       color: var.$heading-color-invert;
     }
 
-    a {
-      @include link-modifier("invert");
+    > hr {
+      border-color: core.$border-color-invert;
     }
 
-    hr {
-      background-color: core.$border-color-invert;
-    }
-
-    blockquote {
+    > blockquote {
       @include blockquote-invert();
     }
 
-    code {
+    > a,
+    > :not(div) a {
+      @include link-modifier("invert");
+    }
+
+    > code,
+    > :not(div) code {
       color: var.$code-color-invert;
+    }
+
+    > pre {
+      color: var.$pre-color;
+
+      code {
+        color: inherit;
+      }
     }
   }
 }

@@ -2,17 +2,18 @@
 layout: article
 title: "Level"
 description: "A simple flexbox based layout component."
+package: "@vrembem/level"
 category: layout
 usage:
-  npm: "level"
-  scss: "level"
+  npm: true
+  scss: true
 ---
 
 ## level
 
 {% include demo_open.html %}
 <div class="level">
-  {% for i in (1..9) %}
+  {% for i in (1..10) %}
     <div class="box">{{ i }}</div>
   {% endfor %}
 </div>
@@ -26,7 +27,7 @@ usage:
 
 {% include demo_open.html %}
 <div class="level level_gap_none">
-  {% for i in (1..9) %}
+  {% for i in (1..10) %}
     <div class="box">{{ i }}</div>
   {% endfor %}
 </div>
@@ -38,7 +39,7 @@ usage:
 
 {% include demo_open.html %}
 <div class="level level_gap_xs">
-  {% for i in (1..9) %}
+  {% for i in (1..10) %}
     <div class="box">{{ i }}</div>
   {% endfor %}
 </div>
@@ -50,7 +51,7 @@ usage:
 
 {% include demo_open.html %}
 <div class="level level_gap_sm">
-  {% for i in (1..9) %}
+  {% for i in (1..10) %}
     <div class="box">{{ i }}</div>
   {% endfor %}
 </div>
@@ -62,7 +63,7 @@ usage:
 
 {% include demo_open.html %}
 <div class="level level_gap_md">
-  {% for i in (1..9) %}
+  {% for i in (1..10) %}
     <div class="box">{{ i }}</div>
   {% endfor %}
 </div>
@@ -74,7 +75,7 @@ usage:
 
 {% include demo_open.html %}
 <div class="level level_gap_lg">
-  {% for i in (1..9) %}
+  {% for i in (1..10) %}
     <div class="box">{{ i }}</div>
   {% endfor %}
 </div>
@@ -86,7 +87,7 @@ usage:
 
 {% include demo_open.html %}
 <div class="level level_gap_xl">
-  {% for i in (1..9) %}
+  {% for i in (1..10) %}
     <div class="box">{{ i }}</div>
   {% endfor %}
 </div>

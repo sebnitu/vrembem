@@ -2,10 +2,11 @@
 layout: article
 title: Button-group
 description: "A component for displaying groups of buttons."
+package: "@vrembem/button-group"
 category: compound
 usage:
-  npm: "button-group"
-  scss: "button-group"
+  npm: true
+  scss: true
 ---
 
 ## button-group
@@ -62,9 +63,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-<div class="type" markdown="1">
 Optionally provide a `$breakpoints` key to the `_full` modifier to only have these styles applied below a specific breakpoint:
-</div>
 
 {% include demo_open.html class_parent="spacing" %}
 <div>
@@ -122,9 +121,7 @@ Optionally provide a `$breakpoints` key to the `_full` modifier to only have the
 ```
 {% include demo_close.html %}
 
-<div class="type" markdown="1">
 Optionally provide a `$breakpoints` key to the `_stack` modifier to only have these styles applied below a specific breakpoint:
-</div>
 
 {% include demo_open.html class_parent="spacing" %}
 <div>
@@ -153,9 +150,7 @@ Optionally provide a `$breakpoints` key to the `_stack` modifier to only have th
 ```
 {% include demo_close.html %}
 
-<div class="type" markdown="1">
 Combine `_stack` and `_full` modifiers to apply both effects:
-</div>
 
 {% include demo_open.html class_parent="spacing" %}
 <div>
@@ -209,9 +204,7 @@ Combine `_stack` and `_full` modifiers to apply both effects:
 ```
 {% include demo_close.html %}
 
-<div class="type" markdown="1">
 Combine `_join` and `_stack` modifiers to apply both effects:
-</div>
 
 {% include demo_open.html %}
 <div class="grid grid_auto">
@@ -242,7 +235,7 @@ Combine `_join` and `_stack` modifiers to apply both effects:
 
 ## button-group_gap_[key]
 
-{% include demo_open.html class_parent="spacing" %}
+{% include demo_open.html class_grid="grid_break" class_parent="level" %}
 <div>
   <div class="button-group button-group_gap_xs">
     <button class="button button_color_primary">Button</button>

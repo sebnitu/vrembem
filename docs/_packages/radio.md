@@ -2,10 +2,11 @@
 layout: article
 title: Radio Button
 description: "Radios allow the user to select a single option from a set."
+package: "@vrembem/radio"
 category: simple
 usage:
-  npm: "radio"
-  scss: "radio"
+  npm: true
+  scss: true
 ---
 
 ## radio

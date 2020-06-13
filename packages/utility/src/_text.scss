@@ -2,87 +2,85 @@
 @use "./variables" as var;
 
 $_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
 $_c: var.$class-text;
 
-.#{$_b}#{$_c}#{$_m}size#{$_v}sm {
+.#{$_b}#{$_c}-size-sm {
   font-size: core.$font-size-sm !important;
 }
 
-.#{$_b}#{$_c}#{$_m}size#{$_v}lg {
+.#{$_b}#{$_c}-size-lg {
   font-size: core.$font-size-lg !important;
 }
 
-.#{$_b}#{$_c}#{$_m}capitalize {
+.#{$_b}#{$_c}-capitalize {
   text-transform: capitalize !important;
 }
 
-.#{$_b}#{$_c}#{$_m}lowercase {
+.#{$_b}#{$_c}-lowercase {
   text-transform: lowercase !important;
 }
 
-.#{$_b}#{$_c}#{$_m}uppercase {
+.#{$_b}#{$_c}-uppercase {
   text-transform: uppercase !important;
 }
 
-.#{$_b}#{$_c}#{$_m}align#{$_v}left {
+.#{$_b}#{$_c}-align-left {
   text-align: left !important;
 }
 
-.#{$_b}#{$_c}#{$_m}align#{$_v}center {
+.#{$_b}#{$_c}-align-center {
   text-align: center !important;
 }
 
-.#{$_b}#{$_c}#{$_m}align#{$_v}right {
+.#{$_b}#{$_c}-align-right {
   text-align: right !important;
 }
 
-.#{$_b}#{$_c}#{$_m}bold {
+.#{$_b}#{$_c}-bold {
   font-weight: core.font-weight("bold") !important;
 }
 
-.#{$_b}#{$_c}#{$_m}normal {
+.#{$_b}#{$_c}-normal {
   font-weight: core.font-weight("normal") !important;
 }
 
-.#{$_b}#{$_c}#{$_m}italic {
+.#{$_b}#{$_c}-italic {
   font-style: italic !important;
 }
 
-.#{$_b}#{$_c}#{$_m}strike {
+.#{$_b}#{$_c}-strike {
   text-decoration: line-through !important;
 }
 
-.#{$_b}#{$_c}#{$_m}underline {
+.#{$_b}#{$_c}-underline {
   text-decoration: underline !important;
 }
 
-.#{$_b}#{$_c}#{$_m}underline#{$_v}dotted {
+.#{$_b}#{$_c}-underline-dotted {
   text-decoration: underline !important;
   text-decoration-style: dotted !important;
 }
 
-.#{$_b}#{$_c}#{$_m}underline#{$_v}dashed {
+.#{$_b}#{$_c}-underline-dashed {
   text-decoration: underline !important;
   text-decoration-style: dashed !important;
 }
 
-.#{$_b}#{$_c}#{$_m}wrap {
+.#{$_b}#{$_c}-wrap {
   white-space: normal !important;
 }
 
-.#{$_b}#{$_c}#{$_m}nowrap {
+.#{$_b}#{$_c}-nowrap {
   white-space: nowrap !important;
 }
 
-.#{$_b}#{$_c}#{$_m}overflow#{$_v}ellipsis {
+.#{$_b}#{$_c}-overflow-ellipsis {
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
 }
 
-.#{$_b}#{$_c}#{$_m}lead {
+.#{$_b}#{$_c}-lead {
   font-size: 1.2em !important;
   font-weight: core.font-weight("light") !important;
 }

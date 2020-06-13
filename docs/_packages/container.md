@@ -1,11 +1,12 @@
 ---
 layout: article
-title: "Container"
+title: Container
 description: "A component for giving content a max width and centered within it's parent."
+package: "@vrembem/container"
 category: layout
 usage:
-  npm: "container"
-  scss: "container"
+  npm: true
+  scss: true
 ---
 
 ## container

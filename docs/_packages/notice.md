@@ -2,10 +2,11 @@
 layout: article
 title: Notice
 description: "A component for highlighting messages to the user."
+package: "@vrembem/notice"
 category: compound
 usage:
-  npm: "notice"
-  scss: "notice"
+  npm: true
+  scss: true
 ---
 
 ## notice
@@ -29,7 +30,7 @@ usage:
 ## notice + media
 
 {% include demo_open.html class_parent="spacing" %}
-<div class="notice notice_state_danger">
+<div class="notice notice_type_danger">
   <div class="media media_gap_sm">
     <div class="media__obj">
       {% include icon.html icon="alert-circle" %}
@@ -39,7 +40,7 @@ usage:
     </div>
   </div>
 </div>
-<div class="notice notice_state_info">
+<div class="notice notice_type_info">
   <div class="media media_gap_sm">
     <div class="media__body">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
@@ -107,7 +108,7 @@ usage:
 
 {% include demo_open.html %}
 <div class="notice flex_align_start" data-dismissible>
-  <div class="notice__body spacing_sm">
+  <div class="notice__body spacing-sm">
     <h2 class="notice__title">Oops, wait what?</h2>
     <p>You should know that the action you just did had some consequences.</p>
   </div>
@@ -135,7 +136,7 @@ usage:
 
 {% include demo_open.html class_parent="spacing" %}
 <div class="notice notice_stack" data-dismissible>
-  <div class="notice__body spacing_sm">
+  <div class="notice__body spacing-sm">
     <h2 class="notice__title">Oops, wait what?</h2>
     <p>You should know that the action you just did had some consequences.</p>
   </div>
@@ -154,7 +155,7 @@ usage:
 {% include demo_switch.html %}
 ```html
 <div class="notice notice_stack" data-dismissible>
-  <div class="notice__body spacing_sm">
+  <div class="notice__body spacing-sm">
     <h2 class="notice__title">...</h2>
     <p>...</p>
   </div>
@@ -200,16 +201,16 @@ usage:
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="notice notice_state_primary">...</div>
-<div class="notice notice_state_secondary">...</div>
-<div class="notice notice_state_dark">...</div>
+<div class="notice notice_color_primary">...</div>
+<div class="notice notice_color_secondary">...</div>
+<div class="notice notice_color_dark">...</div>
 ```
 {% include demo_close.html %}
 
-## notice_state_[key]
+## notice_type_[key]
 
 {% include demo_open.html class_parent="spacing" %}
-<div class="notice notice_state_info" data-dismissible>
+<div class="notice notice_type_info" data-dismissible>
   <div class="notice__body">
     <p>Notice <a href="#">content</a> goes here...</p>
   </div>
@@ -219,7 +220,7 @@ usage:
     </button>
   </div>
 </div>
-<div class="notice notice_state_success" data-dismissible>
+<div class="notice notice_type_success" data-dismissible>
   <div class="notice__body">
     <p>Notice <a href="#">content</a> goes here...</p>
   </div>
@@ -229,7 +230,7 @@ usage:
     </button>
   </div>
 </div>
-<div class="notice notice_state_caution" data-dismissible>
+<div class="notice notice_type_caution" data-dismissible>
   <div class="notice__body">
     <p>Notice <a href="#">content</a> goes here...</p>
   </div>
@@ -239,7 +240,7 @@ usage:
     </button>
   </div>
 </div>
-<div class="notice notice_state_danger" data-dismissible>
+<div class="notice notice_type_danger" data-dismissible>
   <div class="notice__body">
     <p>Notice <a href="#">content</a> goes here...</p>
   </div>
@@ -251,17 +252,17 @@ usage:
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="notice notice_state_info">...</div>
-<div class="notice notice_state_success">...</div>
-<div class="notice notice_state_caution">...</div>
-<div class="notice notice_state_danger">...</div>
+<div class="notice notice_type_info">...</div>
+<div class="notice notice_type_success">...</div>
+<div class="notice notice_type_caution">...</div>
+<div class="notice notice_type_danger">...</div>
 ```
 {% include demo_close.html %}
 
-## notice_state_[key]-bold
+## notice_type_[key]-bold
 
 {% include demo_open.html class_parent="spacing" %}
-<div class="notice notice_state_info-bold" data-dismissible>
+<div class="notice notice_type_info-bold" data-dismissible>
   <div class="notice__body">
     <p>Notice <a href="#">content</a> goes here...</p>
   </div>
@@ -271,7 +272,7 @@ usage:
     </button>
   </div>
 </div>
-<div class="notice notice_state_success-bold" data-dismissible>
+<div class="notice notice_type_success-bold" data-dismissible>
   <div class="notice__body">
     <p>Notice <a href="#">content</a> goes here...</p>
   </div>
@@ -281,7 +282,7 @@ usage:
     </button>
   </div>
 </div>
-<div class="notice notice_state_caution-bold" data-dismissible>
+<div class="notice notice_type_caution-bold" data-dismissible>
   <div class="notice__body">
     <p>Notice <a href="#">content</a> goes here...</p>
   </div>
@@ -291,7 +292,7 @@ usage:
     </button>
   </div>
 </div>
-<div class="notice notice_state_danger-bold" data-dismissible>
+<div class="notice notice_type_danger-bold" data-dismissible>
   <div class="notice__body">
     <p>Notice <a href="#">content</a> goes here...</p>
   </div>
@@ -303,25 +304,25 @@ usage:
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="notice notice_state_info-bold">...</div>
-<div class="notice notice_state_success-bold">...</div>
-<div class="notice notice_state_caution-bold">...</div>
-<div class="notice notice_state_danger-bold">...</div>
+<div class="notice notice_type_info-bold">...</div>
+<div class="notice notice_type_success-bold">...</div>
+<div class="notice notice_type_caution-bold">...</div>
+<div class="notice notice_type_danger-bold">...</div>
 ```
 {% include demo_close.html %}
 
 ## Examples
 
 {% include demo_open.html %}
-<div class="notice notice_stack notice_color_dark elevate_16dp" data-dismissible>
-  <div class="notice__body margin_bottom_lg spacing_sm">
+<div class="notice notice_stack notice_color_dark elevate-16dp" data-dismissible>
+  <div class="notice__body margin-bottom-lg spacing-sm">
     <h2 class="notice__title flex">
-      <span class="flex_grow_1">This site uses cookies</span>
+      <span class="flex-grow-1">This site uses cookies</span>
       <button class="icon-action icon-action_invert icon-action_color_subtle" data-dismiss>
         {% include icon.html icon="x" %}
       </button>
     </h2>
-    <p>By using this site you agree with our use of cookies. <a class="link" href="#">Read more about our cookie policy &rarr;</a></p>
+    <p>By using this site you agree with our use of cookies. <a class="link link_invert" href="#">Read more about our cookie policy &rarr;</a></p>
   </div>
   <div class="notice__body">
     <div class="button-group button-group_full button-group_wrap">
@@ -336,10 +337,10 @@ usage:
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="notice notice_stack notice_color_dark elevate_16dp" data-dismissible>
-  <div class="notice__body margin_bottom_lg spacing_sm">
+<div class="notice notice_stack notice_color_dark elevate-16dp" data-dismissible>
+  <div class="notice__body margin-bottom-lg spacing-sm">
     <h2 class="notice__title flex">
-      <span class="flex_grow_1">...</span>
+      <span class="flex-grow-1">...</span>
       <button class="icon-action icon-action_invert icon-action_color_subtle" data-dismiss>
         ...
       </button>

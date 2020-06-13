@@ -37,66 +37,96 @@
   color: #fff;
   background-color: #00bcd4;
 }
-.notice_color_primary a {
+.notice_color_primary > hr {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.notice_color_primary > blockquote {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.notice_color_primary > a,
+.notice_color_primary > :not(div) a {
   border-color: rgba(255, 255, 255, 0.5);
   color: #fff;
 }
-.notice_color_primary a:hover, .notice_color_primary a:focus {
+.notice_color_primary > a:hover, .notice_color_primary > a:focus,
+.notice_color_primary > :not(div) a:hover,
+.notice_color_primary > :not(div) a:focus {
   border-color: currentColor;
   color: #fff;
 }
-.notice_color_primary hr {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-.notice_color_primary blockquote {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-.notice_color_primary code {
+.notice_color_primary > code,
+.notice_color_primary > :not(div) code {
   color: #f06292;
+}
+.notice_color_primary > pre {
+  color: #212121;
+}
+.notice_color_primary > pre code {
+  color: inherit;
 }
 
 .notice_color_secondary {
   color: #fff;
   background-color: #607d8b;
 }
-.notice_color_secondary a {
+.notice_color_secondary > hr {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.notice_color_secondary > blockquote {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.notice_color_secondary > a,
+.notice_color_secondary > :not(div) a {
   border-color: rgba(255, 255, 255, 0.5);
   color: #fff;
 }
-.notice_color_secondary a:hover, .notice_color_secondary a:focus {
+.notice_color_secondary > a:hover, .notice_color_secondary > a:focus,
+.notice_color_secondary > :not(div) a:hover,
+.notice_color_secondary > :not(div) a:focus {
   border-color: currentColor;
   color: #fff;
 }
-.notice_color_secondary hr {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-.notice_color_secondary blockquote {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-.notice_color_secondary code {
+.notice_color_secondary > code,
+.notice_color_secondary > :not(div) code {
   color: #f06292;
+}
+.notice_color_secondary > pre {
+  color: #212121;
+}
+.notice_color_secondary > pre code {
+  color: inherit;
 }
 
 .notice_color_dark {
   color: #fff;
   background-color: #424242;
 }
-.notice_color_dark a {
+.notice_color_dark > hr {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.notice_color_dark > blockquote {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.notice_color_dark > a,
+.notice_color_dark > :not(div) a {
   border-color: rgba(255, 255, 255, 0.5);
   color: #fff;
 }
-.notice_color_dark a:hover, .notice_color_dark a:focus {
+.notice_color_dark > a:hover, .notice_color_dark > a:focus,
+.notice_color_dark > :not(div) a:hover,
+.notice_color_dark > :not(div) a:focus {
   border-color: currentColor;
   color: #fff;
 }
-.notice_color_dark hr {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-.notice_color_dark blockquote {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-.notice_color_dark code {
+.notice_color_dark > code,
+.notice_color_dark > :not(div) code {
   color: #f06292;
+}
+.notice_color_dark > pre {
+  color: #212121;
+}
+.notice_color_dark > pre code {
+  color: inherit;
 }
 
 .notice_stack {
@@ -112,112 +142,152 @@
   margin-bottom: 0;
 }
 
-.notice_state_info {
+.notice_type_info {
   background-color: #e1f5fe;
   color: #01579b;
 }
 
-.notice_state_info-bold {
+.notice_type_info-bold {
   color: #fff;
   background-color: #03a9f4;
 }
-.notice_state_info-bold a {
+.notice_type_info-bold > hr {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.notice_type_info-bold > blockquote {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.notice_type_info-bold > a,
+.notice_type_info-bold > :not(div) a {
   border-color: rgba(255, 255, 255, 0.5);
   color: #fff;
 }
-.notice_state_info-bold a:hover, .notice_state_info-bold a:focus {
+.notice_type_info-bold > a:hover, .notice_type_info-bold > a:focus,
+.notice_type_info-bold > :not(div) a:hover,
+.notice_type_info-bold > :not(div) a:focus {
   border-color: currentColor;
   color: #fff;
 }
-.notice_state_info-bold hr {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-.notice_state_info-bold blockquote {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-.notice_state_info-bold code {
+.notice_type_info-bold > code,
+.notice_type_info-bold > :not(div) code {
   color: #f06292;
 }
+.notice_type_info-bold > pre {
+  color: #212121;
+}
+.notice_type_info-bold > pre code {
+  color: inherit;
+}
 
-.notice_state_success {
+.notice_type_success {
   background-color: #e8f5e9;
   color: #1b5e20;
 }
 
-.notice_state_success-bold {
+.notice_type_success-bold {
   color: #fff;
   background-color: #4caf50;
 }
-.notice_state_success-bold a {
+.notice_type_success-bold > hr {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.notice_type_success-bold > blockquote {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.notice_type_success-bold > a,
+.notice_type_success-bold > :not(div) a {
   border-color: rgba(255, 255, 255, 0.5);
   color: #fff;
 }
-.notice_state_success-bold a:hover, .notice_state_success-bold a:focus {
+.notice_type_success-bold > a:hover, .notice_type_success-bold > a:focus,
+.notice_type_success-bold > :not(div) a:hover,
+.notice_type_success-bold > :not(div) a:focus {
   border-color: currentColor;
   color: #fff;
 }
-.notice_state_success-bold hr {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-.notice_state_success-bold blockquote {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-.notice_state_success-bold code {
+.notice_type_success-bold > code,
+.notice_type_success-bold > :not(div) code {
   color: #f06292;
 }
+.notice_type_success-bold > pre {
+  color: #212121;
+}
+.notice_type_success-bold > pre code {
+  color: inherit;
+}
 
-.notice_state_caution {
+.notice_type_caution {
   background-color: #fff3e0;
   color: #bf360c;
 }
 
-.notice_state_caution-bold {
+.notice_type_caution-bold {
   color: #fff;
   background-color: #ff9800;
 }
-.notice_state_caution-bold a {
+.notice_type_caution-bold > hr {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.notice_type_caution-bold > blockquote {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.notice_type_caution-bold > a,
+.notice_type_caution-bold > :not(div) a {
   border-color: rgba(255, 255, 255, 0.5);
   color: #fff;
 }
-.notice_state_caution-bold a:hover, .notice_state_caution-bold a:focus {
+.notice_type_caution-bold > a:hover, .notice_type_caution-bold > a:focus,
+.notice_type_caution-bold > :not(div) a:hover,
+.notice_type_caution-bold > :not(div) a:focus {
   border-color: currentColor;
   color: #fff;
 }
-.notice_state_caution-bold hr {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-.notice_state_caution-bold blockquote {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-.notice_state_caution-bold code {
+.notice_type_caution-bold > code,
+.notice_type_caution-bold > :not(div) code {
   color: #f06292;
 }
+.notice_type_caution-bold > pre {
+  color: #212121;
+}
+.notice_type_caution-bold > pre code {
+  color: inherit;
+}
 
-.notice_state_danger {
+.notice_type_danger {
   background-color: #ffebee;
   color: #b71c1c;
 }
 
-.notice_state_danger-bold {
+.notice_type_danger-bold {
   color: #fff;
   background-color: #f44336;
 }
-.notice_state_danger-bold a {
+.notice_type_danger-bold > hr {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.notice_type_danger-bold > blockquote {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.notice_type_danger-bold > a,
+.notice_type_danger-bold > :not(div) a {
   border-color: rgba(255, 255, 255, 0.5);
   color: #fff;
 }
-.notice_state_danger-bold a:hover, .notice_state_danger-bold a:focus {
+.notice_type_danger-bold > a:hover, .notice_type_danger-bold > a:focus,
+.notice_type_danger-bold > :not(div) a:hover,
+.notice_type_danger-bold > :not(div) a:focus {
   border-color: currentColor;
   color: #fff;
 }
-.notice_state_danger-bold hr {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-.notice_state_danger-bold blockquote {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-.notice_state_danger-bold code {
+.notice_type_danger-bold > code,
+.notice_type_danger-bold > :not(div) code {
   color: #f06292;
+}
+.notice_type_danger-bold > pre {
+  color: #212121;
+}
+.notice_type_danger-bold > pre code {
+  color: inherit;
 }
 
 /*# sourceMappingURL=styles.css.map */

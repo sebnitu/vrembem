@@ -8,28 +8,22 @@ layout: default
     <div class="container spacing">
       <div class="grid grid_break_lg">
 
-        <div class="grid__item span_12">
+        <div class="grid__item span-12">
           <h1 class="article__title">{{ page.title }}</h1>
         </div>
 
-        <div class="grid__item span_6 spacing">
+        <div class="grid__item span-6 spacing">
           <p>{{ page.description }}</p>
           <p>
-            {% if page.title == "Vrembem" %}
-            <a href="https://www.npmjs.com/package/{{ page.usage.npm }}">
-              <img src="https://img.shields.io/npm/v/{{ page.usage.npm }}.svg" alt="npm version" />
+            <a href="https://www.npmjs.com/package/{{ page.package }}">
+              <img src="https://img.shields.io/npm/v/{{ page.package }}.svg" alt="npm version" />
             </a>
-            {% else %}
-              <a href="https://www.npmjs.com/package/@vrembem/{{ page.usage.npm }}">
-                <img src="https://img.shields.io/npm/v/@vrembem/{{ page.usage.npm }}.svg" alt="npm version" />
-              </a>
-            {% endif %}
           </p>
-          <p><a href="https://github.com/{{ site.repository }}/tree/master/packages/{{ page.usage.npm }}" class="link">Source Code</a></p>
+          <p><a href="https://github.com/{{ site.repository }}/tree/master/packages/{{ page.title | downcase }}" class="link">Source Code</a></p>
         </div>
 
         {% if page.usage %}
-        <div class="grid__item span_6">
+        <div class="grid__item span-6">
           {% capture usage %}{% include usage.md %}{% endcapture %}
           {{ usage | markdownify }}
         </div>
@@ -40,17 +34,9 @@ layout: default
   </header>
 
   <div class="article__body section">
-    <div class="content container spacing spacing_xl">
+    <div class="container type type_custom spacing-xl">
       {{ content }}
     </div>
   </div>
-
-  {% comment %}
-  <footer class="article__footer section">
-    <div class="container">
-      {%- include footer.html -%}
-    </div>
-  </footer>
-  {% endcomment %}
 
 </article>

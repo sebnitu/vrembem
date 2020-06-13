@@ -2,10 +2,11 @@
 layout: article
 title: Breadcrumb
 description: "The breadcrumb component is a navigation component that shows the hierarchical path to a users current location."
+package: "@vrembem/breadcrumb"
 category: compound
 usage:
-  npm: "breadcrumb"
-  scss: "breadcrumb"
+  npm: true
+  scss: true
 ---
 
 ## breadcrumb
@@ -42,7 +43,7 @@ usage:
 ## breadcrumb_invert
 
 {% include demo_open.html class_grid="grid_break" %}
-<div class="padding background_night radius">
+<div class="padding background-night radius">
   <ol class="breadcrumb breadcrumb_invert">
     <li class="breadcrumb__item">
       <a href="#" class="breadcrumb__link">&larr; Home</a>

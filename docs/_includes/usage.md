@@ -1,32 +1,20 @@
-<div class="type" markdown="1">
-
-{% comment %}
-<div class="flag">
-  <span>Usage</span>
-</div>
-{% endcomment %}
+<div class="type spacing" markdown="1">
 
 {% if page.usage.npm %}
-{% if page.title == "Vrembem" %}
 ```
-npm install {{ page.usage.npm }}
+npm install {{ page.package }}
 ```
-{% else %}
-```
-npm install @vrembem/{{ page.usage.npm }}
-```
-{% endif %}
 {% endif %}
 
-{% if page.usage.scss and page.title != "Core" and page.title != "Vrembem" %}
+{% if page.usage.scss %}
 ```scss
-@use "@vrembem/{{ page.usage.scss }}";
+@use "{{ page.package }}";
 ```
 {% endif %}
 
-{% if page.usage.js and page.title != "Core" and page.title != "Vrembem" %}
+{% if page.usage.js %}
 ```js
-import { {{ page.title }} } from '@vrembem/{{ page.usage.js }}';
+import { {{ page.title }} } from '{{ page.package }}';
 ```
 {% endif %}
 

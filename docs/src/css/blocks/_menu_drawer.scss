@@ -13,8 +13,13 @@
     border-bottom-right-radius: 0;
   }
 
-  .menu__link:hover {
+  .menu__link:hover,
+  .menu__link:focus {
     background: rgba(core.$black, 0.03);
+  }
+
+  .menu__link:active {
+    background: rgba(core.$black, 0.06);
   }
 
   .menu__icon {
