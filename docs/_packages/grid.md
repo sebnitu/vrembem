@@ -286,7 +286,7 @@ $gap-scale: (
 
 ## flex
 
-The flex utility is a great way to adjust individual flex properties on components that use flex layout. These are some available flex property based utilities:
+The [flex utility](/packages/utility#flex) is a great way to adjust individual flex properties on components that use flex layout. These are some available flex property based utilities:
 
 * `flex-align-[key]`
 * `flex-justify-[key]`
@@ -440,7 +440,7 @@ Change the `justify-content` property of grid columns using the `flex-justify-[v
 
 ## span
 
-Set the width, max-width and flex based on a column set using the `span` utility. There are a number of options available:
+The [span utility](/packages/utility#span) sets width, max-width and flex based on a `grid__item` columns. There are a number of options available:
 
 * `span-auto`
 * `span-full`
