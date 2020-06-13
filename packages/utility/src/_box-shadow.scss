@@ -2,33 +2,32 @@
 @use "./variables" as var;
 
 $_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
 $_c: var.$class-box-shadow;
 
 .#{$_b}#{$_c} {
   box-shadow: core.$box-shadow !important;
 }
 
-.#{$_b}#{$_c}#{$_m}flat {
+.#{$_b}#{$_c}-flat {
   box-shadow: core.$box-shadow-flat !important;
 }
 
-.#{$_b}#{$_c}#{$_m}1dp {
+.#{$_b}#{$_c}-1dp {
   box-shadow: core.$box-shadow-1dp !important;
 }
 
-.#{$_b}#{$_c}#{$_m}4dp {
+.#{$_b}#{$_c}-4dp {
   box-shadow: core.$box-shadow-4dp !important;
 }
 
-.#{$_b}#{$_c}#{$_m}8dp {
+.#{$_b}#{$_c}-8dp {
   box-shadow: core.$box-shadow-8dp !important;
 }
 
-.#{$_b}#{$_c}#{$_m}16dp {
+.#{$_b}#{$_c}-16dp {
   box-shadow: core.$box-shadow-16dp !important;
 }
 
-.#{$_b}#{$_c}#{$_m}24dp {
+.#{$_b}#{$_c}-24dp {
   box-shadow: core.$box-shadow-24dp !important;
 }

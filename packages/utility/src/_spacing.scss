@@ -2,7 +2,6 @@
 @use "./mixins" as mix;
 
 $_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
 $_c: var.$class-spacing;
 
 .#{$_b}#{$_c} {
