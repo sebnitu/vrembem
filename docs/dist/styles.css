@@ -4949,6 +4949,26 @@ input::-moz-placeholder {
   display: flex !important;
 }
 
+.flex-align-start {
+  align-items: flex-start !important;
+}
+
+.flex-align-center {
+  align-items: center !important;
+}
+
+.flex-align-end {
+  align-items: flex-end !important;
+}
+
+.flex-align-stretch {
+  align-items: stretch !important;
+}
+
+.flex-align-baseline {
+  align-items: baseline !important;
+}
+
 .flex-justify-start {
   justify-content: flex-start !important;
 }
@@ -4971,42 +4991,6 @@ input::-moz-placeholder {
 
 .flex-justify-evenly {
   justify-content: space-evenly !important;
-}
-
-.flex-align-start {
-  align-items: flex-start !important;
-}
-
-.flex-align-center {
-  align-items: center !important;
-}
-
-.flex-align-end {
-  align-items: flex-end !important;
-}
-
-.flex-align-stretch {
-  align-items: stretch !important;
-}
-
-.flex-align-baseline {
-  align-items: baseline !important;
-}
-
-.flex-wrap {
-  flex-wrap: wrap !important;
-}
-
-.flex-nowrap {
-  flex-wrap: nowrap !important;
-}
-
-.flex-items-equal > * {
-  flex: 1 1 0 !important;
-}
-
-.flex-items-auto > * {
-  flex: 0 0 auto !important;
 }
 
 .flex-grow-0 {
@@ -5039,6 +5023,22 @@ input::-moz-placeholder {
 
 .flex-basis-auto {
   flex-basis: auto !important;
+}
+
+.flex-wrap {
+  flex-wrap: wrap !important;
+}
+
+.flex-nowrap {
+  flex-wrap: nowrap !important;
+}
+
+.flex-items-equal > * {
+  flex: 1 1 0 !important;
+}
+
+.flex-items-auto > * {
+  flex: 0 0 auto !important;
 }
 
 .margin {
@@ -6632,19 +6632,25 @@ input::-moz-placeholder {
     padding: 1em;
   }
 }
-.type_custom > h2 {
-  margin-top: 4em !important;
-  margin-bottom: 2em;
-  padding: 0.5em 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+.type_custom > h2,
+.type_custom > h3 {
   font-size: 16px;
   font-weight: 600;
   letter-spacing: 1px;
   line-height: 1.5;
   text-transform: uppercase;
 }
+.type_custom > h2 {
+  margin-top: 4em !important;
+  margin-bottom: 2em;
+  padding: 0.5em 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
 .type_custom > h2:first-child {
   margin-top: 0 !important;
+}
+.type_custom > h3 {
+  color: #9e9e9e;
 }
 
 .version.loading {
