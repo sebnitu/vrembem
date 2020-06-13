@@ -54,11 +54,19 @@ The clear element allows you to start a new row at any point in a column set.
 
 ### `grid_auto`
 
+TBD
+
 ### `grid_break_[key]`
+
+TBD
 
 ### `grid_fill`
 
+TBD
+
 ### `grid_gap_[key]`
+
+TBD
 
 ## Customization
 
@@ -72,4 +80,4 @@ Variable | Default | Description
 `$prefix-modifier-value` | `"_"` | String to prefix modifier values with.
 `$breakpoints` | [`core.$breakpoints`](https://github.com/sebnitu/vrembem/blob/08eb7b3b55e9c55ed0027e8d9cee3d24b2ac86d6/packages/core/src/css/_variables.scss#L14-L20) | The breakpoints map the `grid_break_[key]` modifier usees to build it's styles.
 `$gap` | `2rem` | String to prefix modifier values with.
-`$gap-scale` | [Source](https://github.com/sebnitu/vrembem/blob/08eb7b3b55e9c55ed0027e8d9cee3d24b2ac86d6/packages/grid/src/_variables.scss#L11-L15) | A scale map the `grid_gap_[key]` modifier uses to build it's styles.
+`$gap-scale` | [Source](https://github.com/sebnitu/vrembem/blob/08eb7b3b55e9c55ed0027e8d9cee3d24b2ac86d6/packages/grid/src/_variables.scss#L10-L16) | A scale map the `grid_gap_[key]` modifier uses to build it's styles.
