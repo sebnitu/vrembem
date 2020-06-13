@@ -152,7 +152,7 @@ usage:
 {% include demo_close.html %}
 
 {% include demo_open.html class_grid="grid_break" %}
-<div class="level flex_justify_end">
+<div class="level flex-justify-end">
   <div class="dropdown dropdown_pos_left-up">
     <button class="button">
       {% include icon.html icon="chevron-left" %}

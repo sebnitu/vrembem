@@ -84,7 +84,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
 
 {% include demo_open.html %}
 <div class="card card_invert">
-  <div class="card__body spacing text_align_center">
+  <div class="card__body spacing text-align-center">
     <h3 class="card__title">Card Title</h3>
     <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
     <p>
@@ -140,7 +140,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
 
 {% include demo_open.html %}
 <a href="#" class="card card_link">
-  <div class="card__body spacing text_align_center">
+  <div class="card__body spacing text-align-center">
     <h3 class="card__title">Card Title</h3>
     <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
     <p>
@@ -150,7 +150,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
 </a>
 {% include demo_switch.html %}
 ```html
-<div class="card card_lift">
+<div class="card card_link">
   ...
 </div>
 ```
@@ -160,7 +160,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
 
 {% include demo_open.html %}
 <div class="card card_invert card_fade">
-  <div class="card__body spacing text_align_center">
+  <div class="card__body spacing text-align-center">
     <h3 class="card__title">Card Title</h3>
     <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
     <p>
@@ -184,7 +184,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
 
 {% include demo_open.html %}
 <div class="card card_invert card_zoom">
-  <div class="card__body spacing text_align_center">
+  <div class="card__body spacing text-align-center">
     <h3 class="card__title">Card Title</h3>
     <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
     <p>
@@ -212,7 +212,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
       {%- for counter in (1..3) -%}
       <div class="grid__item grid__item_fill">
         <div class="card card_invert card_fade card_zoom">
-          <div class="card__body spacing text_align_center">
+          <div class="card__body spacing text-align-center">
             <h3 class="card__title">Card Title</h3>
             <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque.</p>
             <p>
@@ -241,7 +241,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
         <a href="#" class="card card_link">
           <img src="https://picsum.photos/600/400/?2{{ counter }}" class="card__image" width="600" height="400">
           <div class="card__body spacing">
-            <h3 class="card__title level justify_between">
+            <h3 class="card__title level flex-justify-between">
               <span>Card Title</span>
               {%- include icon.html icon="arrow-right" -%}
             </h3>
@@ -257,7 +257,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
         <a href="#" class="card card_link">
           <div class="card__body">
             <div class="media">
-              <div class="media__image text_size_lg">
+              <div class="media__image text-size-lg">
                 {%- include icon.html icon="check-circle" -%}
               </div>
               <div class="media__body">
@@ -315,7 +315,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
 
   <div class="grid__item span_12 span_6_xs grid__item_fill">
     <div class="card card_invert card_link card_fade">
-      <div class="card__header level justify_between">
+      <div class="card__header level flex-justify-between">
         <h3 class="card__title">Card Title</h3>
         {%- include icon.html icon="arrow-right" -%}
       </div>
@@ -334,8 +334,8 @@ Card screens and backgrounds are displayed behind the other card elements. These
     <a href="#" class="card card_link">
       <div class="card__body">
         <blockquote class="spacing">
-          <p class="text_lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et, efficitur ultricies metus. Vestibulum rutrum dolor dui, lacinia viverra tellus molestie eget. Proin tempor mauris id velit luctus, sit amet varius erat vestibulum.</p>
-          <footer class="text_subtle">
+          <p class="text-lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et, efficitur ultricies metus. Vestibulum rutrum dolor dui, lacinia viverra tellus molestie eget. Proin tempor mauris id velit luctus, sit amet varius erat vestibulum.</p>
+          <footer class="text-subtle">
             <cite title="Source Title">
               &mdash; Someone famous in Source Title
             </cite>
@@ -386,7 +386,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
       <div class="card__footer">
         <p><button class="button button_outline_accent">Card Action</button></p>
       </div>
-      <img src="https://picsum.photos/600/400/?13" class="card__image d_none_xs d_block_md" width="600" height="400">
+      <img src="https://picsum.photos/600/400/?13" class="card__image" width="600" height="400">
     </div>
   </div>
 

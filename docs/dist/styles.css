@@ -3318,151 +3318,151 @@ input::-moz-placeholder {
   margin-bottom: 0;
 }
 
-.notice_state_info {
+.notice_type_info {
   background-color: #e1f5fe;
   color: #01579b;
 }
 
-.notice_state_info-bold {
+.notice_type_info-bold {
   color: #fff;
   background-color: #03a9f4;
 }
-.notice_state_info-bold > hr {
+.notice_type_info-bold > hr {
   border-color: rgba(255, 255, 255, 0.1);
 }
-.notice_state_info-bold > blockquote {
+.notice_type_info-bold > blockquote {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
-.notice_state_info-bold > a,
-.notice_state_info-bold > :not(div) a {
+.notice_type_info-bold > a,
+.notice_type_info-bold > :not(div) a {
   border-color: rgba(255, 255, 255, 0.5);
   color: #fff;
 }
-.notice_state_info-bold > a:hover, .notice_state_info-bold > a:focus,
-.notice_state_info-bold > :not(div) a:hover,
-.notice_state_info-bold > :not(div) a:focus {
+.notice_type_info-bold > a:hover, .notice_type_info-bold > a:focus,
+.notice_type_info-bold > :not(div) a:hover,
+.notice_type_info-bold > :not(div) a:focus {
   border-color: currentColor;
   color: #fff;
 }
-.notice_state_info-bold > code,
-.notice_state_info-bold > :not(div) code {
+.notice_type_info-bold > code,
+.notice_type_info-bold > :not(div) code {
   color: #f06292;
 }
-.notice_state_info-bold > pre {
+.notice_type_info-bold > pre {
   color: #212121;
 }
-.notice_state_info-bold > pre code {
+.notice_type_info-bold > pre code {
   color: inherit;
 }
 
-.notice_state_success {
+.notice_type_success {
   background-color: #e8f5e9;
   color: #1b5e20;
 }
 
-.notice_state_success-bold {
+.notice_type_success-bold {
   color: #fff;
   background-color: #4caf50;
 }
-.notice_state_success-bold > hr {
+.notice_type_success-bold > hr {
   border-color: rgba(255, 255, 255, 0.1);
 }
-.notice_state_success-bold > blockquote {
+.notice_type_success-bold > blockquote {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
-.notice_state_success-bold > a,
-.notice_state_success-bold > :not(div) a {
+.notice_type_success-bold > a,
+.notice_type_success-bold > :not(div) a {
   border-color: rgba(255, 255, 255, 0.5);
   color: #fff;
 }
-.notice_state_success-bold > a:hover, .notice_state_success-bold > a:focus,
-.notice_state_success-bold > :not(div) a:hover,
-.notice_state_success-bold > :not(div) a:focus {
+.notice_type_success-bold > a:hover, .notice_type_success-bold > a:focus,
+.notice_type_success-bold > :not(div) a:hover,
+.notice_type_success-bold > :not(div) a:focus {
   border-color: currentColor;
   color: #fff;
 }
-.notice_state_success-bold > code,
-.notice_state_success-bold > :not(div) code {
+.notice_type_success-bold > code,
+.notice_type_success-bold > :not(div) code {
   color: #f06292;
 }
-.notice_state_success-bold > pre {
+.notice_type_success-bold > pre {
   color: #212121;
 }
-.notice_state_success-bold > pre code {
+.notice_type_success-bold > pre code {
   color: inherit;
 }
 
-.notice_state_caution {
+.notice_type_caution {
   background-color: #fff3e0;
   color: #bf360c;
 }
 
-.notice_state_caution-bold {
+.notice_type_caution-bold {
   color: #fff;
   background-color: #ff9800;
 }
-.notice_state_caution-bold > hr {
+.notice_type_caution-bold > hr {
   border-color: rgba(255, 255, 255, 0.1);
 }
-.notice_state_caution-bold > blockquote {
+.notice_type_caution-bold > blockquote {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
-.notice_state_caution-bold > a,
-.notice_state_caution-bold > :not(div) a {
+.notice_type_caution-bold > a,
+.notice_type_caution-bold > :not(div) a {
   border-color: rgba(255, 255, 255, 0.5);
   color: #fff;
 }
-.notice_state_caution-bold > a:hover, .notice_state_caution-bold > a:focus,
-.notice_state_caution-bold > :not(div) a:hover,
-.notice_state_caution-bold > :not(div) a:focus {
+.notice_type_caution-bold > a:hover, .notice_type_caution-bold > a:focus,
+.notice_type_caution-bold > :not(div) a:hover,
+.notice_type_caution-bold > :not(div) a:focus {
   border-color: currentColor;
   color: #fff;
 }
-.notice_state_caution-bold > code,
-.notice_state_caution-bold > :not(div) code {
+.notice_type_caution-bold > code,
+.notice_type_caution-bold > :not(div) code {
   color: #f06292;
 }
-.notice_state_caution-bold > pre {
+.notice_type_caution-bold > pre {
   color: #212121;
 }
-.notice_state_caution-bold > pre code {
+.notice_type_caution-bold > pre code {
   color: inherit;
 }
 
-.notice_state_danger {
+.notice_type_danger {
   background-color: #ffebee;
   color: #b71c1c;
 }
 
-.notice_state_danger-bold {
+.notice_type_danger-bold {
   color: #fff;
   background-color: #f44336;
 }
-.notice_state_danger-bold > hr {
+.notice_type_danger-bold > hr {
   border-color: rgba(255, 255, 255, 0.1);
 }
-.notice_state_danger-bold > blockquote {
+.notice_type_danger-bold > blockquote {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
-.notice_state_danger-bold > a,
-.notice_state_danger-bold > :not(div) a {
+.notice_type_danger-bold > a,
+.notice_type_danger-bold > :not(div) a {
   border-color: rgba(255, 255, 255, 0.5);
   color: #fff;
 }
-.notice_state_danger-bold > a:hover, .notice_state_danger-bold > a:focus,
-.notice_state_danger-bold > :not(div) a:hover,
-.notice_state_danger-bold > :not(div) a:focus {
+.notice_type_danger-bold > a:hover, .notice_type_danger-bold > a:focus,
+.notice_type_danger-bold > :not(div) a:hover,
+.notice_type_danger-bold > :not(div) a:focus {
   border-color: currentColor;
   color: #fff;
 }
-.notice_state_danger-bold > code,
-.notice_state_danger-bold > :not(div) code {
+.notice_type_danger-bold > code,
+.notice_type_danger-bold > :not(div) code {
   color: #f06292;
 }
-.notice_state_danger-bold > pre {
+.notice_type_danger-bold > pre {
   color: #212121;
 }
-.notice_state_danger-bold > pre code {
+.notice_type_danger-bold > pre code {
   color: inherit;
 }
 

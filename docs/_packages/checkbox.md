@@ -29,7 +29,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-<div class="notice notice_state_info type"  markdown="1">
+<div class="notice notice_type_info type"  markdown="1">
 For indeterminate checkboxes, apply the `aria-checked="mixed"` attribute and init the checkbox component script.
 </div>
 

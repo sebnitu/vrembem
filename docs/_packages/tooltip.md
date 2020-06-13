@@ -13,7 +13,7 @@ usage:
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="level">
-  <span class="text_underline_dotted" data-tooltip="Tooltip">Example tooltip</span>
+  <span class="text-underline-dotted" data-tooltip="Tooltip">Example tooltip</span>
 </div>
 {% include demo_switch.html %}
 ```html
@@ -25,13 +25,13 @@ usage:
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="level">
-  <span class="text_underline_dotted" data-tooltip="Tooltip" data-tooltip-pos="up-left">
+  <span class="text-underline-dotted" data-tooltip="Tooltip" data-tooltip-pos="up-left">
     Tooltip up left
   </span>
-  <span class="text_underline_dotted" data-tooltip="Tooltip" data-tooltip-pos="up">
+  <span class="text-underline-dotted" data-tooltip="Tooltip" data-tooltip-pos="up">
     Tooltip up
   </span>
-  <span class="text_underline_dotted" data-tooltip="Tooltip" data-tooltip-pos="up-right">
+  <span class="text-underline-dotted" data-tooltip="Tooltip" data-tooltip-pos="up-right">
     Tooltip up right
   </span>
 </div>
@@ -45,13 +45,13 @@ usage:
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="level">
-  <span class="text_underline_dotted" data-tooltip="Tooltip" data-tooltip-pos="down-left">
+  <span class="text-underline-dotted" data-tooltip="Tooltip" data-tooltip-pos="down-left">
     Tooltip down left
   </span>
-  <span class="text_underline_dotted" data-tooltip="Tooltip" data-tooltip-pos="down">
+  <span class="text-underline-dotted" data-tooltip="Tooltip" data-tooltip-pos="down">
     Tooltip down
   </span>
-  <span class="text_underline_dotted" data-tooltip="Tooltip" data-tooltip-pos="down-right">
+  <span class="text-underline-dotted" data-tooltip="Tooltip" data-tooltip-pos="down-right">
     Tooltip down right
   </span>
 </div>
@@ -64,14 +64,14 @@ usage:
 {% include demo_close.html %}
 
 {% include demo_open.html class_grid="grid_break" %}
-<div class="level flex_justify_end">
-  <span class="text_underline_dotted" data-tooltip="Tooltip" data-tooltip-pos="left-up">
+<div class="level flex-justify-end">
+  <span class="text-underline-dotted" data-tooltip="Tooltip" data-tooltip-pos="left-up">
     Tooltip<br>left up
   </span>
-  <span class="text_underline_dotted" data-tooltip="Tooltip" data-tooltip-pos="left">
+  <span class="text-underline-dotted" data-tooltip="Tooltip" data-tooltip-pos="left">
     Tooltip<br>left
   </span>
-  <span class="text_underline_dotted" data-tooltip="Tooltip" data-tooltip-pos="left-down">
+  <span class="text-underline-dotted" data-tooltip="Tooltip" data-tooltip-pos="left-down">
     Tooltip<br>left down
   </span>
 </div>
@@ -85,13 +85,13 @@ usage:
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="level">
-  <span class="text_underline_dotted" data-tooltip="Tooltip" data-tooltip-pos="right-up">
+  <span class="text-underline-dotted" data-tooltip="Tooltip" data-tooltip-pos="right-up">
     Tooltip<br>right up
   </span>
-  <span class="text_underline_dotted" data-tooltip="Tooltip" data-tooltip-pos="right">
+  <span class="text-underline-dotted" data-tooltip="Tooltip" data-tooltip-pos="right">
     Tooltip<br>right
   </span>
-  <span class="text_underline_dotted" data-tooltip="Tooltip" data-tooltip-pos="right-down">
+  <span class="text-underline-dotted" data-tooltip="Tooltip" data-tooltip-pos="right-down">
     Tooltip<br>right down
   </span>
 </div>

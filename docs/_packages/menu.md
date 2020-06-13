@@ -219,7 +219,7 @@ To set a menu to full below a specific breakpoint, use the full breakpoint modif
 
 ## menu_stack
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html %}
 <ul class="menu menu_stack">
   <li class="menu__item">
     <a class="menu__link" href="#">Create</a>
@@ -245,7 +245,7 @@ To set a menu to full below a specific breakpoint, use the full breakpoint modif
 
 To create a stacked menu below a specific breakpoint, use the stack breakpoint modifier: `menu_stack_[key]`
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html %}
 <ul class="menu menu_stack_lg">
   <li class="menu__item">
     <a class="menu__link" href="#">Create</a>
@@ -274,7 +274,7 @@ To create a stacked menu below a specific breakpoint, use the stack breakpoint m
 A theme for using menus on a dark background.
 
 {% include demo_open.html class_grid="grid_break" %}
-<div class="padding background_night radius spacing">
+<div class="padding background-night radius spacing">
   <div class="scroll-box">
     <ul class="menu menu_theme_invert">
       <li class="menu__item">

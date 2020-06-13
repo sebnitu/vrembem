@@ -58,7 +58,7 @@ usage:
 ## icon-action_invert
 
 {% include demo_open.html class_grid="grid_break" %}
-<div class="padding radius background_night">
+<div class="padding radius background-night">
   <button class="icon-action icon-action_invert" aria-label="Close">
     {% include icon.html icon="x" %}
   </button>
@@ -72,13 +72,13 @@ usage:
 
 ## icon-action_subtle
 
-{% include demo_open.html class_grid="grid_break" class_parent="flex flex_items_equal" %}
-<div class="padding radius background_white">
+{% include demo_open.html class_grid="grid_break" class_parent="flex flex-items-equal" %}
+<div class="padding radius background-white border margin-right-sm">
   <button class="icon-action icon-action_subtle" aria-label="Close">
     {% include icon.html icon="x" %}
   </button>
 </div>
-<div class="padding radius background_night">
+<div class="padding radius background-night margin-left-sm">
   <button class="icon-action icon-action_invert icon-action_subtle" aria-label="Close">
     {% include icon.html icon="x" %}
   </button>

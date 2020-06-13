@@ -9,7 +9,7 @@ usage:
   scss: true
 ---
 
-<div class="notice notice_state_info" data-dismissible>
+<div class="notice notice_type_info" data-dismissible>
   <div class="notice__body type">
     <p>You can use any icon set but may require changing default icon variables. Default styles are intended for <a href="https://feathericons.com/">feather icons</a> which is a great open source option.</p>
   </div>
@@ -20,7 +20,7 @@ usage:
 You can inject svg icons directly or use svg sprites. The only requirement is the `icon` component class.
 
 {% include demo_open.html class_grid="grid_break" %}
-<div class="level">
+<div class="level level_gap_xl">
   {% include icon.html icon="anchor" %}
   {% include icon.html icon="arrow-left" %}
   {% include icon.html icon="arrow-right" %}
@@ -45,8 +45,10 @@ You can inject svg icons directly or use svg sprites. The only requirement is th
 The default icon style is set using the `$icon-style` variable. You can also explicity style an icon using the style modifier.
 
 {% include demo_open.html class_grid="grid_break" %}
+<div class="level level_gap_xl">
 {% include icon.html icon="heart" class="icon_style_stroke" %}
 {% include icon.html icon="heart" class="icon_style_fill" %}
+</div>
 {% include demo_switch.html %}
 ```html
 <svg class="icon icon_style_stroke" role="img">

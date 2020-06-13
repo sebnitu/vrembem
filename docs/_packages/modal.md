@@ -12,13 +12,11 @@ usage:
 
 ## modal
 
-<div class="type" markdown="1">
 Modals are composed using classes for styling and data attributes for JavaScript functionality. To open a modal using a trigger, use a unique identifier as the values for both of their respective data attributes. Close buttons are left value-less and should be placed inside the modal element they're meant to close.
 
 * `data-modal="[unique-id]"`
 * `data-modal-open="[unique-id]"`
 * `data-modal-close`
-</div>
 
 {% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
 <button class="link" data-modal-open="modal-default">
@@ -36,9 +34,7 @@ Modals are composed using classes for styling and data attributes for JavaScript
 ```
 {% include demo_close.html %}
 
-<div class="type" markdown="1">
 The [dialog component](/packages/dialog) is a great fit for composing a modal’s content.
-</div>
 
 {% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
 <button class="link" data-modal-open="modal-dialog">
@@ -76,14 +72,12 @@ Adds styles to a modal that make it fill the entire viewport when opened.
 
 ## modal_pos_[key]
 
-<div class="type" markdown="1">
 The default position of modals is in the center of the viewport. The position modifier allows you four other options:
 
 * `modal_pos_top`
 * `modal_pos_left`
 * `modal_pos_right`
 * `modal_pos_bottom`
-</div>
 
 {% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
 <div class="level">
@@ -103,9 +97,7 @@ The default position of modals is in the center of the viewport. The position mo
 
 ## modal_size_[key]
 
-<div class="type" markdown="1">
 Adjusts the size of modals. This modifier provides two options, `modal_size_sm` and `modal_size_lg` all relative to the default modal size.
-</div>
 
 {% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
 <div class="level">
@@ -121,9 +113,7 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
 
 ## data-modal-focus
 
-<div class="type" markdown="1">
 If a modal has the attribute `tabindex="-1"`, it will be given focus when it's opened. If focus on a specific element inside a modal is preferred, give it the `data-modal-focus` attribute. The focus in either case is returned to the trigger element once the modal is closed. Focus handling can be disabled using the `{ focus: false }` setting.
-</div>
 
 {% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
 <div class="level">
@@ -159,9 +149,7 @@ If a modal has the attribute `tabindex="-1"`, it will be given focus when it's o
 
 ## data-modal-required
 
-<div class="type" markdown="1">
 Required modals can not be closed without an explicit action. That means clicking on the background or pressing the escape key to close is disabled. Add the `data-modal-required` data attribute to a modal to enable this behavior.
-</div>
 
 {% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
 <button class="link" data-modal-open="modal-required">
@@ -191,76 +179,76 @@ Required modals can not be closed without an explicit action. That means clickin
     <tbody>
       <!-- Prefixes -->
       <tr>
-        <td data-mobile-label="Var"><code class="code text_nowrap">$prefix-block</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">null</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-block</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
         <td data-mobile-label="Desc">String to prefix blocks with.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text_nowrap">$prefix-element</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">"__"</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-element</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"__"</code></td>
         <td data-mobile-label="Desc">String to prefix elements with.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text_nowrap">$prefix-modifier</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">"_"</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-modifier</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"_"</code></td>
         <td data-mobile-label="Desc">String to prefix modifiers with.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text_nowrap">$prefix-modifier-value</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">"_"</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-modifier-value</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"_"</code></td>
         <td data-mobile-label="Desc">String to prefix modifier values with.</td>
       </tr>
 
       <tr>
-        <td data-mobile-label="Var"><code class="code text_nowrap">$zindex</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">1000</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$zindex</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1000</code></td>
         <td data-mobile-label="Desc">Applied z-index to modals to control the stack order.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text_nowrap">$width</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">38em</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">38em</code></td>
         <td data-mobile-label="Desc">The default max width of modals.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text_nowrap">$width-sm</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">18em</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$width-sm</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">18em</code></td>
         <td data-mobile-label="Desc">The small width applied to modals with <code class="code">_size_sm</code> modifier.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text_nowrap">$width-lg</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">56em</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$width-lg</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">56em</code></td>
         <td data-mobile-label="Desc">The large width applied to modals with <code class="code">_size_lg</code> modifier.</td>
       </tr>
 
       <tr>
-        <td data-mobile-label="Var"><code class="code text_nowrap">$travel</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">5em</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$travel</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">5em</code></td>
         <td data-mobile-label="Desc">Distance that modal travel during their transition.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text_nowrap">$transition-duration</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">0.3s</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$transition-duration</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">0.3s</code></td>
         <td data-mobile-label="Desc">Duration of modal transition.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text_nowrap">$transition-timing-function</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">cubic-bezier(0.4, 0, 0.2, 1)</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$transition-timing-function</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">cubic-bezier(0.4, 0, 0.2, 1)</code></td>
         <td data-mobile-label="Desc">Timing function used for modal transitions.</td>
       </tr>
 
       <tr>
-        <td data-mobile-label="Var"><code class="code text_nowrap">$background</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">#424242</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">#424242</code></td>
         <td data-mobile-label="Desc">Background color of modal screen.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text_nowrap">$background-alpha</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">0.8</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$background-alpha</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">0.8</code></td>
         <td data-mobile-label="Desc">The alpha channel for the modal screen.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text_nowrap">$box-shadow</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">
+        <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">
           0 0 0 1px rgba(#212121, 0.05),<br>
           0 11px 15px -7px rgba(#212121, 0.1),<br>
           0 24px 38px 3px rgba(#212121, 0.08),<br>
@@ -270,13 +258,13 @@ Required modals can not be closed without an explicit action. That means clickin
       </tr>
 
       <tr>
-        <td data-mobile-label="Var"><code class="code text_nowrap">$aside-width</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">16em</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$aside-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">16em</code></td>
         <td data-mobile-label="Desc">Width applied to modals using <code class="code">_pos_left</code> and <code class="code">_pos_right</code> modifiers.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text_nowrap">$aside-max-width</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">90%</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$aside-max-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">90%</code></td>
         <td data-mobile-label="Desc">Max width applied to modals using <code class="code">_pos_left</code> and <code class="code">_pos_right</code> modifiers.</td>
       </tr>
 
@@ -286,10 +274,8 @@ Required modals can not be closed without an explicit action. That means clickin
 
 ## JavaScript Events
 
-<div class="type" markdown="1">
 * `modal:opened` Emits when the modal has opened.
 * `modal:closed` Emits when the modal has closed.
-</div>
 
 ## JavaScript Options
 
@@ -304,70 +290,70 @@ Required modals can not be closed without an explicit action. That means clickin
     </thead>
     <tbody>
       <tr>
-        <td data-mobile-label="Key"><code class="code text_nowrap">autoInit</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">false</code></td>
+        <td data-mobile-label="Key"><code class="code text-nowrap">autoInit</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">false</code></td>
         <td data-mobile-label="Desc">Automatically instantiates the instance.</td>
       </tr>
 
       <!-- Data attributes -->
       <tr>
-        <td data-mobile-label="Key"><code class="code text_nowrap">dataModal</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'modal'</code></td>
+        <td data-mobile-label="Key"><code class="code text-nowrap">dataModal</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'modal'</code></td>
         <td data-mobile-label="Desc">Data attribute for a modal.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Key"><code class="code text_nowrap">dataOpen</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'modal-open'</code></td>
+        <td data-mobile-label="Key"><code class="code text-nowrap">dataOpen</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'modal-open'</code></td>
         <td data-mobile-label="Desc">Data attribute for a modal open trigger.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Key"><code class="code text_nowrap">dataClose</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'modal-close'</code></td>
+        <td data-mobile-label="Key"><code class="code text-nowrap">dataClose</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'modal-close'</code></td>
         <td data-mobile-label="Desc">Data attribute for a modal close trigger.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Key"><code class="code text_nowrap">dataFocus</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'modal-focus'</code></td>
+        <td data-mobile-label="Key"><code class="code text-nowrap">dataFocus</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'modal-focus'</code></td>
         <td data-mobile-label="Desc">Data attribute for setting a modal's focus element.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Key"><code class="code text_nowrap">dataRequired</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'modal-required'</code></td>
+        <td data-mobile-label="Key"><code class="code text-nowrap">dataRequired</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'modal-required'</code></td>
         <td data-mobile-label="Desc">Data attribute for making a modal required.</td>
       </tr>
     </tbody>
 
     <!-- State classes -->
     <tr>
-      <td data-mobile-label="Key"><code class="code text_nowrap">stateOpened</code></td>
-      <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'is-opened'</code></td>
+      <td data-mobile-label="Key"><code class="code text-nowrap">stateOpened</code></td>
+      <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'is-opened'</code></td>
       <td data-mobile-label="Desc">Class used for open state.</td>
     </tr>
     <tr>
-      <td data-mobile-label="Key"><code class="code text_nowrap">stateOpening</code></td>
-      <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'is-opening'</code></td>
+      <td data-mobile-label="Key"><code class="code text-nowrap">stateOpening</code></td>
+      <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'is-opening'</code></td>
       <td data-mobile-label="Desc">Class used for transitioning to open state.</td>
     </tr>
     <tr>
-      <td data-mobile-label="Key"><code class="code text_nowrap">stateClosing</code></td>
-      <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'is-closing'</code></td>
+      <td data-mobile-label="Key"><code class="code text-nowrap">stateClosing</code></td>
+      <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'is-closing'</code></td>
       <td data-mobile-label="Desc">Class used for transitioning to closed state.</td>
     </tr>
     <tr>
-      <td data-mobile-label="Key"><code class="code text_nowrap">stateClosed</code></td>
-      <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'is-closed'</code></td>
+      <td data-mobile-label="Key"><code class="code text-nowrap">stateClosed</code></td>
+      <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'is-closed'</code></td>
       <td data-mobile-label="Desc">Class used for closed state.</td>
     </tr>
 
     <!-- Feature toggles -->
     <tr>
-      <td data-mobile-label="Key"><code class="code text_nowrap">customEventPrefix</code></td>
-      <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'modal:'</code></td>
+      <td data-mobile-label="Key"><code class="code text-nowrap">customEventPrefix</code></td>
+      <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'modal:'</code></td>
       <td data-mobile-label="Desc">Prefix to be used on custom events.</td>
     </tr>
     <tr>
-      <td data-mobile-label="Key"><code class="code text_nowrap">focus</code></td>
-      <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">true</code></td>
+      <td data-mobile-label="Key"><code class="code text-nowrap">focus</code></td>
+      <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">true</code></td>
       <td data-mobile-label="Desc">Toggles the focus handling feature.</td>
     </tr>
   </table>
@@ -385,19 +371,19 @@ Required modals can not be closed without an explicit action. That means clickin
     </thead>
     <tbody>
       <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">modal.init()</code></td>
+        <td data-mobile-label="Method"><code class="code text-nowrap">modal.init()</code></td>
         <td data-mobile-label="Desc">Initializes the modal instance.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">modal.destroy()</code></td>
+        <td data-mobile-label="Method"><code class="code text-nowrap">modal.destroy()</code></td>
         <td data-mobile-label="Desc">Destroys and cleans up the modal instantiation.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">modal.open(modalKey, callback)</code></td>
+        <td data-mobile-label="Method"><code class="code text-nowrap">modal.open(modalKey, callback)</code></td>
         <td data-mobile-label="Desc">Opens a modal provided the modal key and optional callback.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">modal.close(returnFocus, callback)</code></td>
+        <td data-mobile-label="Method"><code class="code text-nowrap">modal.close(returnFocus, callback)</code></td>
         <td data-mobile-label="Desc">Closes a modal and returns focus to trigger element with optional callback.</td>
       </tr>
     </tbody>
@@ -410,7 +396,7 @@ Required modals can not be closed without an explicit action. That means clickin
   <!-- modal default -->
   <div class="modal" data-modal="modal-default" tabindex="-1">
     <div class="modal__dialog dialog">
-      <div class="dialog__body level flex_justify_between">
+      <div class="dialog__body level flex-justify-between">
         <p>This is a basic modal</p>
         <button class="link" data-modal-close>Close</button>
       </div>
@@ -427,7 +413,7 @@ Required modals can not be closed without an explicit action. That means clickin
       <div class="dialog__body">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean porta diam eget lectus interdum, eu aliquet augue rutrum. Morbi faucibus mauris lectus, in imperdiet augue cursus vel.</p>
       </div>
-      <div class="dialog__footer flex_justify_end">
+      <div class="dialog__footer flex-justify-end">
         <div class="button-group">
           <button data-modal-close class="button button_color_primary">
             Some action
@@ -443,7 +429,7 @@ Required modals can not be closed without an explicit action. That means clickin
   <!-- modal_size_[key] -->
   <div class="modal modal_size_sm" data-modal="modal-size-sm" tabindex="-1">
     <div class="modal__dialog dialog">
-      <div class="dialog__body level flex_justify_between">
+      <div class="dialog__body level flex-justify-between">
         <p>Small modal</p>
         <button class="link" data-modal-close>Close</button>
       </div>
@@ -451,7 +437,7 @@ Required modals can not be closed without an explicit action. That means clickin
   </div>
   <div class="modal modal_size_lg" data-modal="modal-size-lg" tabindex="-1">
     <div class="modal__dialog dialog">
-      <div class="dialog__body level flex_justify_between">
+      <div class="dialog__body level flex-justify-between">
         <p>Large modal</p>
         <button class="link" data-modal-close>Close</button>
       </div>
@@ -462,7 +448,7 @@ Required modals can not be closed without an explicit action. That means clickin
   <div class="modal modal_full" data-modal="modal-full">
     <div class="modal__dialog dialog">
       <div class="dialog__body">
-        <div class="level flex_justify_between">
+        <div class="level flex-justify-between">
           <p>Full modal</p>
           <button class="link" data-modal-close data-modal-focus>Close</button>
         </div>
@@ -479,7 +465,7 @@ Required modals can not be closed without an explicit action. That means clickin
       <div class="dialog__body">
         <p>Top position modal</p>
       </div>
-      <div class="dialog__footer flex_justify_between">
+      <div class="dialog__footer flex-justify-between">
         <button class="link" data-modal-open="modal-pos-left">
           &larr; Left modal
         </button>
@@ -500,7 +486,7 @@ Required modals can not be closed without an explicit action. That means clickin
       <div class="dialog__body">
         <p>Bottom position modal</p>
       </div>
-      <div class="dialog__footer flex_justify_between">
+      <div class="dialog__footer flex-justify-between">
         <button class="link" data-modal-open="modal-pos-left">
           &larr; Left modal
         </button>
@@ -567,7 +553,7 @@ Required modals can not be closed without an explicit action. That means clickin
   <!-- data-modal-focus -->
   <div class="modal" data-modal="modal-focus-self" tabindex="-1">
     <div class="modal__dialog dialog">
-      <div class="dialog__body level flex_justify_between">
+      <div class="dialog__body level flex-justify-between">
         <p>Focus self on open</p>
         <button class="link" data-modal-close>Close</button>
       </div>
@@ -576,7 +562,7 @@ Required modals can not be closed without an explicit action. That means clickin
   <div class="modal" data-modal="modal-focus-inner">
     <div class="modal__dialog dialog">
       <div class="dialog__body">
-        <div class="level flex_justify_between margin_bottom_md">
+        <div class="level flex-justify-between margin-bottom-md">
           <p>Focus input element on open</p>
           <button class="link" data-modal-close>Close</button>
         </div>
@@ -591,9 +577,9 @@ Required modals can not be closed without an explicit action. That means clickin
       <div class="dialog__body spacing">
         <h2 class="dialog__title">Required modal</h2>
         <p>Required modals can not be closed without an explicit action. That means clicking on the background or pressing the escape key to close is disabled.</p>
-        <div class="flex flex_justify_end">
+        <div class="flex flex-justify-end">
           <div class="button-group">
-            <button data-modal-close class="button">
+            <button data-modal-close class="button button_color_primary">
               I undersand
             </button>
             <button data-modal-close class="button button_color_secondary">

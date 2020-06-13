@@ -36,7 +36,7 @@ usage:
   <p><a href="#" class="link">Default link</a></p>
   <p><a href="#" class="link link_subtle">Subtle link</a></p>
 </div>
-<div class="spacing padding radius background_night">
+<div class="spacing padding radius background-night">
   <p><a href="#" class="link link_invert">Inverted link</a></p>
   <p><a href="#" class="link link_invert-subtle">Inverted link</a></p>
 </div>
@@ -107,7 +107,7 @@ Typically used on an `<hr>` HTML element representing a thematic break between p
   <hr class="sep sep_dark">
   <hr class="sep sep_darker">
 </div>
-<div class="spacing padding radius background_night">
+<div class="spacing padding radius background-night">
   <hr class="sep sep_invert-light">
   <hr class="sep sep_invert">
   <hr class="sep sep_invert-dark">
@@ -273,14 +273,14 @@ print "a = #{a}";</code></pre>
 ```
 {% include demo_close.html %}
 
-<div class="notice notice_state_info type" markdown="1">
+<div class="notice notice_type_info type" markdown="1">
 Note: `type` does not add vertical spacing between elements by default. You can either add it by giving `$type-spacing` a value or by applying the [`spacing` utility class](/packages/utility#spacing).
 </div>
 
 ## type_invert
 
 {% include demo_open.html class_parent="spacing" %}
-<div class="type type_invert spacing background_night_dark padding radius">
+<div class="type type_invert spacing background-night-dark padding radius">
 
   <h1>Heading</h1>
   <h2>Heading</h2>

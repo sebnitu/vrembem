@@ -13,15 +13,15 @@ usage:
 
 <div class="section section_size_xl">
 <div class="section__container container">
-<div class="section__intro type_invert">
+<div class="section__intro type type_invert spacing">
   <h1>Huge section with a screen &amp; background image</h1>
   <p class="text_lead">This is a demonstration of section area using the intro element along with a screen and background image. The screen color is set using the background modifiers and can be changed as needed.</p>
-  <div class="level flex_justify_center">
+  <div class="level flex-justify-center">
     <button class="button button_color_primary">First Action</button>
     <button class="button button_color_secondary">Second Action</button>
   </div>
 </div>
-<hr class="sep sep_invert margin_vert_md" />
+<hr class="sep sep_invert margin-vert-xl" />
 <div markdown="1">
 ```html
 <div class="section section_size_xl">

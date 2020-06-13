@@ -197,7 +197,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
     <button class="button button_color_secondary">Color Secondary</button>
   </div>
 </div>
-<div class="padding background_night radius">
+<div class="padding background-night radius">
   <div class="level">
     <button class="button button_invert">Default Invert</button>
     <button class="button button_invert button_color_subtle">Color Subtle Invert</button>
@@ -231,7 +231,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
     <button class="button button_outline_secondary">Outline Secondary</button>
   </div>
 </div>
-<div class="padding background_night radius">
+<div class="padding background-night radius">
   <div class="level">
     <button class="button button_invert button_outline">Default Outline Invert</button>
     <button class="button button_invert button_outline_primary">Outline Primary</button>
@@ -266,7 +266,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
     <button class="is-loading button button_outline_secondary">Button</button>
   </div>
 </div>
-<div class="padding background_night radius">
+<div class="padding background-night radius">
   <div class="level">
     <button class="is-loading button button_invert">Button</button>
     <button class="is-loading button button_invert button_color_subtle">Button</button>

@@ -1,4 +1,4 @@
-<div class="type" markdown="1">
+<div class="type spacing" markdown="1">
 
 {% if page.usage.npm %}
 ```

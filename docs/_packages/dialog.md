@@ -140,7 +140,7 @@ The dialog is a very flexible component and can be used in many different contex
     <input type="text" class="input" placeholder="Subjects" />
     <textarea class="input input_type_textarea" rows="3" placeholder="..."></textarea>
   </form>
-  <div class="dialog__footer flex_justify_between">
+  <div class="dialog__footer flex-justify-between">
     <div class="button-group">
       <button class="button button_color_primary">Send</button>
       <button class="button button_icon">
@@ -172,7 +172,7 @@ The dialog is a very flexible component and can be used in many different contex
   <form class="dialog__body">
     ...
   </form>
-  <div class="dialog__footer flex_justify_between">
+  <div class="dialog__footer flex-justify-between">
     <div class="button-group">
       ...
     </div>
@@ -188,11 +188,11 @@ The dialog is a very flexible component and can be used in many different contex
 
 {% include demo_open.html %}
 <div class="dialog">
-  <div class="dialog__body spacing padding_lg">
+  <div class="dialog__body spacing padding-lg">
     <h2 class="dialog__title">Did you forget an attachment?</h2>
     <p>You wrote "I have attached" in your message, but there are no files attached. Send anyway?</p>
   </div>
-  <div class="dialog__footer flex_justify_end">
+  <div class="dialog__footer flex-justify-end">
     <div class="button-group">
       <button class="button">Cancel</button>
       <button class="button button_color_primary">Send</button>
@@ -202,10 +202,10 @@ The dialog is a very flexible component and can be used in many different contex
 {% include demo_switch.html %}
 ```html
 <div class="dialog">
-  <div class="dialog__body padding_lg">
+  <div class="dialog__body padding-lg">
     ...
   </div>
-  <div class="dialog__footer flex_justify_end">
+  <div class="dialog__footer flex-justify-end">
     <div class="button-group">
       ...
     </div>
