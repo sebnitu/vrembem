@@ -132,7 +132,7 @@ Set an individual grid item to auto using `grid__item_auto` element modifier.
 ```
 {% include demo_close.html %}
 
-## grid_break_[breakpoint]
+## grid_break_[key]
 
 Adds a breakpoint for when grid items should be stacked vertically. Also available is the `grid_break` modifier which stacks grid items under all conditions.
 
