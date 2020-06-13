@@ -1,0 +1,60 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_u: var.$prefix-utility;
+$_c: var.$class-span;
+
+@if (var.$class-span) {
+  @for $i from 1 through var.$columns {
+    .#{$_b}#{$_u}#{$_c}-#{$i} {
+      flex: 0 0 (100% * ($i/var.$columns));
+      width: (100% * ($i/var.$columns));
+      max-width: (100% * ($i/var.$columns));
+    }
+  }
+
+  @each $key, $value in var.$breakpoints {
+    @include core.media-min($value) {
+      @for $i from 1 through var.$columns {
+        .#{$_b}#{$_u}#{$_c}-#{$i}-#{$key} {
+          flex-basis: (100% * ($i/var.$columns));
+          width: (100% * ($i/var.$columns));
+          max-width: (100% * ($i/var.$columns));
+        }
+      }
+    }
+  }
+
+  .#{$_b}#{$_u}#{$_c}-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+  }
+
+  @each $key, $value in var.$breakpoints {
+    @include core.media-min($value) {
+      .#{$_b}#{$_u}#{$_c}-auto-#{$key} {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: none;
+      }
+    }
+  }
+
+  .#{$_b}#{$_u}#{$_c}-full {
+    flex: 0 0 100%;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  @each $key, $value in var.$breakpoints {
+    @include core.media-min($value) {
+      .#{$_b}#{$_u}#{$_c}-full-#{$key} {
+        flex: 0 0 100%;
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+}

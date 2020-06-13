@@ -2,18 +2,21 @@
 @use "./mixins" as mix;
 
 $_b: var.$prefix-block;
+$_u: var.$prefix-utility;
 $_c: var.$class-spacing;
 
-.#{$_b}#{$_c} {
-  > * {
-    @include mix.spacing(var.$spacing, true);
-  }
-}
-
-@each $key, $value in var.$spacing-map {
-  .#{$_b}#{$_c}-#{$key} {
+@if (var.$class-spacing) {
+  .#{$_b}#{$_u}#{$_c} {
     > * {
-      @include mix.spacing($value, true);
+      @include mix.spacing(var.$spacing, true);
+    }
+  }
+
+  @each $key, $value in var.$spacing-map {
+    .#{$_b}#{$_u}#{$_c}-#{$key} {
+      > * {
+        @include mix.spacing($value, true);
+      }
     }
   }
 }

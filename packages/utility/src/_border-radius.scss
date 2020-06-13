@@ -2,16 +2,19 @@
 @use "./variables" as var;
 
 $_b: var.$prefix-block;
+$_u: var.$prefix-utility;
 $_c: var.$class-border-radius;
 
-.#{$_b}#{$_c} {
-  border-radius: core.$border-radius !important;
-}
+@if (var.$class-border-radius) {
+  .#{$_b}#{$_u}#{$_c} {
+    border-radius: core.$border-radius !important;
+  }
 
-.#{$_b}#{$_c}-square {
-  border-radius: 0 !important;
-}
+  .#{$_b}#{$_u}#{$_c}-square {
+    border-radius: 0 !important;
+  }
 
-.#{$_b}#{$_c}-circle {
-  border-radius: core.$border-radius-circle !important;
+  .#{$_b}#{$_u}#{$_c}-circle {
+    border-radius: core.$border-radius-circle !important;
+  }
 }
