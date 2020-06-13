@@ -827,99 +827,105 @@ Set the width, max-width and flex based on a column set using the `span` utility
 
 ## text
 
-{% include demo_open.html %}
-<ul>
-  <li>
-    <p class="text-size-sm">Text size small</p>
-  </li>
-  <li>
-    <p class="text-size-lg">Text size large</p>
-  </li>
-  <li>
-    <p class="text-capitalize">Text capitalize</p>
-  </li>
-  <li>
-    <p class="text-lowercase">Text lowercase</p>
-  </li>
-  <li>
-    <p class="text-uppercase">Text uppercase</p>
-  </li>
-  <li>
-    <p class="text-align-left">Text align left</p>
-  </li>
-  <li>
-    <p class="text-align-center">Text align center</p>
-  </li>
-  <li>
-    <p class="text-align-right">Text align right</p>
-  </li>
-  <li>
-    <p class="text-bold">Text bold</p>
-  </li>
-  <li>
-    <p><strong>Strong tag <span class="text-normal">with normal text</span></strong></p>
-  </li>
-  <li>
-    <p class="text-italic">Text italic</p>
-  </li>
-  <li>
-    <p class="text-strike">Text strike</p>
-  </li>
-  <li>
-    <p class="text-underline">Text underline</p>
-  </li>
-  <li>
-    <p class="text-underline-dotted">Text underline dotted</p>
-  </li>
-  <li>
-    <p class="text-underline-dashed">Text underline dashed</p>
-  </li>
-  <li>
-    <p class="text-wrap">Text wrap</p>
-  </li>
-  <li>
-    <p class="text-nowrap">Text nowrap</p>
-  </li>
-  <li>
-    <p class="text-overflow-ellipsis">Text overflow ellipsis text overflow ellipsis text overflow ellipsis text overflow ellipsis</p>
-  </li>
-  <li>
-    <p class="text-lead">Text lead</p>
-  </li>
-</ul>
-{% include demo_switch.html %}
+A utility for adjusting various text styles.
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_md">
+    <thead>
+      <tr>
+        <th class="table__auto">Class</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code class="code text-nowrap">text-size-sm</code></td>
+        <td><p class="text-size-sm">Text example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">text-size-lg</code></td>
+        <td><p class="text-size-lg">Text example...</p></td>
+      </tr>
+
+      <tr>
+        <td><code class="code text-nowrap">text-capitalize</code></td>
+        <td><p class="text-capitalize">Text example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">text-lowercase</code></td>
+        <td><p class="text-lowercase">Text example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">text-uppercase</code></td>
+        <td><p class="text-uppercase">Text example...</p></td>
+      </tr>
+
+      <tr>
+        <td><code class="code text-nowrap">text-align-left</code></td>
+        <td><p class="text-align-left">Text example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">text-align-center</code></td>
+        <td><p class="text-align-center">Text example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">text-align-right</code></td>
+        <td><p class="text-align-right">Text example...</p></td>
+      </tr>
+
+      <tr>
+        <td><code class="code text-nowrap">text-bold</code></td>
+        <td><p class="text-bold">Text example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">text-normal</code></td>
+        <td><p class="text-normal">Text example...</p></td>
+      </tr>
+
+      <tr>
+        <td><code class="code text-nowrap">text-italic</code></td>
+        <td><p class="text-italic">Text example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">text-strike</code></td>
+        <td><p class="text-strike">Text example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">text-underline</code></td>
+        <td><p class="text-underline">Text example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">text-underline-dotted</code></td>
+        <td><p class="text-underline-dotted">Text example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">text-underline-dashed</code></td>
+        <td><p class="text-underline-dashed">Text example...</p></td>
+      </tr>
+
+      <tr>
+        <td><code class="code text-nowrap">text-wrap</code></td>
+        <td><p class="text-wrap">Text example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">text-nowrap</code></td>
+        <td><p class="text-nowrap">Text example...</p></td>
+      </tr>
+
+      <tr>
+        <td><code class="code text-nowrap">text-lead</code></td>
+        <td><p class="text-lead">Text example: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum laoreet interdum elit, non blandit arcu luctus quis. Duis mattis et massa a congue.</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### text-overflow-ellipsis
+
+Adds ellipsis styles to an element that will display an ellipsis (...) for text that would otherwise wrap.
+
+<div class="border radius padding text-overflow-ellipsis">Text example: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum laoreet interdum elit, non blandit arcu luctus quis. Duis mattis et massa a congue.</div>
+
 ```html
-<!-- Size -->
-<p class="text-size-sm">...</p>
-<p class="text-size-lg">...</p>
-
-<!-- Transform -->
-<p class="text-capitalize">...</p>
-<p class="text-lowercase">...</p>
-<p class="text-uppercase">...</p>
-
-<!-- Align -->
-<p class="text-align-left">...</p>
-<p class="text-align-center">...</p>
-<p class="text-align-right">...</p>
-
-<!-- Weight & Style -->
-<p class="text-bold">...</p>
-<p class="text-normal">...</p>
-<p class="text-italic">...</p>
-
-<!-- Decoration -->
-<p class="text-strike">...</p>
-<p class="text-underline">...</p>
-<p class="text-underline-dotted">...</p>
-<p class="text-underline-dashed">...</p>
-
-<!-- Wrap -->
-<p class="text-wrap">...</p>
-<p class="text-nowrap">...</p>
-<p class="text-overflow-ellipsis">...</p>
-
-<!-- Other -->
-<p class="text-lead">...</p>
+<div class="text-overflow-ellipsis">...<div>
 ```
-{% include demo_close.html %}

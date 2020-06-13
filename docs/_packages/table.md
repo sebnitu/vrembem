@@ -23,7 +23,7 @@ For basic table styles, only the `table` component class is required. Use [prope
   <caption>List of anarchists</caption>
   <thead>
     <tr>
-      <th class="col_auto">#</th>
+      <th class="table__auto">#</th>
       <th>First</th>
       <th>Last</th>
       <th>Handle</th>
