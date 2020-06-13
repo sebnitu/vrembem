@@ -208,7 +208,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
 
 <div class="demo">
   <div class="demp__render">
-    <div class="grid grid_break_md">
+    <div class="grid grid_break-md">
       {%- for counter in (1..3) -%}
       <div class="grid__item grid__item_fill">
         <div class="card card_invert card_fade card_zoom">
@@ -235,7 +235,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
 
 <div class="demo">
   <div class="demp__render">
-    <div class="grid grid_break_md">
+    <div class="grid grid_break-md">
       {%- for counter in (1..3) -%}
       <div class="grid__item grid__item_fill">
         <a href="#" class="card card_link">
@@ -251,7 +251,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
       </div>
       {%- endfor -%}
     </div>
-    <div class="grid grid_break_md">
+    <div class="grid grid_break-md">
       {%- for counter in (1..3) -%}
       <div class="grid__item grid__item_fill">
         <a href="#" class="card card_link">
@@ -277,7 +277,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
 
 <div class="grid">
 
-  <div class="grid__item span_12 span_6_xs span_4_md grid__item_fill">
+  <div class="grid__item span-12 span-6-xs span-4-md grid__item_fill">
     <div class="card">
       <img src="https://picsum.photos/600/400/?2" class="card__image" width="600" height="400">
       <div class="card__body spacing">
@@ -288,7 +288,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
     </div>
   </div>
 
-  <div class="grid__item span_12 span_6_xs span_4_md grid__item_fill">
+  <div class="grid__item span-12 span-6-xs span-4-md grid__item_fill">
     <div class="card">
       <div class="card__body spacing">
         <h3 class="card__title">Card Title</h3>
@@ -299,7 +299,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
     </div>
   </div>
 
-  <div class="grid__item span_12 span_6_xs span_4_md grid__item_fill">
+  <div class="grid__item span-12 span-6-xs span-4-md grid__item_fill">
     <div class="card">
       <div class="card__header">
         <h3 class="card__title">Card Title</h3>
@@ -313,7 +313,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
     </div>
   </div>
 
-  <div class="grid__item span_12 span_6_xs grid__item_fill">
+  <div class="grid__item span-12 span-6-xs grid__item_fill">
     <div class="card card_invert card_link card_fade">
       <div class="card__header level flex-justify-between">
         <h3 class="card__title">Card Title</h3>
@@ -330,7 +330,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
     </div>
   </div>
 
-  <div class="grid__item span_12 span_6_md grid__item_fill">
+  <div class="grid__item span-12 span-6-md grid__item_fill">
     <a href="#" class="card card_link">
       <div class="card__body">
         <blockquote class="spacing">
@@ -345,7 +345,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
     </a>
   </div>
 
-  <div class="grid__item span_12 span_6_xs span_4_md grid__item_fill">
+  <div class="grid__item span-12 span-6-xs span-4-md grid__item_fill">
     <div class="card">
       <img src="https://picsum.photos/600/400/?11" class="card__image" width="600" height="400">
       <div class="card__header">
@@ -360,7 +360,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
     </div>
   </div>
 
-  <div class="grid__item span_12 span_6_xs span_4_md grid__item_fill">
+  <div class="grid__item span-12 span-6-xs span-4-md grid__item_fill">
     <div class="card">
       <div class="card__header">
         <h3 class="card__title">Card Title</h3>
@@ -375,7 +375,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
     </div>
   </div>
 
-  <div class="grid__item span_12 span_4_md grid__item_fill">
+  <div class="grid__item span-12 span-4-md grid__item_fill">
     <div class="card">
       <div class="card__header">
         <h3 class="card__title">Card Title</h3>

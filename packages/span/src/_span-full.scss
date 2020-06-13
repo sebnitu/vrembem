@@ -2,10 +2,8 @@
 @use "./variables" as var;
 
 $_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
 
-.#{$_b}span#{$_m}full {
+.#{$_b}span-full {
   flex: 0 0 100%;
   width: 100%;
   max-width: 100%;
@@ -13,7 +11,7 @@ $_v: var.$prefix-modifier-value;
 
 @each $key, $value in var.$breakpoints {
   @include core.media-min($value) {
-    .#{$_b}span#{$_m}full#{$_v}#{$key} {
+    .#{$_b}span-full-#{$key} {
       flex: 0 0 100%;
       width: 100%;
       max-width: 100%;

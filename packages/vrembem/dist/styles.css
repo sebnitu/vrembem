@@ -3715,520 +3715,520 @@ input::-moz-placeholder {
     padding: 12em 2em;
   }
 }
-.span_1 {
+.span-1 {
   flex: 0 0 8.3333333333%;
   width: 8.3333333333%;
   max-width: 8.3333333333%;
 }
 
-.span_2 {
+.span-2 {
   flex: 0 0 16.6666666667%;
   width: 16.6666666667%;
   max-width: 16.6666666667%;
 }
 
-.span_3 {
+.span-3 {
   flex: 0 0 25%;
   width: 25%;
   max-width: 25%;
 }
 
-.span_4 {
+.span-4 {
   flex: 0 0 33.3333333333%;
   width: 33.3333333333%;
   max-width: 33.3333333333%;
 }
 
-.span_5 {
+.span-5 {
   flex: 0 0 41.6666666667%;
   width: 41.6666666667%;
   max-width: 41.6666666667%;
 }
 
-.span_6 {
+.span-6 {
   flex: 0 0 50%;
   width: 50%;
   max-width: 50%;
 }
 
-.span_7 {
+.span-7 {
   flex: 0 0 58.3333333333%;
   width: 58.3333333333%;
   max-width: 58.3333333333%;
 }
 
-.span_8 {
+.span-8 {
   flex: 0 0 66.6666666667%;
   width: 66.6666666667%;
   max-width: 66.6666666667%;
 }
 
-.span_9 {
+.span-9 {
   flex: 0 0 75%;
   width: 75%;
   max-width: 75%;
 }
 
-.span_10 {
+.span-10 {
   flex: 0 0 83.3333333333%;
   width: 83.3333333333%;
   max-width: 83.3333333333%;
 }
 
-.span_11 {
+.span-11 {
   flex: 0 0 91.6666666667%;
   width: 91.6666666667%;
   max-width: 91.6666666667%;
 }
 
-.span_12 {
+.span-12 {
   flex: 0 0 100%;
   width: 100%;
   max-width: 100%;
 }
 
 @media (min-width: 480px) {
-  .span_1_xs {
+  .span-1-xs {
     flex-basis: 8.3333333333%;
     width: 8.3333333333%;
     max-width: 8.3333333333%;
   }
 
-  .span_2_xs {
+  .span-2-xs {
     flex-basis: 16.6666666667%;
     width: 16.6666666667%;
     max-width: 16.6666666667%;
   }
 
-  .span_3_xs {
+  .span-3-xs {
     flex-basis: 25%;
     width: 25%;
     max-width: 25%;
   }
 
-  .span_4_xs {
+  .span-4-xs {
     flex-basis: 33.3333333333%;
     width: 33.3333333333%;
     max-width: 33.3333333333%;
   }
 
-  .span_5_xs {
+  .span-5-xs {
     flex-basis: 41.6666666667%;
     width: 41.6666666667%;
     max-width: 41.6666666667%;
   }
 
-  .span_6_xs {
+  .span-6-xs {
     flex-basis: 50%;
     width: 50%;
     max-width: 50%;
   }
 
-  .span_7_xs {
+  .span-7-xs {
     flex-basis: 58.3333333333%;
     width: 58.3333333333%;
     max-width: 58.3333333333%;
   }
 
-  .span_8_xs {
+  .span-8-xs {
     flex-basis: 66.6666666667%;
     width: 66.6666666667%;
     max-width: 66.6666666667%;
   }
 
-  .span_9_xs {
+  .span-9-xs {
     flex-basis: 75%;
     width: 75%;
     max-width: 75%;
   }
 
-  .span_10_xs {
+  .span-10-xs {
     flex-basis: 83.3333333333%;
     width: 83.3333333333%;
     max-width: 83.3333333333%;
   }
 
-  .span_11_xs {
+  .span-11-xs {
     flex-basis: 91.6666666667%;
     width: 91.6666666667%;
     max-width: 91.6666666667%;
   }
 
-  .span_12_xs {
+  .span-12-xs {
     flex-basis: 100%;
     width: 100%;
     max-width: 100%;
   }
 }
 @media (min-width: 620px) {
-  .span_1_sm {
+  .span-1-sm {
     flex-basis: 8.3333333333%;
     width: 8.3333333333%;
     max-width: 8.3333333333%;
   }
 
-  .span_2_sm {
+  .span-2-sm {
     flex-basis: 16.6666666667%;
     width: 16.6666666667%;
     max-width: 16.6666666667%;
   }
 
-  .span_3_sm {
+  .span-3-sm {
     flex-basis: 25%;
     width: 25%;
     max-width: 25%;
   }
 
-  .span_4_sm {
+  .span-4-sm {
     flex-basis: 33.3333333333%;
     width: 33.3333333333%;
     max-width: 33.3333333333%;
   }
 
-  .span_5_sm {
+  .span-5-sm {
     flex-basis: 41.6666666667%;
     width: 41.6666666667%;
     max-width: 41.6666666667%;
   }
 
-  .span_6_sm {
+  .span-6-sm {
     flex-basis: 50%;
     width: 50%;
     max-width: 50%;
   }
 
-  .span_7_sm {
+  .span-7-sm {
     flex-basis: 58.3333333333%;
     width: 58.3333333333%;
     max-width: 58.3333333333%;
   }
 
-  .span_8_sm {
+  .span-8-sm {
     flex-basis: 66.6666666667%;
     width: 66.6666666667%;
     max-width: 66.6666666667%;
   }
 
-  .span_9_sm {
+  .span-9-sm {
     flex-basis: 75%;
     width: 75%;
     max-width: 75%;
   }
 
-  .span_10_sm {
+  .span-10-sm {
     flex-basis: 83.3333333333%;
     width: 83.3333333333%;
     max-width: 83.3333333333%;
   }
 
-  .span_11_sm {
+  .span-11-sm {
     flex-basis: 91.6666666667%;
     width: 91.6666666667%;
     max-width: 91.6666666667%;
   }
 
-  .span_12_sm {
+  .span-12-sm {
     flex-basis: 100%;
     width: 100%;
     max-width: 100%;
   }
 }
 @media (min-width: 760px) {
-  .span_1_md {
+  .span-1-md {
     flex-basis: 8.3333333333%;
     width: 8.3333333333%;
     max-width: 8.3333333333%;
   }
 
-  .span_2_md {
+  .span-2-md {
     flex-basis: 16.6666666667%;
     width: 16.6666666667%;
     max-width: 16.6666666667%;
   }
 
-  .span_3_md {
+  .span-3-md {
     flex-basis: 25%;
     width: 25%;
     max-width: 25%;
   }
 
-  .span_4_md {
+  .span-4-md {
     flex-basis: 33.3333333333%;
     width: 33.3333333333%;
     max-width: 33.3333333333%;
   }
 
-  .span_5_md {
+  .span-5-md {
     flex-basis: 41.6666666667%;
     width: 41.6666666667%;
     max-width: 41.6666666667%;
   }
 
-  .span_6_md {
+  .span-6-md {
     flex-basis: 50%;
     width: 50%;
     max-width: 50%;
   }
 
-  .span_7_md {
+  .span-7-md {
     flex-basis: 58.3333333333%;
     width: 58.3333333333%;
     max-width: 58.3333333333%;
   }
 
-  .span_8_md {
+  .span-8-md {
     flex-basis: 66.6666666667%;
     width: 66.6666666667%;
     max-width: 66.6666666667%;
   }
 
-  .span_9_md {
+  .span-9-md {
     flex-basis: 75%;
     width: 75%;
     max-width: 75%;
   }
 
-  .span_10_md {
+  .span-10-md {
     flex-basis: 83.3333333333%;
     width: 83.3333333333%;
     max-width: 83.3333333333%;
   }
 
-  .span_11_md {
+  .span-11-md {
     flex-basis: 91.6666666667%;
     width: 91.6666666667%;
     max-width: 91.6666666667%;
   }
 
-  .span_12_md {
+  .span-12-md {
     flex-basis: 100%;
     width: 100%;
     max-width: 100%;
   }
 }
 @media (min-width: 990px) {
-  .span_1_lg {
+  .span-1-lg {
     flex-basis: 8.3333333333%;
     width: 8.3333333333%;
     max-width: 8.3333333333%;
   }
 
-  .span_2_lg {
+  .span-2-lg {
     flex-basis: 16.6666666667%;
     width: 16.6666666667%;
     max-width: 16.6666666667%;
   }
 
-  .span_3_lg {
+  .span-3-lg {
     flex-basis: 25%;
     width: 25%;
     max-width: 25%;
   }
 
-  .span_4_lg {
+  .span-4-lg {
     flex-basis: 33.3333333333%;
     width: 33.3333333333%;
     max-width: 33.3333333333%;
   }
 
-  .span_5_lg {
+  .span-5-lg {
     flex-basis: 41.6666666667%;
     width: 41.6666666667%;
     max-width: 41.6666666667%;
   }
 
-  .span_6_lg {
+  .span-6-lg {
     flex-basis: 50%;
     width: 50%;
     max-width: 50%;
   }
 
-  .span_7_lg {
+  .span-7-lg {
     flex-basis: 58.3333333333%;
     width: 58.3333333333%;
     max-width: 58.3333333333%;
   }
 
-  .span_8_lg {
+  .span-8-lg {
     flex-basis: 66.6666666667%;
     width: 66.6666666667%;
     max-width: 66.6666666667%;
   }
 
-  .span_9_lg {
+  .span-9-lg {
     flex-basis: 75%;
     width: 75%;
     max-width: 75%;
   }
 
-  .span_10_lg {
+  .span-10-lg {
     flex-basis: 83.3333333333%;
     width: 83.3333333333%;
     max-width: 83.3333333333%;
   }
 
-  .span_11_lg {
+  .span-11-lg {
     flex-basis: 91.6666666667%;
     width: 91.6666666667%;
     max-width: 91.6666666667%;
   }
 
-  .span_12_lg {
+  .span-12-lg {
     flex-basis: 100%;
     width: 100%;
     max-width: 100%;
   }
 }
 @media (min-width: 1380px) {
-  .span_1_xl {
+  .span-1-xl {
     flex-basis: 8.3333333333%;
     width: 8.3333333333%;
     max-width: 8.3333333333%;
   }
 
-  .span_2_xl {
+  .span-2-xl {
     flex-basis: 16.6666666667%;
     width: 16.6666666667%;
     max-width: 16.6666666667%;
   }
 
-  .span_3_xl {
+  .span-3-xl {
     flex-basis: 25%;
     width: 25%;
     max-width: 25%;
   }
 
-  .span_4_xl {
+  .span-4-xl {
     flex-basis: 33.3333333333%;
     width: 33.3333333333%;
     max-width: 33.3333333333%;
   }
 
-  .span_5_xl {
+  .span-5-xl {
     flex-basis: 41.6666666667%;
     width: 41.6666666667%;
     max-width: 41.6666666667%;
   }
 
-  .span_6_xl {
+  .span-6-xl {
     flex-basis: 50%;
     width: 50%;
     max-width: 50%;
   }
 
-  .span_7_xl {
+  .span-7-xl {
     flex-basis: 58.3333333333%;
     width: 58.3333333333%;
     max-width: 58.3333333333%;
   }
 
-  .span_8_xl {
+  .span-8-xl {
     flex-basis: 66.6666666667%;
     width: 66.6666666667%;
     max-width: 66.6666666667%;
   }
 
-  .span_9_xl {
+  .span-9-xl {
     flex-basis: 75%;
     width: 75%;
     max-width: 75%;
   }
 
-  .span_10_xl {
+  .span-10-xl {
     flex-basis: 83.3333333333%;
     width: 83.3333333333%;
     max-width: 83.3333333333%;
   }
 
-  .span_11_xl {
+  .span-11-xl {
     flex-basis: 91.6666666667%;
     width: 91.6666666667%;
     max-width: 91.6666666667%;
   }
 
-  .span_12_xl {
+  .span-12-xl {
     flex-basis: 100%;
     width: 100%;
     max-width: 100%;
   }
 }
-.span_auto {
+.span-auto {
   flex: 0 0 auto;
   width: auto;
   max-width: none;
 }
 
 @media (min-width: 480px) {
-  .span_auto_xs {
+  .span-auto-xs {
     flex: 0 0 auto;
     width: auto;
     max-width: none;
   }
 }
 @media (min-width: 620px) {
-  .span_auto_sm {
+  .span-auto-sm {
     flex: 0 0 auto;
     width: auto;
     max-width: none;
   }
 }
 @media (min-width: 760px) {
-  .span_auto_md {
+  .span-auto-md {
     flex: 0 0 auto;
     width: auto;
     max-width: none;
   }
 }
 @media (min-width: 990px) {
-  .span_auto_lg {
+  .span-auto-lg {
     flex: 0 0 auto;
     width: auto;
     max-width: none;
   }
 }
 @media (min-width: 1380px) {
-  .span_auto_xl {
+  .span-auto-xl {
     flex: 0 0 auto;
     width: auto;
     max-width: none;
   }
 }
-.span_full {
+.span-full {
   flex: 0 0 100%;
   width: 100%;
   max-width: 100%;
 }
 
 @media (min-width: 480px) {
-  .span_full_xs {
+  .span-full-xs {
     flex: 0 0 100%;
     width: 100%;
     max-width: 100%;
   }
 }
 @media (min-width: 620px) {
-  .span_full_sm {
+  .span-full-sm {
     flex: 0 0 100%;
     width: 100%;
     max-width: 100%;
   }
 }
 @media (min-width: 760px) {
-  .span_full_md {
+  .span-full-md {
     flex: 0 0 100%;
     width: 100%;
     max-width: 100%;
   }
 }
 @media (min-width: 990px) {
-  .span_full_lg {
+  .span-full-lg {
     flex: 0 0 100%;
     width: 100%;
     max-width: 100%;
   }
 }
 @media (min-width: 1380px) {
-  .span_full_xl {
+  .span-full-xl {
     flex: 0 0 100%;
     width: 100%;
     max-width: 100%;

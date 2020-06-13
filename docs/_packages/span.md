@@ -9,11 +9,11 @@ usage:
   scss: true
 ---
 
-## span_auto
+## span-auto
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="grid grid_flatten">
-  <div class="grid__item span_auto">
+  <div class="grid__item span-auto">
     <div class="box">...</div>
   </div>
   <div class="grid__item">
@@ -26,18 +26,18 @@ usage:
 {% include demo_switch.html %}
 ```html
 <div class="grid">
-  <div class="grid__item span_auto">...</div>
+  <div class="grid__item span-auto">...</div>
   <div class="grid__item">...</div>
   <div class="grid__item">...</div>
 </div>
 ```
 {% include demo_close.html %}
 
-## span_full
+## span-full
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="grid grid_flatten">
-  <div class="grid__item span_full">
+  <div class="grid__item span-full">
     <div class="box">...</div>
   </div>
   <div class="grid__item">
@@ -50,71 +50,71 @@ usage:
 {% include demo_switch.html %}
 ```html
 <div class="grid">
-  <div class="grid__item span_full">...</div>
+  <div class="grid__item span-full">...</div>
   <div class="grid__item">...</div>
   <div class="grid__item">...</div>
 </div>
 ```
 {% include demo_close.html %}
 
-## span_[col]
+## span-[col]
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="grid grid_flatten">
-  <div class="grid__item span_6">
+  <div class="grid__item span-6">
     <div class="box">...</div>
   </div>
-  <div class="grid__item span_6">
+  <div class="grid__item span-6">
     <div class="box">...</div>
   </div>
   <div class="grid__break"></div>
-  <div class="grid__item span_6">
+  <div class="grid__item span-6">
     <div class="box">...</div>
   </div>
-  <div class="grid__item span_3">
+  <div class="grid__item span-3">
     <div class="box">...</div>
   </div>
-  <div class="grid__item span_3">
+  <div class="grid__item span-3">
     <div class="box">...</div>
   </div>
 </div>
 {% include demo_switch.html %}
 ```html
 <div class="grid">
-  <div class="grid__item span_6">...</div>
-  <div class="grid__item span_6">...</div>
+  <div class="grid__item span-6">...</div>
+  <div class="grid__item span-6">...</div>
   <div class="grid__break"></div>
-  <div class="grid__item span_6">...</div>
-  <div class="grid__item span_3">...</div>
-  <div class="grid__item span_3">...</div>
+  <div class="grid__item span-6">...</div>
+  <div class="grid__item span-3">...</div>
+  <div class="grid__item span-3">...</div>
 </div>
 ```
 {% include demo_close.html %}
 
-## span_[col]_[breakpoint]
+## span-[col]-[breakpoint]
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="grid grid_flatten">
-  <div class="grid__item span_12 span_6_xs span_8_sm span_4_md span_3_lg">
+  <div class="grid__item span-12 span-6-xs span-8-sm span-4-md span-3-lg">
     <div class="box">...</div>
   </div>
-  <div class="grid__item span_12 span_6_xs span_4_sm span_4_md span_3_lg">
+  <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">
     <div class="box">...</div>
   </div>
-  <div class="grid__item span_12 span_6_xs span_4_sm span_4_md span_3_lg">
+  <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">
     <div class="box">...</div>
   </div>
-  <div class="grid__item span_12 span_6_xs span_8_sm span_12_md span_3_lg">
+  <div class="grid__item span-12 span-6-xs span-8-sm span-12-md span-3-lg">
     <div class="box">...</div>
   </div>
 </div>
 {% include demo_switch.html %}
 ```html
 <div class="grid">
-  <div class="grid__item span_12 span_6_xs span_8_sm span_4_md span_3_lg">...</div>
-  <div class="grid__item span_12 span_6_xs span_4_sm span_4_md span_3_lg">...</div>
-  <div class="grid__item span_12 span_6_xs span_4_sm span_4_md span_3_lg">...</div>
-  <div class="grid__item span_12 span_6_xs span_8_sm span_12_md span_3_lg">...</div>
+  <div class="grid__item span-12 span-6-xs span-8-sm span-4-md span-3-lg">...</div>
+  <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">...</div>
+  <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">...</div>
+  <div class="grid__item span-12 span-6-xs span-8-sm span-12-md span-3-lg">...</div>
 </div>
 ```
 {% include demo_close.html %}

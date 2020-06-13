@@ -344,7 +344,7 @@ Display utilities allow you to toggle the display property on an element with an
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="grid grid_gap_sm">
-  <div class="grid__item grid__item_fill span_auto">
+  <div class="grid__item grid__item_fill span-auto">
     <div class="notice notice_type_info flex-align-center">
       {% include icon.html icon="eye" %}
     </div>
@@ -529,42 +529,42 @@ A utility for adding vertical spacing between an element's children.
 {% include demo_open.html %}
 <div>
   <div class="grid">
-    <div class="grid__item span_4">
+    <div class="grid__item span-4">
       <div class="spacing-none">
         <div class="box"></div>
         <div class="box"></div>
         <div class="box"></div>
       </div>
     </div>
-    <div class="grid__item span_4">
+    <div class="grid__item span-4">
       <div class="spacing-xs">
         <div class="box"></div>
         <div class="box"></div>
         <div class="box"></div>
       </div>
     </div>
-    <div class="grid__item span_4">
+    <div class="grid__item span-4">
       <div class="spacing-sm">
         <div class="box"></div>
         <div class="box"></div>
         <div class="box"></div>
       </div>
     </div>
-    <div class="grid__item span_4">
+    <div class="grid__item span-4">
       <div class="spacing-md">
         <div class="box"></div>
         <div class="box"></div>
         <div class="box"></div>
       </div>
     </div>
-    <div class="grid__item span_4">
+    <div class="grid__item span-4">
       <div class="spacing-lg">
         <div class="box"></div>
         <div class="box"></div>
         <div class="box"></div>
       </div>
     </div>
-    <div class="grid__item span_4">
+    <div class="grid__item span-4">
       <div class="spacing-xl">
         <div class="box"></div>
         <div class="box"></div>
