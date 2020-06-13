@@ -49,18 +49,18 @@ import listjs from 'list.js';
       if (value) {
         utility.addClass(filter, 'is-active');
         utility.addClass(search, 'is-active');
-        utility.removeClass(search_clear, 'display_none');
+        utility.removeClass(search_clear, 'display-none');
       } else {
         utility.removeClass(filter, 'is-active');
         utility.removeClass(search, 'is-active');
-        utility.addClass(search_clear, 'display_none');
+        utility.addClass(search_clear, 'display-none');
       }
 
       // Toggle notice depending on the number of visible items
       if (list.visibleItems.length > 0) {
-        utility.addClass(notice_empty, 'display_none');
+        utility.addClass(notice_empty, 'display-none');
       } else {
-        utility.removeClass(notice_empty, 'display_none');
+        utility.removeClass(notice_empty, 'display-none');
       }
     });
 

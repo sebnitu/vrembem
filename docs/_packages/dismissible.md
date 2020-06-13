@@ -147,7 +147,7 @@ Dismissible uses two data attributes to utilize it's functionality. The first is
       </tr>
       <tr>
         <td data-mobile-label="Key"><code class="code text_nowrap">classHide</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'display_none'</code></td>
+        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'display-none'</code></td>
         <td data-mobile-label="Desc">The class to apply for hiding an element.</td>
       </tr>
       <tr>

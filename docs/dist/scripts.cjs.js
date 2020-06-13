@@ -144,7 +144,7 @@ var Dismissible = function Dismissible(options) {
     autoInit: false,
     dataTrigger: 'dismiss',
     dataTarget: 'dismissible',
-    classHide: 'display_none',
+    classHide: 'display-none',
     method: 'hide'
   };
   api.settings = _objectSpread$1(_objectSpread$1({}, defaults), options);
@@ -2360,17 +2360,17 @@ var src = function src(id, options, values) {
       if (value) {
         addClass(filter, 'is-active');
         addClass(search, 'is-active');
-        removeClass(search_clear, 'display_none');
+        removeClass(search_clear, 'display-none');
       } else {
         removeClass(filter, 'is-active');
         removeClass(search, 'is-active');
-        addClass(search_clear, 'display_none');
+        addClass(search_clear, 'display-none');
       }
 
       if (list.visibleItems.length > 0) {
-        addClass(notice_empty, 'display_none');
+        addClass(notice_empty, 'display-none');
       } else {
-        removeClass(notice_empty, 'display_none');
+        removeClass(notice_empty, 'display-none');
       }
     });
     document.addEventListener('click', function () {
