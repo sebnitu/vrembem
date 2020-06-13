@@ -20,6 +20,8 @@ chore: add v1.7.0 to CHANGELOG.md
 ## v1.7.0 (2020-06-13)
 
 #### :fire: Breaking Changes
+* `dismissible`, `span`, `utility`, `vrembem`
+  * [#200](https://github.com/sebnitu/vrembem/pull/200) Convert span to a utlity and remove span package ([@sebnitu](https://github.com/sebnitu))
 * `base`, `dismissible`, `dropdown`, `menu`, `notice`, `span`, `utility`, `vrembem`
   * [#199](https://github.com/sebnitu/vrembem/pull/199) Remove utility naming convention from utility classes ([@sebnitu](https://github.com/sebnitu))
 
