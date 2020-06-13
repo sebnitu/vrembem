@@ -584,10 +584,129 @@ A utility for adding vertical spacing between an element's children.
 ```
 {% include demo_close.html %}
 
+## span
+
+Set the width, max-width and flex based on a column set using the `span` utility. There are a number of options available:
+
+* `span-auto`
+* `span-full`
+* `span-[col]`
+* `span-[col]-[breakpoint]`
+
+## span-auto
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="grid grid_flatten">
+  <div class="grid__item span-auto">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="grid">
+  <div class="grid__item span-auto">...</div>
+  <div class="grid__item">...</div>
+  <div class="grid__item">...</div>
+</div>
+```
+{% include demo_close.html %}
+
+## span-full
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="grid grid_flatten">
+  <div class="grid__item span-full">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="grid">
+  <div class="grid__item span-full">...</div>
+  <div class="grid__item">...</div>
+  <div class="grid__item">...</div>
+</div>
+```
+{% include demo_close.html %}
+
+## span-[col]
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="grid grid_flatten">
+  <div class="grid__item span-6">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item span-6">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__break"></div>
+  <div class="grid__item span-6">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item span-3">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item span-3">
+    <div class="box">...</div>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="grid">
+  <div class="grid__item span-6">...</div>
+  <div class="grid__item span-6">...</div>
+  <div class="grid__break"></div>
+  <div class="grid__item span-6">...</div>
+  <div class="grid__item span-3">...</div>
+  <div class="grid__item span-3">...</div>
+</div>
+```
+{% include demo_close.html %}
+
+## span-[col]-[breakpoint]
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="grid grid_flatten">
+  <div class="grid__item span-12 span-6-xs span-8-sm span-4-md span-3-lg">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item span-12 span-6-xs span-8-sm span-12-md span-3-lg">
+    <div class="box">...</div>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="grid">
+  <div class="grid__item span-12 span-6-xs span-8-sm span-4-md span-3-lg">...</div>
+  <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">...</div>
+  <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">...</div>
+  <div class="grid__item span-12 span-6-xs span-8-sm span-12-md span-3-lg">...</div>
+</div>
+```
+{% include demo_close.html %}
+
 ## text
 
 {% include demo_open.html %}
-<ul class="list">
+<ul>
   <li>
     <p class="text-size-sm">Text size small</p>
   </li>

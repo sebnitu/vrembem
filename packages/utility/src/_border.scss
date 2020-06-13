@@ -2,72 +2,75 @@
 @use "./variables" as var;
 
 $_b: var.$prefix-block;
+$_u: var.$prefix-utility;
 $_c: var.$class-border;
 
-.#{$_b}#{$_c} {
-  border: core.$border !important;
-}
+@if (var.$class-border) {
+  .#{$_b}#{$_u}#{$_c} {
+    border: core.$border !important;
+  }
 
-.#{$_b}#{$_c}-top {
-  border-top: core.$border !important;
-}
+  .#{$_b}#{$_u}#{$_c}-top {
+    border-top: core.$border !important;
+  }
 
-.#{$_b}#{$_c}-bottom {
-  border-bottom: core.$border !important;
-}
+  .#{$_b}#{$_u}#{$_c}-bottom {
+    border-bottom: core.$border !important;
+  }
 
-.#{$_b}#{$_c}-left {
-  border-left: core.$border !important;
-}
+  .#{$_b}#{$_u}#{$_c}-left {
+    border-left: core.$border !important;
+  }
 
-.#{$_b}#{$_c}-right {
-  border-right: core.$border !important;
-}
+  .#{$_b}#{$_u}#{$_c}-right {
+    border-right: core.$border !important;
+  }
 
-.#{$_b}#{$_c}-none {
-  border: 0 !important;
-}
+  .#{$_b}#{$_u}#{$_c}-none {
+    border: 0 !important;
+  }
 
-.#{$_b}#{$_c}-top-none {
-  border-top: 0 !important;
-}
+  .#{$_b}#{$_u}#{$_c}-top-none {
+    border-top: 0 !important;
+  }
 
-.#{$_b}#{$_c}-bottom-none {
-  border-bottom: 0 !important;
-}
+  .#{$_b}#{$_u}#{$_c}-bottom-none {
+    border-bottom: 0 !important;
+  }
 
-.#{$_b}#{$_c}-left-none {
-  border-left: 0 !important;
-}
+  .#{$_b}#{$_u}#{$_c}-left-none {
+    border-left: 0 !important;
+  }
 
-.#{$_b}#{$_c}-right-none {
-  border-right: 0 !important;
-}
+  .#{$_b}#{$_u}#{$_c}-right-none {
+    border-right: 0 !important;
+  }
 
-.#{$_b}#{$_c}-color-light {
-  border-color: core.$border-color-light !important;
-}
+  .#{$_b}#{$_u}#{$_c}-color-light {
+    border-color: core.$border-color-light !important;
+  }
 
-.#{$_b}#{$_c}-color-dark {
-  border-color: core.$border-color-dark !important;
-}
+  .#{$_b}#{$_u}#{$_c}-color-dark {
+    border-color: core.$border-color-dark !important;
+  }
 
-.#{$_b}#{$_c}-color-darker {
-  border-color: core.$border-color-darker !important;
-}
+  .#{$_b}#{$_u}#{$_c}-color-darker {
+    border-color: core.$border-color-darker !important;
+  }
 
-.#{$_b}#{$_c}-color-invert {
-  border-color: core.$border-color-invert !important;
-}
+  .#{$_b}#{$_u}#{$_c}-color-invert {
+    border-color: core.$border-color-invert !important;
+  }
 
-.#{$_b}#{$_c}-color-invert-light {
-  border-color: core.$border-color-invert-light !important;
-}
+  .#{$_b}#{$_u}#{$_c}-color-invert-light {
+    border-color: core.$border-color-invert-light !important;
+  }
 
-.#{$_b}#{$_c}-color-invert-dark {
-  border-color: core.$border-color-invert-dark !important;
-}
+  .#{$_b}#{$_u}#{$_c}-color-invert-dark {
+    border-color: core.$border-color-invert-dark !important;
+  }
 
-.#{$_b}#{$_c}-color-invert-darker {
-  border-color: core.$border-color-invert-darker !important;
+  .#{$_b}#{$_u}#{$_c}-color-invert-darker {
+    border-color: core.$border-color-invert-darker !important;
+  }
 }

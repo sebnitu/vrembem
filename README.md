@@ -132,14 +132,13 @@ const drawer = new Drawer({ autoInit: true });
 1. [`panel`](./packages/panel#readme)
 1. [`radio`](./packages/radio#readme)
 1. [`section`](./packages/section#readme)
-1. [`span`](./packages/span#readme)
 1. [`switch`](./packages/switch#readme)
 1. [`table`](./packages/table#readme)
 1. [`tooltip`](./packages/tooltip#readme)
 1. [`utility`](./packages/utility#readme)
-1. [`vrembem`](./packages/vrembem#readme)*
+1. [`vrembem`](./packages/vrembem#readme)
 
-> \* The [`vrembem package`](./packages/vrembem#readme) is a complete collection of all Vrembem components into a single comprehensive package for convenience.
+> [`vrembem package`](./packages/vrembem#readme) is a complete collection of all Vrembem components into a single comprehensive package for convenience.
 
 ## Copyright and License
 

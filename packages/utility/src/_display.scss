@@ -2,19 +2,22 @@
 @use "./variables" as var;
 
 $_b: var.$prefix-block;
+$_u: var.$prefix-utility;
 $_c: var.$class-display;
 
-@each $property in var.$display-properties {
-  .#{$_b}#{$_c}-#{$property} {
-    display: $property !important;
+@if (var.$class-display) {
+  @each $property in var.$display-properties {
+    .#{$_b}#{$_u}#{$_c}-#{$property} {
+      display: $property !important;
+    }
   }
-}
 
-@each $key, $value in var.$breakpoints {
-  @include core.media-min($value) {
-    @each $property in var.$display-properties {
-      .#{$_b}#{$_c}-#{$property}-#{$key} {
-        display: $property !important;
+  @each $key, $value in var.$breakpoints {
+    @include core.media-min($value) {
+      @each $property in var.$display-properties {
+        .#{$_b}#{$_u}#{$_c}-#{$property}-#{$key} {
+          display: $property !important;
+        }
       }
     }
   }

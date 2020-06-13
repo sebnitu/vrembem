@@ -30,9 +30,9 @@ test('dismiss using default settings and method', () => {
   const button = el.querySelector('[data-dismiss]');
 
   dismissible.init();
-  expect(el).not.toHaveClass('display_none');
+  expect(el).not.toHaveClass('display-none');
   button.click();
-  expect(el).toHaveClass('display_none');
+  expect(el).toHaveClass('display-none');
 });
 
 test('dismiss explicitly using the hide method', () => {
@@ -42,9 +42,9 @@ test('dismiss explicitly using the hide method', () => {
   const button = el.querySelector('[data-dismiss]');
 
   dismissible.init();
-  expect(el).not.toHaveClass('display_none');
+  expect(el).not.toHaveClass('display-none');
   button.click();
-  expect(el).toHaveClass('display_none');
+  expect(el).toHaveClass('display-none');
 });
 
 test('dismiss explicitly using the remove method', () => {

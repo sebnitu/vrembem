@@ -4,8 +4,7 @@ $prefix-block: core.$prefix-block !default;
 $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
-
-$breakpoints: core.$breakpoints !default;
+$prefix-utility: null !default;
 
 $class-background: "background" !default;
 $class-border: "border" !default;
@@ -17,8 +16,11 @@ $class-flex: "flex" !default;
 $class-margin: "margin" !default;
 $class-padding: "padding" !default;
 $class-spacing: "spacing" !default;
+$class-span: "span" !default;
 $class-text: "text" !default;
 
+$breakpoints: core.$breakpoints !default;
+$columns: 12 !default;
 $display-properties: (
   inline,
   flex,
