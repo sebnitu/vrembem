@@ -231,6 +231,16 @@
     @include heading(6);
   }
 
+  > a,
+  > :not(div) a {
+    @include link();
+  }
+
+  > code,
+  > :not(div) code {
+    @include code();
+  }
+
   > hr {
     @include separator();
   }
@@ -242,16 +252,6 @@
 
   > blockquote {
     @include blockquote();
-  }
-
-  > a,
-  > * > a {
-    @include link();
-  }
-
-  > code,
-  > * > code {
-    @include code();
   }
 
   > pre {
@@ -281,13 +281,21 @@
     }
 
     > a,
-    > * > a {
+    > :not(div) a {
       @include link-modifier("invert");
     }
 
     > code,
-    > * > code {
+    > :not(div) code {
       color: var.$code-color-invert;
+    }
+
+    > pre {
+      color: var.$pre-color;
+
+      code {
+        color: inherit;
+      }
     }
   }
 }

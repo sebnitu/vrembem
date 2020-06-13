@@ -302,55 +302,54 @@ usage:
 
 ## display
 
-Display utilities allow you to quickly toggle the display property on an element with an optional breakpoint conditional.
+Display utilities allow you to toggle the display property on an element with an optional breakpoint conditional.
 
-<div class="spacing">
-  <div class="type spacing">
-    <pre><code>.display_<span class="color_success">{property}</span>_<span class="color_danger">{breakpoint}</span></code></pre>
-  </div>
-  <div>
-    <div class="grid grid_break_xs">
-      <div class="grid__item grid__item_fill">
-        <div class="card">
-          <div class="card__header">
-            <code class="color_success">{property}</code>
-          </div>
-          <div class="card__body spacing">
-            <ul class="list list_between">
-              <li class="list__item"><code>inline</code></li>
-              <li class="list__item"><code>flex</code></li>
-              <li class="list__item"><code>inline-flex</code></li>
-              <li class="list__item"><code>block</code></li>
-              <li class="list__item"><code>inline-block</code></li>
-              <li class="list__item"><code>none</code></li>
-            </ul>
-          </div>
+```
+.display_[property]_[breakpoint]
+```
+
+<div>
+  <div class="grid grid_break_xs">
+    <div class="grid__item grid__item_fill">
+      <div class="card">
+        <div class="card__header">
+          <code class="code">[property]</code>
+        </div>
+        <div class="card__body spacing">
+          <ul class="list list_between">
+            <li><code>inline</code></li>
+            <li><code>flex</code></li>
+            <li><code>inline-flex</code></li>
+            <li><code>block</code></li>
+            <li><code>inline-block</code></li>
+            <li><code>none</code></li>
+          </ul>
         </div>
       </div>
-      <div class="grid__item grid__item_fill">
-        <div class="card">
-          <div class="card__header">
-            <code class="color_danger">{breakpoint}</code>
-          </div>
-          <div class="card__body">
-            <ul class="list list_between">
-              <li class="list__item">
-                <code>xs <span class="color_subtle">...480px</span></code>
-              </li>
-              <li class="list__item">
-                <code>sm <span class="color_subtle">...620px</span></code>
-              </li>
-              <li class="list__item">
-                <code>md <span class="color_subtle">...760px</span></code>
-              </li>
-              <li class="list__item">
-                <code>lg <span class="color_subtle">...990px</span></code>
-              </li>
-              <li class="list__item">
-                <code>xl <span class="color_subtle">...1380px</span></code>
-              </li>
-            </ul>
-          </div>
+    </div>
+    <div class="grid__item grid__item_fill">
+      <div class="card">
+        <div class="card__header">
+          <code class="code">[breakpoint]</code>
+        </div>
+        <div class="card__body">
+          <ul class="list list_between">
+            <li>
+              <code>xs <span class="color_subtle">...480px</span></code>
+            </li>
+            <li>
+              <code>sm <span class="color_subtle">...620px</span></code>
+            </li>
+            <li>
+              <code>md <span class="color_subtle">...760px</span></code>
+            </li>
+            <li>
+              <code>lg <span class="color_subtle">...990px</span></code>
+            </li>
+            <li>
+              <code>xl <span class="color_subtle">...1380px</span></code>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -442,57 +441,55 @@ Display utilities allow you to quickly toggle the display property on an element
 
 ## margin
 
-<div class="spacing">
-  <div class="type spacing">
-    <p>Add margin to an element using directional and size modifiers.</p>
-    <pre><code>.margin
-.margin_<span class="color_danger">{size}</span>
-.margin_<span class="color_success">{direction}</span>_<span class="color_danger">{size}</span></code></pre>
-  </div>
-  <div>
-    <div class="grid grid_break_xs">
-      <div class="grid__item grid__item_fill">
-        <div class="card">
-          <div class="card__header">
-            <code class="color_success">{direction}</code>
-          </div>
-          <div class="card__body spacing">
-            <ul class="list list_between">
-              <li class="list__item"><code>top</code></li>
-              <li class="list__item"><code>right</code></li>
-              <li class="list__item"><code>bottom</code></li>
-              <li class="list__item"><code>left</code></li>
-            </ul>
-          </div>
+Add margin to an element using directional and size modifiers.
+
+* `margin`
+* `margin_[size]`
+* `margin_[direction]_[size]`
+
+<div>
+  <div class="grid grid_break_xs">
+    <div class="grid__item grid__item_fill">
+      <div class="card">
+        <div class="card__header">
+          <code class="code">[direction]</code>
+        </div>
+        <div class="card__body spacing">
+          <ul class="list list_between">
+            <li><code>top</code></li>
+            <li><code>right</code></li>
+            <li><code>bottom</code></li>
+            <li><code>left</code></li>
+          </ul>
         </div>
       </div>
-      <div class="grid__item grid__item_fill">
-        <div class="card">
-          <div class="card__header">
-            <code class="color_danger">{size}</code>
-          </div>
-          <div class="card__body">
-            <ul class="list list_between">
-              <li class="list__item">
-                <code>0 <span class="color_subtle">...0</span></code>
-              </li>
-              <li class="list__item">
-                <code>xs <span class="color_subtle">...0.5rem</span></code>
-              </li>
-              <li class="list__item">
-                <code>sm <span class="color_subtle">...1rem</span></code>
-              </li>
-              <li class="list__item">
-                <code>md <span class="color_subtle">...1.5rem</span></code>
-              </li>
-              <li class="list__item">
-                <code>lg <span class="color_subtle">...2rem</span></code>
-              </li>
-              <li class="list__item">
-                <code>xl <span class="color_subtle">...3rem</span></code>
-              </li>
-            </ul>
-          </div>
+    </div>
+    <div class="grid__item grid__item_fill">
+      <div class="card">
+        <div class="card__header">
+          <code class="code">[size]</code>
+        </div>
+        <div class="card__body">
+          <ul class="list list_between">
+            <li>
+              <code>0 <span class="color_subtle">...0</span></code>
+            </li>
+            <li>
+              <code>xs <span class="color_subtle">...0.5rem</span></code>
+            </li>
+            <li>
+              <code>sm <span class="color_subtle">...1rem</span></code>
+            </li>
+            <li>
+              <code>md <span class="color_subtle">...1.5rem</span></code>
+            </li>
+            <li>
+              <code>lg <span class="color_subtle">...2rem</span></code>
+            </li>
+            <li>
+              <code>xl <span class="color_subtle">...3rem</span></code>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -501,57 +498,53 @@ Display utilities allow you to quickly toggle the display property on an element
 
 ## padding
 
-<div class="spacing">
-  <div class="type spacing">
-    <p>Add padding to an element using directional and size modifiers.</p>
-    <pre><code>.padding
-.padding_<span class="color_danger">{size}</span>
-.padding_<span class="color_success">{direction}</span>_<span class="color_danger">{size}</span></code></pre>
-  </div>
-  <div>
-    <div class="grid grid_break_xs">
-      <div class="grid__item grid__item_fill">
-        <div class="card">
-          <div class="card__header">
-            <code class="color_success">{direction}</code>
-          </div>
-          <div class="card__body spacing">
-            <ul class="list list_between">
-              <li class="list__item"><code>top</code></li>
-              <li class="list__item"><code>right</code></li>
-              <li class="list__item"><code>bottom</code></li>
-              <li class="list__item"><code>left</code></li>
-            </ul>
-          </div>
+Add padding to an element using directional and size modifiers.
+
+* `padding`
+* `padding-[size]`
+* `padding-[direction]-[size]`
+
+<div>
+  <div class="grid grid_break_xs">
+    <div class="grid__item grid__item_fill">
+      <div class="card">
+        <div class="card__header">
+          <code class="code">[direction]</code>
+        </div>
+        <div class="card__body spacing">
+          <p class="padding-xs"><code>top</code></p>
+          <p><code>right</code></p>
+          <p><code>bottom</code></p>
+          <p><code>left</code></p>
         </div>
       </div>
-      <div class="grid__item grid__item_fill">
-        <div class="card">
-          <div class="card__header">
-            <code class="color_danger">{size}</code>
-          </div>
-          <div class="card__body">
-            <ul class="list list_between">
-              <li class="list__item">
-                <code>0 <span class="color_subtle">...0</span></code>
-              </li>
-              <li class="list__item">
-                <code>xs <span class="color_subtle">...0.5rem</span></code>
-              </li>
-              <li class="list__item">
-                <code>sm <span class="color_subtle">...1rem</span></code>
-              </li>
-              <li class="list__item">
-                <code>md <span class="color_subtle">...1.5rem</span></code>
-              </li>
-              <li class="list__item">
-                <code>lg <span class="color_subtle">...2rem</span></code>
-              </li>
-              <li class="list__item">
-                <code>xl <span class="color_subtle">...3rem</span></code>
-              </li>
-            </ul>
-          </div>
+    </div>
+    <div class="grid__item grid__item_fill">
+      <div class="card">
+        <div class="card__header">
+          <code class="code">[size]</code>
+        </div>
+        <div class="card__body">
+          <ul>
+            <li>
+              <code>0 <span class="color_subtle">...0</span></code>
+            </li>
+            <li>
+              <code>xs <span class="color_subtle">...0.5rem</span></code>
+            </li>
+            <li>
+              <code>sm <span class="color_subtle">...1rem</span></code>
+            </li>
+            <li>
+              <code>md <span class="color_subtle">...1.5rem</span></code>
+            </li>
+            <li>
+              <code>lg <span class="color_subtle">...2rem</span></code>
+            </li>
+            <li>
+              <code>xl <span class="color_subtle">...3rem</span></code>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -569,6 +562,30 @@ A utility for adding vertical spacing between an element's children.
   <div class="box"></div>
 </div>
 
+<div class="border padding spacing-xs">
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+</div>
+
+<div class="border padding spacing-sm">
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+</div>
+
+<div class="border padding spacing-md">
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+</div>
+
+<div class="border padding spacing-lg">
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+</div>
+
 <div class="border padding spacing-xl">
   <div class="box"></div>
   <div class="box"></div>
@@ -577,6 +594,10 @@ A utility for adding vertical spacing between an element's children.
 {% include demo_switch.html %}
 ```html
 <div class="spacing">...</div>
+<div class="spacing-xs">...</div>
+<div class="spacing-sm">...</div>
+<div class="spacing-md">...</div>
+<div class="spacing-lg">...</div>
 <div class="spacing-xl">...</div>
 ```
 {% include demo_close.html %}
@@ -585,61 +606,61 @@ A utility for adding vertical spacing between an element's children.
 
 {% include demo_open.html %}
 <ul class="list list_between">
-  <li class="list__item">
+  <li>
     <p class="text_size_sm">Text size small</p>
   </li>
-  <li class="list__item">
+  <li>
     <p class="text_size_lg">Text size large</p>
   </li>
-  <li class="list__item">
+  <li>
     <p class="text_capitalize">Text capitalize</p>
   </li>
-  <li class="list__item">
+  <li>
     <p class="text_lowercase">Text lowercase</p>
   </li>
-  <li class="list__item">
+  <li>
     <p class="text_uppercase">Text uppercase</p>
   </li>
-  <li class="list__item">
+  <li>
     <p class="text_align_left">Text align left</p>
   </li>
-  <li class="list__item">
+  <li>
     <p class="text_align_center">Text align center</p>
   </li>
-  <li class="list__item">
+  <li>
     <p class="text_align_right">Text align right</p>
   </li>
-  <li class="list__item">
+  <li>
     <p class="text_bold">Text bold</p>
   </li>
-  <li class="list__item">
+  <li>
     <p><strong>Strong tag <span class="text_normal">with normal text</span></strong></p>
   </li>
-  <li class="list__item">
+  <li>
     <p class="text_italic">Text italic</p>
   </li>
-  <li class="list__item">
+  <li>
     <p class="text_strike">Text strike</p>
   </li>
-  <li class="list__item">
+  <li>
     <p class="text_underline">Text underline</p>
   </li>
-  <li class="list__item">
+  <li>
     <p class="text_underline_dotted">Text underline dotted</p>
   </li>
-  <li class="list__item">
+  <li>
     <p class="text_underline_dashed">Text underline dashed</p>
   </li>
-  <li class="list__item">
+  <li>
     <p class="text_wrap">Text wrap</p>
   </li>
-  <li class="list__item">
+  <li>
     <p class="text_nowrap">Text nowrap</p>
   </li>
-  <li class="list__item">
+  <li>
     <p class="text_overflow_ellipsis">Text overflow ellipsis text overflow ellipsis text overflow ellipsis text overflow ellipsis</p>
   </li>
-  <li class="list__item">
+  <li>
     <p class="text_lead">Text lead</p>
   </li>
 </ul>

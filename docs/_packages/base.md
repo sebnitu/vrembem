@@ -188,7 +188,7 @@ print "a = #{a}";</code></pre>
 The `type` component is a quick way to apply all base styles to components directy based on their respective HTML elements. Base component modifiers will override a parent `type` component when explicitly set.
 
 {% include demo_open.html class_parent="spacing" %}
-<div class="type">
+<div class="type spacing">
 
   <h1>Heading</h1>
   <h2>Heading</h2>
@@ -273,10 +273,14 @@ print "a = #{a}";</code></pre>
 ```
 {% include demo_close.html %}
 
+<div class="notice notice_state_info type" markdown="1">
+Note: `type` does not add vertical spacing between elements by default. You can either add it by giving `$type-spacing` a value or by applying the [`spacing` utility class](/packages/utility#spacing).
+</div>
+
 ## type_invert
 
 {% include demo_open.html class_parent="spacing" %}
-<div class="type type_invert background_night padding radius">
+<div class="type type_invert spacing background_night_dark padding radius">
 
   <h1>Heading</h1>
   <h2>Heading</h2>

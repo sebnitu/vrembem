@@ -534,7 +534,7 @@ By default, the state of a drawer is saved to local storage and applied persiste
     <tbody>
       <tr>
         <td data-mobile-label="Method"><code class="code text_nowrap">drawer.init()</code></td>
-        <td data-mobile-label="Desc">Initializes the drawer instance.</td>
+        <td data-mobile-label="Desc">Initializes the drawer instance. <a href="#">Click here</a></td>
       </tr>
       <tr>
         <td data-mobile-label="Method"><code class="code text_nowrap">drawer.destroy()</code></td>

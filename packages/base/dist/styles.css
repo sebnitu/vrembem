@@ -426,16 +426,6 @@ input::-moz-placeholder {
   display: table;
   clear: both;
 }
-.type > * {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-.type > *:first-child {
-  margin-top: 0;
-}
-.type > *:last-child {
-  margin-bottom: 0;
-}
 .type > h1,
 .type > h2,
 .type > h3,
@@ -496,6 +486,31 @@ input::-moz-placeholder {
     font-size: 1em;
   }
 }
+.type > a,
+.type > :not(div) a {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: #00bcd4;
+  text-decoration: none;
+}
+.type > a:hover,
+.type > :not(div) a:hover {
+  border-bottom: 1px solid currentColor;
+  color: #0097a7;
+}
+.type > a:focus,
+.type > :not(div) a:focus {
+  outline: currentColor dotted 1px;
+  outline-offset: 3px;
+  border-bottom: 1px solid currentColor;
+  color: #0097a7;
+}
+.type > code,
+.type > :not(div) code {
+  color: #e91e63;
+  font-family: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.9em;
+  word-break: break-word;
+}
 .type > hr {
   display: block;
   height: 0;
@@ -534,31 +549,6 @@ input::-moz-placeholder {
 .type > blockquote > * + * {
   margin-top: 1em;
 }
-.type > a,
-.type > * > a {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  color: #00bcd4;
-  text-decoration: none;
-}
-.type > a:hover,
-.type > * > a:hover {
-  border-bottom: 1px solid currentColor;
-  color: #0097a7;
-}
-.type > a:focus,
-.type > * > a:focus {
-  outline: currentColor dotted 1px;
-  outline-offset: 3px;
-  border-bottom: 1px solid currentColor;
-  color: #0097a7;
-}
-.type > code,
-.type > * > code {
-  color: #e91e63;
-  font-family: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 0.9em;
-  word-break: break-word;
-}
 .type > pre {
   padding: 1em;
   overflow: auto;
@@ -585,19 +575,25 @@ input::-moz-placeholder {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .type_invert > a,
-.type_invert > * > a {
+.type_invert > :not(div) a {
   border-color: rgba(255, 255, 255, 0.5);
   color: #fff;
 }
 .type_invert > a:hover, .type_invert > a:focus,
-.type_invert > * > a:hover,
-.type_invert > * > a:focus {
+.type_invert > :not(div) a:hover,
+.type_invert > :not(div) a:focus {
   border-color: currentColor;
   color: #fff;
 }
 .type_invert > code,
-.type_invert > * > code {
+.type_invert > :not(div) code {
   color: #f06292;
+}
+.type_invert > pre {
+  color: #212121;
+}
+.type_invert > pre code {
+  color: inherit;
 }
 
 /*# sourceMappingURL=styles.css.map */
