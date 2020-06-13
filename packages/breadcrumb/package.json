@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/breadcrumb",
   "description": "The breadcrumb component is a navigation component that shows the hierarchical path to a users current location.",
-  "version": "1.5.4",
+  "version": "1.7.0",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -25,7 +25,7 @@
     "directory": "packages/breadcrumb"
   },
   "dependencies": {
-    "@vrembem/base": "^1.5.4",
+    "@vrembem/base": "^1.7.0",
     "@vrembem/core": "^1.5.4"
   },
   "publishConfig": {

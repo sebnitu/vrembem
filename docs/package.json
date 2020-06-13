@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/docs",
   "description": "A container component that slides in from the left or right. It typically contains menus, search or other content for your app.",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "private": true,
   "main": "dist/scripts.cjs.js",
   "module": "src/js/app.js",
@@ -25,11 +25,11 @@
     "directory": "packages/docs"
   },
   "dependencies": {
-    "@vrembem/base": "^1.5.4",
+    "@vrembem/base": "^1.7.0",
     "@vrembem/core": "^1.5.4",
     "feather-icons": "^4.28.0",
     "list.js": "^1.5.0",
     "svgxuse": "^1.2.6",
-    "vrembem": "^1.6.0"
+    "vrembem": "^1.7.0"
   }
 }

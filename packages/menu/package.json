@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/menu",
   "description": "Menus represent groups of links, actions or tools that a user can interact with.",
-  "version": "1.5.4",
+  "version": "1.7.0",
   "license": "MIT",
   "keywords": [
     "BEM",
