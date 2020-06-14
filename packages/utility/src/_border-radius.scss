@@ -1,20 +1,67 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
 $_u: var.$prefix-utility;
 $_c: var.$class-border-radius;
 
 @if (var.$class-border-radius) {
-  .#{$_b}#{$_u}#{$_c} {
+  .#{$_u}#{$_c} {
     border-radius: core.$border-radius !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-square {
+  .#{$_u}#{$_c}-top-left {
+    border-top-left-radius: core.$border-radius !important;
+  }
+
+  .#{$_u}#{$_c}-top-right {
+    border-top-right-radius: core.$border-radius !important;
+  }
+
+  .#{$_u}#{$_c}-bottom-right {
+    border-bottom-right-radius: core.$border-radius !important;
+  }
+
+  .#{$_u}#{$_c}-bottom-left {
+    border-bottom-left-radius: core.$border-radius !important;
+  }
+
+  .#{$_u}#{$_c}-circle {
+    border-radius: core.$border-radius-circle !important;
+  }
+
+  .#{$_u}#{$_c}-circle-top-left {
+    border-top-left-radius: core.$border-radius-circle !important;
+  }
+
+  .#{$_u}#{$_c}-circle-top-right {
+    border-top-right-radius: core.$border-radius-circle !important;
+  }
+
+  .#{$_u}#{$_c}-circle-bottom-right {
+    border-bottom-right-radius: core.$border-radius-circle !important;
+  }
+
+  .#{$_u}#{$_c}-circle-bottom-left {
+    border-bottom-left-radius: core.$border-radius-circle !important;
+  }
+
+  .#{$_u}#{$_c}-square {
     border-radius: 0 !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-circle {
-    border-radius: core.$border-radius-circle !important;
+  .#{$_u}#{$_c}-square-top-left {
+    border-top-left-radius: 0 !important;
+  }
+
+  .#{$_u}#{$_c}-square-top-right {
+    border-top-right-radius: 0 !important;
+  }
+
+  .#{$_u}#{$_c}-square-bottom-right {
+    border-bottom-right-radius: 0 !important;
+  }
+
+  .#{$_u}#{$_c}-square-bottom-left {
+    border-bottom-left-radius: 0 !important;
   }
 }

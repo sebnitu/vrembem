@@ -11,7 +11,7 @@ title: "Home"
       {%- if site.description -%}
         <p class="cover__desc">{{ site.description }} Currently {{ site.packages | size }} available components.</p>
       {%- endif -%}
-      <div class="grid grid_auto grid_gap_sm flex_align_center">
+      <div class="grid grid_auto grid_gap_sm flex-align-center">
         <div class="grid__item">
           <a href="http://github.com/{{ site.repository }}" class="button button_color_primary">
             {% include icon.html icon="github" %}

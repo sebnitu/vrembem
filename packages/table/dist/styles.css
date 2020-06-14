@@ -11,7 +11,7 @@
 .table th {
   font-weight: 700;
 }
-.col_auto {
+.table__auto {
   width: 0;
   white-space: nowrap;
 }

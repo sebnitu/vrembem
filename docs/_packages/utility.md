@@ -11,6 +11,8 @@ usage:
 
 ## background
 
+Applies background color property. Most options include light, lighter, dark and darker variants.
+
 {% include demo_open.html class_grid="grid_break" %}
 <div class="swatch-group">
   <div class="swatch-group">
@@ -84,6 +86,8 @@ usage:
 
 ## border
 
+Applies border property with optional sides variants.
+
 {% include demo_open.html class_grid="grid_break" %}
 <div class="swatch-group">
   <div class="swatch background-shade-light border"></div>
@@ -102,6 +106,10 @@ usage:
 ```
 {% include demo_close.html %}
 
+### border-none
+
+Remove border styles with `border-none` utilities and optional side variants.
+
 {% include demo_open.html class_grid="grid_break" %}
 <div class="swatch-group">
   <div class="swatch background-shade-light border border-none"></div>
@@ -119,6 +127,10 @@ usage:
 <div class="border-left-none"></div>
 ```
 {% include demo_close.html %}
+
+### border-color
+
+Add border color utilities with light, dark and darker variants.
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="swatch-group">
@@ -156,21 +168,73 @@ usage:
 
 ## radius
 
+Applies border-radius styles with optional corner variants. The value used by the radius utility is pulled from the `core.$border-radius` variable.
+
 {% include demo_open.html class_grid="grid_break" %}
 <div class="swatch-group">
   <div class="swatch background-secondary radius"></div>
-  <div class="swatch background-secondary radius-square"></div>
-  <div class="swatch background-secondary radius-circle"></div>
+  <div class="swatch background-secondary radius-top-left"></div>
+  <div class="swatch background-secondary radius-top-right"></div>
+  <div class="swatch background-secondary radius-bottom-right"></div>
+  <div class="swatch background-secondary radius-bottom-left"></div>
 </div>
 {% include demo_switch.html %}
 ```html
 <div class="radius"></div>
-<div class="radius-square"></div>
+<div class="radius-top-left"></div>
+<div class="radius-top-right"></div>
+<div class="radius-bottom-right"></div>
+<div class="radius-bottom-left"></div>
+```
+{% include demo_close.html %}
+
+### radius-circle
+
+Applies the maximum value to border-radius with optional corner variants. The value used by radius-circle utility is pulled from the `core.$border-radius-circle` variable.
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="swatch-group">
+  <div class="swatch background-secondary radius-circle"></div>
+  <div class="swatch background-secondary radius-circle-top-left"></div>
+  <div class="swatch background-secondary radius-circle-top-right"></div>
+  <div class="swatch background-secondary radius-circle-bottom-right"></div>
+  <div class="swatch background-secondary radius-circle-bottom-left"></div>
+</div>
+{% include demo_switch.html %}
+```html
 <div class="radius-circle"></div>
+<div class="radius-circle-top-left"></div>
+<div class="radius-circle-top-right"></div>
+<div class="radius-circle-bottom-right"></div>
+<div class="radius-circle-bottom-left"></div>
+```
+{% include demo_close.html %}
+
+### radius-square
+
+Removes border-radius by setting it's value to `0` with optional corner variants.
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="swatch-group">
+  <div class="swatch background-secondary radius-circle radius-square"></div>
+  <div class="swatch background-secondary radius-circle radius-square-top-left"></div>
+  <div class="swatch background-secondary radius-circle radius-square-top-right"></div>
+  <div class="swatch background-secondary radius-circle radius-square-bottom-right"></div>
+  <div class="swatch background-secondary radius-circle radius-square-bottom-left"></div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="radius-square"></div>
+<div class="radius-square-top-left"></div>
+<div class="radius-square-top-right"></div>
+<div class="radius-square-bottom-right"></div>
+<div class="radius-square-bottom-left"></div>
 ```
 {% include demo_close.html %}
 
 ## elevate
+
+Applies different levels of elevation through box-shadow styles.
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="padding-lg background-shade radius">
@@ -198,95 +262,103 @@ usage:
 
 ## color
 
-{% include demo_open.html class_grid="grid_break" class_parent="spacing" %}
-<div class="padding radius background-shade-light">
-  <div class="swatch-group">
-    <span class="color">Color</span>
-    <span class="color-subtle">Color light</span>
-    <span class="color-primary-lighter">Color primary</span>
-    <span class="color-primary-light">Color primary</span>
-    <span class="color-primary">Color primary</span>
-    <span class="color-primary-dark">Color primary</span>
-    <span class="color-primary-darker">Color primary</span>
-    <span class="color-secondary-lighter">Color secondary</span>
-    <span class="color-secondary-light">Color secondary</span>
-    <span class="color-secondary">Color secondary</span>
-    <span class="color-secondary-dark">Color secondary</span>
-    <span class="color-secondary-darker">Color secondary</span>
-    <span class="color-shade-light">Color shade</span>
-    <span class="color-shade">Color shade</span>
-    <span class="color-shade-dark">Color shade</span>
-    <span class="color-night-light">Color night</span>
-    <span class="color-night">Color night</span>
-    <span class="color-night-dark">Color night</span>
-    <span class="color-info-lighter">Color info</span>
-    <span class="color-info-light">Color info</span>
-    <span class="color-info">Color info</span>
-    <span class="color-info-dark">Color info</span>
-    <span class="color-info-darker">Color info</span>
-    <span class="color-success-lighter">Color success</span>
-    <span class="color-success-light">Color success</span>
-    <span class="color-success">Color success</span>
-    <span class="color-success-dark">Color success</span>
-    <span class="color-success-darker">Color success</span>
-    <span class="color-caution-lighter">Color caution</span>
-    <span class="color-caution-light">Color caution</span>
-    <span class="color-caution">Color caution</span>
-    <span class="color-caution-dark">Color caution</span>
-    <span class="color-caution-darker">Color caution</span>
-    <span class="color-danger-lighter">Color danger</span>
-    <span class="color-danger-light">Color danger</span>
-    <span class="color-danger">Color danger</span>
-    <span class="color-danger-dark">Color danger</span>
-    <span class="color-danger-darker">Color danger</span>
-    <span class="color-black">Color black</span>
-    <span class="color-white">Color white</span>
-    <span class="color-transparent">Color transparent</span>
+Applies text color property. Most options include light, lighter, dark and darker variants.
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="grid">
+  <div class="grid__item">
+    <div class="padding radius background-shade-light">
+      <div class="swatch-group">
+        <span class="color">Color</span>
+        <span class="color-subtle">Color light</span>
+        <span class="color-primary-lighter">Color primary</span>
+        <span class="color-primary-light">Color primary</span>
+        <span class="color-primary">Color primary</span>
+        <span class="color-primary-dark">Color primary</span>
+        <span class="color-primary-darker">Color primary</span>
+        <span class="color-secondary-lighter">Color secondary</span>
+        <span class="color-secondary-light">Color secondary</span>
+        <span class="color-secondary">Color secondary</span>
+        <span class="color-secondary-dark">Color secondary</span>
+        <span class="color-secondary-darker">Color secondary</span>
+        <span class="color-shade-light">Color shade</span>
+        <span class="color-shade">Color shade</span>
+        <span class="color-shade-dark">Color shade</span>
+        <span class="color-night-light">Color night</span>
+        <span class="color-night">Color night</span>
+        <span class="color-night-dark">Color night</span>
+        <span class="color-info-lighter">Color info</span>
+        <span class="color-info-light">Color info</span>
+        <span class="color-info">Color info</span>
+        <span class="color-info-dark">Color info</span>
+        <span class="color-info-darker">Color info</span>
+        <span class="color-success-lighter">Color success</span>
+        <span class="color-success-light">Color success</span>
+        <span class="color-success">Color success</span>
+        <span class="color-success-dark">Color success</span>
+        <span class="color-success-darker">Color success</span>
+        <span class="color-caution-lighter">Color caution</span>
+        <span class="color-caution-light">Color caution</span>
+        <span class="color-caution">Color caution</span>
+        <span class="color-caution-dark">Color caution</span>
+        <span class="color-caution-darker">Color caution</span>
+        <span class="color-danger-lighter">Color danger</span>
+        <span class="color-danger-light">Color danger</span>
+        <span class="color-danger">Color danger</span>
+        <span class="color-danger-dark">Color danger</span>
+        <span class="color-danger-darker">Color danger</span>
+        <span class="color-black">Color black</span>
+        <span class="color-white">Color white</span>
+        <span class="color-transparent">Color transparent</span>
+      </div>
+    </div>
   </div>
-</div>
-<div class="padding radius background-night">
-  <div class="swatch-group">
-    <span class="color-invert">Color invert</span>
-    <span class="color-invert_subtle">Color invert dark</span>
-    <span class="color-primary-lighter">Color primary</span>
-    <span class="color-primary-light">Color primary</span>
-    <span class="color-primary">Color primary</span>
-    <span class="color-primary-dark">Color primary</span>
-    <span class="color-primary-darker">Color primary</span>
-    <span class="color-secondary-lighter">Color secondary</span>
-    <span class="color-secondary-light">Color secondary</span>
-    <span class="color-secondary">Color secondary</span>
-    <span class="color-secondary-dark">Color secondary</span>
-    <span class="color-secondary-darker">Color secondary</span>
-    <span class="color-shade-light">Color shade</span>
-    <span class="color-shade">Color shade</span>
-    <span class="color-shade-dark">Color shade</span>
-    <span class="color-night-light">Color night</span>
-    <span class="color-night">Color night</span>
-    <span class="color-night-dark">Color night</span>
-    <span class="color-info-lighter">Color info</span>
-    <span class="color-info-light">Color info</span>
-    <span class="color-info">Color info</span>
-    <span class="color-info-dark">Color info</span>
-    <span class="color-info-darker">Color info</span>
-    <span class="color-success-lighter">Color success</span>
-    <span class="color-success-light">Color success</span>
-    <span class="color-success">Color success</span>
-    <span class="color-success-dark">Color success</span>
-    <span class="color-success-darker">Color success</span>
-    <span class="color-caution-lighter">Color caution</span>
-    <span class="color-caution-light">Color caution</span>
-    <span class="color-caution">Color caution</span>
-    <span class="color-caution-dark">Color caution</span>
-    <span class="color-caution-darker">Color caution</span>
-    <span class="color-danger-lighter">Color danger</span>
-    <span class="color-danger-light">Color danger</span>
-    <span class="color-danger">Color danger</span>
-    <span class="color-danger-dark">Color danger</span>
-    <span class="color-danger-darker">Color danger</span>
-    <span class="color-black">Color black</span>
-    <span class="color-white">Color white</span>
-    <span class="color-transparent">Color transparent</span>
+  <div class="grid__item">
+    <div class="padding radius background-night">
+      <div class="swatch-group">
+        <span class="color-invert">Color invert</span>
+        <span class="color-invert_subtle">Color invert dark</span>
+        <span class="color-primary-lighter">Color primary</span>
+        <span class="color-primary-light">Color primary</span>
+        <span class="color-primary">Color primary</span>
+        <span class="color-primary-dark">Color primary</span>
+        <span class="color-primary-darker">Color primary</span>
+        <span class="color-secondary-lighter">Color secondary</span>
+        <span class="color-secondary-light">Color secondary</span>
+        <span class="color-secondary">Color secondary</span>
+        <span class="color-secondary-dark">Color secondary</span>
+        <span class="color-secondary-darker">Color secondary</span>
+        <span class="color-shade-light">Color shade</span>
+        <span class="color-shade">Color shade</span>
+        <span class="color-shade-dark">Color shade</span>
+        <span class="color-night-light">Color night</span>
+        <span class="color-night">Color night</span>
+        <span class="color-night-dark">Color night</span>
+        <span class="color-info-lighter">Color info</span>
+        <span class="color-info-light">Color info</span>
+        <span class="color-info">Color info</span>
+        <span class="color-info-dark">Color info</span>
+        <span class="color-info-darker">Color info</span>
+        <span class="color-success-lighter">Color success</span>
+        <span class="color-success-light">Color success</span>
+        <span class="color-success">Color success</span>
+        <span class="color-success-dark">Color success</span>
+        <span class="color-success-darker">Color success</span>
+        <span class="color-caution-lighter">Color caution</span>
+        <span class="color-caution-light">Color caution</span>
+        <span class="color-caution">Color caution</span>
+        <span class="color-caution-dark">Color caution</span>
+        <span class="color-caution-darker">Color caution</span>
+        <span class="color-danger-lighter">Color danger</span>
+        <span class="color-danger-light">Color danger</span>
+        <span class="color-danger">Color danger</span>
+        <span class="color-danger-dark">Color danger</span>
+        <span class="color-danger-darker">Color danger</span>
+        <span class="color-black">Color black</span>
+        <span class="color-white">Color white</span>
+        <span class="color-transparent">Color transparent</span>
+      </div>
+    </div>
   </div>
 </div>
 {% include demo_switch.html %}
@@ -375,18 +447,23 @@ Display utilities allow you to toggle the display property on an element with an
 <div class="display-block display-none-xs">
   <p>Small Mobile</p>
 </div>
+
 <div class="display-none display-block-xs display-none-sm">
-  <p>Small Mobile &rarr; Mobile</p>
+  <p>Small Mobile => Mobile</p>
 </div>
+
 <div class="display-none display-block-sm display-none-md">
-  <p>Mobile &rarr; Tablet</p>
+  <p>Mobile => Tablet</p>
 </div>
+
 <div class="display-none display-block-md display-none-lg">
-  <p>Tablet &rarr; Desktop</p>
+  <p>Tablet => Desktop</p>
 </div>
+
 <div class="display-none display-block-lg display-none-xl">
-  <p>Desktop &rarr; Large Desktop</p>
+  <p>Desktop => Large Desktop</p>
 </div>
+
 <div class="display-none display-block-xl">
   <p>Large Desktop</p>
 </div>
@@ -408,7 +485,7 @@ The flex utility is a great way to adjust individual flex properties on componen
 
 ### flex-align-[value]
 
-Adjust the `align-items` property of grid columns using the `flex-align-[value]` utility. Avaliable values are:
+Adjust the `align-items` property of grid columns using the `flex-align-[value]` utility. Available values are:
 
 * `flex-align-start`
 * `flex-align-center`
@@ -549,11 +626,12 @@ Change the `justify-content` property of grid columns using the `flex-justify-[v
 
 ## margin
 
-Add margin to an element using directional and size modifiers.
+Add margin to an element using directional and size modifiers. Margin size and spacing values are generated from `$spacing-map` variable map.
 
 * `margin`
 * `margin-[size]`
-* `margin-[direction]_[size]`
+* `margin-[direction]-[size]`
+* `margin-auto`
 
 <div>
   <div class="grid grid_break_xs">
@@ -590,7 +668,7 @@ Add margin to an element using directional and size modifiers.
 
 ## padding
 
-Add padding to an element using directional and size modifiers.
+Add padding to an element using directional and size modifiers. Padding size and spacing values are generated from `$spacing-map` variable map.
 
 * `padding`
 * `padding-[size]`
@@ -631,7 +709,7 @@ Add padding to an element using directional and size modifiers.
 
 ## spacing
 
-A utility for adding vertical spacing between an element's children.
+A utility for adding vertical spacing between an element's children. Spacing size and spacing values are generated from `$spacing-map` variable map.
 
 * `spacing`
 * `spacing-[key]`
@@ -708,62 +786,16 @@ A utility for adding vertical spacing between an element's children.
 
 ## span
 
-Set the width, max-width and flex based on a column set using the `span` utility. There are a number of options available:
+Set the width, max-width and flex based on a column set using the `span` utility. Span widths are based on a column set based on the `$columns` variable. There are a number of options available:
 
-* `span-auto`
-* `span-full`
-* `span-[col]`
-* `span-[col]-[breakpoint]`
-
-### span-auto
-
-{% include demo_open.html class_grid="grid_break" %}
-<div class="grid grid_flatten">
-  <div class="grid__item span-auto">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="grid">
-  <div class="grid__item span-auto">...</div>
-  <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
-{% include demo_close.html %}
-
-### span-full
-
-{% include demo_open.html class_grid="grid_break" %}
-<div class="grid grid_flatten">
-  <div class="grid__item span-full">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="grid">
-  <div class="grid__item span-full">...</div>
-  <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
-{% include demo_close.html %}
+* `span-[col]`: Sets the number of columns an element should span.
+* `span-[col]-[breakpoint]`: Sets the number of columns an element should span based on a breakpoint condition.
+* `span-auto`: Sets an elements width to `auto`.
+* `span-full`: Sets an elements width to `100%`.
 
 ### span-[col]
+
+Sets the number of columns an element should span. The total number of columns is set in the `$columns` variable.
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="grid grid_flatten">
@@ -799,6 +831,8 @@ Set the width, max-width and flex based on a column set using the `span` utility
 
 ### span-[col]-[breakpoint]
 
+Sets the number of columns an element should span based on a breakpoint conditon. The total number of columns is set in the `$columns` variable. Breakpoint keys are built from the `$breakpoints` variable map.
+
 {% include demo_open.html class_grid="grid_break" %}
 <div class="grid grid_flatten">
   <div class="grid__item span-12 span-6-xs span-8-sm span-4-md span-3-lg">
@@ -825,101 +859,292 @@ Set the width, max-width and flex based on a column set using the `span` utility
 ```
 {% include demo_close.html %}
 
-## text
+### span-auto
 
-{% include demo_open.html %}
-<ul>
-  <li>
-    <p class="text-size-sm">Text size small</p>
-  </li>
-  <li>
-    <p class="text-size-lg">Text size large</p>
-  </li>
-  <li>
-    <p class="text-capitalize">Text capitalize</p>
-  </li>
-  <li>
-    <p class="text-lowercase">Text lowercase</p>
-  </li>
-  <li>
-    <p class="text-uppercase">Text uppercase</p>
-  </li>
-  <li>
-    <p class="text-align-left">Text align left</p>
-  </li>
-  <li>
-    <p class="text-align-center">Text align center</p>
-  </li>
-  <li>
-    <p class="text-align-right">Text align right</p>
-  </li>
-  <li>
-    <p class="text-bold">Text bold</p>
-  </li>
-  <li>
-    <p><strong>Strong tag <span class="text-normal">with normal text</span></strong></p>
-  </li>
-  <li>
-    <p class="text-italic">Text italic</p>
-  </li>
-  <li>
-    <p class="text-strike">Text strike</p>
-  </li>
-  <li>
-    <p class="text-underline">Text underline</p>
-  </li>
-  <li>
-    <p class="text-underline-dotted">Text underline dotted</p>
-  </li>
-  <li>
-    <p class="text-underline-dashed">Text underline dashed</p>
-  </li>
-  <li>
-    <p class="text-wrap">Text wrap</p>
-  </li>
-  <li>
-    <p class="text-nowrap">Text nowrap</p>
-  </li>
-  <li>
-    <p class="text-overflow-ellipsis">Text overflow ellipsis text overflow ellipsis text overflow ellipsis text overflow ellipsis</p>
-  </li>
-  <li>
-    <p class="text-lead">Text lead</p>
-  </li>
-</ul>
+Sets an elements width to `auto`.
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="grid grid_flatten">
+  <div class="grid__item span-auto">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
 {% include demo_switch.html %}
 ```html
-<!-- Size -->
-<p class="text-size-sm">...</p>
-<p class="text-size-lg">...</p>
-
-<!-- Transform -->
-<p class="text-capitalize">...</p>
-<p class="text-lowercase">...</p>
-<p class="text-uppercase">...</p>
-
-<!-- Align -->
-<p class="text-align-left">...</p>
-<p class="text-align-center">...</p>
-<p class="text-align-right">...</p>
-
-<!-- Weight & Style -->
-<p class="text-bold">...</p>
-<p class="text-normal">...</p>
-<p class="text-italic">...</p>
-
-<!-- Decoration -->
-<p class="text-strike">...</p>
-<p class="text-underline">...</p>
-<p class="text-underline-dotted">...</p>
-<p class="text-underline-dashed">...</p>
-
-<!-- Wrap -->
-<p class="text-wrap">...</p>
-<p class="text-nowrap">...</p>
-<p class="text-overflow-ellipsis">...</p>
-
-<!-- Other -->
-<p class="text-lead">...</p>
+<div class="grid">
+  <div class="grid__item span-auto">...</div>
+  <div class="grid__item">...</div>
+  <div class="grid__item">...</div>
+</div>
 ```
 {% include demo_close.html %}
+
+### span-full
+
+Sets an elements width to `100%`.
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="grid grid_flatten">
+  <div class="grid__item span-full">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="grid">
+  <div class="grid__item span-full">...</div>
+  <div class="grid__item">...</div>
+  <div class="grid__item">...</div>
+</div>
+```
+{% include demo_close.html %}
+
+## text
+
+A utility for adjusting various text styles.
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_md">
+    <thead>
+      <tr>
+        <th class="table__auto">Class</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code class="code text-nowrap">text-size-sm</code></td>
+        <td><p class="text-size-sm">Text example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">text-size-lg</code></td>
+        <td><p class="text-size-lg">Text example...</p></td>
+      </tr>
+
+      <tr>
+        <td><code class="code text-nowrap">text-capitalize</code></td>
+        <td><p class="text-capitalize">Text example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">text-lowercase</code></td>
+        <td><p class="text-lowercase">Text example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">text-uppercase</code></td>
+        <td><p class="text-uppercase">Text example...</p></td>
+      </tr>
+
+      <tr>
+        <td><code class="code text-nowrap">text-align-left</code></td>
+        <td><p class="text-align-left">Text example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">text-align-center</code></td>
+        <td><p class="text-align-center">Text example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">text-align-right</code></td>
+        <td><p class="text-align-right">Text example...</p></td>
+      </tr>
+
+      <tr>
+        <td><code class="code text-nowrap">text-bold</code></td>
+        <td><p class="text-bold">Text example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">text-normal</code></td>
+        <td><p class="text-normal">Text example...</p></td>
+      </tr>
+
+      <tr>
+        <td><code class="code text-nowrap">text-italic</code></td>
+        <td><p class="text-italic">Text example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">text-strike</code></td>
+        <td><p class="text-strike">Text example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">text-underline</code></td>
+        <td><p class="text-underline">Text example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">text-underline-dotted</code></td>
+        <td><p class="text-underline-dotted">Text example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">text-underline-dashed</code></td>
+        <td><p class="text-underline-dashed">Text example...</p></td>
+      </tr>
+
+      <tr>
+        <td><code class="code text-nowrap">text-wrap</code></td>
+        <td><p class="text-wrap">Text example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">text-nowrap</code></td>
+        <td><p class="text-nowrap">Text example...</p></td>
+      </tr>
+
+      <tr>
+        <td><code class="code text-nowrap">text-lead</code></td>
+        <td><p class="text-lead">Text example: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum laoreet interdum elit, non blandit arcu luctus quis. Duis mattis et massa a congue.</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### text-overflow-ellipsis
+
+Adds ellipsis styles to an element that will display an ellipsis (...) for text that would otherwise wrap.
+
+<div class="border radius padding text-overflow-ellipsis">Text example: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum laoreet interdum elit, non blandit arcu luctus quis. Duis mattis et massa a congue.</div>
+
+```html
+<div class="text-overflow-ellipsis">...<div>
+```
+
+## Sass variables
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-utility</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">String to prefix utilities with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">background</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the background utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-border</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">border</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the border utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-border-radius</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">radius</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the border-radius utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-box-shadow</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">elevate</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the box-shadow utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">color</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the text color utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-display</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">display</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the display utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-flex</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">flex</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the flex utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-margin</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">margin</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the margin utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">padding</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the padding utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-spacing</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">spacing</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the spacing utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-span</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">span</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the span utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-text</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">text</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the text utility.</td>
+      </tr>
+
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$breakpoints</code></td>
+        <td data-mobile-label="Default">
+          <code class="code color-secondary text-nowrap">
+            "xs": 480px,<br>
+            "sm": 620px,<br>
+            "md": 760px,<br>
+            "lg": 990px,<br>
+            "xl": 1380px
+          </code>
+        </td>
+        <td data-mobile-label="Desc">The breakpoints map some utilities use to build their styles.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$columns</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">12</code></td>
+        <td data-mobile-label="Desc">The columns value to use for <code class="code">span</code> component sizing.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$display-properties</code></td>
+        <td data-mobile-label="Default">
+          <code class="code color-secondary text-nowrap">
+            inline,<br>
+            flex,<br>
+            inline-flex,<br>
+            block,<br>
+            inline-block,<br>
+            none
+          </code>
+        </td>
+        <td data-mobile-label="Desc">Used to determine which display properties to output as utilities.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$spacing</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1rem</code></td>
+        <td data-mobile-label="Desc">The default value used for the <code class="code">spacing</code> utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$spacing-map</code></td>
+        <td data-mobile-label="Default">
+          <code class="code color-secondary text-nowrap">
+            "none": 0,<br>
+            "xs": 0.25rem,<br>
+            "sm": 0.5rem,<br>
+            "md": 1rem,<br>
+            "lg": 1.5rem,<br>
+            "xl": 2rem
+          </code>
+        </td>
+        <td data-mobile-label="Desc">Map of variations to output for the <code class="code">spacing</code> utility.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

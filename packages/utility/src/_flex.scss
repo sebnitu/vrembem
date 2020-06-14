@@ -1,105 +1,104 @@
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
 $_u: var.$prefix-utility;
 $_c: var.$class-flex;
 
 @if (var.$class-flex) {
-  .#{$_b}#{$_u}#{$_c} {
+  .#{$_u}#{$_c} {
     display: flex !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-align-start {
+  .#{$_u}#{$_c}-align-start {
     align-items: flex-start !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-align-center {
+  .#{$_u}#{$_c}-align-center {
     align-items: center !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-align-end {
+  .#{$_u}#{$_c}-align-end {
     align-items: flex-end !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-align-stretch {
+  .#{$_u}#{$_c}-align-stretch {
     align-items: stretch !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-align-baseline {
+  .#{$_u}#{$_c}-align-baseline {
     align-items: baseline !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-justify-start {
+  .#{$_u}#{$_c}-justify-start {
     justify-content: flex-start !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-justify-center {
+  .#{$_u}#{$_c}-justify-center {
     justify-content: center !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-justify-end {
+  .#{$_u}#{$_c}-justify-end {
     justify-content: flex-end !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-justify-between {
+  .#{$_u}#{$_c}-justify-between {
     justify-content: space-between !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-justify-around {
+  .#{$_u}#{$_c}-justify-around {
     justify-content: space-around !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-justify-evenly {
+  .#{$_u}#{$_c}-justify-evenly {
     justify-content: space-evenly !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-grow-0 {
+  .#{$_u}#{$_c}-grow-0 {
     flex-grow: 0 !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-grow-1 {
+  .#{$_u}#{$_c}-grow-1 {
     flex-grow: 1 !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-grow-2 {
+  .#{$_u}#{$_c}-grow-2 {
     flex-grow: 2 !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-shrink-0 {
+  .#{$_u}#{$_c}-shrink-0 {
     flex-shrink: 0 !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-shrink-1 {
+  .#{$_u}#{$_c}-shrink-1 {
     flex-shrink: 1 !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-shrink-2 {
+  .#{$_u}#{$_c}-shrink-2 {
     flex-shrink: 2 !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-basis-0 {
+  .#{$_u}#{$_c}-basis-0 {
     flex-basis: 0 !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-basis-auto {
+  .#{$_u}#{$_c}-basis-auto {
     flex-basis: auto !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-wrap {
+  .#{$_u}#{$_c}-wrap {
     flex-wrap: wrap !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-nowrap {
+  .#{$_u}#{$_c}-nowrap {
     flex-wrap: nowrap !important;
   }
 
-  .#{$_b}#{$_u}#{$_c}-items-equal {
+  .#{$_u}#{$_c}-items-equal {
     > * {
       flex: 1 1 0 !important;
     }
   }
 
-  .#{$_b}#{$_u}#{$_c}-items-auto {
+  .#{$_u}#{$_c}-items-auto {
     > * {
       flex: 0 0 auto !important;
     }
