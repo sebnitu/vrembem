@@ -1,7 +1,7 @@
 {
   "name": "vrembem",
   "description": "A CSS component library based on the BEM methodology.",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -31,8 +31,8 @@
   },
   "dependencies": {
     "@vrembem/arrow": "^1.5.4",
-    "@vrembem/base": "^1.7.0",
-    "@vrembem/breadcrumb": "^1.7.0",
+    "@vrembem/base": "^1.7.1",
+    "@vrembem/breadcrumb": "^1.7.1",
     "@vrembem/button": "^1.5.4",
     "@vrembem/button-group": "^1.5.4",
     "@vrembem/card": "^1.5.4",
@@ -40,26 +40,26 @@
     "@vrembem/container": "^1.5.4",
     "@vrembem/core": "^1.5.4",
     "@vrembem/dialog": "^1.5.4",
-    "@vrembem/dismissible": "^1.7.0",
-    "@vrembem/drawer": "^1.7.0",
+    "@vrembem/dismissible": "^1.7.1",
+    "@vrembem/drawer": "^1.7.1",
     "@vrembem/dropdown": "^1.7.0",
-    "@vrembem/grid": "^1.5.4",
+    "@vrembem/grid": "^1.7.1",
     "@vrembem/icon": "^1.5.4",
     "@vrembem/icon-action": "^1.5.4",
     "@vrembem/input": "^1.6.0",
     "@vrembem/level": "^1.5.4",
     "@vrembem/media": "^1.5.4",
     "@vrembem/menu": "^1.7.0",
-    "@vrembem/modal": "^1.7.0",
-    "@vrembem/notice": "^1.7.0",
+    "@vrembem/modal": "^1.7.1",
+    "@vrembem/notice": "^1.7.1",
     "@vrembem/panel": "^1.5.4",
     "@vrembem/radio": "^1.5.4",
     "@vrembem/section": "^1.5.4",
     "@vrembem/span": "^1.5.4",
     "@vrembem/switch": "^1.5.4",
-    "@vrembem/table": "^1.5.4",
+    "@vrembem/table": "^1.7.1",
     "@vrembem/tooltip": "^1.5.4",
-    "@vrembem/utility": "^1.7.0"
+    "@vrembem/utility": "^1.7.1"
   },
   "publishConfig": {
     "access": "public"

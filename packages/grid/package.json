@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/grid",
   "description": "A flexbox based grid system component.",
-  "version": "1.5.4",
+  "version": "1.7.1",
   "license": "MIT",
   "keywords": [
     "BEM",
