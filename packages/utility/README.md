@@ -76,7 +76,45 @@ Applies background color property. Most options include light, lighter, dark and
 
 ### `border`
 
-TBD
+Applies border property with optional sides variants.
+
+```html
+<div class="border"></div>
+<div class="border-top"></div>
+<div class="border-right"></div>
+<div class="border-bottom"></div>
+<div class="border-left"></div>
+```
+
+#### `border-none`
+
+Remove border styles with `border-none` utilities and optional side variants.
+
+```html
+<div class="border-none"></div>
+<div class="border-top-none"></div>
+<div class="border-right-none"></div>
+<div class="border-bottom-none"></div>
+<div class="border-left-none"></div>
+```
+
+#### `border-color`
+
+Add border color utilities with light, dark and darker variants.
+
+```html
+<!-- border-color -->
+<div class="border border-color-light"></div>
+<div class="border"></div>
+<div class="border border-color-dark"></div>
+<div class="border border-color-darker"></div>
+
+<!-- border-color-invert -->
+<div class="border border-color-invert-light"></div>
+<div class="border border-color-invert"></div>
+<div class="border border-color-invert-dark"></div>
+<div class="border border-color-invert-darker"></div>
+```
 
 ### `radius`
 

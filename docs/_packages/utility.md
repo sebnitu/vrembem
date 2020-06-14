@@ -86,6 +86,8 @@ Applies background color property. Most options include light, lighter, dark and
 
 ## border
 
+Applies border property with optional sides variants.
+
 {% include demo_open.html class_grid="grid_break" %}
 <div class="swatch-group">
   <div class="swatch background-shade-light border"></div>
@@ -104,6 +106,10 @@ Applies background color property. Most options include light, lighter, dark and
 ```
 {% include demo_close.html %}
 
+### border-none
+
+Remove border styles with `border-none` utilities and optional side variants.
+
 {% include demo_open.html class_grid="grid_break" %}
 <div class="swatch-group">
   <div class="swatch background-shade-light border border-none"></div>
@@ -121,6 +127,10 @@ Applies background color property. Most options include light, lighter, dark and
 <div class="border-left-none"></div>
 ```
 {% include demo_close.html %}
+
+### border-color
+
+Add border color utilities with light, dark and darker variants.
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="swatch-group">
