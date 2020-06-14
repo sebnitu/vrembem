@@ -234,6 +234,8 @@ Removes border-radius by setting it's value to `0` with optional corner variants
 
 ## elevate
 
+Applies different levels of elevation through box-shadow styles.
+
 {% include demo_open.html class_grid="grid_break" %}
 <div class="padding-lg background-shade radius">
   <div class="swatch-group">
@@ -260,95 +262,103 @@ Removes border-radius by setting it's value to `0` with optional corner variants
 
 ## color
 
-{% include demo_open.html class_grid="grid_break" class_parent="spacing" %}
-<div class="padding radius background-shade-light">
-  <div class="swatch-group">
-    <span class="color">Color</span>
-    <span class="color-subtle">Color light</span>
-    <span class="color-primary-lighter">Color primary</span>
-    <span class="color-primary-light">Color primary</span>
-    <span class="color-primary">Color primary</span>
-    <span class="color-primary-dark">Color primary</span>
-    <span class="color-primary-darker">Color primary</span>
-    <span class="color-secondary-lighter">Color secondary</span>
-    <span class="color-secondary-light">Color secondary</span>
-    <span class="color-secondary">Color secondary</span>
-    <span class="color-secondary-dark">Color secondary</span>
-    <span class="color-secondary-darker">Color secondary</span>
-    <span class="color-shade-light">Color shade</span>
-    <span class="color-shade">Color shade</span>
-    <span class="color-shade-dark">Color shade</span>
-    <span class="color-night-light">Color night</span>
-    <span class="color-night">Color night</span>
-    <span class="color-night-dark">Color night</span>
-    <span class="color-info-lighter">Color info</span>
-    <span class="color-info-light">Color info</span>
-    <span class="color-info">Color info</span>
-    <span class="color-info-dark">Color info</span>
-    <span class="color-info-darker">Color info</span>
-    <span class="color-success-lighter">Color success</span>
-    <span class="color-success-light">Color success</span>
-    <span class="color-success">Color success</span>
-    <span class="color-success-dark">Color success</span>
-    <span class="color-success-darker">Color success</span>
-    <span class="color-caution-lighter">Color caution</span>
-    <span class="color-caution-light">Color caution</span>
-    <span class="color-caution">Color caution</span>
-    <span class="color-caution-dark">Color caution</span>
-    <span class="color-caution-darker">Color caution</span>
-    <span class="color-danger-lighter">Color danger</span>
-    <span class="color-danger-light">Color danger</span>
-    <span class="color-danger">Color danger</span>
-    <span class="color-danger-dark">Color danger</span>
-    <span class="color-danger-darker">Color danger</span>
-    <span class="color-black">Color black</span>
-    <span class="color-white">Color white</span>
-    <span class="color-transparent">Color transparent</span>
+Applies text color property. Most options include light, lighter, dark and darker variants.
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="grid">
+  <div class="grid__item">
+    <div class="padding radius background-shade-light">
+      <div class="swatch-group">
+        <span class="color">Color</span>
+        <span class="color-subtle">Color light</span>
+        <span class="color-primary-lighter">Color primary</span>
+        <span class="color-primary-light">Color primary</span>
+        <span class="color-primary">Color primary</span>
+        <span class="color-primary-dark">Color primary</span>
+        <span class="color-primary-darker">Color primary</span>
+        <span class="color-secondary-lighter">Color secondary</span>
+        <span class="color-secondary-light">Color secondary</span>
+        <span class="color-secondary">Color secondary</span>
+        <span class="color-secondary-dark">Color secondary</span>
+        <span class="color-secondary-darker">Color secondary</span>
+        <span class="color-shade-light">Color shade</span>
+        <span class="color-shade">Color shade</span>
+        <span class="color-shade-dark">Color shade</span>
+        <span class="color-night-light">Color night</span>
+        <span class="color-night">Color night</span>
+        <span class="color-night-dark">Color night</span>
+        <span class="color-info-lighter">Color info</span>
+        <span class="color-info-light">Color info</span>
+        <span class="color-info">Color info</span>
+        <span class="color-info-dark">Color info</span>
+        <span class="color-info-darker">Color info</span>
+        <span class="color-success-lighter">Color success</span>
+        <span class="color-success-light">Color success</span>
+        <span class="color-success">Color success</span>
+        <span class="color-success-dark">Color success</span>
+        <span class="color-success-darker">Color success</span>
+        <span class="color-caution-lighter">Color caution</span>
+        <span class="color-caution-light">Color caution</span>
+        <span class="color-caution">Color caution</span>
+        <span class="color-caution-dark">Color caution</span>
+        <span class="color-caution-darker">Color caution</span>
+        <span class="color-danger-lighter">Color danger</span>
+        <span class="color-danger-light">Color danger</span>
+        <span class="color-danger">Color danger</span>
+        <span class="color-danger-dark">Color danger</span>
+        <span class="color-danger-darker">Color danger</span>
+        <span class="color-black">Color black</span>
+        <span class="color-white">Color white</span>
+        <span class="color-transparent">Color transparent</span>
+      </div>
+    </div>
   </div>
-</div>
-<div class="padding radius background-night">
-  <div class="swatch-group">
-    <span class="color-invert">Color invert</span>
-    <span class="color-invert_subtle">Color invert dark</span>
-    <span class="color-primary-lighter">Color primary</span>
-    <span class="color-primary-light">Color primary</span>
-    <span class="color-primary">Color primary</span>
-    <span class="color-primary-dark">Color primary</span>
-    <span class="color-primary-darker">Color primary</span>
-    <span class="color-secondary-lighter">Color secondary</span>
-    <span class="color-secondary-light">Color secondary</span>
-    <span class="color-secondary">Color secondary</span>
-    <span class="color-secondary-dark">Color secondary</span>
-    <span class="color-secondary-darker">Color secondary</span>
-    <span class="color-shade-light">Color shade</span>
-    <span class="color-shade">Color shade</span>
-    <span class="color-shade-dark">Color shade</span>
-    <span class="color-night-light">Color night</span>
-    <span class="color-night">Color night</span>
-    <span class="color-night-dark">Color night</span>
-    <span class="color-info-lighter">Color info</span>
-    <span class="color-info-light">Color info</span>
-    <span class="color-info">Color info</span>
-    <span class="color-info-dark">Color info</span>
-    <span class="color-info-darker">Color info</span>
-    <span class="color-success-lighter">Color success</span>
-    <span class="color-success-light">Color success</span>
-    <span class="color-success">Color success</span>
-    <span class="color-success-dark">Color success</span>
-    <span class="color-success-darker">Color success</span>
-    <span class="color-caution-lighter">Color caution</span>
-    <span class="color-caution-light">Color caution</span>
-    <span class="color-caution">Color caution</span>
-    <span class="color-caution-dark">Color caution</span>
-    <span class="color-caution-darker">Color caution</span>
-    <span class="color-danger-lighter">Color danger</span>
-    <span class="color-danger-light">Color danger</span>
-    <span class="color-danger">Color danger</span>
-    <span class="color-danger-dark">Color danger</span>
-    <span class="color-danger-darker">Color danger</span>
-    <span class="color-black">Color black</span>
-    <span class="color-white">Color white</span>
-    <span class="color-transparent">Color transparent</span>
+  <div class="grid__item">
+    <div class="padding radius background-night">
+      <div class="swatch-group">
+        <span class="color-invert">Color invert</span>
+        <span class="color-invert_subtle">Color invert dark</span>
+        <span class="color-primary-lighter">Color primary</span>
+        <span class="color-primary-light">Color primary</span>
+        <span class="color-primary">Color primary</span>
+        <span class="color-primary-dark">Color primary</span>
+        <span class="color-primary-darker">Color primary</span>
+        <span class="color-secondary-lighter">Color secondary</span>
+        <span class="color-secondary-light">Color secondary</span>
+        <span class="color-secondary">Color secondary</span>
+        <span class="color-secondary-dark">Color secondary</span>
+        <span class="color-secondary-darker">Color secondary</span>
+        <span class="color-shade-light">Color shade</span>
+        <span class="color-shade">Color shade</span>
+        <span class="color-shade-dark">Color shade</span>
+        <span class="color-night-light">Color night</span>
+        <span class="color-night">Color night</span>
+        <span class="color-night-dark">Color night</span>
+        <span class="color-info-lighter">Color info</span>
+        <span class="color-info-light">Color info</span>
+        <span class="color-info">Color info</span>
+        <span class="color-info-dark">Color info</span>
+        <span class="color-info-darker">Color info</span>
+        <span class="color-success-lighter">Color success</span>
+        <span class="color-success-light">Color success</span>
+        <span class="color-success">Color success</span>
+        <span class="color-success-dark">Color success</span>
+        <span class="color-success-darker">Color success</span>
+        <span class="color-caution-lighter">Color caution</span>
+        <span class="color-caution-light">Color caution</span>
+        <span class="color-caution">Color caution</span>
+        <span class="color-caution-dark">Color caution</span>
+        <span class="color-caution-darker">Color caution</span>
+        <span class="color-danger-lighter">Color danger</span>
+        <span class="color-danger-light">Color danger</span>
+        <span class="color-danger">Color danger</span>
+        <span class="color-danger-dark">Color danger</span>
+        <span class="color-danger-darker">Color danger</span>
+        <span class="color-black">Color black</span>
+        <span class="color-white">Color white</span>
+        <span class="color-transparent">Color transparent</span>
+      </div>
+    </div>
   </div>
 </div>
 {% include demo_switch.html %}
@@ -437,18 +447,23 @@ Display utilities allow you to toggle the display property on an element with an
 <div class="display-block display-none-xs">
   <p>Small Mobile</p>
 </div>
+
 <div class="display-none display-block-xs display-none-sm">
-  <p>Small Mobile &rarr; Mobile</p>
+  <p>Small Mobile => Mobile</p>
 </div>
+
 <div class="display-none display-block-sm display-none-md">
-  <p>Mobile &rarr; Tablet</p>
+  <p>Mobile => Tablet</p>
 </div>
+
 <div class="display-none display-block-md display-none-lg">
-  <p>Tablet &rarr; Desktop</p>
+  <p>Tablet => Desktop</p>
 </div>
+
 <div class="display-none display-block-lg display-none-xl">
-  <p>Desktop &rarr; Large Desktop</p>
+  <p>Desktop => Large Desktop</p>
 </div>
+
 <div class="display-none display-block-xl">
   <p>Large Desktop</p>
 </div>
@@ -470,7 +485,7 @@ The flex utility is a great way to adjust individual flex properties on componen
 
 ### flex-align-[value]
 
-Adjust the `align-items` property of grid columns using the `flex-align-[value]` utility. Avaliable values are:
+Adjust the `align-items` property of grid columns using the `flex-align-[value]` utility. Available values are:
 
 * `flex-align-start`
 * `flex-align-center`
@@ -611,11 +626,12 @@ Change the `justify-content` property of grid columns using the `flex-justify-[v
 
 ## margin
 
-Add margin to an element using directional and size modifiers.
+Add margin to an element using directional and size modifiers. Margin size and spacing values are generated from `$spacing-map` variable map.
 
 * `margin`
 * `margin-[size]`
-* `margin-[direction]_[size]`
+* `margin-[direction]-[size]`
+* `margin-auto`
 
 <div>
   <div class="grid grid_break_xs">
@@ -652,7 +668,7 @@ Add margin to an element using directional and size modifiers.
 
 ## padding
 
-Add padding to an element using directional and size modifiers.
+Add padding to an element using directional and size modifiers. Padding size and spacing values are generated from `$spacing-map` variable map.
 
 * `padding`
 * `padding-[size]`
@@ -693,7 +709,7 @@ Add padding to an element using directional and size modifiers.
 
 ## spacing
 
-A utility for adding vertical spacing between an element's children.
+A utility for adding vertical spacing between an element's children. Spacing size and spacing values are generated from `$spacing-map` variable map.
 
 * `spacing`
 * `spacing-[key]`

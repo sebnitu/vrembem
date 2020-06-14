@@ -154,27 +154,147 @@ Removes border-radius by setting it's value to `0` with optional corner variants
 
 ### `elevate`
 
-TBD
+Applies different levels of elevation through box-shadow styles.
+
+```html
+<div class="elevate"></div>
+<div class="elevate-flat"></div>
+<div class="elevate-1dp"></div>
+<div class="elevate-4dp"></div>
+<div class="elevate-8dp"></div>
+<div class="elevate-16dp"></div>
+<div class="elevate-24dp"></div>
+```
 
 ### `color`
 
-TBD
+Applies text color property. Most options include light, lighter, dark and darker variants.
+
+```html
+<span class="color">...</span>
+<span class="color-subtle">...</span>
+<span class="color-primary-light">...</span>
+<span class="color-primary">...</span>
+<span class="color-primary-dark">...</span>
+...
+```
+
+> Checkout the [web documentation](https://vrembem.com/packages/utility/#color) for a complete list of available options.
 
 ### `display`
 
-TBD
+Display utilities allow you to toggle the display property on an element with an optional breakpoint conditional.
+
+```
+.display-[property]-[breakpoint]
+```
+
+Available properties are generated from the `$display-properties` variable map and breakpoint conditions from `$breakpoints` variable map.
+
+```html
+<div class="display-block display-none-xs">
+  <p>Small Mobile</p>
+</div>
+
+<div class="display-none display-block-xs display-none-sm">
+  <p>Small Mobile => Mobile</p>
+</div>
+
+<div class="display-none display-block-sm display-none-md">
+  <p>Mobile => Tablet</p>
+</div>
+
+<div class="display-none display-block-md display-none-lg">
+  <p>Tablet => Desktop</p>
+</div>
+
+<div class="display-none display-block-lg display-none-xl">
+  <p>Desktop => Large Desktop</p>
+</div>
+
+<div class="display-none display-block-xl">
+  <p>Large Desktop</p>
+</div>
+```
 
 ### `flex`
 
-TBD
+The flex utility is a great way to adjust individual flex properties on components that use flex layout. These are some available flex property based utilities:
+
+* `flex-align-[key]`
+* `flex-justify-[key]`
+* `flex-grow-[key]`
+* `flex-shrink-[key]`
+* `flex-basis-[key]`
+* `flex-wrap`
+* `flex-nowrap`
+* `flex-items-[key]`
+
+#### flex-align-[value]
+
+Adjust the `align-items` property of grid columns using the `flex-align-[value]` utility. Available values are:
+
+* `flex-align-start`
+* `flex-align-center`
+* `flex-align-end`
+* `flex-align-stretch`
+* `flex-align-baseline`
+
+```html
+<div class="grid flex-align-start">
+  <div class="grid__item" style="height: 100px;">...</div>
+  <div class="grid__item">...</div>
+</div>
+
+<div class="grid flex-align-center">
+  <div class="grid__item" style="height: 100px;">...</div>
+  <div class="grid__item">...</div>
+</div>
+
+<div class="grid flex-align-end">
+  <div class="grid__item" style="height: 100px;">...</div>
+  <div class="grid__item">...</div>
+</div>
+```
+
+#### flex-justify-[value]
+
+Change the `justify-content` property of grid columns using the `flex-justify-[value]` utility. Best used along with the `grid_auto` modifier. Avaliable values are:
+
+* `flex-justify-start`
+* `flex-justify-center`
+* `flex-justify-end`
+* `flex-justify-between`
+* `flex-justify-around`
+* `flex-justify-evenly`
+
+```html
+<div class="grid flex-justify-start">...</div>
+<div class="grid flex-justify-center">...</div>
+<div class="grid flex-justify-end">...</div>
+<div class="grid flex-justify-between">...</div>
+```
 
 ### `margin`
 
-TBD
+Add margin to an element using directional and size modifiers. Margin size and spacing values are generated from `$spacing-map` variable map.
+
+* `margin`: Adds margins on all sides.
+* `margin-[size]`: Adds margins on all sides with a specific size key.
+* `margin-[direction]-[size]`: Adds margins on a specific size and with size key.
+* `margin-hori-[size]`: Adds left and right margins with a specific size key.
+* `margin-vert-[size]`: Adds top and bottom margins with a specific size key.
+* `margin-auto`: Sets left and right margins to auto.
 
 ### `padding`
 
-TBD
+Add padding to an element using directional and size modifiers. Padding size and spacing values are generated from `$spacing-map` variable map.
+
+* `padding`: Adds padding on all sides.
+* `padding-[size]`: Adds padding on all sides with a specific size key.
+* `padding-[direction]-[size]`: Adds padding on a specific size and with size key.
+* `padding-hori-[size]`: Adds left and right padding with a specific size key.
+* `padding-vert-[size]`: Adds top and bottom padding with a specific size key.
 
 ### `spacing`
 
