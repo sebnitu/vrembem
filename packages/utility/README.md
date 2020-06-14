@@ -61,7 +61,18 @@ Each utility has a corresponding `$class-[property]` variable that determines th
 
 ### `background`
 
-TBD
+Applies background color property. Most options include light, lighter, dark and darker variants.
+
+```html
+<div class="background-primary-lighter"></div>
+<div class="background-primary-light"></div>
+<div class="background-primary"></div>
+<div class="background-primary-dark"></div>
+<div class="background-primary-darker"></div>
+...
+```
+
+> Checkout the [web documentation](https://vrembem.com/packages/utility/#background) for a complete list of available options.
 
 ### `border`
 

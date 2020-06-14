@@ -11,6 +11,8 @@ usage:
 
 ## background
 
+Applies background color property. Most options include light, lighter, dark and darker variants.
+
 {% include demo_open.html class_grid="grid_break" %}
 <div class="swatch-group">
   <div class="swatch-group">
