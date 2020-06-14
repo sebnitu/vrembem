@@ -134,7 +134,7 @@ Set an individual grid item to auto using `grid__item_auto` element modifier.
 
 ## grid_break_[key]
 
-Adds a breakpoint for when grid items should be stacked vertically. Also available is the `grid_break` modifier which stacks grid items under all conditions.
+Adds a breakpoint for when grid items should be stacked vertically. Values and class keys are generated using the `$breakpoint` map. Also available is the `grid_break` modifier which stacks grid items under all conditions.
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="grid grid_break_xs">
@@ -261,7 +261,7 @@ Set an individual grid item to fill using the `grid__item_fill` element modifier
 
 ## grid_gap_[key]
 
-Modifiers that adjust the gutters between content tracks.
+Modifiers that adjust the gutter spacing between `grid__item` elements. Values and class keys are generated using the `$gap-scale` map.
 
 ```html
 <div class="grid grid_gap_none">...</div>
@@ -270,18 +270,6 @@ Modifiers that adjust the gutters between content tracks.
 <div class="grid grid_gap_md">...</div>
 <div class="grid grid_gap_lg">...</div>
 <div class="grid grid_gap_xl">...</div>
-```
-
-The key options and values are set using the `$gap-scale` map:
-
-```scss
-$gap-scale: (
-  "xs": 0.5rem,
-  "sm": 1rem,
-  "md": 2rem,
-  "lg": 3rem,
-  "xl": 4rem,
-) !default;
 ```
 
 ## flex

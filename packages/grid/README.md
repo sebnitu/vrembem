@@ -42,9 +42,7 @@ The clear element allows you to start a new row at any point in a column set.
 ```html
 <div class="grid">
   <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
   <div class="grid__clear"></div>
-  <div class="grid__item">...</div>
   <div class="grid__item">...</div>
   <div class="grid__item">...</div>
 </div>
@@ -54,19 +52,69 @@ The clear element allows you to start a new row at any point in a column set.
 
 ### `grid_auto`
 
-TBD
+Gives grid items a basis of auto so their content dictates their width.
+
+```html
+<div class="grid grid_auto">
+  <div class="grid__item">...</div>
+  <div class="grid__item">...</div>
+</div>
+```
+
+Set an individual grid item to auto using `grid__item_auto` element modifier.
+
+```html
+<div class="grid">
+  <div class="grid__item grid__item_auto">...</div>
+  <div class="grid__item">...</div>
+</div>
+```
 
 ### `grid_break_[key]`
 
-TBD
+Adds a breakpoint for when grid items should be stacked vertically. Values and class keys are generated using the `$breakpoint` map. Also available is the `grid_break` modifier which stacks grid items under all conditions.
+
+```html
+<div class="grid grid_break">...</div>
+<div class="grid grid_break_xs">...</div>
+<div class="grid grid_break_sm">...</div>
+<div class="grid grid_break_md">...</div>
+<div class="grid grid_break_lg">...</div>
+<div class="grid grid_break_xl">...</div>
+```
 
 ### `grid_fill`
 
-TBD
+The fill modifier stretches grid item’s contents to fill the height of it’s container.
+
+```html
+<div class="grid grid_fill">
+  <div class="grid__item">...</div>
+  <div class="grid__item">...</div>
+</div>
+```
+
+Set an individual grid item to fill using the `grid__item_fill` element modifier.
+
+```html
+<div class="grid">
+  <div class="grid__item grid__item_fill">...</div>
+  <div class="grid__item">...</div>
+</div>
+```
 
 ### `grid_gap_[key]`
 
-TBD
+Modifiers that adjust the gutter spacing between `grid__item` elements. Values and class keys are generated using the `$gap-scale` map.
+
+```html
+<div class="grid grid_gap_none">...</div>
+<div class="grid grid_gap_xs">...</div>
+<div class="grid grid_gap_sm">...</div>
+<div class="grid grid_gap_md">...</div>
+<div class="grid grid_gap_lg">...</div>
+<div class="grid grid_gap_xl">...</div>
+```
 
 ## Customization
 
