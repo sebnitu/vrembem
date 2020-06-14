@@ -298,15 +298,98 @@ Add padding to an element using directional and size modifiers. Padding size and
 
 ### `spacing`
 
-TBD
+A utility for adding vertical spacing between an element's children. Spacing size and spacing values are generated from `$spacing-map` variable map.
+
+* `spacing`
+* `spacing-[key]`
+
+```html
+<div class="spacing">...</div>
+```
 
 ### `span`
 
-TBD
+Set the width, max-width and flex based on a column set using the `span` utility. There are a number of options available:
+
+* `span-auto`
+* `span-full`
+* `span-[col]`
+* `span-[col]-[breakpoint]`
+
+#### `span-auto`
+
+```html
+<div class="grid">
+  <div class="grid__item span-auto">...</div>
+  <div class="grid__item">...</div>
+  <div class="grid__item">...</div>
+</div>
+```
+
+#### `span-full`
+
+```html
+<div class="grid">
+  <div class="grid__item span-full">...</div>
+  <div class="grid__item">...</div>
+  <div class="grid__item">...</div>
+</div>
+```
+
+#### `span-[col]`
+
+```html
+<div class="grid">
+  <div class="grid__item span-6">...</div>
+  <div class="grid__item span-6">...</div>
+  <div class="grid__break"></div>
+  <div class="grid__item span-6">...</div>
+  <div class="grid__item span-3">...</div>
+  <div class="grid__item span-3">...</div>
+</div>
+```
+
+#### `span-[col]-[breakpoint]`
+
+```html
+<div class="grid">
+  <div class="grid__item span-12 span-6-xs span-8-sm span-4-md span-3-lg">...</div>
+  <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">...</div>
+  <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">...</div>
+  <div class="grid__item span-12 span-6-xs span-8-sm span-12-md span-3-lg">...</div>
+</div>
+```
 
 ### `text`
 
-TBD
+A utility for adjusting various text styles.
+
+* `text-size-sm`: Adds a smaller font-size relative to base font-size.
+* `text-size-lg`: Adds a larger font-size relative to base font-size.
+* `text-capitalize`: Sets text-transform to capitalize.
+* `text-lowercase`: Sets text-transform to lowercase.
+* `text-uppercase`: Sets text-transform to uppercase.
+* `text-align-left`: Sets text-align to left.
+* `text-align-center`: Sets text-align to center.
+* `text-align-right`: Sets text-align to right.
+* `text-bold`: Sets font-weight to bold.
+* `text-normal`: Sets font-weight to normal.
+* `text-italic`: Sets font-style to italic.
+* `text-strike`: Sets text-decoration to line-through.
+* `text-underline`: Sets text-decoration to underline.
+* `text-underline-dotted`: Sets text-decoration to underline with dotted style.
+* `text-underline-dashed`: Sets text-decoration to underline with dashed style.
+* `text-wrap`: Sets white-space to normal allowing text to wrap.
+* `text-nowrap`: Sets white-space to `nowrap` which no longer allows text to wrap.
+* `text-lead`: Adds font styles to create leading text.
+
+#### `text-overflow-ellipsis`
+
+Adds ellipsis styles to an element that will display an ellipsis (...) for text that would otherwise wrap.
+
+```html
+<div class="text-overflow-ellipsis">...<div>
+```
 
 ## Customization
 
