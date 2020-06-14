@@ -118,7 +118,7 @@ Variable | Default | Description
 `$class-border` | `"border"` | String to use for the class name of the border utility.
 `$class-border-radius` | `"radius"` | String to use for the class name of the border-radius utility.
 `$class-box-shadow` | `"elevate"` | String to use for the class name of the box-shadow utility.
-`$class-color` | `"color"` | String to use for the class name of the color utility.
+`$class-color` | `"color"` | String to use for the class name of the text color utility.
 `$class-display` | `"display"` | String to use for the class name of the display utility.
 `$class-flex` | `"flex"` | String to use for the class name of the flex utility.
 `$class-margin` | `"margin"` | String to use for the class name of the margin utility.
@@ -130,4 +130,4 @@ Variable | Default | Description
 `$columns` | `12` | The columns value to use for `span` component sizing.
 `$display-properties` | [Source](https://github.com/sebnitu/vrembem/blob/08eb7b3b55e9c55ed0027e8d9cee3d24b2ac86d6/packages/utility/src/_variables.scss#L24-L31) | Used to determine which display properties to output as utilities.
 `$spacing` | `1rem` | The default value used for the `spacing` utility.
-`$spacing-map` | [Source](https://github.com/sebnitu/vrembem/blob/08eb7b3b55e9c55ed0027e8d9cee3d24b2ac86d6/packages/utility/src/_variables.scss#L34-L41) | Map of variations to output for the spacing utility.
+`$spacing-map` | [Source](https://github.com/sebnitu/vrembem/blob/08eb7b3b55e9c55ed0027e8d9cee3d24b2ac86d6/packages/utility/src/_variables.scss#L34-L41) | Map of variations to output for the `spacing` utility.

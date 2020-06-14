@@ -929,3 +929,136 @@ Adds ellipsis styles to an element that will display an ellipsis (...) for text 
 ```html
 <div class="text-overflow-ellipsis">...<div>
 ```
+
+## Sass variables
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-utility</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">String to prefix utilities with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">background</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the background utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-border</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">border</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the border utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-border-radius</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">radius</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the border-radius utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-box-shadow</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">elevate</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the box-shadow utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">color</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the text color utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-display</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">display</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the display utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-flex</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">flex</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the flex utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-margin</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">margin</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the margin utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">padding</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the padding utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-spacing</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">spacing</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the spacing utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-span</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">span</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the span utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-text</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">text</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the text utility.</td>
+      </tr>
+
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$breakpoints</code></td>
+        <td data-mobile-label="Default">
+          <code class="code color-secondary text-nowrap">
+            "xs": 480px,<br>
+            "sm": 620px,<br>
+            "md": 760px,<br>
+            "lg": 990px,<br>
+            "xl": 1380px
+          </code>
+        </td>
+        <td data-mobile-label="Desc">The breakpoints map some utilities use to build their styles.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$columns</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">12</code></td>
+        <td data-mobile-label="Desc">The columns value to use for <code class="code">span</code> component sizing.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$display-properties</code></td>
+        <td data-mobile-label="Default">
+          <code class="code color-secondary text-nowrap">
+            inline,<br>
+            flex,<br>
+            inline-flex,<br>
+            block,<br>
+            inline-block,<br>
+            none
+          </code>
+        </td>
+        <td data-mobile-label="Desc">Used to determine which display properties to output as utilities.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$spacing</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1rem</code></td>
+        <td data-mobile-label="Desc">The default value used for the <code class="code">spacing</code> utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$spacing-map</code></td>
+        <td data-mobile-label="Default">
+          <code class="code color-secondary text-nowrap">
+            "none": 0,<br>
+            "xs": 0.25rem,<br>
+            "sm": 0.5rem,<br>
+            "md": 1rem,<br>
+            "lg": 1.5rem,<br>
+            "xl": 2rem
+          </code>
+        </td>
+        <td data-mobile-label="Desc">Map of variations to output for the <code class="code">spacing</code> utility.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

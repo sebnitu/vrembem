@@ -556,3 +556,73 @@ The [span utility](/packages/utility#span) sets width, max-width and flex based 
 </div>
 ```
 {% include demo_close.html %}
+
+## Sass variables
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Prefixes -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-block</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">String to prefix blocks with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-element</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"__"</code></td>
+        <td data-mobile-label="Desc">String to prefix elements with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-modifier</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"_"</code></td>
+        <td data-mobile-label="Desc">String to prefix modifiers with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-modifier-value</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"_"</code></td>
+        <td data-mobile-label="Desc">String to prefix modifier values with.</td>
+      </tr>
+
+      <!-- General styles -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$breakpoints</code></td>
+        <td data-mobile-label="Default">
+          <code class="code color-secondary text-nowrap">
+            "xs": 480px,<br>
+            "sm": 620px,<br>
+            "md": 760px,<br>
+            "lg": 990px,<br>
+            "xl": 1380px
+          </code>
+        </td>
+        <td data-mobile-label="Desc">The breakpoints map the <code class="code">grid_break_[key]</code> modifier usees to build it's styles.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$gap</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2rem</code></td>
+        <td data-mobile-label="Desc">String to prefix modifier values with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$gap-scale</code></td>
+        <td data-mobile-label="Default">
+          <code class="code color-secondary text-nowrap">
+            "xs": 0.5rem,<br>
+            "sm": 1rem,<br>
+            "md": 2rem,<br>
+            "lg": 3rem,<br>
+            "xl": 4rem
+          </code>
+        </td>
+        <td data-mobile-label="Desc">A scale map the <code class="code">grid_gap_[key]</code> modifier uses to build it's styles.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
