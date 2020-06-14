@@ -168,17 +168,67 @@ Add border color utilities with light, dark and darker variants.
 
 ## radius
 
+Applies border-radius styles with optional corner variants. The value used by the radius utility is pulled from the `core.$border-radius` variable.
+
 {% include demo_open.html class_grid="grid_break" %}
 <div class="swatch-group">
   <div class="swatch background-secondary radius"></div>
-  <div class="swatch background-secondary radius-square"></div>
-  <div class="swatch background-secondary radius-circle"></div>
+  <div class="swatch background-secondary radius-top-left"></div>
+  <div class="swatch background-secondary radius-top-right"></div>
+  <div class="swatch background-secondary radius-bottom-right"></div>
+  <div class="swatch background-secondary radius-bottom-left"></div>
 </div>
 {% include demo_switch.html %}
 ```html
 <div class="radius"></div>
-<div class="radius-square"></div>
+<div class="radius-top-left"></div>
+<div class="radius-top-right"></div>
+<div class="radius-bottom-right"></div>
+<div class="radius-bottom-left"></div>
+```
+{% include demo_close.html %}
+
+### radius-circle
+
+Applies the maximum value to border-radius with optional corner variants. The value used by radius-circle utility is pulled from the `core.$border-radius-circle` variable.
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="swatch-group">
+  <div class="swatch background-secondary radius-circle"></div>
+  <div class="swatch background-secondary radius-circle-top-left"></div>
+  <div class="swatch background-secondary radius-circle-top-right"></div>
+  <div class="swatch background-secondary radius-circle-bottom-right"></div>
+  <div class="swatch background-secondary radius-circle-bottom-left"></div>
+</div>
+{% include demo_switch.html %}
+```html
 <div class="radius-circle"></div>
+<div class="radius-circle-top-left"></div>
+<div class="radius-circle-top-right"></div>
+<div class="radius-circle-bottom-right"></div>
+<div class="radius-circle-bottom-left"></div>
+```
+{% include demo_close.html %}
+
+### radius-square
+
+Removes border-radius by setting it's value to `0` with optional corner variants.
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="swatch-group">
+  <div class="swatch background-secondary radius-circle radius-square"></div>
+  <div class="swatch background-secondary radius-circle radius-square-top-left"></div>
+  <div class="swatch background-secondary radius-circle radius-square-top-right"></div>
+  <div class="swatch background-secondary radius-circle radius-square-bottom-right"></div>
+  <div class="swatch background-secondary radius-circle radius-square-bottom-left"></div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="radius-square"></div>
+<div class="radius-square-top-left"></div>
+<div class="radius-square-top-right"></div>
+<div class="radius-square-bottom-right"></div>
+<div class="radius-square-bottom-left"></div>
 ```
 {% include demo_close.html %}
 
