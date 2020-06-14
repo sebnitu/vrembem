@@ -428,62 +428,16 @@ Change the `justify-content` property of grid columns using the `flex-justify-[v
 
 ## span
 
-The [span utility](/packages/utility#span) sets width, max-width and flex based on a `grid__item` columns. There are a number of options available:
+Set the width, max-width and flex based on a column set using the `span` utility. Span widths are based on a column set based on the `$columns` variable. There are a number of options available:
 
-* `span-auto`
-* `span-full`
-* `span-[col]`
-* `span-[col]-[breakpoint]`
-
-### span-auto
-
-{% include demo_open.html class_grid="grid_break" %}
-<div class="grid grid_flatten">
-  <div class="grid__item span-auto">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="grid">
-  <div class="grid__item span-auto">...</div>
-  <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
-{% include demo_close.html %}
-
-### span-full
-
-{% include demo_open.html class_grid="grid_break" %}
-<div class="grid grid_flatten">
-  <div class="grid__item span-full">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="grid">
-  <div class="grid__item span-full">...</div>
-  <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
-{% include demo_close.html %}
+* `span-[col]`: Sets the number of columns an element should span.
+* `span-[col]-[breakpoint]`: Sets the number of columns an element should span based on a breakpoint condition.
+* `span-auto`: Sets an elements width to `auto`.
+* `span-full`: Sets an elements width to `100%`.
 
 ### span-[col]
+
+Sets the number of columns an element should span. The total number of columns is set in the `$columns` variable.
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="grid grid_flatten">
@@ -519,6 +473,8 @@ The [span utility](/packages/utility#span) sets width, max-width and flex based 
 
 ### span-[col]-[breakpoint]
 
+Sets the number of columns an element should span based on a breakpoint conditon. The total number of columns is set in the `$columns` variable. Breakpoint keys are built from the `$breakpoints` variable map.
+
 {% include demo_open.html class_grid="grid_break" %}
 <div class="grid grid_flatten">
   <div class="grid__item span-12 span-6-xs span-8-sm span-4-md span-3-lg">
@@ -541,6 +497,58 @@ The [span utility](/packages/utility#span) sets width, max-width and flex based 
   <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">...</div>
   <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">...</div>
   <div class="grid__item span-12 span-6-xs span-8-sm span-12-md span-3-lg">...</div>
+</div>
+```
+{% include demo_close.html %}
+
+### span-auto
+
+Sets an elements width to `auto`.
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="grid grid_flatten">
+  <div class="grid__item span-auto">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="grid">
+  <div class="grid__item span-auto">...</div>
+  <div class="grid__item">...</div>
+  <div class="grid__item">...</div>
+</div>
+```
+{% include demo_close.html %}
+
+### span-full
+
+Sets an elements width to `100%`.
+
+{% include demo_open.html class_grid="grid_break" %}
+<div class="grid grid_flatten">
+  <div class="grid__item span-full">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="grid">
+  <div class="grid__item span-full">...</div>
+  <div class="grid__item">...</div>
+  <div class="grid__item">...</div>
 </div>
 ```
 {% include demo_close.html %}
