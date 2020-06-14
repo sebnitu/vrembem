@@ -126,7 +126,7 @@ Variable | Default | Description
 `$class-spacing` | `"spacing"` | String to use for the class name of the spacing utility.
 `$class-span` | `"span"` | String to use for the class name of the span utility.
 `$class-text` | `"text"` | String to use for the class name of the text utility.
-`$breakpoints` | [`core.$breakpoints`](https://github.com/sebnitu/vrembem/blob/08eb7b3b55e9c55ed0027e8d9cee3d24b2ac86d6/packages/core/src/css/_variables.scss#L14-L20) | The breakpoints map some utilities use to build their styles.
+`$breakpoints` | [Source](https://github.com/sebnitu/vrembem/blob/08eb7b3b55e9c55ed0027e8d9cee3d24b2ac86d6/packages/core/src/css/_variables.scss#L14-L20) | The breakpoints map some utilities use to build their styles.
 `$columns` | `12` | The columns value to use for `span` component sizing.
 `$display-properties` | [Source](https://github.com/sebnitu/vrembem/blob/08eb7b3b55e9c55ed0027e8d9cee3d24b2ac86d6/packages/utility/src/_variables.scss#L24-L31) | Used to determine which display properties to output as utilities.
 `$spacing` | `1rem` | The default value used for the `spacing` utility.
