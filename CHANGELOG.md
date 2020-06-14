@@ -13,9 +13,21 @@
 
 <!--
 Commit template:
-chore: add v1.7.0 to CHANGELOG.md
+chore: add v1.7.1 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+## v1.7.1 (2020-06-14)
+
+#### :balloon: Improved Feature
+* `grid`, `utility`
+  * [#201](https://github.com/sebnitu/vrembem/pull/201) Add readme docs ([@sebnitu](https://github.com/sebnitu))
+  * [6d959b6](https://github.com/sebnitu/vrembem/commit/6d959b629de5fec7c5cab87c56a4057b3cd33f3b) imp: remove redundant prefix vars from utility ([@sebnitu](https://github.com/sebnitu))
+  * [3739fb4](https://github.com/sebnitu/vrembem/commit/3739fb46d041d40460aa9b2d9794a29d8a96e81f) imp: add optional corner variants to radius utility and update docs ([@sebnitu](https://github.com/sebnitu))
+
+#### :books: Documentation
+* `grid`, `table`, `utility`, `vrembem`
+  * [#201](https://github.com/sebnitu/vrembem/pull/201) Add readme docs ([@sebnitu](https://github.com/sebnitu))
 
 ## v1.7.0 (2020-06-13)
 
