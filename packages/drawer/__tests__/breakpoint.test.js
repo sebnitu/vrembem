@@ -80,14 +80,16 @@ afterEach(() => {
 
 test('should remove default modal modifier when above breakpoint', () => {
   document.body.innerHTML = markup;
-  window.innerWidth = 1200;
-  window.dispatchEvent(new Event('resize'));
-  drawer = new Drawer();
+  window.innerWidth = 300;
+  drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer="drawer-one"]');
   const value = drawer.settings.breakpoints[el.dataset.drawerBreakpoint];
 
   expect(el).toHaveClass('drawer_modal');
-  drawer.init();
+
+  window.innerWidth = 800;
+  window.dispatchEvent(new Event('resize'));
+  drawer.breakpointInit();
   expect(el).not.toHaveClass('drawer_modal');
   expect(parseInt(value)).toBeLessThan(window.innerWidth);
 });

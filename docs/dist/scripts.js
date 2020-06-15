@@ -205,6 +205,7 @@
       saveKey: 'DrawerState'
     };
     api.settings = _objectSpread$2(_objectSpread$2({}, defaults), options);
+    api.breakpoint = {};
     api.memoryTrigger = null;
     api.memoryTarget = null;
     api.state = {};
@@ -219,9 +220,11 @@
     };
 
     api.destroy = function () {
+      breakpointDestroy();
       api.memoryTrigger = null;
       api.memoryTarget = null;
       api.state = {};
+      api.mediaQueryLists = [];
       localStorage.removeItem(api.settings.saveKey);
       document.removeEventListener('click', run, false);
       document.removeEventListener('touchend', run, false);
@@ -246,6 +249,26 @@
       if (drawer) {
         close(drawer, callback);
       }
+    };
+
+    api.breakpoint.init = function () {
+      breakpointInit();
+    };
+
+    api.breakpoint.destroy = function () {
+      breakpointDestroy();
+    };
+
+    api.breakpoint.check = function () {
+      breakpointCheck();
+    };
+
+    api.switchToModal = function (drawer) {
+      switchToModal(drawer);
+    };
+
+    api.switchToNormal = function (drawer) {
+      switchToNormal(drawer);
     };
 
     var run = function run(event) {
@@ -413,33 +436,43 @@
         drawers.forEach(function (drawer) {
           var key = drawer.dataset[camelCase(api.settings.dataBreakpoint)];
           var bp = api.settings.breakpoints[key] ? api.settings.breakpoints[key] : key;
-          var mqList = window.matchMedia('(min-width:' + bp + ')');
-
-          if (mqList.matches) {
-            switchToDrawer(drawer);
-          } else {
-            switchToModal(drawer);
-          }
-
-          mqList.addListener(breakpointCheck);
+          var mql = window.matchMedia('(min-width:' + bp + ')');
+          breakpointToggle(mql, drawer);
+          mql.addListener(breakpointMatch);
           api.mediaQueryLists.push({
-            'drawer': drawer,
-            'mqList': mqList
+            'mql': mql,
+            'drawer': drawer
           });
         });
       }
     };
 
-    var breakpointCheck = function breakpointCheck(event) {
+    var breakpointDestroy = function breakpointDestroy() {
       api.mediaQueryLists.forEach(function (item) {
-        if (event.target == item.mqList) {
-          if (item.mqList.matches) {
-            switchToDrawer(item.drawer);
-          } else {
-            switchToModal(item.drawer);
-          }
+        item.mql.removeListener(breakpointMatch);
+      });
+    };
+
+    var breakpointMatch = function breakpointMatch(event) {
+      api.mediaQueryLists.forEach(function (item) {
+        if (event.media == item.mql.media) {
+          breakpointToggle(item.mql, item.drawer);
         }
       });
+    };
+
+    var breakpointCheck = function breakpointCheck() {
+      api.mediaQueryLists.forEach(function (item) {
+        breakpointToggle(item.mql, item.drawer);
+      });
+    };
+
+    var breakpointToggle = function breakpointToggle(mql, drawer) {
+      if (mql.matches) {
+        switchToNormal(drawer);
+      } else {
+        switchToModal(drawer);
+      }
     };
 
     var switchToModal = function switchToModal(drawer) {
@@ -455,7 +488,7 @@
       drawer.dispatchEvent(customEvent);
     };
 
-    var switchToDrawer = function switchToDrawer(drawer) {
+    var switchToNormal = function switchToNormal(drawer) {
       removeClass(drawer, api.settings.classModal);
       var drawerKey = drawer.dataset[camelCase(api.settings.dataDrawer)];
       var drawerState = api.state[drawerKey];
@@ -468,7 +501,7 @@
       var customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
         bubbles: true,
         detail: {
-          state: 'drawer'
+          state: 'normal'
         }
       });
       drawer.dispatchEvent(customEvent);
@@ -2557,7 +2590,7 @@
   new Dismissible({
     autoInit: true
   });
-  new Drawer({
+  var drawer = new Drawer({
     autoInit: true
   });
   new Modal({
