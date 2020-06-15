@@ -416,6 +416,8 @@ By default, the state of a drawer is saved to local storage and applied persiste
 * `drawer:opened` Emits when the drawer has opened.
 * `drawer:closed` Emits when the drawer has closed.
 * `drawer:breakpoint` Emits when the drawer has hit a breakpoint.
+* `drawer:toModal` Emits when the drawer is switched to it's modal state.
+* `drawer:toDefault` Emits when the drawer is switched to it's default state.
 
 ## JavaScript Options
 
@@ -534,7 +536,7 @@ By default, the state of a drawer is saved to local storage and applied persiste
     <tbody>
       <tr>
         <td data-mobile-label="Method"><code class="code text-nowrap">drawer.init()</code></td>
-        <td data-mobile-label="Desc">Initializes the drawer instance. <a href="#">Click here</a></td>
+        <td data-mobile-label="Desc">Initializes the drawer instance.</td>
       </tr>
       <tr>
         <td data-mobile-label="Method"><code class="code text-nowrap">drawer.destroy()</code></td>
@@ -551,6 +553,26 @@ By default, the state of a drawer is saved to local storage and applied persiste
       <tr>
         <td data-mobile-label="Method"><code class="code text-nowrap">drawer.close(drawerKey, callback)</code></td>
         <td data-mobile-label="Desc">Closes a drawer provided the drawer key and optional callback.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Method"><code class="code text-nowrap">drawer.breakpoint.init()</code></td>
+        <td data-mobile-label="Desc">Initializes the drawer breakpoint feature.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Method"><code class="code text-nowrap">drawer.breakpoint.destroy()</code></td>
+        <td data-mobile-label="Desc">Destroys the drawer breakpoint feature.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Method"><code class="code text-nowrap">drawer.breakpoint.check()</code></td>
+        <td data-mobile-label="Desc">Force a check if any drawers meet their breakpoint condition.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Method"><code class="code text-nowrap">drawer.switchToModal(drawer)</code></td>
+        <td data-mobile-label="Desc">Switches a drawer to it's modal state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Method"><code class="code text-nowrap">drawer.switchToDefault(drawer)</code></td>
+        <td data-mobile-label="Desc">Switches a drawer to it's default state.</td>
       </tr>
     </tbody>
   </table>
