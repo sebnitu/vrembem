@@ -11,7 +11,7 @@ import { StickyScroll } from './stickyScroll';
 
 new Checkbox({ autoInit: true });
 new Dismissible({ autoInit: true });
-const drawer = new Drawer({ autoInit: true });
+new Drawer({ autoInit: true });
 new Modal({ autoInit: true });
 
 new Version({ autoInit: true });

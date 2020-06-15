@@ -102,8 +102,8 @@ export const Drawer = (options) => {
     switchToModal(drawer);
   };
 
-  api.switchToNormal = (drawer) => {
-    switchToNormal(drawer);
+  api.switchToDefault = (drawer) => {
+    switchToDefault(drawer);
   };
 
   const run = (event) => {
@@ -320,7 +320,7 @@ export const Drawer = (options) => {
 
   const breakpointToggle = (mql, drawer) => {
     if (mql.matches) {
-      switchToNormal(drawer);
+      switchToDefault(drawer);
     } else {
       switchToModal(drawer);
     }
@@ -332,14 +332,12 @@ export const Drawer = (options) => {
     removeClass(drawer, api.settings.stateOpened);
     const customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
       bubbles: true,
-      detail: {
-        state: 'modal'
-      }
+      detail: { state: 'modal' }
     });
     drawer.dispatchEvent(customEvent);
   };
 
-  const switchToNormal = (drawer) => {
+  const switchToDefault = (drawer) => {
     removeClass(drawer, api.settings.classModal);
     const drawerKey = drawer.dataset[camelCase(api.settings.dataDrawer)];
     const drawerState = api.state[drawerKey];
@@ -349,9 +347,7 @@ export const Drawer = (options) => {
     }
     const customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
       bubbles: true,
-      detail: {
-        state: 'normal'
-      }
+      detail: { state: 'default' }
     });
     drawer.dispatchEvent(customEvent);
   };

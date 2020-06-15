@@ -1,4 +1,7 @@
 import { Drawer } from '../index.js';
+import { checkMatch } from './helpers/checkMatch';
+import { resizeWindow } from './helpers/resizeWindow';
+import './helpers/matchMedia.mock.js';
 import '@testing-library/jest-dom/extend-expect';
 
 let drawer;
@@ -17,22 +20,12 @@ const markup = `
   </div>
 `;
 
-window.matchMedia = jest.fn().mockImplementation((query) => {
-  let value = query.match(/\d+/)[0];
-  let match = (query.includes('min-width')) ?
-    window.innerWidth > value:
-    window.innerWidth < value;
-
-  return {
-    matches: match,
-    media: query,
-    onchange: null,
-    addListener: jest.fn(),
-    removeListener: jest.fn(),
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn()
-  };
+window.addEventListener('resize', () => {
+  if (drawer) {
+    drawer.mediaQueryLists.forEach((item) => {
+      item.mql.matches = checkMatch(item.mql.media);
+    });
+  }
 });
 
 afterEach(() => {
@@ -95,20 +88,18 @@ test('should emit custom event with custom data when drawer hits a breakpoint', 
     eventState = event.detail.state;
   });
 
-  window.innerWidth = 400;
-  window.dispatchEvent(new Event('resize'));
+  resizeWindow(400);
   drawer.init();
   expect(el).toHaveClass('drawer_modal');
   expect(eventFired).toBe(true);
   expect(eventState).toBe('modal');
   eventFired = false;
 
-  window.innerWidth = 800;
-  window.dispatchEvent(new Event('resize'));
+  resizeWindow(800);
   drawer.init();
   expect(el).not.toHaveClass('drawer_modal');
   expect(eventFired).toBe(true);
-  expect(eventState).toBe('drawer');
+  expect(eventState).toBe('default');
 });
 
 test('should be able to set a custom event prefix', () => {
@@ -145,16 +136,14 @@ test('should be able to set a custom event prefix', () => {
   expect(el).toHaveClass('is-closed');
   expect(eventClosed).toBe(true);
 
-  window.innerWidth = 800;
-  window.dispatchEvent(new Event('resize'));
+  resizeWindow(800);
   drawer.init();
   expect(el).not.toHaveClass('drawer_modal');
   expect(eventBreakpoint).toBe(true);
 
   eventBreakpoint = false;
 
-  window.innerWidth = 400;
-  window.dispatchEvent(new Event('resize'));
+  resizeWindow(400);
   drawer.init();
   expect(el).toHaveClass('drawer_modal');
   expect(eventBreakpoint).toBe(true);
