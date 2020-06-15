@@ -287,8 +287,8 @@ export const Drawer = (options) => {
         const key = drawer.dataset[camelCase(api.settings.dataBreakpoint)];
         const bp = api.settings.breakpoints[key] ? api.settings.breakpoints[key] : key;
         const mql = window.matchMedia( '(min-width:' + bp + ')' );
-        breakpointToggle(mql, drawer);
-        mql.addListener(breakpointMatch);
+        breakpointMatch(mql, drawer);
+        mql.addListener(breakpointCheck);
         api.mediaQueryLists.push({
           'mql': mql,
           'drawer': drawer
@@ -300,16 +300,17 @@ export const Drawer = (options) => {
   const breakpointDestroy = () => {
     if (api.mediaQueryLists && api.mediaQueryLists.length) {
       api.mediaQueryLists.forEach((item) => {
-        item.mql.removeListener(breakpointMatch);
+        item.mql.removeListener(breakpointCheck);
       });
     }
     api.mediaQueryLists = null;
   };
 
-  const breakpointMatch = (event) => {
+  const breakpointCheck = (event = null) => {
     api.mediaQueryLists.forEach((item) => {
-      if (event.media == item.mql.media) {
-        breakpointToggle(item.mql, item.drawer);
+      let filter = (event) ? event.media == item.mql.media : true;
+      if (filter) {
+        breakpointMatch(item.mql, item.drawer);
       }
     });
     const customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
@@ -318,17 +319,7 @@ export const Drawer = (options) => {
     document.dispatchEvent(customEvent);
   };
 
-  const breakpointCheck = () => {
-    api.mediaQueryLists.forEach((item) => {
-      breakpointToggle(item.mql, item.drawer);
-    });
-    const customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
-      bubbles: true
-    });
-    document.dispatchEvent(customEvent);
-  };
-
-  const breakpointToggle = (mql, drawer) => {
+  const breakpointMatch = (mql, drawer) => {
     if (mql.matches) {
       switchToDefault(drawer);
     } else {
