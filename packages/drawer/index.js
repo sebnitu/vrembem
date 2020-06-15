@@ -39,10 +39,9 @@ export const Drawer = (options) => {
   api.settings = { ...defaults, ...options };
   api.breakpoint = {};
 
-  api.memoryTrigger = null;
-  api.memoryTarget = null;
+  api.memoryTrigger;
+  api.memoryTarget;
   api.state = {};
-  api.mediaQueryLists = [];
 
   api.init = () => {
     applyState();
@@ -57,7 +56,6 @@ export const Drawer = (options) => {
     api.memoryTrigger = null;
     api.memoryTarget = null;
     api.state = {};
-    api.mediaQueryLists = [];
     localStorage.removeItem(api.settings.saveKey);
     document.removeEventListener('click', run, false);
     document.removeEventListener('touchend', run, false);
@@ -282,6 +280,7 @@ export const Drawer = (options) => {
    */
 
   const breakpointInit = () => {
+    api.mediaQueryLists = [];
     const drawers = document.querySelectorAll(`[data-${api.settings.dataBreakpoint}]`);
     if (drawers) {
       drawers.forEach((drawer) => {
@@ -299,9 +298,12 @@ export const Drawer = (options) => {
   };
 
   const breakpointDestroy = () => {
-    api.mediaQueryLists.forEach((item) => {
-      item.mql.removeListener(breakpointMatch);
-    });
+    if (api.mediaQueryLists && api.mediaQueryLists.length) {
+      api.mediaQueryLists.forEach((item) => {
+        item.mql.removeListener(breakpointMatch);
+      });
+    }
+    api.mediaQueryLists = null;
   };
 
   const breakpointMatch = (event) => {

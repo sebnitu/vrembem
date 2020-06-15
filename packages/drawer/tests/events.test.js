@@ -21,7 +21,7 @@ const markup = `
 `;
 
 window.addEventListener('resize', () => {
-  if (drawer) {
+  if (drawer && drawer.mediaQueryLists) {
     drawer.mediaQueryLists.forEach((item) => {
       item.mql.matches = checkMatch(item.mql.media);
     });

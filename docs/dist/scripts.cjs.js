@@ -205,10 +205,7 @@ var Drawer = function Drawer(options) {
   };
   api.settings = _objectSpread$2(_objectSpread$2({}, defaults), options);
   api.breakpoint = {};
-  api.memoryTrigger = null;
-  api.memoryTarget = null;
   api.state = {};
-  api.mediaQueryLists = [];
 
   api.init = function () {
     applyState();
@@ -223,7 +220,6 @@ var Drawer = function Drawer(options) {
     api.memoryTrigger = null;
     api.memoryTarget = null;
     api.state = {};
-    api.mediaQueryLists = [];
     localStorage.removeItem(api.settings.saveKey);
     document.removeEventListener('click', run, false);
     document.removeEventListener('touchend', run, false);
@@ -429,6 +425,7 @@ var Drawer = function Drawer(options) {
   };
 
   var breakpointInit = function breakpointInit() {
+    api.mediaQueryLists = [];
     var drawers = document.querySelectorAll("[data-".concat(api.settings.dataBreakpoint, "]"));
 
     if (drawers) {
@@ -447,12 +444,17 @@ var Drawer = function Drawer(options) {
   };
 
   var breakpointDestroy = function breakpointDestroy() {
-    api.mediaQueryLists.forEach(function (item) {
-      item.mql.removeListener(breakpointMatch);
-    });
+    if (api.mediaQueryLists && api.mediaQueryLists.length) {
+      api.mediaQueryLists.forEach(function (item) {
+        item.mql.removeListener(breakpointMatch);
+      });
+    }
+
+    api.mediaQueryLists = null;
   };
 
   var breakpointMatch = function breakpointMatch(event) {
+    console.log('Match');
     api.mediaQueryLists.forEach(function (item) {
       if (event.media == item.mql.media) {
         breakpointToggle(item.mql, item.drawer);
@@ -467,6 +469,8 @@ var Drawer = function Drawer(options) {
   };
 
   var breakpointToggle = function breakpointToggle(mql, drawer) {
+    console.log('Toggle');
+
     if (mql.matches) {
       switchToDefault(drawer);
     } else {
@@ -2589,7 +2593,7 @@ new Checkbox({
 new Dismissible({
   autoInit: true
 });
-new Drawer({
+var drawer = new Drawer({
   autoInit: true
 });
 new Modal({
@@ -2607,3 +2611,4 @@ var stickyScroll = new StickyScroll({
 document.addEventListener('drawer:opened', function () {
   stickyScroll.showActive();
 });
+drawer.breakpoint.destroy();

@@ -1,4 +1,7 @@
 import { Drawer } from '../index.js';
+import { checkMatch } from './helpers/checkMatch';
+import { resizeWindow } from './helpers/resizeWindow';
+import './helpers/matchMedia.mock.js';
 import '@testing-library/jest-dom/extend-expect';
 
 let drawer;
@@ -16,6 +19,40 @@ const markup = `
     </div>
   </div>
 `;
+
+const markupBreakpoint = `
+  <div class="drawer__wrapper">
+    <div class="drawer is-closed" data-drawer="drawer-default" data-drawer-breakpoint="400px">
+      <div class="drawer__item">
+        <button data-drawer-close>Close</button>
+      </div>
+    </div>
+    <div class="drawer__main">
+      <button data-drawer-toggle="drawer-default">Drawer Toggle</button>
+    </div>
+  </div>
+`;
+
+const markupModal = `
+  <div class="drawer__wrapper">
+    <div class="drawer drawer_modal is-closed" data-drawer="drawer-default">
+      <div class="drawer__item">
+        <button data-drawer-close>Close</button>
+      </div>
+    </div>
+    <div class="drawer__main">
+      <button data-drawer-toggle="drawer-default">Drawer Toggle</button>
+    </div>
+  </div>
+`;
+
+window.addEventListener('resize', () => {
+  if (drawer) {
+    drawer.mediaQueryLists.forEach((item) => {
+      item.mql.matches = checkMatch(item.mql.media);
+    });
+  }
+});
 
 afterEach(() => {
   drawer.destroy();
@@ -128,6 +165,62 @@ test('should fire callback when using close api', () => {
   expect(callbackCheck).toBe(true);
 });
 
+test('should initialize breakpoint feature on api call', () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer({ autoInit: true });
+  const el = document.querySelector('[data-drawer]');
+  expect(drawer.mediaQueryLists.length).toEqual(0);
+  el.setAttribute('data-drawer-breakpoint', 'md');
+  drawer.breakpoint.init();
+  expect(drawer.mediaQueryLists.length).toEqual(1);
+});
+
+test('should run breakpoint check on api call', () => {
+  document.body.innerHTML = markupBreakpoint;
+  drawer = new Drawer({ autoInit: true });
+  let eventFired = false;
+  let eventState;
+
+  document.addEventListener('drawer:breakpoint', (event) => {
+    eventFired = true;
+    eventState = event.detail.state;
+  });
+
+  resizeWindow(200);
+  drawer.breakpoint.check();
+
+  expect(eventFired).toEqual(true);
+  expect(eventState).toEqual('modal');
+});
+
+test('should switch drawer to modal on api call', () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer({ autoInit: true });
+  const el = document.querySelector('[data-drawer]');
+  expect(el).not.toHaveClass('drawer_modal');
+  drawer.switchToModal(el);
+  expect(el).toHaveClass('drawer_modal');
+});
+
+test('should switch drawer to default on api call', () => {
+  document.body.innerHTML = markupModal;
+  drawer = new Drawer({ autoInit: true });
+  const el = document.querySelector('[data-drawer]');
+  expect(el).toHaveClass('drawer_modal');
+  drawer.switchToDefault(el);
+  expect(el).not.toHaveClass('drawer_modal');
+});
+
+test('should destroy breakpoint feature on api call', () => {
+  document.body.innerHTML = markup;
+  const el = document.querySelector('[data-drawer]');
+  el.setAttribute('data-drawer-breakpoint', 'md');
+  drawer = new Drawer({ autoInit: true });
+  expect(drawer.mediaQueryLists.length).toEqual(1);
+  drawer.breakpoint.destroy();
+  expect(drawer.mediaQueryLists).toEqual(null);
+});
+
 test('should properly destroy drawer instance on api call', () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({ autoInit: true });
@@ -138,6 +231,6 @@ test('should properly destroy drawer instance on api call', () => {
   btnOpen.click();
   el.dispatchEvent(ev);
   expect(el).not.toHaveClass('is-opened');
-  expect(Object.getOwnPropertyNames(localStorage).length).toBe(0);
-  expect(Object.getOwnPropertyNames(drawer.state).length).toBe(0);
+  expect(Object.getOwnPropertyNames(localStorage).length).toEqual(0);
+  expect(Object.getOwnPropertyNames(drawer.state).length).toEqual(0);
 });

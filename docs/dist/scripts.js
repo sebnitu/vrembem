@@ -206,10 +206,7 @@
     };
     api.settings = _objectSpread$2(_objectSpread$2({}, defaults), options);
     api.breakpoint = {};
-    api.memoryTrigger = null;
-    api.memoryTarget = null;
     api.state = {};
-    api.mediaQueryLists = [];
 
     api.init = function () {
       applyState();
@@ -224,7 +221,6 @@
       api.memoryTrigger = null;
       api.memoryTarget = null;
       api.state = {};
-      api.mediaQueryLists = [];
       localStorage.removeItem(api.settings.saveKey);
       document.removeEventListener('click', run, false);
       document.removeEventListener('touchend', run, false);
@@ -430,6 +426,7 @@
     };
 
     var breakpointInit = function breakpointInit() {
+      api.mediaQueryLists = [];
       var drawers = document.querySelectorAll("[data-".concat(api.settings.dataBreakpoint, "]"));
 
       if (drawers) {
@@ -448,12 +445,17 @@
     };
 
     var breakpointDestroy = function breakpointDestroy() {
-      api.mediaQueryLists.forEach(function (item) {
-        item.mql.removeListener(breakpointMatch);
-      });
+      if (api.mediaQueryLists && api.mediaQueryLists.length) {
+        api.mediaQueryLists.forEach(function (item) {
+          item.mql.removeListener(breakpointMatch);
+        });
+      }
+
+      api.mediaQueryLists = null;
     };
 
     var breakpointMatch = function breakpointMatch(event) {
+      console.log('Match');
       api.mediaQueryLists.forEach(function (item) {
         if (event.media == item.mql.media) {
           breakpointToggle(item.mql, item.drawer);
@@ -468,6 +470,8 @@
     };
 
     var breakpointToggle = function breakpointToggle(mql, drawer) {
+      console.log('Toggle');
+
       if (mql.matches) {
         switchToDefault(drawer);
       } else {
@@ -2590,7 +2594,7 @@
   new Dismissible({
     autoInit: true
   });
-  new Drawer({
+  var drawer = new Drawer({
     autoInit: true
   });
   new Modal({
@@ -2608,5 +2612,6 @@
   document.addEventListener('drawer:opened', function () {
     stickyScroll.showActive();
   });
+  drawer.breakpoint.destroy();
 
 }());
