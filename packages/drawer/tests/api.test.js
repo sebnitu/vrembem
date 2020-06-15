@@ -54,10 +54,14 @@ window.addEventListener('resize', () => {
   }
 });
 
+beforeEach(() => {
+  document.body.innerHTML = null;
+  window.innerWidth = 1200;
+});
+
 afterEach(() => {
   drawer.destroy();
   drawer = null;
-  document.body.innerHTML = null;
 });
 
 test('should toggle drawer using api call', () => {
@@ -133,7 +137,7 @@ test('should fire callback when using toggle api', () => {
     callbackCheck = true;
   });
   el.dispatchEvent(ev);
-  expect(callbackCheck).toBe(true);
+  expect(callbackCheck).toEqual(true);
 });
 
 test('should fire callback when using open api', () => {
@@ -146,7 +150,7 @@ test('should fire callback when using open api', () => {
     callbackCheck = true;
   });
   el.dispatchEvent(ev);
-  expect(callbackCheck).toBe(true);
+  expect(callbackCheck).toEqual(true);
 });
 
 test('should fire callback when using close api', () => {
@@ -162,7 +166,7 @@ test('should fire callback when using close api', () => {
     callbackCheck = true;
   });
   el.dispatchEvent(ev);
-  expect(callbackCheck).toBe(true);
+  expect(callbackCheck).toEqual(true);
 });
 
 test('should initialize breakpoint feature on api call', () => {
@@ -179,18 +183,15 @@ test('should run breakpoint check on api call', () => {
   document.body.innerHTML = markupBreakpoint;
   drawer = new Drawer({ autoInit: true });
   let eventFired = false;
-  let eventState;
 
-  document.addEventListener('drawer:breakpoint', (event) => {
+  document.addEventListener('drawer:breakpoint', () => {
     eventFired = true;
-    eventState = event.detail.state;
   });
 
   resizeWindow(200);
   drawer.breakpoint.check();
 
   expect(eventFired).toEqual(true);
-  expect(eventState).toEqual('modal');
 });
 
 test('should switch drawer to modal on api call', () => {

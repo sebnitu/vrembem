@@ -28,10 +28,14 @@ window.addEventListener('resize', () => {
   }
 });
 
+beforeEach(() => {
+  document.body.innerHTML = null;
+  window.innerWidth = 1200;
+});
+
 afterEach(() => {
   drawer.destroy();
   drawer = null;
-  document.body.innerHTML = null;
 });
 
 test('should emit custom event when drawer has opened', () => {
@@ -76,30 +80,47 @@ test('should emit custom event when drawer has closed', () => {
   expect(eventFired).toBe(true);
 });
 
-test('should emit custom event with custom data when drawer hits a breakpoint', () => {
+test('should emit custom event when drawer matches a breakpoint', () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer();
-  const el = document.querySelector('[data-drawer="drawer-one"]');
+  drawer = new Drawer({ autoInit: true });
   let eventFired = false;
-  let eventState = false;
 
-  document.addEventListener('drawer:breakpoint', (event) => {
+  document.addEventListener('drawer:breakpoint', () => {
     eventFired = true;
-    eventState = event.detail.state;
   });
 
   resizeWindow(400);
-  drawer.init();
-  expect(el).toHaveClass('drawer_modal');
+  drawer.breakpoint.check();
   expect(eventFired).toBe(true);
-  expect(eventState).toBe('modal');
-  eventFired = false;
+});
 
-  resizeWindow(800);
-  drawer.init();
-  expect(el).not.toHaveClass('drawer_modal');
+test('should emit custom event when drawer switches to modal', () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer({ autoInit: true });
+  let eventFired = false;
+
+  document.addEventListener('drawer:toModal', () => {
+    eventFired = true;
+  });
+
+  resizeWindow(400);
+  drawer.breakpoint.check();
   expect(eventFired).toBe(true);
-  expect(eventState).toBe('default');
+});
+
+test('should emit custom event when drawer switches to default', () => {
+  document.body.innerHTML = markup;
+  window.innerWidth = 400;
+  drawer = new Drawer({ autoInit: true });
+  let eventFired = false;
+
+  document.addEventListener('drawer:toDefault', () => {
+    eventFired = true;
+  });
+
+  resizeWindow(1200);
+  drawer.breakpoint.check();
+  expect(eventFired).toBe(true);
 });
 
 test('should be able to set a custom event prefix', () => {
@@ -113,6 +134,8 @@ test('should be able to set a custom event prefix', () => {
   let eventOpened = false;
   let eventClosed = false;
   let eventBreakpoint = false;
+  let eventToModal = false;
+  let eventToDefault = false;
 
   document.addEventListener('vrembem:opened', () => {
     eventOpened = true;
@@ -126,6 +149,14 @@ test('should be able to set a custom event prefix', () => {
     eventBreakpoint = true;
   });
 
+  document.addEventListener('vrembem:toModal', () => {
+    eventToModal = true;
+  });
+
+  document.addEventListener('vrembem:toDefault', () => {
+    eventToDefault = true;
+  });
+
   btn.click();
   el.dispatchEvent(ev);
   expect(el).toHaveClass('is-opened');
@@ -136,15 +167,17 @@ test('should be able to set a custom event prefix', () => {
   expect(el).toHaveClass('is-closed');
   expect(eventClosed).toBe(true);
 
-  resizeWindow(800);
-  drawer.init();
-  expect(el).not.toHaveClass('drawer_modal');
+  resizeWindow(400);
+  drawer.breakpoint.check();
+  expect(el).toHaveClass('drawer_modal');
   expect(eventBreakpoint).toBe(true);
+  expect(eventToModal).toBe(true);
 
   eventBreakpoint = false;
 
-  resizeWindow(400);
-  drawer.init();
-  expect(el).toHaveClass('drawer_modal');
+  resizeWindow(800);
+  drawer.breakpoint.check();
+  expect(el).not.toHaveClass('drawer_modal');
   expect(eventBreakpoint).toBe(true);
+  expect(eventToDefault).toBe(true);
 });

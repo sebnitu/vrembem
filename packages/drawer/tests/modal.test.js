@@ -3,7 +3,7 @@ import '@testing-library/jest-dom/extend-expect';
 
 let drawer;
 const ev = new Event('transitionend');
-const keyEv = new KeyboardEvent('keyup', {
+const evEscape = new KeyboardEvent('keyup', {
   keyCode: 27
 });
 
@@ -20,10 +20,14 @@ const markup = `
   </div>
 `;
 
+beforeEach(() => {
+  document.body.innerHTML = null;
+  window.innerWidth = 1200;
+});
+
 afterEach(() => {
   drawer.destroy();
   drawer = null;
-  document.body.innerHTML = null;
 });
 
 test('should close when root modal (screen) is clicked', () => {
@@ -59,7 +63,7 @@ test('should close when the escape key is pressed', () => {
   el.dispatchEvent(ev);
   expect(el).toHaveClass('drawer is-opened');
 
-  document.dispatchEvent(keyEv);
+  document.dispatchEvent(evEscape);
   expect(el).toHaveClass('drawer is-closing');
 
   el.dispatchEvent(ev);
@@ -81,7 +85,7 @@ test('should not close when missing modal modifier and escape key is pressed', (
   el.dispatchEvent(ev);
   expect(el).toHaveClass('drawer is-opened');
 
-  document.dispatchEvent(keyEv);
+  document.dispatchEvent(evEscape);
   expect(el).not.toHaveClass('is-closing');
 
   el.dispatchEvent(ev);

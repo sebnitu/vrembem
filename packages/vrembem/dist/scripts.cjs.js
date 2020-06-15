@@ -237,10 +237,7 @@ var Drawer = function Drawer(options) {
   };
   api.settings = _objectSpread$2(_objectSpread$2({}, defaults), options);
   api.breakpoint = {};
-  api.memoryTrigger = null;
-  api.memoryTarget = null;
   api.state = {};
-  api.mediaQueryLists = [];
 
   api.init = function () {
     applyState();
@@ -255,7 +252,6 @@ var Drawer = function Drawer(options) {
     api.memoryTrigger = null;
     api.memoryTarget = null;
     api.state = {};
-    api.mediaQueryLists = [];
     localStorage.removeItem(api.settings.saveKey);
     document.removeEventListener('click', run, false);
     document.removeEventListener('touchend', run, false);
@@ -461,6 +457,7 @@ var Drawer = function Drawer(options) {
   };
 
   var breakpointInit = function breakpointInit() {
+    api.mediaQueryLists = [];
     var drawers = document.querySelectorAll("[data-".concat(api.settings.dataBreakpoint, "]"));
 
     if (drawers) {
@@ -479,9 +476,13 @@ var Drawer = function Drawer(options) {
   };
 
   var breakpointDestroy = function breakpointDestroy() {
-    api.mediaQueryLists.forEach(function (item) {
-      item.mql.removeListener(breakpointMatch);
-    });
+    if (api.mediaQueryLists && api.mediaQueryLists.length) {
+      api.mediaQueryLists.forEach(function (item) {
+        item.mql.removeListener(breakpointMatch);
+      });
+    }
+
+    api.mediaQueryLists = null;
   };
 
   var breakpointMatch = function breakpointMatch(event) {
@@ -490,6 +491,10 @@ var Drawer = function Drawer(options) {
         breakpointToggle(item.mql, item.drawer);
       }
     });
+    var customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
+      bubbles: true
+    });
+    document.dispatchEvent(customEvent);
   };
 
   var breakpointCheck = function breakpointCheck() {
@@ -510,11 +515,8 @@ var Drawer = function Drawer(options) {
     addClass(drawer, api.settings.classModal);
     addClass(drawer, api.settings.stateClosed);
     removeClass(drawer, api.settings.stateOpened);
-    var customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
-      bubbles: true,
-      detail: {
-        state: 'modal'
-      }
+    var customEvent = new CustomEvent(api.settings.customEventPrefix + 'toModal', {
+      bubbles: true
     });
     drawer.dispatchEvent(customEvent);
   };
@@ -529,11 +531,8 @@ var Drawer = function Drawer(options) {
       removeClass(drawer, api.settings.stateClosed);
     }
 
-    var customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
-      bubbles: true,
-      detail: {
-        state: 'default'
-      }
+    var customEvent = new CustomEvent(api.settings.customEventPrefix + 'toDefault', {
+      bubbles: true
     });
     drawer.dispatchEvent(customEvent);
   };

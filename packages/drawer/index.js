@@ -312,12 +312,20 @@ export const Drawer = (options) => {
         breakpointToggle(item.mql, item.drawer);
       }
     });
+    const customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
+      bubbles: true
+    });
+    document.dispatchEvent(customEvent);
   };
 
   const breakpointCheck = () => {
     api.mediaQueryLists.forEach((item) => {
       breakpointToggle(item.mql, item.drawer);
     });
+    const customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
+      bubbles: true
+    });
+    document.dispatchEvent(customEvent);
   };
 
   const breakpointToggle = (mql, drawer) => {
@@ -332,9 +340,8 @@ export const Drawer = (options) => {
     addClass(drawer, api.settings.classModal);
     addClass(drawer, api.settings.stateClosed);
     removeClass(drawer, api.settings.stateOpened);
-    const customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
-      bubbles: true,
-      detail: { state: 'modal' }
+    const customEvent = new CustomEvent(api.settings.customEventPrefix + 'toModal', {
+      bubbles: true
     });
     drawer.dispatchEvent(customEvent);
   };
@@ -347,9 +354,8 @@ export const Drawer = (options) => {
       addClass(drawer, api.settings.stateOpened);
       removeClass(drawer, api.settings.stateClosed);
     }
-    const customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
-      bubbles: true,
-      detail: { state: 'default' }
+    const customEvent = new CustomEvent(api.settings.customEventPrefix + 'toDefault', {
+      bubbles: true
     });
     drawer.dispatchEvent(customEvent);
   };

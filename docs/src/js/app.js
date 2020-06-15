@@ -25,3 +25,15 @@ const stickyScroll = new StickyScroll({
 document.addEventListener('drawer:opened', () => {
   stickyScroll.showActive();
 });
+
+document.addEventListener('drawer:breakpoint', (event) => {
+  console.log('drawer:breakpoint', event);
+});
+
+document.addEventListener('drawer:toModal', (event) => {
+  console.log('drawer:toModal', event);
+});
+
+document.addEventListener('drawer:toDefault', (event) => {
+  console.log('drawer:toDefault', event);
+});

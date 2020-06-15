@@ -65,13 +65,17 @@ window.addEventListener('resize', () => {
   }
 });
 
+beforeEach(() => {
+  document.body.innerHTML = null;
+  window.innerWidth = 1200;
+});
+
 afterEach(() => {
   drawer.destroy();
   drawer = null;
-  document.body.innerHTML = null;
 });
 
-test('should switch modal modifier when above and below media breakpoint', () => {
+test('should switch modal drawer modifier when above and below media breakpoint', () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer="drawer-one"]');
@@ -94,51 +98,54 @@ test('should switch modal modifier when above and below media breakpoint', () =>
 
 test('should switch to modal when below custom pixel value', () => {
   document.body.innerHTML = markup;
-  resizeWindow(300);
-  drawer = new Drawer();
+  drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer="drawer-two"]');
   const value = el.dataset.drawerBreakpoint;
 
   expect(el).not.toHaveClass('drawer_modal');
-  drawer.init();
+  resizeWindow(300);
+  drawer.breakpoint.check();
   expect(el).toHaveClass('drawer_modal');
   expect(parseInt(value)).toBeGreaterThan(window.innerWidth);
 });
 
 test('should switch to modal when using a custom data breakpoint attribute', () => {
   document.body.innerHTML = markupCustomAttr;
-  resizeWindow(600);
   drawer = new Drawer({
+    autoInit: true,
     dataBreakpoint: 'bp'
   });
   const el = document.querySelector('[data-drawer="drawer-one"]');
   const value = drawer.settings.breakpoints[el.dataset.bp];
 
   expect(el).not.toHaveClass('drawer_modal');
-  drawer.init();
+  resizeWindow(300);
+  drawer.breakpoint.check();
   expect(el).toHaveClass('drawer_modal');
   expect(parseInt(value)).toBeGreaterThan(window.innerWidth);
 });
 
 test('should use custom modal class on breakpoint switch', () => {
   document.body.innerHTML = markup;
-  resizeWindow(300);
   drawer = new Drawer({
+    autoInit: true,
     classModal: 'be-cool'
   });
   const el = document.querySelector('[data-drawer="drawer-two"]');
   const value = el.dataset.drawerBreakpoint;
 
   expect(el).not.toHaveClass('be-cool');
-  drawer.init();
+  resizeWindow(300);
+  drawer.breakpoint.check();
   expect(el).toHaveClass('be-cool');
   expect(parseInt(value)).toBeGreaterThan(window.innerWidth);
 });
 
 test('should allow using a custom breakpoints object', () => {
   document.body.innerHTML = markupCustomBreakpoints;
-  resizeWindow(275);
+
   drawer = new Drawer({
+    autoInit: true,
     breakpoints: {
       xxl: '1600px',
       xxs: '300px'
@@ -148,7 +155,8 @@ test('should allow using a custom breakpoints object', () => {
   const value = drawer.settings.breakpoints[el.dataset.drawerBreakpoint];
 
   expect(el).not.toHaveClass('drawer_modal');
-  drawer.init();
+  resizeWindow(275);
+  drawer.breakpoint.check();
   expect(el).toHaveClass('drawer_modal');
   expect(parseInt(value)).toBeGreaterThan(window.innerWidth);
   expect(drawer.settings.breakpoints).toHaveProperty('xxl');
@@ -156,20 +164,20 @@ test('should allow using a custom breakpoints object', () => {
 
 test('should remove opened and add closed state class when switching to modal', () => {
   document.body.innerHTML = markup;
-  resizeWindow(300);
-  drawer = new Drawer();
+  drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer="drawer-two"]');
 
   expect(el).toHaveClass('is-opened');
   expect(el).not.toHaveClass('drawer_modal is-closed');
-  drawer.init();
+  resizeWindow(300);
+  drawer.breakpoint.check();
   expect(el).not.toHaveClass('is-opened');
   expect(el).toHaveClass('drawer_modal is-closed');
 });
 
 test('should apply saved state when switching to drawer', () => {
   document.body.innerHTML = markup;
-  resizeWindow(300);
+  window.innerWidth = 300;
   drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer="drawer-two"]');
   const state = JSON.parse(localStorage.getItem('DrawerState'));
@@ -178,8 +186,8 @@ test('should apply saved state when switching to drawer', () => {
   expect(el).not.toHaveClass('is-opened');
   expect(el).toHaveClass('drawer_modal is-closed');
 
-  resizeWindow(600);
-  drawer.init();
+  resizeWindow(900);
+  drawer.breakpoint.check();
   expect(el).toHaveClass('is-opened');
   expect(el).not.toHaveClass('drawer_modal is-closed');
 });

@@ -455,12 +455,15 @@
     };
 
     var breakpointMatch = function breakpointMatch(event) {
-      console.log('Match');
       api.mediaQueryLists.forEach(function (item) {
         if (event.media == item.mql.media) {
           breakpointToggle(item.mql, item.drawer);
         }
       });
+      var customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
+        bubbles: true
+      });
+      document.dispatchEvent(customEvent);
     };
 
     var breakpointCheck = function breakpointCheck() {
@@ -470,8 +473,6 @@
     };
 
     var breakpointToggle = function breakpointToggle(mql, drawer) {
-      console.log('Toggle');
-
       if (mql.matches) {
         switchToDefault(drawer);
       } else {
@@ -483,11 +484,8 @@
       addClass(drawer, api.settings.classModal);
       addClass(drawer, api.settings.stateClosed);
       removeClass(drawer, api.settings.stateOpened);
-      var customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
-        bubbles: true,
-        detail: {
-          state: 'modal'
-        }
+      var customEvent = new CustomEvent(api.settings.customEventPrefix + 'toModal', {
+        bubbles: true
       });
       drawer.dispatchEvent(customEvent);
     };
@@ -502,11 +500,8 @@
         removeClass(drawer, api.settings.stateClosed);
       }
 
-      var customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
-        bubbles: true,
-        detail: {
-          state: 'default'
-        }
+      var customEvent = new CustomEvent(api.settings.customEventPrefix + 'toDefault', {
+        bubbles: true
       });
       drawer.dispatchEvent(customEvent);
     };
@@ -2594,7 +2589,7 @@
   new Dismissible({
     autoInit: true
   });
-  var drawer = new Drawer({
+  new Drawer({
     autoInit: true
   });
   new Modal({
@@ -2612,6 +2607,14 @@
   document.addEventListener('drawer:opened', function () {
     stickyScroll.showActive();
   });
-  drawer.breakpoint.destroy();
+  document.addEventListener('drawer:breakpoint', function (event) {
+    console.log('drawer:breakpoint', event);
+  });
+  document.addEventListener('drawer:toModal', function (event) {
+    console.log('drawer:toModal', event);
+  });
+  document.addEventListener('drawer:toDefault', function (event) {
+    console.log('drawer:toDefault', event);
+  });
 
 }());
