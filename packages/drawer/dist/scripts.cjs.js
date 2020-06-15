@@ -160,8 +160,8 @@ var Drawer = function Drawer(options) {
     switchToModal(drawer);
   };
 
-  api.switchToNormal = function (drawer) {
-    switchToNormal(drawer);
+  api.switchToDefault = function (drawer) {
+    switchToDefault(drawer);
   };
 
   var run = function run(event) {
@@ -362,7 +362,7 @@ var Drawer = function Drawer(options) {
 
   var breakpointToggle = function breakpointToggle(mql, drawer) {
     if (mql.matches) {
-      switchToNormal(drawer);
+      switchToDefault(drawer);
     } else {
       switchToModal(drawer);
     }
@@ -381,7 +381,7 @@ var Drawer = function Drawer(options) {
     drawer.dispatchEvent(customEvent);
   };
 
-  var switchToNormal = function switchToNormal(drawer) {
+  var switchToDefault = function switchToDefault(drawer) {
     removeClass(drawer, api.settings.classModal);
     var drawerKey = drawer.dataset[camelCase(api.settings.dataDrawer)];
     var drawerState = api.state[drawerKey];
@@ -394,7 +394,7 @@ var Drawer = function Drawer(options) {
     var customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
       bubbles: true,
       detail: {
-        state: 'normal'
+        state: 'default'
       }
     });
     drawer.dispatchEvent(customEvent);
