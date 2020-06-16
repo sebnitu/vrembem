@@ -13,9 +13,15 @@
 
 <!--
 Commit template:
-chore: add v1.7.1 to CHANGELOG.md
+chore: add v1.7.2 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+## v1.7.2 (2020-06-16)
+
+#### :tada: New Feature
+* `checkbox`, `core`, `dismissible`, `drawer`, `modal`, `vrembem`
+  * [#206](https://github.com/sebnitu/vrembem/pull/206) New drawer breakpoint API and custom events ([@sebnitu](https://github.com/sebnitu))
 
 ## v1.7.1 (2020-06-14)
 
