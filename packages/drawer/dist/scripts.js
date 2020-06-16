@@ -97,10 +97,8 @@
       saveKey: 'DrawerState'
     };
     api.settings = _objectSpread(_objectSpread({}, defaults), options);
-    api.memoryTrigger = null;
-    api.memoryTarget = null;
+    api.breakpoint = {};
     api.state = {};
-    api.mediaQueryLists = [];
 
     api.init = function () {
       applyState();
@@ -111,6 +109,7 @@
     };
 
     api.destroy = function () {
+      breakpointDestroy();
       api.memoryTrigger = null;
       api.memoryTarget = null;
       api.state = {};
@@ -138,6 +137,26 @@
       if (drawer) {
         close(drawer, callback);
       }
+    };
+
+    api.breakpoint.init = function () {
+      breakpointInit();
+    };
+
+    api.breakpoint.destroy = function () {
+      breakpointDestroy();
+    };
+
+    api.breakpoint.check = function () {
+      breakpointCheck();
+    };
+
+    api.switchToModal = function (drawer) {
+      switchToModal(drawer);
+    };
+
+    api.switchToDefault = function (drawer) {
+      switchToDefault(drawer);
     };
 
     var run = function run(event) {
@@ -299,55 +318,68 @@
     };
 
     var breakpointInit = function breakpointInit() {
+      api.mediaQueryLists = [];
       var drawers = document.querySelectorAll("[data-".concat(api.settings.dataBreakpoint, "]"));
 
       if (drawers) {
         drawers.forEach(function (drawer) {
           var key = drawer.dataset[camelCase(api.settings.dataBreakpoint)];
           var bp = api.settings.breakpoints[key] ? api.settings.breakpoints[key] : key;
-          var mqList = window.matchMedia('(min-width:' + bp + ')');
-
-          if (mqList.matches) {
-            switchToDrawer(drawer);
-          } else {
-            switchToModal(drawer);
-          }
-
-          mqList.addListener(breakpointCheck);
+          var mql = window.matchMedia('(min-width:' + bp + ')');
+          breakpointMatch(mql, drawer);
+          mql.addListener(breakpointCheck);
           api.mediaQueryLists.push({
-            'drawer': drawer,
-            'mqList': mqList
+            'mql': mql,
+            'drawer': drawer
           });
         });
       }
     };
 
-    var breakpointCheck = function breakpointCheck(event) {
+    var breakpointDestroy = function breakpointDestroy() {
+      if (api.mediaQueryLists && api.mediaQueryLists.length) {
+        api.mediaQueryLists.forEach(function (item) {
+          item.mql.removeListener(breakpointCheck);
+        });
+      }
+
+      api.mediaQueryLists = null;
+    };
+
+    var breakpointCheck = function breakpointCheck() {
+      var event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
       api.mediaQueryLists.forEach(function (item) {
-        if (event.target == item.mqList) {
-          if (item.mqList.matches) {
-            switchToDrawer(item.drawer);
-          } else {
-            switchToModal(item.drawer);
-          }
+        var filter = event ? event.media == item.mql.media : true;
+
+        if (filter) {
+          breakpointMatch(item.mql, item.drawer);
         }
       });
+      var customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
+        bubbles: true
+      });
+      document.dispatchEvent(customEvent);
+    };
+
+    var breakpointMatch = function breakpointMatch(mql, drawer) {
+      if (mql.matches) {
+        switchToDefault(drawer);
+      } else {
+        switchToModal(drawer);
+      }
     };
 
     var switchToModal = function switchToModal(drawer) {
       addClass(drawer, api.settings.classModal);
       addClass(drawer, api.settings.stateClosed);
       removeClass(drawer, api.settings.stateOpened);
-      var customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
-        bubbles: true,
-        detail: {
-          state: 'modal'
-        }
+      var customEvent = new CustomEvent(api.settings.customEventPrefix + 'toModal', {
+        bubbles: true
       });
       drawer.dispatchEvent(customEvent);
     };
 
-    var switchToDrawer = function switchToDrawer(drawer) {
+    var switchToDefault = function switchToDefault(drawer) {
       removeClass(drawer, api.settings.classModal);
       var drawerKey = drawer.dataset[camelCase(api.settings.dataDrawer)];
       var drawerState = api.state[drawerKey];
@@ -357,11 +389,8 @@
         removeClass(drawer, api.settings.stateClosed);
       }
 
-      var customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
-        bubbles: true,
-        detail: {
-          state: 'drawer'
-        }
+      var customEvent = new CustomEvent(api.settings.customEventPrefix + 'toDefault', {
+        bubbles: true
       });
       drawer.dispatchEvent(customEvent);
     };

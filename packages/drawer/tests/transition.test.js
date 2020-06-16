@@ -43,10 +43,14 @@ const markupCustomState = `
   </div>
 `;
 
+beforeEach(() => {
+  document.body.innerHTML = null;
+  window.innerWidth = 1200;
+});
+
 afterEach(() => {
   drawer.destroy();
   drawer = null;
-  document.body.innerHTML = null;
 });
 
 test('should apply state classes on `click` and `transitionend` events', () => {

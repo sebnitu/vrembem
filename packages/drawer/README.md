@@ -183,6 +183,8 @@ Variable | Default | Description
 * `drawer:opened` Emits when the drawer has opened.
 * `drawer:closed` Emits when the drawer has closed.
 * `drawer:breakpoint` Emits when the drawer has hit a breakpoint.
+* `drawer:toModal` Emits when the drawer is switched to it's modal state.
+* `drawer:toDefault` Emits when the drawer is switched to it's default state.
 
 ### JavaScript Options
 
@@ -214,3 +216,8 @@ Method | Description
 `drawer.toggle(drawerKey, callback)` | Toggles a drawer provided the drawer key and optional callback.
 `drawer.open(drawerKey, callback)` | Opens a drawer provided the drawer key and optional callback.
 `drawer.close(drawerKey, callback)` | Closes a drawer provided the drawer key and optional callback.
+`drawer.breakpoint.init()` | Initializes the drawer breakpoint feature.
+`drawer.breakpoint.destroy()` | Destroys the drawer breakpoint feature.
+`drawer.breakpoint.check()` | Force a check if any drawers meet their breakpoint condition.
+`drawer.switchToModal(drawer)` | Switches a drawer to it's modal state.
+`drawer.switchToDefault(drawer)` | Switches a drawer to it's default state.

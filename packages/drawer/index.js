@@ -37,11 +37,11 @@ export const Drawer = (options) => {
   };
 
   api.settings = { ...defaults, ...options };
+  api.breakpoint = {};
 
-  api.memoryTrigger = null;
-  api.memoryTarget = null;
+  api.memoryTrigger;
+  api.memoryTarget;
   api.state = {};
-  api.mediaQueryLists = [];
 
   api.init = () => {
     applyState();
@@ -52,6 +52,7 @@ export const Drawer = (options) => {
   };
 
   api.destroy = () => {
+    breakpointDestroy();
     api.memoryTrigger = null;
     api.memoryTarget = null;
     api.state = {};
@@ -81,6 +82,26 @@ export const Drawer = (options) => {
     if (drawer) {
       close(drawer, callback);
     }
+  };
+
+  api.breakpoint.init = () => {
+    breakpointInit();
+  };
+
+  api.breakpoint.destroy = () => {
+    breakpointDestroy();
+  };
+
+  api.breakpoint.check = () => {
+    breakpointCheck();
+  };
+
+  api.switchToModal = (drawer) => {
+    switchToModal(drawer);
+  };
+
+  api.switchToDefault = (drawer) => {
+    switchToDefault(drawer);
   };
 
   const run = (event) => {
@@ -259,53 +280,64 @@ export const Drawer = (options) => {
    */
 
   const breakpointInit = () => {
+    api.mediaQueryLists = [];
     const drawers = document.querySelectorAll(`[data-${api.settings.dataBreakpoint}]`);
     if (drawers) {
       drawers.forEach((drawer) => {
         const key = drawer.dataset[camelCase(api.settings.dataBreakpoint)];
-        const bp = (api.settings.breakpoints[key]) ?
-          api.settings.breakpoints[key] : key;
-        const mqList = window.matchMedia( '(min-width:' + bp + ')' );
-        if (mqList.matches) {
-          switchToDrawer(drawer);
-        } else {
-          switchToModal(drawer);
-        }
-        mqList.addListener(breakpointCheck);
+        const bp = api.settings.breakpoints[key] ? api.settings.breakpoints[key] : key;
+        const mql = window.matchMedia( '(min-width:' + bp + ')' );
+        breakpointMatch(mql, drawer);
+        mql.addListener(breakpointCheck);
         api.mediaQueryLists.push({
-          'drawer': drawer,
-          'mqList': mqList
+          'mql': mql,
+          'drawer': drawer
         });
       });
     }
   };
 
-  const breakpointCheck = (event) => {
+  const breakpointDestroy = () => {
+    if (api.mediaQueryLists && api.mediaQueryLists.length) {
+      api.mediaQueryLists.forEach((item) => {
+        item.mql.removeListener(breakpointCheck);
+      });
+    }
+    api.mediaQueryLists = null;
+  };
+
+  const breakpointCheck = (event = null) => {
     api.mediaQueryLists.forEach((item) => {
-      if (event.target == item.mqList) {
-        if (item.mqList.matches) {
-          switchToDrawer(item.drawer);
-        } else {
-          switchToModal(item.drawer);
-        }
+      let filter = (event) ? event.media == item.mql.media : true;
+      if (filter) {
+        breakpointMatch(item.mql, item.drawer);
       }
     });
+    const customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
+      bubbles: true
+    });
+    document.dispatchEvent(customEvent);
+  };
+
+  const breakpointMatch = (mql, drawer) => {
+    if (mql.matches) {
+      switchToDefault(drawer);
+    } else {
+      switchToModal(drawer);
+    }
   };
 
   const switchToModal = (drawer) => {
     addClass(drawer, api.settings.classModal);
     addClass(drawer, api.settings.stateClosed);
     removeClass(drawer, api.settings.stateOpened);
-    const customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
-      bubbles: true,
-      detail: {
-        state: 'modal'
-      }
+    const customEvent = new CustomEvent(api.settings.customEventPrefix + 'toModal', {
+      bubbles: true
     });
     drawer.dispatchEvent(customEvent);
   };
 
-  const switchToDrawer = (drawer) => {
+  const switchToDefault = (drawer) => {
     removeClass(drawer, api.settings.classModal);
     const drawerKey = drawer.dataset[camelCase(api.settings.dataDrawer)];
     const drawerState = api.state[drawerKey];
@@ -313,11 +345,8 @@ export const Drawer = (options) => {
       addClass(drawer, api.settings.stateOpened);
       removeClass(drawer, api.settings.stateClosed);
     }
-    const customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
-      bubbles: true,
-      detail: {
-        state: 'drawer'
-      }
+    const customEvent = new CustomEvent(api.settings.customEventPrefix + 'toDefault', {
+      bubbles: true
     });
     drawer.dispatchEvent(customEvent);
   };
