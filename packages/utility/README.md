@@ -2,7 +2,7 @@
 
 The utility component provides a set of atomic classes that specialize in a single function.
 
-[![npm version](https://badge.fury.io/js/%40vrembem%2Futility.svg)](https://www.npmjs.com/package/%40vrembem%2Futility)
+[![npm version](https://img.shields.io/npm/v/%40vrembem%2Futility.svg)](https://www.npmjs.com/package/%40vrembem%2Futility)
 
 [Documentation](https://vrembem.com/packages/utility)
 
