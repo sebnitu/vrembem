@@ -15,7 +15,7 @@ All notable changes to this project will be documented in this file.
 
 <!--
 Commit template:
-chore: add v1.7.3 to CHANGELOG.md
+chore(release): add v1.7.3 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
 
