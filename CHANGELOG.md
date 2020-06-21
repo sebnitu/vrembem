@@ -1,15 +1,17 @@
 # Changelog
 
-#### Tags
+All notable changes to this project will be documented in this file.
+
+**Tags**
 
 - :fire: `breaking:` Breaking Changes
-- :hammer: `chore:` Chore
-- :books: `docs:` Documentation
 - :tada: `feat:` New Feature
 - :bug: `fix:` Bug Fix
 - :balloon: `improve:` Improved Feature
-- :house: `internal:` Internal
 - :white_check_mark: `test:` Testing
+- :books: `docs:` Documentation
+- :hammer: `chore:` Chore
+- :house: `internal:` Internal
 
 <!--
 Commit template:
