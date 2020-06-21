@@ -13,9 +13,19 @@
 
 <!--
 Commit template:
-chore: add v1.7.2 to CHANGELOG.md
+chore: add v1.7.3 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+## v1.7.3 (2020-06-21)
+
+#### :bug: Bug Fix
+* `menu`, `vrembem`
+  * [#211](https://github.com/sebnitu/vrembem/pull/211) Remove relative positioning from menu items ([@sebnitu](https://github.com/sebnitu))
+
+#### :house: Internal
+* `arrow`, `base`, `breadcrumb`, `button-group`, `button`, `card`, `checkbox`, `container`, `core`, `dialog`, `dismissible`, `drawer`, `dropdown`, `grid`, `icon-action`, `icon`, `input`, `level`, `media`, `menu`, `modal`, `notice`, `panel`, `radio`, `section`, `switch`, `table`, `tooltip`, `utility`, `vrembem`
+  * [#207](https://github.com/sebnitu/vrembem/pull/207) Update deprecated rollup plugins ([@sebnitu](https://github.com/sebnitu))
 
 ## v1.7.2 (2020-06-16)
 
