@@ -2675,9 +2675,6 @@ input::-moz-placeholder {
   list-style: none;
 }
 
-.menu__item {
-  position: relative;
-}
 .menu__item + .menu__item {
   margin-left: 1px;
 }
