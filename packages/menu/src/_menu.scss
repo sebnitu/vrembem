@@ -12,8 +12,6 @@ $_e: var.$prefix-element;
 }
 
 .#{$_b}menu#{$_e}item {
-  position: relative;
-
   & + & {
     margin-left: var.$gap;
   }
