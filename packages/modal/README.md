@@ -29,9 +29,9 @@ const modal = new Modal({ autoInit: true });
 
 Modals are composed using classes for styling and data attributes for JavaScript functionality. To open a modal using a trigger, use a unique identifier as the values for both of their respective data attributes. Close buttons are left value-less and should be placed inside the modal element they're meant to close.
 
-* `data-modal="[unique-id]"`
-* `data-modal-open="[unique-id]"`
-* `data-modal-close`
+- `data-modal="[unique-id]"`
+- `data-modal-open="[unique-id]"`
+- `data-modal-close`
 
 ```html
 <button data-modal-open="[unique-id]">Modal</button>
@@ -112,10 +112,10 @@ Adds styles to a modal that make it fill the entire viewport when opened.
 
 The default position of modals is in the center of the viewport. The position modifier allows you four other options:
 
-* `modal_pos_top`
-* `modal_pos_left`
-* `modal_pos_right`
-* `modal_pos_bottom`
+- `modal_pos_top`
+- `modal_pos_left`
+- `modal_pos_right`
+- `modal_pos_bottom`
 
 ```html
 <div class="modal modal_pos_top" data-modal="[unique-id]">...</div>
@@ -158,8 +158,8 @@ Variable | Default | Description
 
 ### JavaScript Events
 
-* `modal:opened` Emits when the modal has opened.
-* `modal:closed` Emits when the modal has closed.
+- `modal:opened` Emits when the modal has opened.
+- `modal:closed` Emits when the modal has closed.
 
 ### JavaScript Options
 

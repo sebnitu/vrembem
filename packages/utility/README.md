@@ -35,18 +35,18 @@ Once loaded, the utility component provides a number of classes that can be used
 </div>
 ```
 
-* [`background`](#background)
-* [`border`](#border)
-* [`radius`](#radius)
-* [`elevate`](#elevate)
-* [`color`](#color)
-* [`display`](#display)
-* [`flex`](#flex)
-* [`margin`](#margin)
-* [`padding`](#padding)
-* [`spacing`](#spacing)
-* [`span`](#span)
-* [`text`](#text)
+- [`background`](#background)
+- [`border`](#border)
+- [`radius`](#radius)
+- [`elevate`](#elevate)
+- [`color`](#color)
+- [`display`](#display)
+- [`flex`](#flex)
+- [`margin`](#margin)
+- [`padding`](#padding)
+- [`spacing`](#spacing)
+- [`span`](#span)
+- [`text`](#text)
 
 Each utility has a corresponding `$class-[property]` variable that determines the class name used in output. Setting it's value to `null` will omit their style output.
 
@@ -221,24 +221,24 @@ Available properties are generated from the `$display-properties` variable map a
 
 The flex utility is a great way to adjust individual flex properties on components that use flex layout. These are some available flex property based utilities:
 
-* `flex-align-[key]`
-* `flex-justify-[key]`
-* `flex-grow-[key]`
-* `flex-shrink-[key]`
-* `flex-basis-[key]`
-* `flex-wrap`
-* `flex-nowrap`
-* `flex-items-[key]`
+- `flex-align-[key]`
+- `flex-justify-[key]`
+- `flex-grow-[key]`
+- `flex-shrink-[key]`
+- `flex-basis-[key]`
+- `flex-wrap`
+- `flex-nowrap`
+- `flex-items-[key]`
 
 #### flex-align-[value]
 
 Adjust the `align-items` property of grid columns using the `flex-align-[value]` utility. Available values are:
 
-* `flex-align-start`
-* `flex-align-center`
-* `flex-align-end`
-* `flex-align-stretch`
-* `flex-align-baseline`
+- `flex-align-start`
+- `flex-align-center`
+- `flex-align-end`
+- `flex-align-stretch`
+- `flex-align-baseline`
 
 ```html
 <div class="grid flex-align-start">
@@ -261,12 +261,12 @@ Adjust the `align-items` property of grid columns using the `flex-align-[value]`
 
 Change the `justify-content` property of grid columns using the `flex-justify-[value]` utility. Best used along with the `grid_auto` modifier. Avaliable values are:
 
-* `flex-justify-start`
-* `flex-justify-center`
-* `flex-justify-end`
-* `flex-justify-between`
-* `flex-justify-around`
-* `flex-justify-evenly`
+- `flex-justify-start`
+- `flex-justify-center`
+- `flex-justify-end`
+- `flex-justify-between`
+- `flex-justify-around`
+- `flex-justify-evenly`
 
 ```html
 <div class="grid flex-justify-start">...</div>
@@ -279,29 +279,29 @@ Change the `justify-content` property of grid columns using the `flex-justify-[v
 
 Add margin to an element using directional and size modifiers. Margin size and spacing values are generated from `$spacing-map` variable map.
 
-* `margin`: Adds margins on all sides.
-* `margin-[size]`: Adds margins on all sides with a specific size key.
-* `margin-[direction]-[size]`: Adds margins on a specific size and with size key.
-* `margin-hori-[size]`: Adds left and right margins with a specific size key.
-* `margin-vert-[size]`: Adds top and bottom margins with a specific size key.
-* `margin-auto`: Sets left and right margins to auto.
+- `margin`: Adds margins on all sides.
+- `margin-[size]`: Adds margins on all sides with a specific size key.
+- `margin-[direction]-[size]`: Adds margins on a specific size and with size key.
+- `margin-hori-[size]`: Adds left and right margins with a specific size key.
+- `margin-vert-[size]`: Adds top and bottom margins with a specific size key.
+- `margin-auto`: Sets left and right margins to auto.
 
 ### `padding`
 
 Add padding to an element using directional and size modifiers. Padding size and spacing values are generated from `$spacing-map` variable map.
 
-* `padding`: Adds padding on all sides.
-* `padding-[size]`: Adds padding on all sides with a specific size key.
-* `padding-[direction]-[size]`: Adds padding on a specific size and with size key.
-* `padding-hori-[size]`: Adds left and right padding with a specific size key.
-* `padding-vert-[size]`: Adds top and bottom padding with a specific size key.
+- `padding`: Adds padding on all sides.
+- `padding-[size]`: Adds padding on all sides with a specific size key.
+- `padding-[direction]-[size]`: Adds padding on a specific size and with size key.
+- `padding-hori-[size]`: Adds left and right padding with a specific size key.
+- `padding-vert-[size]`: Adds top and bottom padding with a specific size key.
 
 ### `spacing`
 
 A utility for adding vertical spacing between an element's children. Spacing size and spacing values are generated from `$spacing-map` variable map.
 
-* `spacing`
-* `spacing-[key]`
+- `spacing`
+- `spacing-[key]`
 
 ```html
 <div class="spacing">...</div>
@@ -311,10 +311,10 @@ A utility for adding vertical spacing between an element's children. Spacing siz
 
 Set the width, max-width and flex based on a column set using the `span` utility. Span widths are based on a column set based on the `$columns` variable. There are a number of options available:
 
-* `span-[col]`: Sets the number of columns an element should span.
-* `span-[col]-[breakpoint]`: Sets the number of columns an element should span based on a breakpoint condition.
-* `span-auto`: Sets an elements width to `auto`.
-* `span-full`: Sets an elements width to `100%`.
+- `span-[col]`: Sets the number of columns an element should span.
+- `span-[col]-[breakpoint]`: Sets the number of columns an element should span based on a breakpoint condition.
+- `span-auto`: Sets an elements width to `auto`.
+- `span-full`: Sets an elements width to `100%`.
 
 #### `span-[col]`
 
@@ -372,24 +372,24 @@ Sets an elements width to `100%`.
 
 A utility for adjusting various text styles.
 
-* `text-size-sm`: Adds a smaller font-size relative to base font-size.
-* `text-size-lg`: Adds a larger font-size relative to base font-size.
-* `text-capitalize`: Sets text-transform to capitalize.
-* `text-lowercase`: Sets text-transform to lowercase.
-* `text-uppercase`: Sets text-transform to uppercase.
-* `text-align-left`: Sets text-align to left.
-* `text-align-center`: Sets text-align to center.
-* `text-align-right`: Sets text-align to right.
-* `text-bold`: Sets font-weight to bold.
-* `text-normal`: Sets font-weight to normal.
-* `text-italic`: Sets font-style to italic.
-* `text-strike`: Sets text-decoration to line-through.
-* `text-underline`: Sets text-decoration to underline.
-* `text-underline-dotted`: Sets text-decoration to underline with dotted style.
-* `text-underline-dashed`: Sets text-decoration to underline with dashed style.
-* `text-wrap`: Sets white-space to normal allowing text to wrap.
-* `text-nowrap`: Sets white-space to `nowrap` which no longer allows text to wrap.
-* `text-lead`: Adds font styles to create leading text.
+- `text-size-sm`: Adds a smaller font-size relative to base font-size.
+- `text-size-lg`: Adds a larger font-size relative to base font-size.
+- `text-capitalize`: Sets text-transform to capitalize.
+- `text-lowercase`: Sets text-transform to lowercase.
+- `text-uppercase`: Sets text-transform to uppercase.
+- `text-align-left`: Sets text-align to left.
+- `text-align-center`: Sets text-align to center.
+- `text-align-right`: Sets text-align to right.
+- `text-bold`: Sets font-weight to bold.
+- `text-normal`: Sets font-weight to normal.
+- `text-italic`: Sets font-style to italic.
+- `text-strike`: Sets text-decoration to line-through.
+- `text-underline`: Sets text-decoration to underline.
+- `text-underline-dotted`: Sets text-decoration to underline with dotted style.
+- `text-underline-dashed`: Sets text-decoration to underline with dashed style.
+- `text-wrap`: Sets white-space to normal allowing text to wrap.
+- `text-nowrap`: Sets white-space to `nowrap` which no longer allows text to wrap.
+- `text-lead`: Adds font styles to create leading text.
 
 #### `text-overflow-ellipsis`
 

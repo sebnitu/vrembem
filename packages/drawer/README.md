@@ -180,11 +180,11 @@ Variable | Default | Description
 
 ### JavaScript Events
 
-* `drawer:opened` Emits when the drawer has opened.
-* `drawer:closed` Emits when the drawer has closed.
-* `drawer:breakpoint` Emits when the drawer has hit a breakpoint.
-* `drawer:toModal` Emits when the drawer is switched to it's modal state.
-* `drawer:toDefault` Emits when the drawer is switched to it's default state.
+- `drawer:opened` Emits when the drawer has opened.
+- `drawer:closed` Emits when the drawer has closed.
+- `drawer:breakpoint` Emits when the drawer has hit a breakpoint.
+- `drawer:toModal` Emits when the drawer is switched to it's modal state.
+- `drawer:toDefault` Emits when the drawer is switched to it's default state.
 
 ### JavaScript Options
 
