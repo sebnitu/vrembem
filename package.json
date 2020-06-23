@@ -32,7 +32,7 @@
     "concurrently": "^5.2.0",
     "del-cli": "^3.0.1",
     "eslint": "^7.3.0",
-    "eslint-plugin-jest": "^23.16.0",
+    "eslint-plugin-jest": "^23.17.0",
     "jest": "^26.0.1",
     "lerna": "^3.22.1",
     "lerna-changelog": "^1.0.1",
