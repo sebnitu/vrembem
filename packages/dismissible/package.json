@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/dismissible",
   "description": "A component for removing an element from the DOM or hiding it with a CSS class.",
-  "version": "1.7.3",
+  "version": "1.8.0",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -25,8 +25,8 @@
     "directory": "packages/dismissible"
   },
   "devDependencies": {
-    "@vrembem/base": "^1.7.3",
-    "@vrembem/utility": "^1.7.3"
+    "@vrembem/base": "^1.8.0",
+    "@vrembem/utility": "^1.8.0"
   },
   "dependencies": {
     "@vrembem/core": "^1.7.3"
