@@ -19,6 +19,7 @@ $_e: var.$prefix-element;
 
 .#{$_b}drawer#{$_e}item {
   width: var.$width;
+  max-width: var.$max-width;
   height: 100%;
   transform: translateY(-(var.$travel));
   border-radius: 0;
@@ -57,6 +58,7 @@ $_e: var.$prefix-element;
 .#{$_b}drawer.is-closing {
   flex: 0 0 auto;
   width: var.$width;
+  max-width: var.$max-width;
   height: 100%;
 }
 

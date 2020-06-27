@@ -165,6 +165,7 @@ Variable | Default | Description
 `$prefix-modifier` | `"_"` | String to prefix modifier with.
 `$prefix-modifier-value` | `"_"` | String to prefix modifier values with.
 `$width` | `18em` | The width of drawers.
+`$max-width` | `100%` | The max-width of drawers.
 `$travel` | `5em` | Distance that drawers travel during their transition.
 `$transition-duration` | `0.3s` | Duration of drawer transition.
 `$transition-timing-function` | `cubic-bezier(0.4, 0, 0.2, 1)` | Timing function used for drawer transitions.
@@ -173,6 +174,8 @@ Variable | Default | Description
 `$item-box-shadow` | `none` | Box shadow applied to drawer items.
 `$item-sep-border-color` | `null` | Border color applied to dialog components within drawer items.
 `$modal-zindex` | `900` | Modal z-index to help control the stack order. Should be highest priority as modal.
+`$modal-width` | `$width` | The width of modal drawers.
+`$modal-max-width` | `80%` | The max-width of modal drawers.
 `$modal-item-background` | `#fff` | Background color applied to modal drawer items.
 `$modal-item-box-shadow` | See: `core.$box-shadow-24dp` | Box shadow applied to modal drawer items.
 `$modal-background` | `#424242` | Background color of modal screen.

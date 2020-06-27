@@ -14,6 +14,7 @@
 
 .drawer__item {
   width: 18em;
+  max-width: 100%;
   height: 100%;
   transform: translateY(-5em);
   border-radius: 0;
@@ -49,6 +50,7 @@
 .drawer.is-closing {
   flex: 0 0 auto;
   width: 18em;
+  max-width: 100%;
   height: 100%;
 }
 
@@ -85,6 +87,8 @@
 .drawer_modal .drawer__item {
   position: relative;
   z-index: 901;
+  width: 18em;
+  max-width: 80%;
   background-color: #fff;
   box-shadow: 0 0 0 1px rgba(33, 33, 33, 0.05), 0 11px 15px -7px rgba(33, 33, 33, 0.1), 0 24px 38px 3px rgba(33, 33, 33, 0.08), 0 9px 46px 8px rgba(33, 33, 33, 0.06);
 }
@@ -93,6 +97,7 @@
 .drawer_modal.is-opened,
 .drawer_modal.is-closing {
   width: 100%;
+  max-width: 100%;
   height: 100%;
 }
 

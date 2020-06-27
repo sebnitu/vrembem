@@ -22,6 +22,14 @@
   }
 
   > h3 {
+    margin-bottom: -1em !important;
     color: core.$color-subtle;
+
+    code {
+      color: core.$color;
+      font-size: core.$font-size;
+      letter-spacing: 0;
+      text-transform: none;
+    }
   }
 }
