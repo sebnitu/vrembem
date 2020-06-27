@@ -290,12 +290,20 @@ var Drawer = function Drawer(options) {
     breakpointCheck();
   };
 
-  api.switchToModal = function (drawer) {
-    switchToModal(drawer);
+  api.switchToModal = function (drawerKey) {
+    var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
+
+    if (drawer) {
+      switchToModal(drawer);
+    }
   };
 
-  api.switchToDefault = function (drawer) {
-    switchToDefault(drawer);
+  api.switchToDefault = function (drawerKey) {
+    var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
+
+    if (drawer) {
+      switchToDefault(drawer);
+    }
   };
 
   var run = function run(event) {
