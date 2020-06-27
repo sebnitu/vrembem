@@ -338,6 +338,11 @@ By default, the state of a drawer is saved to local storage and applied persiste
         <td data-mobile-label="Desc">The width of drawers.</td>
       </tr>
       <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$max-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">100%</code></td>
+        <td data-mobile-label="Desc">The max-width of drawers.</td>
+      </tr>
+      <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$travel</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">5em</code></td>
         <td data-mobile-label="Desc">Distance that drawers travel during their transition.</td>
@@ -380,6 +385,16 @@ By default, the state of a drawer is saved to local storage and applied persiste
         <td data-mobile-label="Var"><code class="code text-nowrap">$modal-zindex</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">900</code></td>
         <td data-mobile-label="Desc">Modal z-index to help control the stack order. Should be highest priority as modal.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$modal-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$width</code></td>
+        <td data-mobile-label="Desc">The width of modal drawers.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$modal-max-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">80%</code></td>
+        <td data-mobile-label="Desc">The max-width of modal drawers.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$modal-item-background</code></td>
@@ -525,55 +540,123 @@ By default, the state of a drawer is saved to local storage and applied persiste
 
 ## JavaScript API
 
-<div class="scroll-box">
-  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
-    <thead>
-      <tr>
-        <th>Method</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td data-mobile-label="Method"><code class="code text-nowrap">drawer.init()</code></td>
-        <td data-mobile-label="Desc">Initializes the drawer instance.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Method"><code class="code text-nowrap">drawer.destroy()</code></td>
-        <td data-mobile-label="Desc">Destroys and cleans up the drawer instantiation.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Method"><code class="code text-nowrap">drawer.toggle(drawerKey, callback)</code></td>
-        <td data-mobile-label="Desc">Toggles a drawer provided the drawer key and optional callback.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Method"><code class="code text-nowrap">drawer.open(drawerKey, callback)</code></td>
-        <td data-mobile-label="Desc">Opens a drawer provided the drawer key and optional callback.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Method"><code class="code text-nowrap">drawer.close(drawerKey, callback)</code></td>
-        <td data-mobile-label="Desc">Closes a drawer provided the drawer key and optional callback.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Method"><code class="code text-nowrap">drawer.breakpoint.init()</code></td>
-        <td data-mobile-label="Desc">Initializes the drawer breakpoint feature.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Method"><code class="code text-nowrap">drawer.breakpoint.destroy()</code></td>
-        <td data-mobile-label="Desc">Destroys the drawer breakpoint feature.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Method"><code class="code text-nowrap">drawer.breakpoint.check()</code></td>
-        <td data-mobile-label="Desc">Force a check if any drawers meet their breakpoint condition.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Method"><code class="code text-nowrap">drawer.switchToModal(drawer)</code></td>
-        <td data-mobile-label="Desc">Switches a drawer to it's modal state.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Method"><code class="code text-nowrap">drawer.switchToDefault(drawer)</code></td>
-        <td data-mobile-label="Desc">Switches a drawer to it's default state.</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+### `drawer.init()`
+
+Initializes the drawer instance.
+
+```js
+const drawer = new Drawer();
+drawer.init();
+```
+
+### `drawer.destroy()`
+
+Destroys and cleans up the drawer instantiation.
+
+```js
+const drawer = new Drawer();
+drawer.init();
+// ...
+drawer.destroy();
+```
+
+### `drawer.toggle(key, callback)`
+
+Toggles a drawer when provided the drawer key and optional callback.
+
+**Parameters**
+
+- `key` A unique key to a drawer HTML element.
+- `callback` (optional) A callback function to be run after the toggle is completed.
+
+```html
+<div class="drawer" data-drawer="drawer-key">...</div>
+```
+
+```js
+drawer.toggle('drawer-key', () => {
+  // Your custom code here...
+});
+```
+
+### `drawer.open(key, callback)`
+
+Opens a drawer when provided the drawer key and optional callback.
+
+**Parameters**
+
+- `key` A unique key to a drawer HTML element.
+- `callback` (optional) A callback function to be run after the open is completed.
+
+```html
+<div class="drawer" data-drawer="drawer-key">...</div>
+```
+
+```js
+drawer.open('drawer-key', () => {
+  // Your custom code here...
+});
+```
+
+### `drawer.close(key, callback)`
+
+Closes a drawer when provided the drawer key and optional callback.
+
+**Parameters**
+
+- `key` A unique key to a drawer HTML element.
+- `callback` (optional) A callback function to be run after the close is completed.
+
+```html
+<div class="drawer" data-drawer="drawer-key">...</div>
+```
+
+```js
+drawer.close('drawer-key', () => {
+  // Your custom code here...
+});
+```
+
+### `drawer.breakpoint.init()`
+
+Initializes the drawer breakpoint feature.
+
+### `drawer.breakpoint.destroy()`
+
+Destroys the drawer breakpoint feature.
+
+### `drawer.breakpoint.check()`
+
+Force a check of any drawers that meet their breakpoint condition. If their state doesn't match the current breakpoint condition, they'll be updated.
+
+### `drawer.switchToModal(key)`
+
+Switches a drawer to it's modal state.
+
+**Parameters**
+
+- `key` A unique key to a drawer HTML element.
+
+```html
+<div class="drawer" data-drawer="drawer-key">...</div>
+```
+
+```js
+drawer.switchToModal('drawer-key');
+```
+
+### `drawer.switchToDefault(key)`
+
+Switches a drawer to it's default state.
+
+**Parameters**
+
+- `key` A unique key to a drawer HTML element.
+
+```html
+<div class="drawer" data-drawer="drawer-key">...</div>
+```
+
+```js
+drawer.switchToDefault('drawer-key');
+```

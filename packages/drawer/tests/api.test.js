@@ -199,7 +199,7 @@ test('should switch drawer to modal on api call', () => {
   drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer]');
   expect(el).not.toHaveClass('drawer_modal');
-  drawer.switchToModal(el);
+  drawer.switchToModal('drawer-default');
   expect(el).toHaveClass('drawer_modal');
 });
 
@@ -208,7 +208,7 @@ test('should switch drawer to default on api call', () => {
   drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer]');
   expect(el).toHaveClass('drawer_modal');
-  drawer.switchToDefault(el);
+  drawer.switchToDefault('drawer-default');
   expect(el).not.toHaveClass('drawer_modal');
 });
 

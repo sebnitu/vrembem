@@ -15,6 +15,8 @@ $_m: var.$prefix-modifier;
   .#{$_b}drawer#{$_e}item {
     position: relative;
     z-index: (var.$modal-zindex + 1);
+    width: var.$modal-width;
+    max-width: var.$modal-max-width;
     background-color: var.$modal-item-background;
     box-shadow: var.$modal-item-box-shadow;
   }
@@ -24,6 +26,7 @@ $_m: var.$prefix-modifier;
 .#{$_b}drawer#{$_m}modal.is-opened,
 .#{$_b}drawer#{$_m}modal.is-closing {
   width: 100%;
+  max-width: 100%;
   height: 100%;
 }
 

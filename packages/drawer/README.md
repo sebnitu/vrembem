@@ -165,6 +165,7 @@ Variable | Default | Description
 `$prefix-modifier` | `"_"` | String to prefix modifier with.
 `$prefix-modifier-value` | `"_"` | String to prefix modifier values with.
 `$width` | `18em` | The width of drawers.
+`$max-width` | `100%` | The max-width of drawers.
 `$travel` | `5em` | Distance that drawers travel during their transition.
 `$transition-duration` | `0.3s` | Duration of drawer transition.
 `$transition-timing-function` | `cubic-bezier(0.4, 0, 0.2, 1)` | Timing function used for drawer transitions.
@@ -173,6 +174,8 @@ Variable | Default | Description
 `$item-box-shadow` | `none` | Box shadow applied to drawer items.
 `$item-sep-border-color` | `null` | Border color applied to dialog components within drawer items.
 `$modal-zindex` | `900` | Modal z-index to help control the stack order. Should be highest priority as modal.
+`$modal-width` | `$width` | The width of modal drawers.
+`$modal-max-width` | `80%` | The max-width of modal drawers.
 `$modal-item-background` | `#fff` | Background color applied to modal drawer items.
 `$modal-item-box-shadow` | See: `core.$box-shadow-24dp` | Box shadow applied to modal drawer items.
 `$modal-background` | `#424242` | Background color of modal screen.
@@ -209,15 +212,123 @@ Key | Default | Description
 
 ### JavaScript API
 
-Method | Description
----|---
-`drawer.init()` | Initializes the drawer instance.
-`drawer.destroy()` | Destroys and cleans up the drawer instantiation.
-`drawer.toggle(drawerKey, callback)` | Toggles a drawer provided the drawer key and optional callback.
-`drawer.open(drawerKey, callback)` | Opens a drawer provided the drawer key and optional callback.
-`drawer.close(drawerKey, callback)` | Closes a drawer provided the drawer key and optional callback.
-`drawer.breakpoint.init()` | Initializes the drawer breakpoint feature.
-`drawer.breakpoint.destroy()` | Destroys the drawer breakpoint feature.
-`drawer.breakpoint.check()` | Force a check if any drawers meet their breakpoint condition.
-`drawer.switchToModal(drawer)` | Switches a drawer to it's modal state.
-`drawer.switchToDefault(drawer)` | Switches a drawer to it's default state.
+#### `drawer.init()`
+
+Initializes the drawer instance.
+
+```js
+const drawer = new Drawer();
+drawer.init();
+```
+
+#### `drawer.destroy()`
+
+Destroys and cleans up the drawer instantiation.
+
+```js
+const drawer = new Drawer();
+drawer.init();
+// ...
+drawer.destroy();
+```
+
+#### `drawer.toggle(key, callback)`
+
+Toggles a drawer when provided the drawer key and optional callback.
+
+**Parameters**
+
+- `key` A unique key to a drawer HTML element.
+- `callback` (optional) A callback function to be run after the toggle is completed.
+
+```html
+<div class="drawer" data-drawer="drawer-key">...</div>
+```
+
+```js
+drawer.toggle('drawer-key', () => {
+  // Your custom code here...
+});
+```
+
+#### `drawer.open(key, callback)`
+
+Opens a drawer when provided the drawer key and optional callback.
+
+**Parameters**
+
+- `key` A unique key to a drawer HTML element.
+- `callback` (optional) A callback function to be run after the open is completed.
+
+```html
+<div class="drawer" data-drawer="drawer-key">...</div>
+```
+
+```js
+drawer.open('drawer-key', () => {
+  // Your custom code here...
+});
+```
+
+#### `drawer.close(key, callback)`
+
+Closes a drawer when provided the drawer key and optional callback.
+
+**Parameters**
+
+- `key` A unique key to a drawer HTML element.
+- `callback` (optional) A callback function to be run after the close is completed.
+
+```html
+<div class="drawer" data-drawer="drawer-key">...</div>
+```
+
+```js
+drawer.close('drawer-key', () => {
+  // Your custom code here...
+});
+```
+
+#### `drawer.breakpoint.init()`
+
+Initializes the drawer breakpoint feature.
+
+#### `drawer.breakpoint.destroy()`
+
+Destroys the drawer breakpoint feature.
+
+#### `drawer.breakpoint.check()`
+
+Force a check of any drawers that meet their breakpoint condition. If their state doesn't match the current breakpoint condition, they'll be updated.
+
+#### `drawer.switchToModal(key)`
+
+Switches a drawer to it's modal state.
+
+**Parameters**
+
+- `key` A unique key to a drawer HTML element.
+
+```html
+<div class="drawer" data-drawer="drawer-key">...</div>
+```
+
+```js
+drawer.switchToModal('drawer-key');
+```
+
+#### `drawer.switchToDefault(key)`
+
+Switches a drawer to it's default state.
+
+**Parameters**
+
+- `key` A unique key to a drawer HTML element.
+
+```html
+<div class="drawer" data-drawer="drawer-key">...</div>
+```
+
+```js
+drawer.switchToDefault('drawer-key');
+```

@@ -96,12 +96,22 @@ export const Drawer = (options) => {
     breakpointCheck();
   };
 
-  api.switchToModal = (drawer) => {
-    switchToModal(drawer);
+  api.switchToModal = (drawerKey) => {
+    const drawer = document.querySelector(
+      `[data-${api.settings.dataDrawer}="${drawerKey}"]`
+    );
+    if (drawer) {
+      switchToModal(drawer);
+    }
   };
 
-  api.switchToDefault = (drawer) => {
-    switchToDefault(drawer);
+  api.switchToDefault = (drawerKey) => {
+    const drawer = document.querySelector(
+      `[data-${api.settings.dataDrawer}="${drawerKey}"]`
+    );
+    if (drawer) {
+      switchToDefault(drawer);
+    }
   };
 
   const run = (event) => {
