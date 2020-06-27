@@ -621,38 +621,42 @@ drawer.close('drawer-key', () => {
 
 Initializes the drawer breakpoint feature.
 
-```js
-drawer.breakpoint.init();
-```
-
 ### `drawer.breakpoint.destroy()`
 
 Destroys the drawer breakpoint feature.
-
-```js
-drawer.breakpoint.init();
-```
 
 ### `drawer.breakpoint.check()`
 
 Force a check of any drawers that meet their breakpoint condition. If their state doesn't match the current breakpoint condition, they'll be updated.
 
-```js
-drawer.breakpoint.init();
-```
-
-### `drawer.switchToModal(drawer)`
+### `drawer.switchToModal(key)`
 
 Switches a drawer to it's modal state.
 
-```js
-drawer.switchToModal(drawer);
+**Parameters**
+
+- `key` A unique key to a drawer HTML element.
+
+```html
+<div class="drawer" data-drawer="drawer-key">...</div>
 ```
 
-### `drawer.switchToDefault(drawer)`
+```js
+drawer.switchToModal('drawer-key');
+```
+
+### `drawer.switchToDefault(key)`
 
 Switches a drawer to it's default state.
 
+**Parameters**
+
+- `key` A unique key to a drawer HTML element.
+
+```html
+<div class="drawer" data-drawer="drawer-key">...</div>
+```
+
 ```js
-drawer.switchToDefault(drawer);
+drawer.switchToDefault('drawer-key');
 ```

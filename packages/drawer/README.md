@@ -212,15 +212,123 @@ Key | Default | Description
 
 ### JavaScript API
 
-Method | Description
----|---
-`drawer.init()` | Initializes the drawer instance.
-`drawer.destroy()` | Destroys and cleans up the drawer instantiation.
-`drawer.toggle(drawerKey, callback)` | Toggles a drawer provided the drawer key and optional callback.
-`drawer.open(drawerKey, callback)` | Opens a drawer provided the drawer key and optional callback.
-`drawer.close(drawerKey, callback)` | Closes a drawer provided the drawer key and optional callback.
-`drawer.breakpoint.init()` | Initializes the drawer breakpoint feature.
-`drawer.breakpoint.destroy()` | Destroys the drawer breakpoint feature.
-`drawer.breakpoint.check()` | Force a check if any drawers meet their breakpoint condition.
-`drawer.switchToModal(drawer)` | Switches a drawer to it's modal state.
-`drawer.switchToDefault(drawer)` | Switches a drawer to it's default state.
+#### `drawer.init()`
+
+Initializes the drawer instance.
+
+```js
+const drawer = new Drawer();
+drawer.init();
+```
+
+#### `drawer.destroy()`
+
+Destroys and cleans up the drawer instantiation.
+
+```js
+const drawer = new Drawer();
+drawer.init();
+// ...
+drawer.destroy();
+```
+
+#### `drawer.toggle(key, callback)`
+
+Toggles a drawer when provided the drawer key and optional callback.
+
+**Parameters**
+
+- `key` A unique key to a drawer HTML element.
+- `callback` (optional) A callback function to be run after the toggle is completed.
+
+```html
+<div class="drawer" data-drawer="drawer-key">...</div>
+```
+
+```js
+drawer.toggle('drawer-key', () => {
+  // Your custom code here...
+});
+```
+
+#### `drawer.open(key, callback)`
+
+Opens a drawer when provided the drawer key and optional callback.
+
+**Parameters**
+
+- `key` A unique key to a drawer HTML element.
+- `callback` (optional) A callback function to be run after the open is completed.
+
+```html
+<div class="drawer" data-drawer="drawer-key">...</div>
+```
+
+```js
+drawer.open('drawer-key', () => {
+  // Your custom code here...
+});
+```
+
+#### `drawer.close(key, callback)`
+
+Closes a drawer when provided the drawer key and optional callback.
+
+**Parameters**
+
+- `key` A unique key to a drawer HTML element.
+- `callback` (optional) A callback function to be run after the close is completed.
+
+```html
+<div class="drawer" data-drawer="drawer-key">...</div>
+```
+
+```js
+drawer.close('drawer-key', () => {
+  // Your custom code here...
+});
+```
+
+#### `drawer.breakpoint.init()`
+
+Initializes the drawer breakpoint feature.
+
+#### `drawer.breakpoint.destroy()`
+
+Destroys the drawer breakpoint feature.
+
+#### `drawer.breakpoint.check()`
+
+Force a check of any drawers that meet their breakpoint condition. If their state doesn't match the current breakpoint condition, they'll be updated.
+
+#### `drawer.switchToModal(key)`
+
+Switches a drawer to it's modal state.
+
+**Parameters**
+
+- `key` A unique key to a drawer HTML element.
+
+```html
+<div class="drawer" data-drawer="drawer-key">...</div>
+```
+
+```js
+drawer.switchToModal('drawer-key');
+```
+
+#### `drawer.switchToDefault(key)`
+
+Switches a drawer to it's default state.
+
+**Parameters**
+
+- `key` A unique key to a drawer HTML element.
+
+```html
+<div class="drawer" data-drawer="drawer-key">...</div>
+```
+
+```js
+drawer.switchToDefault('drawer-key');
+```

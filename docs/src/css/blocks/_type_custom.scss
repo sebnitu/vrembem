@@ -26,6 +26,9 @@
     color: core.$color-subtle;
 
     code {
+      padding: 0.2em 0.4em;
+      border-radius: core.$border-radius;
+      background: core.$shade;
       color: core.$color;
       font-size: core.$font-size;
       letter-spacing: 0;
