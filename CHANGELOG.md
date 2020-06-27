@@ -15,9 +15,15 @@ All notable changes to this project will be documented in this file.
 
 <!--
 Commit template:
-chore(release): add v1.7.3 to CHANGELOG.md
+chore(release): add v1.8.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+## v1.8.0 (2020-06-27)
+
+#### :tada: New Feature
+* `drawer`, `vrembem`
+  * [#228](https://github.com/sebnitu/vrembem/pull/228) Add width and max-width variables to Drawer component ([@sebnitu](https://github.com/sebnitu))
 
 ## v1.7.3 (2020-06-21)
 
