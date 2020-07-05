@@ -672,6 +672,168 @@
     return api;
   };
 
+  function ownKeys$4(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+  function _objectSpread$4(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$4(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$4(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+  var ScrollStash = (function (options) {
+    var api = {};
+    var defaults = {
+      autoInit: false,
+      dataScroll: 'scroll-stash',
+      dataAnchor: 'scroll-stash-anchor',
+      selectorAnchor: '',
+      selectorAnchorParent: '',
+      selectorTopElem: '',
+      selectorBotElem: '',
+      behavior: 'auto',
+      anchorPadding: 16,
+      saveKey: 'ScrollStash',
+      throttleDelay: 250,
+      customEventPrefix: 'scroll-stash:'
+    };
+    api.settings = _objectSpread$4(_objectSpread$4({}, defaults), options);
+    api.scrolls = [];
+    api.state = {};
+    api.ticking = false;
+
+    api.init = function () {
+      api.scrolls = document.querySelectorAll("[data-".concat(api.settings.dataScroll, "]"));
+      setScrollPosition();
+      api.scrolls.forEach(function (item) {
+        if (api.settings.selectorAnchor) {
+          showAnchor(item);
+        }
+
+        item.addEventListener('scroll', throttle, false);
+      });
+    };
+
+    api.destroy = function () {
+      api.scrolls.forEach(function (item) {
+        item.removeEventListener('scroll', throttle, false);
+      });
+      api.scrolls = [];
+      api.state = {};
+      localStorage.removeItem(api.settings.saveKey);
+    };
+
+    api.showAnchor = function (el) {
+      var behavior = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : api.settings.behavior;
+
+      if (api.settings.selectorAnchor) {
+        showAnchor(el, behavior);
+      }
+    };
+
+    var throttle = function throttle() {
+      if (!api.ticking) {
+        setTimeout(run, api.settings.throttleDelay);
+        api.ticking = true;
+      }
+    };
+
+    var run = function run() {
+      saveScrollPosition();
+      api.ticking = false;
+    };
+
+    var saveScrollPosition = function saveScrollPosition() {
+      var scrolls = document.querySelectorAll("[data-".concat(api.settings.dataScroll, "]"));
+      scrolls.forEach(function (el) {
+        var id = el.dataset[camelCase(api.settings.dataScroll)];
+        if (id) api.state[id] = el.scrollTop;
+      });
+      localStorage.setItem(api.settings.saveKey, JSON.stringify(api.state));
+      var customEvent = new CustomEvent(api.settings.customEventPrefix + 'saved', {
+        bubbles: true,
+        detail: api.state
+      });
+      document.dispatchEvent(customEvent);
+    };
+
+    var setScrollPosition = function setScrollPosition() {
+      if (localStorage.getItem(api.settings.saveKey)) {
+        api.state = JSON.parse(localStorage.getItem(api.settings.saveKey));
+        Object.keys(api.state).forEach(function (key) {
+          var item = document.querySelector("[data-".concat(api.settings.dataScroll, "=\"").concat(key, "\"]"));
+          if (item) item.scrollTop = api.state[key];
+        });
+        var customEvent = new CustomEvent(api.settings.customEventPrefix + 'applied', {
+          bubbles: true,
+          detail: api.state
+        });
+        document.dispatchEvent(customEvent);
+      } else {
+        saveScrollPosition();
+      }
+    };
+
+    var showAnchor = function showAnchor(el) {
+      var behavior = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : api.settings.behavior;
+      var anchor = el.querySelector(api.settings.selectorAnchor);
+
+      if (anchor && api.settings.selectorAnchorParent) {
+        anchor = anchor.closest(api.settings.selectorAnchorParent);
+      }
+
+      var dataAnchor = el.dataset[camelCase(api.settings.dataAnchor)];
+
+      if (dataAnchor == ('false' )) {
+        return false;
+      } else if (dataAnchor) {
+        anchor = el.querySelector(dataAnchor) ? el.querySelector(dataAnchor) : anchor;
+      }
+
+      if (anchor) {
+        var adjustTop = api.settings.anchorPadding;
+        var adjustBot = api.settings.anchorPadding;
+
+        if (api.settings.selectorTopElem) {
+          var topElem = el.querySelector(api.settings.selectorTopElem);
+
+          if (topElem) {
+            adjustTop = adjustTop + topElem.offsetHeight;
+          }
+        }
+
+        if (api.settings.selectorBotElem) {
+          var botElem = el.querySelector(api.settings.selectorBotElem);
+
+          if (botElem) {
+            adjustBot = adjustBot + botElem.offsetHeight;
+          }
+        }
+
+        var posTop = anchor.offsetTop - adjustTop;
+        var posBot = anchor.offsetTop - (el.offsetHeight - (anchor.offsetHeight + adjustBot));
+
+        if (el.scrollTop > posTop) {
+          el.scroll({
+            top: posTop,
+            behavior: behavior
+          });
+        } else if (el.scrollTop < posBot) {
+          el.scroll({
+            top: posBot,
+            behavior: behavior
+          });
+        }
+
+        var customEvent = new CustomEvent(api.settings.customEventPrefix + 'anchor', {
+          bubbles: true,
+          detail: {
+            key: el.dataset[camelCase(api.settings.dataScroll)],
+            position: el.scrollTop
+          }
+        });
+        el.dispatchEvent(customEvent);
+      }
+    };
+
+    if (api.settings.autoInit) api.init();
+    return api;
+  });
+
   /*!
    * @copyright Copyright (c) 2017 IcoMoon.io
    * @license   Licensed under MIT license
@@ -2440,153 +2602,31 @@
     }
   })();
 
-  function ownKeys$4(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+  (function () {
+    var url = 'https://api.github.com/repos/sebnitu/vrembem/contents/packages/vrembem/package.json?ref=master';
+    var ajax = new XMLHttpRequest();
+    var el = document.querySelector('[data-role="version"]');
 
-  function _objectSpread$4(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$4(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$4(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-  var Version = function Version(options) {
-    var api = {};
-    var defaults = {
-      autoInit: false,
-      url: 'https://api.github.com/repos/sebnitu/vrembem/contents/packages/vrembem/package.json?ref=master'
-    };
-    api.settings = _objectSpread$4(_objectSpread$4({}, defaults), options);
-
-    api.init = function () {
-      var ajax = new XMLHttpRequest();
-      var el = document.querySelector('[data-role="version"]');
-
-      if (el) {
-        ajax.onload = function () {
-          if (ajax.status >= 200 && ajax.status < 300) {
-            var response = JSON.parse(ajax.response);
-            var decode = window.atob(response.content);
-            var pkg = JSON.parse(decode);
-            el.classList.remove('loading');
-            el.classList.add('success');
-            el.innerHTML = pkg.version;
-          } else {
-            el.classList.remove('loading');
-            el.classList.add('error');
-            el.innerHTML = 'Error!';
-          }
-        };
-
-        ajax.open('GET', api.settings.url);
-        ajax.send();
-      }
-    };
-
-    if (api.settings.autoInit) api.init();
-    return api;
-  };
-
-  function ownKeys$5(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-  function _objectSpread$5(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$5(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$5(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-  var StickyScroll = function StickyScroll(options) {
-    var api = {};
-    var defaults = {
-      autoInit: false,
-      selector: '[data-sticky-scroll]',
-      selectorActive: '',
-      selectorActiveParent: '',
-      selectorElementPadding: '',
-      saveKey: 'StickyScroll',
-      throttleDelay: 500,
-      positionBottom: true,
-      padding: 30
-    };
-    api.settings = _objectSpread$5(_objectSpread$5({}, defaults), options);
-    api.lastPosition = 0;
-    api.ticking = false;
-    api.element = false;
-
-    api.init = function () {
-      api.element = document.querySelector(api.settings.selector);
-
-      if (api.element) {
-        setScrollPosition();
-
-        if (api.settings.selectorActive) {
-          showActive();
+    if (el) {
+      ajax.onload = function () {
+        if (ajax.status >= 200 && ajax.status < 300) {
+          var response = JSON.parse(ajax.response);
+          var decode = window.atob(response.content);
+          var pkg = JSON.parse(decode);
+          el.classList.remove('loading');
+          el.classList.add('success');
+          el.innerHTML = pkg.version;
+        } else {
+          el.classList.remove('loading');
+          el.classList.add('error');
+          el.innerHTML = 'Error!';
         }
+      };
 
-        api.element.addEventListener('scroll', throttle, false);
-      }
-    };
-
-    api.destroy = function () {
-      if (api.element) {
-        api.element.removeEventListener('scroll', throttle, false);
-      }
-    };
-
-    api.showActive = function () {
-      if (api.settings.selectorActive) {
-        showActive();
-      }
-    };
-
-    var throttle = function throttle(event) {
-      api.lastPosition = event.target.scrollTop;
-
-      if (!api.ticking) {
-        setTimeout(run, api.settings.throttleDelay);
-        api.ticking = true;
-      }
-    };
-
-    var run = function run() {
-      saveScrollPosition();
-      api.ticking = false;
-    };
-
-    var saveScrollPosition = function saveScrollPosition() {
-      localStorage.setItem(api.settings.saveKey, api.lastPosition);
-    };
-
-    var setScrollPosition = function setScrollPosition() {
-      var pos = localStorage.getItem(api.settings.saveKey);
-
-      if (pos) {
-        api.element.scrollTop = pos;
-      }
-    };
-
-    var showActive = function showActive() {
-      var el = api.element.querySelector(api.settings.selectorActive);
-
-      if (api.settings.selectorActiveParent) {
-        el = el.closest(api.settings.selectorActiveParent);
-      }
-
-      if (el) {
-        var adjust = 0;
-
-        if (api.settings.selectorElementPadding) {
-          adjust = api.element.querySelector(api.settings.selectorElementPadding).getBoundingClientRect().height;
-        }
-
-        var bounding = el.getBoundingClientRect();
-        var scrollBounding = api.element.getBoundingClientRect();
-        var maxTop = scrollBounding.top + adjust;
-        var maxBot = window.innerHeight || document.documentElement.clientHeight;
-        var posTop = el.offsetTop - (adjust + api.settings.padding);
-        var posBot = el.offsetTop + el.getBoundingClientRect().height + api.settings.padding - scrollBounding.height;
-
-        if (bounding.top < maxTop) {
-          api.element.scrollTop = posTop;
-        } else if (bounding.bottom > maxBot) {
-          api.element.scrollTop = api.settings.positionBottom ? posBot : posTop;
-        }
-      }
-    };
-
-    if (api.settings.autoInit) api.init();
-    return api;
-  };
+      ajax.open('GET', url);
+      ajax.send();
+    }
+  })();
 
   new Checkbox({
     autoInit: true
@@ -2600,17 +2640,14 @@
   new Modal({
     autoInit: true
   });
-  new Version({
-    autoInit: true
-  });
-  var stickyScroll = new StickyScroll({
+  var scrollStash = new ScrollStash({
     autoInit: true,
-    selectorActive: '.is-active',
-    selectorActiveParent: '.menu__item',
-    selectorElementPadding: '.dialog__header'
+    selectorAnchor: '.is-active',
+    selectorTopElem: '.dialog__header'
   });
+  var el = document.querySelector('[data-scroll-stash]');
   document.addEventListener('drawer:opened', function () {
-    stickyScroll.showActive();
+    scrollStash.showAnchor(el, 'smooth');
   });
 
 }());

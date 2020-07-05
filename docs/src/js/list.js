@@ -2,7 +2,6 @@ import { utility } from 'vrembem';
 import listjs from 'list.js';
 
 (() => {
-
   if (document.getElementById('listjs')) {
 
     // Init our list.js component
@@ -93,5 +92,4 @@ import listjs from 'list.js';
       }
     }
   }
-
 })();

@@ -4,24 +4,22 @@ import {
   Drawer,
   Modal
 } from 'vrembem';
+import ScrollStash from 'scroll-stash';
 import 'svgxuse';
 import './list.js';
-import { Version } from './version';
-import { StickyScroll } from './stickyScroll';
+import './version';
 
 new Checkbox({ autoInit: true });
 new Dismissible({ autoInit: true });
 new Drawer({ autoInit: true });
 new Modal({ autoInit: true });
-
-new Version({ autoInit: true });
-const stickyScroll = new StickyScroll({
+const scrollStash = new ScrollStash({
   autoInit: true,
-  selectorActive: '.is-active',
-  selectorActiveParent: '.menu__item',
-  selectorElementPadding: '.dialog__header'
+  selectorAnchor: '.is-active',
+  selectorTopElem: '.dialog__header'
 });
 
+const el = document.querySelector('[data-scroll-stash]');
 document.addEventListener('drawer:opened', () => {
-  stickyScroll.showActive();
+  scrollStash.showAnchor(el, 'smooth');
 });
