@@ -55,7 +55,6 @@
     "@vrembem/panel": "^1.7.3",
     "@vrembem/radio": "^1.7.3",
     "@vrembem/section": "^1.7.3",
-    "@vrembem/span": "^1.5.4",
     "@vrembem/switch": "^1.7.3",
     "@vrembem/table": "^1.7.3",
     "@vrembem/tooltip": "^1.7.3",
