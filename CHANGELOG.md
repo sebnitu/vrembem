@@ -15,9 +15,15 @@ All notable changes to this project will be documented in this file.
 
 <!--
 Commit template:
-chore(release): add v1.8.1 to CHANGELOG.md
+chore(release): add v1.8.2 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+## v1.8.2 (2020-07-07)
+
+#### :balloon: Improved Feature
+* `drawer`, `vrembem`
+  * [#238](https://github.com/sebnitu/vrembem/pull/238) Refactor drawer breakpoint methods ([@sebnitu](https://github.com/sebnitu))
 
 ## v1.8.1 (2020-07-05)
 
