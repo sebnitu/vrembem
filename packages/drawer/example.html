@@ -72,38 +72,73 @@
       <h1 class="margin-bottom-md">@vrembem/drawer</h1>
       <p>A container component that slides in from the left or right. Typically containing menus, search or other content.</p>
       <hr class="sep margin-vert-lg">
-      <p class="margin-top-md">
-        <button class="link" data-drawer-toggle="drawer-default-left">
-          Drawer Default Left
-        </button>
-        <button class="link" data-drawer-toggle="drawer-default-right">
-          Drawer Default Right
-        </button>
-      </p>
-      <p class="margin-top-md">
-        <button class="link" data-drawer-toggle="drawer-pos-left">
-          Drawer Pos Left
-        </button>
-        <button class="link" data-drawer-toggle="drawer-pos-right">
-          Drawer Pos Right
-        </button>
-      </p>
-      <p class="margin-top-md">
-        <button class="link" data-drawer-toggle="drawer-modal-left">
-          Drawer Modal Left
-        </button>
-        <button class="link" data-drawer-toggle="drawer-modal-right">
-          Drawer Modal Right
-        </button>
-        <button class="link" data-drawer-toggle="drawer-modal-always">
-          Drawer Modal Always
-        </button>
-      </p>
-      <p class="margin-top-md">
-        <button class="link api-test-toggle">API Toggle</button>
-        <button class="link api-test-open">API Open</button>
-        <button class="link api-test-close">API Close</button>
-      </p>
+      <div class="margin-top-md spacing">
+        <p>
+          <button class="link" data-drawer-toggle="drawer-default-left">
+            Drawer Default Left
+          </button>
+          <button class="link" data-drawer-toggle="drawer-default-right">
+            Drawer Default Right
+          </button>
+        </p>
+        <p>
+          <button class="link" data-drawer-toggle="drawer-pos-left">
+            Drawer Pos Left
+          </button>
+          <button class="link" data-drawer-toggle="drawer-pos-right">
+            Drawer Pos Right
+          </button>
+        </p>
+        <p>
+          <button class="link" data-drawer-toggle="drawer-modal-left">
+            Drawer Modal Left
+          </button>
+          <button class="link" data-drawer-toggle="drawer-modal-right">
+            Drawer Modal Right
+          </button>
+          <button class="link" data-drawer-toggle="drawer-modal-always">
+            Drawer Modal Always
+          </button>
+        </p>
+
+        <h2>API</h2>
+        <ul class="list">
+          <li>
+            <button class="link js-api-toggle">
+              <code class="code">api.toggle</code>
+            </button>
+          </li>
+          <li>
+            <button class="link js-api-open">
+              <code class="code">api.open</code>
+            </button>
+          </li>
+          <li>
+            <button class="link js-api-close">
+              <code class="code">api.close</code>
+            </button>
+          </li>
+        </ul>
+
+        <h2>Breakpoint API</h2>
+        <ul class="list">
+          <li>
+            <button class="link js-api-bp-init">
+              <code class="code">api.breakpoint.init</code>
+            </button>
+          </li>
+          <li>
+            <button class="link js-api-bp-destroy">
+              <code class="code">api.breakpoint.destroy</code>
+            </button>
+          </li>
+          <li>
+            <button class="link js-api-bp-check">
+              <code class="code">api.breakpoint.check</code>
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -123,27 +158,40 @@
 <script>
   const drawer = new vrembem.Drawer({ autoInit: true });
 
-  const apiToggle = document.querySelector(".api-test-toggle")
-  const apiOpen = document.querySelector(".api-test-open")
-  const apiClose = document.querySelector(".api-test-close")
+  document.querySelector('.js-api-toggle').addEventListener('click', () => {
+    drawer.toggle('drawer-pos-right', () => {
+      console.log('Toggle API callback');
+    });
+  });
 
-  apiToggle.addEventListener("click", function(event) {
-    drawer.toggle("drawer-pos-right", function() {
-      console.log("Toggle API called")
-    })
-  })
+  document.querySelector('.js-api-open').addEventListener('click', () => {
+    drawer.open('drawer-pos-right', () => {
+      console.log('Open API callback');
+    });
+  });
 
-  apiOpen.addEventListener("click", function(event) {
-    drawer.open("drawer-pos-right", function() {
-      console.log("Open API called")
-    })
-  })
+  document.querySelector('.js-api-close').addEventListener('click', () => {
+    drawer.close('drawer-pos-right', () => {
+      console.log('Close API callback');
+    });
+  });
 
-  apiClose.addEventListener("click", function(event) {
-    drawer.close("drawer-pos-right", function() {
-      console.log("Close API called")
-    })
-  })
+  document.querySelector('.js-api-bp-init').addEventListener('click', () => {
+    drawer.breakpoint.init();
+    console.log('init:', drawer.mediaQueryLists);
+  });
+
+  document.querySelector('.js-api-bp-destroy').addEventListener('click', () => {
+    drawer.breakpoint.destroy();
+    console.log('destroy:', drawer.mediaQueryLists);
+  });
+
+  document.querySelector('.js-api-bp-check').addEventListener('click', () => {
+    drawer.breakpoint.check();
+    console.log('check:', drawer.mediaQueryLists);
+  });
+
+  console.log(drawer.mediaQueryLists);
 </script>
 </body>
 </html>
