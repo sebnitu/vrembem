@@ -332,6 +332,7 @@ var Drawer = function Drawer(options) {
 
     if (drawers) {
       drawers.forEach(function (drawer) {
+        var id = drawer.dataset[camelCase(api.settings.dataDrawer)];
         var key = drawer.dataset[camelCase(api.settings.dataBreakpoint)];
         var bp = api.settings.breakpoints[key] ? api.settings.breakpoints[key] : key;
         var mql = window.matchMedia('(min-width:' + bp + ')');
@@ -339,7 +340,7 @@ var Drawer = function Drawer(options) {
         mql.addListener(breakpointCheck);
         api.mediaQueryLists.push({
           'mql': mql,
-          'drawer': drawer
+          'drawer': id
         });
       });
     }
@@ -357,17 +358,24 @@ var Drawer = function Drawer(options) {
 
   var breakpointCheck = function breakpointCheck() {
     var event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-    api.mediaQueryLists.forEach(function (item) {
-      var filter = event ? event.media == item.mql.media : true;
 
-      if (filter) {
-        breakpointMatch(item.mql, item.drawer);
-      }
-    });
-    var customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
-      bubbles: true
-    });
-    document.dispatchEvent(customEvent);
+    if (api.mediaQueryLists && api.mediaQueryLists.length) {
+      api.mediaQueryLists.forEach(function (item) {
+        var filter = event ? event.media == item.mql.media : true;
+
+        if (filter) {
+          var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(item.drawer, "\"]"));
+
+          if (drawer) {
+            breakpointMatch(item.mql, drawer);
+          }
+        }
+      });
+      var customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
+        bubbles: true
+      });
+      document.dispatchEvent(customEvent);
+    }
   };
 
   var breakpointMatch = function breakpointMatch(mql, drawer) {
