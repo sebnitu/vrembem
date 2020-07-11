@@ -17,8 +17,8 @@
     "watch:scripts": "lerna run watch:scripts --parallel",
     "watch:styles": "lerna run watch:styles --parallel",
     "server": "lerna run server --scope @vrembem/docs --parallel",
-    "test": "jest || true",
-    "test:watch": "jest --watch || true"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "devDependencies": {
     "@babel/core": "^7.10.4",
