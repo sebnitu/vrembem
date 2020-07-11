@@ -3,7 +3,7 @@
 A CSS component library based on the BEM methodology.
 
 [![npm version](https://img.shields.io/npm/v/vrembem.svg)](https://www.npmjs.com/package/vrembem)
-[![Build Status](https://img.shields.io/travis/sebnitu/vrembem.svg)](https://travis-ci.org/sebnitu/vrembem)
+[![Build Status](https://travis-ci.org/sebnitu/vrembem.svg?branch=master)](https://travis-ci.org/sebnitu/vrembem)
 [![devDependency Status](https://img.shields.io/david/dev/sebnitu/vrembem.svg)](https://david-dm.org/sebnitu/vrembem?type=dev)
 
 ## About
