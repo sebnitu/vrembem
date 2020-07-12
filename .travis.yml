@@ -1,5 +1,10 @@
 language: node_js
 node_js:
   - 12
+
 before_script:
   - npx lerna bootstrap
+
+script:
+  - npm run lint
+  - npx jest --coverage && coveralls < coverage/lcov.info

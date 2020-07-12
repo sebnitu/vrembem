@@ -1,8 +1,7 @@
 node_modules/
-screenshots/
 docs/_site
-docs/.jekyll-metadata
 .changelog
+coverage
 
 # Numerous always-ignore extensions
 *.diff
