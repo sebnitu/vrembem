@@ -60,17 +60,22 @@ test('should restore state based on existing values in local storage', () => {
   drawer = new Drawer();
   localStorage.setItem('DrawerState', JSON.stringify({
     'drawer-one': 'is-opened',
-    'drawer-two': 'is-opened'
+    'drawer-two': 'is-opened',
+    'drawer-three': 'is-closed'
   }));
   const drawerOne = document.querySelector('[data-drawer="drawer-one"]');
   const drawerTwo = document.querySelector('[data-drawer="drawer-two"]');
+  const drawerThr = document.querySelector('[data-drawer="drawer-three"]');
+  drawerThr.classList.add('is-opened');
 
   expect(drawerOne).not.toHaveClass('is-opened');
   expect(drawerTwo).not.toHaveClass('is-opened');
+  expect(drawerThr).toHaveClass('is-opened');
 
   drawer.init();
   expect(drawerOne).toHaveClass('is-opened');
   expect(drawerTwo).toHaveClass('is-opened');
+  expect(drawerThr).not.toHaveClass('is-opened');
 
   const state = JSON.parse(localStorage.getItem('DrawerState'));
   expect(state).toMatchObject(drawer.state);
@@ -137,6 +142,10 @@ test('should update local storage when close button changes state', () => {
 
 test('should remove localStorage when state is disabled', () => {
   document.body.innerHTML = markup;
+  localStorage.setItem('DrawerState', JSON.stringify({
+    'drawer-one': 'is-opened',
+    'drawer-two': 'is-opened'
+  }));
   drawer = new Drawer({
     autoInit: true,
     saveState: false
@@ -145,7 +154,7 @@ test('should remove localStorage when state is disabled', () => {
   expect(Object.getOwnPropertyNames(drawer.state).length).toBe(0);
 });
 
-test('should remove localStorage when state is disabled', () => {
+test('should remove localStorage under a custom key', () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({
     autoInit: true,
