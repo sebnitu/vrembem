@@ -15,9 +15,15 @@ All notable changes to this project will be documented in this file.
 
 <!--
 Commit template:
-chore(release): add v1.8.2 to CHANGELOG.md
+chore(release): add v1.8.3 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+## v1.8.3 (2020-07-12)
+
+#### :white_check_mark: Testing
+* `checkbox`, `core`, `dismissible`, `drawer`, `modal`, `vrembem`
+  * [#242](https://github.com/sebnitu/vrembem/pull/242) Improve test coverage ([@sebnitu](https://github.com/sebnitu))
 
 ## v1.8.2 (2020-07-07)
 
