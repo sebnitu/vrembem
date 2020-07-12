@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/dialog",
   "description": "A component that facilitates a conversation between the system and the user. They often request information or an action from the user.",
-  "version": "1.7.3",
+  "version": "1.8.3",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -25,7 +25,7 @@
     "directory": "packages/dialog"
   },
   "dependencies": {
-    "@vrembem/core": "^1.7.3"
+    "@vrembem/core": "^1.8.3"
   },
   "publishConfig": {
     "access": "public"
