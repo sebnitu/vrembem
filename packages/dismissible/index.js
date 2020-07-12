@@ -24,9 +24,7 @@ export const Dismissible = (options) => {
   const run = (event) => {
     const trigger = event.target.closest(`[data-${api.settings.dataTrigger}]`);
     if (trigger) {
-      const target = trigger.closest(
-        `[data-${api.settings.dataTarget}]`
-      );
+      const target = trigger.closest(`[data-${api.settings.dataTarget}]`);
       if (target) {
         const method = target.dataset[camelCase(api.settings.dataTarget)];
         const defaultMethod = api.settings.method;
