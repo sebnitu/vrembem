@@ -86,6 +86,12 @@ test('should toggle drawer using api call', () => {
   expect(el).not.toHaveClass('is-opening is-opened is-closing');
 });
 
+test('should not throw error if toggle has a selector not found in page', () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer({ autoInit: true });
+  expect(drawer.toggle.bind(this, 'drawer-asdf')).not.toThrow();
+});
+
 test('should open drawer using api call', () => {
   document.body.innerHTML = markup;
   drawer = new Drawer();
@@ -100,6 +106,23 @@ test('should open drawer using api call', () => {
   el.dispatchEvent(ev);
   expect(el).toHaveClass('drawer is-opened');
   expect(el).not.toHaveClass('is-opening is-closing is-closed');
+});
+
+test('should not throw error if open has a selector not found in page', () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer({ autoInit: true });
+  expect(drawer.open.bind(this, 'drawer-asdf')).not.toThrow();
+});
+
+test('should do nothing if drawer is already opened and open api is called', () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer({ autoInit: true });
+  const el = document.querySelector('[data-drawer]');
+  drawer.open('drawer-default');
+  el.dispatchEvent(ev);
+  expect(el).toHaveClass('drawer is-opened');
+  drawer.open('drawer-default');
+  expect(el).not.toHaveClass('is-opening');
 });
 
 test('should close drawer using api call', () => {
@@ -125,6 +148,20 @@ test('should close drawer using api call', () => {
   el.dispatchEvent(ev);
   expect(el).toHaveClass('drawer is-closed');
   expect(el).not.toHaveClass('is-opening is-opened is-closing');
+});
+
+test('should not throw error if close has a selector not found in page', () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer({ autoInit: true });
+  expect(drawer.close.bind(this, 'drawer-asdf')).not.toThrow();
+});
+
+test('should do nothing if drawer is already closed and close api is called', () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer({ autoInit: true });
+  const el = document.querySelector('[data-drawer]');
+  drawer.close('drawer-default');
+  expect(el).not.toHaveClass('is-closing');
 });
 
 test('should fire callback when using toggle api', () => {
@@ -210,6 +247,13 @@ test('should switch drawer to default on api call', () => {
   expect(el).toHaveClass('drawer_modal');
   drawer.switchToDefault('drawer-default');
   expect(el).not.toHaveClass('drawer_modal');
+});
+
+test('should not throw error if passed drawer selector returns null', () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer({ autoInit: true });
+  expect(drawer.switchToModal.bind(this, 'drawer-asdf')).not.toThrow();
+  expect(drawer.switchToDefault.bind(this, 'drawer-asdf')).not.toThrow();
 });
 
 test('should destroy breakpoint feature on api call', () => {

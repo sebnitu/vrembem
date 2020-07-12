@@ -6,6 +6,9 @@ const ev = new Event('transitionend');
 const evEscape = new KeyboardEvent('keyup', {
   keyCode: 27
 });
+const evSpace = new KeyboardEvent('keyup', {
+  keyCode: 32
+});
 
 const markup = `
   <div class="drawer__wrapper">
@@ -68,6 +71,26 @@ test('should close when the escape key is pressed', () => {
 
   el.dispatchEvent(ev);
   expect(el).toHaveClass('drawer drawer_modal is-closed');
+  expect(el.classList.length).toBe(3);
+});
+
+test('should do nothing if none escape key is pressed', () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer({ autoInit: true });
+  const el = document.querySelector('[data-drawer]');
+  const btnOpen = document.querySelector('[data-drawer-toggle]');
+
+  btnOpen.click();
+  expect(el).toHaveClass('drawer is-opening');
+
+  el.dispatchEvent(ev);
+  expect(el).toHaveClass('drawer is-opened');
+
+  document.dispatchEvent(evSpace);
+  expect(el).not.toHaveClass('is-closing');
+
+  el.dispatchEvent(ev);
+  expect(el).not.toHaveClass('is-closed');
   expect(el.classList.length).toBe(3);
 });
 

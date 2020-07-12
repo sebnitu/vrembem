@@ -81,6 +81,15 @@ test('should restore state based on existing values in local storage', () => {
   expect(state).toMatchObject(drawer.state);
 });
 
+test('should do nothing if saved drawer doesn\'t exist on the page', () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer();
+  localStorage.setItem('DrawerState', JSON.stringify({
+    'drawer-asdf': 'is-opened'
+  }));
+  expect(drawer.init).not.toThrow();
+});
+
 test('should update local storage when toggle button changes state', () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({ autoInit: true });
@@ -150,6 +159,31 @@ test('should remove localStorage when state is disabled', () => {
     autoInit: true,
     saveState: false
   });
+  expect(Object.getOwnPropertyNames(localStorage).length).toBe(0);
+  expect(Object.getOwnPropertyNames(drawer.state).length).toBe(0);
+});
+
+test('should do nothing with localStorage if state feature is disabled', () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer({
+    autoInit: true,
+    saveState: false
+  });
+  expect(Object.getOwnPropertyNames(localStorage).length).toBe(0);
+  expect(Object.getOwnPropertyNames(drawer.state).length).toBe(0);
+});
+
+test('should do nothing with localStorage when drawer is opened and saveState is called', () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer({
+    autoInit: true,
+    saveState: false
+  });
+  const el = document.querySelector('[data-drawer="drawer-one"]');
+  expect(localStorage.getItem('DrawerState')).toBe(null);
+  drawer.open('drawer-one');
+  el.dispatchEvent(ev);
+  expect(localStorage.getItem('DrawerState')).toBe(null);
   expect(Object.getOwnPropertyNames(localStorage).length).toBe(0);
   expect(Object.getOwnPropertyNames(drawer.state).length).toBe(0);
 });
