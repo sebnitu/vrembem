@@ -191,3 +191,49 @@ test('should apply saved state when switching to drawer', () => {
   expect(el).toHaveClass('is-opened');
   expect(el).not.toHaveClass('drawer_modal is-closed');
 });
+
+test('should not throw error when checking breakpoint if no mediaQueryLists exists or is empty', () => {
+  document.body.innerHTML = markup;
+  window.innerWidth = 300;
+  drawer = new Drawer({ autoInit: true });
+  drawer.mediaQueryLists = null;
+  expect(drawer.breakpoint.check).not.toThrow();
+  drawer.mediaQueryLists = [];
+  expect(drawer.breakpoint.check).not.toThrow();
+});
+
+test('should filter matching breakpoints when event is passed to breakpoint check', () => {
+  document.body.innerHTML = markup;
+  window.innerWidth = 800;
+  drawer = new Drawer({ autoInit: true });
+  const el1 = document.querySelector('[data-drawer="drawer-one"]'); // bp = 760px
+  const el2 = document.querySelector('[data-drawer="drawer-two"]'); // bp = 400px
+
+  expect(el1).not.toHaveClass('drawer_modal');
+  expect(el2).not.toHaveClass('drawer_modal');
+
+  let mockEvent = { media: '(min-width:400px)' };
+  resizeWindow(400);
+  drawer.breakpoint.check(mockEvent);
+  expect(el1).not.toHaveClass('drawer_modal');
+  expect(el2).toHaveClass('drawer_modal');
+
+  mockEvent = { media: '(min-width:760px)' };
+  resizeWindow(760);
+  drawer.breakpoint.check(mockEvent);
+  expect(el1).toHaveClass('drawer_modal');
+  expect(el2).toHaveClass('drawer_modal');
+
+  resizeWindow(761);
+  drawer.breakpoint.check();
+  expect(el1).not.toHaveClass('drawer_modal');
+  expect(el2).not.toHaveClass('drawer_modal');
+});
+
+test('should not throw error when a drawer in mediaQueryLists doesn\'t exist in the document', () => {
+  document.body.innerHTML = markup;
+  window.innerWidth = 300;
+  drawer = new Drawer({ autoInit: true });
+  drawer.mediaQueryLists[0].drawer = 'fake-drawer';
+  expect(drawer.breakpoint.check).not.toThrow();
+});

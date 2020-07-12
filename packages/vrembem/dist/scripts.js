@@ -228,8 +228,8 @@
       stateClosing: 'is-closing',
       stateClosed: 'is-closed',
       classModal: 'drawer_modal',
-      customEventPrefix: 'drawer:',
       breakpoints: breakpoints,
+      customEventPrefix: 'drawer:',
       focus: true,
       saveState: true,
       saveKey: 'DrawerState'
@@ -239,7 +239,7 @@
     api.state = {};
 
     api.init = function () {
-      applyState();
+      setState();
       breakpointInit();
       document.addEventListener('click', run, false);
       document.addEventListener('touchend', run, false);
@@ -263,46 +263,12 @@
 
     api.open = function (drawerKey, callback) {
       var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
-
-      if (drawer) {
-        open(drawer, callback);
-      }
+      if (drawer) open(drawer, callback);
     };
 
     api.close = function (drawerKey, callback) {
       var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
-
-      if (drawer) {
-        close(drawer, callback);
-      }
-    };
-
-    api.breakpoint.init = function () {
-      breakpointInit();
-    };
-
-    api.breakpoint.destroy = function () {
-      breakpointDestroy();
-    };
-
-    api.breakpoint.check = function () {
-      breakpointCheck();
-    };
-
-    api.switchToModal = function (drawerKey) {
-      var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
-
-      if (drawer) {
-        switchToModal(drawer);
-      }
-    };
-
-    api.switchToDefault = function (drawerKey) {
-      var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
-
-      if (drawer) {
-        switchToDefault(drawer);
-      }
+      if (drawer) close(drawer, callback);
     };
 
     var run = function run(event) {
@@ -425,10 +391,10 @@
     };
 
     var saveState = function saveState() {
-      var target = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      var target = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
       if (api.settings.saveState) {
-        var drawers = !target ? document.querySelectorAll("[data-".concat(api.settings.dataDrawer, "]")) : target.forEach ? target : [target];
+        var drawers = target ? [target] : document.querySelectorAll("[data-".concat(api.settings.dataDrawer, "]"));
         drawers.forEach(function (el) {
           if (!hasClass(el, api.settings.classModal)) {
             api.state[el.dataset[camelCase(api.settings.dataDrawer)]] = hasClass(el, api.settings.stateOpened) ? api.settings.stateOpened : api.settings.stateClosed;
@@ -438,7 +404,7 @@
       }
     };
 
-    var applyState = function applyState() {
+    var setState = function setState() {
       if (api.settings.saveState) {
         if (localStorage.getItem(api.settings.saveKey)) {
           api.state = JSON.parse(localStorage.getItem(api.settings.saveKey));
@@ -463,24 +429,50 @@
       }
     };
 
+    api.breakpoint.init = function () {
+      breakpointInit();
+    };
+
+    api.breakpoint.destroy = function () {
+      breakpointDestroy();
+    };
+
+    api.breakpoint.check = function () {
+      var event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      breakpointCheck(event);
+    };
+
+    api.switchToModal = function (drawerKey) {
+      var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
+
+      if (drawer) {
+        switchToModal(drawer);
+      }
+    };
+
+    api.switchToDefault = function (drawerKey) {
+      var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
+
+      if (drawer) {
+        switchToDefault(drawer);
+      }
+    };
+
     var breakpointInit = function breakpointInit() {
       api.mediaQueryLists = [];
       var drawers = document.querySelectorAll("[data-".concat(api.settings.dataBreakpoint, "]"));
-
-      if (drawers) {
-        drawers.forEach(function (drawer) {
-          var id = drawer.dataset[camelCase(api.settings.dataDrawer)];
-          var key = drawer.dataset[camelCase(api.settings.dataBreakpoint)];
-          var bp = api.settings.breakpoints[key] ? api.settings.breakpoints[key] : key;
-          var mql = window.matchMedia('(min-width:' + bp + ')');
-          breakpointMatch(mql, drawer);
-          mql.addListener(breakpointCheck);
-          api.mediaQueryLists.push({
-            'mql': mql,
-            'drawer': id
-          });
+      drawers.forEach(function (drawer) {
+        var id = drawer.dataset[camelCase(api.settings.dataDrawer)];
+        var key = drawer.dataset[camelCase(api.settings.dataBreakpoint)];
+        var bp = api.settings.breakpoints[key] ? api.settings.breakpoints[key] : key;
+        var mql = window.matchMedia('(min-width:' + bp + ')');
+        breakpointMatch(mql, drawer);
+        mql.addListener(breakpointCheck);
+        api.mediaQueryLists.push({
+          'mql': mql,
+          'drawer': id
         });
-      }
+      });
     };
 
     var breakpointDestroy = function breakpointDestroy() {
@@ -493,9 +485,7 @@
       api.mediaQueryLists = null;
     };
 
-    var breakpointCheck = function breakpointCheck() {
-      var event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-
+    var breakpointCheck = function breakpointCheck(event) {
       if (api.mediaQueryLists && api.mediaQueryLists.length) {
         api.mediaQueryLists.forEach(function (item) {
           var filter = event ? event.media == item.mql.media : true;

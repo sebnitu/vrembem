@@ -16,6 +16,12 @@ const dismissContent = `
   <div data-a>
     <button data-b></button>
   </div>
+  <div class="branch-trigger-false">
+    <button></button>
+  </div>
+  <div class="branch-target-false">
+    <button data-dismiss></button>
+  </div>
 `;
 
 afterEach(() => {
@@ -75,11 +81,11 @@ test('dismiss using custom settings and auto init', () => {
 });
 
 test('dismiss using the remove method via settings', () => {
+  document.body.innerHTML = dismissContent;
   dismissible = new Dismissible({
     autoInit: true,
     method: 'remove'
   });
-  document.body.innerHTML = dismissContent;
   const el = document.querySelector('[data-dismissible]');
   const button = document.querySelector('[data-dismiss]');
 
@@ -88,9 +94,25 @@ test('dismiss using the remove method via settings', () => {
   expect(el).not.toBeInTheDocument();
 });
 
-test('dismissible destroy method removes event listener', () => {
-  dismissible = new Dismissible({ autoInit: true });
+test('should do nothing if none valid method is set', () => {
   document.body.innerHTML = dismissContent;
+  dismissible = new Dismissible({
+    autoInit: true,
+    method: 'asdf'
+  });
+  const el = document.querySelector('[data-dismissible]');
+  const button = document.querySelector('[data-dismiss]');
+
+  expect(el).toBeInTheDocument();
+  expect(el).not.toHaveClass('hide');
+  button.click();
+  expect(el).toBeInTheDocument();
+  expect(el).not.toHaveClass('hide');
+});
+
+test('dismissible destroy method removes event listener', () => {
+  document.body.innerHTML = dismissContent;
+  dismissible = new Dismissible({ autoInit: true });
   const el = document.querySelector('[data-dismissible]');
   const button = document.querySelector('[data-dismiss]');
 
@@ -98,4 +120,26 @@ test('dismissible destroy method removes event listener', () => {
   dismissible.destroy();
   button.click();
   expect(el).not.toHaveClass('hide');
+});
+
+test('should do nothing if random button is clicked', () => {
+  document.body.innerHTML = dismissContent;
+  dismissible = new Dismissible({ autoInit: true });
+  const el = document.querySelector('.branch-trigger-false');
+  const button = el.querySelector('button');
+
+  expect(el).not.toHaveClass('display-none');
+  button.click();
+  expect(el).not.toHaveClass('display-none');
+});
+
+test('should do nothing if no parent dismissible is found', () => {
+  document.body.innerHTML = dismissContent;
+  dismissible = new Dismissible({ autoInit: true });
+  const el = document.querySelector('.branch-target-false');
+  const button = el.querySelector('button');
+
+  expect(el).not.toHaveClass('display-none');
+  button.click();
+  expect(el).not.toHaveClass('display-none');
 });

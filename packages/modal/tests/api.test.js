@@ -31,6 +31,21 @@ test('should open modal using api call', () => {
   expect(el.classList.length).toBe(2);
 });
 
+test('should do nothing if open api is called on modal that\'s already open', () => {
+  document.body.innerHTML = markup;
+  modal = new Modal({ autoInit: true });
+  const el = document.querySelector('[data-modal]');
+
+  modal.open('modal-default');
+  el.dispatchEvent(ev);
+  expect(el).toHaveClass('modal is-opened');
+  expect(el.classList.length).toBe(2);
+
+  modal.open('modal-default');
+  expect(el).not.toHaveClass('is-opening');
+  expect(el.classList.length).toBe(2);
+});
+
 test('should close modal using api call', () => {
   document.body.innerHTML = markup;
   modal = new Modal({ autoInit: true });
