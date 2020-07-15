@@ -7,4 +7,5 @@ before_script:
 
 script:
   - npm run lint
-  - npx jest --coverage && coveralls < coverage/lcov.info
+  - npm run test:coverage
+  - npx coveralls < coverage/lcov.info
