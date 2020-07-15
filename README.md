@@ -50,14 +50,7 @@ If you'd like to use Vrembem for prototyping or just want to take it for a test 
 </script>
 ```
 
-#### CDN link reference
-
-- `https://unpkg.com/vrembem@latest/dist/styles.min.css`
-- `https://unpkg.com/vrembem@latest/dist/scripts.min.js`
-- `https://unpkg.com/@vrembem/<COMPONENT-NAME>@latest/dist/styles.min.css`
-- `https://unpkg.com/@vrembem/<COMPONENT-NAME>@latest/dist/scripts.min.js`
-
-Replace `<COMPONENT-NAME>` with the component name you'd like to use. Also see this [example](./example.html) for another demonstration of using vrembem via CDN.
+Also see [`example.html`](./example.html) for another demonstration of using vrembem via CDN.
 
 ### Using NPM
 
