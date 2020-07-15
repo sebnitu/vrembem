@@ -11,77 +11,106 @@ A CSS component library based on the BEM methodology.
 
 Vrembem is a front-end CSS component library written with the goal of making available common web interface patterns. This allows developers and designers to implement robust components into their web projects while keeping them flexible and customizable through the use of the [BEM methodology](https://en.bem.info/methodology/) and [Sass CSS extension language](https://sass-lang.com/).
 
-Vrembem is the passion project of Sebastian Nitu, UI designer and front-end developer. It was created out of the need to reduce repetitive work and allow the focus of unique aspects in a project.
+This Vrembem repository is managed as a monorepo that contains all available components. Include all components using the convenient all-in-one [vrembem](./packages/vrembem#readme) package.
 
-> A full list of available packages can be found either in the [web documentation](https://vrembem.com/) or at the bottom of [this readme](#packages).
+## Quick Links
 
-## Usage
+- [Documentation](https://vrembem.com)
+- [Components](./packages/)
+- [Changelog](./CHANGELOG.md)
 
-To use a Vrembem component, you'll first need to install it as a dependency. For this example we'll be using the `@vrembem/menu` component:
+## Getting Started
+
+### Using CDN
+
+If you'd like to use Vrembem for prototyping or just want to take it for a test drive, you can leverage the [unpkg](https://unpkg.com/) CDN version of a component or the entire Vrembem library.
+
+```html
+<!-- Include Vrembem styles -->
+<link rel="stylesheet" href="https://unpkg.com/vrembem@latest/dist/styles.min.css">
+
+<!-- Render a component -->
+<button class="link" data-modal-open="modal-id">Open modal</button>
+<div data-modal="modal-id" class="modal modal_size_sm" tabindex="-1">
+  <div class="modal__dialog padding background-white radius spacing">
+    <div class="flex flex-justify-between">
+      <p>Hello, world!</p>
+      <button data-modal-close class="link">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Include Vrembem JavaScript -->
+<script src="https://unpkg.com/vrembem@latest/dist/scripts.min.js"></script>
+
+<!-- Instantiate the component rendered in the document -->
+<script>
+  const modal = new vrembem.Modal();
+  modal.init();
+</script>
+```
+
+Also see [`example.html`](./example.html) for a more comprehensive working demo of using Vrembem via CDN.
+
+### Using NPM
+
+To use a Vrembem component, you'll first need to install it as a dependency. For this example we'll be using the modal component:
 
 ```
-npm install @vrembem/menu
+npm install @vrembem/modal
 ```
 
-### CSS
+#### CSS
 
 Include the component in your build's Sass manifest file:
 
 ```scss
-@use "@vrembem/menu";
+@use "@vrembem/modal";
 ```
 
 Vrembem uses [Sass' module system](https://sass-lang.com/blog/the-module-system-is-launched), pass in custom variables using the [`with` keyword](https://sass-lang.com/documentation/at-rules/use#configuration).
 
 ```scss
-@use "@vrembem/menu" with (
-  $background: #efefef,
-  $background-hover: #e0e0e0
+@use "@vrembem/modal" with (
+  $background: #fff,
+  $background-alpha: 0.9
 );
 ```
 
-### HTML
+#### HTML
 
 Include the component's markup into your project. Use the [online docs](https://vrembem.com) for information and code examples such as markup and available modifiers for each component.
 
 ```html
-<ul class="menu">
-  <li class="menu__item">
-    <a class="menu__link" href="#">
-      Create
-    </a>
-    <a class="menu__link" href="#">
-      Update
-    </a>
-    <a class="menu__link" href="#">
-      Delete
-    </a>
-  </li>
-</ul>
+<button data-modal-open="[unique-id]">Modal</button>
+<div class="modal" data-modal="[unique-id]">
+  <div class="modal__dialog">
+    <button data-modal-close>Close</button>
+    ...
+  </div>
+</div>
 ```
 
-### JavaScript
+#### JavaScript
 
-Some packages also have included JavaScript components, such as the `@vrembem/checkbox` package. You can include these in your JavaScript files by importing, creating an instance and initialize:
+Some packages also have included scripts for their functionality. You can include these in your JavaScript files by importing, instantiate and initialize:
 
 ```js
 // Import your component
-import { Checkbox } from "@vrembem/checkbox"
+import { Modal } from "@vrembem/modal"
 
-// Create an instance
-const checkbox = new Checkbox()
-
-// Initialize
-checkbox.init()
+// Instantiate and initialize
+const modal = new Modal()
+modal.init()
 ```
 
 Alternatively, you can use the `autoInit` option to auto initialize and optionally omit saving the instance to a variable if it won't be used later.
 
 ```js
-new Checkbox({ autoInit: true })
+new Modal({ autoInit: true })
 ```
 
-### All-in-one
+#### All-in-one
 
 It's also possible to include all Vrembem components using the single all-in-one `vrembem` package:
 
@@ -106,41 +135,6 @@ const drawer = new vb.Drawer({ autoInit: true });
 import { Drawer } from "vrembem";
 const drawer = new Drawer({ autoInit: true });
 ```
-
-## Packages
-
-1. [`arrow`](./packages/arrow#readme)
-1. [`base`](./packages/base#readme)
-1. [`breadcrumb`](./packages/breadcrumb#readme)
-1. [`button`](./packages/button#readme)
-1. [`button-group`](./packages/button-group#readme)
-1. [`card`](./packages/card#readme)
-1. [`checkbox`](./packages/checkbox#readme)
-1. [`container`](./packages/container#readme)
-1. [`core`](./packages/core#readme)
-1. [`dialog`](./packages/dialog#readme)
-1. [`dismissible`](./packages/dismissible#readme)
-1. [`drawer`](./packages/drawer#readme)
-1. [`dropdown`](./packages/dropdown#readme)
-1. [`grid`](./packages/grid#readme)
-1. [`icon`](./packages/icon#readme)
-1. [`icon-action`](./packages/icon-action#readme)
-1. [`input`](./packages/input#readme)
-1. [`level`](./packages/level#readme)
-1. [`media`](./packages/media#readme)
-1. [`menu`](./packages/menu#readme)
-1. [`modal`](./packages/modal#readme)
-1. [`notice`](./packages/notice#readme)
-1. [`panel`](./packages/panel#readme)
-1. [`radio`](./packages/radio#readme)
-1. [`section`](./packages/section#readme)
-1. [`switch`](./packages/switch#readme)
-1. [`table`](./packages/table#readme)
-1. [`tooltip`](./packages/tooltip#readme)
-1. [`utility`](./packages/utility#readme)
-1. [`vrembem`](./packages/vrembem#readme)
-
-> [`vrembem package`](./packages/vrembem#readme) is a complete collection of all Vrembem components into a single comprehensive package for convenience.
 
 ## Copyright and License
 
