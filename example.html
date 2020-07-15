@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Include Vrembem styles -->
+  <link rel="stylesheet" href="https://unpkg.com/vrembem@latest/dist/styles.min.css">
+  <title>Vrembem CDN Example Usage</title>
+</head>
+<body>
+
+<div class="section">
+  <div class="container">
+    <div class="spacing">
+      <h1 class="h3">Vrembem</h1>
+      <p>A CSS component library based on the BEM methodology.</p>
+    </div>
+    <hr class="sep margin-vert-lg">
+    <div class="spacing">
+      <p>Example Menu Component</p>
+      <ul class="menu menu_stack_sm">
+        <li class="menu__item">
+          <a href="https://vrembem.com" class="menu__link">Documentation</a>
+        </li>
+        <li class="menu__item">
+          <a href="https://github.com/sebnitu/vrembem/tree/master/packages" class="menu__link">Components</a>
+        </li>
+        <li class="menu__item">
+          <a href="https://github.com/sebnitu/vrembem/blob/master/CHANGELOG.md" class="menu__link">Changelog</a>
+        </li>
+      </ul>
+    </div>
+    <hr class="sep margin-vert-lg">
+    <div class="spacing">
+      <p>Example Modal Component</p>
+      <p>
+        <a href="#" class="link" data-modal-open="modal-default">Open modal</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div data-modal="modal-default" class="modal modal_size_sm" tabindex="-1">
+  <div class="modal__dialog padding background-white radius spacing">
+    <div class="flex flex-justify-between">
+      <p>Hello, world!</p>
+      <button data-modal-close class="link">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Include Vrembem JavaScript -->
+<script src="https://unpkg.com/vrembem@latest/dist/scripts.min.js"></script>
+
+<!-- Instantiate the component rendered in the document -->
+<script>
+  const modal = new vrembem.Modal();
+  modal.init();
+</script>
+
+</body>
+</html>

@@ -13,38 +13,140 @@ Vrembem is a front-end CSS component library written with the goal of making ava
 
 This Vrembem repository is managed as a monorepo that contains all available components. Include all components using the convenient all-in-one [vrembem](./packages/vrembem#readme) package.
 
-## Packages
+## Quick Links
 
-- [arrow](./packages/arrow#readme)
-- [base](./packages/base#readme)
-- [breadcrumb](./packages/breadcrumb#readme)
-- [button](./packages/button#readme)
-- [button-group](./packages/button-group#readme)
-- [card](./packages/card#readme)
-- [checkbox](./packages/checkbox#readme)
-- [container](./packages/container#readme)
-- [core](./packages/core#readme)
-- [dialog](./packages/dialog#readme)
-- [dismissible](./packages/dismissible#readme)
-- [drawer](./packages/drawer#readme)
-- [dropdown](./packages/dropdown#readme)
-- [grid](./packages/grid#readme)
-- [icon](./packages/icon#readme)
-- [icon-action](./packages/icon-action#readme)
-- [input](./packages/input#readme)
-- [level](./packages/level#readme)
-- [media](./packages/media#readme)
-- [menu](./packages/menu#readme)
-- [modal](./packages/modal#readme)
-- [notice](./packages/notice#readme)
-- [panel](./packages/panel#readme)
-- [radio](./packages/radio#readme)
-- [section](./packages/section#readme)
-- [switch](./packages/switch#readme)
-- [table](./packages/table#readme)
-- [tooltip](./packages/tooltip#readme)
-- [utility](./packages/utility#readme)
-- [vrembem](./packages/vrembem#readme)
+- [Documentation](https://vrembem.com)
+- [Components](./packages/)
+- [Changelog](./CHANGELOG.md)
+
+## Getting Started
+
+### Using CDN
+
+If you'd like to use Vrembem for prototyping or just want to take it for a test drive, you can leverage the [unpkg](https://unpkg.com/) CDN version of a component or the entire Vrembem library.
+
+- `https://unpkg.com/vrembem@latest/dist/styles.min.css` - Entire component library styles
+- `https://unpkg.com/vrembem@latest/dist/scripts.min.js` - Entire JavaScript library
+- `https://unpkg.com/@vrembem/<COMPONENT>@latest/dist/styles.min.css` - Single component styles
+- `https://unpkg.com/@vrembem/<COMPONENT>@latest/dist/scripts.min.js` - Single component scripts
+
+
+```html
+<!-- Include Vrembem styles -->
+<link rel="stylesheet" href="https://unpkg.com/vrembem@latest/dist/styles.min.css">
+
+<!-- Render a component -->
+<button class="link" data-modal-open="modal-default">Open modal</button>
+<div data-modal="modal-default" class="modal modal_size_sm" tabindex="-1">
+  <div class="modal__dialog padding background-white radius spacing">
+    <div class="flex flex-justify-between">
+      <p>Hello, world!</p>
+      <button data-modal-close class="link">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Include Vrembem JavaScript -->
+<script src="https://unpkg.com/vrembem@latest/dist/scripts.min.js"></script>
+
+<!-- Instantiate the component rendered in the document -->
+<script>
+  const modal = new vrembem.Modal();
+  modal.init();
+</script>
+```
+
+### Using NPM
+
+To use a Vrembem component, you'll first need to install it as a dependency. For this example we'll be using the `@vrembem/menu` component:
+
+```
+npm install @vrembem/menu
+```
+
+#### CSS
+
+Include the component in your build's Sass manifest file:
+
+```scss
+@use "@vrembem/menu";
+```
+
+Vrembem uses [Sass' module system](https://sass-lang.com/blog/the-module-system-is-launched), pass in custom variables using the [`with` keyword](https://sass-lang.com/documentation/at-rules/use#configuration).
+
+```scss
+@use "@vrembem/menu" with (
+  $background: #efefef,
+  $background-hover: #e0e0e0
+);
+```
+
+#### HTML
+
+Include the component's markup into your project. Use the [online docs](https://vrembem.com) for information and code examples such as markup and available modifiers for each component.
+
+```html
+<ul class="menu">
+  <li class="menu__item">
+    <a class="menu__link" href="#">
+      Create
+    </a>
+    <a class="menu__link" href="#">
+      Update
+    </a>
+    <a class="menu__link" href="#">
+      Delete
+    </a>
+  </li>
+</ul>
+```
+
+#### JavaScript
+
+Some packages also have included JavaScript components, such as the `@vrembem/checkbox` package. You can include these in your JavaScript files by importing, creating an instance and initialize:
+
+```js
+// Import your component
+import { Checkbox } from "@vrembem/checkbox"
+
+// Create an instance
+const checkbox = new Checkbox()
+
+// Initialize
+checkbox.init()
+```
+
+Alternatively, you can use the `autoInit` option to auto initialize and optionally omit saving the instance to a variable if it won't be used later.
+
+```js
+new Checkbox({ autoInit: true })
+```
+
+#### All-in-one
+
+It's also possible to include all Vrembem components using the single all-in-one `vrembem` package:
+
+```
+npm install vrembem
+```
+
+Via your project's Sass manifest file:
+
+```scss
+@use "vrembem";
+```
+
+Via your project's JavaScript manifest file:
+
+```js
+// Import all under the vb namespace
+import * as vb from "vrembem";
+const drawer = new vb.Drawer({ autoInit: true });
+
+// Or import individual components
+import { Drawer } from "vrembem";
+const drawer = new Drawer({ autoInit: true });
+```
 
 ## Copyright and License
 
