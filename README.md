@@ -25,22 +25,6 @@ This Vrembem repository is managed as a monorepo that contains all available com
 
 If you'd like to use Vrembem for prototyping or just want to take it for a test drive, you can leverage the [unpkg](https://unpkg.com/) CDN version of a component or the entire Vrembem library.
 
-#### Entire library
-
-- `https://unpkg.com/vrembem@latest/dist/styles.min.css`
-- `https://unpkg.com/vrembem@latest/dist/scripts.min.js`
-
-#### Specific component
-
-- `https://unpkg.com/@vrembem/<COMPONENT>@latest/dist/styles.min.css`
-- `https://unpkg.com/@vrembem/<COMPONENT>@latest/dist/scripts.min.js`
-
-*Replace `<COMPONENT>` with the desired component.*
-
-#### Example
-
-Here's an example of using CDN to render a modal component with some added utility classes for basic styles.
-
 ```html
 <!-- Include Vrembem styles -->
 <link rel="stylesheet" href="https://unpkg.com/vrembem@latest/dist/styles.min.css">
@@ -65,6 +49,15 @@ Here's an example of using CDN to render a modal component with some added utili
   modal.init();
 </script>
 ```
+
+#### CDN link reference
+
+- `https://unpkg.com/vrembem@latest/dist/styles.min.css`
+- `https://unpkg.com/vrembem@latest/dist/scripts.min.js`
+- `https://unpkg.com/@vrembem/<COMPONENT-NAME>@latest/dist/styles.min.css`
+- `https://unpkg.com/@vrembem/<COMPONENT-NAME>@latest/dist/scripts.min.js`
+
+Replace `<COMPONENT-NAME>` with the component name you'd like to use. Also see this [example](./example.html) for another demonstration of using vrembem via CDN.
 
 ### Using NPM
 
