@@ -25,11 +25,17 @@ This Vrembem repository is managed as a monorepo that contains all available com
 
 If you'd like to use Vrembem for prototyping or just want to take it for a test drive, you can leverage the [unpkg](https://unpkg.com/) CDN version of a component or the entire Vrembem library.
 
-- `https://unpkg.com/vrembem@latest/dist/styles.min.css` - Entire component library styles
-- `https://unpkg.com/vrembem@latest/dist/scripts.min.js` - Entire JavaScript library
+#### Get the entire libraries styles and scripts
+
+- `https://unpkg.com/vrembem@latest/dist/styles.min.css`
+- `https://unpkg.com/vrembem@latest/dist/scripts.min.js`
+
+#### Get a specific component's styles and scripts
+
 - `https://unpkg.com/@vrembem/<COMPONENT>@latest/dist/styles.min.css` - Single component styles
 - `https://unpkg.com/@vrembem/<COMPONENT>@latest/dist/scripts.min.js` - Single component scripts
 
+#### Example
 
 ```html
 <!-- Include Vrembem styles -->
