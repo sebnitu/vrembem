@@ -50,7 +50,7 @@ If you'd like to use Vrembem for prototyping or just want to take it for a test 
 </script>
 ```
 
-Also see [`example.html`](./example.html) for another demonstration of using vrembem via CDN.
+Also see [`example.html`](./example.html) for a more comprehensive working demo of using Vrembem via CDN.
 
 ### Using NPM
 
