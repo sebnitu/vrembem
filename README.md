@@ -32,10 +32,10 @@ If you'd like to use Vrembem for prototyping or just want to take it for a test 
 
 **Specific component**
 
-*Replace `<COMPONENT>` with the desired component.*
-
 - `https://unpkg.com/@vrembem/<COMPONENT>@latest/dist/styles.min.css`
 - `https://unpkg.com/@vrembem/<COMPONENT>@latest/dist/scripts.min.js`
+
+> Replace `<COMPONENT>` with the desired component.
 
 **Example**
 
@@ -46,8 +46,8 @@ Here's an example of using CDN to render a modal component with some added utili
 <link rel="stylesheet" href="https://unpkg.com/vrembem@latest/dist/styles.min.css">
 
 <!-- Render a component -->
-<button class="link" data-modal-open="modal-default">Open modal</button>
-<div data-modal="modal-default" class="modal modal_size_sm" tabindex="-1">
+<button class="link" data-modal-open="modal-id">Open modal</button>
+<div data-modal="modal-id" class="modal modal_size_sm" tabindex="-1">
   <div class="modal__dialog padding background-white radius spacing">
     <div class="flex flex-justify-between">
       <p>Hello, world!</p>
@@ -68,10 +68,10 @@ Here's an example of using CDN to render a modal component with some added utili
 
 ### Using NPM
 
-To use a Vrembem component, you'll first need to install it as a dependency. For this example we'll be using the `@vrembem/menu` component:
+To use a Vrembem component, you'll first need to install it as a dependency. For this example we'll be using the modal component:
 
 ```
-npm install @vrembem/menu
+npm install @vrembem/modal
 ```
 
 #### CSS
@@ -79,15 +79,15 @@ npm install @vrembem/menu
 Include the component in your build's Sass manifest file:
 
 ```scss
-@use "@vrembem/menu";
+@use "@vrembem/modal";
 ```
 
 Vrembem uses [Sass' module system](https://sass-lang.com/blog/the-module-system-is-launched), pass in custom variables using the [`with` keyword](https://sass-lang.com/documentation/at-rules/use#configuration).
 
 ```scss
-@use "@vrembem/menu" with (
-  $background: #efefef,
-  $background-hover: #e0e0e0
+@use "@vrembem/modal" with (
+  $background: #fff,
+  $background-alpha: 0.9
 );
 ```
 
@@ -96,40 +96,32 @@ Vrembem uses [Sass' module system](https://sass-lang.com/blog/the-module-system-
 Include the component's markup into your project. Use the [online docs](https://vrembem.com) for information and code examples such as markup and available modifiers for each component.
 
 ```html
-<ul class="menu">
-  <li class="menu__item">
-    <a class="menu__link" href="#">
-      Create
-    </a>
-    <a class="menu__link" href="#">
-      Update
-    </a>
-    <a class="menu__link" href="#">
-      Delete
-    </a>
-  </li>
-</ul>
+<button data-modal-open="[unique-id]">Modal</button>
+<div class="modal" data-modal="[unique-id]">
+  <div class="modal__dialog">
+    <button data-modal-close>Close</button>
+    ...
+  </div>
+</div>
 ```
 
 #### JavaScript
 
-Some packages also have included JavaScript components, such as the `@vrembem/checkbox` package. You can include these in your JavaScript files by importing, creating an instance and initialize:
+Some packages also have included scripts for their functionality. You can include these in your JavaScript files by importing, instantiate and initialize:
 
 ```js
 // Import your component
-import { Checkbox } from "@vrembem/checkbox"
+import { Modal } from "@vrembem/modal"
 
-// Create an instance
-const checkbox = new Checkbox()
-
-// Initialize
-checkbox.init()
+// Instantiate and initialize
+const modal = new Modal()
+modal.init()
 ```
 
 Alternatively, you can use the `autoInit` option to auto initialize and optionally omit saving the instance to a variable if it won't be used later.
 
 ```js
-new Checkbox({ autoInit: true })
+new Modal({ autoInit: true })
 ```
 
 #### All-in-one
