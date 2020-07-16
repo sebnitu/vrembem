@@ -22,6 +22,7 @@ $_e: var.$prefix-element;
 .#{$_b}modal#{$_e}dialog {
   width: var.$width;
   max-width: 100%;
+  overflow: auto;
   transform: translateY(-(var.$travel));
   box-shadow: var.$box-shadow;
   opacity: 0;

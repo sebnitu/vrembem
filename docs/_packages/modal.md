@@ -402,6 +402,8 @@ Required modals can not be closed without an explicit action. That means clickin
       </div>
     </div>
   </div>
+
+  <!-- modal with dialog -->
   <div class="modal" data-modal="modal-dialog" tabindex="-1">
     <div class="modal__dialog dialog">
       <div class="dialog__header">
