@@ -65,22 +65,22 @@
 <!-- Component scripts -->
 <script src="./dist/scripts.min.js"></script>
 <script>
-  const modal = new vrembem.Modal({ autoInit: true })
+  const modal = new vrembem.Modal({ autoInit: true });
 
-  const apiOpen = document.querySelector(".api-test-open")
-  const apiClose = document.querySelector(".api-test-close")
+  const apiOpen = document.querySelector(".api-test-open");
+  const apiClose = document.querySelector(".api-test-close");
 
-  apiOpen.addEventListener("click", function(event) {
-    modal.open("modal-default", function() {
-      console.log("Open API called")
-    })
-  })
+  apiOpen.addEventListener("click", (event) => {
+    modal.open("modal-default", () => {
+      console.log("Open API called");
+    });
+  });
 
-  apiClose.addEventListener("click", function(event) {
-    modal.close(true, function() {
-      console.log("Close API called")
-    })
-  })
+  apiClose.addEventListener("click", (event) => {
+    modal.close(true, () => {
+      console.log("Close API called");
+    });
+  });
 </script>
 </body>
 </html>

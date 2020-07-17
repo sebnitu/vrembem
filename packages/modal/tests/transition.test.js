@@ -166,3 +166,19 @@ test('should disable toggle overflow if set to falsely', () => {
   el.dispatchEvent(ev);
   expect(document.body.style.overflow).toBe('');
 });
+
+test('should not apply transition classes when transitions are disabled', () => {
+  document.body.innerHTML = markup;
+  const el = document.querySelector('[data-modal]');
+  modal = new Modal({
+    autoInit: true,
+    transition: false
+  });
+  modal.open('modal-default');
+  expect(el).toHaveClass('is-opened');
+  expect(el.classList.length).toBe(2);
+
+  modal.close('modal-default');
+  expect(el).toHaveClass('is-closed');
+  expect(el.classList.length).toBe(2);
+});

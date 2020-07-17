@@ -125,7 +125,12 @@ export const Modal = (options) => {
     if (target && !hasClass(target, api.settings.stateOpened)) {
       setOverflow('hidden');
       saveTarget(target);
-      await openTransition(target);
+      if (api.settings.transition) {
+        await openTransition(target);
+      } else {
+        addClass(target, api.settings.stateOpened);
+        removeClass(target, api.settings.stateClosed);
+      }
       setFocus(target);
       typeof callback === 'function' && callback();
       target.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
@@ -153,7 +158,12 @@ export const Modal = (options) => {
     );
     if (target) {
       setOverflow();
-      await closeTransition(target);
+      if (api.settings.transition) {
+        await closeTransition(target);
+      } else {
+        addClass(target, api.settings.stateClosed);
+        removeClass(target, api.settings.stateOpened);
+      }
       if (focus) returnFocus();
       typeof callback === 'function' && callback();
       target.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {

@@ -828,23 +828,37 @@ var Modal = function Modal(options) {
               target = document.querySelector("[data-".concat(api.settings.dataModal, "=\"").concat(modalKey, "\"]"));
 
               if (!(target && !hasClass(target, api.settings.stateOpened))) {
-                _context.next = 9;
+                _context.next = 14;
                 break;
               }
 
               setOverflow('hidden');
               saveTarget(target);
-              _context.next = 6;
+
+              if (!api.settings.transition) {
+                _context.next = 9;
+                break;
+              }
+
+              _context.next = 7;
               return openTransition(target);
 
-            case 6:
+            case 7:
+              _context.next = 11;
+              break;
+
+            case 9:
+              addClass(target, api.settings.stateOpened);
+              removeClass(target, api.settings.stateClosed);
+
+            case 11:
               setFocus();
               typeof callback === 'function' && callback();
               target.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
                 bubbles: true
               }));
 
-            case 9:
+            case 14:
             case "end":
               return _context.stop();
           }
@@ -885,22 +899,36 @@ var Modal = function Modal(options) {
               target = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpened));
 
               if (!target) {
-                _context2.next = 10;
+                _context2.next = 15;
                 break;
               }
 
               setOverflow();
-              _context2.next = 7;
+
+              if (!api.settings.transition) {
+                _context2.next = 10;
+                break;
+              }
+
+              _context2.next = 8;
               return closeTransition(target);
 
-            case 7:
+            case 8:
+              _context2.next = 12;
+              break;
+
+            case 10:
+              addClass(target, api.settings.stateClosed);
+              removeClass(target, api.settings.stateOpened);
+
+            case 12:
               if (focus) returnFocus();
               typeof callback === 'function' && callback();
               target.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
                 bubbles: true
               }));
 
-            case 10:
+            case 15:
             case "end":
               return _context2.stop();
           }
