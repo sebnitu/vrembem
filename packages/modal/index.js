@@ -20,6 +20,7 @@ export const Modal = (options) => {
     stateClosed: 'is-closed',
 
     // Feature toggles
+    toggleOverflow: 'body',
     customEventPrefix: 'modal:',
     focus: true
   };
@@ -90,11 +91,25 @@ export const Modal = (options) => {
     }
   };
 
+  const setOverflow = (state) => {
+    if (api.settings.toggleOverflow) {
+      const els = document.querySelectorAll(api.settings.toggleOverflow);
+      els.forEach((el) => {
+        if (state == 'hidden') {
+          el.style.overflow = 'hidden';
+        } else {
+          el.style.removeProperty('overflow');
+        }
+      });
+    }
+  };
+
   const open = (modalKey, callback) => {
     const target = document.querySelector(
       `[data-${api.settings.dataModal}="${modalKey}"]`
     );
     if (target && !hasClass(target, api.settings.stateOpened)) {
+      setOverflow('hidden');
       saveTarget(target);
       addClass(target, api.settings.stateOpening);
       removeClass(target, api.settings.stateClosed);
@@ -104,10 +119,9 @@ export const Modal = (options) => {
         setFocus(target);
         typeof callback === 'function' && callback();
         this.removeEventListener('transitionend', _listener, true);
-        const customEvent = new CustomEvent(api.settings.customEventPrefix + 'opened', {
+        target.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
           bubbles: true
-        });
-        target.dispatchEvent(customEvent);
+        }));
       }, true);
     }
   };
@@ -117,6 +131,7 @@ export const Modal = (options) => {
       `[data-${api.settings.dataModal}].${api.settings.stateOpened}`
     );
     if (target) {
+      setOverflow();
       addClass(target, api.settings.stateClosing);
       removeClass(target, api.settings.stateOpened);
       target.addEventListener('transitionend', function _listener() {
@@ -125,10 +140,9 @@ export const Modal = (options) => {
         if (focus) returnFocus();
         typeof callback === 'function' && callback();
         this.removeEventListener('transitionend', _listener, true);
-        const customEvent = new CustomEvent(api.settings.customEventPrefix + 'closed', {
+        target.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
           bubbles: true
-        });
-        target.dispatchEvent(customEvent);
+        }));
       }, true);
     }
   };

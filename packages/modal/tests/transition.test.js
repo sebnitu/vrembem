@@ -117,3 +117,52 @@ test('should apply custom state classes', () => {
   expect(el).toHaveClass('modal off');
   expect(el).not.toHaveClass('enable on disable');
 });
+
+test('should toggle overflow hidden when modal opened and closed', () => {
+  document.body.innerHTML = markup;
+  const el = document.querySelector('[data-modal]');
+  modal = new Modal({
+    autoInit: true
+  });
+  modal.open('modal-default');
+  el.dispatchEvent(ev);
+  expect(document.body.style.overflow).toBe('hidden');
+  modal.close('modal-default');
+  el.dispatchEvent(ev);
+  expect(document.body.style.overflow).toBe('');
+});
+
+test('should toggle overflow hidden on multiple elements', () => {
+  document.body.innerHTML = markup;
+  const el = document.querySelector('[data-modal]');
+  const di = el.querySelector('.modal__dialog');
+  modal = new Modal({
+    autoInit: true,
+    toggleOverflow: 'body, .modal, .modal__dialog'
+  });
+  modal.open('modal-default');
+  el.dispatchEvent(ev);
+  expect(document.body.style.overflow).toBe('hidden');
+  expect(el.style.overflow).toBe('hidden');
+  expect(di.style.overflow).toBe('hidden');
+  modal.close('modal-default');
+  el.dispatchEvent(ev);
+  expect(document.body.style.overflow).toBe('');
+  expect(el.style.overflow).toBe('');
+  expect(di.style.overflow).toBe('');
+});
+
+test('should disable toggle overflow if set to falsely', () => {
+  document.body.innerHTML = markup;
+  const el = document.querySelector('[data-modal]');
+  modal = new Modal({
+    autoInit: true,
+    toggleOverflow: false
+  });
+  modal.open('modal-default');
+  el.dispatchEvent(ev);
+  expect(document.body.style.overflow).toBe('');
+  modal.close('modal-default');
+  el.dispatchEvent(ev);
+  expect(document.body.style.overflow).toBe('');
+});

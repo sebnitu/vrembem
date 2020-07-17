@@ -12,7 +12,10 @@ import './version';
 new Checkbox({ autoInit: true });
 new Dismissible({ autoInit: true });
 new Drawer({ autoInit: true });
-new Modal({ autoInit: true });
+new Modal({
+  autoInit: true,
+  toggleOverflow: 'body, .page__article'
+});
 const scrollStash = new ScrollStash({
   autoInit: true,
   selectorAnchor: '.is-active',
