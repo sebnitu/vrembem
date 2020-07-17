@@ -1525,7 +1525,8 @@ var ScrollStash = (function (options) {
     var anchor = el.querySelector(api.settings.selectorAnchor);
 
     if (anchor && api.settings.selectorAnchorParent) {
-      anchor = anchor.closest(api.settings.selectorAnchorParent);
+      var anchorParent = anchor.closest(api.settings.selectorAnchorParent);
+      anchor = anchorParent ? anchorParent : anchor;
     }
 
     var dataAnchor = el.dataset[camelCase(api.settings.dataAnchor)];
@@ -1544,7 +1545,7 @@ var ScrollStash = (function (options) {
         var topElem = el.querySelector(api.settings.selectorTopElem);
 
         if (topElem) {
-          adjustTop = adjustTop + topElem.offsetHeight;
+          adjustTop += topElem.offsetHeight;
         }
       }
 
@@ -1552,7 +1553,7 @@ var ScrollStash = (function (options) {
         var botElem = el.querySelector(api.settings.selectorBotElem);
 
         if (botElem) {
-          adjustBot = adjustBot + botElem.offsetHeight;
+          adjustBot += botElem.offsetHeight;
         }
       }
 
@@ -1569,6 +1570,8 @@ var ScrollStash = (function (options) {
           top: posBot,
           behavior: behavior
         });
+      } else {
+        return true;
       }
 
       var customEvent = new CustomEvent(api.settings.customEventPrefix + 'anchor', {
