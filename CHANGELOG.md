@@ -15,9 +15,19 @@ All notable changes to this project will be documented in this file.
 
 <!--
 Commit template:
-chore(release): add v1.8.3 to CHANGELOG.md
+chore(release): add v1.8.4 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+## v1.8.4 (2020-07-17)
+
+#### :books: Documentation
+* [#249](https://github.com/sebnitu/vrembem/pull/249) Improve root README with CDN usage documentation ([@sebnitu](https://github.com/sebnitu))
+
+#### :tada: New Feature
+* `modal`, `vrembem`
+  * [#255](https://github.com/sebnitu/vrembem/pull/255) Improve modal component by adding toggleOverflow and transition options ([@sebnitu](https://github.com/sebnitu))
+
 
 ## v1.8.3 (2020-07-12)
 
@@ -25,11 +35,13 @@ chore(release): add v1.8.3 to CHANGELOG.md
 * `checkbox`, `core`, `dismissible`, `drawer`, `modal`, `vrembem`
   * [#242](https://github.com/sebnitu/vrembem/pull/242) Improve test coverage ([@sebnitu](https://github.com/sebnitu))
 
+
 ## v1.8.2 (2020-07-07)
 
 #### :balloon: Improved Feature
 * `drawer`, `vrembem`
   * [#238](https://github.com/sebnitu/vrembem/pull/238) Refactor drawer breakpoint methods ([@sebnitu](https://github.com/sebnitu))
+
 
 ## v1.8.1 (2020-07-05)
 
@@ -37,11 +49,13 @@ chore(release): add v1.8.3 to CHANGELOG.md
 * `vrembem`
   * [#234](https://github.com/sebnitu/vrembem/pull/234) Add scroll-stash to docs and cleanup imports ([@sebnitu](https://github.com/sebnitu))
 
+
 ## v1.8.0 (2020-06-27)
 
 #### :tada: New Feature
 * `drawer`, `vrembem`
   * [#228](https://github.com/sebnitu/vrembem/pull/228) Add width and max-width variables to Drawer component ([@sebnitu](https://github.com/sebnitu))
+
 
 ## v1.7.3 (2020-06-21)
 
@@ -53,11 +67,13 @@ chore(release): add v1.8.3 to CHANGELOG.md
 * `arrow`, `base`, `breadcrumb`, `button-group`, `button`, `card`, `checkbox`, `container`, `core`, `dialog`, `dismissible`, `drawer`, `dropdown`, `grid`, `icon-action`, `icon`, `input`, `level`, `media`, `menu`, `modal`, `notice`, `panel`, `radio`, `section`, `switch`, `table`, `tooltip`, `utility`, `vrembem`
   * [#207](https://github.com/sebnitu/vrembem/pull/207) Update deprecated rollup plugins ([@sebnitu](https://github.com/sebnitu))
 
+
 ## v1.7.2 (2020-06-16)
 
 #### :tada: New Feature
 * `checkbox`, `core`, `dismissible`, `drawer`, `modal`, `vrembem`
   * [#206](https://github.com/sebnitu/vrembem/pull/206) New drawer breakpoint API and custom events ([@sebnitu](https://github.com/sebnitu))
+
 
 ## v1.7.1 (2020-06-14)
 
@@ -70,6 +86,7 @@ chore(release): add v1.8.3 to CHANGELOG.md
 #### :books: Documentation
 * `grid`, `table`, `utility`, `vrembem`
   * [#201](https://github.com/sebnitu/vrembem/pull/201) Add readme docs ([@sebnitu](https://github.com/sebnitu))
+
 
 ## v1.7.0 (2020-06-13)
 
@@ -85,6 +102,7 @@ chore(release): add v1.8.3 to CHANGELOG.md
 * `base`, `dismissible`, `dropdown`, `menu`, `notice`, `span`, `utility`, `vrembem`
   * [#199](https://github.com/sebnitu/vrembem/pull/199) Remove utility naming convention from utility classes ([@sebnitu](https://github.com/sebnitu))
 
+
 ## v1.6.0 (2020-06-12)
 
 #### :fire: Breaking Changes
@@ -98,6 +116,7 @@ chore(release): add v1.8.3 to CHANGELOG.md
 #### :bug: Bug Fix
 * `input`, `vrembem`
   * [#195](https://github.com/sebnitu/vrembem/pull/195) fix: add appearance none to root input component ([@sebnitu](https://github.com/sebnitu))
+
 
 ## v1.5.4 (2020-06-10)
 
@@ -115,17 +134,20 @@ chore(release): add v1.8.3 to CHANGELOG.md
 * `table`, `vrembem`
   * [#193](https://github.com/sebnitu/vrembem/pull/193) Make mobile-label styles less heavy ([@sebnitu](https://github.com/sebnitu))
 
+
 ## v1.5.3 (2020-06-08)
 
 #### :books: Documentation
 * `arrow`, `base`, `breadcrumb`, `button-group`, `button`, `card`, `checkbox`, `container`, `core`, `dialog`, `dismissible`, `drawer`, `dropdown`, `grid`, `icon-action`, `icon`, `input`, `level`, `media`, `menu`, `modal`, `notice`, `panel`, `radio`, `section`, `span`, `switch`, `table`, `tooltip`, `utility`, `vrembem`
   * [#185](https://github.com/sebnitu/vrembem/pull/185) Add links between readme and web documentation ([@sebnitu](https://github.com/sebnitu))
 
+
 ## v1.5.2 (2020-06-07)
 
 #### :bug: Bug Fix
 * `vrembem`
   * [#184](https://github.com/sebnitu/vrembem/pull/184) Fix repository directory value ([@sebnitu](https://github.com/sebnitu))
+
 
 ## v1.5.1 (2020-06-07)
 
