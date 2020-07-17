@@ -1,5 +1,6 @@
 import { Modal } from '../index.js';
 import '@testing-library/jest-dom/extend-expect';
+import { delay } from './helpers/delay';
 
 let modal;
 const ev = new Event('transitionend');
@@ -27,7 +28,7 @@ afterEach(() => {
   document.body.innerHTML = null;
 });
 
-test('should focus modal when opened and refocus trigger when closed', () => {
+test('should focus modal when opened and refocus trigger when closed', async () => {
   document.body.innerHTML = markup;
   modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal="modal-one"]');
@@ -35,10 +36,11 @@ test('should focus modal when opened and refocus trigger when closed', () => {
 
   btnOpen.click();
   el.dispatchEvent(ev);
+  await delay();
   expect(el).toHaveFocus();
 });
 
-test('should focus inner modal element and refocus trigger when closed', () => {
+test('should focus inner modal element and refocus trigger when closed', async () => {
   document.body.innerHTML = markup;
   modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal="modal-two"]');
@@ -47,14 +49,16 @@ test('should focus inner modal element and refocus trigger when closed', () => {
 
   btnOpen.click();
   el.dispatchEvent(ev);
+  await delay();
   expect(btnClose).toHaveFocus();
 
   btnClose.click();
   el.dispatchEvent(ev);
+  await delay();
   expect(btnOpen).toHaveFocus();
 });
 
-test('should remember initial trigger when opening modal through another modal', () => {
+test('should remember initial trigger when opening modal through another modal', async () => {
   document.body.innerHTML = markup;
   modal = new Modal({ autoInit: true });
   const elOne = document.querySelector('[data-modal="modal-one"]');
@@ -72,6 +76,7 @@ test('should remember initial trigger when opening modal through another modal',
 
   btnClose.click();
   elTwo.dispatchEvent(ev);
+  await delay();
 
   expect(btnOpen).toHaveFocus();
 });

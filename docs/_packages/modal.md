@@ -356,6 +356,16 @@ Required modals can not be closed without an explicit action. That means clickin
       <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">true</code></td>
       <td data-mobile-label="Desc">Toggles the focus handling feature.</td>
     </tr>
+    <tr>
+      <td data-mobile-label="Key"><code class="code text-nowrap">toggleOverflow</code></td>
+      <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'body'</code></td>
+      <td data-mobile-label="Desc">Toggle <code class="code">overflow:hidden</code> on all matching elements provided by the CSS selector. Set to <a href="https://developer.mozilla.org/en-US/docs/Glossary/Falsy"><code class="code">falsy</code></a> to disable.</td>
+    </tr>
+    <tr>
+      <td data-mobile-label="Key"><code class="code text-nowrap">transition</code></td>
+      <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">true</code></td>
+      <td data-mobile-label="Desc">Toggle the transition animation for the modal. Set to <code class="code">false</code> to disable.</td>
+    </tr>
   </table>
 </div>
 
@@ -402,6 +412,8 @@ Required modals can not be closed without an explicit action. That means clickin
       </div>
     </div>
   </div>
+
+  <!-- modal with dialog -->
   <div class="modal" data-modal="modal-dialog" tabindex="-1">
     <div class="modal__dialog dialog">
       <div class="dialog__header">

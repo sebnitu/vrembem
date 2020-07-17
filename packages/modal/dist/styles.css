@@ -16,6 +16,7 @@
 .modal__dialog {
   width: 38em;
   max-width: 100%;
+  overflow: auto;
   transform: translateY(-5em);
   box-shadow: 0 0 0 1px rgba(33, 33, 33, 0.05), 0 11px 15px -7px rgba(33, 33, 33, 0.1), 0 24px 38px 3px rgba(33, 33, 33, 0.08), 0 9px 46px 8px rgba(33, 33, 33, 0.06);
   opacity: 0;

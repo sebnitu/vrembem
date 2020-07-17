@@ -21,7 +21,9 @@ export const Modal = (options) => {
 
     // Feature toggles
     customEventPrefix: 'modal:',
-    focus: true
+    focus: true,
+    toggleOverflow: 'body',
+    transition: true
   };
 
   api.settings = { ...defaults, ...options };
@@ -90,46 +92,83 @@ export const Modal = (options) => {
     }
   };
 
-  const open = (modalKey, callback) => {
+  const setOverflow = (state) => {
+    if (api.settings.toggleOverflow) {
+      const els = document.querySelectorAll(api.settings.toggleOverflow);
+      els.forEach((el) => {
+        if (state == 'hidden') {
+          el.style.overflow = 'hidden';
+        } else {
+          el.style.removeProperty('overflow');
+        }
+      });
+    }
+  };
+
+  const openTransition = (modal) => {
+    return new Promise((resolve) => {
+      addClass(modal, api.settings.stateOpening);
+      removeClass(modal, api.settings.stateClosed);
+      modal.addEventListener('transitionend', function _listener() {
+        addClass(modal, api.settings.stateOpened);
+        removeClass(modal, api.settings.stateOpening);
+        this.removeEventListener('transitionend', _listener, true);
+        resolve();
+      }, true);
+    });
+  };
+
+  const open = async (modalKey, callback) => {
     const target = document.querySelector(
       `[data-${api.settings.dataModal}="${modalKey}"]`
     );
     if (target && !hasClass(target, api.settings.stateOpened)) {
+      setOverflow('hidden');
       saveTarget(target);
-      addClass(target, api.settings.stateOpening);
-      removeClass(target, api.settings.stateClosed);
-      target.addEventListener('transitionend', function _listener() {
+      if (api.settings.transition) {
+        await openTransition(target);
+      } else {
         addClass(target, api.settings.stateOpened);
-        removeClass(target, api.settings.stateOpening);
-        setFocus(target);
-        typeof callback === 'function' && callback();
-        this.removeEventListener('transitionend', _listener, true);
-        const customEvent = new CustomEvent(api.settings.customEventPrefix + 'opened', {
-          bubbles: true
-        });
-        target.dispatchEvent(customEvent);
-      }, true);
+        removeClass(target, api.settings.stateClosed);
+      }
+      setFocus(target);
+      typeof callback === 'function' && callback();
+      target.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
+        bubbles: true
+      }));
     }
   };
 
-  const close = (focus = true, callback) => {
+  const closeTransition = (modal) => {
+    return new Promise((resolve) => {
+      addClass(modal, api.settings.stateClosing);
+      removeClass(modal, api.settings.stateOpened);
+      modal.addEventListener('transitionend', function _listener() {
+        addClass(modal, api.settings.stateClosed);
+        removeClass(modal, api.settings.stateClosing);
+        this.removeEventListener('transitionend', _listener, true);
+        resolve();
+      }, true);
+    });
+  };
+
+  const close = async (focus = true, callback) => {
     const target = document.querySelector(
       `[data-${api.settings.dataModal}].${api.settings.stateOpened}`
     );
     if (target) {
-      addClass(target, api.settings.stateClosing);
-      removeClass(target, api.settings.stateOpened);
-      target.addEventListener('transitionend', function _listener() {
+      setOverflow();
+      if (api.settings.transition) {
+        await closeTransition(target);
+      } else {
         addClass(target, api.settings.stateClosed);
-        removeClass(target, api.settings.stateClosing);
-        if (focus) returnFocus();
-        typeof callback === 'function' && callback();
-        this.removeEventListener('transitionend', _listener, true);
-        const customEvent = new CustomEvent(api.settings.customEventPrefix + 'closed', {
-          bubbles: true
-        });
-        target.dispatchEvent(customEvent);
-      }, true);
+        removeClass(target, api.settings.stateOpened);
+      }
+      if (focus) returnFocus();
+      typeof callback === 'function' && callback();
+      target.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
+        bubbles: true
+      }));
     }
   };
 

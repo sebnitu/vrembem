@@ -1,5 +1,6 @@
 import { Modal } from '../index.js';
 import '@testing-library/jest-dom/extend-expect';
+import { delay } from './helpers/delay';
 
 let modal;
 const ev = new Event('transitionend');
@@ -63,7 +64,7 @@ test('should close modal using api call', () => {
   expect(el.classList.length).toBe(2);
 });
 
-test('should fire callback when using open api', () => {
+test('should fire callback when using open api', async () => {
   document.body.innerHTML = markup;
   modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal]');
@@ -73,10 +74,11 @@ test('should fire callback when using open api', () => {
     callbackCheck = true;
   });
   el.dispatchEvent(ev);
+  await delay();
   expect(callbackCheck).toBe(true);
 });
 
-test('should fire callback when using close api', () => {
+test('should fire callback when using close api', async () => {
   document.body.innerHTML = markup;
   modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal]');
@@ -84,11 +86,13 @@ test('should fire callback when using close api', () => {
 
   modal.open('modal-default');
   el.dispatchEvent(ev);
+  await delay();
 
   modal.close(true, () => {
     callbackCheck = true;
   });
   el.dispatchEvent(ev);
+  await delay();
   expect(callbackCheck).toBe(true);
 });
 
