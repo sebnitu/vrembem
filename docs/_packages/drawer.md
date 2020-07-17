@@ -426,14 +426,6 @@ By default, the state of a drawer is saved to local storage and applied persiste
   </table>
 </div>
 
-## JavaScript Events
-
-* `drawer:opened` Emits when the drawer has opened.
-* `drawer:closed` Emits when the drawer has closed.
-* `drawer:breakpoint` Emits when the drawer has hit a breakpoint.
-* `drawer:toModal` Emits when the drawer is switched to it's modal state.
-* `drawer:toDefault` Emits when the drawer is switched to it's default state.
-
 ## JavaScript Options
 
 <div class="scroll-box">
@@ -538,7 +530,15 @@ By default, the state of a drawer is saved to local storage and applied persiste
   </table>
 </div>
 
-## JavaScript API
+## Events
+
+* `drawer:opened` Emits when the drawer has opened.
+* `drawer:closed` Emits when the drawer has closed.
+* `drawer:breakpoint` Emits when the drawer has hit a breakpoint.
+* `drawer:toModal` Emits when the drawer is switched to it's modal state.
+* `drawer:toDefault` Emits when the drawer is switched to it's default state.
+
+## API
 
 ### `drawer.init()`
 

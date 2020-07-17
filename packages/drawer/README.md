@@ -181,14 +181,6 @@ Variable | Default | Description
 `$modal-background` | `#424242` | Background color of modal screen.
 `$modal-background-alpha` | `0.8` | The alpha channel for the modal screen.
 
-### JavaScript Events
-
-- `drawer:opened` Emits when the drawer has opened.
-- `drawer:closed` Emits when the drawer has closed.
-- `drawer:breakpoint` Emits when the drawer has hit a breakpoint.
-- `drawer:toModal` Emits when the drawer is switched to it's modal state.
-- `drawer:toDefault` Emits when the drawer is switched to it's default state.
-
 ### JavaScript Options
 
 Key | Default | Description
@@ -210,9 +202,17 @@ Key | Default | Description
 `saveState` | `true` | Toggles the save state feature.
 `saveKey` | `"DrawerState"` | Defines the localStorage key where drawer states are saved.
 
-### JavaScript API
+## Events
 
-#### `drawer.init()`
+- `drawer:opened` Emits when the drawer has opened.
+- `drawer:closed` Emits when the drawer has closed.
+- `drawer:breakpoint` Emits when the drawer has hit a breakpoint.
+- `drawer:toModal` Emits when the drawer is switched to it's modal state.
+- `drawer:toDefault` Emits when the drawer is switched to it's default state.
+
+## API
+
+### `drawer.init()`
 
 Initializes the drawer instance.
 
@@ -221,7 +221,7 @@ const drawer = new Drawer();
 drawer.init();
 ```
 
-#### `drawer.destroy()`
+### `drawer.destroy()`
 
 Destroys and cleans up the drawer instantiation.
 
@@ -232,7 +232,7 @@ drawer.init();
 drawer.destroy();
 ```
 
-#### `drawer.toggle(key, callback)`
+### `drawer.toggle(key, callback)`
 
 Toggles a drawer when provided the drawer key and optional callback.
 
@@ -251,7 +251,7 @@ drawer.toggle('drawer-key', () => {
 });
 ```
 
-#### `drawer.open(key, callback)`
+### `drawer.open(key, callback)`
 
 Opens a drawer when provided the drawer key and optional callback.
 
@@ -270,7 +270,7 @@ drawer.open('drawer-key', () => {
 });
 ```
 
-#### `drawer.close(key, callback)`
+### `drawer.close(key, callback)`
 
 Closes a drawer when provided the drawer key and optional callback.
 
@@ -289,19 +289,19 @@ drawer.close('drawer-key', () => {
 });
 ```
 
-#### `drawer.breakpoint.init()`
+### `drawer.breakpoint.init()`
 
 Initializes the drawer breakpoint feature.
 
-#### `drawer.breakpoint.destroy()`
+### `drawer.breakpoint.destroy()`
 
 Destroys the drawer breakpoint feature.
 
-#### `drawer.breakpoint.check()`
+### `drawer.breakpoint.check()`
 
 Force a check of any drawers that meet their breakpoint condition. If their state doesn't match the current breakpoint condition, they'll be updated.
 
-#### `drawer.switchToModal(key)`
+### `drawer.switchToModal(key)`
 
 Switches a drawer to it's modal state.
 
@@ -317,7 +317,7 @@ Switches a drawer to it's modal state.
 drawer.switchToModal('drawer-key');
 ```
 
-#### `drawer.switchToDefault(key)`
+### `drawer.switchToDefault(key)`
 
 Switches a drawer to it's default state.
 

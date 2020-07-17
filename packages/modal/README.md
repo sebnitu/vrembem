@@ -156,11 +156,6 @@ Variable | Default | Description
 `$aside-width` | `16em` | Width applied to modals using `_pos_left` and `_pos_right` modifiers.
 `$aside-max-width` | `90%` | Max width applied to modals using `_pos_left` and `_pos_right` modifiers.
 
-### JavaScript Events
-
-- `modal:opened` Emits when the modal has opened.
-- `modal:closed` Emits when the modal has closed.
-
 ### JavaScript Options
 
 Key | Default | Description
@@ -180,9 +175,14 @@ Key | Default | Description
 `toggleOverflow` | `'body'` |  Toggle `overflow:hidden` on all matching elements provided by the CSS selector. Set to [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) to disable.
 `transition` | `true` | Toggle the transition animation for the modal. Set to `false` to disable.
 
-### JavaScript API
+## Events
 
-#### `modal.init()`
+- `modal:opened` Emits when the modal has opened.
+- `modal:closed` Emits when the modal has closed.
+
+## API
+
+### `modal.init()`
 
 Initializes the modal instance.
 
@@ -191,7 +191,7 @@ const modal = new Modal();
 modal.init();
 ```
 
-#### `drawer.destroy()`
+### `drawer.destroy()`
 
 Destroys and cleans up the modal instantiation.
 
@@ -202,7 +202,7 @@ modal.init();
 modal.destroy();
 ```
 
-#### `modal.open(key, callback)`
+### `modal.open(key, callback)`
 
 Opens a modal provided the modal key and optional callback.
 
@@ -221,7 +221,7 @@ modal.open('modal-key', () => {
 });
 ```
 
-#### `modal.close(returnFocus, callback)`
+### `modal.close(returnFocus, callback)`
 
 Closes a modal and returns focus to trigger element with optional callback.
 

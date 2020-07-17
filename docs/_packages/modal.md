@@ -272,11 +272,6 @@ Required modals can not be closed without an explicit action. That means clickin
   </table>
 </div>
 
-## JavaScript Events
-
-* `modal:opened` Emits when the modal has opened.
-* `modal:closed` Emits when the modal has closed.
-
 ## JavaScript Options
 
 <div class="scroll-box">
@@ -369,7 +364,12 @@ Required modals can not be closed without an explicit action. That means clickin
   </table>
 </div>
 
-## JavaScript API
+## Events
+
+* `modal:opened` Emits when the modal has opened.
+* `modal:closed` Emits when the modal has closed.
+
+## API
 
 ### `modal.init()`
 
