@@ -177,6 +177,8 @@ Key | Default | Description
 `stateClosed` | `'is-closed'` | Class used for closed state.
 `customEventPrefix` | `'modal:'` | Prefix to be used on custom events.
 `focus` | `true` | Toggles the focus handling feature.
+`toggleOverflow` | `'body'` |  Toggle `overflow:hidden` on all matching elements provided by the CSS selector. Set to [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) to disable.
+`transition` | `true` | Toggle the transition animation for the modal. Set to `false` to disable.
 
 ### JavaScript API
 
