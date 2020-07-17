@@ -238,8 +238,8 @@ Toggles a drawer when provided the drawer key and optional callback.
 
 **Parameters**
 
-- `key` A unique key to a drawer HTML element.
-- `callback` (optional) A callback function to be run after the toggle is completed.
+- `key [String]` A unique key that matches the value of a drawer `data-drawer` attribute.
+- `callback [Function]` (optional) A callback function to be run after the toggle process is completed.
 
 ```html
 <div class="drawer" data-drawer="drawer-key">...</div>
@@ -257,8 +257,8 @@ Opens a drawer when provided the drawer key and optional callback.
 
 **Parameters**
 
-- `key` A unique key to a drawer HTML element.
-- `callback` (optional) A callback function to be run after the open is completed.
+- `key [String]` A unique key that matches the value of a drawer `data-drawer` attribute.
+- `callback [Function]` (optional) A callback function to be run after the open process is completed.
 
 ```html
 <div class="drawer" data-drawer="drawer-key">...</div>
@@ -276,8 +276,8 @@ Closes a drawer when provided the drawer key and optional callback.
 
 **Parameters**
 
-- `key` A unique key to a drawer HTML element.
-- `callback` (optional) A callback function to be run after the close is completed.
+- `key [String]` A unique key that matches the value of a drawer `data-drawer` attribute.
+- `callback [Function]` (optional) A callback function to be run after the close process is completed.
 
 ```html
 <div class="drawer" data-drawer="drawer-key">...</div>
@@ -307,7 +307,7 @@ Switches a drawer to it's modal state.
 
 **Parameters**
 
-- `key` A unique key to a drawer HTML element.
+- `key [String]` A unique key that matches the value of a drawer `data-drawer` attribute.
 
 ```html
 <div class="drawer" data-drawer="drawer-key">...</div>
@@ -323,10 +323,10 @@ Switches a drawer to it's default state.
 
 **Parameters**
 
-- `key` A unique key to a drawer HTML element.
+- `key [String]` A unique key that matches the value of a drawer `data-drawer` attribute.
 
 ```html
-<div class="drawer" data-drawer="drawer-key">...</div>
+<div class="drawer drawer_modal" data-drawer="drawer-key">...</div>
 ```
 
 ```js

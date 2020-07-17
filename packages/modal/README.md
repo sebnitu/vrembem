@@ -182,9 +182,60 @@ Key | Default | Description
 
 ### JavaScript API
 
-Method | Description
----|---
-`modal.init()` | Initializes the modal instance.
-`modal.destroy()` | Destroys and cleans up the modal instantiation.
-`modal.open(modalKey, callback)` | Opens a modal provided the modal key and optional callback.
-`modal.close(returnFocus, callback)` | Closes a modal and returns focus to trigger element with optional callback.
+#### `modal.init()`
+
+Initializes the modal instance.
+
+```js
+const modal = new Modal();
+modal.init();
+```
+
+#### `drawer.destroy()`
+
+Destroys and cleans up the modal instantiation.
+
+```js
+const modal = new Modal();
+modal.init();
+// ...
+modal.destroy();
+```
+
+#### `modal.open(key, callback)`
+
+Opens a modal provided the modal key and optional callback.
+
+**Parameters**
+
+- `key [String]` A unique key that matches the value of a modal `data-modal` attribute.
+- `callback [Function]` (optional) A callback function to be run after the open process is completed.
+
+```html
+<div class="modal is-closed" data-modal="modal-key">...</div>
+```
+
+```js
+modal.open('modal-key', () => {
+  // Your custom code here...
+});
+```
+
+#### `modal.close(returnFocus, callback)`
+
+Closes a modal and returns focus to trigger element with optional callback.
+
+**Parameters**
+
+- `returnFocus [Boolean]` Whether or not to return focus on trigger once closed. Defaults to `true`.
+- `callback [Function]` (optional) A callback function to be run after the close process is completed.
+
+```html
+<div class="modal is-opened" data-modal="modal-key">...</div>
+```
+
+```js
+modal.close(true, () => {
+  // Your custom code here...
+});
+```
