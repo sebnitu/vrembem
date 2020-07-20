@@ -29,7 +29,7 @@
     "@vrembem/core": "^1.8.3",
     "feather-icons": "^4.28.0",
     "list.js": "^1.5.0",
-    "scroll-stash": "^0.2.6",
+    "scroll-stash": "^1.0.0",
     "svgxuse": "^1.2.6",
     "vrembem": "^1.8.4"
   }
