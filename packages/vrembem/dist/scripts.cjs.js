@@ -244,7 +244,6 @@ var Drawer = function Drawer(options) {
     setState();
     breakpointInit();
     document.addEventListener('click', handler, false);
-    document.addEventListener('touchend', handler, false);
     document.addEventListener('keyup', handlerEscape, false);
   };
 
@@ -255,7 +254,6 @@ var Drawer = function Drawer(options) {
     api.state = {};
     localStorage.removeItem(api.settings.saveKey);
     document.removeEventListener('click', handler, false);
-    document.removeEventListener('touchend', handler, false);
     document.removeEventListener('keyup', handlerEscape, false);
   };
 
