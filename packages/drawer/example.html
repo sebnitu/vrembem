@@ -101,10 +101,10 @@
         </p>
         <p>
           <button class="link" data-drawer-toggle="drawer-modal-left">
-            Drawer Modal Left
+            Drawer Breakpoint Left
           </button>
           <button class="link" data-drawer-toggle="drawer-modal-right">
-            Drawer Modal Right
+            Drawer Breakpoint Right
           </button>
           <button class="link" data-drawer-toggle="drawer-modal-always">
             Drawer Modal Always
@@ -199,7 +199,7 @@
     });
   });
 
-  document.querySelector('.js-api-open').addEventListener('click', () => {
+  document.querySelector('.js-api-open').addEventListener('click', ({ target }) => {
     drawer.open('drawer-pos-right', () => {
       console.log('Open API callback');
     });

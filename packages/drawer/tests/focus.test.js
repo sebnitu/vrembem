@@ -25,6 +25,9 @@ const markup = `
       <button class="toggle-two" data-drawer-toggle="drawer-two">
         Drawer Toggle
       </button>
+      <button class="toggle-three" data-drawer-open="drawer-two">
+        Drawer Open
+      </button>
     </div>
   </div>
 `;
@@ -122,4 +125,22 @@ test('should focus custom data element and refocus trigger when closed', () => {
   btnClose.click();
   el.dispatchEvent(ev);
   expect(btn).toHaveFocus();
+});
+
+test('should re-focus the target if open triggers while drawer is already opened', () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer({ autoInit: true });
+  const el = document.querySelector('[data-drawer="drawer-two"]');
+  const elFocus = el.querySelector('[data-drawer-focus]');
+  const btn = document.querySelector('.toggle-three');
+
+  btn.click();
+  el.dispatchEvent(ev);
+  expect(elFocus).toHaveFocus();
+
+  elFocus.blur();
+
+  btn.click();
+  el.dispatchEvent(ev);
+  expect(elFocus).toHaveFocus();
 });

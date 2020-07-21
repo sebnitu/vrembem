@@ -351,6 +351,9 @@
           });
           drawer.dispatchEvent(customEvent);
         }, true);
+      } else if (drawer && hasClass(drawer, api.settings.stateOpened)) {
+        saveTarget(drawer);
+        setFocus();
       }
     };
 
