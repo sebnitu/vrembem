@@ -13,6 +13,9 @@ const markup = `
     </div>
     <div class="drawer__main">
       <button data-drawer-toggle="drawer-default">Drawer Toggle</button>
+      <button data-drawer-open="drawer-default">Drawer Open</button>
+      <button data-drawer-close="drawer-default">Drawer Close</button>
+      <button class="drawer-close-empty" data-drawer-close>Drawer Close</button>
     </div>
   </div>
 `;
@@ -75,6 +78,50 @@ test('should apply state classes on `click` and `transitionend` events', () => {
   el.dispatchEvent(ev);
   expect(el).toHaveClass('drawer is-closed');
   expect(el).not.toHaveClass('is-opening is-opened is-closing');
+});
+
+test('should open and close drawer using data attribute triggers', () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer();
+  const el = document.querySelector('[data-drawer]');
+  const btnOpen = document.querySelector('[data-drawer-open="drawer-default"]');
+  const btnClose = document.querySelector('[data-drawer-close="drawer-default"]');
+
+  drawer.init();
+  expect(el).toHaveClass('drawer is-closed');
+
+  btnOpen.click();
+  expect(el).toHaveClass('is-opening');
+
+  el.dispatchEvent(ev);
+  expect(el).toHaveClass('is-opened');
+
+  btnClose.click();
+  expect(el).toHaveClass('is-closing');
+
+  el.dispatchEvent(ev);
+  expect(el).toHaveClass('drawer is-closed');
+  expect(el).not.toHaveClass('is-opening is-opened is-closing');
+});
+
+test('should not throw error if drawer close button doesn\'t find a drawer', () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer();
+  const el = document.querySelector('[data-drawer]');
+  const btnOpen = document.querySelector('[data-drawer-open="drawer-default"]');
+  const btnClose = document.querySelector('.drawer-close-empty');
+
+  drawer.init();
+  expect(el).toHaveClass('drawer is-closed');
+
+  btnOpen.click();
+  expect(el).toHaveClass('is-opening');
+
+  el.dispatchEvent(ev);
+  expect(el).toHaveClass('is-opened');
+
+  btnClose.click();
+  expect(el).not.toHaveClass('is-closing');
 });
 
 test('should apply state classes with custom data attributes', () => {

@@ -12,11 +12,12 @@ usage:
 
 ## drawer
 
-Drawers are composed using classes for styling and data attributes for JavaScript functionality. To link a drawer toggle to a drawer, use a unique identifier as the values for both of their respective data attributes. Close buttons are left value-less and should be placed inside the drawer element they're meant to close.
+Drawers are composed using classes for styling and data attributes for JavaScript functionality. To link a drawer toggle, open or close trigger to a drawer, use a unique identifier as the values for both the trigger and drawer's respective data attributes. Close buttons can be left value-less if placed inside a drawer element they're meant to close.
 
-* `data-drawer="[unique-id]"`
-* `data-drawer-toggle="[unique-id]"`
-* `data-drawer-close`
+- `data-drawer="[unique-id]"`
+- `data-drawer-toggle="[unique-id]"`
+- `data-drawer-open="[unique-id]"`
+- `data-drawer-close="[unique-id]"` (or value-less if inside drawer)
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="drawer__wrapper border radius">
@@ -30,9 +31,9 @@ Drawers are composed using classes for styling and data attributes for JavaScrip
   </aside>
   <div class="drawer__main">
     <div class="padding-xl">
-      <button data-drawer-toggle="drawer-key" class="link">
-        Drawer Toggle
-      </button>
+      <button data-drawer-toggle="drawer-key" class="link">Drawer Toggle</button>
+      <button data-drawer-open="drawer-key" class="link">Open</button>
+      <button data-drawer-close="drawer-key" class="link">Close</button>
     </div>
   </div>
 </div>
@@ -46,6 +47,8 @@ Drawers are composed using classes for styling and data attributes for JavaScrip
   </aside>
   <div class="drawer__main">
     <button data-drawer-toggle="[unique-id]">...</button>
+    <button data-drawer-open="[unique-id]">...</button>
+    <button data-drawer-close="[unique-id]">...</button>
   </div>
 </div>
 ```
@@ -73,6 +76,8 @@ The [dialog component](/packages/dialog) is a great fit for composing a drawerâ€
   </aside>
   <div class="drawer__main padding-xl type">
     <button class="link" data-drawer-toggle="drawer-dialog">Drawer Dialog</button>
+    <button class="link" data-drawer-open="drawer-dialog">Open</button>
+    <button class="link" data-drawer-close="drawer-dialog">Close</button>
   </div>
 </div>
 {% include demo_switch.html %}
@@ -244,7 +249,7 @@ In cases where you'd like a drawer to switch to a drawer modal on a specific bre
 
 ## data-drawer-focus
 
-If a drawer has the attribute `tabindex="-1"`, it will be given focus when it's opened. If focus on a specific element inside a drawer is prefered, give it the `data-drawer-focus` attribute. The focus in either case is returned to the trigger element once the drawer is closed. Focus handling can be disabled using the `{ focus: false }` setting.
+If a drawer has the attribute `tabindex="-1"`, it will be given focus when it's opened. If focus on a specific element inside a drawer is preferred, give it the `data-drawer-focus` attribute. The focus in either case is returned to the trigger element once the drawer is closed. Focus handling can be disabled using the `{ focus: false }` setting.
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="drawer__wrapper border radius">
