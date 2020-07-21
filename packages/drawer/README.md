@@ -27,10 +27,11 @@ const drawer = new Drawer({ autoInit: true });
 
 ### Markup
 
-Drawers are composed using classes for styling and data attributes for JavaScript functionality. To link a drawer toggle to a drawer, use a unique identifier as the values for both of their respective data attributes. Close buttons are left value-less and should be placed inside the drawer element they’re meant to close.
+Drawers are composed using classes for styling and data attributes for JavaScript functionality. To link a drawer toggle, open or close trigger to a drawer, use a unique identifier as the values for both of their respective data attributes. Close buttons can be left value-less if placed inside a drawer element they're meant to close.
 
 - `data-drawer="[unique-id]"`
 - `data-drawer-toggle="[unique-id]"`
+- `data-drawer-open="[unique-id]"`
 - `data-drawer-close`
 
 ```html
@@ -42,6 +43,8 @@ Drawers are composed using classes for styling and data attributes for JavaScrip
   </aside>
   <div class="drawer__main">
     <button data-drawer-toggle="[unique-id]">...</button>
+    <button data-drawer-open="[unique-id]">...</button>
+    <button data-drawer-close="[unique-id]">...</button>
   </div>
 </div>
 ```
@@ -83,7 +86,7 @@ In cases where you'd like a drawer to switch to a drawer modal on a specific bre
 
 #### `data-drawer-focus`
 
-If a drawer has the attribute `tabindex="-1"`, it will be given focus when it's opened. If focus on a specific element inside a drawer is prefered, give it the `data-drawer-focus` attribute. The focus in either case is returned to the trigger element once the drawer is closed. Focus handling can be disabled using the `{ focus: false }` setting.
+If a drawer has the attribute `tabindex="-1"`, it will be given focus when it's opened. If focus on a specific element inside a drawer is preferred, give it the `data-drawer-focus` attribute. The focus in either case is returned to the trigger element once the drawer is closed. Focus handling can be disabled using the `{ focus: false }` setting.
 
 ```html
 <div cass="drawer__wrapper">
