@@ -27,12 +27,12 @@ const drawer = new Drawer({ autoInit: true });
 
 ### Markup
 
-Drawers are composed using classes for styling and data attributes for JavaScript functionality. To link a drawer toggle, open or close trigger to a drawer, use a unique identifier as the values for both of their respective data attributes. Close buttons can be left value-less if placed inside a drawer element they're meant to close.
+Drawers are composed using classes for styling and data attributes for JavaScript functionality. To link a drawer toggle, open or close trigger to a drawer, use a unique identifier as the values for both the trigger and drawer's respective data attributes. Close buttons can be left value-less if placed inside a drawer element they're meant to close.
 
 - `data-drawer="[unique-id]"`
 - `data-drawer-toggle="[unique-id]"`
 - `data-drawer-open="[unique-id]"`
-- `data-drawer-close`
+- `data-drawer-close="[unique-id]"` (or value-less if inside drawer)
 
 ```html
 <div class="drawer__wrapper">
