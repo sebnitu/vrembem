@@ -24,7 +24,7 @@ chore(release): add v1.9.0 to CHANGELOG.md
 
 #### :tada: New Feature
 * `drawer`, `vrembem`
-  * [#262](https://github.com/sebnitu/vrembem/pull/262) Add data drawer open  ([@sebnitu](https://github.com/sebnitu))
+  * [#262](https://github.com/sebnitu/vrembem/pull/262) Add data drawer open ([@sebnitu](https://github.com/sebnitu))
 
 
 ## v1.8.4 (2020-07-17)
