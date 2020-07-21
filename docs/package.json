@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/docs",
   "description": "A container component that slides in from the left or right. It typically contains menus, search or other content for your app.",
-  "version": "1.8.4",
+  "version": "1.9.0",
   "private": true,
   "main": "dist/scripts.cjs.js",
   "module": "src/js/app.js",
@@ -31,6 +31,6 @@
     "list.js": "^1.5.0",
     "scroll-stash": "^1.0.0",
     "svgxuse": "^1.2.6",
-    "vrembem": "^1.8.4"
+    "vrembem": "^1.9.0"
   }
 }
