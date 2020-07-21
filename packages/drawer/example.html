@@ -67,6 +67,16 @@
     </div>
   </aside>
 
+  <aside data-drawer="drawer-data-attr-right" class="drawer drawer_pos_right" tabindex="-1">
+    <div class="drawer__item padding">
+      <div class="flex flex-justify-between margin-bottom-lg">
+        <p>Drawer Default Left</p>
+        <button data-drawer-close class="link">Close</button>
+      </div>
+      <input class="input display-block" data-drawer-focus type="text" />
+    </div>
+  </aside>
+
   <div class="drawer__main">
     <div class="padding-xl">
       <h1 class="margin-bottom-md">@vrembem/drawer</h1>
@@ -100,6 +110,31 @@
             Drawer Modal Always
           </button>
         </p>
+
+        <h2>Trigger data attributes</h2>
+
+        <ul class="list">
+          <li>
+            <a href="#" class="link" data-drawer-toggle="drawer-data-attr-right">
+              <code class="code">data-drawer-toggle</code>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="link" data-drawer-open="drawer-data-attr-right">
+              <code class="code">data-drawer-open</code>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="link" data-drawer-close="drawer-data-attr-right">
+              <code class="code">data-drawer-close</code>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="link" data-drawer-close>
+              <code class="code">data-drawer-close [empty]</code>
+            </a>
+          </li>
+        </ul>
 
         <h2>API</h2>
         <ul class="list">
@@ -154,7 +189,7 @@
 </div>
 
 <!-- Component scripts -->
-<script src="./dist/scripts.min.js"></script>
+<script src="./dist/scripts.js"></script>
 <script>
   const drawer = new vrembem.Drawer({ autoInit: true });
 
