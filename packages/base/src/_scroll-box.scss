@@ -1,8 +1,10 @@
 @use "./variables" as var;
 
-.#{var.$prefix-block}#{var.$class-scroll-box} {
-  display: block;
-  width: 100%;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
+@if (var.$class-scroll-box) {
+  .#{var.$prefix-block}#{var.$class-scroll-box} {
+    display: block;
+    width: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }

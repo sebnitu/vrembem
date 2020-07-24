@@ -9,17 +9,28 @@ $_c: var.$class-type;
   @include mix.link();
 }
 
-.#{$_b}link#{$_m}subtle,
-.#{$_b}#{$_c} .#{$_b}link#{$_m}subtle {
+.#{$_b}link#{$_m}subtle {
   @include mix.link-modifier("subtle");
 }
 
-.#{$_b}link#{$_m}invert,
-.#{$_b}#{$_c} .#{$_b}link#{$_m}invert {
+.#{$_b}link#{$_m}invert {
   @include mix.link-modifier("invert");
 }
 
-.#{$_b}link#{$_m}invert-subtle,
-.#{$_b}#{$_c} .#{$_b}link#{$_m}invert-subtle {
+.#{$_b}link#{$_m}invert-subtle {
   @include mix.link-modifier("invert-subtle");
+}
+
+@if (var.$class-type) {
+  .#{$_b}#{$_c} .#{$_b}link#{$_m}subtle {
+    @include mix.link-modifier("subtle");
+  }
+
+  .#{$_b}#{$_c} .#{$_b}link#{$_m}invert {
+    @include mix.link-modifier("invert");
+  }
+
+  .#{$_b}#{$_c} .#{$_b}link#{$_m}invert-subtle {
+    @include mix.link-modifier("invert-subtle");
+  }
 }
