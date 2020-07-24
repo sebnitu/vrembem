@@ -201,11 +201,11 @@
 // Separator
 // ---
 
-@mixin separator() {
+@mixin separator($border) {
   display: block;
   height: 0;
   border: none;
-  border-top: var.$separator-border;
+  border-top: $border;
 }
 
 // Spacing
@@ -286,7 +286,7 @@
   }
 
   > hr {
-    @include separator();
+    @include separator(var.$separator-border);
   }
 
   > ul,
@@ -317,7 +317,7 @@
     }
 
     > hr {
-      border-color: core.$border-color-invert;
+      @include separator(var.$separator-border-invert);
     }
 
     > blockquote {

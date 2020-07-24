@@ -3,39 +3,14 @@
 @use "./mixins" as mix;
 
 $_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
 $_c: var.$class-separator;
 
 @if (var.$output-separator) {
   .#{$_b}#{$_c} {
-    @include mix.separator();
+    @include mix.separator(var.$separator-border);
   }
 
-  .#{$_b}#{$_c}#{$_m}light {
-    border-color: core.$border-color-light !important;
-  }
-
-  .#{$_b}#{$_c}#{$_m}dark {
-    border-color: core.$border-color-dark !important;
-  }
-
-  .#{$_b}#{$_c}#{$_m}darker {
-    border-color: core.$border-color-darker !important;
-  }
-
-  .#{$_b}#{$_c}#{$_m}invert {
-    border-color: core.$border-color-invert !important;
-  }
-
-  .#{$_b}#{$_c}#{$_m}invert-light {
-    border-color: core.$border-color-invert-light !important;
-  }
-
-  .#{$_b}#{$_c}#{$_m}invert-dark {
-    border-color: core.$border-color-invert-dark !important;
-  }
-
-  .#{$_b}#{$_c}#{$_m}invert-darker {
-    border-color: core.$border-color-invert-darker !important;
+  .#{$_b}#{$_c}-invert {
+    @include mix.separator(var.$separator-border-invert);
   }
 }
