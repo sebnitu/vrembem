@@ -29,10 +29,6 @@
   }
 }
 
-@mixin blockquote-invert() {
-  border: var.$blockquote-border-invert;
-}
-
 // Code
 // ---
 
@@ -321,7 +317,7 @@
     }
 
     > blockquote {
-      @include blockquote-invert();
+      border-color: var.$blockquote-border-color-invert;
     }
 
     > a,

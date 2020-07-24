@@ -719,7 +719,7 @@ input::-moz-placeholder {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 .type_invert > blockquote {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 .type_invert > a,
 .type_invert > :not(div) a {
@@ -3344,7 +3344,7 @@ input::-moz-placeholder {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 .notice_color_primary > blockquote {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 .notice_color_primary > a,
 .notice_color_primary > :not(div) a {
@@ -3379,7 +3379,7 @@ input::-moz-placeholder {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 .notice_color_secondary > blockquote {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 .notice_color_secondary > a,
 .notice_color_secondary > :not(div) a {
@@ -3414,7 +3414,7 @@ input::-moz-placeholder {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 .notice_color_dark > blockquote {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 .notice_color_dark > a,
 .notice_color_dark > :not(div) a {
@@ -3467,7 +3467,7 @@ input::-moz-placeholder {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 .notice_type_info-bold > blockquote {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 .notice_type_info-bold > a,
 .notice_type_info-bold > :not(div) a {
@@ -3507,7 +3507,7 @@ input::-moz-placeholder {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 .notice_type_success-bold > blockquote {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 .notice_type_success-bold > a,
 .notice_type_success-bold > :not(div) a {
@@ -3547,7 +3547,7 @@ input::-moz-placeholder {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 .notice_type_caution-bold > blockquote {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 .notice_type_caution-bold > a,
 .notice_type_caution-bold > :not(div) a {
@@ -3587,7 +3587,7 @@ input::-moz-placeholder {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 .notice_type_danger-bold > blockquote {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 .notice_type_danger-bold > a,
 .notice_type_danger-bold > :not(div) a {

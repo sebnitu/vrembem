@@ -693,7 +693,7 @@ input::-moz-placeholder {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 .type_invert > blockquote {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 .type_invert > a,
 .type_invert > :not(div) a {
