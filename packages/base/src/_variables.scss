@@ -42,57 +42,6 @@ $class-type: "type" !default;
 $box-sizing: border-box !default;
 $body-background: null !default;
 
-// Heading
-// ---
-
-$heading-font-family: null !default;
-$heading-line-height: 1.3 !default;
-$heading-color: inherit !default;
-$heading-color-invert: null !default;
-$heading-font-weight: core.font-weight("semi-bold") !default;
-
-// Link
-// ---
-
-$link-text-decoration: none !default;
-$link-text-decoration-hover: null !default;
-$link-transition: null !default;
-
-// Color
-$link-color: core.$primary !default;
-$link-color-hover: core.$primary-dark !default;
-$link-border: 1px solid core.$border-color !default;
-$link-border-hover: 1px solid currentColor !default;
-
-// Subtle
-$link-subtle-color: core.$color-subtle !default;
-$link-subtle-color-hover: $link-color-hover !default;
-$link-subtle-border-color: core.$border-color !default;
-$link-subtle-border-color-hover: currentColor !default;
-
-// Invert
-$link-invert-color: core.$white !default;
-$link-invert-color-hover: core.$white !default;
-$link-invert-border-color: rgba(core.$white, 0.5) !default;
-$link-invert-border-color-hover: currentColor !default;
-
-// Invert subtle
-$link-invert-subtle-color: core.$color-invert-subtle !default;
-$link-invert-subtle-color-hover: core.$color-invert !default;
-$link-invert-subtle-border-color: rgba(core.$white, 0.5) !default;
-$link-invert-subtle-border-color-hover: currentColor !default;
-
-// Embed
-// ---
-
-$embed-ratio: core.aspect-ratio(16, 9) !default;
-
-// List
-// ---
-
-$list-spacing: 1.5em !default;
-$list-item-spacing: 0.5em !default;
-
 // Blockquote
 // ---
 
@@ -116,6 +65,53 @@ $code-border: null !default;
 $code-border-radius: core.$border-radius !default;
 $code-color: core.$pink !default;
 $code-color-invert: core.$pink-300 !default;
+
+// Embed
+// ---
+
+$embed-ratio: core.aspect-ratio(16, 9) !default;
+
+// Heading
+// ---
+
+$heading-font-family: null !default;
+$heading-line-height: 1.3 !default;
+$heading-color: inherit !default;
+$heading-color-invert: null !default;
+$heading-font-weight: core.font-weight("semi-bold") !default;
+
+// Link
+// ---
+
+$link-text-decoration: none !default;
+$link-text-decoration-hover: null !default;
+$link-transition: null !default;
+
+$link-color: core.$primary !default;
+$link-color-hover: core.$primary-dark !default;
+$link-border: 1px solid core.$border-color !default;
+$link-border-hover: 1px solid currentColor !default;
+
+$link-subtle-color: core.$color-subtle !default;
+$link-subtle-color-hover: $link-color-hover !default;
+$link-subtle-border-color: core.$border-color !default;
+$link-subtle-border-color-hover: currentColor !default;
+
+$link-invert-color: core.$white !default;
+$link-invert-color-hover: core.$white !default;
+$link-invert-border-color: rgba(core.$white, 0.5) !default;
+$link-invert-border-color-hover: currentColor !default;
+
+$link-invert-subtle-color: core.$color-invert-subtle !default;
+$link-invert-subtle-color-hover: core.$color-invert !default;
+$link-invert-subtle-border-color: rgba(core.$white, 0.5) !default;
+$link-invert-subtle-border-color-hover: currentColor !default;
+
+// List
+// ---
+
+$list-spacing: 1.5em !default;
+$list-item-spacing: 0.5em !default;
 
 // Pre
 // ---

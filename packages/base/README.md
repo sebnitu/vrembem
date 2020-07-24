@@ -152,6 +152,7 @@ TBD
 Variable | Default | Description
 ---|---|---
 `$output-embed` | `$output` &rarr; `true` | Toggles the output of this module.
+`$class-embed` | `"embed"` | String to use for the class name of the embed module.
 
 ### `heading`
 
@@ -192,6 +193,7 @@ TBD
 Variable | Default | Description
 ---|---|---
 `$output-scroll-box` | `$output` &rarr; `true` | Toggles the output of this module.
+`$class-scroll-box` | `"scroll-box"` | String to use for the class name of the scroll-box module.
 
 ### `separator`
 
@@ -200,6 +202,7 @@ TBD
 Variable | Default | Description
 ---|---|---
 `$output-separator` | `$output` &rarr; `true` | Toggles the output of this module.
+`$class-separator` | `"sep"` | String to use for the class name of the separator module.
 
 ### `spacing`
 
@@ -215,6 +218,7 @@ A utility for adding vertical spacing between an element's children. Spacing siz
 Variable | Default | Description
 ---|---|---
 `$output-spacing` | `$output` &rarr; `true` | Toggles the output of this module.
+`$class-spacing` | `"spacing"` | String to use for the class name of the spacing module.
 
 ### `symbols`
 
@@ -223,6 +227,7 @@ TBD
 Variable | Default | Description
 ---|---|---
 `$output-symbols` | `$output` &rarr; `true` | Toggles the output of this module.
+`$class-symbols` | `"symbols"` | String to use for the class name of the symbols module.
 
 ### `type`
 
@@ -231,3 +236,4 @@ TBD
 Variable | Default | Description
 ---|---|---
 `$output-type` | `$output` &rarr; `true` | Toggles the output of this module.
+`$class-type` | `"type"` | String to use for the class name of the type module.
