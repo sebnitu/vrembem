@@ -228,12 +228,11 @@ TBD
 Variable | Default | Description
 ---|---|---
 `$output-pre` | `$output` &rarr; `true` | Toggles the output of this module.
-
-$pre-padding: 1em !default;
-$pre-background: core.$shade !default;
-$pre-border: null !default;
-$pre-border-radius: core.$border-radius !default;
-$pre-color: core.$color !default;
+`$pre-padding` | `1em` | ...
+`$pre-background` | `core.$shade` | ...
+`$pre-border` | `null` | ...
+`$pre-border-radius` | `core.$border-radius` | ...
+`$pre-color` | `core.$color` | ...
 
 ### `scroll-box`
 
@@ -252,9 +251,8 @@ Variable | Default | Description
 ---|---|---
 `$output-separator` | `$output` &rarr; `true` | Toggles the output of this module.
 `$class-separator` | `"sep"` | String to use for the class name of the separator module.
-
-$separator-border: 1px solid core.$border-color !default;
-$separator-border-invert: 1px solid core.$border-color-invert !default;
+`$separator-border` | `1px solid core.$border-color` | ...
+`$separator-border-invert` | `1px solid core.$border-color-invert` | ...
 
 ### `spacing`
 
@@ -276,9 +274,8 @@ Variable | Default | Description
 ---|---|---
 `$output-spacing` | `$output` &rarr; `true` | Toggles the output of this module.
 `$class-spacing` | `"spacing"` | String to use for the class name of the spacing module.
-
-$spacing: core.$spacing !default;
-$spacing-map: core.$spacing-map !default;
+`$spacing` | `core.$spacing` | ...
+`$spacing-map-border` | `core.$spacing-map` | ...
 
 ### `symbols`
 
@@ -297,8 +294,7 @@ Variable | Default | Description
 ---|---|---
 `$output-type` | `$output` &rarr; `true` | Toggles the output of this module.
 `$class-type` | `"type"` | String to use for the class name of the type module.
-
-$type-font-family: null !default;
-$type-font-size: null !default;
-$type-line-height: null !default;
-$type-spacing: null !default;
+`$type-font-family` | `null` | ...
+`$type-font-size` | `null` | ...
+`$type-line-height` | `null` | ...
+`$type-spacing` | `null` | ...

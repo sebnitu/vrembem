@@ -102,30 +102,22 @@ Typically used on an `<hr>` HTML element representing a thematic break between p
 
 {% include demo_open.html %}
 <div class="spacing padding">
-  <hr class="sep sep_light">
   <hr class="sep">
-  <hr class="sep sep_dark">
-  <hr class="sep sep_darker">
+  <hr class="sep border-color-darker">
 </div>
 <div class="spacing padding radius background-night">
-  <hr class="sep sep_invert-light">
-  <hr class="sep sep_invert">
-  <hr class="sep sep_invert-dark">
-  <hr class="sep sep_invert-darker">
+  <hr class="sep-invert">
+  <hr class="sep-invert border-color-invert-darker">
 </div>
 {% include demo_switch.html %}
 ```html
 <!-- Separator -->
-<hr class="sep sep_light">
 <hr class="sep">
-<hr class="sep sep_dark">
-<hr class="sep sep_darker">
+<hr class="sep border-color-darker">
 
 <!-- Invert separator -->
-<hr class="sep sep_invert-light">
-<hr class="sep sep_invert">
-<hr class="sep sep_invert-dark">
-<hr class="sep sep_invert-darker">
+<hr class="sep-invert">
+<hr class="sep-invert border-color-invert-darker">
 ```
 {% include demo_close.html %}
 
