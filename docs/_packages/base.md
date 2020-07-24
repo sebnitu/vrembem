@@ -183,6 +183,83 @@ print "a = #{a}";</code></pre>
 ```
 {% include demo_close.html %}
 
+## spacing
+
+A utility for adding vertical spacing between an element's children. Spacing size and spacing values are generated from `$spacing-map` variable map.
+
+* `spacing`
+* `spacing-[key]`
+
+{% include demo_open.html %}
+<div class="spacing">
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="spacing">...</div>
+```
+{% include demo_close.html %}
+
+{% include demo_open.html %}
+<div>
+  <div class="grid">
+    <div class="grid__item span-4">
+      <div class="spacing-none">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+    </div>
+    <div class="grid__item span-4">
+      <div class="spacing-xs">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+    </div>
+    <div class="grid__item span-4">
+      <div class="spacing-sm">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+    </div>
+    <div class="grid__item span-4">
+      <div class="spacing-md">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+    </div>
+    <div class="grid__item span-4">
+      <div class="spacing-lg">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+    </div>
+    <div class="grid__item span-4">
+      <div class="spacing-xl">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+    </div>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="spacing-none">...</div>
+<div class="spacing-xs">...</div>
+<div class="spacing-sm">...</div>
+<div class="spacing-md">...</div>
+<div class="spacing-lg">...</div>
+<div class="spacing-xl">...</div>
+```
+{% include demo_close.html %}
+
 ## type
 
 The `type` component is a quick way to apply all base styles to components directy based on their respective HTML elements. Base component modifiers will override a parent `type` component when explicitly set.
