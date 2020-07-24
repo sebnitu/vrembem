@@ -654,12 +654,12 @@ Add margin to an element using directional and size modifiers. Margin size and s
           <code class="code">[size]</code>
         </div>
         <div class="card__body spacing">
-          <p><code>0 <span class="color-subtle">...0</span></code></p>
-          <p><code>xs <span class="color-subtle">...0.5rem</span></code></p>
-          <p><code>sm <span class="color-subtle">...1rem</span></code></p>
-          <p><code>md <span class="color-subtle">...1.5rem</span></code></p>
-          <p><code>lg <span class="color-subtle">...2rem</span></code></p>
-          <p><code>xl <span class="color-subtle">...3rem</span></code></p>
+          <p><code>none <span class="color-subtle">...0</span></code></p>
+          <p><code>xs <span class="color-subtle">...0.25rem</span></code></p>
+          <p><code>sm <span class="color-subtle">...0.5rem</span></code></p>
+          <p><code>md <span class="color-subtle">...1rem</span></code></p>
+          <p><code>lg <span class="color-subtle">...1.5rem</span></code></p>
+          <p><code>xl <span class="color-subtle">...2rem</span></code></p>
         </div>
       </div>
     </div>
@@ -695,12 +695,12 @@ Add padding to an element using directional and size modifiers. Padding size and
           <code class="code">[size]</code>
         </div>
         <div class="card__body spacing">
-          <p><code>0 <span class="color-subtle">...0</span></code></p>
-          <p><code>xs <span class="color-subtle">...0.5rem</span></code></p>
-          <p><code>sm <span class="color-subtle">...1rem</span></code></p>
-          <p><code>md <span class="color-subtle">...1.5rem</span></code></p>
-          <p><code>lg <span class="color-subtle">...2rem</span></code></p>
-          <p><code>xl <span class="color-subtle">...3rem</span></code></p>
+          <p><code>none <span class="color-subtle">...0</span></code></p>
+          <p><code>xs <span class="color-subtle">...0.25rem</span></code></p>
+          <p><code>sm <span class="color-subtle">...0.5rem</span></code></p>
+          <p><code>md <span class="color-subtle">...1rem</span></code></p>
+          <p><code>lg <span class="color-subtle">...1.5rem</span></code></p>
+          <p><code>xl <span class="color-subtle">...2rem</span></code></p>
         </div>
       </div>
     </div>
