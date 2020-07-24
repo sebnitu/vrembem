@@ -1,6 +1,54 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
+// Blockquote
+// ---
+
+@mixin blockquote() {
+  position: relative;
+  padding: var.$blockquote-padding;
+  border: var.$blockquote-border;
+  border-radius: var.$blockquote-border-radius;
+  background: var.$blockquote-background;
+  color: var.$blockquote-color;
+
+  @if var.$blockquote-accent-color {
+    &::before {
+      content: "";
+      position: absolute;
+      top: var.$blockquote-accent-offset;
+      bottom: var.$blockquote-accent-offset;
+      left: var.$blockquote-accent-offset;
+      width: var.$blockquote-accent-width;
+      background-color: var.$blockquote-accent-color;
+    }
+  }
+
+  > * + * {
+    margin-top: var.$blockquote-spacing;
+  }
+}
+
+@mixin blockquote-invert() {
+  border: var.$blockquote-border-invert;
+}
+
+// Code
+// ---
+
+@mixin code() {
+  padding: var.$code-padding;
+  border: var.$code-border;
+  background: var.$code-background;
+  color: var.$code-color;
+  font-family: core.$font-family-mono;
+  font-size: 0.9em;
+  word-break: break-word;
+}
+
+// Heading
+// ---
+
 @mixin heading-base() {
   color: var.$heading-color;
   font-family: var.$heading-font-family;
@@ -53,6 +101,9 @@
     }
   }
 }
+
+// Link
+// ---
 
 @mixin link() {
   transition: var.$link-transition;
@@ -110,12 +161,8 @@
   }
 }
 
-@mixin separator() {
-  display: block;
-  height: 0;
-  border: none;
-  border-top: 1px solid core.$border-color;
-}
+// List
+// ---
 
 @mixin list() {
   margin-left: var.$list-spacing;
@@ -129,6 +176,40 @@
     margin: var.$list-item-spacing 0;
   }
 }
+
+// Pre
+// ---
+
+@mixin pre() {
+  padding: var.$pre-padding;
+  overflow: auto;
+  border: var.$pre-border;
+  border-radius: var.$pre-border-radius;
+  background: var.$pre-background;
+  color: var.$pre-color;
+  font-family: core.$font-family-mono;
+
+  code {
+    padding: 0;
+    border: none;
+    background: none;
+    color: inherit;
+    font-size: 1em;
+  }
+}
+
+// Separator
+// ---
+
+@mixin separator() {
+  display: block;
+  height: 0;
+  border: none;
+  border-top: var.$separator-border;
+}
+
+// Spacing
+// ---
 
 @mixin spacing($spacing, $imp: null) {
   @if ($imp) {
@@ -148,62 +229,8 @@
   }
 }
 
-@mixin blockquote() {
-  position: relative;
-  padding: var.$blockquote-padding;
-  border: var.$blockquote-border;
-  border-radius: var.$blockquote-border-radius;
-  background: var.$blockquote-background;
-  color: var.$blockquote-color;
-
-  @if var.$blockquote-accent-color {
-    &::before {
-      content: "";
-      position: absolute;
-      top: var.$blockquote-accent-offset;
-      bottom: var.$blockquote-accent-offset;
-      left: var.$blockquote-accent-offset;
-      width: var.$blockquote-accent-width;
-      background-color: var.$blockquote-accent-color;
-    }
-  }
-
-  > * + * {
-    margin-top: var.$blockquote-spacing;
-  }
-}
-
-@mixin blockquote-invert() {
-  border: var.$blockquote-border-invert;
-}
-
-@mixin code() {
-  padding: var.$code-padding;
-  border: var.$code-border;
-  background: var.$code-background;
-  color: var.$code-color;
-  font-family: core.$font-family-mono;
-  font-size: 0.9em;
-  word-break: break-word;
-}
-
-@mixin pre() {
-  padding: var.$pre-padding;
-  overflow: auto;
-  border: var.$pre-border;
-  border-radius: var.$pre-border-radius;
-  background: var.$pre-background;
-  color: var.$pre-color;
-  font-family: core.$font-family-mono;
-
-  code {
-    padding: 0;
-    border: none;
-    background: none;
-    color: inherit;
-    font-size: 1em;
-  }
-}
+// Type
+// ---
 
 @mixin type() {
   @include core.add-clearfix();

@@ -122,6 +122,11 @@ $pre-border: null !default;
 $pre-border-radius: core.$border-radius !default;
 $pre-color: core.$color !default;
 
+// Separator
+// ---
+
+$separator-border: 1px solid core.$border-color !default;
+
 // Spacing
 // ---
 
