@@ -67,7 +67,23 @@ Variable | Default | Description
 `$prefix-modifier-value` | `"_"` | String to prefix modifier values with.
 `$output` | `true` | Toggles the default output of all modules.
 
-## Base Modules
+## Modules
+
+The base component consists of a number of modules with their own set of specific customizable variables and output mixins.
+
+- [`base`](#base)
+- [`blockquote`](#blockquote)
+- [`code`](#code)
+- [`embed`](#embed)
+- [`heading`](#heading)
+- [`link`](#link)
+- [`list`](#list)
+- [`pre`](#pre)
+- [`scroll-box`](#scroll-box)
+- [`separator`](#separator)
+- [`spacing`](#spacing)
+- [`symbols`](#symbols)
+- [`type`](#type)
 
 ### `base`
 
@@ -111,3 +127,107 @@ body {
 ```
 
 For a complete understanding of what this module does, checkout the source: [`_base.scss`](https://github.com/sebnitu/vrembem/blob/master/packages/base/src/_base.scss)
+
+
+### `blockquote`
+
+TBD
+
+Variable | Default | Description
+---|---|---
+`$output-blockquote` | `$output` &rarr; `true` | Toggles the output of this module.
+
+### `code`
+
+TBD
+
+Variable | Default | Description
+---|---|---
+`$output-code` | `$output` &rarr; `true` | Toggles the output of this module.
+
+### `embed`
+
+TBD
+
+Variable | Default | Description
+---|---|---
+`$output-embed` | `$output` &rarr; `true` | Toggles the output of this module.
+
+### `heading`
+
+TBD
+
+Variable | Default | Description
+---|---|---
+`$output-heading` | `$output` &rarr; `true` | Toggles the output of this module.
+
+### `link`
+
+TBD
+
+Variable | Default | Description
+---|---|---
+`$output-link` | `$output` &rarr; `true` | Toggles the output of this module.
+
+### `list`
+
+TBD
+
+Variable | Default | Description
+---|---|---
+`$output-list` | `$output` &rarr; `true` | Toggles the output of this module.
+
+### `pre`
+
+TBD
+
+Variable | Default | Description
+---|---|---
+`$output-pre` | `$output` &rarr; `true` | Toggles the output of this module.
+
+### `scroll-box`
+
+TBD
+
+Variable | Default | Description
+---|---|---
+`$output-scroll-box` | `$output` &rarr; `true` | Toggles the output of this module.
+
+### `separator`
+
+TBD
+
+Variable | Default | Description
+---|---|---
+`$output-separator` | `$output` &rarr; `true` | Toggles the output of this module.
+
+### `spacing`
+
+A utility for adding vertical spacing between an element's children. Spacing size and spacing values are generated from `$spacing-map` variable map.
+
+- `spacing`
+- `spacing-[key]`
+
+```html
+<div class="spacing">...</div>
+```
+
+Variable | Default | Description
+---|---|---
+`$output-spacing` | `$output` &rarr; `true` | Toggles the output of this module.
+
+### `symbols`
+
+TBD
+
+Variable | Default | Description
+---|---|---
+`$output-symbols` | `$output` &rarr; `true` | Toggles the output of this module.
+
+### `type`
+
+TBD
+
+Variable | Default | Description
+---|---|---
+`$output-type` | `$output` &rarr; `true` | Toggles the output of this module.
