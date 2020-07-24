@@ -71,7 +71,7 @@ Variable | Default | Description
 
 The base component consists of a number of modules with their own set of specific customizable variables and output mixins.
 
-- [`base`](#base)
+- [`base`](#base-1)
 - [`blockquote`](#blockquote)
 - [`code`](#code)
 - [`embed`](#embed)
