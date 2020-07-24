@@ -1,6 +1,6 @@
 @use "./variables" as var;
 
-@if (var.$class-scroll-box) {
+@if (var.$output-scroll-box) {
   .#{var.$prefix-block}#{var.$class-scroll-box} {
     display: block;
     width: 100%;

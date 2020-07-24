@@ -6,7 +6,7 @@ $_b: var.$prefix-block;
 $_m: var.$prefix-modifier;
 $_c: var.$class-separator;
 
-@if (var.$class-separator) {
+@if (var.$output-separator) {
   .#{$_b}#{$_c} {
     @include mix.separator();
   }

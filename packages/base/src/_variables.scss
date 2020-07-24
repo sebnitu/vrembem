@@ -8,6 +8,23 @@ $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
+// Output options
+// ---
+
+$output: true !default;
+$output-base: $output !default;
+$output-blockquote: $output !default;
+$output-code: $output !default;
+$output-embed: $output !default;
+$output-heading: $output !default;
+$output-link: $output !default;
+$output-list: $output !default;
+$output-pre: $output !default;
+$output-scroll-box: $output !default;
+$output-separator: $output !default;
+$output-symbols: $output !default;
+$output-type: $output !default;
+
 // Base component classes
 // ---
 

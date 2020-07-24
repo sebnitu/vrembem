@@ -1,6 +1,8 @@
 @use "./variables" as var;
 @use "./mixins" as mix;
 
-.#{var.$prefix-block}blockquote {
-  @include mix.blockquote();
+@if (var.$output-blockquote) {
+  .#{var.$prefix-block}blockquote {
+    @include mix.blockquote();
+  }
 }
