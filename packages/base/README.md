@@ -93,7 +93,7 @@ Variable | Default | Description
 ---|---|---
 `$output-base` | `$output` &rarr; `true` | Toggles the output of this module.
 `$box-sizing` | `border-box` | Sets the default box-sizing property for all HTML elements.
-`$body-background` | `$null` | Sets the background color that's applied to the body element.
+`$body-background` | `null` | Sets the background color that's applied to the body element.
 
 Here's an example of the default styles applied to all HTML elements and specific styles on the `html` and `body` elements.
 
