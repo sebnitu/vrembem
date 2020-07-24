@@ -8,4 +8,6 @@ before_script:
 script:
   - npm run lint
   - npm run test:coverage
+
+after_success:
   - npx coveralls < coverage/lcov.info
