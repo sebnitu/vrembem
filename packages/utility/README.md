@@ -44,7 +44,6 @@ Once loaded, the utility component provides a number of classes that can be used
 - [`flex`](#flex)
 - [`margin`](#margin)
 - [`padding`](#padding)
-- [`spacing`](#spacing)
 - [`span`](#span)
 - [`text`](#text)
 
@@ -295,17 +294,6 @@ Add padding to an element using directional and size modifiers. Padding size and
 - `padding-[direction]-[size]`: Adds padding on a specific size and with size key.
 - `padding-hori-[size]`: Adds left and right padding with a specific size key.
 - `padding-vert-[size]`: Adds top and bottom padding with a specific size key.
-
-### `spacing`
-
-A utility for adding vertical spacing between an element's children. Spacing size and spacing values are generated from `$spacing-map` variable map.
-
-- `spacing`
-- `spacing-[key]`
-
-```html
-<div class="spacing">...</div>
-```
 
 ### `span`
 
