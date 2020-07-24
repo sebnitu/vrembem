@@ -11,7 +11,6 @@ $class-display: "display" !default;
 $class-flex: "flex" !default;
 $class-margin: "margin" !default;
 $class-padding: "padding" !default;
-$class-spacing: "spacing" !default;
 $class-span: "span" !default;
 $class-text: "text" !default;
 
@@ -26,12 +25,5 @@ $display-properties: (
   none
 ) !default;
 
-$spacing: 1rem !default;
-$spacing-map: (
-  "none": 0,
-  "xs": 0.25rem,
-  "sm": 0.5rem,
-  "md": 1rem,
-  "lg": 1.5rem,
-  "xl": 2rem
-) !default;
+$spacing: core.$spacing !default;
+$spacing-map: core.$spacing-map !default;

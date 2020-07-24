@@ -1,5 +1,4 @@
 @use "@vrembem/core";
-@use "@vrembem/utility/src/mixins" as utility;
 @use "./variables" as var;
 
 @mixin heading-base() {
@@ -131,6 +130,24 @@
   }
 }
 
+@mixin spacing($spacing, $imp: null) {
+  @if ($imp) {
+    $imp: "!important";
+  }
+  @if ($spacing) {
+    margin-top: $spacing #{$imp};
+    margin-bottom: $spacing #{$imp};
+
+    &:first-child {
+      margin-top: 0 #{$imp};
+    }
+
+    &:last-child {
+      margin-bottom: 0 #{$imp};
+    }
+  }
+}
+
 @mixin blockquote() {
   position: relative;
   padding: var.$blockquote-padding;
@@ -195,7 +212,7 @@
   line-height: var.$type-line-height;
 
   > * {
-    @include utility.spacing(var.$type-spacing);
+    @include spacing(var.$type-spacing);
   }
 
   > h1,

@@ -22,6 +22,7 @@ $output-list: $output !default;
 $output-pre: $output !default;
 $output-scroll-box: $output !default;
 $output-separator: $output !default;
+$output-spacing: $output !default;
 $output-symbols: $output !default;
 $output-type: $output !default;
 
@@ -31,6 +32,7 @@ $output-type: $output !default;
 $class-embed: "embed" !default;
 $class-scroll-box: "scroll-box" !default;
 $class-separator: "sep" !default;
+$class-spacing: "spacing" !default;
 $class-symbols: "symbols" !default;
 $class-type: "type" !default;
 
@@ -123,6 +125,12 @@ $pre-background: core.$shade !default;
 $pre-border: null !default;
 $pre-border-radius: core.$border-radius !default;
 $pre-color: core.$color !default;
+
+// Spacing
+// ---
+
+$spacing: core.$spacing !default;
+$spacing-map: core.$spacing-map !default;
 
 // Type
 // ---
