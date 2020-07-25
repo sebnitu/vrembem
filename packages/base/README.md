@@ -1,6 +1,6 @@
 # Base
 
-Includes useful default styles and base components for common HTML elements.
+Includes useful default styles and base modules for common HTML elements.
 
 [![npm version](https://img.shields.io/npm/v/%40vrembem%2Fbase.svg)](https://www.npmjs.com/package/%40vrembem%2Fbase)
 
@@ -131,7 +131,7 @@ For a complete understanding of what this module does, checkout the source: [`_b
 
 ### `blockquote`
 
-The HTML blockquote element is used for markup up extended quotations. This module helps style these elements in a distinct and appealing way.
+The HTML blockquote element is used for markup up extended quotations. This module helps style these elements in a distinct and appealing way by providing the `.blockquote` CSS class.
 
 Variable | Default | Description
 ---|---|---
@@ -159,14 +159,14 @@ blockquote {
 }
 
 // CSS Output
-.blockquote {
+blockquote {
   position: relative;
   padding: 1.5em;
   border: 1px solid rgba(0, 0, 0, 0.05);
   color: inherit;
 }
 
-.blockquote::before {
+blockquote::before {
   content: "";
   position: absolute;
   top: -1px;
@@ -176,7 +176,7 @@ blockquote {
   background-color: #00bcd4;
 }
 
-.blockquote > * + * {
+blockquote > * + * {
   margin-top: 1em;
 }
 ```

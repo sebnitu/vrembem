@@ -1,12 +1,302 @@
 ---
 layout: article
 title: Base
-description: "Includes useful default styles and base components for common HTML elements."
+description: "Includes useful default styles and base modules for common HTML elements."
 package: "@vrembem/base"
 category: simple
 usage:
   npm: true
   scss: true
+---
+
+## Intro
+
+Once loaded, the base component provides default styles for HTML elements and a number of output modules. Base also provides helpful variables and mixins for customizing the output.
+
+```html
+<!-- Using base element modules -->
+<h1 class="h1">...</h1>
+<p>...</p>
+<ul class="list">
+  <li>...</li>
+</ul>
+
+<!-- Using base type module -->
+<div class="type">
+  <h1>...</h1>
+  <p>...</p>
+  <ul>
+    <li>...</li>
+  </ul>
+</div>
+```
+
+Alternatively, you can disable CSS output using the `$output` and `$output-[module]` variables. All base modules have a corresponding output variable that inherits it's value from `$output`.
+
+```scss
+// Will disable the output of the type module
+@use "@vrembem/base" with (
+  $output-type: false
+);
+
+// Will disable all modules, but enables the base module
+@use "@vrembem/base" with (
+  $output: false,
+  $output-base: true
+);
+```
+
+### Global Variables
+
+Setting these variables will impact more than one or up to all base modules.
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-block</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">String to prefix blocks with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-element</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"__"</code></td>
+        <td data-mobile-label="Desc">String to prefix elements with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-modifier</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"_"</code></td>
+        <td data-mobile-label="Desc">String to prefix modifiers with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-modifier-value</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"_"</code></td>
+        <td data-mobile-label="Desc">String to prefix modifier values with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the default output of all modules.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### Modules
+
+The base component consists of a number of modules with their own set of specific customizable variables and output mixins.
+
+- [`base`](#base)
+- [`blockquote`](#blockquote)
+- [`code`](#code)
+- [`embed`](#embed)
+- [`heading`](#heading)
+- [`link`](#link)
+- [`list`](#list)
+- [`pre`](#pre)
+- [`scroll-box`](#scroll-box)
+- [`separator`](#separator)
+- [`spacing`](#spacing)
+- [`symbols`](#symbols)
+- [`type`](#type)
+
+## base
+
+Outputs a number of base and reset element styles to help keep html elements predictable and easier to work with. Some more global options are set via the `@vrembem/core` component, while others that are specific to the base component are set directly here.
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-base</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$box-sizing</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">border-box</code></td>
+        <td data-mobile-label="Desc">Sets the default box-sizing property for all HTML elements.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$body-background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the background color that's applied to the body element.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+Here's an example of the default styles applied to all HTML elements and specific styles on the `html` and `body` elements.
+
+```scss
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  box-sizing: var.$box-sizing;
+  font-size: core.$font-size;
+  line-height: core.$line-height;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var.$body-background;
+  color: core.$color;
+  font-family: core.$font-family;
+}
+```
+
+For a complete understanding of what this module does, checkout the source: [`_base.scss`](https://github.com/sebnitu/vrembem/blob/master/packages/base/src/_base.scss)
+
+## blockquote
+
+The HTML blockquote element is used for markup up extended quotations. This module helps style these elements in a distinct and appealing way by providing the `.blockquote` CSS class.
+
+{% include demo_open.html class_parent="spacing" %}
+<blockquote class="blockquote" cite="https://ideapod.com/35-noam-chomsky-quotes-will-make-question-everything-society/">
+  <p>"All over the place, from the popular culture to the propaganda system, there is constant pressure to make people feel that they are helpless, that the only role they can have is to ratify decisions and to consume."</p>
+  <footer>Noam Chomsky, <cite>On Keeping the Population Passive</cite></footer>
+</blockquote>
+{% include demo_switch.html %}
+```html
+<blockquote class="blockquote" cite="...">
+  <p>...</p>
+  <footer>
+    ...,
+    <cite>...</cite>
+  </footer>
+</blockquote>
+```
+{% include demo_close.html %}
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-blockquote</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$blockquote-padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1.5em</code></td>
+        <td data-mobile-label="Desc">Sets the padding property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$blockquote-spacing</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1em</code></td>
+        <td data-mobile-label="Desc">Sets the vertical spacing between elements inside a blockquote using the margin property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$blockquote-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">inherit</code></td>
+        <td data-mobile-label="Desc">Sets the text color property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$blockquote-background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the background color property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$blockquote-border</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-light</code></td>
+        <td data-mobile-label="Desc">Sets the border property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$blockquote-border-color-invert</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-color-invert</code></td>
+        <td data-mobile-label="Desc">Sets the inverted border color. This is used when blockquotes appear on a dark background.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$blockquote-border-radius</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the border-radius property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$blockquote-accent-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">4px</code></td>
+        <td data-mobile-label="Desc">Sets the width of the accent CSS pseudo-element which renders on the right side of the blockquote element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$blockquote-accent-offset</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">-1px</code></td>
+        <td data-mobile-label="Desc">Sets the offset of the accent CSS pseudo-element. Recommended to set negative of the border width.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$blockquote-accent-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$primary</code></td>
+        <td data-mobile-label="Desc">Sets the color of the accent CSS pseudo-element.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### `@mixin blockquote()`
+
+Output the styles for a blockquote element.
+
+**Example**
+
+```scss
+blockquote {
+  @include blockquote();
+}
+
+// CSS Output
+blockquote {
+  position: relative;
+  padding: 1.5em;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  color: inherit;
+}
+
+blockquote::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: -1px;
+  width: 4px;
+  background-color: #00bcd4;
+}
+
+blockquote > * + * {
+  margin-top: 1em;
+}
+```
+
 ---
 
 ## Heading
@@ -132,25 +422,6 @@ Typically used on an `<hr>` HTML element representing a thematic break between p
 <div class="embed">
   <iframe class="embed__item" src="..." width="560" height="315"></iframe>
 </div>
-```
-{% include demo_close.html %}
-
-## blockquote
-
-{% include demo_open.html class_parent="spacing" %}
-<blockquote class="blockquote" cite="https://ideapod.com/35-noam-chomsky-quotes-will-make-question-everything-society/">
-  <p>"All over the place, from the popular culture to the propaganda system, there is constant pressure to make people feel that they are helpless, that the only role they can have is to ratify decisions and to consume."</p>
-  <footer>Noam Chomsky, <cite>On Keeping the Population Passive</cite></footer>
-</blockquote>
-{% include demo_switch.html %}
-```html
-<blockquote class="blockquote" cite="...">
-  <p>...</p>
-  <footer>
-    ...,
-    <cite>...</cite>
-  </footer>
-</blockquote>
 ```
 {% include demo_close.html %}
 

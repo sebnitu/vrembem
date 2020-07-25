@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/base",
-  "description": "Includes useful default styles and base components for common HTML elements.",
+  "description": "Includes useful default styles and base modules for common HTML elements.",
   "version": "1.8.3",
   "license": "MIT",
   "keywords": [
