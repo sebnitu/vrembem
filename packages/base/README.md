@@ -558,14 +558,50 @@ Output the styles for a scroll-box container.
 
 ### `separator`
 
-TBD
+This module adds the `.sep` and `.sep-invert` CSS classes which visually renders a horizontal separator. This can be applied to an `<hr>` HTML element. It can also be applied to a more generic `<span>` or `<div>` depending on the semantic context.
+
+```html
+<!-- Separator -->
+<hr class="sep">
+<hr class="sep border-color-darker">
+
+<!-- Invert separator -->
+<hr class="sep-invert">
+<hr class="sep-invert border-color-invert-darker">
+```
 
 Variable | Default | Description
 ---|---|---
 `$output-separator` | `$output` &rarr; `true` | Toggles the output of this module.
 `$class-separator` | `"sep"` | String to use for the class name of the separator module.
-`$separator-border` | `1px solid core.$border-color` | ...
-`$separator-border-invert` | `1px solid core.$border-color-invert` | ...
+`$separator-border` | `1px solid core.$border-color` | Sets the border property.
+`$separator-border-invert` | `1px solid core.$border-color-invert` | Sets the border property on invert variant.
+
+#### `@mixin separator($border)`
+
+Output the separator styles.
+
+**Arguments**
+
+Variable | Type | Description
+---|---|---
+`$border` | `border property` | The border styles to apply on separator output.
+
+**Example**
+
+```scss
+.horizontal-line {
+  @include separator();
+}
+
+// CSS Output
+.horizontal-line {
+  display: block;
+  height: 0;
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+```
 
 ### `spacing`
 

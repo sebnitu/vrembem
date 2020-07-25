@@ -1049,11 +1049,9 @@ Output the styles for a scroll-box container.
 }
 ```
 
-<!-- ADD NEW CONTENT ABOVE -->
-
 ## Separator
 
-Typically used on an `<hr>` HTML element representing a thematic break between paragraph-level elements.
+This module adds the `.sep` and `.sep-invert` CSS classes which visually renders a horizontal separator. This can be applied to an `<hr>` HTML element. It can also be applied to a more generic `<span>` or `<div>` depending on the semantic context.
 
 {% include demo_open.html %}
 <div class="spacing padding">
@@ -1075,6 +1073,83 @@ Typically used on an `<hr>` HTML element representing a thematic break between p
 <hr class="sep-invert border-color-invert-darker">
 ```
 {% include demo_close.html %}
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-separator</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-separator</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"sep"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the separator module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$separator-border</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1px solid core.$border-color</code></td>
+        <td data-mobile-label="Desc">Sets the border property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$separator-border-invert</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1px solid core.$border-color-invert</code></td>
+        <td data-mobile-label="Desc">Sets the border property on invert variant.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### `@mixin separator($border)`
+
+Output the separator styles.
+
+**Arguments**
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">border property</code></td>
+        <td data-mobile-label="Desc">The border styles to apply on separator output.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+**Example**
+
+```scss
+.horizontal-line {
+  @include separator();
+}
+
+// CSS Output
+.horizontal-line {
+  display: block;
+  height: 0;
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+```
+
+<!-- ADD NEW CONTENT ABOVE -->
 
 ## spacing
 
