@@ -536,7 +536,7 @@ Output the specific styles for a heading level. Takes the heading level as an ar
     <tbody>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$level</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">number (1-6)</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">number (1-6)</code></td>
         <td data-mobile-label="Desc">The level of heading styles to output.</td>
       </tr>
     </tbody>
@@ -562,9 +562,9 @@ h1 {
 }
 ```
 
-<!-- ADD NEW CONTENT ABOVE -->
-
 ## Link
+
+A link—usually represented by an anchor (`<a>`) HTML element with `href` attribute—creates the styles for a hyperlink to anything a URL can address. This module helps style these elements by providing the `.link` as well as a few optional modifiers.
 
 {% include demo_open.html %}
 <div class="spacing padding">
@@ -577,12 +577,209 @@ h1 {
 </div>
 {% include demo_switch.html %}
 ```html
-<a href="#" class="link">Link</p>
+<a href="#" class="link">Link</a>
 <a href="#" class="link link_subtle">Link</a>
 <a href="#" class="link link_invert">Link</a>
 <a href="#" class="link link_invert-subtle">Link</a>
 ```
 {% include demo_close.html %}
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-link</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-text-decoration</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">none</code></td>
+        <td data-mobile-label="Desc">Sets the text decoration property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-text-decoration-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the text decoration property on hover state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-transition</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the transition property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$primary</code></td>
+        <td data-mobile-label="Desc">Sets the text color property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-color-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$primary-dark</code></td>
+        <td data-mobile-label="Desc">Sets the text color property on hover state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-border</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1px solid core.$border-color</code></td>
+        <td data-mobile-label="Desc">Sets the border property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-border-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1px solid currentColor</code></td>
+        <td data-mobile-label="Desc">Sets the border property on hover state.</td>
+      </tr>
+
+      <!-- modifier: subtle -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-subtle-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$color-subtle</code></td>
+        <td data-mobile-label="Desc">Sets the text color property on subtle modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-subtle-color-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$link-color-hover</code></td>
+        <td data-mobile-label="Desc">Sets the text color property on subtle modifier hover state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-subtle-border-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-color</code></td>
+        <td data-mobile-label="Desc">Sets the border-color property on subtle modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-subtle-border-color-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">currentColor</code></td>
+        <td data-mobile-label="Desc">Sets the border-color property on subtle modifier hover state.</td>
+      </tr>
+
+      <!-- modifier: invert -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-invert-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$white</code></td>
+        <td data-mobile-label="Desc">Sets the text color property on invert modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-invert-color-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$white</code></td>
+        <td data-mobile-label="Desc">Sets the text color property on invert modifier hover state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-invert-border-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba(core.$white, 0.5)</code></td>
+        <td data-mobile-label="Desc">Sets the border-color property on invert modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-invert-border-color-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">currentColor</code></td>
+        <td data-mobile-label="Desc">Sets the border-color property on invert modifier hover state.</td>
+      </tr>
+
+      <!-- modifier: invert-subtle -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-invert-subtle-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$color-invert-subtle</code></td>
+        <td data-mobile-label="Desc">Sets the text color property on invert-subtle modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-invert-subtle-color-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$color-invert</code></td>
+        <td data-mobile-label="Desc">Sets the text color property on invert-subtle modifier hover state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-invert-subtle-border-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba(core.$white, 0.5)</code></td>
+        <td data-mobile-label="Desc">Sets the border-color property on invert-subtle modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-invert-subtle-border-color-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">currentColor</code></td>
+        <td data-mobile-label="Desc">Sets the border-color property on invert-subtle modifier hover state.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### `@mixin link()`
+
+Output the base link styles.
+
+**Example**
+
+```scss
+a {
+  @include link();
+}
+
+// CSS Output
+a {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: #00bcd4;
+  text-decoration: none;
+}
+
+a:hover {
+  border-bottom: 1px solid currentColor;
+  color: #0097a7;
+}
+
+a:focus {
+  outline: currentColor dotted 1px;
+  outline-offset: 3px;
+  border-bottom: 1px solid currentColor;
+  color: #0097a7;
+}
+```
+
+### `@mixin link-modifier($modifier)`
+
+Output the styes for a specific link modifier. This is meant to be used in addition to a link's base styles.
+
+**Arguments**
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$modifier</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">string</code></td>
+        <td data-mobile-label="Desc">A string that matches a pre-defined modifier: <code class="code">"subtle"</code>, <code class="code">"invert"</code> or <code class="code">"invert-subtle"</code>.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+**Example**
+
+```scss
+a.subtle {
+  @include link-modifier("subtle");
+}
+
+// CSS Output
+.link_subtle {
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #9e9e9e;
+}
+
+.link_subtle:hover, .link_subtle:focus {
+  border-color: currentColor;
+  color: #0097a7;
+}
+```
+
+<!-- ADD NEW CONTENT ABOVE -->
 
 ## List
 

@@ -319,30 +319,97 @@ h1 {
 
 ### `link`
 
-TBD
+A link—usually represented by an anchor (`<a>`) HTML element with `href` attribute—creates the styles for a hyperlink to anything a URL can address. This module helps style these elements by providing the `.link` as well as a few optional modifiers.
+
+```html
+<a href="#" class="link">Link</a>
+<a href="#" class="link link_subtle">Link</a>
+<a href="#" class="link link_invert">Link</a>
+<a href="#" class="link link_invert-subtle">Link</a>
+```
 
 Variable | Default | Description
 ---|---|---
 `$output-link` | `$output` &rarr; `true` | Toggles the output of this module.
-`$link-text-decoration` | `none` | ...
-`$link-text-decoration-hover` | `null` | ...
-`$link-transition` | `null` | ...
-`$link-color` | `core.$primary` | ...
-`$link-color-hover` | `core.$primary-dark` | ...
-`$link-border` | `1px solid core.$border-color` | ...
-`$link-border-hover` | `1px solid currentColor` | ...
-`$link-subtle-color` | `core.$color-subtle` | ...
-`$link-subtle-color-hover` | `$link-color-hover` | ...
-`$link-subtle-border-color` | `core.$border-color` | ...
-`$link-subtle-border-color-hover` | `currentColor` | ...
-`$link-invert-color` | `core.$white` | ...
-`$link-invert-color-hover` | `core.$white` | ...
-`$link-invert-border-color` | `rgba(core.$white, 0.5)` | ...
-`$link-invert-border-color-hover` | `currentColor` | ...
-`$link-invert-subtle-color` | `core.$color-invert-subtle` | ...
-`$link-invert-subtle-color-hover` | `core.$color-invert` | ...
-`$link-invert-subtle-border-color` | `rgba(core.$white, 0.5)` | ...
-`$link-invert-subtle-border-color-hover` | `currentColor` | ...
+`$link-text-decoration` | `none` | Sets the text decoration property.
+`$link-text-decoration-hover` | `null` | Sets the text decoration property on hover state.
+`$link-transition` | `null` | Sets the transition property.
+`$link-color` | `core.$primary` | Sets the text color property.
+`$link-color-hover` | `core.$primary-dark` | Sets the text color property on hover state.
+`$link-border` | `1px solid core.$border-color` | Sets the border property.
+`$link-border-hover` | `1px solid currentColor` | Sets the border property on hover state.
+`$link-subtle-color` | `core.$color-subtle` | Sets the text color property on subtle modifier.
+`$link-subtle-color-hover` | `$link-color-hover` | Sets the text color property on subtle modifier hover state.
+`$link-subtle-border-color` | `core.$border-color` | Sets the border-color property on subtle modifier.
+`$link-subtle-border-color-hover` | `currentColor` | Sets the border-color property on subtle modifier hover state.
+`$link-invert-color` | `core.$white` | Sets the text color property on invert modifier.
+`$link-invert-color-hover` | `core.$white` | Sets the text color property on invert modifier hover state.
+`$link-invert-border-color` | `rgba(core.$white, 0.5)` | Sets the border-color property on invert modifier.
+`$link-invert-border-color-hover` | `currentColor` | Sets the border-color property on invert modifier hover state.
+`$link-invert-subtle-color` | `core.$color-invert-subtle` | Sets the text color property on invert-subtle modifier.
+`$link-invert-subtle-color-hover` | `core.$color-invert` | Sets the text color property on invert-subtle modifier hover state.
+`$link-invert-subtle-border-color` | `rgba(core.$white, 0.5)` | Sets the border-color property on invert-subtle modifier.
+`$link-invert-subtle-border-color-hover` | `currentColor` | Sets the border-color property on invert-subtle modifier hover state.
+
+#### `@mixin link()`
+
+Output the base link styles.
+
+**Example**
+
+```scss
+a {
+  @include link();
+}
+
+// CSS Output
+a {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: #00bcd4;
+  text-decoration: none;
+}
+
+a:hover {
+  border-bottom: 1px solid currentColor;
+  color: #0097a7;
+}
+
+a:focus {
+  outline: currentColor dotted 1px;
+  outline-offset: 3px;
+  border-bottom: 1px solid currentColor;
+  color: #0097a7;
+}
+```
+
+#### `@mixin link-modifier($modifier)`
+
+Output the styes for a specific link modifier. This is meant to be used in addition to a link's base styles.
+
+**Arguments**
+
+Variable | Type | Description
+---|---|---
+`$modifier` | `string` | A string that matches a pre-defined modifier: `"subtle"`, `"invert"` or `"invert-subtle"`.
+
+**Example**
+
+```scss
+a.subtle {
+  @include link-modifier("subtle");
+}
+
+// CSS Output
+.link_subtle {
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #9e9e9e;
+}
+
+.link_subtle:hover, .link_subtle:focus {
+  border-color: currentColor;
+  color: #0097a7;
+}
+```
 
 ### `list`
 
