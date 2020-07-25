@@ -224,15 +224,17 @@
     $imp: null;
   }
   @if ($spacing) {
-    margin-top: $spacing #{$imp};
-    margin-bottom: $spacing #{$imp};
+    > * {
+      margin-top: $spacing #{$imp};
+      margin-bottom: $spacing #{$imp};
 
-    &:first-child {
-      margin-top: 0 #{$imp};
-    }
+      &:first-child {
+        margin-top: 0 #{$imp};
+      }
 
-    &:last-child {
-      margin-bottom: 0 #{$imp};
+      &:last-child {
+        margin-bottom: 0 #{$imp};
+      }
     }
   }
 }
@@ -242,13 +244,10 @@
 
 @mixin type() {
   @include core.add-clearfix();
+  @include spacing(var.$type-spacing);
   font-family: var.$type-font-family;
   font-size: var.$type-font-size;
   line-height: var.$type-line-height;
-
-  > * {
-    @include spacing(var.$type-spacing);
-  }
 
   > h1,
   > h2,

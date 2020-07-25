@@ -592,6 +592,8 @@ Variable | Default | Description
 
 #### `@mixin spacing($spacing, $imp: null)`
 
+Output the spacing styles for the elements it's applied. Styles are applied to an elements children.
+
 **Arguments**
 
 Variable | Type | Description
@@ -602,7 +604,7 @@ Variable | Type | Description
 **Example**
 
 ```scss
-.element > * {
+.element {
   @include spacing(2em, true);
 }
 
