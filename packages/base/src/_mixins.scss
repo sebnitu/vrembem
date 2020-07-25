@@ -38,7 +38,7 @@
   background: var.$code-background;
   color: var.$code-color;
   font-family: core.$font-family-mono;
-  font-size: 0.9em;
+  font-size: var.$code-font-size;
   word-break: break-word;
 }
 

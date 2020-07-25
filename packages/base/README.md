@@ -133,6 +133,16 @@ For a complete understanding of what this module does, checkout the source: [`_b
 
 The HTML blockquote element is used for markup up extended quotations. This module helps style these elements in a distinct and appealing way by providing the `.blockquote` CSS class.
 
+```html
+<blockquote class="blockquote" cite="...">
+  <p>...</p>
+  <footer>
+    ...,
+    <cite>...</cite>
+  </footer>
+</blockquote>
+```
+
 Variable | Default | Description
 ---|---|---
 `$output-blockquote` | `$output` &rarr; `true` | Toggles the output of this module.
@@ -183,17 +193,43 @@ blockquote > * + * {
 
 ### `code`
 
-TBD
+The HTML code element displays its contents styled in a fashion intended to indicate that the text is a short fragment of computer code. This module helps style these elements by providing the `.code` CSS class.
+
+```html
+<code class="code">a = 17</code>
+```
 
 Variable | Default | Description
 ---|---|---
 `$output-code` | `$output` &rarr; `true` | Toggles the output of this module.
-`$code-padding` | `null` | ...
-`$code-padding` | `null` | ...
-`$code-border` | `null` | ...
-`$code-border-radius` | `core.$border-radius` | ...
-`$code-color` | `core.$pink` | ...
-`$code-color-invert` | `core.$pink-300` | ...
+`$code-padding` | `null` | Sets the padding property.
+`$code-background` | `null` | Sets the background property.
+`$code-border` | `null` | Sets the border property.
+`$code-border-radius` | `core.$border-radius` | Sets the border-radius property.
+`$code-color` | `core.$pink` | Sets the text color property.
+`$code-color-invert` | `core.$pink-300` | Sets the inverted text color. This is used when code elements appear on a dark background.
+`$code-font-family` | `core.$font-family-mono` | Sets the font-family property.
+`$code-font-size` | `0.9em` | Sets the font-size property.
+
+#### `@mixin code()`
+
+Output the styles for a code element.
+
+**Example**
+
+```scss
+code {
+  @include code();
+}
+
+// CSS Output
+.code {
+  color: #e91e63;
+  font-family: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.9em;
+  word-break: break-word;
+}
+```
 
 ### `embed`
 

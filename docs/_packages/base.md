@@ -297,7 +297,98 @@ blockquote > * + * {
 }
 ```
 
----
+## code
+
+The HTML code element displays its contents styled in a fashion intended to indicate that the text is a short fragment of computer code. This module helps style these elements by providing the `.code` CSS class.
+
+{% include demo_open.html class_parent="spacing" %}
+<code class="code">a = 17</code>
+{% include demo_switch.html %}
+```html
+<code class="code">a = 17</code>
+```
+{% include demo_close.html %}
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-code</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$code-padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the padding property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$code-background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the background property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$code-border</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the border property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$code-border-radius</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-radius</code></td>
+        <td data-mobile-label="Desc">Sets the border-radius property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$code-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$pink</code></td>
+        <td data-mobile-label="Desc">Sets the text color property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$code-color-invert</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$pink-300</code></td>
+        <td data-mobile-label="Desc">Sets the inverted text color. This is used when code elements appear on a dark background.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$code-font-family</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$font-family-mono</code></td>
+        <td data-mobile-label="Desc">Sets the font-family property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$code-font-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">0.9em</code></td>
+        <td data-mobile-label="Desc">Sets the font-size property.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### `@mixin code()`
+
+Output the styles for a code element.
+
+**Example**
+
+```scss
+code {
+  @include code();
+}
+
+// CSS Output
+.code {
+  color: #e91e63;
+  font-family: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.9em;
+  word-break: break-word;
+}
+```
+
+<!-- ADD NEW CONTENT ABOVE -->
 
 ## Heading
 
@@ -422,16 +513,6 @@ Typically used on an `<hr>` HTML element representing a thematic break between p
 <div class="embed">
   <iframe class="embed__item" src="..." width="560" height="315"></iframe>
 </div>
-```
-{% include demo_close.html %}
-
-## code
-
-{% include demo_open.html class_parent="spacing" %}
-<code class="code">a = 17</code>
-{% include demo_switch.html %}
-```html
-<code class="code">a = 17</code>
 ```
 {% include demo_close.html %}
 
