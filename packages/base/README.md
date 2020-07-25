@@ -569,7 +569,7 @@ Variable | Default | Description
 
 ### `spacing`
 
-A utility for adding vertical spacing between an element's children. Spacing size and spacing values are generated from `$spacing-map` variable map.
+A utility for adding vertical spacing between an element's children. Spacing size and spacing values are generated from the `$spacing-map` variable map.
 
 - `spacing`
 - `spacing-[key]`
@@ -587,8 +587,39 @@ Variable | Default | Description
 ---|---|---
 `$output-spacing` | `$output` &rarr; `true` | Toggles the output of this module.
 `$class-spacing` | `"spacing"` | String to use for the class name of the spacing module.
-`$spacing` | `core.$spacing` | ...
-`$spacing-map-border` | `core.$spacing-map` | ...
+`$spacing` | `core.$spacing` | Sets the vertical spacing via the top and bottom margin property.
+`$spacing-map` | `core.$spacing-map` | Used to build the spacing key classes.
+
+#### `@mixin spacing($spacing, $imp: null)`
+
+**Arguments**
+
+Variable | Type | Description
+---|---|---
+`$spacing` | `number (with unit)` | The unit of spacing to apply.
+`$imp` | `boolean` | Whither or not to add the `!important` flag.
+
+**Example**
+
+```scss
+.element > * {
+  @include spacing(2em, true);
+}
+
+// CSS Output
+.element > * {
+  margin-top: 2em !important;
+  margin-bottom: 2em !important;
+}
+
+.element > *:first-child {
+  margin-top: 0 !important;
+}
+
+.element > *:last-child {
+  margin-bottom: 0 !important;
+}
+```
 
 ### `type`
 
