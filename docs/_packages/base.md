@@ -104,7 +104,6 @@ The base component consists of a number of modules with their own set of specifi
 - [`scroll-box`](#scroll-box)
 - [`separator`](#separator)
 - [`spacing`](#spacing)
-- [`symbols`](#symbols)
 - [`type`](#type)
 
 ## base

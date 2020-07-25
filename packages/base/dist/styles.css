@@ -532,13 +532,6 @@ input::-moz-placeholder {
   margin-bottom: 0 !important;
 }
 
-.symbols {
-  position: absolute !important;
-  width: 0 !important;
-  height: 0 !important;
-  overflow: hidden !important;
-}
-
 .type::after {
   content: "";
   display: table;

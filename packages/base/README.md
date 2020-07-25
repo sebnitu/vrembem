@@ -82,7 +82,6 @@ The base component consists of a number of modules with their own set of specifi
 - [`scroll-box`](#scroll-box)
 - [`separator`](#separator)
 - [`spacing`](#spacing)
-- [`symbols`](#symbols)
 - [`type`](#type)
 
 ### `base`
@@ -590,15 +589,6 @@ Variable | Default | Description
 `$class-spacing` | `"spacing"` | String to use for the class name of the spacing module.
 `$spacing` | `core.$spacing` | ...
 `$spacing-map-border` | `core.$spacing-map` | ...
-
-### `symbols`
-
-TBD
-
-Variable | Default | Description
----|---|---
-`$output-symbols` | `$output` &rarr; `true` | Toggles the output of this module.
-`$class-symbols` | `"symbols"` | String to use for the class name of the symbols module.
 
 ### `type`
 
