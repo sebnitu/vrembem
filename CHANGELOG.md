@@ -15,9 +15,16 @@ All notable changes to this project will be documented in this file.
 
 <!--
 Commit template:
-chore(release): add v1.9.0 to CHANGELOG.md
+chore(release): add v1.10.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.10.0 (2020-07-25)
+
+#### :tada: New Feature
+* `base`, `breadcrumb`, `button-group`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `dropdown`, `icon-action`, `input`, `menu`, `modal`, `notice`, `panel`, `radio`, `switch`, `table`, `tooltip`, `utility`, `vrembem`
+  * [#265](https://github.com/sebnitu/vrembem/pull/265) Add output variables to better control base output ([@sebnitu](https://github.com/sebnitu))
 
 
 ## v1.9.0 (2020-07-21)
