@@ -1149,14 +1149,9 @@ Output the separator styles.
 }
 ```
 
-<!-- ADD NEW CONTENT ABOVE -->
+## Spacing
 
-## spacing
-
-A utility for adding vertical spacing between an element's children. Spacing size and spacing values are generated from `$spacing-map` variable map.
-
-* `spacing`
-* `spacing-[key]`
+This module adds vertical spacing between an element's children. Spacing size and spacing values are generated from the `$spacing-map` variable map.
 
 {% include demo_open.html %}
 <div class="spacing">
@@ -1173,42 +1168,42 @@ A utility for adding vertical spacing between an element's children. Spacing siz
 {% include demo_open.html %}
 <div>
   <div class="grid">
-    <div class="grid__item span-4">
+    <div class="grid__item span-2">
       <div class="spacing-none">
         <div class="box"></div>
         <div class="box"></div>
         <div class="box"></div>
       </div>
     </div>
-    <div class="grid__item span-4">
+    <div class="grid__item span-2">
       <div class="spacing-xs">
         <div class="box"></div>
         <div class="box"></div>
         <div class="box"></div>
       </div>
     </div>
-    <div class="grid__item span-4">
+    <div class="grid__item span-2">
       <div class="spacing-sm">
         <div class="box"></div>
         <div class="box"></div>
         <div class="box"></div>
       </div>
     </div>
-    <div class="grid__item span-4">
+    <div class="grid__item span-2">
       <div class="spacing-md">
         <div class="box"></div>
         <div class="box"></div>
         <div class="box"></div>
       </div>
     </div>
-    <div class="grid__item span-4">
+    <div class="grid__item span-2">
       <div class="spacing-lg">
         <div class="box"></div>
         <div class="box"></div>
         <div class="box"></div>
       </div>
     </div>
-    <div class="grid__item span-4">
+    <div class="grid__item span-2">
       <div class="spacing-xl">
         <div class="box"></div>
         <div class="box"></div>
@@ -1227,6 +1222,94 @@ A utility for adding vertical spacing between an element's children. Spacing siz
 <div class="spacing-xl">...</div>
 ```
 {% include demo_close.html %}
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-spacing</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-spacing</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"spacing"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the spacing module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$spacing</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$spacing</code></td>
+        <td data-mobile-label="Desc">Sets the vertical spacing via the top and bottom margin property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$spacing-map</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$spacing-map</code></td>
+        <td data-mobile-label="Desc">Used to build the spacing key classes.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### `@mixin spacing($spacing, $imp: null)`
+
+Output the spacing styles for an element. Styles are applied to an elements children using the `> *` selector.
+
+**Arguments**
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$spacing</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">number (with unit)</code></td>
+        <td data-mobile-label="Desc">The unit of spacing to apply.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$imp</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">boolean</code></td>
+        <td data-mobile-label="Desc">Whither or not to add the <code class="code color-secondary text-nowrap">!important</code> flag.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+**Example**
+
+```scss
+.element {
+  @include spacing(2em, true);
+}
+
+// CSS Output
+.element > * {
+  margin-top: 2em !important;
+  margin-bottom: 2em !important;
+}
+
+.element > *:first-child {
+  margin-top: 0 !important;
+}
+
+.element > *:last-child {
+  margin-bottom: 0 !important;
+}
+```
+
+<!-- ADD NEW CONTENT ABOVE -->
 
 ## type
 

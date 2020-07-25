@@ -605,18 +605,19 @@ Variable | Type | Description
 
 ### `spacing`
 
-A utility for adding vertical spacing between an element's children. Spacing size and spacing values are generated from the `$spacing-map` variable map.
-
-- `spacing`
-- `spacing-[key]`
+This module adds vertical spacing between an element's children. Spacing size and spacing values are generated from the `$spacing-map` variable map.
 
 ```html
 <!-- Using the default spacing class -->
 <div class="spacing">...</div>
 
-<!-- Using the spacing class with modifier key -->
+<!-- Using the spacing class with variant key -->
+<div class="spacing-none">...</div>
+<div class="spacing-xs">...</div>
 <div class="spacing-sm">...</div>
 <div class="spacing-md">...</div>
+<div class="spacing-lg">...</div>
+<div class="spacing-xl">...</div>
 ```
 
 Variable | Default | Description
@@ -628,7 +629,7 @@ Variable | Default | Description
 
 #### `@mixin spacing($spacing, $imp: null)`
 
-Output the spacing styles for the elements it's applied. Styles are applied to an elements children.
+Output the spacing styles for an element. Styles are applied to an elements children using the `> *` selector.
 
 **Arguments**
 
