@@ -1309,186 +1309,120 @@ Output the spacing styles for an element. Styles are applied to an elements chil
 }
 ```
 
-<!-- ADD NEW CONTENT ABOVE -->
-
 ## type
 
-The `type` component is a quick way to apply all base styles to components directy based on their respective HTML elements. Base component modifiers will override a parent `type` component when explicitly set.
+The type module provides the `.type` CSS class as a quick way to apply many base modules to HTML elements directly. Base module classes will override a parent `.type` application when explicitly set. Use `.type_invert` for when text sits on a dark background.
 
-{% include demo_open.html class_parent="spacing" %}
-<div class="type spacing">
-
-  <h1>Heading</h1>
-  <h2>Heading</h2>
-  <h3>Heading</h3>
-  <h4>Heading</h4>
-  <h5>Heading</h5>
-  <h6>Heading</h6>
-
-  <p>This is a paragraph <code>$code-example</code> and some other things. <a href="#">Click here</a> for a link example. You can still apply <a class="link_subtle" href="#">link modifiers</a> inside of a type component.</p>
-
-  <hr>
-
-  <ul>
-    <li>One</li>
-    <li>Two
-      <ul>
-        <li>One</li>
-        <li>Two</li>
-        <li>Three</li>
-      </ul>
-    </li>
-    <li>Three</li>
-  </ul>
-
-  <ol>
-    <li>One</li>
-    <li>Two
-      <ol>
-        <li>One</li>
-        <li>Two</li>
-        <li>Three</li>
-      </ol>
-    </li>
-    <li>Three</li>
-  </ol>
-
-  <blockquote cite="https://ideapod.com/35-noam-chomsky-quotes-will-make-question-everything-society/">
-    <p>"History shows that, more often than not, loss of sovereignty leads to liberalization imposed in the interests of the powerful."</p>
-    <footer>Noam Chomsky, <cite>On Authority</cite></footer>
-  </blockquote>
-
-<pre><code>a = 17
-print "a = #{a}";</code></pre>
-
-</div>
-{% include demo_switch.html %}
 ```html
 <div class="type">
-
   <h1>Heading</h1>
-  <h2>Heading</h2>
-  <h3>Heading</h3>
-  <h4>Heading</h4>
-  <h5>Heading</h5>
-  <h6>Heading</h6>
-
   <p>...</p>
-
-  <hr>
-
   <ul>
-    <li>One</li>
-    ...
+    <li>...</li>
+    <li>...</li>
+    <li>...</li>
   </ul>
-
-  <ol>
-    <li>One</li>
-    ...
-  </ol>
-
-  <blockquote cite="...">
-    ...
-  </blockquote>
-
-  <pre>
-    <code>
-      ...
-    </code>
-  </pre>
-
 </div>
 ```
-{% include demo_close.html %}
 
-<div class="notice notice_type_info type" markdown="1">
-Note: `type` does not add vertical spacing between elements by default. You can either add it by giving `$type-spacing` a value or by applying the [`spacing` utility class](/packages/utility#spacing).
+Modules that get mapped to HTML elements include:
+
+- `.h1`-`.h6` &rarr; `<h1>`-`<h6>`
+- `.link` &rarr; `<a>`
+- `.code` &rarr; `<code>`
+- `.sep` &rarr; `<hr>`
+- `.list` &rarr; `<ul>` `<ol>`
+- `.blockquote` &rarr; `<blockquote>`
+- `.pre` &rarr; `<pre>`
+
+> The type module only applies styles to children HTML elements. It's possible to nest other components within type and not have style or specificity conflicts. It's recommended to wrap nested components with anonymous `<div>` elements when possible.
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-type</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-type</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"type"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the type module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$type-font-family</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the font-family property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$type-font-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the font-size property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$type-line-height</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the line-height property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$type-spacing</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Applies vertical spacing between elements via the <code class="code color-secondary text-nowrap">spacing</code> module.</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
-## type_invert
+### `@mixin type()`
 
-{% include demo_open.html class_parent="spacing" %}
-<div class="type type_invert spacing background-night-dark padding radius">
+Output base type module styles.
 
-  <h1>Heading</h1>
-  <h2>Heading</h2>
-  <h3>Heading</h3>
-  <h4>Heading</h4>
-  <h5>Heading</h5>
-  <h6>Heading</h6>
+**Example**
 
-  <p>This is a paragraph <code>$code-example</code> and some other things. <a href="#">Click here</a> for a link example. You can still apply <a class="link_invert-subtle" href="#">link modifiers</a> inside of a type component.</p>
-
-  <hr>
-
-  <ul>
-    <li>One</li>
-    <li>Two
-      <ul>
-        <li>One</li>
-        <li>Two</li>
-        <li>Three</li>
-      </ul>
-    </li>
-    <li>Three</li>
-  </ul>
-
-  <ol>
-    <li>One</li>
-    <li>Two
-      <ol>
-        <li>One</li>
-        <li>Two</li>
-        <li>Three</li>
-      </ol>
-    </li>
-    <li>Three</li>
-  </ol>
-
-  <blockquote cite="https://ideapod.com/35-noam-chomsky-quotes-will-make-question-everything-society/">
-    <p>"It is quite possible–overwhelmingly probable, one might guess–that we will always learn more about human life and personality from novels than from scientific psychology."</p>
-    <footer>Noam Chomsky, <cite>On Science</cite></footer>
-  </blockquote>
-
-<pre><code>a = 17
-print "a = #{a}";</code></pre>
-
-</div>
-{% include demo_switch.html %}
-```html
-<div class="type type_invert">
-
-  <h1>Heading</h1>
-  <h2>Heading</h2>
-  <h3>Heading</h3>
-  <h4>Heading</h4>
-  <h5>Heading</h5>
-  <h6>Heading</h6>
-
-  <p>...</p>
-
-  <hr>
-
-  <ul>
-    <li>One</li>
-    ...
-  </ul>
-
-  <ol>
-    <li>One</li>
-    ...
-  </ol>
-
-  <blockquote cite="...">
-    ...
-  </blockquote>
-
-  <pre>
-    <code>
-      ...
-    </code>
-  </pre>
-
-</div>
+```scss
+.element {
+  @include type();
+}
 ```
-{% include demo_close.html %}
+
+### `@mixin type-invert($color)`
+
+Output invert modifier styles of the type module. Pass in the background color if you're not sure it will meet the lightness threshold set in `core.$lightness-threshold`.
+
+**Arguments**
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">color</code></td>
+        <td data-mobile-label="Desc">The background color to check the lightness threshold against.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+**Example**
+
+```scss
+.element {
+  @include type-invert(#303030);
+  background: #303030;
+}
+```
