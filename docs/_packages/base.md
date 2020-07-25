@@ -988,6 +988,68 @@ pre code {
 }
 ```
 
+## scroll-box
+
+This module provides the `.scroll-box` CSS class to be applied as a wrapper around elements when they need a scrollable container.
+
+{% include demo_open.html %}
+<div class="scroll-box border radius" style="max-height: 200px;">
+  <div class="padding radius-circle background-primary-light" style="width: 900px; height: 900px;">
+    This is a big circle...
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="scroll-box">
+  ...
+</div>
+```
+{% include demo_close.html %}
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-scroll-box</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-scroll-box</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"scroll-box"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the scroll-box module.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### `@mixin scroll-box()`
+
+Output the styles for a scroll-box container.
+
+**Example**
+
+```scss
+.scrollable {
+  @include scroll-box();
+}
+
+// CSS Output
+.scrollable {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+```
+
 <!-- ADD NEW CONTENT ABOVE -->
 
 ## Separator

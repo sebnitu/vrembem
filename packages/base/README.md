@@ -524,12 +524,38 @@ pre code {
 
 ### `scroll-box`
 
-TBD
+This module provides the `.scroll-box` CSS class to be applied as a wrapper around elements when they need a scrollable container.
+
+```html
+<div class="scroll-box">
+  ...
+</div>
+```
 
 Variable | Default | Description
 ---|---|---
 `$output-scroll-box` | `$output` &rarr; `true` | Toggles the output of this module.
 `$class-scroll-box` | `"scroll-box"` | String to use for the class name of the scroll-box module.
+
+#### `@mixin scroll-box()`
+
+Output the styles for a scroll-box container.
+
+**Example**
+
+```scss
+.scrollable {
+  @include scroll-box();
+}
+
+// CSS Output
+.scrollable {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+```
 
 ### `separator`
 
