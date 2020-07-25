@@ -662,13 +662,68 @@ Variable | Type | Description
 
 ### `type`
 
-TBD
+The type module provides the `.type` CSS class as a quick way to apply many base modules to HTML elements directly. Base module classes will override a parent `.type` application when explicitly set. Use `.type_invert` for when text sits on a dark background.
+
+```html
+<div class="type">
+  <h1>Heading</h1>
+  <p>...</p>
+  <ul>
+    <li>...</li>
+    <li>...</li>
+    <li>...</li>
+  </ul>
+</div>
+```
+
+Modules that get mapped to HTML elements include:
+
+- `.h1`-`.h6` &rarr; `<h1>`-`<h6>`
+- `.link` &rarr; `<a>`
+- `.code` &rarr; `<code>`
+- `.sep` &rarr; `<hr>`
+- `.list` &rarr; `<ul>` `<ol>`
+- `.blockquote` &rarr; `<blockquote>`
+- `.pre` &rarr; `<pre>`
+
+> The type module only applies styles to children HTML elements. It's possible to nest other components within type and not have style or specificity conflicts. It's recommended to wrap nested components with anonymous `<div>` elements when possible.
 
 Variable | Default | Description
 ---|---|---
 `$output-type` | `$output` &rarr; `true` | Toggles the output of this module.
 `$class-type` | `"type"` | String to use for the class name of the type module.
-`$type-font-family` | `null` | ...
-`$type-font-size` | `null` | ...
-`$type-line-height` | `null` | ...
-`$type-spacing` | `null` | ...
+`$type-font-family` | `null` | Sets the font-family property.
+`$type-font-size` | `null` | Sets the font-size property.
+`$type-line-height` | `null` | Sets the line-height property.
+`$type-spacing` | `null` | Applies vertical spacing between elements via the `spacing` module.
+
+#### `@mixin type()`
+
+Output base type module styles.
+
+**Example**
+
+```scss
+.element {
+  @include type();
+}
+```
+
+#### `@mixin type-invert($color)`
+
+Output invert modifier styles of the type module. Pass in the background color if you're not sure it will meet the lightness threshold set in `core.$lightness-threshold`.
+
+**Arguments**
+
+Variable | Type | Description
+---|---|---
+`$color` | `color` | The background color to check the lightness threshold against.
+
+**Example**
+
+```scss
+.element {
+  @include type-invert(#303030);
+  background: #303030;
+}
+```
