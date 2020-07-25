@@ -388,6 +388,51 @@ code {
 }
 ```
 
+## embed
+
+The embed module is used to wrap iframes or video elements and keep them responsive. It consists of two primary elements, `.embed` wrapper and a single `embed__item` child element which could be applied to an iframe directly.
+
+{% include demo_open.html %}
+<div class="embed">
+  <iframe class="embed__item" src="https://www.youtube.com/embed/YTsf-OAaoKc?rel=0&showinfo=0" width="560" height="315" frameborder="0" scrolling="no" allowfullscreen></iframe>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="embed">
+  <iframe class="embed__item" src="..." width="560" height="315"></iframe>
+</div>
+```
+{% include demo_close.html %}
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-embed</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-embed</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"embed"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the embed module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$embed-ratio</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.aspect-ratio(16, 9)</code></td>
+        <td data-mobile-label="Desc">The default aspect ratio to use.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <!-- ADD NEW CONTENT ABOVE -->
 
 ## Heading
@@ -499,20 +544,6 @@ Typically used on an `<hr>` HTML element representing a thematic break between p
 <!-- Invert separator -->
 <hr class="sep-invert">
 <hr class="sep-invert border-color-invert-darker">
-```
-{% include demo_close.html %}
-
-## embed
-
-{% include demo_open.html %}
-<div class="embed">
-  <iframe class="embed__item" src="https://www.youtube.com/embed/YTsf-OAaoKc?rel=0&showinfo=0" width="560" height="315" frameborder="0" scrolling="no" allowfullscreen></iframe>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="embed">
-  <iframe class="embed__item" src="..." width="560" height="315"></iframe>
-</div>
 ```
 {% include demo_close.html %}
 

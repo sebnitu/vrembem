@@ -233,13 +233,19 @@ code {
 
 ### `embed`
 
-TBD
+The embed module is used to wrap iframes or video elements and keep them responsive. It consists of two primary elements, `.embed` wrapper and a single `embed__item` child element which could be applied to an iframe directly.
+
+```html
+<div class="embed">
+  <iframe class="embed__item" src="..." width="560" height="315"></iframe>
+</div>
+```
 
 Variable | Default | Description
 ---|---|---
 `$output-embed` | `$output` &rarr; `true` | Toggles the output of this module.
 `$class-embed` | `"embed"` | String to use for the class name of the embed module.
-`$embed-ratio` | `core.aspect-ratio(16, 9)` | ...
+`$embed-ratio` | `core.aspect-ratio(16, 9)` | The default aspect ratio to use.
 
 ### `heading`
 
