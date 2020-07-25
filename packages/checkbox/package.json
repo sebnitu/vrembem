@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/checkbox",
   "description": "Checkboxes allow the user to select multiple options from a set.",
-  "version": "1.8.3",
+  "version": "1.10.0",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -30,7 +30,7 @@
     "directory": "packages/checkbox"
   },
   "dependencies": {
-    "@vrembem/core": "^1.8.3"
+    "@vrembem/core": "^1.10.0"
   },
   "publishConfig": {
     "access": "public"
