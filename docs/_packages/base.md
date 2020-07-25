@@ -433,27 +433,136 @@ The embed module is used to wrap iframes or video elements and keep them respons
   </table>
 </div>
 
-<!-- ADD NEW CONTENT ABOVE -->
-
 ## Heading
 
+Section headings in HTML are represented by the `<h1>` through `<h6>` elements. This module helps style these elements by providing the `.h1`-`.h6` CSS classes.
+
 {% include demo_open.html class_parent="spacing" %}
-<p class="h1">Heading</p>
-<p class="h2">Heading</p>
-<p class="h3">Heading</p>
-<p class="h4">Heading</p>
-<p class="h5">Heading</p>
-<p class="h6">Heading</p>
+<h1 class="h1">Heading</h1>
+<h2 class="h2">Heading</h2>
+<h3 class="h3">Heading</h3>
+<h4 class="h4">Heading</h4>
+<h5 class="h5">Heading</h5>
+<h6 class="h6">Heading</h6>
 {% include demo_switch.html %}
 ```html
-<p class="h1">...</p>
-<p class="h2">...</p>
-<p class="h3">...</p>
-<p class="h4">...</p>
-<p class="h5">...</p>
-<p class="h6">...</p>
+<h1 class="h1">...</h1>
+<h2 class="h2">...</h2>
+<h3 class="h3">...</h3>
+<h4 class="h4">...</h4>
+<h5 class="h5">...</h5>
+<h6 class="h6">...</h6>
 ```
 {% include demo_close.html %}
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-heading</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$heading-font-family</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the font-family property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$heading-line-height</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1.3</code></td>
+        <td data-mobile-label="Desc">Sets the line-height property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$heading-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">inherit</code></td>
+        <td data-mobile-label="Desc">Sets the text color property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$heading-color-invert</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the inverted text color. This is used when heading elements appear on a dark background.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$heading-font-weight</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.font-weight("semi-bold")</code></td>
+        <td data-mobile-label="Desc">Sets the font-weight property.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### `@mixin heading-base()`
+
+Output the shared base styles for heading elements.
+
+**Example**
+
+```scss
+h1, h2, h3, h4, h5, h6 {
+  @include heading-base();
+}
+
+// CSS Output
+h1, h2, h3, h4, h5, h6 {
+  color: inherit;
+  font-weight: 600;
+  line-height: 1.3;
+}
+```
+
+### `@mixin heading($level)`
+
+Output the specific styles for a heading level. Takes the heading level as an argument.
+
+**Arguments**
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$level</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">number (1-6)</code></td>
+        <td data-mobile-label="Desc">The level of heading styles to output.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+**Example**
+
+```scss
+h1 {
+  @include heading(1);
+}
+
+// CSS Output
+.h1 {
+  font-size: 2em;
+}
+
+@media (min-width: 760px) {
+  .h1 {
+    font-size: 2.5em;
+  }
+}
+```
+
+<!-- ADD NEW CONTENT ABOVE -->
 
 ## Link
 

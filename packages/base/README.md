@@ -249,16 +249,73 @@ Variable | Default | Description
 
 ### `heading`
 
-TBD
+Section headings in HTML are represented by the `<h1>` through `<h6>` elements. This module helps style these elements by providing the `.h1`-`.h6` CSS classes.
+
+```html
+<h1 class="h1">...</h1>
+<h2 class="h2">...</h2>
+<h3 class="h3">...</h3>
+<h4 class="h4">...</h4>
+<h5 class="h5">...</h5>
+<h6 class="h6">...</h6>
+```
 
 Variable | Default | Description
 ---|---|---
 `$output-heading` | `$output` &rarr; `true` | Toggles the output of this module.
-`$heading-font-family` | `null` | ...
-`$heading-line-height` | `1.3` | ...
-`$heading-color` | `inherit` | ...
-`$heading-color-invert` | `null` | ...
-`$heading-font-weight` | `core.font-weight("semi-bold")` | ...
+`$heading-font-family` | `null` | Sets the font-family property.
+`$heading-line-height` | `1.3` | Sets the line-height property.
+`$heading-color` | `inherit` | Sets the text color property.
+`$heading-color-invert` | `null` | Sets the inverted text color. This is used when heading elements appear on a dark background.
+`$heading-font-weight` | `core.font-weight("semi-bold")` | Sets the font-weight property.
+
+#### `@mixin heading-base()`
+
+Output the shared base styles for heading elements.
+
+**Example**
+
+```scss
+h1, h2, h3, h4, h5, h6 {
+  @include heading-base();
+}
+
+// CSS Output
+h1, h2, h3, h4, h5, h6 {
+  color: inherit;
+  font-weight: 600;
+  line-height: 1.3;
+}
+```
+
+#### `@mixin heading($level)`
+
+Output the specific styles for a heading level. Takes the heading level as an argument.
+
+**Arguments**
+
+Variable | Type | Description
+---|---|---
+`$level` | `number (1-6)` | The level of heading styles to output.
+
+**Example**
+
+```scss
+h1 {
+  @include heading(1);
+}
+
+// CSS Output
+.h1 {
+  font-size: 2em;
+}
+
+@media (min-width: 760px) {
+  .h1 {
+    font-size: 2.5em;
+  }
+}
+```
 
 ### `link`
 
