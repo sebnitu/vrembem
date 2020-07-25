@@ -564,7 +564,7 @@ h1 {
 
 ## Link
 
-A link—usually represented by an anchor (`<a>`) HTML element with `href` attribute—creates the styles for a hyperlink to anything a URL can address. This module helps style these elements by providing the `.link` as well as a few optional modifiers.
+A link—usually represented by an anchor (`<a>`) HTML element with `href` attribute—creates the styles for a hyperlink to anything a URL can address. This module helps style these elements by providing the `.link` CSS class as well as a few optional modifiers.
 
 {% include demo_open.html %}
 <div class="spacing padding">
@@ -706,7 +706,7 @@ A link—usually represented by an anchor (`<a>`) HTML element with `href` attri
 
 ### `@mixin link()`
 
-Output the base link styles.
+Output the styles for a link element.
 
 **Example**
 
@@ -779,9 +779,9 @@ a.subtle {
 }
 ```
 
-<!-- ADD NEW CONTENT ABOVE -->
-
 ## List
+
+The list module helps add styles to unordered (`<ul>`) and ordered (`<ol>`) lists by providing the `.list` class.
 
 {% include demo_open.html %}
 <div class="spacing-xl">
@@ -828,6 +828,168 @@ a.subtle {
 ```
 {% include demo_close.html %}
 
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-list</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$list-spacing</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1.5em</code></td>
+        <td data-mobile-label="Desc">Sets the margin-left property of list elements.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$list-item-spacing</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">0.5em</code></td>
+        <td data-mobile-label="Desc">Sets the top and bottom margins of list items.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### `@mixin list()`
+
+Output the styles for list elements.
+
+**Example**
+
+```scss
+ul, ol {
+  @include list();
+}
+
+// CSS Output
+ul, ol {
+  margin-left: 1.5em;
+}
+
+ul ul,
+ul ol,
+ol ul,
+ol ol {
+  margin-left: 1.5em;
+}
+
+ul li,
+ol li {
+  margin: 0.5em 0;
+}
+```
+
+## Pre
+
+This module helps style the HTML `<pre>` element by providing the `.pre` CSS class. Whitespace inside this element is displayed as written.
+
+{% include demo_open.html class_parent="spacing" %}
+<pre class="pre">
+-----------------------------
+| I'm an expert in my field |
+-----------------------------
+     \   ^__^
+      \  (oo)\_______
+         (__)\       )\/\
+             ||----w |
+             ||     ||
+</pre>
+{% include demo_switch.html %}
+```html
+<pre class="pre">
+-----------------------------
+| I'm an expert in my field |
+-----------------------------
+     \   ^__^
+      \  (oo)\_______
+         (__)\       )\/\
+             ||----w |
+             ||     ||
+</pre>
+```
+{% include demo_close.html %}
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-pre</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$pre-padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1em</code></td>
+        <td data-mobile-label="Desc">Sets the padding property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$pre-background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$shade</code></td>
+        <td data-mobile-label="Desc">Sets the background property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$pre-border</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the border property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$pre-border-radius</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-radius</code></td>
+        <td data-mobile-label="Desc">Sets the border-radius property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$pre-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$color</code></td>
+        <td data-mobile-label="Desc">Sets the text color property.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### `@mixin pre()`
+
+Output the styles for a pre element.
+
+```scss
+pre {
+  @include pre();
+}
+
+// CSS Output
+pre {
+  padding: 1em;
+  overflow: auto;
+  border-radius: 4px;
+  background: #f5f5f5;
+  color: #212121;
+  font-family: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+pre code {
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font-size: 1em;
+}
+```
+
+<!-- ADD NEW CONTENT ABOVE -->
+
 ## Separator
 
 Typically used on an `<hr>` HTML element representing a thematic break between paragraph-level elements.
@@ -850,17 +1012,6 @@ Typically used on an `<hr>` HTML element representing a thematic break between p
 <!-- Invert separator -->
 <hr class="sep-invert">
 <hr class="sep-invert border-color-invert-darker">
-```
-{% include demo_close.html %}
-
-## pre
-
-{% include demo_open.html class_parent="spacing" %}
-<pre class="pre"><code>a = 17
-print "a = #{a}";</code></pre>
-{% include demo_switch.html %}
-```html
-<pre class="pre"><code>...</code></pre>
 ```
 {% include demo_close.html %}
 

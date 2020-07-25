@@ -319,7 +319,7 @@ h1 {
 
 ### `link`
 
-A link—usually represented by an anchor (`<a>`) HTML element with `href` attribute—creates the styles for a hyperlink to anything a URL can address. This module helps style these elements by providing the `.link` as well as a few optional modifiers.
+A link—usually represented by an anchor (`<a>`) HTML element with `href` attribute—creates the styles for a hyperlink to anything a URL can address. This module helps style these elements by providing the `.link` CSS class as well as a few optional modifiers.
 
 ```html
 <a href="#" class="link">Link</a>
@@ -353,7 +353,7 @@ Variable | Default | Description
 
 #### `@mixin link()`
 
-Output the base link styles.
+Output the styles for a link element.
 
 **Example**
 
@@ -413,26 +413,114 @@ a.subtle {
 
 ### `list`
 
-TBD
+The list module helps add styles to unordered (`<ul>`) and ordered (`<ol>`) lists by providing the `.list` class.
+
+```html
+<ul class="list">
+  <li>One</li>
+  <li>Two
+    <ul>
+      <li>One</li>
+      <li>Two</li>
+      <li>Three</li>
+    </ul>
+  </li>
+  <li>Three</li>
+</ul>
+
+<ol class="list">
+  ...
+</ol>
+```
 
 Variable | Default | Description
 ---|---|---
 `$output-list` | `$output` &rarr; `true` | Toggles the output of this module.
-`$list-spacing` | `1.5em` | ...
-`$list-item-spacing` | `0.5em` | ...
+`$list-spacing` | `1.5em` | Sets the margin-left property of list elements.
+`$list-item-spacing` | `0.5em` | Sets the top and bottom margins of list items.
+
+#### `@mixin list()`
+
+Output the styles for list elements.
+
+**Example**
+
+```scss
+ul, ol {
+  @include list();
+}
+
+// CSS Output
+ul, ol {
+  margin-left: 1.5em;
+}
+
+ul ul,
+ul ol,
+ol ul,
+ol ol {
+  margin-left: 1.5em;
+}
+
+ul li,
+ol li {
+  margin: 0.5em 0;
+}
+```
 
 ### `pre`
 
-TBD
+This module helps style the HTML `<pre>` element by providing the `.pre` CSS class. Whitespace inside this element is displayed as written.
+
+```html
+<pre class="pre">
+-----------------------------
+| I'm an expert in my field |
+-----------------------------
+     \   ^__^
+      \  (oo)\_______
+         (__)\       )\/\
+             ||----w |
+             ||     ||
+</pre>
+```
 
 Variable | Default | Description
 ---|---|---
 `$output-pre` | `$output` &rarr; `true` | Toggles the output of this module.
-`$pre-padding` | `1em` | ...
-`$pre-background` | `core.$shade` | ...
-`$pre-border` | `null` | ...
-`$pre-border-radius` | `core.$border-radius` | ...
-`$pre-color` | `core.$color` | ...
+`$pre-padding` | `1em` | Sets the padding property.
+`$pre-background` | `core.$shade` | Sets the background property.
+`$pre-border` | `null` | Sets the border property.
+`$pre-border-radius` | `core.$border-radius` | Sets the border-radius property.
+`$pre-color` | `core.$color` | Sets the text color property.
+
+#### `@mixin pre()`
+
+Output the styles for a pre element.
+
+```scss
+pre {
+  @include pre();
+}
+
+// CSS Output
+pre {
+  padding: 1em;
+  overflow: auto;
+  border-radius: 4px;
+  background: #f5f5f5;
+  color: #212121;
+  font-family: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+pre code {
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font-size: 1em;
+}
+```
 
 ### `scroll-box`
 
