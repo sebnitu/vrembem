@@ -1,6 +1,8 @@
 @use "./variables" as var;
 @use "./mixins" as mix;
 
-.#{var.$prefix-block}pre {
-  @include mix.pre();
+@if (var.$output-pre) {
+  .#{var.$prefix-block}pre {
+    @include mix.pre();
+  }
 }

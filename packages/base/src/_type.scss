@@ -5,10 +5,12 @@ $_b: var.$prefix-block;
 $_m: var.$prefix-modifier;
 $_c: var.$class-type;
 
-.#{$_b}#{$_c} {
-  @include mix.type();
-}
+@if (var.$output-type) {
+  .#{$_b}#{$_c} {
+    @include mix.type();
+  }
 
-.#{$_b}#{$_c}#{$_m}invert {
-  @include mix.type-invert();
+  .#{$_b}#{$_c}#{$_m}invert {
+    @include mix.type-invert();
+  }
 }

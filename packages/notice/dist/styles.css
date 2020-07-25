@@ -38,10 +38,13 @@
   background-color: #00bcd4;
 }
 .notice_color_primary > hr {
-  border-color: rgba(255, 255, 255, 0.1);
+  display: block;
+  height: 0;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 .notice_color_primary > blockquote {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 .notice_color_primary > a,
 .notice_color_primary > :not(div) a {
@@ -70,10 +73,13 @@
   background-color: #607d8b;
 }
 .notice_color_secondary > hr {
-  border-color: rgba(255, 255, 255, 0.1);
+  display: block;
+  height: 0;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 .notice_color_secondary > blockquote {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 .notice_color_secondary > a,
 .notice_color_secondary > :not(div) a {
@@ -102,10 +108,13 @@
   background-color: #424242;
 }
 .notice_color_dark > hr {
-  border-color: rgba(255, 255, 255, 0.1);
+  display: block;
+  height: 0;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 .notice_color_dark > blockquote {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 .notice_color_dark > a,
 .notice_color_dark > :not(div) a {
@@ -152,10 +161,13 @@
   background-color: #03a9f4;
 }
 .notice_type_info-bold > hr {
-  border-color: rgba(255, 255, 255, 0.1);
+  display: block;
+  height: 0;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 .notice_type_info-bold > blockquote {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 .notice_type_info-bold > a,
 .notice_type_info-bold > :not(div) a {
@@ -189,10 +201,13 @@
   background-color: #4caf50;
 }
 .notice_type_success-bold > hr {
-  border-color: rgba(255, 255, 255, 0.1);
+  display: block;
+  height: 0;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 .notice_type_success-bold > blockquote {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 .notice_type_success-bold > a,
 .notice_type_success-bold > :not(div) a {
@@ -226,10 +241,13 @@
   background-color: #ff9800;
 }
 .notice_type_caution-bold > hr {
-  border-color: rgba(255, 255, 255, 0.1);
+  display: block;
+  height: 0;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 .notice_type_caution-bold > blockquote {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 .notice_type_caution-bold > a,
 .notice_type_caution-bold > :not(div) a {
@@ -263,10 +281,13 @@
   background-color: #f44336;
 }
 .notice_type_danger-bold > hr {
-  border-color: rgba(255, 255, 255, 0.1);
+  display: block;
+  height: 0;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 .notice_type_danger-bold > blockquote {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 .notice_type_danger-bold > a,
 .notice_type_danger-bold > :not(div) a {

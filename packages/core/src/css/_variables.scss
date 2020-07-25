@@ -69,10 +69,22 @@ $danger: palette.$red-500 !default;
 $danger-dark: palette.$red-700 !default;
 $danger-darker: palette.$red-900 !default;
 
-// Global properties
+// Spacing
 // ---
 
+$spacing: 1rem !default;
+$spacing-map: (
+  "none": 0,
+  "xs": 0.25rem,
+  "sm": 0.5rem,
+  "md": 1rem,
+  "lg": 1.5rem,
+  "xl": 2rem
+) !default;
+
 // Padding
+// ---
+
 $padding: 0.5em 1em !default;
 $padding-sm: 0.25rem 0.5rem !default;
 $padding-lg: 0.75rem 1.5rem !default;

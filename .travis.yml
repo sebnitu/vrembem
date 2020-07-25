@@ -6,6 +6,7 @@ before_script:
   - npx lerna bootstrap
 
 script:
+  - npm run build
   - npm run lint
   - npm run test:coverage
 

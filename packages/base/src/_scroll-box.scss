@@ -1,8 +1,8 @@
 @use "./variables" as var;
+@use "./mixins" as mix;
 
-.#{var.$prefix-block}#{var.$class-scroll-box} {
-  display: block;
-  width: 100%;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
+@if (var.$output-scroll-box) {
+  .#{var.$prefix-block}#{var.$class-scroll-box} {
+    @include mix.scroll-box();
+  }
 }

@@ -1,6 +1,49 @@
 @use "@vrembem/core";
-@use "@vrembem/utility/src/mixins" as utility;
 @use "./variables" as var;
+
+// Blockquote
+// ---
+
+@mixin blockquote() {
+  position: relative;
+  padding: var.$blockquote-padding;
+  border: var.$blockquote-border;
+  border-radius: var.$blockquote-border-radius;
+  background: var.$blockquote-background;
+  color: var.$blockquote-color;
+
+  @if var.$blockquote-accent-color {
+    &::before {
+      content: "";
+      position: absolute;
+      top: var.$blockquote-accent-offset;
+      bottom: var.$blockquote-accent-offset;
+      left: var.$blockquote-accent-offset;
+      width: var.$blockquote-accent-width;
+      background-color: var.$blockquote-accent-color;
+    }
+  }
+
+  > * + * {
+    margin-top: var.$blockquote-spacing;
+  }
+}
+
+// Code
+// ---
+
+@mixin code() {
+  padding: var.$code-padding;
+  border: var.$code-border;
+  background: var.$code-background;
+  color: var.$code-color;
+  font-family: core.$font-family-mono;
+  font-size: var.$code-font-size;
+  word-break: break-word;
+}
+
+// Heading
+// ---
 
 @mixin heading-base() {
   color: var.$heading-color;
@@ -54,6 +97,9 @@
     }
   }
 }
+
+// Link
+// ---
 
 @mixin link() {
   transition: var.$link-transition;
@@ -111,12 +157,8 @@
   }
 }
 
-@mixin separator() {
-  display: block;
-  height: 0;
-  border: none;
-  border-top: 1px solid core.$border-color;
-}
+// List
+// ---
 
 @mixin list() {
   margin-left: var.$list-spacing;
@@ -131,44 +173,8 @@
   }
 }
 
-@mixin blockquote() {
-  position: relative;
-  padding: var.$blockquote-padding;
-  border: var.$blockquote-border;
-  border-radius: var.$blockquote-border-radius;
-  background: var.$blockquote-background;
-  color: var.$blockquote-color;
-
-  @if var.$blockquote-accent-color {
-    &::before {
-      content: "";
-      position: absolute;
-      top: var.$blockquote-accent-offset;
-      bottom: var.$blockquote-accent-offset;
-      left: var.$blockquote-accent-offset;
-      width: var.$blockquote-accent-width;
-      background-color: var.$blockquote-accent-color;
-    }
-  }
-
-  > * + * {
-    margin-top: var.$blockquote-spacing;
-  }
-}
-
-@mixin blockquote-invert() {
-  border: var.$blockquote-border-invert;
-}
-
-@mixin code() {
-  padding: var.$code-padding;
-  border: var.$code-border;
-  background: var.$code-background;
-  color: var.$code-color;
-  font-family: core.$font-family-mono;
-  font-size: 0.9em;
-  word-break: break-word;
-}
+// Pre
+// ---
 
 @mixin pre() {
   padding: var.$pre-padding;
@@ -188,15 +194,60 @@
   }
 }
 
+// Scroll-box
+// ---
+
+@mixin scroll-box() {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+// Separator
+// ---
+
+@mixin separator($border) {
+  display: block;
+  height: 0;
+  border: none;
+  border-top: $border;
+}
+
+// Spacing
+// ---
+
+@mixin spacing($spacing, $imp: null) {
+  @if ($imp) {
+    $imp: "!important";
+  } @else if ($imp == false) {
+    $imp: null;
+  }
+  @if ($spacing) {
+    > * {
+      margin-top: $spacing #{$imp};
+      margin-bottom: $spacing #{$imp};
+
+      &:first-child {
+        margin-top: 0 #{$imp};
+      }
+
+      &:last-child {
+        margin-bottom: 0 #{$imp};
+      }
+    }
+  }
+}
+
+// Type
+// ---
+
 @mixin type() {
   @include core.add-clearfix();
+  @include spacing(var.$type-spacing);
   font-family: var.$type-font-family;
   font-size: var.$type-font-size;
   line-height: var.$type-line-height;
-
-  > * {
-    @include utility.spacing(var.$type-spacing);
-  }
 
   > h1,
   > h2,
@@ -242,7 +293,7 @@
   }
 
   > hr {
-    @include separator();
+    @include separator(var.$separator-border);
   }
 
   > ul,
@@ -273,11 +324,11 @@
     }
 
     > hr {
-      border-color: core.$border-color-invert;
+      @include separator(var.$separator-border-invert);
     }
 
     > blockquote {
-      @include blockquote-invert();
+      border-color: var.$blockquote-border-color-invert;
     }
 
     > a,
