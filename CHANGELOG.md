@@ -15,9 +15,16 @@ All notable changes to this project will be documented in this file.
 
 <!--
 Commit template:
-chore(release): add v1.10.0 to CHANGELOG.md
+chore(release): add v1.11.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.11.0 (2020-07-26)
+
+#### :tada: New Feature
+* `utility`
+  * [#267](https://github.com/sebnitu/vrembem/pull/267) Add output vars to utility component ([@sebnitu](https://github.com/sebnitu))
 
 
 ## v1.10.0 (2020-07-25)
