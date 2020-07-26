@@ -4,7 +4,7 @@
 $_u: var.$prefix-utility;
 $_c: var.$class-background;
 
-@if (var.$class-background) {
+@if (var.$output-background) {
   .#{$_u}#{$_c}-black {
     background-color: core.$black !important;
   }

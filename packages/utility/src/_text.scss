@@ -4,7 +4,7 @@
 $_u: var.$prefix-utility;
 $_c: var.$class-text;
 
-@if (var.$class-text) {
+@if (var.$output-text) {
   .#{$_u}#{$_c}-size-sm {
     font-size: core.$font-size-sm !important;
   }

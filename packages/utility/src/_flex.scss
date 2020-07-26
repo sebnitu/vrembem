@@ -3,7 +3,7 @@
 $_u: var.$prefix-utility;
 $_c: var.$class-flex;
 
-@if (var.$class-flex) {
+@if (var.$output-flex) {
   .#{$_u}#{$_c} {
     display: flex !important;
   }

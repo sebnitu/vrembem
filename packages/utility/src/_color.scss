@@ -4,7 +4,7 @@
 $_u: var.$prefix-utility;
 $_c: var.$class-color;
 
-@if (var.$class-color) {
+@if (var.$output-color) {
   .#{$_u}#{$_c} {
     color: core.$color !important;
   }

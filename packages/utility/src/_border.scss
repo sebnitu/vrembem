@@ -4,7 +4,7 @@
 $_u: var.$prefix-utility;
 $_c: var.$class-border;
 
-@if (var.$class-border) {
+@if (var.$output-border) {
   .#{$_u}#{$_c} {
     border: core.$border !important;
   }

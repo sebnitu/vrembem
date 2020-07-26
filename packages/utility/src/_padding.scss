@@ -3,7 +3,7 @@
 $_u: var.$prefix-utility;
 $_c: var.$class-padding;
 
-@if (var.$class-padding) {
+@if (var.$output-padding) {
   .#{$_u}#{$_c} {
     padding: var.$spacing;
   }

@@ -4,7 +4,7 @@
 $_u: var.$prefix-utility;
 $_c: var.$class-box-shadow;
 
-@if (var.$class-box-shadow) {
+@if (var.$output-box-shadow) {
   .#{$_u}#{$_c} {
     box-shadow: core.$box-shadow !important;
   }
