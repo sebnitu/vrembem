@@ -3,7 +3,7 @@
 $_u: var.$prefix-utility;
 $_c: var.$class-margin;
 
-@if (var.$class-margin) {
+@if (var.$output-margin) {
   .#{$_u}#{$_c} {
     margin: var.$spacing;
   }

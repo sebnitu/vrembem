@@ -4,7 +4,7 @@
 $_u: var.$prefix-utility;
 $_c: var.$class-border-radius;
 
-@if (var.$class-border-radius) {
+@if (var.$output-border-radius) {
   .#{$_u}#{$_c} {
     border-radius: core.$border-radius !important;
   }

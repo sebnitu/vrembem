@@ -9,6 +9,82 @@ usage:
   scss: true
 ---
 
+## Intro
+
+Once loaded, the utility component provides a number of classes that can be used independently or to supplement other loaded components.
+
+```html
+<!-- Using utility classes independently -->
+<div class="padding background-shade border radius">
+  <p class="text-bold text-align-center">...</p>
+</div>
+
+<!-- Using utility classes with other components -->
+<div class="grid flex-justify-center">
+  <div class="grid__item span-auto">...</div>
+  <div class="grid__item span-auto">...</div>
+</div>
+```
+
+Each utility has a corresponding `$output-[module]` and `$class-[module]` variable that determines whether or not the module is output and it's class name. Output variable inherits their default value from `$output`.
+
+```scss
+// Will disable the output of the color module
+@use "@vrembem/utility" with (
+  $output-color: false
+);
+
+// Will disable all modules, but enables the color module
+@use "@vrembem/utility" with (
+  $output: false,
+  $output-color: true
+);
+```
+
+### Global Variables
+
+Setting these variables will apply to all utility modules.
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-utility</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">String to prefix all utility classes with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the default output of all modules.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### Modules
+
+The utility component consists of a number of modules with their own set of specific customizable class and output variables.
+
+- [`background`](#background)
+- [`border`](#border)
+- [`radius`](#radius)
+- [`elevate`](#elevate)
+- [`color`](#color)
+- [`display`](#display)
+- [`flex`](#flex)
+- [`margin`](#margin)
+- [`padding`](#padding)
+- [`span`](#span)
+- [`text`](#text)
+
 ## background
 
 Applies background color property. Most options include light, lighter, dark and darker variants.
@@ -1002,11 +1078,6 @@ Adds ellipsis styles to an element that will display an ellipsis (...) for text 
         <td data-mobile-label="Desc">String to use for the class name of the padding utility.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$class-spacing</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">spacing</code></td>
-        <td data-mobile-label="Desc">String to use for the class name of the spacing utility.</td>
-      </tr>
-      <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$class-span</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">span</code></td>
         <td data-mobile-label="Desc">String to use for the class name of the span utility.</td>
@@ -1019,15 +1090,7 @@ Adds ellipsis styles to an element that will display an ellipsis (...) for text 
 
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$breakpoints</code></td>
-        <td data-mobile-label="Default">
-          <code class="code color-secondary text-nowrap">
-            "xs": 480px,<br>
-            "sm": 620px,<br>
-            "md": 760px,<br>
-            "lg": 990px,<br>
-            "xl": 1380px
-          </code>
-        </td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$breakpoints</code></td>
         <td data-mobile-label="Desc">The breakpoints map some utilities use to build their styles.</td>
       </tr>
       <tr>
@@ -1051,22 +1114,13 @@ Adds ellipsis styles to an element that will display an ellipsis (...) for text 
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$spacing</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1rem</code></td>
-        <td data-mobile-label="Desc">The default value used for the <code class="code">spacing</code> utility.</td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$spacing</code></td>
+        <td data-mobile-label="Desc">The default value used for utilities that handle spacing.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$spacing-map</code></td>
-        <td data-mobile-label="Default">
-          <code class="code color-secondary text-nowrap">
-            "none": 0,<br>
-            "xs": 0.25rem,<br>
-            "sm": 0.5rem,<br>
-            "md": 1rem,<br>
-            "lg": 1.5rem,<br>
-            "xl": 2rem
-          </code>
-        </td>
-        <td data-mobile-label="Desc">Map of variations to output for the <code class="code">spacing</code> utility.</td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$spacing-map</code></td>
+        <td data-mobile-label="Desc">Map of variations to output for utilities that handle spacing.</td>
       </tr>
     </tbody>
   </table>

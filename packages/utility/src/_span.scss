@@ -4,7 +4,7 @@
 $_u: var.$prefix-utility;
 $_c: var.$class-span;
 
-@if (var.$class-span) {
+@if (var.$output-span) {
   @for $i from 1 through var.$columns {
     .#{$_u}#{$_c}-#{$i} {
       flex: 0 0 (100% * ($i/var.$columns));

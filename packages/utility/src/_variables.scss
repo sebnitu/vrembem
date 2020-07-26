@@ -2,6 +2,19 @@
 
 $prefix-utility: null !default;
 
+$output: true !default;
+$output-background: $output !default;
+$output-border: $output !default;
+$output-border-radius: $output !default;
+$output-box-shadow: $output !default;
+$output-color: $output !default;
+$output-display: $output !default;
+$output-flex: $output !default;
+$output-margin: $output !default;
+$output-padding: $output !default;
+$output-span: $output !default;
+$output-text: $output !default;
+
 $class-background: "background" !default;
 $class-border: "border" !default;
 $class-border-radius: "radius" !default;
@@ -24,6 +37,5 @@ $display-properties: (
   inline-block,
   none
 ) !default;
-
 $spacing: core.$spacing !default;
 $spacing-map: core.$spacing-map !default;

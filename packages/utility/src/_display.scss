@@ -4,7 +4,7 @@
 $_u: var.$prefix-utility;
 $_c: var.$class-display;
 
-@if (var.$class-display) {
+@if (var.$output-display) {
   @each $property in var.$display-properties {
     .#{$_u}#{$_c}-#{$property} {
       display: $property !important;
