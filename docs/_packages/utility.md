@@ -708,6 +708,8 @@ Add margin to an element using directional and size modifiers. Margin size and s
 * `margin-[size]`
 * `margin-[direction]-[size]`
 * `margin-auto`
+* `margin-left-auto`
+* `margin-right-auto`
 
 <div>
   <div class="grid grid_break_xs">
