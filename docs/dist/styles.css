@@ -5416,6 +5416,14 @@ input::-moz-placeholder {
   margin-left: auto !important;
 }
 
+.margin-left-auto {
+  margin-left: auto !important;
+}
+
+.margin-right-auto {
+  margin-right: auto !important;
+}
+
 .padding {
   padding: 1rem;
 }

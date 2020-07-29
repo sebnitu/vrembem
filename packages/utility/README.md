@@ -301,6 +301,8 @@ Add margin to an element using directional and size modifiers. Margin size and s
 - `margin-hori-[size]`: Adds left and right margins with a specific size key.
 - `margin-vert-[size]`: Adds top and bottom margins with a specific size key.
 - `margin-auto`: Sets left and right margins to auto.
+- `margin-left-auto`: Sets left margin to auto.
+- `margin-right-auto`: Sets right margin to auto.
 
 ### `padding`
 

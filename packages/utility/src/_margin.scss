@@ -56,4 +56,12 @@ $_c: var.$class-margin;
     margin-right: auto !important;
     margin-left: auto !important;
   }
+
+  .#{$_u}#{$_c}-left-auto {
+    margin-left: auto !important;
+  }
+
+  .#{$_u}#{$_c}-right-auto {
+    margin-right: auto !important;
+  }
 }
