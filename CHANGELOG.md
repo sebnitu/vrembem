@@ -15,9 +15,16 @@ All notable changes to this project will be documented in this file.
 
 <!--
 Commit template:
-chore(release): add v1.11.0 to CHANGELOG.md
+chore(release): add v1.12.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.12.0 (2020-07-29)
+
+#### :tada: New Feature
+* `utility`, `vrembem`
+  * [#270](https://github.com/sebnitu/vrembem/pull/270) Adds left and right margin-auto utility classes ([@sebnitu](https://github.com/sebnitu))
 
 
 ## v1.11.0 (2020-07-26)
