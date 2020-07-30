@@ -41,17 +41,15 @@ export const Modal = (options) => {
       setTabindex();
     }
     setInitialState();
-    document.addEventListener('click', run, false);
-    document.addEventListener('touchend', run, false);
-    document.addEventListener('keyup', escape, false);
+    document.addEventListener('click', handler, false);
+    document.addEventListener('keyup', handlerEscape, false);
   };
 
   api.destroy = () => {
     api.memoryTrigger = null;
     api.memoryTarget = null;
-    document.removeEventListener('click', run, false);
-    document.removeEventListener('touchend', run, false);
-    document.removeEventListener('keyup', escape, false);
+    document.removeEventListener('click', handler, false);
+    document.removeEventListener('keyup', handlerEscape, false);
   };
 
   api.open = (modalKey, callback) => {
@@ -66,7 +64,7 @@ export const Modal = (options) => {
     setTabindex();
   };
 
-  const run = (event) => {
+  const handler = (event) => {
     // Trigger click
     const trigger = event.target.closest(`[data-${api.settings.dataOpen}]`);
     if (trigger) {
@@ -94,7 +92,7 @@ export const Modal = (options) => {
     }
   };
 
-  const escape = (event) => {
+  const handlerEscape = (event) => {
     if (event.key === 'Escape' || event.keyCode === 27) {
       const target = document.querySelector(
         `[data-${api.settings.dataModal}].${api.settings.stateOpened}`
@@ -102,19 +100,6 @@ export const Modal = (options) => {
       if (target && !target.hasAttribute(`data-${api.settings.dataRequired}`)) {
         close();
       }
-    }
-  };
-
-  const setOverflow = (state) => {
-    if (api.settings.toggleOverflow) {
-      const els = document.querySelectorAll(api.settings.toggleOverflow);
-      els.forEach((el) => {
-        if (state == 'hidden') {
-          el.style.overflow = 'hidden';
-        } else {
-          el.style.removeProperty('overflow');
-        }
-      });
     }
   };
 
@@ -129,6 +114,19 @@ export const Modal = (options) => {
         trapFocus(el);
       }
     });
+  };
+
+  const setOverflow = (state) => {
+    if (api.settings.toggleOverflow) {
+      const els = document.querySelectorAll(api.settings.toggleOverflow);
+      els.forEach((el) => {
+        if (state == 'hidden') {
+          el.style.overflow = 'hidden';
+        } else {
+          el.style.removeProperty('overflow');
+        }
+      });
+    }
   };
 
   const openTransition = (modal) => {

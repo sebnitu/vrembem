@@ -746,17 +746,15 @@
 	    }
 
 	    setInitialState();
-	    document.addEventListener('click', run, false);
-	    document.addEventListener('touchend', run, false);
-	    document.addEventListener('keyup', escape, false);
+	    document.addEventListener('click', handler, false);
+	    document.addEventListener('keyup', handlerEscape, false);
 	  };
 
 	  api.destroy = function () {
 	    api.memoryTrigger = null;
 	    api.memoryTarget = null;
-	    document.removeEventListener('click', run, false);
-	    document.removeEventListener('touchend', run, false);
-	    document.removeEventListener('keyup', escape, false);
+	    document.removeEventListener('click', handler, false);
+	    document.removeEventListener('keyup', handlerEscape, false);
 	  };
 
 	  api.open = function (modalKey, callback) {
@@ -771,7 +769,7 @@
 	    setTabindex();
 	  };
 
-	  var run = function run(event) {
+	  var handler = function handler(event) {
 	    var trigger = event.target.closest("[data-".concat(api.settings.dataOpen, "]"));
 
 	    if (trigger) {
@@ -793,26 +791,13 @@
 	    }
 	  };
 
-	  var escape = function escape(event) {
+	  var handlerEscape = function handlerEscape(event) {
 	    if (event.key === 'Escape' || event.keyCode === 27) {
 	      var target = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpened));
 
 	      if (target && !target.hasAttribute("data-".concat(api.settings.dataRequired))) {
 	        close();
 	      }
-	    }
-	  };
-
-	  var setOverflow = function setOverflow(state) {
-	    if (api.settings.toggleOverflow) {
-	      var els = document.querySelectorAll(api.settings.toggleOverflow);
-	      els.forEach(function (el) {
-	        if (state == 'hidden') {
-	          el.style.overflow = 'hidden';
-	        } else {
-	          el.style.removeProperty('overflow');
-	        }
-	      });
 	    }
 	  };
 
@@ -827,6 +812,19 @@
 	        trapFocus(el);
 	      }
 	    });
+	  };
+
+	  var setOverflow = function setOverflow(state) {
+	    if (api.settings.toggleOverflow) {
+	      var els = document.querySelectorAll(api.settings.toggleOverflow);
+	      els.forEach(function (el) {
+	        if (state == 'hidden') {
+	          el.style.overflow = 'hidden';
+	        } else {
+	          el.style.removeProperty('overflow');
+	        }
+	      });
+	    }
 	  };
 
 	  var openTransition = function openTransition(modal) {
