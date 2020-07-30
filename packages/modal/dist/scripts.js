@@ -733,7 +733,8 @@
 	    focus: true,
 	    setTabindex: true,
 	    toggleOverflow: 'body',
-	    transition: true
+	    transition: true,
+	    throttleDelay: 5
 	  };
 	  api.settings = _objectSpread(_objectSpread({}, defaults), options);
 	  api.memoryTrigger = null;
@@ -744,6 +745,7 @@
 	      setTabindex();
 	    }
 
+	    setInitialState();
 	    document.addEventListener('click', run, false);
 	    document.addEventListener('touchend', run, false);
 	    document.addEventListener('keyup', escape, false);
@@ -814,16 +816,31 @@
 	    }
 	  };
 
+	  var setInitialState = function setInitialState() {
+	    var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "]"));
+	    modals.forEach(function (el) {
+	      if (!hasClass(el, api.settings.stateOpened)) {
+	        addClass(el, api.settings.stateClosed);
+	      } else {
+	        saveTarget(el);
+	        setFocus();
+	        trapFocus(el);
+	      }
+	    });
+	  };
+
 	  var openTransition = function openTransition(modal) {
 	    return new Promise(function (resolve) {
-	      addClass(modal, api.settings.stateOpening);
 	      removeClass(modal, api.settings.stateClosed);
-	      modal.addEventListener('transitionend', function _listener() {
-	        addClass(modal, api.settings.stateOpened);
-	        removeClass(modal, api.settings.stateOpening);
-	        this.removeEventListener('transitionend', _listener, true);
-	        resolve();
-	      }, true);
+	      setTimeout(function () {
+	        addClass(modal, api.settings.stateOpening);
+	        modal.addEventListener('transitionend', function _listener() {
+	          addClass(modal, api.settings.stateOpened);
+	          removeClass(modal, api.settings.stateOpening);
+	          this.removeEventListener('transitionend', _listener, true);
+	          resolve();
+	        }, true);
+	      }, api.settings.throttleDelay);
 	    });
 	  };
 
@@ -886,10 +903,16 @@
 	      addClass(modal, api.settings.stateClosing);
 	      removeClass(modal, api.settings.stateOpened);
 	      modal.addEventListener('transitionend', function _listener() {
-	        addClass(modal, api.settings.stateClosed);
+	        var _this = this;
+
 	        removeClass(modal, api.settings.stateClosing);
-	        this.removeEventListener('transitionend', _listener, true);
-	        resolve();
+	        setTimeout(function () {
+	          addClass(modal, api.settings.stateClosed);
+
+	          _this.removeEventListener('transitionend', _listener, true);
+
+	          resolve();
+	        }, api.settings.throttleDelay);
 	      }, true);
 	    });
 	  };
@@ -970,28 +993,33 @@
 	    }
 	  };
 
+	  api.index = 0;
+
 	  var trapFocus = function trapFocus(el) {
-	    var focusableEls = el.querySelectorAll("\n      a[href]:not([disabled]),\n      button:not([disabled]),\n      textarea:not([disabled]),\n      input[type=\"text\"]:not([disabled]),\n      input[type=\"radio\"]:not([disabled]),\n      input[type=\"checkbox\"]:not([disabled]),\n      select:not([disabled]),\n      [tabindex]:not([tabindex=\"-1\"])\n    ");
-	    var firstFocusable = focusableEls[0];
-	    var lastFocusable = focusableEls[focusableEls.length - 1];
-	    el.addEventListener('keydown', function (event) {
-	      var isTab = event.key === 'Tab' || event.keyCode === 9;
-	      if (!isTab) return;
+	    if (api.settings.focus) {
+	      var focusableEls = el.querySelectorAll("\n        a[href]:not([disabled]),\n        button:not([disabled]),\n        textarea:not([disabled]),\n        input[type=\"text\"]:not([disabled]),\n        input[type=\"radio\"]:not([disabled]),\n        input[type=\"checkbox\"]:not([disabled]),\n        select:not([disabled]),\n        [tabindex]:not([tabindex=\"-1\"])\n      ");
+	      var firstFocusable = focusableEls[0];
+	      var lastFocusable = focusableEls[focusableEls.length - 1];
+	      el.addEventListener('keydown', function (event) {
+	        console.log(api.index++);
+	        var isTab = event.key === 'Tab' || event.keyCode === 9;
+	        if (!isTab) return;
 
-	      if (event.shiftKey) {
-	        var dialog = el.querySelector("".concat(api.settings.selectorDialog, "[tabindex=\"-1\"]"));
+	        if (event.shiftKey) {
+	          var dialog = el.querySelector("".concat(api.settings.selectorDialog, "[tabindex=\"-1\"]"));
 
-	        if (document.activeElement === firstFocusable || document.activeElement === dialog) {
-	          lastFocusable.focus();
-	          event.preventDefault();
+	          if (document.activeElement === firstFocusable || document.activeElement === dialog) {
+	            lastFocusable.focus();
+	            event.preventDefault();
+	          }
+	        } else {
+	          if (document.activeElement === lastFocusable) {
+	            firstFocusable.focus();
+	            event.preventDefault();
+	          }
 	        }
-	      } else {
-	        if (document.activeElement === lastFocusable) {
-	          firstFocusable.focus();
-	          event.preventDefault();
-	        }
-	      }
-	    });
+	      });
+	    }
 	  };
 
 	  var setFocus = function setFocus() {

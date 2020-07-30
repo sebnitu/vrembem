@@ -27,7 +27,8 @@ export const Modal = (options) => {
     focus: true,
     setTabindex: true,
     toggleOverflow: 'body',
-    transition: true
+    transition: true,
+    throttleDelay: 5
   };
 
   api.settings = { ...defaults, ...options };
@@ -39,6 +40,7 @@ export const Modal = (options) => {
     if (api.settings.setTabindex) {
       setTabindex();
     }
+    setInitialState();
     document.addEventListener('click', run, false);
     document.addEventListener('touchend', run, false);
     document.addEventListener('keyup', escape, false);
@@ -116,16 +118,31 @@ export const Modal = (options) => {
     }
   };
 
+  const setInitialState = () => {
+    const modals = document.querySelectorAll(`[data-${api.settings.dataModal}]`);
+    modals.forEach((el) => {
+      if (!hasClass(el, api.settings.stateOpened)) {
+        addClass(el, api.settings.stateClosed);
+      } else {
+        saveTarget(el);
+        setFocus();
+        trapFocus(el);
+      }
+    });
+  };
+
   const openTransition = (modal) => {
     return new Promise((resolve) => {
-      addClass(modal, api.settings.stateOpening);
       removeClass(modal, api.settings.stateClosed);
-      modal.addEventListener('transitionend', function _listener() {
-        addClass(modal, api.settings.stateOpened);
-        removeClass(modal, api.settings.stateOpening);
-        this.removeEventListener('transitionend', _listener, true);
-        resolve();
-      }, true);
+      setTimeout(() => {
+        addClass(modal, api.settings.stateOpening);
+        modal.addEventListener('transitionend', function _listener() {
+          addClass(modal, api.settings.stateOpened);
+          removeClass(modal, api.settings.stateOpening);
+          this.removeEventListener('transitionend', _listener, true);
+          resolve();
+        }, true);
+      }, api.settings.throttleDelay);
     });
   };
 
@@ -156,10 +173,12 @@ export const Modal = (options) => {
       addClass(modal, api.settings.stateClosing);
       removeClass(modal, api.settings.stateOpened);
       modal.addEventListener('transitionend', function _listener() {
-        addClass(modal, api.settings.stateClosed);
         removeClass(modal, api.settings.stateClosing);
-        this.removeEventListener('transitionend', _listener, true);
-        resolve();
+        setTimeout(() => {
+          addClass(modal, api.settings.stateClosed);
+          this.removeEventListener('transitionend', _listener, true);
+          resolve();
+        }, api.settings.throttleDelay);
       }, true);
     });
   };
@@ -207,39 +226,47 @@ export const Modal = (options) => {
     }
   };
 
+  api.index = 0;
+
   const trapFocus = (el) => {
-    const focusableEls = el.querySelectorAll(`
-      a[href]:not([disabled]),
-      button:not([disabled]),
-      textarea:not([disabled]),
-      input[type="text"]:not([disabled]),
-      input[type="radio"]:not([disabled]),
-      input[type="checkbox"]:not([disabled]),
-      select:not([disabled]),
-      [tabindex]:not([tabindex="-1"])
-    `);
-    const firstFocusable = focusableEls[0];
-    const lastFocusable = focusableEls[focusableEls.length - 1];
+    if (api.settings.focus) {
+      const focusableEls = el.querySelectorAll(`
+        a[href]:not([disabled]),
+        button:not([disabled]),
+        textarea:not([disabled]),
+        input[type="text"]:not([disabled]),
+        input[type="radio"]:not([disabled]),
+        input[type="checkbox"]:not([disabled]),
+        select:not([disabled]),
+        [tabindex]:not([tabindex="-1"])
+      `);
+      const firstFocusable = focusableEls[0];
+      const lastFocusable = focusableEls[focusableEls.length - 1];
 
-    el.addEventListener('keydown', (event) => {
-      const isTab = (event.key === 'Tab' || event.keyCode === 9);
-      if (!isTab) return;
+      el.addEventListener('keydown', (event) => {
+        console.log(api.index++);
+        const isTab = (event.key === 'Tab' || event.keyCode === 9);
+        if (!isTab) return;
 
-      if (event.shiftKey) {
-        const dialog = el.querySelector(
-          `${api.settings.selectorDialog}[tabindex="-1"]`
-        );
-        if (document.activeElement === firstFocusable || document.activeElement === dialog) {
-          lastFocusable.focus();
-          event.preventDefault();
+        if (event.shiftKey) {
+          const dialog = el.querySelector(
+            `${api.settings.selectorDialog}[tabindex="-1"]`
+          );
+          if (
+            document.activeElement === firstFocusable ||
+            document.activeElement === dialog
+          ) {
+            lastFocusable.focus();
+            event.preventDefault();
+          }
+        } else {
+          if (document.activeElement === lastFocusable) {
+            firstFocusable.focus();
+            event.preventDefault();
+          }
         }
-      } else {
-        if (document.activeElement === lastFocusable) {
-          firstFocusable.focus();
-          event.preventDefault();
-        }
-      }
-    });
+      });
+    }
   };
 
   const setFocus = () => {
