@@ -807,9 +807,10 @@
 	      if (!hasClass(el, api.settings.stateOpened)) {
 	        addClass(el, api.settings.stateClosed);
 	      } else {
+	        setOverflow('hidden');
 	        saveTarget(el);
 	        setFocus();
-	        trapFocus(el);
+	        initTrapFocus();
 	      }
 	    });
 	  };
@@ -877,7 +878,7 @@
 
 	            case 11:
 	              setFocus();
-	              trapFocus(target);
+	              initTrapFocus();
 	              typeof callback === 'function' && callback();
 	              target.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
 	                bubbles: true
@@ -930,7 +931,7 @@
 	              target = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpened));
 
 	              if (!target) {
-	                _context2.next = 15;
+	                _context2.next = 16;
 	                break;
 	              }
 
@@ -954,12 +955,13 @@
 
 	            case 12:
 	              if (focus) returnFocus();
+	              destroyTrapFocus();
 	              typeof callback === 'function' && callback();
 	              target.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
 	                bubbles: true
 	              }));
 
-	            case 15:
+	            case 16:
 	            case "end":
 	              return _context2.stop();
 	          }
@@ -1004,8 +1006,6 @@
 	          dialog.focus();
 	        }
 	      }
-
-	      api.memoryTarget = null;
 	    }
 	  };
 
@@ -1016,32 +1016,36 @@
 	    }
 	  };
 
-	  api.index = 0;
+	  var focusable = {};
 
-	  var trapFocus = function trapFocus(el) {
-	    if (api.settings.focus) {
-	      var focusableEls = el.querySelectorAll("\n        a[href]:not([disabled]),\n        button:not([disabled]),\n        textarea:not([disabled]),\n        input[type=\"text\"]:not([disabled]),\n        input[type=\"radio\"]:not([disabled]),\n        input[type=\"checkbox\"]:not([disabled]),\n        select:not([disabled]),\n        [tabindex]:not([tabindex=\"-1\"])\n      ");
-	      var firstFocusable = focusableEls[0];
-	      var lastFocusable = focusableEls[focusableEls.length - 1];
-	      el.addEventListener('keydown', function (event) {
-	        console.log(api.index++);
-	        var isTab = event.key === 'Tab' || event.keyCode === 9;
-	        if (!isTab) return;
+	  var initTrapFocus = function initTrapFocus() {
+	    focusable.els = api.memoryTarget.querySelectorAll("\n      a[href]:not([disabled]),\n      button:not([disabled]),\n      textarea:not([disabled]),\n      input[type=\"text\"]:not([disabled]),\n      input[type=\"radio\"]:not([disabled]),\n      input[type=\"checkbox\"]:not([disabled]),\n      select:not([disabled]),\n      [tabindex]:not([tabindex=\"-1\"])\n    ");
+	    focusable.first = focusable.els[0];
+	    focusable.last = focusable.els[focusable.els.length - 1];
+	    api.memoryTarget.addEventListener('keydown', handlerTrapFocus);
+	  };
 
-	        if (event.shiftKey) {
-	          var dialog = el.querySelector("".concat(api.settings.selectorDialog, "[tabindex=\"-1\"]"));
+	  var destroyTrapFocus = function destroyTrapFocus() {
+	    focusable = {};
+	    api.memoryTarget.removeEventListener('keydown', handlerTrapFocus);
+	  };
 
-	          if (document.activeElement === firstFocusable || document.activeElement === dialog) {
-	            lastFocusable.focus();
-	            event.preventDefault();
-	          }
-	        } else {
-	          if (document.activeElement === lastFocusable) {
-	            firstFocusable.focus();
-	            event.preventDefault();
-	          }
-	        }
-	      });
+	  var handlerTrapFocus = function handlerTrapFocus(event) {
+	    var isTab = event.key === 'Tab' || event.keyCode === 9;
+	    if (!isTab) return;
+
+	    if (event.shiftKey) {
+	      var dialog = api.memoryTarget.querySelector("".concat(api.settings.selectorDialog, "[tabindex=\"-1\"]"));
+
+	      if (document.activeElement === focusable.first || document.activeElement === dialog) {
+	        focusable.last.focus();
+	        event.preventDefault();
+	      }
+	    } else {
+	      if (document.activeElement === focusable.last) {
+	        focusable.first.focus();
+	        event.preventDefault();
+	      }
 	    }
 	  };
 

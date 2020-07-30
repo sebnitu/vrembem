@@ -109,9 +109,10 @@ export const Modal = (options) => {
       if (!hasClass(el, api.settings.stateOpened)) {
         addClass(el, api.settings.stateClosed);
       } else {
+        setOverflow('hidden');
         saveTarget(el);
         setFocus();
-        trapFocus(el);
+        initTrapFocus();
       }
     });
   };
@@ -162,7 +163,7 @@ export const Modal = (options) => {
         removeClass(target, api.settings.stateClosed);
       }
       setFocus();
-      trapFocus(target);
+      initTrapFocus();
       typeof callback === 'function' && callback();
       target.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
         bubbles: true
@@ -198,6 +199,7 @@ export const Modal = (options) => {
         removeClass(target, api.settings.stateOpened);
       }
       if (focus) returnFocus();
+      destroyTrapFocus();
       typeof callback === 'function' && callback();
       target.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
         bubbles: true
@@ -243,7 +245,7 @@ export const Modal = (options) => {
           dialog.focus();
         }
       }
-      api.memoryTarget = null;
+      // api.memoryTarget = null;
     }
   };
 
@@ -258,46 +260,49 @@ export const Modal = (options) => {
    * Focus trap functionality
    */
 
-  api.index = 0;
+  let focusable = {};
 
-  const trapFocus = (el) => {
-    if (api.settings.focus) {
-      const focusableEls = el.querySelectorAll(`
-        a[href]:not([disabled]),
-        button:not([disabled]),
-        textarea:not([disabled]),
-        input[type="text"]:not([disabled]),
-        input[type="radio"]:not([disabled]),
-        input[type="checkbox"]:not([disabled]),
-        select:not([disabled]),
-        [tabindex]:not([tabindex="-1"])
-      `);
-      const firstFocusable = focusableEls[0];
-      const lastFocusable = focusableEls[focusableEls.length - 1];
+  const initTrapFocus = () => {
+    focusable.els = api.memoryTarget.querySelectorAll(`
+      a[href]:not([disabled]),
+      button:not([disabled]),
+      textarea:not([disabled]),
+      input[type="text"]:not([disabled]),
+      input[type="radio"]:not([disabled]),
+      input[type="checkbox"]:not([disabled]),
+      select:not([disabled]),
+      [tabindex]:not([tabindex="-1"])
+    `);
+    focusable.first = focusable.els[0];
+    focusable.last = focusable.els[focusable.els.length - 1];
+    api.memoryTarget.addEventListener('keydown', handlerTrapFocus);
+  };
 
-      el.addEventListener('keydown', (event) => {
-        console.log(api.index++);
-        const isTab = (event.key === 'Tab' || event.keyCode === 9);
-        if (!isTab) return;
+  const destroyTrapFocus = () => {
+    focusable = {};
+    api.memoryTarget.removeEventListener('keydown', handlerTrapFocus);
+  };
 
-        if (event.shiftKey) {
-          const dialog = el.querySelector(
-            `${api.settings.selectorDialog}[tabindex="-1"]`
-          );
-          if (
-            document.activeElement === firstFocusable ||
-            document.activeElement === dialog
-          ) {
-            lastFocusable.focus();
-            event.preventDefault();
-          }
-        } else {
-          if (document.activeElement === lastFocusable) {
-            firstFocusable.focus();
-            event.preventDefault();
-          }
-        }
-      });
+  const handlerTrapFocus = (event) => {
+    const isTab = (event.key === 'Tab' || event.keyCode === 9);
+    if (!isTab) return;
+
+    if (event.shiftKey) {
+      const dialog = api.memoryTarget.querySelector(
+        `${api.settings.selectorDialog}[tabindex="-1"]`
+      );
+      if (
+        document.activeElement === focusable.first ||
+        document.activeElement === dialog
+      ) {
+        focusable.last.focus();
+        event.preventDefault();
+      }
+    } else {
+      if (document.activeElement === focusable.last) {
+        focusable.first.focus();
+        event.preventDefault();
+      }
     }
   };
 
