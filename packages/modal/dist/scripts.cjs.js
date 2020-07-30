@@ -725,6 +725,7 @@ var Modal = function Modal(options) {
     dataClose: 'modal-close',
     dataFocus: 'modal-focus',
     dataRequired: 'modal-required',
+    selectorDialog: '.modal__dialog',
     stateOpened: 'is-opened',
     stateOpening: 'is-opening',
     stateClosing: 'is-closing',
@@ -792,7 +793,7 @@ var Modal = function Modal(options) {
   };
 
   var escape = function escape(event) {
-    if (event.keyCode == 27) {
+    if (event.key === 'Escape' || event.keyCode === 27) {
       var target = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpened));
 
       if (target && !target.hasAttribute("data-".concat(api.settings.dataRequired))) {
@@ -837,7 +838,7 @@ var Modal = function Modal(options) {
               target = document.querySelector("[data-".concat(api.settings.dataModal, "=\"").concat(modalKey, "\"]"));
 
               if (!(target && !hasClass(target, api.settings.stateOpened))) {
-                _context.next = 14;
+                _context.next = 15;
                 break;
               }
 
@@ -862,12 +863,13 @@ var Modal = function Modal(options) {
 
             case 11:
               setFocus();
+              trapFocus(target);
               typeof callback === 'function' && callback();
               target.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
                 bubbles: true
               }));
 
-            case 14:
+            case 15:
             case "end":
               return _context.stop();
           }
@@ -951,7 +953,7 @@ var Modal = function Modal(options) {
   }();
 
   var setTabindex = function setTabindex() {
-    var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "]"));
+    var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "] ").concat(api.settings.selectorDialog));
     modals.forEach(function (el) {
       el.setAttribute('tabindex', '-1');
     });
@@ -969,6 +971,30 @@ var Modal = function Modal(options) {
     }
   };
 
+  var trapFocus = function trapFocus(el) {
+    var focusableEls = el.querySelectorAll("\n      a[href]:not([disabled]),\n      button:not([disabled]),\n      textarea:not([disabled]),\n      input[type=\"text\"]:not([disabled]),\n      input[type=\"radio\"]:not([disabled]),\n      input[type=\"checkbox\"]:not([disabled]),\n      select:not([disabled]),\n      [tabindex]:not([tabindex=\"-1\"])\n    ");
+    var firstFocusable = focusableEls[0];
+    var lastFocusable = focusableEls[focusableEls.length - 1];
+    el.addEventListener('keydown', function (event) {
+      var isTab = event.key === 'Tab' || event.keyCode === 9;
+      if (!isTab) return;
+
+      if (event.shiftKey) {
+        var dialog = el.querySelector("".concat(api.settings.selectorDialog, "[tabindex=\"-1\"]"));
+
+        if (document.activeElement === firstFocusable || document.activeElement === dialog) {
+          lastFocusable.focus();
+          event.preventDefault();
+        }
+      } else {
+        if (document.activeElement === lastFocusable) {
+          firstFocusable.focus();
+          event.preventDefault();
+        }
+      }
+    });
+  };
+
   var setFocus = function setFocus() {
     if (api.settings.focus && api.memoryTarget) {
       var innerFocus = api.memoryTarget.querySelector("[data-".concat(api.settings.dataFocus, "]"));
@@ -976,7 +1002,11 @@ var Modal = function Modal(options) {
       if (innerFocus) {
         innerFocus.focus();
       } else {
-        api.memoryTarget.focus();
+        var dialog = api.memoryTarget.querySelector("".concat(api.settings.selectorDialog, "[tabindex=\"-1\"]"));
+
+        if (dialog) {
+          dialog.focus();
+        }
       }
 
       api.memoryTarget = null;

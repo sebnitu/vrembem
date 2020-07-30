@@ -13,6 +13,9 @@ export const Modal = (options) => {
     dataFocus: 'modal-focus',
     dataRequired: 'modal-required',
 
+    // Selector
+    selectorDialog: '.modal__dialog',
+
     // State classes
     stateOpened: 'is-opened',
     stateOpening: 'is-opening',
@@ -90,7 +93,7 @@ export const Modal = (options) => {
   };
 
   const escape = (event) => {
-    if (event.keyCode == 27) {
+    if (event.key === 'Escape' || event.keyCode === 27) {
       const target = document.querySelector(
         `[data-${api.settings.dataModal}].${api.settings.stateOpened}`
       );
@@ -139,7 +142,8 @@ export const Modal = (options) => {
         addClass(target, api.settings.stateOpened);
         removeClass(target, api.settings.stateClosed);
       }
-      setFocus(target);
+      setFocus();
+      trapFocus(target);
       typeof callback === 'function' && callback();
       target.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
         bubbles: true
@@ -185,7 +189,7 @@ export const Modal = (options) => {
    */
 
   const setTabindex = () => {
-    const modals = document.querySelectorAll(`[data-${api.settings.dataModal}]`);
+    const modals = document.querySelectorAll(`[data-${api.settings.dataModal}] ${api.settings.selectorDialog}`);
     modals.forEach((el) => {
       el.setAttribute('tabindex', '-1');
     });
@@ -203,6 +207,41 @@ export const Modal = (options) => {
     }
   };
 
+  const trapFocus = (el) => {
+    const focusableEls = el.querySelectorAll(`
+      a[href]:not([disabled]),
+      button:not([disabled]),
+      textarea:not([disabled]),
+      input[type="text"]:not([disabled]),
+      input[type="radio"]:not([disabled]),
+      input[type="checkbox"]:not([disabled]),
+      select:not([disabled]),
+      [tabindex]:not([tabindex="-1"])
+    `);
+    const firstFocusable = focusableEls[0];
+    const lastFocusable = focusableEls[focusableEls.length - 1];
+
+    el.addEventListener('keydown', (event) => {
+      const isTab = (event.key === 'Tab' || event.keyCode === 9);
+      if (!isTab) return;
+
+      if (event.shiftKey) {
+        const dialog = el.querySelector(
+          `${api.settings.selectorDialog}[tabindex="-1"]`
+        );
+        if (document.activeElement === firstFocusable || document.activeElement === dialog) {
+          lastFocusable.focus();
+          event.preventDefault();
+        }
+      } else {
+        if (document.activeElement === lastFocusable) {
+          firstFocusable.focus();
+          event.preventDefault();
+        }
+      }
+    });
+  };
+
   const setFocus = () => {
     if (api.settings.focus && api.memoryTarget) {
       const innerFocus = api.memoryTarget.querySelector(
@@ -211,7 +250,12 @@ export const Modal = (options) => {
       if (innerFocus) {
         innerFocus.focus();
       } else {
-        api.memoryTarget.focus();
+        const dialog = api.memoryTarget.querySelector(
+          `${api.settings.selectorDialog}[tabindex="-1"]`
+        );
+        if (dialog) {
+          dialog.focus();
+        }
       }
       api.memoryTarget = null;
     }
