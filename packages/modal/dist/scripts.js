@@ -991,6 +991,31 @@
 	    }
 	  };
 
+	  var setFocus = function setFocus() {
+	    if (api.settings.focus && api.memoryTarget) {
+	      var innerFocus = api.memoryTarget.querySelector("[data-".concat(api.settings.dataFocus, "]"));
+
+	      if (innerFocus) {
+	        innerFocus.focus();
+	      } else {
+	        var dialog = api.memoryTarget.querySelector("".concat(api.settings.selectorDialog, "[tabindex=\"-1\"]"));
+
+	        if (dialog) {
+	          dialog.focus();
+	        }
+	      }
+
+	      api.memoryTarget = null;
+	    }
+	  };
+
+	  var returnFocus = function returnFocus() {
+	    if (api.settings.focus && api.memoryTrigger) {
+	      api.memoryTrigger.focus();
+	      api.memoryTrigger = null;
+	    }
+	  };
+
 	  api.index = 0;
 
 	  var trapFocus = function trapFocus(el) {
@@ -1017,31 +1042,6 @@
 	          }
 	        }
 	      });
-	    }
-	  };
-
-	  var setFocus = function setFocus() {
-	    if (api.settings.focus && api.memoryTarget) {
-	      var innerFocus = api.memoryTarget.querySelector("[data-".concat(api.settings.dataFocus, "]"));
-
-	      if (innerFocus) {
-	        innerFocus.focus();
-	      } else {
-	        var dialog = api.memoryTarget.querySelector("".concat(api.settings.selectorDialog, "[tabindex=\"-1\"]"));
-
-	        if (dialog) {
-	          dialog.focus();
-	        }
-	      }
-
-	      api.memoryTarget = null;
-	    }
-	  };
-
-	  var returnFocus = function returnFocus() {
-	    if (api.settings.focus && api.memoryTrigger) {
-	      api.memoryTrigger.focus();
-	      api.memoryTrigger = null;
 	    }
 	  };
 

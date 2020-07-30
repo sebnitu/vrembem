@@ -129,6 +129,10 @@ export const Modal = (options) => {
     }
   };
 
+  /**
+   * Transition functionality
+   */
+
   const openTransition = (modal) => {
     return new Promise((resolve) => {
       removeClass(modal, api.settings.stateClosed);
@@ -224,6 +228,36 @@ export const Modal = (options) => {
     }
   };
 
+  const setFocus = () => {
+    if (api.settings.focus && api.memoryTarget) {
+      const innerFocus = api.memoryTarget.querySelector(
+        `[data-${api.settings.dataFocus}]`
+      );
+      if (innerFocus) {
+        innerFocus.focus();
+      } else {
+        const dialog = api.memoryTarget.querySelector(
+          `${api.settings.selectorDialog}[tabindex="-1"]`
+        );
+        if (dialog) {
+          dialog.focus();
+        }
+      }
+      api.memoryTarget = null;
+    }
+  };
+
+  const returnFocus = () => {
+    if (api.settings.focus && api.memoryTrigger) {
+      api.memoryTrigger.focus();
+      api.memoryTrigger = null;
+    }
+  };
+
+  /**
+   * Focus trap functionality
+   */
+
   api.index = 0;
 
   const trapFocus = (el) => {
@@ -267,31 +301,9 @@ export const Modal = (options) => {
     }
   };
 
-  const setFocus = () => {
-    if (api.settings.focus && api.memoryTarget) {
-      const innerFocus = api.memoryTarget.querySelector(
-        `[data-${api.settings.dataFocus}]`
-      );
-      if (innerFocus) {
-        innerFocus.focus();
-      } else {
-        const dialog = api.memoryTarget.querySelector(
-          `${api.settings.selectorDialog}[tabindex="-1"]`
-        );
-        if (dialog) {
-          dialog.focus();
-        }
-      }
-      api.memoryTarget = null;
-    }
-  };
-
-  const returnFocus = () => {
-    if (api.settings.focus && api.memoryTrigger) {
-      api.memoryTrigger.focus();
-      api.memoryTrigger = null;
-    }
-  };
+  /**
+   * Init and return
+   */
 
   if (api.settings.autoInit) api.init();
   return api;
