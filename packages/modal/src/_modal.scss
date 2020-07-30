@@ -28,6 +28,11 @@ $_e: var.$prefix-element;
   opacity: 0;
 }
 
+.#{$_b}modal:focus,
+.#{$_b}modal *:focus {
+  box-shadow: 0 0 2px 6px pink;
+}
+
 .#{$_b}modal.is-opening,
 .#{$_b}modal.is-opened,
 .#{$_b}modal.is-closing {

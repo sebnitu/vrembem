@@ -730,6 +730,7 @@
 	    stateClosed: 'is-closed',
 	    customEventPrefix: 'modal:',
 	    focus: true,
+	    setTabindex: true,
 	    toggleOverflow: 'body',
 	    transition: true
 	  };
@@ -738,6 +739,10 @@
 	  api.memoryTarget = null;
 
 	  api.init = function () {
+	    if (api.settings.setTabindex) {
+	      setTabindex();
+	    }
+
 	    document.addEventListener('click', run, false);
 	    document.addEventListener('touchend', run, false);
 	    document.addEventListener('keyup', escape, false);
@@ -757,6 +762,10 @@
 
 	  api.close = function (returnFocus, callback) {
 	    close(returnFocus, callback);
+	  };
+
+	  api.setTabindex = function () {
+	    setTabindex();
 	  };
 
 	  var run = function run(event) {
@@ -939,6 +948,13 @@
 	      return _ref2.apply(this, arguments);
 	    };
 	  }();
+
+	  var setTabindex = function setTabindex() {
+	    var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "]"));
+	    modals.forEach(function (el) {
+	      el.setAttribute('tabindex', '-1');
+	    });
+	  };
 
 	  var saveTarget = function saveTarget(target) {
 	    if (api.settings.focus) {

@@ -22,6 +22,7 @@ export const Modal = (options) => {
     // Feature toggles
     customEventPrefix: 'modal:',
     focus: true,
+    setTabindex: true,
     toggleOverflow: 'body',
     transition: true
   };
@@ -32,6 +33,9 @@ export const Modal = (options) => {
   api.memoryTarget = null;
 
   api.init = () => {
+    if (api.settings.setTabindex) {
+      setTabindex();
+    }
     document.addEventListener('click', run, false);
     document.addEventListener('touchend', run, false);
     document.addEventListener('keyup', escape, false);
@@ -51,6 +55,10 @@ export const Modal = (options) => {
 
   api.close = (returnFocus, callback) => {
     close(returnFocus, callback);
+  };
+
+  api.setTabindex = () => {
+    setTabindex();
   };
 
   const run = (event) => {
@@ -175,6 +183,13 @@ export const Modal = (options) => {
   /**
    * Focus functionality
    */
+
+  const setTabindex = () => {
+    const modals = document.querySelectorAll(`[data-${api.settings.dataModal}]`);
+    modals.forEach((el) => {
+      el.setAttribute('tabindex', '-1');
+    });
+  };
 
   const saveTarget = (target) => {
     if (api.settings.focus) {

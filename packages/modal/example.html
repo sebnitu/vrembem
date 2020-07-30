@@ -16,20 +16,50 @@
   <hr class="sep margin-vert-lg">
 
   <!-- Modal Triggers -->
-  <p class="margin-top-md">
-    <button data-modal-open="modal-default" class="link">Modal Default</button>
-    <button data-modal-open="modal-focus" class="link">Modal Focus</button>
-    <button data-modal-open="modal-required" class="link">Modal Required</button>
-  </p>
-
-  <p class="margin-top-md">
-    <button class="link api-test-open">API Open</button>
-  </p>
+  <ul class="list margin-top-md">
+    <li>
+      <button data-modal-open="modal-focus-trap" class="link">Modal Focus Trap</button>
+    </li>
+    <li>
+      <button data-modal-open="modal-default" class="link">Modal Default</button>
+    </li>
+    <li>
+      <button data-modal-open="modal-focus" class="link">Modal Focus</button>
+    </li>
+    <li>
+      <button data-modal-open="modal-required" class="link">Modal Required</button>
+    </li>
+    <li>
+      <button class="link api-test-open">API Open</button>
+    </li>
+  </ul>
 
 </div>
 
+<!-- Modal focus trap -->
+<div data-modal="modal-focus-trap" class="modal">
+  <div class="modal__dialog padding background-white radius spacing">
+    <div class="flex flex-justify-between">
+      <p>Modal Default</p>
+      <button data-modal-close class="link">Close</button>
+    </div>
+    <p>
+      <input class="input" type="text">
+    </p>
+    <p>
+      <input class="input" type="text">
+    </p>
+    <p>
+      <input class="input" type="text">
+    </p>
+    <p>
+      <button data-modal-close class="link">Close</button>
+    </p>
+  </div>
+</div>
+
 <!-- Modal Default -->
-<div data-modal="modal-default" class="modal" tabindex="-1">
+<div data-modal="modal-default" class="modal">
   <div class="modal__dialog padding background-white radius spacing">
     <div class="flex flex-justify-between">
       <p>Modal Default</p>
@@ -43,7 +73,7 @@
 </div>
 
 <!-- Modal Focus -->
-<div data-modal="modal-focus" class="modal" tabindex="-1">
+<div data-modal="modal-focus" class="modal">
   <div class="modal__dialog padding background-white radius">
     <div class="flex flex-justify-between">
       <p>Modal Focus</p>
@@ -53,7 +83,7 @@
 </div>
 
 <!-- Modal Required -->
-<div data-modal="modal-required" data-modal-required class="modal" tabindex="-1">
+<div data-modal="modal-required" data-modal-required class="modal">
   <div class="modal__dialog padding background-white radius">
     <div class="flex flex-justify-between">
       <p>Modal Required</p>
