@@ -28,7 +28,7 @@ export const Modal = (options) => {
     setTabindex: true,
     toggleOverflow: 'body',
     transition: true,
-    throttleDelay: 5
+    throttleDelay: 10
   };
 
   api.settings = { ...defaults, ...options };
@@ -152,7 +152,7 @@ export const Modal = (options) => {
     const target = document.querySelector(
       `[data-${api.settings.dataModal}="${modalKey}"]`
     );
-    if (target && !hasClass(target, api.settings.stateOpened)) {
+    if (target && hasClass(target, api.settings.stateClosed)) {
       setOverflow('hidden');
       saveTarget(target);
       if (api.settings.transition) {

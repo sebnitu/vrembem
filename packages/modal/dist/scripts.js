@@ -734,7 +734,7 @@
 	    setTabindex: true,
 	    toggleOverflow: 'body',
 	    transition: true,
-	    throttleDelay: 5
+	    throttleDelay: 10
 	  };
 	  api.settings = _objectSpread(_objectSpread({}, defaults), options);
 	  api.memoryTrigger = null;
@@ -851,7 +851,7 @@
 	            case 0:
 	              target = document.querySelector("[data-".concat(api.settings.dataModal, "=\"").concat(modalKey, "\"]"));
 
-	              if (!(target && !hasClass(target, api.settings.stateOpened))) {
+	              if (!(target && hasClass(target, api.settings.stateClosed))) {
 	                _context.next = 15;
 	                break;
 	              }
