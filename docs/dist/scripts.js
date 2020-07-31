@@ -1,5 +1,8 @@
-(function () {
+(function (throttle, isEmpty) {
   'use strict';
+
+  throttle = throttle && Object.prototype.hasOwnProperty.call(throttle, 'default') ? throttle['default'] : throttle;
+  isEmpty = isEmpty && Object.prototype.hasOwnProperty.call(isEmpty, 'default') ? isEmpty['default'] : isEmpty;
 
   var addClass = function addClass(el) {
     for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -1189,35 +1192,53 @@
     var defaults = {
       autoInit: false,
       dataModal: 'modal',
+      dataDialog: 'modal-dialog',
       dataOpen: 'modal-open',
       dataClose: 'modal-close',
       dataFocus: 'modal-focus',
       dataRequired: 'modal-required',
+      selectorMain: null,
       stateOpened: 'is-opened',
       stateOpening: 'is-opening',
       stateClosing: 'is-closing',
       stateClosed: 'is-closed',
       customEventPrefix: 'modal:',
-      focus: true,
+      moveModals: {
+        selector: null,
+        location: null
+      },
+      setTabindex: true,
       toggleOverflow: 'body',
       transition: true
     };
     api.settings = _objectSpread$3(_objectSpread$3({}, defaults), options);
-    api.memoryTrigger = null;
-    api.memoryTarget = null;
+    api.memory = {};
+    api.init = asyncToGenerator(regenerator.mark(function _callee() {
+      return regenerator.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              if (api.settings.setTabindex) {
+                setTabindex();
+              }
 
-    api.init = function () {
-      document.addEventListener('click', run, false);
-      document.addEventListener('touchend', run, false);
-      document.addEventListener('keyup', escape, false);
-    };
+              moveModals();
+              setInitialState();
+              document.addEventListener('click', handler, false);
+              document.addEventListener('keyup', handlerEscape, false);
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
 
     api.destroy = function () {
-      api.memoryTrigger = null;
-      api.memoryTarget = null;
-      document.removeEventListener('click', run, false);
-      document.removeEventListener('touchend', run, false);
-      document.removeEventListener('keyup', escape, false);
+      api.memory = {};
+      document.removeEventListener('click', handler, false);
+      document.removeEventListener('keyup', handlerEscape, false);
     };
 
     api.open = function (modalKey, callback) {
@@ -1228,7 +1249,19 @@
       close(returnFocus, callback);
     };
 
-    var run = function run(event) {
+    api.setInitialState = function () {
+      setInitialState();
+    };
+
+    api.setTabindex = function () {
+      setTabindex();
+    };
+
+    api.moveModals = function (selector, location) {
+      moveModals(selector, location);
+    };
+
+    var handler = function handler(event) {
       var trigger = event.target.closest("[data-".concat(api.settings.dataOpen, "]"));
 
       if (trigger) {
@@ -1250,12 +1283,51 @@
       }
     };
 
-    var escape = function escape(event) {
-      if (event.keyCode == 27) {
+    var handlerEscape = function handlerEscape(event) {
+      if (event.key === 'Escape' || event.keyCode === 27) {
         var target = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpened));
 
         if (target && !target.hasAttribute("data-".concat(api.settings.dataRequired))) {
           close();
+        }
+      }
+    };
+
+    var setInitialState = function setInitialState() {
+      var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "]"));
+      modals.forEach(function (el) {
+        removeClass(el, api.settings.stateOpened, api.settings.stateOpening, api.settings.stateClosing);
+        addClass(el, api.settings.stateClosed);
+      });
+    };
+
+    var setTabindex = function setTabindex() {
+      var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "] [data-").concat(api.settings.dataDialog, "]"));
+      modals.forEach(function (el) {
+        el.setAttribute('tabindex', '-1');
+      });
+    };
+
+    var moveModals = function moveModals() {
+      var selector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : api.settings.moveModals.selector;
+      var location = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : api.settings.moveModals.location;
+
+      if (selector) {
+        var el = document.querySelector(selector);
+
+        if (el) {
+          var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "]"));
+          modals.forEach(function (modal) {
+            if (location === 'after') {
+              el.after(modal);
+            } else if (location === 'before') {
+              el.before(modal);
+            } else if (location === 'append') {
+              el.append(modal);
+            } else if (location === 'prepend') {
+              el.prepend(modal);
+            }
+          });
         }
       }
     };
@@ -1275,8 +1347,8 @@
 
     var openTransition = function openTransition(modal) {
       return new Promise(function (resolve) {
-        addClass(modal, api.settings.stateOpening);
         removeClass(modal, api.settings.stateClosed);
+        addClass(modal, api.settings.stateOpening);
         modal.addEventListener('transitionend', function _listener() {
           addClass(modal, api.settings.stateOpened);
           removeClass(modal, api.settings.stateOpening);
@@ -1287,16 +1359,16 @@
     };
 
     var open = function () {
-      var _ref = asyncToGenerator(regenerator.mark(function _callee(modalKey, callback) {
+      var _ref2 = asyncToGenerator(regenerator.mark(function _callee2(modalKey, callback) {
         var target;
-        return regenerator.wrap(function _callee$(_context) {
+        return regenerator.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
                 target = document.querySelector("[data-".concat(api.settings.dataModal, "=\"").concat(modalKey, "\"]"));
 
-                if (!(target && !hasClass(target, api.settings.stateOpened))) {
-                  _context.next = 14;
+                if (!(target && hasClass(target, api.settings.stateClosed))) {
+                  _context2.next = 16;
                   break;
                 }
 
@@ -1304,15 +1376,15 @@
                 saveTarget(target);
 
                 if (!api.settings.transition) {
-                  _context.next = 9;
+                  _context2.next = 9;
                   break;
                 }
 
-                _context.next = 7;
+                _context2.next = 7;
                 return openTransition(target);
 
               case 7:
-                _context.next = 11;
+                _context2.next = 11;
                 break;
 
               case 9:
@@ -1321,21 +1393,23 @@
 
               case 11:
                 setFocus();
+                initTrapFocus();
+                hideContent();
                 typeof callback === 'function' && callback();
                 target.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
                   bubbles: true
                 }));
 
-              case 14:
+              case 16:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee);
+        }, _callee2);
       }));
 
       return function open(_x, _x2) {
-        return _ref.apply(this, arguments);
+        return _ref2.apply(this, arguments);
       };
     }();
 
@@ -1344,8 +1418,8 @@
         addClass(modal, api.settings.stateClosing);
         removeClass(modal, api.settings.stateOpened);
         modal.addEventListener('transitionend', function _listener() {
-          addClass(modal, api.settings.stateClosed);
           removeClass(modal, api.settings.stateClosing);
+          addClass(modal, api.settings.stateClosed);
           this.removeEventListener('transitionend', _listener, true);
           resolve();
         }, true);
@@ -1353,92 +1427,154 @@
     };
 
     var close = function () {
-      var _ref2 = asyncToGenerator(regenerator.mark(function _callee2() {
+      var _ref3 = asyncToGenerator(regenerator.mark(function _callee3() {
         var focus,
             callback,
             target,
-            _args2 = arguments;
-        return regenerator.wrap(function _callee2$(_context2) {
+            _args3 = arguments;
+        return regenerator.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
-                focus = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : true;
-                callback = _args2.length > 1 ? _args2[1] : undefined;
+                focus = _args3.length > 0 && _args3[0] !== undefined ? _args3[0] : true;
+                callback = _args3.length > 1 ? _args3[1] : undefined;
                 target = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpened));
 
                 if (!target) {
-                  _context2.next = 15;
+                  _context3.next = 17;
                   break;
                 }
 
+                showContent();
                 setOverflow();
 
                 if (!api.settings.transition) {
-                  _context2.next = 10;
+                  _context3.next = 11;
                   break;
                 }
 
-                _context2.next = 8;
+                _context3.next = 9;
                 return closeTransition(target);
 
-              case 8:
-                _context2.next = 12;
+              case 9:
+                _context3.next = 13;
                 break;
 
-              case 10:
+              case 11:
                 addClass(target, api.settings.stateClosed);
                 removeClass(target, api.settings.stateOpened);
 
-              case 12:
+              case 13:
                 if (focus) returnFocus();
+                destroyTrapFocus();
                 typeof callback === 'function' && callback();
                 target.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
                   bubbles: true
                 }));
 
-              case 15:
+              case 17:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2);
+        }, _callee3);
       }));
 
       return function close() {
-        return _ref2.apply(this, arguments);
+        return _ref3.apply(this, arguments);
       };
     }();
 
     var saveTarget = function saveTarget(target) {
-      if (api.settings.focus) {
-        api.memoryTarget = target;
-      }
+      api.memory.target = target;
     };
 
     var saveTrigger = function saveTrigger(trigger) {
-      if (api.settings.focus) {
-        api.memoryTrigger = trigger;
-      }
+      api.memory.trigger = trigger;
     };
 
     var setFocus = function setFocus() {
-      if (api.settings.focus && api.memoryTarget) {
-        var innerFocus = api.memoryTarget.querySelector("[data-".concat(api.settings.dataFocus, "]"));
+      var innerFocus = api.memory.target.querySelector("[data-".concat(api.settings.dataFocus, "]"));
 
-        if (innerFocus) {
-          innerFocus.focus();
-        } else {
-          api.memoryTarget.focus();
+      if (innerFocus) {
+        innerFocus.focus();
+      } else {
+        var dialog = api.memory.target.querySelector("[data-".concat(api.settings.dataDialog, "][tabindex=\"-1\"]"));
+
+        if (dialog) {
+          dialog.focus();
         }
-
-        api.memoryTarget = null;
       }
     };
 
     var returnFocus = function returnFocus() {
-      if (api.settings.focus && api.memoryTrigger) {
-        api.memoryTrigger.focus();
-        api.memoryTrigger = null;
+      if (api.memory.trigger) {
+        api.memory.trigger.focus();
+        api.memory.trigger = null;
+      }
+    };
+
+    var initTrapFocus = function initTrapFocus() {
+      api.memory.focusable = api.memory.target.querySelectorAll("\n      a[href]:not([disabled]),\n      button:not([disabled]),\n      textarea:not([disabled]),\n      input[type=\"text\"]:not([disabled]),\n      input[type=\"radio\"]:not([disabled]),\n      input[type=\"checkbox\"]:not([disabled]),\n      select:not([disabled]),\n      [tabindex]:not([tabindex=\"-1\"])\n    ");
+
+      if (api.memory.focusable.length) {
+        api.memory.focusableFirst = api.memory.focusable[0];
+        api.memory.focusableLast = api.memory.focusable[api.memory.focusable.length - 1];
+        api.memory.target.addEventListener('keydown', handlerTrapFocus);
+      } else {
+        api.memory.target.addEventListener('keydown', handlerSickyFocus);
+      }
+    };
+
+    var destroyTrapFocus = function destroyTrapFocus() {
+      api.memory.focusable = null;
+      api.memory.focusableFirst = null;
+      api.memory.focusableLast = null;
+      api.memory.target.removeEventListener('keydown', handlerTrapFocus);
+      api.memory.target.removeEventListener('keydown', handlerSickyFocus);
+    };
+
+    var handlerTrapFocus = function handlerTrapFocus(event) {
+      var isTab = event.key === 'Tab' || event.keyCode === 9;
+      if (!isTab) return;
+
+      if (event.shiftKey) {
+        var dialog = api.memory.target.querySelector("[data-".concat(api.settings.dataDialog, "][tabindex=\"-1\"]"));
+
+        if (document.activeElement === api.memory.focusableFirst || document.activeElement === dialog) {
+          api.memory.focusableLast.focus();
+          event.preventDefault();
+        }
+      } else {
+        if (document.activeElement === api.memory.focusableLast) {
+          api.memory.focusableFirst.focus();
+          event.preventDefault();
+        }
+      }
+    };
+
+    var handlerSickyFocus = function handlerSickyFocus(event) {
+      var isTab = event.key === 'Tab' || event.keyCode === 9;
+      if (isTab) event.preventDefault();
+    };
+
+    var hideContent = function hideContent() {
+      if (api.settings.selectorMain) {
+        var content = document.querySelectorAll(api.settings.selectorMain);
+        content.forEach(function (el) {
+          el.inert = true;
+          el.setAttribute('aria-hidden', true);
+        });
+      }
+    };
+
+    var showContent = function showContent() {
+      if (api.settings.selectorMain) {
+        var content = document.querySelectorAll(api.settings.selectorMain);
+        content.forEach(function (el) {
+          el.inert = null;
+          el.removeAttribute('aria-hidden');
+        });
       }
     };
 
@@ -1446,167 +1582,233 @@
     return api;
   };
 
+  var defaults = {
+    autoInit: false,
+    dataScroll: 'scroll-stash',
+    dataAnchor: 'scroll-stash-anchor',
+    selectorAnchor: '',
+    selectorAnchorParent: '',
+    selectorTopElem: '',
+    selectorBotElem: '',
+    alignment: 'nearest',
+    behavior: 'auto',
+    anchorPadding: 16,
+    saveKey: 'ScrollStash',
+    throttleDelay: 100,
+    customEventPrefix: 'scroll-stash:'
+  };
+
+  var anchorPositionStart = function anchorPositionStart(el, anchor, settings) {
+    var pos = settings.anchorPadding;
+
+    if (settings.selectorTopElem) {
+      var topElem = el.querySelector(settings.selectorTopElem);
+      if (topElem) pos += topElem.offsetHeight;
+    }
+
+    return anchor.offsetTop - pos;
+  };
+  var anchorPositionEnd = function anchorPositionEnd(el, anchor, settings) {
+    var pos = settings.anchorPadding;
+
+    if (settings.selectorBotElem) {
+      var botElem = el.querySelector(settings.selectorBotElem);
+      if (botElem) pos += botElem.offsetHeight;
+    }
+
+    return anchor.offsetTop - (el.offsetHeight - (anchor.offsetHeight + pos));
+  };
+  var anchorPositionCenter = function anchorPositionCenter(el, anchor, settings) {
+    var posTop = anchorPositionStart(el, anchor, settings);
+    var posBot = anchorPositionEnd(el, anchor, settings);
+    return posBot + (posTop - posBot) / 2;
+  };
+  var anchorPositionNearest = function anchorPositionNearest(el, anchor, settings) {
+    var posTop = anchorPositionStart(el, anchor, settings);
+    var posBot = anchorPositionEnd(el, anchor, settings);
+    if (el.scrollTop > posTop) return posTop;
+    if (el.scrollTop < posBot) return posBot;
+    return false;
+  };
+  var anchorInView = function anchorInView(el, anchor, settings) {
+    var posTop = anchorPositionStart(el, anchor, settings);
+    var posBot = anchorPositionEnd(el, anchor, settings);
+    if (el.scrollTop > posTop || el.scrollTop < posBot) return false;
+    return true;
+  };
+  var anchorPositionGet = function anchorPositionGet(el, anchor, settings) {
+    var inView = anchorInView(el, anchor, settings);
+
+    switch (settings.alignment) {
+      case 'start':
+        return inView ? false : anchorPositionStart(el, anchor, settings);
+
+      case 'center':
+        return inView ? false : anchorPositionCenter(el, anchor, settings);
+
+      case 'end':
+        return inView ? false : anchorPositionEnd(el, anchor, settings);
+
+      case 'nearest':
+        return anchorPositionNearest(el, anchor, settings);
+
+      default:
+        return false;
+    }
+  };
+
+  var anchorGet = function anchorGet(el, settings) {
+    var dataAnchor = el.dataset[camelCase(settings.dataAnchor)];
+
+    if (dataAnchor == 'false' || dataAnchor == 'ignore') {
+      return null;
+    }
+
+    if (dataAnchor && el.querySelector(dataAnchor)) {
+      return el.querySelector(dataAnchor);
+    }
+
+    var selectorAnchor = settings.selectorAnchor ? el.querySelector(settings.selectorAnchor) : null;
+
+    if (selectorAnchor && settings.selectorAnchorParent) {
+      var parentAnchor = selectorAnchor.closest(settings.selectorAnchorParent);
+      if (parentAnchor) return parentAnchor;
+    }
+
+    return selectorAnchor ? selectorAnchor : null;
+  };
+  var anchorShow = function anchorShow(el, behavior, settings) {
+    var anchor = anchorGet(el, settings);
+
+    if (anchor) {
+      var position = anchorPositionGet(el, anchor, settings);
+
+      if (position) {
+        behavior = behavior ? behavior : settings.behavior;
+        el.scroll({
+          top: position,
+          behavior: behavior
+        });
+        el.dispatchEvent(new CustomEvent(settings.customEventPrefix + 'anchor', {
+          bubbles: true,
+          detail: {
+            scrolled: {
+              value: position,
+              behavior: behavior
+            },
+            key: el.dataset[camelCase(settings.dataScroll)]
+          }
+        }));
+        return {
+          scrolled: {
+            value: position,
+            behavior: behavior
+          },
+          msg: 'Anchor was scrolled into view'
+        };
+      } else {
+        return {
+          scrolled: false,
+          msg: 'Anchor is already in view'
+        };
+      }
+    } else {
+      return {
+        scrolled: false,
+        msg: 'Anchor was not found'
+      };
+    }
+  };
+  var anchor = {
+    get: anchorGet,
+    show: anchorShow
+  };
+
+  var stateSave = function stateSave(settings) {
+    var state = {};
+    var scrolls = document.querySelectorAll("[data-".concat(settings.dataScroll, "]"));
+    scrolls.forEach(function (el) {
+      var id = el.dataset[camelCase(settings.dataScroll)];
+      if (id) state[id] = el.scrollTop;
+    });
+    localStorage.setItem(settings.saveKey, JSON.stringify(state));
+    document.dispatchEvent(new CustomEvent(settings.customEventPrefix + 'saved', {
+      bubbles: true,
+      detail: {
+        state: state
+      }
+    }));
+    return state;
+  };
+  var stateSet = function stateSet(settings) {
+    if (localStorage.getItem(settings.saveKey)) {
+      var state = JSON.parse(localStorage.getItem(settings.saveKey));
+      Object.keys(state).forEach(function (key) {
+        var item = document.querySelector("[data-".concat(settings.dataScroll, "=\"").concat(key, "\"]"));
+        if (item) item.scrollTop = state[key];
+      });
+      document.dispatchEvent(new CustomEvent(settings.customEventPrefix + 'applied', {
+        bubbles: true,
+        detail: {
+          state: state
+        }
+      }));
+      return state;
+    } else {
+      return {};
+    }
+  };
+  var state = {
+    save: stateSave,
+    set: stateSet
+  };
+
   function ownKeys$4(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
   function _objectSpread$4(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$4(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$4(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
   var ScrollStash = (function (options) {
     var api = {};
-    var defaults = {
-      autoInit: false,
-      dataScroll: 'scroll-stash',
-      dataAnchor: 'scroll-stash-anchor',
-      selectorAnchor: '',
-      selectorAnchorParent: '',
-      selectorTopElem: '',
-      selectorBotElem: '',
-      behavior: 'auto',
-      anchorPadding: 16,
-      saveKey: 'ScrollStash',
-      throttleDelay: 250,
-      customEventPrefix: 'scroll-stash:'
-    };
     api.settings = _objectSpread$4(_objectSpread$4({}, defaults), options);
-    api.scrolls = [];
     api.state = {};
-    api.ticking = false;
+    api.scrolls = [];
+
+    var handler = function handler() {
+      return api.state = state.save(api.settings);
+    };
+
+    var throttleRef = throttle(handler, api.settings.throttleDelay, {
+      leading: false
+    });
 
     api.init = function () {
+      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      if (options) api.settings = _objectSpread$4(_objectSpread$4({}, api.settings), options);
+      api.state = state.set(api.settings);
+      api.state = isEmpty(api.state) ? state.save(api.settings) : api.state;
       api.scrolls = document.querySelectorAll("[data-".concat(api.settings.dataScroll, "]"));
-      setScrollPosition();
       api.scrolls.forEach(function (item) {
-        if (api.settings.selectorAnchor) {
-          showAnchor(item);
-        }
-
-        item.addEventListener('scroll', throttle, false);
+        item.addEventListener('scroll', throttleRef, false);
+        anchor.show(item, false, api.settings);
       });
     };
 
     api.destroy = function () {
       api.scrolls.forEach(function (item) {
-        item.removeEventListener('scroll', throttle, false);
+        item.removeEventListener('scroll', throttleRef, false);
       });
-      api.scrolls = [];
       api.state = {};
+      api.scrolls = [];
       localStorage.removeItem(api.settings.saveKey);
     };
 
-    api.showAnchor = function (el) {
-      var behavior = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : api.settings.behavior;
-
-      if (api.settings.selectorAnchor) {
-        showAnchor(el, behavior);
+    api.anchor = {
+      get: function get(el) {
+        return anchor.get(el, api.settings);
+      },
+      show: function show(el, behavior) {
+        return anchor.show(el, behavior, api.settings);
       }
     };
-
-    var throttle = function throttle() {
-      if (!api.ticking) {
-        setTimeout(run, api.settings.throttleDelay);
-        api.ticking = true;
-      }
-    };
-
-    var run = function run() {
-      saveScrollPosition();
-      api.ticking = false;
-    };
-
-    var saveScrollPosition = function saveScrollPosition() {
-      var scrolls = document.querySelectorAll("[data-".concat(api.settings.dataScroll, "]"));
-      scrolls.forEach(function (el) {
-        var id = el.dataset[camelCase(api.settings.dataScroll)];
-        if (id) api.state[id] = el.scrollTop;
-      });
-      localStorage.setItem(api.settings.saveKey, JSON.stringify(api.state));
-      var customEvent = new CustomEvent(api.settings.customEventPrefix + 'saved', {
-        bubbles: true,
-        detail: api.state
-      });
-      document.dispatchEvent(customEvent);
-    };
-
-    var setScrollPosition = function setScrollPosition() {
-      if (localStorage.getItem(api.settings.saveKey)) {
-        api.state = JSON.parse(localStorage.getItem(api.settings.saveKey));
-        Object.keys(api.state).forEach(function (key) {
-          var item = document.querySelector("[data-".concat(api.settings.dataScroll, "=\"").concat(key, "\"]"));
-          if (item) item.scrollTop = api.state[key];
-        });
-        var customEvent = new CustomEvent(api.settings.customEventPrefix + 'applied', {
-          bubbles: true,
-          detail: api.state
-        });
-        document.dispatchEvent(customEvent);
-      } else {
-        saveScrollPosition();
-      }
-    };
-
-    var showAnchor = function showAnchor(el) {
-      var behavior = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : api.settings.behavior;
-      var anchor = el.querySelector(api.settings.selectorAnchor);
-
-      if (anchor && api.settings.selectorAnchorParent) {
-        var anchorParent = anchor.closest(api.settings.selectorAnchorParent);
-        anchor = anchorParent ? anchorParent : anchor;
-      }
-
-      var dataAnchor = el.dataset[camelCase(api.settings.dataAnchor)];
-
-      if (dataAnchor == 'false' || dataAnchor == 'ignore') {
-        return false;
-      } else if (dataAnchor) {
-        anchor = el.querySelector(dataAnchor) ? el.querySelector(dataAnchor) : anchor;
-      }
-
-      if (anchor) {
-        var adjustTop = api.settings.anchorPadding;
-        var adjustBot = api.settings.anchorPadding;
-
-        if (api.settings.selectorTopElem) {
-          var topElem = el.querySelector(api.settings.selectorTopElem);
-
-          if (topElem) {
-            adjustTop += topElem.offsetHeight;
-          }
-        }
-
-        if (api.settings.selectorBotElem) {
-          var botElem = el.querySelector(api.settings.selectorBotElem);
-
-          if (botElem) {
-            adjustBot += botElem.offsetHeight;
-          }
-        }
-
-        var posTop = anchor.offsetTop - adjustTop;
-        var posBot = anchor.offsetTop - (el.offsetHeight - (anchor.offsetHeight + adjustBot));
-
-        if (el.scrollTop > posTop) {
-          el.scroll({
-            top: posTop,
-            behavior: behavior
-          });
-        } else if (el.scrollTop < posBot) {
-          el.scroll({
-            top: posBot,
-            behavior: behavior
-          });
-        } else {
-          return true;
-        }
-
-        var customEvent = new CustomEvent(api.settings.customEventPrefix + 'anchor', {
-          bubbles: true,
-          detail: {
-            key: el.dataset[camelCase(api.settings.dataScroll)],
-            position: el.scrollTop
-          }
-        });
-        el.dispatchEvent(customEvent);
-      }
-    };
-
     if (api.settings.autoInit) api.init();
     return api;
   });
@@ -3428,4 +3630,4 @@
     scrollStash.showAnchor(el, 'smooth');
   });
 
-}());
+}(throttle, isEmpty));
