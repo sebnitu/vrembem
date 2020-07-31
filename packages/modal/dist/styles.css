@@ -4,6 +4,7 @@
   top: 0;
   right: 0;
   display: flex;
+  visibility: hidden;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -23,13 +24,13 @@
 }
 
 .modal.is-closed {
-  display: none;
+  visibility: hidden;
 }
 
 .modal.is-opening,
 .modal.is-opened,
 .modal.is-closing {
-  display: flex;
+  visibility: visible;
   width: 100%;
   height: 100%;
   padding: 1em;

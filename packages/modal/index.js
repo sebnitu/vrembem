@@ -21,7 +21,6 @@ export const Modal = (options) => {
     stateClosed: 'is-closed',
 
     // Feature toggles
-    closedDelay: 10,
     customEventPrefix: 'modal:',
     setTabindex: true,
     toggleOverflow: 'body',
@@ -32,10 +31,10 @@ export const Modal = (options) => {
   api.memory = {};
 
   api.init = () => {
+    setInitialState();
     if (api.settings.setTabindex) {
       setTabindex();
     }
-    setInitialState();
     document.addEventListener('click', handler, false);
     document.addEventListener('keyup', handlerEscape, false);
   };
@@ -131,15 +130,13 @@ export const Modal = (options) => {
   const openTransition = (modal) => {
     return new Promise((resolve) => {
       removeClass(modal, api.settings.stateClosed);
-      setTimeout(() => {
-        addClass(modal, api.settings.stateOpening);
-        modal.addEventListener('transitionend', function _listener() {
-          addClass(modal, api.settings.stateOpened);
-          removeClass(modal, api.settings.stateOpening);
-          this.removeEventListener('transitionend', _listener, true);
-          resolve();
-        }, true);
-      }, api.settings.closedDelay);
+      addClass(modal, api.settings.stateOpening);
+      modal.addEventListener('transitionend', function _listener() {
+        addClass(modal, api.settings.stateOpened);
+        removeClass(modal, api.settings.stateOpening);
+        this.removeEventListener('transitionend', _listener, true);
+        resolve();
+      }, true);
     });
   };
 
@@ -171,11 +168,9 @@ export const Modal = (options) => {
       removeClass(modal, api.settings.stateOpened);
       modal.addEventListener('transitionend', function _listener() {
         removeClass(modal, api.settings.stateClosing);
-        setTimeout(() => {
-          addClass(modal, api.settings.stateClosed);
-          this.removeEventListener('transitionend', _listener, true);
-          resolve();
-        }, api.settings.closedDelay);
+        addClass(modal, api.settings.stateClosed);
+        this.removeEventListener('transitionend', _listener, true);
+        resolve();
       }, true);
     });
   };

@@ -729,7 +729,6 @@
 	    stateOpening: 'is-opening',
 	    stateClosing: 'is-closing',
 	    stateClosed: 'is-closed',
-	    closedDelay: 10,
 	    customEventPrefix: 'modal:',
 	    setTabindex: true,
 	    toggleOverflow: 'body',
@@ -739,11 +738,12 @@
 	  api.memory = {};
 
 	  api.init = function () {
+	    setInitialState();
+
 	    if (api.settings.setTabindex) {
 	      setTabindex();
 	    }
 
-	    setInitialState();
 	    document.addEventListener('click', handler, false);
 	    document.addEventListener('keyup', handlerEscape, false);
 	  };
@@ -828,15 +828,13 @@
 	  var openTransition = function openTransition(modal) {
 	    return new Promise(function (resolve) {
 	      removeClass(modal, api.settings.stateClosed);
-	      setTimeout(function () {
-	        addClass(modal, api.settings.stateOpening);
-	        modal.addEventListener('transitionend', function _listener() {
-	          addClass(modal, api.settings.stateOpened);
-	          removeClass(modal, api.settings.stateOpening);
-	          this.removeEventListener('transitionend', _listener, true);
-	          resolve();
-	        }, true);
-	      }, api.settings.closedDelay);
+	      addClass(modal, api.settings.stateOpening);
+	      modal.addEventListener('transitionend', function _listener() {
+	        addClass(modal, api.settings.stateOpened);
+	        removeClass(modal, api.settings.stateOpening);
+	        this.removeEventListener('transitionend', _listener, true);
+	        resolve();
+	      }, true);
 	    });
 	  };
 
@@ -899,16 +897,10 @@
 	      addClass(modal, api.settings.stateClosing);
 	      removeClass(modal, api.settings.stateOpened);
 	      modal.addEventListener('transitionend', function _listener() {
-	        var _this = this;
-
 	        removeClass(modal, api.settings.stateClosing);
-	        setTimeout(function () {
-	          addClass(modal, api.settings.stateClosed);
-
-	          _this.removeEventListener('transitionend', _listener, true);
-
-	          resolve();
-	        }, api.settings.closedDelay);
+	        addClass(modal, api.settings.stateClosed);
+	        this.removeEventListener('transitionend', _listener, true);
+	        resolve();
 	      }, true);
 	    });
 	  };
