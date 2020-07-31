@@ -737,9 +737,7 @@ var Modal = function Modal(options) {
     transition: true
   };
   api.settings = _objectSpread(_objectSpread({}, defaults), options);
-  api.memoryTrigger = null;
-  api.memoryTarget = null;
-  var focusable = {};
+  api.memory = {};
 
   api.init = function () {
     if (api.settings.setTabindex) {
@@ -752,8 +750,7 @@ var Modal = function Modal(options) {
   };
 
   api.destroy = function () {
-    api.memoryTrigger = null;
-    api.memoryTarget = null;
+    api.memory = {};
     document.removeEventListener('click', handler, false);
     document.removeEventListener('keyup', handlerEscape, false);
   };
@@ -983,21 +980,21 @@ var Modal = function Modal(options) {
   };
 
   var saveTarget = function saveTarget(target) {
-    api.memoryTarget = target;
+    api.memory.target = target;
   };
 
   var saveTrigger = function saveTrigger(trigger) {
-    api.memoryTrigger = trigger;
+    api.memory.trigger = trigger;
   };
 
   var setFocus = function setFocus() {
-    if (api.memoryTarget) {
-      var innerFocus = api.memoryTarget.querySelector("[data-".concat(api.settings.dataFocus, "]"));
+    if (api.memory.target) {
+      var innerFocus = api.memory.target.querySelector("[data-".concat(api.settings.dataFocus, "]"));
 
       if (innerFocus) {
         innerFocus.focus();
       } else {
-        var dialog = api.memoryTarget.querySelector("".concat(api.settings.selectorDialog, "[tabindex=\"-1\"]"));
+        var dialog = api.memory.target.querySelector("".concat(api.settings.selectorDialog, "[tabindex=\"-1\"]"));
 
         if (dialog) {
           dialog.focus();
@@ -1007,22 +1004,29 @@ var Modal = function Modal(options) {
   };
 
   var returnFocus = function returnFocus() {
-    if (api.memoryTrigger) {
-      api.memoryTrigger.focus();
-      api.memoryTrigger = null;
+    if (api.memory.trigger) {
+      api.memory.trigger.focus();
     }
   };
 
   var initTrapFocus = function initTrapFocus() {
-    focusable.els = api.memoryTarget.querySelectorAll("\n      a[href]:not([disabled]),\n      button:not([disabled]),\n      textarea:not([disabled]),\n      input[type=\"text\"]:not([disabled]),\n      input[type=\"radio\"]:not([disabled]),\n      input[type=\"checkbox\"]:not([disabled]),\n      select:not([disabled]),\n      [tabindex]:not([tabindex=\"-1\"])\n    ");
-    focusable.first = focusable.els[0];
-    focusable.last = focusable.els[focusable.els.length - 1];
-    api.memoryTarget.addEventListener('keydown', handlerTrapFocus);
+    api.memory.focusableEls = api.memory.target.querySelectorAll("\n      a[href]:not([disabled]),\n      button:not([disabled]),\n      textarea:not([disabled]),\n      input[type=\"text\"]:not([disabled]),\n      input[type=\"radio\"]:not([disabled]),\n      input[type=\"checkbox\"]:not([disabled]),\n      select:not([disabled]),\n      [tabindex]:not([tabindex=\"-1\"])\n    ");
+
+    if (api.memory.focusableEls.length) {
+      api.memory.focusableFirst = api.memory.focusableEls[0];
+      api.memory.focusableLast = api.memory.focusableEls[api.memory.focusableEls.length - 1];
+      api.memory.target.addEventListener('keydown', handlerTrapFocus);
+    } else {
+      api.memory.target.addEventListener('keydown', handlerSickyFocus);
+    }
   };
 
   var destroyTrapFocus = function destroyTrapFocus() {
-    focusable = {};
-    api.memoryTarget.removeEventListener('keydown', handlerTrapFocus);
+    api.memory.focusableEls = null;
+    api.memory.focusableFirst = null;
+    api.memory.focusableLast = null;
+    api.memory.target.removeEventListener('keydown', handlerTrapFocus);
+    api.memory.target.removeEventListener('keydown', handlerSickyFocus);
   };
 
   var handlerTrapFocus = function handlerTrapFocus(event) {
@@ -1030,18 +1034,23 @@ var Modal = function Modal(options) {
     if (!isTab) return;
 
     if (event.shiftKey) {
-      var dialog = api.memoryTarget.querySelector("".concat(api.settings.selectorDialog, "[tabindex=\"-1\"]"));
+      var dialog = api.memory.target.querySelector("".concat(api.settings.selectorDialog, "[tabindex=\"-1\"]"));
 
-      if (document.activeElement === focusable.first || document.activeElement === dialog) {
-        focusable.last.focus();
+      if (document.activeElement === api.memory.focusableFirst || document.activeElement === dialog) {
+        api.memory.focusableLast.focus();
         event.preventDefault();
       }
     } else {
-      if (document.activeElement === focusable.last) {
-        focusable.first.focus();
+      if (document.activeElement === api.memory.focusableLast) {
+        api.memory.focusableFirst.focus();
         event.preventDefault();
       }
     }
+  };
+
+  var handlerSickyFocus = function handlerSickyFocus(event) {
+    var isTab = event.key === 'Tab' || event.keyCode === 9;
+    if (isTab) event.preventDefault();
   };
 
   if (api.settings.autoInit) api.init();

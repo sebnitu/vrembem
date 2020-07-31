@@ -18,6 +18,9 @@
   <!-- Modal Triggers -->
   <ul class="list margin-top-md">
     <li>
+      <button data-modal-open="modal-empty" class="link">Modal Empty</button>
+    </li>
+    <li>
       <button data-modal-open="modal-focus-trap" class="link">Modal Focus Trap</button>
     </li>
     <li>
@@ -37,8 +40,15 @@
 </div>
 
 <!-- Modal focus trap -->
+<div data-modal="modal-empty" class="modal">
+  <div data-modal-dialog class="modal__dialog padding background-white radius spacing">
+    <p>Nothing to focus here, this modal is empty...</p>
+  </div>
+</div>
+
+<!-- Modal focus trap -->
 <div data-modal="modal-focus-trap" class="modal">
-  <div data-modal-dialog aria-modal="true" class="modal__dialog padding background-white radius spacing">
+  <div data-modal-dialog class="modal__dialog padding background-white radius spacing">
     <div class="flex flex-justify-between">
       <p>Modal Default</p>
       <button data-modal-close class="link">Close</button>
@@ -61,7 +71,7 @@
 
 <!-- Modal Default -->
 <div data-modal="modal-default" class="modal">
-  <div class="modal__dialog padding background-white radius spacing">
+  <div data-modal-dialog class="modal__dialog padding background-white radius spacing">
     <div class="flex flex-justify-between">
       <p>Modal Default</p>
       <button data-modal-close class="link">Close</button>
@@ -75,7 +85,7 @@
 
 <!-- Modal Focus -->
 <div data-modal="modal-focus" class="modal">
-  <div class="modal__dialog padding background-white radius">
+  <div data-modal-dialog class="modal__dialog padding background-white radius">
     <div class="flex flex-justify-between">
       <p>Modal Focus</p>
       <button data-modal-close data-modal-focus class="link">Close</button>
@@ -85,7 +95,7 @@
 
 <!-- Modal Required -->
 <div data-modal="modal-required" data-modal-required class="modal">
-  <div class="modal__dialog padding background-white radius">
+  <div data-modal-dialog class="modal__dialog padding background-white radius">
     <div class="flex flex-justify-between">
       <p>Modal Required</p>
       <button data-modal-close data-modal-focus class="link">Close</button>

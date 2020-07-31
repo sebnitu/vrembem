@@ -31,10 +31,7 @@ export const Modal = (options) => {
   };
 
   api.settings = { ...defaults, ...options };
-  api.memoryTrigger = null;
-  api.memoryTarget = null;
-
-  let focusable = {};
+  api.memory = {};
 
   api.init = () => {
     if (api.settings.setTabindex) {
@@ -46,8 +43,7 @@ export const Modal = (options) => {
   };
 
   api.destroy = () => {
-    api.memoryTrigger = null;
-    api.memoryTarget = null;
+    api.memory = {};
     document.removeEventListener('click', handler, false);
     document.removeEventListener('keyup', handlerEscape, false);
   };
@@ -219,36 +215,34 @@ export const Modal = (options) => {
   };
 
   const saveTarget = (target) => {
-    api.memoryTarget = target;
+    api.memory.target = target;
   };
 
   const saveTrigger = (trigger) => {
-    api.memoryTrigger = trigger;
+    api.memory.trigger = trigger;
   };
 
   const setFocus = () => {
-    if (api.memoryTarget) {
-      const innerFocus = api.memoryTarget.querySelector(
+    if (api.memory.target) {
+      const innerFocus = api.memory.target.querySelector(
         `[data-${api.settings.dataFocus}]`
       );
       if (innerFocus) {
         innerFocus.focus();
       } else {
-        const dialog = api.memoryTarget.querySelector(
+        const dialog = api.memory.target.querySelector(
           `${api.settings.selectorDialog}[tabindex="-1"]`
         );
         if (dialog) {
           dialog.focus();
         }
       }
-      // api.memoryTarget = null;
     }
   };
 
   const returnFocus = () => {
-    if (api.memoryTrigger) {
-      api.memoryTrigger.focus();
-      api.memoryTrigger = null;
+    if (api.memory.trigger) {
+      api.memory.trigger.focus();
     }
   };
 
@@ -257,7 +251,7 @@ export const Modal = (options) => {
    */
 
   const initTrapFocus = () => {
-    focusable.els = api.memoryTarget.querySelectorAll(`
+    api.memory.focusableEls = api.memory.target.querySelectorAll(`
       a[href]:not([disabled]),
       button:not([disabled]),
       textarea:not([disabled]),
@@ -267,14 +261,21 @@ export const Modal = (options) => {
       select:not([disabled]),
       [tabindex]:not([tabindex="-1"])
     `);
-    focusable.first = focusable.els[0];
-    focusable.last = focusable.els[focusable.els.length - 1];
-    api.memoryTarget.addEventListener('keydown', handlerTrapFocus);
+    if (api.memory.focusableEls.length) {
+      api.memory.focusableFirst = api.memory.focusableEls[0];
+      api.memory.focusableLast = api.memory.focusableEls[api.memory.focusableEls.length - 1];
+      api.memory.target.addEventListener('keydown', handlerTrapFocus);
+    } else {
+      api.memory.target.addEventListener('keydown', handlerSickyFocus);
+    }
   };
 
   const destroyTrapFocus = () => {
-    focusable = {};
-    api.memoryTarget.removeEventListener('keydown', handlerTrapFocus);
+    api.memory.focusableEls = null;
+    api.memory.focusableFirst = null;
+    api.memory.focusableLast = null;
+    api.memory.target.removeEventListener('keydown', handlerTrapFocus);
+    api.memory.target.removeEventListener('keydown', handlerSickyFocus);
   };
 
   const handlerTrapFocus = (event) => {
@@ -282,22 +283,27 @@ export const Modal = (options) => {
     if (!isTab) return;
 
     if (event.shiftKey) {
-      const dialog = api.memoryTarget.querySelector(
+      const dialog = api.memory.target.querySelector(
         `${api.settings.selectorDialog}[tabindex="-1"]`
       );
       if (
-        document.activeElement === focusable.first ||
+        document.activeElement === api.memory.focusableFirst ||
         document.activeElement === dialog
       ) {
-        focusable.last.focus();
+        api.memory.focusableLast.focus();
         event.preventDefault();
       }
     } else {
-      if (document.activeElement === focusable.last) {
-        focusable.first.focus();
+      if (document.activeElement === api.memory.focusableLast) {
+        api.memory.focusableFirst.focus();
         event.preventDefault();
       }
     }
+  };
+
+  const handlerSickyFocus = (event) => {
+    const isTab = (event.key === 'Tab' || event.keyCode === 9);
+    if (isTab) event.preventDefault();
   };
 
   /**
