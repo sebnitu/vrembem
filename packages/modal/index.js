@@ -25,6 +25,10 @@ export const Modal = (options) => {
 
     // Feature toggles
     customEventPrefix: 'modal:',
+    moveModals: {
+      selector: null,
+      location: 'after'
+    },
     setTabindex: true,
     toggleOverflow: 'body',
     transition: true,
@@ -33,11 +37,14 @@ export const Modal = (options) => {
   api.settings = { ...defaults, ...options };
   api.memory = {};
 
-  api.init = () => {
-    setInitialState();
+  api.init = async () => {
     if (api.settings.setTabindex) {
       setTabindex();
     }
+    if (api.settings.moveModals.selector) {
+      moveModals();
+    }
+    setInitialState();
     document.addEventListener('click', handler, false);
     document.addEventListener('keyup', handlerEscape, false);
   };
@@ -56,8 +63,16 @@ export const Modal = (options) => {
     close(returnFocus, callback);
   };
 
+  api.setInitialState = () => {
+    setInitialState();
+  };
+
   api.setTabindex = () => {
     setTabindex();
+  };
+
+  api.moveModals = (selector, location) => {
+    moveModals(selector, location);
   };
 
   const handler = (event) => {
@@ -102,15 +117,45 @@ export const Modal = (options) => {
   const setInitialState = () => {
     const modals = document.querySelectorAll(`[data-${api.settings.dataModal}]`);
     modals.forEach((el) => {
-      if (!hasClass(el, api.settings.stateOpened)) {
-        addClass(el, api.settings.stateClosed);
-      } else {
-        setOverflow('hidden');
-        saveTarget(el);
-        setFocus();
-        initTrapFocus();
-      }
+      removeClass(el,
+        api.settings.stateOpened,
+        api.settings.stateOpening,
+        api.settings.stateClosing
+      );
+      addClass(el, api.settings.stateClosed);
     });
+  };
+
+  const setTabindex = () => {
+    const modals = document.querySelectorAll(
+      `[data-${api.settings.dataModal}] [data-${api.settings.dataDialog}]`
+    );
+    modals.forEach((el) => {
+      el.setAttribute('tabindex', '-1');
+    });
+  };
+
+  const moveModals = (
+    selector = api.settings.moveModals.selector,
+    location = api.settings.moveModals.location
+  ) => {
+    if (selector) {
+      const el = document.querySelector(selector);
+      if (el) {
+        const modals = document.querySelectorAll(`[data-${api.settings.dataModal}]`);
+        modals.forEach((modal) => {
+          if (location === 'after') {
+            el.after(modal);
+          } else if (location === 'before') {
+            el.before(modal);
+          } else if (location === 'append') {
+            el.append(modal);
+          } else if (location === 'prepend') {
+            el.prepend(modal);
+          }
+        });
+      }
+    }
   };
 
   const setOverflow = (state) => {
@@ -204,15 +249,6 @@ export const Modal = (options) => {
   /**
    * Focus functionality
    */
-
-  const setTabindex = () => {
-    const modals = document.querySelectorAll(
-      `[data-${api.settings.dataModal}] [data-${api.settings.dataDialog}]`
-    );
-    modals.forEach((el) => {
-      el.setAttribute('tabindex', '-1');
-    });
-  };
 
   const saveTarget = (target) => {
     api.memory.target = target;

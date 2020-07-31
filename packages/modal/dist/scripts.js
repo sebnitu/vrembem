@@ -731,23 +731,40 @@
 	    stateClosing: 'is-closing',
 	    stateClosed: 'is-closed',
 	    customEventPrefix: 'modal:',
+	    moveModals: {
+	      selector: null,
+	      location: 'after'
+	    },
 	    setTabindex: true,
 	    toggleOverflow: 'body',
 	    transition: true
 	  };
 	  api.settings = _objectSpread(_objectSpread({}, defaults), options);
 	  api.memory = {};
+	  api.init = asyncToGenerator(regenerator.mark(function _callee() {
+	    return regenerator.wrap(function _callee$(_context) {
+	      while (1) {
+	        switch (_context.prev = _context.next) {
+	          case 0:
+	            if (api.settings.setTabindex) {
+	              setTabindex();
+	            }
 
-	  api.init = function () {
-	    setInitialState();
+	            if (api.settings.moveModals.selector) {
+	              moveModals();
+	            }
 
-	    if (api.settings.setTabindex) {
-	      setTabindex();
-	    }
+	            setInitialState();
+	            document.addEventListener('click', handler, false);
+	            document.addEventListener('keyup', handlerEscape, false);
 
-	    document.addEventListener('click', handler, false);
-	    document.addEventListener('keyup', handlerEscape, false);
-	  };
+	          case 5:
+	          case "end":
+	            return _context.stop();
+	        }
+	      }
+	    }, _callee);
+	  }));
 
 	  api.destroy = function () {
 	    api.memory = {};
@@ -763,8 +780,16 @@
 	    close(returnFocus, callback);
 	  };
 
+	  api.setInitialState = function () {
+	    setInitialState();
+	  };
+
 	  api.setTabindex = function () {
 	    setTabindex();
+	  };
+
+	  api.moveModals = function (selector, location) {
+	    moveModals(selector, location);
 	  };
 
 	  var handler = function handler(event) {
@@ -802,15 +827,40 @@
 	  var setInitialState = function setInitialState() {
 	    var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "]"));
 	    modals.forEach(function (el) {
-	      if (!hasClass(el, api.settings.stateOpened)) {
-	        addClass(el, api.settings.stateClosed);
-	      } else {
-	        setOverflow('hidden');
-	        saveTarget(el);
-	        setFocus();
-	        initTrapFocus();
-	      }
+	      removeClass(el, api.settings.stateOpened, api.settings.stateOpening, api.settings.stateClosing);
+	      addClass(el, api.settings.stateClosed);
 	    });
+	  };
+
+	  var setTabindex = function setTabindex() {
+	    var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "] [data-").concat(api.settings.dataDialog, "]"));
+	    modals.forEach(function (el) {
+	      el.setAttribute('tabindex', '-1');
+	    });
+	  };
+
+	  var moveModals = function moveModals() {
+	    var selector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : api.settings.moveModals.selector;
+	    var location = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : api.settings.moveModals.location;
+
+	    if (selector) {
+	      var el = document.querySelector(selector);
+
+	      if (el) {
+	        var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "]"));
+	        modals.forEach(function (modal) {
+	          if (location === 'after') {
+	            el.after(modal);
+	          } else if (location === 'before') {
+	            el.before(modal);
+	          } else if (location === 'append') {
+	            el.append(modal);
+	          } else if (location === 'prepend') {
+	            el.prepend(modal);
+	          }
+	        });
+	      }
+	    }
 	  };
 
 	  var setOverflow = function setOverflow(state) {
@@ -840,16 +890,16 @@
 	  };
 
 	  var open = function () {
-	    var _ref = asyncToGenerator(regenerator.mark(function _callee(modalKey, callback) {
+	    var _ref2 = asyncToGenerator(regenerator.mark(function _callee2(modalKey, callback) {
 	      var target;
-	      return regenerator.wrap(function _callee$(_context) {
+	      return regenerator.wrap(function _callee2$(_context2) {
 	        while (1) {
-	          switch (_context.prev = _context.next) {
+	          switch (_context2.prev = _context2.next) {
 	            case 0:
 	              target = document.querySelector("[data-".concat(api.settings.dataModal, "=\"").concat(modalKey, "\"]"));
 
 	              if (!(target && hasClass(target, api.settings.stateClosed))) {
-	                _context.next = 16;
+	                _context2.next = 16;
 	                break;
 	              }
 
@@ -857,15 +907,15 @@
 	              saveTarget(target);
 
 	              if (!api.settings.transition) {
-	                _context.next = 9;
+	                _context2.next = 9;
 	                break;
 	              }
 
-	              _context.next = 7;
+	              _context2.next = 7;
 	              return openTransition(target);
 
 	            case 7:
-	              _context.next = 11;
+	              _context2.next = 11;
 	              break;
 
 	            case 9:
@@ -883,14 +933,14 @@
 
 	            case 16:
 	            case "end":
-	              return _context.stop();
+	              return _context2.stop();
 	          }
 	        }
-	      }, _callee);
+	      }, _callee2);
 	    }));
 
 	    return function open(_x, _x2) {
-	      return _ref.apply(this, arguments);
+	      return _ref2.apply(this, arguments);
 	    };
 	  }();
 
@@ -908,21 +958,21 @@
 	  };
 
 	  var close = function () {
-	    var _ref2 = asyncToGenerator(regenerator.mark(function _callee2() {
+	    var _ref3 = asyncToGenerator(regenerator.mark(function _callee3() {
 	      var focus,
 	          callback,
 	          target,
-	          _args2 = arguments;
-	      return regenerator.wrap(function _callee2$(_context2) {
+	          _args3 = arguments;
+	      return regenerator.wrap(function _callee3$(_context3) {
 	        while (1) {
-	          switch (_context2.prev = _context2.next) {
+	          switch (_context3.prev = _context3.next) {
 	            case 0:
-	              focus = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : true;
-	              callback = _args2.length > 1 ? _args2[1] : undefined;
+	              focus = _args3.length > 0 && _args3[0] !== undefined ? _args3[0] : true;
+	              callback = _args3.length > 1 ? _args3[1] : undefined;
 	              target = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpened));
 
 	              if (!target) {
-	                _context2.next = 17;
+	                _context3.next = 17;
 	                break;
 	              }
 
@@ -930,15 +980,15 @@
 	              setOverflow();
 
 	              if (!api.settings.transition) {
-	                _context2.next = 11;
+	                _context3.next = 11;
 	                break;
 	              }
 
-	              _context2.next = 9;
+	              _context3.next = 9;
 	              return closeTransition(target);
 
 	            case 9:
-	              _context2.next = 13;
+	              _context3.next = 13;
 	              break;
 
 	            case 11:
@@ -955,23 +1005,16 @@
 
 	            case 17:
 	            case "end":
-	              return _context2.stop();
+	              return _context3.stop();
 	          }
 	        }
-	      }, _callee2);
+	      }, _callee3);
 	    }));
 
 	    return function close() {
-	      return _ref2.apply(this, arguments);
+	      return _ref3.apply(this, arguments);
 	    };
 	  }();
-
-	  var setTabindex = function setTabindex() {
-	    var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "] [data-").concat(api.settings.dataDialog, "]"));
-	    modals.forEach(function (el) {
-	      el.setAttribute('tabindex', '-1');
-	    });
-	  };
 
 	  var saveTarget = function saveTarget(target) {
 	    api.memory.target = target;
