@@ -22,11 +22,6 @@
   opacity: 0;
 }
 
-.modal:focus,
-.modal *:focus {
-  box-shadow: 0 0 2px 6px pink;
-}
-
 .modal.is-closed {
   display: none;
 }
@@ -74,6 +69,11 @@
 }
 .modal.is-closing .modal__dialog {
   transform: translateY(-5em);
+}
+
+.modal:focus,
+.modal *:focus {
+  box-shadow: 0 0 2px 6px pink;
 }
 
 .modal_full .modal__dialog {

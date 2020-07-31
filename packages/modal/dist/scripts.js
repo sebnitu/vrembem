@@ -729,16 +729,16 @@
 	    stateOpening: 'is-opening',
 	    stateClosing: 'is-closing',
 	    stateClosed: 'is-closed',
+	    closedDelay: 10,
 	    customEventPrefix: 'modal:',
-	    focus: true,
 	    setTabindex: true,
 	    toggleOverflow: 'body',
-	    transition: true,
-	    throttleDelay: 10
+	    transition: true
 	  };
 	  api.settings = _objectSpread(_objectSpread({}, defaults), options);
 	  api.memoryTrigger = null;
 	  api.memoryTarget = null;
+	  var focusable = {};
 
 	  api.init = function () {
 	    if (api.settings.setTabindex) {
@@ -839,7 +839,7 @@
 	          this.removeEventListener('transitionend', _listener, true);
 	          resolve();
 	        }, true);
-	      }, api.settings.throttleDelay);
+	      }, api.settings.closedDelay);
 	    });
 	  };
 
@@ -911,7 +911,7 @@
 	          _this.removeEventListener('transitionend', _listener, true);
 
 	          resolve();
-	        }, api.settings.throttleDelay);
+	        }, api.settings.closedDelay);
 	      }, true);
 	    });
 	  };
@@ -982,19 +982,15 @@
 	  };
 
 	  var saveTarget = function saveTarget(target) {
-	    if (api.settings.focus) {
-	      api.memoryTarget = target;
-	    }
+	    api.memoryTarget = target;
 	  };
 
 	  var saveTrigger = function saveTrigger(trigger) {
-	    if (api.settings.focus) {
-	      api.memoryTrigger = trigger;
-	    }
+	    api.memoryTrigger = trigger;
 	  };
 
 	  var setFocus = function setFocus() {
-	    if (api.settings.focus && api.memoryTarget) {
+	    if (api.memoryTarget) {
 	      var innerFocus = api.memoryTarget.querySelector("[data-".concat(api.settings.dataFocus, "]"));
 
 	      if (innerFocus) {
@@ -1010,13 +1006,11 @@
 	  };
 
 	  var returnFocus = function returnFocus() {
-	    if (api.settings.focus && api.memoryTrigger) {
+	    if (api.memoryTrigger) {
 	      api.memoryTrigger.focus();
 	      api.memoryTrigger = null;
 	    }
 	  };
-
-	  var focusable = {};
 
 	  var initTrapFocus = function initTrapFocus() {
 	    focusable.els = api.memoryTarget.querySelectorAll("\n      a[href]:not([disabled]),\n      button:not([disabled]),\n      textarea:not([disabled]),\n      input[type=\"text\"]:not([disabled]),\n      input[type=\"radio\"]:not([disabled]),\n      input[type=\"checkbox\"]:not([disabled]),\n      select:not([disabled]),\n      [tabindex]:not([tabindex=\"-1\"])\n    ");

@@ -2,7 +2,7 @@ import { addClass, camelCase, hasClass, removeClass } from '@vrembem/core';
 
 export const Modal = (options) => {
 
-  let api = {};
+  const api = {};
   const defaults = {
     autoInit: false,
 
@@ -23,18 +23,18 @@ export const Modal = (options) => {
     stateClosed: 'is-closed',
 
     // Feature toggles
+    closedDelay: 10,
     customEventPrefix: 'modal:',
-    focus: true,
     setTabindex: true,
     toggleOverflow: 'body',
     transition: true,
-    throttleDelay: 10
   };
 
   api.settings = { ...defaults, ...options };
-
   api.memoryTrigger = null;
   api.memoryTarget = null;
+
+  let focusable = {};
 
   api.init = () => {
     if (api.settings.setTabindex) {
@@ -145,7 +145,7 @@ export const Modal = (options) => {
           this.removeEventListener('transitionend', _listener, true);
           resolve();
         }, true);
-      }, api.settings.throttleDelay);
+      }, api.settings.closedDelay);
     });
   };
 
@@ -181,7 +181,7 @@ export const Modal = (options) => {
           addClass(modal, api.settings.stateClosed);
           this.removeEventListener('transitionend', _listener, true);
           resolve();
-        }, api.settings.throttleDelay);
+        }, api.settings.closedDelay);
       }, true);
     });
   };
@@ -219,19 +219,15 @@ export const Modal = (options) => {
   };
 
   const saveTarget = (target) => {
-    if (api.settings.focus) {
-      api.memoryTarget = target;
-    }
+    api.memoryTarget = target;
   };
 
   const saveTrigger = (trigger) => {
-    if (api.settings.focus) {
-      api.memoryTrigger = trigger;
-    }
+    api.memoryTrigger = trigger;
   };
 
   const setFocus = () => {
-    if (api.settings.focus && api.memoryTarget) {
+    if (api.memoryTarget) {
       const innerFocus = api.memoryTarget.querySelector(
         `[data-${api.settings.dataFocus}]`
       );
@@ -250,7 +246,7 @@ export const Modal = (options) => {
   };
 
   const returnFocus = () => {
-    if (api.settings.focus && api.memoryTrigger) {
+    if (api.memoryTrigger) {
       api.memoryTrigger.focus();
       api.memoryTrigger = null;
     }
@@ -259,8 +255,6 @@ export const Modal = (options) => {
   /**
    * Focus trap functionality
    */
-
-  let focusable = {};
 
   const initTrapFocus = () => {
     focusable.els = api.memoryTarget.querySelectorAll(`

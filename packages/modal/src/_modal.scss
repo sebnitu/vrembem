@@ -28,13 +28,6 @@ $_e: var.$prefix-element;
   opacity: 0;
 }
 
-// TODO: Remove
-.#{$_b}modal:focus,
-.#{$_b}modal *:focus {
-  box-shadow: 0 0 2px 6px pink;
-}
-// END
-
 .#{$_b}modal.is-closed {
   display: none;
 }
@@ -88,3 +81,10 @@ $_e: var.$prefix-element;
     transform: translateY(-(var.$travel));
   }
 }
+
+// TODO: Remove
+.#{$_b}modal:focus,
+.#{$_b}modal *:focus {
+  box-shadow: 0 0 2px 6px pink;
+}
+// END
