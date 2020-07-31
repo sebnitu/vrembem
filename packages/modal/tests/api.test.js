@@ -7,9 +7,22 @@ const ev = new Event('transitionend');
 
 const markup = `
   <button data-modal-open="modal-default">Modal Default</button>
-  <div data-modal="modal-default" class="modal is-closed">
-    <div class="modal__dialog">
+  <div data-modal="modal-default" class="modal">
+    <div data-modal-dialog class="modal__dialog">
       <button data-modal-close>Close</button>
+    </div>
+  </div>
+`;
+
+const markupState = `
+  <div data-modal="modal-one" class="modal">
+    <div data-modal-dialog class="modal__dialog">
+      ...
+    </div>
+  </div>
+  <div data-modal="modal-two" class="modal is-opened is-closed is-opening is-closing">
+    <div data-modal-dialog class="modal__dialog">
+      ...
     </div>
   </div>
 `;
@@ -109,4 +122,33 @@ test('should properly destroy drawer instance on api call', () => {
   expect(Object.keys(modal.memory).length).toBe(0);
   expect(el).toHaveClass('modal is-closed');
   expect(el.classList.length).toBe(2);
+});
+
+test('should set tabindex attribute with api call', () => {
+  document.body.innerHTML = markup;
+  modal = new Modal({
+    autoInit: true,
+    setTabindex: false
+  });
+  const dialog = document.querySelector('[data-modal-dialog]');
+  expect(dialog).not.toHaveAttribute('tabindex');
+  modal.setTabindex();
+  expect(dialog).toHaveAttribute('tabindex');
+});
+
+test('should set initial state on api call', () => {
+  document.body.innerHTML = markupState;
+  modal = new Modal();
+  const modalOne = document.querySelector('[data-modal="modal-one"]');
+  const modalTwo = document.querySelector('[data-modal="modal-two"]');
+  expect(modalOne).not.toHaveClass('is-closed');
+  expect(modalOne.classList.length).toBe(1);
+  expect(modalTwo).toHaveClass('modal is-opened is-closed is-opening is-closing');
+  expect(modalTwo.classList.length).toBe(5);
+
+  modal.setInitialState();
+  expect(modalOne).toHaveClass('modal is-closed');
+  expect(modalOne.classList.length).toBe(2);
+  expect(modalTwo).toHaveClass('modal is-closed');
+  expect(modalTwo.classList.length).toBe(2);
 });

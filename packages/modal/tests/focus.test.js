@@ -125,6 +125,16 @@ test('should properly setup a focus trap when modal is open', async () => {
   userEvent.tab({ shift: true });
   expect(modal.memory.focusableLast).toHaveFocus();
 
+  userEvent.tab({ shift: true });
+  userEvent.tab({ shift: true });
+  userEvent.tab({ shift: true });
+  expect(modal.memory.focusableLast).toHaveFocus();
+
+  userEvent.tab();
+  userEvent.tab();
+  userEvent.tab();
+  expect(modal.memory.focusableLast).toHaveFocus();
+
   expect(modal.memory.focusable.length).toBe(3);
   expect(modal.memory.focusableFirst).toHaveClass('first');
   expect(modal.memory.focusableLast).toHaveClass('last');

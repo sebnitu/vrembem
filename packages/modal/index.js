@@ -27,7 +27,7 @@ export const Modal = (options) => {
     customEventPrefix: 'modal:',
     moveModals: {
       selector: null,
-      location: 'after'
+      location: null
     },
     setTabindex: true,
     toggleOverflow: 'body',
@@ -41,9 +41,7 @@ export const Modal = (options) => {
     if (api.settings.setTabindex) {
       setTabindex();
     }
-    if (api.settings.moveModals.selector) {
-      moveModals();
-    }
+    moveModals();
     setInitialState();
     document.addEventListener('click', handler, false);
     document.addEventListener('keyup', handlerEscape, false);
@@ -259,19 +257,17 @@ export const Modal = (options) => {
   };
 
   const setFocus = () => {
-    if (api.memory.target) {
-      const innerFocus = api.memory.target.querySelector(
-        `[data-${api.settings.dataFocus}]`
+    const innerFocus = api.memory.target.querySelector(
+      `[data-${api.settings.dataFocus}]`
+    );
+    if (innerFocus) {
+      innerFocus.focus();
+    } else {
+      const dialog = api.memory.target.querySelector(
+        `[data-${api.settings.dataDialog}][tabindex="-1"]`
       );
-      if (innerFocus) {
-        innerFocus.focus();
-      } else {
-        const dialog = api.memory.target.querySelector(
-          `[data-${api.settings.dataDialog}][tabindex="-1"]`
-        );
-        if (dialog) {
-          dialog.focus();
-        }
+      if (dialog) {
+        dialog.focus();
       }
     }
   };
@@ -279,6 +275,7 @@ export const Modal = (options) => {
   const returnFocus = () => {
     if (api.memory.trigger) {
       api.memory.trigger.focus();
+      api.memory.trigger = null;
     }
   };
 
