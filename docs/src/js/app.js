@@ -4,7 +4,7 @@ import {
   Drawer,
   Modal
 } from 'vrembem';
-import ScrollStash from 'scroll-stash/dist/scripts.cjs.js';
+import ScrollStash from 'scroll-stash';
 import 'svgxuse';
 import './list.js';
 import './version';
