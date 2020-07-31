@@ -1047,11 +1047,11 @@
 	  };
 
 	  var initTrapFocus = function initTrapFocus() {
-	    api.memory.focusableEls = api.memory.target.querySelectorAll("\n      a[href]:not([disabled]),\n      button:not([disabled]),\n      textarea:not([disabled]),\n      input[type=\"text\"]:not([disabled]),\n      input[type=\"radio\"]:not([disabled]),\n      input[type=\"checkbox\"]:not([disabled]),\n      select:not([disabled]),\n      [tabindex]:not([tabindex=\"-1\"])\n    ");
+	    api.memory.focusable = api.memory.target.querySelectorAll("\n      a[href]:not([disabled]),\n      button:not([disabled]),\n      textarea:not([disabled]),\n      input[type=\"text\"]:not([disabled]),\n      input[type=\"radio\"]:not([disabled]),\n      input[type=\"checkbox\"]:not([disabled]),\n      select:not([disabled]),\n      [tabindex]:not([tabindex=\"-1\"])\n    ");
 
-	    if (api.memory.focusableEls.length) {
-	      api.memory.focusableFirst = api.memory.focusableEls[0];
-	      api.memory.focusableLast = api.memory.focusableEls[api.memory.focusableEls.length - 1];
+	    if (api.memory.focusable.length) {
+	      api.memory.focusableFirst = api.memory.focusable[0];
+	      api.memory.focusableLast = api.memory.focusable[api.memory.focusable.length - 1];
 	      api.memory.target.addEventListener('keydown', handlerTrapFocus);
 	    } else {
 	      api.memory.target.addEventListener('keydown', handlerSickyFocus);
@@ -1059,7 +1059,7 @@
 	  };
 
 	  var destroyTrapFocus = function destroyTrapFocus() {
-	    api.memory.focusableEls = null;
+	    api.memory.focusable = null;
 	    api.memory.focusableFirst = null;
 	    api.memory.focusableLast = null;
 	    api.memory.target.removeEventListener('keydown', handlerTrapFocus);

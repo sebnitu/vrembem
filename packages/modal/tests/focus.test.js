@@ -1,5 +1,6 @@
 import { Modal } from '../index.js';
 import '@testing-library/jest-dom/extend-expect';
+import userEvent from '@testing-library/user-event';
 import { delay } from './helpers/delay';
 
 let modal;
@@ -8,16 +9,22 @@ const ev = new Event('transitionend');
 const markup = `
   <button data-modal-open="modal-one">Modal One</button>
   <button data-modal-open="modal-two">Modal Two</button>
-  <div data-modal="modal-one" class="modal is-closed">
+  <div data-modal="modal-one" class="modal">
     <div data-modal-dialog class="modal__dialog">
-      <button data-modal-close>Close</button>
-      <button data-modal-open="modal-two">Modal Two</button>
+      <button data-modal-close class="first">Close</button>
+      <button>...</button>
+      <button data-modal-open="modal-two" class="last">Modal Two</button>
     </div>
   </div>
-  <div data-modal="modal-two" class="modal is-closed">
+  <div data-modal="modal-two" class="modal">
     <div data-modal-dialog class="modal__dialog">
       <button data-modal-close data-modal-focus>Close</button>
       <button data-modal-open="modal-one">Modal One</button>
+    </div>
+  </div>
+  <div data-modal="modal-empty" class="modal">
+    <div data-modal-dialog class="modal__dialog">
+      <p>This modal has nothing to focus...</p>
     </div>
   </div>
 `;
@@ -28,7 +35,7 @@ afterEach(() => {
   document.body.innerHTML = null;
 });
 
-test('should focus modal when opened and refocus trigger when closed', async () => {
+test('should focus modal dialog when opened and refocus trigger when closed', async () => {
   document.body.innerHTML = markup;
   modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal="modal-one"]');
@@ -82,23 +89,43 @@ test('should remember initial trigger when opening modal through another modal',
   expect(btnOpen).toHaveFocus();
 });
 
-test('should disable focus handling when setting focus false', () => {
+test('should retain focus on modal if nothing inner is focusable', async () => {
   document.body.innerHTML = markup;
-  modal = new Modal({
-    autoInit: true,
-    focus: false
-  });
-  const el = document.querySelector('[data-modal="modal-two"]');
-  const btnOpen = document.querySelector('[data-modal-open="modal-two"]');
-  const btnClose = el.querySelector('[data-modal-close]');
+  modal = new Modal({ autoInit: true });
+  const elModal = document.querySelector('[data-modal="modal-empty"');
+  const dialog = elModal.querySelector('[data-modal-dialog]');
+  modal.open('modal-empty');
+  elModal.dispatchEvent(ev);
+  await delay();
+  expect(elModal).toHaveClass('is-opened');
+  expect(dialog).toHaveFocus();
+  userEvent.tab();
+  expect(dialog).toHaveFocus();
+  userEvent.tab({ shift: true });
+  expect(dialog).toHaveFocus();
+});
 
-  btnOpen.click();
-  el.dispatchEvent(ev);
-  expect(el).toHaveClass('is-opened');
-  expect(btnClose).not.toHaveFocus();
+test('should properly setup a focus trap when modal is open', async () => {
+  document.body.innerHTML = markup;
+  modal = new Modal({ autoInit: true });
+  const elModal = document.querySelector('[data-modal="modal-one"');
+  const dialog = elModal.querySelector('[data-modal-dialog]');
+  modal.open('modal-one');
+  elModal.dispatchEvent(ev);
+  await delay();
+  expect(elModal).toHaveClass('is-opened');
+  expect(dialog).toHaveFocus();
 
-  btnClose.click();
-  el.dispatchEvent(ev);
-  expect(el).not.toHaveClass('is-opened');
-  expect(btnOpen).not.toHaveFocus();
+  userEvent.tab({ shift: true });
+  expect(modal.memory.focusableLast).toHaveFocus();
+
+  userEvent.tab();
+  expect(modal.memory.focusableFirst).toHaveFocus();
+
+  userEvent.tab({ shift: true });
+  expect(modal.memory.focusableLast).toHaveFocus();
+
+  expect(modal.memory.focusable.length).toBe(3);
+  expect(modal.memory.focusableFirst).toHaveClass('first');
+  expect(modal.memory.focusableLast).toHaveClass('last');
 });

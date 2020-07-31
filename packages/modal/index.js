@@ -287,7 +287,7 @@ export const Modal = (options) => {
    */
 
   const initTrapFocus = () => {
-    api.memory.focusableEls = api.memory.target.querySelectorAll(`
+    api.memory.focusable = api.memory.target.querySelectorAll(`
       a[href]:not([disabled]),
       button:not([disabled]),
       textarea:not([disabled]),
@@ -297,9 +297,9 @@ export const Modal = (options) => {
       select:not([disabled]),
       [tabindex]:not([tabindex="-1"])
     `);
-    if (api.memory.focusableEls.length) {
-      api.memory.focusableFirst = api.memory.focusableEls[0];
-      api.memory.focusableLast = api.memory.focusableEls[api.memory.focusableEls.length - 1];
+    if (api.memory.focusable.length) {
+      api.memory.focusableFirst = api.memory.focusable[0];
+      api.memory.focusableLast = api.memory.focusable[api.memory.focusable.length - 1];
       api.memory.target.addEventListener('keydown', handlerTrapFocus);
     } else {
       api.memory.target.addEventListener('keydown', handlerSickyFocus);
@@ -307,7 +307,7 @@ export const Modal = (options) => {
   };
 
   const destroyTrapFocus = () => {
-    api.memory.focusableEls = null;
+    api.memory.focusable = null;
     api.memory.focusableFirst = null;
     api.memory.focusableLast = null;
     api.memory.target.removeEventListener('keydown', handlerTrapFocus);
