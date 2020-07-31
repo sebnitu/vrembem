@@ -725,6 +725,7 @@
 	    dataClose: 'modal-close',
 	    dataFocus: 'modal-focus',
 	    dataRequired: 'modal-required',
+	    selectorMain: null,
 	    stateOpened: 'is-opened',
 	    stateOpening: 'is-opening',
 	    stateClosing: 'is-closing',
@@ -848,7 +849,7 @@
 	              target = document.querySelector("[data-".concat(api.settings.dataModal, "=\"").concat(modalKey, "\"]"));
 
 	              if (!(target && hasClass(target, api.settings.stateClosed))) {
-	                _context.next = 15;
+	                _context.next = 16;
 	                break;
 	              }
 
@@ -874,12 +875,13 @@
 	            case 11:
 	              setFocus();
 	              initTrapFocus();
+	              hideContent();
 	              typeof callback === 'function' && callback();
 	              target.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
 	                bubbles: true
 	              }));
 
-	            case 15:
+	            case 16:
 	            case "end":
 	              return _context.stop();
 	          }
@@ -920,29 +922,30 @@
 	              target = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpened));
 
 	              if (!target) {
-	                _context2.next = 16;
+	                _context2.next = 17;
 	                break;
 	              }
 
+	              showContent();
 	              setOverflow();
 
 	              if (!api.settings.transition) {
-	                _context2.next = 10;
+	                _context2.next = 11;
 	                break;
 	              }
 
-	              _context2.next = 8;
+	              _context2.next = 9;
 	              return closeTransition(target);
 
-	            case 8:
-	              _context2.next = 12;
+	            case 9:
+	              _context2.next = 13;
 	              break;
 
-	            case 10:
+	            case 11:
 	              addClass(target, api.settings.stateClosed);
 	              removeClass(target, api.settings.stateOpened);
 
-	            case 12:
+	            case 13:
 	              if (focus) returnFocus();
 	              destroyTrapFocus();
 	              typeof callback === 'function' && callback();
@@ -950,7 +953,7 @@
 	                bubbles: true
 	              }));
 
-	            case 16:
+	            case 17:
 	            case "end":
 	              return _context2.stop();
 	          }
@@ -1042,6 +1045,26 @@
 	  var handlerSickyFocus = function handlerSickyFocus(event) {
 	    var isTab = event.key === 'Tab' || event.keyCode === 9;
 	    if (isTab) event.preventDefault();
+	  };
+
+	  var hideContent = function hideContent() {
+	    if (api.settings.selectorMain) {
+	      var content = document.querySelectorAll(api.settings.selectorMain);
+	      content.forEach(function (el) {
+	        el.inert = true;
+	        el.setAttribute('aria-hidden', true);
+	      });
+	    }
+	  };
+
+	  var showContent = function showContent() {
+	    if (api.settings.selectorMain) {
+	      var content = document.querySelectorAll(api.settings.selectorMain);
+	      content.forEach(function (el) {
+	        el.inert = null;
+	        el.removeAttribute('aria-hidden');
+	      });
+	    }
 	  };
 
 	  if (api.settings.autoInit) api.init();

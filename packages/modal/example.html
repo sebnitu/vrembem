@@ -10,7 +10,7 @@
   <title>@vrembem/modal</title>
 </head>
 <body>
-<div class="padding-xl">
+<div role="main" class="padding-xl">
   <h1 class="margin-bottom-md">@vrembem/modal</h1>
   <p>A component for changing the mode of a page to complete a critical task. This is usually used in conjunction with the Dialog component to make modal dialogs.</p>
   <hr class="sep margin-vert-lg">
@@ -106,7 +106,10 @@
 <!-- Component scripts -->
 <script src="./dist/scripts.min.js"></script>
 <script>
-  const modal = new vrembem.Modal({ autoInit: true });
+  const modal = new vrembem.Modal({
+    autoInit: true,
+    selectorMain: '[role="main"]'
+  });
 
   const apiOpen = document.querySelector(".api-test-open");
   const apiClose = document.querySelector(".api-test-close");
@@ -123,5 +126,9 @@
     });
   });
 </script>
+
+<!-- Polyfills -->
+<script src="https://unpkg.com/wicg-inert/dist/inert.min.js"></script>
+
 </body>
 </html>

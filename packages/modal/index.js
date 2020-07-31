@@ -14,6 +14,9 @@ export const Modal = (options) => {
     dataFocus: 'modal-focus',
     dataRequired: 'modal-required',
 
+    // Selector
+    selectorMain: null,
+
     // State classes
     stateOpened: 'is-opened',
     stateOpening: 'is-opening',
@@ -155,6 +158,7 @@ export const Modal = (options) => {
       }
       setFocus();
       initTrapFocus();
+      hideContent();
       typeof callback === 'function' && callback();
       target.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
         bubbles: true
@@ -180,6 +184,7 @@ export const Modal = (options) => {
       `[data-${api.settings.dataModal}].${api.settings.stateOpened}`
     );
     if (target) {
+      showContent();
       setOverflow();
       if (api.settings.transition) {
         await closeTransition(target);
@@ -299,6 +304,30 @@ export const Modal = (options) => {
   const handlerSickyFocus = (event) => {
     const isTab = (event.key === 'Tab' || event.keyCode === 9);
     if (isTab) event.preventDefault();
+  };
+
+  /**
+   * Accessibility
+   */
+
+  const hideContent = () => {
+    if (api.settings.selectorMain) {
+      const content = document.querySelectorAll(api.settings.selectorMain);
+      content.forEach((el) => {
+        el.inert = true;
+        el.setAttribute('aria-hidden', true);
+      });
+    }
+  };
+
+  const showContent = () => {
+    if (api.settings.selectorMain) {
+      const content = document.querySelectorAll(api.settings.selectorMain);
+      content.forEach((el) => {
+        el.inert = null;
+        el.removeAttribute('aria-hidden');
+      });
+    }
   };
 
   /**
