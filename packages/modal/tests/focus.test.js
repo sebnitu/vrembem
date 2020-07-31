@@ -8,14 +8,14 @@ const ev = new Event('transitionend');
 const markup = `
   <button data-modal-open="modal-one">Modal One</button>
   <button data-modal-open="modal-two">Modal Two</button>
-  <div data-modal="modal-one" class="modal is-closed" tabindex="-1">
-    <div class="modal__dialog">
+  <div data-modal="modal-one" class="modal is-closed">
+    <div data-modal-dialog class="modal__dialog">
       <button data-modal-close>Close</button>
       <button data-modal-open="modal-two">Modal Two</button>
     </div>
   </div>
   <div data-modal="modal-two" class="modal is-closed">
-    <div class="modal__dialog">
+    <div data-modal-dialog class="modal__dialog">
       <button data-modal-close data-modal-focus>Close</button>
       <button data-modal-open="modal-one">Modal One</button>
     </div>
@@ -32,12 +32,13 @@ test('should focus modal when opened and refocus trigger when closed', async () 
   document.body.innerHTML = markup;
   modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal="modal-one"]');
+  const dialog = el.querySelector('[data-modal-dialog]');
   const btnOpen = document.querySelector('[data-modal-open="modal-one"]');
 
   btnOpen.click();
   el.dispatchEvent(ev);
   await delay();
-  expect(el).toHaveFocus();
+  expect(dialog).toHaveFocus();
 });
 
 test('should focus inner modal element and refocus trigger when closed', async () => {

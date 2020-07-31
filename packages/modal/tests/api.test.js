@@ -106,8 +106,7 @@ test('should properly destroy drawer instance on api call', () => {
   btnOpen.click();
   el.dispatchEvent(ev);
 
-  expect(modal.memoryTrigger).toBe(null);
-  expect(modal.memoryTarget).toBe(null);
+  expect(Object.keys(modal.memory).length).toBe(0);
   expect(el).toHaveClass('modal is-closed');
   expect(el.classList.length).toBe(2);
 });
