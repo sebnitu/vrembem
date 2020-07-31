@@ -720,11 +720,11 @@
 	  var defaults = {
 	    autoInit: false,
 	    dataModal: 'modal',
+	    dataDialog: 'modal-dialog',
 	    dataOpen: 'modal-open',
 	    dataClose: 'modal-close',
 	    dataFocus: 'modal-focus',
 	    dataRequired: 'modal-required',
-	    selectorDialog: '.modal__dialog',
 	    stateOpened: 'is-opened',
 	    stateOpening: 'is-opening',
 	    stateClosing: 'is-closing',
@@ -972,7 +972,7 @@
 	  }();
 
 	  var setTabindex = function setTabindex() {
-	    var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "] ").concat(api.settings.selectorDialog));
+	    var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "] [data-").concat(api.settings.dataDialog, "]"));
 	    modals.forEach(function (el) {
 	      el.setAttribute('tabindex', '-1');
 	    });
@@ -993,7 +993,7 @@
 	      if (innerFocus) {
 	        innerFocus.focus();
 	      } else {
-	        var dialog = api.memory.target.querySelector("".concat(api.settings.selectorDialog, "[tabindex=\"-1\"]"));
+	        var dialog = api.memory.target.querySelector("[data-".concat(api.settings.dataDialog, "][tabindex=\"-1\"]"));
 
 	        if (dialog) {
 	          dialog.focus();
@@ -1033,7 +1033,7 @@
 	    if (!isTab) return;
 
 	    if (event.shiftKey) {
-	      var dialog = api.memory.target.querySelector("".concat(api.settings.selectorDialog, "[tabindex=\"-1\"]"));
+	      var dialog = api.memory.target.querySelector("[data-".concat(api.settings.dataDialog, "][tabindex=\"-1\"]"));
 
 	      if (document.activeElement === api.memory.focusableFirst || document.activeElement === dialog) {
 	        api.memory.focusableLast.focus();

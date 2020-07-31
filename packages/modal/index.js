@@ -8,13 +8,11 @@ export const Modal = (options) => {
 
     // Data attributes
     dataModal: 'modal',
+    dataDialog: 'modal-dialog',
     dataOpen: 'modal-open',
     dataClose: 'modal-close',
     dataFocus: 'modal-focus',
     dataRequired: 'modal-required',
-
-    // Selector
-    selectorDialog: '.modal__dialog',
 
     // State classes
     stateOpened: 'is-opened',
@@ -208,7 +206,9 @@ export const Modal = (options) => {
    */
 
   const setTabindex = () => {
-    const modals = document.querySelectorAll(`[data-${api.settings.dataModal}] ${api.settings.selectorDialog}`);
+    const modals = document.querySelectorAll(
+      `[data-${api.settings.dataModal}] [data-${api.settings.dataDialog}]`
+    );
     modals.forEach((el) => {
       el.setAttribute('tabindex', '-1');
     });
@@ -231,7 +231,7 @@ export const Modal = (options) => {
         innerFocus.focus();
       } else {
         const dialog = api.memory.target.querySelector(
-          `${api.settings.selectorDialog}[tabindex="-1"]`
+          `[data-${api.settings.dataDialog}][tabindex="-1"]`
         );
         if (dialog) {
           dialog.focus();
@@ -284,7 +284,7 @@ export const Modal = (options) => {
 
     if (event.shiftKey) {
       const dialog = api.memory.target.querySelector(
-        `${api.settings.selectorDialog}[tabindex="-1"]`
+        `[data-${api.settings.dataDialog}][tabindex="-1"]`
       );
       if (
         document.activeElement === api.memory.focusableFirst ||
