@@ -275,7 +275,6 @@ export const Modal = (options) => {
   const returnFocus = () => {
     if (api.memory.trigger) {
       api.memory.trigger.focus();
-      api.memory.trigger = null;
     }
   };
 

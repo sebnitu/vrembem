@@ -1038,7 +1038,6 @@
 	  var returnFocus = function returnFocus() {
 	    if (api.memory.trigger) {
 	      api.memory.trigger.focus();
-	      api.memory.trigger = null;
 	    }
 	  };
 
