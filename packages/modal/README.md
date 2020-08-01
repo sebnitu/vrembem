@@ -71,21 +71,20 @@ By default, the modal dialog gains focus when a modal is opened. If focus on a s
 
 ```html
 <!-- Focus is returned to the trigger when a modal is closed -->
-<button data-modal-open="[unique-id]">
-  Open modal
-</button>
+<button data-modal-open="[unique-id]">...</button>
 
 <!-- Sets focus to modal dialog when opened -->
 <div data-modal="[unique-id]" class="modal">
   <div data-modal-dialog class="modal__dialog">
-    <button data-modal-close>Close</button>
+    ...
   </div>
 </div>
 
 <!-- Sets focus to data-modal-focus element when opened -->
 <div data-modal="[unique-id]" class="modal">
   <div data-modal-dialog class="modal__dialog">
-    <input type="text" data-modal-focus>
+    <input data-modal-focus type="text">
+    ...
   </div>
 </div>
 ```
@@ -140,7 +139,7 @@ const modal = new Modal({
 Adds styles to a modal that make it fill the entire viewport when opened.
 
 ```html
-<div class="modal modal_full" data-modal="[unique-id]">...</div>
+<div data-modal="[unique-id]" class="modal modal_full">...</div>
 ```
 
 ### `modal_pos_[key]`
@@ -153,10 +152,10 @@ The default position of modals is in the center of the viewport. The position mo
 - `modal_pos_bottom`
 
 ```html
-<div class="modal modal_pos_top" data-modal="[unique-id]">...</div>
-<div class="modal modal_pos_bottom" data-modal="[unique-id]">...</div>
-<div class="modal modal_pos_left" data-modal="[unique-id]">...</div>
-<div class="modal modal_pos_right" data-modal="[unique-id]">...</div>
+<div data-modal="[unique-id]" class="modal modal_pos_top">...</div>
+<div data-modal="[unique-id]" class="modal modal_pos_bottom">...</div>
+<div data-modal="[unique-id]" class="modal modal_pos_left">...</div>
+<div data-modal="[unique-id]" class="modal modal_pos_right">...</div>
 ```
 
 ### `modal_size_[key]`
@@ -164,32 +163,32 @@ The default position of modals is in the center of the viewport. The position mo
 Adjusts the size of modals. This modifier provides two options, `modal_size_sm` and `modal_size_lg` all relative to the default modal size.
 
 ```html
-<div class="modal modal_size_sm" data-modal="[unique-id]">...</div>
-<div class="modal modal_size_lg" data-modal="[unique-id]">...</div>
+<div data-modal="[unique-id]" class="modal modal_size_sm">...</div>
+<div data-modal="[unique-id]" class="modal modal_size_lg">...</div>
 ```
 
 ## Customization
 
 ### Sass Variables
 
-| Variable                      | Default                        | Description                                                               |
-| ----------------------------- | ------------------------------ | ------------------------------------------------------------------------- |
-| `$prefix-block`               | `null`                         | String to prefix blocks with.                                             |
-| `$prefix-element`             | `"__"`                         | String to prefix element with.                                            |
-| `$prefix-modifier`            | `"_"`                          | String to prefix modifier with.                                           |
-| `$prefix-modifier-value`      | `"_"`                          | String to prefix modifier values with.                                    |
-| `$zindex`                     | `1000`                         | Applied z-index to modals to control the stack order.                     |
-| `$width`                      | `38em`                         | The default max width of modals.                                          |
-| `$width-sm`                   | `18em`                         | The small width applied to modals with `_size_sm` modifier.               |
-| `$width-lg`                   | `56em`                         | The large width applied to modals with `_size_lg` modifier.               |
-| `$travel`                     | `5em`                          | Distance that modal travel during their transition.                       |
-| `$transition-duration`        | `0.3s`                         | Duration of modal transition.                                             |
-| `$transition-timing-function` | `cubic-bezier(0.4, 0, 0.2, 1)` | Timing function used for modal transitions.                               |
-| `$background`                 | `#424242`                      | Background color of modal screen.                                         |
-| `$background-alpha`           | `0.8`                          | The alpha channel for the modal screen.                                   |
-| `$box-shadow`                 | See: `core.$box-shadow-24dp`   | Box shadow applied to modal dialog elements.                              |
-| `$aside-width`                | `16em`                         | Width applied to modals using `_pos_left` and `_pos_right` modifiers.     |
-| `$aside-max-width`            | `90%`                          | Max width applied to modals using `_pos_left` and `_pos_right` modifiers. |
+| Variable                      | Default                            | Description                                                               |
+| ----------------------------- | ---------------------------------- | ------------------------------------------------------------------------- |
+| `$prefix-block`               | `null`                             | String to prefix blocks with.                                             |
+| `$prefix-element`             | `"__"`                             | String to prefix element with.                                            |
+| `$prefix-modifier`            | `"_"`                              | String to prefix modifier with.                                           |
+| `$prefix-modifier-value`      | `"_"`                              | String to prefix modifier values with.                                    |
+| `$zindex`                     | `1000`                             | Applied z-index to modals to control the stack order.                     |
+| `$width`                      | `38em`                             | The default max width of modals.                                          |
+| `$width-sm`                   | `18em`                             | The small width applied to modals with `_size_sm` modifier.               |
+| `$width-lg`                   | `56em`                             | The large width applied to modals with `_size_lg` modifier.               |
+| `$travel`                     | `5em`                              | Distance that modal travel during their transition.                       |
+| `$transition-duration`        | `core.$transition-duration`        | Duration of modal transition.                                             |
+| `$transition-timing-function` | `core.$transition-timing-function` | Timing function used for modal transitions.                               |
+| `$background`                 | `core.$night`                      | Background color of modal screen.                                         |
+| `$background-alpha`           | `0.8`                              | The alpha channel for the modal screen.                                   |
+| `$box-shadow`                 | `core.$box-shadow-24dp`            | Box shadow applied to modal dialog elements.                              |
+| `$aside-width`                | `16em`                             | Width applied to modals using `_pos_left` and `_pos_right` modifiers.     |
+| `$aside-max-width`            | `90%`                              | Max width applied to modals using `_pos_left` and `_pos_right` modifiers. |
 
 ### JavaScript Options
 
@@ -197,7 +196,7 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
 | ------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `autoInit`          | `false`                              | Automatically instantiates the instance.                                                                                                                            |
 | `dataModal`         | `'modal'`                            | Data attribute for a modal.                                                                                                                                         |
-| `dataDialog`        | `modal-dialog`                       | Data attribute for a modal dialog                                                                                                                                   |
+| `dataDialog`        | `'modal-dialog'`                     | Data attribute for a modal. dialog                                                                                                                                  |
 | `dataOpen`          | `'modal-open'`                       | Data attribute for a modal open trigger.                                                                                                                            |
 | `dataClose`         | `'modal-close'`                      | Data attribute for a modal close trigger.                                                                                                                           |
 | `dataFocus`         | `'modal-focus'`                      | Data attribute for setting a modal's focus element.                                                                                                                 |

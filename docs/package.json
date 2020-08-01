@@ -31,6 +31,7 @@
     "list.js": "^1.5.0",
     "scroll-stash": "^1.0.1",
     "svgxuse": "^1.2.6",
-    "vrembem": "^1.12.0"
+    "vrembem": "^1.12.0",
+    "wicg-inert": "^3.0.3"
   }
 }
