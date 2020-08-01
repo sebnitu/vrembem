@@ -1217,12 +1217,9 @@
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              if (api.settings.setTabindex) {
-                setTabindex();
-              }
-
-              moveModals();
               setInitialState();
+              setTabindex();
+              moveModals();
               document.addEventListener('click', handler, false);
               document.addEventListener('keyup', handlerEscape, false);
 
@@ -1253,7 +1250,7 @@
     };
 
     api.setTabindex = function () {
-      setTabindex();
+      setTabindex(true);
     };
 
     api.moveModals = function (selector, location) {
@@ -1318,10 +1315,14 @@
     };
 
     var setTabindex = function setTabindex() {
-      var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "] [data-").concat(api.settings.dataDialog, "]"));
-      modals.forEach(function (el) {
-        el.setAttribute('tabindex', '-1');
-      });
+      var enable = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : api.settings.setTabindex;
+
+      if (enable) {
+        var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "] [data-").concat(api.settings.dataDialog, "]"));
+        modals.forEach(function (el) {
+          el.setAttribute('tabindex', '-1');
+        });
+      }
     };
 
     var moveModals = function moveModals() {
