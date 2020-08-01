@@ -5,28 +5,38 @@ description: "A component for changing the mode of a page to complete a critical
 package: "@vrembem/modal"
 category: compound
 usage:
-  npm: true
-  scss: true
-  js: true
+npm: true
+scss: true
+js: true
 ---
 
-## modal
+## Modal
 
 Modals are composed using classes for styling and data attributes for JavaScript functionality. To open a modal using a trigger, use a unique identifier as the values for both of their respective data attributes. Close buttons are left value-less and should be placed inside the modal element they're meant to close.
 
-* `data-modal="[unique-id]"`
-* `data-modal-open="[unique-id]"`
-* `data-modal-close`
+- `data-modal="[unique-id]"`
+- `data-modal-dialog`
+- `data-modal-open="[unique-id]"`
+- `data-modal-close`
 
 {% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
-<button class="link" data-modal-open="modal-default">
-  Modal
-</button>
+<button class="link" data-modal-open="modal-default">Modal</button>
+<div data-modal="modal-default" class="modal">
+  <div data-modal-dialog class="modal__dialog dialog">
+    <div class="dialog__body level flex-justify-between">
+      <p>This is a basic modal</p>
+      <button data-modal-close class="link">Close</button>
+    </div>
+  </div>
+</div>
 {% include demo_switch.html %}
 ```html
+<!-- Modal trigger -->
 <button data-modal-open="[unique-id]">Modal</button>
-<div class="modal" data-modal="[unique-id]">
-  <div class="modal__dialog">
+
+<!-- Modal -->
+<div data-modal="[unique-id]" class="modal">
+  <div data-modal-dialog class="modal__dialog">
     <button data-modal-close>Close</button>
     ...
   </div>
@@ -34,16 +44,37 @@ Modals are composed using classes for styling and data attributes for JavaScript
 ```
 {% include demo_close.html %}
 
-The [dialog component](/packages/dialog) is a great fit for composing a modal’s content.
+Modal dialogs are the actual dialog element within a modal and are defined using a the value-less `data-modal-dialog` attribute. The [dialog component](https://github.com/sebnitu/vrembem/tree/master/packages/dialog) is a great fit for composing a modal’s dialog.
 
 {% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
-<button class="link" data-modal-open="modal-dialog">
-  Modal dialog
-</button>
+<button data-modal-open="modal-dialog" class="link">Modal dialog</button>
+<div data-modal="modal-dialog" class="modal">
+  <div data-modal-dialog class="modal__dialog dialog">
+    <div class="dialog__header">
+      <h2 class="dialog__title">Modal Dialog</h2>
+      <button class="icon-action" data-modal-close>
+        {% include icon.html icon="x" %}
+      </button>
+    </div>
+    <div class="dialog__body">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean porta diam eget lectus interdum, eu aliquet augue rutrum. Morbi faucibus mauris lectus, in imperdiet augue cursus vel.</p>
+    </div>
+    <div class="dialog__footer flex-justify-end">
+      <div class="button-group">
+        <button data-modal-close class="button button_color_primary">
+          Some action
+        </button>
+        <button data-modal-close class="button">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 {% include demo_switch.html %}
 ```html
-<div class="modal" data-modal="[unique-id]">
-  <div class="modal__dialog dialog">
+<div data-modal="[unique-id]" class="modal">
+  <div data-modal-dialog class="modal__dialog dialog">
     <div class="dialog__header">
       ...
     </div>
@@ -58,15 +89,142 @@ The [dialog component](/packages/dialog) is a great fit for composing a modal’
 ```
 {% include demo_close.html %}
 
+## Behavior and Accessibility
+
+Modals on the web have an expected set of patterns that this component follows. Here's what to expect:
+
+1. When a modal is opened, focus is moved to the dialog or an element inside.
+2. Modals provide standard methods for the user to close such as using the `esc` key or clicking outside the dialog.
+3. While the modal is active, contents obscured by the modal are inaccessible to all users.
+4. When a modal is closed, focus is returned to the initial trigger element that activated the dialog.
+
+To take full advantage of modal's accessibility features, it's recommened to that you set the `selectorMain` option to all elements that are ouside the modal. If you have modal markup throughout your document, use the `moveModals` option or `moveModals()` method to consolidate all modals in the DOM to a single location. All elements that match the `selectorMain` selector will be given the `inert` attribute as well as `aria-hidden="true"` when a modal is opened.
+
+> Inert is not currently widly supportted by all browsers. Consider using a polyfill such as [wicg-inert](https://github.com/WICG/inert) or Google's [inert-polyfill](https://github.com/GoogleChrome/inert-polyfill).
+
+### Example
+
+Here's an example where we want the `[role="main"]` content area to be inaccessible while modals are open. We also want for all modals to be moved outside the main content element in the DOM.
+
+```js
+const modal = new Modal({
+autoInit: true,
+selectorMain: '[role="main"]',
+moveModals: {
+selector: '[role="main"]',
+location: 'after'
+}
+});
+```
+
+## data-modal-focus
+
+By default, the modal dialog gains focus when a modal is opened. If focus on a specific element inside a modal is preferred, give that element the `data-modal-focus` attribute. Focus is returned to the element that activated the modal once the modal is closed.
+
+{% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
+<div class="level">
+  <button data-modal-open="modal-focus-dialog" class="link">
+    Modal focus dialog
+  </button>
+  <button data-modal-open="modal-focus-inner" class="link">
+    Modal focus element
+  </button>
+</div>
+
+<div data-modal="modal-focus-dialog" class="modal">
+  <div data-modal-dialog class="modal__dialog dialog">
+    <div class="dialog__body level flex-justify-between">
+      <p>Focus modal dialog on open</p>
+      <button data-modal-close class="link">Close</button>
+    </div>
+  </div>
+</div>
+
+<div data-modal="modal-focus-inner" class="modal">
+  <div data-modal-dialog class="modal__dialog dialog">
+    <div class="dialog__body">
+      <div class="level flex-justify-between margin-bottom-md">
+        <p>Focus input element on open</p>
+        <button data-modal-close class="link">Close</button>
+      </div>
+      <input data-modal-focus type="text" class="input" placeholder="Text input...">
+    </div>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<!-- Focus is returned to the trigger when a modal is closed -->
+<button data-modal-open="[unique-id]">...</button>
+
+<!-- Sets focus to modal dialog when opened -->
+<div data-modal="[unique-id]" class="modal">
+  <div data-modal-dialog class="modal__dialog">
+    ...
+  </div>
+</div>
+
+<!-- Sets focus to data-modal-focus element when opened -->
+<div data-modal="[unique-id]" class="modal">
+  <div data-modal-dialog class="modal__dialog">
+    <input data-modal-focus type="text">
+    ...
+  </div>
+</div>
+```
+{% include demo_close.html %}
+
+While a modal is active, the contents obscured by the modal should be inaccessible to all users. This means that the `TAB` key, and a screen reader’s virtual cursor (arrow keys) should not be allowed to leave the modal dialog and traverse the content outside of the dialog.
+
+## data-modal-required
+
+Required modals can not be closed without an explicit action. That means clicking on the background or pressing the escape key to close a required modal is disabled. Add the `data-modal-required` data attribute to a modal to enable this behavior and make sure to provide an action inside the modal that closes it.
+
+{% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
+<button data-modal-open="modal-required" class="link">Modal required</button>
+<div data-modal="modal-required" data-modal-required class="modal">
+  <div class="modal__dialog dialog">
+    <div class="dialog__body spacing">
+      <h2 class="dialog__title">Required modal</h2>
+      <p>Required modals can not be closed without an explicit action. That means clicking on the background or pressing the escape key to close is disabled.</p>
+      <div class="flex flex-justify-end">
+        <div class="button-group">
+          <button data-modal-close class="button button_color_primary">I undersand</button>
+          <button data-modal-close class="button button_color_secondary">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div data-modal="[unique-id]" data-modal-required class="modal">
+  <div data-modal-dialog class="modal__dialog">
+    ...
+    <button data-modal-close>Agree</button>
+  </div>
+</div>
+```
+{% include demo_close.html %}
+
 ## modal_full
 
 Adds styles to a modal that make it fill the entire viewport when opened.
 
 {% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
-<button class="link" data-modal-open="modal-full">Modal</button>
+<button data-modal-open="modal-full" class="link">Modal</button>
+<div data-modal="modal-full" class="modal modal_full">
+  <div data-modal-dialog class="modal__dialog dialog">
+    <div class="dialog__body">
+      <div class="level flex-justify-between">
+        <p>Full modal</p>
+        <button data-modal-close data-modal-focus class="link">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 {% include demo_switch.html %}
 ```html
-<div class="modal modal_full" data-modal="[unique-id]">...</div>
+<div data-modal="[unique-id]" class="modal modal_full">...</div>
 ```
 {% include demo_close.html %}
 
@@ -74,24 +232,128 @@ Adds styles to a modal that make it fill the entire viewport when opened.
 
 The default position of modals is in the center of the viewport. The position modifier allows you four other options:
 
-* `modal_pos_top`
-* `modal_pos_left`
-* `modal_pos_right`
-* `modal_pos_bottom`
+- `modal_pos_top`
+- `modal_pos_left`
+- `modal_pos_right`
+- `modal_pos_bottom`
 
 {% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
 <div class="level">
-  <button class="link" data-modal-open="modal-pos-top">Modal top</button>
-  <button class="link" data-modal-open="modal-pos-bottom">Modal bottom</button>
-  <button class="link" data-modal-open="modal-pos-left">Modal left</button>
-  <button class="link" data-modal-open="modal-pos-right">Modal right</button>
+  <button data-modal-open="modal-pos-top" class="link">
+    &uarr; Modal top
+  </button>
+  <button data-modal-open="modal-pos-bottom" class="link">
+    &darr; Modal bottom
+  </button>
+  <button data-modal-open="modal-pos-left" class="link">
+    &larr; Modal left
+  </button>
+  <button data-modal-open="modal-pos-right" class="link">
+    &rarr; Modal right
+  </button>
+</div>
+
+<div data-modal="modal-pos-top" class="modal modal_pos_top">
+  <div data-modal-dialog class="modal__dialog dialog">
+    <button data-modal-close class="dialog__close icon-action icon-action_color_fade">
+      {% include icon.html icon="x" %}
+    </button>
+    <div class="dialog__body">
+      <p>Top position modal</p>
+    </div>
+    <div class="dialog__footer flex-justify-between">
+      <button data-modal-open="modal-pos-left" class="link">
+        &larr; Left modal
+      </button>
+      <button data-modal-open="modal-pos-bottom" class="link">
+        &darr; Bottom modal
+      </button>
+      <button data-modal-open="modal-pos-right" class="link">
+        &rarr; Right modal
+      </button>
+    </div>
+  </div>
+</div>
+
+<div data-modal="modal-pos-bottom" class="modal modal_pos_bottom">
+  <div data-modal-dialog class="modal__dialog dialog">
+    <button data-modal-close class="dialog__close icon-action icon-action_color_fade">
+      {% include icon.html icon="x" %}
+    </button>
+    <div class="dialog__body">
+      <p>Bottom position modal</p>
+    </div>
+    <div class="dialog__footer flex-justify-between">
+      <button data-modal-open="modal-pos-left" class="link">
+        &larr; Left modal
+      </button>
+      <button data-modal-open="modal-pos-top" class="link">
+        &uarr; Top modal
+      </button>
+      <button data-modal-open="modal-pos-right" class="link">
+        &rarr; Right modal
+      </button>
+    </div>
+  </div>
+</div>
+
+<div data-modal="modal-pos-left" class="modal modal_pos_left">
+  <div data-modal-dialog class="modal__dialog dialog">
+    <button data-modal-close class="dialog__close icon-action icon-action_color_fade">
+      {% include icon.html icon="x" %}
+    </button>
+    <div class="dialog__body">
+      <p>Left position modal</p>
+    </div>
+    <div class="dialog__footer">
+      <button data-modal-open="modal-pos-top" class="link">
+        &uarr; Top modal
+      </button>
+    </div>
+    <div class="dialog__footer">
+      <button data-modal-open="modal-pos-right" class="link">
+        &rarr; Right modal
+      </button>
+    </div>
+    <div class="dialog__footer">
+      <button data-modal-open="modal-pos-bottom" class="link">
+        &darr; Bottom modal
+      </button>
+    </div>
+  </div>
+</div>
+
+<div data-modal="modal-pos-right" class="modal modal_pos_right">
+  <div data-modal-dialog class="modal__dialog dialog">
+    <button data-modal-close class="dialog__close icon-action icon-action_color_fade">
+      {% include icon.html icon="x" %}
+    </button>
+    <div class="dialog__body">
+      <p>Right position modal</p>
+    </div>
+    <div class="dialog__footer">
+      <button data-modal-open="modal-pos-top" class="link">
+        &uarr; Top modal
+      </button>
+    </div>
+    <div class="dialog__footer">
+      <button data-modal-open="modal-pos-left" class="link">
+        &larr; Left modal
+      </button>
+    </div>
+    <div class="dialog__footer">
+      <button data-modal-open="modal-pos-bottom" class="link">
+        &darr; Bottom modal
+      </button>
+    </div>
+  </div>
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="modal modal_pos_top" data-modal="[unique-id]">...</div>
-<div class="modal modal_pos_bottom" data-modal="[unique-id]">...</div>
-<div class="modal modal_pos_left" data-modal="[unique-id]">...</div>
-<div class="modal modal_pos_right" data-modal="[unique-id]">...</div>
+<div data-modal="[unique-id]" class="modal modal_pos_top">...</div>
+<div data-modal="[unique-id]" class="modal modal_pos_bottom">...</div>
+<div data-modal="[unique-id]" class="modal modal_pos_left">...</div>
+<div data-modal="[unique-id]" class="modal modal_pos_right">...</div>
 ```
 {% include demo_close.html %}
 
@@ -101,67 +363,31 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
 
 {% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
 <div class="level">
-  <button class="link" data-modal-open="modal-size-sm">Small modal</button>
-  <button class="link" data-modal-open="modal-size-lg">Large modal</button>
+  <button data-modal-open="modal-size-sm" class="link">Small modal</button>
+  <button data-modal-open="modal-size-lg" class="link">Large modal</button>
 </div>
-{% include demo_switch.html %}
-```html
-<div class="modal modal_size_sm" data-modal="[unique-id]">...</div>
-<div class="modal modal_size_lg" data-modal="[unique-id]">...</div>
-```
-{% include demo_close.html %}
 
-## data-modal-focus
-
-If a modal has the attribute `tabindex="-1"`, it will be given focus when it's opened. If focus on a specific element inside a modal is preferred, give it the `data-modal-focus` attribute. The focus in either case is returned to the trigger element once the modal is closed. Focus handling can be disabled using the `{ focus: false }` setting.
-
-{% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
-<div class="level">
-  <button class="link" data-modal-open="modal-focus-self">
-    Modal focus self
-  </button>
-  <button class="link" data-modal-open="modal-focus-inner">
-    Modal focus element
-  </button>
-</div>
-{% include demo_switch.html %}
-```html
-<!-- Focus is returned when modal is closed -->
-<button class="link" data-modal-open="[unique-id]">
-  Open modal
-</button>
-
-<!-- Sets focus to self when opened -->
-<div class="modal" data-modal="[unique-id]" tabindex="-1">
-  <div class="modal__dialog">
-    <button data-modal-close>Close</button>
+<div data-modal="modal-size-sm" class="modal modal_size_sm">
+  <div data-modal-dialog class="modal__dialog dialog">
+    <div class="dialog__body level flex-justify-between">
+      <p>Small modal</p>
+      <button data-modal-close class="link">Close</button>
+    </div>
   </div>
 </div>
 
-<!-- Sets focus to input element when opened -->
-<div class="modal" data-modal="[unique-id]">
-  <div class="modal__dialog">
-    <input class="input" data-modal-focus />
+<div data-modal="modal-size-lg" class="modal modal_size_lg">
+  <div data-modal-dialog class="modal__dialog dialog">
+    <div class="dialog__body level flex-justify-between">
+      <p>Large modal</p>
+      <button data-modal-close class="link">Close</button>
+    </div>
   </div>
 </div>
-```
-{% include demo_close.html %}
-
-## data-modal-required
-
-Required modals can not be closed without an explicit action. That means clicking on the background or pressing the escape key to close is disabled. Add the `data-modal-required` data attribute to a modal to enable this behavior.
-
-{% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
-<button class="link" data-modal-open="modal-required">
-  Modal required
-</button>
 {% include demo_switch.html %}
 ```html
-<div class="modal" data-modal="[unique-id]" data-modal-required>
-  <div class="modal__dialog">
-    ...
-  </div>
-</div>
+<div data-modal="[unique-id]" class="modal modal_size_sm">...</div>
+<div data-modal="[unique-id]" class="modal modal_size_lg">...</div>
 ```
 {% include demo_close.html %}
 
@@ -177,7 +403,6 @@ Required modals can not be closed without an explicit action. That means clickin
       </tr>
     </thead>
     <tbody>
-      <!-- Prefixes -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-block</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
@@ -227,18 +452,18 @@ Required modals can not be closed without an explicit action. That means clickin
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$transition-duration</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">0.3s</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$transition-duration</code></td>
         <td data-mobile-label="Desc">Duration of modal transition.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$transition-timing-function</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">cubic-bezier(0.4, 0, 0.2, 1)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$transition-timing-function</code></td>
         <td data-mobile-label="Desc">Timing function used for modal transitions.</td>
       </tr>
 
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$background</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">#424242</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$night</code></td>
         <td data-mobile-label="Desc">Background color of modal screen.</td>
       </tr>
       <tr>
@@ -248,12 +473,7 @@ Required modals can not be closed without an explicit action. That means clickin
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">
-          0 0 0 1px rgba(#212121, 0.05),<br>
-          0 11px 15px -7px rgba(#212121, 0.1),<br>
-          0 24px 38px 3px rgba(#212121, 0.08),<br>
-          0 9px 46px 8px rgba(#212121, 0.06)
-        </code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$box-shadow-24dp</code></td>
         <td data-mobile-label="Desc">Box shadow applied to modal dialog elements.</td>
       </tr>
 
@@ -297,6 +517,11 @@ Required modals can not be closed without an explicit action. That means clickin
         <td data-mobile-label="Desc">Data attribute for a modal.</td>
       </tr>
       <tr>
+        <td data-mobile-label="Key"><code class="code text-nowrap">dataDialog</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'modal-dialog'</code></td>
+        <td data-mobile-label="Desc">Data attribute for a modal dialog.</td>
+      </tr>
+      <tr>
         <td data-mobile-label="Key"><code class="code text-nowrap">dataOpen</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'modal-open'</code></td>
         <td data-mobile-label="Desc">Data attribute for a modal open trigger.</td>
@@ -317,6 +542,13 @@ Required modals can not be closed without an explicit action. That means clickin
         <td data-mobile-label="Desc">Data attribute for making a modal required.</td>
       </tr>
     </tbody>
+
+    <!-- Selectors -->
+    <tr>
+      <td data-mobile-label="Key"><code class="code text-nowrap">selectorMain</code></td>
+      <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+      <td data-mobile-label="Desc">Applies `inert` and `aria-hidden` attributes to all matching elements when a modal is opened.</td>
+    </tr>
 
     <!-- State classes -->
     <tr>
@@ -347,9 +579,19 @@ Required modals can not be closed without an explicit action. That means clickin
       <td data-mobile-label="Desc">Prefix to be used on custom events.</td>
     </tr>
     <tr>
-      <td data-mobile-label="Key"><code class="code text-nowrap">focus</code></td>
+      <td data-mobile-label="Key"><code class="code text-nowrap">moveModals</code></td>
+      <td data-mobile-label="Default">
+        <pre class="code color-secondary">{ 
+  selector: null,
+  location: null
+}</pre>
+      </td>
+      <td data-mobile-label="Desc">Moves all modals to a location in the DOM relative to the passed selector on <code class="code">init()</code>. Location options include <code class="code">after</code>, <code class="code">before</code>, <code class="code">append</code> and <code class="code">prepend</code>.</td>
+    </tr>
+    <tr>
+      <td data-mobile-label="Key"><code class="code text-nowrap">setTabindex</code></td>
       <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">true</code></td>
-      <td data-mobile-label="Desc">Toggles the focus handling feature.</td>
+      <td data-mobile-label="Desc">Whether or not to set <code class="code">tabindex="-1"</code> on all modal drawer elements on init.</td>
     </tr>
     <tr>
       <td data-mobile-label="Key"><code class="code text-nowrap">toggleOverflow</code></td>
@@ -373,7 +615,13 @@ Required modals can not be closed without an explicit action. That means clickin
 
 ### `modal.init()`
 
-Initializes the modal instance.
+Initializes the modal instance. During initialization, the following processes are run:
+
+- Sets the initial state of modals. This is important as modals can only be opened if their current state is closed.
+- Sets `tabindex="-1"` on all modal dialog elements if `setTabindex` is set to `true`.
+- Moves all modals in the DOM to a location specified in the `moveModals` option.
+- Adds the `click` event listener to the document.
+- Adds the `keyup` event listener for closing modals with the `esc` key.
 
 ```js
 const modal = new Modal();
@@ -382,7 +630,11 @@ modal.init();
 
 ### `drawer.destroy()`
 
-Destroys and cleans up the modal instantiation.
+Destroys and cleans up the modal instantiation. During cleanup, the following processes are run:
+
+- Clears the stored `modal.memory` object.
+- Removes the `click` event listener from the document.
+- Removes the `keyup` event listener from the document.
 
 ```js
 const modal = new Modal();
@@ -406,7 +658,7 @@ Opens a modal provided the modal key and optional callback.
 
 ```js
 modal.open('modal-key', () => {
-  // Your custom code here...
+// Your custom code here...
 });
 ```
 
@@ -425,211 +677,84 @@ Closes a modal and returns focus to trigger element with optional callback.
 
 ```js
 modal.close(true, () => {
-  // Your custom code here...
+// Your custom code here...
 });
 ```
 
-<!-- modals -->
-<div>
+### `modal.setInitialState()`
 
-  <!-- modal default -->
-  <div class="modal" data-modal="modal-default" tabindex="-1">
-    <div class="modal__dialog dialog">
-      <div class="dialog__body level flex-justify-between">
-        <p>This is a basic modal</p>
-        <button class="link" data-modal-close>Close</button>
-      </div>
-    </div>
-  </div>
+Sets the initial state of all modals. This includes removing all transitional classes, opened states and applies the closed state class. This is ran automatically on `init()` but is exposed if states need to be reset for some reason.
 
-  <!-- modal with dialog -->
-  <div class="modal" data-modal="modal-dialog" tabindex="-1">
-    <div class="modal__dialog dialog">
-      <div class="dialog__header">
-        <h2 class="dialog__title">Modal Dialog</h2>
-        <button class="icon-action" data-modal-close>
-          {% include icon.html icon="x" %}
-        </button>
-      </div>
-      <div class="dialog__body">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean porta diam eget lectus interdum, eu aliquet augue rutrum. Morbi faucibus mauris lectus, in imperdiet augue cursus vel.</p>
-      </div>
-      <div class="dialog__footer flex-justify-end">
-        <div class="button-group">
-          <button data-modal-close class="button button_color_primary">
-            Some action
-          </button>
-          <button data-modal-close class="button">
-            Close
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+```html
+<!-- Missing a state class... -->
+<div data-modal="[unique-id]" class="modal">...</div>
 
-  <!-- modal_size_[key] -->
-  <div class="modal modal_size_sm" data-modal="modal-size-sm" tabindex="-1">
-    <div class="modal__dialog dialog">
-      <div class="dialog__body level flex-justify-between">
-        <p>Small modal</p>
-        <button class="link" data-modal-close>Close</button>
-      </div>
-    </div>
-  </div>
-  <div class="modal modal_size_lg" data-modal="modal-size-lg" tabindex="-1">
-    <div class="modal__dialog dialog">
-      <div class="dialog__body level flex-justify-between">
-        <p>Large modal</p>
-        <button class="link" data-modal-close>Close</button>
-      </div>
-    </div>
-  </div>
+<!-- Opened state... -->
+<div data-modal="[unique-id]" class="modal is-opened">...</div>
 
-  <!-- modal_full -->
-  <div class="modal modal_full" data-modal="modal-full">
-    <div class="modal__dialog dialog">
-      <div class="dialog__body">
-        <div class="level flex-justify-between">
-          <p>Full modal</p>
-          <button class="link" data-modal-close data-modal-focus>Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- Transitioning state... -->
+<div data-modal="[unique-id]" class="modal is-opening">...</div>
+<div data-modal="[unique-id]" class="modal is-closing">...</div>
+```
+```js
+modal.setInitialState();
+```
+```html
+<!-- Output -->
+<div data-modal="[unique-id]" class="modal is-closed"></div>
+<div data-modal="[unique-id]" class="modal is-closed"></div>
+<div data-modal="[unique-id]" class="modal is-closed"></div>
+<div data-modal="[unique-id]" class="modal is-closed"></div>
+```
 
-  <!-- modal_pos_[key] -->
-  <div class="modal modal_pos_top" data-modal="modal-pos-top" tabindex="-1">
-    <div class="modal__dialog dialog">
-      <button class="dialog__close icon-action icon-action_color_fade" data-modal-close>
-        {% include icon.html icon="x" %}
-      </button>
-      <div class="dialog__body">
-        <p>Top position modal</p>
-      </div>
-      <div class="dialog__footer flex-justify-between">
-        <button class="link" data-modal-open="modal-pos-left">
-          &larr; Left modal
-        </button>
-        <button class="link" data-modal-open="modal-pos-bottom">
-          &darr; Bottom modal
-        </button>
-        <button class="link" data-modal-open="modal-pos-right">
-          &rarr; Right modal
-        </button>
-      </div>
-    </div>
-  </div>
-  <div class="modal modal_pos_bottom" data-modal="modal-pos-bottom" tabindex="-1">
-    <div class="modal__dialog dialog">
-      <button class="dialog__close icon-action icon-action_color_fade" data-modal-close>
-        {% include icon.html icon="x" %}
-      </button>
-      <div class="dialog__body">
-        <p>Bottom position modal</p>
-      </div>
-      <div class="dialog__footer flex-justify-between">
-        <button class="link" data-modal-open="modal-pos-left">
-          &larr; Left modal
-        </button>
-        <button class="link" data-modal-open="modal-pos-top">
-          &uarr; Top modal
-        </button>
-        <button class="link" data-modal-open="modal-pos-right">
-          &rarr; Right modal
-        </button>
-      </div>
-    </div>
-  </div>
-  <div class="modal modal_pos_left" data-modal="modal-pos-left" tabindex="-1">
-    <div class="modal__dialog dialog">
-      <button class="dialog__close icon-action icon-action_color_fade" data-modal-close>
-        {% include icon.html icon="x" %}
-      </button>
-      <div class="dialog__body">
-        <p>Left position modal</p>
-      </div>
-      <div class="dialog__footer">
-        <button class="link" data-modal-open="modal-pos-top">
-          &uarr; Top modal
-        </button>
-      </div>
-      <div class="dialog__footer">
-        <button class="link" data-modal-open="modal-pos-right">
-          &rarr; Right modal
-        </button>
-      </div>
-      <div class="dialog__footer">
-        <button class="link" data-modal-open="modal-pos-bottom">
-          &darr; Bottom modal
-        </button>
-      </div>
-    </div>
-  </div>
-  <div class="modal modal_pos_right" data-modal="modal-pos-right" tabindex="-1">
-    <div class="modal__dialog dialog">
-      <button class="dialog__close icon-action icon-action_color_fade" data-modal-close>
-        {% include icon.html icon="x" %}
-      </button>
-      <div class="dialog__body">
-        <p>Right position modal</p>
-      </div>
-      <div class="dialog__footer">
-        <button class="link" data-modal-open="modal-pos-top">
-          &uarr; Top modal
-        </button>
-      </div>
-      <div class="dialog__footer">
-        <button class="link" data-modal-open="modal-pos-left">
-          &larr; Left modal
-        </button>
-      </div>
-      <div class="dialog__footer">
-        <button class="link" data-modal-open="modal-pos-bottom">
-          &darr; Bottom modal
-        </button>
-      </div>
-    </div>
-  </div>
+### `modal.setTabindex()`
 
-  <!-- data-modal-focus -->
-  <div class="modal" data-modal="modal-focus-self" tabindex="-1">
-    <div class="modal__dialog dialog">
-      <div class="dialog__body level flex-justify-between">
-        <p>Focus self on open</p>
-        <button class="link" data-modal-close>Close</button>
-      </div>
-    </div>
-  </div>
-  <div class="modal" data-modal="modal-focus-inner">
-    <div class="modal__dialog dialog">
-      <div class="dialog__body">
-        <div class="level flex-justify-between margin-bottom-md">
-          <p>Focus input element on open</p>
-          <button class="link" data-modal-close>Close</button>
-        </div>
-        <input class="input" data-modal-focus placeholder="Search..." />
-      </div>
-    </div>
-  </div>
+Sets the `tabindex="-1"` attribute on all modal dialogs. This makes it possible to set focus on the dialog when opened but won't allow users to focus it using the keyboard. This is ran automatically on `init()` if `setTabindex` is set to `true`.
 
-  <!-- data-modal-required -->
-  <div class="modal" data-modal="modal-required" data-modal-required tabindex="-1">
-    <div class="modal__dialog dialog">
-      <div class="dialog__body spacing">
-        <h2 class="dialog__title">Required modal</h2>
-        <p>Required modals can not be closed without an explicit action. That means clicking on the background or pressing the escape key to close is disabled.</p>
-        <div class="flex flex-justify-end">
-          <div class="button-group">
-            <button data-modal-close class="button button_color_primary">
-              I undersand
-            </button>
-            <button data-modal-close class="button button_color_secondary">
-              Cancel
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+```html
+<!-- Initial HTML -->
+<div data-modal="[unique-id]" class="modal">
+  <div data-modal-dialog class="modal__dialog">
+    ...
   </div>
-
 </div>
+```
+
+```js
+modal.setTabindex();
+```
+
+```html
+<!-- Result -->
+<div data-modal="[unique-id]" class="modal">
+  <div data-modal-dialog class="modal__dialog" tabindex="-1">
+    ...
+  </div>
+</div>
+```
+
+### `modal.moveModals(selector, location)`
+
+Moves all modals to a location in the DOM relative to the passed selector and location reference.
+
+**Parameters**
+
+- `selector [String]` The selector that modals should be moved relative to.
+- `location [String]` The location to move modals relative to the selector. Options include `after`, `before`, `append` and `prepend`.
+
+```html
+<!-- Initial HTML -->
+<div class="main">
+  <div data-modal="[unique-id]">...</div>
+</div>
+```
+
+```js
+modal.moveModals('.main', 'after');
+```
+
+```html
+<!-- Result -->
+<div class="main"></div>
+<div data-modal="[unique-id]">...</div>
+```

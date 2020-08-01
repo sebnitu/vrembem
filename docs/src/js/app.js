@@ -6,6 +6,7 @@ import {
 } from 'vrembem';
 import ScrollStash from 'scroll-stash';
 import 'svgxuse';
+import 'wicg-inert';
 import './list.js';
 import './version';
 
@@ -14,6 +15,11 @@ new Dismissible({ autoInit: true });
 new Drawer({ autoInit: true });
 new Modal({
   autoInit: true,
+  selectorMain: '.page',
+  moveModals: {
+    selector: '[role="modals-container"]',
+    location: 'append'
+  },
   toggleOverflow: 'body, .page__article'
 });
 const scrollStash = new ScrollStash({

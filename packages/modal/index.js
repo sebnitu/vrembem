@@ -1,17 +1,21 @@
-import { addClass, camelCase, hasClass, removeClass } from '@vrembem/core';
+import { addClass, camelCase, removeClass } from '@vrembem/core';
 
 export const Modal = (options) => {
 
-  let api = {};
+  const api = {};
   const defaults = {
     autoInit: false,
 
     // Data attributes
     dataModal: 'modal',
+    dataDialog: 'modal-dialog',
     dataOpen: 'modal-open',
     dataClose: 'modal-close',
     dataFocus: 'modal-focus',
     dataRequired: 'modal-required',
+
+    // Selector
+    selectorMain: null,
 
     // State classes
     stateOpened: 'is-opened',
@@ -21,28 +25,30 @@ export const Modal = (options) => {
 
     // Feature toggles
     customEventPrefix: 'modal:',
-    focus: true,
+    moveModals: {
+      selector: null,
+      location: null
+    },
+    setTabindex: true,
     toggleOverflow: 'body',
-    transition: true
+    transition: true,
   };
 
   api.settings = { ...defaults, ...options };
+  api.memory = {};
 
-  api.memoryTrigger = null;
-  api.memoryTarget = null;
-
-  api.init = () => {
-    document.addEventListener('click', run, false);
-    document.addEventListener('touchend', run, false);
-    document.addEventListener('keyup', escape, false);
+  api.init = async () => {
+    setInitialState();
+    setTabindex();
+    moveModals();
+    document.addEventListener('click', handler, false);
+    document.addEventListener('keyup', handlerEscape, false);
   };
 
   api.destroy = () => {
-    api.memoryTrigger = null;
-    api.memoryTarget = null;
-    document.removeEventListener('click', run, false);
-    document.removeEventListener('touchend', run, false);
-    document.removeEventListener('keyup', escape, false);
+    api.memory = {};
+    document.removeEventListener('click', handler, false);
+    document.removeEventListener('keyup', handlerEscape, false);
   };
 
   api.open = (modalKey, callback) => {
@@ -53,17 +59,38 @@ export const Modal = (options) => {
     close(returnFocus, callback);
   };
 
-  const run = (event) => {
+  api.setInitialState = () => {
+    setInitialState();
+  };
+
+  api.setTabindex = () => {
+    setTabindex(true);
+  };
+
+  api.moveModals = (selector, location) => {
+    moveModals(selector, location);
+  };
+
+  const handler = (event) => {
     // Trigger click
     const trigger = event.target.closest(`[data-${api.settings.dataOpen}]`);
     if (trigger) {
-      const targetData = trigger.dataset[camelCase(api.settings.dataOpen)];
+      const modalKey = trigger.dataset[camelCase(api.settings.dataOpen)];
       const fromModal = event.target.closest(
         `[data-${api.settings.dataModal}]`
       );
-      if (!fromModal) saveTrigger(trigger);
+      if (!fromModal) {
+        api.memory.trigger = trigger;
+      } else {
+        const target = document.querySelector(
+          `[data-${api.settings.dataModal}="${modalKey}"]`
+        );
+        if (target) {
+          api.memory.targetNext = target;
+        }
+      }
       close(!fromModal);
-      open(targetData);
+      open(modalKey);
       event.preventDefault();
     } else {
       // Close click
@@ -81,13 +108,65 @@ export const Modal = (options) => {
     }
   };
 
-  const escape = (event) => {
-    if (event.keyCode == 27) {
+  const handlerEscape = (event) => {
+    if (event.key === 'Escape' || event.keyCode === 27) {
       const target = document.querySelector(
         `[data-${api.settings.dataModal}].${api.settings.stateOpened}`
       );
       if (target && !target.hasAttribute(`data-${api.settings.dataRequired}`)) {
         close();
+      }
+    }
+  };
+
+  const setInitialState = () => {
+    const modals = document.querySelectorAll(`[data-${api.settings.dataModal}]`);
+    modals.forEach((el) => {
+      removeClass(el,
+        api.settings.stateOpened,
+        api.settings.stateOpening,
+        api.settings.stateClosing
+      );
+      addClass(el, api.settings.stateClosed);
+    });
+    if (api.memory.target) {
+      enableMain();
+      setOverflow();
+      destroyTrapFocus();
+      returnFocus();
+    }
+  };
+
+  const setTabindex = (enable = api.settings.setTabindex) => {
+    if (enable) {
+      const modals = document.querySelectorAll(
+        `[data-${api.settings.dataModal}] [data-${api.settings.dataDialog}]`
+      );
+      modals.forEach((el) => {
+        el.setAttribute('tabindex', '-1');
+      });
+    }
+  };
+
+  const moveModals = (
+    selector = api.settings.moveModals.selector,
+    location = api.settings.moveModals.location
+  ) => {
+    if (selector) {
+      const el = document.querySelector(selector);
+      if (el) {
+        const modals = document.querySelectorAll(`[data-${api.settings.dataModal}]`);
+        modals.forEach((modal) => {
+          if (location === 'after') {
+            el.after(modal);
+          } else if (location === 'before') {
+            el.before(modal);
+          } else if (location === 'append') {
+            el.append(modal);
+          } else if (location === 'prepend') {
+            el.prepend(modal);
+          }
+        });
       }
     }
   };
@@ -105,10 +184,14 @@ export const Modal = (options) => {
     }
   };
 
+  /**
+   * Transition functionality
+   */
+
   const openTransition = (modal) => {
     return new Promise((resolve) => {
-      addClass(modal, api.settings.stateOpening);
       removeClass(modal, api.settings.stateClosed);
+      addClass(modal, api.settings.stateOpening);
       modal.addEventListener('transitionend', function _listener() {
         addClass(modal, api.settings.stateOpened);
         removeClass(modal, api.settings.stateOpening);
@@ -120,18 +203,20 @@ export const Modal = (options) => {
 
   const open = async (modalKey, callback) => {
     const target = document.querySelector(
-      `[data-${api.settings.dataModal}="${modalKey}"]`
+      `[data-${api.settings.dataModal}="${modalKey}"].${api.settings.stateClosed}`
     );
-    if (target && !hasClass(target, api.settings.stateOpened)) {
+    if (target) {
       setOverflow('hidden');
-      saveTarget(target);
+      api.memory.target = target;
       if (api.settings.transition) {
         await openTransition(target);
       } else {
         addClass(target, api.settings.stateOpened);
         removeClass(target, api.settings.stateClosed);
       }
-      setFocus(target);
+      setFocus();
+      initTrapFocus();
+      disableMain();
       typeof callback === 'function' && callback();
       target.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
         bubbles: true
@@ -144,8 +229,8 @@ export const Modal = (options) => {
       addClass(modal, api.settings.stateClosing);
       removeClass(modal, api.settings.stateOpened);
       modal.addEventListener('transitionend', function _listener() {
-        addClass(modal, api.settings.stateClosed);
         removeClass(modal, api.settings.stateClosing);
+        addClass(modal, api.settings.stateClosed);
         this.removeEventListener('transitionend', _listener, true);
         resolve();
       }, true);
@@ -157,6 +242,7 @@ export const Modal = (options) => {
       `[data-${api.settings.dataModal}].${api.settings.stateOpened}`
     );
     if (target) {
+      enableMain();
       setOverflow();
       if (api.settings.transition) {
         await closeTransition(target);
@@ -165,6 +251,7 @@ export const Modal = (options) => {
         removeClass(target, api.settings.stateOpened);
       }
       if (focus) returnFocus();
+      destroyTrapFocus();
       typeof callback === 'function' && callback();
       target.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
         bubbles: true
@@ -176,38 +263,124 @@ export const Modal = (options) => {
    * Focus functionality
    */
 
-  const saveTarget = (target) => {
-    if (api.settings.focus) {
-      api.memoryTarget = target;
-    }
-  };
-
-  const saveTrigger = (trigger) => {
-    if (api.settings.focus) {
-      api.memoryTrigger = trigger;
-    }
-  };
-
   const setFocus = () => {
-    if (api.settings.focus && api.memoryTarget) {
-      const innerFocus = api.memoryTarget.querySelector(
-        `[data-${api.settings.dataFocus}]`
+    const innerFocus = api.memory.target.querySelector(
+      `[data-${api.settings.dataFocus}]`
+    );
+    if (innerFocus) {
+      innerFocus.focus();
+    } else {
+      const dialog = api.memory.target.querySelector(
+        `[data-${api.settings.dataDialog}][tabindex="-1"]`
       );
-      if (innerFocus) {
-        innerFocus.focus();
-      } else {
-        api.memoryTarget.focus();
+      if (dialog) {
+        dialog.focus();
       }
-      api.memoryTarget = null;
     }
   };
 
   const returnFocus = () => {
-    if (api.settings.focus && api.memoryTrigger) {
-      api.memoryTrigger.focus();
-      api.memoryTrigger = null;
+    if (api.memory.trigger) {
+      api.memory.trigger.focus();
+      api.memory.trigger = null;
     }
   };
+
+  /**
+   * Focus trap functionality
+   */
+
+  const initTrapFocus = () => {
+    api.memory.focusable = api.memory.target.querySelectorAll(`
+      a[href]:not([disabled]),
+      button:not([disabled]),
+      textarea:not([disabled]),
+      input[type="text"]:not([disabled]),
+      input[type="radio"]:not([disabled]),
+      input[type="checkbox"]:not([disabled]),
+      select:not([disabled]),
+      [tabindex]:not([tabindex="-1"])
+    `);
+    if (api.memory.focusable.length) {
+      api.memory.focusableFirst = api.memory.focusable[0];
+      api.memory.focusableLast = api.memory.focusable[api.memory.focusable.length - 1];
+      api.memory.target.addEventListener('keydown', handlerTrapFocus);
+    } else {
+      api.memory.target.addEventListener('keydown', handlerStickyFocus);
+    }
+  };
+
+  const destroyTrapFocus = () => {
+    api.memory.focusable = null;
+    api.memory.focusableFirst = null;
+    api.memory.focusableLast = null;
+    if (api.memory.target) {
+      api.memory.target.removeEventListener('keydown', handlerTrapFocus);
+      api.memory.target.removeEventListener('keydown', handlerStickyFocus);
+      if (api.memory.targetNext) {
+        api.memory.target = api.memory.targetNext;
+        api.memory.targetNext = null;
+      } else {
+        api.memory.target = null;
+      }
+    }
+  };
+
+  const handlerTrapFocus = (event) => {
+    const isTab = (event.key === 'Tab' || event.keyCode === 9);
+    if (!isTab) return;
+
+    if (event.shiftKey) {
+      const dialog = api.memory.target.querySelector(
+        `[data-${api.settings.dataDialog}][tabindex="-1"]`
+      );
+      if (
+        document.activeElement === api.memory.focusableFirst ||
+        document.activeElement === dialog
+      ) {
+        api.memory.focusableLast.focus();
+        event.preventDefault();
+      }
+    } else {
+      if (document.activeElement === api.memory.focusableLast) {
+        api.memory.focusableFirst.focus();
+        event.preventDefault();
+      }
+    }
+  };
+
+  const handlerStickyFocus = (event) => {
+    const isTab = (event.key === 'Tab' || event.keyCode === 9);
+    if (isTab) event.preventDefault();
+  };
+
+  /**
+   * Accessibility
+   */
+
+  const disableMain = () => {
+    if (api.settings.selectorMain) {
+      const content = document.querySelectorAll(api.settings.selectorMain);
+      content.forEach((el) => {
+        el.inert = true;
+        el.setAttribute('aria-hidden', true);
+      });
+    }
+  };
+
+  const enableMain = () => {
+    if (api.settings.selectorMain) {
+      const content = document.querySelectorAll(api.settings.selectorMain);
+      content.forEach((el) => {
+        el.inert = null;
+        el.removeAttribute('aria-hidden');
+      });
+    }
+  };
+
+  /**
+   * Init and return
+   */
 
   if (api.settings.autoInit) api.init();
   return api;

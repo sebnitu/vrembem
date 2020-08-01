@@ -10,62 +10,106 @@
   <title>@vrembem/modal</title>
 </head>
 <body>
-<div class="padding-xl">
+<div role="main" class="padding-xl">
   <h1 class="margin-bottom-md">@vrembem/modal</h1>
   <p>A component for changing the mode of a page to complete a critical task. This is usually used in conjunction with the Dialog component to make modal dialogs.</p>
   <hr class="sep margin-vert-lg">
+  <ul class="list margin-top-md">
 
-  <!-- Modal Triggers -->
-  <p class="margin-top-md">
-    <button data-modal-open="modal-default" class="link">Modal Default</button>
-    <button data-modal-open="modal-focus" class="link">Modal Focus</button>
-    <button data-modal-open="modal-required" class="link">Modal Required</button>
-  </p>
+    <li>
+      <button data-modal-open="modal-empty" class="link">Modal Empty</button>
+      <div data-modal="modal-empty" class="modal">
+        <div data-modal-dialog class="modal__dialog padding background-white radius spacing">
+          <p>Nothing to focus here, this modal is empty...</p>
+        </div>
+      </div>
+    </li>
 
-  <p class="margin-top-md">
-    <button class="link api-test-open">API Open</button>
-  </p>
+    <li>
+      <button data-modal-open="modal-focus-trap" class="link">Modal Focus Trap</button>
+      <div data-modal="modal-focus-trap" class="modal is-opened">
+        <div data-modal-dialog class="modal__dialog padding background-white radius spacing">
+          <div class="flex flex-justify-between">
+            <p>Modal Default</p>
+            <button data-modal-close class="link">Close</button>
+          </div>
+          <p tabindex="0">Make this tab-able...</p>
+          <p>
+            <input class="input" type="text">
+          </p>
+          <p>
+            <input class="input" type="text">
+          </p>
+          <p>
+            <input class="input" type="text">
+          </p>
+          <p>
+            <button data-modal-close class="link">Close</button>
+          </p>
+        </div>
+      </div>
+    </li>
 
-</div>
+    <li>
+      <button data-modal-open="modal-default" class="link">Modal Default</button>
+      <div data-modal="modal-default" class="modal">
+        <div data-modal-dialog class="modal__dialog padding background-white radius spacing">
+          <div class="flex flex-justify-between">
+            <p>Modal Default</p>
+            <button data-modal-close class="link">Close</button>
+          </div>
+          <p>
+            <button data-modal-open="modal-focus" class="link">Modal Focus</button>
+            <button class="link api-test-close">API Close</button>
+          </p>
+        </div>
+      </div>
+    </li>
 
-<!-- Modal Default -->
-<div data-modal="modal-default" class="modal" tabindex="-1">
-  <div class="modal__dialog padding background-white radius spacing">
-    <div class="flex flex-justify-between">
-      <p>Modal Default</p>
-      <button data-modal-close class="link">Close</button>
-    </div>
-    <p>
+    <li>
       <button data-modal-open="modal-focus" class="link">Modal Focus</button>
-      <button class="link api-test-close">API Close</button>
-    </p>
-  </div>
+      <div data-modal="modal-focus" class="modal">
+        <div data-modal-dialog class="modal__dialog padding background-white radius">
+          <div class="flex flex-justify-between">
+            <p>Modal Focus</p>
+            <button data-modal-close data-modal-focus class="link">Close</button>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <button data-modal-open="modal-required" class="link">Modal Required</button>
+      <div data-modal="modal-required" data-modal-required class="modal">
+        <div data-modal-dialog class="modal__dialog padding background-white radius">
+          <div class="flex flex-justify-between">
+            <p>Modal Required</p>
+            <button data-modal-close data-modal-focus class="link">Close</button>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <li>
+      <button class="link api-test-open">API Open</button>
+    </li>
+
+  </ul>
 </div>
 
-<!-- Modal Focus -->
-<div data-modal="modal-focus" class="modal" tabindex="-1">
-  <div class="modal__dialog padding background-white radius">
-    <div class="flex flex-justify-between">
-      <p>Modal Focus</p>
-      <button data-modal-close data-modal-focus class="link">Close</button>
-    </div>
-  </div>
-</div>
-
-<!-- Modal Required -->
-<div data-modal="modal-required" data-modal-required class="modal" tabindex="-1">
-  <div class="modal__dialog padding background-white radius">
-    <div class="flex flex-justify-between">
-      <p>Modal Required</p>
-      <button data-modal-close data-modal-focus class="link">Close</button>
-    </div>
-  </div>
-</div>
+<div class="modals"></div>
 
 <!-- Component scripts -->
-<script src="./dist/scripts.min.js"></script>
+<script src="./dist/scripts.js"></script>
 <script>
-  const modal = new vrembem.Modal({ autoInit: true });
+  const modal = new vrembem.Modal({
+    autoInit: true,
+    selectorMain: '[role="main"]',
+    moveModals: {
+      selector: '.modals',
+      location: 'append'
+    }
+  });
 
   const apiOpen = document.querySelector(".api-test-open");
   const apiClose = document.querySelector(".api-test-close");
@@ -82,5 +126,9 @@
     });
   });
 </script>
+
+<!-- Polyfills -->
+<script src="https://unpkg.com/wicg-inert/dist/inert.min.js"></script>
+
 </body>
 </html>
