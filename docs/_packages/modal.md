@@ -108,12 +108,12 @@ Here's an example where we want the `[role="main"]` content area to be inaccessi
 
 ```js
 const modal = new Modal({
-autoInit: true,
-selectorMain: '[role="main"]',
-moveModals: {
-selector: '[role="main"]',
-location: 'after'
-}
+  autoInit: true,
+  selectorMain: '[role="main"]',
+  moveModals: {
+    selector: '[role="main"]',
+    location: 'after'
+  }
 });
 ```
 
