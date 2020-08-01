@@ -30,24 +30,28 @@ const modal = new Modal({ autoInit: true });
 Modals are composed using classes for styling and data attributes for JavaScript functionality. To open a modal using a trigger, use a unique identifier as the values for both of their respective data attributes. Close buttons are left value-less and should be placed inside the modal element they're meant to close.
 
 - `data-modal="[unique-id]"`
+- `data-modal-dialog`
 - `data-modal-open="[unique-id]"`
 - `data-modal-close`
 
 ```html
+<!-- Modal trigger -->
 <button data-modal-open="[unique-id]">Modal</button>
-<div class="modal" data-modal="[unique-id]">
-  <div class="modal__dialog">
+
+<!-- Modal -->
+<div data-modal="[unique-id]" class="modal">
+  <div data-modal-dialog class="modal__dialog">
     <button data-modal-close>Close</button>
     ...
   </div>
 </div>
 ```
 
-The [dialog component](https://github.com/sebnitu/vrembem/tree/master/packages/dialog) is a great fit for composing a modal’s content.
+Modal dialogs are the actual dialog element within a modal and are defined using a the value-less `data-modal-dialog` attribute. The [dialog component](https://github.com/sebnitu/vrembem/tree/master/packages/dialog) is a great fit for composing a modal’s dialog.
 
 ```html
-<div class="modal" data-modal="[unique-id]">
-  <div class="modal__dialog dialog">
+<div data-modal="[unique-id]" class="modal">
+  <div data-modal-dialog class="modal__dialog dialog">
     <div class="dialog__header">
       ...
     </div>
@@ -63,39 +67,70 @@ The [dialog component](https://github.com/sebnitu/vrembem/tree/master/packages/d
 
 #### `data-modal-focus`
 
-If a modal has the attribute `tabindex="-1"`, it will be given focus when it's opened. If focus on a specific element inside a modal is preferred, give it the `data-modal-focus` attribute. The focus in either case is returned to the trigger element once the modal is closed. Focus handling can be disabled using the `{ focus: false }` setting.
+By default, the modal dialog gains focus when a modal is opened. If focus on a specific element inside a modal is preferred, give that element the `data-modal-focus` attribute. Focus is returned to the element that activated the modal once the modal is closed.
 
 ```html
-<!-- Focus is returned when modal is closed -->
-<button class="link" data-modal-open="[unique-id]">
+<!-- Focus is returned to the trigger when a modal is closed -->
+<button data-modal-open="[unique-id]">
   Open modal
 </button>
 
-<!-- Sets focus to self when opened -->
-<div class="modal" data-modal="[unique-id]" tabindex="-1">
-  <div class="modal__dialog">
+<!-- Sets focus to modal dialog when opened -->
+<div data-modal="[unique-id]" class="modal">
+  <div data-modal-dialog class="modal__dialog">
     <button data-modal-close>Close</button>
   </div>
 </div>
 
-<!-- Sets focus to input element when opened -->
-<div class="modal" data-modal="[unique-id]">
-  <div class="modal__dialog">
-    <input class="input" data-modal-focus />
+<!-- Sets focus to data-modal-focus element when opened -->
+<div data-modal="[unique-id]" class="modal">
+  <div data-modal-dialog class="modal__dialog">
+    <input type="text" data-modal-focus>
   </div>
 </div>
 ```
 
+While a modal is active, the contents obscured by the modal should be inaccessible to all users. This means that the `TAB` key, and a screen reader’s virtual cursor (arrow keys) should not be allowed to leave the modal dialog and traverse the content outside of the dialog.
+
 #### `data-modal-required`
 
-Required modals can not be closed without an explicit action. That means clicking on the background or pressing the escape key to close is disabled. Add the `data-modal-required` data attribute to a modal to enable this behavior.
+Required modals can not be closed without an explicit action. That means clicking on the background or pressing the escape key to close a required modal is disabled. Add the `data-modal-required` data attribute to a modal to enable this behavior and make sure to provide an action inside the modal that closes it.
 
 ```html
-<div class="modal" data-modal="[unique-id]" data-modal-required>
-  <div class="modal__dialog">
+<div data-modal="[unique-id]" data-modal-required class="modal">
+  <div data-modal-dialog class="modal__dialog">
     ...
+    <button data-modal-close>Agree</button>
   </div>
 </div>
+```
+
+## Behavior and Accessibility
+
+Modals on the web have an expected set of patterns that this component follows. Here's what to expect:
+
+1. When a modal is opened, focus is moved to the dialog or an element inside.
+2. Modals provide standard methods for the user to close such as using the `esc` key or clicking outside the dialog.
+3. While the modal is active, contents obscured by the modal are inaccessible to all users.
+4. When a modal is closed, focus is returned to the initial trigger element that activated the dialog.
+
+To take full advantage of modal's accessibility features, it's recommened to that you set the `selectorMain` option to all elements that are ouside the modal. If you have modal markup throughout your document, use the `moveModals` option or `moveModals()` method to consolidate all modals in the DOM to a single location. All elements that match the `selectorMain` selector will be given the `inert` attribute as well as `aria-hidden="true"` when a modal is opened.
+
+> Inert is not currently widly supportted by all browsers. Consider using a polyfill such as [wicg-inert](https://github.com/WICG/inert) or Google's [inert-polyfill](https://github.com/GoogleChrome/inert-polyfill).
+
+### Example
+
+Here's an example where we want the `[role="main"]` content area to be inaccessible while modals are open. We also want for all modals to be moved outside the main content element in the DOM.
+
+```js
+const modal = new Modal({
+  autoInit: true,
+  selectorMain: '[role="main"]',
+  moveModals: {
+    selector: '[role="main"]',
+    location: 'after'
+  }
+});
 ```
 
 ## Modifiers
@@ -137,43 +172,46 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
 
 ### Sass Variables
 
-Variable | Default | Description
----|---|---
-`$prefix-block` | `null` | String to prefix blocks with.
-`$prefix-element` | `"__"` | String to prefix element with.
-`$prefix-modifier` | `"_"` | String to prefix modifier with.
-`$prefix-modifier-value` | `"_"` | String to prefix modifier values with.
-`$zindex` | `1000` | Applied z-index to modals to control the stack order.
-`$width` | `38em` | The default max width of modals.
-`$width-sm` | `18em` | The small width applied to modals with `_size_sm` modifier.
-`$width-lg` | `56em` | The large width applied to modals with `_size_lg` modifier.
-`$travel` | `5em` | Distance that modal travel during their transition.
-`$transition-duration` | `0.3s` | Duration of modal transition.
-`$transition-timing-function` | `cubic-bezier(0.4, 0, 0.2, 1)` | Timing function used for modal transitions.
-`$background` | `#424242` | Background color of modal screen.
-`$background-alpha` | `0.8` | The alpha channel for the modal screen.
-`$box-shadow` | See: `core.$box-shadow-24dp` | Box shadow applied to modal dialog elements.
-`$aside-width` | `16em` | Width applied to modals using `_pos_left` and `_pos_right` modifiers.
-`$aside-max-width` | `90%` | Max width applied to modals using `_pos_left` and `_pos_right` modifiers.
+| Variable                      | Default                        | Description                                                               |
+| ----------------------------- | ------------------------------ | ------------------------------------------------------------------------- |
+| `$prefix-block`               | `null`                         | String to prefix blocks with.                                             |
+| `$prefix-element`             | `"__"`                         | String to prefix element with.                                            |
+| `$prefix-modifier`            | `"_"`                          | String to prefix modifier with.                                           |
+| `$prefix-modifier-value`      | `"_"`                          | String to prefix modifier values with.                                    |
+| `$zindex`                     | `1000`                         | Applied z-index to modals to control the stack order.                     |
+| `$width`                      | `38em`                         | The default max width of modals.                                          |
+| `$width-sm`                   | `18em`                         | The small width applied to modals with `_size_sm` modifier.               |
+| `$width-lg`                   | `56em`                         | The large width applied to modals with `_size_lg` modifier.               |
+| `$travel`                     | `5em`                          | Distance that modal travel during their transition.                       |
+| `$transition-duration`        | `0.3s`                         | Duration of modal transition.                                             |
+| `$transition-timing-function` | `cubic-bezier(0.4, 0, 0.2, 1)` | Timing function used for modal transitions.                               |
+| `$background`                 | `#424242`                      | Background color of modal screen.                                         |
+| `$background-alpha`           | `0.8`                          | The alpha channel for the modal screen.                                   |
+| `$box-shadow`                 | See: `core.$box-shadow-24dp`   | Box shadow applied to modal dialog elements.                              |
+| `$aside-width`                | `16em`                         | Width applied to modals using `_pos_left` and `_pos_right` modifiers.     |
+| `$aside-max-width`            | `90%`                          | Max width applied to modals using `_pos_left` and `_pos_right` modifiers. |
 
 ### JavaScript Options
 
-Key | Default | Description
----|---|---
-`autoInit` | `false` | Automatically instantiates the instance.
-`dataModal` | `'modal'` | Data attribute for a modal.
-`dataOpen` | `'modal-open'` | Data attribute for a modal open trigger.
-`dataClose` | `'modal-close'` | Data attribute for a modal close trigger.
-`dataFocus` | `'modal-focus'` | Data attribute for setting a modal's focus element.
-`dataRequired` | `'modal-required'` | Data attribute for making a modal required.
-`stateOpened` | `'is-opened'` | Class used for open state.
-`stateOpening` | `'is-opening'` | Class used for transitioning to open state.
-`stateClosing` | `'is-closing'` | Class used for transitioning to closed state.
-`stateClosed` | `'is-closed'` | Class used for closed state.
-`customEventPrefix` | `'modal:'` | Prefix to be used on custom events.
-`focus` | `true` | Toggles the focus handling feature.
-`toggleOverflow` | `'body'` |  Toggle `overflow:hidden` on all matching elements provided by the CSS selector. Set to [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) to disable.
-`transition` | `true` | Toggle the transition animation for the modal. Set to `false` to disable.
+| Key                 | Default                              | Description                                                                                                                                                         |
+| ------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `autoInit`          | `false`                              | Automatically instantiates the instance.                                                                                                                            |
+| `dataModal`         | `'modal'`                            | Data attribute for a modal.                                                                                                                                         |
+| `dataDialog`        | `modal-dialog`                       | Data attribute for a modal dialog                                                                                                                                   |
+| `dataOpen`          | `'modal-open'`                       | Data attribute for a modal open trigger.                                                                                                                            |
+| `dataClose`         | `'modal-close'`                      | Data attribute for a modal close trigger.                                                                                                                           |
+| `dataFocus`         | `'modal-focus'`                      | Data attribute for setting a modal's focus element.                                                                                                                 |
+| `dataRequired`      | `'modal-required'`                   | Data attribute for making a modal required.                                                                                                                         |
+| `selectorMain`      | `null`                               | Applies `inert` and `aria-hidden` attributes to all matching elements when a modal is opened.                                                                       |
+| `stateOpened`       | `'is-opened'`                        | Class used for open state.                                                                                                                                          |
+| `stateOpening`      | `'is-opening'`                       | Class used for transitioning to open state.                                                                                                                         |
+| `stateClosing`      | `'is-closing'`                       | Class used for transitioning to closed state.                                                                                                                       |
+| `stateClosed`       | `'is-closed'`                        | Class used for closed state.                                                                                                                                        |
+| `customEventPrefix` | `'modal:'`                           | Prefix to be used on custom events.                                                                                                                                 |
+| `moveModals`        | `{ selector: null, location: null }` | Moves all modals to a location in the DOM relative to the passed selector on init. Location options include `after`, `before`, `append` and `prepend`.              |
+| `setTabindex`       | `true`                               | Whether or not to set `tabindex="-1"` on all modal drawer elements on init.                                                                                         |
+| `toggleOverflow`    | `'body'`                             | Toggle `overflow:hidden` on all matching elements provided by the CSS selector. Set to [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) to disable. |
+| `transition`        | `true`                               | Toggle the transition animation for the modal. Set to `false` to disable.                                                                                           |
 
 ## Events
 
@@ -184,7 +222,13 @@ Key | Default | Description
 
 ### `modal.init()`
 
-Initializes the modal instance.
+Initializes the modal instance. During initialization, the following processes are run:
+
+- Sets the initial state of modals. This is important as modals can only be opened if their current state is closed.
+- Sets `tabindex="-1"` on all modal dialog elements if `setTabindex` is set to `true`.
+- Moves all modals in the DOM to a location specified in the `moveModals` option.
+- Adds the `click` event listener to the document.
+- Adds the `keyup` event listener for closing modals with the `esc` key.
 
 ```js
 const modal = new Modal();
@@ -193,7 +237,11 @@ modal.init();
 
 ### `drawer.destroy()`
 
-Destroys and cleans up the modal instantiation.
+Destroys and cleans up the modal instantiation. During cleanup, the following processes are run:
+
+- Clears the stored `modal.memory` object.
+- Removes the `click` event listener from the document.
+- Removes the `keyup` event listener from the document.
 
 ```js
 const modal = new Modal();
@@ -238,4 +286,82 @@ Closes a modal and returns focus to trigger element with optional callback.
 modal.close(true, () => {
   // Your custom code here...
 });
+```
+
+### `modal.setInitialState()`
+
+Sets the initial state of all modals. This includes removing all transitional classes, opened states and applies the closed state class. This is ran automatically on `init()` but is exposed if states need to be reset for some reason.
+
+```html
+<!-- Missing a state class... -->
+<div data-modal="[unique-id]" class="modal">...</div>
+
+<!-- Opened state... -->
+<div data-modal="[unique-id]" class="modal is-opened">...</div>
+
+<!-- Transitioning state... -->
+<div data-modal="[unique-id]" class="modal is-opening">...</div>
+<div data-modal="[unique-id]" class="modal is-closing">...</div>
+```
+```js
+modal.setInitialState();
+```
+```html
+<!-- Output -->
+<div data-modal="[unique-id]" class="modal is-closed"></div>
+<div data-modal="[unique-id]" class="modal is-closed"></div>
+<div data-modal="[unique-id]" class="modal is-closed"></div>
+<div data-modal="[unique-id]" class="modal is-closed"></div>
+```
+
+### `modal.setTabindex()`
+
+Sets the `tabindex="-1"` attribute on all modal dialogs. This makes it possible to set focus on the dialog when opened but won't allow users to focus it using the keyboard. This is ran automatically on `init()` if `setTabindex` is set to `true`.
+
+```html
+<!-- Initial HTML -->
+<div data-modal="[unique-id]" class="modal">
+  <div data-modal-dialog class="modal__dialog">
+    ...
+  </div>
+</div>
+```
+
+```js
+modal.setTabindex();
+```
+
+```html
+<!-- Result -->
+<div data-modal="[unique-id]" class="modal">
+  <div data-modal-dialog class="modal__dialog" tabindex="-1">
+    ...
+  </div>
+</div>
+```
+
+### `modal.moveModals(selector, location)`
+
+Moves all modals to a location in the DOM relative to the passed selector and location reference.
+
+**Parameters**
+
+- `selector [String]` The selector that modals should be moved relative to.
+- `location [String]` The location to move modals relative to the selector. Options include `after`, `before`, `append` and `prepend`.
+
+```html
+<!-- Initial HTML -->
+<div class="main">
+  <div data-modal="[unique-id]">...</div>
+</div>
+```
+
+```js
+modal.moveModals('.main', 'after');
+```
+
+```html
+<!-- Result -->
+<div class="main"></div>
+<div data-modal="[unique-id]">...</div>
 ```
