@@ -130,7 +130,7 @@ export const Modal = (options) => {
       addClass(el, api.settings.stateClosed);
     });
     if (api.memory.target) {
-      showContent();
+      enableMain();
       setOverflow();
       destroyTrapFocus();
       returnFocus();
@@ -216,7 +216,7 @@ export const Modal = (options) => {
       }
       setFocus();
       initTrapFocus();
-      hideContent();
+      disableMain();
       typeof callback === 'function' && callback();
       target.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
         bubbles: true
@@ -242,7 +242,7 @@ export const Modal = (options) => {
       `[data-${api.settings.dataModal}].${api.settings.stateOpened}`
     );
     if (target) {
-      showContent();
+      enableMain();
       setOverflow();
       if (api.settings.transition) {
         await closeTransition(target);
@@ -306,7 +306,7 @@ export const Modal = (options) => {
       api.memory.focusableLast = api.memory.focusable[api.memory.focusable.length - 1];
       api.memory.target.addEventListener('keydown', handlerTrapFocus);
     } else {
-      api.memory.target.addEventListener('keydown', handlerSickyFocus);
+      api.memory.target.addEventListener('keydown', handlerStickyFocus);
     }
   };
 
@@ -316,7 +316,7 @@ export const Modal = (options) => {
     api.memory.focusableLast = null;
     if (api.memory.target) {
       api.memory.target.removeEventListener('keydown', handlerTrapFocus);
-      api.memory.target.removeEventListener('keydown', handlerSickyFocus);
+      api.memory.target.removeEventListener('keydown', handlerStickyFocus);
       if (api.memory.targetNext) {
         api.memory.target = api.memory.targetNext;
         api.memory.targetNext = null;
@@ -349,7 +349,7 @@ export const Modal = (options) => {
     }
   };
 
-  const handlerSickyFocus = (event) => {
+  const handlerStickyFocus = (event) => {
     const isTab = (event.key === 'Tab' || event.keyCode === 9);
     if (isTab) event.preventDefault();
   };
@@ -358,7 +358,7 @@ export const Modal = (options) => {
    * Accessibility
    */
 
-  const hideContent = () => {
+  const disableMain = () => {
     if (api.settings.selectorMain) {
       const content = document.querySelectorAll(api.settings.selectorMain);
       content.forEach((el) => {
@@ -368,7 +368,7 @@ export const Modal = (options) => {
     }
   };
 
-  const showContent = () => {
+  const enableMain = () => {
     if (api.settings.selectorMain) {
       const content = document.querySelectorAll(api.settings.selectorMain);
       content.forEach((el) => {

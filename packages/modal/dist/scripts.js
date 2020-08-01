@@ -821,7 +821,7 @@
 	    });
 
 	    if (api.memory.target) {
-	      showContent();
+	      enableMain();
 	      setOverflow();
 	      destroyTrapFocus();
 	      returnFocus();
@@ -925,7 +925,7 @@
 	            case 11:
 	              setFocus();
 	              initTrapFocus();
-	              hideContent();
+	              disableMain();
 	              typeof callback === 'function' && callback();
 	              target.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
 	                bubbles: true
@@ -976,7 +976,7 @@
 	                break;
 	              }
 
-	              showContent();
+	              enableMain();
 	              setOverflow();
 
 	              if (!api.settings.transition) {
@@ -1045,7 +1045,7 @@
 	      api.memory.focusableLast = api.memory.focusable[api.memory.focusable.length - 1];
 	      api.memory.target.addEventListener('keydown', handlerTrapFocus);
 	    } else {
-	      api.memory.target.addEventListener('keydown', handlerSickyFocus);
+	      api.memory.target.addEventListener('keydown', handlerStickyFocus);
 	    }
 	  };
 
@@ -1056,7 +1056,7 @@
 
 	    if (api.memory.target) {
 	      api.memory.target.removeEventListener('keydown', handlerTrapFocus);
-	      api.memory.target.removeEventListener('keydown', handlerSickyFocus);
+	      api.memory.target.removeEventListener('keydown', handlerStickyFocus);
 
 	      if (api.memory.targetNext) {
 	        api.memory.target = api.memory.targetNext;
@@ -1086,12 +1086,12 @@
 	    }
 	  };
 
-	  var handlerSickyFocus = function handlerSickyFocus(event) {
+	  var handlerStickyFocus = function handlerStickyFocus(event) {
 	    var isTab = event.key === 'Tab' || event.keyCode === 9;
 	    if (isTab) event.preventDefault();
 	  };
 
-	  var hideContent = function hideContent() {
+	  var disableMain = function disableMain() {
 	    if (api.settings.selectorMain) {
 	      var content = document.querySelectorAll(api.settings.selectorMain);
 	      content.forEach(function (el) {
@@ -1101,7 +1101,7 @@
 	    }
 	  };
 
-	  var showContent = function showContent() {
+	  var enableMain = function enableMain() {
 	    if (api.settings.selectorMain) {
 	      var content = document.querySelectorAll(api.settings.selectorMain);
 	      content.forEach(function (el) {
