@@ -27,7 +27,7 @@
 
     <li>
       <button data-modal-open="modal-focus-trap" class="link">Modal Focus Trap</button>
-      <div data-modal="modal-focus-trap" class="modal">
+      <div data-modal="modal-focus-trap" class="modal is-opened">
         <div data-modal-dialog class="modal__dialog padding background-white radius spacing">
           <div class="flex flex-justify-between">
             <p>Modal Default</p>
@@ -100,7 +100,7 @@
 <div class="modals"></div>
 
 <!-- Component scripts -->
-<script src="./dist/scripts.min.js"></script>
+<script src="./dist/scripts.js"></script>
 <script>
   const modal = new vrembem.Modal({
     autoInit: true,

@@ -89,6 +89,28 @@ test('should remember initial trigger when opening modal through another modal',
   expect(btnOpen).toHaveFocus();
 });
 
+test('should not throw error if modal trigger from within modal doesn\'t return an element', async () => {
+  document.body.innerHTML = markup;
+  modal = new Modal({ autoInit: true });
+  const elOne = document.querySelector('[data-modal="modal-one"]');
+  const elTwo = document.querySelector('[data-modal="modal-two"]');
+  const btnOpen = document.querySelector('[data-modal-open="modal-one"]');
+  const btnTwo = elOne.querySelector('[data-modal-open="modal-two"]');
+  btnTwo.setAttribute('data-modal-open', 'asdf');
+
+  btnOpen.click();
+  elOne.dispatchEvent(ev);
+  await delay();
+
+  btnTwo.click();
+  elOne.dispatchEvent(ev);
+  elTwo.dispatchEvent(ev);
+  await delay();
+
+  expect(elOne).toHaveClass('is-closed');
+  expect(elTwo).toHaveClass('is-closed');
+});
+
 test('should retain focus on modal if nothing inner is focusable', async () => {
   document.body.innerHTML = markup;
   modal = new Modal({ autoInit: true });
@@ -138,4 +160,20 @@ test('should properly setup a focus trap when modal is open', async () => {
   expect(modal.memory.focusable.length).toBe(3);
   expect(modal.memory.focusableFirst).toHaveClass('first');
   expect(modal.memory.focusableLast).toHaveClass('last');
+});
+
+test('should not throw error if memory.target is null when modal closes', async () => {
+  document.body.innerHTML = markup;
+  modal = new Modal({ autoInit: true });
+  const modalOne = document.querySelector('[data-modal="modal-one"');
+  modal.open('modal-one');
+  modalOne.dispatchEvent(ev);
+  await delay();
+
+  modal.memory.target = null;
+  modal.close();
+  modalOne.dispatchEvent(ev);
+  await delay();
+
+  expect(modalOne).toHaveClass('is-closed');
 });

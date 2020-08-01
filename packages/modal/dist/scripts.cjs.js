@@ -685,21 +685,6 @@ var camelCase = function camelCase(str) {
   });
 };
 
-var hasClass = function hasClass(el) {
-  el = el.forEach ? el : [el];
-  el = [].slice.call(el);
-
-  for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-    cl[_key - 1] = arguments[_key];
-  }
-
-  return cl.some(function (cl) {
-    return el.some(function (el) {
-      if (el.classList.contains(cl)) return true;
-    });
-  });
-};
-
 var removeClass = function removeClass(el) {
   for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
     cl[_key - 1] = arguments[_key];
@@ -794,11 +779,21 @@ var Modal = function Modal(options) {
     var trigger = event.target.closest("[data-".concat(api.settings.dataOpen, "]"));
 
     if (trigger) {
-      var targetData = trigger.dataset[camelCase(api.settings.dataOpen)];
+      var modalKey = trigger.dataset[camelCase(api.settings.dataOpen)];
       var fromModal = event.target.closest("[data-".concat(api.settings.dataModal, "]"));
-      if (!fromModal) saveTrigger(trigger);
+
+      if (!fromModal) {
+        api.memory.trigger = trigger;
+      } else {
+        var target = document.querySelector("[data-".concat(api.settings.dataModal, "=\"").concat(modalKey, "\"]"));
+
+        if (target) {
+          api.memory.targetNext = target;
+        }
+      }
+
       close(!fromModal);
-      open(targetData);
+      open(modalKey);
       event.preventDefault();
     } else {
       if (event.target.closest("[data-".concat(api.settings.dataClose, "]"))) {
@@ -828,6 +823,13 @@ var Modal = function Modal(options) {
       removeClass(el, api.settings.stateOpened, api.settings.stateOpening, api.settings.stateClosing);
       addClass(el, api.settings.stateClosed);
     });
+
+    if (api.memory.target) {
+      showContent();
+      setOverflow();
+      destroyTrapFocus();
+      returnFocus();
+    }
   };
 
   var setTabindex = function setTabindex() {
@@ -894,15 +896,15 @@ var Modal = function Modal(options) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              target = document.querySelector("[data-".concat(api.settings.dataModal, "=\"").concat(modalKey, "\"]"));
+              target = document.querySelector("[data-".concat(api.settings.dataModal, "=\"").concat(modalKey, "\"].").concat(api.settings.stateClosed));
 
-              if (!(target && hasClass(target, api.settings.stateClosed))) {
+              if (!target) {
                 _context2.next = 16;
                 break;
               }
 
               setOverflow('hidden');
-              saveTarget(target);
+              api.memory.target = target;
 
               if (!api.settings.transition) {
                 _context2.next = 9;
@@ -1014,14 +1016,6 @@ var Modal = function Modal(options) {
     };
   }();
 
-  var saveTarget = function saveTarget(target) {
-    api.memory.target = target;
-  };
-
-  var saveTrigger = function saveTrigger(trigger) {
-    api.memory.trigger = trigger;
-  };
-
   var setFocus = function setFocus() {
     var innerFocus = api.memory.target.querySelector("[data-".concat(api.settings.dataFocus, "]"));
 
@@ -1039,6 +1033,7 @@ var Modal = function Modal(options) {
   var returnFocus = function returnFocus() {
     if (api.memory.trigger) {
       api.memory.trigger.focus();
+      api.memory.trigger = null;
     }
   };
 
@@ -1058,8 +1053,18 @@ var Modal = function Modal(options) {
     api.memory.focusable = null;
     api.memory.focusableFirst = null;
     api.memory.focusableLast = null;
-    api.memory.target.removeEventListener('keydown', handlerTrapFocus);
-    api.memory.target.removeEventListener('keydown', handlerSickyFocus);
+
+    if (api.memory.target) {
+      api.memory.target.removeEventListener('keydown', handlerTrapFocus);
+      api.memory.target.removeEventListener('keydown', handlerSickyFocus);
+
+      if (api.memory.targetNext) {
+        api.memory.target = api.memory.targetNext;
+        api.memory.targetNext = null;
+      } else {
+        api.memory.target = null;
+      }
+    }
   };
 
   var handlerTrapFocus = function handlerTrapFocus(event) {

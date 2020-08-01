@@ -1292,11 +1292,21 @@
       var trigger = event.target.closest("[data-".concat(api.settings.dataOpen, "]"));
 
       if (trigger) {
-        var targetData = trigger.dataset[camelCase(api.settings.dataOpen)];
+        var modalKey = trigger.dataset[camelCase(api.settings.dataOpen)];
         var fromModal = event.target.closest("[data-".concat(api.settings.dataModal, "]"));
-        if (!fromModal) saveTrigger(trigger);
+
+        if (!fromModal) {
+          api.memory.trigger = trigger;
+        } else {
+          var target = document.querySelector("[data-".concat(api.settings.dataModal, "=\"").concat(modalKey, "\"]"));
+
+          if (target) {
+            api.memory.targetNext = target;
+          }
+        }
+
         close(!fromModal);
-        open(targetData);
+        open(modalKey);
         event.preventDefault();
       } else {
         if (event.target.closest("[data-".concat(api.settings.dataClose, "]"))) {
@@ -1326,6 +1336,13 @@
         removeClass(el, api.settings.stateOpened, api.settings.stateOpening, api.settings.stateClosing);
         addClass(el, api.settings.stateClosed);
       });
+
+      if (api.memory.target) {
+        showContent();
+        setOverflow();
+        destroyTrapFocus();
+        returnFocus();
+      }
     };
 
     var setTabindex = function setTabindex() {
@@ -1392,15 +1409,15 @@
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                target = document.querySelector("[data-".concat(api.settings.dataModal, "=\"").concat(modalKey, "\"]"));
+                target = document.querySelector("[data-".concat(api.settings.dataModal, "=\"").concat(modalKey, "\"].").concat(api.settings.stateClosed));
 
-                if (!(target && hasClass(target, api.settings.stateClosed))) {
+                if (!target) {
                   _context2.next = 16;
                   break;
                 }
 
                 setOverflow('hidden');
-                saveTarget(target);
+                api.memory.target = target;
 
                 if (!api.settings.transition) {
                   _context2.next = 9;
@@ -1512,14 +1529,6 @@
       };
     }();
 
-    var saveTarget = function saveTarget(target) {
-      api.memory.target = target;
-    };
-
-    var saveTrigger = function saveTrigger(trigger) {
-      api.memory.trigger = trigger;
-    };
-
     var setFocus = function setFocus() {
       var innerFocus = api.memory.target.querySelector("[data-".concat(api.settings.dataFocus, "]"));
 
@@ -1537,6 +1546,7 @@
     var returnFocus = function returnFocus() {
       if (api.memory.trigger) {
         api.memory.trigger.focus();
+        api.memory.trigger = null;
       }
     };
 
@@ -1556,8 +1566,18 @@
       api.memory.focusable = null;
       api.memory.focusableFirst = null;
       api.memory.focusableLast = null;
-      api.memory.target.removeEventListener('keydown', handlerTrapFocus);
-      api.memory.target.removeEventListener('keydown', handlerSickyFocus);
+
+      if (api.memory.target) {
+        api.memory.target.removeEventListener('keydown', handlerTrapFocus);
+        api.memory.target.removeEventListener('keydown', handlerSickyFocus);
+
+        if (api.memory.targetNext) {
+          api.memory.target = api.memory.targetNext;
+          api.memory.targetNext = null;
+        } else {
+          api.memory.target = null;
+        }
+      }
     };
 
     var handlerTrapFocus = function handlerTrapFocus(event) {

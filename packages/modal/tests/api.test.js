@@ -152,3 +152,17 @@ test('should set initial state on api call', () => {
   expect(modalTwo).toHaveClass('modal is-closed');
   expect(modalTwo.classList.length).toBe(2);
 });
+
+test('should set initial state even when modal is open', async () => {
+  document.body.innerHTML = markup;
+  modal = new Modal({ autoInit: true });
+  const modalDefault = document.querySelector('[data-modal="modal-default"]');
+  modal.open('modal-default');
+  modalDefault.dispatchEvent(ev);
+  await delay();
+  expect(modalDefault).toHaveClass('is-opened');
+
+  modal.setInitialState();
+  expect(modalDefault).toHaveClass('is-closed');
+  expect(modalDefault.classList.length).toBe(2);
+});

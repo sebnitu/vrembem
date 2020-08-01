@@ -1,4 +1,4 @@
-import { addClass, camelCase, hasClass, removeClass } from '@vrembem/core';
+import { addClass, camelCase, removeClass } from '@vrembem/core';
 
 export const Modal = (options) => {
 
@@ -77,13 +77,22 @@ export const Modal = (options) => {
     // Trigger click
     const trigger = event.target.closest(`[data-${api.settings.dataOpen}]`);
     if (trigger) {
-      const targetData = trigger.dataset[camelCase(api.settings.dataOpen)];
+      const modalKey = trigger.dataset[camelCase(api.settings.dataOpen)];
       const fromModal = event.target.closest(
         `[data-${api.settings.dataModal}]`
       );
-      if (!fromModal) saveTrigger(trigger);
+      if (!fromModal) {
+        api.memory.trigger = trigger;
+      } else {
+        const target = document.querySelector(
+          `[data-${api.settings.dataModal}="${modalKey}"]`
+        );
+        if (target) {
+          api.memory.targetNext = target;
+        }
+      }
       close(!fromModal);
-      open(targetData);
+      open(modalKey);
       event.preventDefault();
     } else {
       // Close click
@@ -122,6 +131,12 @@ export const Modal = (options) => {
       );
       addClass(el, api.settings.stateClosed);
     });
+    if (api.memory.target) {
+      showContent();
+      setOverflow();
+      destroyTrapFocus();
+      returnFocus();
+    }
   };
 
   const setTabindex = () => {
@@ -188,11 +203,11 @@ export const Modal = (options) => {
 
   const open = async (modalKey, callback) => {
     const target = document.querySelector(
-      `[data-${api.settings.dataModal}="${modalKey}"]`
+      `[data-${api.settings.dataModal}="${modalKey}"].${api.settings.stateClosed}`
     );
-    if (target && hasClass(target, api.settings.stateClosed)) {
+    if (target) {
       setOverflow('hidden');
-      saveTarget(target);
+      api.memory.target = target;
       if (api.settings.transition) {
         await openTransition(target);
       } else {
@@ -248,14 +263,6 @@ export const Modal = (options) => {
    * Focus functionality
    */
 
-  const saveTarget = (target) => {
-    api.memory.target = target;
-  };
-
-  const saveTrigger = (trigger) => {
-    api.memory.trigger = trigger;
-  };
-
   const setFocus = () => {
     const innerFocus = api.memory.target.querySelector(
       `[data-${api.settings.dataFocus}]`
@@ -275,6 +282,7 @@ export const Modal = (options) => {
   const returnFocus = () => {
     if (api.memory.trigger) {
       api.memory.trigger.focus();
+      api.memory.trigger = null;
     }
   };
 
@@ -306,8 +314,16 @@ export const Modal = (options) => {
     api.memory.focusable = null;
     api.memory.focusableFirst = null;
     api.memory.focusableLast = null;
-    api.memory.target.removeEventListener('keydown', handlerTrapFocus);
-    api.memory.target.removeEventListener('keydown', handlerSickyFocus);
+    if (api.memory.target) {
+      api.memory.target.removeEventListener('keydown', handlerTrapFocus);
+      api.memory.target.removeEventListener('keydown', handlerSickyFocus);
+      if (api.memory.targetNext) {
+        api.memory.target = api.memory.targetNext;
+        api.memory.targetNext = null;
+      } else {
+        api.memory.target = null;
+      }
+    }
   };
 
   const handlerTrapFocus = (event) => {
