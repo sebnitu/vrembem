@@ -717,8 +717,7 @@ var Modal = function Modal(options) {
     },
     setTabindex: true,
     toggleOverflow: 'body',
-    transition: true,
-    transitionDuration: 300
+    transition: true
   };
   api.settings = _objectSpread(_objectSpread({}, defaults), options);
   api.memory = {};
@@ -902,11 +901,12 @@ var Modal = function Modal(options) {
       if (api.settings.transition) {
         removeClass(modal, api.settings.stateClosed);
         addClass(modal, api.settings.stateOpening);
-        setTimeout(function () {
+        modal.addEventListener('transitionend', function _f() {
           addClass(modal, api.settings.stateOpened);
           removeClass(modal, api.settings.stateOpening);
           resolve(modal);
-        }, api.settings.transitionDuration);
+          this.removeEventListener('transitionend', _f);
+        });
       } else {
         addClass(modal, api.settings.stateOpened);
         removeClass(modal, api.settings.stateClosed);
@@ -920,11 +920,12 @@ var Modal = function Modal(options) {
       if (api.settings.transition) {
         addClass(modal, api.settings.stateClosing);
         removeClass(modal, api.settings.stateOpened);
-        setTimeout(function () {
+        modal.addEventListener('transitionend', function _f() {
           removeClass(modal, api.settings.stateClosing);
           addClass(modal, api.settings.stateClosed);
           resolve(modal);
-        }, api.settings.transitionDuration);
+          this.removeEventListener('transitionend', _f);
+        });
       } else {
         addClass(modal, api.settings.stateClosed);
         removeClass(modal, api.settings.stateOpened);
