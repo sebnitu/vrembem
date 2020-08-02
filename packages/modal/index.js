@@ -215,8 +215,8 @@ export const Modal = (options) => {
         addClass(modal, api.settings.stateOpened);
         removeClass(modal, api.settings.stateClosed);
       }
-      setFocus(modal);
       initTrapFocus(modal);
+      setFocus(modal);
       disableMain();
       modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
         bubbles: true
@@ -293,13 +293,26 @@ export const Modal = (options) => {
       select:not([disabled]),
       [tabindex]:not([tabindex="-1"])
     `);
+    api.memory.focusable = focusableTest(api.memory.focusable);
     if (api.memory.focusable.length) {
       api.memory.focusableFirst = api.memory.focusable[0];
       api.memory.focusableLast = api.memory.focusable[api.memory.focusable.length - 1];
+      console.log(api.memory);
       modal.addEventListener('keydown', handlerTrapFocus);
     } else {
       modal.addEventListener('keydown', handlerStickyFocus);
     }
+  };
+
+  const focusableTest = (items) => {
+    const focusable = [];
+    items.forEach((el) => {
+      el.focus();
+      if (el === document.activeElement) {
+        focusable.push(el);
+      }
+    });
+    return focusable;
   };
 
   const destroyTrapFocus = (modal) => {

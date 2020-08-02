@@ -984,8 +984,8 @@
 	              removeClass(modal, api.settings.stateClosed);
 
 	            case 10:
-	              setFocus(modal);
 	              initTrapFocus(modal);
+	              setFocus(modal);
 	              disableMain();
 	              modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
 	                bubbles: true
@@ -1092,14 +1092,28 @@
 
 	  var initTrapFocus = function initTrapFocus(modal) {
 	    api.memory.focusable = modal.querySelectorAll("\n      a[href]:not([disabled]),\n      button:not([disabled]),\n      textarea:not([disabled]),\n      input[type=\"text\"]:not([disabled]),\n      input[type=\"radio\"]:not([disabled]),\n      input[type=\"checkbox\"]:not([disabled]),\n      select:not([disabled]),\n      [tabindex]:not([tabindex=\"-1\"])\n    ");
+	    api.memory.focusable = focusableTest(api.memory.focusable);
 
 	    if (api.memory.focusable.length) {
 	      api.memory.focusableFirst = api.memory.focusable[0];
 	      api.memory.focusableLast = api.memory.focusable[api.memory.focusable.length - 1];
+	      console.log(api.memory);
 	      modal.addEventListener('keydown', handlerTrapFocus);
 	    } else {
 	      modal.addEventListener('keydown', handlerStickyFocus);
 	    }
+	  };
+
+	  var focusableTest = function focusableTest(items) {
+	    var focusable = [];
+	    items.forEach(function (el) {
+	      el.focus();
+
+	      if (el === document.activeElement) {
+	        focusable.push(el);
+	      }
+	    });
+	    return focusable;
 	  };
 
 	  var destroyTrapFocus = function destroyTrapFocus(modal) {

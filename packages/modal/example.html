@@ -11,17 +11,20 @@
   <title>@vrembem/modal</title>
 </head>
 <body>
-<div role="main" class="padding-xl">
-  <h1 class="margin-bottom-md">@vrembem/modal</h1>
+<div role="main" class="padding-xl spacing">
+  <h1 class="">@vrembem/modal</h1>
   <p>A component for changing the mode of a page to complete a critical task. This is usually used in conjunction with the Dialog component to make modal dialogs.</p>
   <hr class="sep margin-vert-lg">
-  <ul class="list margin-top-md">
+  <ul class="list">
 
     <li>
-      <button data-modal-open="modal-empty" class="link">Modal Empty</button>
-      <div data-modal="modal-empty" class="modal">
-        <div data-modal-dialog class="modal__dialog padding background-white radius spacing">
-          <p>Nothing to focus here, this modal is empty...</p>
+      <button data-modal-open="modal-default" class="link">Modal Default</button>
+      <div data-modal="modal-default" class="modal">
+        <div data-modal-dialog class="modal__dialog dialog">
+          <button data-modal-close class="dialog__close link">Close</button>
+          <div class="dialog__body">
+            <p>Modal Default</p>
+          </div>
         </div>
       </div>
     </li>
@@ -30,6 +33,7 @@
       <button data-modal-open="modal-focus-trap" class="link">Modal Focus Trap</button>
       <div data-modal="modal-focus-trap" class="modal is-opened">
         <div data-modal-dialog class="modal__dialog dialog">
+          <a class="display-none" href="#">Focusable, but hidden...</a>
           <div class="dialog__header">
             <h2 class="dialog__title">Modal Focus Trap</h2>
             <button data-modal-close class="dialog__close link">Close</button>
@@ -46,18 +50,7 @@
           <div class="dialog__footer">
             <button data-modal-close class="link">Close</button>
           </div>
-        </div>
-      </div>
-    </li>
-
-    <li>
-      <button data-modal-open="modal-default" class="link">Modal Default</button>
-      <div data-modal="modal-default" class="modal">
-        <div data-modal-dialog class="modal__dialog dialog">
-          <button data-modal-close class="dialog__close link">Close</button>
-          <div class="dialog__body">
-            <p>Modal Default</p>
-          </div>
+          <a class="display-none" href="#">Focusable, but hidden...</a>
         </div>
       </div>
     </li>
@@ -75,12 +68,23 @@
     </li>
 
     <li>
+      <button data-modal-open="modal-empty" class="link">Modal Empty</button>
+      <div data-modal="modal-empty" class="modal">
+        <a class="display-none" href="#">Focusable, but hidden...</a>
+        <div data-modal-dialog class="modal__dialog padding background-white radius spacing">
+          <p>Modal Empty</p>
+        </div>
+        <a class="display-none" href="#">Focusable, but hidden...</a>
+      </div>
+    </li>
+
+    <li>
       <button data-modal-open="modal-required" class="link">Modal Required</button>
       <div data-modal="modal-required" data-modal-required class="modal">
         <div data-modal-dialog class="modal__dialog padding background-white radius">
           <div class="flex flex-justify-between">
             <p>Modal Required</p>
-            <button data-modal-close data-modal-focus class="link">Close</button>
+            <button data-modal-close class="link">Close</button>
           </div>
         </div>
       </div>
@@ -91,7 +95,7 @@
       <div data-modal="modal-api" class="modal">
         <div data-modal-dialog class="modal__dialog dialog">
           <div class="dialog__header">
-            <h2 class="dialog__title">API Modal</h2>
+            <h2 class="dialog__title">Modal API</h2>
             <button class="dialog__close link api-close">API Close</button>
           </div>
           <div class="dialog__body">
@@ -103,22 +107,24 @@
 
   </ul>
 
-  <hr class="sep margin-vert-md">
+  <hr class="sep">
 
-  <div class="level">
-    <button data-modal-open="modal-pos-top" class="link">
-      &uarr; Modal top
-    </button>
-    <button data-modal-open="modal-pos-bottom" class="link">
-      &darr; Modal bottom
-    </button>
-    <button data-modal-open="modal-pos-left" class="link">
-      &larr; Modal left
-    </button>
-    <button data-modal-open="modal-pos-right" class="link">
-      &rarr; Modal right
-    </button>
-  </div>
+  <h2>Position Modifiers</h2>
+
+  <ul class="list">
+    <li>
+      <button data-modal-open="modal-pos-top" class="link">&uarr; Modal top</button>
+    </li>
+    <li>
+      <button data-modal-open="modal-pos-bottom" class="link">&darr; Modal bottom</button>
+    </li>
+    <li>
+      <button data-modal-open="modal-pos-left" class="link">&larr; Modal left</button>
+    </li>
+    <li>
+      <button data-modal-open="modal-pos-right" class="link">&rarr; Modal right</button>
+    </li>
+  </ul>
   
   <div data-modal="modal-pos-top" class="modal modal_pos_top">
     <div data-modal-dialog class="modal__dialog dialog">
@@ -221,6 +227,8 @@
 
 <!-- Component scripts -->
 <script src="./dist/scripts.js"></script>
+
+<!-- Implementation scripts -->
 <script>
   const modal = new vrembem.Modal({
     autoInit: true,
