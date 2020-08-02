@@ -1,4 +1,4 @@
-import { addClass, camelCase, removeClass } from '@vrembem/core';
+import { addClass, removeClass } from '@vrembem/core';
 
 export const Modal = (options) => {
 
@@ -52,11 +52,11 @@ export const Modal = (options) => {
   };
 
   api.open = (modalKey, callback) => {
-    open(modalKey, callback);
+    return open(modalKey, callback);
   };
 
   api.close = (returnFocus, callback) => {
-    close(returnFocus, callback);
+    return close(returnFocus, callback);
   };
 
   api.setInitialState = () => {
@@ -71,34 +71,33 @@ export const Modal = (options) => {
     moveModals(selector, location);
   };
 
-  const handler = (event) => {
+  const handler = async (event) => {
     // Trigger click
     const trigger = event.target.closest(`[data-${api.settings.dataOpen}]`);
     if (trigger) {
-      const modalKey = trigger.dataset[camelCase(api.settings.dataOpen)];
-      const fromModal = event.target.closest(
-        `[data-${api.settings.dataModal}]`
-      );
-      if (!fromModal) {
-        api.memory.trigger = trigger;
-      }
-      close(!fromModal, () => {
-        open(modalKey);
-      });
+      const modalKey = trigger.getAttribute(`data-${api.settings.dataOpen}`);
+      const fromModal = event.target.closest(`[data-${api.settings.dataModal}]`);
+      if (!fromModal) api.memory.trigger = trigger;
+      await close(!fromModal);
+      open(modalKey);
       event.preventDefault();
-    } else {
-      // Close click
-      if (event.target.closest(`[data-${api.settings.dataClose}]`)) {
-        close();
-        event.preventDefault();
-      }
-      // Root click
-      if (
-        event.target.dataset[camelCase(api.settings.dataModal)] &&
-        !event.target.hasAttribute(`data-${api.settings.dataRequired}`)
-      ) {
-        close();
-      }
+      return;
+    }
+
+    // Close click
+    if (event.target.closest(`[data-${api.settings.dataClose}]`)) {
+      close();
+      event.preventDefault();
+      return;
+    }
+
+    // Root click
+    if (
+      event.target.hasAttribute(`data-${api.settings.dataModal}`) &&
+      !event.target.hasAttribute(`data-${api.settings.dataRequired}`)
+    ) {
+      close();
+      return;
     }
   };
 
@@ -209,50 +208,52 @@ export const Modal = (options) => {
   };
 
   const open = async (modalKey, callback) => {
-    const target = document.querySelector(
+    const modal = document.querySelector(
       `[data-${api.settings.dataModal}="${modalKey}"].${api.settings.stateClosed}`
     );
-    if (target) {
+    if (modal) {
       setOverflow('hidden');
       if (api.settings.transition) {
-        await openTransition(target);
+        await openTransition(modal);
       } else {
-        addClass(target, api.settings.stateOpened);
-        removeClass(target, api.settings.stateClosed);
+        addClass(modal, api.settings.stateOpened);
+        removeClass(modal, api.settings.stateClosed);
       }
-      setFocus(target);
-      initTrapFocus(target);
+      setFocus(modal);
+      initTrapFocus(modal);
       disableMain();
       typeof callback === 'function' && callback();
-      target.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
+      modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
         bubbles: true
       }));
+      return modal;
     } else {
-      typeof callback === 'function' && callback();
+      return modal;
     }
   };
 
   const close = async (focus = true, callback) => {
-    const target = document.querySelector(
+    const modal = document.querySelector(
       `[data-${api.settings.dataModal}].${api.settings.stateOpened}`
     );
-    if (target) {
+    if (modal) {
       enableMain();
       setOverflow();
       if (api.settings.transition) {
-        await closeTransition(target);
+        await closeTransition(modal);
       } else {
-        addClass(target, api.settings.stateClosed);
-        removeClass(target, api.settings.stateOpened);
+        addClass(modal, api.settings.stateClosed);
+        removeClass(modal, api.settings.stateOpened);
       }
       if (focus) returnFocus();
-      destroyTrapFocus(target);
+      destroyTrapFocus(modal);
       typeof callback === 'function' && callback();
-      target.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
+      modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
         bubbles: true
       }));
+      return modal;
     } else {
-      typeof callback === 'function' && callback();
+      return modal;
     }
   };
 

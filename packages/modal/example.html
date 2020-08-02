@@ -61,7 +61,7 @@
           </div>
           <p>
             <button data-modal-open="modal-focus" class="link">Modal Focus</button>
-            <button class="link api-test-close">API Close</button>
+            <button class="link api-close">API Close</button>
           </p>
           <p class="display-none">
             <a href="#">Hidden focusable</a>
@@ -95,7 +95,7 @@
     </li>
 
     <li>
-      <button class="link api-test-open">API Open</button>
+      <button class="link api-open">API Open</button>
     </li>
 
   </ul>
@@ -228,27 +228,28 @@
     }
   });
 
-  const apiOpen = document.querySelector(".api-test-open");
-  const apiClose = document.querySelector(".api-test-close");
-
-  apiOpen.addEventListener("click", (event) => {
-    modal.open("modal-default", () => {
-      console.log("Open API called");
-    });
-  });
-
-  apiClose.addEventListener("click", (event) => {
-    modal.close(true, () => {
-      console.log("Close API called");
-    });
-  });
-
   document.addEventListener('modal:opened', () => {
-    console.log('Open:', modal.memory);
+    // console.log(event);
+    // console.log('Open:', modal.memory);
   });
 
   document.addEventListener('modal:closed', () => {
-    console.log('Closed:', modal.memory);
+    // console.log(event);
+    // console.log('Closed:', modal.memory);
+  });
+
+  document.addEventListener('click', async () => {
+    if (event.target.classList.contains('api-open')) {
+      const result = await modal.open('modal-default');
+      console.log({ result });
+      return;
+    }
+
+    if (event.target.classList.contains('api-close')) {
+      const result = await modal.close();
+      console.log({ result });
+      return;
+    }
   });
 </script>
 
