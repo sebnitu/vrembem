@@ -5,6 +5,7 @@
   <!-- Setup styles -->
   <link rel="stylesheet" href="./node_modules/@vrembem/base/dist/styles.min.css">
   <link rel="stylesheet" href="./node_modules/@vrembem/utility/dist/styles.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/@vrembem/dialog/dist/styles.min.css">
   <!-- Component styles -->
   <link rel="stylesheet" href="./dist/styles.min.css">
   <title>@vrembem/modal</title>
@@ -62,6 +63,9 @@
             <button data-modal-open="modal-focus" class="link">Modal Focus</button>
             <button class="link api-test-close">API Close</button>
           </p>
+          <p class="display-none">
+            <a href="#">Hidden focusable</a>
+          </p>
         </div>
       </div>
     </li>
@@ -95,6 +99,119 @@
     </li>
 
   </ul>
+
+  <hr class="sep margin-vert-md">
+
+  <div class="level">
+    <button data-modal-open="modal-pos-top" class="link">
+      &uarr; Modal top
+    </button>
+    <button data-modal-open="modal-pos-bottom" class="link">
+      &darr; Modal bottom
+    </button>
+    <button data-modal-open="modal-pos-left" class="link">
+      &larr; Modal left
+    </button>
+    <button data-modal-open="modal-pos-right" class="link">
+      &rarr; Modal right
+    </button>
+  </div>
+  
+  <div data-modal="modal-pos-top" class="modal modal_pos_top">
+    <div data-modal-dialog class="modal__dialog dialog">
+      <button data-modal-close class="dialog__close link">
+        Close
+      </button>
+      <div class="dialog__body">
+        <p>Top position modal</p>
+      </div>
+      <div class="dialog__footer flex-justify-between">
+        <button data-modal-open="modal-pos-left" class="link">
+          &larr; Left modal
+        </button>
+        <button data-modal-open="modal-pos-bottom" class="link">
+          &darr; Bottom modal
+        </button>
+        <button data-modal-open="modal-pos-right" class="link">
+          &rarr; Right modal
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div data-modal="modal-pos-bottom" class="modal modal_pos_bottom">
+    <div data-modal-dialog class="modal__dialog dialog">
+      <button data-modal-close class="dialog__close link">
+        Close
+      </button>
+      <div class="dialog__body">
+        <p>Bottom position modal</p>
+      </div>
+      <div class="dialog__footer flex-justify-between">
+        <button data-modal-open="modal-pos-left" class="link">
+          &larr; Left modal
+        </button>
+        <button data-modal-open="modal-pos-top" class="link">
+          &uarr; Top modal
+        </button>
+        <button data-modal-open="modal-pos-right" class="link">
+          &rarr; Right modal
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div data-modal="modal-pos-left" class="modal modal_pos_left">
+    <div data-modal-dialog class="modal__dialog dialog">
+      <button data-modal-close class="dialog__close link">
+        Close
+      </button>
+      <div class="dialog__body">
+        <p>Left position modal</p>
+      </div>
+      <div class="dialog__footer">
+        <button data-modal-open="modal-pos-top" class="link">
+          &uarr; Top modal
+        </button>
+      </div>
+      <div class="dialog__footer">
+        <button data-modal-open="modal-pos-right" class="link">
+          &rarr; Right modal
+        </button>
+      </div>
+      <div class="dialog__footer">
+        <button data-modal-open="modal-pos-bottom" class="link">
+          &darr; Bottom modal
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div data-modal="modal-pos-right" class="modal modal_pos_right">
+    <div data-modal-dialog class="modal__dialog dialog">
+      <button data-modal-close class="dialog__close link">
+        Close
+      </button>
+      <div class="dialog__body">
+        <p>Right position modal</p>
+      </div>
+      <div class="dialog__footer">
+        <button data-modal-open="modal-pos-top" class="link">
+          &uarr; Top modal
+        </button>
+      </div>
+      <div class="dialog__footer">
+        <button data-modal-open="modal-pos-left" class="link">
+          &larr; Left modal
+        </button>
+      </div>
+      <div class="dialog__footer">
+        <button data-modal-open="modal-pos-bottom" class="link">
+          &darr; Bottom modal
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="modals"></div>
@@ -124,6 +241,14 @@
     modal.close(true, () => {
       console.log("Close API called");
     });
+  });
+
+  document.addEventListener('modal:opened', () => {
+    console.log('Open:', modal.memory);
+  });
+
+  document.addEventListener('modal:closed', () => {
+    console.log('Closed:', modal.memory);
   });
 </script>
 
