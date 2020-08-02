@@ -181,30 +181,26 @@ export const Modal = (options) => {
    * Transition functionality
    */
 
-  const openTransition = (modal) => {
-    return new Promise((resolve) => {
-      removeClass(modal, api.settings.stateClosed);
-      addClass(modal, api.settings.stateOpening);
-      modal.addEventListener('transitionend', function _listener() {
-        addClass(modal, api.settings.stateOpened);
-        removeClass(modal, api.settings.stateOpening);
-        this.removeEventListener('transitionend', _listener, true);
-        resolve(modal);
-      }, true);
-    });
+  const openTransition = async (modal) => {
+    removeClass(modal, api.settings.stateClosed);
+    addClass(modal, api.settings.stateOpening);
+    modal.addEventListener('transitionend', function _listener() {
+      addClass(modal, api.settings.stateOpened);
+      removeClass(modal, api.settings.stateOpening);
+      this.removeEventListener('transitionend', _listener, true);
+      return modal;
+    }, true);
   };
 
-  const closeTransition = (modal) => {
-    return new Promise((resolve) => {
-      addClass(modal, api.settings.stateClosing);
-      removeClass(modal, api.settings.stateOpened);
-      modal.addEventListener('transitionend', function _listener() {
-        removeClass(modal, api.settings.stateClosing);
-        addClass(modal, api.settings.stateClosed);
-        this.removeEventListener('transitionend', _listener, true);
-        resolve(modal);
-      }, true);
-    });
+  const closeTransition = async (modal) => {
+    addClass(modal, api.settings.stateClosing);
+    removeClass(modal, api.settings.stateOpened);
+    modal.addEventListener('transitionend', function _listener() {
+      removeClass(modal, api.settings.stateClosing);
+      addClass(modal, api.settings.stateClosed);
+      this.removeEventListener('transitionend', _listener, true);
+      return modal;
+    }, true);
   };
 
   const open = async (modalKey) => {

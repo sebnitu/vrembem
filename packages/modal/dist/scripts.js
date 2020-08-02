@@ -895,58 +895,88 @@
 	    }
 	  };
 
-	  var openTransition = function openTransition(modal) {
-	    return new Promise(function (resolve) {
-	      removeClass(modal, api.settings.stateClosed);
-	      addClass(modal, api.settings.stateOpening);
-	      modal.addEventListener('transitionend', function _listener() {
-	        addClass(modal, api.settings.stateOpened);
-	        removeClass(modal, api.settings.stateOpening);
-	        this.removeEventListener('transitionend', _listener, true);
-	        resolve(modal);
-	      }, true);
-	    });
-	  };
-
-	  var closeTransition = function closeTransition(modal) {
-	    return new Promise(function (resolve) {
-	      addClass(modal, api.settings.stateClosing);
-	      removeClass(modal, api.settings.stateOpened);
-	      modal.addEventListener('transitionend', function _listener() {
-	        removeClass(modal, api.settings.stateClosing);
-	        addClass(modal, api.settings.stateClosed);
-	        this.removeEventListener('transitionend', _listener, true);
-	        resolve(modal);
-	      }, true);
-	    });
-	  };
-
-	  var open = function () {
-	    var _ref3 = asyncToGenerator(regenerator.mark(function _callee3(modalKey) {
-	      var modal;
+	  var openTransition = function () {
+	    var _ref3 = asyncToGenerator(regenerator.mark(function _callee3(modal) {
 	      return regenerator.wrap(function _callee3$(_context3) {
 	        while (1) {
 	          switch (_context3.prev = _context3.next) {
 	            case 0:
+	              removeClass(modal, api.settings.stateClosed);
+	              addClass(modal, api.settings.stateOpening);
+	              modal.addEventListener('transitionend', function _listener() {
+	                addClass(modal, api.settings.stateOpened);
+	                removeClass(modal, api.settings.stateOpening);
+	                this.removeEventListener('transitionend', _listener, true);
+	                return modal;
+	              }, true);
+
+	            case 3:
+	            case "end":
+	              return _context3.stop();
+	          }
+	        }
+	      }, _callee3);
+	    }));
+
+	    return function openTransition(_x2) {
+	      return _ref3.apply(this, arguments);
+	    };
+	  }();
+
+	  var closeTransition = function () {
+	    var _ref4 = asyncToGenerator(regenerator.mark(function _callee4(modal) {
+	      return regenerator.wrap(function _callee4$(_context4) {
+	        while (1) {
+	          switch (_context4.prev = _context4.next) {
+	            case 0:
+	              addClass(modal, api.settings.stateClosing);
+	              removeClass(modal, api.settings.stateOpened);
+	              modal.addEventListener('transitionend', function _listener() {
+	                removeClass(modal, api.settings.stateClosing);
+	                addClass(modal, api.settings.stateClosed);
+	                this.removeEventListener('transitionend', _listener, true);
+	                return modal;
+	              }, true);
+
+	            case 3:
+	            case "end":
+	              return _context4.stop();
+	          }
+	        }
+	      }, _callee4);
+	    }));
+
+	    return function closeTransition(_x3) {
+	      return _ref4.apply(this, arguments);
+	    };
+	  }();
+
+	  var open = function () {
+	    var _ref5 = asyncToGenerator(regenerator.mark(function _callee5(modalKey) {
+	      var modal;
+	      return regenerator.wrap(function _callee5$(_context5) {
+	        while (1) {
+	          switch (_context5.prev = _context5.next) {
+	            case 0:
 	              modal = document.querySelector("[data-".concat(api.settings.dataModal, "=\"").concat(modalKey, "\"].").concat(api.settings.stateClosed));
 
 	              if (!modal) {
-	                _context3.next = 17;
+	                _context5.next = 17;
 	                break;
 	              }
 
 	              setOverflow('hidden');
 
 	              if (!api.settings.transition) {
-	                _context3.next = 8;
+	                _context5.next = 8;
 	                break;
 	              }
 
-	              _context3.next = 6;
+	              _context5.next = 6;
 	              return openTransition(modal);
 
 	            case 6:
-	              _context3.next = 10;
+	              _context5.next = 10;
 	              break;
 
 	            case 8:
@@ -960,39 +990,39 @@
 	              modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
 	                bubbles: true
 	              }));
-	              return _context3.abrupt("return", modal);
+	              return _context5.abrupt("return", modal);
 
 	            case 17:
-	              return _context3.abrupt("return", modal);
+	              return _context5.abrupt("return", modal);
 
 	            case 18:
 	            case "end":
-	              return _context3.stop();
+	              return _context5.stop();
 	          }
 	        }
-	      }, _callee3);
+	      }, _callee5);
 	    }));
 
-	    return function open(_x2) {
-	      return _ref3.apply(this, arguments);
+	    return function open(_x4) {
+	      return _ref5.apply(this, arguments);
 	    };
 	  }();
 
 	  var close = function () {
-	    var _ref4 = asyncToGenerator(regenerator.mark(function _callee4() {
+	    var _ref6 = asyncToGenerator(regenerator.mark(function _callee6() {
 	      var _returnFocus,
 	          modal,
-	          _args4 = arguments;
+	          _args6 = arguments;
 
-	      return regenerator.wrap(function _callee4$(_context4) {
+	      return regenerator.wrap(function _callee6$(_context6) {
 	        while (1) {
-	          switch (_context4.prev = _context4.next) {
+	          switch (_context6.prev = _context6.next) {
 	            case 0:
-	              _returnFocus = _args4.length > 0 && _args4[0] !== undefined ? _args4[0] : true;
+	              _returnFocus = _args6.length > 0 && _args6[0] !== undefined ? _args6[0] : true;
 	              modal = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpened));
 
 	              if (!modal) {
-	                _context4.next = 18;
+	                _context6.next = 18;
 	                break;
 	              }
 
@@ -1000,15 +1030,15 @@
 	              setOverflow();
 
 	              if (!api.settings.transition) {
-	                _context4.next = 10;
+	                _context6.next = 10;
 	                break;
 	              }
 
-	              _context4.next = 8;
+	              _context6.next = 8;
 	              return closeTransition(modal);
 
 	            case 8:
-	              _context4.next = 12;
+	              _context6.next = 12;
 	              break;
 
 	            case 10:
@@ -1021,21 +1051,21 @@
 	              modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
 	                bubbles: true
 	              }));
-	              return _context4.abrupt("return", modal);
+	              return _context6.abrupt("return", modal);
 
 	            case 18:
-	              return _context4.abrupt("return", modal);
+	              return _context6.abrupt("return", modal);
 
 	            case 19:
 	            case "end":
-	              return _context4.stop();
+	              return _context6.stop();
 	          }
 	        }
-	      }, _callee4);
+	      }, _callee6);
 	    }));
 
 	    return function close() {
-	      return _ref4.apply(this, arguments);
+	      return _ref6.apply(this, arguments);
 	    };
 	  }();
 
