@@ -51,12 +51,12 @@ export const Modal = (options) => {
     document.removeEventListener('keyup', handlerEscape, false);
   };
 
-  api.open = (modalKey, callback) => {
-    return open(modalKey, callback);
+  api.open = (modalKey) => {
+    return open(modalKey);
   };
 
-  api.close = (returnFocus, callback) => {
-    return close(returnFocus, callback);
+  api.close = (returnFocus) => {
+    return close(returnFocus);
   };
 
   api.setInitialState = () => {
@@ -207,7 +207,7 @@ export const Modal = (options) => {
     });
   };
 
-  const open = async (modalKey, callback) => {
+  const open = async (modalKey) => {
     const modal = document.querySelector(
       `[data-${api.settings.dataModal}="${modalKey}"].${api.settings.stateClosed}`
     );
@@ -222,7 +222,6 @@ export const Modal = (options) => {
       setFocus(modal);
       initTrapFocus(modal);
       disableMain();
-      typeof callback === 'function' && callback();
       modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
         bubbles: true
       }));
@@ -232,7 +231,7 @@ export const Modal = (options) => {
     }
   };
 
-  const close = async (focus = true, callback) => {
+  const close = async (_returnFocus = true) => {
     const modal = document.querySelector(
       `[data-${api.settings.dataModal}].${api.settings.stateOpened}`
     );
@@ -245,9 +244,8 @@ export const Modal = (options) => {
         addClass(modal, api.settings.stateClosed);
         removeClass(modal, api.settings.stateOpened);
       }
-      if (focus) returnFocus();
+      if (_returnFocus) returnFocus();
       destroyTrapFocus(modal);
-      typeof callback === 'function' && callback();
       modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
         bubbles: true
       }));

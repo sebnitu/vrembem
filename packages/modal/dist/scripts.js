@@ -745,12 +745,12 @@
 	    document.removeEventListener('keyup', handlerEscape, false);
 	  };
 
-	  api.open = function (modalKey, callback) {
-	    return open(modalKey, callback);
+	  api.open = function (modalKey) {
+	    return open(modalKey);
 	  };
 
-	  api.close = function (returnFocus, callback) {
-	    return close(returnFocus, callback);
+	  api.close = function (returnFocus) {
+	    return close(returnFocus);
 	  };
 
 	  api.setInitialState = function () {
@@ -922,7 +922,7 @@
 	  };
 
 	  var open = function () {
-	    var _ref3 = asyncToGenerator(regenerator.mark(function _callee3(modalKey, callback) {
+	    var _ref3 = asyncToGenerator(regenerator.mark(function _callee3(modalKey) {
 	      var modal;
 	      return regenerator.wrap(function _callee3$(_context3) {
 	        while (1) {
@@ -931,7 +931,7 @@
 	              modal = document.querySelector("[data-".concat(api.settings.dataModal, "=\"").concat(modalKey, "\"].").concat(api.settings.stateClosed));
 
 	              if (!modal) {
-	                _context3.next = 18;
+	                _context3.next = 17;
 	                break;
 	              }
 
@@ -957,16 +957,15 @@
 	              setFocus(modal);
 	              initTrapFocus(modal);
 	              disableMain();
-	              typeof callback === 'function' && callback();
 	              modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
 	                bubbles: true
 	              }));
 	              return _context3.abrupt("return", modal);
 
-	            case 18:
+	            case 17:
 	              return _context3.abrupt("return", modal);
 
-	            case 19:
+	            case 18:
 	            case "end":
 	              return _context3.stop();
 	          }
@@ -974,27 +973,26 @@
 	      }, _callee3);
 	    }));
 
-	    return function open(_x2, _x3) {
+	    return function open(_x2) {
 	      return _ref3.apply(this, arguments);
 	    };
 	  }();
 
 	  var close = function () {
 	    var _ref4 = asyncToGenerator(regenerator.mark(function _callee4() {
-	      var focus,
-	          callback,
+	      var _returnFocus,
 	          modal,
 	          _args4 = arguments;
+
 	      return regenerator.wrap(function _callee4$(_context4) {
 	        while (1) {
 	          switch (_context4.prev = _context4.next) {
 	            case 0:
-	              focus = _args4.length > 0 && _args4[0] !== undefined ? _args4[0] : true;
-	              callback = _args4.length > 1 ? _args4[1] : undefined;
+	              _returnFocus = _args4.length > 0 && _args4[0] !== undefined ? _args4[0] : true;
 	              modal = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpened));
 
 	              if (!modal) {
-	                _context4.next = 20;
+	                _context4.next = 18;
 	                break;
 	              }
 
@@ -1002,34 +1000,33 @@
 	              setOverflow();
 
 	              if (!api.settings.transition) {
-	                _context4.next = 11;
+	                _context4.next = 10;
 	                break;
 	              }
 
-	              _context4.next = 9;
+	              _context4.next = 8;
 	              return closeTransition(modal);
 
-	            case 9:
-	              _context4.next = 13;
+	            case 8:
+	              _context4.next = 12;
 	              break;
 
-	            case 11:
+	            case 10:
 	              addClass(modal, api.settings.stateClosed);
 	              removeClass(modal, api.settings.stateOpened);
 
-	            case 13:
-	              if (focus) returnFocus();
+	            case 12:
+	              if (_returnFocus) returnFocus();
 	              destroyTrapFocus(modal);
-	              typeof callback === 'function' && callback();
 	              modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
 	                bubbles: true
 	              }));
 	              return _context4.abrupt("return", modal);
 
-	            case 20:
+	            case 18:
 	              return _context4.abrupt("return", modal);
 
-	            case 21:
+	            case 19:
 	            case "end":
 	              return _context4.stop();
 	          }
