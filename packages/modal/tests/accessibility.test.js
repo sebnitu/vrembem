@@ -1,9 +1,8 @@
 import { Modal } from '../index.js';
 import '@testing-library/jest-dom/extend-expect';
-import { delay } from './helpers/delay';
+import { transition } from './helpers/transition';
 
 let modal;
-const ev = new Event('transitionend');
 
 const markup = `
   <div role="main">
@@ -37,20 +36,16 @@ describe('when selectorMain is set...', () => {
     document.body.innerHTML = null;
   });
 
-  it('should properly hide content when modal is open', async () => {
+  it('should properly hide content when modal is opened', async () => {
     btn.click();
-    el.dispatchEvent(ev);
-    await delay();
-
+    await transition(el);
     expect(main.inert).toBe(true);
     expect(main.getAttribute('aria-hidden')).toBe('true');
   });
 
   it('should properly show content when modal is closed', async () => {
     cls.click();
-    el.dispatchEvent(ev);
-    await delay();
-
+    await transition(el);
     expect(main.inert).toBe(null);
     expect(main.hasAttribute('aria-hidden')).toBe(false);
   });
