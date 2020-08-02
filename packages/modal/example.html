@@ -70,11 +70,11 @@
     </li>
 
     <li>
-      <button data-modal-open="modal-empty" class="link">Modal Empty</button>
+      <button data-modal-open="modal-empty" class="link">Modal Focus Empty</button>
       <div data-modal="modal-empty" class="modal">
         <a class="display-none" href="#">Focusable, but hidden...</a>
         <div data-modal-dialog class="modal__dialog padding background-white radius spacing">
-          <p>Modal Empty</p>
+          <p>Modal Focus Empty</p>
         </div>
         <a class="display-none" href="#">Focusable, but hidden...</a>
       </div>
@@ -242,13 +242,11 @@
   });
 
   document.addEventListener('modal:opened', () => {
-    // console.log(event);
-    // console.log('Open:', modal.memory);
+    console.log(modal.memory);
   });
 
   document.addEventListener('modal:closed', () => {
-    // console.log(event);
-    // console.log('Closed:', modal.memory);
+    console.log(modal.memory);
   });
 
   document.addEventListener('click', async () => {
@@ -257,7 +255,7 @@
     }
 
     if (event.target.classList.contains('api-close')) {
-      return modal.close('modal-api').then(console.log);
+      return modal.close().then(console.log);
     }
   });
 </script>

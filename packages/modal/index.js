@@ -32,6 +32,7 @@ export const Modal = (options) => {
     setTabindex: true,
     toggleOverflow: 'body',
     transition: true,
+    transitionDuration: 300
   };
 
   api.settings = { ...defaults, ...options };
@@ -115,6 +116,12 @@ export const Modal = (options) => {
   const setInitialState = () => {
     const modals = document.querySelectorAll(`[data-${api.settings.dataModal}]`);
     modals.forEach((el) => {
+      if (el.classList.contains(api.settings.stateOpened)) {
+        enableMain();
+        setOverflow();
+        focusTrigger();
+        destroyTrapFocus(el);
+      }
       removeClass(el,
         api.settings.stateOpened,
         api.settings.stateOpening,
@@ -122,12 +129,6 @@ export const Modal = (options) => {
       );
       addClass(el, api.settings.stateClosed);
     });
-    if (api.memory.target) {
-      enableMain();
-      setOverflow();
-      destroyTrapFocus();
-      returnFocus();
-    }
   };
 
   const setTabindex = (enable = api.settings.setTabindex) => {
@@ -181,26 +182,40 @@ export const Modal = (options) => {
    * Transition functionality
    */
 
-  const openTransition = async (modal) => {
-    removeClass(modal, api.settings.stateClosed);
-    addClass(modal, api.settings.stateOpening);
-    modal.addEventListener('transitionend', function _listener() {
-      addClass(modal, api.settings.stateOpened);
-      removeClass(modal, api.settings.stateOpening);
-      this.removeEventListener('transitionend', _listener, true);
-      return modal;
-    }, true);
+  const openTransition = (modal) => {
+    return new Promise((resolve) => {
+      if (api.settings.transition) {
+        removeClass(modal, api.settings.stateClosed);
+        addClass(modal, api.settings.stateOpening);
+        setTimeout(() => {
+          addClass(modal, api.settings.stateOpened);
+          removeClass(modal, api.settings.stateOpening);
+          resolve(modal);
+        }, api.settings.transitionDuration);
+      } else {
+        addClass(modal, api.settings.stateOpened);
+        removeClass(modal, api.settings.stateClosed);
+        resolve(modal);
+      }
+    });
   };
 
-  const closeTransition = async (modal) => {
-    addClass(modal, api.settings.stateClosing);
-    removeClass(modal, api.settings.stateOpened);
-    modal.addEventListener('transitionend', function _listener() {
-      removeClass(modal, api.settings.stateClosing);
-      addClass(modal, api.settings.stateClosed);
-      this.removeEventListener('transitionend', _listener, true);
-      return modal;
-    }, true);
+  const closeTransition = (modal) => {
+    return new Promise((resolve) => {
+      if (api.settings.transition) {
+        addClass(modal, api.settings.stateClosing);
+        removeClass(modal, api.settings.stateOpened);
+        setTimeout(() => {
+          removeClass(modal, api.settings.stateClosing);
+          addClass(modal, api.settings.stateClosed);
+          resolve(modal);
+        }, api.settings.transitionDuration);
+      } else {
+        addClass(modal, api.settings.stateClosed);
+        removeClass(modal, api.settings.stateOpened);
+        resolve(modal);
+      }
+    });
   };
 
   const open = async (modalKey) => {
@@ -209,14 +224,9 @@ export const Modal = (options) => {
     );
     if (modal) {
       setOverflow('hidden');
-      if (api.settings.transition) {
-        await openTransition(modal);
-      } else {
-        addClass(modal, api.settings.stateOpened);
-        removeClass(modal, api.settings.stateClosed);
-      }
+      await openTransition(modal);
       initTrapFocus(modal);
-      setFocus(modal);
+      focusModal(modal);
       disableMain();
       modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
         bubbles: true
@@ -227,20 +237,15 @@ export const Modal = (options) => {
     }
   };
 
-  const close = async (_returnFocus = true) => {
+  const close = async (returnFocus = true) => {
     const modal = document.querySelector(
       `[data-${api.settings.dataModal}].${api.settings.stateOpened}`
     );
     if (modal) {
       enableMain();
       setOverflow();
-      if (api.settings.transition) {
-        await closeTransition(modal);
-      } else {
-        addClass(modal, api.settings.stateClosed);
-        removeClass(modal, api.settings.stateOpened);
-      }
-      if (_returnFocus) returnFocus();
+      await closeTransition(modal);
+      if (returnFocus) focusTrigger();
       destroyTrapFocus(modal);
       modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
         bubbles: true
@@ -255,7 +260,7 @@ export const Modal = (options) => {
    * Focus functionality
    */
 
-  const setFocus = (modal) => {
+  const focusModal = (modal) => {
     const innerFocus = modal.querySelector(
       `[data-${api.settings.dataFocus}]`
     );
@@ -271,7 +276,7 @@ export const Modal = (options) => {
     }
   };
 
-  const returnFocus = () => {
+  const focusTrigger = () => {
     if (api.memory.trigger) {
       api.memory.trigger.focus();
       api.memory.trigger = null;
@@ -282,8 +287,9 @@ export const Modal = (options) => {
    * Focus trap functionality
    */
 
-  const initTrapFocus = (modal) => {
-    api.memory.focusable = modal.querySelectorAll(`
+  const getFocusable = (modal) => {
+    const focusable = [];
+    const items = modal.querySelectorAll(`
       a[href]:not([disabled]),
       button:not([disabled]),
       textarea:not([disabled]),
@@ -293,19 +299,6 @@ export const Modal = (options) => {
       select:not([disabled]),
       [tabindex]:not([tabindex="-1"])
     `);
-    api.memory.focusable = focusableTest(api.memory.focusable);
-    if (api.memory.focusable.length) {
-      api.memory.focusableFirst = api.memory.focusable[0];
-      api.memory.focusableLast = api.memory.focusable[api.memory.focusable.length - 1];
-      console.log(api.memory);
-      modal.addEventListener('keydown', handlerTrapFocus);
-    } else {
-      modal.addEventListener('keydown', handlerStickyFocus);
-    }
-  };
-
-  const focusableTest = (items) => {
-    const focusable = [];
     items.forEach((el) => {
       el.focus();
       if (el === document.activeElement) {
@@ -313,6 +306,17 @@ export const Modal = (options) => {
       }
     });
     return focusable;
+  };
+
+  const initTrapFocus = (modal) => {
+    api.memory.focusable = getFocusable(modal);
+    if (api.memory.focusable.length) {
+      api.memory.focusableFirst = api.memory.focusable[0];
+      api.memory.focusableLast = api.memory.focusable[api.memory.focusable.length - 1];
+      modal.addEventListener('keydown', handlerTrapFocus);
+    } else {
+      modal.addEventListener('keydown', handlerStickyFocus);
+    }
   };
 
   const destroyTrapFocus = (modal) => {
