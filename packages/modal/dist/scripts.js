@@ -903,7 +903,7 @@
 	        addClass(modal, api.settings.stateOpened);
 	        removeClass(modal, api.settings.stateOpening);
 	        this.removeEventListener('transitionend', _listener, true);
-	        resolve();
+	        resolve(modal);
 	      }, true);
 	    });
 	  };
@@ -916,7 +916,7 @@
 	        removeClass(modal, api.settings.stateClosing);
 	        addClass(modal, api.settings.stateClosed);
 	        this.removeEventListener('transitionend', _listener, true);
-	        resolve();
+	        resolve(modal);
 	      }, true);
 	    });
 	  };
