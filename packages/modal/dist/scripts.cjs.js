@@ -719,6 +719,7 @@ var Modal = function Modal(options) {
     toggleOverflow: 'body',
     transition: true
   };
+  var working = false;
   api.settings = _objectSpread(_objectSpread({}, defaults), options);
   api.memory = {};
   api.init = asyncToGenerator(regenerator.mark(function _callee() {
@@ -773,27 +774,35 @@ var Modal = function Modal(options) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
+              if (!working) {
+                _context2.next = 2;
+                break;
+              }
+
+              return _context2.abrupt("return");
+
+            case 2:
               trigger = event.target.closest("[data-".concat(api.settings.dataOpen, "]"));
 
               if (!trigger) {
-                _context2.next = 10;
+                _context2.next = 12;
                 break;
               }
 
               modalKey = trigger.getAttribute("data-".concat(api.settings.dataOpen));
               fromModal = event.target.closest("[data-".concat(api.settings.dataModal, "]"));
               if (!fromModal) api.memory.trigger = trigger;
-              _context2.next = 7;
+              _context2.next = 9;
               return close(!fromModal);
 
-            case 7:
+            case 9:
               open(modalKey);
               event.preventDefault();
               return _context2.abrupt("return");
 
-            case 10:
+            case 12:
               if (!event.target.closest("[data-".concat(api.settings.dataClose, "]"))) {
-                _context2.next = 14;
+                _context2.next = 16;
                 break;
               }
 
@@ -801,16 +810,16 @@ var Modal = function Modal(options) {
               event.preventDefault();
               return _context2.abrupt("return");
 
-            case 14:
+            case 16:
               if (!(event.target.hasAttribute("data-".concat(api.settings.dataModal)) && !event.target.hasAttribute("data-".concat(api.settings.dataRequired)))) {
-                _context2.next = 17;
+                _context2.next = 19;
                 break;
               }
 
               close();
               return _context2.abrupt("return");
 
-            case 17:
+            case 19:
             case "end":
               return _context2.stop();
           }
@@ -824,6 +833,8 @@ var Modal = function Modal(options) {
   }();
 
   var handlerEscape = function handlerEscape(event) {
+    if (working) return;
+
     if (event.key === 'Escape' || event.keyCode === 27) {
       var target = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpened));
 
@@ -944,27 +955,29 @@ var Modal = function Modal(options) {
               modal = document.querySelector("[data-".concat(api.settings.dataModal, "=\"").concat(modalKey, "\"].").concat(api.settings.stateClosed));
 
               if (!modal) {
-                _context3.next = 12;
+                _context3.next = 14;
                 break;
               }
 
+              working = true;
               setOverflow('hidden');
-              _context3.next = 5;
+              _context3.next = 6;
               return openTransition(modal);
 
-            case 5:
+            case 6:
               initTrapFocus(modal);
               focusModal(modal);
               disableMain();
               modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
                 bubbles: true
               }));
+              working = false;
               return _context3.abrupt("return", modal);
 
-            case 12:
+            case 14:
               return _context3.abrupt("return", modal);
 
-            case 13:
+            case 15:
             case "end":
               return _context3.stop();
           }
@@ -990,27 +1003,29 @@ var Modal = function Modal(options) {
               modal = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpened));
 
               if (!modal) {
-                _context4.next = 13;
+                _context4.next = 15;
                 break;
               }
 
+              working = true;
               enableMain();
               setOverflow();
-              _context4.next = 7;
+              _context4.next = 8;
               return closeTransition(modal);
 
-            case 7:
+            case 8:
               if (returnFocus) focusTrigger();
               destroyTrapFocus(modal);
               modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
                 bubbles: true
               }));
+              working = false;
               return _context4.abrupt("return", modal);
 
-            case 13:
+            case 15:
               return _context4.abrupt("return", modal);
 
-            case 14:
+            case 16:
             case "end":
               return _context4.stop();
           }

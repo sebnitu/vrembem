@@ -34,6 +34,8 @@ export const Modal = (options) => {
     transition: true
   };
 
+  let working = false;
+
   api.settings = { ...defaults, ...options };
   api.memory = {};
 
@@ -72,6 +74,9 @@ export const Modal = (options) => {
   };
 
   const handler = async (event) => {
+    // Working catch
+    if (working) return;
+
     // Trigger click
     const trigger = event.target.closest(`[data-${api.settings.dataOpen}]`);
     if (trigger) {
@@ -102,6 +107,9 @@ export const Modal = (options) => {
   };
 
   const handlerEscape = (event) => {
+    // Working catch
+    if (working) return;
+
     if (event.key === 'Escape' || event.keyCode === 27) {
       const target = document.querySelector(
         `[data-${api.settings.dataModal}].${api.settings.stateOpened}`
@@ -224,6 +232,7 @@ export const Modal = (options) => {
       `[data-${api.settings.dataModal}="${modalKey}"].${api.settings.stateClosed}`
     );
     if (modal) {
+      working = true;
       setOverflow('hidden');
       await openTransition(modal);
       initTrapFocus(modal);
@@ -232,6 +241,7 @@ export const Modal = (options) => {
       modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
         bubbles: true
       }));
+      working = false;
       return modal;
     } else {
       return modal;
@@ -243,6 +253,7 @@ export const Modal = (options) => {
       `[data-${api.settings.dataModal}].${api.settings.stateOpened}`
     );
     if (modal) {
+      working = true;
       enableMain();
       setOverflow();
       await closeTransition(modal);
@@ -251,6 +262,7 @@ export const Modal = (options) => {
       modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
         bubbles: true
       }));
+      working = false;
       return modal;
     } else {
       return modal;
