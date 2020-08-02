@@ -5,7 +5,7 @@
   <!-- Setup styles -->
   <link rel="stylesheet" href="./node_modules/@vrembem/base/dist/styles.min.css">
   <link rel="stylesheet" href="./node_modules/@vrembem/utility/dist/styles.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/@vrembem/dialog/dist/styles.min.css">
+  <link rel="stylesheet" href="./node_modules/@vrembem/dialog/dist/styles.min.css">
   <!-- Component styles -->
   <link rel="stylesheet" href="./dist/styles.min.css">
   <title>@vrembem/modal</title>
@@ -29,24 +29,23 @@
     <li>
       <button data-modal-open="modal-focus-trap" class="link">Modal Focus Trap</button>
       <div data-modal="modal-focus-trap" class="modal is-opened">
-        <div data-modal-dialog class="modal__dialog padding background-white radius spacing">
-          <div class="flex flex-justify-between">
-            <p>Modal Default</p>
+        <div data-modal-dialog class="modal__dialog dialog">
+          <div class="dialog__header">
+            <h2 class="dialog__title">Modal Focus Trap</h2>
+            <button data-modal-close class="dialog__close link">Close</button>
+          </div>
+          <div class="dialog__body spacing">
+            <p tabindex="0">This paragraph is focusable because of the <code class="code">tabindex="0"</code> attribute.</p>
+            <p>
+              <input class="input" type="text">
+            </p>
+            <p>
+              <input class="input" type="text">
+            </p>
+          </div>
+          <div class="dialog__footer">
             <button data-modal-close class="link">Close</button>
           </div>
-          <p tabindex="0">Make this tab-able...</p>
-          <p>
-            <input class="input" type="text">
-          </p>
-          <p>
-            <input class="input" type="text">
-          </p>
-          <p>
-            <input class="input" type="text">
-          </p>
-          <p>
-            <button data-modal-close class="link">Close</button>
-          </p>
         </div>
       </div>
     </li>
@@ -54,18 +53,11 @@
     <li>
       <button data-modal-open="modal-default" class="link">Modal Default</button>
       <div data-modal="modal-default" class="modal">
-        <div data-modal-dialog class="modal__dialog padding background-white radius spacing">
-          <div class="flex flex-justify-between">
+        <div data-modal-dialog class="modal__dialog dialog">
+          <button data-modal-close class="dialog__close link">Close</button>
+          <div class="dialog__body">
             <p>Modal Default</p>
-            <button data-modal-close class="link">Close</button>
           </div>
-          <p>
-            <button data-modal-open="modal-focus" class="link">Modal Focus</button>
-            <button class="link api-close">API Close</button>
-          </p>
-          <p class="display-none">
-            <a href="#">Hidden focusable</a>
-          </p>
         </div>
       </div>
     </li>
@@ -96,6 +88,17 @@
 
     <li>
       <button class="link api-open">API Open</button>
+      <div data-modal="modal-api" class="modal">
+        <div data-modal-dialog class="modal__dialog dialog">
+          <div class="dialog__header">
+            <h2 class="dialog__title">API Modal</h2>
+            <button class="dialog__close link api-close">API Close</button>
+          </div>
+          <div class="dialog__body">
+            <p>This modal is controlled using modal API calls instead of data attributes.</p>
+          </div>
+        </div>
+      </div>
     </li>
 
   </ul>
@@ -240,15 +243,11 @@
 
   document.addEventListener('click', async () => {
     if (event.target.classList.contains('api-open')) {
-      const result = await modal.open('modal-default');
-      console.log({ result });
-      return;
+      return modal.open('modal-api').then(console.log);
     }
 
     if (event.target.classList.contains('api-close')) {
-      const result = await modal.close();
-      console.log({ result });
-      return;
+      return modal.close('modal-api').then(console.log);
     }
   });
 </script>
