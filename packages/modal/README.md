@@ -249,41 +249,55 @@ modal.init();
 modal.destroy();
 ```
 
-### `modal.open(key, callback)`
+### `modal.open(key)`
 
-Opens a modal provided the modal key and optional callback.
+Opens a modal provided the modal key and returns a promise that resolves to the modal object once the transition has finished.
 
 **Parameters**
 
 - `key [String]` A unique key that matches the value of a modal `data-modal` attribute.
-- `callback [Function]` (optional) A callback function to be run after the open process is completed.
+
+**Returns**
+
+- `Promise` The returned promise value will either be the `HTML object` of the modal that was opened, or `null` if a modal was not found.
 
 ```html
 <div class="modal is-closed" data-modal="modal-key">...</div>
 ```
 
 ```js
-modal.open('modal-key', () => {
-  // Your custom code here...
+// Open modal
+modal.open('modal-key');
+
+// Run some code after promise resolves
+modal.open('modal-key').then((result) => {
+  console.log(result); // result = HTML Object || null
 });
 ```
 
-### `modal.close(returnFocus, callback)`
+### `modal.close(returnFocus)`
 
-Closes a modal and returns focus to trigger element with optional callback.
+Closes a modal and returns a promise that resolves to the modal object once the transition has finished. Optionally disable the return focus on trigger by passing `false` as the parameter.
 
 **Parameters**
 
-- `returnFocus [Boolean]` Whether or not to return focus on trigger once closed. Defaults to `true`.
-- `callback [Function]` (optional) A callback function to be run after the close process is completed.
+- `returnFocus [Boolean]` Whether or not to return focus on trigger once closed. Defaults to `true`. Helpful when opening a modal from another modal and you want to hold on to the initial activating trigger for later focus.
+
+**Returns**
+
+- `Promise` The returned promise value will either be the `HTML object` of the modal that was closed, or `null` if a modal was not found.
 
 ```html
 <div class="modal is-opened" data-modal="modal-key">...</div>
 ```
 
 ```js
-modal.close(true, () => {
-  // Your custom code here...
+// Open modal
+modal.close();
+
+// Run some code after promise resolves
+modal.close().then((result) => {
+  console.log(result); // result = HTML Object || null
 });
 ```
 

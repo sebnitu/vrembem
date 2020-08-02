@@ -107,6 +107,10 @@
       </div>
     </li>
 
+    <li>
+      <button class="link api-close">API Close</button>
+    </li>
+
   </ul>
 
   <hr class="sep">
@@ -251,11 +255,19 @@
 
   document.addEventListener('click', async () => {
     if (event.target.classList.contains('api-open')) {
-      return modal.open('modal-api').then(console.log);
+      // return modal.open('modal-api').then(console.log);
+      modal.open('modal-api').then((result) => {
+        console.log({ result });
+      });
+      return;
     }
 
     if (event.target.classList.contains('api-close')) {
-      return modal.close().then(console.log);
+      // return modal.close().then(console.log);
+      modal.close().then((result) => {
+        console.log({ result });
+      });
+      return;
     }
   });
 </script>
