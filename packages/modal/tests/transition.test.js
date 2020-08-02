@@ -1,5 +1,6 @@
 import { Modal } from '../index.js';
 import '@testing-library/jest-dom/extend-expect';
+import { transitionStart, transitionEnd } from './helpers/transition';
 
 let modal;
 const ev = new Event('transitionend');
@@ -31,13 +32,27 @@ const markupCustomState = `
   </div>
 `;
 
+const markupMultiple = `
+  <button data-modal-open="modal-one">...</button>
+  <div data-modal="modal-one" class="modal">
+    <div data-modal-dialog class="modal__dialog">
+      <button data-modal-open="modal-two">...</button>
+    </div>
+  </div>
+  <div data-modal="modal-two" class="modal">
+    <div data-modal-dialog class="modal__dialog">
+      <button data-modal-close>...</button>
+    </div>
+  </div>
+`;
+
 afterEach(() => {
   modal.destroy();
   modal = null;
   document.body.innerHTML = null;
 });
 
-test('should apply state classes on `click` and `transitionend` events', () => {
+test('should apply state classes on `click` and `transitionend` events', async () => {
   document.body.innerHTML = markup;
   modal = new Modal();
   const el = document.querySelector('[data-modal]');
@@ -48,20 +63,21 @@ test('should apply state classes on `click` and `transitionend` events', () => {
   expect(el).toHaveClass('modal');
 
   btnOpen.click();
+  await transitionStart(el);
   expect(el).toHaveClass('is-opening');
 
-  el.dispatchEvent(ev);
+  await transitionEnd(el);
   expect(el).toHaveClass('is-opened');
 
   btnClose.click();
   expect(el).toHaveClass('is-closing');
 
-  el.dispatchEvent(ev);
+  await transitionEnd(el);
   expect(el).toHaveClass('modal is-closed');
   expect(el).not.toHaveClass('is-opening is-opened is-closing');
 });
 
-test('should apply state classes with custom data attributes', () => {
+test('should apply state classes with custom data attributes', async () => {
   document.body.innerHTML = markupCustomAttr;
   modal = new Modal({
     autoInit: true,
@@ -78,20 +94,21 @@ test('should apply state classes with custom data attributes', () => {
   expect(el).toHaveClass('modal');
 
   btnOpen.click();
+  await transitionStart(el);
   expect(el).toHaveClass('is-opening');
 
-  el.dispatchEvent(ev);
+  await transitionEnd(el);
   expect(el).toHaveClass('is-opened');
 
   btnClose.click();
   expect(el).toHaveClass('is-closing');
 
-  el.dispatchEvent(ev);
+  await transitionEnd(el);
   expect(el).toHaveClass('modal is-closed');
   expect(el).not.toHaveClass('is-opening is-opened is-closing');
 });
 
-test('should apply custom state classes', () => {
+test('should apply custom state classes', async () => {
   document.body.innerHTML = markupCustomState;
   modal = new Modal({
     autoInit: true,
@@ -105,15 +122,16 @@ test('should apply custom state classes', () => {
   const btnClose = el.querySelector('[data-modal-close]');
 
   btnOpen.click();
+  await transitionStart(el);
   expect(el).toHaveClass('enable');
 
-  el.dispatchEvent(ev);
+  await transitionEnd(el);
   expect(el).toHaveClass('on');
 
   btnClose.click();
   expect(el).toHaveClass('disable');
 
-  el.dispatchEvent(ev);
+  await transitionEnd(el);
   expect(el).toHaveClass('modal off');
   expect(el).not.toHaveClass('enable on disable');
 });
@@ -181,4 +199,34 @@ test('should not apply transition classes when transitions are disabled', () => 
   modal.close('modal-default');
   expect(el).toHaveClass('is-closed');
   expect(el.classList.length).toBe(2);
+});
+
+test('should not be possible to open new modal while a modal transition is in process', async () => {
+  document.body.innerHTML = markupMultiple;
+  modal = new Modal();
+  const elOne = document.querySelector('[data-modal="modal-one"]');
+  const elTwo = document.querySelector('[data-modal="modal-two"]');
+  const btnOne = document.querySelector('[data-modal-open="modal-one"]');
+  const btnTwo = document.querySelector('[data-modal-open="modal-two"]');
+
+  modal.init();
+  expect(elOne).toHaveClass('modal is-closed');
+  expect(elTwo).toHaveClass('modal is-closed');
+
+  btnOne.click();
+  await transitionStart(elOne);
+  expect(elOne).toHaveClass('is-opening');
+
+  btnTwo.click();
+  await transitionStart(elTwo);
+  expect(elOne).toHaveClass('is-opening');
+  expect(elTwo).toHaveClass('is-closed');
+
+  await transitionEnd(elOne);
+  await transitionEnd(elTwo);
+
+  expect(elOne).toHaveClass('is-opened');
+  expect(elTwo).toHaveClass('is-closed');
+  expect(elOne.classList.length).toBe(2);
+  expect(elTwo.classList.length).toBe(2);
 });

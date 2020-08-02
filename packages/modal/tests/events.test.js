@@ -1,15 +1,14 @@
 import { Modal } from '../index.js';
 import '@testing-library/jest-dom/extend-expect';
-import { delay } from './helpers/delay';
+import { transitionEnd } from './helpers/transition';
 
 let modal;
-const ev = new Event('transitionend');
 
 const markup = `
-  <button data-modal-open="modal-default">Modal Default</button>
+  <button data-modal-open="modal-default">...</button>
   <div data-modal="modal-default" class="modal is-closed">
-    <div class="modal__dialog">
-      <button data-modal-close>Close</button>
+    <div data-modal-dialog class="modal__dialog">
+      <button data-modal-close>...</button>
     </div>
   </div>
 `;
@@ -26,12 +25,14 @@ test('should emit custom event when modal has opened', async () => {
   const el = document.querySelector('[data-modal="modal-default"]');
   const btn = document.querySelector('[data-modal-open]');
   let eventFired = false;
+
   document.addEventListener('modal:opened', () => {
     eventFired = true;
   });
+
   btn.click();
-  el.dispatchEvent(ev);
-  await delay();
+  await transitionEnd(el);
+
   expect(el).toHaveClass('is-opened');
   expect(eventFired).toBe(true);
 });
@@ -49,15 +50,13 @@ test('should emit custom event when modal has closed', async () => {
   });
 
   btn.click();
-  el.dispatchEvent(ev);
-  await delay();
+  await transitionEnd(el);
 
   expect(el).toHaveClass('is-opened');
   expect(eventFired).toBe(false);
 
   btnClose.click();
-  el.dispatchEvent(ev);
-  await delay();
+  await transitionEnd(el);
 
   expect(el).toHaveClass('is-closed');
   expect(eventFired).toBe(true);
@@ -84,8 +83,7 @@ test('should be able to set a custom event prefix', async () => {
   });
 
   btn.click();
-  el.dispatchEvent(ev);
-  await delay();
+  await transitionEnd(el);
 
   expect(eventOpened).toBe(true);
   expect(eventClosed).toBe(false);
@@ -93,8 +91,7 @@ test('should be able to set a custom event prefix', async () => {
   eventOpened = false;
 
   btnClose.click();
-  el.dispatchEvent(ev);
-  await delay();
+  await transitionEnd(el);
 
   expect(eventOpened).toBe(false);
   expect(eventClosed).toBe(true);

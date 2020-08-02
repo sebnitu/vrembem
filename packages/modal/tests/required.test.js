@@ -1,8 +1,8 @@
 import { Modal } from '../index.js';
 import '@testing-library/jest-dom/extend-expect';
+import { transitionEnd } from './helpers/transition';
 
 let modal;
-const ev = new Event('transitionend');
 const keyEv = new KeyboardEvent('keyup', {
   keyCode: 27
 });
@@ -22,7 +22,7 @@ afterEach(() => {
   document.body.innerHTML = null;
 });
 
-test('should prevent escape or screen click closing modal if required', () => {
+test('should prevent escape or screen click closing modal if required', async () => {
   document.body.innerHTML = markup;
   modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal]');
@@ -30,18 +30,19 @@ test('should prevent escape or screen click closing modal if required', () => {
   const btnClose = el.querySelector('[data-modal-close]');
 
   btnOpen.click();
-  el.dispatchEvent(ev);
+  await transitionEnd(el);
+  expect(el).toHaveClass('modal is-opened');
 
   document.dispatchEvent(keyEv);
-  el.dispatchEvent(ev);
+  await transitionEnd(el);
   expect(el).toHaveClass('modal is-opened');
 
   el.click();
-  el.dispatchEvent(ev);
+  await transitionEnd(el);
   expect(el).toHaveClass('modal is-opened');
 
   btnClose.click();
-  el.dispatchEvent(ev);
+  await transitionEnd(el);
   expect(el).toHaveClass('modal is-closed');
   expect(el.classList.length).toBe(2);
 });

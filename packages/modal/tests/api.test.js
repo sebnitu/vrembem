@@ -1,9 +1,8 @@
 import { Modal } from '../index.js';
 import '@testing-library/jest-dom/extend-expect';
-import { delay } from './helpers/delay';
+import { transition } from './helpers/transition';
 
 let modal;
-const ev = new Event('transitionend');
 
 const markup = `
   <button data-modal-open="modal-default">Modal Default</button>
@@ -33,25 +32,26 @@ afterEach(() => {
   document.body.innerHTML = null;
 });
 
-test('should open modal using api call', () => {
+test('should open modal using api call', async () => {
   document.body.innerHTML = markup;
   modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal]');
 
   modal.open('modal-default');
-  el.dispatchEvent(ev);
+  await transition(el);
 
   expect(el).toHaveClass('modal is-opened');
   expect(el.classList.length).toBe(2);
 });
 
-test('should do nothing if open api is called on modal that\'s already open', () => {
+test('should do nothing if open api is called on modal that\'s already open', async () => {
   document.body.innerHTML = markup;
   modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal]');
 
   modal.open('modal-default');
-  el.dispatchEvent(ev);
+  await transition(el);
+
   expect(el).toHaveClass('modal is-opened');
   expect(el.classList.length).toBe(2);
 
@@ -60,56 +60,57 @@ test('should do nothing if open api is called on modal that\'s already open', ()
   expect(el.classList.length).toBe(2);
 });
 
-test('should close modal using api call', () => {
+test('should close modal using api call', async () => {
   document.body.innerHTML = markup;
   modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal]');
   const btnOpen = document.querySelector('[data-modal-open]');
 
   btnOpen.click();
-  el.dispatchEvent(ev);
+  await transition(el);
+
   expect(el).toHaveClass('modal is-opened');
   expect(el.classList.length).toBe(2);
 
   modal.close();
-  el.dispatchEvent(ev);
+  await transition(el);
+
   expect(el).toHaveClass('modal is-closed');
   expect(el.classList.length).toBe(2);
 });
 
-test('should fire callback when using open api', async () => {
+test('should run function when promise is returned from open api', async () => {
   document.body.innerHTML = markup;
   modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal]');
   let callbackCheck = false;
 
-  modal.open('modal-default', () => {
+  modal.open('modal-default').then(() => {
     callbackCheck = true;
   });
-  el.dispatchEvent(ev);
-  await delay();
+
+  await transition(el);
   expect(callbackCheck).toBe(true);
 });
 
-test('should fire callback when using close api', async () => {
+test('should run function when promise is returned from close api', async () => {
   document.body.innerHTML = markup;
   modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal]');
   let callbackCheck = false;
 
   modal.open('modal-default');
-  el.dispatchEvent(ev);
-  await delay();
+  await transition(el);
 
-  modal.close(true, () => {
+  modal.close().then(() => {
     callbackCheck = true;
   });
-  el.dispatchEvent(ev);
-  await delay();
+
+  await transition(el);
   expect(callbackCheck).toBe(true);
 });
 
-test('should properly destroy drawer instance on api call', () => {
+test('should properly destroy drawer instance on api call', async () => {
   document.body.innerHTML = markup;
   modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal]');
@@ -117,7 +118,7 @@ test('should properly destroy drawer instance on api call', () => {
 
   modal.destroy();
   btnOpen.click();
-  el.dispatchEvent(ev);
+  await transition(el);
 
   expect(Object.keys(modal.memory).length).toBe(0);
   expect(el).toHaveClass('modal is-closed');
@@ -156,13 +157,12 @@ test('should set initial state on api call', () => {
 test('should set initial state even when modal is open', async () => {
   document.body.innerHTML = markup;
   modal = new Modal({ autoInit: true });
-  const modalDefault = document.querySelector('[data-modal="modal-default"]');
+  const el = document.querySelector('[data-modal="modal-default"]');
   modal.open('modal-default');
-  modalDefault.dispatchEvent(ev);
-  await delay();
-  expect(modalDefault).toHaveClass('is-opened');
+  await transition(el);
+  expect(el).toHaveClass('is-opened');
 
   modal.setInitialState();
-  expect(modalDefault).toHaveClass('is-closed');
-  expect(modalDefault.classList.length).toBe(2);
+  expect(el).toHaveClass('is-closed');
+  expect(el.classList.length).toBe(2);
 });
