@@ -722,24 +722,14 @@ var Modal = function Modal(options) {
   var working = false;
   api.settings = _objectSpread(_objectSpread({}, defaults), options);
   api.memory = {};
-  api.init = asyncToGenerator(regenerator.mark(function _callee() {
-    return regenerator.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            setInitialState();
-            setTabindex();
-            moveModals();
-            document.addEventListener('click', handler, false);
-            document.addEventListener('keyup', handlerEscape, false);
 
-          case 5:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
+  api.init = function () {
+    setInitialState();
+    setTabindex();
+    moveModals();
+    document.addEventListener('click', handler, false);
+    document.addEventListener('keyup', handlerEscape, false);
+  };
 
   api.destroy = function () {
     api.memory = {};
@@ -768,67 +758,67 @@ var Modal = function Modal(options) {
   };
 
   var handler = function () {
-    var _ref2 = asyncToGenerator(regenerator.mark(function _callee2(event) {
+    var _ref = asyncToGenerator(regenerator.mark(function _callee(event) {
       var trigger, modalKey, fromModal;
-      return regenerator.wrap(function _callee2$(_context2) {
+      return regenerator.wrap(function _callee$(_context) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context.prev = _context.next) {
             case 0:
               if (!working) {
-                _context2.next = 2;
+                _context.next = 2;
                 break;
               }
 
-              return _context2.abrupt("return");
+              return _context.abrupt("return");
 
             case 2:
               trigger = event.target.closest("[data-".concat(api.settings.dataOpen, "]"));
 
               if (!trigger) {
-                _context2.next = 12;
+                _context.next = 12;
                 break;
               }
 
+              event.preventDefault();
               modalKey = trigger.getAttribute("data-".concat(api.settings.dataOpen));
               fromModal = event.target.closest("[data-".concat(api.settings.dataModal, "]"));
               if (!fromModal) api.memory.trigger = trigger;
-              _context2.next = 9;
+              _context.next = 10;
               return close(!fromModal);
 
-            case 9:
+            case 10:
               open(modalKey);
-              event.preventDefault();
-              return _context2.abrupt("return");
+              return _context.abrupt("return");
 
             case 12:
               if (!event.target.closest("[data-".concat(api.settings.dataClose, "]"))) {
-                _context2.next = 16;
+                _context.next = 16;
                 break;
               }
 
-              close();
               event.preventDefault();
-              return _context2.abrupt("return");
+              close();
+              return _context.abrupt("return");
 
             case 16:
               if (!(event.target.hasAttribute("data-".concat(api.settings.dataModal)) && !event.target.hasAttribute("data-".concat(api.settings.dataRequired)))) {
-                _context2.next = 19;
+                _context.next = 19;
                 break;
               }
 
               close();
-              return _context2.abrupt("return");
+              return _context.abrupt("return");
 
             case 19:
             case "end":
-              return _context2.stop();
+              return _context.stop();
           }
         }
-      }, _callee2);
+      }, _callee);
     }));
 
     return function handler(_x) {
-      return _ref2.apply(this, arguments);
+      return _ref.apply(this, arguments);
     };
   }();
 
@@ -946,22 +936,22 @@ var Modal = function Modal(options) {
   };
 
   var open = function () {
-    var _ref3 = asyncToGenerator(regenerator.mark(function _callee3(modalKey) {
+    var _ref2 = asyncToGenerator(regenerator.mark(function _callee2(modalKey) {
       var modal;
-      return regenerator.wrap(function _callee3$(_context3) {
+      return regenerator.wrap(function _callee2$(_context2) {
         while (1) {
-          switch (_context3.prev = _context3.next) {
+          switch (_context2.prev = _context2.next) {
             case 0:
               modal = document.querySelector("[data-".concat(api.settings.dataModal, "=\"").concat(modalKey, "\"].").concat(api.settings.stateClosed));
 
               if (!modal) {
-                _context3.next = 14;
+                _context2.next = 14;
                 break;
               }
 
               working = true;
               setOverflow('hidden');
-              _context3.next = 6;
+              _context2.next = 6;
               return openTransition(modal);
 
             case 6:
@@ -972,45 +962,45 @@ var Modal = function Modal(options) {
                 bubbles: true
               }));
               working = false;
-              return _context3.abrupt("return", modal);
+              return _context2.abrupt("return", modal);
 
             case 14:
-              return _context3.abrupt("return", modal);
+              return _context2.abrupt("return", modal);
 
             case 15:
             case "end":
-              return _context3.stop();
+              return _context2.stop();
           }
         }
-      }, _callee3);
+      }, _callee2);
     }));
 
     return function open(_x2) {
-      return _ref3.apply(this, arguments);
+      return _ref2.apply(this, arguments);
     };
   }();
 
   var close = function () {
-    var _ref4 = asyncToGenerator(regenerator.mark(function _callee4() {
+    var _ref3 = asyncToGenerator(regenerator.mark(function _callee3() {
       var returnFocus,
           modal,
-          _args4 = arguments;
-      return regenerator.wrap(function _callee4$(_context4) {
+          _args3 = arguments;
+      return regenerator.wrap(function _callee3$(_context3) {
         while (1) {
-          switch (_context4.prev = _context4.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
-              returnFocus = _args4.length > 0 && _args4[0] !== undefined ? _args4[0] : true;
+              returnFocus = _args3.length > 0 && _args3[0] !== undefined ? _args3[0] : true;
               modal = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpened));
 
               if (!modal) {
-                _context4.next = 15;
+                _context3.next = 15;
                 break;
               }
 
               working = true;
               enableMain();
               setOverflow();
-              _context4.next = 8;
+              _context3.next = 8;
               return closeTransition(modal);
 
             case 8:
@@ -1020,21 +1010,21 @@ var Modal = function Modal(options) {
                 bubbles: true
               }));
               working = false;
-              return _context4.abrupt("return", modal);
+              return _context3.abrupt("return", modal);
 
             case 15:
-              return _context4.abrupt("return", modal);
+              return _context3.abrupt("return", modal);
 
             case 16:
             case "end":
-              return _context4.stop();
+              return _context3.stop();
           }
         }
-      }, _callee4);
+      }, _callee3);
     }));
 
     return function close() {
-      return _ref4.apply(this, arguments);
+      return _ref3.apply(this, arguments);
     };
   }();
 

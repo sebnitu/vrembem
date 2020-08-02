@@ -39,7 +39,7 @@ export const Modal = (options) => {
   api.settings = { ...defaults, ...options };
   api.memory = {};
 
-  api.init = async () => {
+  api.init = () => {
     setInitialState();
     setTabindex();
     moveModals();
@@ -80,19 +80,19 @@ export const Modal = (options) => {
     // Trigger click
     const trigger = event.target.closest(`[data-${api.settings.dataOpen}]`);
     if (trigger) {
+      event.preventDefault();
       const modalKey = trigger.getAttribute(`data-${api.settings.dataOpen}`);
       const fromModal = event.target.closest(`[data-${api.settings.dataModal}]`);
       if (!fromModal) api.memory.trigger = trigger;
       await close(!fromModal);
       open(modalKey);
-      event.preventDefault();
       return;
     }
 
     // Close click
     if (event.target.closest(`[data-${api.settings.dataClose}]`)) {
-      close();
       event.preventDefault();
+      close();
       return;
     }
 
