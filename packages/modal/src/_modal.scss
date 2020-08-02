@@ -27,11 +27,6 @@ $_e: var.$prefix-element;
   transform: translateY(-(var.$travel));
   box-shadow: var.$box-shadow;
   opacity: 0;
-
-  &:focus,
-  *:focus {
-    box-shadow: 0 0 4px 8px pink !important;
-  }
 }
 
 .#{$_b}modal.is-closed {
