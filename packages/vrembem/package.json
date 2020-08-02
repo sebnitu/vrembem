@@ -1,7 +1,7 @@
 {
   "name": "vrembem",
   "description": "A CSS component library based on the BEM methodology.",
-  "version": "1.13.0",
+  "version": "1.13.1",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -50,7 +50,7 @@
     "@vrembem/level": "^1.10.0",
     "@vrembem/media": "^1.10.0",
     "@vrembem/menu": "^1.10.0",
-    "@vrembem/modal": "^1.13.0",
+    "@vrembem/modal": "^1.13.1",
     "@vrembem/notice": "^1.12.0",
     "@vrembem/panel": "^1.10.0",
     "@vrembem/radio": "^1.10.0",
