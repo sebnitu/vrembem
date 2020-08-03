@@ -5,9 +5,9 @@ description: "A component for changing the mode of a page to complete a critical
 package: "@vrembem/modal"
 category: compound
 usage:
-npm: true
-scss: true
-js: true
+  npm: true
+  scss: true
+  js: true
 ---
 
 ## Modal
