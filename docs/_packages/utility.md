@@ -3,7 +3,7 @@ layout: article
 title: Utility
 description: "The utility component provides a set of atomic classes that specialize in a single function."
 package: "@vrembem/utility"
-category: simple
+category: core
 usage:
   npm: true
   scss: true

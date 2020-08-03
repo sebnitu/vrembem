@@ -3,7 +3,7 @@ layout: article
 title: Core
 description: "The core variables, functions and mixins for Vrembem components."
 package: "@vrembem/core"
-category: simple
+category: core
 usage:
   npm: true
 ---

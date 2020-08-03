@@ -3,7 +3,7 @@ layout: article
 title: Base
 description: "Includes useful default styles and base modules for common HTML elements."
 package: "@vrembem/base"
-category: simple
+category: core
 usage:
   npm: true
   scss: true
