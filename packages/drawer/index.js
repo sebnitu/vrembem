@@ -41,7 +41,6 @@ export const Drawer = (options) => {
   api.breakpoint = {};
 
   api.memoryTrigger;
-  api.memoryTarget;
   api.state = {};
 
   api.init = () => {
@@ -54,7 +53,6 @@ export const Drawer = (options) => {
   api.destroy = () => {
     breakpointDestroy();
     api.memoryTrigger = null;
-    api.memoryTarget = null;
     api.state = {};
     localStorage.removeItem(api.settings.saveKey);
     document.removeEventListener('click', handler, false);
@@ -140,14 +138,13 @@ export const Drawer = (options) => {
   api.open = (drawerKey, callback) => {
     const drawer = drawerKeyCheck(drawerKey);
     if (drawer && !hasClass(drawer, api.settings.stateOpened)) {
-      saveTarget(drawer);
       addClass(drawer, api.settings.stateOpening);
       removeClass(drawer, api.settings.stateClosed);
       drawer.addEventListener('transitionend', function _listener() {
         addClass(drawer, api.settings.stateOpened);
         removeClass(drawer, api.settings.stateOpening);
         saveState(drawer);
-        setFocus();
+        focusDrawer(drawer);
         typeof callback === 'function' && callback();
         this.removeEventListener('transitionend', _listener, true);
         const customEvent = new CustomEvent(api.settings.customEventPrefix + 'opened', {
@@ -156,8 +153,7 @@ export const Drawer = (options) => {
         drawer.dispatchEvent(customEvent);
       }, true);
     } else if (drawer && hasClass(drawer, api.settings.stateOpened)) {
-      saveTarget(drawer);
-      setFocus();
+      focusDrawer();
     }
   };
 
@@ -185,29 +181,22 @@ export const Drawer = (options) => {
    * Focus functionality
    */
 
-  const saveTarget = (target) => {
-    if (api.settings.focus) {
-      api.memoryTarget = target;
-    }
-  };
-
   const saveTrigger = (trigger) => {
     if (api.settings.focus) {
       api.memoryTrigger = trigger;
     }
   };
 
-  const setFocus = () => {
-    if (api.settings.focus && api.memoryTarget) {
-      const innerFocus = api.memoryTarget.querySelector(
+  const focusDrawer = (drawer) => {
+    if (api.settings.focus) {
+      const innerFocus = drawer.querySelector(
         `[data-${api.settings.dataFocus}]`
       );
       if (innerFocus) {
         innerFocus.focus();
       } else {
-        api.memoryTarget.focus();
+        drawer.focus();
       }
-      api.memoryTarget = null;
     }
   };
 
@@ -230,7 +219,7 @@ export const Drawer = (options) => {
         if (!hasClass(el, api.settings.classModal)) {
           api.state[el.dataset[camelCase(api.settings.dataDrawer)]] =
             (hasClass(el, api.settings.stateOpened)) ?
-              api.settings.stateOpened:
+              api.settings.stateOpened :
               api.settings.stateClosed;
         }
       });
@@ -305,7 +294,7 @@ export const Drawer = (options) => {
       const id = drawer.dataset[camelCase(api.settings.dataDrawer)];
       const key = drawer.dataset[camelCase(api.settings.dataBreakpoint)];
       const bp = api.settings.breakpoints[key] ? api.settings.breakpoints[key] : key;
-      const mql = window.matchMedia( '(min-width:' + bp + ')' );
+      const mql = window.matchMedia('(min-width:' + bp + ')');
       breakpointMatch(mql, drawer);
       mql.addListener(breakpointCheck);
       api.mediaQueryLists.push({

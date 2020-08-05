@@ -27,6 +27,13 @@ $_e: var.$prefix-element;
   box-shadow: var.$item-box-shadow;
   opacity: 0;
 
+  // FOCUS TEST
+  &:focus,
+  *:focus {
+    box-shadow: 0 0 4px 4px pink;
+  }
+  // END
+
   .#{$_b}dialog#{$_e}header,
   .#{$_b}dialog#{$_e}footer {
     border-color: var.$item-sep-border-color;

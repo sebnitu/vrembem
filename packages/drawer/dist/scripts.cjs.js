@@ -112,7 +112,6 @@ var Drawer = function Drawer(options) {
   api.destroy = function () {
     breakpointDestroy();
     api.memoryTrigger = null;
-    api.memoryTarget = null;
     api.state = {};
     localStorage.removeItem(api.settings.saveKey);
     document.removeEventListener('click', handler, false);
@@ -199,14 +198,13 @@ var Drawer = function Drawer(options) {
     var drawer = drawerKeyCheck(drawerKey);
 
     if (drawer && !hasClass(drawer, api.settings.stateOpened)) {
-      saveTarget(drawer);
       addClass(drawer, api.settings.stateOpening);
       removeClass(drawer, api.settings.stateClosed);
       drawer.addEventListener('transitionend', function _listener() {
         addClass(drawer, api.settings.stateOpened);
         removeClass(drawer, api.settings.stateOpening);
         saveState(drawer);
-        setFocus();
+        focusDrawer(drawer);
         typeof callback === 'function' && callback();
         this.removeEventListener('transitionend', _listener, true);
         var customEvent = new CustomEvent(api.settings.customEventPrefix + 'opened', {
@@ -215,8 +213,7 @@ var Drawer = function Drawer(options) {
         drawer.dispatchEvent(customEvent);
       }, true);
     } else if (drawer && hasClass(drawer, api.settings.stateOpened)) {
-      saveTarget(drawer);
-      setFocus();
+      focusDrawer();
     }
   };
 
@@ -241,29 +238,21 @@ var Drawer = function Drawer(options) {
     }
   };
 
-  var saveTarget = function saveTarget(target) {
-    if (api.settings.focus) {
-      api.memoryTarget = target;
-    }
-  };
-
   var saveTrigger = function saveTrigger(trigger) {
     if (api.settings.focus) {
       api.memoryTrigger = trigger;
     }
   };
 
-  var setFocus = function setFocus() {
-    if (api.settings.focus && api.memoryTarget) {
-      var innerFocus = api.memoryTarget.querySelector("[data-".concat(api.settings.dataFocus, "]"));
+  var focusDrawer = function focusDrawer(drawer) {
+    if (api.settings.focus) {
+      var innerFocus = drawer.querySelector("[data-".concat(api.settings.dataFocus, "]"));
 
       if (innerFocus) {
         innerFocus.focus();
       } else {
-        api.memoryTarget.focus();
+        drawer.focus();
       }
-
-      api.memoryTarget = null;
     }
   };
 
