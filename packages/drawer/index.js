@@ -38,6 +38,8 @@ export const Drawer = (options) => {
     transition: true
   };
 
+  let working = false;
+
   api.settings = { ...defaults, ...options };
   api.breakpoint = {};
 
@@ -61,6 +63,9 @@ export const Drawer = (options) => {
   };
 
   const handler = (event) => {
+    // Working catch
+    if (working) return;
+
     // Toggle data trigger
     let trigger = event.target.closest(`[data-${api.settings.dataToggle}]`);
     if (trigger) {
@@ -104,6 +109,9 @@ export const Drawer = (options) => {
   };
 
   const handlerEscape = (event) => {
+    // Working catch
+    if (working) return;
+
     if (event.keyCode == 27) {
       const target = document.querySelector(
         `.${api.settings.classModal}.${api.settings.stateOpened}`
@@ -181,6 +189,7 @@ export const Drawer = (options) => {
   api.open = async (drawerKey, callback) => {
     const drawer = drawerKeyCheck(drawerKey);
     if (drawer && !hasClass(drawer, api.settings.stateOpened)) {
+      working = true;
       await openTransition(drawer);
       saveState(drawer);
       focusDrawer(drawer);
@@ -188,14 +197,18 @@ export const Drawer = (options) => {
       drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
         bubbles: true
       }));
+      working = false;
+      return drawer;
     } else if (drawer && hasClass(drawer, api.settings.stateOpened)) {
       focusDrawer(drawer);
+      return drawer;
     }
   };
 
   api.close = async (drawerKey, callback) => {
     const drawer = drawerKeyCheck(drawerKey);
     if (drawer && hasClass(drawer, api.settings.stateOpened)) {
+      working = true;
       await closeTransition(drawer);
       saveState(drawer);
       returnFocus();
@@ -203,6 +216,10 @@ export const Drawer = (options) => {
       drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
         bubbles: true
       }));
+      working = false;
+      return drawer;
+    } else {
+      return drawer;
     }
   };
 

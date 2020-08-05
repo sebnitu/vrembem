@@ -746,6 +746,7 @@ var Drawer = function Drawer(options) {
     saveKey: 'DrawerState',
     transition: true
   };
+  var working = false;
   api.settings = _objectSpread(_objectSpread({}, defaults), options);
   api.breakpoint = {};
   api.state = {};
@@ -767,6 +768,7 @@ var Drawer = function Drawer(options) {
   };
 
   var handler = function handler(event) {
+    if (working) return;
     var trigger = event.target.closest("[data-".concat(api.settings.dataToggle, "]"));
 
     if (trigger) {
@@ -811,6 +813,8 @@ var Drawer = function Drawer(options) {
   };
 
   var handlerEscape = function handlerEscape(event) {
+    if (working) return;
+
     if (event.keyCode == 27) {
       var target = document.querySelector(".".concat(api.settings.classModal, ".").concat(api.settings.stateOpened));
 
@@ -890,29 +894,34 @@ var Drawer = function Drawer(options) {
               drawer = drawerKeyCheck(drawerKey);
 
               if (!(drawer && !hasClass(drawer, api.settings.stateOpened))) {
-                _context.next = 10;
+                _context.next = 13;
                 break;
               }
 
-              _context.next = 4;
+              working = true;
+              _context.next = 5;
               return openTransition(drawer);
 
-            case 4:
+            case 5:
               saveState(drawer);
               focusDrawer(drawer);
               typeof callback === 'function' && callback();
               drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
                 bubbles: true
               }));
-              _context.next = 11;
-              break;
+              working = false;
+              return _context.abrupt("return", drawer);
 
-            case 10:
-              if (drawer && hasClass(drawer, api.settings.stateOpened)) {
-                focusDrawer(drawer);
+            case 13:
+              if (!(drawer && hasClass(drawer, api.settings.stateOpened))) {
+                _context.next = 16;
+                break;
               }
 
-            case 11:
+              focusDrawer(drawer);
+              return _context.abrupt("return", drawer);
+
+            case 16:
             case "end":
               return _context.stop();
           }
@@ -935,22 +944,28 @@ var Drawer = function Drawer(options) {
               drawer = drawerKeyCheck(drawerKey);
 
               if (!(drawer && hasClass(drawer, api.settings.stateOpened))) {
-                _context2.next = 8;
+                _context2.next = 13;
                 break;
               }
 
-              _context2.next = 4;
+              working = true;
+              _context2.next = 5;
               return closeTransition(drawer);
 
-            case 4:
+            case 5:
               saveState(drawer);
               returnFocus();
               typeof callback === 'function' && callback();
               drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
                 bubbles: true
               }));
+              working = false;
+              return _context2.abrupt("return", drawer);
 
-            case 8:
+            case 13:
+              return _context2.abrupt("return", drawer);
+
+            case 14:
             case "end":
               return _context2.stop();
           }
