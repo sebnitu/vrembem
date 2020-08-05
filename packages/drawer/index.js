@@ -34,7 +34,8 @@ export const Drawer = (options) => {
     customEventPrefix: 'drawer:',
     focus: true,
     saveState: true,
-    saveKey: 'DrawerState'
+    saveKey: 'DrawerState',
+    transition: true
   };
 
   api.settings = { ...defaults, ...options };
@@ -135,45 +136,73 @@ export const Drawer = (options) => {
     }
   };
 
-  api.open = (drawerKey, callback) => {
+  /**
+   * Transition functionality
+   */
+
+  const openTransition = (drawer) => {
+    return new Promise((resolve) => {
+      if (api.settings.transition) {
+        removeClass(drawer, api.settings.stateClosed);
+        addClass(drawer, api.settings.stateOpening);
+        drawer.addEventListener('transitionend', function _f() {
+          addClass(drawer, api.settings.stateOpened);
+          removeClass(drawer, api.settings.stateOpening);
+          resolve(drawer);
+          this.removeEventListener('transitionend', _f);
+        });
+      } else {
+        addClass(drawer, api.settings.stateOpened);
+        removeClass(drawer, api.settings.stateClosed);
+        resolve(drawer);
+      }
+    });
+  };
+
+  const closeTransition = (drawer) => {
+    return new Promise((resolve) => {
+      if (api.settings.transition) {
+        addClass(drawer, api.settings.stateClosing);
+        removeClass(drawer, api.settings.stateOpened);
+        drawer.addEventListener('transitionend', function _f() {
+          removeClass(drawer, api.settings.stateClosing);
+          addClass(drawer, api.settings.stateClosed);
+          resolve(drawer);
+          this.removeEventListener('transitionend', _f);
+        });
+      } else {
+        addClass(drawer, api.settings.stateClosed);
+        removeClass(drawer, api.settings.stateOpened);
+        resolve(drawer);
+      }
+    });
+  };
+
+  api.open = async (drawerKey, callback) => {
     const drawer = drawerKeyCheck(drawerKey);
     if (drawer && !hasClass(drawer, api.settings.stateOpened)) {
-      addClass(drawer, api.settings.stateOpening);
-      removeClass(drawer, api.settings.stateClosed);
-      drawer.addEventListener('transitionend', function _listener() {
-        addClass(drawer, api.settings.stateOpened);
-        removeClass(drawer, api.settings.stateOpening);
-        saveState(drawer);
-        focusDrawer(drawer);
-        typeof callback === 'function' && callback();
-        this.removeEventListener('transitionend', _listener, true);
-        const customEvent = new CustomEvent(api.settings.customEventPrefix + 'opened', {
-          bubbles: true
-        });
-        drawer.dispatchEvent(customEvent);
-      }, true);
+      await openTransition(drawer);
+      saveState(drawer);
+      focusDrawer(drawer);
+      typeof callback === 'function' && callback();
+      drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
+        bubbles: true
+      }));
     } else if (drawer && hasClass(drawer, api.settings.stateOpened)) {
-      focusDrawer();
+      focusDrawer(drawer);
     }
   };
 
-  api.close = (drawerKey, callback) => {
+  api.close = async (drawerKey, callback) => {
     const drawer = drawerKeyCheck(drawerKey);
     if (drawer && hasClass(drawer, api.settings.stateOpened)) {
-      addClass(drawer, api.settings.stateClosing);
-      removeClass(drawer, api.settings.stateOpened);
-      drawer.addEventListener('transitionend', function _listener() {
-        addClass(drawer, api.settings.stateClosed);
-        removeClass(drawer, api.settings.stateClosing);
-        saveState(drawer);
-        returnFocus();
-        typeof callback === 'function' && callback();
-        this.removeEventListener('transitionend', _listener, true);
-        const customEvent = new CustomEvent(api.settings.customEventPrefix + 'closed', {
-          bubbles: true
-        });
-        drawer.dispatchEvent(customEvent);
-      }, true);
+      await closeTransition(drawer);
+      saveState(drawer);
+      returnFocus();
+      typeof callback === 'function' && callback();
+      drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
+        bubbles: true
+      }));
     }
   };
 
