@@ -679,12 +679,6 @@ var addClass = function addClass(el) {
   });
 };
 
-var camelCase = function camelCase(str) {
-  return str.replace(/-([a-z])/g, function (g) {
-    return g[1].toUpperCase();
-  });
-};
-
 var hasClass = function hasClass(el) {
   el = el.forEach ? el : [el];
   el = [].slice.call(el);
@@ -772,7 +766,7 @@ var Drawer = function Drawer(options) {
     var trigger = event.target.closest("[data-".concat(api.settings.dataToggle, "]"));
 
     if (trigger) {
-      var selector = trigger.dataset[camelCase(api.settings.dataToggle)];
+      var selector = trigger.getAttribute("data-".concat(api.settings.dataToggle));
       saveTrigger(trigger);
       api.toggle(selector);
       event.preventDefault();
@@ -782,7 +776,8 @@ var Drawer = function Drawer(options) {
     trigger = event.target.closest("[data-".concat(api.settings.dataOpen, "]"));
 
     if (trigger) {
-      var _selector = trigger.dataset[camelCase(api.settings.dataOpen)];
+      var _selector = trigger.getAttribute("data-".concat(api.settings.dataOpen));
+
       saveTrigger(trigger);
       api.open(_selector);
       event.preventDefault();
@@ -792,7 +787,7 @@ var Drawer = function Drawer(options) {
     trigger = event.target.closest("[data-".concat(api.settings.dataClose, "]"));
 
     if (trigger) {
-      var _selector2 = trigger.dataset[camelCase(api.settings.dataClose)];
+      var _selector2 = trigger.getAttribute("data-".concat(api.settings.dataClose));
 
       if (_selector2) {
         saveTrigger(trigger);
@@ -806,7 +801,7 @@ var Drawer = function Drawer(options) {
       return;
     }
 
-    if (event.target.dataset[camelCase(api.settings.dataDrawer)]) {
+    if (event.target.hasAttribute("data-".concat(api.settings.dataDrawer))) {
       api.close(event.target);
       return;
     }
@@ -1008,7 +1003,7 @@ var Drawer = function Drawer(options) {
       var drawers = target ? [target] : document.querySelectorAll("[data-".concat(api.settings.dataDrawer, "]"));
       drawers.forEach(function (el) {
         if (!hasClass(el, api.settings.classModal)) {
-          api.state[el.dataset[camelCase(api.settings.dataDrawer)]] = hasClass(el, api.settings.stateOpened) ? api.settings.stateOpened : api.settings.stateClosed;
+          api.state[el.getAttribute("data-".concat(api.settings.dataDrawer))] = hasClass(el, api.settings.stateOpened) ? api.settings.stateOpened : api.settings.stateClosed;
         }
       });
       localStorage.setItem(api.settings.saveKey, JSON.stringify(api.state));
@@ -1073,8 +1068,8 @@ var Drawer = function Drawer(options) {
     api.mediaQueryLists = [];
     var drawers = document.querySelectorAll("[data-".concat(api.settings.dataBreakpoint, "]"));
     drawers.forEach(function (drawer) {
-      var id = drawer.dataset[camelCase(api.settings.dataDrawer)];
-      var key = drawer.dataset[camelCase(api.settings.dataBreakpoint)];
+      var id = drawer.getAttribute("data-".concat(api.settings.dataDrawer));
+      var key = drawer.getAttribute("data-".concat(api.settings.dataBreakpoint));
       var bp = api.settings.breakpoints[key] ? api.settings.breakpoints[key] : key;
       var mql = window.matchMedia('(min-width:' + bp + ')');
       breakpointMatch(mql, drawer);
@@ -1136,7 +1131,7 @@ var Drawer = function Drawer(options) {
 
   var switchToDefault = function switchToDefault(drawer) {
     removeClass(drawer, api.settings.classModal);
-    var drawerKey = drawer.dataset[camelCase(api.settings.dataDrawer)];
+    var drawerKey = drawer.getAttribute("data-".concat(api.settings.dataDrawer));
     var drawerState = api.state[drawerKey];
 
     if (drawerState == api.settings.stateOpened) {

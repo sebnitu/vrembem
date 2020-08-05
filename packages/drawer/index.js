@@ -1,7 +1,6 @@
 import {
   addClass,
   breakpoints,
-  camelCase,
   hasClass,
   removeClass
 } from '@vrembem/core';
@@ -69,7 +68,7 @@ export const Drawer = (options) => {
     // Toggle data trigger
     let trigger = event.target.closest(`[data-${api.settings.dataToggle}]`);
     if (trigger) {
-      const selector = trigger.dataset[camelCase(api.settings.dataToggle)];
+      const selector = trigger.getAttribute(`data-${api.settings.dataToggle}`);
       saveTrigger(trigger);
       api.toggle(selector);
       event.preventDefault();
@@ -79,7 +78,7 @@ export const Drawer = (options) => {
     // Open data trigger
     trigger = event.target.closest(`[data-${api.settings.dataOpen}]`);
     if (trigger) {
-      const selector = trigger.dataset[camelCase(api.settings.dataOpen)];
+      const selector = trigger.getAttribute(`data-${api.settings.dataOpen}`);
       saveTrigger(trigger);
       api.open(selector);
       event.preventDefault();
@@ -89,7 +88,7 @@ export const Drawer = (options) => {
     // Close data trigger
     trigger = event.target.closest(`[data-${api.settings.dataClose}]`);
     if (trigger) {
-      const selector = trigger.dataset[camelCase(api.settings.dataClose)];
+      const selector = trigger.getAttribute(`data-${api.settings.dataClose}`);
       if (selector) {
         saveTrigger(trigger);
         api.close(selector);
@@ -102,7 +101,7 @@ export const Drawer = (options) => {
     }
 
     // Screen modal trigger
-    if (event.target.dataset[camelCase(api.settings.dataDrawer)]) {
+    if (event.target.hasAttribute(`data-${api.settings.dataDrawer}`)) {
       api.close(event.target);
       return;
     }
@@ -261,7 +260,7 @@ export const Drawer = (options) => {
         document.querySelectorAll(`[data-${api.settings.dataDrawer}]`);
       drawers.forEach((el) => {
         if (!hasClass(el, api.settings.classModal)) {
-          api.state[el.dataset[camelCase(api.settings.dataDrawer)]] =
+          api.state[el.getAttribute(`data-${api.settings.dataDrawer}`)] =
             (hasClass(el, api.settings.stateOpened)) ?
               api.settings.stateOpened :
               api.settings.stateClosed;
@@ -335,8 +334,8 @@ export const Drawer = (options) => {
     api.mediaQueryLists = [];
     const drawers = document.querySelectorAll(`[data-${api.settings.dataBreakpoint}]`);
     drawers.forEach((drawer) => {
-      const id = drawer.dataset[camelCase(api.settings.dataDrawer)];
-      const key = drawer.dataset[camelCase(api.settings.dataBreakpoint)];
+      const id = drawer.getAttribute(`data-${api.settings.dataDrawer}`);
+      const key = drawer.getAttribute(`data-${api.settings.dataBreakpoint}`);
       const bp = api.settings.breakpoints[key] ? api.settings.breakpoints[key] : key;
       const mql = window.matchMedia('(min-width:' + bp + ')');
       breakpointMatch(mql, drawer);
@@ -397,7 +396,7 @@ export const Drawer = (options) => {
 
   const switchToDefault = (drawer) => {
     removeClass(drawer, api.settings.classModal);
-    const drawerKey = drawer.dataset[camelCase(api.settings.dataDrawer)];
+    const drawerKey = drawer.getAttribute(`data-${api.settings.dataDrawer}`);
     const drawerState = api.state[drawerKey];
     if (drawerState == api.settings.stateOpened) {
       addClass(drawer, api.settings.stateOpened);
