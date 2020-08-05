@@ -768,7 +768,7 @@ var Drawer = function Drawer(options) {
 
     if (trigger) {
       var selector = trigger.getAttribute("data-".concat(api.settings.dataToggle));
-      saveTrigger(trigger);
+      api.memory.trigger = trigger;
       api.toggle(selector);
       event.preventDefault();
       return;
@@ -779,7 +779,7 @@ var Drawer = function Drawer(options) {
     if (trigger) {
       var _selector = trigger.getAttribute("data-".concat(api.settings.dataOpen));
 
-      saveTrigger(trigger);
+      api.memory.trigger = trigger;
       api.open(_selector);
       event.preventDefault();
       return;
@@ -791,7 +791,7 @@ var Drawer = function Drawer(options) {
       var _selector2 = trigger.getAttribute("data-".concat(api.settings.dataClose));
 
       if (_selector2) {
-        saveTrigger(trigger);
+        api.memory.trigger = trigger;
         api.close(_selector2);
       } else {
         var target = event.target.closest("[data-".concat(api.settings.dataDrawer, "]"));
@@ -949,7 +949,7 @@ var Drawer = function Drawer(options) {
 
             case 5:
               saveState(drawer);
-              returnFocus();
+              focusTrigger();
               drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
                 bubbles: true
               }));
@@ -972,12 +972,6 @@ var Drawer = function Drawer(options) {
     };
   }();
 
-  var saveTrigger = function saveTrigger(trigger) {
-    if (api.settings.focus) {
-      api.memory.trigger = trigger;
-    }
-  };
-
   var focusDrawer = function focusDrawer(drawer) {
     if (api.settings.focus) {
       var innerFocus = drawer.querySelector("[data-".concat(api.settings.dataFocus, "]"));
@@ -990,7 +984,7 @@ var Drawer = function Drawer(options) {
     }
   };
 
-  var returnFocus = function returnFocus() {
+  var focusTrigger = function focusTrigger() {
     if (api.settings.focus && api.memory.trigger) {
       api.memory.trigger.focus();
       api.memory.trigger = null;

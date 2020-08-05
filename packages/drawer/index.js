@@ -68,7 +68,7 @@ export const Drawer = (options) => {
     let trigger = event.target.closest(`[data-${api.settings.dataToggle}]`);
     if (trigger) {
       const selector = trigger.getAttribute(`data-${api.settings.dataToggle}`);
-      saveTrigger(trigger);
+      api.memory.trigger = trigger;
       api.toggle(selector);
       event.preventDefault();
       return;
@@ -78,7 +78,7 @@ export const Drawer = (options) => {
     trigger = event.target.closest(`[data-${api.settings.dataOpen}]`);
     if (trigger) {
       const selector = trigger.getAttribute(`data-${api.settings.dataOpen}`);
-      saveTrigger(trigger);
+      api.memory.trigger = trigger;
       api.open(selector);
       event.preventDefault();
       return;
@@ -89,7 +89,7 @@ export const Drawer = (options) => {
     if (trigger) {
       const selector = trigger.getAttribute(`data-${api.settings.dataClose}`);
       if (selector) {
-        saveTrigger(trigger);
+        api.memory.trigger = trigger;
         api.close(selector);
       } else {
         const target = event.target.closest(`[data-${api.settings.dataDrawer}]`);
@@ -208,7 +208,7 @@ export const Drawer = (options) => {
       working = true;
       await closeTransition(drawer);
       saveState(drawer);
-      returnFocus();
+      focusTrigger();
       drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
         bubbles: true
       }));
@@ -223,12 +223,6 @@ export const Drawer = (options) => {
    * Focus functionality
    */
 
-  const saveTrigger = (trigger) => {
-    if (api.settings.focus) {
-      api.memory.trigger = trigger;
-    }
-  };
-
   const focusDrawer = (drawer) => {
     if (api.settings.focus) {
       const innerFocus = drawer.querySelector(
@@ -242,7 +236,7 @@ export const Drawer = (options) => {
     }
   };
 
-  const returnFocus = () => {
+  const focusTrigger = () => {
     if (api.settings.focus && api.memory.trigger) {
       api.memory.trigger.focus();
       api.memory.trigger = null;
