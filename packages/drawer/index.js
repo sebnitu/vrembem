@@ -8,7 +8,7 @@ import {
 
 export const Drawer = (options) => {
 
-  let api = {};
+  const api = {};
   const defaults = {
     autoInit: false,
 
