@@ -41,8 +41,7 @@ export const Drawer = (options) => {
 
   api.settings = { ...defaults, ...options };
   api.breakpoint = {};
-
-  api.memoryTrigger;
+  api.memory = {};
   api.state = {};
 
   api.init = () => {
@@ -54,7 +53,7 @@ export const Drawer = (options) => {
 
   api.destroy = () => {
     breakpointDestroy();
-    api.memoryTrigger = null;
+    api.memory = {};
     api.state = {};
     localStorage.removeItem(api.settings.saveKey);
     document.removeEventListener('click', handler, false);
@@ -226,7 +225,7 @@ export const Drawer = (options) => {
 
   const saveTrigger = (trigger) => {
     if (api.settings.focus) {
-      api.memoryTrigger = trigger;
+      api.memory.trigger = trigger;
     }
   };
 
@@ -244,9 +243,9 @@ export const Drawer = (options) => {
   };
 
   const returnFocus = () => {
-    if (api.settings.focus && api.memoryTrigger) {
-      api.memoryTrigger.focus();
-      api.memoryTrigger = null;
+    if (api.settings.focus && api.memory.trigger) {
+      api.memory.trigger.focus();
+      api.memory.trigger = null;
     }
   };
 

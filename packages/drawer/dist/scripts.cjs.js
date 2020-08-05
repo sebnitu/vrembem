@@ -743,6 +743,7 @@ var Drawer = function Drawer(options) {
   var working = false;
   api.settings = _objectSpread(_objectSpread({}, defaults), options);
   api.breakpoint = {};
+  api.memory = {};
   api.state = {};
 
   api.init = function () {
@@ -754,7 +755,7 @@ var Drawer = function Drawer(options) {
 
   api.destroy = function () {
     breakpointDestroy();
-    api.memoryTrigger = null;
+    api.memory = {};
     api.state = {};
     localStorage.removeItem(api.settings.saveKey);
     document.removeEventListener('click', handler, false);
@@ -973,7 +974,7 @@ var Drawer = function Drawer(options) {
 
   var saveTrigger = function saveTrigger(trigger) {
     if (api.settings.focus) {
-      api.memoryTrigger = trigger;
+      api.memory.trigger = trigger;
     }
   };
 
@@ -990,9 +991,9 @@ var Drawer = function Drawer(options) {
   };
 
   var returnFocus = function returnFocus() {
-    if (api.settings.focus && api.memoryTrigger) {
-      api.memoryTrigger.focus();
-      api.memoryTrigger = null;
+    if (api.settings.focus && api.memory.trigger) {
+      api.memory.trigger.focus();
+      api.memory.trigger = null;
     }
   };
 
