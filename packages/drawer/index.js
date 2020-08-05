@@ -132,14 +132,14 @@ export const Drawer = (options) => {
     }
   };
 
-  api.toggle = (drawerKey, callback) => {
+  api.toggle = (drawerKey) => {
     const drawer = drawerKeyCheck(drawerKey);
     if (drawer) {
       const isOpen = hasClass(drawer, api.settings.stateOpened);
       if (!isOpen) {
-        api.open(drawer, callback);
+        api.open(drawer);
       } else {
-        api.close(drawer, callback);
+        api.close(drawer);
       }
     }
   };
@@ -186,14 +186,13 @@ export const Drawer = (options) => {
     });
   };
 
-  api.open = async (drawerKey, callback) => {
+  api.open = async (drawerKey) => {
     const drawer = drawerKeyCheck(drawerKey);
     if (drawer && !hasClass(drawer, api.settings.stateOpened)) {
       working = true;
       await openTransition(drawer);
       saveState(drawer);
       focusDrawer(drawer);
-      typeof callback === 'function' && callback();
       drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
         bubbles: true
       }));
@@ -205,14 +204,13 @@ export const Drawer = (options) => {
     }
   };
 
-  api.close = async (drawerKey, callback) => {
+  api.close = async (drawerKey) => {
     const drawer = drawerKeyCheck(drawerKey);
     if (drawer && hasClass(drawer, api.settings.stateOpened)) {
       working = true;
       await closeTransition(drawer);
       saveState(drawer);
       returnFocus();
-      typeof callback === 'function' && callback();
       drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
         bubbles: true
       }));

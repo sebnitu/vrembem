@@ -832,16 +832,16 @@ var Drawer = function Drawer(options) {
     }
   };
 
-  api.toggle = function (drawerKey, callback) {
+  api.toggle = function (drawerKey) {
     var drawer = drawerKeyCheck(drawerKey);
 
     if (drawer) {
       var isOpen = hasClass(drawer, api.settings.stateOpened);
 
       if (!isOpen) {
-        api.open(drawer, callback);
+        api.open(drawer);
       } else {
-        api.close(drawer, callback);
+        api.close(drawer);
       }
     }
   };
@@ -885,7 +885,7 @@ var Drawer = function Drawer(options) {
   };
 
   api.open = function () {
-    var _ref = asyncToGenerator(regenerator.mark(function _callee(drawerKey, callback) {
+    var _ref = asyncToGenerator(regenerator.mark(function _callee(drawerKey) {
       var drawer;
       return regenerator.wrap(function _callee$(_context) {
         while (1) {
@@ -894,7 +894,7 @@ var Drawer = function Drawer(options) {
               drawer = drawerKeyCheck(drawerKey);
 
               if (!(drawer && !hasClass(drawer, api.settings.stateOpened))) {
-                _context.next = 13;
+                _context.next = 12;
                 break;
               }
 
@@ -905,23 +905,22 @@ var Drawer = function Drawer(options) {
             case 5:
               saveState(drawer);
               focusDrawer(drawer);
-              typeof callback === 'function' && callback();
               drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
                 bubbles: true
               }));
               working = false;
               return _context.abrupt("return", drawer);
 
-            case 13:
+            case 12:
               if (!(drawer && hasClass(drawer, api.settings.stateOpened))) {
-                _context.next = 16;
+                _context.next = 15;
                 break;
               }
 
               focusDrawer(drawer);
               return _context.abrupt("return", drawer);
 
-            case 16:
+            case 15:
             case "end":
               return _context.stop();
           }
@@ -929,13 +928,13 @@ var Drawer = function Drawer(options) {
       }, _callee);
     }));
 
-    return function (_x, _x2) {
+    return function (_x) {
       return _ref.apply(this, arguments);
     };
   }();
 
   api.close = function () {
-    var _ref2 = asyncToGenerator(regenerator.mark(function _callee2(drawerKey, callback) {
+    var _ref2 = asyncToGenerator(regenerator.mark(function _callee2(drawerKey) {
       var drawer;
       return regenerator.wrap(function _callee2$(_context2) {
         while (1) {
@@ -944,7 +943,7 @@ var Drawer = function Drawer(options) {
               drawer = drawerKeyCheck(drawerKey);
 
               if (!(drawer && hasClass(drawer, api.settings.stateOpened))) {
-                _context2.next = 13;
+                _context2.next = 12;
                 break;
               }
 
@@ -955,17 +954,16 @@ var Drawer = function Drawer(options) {
             case 5:
               saveState(drawer);
               returnFocus();
-              typeof callback === 'function' && callback();
               drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
                 bubbles: true
               }));
               working = false;
               return _context2.abrupt("return", drawer);
 
-            case 13:
+            case 12:
               return _context2.abrupt("return", drawer);
 
-            case 14:
+            case 13:
             case "end":
               return _context2.stop();
           }
@@ -973,7 +971,7 @@ var Drawer = function Drawer(options) {
       }, _callee2);
     }));
 
-    return function (_x3, _x4) {
+    return function (_x2) {
       return _ref2.apply(this, arguments);
     };
   }();
