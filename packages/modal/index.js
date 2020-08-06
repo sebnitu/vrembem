@@ -15,7 +15,7 @@ export const Modal = (options) => {
     dataRequired: 'modal-required',
 
     // Selector
-    selectorMain: null,
+    selectorInert: null,
 
     // State classes
     stateOpened: 'is-opened',
@@ -120,34 +120,9 @@ export const Modal = (options) => {
     }
   };
 
-  const setInitialState = () => {
-    const modals = document.querySelectorAll(`[data-${api.settings.dataModal}]`);
-    modals.forEach((el) => {
-      if (el.classList.contains(api.settings.stateOpened)) {
-        enableMain();
-        setOverflow();
-        focusTrigger();
-        destroyTrapFocus(el);
-      }
-      removeClass(el,
-        api.settings.stateOpened,
-        api.settings.stateOpening,
-        api.settings.stateClosing
-      );
-      addClass(el, api.settings.stateClosed);
-    });
-  };
-
-  const setTabindex = (enable = api.settings.setTabindex) => {
-    if (enable) {
-      const modals = document.querySelectorAll(
-        `[data-${api.settings.dataModal}] [data-${api.settings.dataDialog}]`
-      );
-      modals.forEach((el) => {
-        el.setAttribute('tabindex', '-1');
-      });
-    }
-  };
+  /**
+   * Helpers
+   */
 
   const moveModals = (
     selector = api.settings.moveModals.selector,
@@ -172,6 +147,35 @@ export const Modal = (options) => {
     }
   };
 
+  const setInitialState = () => {
+    const modals = document.querySelectorAll(`[data-${api.settings.dataModal}]`);
+    modals.forEach((el) => {
+      if (el.classList.contains(api.settings.stateOpened)) {
+        setInert(false);
+        setOverflow();
+        focusTrigger();
+        destroyTrapFocus(el);
+      }
+      removeClass(el,
+        api.settings.stateOpened,
+        api.settings.stateOpening,
+        api.settings.stateClosing
+      );
+      addClass(el, api.settings.stateClosed);
+    });
+  };
+
+  const setTabindex = (enable = api.settings.setTabindex) => {
+    if (enable) {
+      const modals = document.querySelectorAll(
+        `[data-${api.settings.dataModal}] [data-${api.settings.dataDialog}]`
+      );
+      modals.forEach((el) => {
+        el.setAttribute('tabindex', '-1');
+      });
+    }
+  };
+
   const setOverflow = (state) => {
     if (api.settings.toggleOverflow) {
       const els = document.querySelectorAll(api.settings.toggleOverflow);
@@ -180,6 +184,21 @@ export const Modal = (options) => {
           el.style.overflow = 'hidden';
         } else {
           el.style.removeProperty('overflow');
+        }
+      });
+    }
+  };
+
+  const setInert = (state) => {
+    if (api.settings.selectorInert) {
+      const content = document.querySelectorAll(api.settings.selectorInert);
+      content.forEach((el) => {
+        if (state) {
+          el.inert = true;
+          el.setAttribute('aria-hidden', true);
+        } else {
+          el.inert = null;
+          el.removeAttribute('aria-hidden');
         }
       });
     }
@@ -237,7 +256,7 @@ export const Modal = (options) => {
       await openTransition(modal);
       initTrapFocus(modal);
       focusModal(modal);
-      disableMain();
+      setInert(true);
       modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
         bubbles: true
       }));
@@ -254,7 +273,7 @@ export const Modal = (options) => {
     );
     if (modal) {
       working = true;
-      enableMain();
+      setInert(false);
       setOverflow();
       await closeTransition(modal);
       if (returnFocus) focusTrigger();
@@ -367,30 +386,6 @@ export const Modal = (options) => {
   const handlerStickyFocus = (event) => {
     const isTab = (event.key === 'Tab' || event.keyCode === 9);
     if (isTab) event.preventDefault();
-  };
-
-  /**
-   * Accessibility
-   */
-
-  const disableMain = () => {
-    if (api.settings.selectorMain) {
-      const content = document.querySelectorAll(api.settings.selectorMain);
-      content.forEach((el) => {
-        el.inert = true;
-        el.setAttribute('aria-hidden', true);
-      });
-    }
-  };
-
-  const enableMain = () => {
-    if (api.settings.selectorMain) {
-      const content = document.querySelectorAll(api.settings.selectorMain);
-      content.forEach((el) => {
-        el.inert = null;
-        el.removeAttribute('aria-hidden');
-      });
-    }
   };
 
   /**

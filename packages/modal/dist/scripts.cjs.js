@@ -705,7 +705,7 @@ var Modal = function Modal(options) {
     dataClose: 'modal-close',
     dataFocus: 'modal-focus',
     dataRequired: 'modal-required',
-    selectorMain: null,
+    selectorInert: null,
     stateOpened: 'is-opened',
     stateOpening: 'is-opening',
     stateClosing: 'is-closing',
@@ -834,32 +834,6 @@ var Modal = function Modal(options) {
     }
   };
 
-  var setInitialState = function setInitialState() {
-    var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "]"));
-    modals.forEach(function (el) {
-      if (el.classList.contains(api.settings.stateOpened)) {
-        enableMain();
-        setOverflow();
-        focusTrigger();
-        destroyTrapFocus(el);
-      }
-
-      removeClass(el, api.settings.stateOpened, api.settings.stateOpening, api.settings.stateClosing);
-      addClass(el, api.settings.stateClosed);
-    });
-  };
-
-  var setTabindex = function setTabindex() {
-    var enable = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : api.settings.setTabindex;
-
-    if (enable) {
-      var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "] [data-").concat(api.settings.dataDialog, "]"));
-      modals.forEach(function (el) {
-        el.setAttribute('tabindex', '-1');
-      });
-    }
-  };
-
   var moveModals = function moveModals() {
     var selector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : api.settings.moveModals.selector;
     var location = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : api.settings.moveModals.location;
@@ -884,6 +858,32 @@ var Modal = function Modal(options) {
     }
   };
 
+  var setInitialState = function setInitialState() {
+    var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "]"));
+    modals.forEach(function (el) {
+      if (el.classList.contains(api.settings.stateOpened)) {
+        setInert(false);
+        setOverflow();
+        focusTrigger();
+        destroyTrapFocus(el);
+      }
+
+      removeClass(el, api.settings.stateOpened, api.settings.stateOpening, api.settings.stateClosing);
+      addClass(el, api.settings.stateClosed);
+    });
+  };
+
+  var setTabindex = function setTabindex() {
+    var enable = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : api.settings.setTabindex;
+
+    if (enable) {
+      var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "] [data-").concat(api.settings.dataDialog, "]"));
+      modals.forEach(function (el) {
+        el.setAttribute('tabindex', '-1');
+      });
+    }
+  };
+
   var setOverflow = function setOverflow(state) {
     if (api.settings.toggleOverflow) {
       var els = document.querySelectorAll(api.settings.toggleOverflow);
@@ -892,6 +892,21 @@ var Modal = function Modal(options) {
           el.style.overflow = 'hidden';
         } else {
           el.style.removeProperty('overflow');
+        }
+      });
+    }
+  };
+
+  var setInert = function setInert(state) {
+    if (api.settings.selectorInert) {
+      var content = document.querySelectorAll(api.settings.selectorInert);
+      content.forEach(function (el) {
+        if (state) {
+          el.inert = true;
+          el.setAttribute('aria-hidden', true);
+        } else {
+          el.inert = null;
+          el.removeAttribute('aria-hidden');
         }
       });
     }
@@ -957,7 +972,7 @@ var Modal = function Modal(options) {
             case 6:
               initTrapFocus(modal);
               focusModal(modal);
-              disableMain();
+              setInert(true);
               modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
                 bubbles: true
               }));
@@ -998,7 +1013,7 @@ var Modal = function Modal(options) {
               }
 
               working = true;
-              enableMain();
+              setInert(false);
               setOverflow();
               _context3.next = 8;
               return closeTransition(modal);
@@ -1104,26 +1119,6 @@ var Modal = function Modal(options) {
   var handlerStickyFocus = function handlerStickyFocus(event) {
     var isTab = event.key === 'Tab' || event.keyCode === 9;
     if (isTab) event.preventDefault();
-  };
-
-  var disableMain = function disableMain() {
-    if (api.settings.selectorMain) {
-      var content = document.querySelectorAll(api.settings.selectorMain);
-      content.forEach(function (el) {
-        el.inert = true;
-        el.setAttribute('aria-hidden', true);
-      });
-    }
-  };
-
-  var enableMain = function enableMain() {
-    if (api.settings.selectorMain) {
-      var content = document.querySelectorAll(api.settings.selectorMain);
-      content.forEach(function (el) {
-        el.inert = null;
-        el.removeAttribute('aria-hidden');
-      });
-    }
   };
 
   if (api.settings.autoInit) api.init();
