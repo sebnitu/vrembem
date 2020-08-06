@@ -1,4 +1,4 @@
-import { addClass, removeClass } from '@vrembem/core';
+import { addClass, hasClass, removeClass } from '@vrembem/core';
 
 export const Modal = (options) => {
 
@@ -14,14 +14,15 @@ export const Modal = (options) => {
     dataFocus: 'modal-focus',
     dataRequired: 'modal-required',
 
-    // Selector
-    selectorMain: null,
-
     // State classes
     stateOpened: 'is-opened',
     stateOpening: 'is-opening',
     stateClosing: 'is-closing',
     stateClosed: 'is-closed',
+
+    // Selector
+    selectorInert: null,
+    selectorOverflow: 'body',
 
     // Feature toggles
     customEventPrefix: 'modal:',
@@ -30,7 +31,6 @@ export const Modal = (options) => {
       location: null
     },
     setTabindex: true,
-    toggleOverflow: 'body',
     transition: true
   };
 
@@ -53,26 +53,6 @@ export const Modal = (options) => {
     document.removeEventListener('keyup', handlerEscape, false);
   };
 
-  api.open = (modalKey) => {
-    return open(modalKey);
-  };
-
-  api.close = (returnFocus) => {
-    return close(returnFocus);
-  };
-
-  api.setInitialState = () => {
-    setInitialState();
-  };
-
-  api.setTabindex = () => {
-    setTabindex(true);
-  };
-
-  api.moveModals = (selector, location) => {
-    moveModals(selector, location);
-  };
-
   const handler = async (event) => {
     // Working catch
     if (working) return;
@@ -84,15 +64,15 @@ export const Modal = (options) => {
       const modalKey = trigger.getAttribute(`data-${api.settings.dataOpen}`);
       const fromModal = event.target.closest(`[data-${api.settings.dataModal}]`);
       if (!fromModal) api.memory.trigger = trigger;
-      await close(!fromModal);
-      open(modalKey);
+      await api.close(!fromModal);
+      api.open(modalKey);
       return;
     }
 
     // Close click
     if (event.target.closest(`[data-${api.settings.dataClose}]`)) {
       event.preventDefault();
-      close();
+      api.close();
       return;
     }
 
@@ -101,7 +81,7 @@ export const Modal = (options) => {
       event.target.hasAttribute(`data-${api.settings.dataModal}`) &&
       !event.target.hasAttribute(`data-${api.settings.dataRequired}`)
     ) {
-      close();
+      api.close();
       return;
     }
   };
@@ -115,38 +95,19 @@ export const Modal = (options) => {
         `[data-${api.settings.dataModal}].${api.settings.stateOpened}`
       );
       if (target && !target.hasAttribute(`data-${api.settings.dataRequired}`)) {
-        close();
+        api.close();
       }
     }
   };
 
-  const setInitialState = () => {
-    const modals = document.querySelectorAll(`[data-${api.settings.dataModal}]`);
-    modals.forEach((el) => {
-      if (el.classList.contains(api.settings.stateOpened)) {
-        enableMain();
-        setOverflow();
-        focusTrigger();
-        destroyTrapFocus(el);
-      }
-      removeClass(el,
-        api.settings.stateOpened,
-        api.settings.stateOpening,
-        api.settings.stateClosing
-      );
-      addClass(el, api.settings.stateClosed);
-    });
-  };
+  /**
+   * Helpers
+   */
 
-  const setTabindex = (enable = api.settings.setTabindex) => {
-    if (enable) {
-      const modals = document.querySelectorAll(
-        `[data-${api.settings.dataModal}] [data-${api.settings.dataDialog}]`
-      );
-      modals.forEach((el) => {
-        el.setAttribute('tabindex', '-1');
-      });
-    }
+  const modalNotFound = (key) => {
+    return Promise.reject(
+      new Error(`Did not find modal with key: "${key}"`)
+    );
   };
 
   const moveModals = (
@@ -172,17 +133,73 @@ export const Modal = (options) => {
     }
   };
 
-  const setOverflow = (state) => {
-    if (api.settings.toggleOverflow) {
-      const els = document.querySelectorAll(api.settings.toggleOverflow);
+  api.moveModals = (selector, location) => {
+    moveModals(selector, location);
+  };
+
+  const setInert = (state) => {
+    if (api.settings.selectorInert) {
+      const content = document.querySelectorAll(api.settings.selectorInert);
+      content.forEach((el) => {
+        if (state) {
+          el.inert = true;
+          el.setAttribute('aria-hidden', true);
+        } else {
+          el.inert = null;
+          el.removeAttribute('aria-hidden');
+        }
+      });
+    }
+  };
+
+  const setInitialState = () => {
+    const modals = document.querySelectorAll(`[data-${api.settings.dataModal}]`);
+    modals.forEach((el) => {
+      if (el.classList.contains(api.settings.stateOpened)) {
+        setInert(false);
+        setOverflowHidden();
+        focusTrigger();
+        focusTrapDestroy(el);
+      }
+      removeClass(el,
+        api.settings.stateOpened,
+        api.settings.stateOpening,
+        api.settings.stateClosing
+      );
+      addClass(el, api.settings.stateClosed);
+    });
+  };
+
+  api.setInitialState = () => {
+    setInitialState();
+  };
+
+  const setOverflowHidden = (state) => {
+    if (api.settings.selectorOverflow) {
+      const els = document.querySelectorAll(api.settings.selectorOverflow);
       els.forEach((el) => {
-        if (state == 'hidden') {
+        if (state) {
           el.style.overflow = 'hidden';
         } else {
           el.style.removeProperty('overflow');
         }
       });
     }
+  };
+
+  const setTabindex = (enable = api.settings.setTabindex) => {
+    if (enable) {
+      const modals = document.querySelectorAll(
+        `[data-${api.settings.dataModal}] [data-${api.settings.dataDialog}]`
+      );
+      modals.forEach((el) => {
+        el.setAttribute('tabindex', '-1');
+      });
+    }
+  };
+
+  api.setTabindex = () => {
+    setTabindex(true);
   };
 
   /**
@@ -227,17 +244,18 @@ export const Modal = (options) => {
     });
   };
 
-  const open = async (modalKey) => {
+  api.open = async (modalKey) => {
     const modal = document.querySelector(
-      `[data-${api.settings.dataModal}="${modalKey}"].${api.settings.stateClosed}`
+      `[data-${api.settings.dataModal}="${modalKey}"]`
     );
-    if (modal) {
+    if (!modal) return modalNotFound(modalKey);
+    if (hasClass(modal, api.settings.stateClosed)) {
       working = true;
-      setOverflow('hidden');
+      setOverflowHidden('hidden');
       await openTransition(modal);
-      initTrapFocus(modal);
+      focusTrapInit(modal);
       focusModal(modal);
-      disableMain();
+      setInert(true);
       modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
         bubbles: true
       }));
@@ -248,17 +266,17 @@ export const Modal = (options) => {
     }
   };
 
-  const close = async (returnFocus = true) => {
+  api.close = async (returnFocus = true) => {
     const modal = document.querySelector(
       `[data-${api.settings.dataModal}].${api.settings.stateOpened}`
     );
     if (modal) {
       working = true;
-      enableMain();
-      setOverflow();
+      setInert(false);
+      setOverflowHidden();
       await closeTransition(modal);
       if (returnFocus) focusTrigger();
-      destroyTrapFocus(modal);
+      focusTrapDestroy(modal);
       modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
         bubbles: true
       }));
@@ -321,26 +339,26 @@ export const Modal = (options) => {
     return focusable;
   };
 
-  const initTrapFocus = (modal) => {
+  const focusTrapInit = (modal) => {
     api.memory.focusable = getFocusable(modal);
     if (api.memory.focusable.length) {
       api.memory.focusableFirst = api.memory.focusable[0];
       api.memory.focusableLast = api.memory.focusable[api.memory.focusable.length - 1];
-      modal.addEventListener('keydown', handlerTrapFocus);
+      modal.addEventListener('keydown', handlerFocusTrap);
     } else {
-      modal.addEventListener('keydown', handlerStickyFocus);
+      modal.addEventListener('keydown', handlerFocusLock);
     }
   };
 
-  const destroyTrapFocus = (modal) => {
+  const focusTrapDestroy = (modal) => {
     api.memory.focusable = null;
     api.memory.focusableFirst = null;
     api.memory.focusableLast = null;
-    modal.removeEventListener('keydown', handlerTrapFocus);
-    modal.removeEventListener('keydown', handlerStickyFocus);
+    modal.removeEventListener('keydown', handlerFocusTrap);
+    modal.removeEventListener('keydown', handlerFocusLock);
   };
 
-  const handlerTrapFocus = (event) => {
+  const handlerFocusTrap = (event) => {
     const isTab = (event.key === 'Tab' || event.keyCode === 9);
     if (!isTab) return;
 
@@ -364,33 +382,9 @@ export const Modal = (options) => {
     }
   };
 
-  const handlerStickyFocus = (event) => {
+  const handlerFocusLock = (event) => {
     const isTab = (event.key === 'Tab' || event.keyCode === 9);
     if (isTab) event.preventDefault();
-  };
-
-  /**
-   * Accessibility
-   */
-
-  const disableMain = () => {
-    if (api.settings.selectorMain) {
-      const content = document.querySelectorAll(api.settings.selectorMain);
-      content.forEach((el) => {
-        el.inert = true;
-        el.setAttribute('aria-hidden', true);
-      });
-    }
-  };
-
-  const enableMain = () => {
-    if (api.settings.selectorMain) {
-      const content = document.querySelectorAll(api.settings.selectorMain);
-      content.forEach((el) => {
-        el.inert = null;
-        el.removeAttribute('aria-hidden');
-      });
-    }
   };
 
   /**

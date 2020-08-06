@@ -231,6 +231,9 @@
 
 <div class="modals"></div>
 
+<!-- Polyfills -->
+<script src="https://unpkg.com/wicg-inert/dist/inert.min.js"></script>
+
 <!-- Component scripts -->
 <script src="./dist/scripts.js"></script>
 
@@ -238,7 +241,8 @@
 <script>
   const modal = new vrembem.Modal({
     autoInit: true,
-    selectorMain: '[role="main"]',
+    selectorInert: '[role="main"]',
+    selectorOverflow: 'body, [role="main"]',
     moveModals: {
       selector: '.modals',
       location: 'append'
@@ -271,9 +275,6 @@
     }
   });
 </script>
-
-<!-- Polyfills -->
-<script src="https://unpkg.com/wicg-inert/dist/inert.min.js"></script>
 
 </body>
 </html>

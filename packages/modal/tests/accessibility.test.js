@@ -22,7 +22,7 @@ describe('when selectorMain is set...', () => {
     document.body.innerHTML = markup;
     modal = new Modal({
       autoInit: true,
-      selectorMain: '[role="main"]'
+      selectorInert: '[role="main"]'
     });
     main = document.querySelector('[role="main"]');
     el = document.querySelector('[data-modal]');

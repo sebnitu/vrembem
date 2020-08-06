@@ -156,7 +156,7 @@ test('should toggle overflow hidden on multiple elements', () => {
   const di = el.querySelector('.modal__dialog');
   modal = new Modal({
     autoInit: true,
-    toggleOverflow: 'body, .modal, .modal__dialog'
+    selectorOverflow: 'body, .modal, .modal__dialog'
   });
   modal.open('modal-default');
   el.dispatchEvent(ev);
@@ -175,7 +175,7 @@ test('should disable toggle overflow if set to falsely', () => {
   const el = document.querySelector('[data-modal]');
   modal = new Modal({
     autoInit: true,
-    toggleOverflow: false
+    selectorOverflow: false
   });
   modal.open('modal-default');
   el.dispatchEvent(ev);
