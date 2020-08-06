@@ -733,13 +733,13 @@
 	    stateClosing: 'is-closing',
 	    stateClosed: 'is-closed',
 	    classModal: 'drawer_modal',
+	    selectorInert: null,
+	    selectorOverflow: null,
 	    breakpoints: breakpoints,
 	    customEventPrefix: 'drawer:',
-	    saveState: true,
-	    saveKey: 'DrawerState',
-	    selectorMain: null,
+	    stateSave: true,
+	    stateKey: 'DrawerState',
 	    setTabindex: true,
-	    toggleOverflow: 'body',
 	    transition: true
 	  };
 	  var working = false;
@@ -749,7 +749,7 @@
 	  api.breakpoint = {};
 
 	  api.init = function () {
-	    setState();
+	    stateSet();
 	    setTabindex();
 	    breakpointInit();
 	    document.addEventListener('click', handler, false);
@@ -760,7 +760,7 @@
 	    breakpointDestroy();
 	    api.memory = {};
 	    api.state = {};
-	    localStorage.removeItem(api.settings.saveKey);
+	    localStorage.removeItem(api.settings.stateKey);
 	    document.removeEventListener('click', handler, false);
 	    document.removeEventListener('keyup', handlerEscape, false);
 	  };
@@ -846,14 +846,29 @@
 	    }
 	  };
 
-	  var setOverflow = function setOverflow(state) {
-	    if (api.settings.toggleOverflow) {
-	      var els = document.querySelectorAll(api.settings.toggleOverflow);
+	  var setOverflowHidden = function setOverflowHidden(state) {
+	    if (api.settings.selectorOverflow) {
+	      var els = document.querySelectorAll(api.settings.selectorOverflow);
 	      els.forEach(function (el) {
-	        if (state == 'hidden') {
+	        if (state) {
 	          el.style.overflow = 'hidden';
 	        } else {
 	          el.style.removeProperty('overflow');
+	        }
+	      });
+	    }
+	  };
+
+	  var setInert = function setInert(state) {
+	    if (api.settings.selectorInert) {
+	      var content = document.querySelectorAll(api.settings.selectorInert);
+	      content.forEach(function (el) {
+	        if (state) {
+	          el.inert = true;
+	          el.setAttribute('aria-hidden', true);
+	        } else {
+	          el.inert = null;
+	          el.removeAttribute('aria-hidden');
 	        }
 	      });
 	    }
@@ -923,18 +938,18 @@
 	              isModal = hasClass(drawer, api.settings.classModal);
 
 	              if (isModal) {
-	                setOverflow('hidden');
+	                setOverflowHidden(true);
 	              }
 
 	              _context.next = 9;
 	              return openTransition(drawer);
 
 	            case 9:
-	              saveState(drawer);
+	              stateSave(drawer);
 
 	              if (isModal) {
-	                initTrapFocus(drawer);
-	                disableMain();
+	                focusTrapInit(drawer);
+	                setInert(true);
 	              }
 
 	              focusDrawer(drawer);
@@ -991,17 +1006,17 @@
 	              working = true;
 
 	              if (hasClass(drawer, api.settings.classModal)) {
-	                enableMain();
-	                setOverflow();
+	                setInert(false);
+	                setOverflowHidden(false);
 	              }
 
 	              _context2.next = 8;
 	              return closeTransition(drawer);
 
 	            case 8:
-	              saveState(drawer);
+	              stateSave(drawer);
 	              focusTrigger();
-	              destroyTrapFocus(drawer);
+	              focusTrapDestroy(drawer);
 	              drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
 	                bubbles: true
 	              }));
@@ -1070,27 +1085,27 @@
 	    return focusable;
 	  };
 
-	  var initTrapFocus = function initTrapFocus(drawer) {
+	  var focusTrapInit = function focusTrapInit(drawer) {
 	    api.memory.focusable = getFocusable(drawer);
 
 	    if (api.memory.focusable.length) {
 	      api.memory.focusableFirst = api.memory.focusable[0];
 	      api.memory.focusableLast = api.memory.focusable[api.memory.focusable.length - 1];
-	      drawer.addEventListener('keydown', handlerTrapFocus);
+	      drawer.addEventListener('keydown', handlerFocusTrap);
 	    } else {
-	      drawer.addEventListener('keydown', handlerStickyFocus);
+	      drawer.addEventListener('keydown', handlerFocusLock);
 	    }
 	  };
 
-	  var destroyTrapFocus = function destroyTrapFocus(drawer) {
+	  var focusTrapDestroy = function focusTrapDestroy(drawer) {
 	    api.memory.focusable = null;
 	    api.memory.focusableFirst = null;
 	    api.memory.focusableLast = null;
-	    drawer.removeEventListener('keydown', handlerTrapFocus);
-	    drawer.removeEventListener('keydown', handlerStickyFocus);
+	    drawer.removeEventListener('keydown', handlerFocusTrap);
+	    drawer.removeEventListener('keydown', handlerFocusLock);
 	  };
 
-	  var handlerTrapFocus = function handlerTrapFocus(event) {
+	  var handlerFocusTrap = function handlerFocusTrap(event) {
 	    var isTab = event.key === 'Tab' || event.keyCode === 9;
 	    if (!isTab) return;
 
@@ -1109,29 +1124,29 @@
 	    }
 	  };
 
-	  var handlerStickyFocus = function handlerStickyFocus(event) {
+	  var handlerFocusLock = function handlerFocusLock(event) {
 	    var isTab = event.key === 'Tab' || event.keyCode === 9;
 	    if (isTab) event.preventDefault();
 	  };
 
-	  var saveState = function saveState() {
+	  var stateSave = function stateSave() {
 	    var target = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
-	    if (api.settings.saveState) {
+	    if (api.settings.stateSave) {
 	      var drawers = target ? [target] : document.querySelectorAll("[data-".concat(api.settings.dataDrawer, "]"));
 	      drawers.forEach(function (el) {
 	        if (!hasClass(el, api.settings.classModal)) {
 	          api.state[el.getAttribute("data-".concat(api.settings.dataDrawer))] = hasClass(el, api.settings.stateOpened) ? api.settings.stateOpened : api.settings.stateClosed;
 	        }
 	      });
-	      localStorage.setItem(api.settings.saveKey, JSON.stringify(api.state));
+	      localStorage.setItem(api.settings.stateKey, JSON.stringify(api.state));
 	    }
 	  };
 
-	  var setState = function setState() {
-	    if (api.settings.saveState) {
-	      if (localStorage.getItem(api.settings.saveKey)) {
-	        api.state = JSON.parse(localStorage.getItem(api.settings.saveKey));
+	  var stateSet = function stateSet() {
+	    if (api.settings.stateSave) {
+	      if (localStorage.getItem(api.settings.stateKey)) {
+	        api.state = JSON.parse(localStorage.getItem(api.settings.stateKey));
 	        Object.keys(api.state).forEach(function (key) {
 	          var item = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(key, "\"]"));
 
@@ -1144,11 +1159,11 @@
 	          }
 	        });
 	      } else {
-	        saveState();
+	        stateSave();
 	      }
 	    } else {
-	      if (localStorage.getItem(api.settings.saveKey)) {
-	        localStorage.removeItem(api.settings.saveKey);
+	      if (localStorage.getItem(api.settings.stateKey)) {
+	        localStorage.removeItem(api.settings.stateKey);
 	      }
 	    }
 	  };
@@ -1248,10 +1263,10 @@
 
 	  var switchToDefault = function switchToDefault(drawer) {
 	    if (!hasClass(drawer, api.settings.classModal)) return;
-	    enableMain();
-	    setOverflow();
+	    setInert(false);
+	    setOverflowHidden(false);
 	    removeClass(drawer, api.settings.classModal);
-	    destroyTrapFocus(drawer);
+	    focusTrapDestroy(drawer);
 	    var drawerKey = drawer.getAttribute("data-".concat(api.settings.dataDrawer));
 	    var drawerState = api.state[drawerKey];
 
@@ -1263,26 +1278,6 @@
 	    drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'toDefault', {
 	      bubbles: true
 	    }));
-	  };
-
-	  var disableMain = function disableMain() {
-	    if (api.settings.selectorMain) {
-	      var content = document.querySelectorAll(api.settings.selectorMain);
-	      content.forEach(function (el) {
-	        el.inert = true;
-	        el.setAttribute('aria-hidden', true);
-	      });
-	    }
-	  };
-
-	  var enableMain = function enableMain() {
-	    if (api.settings.selectorMain) {
-	      var content = document.querySelectorAll(api.settings.selectorMain);
-	      content.forEach(function (el) {
-	        el.inert = null;
-	        el.removeAttribute('aria-hidden');
-	      });
-	    }
 	  };
 
 	  if (api.settings.autoInit) api.init();

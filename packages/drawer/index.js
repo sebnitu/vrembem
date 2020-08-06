@@ -29,14 +29,16 @@ export const Drawer = (options) => {
     // Classes
     classModal: 'drawer_modal',
 
+    // Selectors
+    selectorInert: null,
+    selectorOverflow: null,
+
     // Feature toggles
     breakpoints: breakpoints,
     customEventPrefix: 'drawer:',
-    saveState: true,
-    saveKey: 'DrawerState',
-    selectorMain: null,
+    stateSave: true,
+    stateKey: 'DrawerState',
     setTabindex: true,
-    toggleOverflow: 'body',
     transition: true
   };
 
@@ -48,7 +50,7 @@ export const Drawer = (options) => {
   api.breakpoint = {};
 
   api.init = () => {
-    setState();
+    stateSet();
     setTabindex();
     breakpointInit();
     document.addEventListener('click', handler, false);
@@ -59,7 +61,7 @@ export const Drawer = (options) => {
     breakpointDestroy();
     api.memory = {};
     api.state = {};
-    localStorage.removeItem(api.settings.saveKey);
+    localStorage.removeItem(api.settings.stateKey);
     document.removeEventListener('click', handler, false);
     document.removeEventListener('keyup', handlerEscape, false);
   };
@@ -151,14 +153,29 @@ export const Drawer = (options) => {
     }
   };
 
-  const setOverflow = (state) => {
-    if (api.settings.toggleOverflow) {
-      const els = document.querySelectorAll(api.settings.toggleOverflow);
+  const setOverflowHidden = (state) => {
+    if (api.settings.selectorOverflow) {
+      const els = document.querySelectorAll(api.settings.selectorOverflow);
       els.forEach((el) => {
-        if (state == 'hidden') {
+        if (state) {
           el.style.overflow = 'hidden';
         } else {
           el.style.removeProperty('overflow');
+        }
+      });
+    }
+  };
+
+  const setInert = (state) => {
+    if (api.settings.selectorInert) {
+      const content = document.querySelectorAll(api.settings.selectorInert);
+      content.forEach((el) => {
+        if (state) {
+          el.inert = true;
+          el.setAttribute('aria-hidden', true);
+        } else {
+          el.inert = null;
+          el.removeAttribute('aria-hidden');
         }
       });
     }
@@ -213,13 +230,13 @@ export const Drawer = (options) => {
       working = true;
       const isModal = hasClass(drawer, api.settings.classModal);
       if (isModal) {
-        setOverflow('hidden');
+        setOverflowHidden(true);
       }
       await openTransition(drawer);
-      saveState(drawer);
+      stateSave(drawer);
       if (isModal) {
-        initTrapFocus(drawer);
-        disableMain();
+        focusTrapInit(drawer);
+        setInert(true);
       }
       focusDrawer(drawer);
       drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
@@ -239,13 +256,13 @@ export const Drawer = (options) => {
     if (hasClass(drawer, api.settings.stateOpened)) {
       working = true;
       if (hasClass(drawer, api.settings.classModal)) {
-        enableMain();
-        setOverflow();
+        setInert(false);
+        setOverflowHidden(false);
       }
       await closeTransition(drawer);
-      saveState(drawer);
+      stateSave(drawer);
       focusTrigger();
-      destroyTrapFocus(drawer);
+      focusTrapDestroy(drawer);
       drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
         bubbles: true
       }));
@@ -319,26 +336,26 @@ export const Drawer = (options) => {
     return focusable;
   };
 
-  const initTrapFocus = (drawer) => {
+  const focusTrapInit = (drawer) => {
     api.memory.focusable = getFocusable(drawer);
     if (api.memory.focusable.length) {
       api.memory.focusableFirst = api.memory.focusable[0];
       api.memory.focusableLast = api.memory.focusable[api.memory.focusable.length - 1];
-      drawer.addEventListener('keydown', handlerTrapFocus);
+      drawer.addEventListener('keydown', handlerFocusTrap);
     } else {
-      drawer.addEventListener('keydown', handlerStickyFocus);
+      drawer.addEventListener('keydown', handlerFocusLock);
     }
   };
 
-  const destroyTrapFocus = (drawer) => {
+  const focusTrapDestroy = (drawer) => {
     api.memory.focusable = null;
     api.memory.focusableFirst = null;
     api.memory.focusableLast = null;
-    drawer.removeEventListener('keydown', handlerTrapFocus);
-    drawer.removeEventListener('keydown', handlerStickyFocus);
+    drawer.removeEventListener('keydown', handlerFocusTrap);
+    drawer.removeEventListener('keydown', handlerFocusLock);
   };
 
-  const handlerTrapFocus = (event) => {
+  const handlerFocusTrap = (event) => {
     const isTab = (event.key === 'Tab' || event.keyCode === 9);
     if (!isTab) return;
 
@@ -362,7 +379,7 @@ export const Drawer = (options) => {
     }
   };
 
-  const handlerStickyFocus = (event) => {
+  const handlerFocusLock = (event) => {
     const isTab = (event.key === 'Tab' || event.keyCode === 9);
     if (isTab) event.preventDefault();
   };
@@ -371,8 +388,8 @@ export const Drawer = (options) => {
    * Save state functionality
    */
 
-  const saveState = (target = null) => {
-    if (api.settings.saveState) {
+  const stateSave = (target = null) => {
+    if (api.settings.stateSave) {
       const drawers = (target) ? [target] :
         document.querySelectorAll(`[data-${api.settings.dataDrawer}]`);
       drawers.forEach((el) => {
@@ -383,14 +400,14 @@ export const Drawer = (options) => {
               api.settings.stateClosed;
         }
       });
-      localStorage.setItem(api.settings.saveKey, JSON.stringify(api.state));
+      localStorage.setItem(api.settings.stateKey, JSON.stringify(api.state));
     }
   };
 
-  const setState = () => {
-    if (api.settings.saveState) {
-      if (localStorage.getItem(api.settings.saveKey)) {
-        api.state = JSON.parse(localStorage.getItem(api.settings.saveKey));
+  const stateSet = () => {
+    if (api.settings.stateSave) {
+      if (localStorage.getItem(api.settings.stateKey)) {
+        api.state = JSON.parse(localStorage.getItem(api.settings.stateKey));
         Object.keys(api.state).forEach((key) => {
           const item = document.querySelector(
             `[data-${api.settings.dataDrawer}="${key}"]`
@@ -404,11 +421,11 @@ export const Drawer = (options) => {
           }
         });
       } else {
-        saveState();
+        stateSave();
       }
     } else {
-      if (localStorage.getItem(api.settings.saveKey)) {
-        localStorage.removeItem(api.settings.saveKey);
+      if (localStorage.getItem(api.settings.stateKey)) {
+        localStorage.removeItem(api.settings.stateKey);
       }
     }
   };
@@ -512,10 +529,10 @@ export const Drawer = (options) => {
 
   const switchToDefault = (drawer) => {
     if (!hasClass(drawer, api.settings.classModal)) return;
-    enableMain();
-    setOverflow();
+    setInert(false);
+    setOverflowHidden(false);
     removeClass(drawer, api.settings.classModal);
-    destroyTrapFocus(drawer);
+    focusTrapDestroy(drawer);
     const drawerKey = drawer.getAttribute(`data-${api.settings.dataDrawer}`);
     const drawerState = api.state[drawerKey];
     if (drawerState == api.settings.stateOpened) {
@@ -525,30 +542,6 @@ export const Drawer = (options) => {
     drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'toDefault', {
       bubbles: true
     }));
-  };
-
-  /**
-   * Accessibility
-   */
-
-  const disableMain = () => {
-    if (api.settings.selectorMain) {
-      const content = document.querySelectorAll(api.settings.selectorMain);
-      content.forEach((el) => {
-        el.inert = true;
-        el.setAttribute('aria-hidden', true);
-      });
-    }
-  };
-
-  const enableMain = () => {
-    if (api.settings.selectorMain) {
-      const content = document.querySelectorAll(api.settings.selectorMain);
-      content.forEach((el) => {
-        el.inert = null;
-        el.removeAttribute('aria-hidden');
-      });
-    }
   };
 
   /**
