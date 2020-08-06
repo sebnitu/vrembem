@@ -42,9 +42,9 @@ export const Drawer = (options) => {
   let working = false;
 
   api.settings = { ...defaults, ...options };
-  api.breakpoint = {};
   api.memory = {};
   api.state = {};
+  api.breakpoint = {};
 
   api.init = () => {
     setState();

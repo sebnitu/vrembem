@@ -37,10 +37,6 @@
   opacity: 0;
   -webkit-overflow-scrolling: touch;
 }
-.drawer__item:focus,
-.drawer__item *:focus {
-  box-shadow: 0 0 4px 4px pink !important;
-}
 .drawer__item .dialog__header,
 .drawer__item .dialog__footer {
   background: #f5f5f5;

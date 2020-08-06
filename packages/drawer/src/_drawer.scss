@@ -42,13 +42,6 @@ $_e: var.$prefix-element;
   opacity: 0;
   -webkit-overflow-scrolling: touch;
 
-  // FOCUS TEST
-  &:focus,
-  *:focus {
-    box-shadow: 0 0 4px 4px pink !important;
-  }
-  // END
-
   .#{$_b}dialog#{$_e}header,
   .#{$_b}dialog#{$_e}footer {
     border-color: var.$sep-border;

@@ -743,9 +743,9 @@
 	  };
 	  var working = false;
 	  api.settings = _objectSpread(_objectSpread({}, defaults), options);
-	  api.breakpoint = {};
 	  api.memory = {};
 	  api.state = {};
+	  api.breakpoint = {};
 
 	  api.init = function () {
 	    setState();
