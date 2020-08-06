@@ -152,7 +152,7 @@ export const Modal = (options) => {
         setInert(false);
         setOverflowHidden();
         focusTrigger();
-        destroyTrapFocus(el);
+        focusTrapDestroy(el);
       }
       removeClass(el,
         api.settings.stateOpened,
@@ -178,7 +178,7 @@ export const Modal = (options) => {
     if (api.settings.selectorOverflow) {
       const els = document.querySelectorAll(api.settings.selectorOverflow);
       els.forEach((el) => {
-        if (state == 'hidden') {
+        if (state) {
           el.style.overflow = 'hidden';
         } else {
           el.style.removeProperty('overflow');
@@ -253,7 +253,7 @@ export const Modal = (options) => {
       working = true;
       setOverflowHidden('hidden');
       await openTransition(modal);
-      initTrapFocus(modal);
+      focusTrapInit(modal);
       focusModal(modal);
       setInert(true);
       modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
@@ -276,7 +276,7 @@ export const Modal = (options) => {
       setOverflowHidden();
       await closeTransition(modal);
       if (returnFocus) focusTrigger();
-      destroyTrapFocus(modal);
+      focusTrapDestroy(modal);
       modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
         bubbles: true
       }));
@@ -339,26 +339,26 @@ export const Modal = (options) => {
     return focusable;
   };
 
-  const initTrapFocus = (modal) => {
+  const focusTrapInit = (modal) => {
     api.memory.focusable = getFocusable(modal);
     if (api.memory.focusable.length) {
       api.memory.focusableFirst = api.memory.focusable[0];
       api.memory.focusableLast = api.memory.focusable[api.memory.focusable.length - 1];
-      modal.addEventListener('keydown', handlerTrapFocus);
+      modal.addEventListener('keydown', handlerFocusTrap);
     } else {
-      modal.addEventListener('keydown', handlerStickyFocus);
+      modal.addEventListener('keydown', handlerFocusLock);
     }
   };
 
-  const destroyTrapFocus = (modal) => {
+  const focusTrapDestroy = (modal) => {
     api.memory.focusable = null;
     api.memory.focusableFirst = null;
     api.memory.focusableLast = null;
-    modal.removeEventListener('keydown', handlerTrapFocus);
-    modal.removeEventListener('keydown', handlerStickyFocus);
+    modal.removeEventListener('keydown', handlerFocusTrap);
+    modal.removeEventListener('keydown', handlerFocusLock);
   };
 
-  const handlerTrapFocus = (event) => {
+  const handlerFocusTrap = (event) => {
     const isTab = (event.key === 'Tab' || event.keyCode === 9);
     if (!isTab) return;
 
@@ -382,7 +382,7 @@ export const Modal = (options) => {
     }
   };
 
-  const handlerStickyFocus = (event) => {
+  const handlerFocusLock = (event) => {
     const isTab = (event.key === 'Tab' || event.keyCode === 9);
     if (isTab) event.preventDefault();
   };

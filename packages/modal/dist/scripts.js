@@ -875,7 +875,7 @@
 	        setInert(false);
 	        setOverflowHidden();
 	        focusTrigger();
-	        destroyTrapFocus(el);
+	        focusTrapDestroy(el);
 	      }
 
 	      removeClass(el, api.settings.stateOpened, api.settings.stateOpening, api.settings.stateClosing);
@@ -898,7 +898,7 @@
 	    if (api.settings.selectorOverflow) {
 	      var els = document.querySelectorAll(api.settings.selectorOverflow);
 	      els.forEach(function (el) {
-	        if (state == 'hidden') {
+	        if (state) {
 	          el.style.overflow = 'hidden';
 	        } else {
 	          el.style.removeProperty('overflow');
@@ -988,7 +988,7 @@
 	              return openTransition(modal);
 
 	            case 8:
-	              initTrapFocus(modal);
+	              focusTrapInit(modal);
 	              focusModal(modal);
 	              setInert(true);
 	              modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
@@ -1037,7 +1037,7 @@
 
 	          case 8:
 	            if (returnFocus) focusTrigger();
-	            destroyTrapFocus(modal);
+	            focusTrapDestroy(modal);
 	            modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
 	              bubbles: true
 	            }));
@@ -1089,27 +1089,27 @@
 	    return focusable;
 	  };
 
-	  var initTrapFocus = function initTrapFocus(modal) {
+	  var focusTrapInit = function focusTrapInit(modal) {
 	    api.memory.focusable = getFocusable(modal);
 
 	    if (api.memory.focusable.length) {
 	      api.memory.focusableFirst = api.memory.focusable[0];
 	      api.memory.focusableLast = api.memory.focusable[api.memory.focusable.length - 1];
-	      modal.addEventListener('keydown', handlerTrapFocus);
+	      modal.addEventListener('keydown', handlerFocusTrap);
 	    } else {
-	      modal.addEventListener('keydown', handlerStickyFocus);
+	      modal.addEventListener('keydown', handlerFocusLock);
 	    }
 	  };
 
-	  var destroyTrapFocus = function destroyTrapFocus(modal) {
+	  var focusTrapDestroy = function focusTrapDestroy(modal) {
 	    api.memory.focusable = null;
 	    api.memory.focusableFirst = null;
 	    api.memory.focusableLast = null;
-	    modal.removeEventListener('keydown', handlerTrapFocus);
-	    modal.removeEventListener('keydown', handlerStickyFocus);
+	    modal.removeEventListener('keydown', handlerFocusTrap);
+	    modal.removeEventListener('keydown', handlerFocusLock);
 	  };
 
-	  var handlerTrapFocus = function handlerTrapFocus(event) {
+	  var handlerFocusTrap = function handlerFocusTrap(event) {
 	    var isTab = event.key === 'Tab' || event.keyCode === 9;
 	    if (!isTab) return;
 
@@ -1128,7 +1128,7 @@
 	    }
 	  };
 
-	  var handlerStickyFocus = function handlerStickyFocus(event) {
+	  var handlerFocusLock = function handlerFocusLock(event) {
 	    var isTab = event.key === 'Tab' || event.keyCode === 9;
 	    if (isTab) event.preventDefault();
 	  };
