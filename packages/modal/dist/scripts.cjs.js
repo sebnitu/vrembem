@@ -752,18 +752,6 @@ var Modal = function Modal(options) {
     document.removeEventListener('keyup', handlerEscape, false);
   };
 
-  api.setInitialState = function () {
-    setInitialState();
-  };
-
-  api.setTabindex = function () {
-    setTabindex(true);
-  };
-
-  api.moveModals = function (selector, location) {
-    moveModals(selector, location);
-  };
-
   var handler = function () {
     var _ref = asyncToGenerator(regenerator.mark(function _callee(event) {
       var trigger, modalKey, fromModal;
@@ -869,43 +857,8 @@ var Modal = function Modal(options) {
     }
   };
 
-  var setInitialState = function setInitialState() {
-    var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "]"));
-    modals.forEach(function (el) {
-      if (el.classList.contains(api.settings.stateOpened)) {
-        setInert(false);
-        setOverflowHidden();
-        focusTrigger();
-        focusTrapDestroy(el);
-      }
-
-      removeClass(el, api.settings.stateOpened, api.settings.stateOpening, api.settings.stateClosing);
-      addClass(el, api.settings.stateClosed);
-    });
-  };
-
-  var setTabindex = function setTabindex() {
-    var enable = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : api.settings.setTabindex;
-
-    if (enable) {
-      var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "] [data-").concat(api.settings.dataDialog, "]"));
-      modals.forEach(function (el) {
-        el.setAttribute('tabindex', '-1');
-      });
-    }
-  };
-
-  var setOverflowHidden = function setOverflowHidden(state) {
-    if (api.settings.selectorOverflow) {
-      var els = document.querySelectorAll(api.settings.selectorOverflow);
-      els.forEach(function (el) {
-        if (state) {
-          el.style.overflow = 'hidden';
-        } else {
-          el.style.removeProperty('overflow');
-        }
-      });
-    }
+  api.moveModals = function (selector, location) {
+    moveModals(selector, location);
   };
 
   var setInert = function setInert(state) {
@@ -921,6 +874,53 @@ var Modal = function Modal(options) {
         }
       });
     }
+  };
+
+  var setInitialState = function setInitialState() {
+    var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "]"));
+    modals.forEach(function (el) {
+      if (el.classList.contains(api.settings.stateOpened)) {
+        setInert(false);
+        setOverflowHidden();
+        focusTrigger();
+        focusTrapDestroy(el);
+      }
+
+      removeClass(el, api.settings.stateOpened, api.settings.stateOpening, api.settings.stateClosing);
+      addClass(el, api.settings.stateClosed);
+    });
+  };
+
+  api.setInitialState = function () {
+    setInitialState();
+  };
+
+  var setOverflowHidden = function setOverflowHidden(state) {
+    if (api.settings.selectorOverflow) {
+      var els = document.querySelectorAll(api.settings.selectorOverflow);
+      els.forEach(function (el) {
+        if (state) {
+          el.style.overflow = 'hidden';
+        } else {
+          el.style.removeProperty('overflow');
+        }
+      });
+    }
+  };
+
+  var setTabindex = function setTabindex() {
+    var enable = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : api.settings.setTabindex;
+
+    if (enable) {
+      var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "] [data-").concat(api.settings.dataDialog, "]"));
+      modals.forEach(function (el) {
+        el.setAttribute('tabindex', '-1');
+      });
+    }
+  };
+
+  api.setTabindex = function () {
+    setTabindex(true);
   };
 
   var openTransition = function openTransition(modal) {

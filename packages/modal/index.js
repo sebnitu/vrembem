@@ -53,18 +53,6 @@ export const Modal = (options) => {
     document.removeEventListener('keyup', handlerEscape, false);
   };
 
-  api.setInitialState = () => {
-    setInitialState();
-  };
-
-  api.setTabindex = () => {
-    setTabindex(true);
-  };
-
-  api.moveModals = (selector, location) => {
-    moveModals(selector, location);
-  };
-
   const handler = async (event) => {
     // Working catch
     if (working) return;
@@ -145,6 +133,25 @@ export const Modal = (options) => {
     }
   };
 
+  api.moveModals = (selector, location) => {
+    moveModals(selector, location);
+  };
+
+  const setInert = (state) => {
+    if (api.settings.selectorInert) {
+      const content = document.querySelectorAll(api.settings.selectorInert);
+      content.forEach((el) => {
+        if (state) {
+          el.inert = true;
+          el.setAttribute('aria-hidden', true);
+        } else {
+          el.inert = null;
+          el.removeAttribute('aria-hidden');
+        }
+      });
+    }
+  };
+
   const setInitialState = () => {
     const modals = document.querySelectorAll(`[data-${api.settings.dataModal}]`);
     modals.forEach((el) => {
@@ -163,15 +170,8 @@ export const Modal = (options) => {
     });
   };
 
-  const setTabindex = (enable = api.settings.setTabindex) => {
-    if (enable) {
-      const modals = document.querySelectorAll(
-        `[data-${api.settings.dataModal}] [data-${api.settings.dataDialog}]`
-      );
-      modals.forEach((el) => {
-        el.setAttribute('tabindex', '-1');
-      });
-    }
+  api.setInitialState = () => {
+    setInitialState();
   };
 
   const setOverflowHidden = (state) => {
@@ -187,19 +187,19 @@ export const Modal = (options) => {
     }
   };
 
-  const setInert = (state) => {
-    if (api.settings.selectorInert) {
-      const content = document.querySelectorAll(api.settings.selectorInert);
-      content.forEach((el) => {
-        if (state) {
-          el.inert = true;
-          el.setAttribute('aria-hidden', true);
-        } else {
-          el.inert = null;
-          el.removeAttribute('aria-hidden');
-        }
+  const setTabindex = (enable = api.settings.setTabindex) => {
+    if (enable) {
+      const modals = document.querySelectorAll(
+        `[data-${api.settings.dataModal}] [data-${api.settings.dataDialog}]`
+      );
+      modals.forEach((el) => {
+        el.setAttribute('tabindex', '-1');
       });
     }
+  };
+
+  api.setTabindex = () => {
+    setTabindex(true);
   };
 
   /**
