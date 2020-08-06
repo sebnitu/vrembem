@@ -1642,6 +1642,10 @@ input::-moz-placeholder {
   background: #fff;
   vertical-align: middle;
 }
+.dialog__header > * + *,
+.dialog__footer > * + * {
+  margin-left: 0.5em;
+}
 
 .dialog__header {
   top: 0;

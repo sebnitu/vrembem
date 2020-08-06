@@ -193,10 +193,8 @@ The dialog is a very flexible component and can be used in many different contex
     <p>You wrote "I have attached" in your message, but there are no files attached. Send anyway?</p>
   </div>
   <div class="dialog__footer flex-justify-end">
-    <div class="button-group">
-      <button class="button">Cancel</button>
-      <button class="button button_color_primary">Send</button>
-    </div>
+    <button class="button">Cancel</button>
+    <button class="button button_color_primary">Send</button>
   </div>
 </div>
 {% include demo_switch.html %}
@@ -206,9 +204,7 @@ The dialog is a very flexible component and can be used in many different contex
     ...
   </div>
   <div class="dialog__footer flex-justify-end">
-    <div class="button-group">
-      ...
-    </div>
+    ...
   </div>
 </div>
 ```
