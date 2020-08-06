@@ -463,10 +463,9 @@ export const Drawer = (options) => {
           }
         }
       });
-      const customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
+      document.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
         bubbles: true
-      });
-      document.dispatchEvent(customEvent);
+      }));
     }
   };
 
@@ -483,10 +482,9 @@ export const Drawer = (options) => {
     addClass(drawer, api.settings.classModal);
     addClass(drawer, api.settings.stateClosed);
     removeClass(drawer, api.settings.stateOpened);
-    const customEvent = new CustomEvent(api.settings.customEventPrefix + 'toModal', {
+    drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'toModal', {
       bubbles: true
-    });
-    drawer.dispatchEvent(customEvent);
+    }));
   };
 
   const switchToDefault = (drawer) => {
@@ -500,10 +498,9 @@ export const Drawer = (options) => {
       addClass(drawer, api.settings.stateOpened);
       removeClass(drawer, api.settings.stateClosed);
     }
-    const customEvent = new CustomEvent(api.settings.customEventPrefix + 'toDefault', {
+    drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'toDefault', {
       bubbles: true
-    });
-    drawer.dispatchEvent(customEvent);
+    }));
   };
 
   /**

@@ -1186,10 +1186,9 @@
 	          }
 	        }
 	      });
-	      var customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
+	      document.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
 	        bubbles: true
-	      });
-	      document.dispatchEvent(customEvent);
+	      }));
 	    }
 	  };
 
@@ -1206,10 +1205,9 @@
 	    addClass(drawer, api.settings.classModal);
 	    addClass(drawer, api.settings.stateClosed);
 	    removeClass(drawer, api.settings.stateOpened);
-	    var customEvent = new CustomEvent(api.settings.customEventPrefix + 'toModal', {
+	    drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'toModal', {
 	      bubbles: true
-	    });
-	    drawer.dispatchEvent(customEvent);
+	    }));
 	  };
 
 	  var switchToDefault = function switchToDefault(drawer) {
@@ -1225,10 +1223,9 @@
 	      removeClass(drawer, api.settings.stateClosed);
 	    }
 
-	    var customEvent = new CustomEvent(api.settings.customEventPrefix + 'toDefault', {
+	    drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'toDefault', {
 	      bubbles: true
-	    });
-	    drawer.dispatchEvent(customEvent);
+	    }));
 	  };
 
 	  var disableMain = function disableMain() {
