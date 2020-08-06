@@ -738,8 +738,9 @@ var Drawer = function Drawer(options) {
     customEventPrefix: 'drawer:',
     saveState: true,
     saveKey: 'DrawerState',
-    selectorMain: '.drawer__main',
+    selectorMain: null,
     setTabindex: true,
+    toggleOverflow: 'body',
     transition: true
   };
   var working = false;
@@ -846,6 +847,19 @@ var Drawer = function Drawer(options) {
     }
   };
 
+  var setOverflow = function setOverflow(state) {
+    if (api.settings.toggleOverflow) {
+      var els = document.querySelectorAll(api.settings.toggleOverflow);
+      els.forEach(function (el) {
+        if (state == 'hidden') {
+          el.style.overflow = 'hidden';
+        } else {
+          el.style.removeProperty('overflow');
+        }
+      });
+    }
+  };
+
   var openTransition = function openTransition(drawer) {
     return new Promise(function (resolve) {
       if (api.settings.transition) {
@@ -886,7 +900,7 @@ var Drawer = function Drawer(options) {
 
   api.open = function () {
     var _ref = asyncToGenerator(regenerator.mark(function _callee(drawerKey) {
-      var drawer;
+      var drawer, isModal;
       return regenerator.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -902,18 +916,24 @@ var Drawer = function Drawer(options) {
 
             case 3:
               if (hasClass(drawer, api.settings.stateOpened)) {
-                _context.next = 15;
+                _context.next = 17;
                 break;
               }
 
               working = true;
-              _context.next = 7;
+              isModal = hasClass(drawer, api.settings.classModal);
+
+              if (isModal) {
+                setOverflow('hidden');
+              }
+
+              _context.next = 9;
               return openTransition(drawer);
 
-            case 7:
+            case 9:
               saveState(drawer);
 
-              if (hasClass(drawer, api.settings.classModal)) {
+              if (isModal) {
                 initTrapFocus(drawer);
                 disableMain();
               }
@@ -925,16 +945,16 @@ var Drawer = function Drawer(options) {
               working = false;
               return _context.abrupt("return", drawer);
 
-            case 15:
+            case 17:
               if (!(drawer && hasClass(drawer, api.settings.stateOpened))) {
-                _context.next = 18;
+                _context.next = 20;
                 break;
               }
 
               focusDrawer(drawer);
               return _context.abrupt("return", drawer);
 
-            case 18:
+            case 20:
             case "end":
               return _context.stop();
           }
@@ -973,6 +993,7 @@ var Drawer = function Drawer(options) {
 
               if (hasClass(drawer, api.settings.classModal)) {
                 enableMain();
+                setOverflow();
               }
 
               _context2.next = 8;
@@ -1229,6 +1250,7 @@ var Drawer = function Drawer(options) {
   var switchToDefault = function switchToDefault(drawer) {
     if (!hasClass(drawer, api.settings.classModal)) return;
     enableMain();
+    setOverflow();
     removeClass(drawer, api.settings.classModal);
     destroyTrapFocus(drawer);
     var drawerKey = drawer.getAttribute("data-".concat(api.settings.dataDrawer));

@@ -34,8 +34,9 @@ export const Drawer = (options) => {
     customEventPrefix: 'drawer:',
     saveState: true,
     saveKey: 'DrawerState',
-    selectorMain: '.drawer__main',
+    selectorMain: null,
     setTabindex: true,
+    toggleOverflow: 'body',
     transition: true
   };
 
@@ -150,6 +151,19 @@ export const Drawer = (options) => {
     }
   };
 
+  const setOverflow = (state) => {
+    if (api.settings.toggleOverflow) {
+      const els = document.querySelectorAll(api.settings.toggleOverflow);
+      els.forEach((el) => {
+        if (state == 'hidden') {
+          el.style.overflow = 'hidden';
+        } else {
+          el.style.removeProperty('overflow');
+        }
+      });
+    }
+  };
+
   /**
    * Transition functionality
    */
@@ -197,9 +211,13 @@ export const Drawer = (options) => {
     if (!drawer) return drawerNotFound(drawerKey);
     if (!hasClass(drawer, api.settings.stateOpened)) {
       working = true;
+      const isModal = hasClass(drawer, api.settings.classModal);
+      if (isModal) {
+        setOverflow('hidden');
+      }
       await openTransition(drawer);
       saveState(drawer);
-      if (hasClass(drawer, api.settings.classModal)) {
+      if (isModal) {
         initTrapFocus(drawer);
         disableMain();
       }
@@ -222,6 +240,7 @@ export const Drawer = (options) => {
       working = true;
       if (hasClass(drawer, api.settings.classModal)) {
         enableMain();
+        setOverflow();
       }
       await closeTransition(drawer);
       saveState(drawer);
@@ -494,6 +513,7 @@ export const Drawer = (options) => {
   const switchToDefault = (drawer) => {
     if (!hasClass(drawer, api.settings.classModal)) return;
     enableMain();
+    setOverflow();
     removeClass(drawer, api.settings.classModal);
     destroyTrapFocus(drawer);
     const drawerKey = drawer.getAttribute(`data-${api.settings.dataDrawer}`);
