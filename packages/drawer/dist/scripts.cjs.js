@@ -723,6 +723,7 @@ var Drawer = function Drawer(options) {
   var defaults = {
     autoInit: false,
     dataDrawer: 'drawer',
+    dataDialog: 'drawer-dialog',
     dataToggle: 'drawer-toggle',
     dataOpen: 'drawer-open',
     dataClose: 'drawer-close',
@@ -732,7 +733,6 @@ var Drawer = function Drawer(options) {
     stateOpening: 'is-opening',
     stateClosing: 'is-closing',
     stateClosed: 'is-closed',
-    classItem: 'drawer__item',
     classModal: 'drawer_modal',
     breakpoints: breakpoints,
     customEventPrefix: 'drawer:',
@@ -840,7 +840,7 @@ var Drawer = function Drawer(options) {
     var enable = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : api.settings.setTabindex;
 
     if (enable) {
-      var drawers = document.querySelectorAll("[data-".concat(api.settings.dataDrawer, "] .").concat(api.settings.classItem));
+      var drawers = document.querySelectorAll("[data-".concat(api.settings.dataDrawer, "] [data-").concat(api.settings.dataDialog, "]"));
       drawers.forEach(function (el) {
         el.setAttribute('tabindex', '-1');
       });
@@ -1043,7 +1043,7 @@ var Drawer = function Drawer(options) {
     if (innerFocus) {
       innerFocus.focus();
     } else {
-      var item = drawer.querySelector(".".concat(api.settings.classItem, "[tabindex=\"-1\"]"));
+      var item = drawer.querySelector("[data-".concat(api.settings.dataDialog, "][tabindex=\"-1\"]"));
 
       if (item) {
         item.focus();

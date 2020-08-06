@@ -22,7 +22,7 @@
   overflow: hidden;
 }
 
-.drawer__item {
+.drawer__dialog {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -37,11 +37,11 @@
   opacity: 0;
   -webkit-overflow-scrolling: touch;
 }
-.drawer__item .dialog__header,
-.drawer__item .dialog__footer {
+.drawer__dialog .dialog__header,
+.drawer__dialog .dialog__footer {
   background: #f5f5f5;
 }
-.drawer__item .dialog__body {
+.drawer__dialog .dialog__body {
   background: #f5f5f5;
 }
 
@@ -63,24 +63,24 @@
   overflow: visible;
 }
 
-.drawer.is-opening .drawer__item,
-.drawer.is-closing .drawer__item {
+.drawer.is-opening .drawer__dialog,
+.drawer.is-closing .drawer__dialog {
   transition-property: opacity, transform;
   transition-duration: 0.3s;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.drawer.is-opening .drawer__item,
-.drawer.is-opened .drawer__item {
+.drawer.is-opening .drawer__dialog,
+.drawer.is-opened .drawer__dialog {
   transform: translateY(0);
   opacity: 1;
 }
 
-.drawer.is-opened .drawer__item {
+.drawer.is-opened .drawer__dialog {
   opacity: 1;
 }
 
-.drawer.is-closing .drawer__item {
+.drawer.is-closing .drawer__dialog {
   transform: translateY(-5em);
   opacity: 0;
 }
@@ -93,7 +93,7 @@
   overflow: hidden;
   background-color: rgba(255, 255, 255, 0);
 }
-.drawer_modal .drawer__item {
+.drawer_modal .drawer__dialog {
   position: relative;
   z-index: 901;
   width: 18em;
@@ -137,8 +137,8 @@
   top: 0;
   bottom: 0;
 }
-.drawer_pos_left .drawer__item,
-.drawer_pos_right .drawer__item {
+.drawer_pos_left .drawer__dialog,
+.drawer_pos_right .drawer__dialog {
   position: absolute;
   top: 0;
 }
@@ -146,7 +146,7 @@
 .drawer_pos_left {
   left: 0;
 }
-.drawer_pos_left .drawer__item {
+.drawer_pos_left .drawer__dialog {
   left: 0;
   transform: translateX(-100%);
 }
@@ -154,7 +154,7 @@
 .drawer_pos_right {
   right: 0;
 }
-.drawer_pos_right .drawer__item {
+.drawer_pos_right .drawer__dialog {
   right: 0;
   transform: translateX(100%);
 }
@@ -169,18 +169,18 @@
   margin-right: 18em;
 }
 
-.drawer_pos_left.is-opening .drawer__item,
-.drawer_pos_right.is-opening .drawer__item,
-.drawer_pos_left.is-opened .drawer__item,
-.drawer_pos_right.is-opened .drawer__item {
+.drawer_pos_left.is-opening .drawer__dialog,
+.drawer_pos_right.is-opening .drawer__dialog,
+.drawer_pos_left.is-opened .drawer__dialog,
+.drawer_pos_right.is-opened .drawer__dialog {
   transform: translateX(0);
 }
 
-.drawer_pos_left.is-closing .drawer__item {
+.drawer_pos_left.is-closing .drawer__dialog {
   transform: translateX(-100%);
 }
 
-.drawer_pos_right.is-closing .drawer__item {
+.drawer_pos_right.is-closing .drawer__dialog {
   transform: translateX(100%);
 }
 

@@ -27,7 +27,7 @@ $_e: var.$prefix-element;
   overflow: hidden;
 }
 
-.#{$_b}drawer#{$_e}item {
+.#{$_b}drawer#{$_e}dialog {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -74,7 +74,7 @@ $_e: var.$prefix-element;
 
 .#{$_b}drawer.is-opening,
 .#{$_b}drawer.is-closing {
-  .#{$_b}drawer#{$_e}item {
+  .#{$_b}drawer#{$_e}dialog {
     transition-property: opacity, transform;
     transition-duration: var.$transition-duration;
     transition-timing-function: var.$transition-timing-function;
@@ -83,20 +83,20 @@ $_e: var.$prefix-element;
 
 .#{$_b}drawer.is-opening,
 .#{$_b}drawer.is-opened {
-  .#{$_b}drawer#{$_e}item {
+  .#{$_b}drawer#{$_e}dialog {
     transform: translateY(0);
     opacity: 1;
   }
 }
 
 .#{$_b}drawer.is-opened {
-  .#{$_b}drawer#{$_e}item {
+  .#{$_b}drawer#{$_e}dialog {
     opacity: 1;
   }
 }
 
 .#{$_b}drawer.is-closing {
-  .#{$_b}drawer#{$_e}item {
+  .#{$_b}drawer#{$_e}dialog {
     transform: translateY(-(var.$travel));
     opacity: 0;
   }

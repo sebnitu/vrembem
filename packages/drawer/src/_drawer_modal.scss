@@ -12,7 +12,7 @@ $_m: var.$prefix-modifier;
   overflow: hidden;
   background-color: rgba(var.$modal-background, 0);
 
-  .#{$_b}drawer#{$_e}item {
+  .#{$_b}drawer#{$_e}dialog {
     position: relative;
     z-index: (var.$modal-zindex + 1);
     width: var.$modal-width;

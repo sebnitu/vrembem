@@ -13,6 +13,7 @@ export const Drawer = (options) => {
 
     // Data attributes
     dataDrawer: 'drawer',
+    dataDialog: 'drawer-dialog',
     dataToggle: 'drawer-toggle',
     dataOpen: 'drawer-open',
     dataClose: 'drawer-close',
@@ -26,7 +27,6 @@ export const Drawer = (options) => {
     stateClosed: 'is-closed',
 
     // Classes
-    classItem: 'drawer__item',
     classModal: 'drawer_modal',
 
     // Feature toggles
@@ -143,7 +143,7 @@ export const Drawer = (options) => {
   const setTabindex = (enable = api.settings.setTabindex) => {
     if (enable) {
       const drawers = document.querySelectorAll(
-        `[data-${api.settings.dataDrawer}] .${api.settings.classItem}`
+        `[data-${api.settings.dataDrawer}] [data-${api.settings.dataDialog}]`
       );
       drawers.forEach((el) => {
         el.setAttribute('tabindex', '-1');
@@ -279,7 +279,7 @@ export const Drawer = (options) => {
       innerFocus.focus();
     } else {
       const item = drawer.querySelector(
-        `.${api.settings.classItem}[tabindex="-1"]`
+        `[data-${api.settings.dataDialog}][tabindex="-1"]`
       );
       if (item) {
         item.focus();
