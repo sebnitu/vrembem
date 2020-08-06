@@ -752,13 +752,13 @@ var Drawer = function Drawer(options) {
   api.init = function () {
     stateSet();
     setTabindex();
-    breakpointInit();
+    api.breakpoint.init();
     document.addEventListener('click', handler, false);
     document.addEventListener('keyup', handlerEscape, false);
   };
 
   api.destroy = function () {
-    breakpointDestroy();
+    api.breakpoint.destroy();
     api.memory = {};
     api.state = {};
     localStorage.removeItem(api.settings.stateKey);
@@ -836,13 +836,17 @@ var Drawer = function Drawer(options) {
     return Promise.reject(new Error("Did not find drawer with key: \"".concat(key, "\"")));
   };
 
-  var setTabindex = function setTabindex() {
-    var enable = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : api.settings.setTabindex;
-
-    if (enable) {
-      var drawers = document.querySelectorAll("[data-".concat(api.settings.dataDrawer, "] [data-").concat(api.settings.dataDialog, "]"));
-      drawers.forEach(function (el) {
-        el.setAttribute('tabindex', '-1');
+  var setInert = function setInert(state) {
+    if (api.settings.selectorInert) {
+      var content = document.querySelectorAll(api.settings.selectorInert);
+      content.forEach(function (el) {
+        if (state) {
+          el.inert = true;
+          el.setAttribute('aria-hidden', true);
+        } else {
+          el.inert = null;
+          el.removeAttribute('aria-hidden');
+        }
       });
     }
   };
@@ -860,19 +864,19 @@ var Drawer = function Drawer(options) {
     }
   };
 
-  var setInert = function setInert(state) {
-    if (api.settings.selectorInert) {
-      var content = document.querySelectorAll(api.settings.selectorInert);
-      content.forEach(function (el) {
-        if (state) {
-          el.inert = true;
-          el.setAttribute('aria-hidden', true);
-        } else {
-          el.inert = null;
-          el.removeAttribute('aria-hidden');
-        }
+  var setTabindex = function setTabindex() {
+    var enable = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : api.settings.setTabindex;
+
+    if (enable) {
+      var drawers = document.querySelectorAll("[data-".concat(api.settings.dataDrawer, "] [data-").concat(api.settings.dataDialog, "]"));
+      drawers.forEach(function (el) {
+        el.setAttribute('tabindex', '-1');
       });
     }
+  };
+
+  api.setTabindex = function () {
+    setTabindex(true);
   };
 
   var openTransition = function openTransition(drawer) {
@@ -1170,35 +1174,6 @@ var Drawer = function Drawer(options) {
   };
 
   api.breakpoint.init = function () {
-    breakpointInit();
-  };
-
-  api.breakpoint.destroy = function () {
-    breakpointDestroy();
-  };
-
-  api.breakpoint.check = function () {
-    var event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-    breakpointCheck(event);
-  };
-
-  api.switchToModal = function (drawerKey) {
-    var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
-
-    if (drawer) {
-      switchToModal(drawer);
-    }
-  };
-
-  api.switchToDefault = function (drawerKey) {
-    var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
-
-    if (drawer) {
-      switchToDefault(drawer);
-    }
-  };
-
-  var breakpointInit = function breakpointInit() {
     api.mediaQueryLists = [];
     var drawers = document.querySelectorAll("[data-".concat(api.settings.dataBreakpoint, "]"));
     drawers.forEach(function (drawer) {
@@ -1215,7 +1190,7 @@ var Drawer = function Drawer(options) {
     });
   };
 
-  var breakpointDestroy = function breakpointDestroy() {
+  api.breakpoint.destroy = function () {
     if (api.mediaQueryLists && api.mediaQueryLists.length) {
       api.mediaQueryLists.forEach(function (item) {
         item.mql.removeListener(breakpointCheck);
@@ -1244,6 +1219,11 @@ var Drawer = function Drawer(options) {
     }
   };
 
+  api.breakpoint.check = function () {
+    var event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+    breakpointCheck(event);
+  };
+
   var breakpointMatch = function breakpointMatch(mql, drawer) {
     if (mql.matches) {
       switchToDefault(drawer);
@@ -1260,6 +1240,14 @@ var Drawer = function Drawer(options) {
     drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'toModal', {
       bubbles: true
     }));
+  };
+
+  api.switchToModal = function (drawerKey) {
+    var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
+
+    if (drawer) {
+      switchToModal(drawer);
+    }
   };
 
   var switchToDefault = function switchToDefault(drawer) {
@@ -1279,6 +1267,14 @@ var Drawer = function Drawer(options) {
     drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'toDefault', {
       bubbles: true
     }));
+  };
+
+  api.switchToDefault = function (drawerKey) {
+    var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
+
+    if (drawer) {
+      switchToDefault(drawer);
+    }
   };
 
   if (api.settings.autoInit) api.init();

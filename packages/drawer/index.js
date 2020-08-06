@@ -52,13 +52,13 @@ export const Drawer = (options) => {
   api.init = () => {
     stateSet();
     setTabindex();
-    breakpointInit();
+    api.breakpoint.init();
     document.addEventListener('click', handler, false);
     document.addEventListener('keyup', handlerEscape, false);
   };
 
   api.destroy = () => {
-    breakpointDestroy();
+    api.breakpoint.destroy();
     api.memory = {};
     api.state = {};
     localStorage.removeItem(api.settings.stateKey);
@@ -146,13 +146,17 @@ export const Drawer = (options) => {
     );
   };
 
-  const setTabindex = (enable = api.settings.setTabindex) => {
-    if (enable) {
-      const drawers = document.querySelectorAll(
-        `[data-${api.settings.dataDrawer}] [data-${api.settings.dataDialog}]`
-      );
-      drawers.forEach((el) => {
-        el.setAttribute('tabindex', '-1');
+  const setInert = (state) => {
+    if (api.settings.selectorInert) {
+      const content = document.querySelectorAll(api.settings.selectorInert);
+      content.forEach((el) => {
+        if (state) {
+          el.inert = true;
+          el.setAttribute('aria-hidden', true);
+        } else {
+          el.inert = null;
+          el.removeAttribute('aria-hidden');
+        }
       });
     }
   };
@@ -170,19 +174,19 @@ export const Drawer = (options) => {
     }
   };
 
-  const setInert = (state) => {
-    if (api.settings.selectorInert) {
-      const content = document.querySelectorAll(api.settings.selectorInert);
-      content.forEach((el) => {
-        if (state) {
-          el.inert = true;
-          el.setAttribute('aria-hidden', true);
-        } else {
-          el.inert = null;
-          el.removeAttribute('aria-hidden');
-        }
+  const setTabindex = (enable = api.settings.setTabindex) => {
+    if (enable) {
+      const drawers = document.querySelectorAll(
+        `[data-${api.settings.dataDrawer}] [data-${api.settings.dataDialog}]`
+      );
+      drawers.forEach((el) => {
+        el.setAttribute('tabindex', '-1');
       });
     }
+  };
+
+  api.setTabindex = () => {
+    setTabindex(true);
   };
 
   /**
@@ -439,36 +443,6 @@ export const Drawer = (options) => {
    */
 
   api.breakpoint.init = () => {
-    breakpointInit();
-  };
-
-  api.breakpoint.destroy = () => {
-    breakpointDestroy();
-  };
-
-  api.breakpoint.check = (event = null) => {
-    breakpointCheck(event);
-  };
-
-  api.switchToModal = (drawerKey) => {
-    const drawer = document.querySelector(
-      `[data-${api.settings.dataDrawer}="${drawerKey}"]`
-    );
-    if (drawer) {
-      switchToModal(drawer);
-    }
-  };
-
-  api.switchToDefault = (drawerKey) => {
-    const drawer = document.querySelector(
-      `[data-${api.settings.dataDrawer}="${drawerKey}"]`
-    );
-    if (drawer) {
-      switchToDefault(drawer);
-    }
-  };
-
-  const breakpointInit = () => {
     api.mediaQueryLists = [];
     const drawers = document.querySelectorAll(`[data-${api.settings.dataBreakpoint}]`);
     drawers.forEach((drawer) => {
@@ -485,7 +459,7 @@ export const Drawer = (options) => {
     });
   };
 
-  const breakpointDestroy = () => {
+  api.breakpoint.destroy = () => {
     if (api.mediaQueryLists && api.mediaQueryLists.length) {
       api.mediaQueryLists.forEach((item) => {
         item.mql.removeListener(breakpointCheck);
@@ -513,6 +487,10 @@ export const Drawer = (options) => {
     }
   };
 
+  api.breakpoint.check = (event = null) => {
+    breakpointCheck(event);
+  };
+
   const breakpointMatch = (mql, drawer) => {
     if (mql.matches) {
       switchToDefault(drawer);
@@ -531,6 +509,15 @@ export const Drawer = (options) => {
     }));
   };
 
+  api.switchToModal = (drawerKey) => {
+    const drawer = document.querySelector(
+      `[data-${api.settings.dataDrawer}="${drawerKey}"]`
+    );
+    if (drawer) {
+      switchToModal(drawer);
+    }
+  };
+
   const switchToDefault = (drawer) => {
     if (!hasClass(drawer, api.settings.classModal)) return;
     setInert(false);
@@ -546,6 +533,15 @@ export const Drawer = (options) => {
     drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'toDefault', {
       bubbles: true
     }));
+  };
+
+  api.switchToDefault = (drawerKey) => {
+    const drawer = document.querySelector(
+      `[data-${api.settings.dataDrawer}="${drawerKey}"]`
+    );
+    if (drawer) {
+      switchToDefault(drawer);
+    }
   };
 
   /**
