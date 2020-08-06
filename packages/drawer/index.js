@@ -32,7 +32,6 @@ export const Drawer = (options) => {
     // Feature toggles
     breakpoints: breakpoints,
     customEventPrefix: 'drawer:',
-    focus: true,
     saveState: true,
     saveKey: 'DrawerState',
     selectorMain: '.drawer__main',
@@ -254,25 +253,23 @@ export const Drawer = (options) => {
    */
 
   const focusDrawer = (drawer) => {
-    if (api.settings.focus) {
-      const innerFocus = drawer.querySelector(
-        `[data-${api.settings.dataFocus}]`
+    const innerFocus = drawer.querySelector(
+      `[data-${api.settings.dataFocus}]`
+    );
+    if (innerFocus) {
+      innerFocus.focus();
+    } else {
+      const item = drawer.querySelector(
+        `.${api.settings.classItem}[tabindex="-1"]`
       );
-      if (innerFocus) {
-        innerFocus.focus();
-      } else {
-        const item = drawer.querySelector(
-          `.${api.settings.classItem}[tabindex="-1"]`
-        );
-        if (item) {
-          item.focus();
-        }
+      if (item) {
+        item.focus();
       }
     }
   };
 
   const focusTrigger = () => {
-    if (api.settings.focus && api.memory.trigger) {
+    if (api.memory.trigger) {
       api.memory.trigger.focus();
       api.memory.trigger = null;
     }

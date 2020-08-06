@@ -735,7 +735,6 @@
 	    classModal: 'drawer_modal',
 	    breakpoints: breakpoints,
 	    customEventPrefix: 'drawer:',
-	    focus: true,
 	    saveState: true,
 	    saveKey: 'DrawerState',
 	    selectorMain: '.drawer__main',
@@ -1017,23 +1016,21 @@
 	  };
 
 	  var focusDrawer = function focusDrawer(drawer) {
-	    if (api.settings.focus) {
-	      var innerFocus = drawer.querySelector("[data-".concat(api.settings.dataFocus, "]"));
+	    var innerFocus = drawer.querySelector("[data-".concat(api.settings.dataFocus, "]"));
 
-	      if (innerFocus) {
-	        innerFocus.focus();
-	      } else {
-	        var item = drawer.querySelector(".".concat(api.settings.classItem, "[tabindex=\"-1\"]"));
+	    if (innerFocus) {
+	      innerFocus.focus();
+	    } else {
+	      var item = drawer.querySelector(".".concat(api.settings.classItem, "[tabindex=\"-1\"]"));
 
-	        if (item) {
-	          item.focus();
-	        }
+	      if (item) {
+	        item.focus();
 	      }
 	    }
 	  };
 
 	  var focusTrigger = function focusTrigger() {
-	    if (api.settings.focus && api.memory.trigger) {
+	    if (api.memory.trigger) {
 	      api.memory.trigger.focus();
 	      api.memory.trigger = null;
 	    }
