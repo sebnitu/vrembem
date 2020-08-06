@@ -213,37 +213,39 @@
 <script>
   const drawer = new vrembem.Drawer({ autoInit: true });
 
-  document.querySelector('.js-api-toggle').addEventListener('click', () => {
-    drawer.toggle('drawer-pos-right', () => {
-      console.log('Toggle API callback');
-    });
-  });
+  document.addEventListener('click', () => {
+    if (event.target.closest('.js-api-toggle')) {
+      drawer.toggle('drawer-pos-right').then(console.log);
+      return;
+    }
 
-  document.querySelector('.js-api-open').addEventListener('click', ({ target }) => {
-    drawer.open('drawer-pos-right', () => {
-      console.log('Open API callback');
-    });
-  });
+    if (event.target.closest('.js-api-open')) {
+      drawer.open('drawer-pos-right').then(console.log);
+      return;
+    }
 
-  document.querySelector('.js-api-close').addEventListener('click', () => {
-    drawer.close('drawer-pos-right', () => {
-      console.log('Close API callback');
-    });
-  });
+    if (event.target.closest('.js-api-close')) {
+      drawer.close('drawer-pos-right').then(console.log);
+      return;
+    }
 
-  document.querySelector('.js-api-bp-init').addEventListener('click', () => {
-    drawer.breakpoint.init();
-    console.log('init:', drawer.mediaQueryLists);
-  });
+    if (event.target.closest('.js-api-bp-init')) {
+      drawer.breakpoint.init();
+      console.log('init:', drawer.mediaQueryLists);
+      return;
+    }
 
-  document.querySelector('.js-api-bp-destroy').addEventListener('click', () => {
-    drawer.breakpoint.destroy();
-    console.log('destroy:', drawer.mediaQueryLists);
-  });
+    if (event.target.closest('.js-api-bp-destroy')) {
+      drawer.breakpoint.destroy();
+      console.log('destroy:', drawer.mediaQueryLists);
+      return;
+    }
 
-  document.querySelector('.js-api-bp-check').addEventListener('click', () => {
-    drawer.breakpoint.check();
-    console.log('check:', drawer.mediaQueryLists);
+    if (event.target.closest('.js-api-bp-check')) {
+      drawer.breakpoint.check();
+      console.log('check:', drawer.mediaQueryLists);
+      return;
+    }
   });
 </script>
 

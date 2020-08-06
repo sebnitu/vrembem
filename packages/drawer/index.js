@@ -134,6 +134,12 @@ export const Drawer = (options) => {
     }
   };
 
+  const drawerNotFound = (key) => {
+    return Promise.reject(
+      new Error(`Did not find drawer with key: "${key}"`)
+    );
+  };
+
   const setTabindex = (enable = api.settings.setTabindex) => {
     if (enable) {
       const drawers = document.querySelectorAll(
@@ -189,7 +195,8 @@ export const Drawer = (options) => {
 
   api.open = async (drawerKey) => {
     const drawer = drawerKeyCheck(drawerKey);
-    if (drawer && !hasClass(drawer, api.settings.stateOpened)) {
+    if (!drawer) return drawerNotFound(drawerKey);
+    if (!hasClass(drawer, api.settings.stateOpened)) {
       working = true;
       await openTransition(drawer);
       saveState(drawer);
@@ -211,7 +218,8 @@ export const Drawer = (options) => {
 
   api.close = async (drawerKey) => {
     const drawer = drawerKeyCheck(drawerKey);
-    if (drawer && hasClass(drawer, api.settings.stateOpened)) {
+    if (!drawer) return drawerNotFound(drawerKey);
+    if (hasClass(drawer, api.settings.stateOpened)) {
       working = true;
       if (hasClass(drawer, api.settings.classModal)) {
         enableMain();
@@ -232,13 +240,12 @@ export const Drawer = (options) => {
 
   api.toggle = (drawerKey) => {
     const drawer = drawerKeyCheck(drawerKey);
-    if (drawer) {
-      const isOpen = hasClass(drawer, api.settings.stateOpened);
-      if (!isOpen) {
-        api.open(drawer);
-      } else {
-        api.close(drawer);
-      }
+    if (!drawer) return drawerNotFound(drawerKey);
+    const isOpen = hasClass(drawer, api.settings.stateOpened);
+    if (!isOpen) {
+      return api.open(drawer);
+    } else {
+      return api.close(drawer);
     }
   };
 

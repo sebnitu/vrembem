@@ -832,6 +832,10 @@ var Drawer = function Drawer(options) {
     }
   };
 
+  var drawerNotFound = function drawerNotFound(key) {
+    return Promise.reject(new Error("Did not find drawer with key: \"".concat(key, "\"")));
+  };
+
   var setTabindex = function setTabindex() {
     var enable = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : api.settings.setTabindex;
 
@@ -890,16 +894,24 @@ var Drawer = function Drawer(options) {
             case 0:
               drawer = drawerKeyCheck(drawerKey);
 
-              if (!(drawer && !hasClass(drawer, api.settings.stateOpened))) {
-                _context.next = 13;
+              if (drawer) {
+                _context.next = 3;
+                break;
+              }
+
+              return _context.abrupt("return", drawerNotFound(drawerKey));
+
+            case 3:
+              if (hasClass(drawer, api.settings.stateOpened)) {
+                _context.next = 15;
                 break;
               }
 
               working = true;
-              _context.next = 5;
+              _context.next = 7;
               return openTransition(drawer);
 
-            case 5:
+            case 7:
               saveState(drawer);
 
               if (hasClass(drawer, api.settings.classModal)) {
@@ -914,16 +926,16 @@ var Drawer = function Drawer(options) {
               working = false;
               return _context.abrupt("return", drawer);
 
-            case 13:
+            case 15:
               if (!(drawer && hasClass(drawer, api.settings.stateOpened))) {
-                _context.next = 16;
+                _context.next = 18;
                 break;
               }
 
               focusDrawer(drawer);
               return _context.abrupt("return", drawer);
 
-            case 16:
+            case 18:
             case "end":
               return _context.stop();
           }
@@ -945,8 +957,16 @@ var Drawer = function Drawer(options) {
             case 0:
               drawer = drawerKeyCheck(drawerKey);
 
-              if (!(drawer && hasClass(drawer, api.settings.stateOpened))) {
-                _context2.next = 14;
+              if (drawer) {
+                _context2.next = 3;
+                break;
+              }
+
+              return _context2.abrupt("return", drawerNotFound(drawerKey));
+
+            case 3:
+              if (!hasClass(drawer, api.settings.stateOpened)) {
+                _context2.next = 16;
                 break;
               }
 
@@ -956,10 +976,10 @@ var Drawer = function Drawer(options) {
                 enableMain();
               }
 
-              _context2.next = 6;
+              _context2.next = 8;
               return closeTransition(drawer);
 
-            case 6:
+            case 8:
               saveState(drawer);
               focusTrigger();
               destroyTrapFocus(drawer);
@@ -969,10 +989,10 @@ var Drawer = function Drawer(options) {
               working = false;
               return _context2.abrupt("return", drawer);
 
-            case 14:
+            case 16:
               return _context2.abrupt("return", drawer);
 
-            case 15:
+            case 17:
             case "end":
               return _context2.stop();
           }
@@ -987,15 +1007,13 @@ var Drawer = function Drawer(options) {
 
   api.toggle = function (drawerKey) {
     var drawer = drawerKeyCheck(drawerKey);
+    if (!drawer) return drawerNotFound(drawerKey);
+    var isOpen = hasClass(drawer, api.settings.stateOpened);
 
-    if (drawer) {
-      var isOpen = hasClass(drawer, api.settings.stateOpened);
-
-      if (!isOpen) {
-        api.open(drawer);
-      } else {
-        api.close(drawer);
-      }
+    if (!isOpen) {
+      return api.open(drawer);
+    } else {
+      return api.close(drawer);
     }
   };
 
