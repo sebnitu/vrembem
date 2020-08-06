@@ -678,6 +678,21 @@
 	  });
 	};
 
+	var hasClass = function hasClass(el) {
+	  el = el.forEach ? el : [el];
+	  el = [].slice.call(el);
+
+	  for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+	    cl[_key - 1] = arguments[_key];
+	  }
+
+	  return cl.some(function (cl) {
+	    return el.some(function (el) {
+	      if (el.classList.contains(cl)) return true;
+	    });
+	  });
+	};
+
 	var removeClass = function removeClass(el) {
 	  for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
 	    cl[_key - 1] = arguments[_key];
@@ -952,7 +967,7 @@
 	        while (1) {
 	          switch (_context2.prev = _context2.next) {
 	            case 0:
-	              modal = document.querySelector("[data-".concat(api.settings.dataModal, "=\"").concat(modalKey, "\"].").concat(api.settings.stateClosed));
+	              modal = document.querySelector("[data-".concat(api.settings.dataModal, "=\"").concat(modalKey, "\"]"));
 
 	              if (modal) {
 	                _context2.next = 3;
@@ -962,7 +977,7 @@
 	              return _context2.abrupt("return", modalNotFound(modalKey));
 
 	            case 3:
-	              if (!modal) {
+	              if (!hasClass(modal, api.settings.stateClosed)) {
 	                _context2.next = 16;
 	                break;
 	              }

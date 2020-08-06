@@ -1,4 +1,4 @@
-import { addClass, removeClass } from '@vrembem/core';
+import { addClass, hasClass, removeClass } from '@vrembem/core';
 
 export const Modal = (options) => {
 
@@ -246,10 +246,10 @@ export const Modal = (options) => {
 
   api.open = async (modalKey) => {
     const modal = document.querySelector(
-      `[data-${api.settings.dataModal}="${modalKey}"].${api.settings.stateClosed}`
+      `[data-${api.settings.dataModal}="${modalKey}"]`
     );
     if (!modal) return modalNotFound(modalKey);
-    if (modal) {
+    if (hasClass(modal, api.settings.stateClosed)) {
       working = true;
       setOverflowHidden('hidden');
       await openTransition(modal);

@@ -96,24 +96,12 @@ test('should remember initial trigger when opening modal through another modal',
   expect(btnOpen).toHaveFocus();
 });
 
-test('should not throw error if modal trigger from within modal doesn\'t return an element', async () => {
+test('should throw error if modal is not found on open call', async () => {
   document.body.innerHTML = markup;
   modal = new Modal({ autoInit: true });
-  const elOne = document.querySelector('[data-modal="modal-one"]');
-  const elTwo = document.querySelector('[data-modal="modal-two"]');
-  const btnOpen = document.querySelector('[data-modal-open="modal-one"]');
-  const btnTwo = elOne.querySelector('[data-modal-open="modal-two"]');
-  btnTwo.setAttribute('data-modal-open', 'asdf');
-
-  btnOpen.click();
-  await transition(elOne);
-
-  btnTwo.click();
-  await transition(elOne);
-  await transition(elTwo);
-
-  expect(elOne).toHaveClass('is-closed');
-  expect(elTwo).toHaveClass('is-closed');
+  modal.open('asdf').catch((error) => {
+    expect(error.message).toBe('Did not find modal with key: "asdf"');
+  });
 });
 
 test('should retain focus on modal if nothing inner is focusable', async () => {
