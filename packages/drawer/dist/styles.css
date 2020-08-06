@@ -95,18 +95,6 @@
 }
 
 /**
- * Close element
- */
-.drawer__item > .drawer__close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-}
-.drawer__item > .drawer__close + .drawer__body {
-  padding-right: 3.5em;
-}
-
-/**
  * State classes
  */
 .drawer.is-closed {

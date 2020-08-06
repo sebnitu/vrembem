@@ -107,20 +107,6 @@ $_e: var.$prefix-element;
 }
 
 /**
- * Close element
- */
-
-.#{$_b}drawer#{$_e}item > .#{$_b}drawer#{$_e}close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-
-  + .#{$_b}drawer#{$_e}body {
-    padding-right: 3.5em;
-  }
-}
-
-/**
  * State classes
  */
 
