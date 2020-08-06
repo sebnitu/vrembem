@@ -32,6 +32,10 @@ $_e: var.$prefix-element;
   align-items: center;
   background: var.$background;
   vertical-align: middle;
+
+  > * + * {
+    margin-left: var.$spacing;
+  }
 }
 
 .#{$_b}dialog#{$_e}header {
@@ -61,8 +65,8 @@ $_e: var.$prefix-element;
 
 .#{$_b}dialog > .#{$_b}dialog#{$_e}close {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: var.$padding;
+  right: var.$padding;
 
   + .#{$_b}dialog#{$_e}body {
     padding-right: 3.5em;

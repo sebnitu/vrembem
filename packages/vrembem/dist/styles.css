@@ -1642,6 +1642,10 @@ input::-moz-placeholder {
   background: #fff;
   vertical-align: middle;
 }
+.dialog__header > * + *,
+.dialog__footer > * + * {
+  margin-left: 0.5em;
+}
 
 .dialog__header {
   top: 0;
@@ -1669,8 +1673,8 @@ input::-moz-placeholder {
 
 .dialog > .dialog__close {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 1em;
+  right: 1em;
 }
 .dialog > .dialog__close + .dialog__body {
   padding-right: 3.5em;
