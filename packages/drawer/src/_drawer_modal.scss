@@ -17,8 +17,8 @@ $_m: var.$prefix-modifier;
     z-index: (var.$modal-zindex + 1);
     width: var.$modal-width;
     max-width: var.$modal-max-width;
-    background-color: var.$modal-item-background;
-    box-shadow: var.$modal-item-box-shadow;
+    background-color: var.$modal-background;
+    box-shadow: var.$modal-box-shadow;
   }
 }
 
@@ -37,9 +37,9 @@ $_m: var.$prefix-modifier;
 
 .#{$_b}drawer#{$_m}modal.is-opening,
 .#{$_b}drawer#{$_m}modal.is-opened {
-  background-color: rgba(var.$modal-background, var.$modal-background-alpha);
+  background-color: rgba(var.$modal-screen-background, var.$modal-screen-background-alpha);
 }
 
 .#{$_b}drawer#{$_m}modal.is-closing {
-  background-color: rgba(var.$modal-background, 0);
+  background-color: rgba(var.$modal-screen-background, 0);
 }

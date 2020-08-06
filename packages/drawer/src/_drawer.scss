@@ -37,8 +37,8 @@ $_e: var.$prefix-element;
   overflow: auto;
   transform: translateY(-(var.$travel));
   border-radius: 0;
-  background: var.$item-background;
-  box-shadow: var.$item-box-shadow;
+  background: var.$background;
+  box-shadow: var.$box-shadow;
   opacity: 0;
   -webkit-overflow-scrolling: touch;
 
@@ -51,12 +51,12 @@ $_e: var.$prefix-element;
 
   .#{$_b}dialog#{$_e}header,
   .#{$_b}dialog#{$_e}footer {
-    border-color: var.$item-sep-border-color;
-    background: var.$item-background;
+    border-color: var.$sep-border;
+    background: var.$background;
   }
 
   .#{$_b}dialog#{$_e}body {
-    background: var.$item-background;
+    background: var.$background;
   }
 }
 
