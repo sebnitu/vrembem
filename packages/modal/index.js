@@ -16,6 +16,7 @@ export const Modal = (options) => {
 
     // Selector
     selectorInert: null,
+    selectorOverflow: 'body',
 
     // State classes
     stateOpened: 'is-opened',
@@ -30,7 +31,6 @@ export const Modal = (options) => {
       location: null
     },
     setTabindex: true,
-    toggleOverflow: 'body',
     transition: true
   };
 
@@ -177,8 +177,8 @@ export const Modal = (options) => {
   };
 
   const setOverflow = (state) => {
-    if (api.settings.toggleOverflow) {
-      const els = document.querySelectorAll(api.settings.toggleOverflow);
+    if (api.settings.selectorOverflow) {
+      const els = document.querySelectorAll(api.settings.selectorOverflow);
       els.forEach((el) => {
         if (state == 'hidden') {
           el.style.overflow = 'hidden';

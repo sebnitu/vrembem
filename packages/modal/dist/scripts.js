@@ -705,6 +705,7 @@
 	    dataFocus: 'modal-focus',
 	    dataRequired: 'modal-required',
 	    selectorInert: null,
+	    selectorOverflow: 'body',
 	    stateOpened: 'is-opened',
 	    stateOpening: 'is-opening',
 	    stateClosing: 'is-closing',
@@ -715,7 +716,6 @@
 	      location: null
 	    },
 	    setTabindex: true,
-	    toggleOverflow: 'body',
 	    transition: true
 	  };
 	  var working = false;
@@ -884,8 +884,8 @@
 	  };
 
 	  var setOverflow = function setOverflow(state) {
-	    if (api.settings.toggleOverflow) {
-	      var els = document.querySelectorAll(api.settings.toggleOverflow);
+	    if (api.settings.selectorOverflow) {
+	      var els = document.querySelectorAll(api.settings.selectorOverflow);
 	      els.forEach(function (el) {
 	        if (state == 'hidden') {
 	          el.style.overflow = 'hidden';
