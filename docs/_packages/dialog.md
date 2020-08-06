@@ -31,7 +31,7 @@ usage:
 
 {% include demo_open.html %}
 <div class="dialog">
-  <button class="dialog__close icon-action icon-action_color_fade">
+  <button class="dialog__close icon-action">
     {% include icon.html icon="x" %}
   </button>
   <div class="dialog__body">
@@ -41,7 +41,7 @@ usage:
 {% include demo_switch.html %}
 ```html
 <div class="dialog">
-  <button class="dialog__close icon-action icon-action_color_fade">
+  <button class="dialog__close icon-action">
     <svg role="img" class="icon">
       <use xlink:href="#x"></use>
     </svg>
@@ -57,7 +57,7 @@ usage:
 
 {% include demo_open.html %}
 <div class="dialog">
-  <button class="dialog__close icon-action icon-action_color_fade">
+  <button class="dialog__close icon-action">
     {% include icon.html icon="x" %}
   </button>
   <div class="dialog__body spacing">
@@ -68,10 +68,12 @@ usage:
 {% include demo_switch.html %}
 ```html
 <div class="dialog">
-  <button class="dialog__close">...</button>
+  <button class="dialog__close">
+    ...
+  </button>
   <div class="dialog__body">
     <h2 class="dialog__title">...</h2>
-    ...
+    <p>...</p>
   </div>
 </div>
 ```
@@ -83,7 +85,7 @@ usage:
 <div class="dialog">
   <div class="dialog__header">
     <h2 class="dialog__title">Dialog Title</h2>
-    <button class="dialog__close icon-action icon-action_color_fade">
+    <button class="dialog__close icon-action">
       {% include icon.html icon="x" %}
     </button>
   </div>
@@ -91,10 +93,8 @@ usage:
     <p>This is some dialog content...</p>
   </div>
   <div class="dialog__footer">
-    <div class="button-group">
-      <button class="button button_color_primary">Accept</button>
-      <button class="button">Cancel</button>
-    </div>
+    <button class="button button_color_primary">Accept</button>
+    <button class="button">Cancel</button>
   </div>
 </div>
 {% include demo_switch.html %}
@@ -124,13 +124,13 @@ The dialog is a very flexible component and can be used in many different contex
   <div class="dialog__header">
     <h2 class="dialog__title">New Message</h2>
     <div class="dialog__group">
-      <button class="dialog__group-item icon-action icon-action_color_fade">
+      <button class="dialog__group-item icon-action">
         {% include icon.html icon="minus" %}
       </button>
-      <button class="dialog__group-item icon-action icon-action_color_fade">
+      <button class="dialog__group-item icon-action">
         {% include icon.html icon="maximize-2" %}
       </button>
-      <button class="dialog__group-item dialog__close icon-action icon-action_color_fade">
+      <button class="dialog__group-item dialog__close icon-action">
         {% include icon.html icon="x" %}
       </button>
     </div>
