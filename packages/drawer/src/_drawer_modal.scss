@@ -20,6 +20,16 @@ $_m: var.$prefix-modifier;
     background-color: var.$modal-background;
     box-shadow: var.$modal-box-shadow;
   }
+
+  .#{$_b}dialog#{$_e}header,
+  .#{$_b}dialog#{$_e}footer {
+    border: var.$modal-sep-border;
+    background: var.$modal-background;
+  }
+
+  .#{$_b}dialog#{$_e}body {
+    background: var.$modal-background;
+  }
 }
 
 .#{$_b}drawer#{$_m}modal.is-opening,
