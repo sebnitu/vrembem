@@ -76,15 +76,15 @@ export const Modal = (options) => {
       const modalKey = trigger.getAttribute(`data-${api.settings.dataOpen}`);
       const fromModal = event.target.closest(`[data-${api.settings.dataModal}]`);
       if (!fromModal) api.memory.trigger = trigger;
-      await close(!fromModal);
-      open(modalKey);
+      await api.close(!fromModal);
+      api.open(modalKey);
       return;
     }
 
     // Close click
     if (event.target.closest(`[data-${api.settings.dataClose}]`)) {
       event.preventDefault();
-      close();
+      api.close();
       return;
     }
 
@@ -93,7 +93,7 @@ export const Modal = (options) => {
       event.target.hasAttribute(`data-${api.settings.dataModal}`) &&
       !event.target.hasAttribute(`data-${api.settings.dataRequired}`)
     ) {
-      close();
+      api.close();
       return;
     }
   };
@@ -107,7 +107,7 @@ export const Modal = (options) => {
         `[data-${api.settings.dataModal}].${api.settings.stateOpened}`
       );
       if (target && !target.hasAttribute(`data-${api.settings.dataRequired}`)) {
-        close();
+        api.close();
       }
     }
   };
@@ -238,7 +238,7 @@ export const Modal = (options) => {
     });
   };
 
-  const open = async (modalKey) => {
+  api.open = async (modalKey) => {
     const modal = document.querySelector(
       `[data-${api.settings.dataModal}="${modalKey}"].${api.settings.stateClosed}`
     );
@@ -259,7 +259,7 @@ export const Modal = (options) => {
     }
   };
 
-  const close = async (returnFocus = true) => {
+  api.close = async (returnFocus = true) => {
     const modal = document.querySelector(
       `[data-${api.settings.dataModal}].${api.settings.stateOpened}`
     );
@@ -278,14 +278,6 @@ export const Modal = (options) => {
     } else {
       return modal;
     }
-  };
-
-  api.open = (modalKey) => {
-    return open(modalKey);
-  };
-
-  api.close = (returnFocus) => {
-    return close(returnFocus);
   };
 
   /**

@@ -776,10 +776,10 @@ var Modal = function Modal(options) {
               fromModal = event.target.closest("[data-".concat(api.settings.dataModal, "]"));
               if (!fromModal) api.memory.trigger = trigger;
               _context.next = 10;
-              return close(!fromModal);
+              return api.close(!fromModal);
 
             case 10:
-              open(modalKey);
+              api.open(modalKey);
               return _context.abrupt("return");
 
             case 12:
@@ -789,7 +789,7 @@ var Modal = function Modal(options) {
               }
 
               event.preventDefault();
-              close();
+              api.close();
               return _context.abrupt("return");
 
             case 16:
@@ -798,7 +798,7 @@ var Modal = function Modal(options) {
                 break;
               }
 
-              close();
+              api.close();
               return _context.abrupt("return");
 
             case 19:
@@ -821,7 +821,7 @@ var Modal = function Modal(options) {
       var target = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpened));
 
       if (target && !target.hasAttribute("data-".concat(api.settings.dataRequired))) {
-        close();
+        api.close();
       }
     }
   };
@@ -942,7 +942,7 @@ var Modal = function Modal(options) {
     });
   };
 
-  var open = function () {
+  api.open = function () {
     var _ref2 = asyncToGenerator(regenerator.mark(function _callee2(modalKey) {
       var modal;
       return regenerator.wrap(function _callee2$(_context2) {
@@ -982,66 +982,52 @@ var Modal = function Modal(options) {
       }, _callee2);
     }));
 
-    return function open(_x2) {
+    return function (_x2) {
       return _ref2.apply(this, arguments);
     };
   }();
 
-  var close = function () {
-    var _ref3 = asyncToGenerator(regenerator.mark(function _callee3() {
-      var returnFocus,
-          modal,
-          _args3 = arguments;
-      return regenerator.wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              returnFocus = _args3.length > 0 && _args3[0] !== undefined ? _args3[0] : true;
-              modal = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpened));
+  api.close = asyncToGenerator(regenerator.mark(function _callee3() {
+    var returnFocus,
+        modal,
+        _args3 = arguments;
+    return regenerator.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            returnFocus = _args3.length > 0 && _args3[0] !== undefined ? _args3[0] : true;
+            modal = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpened));
 
-              if (!modal) {
-                _context3.next = 15;
-                break;
-              }
+            if (!modal) {
+              _context3.next = 15;
+              break;
+            }
 
-              working = true;
-              setInert(false);
-              setOverflowHidden();
-              _context3.next = 8;
-              return closeTransition(modal);
+            working = true;
+            setInert(false);
+            setOverflowHidden();
+            _context3.next = 8;
+            return closeTransition(modal);
 
-            case 8:
-              if (returnFocus) focusTrigger();
-              destroyTrapFocus(modal);
-              modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
-                bubbles: true
-              }));
-              working = false;
-              return _context3.abrupt("return", modal);
+          case 8:
+            if (returnFocus) focusTrigger();
+            destroyTrapFocus(modal);
+            modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
+              bubbles: true
+            }));
+            working = false;
+            return _context3.abrupt("return", modal);
 
-            case 15:
-              return _context3.abrupt("return", modal);
+          case 15:
+            return _context3.abrupt("return", modal);
 
-            case 16:
-            case "end":
-              return _context3.stop();
-          }
+          case 16:
+          case "end":
+            return _context3.stop();
         }
-      }, _callee3);
-    }));
-
-    return function close() {
-      return _ref3.apply(this, arguments);
-    };
-  }();
-
-  api.open = function (modalKey) {
-    return open(modalKey);
-  };
-
-  api.close = function (returnFocus) {
-    return close(returnFocus);
-  };
+      }
+    }, _callee3);
+  }));
 
   var focusModal = function focusModal(modal) {
     var innerFocus = modal.querySelector("[data-".concat(api.settings.dataFocus, "]"));
