@@ -738,6 +738,7 @@
 	    focus: true,
 	    saveState: true,
 	    saveKey: 'DrawerState',
+	    selectorMain: '.drawer__main',
 	    setTabindex: true,
 	    transition: true
 	  };
@@ -902,6 +903,7 @@
 
 	              if (hasClass(drawer, api.settings.classModal)) {
 	                initTrapFocus(drawer);
+	                disableMain();
 	              }
 
 	              focusDrawer(drawer);
@@ -943,15 +945,20 @@
 	              drawer = drawerKeyCheck(drawerKey);
 
 	              if (!(drawer && hasClass(drawer, api.settings.stateOpened))) {
-	                _context2.next = 13;
+	                _context2.next = 14;
 	                break;
 	              }
 
 	              working = true;
-	              _context2.next = 5;
+
+	              if (hasClass(drawer, api.settings.classModal)) {
+	                enableMain();
+	              }
+
+	              _context2.next = 6;
 	              return closeTransition(drawer);
 
-	            case 5:
+	            case 6:
 	              saveState(drawer);
 	              focusTrigger();
 	              destroyTrapFocus(drawer);
@@ -961,10 +968,10 @@
 	              working = false;
 	              return _context2.abrupt("return", drawer);
 
-	            case 13:
+	            case 14:
 	              return _context2.abrupt("return", drawer);
 
-	            case 14:
+	            case 15:
 	            case "end":
 	              return _context2.stop();
 	          }
@@ -1195,6 +1202,7 @@
 	  };
 
 	  var switchToModal = function switchToModal(drawer) {
+	    if (hasClass(drawer, api.settings.classModal)) return;
 	    addClass(drawer, api.settings.classModal);
 	    addClass(drawer, api.settings.stateClosed);
 	    removeClass(drawer, api.settings.stateOpened);
@@ -1205,6 +1213,8 @@
 	  };
 
 	  var switchToDefault = function switchToDefault(drawer) {
+	    if (!hasClass(drawer, api.settings.classModal)) return;
+	    enableMain();
 	    removeClass(drawer, api.settings.classModal);
 	    destroyTrapFocus(drawer);
 	    var drawerKey = drawer.getAttribute("data-".concat(api.settings.dataDrawer));
@@ -1219,6 +1229,26 @@
 	      bubbles: true
 	    });
 	    drawer.dispatchEvent(customEvent);
+	  };
+
+	  var disableMain = function disableMain() {
+	    if (api.settings.selectorMain) {
+	      var content = document.querySelectorAll(api.settings.selectorMain);
+	      content.forEach(function (el) {
+	        el.inert = true;
+	        el.setAttribute('aria-hidden', true);
+	      });
+	    }
+	  };
+
+	  var enableMain = function enableMain() {
+	    if (api.settings.selectorMain) {
+	      var content = document.querySelectorAll(api.settings.selectorMain);
+	      content.forEach(function (el) {
+	        el.inert = null;
+	        el.removeAttribute('aria-hidden');
+	      });
+	    }
 	  };
 
 	  if (api.settings.autoInit) api.init();

@@ -35,6 +35,7 @@ export const Drawer = (options) => {
     focus: true,
     saveState: true,
     saveKey: 'DrawerState',
+    selectorMain: '.drawer__main',
     setTabindex: true,
     transition: true
   };
@@ -194,6 +195,7 @@ export const Drawer = (options) => {
       saveState(drawer);
       if (hasClass(drawer, api.settings.classModal)) {
         initTrapFocus(drawer);
+        disableMain();
       }
       focusDrawer(drawer);
       drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
@@ -211,6 +213,9 @@ export const Drawer = (options) => {
     const drawer = drawerKeyCheck(drawerKey);
     if (drawer && hasClass(drawer, api.settings.stateOpened)) {
       working = true;
+      if (hasClass(drawer, api.settings.classModal)) {
+        enableMain();
+      }
       await closeTransition(drawer);
       saveState(drawer);
       focusTrigger();
@@ -474,6 +479,7 @@ export const Drawer = (options) => {
   };
 
   const switchToModal = (drawer) => {
+    if (hasClass(drawer, api.settings.classModal)) return;
     addClass(drawer, api.settings.classModal);
     addClass(drawer, api.settings.stateClosed);
     removeClass(drawer, api.settings.stateOpened);
@@ -484,6 +490,8 @@ export const Drawer = (options) => {
   };
 
   const switchToDefault = (drawer) => {
+    if (!hasClass(drawer, api.settings.classModal)) return;
+    enableMain();
     removeClass(drawer, api.settings.classModal);
     destroyTrapFocus(drawer);
     const drawerKey = drawer.getAttribute(`data-${api.settings.dataDrawer}`);
@@ -497,6 +505,34 @@ export const Drawer = (options) => {
     });
     drawer.dispatchEvent(customEvent);
   };
+
+  /**
+   * Accessibility
+   */
+
+  const disableMain = () => {
+    if (api.settings.selectorMain) {
+      const content = document.querySelectorAll(api.settings.selectorMain);
+      content.forEach((el) => {
+        el.inert = true;
+        el.setAttribute('aria-hidden', true);
+      });
+    }
+  };
+
+  const enableMain = () => {
+    if (api.settings.selectorMain) {
+      const content = document.querySelectorAll(api.settings.selectorMain);
+      content.forEach((el) => {
+        el.inert = null;
+        el.removeAttribute('aria-hidden');
+      });
+    }
+  };
+
+  /**
+   * Init and return
+   */
 
   if (api.settings.autoInit) api.init();
   return api;
