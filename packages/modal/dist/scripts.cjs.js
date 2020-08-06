@@ -826,6 +826,10 @@ var Modal = function Modal(options) {
     }
   };
 
+  var modalNotFound = function modalNotFound(key) {
+    return Promise.reject(new Error("Did not find modal with key: \"".concat(key, "\"")));
+  };
+
   var moveModals = function moveModals() {
     var selector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : api.settings.moveModals.selector;
     var location = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : api.settings.moveModals.location;
@@ -951,17 +955,25 @@ var Modal = function Modal(options) {
             case 0:
               modal = document.querySelector("[data-".concat(api.settings.dataModal, "=\"").concat(modalKey, "\"].").concat(api.settings.stateClosed));
 
+              if (modal) {
+                _context2.next = 3;
+                break;
+              }
+
+              return _context2.abrupt("return", modalNotFound(modalKey));
+
+            case 3:
               if (!modal) {
-                _context2.next = 14;
+                _context2.next = 16;
                 break;
               }
 
               working = true;
               setOverflowHidden('hidden');
-              _context2.next = 6;
+              _context2.next = 8;
               return openTransition(modal);
 
-            case 6:
+            case 8:
               initTrapFocus(modal);
               focusModal(modal);
               setInert(true);
@@ -971,10 +983,10 @@ var Modal = function Modal(options) {
               working = false;
               return _context2.abrupt("return", modal);
 
-            case 14:
+            case 16:
               return _context2.abrupt("return", modal);
 
-            case 15:
+            case 17:
             case "end":
               return _context2.stop();
           }

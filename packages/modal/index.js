@@ -116,6 +116,12 @@ export const Modal = (options) => {
    * Helpers
    */
 
+  const modalNotFound = (key) => {
+    return Promise.reject(
+      new Error(`Did not find modal with key: "${key}"`)
+    );
+  };
+
   const moveModals = (
     selector = api.settings.moveModals.selector,
     location = api.settings.moveModals.location
@@ -242,6 +248,7 @@ export const Modal = (options) => {
     const modal = document.querySelector(
       `[data-${api.settings.dataModal}="${modalKey}"].${api.settings.stateClosed}`
     );
+    if (!modal) return modalNotFound(modalKey);
     if (modal) {
       working = true;
       setOverflowHidden('hidden');
