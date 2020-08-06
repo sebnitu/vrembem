@@ -5,31 +5,24 @@ $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
-$wrapper-height: 100% !default;
-$main-zindex: 5 !default;
-
-$zindex: 10 !default;
 $width: 18em !default;
 $max-width: 100% !default;
-$padding: 1em !default;
-$spacing: core.$spacing !default;
-$background: core.$shade !default;
-$border: null !default;
-$sep-border: core.$border !default;
-$box-shadow: null !default;
 $travel: 5em !default;
 $transition-duration: core.$transition-duration !default;
 $transition-timing-function: core.$transition-timing-function !default;
 
-$title-font-size: core.$font-size-lg !default;
-$title-line-height: core.$line-height-lg !default;
-$title-font-weight: core.font-weight("semi-bold") !default;
+$item-background: core.$shade !default;
+$item-border: null !default;
+$item-box-shadow: none !default;
+$item-sep-border-color: null !default;
+
+$wrapper-height: 100% !default;
 
 $modal-zindex: 900 !default;
 $modal-width: $width !default;
 $modal-max-width: 80% !default;
-$modal-background: core.$white !default;
-$modal-box-shadow: core.$box-shadow-24dp !default;
+$modal-item-background: core.$white !default;
+$modal-item-box-shadow: core.$box-shadow-24dp !default;
 
-$modal-screen-background: core.$night !default;
-$modal-screen-background-alpha: 0.8 !default;
+$modal-background: core.$night !default;
+$modal-background-alpha: 0.8 !default;

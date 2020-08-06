@@ -5,6 +5,7 @@
   <!-- Setup styles -->
   <link rel="stylesheet" href="./node_modules/@vrembem/base/dist/styles.min.css">
   <link rel="stylesheet" href="./node_modules/@vrembem/utility/dist/styles.min.css">
+  <link rel="stylesheet" href="./node_modules/@vrembem/dialog/dist/styles.min.css">
   <!-- Component styles -->
   <link rel="stylesheet" href="./dist/styles.min.css">
   <title>@vrembem/drawer</title>
@@ -14,12 +15,12 @@
 <div class="drawer__wrapper">
 
   <aside data-drawer="drawer-modal-always" class="drawer drawer_modal drawer_pos_right">
-    <div class="drawer__item">
-      <div class="drawer__header">
-        <h2 class="drawer__title">Drawer Modal Always</h2>
+    <div class="drawer__item dialog">
+      <div class="dialog__header">
+        <h2 class="dialog__title">Drawer Modal Always</h2>
         <button data-drawer-close class="link">Close</button>
       </div>
-      <div class="drawer__body">
+      <div class="dialog__body">
         <ul class="list">
           <li><a class="link" href="#">Some link...</a></li>
           <li><a class="link" href="#">Some link...</a></li>
@@ -32,7 +33,7 @@
         <p>Donec sit amet metus ante. Sed ultrices semper justo, vitae tristique nunc viverra et. Sed et sapien sed justo dapibus ornare. Nunc at odio lacus. Aenean ut enim nec nisl ornare volutpat non id metus. Morbi convallis laoreet gravida. Morbi mollis ex sit amet imperdiet gravida. Morbi blandit sem tortor, nec ultricies mauris tempor ac. In convallis lacus mi, non imperdiet velit facilisis quis. Fusce varius fermentum porta. Etiam quam erat, suscipit sit amet gravida nec, pharetra eget leo. Aenean neque odio, rutrum sed eleifend non, posuere eget felis. Praesent nec vulputate ligula. Duis dignissim tincidunt enim, non dignissim lectus mollis nec. Praesent vestibulum sapien eu felis dapibus luctus. Fusce vitae ante efficitur, pharetra elit non, placerat ligula.</p>
         <p>Vivamus pretium egestas arcu, ac congue orci consequat ut. Mauris a egestas eros. Fusce ullamcorper sem ut turpis tristique cursus. Donec laoreet diam dui, ut varius elit dictum eu. Sed ullamcorper metus tempus, tempus mauris in, sollicitudin libero. Integer lorem augue, luctus non dignissim aliquam, rutrum in urna. Quisque porttitor commodo quam at tempor.</p>
       </div>
-      <div class="drawer__footer">
+      <div class="dialog__footer">
         <button data-drawer-close class="link">
           Button
         </button>
