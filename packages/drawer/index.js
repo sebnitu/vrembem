@@ -126,6 +126,10 @@ export const Drawer = (options) => {
     }
   };
 
+  /**
+   * Helpers
+   */
+
   const drawerKeyCheck = (drawerKey) => {
     if (typeof drawerKey === 'string') {
       return document.querySelector(

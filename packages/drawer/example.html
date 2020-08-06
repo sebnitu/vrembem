@@ -107,96 +107,110 @@
   <div class="drawer__main">
     <div class="padding-xl">
       <h1 class="margin-bottom-md">@vrembem/drawer</h1>
-      <p>A container component that slides in from the left or right. Typically containing menus, search or other content.</p>
+      <p class="span-8-md span-6-lg">
+        A container component that slides in from the left or right. Typically containing menus, search or other content.
+      </p>
       <hr class="sep margin-vert-lg">
       <div class="margin-top-md spacing">
-        <p>
-          <button class="link" data-drawer-toggle="drawer-default-left">
-            Drawer Default Left
-          </button>
-          <button class="link" data-drawer-toggle="drawer-default-right">
-            Drawer Default Right
-          </button>
-        </p>
-        <p>
-          <button class="link" data-drawer-toggle="drawer-pos-left">
-            Drawer Pos Left
-          </button>
-          <button class="link" data-drawer-toggle="drawer-pos-right">
-            Drawer Pos Right
-          </button>
-        </p>
-        <p>
-          <button class="link" data-drawer-toggle="drawer-modal-left">
-            Drawer Breakpoint Left
-          </button>
-          <button class="link" data-drawer-toggle="drawer-modal-right">
-            Drawer Breakpoint Right
-          </button>
-          <button class="link" data-drawer-toggle="drawer-modal-always">
-            Drawer Modal Always
-          </button>
-        </p>
+
+        <ul class="list">
+          <li>
+            <button class="link" data-drawer-toggle="drawer-default-left">
+              Drawer Default Left
+            </button>
+          </li>
+          <li>
+            <button class="link" data-drawer-toggle="drawer-default-right">
+              Drawer Default Right
+            </button>
+          </li>
+          <li>
+            <button class="link" data-drawer-toggle="drawer-pos-left">
+              Drawer Pos Left
+            </button>
+          </li>
+          <li>
+            <button class="link" data-drawer-toggle="drawer-pos-right">
+              Drawer Pos Right
+            </button>
+          </li>
+          <li>
+            <button class="link" data-drawer-toggle="drawer-modal-left">
+              Drawer Breakpoint Left
+            </button>
+          </li>
+          <li>
+            <button class="link" data-drawer-toggle="drawer-modal-right">
+              Drawer Breakpoint Right
+            </button>
+          </li>
+          <li>
+            <button class="link" data-drawer-toggle="drawer-modal-always">
+              Drawer Modal Always
+            </button>
+          </li>
+        </ul>
+
+        <hr class="sep">
 
         <h2>Data attributes</h2>
 
         <ul class="list">
           <li>
             <a href="#" class="link" data-drawer-toggle="drawer-data-attr-right">
-              <code class="code">data-drawer-toggle</code>
+              data-drawer-toggle
             </a>
           </li>
           <li>
             <a href="#" class="link" data-drawer-open="drawer-data-attr-right">
-              <code class="code">data-drawer-open</code>
+              data-drawer-open
             </a>
           </li>
           <li>
             <a href="#" class="link" data-drawer-close="drawer-data-attr-right">
-              <code class="code">data-drawer-close</code>
+              data-drawer-close
             </a>
           </li>
           <li>
             <a href="#" class="link" data-drawer-close>
-              <code class="code">data-drawer-close [empty]</code>
+              data-drawer-close [empty]
             </a>
           </li>
         </ul>
 
+        <hr class="sep">
+
         <h2>API</h2>
+
         <ul class="list">
           <li>
             <button class="link js-api-toggle">
-              <code class="code">api.toggle</code>
+              API Toggle
             </button>
           </li>
           <li>
             <button class="link js-api-open">
-              <code class="code">api.open</code>
+              API Open
             </button>
           </li>
           <li>
             <button class="link js-api-close">
-              <code class="code">api.close</code>
+              API Close
             </button>
           </li>
-        </ul>
-
-        <h2>Breakpoint API</h2>
-        <ul class="list">
           <li>
             <button class="link js-api-bp-init">
-              <code class="code">api.breakpoint.init</code>
+              API Breakpoint Init
             </button>
           </li>
           <li>
             <button class="link js-api-bp-destroy">
-              <code class="code">api.breakpoint.destroy</code>
+              API Breakpoint Destroy
             </button>
           </li>
           <li>
             <button class="link js-api-bp-check">
-              <code class="code">api.breakpoint.check</code>
+              API Breakpoint Check
             </button>
           </li>
         </ul>
@@ -214,6 +228,9 @@
   </aside>
 
 </div>
+
+<!-- Polyfills -->
+<script src="https://unpkg.com/wicg-inert/dist/inert.min.js"></script>
 
 <!-- Component scripts -->
 <script src="./dist/scripts.js"></script>
@@ -257,9 +274,6 @@
     }
   });
 </script>
-
-<!-- Polyfills -->
-<script src="https://unpkg.com/wicg-inert/dist/inert.min.js"></script>
 
 </body>
 </html>
