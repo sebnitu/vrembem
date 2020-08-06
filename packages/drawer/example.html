@@ -5,6 +5,7 @@
   <!-- Setup styles -->
   <link rel="stylesheet" href="./node_modules/@vrembem/base/dist/styles.min.css">
   <link rel="stylesheet" href="./node_modules/@vrembem/utility/dist/styles.min.css">
+  <link rel="stylesheet" href="./node_modules/@vrembem/dialog/dist/styles.min.css">
   <!-- Component styles -->
   <link rel="stylesheet" href="./dist/styles.min.css">
   <title>@vrembem/drawer</title>
@@ -13,16 +14,25 @@
 
 <div class="drawer__wrapper">
 
-  <aside data-drawer="drawer-modal-always" class="drawer drawer_modal drawer_pos_left" tabindex="-1">
-    <div class="drawer__item padding">
-      <div class="flex flex-justify-between">
-        <p>Drawer Modal Always</p>
+  <aside data-drawer="drawer-modal-always" class="drawer drawer_modal drawer_pos_right">
+    <div class="drawer__item dialog">
+      <div class="dialog__header">
+        <h2 class="dialog__title">Drawer Modal Always</h2>
         <button data-drawer-close class="link">Close</button>
+      </div>
+      <div class="dialog__body">
+        <ul class="list">
+          <li><a class="link" href="#">Some link...</a></li>
+          <li><a class="link" href="#">Some link...</a></li>
+          <li><a class="link" href="#">Some link...</a></li>
+          <li><a class="link" href="#">Some link...</a></li>
+          <li><a class="link" href="#">Some link...</a></li>
+        </ul>
       </div>
     </div>
   </aside>
 
-  <aside data-drawer="drawer-modal-left" data-drawer-breakpoint="md" class="drawer drawer_pos_left" tabindex="-1">
+  <aside data-drawer="drawer-modal-left" data-drawer-breakpoint="md" class="drawer drawer_pos_left">
     <div class="drawer__item padding">
       <div class="flex flex-justify-between">
         <p>Drawer Modal Left</p>
@@ -31,7 +41,7 @@
     </div>
   </aside>
 
-  <aside data-drawer="drawer-modal-right" data-drawer-breakpoint="1200px" class="drawer drawer_pos_right" tabindex="-1">
+  <aside data-drawer="drawer-modal-right" data-drawer-breakpoint="1200px" class="drawer drawer_pos_right">
     <div class="drawer__item padding">
       <div class="flex flex-justify-between">
         <p>Drawer Modal Right</p>
@@ -40,7 +50,7 @@
     </div>
   </aside>
 
-  <aside data-drawer="drawer-pos-left" class="drawer drawer_pos_left" tabindex="-1">
+  <aside data-drawer="drawer-pos-left" class="drawer drawer_pos_left">
     <div class="drawer__item padding">
       <div class="flex flex-justify-between">
         <p>Drawer Pos Left</p>
@@ -49,7 +59,7 @@
     </div>
   </aside>
 
-  <aside data-drawer="drawer-pos-right" class="drawer drawer_pos_right" tabindex="-1">
+  <aside data-drawer="drawer-pos-right" class="drawer drawer_pos_right">
     <div class="drawer__item padding">
       <div class="flex flex-justify-between">
         <p>Drawer Pos Right</p>
@@ -58,7 +68,7 @@
     </div>
   </aside>
 
-  <aside data-drawer="drawer-default-left" class="drawer" tabindex="-1">
+  <aside data-drawer="drawer-default-left" class="drawer">
     <div class="drawer__item padding">
       <div class="flex flex-justify-between">
         <p>Drawer Default Left</p>
@@ -67,7 +77,7 @@
     </div>
   </aside>
 
-  <aside data-drawer="drawer-data-attr-right" class="drawer drawer_pos_right" tabindex="-1">
+  <aside data-drawer="drawer-data-attr-right" class="drawer drawer_pos_right">
     <div class="drawer__item padding">
       <div class="flex flex-justify-between margin-bottom-lg">
         <p>Drawer Default Left</p>
@@ -177,7 +187,7 @@
     </div>
   </div>
 
-  <aside data-drawer="drawer-default-right" class="drawer" tabindex="-1">
+  <aside data-drawer="drawer-default-right" class="drawer">
     <div class="drawer__item padding">
       <div class="flex flex-justify-between">
         <p>Drawer Default Right</p>

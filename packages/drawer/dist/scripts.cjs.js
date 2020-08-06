@@ -732,12 +732,14 @@ var Drawer = function Drawer(options) {
     stateOpening: 'is-opening',
     stateClosing: 'is-closing',
     stateClosed: 'is-closed',
+    classItem: 'drawer__item',
     classModal: 'drawer_modal',
     breakpoints: breakpoints,
     customEventPrefix: 'drawer:',
     focus: true,
     saveState: true,
     saveKey: 'DrawerState',
+    setTabindex: true,
     transition: true
   };
   var working = false;
@@ -748,6 +750,7 @@ var Drawer = function Drawer(options) {
 
   api.init = function () {
     setState();
+    setTabindex();
     breakpointInit();
     document.addEventListener('click', handler, false);
     document.addEventListener('keyup', handlerEscape, false);
@@ -828,17 +831,14 @@ var Drawer = function Drawer(options) {
     }
   };
 
-  api.toggle = function (drawerKey) {
-    var drawer = drawerKeyCheck(drawerKey);
+  var setTabindex = function setTabindex() {
+    var enable = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : api.settings.setTabindex;
 
-    if (drawer) {
-      var isOpen = hasClass(drawer, api.settings.stateOpened);
-
-      if (!isOpen) {
-        api.open(drawer);
-      } else {
-        api.close(drawer);
-      }
+    if (enable) {
+      var drawers = document.querySelectorAll("[data-".concat(api.settings.dataDrawer, "] .").concat(api.settings.classItem));
+      drawers.forEach(function (el) {
+        el.setAttribute('tabindex', '-1');
+      });
     }
   };
 
@@ -890,7 +890,7 @@ var Drawer = function Drawer(options) {
               drawer = drawerKeyCheck(drawerKey);
 
               if (!(drawer && !hasClass(drawer, api.settings.stateOpened))) {
-                _context.next = 12;
+                _context.next = 13;
                 break;
               }
 
@@ -900,6 +900,11 @@ var Drawer = function Drawer(options) {
 
             case 5:
               saveState(drawer);
+
+              if (hasClass(drawer, api.settings.classModal)) {
+                initTrapFocus(drawer);
+              }
+
               focusDrawer(drawer);
               drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
                 bubbles: true
@@ -907,16 +912,16 @@ var Drawer = function Drawer(options) {
               working = false;
               return _context.abrupt("return", drawer);
 
-            case 12:
+            case 13:
               if (!(drawer && hasClass(drawer, api.settings.stateOpened))) {
-                _context.next = 15;
+                _context.next = 16;
                 break;
               }
 
               focusDrawer(drawer);
               return _context.abrupt("return", drawer);
 
-            case 15:
+            case 16:
             case "end":
               return _context.stop();
           }
@@ -939,7 +944,7 @@ var Drawer = function Drawer(options) {
               drawer = drawerKeyCheck(drawerKey);
 
               if (!(drawer && hasClass(drawer, api.settings.stateOpened))) {
-                _context2.next = 12;
+                _context2.next = 13;
                 break;
               }
 
@@ -950,16 +955,17 @@ var Drawer = function Drawer(options) {
             case 5:
               saveState(drawer);
               focusTrigger();
+              destroyTrapFocus(drawer);
               drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
                 bubbles: true
               }));
               working = false;
               return _context2.abrupt("return", drawer);
 
-            case 12:
+            case 13:
               return _context2.abrupt("return", drawer);
 
-            case 13:
+            case 14:
             case "end":
               return _context2.stop();
           }
@@ -972,6 +978,20 @@ var Drawer = function Drawer(options) {
     };
   }();
 
+  api.toggle = function (drawerKey) {
+    var drawer = drawerKeyCheck(drawerKey);
+
+    if (drawer) {
+      var isOpen = hasClass(drawer, api.settings.stateOpened);
+
+      if (!isOpen) {
+        api.open(drawer);
+      } else {
+        api.close(drawer);
+      }
+    }
+  };
+
   var focusDrawer = function focusDrawer(drawer) {
     if (api.settings.focus) {
       var innerFocus = drawer.querySelector("[data-".concat(api.settings.dataFocus, "]"));
@@ -979,7 +999,11 @@ var Drawer = function Drawer(options) {
       if (innerFocus) {
         innerFocus.focus();
       } else {
-        drawer.focus();
+        var item = drawer.querySelector(".".concat(api.settings.classItem, "[tabindex=\"-1\"]"));
+
+        if (item) {
+          item.focus();
+        }
       }
     }
   };
@@ -989,6 +1013,63 @@ var Drawer = function Drawer(options) {
       api.memory.trigger.focus();
       api.memory.trigger = null;
     }
+  };
+
+  var getFocusable = function getFocusable(drawer) {
+    var focusable = [];
+    var items = drawer.querySelectorAll("\n      a[href]:not([disabled]),\n      button:not([disabled]),\n      textarea:not([disabled]),\n      input[type=\"text\"]:not([disabled]),\n      input[type=\"radio\"]:not([disabled]),\n      input[type=\"checkbox\"]:not([disabled]),\n      select:not([disabled]),\n      [tabindex]:not([tabindex=\"-1\"])\n    ");
+    items.forEach(function (el) {
+      el.focus();
+
+      if (el === document.activeElement) {
+        focusable.push(el);
+      }
+    });
+    return focusable;
+  };
+
+  var initTrapFocus = function initTrapFocus(drawer) {
+    api.memory.focusable = getFocusable(drawer);
+
+    if (api.memory.focusable.length) {
+      api.memory.focusableFirst = api.memory.focusable[0];
+      api.memory.focusableLast = api.memory.focusable[api.memory.focusable.length - 1];
+      drawer.addEventListener('keydown', handlerTrapFocus);
+    } else {
+      drawer.addEventListener('keydown', handlerStickyFocus);
+    }
+  };
+
+  var destroyTrapFocus = function destroyTrapFocus(drawer) {
+    api.memory.focusable = null;
+    api.memory.focusableFirst = null;
+    api.memory.focusableLast = null;
+    drawer.removeEventListener('keydown', handlerTrapFocus);
+    drawer.removeEventListener('keydown', handlerStickyFocus);
+  };
+
+  var handlerTrapFocus = function handlerTrapFocus(event) {
+    var isTab = event.key === 'Tab' || event.keyCode === 9;
+    if (!isTab) return;
+
+    if (event.shiftKey) {
+      var dialog = document.querySelector("\n        [data-".concat(api.settings.dataDrawer, "].").concat(api.settings.stateOpened, "\n        [data-").concat(api.settings.dataDialog, "][tabindex=\"-1\"]\n      "));
+
+      if (document.activeElement === api.memory.focusableFirst || document.activeElement === dialog) {
+        api.memory.focusableLast.focus();
+        event.preventDefault();
+      }
+    } else {
+      if (document.activeElement === api.memory.focusableLast) {
+        api.memory.focusableFirst.focus();
+        event.preventDefault();
+      }
+    }
+  };
+
+  var handlerStickyFocus = function handlerStickyFocus(event) {
+    var isTab = event.key === 'Tab' || event.keyCode === 9;
+    if (isTab) event.preventDefault();
   };
 
   var saveState = function saveState() {
@@ -1126,6 +1207,7 @@ var Drawer = function Drawer(options) {
 
   var switchToDefault = function switchToDefault(drawer) {
     removeClass(drawer, api.settings.classModal);
+    destroyTrapFocus(drawer);
     var drawerKey = drawer.getAttribute("data-".concat(api.settings.dataDrawer));
     var drawerState = api.state[drawerKey];
 

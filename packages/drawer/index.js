@@ -26,6 +26,7 @@ export const Drawer = (options) => {
     stateClosed: 'is-closed',
 
     // Classes
+    classItem: 'drawer__item',
     classModal: 'drawer_modal',
 
     // Feature toggles
@@ -34,6 +35,7 @@ export const Drawer = (options) => {
     focus: true,
     saveState: true,
     saveKey: 'DrawerState',
+    setTabindex: true,
     transition: true
   };
 
@@ -46,6 +48,7 @@ export const Drawer = (options) => {
 
   api.init = () => {
     setState();
+    setTabindex();
     breakpointInit();
     document.addEventListener('click', handler, false);
     document.addEventListener('keyup', handlerEscape, false);
@@ -130,15 +133,14 @@ export const Drawer = (options) => {
     }
   };
 
-  api.toggle = (drawerKey) => {
-    const drawer = drawerKeyCheck(drawerKey);
-    if (drawer) {
-      const isOpen = hasClass(drawer, api.settings.stateOpened);
-      if (!isOpen) {
-        api.open(drawer);
-      } else {
-        api.close(drawer);
-      }
+  const setTabindex = (enable = api.settings.setTabindex) => {
+    if (enable) {
+      const drawers = document.querySelectorAll(
+        `[data-${api.settings.dataDrawer}] .${api.settings.classItem}`
+      );
+      drawers.forEach((el) => {
+        el.setAttribute('tabindex', '-1');
+      });
     }
   };
 
@@ -190,6 +192,9 @@ export const Drawer = (options) => {
       working = true;
       await openTransition(drawer);
       saveState(drawer);
+      if (hasClass(drawer, api.settings.classModal)) {
+        initTrapFocus(drawer);
+      }
       focusDrawer(drawer);
       drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
         bubbles: true
@@ -209,6 +214,7 @@ export const Drawer = (options) => {
       await closeTransition(drawer);
       saveState(drawer);
       focusTrigger();
+      destroyTrapFocus(drawer);
       drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
         bubbles: true
       }));
@@ -216,6 +222,18 @@ export const Drawer = (options) => {
       return drawer;
     } else {
       return drawer;
+    }
+  };
+
+  api.toggle = (drawerKey) => {
+    const drawer = drawerKeyCheck(drawerKey);
+    if (drawer) {
+      const isOpen = hasClass(drawer, api.settings.stateOpened);
+      if (!isOpen) {
+        api.open(drawer);
+      } else {
+        api.close(drawer);
+      }
     }
   };
 
@@ -231,7 +249,12 @@ export const Drawer = (options) => {
       if (innerFocus) {
         innerFocus.focus();
       } else {
-        drawer.focus();
+        const item = drawer.querySelector(
+          `.${api.settings.classItem}[tabindex="-1"]`
+        );
+        if (item) {
+          item.focus();
+        }
       }
     }
   };
@@ -241,6 +264,79 @@ export const Drawer = (options) => {
       api.memory.trigger.focus();
       api.memory.trigger = null;
     }
+  };
+
+  /**
+   * Focus trap functionality
+   */
+
+  const getFocusable = (drawer) => {
+    const focusable = [];
+    const items = drawer.querySelectorAll(`
+      a[href]:not([disabled]),
+      button:not([disabled]),
+      textarea:not([disabled]),
+      input[type="text"]:not([disabled]),
+      input[type="radio"]:not([disabled]),
+      input[type="checkbox"]:not([disabled]),
+      select:not([disabled]),
+      [tabindex]:not([tabindex="-1"])
+    `);
+    items.forEach((el) => {
+      el.focus();
+      if (el === document.activeElement) {
+        focusable.push(el);
+      }
+    });
+    return focusable;
+  };
+
+  const initTrapFocus = (drawer) => {
+    api.memory.focusable = getFocusable(drawer);
+    if (api.memory.focusable.length) {
+      api.memory.focusableFirst = api.memory.focusable[0];
+      api.memory.focusableLast = api.memory.focusable[api.memory.focusable.length - 1];
+      drawer.addEventListener('keydown', handlerTrapFocus);
+    } else {
+      drawer.addEventListener('keydown', handlerStickyFocus);
+    }
+  };
+
+  const destroyTrapFocus = (drawer) => {
+    api.memory.focusable = null;
+    api.memory.focusableFirst = null;
+    api.memory.focusableLast = null;
+    drawer.removeEventListener('keydown', handlerTrapFocus);
+    drawer.removeEventListener('keydown', handlerStickyFocus);
+  };
+
+  const handlerTrapFocus = (event) => {
+    const isTab = (event.key === 'Tab' || event.keyCode === 9);
+    if (!isTab) return;
+
+    if (event.shiftKey) {
+      const dialog = document.querySelector(`
+        [data-${api.settings.dataDrawer}].${api.settings.stateOpened}
+        [data-${api.settings.dataDialog}][tabindex="-1"]
+      `);
+      if (
+        document.activeElement === api.memory.focusableFirst ||
+        document.activeElement === dialog
+      ) {
+        api.memory.focusableLast.focus();
+        event.preventDefault();
+      }
+    } else {
+      if (document.activeElement === api.memory.focusableLast) {
+        api.memory.focusableFirst.focus();
+        event.preventDefault();
+      }
+    }
+  };
+
+  const handlerStickyFocus = (event) => {
+    const isTab = (event.key === 'Tab' || event.keyCode === 9);
+    if (isTab) event.preventDefault();
   };
 
   /**
@@ -389,6 +485,7 @@ export const Drawer = (options) => {
 
   const switchToDefault = (drawer) => {
     removeClass(drawer, api.settings.classModal);
+    destroyTrapFocus(drawer);
     const drawerKey = drawer.getAttribute(`data-${api.settings.dataDrawer}`);
     const drawerState = api.state[drawerKey];
     if (drawerState == api.settings.stateOpened) {
