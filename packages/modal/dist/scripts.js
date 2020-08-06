@@ -704,12 +704,12 @@
 	    dataClose: 'modal-close',
 	    dataFocus: 'modal-focus',
 	    dataRequired: 'modal-required',
-	    selectorInert: null,
-	    selectorOverflow: 'body',
 	    stateOpened: 'is-opened',
 	    stateOpening: 'is-opening',
 	    stateClosing: 'is-closing',
 	    stateClosed: 'is-closed',
+	    selectorInert: null,
+	    selectorOverflow: 'body',
 	    customEventPrefix: 'modal:',
 	    moveModals: {
 	      selector: null,
@@ -734,14 +734,6 @@
 	    api.memory = {};
 	    document.removeEventListener('click', handler, false);
 	    document.removeEventListener('keyup', handlerEscape, false);
-	  };
-
-	  api.open = function (modalKey) {
-	    return open(modalKey);
-	  };
-
-	  api.close = function (returnFocus) {
-	    return close(returnFocus);
 	  };
 
 	  api.setInitialState = function () {
@@ -862,7 +854,7 @@
 	    modals.forEach(function (el) {
 	      if (el.classList.contains(api.settings.stateOpened)) {
 	        setInert(false);
-	        setOverflow();
+	        setOverflowHidden();
 	        focusTrigger();
 	        destroyTrapFocus(el);
 	      }
@@ -883,7 +875,7 @@
 	    }
 	  };
 
-	  var setOverflow = function setOverflow(state) {
+	  var setOverflowHidden = function setOverflowHidden(state) {
 	    if (api.settings.selectorOverflow) {
 	      var els = document.querySelectorAll(api.settings.selectorOverflow);
 	      els.forEach(function (el) {
@@ -964,7 +956,7 @@
 	              }
 
 	              working = true;
-	              setOverflow('hidden');
+	              setOverflowHidden('hidden');
 	              _context2.next = 6;
 	              return openTransition(modal);
 
@@ -1013,7 +1005,7 @@
 
 	              working = true;
 	              setInert(false);
-	              setOverflow();
+	              setOverflowHidden();
 	              _context3.next = 8;
 	              return closeTransition(modal);
 
@@ -1041,6 +1033,14 @@
 	      return _ref3.apply(this, arguments);
 	    };
 	  }();
+
+	  api.open = function (modalKey) {
+	    return open(modalKey);
+	  };
+
+	  api.close = function (returnFocus) {
+	    return close(returnFocus);
+	  };
 
 	  var focusModal = function focusModal(modal) {
 	    var innerFocus = modal.querySelector("[data-".concat(api.settings.dataFocus, "]"));

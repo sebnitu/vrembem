@@ -14,15 +14,15 @@ export const Modal = (options) => {
     dataFocus: 'modal-focus',
     dataRequired: 'modal-required',
 
-    // Selector
-    selectorInert: null,
-    selectorOverflow: 'body',
-
     // State classes
     stateOpened: 'is-opened',
     stateOpening: 'is-opening',
     stateClosing: 'is-closing',
     stateClosed: 'is-closed',
+
+    // Selector
+    selectorInert: null,
+    selectorOverflow: 'body',
 
     // Feature toggles
     customEventPrefix: 'modal:',
@@ -51,14 +51,6 @@ export const Modal = (options) => {
     api.memory = {};
     document.removeEventListener('click', handler, false);
     document.removeEventListener('keyup', handlerEscape, false);
-  };
-
-  api.open = (modalKey) => {
-    return open(modalKey);
-  };
-
-  api.close = (returnFocus) => {
-    return close(returnFocus);
   };
 
   api.setInitialState = () => {
@@ -152,7 +144,7 @@ export const Modal = (options) => {
     modals.forEach((el) => {
       if (el.classList.contains(api.settings.stateOpened)) {
         setInert(false);
-        setOverflow();
+        setOverflowHidden();
         focusTrigger();
         destroyTrapFocus(el);
       }
@@ -176,7 +168,7 @@ export const Modal = (options) => {
     }
   };
 
-  const setOverflow = (state) => {
+  const setOverflowHidden = (state) => {
     if (api.settings.selectorOverflow) {
       const els = document.querySelectorAll(api.settings.selectorOverflow);
       els.forEach((el) => {
@@ -252,7 +244,7 @@ export const Modal = (options) => {
     );
     if (modal) {
       working = true;
-      setOverflow('hidden');
+      setOverflowHidden('hidden');
       await openTransition(modal);
       initTrapFocus(modal);
       focusModal(modal);
@@ -274,7 +266,7 @@ export const Modal = (options) => {
     if (modal) {
       working = true;
       setInert(false);
-      setOverflow();
+      setOverflowHidden();
       await closeTransition(modal);
       if (returnFocus) focusTrigger();
       destroyTrapFocus(modal);
@@ -286,6 +278,14 @@ export const Modal = (options) => {
     } else {
       return modal;
     }
+  };
+
+  api.open = (modalKey) => {
+    return open(modalKey);
+  };
+
+  api.close = (returnFocus) => {
+    return close(returnFocus);
   };
 
   /**
