@@ -5,9 +5,9 @@ description: "A component for changing the mode of a page to complete a critical
 package: "@vrembem/modal"
 category: compound
 usage:
-  npm: true
-  scss: true
-  js: true
+npm: true
+scss: true
+js: true
 ---
 
 ## Modal
@@ -108,12 +108,12 @@ Here's an example where we want the `[role="main"]` content area to be inaccessi
 
 ```js
 const modal = new Modal({
-  autoInit: true,
-  selectorMain: '[role="main"]',
-  moveModals: {
-    selector: '[role="main"]',
-    location: 'after'
-  }
+autoInit: true,
+selectorMain: '[role="main"]',
+moveModals: {
+selector: '[role="main"]',
+location: 'after'
+}
 });
 ```
 
@@ -543,13 +543,6 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
       </tr>
     </tbody>
 
-    <!-- Selectors -->
-    <tr>
-      <td data-mobile-label="Key"><code class="code text-nowrap">selectorMain</code></td>
-      <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
-      <td data-mobile-label="Desc">Applies `inert` and `aria-hidden` attributes to all matching elements when a modal is opened.</td>
-    </tr>
-
     <!-- State classes -->
     <tr>
       <td data-mobile-label="Key"><code class="code text-nowrap">stateOpened</code></td>
@@ -572,6 +565,18 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
       <td data-mobile-label="Desc">Class used for closed state.</td>
     </tr>
 
+    <!-- Selectors -->
+    <tr>
+      <td data-mobile-label="Key"><code class="code text-nowrap">selectorInert</code></td>
+      <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+      <td data-mobile-label="Desc">Applies <code class="code">inert</code> and <code class="code">aria-hidden</code> attributes to all matching elements when a modal is opened.</td>
+    </tr>
+    <tr>
+      <td data-mobile-label="Key"><code class="code text-nowrap">selectorOverflow</code></td>
+      <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'body'</code></td>
+      <td data-mobile-label="Desc">Applies <code class="code">overflow:hidden</code> styles on all matching elements when a modal is opened.</td>
+    </tr>
+
     <!-- Feature toggles -->
     <tr>
       <td data-mobile-label="Key"><code class="code text-nowrap">customEventPrefix</code></td>
@@ -592,11 +597,6 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
       <td data-mobile-label="Key"><code class="code text-nowrap">setTabindex</code></td>
       <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">true</code></td>
       <td data-mobile-label="Desc">Whether or not to set <code class="code">tabindex="-1"</code> on all modal drawer elements on init.</td>
-    </tr>
-    <tr>
-      <td data-mobile-label="Key"><code class="code text-nowrap">toggleOverflow</code></td>
-      <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'body'</code></td>
-      <td data-mobile-label="Desc">Toggle <code class="code">overflow:hidden</code> on all matching elements provided by the CSS selector. Set to <a href="https://developer.mozilla.org/en-US/docs/Glossary/Falsy"><code class="code">falsy</code></a> to disable.</td>
     </tr>
     <tr>
       <td data-mobile-label="Key"><code class="code text-nowrap">transition</code></td>
@@ -628,7 +628,7 @@ const modal = new Modal();
 modal.init();
 ```
 
-### `drawer.destroy()`
+### `modal.destroy()`
 
 Destroys and cleans up the modal instantiation. During cleanup, the following processes are run:
 
@@ -653,7 +653,7 @@ Opens a modal provided the modal key and returns a promise that resolves to the 
 
 **Returns**
 
-- `Promise` The returned promise value will either be the `HTML object` of the modal that was opened, or `null` if a modal was not found.
+- `Promise` The returned promise value will either be the `HTML object` of the modal that was opened, or `error` if a modal was not found.
 
 ```html
 <div class="modal is-closed" data-modal="modal-key">...</div>
@@ -665,7 +665,7 @@ modal.open('modal-key');
 
 // Run some code after promise resolves
 modal.open('modal-key').then((result) => {
-  console.log(result); // result = HTML Object || null
+console.log(result); // result = HTML Object || null
 });
 ```
 
@@ -679,7 +679,7 @@ Closes a modal and returns a promise that resolves to the modal object once the 
 
 **Returns**
 
-- `Promise` The returned promise value will either be the `HTML object` of the modal that was closed, or `null` if a modal was not found.
+- `Promise` The returned promise value will either be the `HTML object` of the modal that was closed, or `null` if an open modal was not found.
 
 ```html
 <div class="modal is-opened" data-modal="modal-key">...</div>
@@ -691,7 +691,7 @@ modal.close();
 
 // Run some code after promise resolves
 modal.close().then((result) => {
-  console.log(result); // result = HTML Object || null
+console.log(result); // result = HTML Object || null
 });
 ```
 
