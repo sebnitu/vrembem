@@ -183,3 +183,19 @@ test('should apply custom state classes', async () => {
   const state = JSON.parse(localStorage.getItem('DrawerState'));
   expect(state['drawer-default']).toMatch('off');
 });
+
+test('should not apply transition classes when transitions are disabled', () => {
+  document.body.innerHTML = markup;
+  const el = document.querySelector('[data-drawer]');
+  drawer = new Drawer({
+    autoInit: true,
+    transition: false
+  });
+  drawer.open('drawer-default');
+  expect(el).toHaveClass('is-opened');
+  expect(el.classList.length).toBe(2);
+
+  drawer.close('drawer-default');
+  expect(el).toHaveClass('is-closed');
+  expect(el.classList.length).toBe(2);
+});

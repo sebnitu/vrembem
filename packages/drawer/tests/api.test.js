@@ -289,3 +289,15 @@ test('should properly destroy drawer instance on api call', () => {
   expect(Object.getOwnPropertyNames(localStorage).length).toEqual(0);
   expect(Object.getOwnPropertyNames(drawer.state).length).toEqual(0);
 });
+
+test('should set tabindex attribute with api call', () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer({
+    autoInit: true,
+    setTabindex: false
+  });
+  const dialog = document.querySelector('[data-drawer-dialog]');
+  expect(dialog).not.toHaveAttribute('tabindex');
+  drawer.setTabindex();
+  expect(dialog).toHaveAttribute('tabindex');
+});
