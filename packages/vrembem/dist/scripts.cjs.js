@@ -898,6 +898,7 @@ var Drawer = function Drawer(options) {
     setTabindex();
     api.breakpoint.init();
     document.addEventListener('click', handler, false);
+    document.addEventListener('touchend', handler, false);
     document.addEventListener('keyup', handlerEscape, false);
   };
 
@@ -907,6 +908,7 @@ var Drawer = function Drawer(options) {
     api.state = {};
     localStorage.removeItem(api.settings.stateKey);
     document.removeEventListener('click', handler, false);
+    document.removeEventListener('touchend', handler, false);
     document.removeEventListener('keyup', handlerEscape, false);
   };
 
@@ -1458,12 +1460,14 @@ var Modal = function Modal(options) {
     setTabindex();
     moveModals();
     document.addEventListener('click', handler, false);
+    document.addEventListener('touchend', handler, false);
     document.addEventListener('keyup', handlerEscape, false);
   };
 
   api.destroy = function () {
     api.memory = {};
     document.removeEventListener('click', handler, false);
+    document.removeEventListener('touchend', handler, false);
     document.removeEventListener('keyup', handlerEscape, false);
   };
 

@@ -44,12 +44,14 @@ export const Modal = (options) => {
     setTabindex();
     moveModals();
     document.addEventListener('click', handler, false);
+    document.addEventListener('touchend', handler, false);
     document.addEventListener('keyup', handlerEscape, false);
   };
 
   api.destroy = () => {
     api.memory = {};
     document.removeEventListener('click', handler, false);
+    document.removeEventListener('touchend', handler, false);
     document.removeEventListener('keyup', handlerEscape, false);
   };
 
