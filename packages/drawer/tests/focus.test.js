@@ -1,18 +1,18 @@
 import { Drawer } from '../index.js';
+import { transition } from './helpers/transition';
 import '@testing-library/jest-dom/extend-expect';
 
 let drawer;
-const ev = new Event('transitionend');
 
 const markup = `
   <div class="drawer__wrapper">
     <div class="drawer is-closed" data-drawer="drawer-one" tabindex="-1">
-      <div class="drawer__item">
+      <div data-drawer-dialog class="drawer__dialog">
         <button class="close-one" data-drawer-close>Close</button>
       </div>
     </div>
     <div class="drawer is-closed" data-drawer="drawer-two" tabindex="-1">
-      <div class="drawer__item">
+      <div data-drawer-dialog class="drawer__dialog">
         <button class="close-two" data-drawer-close data-drawer-focus>
           Close
         </button>
@@ -35,7 +35,7 @@ const markup = `
 const markupCustomAttr = `
   <div class="drawer__wrapper">
     <div class="drawer is-closed" data-drawer="drawer-one" tabindex="-1">
-      <div class="drawer__item">
+      <div class="drawer__dialog">
         <button class="close-one" data-drawer-close data-focus>Close</button>
       </div>
     </div>
@@ -57,23 +57,24 @@ afterEach(() => {
   drawer = null;
 });
 
-test('should focus drawer element and refocus trigger when closed', () => {
+test('should focus drawer element and refocus trigger when closed', async () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer="drawer-one"]');
+  const dialog = el.querySelector('[data-drawer-dialog]');
   const btn = document.querySelector('.toggle-one');
   const btnClose = document.querySelector('.close-one');
 
   btn.click();
-  el.dispatchEvent(ev);
-  expect(el).toHaveFocus();
+  await transition(el);
+  expect(dialog).toHaveFocus();
 
   btnClose.click();
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(btn).toHaveFocus();
 });
 
-test('should focus data-drawer-focus element and refocus trigger when closed', () => {
+test('should focus data-drawer-focus element and refocus trigger when closed', async () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer="drawer-two"]');
@@ -81,34 +82,15 @@ test('should focus data-drawer-focus element and refocus trigger when closed', (
   const btnClose = document.querySelector('.close-two');
 
   btn.click();
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(btnClose).toHaveFocus();
 
   btnClose.click();
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(btn).toHaveFocus();
 });
 
-test('should not change focus when feature is disabled', () => {
-  document.body.innerHTML = markup;
-  drawer = new Drawer({
-    autoInit: true,
-    focus: false
-  });
-  const el = document.querySelector('[data-drawer="drawer-two"]');
-  const btn = document.querySelector('.toggle-two');
-  const btnClose = document.querySelector('.close-two');
-
-  btn.click();
-  el.dispatchEvent(ev);
-  expect(btnClose).not.toHaveFocus();
-
-  btnClose.click();
-  el.dispatchEvent(ev);
-  expect(btn).not.toHaveFocus();
-});
-
-test('should focus custom data element and refocus trigger when closed', () => {
+test('should focus custom data element and refocus trigger when closed', async () => {
   document.body.innerHTML = markupCustomAttr;
   drawer = new Drawer({
     autoInit: true,
@@ -119,15 +101,15 @@ test('should focus custom data element and refocus trigger when closed', () => {
   const btnClose = document.querySelector('[data-focus]');
 
   btn.click();
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(btnClose).toHaveFocus();
 
   btnClose.click();
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(btn).toHaveFocus();
 });
 
-test('should re-focus the target if open triggers while drawer is already opened', () => {
+test('should re-focus the target if open triggers while drawer is already opened', async () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer="drawer-two"]');
@@ -135,12 +117,12 @@ test('should re-focus the target if open triggers while drawer is already opened
   const btn = document.querySelector('.toggle-three');
 
   btn.click();
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(elFocus).toHaveFocus();
 
   elFocus.blur();
 
   btn.click();
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(elFocus).toHaveFocus();
 });

@@ -1,6 +1,7 @@
 import { Drawer } from '../index.js';
 import { checkMatch } from './helpers/checkMatch';
 import { resizeWindow } from './helpers/resizeWindow';
+import { transition } from './helpers/transition';
 import './helpers/matchMedia.mock.js';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -10,7 +11,7 @@ const ev = new Event('transitionend');
 const markup = `
   <div class="drawer__wrapper">
     <div class="drawer is-closed" data-drawer="drawer-default">
-      <div class="drawer__item">
+      <div data-drawer-dialog class="drawer__dialog">
         <button data-drawer-close>Close</button>
       </div>
     </div>
@@ -23,7 +24,7 @@ const markup = `
 const markupBreakpoint = `
   <div class="drawer__wrapper">
     <div class="drawer is-closed" data-drawer="drawer-default" data-drawer-breakpoint="400px">
-      <div class="drawer__item">
+      <div data-drawer-dialog class="drawer__dialog">
         <button data-drawer-close>Close</button>
       </div>
     </div>
@@ -36,7 +37,7 @@ const markupBreakpoint = `
 const markupModal = `
   <div class="drawer__wrapper">
     <div class="drawer drawer_modal is-closed" data-drawer="drawer-default">
-      <div class="drawer__item">
+      <div data-drawer-dialog class="drawer__dialog">
         <button data-drawer-close>Close</button>
       </div>
     </div>
@@ -86,10 +87,12 @@ test('should toggle drawer using api call', () => {
   expect(el).not.toHaveClass('is-opening is-opened is-closing');
 });
 
-test('should not throw error if toggle has a selector not found in page', () => {
+test('should throw error if toggle has a selector not found in page', () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({ autoInit: true });
-  expect(drawer.toggle.bind(this, 'drawer-asdf')).not.toThrow();
+  drawer.toggle('drawer-asdf').catch((error) => {
+    expect(error.message).toBe('Did not find drawer with key: "drawer-asdf"');
+  });
 });
 
 test('should open drawer using api call', () => {
@@ -108,10 +111,12 @@ test('should open drawer using api call', () => {
   expect(el).not.toHaveClass('is-opening is-closing is-closed');
 });
 
-test('should not throw error if open has a selector not found in page', () => {
+test('should throw error if open has a selector not found in page', () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({ autoInit: true });
-  expect(drawer.open.bind(this, 'drawer-asdf')).not.toThrow();
+  drawer.open('drawer-asdf').catch((error) => {
+    expect(error.message).toBe('Did not find drawer with key: "drawer-asdf"');
+  });
 });
 
 test('should do nothing if drawer is already opened and open api is called', () => {
@@ -150,10 +155,12 @@ test('should close drawer using api call', () => {
   expect(el).not.toHaveClass('is-opening is-opened is-closing');
 });
 
-test('should not throw error if close has a selector not found in page', () => {
+test('should throw error if close has a selector not found in page', async () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({ autoInit: true });
-  expect(drawer.close.bind(this, 'drawer-asdf')).not.toThrow();
+  drawer.close('drawer-asdf').catch((error) => {
+    expect(error.message).toBe('Did not find drawer with key: "drawer-asdf"');
+  });
 });
 
 test('should do nothing if drawer is already closed and close api is called', () => {
@@ -164,45 +171,48 @@ test('should do nothing if drawer is already closed and close api is called', ()
   expect(el).not.toHaveClass('is-closing');
 });
 
-test('should fire callback when using toggle api', () => {
+test('should run function when promise is returned from toggle api', async () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer]');
   let callbackCheck = false;
 
-  drawer.toggle('drawer-default', () => {
+  drawer.toggle('drawer-default').then(() => {
     callbackCheck = true;
   });
-  el.dispatchEvent(ev);
+
+  await transition(el);
   expect(callbackCheck).toEqual(true);
 });
 
-test('should fire callback when using open api', () => {
+test('should fire callback when using open api', async () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer]');
   let callbackCheck = false;
 
-  drawer.open('drawer-default', () => {
+  drawer.open('drawer-default').then(() => {
     callbackCheck = true;
   });
-  el.dispatchEvent(ev);
+
+  await transition(el);
   expect(callbackCheck).toEqual(true);
 });
 
-test('should fire callback when using close api', () => {
+test('should fire callback when using close api', async () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer]');
   let callbackCheck = false;
 
   drawer.open('drawer-default');
-  el.dispatchEvent(ev);
+  await transition(el);
 
-  drawer.close('drawer-default', () => {
+  drawer.close('drawer-default').then(() => {
     callbackCheck = true;
   });
-  el.dispatchEvent(ev);
+
+  await transition(el);
   expect(callbackCheck).toEqual(true);
 });
 

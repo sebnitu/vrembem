@@ -1,13 +1,13 @@
 import { Drawer } from '../index.js';
+import { transition } from './helpers/transition';
 import '@testing-library/jest-dom/extend-expect';
 
 let drawer;
-const ev = new Event('transitionend');
 
 const markup = `
   <div class="drawer__wrapper">
     <div class="drawer is-closed" data-drawer="drawer-default">
-      <div class="drawer__item">
+      <div data-drawer-dialog class="drawer__dialog">
         <button data-drawer-close>Close</button>
       </div>
     </div>
@@ -23,7 +23,7 @@ const markup = `
 const markupCustomAttr = `
   <div class="drawer__wrapper">
     <div class="drawer is-closed" data-d="drawer-default">
-      <div class="drawer__item">
+      <div data-drawer-dialog class="drawer__dialog">
         <button data-c>Close</button>
       </div>
     </div>
@@ -36,7 +36,7 @@ const markupCustomAttr = `
 const markupCustomState = `
   <div class="drawer__wrapper">
     <div class="drawer off" data-drawer="drawer-default">
-      <div class="drawer__item">
+      <div data-drawer-dialog class="drawer__dialog">
         <button data-drawer-close>Close</button>
       </div>
     </div>
@@ -56,7 +56,7 @@ afterEach(() => {
   drawer = null;
 });
 
-test('should apply state classes on `click` and `transitionend` events', () => {
+test('should apply state classes on `click` and `transitionend` events', async () => {
   document.body.innerHTML = markup;
   drawer = new Drawer();
   const el = document.querySelector('[data-drawer]');
@@ -69,18 +69,18 @@ test('should apply state classes on `click` and `transitionend` events', () => {
   btnOpen.click();
   expect(el).toHaveClass('is-opening');
 
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(el).toHaveClass('is-opened');
 
   btnClose.click();
   expect(el).toHaveClass('is-closing');
 
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(el).toHaveClass('drawer is-closed');
   expect(el).not.toHaveClass('is-opening is-opened is-closing');
 });
 
-test('should open and close drawer using data attribute triggers', () => {
+test('should open and close drawer using data attribute triggers', async () => {
   document.body.innerHTML = markup;
   drawer = new Drawer();
   const el = document.querySelector('[data-drawer]');
@@ -93,18 +93,18 @@ test('should open and close drawer using data attribute triggers', () => {
   btnOpen.click();
   expect(el).toHaveClass('is-opening');
 
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(el).toHaveClass('is-opened');
 
   btnClose.click();
   expect(el).toHaveClass('is-closing');
 
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(el).toHaveClass('drawer is-closed');
   expect(el).not.toHaveClass('is-opening is-opened is-closing');
 });
 
-test('should not throw error if drawer close button doesn\'t find a drawer', () => {
+test('should not throw error if drawer close button doesn\'t find a drawer', async () => {
   document.body.innerHTML = markup;
   drawer = new Drawer();
   const el = document.querySelector('[data-drawer]');
@@ -117,14 +117,14 @@ test('should not throw error if drawer close button doesn\'t find a drawer', () 
   btnOpen.click();
   expect(el).toHaveClass('is-opening');
 
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(el).toHaveClass('is-opened');
 
   btnClose.click();
   expect(el).not.toHaveClass('is-closing');
 });
 
-test('should apply state classes with custom data attributes', () => {
+test('should apply state classes with custom data attributes', async () => {
   document.body.innerHTML = markupCustomAttr;
   drawer = new Drawer({
     autoInit: true,
@@ -141,18 +141,18 @@ test('should apply state classes with custom data attributes', () => {
   btnOpen.click();
   expect(el).toHaveClass('is-opening');
 
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(el).toHaveClass('is-opened');
 
   btnClose.click();
   expect(el).toHaveClass('is-closing');
 
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(el).toHaveClass('drawer is-closed');
   expect(el).not.toHaveClass('is-opening is-opened is-closing');
 });
 
-test('should apply custom state classes', () => {
+test('should apply custom state classes', async () => {
   document.body.innerHTML = markupCustomState;
   drawer = new Drawer({
     autoInit: true,
@@ -170,13 +170,13 @@ test('should apply custom state classes', () => {
   btnOpen.click();
   expect(el).toHaveClass('enable');
 
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(el).toHaveClass('on');
 
   btnClose.click();
   expect(el).toHaveClass('disable');
 
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(el).toHaveClass('drawer off');
   expect(el).not.toHaveClass('on enable disable');
 
