@@ -596,7 +596,7 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
     <tr>
       <td data-mobile-label="Key"><code class="code text-nowrap">setTabindex</code></td>
       <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">true</code></td>
-      <td data-mobile-label="Desc">Whether or not to set <code class="code">tabindex="-1"</code> on all modal drawer elements on init.</td>
+      <td data-mobile-label="Desc">Whether or not to set <code class="code">tabindex="-1"</code> on all modal dialog elements on init.</td>
     </tr>
     <tr>
       <td data-mobile-label="Key"><code class="code text-nowrap">transition</code></td>

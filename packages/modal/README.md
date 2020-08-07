@@ -209,7 +209,7 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
 | `selectorOverflow`  | `'body'`                             | Applies `overflow:hidden` styles on all matching elements when a modal is opened.                                                                      |
 | `customEventPrefix` | `'modal:'`                           | Prefix to be used on custom events.                                                                                                                    |
 | `moveModals`        | `{ selector: null, location: null }` | Moves all modals to a location in the DOM relative to the passed selector on init. Location options include `after`, `before`, `append` and `prepend`. |
-| `setTabindex`       | `true`                               | Whether or not to set `tabindex="-1"` on all modal drawer elements on init.                                                                            |
+| `setTabindex`       | `true`                               | Whether or not to set `tabindex="-1"` on all modal dialog elements on init.                                                                            |
 | `transition`        | `true`                               | Toggle the transition animation for the modal. Set to `false` to disable.                                                                              |
 
 ## Events
@@ -271,7 +271,7 @@ modal.open('modal-key');
 
 // Run some code after promise resolves
 modal.open('modal-key').then((result) => {
-  console.log(result); // result = HTML Object || null
+  console.log(result);
 });
 ```
 
@@ -303,7 +303,7 @@ modal.close().then((result) => {
 
 ### `modal.setInitialState()`
 
-Sets the initial state of all modals. This includes removing all transitional classes, opened states and applies the closed state class. This is ran automatically on `init()` but is exposed if states need to be reset for some reason.
+Sets the initial state of all modals. This includes removing all transitional classes, opened states and applies the closed state class. This is ran automatically on `modal.init()` but is exposed if states need to be reset for some reason.
 
 ```html
 <!-- Missing a state class... -->
@@ -329,7 +329,7 @@ modal.setInitialState();
 
 ### `modal.setTabindex()`
 
-Sets the `tabindex="-1"` attribute on all modal dialogs. This makes it possible to set focus on the dialog when opened but won't allow users to focus it using the keyboard. This is ran automatically on `init()` if `setTabindex` is set to `true`.
+Sets the `tabindex="-1"` attribute on all modal dialogs. This makes it possible to set focus on the dialog when opened but won't allow users to focus it using the keyboard. This is ran automatically on `modal.init()` if the `setTabindex` option is set to `true`.
 
 ```html
 <!-- Initial HTML -->
