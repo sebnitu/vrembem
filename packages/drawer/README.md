@@ -176,7 +176,7 @@ Drawers can slide in from the left or right using the position modifiers:
 | `$width`                         | `18em`                             | The width of drawers.                                                                                |
 | `$max-width`                     | `100%`                             | The max-width of drawers.                                                                            |
 | `$border`                        | `null`                             | Border applied to drawer items with position modifiers. Shown on side of drawers facing drawer main. |
-| `$sep-border-color`              | `null`                             | Border color applied to dialog components within drawer items.                                       |
+| `$sep-border`                    | `null`                             | Border color applied to dialog components within drawer items.                                       |
 | `$background`                    | `core.$shade`                      | Background color applied to drawer items.                                                            |
 | `$box-shadow`                    | `none`                             | Box shadow applied to drawer items.                                                                  |
 | `$travel`                        | `5em`                              | Distance that drawers travel during their transition.                                                |

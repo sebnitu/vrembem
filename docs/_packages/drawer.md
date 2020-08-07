@@ -5,9 +5,9 @@ description: "A container component that slides in from the left or right. Typic
 package: "@vrembem/drawer"
 category: compound
 usage:
-  npm: true
-  scss: true
-  js: true
+npm: true
+scss: true
+js: true
 ---
 
 ## drawer
@@ -300,7 +300,7 @@ If a drawer has the attribute `tabindex="-1"`, it will be given focus when it's 
 
 ## Drawer State
 
-By default, the state of a drawer is saved to local storage and applied persistently under the "DrawerState" local storage variable. Set `saveState: false` to disable save state. Use `saveKey: "[CUSTOM-KEY]"` to change the key that save state is stored under.
+By default, the state of a drawer is saved to local storage and applied persistently under the "DrawerState" local storage variable. Set `stateSave: false` to disable save state. Use `stateKey: "[CUSTOM-KEY]"` to change the key that save state is stored under.
 
 ## Sass variables
 
@@ -348,41 +348,46 @@ By default, the state of a drawer is saved to local storage and applied persiste
         <td data-mobile-label="Desc">The max-width of drawers.</td>
       </tr>
       <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Border applied to drawer items with position modifiers. Shown on side of drawers facing drawer main.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$sep-border</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Border color applied to dialog components within drawer items.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">#f5f5f5</code></td>
+        <td data-mobile-label="Desc">Background color applied to drawer items.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">none</code></td>
+        <td data-mobile-label="Desc">Box shadow applied to drawer items.</td>
+      </tr>
+      <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$travel</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">5em</code></td>
         <td data-mobile-label="Desc">Distance that drawers travel during their transition.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$transition-duration</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">0.3s</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$transition-duration</code></td>
         <td data-mobile-label="Desc">Duration of drawer transition.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$transition-timing-function</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">cubic-bezier(0.4, 0, 0.2, 1)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$transition-timing-function</code></td>
         <td data-mobile-label="Desc">Timing function used for drawer transitions.</td>
       </tr>
 
-      <!-- drawer__item styles -->
+      <!-- drawer_wrapper styles -->
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$item-background</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">#f5f5f5</code></td>
-        <td data-mobile-label="Desc">Background color applied to drawer items.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$item-border</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
-        <td data-mobile-label="Desc">Border applied to drawer items with position modifiers. Shown on side of drawers facing drawer main.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$item-box-shadow</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">none</code></td>
-        <td data-mobile-label="Desc">Box shadow applied to drawer items.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$item-sep-border-color</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
-        <td data-mobile-label="Desc">Border color applied to dialog components within drawer items.</td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$wrapper-height</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">100%</code></td>
+        <td data-mobile-label="Desc">The height given to drawer wrapper element.</td>
       </tr>
 
       <!-- drawer_modal styles -->
@@ -402,27 +407,27 @@ By default, the state of a drawer is saved to local storage and applied persiste
         <td data-mobile-label="Desc">The max-width of modal drawers.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$modal-item-background</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">#fff</code></td>
-        <td data-mobile-label="Desc">Background color applied to modal drawer items.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$modal-item-box-shadow</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">
-          0 0 0 1px rgba(#212121, 0.05),<br>
-          0 11px 15px -7px rgba(#212121, 0.1),<br>
-          0 24px 38px 3px rgba(#212121, 0.08),<br>
-          0 9px 46px 8px rgba(#212121, 0.06)
-        </code></td>
-        <td data-mobile-label="Desc">Box shadow applied to modal drawer items.</td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$modal-sep-border</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Border color applied to dialog components within modal drawer items.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$modal-background</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">#424242</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$white</code></td>
+        <td data-mobile-label="Desc">Background color applied to modal drawer items.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$modal-box-shadow</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$box-shadow-24dp</code></td>
+        <td data-mobile-label="Desc">Box shadow applied to modal drawer items.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$modal-screen-background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$night</code></td>
         <td data-mobile-label="Desc">Background color of modal screen.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$modal-background-alpha</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$modal-screen-background-alpha</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">0.8</code></td>
         <td data-mobile-label="Desc">The alpha channel for the modal screen.</td>
       </tr>
@@ -456,9 +461,19 @@ By default, the state of a drawer is saved to local storage and applied persiste
         <td data-mobile-label="Desc">Data attribute for a drawer.</td>
       </tr>
       <tr>
+        <td data-mobile-label="Key"><code class="code text-nowrap">dataDialog</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'drawer-dialog'</code></td>
+        <td data-mobile-label="Desc">Data attribute for a drawer dialog.</td>
+      </tr>
+      <tr>
         <td data-mobile-label="Key"><code class="code text-nowrap">dataToggle</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'drawer-toggle'</code></td>
         <td data-mobile-label="Desc">Data attribute for a drawer toggle trigger.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Key"><code class="code text-nowrap">dataOpen</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'drawer-open'</code></td>
+        <td data-mobile-label="Desc">Data attribute for a drawer open trigger.</td>
       </tr>
       <tr>
         <td data-mobile-label="Key"><code class="code text-nowrap">dataClose</code></td>
@@ -506,6 +521,18 @@ By default, the state of a drawer is saved to local storage and applied persiste
       <td data-mobile-label="Desc">Class used for toggling the drawer modal state.</td>
     </tr>
 
+    <!-- Selectors -->
+    <tr>
+      <td data-mobile-label="Key"><code class="code text-nowrap">selectorInert</code></td>
+      <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+      <td data-mobile-label="Desc">Applies <code class="code">inert</code> and <code class="code">aria-hidden</code> attributes to all matching elements when a modal drawer is opened.</td>
+    </tr>
+    <tr>
+      <td data-mobile-label="Key"><code class="code text-nowrap">selectorOverflow</code></td>
+      <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+      <td data-mobile-label="Desc">Applies <code class="code">overflow:hidden</code> styles on all matching elements when a modal drawer is opened.</td>
+    </tr>
+
     <!-- Feature toggles -->
     <tr>
       <td data-mobile-label="Key"><code class="code text-nowrap">breakpoints</code></td>
@@ -518,19 +545,24 @@ By default, the state of a drawer is saved to local storage and applied persiste
       <td data-mobile-label="Desc">Prefix to be used on custom events.</td>
     </tr>
     <tr>
-      <td data-mobile-label="Key"><code class="code text-nowrap">focus</code></td>
-      <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">true</code></td>
-      <td data-mobile-label="Desc">Toggles the focus handling feature.</td>
-    </tr>
-    <tr>
-      <td data-mobile-label="Key"><code class="code text-nowrap">saveState</code></td>
+      <td data-mobile-label="Key"><code class="code text-nowrap">stateSave</code></td>
       <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">true</code></td>
       <td data-mobile-label="Desc">Toggles the save state feature.</td>
     </tr>
     <tr>
-      <td data-mobile-label="Key"><code class="code text-nowrap">saveKey</code></td>
+      <td data-mobile-label="Key"><code class="code text-nowrap">stateKey</code></td>
       <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'DrawerState'</code></td>
       <td data-mobile-label="Desc">Defines the localStorage key where drawer states are saved.</td>
+    </tr>
+    <tr>
+      <td data-mobile-label="Key"><code class="code text-nowrap">setTabindex</code></td>
+      <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">true</code></td>
+      <td data-mobile-label="Desc">Whether or not to set <code class="code">tabindex="-1"</code> on all drawer dialog elements on init.</td>
+    </tr>
+    <tr>
+      <td data-mobile-label="Key"><code class="code text-nowrap">transition</code></td>
+      <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">true</code></td>
+      <td data-mobile-label="Desc">Toggle the transition animation for the drawer. Set to <code class="code">false</code> to disable.</td>
     </tr>
   </table>
 </div>
@@ -600,7 +632,7 @@ drawer.toggle('drawer-key');
 
 // Run some code after promise resolves
 drawer.toggle('drawer-key').then((result) => {
-  console.log(result);
+console.log(result);
 });
 ```
 
@@ -626,7 +658,7 @@ drawer.open('drawer-key');
 
 // Run some code after promise resolves
 drawer.open('drawer-key').then((result) => {
-  console.log(result);
+console.log(result);
 });
 ```
 
@@ -652,7 +684,7 @@ drawer.close('drawer-key');
 
 // Run some code after promise resolves
 drawer.close('drawer-key').then((result) => {
-  console.log(result);
+console.log(result);
 });
 ```
 
@@ -701,8 +733,8 @@ console.log(drawer.mediaQueryLists);
 
 // Log result
 [{
-  mql: MediaQueryList // Obj
-  drawer: '[unique-id]' // String
+mql: MediaQueryList // Obj
+drawer: '[unique-id]' // String
 }]
 ```
 
