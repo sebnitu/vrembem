@@ -952,7 +952,7 @@
 	              stateSave(drawer);
 
 	              if (isModal) {
-	                focusTrapInit(drawer);
+	                focusTrapInit(drawer.querySelector("[data-".concat(api.settings.dataDialog, "]")));
 	                setInert(true);
 	              }
 
@@ -1073,6 +1073,7 @@
 
 	  var getFocusable = function getFocusable(drawer) {
 	    var focusable = [];
+	    var scrollPos = drawer.scrollTop;
 	    var items = drawer.querySelectorAll("\n      a[href]:not([disabled]),\n      button:not([disabled]),\n      textarea:not([disabled]),\n      input[type=\"text\"]:not([disabled]),\n      input[type=\"radio\"]:not([disabled]),\n      input[type=\"checkbox\"]:not([disabled]),\n      select:not([disabled]),\n      [tabindex]:not([tabindex=\"-1\"])\n    ");
 	    items.forEach(function (el) {
 	      el.focus();
@@ -1081,6 +1082,7 @@
 	        focusable.push(el);
 	      }
 	    });
+	    drawer.scrollTop = scrollPos;
 	    return focusable;
 	  };
 

@@ -22,6 +22,7 @@ new Modal({
   },
   toggleOverflow: 'body, .page__article'
 });
+
 const scrollStash = new ScrollStash({
   autoInit: true,
   selectorAnchor: '.is-active',
@@ -29,6 +30,7 @@ const scrollStash = new ScrollStash({
 });
 
 const el = document.querySelector('[data-scroll-stash]');
+
 document.addEventListener('drawer:opened', () => {
-  scrollStash.showAnchor(el, 'smooth');
+  scrollStash.anchor.show(el, 'smooth');
 });

@@ -243,7 +243,7 @@ export const Drawer = (options) => {
       await openTransition(drawer);
       stateSave(drawer);
       if (isModal) {
-        focusTrapInit(drawer);
+        focusTrapInit(drawer.querySelector(`[data-${api.settings.dataDialog}]`));
         setInert(true);
       }
       focusDrawer(drawer);
@@ -325,6 +325,7 @@ export const Drawer = (options) => {
 
   const getFocusable = (drawer) => {
     const focusable = [];
+    const scrollPos = drawer.scrollTop;
     const items = drawer.querySelectorAll(`
       a[href]:not([disabled]),
       button:not([disabled]),
@@ -341,6 +342,7 @@ export const Drawer = (options) => {
         focusable.push(el);
       }
     });
+    drawer.scrollTop = scrollPos;
     return focusable;
   };
 
