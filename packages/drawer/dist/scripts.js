@@ -964,15 +964,10 @@
 	              return _context.abrupt("return", drawer);
 
 	            case 17:
-	              if (!(drawer && hasClass(drawer, api.settings.stateOpened))) {
-	                _context.next = 20;
-	                break;
-	              }
-
 	              focusDrawer(drawer);
 	              return _context.abrupt("return", drawer);
 
-	            case 20:
+	            case 19:
 	            case "end":
 	              return _context.stop();
 	          }
@@ -1061,10 +1056,10 @@
 	    if (innerFocus) {
 	      innerFocus.focus();
 	    } else {
-	      var item = drawer.querySelector("[data-".concat(api.settings.dataDialog, "][tabindex=\"-1\"]"));
+	      var dialog = drawer.querySelector("[data-".concat(api.settings.dataDialog, "][tabindex=\"-1\"]"));
 
-	      if (item) {
-	        item.focus();
+	      if (dialog) {
+	        dialog.focus();
 	      }
 	    }
 	  };

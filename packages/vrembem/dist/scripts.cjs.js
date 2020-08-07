@@ -212,359 +212,6 @@ var Dismissible = function Dismissible(options) {
   return api;
 };
 
-function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-var Drawer = function Drawer(options) {
-  var api = {};
-  var defaults = {
-    autoInit: false,
-    dataDrawer: 'drawer',
-    dataToggle: 'drawer-toggle',
-    dataOpen: 'drawer-open',
-    dataClose: 'drawer-close',
-    dataBreakpoint: 'drawer-breakpoint',
-    dataFocus: 'drawer-focus',
-    stateOpened: 'is-opened',
-    stateOpening: 'is-opening',
-    stateClosing: 'is-closing',
-    stateClosed: 'is-closed',
-    classModal: 'drawer_modal',
-    breakpoints: breakpoints,
-    customEventPrefix: 'drawer:',
-    focus: true,
-    saveState: true,
-    saveKey: 'DrawerState'
-  };
-  api.settings = _objectSpread$2(_objectSpread$2({}, defaults), options);
-  api.breakpoint = {};
-  api.state = {};
-
-  api.init = function () {
-    setState();
-    breakpointInit();
-    document.addEventListener('click', handler, false);
-    document.addEventListener('keyup', handlerEscape, false);
-  };
-
-  api.destroy = function () {
-    breakpointDestroy();
-    api.memoryTrigger = null;
-    api.memoryTarget = null;
-    api.state = {};
-    localStorage.removeItem(api.settings.saveKey);
-    document.removeEventListener('click', handler, false);
-    document.removeEventListener('keyup', handlerEscape, false);
-  };
-
-  var handler = function handler(event) {
-    var trigger = event.target.closest("[data-".concat(api.settings.dataToggle, "]"));
-
-    if (trigger) {
-      var selector = trigger.dataset[camelCase(api.settings.dataToggle)];
-      saveTrigger(trigger);
-      api.toggle(selector);
-      event.preventDefault();
-      return;
-    }
-
-    trigger = event.target.closest("[data-".concat(api.settings.dataOpen, "]"));
-
-    if (trigger) {
-      var _selector = trigger.dataset[camelCase(api.settings.dataOpen)];
-      saveTrigger(trigger);
-      api.open(_selector);
-      event.preventDefault();
-      return;
-    }
-
-    trigger = event.target.closest("[data-".concat(api.settings.dataClose, "]"));
-
-    if (trigger) {
-      var _selector2 = trigger.dataset[camelCase(api.settings.dataClose)];
-
-      if (_selector2) {
-        saveTrigger(trigger);
-        api.close(_selector2);
-      } else {
-        var target = event.target.closest("[data-".concat(api.settings.dataDrawer, "]"));
-        if (target) api.close(target);
-      }
-
-      event.preventDefault();
-      return;
-    }
-
-    if (event.target.dataset[camelCase(api.settings.dataDrawer)]) {
-      api.close(event.target);
-      return;
-    }
-  };
-
-  var handlerEscape = function handlerEscape(event) {
-    if (event.keyCode == 27) {
-      var target = document.querySelector(".".concat(api.settings.classModal, ".").concat(api.settings.stateOpened));
-
-      if (target) {
-        api.close(target);
-      }
-    }
-  };
-
-  var drawerKeyCheck = function drawerKeyCheck(drawerKey) {
-    if (typeof drawerKey === 'string') {
-      return document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
-    } else {
-      return drawerKey;
-    }
-  };
-
-  api.toggle = function (drawerKey, callback) {
-    var drawer = drawerKeyCheck(drawerKey);
-
-    if (drawer) {
-      var isOpen = hasClass(drawer, api.settings.stateOpened);
-
-      if (!isOpen) {
-        api.open(drawer, callback);
-      } else {
-        api.close(drawer, callback);
-      }
-    }
-  };
-
-  api.open = function (drawerKey, callback) {
-    var drawer = drawerKeyCheck(drawerKey);
-
-    if (drawer && !hasClass(drawer, api.settings.stateOpened)) {
-      saveTarget(drawer);
-      addClass(drawer, api.settings.stateOpening);
-      removeClass(drawer, api.settings.stateClosed);
-      drawer.addEventListener('transitionend', function _listener() {
-        addClass(drawer, api.settings.stateOpened);
-        removeClass(drawer, api.settings.stateOpening);
-        saveState(drawer);
-        setFocus();
-        typeof callback === 'function' && callback();
-        this.removeEventListener('transitionend', _listener, true);
-        var customEvent = new CustomEvent(api.settings.customEventPrefix + 'opened', {
-          bubbles: true
-        });
-        drawer.dispatchEvent(customEvent);
-      }, true);
-    } else if (drawer && hasClass(drawer, api.settings.stateOpened)) {
-      saveTarget(drawer);
-      setFocus();
-    }
-  };
-
-  api.close = function (drawerKey, callback) {
-    var drawer = drawerKeyCheck(drawerKey);
-
-    if (drawer && hasClass(drawer, api.settings.stateOpened)) {
-      addClass(drawer, api.settings.stateClosing);
-      removeClass(drawer, api.settings.stateOpened);
-      drawer.addEventListener('transitionend', function _listener() {
-        addClass(drawer, api.settings.stateClosed);
-        removeClass(drawer, api.settings.stateClosing);
-        saveState(drawer);
-        returnFocus();
-        typeof callback === 'function' && callback();
-        this.removeEventListener('transitionend', _listener, true);
-        var customEvent = new CustomEvent(api.settings.customEventPrefix + 'closed', {
-          bubbles: true
-        });
-        drawer.dispatchEvent(customEvent);
-      }, true);
-    }
-  };
-
-  var saveTarget = function saveTarget(target) {
-    if (api.settings.focus) {
-      api.memoryTarget = target;
-    }
-  };
-
-  var saveTrigger = function saveTrigger(trigger) {
-    if (api.settings.focus) {
-      api.memoryTrigger = trigger;
-    }
-  };
-
-  var setFocus = function setFocus() {
-    if (api.settings.focus && api.memoryTarget) {
-      var innerFocus = api.memoryTarget.querySelector("[data-".concat(api.settings.dataFocus, "]"));
-
-      if (innerFocus) {
-        innerFocus.focus();
-      } else {
-        api.memoryTarget.focus();
-      }
-
-      api.memoryTarget = null;
-    }
-  };
-
-  var returnFocus = function returnFocus() {
-    if (api.settings.focus && api.memoryTrigger) {
-      api.memoryTrigger.focus();
-      api.memoryTrigger = null;
-    }
-  };
-
-  var saveState = function saveState() {
-    var target = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-
-    if (api.settings.saveState) {
-      var drawers = target ? [target] : document.querySelectorAll("[data-".concat(api.settings.dataDrawer, "]"));
-      drawers.forEach(function (el) {
-        if (!hasClass(el, api.settings.classModal)) {
-          api.state[el.dataset[camelCase(api.settings.dataDrawer)]] = hasClass(el, api.settings.stateOpened) ? api.settings.stateOpened : api.settings.stateClosed;
-        }
-      });
-      localStorage.setItem(api.settings.saveKey, JSON.stringify(api.state));
-    }
-  };
-
-  var setState = function setState() {
-    if (api.settings.saveState) {
-      if (localStorage.getItem(api.settings.saveKey)) {
-        api.state = JSON.parse(localStorage.getItem(api.settings.saveKey));
-        Object.keys(api.state).forEach(function (key) {
-          var item = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(key, "\"]"));
-
-          if (item) {
-            if (api.state[key] == api.settings.stateOpened) {
-              addClass(item, api.settings.stateOpened);
-            } else {
-              removeClass(item, api.settings.stateOpened);
-            }
-          }
-        });
-      } else {
-        saveState();
-      }
-    } else {
-      if (localStorage.getItem(api.settings.saveKey)) {
-        localStorage.removeItem(api.settings.saveKey);
-      }
-    }
-  };
-
-  api.breakpoint.init = function () {
-    breakpointInit();
-  };
-
-  api.breakpoint.destroy = function () {
-    breakpointDestroy();
-  };
-
-  api.breakpoint.check = function () {
-    var event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-    breakpointCheck(event);
-  };
-
-  api.switchToModal = function (drawerKey) {
-    var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
-
-    if (drawer) {
-      switchToModal(drawer);
-    }
-  };
-
-  api.switchToDefault = function (drawerKey) {
-    var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
-
-    if (drawer) {
-      switchToDefault(drawer);
-    }
-  };
-
-  var breakpointInit = function breakpointInit() {
-    api.mediaQueryLists = [];
-    var drawers = document.querySelectorAll("[data-".concat(api.settings.dataBreakpoint, "]"));
-    drawers.forEach(function (drawer) {
-      var id = drawer.dataset[camelCase(api.settings.dataDrawer)];
-      var key = drawer.dataset[camelCase(api.settings.dataBreakpoint)];
-      var bp = api.settings.breakpoints[key] ? api.settings.breakpoints[key] : key;
-      var mql = window.matchMedia('(min-width:' + bp + ')');
-      breakpointMatch(mql, drawer);
-      mql.addListener(breakpointCheck);
-      api.mediaQueryLists.push({
-        'mql': mql,
-        'drawer': id
-      });
-    });
-  };
-
-  var breakpointDestroy = function breakpointDestroy() {
-    if (api.mediaQueryLists && api.mediaQueryLists.length) {
-      api.mediaQueryLists.forEach(function (item) {
-        item.mql.removeListener(breakpointCheck);
-      });
-    }
-
-    api.mediaQueryLists = null;
-  };
-
-  var breakpointCheck = function breakpointCheck(event) {
-    if (api.mediaQueryLists && api.mediaQueryLists.length) {
-      api.mediaQueryLists.forEach(function (item) {
-        var filter = event ? event.media == item.mql.media : true;
-
-        if (filter) {
-          var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(item.drawer, "\"]"));
-
-          if (drawer) {
-            breakpointMatch(item.mql, drawer);
-          }
-        }
-      });
-      var customEvent = new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
-        bubbles: true
-      });
-      document.dispatchEvent(customEvent);
-    }
-  };
-
-  var breakpointMatch = function breakpointMatch(mql, drawer) {
-    if (mql.matches) {
-      switchToDefault(drawer);
-    } else {
-      switchToModal(drawer);
-    }
-  };
-
-  var switchToModal = function switchToModal(drawer) {
-    addClass(drawer, api.settings.classModal);
-    addClass(drawer, api.settings.stateClosed);
-    removeClass(drawer, api.settings.stateOpened);
-    var customEvent = new CustomEvent(api.settings.customEventPrefix + 'toModal', {
-      bubbles: true
-    });
-    drawer.dispatchEvent(customEvent);
-  };
-
-  var switchToDefault = function switchToDefault(drawer) {
-    removeClass(drawer, api.settings.classModal);
-    var drawerKey = drawer.dataset[camelCase(api.settings.dataDrawer)];
-    var drawerState = api.state[drawerKey];
-
-    if (drawerState == api.settings.stateOpened) {
-      addClass(drawer, api.settings.stateOpened);
-      removeClass(drawer, api.settings.stateClosed);
-    }
-
-    var customEvent = new CustomEvent(api.settings.customEventPrefix + 'toDefault', {
-      bubbles: true
-    });
-    drawer.dispatchEvent(customEvent);
-  };
-
-  if (api.settings.autoInit) api.init();
-  return api;
-};
-
 function createCommonjsModule(fn, basedir, module) {
 	return module = {
 	  path: basedir,
@@ -1211,6 +858,567 @@ function _asyncToGenerator(fn) {
 }
 
 var asyncToGenerator = _asyncToGenerator;
+
+function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+var Drawer = function Drawer(options) {
+  var api = {};
+  var defaults = {
+    autoInit: false,
+    dataDrawer: 'drawer',
+    dataDialog: 'drawer-dialog',
+    dataToggle: 'drawer-toggle',
+    dataOpen: 'drawer-open',
+    dataClose: 'drawer-close',
+    dataBreakpoint: 'drawer-breakpoint',
+    dataFocus: 'drawer-focus',
+    stateOpened: 'is-opened',
+    stateOpening: 'is-opening',
+    stateClosing: 'is-closing',
+    stateClosed: 'is-closed',
+    classModal: 'drawer_modal',
+    selectorInert: null,
+    selectorOverflow: null,
+    breakpoints: breakpoints,
+    customEventPrefix: 'drawer:',
+    stateSave: true,
+    stateKey: 'DrawerState',
+    setTabindex: true,
+    transition: true
+  };
+  var working = false;
+  api.settings = _objectSpread$2(_objectSpread$2({}, defaults), options);
+  api.memory = {};
+  api.state = {};
+  api.breakpoint = {};
+
+  api.init = function () {
+    stateSet();
+    setTabindex();
+    api.breakpoint.init();
+    document.addEventListener('click', handler, false);
+    document.addEventListener('keyup', handlerEscape, false);
+  };
+
+  api.destroy = function () {
+    api.breakpoint.destroy();
+    api.memory = {};
+    api.state = {};
+    localStorage.removeItem(api.settings.stateKey);
+    document.removeEventListener('click', handler, false);
+    document.removeEventListener('keyup', handlerEscape, false);
+  };
+
+  var handler = function handler(event) {
+    if (working) return;
+    var trigger = event.target.closest("[data-".concat(api.settings.dataToggle, "]"));
+
+    if (trigger) {
+      var selector = trigger.getAttribute("data-".concat(api.settings.dataToggle));
+      api.memory.trigger = trigger;
+      api.toggle(selector);
+      event.preventDefault();
+      return;
+    }
+
+    trigger = event.target.closest("[data-".concat(api.settings.dataOpen, "]"));
+
+    if (trigger) {
+      var _selector = trigger.getAttribute("data-".concat(api.settings.dataOpen));
+
+      api.memory.trigger = trigger;
+      api.open(_selector);
+      event.preventDefault();
+      return;
+    }
+
+    trigger = event.target.closest("[data-".concat(api.settings.dataClose, "]"));
+
+    if (trigger) {
+      var _selector2 = trigger.getAttribute("data-".concat(api.settings.dataClose));
+
+      if (_selector2) {
+        api.memory.trigger = trigger;
+        api.close(_selector2);
+      } else {
+        var target = event.target.closest("[data-".concat(api.settings.dataDrawer, "]"));
+        if (target) api.close(target);
+      }
+
+      event.preventDefault();
+      return;
+    }
+
+    if (event.target.hasAttribute("data-".concat(api.settings.dataDrawer))) {
+      api.close(event.target);
+      return;
+    }
+  };
+
+  var handlerEscape = function handlerEscape(event) {
+    if (working) return;
+
+    if (event.keyCode == 27) {
+      var target = document.querySelector(".".concat(api.settings.classModal, ".").concat(api.settings.stateOpened));
+
+      if (target) {
+        api.close(target);
+      }
+    }
+  };
+
+  var drawerKeyCheck = function drawerKeyCheck(drawerKey) {
+    if (typeof drawerKey === 'string') {
+      return document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
+    } else {
+      return drawerKey;
+    }
+  };
+
+  var drawerNotFound = function drawerNotFound(key) {
+    return Promise.reject(new Error("Did not find drawer with key: \"".concat(key, "\"")));
+  };
+
+  var setInert = function setInert(state) {
+    if (api.settings.selectorInert) {
+      var content = document.querySelectorAll(api.settings.selectorInert);
+      content.forEach(function (el) {
+        if (state) {
+          el.inert = true;
+          el.setAttribute('aria-hidden', true);
+        } else {
+          el.inert = null;
+          el.removeAttribute('aria-hidden');
+        }
+      });
+    }
+  };
+
+  var setOverflowHidden = function setOverflowHidden(state) {
+    if (api.settings.selectorOverflow) {
+      var els = document.querySelectorAll(api.settings.selectorOverflow);
+      els.forEach(function (el) {
+        if (state) {
+          el.style.overflow = 'hidden';
+        } else {
+          el.style.removeProperty('overflow');
+        }
+      });
+    }
+  };
+
+  var setTabindex = function setTabindex() {
+    var enable = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : api.settings.setTabindex;
+
+    if (enable) {
+      var drawers = document.querySelectorAll("[data-".concat(api.settings.dataDrawer, "] [data-").concat(api.settings.dataDialog, "]"));
+      drawers.forEach(function (el) {
+        el.setAttribute('tabindex', '-1');
+      });
+    }
+  };
+
+  api.setTabindex = function () {
+    setTabindex(true);
+  };
+
+  var openTransition = function openTransition(drawer) {
+    return new Promise(function (resolve) {
+      if (api.settings.transition) {
+        removeClass(drawer, api.settings.stateClosed);
+        addClass(drawer, api.settings.stateOpening);
+        drawer.addEventListener('transitionend', function _f() {
+          addClass(drawer, api.settings.stateOpened);
+          removeClass(drawer, api.settings.stateOpening);
+          resolve(drawer);
+          this.removeEventListener('transitionend', _f);
+        });
+      } else {
+        addClass(drawer, api.settings.stateOpened);
+        removeClass(drawer, api.settings.stateClosed);
+        resolve(drawer);
+      }
+    });
+  };
+
+  var closeTransition = function closeTransition(drawer) {
+    return new Promise(function (resolve) {
+      if (api.settings.transition) {
+        addClass(drawer, api.settings.stateClosing);
+        removeClass(drawer, api.settings.stateOpened);
+        drawer.addEventListener('transitionend', function _f() {
+          removeClass(drawer, api.settings.stateClosing);
+          addClass(drawer, api.settings.stateClosed);
+          resolve(drawer);
+          this.removeEventListener('transitionend', _f);
+        });
+      } else {
+        addClass(drawer, api.settings.stateClosed);
+        removeClass(drawer, api.settings.stateOpened);
+        resolve(drawer);
+      }
+    });
+  };
+
+  api.open = function () {
+    var _ref = asyncToGenerator(regenerator.mark(function _callee(drawerKey) {
+      var drawer, isModal;
+      return regenerator.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              drawer = drawerKeyCheck(drawerKey);
+
+              if (drawer) {
+                _context.next = 3;
+                break;
+              }
+
+              return _context.abrupt("return", drawerNotFound(drawerKey));
+
+            case 3:
+              if (hasClass(drawer, api.settings.stateOpened)) {
+                _context.next = 17;
+                break;
+              }
+
+              working = true;
+              isModal = hasClass(drawer, api.settings.classModal);
+
+              if (isModal) {
+                setOverflowHidden(true);
+              }
+
+              _context.next = 9;
+              return openTransition(drawer);
+
+            case 9:
+              stateSave(drawer);
+
+              if (isModal) {
+                focusTrapInit(drawer);
+                setInert(true);
+              }
+
+              focusDrawer(drawer);
+              drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
+                bubbles: true
+              }));
+              working = false;
+              return _context.abrupt("return", drawer);
+
+            case 17:
+              focusDrawer(drawer);
+              return _context.abrupt("return", drawer);
+
+            case 19:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  api.close = function () {
+    var _ref2 = asyncToGenerator(regenerator.mark(function _callee2(drawerKey) {
+      var drawer;
+      return regenerator.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              drawer = drawerKeyCheck(drawerKey);
+
+              if (drawer) {
+                _context2.next = 3;
+                break;
+              }
+
+              return _context2.abrupt("return", drawerNotFound(drawerKey));
+
+            case 3:
+              if (!hasClass(drawer, api.settings.stateOpened)) {
+                _context2.next = 16;
+                break;
+              }
+
+              working = true;
+
+              if (hasClass(drawer, api.settings.classModal)) {
+                setInert(false);
+                setOverflowHidden(false);
+              }
+
+              _context2.next = 8;
+              return closeTransition(drawer);
+
+            case 8:
+              stateSave(drawer);
+              focusTrigger();
+              focusTrapDestroy(drawer);
+              drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
+                bubbles: true
+              }));
+              working = false;
+              return _context2.abrupt("return", drawer);
+
+            case 16:
+              return _context2.abrupt("return", drawer);
+
+            case 17:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function (_x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  api.toggle = function (drawerKey) {
+    var drawer = drawerKeyCheck(drawerKey);
+    if (!drawer) return drawerNotFound(drawerKey);
+    var isOpen = hasClass(drawer, api.settings.stateOpened);
+
+    if (!isOpen) {
+      return api.open(drawer);
+    } else {
+      return api.close(drawer);
+    }
+  };
+
+  var focusDrawer = function focusDrawer(drawer) {
+    var innerFocus = drawer.querySelector("[data-".concat(api.settings.dataFocus, "]"));
+
+    if (innerFocus) {
+      innerFocus.focus();
+    } else {
+      var dialog = drawer.querySelector("[data-".concat(api.settings.dataDialog, "][tabindex=\"-1\"]"));
+
+      if (dialog) {
+        dialog.focus();
+      }
+    }
+  };
+
+  var focusTrigger = function focusTrigger() {
+    if (api.memory.trigger) {
+      api.memory.trigger.focus();
+      api.memory.trigger = null;
+    }
+  };
+
+  var getFocusable = function getFocusable(drawer) {
+    var focusable = [];
+    var items = drawer.querySelectorAll("\n      a[href]:not([disabled]),\n      button:not([disabled]),\n      textarea:not([disabled]),\n      input[type=\"text\"]:not([disabled]),\n      input[type=\"radio\"]:not([disabled]),\n      input[type=\"checkbox\"]:not([disabled]),\n      select:not([disabled]),\n      [tabindex]:not([tabindex=\"-1\"])\n    ");
+    items.forEach(function (el) {
+      el.focus();
+
+      if (el === document.activeElement) {
+        focusable.push(el);
+      }
+    });
+    return focusable;
+  };
+
+  var focusTrapInit = function focusTrapInit(drawer) {
+    api.memory.focusable = getFocusable(drawer);
+
+    if (api.memory.focusable.length) {
+      api.memory.focusableFirst = api.memory.focusable[0];
+      api.memory.focusableLast = api.memory.focusable[api.memory.focusable.length - 1];
+      drawer.addEventListener('keydown', handlerFocusTrap);
+    } else {
+      drawer.addEventListener('keydown', handlerFocusLock);
+    }
+  };
+
+  var focusTrapDestroy = function focusTrapDestroy(drawer) {
+    api.memory.focusable = null;
+    api.memory.focusableFirst = null;
+    api.memory.focusableLast = null;
+    drawer.removeEventListener('keydown', handlerFocusTrap);
+    drawer.removeEventListener('keydown', handlerFocusLock);
+  };
+
+  var handlerFocusTrap = function handlerFocusTrap(event) {
+    var isTab = event.key === 'Tab' || event.keyCode === 9;
+    if (!isTab) return;
+
+    if (event.shiftKey) {
+      var dialog = document.querySelector("\n        [data-".concat(api.settings.dataDrawer, "].").concat(api.settings.stateOpened, "\n        [data-").concat(api.settings.dataDialog, "][tabindex=\"-1\"]\n      "));
+
+      if (document.activeElement === api.memory.focusableFirst || document.activeElement === dialog) {
+        api.memory.focusableLast.focus();
+        event.preventDefault();
+      }
+    } else {
+      if (document.activeElement === api.memory.focusableLast) {
+        api.memory.focusableFirst.focus();
+        event.preventDefault();
+      }
+    }
+  };
+
+  var handlerFocusLock = function handlerFocusLock(event) {
+    var isTab = event.key === 'Tab' || event.keyCode === 9;
+    if (isTab) event.preventDefault();
+  };
+
+  var stateSave = function stateSave() {
+    var target = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+    if (api.settings.stateSave) {
+      var drawers = target ? [target] : document.querySelectorAll("[data-".concat(api.settings.dataDrawer, "]"));
+      drawers.forEach(function (el) {
+        if (!hasClass(el, api.settings.classModal)) {
+          api.state[el.getAttribute("data-".concat(api.settings.dataDrawer))] = hasClass(el, api.settings.stateOpened) ? api.settings.stateOpened : api.settings.stateClosed;
+        }
+      });
+      localStorage.setItem(api.settings.stateKey, JSON.stringify(api.state));
+    }
+  };
+
+  var stateSet = function stateSet() {
+    if (api.settings.stateSave) {
+      if (localStorage.getItem(api.settings.stateKey)) {
+        api.state = JSON.parse(localStorage.getItem(api.settings.stateKey));
+        Object.keys(api.state).forEach(function (key) {
+          var item = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(key, "\"]"));
+
+          if (item) {
+            if (api.state[key] == api.settings.stateOpened) {
+              addClass(item, api.settings.stateOpened);
+            } else {
+              removeClass(item, api.settings.stateOpened);
+            }
+          }
+        });
+      } else {
+        stateSave();
+      }
+    } else {
+      if (localStorage.getItem(api.settings.stateKey)) {
+        localStorage.removeItem(api.settings.stateKey);
+      }
+    }
+  };
+
+  api.breakpoint.init = function () {
+    api.mediaQueryLists = [];
+    var drawers = document.querySelectorAll("[data-".concat(api.settings.dataBreakpoint, "]"));
+    drawers.forEach(function (drawer) {
+      var id = drawer.getAttribute("data-".concat(api.settings.dataDrawer));
+      var key = drawer.getAttribute("data-".concat(api.settings.dataBreakpoint));
+      var bp = api.settings.breakpoints[key] ? api.settings.breakpoints[key] : key;
+      var mql = window.matchMedia('(min-width:' + bp + ')');
+      breakpointMatch(mql, drawer);
+      mql.addListener(breakpointCheck);
+      api.mediaQueryLists.push({
+        'mql': mql,
+        'drawer': id
+      });
+    });
+  };
+
+  api.breakpoint.destroy = function () {
+    if (api.mediaQueryLists && api.mediaQueryLists.length) {
+      api.mediaQueryLists.forEach(function (item) {
+        item.mql.removeListener(breakpointCheck);
+      });
+    }
+
+    api.mediaQueryLists = null;
+  };
+
+  var breakpointCheck = function breakpointCheck(event) {
+    if (api.mediaQueryLists && api.mediaQueryLists.length) {
+      api.mediaQueryLists.forEach(function (item) {
+        var filter = event ? event.media == item.mql.media : true;
+
+        if (filter) {
+          var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(item.drawer, "\"]"));
+
+          if (drawer) {
+            breakpointMatch(item.mql, drawer);
+          }
+        }
+      });
+      document.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
+        bubbles: true
+      }));
+    }
+  };
+
+  api.breakpoint.check = function () {
+    var event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+    breakpointCheck(event);
+  };
+
+  var breakpointMatch = function breakpointMatch(mql, drawer) {
+    if (mql.matches) {
+      switchToDefault(drawer);
+    } else {
+      switchToModal(drawer);
+    }
+  };
+
+  var switchToModal = function switchToModal(drawer) {
+    if (hasClass(drawer, api.settings.classModal)) return;
+    addClass(drawer, api.settings.classModal);
+    addClass(drawer, api.settings.stateClosed);
+    removeClass(drawer, api.settings.stateOpened);
+    drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'toModal', {
+      bubbles: true
+    }));
+  };
+
+  api.switchToModal = function (drawerKey) {
+    var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
+
+    if (drawer) {
+      switchToModal(drawer);
+    }
+  };
+
+  var switchToDefault = function switchToDefault(drawer) {
+    if (!hasClass(drawer, api.settings.classModal)) return;
+    setInert(false);
+    setOverflowHidden(false);
+    removeClass(drawer, api.settings.classModal);
+    focusTrapDestroy(drawer);
+    var drawerKey = drawer.getAttribute("data-".concat(api.settings.dataDrawer));
+    var drawerState = api.state[drawerKey];
+
+    if (drawerState == api.settings.stateOpened) {
+      addClass(drawer, api.settings.stateOpened);
+      removeClass(drawer, api.settings.stateClosed);
+    }
+
+    drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'toDefault', {
+      bubbles: true
+    }));
+  };
+
+  api.switchToDefault = function (drawerKey) {
+    var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
+
+    if (drawer) {
+      switchToDefault(drawer);
+    }
+  };
+
+  if (api.settings.autoInit) api.init();
+  return api;
+};
 
 function ownKeys$3(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
