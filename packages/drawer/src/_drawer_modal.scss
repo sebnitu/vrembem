@@ -12,13 +12,23 @@ $_m: var.$prefix-modifier;
   overflow: hidden;
   background-color: rgba(var.$modal-background, 0);
 
-  .#{$_b}drawer#{$_e}item {
+  .#{$_b}drawer#{$_e}dialog {
     position: relative;
     z-index: (var.$modal-zindex + 1);
     width: var.$modal-width;
     max-width: var.$modal-max-width;
-    background-color: var.$modal-item-background;
-    box-shadow: var.$modal-item-box-shadow;
+    background-color: var.$modal-background;
+    box-shadow: var.$modal-box-shadow;
+  }
+
+  .#{$_b}dialog#{$_e}header,
+  .#{$_b}dialog#{$_e}footer {
+    border: var.$modal-sep-border;
+    background: var.$modal-background;
+  }
+
+  .#{$_b}dialog#{$_e}body {
+    background: var.$modal-background;
   }
 }
 
@@ -37,9 +47,9 @@ $_m: var.$prefix-modifier;
 
 .#{$_b}drawer#{$_m}modal.is-opening,
 .#{$_b}drawer#{$_m}modal.is-opened {
-  background-color: rgba(var.$modal-background, var.$modal-background-alpha);
+  background-color: rgba(var.$modal-screen-background, var.$modal-screen-background-alpha);
 }
 
 .#{$_b}drawer#{$_m}modal.is-closing {
-  background-color: rgba(var.$modal-background, 0);
+  background-color: rgba(var.$modal-screen-background, 0);
 }

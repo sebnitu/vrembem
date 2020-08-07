@@ -9,12 +9,12 @@ let drawer;
 const markup = `
   <div class="drawer__wrapper">
     <div class="drawer drawer_modal is-closed" data-drawer="drawer-one" data-drawer-breakpoint="md">
-      <div class="drawer__item">
+      <div data-drawer-dialog class="drawer__dialog">
         <button data-drawer-close>Close</button>
       </div>
     </div>
     <div class="drawer is-opened" data-drawer="drawer-two" data-drawer-breakpoint="400px">
-      <div class="drawer__item">
+      <div data-drawer-dialog class="drawer__dialog">
         <button data-drawer-close>Close</button>
       </div>
     </div>
@@ -28,12 +28,12 @@ const markup = `
 const markupCustomAttr = `
 <div class="drawer__wrapper">
   <div class="drawer is-closed" data-drawer="drawer-one" data-bp="md">
-    <div class="drawer__item">
+    <div data-drawer-dialog class="drawer__dialog">
       <button data-drawer-close>Close</button>
     </div>
   </div>
   <div class="drawer is-closed" data-drawer="drawer-two" data-bp="400px">
-    <div class="drawer__item">
+    <div data-drawer-dialog class="drawer__dialog">
       <button data-drawer-close>Close</button>
     </div>
   </div>
@@ -47,7 +47,7 @@ const markupCustomAttr = `
 const markupCustomBreakpoints = `
 <div class="drawer__wrapper">
   <div class="drawer is-closed" data-drawer="drawer-one" data-drawer-breakpoint="xxs">
-    <div class="drawer__item">
+    <div data-drawer-dialog class="drawer__dialog">
       <button data-drawer-close>Close</button>
     </div>
   </div>

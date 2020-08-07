@@ -1,23 +1,23 @@
 import { Drawer } from '../index.js';
+import { transition } from './helpers/transition';
 import '@testing-library/jest-dom/extend-expect';
 
 let drawer;
-const ev = new Event('transitionend');
 
 const markup = `
   <div class="drawer__wrapper">
     <div class="drawer" data-drawer="drawer-one">
-      <div class="drawer__item">
+      <div data-drawer-dialog class="drawer__dialog">
         <button class="close-one" data-drawer-close>Close</button>
       </div>
     </div>
     <div class="drawer" data-drawer="drawer-two">
-      <div class="drawer__item">
+      <div data-drawer-dialog class="drawer__dialog">
         <button class="close-two" data-drawer-close>Close</button>
       </div>
     </div>
     <div class="drawer drawer_modal" data-drawer="drawer-three">
-      <div class="drawer__item">
+      <div data-drawer-dialog class="drawer__dialog">
         <button class="close-three" data-drawer-close>Close</button>
       </div>
     </div>
@@ -90,7 +90,7 @@ test('should do nothing if saved drawer doesn\'t exist on the page', () => {
   expect(drawer.init).not.toThrow();
 });
 
-test('should update local storage when toggle button changes state', () => {
+test('should update local storage when toggle button changes state', async () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({ autoInit: true });
   localStorage.setItem('DrawerState', JSON.stringify({
@@ -106,11 +106,11 @@ test('should update local storage when toggle button changes state', () => {
   expect(drawerTwo).not.toHaveClass('is-opened');
 
   toggleOne.click();
-  drawerOne.dispatchEvent(ev);
+  await transition(drawerOne);
   expect(drawerOne).toHaveClass('is-opened');
 
   toggleTwo.click();
-  drawerTwo.dispatchEvent(ev);
+  await transition(drawerTwo);
   expect(drawerTwo).toHaveClass('is-opened');
 
   const state = JSON.parse(localStorage.getItem('DrawerState'));
@@ -119,7 +119,7 @@ test('should update local storage when toggle button changes state', () => {
   expect(state['drawer-two']).toMatch('is-opened');
 });
 
-test('should update local storage when close button changes state', () => {
+test('should update local storage when close button changes state', async () => {
   document.body.innerHTML = markup;
   drawer = new Drawer();
   localStorage.setItem('DrawerState', JSON.stringify({
@@ -136,11 +136,11 @@ test('should update local storage when close button changes state', () => {
   expect(drawerTwo).toHaveClass('is-opened');
 
   closeOne.click();
-  drawerOne.dispatchEvent(ev);
+  await transition(drawerOne);
   expect(drawerOne).not.toHaveClass('is-opened');
 
   closeTwo.click();
-  drawerTwo.dispatchEvent(ev);
+  await transition(drawerTwo);
   expect(drawerTwo).not.toHaveClass('is-opened');
 
   const state = JSON.parse(localStorage.getItem('DrawerState'));
@@ -157,7 +157,7 @@ test('should remove localStorage when state is disabled', () => {
   }));
   drawer = new Drawer({
     autoInit: true,
-    saveState: false
+    stateSave: false
   });
   expect(Object.getOwnPropertyNames(localStorage).length).toBe(0);
   expect(Object.getOwnPropertyNames(drawer.state).length).toBe(0);
@@ -167,22 +167,22 @@ test('should do nothing with localStorage if state feature is disabled', () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({
     autoInit: true,
-    saveState: false
+    stateSave: false
   });
   expect(Object.getOwnPropertyNames(localStorage).length).toBe(0);
   expect(Object.getOwnPropertyNames(drawer.state).length).toBe(0);
 });
 
-test('should do nothing with localStorage when drawer is opened and saveState is called', () => {
+test('should do nothing with localStorage when drawer is opened and stateSave is called', async () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({
     autoInit: true,
-    saveState: false
+    stateSave: false
   });
   const el = document.querySelector('[data-drawer="drawer-one"]');
   expect(localStorage.getItem('DrawerState')).toBe(null);
   drawer.open('drawer-one');
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(localStorage.getItem('DrawerState')).toBe(null);
   expect(Object.getOwnPropertyNames(localStorage).length).toBe(0);
   expect(Object.getOwnPropertyNames(drawer.state).length).toBe(0);
@@ -192,7 +192,7 @@ test('should remove localStorage under a custom key', () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({
     autoInit: true,
-    saveKey: 'awesome'
+    stateKey: 'awesome'
   });
   expect(localStorage).toHaveProperty('awesome');
 });

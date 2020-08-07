@@ -89,34 +89,6 @@ Modal dialogs are the actual dialog element within a modal and are defined using
 ```
 {% include demo_close.html %}
 
-## Behavior and Accessibility
-
-Modals on the web have an expected set of patterns that this component follows. Here's what to expect:
-
-1. When a modal is opened, focus is moved to the dialog or an element inside.
-2. Modals provide standard methods for the user to close such as using the `esc` key or clicking outside the dialog.
-3. While the modal is active, contents obscured by the modal are inaccessible to all users.
-4. When a modal is closed, focus is returned to the initial trigger element that activated the dialog.
-
-To take full advantage of modal's accessibility features, it's recommened to that you set the `selectorMain` option to all elements that are ouside the modal. If you have modal markup throughout your document, use the `moveModals` option or `moveModals()` method to consolidate all modals in the DOM to a single location. All elements that match the `selectorMain` selector will be given the `inert` attribute as well as `aria-hidden="true"` when a modal is opened.
-
-> Inert is not currently widly supportted by all browsers. Consider using a polyfill such as [wicg-inert](https://github.com/WICG/inert) or Google's [inert-polyfill](https://github.com/GoogleChrome/inert-polyfill).
-
-### Example
-
-Here's an example where we want the `[role="main"]` content area to be inaccessible while modals are open. We also want for all modals to be moved outside the main content element in the DOM.
-
-```js
-const modal = new Modal({
-autoInit: true,
-selectorMain: '[role="main"]',
-moveModals: {
-selector: '[role="main"]',
-location: 'after'
-}
-});
-```
-
 ## data-modal-focus
 
 By default, the modal dialog gains focus when a modal is opened. If focus on a specific element inside a modal is preferred, give that element the `data-modal-focus` attribute. Focus is returned to the element that activated the modal once the modal is closed.
@@ -205,6 +177,34 @@ Required modals can not be closed without an explicit action. That means clickin
 </div>
 ```
 {% include demo_close.html %}
+
+## Behavior and Accessibility
+
+Modals on the web have an expected set of patterns that this component follows. Here's what to expect:
+
+1. When a modal is opened, focus is moved to the dialog or an element inside.
+2. Modals provide standard methods for the user to close such as using the `esc` key or clicking outside the dialog.
+3. While the modal is active, contents obscured by the modal are inaccessible to all users.
+4. When a modal is closed, focus is returned to the initial trigger element that activated the dialog.
+
+To take full advantage of modal's accessibility features, it's recommened to that you set the `selectorInert` option to all elements that are ouside the modal. If you have modal markup throughout your document, use the `moveModals` option or `moveModals()` method to consolidate all modals in the DOM to a single location. All elements that match the `selectorInert` selector will be given the `inert` attribute as well as `aria-hidden="true"` when a modal is opened.
+
+> Inert is not currently widly supportted by all browsers. Consider using a polyfill such as [wicg-inert](https://github.com/WICG/inert) or Google's [inert-polyfill](https://github.com/GoogleChrome/inert-polyfill).
+
+### Example
+
+Here's an example where we want the `[role="main"]` content area to be inaccessible while modals are open. We also want for all modals to be moved outside the main content element in the DOM.
+
+```js
+new Modal({
+  autoInit: true,
+  selectorInert: '[role="main"]',
+  moveModals: {
+     selector: '[role="main"]',
+     location: 'after'
+  }
+});
+```
 
 ## modal_full
 
@@ -596,7 +596,7 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
     <tr>
       <td data-mobile-label="Key"><code class="code text-nowrap">setTabindex</code></td>
       <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">true</code></td>
-      <td data-mobile-label="Desc">Whether or not to set <code class="code">tabindex="-1"</code> on all modal drawer elements on init.</td>
+      <td data-mobile-label="Desc">Whether or not to set <code class="code">tabindex="-1"</code> on all modal dialog elements on init.</td>
     </tr>
     <tr>
       <td data-mobile-label="Key"><code class="code text-nowrap">transition</code></td>

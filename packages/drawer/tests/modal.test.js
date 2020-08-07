@@ -1,24 +1,24 @@
 import { Drawer } from '../index.js';
+import { transition } from './helpers/transition';
 import '@testing-library/jest-dom/extend-expect';
 
 let drawer;
-const ev = new Event('transitionend');
-const evEscape = new KeyboardEvent('keyup', {
+const keyEscape = new KeyboardEvent('keyup', {
   keyCode: 27
 });
-const evSpace = new KeyboardEvent('keyup', {
+const keySpace = new KeyboardEvent('keyup', {
   keyCode: 32
 });
 
 const markup = `
   <div class="drawer__wrapper">
     <div class="drawer drawer_modal is-closed" data-drawer="drawer-default">
-      <div class="drawer__item">
-        <button data-drawer-close data-drawer-focus>Close</button>
+      <div data-drawer-dialog class="drawer__dialog">
+        <button data-drawer-close data-drawer-focus>...</button>
       </div>
     </div>
     <div class="drawer__main">
-      <button data-drawer-toggle="drawer-default">Drawer Toggle</button>
+      <button data-drawer-toggle="drawer-default">...</button>
     </div>
   </div>
 `;
@@ -33,15 +33,15 @@ afterEach(() => {
   drawer = null;
 });
 
-test('should close when root modal (screen) is clicked', () => {
+test('should close when root modal (screen) is clicked', async () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer]');
-  const item = document.querySelector('.drawer__item');
+  const item = document.querySelector('.drawer__dialog');
   const btnOpen = document.querySelector('[data-drawer-toggle]');
 
   btnOpen.click();
-  el.dispatchEvent(ev);
+  await transition(el);
 
   item.click();
   expect(el).toHaveClass('is-opened');
@@ -49,12 +49,12 @@ test('should close when root modal (screen) is clicked', () => {
   el.click();
   expect(el).toHaveClass('is-closing');
 
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(el).toHaveClass('drawer drawer_modal is-closed');
   expect(el.classList.length).toBe(3);
 });
 
-test('should close when the escape key is pressed', () => {
+test('should close when the escape key is pressed', async () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer]');
@@ -63,18 +63,18 @@ test('should close when the escape key is pressed', () => {
   btnOpen.click();
   expect(el).toHaveClass('drawer is-opening');
 
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(el).toHaveClass('drawer is-opened');
 
-  document.dispatchEvent(evEscape);
+  document.dispatchEvent(keyEscape);
   expect(el).toHaveClass('drawer is-closing');
 
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(el).toHaveClass('drawer drawer_modal is-closed');
   expect(el.classList.length).toBe(3);
 });
 
-test('should do nothing if none escape key is pressed', () => {
+test('should do nothing if none escape key is pressed', async () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer]');
@@ -83,18 +83,18 @@ test('should do nothing if none escape key is pressed', () => {
   btnOpen.click();
   expect(el).toHaveClass('drawer is-opening');
 
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(el).toHaveClass('drawer is-opened');
 
-  document.dispatchEvent(evSpace);
+  document.dispatchEvent(keySpace);
   expect(el).not.toHaveClass('is-closing');
 
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(el).not.toHaveClass('is-closed');
   expect(el.classList.length).toBe(3);
 });
 
-test('should not close when missing modal modifier and escape key is pressed', () => {
+test('should not close when missing modal modifier and escape key is pressed', async () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer]');
@@ -105,13 +105,30 @@ test('should not close when missing modal modifier and escape key is pressed', (
   btnOpen.click();
   expect(el).toHaveClass('drawer is-opening');
 
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(el).toHaveClass('drawer is-opened');
 
-  document.dispatchEvent(evEscape);
+  document.dispatchEvent(keyEscape);
   expect(el).not.toHaveClass('is-closing');
 
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(el).toHaveClass('drawer is-opened');
   expect(el.classList.length).toBe(2);
+});
+
+test('should not be able to close while modal transition is in process', async () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer({ autoInit: true });
+  const el = document.querySelector('[data-drawer]');
+  const btnOpen = document.querySelector('[data-drawer-toggle]');
+
+  btnOpen.click();
+  expect(el).toHaveClass('drawer is-opening');
+
+  document.dispatchEvent(keyEscape);
+  expect(el).toHaveClass('drawer is-opening');
+
+  await transition(el);
+  expect(el).toHaveClass('is-opened');
+  expect(el.classList.length).toBe(3);
 });

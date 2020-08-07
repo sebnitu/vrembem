@@ -1,16 +1,16 @@
 import { Drawer } from '../index.js';
 import { checkMatch } from './helpers/checkMatch';
 import { resizeWindow } from './helpers/resizeWindow';
+import { transition } from './helpers/transition';
 import './helpers/matchMedia.mock.js';
 import '@testing-library/jest-dom/extend-expect';
 
 let drawer;
-const ev = new Event('transitionend');
 
 const markup = `
   <div class="drawer__wrapper">
     <div class="drawer is-closed" data-drawer="drawer-one" data-drawer-breakpoint="md">
-      <div class="drawer__item">
+      <div data-drawer-dialog class="drawer__dialog">
         <button data-drawer-close>Close</button>
       </div>
     </div>
@@ -38,7 +38,7 @@ afterEach(() => {
   drawer = null;
 });
 
-test('should emit custom event when drawer has opened', () => {
+test('should emit custom event when drawer has opened', async () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer="drawer-one"]');
@@ -50,13 +50,13 @@ test('should emit custom event when drawer has opened', () => {
   });
 
   btn.click();
-  el.dispatchEvent(ev);
+  await transition(el);
 
   expect(el).toHaveClass('is-opened');
   expect(eventFired).toBe(true);
 });
 
-test('should emit custom event when drawer has closed', () => {
+test('should emit custom event when drawer has closed', async () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer="drawer-one"]');
@@ -68,13 +68,13 @@ test('should emit custom event when drawer has closed', () => {
   });
 
   btn.click();
-  el.dispatchEvent(ev);
+  await transition(el);
 
   expect(el).toHaveClass('is-opened');
   expect(eventFired).toBe(false);
 
   btn.click();
-  el.dispatchEvent(ev);
+  await transition(el);
 
   expect(el).toHaveClass('is-closed');
   expect(eventFired).toBe(true);
@@ -123,7 +123,7 @@ test('should emit custom event when drawer switches to default', () => {
   expect(eventFired).toBe(true);
 });
 
-test('should be able to set a custom event prefix', () => {
+test('should be able to set a custom event prefix', async () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({
     autoInit: true,
@@ -158,12 +158,12 @@ test('should be able to set a custom event prefix', () => {
   });
 
   btn.click();
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(el).toHaveClass('is-opened');
   expect(eventOpened).toBe(true);
 
   btn.click();
-  el.dispatchEvent(ev);
+  await transition(el);
   expect(el).toHaveClass('is-closed');
   expect(eventClosed).toBe(true);
 

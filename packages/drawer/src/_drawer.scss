@@ -3,45 +3,10 @@
 $_b: var.$prefix-block;
 $_e: var.$prefix-element;
 
-.#{$_b}drawer {
-  position: relative;
-  display: flex;
-  flex: 0 0 0;
-  flex-direction: column;
-  align-content: stretch;
-  align-items: stretch;
-  width: 0;
-  height: 0;
-  overflow: hidden auto;
-  outline: none;
-  -webkit-overflow-scrolling: touch;
-}
-
-.#{$_b}drawer#{$_e}item {
-  width: var.$width;
-  max-width: var.$max-width;
-  height: 100%;
-  transform: translateY(-(var.$travel));
-  border-radius: 0;
-  background: var.$item-background;
-  box-shadow: var.$item-box-shadow;
-  opacity: 0;
-
-  .#{$_b}dialog#{$_e}header,
-  .#{$_b}dialog#{$_e}footer {
-    border-color: var.$item-sep-border-color;
-    background: var.$item-background;
-  }
-
-  .#{$_b}dialog#{$_e}body {
-    background: var.$item-background;
-  }
-}
-
 .#{$_b}drawer#{$_e}wrapper {
   position: relative;
   display: flex;
-  height: 100vh;
+  height: var.$wrapper-height;
   overflow: hidden;
 }
 
@@ -53,18 +18,63 @@ $_e: var.$prefix-element;
   -webkit-overflow-scrolling: touch;
 }
 
+.#{$_b}drawer {
+  position: relative;
+  visibility: hidden;
+  flex: 0 0 0;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.#{$_b}drawer#{$_e}dialog {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: var.$width;
+  max-width: var.$max-width;
+  height: 100%;
+  overflow: auto;
+  transform: translateY(-(var.$travel));
+  border-radius: 0;
+  background: var.$background;
+  box-shadow: var.$box-shadow;
+  opacity: 0;
+  -webkit-overflow-scrolling: touch;
+
+  .#{$_b}dialog#{$_e}header,
+  .#{$_b}dialog#{$_e}footer {
+    border-color: var.$sep-border;
+    background: var.$background;
+  }
+
+  .#{$_b}dialog#{$_e}body {
+    background: var.$background;
+  }
+}
+
+/**
+ * State classes
+ */
+
+.#{$_b}drawer.is-closed {
+  visibility: hidden;
+}
+
 .#{$_b}drawer.is-opening,
 .#{$_b}drawer.is-opened,
 .#{$_b}drawer.is-closing {
+  visibility: visible;
   flex: 0 0 auto;
   width: var.$width;
   max-width: var.$max-width;
   height: 100%;
+  overflow: visible;
 }
 
 .#{$_b}drawer.is-opening,
 .#{$_b}drawer.is-closing {
-  .#{$_b}drawer#{$_e}item {
+  .#{$_b}drawer#{$_e}dialog {
     transition-property: opacity, transform;
     transition-duration: var.$transition-duration;
     transition-timing-function: var.$transition-timing-function;
@@ -73,20 +83,20 @@ $_e: var.$prefix-element;
 
 .#{$_b}drawer.is-opening,
 .#{$_b}drawer.is-opened {
-  .#{$_b}drawer#{$_e}item {
+  .#{$_b}drawer#{$_e}dialog {
     transform: translateY(0);
     opacity: 1;
   }
 }
 
 .#{$_b}drawer.is-opened {
-  .#{$_b}drawer#{$_e}item {
+  .#{$_b}drawer#{$_e}dialog {
     opacity: 1;
   }
 }
 
 .#{$_b}drawer.is-closing {
-  .#{$_b}drawer#{$_e}item {
+  .#{$_b}drawer#{$_e}dialog {
     transform: translateY(-(var.$travel));
     opacity: 0;
   }

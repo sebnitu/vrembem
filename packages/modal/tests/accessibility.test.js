@@ -15,7 +15,7 @@ const markup = `
   </div>
 `;
 
-describe('when selectorMain is set...', () => {
+describe('when selectorInert is set...', () => {
   let main, el, btn, cls;
 
   beforeAll(() => {
