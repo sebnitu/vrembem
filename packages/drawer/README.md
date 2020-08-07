@@ -30,6 +30,7 @@ const drawer = new Drawer({ autoInit: true });
 Drawers are composed using classes for styling and data attributes for JavaScript functionality. To link a drawer toggle, open or close trigger to a drawer, use a unique identifier as the values for both the trigger and drawer's respective data attributes. Close buttons can be left value-less if placed inside a drawer element they're meant to close.
 
 - `data-drawer="[unique-id]"`
+- `data-drawer-dialog`
 - `data-drawer-toggle="[unique-id]"`
 - `data-drawer-open="[unique-id]"`
 - `data-drawer-close="[unique-id]"` (or value-less if inside drawer)
@@ -37,7 +38,7 @@ Drawers are composed using classes for styling and data attributes for JavaScrip
 ```html
 <div class="drawer__wrapper">
   <aside data-drawer="[unique-id]" class="drawer">
-    <div class="drawer__item">
+    <div data-drawer-dialog class="drawer__dialog">
       <button data-drawer-close>...</button>
     </div>
   </aside>
@@ -53,7 +54,7 @@ The [dialog component](https://github.com/sebnitu/vrembem/tree/master/packages/d
 
 ```html
 <aside data-drawer="[unique-id]" class="drawer">
-  <div class="drawer__item dialog">
+  <div data-drawer-dialog class="drawer__dialog dialog">
     <div class="dialog__header">
       ...
       <button data-drawer-close>...</button>
@@ -86,22 +87,27 @@ In cases where you'd like a drawer to switch to a drawer modal on a specific bre
 
 #### `data-drawer-focus`
 
-If a drawer has the attribute `tabindex="-1"`, it will be given focus when it's opened. If focus on a specific element inside a drawer is preferred, give it the `data-drawer-focus` attribute. The focus in either case is returned to the trigger element once the drawer is closed. Focus handling can be disabled using the `{ focus: false }` setting.
+Drawer dialogs are given focus on open by default as long as the `setTabindex` option is set to `true` or if the drawer dialog has `tabindex="-1"` set manually. If focus on a specific element inside a drawer is preferred, give it the `data-drawer-focus` attribute. The focus in either case is returned to the trigger element once the drawer is closed.
 
 ```html
 <div cass="drawer__wrapper">
-  <!-- Focus the drawer on open -->
-  <aside data-drawer="[unique-id]" class="drawer" tabindex="-1">
-    ...
-  </aside>
-  <!-- Focus the close button on open -->
+  <!-- Focuses the drawer dialog on open -->
   <aside data-drawer="[unique-id]" class="drawer">
-    ...
-    <button data-drawer-close data-drawer-focus>Close</button>
+    <div data-drawer-dialog class="drawer__dialog">
+      ...
+    </div>
   </aside>
+
+  <!-- Focuses an inner element on open -->
+  <aside data-drawer="[unique-id]" class="drawer">
+    <div data-drawer-dialog class="drawer__dialog">
+      <button data-drawer-focus>...</button>
+    </div>
+  </aside>
+  
   <div class="drawer__main">
     <!-- Return focus to toggle on close -->
-    <button data-drawer-toggle="[unique-id]">Drawer Toggle</button>
+    <button data-drawer-toggle="[unique-id]">...</button>
   </div>
 </div>
 ```
@@ -161,49 +167,49 @@ Drawers can slide in from the left or right using the position modifiers:
 
 ### Sass Variables
 
-Variable | Default | Description
----|---|---
-`$prefix-block` | `null` | String to prefix blocks with.
-`$prefix-element` | `"__"` | String to prefix element with.
-`$prefix-modifier` | `"_"` | String to prefix modifier with.
-`$prefix-modifier-value` | `"_"` | String to prefix modifier values with.
-`$width` | `18em` | The width of drawers.
-`$max-width` | `100%` | The max-width of drawers.
-`$travel` | `5em` | Distance that drawers travel during their transition.
-`$transition-duration` | `0.3s` | Duration of drawer transition.
-`$transition-timing-function` | `cubic-bezier(0.4, 0, 0.2, 1)` | Timing function used for drawer transitions.
-`$item-background` | `#f5f5f5` | Background color applied to drawer items.
-`$item-border` | `null` | Border applied to drawer items with position modifiers. Shown on side of drawers facing drawer main.
-`$item-box-shadow` | `none` | Box shadow applied to drawer items.
-`$item-sep-border-color` | `null` | Border color applied to dialog components within drawer items.
-`$modal-zindex` | `900` | Modal z-index to help control the stack order. Should be highest priority as modal.
-`$modal-width` | `$width` | The width of modal drawers.
-`$modal-max-width` | `80%` | The max-width of modal drawers.
-`$modal-item-background` | `#fff` | Background color applied to modal drawer items.
-`$modal-item-box-shadow` | See: `core.$box-shadow-24dp` | Box shadow applied to modal drawer items.
-`$modal-background` | `#424242` | Background color of modal screen.
-`$modal-background-alpha` | `0.8` | The alpha channel for the modal screen.
+| Variable                      | Default                        | Description                                                                                          |
+| ----------------------------- | ------------------------------ | ---------------------------------------------------------------------------------------------------- |
+| `$prefix-block`               | `null`                         | String to prefix blocks with.                                                                        |
+| `$prefix-element`             | `"__"`                         | String to prefix element with.                                                                       |
+| `$prefix-modifier`            | `"_"`                          | String to prefix modifier with.                                                                      |
+| `$prefix-modifier-value`      | `"_"`                          | String to prefix modifier values with.                                                               |
+| `$width`                      | `18em`                         | The width of drawers.                                                                                |
+| `$max-width`                  | `100%`                         | The max-width of drawers.                                                                            |
+| `$travel`                     | `5em`                          | Distance that drawers travel during their transition.                                                |
+| `$transition-duration`        | `0.3s`                         | Duration of drawer transition.                                                                       |
+| `$transition-timing-function` | `cubic-bezier(0.4, 0, 0.2, 1)` | Timing function used for drawer transitions.                                                         |
+| `$item-background`            | `#f5f5f5`                      | Background color applied to drawer items.                                                            |
+| `$item-border`                | `null`                         | Border applied to drawer items with position modifiers. Shown on side of drawers facing drawer main. |
+| `$item-box-shadow`            | `none`                         | Box shadow applied to drawer items.                                                                  |
+| `$item-sep-border-color`      | `null`                         | Border color applied to dialog components within drawer items.                                       |
+| `$modal-zindex`               | `900`                          | Modal z-index to help control the stack order. Should be highest priority as modal.                  |
+| `$modal-width`                | `$width`                       | The width of modal drawers.                                                                          |
+| `$modal-max-width`            | `80%`                          | The max-width of modal drawers.                                                                      |
+| `$modal-item-background`      | `#fff`                         | Background color applied to modal drawer items.                                                      |
+| `$modal-item-box-shadow`      | See: `core.$box-shadow-24dp`   | Box shadow applied to modal drawer items.                                                            |
+| `$modal-background`           | `#424242`                      | Background color of modal screen.                                                                    |
+| `$modal-background-alpha`     | `0.8`                          | The alpha channel for the modal screen.                                                              |
 
 ### JavaScript Options
 
-Key | Default | Description
----|---|---
-`autoInit` | `false` | Automatically instantiates the instance.
-`dataDrawer` | `'drawer'` | Data attribute for a drawer.
-`dataToggle` | `'drawer-toggle'` | Data attribute for a drawer toggle trigger.
-`dataClose` | `'drawer-close'` | Data attribute for a drawer close trigger.
-`dataBreakpoint` | `'drawer-breakpoint'` | Data attribute for setting a drawer's breakpoint.
-`dataFocus` | `'drawer-focus'` | Data attribute for setting a drawer's focus element.
-`stateOpen` | `'is-opened'` | Class used for open state.
-`stateOpening` | `'is-opening'` | Class used for transitioning to open state.
-`stateClosing` | `'is-closing'` | Class used for transitioning to closed state.
-`stateClosed` | `'is-closed'` | Class used for closed state.
-`classModal` | `'drawer_modal'` | Class used for toggling the drawer modal state.
-`breakpoints` | `core.breakpoints` | An object with key/value pairs defining a breakpoints set.
-`customEventPrefix` | `'drawer:'` | Prefix to be used on custom events.
-`focus` | `true` | Toggles the focus handling feature.
-`saveState` | `true` | Toggles the save state feature.
-`saveKey` | `"DrawerState"` | Defines the localStorage key where drawer states are saved.
+| Key                 | Default               | Description                                                 |
+| ------------------- | --------------------- | ----------------------------------------------------------- |
+| `autoInit`          | `false`               | Automatically instantiates the instance.                    |
+| `dataDrawer`        | `'drawer'`            | Data attribute for a drawer.                                |
+| `dataToggle`        | `'drawer-toggle'`     | Data attribute for a drawer toggle trigger.                 |
+| `dataClose`         | `'drawer-close'`      | Data attribute for a drawer close trigger.                  |
+| `dataBreakpoint`    | `'drawer-breakpoint'` | Data attribute for setting a drawer's breakpoint.           |
+| `dataFocus`         | `'drawer-focus'`      | Data attribute for setting a drawer's focus element.        |
+| `stateOpen`         | `'is-opened'`         | Class used for open state.                                  |
+| `stateOpening`      | `'is-opening'`        | Class used for transitioning to open state.                 |
+| `stateClosing`      | `'is-closing'`        | Class used for transitioning to closed state.               |
+| `stateClosed`       | `'is-closed'`         | Class used for closed state.                                |
+| `classModal`        | `'drawer_modal'`      | Class used for toggling the drawer modal state.             |
+| `breakpoints`       | `core.breakpoints`    | An object with key/value pairs defining a breakpoints set.  |
+| `customEventPrefix` | `'drawer:'`           | Prefix to be used on custom events.                         |
+| `focus`             | `true`                | Toggles the focus handling feature.                         |
+| `saveState`         | `true`                | Toggles the save state feature.                             |
+| `saveKey`           | `"DrawerState"`       | Defines the localStorage key where drawer states are saved. |
 
 ## Events
 
