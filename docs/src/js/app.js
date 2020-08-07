@@ -12,10 +12,16 @@ import './version';
 
 new Checkbox({ autoInit: true });
 new Dismissible({ autoInit: true });
-new Drawer({ autoInit: true });
+
+new Drawer({
+  autoInit: true,
+  selectorInert: '[role="main"]',
+  selectorOverflow: 'body, [role="main"]'
+});
+
 new Modal({
   autoInit: true,
-  selectorMain: '.page',
+  selectorInert: '.page',
   moveModals: {
     selector: '[role="modals-container"]',
     location: 'append'

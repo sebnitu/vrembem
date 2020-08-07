@@ -4848,11 +4848,13 @@
     autoInit: true
   });
   new Drawer({
-    autoInit: true
+    autoInit: true,
+    selectorInert: '[role="main"]',
+    selectorOverflow: 'body, [role="main"]'
   });
   new Modal({
     autoInit: true,
-    selectorMain: '.page',
+    selectorInert: '.page',
     moveModals: {
       selector: '[role="modals-container"]',
       location: 'append'
