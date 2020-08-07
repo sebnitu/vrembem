@@ -85,6 +85,20 @@ In cases where you'd like a drawer to switch to a drawer modal on a specific bre
 </aside>
 ```
 
+A custom breakpoints object can be passed in using the `breakpoints` option. Otherwise, default values are set via the core variables module.
+
+```js
+new Drawer({
+  breakpoints: {
+    xs: '480px',
+    sm: '620px',
+    md: '760px',
+    lg: '990px',
+    xl: '1380px'
+  }
+});
+```
+
 #### `data-drawer-focus`
 
 Drawer dialogs are given focus on open by default as long as the `setTabindex` option is set to `true` or if the drawer dialog has `tabindex="-1"` set manually. If focus on a specific element inside a drawer is preferred, give it the `data-drawer-focus` attribute. The focus in either case is returned to the trigger element once the drawer is closed.
@@ -115,6 +129,31 @@ Drawer dialogs are given focus on open by default as long as the `setTabindex` o
 #### Drawer State
 
 By default, the state of a drawer is saved to local storage and applied persistently under the "DrawerState" local storage variable. Set `stateSave: false` to disable save state. Use `stateKey: "[CUSTOM-KEY]"` to change the key that save state is stored under.
+
+## Behavior and Accessibility
+
+Drawers when in their modal context follow a set of patterns expected from other modals on the web. Here's what to expect:
+
+1. When a drawer modal is opened, focus is moved to the dialog or an element inside.
+2. Drawer modals provide standard methods for the user to close such as using the `esc` key or clicking outside the dialog.
+3. While the drawer modal is active, contents obscured by the drawer modal are inaccessible to all users.
+4. When a drawer modal is closed, focus is returned to the initial trigger element that activated the dialog.
+
+To take full advantage of drawer modal's accessibility features, it's recommened to that you set the `selectorInert` option to all elements that are ouside the drawer modal (most likely the `drawer__main` element). All elements that match the `selectorInert` selector will be given the `inert` attribute as well as `aria-hidden="true"` when a modal is opened.
+
+> Inert is not currently widly supportted by all browsers. Consider using a polyfill such as [wicg-inert](https://github.com/WICG/inert) or Google's [inert-polyfill](https://github.com/GoogleChrome/inert-polyfill).
+
+### Example
+
+Here's an example where we want the `[role="main"]` content area to be inaccessible while drawer modals are open. We also want to disable other scrollable elements using the `selectorOverflow` option.
+
+```js
+new Drawer({
+  autoInit: true,
+  selectorInert: '[role="main"]',
+  selectorOverflow: 'body, [role="main"]'
+});
+```
 
 ## Modifiers
 
