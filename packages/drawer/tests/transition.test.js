@@ -20,6 +20,25 @@ const markup = `
   </div>
 `;
 
+const markupMultiple = `
+  <div class="drawer__wrapper">
+    <div class="drawer is-closed" data-drawer="drawer-one">
+      <div data-drawer-dialog class="drawer__dialog">
+        <button data-drawer-close>...</button>
+      </div>
+    </div>
+    <div class="drawer is-closed" data-drawer="drawer-two">
+      <div data-drawer-dialog class="drawer__dialog">
+        <button data-drawer-close>...</button>
+      </div>
+    </div>
+    <div class="drawer__main">
+      <button data-drawer-toggle="drawer-one">...</button>
+      <button data-drawer-toggle="drawer-two">...</button>
+    </div>
+  </div>
+`;
+
 const markupCustomAttr = `
   <div class="drawer__wrapper">
     <div class="drawer is-closed" data-d="drawer-default">
@@ -198,4 +217,32 @@ test('should not apply transition classes when transitions are disabled', () => 
   drawer.close('drawer-default');
   expect(el).toHaveClass('is-closed');
   expect(el.classList.length).toBe(2);
+});
+
+test('should not be possible to open new drawer while a drawer transition is in process', async () => {
+  document.body.innerHTML = markupMultiple;
+  drawer = new Drawer();
+  const elOne = document.querySelector('[data-drawer="drawer-one"]');
+  const elTwo = document.querySelector('[data-drawer="drawer-two"]');
+  const btnOne = document.querySelector('[data-drawer-toggle="drawer-one"]');
+  const btnTwo = document.querySelector('[data-drawer-toggle="drawer-two"]');
+
+  drawer.init();
+  expect(elOne).toHaveClass('drawer is-closed');
+  expect(elTwo).toHaveClass('drawer is-closed');
+
+  btnOne.click();
+  expect(elOne).toHaveClass('is-opening');
+
+  btnTwo.click();
+  expect(elOne).toHaveClass('is-opening');
+  expect(elTwo).toHaveClass('is-closed');
+
+  await transition(elOne);
+  await transition(elTwo);
+
+  expect(elOne).toHaveClass('is-opened');
+  expect(elTwo).toHaveClass('is-closed');
+  expect(elOne.classList.length).toBe(2);
+  expect(elTwo.classList.length).toBe(2);
 });

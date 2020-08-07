@@ -252,7 +252,7 @@ export const Drawer = (options) => {
       }));
       working = false;
       return drawer;
-    } else if (drawer && hasClass(drawer, api.settings.stateOpened)) {
+    } else {
       focusDrawer(drawer);
       return drawer;
     }
@@ -303,11 +303,11 @@ export const Drawer = (options) => {
     if (innerFocus) {
       innerFocus.focus();
     } else {
-      const item = drawer.querySelector(
+      const dialog = drawer.querySelector(
         `[data-${api.settings.dataDialog}][tabindex="-1"]`
       );
-      if (item) {
-        item.focus();
+      if (dialog) {
+        dialog.focus();
       }
     }
   };
