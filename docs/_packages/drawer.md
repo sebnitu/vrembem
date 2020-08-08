@@ -5,9 +5,9 @@ description: "A container component that slides in from the left or right. Typic
 package: "@vrembem/drawer"
 category: compound
 usage:
-npm: true
-scss: true
-js: true
+  npm: true
+  scss: true
+  js: true
 ---
 
 ## drawer
