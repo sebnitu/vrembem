@@ -14,7 +14,7 @@ npm install {{ page.package }}
 
 {% if page.usage.js %}
 ```js
-import { {{ page.title }} } from '{{ page.package }}';
+import {{ page.title }} from '{{ page.package }}';
 ```
 {% endif %}
 
