@@ -1,4 +1,4 @@
-import { Drawer } from '../index.js';
+import Drawer from '../index.js';
 import { checkMatch } from './helpers/checkMatch';
 import { resizeWindow } from './helpers/resizeWindow';
 import './helpers/matchMedia.mock.js';
@@ -77,7 +77,7 @@ afterEach(() => {
 
 test('should switch modal drawer modifier when above and below media breakpoint', () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer="drawer-one"]');
   const bp = el.dataset.drawerBreakpoint;
   const value = drawer.settings.breakpoints[bp];
@@ -98,7 +98,7 @@ test('should switch modal drawer modifier when above and below media breakpoint'
 
 test('should switch to modal when below custom pixel value', () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer="drawer-two"]');
   const value = el.dataset.drawerBreakpoint;
 
@@ -111,7 +111,7 @@ test('should switch to modal when below custom pixel value', () => {
 
 test('should switch to modal when using a custom data breakpoint attribute', () => {
   document.body.innerHTML = markupCustomAttr;
-  drawer = new Drawer({
+  drawer = Drawer({
     autoInit: true,
     dataBreakpoint: 'bp'
   });
@@ -127,7 +127,7 @@ test('should switch to modal when using a custom data breakpoint attribute', () 
 
 test('should use custom modal class on breakpoint switch', () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer({
+  drawer = Drawer({
     autoInit: true,
     classModal: 'be-cool'
   });
@@ -144,7 +144,7 @@ test('should use custom modal class on breakpoint switch', () => {
 test('should allow using a custom breakpoints object', () => {
   document.body.innerHTML = markupCustomBreakpoints;
 
-  drawer = new Drawer({
+  drawer = Drawer({
     autoInit: true,
     breakpoints: {
       xxl: '1600px',
@@ -164,7 +164,7 @@ test('should allow using a custom breakpoints object', () => {
 
 test('should remove opened and add closed state class when switching to modal', () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer="drawer-two"]');
 
   expect(el).toHaveClass('is-opened');
@@ -178,7 +178,7 @@ test('should remove opened and add closed state class when switching to modal', 
 test('should apply saved state when switching to drawer', () => {
   document.body.innerHTML = markup;
   window.innerWidth = 300;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer="drawer-two"]');
   const state = JSON.parse(localStorage.getItem('DrawerState'));
 
@@ -195,7 +195,7 @@ test('should apply saved state when switching to drawer', () => {
 test('should not throw error when checking breakpoint if no mediaQueryLists exists or is empty', () => {
   document.body.innerHTML = markup;
   window.innerWidth = 300;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   drawer.mediaQueryLists = null;
   expect(drawer.breakpoint.check).not.toThrow();
   drawer.mediaQueryLists = [];
@@ -205,7 +205,7 @@ test('should not throw error when checking breakpoint if no mediaQueryLists exis
 test('should filter matching breakpoints when event is passed to breakpoint check', () => {
   document.body.innerHTML = markup;
   window.innerWidth = 800;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   const el1 = document.querySelector('[data-drawer="drawer-one"]'); // bp = 760px
   const el2 = document.querySelector('[data-drawer="drawer-two"]'); // bp = 400px
 
@@ -233,7 +233,7 @@ test('should filter matching breakpoints when event is passed to breakpoint chec
 test('should not throw error when a drawer in mediaQueryLists doesn\'t exist in the document', () => {
   document.body.innerHTML = markup;
   window.innerWidth = 300;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   drawer.mediaQueryLists[0].drawer = 'fake-drawer';
   expect(drawer.breakpoint.check).not.toThrow();
 });

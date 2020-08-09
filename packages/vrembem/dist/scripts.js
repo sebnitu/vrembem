@@ -107,7 +107,7 @@
 
   function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-  var Checkbox = function Checkbox(options) {
+  var index$1 = (function (options) {
     var api = {};
     var defaults = {
       autoInit: false,
@@ -164,12 +164,12 @@
 
     if (api.settings.autoInit) api.init();
     return api;
-  };
+  });
 
   function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
   function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-  var Dismissible = function Dismissible(options) {
+  var index$2 = (function (options) {
     var api = {};
     var defaults = {
       autoInit: false,
@@ -209,7 +209,7 @@
 
     if (api.settings.autoInit) api.init();
     return api;
-  };
+  });
 
   function createCommonjsModule(fn, basedir, module) {
   	return module = {
@@ -861,7 +861,7 @@
   function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
   function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-  var Drawer = function Drawer(options) {
+  var index$3 = (function (options) {
     var api = {};
     var defaults = {
       autoInit: false,
@@ -1421,12 +1421,12 @@
 
     if (api.settings.autoInit) api.init();
     return api;
-  };
+  });
 
   function ownKeys$3(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
   function _objectSpread$3(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$3(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$3(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-  var Modal = function Modal(options) {
+  var index$4 = (function (options) {
     var api = {};
     var defaults = {
       autoInit: false,
@@ -1854,12 +1854,12 @@
 
     if (api.settings.autoInit) api.init();
     return api;
-  };
+  });
 
-  exports.Checkbox = Checkbox;
-  exports.Dismissible = Dismissible;
-  exports.Drawer = Drawer;
-  exports.Modal = Modal;
-  exports.utility = index;
+  exports.Checkbox = index$1;
+  exports.Dismissible = index$2;
+  exports.Drawer = index$3;
+  exports.Modal = index$4;
+  exports.core = index;
 
 }(this.vrembem = this.vrembem || {}));

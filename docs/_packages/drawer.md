@@ -133,7 +133,7 @@ In cases where you'd like a drawer to switch to a drawer modal on a specific bre
 A custom breakpoints object can be passed in using the `breakpoints` option. Otherwise, default values are set via the core variables module.
 
 ```js
-new Drawer({
+const drawer = Drawer({
   breakpoints: {
     xs: '480px',
     sm: '620px',
@@ -222,7 +222,7 @@ To take full advantage of drawer modal's accessibility features, it's recommened
 Here's an example where we want the `[role="main"]` content area to be inaccessible while drawer modals are open. We also want to disable other scrollable elements using the `selectorOverflow` option.
 
 ```js
-new Drawer({
+Drawer({
   autoInit: true,
   selectorInert: '[role="main"]',
   selectorOverflow: 'body, [role="main"]'
@@ -589,7 +589,7 @@ Initializes the drawer instance. During initialization, the following processes 
 - Adds the `keyup` event listener for closing modal drawers with the `esc` key.
 
 ```js
-const drawer = new Drawer();
+const drawer = Drawer();
 drawer.init();
 ```
 
@@ -605,7 +605,7 @@ Destroys and cleans up the drawer instantiation. During cleanup, the following p
 - Removes the `keyup` event listener from the document.
 
 ```js
-const drawer = new Drawer();
+const drawer = Drawer();
 drawer.init();
 // ...
 drawer.destroy();

@@ -76,7 +76,7 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-var Checkbox = function Checkbox(options) {
+var index = (function (options) {
   var api = {};
   var defaults = {
     autoInit: false,
@@ -133,12 +133,12 @@ var Checkbox = function Checkbox(options) {
 
   if (api.settings.autoInit) api.init();
   return api;
-};
+});
 
 function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-var Dismissible = function Dismissible(options) {
+var index$1 = (function (options) {
   var api = {};
   var defaults = {
     autoInit: false,
@@ -178,7 +178,7 @@ var Dismissible = function Dismissible(options) {
 
   if (api.settings.autoInit) api.init();
   return api;
-};
+});
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -832,7 +832,7 @@ var asyncToGenerator = _asyncToGenerator;
 function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-var Drawer = function Drawer(options) {
+var index$2 = (function (options) {
   var api = {};
   var defaults = {
     autoInit: false,
@@ -1392,12 +1392,12 @@ var Drawer = function Drawer(options) {
 
   if (api.settings.autoInit) api.init();
   return api;
-};
+});
 
 function ownKeys$3(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread$3(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$3(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$3(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-var Modal = function Modal(options) {
+var index$3 = (function (options) {
   var api = {};
   var defaults = {
     autoInit: false,
@@ -1825,7 +1825,7 @@ var Modal = function Modal(options) {
 
   if (api.settings.autoInit) api.init();
   return api;
-};
+});
 
 var FUNC_ERROR_TEXT = 'Expected a function';
 var NAN = 0 / 0;
@@ -4756,37 +4756,37 @@ var src = function src(id, options, values) {
       }],
       listClass: 'menu'
     });
-    var notice_empty = document.querySelector('.notice_empty');
-    var notice_empty_text = notice_empty.querySelector('.search_text');
+    var noticeEmpty = document.querySelector('.notice_empty');
+    var noticeEmptyText = noticeEmpty.querySelector('.search_text');
     var filter = document.querySelector('.filter');
     var search = document.querySelector('.filter .search');
-    var search_clear = document.querySelector('.filter .search_clear');
+    var searchClear = document.querySelector('.filter .search_clear');
 
     var isMenuLinkActive = function isMenuLinkActive() {
       var menuLinks = document.querySelectorAll('#listjs .menu__link');
-      var isActive = hasClass(menuLinks, 'is-active');
+      var isActive = menuLinks.classList.contains('is-active');
       return isActive;
     };
 
     list.on('searchComplete', function () {
       var value = search.value;
-      notice_empty_text.innerHTML = value;
+      noticeEmptyText.innerHTML = value;
       localStorage.setItem('SearchValue', value);
 
       if (value) {
-        addClass(filter, 'is-active');
-        addClass(search, 'is-active');
-        removeClass(search_clear, 'display-none');
+        filter.classList.add('is-active');
+        search.classList.add('is-active');
+        searchClear.classList.remove('display-none');
       } else {
-        removeClass(filter, 'is-active');
-        removeClass(search, 'is-active');
-        addClass(search_clear, 'display-none');
+        filter.classList.remove('is-active');
+        search.classList.remove('is-active');
+        searchClear.classList.add('display-none');
       }
 
       if (list.visibleItems.length > 0) {
-        addClass(notice_empty, 'display-none');
+        noticeEmpty.classList.add('display-none');
       } else {
-        removeClass(notice_empty, 'display-none');
+        noticeEmpty.classList.remove('display-none');
       }
     });
     document.addEventListener('click', function () {
@@ -4844,18 +4844,18 @@ var src = function src(id, options, values) {
   }
 })();
 
-new Checkbox({
+index({
   autoInit: true
 });
-new Dismissible({
+index$1({
   autoInit: true
 });
-new Drawer({
+index$2({
   autoInit: true,
   selectorInert: '[role="main"]',
   selectorOverflow: 'body, [role="main"]'
 });
-new Modal({
+index$3({
   autoInit: true,
   selectorInert: '.page',
   moveModals: {
@@ -4864,7 +4864,7 @@ new Modal({
   },
   toggleOverflow: 'body, .page__article'
 });
-var scrollStash = new ScrollStash({
+var scrollStash = ScrollStash({
   autoInit: true,
   selectorAnchor: '.is-active',
   selectorTopElem: '.dialog__header'

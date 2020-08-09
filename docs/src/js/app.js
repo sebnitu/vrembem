@@ -1,25 +1,20 @@
-import {
-  Checkbox,
-  Dismissible,
-  Drawer,
-  Modal
-} from 'vrembem';
+import * as vb from 'vrembem';
 import ScrollStash from 'scroll-stash';
 import 'svgxuse';
 import 'wicg-inert';
 import './list.js';
 import './version';
 
-new Checkbox({ autoInit: true });
-new Dismissible({ autoInit: true });
+vb.Checkbox({ autoInit: true });
+vb.Dismissible({ autoInit: true });
 
-new Drawer({
+vb.Drawer({
   autoInit: true,
   selectorInert: '[role="main"]',
   selectorOverflow: 'body, [role="main"]'
 });
 
-new Modal({
+vb.Modal({
   autoInit: true,
   selectorInert: '.page',
   moveModals: {
@@ -29,7 +24,7 @@ new Modal({
   toggleOverflow: 'body, .page__article'
 });
 
-const scrollStash = new ScrollStash({
+const scrollStash = ScrollStash({
   autoInit: true,
   selectorAnchor: '.is-active',
   selectorTopElem: '.dialog__header'

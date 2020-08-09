@@ -1,4 +1,4 @@
-import { Drawer } from '../index.js';
+import Drawer from '../index.js';
 import { transition } from './helpers/transition';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -35,7 +35,7 @@ afterEach(() => {
 
 test('should close when root modal (screen) is clicked', async () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer]');
   const item = document.querySelector('.drawer__dialog');
   const btnOpen = document.querySelector('[data-drawer-toggle]');
@@ -56,7 +56,7 @@ test('should close when root modal (screen) is clicked', async () => {
 
 test('should close when the escape key is pressed', async () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer]');
   const btnOpen = document.querySelector('[data-drawer-toggle]');
 
@@ -76,7 +76,7 @@ test('should close when the escape key is pressed', async () => {
 
 test('should do nothing if none escape key is pressed', async () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer]');
   const btnOpen = document.querySelector('[data-drawer-toggle]');
 
@@ -96,7 +96,7 @@ test('should do nothing if none escape key is pressed', async () => {
 
 test('should not close when missing modal modifier and escape key is pressed', async () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer]');
   const btnOpen = document.querySelector('[data-drawer-toggle]');
 
@@ -118,7 +118,7 @@ test('should not close when missing modal modifier and escape key is pressed', a
 
 test('should not be able to close while modal transition is in process', async () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer]');
   const btnOpen = document.querySelector('[data-drawer-toggle]');
 

@@ -5,7 +5,7 @@ import {
   removeClass
 } from '@vrembem/core';
 
-export const Drawer = (options) => {
+export default (options) => {
 
   const api = {};
   const defaults = {

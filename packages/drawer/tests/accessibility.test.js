@@ -1,4 +1,4 @@
-import { Drawer } from '../index.js';
+import Drawer from '../index.js';
 import '@testing-library/jest-dom/extend-expect';
 import { transition } from './helpers/transition';
 
@@ -22,7 +22,7 @@ describe('when selectorInert and selectorOverflow are set...', () => {
 
   beforeAll(() => {
     document.body.innerHTML = markup;
-    modal = new Drawer({
+    modal = Drawer({
       autoInit: true,
       selectorInert: '[role="main"]',
       selectorOverflow: 'body, [role="main"]'

@@ -1,6 +1,6 @@
-export const Checkbox = (options) => {
+export default (options) => {
 
-  let api = {};
+  const api = {};
   const defaults = {
     autoInit: false,
     stateAttr: 'aria-checked',
@@ -8,7 +8,7 @@ export const Checkbox = (options) => {
   };
 
   api.settings = { ...defaults, ...options };
-  api.settings.selector = 
+  api.settings.selector =
     `[${api.settings.stateAttr}="${api.settings.stateValue}"]`;
 
   api.init = () => {

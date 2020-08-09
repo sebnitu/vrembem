@@ -1,4 +1,4 @@
-import { Modal } from '../index.js';
+import Modal from '../index.js';
 import '@testing-library/jest-dom/extend-expect';
 
 let modal;
@@ -22,7 +22,7 @@ const markup = `
 
 beforeAll(async () => {
   document.body.innerHTML = markup;
-  modal = new Modal({
+  modal = Modal({
     autoInit: true,
     moveModals: {
       selector: '[role="main"]',

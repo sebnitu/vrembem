@@ -8,7 +8,7 @@ usage:
   npm: true
 ---
 
-## Sass
+## Styles
 
 To include all Vrembem components into your styles, just import the vrembem package in your Sass manifest file.
 
@@ -40,25 +40,18 @@ Import and initialize the components you'll need:
 ```js
 // Import all under the vb namespace
 import * as vb from "vrembem";
-const drawer = new vb.Drawer({ autoInit: true });
+const drawer = vb.Drawer({ autoInit: true });
 
 // Or import individual components
 import { Drawer } from "vrembem";
-const drawer = new Drawer({ autoInit: true });
+const drawer = Drawer({ autoInit: true });
 ```
 
-Components also make available the `init` function for initializing or re-initializing.
-
-```js
-const modal = new Checkbox()
-modal.init()
-```
-
-> Note that `utility` component does not need to be initialized since it's just a set of helpful utility functions.
+> Note that `core` helpers does not need to be initialized since they're just a set of helpful utility functions.
 
 ## Markup
 
-Include the component's markup into your project. Use the [online documentation](https://vrembem.com) for more information, code examples and available modifiers.
+Include the component's markup into your project. Use the [online documentation](https://vrembem.com) for more information, customization options, code examples and available modifiers.
 
 ```html
 <div class="drawer__wrapper">

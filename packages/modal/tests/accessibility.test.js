@@ -1,4 +1,4 @@
-import { Modal } from '../index.js';
+import Modal from '../index.js';
 import '@testing-library/jest-dom/extend-expect';
 import { transition } from './helpers/transition';
 
@@ -20,7 +20,7 @@ describe('when selectorInert is set...', () => {
 
   beforeAll(() => {
     document.body.innerHTML = markup;
-    modal = new Modal({
+    modal = Modal({
       autoInit: true,
       selectorInert: '[role="main"]'
     });

@@ -1,4 +1,4 @@
-import { Dismissible } from '../index.js';
+import Dismissible from '../index.js';
 import '@testing-library/jest-dom/extend-expect';
 
 let dismissible;
@@ -31,7 +31,7 @@ afterEach(() => {
 
 test('dismiss using default settings and method', () => {
   document.body.innerHTML = dismissContent;
-  dismissible = new Dismissible();
+  dismissible = Dismissible();
   const el = document.querySelector('[data-dismissible]');
   const button = el.querySelector('[data-dismiss]');
 
@@ -43,7 +43,7 @@ test('dismiss using default settings and method', () => {
 
 test('dismiss explicitly using the hide method', () => {
   document.body.innerHTML = dismissContent;
-  dismissible = new Dismissible({ autoInit: true });
+  dismissible = Dismissible({ autoInit: true });
   const el = document.querySelector('[data-dismissible="hide"]');
   const button = el.querySelector('[data-dismiss]');
 
@@ -55,7 +55,7 @@ test('dismiss explicitly using the hide method', () => {
 
 test('dismiss explicitly using the remove method', () => {
   document.body.innerHTML = dismissContent;
-  dismissible = new Dismissible({ autoInit: true });
+  dismissible = Dismissible({ autoInit: true });
   const el = document.querySelector('[data-dismissible="remove"]');
   const button = el.querySelector('[data-dismiss]');
 
@@ -66,7 +66,7 @@ test('dismiss explicitly using the remove method', () => {
 
 test('dismiss using custom settings and auto init', () => {
   document.body.innerHTML = dismissContent;
-  dismissible = new Dismissible({
+  dismissible = Dismissible({
     autoInit: true,
     dataTarget: 'a',
     dataTrigger: 'b',
@@ -82,7 +82,7 @@ test('dismiss using custom settings and auto init', () => {
 
 test('dismiss using the remove method via settings', () => {
   document.body.innerHTML = dismissContent;
-  dismissible = new Dismissible({
+  dismissible = Dismissible({
     autoInit: true,
     method: 'remove'
   });
@@ -96,7 +96,7 @@ test('dismiss using the remove method via settings', () => {
 
 test('should do nothing if none valid method is set', () => {
   document.body.innerHTML = dismissContent;
-  dismissible = new Dismissible({
+  dismissible = Dismissible({
     autoInit: true,
     method: 'asdf'
   });
@@ -112,7 +112,7 @@ test('should do nothing if none valid method is set', () => {
 
 test('dismissible destroy method removes event listener', () => {
   document.body.innerHTML = dismissContent;
-  dismissible = new Dismissible({ autoInit: true });
+  dismissible = Dismissible({ autoInit: true });
   const el = document.querySelector('[data-dismissible]');
   const button = document.querySelector('[data-dismiss]');
 
@@ -124,7 +124,7 @@ test('dismissible destroy method removes event listener', () => {
 
 test('should do nothing if random button is clicked', () => {
   document.body.innerHTML = dismissContent;
-  dismissible = new Dismissible({ autoInit: true });
+  dismissible = Dismissible({ autoInit: true });
   const el = document.querySelector('.branch-trigger-false');
   const button = el.querySelector('button');
 
@@ -135,7 +135,7 @@ test('should do nothing if random button is clicked', () => {
 
 test('should do nothing if no parent dismissible is found', () => {
   document.body.innerHTML = dismissContent;
-  dismissible = new Dismissible({ autoInit: true });
+  dismissible = Dismissible({ autoInit: true });
   const el = document.querySelector('.branch-target-false');
   const button = el.querySelector('button');
 

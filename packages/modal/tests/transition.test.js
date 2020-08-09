@@ -1,4 +1,4 @@
-import { Modal } from '../index.js';
+import Modal from '../index.js';
 import '@testing-library/jest-dom/extend-expect';
 import { transitionStart, transitionEnd } from './helpers/transition';
 
@@ -54,7 +54,7 @@ afterEach(() => {
 
 test('should apply state classes on `click` and `transitionend` events', async () => {
   document.body.innerHTML = markup;
-  modal = new Modal();
+  modal = Modal();
   const el = document.querySelector('[data-modal]');
   const btnOpen = document.querySelector('[data-modal-open]');
   const btnClose = el.querySelector('[data-modal-close]');
@@ -79,7 +79,7 @@ test('should apply state classes on `click` and `transitionend` events', async (
 
 test('should apply state classes with custom data attributes', async () => {
   document.body.innerHTML = markupCustomAttr;
-  modal = new Modal({
+  modal = Modal({
     autoInit: true,
     dataModal: 'a',
     dataOpen: 'a-o',
@@ -110,7 +110,7 @@ test('should apply state classes with custom data attributes', async () => {
 
 test('should apply custom state classes', async () => {
   document.body.innerHTML = markupCustomState;
-  modal = new Modal({
+  modal = Modal({
     autoInit: true,
     stateOpened: 'on',
     stateOpening: 'enable',
@@ -139,7 +139,7 @@ test('should apply custom state classes', async () => {
 test('should toggle overflow hidden when modal opened and closed', () => {
   document.body.innerHTML = markup;
   const el = document.querySelector('[data-modal]');
-  modal = new Modal({
+  modal = Modal({
     autoInit: true
   });
   modal.open('modal-default');
@@ -154,7 +154,7 @@ test('should toggle overflow hidden on multiple elements', () => {
   document.body.innerHTML = markup;
   const el = document.querySelector('[data-modal]');
   const di = el.querySelector('.modal__dialog');
-  modal = new Modal({
+  modal = Modal({
     autoInit: true,
     selectorOverflow: 'body, .modal, .modal__dialog'
   });
@@ -173,7 +173,7 @@ test('should toggle overflow hidden on multiple elements', () => {
 test('should disable toggle overflow if set to falsely', () => {
   document.body.innerHTML = markup;
   const el = document.querySelector('[data-modal]');
-  modal = new Modal({
+  modal = Modal({
     autoInit: true,
     selectorOverflow: false
   });
@@ -188,7 +188,7 @@ test('should disable toggle overflow if set to falsely', () => {
 test('should not apply transition classes when transitions are disabled', () => {
   document.body.innerHTML = markup;
   const el = document.querySelector('[data-modal]');
-  modal = new Modal({
+  modal = Modal({
     autoInit: true,
     transition: false
   });
@@ -201,9 +201,9 @@ test('should not apply transition classes when transitions are disabled', () => 
   expect(el.classList.length).toBe(2);
 });
 
-test('should not be possible to open new modal while a modal transition is in process', async () => {
+test('should not be possible to open Modal while a modal transition is in process', async () => {
   document.body.innerHTML = markupMultiple;
-  modal = new Modal();
+  modal = Modal();
   const elOne = document.querySelector('[data-modal="modal-one"]');
   const elTwo = document.querySelector('[data-modal="modal-two"]');
   const btnOne = document.querySelector('[data-modal-open="modal-one"]');

@@ -1,8 +1,8 @@
 import { camelCase } from '@vrembem/core';
 
-export const Dismissible = (options) => {
+export default (options) => {
 
-  let api = {};
+  const api = {};
   const defaults = {
     autoInit: false,
     dataTrigger: 'dismiss',

@@ -2,34 +2,35 @@ import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
-import pkg from './package.json';
 
-const name = 'vrembem';
+const entry = './index.js';
+const name = 'vrembem.core';
+const babelConfig = {
+  babelHelpers: 'runtime',
+  rootMode: 'upward'
+};
 
 export default [{
-  input: pkg.module,
+  input: entry,
   output: [{
-    file: pkg.browser,
+    file: './dist/scripts.cjs.js',
+    format: 'cjs',
+    exports: 'named'
+  }, {
+    file: './dist/scripts.js',
     format: 'iife',
     name: name,
     extend: true
-  }, {
-    file: pkg.main,
-    format: 'cjs',
-    name: name
   }],
   plugins: [
     resolve(),
     commonjs(),
-    babel({
-      babelHelpers: 'runtime',
-      rootMode: 'upward'
-    })
+    babel(babelConfig)
   ]
 }, {
-  input: pkg.module,
+  input: entry,
   output: {
-    file: pkg.browser.replace('.js', '.min.js'),
+    file: './dist/scripts.min.js',
     format: 'iife',
     name: name,
     extend: true
@@ -37,10 +38,7 @@ export default [{
   plugins: [
     resolve(),
     commonjs(),
-    babel({
-      babelHelpers: 'runtime',
-      rootMode: 'upward'
-    }),
+    babel(babelConfig),
     terser()
   ]
 }];
