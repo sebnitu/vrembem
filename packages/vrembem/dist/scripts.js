@@ -166,51 +166,6 @@
     return api;
   });
 
-  function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-  function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-  var index$2 = (function (options) {
-    var api = {};
-    var defaults = {
-      autoInit: false,
-      dataTrigger: 'dismiss',
-      dataTarget: 'dismissible',
-      classHide: 'display-none',
-      method: 'hide'
-    };
-    api.settings = _objectSpread$1(_objectSpread$1({}, defaults), options);
-
-    api.init = function () {
-      document.addEventListener('click', run, false);
-    };
-
-    api.destroy = function () {
-      document.removeEventListener('click', run, false);
-    };
-
-    var run = function run(event) {
-      var trigger = event.target.closest("[data-".concat(api.settings.dataTrigger, "]"));
-
-      if (trigger) {
-        var target = trigger.closest("[data-".concat(api.settings.dataTarget, "]"));
-
-        if (target) {
-          var method = target.dataset[camelCase(api.settings.dataTarget)];
-          var defaultMethod = api.settings.method;
-
-          if (method == 'remove' || !method && defaultMethod == 'remove') {
-            target.remove();
-          } else if (method == 'hide' || !method && defaultMethod == 'hide') {
-            target.classList.add(api.settings.classHide);
-          }
-        }
-      }
-    };
-
-    if (api.settings.autoInit) api.init();
-    return api;
-  });
-
   function createCommonjsModule(fn, basedir, module) {
   	return module = {
   	  path: basedir,
@@ -858,10 +813,10 @@
 
   var asyncToGenerator = _asyncToGenerator;
 
-  function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+  function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-  function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-  var index$3 = (function (options) {
+  function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+  var index$2 = (function (options) {
     var api = {};
     var defaults = {
       autoInit: false,
@@ -887,7 +842,7 @@
       transition: true
     };
     var working = false;
-    api.settings = _objectSpread$2(_objectSpread$2({}, defaults), options);
+    api.settings = _objectSpread$1(_objectSpread$1({}, defaults), options);
     api.memory = {};
     api.state = {};
     api.breakpoint = {};
@@ -1423,10 +1378,10 @@
     return api;
   });
 
-  function ownKeys$3(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+  function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-  function _objectSpread$3(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$3(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$3(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-  var index$4 = (function (options) {
+  function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+  var index$3 = (function (options) {
     var api = {};
     var defaults = {
       autoInit: false,
@@ -1451,7 +1406,7 @@
       transition: true
     };
     var working = false;
-    api.settings = _objectSpread$3(_objectSpread$3({}, defaults), options);
+    api.settings = _objectSpread$2(_objectSpread$2({}, defaults), options);
     api.memory = {};
 
     api.init = function () {
@@ -1857,9 +1812,8 @@
   });
 
   exports.Checkbox = index$1;
-  exports.Dismissible = index$2;
-  exports.Drawer = index$3;
-  exports.Modal = index$4;
+  exports.Drawer = index$2;
+  exports.Modal = index$3;
   exports.core = index;
 
 }(this.vrembem = this.vrembem || {}));

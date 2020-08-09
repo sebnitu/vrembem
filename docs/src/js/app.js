@@ -6,7 +6,6 @@ import './list.js';
 import './version';
 
 vb.Checkbox({ autoInit: true });
-vb.Dismissible({ autoInit: true });
 
 vb.Drawer({
   autoInit: true,
