@@ -1,6 +1,6 @@
 import { addClass, hasClass, removeClass } from '@vrembem/core';
 
-export const Modal = (options) => {
+export default (options) => {
 
   const api = {};
   const defaults = {

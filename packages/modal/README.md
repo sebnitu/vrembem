@@ -21,8 +21,8 @@ npm install @vrembem/modal
 ### JavaScript
 
 ```js
-import { Modal } from '@vrembem/modal';
-const modal = new Modal({ autoInit: true });
+import Modal from '@vrembem/modal';
+const modal = Modal({ autoInit: true });
 ```
 
 ### Markup
@@ -122,7 +122,7 @@ To take full advantage of modal's accessibility features, it's recommened to tha
 Here's an example where we want the `[role="main"]` content area to be inaccessible while modals are open. We also want for all modals to be moved outside the main content element in the DOM.
 
 ```js
-const modal = new Modal({
+const modal = Modal({
   autoInit: true,
   selectorMain: '[role="main"]',
   moveModals: {
@@ -230,7 +230,7 @@ Initializes the modal instance. During initialization, the following processes a
 - Adds the `keyup` event listener for closing modals with the `esc` key.
 
 ```js
-const modal = new Modal();
+const modal = Modal();
 modal.init();
 ```
 
@@ -243,7 +243,7 @@ Destroys and cleans up the modal instantiation. During cleanup, the following pr
 - Removes the `keyup` event listener from the document.
 
 ```js
-const modal = new Modal();
+const modal = Modal();
 modal.init();
 // ...
 modal.destroy();

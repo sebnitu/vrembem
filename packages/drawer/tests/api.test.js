@@ -1,4 +1,4 @@
-import { Drawer } from '../index.js';
+import Drawer from '../index.js';
 import { checkMatch } from './helpers/checkMatch';
 import { resizeWindow } from './helpers/resizeWindow';
 import { transition } from './helpers/transition';
@@ -67,7 +67,7 @@ afterEach(() => {
 
 test('should toggle drawer using api call', () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer();
+  drawer = Drawer();
   const el = document.querySelector('[data-drawer]');
 
   drawer.init();
@@ -89,7 +89,7 @@ test('should toggle drawer using api call', () => {
 
 test('should throw error if toggle has a selector not found in page', () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   drawer.toggle('drawer-asdf').catch((error) => {
     expect(error.message).toBe('Did not find drawer with key: "drawer-asdf"');
   });
@@ -97,7 +97,7 @@ test('should throw error if toggle has a selector not found in page', () => {
 
 test('should open drawer using api call', () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer();
+  drawer = Drawer();
   const el = document.querySelector('[data-drawer]');
 
   drawer.init();
@@ -113,7 +113,7 @@ test('should open drawer using api call', () => {
 
 test('should throw error if open has a selector not found in page', () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   drawer.open('drawer-asdf').catch((error) => {
     expect(error.message).toBe('Did not find drawer with key: "drawer-asdf"');
   });
@@ -121,7 +121,7 @@ test('should throw error if open has a selector not found in page', () => {
 
 test('should do nothing if drawer is already opened and open api is called', () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer]');
   drawer.open('drawer-default');
   el.dispatchEvent(ev);
@@ -132,7 +132,7 @@ test('should do nothing if drawer is already opened and open api is called', () 
 
 test('should close drawer using api call', () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer();
+  drawer = Drawer();
   const el = document.querySelector('[data-drawer]');
   const btnOpen = document.querySelector('[data-drawer-toggle]');
 
@@ -157,7 +157,7 @@ test('should close drawer using api call', () => {
 
 test('should throw error if close has a selector not found in page', async () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   drawer.close('drawer-asdf').catch((error) => {
     expect(error.message).toBe('Did not find drawer with key: "drawer-asdf"');
   });
@@ -165,7 +165,7 @@ test('should throw error if close has a selector not found in page', async () =>
 
 test('should do nothing if drawer is already closed and close api is called', () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer]');
   drawer.close('drawer-default');
   expect(el).not.toHaveClass('is-closing');
@@ -173,7 +173,7 @@ test('should do nothing if drawer is already closed and close api is called', ()
 
 test('should run function when promise is returned from toggle api', async () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer]');
   let callbackCheck = false;
 
@@ -187,7 +187,7 @@ test('should run function when promise is returned from toggle api', async () =>
 
 test('should fire callback when using open api', async () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer]');
   let callbackCheck = false;
 
@@ -201,7 +201,7 @@ test('should fire callback when using open api', async () => {
 
 test('should fire callback when using close api', async () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer]');
   let callbackCheck = false;
 
@@ -218,7 +218,7 @@ test('should fire callback when using close api', async () => {
 
 test('should initialize breakpoint feature on api call', () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer]');
   expect(drawer.mediaQueryLists.length).toEqual(0);
   el.setAttribute('data-drawer-breakpoint', 'md');
@@ -228,7 +228,7 @@ test('should initialize breakpoint feature on api call', () => {
 
 test('should run breakpoint check on api call', () => {
   document.body.innerHTML = markupBreakpoint;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   let eventFired = false;
 
   document.addEventListener('drawer:breakpoint', () => {
@@ -243,7 +243,7 @@ test('should run breakpoint check on api call', () => {
 
 test('should switch drawer to modal on api call', () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer]');
   expect(el).not.toHaveClass('drawer_modal');
   drawer.switchToModal('drawer-default');
@@ -252,7 +252,7 @@ test('should switch drawer to modal on api call', () => {
 
 test('should switch drawer to default on api call', () => {
   document.body.innerHTML = markupModal;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer]');
   expect(el).toHaveClass('drawer_modal');
   drawer.switchToDefault('drawer-default');
@@ -261,7 +261,7 @@ test('should switch drawer to default on api call', () => {
 
 test('should not throw error if passed drawer selector returns null', () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   expect(drawer.switchToModal.bind(this, 'drawer-asdf')).not.toThrow();
   expect(drawer.switchToDefault.bind(this, 'drawer-asdf')).not.toThrow();
 });
@@ -270,7 +270,7 @@ test('should destroy breakpoint feature on api call', () => {
   document.body.innerHTML = markup;
   const el = document.querySelector('[data-drawer]');
   el.setAttribute('data-drawer-breakpoint', 'md');
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   expect(drawer.mediaQueryLists.length).toEqual(1);
   drawer.breakpoint.destroy();
   expect(drawer.mediaQueryLists).toEqual(null);
@@ -278,7 +278,7 @@ test('should destroy breakpoint feature on api call', () => {
 
 test('should properly destroy drawer instance on api call', () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer({ autoInit: true });
+  drawer = Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer]');
   const btnOpen = document.querySelector('[data-drawer-toggle]');
 
@@ -292,7 +292,7 @@ test('should properly destroy drawer instance on api call', () => {
 
 test('should set tabindex attribute with api call', () => {
   document.body.innerHTML = markup;
-  drawer = new Drawer({
+  drawer = Drawer({
     autoInit: true,
     setTabindex: false
   });

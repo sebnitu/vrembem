@@ -1,4 +1,4 @@
-import { Modal } from '../index.js';
+import Modal from '../index.js';
 import '@testing-library/jest-dom/extend-expect';
 import { transitionEnd } from './helpers/transition';
 
@@ -24,7 +24,7 @@ afterEach(() => {
 
 test('should prevent escape or screen click closing modal if required', async () => {
   document.body.innerHTML = markup;
-  modal = new Modal({ autoInit: true });
+  modal = Modal({ autoInit: true });
   const el = document.querySelector('[data-modal]');
   const btnOpen = document.querySelector('[data-modal-open]');
   const btnClose = el.querySelector('[data-modal-close]');

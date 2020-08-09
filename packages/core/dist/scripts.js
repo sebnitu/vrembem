@@ -1,3 +1,4 @@
+this.vrembem = this.vrembem || {};
 (function (exports) {
   'use strict';
 
@@ -83,4 +84,4 @@
   exports.removeClass = removeClass;
   exports.toggleClass = toggleClass;
 
-}(this.vrembem = this.vrembem || {}));
+}(this.vrembem.core = this.vrembem.core || {}));

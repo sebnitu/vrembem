@@ -43,15 +43,9 @@ Import and initialize the components you'll need:
 
 ```js
 // Import all under the vb namespace
-import * as vb from "vrembem";
-const drawer = new vb.Drawer({ autoInit: true });
-
-// Or import individual components
-import { Drawer } from "vrembem";
-const drawer = new Drawer({ autoInit: true });
+import vb from "vrembem";
+const drawer = vb.drawer({ autoInit: true });
 ```
-
-> Note that `utility` component does not need to be initialized since it's just a set of helpful utility functions.
 
 ### Markup
 

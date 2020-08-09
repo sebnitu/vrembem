@@ -1,4 +1,5 @@
-(function (exports) {
+this.vrembem = this.vrembem || {};
+this.vrembem.checkbox = (function () {
   'use strict';
 
   function _defineProperty(obj, key, value) {
@@ -22,7 +23,7 @@
 
   function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-  var Checkbox = function Checkbox(options) {
+  var index = (function (options) {
     var api = {};
     var defaults = {
       autoInit: false,
@@ -79,8 +80,8 @@
 
     if (api.settings.autoInit) api.init();
     return api;
-  };
+  });
 
-  exports.Checkbox = Checkbox;
+  return index;
 
-}(this.vrembem = this.vrembem || {}));
+}());

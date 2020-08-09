@@ -1,4 +1,3 @@
-import { utility } from 'vrembem';
 import listjs from 'list.js';
 
 (() => {
@@ -22,17 +21,17 @@ import listjs from 'list.js';
 
     // Empty Notice
     // Displayed when the search returns no results
-    let notice_empty = document.querySelector('.notice_empty');
-    let notice_empty_text = notice_empty.querySelector('.search_text');
+    let noticeEmpty = document.querySelector('.notice_empty');
+    let noticeEmptyText = noticeEmpty.querySelector('.search_text');
 
     // Clear search button
     let filter = document.querySelector('.filter');
     let search = document.querySelector('.filter .search');
-    let search_clear = document.querySelector('.filter .search_clear');
+    let searchClear = document.querySelector('.filter .search_clear');
 
     let isMenuLinkActive = () => {
       let menuLinks = document.querySelectorAll('#listjs .menu__link');
-      let isActive = utility.hasClass(menuLinks, 'is-active');
+      let isActive = menuLinks.classList.contains('is-active');
       return isActive;
     };
 
@@ -41,25 +40,25 @@ import listjs from 'list.js';
 
       // Update the search text in empty notice
       let value = search.value;
-      notice_empty_text.innerHTML = value;
+      noticeEmptyText.innerHTML = value;
       localStorage.setItem('SearchValue', value);
 
       // Show clear search button if a value there is something in search
       if (value) {
-        utility.addClass(filter, 'is-active');
-        utility.addClass(search, 'is-active');
-        utility.removeClass(search_clear, 'display-none');
+        filter.classList.add('is-active');
+        search.classList.add('is-active');
+        searchClear.classList.remove('display-none');
       } else {
-        utility.removeClass(filter, 'is-active');
-        utility.removeClass(search, 'is-active');
-        utility.addClass(search_clear, 'display-none');
+        filter.classList.remove('is-active');
+        search.classList.remove('is-active');
+        searchClear.classList.add('display-none');
       }
 
       // Toggle notice depending on the number of visible items
       if (list.visibleItems.length > 0) {
-        utility.addClass(notice_empty, 'display-none');
+        noticeEmpty.classList.add('display-none');
       } else {
-        utility.removeClass(notice_empty, 'display-none');
+        noticeEmpty.classList.remove('display-none');
       }
     });
 
