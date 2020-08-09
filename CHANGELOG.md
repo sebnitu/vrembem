@@ -15,9 +15,16 @@ All notable changes to this project will be documented in this file.
 
 <!--
 Commit template:
-chore(release): add v1.14.1 to CHANGELOG.md
+chore(release): add v1.14.2 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.14.2 (2020-08-09)
+
+#### :bug: Bug Fix
+* `checkbox`, `core`, `dismissible`, `drawer`, `modal`, `vrembem`
+  * [#293](https://github.com/sebnitu/vrembem/pull/293) Fix package exports and bundles ([@sebnitu](https://github.com/sebnitu))
 
 
 ## v1.14.1 (2020-08-07)
