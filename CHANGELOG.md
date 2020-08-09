@@ -15,9 +15,16 @@ All notable changes to this project will be documented in this file.
 
 <!--
 Commit template:
-chore(release): add v1.14.3 to CHANGELOG.md
+chore(release): add v1.14.4 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.14.4 (2020-08-09)
+
+#### :house: Internal
+* `dismissible`, `vrembem`
+  * [#295](https://github.com/sebnitu/vrembem/pull/295) Deprecate the dismissible component ([@sebnitu](https://github.com/sebnitu))
 
 
 ## v1.14.3 (2020-08-09)
