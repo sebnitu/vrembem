@@ -15,9 +15,16 @@ All notable changes to this project will be documented in this file.
 
 <!--
 Commit template:
-chore(release): add v1.14.2 to CHANGELOG.md
+chore(release): add v1.14.3 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.14.3 (2020-08-09)
+
+#### :bug: Bug Fix
+* `checkbox`, `dismissible`, `drawer`, `modal`
+  * [#294](https://github.com/sebnitu/vrembem/pull/294) Use consistent namespace for iife bundles ([@sebnitu](https://github.com/sebnitu))
 
 
 ## v1.14.2 (2020-08-09)
