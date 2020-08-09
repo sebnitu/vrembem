@@ -16,7 +16,7 @@
     </div>
     <hr class="sep margin-vert-lg">
     <div class="spacing">
-      <p>Example Menu Component</p>
+      <p class="text-bold">Example Menu Component</p>
       <ul class="menu menu_stack_sm">
         <li class="menu__item">
           <a href="https://vrembem.com" class="menu__link">Documentation</a>
@@ -31,7 +31,7 @@
     </div>
     <hr class="sep margin-vert-lg">
     <div class="spacing">
-      <p>Example Modal Component</p>
+      <p class="text-bold">Example Modal Component</p>
       <p>
         <button class="link" data-modal-open="modal-default">
           Open modal
@@ -51,18 +51,12 @@
 </div>
 
 <!-- Include Vrembem JavaScript -->
-<!-- <script src="https://unpkg.com/vrembem@latest/dist/scripts.min.js"></script> -->
-<script src="https://unpkg.com/@vrembem/core@latest/dist/scripts.js"></script>
-<script src="https://unpkg.com/@vrembem/checkbox@latest/dist/scripts.js"></script>
-<script src="https://unpkg.com/@vrembem/dismissible@latest/dist/scripts.js"></script>
-<script src="https://unpkg.com/@vrembem/drawer@latest/dist/scripts.js"></script>
-<script src="https://unpkg.com/@vrembem/modal@latest/dist/scripts.js"></script>
+<script src="https://unpkg.com/vrembem@latest/dist/scripts.min.js"></script>
 
 <!-- Instantiate the component rendered in the document -->
 <script>
-  console.log(vrembem);
-  // const modal = vrembem.Modal();
-  // modal.init();
+  const modal = vrembem.Modal();
+  modal.init();
 </script>
 
 </body>
