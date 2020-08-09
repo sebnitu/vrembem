@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/dismissible",
   "description": "A component for removing an element from the DOM or hiding it with a CSS class.",
-  "version": "1.14.2",
+  "version": "1.14.3",
   "license": "MIT",
   "keywords": [
     "BEM",
