@@ -4,7 +4,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
 
 const entry = './index.js';
-const name = 'vrembem.drawer';
+const name = 'vrembem.Drawer';
 const babelConfig = {
   babelHelpers: 'runtime',
   rootMode: 'upward'

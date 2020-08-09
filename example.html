@@ -33,7 +33,9 @@
     <div class="spacing">
       <p>Example Modal Component</p>
       <p>
-        <a href="#" class="link" data-modal-open="modal-default">Open modal</a>
+        <button class="link" data-modal-open="modal-default">
+          Open modal
+        </button>
       </p>
     </div>
   </div>
@@ -49,12 +51,18 @@
 </div>
 
 <!-- Include Vrembem JavaScript -->
-<script src="https://unpkg.com/vrembem@latest/dist/scripts.min.js"></script>
+<!-- <script src="https://unpkg.com/vrembem@latest/dist/scripts.min.js"></script> -->
+<script src="https://unpkg.com/@vrembem/core@latest/dist/scripts.js"></script>
+<script src="https://unpkg.com/@vrembem/checkbox@latest/dist/scripts.js"></script>
+<script src="https://unpkg.com/@vrembem/dismissible@latest/dist/scripts.js"></script>
+<script src="https://unpkg.com/@vrembem/drawer@latest/dist/scripts.js"></script>
+<script src="https://unpkg.com/@vrembem/modal@latest/dist/scripts.js"></script>
 
 <!-- Instantiate the component rendered in the document -->
 <script>
-  const modal = new vrembem.Modal();
-  modal.init();
+  console.log(vrembem);
+  // const modal = vrembem.Modal();
+  // modal.init();
 </script>
 
 </body>

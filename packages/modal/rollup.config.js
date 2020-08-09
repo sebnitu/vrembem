@@ -4,7 +4,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
 
 const entry = './index.js';
-const name = 'vrembem.modal';
+const name = 'vrembem.Modal';
 const babelConfig = {
   babelHelpers: 'runtime',
   rootMode: 'upward'

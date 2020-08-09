@@ -1,5 +1,5 @@
 this.vrembem = this.vrembem || {};
-this.vrembem.modal = (function () {
+this.vrembem.Modal = (function () {
 	'use strict';
 
 	function createCommonjsModule(fn, basedir, module) {
