@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/drawer",
   "description": "A container component that slides in from the left or right. Typically containing menus, search or other content.",
-  "version": "1.14.3",
+  "version": "1.14.4",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -28,9 +28,9 @@
     "directory": "packages/drawer"
   },
   "devDependencies": {
-    "@vrembem/base": "^1.14.2",
+    "@vrembem/base": "^1.14.4",
     "@vrembem/dialog": "^1.14.2",
-    "@vrembem/utility": "^1.14.2"
+    "@vrembem/utility": "^1.14.4"
   },
   "dependencies": {
     "@vrembem/core": "^1.14.2"
