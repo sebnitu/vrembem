@@ -51,7 +51,7 @@ import { Drawer } from "vrembem";
 const drawer = Drawer({ autoInit: true });
 ```
 
-> Note that `core` helpers does not need to be initialized since they're just a set of helpful utility functions.
+> Note that `core` helpers do not need to be initialized since they're just a set of helpful utility functions.
 
 ## Markup
 

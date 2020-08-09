@@ -222,7 +222,7 @@ To take full advantage of drawer modal's accessibility features, it's recommened
 Here's an example where we want the `[role="main"]` content area to be inaccessible while drawer modals are open. We also want to disable other scrollable elements using the `selectorOverflow` option.
 
 ```js
-Drawer({
+const drawer = Drawer({
   autoInit: true,
   selectorInert: '[role="main"]',
   selectorOverflow: 'body, [role="main"]'
@@ -633,7 +633,7 @@ drawer.toggle('drawer-key');
 
 // Run some code after promise resolves
 drawer.toggle('drawer-key').then((result) => {
-console.log(result);
+  console.log(result);
 });
 ```
 
@@ -659,7 +659,7 @@ drawer.open('drawer-key');
 
 // Run some code after promise resolves
 drawer.open('drawer-key').then((result) => {
-console.log(result);
+  console.log(result);
 });
 ```
 
@@ -685,7 +685,7 @@ drawer.close('drawer-key');
 
 // Run some code after promise resolves
 drawer.close('drawer-key').then((result) => {
-console.log(result);
+  console.log(result);
 });
 ```
 
@@ -720,7 +720,11 @@ drawer.setTabindex();
 Initializes the drawer breakpoint feature. During initialization, all drawers with `data-drawer-breakpoint` are retrieved and a `MediaQueryList` is created for each. Each `MediaQueryList` and it's associated drawer key is stored in the `drawer.mediaQueryLists` array. This is ran automatically on `drawer.init()`.
 
 ```html
-<aside data-drawer="[unique-id]" data-drawer-breakpoint="420px" class="drawer">
+<aside data-drawer="drawer-1" data-drawer-breakpoint="420px" class="drawer">
+  ...
+</aside>
+
+<aside data-drawer="drawer-2" data-drawer-breakpoint="740px" class="drawer">
   ...
 </aside>
 ```
@@ -734,8 +738,11 @@ console.log(drawer.mediaQueryLists);
 
 // Log result
 [{
-mql: MediaQueryList // Obj
-drawer: '[unique-id]' // String
+  mql: MediaQueryList // Obj
+  drawer: 'drawer-1' // String
+}, {
+  mql: MediaQueryList // Obj
+  drawer: 'drawer-2' // String
 }]
 ```
 

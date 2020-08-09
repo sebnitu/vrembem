@@ -665,7 +665,7 @@ modal.open('modal-key');
 
 // Run some code after promise resolves
 modal.open('modal-key').then((result) => {
-console.log(result); // result = HTML Object || null
+  console.log(result); // result = HTML Object || null
 });
 ```
 
@@ -691,7 +691,7 @@ modal.close();
 
 // Run some code after promise resolves
 modal.close().then((result) => {
-console.log(result); // result = HTML Object || null
+  console.log(result); // result = HTML Object || null
 });
 ```
 
