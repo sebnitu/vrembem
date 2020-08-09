@@ -16,7 +16,7 @@
     </div>
     <hr class="sep margin-vert-lg">
     <div class="spacing">
-      <p>Example Menu Component</p>
+      <p class="text-bold">Example Menu Component</p>
       <ul class="menu menu_stack_sm">
         <li class="menu__item">
           <a href="https://vrembem.com" class="menu__link">Documentation</a>
@@ -31,9 +31,11 @@
     </div>
     <hr class="sep margin-vert-lg">
     <div class="spacing">
-      <p>Example Modal Component</p>
+      <p class="text-bold">Example Modal Component</p>
       <p>
-        <a href="#" class="link" data-modal-open="modal-default">Open modal</a>
+        <button class="link" data-modal-open="modal-default">
+          Open modal
+        </button>
       </p>
     </div>
   </div>
@@ -53,7 +55,7 @@
 
 <!-- Instantiate the component rendered in the document -->
 <script>
-  const modal = new vrembem.Modal();
+  const modal = vrembem.Modal();
   modal.init();
 </script>
 

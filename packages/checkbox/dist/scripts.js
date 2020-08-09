@@ -1,5 +1,5 @@
 this.vrembem = this.vrembem || {};
-this.vrembem.checkbox = (function () {
+this.vrembem.Checkbox = (function () {
   'use strict';
 
   function _defineProperty(obj, key, value) {

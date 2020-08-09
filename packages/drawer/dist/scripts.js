@@ -1,5 +1,5 @@
 this.vrembem = this.vrembem || {};
-this.vrembem.drawer = (function () {
+this.vrembem.Drawer = (function () {
 	'use strict';
 
 	function createCommonjsModule(fn, basedir, module) {
