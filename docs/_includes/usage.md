@@ -1,7 +1,7 @@
 <div class="type spacing" markdown="1">
 
 {% if page.usage.npm %}
-```
+```sh
 npm install {{ page.package }}
 ```
 {% endif %}

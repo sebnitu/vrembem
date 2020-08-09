@@ -76,7 +76,7 @@ Also see [`example.html`](./example.html) for a more comprehensive working demo 
 
 To use a Vrembem component, you'll first need to install it as a dependency. For this example we'll be using the modal component:
 
-```
+```sh
 npm install @vrembem/modal
 ```
 
@@ -134,7 +134,7 @@ Modal({ autoInit: true });
 
 It's also possible to include all Vrembem components using the single all-in-one `vrembem` package:
 
-```
+```sh
 npm install vrembem
 ```
 

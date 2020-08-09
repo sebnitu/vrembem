@@ -8,7 +8,7 @@ The utility component provides a set of atomic classes that specialize in a sing
 
 ## Installation
 
-```
+```sh
 npm install @vrembem/utility
 ```
 
@@ -54,10 +54,10 @@ Each utility has a corresponding `$output-[module]` and `$class-[module]` variab
 
 Setting these variables will apply to all utility modules.
 
-Variable | Default | Description
----|---|---
-`$prefix-utility` | `null` | String to prefix all utility classes with.
-`$output` | `true` | Toggles the default output of all modules.
+| Variable          | Default | Description                                |
+| ----------------- | ------- | ------------------------------------------ |
+| `$prefix-utility` | `null`  | String to prefix all utility classes with. |
+| `$output`         | `true`  | Toggles the default output of all modules. |
 
 ## Modules
 
@@ -410,22 +410,22 @@ Adds ellipsis styles to an element that will display an ellipsis (...) for text 
 
 ### Sass Variables
 
-Variable | Default | Description
----|---|---
-`$prefix-utility` | `null` | String to prefix utilities with.
-`$class-background` | `"background"` | String to use for the class name of the background utility.
-`$class-border` | `"border"` | String to use for the class name of the border utility.
-`$class-border-radius` | `"radius"` | String to use for the class name of the border-radius utility.
-`$class-box-shadow` | `"elevate"` | String to use for the class name of the box-shadow utility.
-`$class-color` | `"color"` | String to use for the class name of the text color utility.
-`$class-display` | `"display"` | String to use for the class name of the display utility.
-`$class-flex` | `"flex"` | String to use for the class name of the flex utility.
-`$class-margin` | `"margin"` | String to use for the class name of the margin utility.
-`$class-padding` | `"padding"` | String to use for the class name of the padding utility.
-`$class-span` | `"span"` | String to use for the class name of the span utility.
-`$class-text` | `"text"` | String to use for the class name of the text utility.
-`$breakpoints` | `core.$breakpoints` | The breakpoints map some utilities use to build their styles.
-`$columns` | `12` | The columns value to use for `span` component sizing.
-`$display-properties` | [Source](https://github.com/sebnitu/vrembem/blob/08eb7b3b55e9c55ed0027e8d9cee3d24b2ac86d6/packages/utility/src/_variables.scss#L24-L31) | Used to determine which display properties to output as utilities.
-`$spacing` | `core.$spacing` | The default value used for utilities that handle spacing.
-`$spacing-map` | `core.$spacing-map` | Map of variations to output for utilities that handle spacing.
+| Variable               | Default                                                                                                                                 | Description                                                        |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| `$prefix-utility`      | `null`                                                                                                                                  | String to prefix utilities with.                                   |
+| `$class-background`    | `"background"`                                                                                                                          | String to use for the class name of the background utility.        |
+| `$class-border`        | `"border"`                                                                                                                              | String to use for the class name of the border utility.            |
+| `$class-border-radius` | `"radius"`                                                                                                                              | String to use for the class name of the border-radius utility.     |
+| `$class-box-shadow`    | `"elevate"`                                                                                                                             | String to use for the class name of the box-shadow utility.        |
+| `$class-color`         | `"color"`                                                                                                                               | String to use for the class name of the text color utility.        |
+| `$class-display`       | `"display"`                                                                                                                             | String to use for the class name of the display utility.           |
+| `$class-flex`          | `"flex"`                                                                                                                                | String to use for the class name of the flex utility.              |
+| `$class-margin`        | `"margin"`                                                                                                                              | String to use for the class name of the margin utility.            |
+| `$class-padding`       | `"padding"`                                                                                                                             | String to use for the class name of the padding utility.           |
+| `$class-span`          | `"span"`                                                                                                                                | String to use for the class name of the span utility.              |
+| `$class-text`          | `"text"`                                                                                                                                | String to use for the class name of the text utility.              |
+| `$breakpoints`         | `core.$breakpoints`                                                                                                                     | The breakpoints map some utilities use to build their styles.      |
+| `$columns`             | `12`                                                                                                                                    | The columns value to use for `span` component sizing.              |
+| `$display-properties`  | [Source](https://github.com/sebnitu/vrembem/blob/08eb7b3b55e9c55ed0027e8d9cee3d24b2ac86d6/packages/utility/src/_variables.scss#L24-L31) | Used to determine which display properties to output as utilities. |
+| `$spacing`             | `core.$spacing`                                                                                                                         | The default value used for utilities that handle spacing.          |
+| `$spacing-map`         | `core.$spacing-map`                                                                                                                     | Map of variations to output for utilities that handle spacing.     |

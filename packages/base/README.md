@@ -8,7 +8,7 @@ Includes useful default styles and base modules for common HTML elements.
 
 ## Installation
 
-```
+```sh
 npm install @vrembem/base
 ```
 
@@ -59,13 +59,13 @@ Alternatively, you can disable CSS output using the `$output` and `$output-[modu
 
 Setting these variables will impact more than one or up to all base modules.
 
-Variable | Default | Description
----|---|---
-`$prefix-block` | `null` | String to prefix blocks with.
-`$prefix-element` | `"__"` | String to prefix element with.
-`$prefix-modifier` | `"_"` | String to prefix modifier with.
-`$prefix-modifier-value` | `"_"` | String to prefix modifier values with.
-`$output` | `true` | Toggles the default output of all modules.
+| Variable                 | Default | Description                                |
+| ------------------------ | ------- | ------------------------------------------ |
+| `$prefix-block`          | `null`  | String to prefix blocks with.              |
+| `$prefix-element`        | `"__"`  | String to prefix element with.             |
+| `$prefix-modifier`       | `"_"`   | String to prefix modifier with.            |
+| `$prefix-modifier-value` | `"_"`   | String to prefix modifier values with.     |
+| `$output`                | `true`  | Toggles the default output of all modules. |
 
 ## Modules
 
@@ -88,11 +88,11 @@ The base component consists of a number of modules with their own set of specifi
 
 Outputs a number of base and reset element styles to help keep html elements predictable and easier to work with. Some more global options are set via the `@vrembem/core` component, while others that are specific to the base component are set directly here.
 
-Variable | Default | Description
----|---|---
-`$output-base` | `$output` &rarr; `true` | Toggles the output of this module.
-`$box-sizing` | `border-box` | Sets the default box-sizing property for all HTML elements.
-`$body-background` | `null` | Sets the background color that's applied to the body element.
+| Variable           | Default                 | Description                                                   |
+| ------------------ | ----------------------- | ------------------------------------------------------------- |
+| `$output-base`     | `$output` &rarr; `true` | Toggles the output of this module.                            |
+| `$box-sizing`      | `border-box`            | Sets the default box-sizing property for all HTML elements.   |
+| `$body-background` | `null`                  | Sets the background color that's applied to the body element. |
 
 Here's an example of the default styles applied to all HTML elements and specific styles on the `html` and `body` elements.
 
@@ -142,19 +142,19 @@ The HTML blockquote element is used for markup up extended quotations. This modu
 </blockquote>
 ```
 
-Variable | Default | Description
----|---|---
-`$output-blockquote` | `$output` &rarr; `true` | Toggles the output of this module.
-`$blockquote-padding` | `1.5em` | Sets the padding property.
-`$blockquote-spacing` | `1em` | Sets the vertical spacing between elements inside a blockquote using the margin property.
-`$blockquote-color` | `inherit` | Sets the text color property.
-`$blockquote-background` | `null` | Sets the background color property.
-`$blockquote-border` | `core.$border-light` | Sets the border property.
-`$blockquote-border-color-invert` | `core.$border-color-invert` | Sets the inverted border color. This is used when blockquotes appear on a dark background.
-`$blockquote-border-radius` | `null` | Sets the border-radius property.
-`$blockquote-accent-width` | `4px` | Sets the width of the accent CSS pseudo-element which renders on the right side of the blockquote element.
-`$blockquote-accent-offset` | `-1px` | Sets the offset of the accent CSS pseudo-element. Recommended to set negative of the border width.
-`$blockquote-accent-color` | `core.$primary` | Sets the color of the accent CSS pseudo-element.
+| Variable                          | Default                     | Description                                                                                                |
+| --------------------------------- | --------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `$output-blockquote`              | `$output` &rarr; `true`     | Toggles the output of this module.                                                                         |
+| `$blockquote-padding`             | `1.5em`                     | Sets the padding property.                                                                                 |
+| `$blockquote-spacing`             | `1em`                       | Sets the vertical spacing between elements inside a blockquote using the margin property.                  |
+| `$blockquote-color`               | `inherit`                   | Sets the text color property.                                                                              |
+| `$blockquote-background`          | `null`                      | Sets the background color property.                                                                        |
+| `$blockquote-border`              | `core.$border-light`        | Sets the border property.                                                                                  |
+| `$blockquote-border-color-invert` | `core.$border-color-invert` | Sets the inverted border color. This is used when blockquotes appear on a dark background.                 |
+| `$blockquote-border-radius`       | `null`                      | Sets the border-radius property.                                                                           |
+| `$blockquote-accent-width`        | `4px`                       | Sets the width of the accent CSS pseudo-element which renders on the right side of the blockquote element. |
+| `$blockquote-accent-offset`       | `-1px`                      | Sets the offset of the accent CSS pseudo-element. Recommended to set negative of the border width.         |
+| `$blockquote-accent-color`        | `core.$primary`             | Sets the color of the accent CSS pseudo-element.                                                           |
 
 #### `@mixin blockquote()`
 
@@ -198,17 +198,17 @@ The HTML code element displays its contents styled in a fashion intended to indi
 <code class="code">a = 17</code>
 ```
 
-Variable | Default | Description
----|---|---
-`$output-code` | `$output` &rarr; `true` | Toggles the output of this module.
-`$code-padding` | `null` | Sets the padding property.
-`$code-background` | `null` | Sets the background property.
-`$code-border` | `null` | Sets the border property.
-`$code-border-radius` | `core.$border-radius` | Sets the border-radius property.
-`$code-color` | `core.$pink` | Sets the text color property.
-`$code-color-invert` | `core.$pink-300` | Sets the inverted text color. This is used when code elements appear on a dark background.
-`$code-font-family` | `core.$font-family-mono` | Sets the font-family property.
-`$code-font-size` | `0.9em` | Sets the font-size property.
+| Variable              | Default                  | Description                                                                                |
+| --------------------- | ------------------------ | ------------------------------------------------------------------------------------------ |
+| `$output-code`        | `$output` &rarr; `true`  | Toggles the output of this module.                                                         |
+| `$code-padding`       | `null`                   | Sets the padding property.                                                                 |
+| `$code-background`    | `null`                   | Sets the background property.                                                              |
+| `$code-border`        | `null`                   | Sets the border property.                                                                  |
+| `$code-border-radius` | `core.$border-radius`    | Sets the border-radius property.                                                           |
+| `$code-color`         | `core.$pink`             | Sets the text color property.                                                              |
+| `$code-color-invert`  | `core.$pink-300`         | Sets the inverted text color. This is used when code elements appear on a dark background. |
+| `$code-font-family`   | `core.$font-family-mono` | Sets the font-family property.                                                             |
+| `$code-font-size`     | `0.9em`                  | Sets the font-size property.                                                               |
 
 #### `@mixin code()`
 
@@ -240,11 +240,11 @@ The embed module is used to wrap iframes or video elements and keep them respons
 </div>
 ```
 
-Variable | Default | Description
----|---|---
-`$output-embed` | `$output` &rarr; `true` | Toggles the output of this module.
-`$class-embed` | `"embed"` | String to use for the class name of the embed module.
-`$embed-ratio` | `core.aspect-ratio(16, 9)` | The default aspect ratio to use.
+| Variable        | Default                    | Description                                           |
+| --------------- | -------------------------- | ----------------------------------------------------- |
+| `$output-embed` | `$output` &rarr; `true`    | Toggles the output of this module.                    |
+| `$class-embed`  | `"embed"`                  | String to use for the class name of the embed module. |
+| `$embed-ratio`  | `core.aspect-ratio(16, 9)` | The default aspect ratio to use.                      |
 
 ### `heading`
 
@@ -259,14 +259,14 @@ Section headings in HTML are represented by the `<h1>` through `<h6>` elements. 
 <h6 class="h6">...</h6>
 ```
 
-Variable | Default | Description
----|---|---
-`$output-heading` | `$output` &rarr; `true` | Toggles the output of this module.
-`$heading-font-family` | `null` | Sets the font-family property.
-`$heading-line-height` | `1.3` | Sets the line-height property.
-`$heading-color` | `inherit` | Sets the text color property.
-`$heading-color-invert` | `null` | Sets the inverted text color. This is used when heading elements appear on a dark background.
-`$heading-font-weight` | `core.font-weight("semi-bold")` | Sets the font-weight property.
+| Variable                | Default                         | Description                                                                                   |
+| ----------------------- | ------------------------------- | --------------------------------------------------------------------------------------------- |
+| `$output-heading`       | `$output` &rarr; `true`         | Toggles the output of this module.                                                            |
+| `$heading-font-family`  | `null`                          | Sets the font-family property.                                                                |
+| `$heading-line-height`  | `1.3`                           | Sets the line-height property.                                                                |
+| `$heading-color`        | `inherit`                       | Sets the text color property.                                                                 |
+| `$heading-color-invert` | `null`                          | Sets the inverted text color. This is used when heading elements appear on a dark background. |
+| `$heading-font-weight`  | `core.font-weight("semi-bold")` | Sets the font-weight property.                                                                |
 
 #### `@mixin heading-base()`
 
@@ -293,9 +293,9 @@ Output the specific styles for a heading level. Takes the heading level as an ar
 
 **Arguments**
 
-Variable | Type | Description
----|---|---
-`$level` | `number (1-6)` | The level of heading styles to output.
+| Variable | Type           | Description                            |
+| -------- | -------------- | -------------------------------------- |
+| `$level` | `number (1-6)` | The level of heading styles to output. |
 
 **Example**
 
@@ -327,28 +327,28 @@ A link—usually represented by an anchor (`<a>`) HTML element with `href` attri
 <a href="#" class="link link_invert-subtle">Link</a>
 ```
 
-Variable | Default | Description
----|---|---
-`$output-link` | `$output` &rarr; `true` | Toggles the output of this module.
-`$link-text-decoration` | `none` | Sets the text decoration property.
-`$link-text-decoration-hover` | `null` | Sets the text decoration property on hover state.
-`$link-transition` | `null` | Sets the transition property.
-`$link-color` | `core.$primary` | Sets the text color property.
-`$link-color-hover` | `core.$primary-dark` | Sets the text color property on hover state.
-`$link-border` | `1px solid core.$border-color` | Sets the border property.
-`$link-border-hover` | `1px solid currentColor` | Sets the border property on hover state.
-`$link-subtle-color` | `core.$color-subtle` | Sets the text color property on subtle modifier.
-`$link-subtle-color-hover` | `$link-color-hover` | Sets the text color property on subtle modifier hover state.
-`$link-subtle-border-color` | `core.$border-color` | Sets the border-color property on subtle modifier.
-`$link-subtle-border-color-hover` | `currentColor` | Sets the border-color property on subtle modifier hover state.
-`$link-invert-color` | `core.$white` | Sets the text color property on invert modifier.
-`$link-invert-color-hover` | `core.$white` | Sets the text color property on invert modifier hover state.
-`$link-invert-border-color` | `rgba(core.$white, 0.5)` | Sets the border-color property on invert modifier.
-`$link-invert-border-color-hover` | `currentColor` | Sets the border-color property on invert modifier hover state.
-`$link-invert-subtle-color` | `core.$color-invert-subtle` | Sets the text color property on invert-subtle modifier.
-`$link-invert-subtle-color-hover` | `core.$color-invert` | Sets the text color property on invert-subtle modifier hover state.
-`$link-invert-subtle-border-color` | `rgba(core.$white, 0.5)` | Sets the border-color property on invert-subtle modifier.
-`$link-invert-subtle-border-color-hover` | `currentColor` | Sets the border-color property on invert-subtle modifier hover state.
+| Variable                                 | Default                        | Description                                                           |
+| ---------------------------------------- | ------------------------------ | --------------------------------------------------------------------- |
+| `$output-link`                           | `$output` &rarr; `true`        | Toggles the output of this module.                                    |
+| `$link-text-decoration`                  | `none`                         | Sets the text decoration property.                                    |
+| `$link-text-decoration-hover`            | `null`                         | Sets the text decoration property on hover state.                     |
+| `$link-transition`                       | `null`                         | Sets the transition property.                                         |
+| `$link-color`                            | `core.$primary`                | Sets the text color property.                                         |
+| `$link-color-hover`                      | `core.$primary-dark`           | Sets the text color property on hover state.                          |
+| `$link-border`                           | `1px solid core.$border-color` | Sets the border property.                                             |
+| `$link-border-hover`                     | `1px solid currentColor`       | Sets the border property on hover state.                              |
+| `$link-subtle-color`                     | `core.$color-subtle`           | Sets the text color property on subtle modifier.                      |
+| `$link-subtle-color-hover`               | `$link-color-hover`            | Sets the text color property on subtle modifier hover state.          |
+| `$link-subtle-border-color`              | `core.$border-color`           | Sets the border-color property on subtle modifier.                    |
+| `$link-subtle-border-color-hover`        | `currentColor`                 | Sets the border-color property on subtle modifier hover state.        |
+| `$link-invert-color`                     | `core.$white`                  | Sets the text color property on invert modifier.                      |
+| `$link-invert-color-hover`               | `core.$white`                  | Sets the text color property on invert modifier hover state.          |
+| `$link-invert-border-color`              | `rgba(core.$white, 0.5)`       | Sets the border-color property on invert modifier.                    |
+| `$link-invert-border-color-hover`        | `currentColor`                 | Sets the border-color property on invert modifier hover state.        |
+| `$link-invert-subtle-color`              | `core.$color-invert-subtle`    | Sets the text color property on invert-subtle modifier.               |
+| `$link-invert-subtle-color-hover`        | `core.$color-invert`           | Sets the text color property on invert-subtle modifier hover state.   |
+| `$link-invert-subtle-border-color`       | `rgba(core.$white, 0.5)`       | Sets the border-color property on invert-subtle modifier.             |
+| `$link-invert-subtle-border-color-hover` | `currentColor`                 | Sets the border-color property on invert-subtle modifier hover state. |
 
 #### `@mixin link()`
 
@@ -387,9 +387,9 @@ Output the styes for a specific link modifier. This is meant to be used in addit
 
 **Arguments**
 
-Variable | Type | Description
----|---|---
-`$modifier` | `string` | A string that matches a pre-defined modifier: `"subtle"`, `"invert"` or `"invert-subtle"`.
+| Variable    | Type     | Description                                                                                |
+| ----------- | -------- | ------------------------------------------------------------------------------------------ |
+| `$modifier` | `string` | A string that matches a pre-defined modifier: `"subtle"`, `"invert"` or `"invert-subtle"`. |
 
 **Example**
 
@@ -432,11 +432,11 @@ The list module helps add styles to unordered (`<ul>`) and ordered (`<ol>`) list
 </ol>
 ```
 
-Variable | Default | Description
----|---|---
-`$output-list` | `$output` &rarr; `true` | Toggles the output of this module.
-`$list-spacing` | `1.5em` | Sets the margin-left property of list elements.
-`$list-item-spacing` | `0.5em` | Sets the top and bottom margins of list items.
+| Variable             | Default                 | Description                                     |
+| -------------------- | ----------------------- | ----------------------------------------------- |
+| `$output-list`       | `$output` &rarr; `true` | Toggles the output of this module.              |
+| `$list-spacing`      | `1.5em`                 | Sets the margin-left property of list elements. |
+| `$list-item-spacing` | `0.5em`                 | Sets the top and bottom margins of list items.  |
 
 #### `@mixin list()`
 
@@ -484,14 +484,14 @@ This module helps style the HTML `<pre>` element by providing the `.pre` CSS cla
 </pre>
 ```
 
-Variable | Default | Description
----|---|---
-`$output-pre` | `$output` &rarr; `true` | Toggles the output of this module.
-`$pre-padding` | `1em` | Sets the padding property.
-`$pre-background` | `core.$shade` | Sets the background property.
-`$pre-border` | `null` | Sets the border property.
-`$pre-border-radius` | `core.$border-radius` | Sets the border-radius property.
-`$pre-color` | `core.$color` | Sets the text color property.
+| Variable             | Default                 | Description                        |
+| -------------------- | ----------------------- | ---------------------------------- |
+| `$output-pre`        | `$output` &rarr; `true` | Toggles the output of this module. |
+| `$pre-padding`       | `1em`                   | Sets the padding property.         |
+| `$pre-background`    | `core.$shade`           | Sets the background property.      |
+| `$pre-border`        | `null`                  | Sets the border property.          |
+| `$pre-border-radius` | `core.$border-radius`   | Sets the border-radius property.   |
+| `$pre-color`         | `core.$color`           | Sets the text color property.      |
 
 #### `@mixin pre()`
 
@@ -531,10 +531,10 @@ This module provides the `.scroll-box` CSS class to be applied as a wrapper arou
 </div>
 ```
 
-Variable | Default | Description
----|---|---
-`$output-scroll-box` | `$output` &rarr; `true` | Toggles the output of this module.
-`$class-scroll-box` | `"scroll-box"` | String to use for the class name of the scroll-box module.
+| Variable             | Default                 | Description                                                |
+| -------------------- | ----------------------- | ---------------------------------------------------------- |
+| `$output-scroll-box` | `$output` &rarr; `true` | Toggles the output of this module.                         |
+| `$class-scroll-box`  | `"scroll-box"`          | String to use for the class name of the scroll-box module. |
 
 #### `@mixin scroll-box()`
 
@@ -570,12 +570,12 @@ This module adds the `.sep` and `.sep-invert` CSS classes which visually renders
 <hr class="sep-invert border-color-invert-darker">
 ```
 
-Variable | Default | Description
----|---|---
-`$output-separator` | `$output` &rarr; `true` | Toggles the output of this module.
-`$class-separator` | `"sep"` | String to use for the class name of the separator module.
-`$separator-border` | `1px solid core.$border-color` | Sets the border property.
-`$separator-border-invert` | `1px solid core.$border-color-invert` | Sets the border property on invert variant.
+| Variable                   | Default                               | Description                                               |
+| -------------------------- | ------------------------------------- | --------------------------------------------------------- |
+| `$output-separator`        | `$output` &rarr; `true`               | Toggles the output of this module.                        |
+| `$class-separator`         | `"sep"`                               | String to use for the class name of the separator module. |
+| `$separator-border`        | `1px solid core.$border-color`        | Sets the border property.                                 |
+| `$separator-border-invert` | `1px solid core.$border-color-invert` | Sets the border property on invert variant.               |
 
 #### `@mixin separator($border)`
 
@@ -583,9 +583,9 @@ Output the separator styles.
 
 **Arguments**
 
-Variable | Type | Description
----|---|---
-`$border` | `border property` | The border styles to apply on separator output.
+| Variable  | Type              | Description                                     |
+| --------- | ----------------- | ----------------------------------------------- |
+| `$border` | `border property` | The border styles to apply on separator output. |
 
 **Example**
 
@@ -620,12 +620,12 @@ This module adds vertical spacing between an element's children. Spacing size an
 <div class="spacing-xl">...</div>
 ```
 
-Variable | Default | Description
----|---|---
-`$output-spacing` | `$output` &rarr; `true` | Toggles the output of this module.
-`$class-spacing` | `"spacing"` | String to use for the class name of the spacing module.
-`$spacing` | `core.$spacing` | Sets the vertical spacing via the top and bottom margin property.
-`$spacing-map` | `core.$spacing-map` | Used to build the spacing key classes.
+| Variable          | Default                 | Description                                                       |
+| ----------------- | ----------------------- | ----------------------------------------------------------------- |
+| `$output-spacing` | `$output` &rarr; `true` | Toggles the output of this module.                                |
+| `$class-spacing`  | `"spacing"`             | String to use for the class name of the spacing module.           |
+| `$spacing`        | `core.$spacing`         | Sets the vertical spacing via the top and bottom margin property. |
+| `$spacing-map`    | `core.$spacing-map`     | Used to build the spacing key classes.                            |
 
 #### `@mixin spacing($spacing, $imp: null)`
 
@@ -633,10 +633,10 @@ Output the spacing styles for an element. Styles are applied to an elements chil
 
 **Arguments**
 
-Variable | Type | Description
----|---|---
-`$spacing` | `number (with unit)` | The unit of spacing to apply.
-`$imp` | `boolean` | Whither or not to add the `!important` flag.
+| Variable   | Type                 | Description                                  |
+| ---------- | -------------------- | -------------------------------------------- |
+| `$spacing` | `number (with unit)` | The unit of spacing to apply.                |
+| `$imp`     | `boolean`            | Whither or not to add the `!important` flag. |
 
 **Example**
 
@@ -688,14 +688,14 @@ Modules that get mapped to HTML elements include:
 
 > The type module only applies styles to children HTML elements. It's possible to nest other components within type and not have style or specificity conflicts. It's recommended to wrap nested components with anonymous `<div>` elements when possible.
 
-Variable | Default | Description
----|---|---
-`$output-type` | `$output` &rarr; `true` | Toggles the output of this module.
-`$class-type` | `"type"` | String to use for the class name of the type module.
-`$type-font-family` | `null` | Sets the font-family property.
-`$type-font-size` | `null` | Sets the font-size property.
-`$type-line-height` | `null` | Sets the line-height property.
-`$type-spacing` | `null` | Applies vertical spacing between elements via the `spacing` module.
+| Variable            | Default                 | Description                                                         |
+| ------------------- | ----------------------- | ------------------------------------------------------------------- |
+| `$output-type`      | `$output` &rarr; `true` | Toggles the output of this module.                                  |
+| `$class-type`       | `"type"`                | String to use for the class name of the type module.                |
+| `$type-font-family` | `null`                  | Sets the font-family property.                                      |
+| `$type-font-size`   | `null`                  | Sets the font-size property.                                        |
+| `$type-line-height` | `null`                  | Sets the line-height property.                                      |
+| `$type-spacing`     | `null`                  | Applies vertical spacing between elements via the `spacing` module. |
 
 #### `@mixin type()`
 
@@ -715,9 +715,9 @@ Output invert modifier styles of the type module. Pass in the background color i
 
 **Arguments**
 
-Variable | Type | Description
----|---|---
-`$color` | `color` | The background color to check the lightness threshold against.
+| Variable | Type    | Description                                                    |
+| -------- | ------- | -------------------------------------------------------------- |
+| `$color` | `color` | The background color to check the lightness threshold against. |
 
 **Example**
 

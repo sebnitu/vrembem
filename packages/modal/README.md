@@ -8,7 +8,7 @@ A component for changing the mode of a page to complete a critical task. This is
 
 ## Installation
 
-```
+```sh
 npm install @vrembem/modal
 ```
 

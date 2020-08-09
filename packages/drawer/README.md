@@ -8,7 +8,7 @@ A container component that slides in from the left or right. Typically containin
 
 ## Installation
 
-```
+```sh
 npm install @vrembem/drawer
 ```
 

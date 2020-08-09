@@ -8,7 +8,7 @@ A complete collection of all Vrembem components into a single comprehensive pack
 
 ## Installation
 
-```
+```sh
 npm install vrembem
 ```
 
