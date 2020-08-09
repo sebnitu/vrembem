@@ -12,7 +12,7 @@ A complete collection of all Vrembem components into a single comprehensive pack
 npm install vrembem
 ```
 
-### Styles
+## Styles
 
 To include all Vrembem components into your styles, just import the vrembem package in your Sass manifest file.
 
@@ -37,17 +37,23 @@ Customize core variables which all components inherit from. The example below wi
 @use "vrembem";
 ```
 
-### JavaScript
+## JavaScript
 
 Import and initialize the components you'll need:
 
 ```js
 // Import all under the vb namespace
-import vb from "vrembem";
-const drawer = vb.drawer({ autoInit: true });
+import * as vb from "vrembem";
+const drawer = vb.Drawer({ autoInit: true });
+
+// Or import individual components
+import { Drawer } from "vrembem";
+const drawer = Drawer({ autoInit: true });
 ```
 
-### Markup
+> Note that `core` helpers does not need to be initialized since they're just a set of helpful utility functions.
+
+## Markup
 
 Include the component's markup into your project. Use the [online documentation](https://vrembem.com) for more information, customization options, code examples and available modifiers.
 

@@ -15,7 +15,7 @@ export default [{
   output: [{
     file: './dist/scripts.cjs.js',
     format: 'cjs',
-    exports: 'default'
+    exports: 'named'
   }, {
     file: './dist/scripts.js',
     format: 'iife',

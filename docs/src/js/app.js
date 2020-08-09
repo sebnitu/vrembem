@@ -1,20 +1,20 @@
-import vb from 'vrembem';
+import * as vb from 'vrembem';
 import ScrollStash from 'scroll-stash';
 import 'svgxuse';
 import 'wicg-inert';
 import './list.js';
 import './version';
 
-vb.checkbox({ autoInit: true });
-vb.dismissible({ autoInit: true });
+vb.Checkbox({ autoInit: true });
+vb.Dismissible({ autoInit: true });
 
-vb.drawer({
+vb.Drawer({
   autoInit: true,
   selectorInert: '[role="main"]',
   selectorOverflow: 'body, [role="main"]'
 });
 
-vb.modal({
+vb.Modal({
   autoInit: true,
   selectorInert: '.page',
   moveModals: {

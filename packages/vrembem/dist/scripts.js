@@ -1,5 +1,90 @@
-this.vrembem = (function () {
+(function (exports) {
   'use strict';
+
+  var addClass = function addClass(el) {
+    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      cl[_key - 1] = arguments[_key];
+    }
+
+    el = el.forEach ? el : [el];
+    el.forEach(function (el) {
+      var _el$classList;
+
+      (_el$classList = el.classList).add.apply(_el$classList, cl);
+    });
+  };
+
+  var camelCase = function camelCase(str) {
+    return str.replace(/-([a-z])/g, function (g) {
+      return g[1].toUpperCase();
+    });
+  };
+
+  var hasClass = function hasClass(el) {
+    el = el.forEach ? el : [el];
+    el = [].slice.call(el);
+
+    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      cl[_key - 1] = arguments[_key];
+    }
+
+    return cl.some(function (cl) {
+      return el.some(function (el) {
+        if (el.classList.contains(cl)) return true;
+      });
+    });
+  };
+
+  var hyphenCase = function hyphenCase(str) {
+    return str.replace(/([a-z][A-Z])/g, function (g) {
+      return g[0] + '-' + g[1].toLowerCase();
+    });
+  };
+
+  var removeClass = function removeClass(el) {
+    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      cl[_key - 1] = arguments[_key];
+    }
+
+    el = el.forEach ? el : [el];
+    el.forEach(function (el) {
+      var _el$classList;
+
+      (_el$classList = el.classList).remove.apply(_el$classList, cl);
+    });
+  };
+
+  var toggleClass = function toggleClass(el) {
+    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      cl[_key - 1] = arguments[_key];
+    }
+
+    el = el.forEach ? el : [el];
+    el.forEach(function (el) {
+      cl.forEach(function (cl) {
+        el.classList.toggle(cl);
+      });
+    });
+  };
+
+  var breakpoints = {
+    xs: '480px',
+    sm: '620px',
+    md: '760px',
+    lg: '990px',
+    xl: '1380px'
+  };
+
+  var index = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    addClass: addClass,
+    camelCase: camelCase,
+    hasClass: hasClass,
+    hyphenCase: hyphenCase,
+    removeClass: removeClass,
+    toggleClass: toggleClass,
+    breakpoints: breakpoints
+  });
 
   function _defineProperty(obj, key, value) {
     if (key in obj) {
@@ -22,7 +107,7 @@ this.vrembem = (function () {
 
   function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-  var Checkbox = (function (options) {
+  var index$1 = (function (options) {
     var api = {};
     var defaults = {
       autoInit: false,
@@ -81,65 +166,10 @@ this.vrembem = (function () {
     return api;
   });
 
-  var addClass = function addClass(el) {
-    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      cl[_key - 1] = arguments[_key];
-    }
-
-    el = el.forEach ? el : [el];
-    el.forEach(function (el) {
-      var _el$classList;
-
-      (_el$classList = el.classList).add.apply(_el$classList, cl);
-    });
-  };
-
-  var camelCase = function camelCase(str) {
-    return str.replace(/-([a-z])/g, function (g) {
-      return g[1].toUpperCase();
-    });
-  };
-
-  var hasClass = function hasClass(el) {
-    el = el.forEach ? el : [el];
-    el = [].slice.call(el);
-
-    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      cl[_key - 1] = arguments[_key];
-    }
-
-    return cl.some(function (cl) {
-      return el.some(function (el) {
-        if (el.classList.contains(cl)) return true;
-      });
-    });
-  };
-
-  var removeClass = function removeClass(el) {
-    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      cl[_key - 1] = arguments[_key];
-    }
-
-    el = el.forEach ? el : [el];
-    el.forEach(function (el) {
-      var _el$classList;
-
-      (_el$classList = el.classList).remove.apply(_el$classList, cl);
-    });
-  };
-
-  var breakpoints = {
-    xs: '480px',
-    sm: '620px',
-    md: '760px',
-    lg: '990px',
-    xl: '1380px'
-  };
-
   function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
   function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-  var Dismissible = (function (options) {
+  var index$2 = (function (options) {
     var api = {};
     var defaults = {
       autoInit: false,
@@ -831,7 +861,7 @@ this.vrembem = (function () {
   function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
   function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-  var Drawer = (function (options) {
+  var index$3 = (function (options) {
     var api = {};
     var defaults = {
       autoInit: false,
@@ -1396,7 +1426,7 @@ this.vrembem = (function () {
   function ownKeys$3(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
   function _objectSpread$3(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$3(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$3(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-  var Modal = (function (options) {
+  var index$4 = (function (options) {
     var api = {};
     var defaults = {
       autoInit: false,
@@ -1826,13 +1856,10 @@ this.vrembem = (function () {
     return api;
   });
 
-  var index = {
-    checkbox: Checkbox,
-    dismissible: Dismissible,
-    drawer: Drawer,
-    modal: Modal
-  };
+  exports.Checkbox = index$1;
+  exports.Dismissible = index$2;
+  exports.Drawer = index$3;
+  exports.Modal = index$4;
+  exports.core = index;
 
-  return index;
-
-}());
+}(this.vrembem = this.vrembem || {}));
