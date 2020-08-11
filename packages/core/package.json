@@ -9,7 +9,7 @@
     "component",
     "core"
   ],
-  "browser": "dist/scripts.cjs.js",
+  "main": "dist/scripts.cjs.js",
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean scripts",

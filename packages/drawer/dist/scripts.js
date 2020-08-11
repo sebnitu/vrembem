@@ -666,54 +666,93 @@ this.vrembem.Drawer = (function () {
 
 	var defineProperty = _defineProperty;
 
-	var addClass = function addClass(el) {
-	  for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-	    cl[_key - 1] = arguments[_key];
-	  }
+	var scripts_cjs = createCommonjsModule(function (module, exports) {
 
-	  el = el.forEach ? el : [el];
-	  el.forEach(function (el) {
-	    var _el$classList;
-
-	    (_el$classList = el.classList).add.apply(_el$classList, cl);
+	  Object.defineProperty(exports, '__esModule', {
+	    value: true
 	  });
-	};
 
-	var hasClass = function hasClass(el) {
-	  el = el.forEach ? el : [el];
-	  el = [].slice.call(el);
+	  var addClass = function addClass(el) {
+	    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+	      cl[_key - 1] = arguments[_key];
+	    }
 
-	  for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-	    cl[_key - 1] = arguments[_key];
-	  }
+	    el = el.forEach ? el : [el];
+	    el.forEach(function (el) {
+	      var _el$classList;
 
-	  return cl.some(function (cl) {
-	    return el.some(function (el) {
-	      if (el.classList.contains(cl)) return true;
+	      (_el$classList = el.classList).add.apply(_el$classList, cl);
 	    });
-	  });
-	};
+	  };
 
-	var removeClass = function removeClass(el) {
-	  for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-	    cl[_key - 1] = arguments[_key];
-	  }
+	  var camelCase = function camelCase(str) {
+	    return str.replace(/-([a-z])/g, function (g) {
+	      return g[1].toUpperCase();
+	    });
+	  };
 
-	  el = el.forEach ? el : [el];
-	  el.forEach(function (el) {
-	    var _el$classList;
+	  var hasClass = function hasClass(el) {
+	    el = el.forEach ? el : [el];
+	    el = [].slice.call(el);
 
-	    (_el$classList = el.classList).remove.apply(_el$classList, cl);
-	  });
-	};
+	    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+	      cl[_key - 1] = arguments[_key];
+	    }
 
-	var breakpoints = {
-	  xs: '480px',
-	  sm: '620px',
-	  md: '760px',
-	  lg: '990px',
-	  xl: '1380px'
-	};
+	    return cl.some(function (cl) {
+	      return el.some(function (el) {
+	        if (el.classList.contains(cl)) return true;
+	      });
+	    });
+	  };
+
+	  var hyphenCase = function hyphenCase(str) {
+	    return str.replace(/([a-z][A-Z])/g, function (g) {
+	      return g[0] + '-' + g[1].toLowerCase();
+	    });
+	  };
+
+	  var removeClass = function removeClass(el) {
+	    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+	      cl[_key - 1] = arguments[_key];
+	    }
+
+	    el = el.forEach ? el : [el];
+	    el.forEach(function (el) {
+	      var _el$classList;
+
+	      (_el$classList = el.classList).remove.apply(_el$classList, cl);
+	    });
+	  };
+
+	  var toggleClass = function toggleClass(el) {
+	    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+	      cl[_key - 1] = arguments[_key];
+	    }
+
+	    el = el.forEach ? el : [el];
+	    el.forEach(function (el) {
+	      cl.forEach(function (cl) {
+	        el.classList.toggle(cl);
+	      });
+	    });
+	  };
+
+	  var breakpoints = {
+	    xs: '480px',
+	    sm: '620px',
+	    md: '760px',
+	    lg: '990px',
+	    xl: '1380px'
+	  };
+	  exports.addClass = addClass;
+	  exports.breakpoints = breakpoints;
+	  exports.camelCase = camelCase;
+	  exports.hasClass = hasClass;
+	  exports.hyphenCase = hyphenCase;
+	  exports.removeClass = removeClass;
+	  exports.toggleClass = toggleClass;
+	});
 
 	function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -736,7 +775,7 @@ this.vrembem.Drawer = (function () {
 	    classModal: 'drawer_modal',
 	    selectorInert: null,
 	    selectorOverflow: null,
-	    breakpoints: breakpoints,
+	    breakpoints: scripts_cjs.breakpoints,
 	    customEventPrefix: 'drawer:',
 	    stateSave: true,
 	    stateKey: 'DrawerState',
@@ -884,17 +923,17 @@ this.vrembem.Drawer = (function () {
 	  var openTransition = function openTransition(drawer) {
 	    return new Promise(function (resolve) {
 	      if (api.settings.transition) {
-	        removeClass(drawer, api.settings.stateClosed);
-	        addClass(drawer, api.settings.stateOpening);
+	        scripts_cjs.removeClass(drawer, api.settings.stateClosed);
+	        scripts_cjs.addClass(drawer, api.settings.stateOpening);
 	        drawer.addEventListener('transitionend', function _f() {
-	          addClass(drawer, api.settings.stateOpened);
-	          removeClass(drawer, api.settings.stateOpening);
+	          scripts_cjs.addClass(drawer, api.settings.stateOpened);
+	          scripts_cjs.removeClass(drawer, api.settings.stateOpening);
 	          resolve(drawer);
 	          this.removeEventListener('transitionend', _f);
 	        });
 	      } else {
-	        addClass(drawer, api.settings.stateOpened);
-	        removeClass(drawer, api.settings.stateClosed);
+	        scripts_cjs.addClass(drawer, api.settings.stateOpened);
+	        scripts_cjs.removeClass(drawer, api.settings.stateClosed);
 	        resolve(drawer);
 	      }
 	    });
@@ -903,17 +942,17 @@ this.vrembem.Drawer = (function () {
 	  var closeTransition = function closeTransition(drawer) {
 	    return new Promise(function (resolve) {
 	      if (api.settings.transition) {
-	        addClass(drawer, api.settings.stateClosing);
-	        removeClass(drawer, api.settings.stateOpened);
+	        scripts_cjs.addClass(drawer, api.settings.stateClosing);
+	        scripts_cjs.removeClass(drawer, api.settings.stateOpened);
 	        drawer.addEventListener('transitionend', function _f() {
-	          removeClass(drawer, api.settings.stateClosing);
-	          addClass(drawer, api.settings.stateClosed);
+	          scripts_cjs.removeClass(drawer, api.settings.stateClosing);
+	          scripts_cjs.addClass(drawer, api.settings.stateClosed);
 	          resolve(drawer);
 	          this.removeEventListener('transitionend', _f);
 	        });
 	      } else {
-	        addClass(drawer, api.settings.stateClosed);
-	        removeClass(drawer, api.settings.stateOpened);
+	        scripts_cjs.addClass(drawer, api.settings.stateClosed);
+	        scripts_cjs.removeClass(drawer, api.settings.stateOpened);
 	        resolve(drawer);
 	      }
 	    });
@@ -936,13 +975,13 @@ this.vrembem.Drawer = (function () {
 	              return _context.abrupt("return", drawerNotFound(drawerKey));
 
 	            case 3:
-	              if (hasClass(drawer, api.settings.stateOpened)) {
+	              if (scripts_cjs.hasClass(drawer, api.settings.stateOpened)) {
 	                _context.next = 17;
 	                break;
 	              }
 
 	              working = true;
-	              isModal = hasClass(drawer, api.settings.classModal);
+	              isModal = scripts_cjs.hasClass(drawer, api.settings.classModal);
 
 	              if (isModal) {
 	                setOverflowHidden(true);
@@ -1000,14 +1039,14 @@ this.vrembem.Drawer = (function () {
 	              return _context2.abrupt("return", drawerNotFound(drawerKey));
 
 	            case 3:
-	              if (!hasClass(drawer, api.settings.stateOpened)) {
+	              if (!scripts_cjs.hasClass(drawer, api.settings.stateOpened)) {
 	                _context2.next = 16;
 	                break;
 	              }
 
 	              working = true;
 
-	              if (hasClass(drawer, api.settings.classModal)) {
+	              if (scripts_cjs.hasClass(drawer, api.settings.classModal)) {
 	                setInert(false);
 	                setOverflowHidden(false);
 	              }
@@ -1044,7 +1083,7 @@ this.vrembem.Drawer = (function () {
 	  api.toggle = function (drawerKey) {
 	    var drawer = drawerKeyCheck(drawerKey);
 	    if (!drawer) return drawerNotFound(drawerKey);
-	    var isOpen = hasClass(drawer, api.settings.stateOpened);
+	    var isOpen = scripts_cjs.hasClass(drawer, api.settings.stateOpened);
 
 	    if (!isOpen) {
 	      return api.open(drawer);
@@ -1139,8 +1178,8 @@ this.vrembem.Drawer = (function () {
 	    if (api.settings.stateSave) {
 	      var drawers = target ? [target] : document.querySelectorAll("[data-".concat(api.settings.dataDrawer, "]"));
 	      drawers.forEach(function (el) {
-	        if (!hasClass(el, api.settings.classModal)) {
-	          api.state[el.getAttribute("data-".concat(api.settings.dataDrawer))] = hasClass(el, api.settings.stateOpened) ? api.settings.stateOpened : api.settings.stateClosed;
+	        if (!scripts_cjs.hasClass(el, api.settings.classModal)) {
+	          api.state[el.getAttribute("data-".concat(api.settings.dataDrawer))] = scripts_cjs.hasClass(el, api.settings.stateOpened) ? api.settings.stateOpened : api.settings.stateClosed;
 	        }
 	      });
 	      localStorage.setItem(api.settings.stateKey, JSON.stringify(api.state));
@@ -1156,9 +1195,9 @@ this.vrembem.Drawer = (function () {
 
 	          if (item) {
 	            if (api.state[key] == api.settings.stateOpened) {
-	              addClass(item, api.settings.stateOpened);
+	              scripts_cjs.addClass(item, api.settings.stateOpened);
 	            } else {
-	              removeClass(item, api.settings.stateOpened);
+	              scripts_cjs.removeClass(item, api.settings.stateOpened);
 	            }
 	          }
 	        });
@@ -1232,10 +1271,10 @@ this.vrembem.Drawer = (function () {
 	  };
 
 	  var switchToModal = function switchToModal(drawer) {
-	    if (hasClass(drawer, api.settings.classModal)) return;
-	    addClass(drawer, api.settings.classModal);
-	    addClass(drawer, api.settings.stateClosed);
-	    removeClass(drawer, api.settings.stateOpened);
+	    if (scripts_cjs.hasClass(drawer, api.settings.classModal)) return;
+	    scripts_cjs.addClass(drawer, api.settings.classModal);
+	    scripts_cjs.addClass(drawer, api.settings.stateClosed);
+	    scripts_cjs.removeClass(drawer, api.settings.stateOpened);
 	    drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'toModal', {
 	      bubbles: true
 	    }));
@@ -1250,17 +1289,17 @@ this.vrembem.Drawer = (function () {
 	  };
 
 	  var switchToDefault = function switchToDefault(drawer) {
-	    if (!hasClass(drawer, api.settings.classModal)) return;
+	    if (!scripts_cjs.hasClass(drawer, api.settings.classModal)) return;
 	    setInert(false);
 	    setOverflowHidden(false);
-	    removeClass(drawer, api.settings.classModal);
+	    scripts_cjs.removeClass(drawer, api.settings.classModal);
 	    focusTrapDestroy(drawer);
 	    var drawerKey = drawer.getAttribute("data-".concat(api.settings.dataDrawer));
 	    var drawerState = api.state[drawerKey];
 
 	    if (drawerState == api.settings.stateOpened) {
-	      addClass(drawer, api.settings.stateOpened);
-	      removeClass(drawer, api.settings.stateClosed);
+	      scripts_cjs.addClass(drawer, api.settings.stateOpened);
+	      scripts_cjs.removeClass(drawer, api.settings.stateClosed);
 	    }
 
 	    drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'toDefault', {
