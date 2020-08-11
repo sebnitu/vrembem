@@ -23,7 +23,7 @@ this.vrembem.Checkbox = (function () {
 
   function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-  var index = (function (options) {
+  function index (options) {
     var api = {};
     var defaults = {
       autoInit: false,
@@ -80,7 +80,7 @@ this.vrembem.Checkbox = (function () {
 
     if (api.settings.autoInit) api.init();
     return api;
-  });
+  }
 
   return index;
 
