@@ -15,9 +15,16 @@ All notable changes to this project will be documented in this file.
 
 <!--
 Commit template:
-chore(release): add v1.14.5 to CHANGELOG.md
+chore(release): add v1.14.6 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.14.6 (2020-08-11)
+
+#### :bug: Bug Fix
+* `checkbox`, `drawer`, `modal`, `vrembem`
+  * [#302](https://github.com/sebnitu/vrembem/pull/302) Refactor constructors ([@sebnitu](https://github.com/sebnitu))
 
 
 ## v1.14.5 (2020-08-11)
