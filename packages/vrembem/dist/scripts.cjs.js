@@ -2,90 +2,112 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var addClass = function addClass(el) {
-  for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-    cl[_key - 1] = arguments[_key];
-  }
+function createCommonjsModule(fn, basedir, module) {
+	return module = {
+	  path: basedir,
+	  exports: {},
+	  require: function (path, base) {
+      return commonjsRequire(path, (base === undefined || base === null) ? module.path : base);
+    }
+	}, fn(module, module.exports), module.exports;
+}
 
-  el = el.forEach ? el : [el];
-  el.forEach(function (el) {
-    var _el$classList;
+function commonjsRequire () {
+	throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
+}
 
-    (_el$classList = el.classList).add.apply(_el$classList, cl);
+var scripts_cjs = createCommonjsModule(function (module, exports) {
+
+  Object.defineProperty(exports, '__esModule', {
+    value: true
   });
-};
 
-var camelCase = function camelCase(str) {
-  return str.replace(/-([a-z])/g, function (g) {
-    return g[1].toUpperCase();
-  });
-};
+  var addClass = function addClass(el) {
+    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      cl[_key - 1] = arguments[_key];
+    }
 
-var hasClass = function hasClass(el) {
-  el = el.forEach ? el : [el];
-  el = [].slice.call(el);
+    el = el.forEach ? el : [el];
+    el.forEach(function (el) {
+      var _el$classList;
 
-  for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-    cl[_key - 1] = arguments[_key];
-  }
-
-  return cl.some(function (cl) {
-    return el.some(function (el) {
-      if (el.classList.contains(cl)) return true;
+      (_el$classList = el.classList).add.apply(_el$classList, cl);
     });
-  });
-};
+  };
 
-var hyphenCase = function hyphenCase(str) {
-  return str.replace(/([a-z][A-Z])/g, function (g) {
-    return g[0] + '-' + g[1].toLowerCase();
-  });
-};
-
-var removeClass = function removeClass(el) {
-  for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-    cl[_key - 1] = arguments[_key];
-  }
-
-  el = el.forEach ? el : [el];
-  el.forEach(function (el) {
-    var _el$classList;
-
-    (_el$classList = el.classList).remove.apply(_el$classList, cl);
-  });
-};
-
-var toggleClass = function toggleClass(el) {
-  for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-    cl[_key - 1] = arguments[_key];
-  }
-
-  el = el.forEach ? el : [el];
-  el.forEach(function (el) {
-    cl.forEach(function (cl) {
-      el.classList.toggle(cl);
+  var camelCase = function camelCase(str) {
+    return str.replace(/-([a-z])/g, function (g) {
+      return g[1].toUpperCase();
     });
-  });
-};
+  };
 
-var breakpoints = {
-  xs: '480px',
-  sm: '620px',
-  md: '760px',
-  lg: '990px',
-  xl: '1380px'
-};
+  var hasClass = function hasClass(el) {
+    el = el.forEach ? el : [el];
+    el = [].slice.call(el);
 
-var index = /*#__PURE__*/Object.freeze({
-  __proto__: null,
-  addClass: addClass,
-  camelCase: camelCase,
-  hasClass: hasClass,
-  hyphenCase: hyphenCase,
-  removeClass: removeClass,
-  toggleClass: toggleClass,
-  breakpoints: breakpoints
+    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      cl[_key - 1] = arguments[_key];
+    }
+
+    return cl.some(function (cl) {
+      return el.some(function (el) {
+        if (el.classList.contains(cl)) return true;
+      });
+    });
+  };
+
+  var hyphenCase = function hyphenCase(str) {
+    return str.replace(/([a-z][A-Z])/g, function (g) {
+      return g[0] + '-' + g[1].toLowerCase();
+    });
+  };
+
+  var removeClass = function removeClass(el) {
+    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      cl[_key - 1] = arguments[_key];
+    }
+
+    el = el.forEach ? el : [el];
+    el.forEach(function (el) {
+      var _el$classList;
+
+      (_el$classList = el.classList).remove.apply(_el$classList, cl);
+    });
+  };
+
+  var toggleClass = function toggleClass(el) {
+    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      cl[_key - 1] = arguments[_key];
+    }
+
+    el = el.forEach ? el : [el];
+    el.forEach(function (el) {
+      cl.forEach(function (cl) {
+        el.classList.toggle(cl);
+      });
+    });
+  };
+
+  var breakpoints = {
+    xs: '480px',
+    sm: '620px',
+    md: '760px',
+    lg: '990px',
+    xl: '1380px'
+  };
+  exports.addClass = addClass;
+  exports.breakpoints = breakpoints;
+  exports.camelCase = camelCase;
+  exports.hasClass = hasClass;
+  exports.hyphenCase = hyphenCase;
+  exports.removeClass = removeClass;
+  exports.toggleClass = toggleClass;
 });
+
+var scripts_cjs$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.assign(/*#__PURE__*/Object.create(null), scripts_cjs, {
+	'default': scripts_cjs,
+	__moduleExports: scripts_cjs
+}));
 
 function _defineProperty(obj, key, value) {
   if (key in obj) {
@@ -108,7 +130,7 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-var index$1 = (function (options) {
+var index = (function (options) {
   var api = {};
   var defaults = {
     autoInit: false,
@@ -166,20 +188,6 @@ var index$1 = (function (options) {
   if (api.settings.autoInit) api.init();
   return api;
 });
-
-function createCommonjsModule(fn, basedir, module) {
-	return module = {
-	  path: basedir,
-	  exports: {},
-	  require: function (path, base) {
-      return commonjsRequire(path, (base === undefined || base === null) ? module.path : base);
-    }
-	}, fn(module, module.exports), module.exports;
-}
-
-function commonjsRequire () {
-	throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
-}
 
 var _typeof_1 = createCommonjsModule(function (module) {
   function _typeof(obj) {
@@ -814,98 +822,10 @@ function _asyncToGenerator(fn) {
 
 var asyncToGenerator = _asyncToGenerator;
 
-var scripts_cjs = createCommonjsModule(function (module, exports) {
-
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-
-  var addClass = function addClass(el) {
-    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      cl[_key - 1] = arguments[_key];
-    }
-
-    el = el.forEach ? el : [el];
-    el.forEach(function (el) {
-      var _el$classList;
-
-      (_el$classList = el.classList).add.apply(_el$classList, cl);
-    });
-  };
-
-  var camelCase = function camelCase(str) {
-    return str.replace(/-([a-z])/g, function (g) {
-      return g[1].toUpperCase();
-    });
-  };
-
-  var hasClass = function hasClass(el) {
-    el = el.forEach ? el : [el];
-    el = [].slice.call(el);
-
-    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      cl[_key - 1] = arguments[_key];
-    }
-
-    return cl.some(function (cl) {
-      return el.some(function (el) {
-        if (el.classList.contains(cl)) return true;
-      });
-    });
-  };
-
-  var hyphenCase = function hyphenCase(str) {
-    return str.replace(/([a-z][A-Z])/g, function (g) {
-      return g[0] + '-' + g[1].toLowerCase();
-    });
-  };
-
-  var removeClass = function removeClass(el) {
-    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      cl[_key - 1] = arguments[_key];
-    }
-
-    el = el.forEach ? el : [el];
-    el.forEach(function (el) {
-      var _el$classList;
-
-      (_el$classList = el.classList).remove.apply(_el$classList, cl);
-    });
-  };
-
-  var toggleClass = function toggleClass(el) {
-    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      cl[_key - 1] = arguments[_key];
-    }
-
-    el = el.forEach ? el : [el];
-    el.forEach(function (el) {
-      cl.forEach(function (cl) {
-        el.classList.toggle(cl);
-      });
-    });
-  };
-
-  var breakpoints = {
-    xs: '480px',
-    sm: '620px',
-    md: '760px',
-    lg: '990px',
-    xl: '1380px'
-  };
-  exports.addClass = addClass;
-  exports.breakpoints = breakpoints;
-  exports.camelCase = camelCase;
-  exports.hasClass = hasClass;
-  exports.hyphenCase = hyphenCase;
-  exports.removeClass = removeClass;
-  exports.toggleClass = toggleClass;
-});
-
 function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-var index$2 = (function (options) {
+var index$1 = (function (options) {
   var api = {};
   var defaults = {
     autoInit: false,
@@ -1470,7 +1390,7 @@ var index$2 = (function (options) {
 function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-var index$3 = (function (options) {
+var index$2 = (function (options) {
   var api = {};
   var defaults = {
     autoInit: false,
@@ -1900,7 +1820,7 @@ var index$3 = (function (options) {
   return api;
 });
 
-exports.Checkbox = index$1;
-exports.Drawer = index$2;
-exports.Modal = index$3;
-exports.core = index;
+exports.Checkbox = index;
+exports.Drawer = index$1;
+exports.Modal = index$2;
+exports.core = scripts_cjs$1;
