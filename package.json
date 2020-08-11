@@ -27,7 +27,7 @@
     "@rollup/plugin-babel": "^5.1.0",
     "@rollup/plugin-commonjs": "^14.0.0",
     "@rollup/plugin-node-resolve": "^8.4.0",
-    "@testing-library/dom": "^7.22.0",
+    "@testing-library/dom": "^7.22.1",
     "@testing-library/jest-dom": "^5.11.2",
     "@testing-library/user-event": "^12.1.1",
     "babel-jest": "^26.2.2",
