@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/utility",
   "description": "The utility component provides a set of atomic classes that specialize in a single function.",
-  "version": "1.14.4",
+  "version": "1.14.5",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -25,7 +25,7 @@
     "directory": "packages/utility"
   },
   "dependencies": {
-    "@vrembem/core": "^1.14.2"
+    "@vrembem/core": "^1.14.5"
   },
   "publishConfig": {
     "access": "public"
