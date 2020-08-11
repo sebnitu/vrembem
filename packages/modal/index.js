@@ -1,6 +1,6 @@
 import { addClass, hasClass, removeClass } from '@vrembem/core';
 
-export default (options) => {
+export default function (options) {
 
   const api = {};
   const defaults = {
@@ -395,4 +395,4 @@ export default (options) => {
 
   if (api.settings.autoInit) api.init();
   return api;
-};
+}
