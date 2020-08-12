@@ -1128,6 +1128,7 @@ this.vrembem.Modal = (function () {
 
 	  var getFocusable = function getFocusable(modal) {
 	    var focusable = [];
+	    var scrollPos = modal.scrollTop;
 	    var items = modal.querySelectorAll("\n      a[href]:not([disabled]),\n      button:not([disabled]),\n      textarea:not([disabled]),\n      input[type=\"text\"]:not([disabled]),\n      input[type=\"radio\"]:not([disabled]),\n      input[type=\"checkbox\"]:not([disabled]),\n      select:not([disabled]),\n      [tabindex]:not([tabindex=\"-1\"])\n    ");
 	    items.forEach(function (el) {
 	      el.focus();
@@ -1136,6 +1137,7 @@ this.vrembem.Modal = (function () {
 	        focusable.push(el);
 	      }
 	    });
+	    modal.scrollTop = scrollPos;
 	    return focusable;
 	  };
 
