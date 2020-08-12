@@ -23,7 +23,7 @@ vb.Modal({
   toggleOverflow: 'body, .page__article'
 });
 
-const scrollStash = ScrollStash({
+const scrollStash = new ScrollStash({
   autoInit: true,
   selectorAnchor: '.is-active',
   selectorTopElem: '.dialog__header'

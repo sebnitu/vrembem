@@ -1779,6 +1779,84 @@
     return api;
   }
 
+  function _defineProperty$1(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+
+    return obj;
+  }
+
+  var defineProperty$1 = _defineProperty$1;
+
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  var classCallCheck = _classCallCheck;
+
+  function _defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  function _createClass(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties(Constructor, staticProps);
+    return Constructor;
+  }
+
+  var createClass = _createClass;
+  var commonjsGlobal$1 = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof commonjsGlobal !== 'undefined' ? commonjsGlobal : typeof self !== 'undefined' ? self : {};
+
+  function createCommonjsModule$1(fn, basedir, module) {
+    return module = {
+      path: basedir,
+      exports: {},
+      require: function require(path, base) {
+        return commonjsRequire$1(path, base === undefined || base === null ? module.path : base);
+      }
+    }, fn(module, module.exports), module.exports;
+  }
+
+  function commonjsRequire$1() {
+    throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
+  }
+
+  var _typeof_1$1 = createCommonjsModule$1(function (module) {
+    function _typeof(obj) {
+      "@babel/helpers - typeof";
+
+      if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+        module.exports = _typeof = function _typeof(obj) {
+          return typeof obj;
+        };
+      } else {
+        module.exports = _typeof = function _typeof(obj) {
+          return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+        };
+      }
+
+      return _typeof(obj);
+    }
+
+    module.exports = _typeof;
+  });
+
   var FUNC_ERROR_TEXT = 'Expected a function';
   var NAN = 0 / 0;
   var symbolTag = '[object Symbol]';
@@ -1787,8 +1865,8 @@
   var reIsBinary = /^0b[01]+$/i;
   var reIsOctal = /^0o[0-7]+$/i;
   var freeParseInt = parseInt;
-  var freeGlobal = _typeof_1(commonjsGlobal) == 'object' && commonjsGlobal && commonjsGlobal.Object === Object && commonjsGlobal;
-  var freeSelf = (typeof self === "undefined" ? "undefined" : _typeof_1(self)) == 'object' && self && self.Object === Object && self;
+  var freeGlobal = _typeof_1$1(commonjsGlobal$1) == 'object' && commonjsGlobal$1 && commonjsGlobal$1.Object === Object && commonjsGlobal$1;
+  var freeSelf = (typeof self === "undefined" ? "undefined" : _typeof_1$1(self)) == 'object' && self && self.Object === Object && self;
   var root = freeGlobal || freeSelf || Function('return this')();
   var objectProto = Object.prototype;
   var objectToString = objectProto.toString;
@@ -1937,17 +2015,17 @@
   }
 
   function isObject(value) {
-    var type = _typeof_1(value);
+    var type = _typeof_1$1(value);
 
     return !!value && (type == 'object' || type == 'function');
   }
 
   function isObjectLike(value) {
-    return !!value && _typeof_1(value) == 'object';
+    return !!value && _typeof_1$1(value) == 'object';
   }
 
   function isSymbol(value) {
-    return _typeof_1(value) == 'symbol' || isObjectLike(value) && objectToString.call(value) == symbolTag;
+    return _typeof_1$1(value) == 'symbol' || isObjectLike(value) && objectToString.call(value) == symbolTag;
   }
 
   function toNumber(value) {
@@ -1974,8 +2052,7 @@
   }
 
   var lodash_throttle = throttle;
-
-  var lodash_isempty = createCommonjsModule(function (module, exports) {
+  var lodash_isempty = createCommonjsModule$1(function (module, exports) {
     var MAX_SAFE_INTEGER = 9007199254740991;
     var argsTag = '[object Arguments]',
         funcTag = '[object Function]',
@@ -1988,10 +2065,10 @@
     var dataViewTag = '[object DataView]';
     var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
     var reIsHostCtor = /^\[object .+?Constructor\]$/;
-    var freeGlobal = _typeof_1(commonjsGlobal) == 'object' && commonjsGlobal && commonjsGlobal.Object === Object && commonjsGlobal;
-    var freeSelf = (typeof self === "undefined" ? "undefined" : _typeof_1(self)) == 'object' && self && self.Object === Object && self;
+    var freeGlobal = _typeof_1$1(commonjsGlobal$1) == 'object' && commonjsGlobal$1 && commonjsGlobal$1.Object === Object && commonjsGlobal$1;
+    var freeSelf = (typeof self === "undefined" ? "undefined" : _typeof_1$1(self)) == 'object' && self && self.Object === Object && self;
     var root = freeGlobal || freeSelf || Function('return this')();
-    var freeExports =  exports && !exports.nodeType && exports;
+    var freeExports = exports && !exports.nodeType && exports;
     var freeModule = freeExports && 'object' == 'object' && module && !module.nodeType && module;
     var moduleExports = freeModule && freeModule.exports === freeExports;
 
@@ -2171,13 +2248,13 @@
     }
 
     function isObject(value) {
-      var type = _typeof_1(value);
+      var type = _typeof_1$1(value);
 
       return !!value && (type == 'object' || type == 'function');
     }
 
     function isObjectLike(value) {
-      return !!value && _typeof_1(value) == 'object';
+      return !!value && _typeof_1$1(value) == 'object';
     }
 
     function stubFalse() {
@@ -2186,7 +2263,6 @@
 
     module.exports = isEmpty;
   });
-
   var defaults = {
     autoInit: false,
     dataScroll: 'scroll-stash',
@@ -2203,93 +2279,11 @@
     customEventPrefix: 'scroll-stash:'
   };
 
-  var scripts_cjs = createCommonjsModule(function (module, exports) {
-
-    Object.defineProperty(exports, '__esModule', {
-      value: true
+  var camelCase = function camelCase(str) {
+    return str.replace(/-([a-z])/g, function (g) {
+      return g[1].toUpperCase();
     });
-
-    var addClass = function addClass(el) {
-      for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        cl[_key - 1] = arguments[_key];
-      }
-
-      el = el.forEach ? el : [el];
-      el.forEach(function (el) {
-        var _el$classList;
-
-        (_el$classList = el.classList).add.apply(_el$classList, cl);
-      });
-    };
-
-    var camelCase = function camelCase(str) {
-      return str.replace(/-([a-z])/g, function (g) {
-        return g[1].toUpperCase();
-      });
-    };
-
-    var hasClass = function hasClass(el) {
-      el = el.forEach ? el : [el];
-      el = [].slice.call(el);
-
-      for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        cl[_key - 1] = arguments[_key];
-      }
-
-      return cl.some(function (cl) {
-        return el.some(function (el) {
-          if (el.classList.contains(cl)) return true;
-        });
-      });
-    };
-
-    var hyphenCase = function hyphenCase(str) {
-      return str.replace(/([a-z][A-Z])/g, function (g) {
-        return g[0] + '-' + g[1].toLowerCase();
-      });
-    };
-
-    var removeClass = function removeClass(el) {
-      for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        cl[_key - 1] = arguments[_key];
-      }
-
-      el = el.forEach ? el : [el];
-      el.forEach(function (el) {
-        var _el$classList;
-
-        (_el$classList = el.classList).remove.apply(_el$classList, cl);
-      });
-    };
-
-    var toggleClass = function toggleClass(el) {
-      for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        cl[_key - 1] = arguments[_key];
-      }
-
-      el = el.forEach ? el : [el];
-      el.forEach(function (el) {
-        cl.forEach(function (cl) {
-          el.classList.toggle(cl);
-        });
-      });
-    };
-
-    var breakpoints = {
-      xs: '480px',
-      sm: '620px',
-      md: '760px',
-      lg: '990px',
-      xl: '1380px'
-    };
-    exports.addClass = addClass;
-    exports.breakpoints = breakpoints;
-    exports.camelCase = camelCase;
-    exports.hasClass = hasClass;
-    exports.hyphenCase = hyphenCase;
-    exports.removeClass = removeClass;
-    exports.toggleClass = toggleClass;
-  });
+  };
 
   var anchorPositionStart = function anchorPositionStart(el, anchor, settings) {
     var pos = settings.anchorPadding;
@@ -2301,6 +2295,7 @@
 
     return anchor.offsetTop - pos;
   };
+
   var anchorPositionEnd = function anchorPositionEnd(el, anchor, settings) {
     var pos = settings.anchorPadding;
 
@@ -2311,11 +2306,13 @@
 
     return anchor.offsetTop - (el.offsetHeight - (anchor.offsetHeight + pos));
   };
+
   var anchorPositionCenter = function anchorPositionCenter(el, anchor, settings) {
     var posTop = anchorPositionStart(el, anchor, settings);
     var posBot = anchorPositionEnd(el, anchor, settings);
     return posBot + (posTop - posBot) / 2;
   };
+
   var anchorPositionNearest = function anchorPositionNearest(el, anchor, settings) {
     var posTop = anchorPositionStart(el, anchor, settings);
     var posBot = anchorPositionEnd(el, anchor, settings);
@@ -2323,12 +2320,14 @@
     if (el.scrollTop < posBot) return posBot;
     return false;
   };
+
   var anchorInView = function anchorInView(el, anchor, settings) {
     var posTop = anchorPositionStart(el, anchor, settings);
     var posBot = anchorPositionEnd(el, anchor, settings);
     if (el.scrollTop > posTop || el.scrollTop < posBot) return false;
     return true;
   };
+
   var anchorPositionGet = function anchorPositionGet(el, anchor, settings) {
     var inView = anchorInView(el, anchor, settings);
 
@@ -2351,7 +2350,7 @@
   };
 
   var anchorGet = function anchorGet(el, settings) {
-    var dataAnchor = el.dataset[scripts_cjs.camelCase(settings.dataAnchor)];
+    var dataAnchor = el.dataset[camelCase(settings.dataAnchor)];
 
     if (dataAnchor == 'false' || dataAnchor == 'ignore') {
       return null;
@@ -2370,6 +2369,7 @@
 
     return selectorAnchor ? selectorAnchor : null;
   };
+
   var anchorShow = function anchorShow(el, behavior, settings) {
     var anchor = anchorGet(el, settings);
 
@@ -2389,7 +2389,7 @@
               value: position,
               behavior: behavior
             },
-            key: el.dataset[scripts_cjs.camelCase(settings.dataScroll)]
+            key: el.dataset[camelCase(settings.dataScroll)]
           }
         }));
         return {
@@ -2412,6 +2412,7 @@
       };
     }
   };
+
   var anchor = {
     get: anchorGet,
     show: anchorShow
@@ -2421,7 +2422,7 @@
     var state = {};
     var scrolls = document.querySelectorAll("[data-".concat(settings.dataScroll, "]"));
     scrolls.forEach(function (el) {
-      var id = el.dataset[scripts_cjs.camelCase(settings.dataScroll)];
+      var id = el.dataset[camelCase(settings.dataScroll)];
       if (id) state[id] = el.scrollTop;
     });
     localStorage.setItem(settings.saveKey, JSON.stringify(state));
@@ -2433,6 +2434,7 @@
     }));
     return state;
   };
+
   var stateSet = function stateSet(settings) {
     if (localStorage.getItem(settings.saveKey)) {
       var state = JSON.parse(localStorage.getItem(settings.saveKey));
@@ -2451,60 +2453,105 @@
       return {};
     }
   };
+
   var state = {
     save: stateSave,
     set: stateSet
   };
 
-  function ownKeys$3(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+  function ownKeys$3(object, enumerableOnly) {
+    var keys = Object.keys(object);
 
-  function _objectSpread$3(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$3(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$3(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-  var ScrollStash = (function (options) {
-    var api = {};
-    api.settings = _objectSpread$3(_objectSpread$3({}, defaults), options);
-    api.state = {};
-    api.scrolls = [];
-
-    var handler = function handler() {
-      return api.state = state.save(api.settings);
-    };
-
-    var throttleRef = lodash_throttle(handler, api.settings.throttleDelay, {
-      leading: false
-    });
-
-    api.init = function () {
-      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-      if (options) api.settings = _objectSpread$3(_objectSpread$3({}, api.settings), options);
-      api.state = state.set(api.settings);
-      api.state = lodash_isempty(api.state) ? state.save(api.settings) : api.state;
-      api.scrolls = document.querySelectorAll("[data-".concat(api.settings.dataScroll, "]"));
-      api.scrolls.forEach(function (item) {
-        item.addEventListener('scroll', throttleRef, false);
-        anchor.show(item, false, api.settings);
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly) symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
       });
-    };
+      keys.push.apply(keys, symbols);
+    }
 
-    api.destroy = function () {
-      api.scrolls.forEach(function (item) {
-        item.removeEventListener('scroll', throttleRef, false);
-      });
-      api.state = {};
-      api.scrolls = [];
-      localStorage.removeItem(api.settings.saveKey);
-    };
+    return keys;
+  }
 
-    api.anchor = {
-      get: function get(el) {
-        return anchor.get(el, api.settings);
-      },
-      show: function show(el, behavior) {
-        return anchor.show(el, behavior, api.settings);
+  function _objectSpread$3(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+
+      if (i % 2) {
+        ownKeys$3(Object(source), true).forEach(function (key) {
+          defineProperty$1(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys$3(Object(source)).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
       }
-    };
-    if (api.settings.autoInit) api.init();
-    return api;
-  });
+    }
+
+    return target;
+  }
+
+  var ScrollStash = function () {
+    function ScrollStash(options) {
+      classCallCheck(this, ScrollStash);
+      this.settings = _objectSpread$3(_objectSpread$3({}, defaults), options);
+      this.state = {};
+      this.scrolls = [];
+      this.throttleRef = lodash_throttle(this.handler, this.settings.throttleDelay, {
+        leading: false
+      }).bind(this);
+      if (this.settings.autoInit) this.init();
+    }
+
+    createClass(ScrollStash, [{
+      key: "init",
+      value: function init() {
+        var _this = this;
+
+        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+        if (options) this.settings = _objectSpread$3(_objectSpread$3({}, this.settings), options);
+        this.state = state.set(this.settings);
+        this.state = lodash_isempty(this.state) ? state.save(this.settings) : this.state;
+        this.scrolls = document.querySelectorAll("[data-".concat(this.settings.dataScroll, "]"));
+        this.scrolls.forEach(function (item) {
+          item.addEventListener('scroll', _this.throttleRef);
+          anchor.show(item, false, _this.settings);
+        });
+      }
+    }, {
+      key: "destroy",
+      value: function destroy() {
+        var _this2 = this;
+
+        this.scrolls.forEach(function (item) {
+          item.removeEventListener('scroll', _this2.throttleRef);
+        });
+        this.state = {};
+        this.scrolls = [];
+        localStorage.removeItem(this.settings.saveKey);
+      }
+    }, {
+      key: "handler",
+      value: function handler() {
+        this.state = state.save(this.settings);
+      }
+    }, {
+      key: "anchorGet",
+      value: function anchorGet(el) {
+        return anchor.get(el, this.settings);
+      }
+    }, {
+      key: "anchorShow",
+      value: function anchorShow(el, behavior) {
+        return anchor.show(el, behavior, this.settings);
+      }
+    }]);
+    return ScrollStash;
+  }();
+
+  var scripts_cjs = ScrollStash;
 
   /*!
    * @copyright Copyright (c) 2017 IcoMoon.io
@@ -2751,15 +2798,15 @@
     }
   })();
 
-  function _classCallCheck(instance, Constructor) {
+  function _classCallCheck$1(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
     }
   }
 
-  var classCallCheck = _classCallCheck;
+  var classCallCheck$1 = _classCallCheck$1;
 
-  function _defineProperties(target, props) {
+  function _defineProperties$1(target, props) {
     for (var i = 0; i < props.length; i++) {
       var descriptor = props[i];
       descriptor.enumerable = descriptor.enumerable || false;
@@ -2769,13 +2816,13 @@
     }
   }
 
-  function _createClass(Constructor, protoProps, staticProps) {
-    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) _defineProperties(Constructor, staticProps);
+  function _createClass$1(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties$1(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties$1(Constructor, staticProps);
     return Constructor;
   }
 
-  var createClass = _createClass;
+  var createClass$1 = _createClass$1;
 
   (function () {
     if (typeof window === 'undefined') {
@@ -2789,7 +2836,7 @@
 
     var InertRoot = function () {
       function InertRoot(rootElement, inertManager) {
-        classCallCheck(this, InertRoot);
+        classCallCheck$1(this, InertRoot);
 
         this._inertManager = inertManager;
         this._rootElement = rootElement;
@@ -2814,7 +2861,7 @@
         });
       }
 
-      createClass(InertRoot, [{
+      createClass$1(InertRoot, [{
         key: "destructor",
         value: function destructor() {
           this._observer.disconnect();
@@ -2984,7 +3031,7 @@
 
     var InertNode = function () {
       function InertNode(node, inertRoot) {
-        classCallCheck(this, InertNode);
+        classCallCheck$1(this, InertNode);
 
         this._node = node;
         this._overrodeFocusMethod = false;
@@ -2994,7 +3041,7 @@
         this.ensureUntabbable();
       }
 
-      createClass(InertNode, [{
+      createClass$1(InertNode, [{
         key: "destructor",
         value: function destructor() {
           this._throwIfDestroyed();
@@ -3108,7 +3155,7 @@
 
     var InertManager = function () {
       function InertManager(document) {
-        classCallCheck(this, InertManager);
+        classCallCheck$1(this, InertManager);
 
         if (!document) {
           throw new Error('Missing required argument; InertManager needs to wrap a document.');
@@ -3127,7 +3174,7 @@
         }
       }
 
-      createClass(InertManager, [{
+      createClass$1(InertManager, [{
         key: "setInert",
         value: function setInert(root, inert) {
           if (inert) {
@@ -4901,7 +4948,7 @@
     },
     toggleOverflow: 'body, .page__article'
   });
-  var scrollStash = ScrollStash({
+  var scrollStash = new scripts_cjs({
     autoInit: true,
     selectorAnchor: '.is-active',
     selectorTopElem: '.dialog__header'
