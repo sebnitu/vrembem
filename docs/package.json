@@ -3,10 +3,6 @@
   "description": "A container component that slides in from the left or right. It typically contains menus, search or other content for your app.",
   "version": "1.14.7",
   "private": true,
-  "main": "dist/scripts.cjs.js",
-  "module": "src/js/app.js",
-  "browser": "dist/scripts.js",
-  "style": "src/css/app.scss",
   "scripts": {
     "build": "npm-run-all clean scripts styles",
     "clean": "del dist",
