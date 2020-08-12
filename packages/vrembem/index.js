@@ -1,7 +1,7 @@
-import * as core from '@vrembem/core';
-import Checkbox from '@vrembem/checkbox';
-import Drawer from '@vrembem/drawer';
-import Modal from '@vrembem/modal';
+import * as core from '@vrembem/core/index';
+import Checkbox from '@vrembem/checkbox/index';
+import Drawer from '@vrembem/drawer/index';
+import Modal from '@vrembem/modal/index';
 
 export {
   core,
