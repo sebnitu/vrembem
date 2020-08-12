@@ -1,5 +1,5 @@
 import { hyphenCase } from '../index';
-import * as u from '../dist/scripts.cjs.js';
+import * as u from '../dist/scripts.js';
 
 test('properly converts camel case string to a hyphen separated string', () => {
   const str = hyphenCase('someStringGoesHere');

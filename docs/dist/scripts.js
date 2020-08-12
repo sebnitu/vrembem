@@ -1,5 +1,7 @@
-(function () {
-  'use strict';
+(function (factory) {
+  typeof define === 'function' && define.amd ? define(factory) :
+  factory();
+}((function () { 'use strict';
 
   var addClass = function addClass(el) {
     for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -4713,108 +4715,104 @@
     init.start();
   };
 
-  (function () {
-    if (document.getElementById('listjs')) {
-      var list = new src('listjs', {
-        fuzzySearch: {
-          searchClass: 'search',
-          location: 0,
-          distance: 100,
-          threshold: 0.4,
-          multiSearch: true
-        },
-        valueNames: ['name', {
-          data: ['category']
-        }],
-        listClass: 'menu'
-      });
-      var noticeEmpty = document.querySelector('.notice_empty');
-      var noticeEmptyText = noticeEmpty.querySelector('.search_text');
-      var filter = document.querySelector('.filter');
-      var search = document.querySelector('.filter .search');
-      var searchClear = document.querySelector('.filter .search_clear');
+  if (document.getElementById('listjs')) {
+    var list = new src('listjs', {
+      fuzzySearch: {
+        searchClass: 'search',
+        location: 0,
+        distance: 100,
+        threshold: 0.4,
+        multiSearch: true
+      },
+      valueNames: ['name', {
+        data: ['category']
+      }],
+      listClass: 'menu'
+    });
+    var noticeEmpty = document.querySelector('.notice_empty');
+    var noticeEmptyText = noticeEmpty.querySelector('.search_text');
+    var filter$1 = document.querySelector('.filter');
+    var search$1 = document.querySelector('.filter .search');
+    var searchClear = document.querySelector('.filter .search_clear');
 
-      var isMenuLinkActive = function isMenuLinkActive() {
-        var menuLinks = document.querySelectorAll('#listjs .menu__link');
-        var isActive = menuLinks.classList.contains('is-active');
-        return isActive;
-      };
+    var isMenuLinkActive = function isMenuLinkActive() {
+      var menuLinks = document.querySelectorAll('#listjs .menu__link');
+      var isActive = menuLinks.classList.contains('is-active');
+      return isActive;
+    };
 
-      list.on('searchComplete', function () {
-        var value = search.value;
-        noticeEmptyText.innerHTML = value;
-        localStorage.setItem('SearchValue', value);
+    list.on('searchComplete', function () {
+      var value = search$1.value;
+      noticeEmptyText.innerHTML = value;
+      localStorage.setItem('SearchValue', value);
 
-        if (value) {
-          filter.classList.add('is-active');
-          search.classList.add('is-active');
-          searchClear.classList.remove('display-none');
-        } else {
-          filter.classList.remove('is-active');
-          search.classList.remove('is-active');
-          searchClear.classList.add('display-none');
-        }
+      if (value) {
+        filter$1.classList.add('is-active');
+        search$1.classList.add('is-active');
+        searchClear.classList.remove('display-none');
+      } else {
+        filter$1.classList.remove('is-active');
+        search$1.classList.remove('is-active');
+        searchClear.classList.add('display-none');
+      }
 
-        if (list.visibleItems.length > 0) {
-          noticeEmpty.classList.add('display-none');
-        } else {
-          noticeEmpty.classList.remove('display-none');
-        }
-      });
-      document.addEventListener('click', function () {
-        var trigger_search_clear = event.target.closest('.search_clear');
-        var trigger_search_cat = event.target.closest('.category');
+      if (list.visibleItems.length > 0) {
+        noticeEmpty.classList.add('display-none');
+      } else {
+        noticeEmpty.classList.remove('display-none');
+      }
+    });
+    document.addEventListener('click', function () {
+      var trigger_search_clear = event.target.closest('.search_clear');
+      var trigger_search_cat = event.target.closest('.category');
 
-        if (trigger_search_clear) {
-          search.value = '';
-          list.search();
-          event.preventDefault();
-        }
+      if (trigger_search_clear) {
+        search$1.value = '';
+        list.search();
+        event.preventDefault();
+      }
 
-        if (trigger_search_cat) {
-          search.value = trigger_search_cat.dataset.category;
-          list.search(search.value);
-          event.preventDefault();
-        }
-      }, false);
+      if (trigger_search_cat) {
+        search$1.value = trigger_search_cat.dataset.category;
+        list.search(search$1.value);
+        event.preventDefault();
+      }
+    }, false);
 
-      if (localStorage.getItem('SearchValue')) {
-        search.value = localStorage.getItem('SearchValue');
-        list.search(search.value);
+    if (localStorage.getItem('SearchValue')) {
+      search$1.value = localStorage.getItem('SearchValue');
+      list.search(search$1.value);
 
-        if (!isMenuLinkActive()) {
-          search.value = '';
-          list.search();
-        }
+      if (!isMenuLinkActive()) {
+        search$1.value = '';
+        list.search();
       }
     }
-  })();
+  }
 
-  (function () {
-    var url = 'https://api.github.com/repos/sebnitu/vrembem/contents/packages/vrembem/package.json?ref=master';
-    var ajax = new XMLHttpRequest();
-    var el = document.querySelector('[data-role="version"]');
+  var url = 'https://api.github.com/repos/sebnitu/vrembem/contents/packages/vrembem/package.json?ref=master';
+  var ajax = new XMLHttpRequest();
+  var el = document.querySelector('[data-role="version"]');
 
-    if (el) {
-      ajax.onload = function () {
-        if (ajax.status >= 200 && ajax.status < 300) {
-          var response = JSON.parse(ajax.response);
-          var decode = window.atob(response.content);
-          var pkg = JSON.parse(decode);
-          el.classList.remove('loading');
-          el.classList.add('success');
-          el.innerHTML = pkg.version;
-        } else {
-          el.classList.remove('loading');
-          el.classList.add('error');
-          el.innerHTML = 'Error!';
-        }
-      };
+  if (el) {
+    ajax.onload = function () {
+      if (ajax.status >= 200 && ajax.status < 300) {
+        var response = JSON.parse(ajax.response);
+        var decode = window.atob(response.content);
+        var pkg = JSON.parse(decode);
+        el.classList.remove('loading');
+        el.classList.add('success');
+        el.innerHTML = pkg.version;
+      } else {
+        el.classList.remove('loading');
+        el.classList.add('error');
+        el.innerHTML = 'Error!';
+      }
+    };
 
-      ajax.open('GET', url);
-      ajax.send();
-    }
-  })();
+    ajax.open('GET', url);
+    ajax.send();
+  }
 
   index({
     autoInit: true
@@ -4838,9 +4836,9 @@
     selectorAnchor: '.is-active',
     selectorTopElem: '.dialog__header'
   });
-  var el = document.querySelector('[data-scroll-stash]');
+  var el$1 = document.querySelector('[data-scroll-stash]');
   document.addEventListener('drawer:opened', function () {
-    scrollStash.anchor.show(el, 'smooth');
+    scrollStash.anchor.show(el$1, 'smooth');
   });
 
-}());
+})));

@@ -4,7 +4,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
 
 const entry = './src/js/app.js';
-const name = 'vrembem';
+const name = 'app';
 const babelConfig = {
   babelHelpers: 'runtime',
   rootMode: 'upward'
@@ -14,7 +14,7 @@ export default [{
   input: entry,
   output: {
     file: './dist/scripts.js',
-    format: 'iife',
+    format: 'umd',
     name: name,
     extend: true
   },
@@ -27,7 +27,7 @@ export default [{
   input: entry,
   output: {
     file: './dist/scripts.min.js',
-    format: 'iife',
+    format: 'umd',
     name: name,
     extend: true
   },

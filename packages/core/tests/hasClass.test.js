@@ -1,5 +1,5 @@
 import { hasClass } from '../index';
-import * as u from '../dist/scripts.cjs.js';
+import * as u from '../dist/scripts.js';
 
 document.body.innerHTML = `<!DOCTYPE html>
   <h1 class="a">Hello world</h1>

@@ -9,7 +9,8 @@
     "component",
     "core"
   ],
-  "main": "index.js",
+  "main": "dist/scripts.js",
+  "module": "index.js",
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean scripts",

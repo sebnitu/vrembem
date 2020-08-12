@@ -1,6 +1,8 @@
-this.vrembem = this.vrembem || {};
-(function (exports) {
-  'use strict';
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.vrembem = global.vrembem || {}, global.vrembem.core = global.vrembem.core || {})));
+}(this, (function (exports) { 'use strict';
 
   var addClass = function addClass(el) {
     for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -84,4 +86,6 @@ this.vrembem = this.vrembem || {};
   exports.removeClass = removeClass;
   exports.toggleClass = toggleClass;
 
-}(this.vrembem.core = this.vrembem.core || {}));
+  Object.defineProperty(exports, '__esModule', { value: true });
+
+})));

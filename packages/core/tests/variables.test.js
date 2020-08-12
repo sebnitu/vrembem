@@ -1,5 +1,5 @@
 import { breakpoints } from '../index';
-import * as u from '../dist/scripts.cjs.js';
+import * as u from '../dist/scripts.js';
 
 test('breakpoints has all size keys with a px value', () => {
   expect(breakpoints).toHaveProperty('xs', expect.stringContaining('px'));

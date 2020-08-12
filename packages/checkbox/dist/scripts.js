@@ -1,6 +1,8 @@
-this.vrembem = this.vrembem || {};
-this.vrembem.Checkbox = (function () {
-  'use strict';
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, (global.vrembem = global.vrembem || {}, global.vrembem.Checkbox = factory()));
+}(this, (function () { 'use strict';
 
   function _defineProperty(obj, key, value) {
     if (key in obj) {
@@ -84,4 +86,4 @@ this.vrembem.Checkbox = (function () {
 
   return index;
 
-}());
+})));

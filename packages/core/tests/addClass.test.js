@@ -1,5 +1,5 @@
 import { addClass } from '../index';
-import * as u from '../dist/scripts.cjs.js';
+import * as u from '../dist/scripts.js';
 import '@testing-library/jest-dom/extend-expect';
 
 document.body.innerHTML = `

@@ -1,5 +1,5 @@
 import { camelCase } from '../index';
-import * as u from '../dist/scripts.cjs.js';
+import * as u from '../dist/scripts.js';
 
 test('properly converts a dash string to camel case', () => {
   const str = camelCase('some-string-goes-here');
