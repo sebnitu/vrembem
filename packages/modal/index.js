@@ -322,6 +322,7 @@ export default function (options) {
 
   const getFocusable = (modal) => {
     const focusable = [];
+    const scrollPos = modal.scrollTop;
     const items = modal.querySelectorAll(`
       a[href]:not([disabled]),
       button:not([disabled]),
@@ -338,6 +339,7 @@ export default function (options) {
         focusable.push(el);
       }
     });
+    modal.scrollTop = scrollPos;
     return focusable;
   };
 
