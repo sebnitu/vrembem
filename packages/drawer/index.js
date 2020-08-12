@@ -1,9 +1,4 @@
-import {
-  addClass,
-  breakpoints,
-  hasClass,
-  removeClass
-} from '@vrembem/core/index';
+import { addClass, breakpoints, hasClass, removeClass } from '@vrembem/core';
 
 export default function (options) {
 

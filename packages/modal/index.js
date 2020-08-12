@@ -1,4 +1,4 @@
-import { addClass, hasClass, removeClass } from '@vrembem/core/index';
+import { addClass, hasClass, removeClass } from '@vrembem/core';
 
 export default function (options) {
 
