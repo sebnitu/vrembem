@@ -3,7 +3,7 @@ import {
   breakpoints,
   hasClass,
   removeClass
-} from '@vrembem/core';
+} from '@vrembem/core/index';
 
 export default function (options) {
 

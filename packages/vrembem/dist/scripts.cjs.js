@@ -814,94 +814,6 @@ function _asyncToGenerator(fn) {
 
 var asyncToGenerator = _asyncToGenerator;
 
-var scripts_cjs = createCommonjsModule(function (module, exports) {
-
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-
-  var addClass = function addClass(el) {
-    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      cl[_key - 1] = arguments[_key];
-    }
-
-    el = el.forEach ? el : [el];
-    el.forEach(function (el) {
-      var _el$classList;
-
-      (_el$classList = el.classList).add.apply(_el$classList, cl);
-    });
-  };
-
-  var camelCase = function camelCase(str) {
-    return str.replace(/-([a-z])/g, function (g) {
-      return g[1].toUpperCase();
-    });
-  };
-
-  var hasClass = function hasClass(el) {
-    el = el.forEach ? el : [el];
-    el = [].slice.call(el);
-
-    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      cl[_key - 1] = arguments[_key];
-    }
-
-    return cl.some(function (cl) {
-      return el.some(function (el) {
-        if (el.classList.contains(cl)) return true;
-      });
-    });
-  };
-
-  var hyphenCase = function hyphenCase(str) {
-    return str.replace(/([a-z][A-Z])/g, function (g) {
-      return g[0] + '-' + g[1].toLowerCase();
-    });
-  };
-
-  var removeClass = function removeClass(el) {
-    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      cl[_key - 1] = arguments[_key];
-    }
-
-    el = el.forEach ? el : [el];
-    el.forEach(function (el) {
-      var _el$classList;
-
-      (_el$classList = el.classList).remove.apply(_el$classList, cl);
-    });
-  };
-
-  var toggleClass = function toggleClass(el) {
-    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      cl[_key - 1] = arguments[_key];
-    }
-
-    el = el.forEach ? el : [el];
-    el.forEach(function (el) {
-      cl.forEach(function (cl) {
-        el.classList.toggle(cl);
-      });
-    });
-  };
-
-  var breakpoints = {
-    xs: '480px',
-    sm: '620px',
-    md: '760px',
-    lg: '990px',
-    xl: '1380px'
-  };
-  exports.addClass = addClass;
-  exports.breakpoints = breakpoints;
-  exports.camelCase = camelCase;
-  exports.hasClass = hasClass;
-  exports.hyphenCase = hyphenCase;
-  exports.removeClass = removeClass;
-  exports.toggleClass = toggleClass;
-});
-
 function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -923,7 +835,7 @@ function index$2 (options) {
     classModal: 'drawer_modal',
     selectorInert: null,
     selectorOverflow: null,
-    breakpoints: scripts_cjs.breakpoints,
+    breakpoints: breakpoints,
     customEventPrefix: 'drawer:',
     stateSave: true,
     stateKey: 'DrawerState',
@@ -1071,17 +983,17 @@ function index$2 (options) {
   var openTransition = function openTransition(drawer) {
     return new Promise(function (resolve) {
       if (api.settings.transition) {
-        scripts_cjs.removeClass(drawer, api.settings.stateClosed);
-        scripts_cjs.addClass(drawer, api.settings.stateOpening);
+        removeClass(drawer, api.settings.stateClosed);
+        addClass(drawer, api.settings.stateOpening);
         drawer.addEventListener('transitionend', function _f() {
-          scripts_cjs.addClass(drawer, api.settings.stateOpened);
-          scripts_cjs.removeClass(drawer, api.settings.stateOpening);
+          addClass(drawer, api.settings.stateOpened);
+          removeClass(drawer, api.settings.stateOpening);
           resolve(drawer);
           this.removeEventListener('transitionend', _f);
         });
       } else {
-        scripts_cjs.addClass(drawer, api.settings.stateOpened);
-        scripts_cjs.removeClass(drawer, api.settings.stateClosed);
+        addClass(drawer, api.settings.stateOpened);
+        removeClass(drawer, api.settings.stateClosed);
         resolve(drawer);
       }
     });
@@ -1090,17 +1002,17 @@ function index$2 (options) {
   var closeTransition = function closeTransition(drawer) {
     return new Promise(function (resolve) {
       if (api.settings.transition) {
-        scripts_cjs.addClass(drawer, api.settings.stateClosing);
-        scripts_cjs.removeClass(drawer, api.settings.stateOpened);
+        addClass(drawer, api.settings.stateClosing);
+        removeClass(drawer, api.settings.stateOpened);
         drawer.addEventListener('transitionend', function _f() {
-          scripts_cjs.removeClass(drawer, api.settings.stateClosing);
-          scripts_cjs.addClass(drawer, api.settings.stateClosed);
+          removeClass(drawer, api.settings.stateClosing);
+          addClass(drawer, api.settings.stateClosed);
           resolve(drawer);
           this.removeEventListener('transitionend', _f);
         });
       } else {
-        scripts_cjs.addClass(drawer, api.settings.stateClosed);
-        scripts_cjs.removeClass(drawer, api.settings.stateOpened);
+        addClass(drawer, api.settings.stateClosed);
+        removeClass(drawer, api.settings.stateOpened);
         resolve(drawer);
       }
     });
@@ -1123,13 +1035,13 @@ function index$2 (options) {
               return _context.abrupt("return", drawerNotFound(drawerKey));
 
             case 3:
-              if (scripts_cjs.hasClass(drawer, api.settings.stateOpened)) {
+              if (hasClass(drawer, api.settings.stateOpened)) {
                 _context.next = 17;
                 break;
               }
 
               working = true;
-              isModal = scripts_cjs.hasClass(drawer, api.settings.classModal);
+              isModal = hasClass(drawer, api.settings.classModal);
 
               if (isModal) {
                 setOverflowHidden(true);
@@ -1187,14 +1099,14 @@ function index$2 (options) {
               return _context2.abrupt("return", drawerNotFound(drawerKey));
 
             case 3:
-              if (!scripts_cjs.hasClass(drawer, api.settings.stateOpened)) {
+              if (!hasClass(drawer, api.settings.stateOpened)) {
                 _context2.next = 16;
                 break;
               }
 
               working = true;
 
-              if (scripts_cjs.hasClass(drawer, api.settings.classModal)) {
+              if (hasClass(drawer, api.settings.classModal)) {
                 setInert(false);
                 setOverflowHidden(false);
               }
@@ -1231,7 +1143,7 @@ function index$2 (options) {
   api.toggle = function (drawerKey) {
     var drawer = drawerKeyCheck(drawerKey);
     if (!drawer) return drawerNotFound(drawerKey);
-    var isOpen = scripts_cjs.hasClass(drawer, api.settings.stateOpened);
+    var isOpen = hasClass(drawer, api.settings.stateOpened);
 
     if (!isOpen) {
       return api.open(drawer);
@@ -1326,8 +1238,8 @@ function index$2 (options) {
     if (api.settings.stateSave) {
       var drawers = target ? [target] : document.querySelectorAll("[data-".concat(api.settings.dataDrawer, "]"));
       drawers.forEach(function (el) {
-        if (!scripts_cjs.hasClass(el, api.settings.classModal)) {
-          api.state[el.getAttribute("data-".concat(api.settings.dataDrawer))] = scripts_cjs.hasClass(el, api.settings.stateOpened) ? api.settings.stateOpened : api.settings.stateClosed;
+        if (!hasClass(el, api.settings.classModal)) {
+          api.state[el.getAttribute("data-".concat(api.settings.dataDrawer))] = hasClass(el, api.settings.stateOpened) ? api.settings.stateOpened : api.settings.stateClosed;
         }
       });
       localStorage.setItem(api.settings.stateKey, JSON.stringify(api.state));
@@ -1343,9 +1255,9 @@ function index$2 (options) {
 
           if (item) {
             if (api.state[key] == api.settings.stateOpened) {
-              scripts_cjs.addClass(item, api.settings.stateOpened);
+              addClass(item, api.settings.stateOpened);
             } else {
-              scripts_cjs.removeClass(item, api.settings.stateOpened);
+              removeClass(item, api.settings.stateOpened);
             }
           }
         });
@@ -1419,10 +1331,10 @@ function index$2 (options) {
   };
 
   var switchToModal = function switchToModal(drawer) {
-    if (scripts_cjs.hasClass(drawer, api.settings.classModal)) return;
-    scripts_cjs.addClass(drawer, api.settings.classModal);
-    scripts_cjs.addClass(drawer, api.settings.stateClosed);
-    scripts_cjs.removeClass(drawer, api.settings.stateOpened);
+    if (hasClass(drawer, api.settings.classModal)) return;
+    addClass(drawer, api.settings.classModal);
+    addClass(drawer, api.settings.stateClosed);
+    removeClass(drawer, api.settings.stateOpened);
     drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'toModal', {
       bubbles: true
     }));
@@ -1437,17 +1349,17 @@ function index$2 (options) {
   };
 
   var switchToDefault = function switchToDefault(drawer) {
-    if (!scripts_cjs.hasClass(drawer, api.settings.classModal)) return;
+    if (!hasClass(drawer, api.settings.classModal)) return;
     setInert(false);
     setOverflowHidden(false);
-    scripts_cjs.removeClass(drawer, api.settings.classModal);
+    removeClass(drawer, api.settings.classModal);
     focusTrapDestroy(drawer);
     var drawerKey = drawer.getAttribute("data-".concat(api.settings.dataDrawer));
     var drawerState = api.state[drawerKey];
 
     if (drawerState == api.settings.stateOpened) {
-      scripts_cjs.addClass(drawer, api.settings.stateOpened);
-      scripts_cjs.removeClass(drawer, api.settings.stateClosed);
+      addClass(drawer, api.settings.stateOpened);
+      removeClass(drawer, api.settings.stateClosed);
     }
 
     drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'toDefault', {
@@ -1648,8 +1560,8 @@ function index$3 (options) {
         focusTrapDestroy(el);
       }
 
-      scripts_cjs.removeClass(el, api.settings.stateOpened, api.settings.stateOpening, api.settings.stateClosing);
-      scripts_cjs.addClass(el, api.settings.stateClosed);
+      removeClass(el, api.settings.stateOpened, api.settings.stateOpening, api.settings.stateClosing);
+      addClass(el, api.settings.stateClosed);
     });
   };
 
@@ -1688,17 +1600,17 @@ function index$3 (options) {
   var openTransition = function openTransition(modal) {
     return new Promise(function (resolve) {
       if (api.settings.transition) {
-        scripts_cjs.removeClass(modal, api.settings.stateClosed);
-        scripts_cjs.addClass(modal, api.settings.stateOpening);
+        removeClass(modal, api.settings.stateClosed);
+        addClass(modal, api.settings.stateOpening);
         modal.addEventListener('transitionend', function _f() {
-          scripts_cjs.addClass(modal, api.settings.stateOpened);
-          scripts_cjs.removeClass(modal, api.settings.stateOpening);
+          addClass(modal, api.settings.stateOpened);
+          removeClass(modal, api.settings.stateOpening);
           resolve(modal);
           this.removeEventListener('transitionend', _f);
         });
       } else {
-        scripts_cjs.addClass(modal, api.settings.stateOpened);
-        scripts_cjs.removeClass(modal, api.settings.stateClosed);
+        addClass(modal, api.settings.stateOpened);
+        removeClass(modal, api.settings.stateClosed);
         resolve(modal);
       }
     });
@@ -1707,17 +1619,17 @@ function index$3 (options) {
   var closeTransition = function closeTransition(modal) {
     return new Promise(function (resolve) {
       if (api.settings.transition) {
-        scripts_cjs.addClass(modal, api.settings.stateClosing);
-        scripts_cjs.removeClass(modal, api.settings.stateOpened);
+        addClass(modal, api.settings.stateClosing);
+        removeClass(modal, api.settings.stateOpened);
         modal.addEventListener('transitionend', function _f() {
-          scripts_cjs.removeClass(modal, api.settings.stateClosing);
-          scripts_cjs.addClass(modal, api.settings.stateClosed);
+          removeClass(modal, api.settings.stateClosing);
+          addClass(modal, api.settings.stateClosed);
           resolve(modal);
           this.removeEventListener('transitionend', _f);
         });
       } else {
-        scripts_cjs.addClass(modal, api.settings.stateClosed);
-        scripts_cjs.removeClass(modal, api.settings.stateOpened);
+        addClass(modal, api.settings.stateClosed);
+        removeClass(modal, api.settings.stateOpened);
         resolve(modal);
       }
     });
@@ -1740,7 +1652,7 @@ function index$3 (options) {
               return _context2.abrupt("return", modalNotFound(modalKey));
 
             case 3:
-              if (!scripts_cjs.hasClass(modal, api.settings.stateClosed)) {
+              if (!hasClass(modal, api.settings.stateClosed)) {
                 _context2.next = 16;
                 break;
               }

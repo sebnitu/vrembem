@@ -664,93 +664,46 @@ function _defineProperty(obj, key, value) {
 
 var defineProperty = _defineProperty;
 
-var scripts_cjs = createCommonjsModule(function (module, exports) {
+var addClass = function addClass(el) {
+  for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    cl[_key - 1] = arguments[_key];
+  }
 
-  Object.defineProperty(exports, '__esModule', {
-    value: true
+  el = el.forEach ? el : [el];
+  el.forEach(function (el) {
+    var _el$classList;
+
+    (_el$classList = el.classList).add.apply(_el$classList, cl);
   });
+};
 
-  var addClass = function addClass(el) {
-    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      cl[_key - 1] = arguments[_key];
-    }
+var hasClass = function hasClass(el) {
+  el = el.forEach ? el : [el];
+  el = [].slice.call(el);
 
-    el = el.forEach ? el : [el];
-    el.forEach(function (el) {
-      var _el$classList;
+  for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    cl[_key - 1] = arguments[_key];
+  }
 
-      (_el$classList = el.classList).add.apply(_el$classList, cl);
+  return cl.some(function (cl) {
+    return el.some(function (el) {
+      if (el.classList.contains(cl)) return true;
     });
-  };
+  });
+};
 
-  var camelCase = function camelCase(str) {
-    return str.replace(/-([a-z])/g, function (g) {
-      return g[1].toUpperCase();
-    });
-  };
+var removeClass = function removeClass(el) {
+  for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    cl[_key - 1] = arguments[_key];
+  }
 
-  var hasClass = function hasClass(el) {
-    el = el.forEach ? el : [el];
-    el = [].slice.call(el);
+  el = el.forEach ? el : [el];
+  el.forEach(function (el) {
+    var _el$classList;
 
-    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      cl[_key - 1] = arguments[_key];
-    }
-
-    return cl.some(function (cl) {
-      return el.some(function (el) {
-        if (el.classList.contains(cl)) return true;
-      });
-    });
-  };
-
-  var hyphenCase = function hyphenCase(str) {
-    return str.replace(/([a-z][A-Z])/g, function (g) {
-      return g[0] + '-' + g[1].toLowerCase();
-    });
-  };
-
-  var removeClass = function removeClass(el) {
-    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      cl[_key - 1] = arguments[_key];
-    }
-
-    el = el.forEach ? el : [el];
-    el.forEach(function (el) {
-      var _el$classList;
-
-      (_el$classList = el.classList).remove.apply(_el$classList, cl);
-    });
-  };
-
-  var toggleClass = function toggleClass(el) {
-    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      cl[_key - 1] = arguments[_key];
-    }
-
-    el = el.forEach ? el : [el];
-    el.forEach(function (el) {
-      cl.forEach(function (cl) {
-        el.classList.toggle(cl);
-      });
-    });
-  };
-
-  var breakpoints = {
-    xs: '480px',
-    sm: '620px',
-    md: '760px',
-    lg: '990px',
-    xl: '1380px'
-  };
-  exports.addClass = addClass;
-  exports.breakpoints = breakpoints;
-  exports.camelCase = camelCase;
-  exports.hasClass = hasClass;
-  exports.hyphenCase = hyphenCase;
-  exports.removeClass = removeClass;
-  exports.toggleClass = toggleClass;
-});
+    (_el$classList = el.classList).remove.apply(_el$classList, cl);
+  });
+};
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -933,8 +886,8 @@ function index (options) {
         focusTrapDestroy(el);
       }
 
-      scripts_cjs.removeClass(el, api.settings.stateOpened, api.settings.stateOpening, api.settings.stateClosing);
-      scripts_cjs.addClass(el, api.settings.stateClosed);
+      removeClass(el, api.settings.stateOpened, api.settings.stateOpening, api.settings.stateClosing);
+      addClass(el, api.settings.stateClosed);
     });
   };
 
@@ -973,17 +926,17 @@ function index (options) {
   var openTransition = function openTransition(modal) {
     return new Promise(function (resolve) {
       if (api.settings.transition) {
-        scripts_cjs.removeClass(modal, api.settings.stateClosed);
-        scripts_cjs.addClass(modal, api.settings.stateOpening);
+        removeClass(modal, api.settings.stateClosed);
+        addClass(modal, api.settings.stateOpening);
         modal.addEventListener('transitionend', function _f() {
-          scripts_cjs.addClass(modal, api.settings.stateOpened);
-          scripts_cjs.removeClass(modal, api.settings.stateOpening);
+          addClass(modal, api.settings.stateOpened);
+          removeClass(modal, api.settings.stateOpening);
           resolve(modal);
           this.removeEventListener('transitionend', _f);
         });
       } else {
-        scripts_cjs.addClass(modal, api.settings.stateOpened);
-        scripts_cjs.removeClass(modal, api.settings.stateClosed);
+        addClass(modal, api.settings.stateOpened);
+        removeClass(modal, api.settings.stateClosed);
         resolve(modal);
       }
     });
@@ -992,17 +945,17 @@ function index (options) {
   var closeTransition = function closeTransition(modal) {
     return new Promise(function (resolve) {
       if (api.settings.transition) {
-        scripts_cjs.addClass(modal, api.settings.stateClosing);
-        scripts_cjs.removeClass(modal, api.settings.stateOpened);
+        addClass(modal, api.settings.stateClosing);
+        removeClass(modal, api.settings.stateOpened);
         modal.addEventListener('transitionend', function _f() {
-          scripts_cjs.removeClass(modal, api.settings.stateClosing);
-          scripts_cjs.addClass(modal, api.settings.stateClosed);
+          removeClass(modal, api.settings.stateClosing);
+          addClass(modal, api.settings.stateClosed);
           resolve(modal);
           this.removeEventListener('transitionend', _f);
         });
       } else {
-        scripts_cjs.addClass(modal, api.settings.stateClosed);
-        scripts_cjs.removeClass(modal, api.settings.stateOpened);
+        addClass(modal, api.settings.stateClosed);
+        removeClass(modal, api.settings.stateOpened);
         resolve(modal);
       }
     });
@@ -1025,7 +978,7 @@ function index (options) {
               return _context2.abrupt("return", modalNotFound(modalKey));
 
             case 3:
-              if (!scripts_cjs.hasClass(modal, api.settings.stateClosed)) {
+              if (!hasClass(modal, api.settings.stateClosed)) {
                 _context2.next = 16;
                 break;
               }
