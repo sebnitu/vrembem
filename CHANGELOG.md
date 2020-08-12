@@ -15,9 +15,16 @@ All notable changes to this project will be documented in this file.
 
 <!--
 Commit template:
-chore(release): add v1.14.6 to CHANGELOG.md
+chore(release): add v1.14.7 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.14.7 (2020-08-12)
+
+#### :bug: Bug Fix
+* `modal`, `vrembem`
+  * [#308](https://github.com/sebnitu/vrembem/pull/308) Retain scroll position when getFocusable is called ([@sebnitu](https://github.com/sebnitu))
 
 
 ## v1.14.6 (2020-08-11)
