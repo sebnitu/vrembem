@@ -4,6 +4,45 @@
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.vrembem = global.vrembem || {}, global.vrembem.core = global.vrembem.core || {})));
 }(this, (function (exports) { 'use strict';
 
+  var setInert = function setInert(state, selector) {
+    if (selector) {
+      var els = document.querySelectorAll(selector);
+      els.forEach(function (el) {
+        if (state) {
+          el.inert = true;
+          el.setAttribute('aria-hidden', true);
+        } else {
+          el.inert = null;
+          el.removeAttribute('aria-hidden');
+        }
+      });
+    }
+  };
+  var setOverflowHidden = function setOverflowHidden(state, selector) {
+    if (selector) {
+      var els = document.querySelectorAll(selector);
+      els.forEach(function (el) {
+        if (state) {
+          el.style.overflow = 'hidden';
+        } else {
+          el.style.removeProperty('overflow');
+        }
+      });
+    }
+  };
+  var setTabindex = function setTabindex(state, selector) {
+    if (selector) {
+      var els = document.querySelectorAll(selector);
+      els.forEach(function (el) {
+        if (state) {
+          el.setAttribute('tabindex', '-1');
+        } else {
+          el.removeAttribute('tabindex');
+        }
+      });
+    }
+  };
+
   var addClass = function addClass(el) {
     for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       cl[_key - 1] = arguments[_key];
@@ -162,6 +201,9 @@
   exports.hyphenCase = hyphenCase;
   exports.openTransition = openTransition;
   exports.removeClass = removeClass;
+  exports.setInert = setInert;
+  exports.setOverflowHidden = setOverflowHidden;
+  exports.setTabindex = setTabindex;
   exports.toggleClass = toggleClass;
 
   Object.defineProperty(exports, '__esModule', { value: true });

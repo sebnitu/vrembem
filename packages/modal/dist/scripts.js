@@ -668,6 +668,45 @@
 
 	var defineProperty = _defineProperty;
 
+	var setInert = function setInert(state, selector) {
+	  if (selector) {
+	    var els = document.querySelectorAll(selector);
+	    els.forEach(function (el) {
+	      if (state) {
+	        el.inert = true;
+	        el.setAttribute('aria-hidden', true);
+	      } else {
+	        el.inert = null;
+	        el.removeAttribute('aria-hidden');
+	      }
+	    });
+	  }
+	};
+	var setOverflowHidden = function setOverflowHidden(state, selector) {
+	  if (selector) {
+	    var els = document.querySelectorAll(selector);
+	    els.forEach(function (el) {
+	      if (state) {
+	        el.style.overflow = 'hidden';
+	      } else {
+	        el.style.removeProperty('overflow');
+	      }
+	    });
+	  }
+	};
+	var setTabindex = function setTabindex(state, selector) {
+	  if (selector) {
+	    var els = document.querySelectorAll(selector);
+	    els.forEach(function (el) {
+	      if (state) {
+	        el.setAttribute('tabindex', '-1');
+	      } else {
+	        el.removeAttribute('tabindex');
+	      }
+	    });
+	  }
+	};
+
 	var addClass = function addClass(el) {
 	  for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
 	    cl[_key - 1] = arguments[_key];
@@ -816,8 +855,14 @@
 	  var working = false;
 	  api.settings = _objectSpread(_objectSpread({}, defaults), options);
 	  api.memory = {};
+	  var selectorTabindex = "[data-".concat(api.settings.dataModal, "] [data-").concat(api.settings.dataDialog, "]");
 
 	  api.init = function () {
+<<<<<<< HEAD
+=======
+	    setInitialState();
+	    setTabindex(api.settings.setTabindex, selectorTabindex);
+>>>>>>> refactor: add shared accessibility modules
 	    moveModals();
 	    setTabindex();
 	    setInitialState();
@@ -942,27 +987,12 @@
 	    moveModals(selector, location);
 	  };
 
-	  var setInert = function setInert(state) {
-	    if (api.settings.selectorInert) {
-	      var content = document.querySelectorAll(api.settings.selectorInert);
-	      content.forEach(function (el) {
-	        if (state) {
-	          el.inert = true;
-	          el.setAttribute('aria-hidden', true);
-	        } else {
-	          el.inert = null;
-	          el.removeAttribute('aria-hidden');
-	        }
-	      });
-	    }
-	  };
-
 	  var setInitialState = function setInitialState() {
 	    var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "]"));
 	    modals.forEach(function (el) {
 	      if (el.classList.contains(api.settings.stateOpened)) {
-	        setInert(false);
-	        setOverflowHidden();
+	        setInert(false, api.settings.selectorInert);
+	        setOverflowHidden(false, api.settings.selectorOverflow);
 	        focusTrigger(api);
 	        focusTrapDestroy(el);
 	      }
@@ -976,32 +1006,9 @@
 	    setInitialState();
 	  };
 
-	  var setOverflowHidden = function setOverflowHidden(state) {
-	    if (api.settings.selectorOverflow) {
-	      var els = document.querySelectorAll(api.settings.selectorOverflow);
-	      els.forEach(function (el) {
-	        if (state) {
-	          el.style.overflow = 'hidden';
-	        } else {
-	          el.style.removeProperty('overflow');
-	        }
-	      });
-	    }
-	  };
-
-	  var setTabindex = function setTabindex() {
-	    var enable = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : api.settings.setTabindex;
-
-	    if (enable) {
-	      var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "] [data-").concat(api.settings.dataDialog, "]"));
-	      modals.forEach(function (el) {
-	        el.setAttribute('tabindex', '-1');
-	      });
-	    }
-	  };
-
 	  api.setTabindex = function () {
-	    setTabindex(true);
+	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+	    setTabindex(state, selectorTabindex);
 	  };
 
 	  api.open = function () {
@@ -1027,14 +1034,14 @@
 	              }
 
 	              working = true;
-	              setOverflowHidden('hidden');
+	              setOverflowHidden(true, api.settings.selectorOverflow);
 	              _context2.next = 8;
 	              return transition.open(modal, api.settings);
 
 	            case 8:
 	              focusTrapInit(modal);
 	              focusTarget(modal, api.settings);
-	              setInert(true);
+	              setInert(true, api.settings.selectorInert);
 	              modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
 	                bubbles: true
 	              }));
@@ -1074,8 +1081,8 @@
 	            }
 
 	            working = true;
-	            setInert(false);
-	            setOverflowHidden();
+	            setInert(false, api.settings.selectorInert);
+	            setOverflowHidden(false, api.settings.selectorOverflow);
 	            _context3.next = 8;
 	            return transition.close(modal, api.settings);
 

@@ -4,7 +4,10 @@ import {
   focusTrigger,
   getFocusable,
   hasClass,
-  removeClass
+  removeClass,
+  setInert,
+  setOverflowHidden,
+  setTabindex
 } from '@vrembem/core';
 import transition from '@vrembem/core/src/js/transition';
 
@@ -47,9 +50,11 @@ export default function (options) {
   api.settings = { ...defaults, ...options };
   api.memory = {};
 
+  const selectorTabindex = `[data-${api.settings.dataModal}] [data-${api.settings.dataDialog}]`;
+
   api.init = () => {
     moveModals();
-    setTabindex();
+    setTabindex(api.settings.setTabindex, selectorTabindex);
     setInitialState();
     document.addEventListener('click', handler, false);
     document.addEventListener('touchend', handler, false);
@@ -147,27 +152,12 @@ export default function (options) {
     moveModals(selector, location);
   };
 
-  const setInert = (state) => {
-    if (api.settings.selectorInert) {
-      const content = document.querySelectorAll(api.settings.selectorInert);
-      content.forEach((el) => {
-        if (state) {
-          el.inert = true;
-          el.setAttribute('aria-hidden', true);
-        } else {
-          el.inert = null;
-          el.removeAttribute('aria-hidden');
-        }
-      });
-    }
-  };
-
   const setInitialState = () => {
     const modals = document.querySelectorAll(`[data-${api.settings.dataModal}]`);
     modals.forEach((el) => {
       if (el.classList.contains(api.settings.stateOpened)) {
-        setInert(false);
-        setOverflowHidden();
+        setInert(false, api.settings.selectorInert);
+        setOverflowHidden(false, api.settings.selectorOverflow);
         focusTrigger(api);
         focusTrapDestroy(el);
       }
@@ -184,32 +174,8 @@ export default function (options) {
     setInitialState();
   };
 
-  const setOverflowHidden = (state) => {
-    if (api.settings.selectorOverflow) {
-      const els = document.querySelectorAll(api.settings.selectorOverflow);
-      els.forEach((el) => {
-        if (state) {
-          el.style.overflow = 'hidden';
-        } else {
-          el.style.removeProperty('overflow');
-        }
-      });
-    }
-  };
-
-  const setTabindex = (enable = api.settings.setTabindex) => {
-    if (enable) {
-      const modals = document.querySelectorAll(
-        `[data-${api.settings.dataModal}] [data-${api.settings.dataDialog}]`
-      );
-      modals.forEach((el) => {
-        el.setAttribute('tabindex', '-1');
-      });
-    }
-  };
-
-  api.setTabindex = () => {
-    setTabindex(true);
+  api.setTabindex = (state = true) => {
+    setTabindex(state, selectorTabindex);
   };
 
   /**
@@ -223,11 +189,11 @@ export default function (options) {
     if (!modal) return modalNotFound(modalKey);
     if (hasClass(modal, api.settings.stateClosed)) {
       working = true;
-      setOverflowHidden('hidden');
+      setOverflowHidden(true, api.settings.selectorOverflow);
       await transition.open(modal, api.settings);
       focusTrapInit(modal);
       focusTarget(modal, api.settings);
-      setInert(true);
+      setInert(true, api.settings.selectorInert);
       modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
         bubbles: true
       }));
@@ -244,8 +210,8 @@ export default function (options) {
     );
     if (modal) {
       working = true;
-      setInert(false);
-      setOverflowHidden();
+      setInert(false, api.settings.selectorInert);
+      setOverflowHidden(false, api.settings.selectorOverflow);
       await transition.close(modal, api.settings);
       if (returnFocus) focusTrigger(api);
       focusTrapDestroy(modal);

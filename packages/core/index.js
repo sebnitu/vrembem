@@ -1,3 +1,4 @@
+export * from './src/js/accessibility';
 export * from './src/js/addClass';
 export * from './src/js/camelCase';
 export * from './src/js/focus';

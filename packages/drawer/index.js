@@ -5,7 +5,10 @@ import {
   focusTrigger,
   getFocusable,
   hasClass,
-  removeClass
+  removeClass,
+  setInert,
+  setOverflowHidden,
+  setTabindex
 } from '@vrembem/core';
 import transition from '@vrembem/core/src/js/transition';
 
@@ -53,9 +56,11 @@ export default function (options) {
   api.state = {};
   api.breakpoint = {};
 
+  const selectorTabindex = `[data-${api.settings.dataDrawer}] [data-${api.settings.dataDialog}]`;
+
   api.init = () => {
     stateSet();
-    setTabindex();
+    setTabindex(api.settings.setTabindex, selectorTabindex);
     api.breakpoint.init();
     document.addEventListener('click', handler, false);
     document.addEventListener('touchend', handler, false);
@@ -152,47 +157,8 @@ export default function (options) {
     );
   };
 
-  const setInert = (state) => {
-    if (api.settings.selectorInert) {
-      const content = document.querySelectorAll(api.settings.selectorInert);
-      content.forEach((el) => {
-        if (state) {
-          el.inert = true;
-          el.setAttribute('aria-hidden', true);
-        } else {
-          el.inert = null;
-          el.removeAttribute('aria-hidden');
-        }
-      });
-    }
-  };
-
-  const setOverflowHidden = (state) => {
-    if (api.settings.selectorOverflow) {
-      const els = document.querySelectorAll(api.settings.selectorOverflow);
-      els.forEach((el) => {
-        if (state) {
-          el.style.overflow = 'hidden';
-        } else {
-          el.style.removeProperty('overflow');
-        }
-      });
-    }
-  };
-
-  const setTabindex = (enable = api.settings.setTabindex) => {
-    if (enable) {
-      const drawers = document.querySelectorAll(
-        `[data-${api.settings.dataDrawer}] [data-${api.settings.dataDialog}]`
-      );
-      drawers.forEach((el) => {
-        el.setAttribute('tabindex', '-1');
-      });
-    }
-  };
-
-  api.setTabindex = () => {
-    setTabindex(true);
+  api.setTabindex = (state = true) => {
+    setTabindex(state, selectorTabindex);
   };
 
   /**
@@ -206,13 +172,13 @@ export default function (options) {
       working = true;
       const isModal = hasClass(drawer, api.settings.classModal);
       if (isModal) {
-        setOverflowHidden(true);
+        setOverflowHidden(true, api.settings.selectorOverflow);
       }
       await transition.open(drawer, api.settings);
       stateSave(drawer);
       if (isModal) {
         focusTrapInit(drawer.querySelector(`[data-${api.settings.dataDialog}]`));
-        setInert(true);
+        setInert(true, api.settings.selectorInert);
       }
       focusTarget(drawer, api.settings);
       drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
@@ -232,8 +198,8 @@ export default function (options) {
     if (hasClass(drawer, api.settings.stateOpened)) {
       working = true;
       if (hasClass(drawer, api.settings.classModal)) {
-        setInert(false);
-        setOverflowHidden(false);
+        setInert(false, api.settings.selectorInert);
+        setOverflowHidden(false, api.settings.selectorOverflow);
       }
       await transition.close(drawer, api.settings);
       stateSave(drawer);
@@ -440,8 +406,8 @@ export default function (options) {
 
   const switchToDefault = (drawer) => {
     if (!hasClass(drawer, api.settings.classModal)) return;
-    setInert(false);
-    setOverflowHidden(false);
+    setInert(false, api.settings.selectorInert);
+    setOverflowHidden(false, api.settings.selectorOverflow);
     removeClass(drawer, api.settings.classModal);
     focusTrapDestroy(drawer);
     const drawerKey = drawer.getAttribute(`data-${api.settings.dataDrawer}`);
