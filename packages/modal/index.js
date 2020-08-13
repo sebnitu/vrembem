@@ -1,4 +1,12 @@
-import { addClass, hasClass, removeClass } from '@vrembem/core';
+import {
+  addClass,
+  focusTarget,
+  focusTrigger,
+  getFocusable,
+  hasClass,
+  removeClass
+} from '@vrembem/core';
+import transition from '@vrembem/core/src/js/transition';
 
 export default function (options) {
 
@@ -160,7 +168,7 @@ export default function (options) {
       if (el.classList.contains(api.settings.stateOpened)) {
         setInert(false);
         setOverflowHidden();
-        focusTrigger();
+        focusTrigger(api);
         focusTrapDestroy(el);
       }
       removeClass(el,
@@ -208,44 +216,6 @@ export default function (options) {
    * Transition functionality
    */
 
-  const openTransition = (modal) => {
-    return new Promise((resolve) => {
-      if (api.settings.transition) {
-        removeClass(modal, api.settings.stateClosed);
-        addClass(modal, api.settings.stateOpening);
-        modal.addEventListener('transitionend', function _f() {
-          addClass(modal, api.settings.stateOpened);
-          removeClass(modal, api.settings.stateOpening);
-          resolve(modal);
-          this.removeEventListener('transitionend', _f);
-        });
-      } else {
-        addClass(modal, api.settings.stateOpened);
-        removeClass(modal, api.settings.stateClosed);
-        resolve(modal);
-      }
-    });
-  };
-
-  const closeTransition = (modal) => {
-    return new Promise((resolve) => {
-      if (api.settings.transition) {
-        addClass(modal, api.settings.stateClosing);
-        removeClass(modal, api.settings.stateOpened);
-        modal.addEventListener('transitionend', function _f() {
-          removeClass(modal, api.settings.stateClosing);
-          addClass(modal, api.settings.stateClosed);
-          resolve(modal);
-          this.removeEventListener('transitionend', _f);
-        });
-      } else {
-        addClass(modal, api.settings.stateClosed);
-        removeClass(modal, api.settings.stateOpened);
-        resolve(modal);
-      }
-    });
-  };
-
   api.open = async (modalKey) => {
     const modal = document.querySelector(
       `[data-${api.settings.dataModal}="${modalKey}"]`
@@ -254,9 +224,9 @@ export default function (options) {
     if (hasClass(modal, api.settings.stateClosed)) {
       working = true;
       setOverflowHidden('hidden');
-      await openTransition(modal);
+      await transition.open(modal, api.settings);
       focusTrapInit(modal);
-      focusModal(modal);
+      focusTarget(modal, api.settings);
       setInert(true);
       modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
         bubbles: true
@@ -276,8 +246,8 @@ export default function (options) {
       working = true;
       setInert(false);
       setOverflowHidden();
-      await closeTransition(modal);
-      if (returnFocus) focusTrigger();
+      await transition.close(modal, api.settings);
+      if (returnFocus) focusTrigger(api);
       focusTrapDestroy(modal);
       modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
         bubbles: true
@@ -290,58 +260,8 @@ export default function (options) {
   };
 
   /**
-   * Focus functionality
-   */
-
-  const focusModal = (modal) => {
-    const innerFocus = modal.querySelector(
-      `[data-${api.settings.dataFocus}]`
-    );
-    if (innerFocus) {
-      innerFocus.focus();
-    } else {
-      const dialog = modal.querySelector(
-        `[data-${api.settings.dataDialog}][tabindex="-1"]`
-      );
-      if (dialog) {
-        dialog.focus();
-      }
-    }
-  };
-
-  const focusTrigger = () => {
-    if (api.memory.trigger) {
-      api.memory.trigger.focus();
-      api.memory.trigger = null;
-    }
-  };
-
-  /**
    * Focus trap functionality
    */
-
-  const getFocusable = (modal) => {
-    const focusable = [];
-    const scrollPos = modal.scrollTop;
-    const items = modal.querySelectorAll(`
-      a[href]:not([disabled]),
-      button:not([disabled]),
-      textarea:not([disabled]),
-      input[type="text"]:not([disabled]),
-      input[type="radio"]:not([disabled]),
-      input[type="checkbox"]:not([disabled]),
-      select:not([disabled]),
-      [tabindex]:not([tabindex="-1"])
-    `);
-    items.forEach((el) => {
-      el.focus();
-      if (el === document.activeElement) {
-        focusable.push(el);
-      }
-    });
-    modal.scrollTop = scrollPos;
-    return focusable;
-  };
 
   const focusTrapInit = (modal) => {
     api.memory.focusable = getFocusable(modal);

@@ -1,4 +1,13 @@
-import { addClass, breakpoints, hasClass, removeClass } from '@vrembem/core';
+import {
+  addClass,
+  breakpoints,
+  focusTarget,
+  focusTrigger,
+  getFocusable,
+  hasClass,
+  removeClass
+} from '@vrembem/core';
+import transition from '@vrembem/core/src/js/transition';
 
 export default function (options) {
 
@@ -190,44 +199,6 @@ export default function (options) {
    * Transition functionality
    */
 
-  const openTransition = (drawer) => {
-    return new Promise((resolve) => {
-      if (api.settings.transition) {
-        removeClass(drawer, api.settings.stateClosed);
-        addClass(drawer, api.settings.stateOpening);
-        drawer.addEventListener('transitionend', function _f() {
-          addClass(drawer, api.settings.stateOpened);
-          removeClass(drawer, api.settings.stateOpening);
-          resolve(drawer);
-          this.removeEventListener('transitionend', _f);
-        });
-      } else {
-        addClass(drawer, api.settings.stateOpened);
-        removeClass(drawer, api.settings.stateClosed);
-        resolve(drawer);
-      }
-    });
-  };
-
-  const closeTransition = (drawer) => {
-    return new Promise((resolve) => {
-      if (api.settings.transition) {
-        addClass(drawer, api.settings.stateClosing);
-        removeClass(drawer, api.settings.stateOpened);
-        drawer.addEventListener('transitionend', function _f() {
-          removeClass(drawer, api.settings.stateClosing);
-          addClass(drawer, api.settings.stateClosed);
-          resolve(drawer);
-          this.removeEventListener('transitionend', _f);
-        });
-      } else {
-        addClass(drawer, api.settings.stateClosed);
-        removeClass(drawer, api.settings.stateOpened);
-        resolve(drawer);
-      }
-    });
-  };
-
   api.open = async (drawerKey) => {
     const drawer = drawerKeyCheck(drawerKey);
     if (!drawer) return drawerNotFound(drawerKey);
@@ -237,20 +208,20 @@ export default function (options) {
       if (isModal) {
         setOverflowHidden(true);
       }
-      await openTransition(drawer);
+      await transition.open(drawer, api.settings);
       stateSave(drawer);
       if (isModal) {
         focusTrapInit(drawer.querySelector(`[data-${api.settings.dataDialog}]`));
         setInert(true);
       }
-      focusDrawer(drawer);
+      focusTarget(drawer, api.settings);
       drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
         bubbles: true
       }));
       working = false;
       return drawer;
     } else {
-      focusDrawer(drawer);
+      focusTarget(drawer, api.settings);
       return drawer;
     }
   };
@@ -264,9 +235,9 @@ export default function (options) {
         setInert(false);
         setOverflowHidden(false);
       }
-      await closeTransition(drawer);
+      await transition.close(drawer, api.settings);
       stateSave(drawer);
-      focusTrigger();
+      focusTrigger(api);
       focusTrapDestroy(drawer);
       drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
         bubbles: true
@@ -290,58 +261,8 @@ export default function (options) {
   };
 
   /**
-   * Focus functionality
-   */
-
-  const focusDrawer = (drawer) => {
-    const innerFocus = drawer.querySelector(
-      `[data-${api.settings.dataFocus}]`
-    );
-    if (innerFocus) {
-      innerFocus.focus();
-    } else {
-      const dialog = drawer.querySelector(
-        `[data-${api.settings.dataDialog}][tabindex="-1"]`
-      );
-      if (dialog) {
-        dialog.focus();
-      }
-    }
-  };
-
-  const focusTrigger = () => {
-    if (api.memory.trigger) {
-      api.memory.trigger.focus();
-      api.memory.trigger = null;
-    }
-  };
-
-  /**
    * Focus trap functionality
    */
-
-  const getFocusable = (drawer) => {
-    const focusable = [];
-    const scrollPos = drawer.scrollTop;
-    const items = drawer.querySelectorAll(`
-      a[href]:not([disabled]),
-      button:not([disabled]),
-      textarea:not([disabled]),
-      input[type="text"]:not([disabled]),
-      input[type="radio"]:not([disabled]),
-      input[type="checkbox"]:not([disabled]),
-      select:not([disabled]),
-      [tabindex]:not([tabindex="-1"])
-    `);
-    items.forEach((el) => {
-      el.focus();
-      if (el === document.activeElement) {
-        focusable.push(el);
-      }
-    });
-    drawer.scrollTop = scrollPos;
-    return focusable;
-  };
 
   const focusTrapInit = (drawer) => {
     api.memory.focusable = getFocusable(drawer);

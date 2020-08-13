@@ -23,6 +23,42 @@
     });
   };
 
+  var focusTarget = function focusTarget(target, settings) {
+    var innerFocus = target.querySelector("[data-".concat(settings.dataFocus, "]"));
+
+    if (innerFocus) {
+      innerFocus.focus();
+    } else {
+      var dialog = target.querySelector("[data-".concat(settings.dataDialog, "][tabindex=\"-1\"]"));
+
+      if (dialog) {
+        dialog.focus();
+      }
+    }
+  };
+  var focusTrigger = function focusTrigger() {
+    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+    if (obj.memory.trigger) {
+      obj.memory.trigger.focus();
+      obj.memory.trigger = null;
+    }
+  };
+  var getFocusable = function getFocusable(target) {
+    var focusable = [];
+    var scrollPos = target.scrollTop;
+    var items = target.querySelectorAll("\n    a[href]:not([disabled]),\n    button:not([disabled]),\n    textarea:not([disabled]),\n    input[type=\"text\"]:not([disabled]),\n    input[type=\"radio\"]:not([disabled]),\n    input[type=\"checkbox\"]:not([disabled]),\n    select:not([disabled]),\n    [tabindex]:not([tabindex=\"-1\"])\n  ");
+    items.forEach(function (el) {
+      el.focus();
+
+      if (el === document.activeElement) {
+        focusable.push(el);
+      }
+    });
+    target.scrollTop = scrollPos;
+    return focusable;
+  };
+
   var hasClass = function hasClass(el) {
     el = el.forEach ? el : [el];
     el = [].slice.call(el);
@@ -70,6 +106,43 @@
     });
   };
 
+  var openTransition = function openTransition(el, settings) {
+    return new Promise(function (resolve) {
+      if (settings.transition) {
+        removeClass(el, settings.stateClosed);
+        addClass(el, settings.stateOpening);
+        el.addEventListener('transitionend', function _f() {
+          addClass(el, settings.stateOpened);
+          removeClass(el, settings.stateOpening);
+          resolve(el);
+          this.removeEventListener('transitionend', _f);
+        });
+      } else {
+        addClass(el, settings.stateOpened);
+        removeClass(el, settings.stateClosed);
+        resolve(el);
+      }
+    });
+  };
+  var closeTransition = function closeTransition(el, settings) {
+    return new Promise(function (resolve) {
+      if (settings.transition) {
+        addClass(el, settings.stateClosing);
+        removeClass(el, settings.stateOpened);
+        el.addEventListener('transitionend', function _f() {
+          removeClass(el, settings.stateClosing);
+          addClass(el, settings.stateClosed);
+          resolve(el);
+          this.removeEventListener('transitionend', _f);
+        });
+      } else {
+        addClass(el, settings.stateClosed);
+        removeClass(el, settings.stateOpened);
+        resolve(el);
+      }
+    });
+  };
+
   var breakpoints = {
     xs: '480px',
     sm: '620px',
@@ -81,8 +154,13 @@
   exports.addClass = addClass;
   exports.breakpoints = breakpoints;
   exports.camelCase = camelCase;
+  exports.closeTransition = closeTransition;
+  exports.focusTarget = focusTarget;
+  exports.focusTrigger = focusTrigger;
+  exports.getFocusable = getFocusable;
   exports.hasClass = hasClass;
   exports.hyphenCase = hyphenCase;
+  exports.openTransition = openTransition;
   exports.removeClass = removeClass;
   exports.toggleClass = toggleClass;
 

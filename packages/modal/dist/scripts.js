@@ -681,6 +681,42 @@
 	  });
 	};
 
+	var focusTarget = function focusTarget(target, settings) {
+	  var innerFocus = target.querySelector("[data-".concat(settings.dataFocus, "]"));
+
+	  if (innerFocus) {
+	    innerFocus.focus();
+	  } else {
+	    var dialog = target.querySelector("[data-".concat(settings.dataDialog, "][tabindex=\"-1\"]"));
+
+	    if (dialog) {
+	      dialog.focus();
+	    }
+	  }
+	};
+	var focusTrigger = function focusTrigger() {
+	  var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+	  if (obj.memory.trigger) {
+	    obj.memory.trigger.focus();
+	    obj.memory.trigger = null;
+	  }
+	};
+	var getFocusable = function getFocusable(target) {
+	  var focusable = [];
+	  var scrollPos = target.scrollTop;
+	  var items = target.querySelectorAll("\n    a[href]:not([disabled]),\n    button:not([disabled]),\n    textarea:not([disabled]),\n    input[type=\"text\"]:not([disabled]),\n    input[type=\"radio\"]:not([disabled]),\n    input[type=\"checkbox\"]:not([disabled]),\n    select:not([disabled]),\n    [tabindex]:not([tabindex=\"-1\"])\n  ");
+	  items.forEach(function (el) {
+	    el.focus();
+
+	    if (el === document.activeElement) {
+	      focusable.push(el);
+	    }
+	  });
+	  target.scrollTop = scrollPos;
+	  return focusable;
+	};
+
 	var hasClass = function hasClass(el) {
 	  el = el.forEach ? el : [el];
 	  el = [].slice.call(el);
@@ -707,6 +743,47 @@
 
 	    (_el$classList = el.classList).remove.apply(_el$classList, cl);
 	  });
+	};
+
+	var openTransition = function openTransition(el, settings) {
+	  return new Promise(function (resolve) {
+	    if (settings.transition) {
+	      removeClass(el, settings.stateClosed);
+	      addClass(el, settings.stateOpening);
+	      el.addEventListener('transitionend', function _f() {
+	        addClass(el, settings.stateOpened);
+	        removeClass(el, settings.stateOpening);
+	        resolve(el);
+	        this.removeEventListener('transitionend', _f);
+	      });
+	    } else {
+	      addClass(el, settings.stateOpened);
+	      removeClass(el, settings.stateClosed);
+	      resolve(el);
+	    }
+	  });
+	};
+	var closeTransition = function closeTransition(el, settings) {
+	  return new Promise(function (resolve) {
+	    if (settings.transition) {
+	      addClass(el, settings.stateClosing);
+	      removeClass(el, settings.stateOpened);
+	      el.addEventListener('transitionend', function _f() {
+	        removeClass(el, settings.stateClosing);
+	        addClass(el, settings.stateClosed);
+	        resolve(el);
+	        this.removeEventListener('transitionend', _f);
+	      });
+	    } else {
+	      addClass(el, settings.stateClosed);
+	      removeClass(el, settings.stateOpened);
+	      resolve(el);
+	    }
+	  });
+	};
+	var transition = {
+	  open: openTransition,
+	  close: closeTransition
 	};
 
 	function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -886,7 +963,7 @@
 	      if (el.classList.contains(api.settings.stateOpened)) {
 	        setInert(false);
 	        setOverflowHidden();
-	        focusTrigger();
+	        focusTrigger(api);
 	        focusTrapDestroy(el);
 	      }
 
@@ -927,44 +1004,6 @@
 	    setTabindex(true);
 	  };
 
-	  var openTransition = function openTransition(modal) {
-	    return new Promise(function (resolve) {
-	      if (api.settings.transition) {
-	        removeClass(modal, api.settings.stateClosed);
-	        addClass(modal, api.settings.stateOpening);
-	        modal.addEventListener('transitionend', function _f() {
-	          addClass(modal, api.settings.stateOpened);
-	          removeClass(modal, api.settings.stateOpening);
-	          resolve(modal);
-	          this.removeEventListener('transitionend', _f);
-	        });
-	      } else {
-	        addClass(modal, api.settings.stateOpened);
-	        removeClass(modal, api.settings.stateClosed);
-	        resolve(modal);
-	      }
-	    });
-	  };
-
-	  var closeTransition = function closeTransition(modal) {
-	    return new Promise(function (resolve) {
-	      if (api.settings.transition) {
-	        addClass(modal, api.settings.stateClosing);
-	        removeClass(modal, api.settings.stateOpened);
-	        modal.addEventListener('transitionend', function _f() {
-	          removeClass(modal, api.settings.stateClosing);
-	          addClass(modal, api.settings.stateClosed);
-	          resolve(modal);
-	          this.removeEventListener('transitionend', _f);
-	        });
-	      } else {
-	        addClass(modal, api.settings.stateClosed);
-	        removeClass(modal, api.settings.stateOpened);
-	        resolve(modal);
-	      }
-	    });
-	  };
-
 	  api.open = function () {
 	    var _ref2 = asyncToGenerator(regenerator.mark(function _callee2(modalKey) {
 	      var modal;
@@ -990,11 +1029,11 @@
 	              working = true;
 	              setOverflowHidden('hidden');
 	              _context2.next = 8;
-	              return openTransition(modal);
+	              return transition.open(modal, api.settings);
 
 	            case 8:
 	              focusTrapInit(modal);
-	              focusModal(modal);
+	              focusTarget(modal, api.settings);
 	              setInert(true);
 	              modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
 	                bubbles: true
@@ -1038,10 +1077,10 @@
 	            setInert(false);
 	            setOverflowHidden();
 	            _context3.next = 8;
-	            return closeTransition(modal);
+	            return transition.close(modal, api.settings);
 
 	          case 8:
-	            if (returnFocus) focusTrigger();
+	            if (returnFocus) focusTrigger(api);
 	            focusTrapDestroy(modal);
 	            modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
 	              bubbles: true
@@ -1059,42 +1098,6 @@
 	      }
 	    }, _callee3);
 	  }));
-
-	  var focusModal = function focusModal(modal) {
-	    var innerFocus = modal.querySelector("[data-".concat(api.settings.dataFocus, "]"));
-
-	    if (innerFocus) {
-	      innerFocus.focus();
-	    } else {
-	      var dialog = modal.querySelector("[data-".concat(api.settings.dataDialog, "][tabindex=\"-1\"]"));
-
-	      if (dialog) {
-	        dialog.focus();
-	      }
-	    }
-	  };
-
-	  var focusTrigger = function focusTrigger() {
-	    if (api.memory.trigger) {
-	      api.memory.trigger.focus();
-	      api.memory.trigger = null;
-	    }
-	  };
-
-	  var getFocusable = function getFocusable(modal) {
-	    var focusable = [];
-	    var scrollPos = modal.scrollTop;
-	    var items = modal.querySelectorAll("\n      a[href]:not([disabled]),\n      button:not([disabled]),\n      textarea:not([disabled]),\n      input[type=\"text\"]:not([disabled]),\n      input[type=\"radio\"]:not([disabled]),\n      input[type=\"checkbox\"]:not([disabled]),\n      select:not([disabled]),\n      [tabindex]:not([tabindex=\"-1\"])\n    ");
-	    items.forEach(function (el) {
-	      el.focus();
-
-	      if (el === document.activeElement) {
-	        focusable.push(el);
-	      }
-	    });
-	    modal.scrollTop = scrollPos;
-	    return focusable;
-	  };
 
 	  var focusTrapInit = function focusTrapInit(modal) {
 	    api.memory.focusable = getFocusable(modal);
