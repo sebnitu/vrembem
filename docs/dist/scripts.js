@@ -4814,15 +4814,15 @@
     ajax.send();
   }
 
-  index({
+  new index({
     autoInit: true
   });
-  index$1({
+  new index$1({
     autoInit: true,
     selectorInert: '[role="main"]',
     selectorOverflow: 'body, [role="main"]'
   });
-  index$2({
+  new index$2({
     autoInit: true,
     selectorInert: '.page',
     moveModals: {

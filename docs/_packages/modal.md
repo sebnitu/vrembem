@@ -196,7 +196,7 @@ To take full advantage of modal's accessibility features, it's recommened to tha
 Here's an example where we want the `[role="main"]` content area to be inaccessible while modals are open. We also want for all modals to be moved outside the main content element in the DOM.
 
 ```js
-const modal = Modal({
+const modal = new Modal({
   autoInit: true,
   selectorInert: '[role="main"]',
   moveModals: {
@@ -624,7 +624,7 @@ Initializes the modal instance. During initialization, the following processes a
 - Adds the `keyup` event listener for closing modals with the `esc` key.
 
 ```js
-const modal = Modal();
+const modal = new Modal();
 modal.init();
 ```
 
@@ -637,7 +637,7 @@ Destroys and cleans up the modal instantiation. During cleanup, the following pr
 - Removes the `keyup` event listener from the document.
 
 ```js
-const modal = Modal();
+const modal = new Modal();
 modal.init();
 // ...
 modal.destroy();

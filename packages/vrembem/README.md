@@ -44,11 +44,11 @@ Import and initialize the components you'll need:
 ```js
 // Import all under the vb namespace
 import * as vb from "vrembem";
-const drawer = vb.Drawer({ autoInit: true });
+const drawer = new vb.Drawer({ autoInit: true });
 
 // Or import individual components
 import { Drawer } from "vrembem";
-const drawer = Drawer({ autoInit: true });
+const drawer = new Drawer({ autoInit: true });
 ```
 
 > Note that `core` helpers do not need to be initialized since they're just a set of helpful utility functions.
