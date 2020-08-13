@@ -25,7 +25,7 @@
     "@vrembem/core": "^1.14.8",
     "feather-icons": "^4.28.0",
     "list.js": "^1.5.0",
-    "scroll-stash": "^1.0.9",
+    "scroll-stash": "^1.0.10",
     "svgxuse": "^1.2.6",
     "vrembem": "^1.14.8",
     "wicg-inert": "^3.0.3"
