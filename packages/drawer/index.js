@@ -3,7 +3,6 @@ import {
   breakpoints,
   focusTarget,
   focusTrigger,
-  getFocusable,
   hasClass,
   removeClass,
   setInert,
@@ -11,6 +10,7 @@ import {
   setTabindex
 } from '@vrembem/core';
 import transition from '@vrembem/core/src/js/transition';
+import { FocusTrap } from '@vrembem/core/src/js/focusTrap';
 
 export default function (options) {
 
@@ -55,6 +55,7 @@ export default function (options) {
   api.memory = {};
   api.state = {};
   api.breakpoint = {};
+  api.focusTrap = new FocusTrap();
 
   const selectorTabindex = `[data-${api.settings.dataDrawer}] [data-${api.settings.dataDialog}]`;
 
@@ -177,7 +178,7 @@ export default function (options) {
       await transition.open(drawer, api.settings);
       stateSave(drawer);
       if (isModal) {
-        focusTrapInit(drawer.querySelector(`[data-${api.settings.dataDialog}]`));
+        api.focusTrap.init(drawer);
         setInert(true, api.settings.selectorInert);
       }
       focusTarget(drawer, api.settings);
@@ -204,7 +205,7 @@ export default function (options) {
       await transition.close(drawer, api.settings);
       stateSave(drawer);
       focusTrigger(api);
-      focusTrapDestroy(drawer);
+      api.focusTrap.destroy();
       drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
         bubbles: true
       }));
@@ -224,58 +225,6 @@ export default function (options) {
     } else {
       return api.close(drawer);
     }
-  };
-
-  /**
-   * Focus trap functionality
-   */
-
-  const focusTrapInit = (drawer) => {
-    api.memory.focusable = getFocusable(drawer);
-    if (api.memory.focusable.length) {
-      api.memory.focusableFirst = api.memory.focusable[0];
-      api.memory.focusableLast = api.memory.focusable[api.memory.focusable.length - 1];
-      drawer.addEventListener('keydown', handlerFocusTrap);
-    } else {
-      drawer.addEventListener('keydown', handlerFocusLock);
-    }
-  };
-
-  const focusTrapDestroy = (drawer) => {
-    api.memory.focusable = null;
-    api.memory.focusableFirst = null;
-    api.memory.focusableLast = null;
-    drawer.removeEventListener('keydown', handlerFocusTrap);
-    drawer.removeEventListener('keydown', handlerFocusLock);
-  };
-
-  const handlerFocusTrap = (event) => {
-    const isTab = (event.key === 'Tab' || event.keyCode === 9);
-    if (!isTab) return;
-
-    if (event.shiftKey) {
-      const dialog = document.querySelector(`
-        [data-${api.settings.dataDrawer}].${api.settings.stateOpened}
-        [data-${api.settings.dataDialog}][tabindex="-1"]
-      `);
-      if (
-        document.activeElement === api.memory.focusableFirst ||
-        document.activeElement === dialog
-      ) {
-        api.memory.focusableLast.focus();
-        event.preventDefault();
-      }
-    } else {
-      if (document.activeElement === api.memory.focusableLast) {
-        api.memory.focusableFirst.focus();
-        event.preventDefault();
-      }
-    }
-  };
-
-  const handlerFocusLock = (event) => {
-    const isTab = (event.key === 'Tab' || event.keyCode === 9);
-    if (isTab) event.preventDefault();
   };
 
   /**
@@ -409,7 +358,7 @@ export default function (options) {
     setInert(false, api.settings.selectorInert);
     setOverflowHidden(false, api.settings.selectorOverflow);
     removeClass(drawer, api.settings.classModal);
-    focusTrapDestroy(drawer);
+    api.focusTrap.destroy();
     const drawerKey = drawer.getAttribute(`data-${api.settings.dataDrawer}`);
     const drawerState = api.state[drawerKey];
     if (drawerState == api.settings.stateOpened) {

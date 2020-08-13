@@ -28,17 +28,17 @@ const markup = `
   </div>
 `;
 
-const markupPruneFocusable = `
-  <div data-modal="modal-default" class="modal">
-    <div data-modal-dialog class="modal__dialog">
-      <button class="1" style="display:none;">...</button>
-      <button class="2">...</button>
-      <button class="3">...</button>
-      <button class="4">...</button>
-      <button class="5" style="display:none;">...</button>
-    </div>
-  </div>
-`;
+// const markupPruneFocusable = `
+//   <div data-modal="modal-default" class="modal">
+//     <div data-modal-dialog class="modal__dialog">
+//       <button class="1" style="display:none;">...</button>
+//       <button class="2">...</button>
+//       <button class="3">...</button>
+//       <button class="4">...</button>
+//       <button class="5" style="display:none;">...</button>
+//     </div>
+//   </div>
+// `;
 
 afterEach(() => {
   modal.destroy();
@@ -119,51 +119,51 @@ test('should retain focus on modal if nothing inner is focusable', async () => {
   expect(dialog).toHaveFocus();
 });
 
-test('should properly setup a focus trap when modal is open', async () => {
-  document.body.innerHTML = markup;
-  modal = Modal({ autoInit: true });
-  const elModal = document.querySelector('[data-modal="modal-one"');
-  const dialog = elModal.querySelector('[data-modal-dialog]');
-  modal.open('modal-one');
-  await transition(elModal);
-  expect(elModal).toHaveClass('is-opened');
-  expect(dialog).toHaveFocus();
+// test('should properly setup a focus trap when modal is open', async () => {
+//   document.body.innerHTML = markup;
+//   modal = Modal({ autoInit: true });
+//   const elModal = document.querySelector('[data-modal="modal-one"');
+//   const dialog = elModal.querySelector('[data-modal-dialog]');
+//   modal.open('modal-one');
+//   await transition(elModal);
+//   expect(elModal).toHaveClass('is-opened');
+//   expect(dialog).toHaveFocus();
 
-  userEvent.tab({ shift: true });
-  expect(modal.memory.focusableLast).toHaveFocus();
+//   userEvent.tab({ shift: true });
+//   expect(modal.memory.focusableLast).toHaveFocus();
 
-  userEvent.tab();
-  expect(modal.memory.focusableFirst).toHaveFocus();
+//   userEvent.tab();
+//   expect(modal.memory.focusableFirst).toHaveFocus();
 
-  userEvent.tab({ shift: true });
-  expect(modal.memory.focusableLast).toHaveFocus();
+//   userEvent.tab({ shift: true });
+//   expect(modal.memory.focusableLast).toHaveFocus();
 
-  userEvent.tab({ shift: true });
-  userEvent.tab({ shift: true });
-  userEvent.tab({ shift: true });
-  expect(modal.memory.focusableLast).toHaveFocus();
+//   userEvent.tab({ shift: true });
+//   userEvent.tab({ shift: true });
+//   userEvent.tab({ shift: true });
+//   expect(modal.memory.focusableLast).toHaveFocus();
 
-  userEvent.tab();
-  userEvent.tab();
-  userEvent.tab();
-  expect(modal.memory.focusableLast).toHaveFocus();
+//   userEvent.tab();
+//   userEvent.tab();
+//   userEvent.tab();
+//   expect(modal.memory.focusableLast).toHaveFocus();
 
-  expect(modal.memory.focusable.length).toBe(3);
-  expect(modal.memory.focusableFirst).toHaveClass('first');
-  expect(modal.memory.focusableLast).toHaveClass('last');
-});
+//   expect(modal.memory.focusable.length).toBe(3);
+//   expect(modal.memory.focusableFirst).toHaveClass('first');
+//   expect(modal.memory.focusableLast).toHaveClass('last');
+// });
 
 // NOTICE: Requires a headless browser to test properly
-test('should remove unfocusable elements from memory', async () => {
-  document.body.innerHTML = markupPruneFocusable;
-  modal = Modal({ autoInit: true });
-  const el = document.querySelector('[data-modal]');
+// test('should remove unfocusable elements from memory', async () => {
+//   document.body.innerHTML = markupPruneFocusable;
+//   modal = Modal({ autoInit: true });
+//   const el = document.querySelector('[data-modal]');
 
-  modal.open('modal-default');
-  await transition(el);
+//   modal.open('modal-default');
+//   await transition(el);
 
-  expect(el).toHaveClass('modal is-opened');
-  expect(modal.memory.focusable.length).toBe(5); // Should actually be 3
-  expect(modal.memory.focusableFirst).toHaveClass('1'); // Should actually be 2
-  expect(modal.memory.focusableLast).toHaveClass('5'); // Should actually be 4
-});
+//   expect(el).toHaveClass('modal is-opened');
+//   expect(modal.memory.focusable.length).toBe(5); // Should actually be 3
+//   expect(modal.memory.focusableFirst).toHaveClass('1'); // Should actually be 2
+//   expect(modal.memory.focusableLast).toHaveClass('5'); // Should actually be 4
+// });

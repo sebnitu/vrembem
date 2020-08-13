@@ -2,7 +2,6 @@ import {
   addClass,
   focusTarget,
   focusTrigger,
-  getFocusable,
   hasClass,
   removeClass,
   setInert,
@@ -10,6 +9,7 @@ import {
   setTabindex
 } from '@vrembem/core';
 import transition from '@vrembem/core/src/js/transition';
+import { FocusTrap } from '@vrembem/core/src/js/focusTrap';
 
 export default function (options) {
 
@@ -49,6 +49,7 @@ export default function (options) {
 
   api.settings = { ...defaults, ...options };
   api.memory = {};
+  api.focusTrap = new FocusTrap();
 
   const selectorTabindex = `[data-${api.settings.dataModal}] [data-${api.settings.dataDialog}]`;
 
@@ -159,7 +160,7 @@ export default function (options) {
         setInert(false, api.settings.selectorInert);
         setOverflowHidden(false, api.settings.selectorOverflow);
         focusTrigger(api);
-        focusTrapDestroy(el);
+        api.focusTrap.destroy();
       }
       removeClass(el,
         api.settings.stateOpened,
@@ -191,7 +192,7 @@ export default function (options) {
       working = true;
       setOverflowHidden(true, api.settings.selectorOverflow);
       await transition.open(modal, api.settings);
-      focusTrapInit(modal);
+      api.focusTrap.init(modal);
       focusTarget(modal, api.settings);
       setInert(true, api.settings.selectorInert);
       modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
@@ -214,7 +215,7 @@ export default function (options) {
       setOverflowHidden(false, api.settings.selectorOverflow);
       await transition.close(modal, api.settings);
       if (returnFocus) focusTrigger(api);
-      focusTrapDestroy(modal);
+      api.focusTrap.destroy();
       modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
         bubbles: true
       }));
@@ -223,58 +224,6 @@ export default function (options) {
     } else {
       return modal;
     }
-  };
-
-  /**
-   * Focus trap functionality
-   */
-
-  const focusTrapInit = (modal) => {
-    api.memory.focusable = getFocusable(modal);
-    if (api.memory.focusable.length) {
-      api.memory.focusableFirst = api.memory.focusable[0];
-      api.memory.focusableLast = api.memory.focusable[api.memory.focusable.length - 1];
-      modal.addEventListener('keydown', handlerFocusTrap);
-    } else {
-      modal.addEventListener('keydown', handlerFocusLock);
-    }
-  };
-
-  const focusTrapDestroy = (modal) => {
-    api.memory.focusable = null;
-    api.memory.focusableFirst = null;
-    api.memory.focusableLast = null;
-    modal.removeEventListener('keydown', handlerFocusTrap);
-    modal.removeEventListener('keydown', handlerFocusLock);
-  };
-
-  const handlerFocusTrap = (event) => {
-    const isTab = (event.key === 'Tab' || event.keyCode === 9);
-    if (!isTab) return;
-
-    if (event.shiftKey) {
-      const dialog = document.querySelector(`
-        [data-${api.settings.dataModal}].${api.settings.stateOpened}
-        [data-${api.settings.dataDialog}][tabindex="-1"]
-      `);
-      if (
-        document.activeElement === api.memory.focusableFirst ||
-        document.activeElement === dialog
-      ) {
-        api.memory.focusableLast.focus();
-        event.preventDefault();
-      }
-    } else {
-      if (document.activeElement === api.memory.focusableLast) {
-        api.memory.focusableFirst.focus();
-        event.preventDefault();
-      }
-    }
-  };
-
-  const handlerFocusLock = (event) => {
-    const isTab = (event.key === 'Tab' || event.keyCode === 9);
-    if (isTab) event.preventDefault();
   };
 
   /**

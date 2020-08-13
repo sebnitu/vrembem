@@ -83,20 +83,112 @@
       obj.memory.trigger = null;
     }
   };
-  var getFocusable = function getFocusable(target) {
-    var focusable = [];
-    var scrollPos = target.scrollTop;
-    var items = target.querySelectorAll("\n    a[href]:not([disabled]),\n    button:not([disabled]),\n    textarea:not([disabled]),\n    input[type=\"text\"]:not([disabled]),\n    input[type=\"radio\"]:not([disabled]),\n    input[type=\"checkbox\"]:not([disabled]),\n    select:not([disabled]),\n    [tabindex]:not([tabindex=\"-1\"])\n  ");
-    items.forEach(function (el) {
-      el.focus();
 
-      if (el === document.activeElement) {
-        focusable.push(el);
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  var classCallCheck = _classCallCheck;
+
+  function _defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  function _createClass(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties(Constructor, staticProps);
+    return Constructor;
+  }
+
+  var createClass = _createClass;
+
+  var FocusTrap = function () {
+    function FocusTrap() {
+      classCallCheck(this, FocusTrap);
+
+      this.target = null;
+      this.handlerFocusTrapRef = this.handlerFocusTrap.bind(this);
+    }
+
+    createClass(FocusTrap, [{
+      key: "init",
+      value: function init(target) {
+        this.target = target;
+        this.focusable = this.getFocusable();
+
+        if (this.focusable.length) {
+          this.focusableFirst = this.focusable[0];
+          this.focusableLast = this.focusable[this.focusable.length - 1];
+          this.target.addEventListener('keydown', this.handlerFocusTrapRef);
+        } else {
+          this.target.addEventListener('keydown', this.handlerFocusLock);
+        }
       }
-    });
-    target.scrollTop = scrollPos;
-    return focusable;
-  };
+    }, {
+      key: "destroy",
+      value: function destroy() {
+        if (this.target) {
+          this.focusable = null;
+          this.focusableFirst = null;
+          this.focusableLast = null;
+          this.target.removeEventListener('keydown', this.handlerFocusTrapRef);
+          this.target.removeEventListener('keydown', this.handlerFocusLock);
+        }
+      }
+    }, {
+      key: "handlerFocusTrap",
+      value: function handlerFocusTrap(event) {
+        var isTab = event.key === 'Tab' || event.keyCode === 9;
+        if (!isTab) return;
+
+        if (event.shiftKey) {
+          var innerElement = this.target.querySelector('[tabindex="-1"]');
+
+          if (document.activeElement === this.focusableFirst || document.activeElement === innerElement) {
+            this.focusableLast.focus();
+            event.preventDefault();
+          }
+        } else {
+          if (document.activeElement === this.focusableLast) {
+            this.focusableFirst.focus();
+            event.preventDefault();
+          }
+        }
+      }
+    }, {
+      key: "handlerFocusLock",
+      value: function handlerFocusLock(event) {
+        var isTab = event.key === 'Tab' || event.keyCode === 9;
+        if (isTab) event.preventDefault();
+      }
+    }, {
+      key: "getFocusable",
+      value: function getFocusable() {
+        var focusable = [];
+        var scrollPos = this.target.scrollTop;
+        var items = this.target.querySelectorAll("\n      a[href]:not([disabled]),\n      button:not([disabled]),\n      textarea:not([disabled]),\n      input[type=\"text\"]:not([disabled]),\n      input[type=\"radio\"]:not([disabled]),\n      input[type=\"checkbox\"]:not([disabled]),\n      select:not([disabled]),\n      [tabindex]:not([tabindex=\"-1\"])\n    ");
+        items.forEach(function (el) {
+          el.focus();
+
+          if (el === document.activeElement) {
+            focusable.push(el);
+          }
+        });
+        this.target.scrollTop = scrollPos;
+        return focusable;
+      }
+    }]);
+
+    return FocusTrap;
+  }();
 
   var hasClass = function hasClass(el) {
     el = el.forEach ? el : [el];
@@ -190,13 +282,13 @@
     xl: '1380px'
   };
 
+  exports.FocusTrap = FocusTrap;
   exports.addClass = addClass;
   exports.breakpoints = breakpoints;
   exports.camelCase = camelCase;
   exports.closeTransition = closeTransition;
   exports.focusTarget = focusTarget;
   exports.focusTrigger = focusTrigger;
-  exports.getFocusable = getFocusable;
   exports.hasClass = hasClass;
   exports.hyphenCase = hyphenCase;
   exports.openTransition = openTransition;

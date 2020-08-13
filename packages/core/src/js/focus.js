@@ -20,30 +20,3 @@ export const focusTrigger = (obj = null) => {
     obj.memory.trigger = null;
   }
 };
-
-/**
- * Focus trap functionality
- */
-
-export const getFocusable = (target) => {
-  const focusable = [];
-  const scrollPos = target.scrollTop;
-  const items = target.querySelectorAll(`
-    a[href]:not([disabled]),
-    button:not([disabled]),
-    textarea:not([disabled]),
-    input[type="text"]:not([disabled]),
-    input[type="radio"]:not([disabled]),
-    input[type="checkbox"]:not([disabled]),
-    select:not([disabled]),
-    [tabindex]:not([tabindex="-1"])
-  `);
-  items.forEach((el) => {
-    el.focus();
-    if (el === document.activeElement) {
-      focusable.push(el);
-    }
-  });
-  target.scrollTop = scrollPos;
-  return focusable;
-};
