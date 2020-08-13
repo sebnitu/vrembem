@@ -12,16 +12,12 @@ const babelConfig = {
 
 export default [{
   input: entry,
-  output: [{
-    file: './dist/scripts.cjs.js',
-    format: 'cjs',
-    exports: 'named'
-  }, {
+  output: {
     file: './dist/scripts.js',
-    format: 'iife',
+    format: 'umd',
     name: name,
     extend: true
-  }],
+  },
   plugins: [
     resolve(),
     commonjs(),
@@ -31,7 +27,7 @@ export default [{
   input: entry,
   output: {
     file: './dist/scripts.min.js',
-    format: 'iife',
+    format: 'umd',
     name: name,
     extend: true
   },

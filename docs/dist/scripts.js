@@ -1,5 +1,7 @@
-(function () {
-  'use strict';
+(function (factory) {
+  typeof define === 'function' && define.amd ? define(factory) :
+  factory();
+}((function () { 'use strict';
 
   var addClass = function addClass(el) {
     for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -11,6 +13,12 @@
       var _el$classList;
 
       (_el$classList = el.classList).add.apply(_el$classList, cl);
+    });
+  };
+
+  var camelCase = function camelCase(str) {
+    return str.replace(/-([a-z])/g, function (g) {
+      return g[1].toUpperCase();
     });
   };
 
@@ -1779,23 +1787,6 @@
     return api;
   }
 
-  function _defineProperty$1(obj, key, value) {
-    if (key in obj) {
-      Object.defineProperty(obj, key, {
-        value: value,
-        enumerable: true,
-        configurable: true,
-        writable: true
-      });
-    } else {
-      obj[key] = value;
-    }
-
-    return obj;
-  }
-
-  var defineProperty$1 = _defineProperty$1;
-
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
@@ -1821,41 +1812,6 @@
   }
 
   var createClass = _createClass;
-  var commonjsGlobal$1 = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof commonjsGlobal !== 'undefined' ? commonjsGlobal : typeof self !== 'undefined' ? self : {};
-
-  function createCommonjsModule$1(fn, basedir, module) {
-    return module = {
-      path: basedir,
-      exports: {},
-      require: function require(path, base) {
-        return commonjsRequire$1(path, base === undefined || base === null ? module.path : base);
-      }
-    }, fn(module, module.exports), module.exports;
-  }
-
-  function commonjsRequire$1() {
-    throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
-  }
-
-  var _typeof_1$1 = createCommonjsModule$1(function (module) {
-    function _typeof(obj) {
-      "@babel/helpers - typeof";
-
-      if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-        module.exports = _typeof = function _typeof(obj) {
-          return typeof obj;
-        };
-      } else {
-        module.exports = _typeof = function _typeof(obj) {
-          return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-        };
-      }
-
-      return _typeof(obj);
-    }
-
-    module.exports = _typeof;
-  });
 
   var FUNC_ERROR_TEXT = 'Expected a function';
   var NAN = 0 / 0;
@@ -1865,8 +1821,8 @@
   var reIsBinary = /^0b[01]+$/i;
   var reIsOctal = /^0o[0-7]+$/i;
   var freeParseInt = parseInt;
-  var freeGlobal = _typeof_1$1(commonjsGlobal$1) == 'object' && commonjsGlobal$1 && commonjsGlobal$1.Object === Object && commonjsGlobal$1;
-  var freeSelf = (typeof self === "undefined" ? "undefined" : _typeof_1$1(self)) == 'object' && self && self.Object === Object && self;
+  var freeGlobal = _typeof_1(commonjsGlobal) == 'object' && commonjsGlobal && commonjsGlobal.Object === Object && commonjsGlobal;
+  var freeSelf = (typeof self === "undefined" ? "undefined" : _typeof_1(self)) == 'object' && self && self.Object === Object && self;
   var root = freeGlobal || freeSelf || Function('return this')();
   var objectProto = Object.prototype;
   var objectToString = objectProto.toString;
@@ -2015,17 +1971,17 @@
   }
 
   function isObject(value) {
-    var type = _typeof_1$1(value);
+    var type = _typeof_1(value);
 
     return !!value && (type == 'object' || type == 'function');
   }
 
   function isObjectLike(value) {
-    return !!value && _typeof_1$1(value) == 'object';
+    return !!value && _typeof_1(value) == 'object';
   }
 
   function isSymbol(value) {
-    return _typeof_1$1(value) == 'symbol' || isObjectLike(value) && objectToString.call(value) == symbolTag;
+    return _typeof_1(value) == 'symbol' || isObjectLike(value) && objectToString.call(value) == symbolTag;
   }
 
   function toNumber(value) {
@@ -2052,7 +2008,8 @@
   }
 
   var lodash_throttle = throttle;
-  var lodash_isempty = createCommonjsModule$1(function (module, exports) {
+
+  var lodash_isempty = createCommonjsModule(function (module, exports) {
     var MAX_SAFE_INTEGER = 9007199254740991;
     var argsTag = '[object Arguments]',
         funcTag = '[object Function]',
@@ -2065,10 +2022,10 @@
     var dataViewTag = '[object DataView]';
     var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
     var reIsHostCtor = /^\[object .+?Constructor\]$/;
-    var freeGlobal = _typeof_1$1(commonjsGlobal$1) == 'object' && commonjsGlobal$1 && commonjsGlobal$1.Object === Object && commonjsGlobal$1;
-    var freeSelf = (typeof self === "undefined" ? "undefined" : _typeof_1$1(self)) == 'object' && self && self.Object === Object && self;
+    var freeGlobal = _typeof_1(commonjsGlobal) == 'object' && commonjsGlobal && commonjsGlobal.Object === Object && commonjsGlobal;
+    var freeSelf = (typeof self === "undefined" ? "undefined" : _typeof_1(self)) == 'object' && self && self.Object === Object && self;
     var root = freeGlobal || freeSelf || Function('return this')();
-    var freeExports = exports && !exports.nodeType && exports;
+    var freeExports =  exports && !exports.nodeType && exports;
     var freeModule = freeExports && 'object' == 'object' && module && !module.nodeType && module;
     var moduleExports = freeModule && freeModule.exports === freeExports;
 
@@ -2248,13 +2205,13 @@
     }
 
     function isObject(value) {
-      var type = _typeof_1$1(value);
+      var type = _typeof_1(value);
 
       return !!value && (type == 'object' || type == 'function');
     }
 
     function isObjectLike(value) {
-      return !!value && _typeof_1$1(value) == 'object';
+      return !!value && _typeof_1(value) == 'object';
     }
 
     function stubFalse() {
@@ -2263,6 +2220,7 @@
 
     module.exports = isEmpty;
   });
+
   var defaults = {
     autoInit: false,
     dataScroll: 'scroll-stash',
@@ -2279,12 +2237,6 @@
     customEventPrefix: 'scroll-stash:'
   };
 
-  var camelCase = function camelCase(str) {
-    return str.replace(/-([a-z])/g, function (g) {
-      return g[1].toUpperCase();
-    });
-  };
-
   var anchorPositionStart = function anchorPositionStart(el, anchor, settings) {
     var pos = settings.anchorPadding;
 
@@ -2295,7 +2247,6 @@
 
     return anchor.offsetTop - pos;
   };
-
   var anchorPositionEnd = function anchorPositionEnd(el, anchor, settings) {
     var pos = settings.anchorPadding;
 
@@ -2306,13 +2257,11 @@
 
     return anchor.offsetTop - (el.offsetHeight - (anchor.offsetHeight + pos));
   };
-
   var anchorPositionCenter = function anchorPositionCenter(el, anchor, settings) {
     var posTop = anchorPositionStart(el, anchor, settings);
     var posBot = anchorPositionEnd(el, anchor, settings);
     return posBot + (posTop - posBot) / 2;
   };
-
   var anchorPositionNearest = function anchorPositionNearest(el, anchor, settings) {
     var posTop = anchorPositionStart(el, anchor, settings);
     var posBot = anchorPositionEnd(el, anchor, settings);
@@ -2320,14 +2269,12 @@
     if (el.scrollTop < posBot) return posBot;
     return false;
   };
-
   var anchorInView = function anchorInView(el, anchor, settings) {
     var posTop = anchorPositionStart(el, anchor, settings);
     var posBot = anchorPositionEnd(el, anchor, settings);
     if (el.scrollTop > posTop || el.scrollTop < posBot) return false;
     return true;
   };
-
   var anchorPositionGet = function anchorPositionGet(el, anchor, settings) {
     var inView = anchorInView(el, anchor, settings);
 
@@ -2369,7 +2316,6 @@
 
     return selectorAnchor ? selectorAnchor : null;
   };
-
   var anchorShow = function anchorShow(el, behavior, settings) {
     var anchor = anchorGet(el, settings);
 
@@ -2412,7 +2358,6 @@
       };
     }
   };
-
   var anchor = {
     get: anchorGet,
     show: anchorShow
@@ -2434,7 +2379,6 @@
     }));
     return state;
   };
-
   var stateSet = function stateSet(settings) {
     if (localStorage.getItem(settings.saveKey)) {
       var state = JSON.parse(localStorage.getItem(settings.saveKey));
@@ -2453,49 +2397,19 @@
       return {};
     }
   };
-
   var state = {
     save: stateSave,
     set: stateSet
   };
 
-  function ownKeys$3(object, enumerableOnly) {
-    var keys = Object.keys(object);
+  function ownKeys$3(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-    if (Object.getOwnPropertySymbols) {
-      var symbols = Object.getOwnPropertySymbols(object);
-      if (enumerableOnly) symbols = symbols.filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-      });
-      keys.push.apply(keys, symbols);
-    }
-
-    return keys;
-  }
-
-  function _objectSpread$3(target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i] != null ? arguments[i] : {};
-
-      if (i % 2) {
-        ownKeys$3(Object(source), true).forEach(function (key) {
-          defineProperty$1(target, key, source[key]);
-        });
-      } else if (Object.getOwnPropertyDescriptors) {
-        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-      } else {
-        ownKeys$3(Object(source)).forEach(function (key) {
-          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-        });
-      }
-    }
-
-    return target;
-  }
+  function _objectSpread$3(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$3(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$3(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
   var ScrollStash = function () {
     function ScrollStash(options) {
       classCallCheck(this, ScrollStash);
+
       this.settings = _objectSpread$3(_objectSpread$3({}, defaults), options);
       this.state = {};
       this.scrolls = [];
@@ -2548,10 +2462,9 @@
         return anchor.show(el, behavior, this.settings);
       }
     }]);
+
     return ScrollStash;
   }();
-
-  var scripts_cjs = ScrollStash;
 
   /*!
    * @copyright Copyright (c) 2017 IcoMoon.io
@@ -2798,32 +2711,6 @@
     }
   })();
 
-  function _classCallCheck$1(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-      throw new TypeError("Cannot call a class as a function");
-    }
-  }
-
-  var classCallCheck$1 = _classCallCheck$1;
-
-  function _defineProperties$1(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-
-  function _createClass$1(Constructor, protoProps, staticProps) {
-    if (protoProps) _defineProperties$1(Constructor.prototype, protoProps);
-    if (staticProps) _defineProperties$1(Constructor, staticProps);
-    return Constructor;
-  }
-
-  var createClass$1 = _createClass$1;
-
   (function () {
     if (typeof window === 'undefined') {
       return;
@@ -2836,7 +2723,7 @@
 
     var InertRoot = function () {
       function InertRoot(rootElement, inertManager) {
-        classCallCheck$1(this, InertRoot);
+        classCallCheck(this, InertRoot);
 
         this._inertManager = inertManager;
         this._rootElement = rootElement;
@@ -2861,7 +2748,7 @@
         });
       }
 
-      createClass$1(InertRoot, [{
+      createClass(InertRoot, [{
         key: "destructor",
         value: function destructor() {
           this._observer.disconnect();
@@ -3031,7 +2918,7 @@
 
     var InertNode = function () {
       function InertNode(node, inertRoot) {
-        classCallCheck$1(this, InertNode);
+        classCallCheck(this, InertNode);
 
         this._node = node;
         this._overrodeFocusMethod = false;
@@ -3041,7 +2928,7 @@
         this.ensureUntabbable();
       }
 
-      createClass$1(InertNode, [{
+      createClass(InertNode, [{
         key: "destructor",
         value: function destructor() {
           this._throwIfDestroyed();
@@ -3155,7 +3042,7 @@
 
     var InertManager = function () {
       function InertManager(document) {
-        classCallCheck$1(this, InertManager);
+        classCallCheck(this, InertManager);
 
         if (!document) {
           throw new Error('Missing required argument; InertManager needs to wrap a document.');
@@ -3174,7 +3061,7 @@
         }
       }
 
-      createClass$1(InertManager, [{
+      createClass(InertManager, [{
         key: "setInert",
         value: function setInert(root, inert) {
           if (inert) {
@@ -4828,118 +4715,114 @@
     init.start();
   };
 
-  (function () {
-    if (document.getElementById('listjs')) {
-      var list = new src('listjs', {
-        fuzzySearch: {
-          searchClass: 'search',
-          location: 0,
-          distance: 100,
-          threshold: 0.4,
-          multiSearch: true
-        },
-        valueNames: ['name', {
-          data: ['category']
-        }],
-        listClass: 'menu'
-      });
-      var noticeEmpty = document.querySelector('.notice_empty');
-      var noticeEmptyText = noticeEmpty.querySelector('.search_text');
-      var filter = document.querySelector('.filter');
-      var search = document.querySelector('.filter .search');
-      var searchClear = document.querySelector('.filter .search_clear');
+  if (document.getElementById('listjs')) {
+    var list = new src('listjs', {
+      fuzzySearch: {
+        searchClass: 'search',
+        location: 0,
+        distance: 100,
+        threshold: 0.4,
+        multiSearch: true
+      },
+      valueNames: ['name', {
+        data: ['category']
+      }],
+      listClass: 'menu'
+    });
+    var noticeEmpty = document.querySelector('.notice_empty');
+    var noticeEmptyText = noticeEmpty.querySelector('.search_text');
+    var filter$1 = document.querySelector('.filter');
+    var search$1 = document.querySelector('.filter .search');
+    var searchClear = document.querySelector('.filter .search_clear');
 
-      var isMenuLinkActive = function isMenuLinkActive() {
-        var menuLinks = document.querySelectorAll('#listjs .menu__link');
-        var isActive = menuLinks.classList.contains('is-active');
-        return isActive;
-      };
+    var isMenuLinkActive = function isMenuLinkActive() {
+      var menuLinks = document.querySelectorAll('#listjs .menu__link');
+      var isActive = menuLinks.classList.contains('is-active');
+      return isActive;
+    };
 
-      list.on('searchComplete', function () {
-        var value = search.value;
-        noticeEmptyText.innerHTML = value;
-        localStorage.setItem('SearchValue', value);
+    list.on('searchComplete', function () {
+      var value = search$1.value;
+      noticeEmptyText.innerHTML = value;
+      localStorage.setItem('SearchValue', value);
 
-        if (value) {
-          filter.classList.add('is-active');
-          search.classList.add('is-active');
-          searchClear.classList.remove('display-none');
-        } else {
-          filter.classList.remove('is-active');
-          search.classList.remove('is-active');
-          searchClear.classList.add('display-none');
-        }
+      if (value) {
+        filter$1.classList.add('is-active');
+        search$1.classList.add('is-active');
+        searchClear.classList.remove('display-none');
+      } else {
+        filter$1.classList.remove('is-active');
+        search$1.classList.remove('is-active');
+        searchClear.classList.add('display-none');
+      }
 
-        if (list.visibleItems.length > 0) {
-          noticeEmpty.classList.add('display-none');
-        } else {
-          noticeEmpty.classList.remove('display-none');
-        }
-      });
-      document.addEventListener('click', function () {
-        var trigger_search_clear = event.target.closest('.search_clear');
-        var trigger_search_cat = event.target.closest('.category');
+      if (list.visibleItems.length > 0) {
+        noticeEmpty.classList.add('display-none');
+      } else {
+        noticeEmpty.classList.remove('display-none');
+      }
+    });
+    document.addEventListener('click', function () {
+      var trigger_search_clear = event.target.closest('.search_clear');
+      var trigger_search_cat = event.target.closest('.category');
 
-        if (trigger_search_clear) {
-          search.value = '';
-          list.search();
-          event.preventDefault();
-        }
+      if (trigger_search_clear) {
+        search$1.value = '';
+        list.search();
+        event.preventDefault();
+      }
 
-        if (trigger_search_cat) {
-          search.value = trigger_search_cat.dataset.category;
-          list.search(search.value);
-          event.preventDefault();
-        }
-      }, false);
+      if (trigger_search_cat) {
+        search$1.value = trigger_search_cat.dataset.category;
+        list.search(search$1.value);
+        event.preventDefault();
+      }
+    }, false);
 
-      if (localStorage.getItem('SearchValue')) {
-        search.value = localStorage.getItem('SearchValue');
-        list.search(search.value);
+    if (localStorage.getItem('SearchValue')) {
+      search$1.value = localStorage.getItem('SearchValue');
+      list.search(search$1.value);
 
-        if (!isMenuLinkActive()) {
-          search.value = '';
-          list.search();
-        }
+      if (!isMenuLinkActive()) {
+        search$1.value = '';
+        list.search();
       }
     }
-  })();
+  }
 
-  (function () {
-    var url = 'https://api.github.com/repos/sebnitu/vrembem/contents/packages/vrembem/package.json?ref=master';
-    var ajax = new XMLHttpRequest();
-    var el = document.querySelector('[data-role="version"]');
+  var url = 'https://api.github.com/repos/sebnitu/vrembem/contents/packages/vrembem/package.json?ref=master';
+  var ajax = new XMLHttpRequest();
+  var el = document.querySelector('[data-role="version"]');
 
-    if (el) {
-      ajax.onload = function () {
-        if (ajax.status >= 200 && ajax.status < 300) {
-          var response = JSON.parse(ajax.response);
-          var decode = window.atob(response.content);
-          var pkg = JSON.parse(decode);
-          el.classList.remove('loading');
-          el.classList.add('success');
-          el.innerHTML = pkg.version;
-        } else {
-          el.classList.remove('loading');
-          el.classList.add('error');
-          el.innerHTML = 'Error!';
-        }
-      };
+  if (el) {
+    ajax.onload = function () {
+      if (ajax.status >= 200 && ajax.status < 300) {
+        var response = JSON.parse(ajax.response);
+        var decode = window.atob(response.content);
+        var pkg = JSON.parse(decode);
+        el.classList.remove('loading');
+        el.classList.add('success');
+        el.innerHTML = pkg.version;
+      } else {
+        el.classList.remove('loading');
+        el.classList.add('error');
+        el.innerHTML = 'Error!';
+      }
+    };
 
-      ajax.open('GET', url);
-      ajax.send();
-    }
-  })();
+    ajax.open('GET', url);
+    ajax.send();
+  }
 
-  index({
+  new index({
     autoInit: true
   });
-  index$1({
+  new index$1({
     autoInit: true,
     selectorInert: '[role="main"]',
     selectorOverflow: 'body, [role="main"]'
   });
-  index$2({
+  new index$2({
     autoInit: true,
     selectorInert: '.page',
     moveModals: {
@@ -4948,14 +4831,14 @@
     },
     toggleOverflow: 'body, .page__article'
   });
-  var scrollStash = new scripts_cjs({
+  var scrollStash = new ScrollStash({
     autoInit: true,
     selectorAnchor: '.is-active',
     selectorTopElem: '.dialog__header'
   });
-  var el = document.querySelector('[data-scroll-stash]');
+  var el$1 = document.querySelector('[data-scroll-stash]');
   document.addEventListener('drawer:opened', function () {
-    scrollStash.anchor.show(el, 'smooth');
+    scrollStash.anchor.show(el$1, 'smooth');
   });
 
-}());
+})));

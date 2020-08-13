@@ -97,6 +97,25 @@ Vrembem uses [Sass' module system](https://sass-lang.com/blog/the-module-system-
 );
 ```
 
+#### JavaScript
+
+Some packages also have included modules for their functionality. You can include these in your JavaScript files by importing, instantiate and initialize:
+
+```js
+// Import your component
+import Modal from "@vrembem/modal";
+
+// Instantiate and initialize
+const modal = new Modal();
+modal.init();
+```
+
+Alternatively, you can use the `autoInit` option to auto initialize and optionally omit saving the instance to a variable if the returned API won't be needed later.
+
+```js
+new Modal({ autoInit: true });
+```
+
 #### HTML
 
 Include the component's markup into your project. Use the [online docs](https://vrembem.com) for information and code examples such as markup and available modifiers for each component.
@@ -109,25 +128,6 @@ Include the component's markup into your project. Use the [online docs](https://
     ...
   </div>
 </div>
-```
-
-#### JavaScript
-
-Some packages also have included modules for their functionality. You can include these in your JavaScript files by importing, instantiate and initialize:
-
-```js
-// Import your component
-import Modal from "@vrembem/modal";
-
-// Instantiate and initialize
-const modal = Modal();
-modal.init();
-```
-
-Alternatively, you can use the `autoInit` option to auto initialize and optionally omit saving the instance to a variable if the returned API won't be needed later.
-
-```js
-Modal({ autoInit: true });
 ```
 
 #### All-in-one
@@ -149,11 +149,11 @@ Via your project's JavaScript manifest file:
 ```js
 // Import all under the vb namespace
 import * as vb from "vrembem";
-const drawer = vb.Drawer({ autoInit: true });
+const drawer = new vb.Drawer({ autoInit: true });
 
 // Or import individual components
 import { Drawer } from "vrembem";
-const drawer = Drawer({ autoInit: true });
+const drawer = new Drawer({ autoInit: true });
 ```
 
 > Note that `core` helpers do not need to be initialized since they're just a set of helpful utility functions.

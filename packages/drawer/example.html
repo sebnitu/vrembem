@@ -237,7 +237,7 @@
 
 <!-- Implementation scripts -->
 <script>
-  const drawer = vrembem.drawer({ autoInit: true });
+  const drawer = new vrembem.Drawer({ autoInit: true });
 
   document.addEventListener('click', () => {
     if (event.target.closest('.js-api-toggle')) {

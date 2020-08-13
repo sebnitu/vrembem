@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <!-- Include Vrembem styles -->
-  <link rel="stylesheet" href="https://unpkg.com/vrembem@latest/dist/styles.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.min.css">
   <title>Vrembem CDN Example Usage</title>
 </head>
 <body>
@@ -51,11 +51,18 @@
 </div>
 
 <!-- Include Vrembem JavaScript -->
-<script src="https://unpkg.com/vrembem@latest/dist/scripts.min.js"></script>
+<script src="https://unpkg.com/vrembem/dist/scripts.min.js"></script>
+
+<!-- Include individual JavaScript components -->
+<!-- <script src="https://unpkg.com/@vrembem/core/dist/scripts.min.js"></script>
+<script src="https://unpkg.com/@vrembem/checkbox/dist/scripts.min.js"></script>
+<script src="https://unpkg.com/@vrembem/drawer/dist/scripts.min.js"></script>
+<script src="https://unpkg.com/@vrembem/modal/dist/scripts.min.js"></script> -->
 
 <!-- Instantiate the component rendered in the document -->
 <script>
-  const modal = vrembem.Modal();
+  console.log(vrembem);
+  const modal = new vrembem.Modal();
   modal.init();
 </script>
 

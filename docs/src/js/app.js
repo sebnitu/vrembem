@@ -5,15 +5,15 @@ import 'wicg-inert';
 import './list.js';
 import './version';
 
-vb.Checkbox({ autoInit: true });
+new vb.Checkbox({ autoInit: true });
 
-vb.Drawer({
+new vb.Drawer({
   autoInit: true,
   selectorInert: '[role="main"]',
   selectorOverflow: 'body, [role="main"]'
 });
 
-vb.Modal({
+new vb.Modal({
   autoInit: true,
   selectorInert: '.page',
   moveModals: {

@@ -1,5 +1,8 @@
-(function (exports) {
-  'use strict';
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.vrembem = global.vrembem || {}));
+}(this, (function (exports) { 'use strict';
 
   var addClass = function addClass(el) {
     for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -1818,4 +1821,6 @@
   exports.Modal = index$3;
   exports.core = index;
 
-}(this.vrembem = this.vrembem || {}));
+  Object.defineProperty(exports, '__esModule', { value: true });
+
+})));

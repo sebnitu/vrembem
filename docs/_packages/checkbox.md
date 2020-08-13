@@ -35,7 +35,7 @@ For indeterminate checkboxes, apply the `aria-checked="mixed"` attribute and ini
 
 ```js
 import Checkbox from "@vrembem/checkbox";
-const checkbox = Checkbox({ autoInit: true });
+const checkbox = new Checkbox({ autoInit: true });
 ```
 
 ## checkbox + label
