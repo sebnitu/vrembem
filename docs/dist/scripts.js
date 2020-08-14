@@ -998,413 +998,443 @@
   function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
   function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-  function index$1 (options) {
-    var api = {};
-    var defaults = {
-      autoInit: false,
-      dataDrawer: 'drawer',
-      dataDialog: 'drawer-dialog',
-      dataToggle: 'drawer-toggle',
-      dataOpen: 'drawer-open',
-      dataClose: 'drawer-close',
-      dataBreakpoint: 'drawer-breakpoint',
-      dataFocus: 'drawer-focus',
-      stateOpened: 'is-opened',
-      stateOpening: 'is-opening',
-      stateClosing: 'is-closing',
-      stateClosed: 'is-closed',
-      classModal: 'drawer_modal',
-      selectorInert: null,
-      selectorOverflow: null,
-      breakpoints: breakpoints,
-      customEventPrefix: 'drawer:',
-      stateSave: true,
-      stateKey: 'DrawerState',
-      setTabindex: true,
-      transition: true
-    };
-    var working = false;
-    api.settings = _objectSpread$1(_objectSpread$1({}, defaults), options);
-    api.memory = {};
-    api.state = {};
-    api.breakpoint = {};
-    api.focusTrap = new FocusTrap();
-    var selectorTabindex = "[data-".concat(api.settings.dataDrawer, "] [data-").concat(api.settings.dataDialog, "]");
 
-    api.init = function () {
-      stateSet();
-      setTabindex(api.settings.setTabindex, selectorTabindex);
-      api.breakpoint.init();
-      document.addEventListener('click', handler, false);
-      document.addEventListener('touchend', handler, false);
-      document.addEventListener('keyup', handlerEscape, false);
-    };
+  var Drawer = function () {
+    function Drawer(options) {
+      classCallCheck(this, Drawer);
 
-    api.destroy = function () {
-      api.breakpoint.destroy();
-      api.memory = {};
-      api.state = {};
-      localStorage.removeItem(api.settings.stateKey);
-      document.removeEventListener('click', handler, false);
-      document.removeEventListener('touchend', handler, false);
-      document.removeEventListener('keyup', handlerEscape, false);
-    };
+      this.defaults = {
+        autoInit: false,
+        dataDrawer: 'drawer',
+        dataDialog: 'drawer-dialog',
+        dataToggle: 'drawer-toggle',
+        dataOpen: 'drawer-open',
+        dataClose: 'drawer-close',
+        dataBreakpoint: 'drawer-breakpoint',
+        dataFocus: 'drawer-focus',
+        stateOpened: 'is-opened',
+        stateOpening: 'is-opening',
+        stateClosing: 'is-closing',
+        stateClosed: 'is-closed',
+        classModal: 'drawer_modal',
+        selectorInert: null,
+        selectorOverflow: null,
+        breakpoints: breakpoints,
+        customEventPrefix: 'drawer:',
+        stateSave: true,
+        stateKey: 'DrawerState',
+        setTabindex: true,
+        transition: true
+      };
+      this.settings = _objectSpread$1(_objectSpread$1({}, this.defaults), options);
+      this.working = false;
+      this.memory = {};
+      this.state = {};
+      this.breakpoint = {};
+      this.focusTrap = new FocusTrap();
+      this.selectorTabindex = "[data-".concat(this.settings.dataDrawer, "] [data-").concat(this.settings.dataDialog, "]");
+      this.handlerClick = this.handlerClick.bind(this);
+      this.handlerKeyup = this.handlerKeyup.bind(this);
+      this.breakpointCheck = this.breakpointCheck.bind(this);
+      if (this.settings.autoInit) this.init();
+    }
 
-    var handler = function handler(event) {
-      if (working) return;
-      var trigger = event.target.closest("[data-".concat(api.settings.dataToggle, "]"));
-
-      if (trigger) {
-        var selector = trigger.getAttribute("data-".concat(api.settings.dataToggle));
-        api.memory.trigger = trigger;
-        api.toggle(selector);
-        event.preventDefault();
-        return;
+    createClass(Drawer, [{
+      key: "init",
+      value: function init() {
+        this.stateSet();
+        this.setTabindex(this.settings.setTabindex, this.selectorTabindex);
+        this.breakpointInit();
+        document.addEventListener('click', this.handlerClick, false);
+        document.addEventListener('touchend', this.handlerClick, false);
+        document.addEventListener('keyup', this.handlerKeyup, false);
       }
-
-      trigger = event.target.closest("[data-".concat(api.settings.dataOpen, "]"));
-
-      if (trigger) {
-        var _selector = trigger.getAttribute("data-".concat(api.settings.dataOpen));
-
-        api.memory.trigger = trigger;
-        api.open(_selector);
-        event.preventDefault();
-        return;
+    }, {
+      key: "destroy",
+      value: function destroy() {
+        this.breakpointDestroy();
+        this.memory = {};
+        this.state = {};
+        localStorage.removeItem(this.settings.stateKey);
+        document.removeEventListener('click', this.handlerClick, false);
+        document.removeEventListener('touchend', this.handlerClick, false);
+        document.removeEventListener('keyup', this.handlerKeyup, false);
       }
+    }, {
+      key: "handlerClick",
+      value: function handlerClick(event) {
+        if (this.working) return;
+        var trigger = event.target.closest("[data-".concat(this.settings.dataToggle, "]"));
 
-      trigger = event.target.closest("[data-".concat(api.settings.dataClose, "]"));
+        if (trigger) {
+          var selector = trigger.getAttribute("data-".concat(this.settings.dataToggle));
+          this.memory.trigger = trigger;
+          this.toggle(selector);
+          event.preventDefault();
+          return;
+        }
 
-      if (trigger) {
-        var _selector2 = trigger.getAttribute("data-".concat(api.settings.dataClose));
+        trigger = event.target.closest("[data-".concat(this.settings.dataOpen, "]"));
 
-        if (_selector2) {
-          api.memory.trigger = trigger;
-          api.close(_selector2);
+        if (trigger) {
+          var _selector = trigger.getAttribute("data-".concat(this.settings.dataOpen));
+
+          this.memory.trigger = trigger;
+          this.open(_selector);
+          event.preventDefault();
+          return;
+        }
+
+        trigger = event.target.closest("[data-".concat(this.settings.dataClose, "]"));
+
+        if (trigger) {
+          var _selector2 = trigger.getAttribute("data-".concat(this.settings.dataClose));
+
+          if (_selector2) {
+            this.memory.trigger = trigger;
+            this.close(_selector2);
+          } else {
+            var target = event.target.closest("[data-".concat(this.settings.dataDrawer, "]"));
+            if (target) this.close(target);
+          }
+
+          event.preventDefault();
+          return;
+        }
+
+        if (event.target.hasAttribute("data-".concat(this.settings.dataDrawer))) {
+          this.close(event.target);
+          return;
+        }
+      }
+    }, {
+      key: "handlerKeyup",
+      value: function handlerKeyup(event) {
+        if (this.working) return;
+
+        if (event.keyCode == 27) {
+          var target = document.querySelector(".".concat(this.settings.classModal, ".").concat(this.settings.stateOpened));
+
+          if (target) {
+            this.close(target);
+          }
+        }
+      }
+    }, {
+      key: "drawerKeyCheck",
+      value: function drawerKeyCheck(drawerKey) {
+        if (typeof drawerKey === 'string') {
+          return document.querySelector("[data-".concat(this.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
         } else {
-          var target = event.target.closest("[data-".concat(api.settings.dataDrawer, "]"));
-          if (target) api.close(target);
-        }
-
-        event.preventDefault();
-        return;
-      }
-
-      if (event.target.hasAttribute("data-".concat(api.settings.dataDrawer))) {
-        api.close(event.target);
-        return;
-      }
-    };
-
-    var handlerEscape = function handlerEscape(event) {
-      if (working) return;
-
-      if (event.keyCode == 27) {
-        var target = document.querySelector(".".concat(api.settings.classModal, ".").concat(api.settings.stateOpened));
-
-        if (target) {
-          api.close(target);
+          return drawerKey;
         }
       }
-    };
-
-    var drawerKeyCheck = function drawerKeyCheck(drawerKey) {
-      if (typeof drawerKey === 'string') {
-        return document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
-      } else {
-        return drawerKey;
+    }, {
+      key: "drawerNotFound",
+      value: function drawerNotFound(key) {
+        return Promise.reject(new Error("Did not find drawer with key: \"".concat(key, "\"")));
       }
-    };
+    }, {
+      key: "setTabindex",
+      value: function setTabindex$1() {
+        var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
 
-    var drawerNotFound = function drawerNotFound(key) {
-      return Promise.reject(new Error("Did not find drawer with key: \"".concat(key, "\"")));
-    };
-
-    api.setTabindex = function () {
-      var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-      setTabindex(state, selectorTabindex);
-    };
-
-    api.open = function () {
-      var _ref = asyncToGenerator(regenerator.mark(function _callee(drawerKey) {
-        var drawer, isModal;
-        return regenerator.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                drawer = drawerKeyCheck(drawerKey);
-
-                if (drawer) {
-                  _context.next = 3;
-                  break;
-                }
-
-                return _context.abrupt("return", drawerNotFound(drawerKey));
-
-              case 3:
-                if (hasClass(drawer, api.settings.stateOpened)) {
-                  _context.next = 17;
-                  break;
-                }
-
-                working = true;
-                isModal = hasClass(drawer, api.settings.classModal);
-
-                if (isModal) {
-                  setOverflowHidden(true, api.settings.selectorOverflow);
-                }
-
-                _context.next = 9;
-                return transition.open(drawer, api.settings);
-
-              case 9:
-                stateSave(drawer);
-
-                if (isModal) {
-                  api.focusTrap.init(drawer);
-                  setInert(true, api.settings.selectorInert);
-                }
-
-                focusTarget(drawer, api.settings);
-                drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
-                  bubbles: true
-                }));
-                working = false;
-                return _context.abrupt("return", drawer);
-
-              case 17:
-                focusTarget(drawer, api.settings);
-                return _context.abrupt("return", drawer);
-
-              case 19:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }));
-
-      return function (_x) {
-        return _ref.apply(this, arguments);
-      };
-    }();
-
-    api.close = function () {
-      var _ref2 = asyncToGenerator(regenerator.mark(function _callee2(drawerKey) {
-        var drawer;
-        return regenerator.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                drawer = drawerKeyCheck(drawerKey);
-
-                if (drawer) {
-                  _context2.next = 3;
-                  break;
-                }
-
-                return _context2.abrupt("return", drawerNotFound(drawerKey));
-
-              case 3:
-                if (!hasClass(drawer, api.settings.stateOpened)) {
-                  _context2.next = 16;
-                  break;
-                }
-
-                working = true;
-
-                if (hasClass(drawer, api.settings.classModal)) {
-                  setInert(false, api.settings.selectorInert);
-                  setOverflowHidden(false, api.settings.selectorOverflow);
-                }
-
-                _context2.next = 8;
-                return transition.close(drawer, api.settings);
-
-              case 8:
-                stateSave(drawer);
-                focusTrigger(api);
-                api.focusTrap.destroy();
-                drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
-                  bubbles: true
-                }));
-                working = false;
-                return _context2.abrupt("return", drawer);
-
-              case 16:
-                return _context2.abrupt("return", drawer);
-
-              case 17:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }));
-
-      return function (_x2) {
-        return _ref2.apply(this, arguments);
-      };
-    }();
-
-    api.toggle = function (drawerKey) {
-      var drawer = drawerKeyCheck(drawerKey);
-      if (!drawer) return drawerNotFound(drawerKey);
-      var isOpen = hasClass(drawer, api.settings.stateOpened);
-
-      if (!isOpen) {
-        return api.open(drawer);
-      } else {
-        return api.close(drawer);
+        setTabindex(state, this.selectorTabindex);
       }
-    };
+    }, {
+      key: "open",
+      value: function () {
+        var _open = asyncToGenerator(regenerator.mark(function _callee(drawerKey) {
+          var drawer, isModal;
+          return regenerator.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  drawer = this.drawerKeyCheck(drawerKey);
 
-    var stateSave = function stateSave() {
-      var target = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+                  if (drawer) {
+                    _context.next = 3;
+                    break;
+                  }
 
-      if (api.settings.stateSave) {
-        var drawers = target ? [target] : document.querySelectorAll("[data-".concat(api.settings.dataDrawer, "]"));
-        drawers.forEach(function (el) {
-          if (!hasClass(el, api.settings.classModal)) {
-            api.state[el.getAttribute("data-".concat(api.settings.dataDrawer))] = hasClass(el, api.settings.stateOpened) ? api.settings.stateOpened : api.settings.stateClosed;
+                  return _context.abrupt("return", this.drawerNotFound(drawerKey));
+
+                case 3:
+                  if (hasClass(drawer, this.settings.stateOpened)) {
+                    _context.next = 17;
+                    break;
+                  }
+
+                  this.working = true;
+                  isModal = hasClass(drawer, this.settings.classModal);
+
+                  if (isModal) {
+                    setOverflowHidden(true, this.settings.selectorOverflow);
+                  }
+
+                  _context.next = 9;
+                  return transition.open(drawer, this.settings);
+
+                case 9:
+                  this.stateSave(drawer);
+
+                  if (isModal) {
+                    this.focusTrap.init(drawer);
+                    setInert(true, this.settings.selectorInert);
+                  }
+
+                  focusTarget(drawer, this.settings);
+                  drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'opened', {
+                    bubbles: true
+                  }));
+                  this.working = false;
+                  return _context.abrupt("return", drawer);
+
+                case 17:
+                  focusTarget(drawer, this.settings);
+                  return _context.abrupt("return", drawer);
+
+                case 19:
+                case "end":
+                  return _context.stop();
+              }
+            }
+          }, _callee, this);
+        }));
+
+        function open(_x) {
+          return _open.apply(this, arguments);
+        }
+
+        return open;
+      }()
+    }, {
+      key: "close",
+      value: function () {
+        var _close = asyncToGenerator(regenerator.mark(function _callee2(drawerKey) {
+          var drawer;
+          return regenerator.wrap(function _callee2$(_context2) {
+            while (1) {
+              switch (_context2.prev = _context2.next) {
+                case 0:
+                  drawer = this.drawerKeyCheck(drawerKey);
+
+                  if (drawer) {
+                    _context2.next = 3;
+                    break;
+                  }
+
+                  return _context2.abrupt("return", this.drawerNotFound(drawerKey));
+
+                case 3:
+                  if (!hasClass(drawer, this.settings.stateOpened)) {
+                    _context2.next = 16;
+                    break;
+                  }
+
+                  this.working = true;
+
+                  if (hasClass(drawer, this.settings.classModal)) {
+                    setInert(false, this.settings.selectorInert);
+                    setOverflowHidden(false, this.settings.selectorOverflow);
+                  }
+
+                  _context2.next = 8;
+                  return transition.close(drawer, this.settings);
+
+                case 8:
+                  this.stateSave(drawer);
+                  focusTrigger(this);
+                  this.focusTrap.destroy();
+                  drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'closed', {
+                    bubbles: true
+                  }));
+                  this.working = false;
+                  return _context2.abrupt("return", drawer);
+
+                case 16:
+                  return _context2.abrupt("return", drawer);
+
+                case 17:
+                case "end":
+                  return _context2.stop();
+              }
+            }
+          }, _callee2, this);
+        }));
+
+        function close(_x2) {
+          return _close.apply(this, arguments);
+        }
+
+        return close;
+      }()
+    }, {
+      key: "toggle",
+      value: function toggle(drawerKey) {
+        var drawer = this.drawerKeyCheck(drawerKey);
+        if (!drawer) return this.drawerNotFound(drawerKey);
+        var isOpen = hasClass(drawer, this.settings.stateOpened);
+
+        if (!isOpen) {
+          return this.open(drawer);
+        } else {
+          return this.close(drawer);
+        }
+      }
+    }, {
+      key: "stateSave",
+      value: function stateSave() {
+        var _this = this;
+
+        var target = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+        if (this.settings.stateSave) {
+          var drawers = target ? [target] : document.querySelectorAll("[data-".concat(this.settings.dataDrawer, "]"));
+          drawers.forEach(function (el) {
+            if (!hasClass(el, _this.settings.classModal)) {
+              _this.state[el.getAttribute("data-".concat(_this.settings.dataDrawer))] = hasClass(el, _this.settings.stateOpened) ? _this.settings.stateOpened : _this.settings.stateClosed;
+            }
+          });
+          localStorage.setItem(this.settings.stateKey, JSON.stringify(this.state));
+        }
+      }
+    }, {
+      key: "stateSet",
+      value: function stateSet() {
+        var _this2 = this;
+
+        if (this.settings.stateSave) {
+          if (localStorage.getItem(this.settings.stateKey)) {
+            this.state = JSON.parse(localStorage.getItem(this.settings.stateKey));
+            Object.keys(this.state).forEach(function (key) {
+              var item = document.querySelector("[data-".concat(_this2.settings.dataDrawer, "=\"").concat(key, "\"]"));
+
+              if (item) {
+                if (_this2.state[key] == _this2.settings.stateOpened) {
+                  addClass(item, _this2.settings.stateOpened);
+                } else {
+                  removeClass(item, _this2.settings.stateOpened);
+                }
+              }
+            });
+          } else {
+            this.stateSave();
           }
+        } else {
+          if (localStorage.getItem(this.settings.stateKey)) {
+            localStorage.removeItem(this.settings.stateKey);
+          }
+        }
+      }
+    }, {
+      key: "breakpointInit",
+      value: function breakpointInit() {
+        var _this3 = this;
+
+        this.mediaQueryLists = [];
+        var drawers = document.querySelectorAll("[data-".concat(this.settings.dataBreakpoint, "]"));
+        drawers.forEach(function (drawer) {
+          var id = drawer.getAttribute("data-".concat(_this3.settings.dataDrawer));
+          var key = drawer.getAttribute("data-".concat(_this3.settings.dataBreakpoint));
+          var bp = _this3.settings.breakpoints[key] ? _this3.settings.breakpoints[key] : key;
+          var mql = window.matchMedia('(min-width:' + bp + ')');
+
+          _this3.breakpointMatch(mql, drawer);
+
+          mql.addListener(_this3.breakpointCheck);
+
+          _this3.mediaQueryLists.push({
+            'mql': mql,
+            'drawer': id
+          });
         });
-        localStorage.setItem(api.settings.stateKey, JSON.stringify(api.state));
       }
-    };
+    }, {
+      key: "breakpointDestroy",
+      value: function breakpointDestroy() {
+        var _this4 = this;
 
-    var stateSet = function stateSet() {
-      if (api.settings.stateSave) {
-        if (localStorage.getItem(api.settings.stateKey)) {
-          api.state = JSON.parse(localStorage.getItem(api.settings.stateKey));
-          Object.keys(api.state).forEach(function (key) {
-            var item = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(key, "\"]"));
+        if (this.mediaQueryLists && this.mediaQueryLists.length) {
+          this.mediaQueryLists.forEach(function (item) {
+            item.mql.removeListener(_this4.breakpointCheck);
+          });
+        }
 
-            if (item) {
-              if (api.state[key] == api.settings.stateOpened) {
-                addClass(item, api.settings.stateOpened);
-              } else {
-                removeClass(item, api.settings.stateOpened);
+        this.mediaQueryLists = null;
+      }
+    }, {
+      key: "breakpointCheck",
+      value: function breakpointCheck() {
+        var _this5 = this;
+
+        var event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+        if (this.mediaQueryLists && this.mediaQueryLists.length) {
+          this.mediaQueryLists.forEach(function (item) {
+            var filter = event ? event.media == item.mql.media : true;
+
+            if (filter) {
+              var drawer = document.querySelector("[data-".concat(_this5.settings.dataDrawer, "=\"").concat(item.drawer, "\"]"));
+
+              if (drawer) {
+                _this5.breakpointMatch(item.mql, drawer);
               }
             }
           });
+          document.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'breakpoint', {
+            bubbles: true
+          }));
+        }
+      }
+    }, {
+      key: "breakpointMatch",
+      value: function breakpointMatch(mql, drawer) {
+        if (mql.matches) {
+          this.switchToDefault(drawer);
         } else {
-          stateSave();
-        }
-      } else {
-        if (localStorage.getItem(api.settings.stateKey)) {
-          localStorage.removeItem(api.settings.stateKey);
+          this.switchToModal(drawer);
         }
       }
-    };
-
-    api.breakpoint.init = function () {
-      api.mediaQueryLists = [];
-      var drawers = document.querySelectorAll("[data-".concat(api.settings.dataBreakpoint, "]"));
-      drawers.forEach(function (drawer) {
-        var id = drawer.getAttribute("data-".concat(api.settings.dataDrawer));
-        var key = drawer.getAttribute("data-".concat(api.settings.dataBreakpoint));
-        var bp = api.settings.breakpoints[key] ? api.settings.breakpoints[key] : key;
-        var mql = window.matchMedia('(min-width:' + bp + ')');
-        breakpointMatch(mql, drawer);
-        mql.addListener(breakpointCheck);
-        api.mediaQueryLists.push({
-          'mql': mql,
-          'drawer': id
-        });
-      });
-    };
-
-    api.breakpoint.destroy = function () {
-      if (api.mediaQueryLists && api.mediaQueryLists.length) {
-        api.mediaQueryLists.forEach(function (item) {
-          item.mql.removeListener(breakpointCheck);
-        });
-      }
-
-      api.mediaQueryLists = null;
-    };
-
-    var breakpointCheck = function breakpointCheck(event) {
-      if (api.mediaQueryLists && api.mediaQueryLists.length) {
-        api.mediaQueryLists.forEach(function (item) {
-          var filter = event ? event.media == item.mql.media : true;
-
-          if (filter) {
-            var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(item.drawer, "\"]"));
-
-            if (drawer) {
-              breakpointMatch(item.mql, drawer);
-            }
-          }
-        });
-        document.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
+    }, {
+      key: "switchToModal",
+      value: function switchToModal(drawerKey) {
+        var drawer = this.drawerKeyCheck(drawerKey);
+        if (!drawer) return this.drawerNotFound(drawerKey);
+        if (hasClass(drawer, this.settings.classModal)) return;
+        addClass(drawer, this.settings.classModal);
+        addClass(drawer, this.settings.stateClosed);
+        removeClass(drawer, this.settings.stateOpened);
+        drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'toModal', {
           bubbles: true
         }));
       }
-    };
+    }, {
+      key: "switchToDefault",
+      value: function switchToDefault(drawerKey) {
+        var drawer = this.drawerKeyCheck(drawerKey);
+        if (!drawer) return this.drawerNotFound(drawerKey);
+        if (!hasClass(drawer, this.settings.classModal)) return;
+        setInert(false, this.settings.selectorInert);
+        setOverflowHidden(false, this.settings.selectorOverflow);
+        removeClass(drawer, this.settings.classModal);
+        this.focusTrap.destroy();
+        drawerKey = drawer.getAttribute("data-".concat(this.settings.dataDrawer));
+        var drawerState = this.state[drawerKey];
 
-    api.breakpoint.check = function () {
-      var event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-      breakpointCheck(event);
-    };
+        if (drawerState == this.settings.stateOpened) {
+          addClass(drawer, this.settings.stateOpened);
+          removeClass(drawer, this.settings.stateClosed);
+        }
 
-    var breakpointMatch = function breakpointMatch(mql, drawer) {
-      if (mql.matches) {
-        switchToDefault(drawer);
-      } else {
-        switchToModal(drawer);
+        drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'toDefault', {
+          bubbles: true
+        }));
       }
-    };
+    }]);
 
-    var switchToModal = function switchToModal(drawer) {
-      if (hasClass(drawer, api.settings.classModal)) return;
-      addClass(drawer, api.settings.classModal);
-      addClass(drawer, api.settings.stateClosed);
-      removeClass(drawer, api.settings.stateOpened);
-      drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'toModal', {
-        bubbles: true
-      }));
-    };
-
-    api.switchToModal = function (drawerKey) {
-      var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
-
-      if (drawer) {
-        switchToModal(drawer);
-      }
-    };
-
-    var switchToDefault = function switchToDefault(drawer) {
-      if (!hasClass(drawer, api.settings.classModal)) return;
-      setInert(false, api.settings.selectorInert);
-      setOverflowHidden(false, api.settings.selectorOverflow);
-      removeClass(drawer, api.settings.classModal);
-      api.focusTrap.destroy();
-      var drawerKey = drawer.getAttribute("data-".concat(api.settings.dataDrawer));
-      var drawerState = api.state[drawerKey];
-
-      if (drawerState == api.settings.stateOpened) {
-        addClass(drawer, api.settings.stateOpened);
-        removeClass(drawer, api.settings.stateClosed);
-      }
-
-      drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'toDefault', {
-        bubbles: true
-      }));
-    };
-
-    api.switchToDefault = function (drawerKey) {
-      var drawer = document.querySelector("[data-".concat(api.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
-
-      if (drawer) {
-        switchToDefault(drawer);
-      }
-    };
-
-    if (api.settings.autoInit) api.init();
-    return api;
-  }
+    return Drawer;
+  }();
 
   function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -1436,8 +1466,8 @@
         setTabindex: true,
         transition: true
       };
-      this.working = false;
       this.settings = _objectSpread$2(_objectSpread$2({}, this.defaults), options);
+      this.working = false;
       this.memory = {};
       this.focusTrap = new FocusTrap();
       this.selectorTabindex = "[data-".concat(this.settings.dataModal, "] [data-").concat(this.settings.dataDialog, "]");
@@ -1452,9 +1482,7 @@
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
         if (options) this.settings = _objectSpread$2(_objectSpread$2({}, this.settings), options);
         this.setInitialState();
-
-        setTabindex(this.settings.setTabindex, this.selectorTabindex);
-
+        this.setTabindex(this.settings.setTabindex, this.selectorTabindex);
         this.moveModals();
         document.addEventListener('click', this.handlerClickRef, false);
         document.addEventListener('touchend', this.handlerClickRef, false);
@@ -4721,7 +4749,7 @@
   new index({
     autoInit: true
   });
-  new index$1({
+  new Drawer({
     autoInit: true,
     selectorInert: '[role="main"]',
     selectorOverflow: 'body, [role="main"]'
