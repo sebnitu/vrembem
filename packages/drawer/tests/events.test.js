@@ -40,7 +40,7 @@ afterEach(() => {
 
 test('should emit custom event when drawer has opened', async () => {
   document.body.innerHTML = markup;
-  drawer = Drawer({ autoInit: true });
+  drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer="drawer-one"]');
   const btn = document.querySelector('[data-drawer-toggle]');
   let eventFired = false;
@@ -58,7 +58,7 @@ test('should emit custom event when drawer has opened', async () => {
 
 test('should emit custom event when drawer has closed', async () => {
   document.body.innerHTML = markup;
-  drawer = Drawer({ autoInit: true });
+  drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer="drawer-one"]');
   const btn = document.querySelector('[data-drawer-toggle]');
   let eventFired = false;
@@ -82,7 +82,7 @@ test('should emit custom event when drawer has closed', async () => {
 
 test('should emit custom event when drawer matches a breakpoint', () => {
   document.body.innerHTML = markup;
-  drawer = Drawer({ autoInit: true });
+  drawer = new Drawer({ autoInit: true });
   let eventFired = false;
 
   document.addEventListener('drawer:breakpoint', () => {
@@ -90,13 +90,13 @@ test('should emit custom event when drawer matches a breakpoint', () => {
   });
 
   resizeWindow(400);
-  drawer.breakpoint.check();
+  drawer.breakpointCheck();
   expect(eventFired).toBe(true);
 });
 
 test('should emit custom event when drawer switches to modal', () => {
   document.body.innerHTML = markup;
-  drawer = Drawer({ autoInit: true });
+  drawer = new Drawer({ autoInit: true });
   let eventFired = false;
 
   document.addEventListener('drawer:toModal', () => {
@@ -104,14 +104,14 @@ test('should emit custom event when drawer switches to modal', () => {
   });
 
   resizeWindow(400);
-  drawer.breakpoint.check();
+  drawer.breakpointCheck();
   expect(eventFired).toBe(true);
 });
 
 test('should emit custom event when drawer switches to default', () => {
   document.body.innerHTML = markup;
   window.innerWidth = 400;
-  drawer = Drawer({ autoInit: true });
+  drawer = new Drawer({ autoInit: true });
   let eventFired = false;
 
   document.addEventListener('drawer:toDefault', () => {
@@ -119,13 +119,13 @@ test('should emit custom event when drawer switches to default', () => {
   });
 
   resizeWindow(1200);
-  drawer.breakpoint.check();
+  drawer.breakpointCheck();
   expect(eventFired).toBe(true);
 });
 
 test('should be able to set a custom event prefix', async () => {
   document.body.innerHTML = markup;
-  drawer = Drawer({
+  drawer = new Drawer({
     autoInit: true,
     customEventPrefix: 'vrembem:'
   });
@@ -168,7 +168,7 @@ test('should be able to set a custom event prefix', async () => {
   expect(eventClosed).toBe(true);
 
   resizeWindow(400);
-  drawer.breakpoint.check();
+  drawer.breakpointCheck();
   expect(el).toHaveClass('drawer_modal');
   expect(eventBreakpoint).toBe(true);
   expect(eventToModal).toBe(true);
@@ -176,7 +176,7 @@ test('should be able to set a custom event prefix', async () => {
   eventBreakpoint = false;
 
   resizeWindow(800);
-  drawer.breakpoint.check();
+  drawer.breakpointCheck();
   expect(el).not.toHaveClass('drawer_modal');
   expect(eventBreakpoint).toBe(true);
   expect(eventToDefault).toBe(true);

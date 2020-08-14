@@ -72,7 +72,7 @@ afterEach(() => {
 
 test('should focus drawer element and refocus trigger when closed', async () => {
   document.body.innerHTML = markup;
-  drawer = Drawer({ autoInit: true });
+  drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer="drawer-one"]');
   const dialog = el.querySelector('[data-drawer-dialog]');
   const btn = document.querySelector('.toggle-one');
@@ -89,7 +89,7 @@ test('should focus drawer element and refocus trigger when closed', async () => 
 
 test('should focus data-drawer-focus element and refocus trigger when closed', async () => {
   document.body.innerHTML = markup;
-  drawer = Drawer({ autoInit: true });
+  drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer="drawer-two"]');
   const btn = document.querySelector('.toggle-two');
   const btnClose = document.querySelector('.close-two');
@@ -105,7 +105,7 @@ test('should focus data-drawer-focus element and refocus trigger when closed', a
 
 test('should focus custom data element and refocus trigger when closed', async () => {
   document.body.innerHTML = markupCustomAttr;
-  drawer = Drawer({
+  drawer = new Drawer({
     autoInit: true,
     dataFocus: 'focus'
   });
@@ -124,7 +124,7 @@ test('should focus custom data element and refocus trigger when closed', async (
 
 test('should re-focus the target if open triggers while drawer is already opened', async () => {
   document.body.innerHTML = markup;
-  drawer = Drawer({ autoInit: true });
+  drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer="drawer-two"]');
   const elFocus = el.querySelector('[data-drawer-focus]');
   const btn = document.querySelector('.toggle-three');
@@ -142,7 +142,7 @@ test('should re-focus the target if open triggers while drawer is already opened
 
 test('should retain focus on drawer if nothing inner is focusable', async () => {
   document.body.innerHTML = markup;
-  drawer = Drawer({ autoInit: true });
+  drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer="drawer-empty"');
   const dialog = el.querySelector('[data-drawer-dialog]');
 
@@ -160,7 +160,7 @@ test('should retain focus on drawer if nothing inner is focusable', async () => 
 
 // test('should properly setup a focus trap when drawer is open', async () => {
 //   document.body.innerHTML = markup;
-//   drawer = Drawer({ autoInit: true });
+//   drawer = new Drawer({ autoInit: true });
 //   const el = document.querySelector('[data-drawer="drawer-modal"]');
 //   const dialog = el.querySelector('[data-drawer-dialog]');
 
@@ -196,7 +196,7 @@ test('should retain focus on drawer if nothing inner is focusable', async () => 
 
 test('should not focus anything if a dialog with index is not set', async () => {
   document.body.innerHTML = markup;
-  drawer = Drawer({
+  drawer = new Drawer({
     autoInit: true,
     setTabindex: false
   });
@@ -213,7 +213,7 @@ test('should not focus anything if a dialog with index is not set', async () => 
 
 test('should re-focus inner element of open is called on drawer that\'s already open', async () => {
   document.body.innerHTML = markup;
-  drawer = Drawer({ autoInit: true });
+  drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer="drawer-two"]');
   const btn = el.querySelector('[data-drawer-close]');
 

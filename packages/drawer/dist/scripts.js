@@ -1349,6 +1349,7 @@
 	      setOverflowHidden(false, this.settings.selectorOverflow);
 	      removeClass(drawer, this.settings.classModal);
 	      this.focusTrap.destroy();
+	      drawerKey = drawer.getAttribute("data-".concat(this.settings.dataDrawer));
 	      var drawerState = this.state[drawerKey];
 
 	      if (drawerState == this.settings.stateOpened) {

@@ -353,6 +353,7 @@ export default class Drawer {
     setOverflowHidden(false, this.settings.selectorOverflow);
     removeClass(drawer, this.settings.classModal);
     this.focusTrap.destroy();
+    drawerKey = drawer.getAttribute(`data-${this.settings.dataDrawer}`);
     const drawerState = this.state[drawerKey];
     if (drawerState == this.settings.stateOpened) {
       addClass(drawer, this.settings.stateOpened);
