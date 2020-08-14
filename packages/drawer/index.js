@@ -62,7 +62,8 @@ export default class Drawer {
     if (this.settings.autoInit) this.init();
   }
 
-  init() {
+  init(options = null) {
+    if (options) this.settings = { ...this.settings, ...options };
     this.stateSet();
     this.setTabindex(this.settings.setTabindex, this.selectorTabindex);
     this.breakpointInit();

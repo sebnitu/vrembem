@@ -21,69 +21,113 @@
 
   var defineProperty = _defineProperty;
 
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  var classCallCheck = _classCallCheck;
+
+  function _defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  function _createClass(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties(Constructor, staticProps);
+    return Constructor;
+  }
+
+  var createClass = _createClass;
+
   function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
   function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-  function index (options) {
-    var api = {};
-    var defaults = {
-      autoInit: false,
-      stateAttr: 'aria-checked',
-      stateValue: 'mixed'
-    };
-    api.settings = _objectSpread(_objectSpread({}, defaults), options);
-    api.settings.selector = "[".concat(api.settings.stateAttr, "=\"").concat(api.settings.stateValue, "\"]");
+  var Checkbox = function () {
+    function Checkbox(options) {
+      classCallCheck(this, Checkbox);
 
-    api.init = function () {
-      var mixed = document.querySelectorAll(api.settings.selector);
-      api.setIndeterminate(mixed);
-      document.addEventListener('click', removeAriaState, false);
-    };
+      this.defaults = {
+        autoInit: false,
+        stateAttr: 'aria-checked',
+        stateValue: 'mixed'
+      };
+      this.settings = _objectSpread(_objectSpread({}, this.defaults), options);
+      this.settings.selector = "[".concat(this.settings.stateAttr, "=\"").concat(this.settings.stateValue, "\"]");
+      this.handlerClick = this.handlerClick.bind(this);
+      if (this.settings.autoInit) this.init();
+    }
 
-    api.destroy = function () {
-      document.removeEventListener('click', removeAriaState, false);
-    };
-
-    api.setAriaState = function (el) {
-      var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : api.settings.stateValue;
-      el = el.forEach ? el : [el];
-      el.forEach(function (el) {
-        el.setAttribute(api.settings.stateAttr, value);
-      });
-    };
-
-    api.removeAriaState = function (el) {
-      el = el.forEach ? el : [el];
-      el.forEach(function (el) {
-        el.removeAttribute(api.settings.stateAttr);
-      });
-    };
-
-    api.setIndeterminate = function (el) {
-      el = el.forEach ? el : [el];
-      el.forEach(function (el) {
-        if (el.hasAttribute(api.settings.stateAttr)) {
-          el.indeterminate = true;
-        } else {
-          el.indeterminate = false;
-        }
-      });
-    };
-
-    var removeAriaState = function removeAriaState(event) {
-      var el = event.target.closest(api.settings.selector);
-
-      if (el) {
-        api.removeAriaState(el);
-        api.setIndeterminate(el);
+    createClass(Checkbox, [{
+      key: "init",
+      value: function init() {
+        var mixed = document.querySelectorAll(this.settings.selector);
+        this.setIndeterminate(mixed);
+        document.addEventListener('click', this.handlerClick, false);
       }
-    };
+    }, {
+      key: "destroy",
+      value: function destroy() {
+        document.removeEventListener('click', this.handlerClick, false);
+      }
+    }, {
+      key: "handlerClick",
+      value: function handlerClick(event) {
+        var el = event.target.closest(this.settings.selector);
 
-    if (api.settings.autoInit) api.init();
-    return api;
-  }
+        if (el) {
+          this.removeAriaState(el);
+          this.setIndeterminate(el);
+        }
+      }
+    }, {
+      key: "setAriaState",
+      value: function setAriaState(el) {
+        var _this = this;
 
-  return index;
+        var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.settings.stateValue;
+        el = el.forEach ? el : [el];
+        el.forEach(function (el) {
+          el.setAttribute(_this.settings.stateAttr, value);
+        });
+      }
+    }, {
+      key: "removeAriaState",
+      value: function removeAriaState(el) {
+        var _this2 = this;
+
+        el = el.forEach ? el : [el];
+        el.forEach(function (el) {
+          el.removeAttribute(_this2.settings.stateAttr);
+        });
+      }
+    }, {
+      key: "setIndeterminate",
+      value: function setIndeterminate(el) {
+        var _this3 = this;
+
+        el = el.forEach ? el : [el];
+        el.forEach(function (el) {
+          if (el.hasAttribute(_this3.settings.stateAttr)) {
+            el.indeterminate = true;
+          } else {
+            el.indeterminate = false;
+          }
+        });
+      }
+    }]);
+
+    return Checkbox;
+  }();
+
+  return Checkbox;
 
 })));

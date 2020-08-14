@@ -1,59 +1,57 @@
-export default function (options) {
+export default class Checkbox {
+  constructor(options) {
+    this.defaults = {
+      autoInit: false,
+      stateAttr: 'aria-checked',
+      stateValue: 'mixed'
+    };
+    this.settings = { ...this.defaults, ...options };
+    this.settings.selector =
+      `[${this.settings.stateAttr}="${this.settings.stateValue}"]`;
+    this.handlerClick = this.handlerClick.bind(this);
+    if (this.settings.autoInit) this.init();
+  }
 
-  const api = {};
-  const defaults = {
-    autoInit: false,
-    stateAttr: 'aria-checked',
-    stateValue: 'mixed'
-  };
+  init() {
+    let mixed = document.querySelectorAll(this.settings.selector);
+    this.setIndeterminate(mixed);
+    document.addEventListener('click', this.handlerClick, false);
+  }
 
-  api.settings = { ...defaults, ...options };
-  api.settings.selector =
-    `[${api.settings.stateAttr}="${api.settings.stateValue}"]`;
+  destroy() {
+    document.removeEventListener('click', this.handlerClick, false);
+  }
 
-  api.init = () => {
-    let mixed = document.querySelectorAll(api.settings.selector);
-    api.setIndeterminate(mixed);
-    document.addEventListener('click', removeAriaState, false);
-  };
+  handlerClick(event) {
+    let el = event.target.closest(this.settings.selector);
+    if (el) {
+      this.removeAriaState(el);
+      this.setIndeterminate(el);
+    }
+  }
 
-  api.destroy = () => {
-    document.removeEventListener('click', removeAriaState, false);
-  };
-
-  api.setAriaState = (el, value = api.settings.stateValue) => {
+  setAriaState(el, value = this.settings.stateValue) {
     el = (el.forEach) ? el : [el];
     el.forEach((el) => {
-      el.setAttribute(api.settings.stateAttr, value);
+      el.setAttribute(this.settings.stateAttr, value);
     });
-  };
+  }
 
-  api.removeAriaState = (el) => {
+  removeAriaState(el) {
     el = (el.forEach) ? el : [el];
     el.forEach((el) => {
-      el.removeAttribute(api.settings.stateAttr);
+      el.removeAttribute(this.settings.stateAttr);
     });
-  };
+  }
 
-  api.setIndeterminate = (el) => {
+  setIndeterminate(el) {
     el = (el.forEach) ? el : [el];
     el.forEach((el) => {
-      if (el.hasAttribute(api.settings.stateAttr)) {
+      if (el.hasAttribute(this.settings.stateAttr)) {
         el.indeterminate = true;
       } else {
         el.indeterminate = false;
       }
     });
-  };
-
-  const removeAriaState = (event) => {
-    let el = event.target.closest(api.settings.selector);
-    if (el) {
-      api.removeAriaState(el);
-      api.setIndeterminate(el);
-    }
-  };
-
-  if (api.settings.autoInit) api.init();
-  return api;
+  }
 }

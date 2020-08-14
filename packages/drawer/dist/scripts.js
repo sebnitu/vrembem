@@ -972,6 +972,8 @@
 	  createClass(Drawer, [{
 	    key: "init",
 	    value: function init() {
+	      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+	      if (options) this.settings = _objectSpread(_objectSpread({}, this.settings), options);
 	      this.stateSet();
 	      this.setTabindex(this.settings.setTabindex, this.selectorTabindex);
 	      this.breakpointInit();
