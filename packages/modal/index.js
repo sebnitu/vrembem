@@ -10,39 +10,11 @@ import {
 } from '@vrembem/core';
 import transition from '@vrembem/core/src/js/transition';
 import { FocusTrap } from '@vrembem/core/src/js/focusTrap';
+import { defaults } from './src/js/defaults';
 
 export default class Modal {
   constructor(options) {
-    this.defaults = {
-      autoInit: false,
-
-      // Data attributes
-      dataModal: 'modal',
-      dataDialog: 'modal-dialog',
-      dataOpen: 'modal-open',
-      dataClose: 'modal-close',
-      dataFocus: 'modal-focus',
-      dataRequired: 'modal-required',
-
-      // State classes
-      stateOpened: 'is-opened',
-      stateOpening: 'is-opening',
-      stateClosing: 'is-closing',
-      stateClosed: 'is-closed',
-
-      // Selector
-      selectorInert: null,
-      selectorOverflow: 'body',
-
-      // Feature toggles
-      customEventPrefix: 'modal:',
-      moveModals: {
-        selector: null,
-        location: null
-      },
-      setTabindex: true,
-      transition: true
-    };
+    this.defaults = defaults;
     this.settings = { ...this.defaults, ...options };
     this.working = false;
     this.memory = {};

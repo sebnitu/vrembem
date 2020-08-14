@@ -917,6 +917,29 @@
 	  close: closeTransition
 	};
 
+	var defaults = {
+	  autoInit: false,
+	  dataModal: 'modal',
+	  dataDialog: 'modal-dialog',
+	  dataOpen: 'modal-open',
+	  dataClose: 'modal-close',
+	  dataFocus: 'modal-focus',
+	  dataRequired: 'modal-required',
+	  stateOpened: 'is-opened',
+	  stateOpening: 'is-opening',
+	  stateClosing: 'is-closing',
+	  stateClosed: 'is-closed',
+	  selectorInert: null,
+	  selectorOverflow: 'body',
+	  customEventPrefix: 'modal:',
+	  moveModals: {
+	    selector: null,
+	    location: null
+	  },
+	  setTabindex: true,
+	  transition: true
+	};
+
 	function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 	function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -925,28 +948,7 @@
 	  function Modal(options) {
 	    classCallCheck(this, Modal);
 
-	    this.defaults = {
-	      autoInit: false,
-	      dataModal: 'modal',
-	      dataDialog: 'modal-dialog',
-	      dataOpen: 'modal-open',
-	      dataClose: 'modal-close',
-	      dataFocus: 'modal-focus',
-	      dataRequired: 'modal-required',
-	      stateOpened: 'is-opened',
-	      stateOpening: 'is-opening',
-	      stateClosing: 'is-closing',
-	      stateClosed: 'is-closed',
-	      selectorInert: null,
-	      selectorOverflow: 'body',
-	      customEventPrefix: 'modal:',
-	      moveModals: {
-	        selector: null,
-	        location: null
-	      },
-	      setTabindex: true,
-	      transition: true
-	    };
+	    this.defaults = defaults;
 	    this.settings = _objectSpread(_objectSpread({}, this.defaults), options);
 	    this.working = false;
 	    this.memory = {};
