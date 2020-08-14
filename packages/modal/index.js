@@ -49,8 +49,8 @@ export default class Modal {
     this.focusTrap = new FocusTrap();
     this.selectorTabindex = `[data-${this.settings.dataModal}] [data-${this.settings.dataDialog}]`;
 
-    this.handlerClickRef = this.handler.bind(this);
-    this.handlerKeyupRef = this.handlerEscape.bind(this);
+    this.handlerClick = this.handlerClick.bind(this);
+    this.handlerKeyup = this.handlerKeyup.bind(this);
 
     if (this.settings.autoInit) this.init();
   }
@@ -60,19 +60,19 @@ export default class Modal {
     this.setInitialState();
     this.setTabindex(this.settings.setTabindex, this.selectorTabindex);
     this.moveModals();
-    document.addEventListener('click', this.handlerClickRef, false);
-    document.addEventListener('touchend', this.handlerClickRef, false);
-    document.addEventListener('keyup', this.handlerKeyupRef, false);
+    document.addEventListener('click', this.handlerClick, false);
+    document.addEventListener('touchend', this.handlerClick, false);
+    document.addEventListener('keyup', this.handlerKeyup, false);
   }
 
   destroy() {
     this.memory = {};
-    document.removeEventListener('click', this.handlerClickRef, false);
-    document.removeEventListener('touchend', this.handlerClickRef, false);
-    document.removeEventListener('keyup', this.handlerKeyupRef, false);
+    document.removeEventListener('click', this.handlerClick, false);
+    document.removeEventListener('touchend', this.handlerClick, false);
+    document.removeEventListener('keyup', this.handlerKeyup, false);
   }
 
-  async handler(event) {
+  async handlerClick(event) {
     // Working catch
     if (this.working) return;
 
@@ -105,7 +105,7 @@ export default class Modal {
     }
   }
 
-  handlerEscape(event) {
+  handlerKeyup(event) {
     // Working catch
     if (this.working) return;
 

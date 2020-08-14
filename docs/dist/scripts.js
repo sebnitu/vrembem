@@ -1471,8 +1471,8 @@
       this.memory = {};
       this.focusTrap = new FocusTrap();
       this.selectorTabindex = "[data-".concat(this.settings.dataModal, "] [data-").concat(this.settings.dataDialog, "]");
-      this.handlerClickRef = this.handler.bind(this);
-      this.handlerKeyupRef = this.handlerEscape.bind(this);
+      this.handlerClick = this.handlerClick.bind(this);
+      this.handlerKeyup = this.handlerKeyup.bind(this);
       if (this.settings.autoInit) this.init();
     }
 
@@ -1484,22 +1484,22 @@
         this.setInitialState();
         this.setTabindex(this.settings.setTabindex, this.selectorTabindex);
         this.moveModals();
-        document.addEventListener('click', this.handlerClickRef, false);
-        document.addEventListener('touchend', this.handlerClickRef, false);
-        document.addEventListener('keyup', this.handlerKeyupRef, false);
+        document.addEventListener('click', this.handlerClick, false);
+        document.addEventListener('touchend', this.handlerClick, false);
+        document.addEventListener('keyup', this.handlerKeyup, false);
       }
     }, {
       key: "destroy",
       value: function destroy() {
         this.memory = {};
-        document.removeEventListener('click', this.handlerClickRef, false);
-        document.removeEventListener('touchend', this.handlerClickRef, false);
-        document.removeEventListener('keyup', this.handlerKeyupRef, false);
+        document.removeEventListener('click', this.handlerClick, false);
+        document.removeEventListener('touchend', this.handlerClick, false);
+        document.removeEventListener('keyup', this.handlerKeyup, false);
       }
     }, {
-      key: "handler",
+      key: "handlerClick",
       value: function () {
-        var _handler = asyncToGenerator(regenerator.mark(function _callee(event) {
+        var _handlerClick = asyncToGenerator(regenerator.mark(function _callee(event) {
           var trigger, modalKey, fromModal;
           return regenerator.wrap(function _callee$(_context) {
             while (1) {
@@ -1558,15 +1558,15 @@
           }, _callee, this);
         }));
 
-        function handler(_x) {
-          return _handler.apply(this, arguments);
+        function handlerClick(_x) {
+          return _handlerClick.apply(this, arguments);
         }
 
-        return handler;
+        return handlerClick;
       }()
     }, {
-      key: "handlerEscape",
-      value: function handlerEscape(event) {
+      key: "handlerKeyup",
+      value: function handlerKeyup(event) {
         if (this.working) return;
 
         if (event.key === 'Escape' || event.keyCode === 27) {
