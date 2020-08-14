@@ -11,129 +11,128 @@ import {
 import transition from '@vrembem/core/src/js/transition';
 import { FocusTrap } from '@vrembem/core/src/js/focusTrap';
 
-export default function (options) {
+export default class Modal {
+  constructor(options) {
+    this.defaults = {
+      autoInit: false,
 
-  const api = {};
-  const defaults = {
-    autoInit: false,
+      // Data attributes
+      dataModal: 'modal',
+      dataDialog: 'modal-dialog',
+      dataOpen: 'modal-open',
+      dataClose: 'modal-close',
+      dataFocus: 'modal-focus',
+      dataRequired: 'modal-required',
 
-    // Data attributes
-    dataModal: 'modal',
-    dataDialog: 'modal-dialog',
-    dataOpen: 'modal-open',
-    dataClose: 'modal-close',
-    dataFocus: 'modal-focus',
-    dataRequired: 'modal-required',
+      // State classes
+      stateOpened: 'is-opened',
+      stateOpening: 'is-opening',
+      stateClosing: 'is-closing',
+      stateClosed: 'is-closed',
 
-    // State classes
-    stateOpened: 'is-opened',
-    stateOpening: 'is-opening',
-    stateClosing: 'is-closing',
-    stateClosed: 'is-closed',
+      // Selector
+      selectorInert: null,
+      selectorOverflow: 'body',
 
-    // Selector
-    selectorInert: null,
-    selectorOverflow: 'body',
+      // Feature toggles
+      customEventPrefix: 'modal:',
+      moveModals: {
+        selector: null,
+        location: null
+      },
+      setTabindex: true,
+      transition: true
+    };
+    this.working = false;
+    this.settings = { ...this.defaults, ...options };
+    this.memory = {};
+    this.focusTrap = new FocusTrap();
+    this.selectorTabindex = `[data-${this.settings.dataModal}] [data-${this.settings.dataDialog}]`;
 
-    // Feature toggles
-    customEventPrefix: 'modal:',
-    moveModals: {
-      selector: null,
-      location: null
-    },
-    setTabindex: true,
-    transition: true
-  };
+    this.handlerClickRef = this.handler.bind(this);
+    this.handlerKeyupRef = this.handlerEscape.bind(this);
 
-  let working = false;
+    if (this.settings.autoInit) this.init();
+  }
 
-  api.settings = { ...defaults, ...options };
-  api.memory = {};
-  api.focusTrap = new FocusTrap();
+  init(options = null) {
+    if (options) this.settings = { ...this.settings, ...options };
+    this.setInitialState();
+    setTabindex(this.settings.setTabindex, this.selectorTabindex);
+    this.moveModals();
+    document.addEventListener('click', this.handlerClickRef, false);
+    document.addEventListener('touchend', this.handlerClickRef, false);
+    document.addEventListener('keyup', this.handlerKeyupRef, false);
+  }
 
-  const selectorTabindex = `[data-${api.settings.dataModal}] [data-${api.settings.dataDialog}]`;
+  destroy() {
+    this.memory = {};
+    document.removeEventListener('click', this.handlerClickRef, false);
+    document.removeEventListener('touchend', this.handlerClickRef, false);
+    document.removeEventListener('keyup', this.handlerKeyupRef, false);
+  }
 
-  api.init = () => {
-    moveModals();
-    setTabindex(api.settings.setTabindex, selectorTabindex);
-    setInitialState();
-    document.addEventListener('click', handler, false);
-    document.addEventListener('touchend', handler, false);
-    document.addEventListener('keyup', handlerEscape, false);
-  };
-
-  api.destroy = () => {
-    api.memory = {};
-    document.removeEventListener('click', handler, false);
-    document.removeEventListener('touchend', handler, false);
-    document.removeEventListener('keyup', handlerEscape, false);
-  };
-
-  const handler = async (event) => {
+  async handler(event) {
     // Working catch
-    if (working) return;
+    if (this.working) return;
 
     // Trigger click
-    const trigger = event.target.closest(`[data-${api.settings.dataOpen}]`);
+    const trigger = event.target.closest(`[data-${this.settings.dataOpen}]`);
     if (trigger) {
       event.preventDefault();
-      const modalKey = trigger.getAttribute(`data-${api.settings.dataOpen}`);
-      const fromModal = event.target.closest(`[data-${api.settings.dataModal}]`);
-      if (!fromModal) api.memory.trigger = trigger;
-      await api.close(!fromModal);
-      api.open(modalKey);
+      const modalKey = trigger.getAttribute(`data-${this.settings.dataOpen}`);
+      const fromModal = event.target.closest(`[data-${this.settings.dataModal}]`);
+      if (!fromModal) this.memory.trigger = trigger;
+      await this.close(!fromModal);
+      this.open(modalKey);
       return;
     }
 
     // Close click
-    if (event.target.closest(`[data-${api.settings.dataClose}]`)) {
+    if (event.target.closest(`[data-${this.settings.dataClose}]`)) {
       event.preventDefault();
-      api.close();
+      this.close();
       return;
     }
 
     // Root click
     if (
-      event.target.hasAttribute(`data-${api.settings.dataModal}`) &&
-      !event.target.hasAttribute(`data-${api.settings.dataRequired}`)
+      event.target.hasAttribute(`data-${this.settings.dataModal}`) &&
+      !event.target.hasAttribute(`data-${this.settings.dataRequired}`)
     ) {
-      api.close();
+      this.close();
       return;
     }
-  };
+  }
 
-  const handlerEscape = (event) => {
+  handlerEscape(event) {
     // Working catch
-    if (working) return;
+    if (this.working) return;
 
     if (event.key === 'Escape' || event.keyCode === 27) {
       const target = document.querySelector(
-        `[data-${api.settings.dataModal}].${api.settings.stateOpened}`
+        `[data-${this.settings.dataModal}].${this.settings.stateOpened}`
       );
-      if (target && !target.hasAttribute(`data-${api.settings.dataRequired}`)) {
-        api.close();
+      if (target && !target.hasAttribute(`data-${this.settings.dataRequired}`)) {
+        this.close();
       }
     }
-  };
+  }
 
-  /**
-   * Helpers
-   */
-
-  const modalNotFound = (key) => {
+  modalNotFound(key) {
     return Promise.reject(
       new Error(`Did not find modal with key: "${key}"`)
     );
-  };
+  }
 
-  const moveModals = (
-    selector = api.settings.moveModals.selector,
-    location = api.settings.moveModals.location
-  ) => {
+  moveModals(
+    selector = this.settings.moveModals.selector,
+    location = this.settings.moveModals.location
+  ) {
     if (selector) {
       const el = document.querySelector(selector);
       if (el) {
-        const modals = document.querySelectorAll(`[data-${api.settings.dataModal}]`);
+        const modals = document.querySelectorAll(`[data-${this.settings.dataModal}]`);
         modals.forEach((modal) => {
           if (location === 'after') {
             el.after(modal);
@@ -147,89 +146,70 @@ export default function (options) {
         });
       }
     }
-  };
+  }
 
-  api.moveModals = (selector, location) => {
-    moveModals(selector, location);
-  };
-
-  const setInitialState = () => {
-    const modals = document.querySelectorAll(`[data-${api.settings.dataModal}]`);
+  setInitialState() {
+    const modals = document.querySelectorAll(`[data-${this.settings.dataModal}]`);
     modals.forEach((el) => {
-      if (el.classList.contains(api.settings.stateOpened)) {
-        setInert(false, api.settings.selectorInert);
-        setOverflowHidden(false, api.settings.selectorOverflow);
-        focusTrigger(api);
-        api.focusTrap.destroy();
+      if (el.classList.contains(this.settings.stateOpened)) {
+        setInert(false, this.settings.selectorInert);
+        setOverflowHidden(false, this.settings.selectorOverflow);
+        focusTrigger(this);
+        this.focusTrap.destroy();
       }
       removeClass(el,
-        api.settings.stateOpened,
-        api.settings.stateOpening,
-        api.settings.stateClosing
+        this.settings.stateOpened,
+        this.settings.stateOpening,
+        this.settings.stateClosing
       );
-      addClass(el, api.settings.stateClosed);
+      addClass(el, this.settings.stateClosed);
     });
-  };
+  }
 
-  api.setInitialState = () => {
-    setInitialState();
-  };
+  setTabindex(state = true) {
+    setTabindex(state, this.selectorTabindex);
+  }
 
-  api.setTabindex = (state = true) => {
-    setTabindex(state, selectorTabindex);
-  };
-
-  /**
-   * Transition functionality
-   */
-
-  api.open = async (modalKey) => {
+  async open(modalKey) {
     const modal = document.querySelector(
-      `[data-${api.settings.dataModal}="${modalKey}"]`
+      `[data-${this.settings.dataModal}="${modalKey}"]`
     );
-    if (!modal) return modalNotFound(modalKey);
-    if (hasClass(modal, api.settings.stateClosed)) {
-      working = true;
-      setOverflowHidden(true, api.settings.selectorOverflow);
-      await transition.open(modal, api.settings);
-      api.focusTrap.init(modal);
-      focusTarget(modal, api.settings);
-      setInert(true, api.settings.selectorInert);
-      modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
+    if (!modal) return this.modalNotFound(modalKey);
+    if (hasClass(modal, this.settings.stateClosed)) {
+      this.working = true;
+      setOverflowHidden(true, this.settings.selectorOverflow);
+      await transition.open(modal, this.settings);
+      this.focusTrap.init(modal);
+      focusTarget(modal, this.settings);
+      setInert(true, this.settings.selectorInert);
+      modal.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'opened', {
         bubbles: true
       }));
-      working = false;
+      this.working = false;
       return modal;
     } else {
       return modal;
     }
-  };
+  }
 
-  api.close = async (returnFocus = true) => {
+  async close(returnFocus = true) {
     const modal = document.querySelector(
-      `[data-${api.settings.dataModal}].${api.settings.stateOpened}`
+      `[data-${this.settings.dataModal}].${this.settings.stateOpened}`
     );
     if (modal) {
-      working = true;
-      setInert(false, api.settings.selectorInert);
-      setOverflowHidden(false, api.settings.selectorOverflow);
-      await transition.close(modal, api.settings);
-      if (returnFocus) focusTrigger(api);
-      api.focusTrap.destroy();
-      modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
+      this.working = true;
+      setInert(false, this.settings.selectorInert);
+      setOverflowHidden(false, this.settings.selectorOverflow);
+      await transition.close(modal, this.settings);
+      if (returnFocus) focusTrigger(this);
+      this.focusTrap.destroy();
+      modal.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'closed', {
         bubbles: true
       }));
-      working = false;
+      this.working = false;
       return modal;
     } else {
       return modal;
     }
-  };
-
-  /**
-   * Init and return
-   */
-
-  if (api.settings.autoInit) api.init();
-  return api;
+  }
 }

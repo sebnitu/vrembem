@@ -22,7 +22,7 @@ const markup = `
 
 beforeAll(async () => {
   document.body.innerHTML = markup;
-  modal = Modal({
+  modal = new Modal({
     autoInit: true,
     moveModals: {
       selector: '[role="main"]',
@@ -86,10 +86,10 @@ test('should prepend modals inside main', () => {
 });
 
 test('should not throw error if provided location isn\'t valid', () => {
-  expect(modal.moveModals.bind(null, '[role="main"]', 'asdf')).not.toThrow();
+  expect(modal.moveModals.bind(modal, '[role="main"]', 'asdf')).not.toThrow();
 });
 
 test('should not throw error if selector doesn\'t return an element', () => {
-  expect(modal.moveModals.bind(null, '.asdf', 'after')).not.toThrow();
+  expect(modal.moveModals.bind(modal, '.asdf', 'after')).not.toThrow();
 });
 

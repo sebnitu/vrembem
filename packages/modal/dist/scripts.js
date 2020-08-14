@@ -668,6 +668,32 @@
 
 	var defineProperty = _defineProperty;
 
+	function _classCallCheck(instance, Constructor) {
+	  if (!(instance instanceof Constructor)) {
+	    throw new TypeError("Cannot call a class as a function");
+	  }
+	}
+
+	var classCallCheck = _classCallCheck;
+
+	function _defineProperties(target, props) {
+	  for (var i = 0; i < props.length; i++) {
+	    var descriptor = props[i];
+	    descriptor.enumerable = descriptor.enumerable || false;
+	    descriptor.configurable = true;
+	    if ("value" in descriptor) descriptor.writable = true;
+	    Object.defineProperty(target, descriptor.key, descriptor);
+	  }
+	}
+
+	function _createClass(Constructor, protoProps, staticProps) {
+	  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+	  if (staticProps) _defineProperties(Constructor, staticProps);
+	  return Constructor;
+	}
+
+	var createClass = _createClass;
+
 	var setInert = function setInert(state, selector) {
 	  if (selector) {
 	    var els = document.querySelectorAll(selector);
@@ -741,32 +767,6 @@
 	    obj.memory.trigger = null;
 	  }
 	};
-
-	function _classCallCheck(instance, Constructor) {
-	  if (!(instance instanceof Constructor)) {
-	    throw new TypeError("Cannot call a class as a function");
-	  }
-	}
-
-	var classCallCheck = _classCallCheck;
-
-	function _defineProperties(target, props) {
-	  for (var i = 0; i < props.length; i++) {
-	    var descriptor = props[i];
-	    descriptor.enumerable = descriptor.enumerable || false;
-	    descriptor.configurable = true;
-	    if ("value" in descriptor) descriptor.writable = true;
-	    Object.defineProperty(target, descriptor.key, descriptor);
-	  }
-	}
-
-	function _createClass(Constructor, protoProps, staticProps) {
-	  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-	  if (staticProps) _defineProperties(Constructor, staticProps);
-	  return Constructor;
-	}
-
-	var createClass = _createClass;
 
 	var FocusTrap = function () {
 	  function FocusTrap() {
@@ -920,283 +920,314 @@
 	function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 	function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-	function index (options) {
-	  var api = {};
-	  var defaults = {
-	    autoInit: false,
-	    dataModal: 'modal',
-	    dataDialog: 'modal-dialog',
-	    dataOpen: 'modal-open',
-	    dataClose: 'modal-close',
-	    dataFocus: 'modal-focus',
-	    dataRequired: 'modal-required',
-	    stateOpened: 'is-opened',
-	    stateOpening: 'is-opening',
-	    stateClosing: 'is-closing',
-	    stateClosed: 'is-closed',
-	    selectorInert: null,
-	    selectorOverflow: 'body',
-	    customEventPrefix: 'modal:',
-	    moveModals: {
-	      selector: null,
-	      location: null
-	    },
-	    setTabindex: true,
-	    transition: true
-	  };
-	  var working = false;
-	  api.settings = _objectSpread(_objectSpread({}, defaults), options);
-	  api.memory = {};
-	  api.focusTrap = new FocusTrap();
-	  var selectorTabindex = "[data-".concat(api.settings.dataModal, "] [data-").concat(api.settings.dataDialog, "]");
 
-	  api.init = function () {
-	    moveModals();
-	    setTabindex(api.settings.setTabindex, selectorTabindex);
-	    setInitialState();
-	    document.addEventListener('click', handler, false);
-	    document.addEventListener('touchend', handler, false);
-	    document.addEventListener('keyup', handlerEscape, false);
-	  };
+	var Modal = function () {
+	  function Modal(options) {
+	    classCallCheck(this, Modal);
 
-	  api.destroy = function () {
-	    api.memory = {};
-	    document.removeEventListener('click', handler, false);
-	    document.removeEventListener('touchend', handler, false);
-	    document.removeEventListener('keyup', handlerEscape, false);
-	  };
-
-	  var handler = function () {
-	    var _ref = asyncToGenerator(regenerator.mark(function _callee(event) {
-	      var trigger, modalKey, fromModal;
-	      return regenerator.wrap(function _callee$(_context) {
-	        while (1) {
-	          switch (_context.prev = _context.next) {
-	            case 0:
-	              if (!working) {
-	                _context.next = 2;
-	                break;
-	              }
-
-	              return _context.abrupt("return");
-
-	            case 2:
-	              trigger = event.target.closest("[data-".concat(api.settings.dataOpen, "]"));
-
-	              if (!trigger) {
-	                _context.next = 12;
-	                break;
-	              }
-
-	              event.preventDefault();
-	              modalKey = trigger.getAttribute("data-".concat(api.settings.dataOpen));
-	              fromModal = event.target.closest("[data-".concat(api.settings.dataModal, "]"));
-	              if (!fromModal) api.memory.trigger = trigger;
-	              _context.next = 10;
-	              return api.close(!fromModal);
-
-	            case 10:
-	              api.open(modalKey);
-	              return _context.abrupt("return");
-
-	            case 12:
-	              if (!event.target.closest("[data-".concat(api.settings.dataClose, "]"))) {
-	                _context.next = 16;
-	                break;
-	              }
-
-	              event.preventDefault();
-	              api.close();
-	              return _context.abrupt("return");
-
-	            case 16:
-	              if (!(event.target.hasAttribute("data-".concat(api.settings.dataModal)) && !event.target.hasAttribute("data-".concat(api.settings.dataRequired)))) {
-	                _context.next = 19;
-	                break;
-	              }
-
-	              api.close();
-	              return _context.abrupt("return");
-
-	            case 19:
-	            case "end":
-	              return _context.stop();
-	          }
-	        }
-	      }, _callee);
-	    }));
-
-	    return function handler(_x) {
-	      return _ref.apply(this, arguments);
+	    this.defaults = {
+	      autoInit: false,
+	      dataModal: 'modal',
+	      dataDialog: 'modal-dialog',
+	      dataOpen: 'modal-open',
+	      dataClose: 'modal-close',
+	      dataFocus: 'modal-focus',
+	      dataRequired: 'modal-required',
+	      stateOpened: 'is-opened',
+	      stateOpening: 'is-opening',
+	      stateClosing: 'is-closing',
+	      stateClosed: 'is-closed',
+	      selectorInert: null,
+	      selectorOverflow: 'body',
+	      customEventPrefix: 'modal:',
+	      moveModals: {
+	        selector: null,
+	        location: null
+	      },
+	      setTabindex: true,
+	      transition: true
 	    };
-	  }();
+	    this.working = false;
+	    this.settings = _objectSpread(_objectSpread({}, this.defaults), options);
+	    this.memory = {};
+	    this.focusTrap = new FocusTrap();
+	    this.selectorTabindex = "[data-".concat(this.settings.dataModal, "] [data-").concat(this.settings.dataDialog, "]");
+	    this.handlerClickRef = this.handler.bind(this);
+	    this.handlerKeyupRef = this.handlerEscape.bind(this);
+	    if (this.settings.autoInit) this.init();
+	  }
 
-	  var handlerEscape = function handlerEscape(event) {
-	    if (working) return;
+	  createClass(Modal, [{
+	    key: "init",
+	    value: function init() {
+	      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+	      if (options) this.settings = _objectSpread(_objectSpread({}, this.settings), options);
+	      this.setInitialState();
 
-	    if (event.key === 'Escape' || event.keyCode === 27) {
-	      var target = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpened));
+	      setTabindex(this.settings.setTabindex, this.selectorTabindex);
 
-	      if (target && !target.hasAttribute("data-".concat(api.settings.dataRequired))) {
-	        api.close();
-	      }
+	      this.moveModals();
+	      document.addEventListener('click', this.handlerClickRef, false);
+	      document.addEventListener('touchend', this.handlerClickRef, false);
+	      document.addEventListener('keyup', this.handlerKeyupRef, false);
 	    }
-	  };
-
-	  var modalNotFound = function modalNotFound(key) {
-	    return Promise.reject(new Error("Did not find modal with key: \"".concat(key, "\"")));
-	  };
-
-	  var moveModals = function moveModals() {
-	    var selector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : api.settings.moveModals.selector;
-	    var location = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : api.settings.moveModals.location;
-
-	    if (selector) {
-	      var el = document.querySelector(selector);
-
-	      if (el) {
-	        var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "]"));
-	        modals.forEach(function (modal) {
-	          if (location === 'after') {
-	            el.after(modal);
-	          } else if (location === 'before') {
-	            el.before(modal);
-	          } else if (location === 'append') {
-	            el.append(modal);
-	          } else if (location === 'prepend') {
-	            el.prepend(modal);
-	          }
-	        });
-	      }
+	  }, {
+	    key: "destroy",
+	    value: function destroy() {
+	      this.memory = {};
+	      document.removeEventListener('click', this.handlerClickRef, false);
+	      document.removeEventListener('touchend', this.handlerClickRef, false);
+	      document.removeEventListener('keyup', this.handlerKeyupRef, false);
 	    }
-	  };
+	  }, {
+	    key: "handler",
+	    value: function () {
+	      var _handler = asyncToGenerator(regenerator.mark(function _callee(event) {
+	        var trigger, modalKey, fromModal;
+	        return regenerator.wrap(function _callee$(_context) {
+	          while (1) {
+	            switch (_context.prev = _context.next) {
+	              case 0:
+	                if (!this.working) {
+	                  _context.next = 2;
+	                  break;
+	                }
 
-	  api.moveModals = function (selector, location) {
-	    moveModals(selector, location);
-	  };
+	                return _context.abrupt("return");
 
-	  var setInitialState = function setInitialState() {
-	    var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "]"));
-	    modals.forEach(function (el) {
-	      if (el.classList.contains(api.settings.stateOpened)) {
-	        setInert(false, api.settings.selectorInert);
-	        setOverflowHidden(false, api.settings.selectorOverflow);
-	        focusTrigger(api);
-	        api.focusTrap.destroy();
-	      }
+	              case 2:
+	                trigger = event.target.closest("[data-".concat(this.settings.dataOpen, "]"));
 
-	      removeClass(el, api.settings.stateOpened, api.settings.stateOpening, api.settings.stateClosing);
-	      addClass(el, api.settings.stateClosed);
-	    });
-	  };
+	                if (!trigger) {
+	                  _context.next = 12;
+	                  break;
+	                }
 
-	  api.setInitialState = function () {
-	    setInitialState();
-	  };
+	                event.preventDefault();
+	                modalKey = trigger.getAttribute("data-".concat(this.settings.dataOpen));
+	                fromModal = event.target.closest("[data-".concat(this.settings.dataModal, "]"));
+	                if (!fromModal) this.memory.trigger = trigger;
+	                _context.next = 10;
+	                return this.close(!fromModal);
 
-	  api.setTabindex = function () {
-	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-	    setTabindex(state, selectorTabindex);
-	  };
+	              case 10:
+	                this.open(modalKey);
+	                return _context.abrupt("return");
 
-	  api.open = function () {
-	    var _ref2 = asyncToGenerator(regenerator.mark(function _callee2(modalKey) {
-	      var modal;
-	      return regenerator.wrap(function _callee2$(_context2) {
-	        while (1) {
-	          switch (_context2.prev = _context2.next) {
-	            case 0:
-	              modal = document.querySelector("[data-".concat(api.settings.dataModal, "=\"").concat(modalKey, "\"]"));
+	              case 12:
+	                if (!event.target.closest("[data-".concat(this.settings.dataClose, "]"))) {
+	                  _context.next = 16;
+	                  break;
+	                }
 
-	              if (modal) {
-	                _context2.next = 3;
-	                break;
-	              }
+	                event.preventDefault();
+	                this.close();
+	                return _context.abrupt("return");
 
-	              return _context2.abrupt("return", modalNotFound(modalKey));
+	              case 16:
+	                if (!(event.target.hasAttribute("data-".concat(this.settings.dataModal)) && !event.target.hasAttribute("data-".concat(this.settings.dataRequired)))) {
+	                  _context.next = 19;
+	                  break;
+	                }
 
-	            case 3:
-	              if (!hasClass(modal, api.settings.stateClosed)) {
-	                _context2.next = 16;
-	                break;
-	              }
+	                this.close();
+	                return _context.abrupt("return");
 
-	              working = true;
-	              setOverflowHidden(true, api.settings.selectorOverflow);
-	              _context2.next = 8;
-	              return transition.open(modal, api.settings);
-
-	            case 8:
-	              api.focusTrap.init(modal);
-	              focusTarget(modal, api.settings);
-	              setInert(true, api.settings.selectorInert);
-	              modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
-	                bubbles: true
-	              }));
-	              working = false;
-	              return _context2.abrupt("return", modal);
-
-	            case 16:
-	              return _context2.abrupt("return", modal);
-
-	            case 17:
-	            case "end":
-	              return _context2.stop();
-	          }
-	        }
-	      }, _callee2);
-	    }));
-
-	    return function (_x2) {
-	      return _ref2.apply(this, arguments);
-	    };
-	  }();
-
-	  api.close = asyncToGenerator(regenerator.mark(function _callee3() {
-	    var returnFocus,
-	        modal,
-	        _args3 = arguments;
-	    return regenerator.wrap(function _callee3$(_context3) {
-	      while (1) {
-	        switch (_context3.prev = _context3.next) {
-	          case 0:
-	            returnFocus = _args3.length > 0 && _args3[0] !== undefined ? _args3[0] : true;
-	            modal = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpened));
-
-	            if (!modal) {
-	              _context3.next = 15;
-	              break;
+	              case 19:
+	              case "end":
+	                return _context.stop();
 	            }
+	          }
+	        }, _callee, this);
+	      }));
 
-	            working = true;
-	            setInert(false, api.settings.selectorInert);
-	            setOverflowHidden(false, api.settings.selectorOverflow);
-	            _context3.next = 8;
-	            return transition.close(modal, api.settings);
+	      function handler(_x) {
+	        return _handler.apply(this, arguments);
+	      }
 
-	          case 8:
-	            if (returnFocus) focusTrigger(api);
-	            api.focusTrap.destroy();
-	            modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
-	              bubbles: true
-	            }));
-	            working = false;
-	            return _context3.abrupt("return", modal);
+	      return handler;
+	    }()
+	  }, {
+	    key: "handlerEscape",
+	    value: function handlerEscape(event) {
+	      if (this.working) return;
 
-	          case 15:
-	            return _context3.abrupt("return", modal);
+	      if (event.key === 'Escape' || event.keyCode === 27) {
+	        var target = document.querySelector("[data-".concat(this.settings.dataModal, "].").concat(this.settings.stateOpened));
 
-	          case 16:
-	          case "end":
-	            return _context3.stop();
+	        if (target && !target.hasAttribute("data-".concat(this.settings.dataRequired))) {
+	          this.close();
 	        }
 	      }
-	    }, _callee3);
-	  }));
-	  if (api.settings.autoInit) api.init();
-	  return api;
-	}
+	    }
+	  }, {
+	    key: "modalNotFound",
+	    value: function modalNotFound(key) {
+	      return Promise.reject(new Error("Did not find modal with key: \"".concat(key, "\"")));
+	    }
+	  }, {
+	    key: "moveModals",
+	    value: function moveModals() {
+	      var selector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.settings.moveModals.selector;
+	      var location = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.settings.moveModals.location;
 
-	return index;
+	      if (selector) {
+	        var el = document.querySelector(selector);
+
+	        if (el) {
+	          var modals = document.querySelectorAll("[data-".concat(this.settings.dataModal, "]"));
+	          modals.forEach(function (modal) {
+	            if (location === 'after') {
+	              el.after(modal);
+	            } else if (location === 'before') {
+	              el.before(modal);
+	            } else if (location === 'append') {
+	              el.append(modal);
+	            } else if (location === 'prepend') {
+	              el.prepend(modal);
+	            }
+	          });
+	        }
+	      }
+	    }
+	  }, {
+	    key: "setInitialState",
+	    value: function setInitialState() {
+	      var _this = this;
+
+	      var modals = document.querySelectorAll("[data-".concat(this.settings.dataModal, "]"));
+	      modals.forEach(function (el) {
+	        if (el.classList.contains(_this.settings.stateOpened)) {
+	          setInert(false, _this.settings.selectorInert);
+	          setOverflowHidden(false, _this.settings.selectorOverflow);
+	          focusTrigger(_this);
+
+	          _this.focusTrap.destroy();
+	        }
+
+	        removeClass(el, _this.settings.stateOpened, _this.settings.stateOpening, _this.settings.stateClosing);
+	        addClass(el, _this.settings.stateClosed);
+	      });
+	    }
+	  }, {
+	    key: "setTabindex",
+	    value: function setTabindex$1() {
+	      var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+	      setTabindex(state, this.selectorTabindex);
+	    }
+	  }, {
+	    key: "open",
+	    value: function () {
+	      var _open = asyncToGenerator(regenerator.mark(function _callee2(modalKey) {
+	        var modal;
+	        return regenerator.wrap(function _callee2$(_context2) {
+	          while (1) {
+	            switch (_context2.prev = _context2.next) {
+	              case 0:
+	                modal = document.querySelector("[data-".concat(this.settings.dataModal, "=\"").concat(modalKey, "\"]"));
+
+	                if (modal) {
+	                  _context2.next = 3;
+	                  break;
+	                }
+
+	                return _context2.abrupt("return", this.modalNotFound(modalKey));
+
+	              case 3:
+	                if (!hasClass(modal, this.settings.stateClosed)) {
+	                  _context2.next = 16;
+	                  break;
+	                }
+
+	                this.working = true;
+	                setOverflowHidden(true, this.settings.selectorOverflow);
+	                _context2.next = 8;
+	                return transition.open(modal, this.settings);
+
+	              case 8:
+	                this.focusTrap.init(modal);
+	                focusTarget(modal, this.settings);
+	                setInert(true, this.settings.selectorInert);
+	                modal.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'opened', {
+	                  bubbles: true
+	                }));
+	                this.working = false;
+	                return _context2.abrupt("return", modal);
+
+	              case 16:
+	                return _context2.abrupt("return", modal);
+
+	              case 17:
+	              case "end":
+	                return _context2.stop();
+	            }
+	          }
+	        }, _callee2, this);
+	      }));
+
+	      function open(_x2) {
+	        return _open.apply(this, arguments);
+	      }
+
+	      return open;
+	    }()
+	  }, {
+	    key: "close",
+	    value: function () {
+	      var _close = asyncToGenerator(regenerator.mark(function _callee3() {
+	        var returnFocus,
+	            modal,
+	            _args3 = arguments;
+	        return regenerator.wrap(function _callee3$(_context3) {
+	          while (1) {
+	            switch (_context3.prev = _context3.next) {
+	              case 0:
+	                returnFocus = _args3.length > 0 && _args3[0] !== undefined ? _args3[0] : true;
+	                modal = document.querySelector("[data-".concat(this.settings.dataModal, "].").concat(this.settings.stateOpened));
+
+	                if (!modal) {
+	                  _context3.next = 15;
+	                  break;
+	                }
+
+	                this.working = true;
+	                setInert(false, this.settings.selectorInert);
+	                setOverflowHidden(false, this.settings.selectorOverflow);
+	                _context3.next = 8;
+	                return transition.close(modal, this.settings);
+
+	              case 8:
+	                if (returnFocus) focusTrigger(this);
+	                this.focusTrap.destroy();
+	                modal.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'closed', {
+	                  bubbles: true
+	                }));
+	                this.working = false;
+	                return _context3.abrupt("return", modal);
+
+	              case 15:
+	                return _context3.abrupt("return", modal);
+
+	              case 16:
+	              case "end":
+	                return _context3.stop();
+	            }
+	          }
+	        }, _callee3, this);
+	      }));
+
+	      function close() {
+	        return _close.apply(this, arguments);
+	      }
+
+	      return close;
+	    }()
+	  }]);
+
+	  return Modal;
+	}();
+
+	return Modal;
 
 })));

@@ -48,7 +48,7 @@ afterEach(() => {
 
 test('should focus modal dialog when opened and refocus trigger when closed', async () => {
   document.body.innerHTML = markup;
-  modal = Modal({ autoInit: true });
+  modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal="modal-one"]');
   const dialog = el.querySelector('[data-modal-dialog]');
   const btnOpen = document.querySelector('[data-modal-open="modal-one"]');
@@ -60,7 +60,7 @@ test('should focus modal dialog when opened and refocus trigger when closed', as
 
 test('should focus inner modal element and refocus trigger when closed', async () => {
   document.body.innerHTML = markup;
-  modal = Modal({ autoInit: true });
+  modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal="modal-two"]');
   const btnOpen = document.querySelector('[data-modal-open="modal-two"]');
   const btnClose = el.querySelector('[data-modal-close]');
@@ -76,7 +76,7 @@ test('should focus inner modal element and refocus trigger when closed', async (
 
 test('should remember initial trigger when opening modal through another modal', async () => {
   document.body.innerHTML = markup;
-  modal = Modal({ autoInit: true });
+  modal = new Modal({ autoInit: true });
   const elOne = document.querySelector('[data-modal="modal-one"]');
   const elTwo = document.querySelector('[data-modal="modal-two"]');
   const btnOpen = document.querySelector('[data-modal-open="modal-one"]');
@@ -98,7 +98,7 @@ test('should remember initial trigger when opening modal through another modal',
 
 test('should throw error if modal is not found on open call', async () => {
   document.body.innerHTML = markup;
-  modal = Modal({ autoInit: true });
+  modal = new Modal({ autoInit: true });
   modal.open('asdf').catch((error) => {
     expect(error.message).toBe('Did not find modal with key: "asdf"');
   });
@@ -106,7 +106,7 @@ test('should throw error if modal is not found on open call', async () => {
 
 test('should retain focus on modal if nothing inner is focusable', async () => {
   document.body.innerHTML = markup;
-  modal = Modal({ autoInit: true });
+  modal = new Modal({ autoInit: true });
   const elModal = document.querySelector('[data-modal="modal-empty"');
   const dialog = elModal.querySelector('[data-modal-dialog]');
   modal.open('modal-empty');
@@ -121,7 +121,7 @@ test('should retain focus on modal if nothing inner is focusable', async () => {
 
 // test('should properly setup a focus trap when modal is open', async () => {
 //   document.body.innerHTML = markup;
-//   modal = Modal({ autoInit: true });
+//   modal = new Modal({ autoInit: true });
 //   const elModal = document.querySelector('[data-modal="modal-one"');
 //   const dialog = elModal.querySelector('[data-modal-dialog]');
 //   modal.open('modal-one');
@@ -156,7 +156,7 @@ test('should retain focus on modal if nothing inner is focusable', async () => {
 // NOTICE: Requires a headless browser to test properly
 // test('should remove unfocusable elements from memory', async () => {
 //   document.body.innerHTML = markupPruneFocusable;
-//   modal = Modal({ autoInit: true });
+//   modal = new Modal({ autoInit: true });
 //   const el = document.querySelector('[data-modal]');
 
 //   modal.open('modal-default');

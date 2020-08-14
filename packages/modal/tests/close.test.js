@@ -27,7 +27,7 @@ afterEach(() => {
 
 test('should close when root modal (screen) is clicked', async () => {
   document.body.innerHTML = markup;
-  modal = Modal({ autoInit: true });
+  modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal]');
   const dialog = document.querySelector('.modal__dialog');
   const btnOpen = document.querySelector('[data-modal-open]');
@@ -49,7 +49,7 @@ test('should close when root modal (screen) is clicked', async () => {
 
 test('should close when the escape key is pressed', async () => {
   document.body.innerHTML = markup;
-  modal = Modal({ autoInit: true });
+  modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal]');
   const btnOpen = document.querySelector('[data-modal-open]');
 
@@ -70,7 +70,7 @@ test('should close when the escape key is pressed', async () => {
 
 test('should do nothing if none escape key is pressed', async () => {
   document.body.innerHTML = markup;
-  modal = Modal({ autoInit: true });
+  modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal]');
   const btnOpen = document.querySelector('[data-modal-open]');
 
@@ -91,7 +91,7 @@ test('should do nothing if none escape key is pressed', async () => {
 
 test('should not be able to close while modal transition is in process', async () => {
   document.body.innerHTML = markup;
-  modal = Modal({ autoInit: true });
+  modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal]');
   const btnOpen = document.querySelector('[data-modal-open]');
 
