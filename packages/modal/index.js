@@ -43,8 +43,8 @@ export default class Modal {
       setTabindex: true,
       transition: true
     };
-    this.working = false;
     this.settings = { ...this.defaults, ...options };
+    this.working = false;
     this.memory = {};
     this.focusTrap = new FocusTrap();
     this.selectorTabindex = `[data-${this.settings.dataModal}] [data-${this.settings.dataDialog}]`;
@@ -58,7 +58,7 @@ export default class Modal {
   init(options = null) {
     if (options) this.settings = { ...this.settings, ...options };
     this.setInitialState();
-    setTabindex(this.settings.setTabindex, this.selectorTabindex);
+    this.setTabindex(this.settings.setTabindex, this.selectorTabindex);
     this.moveModals();
     document.addEventListener('click', this.handlerClickRef, false);
     document.addEventListener('touchend', this.handlerClickRef, false);

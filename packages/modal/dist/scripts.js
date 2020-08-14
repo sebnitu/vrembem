@@ -947,8 +947,8 @@
 	      setTabindex: true,
 	      transition: true
 	    };
-	    this.working = false;
 	    this.settings = _objectSpread(_objectSpread({}, this.defaults), options);
+	    this.working = false;
 	    this.memory = {};
 	    this.focusTrap = new FocusTrap();
 	    this.selectorTabindex = "[data-".concat(this.settings.dataModal, "] [data-").concat(this.settings.dataDialog, "]");
@@ -963,9 +963,7 @@
 	      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 	      if (options) this.settings = _objectSpread(_objectSpread({}, this.settings), options);
 	      this.setInitialState();
-
-	      setTabindex(this.settings.setTabindex, this.selectorTabindex);
-
+	      this.setTabindex(this.settings.setTabindex, this.selectorTabindex);
 	      this.moveModals();
 	      document.addEventListener('click', this.handlerClickRef, false);
 	      document.addEventListener('touchend', this.handlerClickRef, false);

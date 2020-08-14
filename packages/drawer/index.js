@@ -12,377 +12,354 @@ import {
 import transition from '@vrembem/core/src/js/transition';
 import { FocusTrap } from '@vrembem/core/src/js/focusTrap';
 
-export default function (options) {
+export default class Drawer {
+  constructor(options) {
+    this.defaults = {
+      autoInit: false,
 
-  const api = {};
-  const defaults = {
-    autoInit: false,
+      // Data attributes
+      dataDrawer: 'drawer',
+      dataDialog: 'drawer-dialog',
+      dataToggle: 'drawer-toggle',
+      dataOpen: 'drawer-open',
+      dataClose: 'drawer-close',
+      dataBreakpoint: 'drawer-breakpoint',
+      dataFocus: 'drawer-focus',
 
-    // Data attributes
-    dataDrawer: 'drawer',
-    dataDialog: 'drawer-dialog',
-    dataToggle: 'drawer-toggle',
-    dataOpen: 'drawer-open',
-    dataClose: 'drawer-close',
-    dataBreakpoint: 'drawer-breakpoint',
-    dataFocus: 'drawer-focus',
+      // State classes
+      stateOpened: 'is-opened',
+      stateOpening: 'is-opening',
+      stateClosing: 'is-closing',
+      stateClosed: 'is-closed',
 
-    // State classes
-    stateOpened: 'is-opened',
-    stateOpening: 'is-opening',
-    stateClosing: 'is-closing',
-    stateClosed: 'is-closed',
+      // Classes
+      classModal: 'drawer_modal',
 
-    // Classes
-    classModal: 'drawer_modal',
+      // Selectors
+      selectorInert: null,
+      selectorOverflow: null,
 
-    // Selectors
-    selectorInert: null,
-    selectorOverflow: null,
+      // Feature toggles
+      breakpoints: breakpoints,
+      customEventPrefix: 'drawer:',
+      stateSave: true,
+      stateKey: 'DrawerState',
+      setTabindex: true,
+      transition: true
+    };
+    this.settings = { ...this.defaults, ...options };
+    this.working = false;
+    this.memory = {};
+    this.state = {};
+    this.breakpoint = {};
+    this.focusTrap = new FocusTrap();
+    this.selectorTabindex = `[data-${this.settings.dataDrawer}] [data-${this.settings.dataDialog}]`;
 
-    // Feature toggles
-    breakpoints: breakpoints,
-    customEventPrefix: 'drawer:',
-    stateSave: true,
-    stateKey: 'DrawerState',
-    setTabindex: true,
-    transition: true
-  };
+    this.handlerClick = this.handlerClick.bind(this);
+    this.handlerKeyup = this.handlerKeyup.bind(this);
+    this.breakpointCheck = this.breakpointCheck.bind(this);
 
-  let working = false;
+    if (this.settings.autoInit) this.init();
+  }
 
-  api.settings = { ...defaults, ...options };
-  api.memory = {};
-  api.state = {};
-  api.breakpoint = {};
-  api.focusTrap = new FocusTrap();
+  init() {
+    this.stateSet();
+    this.setTabindex(this.settings.setTabindex, this.selectorTabindex);
+    this.breakpointInit();
+    document.addEventListener('click', this.handlerClick, false);
+    document.addEventListener('touchend', this.handlerClick, false);
+    document.addEventListener('keyup', this.handlerKeyup, false);
+  }
 
-  const selectorTabindex = `[data-${api.settings.dataDrawer}] [data-${api.settings.dataDialog}]`;
+  destroy() {
+    this.breakpointDestroy();
+    this.memory = {};
+    this.state = {};
+    localStorage.removeItem(this.settings.stateKey);
+    document.removeEventListener('click', this.handlerClick, false);
+    document.removeEventListener('touchend', this.handlerClick, false);
+    document.removeEventListener('keyup', this.handlerKeyup, false);
+  }
 
-  api.init = () => {
-    stateSet();
-    setTabindex(api.settings.setTabindex, selectorTabindex);
-    api.breakpoint.init();
-    document.addEventListener('click', handler, false);
-    document.addEventListener('touchend', handler, false);
-    document.addEventListener('keyup', handlerEscape, false);
-  };
-
-  api.destroy = () => {
-    api.breakpoint.destroy();
-    api.memory = {};
-    api.state = {};
-    localStorage.removeItem(api.settings.stateKey);
-    document.removeEventListener('click', handler, false);
-    document.removeEventListener('touchend', handler, false);
-    document.removeEventListener('keyup', handlerEscape, false);
-  };
-
-  const handler = (event) => {
+  handlerClick(event) {
     // Working catch
-    if (working) return;
+    if (this.working) return;
 
     // Toggle data trigger
-    let trigger = event.target.closest(`[data-${api.settings.dataToggle}]`);
+    let trigger = event.target.closest(`[data-${this.settings.dataToggle}]`);
     if (trigger) {
-      const selector = trigger.getAttribute(`data-${api.settings.dataToggle}`);
-      api.memory.trigger = trigger;
-      api.toggle(selector);
+      const selector = trigger.getAttribute(`data-${this.settings.dataToggle}`);
+      this.memory.trigger = trigger;
+      this.toggle(selector);
       event.preventDefault();
       return;
     }
 
     // Open data trigger
-    trigger = event.target.closest(`[data-${api.settings.dataOpen}]`);
+    trigger = event.target.closest(`[data-${this.settings.dataOpen}]`);
     if (trigger) {
-      const selector = trigger.getAttribute(`data-${api.settings.dataOpen}`);
-      api.memory.trigger = trigger;
-      api.open(selector);
+      const selector = trigger.getAttribute(`data-${this.settings.dataOpen}`);
+      this.memory.trigger = trigger;
+      this.open(selector);
       event.preventDefault();
       return;
     }
 
     // Close data trigger
-    trigger = event.target.closest(`[data-${api.settings.dataClose}]`);
+    trigger = event.target.closest(`[data-${this.settings.dataClose}]`);
     if (trigger) {
-      const selector = trigger.getAttribute(`data-${api.settings.dataClose}`);
+      const selector = trigger.getAttribute(`data-${this.settings.dataClose}`);
       if (selector) {
-        api.memory.trigger = trigger;
-        api.close(selector);
+        this.memory.trigger = trigger;
+        this.close(selector);
       } else {
-        const target = event.target.closest(`[data-${api.settings.dataDrawer}]`);
-        if (target) api.close(target);
+        const target = event.target.closest(`[data-${this.settings.dataDrawer}]`);
+        if (target) this.close(target);
       }
       event.preventDefault();
       return;
     }
 
     // Screen modal trigger
-    if (event.target.hasAttribute(`data-${api.settings.dataDrawer}`)) {
-      api.close(event.target);
+    if (event.target.hasAttribute(`data-${this.settings.dataDrawer}`)) {
+      this.close(event.target);
       return;
     }
-  };
+  }
 
-  const handlerEscape = (event) => {
+  handlerKeyup(event) {
     // Working catch
-    if (working) return;
+    if (this.working) return;
 
     if (event.keyCode == 27) {
       const target = document.querySelector(
-        `.${api.settings.classModal}.${api.settings.stateOpened}`
+        `.${this.settings.classModal}.${this.settings.stateOpened}`
       );
       if (target) {
-        api.close(target);
+        this.close(target);
       }
     }
-  };
+  }
 
   /**
    * Helpers
    */
 
-  const drawerKeyCheck = (drawerKey) => {
+  drawerKeyCheck(drawerKey) {
     if (typeof drawerKey === 'string') {
       return document.querySelector(
-        `[data-${api.settings.dataDrawer}="${drawerKey}"]`
+        `[data-${this.settings.dataDrawer}="${drawerKey}"]`
       );
     } else {
       return drawerKey;
     }
-  };
+  }
 
-  const drawerNotFound = (key) => {
+  drawerNotFound(key) {
     return Promise.reject(
       new Error(`Did not find drawer with key: "${key}"`)
     );
-  };
+  }
 
-  api.setTabindex = (state = true) => {
-    setTabindex(state, selectorTabindex);
-  };
+  setTabindex(state = true) {
+    setTabindex(state, this.selectorTabindex);
+  }
 
   /**
    * Transition functionality
    */
 
-  api.open = async (drawerKey) => {
-    const drawer = drawerKeyCheck(drawerKey);
-    if (!drawer) return drawerNotFound(drawerKey);
-    if (!hasClass(drawer, api.settings.stateOpened)) {
-      working = true;
-      const isModal = hasClass(drawer, api.settings.classModal);
+  async open(drawerKey) {
+    const drawer = this.drawerKeyCheck(drawerKey);
+    if (!drawer) return this.drawerNotFound(drawerKey);
+    if (!hasClass(drawer, this.settings.stateOpened)) {
+      this.working = true;
+      const isModal = hasClass(drawer, this.settings.classModal);
       if (isModal) {
-        setOverflowHidden(true, api.settings.selectorOverflow);
+        setOverflowHidden(true, this.settings.selectorOverflow);
       }
-      await transition.open(drawer, api.settings);
-      stateSave(drawer);
+      await transition.open(drawer, this.settings);
+      this.stateSave(drawer);
       if (isModal) {
-        api.focusTrap.init(drawer);
-        setInert(true, api.settings.selectorInert);
+        this.focusTrap.init(drawer);
+        setInert(true, this.settings.selectorInert);
       }
-      focusTarget(drawer, api.settings);
-      drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
+      focusTarget(drawer, this.settings);
+      drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'opened', {
         bubbles: true
       }));
-      working = false;
+      this.working = false;
       return drawer;
     } else {
-      focusTarget(drawer, api.settings);
+      focusTarget(drawer, this.settings);
       return drawer;
     }
-  };
+  }
 
-  api.close = async (drawerKey) => {
-    const drawer = drawerKeyCheck(drawerKey);
-    if (!drawer) return drawerNotFound(drawerKey);
-    if (hasClass(drawer, api.settings.stateOpened)) {
-      working = true;
-      if (hasClass(drawer, api.settings.classModal)) {
-        setInert(false, api.settings.selectorInert);
-        setOverflowHidden(false, api.settings.selectorOverflow);
+  async close(drawerKey) {
+    const drawer = this.drawerKeyCheck(drawerKey);
+    if (!drawer) return this.drawerNotFound(drawerKey);
+    if (hasClass(drawer, this.settings.stateOpened)) {
+      this.working = true;
+      if (hasClass(drawer, this.settings.classModal)) {
+        setInert(false, this.settings.selectorInert);
+        setOverflowHidden(false, this.settings.selectorOverflow);
       }
-      await transition.close(drawer, api.settings);
-      stateSave(drawer);
-      focusTrigger(api);
-      api.focusTrap.destroy();
-      drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
+      await transition.close(drawer, this.settings);
+      this.stateSave(drawer);
+      focusTrigger(this);
+      this.focusTrap.destroy();
+      drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'closed', {
         bubbles: true
       }));
-      working = false;
+      this.working = false;
       return drawer;
     } else {
       return drawer;
     }
-  };
+  }
 
-  api.toggle = (drawerKey) => {
-    const drawer = drawerKeyCheck(drawerKey);
-    if (!drawer) return drawerNotFound(drawerKey);
-    const isOpen = hasClass(drawer, api.settings.stateOpened);
+  toggle(drawerKey) {
+    const drawer = this.drawerKeyCheck(drawerKey);
+    if (!drawer) return this.drawerNotFound(drawerKey);
+    const isOpen = hasClass(drawer, this.settings.stateOpened);
     if (!isOpen) {
-      return api.open(drawer);
+      return this.open(drawer);
     } else {
-      return api.close(drawer);
+      return this.close(drawer);
     }
-  };
+  }
 
   /**
    * Save state functionality
    */
 
-  const stateSave = (target = null) => {
-    if (api.settings.stateSave) {
+  stateSave(target = null) {
+    if (this.settings.stateSave) {
       const drawers = (target) ? [target] :
-        document.querySelectorAll(`[data-${api.settings.dataDrawer}]`);
+        document.querySelectorAll(`[data-${this.settings.dataDrawer}]`);
       drawers.forEach((el) => {
-        if (!hasClass(el, api.settings.classModal)) {
-          api.state[el.getAttribute(`data-${api.settings.dataDrawer}`)] =
-            (hasClass(el, api.settings.stateOpened)) ?
-              api.settings.stateOpened :
-              api.settings.stateClosed;
+        if (!hasClass(el, this.settings.classModal)) {
+          this.state[el.getAttribute(`data-${this.settings.dataDrawer}`)] =
+            (hasClass(el, this.settings.stateOpened)) ?
+              this.settings.stateOpened :
+              this.settings.stateClosed;
         }
       });
-      localStorage.setItem(api.settings.stateKey, JSON.stringify(api.state));
+      localStorage.setItem(this.settings.stateKey, JSON.stringify(this.state));
     }
-  };
+  }
 
-  const stateSet = () => {
-    if (api.settings.stateSave) {
-      if (localStorage.getItem(api.settings.stateKey)) {
-        api.state = JSON.parse(localStorage.getItem(api.settings.stateKey));
-        Object.keys(api.state).forEach((key) => {
+  stateSet() {
+    if (this.settings.stateSave) {
+      if (localStorage.getItem(this.settings.stateKey)) {
+        this.state = JSON.parse(localStorage.getItem(this.settings.stateKey));
+        Object.keys(this.state).forEach((key) => {
           const item = document.querySelector(
-            `[data-${api.settings.dataDrawer}="${key}"]`
+            `[data-${this.settings.dataDrawer}="${key}"]`
           );
           if (item) {
-            if (api.state[key] == api.settings.stateOpened) {
-              addClass(item, api.settings.stateOpened);
+            if (this.state[key] == this.settings.stateOpened) {
+              addClass(item, this.settings.stateOpened);
             } else {
-              removeClass(item, api.settings.stateOpened);
+              removeClass(item, this.settings.stateOpened);
             }
           }
         });
       } else {
-        stateSave();
+        this.stateSave();
       }
     } else {
-      if (localStorage.getItem(api.settings.stateKey)) {
-        localStorage.removeItem(api.settings.stateKey);
+      if (localStorage.getItem(this.settings.stateKey)) {
+        localStorage.removeItem(this.settings.stateKey);
       }
     }
-  };
+  }
 
   /**
    * Breakpoint functionality
    */
 
-  api.breakpoint.init = () => {
-    api.mediaQueryLists = [];
-    const drawers = document.querySelectorAll(`[data-${api.settings.dataBreakpoint}]`);
+  breakpointInit() {
+    this.mediaQueryLists = [];
+    const drawers = document.querySelectorAll(`[data-${this.settings.dataBreakpoint}]`);
     drawers.forEach((drawer) => {
-      const id = drawer.getAttribute(`data-${api.settings.dataDrawer}`);
-      const key = drawer.getAttribute(`data-${api.settings.dataBreakpoint}`);
-      const bp = api.settings.breakpoints[key] ? api.settings.breakpoints[key] : key;
+      const id = drawer.getAttribute(`data-${this.settings.dataDrawer}`);
+      const key = drawer.getAttribute(`data-${this.settings.dataBreakpoint}`);
+      const bp = this.settings.breakpoints[key] ? this.settings.breakpoints[key] : key;
       const mql = window.matchMedia('(min-width:' + bp + ')');
-      breakpointMatch(mql, drawer);
-      mql.addListener(breakpointCheck);
-      api.mediaQueryLists.push({
+      this.breakpointMatch(mql, drawer);
+      mql.addListener(this.breakpointCheck);
+      this.mediaQueryLists.push({
         'mql': mql,
         'drawer': id
       });
     });
-  };
+  }
 
-  api.breakpoint.destroy = () => {
-    if (api.mediaQueryLists && api.mediaQueryLists.length) {
-      api.mediaQueryLists.forEach((item) => {
-        item.mql.removeListener(breakpointCheck);
+  breakpointDestroy() {
+    if (this.mediaQueryLists && this.mediaQueryLists.length) {
+      this.mediaQueryLists.forEach((item) => {
+        item.mql.removeListener(this.breakpointCheck);
       });
     }
-    api.mediaQueryLists = null;
-  };
+    this.mediaQueryLists = null;
+  }
 
-  const breakpointCheck = (event) => {
-    if (api.mediaQueryLists && api.mediaQueryLists.length) {
-      api.mediaQueryLists.forEach((item) => {
+  breakpointCheck(event = null) {
+    if (this.mediaQueryLists && this.mediaQueryLists.length) {
+      this.mediaQueryLists.forEach((item) => {
         // If an event is passed, filter out drawers that don't match the query
         // If event is null, run all drawers through breakpointMatch
         let filter = (event) ? event.media == item.mql.media : true;
         if (filter) {
-          const drawer = document.querySelector(`[data-${api.settings.dataDrawer}="${item.drawer}"]`);
+          const drawer = document.querySelector(`[data-${this.settings.dataDrawer}="${item.drawer}"]`);
           if (drawer) {
-            breakpointMatch(item.mql, drawer);
+            this.breakpointMatch(item.mql, drawer);
           }
         }
       });
-      document.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'breakpoint', {
+      document.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'breakpoint', {
         bubbles: true
       }));
     }
-  };
+  }
 
-  api.breakpoint.check = (event = null) => {
-    breakpointCheck(event);
-  };
-
-  const breakpointMatch = (mql, drawer) => {
+  breakpointMatch(mql, drawer) {
     if (mql.matches) {
-      switchToDefault(drawer);
+      this.switchToDefault(drawer);
     } else {
-      switchToModal(drawer);
+      this.switchToModal(drawer);
     }
-  };
+  }
 
-  const switchToModal = (drawer) => {
-    if (hasClass(drawer, api.settings.classModal)) return;
-    addClass(drawer, api.settings.classModal);
-    addClass(drawer, api.settings.stateClosed);
-    removeClass(drawer, api.settings.stateOpened);
-    drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'toModal', {
+  switchToModal(drawerKey) {
+    const drawer = this.drawerKeyCheck(drawerKey);
+    if (!drawer) return this.drawerNotFound(drawerKey);
+    if (hasClass(drawer, this.settings.classModal)) return;
+    addClass(drawer, this.settings.classModal);
+    addClass(drawer, this.settings.stateClosed);
+    removeClass(drawer, this.settings.stateOpened);
+    drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'toModal', {
       bubbles: true
     }));
-  };
+  }
 
-  api.switchToModal = (drawerKey) => {
-    const drawer = document.querySelector(
-      `[data-${api.settings.dataDrawer}="${drawerKey}"]`
-    );
-    if (drawer) {
-      switchToModal(drawer);
+  switchToDefault(drawerKey) {
+    const drawer = this.drawerKeyCheck(drawerKey);
+    if (!drawer) return this.drawerNotFound(drawerKey);
+    if (!hasClass(drawer, this.settings.classModal)) return;
+    setInert(false, this.settings.selectorInert);
+    setOverflowHidden(false, this.settings.selectorOverflow);
+    removeClass(drawer, this.settings.classModal);
+    this.focusTrap.destroy();
+    const drawerState = this.state[drawerKey];
+    if (drawerState == this.settings.stateOpened) {
+      addClass(drawer, this.settings.stateOpened);
+      removeClass(drawer, this.settings.stateClosed);
     }
-  };
-
-  const switchToDefault = (drawer) => {
-    if (!hasClass(drawer, api.settings.classModal)) return;
-    setInert(false, api.settings.selectorInert);
-    setOverflowHidden(false, api.settings.selectorOverflow);
-    removeClass(drawer, api.settings.classModal);
-    api.focusTrap.destroy();
-    const drawerKey = drawer.getAttribute(`data-${api.settings.dataDrawer}`);
-    const drawerState = api.state[drawerKey];
-    if (drawerState == api.settings.stateOpened) {
-      addClass(drawer, api.settings.stateOpened);
-      removeClass(drawer, api.settings.stateClosed);
-    }
-    drawer.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'toDefault', {
+    drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'toDefault', {
       bubbles: true
     }));
-  };
-
-  api.switchToDefault = (drawerKey) => {
-    const drawer = document.querySelector(
-      `[data-${api.settings.dataDrawer}="${drawerKey}"]`
-    );
-    if (drawer) {
-      switchToDefault(drawer);
-    }
-  };
-
-  /**
-   * Init and return
-   */
-
-  if (api.settings.autoInit) api.init();
-  return api;
+  }
 }
