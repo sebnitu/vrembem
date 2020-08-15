@@ -15,9 +15,16 @@ All notable changes to this project will be documented in this file.
 
 <!--
 Commit template:
-chore(release): add v1.14.8 to CHANGELOG.md
+chore(release): add v1.14.9 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.14.9 (2020-08-15)
+
+#### :bug: Bug Fix
+* `modal`, `vrembem`
+  * [#319](https://github.com/sebnitu/vrembem/pull/319) Change the order of methods run on init ([@sebnitu](https://github.com/sebnitu))
 
 
 ## v1.14.8 (2020-08-13)
