@@ -86,9 +86,7 @@ export default class Modal {
    */
 
   async open(modalKey) {
-    const modal = document.querySelector(
-      `[data-${this.settings.dataModal}="${modalKey}"]`
-    );
+    const modal = this.getModal(modalKey);
     if (!modal) return this.modalNotFound(modalKey);
     if (hasClass(modal, this.settings.stateClosed)) {
       this.working = true;

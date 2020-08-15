@@ -19,7 +19,6 @@ export default class Drawer {
     this.focusTrap = new FocusTrap();
     this.breakpoint = new Breakpoint(this);
     this.selectorTabindex = `[data-${this.settings.dataDrawer}] [data-${this.settings.dataDialog}]`;
-    // this.breakpointCheck = this.breakpointCheck.bind(this);
     this.__handlerClick = handlerClick.bind(this);
     this.__handlerKeyup = handlerKeyup.bind(this);
     if (this.settings.autoInit) this.init();

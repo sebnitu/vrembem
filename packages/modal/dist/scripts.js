@@ -1163,7 +1163,7 @@
 	          while (1) {
 	            switch (_context.prev = _context.next) {
 	              case 0:
-	                modal = document.querySelector("[data-".concat(this.settings.dataModal, "=\"").concat(modalKey, "\"]"));
+	                modal = this.getModal(modalKey);
 
 	                if (modal) {
 	                  _context.next = 3;
