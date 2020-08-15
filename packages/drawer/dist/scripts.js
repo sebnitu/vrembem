@@ -767,13 +767,12 @@
 	    obj.memory.trigger = null;
 	  }
 	};
-
 	var FocusTrap = function () {
 	  function FocusTrap() {
 	    classCallCheck(this, FocusTrap);
 
 	    this.target = null;
-	    this.handlerFocusTrapRef = this.handlerFocusTrap.bind(this);
+	    this.handlerFocusTrap = this.handlerFocusTrap.bind(this);
 	  }
 
 	  createClass(FocusTrap, [{
@@ -785,7 +784,7 @@
 	      if (this.focusable.length) {
 	        this.focusableFirst = this.focusable[0];
 	        this.focusableLast = this.focusable[this.focusable.length - 1];
-	        this.target.addEventListener('keydown', this.handlerFocusTrapRef);
+	        this.target.addEventListener('keydown', this.handlerFocusTrap);
 	      } else {
 	        this.target.addEventListener('keydown', this.handlerFocusLock);
 	      }
@@ -797,7 +796,7 @@
 	        this.focusable = null;
 	        this.focusableFirst = null;
 	        this.focusableLast = null;
-	        this.target.removeEventListener('keydown', this.handlerFocusTrapRef);
+	        this.target.removeEventListener('keydown', this.handlerFocusTrap);
 	        this.target.removeEventListener('keydown', this.handlerFocusLock);
 	      }
 	    }

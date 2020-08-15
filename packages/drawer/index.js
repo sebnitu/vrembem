@@ -1,15 +1,8 @@
-import {
-  addClass,
-  focusTarget,
-  focusTrigger,
-  hasClass,
-  removeClass,
-  setInert,
-  setOverflowHidden,
-  setTabindex
-} from '@vrembem/core';
-import FocusTrap from '@vrembem/core/src/js/focusTrap';
-import { openTransition, closeTransition } from '@vrembem/core/src/js/transition';
+import { addClass, hasClass, removeClass } from '@vrembem/core';
+import { setInert, setOverflowHidden, setTabindex } from '@vrembem/core';
+import { FocusTrap, focusTarget, focusTrigger } from '@vrembem/core';
+import { openTransition, closeTransition } from '@vrembem/core';
+
 import { defaults } from './src/js/defaults';
 
 export default class Drawer {
@@ -22,11 +15,9 @@ export default class Drawer {
     this.breakpoint = {};
     this.focusTrap = new FocusTrap();
     this.selectorTabindex = `[data-${this.settings.dataDrawer}] [data-${this.settings.dataDialog}]`;
-
     this.handlerClick = this.handlerClick.bind(this);
     this.handlerKeyup = this.handlerKeyup.bind(this);
     this.breakpointCheck = this.breakpointCheck.bind(this);
-
     if (this.settings.autoInit) this.init();
   }
 

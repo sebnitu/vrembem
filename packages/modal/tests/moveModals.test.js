@@ -25,8 +25,8 @@ beforeAll(async () => {
   modal = new Modal({
     autoInit: true,
     moveModals: {
-      selector: '[role="main"]',
-      location: 'after'
+      ref: '[role="main"]',
+      type: 'after'
     }
   });
   main = document.querySelector('[role="main"]');
@@ -85,11 +85,11 @@ test('should prepend modals inside main', () => {
   expect(bodyEls[0]).toHaveClass('main');
 });
 
-test('should not throw error if provided location isn\'t valid', () => {
-  expect(modal.moveModals.bind(modal, '[role="main"]', 'asdf')).not.toThrow();
+test('should throw error if provided move type isn\'t valid', () => {
+  expect(modal.moveModals.bind(modal, '[role="main"]', 'asdf')).toThrow();
 });
 
-test('should not throw error if selector doesn\'t return an element', () => {
-  expect(modal.moveModals.bind(modal, '.asdf', 'after')).not.toThrow();
+test('should throw error if reference selector doesn\'t exist on page', () => {
+  expect(modal.moveModals.bind(modal, '.asdf', 'after')).toThrow();
 });
 

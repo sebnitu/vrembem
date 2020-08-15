@@ -200,8 +200,8 @@ const modal = new Modal({
   autoInit: true,
   selectorInert: '[role="main"]',
   moveModals: {
-     selector: '[role="main"]',
-     location: 'after'
+     ref: '[role="main"]',
+     type: 'after'
   }
 });
 ```
@@ -587,11 +587,11 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
       <td data-mobile-label="Key"><code class="code text-nowrap">moveModals</code></td>
       <td data-mobile-label="Default">
         <pre class="code color-secondary">{ 
-  selector: null,
-  location: null
+  ref: null,
+  type: null
 }</pre>
       </td>
-      <td data-mobile-label="Desc">Moves all modals to a location in the DOM relative to the passed selector on <code class="code">init()</code>. Location options include <code class="code">after</code>, <code class="code">before</code>, <code class="code">append</code> and <code class="code">prepend</code>.</td>
+      <td data-mobile-label="Desc">Moves all modals to a location in the DOM relative to the passed reference selector on <code class="code">init()</code>. Move type options include <code class="code">after</code>, <code class="code">before</code>, <code class="code">append</code> and <code class="code">prepend</code>.</td>
     </tr>
     <tr>
       <td data-mobile-label="Key"><code class="code text-nowrap">setTabindex</code></td>

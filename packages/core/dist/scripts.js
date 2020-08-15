@@ -62,28 +62,6 @@
     });
   };
 
-  var focusTarget = function focusTarget(target, settings) {
-    var innerFocus = target.querySelector("[data-".concat(settings.dataFocus, "]"));
-
-    if (innerFocus) {
-      innerFocus.focus();
-    } else {
-      var dialog = target.querySelector("[data-".concat(settings.dataDialog, "][tabindex=\"-1\"]"));
-
-      if (dialog) {
-        dialog.focus();
-      }
-    }
-  };
-  var focusTrigger = function focusTrigger() {
-    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-
-    if (obj.memory.trigger) {
-      obj.memory.trigger.focus();
-      obj.memory.trigger = null;
-    }
-  };
-
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
@@ -110,12 +88,33 @@
 
   var createClass = _createClass;
 
+  var focusTarget = function focusTarget(target, settings) {
+    var innerFocus = target.querySelector("[data-".concat(settings.dataFocus, "]"));
+
+    if (innerFocus) {
+      innerFocus.focus();
+    } else {
+      var dialog = target.querySelector("[data-".concat(settings.dataDialog, "][tabindex=\"-1\"]"));
+
+      if (dialog) {
+        dialog.focus();
+      }
+    }
+  };
+  var focusTrigger = function focusTrigger() {
+    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+    if (obj.memory.trigger) {
+      obj.memory.trigger.focus();
+      obj.memory.trigger = null;
+    }
+  };
   var FocusTrap = function () {
     function FocusTrap() {
       classCallCheck(this, FocusTrap);
 
       this.target = null;
-      this.handlerFocusTrapRef = this.handlerFocusTrap.bind(this);
+      this.handlerFocusTrap = this.handlerFocusTrap.bind(this);
     }
 
     createClass(FocusTrap, [{
@@ -127,7 +126,7 @@
         if (this.focusable.length) {
           this.focusableFirst = this.focusable[0];
           this.focusableLast = this.focusable[this.focusable.length - 1];
-          this.target.addEventListener('keydown', this.handlerFocusTrapRef);
+          this.target.addEventListener('keydown', this.handlerFocusTrap);
         } else {
           this.target.addEventListener('keydown', this.handlerFocusLock);
         }
@@ -139,7 +138,7 @@
           this.focusable = null;
           this.focusableFirst = null;
           this.focusableLast = null;
-          this.target.removeEventListener('keydown', this.handlerFocusTrapRef);
+          this.target.removeEventListener('keydown', this.handlerFocusTrap);
           this.target.removeEventListener('keydown', this.handlerFocusLock);
         }
       }
@@ -190,6 +189,12 @@
     return FocusTrap;
   }();
 
+  var getElement = function getElement(selector) {
+    var single = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    if (typeof selector != 'string') return selector;
+    return single ? document.querySelector(selector) : document.querySelectorAll(selector);
+  };
+
   var hasClass = function hasClass(el) {
     el = el.forEach ? el : [el];
     el = [].slice.call(el);
@@ -210,6 +215,57 @@
       return g[0] + '-' + g[1].toLowerCase();
     });
   };
+
+  function moveElement() {
+    var reference = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+    var type = arguments.length > 1 ? arguments[1] : undefined;
+    var target = arguments.length > 2 ? arguments[2] : undefined;
+
+    if (reference) {
+      var ref = getElement(reference, 1);
+      if (!ref) throw new Error("Move reference element \"".concat(reference, "\" not found!"));
+      var els = getElement(target);
+      if (!els.length) throw new Error("Move target element \"".concat(target, "\" not found!"));
+      els.forEach(function (el) {
+        switch (type) {
+          case 'after':
+            ref.after(el);
+            return {
+              ref: ref,
+              el: el,
+              type: type
+            };
+
+          case 'before':
+            ref.before(el);
+            return {
+              ref: ref,
+              el: el,
+              type: type
+            };
+
+          case 'append':
+            ref.append(el);
+            return {
+              ref: ref,
+              el: el,
+              type: type
+            };
+
+          case 'prepend':
+            ref.prepend(el);
+            return {
+              ref: ref,
+              el: el,
+              type: type
+            };
+
+          default:
+            throw new Error("Move type \"".concat(type, "\" does not exist!"));
+        }
+      });
+    }
+  }
 
   var removeClass = function removeClass(el) {
     for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -282,14 +338,17 @@
     xl: '1380px'
   };
 
+  exports.FocusTrap = FocusTrap;
   exports.addClass = addClass;
   exports.breakpoints = breakpoints;
   exports.camelCase = camelCase;
   exports.closeTransition = closeTransition;
   exports.focusTarget = focusTarget;
   exports.focusTrigger = focusTrigger;
+  exports.getElement = getElement;
   exports.hasClass = hasClass;
   exports.hyphenCase = hyphenCase;
+  exports.moveElement = moveElement;
   exports.openTransition = openTransition;
   exports.removeClass = removeClass;
   exports.setInert = setInert;

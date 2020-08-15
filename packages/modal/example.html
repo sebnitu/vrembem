@@ -244,10 +244,12 @@
     selectorInert: '[role="main"]',
     selectorOverflow: 'body, [role="main"]',
     moveModals: {
-      selector: '.modals',
-      location: 'append'
+      ref: '.modals',
+      type: 'append'
     }
   });
+
+  console.log(modal);
 
   document.addEventListener('modal:opened', () => {
     console.log(modal.memory);

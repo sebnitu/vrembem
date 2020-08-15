@@ -22,8 +22,8 @@ export const defaults = {
   // Feature toggles
   customEventPrefix: 'modal:',
   moveModals: {
-    selector: null,
-    location: null
+    ref: null,
+    type: null
   },
   setTabindex: true,
   transition: true

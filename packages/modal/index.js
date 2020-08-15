@@ -1,16 +1,11 @@
-import {
-  addClass,
-  focusTarget,
-  focusTrigger,
-  hasClass,
-  removeClass,
-  setInert,
-  setOverflowHidden,
-  setTabindex
-} from '@vrembem/core';
-import FocusTrap from '@vrembem/core/src/js/focusTrap';
-import { openTransition, closeTransition } from '@vrembem/core/src/js/transition';
+import { addClass, hasClass, removeClass } from '@vrembem/core';
+import { setInert, setOverflowHidden, setTabindex } from '@vrembem/core';
+import { FocusTrap, focusTarget, focusTrigger } from '@vrembem/core';
+import { openTransition, closeTransition } from '@vrembem/core';
+import { moveElement } from '@vrembem/core';
+
 import { defaults } from './src/js/defaults';
+import { handlerClick, handlerKeyup } from './src/js/handlers';
 
 export default class Modal {
   constructor(options) {
@@ -20,10 +15,8 @@ export default class Modal {
     this.memory = {};
     this.focusTrap = new FocusTrap();
     this.selectorTabindex = `[data-${this.settings.dataModal}] [data-${this.settings.dataDialog}]`;
-
-    this.handlerClick = this.handlerClick.bind(this);
-    this.handlerKeyup = this.handlerKeyup.bind(this);
-
+    this.__handlerClick = handlerClick.bind(this);
+    this.__handlerKeyup = handlerKeyup.bind(this);
     if (this.settings.autoInit) this.init();
   }
 
@@ -32,92 +25,27 @@ export default class Modal {
     this.setInitialState();
     this.setTabindex(this.settings.setTabindex, this.selectorTabindex);
     this.moveModals();
-    document.addEventListener('click', this.handlerClick, false);
-    document.addEventListener('touchend', this.handlerClick, false);
-    document.addEventListener('keyup', this.handlerKeyup, false);
+    document.addEventListener('click', this.__handlerClick, false);
+    document.addEventListener('touchend', this.__handlerClick, false);
+    document.addEventListener('keyup', this.__handlerKeyup, false);
   }
 
   destroy() {
     this.memory = {};
-    document.removeEventListener('click', this.handlerClick, false);
-    document.removeEventListener('touchend', this.handlerClick, false);
-    document.removeEventListener('keyup', this.handlerKeyup, false);
+    document.removeEventListener('click', this.__handlerClick, false);
+    document.removeEventListener('touchend', this.__handlerClick, false);
+    document.removeEventListener('keyup', this.__handlerKeyup, false);
   }
 
-  async handlerClick(event) {
-    // Working catch
-    if (this.working) return;
-
-    // Trigger click
-    const trigger = event.target.closest(`[data-${this.settings.dataOpen}]`);
-    if (trigger) {
-      event.preventDefault();
-      const modalKey = trigger.getAttribute(`data-${this.settings.dataOpen}`);
-      const fromModal = event.target.closest(`[data-${this.settings.dataModal}]`);
-      if (!fromModal) this.memory.trigger = trigger;
-      await this.close(!fromModal);
-      this.open(modalKey);
-      return;
-    }
-
-    // Close click
-    if (event.target.closest(`[data-${this.settings.dataClose}]`)) {
-      event.preventDefault();
-      this.close();
-      return;
-    }
-
-    // Root click
-    if (
-      event.target.hasAttribute(`data-${this.settings.dataModal}`) &&
-      !event.target.hasAttribute(`data-${this.settings.dataRequired}`)
-    ) {
-      this.close();
-      return;
-    }
-  }
-
-  handlerKeyup(event) {
-    // Working catch
-    if (this.working) return;
-
-    if (event.key === 'Escape' || event.keyCode === 27) {
-      const target = document.querySelector(
-        `[data-${this.settings.dataModal}].${this.settings.stateOpened}`
-      );
-      if (target && !target.hasAttribute(`data-${this.settings.dataRequired}`)) {
-        this.close();
-      }
-    }
-  }
-
-  modalNotFound(key) {
+  notFound(key) {
     return Promise.reject(
       new Error(`Did not find modal with key: "${key}"`)
     );
   }
 
-  moveModals(
-    selector = this.settings.moveModals.selector,
-    location = this.settings.moveModals.location
-  ) {
-    if (selector) {
-      const el = document.querySelector(selector);
-      if (el) {
-        const modals = document.querySelectorAll(`[data-${this.settings.dataModal}]`);
-        modals.forEach((modal) => {
-          if (location === 'after') {
-            el.after(modal);
-          } else if (location === 'before') {
-            el.before(modal);
-          } else if (location === 'append') {
-            el.append(modal);
-          } else if (location === 'prepend') {
-            el.prepend(modal);
-          }
-        });
-      }
-    }
+  moveModals(ref = this.settings.moveModals.ref, type = this.settings.moveModals.type) {
+    const modals = document.querySelectorAll(`[data-${this.settings.dataModal}]`);
+    if (modals.length) moveElement(ref, type, modals);
   }
 
   setInitialState() {
@@ -146,7 +74,7 @@ export default class Modal {
     const modal = document.querySelector(
       `[data-${this.settings.dataModal}="${modalKey}"]`
     );
-    if (!modal) return this.modalNotFound(modalKey);
+    if (!modal) return this.notFound(modalKey);
     if (hasClass(modal, this.settings.stateClosed)) {
       this.working = true;
       setOverflowHidden(true, this.settings.selectorOverflow);
