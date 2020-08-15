@@ -5,7 +5,7 @@ import { openTransition, closeTransition } from '@vrembem/core';
 
 import { defaults } from './src/js/defaults';
 import { handlerClick, handlerKeyup } from './src/js/handlers';
-import { stateSave, stateSet } from './src/js/state';
+import { stateClear, stateSave, stateSet } from './src/js/state';
 
 export default class Drawer {
   constructor(options) {
@@ -133,12 +133,16 @@ export default class Drawer {
    * Save state functionality
    */
 
+  stateSet() {
+    this.state = stateSet(this.settings);
+  }
+
   stateSave(target = null) {
     this.state = stateSave(target, this.settings);
   }
 
-  stateSet() {
-    this.state = stateSet(this.settings);
+  stateClear() {
+    this.state = stateClear(this.settings);
   }
 
   /**

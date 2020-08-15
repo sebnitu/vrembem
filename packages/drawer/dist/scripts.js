@@ -1001,50 +1001,38 @@
 	  }
 	}
 
+	function stateSet(settings) {
+	  if (!settings.stateSave) return stateClear(settings);
+	  if (!localStorage.getItem(settings.stateKey)) return stateSave(null, settings);
+	  var state = JSON.parse(localStorage.getItem(settings.stateKey));
+	  Object.keys(state).forEach(function (key) {
+	    var item = document.querySelector("[data-".concat(settings.dataDrawer, "=\"").concat(key, "\"]"));
+	    if (!item) return;
+	    state[key] == settings.stateOpened ? addClass(item, settings.stateOpened) : removeClass(item, settings.stateOpened);
+	  });
+	  return state;
+	}
 	function stateSave() {
 	  var target = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 	  var settings = arguments.length > 1 ? arguments[1] : undefined;
-
-	  if (settings.stateSave) {
-	    var state = localStorage.getItem(settings.stateKey) ? JSON.parse(localStorage.getItem(settings.stateKey)) : {};
-	    var drawers = target ? [target] : document.querySelectorAll("[data-".concat(settings.dataDrawer, "]"));
-	    drawers.forEach(function (el) {
-	      if (!hasClass(el, settings.classModal)) {
-	        state[el.getAttribute("data-".concat(settings.dataDrawer))] = hasClass(el, settings.stateOpened) ? settings.stateOpened : settings.stateClosed;
-	      }
-	    });
-	    localStorage.setItem(settings.stateKey, JSON.stringify(state));
-	    return state;
+	  if (!settings.stateSave) return stateClear(settings);
+	  var state = localStorage.getItem(settings.stateKey) ? JSON.parse(localStorage.getItem(settings.stateKey)) : {};
+	  var drawers = target ? [target] : document.querySelectorAll("[data-".concat(settings.dataDrawer, "]"));
+	  drawers.forEach(function (el) {
+	    if (hasClass(el, settings.classModal)) return;
+	    var drawerKey = el.getAttribute("data-".concat(settings.dataDrawer));
+	    state[drawerKey] = hasClass(el, settings.stateOpened) ? settings.stateOpened : settings.stateClosed;
+	    console.log(state[drawerKey]);
+	  });
+	  localStorage.setItem(settings.stateKey, JSON.stringify(state));
+	  return state;
+	}
+	function stateClear(settings) {
+	  if (localStorage.getItem(settings.stateKey)) {
+	    localStorage.removeItem(settings.stateKey);
 	  }
 
 	  return {};
-	}
-	function stateSet(settings) {
-	  if (settings.stateSave) {
-	    if (localStorage.getItem(settings.stateKey)) {
-	      var state = JSON.parse(localStorage.getItem(settings.stateKey));
-	      Object.keys(state).forEach(function (key) {
-	        var item = document.querySelector("[data-".concat(settings.dataDrawer, "=\"").concat(key, "\"]"));
-
-	        if (item) {
-	          if (state[key] == settings.stateOpened) {
-	            addClass(item, settings.stateOpened);
-	          } else {
-	            removeClass(item, settings.stateOpened);
-	          }
-	        }
-	      });
-	      return state;
-	    } else {
-	      return stateSave(null, settings);
-	    }
-	  } else {
-	    if (localStorage.getItem(settings.stateKey)) {
-	      localStorage.removeItem(settings.stateKey);
-	    }
-
-	    return {};
-	  }
 	}
 
 	function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -1252,15 +1240,20 @@
 	      }
 	    }
 	  }, {
+	    key: "stateSet",
+	    value: function stateSet$1() {
+	      this.state = stateSet(this.settings);
+	    }
+	  }, {
 	    key: "stateSave",
 	    value: function stateSave$1() {
 	      var target = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 	      this.state = stateSave(target, this.settings);
 	    }
 	  }, {
-	    key: "stateSet",
-	    value: function stateSet$1() {
-	      this.state = stateSet(this.settings);
+	    key: "stateClear",
+	    value: function stateClear$1() {
+	      this.state = stateClear(this.settings);
 	    }
 	  }, {
 	    key: "breakpointInit",
