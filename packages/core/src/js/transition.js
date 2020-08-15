@@ -1,20 +1,17 @@
-import { addClass } from './addClass';
-import { removeClass } from './removeClass';
-
 export const openTransition = (el, settings) => {
   return new Promise((resolve) => {
     if (settings.transition) {
-      removeClass(el, settings.stateClosed);
-      addClass(el, settings.stateOpening);
+      el.classList.remove(settings.stateClosed);
+      el.classList.add(settings.stateOpening);
       el.addEventListener('transitionend', function _f() {
-        addClass(el, settings.stateOpened);
-        removeClass(el, settings.stateOpening);
+        el.classList.add(settings.stateOpened);
+        el.classList.remove(settings.stateOpening);
         resolve(el);
         this.removeEventListener('transitionend', _f);
       });
     } else {
-      addClass(el, settings.stateOpened);
-      removeClass(el, settings.stateClosed);
+      el.classList.add(settings.stateOpened);
+      el.classList.remove(settings.stateClosed);
       resolve(el);
     }
   });
@@ -23,17 +20,17 @@ export const openTransition = (el, settings) => {
 export const closeTransition = (el, settings) => {
   return new Promise((resolve) => {
     if (settings.transition) {
-      addClass(el, settings.stateClosing);
-      removeClass(el, settings.stateOpened);
+      el.classList.add(settings.stateClosing);
+      el.classList.remove(settings.stateOpened);
       el.addEventListener('transitionend', function _f() {
-        removeClass(el, settings.stateClosing);
-        addClass(el, settings.stateClosed);
+        el.classList.remove(settings.stateClosing);
+        el.classList.add(settings.stateClosed);
         resolve(el);
         this.removeEventListener('transitionend', _f);
       });
     } else {
-      addClass(el, settings.stateClosed);
-      removeClass(el, settings.stateOpened);
+      el.classList.add(settings.stateClosed);
+      el.classList.remove(settings.stateOpened);
       resolve(el);
     }
   });
