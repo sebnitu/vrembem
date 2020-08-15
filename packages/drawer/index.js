@@ -5,6 +5,7 @@ import { openTransition, closeTransition } from '@vrembem/core';
 
 import { defaults } from './src/js/defaults';
 import { handlerClick, handlerKeyup } from './src/js/handlers';
+import { stateSave, stateSet } from './src/js/state';
 
 export default class Drawer {
   constructor(options) {
@@ -133,45 +134,11 @@ export default class Drawer {
    */
 
   stateSave(target = null) {
-    if (this.settings.stateSave) {
-      const drawers = (target) ? [target] :
-        document.querySelectorAll(`[data-${this.settings.dataDrawer}]`);
-      drawers.forEach((el) => {
-        if (!hasClass(el, this.settings.classModal)) {
-          this.state[el.getAttribute(`data-${this.settings.dataDrawer}`)] =
-            (hasClass(el, this.settings.stateOpened)) ?
-              this.settings.stateOpened :
-              this.settings.stateClosed;
-        }
-      });
-      localStorage.setItem(this.settings.stateKey, JSON.stringify(this.state));
-    }
+    this.state = stateSave(target, this.settings);
   }
 
   stateSet() {
-    if (this.settings.stateSave) {
-      if (localStorage.getItem(this.settings.stateKey)) {
-        this.state = JSON.parse(localStorage.getItem(this.settings.stateKey));
-        Object.keys(this.state).forEach((key) => {
-          const item = document.querySelector(
-            `[data-${this.settings.dataDrawer}="${key}"]`
-          );
-          if (item) {
-            if (this.state[key] == this.settings.stateOpened) {
-              addClass(item, this.settings.stateOpened);
-            } else {
-              removeClass(item, this.settings.stateOpened);
-            }
-          }
-        });
-      } else {
-        this.stateSave();
-      }
-    } else {
-      if (localStorage.getItem(this.settings.stateKey)) {
-        localStorage.removeItem(this.settings.stateKey);
-      }
-    }
+    this.state = stateSet(this.settings);
   }
 
   /**

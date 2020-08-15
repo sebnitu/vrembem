@@ -54,9 +54,8 @@ export default class Modal {
     );
   }
 
-  moveModals(ref = this.settings.moveModals.ref, type = this.settings.moveModals.type) {
-    const modals = document.querySelectorAll(`[data-${this.settings.dataModal}]`);
-    if (modals.length) moveElement(ref, type, modals);
+  setTabindex(state = true) {
+    setTabindex(state, this.selectorTabindex);
   }
 
   setInitialState() {
@@ -77,8 +76,9 @@ export default class Modal {
     });
   }
 
-  setTabindex(state = true) {
-    setTabindex(state, this.selectorTabindex);
+  moveModals(ref = this.settings.moveModals.ref, type = this.settings.moveModals.type) {
+    const modals = document.querySelectorAll(`[data-${this.settings.dataModal}]`);
+    if (modals.length) moveElement(ref, type, modals);
   }
 
   /**

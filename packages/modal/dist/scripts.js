@@ -849,7 +849,7 @@
 
 	var getElement = function getElement(selector) {
 	  var single = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-	  if (typeof selector !== 'string') return selector;
+	  if (typeof selector != 'string') return selector;
 	  return single ? document.querySelector(selector) : document.querySelectorAll(selector);
 	};
 
@@ -1121,12 +1121,11 @@
 	      return Promise.reject(new Error("Did not find modal with key: \"".concat(key, "\"")));
 	    }
 	  }, {
-	    key: "moveModals",
-	    value: function moveModals() {
-	      var ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.settings.moveModals.ref;
-	      var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.settings.moveModals.type;
-	      var modals = document.querySelectorAll("[data-".concat(this.settings.dataModal, "]"));
-	      if (modals.length) moveElement(ref, type, modals);
+	    key: "setTabindex",
+	    value: function setTabindex$1() {
+	      var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+	      setTabindex(state, this.selectorTabindex);
 	    }
 	  }, {
 	    key: "setInitialState",
@@ -1148,11 +1147,12 @@
 	      });
 	    }
 	  }, {
-	    key: "setTabindex",
-	    value: function setTabindex$1() {
-	      var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-
-	      setTabindex(state, this.selectorTabindex);
+	    key: "moveModals",
+	    value: function moveModals() {
+	      var ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.settings.moveModals.ref;
+	      var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.settings.moveModals.type;
+	      var modals = document.querySelectorAll("[data-".concat(this.settings.dataModal, "]"));
+	      if (modals.length) moveElement(ref, type, modals);
 	    }
 	  }, {
 	    key: "open",

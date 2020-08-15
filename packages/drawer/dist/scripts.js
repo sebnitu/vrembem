@@ -1001,6 +1001,52 @@
 	  }
 	}
 
+	function stateSave() {
+	  var target = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+	  var settings = arguments.length > 1 ? arguments[1] : undefined;
+
+	  if (settings.stateSave) {
+	    var state = localStorage.getItem(settings.stateKey) ? JSON.parse(localStorage.getItem(settings.stateKey)) : {};
+	    var drawers = target ? [target] : document.querySelectorAll("[data-".concat(settings.dataDrawer, "]"));
+	    drawers.forEach(function (el) {
+	      if (!hasClass(el, settings.classModal)) {
+	        state[el.getAttribute("data-".concat(settings.dataDrawer))] = hasClass(el, settings.stateOpened) ? settings.stateOpened : settings.stateClosed;
+	      }
+	    });
+	    localStorage.setItem(settings.stateKey, JSON.stringify(state));
+	    return state;
+	  }
+
+	  return {};
+	}
+	function stateSet(settings) {
+	  if (settings.stateSave) {
+	    if (localStorage.getItem(settings.stateKey)) {
+	      var state = JSON.parse(localStorage.getItem(settings.stateKey));
+	      Object.keys(state).forEach(function (key) {
+	        var item = document.querySelector("[data-".concat(settings.dataDrawer, "=\"").concat(key, "\"]"));
+
+	        if (item) {
+	          if (state[key] == settings.stateOpened) {
+	            addClass(item, settings.stateOpened);
+	          } else {
+	            removeClass(item, settings.stateOpened);
+	          }
+	        }
+	      });
+	      return state;
+	    } else {
+	      return stateSave(null, settings);
+	    }
+	  } else {
+	    if (localStorage.getItem(settings.stateKey)) {
+	      localStorage.removeItem(settings.stateKey);
+	    }
+
+	    return {};
+	  }
+	}
+
 	function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 	function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -1207,67 +1253,33 @@
 	    }
 	  }, {
 	    key: "stateSave",
-	    value: function stateSave() {
-	      var _this = this;
-
+	    value: function stateSave$1() {
 	      var target = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-
-	      if (this.settings.stateSave) {
-	        var drawers = target ? [target] : document.querySelectorAll("[data-".concat(this.settings.dataDrawer, "]"));
-	        drawers.forEach(function (el) {
-	          if (!hasClass(el, _this.settings.classModal)) {
-	            _this.state[el.getAttribute("data-".concat(_this.settings.dataDrawer))] = hasClass(el, _this.settings.stateOpened) ? _this.settings.stateOpened : _this.settings.stateClosed;
-	          }
-	        });
-	        localStorage.setItem(this.settings.stateKey, JSON.stringify(this.state));
-	      }
+	      this.state = stateSave(target, this.settings);
 	    }
 	  }, {
 	    key: "stateSet",
-	    value: function stateSet() {
-	      var _this2 = this;
-
-	      if (this.settings.stateSave) {
-	        if (localStorage.getItem(this.settings.stateKey)) {
-	          this.state = JSON.parse(localStorage.getItem(this.settings.stateKey));
-	          Object.keys(this.state).forEach(function (key) {
-	            var item = document.querySelector("[data-".concat(_this2.settings.dataDrawer, "=\"").concat(key, "\"]"));
-
-	            if (item) {
-	              if (_this2.state[key] == _this2.settings.stateOpened) {
-	                addClass(item, _this2.settings.stateOpened);
-	              } else {
-	                removeClass(item, _this2.settings.stateOpened);
-	              }
-	            }
-	          });
-	        } else {
-	          this.stateSave();
-	        }
-	      } else {
-	        if (localStorage.getItem(this.settings.stateKey)) {
-	          localStorage.removeItem(this.settings.stateKey);
-	        }
-	      }
+	    value: function stateSet$1() {
+	      this.state = stateSet(this.settings);
 	    }
 	  }, {
 	    key: "breakpointInit",
 	    value: function breakpointInit() {
-	      var _this3 = this;
+	      var _this = this;
 
 	      this.mediaQueryLists = [];
 	      var drawers = document.querySelectorAll("[data-".concat(this.settings.dataBreakpoint, "]"));
 	      drawers.forEach(function (drawer) {
-	        var id = drawer.getAttribute("data-".concat(_this3.settings.dataDrawer));
-	        var key = drawer.getAttribute("data-".concat(_this3.settings.dataBreakpoint));
-	        var bp = _this3.settings.breakpoints[key] ? _this3.settings.breakpoints[key] : key;
+	        var id = drawer.getAttribute("data-".concat(_this.settings.dataDrawer));
+	        var key = drawer.getAttribute("data-".concat(_this.settings.dataBreakpoint));
+	        var bp = _this.settings.breakpoints[key] ? _this.settings.breakpoints[key] : key;
 	        var mql = window.matchMedia('(min-width:' + bp + ')');
 
-	        _this3.breakpointMatch(mql, drawer);
+	        _this.breakpointMatch(mql, drawer);
 
-	        mql.addListener(_this3.breakpointCheck);
+	        mql.addListener(_this.breakpointCheck);
 
-	        _this3.mediaQueryLists.push({
+	        _this.mediaQueryLists.push({
 	          'mql': mql,
 	          'drawer': id
 	        });
@@ -1276,11 +1288,11 @@
 	  }, {
 	    key: "breakpointDestroy",
 	    value: function breakpointDestroy() {
-	      var _this4 = this;
+	      var _this2 = this;
 
 	      if (this.mediaQueryLists && this.mediaQueryLists.length) {
 	        this.mediaQueryLists.forEach(function (item) {
-	          item.mql.removeListener(_this4.breakpointCheck);
+	          item.mql.removeListener(_this2.breakpointCheck);
 	        });
 	      }
 
@@ -1289,7 +1301,7 @@
 	  }, {
 	    key: "breakpointCheck",
 	    value: function breakpointCheck() {
-	      var _this5 = this;
+	      var _this3 = this;
 
 	      var event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
@@ -1298,10 +1310,10 @@
 	          var filter = event ? event.media == item.mql.media : true;
 
 	          if (filter) {
-	            var drawer = document.querySelector("[data-".concat(_this5.settings.dataDrawer, "=\"").concat(item.drawer, "\"]"));
+	            var drawer = document.querySelector("[data-".concat(_this3.settings.dataDrawer, "=\"").concat(item.drawer, "\"]"));
 
 	            if (drawer) {
-	              _this5.breakpointMatch(item.mql, drawer);
+	              _this3.breakpointMatch(item.mql, drawer);
 	            }
 	          }
 	        });
