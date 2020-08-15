@@ -741,9 +741,9 @@
 	  api.memory = {};
 
 	  api.init = function () {
-	    setInitialState();
-	    setTabindex();
 	    moveModals();
+	    setTabindex();
+	    setInitialState();
 	    document.addEventListener('click', handler, false);
 	    document.addEventListener('touchend', handler, false);
 	    document.addEventListener('keyup', handlerEscape, false);
