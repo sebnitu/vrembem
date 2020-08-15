@@ -4,6 +4,7 @@ import { FocusTrap, focusTarget, focusTrigger } from '@vrembem/core';
 import { openTransition, closeTransition } from '@vrembem/core';
 
 import { defaults } from './src/js/defaults';
+import { handlerClick, handlerKeyup } from './src/js/handlers';
 
 export default class Drawer {
   constructor(options) {
@@ -15,9 +16,9 @@ export default class Drawer {
     this.breakpoint = {};
     this.focusTrap = new FocusTrap();
     this.selectorTabindex = `[data-${this.settings.dataDrawer}] [data-${this.settings.dataDialog}]`;
-    this.handlerClick = this.handlerClick.bind(this);
-    this.handlerKeyup = this.handlerKeyup.bind(this);
     this.breakpointCheck = this.breakpointCheck.bind(this);
+    this.__handlerClick = handlerClick.bind(this);
+    this.__handlerKeyup = handlerKeyup.bind(this);
     if (this.settings.autoInit) this.init();
   }
 
@@ -26,9 +27,9 @@ export default class Drawer {
     this.stateSet();
     this.setTabindex(this.settings.setTabindex, this.selectorTabindex);
     this.breakpointInit();
-    document.addEventListener('click', this.handlerClick, false);
-    document.addEventListener('touchend', this.handlerClick, false);
-    document.addEventListener('keyup', this.handlerKeyup, false);
+    document.addEventListener('click', this.__handlerClick, false);
+    document.addEventListener('touchend', this.__handlerClick, false);
+    document.addEventListener('keyup', this.__handlerKeyup, false);
   }
 
   destroy() {
@@ -36,69 +37,9 @@ export default class Drawer {
     this.memory = {};
     this.state = {};
     localStorage.removeItem(this.settings.stateKey);
-    document.removeEventListener('click', this.handlerClick, false);
-    document.removeEventListener('touchend', this.handlerClick, false);
-    document.removeEventListener('keyup', this.handlerKeyup, false);
-  }
-
-  handlerClick(event) {
-    // Working catch
-    if (this.working) return;
-
-    // Toggle data trigger
-    let trigger = event.target.closest(`[data-${this.settings.dataToggle}]`);
-    if (trigger) {
-      const selector = trigger.getAttribute(`data-${this.settings.dataToggle}`);
-      this.memory.trigger = trigger;
-      this.toggle(selector);
-      event.preventDefault();
-      return;
-    }
-
-    // Open data trigger
-    trigger = event.target.closest(`[data-${this.settings.dataOpen}]`);
-    if (trigger) {
-      const selector = trigger.getAttribute(`data-${this.settings.dataOpen}`);
-      this.memory.trigger = trigger;
-      this.open(selector);
-      event.preventDefault();
-      return;
-    }
-
-    // Close data trigger
-    trigger = event.target.closest(`[data-${this.settings.dataClose}]`);
-    if (trigger) {
-      const selector = trigger.getAttribute(`data-${this.settings.dataClose}`);
-      if (selector) {
-        this.memory.trigger = trigger;
-        this.close(selector);
-      } else {
-        const target = event.target.closest(`[data-${this.settings.dataDrawer}]`);
-        if (target) this.close(target);
-      }
-      event.preventDefault();
-      return;
-    }
-
-    // Screen modal trigger
-    if (event.target.hasAttribute(`data-${this.settings.dataDrawer}`)) {
-      this.close(event.target);
-      return;
-    }
-  }
-
-  handlerKeyup(event) {
-    // Working catch
-    if (this.working) return;
-
-    if (event.keyCode == 27) {
-      const target = document.querySelector(
-        `.${this.settings.classModal}.${this.settings.stateOpened}`
-      );
-      if (target) {
-        this.close(target);
-      }
-    }
+    document.removeEventListener('click', this.__handlerClick, false);
+    document.removeEventListener('touchend', this.__handlerClick, false);
+    document.removeEventListener('keyup', this.__handlerKeyup, false);
   }
 
   /**

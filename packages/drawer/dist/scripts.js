@@ -944,6 +944,63 @@
 	  transition: true
 	};
 
+	function handlerClick(event) {
+	  if (this.working) return;
+	  var trigger = event.target.closest("[data-".concat(this.settings.dataToggle, "]"));
+
+	  if (trigger) {
+	    var selector = trigger.getAttribute("data-".concat(this.settings.dataToggle));
+	    this.memory.trigger = trigger;
+	    this.toggle(selector);
+	    event.preventDefault();
+	    return;
+	  }
+
+	  trigger = event.target.closest("[data-".concat(this.settings.dataOpen, "]"));
+
+	  if (trigger) {
+	    var _selector = trigger.getAttribute("data-".concat(this.settings.dataOpen));
+
+	    this.memory.trigger = trigger;
+	    this.open(_selector);
+	    event.preventDefault();
+	    return;
+	  }
+
+	  trigger = event.target.closest("[data-".concat(this.settings.dataClose, "]"));
+
+	  if (trigger) {
+	    var _selector2 = trigger.getAttribute("data-".concat(this.settings.dataClose));
+
+	    if (_selector2) {
+	      this.memory.trigger = trigger;
+	      this.close(_selector2);
+	    } else {
+	      var target = event.target.closest("[data-".concat(this.settings.dataDrawer, "]"));
+	      if (target) this.close(target);
+	    }
+
+	    event.preventDefault();
+	    return;
+	  }
+
+	  if (event.target.hasAttribute("data-".concat(this.settings.dataDrawer))) {
+	    this.close(event.target);
+	    return;
+	  }
+	}
+	function handlerKeyup(event) {
+	  if (this.working) return;
+
+	  if (event.keyCode == 27) {
+	    var target = document.querySelector(".".concat(this.settings.classModal, ".").concat(this.settings.stateOpened));
+
+	    if (target) {
+	      this.close(target);
+	    }
+	  }
+	}
+
 	function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 	function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -960,9 +1017,9 @@
 	    this.breakpoint = {};
 	    this.focusTrap = new FocusTrap();
 	    this.selectorTabindex = "[data-".concat(this.settings.dataDrawer, "] [data-").concat(this.settings.dataDialog, "]");
-	    this.handlerClick = this.handlerClick.bind(this);
-	    this.handlerKeyup = this.handlerKeyup.bind(this);
 	    this.breakpointCheck = this.breakpointCheck.bind(this);
+	    this.__handlerClick = handlerClick.bind(this);
+	    this.__handlerKeyup = handlerKeyup.bind(this);
 	    if (this.settings.autoInit) this.init();
 	  }
 
@@ -974,9 +1031,9 @@
 	      this.stateSet();
 	      this.setTabindex(this.settings.setTabindex, this.selectorTabindex);
 	      this.breakpointInit();
-	      document.addEventListener('click', this.handlerClick, false);
-	      document.addEventListener('touchend', this.handlerClick, false);
-	      document.addEventListener('keyup', this.handlerKeyup, false);
+	      document.addEventListener('click', this.__handlerClick, false);
+	      document.addEventListener('touchend', this.__handlerClick, false);
+	      document.addEventListener('keyup', this.__handlerKeyup, false);
 	    }
 	  }, {
 	    key: "destroy",
@@ -985,69 +1042,9 @@
 	      this.memory = {};
 	      this.state = {};
 	      localStorage.removeItem(this.settings.stateKey);
-	      document.removeEventListener('click', this.handlerClick, false);
-	      document.removeEventListener('touchend', this.handlerClick, false);
-	      document.removeEventListener('keyup', this.handlerKeyup, false);
-	    }
-	  }, {
-	    key: "handlerClick",
-	    value: function handlerClick(event) {
-	      if (this.working) return;
-	      var trigger = event.target.closest("[data-".concat(this.settings.dataToggle, "]"));
-
-	      if (trigger) {
-	        var selector = trigger.getAttribute("data-".concat(this.settings.dataToggle));
-	        this.memory.trigger = trigger;
-	        this.toggle(selector);
-	        event.preventDefault();
-	        return;
-	      }
-
-	      trigger = event.target.closest("[data-".concat(this.settings.dataOpen, "]"));
-
-	      if (trigger) {
-	        var _selector = trigger.getAttribute("data-".concat(this.settings.dataOpen));
-
-	        this.memory.trigger = trigger;
-	        this.open(_selector);
-	        event.preventDefault();
-	        return;
-	      }
-
-	      trigger = event.target.closest("[data-".concat(this.settings.dataClose, "]"));
-
-	      if (trigger) {
-	        var _selector2 = trigger.getAttribute("data-".concat(this.settings.dataClose));
-
-	        if (_selector2) {
-	          this.memory.trigger = trigger;
-	          this.close(_selector2);
-	        } else {
-	          var target = event.target.closest("[data-".concat(this.settings.dataDrawer, "]"));
-	          if (target) this.close(target);
-	        }
-
-	        event.preventDefault();
-	        return;
-	      }
-
-	      if (event.target.hasAttribute("data-".concat(this.settings.dataDrawer))) {
-	        this.close(event.target);
-	        return;
-	      }
-	    }
-	  }, {
-	    key: "handlerKeyup",
-	    value: function handlerKeyup(event) {
-	      if (this.working) return;
-
-	      if (event.keyCode == 27) {
-	        var target = document.querySelector(".".concat(this.settings.classModal, ".").concat(this.settings.stateOpened));
-
-	        if (target) {
-	          this.close(target);
-	        }
-	      }
+	      document.removeEventListener('click', this.__handlerClick, false);
+	      document.removeEventListener('touchend', this.__handlerClick, false);
+	      document.removeEventListener('keyup', this.__handlerKeyup, false);
 	    }
 	  }, {
 	    key: "drawerKeyCheck",
