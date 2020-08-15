@@ -21,8 +21,8 @@ const markup = `
 `;
 
 window.addEventListener('resize', () => {
-  if (drawer && drawer.mediaQueryLists) {
-    drawer.mediaQueryLists.forEach((item) => {
+  if (drawer && drawer.breakpoint.mediaQueryLists) {
+    drawer.breakpoint.mediaQueryLists.forEach((item) => {
       item.mql.matches = checkMatch(item.mql.media);
     });
   }
@@ -90,7 +90,7 @@ test('should emit custom event when drawer matches a breakpoint', () => {
   });
 
   resizeWindow(400);
-  drawer.breakpointCheck();
+  drawer.breakpoint.check();
   expect(eventFired).toBe(true);
 });
 
@@ -104,7 +104,7 @@ test('should emit custom event when drawer switches to modal', () => {
   });
 
   resizeWindow(400);
-  drawer.breakpointCheck();
+  drawer.breakpoint.check();
   expect(eventFired).toBe(true);
 });
 
@@ -119,7 +119,7 @@ test('should emit custom event when drawer switches to default', () => {
   });
 
   resizeWindow(1200);
-  drawer.breakpointCheck();
+  drawer.breakpoint.check();
   expect(eventFired).toBe(true);
 });
 
@@ -168,7 +168,7 @@ test('should be able to set a custom event prefix', async () => {
   expect(eventClosed).toBe(true);
 
   resizeWindow(400);
-  drawer.breakpointCheck();
+  drawer.breakpoint.check();
   expect(el).toHaveClass('drawer_modal');
   expect(eventBreakpoint).toBe(true);
   expect(eventToModal).toBe(true);
@@ -176,7 +176,7 @@ test('should be able to set a custom event prefix', async () => {
   eventBreakpoint = false;
 
   resizeWindow(800);
-  drawer.breakpointCheck();
+  drawer.breakpoint.check();
   expect(el).not.toHaveClass('drawer_modal');
   expect(eventBreakpoint).toBe(true);
   expect(eventToDefault).toBe(true);

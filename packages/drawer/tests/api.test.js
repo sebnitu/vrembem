@@ -49,7 +49,7 @@ const markupModal = `
 
 window.addEventListener('resize', () => {
   if (drawer) {
-    drawer.mediaQueryLists.forEach((item) => {
+    drawer.breakpoint.mediaQueryLists.forEach((item) => {
       item.mql.matches = checkMatch(item.mql.media);
     });
   }
@@ -220,10 +220,10 @@ test('should initialize breakpoint feature on api call', () => {
   document.body.innerHTML = markup;
   drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer]');
-  expect(drawer.mediaQueryLists.length).toEqual(0);
+  expect(drawer.breakpoint.mediaQueryLists.length).toEqual(0);
   el.setAttribute('data-drawer-breakpoint', 'md');
-  drawer.breakpointInit();
-  expect(drawer.mediaQueryLists.length).toEqual(1);
+  drawer.breakpoint.init();
+  expect(drawer.breakpoint.mediaQueryLists.length).toEqual(1);
 });
 
 test('should run breakpoint check on api call', () => {
@@ -236,7 +236,7 @@ test('should run breakpoint check on api call', () => {
   });
 
   resizeWindow(200);
-  drawer.breakpointCheck();
+  drawer.breakpoint.check();
 
   expect(eventFired).toEqual(true);
 });
@@ -275,9 +275,9 @@ test('should destroy breakpoint feature on api call', () => {
   const el = document.querySelector('[data-drawer]');
   el.setAttribute('data-drawer-breakpoint', 'md');
   drawer = new Drawer({ autoInit: true });
-  expect(drawer.mediaQueryLists.length).toEqual(1);
-  drawer.breakpointDestroy();
-  expect(drawer.mediaQueryLists).toEqual(null);
+  expect(drawer.breakpoint.mediaQueryLists.length).toEqual(1);
+  drawer.breakpoint.destroy();
+  expect(drawer.breakpoint.mediaQueryLists).toEqual(null);
 });
 
 test('should properly destroy drawer instance on api call', () => {

@@ -1094,9 +1094,9 @@
 	    value: function init() {
 	      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 	      if (options) this.settings = _objectSpread(_objectSpread({}, this.settings), options);
-	      this.setInitialState();
-	      this.setTabindex(this.settings.setTabindex, this.selectorTabindex);
 	      this.moveModals();
+	      this.setTabindex(this.settings.setTabindex, this.selectorTabindex);
+	      this.setInitialState();
 	      document.addEventListener('click', this.__handlerClick, false);
 	      document.addEventListener('touchend', this.__handlerClick, false);
 	      document.addEventListener('keyup', this.__handlerKeyup, false);

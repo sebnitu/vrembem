@@ -22,9 +22,9 @@ export default class Modal {
 
   init(options = null) {
     if (options) this.settings = { ...this.settings, ...options };
-    this.setInitialState();
-    this.setTabindex(this.settings.setTabindex, this.selectorTabindex);
     this.moveModals();
+    this.setTabindex(this.settings.setTabindex, this.selectorTabindex);
+    this.setInitialState();
     document.addEventListener('click', this.__handlerClick, false);
     document.addEventListener('touchend', this.__handlerClick, false);
     document.addEventListener('keyup', this.__handlerKeyup, false);

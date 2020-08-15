@@ -43,7 +43,6 @@ export function stateSave(target = null, settings) {
     const drawerKey = el.getAttribute(`data-${settings.dataDrawer}`);
     state[drawerKey] = (hasClass(el, settings.stateOpened)) ?
       settings.stateOpened : settings.stateClosed;
-    console.log(state[drawerKey]);
   });
 
   // Save to localStorage and return the state

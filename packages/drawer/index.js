@@ -7,6 +7,7 @@ import { defaults } from './src/js/defaults';
 import { handlerClick, handlerKeyup } from './src/js/handlers';
 import { stateClear, stateSave, stateSet } from './src/js/state';
 import { switchToDefault, switchToModal } from './src/js/switchTo';
+import { Breakpoint } from './src/js/breakpoint';
 
 export default class Drawer {
   constructor(options) {
@@ -15,10 +16,10 @@ export default class Drawer {
     this.working = false;
     this.memory = {};
     this.state = {};
-    this.breakpoint = {};
     this.focusTrap = new FocusTrap();
+    this.breakpoint = new Breakpoint(this);
     this.selectorTabindex = `[data-${this.settings.dataDrawer}] [data-${this.settings.dataDialog}]`;
-    this.breakpointCheck = this.breakpointCheck.bind(this);
+    // this.breakpointCheck = this.breakpointCheck.bind(this);
     this.__handlerClick = handlerClick.bind(this);
     this.__handlerKeyup = handlerKeyup.bind(this);
     if (this.settings.autoInit) this.init();
@@ -28,14 +29,14 @@ export default class Drawer {
     if (options) this.settings = { ...this.settings, ...options };
     this.stateSet();
     this.setTabindex(this.settings.setTabindex, this.selectorTabindex);
-    this.breakpointInit();
+    this.breakpoint.init();
     document.addEventListener('click', this.__handlerClick, false);
     document.addEventListener('touchend', this.__handlerClick, false);
     document.addEventListener('keyup', this.__handlerKeyup, false);
   }
 
   destroy() {
-    this.breakpointDestroy();
+    this.breakpoint.destroy();
     this.memory = {};
     this.state = {};
     localStorage.removeItem(this.settings.stateKey);
@@ -79,63 +80,6 @@ export default class Drawer {
 
   stateClear() {
     this.state = stateClear(this.settings);
-  }
-
-  /**
-   * Breakpoint functionality
-   */
-
-  breakpointInit() {
-    this.mediaQueryLists = [];
-    const drawers = document.querySelectorAll(`[data-${this.settings.dataBreakpoint}]`);
-    drawers.forEach((drawer) => {
-      const id = drawer.getAttribute(`data-${this.settings.dataDrawer}`);
-      const key = drawer.getAttribute(`data-${this.settings.dataBreakpoint}`);
-      const bp = this.settings.breakpoints[key] ? this.settings.breakpoints[key] : key;
-      const mql = window.matchMedia('(min-width:' + bp + ')');
-      this.breakpointMatch(mql, drawer);
-      mql.addListener(this.breakpointCheck);
-      this.mediaQueryLists.push({
-        'mql': mql,
-        'drawer': id
-      });
-    });
-  }
-
-  breakpointDestroy() {
-    if (this.mediaQueryLists && this.mediaQueryLists.length) {
-      this.mediaQueryLists.forEach((item) => {
-        item.mql.removeListener(this.breakpointCheck);
-      });
-    }
-    this.mediaQueryLists = null;
-  }
-
-  breakpointCheck(event = null) {
-    if (this.mediaQueryLists && this.mediaQueryLists.length) {
-      this.mediaQueryLists.forEach((item) => {
-        // If an event is passed, filter out drawers that don't match the query
-        // If event is null, run all drawers through breakpointMatch
-        let filter = (event) ? event.media == item.mql.media : true;
-        if (filter) {
-          const drawer = document.querySelector(`[data-${this.settings.dataDrawer}="${item.drawer}"]`);
-          if (drawer) {
-            this.breakpointMatch(item.mql, drawer);
-          }
-        }
-      });
-      document.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'breakpoint', {
-        bubbles: true
-      }));
-    }
-  }
-
-  breakpointMatch(mql, drawer) {
-    if (mql.matches) {
-      this.switchToDefault(drawer);
-    } else {
-      this.switchToModal(drawer);
-    }
   }
 
   /**
@@ -204,7 +148,7 @@ export default class Drawer {
     }
   }
 
-  toggle(drawerKey) {
+  async toggle(drawerKey) {
     const drawer = this.getDrawer(drawerKey);
     if (!drawer) return this.drawerNotFound(drawerKey);
     const isOpen = hasClass(drawer, this.settings.stateOpened);

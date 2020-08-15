@@ -1,7 +1,7 @@
 import { addClass, hasClass, removeClass } from '@vrembem/core';
 import { setInert, setOverflowHidden } from '@vrembem/core';
 
-export function switchToModal(drawerKey, obj) {
+export async function switchToModal(drawerKey, obj) {
   // Initial guards
   const drawer = obj.getDrawer(drawerKey);
   if (!drawer) return obj.drawerNotFound(drawerKey);
@@ -16,9 +16,10 @@ export function switchToModal(drawerKey, obj) {
   drawer.dispatchEvent(new CustomEvent(obj.settings.customEventPrefix + 'toModal', {
     bubbles: true
   }));
+  return drawer;
 }
 
-export function switchToDefault(drawerKey, obj) {
+export async function switchToDefault(drawerKey, obj) {
   // Initial guards
   const drawer = obj.getDrawer(drawerKey);
   if (!drawer) return obj.drawerNotFound(drawerKey);
@@ -42,4 +43,5 @@ export function switchToDefault(drawerKey, obj) {
   drawer.dispatchEvent(new CustomEvent(obj.settings.customEventPrefix + 'toDefault', {
     bubbles: true
   }));
+  return drawer;
 }
