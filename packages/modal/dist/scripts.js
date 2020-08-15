@@ -912,10 +912,6 @@
 	    }
 	  });
 	};
-	var transition = {
-	  open: openTransition,
-	  close: closeTransition
-	};
 
 	var defaults = {
 	  autoInit: false,
@@ -1143,7 +1139,7 @@
 	                this.working = true;
 	                setOverflowHidden(true, this.settings.selectorOverflow);
 	                _context2.next = 8;
-	                return transition.open(modal, this.settings);
+	                return openTransition(modal, this.settings);
 
 	              case 8:
 	                this.focusTrap.init(modal);
@@ -1195,7 +1191,7 @@
 	                setInert(false, this.settings.selectorInert);
 	                setOverflowHidden(false, this.settings.selectorOverflow);
 	                _context3.next = 8;
-	                return transition.close(modal, this.settings);
+	                return closeTransition(modal, this.settings);
 
 	              case 8:
 	                if (returnFocus) focusTrigger(this);

@@ -282,7 +282,6 @@
     xl: '1380px'
   };
 
-  exports.FocusTrap = FocusTrap;
   exports.addClass = addClass;
   exports.breakpoints = breakpoints;
   exports.camelCase = camelCase;

@@ -912,10 +912,6 @@
 	    }
 	  });
 	};
-	var transition = {
-	  open: openTransition,
-	  close: closeTransition
-	};
 
 	var breakpoints = {
 	  xs: '480px',
@@ -923,6 +919,30 @@
 	  md: '760px',
 	  lg: '990px',
 	  xl: '1380px'
+	};
+
+	var defaults = {
+	  autoInit: false,
+	  dataDrawer: 'drawer',
+	  dataDialog: 'drawer-dialog',
+	  dataToggle: 'drawer-toggle',
+	  dataOpen: 'drawer-open',
+	  dataClose: 'drawer-close',
+	  dataBreakpoint: 'drawer-breakpoint',
+	  dataFocus: 'drawer-focus',
+	  stateOpened: 'is-opened',
+	  stateOpening: 'is-opening',
+	  stateClosing: 'is-closing',
+	  stateClosed: 'is-closed',
+	  classModal: 'drawer_modal',
+	  selectorInert: null,
+	  selectorOverflow: null,
+	  breakpoints: breakpoints,
+	  customEventPrefix: 'drawer:',
+	  stateSave: true,
+	  stateKey: 'DrawerState',
+	  setTabindex: true,
+	  transition: true
 	};
 
 	function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -933,29 +953,7 @@
 	  function Drawer(options) {
 	    classCallCheck(this, Drawer);
 
-	    this.defaults = {
-	      autoInit: false,
-	      dataDrawer: 'drawer',
-	      dataDialog: 'drawer-dialog',
-	      dataToggle: 'drawer-toggle',
-	      dataOpen: 'drawer-open',
-	      dataClose: 'drawer-close',
-	      dataBreakpoint: 'drawer-breakpoint',
-	      dataFocus: 'drawer-focus',
-	      stateOpened: 'is-opened',
-	      stateOpening: 'is-opening',
-	      stateClosing: 'is-closing',
-	      stateClosed: 'is-closed',
-	      classModal: 'drawer_modal',
-	      selectorInert: null,
-	      selectorOverflow: null,
-	      breakpoints: breakpoints,
-	      customEventPrefix: 'drawer:',
-	      stateSave: true,
-	      stateKey: 'DrawerState',
-	      setTabindex: true,
-	      transition: true
-	    };
+	    this.defaults = defaults;
 	    this.settings = _objectSpread(_objectSpread({}, this.defaults), options);
 	    this.working = false;
 	    this.memory = {};
@@ -1105,7 +1103,7 @@
 	                }
 
 	                _context.next = 9;
-	                return transition.open(drawer, this.settings);
+	                return openTransition(drawer, this.settings);
 
 	              case 9:
 	                this.stateSave(drawer);
@@ -1172,7 +1170,7 @@
 	                }
 
 	                _context2.next = 8;
-	                return transition.close(drawer, this.settings);
+	                return closeTransition(drawer, this.settings);
 
 	              case 8:
 	                this.stateSave(drawer);

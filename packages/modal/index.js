@@ -8,8 +8,8 @@ import {
   setOverflowHidden,
   setTabindex
 } from '@vrembem/core';
-import transition from '@vrembem/core/src/js/transition';
-import { FocusTrap } from '@vrembem/core/src/js/focusTrap';
+import FocusTrap from '@vrembem/core/src/js/focusTrap';
+import { openTransition, closeTransition } from '@vrembem/core/src/js/transition';
 import { defaults } from './src/js/defaults';
 
 export default class Modal {
@@ -150,7 +150,7 @@ export default class Modal {
     if (hasClass(modal, this.settings.stateClosed)) {
       this.working = true;
       setOverflowHidden(true, this.settings.selectorOverflow);
-      await transition.open(modal, this.settings);
+      await openTransition(modal, this.settings);
       this.focusTrap.init(modal);
       focusTarget(modal, this.settings);
       setInert(true, this.settings.selectorInert);
@@ -172,7 +172,7 @@ export default class Modal {
       this.working = true;
       setInert(false, this.settings.selectorInert);
       setOverflowHidden(false, this.settings.selectorOverflow);
-      await transition.close(modal, this.settings);
+      await closeTransition(modal, this.settings);
       if (returnFocus) focusTrigger(this);
       this.focusTrap.destroy();
       modal.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'closed', {

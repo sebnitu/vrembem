@@ -1,6 +1,5 @@
 import {
   addClass,
-  breakpoints,
   focusTarget,
   focusTrigger,
   hasClass,
@@ -9,44 +8,13 @@ import {
   setOverflowHidden,
   setTabindex
 } from '@vrembem/core';
-import transition from '@vrembem/core/src/js/transition';
-import { FocusTrap } from '@vrembem/core/src/js/focusTrap';
+import FocusTrap from '@vrembem/core/src/js/focusTrap';
+import { openTransition, closeTransition } from '@vrembem/core/src/js/transition';
+import { defaults } from './src/js/defaults';
 
 export default class Drawer {
   constructor(options) {
-    this.defaults = {
-      autoInit: false,
-
-      // Data attributes
-      dataDrawer: 'drawer',
-      dataDialog: 'drawer-dialog',
-      dataToggle: 'drawer-toggle',
-      dataOpen: 'drawer-open',
-      dataClose: 'drawer-close',
-      dataBreakpoint: 'drawer-breakpoint',
-      dataFocus: 'drawer-focus',
-
-      // State classes
-      stateOpened: 'is-opened',
-      stateOpening: 'is-opening',
-      stateClosing: 'is-closing',
-      stateClosed: 'is-closed',
-
-      // Classes
-      classModal: 'drawer_modal',
-
-      // Selectors
-      selectorInert: null,
-      selectorOverflow: null,
-
-      // Feature toggles
-      breakpoints: breakpoints,
-      customEventPrefix: 'drawer:',
-      stateSave: true,
-      stateKey: 'DrawerState',
-      setTabindex: true,
-      transition: true
-    };
+    this.defaults = defaults;
     this.settings = { ...this.defaults, ...options };
     this.working = false;
     this.memory = {};
@@ -179,7 +147,7 @@ export default class Drawer {
       if (isModal) {
         setOverflowHidden(true, this.settings.selectorOverflow);
       }
-      await transition.open(drawer, this.settings);
+      await openTransition(drawer, this.settings);
       this.stateSave(drawer);
       if (isModal) {
         this.focusTrap.init(drawer);
@@ -206,7 +174,7 @@ export default class Drawer {
         setInert(false, this.settings.selectorInert);
         setOverflowHidden(false, this.settings.selectorOverflow);
       }
-      await transition.close(drawer, this.settings);
+      await closeTransition(drawer, this.settings);
       this.stateSave(drawer);
       focusTrigger(this);
       this.focusTrap.destroy();

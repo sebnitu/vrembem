@@ -38,8 +38,3 @@ export const closeTransition = (el, settings) => {
     }
   });
 };
-
-export default {
-  open: openTransition,
-  close: closeTransition
-};

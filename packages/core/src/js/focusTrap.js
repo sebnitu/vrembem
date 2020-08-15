@@ -1,4 +1,4 @@
-export class FocusTrap {
+export default class FocusTrap {
   constructor() {
     this.target = null;
     this.handlerFocusTrapRef = this.handlerFocusTrap.bind(this);
