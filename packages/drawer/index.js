@@ -1,4 +1,4 @@
-import { addClass, hasClass, removeClass } from '@vrembem/core';
+import { hasClass } from '@vrembem/core';
 import { setInert, setOverflowHidden, setTabindex } from '@vrembem/core';
 import { FocusTrap, focusTarget, focusTrigger } from '@vrembem/core';
 import { openTransition, closeTransition } from '@vrembem/core';
@@ -6,6 +6,7 @@ import { openTransition, closeTransition } from '@vrembem/core';
 import { defaults } from './src/js/defaults';
 import { handlerClick, handlerKeyup } from './src/js/handlers';
 import { stateClear, stateSave, stateSet } from './src/js/state';
+import { switchToDefault, switchToModal } from './src/js/switchTo';
 
 export default class Drawer {
   constructor(options) {
@@ -62,71 +63,6 @@ export default class Drawer {
 
   setTabindex(state = true) {
     setTabindex(state, this.selectorTabindex);
-  }
-
-  /**
-   * Change state functionality
-   */
-
-  async open(drawerKey) {
-    const drawer = this.getDrawer(drawerKey);
-    if (!drawer) return this.drawerNotFound(drawerKey);
-    if (!hasClass(drawer, this.settings.stateOpened)) {
-      this.working = true;
-      const isModal = hasClass(drawer, this.settings.classModal);
-      if (isModal) {
-        setOverflowHidden(true, this.settings.selectorOverflow);
-      }
-      await openTransition(drawer, this.settings);
-      this.stateSave(drawer);
-      if (isModal) {
-        this.focusTrap.init(drawer);
-        setInert(true, this.settings.selectorInert);
-      }
-      focusTarget(drawer, this.settings);
-      drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'opened', {
-        bubbles: true
-      }));
-      this.working = false;
-      return drawer;
-    } else {
-      focusTarget(drawer, this.settings);
-      return drawer;
-    }
-  }
-
-  async close(drawerKey) {
-    const drawer = this.getDrawer(drawerKey);
-    if (!drawer) return this.drawerNotFound(drawerKey);
-    if (hasClass(drawer, this.settings.stateOpened)) {
-      this.working = true;
-      if (hasClass(drawer, this.settings.classModal)) {
-        setInert(false, this.settings.selectorInert);
-        setOverflowHidden(false, this.settings.selectorOverflow);
-      }
-      await closeTransition(drawer, this.settings);
-      this.stateSave(drawer);
-      focusTrigger(this);
-      this.focusTrap.destroy();
-      drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'closed', {
-        bubbles: true
-      }));
-      this.working = false;
-      return drawer;
-    } else {
-      return drawer;
-    }
-  }
-
-  toggle(drawerKey) {
-    const drawer = this.getDrawer(drawerKey);
-    if (!drawer) return this.drawerNotFound(drawerKey);
-    const isOpen = hasClass(drawer, this.settings.stateOpened);
-    if (!isOpen) {
-      return this.open(drawer);
-    } else {
-      return this.close(drawer);
-    }
   }
 
   /**
@@ -202,34 +138,80 @@ export default class Drawer {
     }
   }
 
-  switchToModal(drawerKey) {
-    const drawer = this.getDrawer(drawerKey);
-    if (!drawer) return this.drawerNotFound(drawerKey);
-    if (hasClass(drawer, this.settings.classModal)) return;
-    addClass(drawer, this.settings.classModal);
-    addClass(drawer, this.settings.stateClosed);
-    removeClass(drawer, this.settings.stateOpened);
-    drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'toModal', {
-      bubbles: true
-    }));
-  }
+  /**
+   * SwitchTo functionality
+   */
 
   switchToDefault(drawerKey) {
+    return switchToDefault(drawerKey, this);
+  }
+
+  switchToModal(drawerKey) {
+    return switchToModal(drawerKey, this);
+  }
+
+  /**
+   * Change state functionality
+   */
+
+  async open(drawerKey) {
     const drawer = this.getDrawer(drawerKey);
     if (!drawer) return this.drawerNotFound(drawerKey);
-    if (!hasClass(drawer, this.settings.classModal)) return;
-    setInert(false, this.settings.selectorInert);
-    setOverflowHidden(false, this.settings.selectorOverflow);
-    removeClass(drawer, this.settings.classModal);
-    this.focusTrap.destroy();
-    drawerKey = drawer.getAttribute(`data-${this.settings.dataDrawer}`);
-    const drawerState = this.state[drawerKey];
-    if (drawerState == this.settings.stateOpened) {
-      addClass(drawer, this.settings.stateOpened);
-      removeClass(drawer, this.settings.stateClosed);
+    if (!hasClass(drawer, this.settings.stateOpened)) {
+      this.working = true;
+      const isModal = hasClass(drawer, this.settings.classModal);
+      if (isModal) {
+        setOverflowHidden(true, this.settings.selectorOverflow);
+      }
+      await openTransition(drawer, this.settings);
+      this.stateSave(drawer);
+      if (isModal) {
+        this.focusTrap.init(drawer);
+        setInert(true, this.settings.selectorInert);
+      }
+      focusTarget(drawer, this.settings);
+      drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'opened', {
+        bubbles: true
+      }));
+      this.working = false;
+      return drawer;
+    } else {
+      focusTarget(drawer, this.settings);
+      return drawer;
     }
-    drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'toDefault', {
-      bubbles: true
-    }));
+  }
+
+  async close(drawerKey) {
+    const drawer = this.getDrawer(drawerKey);
+    if (!drawer) return this.drawerNotFound(drawerKey);
+    if (hasClass(drawer, this.settings.stateOpened)) {
+      this.working = true;
+      if (hasClass(drawer, this.settings.classModal)) {
+        setInert(false, this.settings.selectorInert);
+        setOverflowHidden(false, this.settings.selectorOverflow);
+      }
+      await closeTransition(drawer, this.settings);
+      this.stateSave(drawer);
+      focusTrigger(this);
+      this.focusTrap.destroy();
+      drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'closed', {
+        bubbles: true
+      }));
+      this.working = false;
+      return drawer;
+    } else {
+      return drawer;
+    }
+  }
+
+  toggle(drawerKey) {
+    const drawer = this.getDrawer(drawerKey);
+    if (!drawer) return this.drawerNotFound(drawerKey);
+    const isOpen = hasClass(drawer, this.settings.stateOpened);
+    if (!isOpen) {
+      return this.open(drawer);
+    } else {
+      return this.close(drawer);
+    }
   }
 }

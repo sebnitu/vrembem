@@ -1035,6 +1035,38 @@
 	  return {};
 	}
 
+	function switchToModal(drawerKey, obj) {
+	  var drawer = obj.getDrawer(drawerKey);
+	  if (!drawer) return obj.drawerNotFound(drawerKey);
+	  if (hasClass(drawer, obj.settings.classModal)) return;
+	  addClass(drawer, obj.settings.classModal);
+	  addClass(drawer, obj.settings.stateClosed);
+	  removeClass(drawer, obj.settings.stateOpened);
+	  drawer.dispatchEvent(new CustomEvent(obj.settings.customEventPrefix + 'toModal', {
+	    bubbles: true
+	  }));
+	}
+	function switchToDefault(drawerKey, obj) {
+	  var drawer = obj.getDrawer(drawerKey);
+	  if (!drawer) return obj.drawerNotFound(drawerKey);
+	  if (!hasClass(drawer, obj.settings.classModal)) return;
+	  setInert(false, obj.settings.selectorInert);
+	  setOverflowHidden(false, obj.settings.selectorOverflow);
+	  removeClass(drawer, obj.settings.classModal);
+	  obj.focusTrap.destroy();
+	  drawerKey = drawer.getAttribute("data-".concat(obj.settings.dataDrawer));
+	  var drawerState = obj.state[drawerKey];
+
+	  if (drawerState == obj.settings.stateOpened) {
+	    addClass(drawer, obj.settings.stateOpened);
+	    removeClass(drawer, obj.settings.stateClosed);
+	  }
+
+	  drawer.dispatchEvent(new CustomEvent(obj.settings.customEventPrefix + 'toDefault', {
+	    bubbles: true
+	  }));
+	}
+
 	function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 	function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -1097,6 +1129,101 @@
 	      var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
 
 	      setTabindex(state, this.selectorTabindex);
+	    }
+	  }, {
+	    key: "stateSet",
+	    value: function stateSet$1() {
+	      this.state = stateSet(this.settings);
+	    }
+	  }, {
+	    key: "stateSave",
+	    value: function stateSave$1() {
+	      var target = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+	      this.state = stateSave(target, this.settings);
+	    }
+	  }, {
+	    key: "stateClear",
+	    value: function stateClear$1() {
+	      this.state = stateClear(this.settings);
+	    }
+	  }, {
+	    key: "breakpointInit",
+	    value: function breakpointInit() {
+	      var _this = this;
+
+	      this.mediaQueryLists = [];
+	      var drawers = document.querySelectorAll("[data-".concat(this.settings.dataBreakpoint, "]"));
+	      drawers.forEach(function (drawer) {
+	        var id = drawer.getAttribute("data-".concat(_this.settings.dataDrawer));
+	        var key = drawer.getAttribute("data-".concat(_this.settings.dataBreakpoint));
+	        var bp = _this.settings.breakpoints[key] ? _this.settings.breakpoints[key] : key;
+	        var mql = window.matchMedia('(min-width:' + bp + ')');
+
+	        _this.breakpointMatch(mql, drawer);
+
+	        mql.addListener(_this.breakpointCheck);
+
+	        _this.mediaQueryLists.push({
+	          'mql': mql,
+	          'drawer': id
+	        });
+	      });
+	    }
+	  }, {
+	    key: "breakpointDestroy",
+	    value: function breakpointDestroy() {
+	      var _this2 = this;
+
+	      if (this.mediaQueryLists && this.mediaQueryLists.length) {
+	        this.mediaQueryLists.forEach(function (item) {
+	          item.mql.removeListener(_this2.breakpointCheck);
+	        });
+	      }
+
+	      this.mediaQueryLists = null;
+	    }
+	  }, {
+	    key: "breakpointCheck",
+	    value: function breakpointCheck() {
+	      var _this3 = this;
+
+	      var event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+	      if (this.mediaQueryLists && this.mediaQueryLists.length) {
+	        this.mediaQueryLists.forEach(function (item) {
+	          var filter = event ? event.media == item.mql.media : true;
+
+	          if (filter) {
+	            var drawer = document.querySelector("[data-".concat(_this3.settings.dataDrawer, "=\"").concat(item.drawer, "\"]"));
+
+	            if (drawer) {
+	              _this3.breakpointMatch(item.mql, drawer);
+	            }
+	          }
+	        });
+	        document.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'breakpoint', {
+	          bubbles: true
+	        }));
+	      }
+	    }
+	  }, {
+	    key: "breakpointMatch",
+	    value: function breakpointMatch(mql, drawer) {
+	      if (mql.matches) {
+	        this.switchToDefault(drawer);
+	      } else {
+	        this.switchToModal(drawer);
+	      }
+	    }
+	  }, {
+	    key: "switchToDefault",
+	    value: function switchToDefault$1(drawerKey) {
+	      return switchToDefault(drawerKey, this);
+	    }
+	  }, {
+	    key: "switchToModal",
+	    value: function switchToModal$1(drawerKey) {
+	      return switchToModal(drawerKey, this);
 	    }
 	  }, {
 	    key: "open",
@@ -1238,126 +1365,6 @@
 	      } else {
 	        return this.close(drawer);
 	      }
-	    }
-	  }, {
-	    key: "stateSet",
-	    value: function stateSet$1() {
-	      this.state = stateSet(this.settings);
-	    }
-	  }, {
-	    key: "stateSave",
-	    value: function stateSave$1() {
-	      var target = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-	      this.state = stateSave(target, this.settings);
-	    }
-	  }, {
-	    key: "stateClear",
-	    value: function stateClear$1() {
-	      this.state = stateClear(this.settings);
-	    }
-	  }, {
-	    key: "breakpointInit",
-	    value: function breakpointInit() {
-	      var _this = this;
-
-	      this.mediaQueryLists = [];
-	      var drawers = document.querySelectorAll("[data-".concat(this.settings.dataBreakpoint, "]"));
-	      drawers.forEach(function (drawer) {
-	        var id = drawer.getAttribute("data-".concat(_this.settings.dataDrawer));
-	        var key = drawer.getAttribute("data-".concat(_this.settings.dataBreakpoint));
-	        var bp = _this.settings.breakpoints[key] ? _this.settings.breakpoints[key] : key;
-	        var mql = window.matchMedia('(min-width:' + bp + ')');
-
-	        _this.breakpointMatch(mql, drawer);
-
-	        mql.addListener(_this.breakpointCheck);
-
-	        _this.mediaQueryLists.push({
-	          'mql': mql,
-	          'drawer': id
-	        });
-	      });
-	    }
-	  }, {
-	    key: "breakpointDestroy",
-	    value: function breakpointDestroy() {
-	      var _this2 = this;
-
-	      if (this.mediaQueryLists && this.mediaQueryLists.length) {
-	        this.mediaQueryLists.forEach(function (item) {
-	          item.mql.removeListener(_this2.breakpointCheck);
-	        });
-	      }
-
-	      this.mediaQueryLists = null;
-	    }
-	  }, {
-	    key: "breakpointCheck",
-	    value: function breakpointCheck() {
-	      var _this3 = this;
-
-	      var event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-
-	      if (this.mediaQueryLists && this.mediaQueryLists.length) {
-	        this.mediaQueryLists.forEach(function (item) {
-	          var filter = event ? event.media == item.mql.media : true;
-
-	          if (filter) {
-	            var drawer = document.querySelector("[data-".concat(_this3.settings.dataDrawer, "=\"").concat(item.drawer, "\"]"));
-
-	            if (drawer) {
-	              _this3.breakpointMatch(item.mql, drawer);
-	            }
-	          }
-	        });
-	        document.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'breakpoint', {
-	          bubbles: true
-	        }));
-	      }
-	    }
-	  }, {
-	    key: "breakpointMatch",
-	    value: function breakpointMatch(mql, drawer) {
-	      if (mql.matches) {
-	        this.switchToDefault(drawer);
-	      } else {
-	        this.switchToModal(drawer);
-	      }
-	    }
-	  }, {
-	    key: "switchToModal",
-	    value: function switchToModal(drawerKey) {
-	      var drawer = this.getDrawer(drawerKey);
-	      if (!drawer) return this.drawerNotFound(drawerKey);
-	      if (hasClass(drawer, this.settings.classModal)) return;
-	      addClass(drawer, this.settings.classModal);
-	      addClass(drawer, this.settings.stateClosed);
-	      removeClass(drawer, this.settings.stateOpened);
-	      drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'toModal', {
-	        bubbles: true
-	      }));
-	    }
-	  }, {
-	    key: "switchToDefault",
-	    value: function switchToDefault(drawerKey) {
-	      var drawer = this.getDrawer(drawerKey);
-	      if (!drawer) return this.drawerNotFound(drawerKey);
-	      if (!hasClass(drawer, this.settings.classModal)) return;
-	      setInert(false, this.settings.selectorInert);
-	      setOverflowHidden(false, this.settings.selectorOverflow);
-	      removeClass(drawer, this.settings.classModal);
-	      this.focusTrap.destroy();
-	      drawerKey = drawer.getAttribute("data-".concat(this.settings.dataDrawer));
-	      var drawerState = this.state[drawerKey];
-
-	      if (drawerState == this.settings.stateOpened) {
-	        addClass(drawer, this.settings.stateOpened);
-	        removeClass(drawer, this.settings.stateClosed);
-	      }
-
-	      drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'toDefault', {
-	        bubbles: true
-	      }));
 	    }
 	  }]);
 

@@ -104,7 +104,7 @@
     </div>
   </aside>
 
-  <div class="drawer__main">
+  <section role="main" class="drawer__main">
     <div class="padding-xl">
       <h1 class="margin-bottom-md">@vrembem/drawer</h1>
       <p class="span-8-md span-6-lg">
@@ -216,7 +216,7 @@
         </ul>
       </div>
     </div>
-  </div>
+  </section>
 
   <aside data-drawer="drawer-default-right" class="drawer">
     <div data-drawer-dialog class="drawer__dialog padding">
@@ -237,7 +237,11 @@
 
 <!-- Implementation scripts -->
 <script>
-  const drawer = new vrembem.Drawer({ autoInit: true });
+  const drawer = new vrembem.Drawer({
+    autoInit: true,
+    selectorInert: '[role="main"]',
+    selectorOverflow: 'body, [role="main"]'
+  });
 
   document.addEventListener('click', () => {
     if (event.target.closest('.js-api-toggle')) {
