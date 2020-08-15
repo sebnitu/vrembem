@@ -37,7 +37,18 @@ export default class Modal {
     document.removeEventListener('keyup', this.__handlerKeyup, false);
   }
 
-  notFound(key) {
+  /**
+   * Helpers
+   */
+
+  getModal(modalKey) {
+    if (typeof modalKey !== 'string') return modalKey;
+    return document.querySelector(
+      `[data-${this.settings.dataModal}="${modalKey}"]`
+    );
+  }
+
+  modalNotFound(key) {
     return Promise.reject(
       new Error(`Did not find modal with key: "${key}"`)
     );
@@ -70,11 +81,15 @@ export default class Modal {
     setTabindex(state, this.selectorTabindex);
   }
 
+  /**
+   * Change state functionality
+   */
+
   async open(modalKey) {
     const modal = document.querySelector(
       `[data-${this.settings.dataModal}="${modalKey}"]`
     );
-    if (!modal) return this.notFound(modalKey);
+    if (!modal) return this.modalNotFound(modalKey);
     if (hasClass(modal, this.settings.stateClosed)) {
       this.working = true;
       setOverflowHidden(true, this.settings.selectorOverflow);

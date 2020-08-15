@@ -849,7 +849,7 @@
 
 	var getElement = function getElement(selector) {
 	  var single = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-	  if (typeof selector != 'string') return selector;
+	  if (typeof selector !== 'string') return selector;
 	  return single ? document.querySelector(selector) : document.querySelectorAll(selector);
 	};
 
@@ -1110,8 +1110,14 @@
 	      document.removeEventListener('keyup', this.__handlerKeyup, false);
 	    }
 	  }, {
-	    key: "notFound",
-	    value: function notFound(key) {
+	    key: "getModal",
+	    value: function getModal(modalKey) {
+	      if (typeof modalKey !== 'string') return modalKey;
+	      return document.querySelector("[data-".concat(this.settings.dataModal, "=\"").concat(modalKey, "\"]"));
+	    }
+	  }, {
+	    key: "modalNotFound",
+	    value: function modalNotFound(key) {
 	      return Promise.reject(new Error("Did not find modal with key: \"".concat(key, "\"")));
 	    }
 	  }, {
@@ -1164,7 +1170,7 @@
 	                  break;
 	                }
 
-	                return _context.abrupt("return", this.notFound(modalKey));
+	                return _context.abrupt("return", this.modalNotFound(modalKey));
 
 	              case 3:
 	                if (!hasClass(modal, this.settings.stateClosed)) {

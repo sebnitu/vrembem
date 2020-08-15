@@ -1047,13 +1047,10 @@
 	      document.removeEventListener('keyup', this.__handlerKeyup, false);
 	    }
 	  }, {
-	    key: "drawerKeyCheck",
-	    value: function drawerKeyCheck(drawerKey) {
-	      if (typeof drawerKey === 'string') {
-	        return document.querySelector("[data-".concat(this.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
-	      } else {
-	        return drawerKey;
-	      }
+	    key: "getDrawer",
+	    value: function getDrawer(drawerKey) {
+	      if (typeof drawerKey !== 'string') return drawerKey;
+	      return document.querySelector("[data-".concat(this.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
 	    }
 	  }, {
 	    key: "drawerNotFound",
@@ -1076,7 +1073,7 @@
 	          while (1) {
 	            switch (_context.prev = _context.next) {
 	              case 0:
-	                drawer = this.drawerKeyCheck(drawerKey);
+	                drawer = this.getDrawer(drawerKey);
 
 	                if (drawer) {
 	                  _context.next = 3;
@@ -1143,7 +1140,7 @@
 	          while (1) {
 	            switch (_context2.prev = _context2.next) {
 	              case 0:
-	                drawer = this.drawerKeyCheck(drawerKey);
+	                drawer = this.getDrawer(drawerKey);
 
 	                if (drawer) {
 	                  _context2.next = 3;
@@ -1198,7 +1195,7 @@
 	  }, {
 	    key: "toggle",
 	    value: function toggle(drawerKey) {
-	      var drawer = this.drawerKeyCheck(drawerKey);
+	      var drawer = this.getDrawer(drawerKey);
 	      if (!drawer) return this.drawerNotFound(drawerKey);
 	      var isOpen = hasClass(drawer, this.settings.stateOpened);
 
@@ -1325,7 +1322,7 @@
 	  }, {
 	    key: "switchToModal",
 	    value: function switchToModal(drawerKey) {
-	      var drawer = this.drawerKeyCheck(drawerKey);
+	      var drawer = this.getDrawer(drawerKey);
 	      if (!drawer) return this.drawerNotFound(drawerKey);
 	      if (hasClass(drawer, this.settings.classModal)) return;
 	      addClass(drawer, this.settings.classModal);
@@ -1338,7 +1335,7 @@
 	  }, {
 	    key: "switchToDefault",
 	    value: function switchToDefault(drawerKey) {
-	      var drawer = this.drawerKeyCheck(drawerKey);
+	      var drawer = this.getDrawer(drawerKey);
 	      if (!drawer) return this.drawerNotFound(drawerKey);
 	      if (!hasClass(drawer, this.settings.classModal)) return;
 	      setInert(false, this.settings.selectorInert);

@@ -46,14 +46,11 @@ export default class Drawer {
    * Helpers
    */
 
-  drawerKeyCheck(drawerKey) {
-    if (typeof drawerKey === 'string') {
-      return document.querySelector(
-        `[data-${this.settings.dataDrawer}="${drawerKey}"]`
-      );
-    } else {
-      return drawerKey;
-    }
+  getDrawer(drawerKey) {
+    if (typeof drawerKey !== 'string') return drawerKey;
+    return document.querySelector(
+      `[data-${this.settings.dataDrawer}="${drawerKey}"]`
+    );
   }
 
   drawerNotFound(key) {
@@ -67,11 +64,11 @@ export default class Drawer {
   }
 
   /**
-   * Transition functionality
+   * Change state functionality
    */
 
   async open(drawerKey) {
-    const drawer = this.drawerKeyCheck(drawerKey);
+    const drawer = this.getDrawer(drawerKey);
     if (!drawer) return this.drawerNotFound(drawerKey);
     if (!hasClass(drawer, this.settings.stateOpened)) {
       this.working = true;
@@ -98,7 +95,7 @@ export default class Drawer {
   }
 
   async close(drawerKey) {
-    const drawer = this.drawerKeyCheck(drawerKey);
+    const drawer = this.getDrawer(drawerKey);
     if (!drawer) return this.drawerNotFound(drawerKey);
     if (hasClass(drawer, this.settings.stateOpened)) {
       this.working = true;
@@ -121,7 +118,7 @@ export default class Drawer {
   }
 
   toggle(drawerKey) {
-    const drawer = this.drawerKeyCheck(drawerKey);
+    const drawer = this.getDrawer(drawerKey);
     if (!drawer) return this.drawerNotFound(drawerKey);
     const isOpen = hasClass(drawer, this.settings.stateOpened);
     if (!isOpen) {
@@ -235,7 +232,7 @@ export default class Drawer {
   }
 
   switchToModal(drawerKey) {
-    const drawer = this.drawerKeyCheck(drawerKey);
+    const drawer = this.getDrawer(drawerKey);
     if (!drawer) return this.drawerNotFound(drawerKey);
     if (hasClass(drawer, this.settings.classModal)) return;
     addClass(drawer, this.settings.classModal);
@@ -247,7 +244,7 @@ export default class Drawer {
   }
 
   switchToDefault(drawerKey) {
-    const drawer = this.drawerKeyCheck(drawerKey);
+    const drawer = this.getDrawer(drawerKey);
     if (!drawer) return this.drawerNotFound(drawerKey);
     if (!hasClass(drawer, this.settings.classModal)) return;
     setInert(false, this.settings.selectorInert);
