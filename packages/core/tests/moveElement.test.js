@@ -1,8 +1,7 @@
 import { moveElement } from '../index.js';
 import '@testing-library/jest-dom/extend-expect';
 
-let main;
-let els;
+let main, els;
 
 const markup = `
   <div role="main" class="main">

@@ -942,96 +942,6 @@
 	  transition: true
 	};
 
-	function handlerClick(event) {
-	  if (this.working) return;
-	  var trigger = event.target.closest("[data-".concat(this.settings.dataToggle, "]"));
-
-	  if (trigger) {
-	    var selector = trigger.getAttribute("data-".concat(this.settings.dataToggle));
-	    this.memory.trigger = trigger;
-	    this.toggle(selector);
-	    event.preventDefault();
-	    return;
-	  }
-
-	  trigger = event.target.closest("[data-".concat(this.settings.dataOpen, "]"));
-
-	  if (trigger) {
-	    var _selector = trigger.getAttribute("data-".concat(this.settings.dataOpen));
-
-	    this.memory.trigger = trigger;
-	    this.open(_selector);
-	    event.preventDefault();
-	    return;
-	  }
-
-	  trigger = event.target.closest("[data-".concat(this.settings.dataClose, "]"));
-
-	  if (trigger) {
-	    var _selector2 = trigger.getAttribute("data-".concat(this.settings.dataClose));
-
-	    if (_selector2) {
-	      this.memory.trigger = trigger;
-	      this.close(_selector2);
-	    } else {
-	      var target = event.target.closest("[data-".concat(this.settings.dataDrawer, "]"));
-	      if (target) this.close(target);
-	    }
-
-	    event.preventDefault();
-	    return;
-	  }
-
-	  if (event.target.hasAttribute("data-".concat(this.settings.dataDrawer))) {
-	    this.close(event.target);
-	    return;
-	  }
-	}
-	function handlerKeyup(event) {
-	  if (this.working) return;
-
-	  if (event.keyCode == 27) {
-	    var target = document.querySelector(".".concat(this.settings.classModal, ".").concat(this.settings.stateOpened));
-
-	    if (target) {
-	      this.close(target);
-	    }
-	  }
-	}
-
-	function stateSet(settings) {
-	  if (!settings.stateSave) return stateClear(settings);
-	  if (!localStorage.getItem(settings.stateKey)) return stateSave(null, settings);
-	  var state = JSON.parse(localStorage.getItem(settings.stateKey));
-	  Object.keys(state).forEach(function (key) {
-	    var item = document.querySelector("[data-".concat(settings.dataDrawer, "=\"").concat(key, "\"]"));
-	    if (!item) return;
-	    state[key] == settings.stateOpened ? addClass(item, settings.stateOpened) : removeClass(item, settings.stateOpened);
-	  });
-	  return state;
-	}
-	function stateSave() {
-	  var target = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-	  var settings = arguments.length > 1 ? arguments[1] : undefined;
-	  if (!settings.stateSave) return stateClear(settings);
-	  var state = localStorage.getItem(settings.stateKey) ? JSON.parse(localStorage.getItem(settings.stateKey)) : {};
-	  var drawers = target ? [target] : document.querySelectorAll("[data-".concat(settings.dataDrawer, "]"));
-	  drawers.forEach(function (el) {
-	    if (hasClass(el, settings.classModal)) return;
-	    var drawerKey = el.getAttribute("data-".concat(settings.dataDrawer));
-	    state[drawerKey] = hasClass(el, settings.stateOpened) ? settings.stateOpened : settings.stateClosed;
-	  });
-	  localStorage.setItem(settings.stateKey, JSON.stringify(state));
-	  return state;
-	}
-	function stateClear(settings) {
-	  if (localStorage.getItem(settings.stateKey)) {
-	    localStorage.removeItem(settings.stateKey);
-	  }
-
-	  return {};
-	}
-
 	function switchToModal(_x, _x2) {
 	  return _switchToModal.apply(this, arguments);
 	}
@@ -1216,6 +1126,96 @@
 
 	  return Breakpoint;
 	}();
+
+	function handlerClick(event) {
+	  if (this.working) return;
+	  var trigger = event.target.closest("[data-".concat(this.settings.dataToggle, "]"));
+
+	  if (trigger) {
+	    var selector = trigger.getAttribute("data-".concat(this.settings.dataToggle));
+	    this.memory.trigger = trigger;
+	    this.toggle(selector);
+	    event.preventDefault();
+	    return;
+	  }
+
+	  trigger = event.target.closest("[data-".concat(this.settings.dataOpen, "]"));
+
+	  if (trigger) {
+	    var _selector = trigger.getAttribute("data-".concat(this.settings.dataOpen));
+
+	    this.memory.trigger = trigger;
+	    this.open(_selector);
+	    event.preventDefault();
+	    return;
+	  }
+
+	  trigger = event.target.closest("[data-".concat(this.settings.dataClose, "]"));
+
+	  if (trigger) {
+	    var _selector2 = trigger.getAttribute("data-".concat(this.settings.dataClose));
+
+	    if (_selector2) {
+	      this.memory.trigger = trigger;
+	      this.close(_selector2);
+	    } else {
+	      var target = event.target.closest("[data-".concat(this.settings.dataDrawer, "]"));
+	      if (target) this.close(target);
+	    }
+
+	    event.preventDefault();
+	    return;
+	  }
+
+	  if (event.target.hasAttribute("data-".concat(this.settings.dataDrawer))) {
+	    this.close(event.target);
+	    return;
+	  }
+	}
+	function handlerKeyup(event) {
+	  if (this.working) return;
+
+	  if (event.keyCode == 27) {
+	    var target = document.querySelector(".".concat(this.settings.classModal, ".").concat(this.settings.stateOpened));
+
+	    if (target) {
+	      this.close(target);
+	    }
+	  }
+	}
+
+	function stateSet(settings) {
+	  if (!settings.stateSave) return stateClear(settings);
+	  if (!localStorage.getItem(settings.stateKey)) return stateSave(null, settings);
+	  var state = JSON.parse(localStorage.getItem(settings.stateKey));
+	  Object.keys(state).forEach(function (key) {
+	    var item = document.querySelector("[data-".concat(settings.dataDrawer, "=\"").concat(key, "\"]"));
+	    if (!item) return;
+	    state[key] == settings.stateOpened ? addClass(item, settings.stateOpened) : removeClass(item, settings.stateOpened);
+	  });
+	  return state;
+	}
+	function stateSave() {
+	  var target = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+	  var settings = arguments.length > 1 ? arguments[1] : undefined;
+	  if (!settings.stateSave) return stateClear(settings);
+	  var state = localStorage.getItem(settings.stateKey) ? JSON.parse(localStorage.getItem(settings.stateKey)) : {};
+	  var drawers = target ? [target] : document.querySelectorAll("[data-".concat(settings.dataDrawer, "]"));
+	  drawers.forEach(function (el) {
+	    if (hasClass(el, settings.classModal)) return;
+	    var drawerKey = el.getAttribute("data-".concat(settings.dataDrawer));
+	    state[drawerKey] = hasClass(el, settings.stateOpened) ? settings.stateOpened : settings.stateClosed;
+	  });
+	  localStorage.setItem(settings.stateKey, JSON.stringify(state));
+	  return state;
+	}
+	function stateClear(settings) {
+	  if (localStorage.getItem(settings.stateKey)) {
+	    localStorage.removeItem(settings.stateKey);
+	  }
+
+	  return {};
+	}
 
 	function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 

@@ -4,10 +4,10 @@ import { FocusTrap, focusTarget, focusTrigger } from '@vrembem/core';
 import { openTransition, closeTransition } from '@vrembem/core';
 
 import { defaults } from './src/js/defaults';
+import { Breakpoint } from './src/js/breakpoint';
 import { handlerClick, handlerKeyup } from './src/js/handlers';
 import { stateClear, stateSave, stateSet } from './src/js/state';
 import { switchToDefault, switchToModal } from './src/js/switchTo';
-import { Breakpoint } from './src/js/breakpoint';
 
 export default class Drawer {
   constructor(options) {
