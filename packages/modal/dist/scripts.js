@@ -761,11 +761,9 @@
 	};
 	var focusTrigger = function focusTrigger() {
 	  var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-
-	  if (obj.memory.trigger) {
-	    obj.memory.trigger.focus();
-	    obj.memory.trigger = null;
-	  }
+	  if (!obj || !obj.memory || !obj.memory.trigger) return;
+	  obj.memory.trigger.focus();
+	  obj.memory.trigger = null;
 	};
 	var FocusTrap = function () {
 	  function FocusTrap() {
@@ -1070,6 +1068,21 @@
 	  }
 	}
 
+	function setInitialState(obj) {
+	  var modals = document.querySelectorAll("[data-".concat(obj.settings.dataModal, "]"));
+	  modals.forEach(function (el) {
+	    if (el.classList.contains(obj.settings.stateOpened)) {
+	      setInert(false, obj.settings.selectorInert);
+	      setOverflowHidden(false, obj.settings.selectorOverflow);
+	      focusTrigger(obj);
+	      obj.focusTrap.destroy();
+	    }
+
+	    removeClass(el, obj.settings.stateOpened, obj.settings.stateOpening, obj.settings.stateClosing);
+	    addClass(el, obj.settings.stateClosed);
+	  });
+	}
+
 	function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 	function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -1129,22 +1142,8 @@
 	    }
 	  }, {
 	    key: "setInitialState",
-	    value: function setInitialState() {
-	      var _this = this;
-
-	      var modals = document.querySelectorAll("[data-".concat(this.settings.dataModal, "]"));
-	      modals.forEach(function (el) {
-	        if (el.classList.contains(_this.settings.stateOpened)) {
-	          setInert(false, _this.settings.selectorInert);
-	          setOverflowHidden(false, _this.settings.selectorOverflow);
-	          focusTrigger(_this);
-
-	          _this.focusTrap.destroy();
-	        }
-
-	        removeClass(el, _this.settings.stateOpened, _this.settings.stateOpening, _this.settings.stateClosing);
-	        addClass(el, _this.settings.stateClosed);
-	      });
+	    value: function setInitialState$1() {
+	      setInitialState(this);
 	    }
 	  }, {
 	    key: "moveModals",

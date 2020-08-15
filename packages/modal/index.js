@@ -1,4 +1,4 @@
-import { addClass, hasClass, removeClass } from '@vrembem/core';
+import { hasClass } from '@vrembem/core';
 import { setInert, setOverflowHidden, setTabindex } from '@vrembem/core';
 import { FocusTrap, focusTarget, focusTrigger } from '@vrembem/core';
 import { openTransition, closeTransition } from '@vrembem/core';
@@ -6,6 +6,7 @@ import { moveElement } from '@vrembem/core';
 
 import { defaults } from './src/js/defaults';
 import { handlerClick, handlerKeyup } from './src/js/handlers';
+import { setInitialState } from './src/js/initialState';
 
 export default class Modal {
   constructor(options) {
@@ -59,21 +60,7 @@ export default class Modal {
   }
 
   setInitialState() {
-    const modals = document.querySelectorAll(`[data-${this.settings.dataModal}]`);
-    modals.forEach((el) => {
-      if (el.classList.contains(this.settings.stateOpened)) {
-        setInert(false, this.settings.selectorInert);
-        setOverflowHidden(false, this.settings.selectorOverflow);
-        focusTrigger(this);
-        this.focusTrap.destroy();
-      }
-      removeClass(el,
-        this.settings.stateOpened,
-        this.settings.stateOpening,
-        this.settings.stateClosing
-      );
-      addClass(el, this.settings.stateClosed);
-    });
+    setInitialState(this);
   }
 
   moveModals(ref = this.settings.moveModals.ref, type = this.settings.moveModals.type) {

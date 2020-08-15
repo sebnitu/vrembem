@@ -15,10 +15,9 @@ export const focusTarget = (target, settings) => {
 };
 
 export const focusTrigger = (obj = null) => {
-  if (obj.memory.trigger) {
-    obj.memory.trigger.focus();
-    obj.memory.trigger = null;
-  }
+  if (!obj || !obj.memory || !obj.memory.trigger) return;
+  obj.memory.trigger.focus();
+  obj.memory.trigger = null;
 };
 
 export class FocusTrap {

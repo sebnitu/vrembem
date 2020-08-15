@@ -103,11 +103,9 @@
   };
   var focusTrigger = function focusTrigger() {
     var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-
-    if (obj.memory.trigger) {
-      obj.memory.trigger.focus();
-      obj.memory.trigger = null;
-    }
+    if (!obj || !obj.memory || !obj.memory.trigger) return;
+    obj.memory.trigger.focus();
+    obj.memory.trigger = null;
   };
   var FocusTrap = function () {
     function FocusTrap() {
