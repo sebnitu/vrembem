@@ -5,12 +5,8 @@ export const focusTarget = (target, settings) => {
   if (innerFocus) {
     innerFocus.focus();
   } else {
-    const dialog = target.querySelector(
-      `[data-${settings.dataDialog}][tabindex="-1"]`
-    );
-    if (dialog) {
-      dialog.focus();
-    }
+    const innerElement = target.querySelector('[tabindex="-1"]');
+    if (innerElement) innerElement.focus();
   }
 };
 
@@ -51,9 +47,8 @@ export class FocusTrap {
   handlerFocusTrap(event) {
     const isTab = (event.key === 'Tab' || event.keyCode === 9);
     if (!isTab) return;
-
+    const innerElement = this.target.querySelector('[tabindex="-1"]');
     if (event.shiftKey) {
-      const innerElement = this.target.querySelector('[tabindex="-1"]');
       if (
         document.activeElement === this.focusableFirst ||
         document.activeElement === innerElement
@@ -62,7 +57,10 @@ export class FocusTrap {
         event.preventDefault();
       }
     } else {
-      if (document.activeElement === this.focusableLast) {
+      if (
+        document.activeElement === this.focusableLast ||
+        document.activeElement === innerElement
+      ) {
         this.focusableFirst.focus();
         event.preventDefault();
       }
@@ -76,8 +74,9 @@ export class FocusTrap {
 
   getFocusable() {
     const focusable = [];
-    const scrollPos = this.target.scrollTop;
-    const items = this.target.querySelectorAll(`
+    const initFocus = document.activeElement;
+    const initScrollTop = this.target.scrollTop;
+    this.target.querySelectorAll(`
       a[href]:not([disabled]),
       button:not([disabled]),
       textarea:not([disabled]),
@@ -86,14 +85,14 @@ export class FocusTrap {
       input[type="checkbox"]:not([disabled]),
       select:not([disabled]),
       [tabindex]:not([tabindex="-1"])
-    `);
-    items.forEach((el) => {
+    `).forEach((el) => {
       el.focus();
       if (el === document.activeElement) {
         focusable.push(el);
       }
     });
-    this.target.scrollTop = scrollPos;
+    this.target.scrollTop = initScrollTop;
+    initFocus.focus();
     return focusable;
   }
 }
