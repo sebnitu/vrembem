@@ -235,7 +235,7 @@ Drawers can slide in from the left or right using the position modifiers:
 
 | Key                 | Default               | Description                                                                                          |
 | ------------------- | --------------------- | ---------------------------------------------------------------------------------------------------- |
-| `autoInit`          | `false`               | Automatically instantiates the instance.                                                             |
+| `autoInit`          | `false`               | Automatically initializes the instance.                                                              |
 | `dataDrawer`        | `'drawer'`            | Data attribute for a drawer.                                                                         |
 | `dataDialog`        | `'drawer-dialog'`     | Data attribute for a drawer dialog.                                                                  |
 | `dataToggle`        | `'drawer-toggle'`     | Data attribute for a drawer toggle trigger.                                                          |

@@ -194,7 +194,7 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
 
 | Key                 | Default                     | Description                                                                                                                                                           |
 | ------------------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `autoInit`          | `false`                     | Automatically instantiates the instance.                                                                                                                              |
+| `autoInit`          | `false`                     | Automatically initializes the instance.                                                                                                                               |
 | `dataModal`         | `'modal'`                   | Data attribute for a modal.                                                                                                                                           |
 | `dataDialog`        | `'modal-dialog'`            | Data attribute for a modal. dialog                                                                                                                                    |
 | `dataOpen`          | `'modal-open'`              | Data attribute for a modal open trigger.                                                                                                                              |

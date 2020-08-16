@@ -108,7 +108,7 @@ $icon-indeterminate: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000
 
 | Key          | Default          | Description                                                        |
 | ------------ | ---------------- | ------------------------------------------------------------------ |
-| `autoInit`   | `false`          | Automatically instantiates the instance.                           |
+| `autoInit`   | `false`          | Automatically initializes the instance.                            |
 | `stateAttr`  | `'aria-checked'` | Attribute to check mixed state against.                            |
 | `StateValue` | `'mixed'`        | The mixed value to check for. Applied as the value of `stateAttr`. |
 
