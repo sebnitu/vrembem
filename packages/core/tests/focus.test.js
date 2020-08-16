@@ -207,7 +207,7 @@ test('should do nothing if focus trap destroy is called before its been initiali
   expect(focusTrap.destroy.bind(focusTrap)).not.toThrowError();
 });
 
-test('Should not throw error if tabindex="-1" is not present on in target', () => {
+test('Should not throw error if tabindex="-1" is not present on inner target', () => {
   const el = document.querySelector('.item-4');
   const focusTrap = new FocusTrap();
   expect(focusTrap.init.bind(focusTrap, el)).not.toThrowError();
