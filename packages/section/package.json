@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/section",
   "description": "A container component for wrapping distinct sections of a page.",
-  "version": "1.14.8",
+  "version": "1.15.0",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -25,7 +25,7 @@
     "directory": "packages/section"
   },
   "dependencies": {
-    "@vrembem/core": "^1.14.8"
+    "@vrembem/core": "^1.15.0"
   },
   "publishConfig": {
     "access": "public"
