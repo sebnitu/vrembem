@@ -452,7 +452,7 @@ Drawers can slide in from the left or right using the position modifiers:
       <tr>
         <td data-mobile-label="Key"><code class="code text-nowrap">autoInit</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">false</code></td>
-        <td data-mobile-label="Desc">Automatically instantiates the instance.</td>
+        <td data-mobile-label="Desc">Automatically initializes the instance.</td>
       </tr>
 
       <!-- Data attributes -->

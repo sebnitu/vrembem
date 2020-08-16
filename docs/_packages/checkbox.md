@@ -295,7 +295,7 @@ $icon-indeterminate: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000
       <tr>
         <td data-mobile-label="Key"><code class="code text_nowrap">autoInit</code></td>
         <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">false</code></td>
-        <td data-mobile-label="Desc">Automatically instantiates the instance.</td>
+        <td data-mobile-label="Desc">Automatically initializes the instance.</td>
       </tr>
       <tr>
         <td data-mobile-label="Key"><code class="code text_nowrap">stateAttr</code></td>
