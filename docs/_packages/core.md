@@ -47,43 +47,43 @@ import * as core from "@vrembem/core";
 core.removeClass(el, "some-class");
 ```
 
-<div class="scroll-box">
-  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
-    <thead>
-      <tr>
-        <th>Method</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">addClass(el, ...cl)</code></td>
-        <td data-mobile-label="Desc">Adds a class or classes to an element or NodeList</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">camelCase(str)</code></td>
-        <td data-mobile-label="Desc">Takes a hyphen cased string and converts it to camel case</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">hasClass(el, ...cl)</code></td>
-        <td data-mobile-label="Desc">Checks an element or NodeList whether they contain a class or classes</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">hyphenCase(str)</code></td>
-        <td data-mobile-label="Desc">Takes a camel cased string and converts it to hyphen case</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">removeClass(el, ...cl)</code></td>
-        <td data-mobile-label="Desc">Remove a class or classes from an element or NodeList</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">toggleClass(el, ...cl)</code></td>
-        <td data-mobile-label="Desc">Toggle a class or classes on an element or NodeList</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">variables</code></td>
-        <td data-mobile-label="Desc">Exposes CSS variables in JavaScript</td>
-      </tr>
-    </tbody>
-  </table>
+## Sass Variables
+
+<div class="notice notice_type_caution">
+  <div class="notice__body">
+    <div class="media media_stack_lg media_gap_xs">
+      <div class="media__body media media_gap_xs">
+        <div class="media__obj">
+          {% include icon.html icon="alert-circle" %}
+        </div>
+        <div class="media__body">
+          Sass Variable documentation coming soon!
+        </div>
+      </div>
+      <div class="media__obj">
+        <a class="link text-nowrap" href="https://github.com/sebnitu/vrembem/blob/master/packages/core/src/css/_variables.scss">View source &rarr;</a>
+      </div>
+    </div>
+  </div>
 </div>
+
+## Modules
+
+<div class="notice notice_type_caution">
+  <div class="notice__body">
+    <div class="media media_stack_lg media_gap_xs">
+      <div class="media__body media media_gap_xs">
+        <div class="media__obj">
+          {% include icon.html icon="alert-circle" %}
+        </div>
+        <div class="media__body">
+          Module documentation coming soon!
+        </div>
+      </div>
+      <div class="media__obj">
+        <a class="link text-nowrap" href="https://github.com/sebnitu/vrembem/tree/master/packages/core/src/js">View source &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
