@@ -109,7 +109,7 @@
       classCallCheck(this, FocusTrap);
 
       this.target = null;
-      this.handlerFocusTrap = this.handlerFocusTrap.bind(this);
+      this.__handlerFocusTrap = this.handlerFocusTrap.bind(this);
     }
 
     createClass(FocusTrap, [{
@@ -121,7 +121,7 @@
         if (this.focusable.length) {
           this.focusableFirst = this.focusable[0];
           this.focusableLast = this.focusable[this.focusable.length - 1];
-          this.target.addEventListener('keydown', this.handlerFocusTrap);
+          this.target.addEventListener('keydown', this.__handlerFocusTrap);
         } else {
           this.target.addEventListener('keydown', this.handlerFocusLock);
         }
@@ -133,7 +133,7 @@
         this.focusable = null;
         this.focusableFirst = null;
         this.focusableLast = null;
-        this.target.removeEventListener('keydown', this.handlerFocusTrap);
+        this.target.removeEventListener('keydown', this.__handlerFocusTrap);
         this.target.removeEventListener('keydown', this.handlerFocusLock);
         this.target = null;
       }

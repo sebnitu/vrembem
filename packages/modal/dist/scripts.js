@@ -767,7 +767,7 @@
 	    classCallCheck(this, FocusTrap);
 
 	    this.target = null;
-	    this.handlerFocusTrap = this.handlerFocusTrap.bind(this);
+	    this.__handlerFocusTrap = this.handlerFocusTrap.bind(this);
 	  }
 
 	  createClass(FocusTrap, [{
@@ -779,7 +779,7 @@
 	      if (this.focusable.length) {
 	        this.focusableFirst = this.focusable[0];
 	        this.focusableLast = this.focusable[this.focusable.length - 1];
-	        this.target.addEventListener('keydown', this.handlerFocusTrap);
+	        this.target.addEventListener('keydown', this.__handlerFocusTrap);
 	      } else {
 	        this.target.addEventListener('keydown', this.handlerFocusLock);
 	      }
@@ -791,7 +791,7 @@
 	      this.focusable = null;
 	      this.focusableFirst = null;
 	      this.focusableLast = null;
-	      this.target.removeEventListener('keydown', this.handlerFocusTrap);
+	      this.target.removeEventListener('keydown', this.__handlerFocusTrap);
 	      this.target.removeEventListener('keydown', this.handlerFocusLock);
 	      this.target = null;
 	    }
@@ -1093,7 +1093,6 @@
 	    this.working = false;
 	    this.memory = {};
 	    this.focusTrap = new FocusTrap();
-	    this.selectorTabindex = "[data-".concat(this.settings.dataModal, "] [data-").concat(this.settings.dataDialog, "]");
 	    this.__handlerClick = handlerClick.bind(this);
 	    this.__handlerKeyup = handlerKeyup.bind(this);
 	    if (this.settings.autoInit) this.init();
@@ -1105,7 +1104,7 @@
 	      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 	      if (options) this.settings = _objectSpread(_objectSpread({}, this.settings), options);
 	      this.moveModals();
-	      this.setTabindex(this.settings.setTabindex, this.selectorTabindex);
+	      this.setTabindex(this.settings.setTabindex);
 	      this.setInitialState();
 	      document.addEventListener('click', this.__handlerClick, false);
 	      document.addEventListener('touchend', this.__handlerClick, false);
@@ -1134,8 +1133,9 @@
 	    key: "setTabindex",
 	    value: function setTabindex$1() {
 	      var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+	      var selectorTabindex = "\n      [data-".concat(this.settings.dataModal, "]\n      [data-").concat(this.settings.dataDialog, "]\n    ");
 
-	      setTabindex(state, this.selectorTabindex);
+	      setTabindex(state, selectorTabindex);
 	    }
 	  }, {
 	    key: "setInitialState",

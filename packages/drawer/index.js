@@ -100,6 +100,17 @@ export default class Drawer {
    * Change state functionality
    */
 
+  async toggle(drawerKey) {
+    const drawer = this.getDrawer(drawerKey);
+    if (!drawer) return this.drawerNotFound(drawerKey);
+    const isOpen = hasClass(drawer, this.settings.stateOpened);
+    if (!isOpen) {
+      return this.open(drawer);
+    } else {
+      return this.close(drawer);
+    }
+  }
+
   async open(drawerKey) {
     const drawer = this.getDrawer(drawerKey);
     if (!drawer) return this.drawerNotFound(drawerKey);
@@ -147,17 +158,6 @@ export default class Drawer {
       return drawer;
     } else {
       return drawer;
-    }
-  }
-
-  async toggle(drawerKey) {
-    const drawer = this.getDrawer(drawerKey);
-    if (!drawer) return this.drawerNotFound(drawerKey);
-    const isOpen = hasClass(drawer, this.settings.stateOpened);
-    if (!isOpen) {
-      return this.open(drawer);
-    } else {
-      return this.close(drawer);
     }
   }
 }

@@ -301,30 +301,28 @@ modal.close().then((result) => {
 });
 ```
 
-### `modal.setInitialState()`
+### `modal.getModal(key)`
 
-Sets the initial state of all modals. This includes removing all transitional classes, opened states and applies the closed state class. This is ran automatically on `modal.init()` but is exposed if states need to be reset for some reason.
+Returns a modal that matches the provided unique modal key.
+
+**Parameters**
+
+- `key [String]` A unique key that matches the value of a modal `data-modal` attribute.
+
+**Returns**
+
+- `HTML object` The matching modal element.
+
 
 ```html
-<!-- Missing a state class... -->
-<div data-modal="[unique-id]" class="modal">...</div>
-
-<!-- Opened state... -->
-<div data-modal="[unique-id]" class="modal is-opened">...</div>
-
-<!-- Transitioning state... -->
-<div data-modal="[unique-id]" class="modal is-opening">...</div>
-<div data-modal="[unique-id]" class="modal is-closing">...</div>
+<div class="modal is-closed" data-modal="modal-key">...</div>
 ```
+
 ```js
-modal.setInitialState();
-```
-```html
-<!-- Output -->
-<div data-modal="[unique-id]" class="modal is-closed"></div>
-<div data-modal="[unique-id]" class="modal is-closed"></div>
-<div data-modal="[unique-id]" class="modal is-closed"></div>
-<div data-modal="[unique-id]" class="modal is-closed"></div>
+const el = modal.getModal('modal-key');
+
+// Returns HTML Element Object
+console.log(el);
 ```
 
 ### `modal.setTabindex()`
@@ -351,6 +349,32 @@ modal.setTabindex();
     ...
   </div>
 </div>
+```
+
+### `modal.setInitialState()`
+
+Sets the initial state of all modals. This includes removing all transitional classes, opened states and applies the closed state class. This is ran automatically on `modal.init()` but is exposed if states need to be reset for some reason.
+
+```html
+<!-- Missing a state class... -->
+<div data-modal="[unique-id]" class="modal">...</div>
+
+<!-- Opened state... -->
+<div data-modal="[unique-id]" class="modal is-opened">...</div>
+
+<!-- Transitioning state... -->
+<div data-modal="[unique-id]" class="modal is-opening">...</div>
+<div data-modal="[unique-id]" class="modal is-closing">...</div>
+```
+```js
+modal.setInitialState();
+```
+```html
+<!-- Output -->
+<div data-modal="[unique-id]" class="modal is-closed"></div>
+<div data-modal="[unique-id]" class="modal is-closed"></div>
+<div data-modal="[unique-id]" class="modal is-closed"></div>
+<div data-modal="[unique-id]" class="modal is-closed"></div>
 ```
 
 ### `modal.moveModals(ref, type)`

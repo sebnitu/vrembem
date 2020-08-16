@@ -109,7 +109,7 @@
       classCallCheck(this, FocusTrap);
 
       this.target = null;
-      this.handlerFocusTrap = this.handlerFocusTrap.bind(this);
+      this.__handlerFocusTrap = this.handlerFocusTrap.bind(this);
     }
 
     createClass(FocusTrap, [{
@@ -121,7 +121,7 @@
         if (this.focusable.length) {
           this.focusableFirst = this.focusable[0];
           this.focusableLast = this.focusable[this.focusable.length - 1];
-          this.target.addEventListener('keydown', this.handlerFocusTrap);
+          this.target.addEventListener('keydown', this.__handlerFocusTrap);
         } else {
           this.target.addEventListener('keydown', this.handlerFocusLock);
         }
@@ -133,7 +133,7 @@
         this.focusable = null;
         this.focusableFirst = null;
         this.focusableLast = null;
-        this.target.removeEventListener('keydown', this.handlerFocusTrap);
+        this.target.removeEventListener('keydown', this.__handlerFocusTrap);
         this.target.removeEventListener('keydown', this.handlerFocusLock);
         this.target = null;
       }
@@ -1481,10 +1481,10 @@
         return switchToModal(drawerKey, this);
       }
     }, {
-      key: "open",
+      key: "toggle",
       value: function () {
-        var _open = asyncToGenerator(regenerator.mark(function _callee(drawerKey) {
-          var drawer, isModal;
+        var _toggle = asyncToGenerator(regenerator.mark(function _callee(drawerKey) {
+          var drawer, isOpen;
           return regenerator.wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
@@ -1499,8 +1499,53 @@
                   return _context.abrupt("return", this.drawerNotFound(drawerKey));
 
                 case 3:
+                  isOpen = hasClass(drawer, this.settings.stateOpened);
+
+                  if (isOpen) {
+                    _context.next = 8;
+                    break;
+                  }
+
+                  return _context.abrupt("return", this.open(drawer));
+
+                case 8:
+                  return _context.abrupt("return", this.close(drawer));
+
+                case 9:
+                case "end":
+                  return _context.stop();
+              }
+            }
+          }, _callee, this);
+        }));
+
+        function toggle(_x) {
+          return _toggle.apply(this, arguments);
+        }
+
+        return toggle;
+      }()
+    }, {
+      key: "open",
+      value: function () {
+        var _open = asyncToGenerator(regenerator.mark(function _callee2(drawerKey) {
+          var drawer, isModal;
+          return regenerator.wrap(function _callee2$(_context2) {
+            while (1) {
+              switch (_context2.prev = _context2.next) {
+                case 0:
+                  drawer = this.getDrawer(drawerKey);
+
+                  if (drawer) {
+                    _context2.next = 3;
+                    break;
+                  }
+
+                  return _context2.abrupt("return", this.drawerNotFound(drawerKey));
+
+                case 3:
                   if (hasClass(drawer, this.settings.stateOpened)) {
-                    _context.next = 17;
+                    _context2.next = 17;
                     break;
                   }
 
@@ -1511,7 +1556,7 @@
                     setOverflowHidden(true, this.settings.selectorOverflow);
                   }
 
-                  _context.next = 9;
+                  _context2.next = 9;
                   return openTransition(drawer, this.settings);
 
                 case 9:
@@ -1527,21 +1572,21 @@
                     bubbles: true
                   }));
                   this.working = false;
-                  return _context.abrupt("return", drawer);
+                  return _context2.abrupt("return", drawer);
 
                 case 17:
                   focusTarget(drawer, this.settings);
-                  return _context.abrupt("return", drawer);
+                  return _context2.abrupt("return", drawer);
 
                 case 19:
                 case "end":
-                  return _context.stop();
+                  return _context2.stop();
               }
             }
-          }, _callee, this);
+          }, _callee2, this);
         }));
 
-        function open(_x) {
+        function open(_x2) {
           return _open.apply(this, arguments);
         }
 
@@ -1550,69 +1595,8 @@
     }, {
       key: "close",
       value: function () {
-        var _close = asyncToGenerator(regenerator.mark(function _callee2(drawerKey) {
+        var _close = asyncToGenerator(regenerator.mark(function _callee3(drawerKey) {
           var drawer;
-          return regenerator.wrap(function _callee2$(_context2) {
-            while (1) {
-              switch (_context2.prev = _context2.next) {
-                case 0:
-                  drawer = this.getDrawer(drawerKey);
-
-                  if (drawer) {
-                    _context2.next = 3;
-                    break;
-                  }
-
-                  return _context2.abrupt("return", this.drawerNotFound(drawerKey));
-
-                case 3:
-                  if (!hasClass(drawer, this.settings.stateOpened)) {
-                    _context2.next = 16;
-                    break;
-                  }
-
-                  this.working = true;
-
-                  if (hasClass(drawer, this.settings.classModal)) {
-                    setInert(false, this.settings.selectorInert);
-                    setOverflowHidden(false, this.settings.selectorOverflow);
-                  }
-
-                  _context2.next = 8;
-                  return closeTransition(drawer, this.settings);
-
-                case 8:
-                  this.stateSave(drawer);
-                  focusTrigger(this);
-                  this.focusTrap.destroy();
-                  drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'closed', {
-                    bubbles: true
-                  }));
-                  this.working = false;
-                  return _context2.abrupt("return", drawer);
-
-                case 16:
-                  return _context2.abrupt("return", drawer);
-
-                case 17:
-                case "end":
-                  return _context2.stop();
-              }
-            }
-          }, _callee2, this);
-        }));
-
-        function close(_x2) {
-          return _close.apply(this, arguments);
-        }
-
-        return close;
-      }()
-    }, {
-      key: "toggle",
-      value: function () {
-        var _toggle = asyncToGenerator(regenerator.mark(function _callee3(drawerKey) {
-          var drawer, isOpen;
           return regenerator.wrap(function _callee3$(_context3) {
             while (1) {
               switch (_context3.prev = _context3.next) {
@@ -1627,19 +1611,35 @@
                   return _context3.abrupt("return", this.drawerNotFound(drawerKey));
 
                 case 3:
-                  isOpen = hasClass(drawer, this.settings.stateOpened);
-
-                  if (isOpen) {
-                    _context3.next = 8;
+                  if (!hasClass(drawer, this.settings.stateOpened)) {
+                    _context3.next = 16;
                     break;
                   }
 
-                  return _context3.abrupt("return", this.open(drawer));
+                  this.working = true;
+
+                  if (hasClass(drawer, this.settings.classModal)) {
+                    setInert(false, this.settings.selectorInert);
+                    setOverflowHidden(false, this.settings.selectorOverflow);
+                  }
+
+                  _context3.next = 8;
+                  return closeTransition(drawer, this.settings);
 
                 case 8:
-                  return _context3.abrupt("return", this.close(drawer));
+                  this.stateSave(drawer);
+                  focusTrigger(this);
+                  this.focusTrap.destroy();
+                  drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'closed', {
+                    bubbles: true
+                  }));
+                  this.working = false;
+                  return _context3.abrupt("return", drawer);
 
-                case 9:
+                case 16:
+                  return _context3.abrupt("return", drawer);
+
+                case 17:
                 case "end":
                   return _context3.stop();
               }
@@ -1647,11 +1647,11 @@
           }, _callee3, this);
         }));
 
-        function toggle(_x3) {
-          return _toggle.apply(this, arguments);
+        function close(_x3) {
+          return _close.apply(this, arguments);
         }
 
-        return toggle;
+        return close;
       }()
     }]);
 
@@ -1787,7 +1787,6 @@
       this.working = false;
       this.memory = {};
       this.focusTrap = new FocusTrap();
-      this.selectorTabindex = "[data-".concat(this.settings.dataModal, "] [data-").concat(this.settings.dataDialog, "]");
       this.__handlerClick = handlerClick$1.bind(this);
       this.__handlerKeyup = handlerKeyup$1.bind(this);
       if (this.settings.autoInit) this.init();
@@ -1799,7 +1798,7 @@
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
         if (options) this.settings = _objectSpread$2(_objectSpread$2({}, this.settings), options);
         this.moveModals();
-        this.setTabindex(this.settings.setTabindex, this.selectorTabindex);
+        this.setTabindex(this.settings.setTabindex);
         this.setInitialState();
         document.addEventListener('click', this.__handlerClick, false);
         document.addEventListener('touchend', this.__handlerClick, false);
@@ -1828,8 +1827,9 @@
       key: "setTabindex",
       value: function setTabindex$1() {
         var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+        var selectorTabindex = "\n      [data-".concat(this.settings.dataModal, "]\n      [data-").concat(this.settings.dataDialog, "]\n    ");
 
-        setTabindex(state, this.selectorTabindex);
+        setTabindex(state, selectorTabindex);
       }
     }, {
       key: "setInitialState",

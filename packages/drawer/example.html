@@ -243,6 +243,8 @@
     selectorOverflow: 'body, [role="main"]'
   });
 
+  console.log(drawer);
+
   document.addEventListener('click', () => {
     if (event.target.closest('.js-api-toggle')) {
       drawer.toggle('drawer-pos-right').then(console.log);
