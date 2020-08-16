@@ -56,7 +56,7 @@ Include the component's markup into your project. Use the [online documentation]
 ```html
 <div class="drawer__wrapper">
   <aside data-drawer="[unique-id]" class="drawer">
-    <div class="drawer__item">
+    <div data-drawer-dialog class="drawer__dialog">
       <button data-drawer-close>...</button>
     </div>
   </aside>

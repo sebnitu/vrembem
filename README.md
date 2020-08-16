@@ -45,7 +45,7 @@ If you'd like to use Vrembem for prototyping or just want to take it for a test 
 
 <!-- Instantiate the component rendered in the document -->
 <script>
-  const modal = vrembem.Modal();
+  const modal = new vrembem.Modal();
   modal.init();
 </script>
 ```
@@ -122,8 +122,8 @@ Include the component's markup into your project. Use the [online docs](https://
 
 ```html
 <button data-modal-open="[unique-id]">Modal</button>
-<div class="modal" data-modal="[unique-id]">
-  <div class="modal__dialog">
+<div data-modal="[unique-id]" class="modal">
+  <div data-modal-dialog class="modal__dialog">
     <button data-modal-close>Close</button>
     ...
   </div>
