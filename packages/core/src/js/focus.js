@@ -24,6 +24,7 @@ export class FocusTrap {
 
   init(target) {
     this.target = target;
+    this.inner = this.target.querySelector('[tabindex="-1"]');
     this.focusable = this.getFocusable();
     if (this.focusable.length) {
       this.focusableFirst = this.focusable[0];
@@ -36,6 +37,7 @@ export class FocusTrap {
 
   destroy() {
     if (!this.target) return;
+    this.inner = null;
     this.focusable = null;
     this.focusableFirst = null;
     this.focusableLast = null;
@@ -47,11 +49,10 @@ export class FocusTrap {
   handlerFocusTrap(event) {
     const isTab = (event.key === 'Tab' || event.keyCode === 9);
     if (!isTab) return;
-    const innerElement = this.target.querySelector('[tabindex="-1"]');
     if (event.shiftKey) {
       if (
         document.activeElement === this.focusableFirst ||
-        document.activeElement === innerElement
+        document.activeElement === this.inner
       ) {
         this.focusableLast.focus();
         event.preventDefault();
@@ -59,7 +60,7 @@ export class FocusTrap {
     } else {
       if (
         document.activeElement === this.focusableLast ||
-        document.activeElement === innerElement
+        document.activeElement === this.inner
       ) {
         this.focusableFirst.focus();
         event.preventDefault();
@@ -75,7 +76,8 @@ export class FocusTrap {
   getFocusable() {
     const focusable = [];
     const initFocus = document.activeElement;
-    const initScrollTop = this.target.scrollTop;
+    const initScrollTop = (this.inner) ? this.inner.scrollTop : 0;
+
     this.target.querySelectorAll(`
       a[href]:not([disabled]),
       button:not([disabled]),
@@ -91,7 +93,8 @@ export class FocusTrap {
         focusable.push(el);
       }
     });
-    this.target.scrollTop = initScrollTop;
+
+    if (this.inner) this.inner.scrollTop = initScrollTop;
     initFocus.focus();
     return focusable;
   }
