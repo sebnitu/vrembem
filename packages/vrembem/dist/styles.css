@@ -2646,7 +2646,7 @@ input::-moz-placeholder {
   min-height: 1.5rem;
 }
 
-.media_gap_0 > * + * {
+.media_gap_none > * + * {
   margin-left: 0;
 }
 
@@ -2677,7 +2677,7 @@ input::-moz-placeholder {
   margin-right: 1.5rem;
   margin-left: 0;
 }
-.media_reverse.media_gap_0 > * + * {
+.media_reverse.media_gap_none > * + * {
   margin-right: 0;
   margin-left: 0;
 }
@@ -2710,6 +2710,24 @@ input::-moz-placeholder {
   margin-right: 0;
   margin-left: 0;
 }
+.media_stack.media_gap_none > * + * {
+  margin-top: 0;
+}
+.media_stack.media_gap_xs > * + * {
+  margin-top: 0.5rem;
+}
+.media_stack.media_gap_sm > * + * {
+  margin-top: 1rem;
+}
+.media_stack.media_gap_md > * + * {
+  margin-top: 1.5rem;
+}
+.media_stack.media_gap_lg > * + * {
+  margin-top: 2rem;
+}
+.media_stack.media_gap_xl > * + * {
+  margin-top: 3rem;
+}
 
 .media_stack_xs {
   flex-direction: column;
@@ -2729,7 +2747,7 @@ input::-moz-placeholder {
     margin-right: 0;
     margin-left: 0;
   }
-  .media_stack_xs.media_gap_0 > * + * {
+  .media_stack_xs.media_gap_none > * + * {
     margin-top: 0;
   }
   .media_stack_xs.media_gap_xs > * + * {
@@ -2766,7 +2784,7 @@ input::-moz-placeholder {
     margin-right: 0;
     margin-left: 0;
   }
-  .media_stack_sm.media_gap_0 > * + * {
+  .media_stack_sm.media_gap_none > * + * {
     margin-top: 0;
   }
   .media_stack_sm.media_gap_xs > * + * {
@@ -2803,7 +2821,7 @@ input::-moz-placeholder {
     margin-right: 0;
     margin-left: 0;
   }
-  .media_stack_md.media_gap_0 > * + * {
+  .media_stack_md.media_gap_none > * + * {
     margin-top: 0;
   }
   .media_stack_md.media_gap_xs > * + * {
@@ -2840,7 +2858,7 @@ input::-moz-placeholder {
     margin-right: 0;
     margin-left: 0;
   }
-  .media_stack_lg.media_gap_0 > * + * {
+  .media_stack_lg.media_gap_none > * + * {
     margin-top: 0;
   }
   .media_stack_lg.media_gap_xs > * + * {
@@ -2877,7 +2895,7 @@ input::-moz-placeholder {
     margin-right: 0;
     margin-left: 0;
   }
-  .media_stack_xl.media_gap_0 > * + * {
+  .media_stack_xl.media_gap_none > * + * {
     margin-top: 0;
   }
   .media_stack_xl.media_gap_xs > * + * {
