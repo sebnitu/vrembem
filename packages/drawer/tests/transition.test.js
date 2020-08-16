@@ -99,6 +99,12 @@ test('should apply state classes on `click` and `transitionend` events', async (
   expect(el).not.toHaveClass('is-opening is-opened is-closing');
 });
 
+test('should be able to pass options on init method', () => {
+  drawer = new Drawer({ stateKey: 'OnNew' });
+  drawer.init({ stateKey: 'OnInit' });
+  expect(drawer.settings.stateKey).toBe('OnInit');
+});
+
 test('should open and close drawer using data attribute triggers', async () => {
   document.body.innerHTML = markup;
   drawer = new Drawer();

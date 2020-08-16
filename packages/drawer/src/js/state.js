@@ -23,7 +23,7 @@ export function stateSet(settings) {
   return state;
 }
 
-export function stateSave(target = null, settings) {
+export function stateSave(target, settings) {
   // If save state is disabled
   if (!settings.stateSave)
     return stateClear(settings);
@@ -35,7 +35,6 @@ export function stateSave(target = null, settings) {
   // Are we saving a single target or the entire suite?
   const drawers = (target) ? [target] :
     document.querySelectorAll(`[data-${settings.dataDrawer}]`);
-
 
   // Loop through drawers and save their states
   drawers.forEach((el) => {

@@ -234,6 +234,12 @@ test('should not throw error when a drawer in mediaQueryLists doesn\'t exist in 
   document.body.innerHTML = markup;
   window.innerWidth = 300;
   drawer = new Drawer({ autoInit: true });
-  drawer.breakpoint.mediaQueryLists[0].drawer = 'fake-drawer';
+  drawer.breakpoint.mediaQueryLists[0].drawer = 'asdf-drawer';
+  drawer.breakpoint.check();
+  // console.log(drawer.breakpoint.mediaQueryLists);
   expect(drawer.breakpoint.check.bind(drawer)).not.toThrow();
 });
+
+// test('should not throw error if breakpoint check doesn\'t find a specific drawer', () => {
+
+// });

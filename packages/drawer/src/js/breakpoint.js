@@ -38,12 +38,11 @@ export class Breakpoint {
         // If an event is passed, filter out drawers that don't match the query
         // If event is null, run all drawers through match
         let filter = (event) ? event.media == item.mql.media : true;
-        if (filter) {
-          const drawer = document.querySelector(`[data-${this.parent.settings.dataDrawer}="${item.drawer}"]`);
-          if (drawer) {
-            this.match(item.mql, drawer);
-          }
-        }
+        if (!filter) return;
+        const drawer = document.querySelector(
+          `[data-${this.parent.settings.dataDrawer}="${item.drawer}"]`
+        );
+        if (drawer) this.match(item.mql, drawer);
       });
       document.dispatchEvent(new CustomEvent(this.parent.settings.customEventPrefix + 'breakpoint', {
         bubbles: true

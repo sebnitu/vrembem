@@ -1,4 +1,5 @@
 import Drawer from '../index.js';
+import { stateSave } from '../src/js/state';
 import { transition } from './helpers/transition';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -202,4 +203,48 @@ test('should not save state if a modal drawer', () => {
   drawer = new Drawer({ autoInit: true });
   const state = JSON.parse(localStorage.getItem('DrawerState'));
   expect(state).not.toHaveProperty('drawer-three');
+});
+
+test('should clear current state if stateClear API is called', () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer({ autoInit: true });
+  let state = JSON.parse(localStorage.getItem('DrawerState'));
+  expect(Object.keys(drawer.state).length).toBe(2);
+  expect(Object.keys(state).length).toBe(2);
+
+  drawer.stateClear();
+  state = localStorage.getItem('DrawerState');
+  expect(Object.keys(drawer.state).length).toBe(0);
+  expect(state).toBe(null);
+});
+
+test('should save state of all drawers when saveState is called with no passed target', () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer();
+
+  localStorage.removeItem('DrawerState');
+  let state = localStorage.getItem('DrawerState');
+  expect(Object.keys(drawer.state).length).toBe(0);
+  expect(state).toBe(null);
+
+  drawer.stateSave();
+  state = JSON.parse(localStorage.getItem('DrawerState'));
+  expect(Object.keys(drawer.state).length).toBe(2);
+  expect(Object.keys(state).length).toBe(2);
+});
+
+test('should save a single drawer when manually passed to stateSave module', () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer();
+  const el = document.querySelector('[data-drawer="drawer-one"]');
+
+  localStorage.removeItem('DrawerState');
+  let state = localStorage.getItem('DrawerState');
+  expect(Object.keys(drawer.state).length).toBe(0);
+  expect(state).toBe(null);
+
+  drawer.state = stateSave(el, drawer.settings);
+  state = JSON.parse(localStorage.getItem('DrawerState'));
+  expect(Object.keys(drawer.state).length).toBe(1);
+  expect(Object.keys(state).length).toBe(1);
 });

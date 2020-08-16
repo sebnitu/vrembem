@@ -18,7 +18,6 @@ export default class Drawer {
     this.state = {};
     this.focusTrap = new FocusTrap();
     this.breakpoint = new Breakpoint(this);
-    this.selectorTabindex = `[data-${this.settings.dataDrawer}] [data-${this.settings.dataDialog}]`;
     this.__handlerClick = handlerClick.bind(this);
     this.__handlerKeyup = handlerKeyup.bind(this);
     if (this.settings.autoInit) this.init();
@@ -27,7 +26,7 @@ export default class Drawer {
   init(options = null) {
     if (options) this.settings = { ...this.settings, ...options };
     this.stateSet();
-    this.setTabindex(this.settings.setTabindex, this.selectorTabindex);
+    this.setTabindex(this.settings.setTabindex);
     this.breakpoint.init();
     document.addEventListener('click', this.__handlerClick, false);
     document.addEventListener('touchend', this.__handlerClick, false);
@@ -62,7 +61,11 @@ export default class Drawer {
   }
 
   setTabindex(state = true) {
-    setTabindex(state, this.selectorTabindex);
+    const selectorTabindex = `
+      [data-${this.settings.dataDrawer}]
+      [data-${this.settings.dataDialog}]
+    `;
+    setTabindex(state, selectorTabindex);
   }
 
   /**
