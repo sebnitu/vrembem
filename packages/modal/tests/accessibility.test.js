@@ -20,7 +20,7 @@ describe('when selectorInert is set...', () => {
 
   beforeAll(() => {
     document.body.innerHTML = markup;
-    modal = Modal({
+    modal = new Modal({
       autoInit: true,
       selectorInert: '[role="main"]'
     });

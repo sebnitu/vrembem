@@ -668,6 +668,71 @@
 
 	var defineProperty = _defineProperty;
 
+	function _classCallCheck(instance, Constructor) {
+	  if (!(instance instanceof Constructor)) {
+	    throw new TypeError("Cannot call a class as a function");
+	  }
+	}
+
+	var classCallCheck = _classCallCheck;
+
+	function _defineProperties(target, props) {
+	  for (var i = 0; i < props.length; i++) {
+	    var descriptor = props[i];
+	    descriptor.enumerable = descriptor.enumerable || false;
+	    descriptor.configurable = true;
+	    if ("value" in descriptor) descriptor.writable = true;
+	    Object.defineProperty(target, descriptor.key, descriptor);
+	  }
+	}
+
+	function _createClass(Constructor, protoProps, staticProps) {
+	  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+	  if (staticProps) _defineProperties(Constructor, staticProps);
+	  return Constructor;
+	}
+
+	var createClass = _createClass;
+
+	var setInert = function setInert(state, selector) {
+	  if (selector) {
+	    var els = document.querySelectorAll(selector);
+	    els.forEach(function (el) {
+	      if (state) {
+	        el.inert = true;
+	        el.setAttribute('aria-hidden', true);
+	      } else {
+	        el.inert = null;
+	        el.removeAttribute('aria-hidden');
+	      }
+	    });
+	  }
+	};
+	var setOverflowHidden = function setOverflowHidden(state, selector) {
+	  if (selector) {
+	    var els = document.querySelectorAll(selector);
+	    els.forEach(function (el) {
+	      if (state) {
+	        el.style.overflow = 'hidden';
+	      } else {
+	        el.style.removeProperty('overflow');
+	      }
+	    });
+	  }
+	};
+	var setTabindex = function setTabindex(state, selector) {
+	  if (selector) {
+	    var els = document.querySelectorAll(selector);
+	    els.forEach(function (el) {
+	      if (state) {
+	        el.setAttribute('tabindex', '-1');
+	      } else {
+	        el.removeAttribute('tabindex');
+	      }
+	    });
+	  }
+	};
+
 	var addClass = function addClass(el) {
 	  for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
 	    cl[_key - 1] = arguments[_key];
@@ -679,6 +744,108 @@
 
 	    (_el$classList = el.classList).add.apply(_el$classList, cl);
 	  });
+	};
+
+	var focusTarget = function focusTarget(target, settings) {
+	  var innerFocus = target.querySelector("[data-".concat(settings.dataFocus, "]"));
+
+	  if (innerFocus) {
+	    innerFocus.focus();
+	  } else {
+	    var innerElement = target.querySelector('[tabindex="-1"]');
+	    if (innerElement) innerElement.focus();
+	  }
+	};
+	var focusTrigger = function focusTrigger() {
+	  var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+	  if (!obj || !obj.memory || !obj.memory.trigger) return;
+	  obj.memory.trigger.focus();
+	  obj.memory.trigger = null;
+	};
+	var FocusTrap = function () {
+	  function FocusTrap() {
+	    classCallCheck(this, FocusTrap);
+
+	    this.target = null;
+	    this.__handlerFocusTrap = this.handlerFocusTrap.bind(this);
+	  }
+
+	  createClass(FocusTrap, [{
+	    key: "init",
+	    value: function init(target) {
+	      this.target = target;
+	      this.focusable = this.getFocusable();
+
+	      if (this.focusable.length) {
+	        this.focusableFirst = this.focusable[0];
+	        this.focusableLast = this.focusable[this.focusable.length - 1];
+	        this.target.addEventListener('keydown', this.__handlerFocusTrap);
+	      } else {
+	        this.target.addEventListener('keydown', this.handlerFocusLock);
+	      }
+	    }
+	  }, {
+	    key: "destroy",
+	    value: function destroy() {
+	      if (!this.target) return;
+	      this.focusable = null;
+	      this.focusableFirst = null;
+	      this.focusableLast = null;
+	      this.target.removeEventListener('keydown', this.__handlerFocusTrap);
+	      this.target.removeEventListener('keydown', this.handlerFocusLock);
+	      this.target = null;
+	    }
+	  }, {
+	    key: "handlerFocusTrap",
+	    value: function handlerFocusTrap(event) {
+	      var isTab = event.key === 'Tab' || event.keyCode === 9;
+	      if (!isTab) return;
+	      var innerElement = this.target.querySelector('[tabindex="-1"]');
+
+	      if (event.shiftKey) {
+	        if (document.activeElement === this.focusableFirst || document.activeElement === innerElement) {
+	          this.focusableLast.focus();
+	          event.preventDefault();
+	        }
+	      } else {
+	        if (document.activeElement === this.focusableLast || document.activeElement === innerElement) {
+	          this.focusableFirst.focus();
+	          event.preventDefault();
+	        }
+	      }
+	    }
+	  }, {
+	    key: "handlerFocusLock",
+	    value: function handlerFocusLock(event) {
+	      var isTab = event.key === 'Tab' || event.keyCode === 9;
+	      if (isTab) event.preventDefault();
+	    }
+	  }, {
+	    key: "getFocusable",
+	    value: function getFocusable() {
+	      var focusable = [];
+	      var initFocus = document.activeElement;
+	      var initScrollTop = this.target.scrollTop;
+	      this.target.querySelectorAll("\n      a[href]:not([disabled]),\n      button:not([disabled]),\n      textarea:not([disabled]),\n      input[type=\"text\"]:not([disabled]),\n      input[type=\"radio\"]:not([disabled]),\n      input[type=\"checkbox\"]:not([disabled]),\n      select:not([disabled]),\n      [tabindex]:not([tabindex=\"-1\"])\n    ").forEach(function (el) {
+	        el.focus();
+
+	        if (el === document.activeElement) {
+	          focusable.push(el);
+	        }
+	      });
+	      this.target.scrollTop = initScrollTop;
+	      initFocus.focus();
+	      return focusable;
+	    }
+	  }]);
+
+	  return FocusTrap;
+	}();
+
+	var getElement = function getElement(selector) {
+	  var single = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+	  if (typeof selector != 'string') return selector;
+	  return single ? document.querySelector(selector) : document.querySelectorAll(selector);
 	};
 
 	var hasClass = function hasClass(el) {
@@ -696,6 +863,57 @@
 	  });
 	};
 
+	function moveElement() {
+	  var reference = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+	  var type = arguments.length > 1 ? arguments[1] : undefined;
+	  var target = arguments.length > 2 ? arguments[2] : undefined;
+
+	  if (reference) {
+	    var ref = getElement(reference, 1);
+	    if (!ref) throw new Error("Move reference element \"".concat(reference, "\" not found!"));
+	    var els = getElement(target);
+	    if (!els.length) throw new Error("Move target element \"".concat(target, "\" not found!"));
+	    els.forEach(function (el) {
+	      switch (type) {
+	        case 'after':
+	          ref.after(el);
+	          return {
+	            ref: ref,
+	            el: el,
+	            type: type
+	          };
+
+	        case 'before':
+	          ref.before(el);
+	          return {
+	            ref: ref,
+	            el: el,
+	            type: type
+	          };
+
+	        case 'append':
+	          ref.append(el);
+	          return {
+	            ref: ref,
+	            el: el,
+	            type: type
+	          };
+
+	        case 'prepend':
+	          ref.prepend(el);
+	          return {
+	            ref: ref,
+	            el: el,
+	            type: type
+	          };
+
+	        default:
+	          throw new Error("Move type \"".concat(type, "\" does not exist!"));
+	      }
+	    });
+	  }
+	}
+
 	var removeClass = function removeClass(el) {
 	  for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
 	    cl[_key - 1] = arguments[_key];
@@ -709,441 +927,341 @@
 	  });
 	};
 
-	function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-	function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-	function index (options) {
-	  var api = {};
-	  var defaults = {
-	    autoInit: false,
-	    dataModal: 'modal',
-	    dataDialog: 'modal-dialog',
-	    dataOpen: 'modal-open',
-	    dataClose: 'modal-close',
-	    dataFocus: 'modal-focus',
-	    dataRequired: 'modal-required',
-	    stateOpened: 'is-opened',
-	    stateOpening: 'is-opening',
-	    stateClosing: 'is-closing',
-	    stateClosed: 'is-closed',
-	    selectorInert: null,
-	    selectorOverflow: 'body',
-	    customEventPrefix: 'modal:',
-	    moveModals: {
-	      selector: null,
-	      location: null
-	    },
-	    setTabindex: true,
-	    transition: true
-	  };
-	  var working = false;
-	  api.settings = _objectSpread(_objectSpread({}, defaults), options);
-	  api.memory = {};
-
-	  api.init = function () {
-	    moveModals();
-	    setTabindex();
-	    setInitialState();
-	    document.addEventListener('click', handler, false);
-	    document.addEventListener('touchend', handler, false);
-	    document.addEventListener('keyup', handlerEscape, false);
-	  };
-
-	  api.destroy = function () {
-	    api.memory = {};
-	    document.removeEventListener('click', handler, false);
-	    document.removeEventListener('touchend', handler, false);
-	    document.removeEventListener('keyup', handlerEscape, false);
-	  };
-
-	  var handler = function () {
-	    var _ref = asyncToGenerator(regenerator.mark(function _callee(event) {
-	      var trigger, modalKey, fromModal;
-	      return regenerator.wrap(function _callee$(_context) {
-	        while (1) {
-	          switch (_context.prev = _context.next) {
-	            case 0:
-	              if (!working) {
-	                _context.next = 2;
-	                break;
-	              }
-
-	              return _context.abrupt("return");
-
-	            case 2:
-	              trigger = event.target.closest("[data-".concat(api.settings.dataOpen, "]"));
-
-	              if (!trigger) {
-	                _context.next = 12;
-	                break;
-	              }
-
-	              event.preventDefault();
-	              modalKey = trigger.getAttribute("data-".concat(api.settings.dataOpen));
-	              fromModal = event.target.closest("[data-".concat(api.settings.dataModal, "]"));
-	              if (!fromModal) api.memory.trigger = trigger;
-	              _context.next = 10;
-	              return api.close(!fromModal);
-
-	            case 10:
-	              api.open(modalKey);
-	              return _context.abrupt("return");
-
-	            case 12:
-	              if (!event.target.closest("[data-".concat(api.settings.dataClose, "]"))) {
-	                _context.next = 16;
-	                break;
-	              }
-
-	              event.preventDefault();
-	              api.close();
-	              return _context.abrupt("return");
-
-	            case 16:
-	              if (!(event.target.hasAttribute("data-".concat(api.settings.dataModal)) && !event.target.hasAttribute("data-".concat(api.settings.dataRequired)))) {
-	                _context.next = 19;
-	                break;
-	              }
-
-	              api.close();
-	              return _context.abrupt("return");
-
-	            case 19:
-	            case "end":
-	              return _context.stop();
-	          }
-	        }
-	      }, _callee);
-	    }));
-
-	    return function handler(_x) {
-	      return _ref.apply(this, arguments);
-	    };
-	  }();
-
-	  var handlerEscape = function handlerEscape(event) {
-	    if (working) return;
-
-	    if (event.key === 'Escape' || event.keyCode === 27) {
-	      var target = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpened));
-
-	      if (target && !target.hasAttribute("data-".concat(api.settings.dataRequired))) {
-	        api.close();
-	      }
-	    }
-	  };
-
-	  var modalNotFound = function modalNotFound(key) {
-	    return Promise.reject(new Error("Did not find modal with key: \"".concat(key, "\"")));
-	  };
-
-	  var moveModals = function moveModals() {
-	    var selector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : api.settings.moveModals.selector;
-	    var location = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : api.settings.moveModals.location;
-
-	    if (selector) {
-	      var el = document.querySelector(selector);
-
-	      if (el) {
-	        var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "]"));
-	        modals.forEach(function (modal) {
-	          if (location === 'after') {
-	            el.after(modal);
-	          } else if (location === 'before') {
-	            el.before(modal);
-	          } else if (location === 'append') {
-	            el.append(modal);
-	          } else if (location === 'prepend') {
-	            el.prepend(modal);
-	          }
-	        });
-	      }
-	    }
-	  };
-
-	  api.moveModals = function (selector, location) {
-	    moveModals(selector, location);
-	  };
-
-	  var setInert = function setInert(state) {
-	    if (api.settings.selectorInert) {
-	      var content = document.querySelectorAll(api.settings.selectorInert);
-	      content.forEach(function (el) {
-	        if (state) {
-	          el.inert = true;
-	          el.setAttribute('aria-hidden', true);
-	        } else {
-	          el.inert = null;
-	          el.removeAttribute('aria-hidden');
-	        }
+	var openTransition = function openTransition(el, settings) {
+	  return new Promise(function (resolve) {
+	    if (settings.transition) {
+	      el.classList.remove(settings.stateClosed);
+	      el.classList.add(settings.stateOpening);
+	      el.addEventListener('transitionend', function _f() {
+	        el.classList.add(settings.stateOpened);
+	        el.classList.remove(settings.stateOpening);
+	        resolve(el);
+	        this.removeEventListener('transitionend', _f);
 	      });
+	    } else {
+	      el.classList.add(settings.stateOpened);
+	      el.classList.remove(settings.stateClosed);
+	      resolve(el);
 	    }
-	  };
-
-	  var setInitialState = function setInitialState() {
-	    var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "]"));
-	    modals.forEach(function (el) {
-	      if (el.classList.contains(api.settings.stateOpened)) {
-	        setInert(false);
-	        setOverflowHidden();
-	        focusTrigger();
-	        focusTrapDestroy(el);
-	      }
-
-	      removeClass(el, api.settings.stateOpened, api.settings.stateOpening, api.settings.stateClosing);
-	      addClass(el, api.settings.stateClosed);
-	    });
-	  };
-
-	  api.setInitialState = function () {
-	    setInitialState();
-	  };
-
-	  var setOverflowHidden = function setOverflowHidden(state) {
-	    if (api.settings.selectorOverflow) {
-	      var els = document.querySelectorAll(api.settings.selectorOverflow);
-	      els.forEach(function (el) {
-	        if (state) {
-	          el.style.overflow = 'hidden';
-	        } else {
-	          el.style.removeProperty('overflow');
-	        }
+	  });
+	};
+	var closeTransition = function closeTransition(el, settings) {
+	  return new Promise(function (resolve) {
+	    if (settings.transition) {
+	      el.classList.add(settings.stateClosing);
+	      el.classList.remove(settings.stateOpened);
+	      el.addEventListener('transitionend', function _f() {
+	        el.classList.remove(settings.stateClosing);
+	        el.classList.add(settings.stateClosed);
+	        resolve(el);
+	        this.removeEventListener('transitionend', _f);
 	      });
+	    } else {
+	      el.classList.add(settings.stateClosed);
+	      el.classList.remove(settings.stateOpened);
+	      resolve(el);
 	    }
-	  };
+	  });
+	};
 
-	  var setTabindex = function setTabindex() {
-	    var enable = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : api.settings.setTabindex;
+	var defaults = {
+	  autoInit: false,
+	  dataModal: 'modal',
+	  dataDialog: 'modal-dialog',
+	  dataOpen: 'modal-open',
+	  dataClose: 'modal-close',
+	  dataFocus: 'modal-focus',
+	  dataRequired: 'modal-required',
+	  stateOpened: 'is-opened',
+	  stateOpening: 'is-opening',
+	  stateClosing: 'is-closing',
+	  stateClosed: 'is-closed',
+	  selectorInert: null,
+	  selectorOverflow: 'body',
+	  customEventPrefix: 'modal:',
+	  moveModals: {
+	    ref: null,
+	    type: null
+	  },
+	  setTabindex: true,
+	  transition: true
+	};
 
-	    if (enable) {
-	      var modals = document.querySelectorAll("[data-".concat(api.settings.dataModal, "] [data-").concat(api.settings.dataDialog, "]"));
-	      modals.forEach(function (el) {
-	        el.setAttribute('tabindex', '-1');
-	      });
-	    }
-	  };
+	function handlerClick(_x) {
+	  return _handlerClick.apply(this, arguments);
+	}
 
-	  api.setTabindex = function () {
-	    setTabindex(true);
-	  };
-
-	  var openTransition = function openTransition(modal) {
-	    return new Promise(function (resolve) {
-	      if (api.settings.transition) {
-	        removeClass(modal, api.settings.stateClosed);
-	        addClass(modal, api.settings.stateOpening);
-	        modal.addEventListener('transitionend', function _f() {
-	          addClass(modal, api.settings.stateOpened);
-	          removeClass(modal, api.settings.stateOpening);
-	          resolve(modal);
-	          this.removeEventListener('transitionend', _f);
-	        });
-	      } else {
-	        addClass(modal, api.settings.stateOpened);
-	        removeClass(modal, api.settings.stateClosed);
-	        resolve(modal);
-	      }
-	    });
-	  };
-
-	  var closeTransition = function closeTransition(modal) {
-	    return new Promise(function (resolve) {
-	      if (api.settings.transition) {
-	        addClass(modal, api.settings.stateClosing);
-	        removeClass(modal, api.settings.stateOpened);
-	        modal.addEventListener('transitionend', function _f() {
-	          removeClass(modal, api.settings.stateClosing);
-	          addClass(modal, api.settings.stateClosed);
-	          resolve(modal);
-	          this.removeEventListener('transitionend', _f);
-	        });
-	      } else {
-	        addClass(modal, api.settings.stateClosed);
-	        removeClass(modal, api.settings.stateOpened);
-	        resolve(modal);
-	      }
-	    });
-	  };
-
-	  api.open = function () {
-	    var _ref2 = asyncToGenerator(regenerator.mark(function _callee2(modalKey) {
-	      var modal;
-	      return regenerator.wrap(function _callee2$(_context2) {
-	        while (1) {
-	          switch (_context2.prev = _context2.next) {
-	            case 0:
-	              modal = document.querySelector("[data-".concat(api.settings.dataModal, "=\"").concat(modalKey, "\"]"));
-
-	              if (modal) {
-	                _context2.next = 3;
-	                break;
-	              }
-
-	              return _context2.abrupt("return", modalNotFound(modalKey));
-
-	            case 3:
-	              if (!hasClass(modal, api.settings.stateClosed)) {
-	                _context2.next = 16;
-	                break;
-	              }
-
-	              working = true;
-	              setOverflowHidden('hidden');
-	              _context2.next = 8;
-	              return openTransition(modal);
-
-	            case 8:
-	              focusTrapInit(modal);
-	              focusModal(modal);
-	              setInert(true);
-	              modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'opened', {
-	                bubbles: true
-	              }));
-	              working = false;
-	              return _context2.abrupt("return", modal);
-
-	            case 16:
-	              return _context2.abrupt("return", modal);
-
-	            case 17:
-	            case "end":
-	              return _context2.stop();
-	          }
-	        }
-	      }, _callee2);
-	    }));
-
-	    return function (_x2) {
-	      return _ref2.apply(this, arguments);
-	    };
-	  }();
-
-	  api.close = asyncToGenerator(regenerator.mark(function _callee3() {
-	    var returnFocus,
-	        modal,
-	        _args3 = arguments;
-	    return regenerator.wrap(function _callee3$(_context3) {
+	function _handlerClick() {
+	  _handlerClick = asyncToGenerator(regenerator.mark(function _callee(event) {
+	    var trigger, modalKey, fromModal;
+	    return regenerator.wrap(function _callee$(_context) {
 	      while (1) {
-	        switch (_context3.prev = _context3.next) {
+	        switch (_context.prev = _context.next) {
 	          case 0:
-	            returnFocus = _args3.length > 0 && _args3[0] !== undefined ? _args3[0] : true;
-	            modal = document.querySelector("[data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpened));
-
-	            if (!modal) {
-	              _context3.next = 15;
+	            if (!this.working) {
+	              _context.next = 2;
 	              break;
 	            }
 
-	            working = true;
-	            setInert(false);
-	            setOverflowHidden();
-	            _context3.next = 8;
-	            return closeTransition(modal);
+	            return _context.abrupt("return");
 
-	          case 8:
-	            if (returnFocus) focusTrigger();
-	            focusTrapDestroy(modal);
-	            modal.dispatchEvent(new CustomEvent(api.settings.customEventPrefix + 'closed', {
-	              bubbles: true
-	            }));
-	            working = false;
-	            return _context3.abrupt("return", modal);
+	          case 2:
+	            trigger = event.target.closest("[data-".concat(this.settings.dataOpen, "]"));
 
-	          case 15:
-	            return _context3.abrupt("return", modal);
+	            if (!trigger) {
+	              _context.next = 12;
+	              break;
+	            }
+
+	            event.preventDefault();
+	            modalKey = trigger.getAttribute("data-".concat(this.settings.dataOpen));
+	            fromModal = event.target.closest("[data-".concat(this.settings.dataModal, "]"));
+	            if (!fromModal) this.memory.trigger = trigger;
+	            _context.next = 10;
+	            return this.close(!fromModal);
+
+	          case 10:
+	            this.open(modalKey);
+	            return _context.abrupt("return");
+
+	          case 12:
+	            if (!event.target.closest("[data-".concat(this.settings.dataClose, "]"))) {
+	              _context.next = 16;
+	              break;
+	            }
+
+	            event.preventDefault();
+	            this.close();
+	            return _context.abrupt("return");
 
 	          case 16:
+	            if (!(event.target.hasAttribute("data-".concat(this.settings.dataModal)) && !event.target.hasAttribute("data-".concat(this.settings.dataRequired)))) {
+	              _context.next = 19;
+	              break;
+	            }
+
+	            this.close();
+	            return _context.abrupt("return");
+
+	          case 19:
 	          case "end":
-	            return _context3.stop();
+	            return _context.stop();
 	        }
 	      }
-	    }, _callee3);
+	    }, _callee, this);
 	  }));
-
-	  var focusModal = function focusModal(modal) {
-	    var innerFocus = modal.querySelector("[data-".concat(api.settings.dataFocus, "]"));
-
-	    if (innerFocus) {
-	      innerFocus.focus();
-	    } else {
-	      var dialog = modal.querySelector("[data-".concat(api.settings.dataDialog, "][tabindex=\"-1\"]"));
-
-	      if (dialog) {
-	        dialog.focus();
-	      }
-	    }
-	  };
-
-	  var focusTrigger = function focusTrigger() {
-	    if (api.memory.trigger) {
-	      api.memory.trigger.focus();
-	      api.memory.trigger = null;
-	    }
-	  };
-
-	  var getFocusable = function getFocusable(modal) {
-	    var focusable = [];
-	    var scrollPos = modal.scrollTop;
-	    var items = modal.querySelectorAll("\n      a[href]:not([disabled]),\n      button:not([disabled]),\n      textarea:not([disabled]),\n      input[type=\"text\"]:not([disabled]),\n      input[type=\"radio\"]:not([disabled]),\n      input[type=\"checkbox\"]:not([disabled]),\n      select:not([disabled]),\n      [tabindex]:not([tabindex=\"-1\"])\n    ");
-	    items.forEach(function (el) {
-	      el.focus();
-
-	      if (el === document.activeElement) {
-	        focusable.push(el);
-	      }
-	    });
-	    modal.scrollTop = scrollPos;
-	    return focusable;
-	  };
-
-	  var focusTrapInit = function focusTrapInit(modal) {
-	    api.memory.focusable = getFocusable(modal);
-
-	    if (api.memory.focusable.length) {
-	      api.memory.focusableFirst = api.memory.focusable[0];
-	      api.memory.focusableLast = api.memory.focusable[api.memory.focusable.length - 1];
-	      modal.addEventListener('keydown', handlerFocusTrap);
-	    } else {
-	      modal.addEventListener('keydown', handlerFocusLock);
-	    }
-	  };
-
-	  var focusTrapDestroy = function focusTrapDestroy(modal) {
-	    api.memory.focusable = null;
-	    api.memory.focusableFirst = null;
-	    api.memory.focusableLast = null;
-	    modal.removeEventListener('keydown', handlerFocusTrap);
-	    modal.removeEventListener('keydown', handlerFocusLock);
-	  };
-
-	  var handlerFocusTrap = function handlerFocusTrap(event) {
-	    var isTab = event.key === 'Tab' || event.keyCode === 9;
-	    if (!isTab) return;
-
-	    if (event.shiftKey) {
-	      var dialog = document.querySelector("\n        [data-".concat(api.settings.dataModal, "].").concat(api.settings.stateOpened, "\n        [data-").concat(api.settings.dataDialog, "][tabindex=\"-1\"]\n      "));
-
-	      if (document.activeElement === api.memory.focusableFirst || document.activeElement === dialog) {
-	        api.memory.focusableLast.focus();
-	        event.preventDefault();
-	      }
-	    } else {
-	      if (document.activeElement === api.memory.focusableLast) {
-	        api.memory.focusableFirst.focus();
-	        event.preventDefault();
-	      }
-	    }
-	  };
-
-	  var handlerFocusLock = function handlerFocusLock(event) {
-	    var isTab = event.key === 'Tab' || event.keyCode === 9;
-	    if (isTab) event.preventDefault();
-	  };
-
-	  if (api.settings.autoInit) api.init();
-	  return api;
+	  return _handlerClick.apply(this, arguments);
 	}
 
-	return index;
+	function handlerKeyup(event) {
+	  if (this.working) return;
+
+	  if (event.key === 'Escape' || event.keyCode === 27) {
+	    var target = document.querySelector("[data-".concat(this.settings.dataModal, "].").concat(this.settings.stateOpened));
+
+	    if (target && !target.hasAttribute("data-".concat(this.settings.dataRequired))) {
+	      this.close();
+	    }
+	  }
+	}
+
+	function setInitialState(obj) {
+	  var modals = document.querySelectorAll("[data-".concat(obj.settings.dataModal, "]"));
+	  modals.forEach(function (el) {
+	    if (el.classList.contains(obj.settings.stateOpened)) {
+	      setInert(false, obj.settings.selectorInert);
+	      setOverflowHidden(false, obj.settings.selectorOverflow);
+	      focusTrigger(obj);
+	      obj.focusTrap.destroy();
+	    }
+
+	    removeClass(el, obj.settings.stateOpened, obj.settings.stateOpening, obj.settings.stateClosing);
+	    addClass(el, obj.settings.stateClosed);
+	  });
+	}
+
+	function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+	function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+	var Modal = function () {
+	  function Modal(options) {
+	    classCallCheck(this, Modal);
+
+	    this.defaults = defaults;
+	    this.settings = _objectSpread(_objectSpread({}, this.defaults), options);
+	    this.working = false;
+	    this.memory = {};
+	    this.focusTrap = new FocusTrap();
+	    this.__handlerClick = handlerClick.bind(this);
+	    this.__handlerKeyup = handlerKeyup.bind(this);
+	    if (this.settings.autoInit) this.init();
+	  }
+
+	  createClass(Modal, [{
+	    key: "init",
+	    value: function init() {
+	      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+	      if (options) this.settings = _objectSpread(_objectSpread({}, this.settings), options);
+	      this.moveModals();
+	      this.setTabindex(this.settings.setTabindex);
+	      this.setInitialState();
+	      document.addEventListener('click', this.__handlerClick, false);
+	      document.addEventListener('touchend', this.__handlerClick, false);
+	      document.addEventListener('keyup', this.__handlerKeyup, false);
+	    }
+	  }, {
+	    key: "destroy",
+	    value: function destroy() {
+	      this.memory = {};
+	      document.removeEventListener('click', this.__handlerClick, false);
+	      document.removeEventListener('touchend', this.__handlerClick, false);
+	      document.removeEventListener('keyup', this.__handlerKeyup, false);
+	    }
+	  }, {
+	    key: "getModal",
+	    value: function getModal(modalKey) {
+	      if (typeof modalKey !== 'string') return modalKey;
+	      return document.querySelector("[data-".concat(this.settings.dataModal, "=\"").concat(modalKey, "\"]"));
+	    }
+	  }, {
+	    key: "modalNotFound",
+	    value: function modalNotFound(key) {
+	      return Promise.reject(new Error("Did not find modal with key: \"".concat(key, "\"")));
+	    }
+	  }, {
+	    key: "setTabindex",
+	    value: function setTabindex$1() {
+	      var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+	      var selectorTabindex = "\n      [data-".concat(this.settings.dataModal, "]\n      [data-").concat(this.settings.dataDialog, "]\n    ");
+
+	      setTabindex(state, selectorTabindex);
+	    }
+	  }, {
+	    key: "setInitialState",
+	    value: function setInitialState$1() {
+	      setInitialState(this);
+	    }
+	  }, {
+	    key: "moveModals",
+	    value: function moveModals() {
+	      var ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.settings.moveModals.ref;
+	      var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.settings.moveModals.type;
+	      var modals = document.querySelectorAll("[data-".concat(this.settings.dataModal, "]"));
+	      if (modals.length) moveElement(ref, type, modals);
+	    }
+	  }, {
+	    key: "open",
+	    value: function () {
+	      var _open = asyncToGenerator(regenerator.mark(function _callee(modalKey) {
+	        var modal;
+	        return regenerator.wrap(function _callee$(_context) {
+	          while (1) {
+	            switch (_context.prev = _context.next) {
+	              case 0:
+	                modal = this.getModal(modalKey);
+
+	                if (modal) {
+	                  _context.next = 3;
+	                  break;
+	                }
+
+	                return _context.abrupt("return", this.modalNotFound(modalKey));
+
+	              case 3:
+	                if (!hasClass(modal, this.settings.stateClosed)) {
+	                  _context.next = 16;
+	                  break;
+	                }
+
+	                this.working = true;
+	                setOverflowHidden(true, this.settings.selectorOverflow);
+	                _context.next = 8;
+	                return openTransition(modal, this.settings);
+
+	              case 8:
+	                this.focusTrap.init(modal);
+	                focusTarget(modal, this.settings);
+	                setInert(true, this.settings.selectorInert);
+	                modal.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'opened', {
+	                  bubbles: true
+	                }));
+	                this.working = false;
+	                return _context.abrupt("return", modal);
+
+	              case 16:
+	                return _context.abrupt("return", modal);
+
+	              case 17:
+	              case "end":
+	                return _context.stop();
+	            }
+	          }
+	        }, _callee, this);
+	      }));
+
+	      function open(_x) {
+	        return _open.apply(this, arguments);
+	      }
+
+	      return open;
+	    }()
+	  }, {
+	    key: "close",
+	    value: function () {
+	      var _close = asyncToGenerator(regenerator.mark(function _callee2() {
+	        var returnFocus,
+	            modal,
+	            _args2 = arguments;
+	        return regenerator.wrap(function _callee2$(_context2) {
+	          while (1) {
+	            switch (_context2.prev = _context2.next) {
+	              case 0:
+	                returnFocus = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : true;
+	                modal = document.querySelector("[data-".concat(this.settings.dataModal, "].").concat(this.settings.stateOpened));
+
+	                if (!modal) {
+	                  _context2.next = 15;
+	                  break;
+	                }
+
+	                this.working = true;
+	                setInert(false, this.settings.selectorInert);
+	                setOverflowHidden(false, this.settings.selectorOverflow);
+	                _context2.next = 8;
+	                return closeTransition(modal, this.settings);
+
+	              case 8:
+	                if (returnFocus) focusTrigger(this);
+	                this.focusTrap.destroy();
+	                modal.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'closed', {
+	                  bubbles: true
+	                }));
+	                this.working = false;
+	                return _context2.abrupt("return", modal);
+
+	              case 15:
+	                return _context2.abrupt("return", modal);
+
+	              case 16:
+	              case "end":
+	                return _context2.stop();
+	            }
+	          }
+	        }, _callee2, this);
+	      }));
+
+	      function close() {
+	        return _close.apply(this, arguments);
+	      }
+
+	      return close;
+	    }()
+	  }]);
+
+	  return Modal;
+	}();
+
+	return Modal;
 
 })));

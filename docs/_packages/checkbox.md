@@ -12,6 +12,8 @@ usage:
 
 ## checkbox
 
+Checkboxes are composed using a set of `<span>` elements alongside the native `<input type="cehckbox">` element which should be given the `checkbox__native` class and come before the remaining presentational `<span>` elements.
+
 {% include demo_open.html %}
   {% include checkbox.html checked="" %}
   {% include checkbox.html indeterminate="true" %}
@@ -30,7 +32,7 @@ usage:
 {% include demo_close.html %}
 
 <div class="notice notice_type_info type"  markdown="1">
-For indeterminate checkboxes, apply the `aria-checked="mixed"` attribute and init the checkbox component script.
+For indeterminate checkboxes, apply the `aria-checked="mixed"` attribute to the `<input type="checkbox">` element and initialize the checkbox component script.
 </div>
 
 ```js
@@ -39,6 +41,8 @@ const checkbox = new Checkbox({ autoInit: true });
 ```
 
 ## checkbox + label
+
+For checkboxes with lables, just wrap the checkbox component along with label text using the `<label>` element.
 
 {% include demo_open.html %}
 <p>
@@ -75,6 +79,207 @@ const checkbox = new Checkbox({ autoInit: true });
 ```
 {% include demo_close.html %}
 
+## Sass variables
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Prefixes -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-block</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">String to prefix blocks with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-element</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"__"</code></td>
+        <td data-mobile-label="Desc">String to prefix elements with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-modifier</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"_"</code></td>
+        <td data-mobile-label="Desc">String to prefix modifiers with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-modifier-value</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"_"</code></td>
+        <td data-mobile-label="Desc">String to prefix modifier values with.</td>
+      </tr>
+
+      <!-- General styles -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$primary</code></td>
+        <td data-mobile-label="Desc">Sets the base color theme for the checkbox component.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2.5em</code></td>
+        <td data-mobile-label="Desc">Sets the width and height of the <code class="code">checkbox__background</code> element.</td>
+      </tr>
+
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$transition-duration</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$transition-duration-short</code></td>
+        <td data-mobile-label="Desc">Sets the transition-duration property for the <code class="code">checkbox__icon</code> element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$transition-timing-function</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$transition-timing-function-sharp</code></td>
+        <td data-mobile-label="Desc">Sets the transition-timing-function property for the <code class="code">checkbox__icon</code> element.</td>
+      </tr>
+
+      <!-- checkbox__background -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">transparent</code></td>
+        <td data-mobile-label="Desc">Sets the background-color property for the <code class="code">checkbox__background</code> element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$background-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.03)</code></td>
+        <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:hover</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$background-focus</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.03)</code></td>
+        <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:focus</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$background-active</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.06)</code></td>
+        <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:active</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$background-checked</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:checked</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$background-border-radius</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$border-radius-circle</code></td>
+        <td data-mobile-label="Desc">Sets the border-radius property for the <code class="code">checkbox__background</code> element.</td>
+      </tr>
+
+      <!-- checkbox__box -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$box-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">18px</code></td>
+        <td data-mobile-label="Desc">Sets the width and height of the <code class="code">checkbox__box</code> element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$box-background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the background-color property for the <code class="code">checkbox__box</code> element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$box-background-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:hover</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$box-background-focus</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:focus</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$box-background-active</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:active</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$box-background-checked</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">$color</code></td>
+        <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:checked</code> state.</td>
+      </tr>
+
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$box-border-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$gray-400</code></td>
+        <td data-mobile-label="Desc">Sets the border-color property for the <code class="code">checkbox__box</code> element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$box-border-color-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">$color</code></td>
+        <td data-mobile-label="Desc">Sets the border-color property on <code class="code">:hover</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$box-border-color-focus</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">$color</code></td>
+        <td data-mobile-label="Desc">Sets the border-color property on <code class="code">:focus</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$box-border-color-active</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">$color</code></td>
+        <td data-mobile-label="Desc">Sets the border-color property on <code class="code">:active</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$box-border-color-checked</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">$color</code></td>
+        <td data-mobile-label="Desc">Sets the border-color property on <code class="code">:checked</code> state.</td>
+      </tr>
+
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$box-border-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">2px</code></td>
+        <td data-mobile-label="Desc">Sets the border-width property on the <code class="code">checkbox__box</code> element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$box-border-radius</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$border-radius</code></td>
+        <td data-mobile-label="Desc">Sets the border-radius property on the <code class="code">checkbox__box</code> element.</td>
+      </tr>
+
+      <!-- checkbox__icon -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$icon-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">12px</code></td>
+        <td data-mobile-label="Desc">Sets the width and height property on the <code class="code">checkbox__icon</code> svg data:image.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$icon-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$white</code></td>
+        <td data-mobile-label="Desc">Sets the stroke property on the <code class="code">checkbox__icon</code> svg data:image.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$icon-stroke</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">2.5</code></td>
+        <td data-mobile-label="Desc">Sets the stroke-width property on the <code class="code">checkbox__icon</code> svg data:image.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$icon-checked</code></td>
+        <td data-mobile-label="Default"><a class="link" href="#icon-checked"><code class="code color-secondary">'data:image/svg...'</code> Ref &darr;</a></td>
+        <td data-mobile-label="Desc">The data:image/svg string used as the background-image property for the <code class="code">checkbox__icon</code> element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$icon-indeterminate</code></td>
+        <td data-mobile-label="Default"><a class="link" href="#icon-indeterminate"><code class="code color-secondary">'data:image/svg...'</code> Ref &darr;</a></td>
+        <td data-mobile-label="Desc">The data:image/svg string used as the background-image property for the <code class="code">checkbox__icon</code> element in it's indeterminate state.</td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+### `$icon-checked`
+
+```scss
+$icon-checked: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="#{$icon-size}" height="#{$icon-size}" fill="none" stroke="#{core.encodecolor($icon-color)}" stroke-width="#{$icon-stroke}" stroke-linecap="round" stroke-linejoin="round"><polyline points="9.5,3 4.5,8.5 2,6"></polyline></svg>' !default;
+```
+
+### `$icon-indeterminate`
+
+```scss
+$icon-indeterminate: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="#{$icon-size}" height="#{$icon-size}" fill="none" stroke="#{core.encodecolor($icon-color)}" stroke-width="#{$icon-stroke}" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6" /></svg>' !default;
+```
+
 ## JavaScript Options
 
 <div class="scroll-box">
@@ -90,53 +295,121 @@ const checkbox = new Checkbox({ autoInit: true });
       <tr>
         <td data-mobile-label="Key"><code class="code text_nowrap">autoInit</code></td>
         <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">false</code></td>
-        <td data-mobile-label="Desc">Automatically instantiates the instance</td>
+        <td data-mobile-label="Desc">Automatically instantiates the instance.</td>
       </tr>
       <tr>
         <td data-mobile-label="Key"><code class="code text_nowrap">stateAttr</code></td>
         <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'aria-checked'</code></td>
-        <td data-mobile-label="Desc">Attribute to check mixed against</td>
+        <td data-mobile-label="Desc">Attribute to check mixed state against.</td>
       </tr>
       <tr>
         <td data-mobile-label="Key"><code class="code text_nowrap">stateValue</code></td>
         <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'mixed'</code></td>
-        <td data-mobile-label="Desc">Mixed value to check for</td>
+        <td data-mobile-label="Desc">The mixed value to check for. Applied as the value of <code class="code">stateAttr</code>.</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-## JavaScript API
+## API
 
-<div class="scroll-box">
-  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
-    <thead>
-      <tr class="border_top_0">
-        <th>Method</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">checkbox.init()</code></td>
-        <td data-mobile-label="Desc">Initializes the checkbox instance</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">checkbox.destroy()</code></td>
-        <td data-mobile-label="Desc">Destroys and cleans up the checkbox instantiation</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">checkbox.setAriaState(el, value)</code></td>
-        <td data-mobile-label="Desc">Sets the attribute value for mixed checkboxes</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">checkbox.removeAriaState(el)</code></td>
-        <td data-mobile-label="Desc">Removes the mixed checkbox attribute</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Method"><code class="code text_nowrap">checkbox.setIndeterminate(el)</code></td>
-        <td data-mobile-label="Desc">Sets the checkbox to an indeterminate (mixed) state</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+### `checkbox.init(options)`
+
+Initializes the checkbox instance. During initialization, the following processes are run:
+
+- Sets checkboxes to the `indeterminate` state that match the provided attribute and values.
+- Attaches the click event listener that handles switching off the indeterminate state.
+
+**Parameters**
+
+- `options [Object] (optional)` An options object for passing yout custom settings.
+
+```js
+const checkbox = new Checkbox();
+checkbox.init();
+```
+
+### `checkbox.destroy()`
+
+Destroys and cleans up the checkbox instantiation. For the checkbox component, this just involves removing the `click` event listener.
+
+```js
+const checkbox = new Checkbox();
+checkbox.init();
+// ...
+checkbox.destroy();
+```
+
+### `checkbox.setAriaState(el, value)`
+
+Sets the aria attribute value for mixed checkboxes.
+
+**Parameters**
+
+- `el` The element or elements whos aria state should be set.
+- `value` `(Default: settings.stateValue)` The value that should be set to the aria attribute.
+
+> Example removes presentational `<span>` elements for brevity but should be included in your implementation.
+
+```html
+<!-- Initial HTML -->
+<input type="checkbox" class="checkbox__native">
+<input type="checkbox" class="checkbox__native">
+<input type="checkbox" class="checkbox__native">
+```
+
+```js
+const els = document.querySelectorAll('.checkbox__native');
+checkbox.setAriaState(els);
+```
+
+```html
+<!-- Result -->
+<input type="checkbox" class="checkbox__native" aria-checked="mixed">
+<input type="checkbox" class="checkbox__native" aria-checked="mixed">
+<input type="checkbox" class="checkbox__native" aria-checked="mixed">
+```
+
+### `checkbox.removeAriaState(el)`
+
+Removes the aria attribute value for mixed checkboxes.
+
+**Parameters**
+
+- `el` The element or elements whos aria state should be removed.
+
+> Example removes presentational `<span>` elements for brevity but should be included in your implementation.
+
+```html
+<!-- Initial HTML -->
+<input type="checkbox" class="checkbox__native" aria-checked="mixed">
+<input type="checkbox" class="checkbox__native" aria-checked="mixed">
+<input type="checkbox" class="checkbox__native" aria-checked="mixed">
+```
+
+```js
+const els = document.querySelectorAll('.checkbox__native');
+checkbox.removeAriaState(els);
+```
+
+```html
+<!-- Result -->
+<input type="checkbox" class="checkbox__native">
+<input type="checkbox" class="checkbox__native">
+<input type="checkbox" class="checkbox__native">
+```
+
+### `checkbox.setIndeterminate(el)`
+
+Sets the indeterminate state of a checkbox based on whether or not the `aria-checkbox` attribute is set to `"mixed"` if using the default settings.
+
+**Parameters**
+
+- `el` The element or elements whos indeterminate state should be set.
+
+```js
+const els = document.querySelectorAll('.checkbox__native');
+checkbox.setIndeterminate(els);
+```
+
+> To learn more about the indeterminate state, [click here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate). It's important to note that this state is set using the HTMLInputElement object's indeterminate property via JavaScript (it cannot be set using an HTML attribute).

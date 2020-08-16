@@ -2,7 +2,7 @@ import Drawer from '../index.js';
 import '@testing-library/jest-dom/extend-expect';
 import { transition } from './helpers/transition';
 
-let modal;
+let drawer;
 
 const markup = `
   <div class="drawer__wrapper">
@@ -22,7 +22,7 @@ describe('when selectorInert and selectorOverflow are set...', () => {
 
   beforeAll(() => {
     document.body.innerHTML = markup;
-    modal = Drawer({
+    drawer = new Drawer({
       autoInit: true,
       selectorInert: '[role="main"]',
       selectorOverflow: 'body, [role="main"]'
@@ -34,8 +34,8 @@ describe('when selectorInert and selectorOverflow are set...', () => {
   });
 
   afterAll(() => {
-    modal.destroy();
-    modal = null;
+    drawer.destroy();
+    drawer = null;
     document.body.innerHTML = null;
   });
 

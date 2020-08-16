@@ -378,6 +378,30 @@ drawer.close('drawer-key').then((result) => {
 });
 ```
 
+### `drawer.getDrawer(key)`
+
+Returns a drawer that matches the provided unique drawer key.
+
+**Parameters**
+
+- `key [String]` A unique key that matches the value of a drawer `data-drawer` attribute.
+
+**Returns**
+
+- `HTML object` The matching drawer element.
+
+
+```html
+<div class="drawer" data-drawer="drawer-key">...</div>
+```
+
+```js
+const el = drawer.getDrawer('drawer-key');
+
+// Returns HTML Element Object
+console.log(el);
+```
+
 ### `drawer.setTabindex`
 
 Sets the `tabindex="-1"` attribute on all drawer dialogs. This makes it possible to set focus on the dialog when opened but won't allow users to focus it using the keyboard. This is ran automatically on `drawer.init()` if the `setTabindex` option is set to `true`.
@@ -516,4 +540,76 @@ drawer.switchToDefault('drawer-key');
 ```html
 <!-- Output -->
 <div class="drawer" data-drawer="drawer-key">...</div>
+```
+
+### `drawer.stateSet()`
+
+Sets the current saved state of all drawer elements based on the values set in localStorage and updates the instance `drawer.state` object.
+
+```html
+<!-- Initial HTML -->
+<aside data-drawer="drawer-1" class="drawer is-opened">...</aside>
+<aside data-drawer="drawer-2" class="drawer is-opened">...</aside>
+```
+
+```js
+// If the current saved state in localStorage looks like this:
+// { 
+//   "drawer-1": "is-closed", 
+//   "drawer-2": "is-closed" 
+// }
+drawer.stateSet();
+```
+
+```html
+<!-- Output -->
+<aside data-drawer="drawer-1" class="drawer is-closed">...</aside>
+<aside data-drawer="drawer-2" class="drawer is-closed">...</aside>
+```
+
+### `drawer.stateSave(target)`
+
+Saves the current state of drawers to localStorage and drawer's `drawer.state` object. This is useful when state becomes out of sync or the DOM is re-rendered in a way that breaks current state.
+
+**Parameters**
+
+- `HTML Element [Object]` (Default: null) A specific target to save state. If nothing is passed, all drawers in the DOM will have their state saved.
+
+```html
+<!-- Initial HTML -->
+<aside data-drawer="drawer-1" class="drawer is-closed">...</aside>
+<aside data-drawer="drawer-2" class="drawer is-opened">...</aside>
+```
+
+```js
+// If current saved state looks like:
+console.log(drawer.state);
+// { 
+//   "drawer-1": "is-closed", 
+//   "drawer-2": "is-closed" 
+// }
+drawer.stateSave();
+
+// Result
+console.log(drawer.state);
+// { 
+//   "drawer-1": "is-closed", 
+//   "drawer-2": "is-opened" 
+// }
+```
+
+### `drawer.stateClear()`
+
+Clears the existing saved states in both localStorage and drawer's `drawer.state` object.
+
+```js
+console.log(drawer.state);
+// Returns: { 
+//   "drawer-1": "is-closed", 
+//   "drawer-2": "is-closed" 
+// }
+drawer.stateClear();
+
+console.log(drawer.state);
+// Returns: Object { }
 ```

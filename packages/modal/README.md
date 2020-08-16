@@ -126,8 +126,8 @@ const modal = new Modal({
   autoInit: true,
   selectorMain: '[role="main"]',
   moveModals: {
-    selector: '[role="main"]',
-    location: 'after'
+    ref: '[role="main"]',
+    type: 'after'
   }
 });
 ```
@@ -192,25 +192,25 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
 
 ### JavaScript Options
 
-| Key                 | Default                              | Description                                                                                                                                            |
-| ------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `autoInit`          | `false`                              | Automatically instantiates the instance.                                                                                                               |
-| `dataModal`         | `'modal'`                            | Data attribute for a modal.                                                                                                                            |
-| `dataDialog`        | `'modal-dialog'`                     | Data attribute for a modal. dialog                                                                                                                     |
-| `dataOpen`          | `'modal-open'`                       | Data attribute for a modal open trigger.                                                                                                               |
-| `dataClose`         | `'modal-close'`                      | Data attribute for a modal close trigger.                                                                                                              |
-| `dataFocus`         | `'modal-focus'`                      | Data attribute for setting a modal's focus element.                                                                                                    |
-| `dataRequired`      | `'modal-required'`                   | Data attribute for making a modal required.                                                                                                            |
-| `stateOpened`       | `'is-opened'`                        | Class used for open state.                                                                                                                             |
-| `stateOpening`      | `'is-opening'`                       | Class used for transitioning to open state.                                                                                                            |
-| `stateClosing`      | `'is-closing'`                       | Class used for transitioning to closed state.                                                                                                          |
-| `stateClosed`       | `'is-closed'`                        | Class used for closed state.                                                                                                                           |
-| `selectorInert`     | `null`                               | Applies `inert` and `aria-hidden` attributes to all matching elements when a modal is opened.                                                          |
-| `selectorOverflow`  | `'body'`                             | Applies `overflow:hidden` styles on all matching elements when a modal is opened.                                                                      |
-| `customEventPrefix` | `'modal:'`                           | Prefix to be used on custom events.                                                                                                                    |
-| `moveModals`        | `{ selector: null, location: null }` | Moves all modals to a location in the DOM relative to the passed selector on init. Location options include `after`, `before`, `append` and `prepend`. |
-| `setTabindex`       | `true`                               | Whether or not to set `tabindex="-1"` on all modal dialog elements on init.                                                                            |
-| `transition`        | `true`                               | Toggle the transition animation for the modal. Set to `false` to disable.                                                                              |
+| Key                 | Default                     | Description                                                                                                                                                           |
+| ------------------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `autoInit`          | `false`                     | Automatically instantiates the instance.                                                                                                                              |
+| `dataModal`         | `'modal'`                   | Data attribute for a modal.                                                                                                                                           |
+| `dataDialog`        | `'modal-dialog'`            | Data attribute for a modal. dialog                                                                                                                                    |
+| `dataOpen`          | `'modal-open'`              | Data attribute for a modal open trigger.                                                                                                                              |
+| `dataClose`         | `'modal-close'`             | Data attribute for a modal close trigger.                                                                                                                             |
+| `dataFocus`         | `'modal-focus'`             | Data attribute for setting a modal's focus element.                                                                                                                   |
+| `dataRequired`      | `'modal-required'`          | Data attribute for making a modal required.                                                                                                                           |
+| `stateOpened`       | `'is-opened'`               | Class used for open state.                                                                                                                                            |
+| `stateOpening`      | `'is-opening'`              | Class used for transitioning to open state.                                                                                                                           |
+| `stateClosing`      | `'is-closing'`              | Class used for transitioning to closed state.                                                                                                                         |
+| `stateClosed`       | `'is-closed'`               | Class used for closed state.                                                                                                                                          |
+| `selectorInert`     | `null`                      | Applies `inert` and `aria-hidden` attributes to all matching elements when a modal is opened.                                                                         |
+| `selectorOverflow`  | `'body'`                    | Applies `overflow:hidden` styles on all matching elements when a modal is opened.                                                                                     |
+| `customEventPrefix` | `'modal:'`                  | Prefix to be used on custom events.                                                                                                                                   |
+| `moveModals`        | `{ ref: null, type: null }` | Moves all modals to a location in the DOM relative to the passed reference selector on `init()`. Move type options include `after`, `before`, `append` and `prepend`. |
+| `setTabindex`       | `true`                      | Whether or not to set `tabindex="-1"` on all modal dialog elements on init.                                                                                           |
+| `transition`        | `true`                      | Toggle the transition animation for the modal. Set to `false` to disable.                                                                                             |
 
 ## Events
 
@@ -301,30 +301,28 @@ modal.close().then((result) => {
 });
 ```
 
-### `modal.setInitialState()`
+### `modal.getModal(key)`
 
-Sets the initial state of all modals. This includes removing all transitional classes, opened states and applies the closed state class. This is ran automatically on `modal.init()` but is exposed if states need to be reset for some reason.
+Returns a modal that matches the provided unique modal key.
+
+**Parameters**
+
+- `key [String]` A unique key that matches the value of a modal `data-modal` attribute.
+
+**Returns**
+
+- `HTML object` The matching modal element.
+
 
 ```html
-<!-- Missing a state class... -->
-<div data-modal="[unique-id]" class="modal">...</div>
-
-<!-- Opened state... -->
-<div data-modal="[unique-id]" class="modal is-opened">...</div>
-
-<!-- Transitioning state... -->
-<div data-modal="[unique-id]" class="modal is-opening">...</div>
-<div data-modal="[unique-id]" class="modal is-closing">...</div>
+<div class="modal is-closed" data-modal="modal-key">...</div>
 ```
+
 ```js
-modal.setInitialState();
-```
-```html
-<!-- Output -->
-<div data-modal="[unique-id]" class="modal is-closed"></div>
-<div data-modal="[unique-id]" class="modal is-closed"></div>
-<div data-modal="[unique-id]" class="modal is-closed"></div>
-<div data-modal="[unique-id]" class="modal is-closed"></div>
+const el = modal.getModal('modal-key');
+
+// Returns HTML Element Object
+console.log(el);
 ```
 
 ### `modal.setTabindex()`
@@ -353,14 +351,40 @@ modal.setTabindex();
 </div>
 ```
 
-### `modal.moveModals(selector, location)`
+### `modal.setInitialState()`
+
+Sets the initial state of all modals. This includes removing all transitional classes, opened states and applies the closed state class. This is ran automatically on `modal.init()` but is exposed if states need to be reset for some reason.
+
+```html
+<!-- Missing a state class... -->
+<div data-modal="[unique-id]" class="modal">...</div>
+
+<!-- Opened state... -->
+<div data-modal="[unique-id]" class="modal is-opened">...</div>
+
+<!-- Transitioning state... -->
+<div data-modal="[unique-id]" class="modal is-opening">...</div>
+<div data-modal="[unique-id]" class="modal is-closing">...</div>
+```
+```js
+modal.setInitialState();
+```
+```html
+<!-- Output -->
+<div data-modal="[unique-id]" class="modal is-closed"></div>
+<div data-modal="[unique-id]" class="modal is-closed"></div>
+<div data-modal="[unique-id]" class="modal is-closed"></div>
+<div data-modal="[unique-id]" class="modal is-closed"></div>
+```
+
+### `modal.moveModals(ref, type)`
 
 Moves all modals to a location in the DOM relative to the passed selector and location reference.
 
 **Parameters**
 
-- `selector [String]` The selector that modals should be moved relative to.
-- `location [String]` The location to move modals relative to the selector. Options include `after`, `before`, `append` and `prepend`.
+- `ref [String]` The reference selector that modals should be moved relative to.
+- `type [String]` The move type to move modals relative to the reference selector. Options include `after`, `before`, `append` and `prepend`.
 
 ```html
 <!-- Initial HTML -->

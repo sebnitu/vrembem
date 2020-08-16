@@ -1,4 +1,5 @@
 import Drawer from '../index.js';
+import { stateSave } from '../src/js/state';
 import { transition } from './helpers/transition';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -47,7 +48,7 @@ afterEach(() => {
 
 test('should save initial states to local storage', () => {
   document.body.innerHTML = markup;
-  drawer = Drawer({ autoInit: true });
+  drawer = new Drawer({ autoInit: true });
 
   const state = JSON.parse(localStorage.getItem('DrawerState'));
   expect(state).toMatchObject(drawer.state);
@@ -57,7 +58,7 @@ test('should save initial states to local storage', () => {
 
 test('should restore state based on existing values in local storage', () => {
   document.body.innerHTML = markup;
-  drawer = Drawer();
+  drawer = new Drawer();
   localStorage.setItem('DrawerState', JSON.stringify({
     'drawer-one': 'is-opened',
     'drawer-two': 'is-opened',
@@ -83,16 +84,16 @@ test('should restore state based on existing values in local storage', () => {
 
 test('should do nothing if saved drawer doesn\'t exist on the page', () => {
   document.body.innerHTML = markup;
-  drawer = Drawer();
+  drawer = new Drawer();
   localStorage.setItem('DrawerState', JSON.stringify({
     'drawer-asdf': 'is-opened'
   }));
-  expect(drawer.init).not.toThrow();
+  expect(drawer.init.bind(drawer)).not.toThrow();
 });
 
 test('should update local storage when toggle button changes state', async () => {
   document.body.innerHTML = markup;
-  drawer = Drawer({ autoInit: true });
+  drawer = new Drawer({ autoInit: true });
   localStorage.setItem('DrawerState', JSON.stringify({
     'drawer-one': 'is-close',
     'drawer-two': 'is-close'
@@ -121,7 +122,7 @@ test('should update local storage when toggle button changes state', async () =>
 
 test('should update local storage when close button changes state', async () => {
   document.body.innerHTML = markup;
-  drawer = Drawer();
+  drawer = new Drawer();
   localStorage.setItem('DrawerState', JSON.stringify({
     'drawer-one': 'is-opened',
     'drawer-two': 'is-opened'
@@ -155,7 +156,7 @@ test('should remove localStorage when state is disabled', () => {
     'drawer-one': 'is-opened',
     'drawer-two': 'is-opened'
   }));
-  drawer = Drawer({
+  drawer = new Drawer({
     autoInit: true,
     stateSave: false
   });
@@ -165,7 +166,7 @@ test('should remove localStorage when state is disabled', () => {
 
 test('should do nothing with localStorage if state feature is disabled', () => {
   document.body.innerHTML = markup;
-  drawer = Drawer({
+  drawer = new Drawer({
     autoInit: true,
     stateSave: false
   });
@@ -175,7 +176,7 @@ test('should do nothing with localStorage if state feature is disabled', () => {
 
 test('should do nothing with localStorage when drawer is opened and stateSave is called', async () => {
   document.body.innerHTML = markup;
-  drawer = Drawer({
+  drawer = new Drawer({
     autoInit: true,
     stateSave: false
   });
@@ -190,7 +191,7 @@ test('should do nothing with localStorage when drawer is opened and stateSave is
 
 test('should remove localStorage under a custom key', () => {
   document.body.innerHTML = markup;
-  drawer = Drawer({
+  drawer = new Drawer({
     autoInit: true,
     stateKey: 'awesome'
   });
@@ -199,7 +200,51 @@ test('should remove localStorage under a custom key', () => {
 
 test('should not save state if a modal drawer', () => {
   document.body.innerHTML = markup;
-  drawer = Drawer({ autoInit: true });
+  drawer = new Drawer({ autoInit: true });
   const state = JSON.parse(localStorage.getItem('DrawerState'));
   expect(state).not.toHaveProperty('drawer-three');
+});
+
+test('should clear current state if stateClear API is called', () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer({ autoInit: true });
+  let state = JSON.parse(localStorage.getItem('DrawerState'));
+  expect(Object.keys(drawer.state).length).toBe(2);
+  expect(Object.keys(state).length).toBe(2);
+
+  drawer.stateClear();
+  state = localStorage.getItem('DrawerState');
+  expect(Object.keys(drawer.state).length).toBe(0);
+  expect(state).toBe(null);
+});
+
+test('should save state of all drawers when saveState is called with no passed target', () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer();
+
+  localStorage.removeItem('DrawerState');
+  let state = localStorage.getItem('DrawerState');
+  expect(Object.keys(drawer.state).length).toBe(0);
+  expect(state).toBe(null);
+
+  drawer.stateSave();
+  state = JSON.parse(localStorage.getItem('DrawerState'));
+  expect(Object.keys(drawer.state).length).toBe(2);
+  expect(Object.keys(state).length).toBe(2);
+});
+
+test('should save a single drawer when manually passed to stateSave module', () => {
+  document.body.innerHTML = markup;
+  drawer = new Drawer();
+  const el = document.querySelector('[data-drawer="drawer-one"]');
+
+  localStorage.removeItem('DrawerState');
+  let state = localStorage.getItem('DrawerState');
+  expect(Object.keys(drawer.state).length).toBe(0);
+  expect(state).toBe(null);
+
+  drawer.state = stateSave(el, drawer.settings);
+  state = JSON.parse(localStorage.getItem('DrawerState'));
+  expect(Object.keys(drawer.state).length).toBe(1);
+  expect(Object.keys(state).length).toBe(1);
 });

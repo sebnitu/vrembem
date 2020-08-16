@@ -200,8 +200,8 @@ const modal = new Modal({
   autoInit: true,
   selectorInert: '[role="main"]',
   moveModals: {
-     selector: '[role="main"]',
-     location: 'after'
+     ref: '[role="main"]',
+     type: 'after'
   }
 });
 ```
@@ -587,11 +587,11 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
       <td data-mobile-label="Key"><code class="code text-nowrap">moveModals</code></td>
       <td data-mobile-label="Default">
         <pre class="code color-secondary">{ 
-  selector: null,
-  location: null
+  ref: null,
+  type: null
 }</pre>
       </td>
-      <td data-mobile-label="Desc">Moves all modals to a location in the DOM relative to the passed selector on <code class="code">init()</code>. Location options include <code class="code">after</code>, <code class="code">before</code>, <code class="code">append</code> and <code class="code">prepend</code>.</td>
+      <td data-mobile-label="Desc">Moves all modals to a location in the DOM relative to the passed reference selector on <code class="code">init()</code>. Move type options include <code class="code">after</code>, <code class="code">before</code>, <code class="code">append</code> and <code class="code">prepend</code>.</td>
     </tr>
     <tr>
       <td data-mobile-label="Key"><code class="code text-nowrap">setTabindex</code></td>
@@ -665,7 +665,7 @@ modal.open('modal-key');
 
 // Run some code after promise resolves
 modal.open('modal-key').then((result) => {
-  console.log(result); // result = HTML Object || null
+  console.log(result);
 });
 ```
 
@@ -695,35 +695,33 @@ modal.close().then((result) => {
 });
 ```
 
-### `modal.setInitialState()`
+### `modal.getModal(key)`
 
-Sets the initial state of all modals. This includes removing all transitional classes, opened states and applies the closed state class. This is ran automatically on `init()` but is exposed if states need to be reset for some reason.
+Returns a modal that matches the provided unique modal key.
+
+**Parameters**
+
+- `key [String]` A unique key that matches the value of a modal `data-modal` attribute.
+
+**Returns**
+
+- `HTML object` The matching modal element.
+
 
 ```html
-<!-- Missing a state class... -->
-<div data-modal="[unique-id]" class="modal">...</div>
-
-<!-- Opened state... -->
-<div data-modal="[unique-id]" class="modal is-opened">...</div>
-
-<!-- Transitioning state... -->
-<div data-modal="[unique-id]" class="modal is-opening">...</div>
-<div data-modal="[unique-id]" class="modal is-closing">...</div>
+<div class="modal is-closed" data-modal="modal-key">...</div>
 ```
+
 ```js
-modal.setInitialState();
-```
-```html
-<!-- Output -->
-<div data-modal="[unique-id]" class="modal is-closed"></div>
-<div data-modal="[unique-id]" class="modal is-closed"></div>
-<div data-modal="[unique-id]" class="modal is-closed"></div>
-<div data-modal="[unique-id]" class="modal is-closed"></div>
+const el = modal.getModal('modal-key');
+
+// Returns HTML Element Object
+console.log(el);
 ```
 
 ### `modal.setTabindex()`
 
-Sets the `tabindex="-1"` attribute on all modal dialogs. This makes it possible to set focus on the dialog when opened but won't allow users to focus it using the keyboard. This is ran automatically on `init()` if `setTabindex` is set to `true`.
+Sets the `tabindex="-1"` attribute on all modal dialogs. This makes it possible to set focus on the dialog when opened but won't allow users to focus it using the keyboard. This is ran automatically on `modal.init()` if the `setTabindex` option is set to `true`.
 
 ```html
 <!-- Initial HTML -->
@@ -747,14 +745,40 @@ modal.setTabindex();
 </div>
 ```
 
-### `modal.moveModals(selector, location)`
+### `modal.setInitialState()`
+
+Sets the initial state of all modals. This includes removing all transitional classes, opened states and applies the closed state class. This is ran automatically on `modal.init()` but is exposed if states need to be reset for some reason.
+
+```html
+<!-- Missing a state class... -->
+<div data-modal="[unique-id]" class="modal">...</div>
+
+<!-- Opened state... -->
+<div data-modal="[unique-id]" class="modal is-opened">...</div>
+
+<!-- Transitioning state... -->
+<div data-modal="[unique-id]" class="modal is-opening">...</div>
+<div data-modal="[unique-id]" class="modal is-closing">...</div>
+```
+```js
+modal.setInitialState();
+```
+```html
+<!-- Output -->
+<div data-modal="[unique-id]" class="modal is-closed"></div>
+<div data-modal="[unique-id]" class="modal is-closed"></div>
+<div data-modal="[unique-id]" class="modal is-closed"></div>
+<div data-modal="[unique-id]" class="modal is-closed"></div>
+```
+
+### `modal.moveModals(ref, type)`
 
 Moves all modals to a location in the DOM relative to the passed selector and location reference.
 
 **Parameters**
 
-- `selector [String]` The selector that modals should be moved relative to.
-- `location [String]` The location to move modals relative to the selector. Options include `after`, `before`, `append` and `prepend`.
+- `ref [String]` The reference selector that modals should be moved relative to.
+- `type [String]` The move type to move modals relative to the reference selector. Options include `after`, `before`, `append` and `prepend`.
 
 ```html
 <!-- Initial HTML -->

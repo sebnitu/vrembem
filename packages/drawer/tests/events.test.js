@@ -21,8 +21,8 @@ const markup = `
 `;
 
 window.addEventListener('resize', () => {
-  if (drawer && drawer.mediaQueryLists) {
-    drawer.mediaQueryLists.forEach((item) => {
+  if (drawer && drawer.breakpoint.mediaQueryLists) {
+    drawer.breakpoint.mediaQueryLists.forEach((item) => {
       item.mql.matches = checkMatch(item.mql.media);
     });
   }
@@ -40,7 +40,7 @@ afterEach(() => {
 
 test('should emit custom event when drawer has opened', async () => {
   document.body.innerHTML = markup;
-  drawer = Drawer({ autoInit: true });
+  drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer="drawer-one"]');
   const btn = document.querySelector('[data-drawer-toggle]');
   let eventFired = false;
@@ -58,7 +58,7 @@ test('should emit custom event when drawer has opened', async () => {
 
 test('should emit custom event when drawer has closed', async () => {
   document.body.innerHTML = markup;
-  drawer = Drawer({ autoInit: true });
+  drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer="drawer-one"]');
   const btn = document.querySelector('[data-drawer-toggle]');
   let eventFired = false;
@@ -82,7 +82,7 @@ test('should emit custom event when drawer has closed', async () => {
 
 test('should emit custom event when drawer matches a breakpoint', () => {
   document.body.innerHTML = markup;
-  drawer = Drawer({ autoInit: true });
+  drawer = new Drawer({ autoInit: true });
   let eventFired = false;
 
   document.addEventListener('drawer:breakpoint', () => {
@@ -96,7 +96,7 @@ test('should emit custom event when drawer matches a breakpoint', () => {
 
 test('should emit custom event when drawer switches to modal', () => {
   document.body.innerHTML = markup;
-  drawer = Drawer({ autoInit: true });
+  drawer = new Drawer({ autoInit: true });
   let eventFired = false;
 
   document.addEventListener('drawer:toModal', () => {
@@ -111,7 +111,7 @@ test('should emit custom event when drawer switches to modal', () => {
 test('should emit custom event when drawer switches to default', () => {
   document.body.innerHTML = markup;
   window.innerWidth = 400;
-  drawer = Drawer({ autoInit: true });
+  drawer = new Drawer({ autoInit: true });
   let eventFired = false;
 
   document.addEventListener('drawer:toDefault', () => {
@@ -125,7 +125,7 @@ test('should emit custom event when drawer switches to default', () => {
 
 test('should be able to set a custom event prefix', async () => {
   document.body.innerHTML = markup;
-  drawer = Drawer({
+  drawer = new Drawer({
     autoInit: true,
     customEventPrefix: 'vrembem:'
   });

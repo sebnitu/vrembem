@@ -20,16 +20,22 @@ afterEach(() => {
 
 test('set checkboxes to indeterminate on init', () => {
   document.body.innerHTML = markupSingle;
-  checkbox = Checkbox();
+  checkbox = new Checkbox();
   const input = document.querySelector('[type="checkbox"]');
 
   checkbox.init();
   expect(input.indeterminate).toBe(true);
 });
 
+test('should allow for passing options on init method call', () => {
+  checkbox = new Checkbox({ stateValue: 'OnNew' });
+  checkbox.init({ stateValue: 'OnInit' });
+  expect(checkbox.settings.stateValue).toBe('OnInit');
+});
+
 test('click event removes aria checked attribute', () => {
   document.body.innerHTML = markupSingle;
-  checkbox = Checkbox({ autoInit: true });
+  checkbox = new Checkbox({ autoInit: true });
   const input = document.querySelector('[type="checkbox"]');
 
   expect(input.hasAttribute('aria-checked')).toBe(true);
@@ -41,7 +47,7 @@ test('click event removes aria checked attribute', () => {
 
 test('should do nothing if clicked checkbox doesn\'t match selector', () => {
   document.body.innerHTML = '<input type="checkbox">';
-  checkbox = Checkbox({ autoInit: true });
+  checkbox = new Checkbox({ autoInit: true });
   checkbox.removeAriaState = jest.fn();
   checkbox.setIndeterminate = jest.fn();
   const el = document.querySelector('[type="checkbox"]');
@@ -53,7 +59,7 @@ test('should do nothing if clicked checkbox doesn\'t match selector', () => {
 
 test('destroy should remove event listener', () => {
   document.body.innerHTML = markupSingle;
-  checkbox = Checkbox({ autoInit: true });
+  checkbox = new Checkbox({ autoInit: true });
   const input = document.querySelector('[type="checkbox"]');
 
   checkbox.destroy();
@@ -64,7 +70,7 @@ test('destroy should remove event listener', () => {
 
 test('set aria checked state attribute', () => {
   document.body.innerHTML = '<input type="checkbox">';
-  checkbox = Checkbox({ autoInit: true });
+  checkbox = new Checkbox({ autoInit: true });
   const input = document.querySelector('[type="checkbox"]');
 
   expect(input.hasAttribute('aria-checked')).toBe(false);
@@ -81,7 +87,7 @@ test('set aria checked state attribute on multiple checkboxes', () => {
     <input type="checkbox">
     <input type="checkbox">
   `;
-  checkbox = Checkbox({ autoInit: true });
+  checkbox = new Checkbox({ autoInit: true });
   const inputs = document.querySelectorAll('[type="checkbox"]');
 
   inputs.forEach((el) => {
@@ -98,7 +104,7 @@ test('set aria checked state attribute on multiple checkboxes', () => {
 
 test('remove aria checked state attribute', () => {
   document.body.innerHTML = markupSingle;
-  checkbox = Checkbox({ autoInit: true });
+  checkbox = new Checkbox({ autoInit: true });
   const input = document.querySelector('[type="checkbox"]');
 
   expect(input.hasAttribute('aria-checked')).toBe(true);
@@ -111,7 +117,7 @@ test('remove aria checked state attribute', () => {
 
 test('remove aria checked state attribute from multiple checkboxes', () => {
   document.body.innerHTML = markupMulti;
-  checkbox = Checkbox({ autoInit: true });
+  checkbox = new Checkbox({ autoInit: true });
   const inputs = document.querySelectorAll('[type="checkbox"]');
 
   inputs.forEach((el) => {
@@ -128,7 +134,7 @@ test('remove aria checked state attribute from multiple checkboxes', () => {
 
 test('set indeterminate based on state attribute', () => {
   document.body.innerHTML = markupSingle;
-  checkbox = Checkbox({ autoInit: true });
+  checkbox = new Checkbox({ autoInit: true });
   const input = document.querySelector('[type="checkbox"]');
 
   expect(input.hasAttribute('aria-checked')).toBe(true);
@@ -144,7 +150,7 @@ test('custom options are passed and used properly', () => {
   document.body.innerHTML = `
     <input type="checkbox" data-status="indeterminate">
   `;
-  checkbox = Checkbox({
+  checkbox = new Checkbox({
     stateAttr: 'data-status',
     stateValue: 'indeterminate'
   });

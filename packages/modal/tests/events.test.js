@@ -21,7 +21,7 @@ afterEach(() => {
 
 test('should emit custom event when modal has opened', async () => {
   document.body.innerHTML = markup;
-  modal = Modal({ autoInit: true });
+  modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal="modal-default"]');
   const btn = document.querySelector('[data-modal-open]');
   let eventFired = false;
@@ -39,7 +39,7 @@ test('should emit custom event when modal has opened', async () => {
 
 test('should emit custom event when modal has closed', async () => {
   document.body.innerHTML = markup;
-  modal = Modal({ autoInit: true });
+  modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal="modal-default"]');
   const btn = document.querySelector('[data-modal-open]');
   const btnClose = document.querySelector('[data-modal-close]');
@@ -64,7 +64,7 @@ test('should emit custom event when modal has closed', async () => {
 
 test('should be able to set a custom event prefix', async () => {
   document.body.innerHTML = markup;
-  modal = Modal({
+  modal = new Modal({
     autoInit: true,
     customEventPrefix: 'vrembem:'
   });

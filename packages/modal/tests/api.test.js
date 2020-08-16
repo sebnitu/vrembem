@@ -34,7 +34,7 @@ afterEach(() => {
 
 test('should open modal using api call', async () => {
   document.body.innerHTML = markup;
-  modal = Modal({ autoInit: true });
+  modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal]');
 
   modal.open('modal-default');
@@ -46,7 +46,7 @@ test('should open modal using api call', async () => {
 
 test('should do nothing if open api is called on modal that\'s already open', async () => {
   document.body.innerHTML = markup;
-  modal = Modal({ autoInit: true });
+  modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal]');
 
   modal.open('modal-default');
@@ -62,7 +62,7 @@ test('should do nothing if open api is called on modal that\'s already open', as
 
 test('should close modal using api call', async () => {
   document.body.innerHTML = markup;
-  modal = Modal({ autoInit: true });
+  modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal]');
   const btnOpen = document.querySelector('[data-modal-open]');
 
@@ -81,7 +81,7 @@ test('should close modal using api call', async () => {
 
 test('should run function when promise is returned from open api', async () => {
   document.body.innerHTML = markup;
-  modal = Modal({ autoInit: true });
+  modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal]');
   let callbackCheck = false;
 
@@ -95,7 +95,7 @@ test('should run function when promise is returned from open api', async () => {
 
 test('should run function when promise is returned from close api', async () => {
   document.body.innerHTML = markup;
-  modal = Modal({ autoInit: true });
+  modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal]');
   let callbackCheck = false;
 
@@ -112,7 +112,7 @@ test('should run function when promise is returned from close api', async () => 
 
 test('should properly destroy drawer instance on api call', async () => {
   document.body.innerHTML = markup;
-  modal = Modal({ autoInit: true });
+  modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal]');
   const btnOpen = document.querySelector('[data-modal-open]');
 
@@ -127,7 +127,7 @@ test('should properly destroy drawer instance on api call', async () => {
 
 test('should set tabindex attribute with api call', () => {
   document.body.innerHTML = markup;
-  modal = Modal({
+  modal = new Modal({
     autoInit: true,
     setTabindex: false
   });
@@ -139,7 +139,7 @@ test('should set tabindex attribute with api call', () => {
 
 test('should set initial state on api call', () => {
   document.body.innerHTML = markupState;
-  modal = Modal();
+  modal = new Modal();
   const modalOne = document.querySelector('[data-modal="modal-one"]');
   const modalTwo = document.querySelector('[data-modal="modal-two"]');
   expect(modalOne).not.toHaveClass('is-closed');
@@ -156,7 +156,7 @@ test('should set initial state on api call', () => {
 
 test('should set initial state even when modal is open', async () => {
   document.body.innerHTML = markup;
-  modal = Modal({ autoInit: true });
+  modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal="modal-default"]');
   modal.open('modal-default');
   await transition(el);
@@ -165,4 +165,12 @@ test('should set initial state even when modal is open', async () => {
   modal.setInitialState();
   expect(el).toHaveClass('is-closed');
   expect(el.classList.length).toBe(2);
+});
+
+test('should return argument if not a string when getModal is called', () => {
+  document.body.innerHTML = markup;
+  modal = new Modal({ autoInit: true });
+  const el = document.querySelector('[data-modal="modal-default"]');
+  const getEl = modal.getModal(el);
+  expect(getEl).toBe(el);
 });

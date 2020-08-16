@@ -24,7 +24,7 @@ afterEach(() => {
 
 test('should prevent escape or screen click closing modal if required', async () => {
   document.body.innerHTML = markup;
-  modal = Modal({ autoInit: true });
+  modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal]');
   const btnOpen = document.querySelector('[data-modal-open]');
   const btnClose = el.querySelector('[data-modal-close]');

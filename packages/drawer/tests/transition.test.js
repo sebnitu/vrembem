@@ -77,7 +77,7 @@ afterEach(() => {
 
 test('should apply state classes on `click` and `transitionend` events', async () => {
   document.body.innerHTML = markup;
-  drawer = Drawer();
+  drawer = new Drawer();
   const el = document.querySelector('[data-drawer]');
   const btnOpen = document.querySelector('[data-drawer-toggle]');
   const btnClose = document.querySelector('[data-drawer-close]');
@@ -99,9 +99,15 @@ test('should apply state classes on `click` and `transitionend` events', async (
   expect(el).not.toHaveClass('is-opening is-opened is-closing');
 });
 
+test('should be able to pass options on init method', () => {
+  drawer = new Drawer({ stateKey: 'OnNew' });
+  drawer.init({ stateKey: 'OnInit' });
+  expect(drawer.settings.stateKey).toBe('OnInit');
+});
+
 test('should open and close drawer using data attribute triggers', async () => {
   document.body.innerHTML = markup;
-  drawer = Drawer();
+  drawer = new Drawer();
   const el = document.querySelector('[data-drawer]');
   const btnOpen = document.querySelector('[data-drawer-open="drawer-default"]');
   const btnClose = document.querySelector('[data-drawer-close="drawer-default"]');
@@ -125,7 +131,7 @@ test('should open and close drawer using data attribute triggers', async () => {
 
 test('should not throw error if drawer close button doesn\'t find a drawer', async () => {
   document.body.innerHTML = markup;
-  drawer = Drawer();
+  drawer = new Drawer();
   const el = document.querySelector('[data-drawer]');
   const btnOpen = document.querySelector('[data-drawer-open="drawer-default"]');
   const btnClose = document.querySelector('.drawer-close-empty');
@@ -145,7 +151,7 @@ test('should not throw error if drawer close button doesn\'t find a drawer', asy
 
 test('should apply state classes with custom data attributes', async () => {
   document.body.innerHTML = markupCustomAttr;
-  drawer = Drawer({
+  drawer = new Drawer({
     autoInit: true,
     dataDrawer: 'd',
     dataToggle: 't',
@@ -173,7 +179,7 @@ test('should apply state classes with custom data attributes', async () => {
 
 test('should apply custom state classes', async () => {
   document.body.innerHTML = markupCustomState;
-  drawer = Drawer({
+  drawer = new Drawer({
     autoInit: true,
     stateOpened: 'on',
     stateOpening: 'enable',
@@ -206,7 +212,7 @@ test('should apply custom state classes', async () => {
 test('should not apply transition classes when transitions are disabled', () => {
   document.body.innerHTML = markup;
   const el = document.querySelector('[data-drawer]');
-  drawer = Drawer({
+  drawer = new Drawer({
     autoInit: true,
     transition: false
   });
@@ -221,7 +227,7 @@ test('should not apply transition classes when transitions are disabled', () => 
 
 test('should not be possible to open new drawer while a drawer transition is in process', async () => {
   document.body.innerHTML = markupMultiple;
-  drawer = Drawer();
+  drawer = new Drawer();
   const elOne = document.querySelector('[data-drawer="drawer-one"]');
   const elTwo = document.querySelector('[data-drawer="drawer-two"]');
   const btnOne = document.querySelector('[data-drawer-toggle="drawer-one"]');
