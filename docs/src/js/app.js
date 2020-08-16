@@ -32,5 +32,6 @@ const scrollStash = new ScrollStash({
 const el = document.querySelector('[data-scroll-stash]');
 
 document.addEventListener('drawer:opened', () => {
-  scrollStash.anchor.show(el, 'smooth');
+  const anchor = scrollStash.anchorGet(el);
+  anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
 });

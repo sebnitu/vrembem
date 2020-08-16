@@ -116,6 +116,7 @@
       key: "init",
       value: function init(target) {
         this.target = target;
+        this.inner = this.target.querySelector('[tabindex="-1"]');
         this.focusable = this.getFocusable();
 
         if (this.focusable.length) {
@@ -130,6 +131,7 @@
       key: "destroy",
       value: function destroy() {
         if (!this.target) return;
+        this.inner = null;
         this.focusable = null;
         this.focusableFirst = null;
         this.focusableLast = null;
@@ -142,15 +144,14 @@
       value: function handlerFocusTrap(event) {
         var isTab = event.key === 'Tab' || event.keyCode === 9;
         if (!isTab) return;
-        var innerElement = this.target.querySelector('[tabindex="-1"]');
 
         if (event.shiftKey) {
-          if (document.activeElement === this.focusableFirst || document.activeElement === innerElement) {
+          if (document.activeElement === this.focusableFirst || document.activeElement === this.inner) {
             this.focusableLast.focus();
             event.preventDefault();
           }
         } else {
-          if (document.activeElement === this.focusableLast || document.activeElement === innerElement) {
+          if (document.activeElement === this.focusableLast || document.activeElement === this.inner) {
             this.focusableFirst.focus();
             event.preventDefault();
           }
@@ -167,7 +168,7 @@
       value: function getFocusable() {
         var focusable = [];
         var initFocus = document.activeElement;
-        var initScrollTop = this.target.scrollTop;
+        var initScrollTop = this.inner ? this.inner.scrollTop : 0;
         this.target.querySelectorAll("\n      a[href]:not([disabled]),\n      button:not([disabled]),\n      textarea:not([disabled]),\n      input[type=\"text\"]:not([disabled]),\n      input[type=\"radio\"]:not([disabled]),\n      input[type=\"checkbox\"]:not([disabled]),\n      select:not([disabled]),\n      [tabindex]:not([tabindex=\"-1\"])\n    ").forEach(function (el) {
           el.focus();
 
@@ -175,7 +176,7 @@
             focusable.push(el);
           }
         });
-        this.target.scrollTop = initScrollTop;
+        if (this.inner) this.inner.scrollTop = initScrollTop;
         initFocus.focus();
         return focusable;
       }

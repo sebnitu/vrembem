@@ -33,6 +33,13 @@ const markup = `
       ...
     </div>
   </div>
+  <div class="item-4">
+    <div data-dialog>
+      <button class="first-3">...</button>
+      <button class="middle-3">...</button>
+      <button class="last-3">...</button>
+    </div>
+  </div>
 `;
 
 beforeEach(() => {
@@ -195,9 +202,15 @@ test('should tear down focus trap when destroy method is run', () => {
   expect(document.activeElement).not.toHaveClass('first');
 });
 
-test('shoudl do nothing if focus trap destroy is called before its been initialized', () => {
+test('should do nothing if focus trap destroy is called before its been initialized', () => {
   const focusTrap = new FocusTrap();
   expect(focusTrap.destroy.bind(focusTrap)).not.toThrowError();
+});
+
+test('Should not throw error if tabindex="-1" is not present on in target', () => {
+  const el = document.querySelector('.item-4');
+  const focusTrap = new FocusTrap();
+  expect(focusTrap.init.bind(focusTrap, el)).not.toThrowError();
 });
 
 // NOTICE: Requires a headless browser to test properly
