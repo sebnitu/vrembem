@@ -787,13 +787,13 @@
 	  }, {
 	    key: "destroy",
 	    value: function destroy() {
-	      if (this.target) {
-	        this.focusable = null;
-	        this.focusableFirst = null;
-	        this.focusableLast = null;
-	        this.target.removeEventListener('keydown', this.handlerFocusTrap);
-	        this.target.removeEventListener('keydown', this.handlerFocusLock);
-	      }
+	      if (!this.target) return;
+	      this.focusable = null;
+	      this.focusableFirst = null;
+	      this.focusableLast = null;
+	      this.target.removeEventListener('keydown', this.handlerFocusTrap);
+	      this.target.removeEventListener('keydown', this.handlerFocusLock);
+	      this.target = null;
 	    }
 	  }, {
 	    key: "handlerFocusTrap",

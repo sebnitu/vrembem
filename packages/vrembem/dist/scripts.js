@@ -129,13 +129,13 @@
     }, {
       key: "destroy",
       value: function destroy() {
-        if (this.target) {
-          this.focusable = null;
-          this.focusableFirst = null;
-          this.focusableLast = null;
-          this.target.removeEventListener('keydown', this.handlerFocusTrap);
-          this.target.removeEventListener('keydown', this.handlerFocusLock);
-        }
+        if (!this.target) return;
+        this.focusable = null;
+        this.focusableFirst = null;
+        this.focusableLast = null;
+        this.target.removeEventListener('keydown', this.handlerFocusTrap);
+        this.target.removeEventListener('keydown', this.handlerFocusLock);
+        this.target = null;
       }
     }, {
       key: "handlerFocusTrap",
@@ -385,32 +385,33 @@
         stateValue: 'mixed'
       };
       this.settings = _objectSpread(_objectSpread({}, this.defaults), options);
-      this.settings.selector = "[".concat(this.settings.stateAttr, "=\"").concat(this.settings.stateValue, "\"]");
-      this.handlerClick = this.handlerClick.bind(this);
+      this.__handlerClick = this.handlerClick.bind(this);
       if (this.settings.autoInit) this.init();
     }
 
     createClass(Checkbox, [{
       key: "init",
       value: function init() {
-        var mixed = document.querySelectorAll(this.settings.selector);
+        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+        if (options) this.settings = _objectSpread(_objectSpread({}, this.settings), options);
+        var selector = "[".concat(this.settings.stateAttr, "=\"").concat(this.settings.stateValue, "\"]");
+        var mixed = document.querySelectorAll(selector);
         this.setIndeterminate(mixed);
-        document.addEventListener('click', this.handlerClick, false);
+        document.addEventListener('click', this.__handlerClick, false);
       }
     }, {
       key: "destroy",
       value: function destroy() {
-        document.removeEventListener('click', this.handlerClick, false);
+        document.removeEventListener('click', this.__handlerClick, false);
       }
     }, {
       key: "handlerClick",
       value: function handlerClick(event) {
-        var el = event.target.closest(this.settings.selector);
-
-        if (el) {
-          this.removeAriaState(el);
-          this.setIndeterminate(el);
-        }
+        var selector = "[".concat(this.settings.stateAttr, "=\"").concat(this.settings.stateValue, "\"]");
+        var el = event.target.closest(selector);
+        if (!el) return;
+        this.removeAriaState(el);
+        this.setIndeterminate(el);
       }
     }, {
       key: "setAriaState",
@@ -1280,14 +1281,9 @@
         if (this.mediaQueryLists && this.mediaQueryLists.length) {
           this.mediaQueryLists.forEach(function (item) {
             var filter = event ? event.media == item.mql.media : true;
-
-            if (filter) {
-              var drawer = document.querySelector("[data-".concat(_this3.parent.settings.dataDrawer, "=\"").concat(item.drawer, "\"]"));
-
-              if (drawer) {
-                _this3.match(item.mql, drawer);
-              }
-            }
+            if (!filter) return;
+            var drawer = document.querySelector("[data-".concat(_this3.parent.settings.dataDrawer, "=\"").concat(item.drawer, "\"]"));
+            if (drawer) _this3.match(item.mql, drawer);
           });
           document.dispatchEvent(new CustomEvent(this.parent.settings.customEventPrefix + 'breakpoint', {
             bubbles: true
@@ -1376,9 +1372,7 @@
     });
     return state;
   }
-  function stateSave() {
-    var target = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-    var settings = arguments.length > 1 ? arguments[1] : undefined;
+  function stateSave(target, settings) {
     if (!settings.stateSave) return stateClear(settings);
     var state = localStorage.getItem(settings.stateKey) ? JSON.parse(localStorage.getItem(settings.stateKey)) : {};
     var drawers = target ? [target] : document.querySelectorAll("[data-".concat(settings.dataDrawer, "]"));
@@ -1413,7 +1407,6 @@
       this.state = {};
       this.focusTrap = new FocusTrap();
       this.breakpoint = new Breakpoint(this);
-      this.selectorTabindex = "[data-".concat(this.settings.dataDrawer, "] [data-").concat(this.settings.dataDialog, "]");
       this.__handlerClick = handlerClick.bind(this);
       this.__handlerKeyup = handlerKeyup.bind(this);
       if (this.settings.autoInit) this.init();
@@ -1425,7 +1418,7 @@
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
         if (options) this.settings = _objectSpread$1(_objectSpread$1({}, this.settings), options);
         this.stateSet();
-        this.setTabindex(this.settings.setTabindex, this.selectorTabindex);
+        this.setTabindex(this.settings.setTabindex);
         this.breakpoint.init();
         document.addEventListener('click', this.__handlerClick, false);
         document.addEventListener('touchend', this.__handlerClick, false);
@@ -1457,8 +1450,9 @@
       key: "setTabindex",
       value: function setTabindex$1() {
         var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+        var selectorTabindex = "\n      [data-".concat(this.settings.dataDrawer, "]\n      [data-").concat(this.settings.dataDialog, "]\n    ");
 
-        setTabindex(state, this.selectorTabindex);
+        setTabindex(state, selectorTabindex);
       }
     }, {
       key: "stateSet",

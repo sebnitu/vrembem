@@ -61,32 +61,33 @@
         stateValue: 'mixed'
       };
       this.settings = _objectSpread(_objectSpread({}, this.defaults), options);
-      this.settings.selector = "[".concat(this.settings.stateAttr, "=\"").concat(this.settings.stateValue, "\"]");
-      this.handlerClick = this.handlerClick.bind(this);
+      this.__handlerClick = this.handlerClick.bind(this);
       if (this.settings.autoInit) this.init();
     }
 
     createClass(Checkbox, [{
       key: "init",
       value: function init() {
-        var mixed = document.querySelectorAll(this.settings.selector);
+        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+        if (options) this.settings = _objectSpread(_objectSpread({}, this.settings), options);
+        var selector = "[".concat(this.settings.stateAttr, "=\"").concat(this.settings.stateValue, "\"]");
+        var mixed = document.querySelectorAll(selector);
         this.setIndeterminate(mixed);
-        document.addEventListener('click', this.handlerClick, false);
+        document.addEventListener('click', this.__handlerClick, false);
       }
     }, {
       key: "destroy",
       value: function destroy() {
-        document.removeEventListener('click', this.handlerClick, false);
+        document.removeEventListener('click', this.__handlerClick, false);
       }
     }, {
       key: "handlerClick",
       value: function handlerClick(event) {
-        var el = event.target.closest(this.settings.selector);
-
-        if (el) {
-          this.removeAriaState(el);
-          this.setIndeterminate(el);
-        }
+        var selector = "[".concat(this.settings.stateAttr, "=\"").concat(this.settings.stateValue, "\"]");
+        var el = event.target.closest(selector);
+        if (!el) return;
+        this.removeAriaState(el);
+        this.setIndeterminate(el);
       }
     }, {
       key: "setAriaState",

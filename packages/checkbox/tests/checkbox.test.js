@@ -27,6 +27,12 @@ test('set checkboxes to indeterminate on init', () => {
   expect(input.indeterminate).toBe(true);
 });
 
+test('should allow for passing options on init method call', () => {
+  checkbox = new Checkbox({ stateValue: 'OnNew' });
+  checkbox.init({ stateValue: 'OnInit' });
+  expect(checkbox.settings.stateValue).toBe('OnInit');
+});
+
 test('click event removes aria checked attribute', () => {
   document.body.innerHTML = markupSingle;
   checkbox = new Checkbox({ autoInit: true });

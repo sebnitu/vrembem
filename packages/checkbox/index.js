@@ -6,28 +6,28 @@ export default class Checkbox {
       stateValue: 'mixed'
     };
     this.settings = { ...this.defaults, ...options };
-    this.settings.selector =
-      `[${this.settings.stateAttr}="${this.settings.stateValue}"]`;
-    this.handlerClick = this.handlerClick.bind(this);
+    this.__handlerClick = this.handlerClick.bind(this);
     if (this.settings.autoInit) this.init();
   }
 
-  init() {
-    let mixed = document.querySelectorAll(this.settings.selector);
+  init(options = null) {
+    if (options) this.settings = { ...this.settings, ...options };
+    const selector = `[${this.settings.stateAttr}="${this.settings.stateValue}"]`;
+    const mixed = document.querySelectorAll(selector);
     this.setIndeterminate(mixed);
-    document.addEventListener('click', this.handlerClick, false);
+    document.addEventListener('click', this.__handlerClick, false);
   }
 
   destroy() {
-    document.removeEventListener('click', this.handlerClick, false);
+    document.removeEventListener('click', this.__handlerClick, false);
   }
 
   handlerClick(event) {
-    let el = event.target.closest(this.settings.selector);
-    if (el) {
-      this.removeAriaState(el);
-      this.setIndeterminate(el);
-    }
+    const selector = `[${this.settings.stateAttr}="${this.settings.stateValue}"]`;
+    const el = event.target.closest(selector);
+    if (!el) return;
+    this.removeAriaState(el);
+    this.setIndeterminate(el);
   }
 
   setAriaState(el, value = this.settings.stateValue) {
