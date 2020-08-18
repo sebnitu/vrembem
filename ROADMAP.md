@@ -2,11 +2,14 @@
 
 This document describes the current status and upcoming milestones of the Vrembem project.
 
-## Components
+## The Road to v2
 
-This is a table of all available components along with their status. The goal is to get all components to a ✅ stable state. Another goal is to reduce the number of components and avoid library bloat which makes things harder to maintain and harder for users to weed through the necessary documentation.
+Milestones to reach before Vrembem is ready for it's v2 release.
 
-Components should not be so generic that they're applied to everything yet not so narrow in scope that they only see a niche usecase. For example, a `box` component is too generic while a `todo-list` component is too specific.
+- [ ] All available components should be in a ✅ stable state.
+- [ ] Documentation should be fully completed for all components.
+
+## Component Status
 
 __Status Labels:__
 
