@@ -1,8 +1,8 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+This document logs all notable changes to the Vrembem project.
 
-**Tags**
+__Tags:__
 
 - :fire: `breaking:` Breaking Changes
 - :tada: `feat:` New Feature
