@@ -14,9 +14,22 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.15.0 to CHANGELOG.md
+chore(release): add v1.15.1 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## 1.15.1 (2020-08-20)
+
+#### :tada: New Feature
+* `base`, `drawer`, `modal`, `notice`, `vrembem`
+  * [#331](https://github.com/sebnitu/vrembem/pull/331) Add @vrembem/core to vrembem forwards ([@sebnitu](https://github.com/sebnitu))
+
+#### :books: Documentation
+* Other
+  * [#328](https://github.com/sebnitu/vrembem/pull/328) Add roadmap ([@sebnitu](https://github.com/sebnitu))
+* `checkbox`, `drawer`, `modal`
+  * [#323](https://github.com/sebnitu/vrembem/pull/323) Fix autoInit description typo in docs ([@sebnitu](https://github.com/sebnitu))
 
 
 ## v1.15.0 (2020-08-16)
