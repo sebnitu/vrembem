@@ -8,6 +8,23 @@ A complete collection of all Vrembem components into a single comprehensive pack
 
 ## Installation
 
+Via CDN
+
+```html
+<!-- Include styles -->
+<link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.min.css">
+
+<!-- Include scripts -->
+<script src="https://unpkg.com/vrembem/dist/scripts.min.js"></script>
+
+<script>
+  // All Vrembem JS modules are loaded into the vrembem namespace
+  console.log(vrembem);
+</script>
+```
+
+Via NPM
+
 ```sh
 npm install vrembem
 ```
@@ -31,10 +48,9 @@ All component variables, functions and mixins are forwarded under their respecti
 Customize core variables which all components inherit from. The example below will prefix all components with a prefix:
 
 ```scss
-@use "@vrembem/core" with (
-  $prefix-block: "vb-"
+@use "vrembem" with (
+  $core-prefix-block: "vb-"
 );
-@use "vrembem";
 ```
 
 ## JavaScript
