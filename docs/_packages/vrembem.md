@@ -24,13 +24,12 @@ All component variables, functions and mixins are forwarded under their respecti
 );
 ```
 
-Customize core variables which all components inherit from. The example below will prefix all components with a prefix:
+Customize core variables which all components inherit from. The example below will prefix all components with `vb-` to help namespace styles:
 
 ```scss
-@use "@vrembem/core" with (
-  $prefix-block: "vb-"
+@use "vrembem" with (
+  $core-prefix-block: "vb-"
 );
-@use "vrembem";
 ```
 
 ## JavaScript
@@ -47,7 +46,7 @@ import { Drawer } from "vrembem";
 const drawer = new Drawer({ autoInit: true });
 ```
 
-> Note that `core` helpers do not need to be initialized since they're just a set of helpful utility functions.
+> Note that `core` modules do not need to be initialized since they're just a set of helpful utility and functional modules.
 
 ## Markup
 
