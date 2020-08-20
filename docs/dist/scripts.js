@@ -2463,10 +2463,6 @@
       };
     }
   };
-  var anchor = {
-    get: anchorGet,
-    show: anchorShow
-  };
 
   var stateSave$1 = function stateSave(settings) {
     var state = {};
@@ -2502,10 +2498,6 @@
       return {};
     }
   };
-  var state = {
-    save: stateSave$1,
-    set: stateSet$1
-  };
 
   function ownKeys$3(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -2531,12 +2523,13 @@
 
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
         if (options) this.settings = _objectSpread$3(_objectSpread$3({}, this.settings), options);
-        this.state = state.set(this.settings);
-        this.state = lodash_isempty(this.state) ? state.save(this.settings) : this.state;
+        this.state = stateSet$1(this.settings);
+        this.state = lodash_isempty(this.state) ? stateSave$1(this.settings) : this.state;
         this.scrolls = document.querySelectorAll("[data-".concat(this.settings.dataScroll, "]"));
         this.scrolls.forEach(function (item) {
           item.addEventListener('scroll', _this.throttleRef);
-          anchor.show(item, false, _this.settings);
+
+          anchorShow(item, false, _this.settings);
         });
       }
     }, {
@@ -2554,17 +2547,17 @@
     }, {
       key: "handler",
       value: function handler() {
-        this.state = state.save(this.settings);
+        this.state = stateSave$1(this.settings);
       }
     }, {
       key: "anchorGet",
-      value: function anchorGet(el) {
-        return anchor.get(el, this.settings);
+      value: function anchorGet$1(el) {
+        return anchorGet(el, this.settings);
       }
     }, {
       key: "anchorShow",
-      value: function anchorShow(el, behavior) {
-        return anchor.show(el, behavior, this.settings);
+      value: function anchorShow$1(el, behavior) {
+        return anchorShow(el, behavior, this.settings);
       }
     }]);
 

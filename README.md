@@ -144,6 +144,16 @@ Via your project's Sass manifest file:
 @use "vrembem";
 ```
 
+Override default variables using Sass' module system and the `with` keyword. Variables are prefixed by their component name. You can also customize core variables which all components inherit from using the `$core-` prefix.
+
+```scss
+@use "vrembem" with (
+  $core-prefix-block: "vb-",
+  $modal-background: #fff,
+  $modal-background-alpha: 0.9
+);
+```
+
 Via your project's JavaScript manifest file:
 
 ```js
