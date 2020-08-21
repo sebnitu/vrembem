@@ -11,7 +11,7 @@ $_c: var.$class-spacing;
 
   @each $key, $value in var.$spacing-map {
     .#{$_b}#{$_c}-#{$key} {
-      @include mix.spacing($key, true);
+      @include mix.spacing($value, true);
     }
   }
 }
