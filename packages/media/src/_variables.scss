@@ -8,12 +8,12 @@ $prefix-modifier-value: core.$prefix-modifier-value !default;
 $breakpoints: core.$breakpoints !default;
 $min-height: (core.$line-height * 1rem) !default;
 $max-width: 30% !default;
-$spacing: 1.5rem !default;
+$spacing: 1.5em !default;
 $spacing-map: (
   "none": 0,
-  "xs": 0.5rem,
-  "sm": 1rem,
-  "md": 1.5rem,
-  "lg": 2rem,
-  "xl": 3rem
+  "xs": 0.5em,
+  "sm": 1em,
+  "md": 1.5em,
+  "lg": 2em,
+  "xl": 3em
 ) !default;

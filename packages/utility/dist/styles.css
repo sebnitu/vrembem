@@ -728,7 +728,7 @@
 }
 
 .margin {
-  margin: 1rem;
+  margin: 1em;
 }
 
 .margin-none {
@@ -736,23 +736,23 @@
 }
 
 .margin-xs {
-  margin: 0.25rem !important;
+  margin: 0.25em !important;
 }
 
 .margin-sm {
-  margin: 0.5rem !important;
+  margin: 0.5em !important;
 }
 
 .margin-md {
-  margin: 1rem !important;
+  margin: 1em !important;
 }
 
 .margin-lg {
-  margin: 1.5rem !important;
+  margin: 1.5em !important;
 }
 
 .margin-xl {
-  margin: 2rem !important;
+  margin: 2em !important;
 }
 
 .margin-top-none {
@@ -760,23 +760,23 @@
 }
 
 .margin-top-xs {
-  margin-top: 0.25rem !important;
+  margin-top: 0.25em !important;
 }
 
 .margin-top-sm {
-  margin-top: 0.5rem !important;
+  margin-top: 0.5em !important;
 }
 
 .margin-top-md {
-  margin-top: 1rem !important;
+  margin-top: 1em !important;
 }
 
 .margin-top-lg {
-  margin-top: 1.5rem !important;
+  margin-top: 1.5em !important;
 }
 
 .margin-top-xl {
-  margin-top: 2rem !important;
+  margin-top: 2em !important;
 }
 
 .margin-bottom-none {
@@ -784,23 +784,23 @@
 }
 
 .margin-bottom-xs {
-  margin-bottom: 0.25rem !important;
+  margin-bottom: 0.25em !important;
 }
 
 .margin-bottom-sm {
-  margin-bottom: 0.5rem !important;
+  margin-bottom: 0.5em !important;
 }
 
 .margin-bottom-md {
-  margin-bottom: 1rem !important;
+  margin-bottom: 1em !important;
 }
 
 .margin-bottom-lg {
-  margin-bottom: 1.5rem !important;
+  margin-bottom: 1.5em !important;
 }
 
 .margin-bottom-xl {
-  margin-bottom: 2rem !important;
+  margin-bottom: 2em !important;
 }
 
 .margin-left-none {
@@ -808,23 +808,23 @@
 }
 
 .margin-left-xs {
-  margin-left: 0.25rem !important;
+  margin-left: 0.25em !important;
 }
 
 .margin-left-sm {
-  margin-left: 0.5rem !important;
+  margin-left: 0.5em !important;
 }
 
 .margin-left-md {
-  margin-left: 1rem !important;
+  margin-left: 1em !important;
 }
 
 .margin-left-lg {
-  margin-left: 1.5rem !important;
+  margin-left: 1.5em !important;
 }
 
 .margin-left-xl {
-  margin-left: 2rem !important;
+  margin-left: 2em !important;
 }
 
 .margin-right-none {
@@ -832,23 +832,23 @@
 }
 
 .margin-right-xs {
-  margin-right: 0.25rem !important;
+  margin-right: 0.25em !important;
 }
 
 .margin-right-sm {
-  margin-right: 0.5rem !important;
+  margin-right: 0.5em !important;
 }
 
 .margin-right-md {
-  margin-right: 1rem !important;
+  margin-right: 1em !important;
 }
 
 .margin-right-lg {
-  margin-right: 1.5rem !important;
+  margin-right: 1.5em !important;
 }
 
 .margin-right-xl {
-  margin-right: 2rem !important;
+  margin-right: 2em !important;
 }
 
 .margin-hori-none {
@@ -857,28 +857,28 @@
 }
 
 .margin-hori-xs {
-  margin-right: 0.25rem !important;
-  margin-left: 0.25rem !important;
+  margin-right: 0.25em !important;
+  margin-left: 0.25em !important;
 }
 
 .margin-hori-sm {
-  margin-right: 0.5rem !important;
-  margin-left: 0.5rem !important;
+  margin-right: 0.5em !important;
+  margin-left: 0.5em !important;
 }
 
 .margin-hori-md {
-  margin-right: 1rem !important;
-  margin-left: 1rem !important;
+  margin-right: 1em !important;
+  margin-left: 1em !important;
 }
 
 .margin-hori-lg {
-  margin-right: 1.5rem !important;
-  margin-left: 1.5rem !important;
+  margin-right: 1.5em !important;
+  margin-left: 1.5em !important;
 }
 
 .margin-hori-xl {
-  margin-right: 2rem !important;
-  margin-left: 2rem !important;
+  margin-right: 2em !important;
+  margin-left: 2em !important;
 }
 
 .margin-vert-none {
@@ -887,28 +887,28 @@
 }
 
 .margin-vert-xs {
-  margin-top: 0.25rem !important;
-  margin-bottom: 0.25rem !important;
+  margin-top: 0.25em !important;
+  margin-bottom: 0.25em !important;
 }
 
 .margin-vert-sm {
-  margin-top: 0.5rem !important;
-  margin-bottom: 0.5rem !important;
+  margin-top: 0.5em !important;
+  margin-bottom: 0.5em !important;
 }
 
 .margin-vert-md {
-  margin-top: 1rem !important;
-  margin-bottom: 1rem !important;
+  margin-top: 1em !important;
+  margin-bottom: 1em !important;
 }
 
 .margin-vert-lg {
-  margin-top: 1.5rem !important;
-  margin-bottom: 1.5rem !important;
+  margin-top: 1.5em !important;
+  margin-bottom: 1.5em !important;
 }
 
 .margin-vert-xl {
-  margin-top: 2rem !important;
-  margin-bottom: 2rem !important;
+  margin-top: 2em !important;
+  margin-bottom: 2em !important;
 }
 
 .margin-auto {
@@ -925,7 +925,7 @@
 }
 
 .padding {
-  padding: 1rem;
+  padding: 1em;
 }
 
 .padding-none {
@@ -933,23 +933,23 @@
 }
 
 .padding-xs {
-  padding: 0.25rem !important;
+  padding: 0.25em !important;
 }
 
 .padding-sm {
-  padding: 0.5rem !important;
+  padding: 0.5em !important;
 }
 
 .padding-md {
-  padding: 1rem !important;
+  padding: 1em !important;
 }
 
 .padding-lg {
-  padding: 1.5rem !important;
+  padding: 1.5em !important;
 }
 
 .padding-xl {
-  padding: 2rem !important;
+  padding: 2em !important;
 }
 
 .padding-top-none {
@@ -957,23 +957,23 @@
 }
 
 .padding-top-xs {
-  padding-top: 0.25rem !important;
+  padding-top: 0.25em !important;
 }
 
 .padding-top-sm {
-  padding-top: 0.5rem !important;
+  padding-top: 0.5em !important;
 }
 
 .padding-top-md {
-  padding-top: 1rem !important;
+  padding-top: 1em !important;
 }
 
 .padding-top-lg {
-  padding-top: 1.5rem !important;
+  padding-top: 1.5em !important;
 }
 
 .padding-top-xl {
-  padding-top: 2rem !important;
+  padding-top: 2em !important;
 }
 
 .padding-bottom-none {
@@ -981,23 +981,23 @@
 }
 
 .padding-bottom-xs {
-  padding-bottom: 0.25rem !important;
+  padding-bottom: 0.25em !important;
 }
 
 .padding-bottom-sm {
-  padding-bottom: 0.5rem !important;
+  padding-bottom: 0.5em !important;
 }
 
 .padding-bottom-md {
-  padding-bottom: 1rem !important;
+  padding-bottom: 1em !important;
 }
 
 .padding-bottom-lg {
-  padding-bottom: 1.5rem !important;
+  padding-bottom: 1.5em !important;
 }
 
 .padding-bottom-xl {
-  padding-bottom: 2rem !important;
+  padding-bottom: 2em !important;
 }
 
 .padding-left-none {
@@ -1005,23 +1005,23 @@
 }
 
 .padding-left-xs {
-  padding-left: 0.25rem !important;
+  padding-left: 0.25em !important;
 }
 
 .padding-left-sm {
-  padding-left: 0.5rem !important;
+  padding-left: 0.5em !important;
 }
 
 .padding-left-md {
-  padding-left: 1rem !important;
+  padding-left: 1em !important;
 }
 
 .padding-left-lg {
-  padding-left: 1.5rem !important;
+  padding-left: 1.5em !important;
 }
 
 .padding-left-xl {
-  padding-left: 2rem !important;
+  padding-left: 2em !important;
 }
 
 .padding-right-none {
@@ -1029,23 +1029,23 @@
 }
 
 .padding-right-xs {
-  padding-right: 0.25rem !important;
+  padding-right: 0.25em !important;
 }
 
 .padding-right-sm {
-  padding-right: 0.5rem !important;
+  padding-right: 0.5em !important;
 }
 
 .padding-right-md {
-  padding-right: 1rem !important;
+  padding-right: 1em !important;
 }
 
 .padding-right-lg {
-  padding-right: 1.5rem !important;
+  padding-right: 1.5em !important;
 }
 
 .padding-right-xl {
-  padding-right: 2rem !important;
+  padding-right: 2em !important;
 }
 
 .padding-hori-none {
@@ -1054,28 +1054,28 @@
 }
 
 .padding-hori-xs {
-  padding-right: 0.25rem !important;
-  padding-left: 0.25rem !important;
+  padding-right: 0.25em !important;
+  padding-left: 0.25em !important;
 }
 
 .padding-hori-sm {
-  padding-right: 0.5rem !important;
-  padding-left: 0.5rem !important;
+  padding-right: 0.5em !important;
+  padding-left: 0.5em !important;
 }
 
 .padding-hori-md {
-  padding-right: 1rem !important;
-  padding-left: 1rem !important;
+  padding-right: 1em !important;
+  padding-left: 1em !important;
 }
 
 .padding-hori-lg {
-  padding-right: 1.5rem !important;
-  padding-left: 1.5rem !important;
+  padding-right: 1.5em !important;
+  padding-left: 1.5em !important;
 }
 
 .padding-hori-xl {
-  padding-right: 2rem !important;
-  padding-left: 2rem !important;
+  padding-right: 2em !important;
+  padding-left: 2em !important;
 }
 
 .padding-vert-none {
@@ -1084,28 +1084,28 @@
 }
 
 .padding-vert-xs {
-  padding-top: 0.25rem !important;
-  padding-bottom: 0.25rem !important;
+  padding-top: 0.25em !important;
+  padding-bottom: 0.25em !important;
 }
 
 .padding-vert-sm {
-  padding-top: 0.5rem !important;
-  padding-bottom: 0.5rem !important;
+  padding-top: 0.5em !important;
+  padding-bottom: 0.5em !important;
 }
 
 .padding-vert-md {
-  padding-top: 1rem !important;
-  padding-bottom: 1rem !important;
+  padding-top: 1em !important;
+  padding-bottom: 1em !important;
 }
 
 .padding-vert-lg {
-  padding-top: 1.5rem !important;
-  padding-bottom: 1.5rem !important;
+  padding-top: 1.5em !important;
+  padding-bottom: 1.5em !important;
 }
 
 .padding-vert-xl {
-  padding-top: 2rem !important;
-  padding-bottom: 2rem !important;
+  padding-top: 2em !important;
+  padding-bottom: 2em !important;
 }
 
 .span-1 {
