@@ -1257,9 +1257,9 @@ This module adds vertical spacing between an element's children. Spacing size an
   </table>
 </div>
 
-### `@mixin spacing($spacing, $imp: null)`
+### `@mixin spacing($value, $imp: null)`
 
-Output the spacing styles for an element. Styles are applied to an elements children using the `> *` selector.
+Output the spacing styles for an element. Styles are applied to an elements children using the `> * + *` selector.
 
 **Arguments**
 
@@ -1274,14 +1274,14 @@ Output the spacing styles for an element. Styles are applied to an elements chil
     </thead>
     <tbody>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$spacing</code></td>
-        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">number (with unit)</code></td>
-        <td data-mobile-label="Desc">The unit of spacing to apply.</td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$value</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">string || number (with unit)</code></td>
+        <td data-mobile-label="Desc">The unit of spacing to apply. Can also be the key to a value in the <code class="code text-nowrap">$spacing-map</code> map.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$imp</code></td>
         <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">boolean</code></td>
-        <td data-mobile-label="Desc">Whither or not to add the <code class="code color-secondary text-nowrap">!important</code> flag.</td>
+        <td data-mobile-label="Desc">Whither or not to add the <code class="code text-nowrap">!important</code> flag.</td>
       </tr>
     </tbody>
   </table>
