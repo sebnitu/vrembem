@@ -1295,17 +1295,8 @@ Output the spacing styles for an element. Styles are applied to an elements chil
 }
 
 // CSS Output
-.element > * {
+.element > * + * {
   margin-top: 2em !important;
-  margin-bottom: 2em !important;
-}
-
-.element > *:first-child {
-  margin-top: 0 !important;
-}
-
-.element > *:last-child {
-  margin-bottom: 0 !important;
 }
 ```
 

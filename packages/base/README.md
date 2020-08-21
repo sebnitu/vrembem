@@ -627,16 +627,16 @@ This module adds vertical spacing between an element's children. Spacing size an
 | `$spacing`        | `core.$spacing`         | Sets the vertical spacing via the top and bottom margin property. |
 | `$spacing-map`    | `core.$spacing-map`     | Used to build the spacing key classes.                            |
 
-#### `@mixin spacing($spacing, $imp: null)`
+#### `@mixin spacing($value, $imp: null)`
 
-Output the spacing styles for an element. Styles are applied to an elements children using the `> *` selector.
+Output the spacing styles for an element. Styles are applied to an elements children using the `> * + *` selector.
 
 **Arguments**
 
-| Variable   | Type                 | Description                                  |
-| ---------- | -------------------- | -------------------------------------------- |
-| `$spacing` | `number (with unit)` | The unit of spacing to apply.                |
-| `$imp`     | `boolean`            | Whither or not to add the `!important` flag. |
+| Variable | Type                           | Description                                                                             |
+| -------- | ------------------------------ | --------------------------------------------------------------------------------------- |
+| `$value` | `string || number (with unit)` | The unit of spacing to apply. Can also be the key to a value in the `$spacing-map` map. |
+| `$imp`   | `boolean`                      | Whither or not to add the `!important` flag.                                            |
 
 **Example**
 
@@ -646,17 +646,8 @@ Output the spacing styles for an element. Styles are applied to an elements chil
 }
 
 // CSS Output
-.element > * {
+.element > * + * {
   margin-top: 2em !important;
-  margin-bottom: 2em !important;
-}
-
-.element > *:first-child {
-  margin-top: 0 !important;
-}
-
-.element > *:last-child {
-  margin-bottom: 0 !important;
 }
 ```
 
