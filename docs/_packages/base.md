@@ -109,7 +109,7 @@ The base component consists of a number of modules with their own set of specifi
 
 ## arrow
 
-The arrows (carets) module creates directional triangles drawn with CSS.
+The arrow (caret) module creates directional triangles drawn with CSS.
 
 {% include demo_open.html %}
 <span class="arrow"></span>
@@ -151,7 +151,7 @@ The arrows (carets) module creates directional triangles drawn with CSS.
 
 ### Example
 
-Arrows are great indicators for buttons and menu items when interacting with them would toggle a dropdown or other togglable behavior.
+Arrows are great indicators for buttons and menu items when interacting with them would toggle a dropdown or other togglable components.
 
 {% include demo_open.html %}
 <div class="button-group button-group_wrap">
@@ -217,6 +217,7 @@ Outputs a number of base and reset element styles to help keep html elements pre
 Here's an example of the default styles applied to all HTML elements and specific styles on the `html` and `body` elements.
 
 ```scss
+// Output using default variables
 *,
 *::before,
 *::after {
@@ -231,17 +232,16 @@ body {
 }
 
 html {
-  box-sizing: var.$box-sizing;
-  font-size: core.$font-size;
-  line-height: core.$line-height;
+  box-sizing: border-box;
+  font-size: 16px;
+  line-height: 1.5;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var.$body-background;
-  color: core.$color;
-  font-family: core.$font-family;
+  color: #212121;
+  font-family: blinkmacsystemfont, -apple-system, system-ui, "Segoe UI", "Roboto", "Helvetica Neue", arial, sans-serif;
 }
 ```
 

@@ -1,3 +1,4 @@
+@use "sass:list";
 @use "sass:map";
 @use "@vrembem/core";
 @use "./variables" as var;
@@ -9,9 +10,13 @@
   $dir: null,
   $color: var.$arrow-color,
   $size: var.$arrow-size,
-  $size-pointer: var.$arrow-size-pointer,
   $radius: var.$arrow-radius
 ) {
+  $size-pointer: $size;
+  @if (type-of($size) == list) {
+    $size-pointer: list.nth($size, 2);
+    $size: list.nth($size, 1);
+  }
   display: inline-block;
   flex-grow: 0;
   flex-shrink: 0;
