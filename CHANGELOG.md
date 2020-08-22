@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.15.2 to CHANGELOG.md
+chore(release): add v1.15.3 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.15.3 (2020-08-22)
+
+#### :house: Refactor
+* `panel`, `vrembem`
+  * [#336](https://github.com/sebnitu/vrembem/pull/336) Deprecate the panel component ([@sebnitu](https://github.com/sebnitu))
 
 
 ## v1.15.2 (2020-08-22)
