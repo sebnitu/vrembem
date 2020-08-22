@@ -42,10 +42,13 @@ __Status Labels:__
 | 19  | `menu`         | ✅      | Super versatile component with well established patterns. Won't change much.                                                                                                                    |
 | 20  | `modal`        | ✅      | Super stable component and pattern.                                                                                                                                                             |
 | 21  | `notice`       | 📐      | A staple component. Currently not a fan of the need for `notice__body`, should be reconsidered.                                                                                                 |
-| 22  | `panel`        | 🚫      | This is too generic.                                                                                                                                                                            |
-| 23  | `radio`        | ✅      | Staple form control.                                                                                                                                                                            |
-| 24  | `section`      | 🤔      | There is a need for `__background` and `__screen` elements within a container, not sure if this fills that need. `card` uses similar styles.                                                    |
-| 25  | `switch`       | ✅      | Staple form control.                                                                                                                                                                            |
-| 26  | `table`        | ✅      | Table styles are important.                                                                                                                                                                     |
-| 27  | `tooltip`      | 🔗      | This—along with `dropdown`—could be merged into a more generic component. Maybe `popover`?                                                                                                      |
-| 28  | `utility`      | ✅      | Very stable with strong existing patterns. Can only grow.                                                                                                                                       |
+| 22  | `radio`        | ✅      | Staple form control.                                                                                                                                                                            |
+| 23  | `section`      | 🤔      | There is a need for `__background` and `__screen` elements within a container, not sure if this fills that need. `card` uses similar styles.                                                    |
+| 24  | `switch`       | ✅      | Staple form control.                                                                                                                                                                            |
+| 25  | `table`        | ✅      | Table styles are important.                                                                                                                                                                     |
+| 26  | `tooltip`      | 🔗      | This—along with `dropdown`—could be merged into a more generic component. Maybe `popover`?                                                                                                      |
+| 27  | `utility`      | ✅      | Very stable with strong existing patterns. Can only grow.                                                                                                                                       |
+
+__🚫 Deprecated Components:__
+
+- `panel` - Deprecated for being too generic.
