@@ -47,7 +47,7 @@ The default space is set using the spacing variable: `$spacing`:
 <div class="demo">
 <div class="demo__code" markdown="1">
 ```scss
-$spacing: 1.5rem !default;
+$spacing: 1.5em !default;
 ```
 </div>
 </div>

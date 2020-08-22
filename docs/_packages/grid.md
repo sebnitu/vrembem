@@ -603,18 +603,18 @@ Sets an elements width to `100%`.
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$gap</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2rem</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2em</code></td>
         <td data-mobile-label="Desc">String to prefix modifier values with.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$gap-scale</code></td>
         <td data-mobile-label="Default">
           <code class="code color-secondary text-nowrap">
-            "xs": 0.5rem,<br>
-            "sm": 1rem,<br>
-            "md": 2rem,<br>
-            "lg": 3rem,<br>
-            "xl": 4rem
+            "xs": 0.5em,<br>
+            "sm": 1em,<br>
+            "md": 2em,<br>
+            "lg": 3em,<br>
+            "xl": 4em
           </code>
         </td>
         <td data-mobile-label="Desc">A scale map the <code class="code">grid_gap_[key]</code> modifier uses to build it's styles.</td>

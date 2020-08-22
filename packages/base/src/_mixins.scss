@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "@vrembem/core";
 @use "./variables" as var;
 
@@ -217,24 +218,20 @@
 // Spacing
 // ---
 
-@mixin spacing($spacing, $imp: null) {
+@mixin spacing($value, $imp: null) {
+  @if map.has-key(var.$spacing-map, $value) {
+    $value: map.get(var.$spacing-map, $value);
+  }
+
   @if ($imp) {
     $imp: "!important";
   } @else if ($imp == false) {
     $imp: null;
   }
-  @if ($spacing) {
-    > * {
-      margin-top: $spacing #{$imp};
-      margin-bottom: $spacing #{$imp};
 
-      &:first-child {
-        margin-top: 0 #{$imp};
-      }
-
-      &:last-child {
-        margin-bottom: 0 #{$imp};
-      }
+  @if (type-of($value) == number) {
+    > * + * {
+      margin-top: $value #{$imp};
     }
   }
 }
