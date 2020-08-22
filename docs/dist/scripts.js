@@ -1,7 +1,5 @@
-(function (factory) {
-  typeof define === 'function' && define.amd ? define(factory) :
-  factory();
-}((function () { 'use strict';
+(function () {
+  'use strict';
 
   var setInert = function setInert(state, selector) {
     if (selector) {
@@ -52,12 +50,6 @@
       var _el$classList;
 
       (_el$classList = el.classList).add.apply(_el$classList, cl);
-    });
-  };
-
-  var camelCase = function camelCase(str) {
-    return str.replace(/-([a-z])/g, function (g) {
-      return g[1].toUpperCase();
     });
   };
 
@@ -2340,6 +2332,12 @@
     saveKey: 'ScrollStash',
     throttleDelay: 100,
     customEventPrefix: 'scroll-stash:'
+  };
+
+  var camelCase = function camelCase(str) {
+    return str.replace(/-([a-z])/g, function (g) {
+      return g[1].toUpperCase();
+    });
   };
 
   var anchorPositionStart = function anchorPositionStart(el, anchor, settings) {
@@ -4943,4 +4941,4 @@
     });
   });
 
-})));
+}());

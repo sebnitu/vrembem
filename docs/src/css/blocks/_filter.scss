@@ -1,27 +1,27 @@
-@use "@vrembem/core";
+@use "vrembem" as *;
 
 .filter {
   position: relative;
   z-index: 4;
   flex-grow: 1;
-  background: core.$shade;
+  background: $core-shade;
 
   &.is-active {
-    border-color: core.$primary;
+    border-color: $core-primary;
   }
 
   .search {
     padding: 0.75em 2.75em;
     border: none;
-    border-radius: core.$border-radius;
-    background: core.$white;
+    border-radius: $core-border-radius;
+    background: $core-white;
     box-shadow: none;
 
     &:focus,
     &.is-active {
-      background: core.$white;
-      box-shadow: core.$box-shadow;
-      color: core.$primary;
+      background: $core-white;
+      box-shadow: $core-box-shadow;
+      color: $core-primary;
     }
   }
 

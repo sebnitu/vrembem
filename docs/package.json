@@ -21,11 +21,9 @@
     "directory": "packages/docs"
   },
   "dependencies": {
-    "@vrembem/base": "^1.15.2",
-    "@vrembem/core": "^1.15.2",
     "feather-icons": "^4.28.0",
     "list.js": "^1.5.0",
-    "scroll-stash": "^1.0.11",
+    "scroll-stash": "^1.0.12",
     "svgxuse": "^1.2.6",
     "vrembem": "^1.15.2",
     "wicg-inert": "^3.0.3"
