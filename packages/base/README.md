@@ -633,10 +633,10 @@ Output the spacing styles for an element. Styles are applied to an elements chil
 
 **Arguments**
 
-| Variable | Type                           | Description                                                                             |
-| -------- | ------------------------------ | --------------------------------------------------------------------------------------- |
-| `$value` | `string || number (with unit)` | The unit of spacing to apply. Can also be the key to a value in the `$spacing-map` map. |
-| `$imp`   | `boolean`                      | Whither or not to add the `!important` flag.                                            |
+| Variable | Type                             | Description                                                                             |
+| -------- | -------------------------------- | --------------------------------------------------------------------------------------- |
+| `$value` | `string` or `number (with unit)` | The unit of spacing to apply. Can also be the key to a value in the `$spacing-map` map. |
+| `$imp`   | `boolean`                        | Whither or not to add the `!important` flag.                                            |
 
 **Example**
 
