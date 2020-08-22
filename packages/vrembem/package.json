@@ -29,7 +29,6 @@
     "directory": "packages/vrembem"
   },
   "dependencies": {
-    "@vrembem/arrow": "^1.15.2",
     "@vrembem/base": "^1.15.3",
     "@vrembem/breadcrumb": "^1.15.3",
     "@vrembem/button": "^1.15.2",
