@@ -2,6 +2,41 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
+// Arrow
+// ---
+
+@mixin arrow(
+  $dir: null,
+  $color: var.$arrow-color,
+  $size: var.$arrow-size,
+  $size-pointer: var.$arrow-size-pointer,
+  $radius: var.$arrow-radius
+) {
+  display: inline-block;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 0;
+  height: 0;
+  transform-origin: center;
+  border-top: $size-pointer solid $color;
+  border-right: $size solid transparent;
+  border-left: $size solid transparent;
+  border-radius: $radius;
+  pointer-events: none;
+
+  @if $dir == 'up' {
+    transform: rotate(180deg);
+  }
+
+  @else if $dir == 'left' {
+    transform: rotate(90deg);
+  }
+
+  @else if $dir == 'right' {
+    transform: rotate(-90deg);
+  }
+}
+
 // Blockquote
 // ---
 

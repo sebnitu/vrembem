@@ -169,6 +169,36 @@ input::-moz-placeholder {
   /* 2 */
 }
 
+.arrow,
+.arrow-up,
+.arrow-down,
+.arrow-left,
+.arrow-right {
+  display: inline-block;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 0;
+  height: 0;
+  transform-origin: center;
+  border-top: 5px solid currentColor;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.arrow-up {
+  transform: rotate(180deg);
+}
+
+.arrow-left {
+  transform: rotate(90deg);
+}
+
+.arrow-right {
+  transform: rotate(-90deg);
+}
+
 .blockquote {
   position: relative;
   padding: 1.5em;
