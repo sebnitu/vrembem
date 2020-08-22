@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.15.1 to CHANGELOG.md
+chore(release): add v1.15.2 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.15.2 (2020-08-22)
+
+#### :tada: New Feature
+* `base`, `core`, `grid`, `media`, `notice`, `utility`, `vrembem`
+  * [#335](https://github.com/sebnitu/vrembem/pull/335) Add ability to pass map key to spacing mixin and update spacing map units from rem to em ([@sebnitu](https://github.com/sebnitu))
 
 
 ## 1.15.1 (2020-08-20)
