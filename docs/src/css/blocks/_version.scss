@@ -1,4 +1,4 @@
-@use "@vrembem/core";
+@use "vrembem" as *;
 
 .version {
   &.loading {
@@ -8,23 +8,23 @@
     min-height: 1.5em;
 
     &::after {
-      @include core.size(1.25em);
+      @include core-size(1.25em);
       content: "";
       position: absolute;
       top: calc(50% - (1.25em * 0.5));
       left: calc(50% - (1.25em * 0.5));
       animation: spin 0.6s infinite linear;
       border: 2px solid;
-      border-radius: core.$border-radius-circle;
+      border-radius: $core-border-radius-circle;
       border-color:
-        rgba(core.$white, 0.15)
-        rgba(core.$white, 0.15)
-        rgba(core.$white, 0.15)
-        core.$white;
+        rgba($core-white, 0.15)
+        rgba($core-white, 0.15)
+        rgba($core-white, 0.15)
+        $core-white;
     }
   }
 
   &.error {
-    color: core.$red;
+    color: $core-red;
   }
 }

@@ -1,5 +1,5 @@
-@use "@vrembem/core";
-@use "../variables";
+@use "vrembem" as *;
+@use "../variables" as var;
 
 .toolbar {
   position: fixed;
@@ -9,13 +9,13 @@
   left: 0;
   flex-grow: 0;
   padding: 0.5em;
-  background: variables.$background-gradient;
-  background-color: variables.$background-color;
-  box-shadow: core.$box-shadow-4dp;
-  color: core.$white;
+  background: var.$background-gradient;
+  background-color: var.$background-color;
+  box-shadow: $core-box-shadow-4dp;
+  color: $core-white;
 }
 
-@include core.media-min('md') {
+@include core-media-min('md') {
   .toolbar {
     padding: 1em;
   }

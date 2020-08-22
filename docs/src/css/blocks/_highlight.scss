@@ -1,7 +1,7 @@
-@use "@vrembem/base/src/mixins" as base;
+@use "vrembem" as *;
 
 .highlight pre {
-  @include base.pre();
+  @include base-pre();
 }
 
 .highlight {
