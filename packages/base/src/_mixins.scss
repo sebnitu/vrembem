@@ -229,7 +229,7 @@
     $imp: null;
   }
 
-  @if ($value) {
+  @if (type-of($value) == number) {
     > * + * {
       margin-top: $value #{$imp};
     }
