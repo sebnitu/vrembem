@@ -93,6 +93,7 @@ Setting these variables will impact more than one or up to all base modules.
 
 The base component consists of a number of modules with their own set of specific customizable variables and output mixins.
 
+- [`arrow`](#arrow)
 - [`base`](#base)
 - [`blockquote`](#blockquote)
 - [`code`](#code)
@@ -105,6 +106,80 @@ The base component consists of a number of modules with their own set of specifi
 - [`separator`](#separator)
 - [`spacing`](#spacing)
 - [`type`](#type)
+
+## arrow
+
+The arrows (carets) module creates directional triangles drawn with CSS.
+
+{% include demo_open.html %}
+<span class="arrow"></span>
+<span class="arrow-up"></span>
+<span class="arrow-left"></span>
+<span class="arrow-right"></span>
+{% include demo_switch.html %}
+```html
+<span class="arrow"></span>
+<span class="arrow-up"></span>
+<span class="arrow-left"></span>
+<span class="arrow-right"></span>
+```
+{% include demo_close.html %}
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-arrow</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-arrow</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"arrow"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the arrow module.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### Example
+
+Arrows are great indicators for buttons and menu items when interacting with them would toggle a dropdown or other togglable behavior.
+
+{% include demo_open.html %}
+<div class="button-group button-group_wrap">
+  <button class="button button_color_primary">
+    <span>Button</span>
+    <span class="arrow"></span>
+  </button>
+  <button class="button button_outline_dark">
+    <span class="arrow arrow_up"></span>
+    <span>Button</span>
+  </button>
+  <button class="button button_color_primary">
+    {% include icon.html icon="github" %}
+    <span class="arrow arrow_right"></span>
+  </button>
+  <button class="button button_outline_dark">
+    <span class="arrow arrow_left"></span>
+    {% include icon.html icon="github" %}
+  </button>
+</div>
+{% include demo_switch.html %}
+```html
+<button class="button">
+  <span>Button</span>
+  <span class="arrow"></span>
+</button>
+```
+{% include demo_close.html %}
 
 ## base
 
