@@ -176,15 +176,15 @@ Arrows are great indicators for buttons and menu items when interacting with the
     <span class="arrow"></span>
   </button>
   <button class="button button_outline_dark">
-    <span class="arrow arrow_up"></span>
+    <span class="arrow-up"></span>
     <span>Button</span>
   </button>
   <button class="button button_color_primary">
     {% include icon.html icon="github" %}
-    <span class="arrow arrow_right"></span>
+    <span class="arrow-right"></span>
   </button>
   <button class="button button_outline_dark">
-    <span class="arrow arrow_left"></span>
+    <span class="arrow-left"></span>
     {% include icon.html icon="github" %}
   </button>
 </div>
