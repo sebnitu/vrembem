@@ -145,6 +145,22 @@ The arrow (caret) module creates directional triangles drawn with CSS.
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"arrow"</code></td>
         <td data-mobile-label="Desc">String to use for the class name of the arrow module.</td>
       </tr>
+
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$arrow-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">currentColor</code></td>
+        <td data-mobile-label="Desc">Sets the default border-color property of the arrow.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$arrow-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">8px 6px</code></td>
+        <td data-mobile-label="Desc">Sets the size of arrows. Can be a list where first number is the width of the "flat" side of the arrow and second is the width of the "pointer".</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$arrow-radius</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2px</code></td>
+        <td data-mobile-label="Desc">Applies a slightly rounded edge to the none pointer corners.</td>
+      </tr>
     </tbody>
   </table>
 </div>
@@ -180,6 +196,70 @@ Arrows are great indicators for buttons and menu items when interacting with the
 </button>
 ```
 {% include demo_close.html %}
+
+### `@mixin arrow($dir, $color, $size, $radius)`
+
+Output the styles for an arrow.
+
+**Arguments**
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$dir</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">string</code></td>
+        <td data-mobile-label="Desc">The direction the arrow should point. Can be <code class="code text-nowrap">'up'</code>, <code class="code text-nowrap">'down'</code>, <code class="code text-nowrap">'left'</code> or <code class="code text-nowrap">'right'</code>. Defaults to <code class="code text-nowrap">'down'</code>.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">color</code></td>
+        <td data-mobile-label="Desc">Sets the border-color property of the arrow.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">number (with unit)</code></td>
+        <td data-mobile-label="Desc">Sets the size of arrows. Can be a list where first number is the width of the "flat" side of the arrow and second is the width of the "pointer".</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$radius</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">number (with unit)</code></td>
+        <td data-mobile-label="Desc">Applies a slightly rounded edge to the none pointer corners.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+**Example**
+
+```scss
+.custom-arrow {
+  @include arrow("right", currentColor, 10px 15px);
+}
+
+// CSS Output
+.custom-arrow {
+  display: inline-block;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 0;
+  height: 0;
+  transform-origin: center;
+  border-top: 15px solid currentColor;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  border-radius: 2px;
+  pointer-events: none;
+  transform: rotate(-90deg);
+}
+```
 
 ## base
 

@@ -24,8 +24,8 @@
   height: 0;
   transform-origin: center;
   border-top: $size-pointer solid $color;
-  border-right: $size solid transparent;
-  border-left: $size solid transparent;
+  border-right: ($size * 0.5) solid transparent;
+  border-left: ($size * 0.5) solid transparent;
   border-radius: $radius;
   pointer-events: none;
 

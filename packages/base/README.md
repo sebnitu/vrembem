@@ -96,10 +96,13 @@ The arrow (caret) module creates directional triangles drawn with CSS.
 <span class="arrow-right"></span>
 ```
 
-| Variable        | Default                 | Description                                           |
-| --------------- | ----------------------- | ----------------------------------------------------- |
-| `$output-arrow` | `$output` &rarr; `true` | Toggles the output of this module.                    |
-| `$class-arrow`  | `"arrow"`               | String to use for the class name of the arrow module. |
+| Variable        | Default                 | Description                                                                                                                                      |
+| --------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `$output-arrow` | `$output` &rarr; `true` | Toggles the output of this module.                                                                                                               |
+| `$class-arrow`  | `"arrow"`               | String to use for the class name of the arrow module.                                                                                            |
+| `$arrow-color`  | `currentColor`          | Sets the default border-color property of the arrow.                                                                                             |
+| `$arrow-size`   | `8px 6px`               | Sets the size of arrows. Can be a list where first number is the width of the "flat" side of the arrow and second is the width of the "pointer". |
+| `$arrow-radius` | `2px`                   | Applies a slightly rounded edge to the none pointer corners.                                                                                     |
 
 ### Example
 
@@ -114,27 +117,39 @@ Arrows are great indicators for buttons and menu items when interacting with the
 
 #### `@mixin arrow($dir, $color, $size, $radius)`
 
-Output the styes for a specific link modifier. This is meant to be used in addition to a link's base styles.
+Output the styles for an arrow.
 
 **Arguments**
 
-| Variable  | Type                 | Description |
-| --------- | -------------------- | ----------- |
-| `$dir`    | `string`             | ...         |
-| `$color`  | `color`              | ...         |
-| `$size`   | `number (with unit)` | ...         |
-| `$radius` | `number (with unit)` | ...         |
+| Variable  | Type                 | Description                                                                                                                                      |
+| --------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `$dir`    | `string`             | The direction the arrow should point. Can be `'up'`, `'down'`, `'left'` or `'right'`. Defaults to `'down'`.                                      |
+| `$color`  | `color`              | Sets the border-color property of the arrow.                                                                                                     |
+| `$size`   | `number (with unit)` | Sets the size of arrows. Can be a list where first number is the width of the "flat" side of the arrow and second is the width of the "pointer". |
+| `$radius` | `number (with unit)` | Applies a slightly rounded edge to the none pointer corners.                                                                                     |
 
 **Example**
 
 ```scss
-...
 .custom-arrow {
-  @include arrow("right");
+  @include arrow("right", currentColor, 10px 15px);
 }
 
 // CSS Output
-// ...
+.custom-arrow {
+  display: inline-block;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 0;
+  height: 0;
+  transform-origin: center;
+  border-top: 15px solid currentColor;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  border-radius: 2px;
+  pointer-events: none;
+  transform: rotate(-90deg);
+}
 ```
 
 ### `base`

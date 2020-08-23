@@ -135,7 +135,7 @@ input::-moz-placeholder {
   width: 0;
   height: 0;
   transform-origin: center;
-  border-top: 5px solid currentColor;
+  border-top: 6px solid currentColor;
   border-right: 4px solid transparent;
   border-left: 4px solid transparent;
   border-radius: 2px;
