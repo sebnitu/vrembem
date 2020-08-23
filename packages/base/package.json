@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/base",
   "description": "Includes useful default styles and base modules for common HTML elements.",
-  "version": "1.15.3",
+  "version": "1.15.4",
   "license": "MIT",
   "keywords": [
     "BEM",
