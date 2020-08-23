@@ -9,7 +9,7 @@ title: "Home"
     <div class="cover__inner">
       <h1 class="cover__title">{{ site.title }}</h1>
       {%- if site.description -%}
-        <p class="cover__desc">{{ site.description }} Currently {{ site.packages | size }} available components.</p>
+        <p class="cover__desc">{{ site.description }} Currently {{ site.packages | size | minus: 1 }} available components.</p>
       {%- endif -%}
       <div class="grid grid_auto grid_gap_sm flex-align-center">
         <div class="grid__item">
