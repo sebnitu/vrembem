@@ -12,6 +12,7 @@ $prefix-modifier-value: core.$prefix-modifier-value !default;
 // ---
 
 $output: true !default;
+$output-arrow: $output !default;
 $output-base: $output !default;
 $output-blockquote: $output !default;
 $output-code: $output !default;
@@ -29,6 +30,7 @@ $output-type: $output !default;
 // Base component classes
 // ---
 
+$class-arrow: "arrow" !default;
 $class-embed: "embed" !default;
 $class-scroll-box: "scroll-box" !default;
 $class-separator: "sep" !default;
@@ -41,6 +43,13 @@ $class-type: "type" !default;
 
 $box-sizing: border-box !default;
 $body-background: null !default;
+
+// Arrow
+// ---
+
+$arrow-color: currentColor !default;
+$arrow-size: 8px 6px !default;
+$arrow-radius: 2px !default;
 
 // Blockquote
 // ---

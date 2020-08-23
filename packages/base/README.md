@@ -71,6 +71,7 @@ Setting these variables will impact more than one or up to all base modules.
 
 The base component consists of a number of modules with their own set of specific customizable variables and output mixins.
 
+- [`arrow`](#arrow)
 - [`base`](#base-1)
 - [`blockquote`](#blockquote)
 - [`code`](#code)
@@ -83,6 +84,73 @@ The base component consists of a number of modules with their own set of specifi
 - [`separator`](#separator)
 - [`spacing`](#spacing)
 - [`type`](#type)
+
+### `arrow`
+
+The arrow (caret) module creates directional triangles drawn with CSS.
+
+```html
+<span class="arrow"></span>
+<span class="arrow-up"></span>
+<span class="arrow-left"></span>
+<span class="arrow-right"></span>
+```
+
+| Variable        | Default                 | Description                                                                                                                                      |
+| --------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `$output-arrow` | `$output` &rarr; `true` | Toggles the output of this module.                                                                                                               |
+| `$class-arrow`  | `"arrow"`               | String to use for the class name of the arrow module.                                                                                            |
+| `$arrow-color`  | `currentColor`          | Sets the default border-color property of the arrow.                                                                                             |
+| `$arrow-size`   | `8px 6px`               | Sets the size of arrows. Can be a list where first number is the width of the "flat" side of the arrow and second is the width of the "pointer". |
+| `$arrow-radius` | `2px`                   | Applies a slightly rounded edge to the none pointer corners.                                                                                     |
+
+### Example
+
+Arrows are great indicators for buttons and menu items when interacting with them would toggle a dropdown or other togglable components.
+
+```html
+<button class="button">
+  <span>Button</span>
+  <span class="arrow"></span>
+</button>
+```
+
+#### `@mixin arrow($dir, $color, $size, $radius)`
+
+Output the styles for an arrow.
+
+**Arguments**
+
+| Variable  | Type                 | Description                                                                                                                                      |
+| --------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `$dir`    | `string`             | The direction the arrow should point. Can be `'up'`, `'down'`, `'left'` or `'right'`. Defaults to `'down'`.                                      |
+| `$color`  | `color`              | Sets the border-color property of the arrow.                                                                                                     |
+| `$size`   | `number (with unit)` | Sets the size of arrows. Can be a list where first number is the width of the "flat" side of the arrow and second is the width of the "pointer". |
+| `$radius` | `number (with unit)` | Applies a slightly rounded edge to the none pointer corners.                                                                                     |
+
+**Example**
+
+```scss
+.custom-arrow {
+  @include arrow("right", currentColor, 10px 15px);
+}
+
+// CSS Output
+.custom-arrow {
+  display: inline-block;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 0;
+  height: 0;
+  transform-origin: center;
+  border-top: 15px solid currentColor;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  border-radius: 2px;
+  pointer-events: none;
+  transform: rotate(-90deg);
+}
+```
 
 ### `base`
 
@@ -97,6 +165,7 @@ Outputs a number of base and reset element styles to help keep html elements pre
 Here's an example of the default styles applied to all HTML elements and specific styles on the `html` and `body` elements.
 
 ```scss
+// Output using default variables
 *,
 *::before,
 *::after {
@@ -111,17 +180,16 @@ body {
 }
 
 html {
-  box-sizing: var.$box-sizing;
-  font-size: core.$font-size;
-  line-height: core.$line-height;
+  box-sizing: border-box;
+  font-size: 16px;
+  line-height: 1.5;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var.$body-background;
-  color: core.$color;
-  font-family: core.$font-family;
+  color: #212121;
+  font-family: blinkmacsystemfont, -apple-system, system-ui, "Segoe UI", "Roboto", "Helvetica Neue", arial, sans-serif;
 }
 ```
 

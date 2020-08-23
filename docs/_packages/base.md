@@ -93,6 +93,7 @@ Setting these variables will impact more than one or up to all base modules.
 
 The base component consists of a number of modules with their own set of specific customizable variables and output mixins.
 
+- [`arrow`](#arrow)
 - [`base`](#base)
 - [`blockquote`](#blockquote)
 - [`code`](#code)
@@ -105,6 +106,160 @@ The base component consists of a number of modules with their own set of specifi
 - [`separator`](#separator)
 - [`spacing`](#spacing)
 - [`type`](#type)
+
+## arrow
+
+The arrow (caret) module creates directional triangles drawn with CSS.
+
+{% include demo_open.html %}
+<span class="arrow"></span>
+<span class="arrow-up"></span>
+<span class="arrow-left"></span>
+<span class="arrow-right"></span>
+{% include demo_switch.html %}
+```html
+<span class="arrow"></span>
+<span class="arrow-up"></span>
+<span class="arrow-left"></span>
+<span class="arrow-right"></span>
+```
+{% include demo_close.html %}
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-arrow</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-arrow</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"arrow"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the arrow module.</td>
+      </tr>
+
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$arrow-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">currentColor</code></td>
+        <td data-mobile-label="Desc">Sets the default border-color property of the arrow.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$arrow-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">8px 6px</code></td>
+        <td data-mobile-label="Desc">Sets the size of arrows. Can be a list where first number is the width of the "flat" side of the arrow and second is the width of the "pointer".</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$arrow-radius</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2px</code></td>
+        <td data-mobile-label="Desc">Applies a slightly rounded edge to the none pointer corners.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### Example
+
+Arrows are great indicators for buttons and menu items when interacting with them would toggle a dropdown or other togglable components.
+
+{% include demo_open.html %}
+<div class="button-group button-group_wrap">
+  <button class="button button_color_primary">
+    <span>Button</span>
+    <span class="arrow"></span>
+  </button>
+  <button class="button button_outline_dark">
+    <span class="arrow-up"></span>
+    <span>Button</span>
+  </button>
+  <button class="button button_color_primary">
+    {% include icon.html icon="github" %}
+    <span class="arrow-right"></span>
+  </button>
+  <button class="button button_outline_dark">
+    <span class="arrow-left"></span>
+    {% include icon.html icon="github" %}
+  </button>
+</div>
+{% include demo_switch.html %}
+```html
+<button class="button">
+  <span>Button</span>
+  <span class="arrow"></span>
+</button>
+```
+{% include demo_close.html %}
+
+### `@mixin arrow($dir, $color, $size, $radius)`
+
+Output the styles for an arrow.
+
+**Arguments**
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$dir</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">string</code></td>
+        <td data-mobile-label="Desc">The direction the arrow should point. Can be <code class="code text-nowrap">'up'</code>, <code class="code text-nowrap">'down'</code>, <code class="code text-nowrap">'left'</code> or <code class="code text-nowrap">'right'</code>. Defaults to <code class="code text-nowrap">'down'</code>.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">color</code></td>
+        <td data-mobile-label="Desc">Sets the border-color property of the arrow.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">number (with unit)</code></td>
+        <td data-mobile-label="Desc">Sets the size of arrows. Can be a list where first number is the width of the "flat" side of the arrow and second is the width of the "pointer".</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$radius</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">number (with unit)</code></td>
+        <td data-mobile-label="Desc">Applies a slightly rounded edge to the none pointer corners.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+**Example**
+
+```scss
+.custom-arrow {
+  @include arrow("right", currentColor, 10px 15px);
+}
+
+// CSS Output
+.custom-arrow {
+  display: inline-block;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 0;
+  height: 0;
+  transform-origin: center;
+  border-top: 15px solid currentColor;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  border-radius: 2px;
+  pointer-events: none;
+  transform: rotate(-90deg);
+}
+```
 
 ## base
 
@@ -142,6 +297,7 @@ Outputs a number of base and reset element styles to help keep html elements pre
 Here's an example of the default styles applied to all HTML elements and specific styles on the `html` and `body` elements.
 
 ```scss
+// Output using default variables
 *,
 *::before,
 *::after {
@@ -156,17 +312,16 @@ body {
 }
 
 html {
-  box-sizing: var.$box-sizing;
-  font-size: core.$font-size;
-  line-height: core.$line-height;
+  box-sizing: border-box;
+  font-size: 16px;
+  line-height: 1.5;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var.$body-background;
-  color: core.$color;
-  font-family: core.$font-family;
+  color: #212121;
+  font-family: blinkmacsystemfont, -apple-system, system-ui, "Segoe UI", "Roboto", "Helvetica Neue", arial, sans-serif;
 }
 ```
 

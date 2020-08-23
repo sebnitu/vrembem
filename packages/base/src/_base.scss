@@ -2,10 +2,8 @@
 @use "./variables" as var;
 
 @if (var.$output-base) {
-  /**
-   * Remove all spacing and inherit box-sizing on everything.
-   */
 
+  // Remove margin, padding and inherit box-sizing on everything
   *,
   *::before,
   *::after {
@@ -14,10 +12,7 @@
     padding: 0;
   }
 
-  /**
-   * Default html (root) and body styles.
-   */
-
+  // Default html (root) and body styles
   html,
   body {
     height: 100%;
@@ -37,10 +32,7 @@
     font-family: core.$font-family;
   }
 
-  /**
-   * Reset font-size for headings
-   */
-
+  // Reset font-size for headings
   h1,
   h2,
   h3,
@@ -50,10 +42,7 @@
     font-size: inherit;
   }
 
-  /**
-   * Better default styles for images.
-   */
-
+  // Better default styles for images
   img {
     max-width: 100%;
     height: auto;
@@ -62,19 +51,13 @@
     vertical-align: middle;
   }
 
-  /**
-   * Add a global font weight in Chrome, Edge, and Safari.
-   */
-
+  // Global font weight for Chrome, Edge, and Safari
   b,
   strong {
     font-weight: bold;
   }
 
-  /**
-   * Default anchor and button styles.
-   */
-
+  // Default anchor and button styles
   a,
   button {
     color: inherit;
@@ -84,42 +67,31 @@
     text-decoration: none;
   }
 
-  /**
-   * Set a global font family and font size in all browsers.
-   */
-
+  // Default font family and font size for code and pre elements
   code,
   pre {
     font-family: core.$font-family-mono;
     font-size: 1em;
   }
 
-  /**
-   * Add a global font size for all browsers.
-   */
-
+  // Default small element font-size
   small {
     font-size: core.$font-size-sm;
   }
 
-  /**
-   * Better default table styles.
-   */
-
+  // Better default table styles
   table {
     border-collapse: collapse;
   }
 
+  // Better default caption styles
   caption {
     caption-side: bottom;
     color: core.$color-subtle;
     text-align: left;
   }
 
-  /**
-   * Default form input elements styles.
-   */
-
+  // Default form input element styles
   button,
   input,
   optgroup,
@@ -145,10 +117,7 @@
     -webkit-font-smoothing: inherit;
   }
 
-  /**
-   * Correct the inability to style clickable types in iOS and Safari.
-   */
-
+  // Correct the inability to style clickable types in iOS and Safari
   button,
   [type="button"],
   [type="reset"],
@@ -156,10 +125,7 @@
     -webkit-appearance: button;
   }
 
-  /**
-   * Remove the inner border and padding in Firefox.
-   */
-
+  // Remove the inner border and padding in Firefox
   button::-moz-focus-inner,
   [type="button"]::-moz-focus-inner,
   [type="reset"]::-moz-focus-inner,
@@ -168,21 +134,15 @@
     border-style: none;
   }
 
-  /**
-   * Correct placeholder text opacity in Firefox.
-   */
-
+  // Correct placeholder text opacity in Firefox
   input::-moz-placeholder {
     opacity: 1;
   }
 
-  /**
-   * 1. Correct the inability to style clickable types in iOS and Safari.
-   * 2. Change font properties to `inherit` in Safari.
-   */
-
+  // 1. Correct the inability to style clickable types in iOS and Safari
+  // 2. Change font properties to `inherit` in Safari
   ::-webkit-file-upload-button {
-    -webkit-appearance: button; /* 1 */
-    font: inherit; /* 2 */
+    -webkit-appearance: button; // 1
+    font: inherit; // 2
   }
 }

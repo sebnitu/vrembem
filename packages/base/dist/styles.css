@@ -1,6 +1,3 @@
-/**
- * Remove all spacing and inherit box-sizing on everything.
- */
 *,
 *::before,
 *::after {
@@ -9,9 +6,6 @@
   padding: 0;
 }
 
-/**
- * Default html (root) and body styles.
- */
 html,
 body {
   height: 100%;
@@ -30,9 +24,6 @@ body {
   font-family: blinkmacsystemfont, -apple-system, system-ui, "Segoe UI", "Roboto", "Helvetica Neue", arial, sans-serif;
 }
 
-/**
- * Reset font-size for headings
- */
 h1,
 h2,
 h3,
@@ -42,9 +33,6 @@ h6 {
   font-size: inherit;
 }
 
-/**
- * Better default styles for images.
- */
 img {
   max-width: 100%;
   height: auto;
@@ -53,17 +41,11 @@ img {
   vertical-align: middle;
 }
 
-/**
- * Add a global font weight in Chrome, Edge, and Safari.
- */
 b,
 strong {
   font-weight: bold;
 }
 
-/**
- * Default anchor and button styles.
- */
 a,
 button {
   color: inherit;
@@ -73,25 +55,16 @@ a {
   text-decoration: none;
 }
 
-/**
- * Set a global font family and font size in all browsers.
- */
 code,
 pre {
   font-family: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 1em;
 }
 
-/**
- * Add a global font size for all browsers.
- */
 small {
   font-size: 14px;
 }
 
-/**
- * Better default table styles.
- */
 table {
   border-collapse: collapse;
 }
@@ -102,9 +75,6 @@ caption {
   text-align: left;
 }
 
-/**
- * Default form input elements styles.
- */
 button,
 input,
 optgroup,
@@ -130,9 +100,6 @@ button {
   -webkit-font-smoothing: inherit;
 }
 
-/**
- * Correct the inability to style clickable types in iOS and Safari.
- */
 button,
 [type=button],
 [type=reset],
@@ -140,9 +107,6 @@ button,
   -webkit-appearance: button;
 }
 
-/**
- * Remove the inner border and padding in Firefox.
- */
 button::-moz-focus-inner,
 [type=button]::-moz-focus-inner,
 [type=reset]::-moz-focus-inner,
@@ -151,22 +115,43 @@ button::-moz-focus-inner,
   border-style: none;
 }
 
-/**
- * Correct placeholder text opacity in Firefox.
- */
 input::-moz-placeholder {
   opacity: 1;
 }
 
-/**
- * 1. Correct the inability to style clickable types in iOS and Safari.
- * 2. Change font properties to `inherit` in Safari.
- */
 ::-webkit-file-upload-button {
   -webkit-appearance: button;
-  /* 1 */
   font: inherit;
-  /* 2 */
+}
+
+.arrow,
+.arrow-up,
+.arrow-down,
+.arrow-left,
+.arrow-right {
+  display: inline-block;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 0;
+  height: 0;
+  transform-origin: center;
+  border-top: 6px solid currentColor;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.arrow-up {
+  transform: rotate(180deg);
+}
+
+.arrow-left {
+  transform: rotate(90deg);
+}
+
+.arrow-right {
+  transform: rotate(-90deg);
 }
 
 .blockquote {
