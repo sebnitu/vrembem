@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/tooltip",
   "description": "Text labels that appear when a user hovers over, focuses on or touches an element.",
-  "version": "1.15.2",
+  "version": "1.15.5",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -25,7 +25,7 @@
     "directory": "packages/tooltip"
   },
   "dependencies": {
-    "@vrembem/core": "^1.15.2"
+    "@vrembem/core": "^1.15.5"
   },
   "publishConfig": {
     "access": "public"
