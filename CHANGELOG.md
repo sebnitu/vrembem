@@ -23,41 +23,41 @@ chore(release): add v1.15.5 to CHANGELOG.md
 
 #### :house: Refactor
 * `core`, `modal`, `vrembem`
-  * [#339](https://github.com/sebnitu/vrembem/pull/339) Change the order or args in moveElement module ([@sebnitu](https://github.com/sebnitu))
+  * [#339](https://github.com/sebnitu/vrembem/pull/339) Change the order or args in moveElement module
 
 
 ## v1.15.4 (2020-08-23)
 
 #### :house: Refactor
 * `arrow`, `base`, `notice`, `vrembem`
-  * [#338](https://github.com/sebnitu/vrembem/pull/338) Merge arrow component as a base module ([@sebnitu](https://github.com/sebnitu))
+  * [#338](https://github.com/sebnitu/vrembem/pull/338) Merge arrow component as a base module
 
 
 ## v1.15.3 (2020-08-22)
 
 #### :house: Refactor
 * `panel`, `vrembem`
-  * [#336](https://github.com/sebnitu/vrembem/pull/336) Deprecate the panel component ([@sebnitu](https://github.com/sebnitu))
+  * [#336](https://github.com/sebnitu/vrembem/pull/336) Deprecate the panel component
 
 
 ## v1.15.2 (2020-08-22)
 
 #### :tada: New Feature
 * `base`, `core`, `grid`, `media`, `notice`, `utility`, `vrembem`
-  * [#335](https://github.com/sebnitu/vrembem/pull/335) Add ability to pass map key to spacing mixin and update spacing map units from rem to em ([@sebnitu](https://github.com/sebnitu))
+  * [#335](https://github.com/sebnitu/vrembem/pull/335) Add ability to pass map key to spacing mixin and update spacing map units from rem to em
 
 
 ## 1.15.1 (2020-08-20)
 
 #### :tada: New Feature
 * `base`, `drawer`, `modal`, `notice`, `vrembem`
-  * [#331](https://github.com/sebnitu/vrembem/pull/331) Add @vrembem/core to vrembem forwards ([@sebnitu](https://github.com/sebnitu))
+  * [#331](https://github.com/sebnitu/vrembem/pull/331) Add @vrembem/core to vrembem forwards
 
 #### :books: Documentation
 * Other
-  * [#328](https://github.com/sebnitu/vrembem/pull/328) Add roadmap ([@sebnitu](https://github.com/sebnitu))
+  * [#328](https://github.com/sebnitu/vrembem/pull/328) Add roadmap
 * `checkbox`, `drawer`, `modal`
-  * [#323](https://github.com/sebnitu/vrembem/pull/323) Fix autoInit description typo in docs ([@sebnitu](https://github.com/sebnitu))
+  * [#323](https://github.com/sebnitu/vrembem/pull/323) Fix autoInit description typo in docs
 
 
 ## v1.15.0 (2020-08-16)
