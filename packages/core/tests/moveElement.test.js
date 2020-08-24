@@ -24,7 +24,7 @@ afterEach(() => {
 });
 
 test('should move elements to after main', () => {
-  moveElement(main, 'after', '.el');
+  moveElement('.el', 'after', main);
   const mainEls = main.children;
   const bodyEls = document.body.children;
   expect(mainEls.length).toBe(1);
@@ -36,7 +36,7 @@ test('should move elements to after main', () => {
 });
 
 test('should move elements to before main', () => {
-  moveElement(main, 'before', '.el');
+  moveElement('.el', 'before', main);
   const mainEls = main.children;
   const bodyEls = document.body.children;
   expect(mainEls.length).toBe(1);
@@ -48,7 +48,7 @@ test('should move elements to before main', () => {
 });
 
 test('should append elements inside main', () => {
-  moveElement('[role="main"]', 'append', els);
+  moveElement(els, 'append', '[role="main"]');
   const mainEls = main.children;
   const bodyEls = document.body.children;
   expect(mainEls.length).toBe(3);
@@ -60,7 +60,7 @@ test('should append elements inside main', () => {
 });
 
 test('should prepend elements inside main', () => {
-  moveElement('[role="main"]', 'prepend', els);
+  moveElement(els, 'prepend', '[role="main"]');
   const mainEls = main.children;
   const bodyEls = document.body.children;
   expect(mainEls.length).toBe(3);
@@ -76,14 +76,14 @@ test('should do nothing if a reference is not provided', () => {
 });
 
 test('should throw error if provided move type isn\'t valid', () => {
-  expect(moveElement.bind(null, '[role="main"]', 'asdf', els)).toThrow();
+  expect(moveElement.bind(null, els, 'asdf', '[role="main"]')).toThrow();
 });
 
 test('should throw error if reference selector doesn\'t exist on page', () => {
-  expect(moveElement.bind(null, '.asdf', 'after', els)).toThrow();
+  expect(moveElement.bind(null, els, 'after', '.asdf')).toThrow();
 });
 
 test('should throw error if target selector doesn\'t exist on page', () => {
-  expect(moveElement.bind(null, main, 'before', '.asdf')).toThrow();
+  expect(moveElement.bind(null, '.asdf', 'before', main)).toThrow();
 });
 

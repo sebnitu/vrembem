@@ -126,8 +126,8 @@ const modal = new Modal({
   autoInit: true,
   selectorMain: '[role="main"]',
   moveModals: {
-    ref: '[role="main"]',
-    type: 'after'
+    type: 'after',
+    ref: '[role="main"]'
   }
 });
 ```
@@ -208,7 +208,7 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
 | `selectorInert`     | `null`                      | Applies `inert` and `aria-hidden` attributes to all matching elements when a modal is opened.                                                                         |
 | `selectorOverflow`  | `'body'`                    | Applies `overflow:hidden` styles on all matching elements when a modal is opened.                                                                                     |
 | `customEventPrefix` | `'modal:'`                  | Prefix to be used on custom events.                                                                                                                                   |
-| `moveModals`        | `{ ref: null, type: null }` | Moves all modals to a location in the DOM relative to the passed reference selector on `init()`. Move type options include `after`, `before`, `append` and `prepend`. |
+| `moveModals`        | `{ type: null, ref: null }` | Moves all modals to a location in the DOM relative to the passed reference selector on `init()`. Move type options include `after`, `before`, `append` and `prepend`. |
 | `setTabindex`       | `true`                      | Whether or not to set `tabindex="-1"` on all modal dialog elements on init.                                                                                           |
 | `transition`        | `true`                      | Toggle the transition animation for the modal. Set to `false` to disable.                                                                                             |
 
@@ -377,14 +377,14 @@ modal.setInitialState();
 <div data-modal="[unique-id]" class="modal is-closed"></div>
 ```
 
-### `modal.moveModals(ref, type)`
+### `modal.moveModals(type, ref)`
 
 Moves all modals to a location in the DOM relative to the passed selector and location reference.
 
 **Parameters**
 
-- `ref [String]` The reference selector that modals should be moved relative to.
 - `type [String]` The move type to move modals relative to the reference selector. Options include `after`, `before`, `append` and `prepend`.
+- `ref [String]` The reference selector that modals should be moved relative to.
 
 ```html
 <!-- Initial HTML -->
@@ -394,7 +394,7 @@ Moves all modals to a location in the DOM relative to the passed selector and lo
 ```
 
 ```js
-modal.moveModals('.main', 'after');
+modal.moveModals('after', '.main');
 ```
 
 ```html

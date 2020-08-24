@@ -25,8 +25,8 @@ beforeAll(async () => {
   modal = new Modal({
     autoInit: true,
     moveModals: {
-      ref: '[role="main"]',
-      type: 'after'
+      type: 'after',
+      ref: '[role="main"]'
     }
   });
   main = document.querySelector('[role="main"]');
@@ -50,7 +50,7 @@ test('should move modals to after main', () => {
 });
 
 test('should move modals to before main', () => {
-  modal.moveModals('[role="main"]', 'before');
+  modal.moveModals('before', '[role="main"]');
   const mainEls = main.children;
   const bodyEls = document.body.children;
   expect(mainEls.length).toBe(1);
@@ -62,7 +62,7 @@ test('should move modals to before main', () => {
 });
 
 test('should append modals inside main', () => {
-  modal.moveModals('[role="main"]', 'append');
+  modal.moveModals('append', '[role="main"]');
   const mainEls = main.children;
   const bodyEls = document.body.children;
   expect(mainEls.length).toBe(3);
@@ -74,7 +74,7 @@ test('should append modals inside main', () => {
 });
 
 test('should prepend modals inside main', () => {
-  modal.moveModals('[role="main"]', 'prepend');
+  modal.moveModals('prepend', '[role="main"]');
   const mainEls = main.children;
   const bodyEls = document.body.children;
   expect(mainEls.length).toBe(3);
@@ -86,10 +86,10 @@ test('should prepend modals inside main', () => {
 });
 
 test('should throw error if provided move type isn\'t valid', () => {
-  expect(modal.moveModals.bind(modal, '[role="main"]', 'asdf')).toThrow();
+  expect(modal.moveModals.bind(modal, 'asdf', '[role="main"]')).toThrow();
 });
 
 test('should throw error if reference selector doesn\'t exist on page', () => {
-  expect(modal.moveModals.bind(modal, '.asdf', 'after')).toThrow();
+  expect(modal.moveModals.bind(modal, 'after', '.asdf')).toThrow();
 });
 
