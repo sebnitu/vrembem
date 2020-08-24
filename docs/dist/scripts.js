@@ -197,16 +197,14 @@
     });
   };
 
-  function moveElement() {
-    var reference = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-    var type = arguments.length > 1 ? arguments[1] : undefined;
-    var target = arguments.length > 2 ? arguments[2] : undefined;
+  function moveElement(target, type) {
+    var reference = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
     if (reference) {
-      var ref = getElement(reference, 1);
-      if (!ref) throw new Error("Move reference element \"".concat(reference, "\" not found!"));
       var els = getElement(target);
       if (!els.length) throw new Error("Move target element \"".concat(target, "\" not found!"));
+      var ref = getElement(reference, 1);
+      if (!ref) throw new Error("Move reference element \"".concat(reference, "\" not found!"));
       els.forEach(function (el) {
         switch (type) {
           case 'after':
@@ -1793,10 +1791,10 @@
     }, {
       key: "moveModals",
       value: function moveModals() {
-        var ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.settings.moveModals.ref;
-        var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.settings.moveModals.type;
+        var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.settings.moveModals.type;
+        var ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.settings.moveModals.ref;
         var modals = document.querySelectorAll("[data-".concat(this.settings.dataModal, "]"));
-        if (modals.length) moveElement(ref, type, modals);
+        if (modals.length) moveElement(modals, type, ref);
       }
     }, {
       key: "open",
@@ -4922,8 +4920,8 @@
     autoInit: true,
     selectorInert: '.page',
     moveModals: {
-      selector: '[role="modals-container"]',
-      location: 'append'
+      type: 'append',
+      ref: '[role="modals-container"]'
     },
     toggleOverflow: 'body, .page__article'
   });

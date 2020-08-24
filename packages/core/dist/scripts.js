@@ -212,16 +212,14 @@
     });
   };
 
-  function moveElement() {
-    var reference = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-    var type = arguments.length > 1 ? arguments[1] : undefined;
-    var target = arguments.length > 2 ? arguments[2] : undefined;
+  function moveElement(target, type) {
+    var reference = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
     if (reference) {
-      var ref = getElement(reference, 1);
-      if (!ref) throw new Error("Move reference element \"".concat(reference, "\" not found!"));
       var els = getElement(target);
       if (!els.length) throw new Error("Move target element \"".concat(target, "\" not found!"));
+      var ref = getElement(reference, 1);
+      if (!ref) throw new Error("Move reference element \"".concat(reference, "\" not found!"));
       els.forEach(function (el) {
         switch (type) {
           case 'after':

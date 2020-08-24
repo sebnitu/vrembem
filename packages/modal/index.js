@@ -66,9 +66,9 @@ export default class Modal {
     setInitialState(this);
   }
 
-  moveModals(ref = this.settings.moveModals.ref, type = this.settings.moveModals.type) {
+  moveModals(type = this.settings.moveModals.type, ref = this.settings.moveModals.ref) {
     const modals = document.querySelectorAll(`[data-${this.settings.dataModal}]`);
-    if (modals.length) moveElement(ref, type, modals);
+    if (modals.length) moveElement(modals, type, ref);
   }
 
   /**

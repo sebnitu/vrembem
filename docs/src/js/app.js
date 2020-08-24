@@ -17,8 +17,8 @@ new vb.Modal({
   autoInit: true,
   selectorInert: '.page',
   moveModals: {
-    selector: '[role="modals-container"]',
-    location: 'append'
+    type: 'append',
+    ref: '[role="modals-container"]'
   },
   toggleOverflow: 'body, .page__article'
 });

@@ -200,8 +200,8 @@ const modal = new Modal({
   autoInit: true,
   selectorInert: '[role="main"]',
   moveModals: {
-     ref: '[role="main"]',
-     type: 'after'
+    type: 'after',
+    ref: '[role="main"]'
   }
 });
 ```
@@ -586,9 +586,9 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
     <tr>
       <td data-mobile-label="Key"><code class="code text-nowrap">moveModals</code></td>
       <td data-mobile-label="Default">
-        <pre class="code color-secondary">{ 
-  ref: null,
-  type: null
+        <pre class="code color-secondary">{
+  type: null,
+  ref: null
 }</pre>
       </td>
       <td data-mobile-label="Desc">Moves all modals to a location in the DOM relative to the passed reference selector on <code class="code">init()</code>. Move type options include <code class="code">after</code>, <code class="code">before</code>, <code class="code">append</code> and <code class="code">prepend</code>.</td>
@@ -771,14 +771,14 @@ modal.setInitialState();
 <div data-modal="[unique-id]" class="modal is-closed"></div>
 ```
 
-### `modal.moveModals(ref, type)`
+### `modal.moveModals(type, ref)`
 
 Moves all modals to a location in the DOM relative to the passed selector and location reference.
 
 **Parameters**
 
-- `ref [String]` The reference selector that modals should be moved relative to.
 - `type [String]` The move type to move modals relative to the reference selector. Options include `after`, `before`, `append` and `prepend`.
+- `ref [String]` The reference selector that modals should be moved relative to.
 
 ```html
 <!-- Initial HTML -->
@@ -788,7 +788,7 @@ Moves all modals to a location in the DOM relative to the passed selector and lo
 ```
 
 ```js
-modal.moveModals('.main', 'after');
+modal.moveModals('after', '.main');
 ```
 
 ```html
