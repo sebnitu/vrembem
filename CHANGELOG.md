@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.15.4 to CHANGELOG.md
+chore(release): add v1.15.5 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.15.5 (2020-08-24)
+
+#### :house: Refactor
+* `core`, `modal`, `vrembem`
+  * [#339](https://github.com/sebnitu/vrembem/pull/339) Change the order or args in moveElement module ([@sebnitu](https://github.com/sebnitu))
 
 
 ## v1.15.4 (2020-08-23)
