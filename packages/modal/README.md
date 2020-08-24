@@ -113,7 +113,7 @@ Modals on the web have an expected set of patterns that this component follows. 
 3. While the modal is active, contents obscured by the modal are inaccessible to all users.
 4. When a modal is closed, focus is returned to the initial trigger element that activated the dialog.
 
-To take full advantage of modal's accessibility features, it's recommened to that you set the `selectorMain` option to all elements that are ouside the modal. If you have modal markup throughout your document, use the `moveModals` option or `moveModals()` method to consolidate all modals in the DOM to a single location. All elements that match the `selectorMain` selector will be given the `inert` attribute as well as `aria-hidden="true"` when a modal is opened.
+To take full advantage of modal's accessibility features, it's recommened to that you set the `selectorInert` option to all elements that are ouside the modal. If you have modal markup throughout your document, use the `moveModals` option or `moveModals()` method to consolidate all modals in the DOM to a single location. All elements that match the `selectorInert` selector will be given the `inert` attribute as well as `aria-hidden="true"` when a modal is opened.
 
 > Inert is not currently widly supportted by all browsers. Consider using a polyfill such as [wicg-inert](https://github.com/WICG/inert) or Google's [inert-polyfill](https://github.com/GoogleChrome/inert-polyfill).
 
@@ -124,7 +124,7 @@ Here's an example where we want the `[role="main"]` content area to be inaccessi
 ```js
 const modal = new Modal({
   autoInit: true,
-  selectorMain: '[role="main"]',
+  selectorInert: '[role="main"]',
   moveModals: {
     type: 'after',
     ref: '[role="main"]'
