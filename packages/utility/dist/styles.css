@@ -226,18 +226,26 @@
   border-radius: 4px !important;
 }
 
+.radius-top,
+.radius-left,
 .radius-top-left {
   border-top-left-radius: 4px !important;
 }
 
+.radius-top,
+.radius-right,
 .radius-top-right {
   border-top-right-radius: 4px !important;
 }
 
+.radius-bottom,
+.radius-right,
 .radius-bottom-right {
   border-bottom-right-radius: 4px !important;
 }
 
+.radius-bottom,
+.radius-left,
 .radius-bottom-left {
   border-bottom-left-radius: 4px !important;
 }
@@ -246,18 +254,26 @@
   border-radius: 9999px !important;
 }
 
+.radius-circle-top,
+.radius-circle-left,
 .radius-circle-top-left {
   border-top-left-radius: 9999px !important;
 }
 
+.radius-circle-top,
+.radius-circle-right,
 .radius-circle-top-right {
   border-top-right-radius: 9999px !important;
 }
 
+.radius-circle-bottom,
+.radius-circle-right,
 .radius-circle-bottom-right {
   border-bottom-right-radius: 9999px !important;
 }
 
+.radius-circle-bottom,
+.radius-circle-left,
 .radius-circle-bottom-left {
   border-bottom-left-radius: 9999px !important;
 }
@@ -266,18 +282,26 @@
   border-radius: 0 !important;
 }
 
+.radius-square-top,
+.radius-square-left,
 .radius-square-top-left {
   border-top-left-radius: 0 !important;
 }
 
+.radius-square-top,
+.radius-square-right,
 .radius-square-top-right {
   border-top-right-radius: 0 !important;
 }
 
+.radius-square-bottom,
+.radius-square-right,
 .radius-square-bottom-right {
   border-bottom-right-radius: 0 !important;
 }
 
+.radius-square-bottom,
+.radius-square-left,
 .radius-square-bottom-left {
   border-bottom-left-radius: 0 !important;
 }

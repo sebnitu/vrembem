@@ -53,6 +53,12 @@
     });
   };
 
+  var camelCase = function camelCase(str) {
+    return str.replace(/-([a-z])/g, function (g) {
+      return g[1].toUpperCase();
+    });
+  };
+
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
@@ -2330,12 +2336,6 @@
     saveKey: 'ScrollStash',
     throttleDelay: 100,
     customEventPrefix: 'scroll-stash:'
-  };
-
-  var camelCase = function camelCase(str) {
-    return str.replace(/-([a-z])/g, function (g) {
-      return g[1].toUpperCase();
-    });
   };
 
   var anchorPositionStart = function anchorPositionStart(el, anchor, settings) {
