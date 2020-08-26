@@ -9,18 +9,26 @@ $_c: var.$class-border-radius;
     border-radius: core.$border-radius !important;
   }
 
+  .#{$_u}#{$_c}-top,
+  .#{$_u}#{$_c}-left,
   .#{$_u}#{$_c}-top-left {
     border-top-left-radius: core.$border-radius !important;
   }
 
+  .#{$_u}#{$_c}-top,
+  .#{$_u}#{$_c}-right,
   .#{$_u}#{$_c}-top-right {
     border-top-right-radius: core.$border-radius !important;
   }
 
+  .#{$_u}#{$_c}-bottom,
+  .#{$_u}#{$_c}-right,
   .#{$_u}#{$_c}-bottom-right {
     border-bottom-right-radius: core.$border-radius !important;
   }
 
+  .#{$_u}#{$_c}-bottom,
+  .#{$_u}#{$_c}-left,
   .#{$_u}#{$_c}-bottom-left {
     border-bottom-left-radius: core.$border-radius !important;
   }
@@ -29,18 +37,26 @@ $_c: var.$class-border-radius;
     border-radius: core.$border-radius-circle !important;
   }
 
+  .#{$_u}#{$_c}-circle-top,
+  .#{$_u}#{$_c}-circle-left,
   .#{$_u}#{$_c}-circle-top-left {
     border-top-left-radius: core.$border-radius-circle !important;
   }
 
+  .#{$_u}#{$_c}-circle-top,
+  .#{$_u}#{$_c}-circle-right,
   .#{$_u}#{$_c}-circle-top-right {
     border-top-right-radius: core.$border-radius-circle !important;
   }
 
+  .#{$_u}#{$_c}-circle-bottom,
+  .#{$_u}#{$_c}-circle-right,
   .#{$_u}#{$_c}-circle-bottom-right {
     border-bottom-right-radius: core.$border-radius-circle !important;
   }
 
+  .#{$_u}#{$_c}-circle-bottom,
+  .#{$_u}#{$_c}-circle-left,
   .#{$_u}#{$_c}-circle-bottom-left {
     border-bottom-left-radius: core.$border-radius-circle !important;
   }
@@ -49,18 +65,26 @@ $_c: var.$class-border-radius;
     border-radius: 0 !important;
   }
 
+  .#{$_u}#{$_c}-square-top,
+  .#{$_u}#{$_c}-square-left,
   .#{$_u}#{$_c}-square-top-left {
     border-top-left-radius: 0 !important;
   }
 
+  .#{$_u}#{$_c}-square-top,
+  .#{$_u}#{$_c}-square-right,
   .#{$_u}#{$_c}-square-top-right {
     border-top-right-radius: 0 !important;
   }
 
+  .#{$_u}#{$_c}-square-bottom,
+  .#{$_u}#{$_c}-square-right,
   .#{$_u}#{$_c}-square-bottom-right {
     border-bottom-right-radius: 0 !important;
   }
 
+  .#{$_u}#{$_c}-square-bottom,
+  .#{$_u}#{$_c}-square-left,
   .#{$_u}#{$_c}-square-bottom-left {
     border-bottom-left-radius: 0 !important;
   }

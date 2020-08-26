@@ -249,6 +249,12 @@ Applies border-radius styles with optional corner variants. The value used by th
 {% include demo_open.html class_grid="grid_break" %}
 <div class="swatch-group">
   <div class="swatch background-secondary radius"></div>
+
+  <div class="swatch background-secondary radius-top"></div>
+  <div class="swatch background-secondary radius-right"></div>
+  <div class="swatch background-secondary radius-bottom"></div>
+  <div class="swatch background-secondary radius-left"></div>
+
   <div class="swatch background-secondary radius-top-left"></div>
   <div class="swatch background-secondary radius-top-right"></div>
   <div class="swatch background-secondary radius-bottom-right"></div>
@@ -256,7 +262,16 @@ Applies border-radius styles with optional corner variants. The value used by th
 </div>
 {% include demo_switch.html %}
 ```html
+<!-- Applied to all corners -->
 <div class="radius"></div>
+
+<!-- Applied to all corners on a specific side -->
+<div class="radius-top"></div>
+<div class="radius-right"></div>
+<div class="radius-bottom"></div>
+<div class="radius-left"></div>
+
+<!-- Applied to specific corners -->
 <div class="radius-top-left"></div>
 <div class="radius-top-right"></div>
 <div class="radius-bottom-right"></div>
@@ -271,6 +286,12 @@ Applies the maximum value to border-radius with optional corner variants. The va
 {% include demo_open.html class_grid="grid_break" %}
 <div class="swatch-group">
   <div class="swatch background-secondary radius-circle"></div>
+
+  <div class="swatch background-secondary radius-circle-top"></div>
+  <div class="swatch background-secondary radius-circle-right"></div>
+  <div class="swatch background-secondary radius-circle-bottom"></div>
+  <div class="swatch background-secondary radius-circle-left"></div>
+
   <div class="swatch background-secondary radius-circle-top-left"></div>
   <div class="swatch background-secondary radius-circle-top-right"></div>
   <div class="swatch background-secondary radius-circle-bottom-right"></div>
@@ -278,7 +299,16 @@ Applies the maximum value to border-radius with optional corner variants. The va
 </div>
 {% include demo_switch.html %}
 ```html
+<!-- Applied to all corners -->
 <div class="radius-circle"></div>
+
+<!-- Applied to all corners on a specific side -->
+<div class="radius-circle-top"></div>
+<div class="radius-circle-right"></div>
+<div class="radius-circle-bottom"></div>
+<div class="radius-circle-left"></div>
+
+<!-- Applied to specific corners -->
 <div class="radius-circle-top-left"></div>
 <div class="radius-circle-top-right"></div>
 <div class="radius-circle-bottom-right"></div>
@@ -293,6 +323,12 @@ Removes border-radius by setting it's value to `0` with optional corner variants
 {% include demo_open.html class_grid="grid_break" %}
 <div class="swatch-group">
   <div class="swatch background-secondary radius-circle radius-square"></div>
+
+  <div class="swatch background-secondary radius-circle radius-square-top"></div>
+  <div class="swatch background-secondary radius-circle radius-square-right"></div>
+  <div class="swatch background-secondary radius-circle radius-square-bottom"></div>
+  <div class="swatch background-secondary radius-circle radius-square-left"></div>
+
   <div class="swatch background-secondary radius-circle radius-square-top-left"></div>
   <div class="swatch background-secondary radius-circle radius-square-top-right"></div>
   <div class="swatch background-secondary radius-circle radius-square-bottom-right"></div>
@@ -300,7 +336,16 @@ Removes border-radius by setting it's value to `0` with optional corner variants
 </div>
 {% include demo_switch.html %}
 ```html
+<!-- Applied to all corners -->
 <div class="radius-square"></div>
+
+<!-- Applied to all corners on a specific side -->
+<div class="radius-square-top"></div>
+<div class="radius-square-right"></div>
+<div class="radius-square-bottom"></div>
+<div class="radius-square-left"></div>
+
+<!-- Applied to specific corners -->
 <div class="radius-square-top-left"></div>
 <div class="radius-square-top-right"></div>
 <div class="radius-square-bottom-right"></div>
