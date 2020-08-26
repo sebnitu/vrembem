@@ -11,58 +11,112 @@
   margin-left: 0.5rem;
 }
 
-.level_gap_none {
-  margin-top: 0;
+.level_gap_none,
+.level_hori-gap_none {
   margin-left: 0;
 }
-.level_gap_none > * {
-  margin-top: 0;
+.level_gap_none > *,
+.level_hori-gap_none > * {
   margin-left: 0;
 }
 
-.level_gap_xs {
-  margin-top: -1px;
+.level_gap_none,
+.level_vert-gap_none {
+  margin-top: 0;
+}
+.level_gap_none > *,
+.level_vert-gap_none > * {
+  margin-top: 0;
+}
+
+.level_gap_xs,
+.level_hori-gap_xs {
   margin-left: -1px;
 }
-.level_gap_xs > * {
-  margin-top: 1px;
+.level_gap_xs > *,
+.level_hori-gap_xs > * {
   margin-left: 1px;
 }
 
-.level_gap_sm {
-  margin-top: -0.25em;
+.level_gap_xs,
+.level_vert-gap_xs {
+  margin-top: -1px;
+}
+.level_gap_xs > *,
+.level_vert-gap_xs > * {
+  margin-top: 1px;
+}
+
+.level_gap_sm,
+.level_hori-gap_sm {
   margin-left: -0.25em;
 }
-.level_gap_sm > * {
-  margin-top: 0.25em;
+.level_gap_sm > *,
+.level_hori-gap_sm > * {
   margin-left: 0.25em;
 }
 
-.level_gap_md {
-  margin-top: -0.5em;
+.level_gap_sm,
+.level_vert-gap_sm {
+  margin-top: -0.25em;
+}
+.level_gap_sm > *,
+.level_vert-gap_sm > * {
+  margin-top: 0.25em;
+}
+
+.level_gap_md,
+.level_hori-gap_md {
   margin-left: -0.5em;
 }
-.level_gap_md > * {
-  margin-top: 0.5em;
+.level_gap_md > *,
+.level_hori-gap_md > * {
   margin-left: 0.5em;
 }
 
-.level_gap_lg {
-  margin-top: -1em;
+.level_gap_md,
+.level_vert-gap_md {
+  margin-top: -0.5em;
+}
+.level_gap_md > *,
+.level_vert-gap_md > * {
+  margin-top: 0.5em;
+}
+
+.level_gap_lg,
+.level_hori-gap_lg {
   margin-left: -1em;
 }
-.level_gap_lg > * {
-  margin-top: 1em;
+.level_gap_lg > *,
+.level_hori-gap_lg > * {
   margin-left: 1em;
 }
 
-.level_gap_xl {
-  margin-top: -1.5em;
+.level_gap_lg,
+.level_vert-gap_lg {
+  margin-top: -1em;
+}
+.level_gap_lg > *,
+.level_vert-gap_lg > * {
+  margin-top: 1em;
+}
+
+.level_gap_xl,
+.level_hori-gap_xl {
   margin-left: -1.5em;
 }
-.level_gap_xl > * {
-  margin-top: 1.5em;
+.level_gap_xl > *,
+.level_hori-gap_xl > * {
   margin-left: 1.5em;
+}
+
+.level_gap_xl,
+.level_vert-gap_xl {
+  margin-top: -1.5em;
+}
+.level_gap_xl > *,
+.level_vert-gap_xl > * {
+  margin-top: 1.5em;
 }
 
 /*# sourceMappingURL=styles.css.map */
