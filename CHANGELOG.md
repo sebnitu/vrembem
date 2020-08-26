@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.15.5 to CHANGELOG.md
+chore(release): add v1.16.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.16.0 (2020-08-26)
+
+#### :tada: New Feature
+* `utility`, `vrembem`
+  * [#351](https://github.com/sebnitu/vrembem/pull/351) Add specific side application utilities for radius ([@sebnitu](https://github.com/sebnitu))
 
 
 ## v1.15.5 (2020-08-24)
