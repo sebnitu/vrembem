@@ -8,8 +8,8 @@ $prefix-modifier-value: core.$prefix-modifier-value !default;
 $gap: 0.5rem !default;
 $gap-scale: (
   "xs": 1px,
-  "sm": 0.25rem,
-  "md": 0.5rem,
-  "lg": 1rem,
-  "xl": 1.5rem,
+  "sm": 0.25em,
+  "md": 0.5em,
+  "lg": 1em,
+  "xl": 1.5em,
 ) !default;
