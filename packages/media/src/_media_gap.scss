@@ -18,17 +18,4 @@ $_v: var.$prefix-modifier-value;
       }
     }
   }
-
-  @each $bpKey, $bpValue in var.$breakpoints {
-    @include core.media-max($bpValue) {
-      .#{$_b}media#{$_m}gap#{$_v}#{$key} {
-        &.#{$_b}media#{$_m}stack#{$_v}#{$bpKey} {
-          > * + * {
-            margin-top: $value;
-            margin-left: 0;
-          }
-        }
-      }
-    }
-  }
 }
