@@ -2473,13 +2473,13 @@ input::-moz-placeholder {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin-top: -0.5rem;
-  margin-left: -0.5rem;
+  margin-top: -0.5em;
+  margin-left: -0.5em;
 }
 .level > * {
   flex: 0 0 auto;
-  margin-top: 0.5rem;
-  margin-left: 0.5rem;
+  margin-top: 0.5em;
+  margin-left: 0.5em;
 }
 
 .level_gap_none {
