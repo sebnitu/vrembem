@@ -209,8 +209,9 @@
     margin-left: var.$list-spacing;
   }
 
-  li {
-    margin: var.$list-item-spacing 0;
+  li li,
+  li + li {
+    margin-top: var.$list-item-spacing;
   }
 }
 

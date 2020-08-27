@@ -529,9 +529,11 @@ ol ol {
   margin-left: 1.5em;
 }
 
-ul li,
-ol li {
-  margin: 0.5em 0;
+ul li li,
+ul li + li,
+ol li li,
+ol li + li {
+  margin-top: 0.5em;
 }
 ```
 
