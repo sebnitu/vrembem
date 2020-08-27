@@ -8,7 +8,7 @@ $_e: var.$prefix-element;
   align-items: flex-start;
 
   > * + * {
-    margin-left: var.$spacing;
+    margin-left: var.$gap;
   }
 }
 
