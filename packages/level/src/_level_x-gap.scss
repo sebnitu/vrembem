@@ -5,12 +5,10 @@ $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
 @each $key, $value in var.$gap-scale {
-  .#{$_b}level#{$_m}gap#{$_v}#{$key} {
-    margin-top: ($value * -1);
+  .#{$_b}level#{$_m}x-gap#{$_v}#{$key} {
     margin-left: ($value * -1);
 
     > * {
-      margin-top: $value;
       margin-left: $value;
     }
   }

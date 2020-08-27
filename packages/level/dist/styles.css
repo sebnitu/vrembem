@@ -2,13 +2,13 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin-top: -0.5rem;
-  margin-left: -0.5rem;
+  margin-top: -0.5em;
+  margin-left: -0.5em;
 }
 .level > * {
   flex: 0 0 auto;
-  margin-top: 0.5rem;
-  margin-left: 0.5rem;
+  margin-top: 0.5em;
+  margin-left: 0.5em;
 }
 
 .level_gap_none {
@@ -30,39 +30,123 @@
 }
 
 .level_gap_sm {
-  margin-top: -0.25rem;
-  margin-left: -0.25rem;
+  margin-top: -0.25em;
+  margin-left: -0.25em;
 }
 .level_gap_sm > * {
-  margin-top: 0.25rem;
-  margin-left: 0.25rem;
+  margin-top: 0.25em;
+  margin-left: 0.25em;
 }
 
 .level_gap_md {
-  margin-top: -0.5rem;
-  margin-left: -0.5rem;
+  margin-top: -0.5em;
+  margin-left: -0.5em;
 }
 .level_gap_md > * {
-  margin-top: 0.5rem;
-  margin-left: 0.5rem;
+  margin-top: 0.5em;
+  margin-left: 0.5em;
 }
 
 .level_gap_lg {
-  margin-top: -1rem;
-  margin-left: -1rem;
+  margin-top: -1em;
+  margin-left: -1em;
 }
 .level_gap_lg > * {
-  margin-top: 1rem;
-  margin-left: 1rem;
+  margin-top: 1em;
+  margin-left: 1em;
 }
 
 .level_gap_xl {
-  margin-top: -1.5rem;
-  margin-left: -1.5rem;
+  margin-top: -1.5em;
+  margin-left: -1.5em;
 }
 .level_gap_xl > * {
-  margin-top: 1.5rem;
-  margin-left: 1.5rem;
+  margin-top: 1.5em;
+  margin-left: 1.5em;
+}
+
+.level_x-gap_none {
+  margin-left: 0;
+}
+.level_x-gap_none > * {
+  margin-left: 0;
+}
+
+.level_x-gap_xs {
+  margin-left: -1px;
+}
+.level_x-gap_xs > * {
+  margin-left: 1px;
+}
+
+.level_x-gap_sm {
+  margin-left: -0.25em;
+}
+.level_x-gap_sm > * {
+  margin-left: 0.25em;
+}
+
+.level_x-gap_md {
+  margin-left: -0.5em;
+}
+.level_x-gap_md > * {
+  margin-left: 0.5em;
+}
+
+.level_x-gap_lg {
+  margin-left: -1em;
+}
+.level_x-gap_lg > * {
+  margin-left: 1em;
+}
+
+.level_x-gap_xl {
+  margin-left: -1.5em;
+}
+.level_x-gap_xl > * {
+  margin-left: 1.5em;
+}
+
+.level_y-gap_none {
+  margin-top: 0;
+}
+.level_y-gap_none > * {
+  margin-top: 0;
+}
+
+.level_y-gap_xs {
+  margin-top: -1px;
+}
+.level_y-gap_xs > * {
+  margin-top: 1px;
+}
+
+.level_y-gap_sm {
+  margin-top: -0.25em;
+}
+.level_y-gap_sm > * {
+  margin-top: 0.25em;
+}
+
+.level_y-gap_md {
+  margin-top: -0.5em;
+}
+.level_y-gap_md > * {
+  margin-top: 0.5em;
+}
+
+.level_y-gap_lg {
+  margin-top: -1em;
+}
+.level_y-gap_lg > * {
+  margin-top: 1em;
+}
+
+.level_y-gap_xl {
+  margin-top: -1.5em;
+}
+.level_y-gap_xl > * {
+  margin-top: 1.5em;
 }
 
 /*# sourceMappingURL=styles.css.map */
