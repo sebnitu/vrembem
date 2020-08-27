@@ -399,8 +399,9 @@ input::-moz-placeholder {
 .list ol {
   margin-left: 1.5em;
 }
-.list li {
-  margin: 0.5em 0;
+.list li li,
+.list li + li {
+  margin-top: 0.5em;
 }
 
 .pre {
@@ -574,9 +575,11 @@ input::-moz-placeholder {
 .type > ol ol {
   margin-left: 1.5em;
 }
-.type > ul li,
-.type > ol li {
-  margin: 0.5em 0;
+.type > ul li li,
+.type > ul li + li,
+.type > ol li li,
+.type > ol li + li {
+  margin-top: 0.5em;
 }
 .type > blockquote {
   position: relative;
