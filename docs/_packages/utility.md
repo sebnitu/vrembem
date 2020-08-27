@@ -89,7 +89,7 @@ The utility component consists of a number of modules with their own set of spec
 
 Applies background color property. Most options include light, lighter, dark and darker variants.
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="swatch-group">
   <div class="swatch-group">
     <div class="swatch background-primary-lighter"></div>
@@ -164,7 +164,7 @@ Applies background color property. Most options include light, lighter, dark and
 
 Applies border property with optional sides variants.
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="swatch-group">
   <div class="swatch background-shade-light border"></div>
   <div class="swatch background-shade-light border-top"></div>
@@ -186,7 +186,7 @@ Applies border property with optional sides variants.
 
 Remove border styles with `border-none` utilities and optional side variants.
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="swatch-group">
   <div class="swatch background-shade-light border border-none"></div>
   <div class="swatch background-shade-light border border-top-none"></div>
@@ -208,7 +208,7 @@ Remove border styles with `border-none` utilities and optional side variants.
 
 Add border color utilities with light, dark and darker variants.
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="swatch-group">
   <div class="swatch background-shade-light border border-color-light"></div>
   <div class="swatch background-shade-light border"></div>
@@ -224,7 +224,7 @@ Add border color utilities with light, dark and darker variants.
 ```
 {% include demo_close.html %}
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="padding radius background-night">
   <div class="swatch-group">
     <div class="swatch border border-color-invert-light"></div>
@@ -246,7 +246,7 @@ Add border color utilities with light, dark and darker variants.
 
 Applies border-radius styles with optional corner variants. The value used by the radius utility is pulled from the `core.$border-radius` variable.
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="swatch-group">
   <div class="swatch background-secondary radius"></div>
 
@@ -283,7 +283,7 @@ Applies border-radius styles with optional corner variants. The value used by th
 
 Applies the maximum value to border-radius with optional corner variants. The value used by radius-circle utility is pulled from the `core.$border-radius-circle` variable.
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="swatch-group">
   <div class="swatch background-secondary radius-circle"></div>
 
@@ -320,7 +320,7 @@ Applies the maximum value to border-radius with optional corner variants. The va
 
 Removes border-radius by setting it's value to `0` with optional corner variants.
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="swatch-group">
   <div class="swatch background-secondary radius-circle radius-square"></div>
 
@@ -357,7 +357,7 @@ Removes border-radius by setting it's value to `0` with optional corner variants
 
 Applies different levels of elevation through box-shadow styles.
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="padding-lg background-shade radius">
   <div class="swatch-group">
     <div class="swatch background-white elevate"></div>
@@ -385,7 +385,7 @@ Applies different levels of elevation through box-shadow styles.
 
 Applies text color property. Most options include light, lighter, dark and darker variants.
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="grid">
   <div class="grid__item">
     <div class="padding radius background-shade-light">
@@ -502,7 +502,7 @@ Display utilities allow you to toggle the display property on an element with an
 ```
 
 <div>
-  <div class="grid grid_break_xs">
+  <div class="grid grid_stack_xs">
     <div class="grid__item grid__item_fill">
       <div class="card">
         <div class="card__header">
@@ -535,7 +535,7 @@ Display utilities allow you to toggle the display property on an element with an
   </div>
 </div>
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="grid grid_gap_sm">
   <div class="grid__item grid__item_fill span-auto">
     <div class="notice notice_type_info flex-align-center">
@@ -757,7 +757,7 @@ Add margin to an element using directional and size modifiers. Margin size and s
 * `margin-right-auto`
 
 <div>
-  <div class="grid grid_break_xs">
+  <div class="grid grid_stack_xs">
     <div class="grid__item grid__item_fill">
       <div class="card">
         <div class="card__header">
@@ -798,7 +798,7 @@ Add padding to an element using directional and size modifiers. Padding size and
 * `padding-[direction]-[size]`
 
 <div>
-  <div class="grid grid_break_xs">
+  <div class="grid grid_stack_xs">
     <div class="grid__item grid__item_fill">
       <div class="card">
         <div class="card__header">
@@ -843,7 +843,7 @@ Set the width, max-width and flex based on a column set using the `span` utility
 
 Sets the number of columns an element should span. The total number of columns is set in the `$columns` variable.
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="grid grid_flatten">
   <div class="grid__item span-6">
     <div class="box">...</div>
@@ -879,7 +879,7 @@ Sets the number of columns an element should span. The total number of columns i
 
 Sets the number of columns an element should span based on a breakpoint conditon. The total number of columns is set in the `$columns` variable. Breakpoint keys are built from the `$breakpoints` variable map.
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="grid grid_flatten">
   <div class="grid__item span-12 span-6-xs span-8-sm span-4-md span-3-lg">
     <div class="box">...</div>
@@ -909,7 +909,7 @@ Sets the number of columns an element should span based on a breakpoint conditon
 
 Sets an elements width to `auto`.
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="grid grid_flatten">
   <div class="grid__item span-auto">
     <div class="box">...</div>
@@ -935,7 +935,7 @@ Sets an elements width to `auto`.
 
 Sets an elements width to `100%`.
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="grid grid_flatten">
   <div class="grid__item span-full">
     <div class="box">...</div>

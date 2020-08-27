@@ -13,7 +13,7 @@ usage:
 
 For basic table styles, only the `table` component class is required. Use [proper table markup](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table) and styles should apply as expected.
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="scroll-box">
   {% include table.html caption="List of anarchists" %}
 </div>
@@ -52,7 +52,7 @@ For basic table styles, only the `table` component class is required. Use [prope
 
 ## table_style_[key]
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="scroll-box">
   {% include table.html class="table_style_rowed" %}
 </div>
@@ -64,7 +64,7 @@ For basic table styles, only the `table` component class is required. Use [prope
 ```
 {% include demo_close.html %}
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="scroll-box">
   {% include table.html class="table_style_bordered" %}
 </div>
@@ -78,7 +78,7 @@ For basic table styles, only the `table` component class is required. Use [prope
 
 ## table_zebra
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="scroll-box">
   {% include table.html class="table_zebra" %}
 </div>
@@ -92,7 +92,7 @@ For basic table styles, only the `table` component class is required. Use [prope
 
 ## table_hover
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="scroll-box">
   {% include table.html class="table_hover" %}
 </div>
@@ -108,7 +108,7 @@ For basic table styles, only the `table` component class is required. Use [prope
 
 When `scroll-box` isn't mobile friendly enough, `table_responsive_[key]` is available to turn tables into a more readable format on smaller devices. Mobile labels are set using the `data-mobile-lable` attribute.
 
-{% include demo_open.html class_grid="grid_break" class_parent="spacing" %}
+{% include demo_open.html class_grid="grid_stack" class_parent="spacing" %}
 <div class="scroll-box">
   <table class="table table_responsive_lg table_style_bordered">
     <thead>
@@ -171,7 +171,7 @@ When `scroll-box` isn't mobile friendly enough, `table_responsive_[key]` is avai
 
 ## table_size_[key]
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="scroll-box">
   {% include table.html class="table table_zebra table_size_sm" %}
 </div>
@@ -183,7 +183,7 @@ When `scroll-box` isn't mobile friendly enough, `table_responsive_[key]` is avai
 ```
 {% include demo_close.html %}
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="scroll-box">
   {% include table.html class="table table_zebra table_size_lg" %}
 </div>

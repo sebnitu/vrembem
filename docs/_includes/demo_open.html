@@ -3,19 +3,19 @@
 {%- assign class_parent = '' -%}
 
 {%- if include.class_grid -%}
-  {%- assign class_grid = ' ' | append: include.class_grid -%}
+{%- assign class_grid = ' ' | append: include.class_grid -%}
 {%- else -%}
-  {%- assign class_grid = ' grid_break_md' -%}
+{%- assign class_grid = ' grid_stack_md' -%}
 {%- endif -%}
 
 {%- if include.class_gridItem -%}
-  {%- assign class_gridItem = ' ' | append: include.class_gridItem -%}
+{%- assign class_gridItem = ' ' | append: include.class_gridItem -%}
 {%- else -%}
-  {%- assign class_gridItem = ' span-6' -%}
+{%- assign class_gridItem = ' span-6' -%}
 {%- endif -%}
 
 {%- if include.class_parent -%}
-  {%- assign class_parent = ' ' | append: include.class_parent -%}
+{%- assign class_parent = ' ' | append: include.class_parent -%}
 {%- endif -%}
 
 <div>

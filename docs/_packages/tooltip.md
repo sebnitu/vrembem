@@ -11,7 +11,7 @@ usage:
 
 ## [data-tooltip]
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="level">
   <span class="text-underline-dotted" data-tooltip="Tooltip">Example tooltip</span>
 </div>
@@ -23,7 +23,7 @@ usage:
 
 ## [data-tooltip-pos]
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="level">
   <span class="text-underline-dotted" data-tooltip="Tooltip" data-tooltip-pos="up-left">
     Tooltip up left
@@ -43,7 +43,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="level">
   <span class="text-underline-dotted" data-tooltip="Tooltip" data-tooltip-pos="down-left">
     Tooltip down left
@@ -63,7 +63,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="level flex-justify-end">
   <span class="text-underline-dotted" data-tooltip="Tooltip" data-tooltip-pos="left-up">
     Tooltip<br>left up
@@ -83,7 +83,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="level">
   <span class="text-underline-dotted" data-tooltip="Tooltip" data-tooltip-pos="right-up">
     Tooltip<br>right up

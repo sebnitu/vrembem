@@ -20,7 +20,7 @@ Drawers are composed using classes for styling and data attributes for JavaScrip
 - `data-drawer-open="[unique-id]"`
 - `data-drawer-close="[unique-id]"` (or value-less if inside drawer)
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="drawer__wrapper border radius">
   <aside data-drawer="drawer-key" class="drawer drawer_pos_right">
     <div data-drawer-dialog class="drawer__dialog padding-xl">
@@ -63,7 +63,7 @@ Drawers are composed using classes for styling and data attributes for JavaScrip
 
 Drawer dialogs are the actual dialog element within a drawer and are defined using a the value-less `data-drawer-dialog` attribute. The [dialog component](/packages/dialog) is a great fit for composing a drawer’s content.
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="drawer__wrapper border radius">
   <aside data-drawer="drawer-dialog" class="drawer drawer_pos_right is-opened">
     <div data-drawer-dialog class="drawer__dialog dialog">
@@ -148,7 +148,7 @@ const drawer = new Drawer({
 
 Drawer dialogs are given focus on open by default as long as the `setTabindex` option is set to `true` or if the drawer dialog has `tabindex="-1"` set manually. If focus on a specific element inside a drawer is preferred, give it the `data-drawer-focus` attribute. The focus in either case is returned to the trigger element once the drawer is closed.
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="drawer__wrapper border radius">
   <aside data-drawer="drawer-focus-self" class="drawer drawer_pos_left" tabindex="-1">
     <div data-drawer-dialog class="drawer__dialog padding">
@@ -253,7 +253,7 @@ Drawers can slide in from the left or right using the position modifiers:
 * `drawer_pos_left`
 * `drawer_pos_right`
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="drawer__wrapper border radius">
   <aside data-drawer="drawer-left" class="drawer drawer_pos_left" tabindex="-1">
     <div data-drawer-dialog class="drawer__dialog padding">

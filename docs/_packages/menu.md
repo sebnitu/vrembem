@@ -167,7 +167,7 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate c
 
 ## menu_full
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="scroll-box">
   <ul class="menu menu_full">
     <li class="menu__item">
@@ -193,7 +193,7 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate c
 
 To set a menu to full below a specific breakpoint, use the full breakpoint modifier: `menu_full_[key]`
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="scroll-box">
   <ul class="menu menu_full_lg">
     <li class="menu__item">
@@ -273,7 +273,7 @@ To create a stacked menu below a specific breakpoint, use the stack breakpoint m
 
 A theme for using menus on a dark background.
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="padding background-night radius spacing">
   <div class="scroll-box">
     <ul class="menu menu_theme_invert">
@@ -326,7 +326,7 @@ A theme for using menus on a dark background.
 
 A theme for creating tab styled menus.
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="spacing">
   <div class="scroll-box">
     <ul class="menu menu_theme_tabs">
