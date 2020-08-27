@@ -13,8 +13,8 @@ usage:
 
 The most basic imlementation of the grid component consists of two elements. By default, `grid__items` split the available space within the `grid` parent evenly:
 
-* `grid`
-* `grid__item`
+- `grid`
+- `grid__item`
 
 {% include demo_open.html class_grid="grid_break" %}
 <div class="grid">
@@ -276,24 +276,24 @@ Modifiers that adjust the gutter spacing between `grid__item` elements. Values a
 
 The [flex utility](/packages/utility#flex) is a great way to adjust individual flex properties on components that use flex layout. These are some available flex property based utilities:
 
-* `flex-align-[key]`
-* `flex-justify-[key]`
-* `flex-grow-[key]`
-* `flex-shrink-[key]`
-* `flex-basis-[key]`
-* `flex-wrap`
-* `flex-nowrap`
-* `flex-items-[key]`
+- `flex-align-[key]`
+- `flex-justify-[key]`
+- `flex-grow-[key]`
+- `flex-shrink-[key]`
+- `flex-basis-[key]`
+- `flex-wrap`
+- `flex-nowrap`
+- `flex-items-[key]`
 
 ### flex-align-[value]
 
 Adjust the `align-items` property of grid columns using the `flex-align-[value]` utility. Avaliable values are:
 
-* `flex-align-start`
-* `flex-align-center`
-* `flex-align-end`
-* `flex-align-stretch`
-* `flex-align-baseline`
+- `flex-align-start`
+- `flex-align-center`
+- `flex-align-end`
+- `flex-align-stretch`
+- `flex-align-baseline`
 
 {% include demo_open.html %}
 <div class="grid flex-align-start">
@@ -359,12 +359,12 @@ Adjust the `align-items` property of grid columns using the `flex-align-[value]`
 
 Change the `justify-content` property of grid columns using the `flex-justify-[value]` utility. Best used along with the `grid_auto` modifier. Avaliable values are:
 
-* `flex-justify-start`
-* `flex-justify-center`
-* `flex-justify-end`
-* `flex-justify-between`
-* `flex-justify-around`
-* `flex-justify-evenly`
+- `flex-justify-start`
+- `flex-justify-center`
+- `flex-justify-end`
+- `flex-justify-between`
+- `flex-justify-around`
+- `flex-justify-evenly`
 
 {% include demo_open.html %}
 <div class="grid grid_auto flex-justify-start">
@@ -430,10 +430,10 @@ Change the `justify-content` property of grid columns using the `flex-justify-[v
 
 Set the width, max-width and flex based on a column set using the `span` utility. Span widths are based on a column set based on the `$columns` variable. There are a number of options available:
 
-* `span-[col]`: Sets the number of columns an element should span.
-* `span-[col]-[breakpoint]`: Sets the number of columns an element should span based on a breakpoint condition.
-* `span-auto`: Sets an elements width to `auto`.
-* `span-full`: Sets an elements width to `100%`.
+- `span-[col]`: Sets the number of columns an element should span.
+- `span-[col]-[breakpoint]`: Sets the number of columns an element should span based on a breakpoint condition.
+- `span-auto`: Sets an elements width to `auto`.
+- `span-full`: Sets an elements width to `100%`.
 
 ### span-[col]
 
@@ -586,39 +586,39 @@ Sets an elements width to `100%`.
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"_"</code></td>
         <td data-mobile-label="Desc">String to prefix modifier values with.</td>
       </tr>
-
-      <!-- General styles -->
+      <!-- General -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$breakpoints</code></td>
-        <td data-mobile-label="Default">
-          <code class="code color-secondary text-nowrap">
-            "xs": 480px,<br>
-            "sm": 620px,<br>
-            "md": 760px,<br>
-            "lg": 990px,<br>
-            "xl": 1380px
-          </code>
-        </td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$breakpoints</code></td>
         <td data-mobile-label="Desc">The breakpoints map the <code class="code">grid_break_[key]</code> modifier usees to build it's styles.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$gap</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2em</code></td>
-        <td data-mobile-label="Desc">String to prefix modifier values with.</td>
+        <td data-mobile-label="Desc">The default gap spacing for the grid component.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$gap-scale</code></td>
         <td data-mobile-label="Default">
-          <code class="code color-secondary text-nowrap">
-            "xs": 0.5em,<br>
-            "sm": 1em,<br>
-            "md": 2em,<br>
-            "lg": 3em,<br>
-            "xl": 4em
-          </code>
+          <a class="link" href="#gap-scale"><code class="code color-secondary">Sass Map</code> Ref &darr;</a>
         </td>
-        <td data-mobile-label="Desc">A scale map the <code class="code">grid_gap_[key]</code> modifier uses to build it's styles.</td>
+        <td data-mobile-label="Desc">Used to output gap modifiers.</td>
       </tr>
     </tbody>
   </table>
 </div>
+
+### $gap-scale
+
+Used to output gap modifiers.
+
+```scss
+$gap-scale: (
+  "none": 0,
+  "xs": 0.5em,
+  "sm": 1em,
+  "md": 2em,
+  "lg": 3em,
+  "xl": 4em
+) !default;
+```

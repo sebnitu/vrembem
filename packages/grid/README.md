@@ -120,12 +120,28 @@ Modifiers that adjust the gutter spacing between `grid__item` elements. Values a
 
 ### Sass Variables
 
-| Variable                 | Default                                                                                                                                  | Description                                                                     |
-| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `$prefix-block`          | `null`                                                                                                                                   | String to prefix blocks with.                                                   |
-| `$prefix-element`        | `"__"`                                                                                                                                   | String to prefix element with.                                                  |
-| `$prefix-modifier`       | `"_"`                                                                                                                                    | String to prefix modifier with.                                                 |
-| `$prefix-modifier-value` | `"_"`                                                                                                                                    | String to prefix modifier values with.                                          |
-| `$breakpoints`           | [Source](https://github.com/sebnitu/vrembem/blob/08eb7b3b55e9c55ed0027e8d9cee3d24b2ac86d6/packages/core/src/css/_variables.scss#L14-L20) | The breakpoints map the `grid_break_[key]` modifier usees to build it's styles. |
-| `$gap`                   | `2rem`                                                                                                                                   | String to prefix modifier values with.                                          |
-| `$gap-scale`             | [Source](https://github.com/sebnitu/vrembem/blob/08eb7b3b55e9c55ed0027e8d9cee3d24b2ac86d6/packages/grid/src/_variables.scss#L10-L16)     | A scale map the `grid_gap_[key]` modifier uses to build it's styles.            |
+| Variable                 | Default                             | Description                                                                     |
+| ------------------------ | ----------------------------------- | ------------------------------------------------------------------------------- |
+| `$prefix-block`          | `null`                              | String to prefix blocks with.                                                   |
+| `$prefix-element`        | `"__"`                              | String to prefix element with.                                                  |
+| `$prefix-modifier`       | `"_"`                               | String to prefix modifier with.                                                 |
+| `$prefix-modifier-value` | `"_"`                               | String to prefix modifier values with.                                          |
+| `$breakpoints`           | `core.$breakpoints`                 | The breakpoints map the `grid_break_[key]` modifier usees to build it's styles. |
+| `$gap`                   | `2em`                               | The default gap spacing for the grid component.                                 |
+| `$gap-scale`             | [`Sass Map` Ref &darr;](#gap-scale) | Used to output gap modifiers.                                                   |
+
+
+#### `$gap-scale`
+
+Used to output gap modifiers.
+
+```scss
+$gap-scale: (
+  "none": 0,
+  "xs": 0.5em,
+  "sm": 1em,
+  "md": 2em,
+  "lg": 3em,
+  "xl": 4em
+) !default;
+```
