@@ -10,16 +10,7 @@ $_v: var.$prefix-modifier-value;
 
   > * + * {
     margin-top: var.$gap;
-    margin-right: 0;
     margin-left: 0;
-  }
-
-  @each $key, $value in var.$gap-scale {
-    &.#{$_b}media#{$_m}gap#{$_v}#{$key} {
-      > * + * {
-        margin-top: $value;
-      }
-    }
   }
 }
 
@@ -31,10 +22,6 @@ $_v: var.$prefix-modifier-value;
   @include core.media-min($value) {
     .#{$_b}media#{$_m}stack#{$_v}#{$key} {
       flex-direction: row;
-
-      &.#{$_b}media#{$_m}reverse {
-        flex-direction: row-reverse;
-      }
     }
   }
 
@@ -42,16 +29,7 @@ $_v: var.$prefix-modifier-value;
     .#{$_b}media#{$_m}stack#{$_v}#{$key} {
       > * + * {
         margin-top: var.$gap;
-        margin-right: 0;
         margin-left: 0;
-      }
-
-      @each $key, $value in var.$gap-scale {
-        &.#{$_b}media#{$_m}gap#{$_v}#{$key} {
-          > * + * {
-            margin-top: $value;
-          }
-        }
       }
     }
   }

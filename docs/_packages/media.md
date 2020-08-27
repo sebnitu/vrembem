@@ -42,12 +42,12 @@ usage:
 ```
 {% include demo_close.html %}
 
-The default space is set using the spacing variable: `$spacing`:
+The default space is set using the `$gap` variable:
 
 <div class="demo">
 <div class="demo__code" markdown="1">
 ```scss
-$spacing: 1.5em !default;
+$gap: 1.5em !default;
 ```
 </div>
 </div>
@@ -88,44 +88,18 @@ $spacing: 1.5em !default;
 ```
 {% include demo_close.html %}
 
-The key is based on the spacing map: `$spacing-map`:
+The key output is built from the `$gap-scale` variable map:
 
 ```scss
-$spacing-map: (
-  "0": 0,
-  "xs": 0.5rem,
-  "sm": 1rem,
-  "md": 1.5rem,
-  "lg": 2rem,
-  "xl": 3rem
+$gap-scale: (
+  "none": 0,
+  "xs": 0.5em,
+  "sm": 1em,
+  "md": 1.5em,
+  "lg": 2em,
+  "xl": 3em
 ) !default;
 ```
-
-## media_reverse
-
-{% include demo_open.html class_parent="spacing" %}
-<div class="media media_reverse">
-  <img class="media__obj radius" src="https://picsum.photos/90/90/?12" width="90" height="90" />
-  <div class="media__body">
-    <h2 class="h5">Media Content Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
-  </div>
-</div>
-<div class="media media_reverse">
-  <div class="media__obj">
-    {% include icon.html icon="settings" %}
-  </div>
-  <div class="media__body">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="media media_reverse">
-  ...
-</div>
-```
-{% include demo_close.html %}
 
 ## media_stack_[bp]
 
@@ -140,22 +114,6 @@ $spacing-map: (
 {% include demo_switch.html %}
 ```html
 <div class="media media_stack_lg">
-  ...
-</div>
-```
-{% include demo_close.html %}
-
-{% include demo_open.html class_parent="spacing" %}
-<div class="media media_reverse media_gap_xl media_stack_lg">
-  <img class="media__obj radius" src="https://picsum.photos/90/90/?15" width="90" height="90" />
-  <div class="media__body">
-    <h2 class="h5">Media Content Title</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="media media_reverse media_gap_xl media_stack_lg">
   ...
 </div>
 ```
