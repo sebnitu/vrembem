@@ -217,7 +217,7 @@ The media component really shines when combining gap and stack modifiers.
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$breakpoints</code></td>
         <td data-mobile-label="Default">
-          <a class="link" href="#breakpoints"><code class="code color-secondary">Sass Map</code> Ref &darr;</a>
+          <a class="link" href="#breakpoints"><code class="code color-secondary">core.$breakpoints</code> Ref &darr;</a>
         </td>
         <td data-mobile-label="Desc">The breakpoints map the <code class="code">media_stack_[key]</code> modifier uses to build it's styles.</td>
       </tr>
