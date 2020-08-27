@@ -6,10 +6,10 @@ $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
 $breakpoints: core.$breakpoints !default;
-$min-height: (core.$line-height * 1rem) !default;
+$min-height: (core.$line-height * 1em) !default;
 $max-width: 30% !default;
-$spacing: 1.5em !default;
-$spacing-map: (
+$gap: 1.5em !default;
+$gap-scale: (
   "none": 0,
   "xs": 0.5em,
   "sm": 1em,

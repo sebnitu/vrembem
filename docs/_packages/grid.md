@@ -636,8 +636,10 @@ Sets an elements width to `100%`.
       <!-- General -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$breakpoints</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$breakpoints</code></td>
-        <td data-mobile-label="Desc">The breakpoints map the <code class="code">grid_stack_[key]</code> modifier usees to build it's styles.</td>
+        <td data-mobile-label="Default">
+          <a class="link text-nowrap" href="#breakpoints"><code class="code color-secondary">Sass Map</code> Ref &darr;</a>
+        </td>
+        <td data-mobile-label="Desc">The breakpoints map the <code class="code">grid_stack_[key]</code> modifier uses to build it's styles.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$gap</code></td>
@@ -647,13 +649,28 @@ Sets an elements width to `100%`.
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$gap-scale</code></td>
         <td data-mobile-label="Default">
-          <a class="link" href="#gap-scale"><code class="code color-secondary">Sass Map</code> Ref &darr;</a>
+          <a class="link text-nowrap" href="#gap-scale"><code class="code color-secondary">Sass Map</code> Ref &darr;</a>
         </td>
         <td data-mobile-label="Desc">Used to output gap modifiers.</td>
       </tr>
     </tbody>
   </table>
 </div>
+
+### $breakpoints
+
+The breakpoints map the <code class="code">media_stack_[key]</code> modifier uses to build it's styles.
+
+```scss
+// Inherited from: core.$breakpoints
+$breakpoints: (
+  "xs": 480px,
+  "sm": 620px,
+  "md": 760px,
+  "lg": 990px,
+  "xl": 1380px
+) !default;
+```
 
 ### $gap-scale
 

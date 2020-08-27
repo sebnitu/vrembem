@@ -1,4 +1,3 @@
-@use "@vrembem/core";
 @use "./variables" as var;
 
 $_b: var.$prefix-block;
@@ -6,16 +5,9 @@ $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
 @each $key, $value in var.$gap-scale {
-  .#{$_b}media#{$_m}gap#{$_v}#{$key} {
+  .#{$_b}media#{$_m}gap-x#{$_v}#{$key} {
     > * + * {
       margin-left: $value;
-    }
-
-    &.#{$_b}media#{$_m}stack {
-      > * + * {
-        margin-top: $value;
-        margin-left: 0;
-      }
     }
   }
 }

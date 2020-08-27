@@ -5,52 +5,46 @@ $_b: var.$prefix-block;
 $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
-.#{$_b}media#{$_m}stack {
-  flex-direction: column;
+$_stack: '.#{$_b}media#{$_m}stack';
 
+@each $key, $value in var.$breakpoints {
+  $_stack: $_stack + ', .#{$_b}media#{$_m}stack#{$_v}#{$key}';
+}
+
+#{$_stack} {
+  flex-direction: column;
+}
+
+.#{$_b}media#{$_m}stack {
   > * + * {
-    margin-top: var.$spacing;
-    margin-right: 0;
+    margin-top: var.$gap;
     margin-left: 0;
   }
+}
 
-  @each $key, $value in var.$spacing-map {
-    &.#{$_b}media#{$_m}gap#{$_v}#{$key} {
-      > * + * {
-        margin-top: $value;
-      }
+@each $key, $value in var.$breakpoints {
+  @include core.media-min($value) {
+    .#{$_b}media#{$_m}stack#{$_v}#{$key} {
+      flex-direction: row;
     }
   }
 }
 
 @each $key, $value in var.$breakpoints {
-  .#{$_b}media#{$_m}stack#{$_v}#{$key} {
-    flex-direction: column;
-  }
-
-  @include core.media-min($value) {
-    .#{$_b}media#{$_m}stack#{$_v}#{$key} {
-      flex-direction: row;
-
-      &.#{$_b}media#{$_m}reverse {
-        flex-direction: row-reverse;
-      }
-    }
-  }
-
   @include core.media-max($value) {
     .#{$_b}media#{$_m}stack#{$_v}#{$key} {
       > * + * {
-        margin-top: var.$spacing;
-        margin-right: 0;
+        margin-top: var.$gap;
         margin-left: 0;
       }
+    }
 
-      @each $key, $value in var.$spacing-map {
-        &.#{$_b}media#{$_m}gap#{$_v}#{$key} {
-          > * + * {
-            margin-top: $value;
-          }
+    @each $gapKey, $gapValue in var.$gap-scale {
+      .#{$_b}media#{$_m}gap#{$_v}#{$gapKey},
+      .#{$_b}media#{$_m}gap-y#{$_v}#{$gapKey} {
+        &.#{$_b}media#{$_m}stack#{$_v}#{$key} > * + * {
+          margin-top: $gapValue;
+          margin-left: 0;
         }
       }
     }
