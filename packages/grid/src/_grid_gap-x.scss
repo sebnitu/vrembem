@@ -1,15 +1,16 @@
 @use "./variables" as var;
 
 $_b: var.$prefix-block;
+$_e: var.$prefix-element;
 $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
 @each $key, $value in var.$gap-scale {
-  .#{$_b}level#{$_m}x-gap#{$_v}#{$key} {
+  .#{$_b}grid#{$_m}gap-x#{$_v}#{$key} {
     margin-left: ($value * -1);
 
-    > * {
-      margin-left: $value;
+    > .#{$_b}grid#{$_e}item {
+      padding-left: $value;
     }
   }
 }

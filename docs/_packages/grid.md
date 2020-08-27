@@ -195,16 +195,63 @@ Set an individual grid item to fill using the `grid__item_fill` element modifier
 
 ## grid_gap_[key]
 
-Modifiers that adjust the gutter spacing between `grid__item` elements. Values and class keys are generated using the `$gap-scale` map.
+Modifiers that adjust the gutter spacing between `grid__item` elements. Gap key output is based on the values in [`$gap-scale`](#gap-scale) variable map.
 
 ```html
-<div class="grid grid_gap_none">...</div>
-<div class="grid grid_gap_xs">...</div>
-<div class="grid grid_gap_sm">...</div>
-<div class="grid grid_gap_md">...</div>
-<div class="grid grid_gap_lg">...</div>
-<div class="grid grid_gap_xl">...</div>
+<div class="grid grid_gap_sm">
+  <div class="grid__item">...</div>
+  <div class="grid__item">...</div>
+</div>
 ```
+
+### Available Variations
+
+- `grid_gap_none`
+- `grid_gap_xs`
+- `grid_gap_sm`
+- `grid_gap_md`
+- `grid_gap_lg`
+- `grid_gap_xl`
+
+## grid_gap-x_[key]
+
+Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-scale`](#gap-scale) variable map.
+
+```html
+<div class="grid grid_gap-x_xs">
+  <div class="grid__item">...</div>
+  <div class="grid__item">...</div>
+</div>
+```
+
+### Available Variations
+
+- `grid_gap-x_none`
+- `grid_gap-x_xs`
+- `grid_gap-x_sm`
+- `grid_gap-x_md`
+- `grid_gap-x_lg`
+- `grid_gap-x_xl`
+
+## grid_gap-y_[key]
+
+Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-scale`](#gap-scale) variable map.
+
+```html
+<div class="grid grid_gap-y_xl">
+  <div class="grid__item">...</div>
+  <div class="grid__item">...</div>
+</div>
+```
+
+### Available Variations
+
+- `grid_gap-y_none`
+- `grid_gap-y_xs`
+- `grid_gap-y_sm`
+- `grid_gap-y_md`
+- `grid_gap-y_lg`
+- `grid_gap-y_xl`
 
 ## grid_stack_[key]
 

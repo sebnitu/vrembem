@@ -55,12 +55,12 @@ Adjusts the gap spacing based on the provided key. Gap key output is based on th
 - `level_gap_lg`
 - `level_gap_xl`
 
-### `level_x-gap_[key]`
+### `level_gap-x_[key]`
 
 Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-scale`](#gap-scale) variable map.
 
 ```html
-<div class="level level_x-gap_xs">
+<div class="level level_gap-x_xs">
   <div>...</div>
   <div>...</div>
   <div>...</div>
@@ -69,19 +69,19 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key output is 
 
 #### Available Variations
 
-- `level_x-gap_none`
-- `level_x-gap_xs`
-- `level_x-gap_sm`
-- `level_x-gap_md`
-- `level_x-gap_lg`
-- `level_x-gap_xl`
+- `level_gap-x_none`
+- `level_gap-x_xs`
+- `level_gap-x_sm`
+- `level_gap-x_md`
+- `level_gap-x_lg`
+- `level_gap-x_xl`
 
-### `level_y-gap_[key]`
+### `level_gap-y_[key]`
 
 Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-scale`](#gap-scale) variable map.
 
 ```html
-<div class="level level_y-gap_xl">
+<div class="level level_gap-y_xl">
   <div>...</div>
   <div>...</div>
   <div>...</div>
@@ -90,12 +90,12 @@ Adjusts the vertical gap spacing based on the provided key. Gap key output is ba
 
 #### Available Variations
 
-- `level_y-gap_none`
-- `level_y-gap_xs`
-- `level_y-gap_sm`
-- `level_y-gap_md`
-- `level_y-gap_lg`
-- `level_y-gap_xl`
+- `level_gap-y_none`
+- `level_gap-y_xs`
+- `level_gap-y_sm`
+- `level_gap-y_md`
+- `level_gap-y_lg`
+- `level_gap-y_xl`
 
 ## Customization
 
