@@ -749,12 +749,14 @@ Change the `justify-content` property of grid columns using the `flex-justify-[v
 
 Add margin to an element using directional and size modifiers. Margin size and spacing values are generated from `$spacing-map` variable map.
 
-* `margin`
-* `margin-[size]`
-* `margin-[direction]-[size]`
-* `margin-auto`
-* `margin-left-auto`
-* `margin-right-auto`
+- `margin`: Adds margins on all sides.
+- `margin-[size]`: Adds margins on all sides with a specific size key.
+- `margin-[direction]-[size]`: Adds margins on a specific size and with size key.
+- `margin-x-[size]`: Adds left and right margins with a specific size key.
+- `margin-y-[size]`: Adds top and bottom margins with a specific size key.
+- `margin-auto`: Sets left and right margins to auto.
+- `margin-left-auto`: Sets left margin to auto.
+- `margin-right-auto`: Sets right margin to auto.
 
 <div>
   <div class="grid grid_stack_xs">
@@ -793,9 +795,11 @@ Add margin to an element using directional and size modifiers. Margin size and s
 
 Add padding to an element using directional and size modifiers. Padding size and spacing values are generated from `$spacing-map` variable map.
 
-* `padding`
-* `padding-[size]`
-* `padding-[direction]-[size]`
+- `padding`: Adds padding on all sides.
+- `padding-[size]`: Adds padding on all sides with a specific size key.
+- `padding-[direction]-[size]`: Adds padding on a specific size and with size key.
+- `padding-x-[size]`: Adds left and right padding with a specific size key.
+- `padding-y-[size]`: Adds top and bottom padding with a specific size key.
 
 <div>
   <div class="grid grid_stack_xs">
