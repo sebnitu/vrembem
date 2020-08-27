@@ -235,7 +235,7 @@ Combine `_join` and `_stack` modifiers to apply both effects:
 
 ## button-group_gap_[key]
 
-{% include demo_open.html class_grid="grid_break" class_parent="level" %}
+{% include demo_open.html class_grid="grid_stack" class_parent="level" %}
 <div>
   <div class="button-group button-group_gap_xs">
     <button class="button button_color_primary">Button</button>

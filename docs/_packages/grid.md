@@ -16,7 +16,7 @@ The most basic imlementation of the grid component consists of two elements. By 
 - `grid`
 - `grid__item`
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="grid">
   <div class="grid__item">
     <div class="box">...</div>
@@ -42,7 +42,7 @@ The most basic imlementation of the grid component consists of two elements. By 
 
 The clear element allows you to start a new row at any point in a column set.
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="grid">
   <div class="grid__item">
     <div class="box">...</div>
@@ -132,77 +132,11 @@ Set an individual grid item to auto using `grid__item_auto` element modifier.
 ```
 {% include demo_close.html %}
 
-## grid_break_[key]
-
-Adds a breakpoint for when grid items should be stacked vertically. Values and class keys are generated using the `$breakpoint` map. Also available is the `grid_break` modifier which stacks grid items under all conditions.
-
-{% include demo_open.html class_grid="grid_break" %}
-<div class="grid grid_break_xs">
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-</div>
-
-<div class="grid grid_break_sm">
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-</div>
-
-<div class="grid grid_break_md">
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-</div>
-
-<div class="grid grid_break_lg">
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-</div>
-
-<div class="grid grid_break_xl">
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="grid grid_break">...</div>
-<div class="grid grid_break_xs">...</div>
-<div class="grid grid_break_sm">...</div>
-<div class="grid grid_break_md">...</div>
-<div class="grid grid_break_lg">...</div>
-<div class="grid grid_break_xl">...</div>
-```
-{% include demo_close.html %}
-
 ## grid_fill
 
 The fill modifier stretches grid item's contents to fill the height of it's container.
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="grid grid_fill">
   <div class="grid__item" style="height: 200px;">
     <div class="box">...</div>
@@ -233,7 +167,7 @@ The fill modifier stretches grid item's contents to fill the height of it's cont
 
 Set an individual grid item to fill using the `grid__item_fill` element modifier.
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="grid">
   <div class="grid__item">
     <div class="box" style="height: 200px;">...</div>
@@ -271,6 +205,72 @@ Modifiers that adjust the gutter spacing between `grid__item` elements. Values a
 <div class="grid grid_gap_lg">...</div>
 <div class="grid grid_gap_xl">...</div>
 ```
+
+## grid_stack_[key]
+
+Adds a breakpoint for when grid items should be stacked vertically. Values and class keys are generated using the `$breakpoint` map. Also available is the `grid_stack` modifier which stacks grid items under all conditions.
+
+{% include demo_open.html class_grid="grid_stack" %}
+<div class="grid grid_stack_xs">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+
+<div class="grid grid_stack_sm">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+
+<div class="grid grid_stack_md">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+
+<div class="grid grid_stack_lg">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+
+<div class="grid grid_stack_xl">
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="grid grid_stack">...</div>
+<div class="grid grid_stack_xs">...</div>
+<div class="grid grid_stack_sm">...</div>
+<div class="grid grid_stack_md">...</div>
+<div class="grid grid_stack_lg">...</div>
+<div class="grid grid_stack_xl">...</div>
+```
+{% include demo_close.html %}
 
 ## flex
 
@@ -439,7 +439,7 @@ Set the width, max-width and flex based on a column set using the `span` utility
 
 Sets the number of columns an element should span. The total number of columns is set in the `$columns` variable.
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="grid grid_flatten">
   <div class="grid__item span-6">
     <div class="box">...</div>
@@ -447,7 +447,7 @@ Sets the number of columns an element should span. The total number of columns i
   <div class="grid__item span-6">
     <div class="box">...</div>
   </div>
-  <div class="grid__break"></div>
+  <div class="grid__stack"></div>
   <div class="grid__item span-6">
     <div class="box">...</div>
   </div>
@@ -463,7 +463,7 @@ Sets the number of columns an element should span. The total number of columns i
 <div class="grid">
   <div class="grid__item span-6">...</div>
   <div class="grid__item span-6">...</div>
-  <div class="grid__break"></div>
+  <div class="grid__stack"></div>
   <div class="grid__item span-6">...</div>
   <div class="grid__item span-3">...</div>
   <div class="grid__item span-3">...</div>
@@ -475,7 +475,7 @@ Sets the number of columns an element should span. The total number of columns i
 
 Sets the number of columns an element should span based on a breakpoint conditon. The total number of columns is set in the `$columns` variable. Breakpoint keys are built from the `$breakpoints` variable map.
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="grid grid_flatten">
   <div class="grid__item span-12 span-6-xs span-8-sm span-4-md span-3-lg">
     <div class="box">...</div>
@@ -505,7 +505,7 @@ Sets the number of columns an element should span based on a breakpoint conditon
 
 Sets an elements width to `auto`.
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="grid grid_flatten">
   <div class="grid__item span-auto">
     <div class="box">...</div>
@@ -531,7 +531,7 @@ Sets an elements width to `auto`.
 
 Sets an elements width to `100%`.
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="grid grid_flatten">
   <div class="grid__item span-full">
     <div class="box">...</div>
@@ -590,7 +590,7 @@ Sets an elements width to `100%`.
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$breakpoints</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$breakpoints</code></td>
-        <td data-mobile-label="Desc">The breakpoints map the <code class="code">grid_break_[key]</code> modifier usees to build it's styles.</td>
+        <td data-mobile-label="Desc">The breakpoints map the <code class="code">grid_stack_[key]</code> modifier usees to build it's styles.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$gap</code></td>

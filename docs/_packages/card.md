@@ -208,7 +208,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
 
 <div class="demo">
   <div class="demp__render">
-    <div class="grid grid_break-md">
+    <div class="grid grid_stack-md">
       {%- for counter in (1..3) -%}
       <div class="grid__item grid__item_fill">
         <div class="card card_invert card_fade card_zoom">
@@ -235,7 +235,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
 
 <div class="demo">
   <div class="demp__render">
-    <div class="grid grid_break-md">
+    <div class="grid grid_stack-md">
       {%- for counter in (1..3) -%}
       <div class="grid__item grid__item_fill">
         <a href="#" class="card card_link">
@@ -251,7 +251,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
       </div>
       {%- endfor -%}
     </div>
-    <div class="grid grid_break-md">
+    <div class="grid grid_stack-md">
       {%- for counter in (1..3) -%}
       <div class="grid__item grid__item_fill">
         <a href="#" class="card card_link">

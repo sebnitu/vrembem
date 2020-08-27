@@ -19,7 +19,7 @@ Modals are composed using classes for styling and data attributes for JavaScript
 - `data-modal-open="[unique-id]"`
 - `data-modal-close`
 
-{% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
+{% include demo_open.html class_grid="grid_stack" class_parent="padding border radius" %}
 <button class="link" data-modal-open="modal-default">Modal</button>
 <div data-modal="modal-default" class="modal">
   <div data-modal-dialog class="modal__dialog dialog">
@@ -46,7 +46,7 @@ Modals are composed using classes for styling and data attributes for JavaScript
 
 Modal dialogs are the actual dialog element within a modal and are defined using a the value-less `data-modal-dialog` attribute. The [dialog component](https://github.com/sebnitu/vrembem/tree/master/packages/dialog) is a great fit for composing a modal’s dialog.
 
-{% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
+{% include demo_open.html class_grid="grid_stack" class_parent="padding border radius" %}
 <button data-modal-open="modal-dialog" class="link">Modal dialog</button>
 <div data-modal="modal-dialog" class="modal">
   <div data-modal-dialog class="modal__dialog dialog">
@@ -93,7 +93,7 @@ Modal dialogs are the actual dialog element within a modal and are defined using
 
 By default, the modal dialog gains focus when a modal is opened. If focus on a specific element inside a modal is preferred, give that element the `data-modal-focus` attribute. Focus is returned to the element that activated the modal once the modal is closed.
 
-{% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
+{% include demo_open.html class_grid="grid_stack" class_parent="padding border radius" %}
 <div class="level">
   <button data-modal-open="modal-focus-dialog" class="link">
     Modal focus dialog
@@ -151,7 +151,7 @@ While a modal is active, the contents obscured by the modal should be inaccessib
 
 Required modals can not be closed without an explicit action. That means clicking on the background or pressing the escape key to close a required modal is disabled. Add the `data-modal-required` data attribute to a modal to enable this behavior and make sure to provide an action inside the modal that closes it.
 
-{% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
+{% include demo_open.html class_grid="grid_stack" class_parent="padding border radius" %}
 <button data-modal-open="modal-required" class="link">Modal required</button>
 <div data-modal="modal-required" data-modal-required class="modal">
   <div class="modal__dialog dialog">
@@ -210,7 +210,7 @@ const modal = new Modal({
 
 Adds styles to a modal that make it fill the entire viewport when opened.
 
-{% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
+{% include demo_open.html class_grid="grid_stack" class_parent="padding border radius" %}
 <button data-modal-open="modal-full" class="link">Modal</button>
 <div data-modal="modal-full" class="modal modal_full">
   <div data-modal-dialog class="modal__dialog dialog">
@@ -237,7 +237,7 @@ The default position of modals is in the center of the viewport. The position mo
 - `modal_pos_right`
 - `modal_pos_bottom`
 
-{% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
+{% include demo_open.html class_grid="grid_stack" class_parent="padding border radius" %}
 <div class="level">
   <button data-modal-open="modal-pos-top" class="link">
     &uarr; Modal top
@@ -361,7 +361,7 @@ The default position of modals is in the center of the viewport. The position mo
 
 Adjusts the size of modals. This modifier provides two options, `modal_size_sm` and `modal_size_lg` all relative to the default modal size.
 
-{% include demo_open.html class_grid="grid_break" class_parent="padding border radius" %}
+{% include demo_open.html class_grid="grid_stack" class_parent="padding border radius" %}
 <div class="level">
   <button data-modal-open="modal-size-sm" class="link">Small modal</button>
   <button data-modal-open="modal-size-lg" class="link">Large modal</button>

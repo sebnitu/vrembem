@@ -188,7 +188,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
 
 ## button_color_[key]
 
-{% include demo_open.html class_grid="grid_break" class_parent="spacing" %}
+{% include demo_open.html class_grid="grid_stack" class_parent="spacing" %}
 <div class="padding background_white radius">
   <div class="level">
     <button class="button">Default</button>
@@ -223,7 +223,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
 
 ## button_outline_[key]
 
-{% include demo_open.html class_grid="grid_break" class_parent="spacing" %}
+{% include demo_open.html class_grid="grid_stack" class_parent="spacing" %}
 <div class="padding background_white radius">
   <div class="level">
     <button class="button button_outline">Default Outline</button>
@@ -254,7 +254,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
 
 ## button is-loading
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="padding background_white radius">
   <div class="level">
     <button class="is-loading button">Button</button>

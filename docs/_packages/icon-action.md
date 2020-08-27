@@ -11,7 +11,7 @@ usage:
 
 ## icon-action
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="level">
   <button class="icon-action" aria-label="Close">
     {% include icon.html icon="x" %}
@@ -35,7 +35,7 @@ usage:
 
 ## icon-action_color
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="level">
   <button class="icon-action icon-action_color_danger" aria-label="Close">
     {% include icon.html icon="x" %}
@@ -57,7 +57,7 @@ usage:
 
 ## icon-action_invert
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="padding radius background-night">
   <button class="icon-action icon-action_invert" aria-label="Close">
     {% include icon.html icon="x" %}
@@ -72,7 +72,7 @@ usage:
 
 ## icon-action_subtle
 
-{% include demo_open.html class_grid="grid_break" class_parent="flex flex-items-equal" %}
+{% include demo_open.html class_grid="grid_stack" class_parent="flex flex-items-equal" %}
 <div class="padding radius background-white border margin-right-sm">
   <button class="icon-action icon-action_subtle" aria-label="Close">
     {% include icon.html icon="x" %}

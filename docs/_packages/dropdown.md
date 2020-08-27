@@ -11,7 +11,7 @@ usage:
 
 ## dropdown
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="dropdown">
   <button class="dropdown__trigger button button_color_primary">Trigger</button>
   <ul class="dropdown__menu">
@@ -75,7 +75,7 @@ usage:
 
 ## dropdown_pos_[key]
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="level">
   <div class="dropdown dropdown_pos_down-left">
     <button class="button">
@@ -113,7 +113,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="level">
   <div class="dropdown dropdown_pos_up-left">
     <button class="button">
@@ -151,7 +151,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="level flex-justify-end">
   <div class="dropdown dropdown_pos_left-up">
     <button class="button">
@@ -189,7 +189,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-{% include demo_open.html class_grid="grid_break" %}
+{% include demo_open.html class_grid="grid_stack" %}
 <div class="level">
   <div class="dropdown dropdown_pos_right-up">
     <button class="button">
