@@ -4,12 +4,14 @@
   display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
-  margin: (var.$gap * -1) 0 0 (var.$gap * -1);
+  margin-top: (var.$gap * -1);
+  margin-left: (var.$gap * -1);
 
   #{var.$children-selector} {
     z-index: 1;
     flex: 0 0 auto;
-    margin: var.$gap 0 0 var.$gap;
+    margin-top: var.$gap;
+    margin-left: var.$gap;
     border-radius: var.$border-radius;
 
     &:hover {
