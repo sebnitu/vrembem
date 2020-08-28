@@ -152,31 +152,52 @@ Adjusts the vertical gap spacing based on the provided key. Gap key output is ba
 
 ### `grid_stack_[key]`
 
-Adds a breakpoint for when grid items should be stacked vertically. Values and class keys are generated using the `$breakpoint` map. Also available is the `grid_stack` modifier which stacks grid items under all conditions.
+Adds a breakpoint for when grid items should be stacked vertically. Values and class keys are generated using the [`$breakpoint`](#breakpoints) map. Omitting the key value from the modifier (e.g. `grid_stack`) will stack items under all conditions.
 
 ```html
-<div class="grid grid_stack">...</div>
-<div class="grid grid_stack_xs">...</div>
-<div class="grid grid_stack_sm">...</div>
-<div class="grid grid_stack_md">...</div>
-<div class="grid grid_stack_lg">...</div>
-<div class="grid grid_stack_xl">...</div>
+<div class="grid grid_stack_md">
+  <div class="grid__item">...</div>
+  <div class="grid__item">...</div>
+</div>
 ```
+
+#### Available Variations
+
+- `grid_stack`
+- `grid_stack_xs`
+- `grid_stack_sm`
+- `grid_stack_md`
+- `grid_stack_lg`
+- `grid_stack_xl`
 
 ## Customization
 
 ### Sass Variables
 
-| Variable                 | Default                             | Description                                                                     |
-| ------------------------ | ----------------------------------- | ------------------------------------------------------------------------------- |
-| `$prefix-block`          | `null`                              | String to prefix blocks with.                                                   |
-| `$prefix-element`        | `"__"`                              | String to prefix element with.                                                  |
-| `$prefix-modifier`       | `"_"`                               | String to prefix modifier with.                                                 |
-| `$prefix-modifier-value` | `"_"`                               | String to prefix modifier values with.                                          |
-| `$breakpoints`           | `core.$breakpoints`                 | The breakpoints map the `grid_stack_[key]` modifier usees to build it's styles. |
-| `$gap`                   | `2em`                               | The default gap spacing for the grid component.                                 |
-| `$gap-scale`             | [`Sass Map` Ref &darr;](#gap-scale) | Used to output gap modifiers.                                                   |
+| Variable                 | Default                                        | Description                                                                    |
+| ------------------------ | ---------------------------------------------- | ------------------------------------------------------------------------------ |
+| `$prefix-block`          | `null`                                         | String to prefix blocks with.                                                  |
+| `$prefix-element`        | `"__"`                                         | String to prefix element with.                                                 |
+| `$prefix-modifier`       | `"_"`                                          | String to prefix modifier with.                                                |
+| `$prefix-modifier-value` | `"_"`                                          | String to prefix modifier values with.                                         |
+| `$breakpoints`           | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the `grid_stack_[key]` modifier uses to build it's styles. |
+| `$gap`                   | `2em`                                          | The default gap spacing for the grid component.                                |
+| `$gap-scale`             | [`Sass Map` Ref &darr;](#gap-scale)            | Used to output gap modifiers.                                                  |
 
+#### `$breakpoints`
+
+The breakpoints map the `grid_stack_[key]` modifier uses to build it's styles.
+
+```scss
+// Inherited from: core.$breakpoints
+$breakpoints: (
+  "xs": 480px,
+  "sm": 620px,
+  "md": 760px,
+  "lg": 990px,
+  "xl": 1380px
+) !default;
+```
 
 #### `$gap-scale`
 

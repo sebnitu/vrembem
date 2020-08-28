@@ -7,7 +7,7 @@ $prefix-modifier-value: core.$prefix-modifier-value !default;
 
 $breakpoints: core.$breakpoints !default;
 $border-radius: core.$border-radius !default;
-$children-selector: "> *";
+$children-selector: "> *" !default;
 $gap: 0.5em !default;
 $gap-join: -1px !default;
 $gap-scale: (
