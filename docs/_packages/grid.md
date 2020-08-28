@@ -255,7 +255,7 @@ Adjusts the vertical gap spacing based on the provided key. Gap key output is ba
 
 ## grid_stack_[key]
 
-Adds a breakpoint for when grid items should be stacked vertically. Values and class keys are generated using the `$breakpoint` map. Also available is the `grid_stack` modifier which stacks grid items under all conditions.
+Adds a breakpoint for when grid items should be stacked vertically. Values and class keys are generated using the [`$breakpoint`](#breakpoints) map. Omitting the key value from the modifier (e.g. `grid_stack`) will stack items under all conditions.
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="grid grid_stack_xs">
@@ -310,14 +310,21 @@ Adds a breakpoint for when grid items should be stacked vertically. Values and c
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="grid grid_stack">...</div>
-<div class="grid grid_stack_xs">...</div>
-<div class="grid grid_stack_sm">...</div>
-<div class="grid grid_stack_md">...</div>
-<div class="grid grid_stack_lg">...</div>
-<div class="grid grid_stack_xl">...</div>
+<div class="grid grid_stack_md">
+  <div class="grid__item">...</div>
+  <div class="grid__item">...</div>
+</div>
 ```
 {% include demo_close.html %}
+
+#### Available Variations
+
+- `grid_stack`
+- `grid_stack_xs`
+- `grid_stack_sm`
+- `grid_stack_md`
+- `grid_stack_lg`
+- `grid_stack_xl`
 
 ## flex
 
@@ -637,7 +644,7 @@ Sets an elements width to `100%`.
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$breakpoints</code></td>
         <td data-mobile-label="Default">
-          <a class="link text-nowrap" href="#breakpoints"><code class="code color-secondary">Sass Map</code> Ref &darr;</a>
+          <a class="link text-nowrap" href="#breakpoints"><code class="code color-secondary">core.$breakpoints</code> Ref &darr;</a>
         </td>
         <td data-mobile-label="Desc">The breakpoints map the <code class="code">grid_stack_[key]</code> modifier uses to build it's styles.</td>
       </tr>
@@ -659,7 +666,7 @@ Sets an elements width to `100%`.
 
 ### $breakpoints
 
-The breakpoints map the <code class="code">media_stack_[key]</code> modifier uses to build it's styles.
+The breakpoints map the `grid_stack_[key]` modifier uses to build it's styles.
 
 ```scss
 // Inherited from: core.$breakpoints
