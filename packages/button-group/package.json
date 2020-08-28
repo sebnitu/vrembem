@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/button-group",
   "description": "A component for displaying groups of buttons.",
-  "version": "1.15.5",
+  "version": "1.17.0",
   "license": "MIT",
   "keywords": [
     "BEM",
