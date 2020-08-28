@@ -30,6 +30,19 @@ The most basic imlementation of the button-group component consists of the `butt
 </div>
 ```
 
+Button-groups that are siblings to one another will inherit the gap provided by the adjacent sibling.
+
+```html
+<div class="button-group">
+  <button class="button">...</button>
+  ...
+</div>
+<div class="button-group">
+  <button class="button">...</button>
+  ...
+</div>
+```
+
 ## Modifiers
 
 ### `button-group_full_[key]`
@@ -111,22 +124,22 @@ Adds a breakpoint for when button-group elements should be stacked vertically. V
 
 ### Sass Variables
 
-| Variable                 | Default                                        | Description                                                                            |
-| ------------------------ | ---------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `$prefix-block`          | `null`                                         | String to prefix blocks with.                                                          |
-| `$prefix-element`        | `"__"`                                         | String to prefix element with.                                                         |
-| `$prefix-modifier`       | `"_"`                                          | String to prefix modifier with.                                                        |
-| `$prefix-modifier-value` | `"_"`                                          | String to prefix modifier values with.                                                 |
-| `$breakpoints`           | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the `button-group_stack_[key]` modifier uses to build it's styles. |
-| `$border-radius`         | `core.$border-radius`                          | Sets the border-radius styles of buttons when button-group adjusts them.               |
-| `$children-selector`     | `"> *"`                                        | The selector used to target button-group children styles.                              |
-| `$gap`                   | `0.5em`                                        | The default gap spacing for the button-group component.                                |
-| `$gap-join`              | `-1px`                                         | The gap spacing used for the `button-group_join` modifier.                             |
-| `$gap-scale`             | [`Sass Map` Ref &darr;](#gap-scale)            | Used to output gap modifiers.                                                          |
+| Variable                 | Default                                        | Description                                                                                                            |
+| ------------------------ | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `$prefix-block`          | `null`                                         | String to prefix blocks with.                                                                                          |
+| `$prefix-element`        | `"__"`                                         | String to prefix element with.                                                                                         |
+| `$prefix-modifier`       | `"_"`                                          | String to prefix modifier with.                                                                                        |
+| `$prefix-modifier-value` | `"_"`                                          | String to prefix modifier values with.                                                                                 |
+| `$breakpoints`           | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the `button-group_full_[key]` and  `button-group_stack_[key]` modifiers use to build their styles. |
+| `$border-radius`         | `core.$border-radius`                          | Sets the border-radius styles of buttons when button-group adjusts them.                                               |
+| `$children-selector`     | `"> *"`                                        | The selector used to target button-group children styles.                                                              |
+| `$gap`                   | `0.5em`                                        | The default gap spacing for the button-group component.                                                                |
+| `$gap-join`              | `-1px`                                         | The gap spacing used for the `button-group_join` modifier.                                                             |
+| `$gap-scale`             | [`Sass Map` Ref &darr;](#gap-scale)            | Used to output gap modifiers.                                                                                          |
 
 #### `$breakpoints`
 
-The breakpoints map the `button-group_stack_[key]` modifier uses to build it's styles.
+The breakpoints map the `button-group_full_[key]` and  `button-group_stack_[key]` modifiers use to build their styles.
 
 ```scss
 // Inherited from: core.$breakpoints
