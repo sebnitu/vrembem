@@ -34,20 +34,16 @@ usage:
 
 ## button-group_full
 
-{% include demo_open.html class_parent="spacing" %}
-<div>
-  <div class="button-group button-group_full">
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_color_primary">Button</button>
-  </div>
+{% include demo_open.html %}
+<div class="button-group button-group_full">
+  <button class="button button_color_primary">Button</button>
+  <button class="button button_color_primary">Button</button>
+  <button class="button button_color_primary">Button</button>
 </div>
-<div>
-  <div class="button-group button-group_full">
-    <button class="button button_outline">Button</button>
-    <button class="button button_outline">Button</button>
-    <button class="button button_outline">Button</button>
-  </div>
+<div class="button-group button-group_full">
+  <button class="button button_outline">Button</button>
+  <button class="button button_outline">Button</button>
+  <button class="button button_outline">Button</button>
 </div>
 {% include demo_switch.html %}
 ```html
@@ -61,20 +57,16 @@ usage:
 
 Optionally provide a `$breakpoints` key to the `_full` modifier to only have these styles applied below a specific breakpoint:
 
-{% include demo_open.html class_parent="spacing" %}
-<div>
-  <div class="button-group button-group_full_sm">
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_color_primary">Button</button>
-  </div>
+{% include demo_open.html %}
+<div class="button-group button-group_full_sm">
+  <button class="button button_color_primary">Button</button>
+  <button class="button button_color_primary">Button</button>
+  <button class="button button_color_primary">Button</button>
 </div>
-<div>
-  <div class="button-group button-group_full_md">
-    <button class="button button_outline">Button</button>
-    <button class="button button_outline">Button</button>
-    <button class="button button_outline">Button</button>
-  </div>
+<div class="button-group button-group_full_md">
+  <button class="button button_outline">Button</button>
+  <button class="button button_outline">Button</button>
+  <button class="button button_outline">Button</button>
 </div>
 {% include demo_switch.html %}
 ```html
@@ -119,20 +111,16 @@ Optionally provide a `$breakpoints` key to the `_full` modifier to only have the
 
 Optionally provide a `$breakpoints` key to the `_stack` modifier to only have these styles applied below a specific breakpoint:
 
-{% include demo_open.html class_parent="spacing" %}
-<div>
-  <div class="button-group button-group_stack_xs">
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_color_primary">Button</button>
-  </div>
+{% include demo_open.html %}
+<div class="button-group button-group_stack_xs">
+  <button class="button button_color_primary">Button</button>
+  <button class="button button_color_primary">Button</button>
+  <button class="button button_color_primary">Button</button>
 </div>
-<div>
-  <div class="button-group button-group_stack_sm">
-    <button class="button button_outline">Button</button>
-    <button class="button button_outline">Button</button>
-    <button class="button button_outline">Button</button>
-  </div>
+<div class="button-group button-group_stack_sm">
+  <button class="button button_outline">Button</button>
+  <button class="button button_outline">Button</button>
+  <button class="button button_outline">Button</button>
 </div>
 {% include demo_switch.html %}
 ```html
@@ -148,20 +136,16 @@ Optionally provide a `$breakpoints` key to the `_stack` modifier to only have th
 
 Combine `_stack` and `_full` modifiers to apply both effects:
 
-{% include demo_open.html class_parent="spacing" %}
-<div>
-  <div class="button-group button-group_stack button-group_full">
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_color_primary">Button</button>
-  </div>
+{% include demo_open.html %}
+<div class="button-group button-group_stack button-group_full">
+  <button class="button button_color_primary">Button</button>
+  <button class="button button_color_primary">Button</button>
+  <button class="button button_color_primary">Button</button>
 </div>
-<div>
-  <div class="button-group button-group_stack button-group_full">
-    <button class="button button_outline">Button</button>
-    <button class="button button_outline">Button</button>
-    <button class="button button_outline">Button</button>
-  </div>
+<div class="button-group button-group_stack button-group_full">
+  <button class="button button_outline">Button</button>
+  <button class="button button_outline">Button</button>
+  <button class="button button_outline">Button</button>
 </div>
 {% include demo_switch.html %}
 ```html
