@@ -14,9 +14,35 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.16.0 to CHANGELOG.md
+chore(release): add v1.17.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.17.0 (2020-08-28)
+
+#### :tada: New Feature
+* `level`, `vrembem`
+  * [#361](https://github.com/sebnitu/vrembem/pull/361) Add sibling selector to zero out top margins for level components
+  * [#352](https://github.com/sebnitu/vrembem/pull/352) Add new x-gap and y-gap level modifiers
+* `media`, `vrembem`
+  * [#355](https://github.com/sebnitu/vrembem/pull/355) Add gap-x and gap-y modifiers to the media component
+* `grid`, `level`, `vrembem`
+  * [#354](https://github.com/sebnitu/vrembem/pull/354) Add gap-x and gap-y modifiers to grid component
+
+#### :bug: Bug Fix
+* `base`, `vrembem`
+  * [#358](https://github.com/sebnitu/vrembem/pull/358) Add better li element margins
+
+#### :house: Refactor
+* `button-group`, `grid`, `media`, `vrembem`
+  * [#362](https://github.com/sebnitu/vrembem/pull/362) Refactor the button-group component
+* `notice`, `utility`, `vrembem`
+  * [#359](https://github.com/sebnitu/vrembem/pull/359) Change hori and vert padding/margin class names to x/y
+* `media`, `vrembem`
+  * [#355](https://github.com/sebnitu/vrembem/pull/355) Add gap-x and gap-y modifiers to the media component
+* `grid`, `vrembem`
+  * [#353](https://github.com/sebnitu/vrembem/pull/353) Refactor grid component break modifier to stack for library consistency
 
 
 ## v1.16.0 (2020-08-26)
