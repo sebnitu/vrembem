@@ -1036,6 +1036,9 @@ input::-moz-placeholder {
   margin-top: -0.5em;
   margin-left: -0.5em;
 }
+.button-group + .button-group {
+  margin-top: 0;
+}
 .button-group > * {
   z-index: 1;
   flex: 0 0 auto;

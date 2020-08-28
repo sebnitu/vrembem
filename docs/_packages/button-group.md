@@ -11,20 +11,16 @@ usage:
 
 ## button-group
 
-{% include demo_open.html class_parent="spacing" %}
-<div>
-  <div class="button-group">
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_color_primary">Button</button>
-  </div>
+{% include demo_open.html %}
+<div class="button-group">
+  <button class="button button_color_primary">Button</button>
+  <button class="button button_color_primary">Button</button>
+  <button class="button button_color_primary">Button</button>
 </div>
-<div>
-  <div class="button-group">
-    <button class="button button_outline">Button</button>
-    <button class="button button_outline">Button</button>
-    <button class="button button_outline">Button</button>
-  </div>
+<div class="button-group">
+  <button class="button button_outline">Button</button>
+  <button class="button button_outline">Button</button>
+  <button class="button button_outline">Button</button>
 </div>
 {% include demo_switch.html %}
 ```html
