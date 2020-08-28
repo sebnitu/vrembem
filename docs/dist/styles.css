@@ -2563,6 +2563,9 @@ input::-moz-placeholder {
   margin-top: -0.5em;
   margin-left: -0.5em;
 }
+.level + .level {
+  margin-top: 0;
+}
 .level > * {
   flex: 0 0 auto;
   margin-top: 0.5em;
