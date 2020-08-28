@@ -39,14 +39,14 @@ $_c: var.$class-margin;
   }
 
   @each $key, $value in var.$spacing-map {
-    .#{$_u}#{$_c}-hori-#{$key} {
+    .#{$_u}#{$_c}-x-#{$key} {
       margin-right: $value !important;
       margin-left: $value !important;
     }
   }
 
   @each $key, $value in var.$spacing-map {
-    .#{$_u}#{$_c}-vert-#{$key} {
+    .#{$_u}#{$_c}-y-#{$key} {
       margin-top: $value !important;
       margin-bottom: $value !important;
     }
