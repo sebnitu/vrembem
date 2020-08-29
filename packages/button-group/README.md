@@ -47,7 +47,7 @@ Button-groups that are siblings to one another will inherit the gap provided by 
 
 ### `button-group_full_[key]`
 
-A modifier to allow a button-group to span the full width of it's container. Values and class keys are generated using the [`$breakpoint`](#breakpoints) map. Omitting the key value from the modifier (e.g. `button-group_full`) will stack items under all conditions.
+A modifier to allow a button-group to span the full width of it's container. Values and class keys are generated using the [`$breakpoints`](#breakpoints) map. Omitting the key value from the modifier (e.g. `button-group_full`) will stack items under all conditions.
 
 ```html
 <div class="button-group button-group_full_md">
@@ -101,7 +101,7 @@ A modifier to join buttons without a button-group component. This removes all ga
 
 ### `button-group_stack_[key]`
 
-Adds a breakpoint for when button-group elements should be stacked vertically. Values and class keys are generated using the [`$breakpoint`](#breakpoints) map. Omitting the key value from the modifier (e.g. `button-group_stack`) will stack items under all conditions.
+Adds a breakpoint for when button-group elements should be stacked vertically. Values and class keys are generated using the [`$breakpoints`](#breakpoints) map. Omitting the key value from the modifier (e.g. `button-group_stack`) will stack items under all conditions.
 
 ```html
 <div class="button-group button-group_stack_md">

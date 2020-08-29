@@ -92,11 +92,11 @@ Adjusts the vertical gap spacing based on the provided key. Gap key output is ba
 - `media_gap-y_lg`
 - `media_gap-y_xl`
 
-> The `media_gap-y_[key]` modifier only takes effect when combined with a `media_stack_[bp]` modifier.
+> The `media_gap-y_[key]` modifier only takes effect when combined with a `media_stack_[key]` modifier.
 
 ### `media_stack_[key]`
 
-Adds a breakpoint for when media elements should be stacked vertically. Values and class keys are generated using the [`$breakpoint`](#breakpoints) map. Omitting the key value from the modifier (e.g. `media_stack`) will stack items under all conditions.
+Adds a breakpoint for when media elements should be stacked vertically. Values and class keys are generated using the [`$breakpoints`](#breakpoints) map. Omitting the key value from the modifier (e.g. `media_stack`) will stack items under all conditions.
 
 ```html
 <div class="media media_stack_lg">

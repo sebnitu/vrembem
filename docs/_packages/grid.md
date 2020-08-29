@@ -255,7 +255,7 @@ Adjusts the vertical gap spacing based on the provided key. Gap key output is ba
 
 ## grid_stack_[key]
 
-Adds a breakpoint for when grid items should be stacked vertically. Values and class keys are generated using the [`$breakpoint`](#breakpoints) map. Omitting the key value from the modifier (e.g. `grid_stack`) will stack items under all conditions.
+Adds a breakpoint for when grid items should be stacked vertically. Values and class keys are generated using the [`$breakpoints`](#breakpoints) map. Omitting the key value from the modifier (e.g. `grid_stack`) will stack items under all conditions.
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="grid grid_stack_xs">
