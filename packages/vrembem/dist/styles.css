@@ -1009,7 +1009,7 @@ input::-moz-placeholder {
   min-height: 1.875rem;
   padding: 0.25rem 0.5rem;
   font-size: 0.875em;
-  line-height: 1.5714;
+  line-height: 1.375;
 }
 .button_size_sm .icon {
   padding: 0.129em;
@@ -1020,7 +1020,7 @@ input::-moz-placeholder {
   min-height: 3.125rem;
   padding: 0.75rem 1.5rem;
   font-size: 1.125em;
-  line-height: 1.4444;
+  line-height: 1.625;
 }
 .button_size_lg:not(.button_icon) .icon:first-child {
   margin-left: -0.25em;
@@ -1355,7 +1355,7 @@ input::-moz-placeholder {
   flex-grow: 1;
   font-size: 1.125em;
   font-weight: 600;
-  line-height: 1.4444;
+  line-height: 1.625;
 }
 
 .card__background,
@@ -1607,7 +1607,7 @@ input::-moz-placeholder {
   flex-grow: 1;
   font-size: 1.125em;
   font-weight: 600;
-  line-height: 1.4444;
+  line-height: 1.625;
 }
 
 .dialog > .dialog__close {
@@ -1896,7 +1896,7 @@ input::-moz-placeholder {
 .dropdown__title {
   font-size: 1.125em;
   font-weight: 600;
-  line-height: 1.4444;
+  line-height: 1.625;
 }
 
 .dropdown__item {
@@ -2529,13 +2529,13 @@ input::-moz-placeholder {
 .input_size_sm {
   padding: 0.25rem 0.5rem;
   font-size: 0.875em;
-  line-height: 1.5714;
+  line-height: 1.375;
 }
 
 .input_size_lg {
   padding: 0.75rem;
   font-size: 1.125em;
-  line-height: 1.4444;
+  line-height: 1.625;
 }
 
 .input_state_success {
@@ -3645,7 +3645,7 @@ input::-moz-placeholder {
 .notice__title {
   font-size: 1.125em;
   font-weight: 600;
-  line-height: 1.4444;
+  line-height: 1.625;
 }
 
 .notice_color_primary {
