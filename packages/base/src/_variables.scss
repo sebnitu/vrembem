@@ -41,9 +41,9 @@ $class-type: "type" !default;
 // Base settings
 // ---
 
+$root-height: 100% !default;
 $color: core.$color !default;
-$color-invert: core.$color-invert !default;
-$color-subtle: core.$color-subtle !default;
+$color-caption: core.$color-subtle !default;
 $font-family: core.$font-family !default;
 $font-family-mono: core.$font-family-mono !default;
 $font-size: core.$font-size !default;
@@ -93,8 +93,8 @@ $embed-ratio: core.aspect-ratio(16, 9) !default;
 // Heading
 // ---
 
-$heading-font-family: null !default;
-$heading-line-height: 1.3 !default;
+$heading-font-family: inherit !default;
+$heading-line-height: core.$line-height-sm !default;
 $heading-color: inherit !default;
 $heading-color-invert: null !default;
 $heading-font-weight: core.font-weight("semi-bold") !default;
@@ -156,6 +156,8 @@ $spacing-map: core.$spacing-map !default;
 // Type
 // ---
 
+$type-color: null !default;
+$type-color-invert: core.$color-invert !default;
 $type-font-family: null !default;
 $type-font-size: null !default;
 $type-line-height: null !default;

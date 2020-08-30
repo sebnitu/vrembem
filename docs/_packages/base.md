@@ -281,6 +281,46 @@ Outputs a number of base and reset element styles to help keep html elements pre
         <td data-mobile-label="Desc">Toggles the output of this module.</td>
       </tr>
       <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$root-height</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">100%</code></td>
+        <td data-mobile-label="Desc">Sets the height property on the root <code class="code">html</code> and <code class="code">body</code> elements.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$color</code></td>
+        <td data-mobile-label="Desc">Sets the base color property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color-caption</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$color-subtle</code></td>
+        <td data-mobile-label="Desc">Sets the color property for the caption element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$font-family</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$font-family</code></td>
+        <td data-mobile-label="Desc">Sets the base font-family property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$font-family-mono</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$font-family-mono</code></td>
+        <td data-mobile-label="Desc">Sets the font-family property for elements that use a mono-spacing front.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$font-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$font-size</code></td>
+        <td data-mobile-label="Desc">Sets the base font-size property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$font-size-sm</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$font-size-sm</code></td>
+        <td data-mobile-label="Desc">Sets the font-size property for small element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$line-height</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$line-height</code></td>
+        <td data-mobile-label="Desc">Sets the base line-height property.</td>
+      </tr>
+      <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$box-sizing</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">border-box</code></td>
         <td data-mobile-label="Desc">Sets the default box-sizing property for all HTML elements.</td>
@@ -294,10 +334,9 @@ Outputs a number of base and reset element styles to help keep html elements pre
   </table>
 </div>
 
-Here's an example of the default styles applied to all HTML elements and specific styles on the `html` and `body` elements.
+Here's an example of the base styles applied by the base module:
 
 ```scss
-// Output using default variables
 *,
 *::before,
 *::after {
@@ -308,21 +347,24 @@ Here's an example of the default styles applied to all HTML elements and specifi
 
 html,
 body {
-  height: 100%;
+  height: $root-height;
 }
 
 html {
-  box-sizing: border-box;
-  font-size: 16px;
-  line-height: 1.5;
+  box-sizing: $box-sizing;
+  font-size: $font-size;
+  line-height: $line-height;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
-  color: #212121;
-  font-family: blinkmacsystemfont, -apple-system, system-ui, "Segoe UI", "Roboto", "Helvetica Neue", arial, sans-serif;
+  background: $body-background;
+  color: $color;
+  font-family: $font-family;
 }
+
+// Continued ...
 ```
 
 For a complete understanding of what this module does, checkout the source: [`_base.scss`](https://github.com/sebnitu/vrembem/blob/master/packages/base/src/_base.scss)
@@ -626,12 +668,12 @@ Section headings in HTML are represented by the `<h1>` through `<h6>` elements. 
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$heading-font-family</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">inherit</code></td>
         <td data-mobile-label="Desc">Sets the font-family property.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$heading-line-height</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1.3</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$line-height-sm</code></td>
         <td data-mobile-label="Desc">Sets the line-height property.</td>
       </tr>
       <tr>
@@ -788,7 +830,6 @@ A link—usually represented by an anchor (`<a>`) HTML element with `href` attri
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1px solid currentColor</code></td>
         <td data-mobile-label="Desc">Sets the border property on hover state.</td>
       </tr>
-
       <!-- modifier: subtle -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$link-subtle-color</code></td>
@@ -810,7 +851,6 @@ A link—usually represented by an anchor (`<a>`) HTML element with `href` attri
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">currentColor</code></td>
         <td data-mobile-label="Desc">Sets the border-color property on subtle modifier hover state.</td>
       </tr>
-
       <!-- modifier: invert -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$link-invert-color</code></td>
@@ -832,7 +872,6 @@ A link—usually represented by an anchor (`<a>`) HTML element with `href` attri
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">currentColor</code></td>
         <td data-mobile-label="Desc">Sets the border-color property on invert modifier hover state.</td>
       </tr>
-
       <!-- modifier: invert-subtle -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$link-invert-subtle-color</code></td>
@@ -1504,6 +1543,16 @@ Modules that get mapped to HTML elements include:
         <td data-mobile-label="Var"><code class="code text-nowrap">$class-type</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"type"</code></td>
         <td data-mobile-label="Desc">String to use for the class name of the type module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$type-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the color property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$type-color-invert</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$color-invert</code></td>
+        <td data-mobile-label="Desc">Sets the color property for text on a dark background.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$type-font-family</code></td>

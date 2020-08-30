@@ -95,47 +95,29 @@
 
 @mixin heading($level) {
   @if $level == 1 {
-    font-size: 2em;
-    @include core.media-min("md") {
-      font-size: 2.5em;
-    }
+    font-size: 2.25em;
   }
 
   @else if $level == 2 {
-    font-size: 1.75em;
-    @include core.media-min("md") {
-      font-size: 2em;
-    }
+    font-size: 2em;
   }
 
   @else if $level == 3 {
-    font-size: 1.5em;
-    @include core.media-min("md") {
-      font-size: 1.75em;
-    }
+    font-size: 1.75em;
   }
 
   @else if $level == 4 {
-    font-size: 1.25em;
-    @include core.media-min("md") {
-      font-size: 1.5em;
-    }
+    font-size: 1.5em;
   }
 
   @else if $level == 5 {
-    font-size: 1.1em;
+    font-size: 1.25em;
     line-height: inherit;
-    @include core.media-min("md") {
-      font-size: 1.25em;
-    }
   }
 
   @else if $level == 6 {
     font-size: 1em;
     line-height: inherit;
-    @include core.media-min("md") {
-      font-size: 1em;
-    }
   }
 }
 
@@ -283,6 +265,7 @@
 @mixin type() {
   @include core.add-clearfix();
   @include spacing(var.$type-spacing);
+  color: var.$type-color;
   font-family: var.$type-font-family;
   font-size: var.$type-font-size;
   line-height: var.$type-line-height;
@@ -350,7 +333,7 @@
 
 @mixin type-invert($color: black) {
   @if (lightness($color) < core.$lightness-threshold) {
-    color: var.$color-invert;
+    color: var.$type-color-invert;
 
     > h1,
     > h2,

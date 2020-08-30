@@ -206,120 +206,61 @@ input::-moz-placeholder {
 .h5,
 .h6 {
   color: inherit;
+  font-family: inherit;
   font-weight: 600;
-  line-height: 1.3;
+  line-height: 1.375;
 }
 
 .h1 {
-  font-size: 2em;
-}
-@media (min-width: 760px) {
-  .h1 {
-    font-size: 2.5em;
-  }
+  font-size: 2.25em;
 }
 
 .h2 {
-  font-size: 1.75em;
-}
-@media (min-width: 760px) {
-  .h2 {
-    font-size: 2em;
-  }
+  font-size: 2em;
 }
 
 .h3 {
-  font-size: 1.5em;
-}
-@media (min-width: 760px) {
-  .h3 {
-    font-size: 1.75em;
-  }
+  font-size: 1.75em;
 }
 
 .h4 {
-  font-size: 1.25em;
-}
-@media (min-width: 760px) {
-  .h4 {
-    font-size: 1.5em;
-  }
+  font-size: 1.5em;
 }
 
 .h5 {
-  font-size: 1.1em;
+  font-size: 1.25em;
   line-height: inherit;
-}
-@media (min-width: 760px) {
-  .h5 {
-    font-size: 1.25em;
-  }
 }
 
 .h6 {
   font-size: 1em;
   line-height: inherit;
 }
-@media (min-width: 760px) {
-  .h6 {
-    font-size: 1em;
-  }
-}
 
 .type .h1 {
-  font-size: 2em;
-}
-@media (min-width: 760px) {
-  .type .h1 {
-    font-size: 2.5em;
-  }
+  font-size: 2.25em;
 }
 
 .type .h2 {
-  font-size: 1.75em;
-}
-@media (min-width: 760px) {
-  .type .h2 {
-    font-size: 2em;
-  }
+  font-size: 2em;
 }
 
 .type .h3 {
-  font-size: 1.5em;
-}
-@media (min-width: 760px) {
-  .type .h3 {
-    font-size: 1.75em;
-  }
+  font-size: 1.75em;
 }
 
 .type .h4 {
-  font-size: 1.25em;
-}
-@media (min-width: 760px) {
-  .type .h4 {
-    font-size: 1.5em;
-  }
+  font-size: 1.5em;
 }
 
 .type .h5 {
-  font-size: 1.1em;
+  font-size: 1.25em;
   line-height: inherit;
-}
-@media (min-width: 760px) {
-  .type .h5 {
-    font-size: 1.25em;
-  }
 }
 
 .type .h6 {
   font-size: 1em;
   line-height: inherit;
-}
-@media (min-width: 760px) {
-  .type .h6 {
-    font-size: 1em;
-  }
 }
 
 .link {
@@ -481,58 +422,29 @@ input::-moz-placeholder {
 .type > h5,
 .type > h6 {
   color: inherit;
+  font-family: inherit;
   font-weight: 600;
-  line-height: 1.3;
+  line-height: 1.375;
 }
 .type > h1 {
-  font-size: 2em;
-}
-@media (min-width: 760px) {
-  .type > h1 {
-    font-size: 2.5em;
-  }
+  font-size: 2.25em;
 }
 .type > h2 {
-  font-size: 1.75em;
-}
-@media (min-width: 760px) {
-  .type > h2 {
-    font-size: 2em;
-  }
+  font-size: 2em;
 }
 .type > h3 {
-  font-size: 1.5em;
-}
-@media (min-width: 760px) {
-  .type > h3 {
-    font-size: 1.75em;
-  }
+  font-size: 1.75em;
 }
 .type > h4 {
-  font-size: 1.25em;
-}
-@media (min-width: 760px) {
-  .type > h4 {
-    font-size: 1.5em;
-  }
+  font-size: 1.5em;
 }
 .type > h5 {
-  font-size: 1.1em;
+  font-size: 1.25em;
   line-height: inherit;
-}
-@media (min-width: 760px) {
-  .type > h5 {
-    font-size: 1.25em;
-  }
 }
 .type > h6 {
   font-size: 1em;
   line-height: inherit;
-}
-@media (min-width: 760px) {
-  .type > h6 {
-    font-size: 1em;
-  }
 }
 .type > a,
 .type > :not(div) a {
@@ -6506,14 +6418,10 @@ input::-moz-placeholder {
 
 .article__title {
   color: inherit;
+  font-family: inherit;
   font-weight: 600;
-  line-height: 1.3;
-  font-size: 2em;
-}
-@media (min-width: 760px) {
-  .article__title {
-    font-size: 2.5em;
-  }
+  line-height: 1.375;
+  font-size: 2.25em;
 }
 
 .article__footer {

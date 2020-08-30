@@ -14,7 +14,7 @@
   // Default html (root) and body styles
   html,
   body {
-    height: 100%;
+    height: var.$root-height;
   }
 
   html {
@@ -86,7 +86,7 @@
   // Better default caption styles
   caption {
     caption-side: bottom;
-    color: var.$color-subtle;
+    color: var.$color-caption;
     text-align: left;
   }
 
