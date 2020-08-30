@@ -336,14 +336,30 @@ Section headings in HTML are represented by the `<h1>` through `<h6>` elements. 
 <h6 class="h6">...</h6>
 ```
 
-| Variable                | Default                         | Description                                                                                   |
-| ----------------------- | ------------------------------- | --------------------------------------------------------------------------------------------- |
-| `$output-heading`       | `$output` &rarr; `true`         | Toggles the output of this module.                                                            |
-| `$heading-font-family`  | `inherit`                       | Sets the font-family property.                                                                |
-| `$heading-line-height`  | `core.$line-height-sm`          | Sets the line-height property.                                                                |
-| `$heading-color`        | `inherit`                       | Sets the text color property.                                                                 |
-| `$heading-color-invert` | `null`                          | Sets the inverted text color. This is used when heading elements appear on a dark background. |
-| `$heading-font-weight`  | `core.font-weight("semi-bold")` | Sets the font-weight property.                                                                |
+| Variable                | Default                                 | Description                                                                                   |
+| ----------------------- | --------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `$output-heading`       | `$output` &rarr; `true`                 | Toggles the output of this module.                                                            |
+| `$heading-font-family`  | `inherit`                               | Sets the font-family property.                                                                |
+| `$heading-line-height`  | `core.$line-height-sm`                  | Sets the line-height property.                                                                |
+| `$heading-color`        | `inherit`                               | Sets the text color property.                                                                 |
+| `$heading-color-invert` | `null`                                  | Sets the inverted text color. This is used when heading elements appear on a dark background. |
+| `$heading-font-weight`  | `core.font-weight("semi-bold")`         | Sets the font-weight property.                                                                |
+| `$heading-scale`        | [`Sass Map` Ref &darr;](#heading-scale) | A map containing the font-size and optional line-height scale for HTML headings.              |
+
+#### `$heading-scale`
+
+A map containing the font-size and optional line-height scale for HTML headings. The map should contain a key of the heading level and the value of a font-size and optional line-height space separated.
+
+```scss
+$heading-scale: (
+  "h1": 2.25em,
+  "h2": 2em,
+  "h3": 1.75em,
+  "h4": 1.5em,
+  "h5": 1.25em inherit,
+  "h6": 1em inherit
+) !default;
+```
 
 #### `@mixin heading-base()`
 
@@ -364,15 +380,57 @@ h1, h2, h3, h4, h5, h6 {
 }
 ```
 
-#### `@mixin heading($level)`
+#### `@mixin heading-levels($map: $heading-scale), $prefix: null`)
+
+Output all the heading styles set in the passed map which defaults to the [`$heading-scale`](#heading-scale) map.
+
+**Arguments**
+
+| Variable  | Type     | Description                                                                                         |
+| --------- | -------- | --------------------------------------------------------------------------------------------------- |
+| `$map`    | `map`    | The map object to search heading level values from. Defaults to [`$heading-scale`](#heading-scale). |
+| `$prefix` | `string` | A string to prefix the key from the passed map object. This is used as the selector.                |
+
+**Example**
+
+```scss
+// Using a custom map
+$custom-heading-scale: (
+  "h1": 3em 1.6,
+  "h2": 2em 1.5,
+  "h3": 2.5em 1.4,
+);
+
+// Pass in our custom map and a prefix
+@include heading-levels($custom-heading-scale, $prefix: '.vb-');
+
+// CSS Output
+.vb-h1 {
+  font-size: 3em;
+  line-height: 1.6;
+}
+
+.vb-h2 {
+  font-size: 2em;
+  line-height: 1.5;
+}
+
+.vb-h3 {
+  font-size: 2.5em;
+  line-height: 1.4;
+}
+```
+
+#### `@mixin heading($level, $map: $heading-scale)`
 
 Output the specific styles for a heading level. Takes the heading level as an argument.
 
 **Arguments**
 
-| Variable | Type           | Description                            |
-| -------- | -------------- | -------------------------------------- |
-| `$level` | `number (1-6)` | The level of heading styles to output. |
+| Variable | Type                               | Description                                                                                                    |
+| -------- | ---------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `$level` | `number (1-6) or string (map key)` | The level of heading styles to output. Can either be a number to search for index or string to search for key. |
+| `$map`   | `map`                              | The map object to search heading level values from. Defaults to [`$heading-scale`](#heading-scale).            |
 
 **Example**
 
@@ -383,13 +441,7 @@ h1 {
 
 // CSS Output
 .h1 {
-  font-size: 2em;
-}
-
-@media (min-width: 760px) {
-  .h1 {
-    font-size: 2.5em;
-  }
+  font-size: 2.25em;
 }
 ```
 

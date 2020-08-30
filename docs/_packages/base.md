@@ -691,9 +691,31 @@ Section headings in HTML are represented by the `<h1>` through `<h6>` elements. 
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.font-weight("semi-bold")</code></td>
         <td data-mobile-label="Desc">Sets the font-weight property.</td>
       </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$heading-scale</code></td>
+        <td data-mobile-label="Default">
+          <a href="#heading-scale"><code class="code color-secondary text-nowrap">Sass Map</code> Ref &darr;</a>
+        </td>
+        <td data-mobile-label="Desc">A map containing the font-size and optional line-height scale for HTML headings.</td>
+      </tr>
     </tbody>
   </table>
 </div>
+
+#### `$heading-scale`
+
+A map containing the font-size and optional line-height scale for HTML headings. The map should contain a key of the heading level and the value of a font-size and optional line-height space separated.
+
+```scss
+$heading-scale: (
+  "h1": 2.25em,
+  "h2": 2em,
+  "h3": 1.75em,
+  "h4": 1.5em,
+  "h5": 1.25em inherit,
+  "h6": 1em inherit
+) !default;
+```
 
 ### `@mixin heading-base()`
 
@@ -714,7 +736,67 @@ h1, h2, h3, h4, h5, h6 {
 }
 ```
 
-### `@mixin heading($level)`
+### `@mixin heading-levels($map: $heading-scale), $prefix: null`)
+
+Output all the heading styles set in the passed map which defaults to the [`$heading-scale`](#heading-scale) map.
+
+**Arguments**
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$map</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">map</code></td>
+        <td data-mobile-label="Desc">The map object to search heading level values from. Defaults to <a href="#heading-scale"><code class="code">$heading-scale</code></a>.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">string</code></td>
+        <td data-mobile-label="Desc">A string to prefix the key from the passed map object. This is used as the selector.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+**Example**
+
+```scss
+// Using a custom map
+$custom-heading-scale: (
+  "h1": 3em 1.6,
+  "h2": 2em 1.5,
+  "h3": 2.5em 1.4,
+);
+
+// Pass in our custom map and a prefix
+@include heading-levels($custom-heading-scale, $prefix: '.vb-');
+
+// CSS Output
+.vb-h1 {
+  font-size: 3em;
+  line-height: 1.6;
+}
+
+.vb-h2 {
+  font-size: 2em;
+  line-height: 1.5;
+}
+
+.vb-h3 {
+  font-size: 2.5em;
+  line-height: 1.4;
+}
+```
+
+### `@mixin heading($level, $map: $heading-scale)`
 
 Output the specific styles for a heading level. Takes the heading level as an argument.
 
@@ -733,7 +815,12 @@ Output the specific styles for a heading level. Takes the heading level as an ar
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$level</code></td>
         <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">number (1-6)</code></td>
-        <td data-mobile-label="Desc">The level of heading styles to output.</td>
+        <td data-mobile-label="Desc">The level of heading styles to output. Can either be a number to search for index or string to search for key.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$map</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">map</code></td>
+        <td data-mobile-label="Desc">The map object to search heading level values from. Defaults to <a href="#heading-scale"><code class="code">$heading-scale</code></a>.</td>
       </tr>
     </tbody>
   </table>
@@ -748,13 +835,7 @@ h1 {
 
 // CSS Output
 .h1 {
-  font-size: 2em;
-}
-
-@media (min-width: 760px) {
-  .h1 {
-    font-size: 2.5em;
-  }
+  font-size: 2.25em;
 }
 ```
 

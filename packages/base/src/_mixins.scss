@@ -1,5 +1,6 @@
 @use "sass:list";
 @use "sass:map";
+@use "sass:meta";
 @use "@vrembem/core";
 @use "./variables" as var;
 
@@ -13,7 +14,7 @@
   $radius: var.$arrow-radius
 ) {
   $size-pointer: $size;
-  @if (type-of($size) == list) {
+  @if (meta.type-of($size) == list) {
     $size-pointer: list.nth($size, 2);
     $size: list.nth($size, 1);
   }
@@ -93,32 +94,36 @@
   line-height: var.$heading-line-height;
 }
 
-@mixin heading($level) {
-  @if $level == 1 {
-    font-size: 2.25em;
+@mixin heading-levels($map: var.$heading-scale, $prefix: null) {
+  @each $key, $value in $map {
+    $font-size: $value;
+    $line-height: null;
+    @if meta.type-of($value) == list {
+      $font-size: list.nth($value, 1);
+      $line-height: list.nth($value, 2);
+    }
+    #{$prefix}#{$key} {
+      font-size: $font-size;
+      line-height: $line-height;
+    }
   }
+}
 
-  @else if $level == 2 {
-    font-size: 2em;
+@mixin heading($level, $map: var.$heading-scale) {
+  $value: null;
+  @if meta.type-of($level) == number {
+    $value: list.nth(map.values($map), $level);
+  } @else if meta.type-of($level) == string {
+    $value: map.get($map, $level);
   }
-
-  @else if $level == 3 {
-    font-size: 1.75em;
+  $font-size: $value;
+  $line-height: null;
+  @if meta.type-of($value) == list {
+    $font-size: list.nth($value, 1);
+    $line-height: list.nth($value, 2);
   }
-
-  @else if $level == 4 {
-    font-size: 1.5em;
-  }
-
-  @else if $level == 5 {
-    font-size: 1.25em;
-    line-height: inherit;
-  }
-
-  @else if $level == 6 {
-    font-size: 1em;
-    line-height: inherit;
-  }
+  font-size: $font-size;
+  line-height: $line-height;
 }
 
 // Link
@@ -252,7 +257,7 @@
     $imp: null;
   }
 
-  @if (type-of($value) == number) {
+  @if (meta.type-of($value) == number) {
     > * + * {
       margin-top: $value #{$imp};
     }
@@ -270,37 +275,17 @@
   font-size: var.$type-font-size;
   line-height: var.$type-line-height;
 
-  > h1,
-  > h2,
-  > h3,
-  > h4,
-  > h5,
-  > h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @include heading-base();
   }
 
-  > h1 {
-    @include heading(1);
-  }
-
-  > h2 {
-    @include heading(2);
-  }
-
-  > h3 {
-    @include heading(3);
-  }
-
-  > h4 {
-    @include heading(4);
-  }
-
-  > h5 {
-    @include heading(5);
-  }
-
-  > h6 {
-    @include heading(6);
+  > {
+    @include heading-levels();
   }
 
   > a,

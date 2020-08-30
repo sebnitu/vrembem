@@ -240,24 +240,19 @@ input::-moz-placeholder {
 .type .h1 {
   font-size: 2.25em;
 }
-
 .type .h2 {
   font-size: 2em;
 }
-
 .type .h3 {
   font-size: 1.75em;
 }
-
 .type .h4 {
   font-size: 1.5em;
 }
-
 .type .h5 {
   font-size: 1.25em;
   line-height: inherit;
 }
-
 .type .h6 {
   font-size: 1em;
   line-height: inherit;
@@ -415,12 +410,12 @@ input::-moz-placeholder {
   display: table;
   clear: both;
 }
-.type > h1,
-.type > h2,
-.type > h3,
-.type > h4,
-.type > h5,
-.type > h6 {
+.type h1,
+.type h2,
+.type h3,
+.type h4,
+.type h5,
+.type h6 {
   color: inherit;
   font-family: inherit;
   font-weight: 600;
