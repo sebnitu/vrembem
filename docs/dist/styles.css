@@ -895,7 +895,7 @@ input::-moz-placeholder {
   padding: 0.25rem;
 }
 .button_icon.button_size_lg {
-  padding: 0.75rem;
+  padding: 0.648rem;
 }
 
 .button_invert {
@@ -1018,7 +1018,7 @@ input::-moz-placeholder {
 .button_size_lg {
   min-width: 3.125rem;
   min-height: 3.125rem;
-  padding: 0.75rem 1.5rem;
+  padding: 0.648rem 1.5rem;
   font-size: 1.125em;
   line-height: 1.625;
 }
@@ -2533,7 +2533,7 @@ input::-moz-placeholder {
 }
 
 .input_size_lg {
-  padding: 0.75rem;
+  padding: 0.648rem;
   font-size: 1.125em;
   line-height: 1.625;
 }
@@ -4300,7 +4300,7 @@ input::-moz-placeholder {
     padding-left: calc(8rem + 1.5rem);
   }
   .table_responsive_xs.table_size_lg [data-mobile-label]::before {
-    padding: 0.75rem 1.5rem;
+    padding: 0.648rem 1.5rem;
   }
   .table_responsive_xs.table_style_bordered {
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -4362,7 +4362,7 @@ input::-moz-placeholder {
     padding-left: calc(8rem + 1.5rem);
   }
   .table_responsive_sm.table_size_lg [data-mobile-label]::before {
-    padding: 0.75rem 1.5rem;
+    padding: 0.648rem 1.5rem;
   }
   .table_responsive_sm.table_style_bordered {
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -4424,7 +4424,7 @@ input::-moz-placeholder {
     padding-left: calc(8rem + 1.5rem);
   }
   .table_responsive_md.table_size_lg [data-mobile-label]::before {
-    padding: 0.75rem 1.5rem;
+    padding: 0.648rem 1.5rem;
   }
   .table_responsive_md.table_style_bordered {
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -4486,7 +4486,7 @@ input::-moz-placeholder {
     padding-left: calc(8rem + 1.5rem);
   }
   .table_responsive_lg.table_size_lg [data-mobile-label]::before {
-    padding: 0.75rem 1.5rem;
+    padding: 0.648rem 1.5rem;
   }
   .table_responsive_lg.table_style_bordered {
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -4548,7 +4548,7 @@ input::-moz-placeholder {
     padding-left: calc(8rem + 1.5rem);
   }
   .table_responsive_xl.table_size_lg [data-mobile-label]::before {
-    padding: 0.75rem 1.5rem;
+    padding: 0.648rem 1.5rem;
   }
   .table_responsive_xl.table_style_bordered {
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -4577,7 +4577,7 @@ input::-moz-placeholder {
 .table_size_lg th,
 .table_size_lg td,
 .table_size_lg caption {
-  padding: 0.75rem 1.5rem;
+  padding: 0.648rem 1.5rem;
 }
 
 .table_style_rowed {
