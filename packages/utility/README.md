@@ -423,7 +423,6 @@ A utility for adjusting various text styles.
 - `text-underline-dashed`: Sets text-decoration to underline with dashed style.
 - `text-wrap`: Sets white-space to normal allowing text to wrap.
 - `text-nowrap`: Sets white-space to `nowrap` which no longer allows text to wrap.
-- `text-lead`: Adds font styles to create leading text.
 
 #### `text-overflow-ellipsis`
 

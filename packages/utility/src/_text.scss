@@ -80,9 +80,4 @@ $_c: var.$class-text;
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
   }
-
-  .#{$_u}#{$_c}-lead {
-    font-size: 1.2em !important;
-    font-weight: core.font-weight("light") !important;
-  }
 }
