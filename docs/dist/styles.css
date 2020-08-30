@@ -62,7 +62,7 @@ pre {
 }
 
 small {
-  font-size: 14px;
+  font-size: 0.875em;
 }
 
 table {
@@ -1008,7 +1008,7 @@ input::-moz-placeholder {
   min-width: 1.875rem;
   min-height: 1.875rem;
   padding: 0.25rem 0.5rem;
-  font-size: 14px;
+  font-size: 0.875em;
   line-height: 1.5714;
 }
 .button_size_sm .icon {
@@ -1019,7 +1019,7 @@ input::-moz-placeholder {
   min-width: 3.125rem;
   min-height: 3.125rem;
   padding: 0.75rem 1.5rem;
-  font-size: 18px;
+  font-size: 1.125em;
   line-height: 1.4444;
 }
 .button_size_lg:not(.button_icon) .icon:first-child {
@@ -1353,7 +1353,7 @@ input::-moz-placeholder {
 
 .card__title {
   flex-grow: 1;
-  font-size: 18px;
+  font-size: 1.125em;
   font-weight: 600;
   line-height: 1.4444;
 }
@@ -1605,7 +1605,7 @@ input::-moz-placeholder {
 
 .dialog__title {
   flex-grow: 1;
-  font-size: 18px;
+  font-size: 1.125em;
   font-weight: 600;
   line-height: 1.4444;
 }
@@ -1825,7 +1825,7 @@ input::-moz-placeholder {
   background: #fff;
   background-clip: padding-box;
   box-shadow: 0 0 0 1px rgba(33, 33, 33, 0.05), 0 5px 5px -3px rgba(33, 33, 33, 0.1), 0 8px 10px 1px rgba(33, 33, 33, 0.08), 0 3px 14px 2px rgba(33, 33, 33, 0.06);
-  font-size: 14px;
+  font-size: 0.875em;
   list-style: none;
   text-align: left;
   white-space: normal;
@@ -1894,7 +1894,7 @@ input::-moz-placeholder {
 }
 
 .dropdown__title {
-  font-size: 18px;
+  font-size: 1.125em;
   font-weight: 600;
   line-height: 1.4444;
 }
@@ -2391,7 +2391,7 @@ input::-moz-placeholder {
 }
 .icon-action .icon {
   stroke-width: 2.5px;
-  font-size: 14px;
+  font-size: 0.875em;
 }
 
 .icon-action_color_danger {
@@ -2528,13 +2528,13 @@ input::-moz-placeholder {
 
 .input_size_sm {
   padding: 0.25rem 0.5rem;
-  font-size: 14px;
+  font-size: 0.875em;
   line-height: 1.5714;
 }
 
 .input_size_lg {
   padding: 0.75rem;
-  font-size: 18px;
+  font-size: 1.125em;
   line-height: 1.4444;
 }
 
@@ -3643,7 +3643,7 @@ input::-moz-placeholder {
 }
 
 .notice__title {
-  font-size: 18px;
+  font-size: 1.125em;
   font-weight: 600;
   line-height: 1.4444;
 }
@@ -6425,11 +6425,11 @@ input::-moz-placeholder {
   }
 }
 .text-size-sm {
-  font-size: 14px !important;
+  font-size: 0.875em !important;
 }
 
 .text-size-lg {
-  font-size: 18px !important;
+  font-size: 1.125em !important;
 }
 
 .text-capitalize {
@@ -6672,7 +6672,7 @@ input::-moz-placeholder {
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 0 0 1px rgba(33, 33, 33, 0.05), 0 5px 5px -3px rgba(33, 33, 33, 0.1), 0 8px 10px 1px rgba(33, 33, 33, 0.08), 0 3px 14px 2px rgba(33, 33, 33, 0.06);
   font-family: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 14px;
+  font-size: 0.875em;
 }
 .debug::before {
   content: "Debug";

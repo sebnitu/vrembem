@@ -49,13 +49,13 @@
 
 .input_size_sm {
   padding: 0.25rem 0.5rem;
-  font-size: 14px;
+  font-size: 0.875em;
   line-height: 1.5714;
 }
 
 .input_size_lg {
   padding: 0.75rem;
-  font-size: 18px;
+  font-size: 1.125em;
   line-height: 1.4444;
 }
 
