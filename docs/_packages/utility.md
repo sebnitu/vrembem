@@ -57,17 +57,67 @@ Setting these variables will apply to all utility modules.
     <tbody>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-utility</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
         <td data-mobile-label="Desc">String to prefix all utility classes with.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$output</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">true</code></td>
         <td data-mobile-label="Desc">Toggles the default output of all modules.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$breakpoints</code></td>
+        <td data-mobile-label="Default">
+          <a class="link" href="#breakpoints"><code class="code color-secondary text-nowrap">core.$breakpoints</code> Ref &darr;</a>
+        </td>
+        <td data-mobile-label="Desc">A map of breakpoints used by utilities that provide breakpoint specific variations such as the <a class="link" href="#display"><code class="code">display</code></a> and <a class="link" href="#span"><code class="code">span</code></a> utilities.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$spacing</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$spacing</code> &rarr; <code class="code color-secondary">1em</code></td>
+        <td data-mobile-label="Desc">Used as the default spacing for <a class="link" href="#margin"><code class="code">margin</code></a> and <a class="link" href="#padding"><code class="code">padding</code></a> utilities.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$spacing-map</code></td>
+        <td data-mobile-label="Default">
+          <a class="link" href="#spacing-map"><code class="code color-secondary text-nowrap">core.$spacing-map</code> Ref &darr;</a>
+        </td>
+        <td data-mobile-label="Desc">Used to build spacing variants for <a class="link" href="#margin"><code class="code">margin</code></a> and <a class="link" href="#padding"><code class="code">padding</code></a> utilities.</td>
       </tr>
     </tbody>
   </table>
 </div>
+
+### $breakpoints
+
+A map of breakpoints used by utilities that provide breakpoint specific variations such as the [`display`](#display) and [`span`](#span) utilities.
+
+```scss
+// Inherited from: core.$breakpoints
+$breakpoints: (
+  "xs": 480px,
+  "sm": 620px,
+  "md": 760px,
+  "lg": 990px,
+  "xl": 1380px
+) !default;
+```
+
+### $spacing-map
+
+Used to build spacing variants for [`margin`](#margin) and [`padding`](#padding) utilities.
+
+```scss
+// Inherited from: core.$spacing-map
+$spacing-map: (
+  "none": 0,
+  "xs": 0.25em,
+  "sm": 0.5em,
+  "md": 1em,
+  "lg": 1.5em,
+  "xl": 2em
+) !default;
+```
 
 ### Modules
 
@@ -160,6 +210,30 @@ Applies background color property. Most options include light, lighter, dark and
 ```
 {% include demo_close.html %}
 
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"background"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the background utility.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 ## border
 
 Applies border property with optional sides variants.
@@ -181,6 +255,30 @@ Applies border property with optional sides variants.
 <div class="border-left"></div>
 ```
 {% include demo_close.html %}
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-border</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-border</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"border"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the border utility.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ### border-none
 
@@ -278,6 +376,30 @@ Applies border-radius styles with optional corner variants. The value used by th
 <div class="radius-bottom-left"></div>
 ```
 {% include demo_close.html %}
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-border-radius</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-border-radius</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"radius"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the border-radius utility.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ### radius-circle
 
@@ -380,6 +502,30 @@ Applies different levels of elevation through box-shadow styles.
 <div class="elevate-24dp"></div>
 ```
 {% include demo_close.html %}
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-box-shadow</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-box-shadow</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"elevate"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the box-shadow utility.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ## color
 
@@ -493,6 +639,30 @@ Applies text color property. Most options include light, lighter, dark and darke
 ```
 {% include demo_close.html %}
 
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"color"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the color utility.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 ## display
 
 Display utilities allow you to toggle the display property on an element with an optional breakpoint conditional.
@@ -591,6 +761,52 @@ Display utilities allow you to toggle the display property on an element with an
 ```
 {% include demo_close.html %}
 
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-display</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-display</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"display"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the display utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$display-properties</code></td>
+        <td data-mobile-label="Default">
+          <a class="link" href="#display-properties"><code class="code color-secondary text-nowrap">Sass Map</code> Ref &darr;</a>
+        </td>
+        <td data-mobile-label="Desc">A list of display properties to output along with their breakpoint variants.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### $display-properties
+
+A list of display properties to output along with their breakpoint variants.
+
+```scss
+$display-properties: (
+  inline,
+  flex,
+  inline-flex,
+  block,
+  inline-block,
+  none
+) !default;
+```
+
 ## flex
 
 The flex utility is a great way to adjust individual flex properties on components that use flex layout. These are some available flex property based utilities:
@@ -603,6 +819,30 @@ The flex utility is a great way to adjust individual flex properties on componen
 * `flex-wrap`
 * `flex-nowrap`
 * `flex-items-[key]`
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-flex</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-flex</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"flex"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the flex utility.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ### flex-align-[value]
 
@@ -747,16 +987,16 @@ Change the `justify-content` property of grid columns using the `flex-justify-[v
 
 ## margin
 
-Add margin to an element using directional and size modifiers. Margin size and spacing values are generated from `$spacing-map` variable map.
+Add margin to an element using directional and size modifiers. Margin size and spacing values are generated from [`$spacing-map`](#spacing-map) variable map.
 
-- `margin`: Adds margins on all sides.
-- `margin-[size]`: Adds margins on all sides with a specific size key.
-- `margin-[direction]-[size]`: Adds margins on a specific size and with size key.
-- `margin-x-[size]`: Adds left and right margins with a specific size key.
-- `margin-y-[size]`: Adds top and bottom margins with a specific size key.
-- `margin-auto`: Sets left and right margins to auto.
-- `margin-left-auto`: Sets left margin to auto.
-- `margin-right-auto`: Sets right margin to auto.
+- `margin` - Adds margins on all sides.
+- `margin-[size]` - Adds margins on all sides with a specific size key.
+- `margin-[direction]-[size]` - Adds margins on a specific size and with size key.
+- `margin-x-[size]` - Adds left and right margins with a specific size key.
+- `margin-y-[size]` - Adds top and bottom margins with a specific size key.
+- `margin-auto` - Sets left and right margins to auto.
+- `margin-left-auto` - Sets left margin to auto.
+- `margin-right-auto` - Sets right margin to auto.
 
 <div>
   <div class="grid grid_stack_xs">
@@ -789,17 +1029,41 @@ Add margin to an element using directional and size modifiers. Margin size and s
       </div>
     </div>
   </div>
+</div>
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-margin</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-margin</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"margin"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the margin utility.</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 ## padding
 
-Add padding to an element using directional and size modifiers. Padding size and spacing values are generated from `$spacing-map` variable map.
+Add padding to an element using directional and size modifiers. Padding size and spacing values are generated from [`$spacing-map`](#spacing-map) variable map.
 
-- `padding`: Adds padding on all sides.
-- `padding-[size]`: Adds padding on all sides with a specific size key.
-- `padding-[direction]-[size]`: Adds padding on a specific size and with size key.
-- `padding-x-[size]`: Adds left and right padding with a specific size key.
-- `padding-y-[size]`: Adds top and bottom padding with a specific size key.
+- `padding` - Adds padding on all sides.
+- `padding-[size]` - Adds padding on all sides with a specific size key.
+- `padding-[direction]-[size]` - Adds padding on a specific size and with size key.
+- `padding-x-[size]` - Adds left and right padding with a specific size key.
+- `padding-y-[size]` - Adds top and bottom padding with a specific size key.
 
 <div>
   <div class="grid grid_stack_xs">
@@ -834,18 +1098,71 @@ Add padding to an element using directional and size modifiers. Padding size and
   </div>
 </div>
 
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"padding"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the padding utility.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 ## span
 
-Set the width, max-width and flex based on a column set using the `span` utility. Span widths are based on a column set based on the `$columns` variable. There are a number of options available:
+Set the width, max-width and flex based on a column set using the `span` utility. Span widths are based on a column set based on the `$span-columns` variable. There are a number of options available:
 
-* `span-[col]`: Sets the number of columns an element should span.
-* `span-[col]-[breakpoint]`: Sets the number of columns an element should span based on a breakpoint condition.
-* `span-auto`: Sets an elements width to `auto`.
-* `span-full`: Sets an elements width to `100%`.
+* `span-[col]` - Sets the number of columns an element should span.
+* `span-[col]-[breakpoint]` - Sets the number of columns an element should span based on a breakpoint condition.
+* `span-auto` - Sets an elements width to `auto`.
+* `span-full` - Sets an elements width to `100%`.
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-span</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-span</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"span"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the span utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$span-columns</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">12</code></td>
+        <td data-mobile-label="Desc">The columns value to use when building span variants.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ### span-[col]
 
-Sets the number of columns an element should span. The total number of columns is set in the `$columns` variable.
+Sets the number of columns an element should span. The total number of columns is set in the `$span-columns` variable.
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="grid grid_flatten">
@@ -881,7 +1198,7 @@ Sets the number of columns an element should span. The total number of columns i
 
 ### span-[col]-[breakpoint]
 
-Sets the number of columns an element should span based on a breakpoint conditon. The total number of columns is set in the `$columns` variable. Breakpoint keys are built from the `$breakpoints` variable map.
+Sets the number of columns an element should span based on a breakpoint conditon. The total number of columns is set in the `$span-columns` variable. Breakpoint keys are built from the [`$breakpoints`](#breakpoints) variable map.
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="grid grid_flatten">
@@ -966,6 +1283,30 @@ Sets an elements width to `100%`.
 A utility for adjusting various text styles.
 
 <div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-text</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-text</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"text"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the text utility.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="scroll-box">
   <table class="table table_style_bordered table_zebra table_hover table_responsive_md">
     <thead>
       <tr>
@@ -982,7 +1323,6 @@ A utility for adjusting various text styles.
         <td><code class="code text-nowrap">text-size-lg</code></td>
         <td><p class="text-size-lg">Text example...</p></td>
       </tr>
-
       <tr>
         <td><code class="code text-nowrap">text-capitalize</code></td>
         <td><p class="text-capitalize">Text example...</p></td>
@@ -995,7 +1335,6 @@ A utility for adjusting various text styles.
         <td><code class="code text-nowrap">text-uppercase</code></td>
         <td><p class="text-uppercase">Text example...</p></td>
       </tr>
-
       <tr>
         <td><code class="code text-nowrap">text-align-left</code></td>
         <td><p class="text-align-left">Text example...</p></td>
@@ -1008,7 +1347,6 @@ A utility for adjusting various text styles.
         <td><code class="code text-nowrap">text-align-right</code></td>
         <td><p class="text-align-right">Text example...</p></td>
       </tr>
-
       <tr>
         <td><code class="code text-nowrap">text-bold</code></td>
         <td><p class="text-bold">Text example...</p></td>
@@ -1017,7 +1355,6 @@ A utility for adjusting various text styles.
         <td><code class="code text-nowrap">text-normal</code></td>
         <td><p class="text-normal">Text example...</p></td>
       </tr>
-
       <tr>
         <td><code class="code text-nowrap">text-italic</code></td>
         <td><p class="text-italic">Text example...</p></td>
@@ -1038,7 +1375,6 @@ A utility for adjusting various text styles.
         <td><code class="code text-nowrap">text-underline-dashed</code></td>
         <td><p class="text-underline-dashed">Text example...</p></td>
       </tr>
-
       <tr>
         <td><code class="code text-nowrap">text-wrap</code></td>
         <td><p class="text-wrap">Text example...</p></td>
@@ -1046,11 +1382,6 @@ A utility for adjusting various text styles.
       <tr>
         <td><code class="code text-nowrap">text-nowrap</code></td>
         <td><p class="text-nowrap">Text example...</p></td>
-      </tr>
-
-      <tr>
-        <td><code class="code text-nowrap">text-lead</code></td>
-        <td><p class="text-lead">Text example: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum laoreet interdum elit, non blandit arcu luctus quis. Duis mattis et massa a congue.</p></td>
       </tr>
     </tbody>
   </table>
@@ -1065,114 +1396,3 @@ Adds ellipsis styles to an element that will display an ellipsis (...) for text 
 ```html
 <div class="text-overflow-ellipsis">...<div>
 ```
-
-## Sass variables
-
-<div class="scroll-box">
-  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
-    <thead>
-      <tr>
-        <th>Variable</th>
-        <th>Default</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-utility</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
-        <td data-mobile-label="Desc">String to prefix utilities with.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$class-background</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">background</code></td>
-        <td data-mobile-label="Desc">String to use for the class name of the background utility.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$class-border</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">border</code></td>
-        <td data-mobile-label="Desc">String to use for the class name of the border utility.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$class-border-radius</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">radius</code></td>
-        <td data-mobile-label="Desc">String to use for the class name of the border-radius utility.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$class-box-shadow</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">elevate</code></td>
-        <td data-mobile-label="Desc">String to use for the class name of the box-shadow utility.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$class-color</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">color</code></td>
-        <td data-mobile-label="Desc">String to use for the class name of the text color utility.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$class-display</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">display</code></td>
-        <td data-mobile-label="Desc">String to use for the class name of the display utility.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$class-flex</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">flex</code></td>
-        <td data-mobile-label="Desc">String to use for the class name of the flex utility.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$class-margin</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">margin</code></td>
-        <td data-mobile-label="Desc">String to use for the class name of the margin utility.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$class-padding</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">padding</code></td>
-        <td data-mobile-label="Desc">String to use for the class name of the padding utility.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$class-span</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">span</code></td>
-        <td data-mobile-label="Desc">String to use for the class name of the span utility.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$class-text</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">text</code></td>
-        <td data-mobile-label="Desc">String to use for the class name of the text utility.</td>
-      </tr>
-
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$breakpoints</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$breakpoints</code></td>
-        <td data-mobile-label="Desc">The breakpoints map some utilities use to build their styles.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$columns</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">12</code></td>
-        <td data-mobile-label="Desc">The columns value to use for <code class="code">span</code> component sizing.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$display-properties</code></td>
-        <td data-mobile-label="Default">
-          <code class="code color-secondary text-nowrap">
-            inline,<br>
-            flex,<br>
-            inline-flex,<br>
-            block,<br>
-            inline-block,<br>
-            none
-          </code>
-        </td>
-        <td data-mobile-label="Desc">Used to determine which display properties to output as utilities.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$spacing</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$spacing</code></td>
-        <td data-mobile-label="Desc">The default value used for utilities that handle spacing.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$spacing-map</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$spacing-map</code></td>
-        <td data-mobile-label="Desc">Map of variations to output for utilities that handle spacing.</td>
-      </tr>
-    </tbody>
-  </table>
-</div>

@@ -156,16 +156,23 @@ Output the styles for an arrow.
 
 Outputs a number of base and reset element styles to help keep html elements predictable and easier to work with. Some more global options are set via the `@vrembem/core` component, while others that are specific to the base component are set directly here.
 
-| Variable           | Default                 | Description                                                   |
-| ------------------ | ----------------------- | ------------------------------------------------------------- |
-| `$output-base`     | `$output` &rarr; `true` | Toggles the output of this module.                            |
-| `$box-sizing`      | `border-box`            | Sets the default box-sizing property for all HTML elements.   |
-| `$body-background` | `null`                  | Sets the background color that's applied to the body element. |
+| Variable            | Default                  | Description                                                               |
+| ------------------- | ------------------------ | ------------------------------------------------------------------------- |
+| `$output-base`      | `$output` &rarr; `true`  | Toggles the output of this module.                                        |
+| `$root-height`      | `100%`                   | Sets the height property on the root `html` and `body` elements.          |
+| `$color`            | `core.$color`            | Sets the base color property.                                             |
+| `$color-caption`    | `core.$color-subtle`     | Sets the color property for the caption element.                          |
+| `$font-family`      | `core.$font-family`      | Sets the base font-family property.                                       |
+| `$font-family-mono` | `core.$font-family-mono` | Sets the font-family property for elements that use a mono-spacing front. |
+| `$font-size`        | `core.$font-size`        | Sets the base font-size property.                                         |
+| `$font-size-sm`     | `core.$font-size-sm`     | Sets the font-size property for small element.                            |
+| `$line-height`      | `core.$line-height`      | Sets the base line-height property.                                       |
+| `$box-sizing`       | `border-box`             | Sets the default box-sizing property for all HTML elements.               |
+| `$body-background`  | `null`                   | Sets the background color that's applied to the body element.             |
 
-Here's an example of the default styles applied to all HTML elements and specific styles on the `html` and `body` elements.
+Here's an example of the base styles applied by the base module:
 
 ```scss
-// Output using default variables
 *,
 *::before,
 *::after {
@@ -176,25 +183,27 @@ Here's an example of the default styles applied to all HTML elements and specifi
 
 html,
 body {
-  height: 100%;
+  height: $root-height;
 }
 
 html {
-  box-sizing: border-box;
-  font-size: 16px;
-  line-height: 1.5;
+  box-sizing: $box-sizing;
+  font-size: $font-size;
+  line-height: $line-height;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
-  color: #212121;
-  font-family: blinkmacsystemfont, -apple-system, system-ui, "Segoe UI", "Roboto", "Helvetica Neue", arial, sans-serif;
+  background: $body-background;
+  color: $color;
+  font-family: $font-family;
 }
+
+// Continued ...
 ```
 
 For a complete understanding of what this module does, checkout the source: [`_base.scss`](https://github.com/sebnitu/vrembem/blob/master/packages/base/src/_base.scss)
-
 
 ### `blockquote`
 
@@ -327,14 +336,30 @@ Section headings in HTML are represented by the `<h1>` through `<h6>` elements. 
 <h6 class="h6">...</h6>
 ```
 
-| Variable                | Default                         | Description                                                                                   |
-| ----------------------- | ------------------------------- | --------------------------------------------------------------------------------------------- |
-| `$output-heading`       | `$output` &rarr; `true`         | Toggles the output of this module.                                                            |
-| `$heading-font-family`  | `null`                          | Sets the font-family property.                                                                |
-| `$heading-line-height`  | `1.3`                           | Sets the line-height property.                                                                |
-| `$heading-color`        | `inherit`                       | Sets the text color property.                                                                 |
-| `$heading-color-invert` | `null`                          | Sets the inverted text color. This is used when heading elements appear on a dark background. |
-| `$heading-font-weight`  | `core.font-weight("semi-bold")` | Sets the font-weight property.                                                                |
+| Variable                | Default                                 | Description                                                                                   |
+| ----------------------- | --------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `$output-heading`       | `$output` &rarr; `true`                 | Toggles the output of this module.                                                            |
+| `$heading-font-family`  | `inherit`                               | Sets the font-family property.                                                                |
+| `$heading-line-height`  | `core.$line-height-sm`                  | Sets the line-height property.                                                                |
+| `$heading-color`        | `inherit`                               | Sets the text color property.                                                                 |
+| `$heading-color-invert` | `null`                                  | Sets the inverted text color. This is used when heading elements appear on a dark background. |
+| `$heading-font-weight`  | `core.font-weight("semi-bold")`         | Sets the font-weight property.                                                                |
+| `$heading-scale`        | [`Sass Map` Ref &darr;](#heading-scale) | A map containing the font-size and optional line-height scale for HTML headings.              |
+
+#### `$heading-scale`
+
+A map containing the font-size and optional line-height scale for HTML headings. The map should contain a key of the heading level and the value of a font-size and optional line-height space separated.
+
+```scss
+$heading-scale: (
+  "h1": 2.25em,
+  "h2": 2em,
+  "h3": 1.75em,
+  "h4": 1.5em,
+  "h5": 1.25em inherit,
+  "h6": 1em inherit
+) !default;
+```
 
 #### `@mixin heading-base()`
 
@@ -355,32 +380,77 @@ h1, h2, h3, h4, h5, h6 {
 }
 ```
 
-#### `@mixin heading($level)`
+#### `@mixin heading-levels($map: $heading-scale, $prefix: null)`
+
+Output all the heading styles set in the passed map which defaults to the [`$heading-scale`](#heading-scale) map.
+
+**Arguments**
+
+| Variable  | Type     | Description                                                                                         |
+| --------- | -------- | --------------------------------------------------------------------------------------------------- |
+| `$map`    | `map`    | The map object to search heading level values from. Defaults to [`$heading-scale`](#heading-scale). |
+| `$prefix` | `string` | A string to prefix the key from the passed map object. This is used as the selector.                |
+
+**Example**
+
+```scss
+// Using a custom map
+$custom-heading-scale: (
+  "h1": 3em 1.6,
+  "h2": 2em 1.5,
+  "h3": 2.5em 1.4,
+);
+
+// Pass in our custom map and a prefix
+@include heading-levels($custom-heading-scale, $prefix: '.vb-');
+
+// CSS Output
+.vb-h1 {
+  font-size: 3em;
+  line-height: 1.6;
+}
+
+.vb-h2 {
+  font-size: 2em;
+  line-height: 1.5;
+}
+
+.vb-h3 {
+  font-size: 2.5em;
+  line-height: 1.4;
+}
+```
+
+#### `@mixin heading($level, $map: $heading-scale)`
 
 Output the specific styles for a heading level. Takes the heading level as an argument.
 
 **Arguments**
 
-| Variable | Type           | Description                            |
-| -------- | -------------- | -------------------------------------- |
-| `$level` | `number (1-6)` | The level of heading styles to output. |
+| Variable | Type                               | Description                                                                                                    |
+| -------- | ---------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `$level` | `number (1-6) or string (map key)` | The level of heading styles to output. Can either be a number to search for index or string to search for key. |
+| `$map`   | `map`                              | The map object to search heading level values from. Defaults to [`$heading-scale`](#heading-scale).            |
 
 **Example**
 
 ```scss
+// Using a custom map
+$custom-heading-scale: (
+  "h1": 3em 1.6,
+  "h2": 2em 1.5,
+  "h3": 2.5em 1.4,
+);
+
+// Pass in a level key and our custom map
 h1 {
-  @include heading(1);
+  @include mix.heading("h1", $custom-heading-scale);
 }
 
 // CSS Output
-.h1 {
-  font-size: 2em;
-}
-
-@media (min-width: 760px) {
-  .h1 {
-    font-size: 2.5em;
-  }
+h1 {
+  font-size: 3em;
+  line-height: 1.6;
 }
 ```
 
@@ -675,7 +745,7 @@ Output the separator styles.
 
 ### `spacing`
 
-This module adds vertical spacing between an element's children. Spacing size and spacing values are generated from the `$spacing-map` variable map.
+This module adds vertical spacing between an element's children. Spacing size and spacing values are generated from the [`$spacing-map`](#spacing-map) variable map.
 
 ```html
 <!-- Using the default spacing class -->
@@ -690,12 +760,28 @@ This module adds vertical spacing between an element's children. Spacing size an
 <div class="spacing-xl">...</div>
 ```
 
-| Variable          | Default                 | Description                                                       |
-| ----------------- | ----------------------- | ----------------------------------------------------------------- |
-| `$output-spacing` | `$output` &rarr; `true` | Toggles the output of this module.                                |
-| `$class-spacing`  | `"spacing"`             | String to use for the class name of the spacing module.           |
-| `$spacing`        | `core.$spacing`         | Sets the vertical spacing via the top and bottom margin property. |
-| `$spacing-map`    | `core.$spacing-map`     | Used to build the spacing key classes.                            |
+| Variable          | Default                                        | Description                                             |
+| ----------------- | ---------------------------------------------- | ------------------------------------------------------- |
+| `$output-spacing` | `$output` &rarr; `true`                        | Toggles the output of this module.                      |
+| `$class-spacing`  | `"spacing"`                                    | String to use for the class name of the spacing module. |
+| `$spacing`        | `core.$spacing` &rarr; `1em`                   | Sets the vertical spacing via the top margin property.  |
+| `$spacing-map`    | [`core.$spacing-map` Ref &darr;](#spacing-map) | Used to build the spacing key classes.                  |
+
+#### `$spacing-map`
+
+Used to build the spacing key classes.
+
+```scss
+// Inherited from: core.$spacing-map
+$spacing-map: (
+  "none": 0,
+  "xs": 0.25em,
+  "sm": 0.5em,
+  "md": 1em,
+  "lg": 1.5em,
+  "xl": 2em
+) !default;
+```
 
 #### `@mixin spacing($value, $imp: null)`
 
@@ -749,14 +835,16 @@ Modules that get mapped to HTML elements include:
 
 > The type module only applies styles to children HTML elements. It's possible to nest other components within type and not have style or specificity conflicts. It's recommended to wrap nested components with anonymous `<div>` elements when possible.
 
-| Variable            | Default                 | Description                                                         |
-| ------------------- | ----------------------- | ------------------------------------------------------------------- |
-| `$output-type`      | `$output` &rarr; `true` | Toggles the output of this module.                                  |
-| `$class-type`       | `"type"`                | String to use for the class name of the type module.                |
-| `$type-font-family` | `null`                  | Sets the font-family property.                                      |
-| `$type-font-size`   | `null`                  | Sets the font-size property.                                        |
-| `$type-line-height` | `null`                  | Sets the line-height property.                                      |
-| `$type-spacing`     | `null`                  | Applies vertical spacing between elements via the `spacing` module. |
+| Variable             | Default                 | Description                                                         |
+| -------------------- | ----------------------- | ------------------------------------------------------------------- |
+| `$output-type`       | `$output` &rarr; `true` | Toggles the output of this module.                                  |
+| `$class-type`        | `"type"`                | String to use for the class name of the type module.                |
+| `$type-color`        | `null`                  | Sets the color property.                                            |
+| `$type-color-invert` | `core.$color-invert`    | Sets the color property for text on a dark background.              |
+| `$type-font-family`  | `null`                  | Sets the font-family property.                                      |
+| `$type-font-size`    | `null`                  | Sets the font-size property.                                        |
+| `$type-line-height`  | `null`                  | Sets the line-height property.                                      |
+| `$type-spacing`      | `null`                  | Applies vertical spacing between elements via the `spacing` module. |
 
 #### `@mixin type()`
 

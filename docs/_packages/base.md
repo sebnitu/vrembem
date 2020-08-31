@@ -145,7 +145,6 @@ The arrow (caret) module creates directional triangles drawn with CSS.
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"arrow"</code></td>
         <td data-mobile-label="Desc">String to use for the class name of the arrow module.</td>
       </tr>
-
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$arrow-color</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">currentColor</code></td>
@@ -281,6 +280,46 @@ Outputs a number of base and reset element styles to help keep html elements pre
         <td data-mobile-label="Desc">Toggles the output of this module.</td>
       </tr>
       <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$root-height</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">100%</code></td>
+        <td data-mobile-label="Desc">Sets the height property on the root <code class="code">html</code> and <code class="code">body</code> elements.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$color</code></td>
+        <td data-mobile-label="Desc">Sets the base color property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color-caption</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$color-subtle</code></td>
+        <td data-mobile-label="Desc">Sets the color property for the caption element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$font-family</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$font-family</code></td>
+        <td data-mobile-label="Desc">Sets the base font-family property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$font-family-mono</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$font-family-mono</code></td>
+        <td data-mobile-label="Desc">Sets the font-family property for elements that use a mono-spacing front.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$font-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$font-size</code></td>
+        <td data-mobile-label="Desc">Sets the base font-size property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$font-size-sm</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$font-size-sm</code></td>
+        <td data-mobile-label="Desc">Sets the font-size property for small element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$line-height</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$line-height</code></td>
+        <td data-mobile-label="Desc">Sets the base line-height property.</td>
+      </tr>
+      <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$box-sizing</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">border-box</code></td>
         <td data-mobile-label="Desc">Sets the default box-sizing property for all HTML elements.</td>
@@ -294,10 +333,9 @@ Outputs a number of base and reset element styles to help keep html elements pre
   </table>
 </div>
 
-Here's an example of the default styles applied to all HTML elements and specific styles on the `html` and `body` elements.
+Here's an example of the base styles applied by the base module:
 
 ```scss
-// Output using default variables
 *,
 *::before,
 *::after {
@@ -308,21 +346,24 @@ Here's an example of the default styles applied to all HTML elements and specifi
 
 html,
 body {
-  height: 100%;
+  height: $root-height;
 }
 
 html {
-  box-sizing: border-box;
-  font-size: 16px;
-  line-height: 1.5;
+  box-sizing: $box-sizing;
+  font-size: $font-size;
+  line-height: $line-height;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
-  color: #212121;
-  font-family: blinkmacsystemfont, -apple-system, system-ui, "Segoe UI", "Roboto", "Helvetica Neue", arial, sans-serif;
+  background: $body-background;
+  color: $color;
+  font-family: $font-family;
 }
+
+// Continued ...
 ```
 
 For a complete understanding of what this module does, checkout the source: [`_base.scss`](https://github.com/sebnitu/vrembem/blob/master/packages/base/src/_base.scss)
@@ -626,12 +667,12 @@ Section headings in HTML are represented by the `<h1>` through `<h6>` elements. 
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$heading-font-family</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">inherit</code></td>
         <td data-mobile-label="Desc">Sets the font-family property.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$heading-line-height</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1.3</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$line-height-sm</code></td>
         <td data-mobile-label="Desc">Sets the line-height property.</td>
       </tr>
       <tr>
@@ -649,9 +690,31 @@ Section headings in HTML are represented by the `<h1>` through `<h6>` elements. 
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.font-weight("semi-bold")</code></td>
         <td data-mobile-label="Desc">Sets the font-weight property.</td>
       </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$heading-scale</code></td>
+        <td data-mobile-label="Default">
+          <a href="#heading-scale"><code class="code color-secondary text-nowrap">Sass Map</code> Ref &darr;</a>
+        </td>
+        <td data-mobile-label="Desc">A map containing the font-size and optional line-height scale for HTML headings.</td>
+      </tr>
     </tbody>
   </table>
 </div>
+
+### $heading-scale
+
+A map containing the font-size and optional line-height scale for HTML headings. The map should contain a key of the heading level and the value of a font-size and optional line-height space separated.
+
+```scss
+$heading-scale: (
+  "h1": 2.25em,
+  "h2": 2em,
+  "h3": 1.75em,
+  "h4": 1.5em,
+  "h5": 1.25em inherit,
+  "h6": 1em inherit
+) !default;
+```
 
 ### `@mixin heading-base()`
 
@@ -672,7 +735,67 @@ h1, h2, h3, h4, h5, h6 {
 }
 ```
 
-### `@mixin heading($level)`
+### `@mixin heading-levels($map: $heading-scale), $prefix: null`)
+
+Output all the heading styles set in the passed map which defaults to the [`$heading-scale`](#heading-scale) map.
+
+**Arguments**
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$map</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">map</code></td>
+        <td data-mobile-label="Desc">The map object to search heading level values from. Defaults to <a class="link" href="#heading-scale"><code class="code">$heading-scale</code></a>.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">string</code></td>
+        <td data-mobile-label="Desc">A string to prefix the key from the passed map object. This is used as the selector.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+**Example**
+
+```scss
+// Using a custom map
+$custom-heading-scale: (
+  "h1": 3em 1.6,
+  "h2": 2em 1.5,
+  "h3": 2.5em 1.4,
+);
+
+// Pass in our custom map and a prefix
+@include heading-levels($custom-heading-scale, $prefix: '.vb-');
+
+// CSS Output
+.vb-h1 {
+  font-size: 3em;
+  line-height: 1.6;
+}
+
+.vb-h2 {
+  font-size: 2em;
+  line-height: 1.5;
+}
+
+.vb-h3 {
+  font-size: 2.5em;
+  line-height: 1.4;
+}
+```
+
+### `@mixin heading($level, $map: $heading-scale)`
 
 Output the specific styles for a heading level. Takes the heading level as an argument.
 
@@ -690,8 +813,13 @@ Output the specific styles for a heading level. Takes the heading level as an ar
     <tbody>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$level</code></td>
-        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">number (1-6)</code></td>
-        <td data-mobile-label="Desc">The level of heading styles to output.</td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">number (1-6) or string (map key)</code></td>
+        <td data-mobile-label="Desc">The level of heading styles to output. Can either be a number to search for index or string to search for key.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$map</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">map</code></td>
+        <td data-mobile-label="Desc">The map object to search heading level values from. Defaults to <a class="link" href="#heading-scale"><code class="code">$heading-scale</code></a>.</td>
       </tr>
     </tbody>
   </table>
@@ -700,19 +828,22 @@ Output the specific styles for a heading level. Takes the heading level as an ar
 **Example**
 
 ```scss
+// Using a custom map
+$custom-heading-scale: (
+  "h1": 3em 1.6,
+  "h2": 2em 1.5,
+  "h3": 2.5em 1.4,
+);
+
+// Pass in a level key and our custom map
 h1 {
-  @include heading(1);
+  @include mix.heading("h1", $custom-heading-scale);
 }
 
 // CSS Output
-.h1 {
-  font-size: 2em;
-}
-
-@media (min-width: 760px) {
-  .h1 {
-    font-size: 2.5em;
-  }
+h1 {
+  font-size: 3em;
+  line-height: 1.6;
 }
 ```
 
@@ -788,7 +919,6 @@ A link—usually represented by an anchor (`<a>`) HTML element with `href` attri
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1px solid currentColor</code></td>
         <td data-mobile-label="Desc">Sets the border property on hover state.</td>
       </tr>
-
       <!-- modifier: subtle -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$link-subtle-color</code></td>
@@ -810,7 +940,6 @@ A link—usually represented by an anchor (`<a>`) HTML element with `href` attri
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">currentColor</code></td>
         <td data-mobile-label="Desc">Sets the border-color property on subtle modifier hover state.</td>
       </tr>
-
       <!-- modifier: invert -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$link-invert-color</code></td>
@@ -832,7 +961,6 @@ A link—usually represented by an anchor (`<a>`) HTML element with `href` attri
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">currentColor</code></td>
         <td data-mobile-label="Desc">Sets the border-color property on invert modifier hover state.</td>
       </tr>
-
       <!-- modifier: invert-subtle -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$link-invert-subtle-color</code></td>
@@ -1308,7 +1436,7 @@ Output the separator styles.
 
 ## Spacing
 
-This module adds vertical spacing between an element's children. Spacing size and spacing values are generated from the `$spacing-map` variable map.
+This module adds vertical spacing between an element's children. Spacing size and spacing values are generated from the [`$spacing-map`](#spacing-map) variable map.
 
 {% include demo_open.html %}
 <div class="spacing">
@@ -1392,27 +1520,45 @@ This module adds vertical spacing between an element's children. Spacing size an
     <tbody>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$output-spacing</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">$output</code> &rarr; <code class="code color-secondary">true</code></td>
         <td data-mobile-label="Desc">Toggles the output of this module.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$class-spacing</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"spacing"</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">"spacing"</code></td>
         <td data-mobile-label="Desc">String to use for the class name of the spacing module.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$spacing</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$spacing</code></td>
-        <td data-mobile-label="Desc">Sets the vertical spacing via the top and bottom margin property.</td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$spacing</code> &rarr; <code class="code color-secondary">1em</code></td>
+        <td data-mobile-label="Desc">Sets the vertical spacing via the top margin property.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$spacing-map</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$spacing-map</code></td>
+        <td data-mobile-label="Default">
+          <a class="link" href="#spacing-map"><code class="code color-secondary">core.$spacing-map</code> Ref &darr;</a>
+          </td>
         <td data-mobile-label="Desc">Used to build the spacing key classes.</td>
       </tr>
     </tbody>
   </table>
 </div>
+
+### `$spacing-map`
+
+Used to build the spacing key classes.
+
+```scss
+// Inherited from: core.$spacing-map
+$spacing-map: (
+  "none": 0,
+  "xs": 0.25em,
+  "sm": 0.5em,
+  "md": 1em,
+  "lg": 1.5em,
+  "xl": 2em
+) !default;
+```
 
 ### `@mixin spacing($value, $imp: null)`
 
@@ -1504,6 +1650,16 @@ Modules that get mapped to HTML elements include:
         <td data-mobile-label="Var"><code class="code text-nowrap">$class-type</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"type"</code></td>
         <td data-mobile-label="Desc">String to use for the class name of the type module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$type-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the color property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$type-color-invert</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$color-invert</code></td>
+        <td data-mobile-label="Desc">Sets the color property for text on a dark background.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$type-font-family</code></td>

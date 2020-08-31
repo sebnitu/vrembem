@@ -1652,11 +1652,11 @@
   }
 }
 .text-size-sm {
-  font-size: 14px !important;
+  font-size: 0.875em !important;
 }
 
 .text-size-lg {
-  font-size: 18px !important;
+  font-size: 1.125em !important;
 }
 
 .text-capitalize {
@@ -1725,11 +1725,6 @@
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
-}
-
-.text-lead {
-  font-size: 1.2em !important;
-  font-weight: 300 !important;
 }
 
 /*# sourceMappingURL=styles.css.map */

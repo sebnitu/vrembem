@@ -5,21 +5,21 @@ $_u: var.$prefix-utility;
 $_c: var.$class-span;
 
 @if (var.$output-span) {
-  @for $i from 1 through var.$columns {
+  @for $i from 1 through var.$span-columns {
     .#{$_u}#{$_c}-#{$i} {
-      flex: 0 0 (100% * ($i/var.$columns));
-      width: (100% * ($i/var.$columns));
-      max-width: (100% * ($i/var.$columns));
+      flex: 0 0 (100% * ($i/var.$span-columns));
+      width: (100% * ($i/var.$span-columns));
+      max-width: (100% * ($i/var.$span-columns));
     }
   }
 
   @each $key, $value in var.$breakpoints {
     @include core.media-min($value) {
-      @for $i from 1 through var.$columns {
+      @for $i from 1 through var.$span-columns {
         .#{$_u}#{$_c}-#{$i}-#{$key} {
-          flex-basis: (100% * ($i/var.$columns));
-          width: (100% * ($i/var.$columns));
-          max-width: (100% * ($i/var.$columns));
+          flex-basis: (100% * ($i/var.$span-columns));
+          width: (100% * ($i/var.$span-columns));
+          max-width: (100% * ($i/var.$span-columns));
         }
       }
     }

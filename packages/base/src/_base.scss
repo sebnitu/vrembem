@@ -1,4 +1,3 @@
-@use "@vrembem/core";
 @use "./variables" as var;
 
 @if (var.$output-base) {
@@ -15,21 +14,21 @@
   // Default html (root) and body styles
   html,
   body {
-    height: 100%;
+    height: var.$root-height;
   }
 
   html {
     box-sizing: var.$box-sizing;
-    font-size: core.$font-size;
-    line-height: core.$line-height;
+    font-size: var.$font-size;
+    line-height: var.$line-height;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
   }
 
   body {
     background: var.$body-background;
-    color: core.$color;
-    font-family: core.$font-family;
+    color: var.$color;
+    font-family: var.$font-family;
   }
 
   // Reset font-size for headings
@@ -70,13 +69,13 @@
   // Default font family and font size for code and pre elements
   code,
   pre {
-    font-family: core.$font-family-mono;
+    font-family: var.$font-family-mono;
     font-size: 1em;
   }
 
   // Default small element font-size
   small {
-    font-size: core.$font-size-sm;
+    font-size: var.$font-size-sm;
   }
 
   // Better default table styles
@@ -87,7 +86,7 @@
   // Better default caption styles
   caption {
     caption-side: bottom;
-    color: core.$color-subtle;
+    color: var.$color-caption;
     text-align: left;
   }
 

@@ -1,5 +1,6 @@
 @use "sass:list";
 @use "sass:map";
+@use "sass:meta";
 @use "@vrembem/core";
 @use "./variables" as var;
 
@@ -13,7 +14,7 @@
   $radius: var.$arrow-radius
 ) {
   $size-pointer: $size;
-  @if (type-of($size) == list) {
+  @if (meta.type-of($size) == list) {
     $size-pointer: list.nth($size, 2);
     $size: list.nth($size, 1);
   }
@@ -78,7 +79,7 @@
   border: var.$code-border;
   background: var.$code-background;
   color: var.$code-color;
-  font-family: core.$font-family-mono;
+  font-family: var.$font-family-mono;
   font-size: var.$code-font-size;
   word-break: break-word;
 }
@@ -93,50 +94,36 @@
   line-height: var.$heading-line-height;
 }
 
-@mixin heading($level) {
-  @if $level == 1 {
-    font-size: 2em;
-    @include core.media-min("md") {
-      font-size: 2.5em;
+@mixin heading-levels($map: var.$heading-scale, $prefix: null) {
+  @each $key, $value in $map {
+    $font-size: $value;
+    $line-height: null;
+    @if meta.type-of($value) == list {
+      $font-size: list.nth($value, 1);
+      $line-height: list.nth($value, 2);
+    }
+    #{$prefix}#{$key} {
+      font-size: $font-size;
+      line-height: $line-height;
     }
   }
+}
 
-  @else if $level == 2 {
-    font-size: 1.75em;
-    @include core.media-min("md") {
-      font-size: 2em;
-    }
+@mixin heading($level, $map: var.$heading-scale) {
+  $value: null;
+  @if meta.type-of($level) == number {
+    $value: list.nth(map.values($map), $level);
+  } @else if meta.type-of($level) == string {
+    $value: map.get($map, $level);
   }
-
-  @else if $level == 3 {
-    font-size: 1.5em;
-    @include core.media-min("md") {
-      font-size: 1.75em;
-    }
+  $font-size: $value;
+  $line-height: null;
+  @if meta.type-of($value) == list {
+    $font-size: list.nth($value, 1);
+    $line-height: list.nth($value, 2);
   }
-
-  @else if $level == 4 {
-    font-size: 1.25em;
-    @include core.media-min("md") {
-      font-size: 1.5em;
-    }
-  }
-
-  @else if $level == 5 {
-    font-size: 1.1em;
-    line-height: inherit;
-    @include core.media-min("md") {
-      font-size: 1.25em;
-    }
-  }
-
-  @else if $level == 6 {
-    font-size: 1em;
-    line-height: inherit;
-    @include core.media-min("md") {
-      font-size: 1em;
-    }
-  }
+  font-size: $font-size;
+  line-height: $line-height;
 }
 
 // Link
@@ -225,7 +212,7 @@
   border-radius: var.$pre-border-radius;
   background: var.$pre-background;
   color: var.$pre-color;
-  font-family: core.$font-family-mono;
+  font-family: var.$font-family-mono;
 
   code {
     padding: 0;
@@ -270,7 +257,7 @@
     $imp: null;
   }
 
-  @if (type-of($value) == number) {
+  @if (meta.type-of($value) == number) {
     > * + * {
       margin-top: $value #{$imp};
     }
@@ -283,41 +270,22 @@
 @mixin type() {
   @include core.add-clearfix();
   @include spacing(var.$type-spacing);
+  color: var.$type-color;
   font-family: var.$type-font-family;
   font-size: var.$type-font-size;
   line-height: var.$type-line-height;
 
-  > h1,
-  > h2,
-  > h3,
-  > h4,
-  > h5,
-  > h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @include heading-base();
   }
 
-  > h1 {
-    @include heading(1);
-  }
-
-  > h2 {
-    @include heading(2);
-  }
-
-  > h3 {
-    @include heading(3);
-  }
-
-  > h4 {
-    @include heading(4);
-  }
-
-  > h5 {
-    @include heading(5);
-  }
-
-  > h6 {
-    @include heading(6);
+  > {
+    @include heading-levels();
   }
 
   > a,
@@ -350,7 +318,7 @@
 
 @mixin type-invert($color: black) {
   @if (lightness($color) < core.$lightness-threshold) {
-    color: core.$color-invert;
+    color: var.$type-color-invert;
 
     > h1,
     > h2,

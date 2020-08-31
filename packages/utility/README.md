@@ -54,10 +54,44 @@ Each utility has a corresponding `$output-[module]` and `$class-[module]` variab
 
 Setting these variables will apply to all utility modules.
 
-| Variable          | Default | Description                                |
-| ----------------- | ------- | ------------------------------------------ |
-| `$prefix-utility` | `null`  | String to prefix all utility classes with. |
-| `$output`         | `true`  | Toggles the default output of all modules. |
+| Variable          | Default                                        | Description                                                                                                                                         |
+| ----------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `$prefix-utility` | `null`                                         | String to prefix all utility classes with.                                                                                                          |
+| `$output`         | `true`                                         | Toggles the default output of all modules.                                                                                                          |
+| `$breakpoints`    | [`core.$breakpoints` Ref &darr;](#breakpoints) | A map of breakpoints used by utilities that provide breakpoint specific variations such as the [`display`](#display) and [`span`](#span) utilities. |
+| `$spacing`        | `core.$spacing` &rarr; `1em`                   | Used as the default spacing for [`margin`](#margin) and [`padding`](#padding) utilities.                                                            |
+| `$spacing-map`    | [`core.$spacing-map` Ref &darr;](#spacing-map) | Used to build spacing variants for [`margin`](#margin) and [`padding`](#padding) utilities.                                                         |
+
+#### `$breakpoints`
+
+A map of breakpoints used by utilities that provide breakpoint specific variations such as the [`display`](#display) and [`span`](#span) utilities.
+
+```scss
+// Inherited from: core.$breakpoints
+$breakpoints: (
+  "xs": 480px,
+  "sm": 620px,
+  "md": 760px,
+  "lg": 990px,
+  "xl": 1380px
+) !default;
+```
+
+#### `$spacing-map`
+
+Used to build spacing variants for [`margin`](#margin) and [`padding`](#padding) utilities.
+
+```scss
+// Inherited from: core.$spacing-map
+$spacing-map: (
+  "none": 0,
+  "xs": 0.25em,
+  "sm": 0.5em,
+  "md": 1em,
+  "lg": 1.5em,
+  "xl": 2em
+) !default;
+```
 
 ## Modules
 
@@ -88,6 +122,11 @@ Applies background color property. Most options include light, lighter, dark and
 ...
 ```
 
+| Variable             | Default                 | Description                                                 |
+| -------------------- | ----------------------- | ----------------------------------------------------------- |
+| `$output-background` | `$output` &rarr; `true` | Toggles the output of this utility.                         |
+| `$class-background`  | `"background"`          | String to use for the class name of the background utility. |
+
 > Checkout the [web documentation](https://vrembem.com/packages/utility/#background) for a complete list of available options.
 
 ### `border`
@@ -101,6 +140,11 @@ Applies border property with optional sides variants.
 <div class="border-bottom"></div>
 <div class="border-left"></div>
 ```
+
+| Variable         | Default                 | Description                                             |
+| ---------------- | ----------------------- | ------------------------------------------------------- |
+| `$output-border` | `$output` &rarr; `true` | Toggles the output of this utility.                     |
+| `$class-border`  | `"border"`              | String to use for the class name of the border utility. |
 
 #### `border-none`
 
@@ -152,6 +196,11 @@ Applies border-radius styles with optional corner variants. The value used by th
 <div class="radius-bottom-right"></div>
 <div class="radius-bottom-left"></div>
 ```
+
+| Variable                | Default                 | Description                                                    |
+| ----------------------- | ----------------------- | -------------------------------------------------------------- |
+| `$output-border-radius` | `$output` &rarr; `true` | Toggles the output of this utility.                            |
+| `$class-border-radius`  | `"radius"`              | String to use for the class name of the border-radius utility. |
 
 #### `radius-circle`
 
@@ -209,6 +258,11 @@ Applies different levels of elevation through box-shadow styles.
 <div class="elevate-24dp"></div>
 ```
 
+| Variable             | Default                 | Description                                                 |
+| -------------------- | ----------------------- | ----------------------------------------------------------- |
+| `$output-box-shadow` | `$output` &rarr; `true` | Toggles the output of this utility.                         |
+| `$class-box-shadow`  | `"elevate"`             | String to use for the class name of the box-shadow utility. |
+
 ### `color`
 
 Applies text color property. Most options include light, lighter, dark and darker variants.
@@ -222,6 +276,11 @@ Applies text color property. Most options include light, lighter, dark and darke
 ...
 ```
 
+| Variable        | Default                 | Description                                            |
+| --------------- | ----------------------- | ------------------------------------------------------ |
+| `$output-color` | `$output` &rarr; `true` | Toggles the output of this utility.                    |
+| `$class-color`  | `"color"`               | String to use for the class name of the color utility. |
+
 > Checkout the [web documentation](https://vrembem.com/packages/utility/#color) for a complete list of available options.
 
 ### `display`
@@ -232,7 +291,7 @@ Display utilities allow you to toggle the display property on an element with an
 .display-[property]-[breakpoint]
 ```
 
-Available properties are generated from the `$display-properties` variable map and breakpoint conditions from `$breakpoints` variable map.
+Available properties are generated from the `$display-properties` variable map and breakpoint conditions from [`$breakpoints`](#breakpoints) variable map.
 
 ```html
 <div class="display-block display-none-xs">
@@ -260,6 +319,27 @@ Available properties are generated from the `$display-properties` variable map a
 </div>
 ```
 
+| Variable              | Default                                      | Description                                                                  |
+| --------------------- | -------------------------------------------- | ---------------------------------------------------------------------------- |
+| `$output-display`     | `$output` &rarr; `true`                      | Toggles the output of this utility.                                          |
+| `$class-display`      | `"display"`                                  | String to use for the class name of the display utility.                     |
+| `$display-properties` | [`Sass Map` Ref &darr;](#display-properties) | A list of display properties to output along with their breakpoint variants. |
+
+#### `$display-properties`
+
+A list of display properties to output along with their breakpoint variants.
+
+```scss
+$display-properties: (
+  inline,
+  flex,
+  inline-flex,
+  block,
+  inline-block,
+  none
+) !default;
+```
+
 ### `flex`
 
 The flex utility is a great way to adjust individual flex properties on components that use flex layout. These are some available flex property based utilities:
@@ -272,6 +352,11 @@ The flex utility is a great way to adjust individual flex properties on componen
 - `flex-wrap`
 - `flex-nowrap`
 - `flex-items-[key]`
+
+| Variable       | Default                 | Description                                           |
+| -------------- | ----------------------- | ----------------------------------------------------- |
+| `$output-flex` | `$output` &rarr; `true` | Toggles the output of this utility.                   |
+| `$class-flex`  | `"flex"`                | String to use for the class name of the flex utility. |
 
 #### flex-align-[value]
 
@@ -320,39 +405,55 @@ Change the `justify-content` property of grid columns using the `flex-justify-[v
 
 ### `margin`
 
-Add margin to an element using directional and size modifiers. Margin size and spacing values are generated from `$spacing-map` variable map.
+Add margin to an element using directional and size modifiers. Margin size and spacing values are generated from [`$spacing-map`](#spacing-map) variable map.
 
-- `margin`: Adds margins on all sides.
-- `margin-[size]`: Adds margins on all sides with a specific size key.
-- `margin-[direction]-[size]`: Adds margins on a specific size and with size key.
-- `margin-x-[size]`: Adds left and right margins with a specific size key.
-- `margin-y-[size]`: Adds top and bottom margins with a specific size key.
-- `margin-auto`: Sets left and right margins to auto.
-- `margin-left-auto`: Sets left margin to auto.
-- `margin-right-auto`: Sets right margin to auto.
+- `margin` - Adds margins on all sides.
+- `margin-[size]` - Adds margins on all sides with a specific size key.
+- `margin-[direction]-[size]` - Adds margins on a specific size and with size key.
+- `margin-x-[size]` - Adds left and right margins with a specific size key.
+- `margin-y-[size]` - Adds top and bottom margins with a specific size key.
+- `margin-auto` - Sets left and right margins to auto.
+- `margin-left-auto` - Sets left margin to auto.
+- `margin-right-auto` - Sets right margin to auto.
+
+| Variable         | Default                 | Description                                             |
+| ---------------- | ----------------------- | ------------------------------------------------------- |
+| `$output-margin` | `$output` &rarr; `true` | Toggles the output of this utility.                     |
+| `$class-margin`  | `"margin"`              | String to use for the class name of the margin utility. |
 
 ### `padding`
 
-Add padding to an element using directional and size modifiers. Padding size and spacing values are generated from `$spacing-map` variable map.
+Add padding to an element using directional and size modifiers. Padding size and spacing values are generated from [`$spacing-map`](#spacing-map) variable map.
 
-- `padding`: Adds padding on all sides.
-- `padding-[size]`: Adds padding on all sides with a specific size key.
-- `padding-[direction]-[size]`: Adds padding on a specific size and with size key.
-- `padding-x-[size]`: Adds left and right padding with a specific size key.
-- `padding-y-[size]`: Adds top and bottom padding with a specific size key.
+- `padding` - Adds padding on all sides.
+- `padding-[size]` - Adds padding on all sides with a specific size key.
+- `padding-[direction]-[size]` - Adds padding on a specific size and with size key.
+- `padding-x-[size]` - Adds left and right padding with a specific size key.
+- `padding-y-[size]` - Adds top and bottom padding with a specific size key.
+
+| Variable          | Default                 | Description                                              |
+| ----------------- | ----------------------- | -------------------------------------------------------- |
+| `$output-padding` | `$output` &rarr; `true` | Toggles the output of this utility.                      |
+| `$class-padding`  | `"padding"`             | String to use for the class name of the padding utility. |
 
 ### `span`
 
-Set the width, max-width and flex based on a column set using the `span` utility. Span widths are based on a column set based on the `$columns` variable. There are a number of options available:
+Set the width, max-width and flex based on a column set using the `span` utility. Span widths are based on a column set based on the `$span-columns` variable. There are a number of options available:
 
-- `span-[col]`: Sets the number of columns an element should span.
-- `span-[col]-[breakpoint]`: Sets the number of columns an element should span based on a breakpoint condition.
-- `span-auto`: Sets an elements width to `auto`.
-- `span-full`: Sets an elements width to `100%`.
+- `span-[col]` - Sets the number of columns an element should span.
+- `span-[col]-[breakpoint]` - Sets the number of columns an element should span based on a breakpoint condition.
+- `span-auto` - Sets an elements width to `auto`.
+- `span-full` - Sets an elements width to `100%`.
+
+| Variable        | Default                 | Description                                           |
+| --------------- | ----------------------- | ----------------------------------------------------- |
+| `$output-span`  | `$output` &rarr; `true` | Toggles the output of this utility.                   |
+| `$class-span`   | `"span"`                | String to use for the class name of the span utility. |
+| `$span-columns` | `12`                    | The columns value to use when building span variants. |
 
 #### `span-[col]`
 
-Sets the number of columns an element should span. The total number of columns is set in the `$columns` variable.
+Sets the number of columns an element should span. The total number of columns is set in the `$span-columns` variable.
 
 ```html
 <div class="grid">
@@ -367,7 +468,7 @@ Sets the number of columns an element should span. The total number of columns i
 
 #### `span-[col]-[breakpoint]`
 
-Sets the number of columns an element should span based on a breakpoint conditon. The total number of columns is set in the `$columns` variable. Breakpoint keys are built from the `$breakpoints` variable map.
+Sets the number of columns an element should span based on a breakpoint conditon. The total number of columns is set in the `$span-columns` variable. Breakpoint keys are built from the [`$breakpoints`](#breakpoints) variable map.
 
 ```html
 <div class="grid">
@@ -406,53 +507,26 @@ Sets an elements width to `100%`.
 
 A utility for adjusting various text styles.
 
-- `text-size-sm`: Adds a smaller font-size relative to base font-size.
-- `text-size-lg`: Adds a larger font-size relative to base font-size.
-- `text-capitalize`: Sets text-transform to capitalize.
-- `text-lowercase`: Sets text-transform to lowercase.
-- `text-uppercase`: Sets text-transform to uppercase.
-- `text-align-left`: Sets text-align to left.
-- `text-align-center`: Sets text-align to center.
-- `text-align-right`: Sets text-align to right.
-- `text-bold`: Sets font-weight to bold.
-- `text-normal`: Sets font-weight to normal.
-- `text-italic`: Sets font-style to italic.
-- `text-strike`: Sets text-decoration to line-through.
-- `text-underline`: Sets text-decoration to underline.
-- `text-underline-dotted`: Sets text-decoration to underline with dotted style.
-- `text-underline-dashed`: Sets text-decoration to underline with dashed style.
-- `text-wrap`: Sets white-space to normal allowing text to wrap.
-- `text-nowrap`: Sets white-space to `nowrap` which no longer allows text to wrap.
-- `text-lead`: Adds font styles to create leading text.
+| Variable       | Default                 | Description                                           |
+| -------------- | ----------------------- | ----------------------------------------------------- |
+| `$output-text` | `$output` &rarr; `true` | Toggles the output of this utility.                   |
+| `$class-text`  | `"text"`                | String to use for the class name of the text utility. |
 
-#### `text-overflow-ellipsis`
-
-Adds ellipsis styles to an element that will display an ellipsis (...) for text that would otherwise wrap.
-
-```html
-<div class="text-overflow-ellipsis">...<div>
-```
-
-## Customization
-
-### Sass Variables
-
-| Variable               | Default                                                                                                                                 | Description                                                        |
-| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| `$prefix-utility`      | `null`                                                                                                                                  | String to prefix utilities with.                                   |
-| `$class-background`    | `"background"`                                                                                                                          | String to use for the class name of the background utility.        |
-| `$class-border`        | `"border"`                                                                                                                              | String to use for the class name of the border utility.            |
-| `$class-border-radius` | `"radius"`                                                                                                                              | String to use for the class name of the border-radius utility.     |
-| `$class-box-shadow`    | `"elevate"`                                                                                                                             | String to use for the class name of the box-shadow utility.        |
-| `$class-color`         | `"color"`                                                                                                                               | String to use for the class name of the text color utility.        |
-| `$class-display`       | `"display"`                                                                                                                             | String to use for the class name of the display utility.           |
-| `$class-flex`          | `"flex"`                                                                                                                                | String to use for the class name of the flex utility.              |
-| `$class-margin`        | `"margin"`                                                                                                                              | String to use for the class name of the margin utility.            |
-| `$class-padding`       | `"padding"`                                                                                                                             | String to use for the class name of the padding utility.           |
-| `$class-span`          | `"span"`                                                                                                                                | String to use for the class name of the span utility.              |
-| `$class-text`          | `"text"`                                                                                                                                | String to use for the class name of the text utility.              |
-| `$breakpoints`         | `core.$breakpoints`                                                                                                                     | The breakpoints map some utilities use to build their styles.      |
-| `$columns`             | `12`                                                                                                                                    | The columns value to use for `span` component sizing.              |
-| `$display-properties`  | [Source](https://github.com/sebnitu/vrembem/blob/08eb7b3b55e9c55ed0027e8d9cee3d24b2ac86d6/packages/utility/src/_variables.scss#L24-L31) | Used to determine which display properties to output as utilities. |
-| `$spacing`             | `core.$spacing`                                                                                                                         | The default value used for utilities that handle spacing.          |
-| `$spacing-map`         | `core.$spacing-map`                                                                                                                     | Map of variations to output for utilities that handle spacing.     |
+- `text-size-sm` - Adds a smaller font-size relative to base font-size.
+- `text-size-lg` - Adds a larger font-size relative to base font-size.
+- `text-capitalize` - Sets text-transform to capitalize.
+- `text-lowercase` - Sets text-transform to lowercase.
+- `text-uppercase` - Sets text-transform to uppercase.
+- `text-align-left` - Sets text-align to left.
+- `text-align-center` - Sets text-align to center.
+- `text-align-right` - Sets text-align to right.
+- `text-bold` - Sets font-weight to bold.
+- `text-normal` - Sets font-weight to normal.
+- `text-italic` - Sets font-style to italic.
+- `text-strike` - Sets text-decoration to line-through.
+- `text-underline` - Sets text-decoration to underline.
+- `text-underline-dotted` - Sets text-decoration to underline with dotted style.
+- `text-underline-dashed` - Sets text-decoration to underline with dashed style.
+- `text-wrap` - Sets white-space to normal allowing text to wrap.
+- `text-nowrap` - Sets white-space to `nowrap` which no longer allows text to wrap.
+- `text-overflow-ellipsis` - Adds ellipsis styles to an element that will display an ellipsis (...) for text that would otherwise wrap.
