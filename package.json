@@ -12,13 +12,14 @@
     "lint": "npm-run-all lint:styles lint:scripts",
     "lint:scripts": "eslint packages",
     "lint:styles": "stylelint 'packages/**/*.scss'",
-    "watch": "lerna run watch --scope @vrembem/$npm_config_c --parallel",
-    "watch:vb": "lerna run watch --scope vrembem --parallel",
+    "publish": "lerna publish --message='chore(release): bump to %s'",
     "server": "lerna run server --scope @vrembem/docs --parallel",
     "sink": "npm-run-all build lint test:coverage",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "watch": "lerna run watch --scope @vrembem/$npm_config_c --parallel",
+    "watch:vb": "lerna run watch --scope vrembem --parallel"
   },
   "devDependencies": {
     "@babel/core": "^7.11.4",
