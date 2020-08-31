@@ -14,9 +14,24 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.17.0 to CHANGELOG.md
+chore(release): add v1.18.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.18.0 (2020-08-31)
+
+#### :tada: New Feature
+* `base`, `button`, `card`, `core`, `dialog`, `dropdown`, `icon-action`, `input`, `notice`, `table`, `utility`, `vrembem`
+  * [#364](https://github.com/sebnitu/vrembem/pull/364) Add new heading-scale variable map and heading-levels mixin
+
+#### :house: Refactor
+* `base`, `core`, `utility`
+  * [#364](https://github.com/sebnitu/vrembem/pull/364) Also includes the following changes:
+    * Remove the text-lead utility.
+    * Adds better variable overrides to the base component.
+    * Fix core line-height variable values.
+    * Fix core padding-lg variable values.
 
 
 ## v1.17.0 (2020-08-28)
