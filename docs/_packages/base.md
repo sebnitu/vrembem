@@ -145,7 +145,6 @@ The arrow (caret) module creates directional triangles drawn with CSS.
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"arrow"</code></td>
         <td data-mobile-label="Desc">String to use for the class name of the arrow module.</td>
       </tr>
-
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$arrow-color</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">currentColor</code></td>
@@ -702,7 +701,7 @@ Section headings in HTML are represented by the `<h1>` through `<h6>` elements. 
   </table>
 </div>
 
-#### `$heading-scale`
+### $heading-scale
 
 A map containing the font-size and optional line-height scale for HTML headings. The map should contain a key of the heading level and the value of a font-size and optional line-height space separated.
 
@@ -755,7 +754,7 @@ Output all the heading styles set in the passed map which defaults to the [`$hea
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$map</code></td>
         <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">map</code></td>
-        <td data-mobile-label="Desc">The map object to search heading level values from. Defaults to <a href="#heading-scale"><code class="code">$heading-scale</code></a>.</td>
+        <td data-mobile-label="Desc">The map object to search heading level values from. Defaults to <a class="link" href="#heading-scale"><code class="code">$heading-scale</code></a>.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$prefix</code></td>
@@ -814,13 +813,13 @@ Output the specific styles for a heading level. Takes the heading level as an ar
     <tbody>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$level</code></td>
-        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">number (1-6)</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">number (1-6) or string (map key)</code></td>
         <td data-mobile-label="Desc">The level of heading styles to output. Can either be a number to search for index or string to search for key.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$map</code></td>
         <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">map</code></td>
-        <td data-mobile-label="Desc">The map object to search heading level values from. Defaults to <a href="#heading-scale"><code class="code">$heading-scale</code></a>.</td>
+        <td data-mobile-label="Desc">The map object to search heading level values from. Defaults to <a class="link" href="#heading-scale"><code class="code">$heading-scale</code></a>.</td>
       </tr>
     </tbody>
   </table>
@@ -829,13 +828,22 @@ Output the specific styles for a heading level. Takes the heading level as an ar
 **Example**
 
 ```scss
+// Using a custom map
+$custom-heading-scale: (
+  "h1": 3em 1.6,
+  "h2": 2em 1.5,
+  "h3": 2.5em 1.4,
+);
+
+// Pass in a level key and our custom map
 h1 {
-  @include heading(1);
+  @include mix.heading("h1", $custom-heading-scale);
 }
 
 // CSS Output
-.h1 {
-  font-size: 2.25em;
+h1 {
+  font-size: 3em;
+  line-height: 1.6;
 }
 ```
 
@@ -1428,7 +1436,7 @@ Output the separator styles.
 
 ## Spacing
 
-This module adds vertical spacing between an element's children. Spacing size and spacing values are generated from the `$spacing-map` variable map.
+This module adds vertical spacing between an element's children. Spacing size and spacing values are generated from the [`$spacing-map`](#spacing-map) variable map.
 
 {% include demo_open.html %}
 <div class="spacing">
@@ -1512,27 +1520,45 @@ This module adds vertical spacing between an element's children. Spacing size an
     <tbody>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$output-spacing</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">$output</code> &rarr; <code class="code color-secondary">true</code></td>
         <td data-mobile-label="Desc">Toggles the output of this module.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$class-spacing</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"spacing"</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">"spacing"</code></td>
         <td data-mobile-label="Desc">String to use for the class name of the spacing module.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$spacing</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$spacing</code></td>
-        <td data-mobile-label="Desc">Sets the vertical spacing via the top and bottom margin property.</td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$spacing</code> &rarr; <code class="code color-secondary">1em</code></td>
+        <td data-mobile-label="Desc">Sets the vertical spacing via the top margin property.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$spacing-map</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$spacing-map</code></td>
+        <td data-mobile-label="Default">
+          <a class="link" href="#spacing-map"><code class="code color-secondary">core.$spacing-map</code> Ref &darr;</a>
+          </td>
         <td data-mobile-label="Desc">Used to build the spacing key classes.</td>
       </tr>
     </tbody>
   </table>
 </div>
+
+### `$spacing-map`
+
+Used to build the spacing key classes.
+
+```scss
+// Inherited from: core.$spacing-map
+$spacing-map: (
+  "none": 0,
+  "xs": 0.25em,
+  "sm": 0.5em,
+  "md": 1em,
+  "lg": 1.5em,
+  "xl": 2em
+) !default;
+```
 
 ### `@mixin spacing($value, $imp: null)`
 

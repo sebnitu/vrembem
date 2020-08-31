@@ -28,7 +28,6 @@ $class-span: "span" !default;
 $class-text: "text" !default;
 
 $breakpoints: core.$breakpoints !default;
-$columns: 12 !default;
 $display-properties: (
   inline,
   flex,
@@ -39,3 +38,4 @@ $display-properties: (
 ) !default;
 $spacing: core.$spacing !default;
 $spacing-map: core.$spacing-map !default;
+$span-columns: 12 !default;

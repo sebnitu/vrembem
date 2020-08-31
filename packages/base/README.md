@@ -380,7 +380,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 ```
 
-#### `@mixin heading-levels($map: $heading-scale), $prefix: null`)
+#### `@mixin heading-levels($map: $heading-scale, $prefix: null)`
 
 Output all the heading styles set in the passed map which defaults to the [`$heading-scale`](#heading-scale) map.
 
@@ -435,13 +435,22 @@ Output the specific styles for a heading level. Takes the heading level as an ar
 **Example**
 
 ```scss
+// Using a custom map
+$custom-heading-scale: (
+  "h1": 3em 1.6,
+  "h2": 2em 1.5,
+  "h3": 2.5em 1.4,
+);
+
+// Pass in a level key and our custom map
 h1 {
-  @include heading(1);
+  @include mix.heading("h1", $custom-heading-scale);
 }
 
 // CSS Output
-.h1 {
-  font-size: 2.25em;
+h1 {
+  font-size: 3em;
+  line-height: 1.6;
 }
 ```
 
@@ -736,7 +745,7 @@ Output the separator styles.
 
 ### `spacing`
 
-This module adds vertical spacing between an element's children. Spacing size and spacing values are generated from the `$spacing-map` variable map.
+This module adds vertical spacing between an element's children. Spacing size and spacing values are generated from the [`$spacing-map`](#spacing-map) variable map.
 
 ```html
 <!-- Using the default spacing class -->
@@ -751,12 +760,28 @@ This module adds vertical spacing between an element's children. Spacing size an
 <div class="spacing-xl">...</div>
 ```
 
-| Variable          | Default                 | Description                                                       |
-| ----------------- | ----------------------- | ----------------------------------------------------------------- |
-| `$output-spacing` | `$output` &rarr; `true` | Toggles the output of this module.                                |
-| `$class-spacing`  | `"spacing"`             | String to use for the class name of the spacing module.           |
-| `$spacing`        | `core.$spacing`         | Sets the vertical spacing via the top and bottom margin property. |
-| `$spacing-map`    | `core.$spacing-map`     | Used to build the spacing key classes.                            |
+| Variable          | Default                                        | Description                                             |
+| ----------------- | ---------------------------------------------- | ------------------------------------------------------- |
+| `$output-spacing` | `$output` &rarr; `true`                        | Toggles the output of this module.                      |
+| `$class-spacing`  | `"spacing"`                                    | String to use for the class name of the spacing module. |
+| `$spacing`        | `core.$spacing` &rarr; `1em`                   | Sets the vertical spacing via the top margin property.  |
+| `$spacing-map`    | [`core.$spacing-map` Ref &darr;](#spacing-map) | Used to build the spacing key classes.                  |
+
+#### `$spacing-map`
+
+Used to build the spacing key classes.
+
+```scss
+// Inherited from: core.$spacing-map
+$spacing-map: (
+  "none": 0,
+  "xs": 0.25em,
+  "sm": 0.5em,
+  "md": 1em,
+  "lg": 1.5em,
+  "xl": 2em
+) !default;
+```
 
 #### `@mixin spacing($value, $imp: null)`
 
