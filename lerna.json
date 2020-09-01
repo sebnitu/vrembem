@@ -1,16 +1,24 @@
 {
   "version": "1.18.0",
+  "command": {
+    "publish": {
+      "message": "chore(release): bump to %s",
+      "ignoreChanges": [
+        "**/tests/**",
+        "**/*.md"
+      ]
+    }
+  },
+  "packages": [
+    "docs",
+    "packages/*"
+  ],
   "changelog": {
     "repo": "sebnitu/vrembem",
     "cacheDir": ".changelog",
     "ignoreCommitters": [
       "[bot]"
     ],
-    "command": {
-      "publish": {
-        "conventionalCommits": true
-      }
-    },
     "labels": {
       "PR: breaking": ":fire: Breaking Changes",
       "PR: feat": ":tada: New Feature",
@@ -20,9 +28,5 @@
       "PR: docs": ":books: Documentation",
       "PR: chore": ":hammer: Chore"
     }
-  },
-  "packages": [
-    "docs",
-    "packages/*"
-  ]
+  }
 }

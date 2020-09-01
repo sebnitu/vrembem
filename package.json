@@ -12,7 +12,6 @@
     "lint": "npm-run-all lint:styles lint:scripts",
     "lint:scripts": "eslint packages",
     "lint:styles": "stylelint 'packages/**/*.scss'",
-    "publish": "lerna publish --message='chore(release): bump to %s'",
     "server": "lerna run server --scope @vrembem/docs --parallel",
     "sink": "npm-run-all build lint test:coverage",
     "test": "jest",
