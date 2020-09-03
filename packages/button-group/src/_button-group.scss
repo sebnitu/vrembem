@@ -11,7 +11,7 @@
     margin-top: 0;
   }
 
-  #{var.$children-selector} {
+  > * {
     z-index: 1;
     flex: 0 0 auto;
     margin-top: var.$gap;

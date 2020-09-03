@@ -228,11 +228,6 @@ Adds a breakpoint for when button-group elements should be stacked vertically. V
         <td data-mobile-label="Desc">Sets the border-radius styles of buttons when button-group adjusts them.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$children-selector</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"> *"</code></td>
-        <td data-mobile-label="Desc">The selector used to target button-group children styles.</td>
-      </tr>
-      <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$gap</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2em</code></td>
         <td data-mobile-label="Desc">The default gap spacing for the button-group component.</td>

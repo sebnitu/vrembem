@@ -132,7 +132,6 @@ Adds a breakpoint for when button-group elements should be stacked vertically. V
 | `$prefix-modifier-value` | `"_"`                                          | String to prefix modifier values with.                                                                                 |
 | `$breakpoints`           | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the `button-group_full_[key]` and  `button-group_stack_[key]` modifiers use to build their styles. |
 | `$border-radius`         | `core.$border-radius`                          | Sets the border-radius styles of buttons when button-group adjusts them.                                               |
-| `$children-selector`     | `"> *"`                                        | The selector used to target button-group children styles.                                                              |
 | `$gap`                   | `0.5em`                                        | The default gap spacing for the button-group component.                                                                |
 | `$gap-join`              | `-1px`                                         | The gap spacing used for the `button-group_join` modifier.                                                             |
 | `$gap-map`               | [`Sass Map` Ref &darr;](#gap-scale)            | Used to output gap modifiers.                                                                                          |
