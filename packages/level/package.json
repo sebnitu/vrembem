@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/level",
   "description": "A simple flexbox based layout component.",
-  "version": "1.18.1",
+  "version": "1.18.2",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -25,7 +25,7 @@
     "directory": "packages/level"
   },
   "dependencies": {
-    "@vrembem/core": "^1.18.1"
+    "@vrembem/core": "^1.18.2"
   },
   "publishConfig": {
     "access": "public"
