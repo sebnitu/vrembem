@@ -1,5 +1,4 @@
 @use "@vrembem/core";
-@use "@vrembem/base/src/mixins" as base;
 @use "./variables" as var;
 
 $_b: var.$prefix-block;
@@ -11,19 +10,9 @@ $_v: var.$prefix-modifier-value;
   color: core.$info-darker;
 }
 
-.#{$_b}notice#{$_m}type#{$_v}info-bold {
-  @include base.type-invert(core.$info);
-  background-color: core.$info;
-}
-
 .#{$_b}notice#{$_m}type#{$_v}success {
   background-color: core.$success-lighter;
   color: core.$success-darker;
-}
-
-.#{$_b}notice#{$_m}type#{$_v}success-bold {
-  @include base.type-invert(core.$success);
-  background-color: core.$success;
 }
 
 .#{$_b}notice#{$_m}type#{$_v}caution {
@@ -31,17 +20,7 @@ $_v: var.$prefix-modifier-value;
   color: core.$caution-darker;
 }
 
-.#{$_b}notice#{$_m}type#{$_v}caution-bold {
-  @include base.type-invert(core.$caution);
-  background-color: core.$caution;
-}
-
 .#{$_b}notice#{$_m}type#{$_v}danger {
   background-color: core.$danger-lighter;
   color: core.$danger-darker;
-}
-
-.#{$_b}notice#{$_m}type#{$_v}danger-bold {
-  @include base.type-invert(core.$danger);
-  background-color: core.$danger;
 }

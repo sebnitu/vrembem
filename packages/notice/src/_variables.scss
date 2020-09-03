@@ -6,15 +6,11 @@ $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
 $padding: 1em !default;
-$spacing: 0.5em !default;
-$background: core.$shade !default;
-$box-shadow: null !default;
 $border: null !default;
 $border-radius: core.$border-radius !default;
+$background: core.$shade !default;
+$box-shadow: null !default;
 
 $title-font-size: core.$font-size-lg !default;
 $title-line-height: core.$line-height-lg !default;
 $title-font-weight: core.font-weight("semi-bold") !default;
-
-$body-spacing: 1rem !default;
-$actions-spacing: 0.5rem !default;
