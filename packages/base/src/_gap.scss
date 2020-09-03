@@ -6,7 +6,7 @@ $_c: var.$class-gap;
 
 @if (var.$output-gap) {
   .#{$_b}#{$_c} {
-    @include core.gap($val: var.$gap, $imp: true);
+    @include core.gap(var.$gap, $imp: true);
   }
 
   .#{$_b}#{$_c}-x {
@@ -19,7 +19,7 @@ $_c: var.$class-gap;
 
   @each $key, $value in var.$gap-map {
     .#{$_b}#{$_c}-#{$key} {
-      @include core.gap($val: var.$gap, $imp: true);
+      @include core.gap($value, $imp: true);
     }
   }
 
