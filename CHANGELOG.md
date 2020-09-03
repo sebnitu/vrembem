@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.18.1 to CHANGELOG.md
+chore(release): add v1.18.2 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.18.2 (2020-09-03)
+
+#### :tada: New Feature
+* `core`
+  * [#372](https://github.com/sebnitu/vrembem/pull/372) Add new gap mixin to core
 
 
 ## v1.18.1 (2020-09-03)
