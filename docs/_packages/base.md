@@ -372,7 +372,7 @@ For a complete understanding of what this module does, checkout the source: [`_b
 
 The HTML blockquote element is used for markup up extended quotations. This module helps style these elements in a distinct and appealing way by providing the `.blockquote` CSS class.
 
-{% include demo_open.html class_parent="gap" %}
+{% include demo_open.html class_parent="gap-y" %}
 <blockquote class="blockquote" cite="https://ideapod.com/35-noam-chomsky-quotes-will-make-question-everything-society/">
   <p>"All over the place, from the popular culture to the propaganda system, there is constant pressure to make people feel that they are helpless, that the only role they can have is to ratify decisions and to consume."</p>
   <footer>Noam Chomsky, <cite>On Keeping the Population Passive</cite></footer>
@@ -496,7 +496,7 @@ blockquote > * + * {
 
 The HTML code element displays its contents styled in a fashion intended to indicate that the text is a short fragment of computer code. This module helps style these elements by providing the `.code` CSS class.
 
-{% include demo_open.html class_parent="gap" %}
+{% include demo_open.html class_parent="gap-y" %}
 <code class="code">a = 17</code>
 {% include demo_switch.html %}
 ```html
@@ -801,7 +801,7 @@ Output the gap styles for an element. Styles are applied to an elements children
 
 Section headings in HTML are represented by the `<h1>` through `<h6>` elements. This module helps style these elements by providing the `.h1`-`.h6` CSS classes.
 
-{% include demo_open.html class_parent="gap" %}
+{% include demo_open.html class_parent="gap-y" %}
 <h1 class="h1">Heading</h1>
 <h2 class="h2">Heading</h2>
 <h3 class="h3">Heading</h3>
@@ -1021,11 +1021,11 @@ h1 {
 A link—usually represented by an anchor (`<a>`) HTML element with `href` attribute—creates the styles for a hyperlink to anything a URL can address. This module helps style these elements by providing the `.link` CSS class as well as a few optional modifiers.
 
 {% include demo_open.html %}
-<div class="gap padding">
+<div class="gap-y padding">
   <p><a href="#" class="link">Default link</a></p>
   <p><a href="#" class="link link_subtle">Subtle link</a></p>
 </div>
-<div class="gap padding radius background-night">
+<div class="gap-y padding radius background-night">
   <p><a href="#" class="link link_invert">Inverted link</a></p>
   <p><a href="#" class="link link_invert-subtle">Inverted link</a></p>
 </div>
@@ -1235,7 +1235,7 @@ a.subtle {
 The list module helps add styles to unordered (`<ul>`) and ordered (`<ol>`) lists by providing the `.list` class.
 
 {% include demo_open.html %}
-<div class="gap-xl">
+<div class="gap-y-xl">
   <ul class="list">
     <li>One</li>
     <li>Two
@@ -1343,7 +1343,7 @@ ol li + li {
 
 This module helps style the HTML `<pre>` element by providing the `.pre` CSS class. Whitespace inside this element is displayed as written.
 
-{% include demo_open.html class_parent="gap" %}
+{% include demo_open.html class_parent="gap-y" %}
 <pre class="pre">
 -----------------------------
 | I'm an expert in my field |
@@ -1508,11 +1508,11 @@ Output the styles for a scroll-box container.
 This module adds the `.sep` and `.sep-invert` CSS classes which visually renders a horizontal separator. This can be applied to an `<hr>` HTML element. It can also be applied to a more generic `<span>` or `<div>` depending on the semantic context.
 
 {% include demo_open.html %}
-<div class="gap padding">
+<div class="gap-y padding">
   <hr class="sep">
   <hr class="sep border-color-darker">
 </div>
-<div class="gap padding radius background-night">
+<div class="gap-y padding radius background-night">
   <hr class="sep-invert">
   <hr class="sep-invert border-color-invert-darker">
 </div>

@@ -13,7 +13,7 @@ usage:
 
 The most basic imlementation of the media component consists of the `media` container and atleast one body element (`media__body`) and one object element (`media__obj`).
 
-{% include demo_open.html class_parent="gap" %}
+{% include demo_open.html class_parent="gap-y" %}
 <div class="media">
   <div class="media__obj">
     <img class="radius" src="https://picsum.photos/90/90/?11" width="90" height="90" />
@@ -48,7 +48,7 @@ The most basic imlementation of the media component consists of the `media` cont
 
 Adjusts the gap spacing based on the provided key. Gap key output is based on the values in [`$gap-scale`](#gap-scale) variable map.
 
-{% include demo_open.html class_parent="gap" %}
+{% include demo_open.html class_parent="gap-y" %}
 <div class="media media_gap_xs">
   <div class="media__obj">
     {% include icon.html icon="settings" %}
@@ -78,7 +78,7 @@ Adjusts the gap spacing based on the provided key. Gap key output is based on th
 
 Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-scale`](#gap-scale) variable map.
 
-{% include demo_open.html class_parent="gap" %}
+{% include demo_open.html class_parent="gap-y" %}
 <div class="media media_gap-x_lg">
   <div class="media__obj">
     {% include icon.html icon="settings" %}
@@ -108,7 +108,7 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key output is 
 
 Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-scale`](#gap-scale) variable map.
 
-{% include demo_open.html class_parent="gap" %}
+{% include demo_open.html class_parent="gap-y" %}
 <div class="media media_gap-y_xs media_stack_lg">
   <div class="media__obj">
     {% include icon.html icon="settings" %}
@@ -140,7 +140,7 @@ Adjusts the vertical gap spacing based on the provided key. Gap key output is ba
 
 Adds a breakpoint for when media elements should be stacked vertically. Values and class keys are generated using the [`$breakpoints`](#breakpoints) map. Omitting the key value from the modifier (e.g. `media_stack`) will stack items under all conditions.
 
-{% include demo_open.html class_parent="gap" %}
+{% include demo_open.html class_parent="gap-y" %}
 <div class="media media_stack_lg">
   <img class="media__obj radius" src="https://picsum.photos/90/90/?15" width="90" height="90" />
   <div class="media__body">
@@ -173,7 +173,7 @@ The media component really shines when combining gap and stack modifiers.
 - `media_gap-y_xs` - Sets the vertical gap between media obj and body elements whent he stack breakpoint is met.
 - `media_stack_lg` - Sets the media component breakpoint that elements should stack.
 
-{% include demo_open.html class_parent="gap" %}
+{% include demo_open.html class_parent="gap-y" %}
 <div class="media media_gap-x_lg media_gap-y_xs media_stack_lg">
   <img class="media__obj radius" src="https://picsum.photos/90/90/?15" width="90" height="90" />
   <div class="media__body">

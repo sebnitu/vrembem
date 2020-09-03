@@ -199,31 +199,122 @@ input::-moz-placeholder {
   border: none;
 }
 
-.gap > * + * {
+.gap {
+  margin-top: -1em !important;
+  margin-left: -1em !important;
+}
+.gap > * {
+  margin-top: 1em !important;
+  margin-left: 1em !important;
+}
+
+.gap-x > * + * {
+  margin-left: 1em !important;
+}
+
+.gap-y > * + * {
   margin-top: 1em !important;
 }
 
-.gap-none > * + * {
+.gap-none {
+  margin-top: -1em !important;
+  margin-left: -1em !important;
+}
+.gap-none > * {
+  margin-top: 1em !important;
+  margin-left: 1em !important;
+}
+
+.gap-xs {
+  margin-top: -1em !important;
+  margin-left: -1em !important;
+}
+.gap-xs > * {
+  margin-top: 1em !important;
+  margin-left: 1em !important;
+}
+
+.gap-sm {
+  margin-top: -1em !important;
+  margin-left: -1em !important;
+}
+.gap-sm > * {
+  margin-top: 1em !important;
+  margin-left: 1em !important;
+}
+
+.gap-md {
+  margin-top: -1em !important;
+  margin-left: -1em !important;
+}
+.gap-md > * {
+  margin-top: 1em !important;
+  margin-left: 1em !important;
+}
+
+.gap-lg {
+  margin-top: -1em !important;
+  margin-left: -1em !important;
+}
+.gap-lg > * {
+  margin-top: 1em !important;
+  margin-left: 1em !important;
+}
+
+.gap-xl {
+  margin-top: -1em !important;
+  margin-left: -1em !important;
+}
+.gap-xl > * {
+  margin-top: 1em !important;
+  margin-left: 1em !important;
+}
+
+.gap-x-none > * + * {
+  margin-left: 0 !important;
+}
+
+.gap-x-xs > * + * {
+  margin-left: 0.25em !important;
+}
+
+.gap-x-sm > * + * {
+  margin-left: 0.5em !important;
+}
+
+.gap-x-md > * + * {
+  margin-left: 1em !important;
+}
+
+.gap-x-lg > * + * {
+  margin-left: 1.5em !important;
+}
+
+.gap-x-xl > * + * {
+  margin-left: 2em !important;
+}
+
+.gap-y-none > * + * {
   margin-top: 0 !important;
 }
 
-.gap-xs > * + * {
+.gap-y-xs > * + * {
   margin-top: 0.25em !important;
 }
 
-.gap-sm > * + * {
+.gap-y-sm > * + * {
   margin-top: 0.5em !important;
 }
 
-.gap-md > * + * {
+.gap-y-md > * + * {
   margin-top: 1em !important;
 }
 
-.gap-lg > * + * {
+.gap-y-lg > * + * {
   margin-top: 1.5em !important;
 }
 
-.gap-xl > * + * {
+.gap-y-xl > * + * {
   margin-top: 2em !important;
 }
 

@@ -6,12 +6,32 @@ $_c: var.$class-gap;
 
 @if (var.$output-gap) {
   .#{$_b}#{$_c} {
-    @include mix.gap(var.$gap, true);
+    @include mix.gap($val: var.$gap, $imp: true);
+  }
+  
+  .#{$_b}#{$_c}-x {
+    @include mix.gap('x', var.$gap, true);
+  }
+
+  .#{$_b}#{$_c}-y {
+    @include mix.gap('y', var.$gap, true);
   }
 
   @each $key, $value in var.$gap-map {
     .#{$_b}#{$_c}-#{$key} {
-      @include mix.gap($value, true);
+      @include mix.gap($val: var.$gap, $imp: true);
+    }
+  }
+
+  @each $key, $value in var.$gap-map {
+    .#{$_b}#{$_c}-x-#{$key} {
+      @include mix.gap('x', $value, true);
+    }
+  }
+
+  @each $key, $value in var.$gap-map {
+    .#{$_b}#{$_c}-y-#{$key} {
+      @include mix.gap('y', $value, true);
     }
   }
 }

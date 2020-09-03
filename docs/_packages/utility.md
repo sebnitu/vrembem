@@ -1005,7 +1005,7 @@ Add margin to an element using directional and size modifiers. Margin size and s
         <div class="card__header">
           <code class="code">[direction]</code>
         </div>
-        <div class="card__body gap">
+        <div class="card__body gap-y">
           <p><code>top</code></p>
           <p><code>right</code></p>
           <p><code>bottom</code></p>
@@ -1018,7 +1018,7 @@ Add margin to an element using directional and size modifiers. Margin size and s
         <div class="card__header">
           <code class="code">[size]</code>
         </div>
-        <div class="card__body gap">
+        <div class="card__body gap-y">
           <p><code>none <span class="color-subtle">...0</span></code></p>
           <p><code>xs <span class="color-subtle">...0.25em</span></code></p>
           <p><code>sm <span class="color-subtle">...0.5em</span></code></p>
@@ -1072,7 +1072,7 @@ Add padding to an element using directional and size modifiers. Padding size and
         <div class="card__header">
           <code class="code">[direction]</code>
         </div>
-        <div class="card__body gap">
+        <div class="card__body gap-y">
           <p><code>top</code></p>
           <p><code>right</code></p>
           <p><code>bottom</code></p>
@@ -1085,7 +1085,7 @@ Add padding to an element using directional and size modifiers. Padding size and
         <div class="card__header">
           <code class="code">[size]</code>
         </div>
-        <div class="card__body gap">
+        <div class="card__body gap-y">
           <p><code>none <span class="color-subtle">...0</span></code></p>
           <p><code>xs <span class="color-subtle">...0.25em</span></code></p>
           <p><code>sm <span class="color-subtle">...0.5em</span></code></p>

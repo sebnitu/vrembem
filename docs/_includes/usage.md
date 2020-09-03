@@ -1,4 +1,4 @@
-<div class="type gap" markdown="1">
+<div class="type gap-y" markdown="1">
 
 {% if page.usage.npm %}
 ```sh

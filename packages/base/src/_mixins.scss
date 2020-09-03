@@ -87,9 +87,9 @@
 // Gap
 // ---
 
-@mixin gap($value, $imp: null) {
-  @if map.has-key(var.$gap-map, $value) {
-    $value: map.get(var.$gap-map, $value);
+@mixin gap($dir: null, $val, $imp: null) {
+  @if map.has-key(var.$gap-map, $val) {
+    $val: map.get(var.$gap-map, $val);
   }
 
   @if ($imp) {
@@ -98,9 +98,23 @@
     $imp: null;
   }
 
-  @if (meta.type-of($value) == number) {
-    > * + * {
-      margin-top: $value #{$imp};
+  @if (meta.type-of($val) == number) {
+    @if ($dir == 'x') {
+      > * + * {
+        margin-left: $val #{$imp};
+      }
+    } @else if ($dir == 'y') {
+      > * + * {
+        margin-top: $val #{$imp};
+      }
+    } @else {
+      margin-top: ($val * -1) #{$imp};
+      margin-left: ($val * -1) #{$imp};
+
+      > * {
+        margin-top: $val #{$imp};
+        margin-left: $val #{$imp};
+      }
     }
   }
 }
@@ -269,7 +283,7 @@
 
 @mixin type() {
   @include core.add-clearfix();
-  @include gap(var.$type-gap);
+  @include gap('y', var.$type-gap);
   color: var.$type-color;
   font-family: var.$type-font-family;
   font-size: var.$type-font-size;
