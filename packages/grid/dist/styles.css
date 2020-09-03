@@ -5,8 +5,8 @@
   flex-wrap: wrap;
 }
 .grid > * {
-  margin-top: 2em;
-  margin-left: 2em;
+  padding-top: 2em;
+  padding-left: 2em;
 }
 .grid + .grid {
   margin-top: 0;
@@ -20,6 +20,8 @@
 
 .grid__clear {
   flex: 1 0 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .grid_auto > .grid__item,
@@ -42,22 +44,22 @@
   margin-left: 0;
 }
 .grid_gap_none > * {
-  margin-top: 0;
-  margin-left: 0;
+  padding-top: 0;
+  padding-left: 0;
 }
 
 .grid_gap-x_none {
   margin-left: 0;
 }
 .grid_gap-x_none > * {
-  margin-left: 0;
+  padding-left: 0;
 }
 
 .grid_gap-y_none {
   margin-top: 0;
 }
 .grid_gap-y_none > * {
-  margin-top: 0;
+  padding-top: 0;
 }
 
 .grid_gap_xs {
@@ -65,22 +67,22 @@
   margin-left: -0.5em;
 }
 .grid_gap_xs > * {
-  margin-top: 0.5em;
-  margin-left: 0.5em;
+  padding-top: 0.5em;
+  padding-left: 0.5em;
 }
 
 .grid_gap-x_xs {
   margin-left: -0.5em;
 }
 .grid_gap-x_xs > * {
-  margin-left: 0.5em;
+  padding-left: 0.5em;
 }
 
 .grid_gap-y_xs {
   margin-top: -0.5em;
 }
 .grid_gap-y_xs > * {
-  margin-top: 0.5em;
+  padding-top: 0.5em;
 }
 
 .grid_gap_sm {
@@ -88,22 +90,22 @@
   margin-left: -1em;
 }
 .grid_gap_sm > * {
-  margin-top: 1em;
-  margin-left: 1em;
+  padding-top: 1em;
+  padding-left: 1em;
 }
 
 .grid_gap-x_sm {
   margin-left: -1em;
 }
 .grid_gap-x_sm > * {
-  margin-left: 1em;
+  padding-left: 1em;
 }
 
 .grid_gap-y_sm {
   margin-top: -1em;
 }
 .grid_gap-y_sm > * {
-  margin-top: 1em;
+  padding-top: 1em;
 }
 
 .grid_gap_md {
@@ -111,22 +113,22 @@
   margin-left: -2em;
 }
 .grid_gap_md > * {
-  margin-top: 2em;
-  margin-left: 2em;
+  padding-top: 2em;
+  padding-left: 2em;
 }
 
 .grid_gap-x_md {
   margin-left: -2em;
 }
 .grid_gap-x_md > * {
-  margin-left: 2em;
+  padding-left: 2em;
 }
 
 .grid_gap-y_md {
   margin-top: -2em;
 }
 .grid_gap-y_md > * {
-  margin-top: 2em;
+  padding-top: 2em;
 }
 
 .grid_gap_lg {
@@ -134,22 +136,22 @@
   margin-left: -3em;
 }
 .grid_gap_lg > * {
-  margin-top: 3em;
-  margin-left: 3em;
+  padding-top: 3em;
+  padding-left: 3em;
 }
 
 .grid_gap-x_lg {
   margin-left: -3em;
 }
 .grid_gap-x_lg > * {
-  margin-left: 3em;
+  padding-left: 3em;
 }
 
 .grid_gap-y_lg {
   margin-top: -3em;
 }
 .grid_gap-y_lg > * {
-  margin-top: 3em;
+  padding-top: 3em;
 }
 
 .grid_gap_xl {
@@ -157,22 +159,22 @@
   margin-left: -4em;
 }
 .grid_gap_xl > * {
-  margin-top: 4em;
-  margin-left: 4em;
+  padding-top: 4em;
+  padding-left: 4em;
 }
 
 .grid_gap-x_xl {
   margin-left: -4em;
 }
 .grid_gap-x_xl > * {
-  margin-left: 4em;
+  padding-left: 4em;
 }
 
 .grid_gap-y_xl {
   margin-top: -4em;
 }
 .grid_gap-y_xl > * {
-  margin-top: 4em;
+  padding-top: 4em;
 }
 
 .grid_stack {

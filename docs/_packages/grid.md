@@ -137,11 +137,11 @@ Set an individual grid item to auto using `grid__item_auto` element modifier.
 The fill modifier stretches grid item's contents to fill the height of it's container.
 
 {% include demo_open.html class_grid="grid_stack" %}
-<div class="grid grid_fill">
+<div class="grid grid_gap_sm grid_fill">
   <div class="grid__item" style="height: 200px;">
     <div class="box">...</div>
   </div>
-  <div class="grid__item gap">
+  <div class="grid__item gap-y">
     <div class="box">
       ...
     </div>
@@ -501,7 +501,7 @@ Sets the number of columns an element should span. The total number of columns i
   <div class="grid__item span-6">
     <div class="box">...</div>
   </div>
-  <div class="grid__stack"></div>
+  <div class="grid__clear"></div>
   <div class="grid__item span-6">
     <div class="box">...</div>
   </div>
@@ -517,7 +517,7 @@ Sets the number of columns an element should span. The total number of columns i
 <div class="grid">
   <div class="grid__item span-6">...</div>
   <div class="grid__item span-6">...</div>
-  <div class="grid__stack"></div>
+  <div class="grid__clear"></div>
   <div class="grid__item span-6">...</div>
   <div class="grid__item span-3">...</div>
   <div class="grid__item span-3">...</div>

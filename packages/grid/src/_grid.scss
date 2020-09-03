@@ -5,7 +5,7 @@ $_b: var.$prefix-block;
 $_e: var.$prefix-element;
 
 .#{$_b}grid {
-  @include core.flex-gap(var.$gap);
+  @include core.flex-gap(var.$gap, $prop: "padding");
   display: flex;
   flex-wrap: wrap;
 
@@ -22,4 +22,6 @@ $_e: var.$prefix-element;
 
 .#{$_b}grid#{$_e}clear {
   flex: 1 0 100%;
+  margin: 0;
+  padding: 0;
 }
