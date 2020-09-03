@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.min.css">
   <link rel="stylesheet" href="./dist/styles.min.css">
   <!-- Vue -->
-  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
   <style>
     .example + .example {
       margin-top: 2em;
@@ -74,20 +74,21 @@
 
       <Example 
         title="gap-[key?]"
+        flex="flex flex-wrap"
         :boxes="15"
         :variants="gap">
       </Example>
 
       <Example 
         title="gap-x-[key?]"
-        :boxes="8"
+        flex="flex flex-items-equal"
+        :boxes="4"
         :variants="gapX">
       </Example>
 
       <Example 
         title="gap-y-[key?]"
         :boxes="4"
-        :flex="false"
         :variants="gapY">
       </Example>
 
@@ -134,19 +135,11 @@
         title: String,
         variants: Array,
         boxes: Number,
-        flex: {
-          type: Boolean,
-          default: true
-        }
+        flex: String,
       },
       data() {
         return {
           currentClass: this.variants[0]
-        }
-      },
-      computed: {
-        boxesFlex() {
-          return (this.flex) ? 'flex flex-wrap box-container' : 'box-container';
         }
       },
       methods: {
@@ -171,7 +164,7 @@
                 </radio>
               </div>
               <div class="grid__item span-8">
-                <div :class="[boxesFlex, currentClass]">
+                <div class="box-container" :class="[flex, currentClass]">
                   <div v-for="i in boxes" class="box"></div>
                 </div>
               </div>

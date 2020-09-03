@@ -8,6 +8,10 @@ $_c: var.$class-flex;
     display: flex !important;
   }
 
+  .#{$_u}#{$_c}-inline {
+    display: inline-flex !important;
+  }
+
   .#{$_u}#{$_c}-align-start {
     align-items: flex-start !important;
   }

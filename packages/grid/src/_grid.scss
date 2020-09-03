@@ -1,13 +1,13 @@
+@use "@vrembem/core";
 @use "./variables" as var;
 
 $_b: var.$prefix-block;
 $_e: var.$prefix-element;
 
 .#{$_b}grid {
+  @include core.flex-gap(var.$gap);
   display: flex;
   flex-wrap: wrap;
-  margin-top: (var.$gap * -1);
-  margin-left: (var.$gap * -1);
 
   & + & {
     margin-top: 0;
@@ -18,8 +18,6 @@ $_e: var.$prefix-element;
   flex: 1 1 0;
   width: auto;
   max-width: 100%;
-  padding-top: var.$gap;
-  padding-left: var.$gap;
 }
 
 .#{$_b}grid#{$_e}clear {
