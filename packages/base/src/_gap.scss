@@ -3,17 +3,19 @@
 
 $_b: var.$prefix-block;
 $_c: var.$class-gap;
+$_cx: var.$class-gap-x;
+$_cy: var.$class-gap-y;
 
 @if (var.$output-gap) {
   .#{$_b}#{$_c} {
     @include core.gap(var.$gap, $imp: true);
   }
 
-  .#{$_b}#{$_c}-x {
+  .#{$_b}#{$_cx} {
     @include core.gap(var.$gap, 'x', true);
   }
 
-  .#{$_b}#{$_c}-y {
+  .#{$_b}#{$_cy} {
     @include core.gap(var.$gap, 'y', true);
   }
 
@@ -24,13 +26,13 @@ $_c: var.$class-gap;
   }
 
   @each $key, $value in var.$gap-map {
-    .#{$_b}#{$_c}-x-#{$key} {
+    .#{$_b}#{$_cx}-#{$key} {
       @include core.gap($value, 'x', true);
     }
   }
 
   @each $key, $value in var.$gap-map {
-    .#{$_b}#{$_c}-y-#{$key} {
+    .#{$_b}#{$_cy}-#{$key} {
       @include core.gap($value, 'y', true);
     }
   }

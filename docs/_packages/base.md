@@ -628,15 +628,18 @@ The embed module is used to wrap iframes or video elements and keep them respons
   </table>
 </div>
 
-## Gap
+## gap-[key]
 
-This module adds gap spacing between an element's children. Gap size and gap values are generated from the [`$gap-map`](#gap-map) variable map.
+This module adds gap spacing between an element's children. It also adds negative top and left margins to the element it's applied to which may require an anonymous `<div>` if margins are needed. Gap keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
+
+- `gap`
+- `gap-[key]`
 
 {% include demo_open.html %}
-<div class="gap">
-  <div class="box"></div>
-  <div class="box"></div>
-  <div class="box"></div>
+<div class="flex flex-wrap gap">
+  {% for i in (1..16) %}
+    <div class="box"></div>
+  {% endfor %}
 </div>
 {% include demo_switch.html %}
 ```html
@@ -644,61 +647,41 @@ This module adds gap spacing between an element's children. Gap size and gap val
 ```
 {% include demo_close.html %}
 
+### gap-x-[key]
+
+Adds gap spacing horizontally using left margins and the `> * + *` selector. Gap keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
+
+- `gap-x`
+- `gap-x-[key]`
+
 {% include demo_open.html %}
-<div>
-  <div class="grid">
-    <div class="grid__item span-2">
-      <div class="gap-none">
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-      </div>
-    </div>
-    <div class="grid__item span-2">
-      <div class="gap-xs">
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-      </div>
-    </div>
-    <div class="grid__item span-2">
-      <div class="gap-sm">
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-      </div>
-    </div>
-    <div class="grid__item span-2">
-      <div class="gap-md">
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-      </div>
-    </div>
-    <div class="grid__item span-2">
-      <div class="gap-lg">
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-      </div>
-    </div>
-    <div class="grid__item span-2">
-      <div class="gap-xl">
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-      </div>
-    </div>
-  </div>
+<div class="flex flex-wrap gap-x">
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="gap-none">...</div>
-<div class="gap-xs">...</div>
-<div class="gap-sm">...</div>
-<div class="gap-md">...</div>
-<div class="gap-lg">...</div>
-<div class="gap-xl">...</div>
+<div class="gap-x">...</div>
+```
+{% include demo_close.html %}
+
+### gap-y-[key]
+
+Adds gap spacing vertically using top margins and the `> * + *` selector. Gap keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
+
+- `gap-y`
+- `gap-y-[key]`
+
+{% include demo_open.html %}
+<div class="gap-y">
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="gap-y">...</div>
 ```
 {% include demo_close.html %}
 
@@ -721,6 +704,16 @@ This module adds gap spacing between an element's children. Gap size and gap val
         <td data-mobile-label="Var"><code class="code text-nowrap">$class-gap</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">"gap"</code></td>
         <td data-mobile-label="Desc">String to use for the class name of the gap module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-gap-x</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">"gap-x"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the gap-x module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-gap-y</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">"gap-y"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the gap-y module.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$gap</code></td>
@@ -752,49 +745,6 @@ $gap-map: (
   "lg": 1.5em,
   "xl": 2em
 ) !default;
-```
-
-### `@mixin gap($value, $imp: null)`
-
-Output the gap styles for an element. Styles are applied to an elements children using the `> * + *` selector.
-
-**Arguments**
-
-<div class="scroll-box">
-  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
-    <thead>
-      <tr>
-        <th>Variable</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$value</code></td>
-        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">string || number (with unit)</code></td>
-        <td data-mobile-label="Desc">The unit of gap to apply. Can also be the key to a value in the <code class="code text-nowrap">$gap-map</code> map.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$imp</code></td>
-        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">boolean</code></td>
-        <td data-mobile-label="Desc">Whither or not to add the <code class="code text-nowrap">!important</code> flag.</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-**Example**
-
-```scss
-.element {
-  @include gap(2em, true);
-}
-
-// CSS Output
-.element > * + * {
-  margin-top: 2em !important;
-}
 ```
 
 ## Heading
