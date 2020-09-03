@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.18.0 to CHANGELOG.md
+chore(release): add v1.18.1 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.18.1 (2020-09-03)
+
+#### :tada: New Feature
+* `core`
+  * [#371](https://github.com/sebnitu/vrembem/pull/371) Add the new gap and gap-map variables to core
 
 
 ## v1.18.0 (2020-08-31)
