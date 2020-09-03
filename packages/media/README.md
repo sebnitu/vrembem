@@ -37,7 +37,7 @@ The most basic imlementation of the media component consists of the `media` cont
 
 ### `media_gap_[key]`
 
-Adjusts the gap spacing based on the provided key. Gap key output is based on the values in [`$gap-scale`](#gap-scale) variable map.
+Adjusts the gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
 ```html
 <div class="media media_gap_xs">
@@ -56,7 +56,7 @@ Adjusts the gap spacing based on the provided key. Gap key output is based on th
 
 ### `media_gap-x_[key]`
 
-Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-scale`](#gap-scale) variable map.
+Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
 ```html
 <div class="media media_gap-x_lg">
@@ -75,7 +75,7 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key output is 
 
 ### `media_gap-y_[key]`
 
-Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-scale`](#gap-scale) variable map.
+Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
 ```html
 <div class="media media_gap-y_xs media_stack_lg">
@@ -141,7 +141,7 @@ The media component really shines when combining gap and stack modifiers.
 | `$min-height`            | `(core.$line-height * 1em)`                    | Sets the min-height property of the `media__obj` element.                       |
 | `$max-width`             | `30%`                                          | Sets the max-width property of the `media__obj` element.                        |
 | `$gap`                   | `0.5em`                                        | The default gap spacing for the media component.                                |
-| `$gap-scale`             | [`Sass Map` Ref &darr;](#gap-scale)            | Used to output gap modifiers.                                                   |
+| `$gap-map`               | [`Sass Map` Ref &darr;](#gap-scale)            | Used to output gap modifiers.                                                   |
 
 #### $breakpoints
 
@@ -158,12 +158,12 @@ $breakpoints: (
 ) !default;
 ```
 
-#### $gap-scale
+#### $gap-map
 
 Used to output gap modifiers.
 
 ```scss
-$gap-scale: (
+$gap-map: (
   "none": 0,
   "xs": 0.5em,
   "sm": 1em,

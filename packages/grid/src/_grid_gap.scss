@@ -5,7 +5,7 @@ $_e: var.$prefix-element;
 $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
-@each $key, $value in var.$gap-scale {
+@each $key, $value in var.$gap-map {
   .#{$_b}grid#{$_m}gap#{$_v}#{$key} {
     margin-top: ($value * -1);
     margin-left: ($value * -1);

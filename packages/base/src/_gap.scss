@@ -8,7 +8,7 @@ $_c: var.$class-gap;
   .#{$_b}#{$_c} {
     @include mix.gap($val: var.$gap, $imp: true);
   }
-  
+
   .#{$_b}#{$_c}-x {
     @include mix.gap('x', var.$gap, true);
   }

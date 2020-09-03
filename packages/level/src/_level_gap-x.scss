@@ -4,7 +4,7 @@ $_b: var.$prefix-block;
 $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
-@each $key, $value in var.$gap-scale {
+@each $key, $value in var.$gap-map {
   .#{$_b}level#{$_m}gap-x#{$_v}#{$key} {
     margin-left: ($value * -1);
 

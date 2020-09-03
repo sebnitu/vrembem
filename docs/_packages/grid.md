@@ -195,7 +195,7 @@ Set an individual grid item to fill using the `grid__item_fill` element modifier
 
 ## grid_gap_[key]
 
-Modifiers that adjust the gutter spacing between `grid__item` elements. Gap key output is based on the values in [`$gap-scale`](#gap-scale) variable map.
+Modifiers that adjust the gutter spacing between `grid__item` elements. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
 ```html
 <div class="grid grid_gap_sm">
@@ -215,7 +215,7 @@ Modifiers that adjust the gutter spacing between `grid__item` elements. Gap key 
 
 ## grid_gap-x_[key]
 
-Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-scale`](#gap-scale) variable map.
+Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
 ```html
 <div class="grid grid_gap-x_xs">
@@ -235,7 +235,7 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key output is 
 
 ## grid_gap-y_[key]
 
-Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-scale`](#gap-scale) variable map.
+Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
 ```html
 <div class="grid grid_gap-y_xl">
@@ -654,7 +654,7 @@ Sets an elements width to `100%`.
         <td data-mobile-label="Desc">The default gap spacing for the grid component.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$gap-scale</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$gap-map</code></td>
         <td data-mobile-label="Default">
           <a class="link text-nowrap" href="#gap-scale"><code class="code color-secondary">Sass Map</code> Ref &darr;</a>
         </td>
@@ -679,12 +679,12 @@ $breakpoints: (
 ) !default;
 ```
 
-### $gap-scale
+### $gap-map
 
 Used to output gap modifiers.
 
 ```scss
-$gap-scale: (
+$gap-map: (
   "none": 0,
   "xs": 0.5em,
   "sm": 1em,

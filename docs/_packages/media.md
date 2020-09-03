@@ -46,7 +46,7 @@ The most basic imlementation of the media component consists of the `media` cont
 
 ## media_gap_[key]
 
-Adjusts the gap spacing based on the provided key. Gap key output is based on the values in [`$gap-scale`](#gap-scale) variable map.
+Adjusts the gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
 {% include demo_open.html class_parent="gap-y" %}
 <div class="media media_gap_xs">
@@ -76,7 +76,7 @@ Adjusts the gap spacing based on the provided key. Gap key output is based on th
 
 ## media_gap-x_[key]
 
-Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-scale`](#gap-scale) variable map.
+Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
 {% include demo_open.html class_parent="gap-y" %}
 <div class="media media_gap-x_lg">
@@ -106,7 +106,7 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key output is 
 
 ## media_gap-y_[key]
 
-Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-scale`](#gap-scale) variable map.
+Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
 {% include demo_open.html class_parent="gap-y" %}
 <div class="media media_gap-y_xs media_stack_lg">
@@ -246,7 +246,7 @@ The media component really shines when combining gap and stack modifiers.
         <td data-mobile-label="Desc">The default gap spacing for the media component.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$gap-scale</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$gap-map</code></td>
         <td data-mobile-label="Default">
           <a class="link" href="#gap-scale"><code class="code color-secondary">Sass Map</code> Ref &darr;</a>
         </td>
@@ -271,12 +271,12 @@ $breakpoints: (
 ) !default;
 ```
 
-### $gap-scale
+### $gap-map
 
 Used to output gap modifiers.
 
 ```scss
-$gap-scale: (
+$gap-map: (
   "none": 0,
   "xs": 0.5em,
   "sm": 1em,
