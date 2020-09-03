@@ -1,7 +1,40 @@
 @use "sass:map";
+@use "sass:meta";
 @use "./variables" as var;
 
-/// A media query mixin that deifnes a query using min-width. You can pass in a
+/// A gap mixin that creates spacing between an elements children comparable to
+/// the gap property for Flexbox. Optionally pass a direction string for
+/// column-gap ('x') and row-gaps ('y') output.
+/// @param {number unit} $val - the number unit
+/// @param {null | string} $dir - direction to apply gap ('x', 'y' or null for x and y)
+/// @param {null | true} $imp - whether or not to add `!important` flag
+@mixin gap($val, $dir: null, $imp: null) {
+  @if ($imp) {
+    $imp: "!important";
+  } @else if ($imp == false) {
+    $imp: null;
+  }
+
+  @if ($dir == 'x') {
+    > * + * {
+      margin-left: $val #{$imp};
+    }
+  } @else if ($dir == 'y') {
+    > * + * {
+      margin-top: $val #{$imp};
+    }
+  } @else {
+    margin-top: ($val * -1) #{$imp};
+    margin-left: ($val * -1) #{$imp};
+
+    > * {
+      margin-top: $val #{$imp};
+      margin-left: $val #{$imp};
+    }
+  }
+}
+
+/// A media query mixin that defines a query using min-width. You can pass in a
 /// key to the `$breakpoints()` map to access that value, or pass a value to
 /// create your media query.
 /// @param {string | unit} $point
@@ -20,7 +53,7 @@
   }
 }
 
-/// A media query mixin that deifnes a query using max-width. You can pass in a
+/// A media query mixin that defines a query using max-width. You can pass in a
 /// key to the `$breakpoints()` maps to access that value, or pass a value to
 /// create your media query. This mixin will shave a pixel off your breakpoint
 /// values so that it never overlaps with a min-width usage.
