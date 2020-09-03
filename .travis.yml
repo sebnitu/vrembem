@@ -2,8 +2,8 @@ language: node_js
 node_js:
   - 12
 
-before_script:
-  - npm install packages/*
+before_install:
+  - npx lerna bootstrap
 
 script:
   - npm run build
