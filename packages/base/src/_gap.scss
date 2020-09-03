@@ -1,0 +1,17 @@
+@use "./variables" as var;
+@use "./mixins" as mix;
+
+$_b: var.$prefix-block;
+$_c: var.$class-gap;
+
+@if (var.$output-gap) {
+  .#{$_b}#{$_c} {
+    @include mix.gap(var.$gap, true);
+  }
+
+  @each $key, $value in var.$gap-map {
+    .#{$_b}#{$_c}-#{$key} {
+      @include mix.gap($value, true);
+    }
+  }
+}

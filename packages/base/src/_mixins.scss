@@ -84,6 +84,27 @@
   word-break: break-word;
 }
 
+// Gap
+// ---
+
+@mixin gap($value, $imp: null) {
+  @if map.has-key(var.$gap-map, $value) {
+    $value: map.get(var.$gap-map, $value);
+  }
+
+  @if ($imp) {
+    $imp: "!important";
+  } @else if ($imp == false) {
+    $imp: null;
+  }
+
+  @if (meta.type-of($value) == number) {
+    > * + * {
+      margin-top: $value #{$imp};
+    }
+  }
+}
+
 // Heading
 // ---
 
@@ -243,33 +264,12 @@
   border-top: $border;
 }
 
-// Spacing
-// ---
-
-@mixin spacing($value, $imp: null) {
-  @if map.has-key(var.$spacing-map, $value) {
-    $value: map.get(var.$spacing-map, $value);
-  }
-
-  @if ($imp) {
-    $imp: "!important";
-  } @else if ($imp == false) {
-    $imp: null;
-  }
-
-  @if (meta.type-of($value) == number) {
-    > * + * {
-      margin-top: $value #{$imp};
-    }
-  }
-}
-
 // Type
 // ---
 
 @mixin type() {
   @include core.add-clearfix();
-  @include spacing(var.$type-spacing);
+  @include gap(var.$type-spacing);
   color: var.$type-color;
   font-family: var.$type-font-family;
   font-size: var.$type-font-size;

@@ -760,19 +760,19 @@ This module adds vertical spacing between an element's children. Spacing size an
 <div class="spacing-xl">...</div>
 ```
 
-| Variable          | Default                                        | Description                                             |
-| ----------------- | ---------------------------------------------- | ------------------------------------------------------- |
-| `$output-spacing` | `$output` &rarr; `true`                        | Toggles the output of this module.                      |
-| `$class-spacing`  | `"spacing"`                                    | String to use for the class name of the spacing module. |
-| `$spacing`        | `core.$spacing` &rarr; `1em`                   | Sets the vertical spacing via the top margin property.  |
-| `$spacing-map`    | [`core.$spacing-map` Ref &darr;](#spacing-map) | Used to build the spacing key classes.                  |
+| Variable          | Default                                    | Description                                             |
+| ----------------- | ------------------------------------------ | ------------------------------------------------------- |
+| `$output-spacing` | `$output` &rarr; `true`                    | Toggles the output of this module.                      |
+| `$class-spacing`  | `"spacing"`                                | String to use for the class name of the spacing module. |
+| `$spacing`        | `core.$gap` &rarr; `1em`                   | Sets the vertical spacing via the top margin property.  |
+| `$spacing-map`    | [`core.$gap-map` Ref &darr;](#spacing-map) | Used to build the spacing key classes.                  |
 
 #### `$spacing-map`
 
 Used to build the spacing key classes.
 
 ```scss
-// Inherited from: core.$spacing-map
+// Inherited from: core.$gap-map
 $spacing-map: (
   "none": 0,
   "xs": 0.25em,
@@ -798,7 +798,7 @@ Output the spacing styles for an element. Styles are applied to an elements chil
 
 ```scss
 .element {
-  @include spacing(2em, true);
+  @include gap(2em, true);
 }
 
 // CSS Output
