@@ -200,7 +200,7 @@ When `scroll-box` isn't mobile friendly enough, `table_responsive_[key]` is avai
 {% include demo_open.html %}
 <table class="table table_ellipsis">
   <colgroup>
-    <col style="width:50px;">
+    <col style="width: 50px;">
   </colgroup>
   <thead>
     <tr>
@@ -253,7 +253,7 @@ When `scroll-box` isn't mobile friendly enough, `table_responsive_[key]` is avai
 ```html
 <table class="table table_ellipsis">
   <colgroup>
-    <col style="width:50px;">
+    <col style="width: 50px;">
   </colgroup>
   ...
 </table>
