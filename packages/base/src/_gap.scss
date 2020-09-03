@@ -1,37 +1,37 @@
+@use "@vrembem/core";
 @use "./variables" as var;
-@use "./mixins" as mix;
 
 $_b: var.$prefix-block;
 $_c: var.$class-gap;
 
 @if (var.$output-gap) {
   .#{$_b}#{$_c} {
-    @include mix.gap($val: var.$gap, $imp: true);
+    @include core.gap($val: var.$gap, $imp: true);
   }
 
   .#{$_b}#{$_c}-x {
-    @include mix.gap('x', var.$gap, true);
+    @include core.gap(var.$gap, 'x', true);
   }
 
   .#{$_b}#{$_c}-y {
-    @include mix.gap('y', var.$gap, true);
+    @include core.gap(var.$gap, 'y', true);
   }
 
   @each $key, $value in var.$gap-map {
     .#{$_b}#{$_c}-#{$key} {
-      @include mix.gap($val: var.$gap, $imp: true);
+      @include core.gap($val: var.$gap, $imp: true);
     }
   }
 
   @each $key, $value in var.$gap-map {
     .#{$_b}#{$_c}-x-#{$key} {
-      @include mix.gap('x', $value, true);
+      @include core.gap($value, 'x', true);
     }
   }
 
   @each $key, $value in var.$gap-map {
     .#{$_b}#{$_c}-y-#{$key} {
-      @include mix.gap('y', $value, true);
+      @include core.gap($value, 'y', true);
     }
   }
 }
