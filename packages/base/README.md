@@ -76,7 +76,7 @@ The base component consists of a number of modules with their own set of specifi
 - [`blockquote`](#blockquote)
 - [`code`](#code)
 - [`embed`](#embed)
-- [`gap`](#gap)
+- [`gap`](#gap-key)
 - [`heading`](#heading)
 - [`link`](#link)
 - [`list`](#list)
@@ -324,9 +324,12 @@ The embed module is used to wrap iframes or video elements and keep them respons
 | `$class-embed`  | `"embed"`                  | String to use for the class name of the embed module. |
 | `$embed-ratio`  | `core.aspect-ratio(16, 9)` | The default aspect ratio to use.                      |
 
-### `gap`
+### `gap-[key]`
 
-This module adds gap spacing between an element's children. Gap size and gap values are generated from the [`$gap-map`](#gap-map) variable map.
+The gap module adds both horizontal and vertical spacing between an element's children. It also adds negative top and left margins to the element it's applied to which may require an anonymous `<div>` if margins are needed. Gap keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
+
+- `gap`
+- `gap-[key]`
 
 ```html
 <!-- Using the default gap class -->
@@ -341,12 +344,58 @@ This module adds gap spacing between an element's children. Gap size and gap val
 <div class="gap-xl">...</div>
 ```
 
-| Variable      | Default                                | Description                                           |
-| ------------- | -------------------------------------- | ----------------------------------------------------- |
-| `$output-gap` | `$output` &rarr; `true`                | Toggles the output of this module.                    |
-| `$class-gap`  | `"gap"`                                | String to use for the class name of the gap module.   |
-| `$gap`        | `core.$gap` &rarr; `1em`               | Sets the gap via the top and/or left margin property. |
-| `$gap-map`    | [`core.$gap-map` Ref &darr;](#gap-map) | Used to build the gap key classes.                    |
+> Gap is best used together with a flex layout and flex-wrap styles. For example, the `flex` and `flex-wrap` utilities are a great way to demo this module.
+
+### `gap-x-[key]`
+
+Adds gap spacing horizontally using left margins and the `> * + *` selector. Gap keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
+
+- `gap-x`
+- `gap-x-[key]`
+
+```html
+<!-- Using the default gap-x class -->
+<div class="gap-x">...</div>
+
+<!-- Using the gap-x class with variant key -->
+<div class="gap-x-none">...</div>
+<div class="gap-x-xs">...</div>
+<div class="gap-x-sm">...</div>
+<div class="gap-x-md">...</div>
+<div class="gap-x-lg">...</div>
+<div class="gap-x-xl">...</div>
+```
+
+### `gap-y-[key]`
+
+Adds gap spacing vertically using top margins and the `> * + *` selector. Gap keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
+
+- `gap-y`
+- `gap-y-[key]`
+
+```html
+<!-- Using the default gap-y class -->
+<div class="gap-y">...</div>
+
+<!-- Using the gap-y class with variant key -->
+<div class="gap-y-none">...</div>
+<div class="gap-y-xs">...</div>
+<div class="gap-y-sm">...</div>
+<div class="gap-y-md">...</div>
+<div class="gap-y-lg">...</div>
+<div class="gap-y-xl">...</div>
+```
+
+### Gap Variables
+
+| Variable       | Default                                | Description                                                              |
+| -------------- | -------------------------------------- | ------------------------------------------------------------------------ |
+| `$output-gap`  | `$output` &rarr; `true`                | Toggles the output of this module.                                       |
+| `$class-gap`   | `"gap"`                                | String to use for the class name of the gap module.                      |
+| `$class-gap-x` | `"gap-x"`                              | String to use for the class name of the gap-x variant of the gap module. |
+| `$class-gap-y` | `"gap-y"`                              | String to use for the class name of the gap-y variant of the gap module. |
+| `$gap`         | `core.$gap` &rarr; `1em`               | Sets the gap via the top and/or left margin property.                    |
+| `$gap-map`     | [`core.$gap-map` Ref &darr;](#gap-map) | Used to build the gap key classes.                                       |
 
 #### `$gap-map`
 

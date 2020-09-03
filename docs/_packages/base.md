@@ -98,7 +98,7 @@ The base component consists of a number of modules with their own set of specifi
 - [`blockquote`](#blockquote)
 - [`code`](#code)
 - [`embed`](#embed)
-- [`gap`](#gap)
+- [`gap`](#gap-key)
 - [`heading`](#heading)
 - [`link`](#link)
 - [`list`](#list)
@@ -630,7 +630,7 @@ The embed module is used to wrap iframes or video elements and keep them respons
 
 ## gap-[key]
 
-This module adds gap spacing between an element's children. It also adds negative top and left margins to the element it's applied to which may require an anonymous `<div>` if margins are needed. Gap keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
+The gap module adds both horizontal and vertical spacing between an element's children. It also adds negative top and left margins to the element it's applied to which may require an anonymous `<div>` if margins are needed. Gap keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
 
 - `gap`
 - `gap-[key]`
@@ -646,6 +646,8 @@ This module adds gap spacing between an element's children. It also adds negativ
 <div class="gap">...</div>
 ```
 {% include demo_close.html %}
+
+> Gap is best used together with a flex layout and flex-wrap styles. In the example above, we use the `flex` and `flex-wrap` utility styles as an example.
 
 ### gap-x-[key]
 
@@ -685,6 +687,8 @@ Adds gap spacing vertically using top margins and the `> * + *` selector. Gap ke
 ```
 {% include demo_close.html %}
 
+### Gap Variables
+
 <div class="scroll-box">
   <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
     <thead>
@@ -708,12 +712,12 @@ Adds gap spacing vertically using top margins and the `> * + *` selector. Gap ke
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$class-gap-x</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">"gap-x"</code></td>
-        <td data-mobile-label="Desc">String to use for the class name of the gap-x module.</td>
+        <td data-mobile-label="Desc">String to use for the class name of the gap-x variant of the gap module.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$class-gap-y</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">"gap-y"</code></td>
-        <td data-mobile-label="Desc">String to use for the class name of the gap-y module.</td>
+        <td data-mobile-label="Desc">String to use for the class name of the gap-y variant of the gap module.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$gap</code></td>
