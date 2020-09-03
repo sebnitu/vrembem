@@ -5,6 +5,9 @@ node_js:
 before_install:
   - npx lerna bootstrap
 
+before_script:
+  - npx del docs/node_modules/@vrembem
+
 script:
   - npm run build
   - npm run lint
