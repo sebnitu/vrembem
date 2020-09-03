@@ -60,7 +60,7 @@ Setting these variables will apply to all utility modules.
 | `$output`         | `true`                                         | Toggles the default output of all modules.                                                                                                          |
 | `$breakpoints`    | [`core.$breakpoints` Ref &darr;](#breakpoints) | A map of breakpoints used by utilities that provide breakpoint specific variations such as the [`display`](#display) and [`span`](#span) utilities. |
 | `$gap`            | `core.$gap` &rarr; `1em`                       | Used as the default spacing for [`margin`](#margin) and [`padding`](#padding) utilities.                                                            |
-| `$gap-map`        | [`core.$gap-map` Ref &darr;](#spacing-map)     | Used to build spacing variants for [`margin`](#margin) and [`padding`](#padding) utilities.                                                         |
+| `$gap-map`        | [`core.$gap-map` Ref &darr;](#gap-map)         | Used to build spacing variants for [`margin`](#margin) and [`padding`](#padding) utilities.                                                         |
 
 #### `$breakpoints`
 
@@ -79,7 +79,7 @@ $breakpoints: (
 
 #### `$gap-map`
 
-Used to build spacing variants for [`margin`](#margin) and [`padding`](#padding) utilities.
+Used to build gap variants for [`margin`](#margin) and [`padding`](#padding) utilities.
 
 ```scss
 // Inherited from: core.$gap-map
@@ -405,7 +405,7 @@ Change the `justify-content` property of grid columns using the `flex-justify-[v
 
 ### `margin`
 
-Add margin to an element using directional and size modifiers. Margin size and spacing values are generated from [`$gap-map`](#spacing-map) variable map.
+Add margin to an element using directional and size modifiers. Margin size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
 
 - `margin` - Adds margins on all sides.
 - `margin-[size]` - Adds margins on all sides with a specific size key.
@@ -423,7 +423,7 @@ Add margin to an element using directional and size modifiers. Margin size and s
 
 ### `padding`
 
-Add padding to an element using directional and size modifiers. Padding size and spacing values are generated from [`$gap-map`](#spacing-map) variable map.
+Add padding to an element using directional and size modifiers. Padding size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
 
 - `padding` - Adds padding on all sides.
 - `padding-[size]` - Adds padding on all sides with a specific size key.

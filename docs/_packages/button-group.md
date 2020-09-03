@@ -125,7 +125,7 @@ Adjusts the gap spacing based on the provided key. Gap key output is based on th
 
 A modifier to join buttons without a button-group component. This removes all gap spacing and adjusts the border-radius to allow buttons to be visually be joined as a single unit.
 
-{% include demo_open.html class_parent="spacing" %}
+{% include demo_open.html class_parent="gap" %}
 <div>
   <div class="button-group button-group_join">
     <button class="button button_color_primary">Button</button>

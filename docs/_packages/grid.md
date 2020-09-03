@@ -141,7 +141,7 @@ The fill modifier stretches grid item's contents to fill the height of it's cont
   <div class="grid__item" style="height: 200px;">
     <div class="box">...</div>
   </div>
-  <div class="grid__item spacing">
+  <div class="grid__item gap">
     <div class="box">
       ...
     </div>

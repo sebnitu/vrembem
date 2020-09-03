@@ -29,7 +29,7 @@ usage:
 
 ## notice + media
 
-{% include demo_open.html class_parent="spacing" %}
+{% include demo_open.html class_parent="gap" %}
 <div class="notice notice_type_danger">
   <div class="media media_gap_sm">
     <div class="media__obj">
@@ -67,7 +67,7 @@ usage:
 
 ## notice__actions
 
-{% include demo_open.html class_parent="spacing" %}
+{% include demo_open.html class_parent="gap" %}
 <div class="notice">
   <div class="notice__body">
     <p>Notice content goes here...</p>
@@ -108,7 +108,7 @@ usage:
 
 {% include demo_open.html %}
 <div class="notice flex_align_start">
-  <div class="notice__body spacing-sm">
+  <div class="notice__body gap-sm">
     <h2 class="notice__title">Oops, wait what?</h2>
     <p>You should know that the action you just did had some consequences.</p>
   </div>
@@ -134,9 +134,9 @@ usage:
 
 ## notice_stack
 
-{% include demo_open.html class_parent="spacing" %}
+{% include demo_open.html class_parent="gap" %}
 <div class="notice notice_stack">
-  <div class="notice__body spacing-sm">
+  <div class="notice__body gap-sm">
     <h2 class="notice__title">Oops, wait what?</h2>
     <p>You should know that the action you just did had some consequences.</p>
   </div>
@@ -155,7 +155,7 @@ usage:
 {% include demo_switch.html %}
 ```html
 <div class="notice notice_stack">
-  <div class="notice__body spacing-sm">
+  <div class="notice__body gap-sm">
     <h2 class="notice__title">...</h2>
     <p>...</p>
   </div>
@@ -168,7 +168,7 @@ usage:
 
 ## notice_color_[key]
 
-{% include demo_open.html class_parent="spacing" %}
+{% include demo_open.html class_parent="gap" %}
 <div class="notice notice_color_primary">
   <div class="notice__body">
     <p>Notice <a href="#">content</a> goes here...</p>
@@ -209,7 +209,7 @@ usage:
 
 ## notice_type_[key]
 
-{% include demo_open.html class_parent="spacing" %}
+{% include demo_open.html class_parent="gap" %}
 <div class="notice notice_type_info">
   <div class="notice__body">
     <p>Notice <a href="#">content</a> goes here...</p>
@@ -261,7 +261,7 @@ usage:
 
 ## notice_type_[key]-bold
 
-{% include demo_open.html class_parent="spacing" %}
+{% include demo_open.html class_parent="gap" %}
 <div class="notice notice_type_info-bold">
   <div class="notice__body">
     <p>Notice <a href="#">content</a> goes here...</p>
@@ -315,7 +315,7 @@ usage:
 
 {% include demo_open.html %}
 <div class="notice notice_stack notice_color_dark elevate-16dp">
-  <div class="notice__body margin-bottom-lg spacing-sm">
+  <div class="notice__body margin-bottom-lg gap-sm">
     <h2 class="notice__title flex">
       <span class="flex-grow-1">This site uses cookies</span>
       <button class="icon-action icon-action_invert icon-action_color_subtle">
@@ -338,7 +338,7 @@ usage:
 {% include demo_switch.html %}
 ```html
 <div class="notice notice_stack notice_color_dark elevate-16dp">
-  <div class="notice__body margin-bottom-lg spacing-sm">
+  <div class="notice__body margin-bottom-lg gap-sm">
     <h2 class="notice__title flex">
       <span class="flex-grow-1">...</span>
       <button class="icon-action icon-action_invert icon-action_color_subtle">

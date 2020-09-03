@@ -39,7 +39,7 @@ usage:
 
 ## input_type_textarea
 
-{% include demo_open.html class_parent="spacing" %}
+{% include demo_open.html class_parent="gap" %}
 <textarea class="input input_type_textarea" rows="3"></textarea>
 <textarea class="input input_type_textarea" rows="2"></textarea>
 <textarea class="input input_type_textarea" rows="1"></textarea>
@@ -53,7 +53,7 @@ usage:
 
 ## input_size
 
-{% include demo_open.html class_parent="spacing" %}
+{% include demo_open.html class_parent="gap" %}
 <input class="input input_size_sm" placeholder="Default input..." type="text" />
 <input class="input" placeholder="Default input..." type="text" />
 <input class="input input_size_lg" placeholder="Default input..." type="text" />
@@ -83,7 +83,7 @@ usage:
 
 ## input_state_success
 
-{% include demo_open.html class_parent="spacing" %}
+{% include demo_open.html class_parent="gap" %}
 <input class="input input_state_success" type="text" />
 <select class="input input_state_success input_type_select">
   <option>Option 1</option>
@@ -105,7 +105,7 @@ usage:
 
 ## input_state_caution
 
-{% include demo_open.html class_parent="spacing" %}
+{% include demo_open.html class_parent="gap" %}
 <input class="input input_state_caution" type="text" />
 <select class="input input_state_caution input_type_select">
   <option>Option 1</option>
@@ -127,7 +127,7 @@ usage:
 
 ## input_state_danger
 
-{% include demo_open.html class_parent="spacing" %}
+{% include demo_open.html class_parent="gap" %}
 <input class="input input_state_danger" type="text" />
 <select class="input input_state_danger input_type_select">
   <option>Option 1</option>

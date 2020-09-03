@@ -145,7 +145,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
 
 ## button_block
 
-{% include demo_open.html class_parent="spacing" %}
+{% include demo_open.html class_parent="gap" %}
 <div>
   <button class="button button_block button_color_primary">Button</button>
 </div>
@@ -160,7 +160,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
 
 ## button_block_[key]
 
-{% include demo_open.html class_parent="spacing" %}
+{% include demo_open.html class_parent="gap" %}
 <div>
   <button class="button button_block_xs button_color_secondary">Block XS</button>
 </div>
@@ -188,7 +188,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
 
 ## button_color_[key]
 
-{% include demo_open.html class_grid="grid_stack" class_parent="spacing" %}
+{% include demo_open.html class_grid="grid_stack" class_parent="gap" %}
 <div class="padding background_white radius">
   <div class="level">
     <button class="button">Default</button>
@@ -223,7 +223,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
 
 ## button_outline_[key]
 
-{% include demo_open.html class_grid="grid_stack" class_parent="spacing" %}
+{% include demo_open.html class_grid="grid_stack" class_parent="gap" %}
 <div class="padding background_white radius">
   <div class="level">
     <button class="button button_outline">Default Outline</button>

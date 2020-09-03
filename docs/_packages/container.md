@@ -11,7 +11,7 @@ usage:
 
 ## container
 
-<div class="demo spacing">
+<div class="demo gap">
   <div class="demo__render">
     <div class="container">
       <div class="box"><code>max-width: 70rem;</code></div>
@@ -26,8 +26,8 @@ usage:
 
 ## container_size_[key]
 
-<div class="demo spacing">
-  <div class="demo__render spacing">
+<div class="demo gap">
+  <div class="demo__render gap">
     <div class="container container_size_xs">
       <div class="box"><code>max-width: 45rem;</code></div>
     </div>

@@ -67,7 +67,7 @@
   }
 
   > * + * {
-    margin-top: var.$blockquote-spacing;
+    margin-top: var.$blockquote-gap;
   }
 }
 
@@ -210,16 +210,16 @@
 // ---
 
 @mixin list() {
-  margin-left: var.$list-spacing;
+  margin-left: var.$list-indent;
 
   ul,
   ol {
-    margin-left: var.$list-spacing;
+    margin-left: var.$list-indent;
   }
 
   li li,
   li + li {
-    margin-top: var.$list-item-spacing;
+    margin-top: var.$list-item-gap;
   }
 }
 
@@ -269,7 +269,7 @@
 
 @mixin type() {
   @include core.add-clearfix();
-  @include gap(var.$type-spacing);
+  @include gap(var.$type-gap);
   color: var.$type-color;
   font-family: var.$type-font-family;
   font-size: var.$type-font-size;

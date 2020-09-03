@@ -73,16 +73,16 @@ Setting these variables will apply to all utility modules.
         <td data-mobile-label="Desc">A map of breakpoints used by utilities that provide breakpoint specific variations such as the <a class="link" href="#display"><code class="code">display</code></a> and <a class="link" href="#span"><code class="code">span</code></a> utilities.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$spacing</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">core.$spacing</code> &rarr; <code class="code color-secondary">1em</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$gap</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$gap</code> &rarr; <code class="code color-secondary">1em</code></td>
         <td data-mobile-label="Desc">Used as the default spacing for <a class="link" href="#margin"><code class="code">margin</code></a> and <a class="link" href="#padding"><code class="code">padding</code></a> utilities.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$spacing-map</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$gap-map</code></td>
         <td data-mobile-label="Default">
-          <a class="link" href="#spacing-map"><code class="code color-secondary text-nowrap">core.$spacing-map</code> Ref &darr;</a>
+          <a class="link" href="#gap-map"><code class="code color-secondary text-nowrap">core.$gap-map</code> Ref &darr;</a>
         </td>
-        <td data-mobile-label="Desc">Used to build spacing variants for <a class="link" href="#margin"><code class="code">margin</code></a> and <a class="link" href="#padding"><code class="code">padding</code></a> utilities.</td>
+        <td data-mobile-label="Desc">Used to build gap variants for <a class="link" href="#margin"><code class="code">margin</code></a> and <a class="link" href="#padding"><code class="code">padding</code></a> utilities.</td>
       </tr>
     </tbody>
   </table>
@@ -103,13 +103,13 @@ $breakpoints: (
 ) !default;
 ```
 
-### $spacing-map
+### $gap-map
 
-Used to build spacing variants for [`margin`](#margin) and [`padding`](#padding) utilities.
+Used to build gap variants for [`margin`](#margin) and [`padding`](#padding) utilities.
 
 ```scss
-// Inherited from: core.$spacing-map
-$spacing-map: (
+// Inherited from: core.$gap-map
+$gap-map: (
   "none": 0,
   "xs": 0.25em,
   "sm": 0.5em,
@@ -987,7 +987,7 @@ Change the `justify-content` property of grid columns using the `flex-justify-[v
 
 ## margin
 
-Add margin to an element using directional and size modifiers. Margin size and spacing values are generated from [`$spacing-map`](#spacing-map) variable map.
+Add margin to an element using directional and size modifiers. Margin size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
 
 - `margin` - Adds margins on all sides.
 - `margin-[size]` - Adds margins on all sides with a specific size key.
@@ -1005,7 +1005,7 @@ Add margin to an element using directional and size modifiers. Margin size and s
         <div class="card__header">
           <code class="code">[direction]</code>
         </div>
-        <div class="card__body spacing">
+        <div class="card__body gap">
           <p><code>top</code></p>
           <p><code>right</code></p>
           <p><code>bottom</code></p>
@@ -1018,7 +1018,7 @@ Add margin to an element using directional and size modifiers. Margin size and s
         <div class="card__header">
           <code class="code">[size]</code>
         </div>
-        <div class="card__body spacing">
+        <div class="card__body gap">
           <p><code>none <span class="color-subtle">...0</span></code></p>
           <p><code>xs <span class="color-subtle">...0.25em</span></code></p>
           <p><code>sm <span class="color-subtle">...0.5em</span></code></p>
@@ -1057,7 +1057,7 @@ Add margin to an element using directional and size modifiers. Margin size and s
 
 ## padding
 
-Add padding to an element using directional and size modifiers. Padding size and spacing values are generated from [`$spacing-map`](#spacing-map) variable map.
+Add padding to an element using directional and size modifiers. Padding size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
 
 - `padding` - Adds padding on all sides.
 - `padding-[size]` - Adds padding on all sides with a specific size key.
@@ -1072,7 +1072,7 @@ Add padding to an element using directional and size modifiers. Padding size and
         <div class="card__header">
           <code class="code">[direction]</code>
         </div>
-        <div class="card__body spacing">
+        <div class="card__body gap">
           <p><code>top</code></p>
           <p><code>right</code></p>
           <p><code>bottom</code></p>
@@ -1085,7 +1085,7 @@ Add padding to an element using directional and size modifiers. Padding size and
         <div class="card__header">
           <code class="code">[size]</code>
         </div>
-        <div class="card__body spacing">
+        <div class="card__body gap">
           <p><code>none <span class="color-subtle">...0</span></code></p>
           <p><code>xs <span class="color-subtle">...0.25em</span></code></p>
           <p><code>sm <span class="color-subtle">...0.5em</span></code></p>

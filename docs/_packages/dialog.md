@@ -60,7 +60,7 @@ usage:
   <button class="dialog__close icon-action">
     {% include icon.html icon="x" %}
   </button>
-  <div class="dialog__body spacing">
+  <div class="dialog__body gap">
     <h2 class="dialog__title">Dialog Title</h2>
     <p>This is some dialog content...</p>
   </div>
@@ -135,7 +135,7 @@ The dialog is a very flexible component and can be used in many different contex
       </button>
     </div>
   </div>
-  <form class="dialog__body spacing">
+  <form class="dialog__body gap">
     <input type="text" class="input" placeholder="Recipients" />
     <input type="text" class="input" placeholder="Subjects" />
     <textarea class="input input_type_textarea" rows="3" placeholder="..."></textarea>
@@ -188,7 +188,7 @@ The dialog is a very flexible component and can be used in many different contex
 
 {% include demo_open.html %}
 <div class="dialog">
-  <div class="dialog__body spacing padding-lg">
+  <div class="dialog__body gap padding-lg">
     <h2 class="dialog__title">Did you forget an attachment?</h2>
     <p>You wrote "I have attached" in your message, but there are no files attached. Send anyway?</p>
   </div>

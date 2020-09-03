@@ -29,7 +29,7 @@ title: "Home"
   </header>
 
   <div id="listjs" class="cover__aside">
-    <div class="cover__header spacing">
+    <div class="cover__header gap">
       {%- include filter.html -%}
     </div>
     <div class="cover__content">

@@ -76,13 +76,14 @@ The base component consists of a number of modules with their own set of specifi
 - [`blockquote`](#blockquote)
 - [`code`](#code)
 - [`embed`](#embed)
+- [`gap`](#gap)
 - [`heading`](#heading)
 - [`link`](#link)
 - [`list`](#list)
 - [`pre`](#pre)
 - [`scroll-box`](#scroll-box)
 - [`separator`](#separator)
-- [`spacing`](#spacing)
+
 - [`type`](#type)
 
 ### `arrow`
@@ -223,7 +224,7 @@ The HTML blockquote element is used for markup up extended quotations. This modu
 | --------------------------------- | --------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `$output-blockquote`              | `$output` &rarr; `true`     | Toggles the output of this module.                                                                         |
 | `$blockquote-padding`             | `1.5em`                     | Sets the padding property.                                                                                 |
-| `$blockquote-spacing`             | `1em`                       | Sets the vertical spacing between elements inside a blockquote using the margin property.                  |
+| `$blockquote-gap`                 | `1em`                       | Sets the vertical gap between elements inside a blockquote using the margin property.                      |
 | `$blockquote-color`               | `inherit`                   | Sets the text color property.                                                                              |
 | `$blockquote-background`          | `null`                      | Sets the background color property.                                                                        |
 | `$blockquote-border`              | `core.$border-light`        | Sets the border property.                                                                                  |
@@ -322,6 +323,70 @@ The embed module is used to wrap iframes or video elements and keep them respons
 | `$output-embed` | `$output` &rarr; `true`    | Toggles the output of this module.                    |
 | `$class-embed`  | `"embed"`                  | String to use for the class name of the embed module. |
 | `$embed-ratio`  | `core.aspect-ratio(16, 9)` | The default aspect ratio to use.                      |
+
+### `gap`
+
+This module adds gap spacing between an element's children. Gap size and gap values are generated from the [`$gap-map`](#gap-map) variable map.
+
+```html
+<!-- Using the default gap class -->
+<div class="gap">...</div>
+
+<!-- Using the gap class with variant key -->
+<div class="gap-none">...</div>
+<div class="gap-xs">...</div>
+<div class="gap-sm">...</div>
+<div class="gap-md">...</div>
+<div class="gap-lg">...</div>
+<div class="gap-xl">...</div>
+```
+
+| Variable      | Default                                | Description                                           |
+| ------------- | -------------------------------------- | ----------------------------------------------------- |
+| `$output-gap` | `$output` &rarr; `true`                | Toggles the output of this module.                    |
+| `$class-gap`  | `"gap"`                                | String to use for the class name of the gap module.   |
+| `$gap`        | `core.$gap` &rarr; `1em`               | Sets the gap via the top and/or left margin property. |
+| `$gap-map`    | [`core.$gap-map` Ref &darr;](#gap-map) | Used to build the gap key classes.                    |
+
+#### `$gap-map`
+
+Used to build the gap key classes.
+
+```scss
+// Inherited from: core.$gap-map
+$gap-map: (
+  "none": 0,
+  "xs": 0.25em,
+  "sm": 0.5em,
+  "md": 1em,
+  "lg": 1.5em,
+  "xl": 2em
+) !default;
+```
+
+#### `@mixin gap($value, $imp: null)`
+
+Output the gap styles for an element. Styles are applied to an elements children using the `> * + *` selector.
+
+**Arguments**
+
+| Variable | Type                             | Description                                                                             |
+| -------- | -------------------------------- | --------------------------------------------------------------------------------------- |
+| `$value` | `string` or `number (with unit)` | The unit of gap spacing to apply. Can also be the key to a value in the `$gap-map` map. |
+| `$imp`   | `boolean`                        | Whither or not to add the `!important` flag.                                            |
+
+**Example**
+
+```scss
+.element {
+  @include gap(2em, true);
+}
+
+// CSS Output
+.element > * + * {
+  margin-top: 2em !important;
+}
+```
 
 ### `heading`
 
@@ -570,11 +635,11 @@ The list module helps add styles to unordered (`<ul>`) and ordered (`<ol>`) list
 </ol>
 ```
 
-| Variable             | Default                 | Description                                     |
-| -------------------- | ----------------------- | ----------------------------------------------- |
-| `$output-list`       | `$output` &rarr; `true` | Toggles the output of this module.              |
-| `$list-spacing`      | `1.5em`                 | Sets the margin-left property of list elements. |
-| `$list-item-spacing` | `0.5em`                 | Sets the top and bottom margins of list items.  |
+| Variable         | Default                 | Description                                     |
+| ---------------- | ----------------------- | ----------------------------------------------- |
+| `$output-list`   | `$output` &rarr; `true` | Toggles the output of this module.              |
+| `$list-gap`      | `1.5em`                 | Sets the margin-left property of list elements. |
+| `$list-item-gap` | `0.5em`                 | Sets the top margin of list items.              |
 
 #### `@mixin list()`
 
@@ -743,70 +808,6 @@ Output the separator styles.
 }
 ```
 
-### `spacing`
-
-This module adds vertical spacing between an element's children. Spacing size and spacing values are generated from the [`$spacing-map`](#spacing-map) variable map.
-
-```html
-<!-- Using the default spacing class -->
-<div class="spacing">...</div>
-
-<!-- Using the spacing class with variant key -->
-<div class="spacing-none">...</div>
-<div class="spacing-xs">...</div>
-<div class="spacing-sm">...</div>
-<div class="spacing-md">...</div>
-<div class="spacing-lg">...</div>
-<div class="spacing-xl">...</div>
-```
-
-| Variable          | Default                                    | Description                                             |
-| ----------------- | ------------------------------------------ | ------------------------------------------------------- |
-| `$output-spacing` | `$output` &rarr; `true`                    | Toggles the output of this module.                      |
-| `$class-spacing`  | `"spacing"`                                | String to use for the class name of the spacing module. |
-| `$spacing`        | `core.$gap` &rarr; `1em`                   | Sets the vertical spacing via the top margin property.  |
-| `$spacing-map`    | [`core.$gap-map` Ref &darr;](#spacing-map) | Used to build the spacing key classes.                  |
-
-#### `$spacing-map`
-
-Used to build the spacing key classes.
-
-```scss
-// Inherited from: core.$gap-map
-$spacing-map: (
-  "none": 0,
-  "xs": 0.25em,
-  "sm": 0.5em,
-  "md": 1em,
-  "lg": 1.5em,
-  "xl": 2em
-) !default;
-```
-
-#### `@mixin spacing($value, $imp: null)`
-
-Output the spacing styles for an element. Styles are applied to an elements children using the `> * + *` selector.
-
-**Arguments**
-
-| Variable | Type                             | Description                                                                             |
-| -------- | -------------------------------- | --------------------------------------------------------------------------------------- |
-| `$value` | `string` or `number (with unit)` | The unit of spacing to apply. Can also be the key to a value in the `$spacing-map` map. |
-| `$imp`   | `boolean`                        | Whither or not to add the `!important` flag.                                            |
-
-**Example**
-
-```scss
-.element {
-  @include gap(2em, true);
-}
-
-// CSS Output
-.element > * + * {
-  margin-top: 2em !important;
-}
-```
-
 ### `type`
 
 The type module provides the `.type` CSS class as a quick way to apply many base modules to HTML elements directly. Base module classes will override a parent `.type` application when explicitly set. Use `.type_invert` for when text sits on a dark background.
@@ -835,16 +836,16 @@ Modules that get mapped to HTML elements include:
 
 > The type module only applies styles to children HTML elements. It's possible to nest other components within type and not have style or specificity conflicts. It's recommended to wrap nested components with anonymous `<div>` elements when possible.
 
-| Variable             | Default                 | Description                                                         |
-| -------------------- | ----------------------- | ------------------------------------------------------------------- |
-| `$output-type`       | `$output` &rarr; `true` | Toggles the output of this module.                                  |
-| `$class-type`        | `"type"`                | String to use for the class name of the type module.                |
-| `$type-color`        | `null`                  | Sets the color property.                                            |
-| `$type-color-invert` | `core.$color-invert`    | Sets the color property for text on a dark background.              |
-| `$type-font-family`  | `null`                  | Sets the font-family property.                                      |
-| `$type-font-size`    | `null`                  | Sets the font-size property.                                        |
-| `$type-line-height`  | `null`                  | Sets the line-height property.                                      |
-| `$type-spacing`      | `null`                  | Applies vertical spacing between elements via the `spacing` module. |
+| Variable             | Default                 | Description                                                 |
+| -------------------- | ----------------------- | ----------------------------------------------------------- |
+| `$output-type`       | `$output` &rarr; `true` | Toggles the output of this module.                          |
+| `$class-type`        | `"type"`                | String to use for the class name of the type module.        |
+| `$type-color`        | `null`                  | Sets the color property.                                    |
+| `$type-color-invert` | `core.$color-invert`    | Sets the color property for text on a dark background.      |
+| `$type-font-family`  | `null`                  | Sets the font-family property.                              |
+| `$type-font-size`    | `null`                  | Sets the font-size property.                                |
+| `$type-line-height`  | `null`                  | Sets the line-height property.                              |
+| `$type-gap`          | `null`                  | Applies vertical gap between elements via the `gap` module. |
 
 #### `@mixin type()`
 
