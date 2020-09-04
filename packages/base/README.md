@@ -12,13 +12,13 @@ Includes useful default styles and base modules for common HTML elements.
 npm install @vrembem/base
 ```
 
-### Styles <!-- omit in toc -->
+### Styles
 
 ```scss
 @use "@vrembem/base";
 ```
 
-### Markup <!-- omit in toc -->
+### Markup
 
 Once loaded, the base component provides default styles for HTML elements and a number of output modules. Base also provides helpful variables and mixins for customizing the output.
 

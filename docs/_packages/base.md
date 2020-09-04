@@ -93,12 +93,11 @@ Setting these variables will impact more than one or up to all base modules.
 
 The base component consists of a number of modules with their own set of specific customizable variables and output mixins.
 
-- [`arrow`](#arrow)
 - [`base`](#base)
+- [`arrow`](#arrow)
 - [`blockquote`](#blockquote)
 - [`code`](#code)
 - [`embed`](#embed)
-- [`gap`](#gap-key)
 - [`heading`](#heading)
 - [`link`](#link)
 - [`list`](#list)
@@ -106,6 +105,116 @@ The base component consists of a number of modules with their own set of specifi
 - [`scroll-box`](#scroll-box)
 - [`separator`](#separator)
 - [`type`](#type)
+
+> Modules are sorted by the order they're imported; alphabetically except for `base` having priority as first import.
+
+## base
+
+Outputs a number of base and reset element styles to help keep html elements predictable and easier to work with. Some more global options are set via the `@vrembem/core` component, while others that are specific to the base component are set directly here.
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-base</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$root-height</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">100%</code></td>
+        <td data-mobile-label="Desc">Sets the height property on the root <code class="code">html</code> and <code class="code">body</code> elements.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$color</code></td>
+        <td data-mobile-label="Desc">Sets the base color property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color-caption</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$color-subtle</code></td>
+        <td data-mobile-label="Desc">Sets the color property for the caption element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$font-family</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$font-family</code></td>
+        <td data-mobile-label="Desc">Sets the base font-family property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$font-family-mono</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$font-family-mono</code></td>
+        <td data-mobile-label="Desc">Sets the font-family property for elements that use a mono-spacing front.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$font-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$font-size</code></td>
+        <td data-mobile-label="Desc">Sets the base font-size property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$font-size-sm</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$font-size-sm</code></td>
+        <td data-mobile-label="Desc">Sets the font-size property for small element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$line-height</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$line-height</code></td>
+        <td data-mobile-label="Desc">Sets the base line-height property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$box-sizing</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">border-box</code></td>
+        <td data-mobile-label="Desc">Sets the default box-sizing property for all HTML elements.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$body-background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the background color that's applied to the body element.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+Here's an example of the base styles applied by the base module:
+
+```scss
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: $root-height;
+}
+
+html {
+  box-sizing: $box-sizing;
+  font-size: $font-size;
+  line-height: $line-height;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: $body-background;
+  color: $color;
+  font-family: $font-family;
+}
+
+// Continued ...
+```
+
+For a complete understanding of what this module does, checkout the source: [`_base.scss`](https://github.com/sebnitu/vrembem/blob/master/packages/base/src/_base.scss)
 
 ## arrow
 
@@ -260,117 +369,9 @@ Output the styles for an arrow.
 }
 ```
 
-## base
-
-Outputs a number of base and reset element styles to help keep html elements predictable and easier to work with. Some more global options are set via the `@vrembem/core` component, while others that are specific to the base component are set directly here.
-
-<div class="scroll-box">
-  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
-    <thead>
-      <tr>
-        <th>Variable</th>
-        <th>Default</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$output-base</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
-        <td data-mobile-label="Desc">Toggles the output of this module.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$root-height</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">100%</code></td>
-        <td data-mobile-label="Desc">Sets the height property on the root <code class="code">html</code> and <code class="code">body</code> elements.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$color</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$color</code></td>
-        <td data-mobile-label="Desc">Sets the base color property.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$color-caption</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$color-subtle</code></td>
-        <td data-mobile-label="Desc">Sets the color property for the caption element.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$font-family</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$font-family</code></td>
-        <td data-mobile-label="Desc">Sets the base font-family property.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$font-family-mono</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$font-family-mono</code></td>
-        <td data-mobile-label="Desc">Sets the font-family property for elements that use a mono-spacing front.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$font-size</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$font-size</code></td>
-        <td data-mobile-label="Desc">Sets the base font-size property.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$font-size-sm</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$font-size-sm</code></td>
-        <td data-mobile-label="Desc">Sets the font-size property for small element.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$line-height</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$line-height</code></td>
-        <td data-mobile-label="Desc">Sets the base line-height property.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$box-sizing</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">border-box</code></td>
-        <td data-mobile-label="Desc">Sets the default box-sizing property for all HTML elements.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$body-background</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
-        <td data-mobile-label="Desc">Sets the background color that's applied to the body element.</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-Here's an example of the base styles applied by the base module:
-
-```scss
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-  margin: 0;
-  padding: 0;
-}
-
-html,
-body {
-  height: $root-height;
-}
-
-html {
-  box-sizing: $box-sizing;
-  font-size: $font-size;
-  line-height: $line-height;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-body {
-  background: $body-background;
-  color: $color;
-  font-family: $font-family;
-}
-
-// Continued ...
-```
-
-For a complete understanding of what this module does, checkout the source: [`_base.scss`](https://github.com/sebnitu/vrembem/blob/master/packages/base/src/_base.scss)
-
 ## blockquote
 
-The HTML blockquote element is used for markup up extended quotations. This module helps style these elements in a distinct and appealing way by providing the `.blockquote` CSS class.
+The HTML blockquote element is used for marking up extended quotations. This module helps style these elements in a distinct and appealing way by providing the `.blockquote` CSS class.
 
 {% include demo_open.html class_parent="gap-y" %}
 <blockquote class="blockquote" cite="https://ideapod.com/35-noam-chomsky-quotes-will-make-question-everything-society/">
@@ -403,6 +404,11 @@ The HTML blockquote element is used for markup up extended quotations. This modu
         <td data-mobile-label="Var"><code class="code text-nowrap">$output-blockquote</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
         <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-blockquote</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"blockquote"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the blockquote module.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$blockquote-padding</code></td>
@@ -520,6 +526,11 @@ The HTML code element displays its contents styled in a fashion intended to indi
         <td data-mobile-label="Desc">Toggles the output of this module.</td>
       </tr>
       <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-code</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"code"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the code module.</td>
+      </tr>
+      <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$code-padding</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
         <td data-mobile-label="Desc">Sets the padding property.</td>
@@ -627,129 +638,6 @@ The embed module is used to wrap iframes or video elements and keep them respons
     </tbody>
   </table>
 </div>
-
-## gap-[key]
-
-The gap module adds both horizontal and vertical spacing between an element's children. It also adds negative top and left margins to the element it's applied to which may require an anonymous `<div>` if margins are needed. Gap keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
-
-- `gap`
-- `gap-[key]`
-
-{% include demo_open.html %}
-<div class="flex flex-wrap gap">
-  {% for i in (1..16) %}
-    <div class="box"></div>
-  {% endfor %}
-</div>
-{% include demo_switch.html %}
-```html
-<div class="gap">...</div>
-```
-{% include demo_close.html %}
-
-> Gap is best used together with a flex layout and flex-wrap styles. In the example above, we use the `flex` and `flex-wrap` utility styles as an example.
-
-### gap-x-[key]
-
-Adds gap spacing horizontally using left margins and the `> * + *` selector. Gap keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
-
-- `gap-x`
-- `gap-x-[key]`
-
-{% include demo_open.html %}
-<div class="flex flex-wrap gap-x">
-  <div class="box"></div>
-  <div class="box"></div>
-  <div class="box"></div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="gap-x">...</div>
-```
-{% include demo_close.html %}
-
-### gap-y-[key]
-
-Adds gap spacing vertically using top margins and the `> * + *` selector. Gap keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
-
-- `gap-y`
-- `gap-y-[key]`
-
-{% include demo_open.html %}
-<div class="gap-y">
-  <div class="box"></div>
-  <div class="box"></div>
-  <div class="box"></div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="gap-y">...</div>
-```
-{% include demo_close.html %}
-
-### Gap Variables
-
-<div class="scroll-box">
-  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
-    <thead>
-      <tr>
-        <th>Variable</th>
-        <th>Default</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$output-gap</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">$output</code> &rarr; <code class="code color-secondary">true</code></td>
-        <td data-mobile-label="Desc">Toggles the output of this module.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$class-gap</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">"gap"</code></td>
-        <td data-mobile-label="Desc">String to use for the class name of the gap module.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$class-gap-x</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">"gap-x"</code></td>
-        <td data-mobile-label="Desc">String to use for the class name of the gap-x variant of the gap module.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$class-gap-y</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">"gap-y"</code></td>
-        <td data-mobile-label="Desc">String to use for the class name of the gap-y variant of the gap module.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$gap</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">core.$gap</code> &rarr; <code class="code color-secondary">1em</code></td>
-        <td data-mobile-label="Desc">Sets the gap via the top and/or left margin property.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$gap-map</code></td>
-        <td data-mobile-label="Default">
-          <a class="link" href="#gap-map"><code class="code color-secondary">core.$gap-map</code> Ref &darr;</a>
-          </td>
-        <td data-mobile-label="Desc">Used to build the gap key classes.</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-### `$gap-map`
-
-Used to build the gap key classes.
-
-```scss
-// Inherited from: core.$gap-map
-$gap-map: (
-  "none": 0,
-  "xs": 0.25em,
-  "sm": 0.5em,
-  "md": 1em,
-  "lg": 1.5em,
-  "xl": 2em
-) !default;
-```
 
 ## Heading
 
@@ -1008,6 +896,11 @@ A link—usually represented by an anchor (`<a>`) HTML element with `href` attri
         <td data-mobile-label="Desc">Toggles the output of this module.</td>
       </tr>
       <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-link</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"link"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the link module.</td>
+      </tr>
+      <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$link-text-decoration</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">none</code></td>
         <td data-mobile-label="Desc">Sets the text decoration property.</td>
@@ -1249,6 +1142,11 @@ The list module helps add styles to unordered (`<ul>`) and ordered (`<ol>`) list
         <td data-mobile-label="Desc">Toggles the output of this module.</td>
       </tr>
       <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-list</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"list"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the list module.</td>
+      </tr>
+      <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$list-indent</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1.5em</code></td>
         <td data-mobile-label="Desc">Sets the margin-left property of list elements.</td>
@@ -1337,6 +1235,11 @@ This module helps style the HTML `<pre>` element by providing the `.pre` CSS cla
         <td data-mobile-label="Var"><code class="code text-nowrap">$output-pre</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
         <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-pre</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"pre"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the pre module.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$pre-padding</code></td>

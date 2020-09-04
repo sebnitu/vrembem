@@ -41,7 +41,7 @@ Each utility has a corresponding `$output-[module]` and `$class-[module]` variab
 );
 ```
 
-### Global Variables
+### Global Variables <!-- omit in toc -->
 
 Setting these variables will apply to all utility modules.
 
@@ -105,7 +105,7 @@ $breakpoints: (
 
 ### $gap-map
 
-Used to build gap variants for [`margin`](#margin) and [`padding`](#padding) utilities.
+Used to build gap variants for [`flex-gap`](#flex-gap-key), [`flex-gap-x`](#flex-gap-x-key), [`flex-gap-y`](#flex-gap-y-key), [`gap-x`](#gap-x-key), [`gap-y`](#gap-y-key), [`margin`](#margin) and [`padding`](#padding) utilities.
 
 ```scss
 // Inherited from: core.$gap-map
@@ -125,11 +125,16 @@ The utility component consists of a number of modules with their own set of spec
 
 - [`background`](#background)
 - [`border`](#border)
-- [`radius`](#radius)
+- [`border-radius`](#border-radius)
 - [`elevate`](#elevate)
 - [`color`](#color)
 - [`display`](#display)
 - [`flex`](#flex)
+- [`flex-gap-[key]`](#flex-gap-key)
+- [`flex-gap-x-[key]`](#flex-gap-x-key)
+- [`flex-gap-y-[key]`](#flex-gap-y-key)
+- [`gap-x-[key]`](#gap-x-key)
+- [`gap-y-[key]`](#gap-y-key)
 - [`margin`](#margin)
 - [`padding`](#padding)
 - [`span`](#span)
@@ -984,6 +989,266 @@ Change the `justify-content` property of grid columns using the `flex-justify-[v
 <div class="grid flex-justify-between">...</div>
 ```
 {% include demo_close.html %}
+
+## flex-gap-[key]
+
+The flex-gap module adds both horizontal and vertical spacing between an element's children. It also adds negative top and left margins to the element it's applied to which may require an anonymous `<div>` if additional margins are needed. Flex-gap keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
+
+- `flex-gap`
+- `flex-gap-[key]`
+
+{% include demo_open.html %}
+<div class="flex flex-wrap flex-gap">
+  {% for i in (1..10) %}
+    <div class="box">...</div>
+  {% endfor %}
+</div>
+{% include demo_switch.html %}
+```html
+<!-- Using the default gap class -->
+<div class="flex-gap">...</div>
+
+<!-- Using the gap class with variant key -->
+<div class="flex-gap-none">...</div>
+<div class="flex-gap-xs">...</div>
+<div class="flex-gap-sm">...</div>
+<div class="flex-gap-md">...</div>
+<div class="flex-gap-lg">...</div>
+<div class="flex-gap-xl">...</div>
+```
+{% include demo_close.html %}
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-flex-gap</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-flex-gap</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"flex-gap"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the flex-gap utility.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## flex-gap-x-[key]
+
+Adds flex-gap spacing horizontally between an element's children using margin-left. Flex-gap keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
+
+- `flex-gap-x`
+- `flex-gap-x-[key]`
+
+{% include demo_open.html %}
+<div class="flex flex-wrap flex-gap-x">
+  {% for i in (1..10) %}
+    <div class="box">...</div>
+  {% endfor %}
+</div>
+{% include demo_switch.html %}
+```html
+<!-- Using the default gap class -->
+<div class="flex-gap-x">...</div>
+
+<!-- Using the gap class with variant key -->
+<div class="flex-gap-x-none">...</div>
+<div class="flex-gap-x-xs">...</div>
+<div class="flex-gap-x-sm">...</div>
+<div class="flex-gap-x-md">...</div>
+<div class="flex-gap-x-lg">...</div>
+<div class="flex-gap-x-xl">...</div>
+```
+{% include demo_close.html %}
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-flex-gap-x</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-flex-gap-x</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"flex-gap-x"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the flex-gap-x utility.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## flex-gap-y-[key]
+
+Adds flex-gap spacing vertically between an element's children using margin-top. Flex-gap keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
+
+- `flex-gap-y`
+- `flex-gap-y-[key]`
+
+{% include demo_open.html %}
+<div class="flex flex-wrap flex-gap-y">
+  {% for i in (1..10) %}
+    <div class="box">...</div>
+  {% endfor %}
+</div>
+{% include demo_switch.html %}
+```html
+<!-- Using the default gap class -->
+<div class="flex-gap-y">...</div>
+
+<!-- Using the gap class with variant key -->
+<div class="flex-gap-y-none">...</div>
+<div class="flex-gap-y-xs">...</div>
+<div class="flex-gap-y-sm">...</div>
+<div class="flex-gap-y-md">...</div>
+<div class="flex-gap-y-lg">...</div>
+<div class="flex-gap-y-xl">...</div>
+```
+{% include demo_close.html %}
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-flex-gap-y</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-flex-gap-y</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"flex-gap-y"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the flex-gap-y utility.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## gap-x-[key]
+
+Adds gap spacing horizontally using margin-left and the `> * + *` selector. Gap-x keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
+
+- `gap-x`
+- `gap-x-[key]`
+
+{% include demo_open.html %}
+<div class="flex flex-items-equal gap-x">
+  {% for i in (1..4) %}
+    <div class="box">...</div>
+  {% endfor %}
+</div>
+{% include demo_switch.html %}
+```html
+<!-- Using the default gap-x class -->
+<div class="gap-x">...</div>
+
+<!-- Using the gap-x class with variant key -->
+<div class="gap-x-none">...</div>
+<div class="gap-x-xs">...</div>
+<div class="gap-x-sm">...</div>
+<div class="gap-x-md">...</div>
+<div class="gap-x-lg">...</div>
+<div class="gap-x-xl">...</div>
+```
+{% include demo_close.html %}
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-gap-x</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-gap-x</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"gap-x"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the gap-x utility.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## gap-y-[key]
+
+Adds gap spacing vertically using margin-top and the `> * + *` selector. Gap-y keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
+
+- `gap-y`
+- `gap-y-[key]`
+
+{% include demo_open.html %}
+<div class="gap-y">
+  {% for i in (1..3) %}
+    <div class="box">...</div>
+  {% endfor %}
+</div>
+{% include demo_switch.html %}
+```html
+<!-- Using the default gap-y class -->
+<div class="gap-y">...</div>
+
+<!-- Using the gap-y class with variant key -->
+<div class="gap-y-none">...</div>
+<div class="gap-y-xs">...</div>
+<div class="gap-y-sm">...</div>
+<div class="gap-y-md">...</div>
+<div class="gap-y-lg">...</div>
+<div class="gap-y-xl">...</div>
+```
+{% include demo_close.html %}
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-gap-y</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-gap-y</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"gap-y"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the gap-y utility.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ## margin
 

@@ -12,13 +12,13 @@ The utility component provides a set of atomic classes that specialize in a sing
 npm install @vrembem/utility
 ```
 
-### Styles <!-- omit in toc -->
+### Styles
 
 ```scss
 @use "@vrembem/utility";
 ```
 
-### Markup <!-- omit in toc -->
+### Markup
 
 Once loaded, the utility component provides a number of classes that can be used independently or to supplement other loaded components.
 
