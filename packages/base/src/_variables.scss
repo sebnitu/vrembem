@@ -12,8 +12,8 @@ $prefix-modifier-value: core.$prefix-modifier-value !default;
 // ---
 
 $output: true !default;
-$output-arrow: $output !default;
 $output-base: $output !default;
+$output-arrow: $output !default;
 $output-blockquote: $output !default;
 $output-code: $output !default;
 $output-embed: $output !default;
@@ -30,6 +30,8 @@ $output-type: $output !default;
 // ---
 
 $class-arrow: "arrow" !default;
+$class-blockquote: "blockquote" !default;
+$class-code: "code" !default;
 $class-embed: "embed" !default;
 $class-scroll-box: "scroll-box" !default;
 $class-separator: "sep" !default;
@@ -77,7 +79,7 @@ $blockquote-accent-color: core.$primary !default;
 $code-padding: null !default;
 $code-background: null !default;
 $code-border: null !default;
-$code-border-radius: core.$border-radius !default;
+$code-border-radius: null !default;
 $code-color: core.$pink !default;
 $code-color-invert: core.$pink-300 !default;
 $code-font-family: core.$font-family-mono !default;

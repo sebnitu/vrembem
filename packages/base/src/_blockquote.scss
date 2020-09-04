@@ -2,7 +2,7 @@
 @use "./mixins" as mix;
 
 @if (var.$output-blockquote) {
-  .#{var.$prefix-block}blockquote {
+  .#{var.$prefix-block}#{var.$class-blockquote} {
     @include mix.blockquote();
   }
 }

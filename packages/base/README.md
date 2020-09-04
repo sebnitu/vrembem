@@ -71,20 +71,73 @@ Setting these variables will impact more than one or up to all base modules.
 
 The base component consists of a number of modules with their own set of specific customizable variables and output mixins.
 
-- [`arrow`](#arrow)
 - [`base`](#base-1)
+- [`arrow`](#arrow)
 - [`blockquote`](#blockquote)
 - [`code`](#code)
 - [`embed`](#embed)
-- [`gap`](#gap-key)
 - [`heading`](#heading)
 - [`link`](#link)
 - [`list`](#list)
 - [`pre`](#pre)
 - [`scroll-box`](#scroll-box)
 - [`separator`](#separator)
-
 - [`type`](#type)
+
+> Modules are sorted by the order they're imported; alphabetically except for `base` having priority as first import.
+
+### `base`
+
+Outputs a number of base and reset element styles to help keep html elements predictable and easier to work with. Some more global options are set via the `@vrembem/core` component, while others that are specific to the base component are set directly here.
+
+| Variable            | Default                  | Description                                                               |
+| ------------------- | ------------------------ | ------------------------------------------------------------------------- |
+| `$output-base`      | `$output` &rarr; `true`  | Toggles the output of this module.                                        |
+| `$root-height`      | `100%`                   | Sets the height property on the root `html` and `body` elements.          |
+| `$color`            | `core.$color`            | Sets the base color property.                                             |
+| `$color-caption`    | `core.$color-subtle`     | Sets the color property for the caption element.                          |
+| `$font-family`      | `core.$font-family`      | Sets the base font-family property.                                       |
+| `$font-family-mono` | `core.$font-family-mono` | Sets the font-family property for elements that use a mono-spacing front. |
+| `$font-size`        | `core.$font-size`        | Sets the base font-size property.                                         |
+| `$font-size-sm`     | `core.$font-size-sm`     | Sets the font-size property for small element.                            |
+| `$line-height`      | `core.$line-height`      | Sets the base line-height property.                                       |
+| `$box-sizing`       | `border-box`             | Sets the default box-sizing property for all HTML elements.               |
+| `$body-background`  | `null`                   | Sets the background color that's applied to the body element.             |
+
+Here's an example of the base styles applied by the base module:
+
+```scss
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: $root-height;
+}
+
+html {
+  box-sizing: $box-sizing;
+  font-size: $font-size;
+  line-height: $line-height;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: $body-background;
+  color: $color;
+  font-family: $font-family;
+}
+
+// Continued ...
+```
+
+For a complete understanding of what this module does, checkout the source: [`_base.scss`](https://github.com/sebnitu/vrembem/blob/master/packages/base/src/_base.scss)
 
 ### `arrow`
 
@@ -153,62 +206,9 @@ Output the styles for an arrow.
 }
 ```
 
-### `base`
-
-Outputs a number of base and reset element styles to help keep html elements predictable and easier to work with. Some more global options are set via the `@vrembem/core` component, while others that are specific to the base component are set directly here.
-
-| Variable            | Default                  | Description                                                               |
-| ------------------- | ------------------------ | ------------------------------------------------------------------------- |
-| `$output-base`      | `$output` &rarr; `true`  | Toggles the output of this module.                                        |
-| `$root-height`      | `100%`                   | Sets the height property on the root `html` and `body` elements.          |
-| `$color`            | `core.$color`            | Sets the base color property.                                             |
-| `$color-caption`    | `core.$color-subtle`     | Sets the color property for the caption element.                          |
-| `$font-family`      | `core.$font-family`      | Sets the base font-family property.                                       |
-| `$font-family-mono` | `core.$font-family-mono` | Sets the font-family property for elements that use a mono-spacing front. |
-| `$font-size`        | `core.$font-size`        | Sets the base font-size property.                                         |
-| `$font-size-sm`     | `core.$font-size-sm`     | Sets the font-size property for small element.                            |
-| `$line-height`      | `core.$line-height`      | Sets the base line-height property.                                       |
-| `$box-sizing`       | `border-box`             | Sets the default box-sizing property for all HTML elements.               |
-| `$body-background`  | `null`                   | Sets the background color that's applied to the body element.             |
-
-Here's an example of the base styles applied by the base module:
-
-```scss
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-  margin: 0;
-  padding: 0;
-}
-
-html,
-body {
-  height: $root-height;
-}
-
-html {
-  box-sizing: $box-sizing;
-  font-size: $font-size;
-  line-height: $line-height;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-body {
-  background: $body-background;
-  color: $color;
-  font-family: $font-family;
-}
-
-// Continued ...
-```
-
-For a complete understanding of what this module does, checkout the source: [`_base.scss`](https://github.com/sebnitu/vrembem/blob/master/packages/base/src/_base.scss)
-
 ### `blockquote`
 
-The HTML blockquote element is used for markup up extended quotations. This module helps style these elements in a distinct and appealing way by providing the `.blockquote` CSS class.
+The HTML blockquote element is used for marking up extended quotations. This module helps style these elements in a distinct and appealing way by providing the `.blockquote` CSS class.
 
 ```html
 <blockquote class="blockquote" cite="...">
@@ -223,6 +223,7 @@ The HTML blockquote element is used for markup up extended quotations. This modu
 | Variable                          | Default                     | Description                                                                                                |
 | --------------------------------- | --------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `$output-blockquote`              | `$output` &rarr; `true`     | Toggles the output of this module.                                                                         |
+| `$class-blockquote`               | `"blockquote"`              | String to use for the class name of the blockquote module.                                                 |
 | `$blockquote-padding`             | `1.5em`                     | Sets the padding property.                                                                                 |
 | `$blockquote-gap`                 | `1em`                       | Sets the vertical gap between elements inside a blockquote using the margin property.                      |
 | `$blockquote-color`               | `inherit`                   | Sets the text color property.                                                                              |
@@ -279,10 +280,11 @@ The HTML code element displays its contents styled in a fashion intended to indi
 | Variable              | Default                  | Description                                                                                |
 | --------------------- | ------------------------ | ------------------------------------------------------------------------------------------ |
 | `$output-code`        | `$output` &rarr; `true`  | Toggles the output of this module.                                                         |
+| `$class-code`         | `"code"`                 | String to use for the class name of the code module.                                       |
 | `$code-padding`       | `null`                   | Sets the padding property.                                                                 |
 | `$code-background`    | `null`                   | Sets the background property.                                                              |
 | `$code-border`        | `null`                   | Sets the border property.                                                                  |
-| `$code-border-radius` | `core.$border-radius`    | Sets the border-radius property.                                                           |
+| `$code-border-radius` | `null`                   | Sets the border-radius property.                                                           |
 | `$code-color`         | `core.$pink`             | Sets the text color property.                                                              |
 | `$code-color-invert`  | `core.$pink-300`         | Sets the inverted text color. This is used when code elements appear on a dark background. |
 | `$code-font-family`   | `core.$font-family-mono` | Sets the font-family property.                                                             |
@@ -323,119 +325,6 @@ The embed module is used to wrap iframes or video elements and keep them respons
 | `$output-embed` | `$output` &rarr; `true`    | Toggles the output of this module.                    |
 | `$class-embed`  | `"embed"`                  | String to use for the class name of the embed module. |
 | `$embed-ratio`  | `core.aspect-ratio(16, 9)` | The default aspect ratio to use.                      |
-
-### `gap-[key]`
-
-The gap module adds both horizontal and vertical spacing between an element's children. It also adds negative top and left margins to the element it's applied to which may require an anonymous `<div>` if margins are needed. Gap keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
-
-- `gap`
-- `gap-[key]`
-
-```html
-<!-- Using the default gap class -->
-<div class="gap">...</div>
-
-<!-- Using the gap class with variant key -->
-<div class="gap-none">...</div>
-<div class="gap-xs">...</div>
-<div class="gap-sm">...</div>
-<div class="gap-md">...</div>
-<div class="gap-lg">...</div>
-<div class="gap-xl">...</div>
-```
-
-> Gap is best used together with a flex layout and flex-wrap styles. For example, the `flex` and `flex-wrap` utilities are a great way to demo this module.
-
-### `gap-x-[key]`
-
-Adds gap spacing horizontally using left margins and the `> * + *` selector. Gap keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
-
-- `gap-x`
-- `gap-x-[key]`
-
-```html
-<!-- Using the default gap-x class -->
-<div class="gap-x">...</div>
-
-<!-- Using the gap-x class with variant key -->
-<div class="gap-x-none">...</div>
-<div class="gap-x-xs">...</div>
-<div class="gap-x-sm">...</div>
-<div class="gap-x-md">...</div>
-<div class="gap-x-lg">...</div>
-<div class="gap-x-xl">...</div>
-```
-
-### `gap-y-[key]`
-
-Adds gap spacing vertically using top margins and the `> * + *` selector. Gap keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
-
-- `gap-y`
-- `gap-y-[key]`
-
-```html
-<!-- Using the default gap-y class -->
-<div class="gap-y">...</div>
-
-<!-- Using the gap-y class with variant key -->
-<div class="gap-y-none">...</div>
-<div class="gap-y-xs">...</div>
-<div class="gap-y-sm">...</div>
-<div class="gap-y-md">...</div>
-<div class="gap-y-lg">...</div>
-<div class="gap-y-xl">...</div>
-```
-
-### Gap Variables
-
-| Variable       | Default                                | Description                                                              |
-| -------------- | -------------------------------------- | ------------------------------------------------------------------------ |
-| `$output-gap`  | `$output` &rarr; `true`                | Toggles the output of this module.                                       |
-| `$class-gap`   | `"gap"`                                | String to use for the class name of the gap module.                      |
-| `$class-gap-x` | `"gap-x"`                              | String to use for the class name of the gap-x variant of the gap module. |
-| `$class-gap-y` | `"gap-y"`                              | String to use for the class name of the gap-y variant of the gap module. |
-| `$gap`         | `core.$gap` &rarr; `1em`               | Sets the gap via the top and/or left margin property.                    |
-| `$gap-map`     | [`core.$gap-map` Ref &darr;](#gap-map) | Used to build the gap key classes.                                       |
-
-#### `$gap-map`
-
-Used to build the gap key classes.
-
-```scss
-// Inherited from: core.$gap-map
-$gap-map: (
-  "none": 0,
-  "xs": 0.25em,
-  "sm": 0.5em,
-  "md": 1em,
-  "lg": 1.5em,
-  "xl": 2em
-) !default;
-```
-
-#### `@mixin gap($value, $imp: null)`
-
-Output the gap styles for an element. Styles are applied to an elements children using the `> * + *` selector.
-
-**Arguments**
-
-| Variable | Type                             | Description                                                                             |
-| -------- | -------------------------------- | --------------------------------------------------------------------------------------- |
-| `$value` | `string` or `number (with unit)` | The unit of gap spacing to apply. Can also be the key to a value in the `$gap-map` map. |
-| `$imp`   | `boolean`                        | Whither or not to add the `!important` flag.                                            |
-
-**Example**
-
-```scss
-.element {
-  @include gap(2em, true);
-}
-
-// CSS Output
-.element > * + * {
-  margin-top: 2em !important;
-}
-```
 
 ### `heading`
 
