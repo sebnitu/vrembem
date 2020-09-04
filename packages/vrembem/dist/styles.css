@@ -160,6 +160,9 @@ input::-moz-placeholder {
   border: 1px solid rgba(0, 0, 0, 0.05);
   color: inherit;
 }
+.blockquote > * + * {
+  margin-top: 1em;
+}
 .blockquote::before {
   content: "";
   position: absolute;
@@ -168,9 +171,6 @@ input::-moz-placeholder {
   left: -1px;
   width: 4px;
   background-color: #00bcd4;
-}
-.blockquote > * + * {
-  margin-top: 1em;
 }
 
 .code {
@@ -466,6 +466,9 @@ input::-moz-placeholder {
   border: 1px solid rgba(0, 0, 0, 0.05);
   color: inherit;
 }
+.type > blockquote > * + * {
+  margin-top: 1em;
+}
 .type > blockquote::before {
   content: "";
   position: absolute;
@@ -474,9 +477,6 @@ input::-moz-placeholder {
   left: -1px;
   width: 4px;
   background-color: #00bcd4;
-}
-.type > blockquote > * + * {
-  margin-top: 1em;
 }
 .type > pre {
   padding: 1em;
