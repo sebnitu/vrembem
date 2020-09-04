@@ -1,29 +1,29 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
+$_u: var.$prefix-utility;
 $_cx: var.$class-gap-x;
 $_cy: var.$class-gap-y;
 
 @if (var.$output-gap-x) {
-  .#{$_b}#{$_cx} {
+  .#{$_u}#{$_cx} {
     @include core.gap(var.$gap, 'x', true);
   }
 
   @each $key, $value in var.$gap-map {
-    .#{$_b}#{$_cx}-#{$key} {
+    .#{$_u}#{$_cx}-#{$key} {
       @include core.gap($value, 'x', true);
     }
   }
 }
 
 @if (var.$output-gap-y) {
-  .#{$_b}#{$_cy} {
+  .#{$_u}#{$_cy} {
     @include core.gap(var.$gap, 'y', true);
   }
 
   @each $key, $value in var.$gap-map {
-    .#{$_b}#{$_cy}-#{$key} {
+    .#{$_u}#{$_cy}-#{$key} {
       @include core.gap($value, 'y', true);
     }
   }
