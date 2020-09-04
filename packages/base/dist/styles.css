@@ -160,6 +160,9 @@ input::-moz-placeholder {
   border: 1px solid rgba(0, 0, 0, 0.05);
   color: inherit;
 }
+.blockquote > * + * {
+  margin-top: 1em;
+}
 .blockquote::before {
   content: "";
   position: absolute;
@@ -168,9 +171,6 @@ input::-moz-placeholder {
   left: -1px;
   width: 4px;
   background-color: #00bcd4;
-}
-.blockquote > * + * {
-  margin-top: 1em;
 }
 
 .code {
@@ -377,34 +377,6 @@ input::-moz-placeholder {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.spacing > * + * {
-  margin-top: 1em !important;
-}
-
-.spacing-none > * + * {
-  margin-top: 0 !important;
-}
-
-.spacing-xs > * + * {
-  margin-top: 0.25em !important;
-}
-
-.spacing-sm > * + * {
-  margin-top: 0.5em !important;
-}
-
-.spacing-md > * + * {
-  margin-top: 1em !important;
-}
-
-.spacing-lg > * + * {
-  margin-top: 1.5em !important;
-}
-
-.spacing-xl > * + * {
-  margin-top: 2em !important;
-}
-
 .type::after {
   content: "";
   display: table;
@@ -494,6 +466,9 @@ input::-moz-placeholder {
   border: 1px solid rgba(0, 0, 0, 0.05);
   color: inherit;
 }
+.type > blockquote > * + * {
+  margin-top: 1em;
+}
 .type > blockquote::before {
   content: "";
   position: absolute;
@@ -502,9 +477,6 @@ input::-moz-placeholder {
   left: -1px;
   width: 4px;
   background-color: #00bcd4;
-}
-.type > blockquote > * + * {
-  margin-top: 1em;
 }
 .type > pre {
   padding: 1em;

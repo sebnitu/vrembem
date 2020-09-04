@@ -10,6 +10,11 @@ $output-box-shadow: $output !default;
 $output-color: $output !default;
 $output-display: $output !default;
 $output-flex: $output !default;
+$output-flex-gap: $output !default;
+$output-flex-gap-x: $output !default;
+$output-flex-gap-y: $output !default;
+$output-gap-x: $output !default;
+$output-gap-y: $output !default;
 $output-margin: $output !default;
 $output-padding: $output !default;
 $output-span: $output !default;
@@ -22,6 +27,11 @@ $class-box-shadow: "elevate" !default;
 $class-color: "color" !default;
 $class-display: "display" !default;
 $class-flex: "flex" !default;
+$class-flex-gap: "flex-gap" !default;
+$class-flex-gap-x: "flex-gap-x" !default;
+$class-flex-gap-y: "flex-gap-y" !default;
+$class-gap-x: "gap-x" !default;
+$class-gap-y: "gap-y" !default;
 $class-margin: "margin" !default;
 $class-padding: "padding" !default;
 $class-span: "span" !default;
@@ -36,6 +46,6 @@ $display-properties: (
   inline-block,
   none
 ) !default;
-$spacing: core.$spacing !default;
-$spacing-map: core.$spacing-map !default;
+$gap: core.$gap !default;
+$gap-map: core.$gap-map !default;
 $span-columns: 12 !default;

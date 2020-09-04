@@ -47,6 +47,7 @@
 // ---
 
 @mixin blockquote() {
+  @include core.gap(var.$blockquote-gap, 'y');
   position: relative;
   padding: var.$blockquote-padding;
   border: var.$blockquote-border;
@@ -65,10 +66,6 @@
       background-color: var.$blockquote-accent-color;
     }
   }
-
-  > * + * {
-    margin-top: var.$blockquote-spacing;
-  }
 }
 
 // Code
@@ -77,6 +74,7 @@
 @mixin code() {
   padding: var.$code-padding;
   border: var.$code-border;
+  border-radius: var.$code-border-radius;
   background: var.$code-background;
   color: var.$code-color;
   font-family: var.$font-family-mono;
@@ -189,16 +187,16 @@
 // ---
 
 @mixin list() {
-  margin-left: var.$list-spacing;
+  margin-left: var.$list-indent;
 
   ul,
   ol {
-    margin-left: var.$list-spacing;
+    margin-left: var.$list-indent;
   }
 
   li li,
   li + li {
-    margin-top: var.$list-item-spacing;
+    margin-top: var.$list-item-gap;
   }
 }
 
@@ -243,33 +241,12 @@
   border-top: $border;
 }
 
-// Spacing
-// ---
-
-@mixin spacing($value, $imp: null) {
-  @if map.has-key(var.$spacing-map, $value) {
-    $value: map.get(var.$spacing-map, $value);
-  }
-
-  @if ($imp) {
-    $imp: "!important";
-  } @else if ($imp == false) {
-    $imp: null;
-  }
-
-  @if (meta.type-of($value) == number) {
-    > * + * {
-      margin-top: $value #{$imp};
-    }
-  }
-}
-
 // Type
 // ---
 
 @mixin type() {
   @include core.add-clearfix();
-  @include spacing(var.$type-spacing);
+  @include core.gap(var.$type-gap, 'y');
   color: var.$type-color;
   font-family: var.$type-font-family;
   font-size: var.$type-font-size;

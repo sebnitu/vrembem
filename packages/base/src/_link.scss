@@ -3,36 +3,37 @@
 
 $_b: var.$prefix-block;
 $_m: var.$prefix-modifier;
-$_c: var.$class-type;
+$_c: var.$class-link;
+$_t: var.$class-type;
 
 @if (var.$output-link) {
-  .#{$_b}link {
+  .#{$_b}#{$_c} {
     @include mix.link();
   }
 
-  .#{$_b}link#{$_m}subtle {
+  .#{$_b}#{$_c}#{$_m}subtle {
     @include mix.link-modifier("subtle");
   }
 
-  .#{$_b}link#{$_m}invert {
+  .#{$_b}#{$_c}#{$_m}invert {
     @include mix.link-modifier("invert");
   }
 
-  .#{$_b}link#{$_m}invert-subtle {
+  .#{$_b}#{$_c}#{$_m}invert-subtle {
     @include mix.link-modifier("invert-subtle");
   }
 }
 
 @if (var.$output-type) {
-  .#{$_b}#{$_c} .#{$_b}link#{$_m}subtle {
+  .#{$_b}#{$_t} .#{$_b}#{$_c}#{$_m}subtle {
     @include mix.link-modifier("subtle");
   }
 
-  .#{$_b}#{$_c} .#{$_b}link#{$_m}invert {
+  .#{$_b}#{$_t} .#{$_b}#{$_c}#{$_m}invert {
     @include mix.link-modifier("invert");
   }
 
-  .#{$_b}#{$_c} .#{$_b}link#{$_m}invert-subtle {
+  .#{$_b}#{$_t} .#{$_b}#{$_c}#{$_m}invert-subtle {
     @include mix.link-modifier("invert-subtle");
   }
 }

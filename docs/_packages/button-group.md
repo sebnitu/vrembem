@@ -94,7 +94,7 @@ A modifier to allow a button-group to span the full width of it's container. Val
 
 ## button-group_gap_[key]
 
-Adjusts the gap spacing based on the provided key. Gap key output is based on the values in [`$gap-scale`](#gap-scale) variable map.
+Adjusts the gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
 {% include demo_open.html %}
 <div class="button-group button-group_gap_xs">
@@ -125,7 +125,7 @@ Adjusts the gap spacing based on the provided key. Gap key output is based on th
 
 A modifier to join buttons without a button-group component. This removes all gap spacing and adjusts the border-radius to allow buttons to be visually be joined as a single unit.
 
-{% include demo_open.html class_parent="spacing" %}
+{% include demo_open.html class_parent="gap-y" %}
 <div>
   <div class="button-group button-group_join">
     <button class="button button_color_primary">Button</button>
@@ -228,11 +228,6 @@ Adds a breakpoint for when button-group elements should be stacked vertically. V
         <td data-mobile-label="Desc">Sets the border-radius styles of buttons when button-group adjusts them.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$children-selector</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"> *"</code></td>
-        <td data-mobile-label="Desc">The selector used to target button-group children styles.</td>
-      </tr>
-      <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$gap</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2em</code></td>
         <td data-mobile-label="Desc">The default gap spacing for the button-group component.</td>
@@ -243,7 +238,7 @@ Adds a breakpoint for when button-group elements should be stacked vertically. V
         <td data-mobile-label="Desc">The gap spacing used for the `button-group_join` modifier.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$gap-scale</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$gap-map</code></td>
         <td data-mobile-label="Default">
           <a class="link text-nowrap" href="#gap-scale"><code class="code color-secondary">Sass Map</code> Ref &darr;</a>
         </td>
@@ -268,12 +263,12 @@ $breakpoints: (
 ) !default;
 ```
 
-### $gap-scale
+### $gap-map
 
 Used to output gap modifiers.
 
 ```scss
-$gap-scale: (
+$gap-map: (
   "none": 0,
   "xs": 1px,
   "sm": 0.25em,

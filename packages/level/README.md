@@ -36,7 +36,7 @@ The most basic imlementation of the level component consists of the `level` cont
 
 ### `level_gap_[key]`
 
-Adjusts the gap spacing based on the provided key. Gap key output is based on the values in [`$gap-scale`](#gap-scale) variable map.
+Adjusts the gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
 ```html
 <div class="level level_gap_sm">
@@ -57,7 +57,7 @@ Adjusts the gap spacing based on the provided key. Gap key output is based on th
 
 ### `level_gap-x_[key]`
 
-Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-scale`](#gap-scale) variable map.
+Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
 ```html
 <div class="level level_gap-x_xs">
@@ -78,7 +78,7 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key output is 
 
 ### `level_gap-y_[key]`
 
-Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-scale`](#gap-scale) variable map.
+Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
 ```html
 <div class="level level_gap-y_xl">
@@ -108,14 +108,14 @@ Adjusts the vertical gap spacing based on the provided key. Gap key output is ba
 | `$prefix-modifier`       | `"_"`                               | String to prefix modifier with.                  |
 | `$prefix-modifier-value` | `"_"`                               | String to prefix modifier values with.           |
 | `$gap`                   | `0.5em`                             | The default gap spacing for the level component. |
-| `$gap-scale`             | [`Sass Map` Ref &darr;](#gap-scale) | Used to output gap modifiers.                    |
+| `$gap-map`               | [`Sass Map` Ref &darr;](#gap-scale) | Used to output gap modifiers.                    |
 
-#### `$gap-scale`
+#### `$gap-map`
 
 Used to output gap modifiers.
 
 ```scss
-$gap-scale: (
+$gap-map: (
   "none": 0,
   "xs": 1px,
   "sm": 0.25em,

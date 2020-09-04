@@ -71,8 +71,8 @@ Setting these variables will impact more than one or up to all base modules.
 
 The base component consists of a number of modules with their own set of specific customizable variables and output mixins.
 
+- [`base`](#base)
 - [`arrow`](#arrow)
-- [`base`](#base-1)
 - [`blockquote`](#blockquote)
 - [`code`](#code)
 - [`embed`](#embed)
@@ -82,75 +82,9 @@ The base component consists of a number of modules with their own set of specifi
 - [`pre`](#pre)
 - [`scroll-box`](#scroll-box)
 - [`separator`](#separator)
-- [`spacing`](#spacing)
 - [`type`](#type)
 
-### `arrow`
-
-The arrow (caret) module creates directional triangles drawn with CSS.
-
-```html
-<span class="arrow"></span>
-<span class="arrow-up"></span>
-<span class="arrow-left"></span>
-<span class="arrow-right"></span>
-```
-
-| Variable        | Default                 | Description                                                                                                                                      |
-| --------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `$output-arrow` | `$output` &rarr; `true` | Toggles the output of this module.                                                                                                               |
-| `$class-arrow`  | `"arrow"`               | String to use for the class name of the arrow module.                                                                                            |
-| `$arrow-color`  | `currentColor`          | Sets the default border-color property of the arrow.                                                                                             |
-| `$arrow-size`   | `8px 6px`               | Sets the size of arrows. Can be a list where first number is the width of the "flat" side of the arrow and second is the width of the "pointer". |
-| `$arrow-radius` | `2px`                   | Applies a slightly rounded edge to the none pointer corners.                                                                                     |
-
-### Example
-
-Arrows are great indicators for buttons and menu items when interacting with them would toggle a dropdown or other togglable components.
-
-```html
-<button class="button">
-  <span>Button</span>
-  <span class="arrow"></span>
-</button>
-```
-
-#### `@mixin arrow($dir, $color, $size, $radius)`
-
-Output the styles for an arrow.
-
-**Arguments**
-
-| Variable  | Type                 | Description                                                                                                                                      |
-| --------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `$dir`    | `string`             | The direction the arrow should point. Can be `'up'`, `'down'`, `'left'` or `'right'`. Defaults to `'down'`.                                      |
-| `$color`  | `color`              | Sets the border-color property of the arrow.                                                                                                     |
-| `$size`   | `number (with unit)` | Sets the size of arrows. Can be a list where first number is the width of the "flat" side of the arrow and second is the width of the "pointer". |
-| `$radius` | `number (with unit)` | Applies a slightly rounded edge to the none pointer corners.                                                                                     |
-
-**Example**
-
-```scss
-.custom-arrow {
-  @include arrow("right", currentColor, 10px 15px);
-}
-
-// CSS Output
-.custom-arrow {
-  display: inline-block;
-  flex-grow: 0;
-  flex-shrink: 0;
-  width: 0;
-  height: 0;
-  transform-origin: center;
-  border-top: 15px solid currentColor;
-  border-right: 5px solid transparent;
-  border-left: 5px solid transparent;
-  border-radius: 2px;
-  pointer-events: none;
-  transform: rotate(-90deg);
-}
-```
+> Modules are sorted by the order they're imported; alphabetically except for `base` having priority as first import.
 
 ### `base`
 
@@ -205,9 +139,76 @@ body {
 
 For a complete understanding of what this module does, checkout the source: [`_base.scss`](https://github.com/sebnitu/vrembem/blob/master/packages/base/src/_base.scss)
 
+### `arrow`
+
+The arrow (caret) module creates directional triangles drawn with CSS.
+
+```html
+<span class="arrow"></span>
+<span class="arrow-up"></span>
+<span class="arrow-left"></span>
+<span class="arrow-right"></span>
+```
+
+| Variable        | Default                 | Description                                                                                                                                      |
+| --------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `$output-arrow` | `$output` &rarr; `true` | Toggles the output of this module.                                                                                                               |
+| `$class-arrow`  | `"arrow"`               | String to use for the class name of the arrow module.                                                                                            |
+| `$arrow-color`  | `currentColor`          | Sets the default border-color property of the arrow.                                                                                             |
+| `$arrow-size`   | `8px 6px`               | Sets the size of arrows. Can be a list where first number is the width of the "flat" side of the arrow and second is the width of the "pointer". |
+| `$arrow-radius` | `2px`                   | Applies a slightly rounded edge to the none pointer corners.                                                                                     |
+
+#### Example
+
+Arrows are great indicators for buttons and menu items when interacting with them would toggle a dropdown or other togglable components.
+
+```html
+<button class="button">
+  <span>Button</span>
+  <span class="arrow"></span>
+</button>
+```
+
+#### `@mixin arrow($dir, $color, $size, $radius)`
+
+Output the styles for an arrow.
+
+**Arguments**
+
+| Variable  | Type                 | Description                                                                                                                                      |
+| --------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `$dir`    | `string`             | The direction the arrow should point. Can be `'up'`, `'down'`, `'left'` or `'right'`. Defaults to `'down'`.                                      |
+| `$color`  | `color`              | Sets the border-color property of the arrow.                                                                                                     |
+| `$size`   | `number (with unit)` | Sets the size of arrows. Can be a list where first number is the width of the "flat" side of the arrow and second is the width of the "pointer". |
+| `$radius` | `number (with unit)` | Applies a slightly rounded edge to the none pointer corners.                                                                                     |
+
+**Example**
+
+```scss
+.custom-arrow {
+  @include arrow("right", currentColor, 10px 15px);
+}
+
+// CSS Output
+.custom-arrow {
+  display: inline-block;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 0;
+  height: 0;
+  transform-origin: center;
+  border-top: 15px solid currentColor;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  border-radius: 2px;
+  pointer-events: none;
+  transform: rotate(-90deg);
+}
+```
+
 ### `blockquote`
 
-The HTML blockquote element is used for markup up extended quotations. This module helps style these elements in a distinct and appealing way by providing the `.blockquote` CSS class.
+The HTML blockquote element is used for marking up extended quotations. This module helps style these elements in a distinct and appealing way by providing the `.blockquote` CSS class.
 
 ```html
 <blockquote class="blockquote" cite="...">
@@ -222,8 +223,9 @@ The HTML blockquote element is used for markup up extended quotations. This modu
 | Variable                          | Default                     | Description                                                                                                |
 | --------------------------------- | --------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `$output-blockquote`              | `$output` &rarr; `true`     | Toggles the output of this module.                                                                         |
+| `$class-blockquote`               | `"blockquote"`              | String to use for the class name of the blockquote module.                                                 |
 | `$blockquote-padding`             | `1.5em`                     | Sets the padding property.                                                                                 |
-| `$blockquote-spacing`             | `1em`                       | Sets the vertical spacing between elements inside a blockquote using the margin property.                  |
+| `$blockquote-gap`                 | `1em`                       | Sets the vertical gap between elements inside a blockquote using the margin property.                      |
 | `$blockquote-color`               | `inherit`                   | Sets the text color property.                                                                              |
 | `$blockquote-background`          | `null`                      | Sets the background color property.                                                                        |
 | `$blockquote-border`              | `core.$border-light`        | Sets the border property.                                                                                  |
@@ -278,10 +280,11 @@ The HTML code element displays its contents styled in a fashion intended to indi
 | Variable              | Default                  | Description                                                                                |
 | --------------------- | ------------------------ | ------------------------------------------------------------------------------------------ |
 | `$output-code`        | `$output` &rarr; `true`  | Toggles the output of this module.                                                         |
+| `$class-code`         | `"code"`                 | String to use for the class name of the code module.                                       |
 | `$code-padding`       | `null`                   | Sets the padding property.                                                                 |
 | `$code-background`    | `null`                   | Sets the background property.                                                              |
 | `$code-border`        | `null`                   | Sets the border property.                                                                  |
-| `$code-border-radius` | `core.$border-radius`    | Sets the border-radius property.                                                           |
+| `$code-border-radius` | `null`                   | Sets the border-radius property.                                                           |
 | `$code-color`         | `core.$pink`             | Sets the text color property.                                                              |
 | `$code-color-invert`  | `core.$pink-300`         | Sets the inverted text color. This is used when code elements appear on a dark background. |
 | `$code-font-family`   | `core.$font-family-mono` | Sets the font-family property.                                                             |
@@ -468,6 +471,7 @@ A link—usually represented by an anchor (`<a>`) HTML element with `href` attri
 | Variable                                 | Default                        | Description                                                           |
 | ---------------------------------------- | ------------------------------ | --------------------------------------------------------------------- |
 | `$output-link`                           | `$output` &rarr; `true`        | Toggles the output of this module.                                    |
+| `$class-link`                            | `"link"`                       | String to use for the class name of the link module.                  |
 | `$link-text-decoration`                  | `none`                         | Sets the text decoration property.                                    |
 | `$link-text-decoration-hover`            | `null`                         | Sets the text decoration property on hover state.                     |
 | `$link-transition`                       | `null`                         | Sets the transition property.                                         |
@@ -570,11 +574,12 @@ The list module helps add styles to unordered (`<ul>`) and ordered (`<ol>`) list
 </ol>
 ```
 
-| Variable             | Default                 | Description                                     |
-| -------------------- | ----------------------- | ----------------------------------------------- |
-| `$output-list`       | `$output` &rarr; `true` | Toggles the output of this module.              |
-| `$list-spacing`      | `1.5em`                 | Sets the margin-left property of list elements. |
-| `$list-item-spacing` | `0.5em`                 | Sets the top and bottom margins of list items.  |
+| Variable         | Default                 | Description                                          |
+| ---------------- | ----------------------- | ---------------------------------------------------- |
+| `$output-list`   | `$output` &rarr; `true` | Toggles the output of this module.                   |
+| `$class-list`    | `"list"`                | String to use for the class name of the list module. |
+| `$list-gap`      | `1.5em`                 | Sets the margin-left property of list elements.      |
+| `$list-item-gap` | `0.5em`                 | Sets the top margin of list items.                   |
 
 #### `@mixin list()`
 
@@ -624,14 +629,15 @@ This module helps style the HTML `<pre>` element by providing the `.pre` CSS cla
 </pre>
 ```
 
-| Variable             | Default                 | Description                        |
-| -------------------- | ----------------------- | ---------------------------------- |
-| `$output-pre`        | `$output` &rarr; `true` | Toggles the output of this module. |
-| `$pre-padding`       | `1em`                   | Sets the padding property.         |
-| `$pre-background`    | `core.$shade`           | Sets the background property.      |
-| `$pre-border`        | `null`                  | Sets the border property.          |
-| `$pre-border-radius` | `core.$border-radius`   | Sets the border-radius property.   |
-| `$pre-color`         | `core.$color`           | Sets the text color property.      |
+| Variable             | Default                 | Description                                         |
+| -------------------- | ----------------------- | --------------------------------------------------- |
+| `$output-pre`        | `$output` &rarr; `true` | Toggles the output of this module.                  |
+| `$class-pre`         | `"pre"`                 | String to use for the class name of the pre module. |
+| `$pre-padding`       | `1em`                   | Sets the padding property.                          |
+| `$pre-background`    | `core.$shade`           | Sets the background property.                       |
+| `$pre-border`        | `null`                  | Sets the border property.                           |
+| `$pre-border-radius` | `core.$border-radius`   | Sets the border-radius property.                    |
+| `$pre-color`         | `core.$color`           | Sets the text color property.                       |
 
 #### `@mixin pre()`
 
@@ -743,70 +749,6 @@ Output the separator styles.
 }
 ```
 
-### `spacing`
-
-This module adds vertical spacing between an element's children. Spacing size and spacing values are generated from the [`$spacing-map`](#spacing-map) variable map.
-
-```html
-<!-- Using the default spacing class -->
-<div class="spacing">...</div>
-
-<!-- Using the spacing class with variant key -->
-<div class="spacing-none">...</div>
-<div class="spacing-xs">...</div>
-<div class="spacing-sm">...</div>
-<div class="spacing-md">...</div>
-<div class="spacing-lg">...</div>
-<div class="spacing-xl">...</div>
-```
-
-| Variable          | Default                                        | Description                                             |
-| ----------------- | ---------------------------------------------- | ------------------------------------------------------- |
-| `$output-spacing` | `$output` &rarr; `true`                        | Toggles the output of this module.                      |
-| `$class-spacing`  | `"spacing"`                                    | String to use for the class name of the spacing module. |
-| `$spacing`        | `core.$spacing` &rarr; `1em`                   | Sets the vertical spacing via the top margin property.  |
-| `$spacing-map`    | [`core.$spacing-map` Ref &darr;](#spacing-map) | Used to build the spacing key classes.                  |
-
-#### `$spacing-map`
-
-Used to build the spacing key classes.
-
-```scss
-// Inherited from: core.$spacing-map
-$spacing-map: (
-  "none": 0,
-  "xs": 0.25em,
-  "sm": 0.5em,
-  "md": 1em,
-  "lg": 1.5em,
-  "xl": 2em
-) !default;
-```
-
-#### `@mixin spacing($value, $imp: null)`
-
-Output the spacing styles for an element. Styles are applied to an elements children using the `> * + *` selector.
-
-**Arguments**
-
-| Variable | Type                             | Description                                                                             |
-| -------- | -------------------------------- | --------------------------------------------------------------------------------------- |
-| `$value` | `string` or `number (with unit)` | The unit of spacing to apply. Can also be the key to a value in the `$spacing-map` map. |
-| `$imp`   | `boolean`                        | Whither or not to add the `!important` flag.                                            |
-
-**Example**
-
-```scss
-.element {
-  @include spacing(2em, true);
-}
-
-// CSS Output
-.element > * + * {
-  margin-top: 2em !important;
-}
-```
-
 ### `type`
 
 The type module provides the `.type` CSS class as a quick way to apply many base modules to HTML elements directly. Base module classes will override a parent `.type` application when explicitly set. Use `.type_invert` for when text sits on a dark background.
@@ -835,16 +777,16 @@ Modules that get mapped to HTML elements include:
 
 > The type module only applies styles to children HTML elements. It's possible to nest other components within type and not have style or specificity conflicts. It's recommended to wrap nested components with anonymous `<div>` elements when possible.
 
-| Variable             | Default                 | Description                                                         |
-| -------------------- | ----------------------- | ------------------------------------------------------------------- |
-| `$output-type`       | `$output` &rarr; `true` | Toggles the output of this module.                                  |
-| `$class-type`        | `"type"`                | String to use for the class name of the type module.                |
-| `$type-color`        | `null`                  | Sets the color property.                                            |
-| `$type-color-invert` | `core.$color-invert`    | Sets the color property for text on a dark background.              |
-| `$type-font-family`  | `null`                  | Sets the font-family property.                                      |
-| `$type-font-size`    | `null`                  | Sets the font-size property.                                        |
-| `$type-line-height`  | `null`                  | Sets the line-height property.                                      |
-| `$type-spacing`      | `null`                  | Applies vertical spacing between elements via the `spacing` module. |
+| Variable             | Default                 | Description                                                 |
+| -------------------- | ----------------------- | ----------------------------------------------------------- |
+| `$output-type`       | `$output` &rarr; `true` | Toggles the output of this module.                          |
+| `$class-type`        | `"type"`                | String to use for the class name of the type module.        |
+| `$type-color`        | `null`                  | Sets the color property.                                    |
+| `$type-color-invert` | `core.$color-invert`    | Sets the color property for text on a dark background.      |
+| `$type-font-family`  | `null`                  | Sets the font-family property.                              |
+| `$type-font-size`    | `null`                  | Sets the font-size property.                                |
+| `$type-line-height`  | `null`                  | Sets the line-height property.                              |
+| `$type-gap`          | `null`                  | Applies vertical gap between elements via the `gap` module. |
 
 #### `@mixin type()`
 

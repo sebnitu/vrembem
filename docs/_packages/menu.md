@@ -274,7 +274,7 @@ To create a stacked menu below a specific breakpoint, use the stack breakpoint m
 A theme for using menus on a dark background.
 
 {% include demo_open.html class_grid="grid_stack" %}
-<div class="padding background-night radius spacing">
+<div class="padding background-night radius gap">
   <div class="scroll-box">
     <ul class="menu menu_theme_invert">
       <li class="menu__item">
@@ -327,7 +327,7 @@ A theme for using menus on a dark background.
 A theme for creating tab styled menus.
 
 {% include demo_open.html class_grid="grid_stack" %}
-<div class="spacing">
+<div class="gap">
   <div class="scroll-box">
     <ul class="menu menu_theme_tabs">
       <li class="menu__item">

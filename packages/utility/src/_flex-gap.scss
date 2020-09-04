@@ -1,0 +1,43 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
+$_u: var.$prefix-utility;
+$_c: var.$class-flex-gap;
+$_cx: var.$class-flex-gap-x;
+$_cy: var.$class-flex-gap-y;
+
+@if (var.$output-flex-gap) {
+  .#{$_u}#{$_c} {
+    @include core.flex-gap(var.$gap, $imp: true);
+  }
+
+  @each $key, $value in var.$gap-map {
+    .#{$_u}#{$_c}-#{$key} {
+      @include core.flex-gap($value, $imp: true);
+    }
+  }
+}
+
+@if (var.$output-flex-gap-x) {
+  .#{$_u}#{$_cx} {
+    @include core.flex-gap(var.$gap, 'x', true);
+  }
+
+  @each $key, $value in var.$gap-map {
+    .#{$_u}#{$_cx}-#{$key} {
+      @include core.flex-gap($value, 'x', true);
+    }
+  }
+}
+
+@if (var.$output-flex-gap-y) {
+  .#{$_u}#{$_cy} {
+    @include core.flex-gap(var.$gap, 'y', true);
+  }
+
+  @each $key, $value in var.$gap-map {
+    .#{$_u}#{$_cy}-#{$key} {
+      @include core.flex-gap($value, 'y', true);
+    }
+  }
+}

@@ -108,7 +108,7 @@ For basic table styles, only the `table` component class is required. Use [prope
 
 When `scroll-box` isn't mobile friendly enough, `table_responsive_[key]` is available to turn tables into a more readable format on smaller devices. Mobile labels are set using the `data-mobile-lable` attribute.
 
-{% include demo_open.html class_grid="grid_stack" class_parent="spacing" %}
+{% include demo_open.html class_grid="grid_stack" class_parent="gap-y" %}
 <div class="scroll-box">
   <table class="table table_responsive_lg table_style_bordered">
     <thead>
@@ -200,7 +200,7 @@ When `scroll-box` isn't mobile friendly enough, `table_responsive_[key]` is avai
 {% include demo_open.html %}
 <table class="table table_ellipsis">
   <colgroup>
-    <col style="width:50px;">
+    <col style="width: 50px;">
   </colgroup>
   <thead>
     <tr>
@@ -253,7 +253,7 @@ When `scroll-box` isn't mobile friendly enough, `table_responsive_[key]` is avai
 ```html
 <table class="table table_ellipsis">
   <colgroup>
-    <col style="width:50px;">
+    <col style="width: 50px;">
   </colgroup>
   ...
 </table>

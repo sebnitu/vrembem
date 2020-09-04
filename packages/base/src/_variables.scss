@@ -12,8 +12,8 @@ $prefix-modifier-value: core.$prefix-modifier-value !default;
 // ---
 
 $output: true !default;
-$output-arrow: $output !default;
 $output-base: $output !default;
+$output-arrow: $output !default;
 $output-blockquote: $output !default;
 $output-code: $output !default;
 $output-embed: $output !default;
@@ -23,7 +23,6 @@ $output-list: $output !default;
 $output-pre: $output !default;
 $output-scroll-box: $output !default;
 $output-separator: $output !default;
-$output-spacing: $output !default;
 $output-symbols: $output !default;
 $output-type: $output !default;
 
@@ -31,10 +30,14 @@ $output-type: $output !default;
 // ---
 
 $class-arrow: "arrow" !default;
+$class-blockquote: "blockquote" !default;
+$class-code: "code" !default;
 $class-embed: "embed" !default;
+$class-link: "link" !default;
+$class-list: "list" !default;
+$class-pre: "pre" !default;
 $class-scroll-box: "scroll-box" !default;
 $class-separator: "sep" !default;
-$class-spacing: "spacing" !default;
 $class-symbols: "symbols" !default;
 $class-type: "type" !default;
 
@@ -63,7 +66,7 @@ $arrow-radius: 2px !default;
 // ---
 
 $blockquote-padding: 1.5em !default;
-$blockquote-spacing: 1em !default;
+$blockquote-gap: 1em !default;
 $blockquote-color: inherit !default;
 $blockquote-background: null !default;
 $blockquote-border: core.$border-light !default;
@@ -79,7 +82,7 @@ $blockquote-accent-color: core.$primary !default;
 $code-padding: null !default;
 $code-background: null !default;
 $code-border: null !default;
-$code-border-radius: core.$border-radius !default;
+$code-border-radius: null !default;
 $code-color: core.$pink !default;
 $code-color-invert: core.$pink-300 !default;
 $code-font-family: core.$font-family-mono !default;
@@ -137,8 +140,8 @@ $link-invert-subtle-border-color-hover: currentColor !default;
 // List
 // ---
 
-$list-spacing: 1.5em !default;
-$list-item-spacing: 0.5em !default;
+$list-indent: 1.5em !default;
+$list-item-gap: 0.5em !default;
 
 // Pre
 // ---
@@ -155,12 +158,6 @@ $pre-color: core.$color !default;
 $separator-border: 1px solid core.$border-color !default;
 $separator-border-invert: 1px solid core.$border-color-invert !default;
 
-// Spacing
-// ---
-
-$spacing: core.$spacing !default;
-$spacing-map: core.$spacing-map !default;
-
 // Type
 // ---
 
@@ -169,4 +166,4 @@ $type-color-invert: core.$color-invert !default;
 $type-font-family: null !default;
 $type-font-size: null !default;
 $type-line-height: null !default;
-$type-spacing: null !default;
+$type-gap: null !default;

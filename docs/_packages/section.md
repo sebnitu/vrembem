@@ -13,7 +13,7 @@ usage:
 
 <div class="section section_size_xl">
 <div class="section__container container">
-<div class="section__intro type type_invert spacing">
+<div class="section__intro type type_invert gap-y">
   <h1>Huge section with a screen &amp; background image</h1>
   <p class="text_lead">This is a demonstration of section area using the intro element along with a screen and background image. The screen color is set using the background modifiers and can be changed as needed.</p>
   <div class="level flex-justify-center">

@@ -39,7 +39,7 @@ $_stack: '.#{$_b}media#{$_m}stack';
       }
     }
 
-    @each $gapKey, $gapValue in var.$gap-scale {
+    @each $gapKey, $gapValue in var.$gap-map {
       .#{$_b}media#{$_m}gap#{$_v}#{$gapKey},
       .#{$_b}media#{$_m}gap-y#{$_v}#{$gapKey} {
         &.#{$_b}media#{$_m}stack#{$_v}#{$key} > * + * {

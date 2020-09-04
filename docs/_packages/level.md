@@ -16,7 +16,7 @@ The most basic imlementation of the level component consists of the `level` cont
 {% include demo_open.html %}
 <div class="level">
   {% for i in (1..10) %}
-    <div class="box">{{ i }}</div>
+    <div class="box">...</div>
   {% endfor %}
 </div>
 {% include demo_switch.html %}
@@ -33,17 +33,17 @@ The most basic imlementation of the level component consists of the `level` cont
 
 ## level_gap_[key]
 
-Adjusts the gap spacing based on the provided key. Gap key output is based on the values in [`$gap-scale`](#gap-scale) variable map.
+Adjusts the gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
 {% include demo_open.html %}
-<div class="level level_gap_sm">
+<div class="level level_gap_xs">
   {% for i in (1..10) %}
-    <div class="box">{{ i }}</div>
+    <div class="box">...</div>
   {% endfor %}
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="level level_gap_sm">
+<div class="level level_gap_xs">
   <div>...</div>
   <div>...</div>
   <div>...</div>
@@ -62,17 +62,17 @@ Adjusts the gap spacing based on the provided key. Gap key output is based on th
 
 ## level_gap-x_[key]
 
-Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-scale`](#gap-scale) variable map.
+Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
 {% include demo_open.html %}
-<div class="level level_gap-x_lg">
+<div class="level level_gap-x_xl">
   {% for i in (1..10) %}
-    <div class="box">{{ i }}</div>
+    <div class="box">...</div>
   {% endfor %}
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="level level_gap-x_lg">
+<div class="level level_gap-x_xl">
   <div>...</div>
   <div>...</div>
   <div>...</div>
@@ -91,17 +91,17 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key output is 
 
 ## level_gap-y_[key]
 
-Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-scale`](#gap-scale) variable map.
+Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
 {% include demo_open.html %}
-<div class="level level_gap-y_lg">
+<div class="level level_gap-y_xl">
   {% for i in (1..10) %}
-    <div class="box">{{ i }}</div>
+    <div class="box">...</div>
   {% endfor %}
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="level level_gap-y_lg">
+<div class="level level_gap-y_xl">
   <div>...</div>
   <div>...</div>
   <div>...</div>
@@ -158,7 +158,7 @@ Adjusts the vertical gap spacing based on the provided key. Gap key output is ba
         <td data-mobile-label="Desc">The default gap spacing for the level component.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$gap-scale</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$gap-map</code></td>
         <td data-mobile-label="Default">
           <a class="link" href="#gap-scale"><code class="code color-secondary">Sass Map</code> Ref &darr;</a>
         </td>
@@ -168,12 +168,12 @@ Adjusts the vertical gap spacing based on the provided key. Gap key output is ba
   </table>
 </div>
 
-### $gap-scale
+### $gap-map
 
 Used to output gap modifiers.
 
 ```scss
-$gap-scale: (
+$gap-map: (
   "none": 0,
   "xs": 1px,
   "sm": 0.25em,
