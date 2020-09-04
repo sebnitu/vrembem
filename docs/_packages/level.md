@@ -16,7 +16,7 @@ The most basic imlementation of the level component consists of the `level` cont
 {% include demo_open.html %}
 <div class="level">
   {% for i in (1..10) %}
-    <div class="box">{{ i }}</div>
+    <div class="box">...</div>
   {% endfor %}
 </div>
 {% include demo_switch.html %}
@@ -36,14 +36,14 @@ The most basic imlementation of the level component consists of the `level` cont
 Adjusts the gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
 {% include demo_open.html %}
-<div class="level level_gap_sm">
+<div class="level level_gap_xs">
   {% for i in (1..10) %}
-    <div class="box">{{ i }}</div>
+    <div class="box">...</div>
   {% endfor %}
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="level level_gap_sm">
+<div class="level level_gap_xs">
   <div>...</div>
   <div>...</div>
   <div>...</div>
@@ -65,14 +65,14 @@ Adjusts the gap spacing based on the provided key. Gap key output is based on th
 Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
 {% include demo_open.html %}
-<div class="level level_gap-x_lg">
+<div class="level level_gap-x_xl">
   {% for i in (1..10) %}
-    <div class="box">{{ i }}</div>
+    <div class="box">...</div>
   {% endfor %}
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="level level_gap-x_lg">
+<div class="level level_gap-x_xl">
   <div>...</div>
   <div>...</div>
   <div>...</div>
@@ -94,14 +94,14 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key output is 
 Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
 {% include demo_open.html %}
-<div class="level level_gap-y_lg">
+<div class="level level_gap-y_xl">
   {% for i in (1..10) %}
-    <div class="box">{{ i }}</div>
+    <div class="box">...</div>
   {% endfor %}
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="level level_gap-y_lg">
+<div class="level level_gap-y_xl">
   <div>...</div>
   <div>...</div>
   <div>...</div>
