@@ -1979,8 +1979,8 @@ input::-moz-placeholder {
 
 .grid__clear {
   flex: 1 0 100%;
-  margin: 0;
-  padding: 0;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .grid_auto > .grid__item,

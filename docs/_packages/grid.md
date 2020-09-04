@@ -197,12 +197,23 @@ Set an individual grid item to fill using the `grid__item_fill` element modifier
 
 Modifiers that adjust the gutter spacing between `grid__item` elements. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
+{% include demo_open.html %}
+<div class="grid grid_gap_xs">
+  <div class="grid__item"><div class="box">...</div></div>
+  <div class="grid__item"><div class="box">...</div></div>
+  <div class="grid__item"><div class="box">...</div></div>
+  <div class="grid__clear"></div>
+  <div class="grid__item"><div class="box">...</div></div>
+  <div class="grid__item"><div class="box">...</div></div>
+</div>
+{% include demo_switch.html %}
 ```html
-<div class="grid grid_gap_sm">
+<div class="grid grid_gap_xs">
   <div class="grid__item">...</div>
   <div class="grid__item">...</div>
 </div>
 ```
+{% include demo_close.html %}
 
 ### Available Variations
 
@@ -217,12 +228,23 @@ Modifiers that adjust the gutter spacing between `grid__item` elements. Gap key 
 
 Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
+{% include demo_open.html %}
+<div class="grid grid_gap-x_xs">
+  <div class="grid__item"><div class="box">...</div></div>
+  <div class="grid__item"><div class="box">...</div></div>
+  <div class="grid__item"><div class="box">...</div></div>
+  <div class="grid__clear"></div>
+  <div class="grid__item"><div class="box">...</div></div>
+  <div class="grid__item"><div class="box">...</div></div>
+</div>
+{% include demo_switch.html %}
 ```html
 <div class="grid grid_gap-x_xs">
   <div class="grid__item">...</div>
   <div class="grid__item">...</div>
 </div>
 ```
+{% include demo_close.html %}
 
 ### Available Variations
 
@@ -237,12 +259,23 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key output is 
 
 Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
+{% include demo_open.html %}
+<div class="grid grid_gap-y_xs">
+  <div class="grid__item"><div class="box">...</div></div>
+  <div class="grid__item"><div class="box">...</div></div>
+  <div class="grid__item"><div class="box">...</div></div>
+  <div class="grid__clear"></div>
+  <div class="grid__item"><div class="box">...</div></div>
+  <div class="grid__item"><div class="box">...</div></div>
+</div>
+{% include demo_switch.html %}
 ```html
-<div class="grid grid_gap-y_xl">
+<div class="grid grid_gap-y_xs">
   <div class="grid__item">...</div>
   <div class="grid__item">...</div>
 </div>
 ```
+{% include demo_close.html %}
 
 ### Available Variations
 
@@ -317,7 +350,7 @@ Adds a breakpoint for when grid items should be stacked vertically. Values and c
 ```
 {% include demo_close.html %}
 
-#### Available Variations
+### Available Variations
 
 - `grid_stack`
 - `grid_stack_xs`

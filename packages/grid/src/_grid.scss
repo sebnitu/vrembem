@@ -22,6 +22,6 @@ $_e: var.$prefix-element;
 
 .#{$_b}grid#{$_e}clear {
   flex: 1 0 100%;
-  margin: 0;
-  padding: 0;
+  margin: 0 !important;
+  padding: 0 !important;
 }
