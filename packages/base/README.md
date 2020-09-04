@@ -12,13 +12,13 @@ Includes useful default styles and base modules for common HTML elements.
 npm install @vrembem/base
 ```
 
-### Styles
+### Styles <!-- omit in toc -->
 
 ```scss
 @use "@vrembem/base";
 ```
 
-### Markup
+### Markup <!-- omit in toc -->
 
 Once loaded, the base component provides default styles for HTML elements and a number of output modules. Base also provides helpful variables and mixins for customizing the output.
 
@@ -71,7 +71,7 @@ Setting these variables will impact more than one or up to all base modules.
 
 The base component consists of a number of modules with their own set of specific customizable variables and output mixins.
 
-- [`base`](#base-1)
+- [`base`](#base)
 - [`arrow`](#arrow)
 - [`blockquote`](#blockquote)
 - [`code`](#code)
@@ -158,7 +158,7 @@ The arrow (caret) module creates directional triangles drawn with CSS.
 | `$arrow-size`   | `8px 6px`               | Sets the size of arrows. Can be a list where first number is the width of the "flat" side of the arrow and second is the width of the "pointer". |
 | `$arrow-radius` | `2px`                   | Applies a slightly rounded edge to the none pointer corners.                                                                                     |
 
-### Example
+#### Example
 
 Arrows are great indicators for buttons and menu items when interacting with them would toggle a dropdown or other togglable components.
 
@@ -471,6 +471,7 @@ A link—usually represented by an anchor (`<a>`) HTML element with `href` attri
 | Variable                                 | Default                        | Description                                                           |
 | ---------------------------------------- | ------------------------------ | --------------------------------------------------------------------- |
 | `$output-link`                           | `$output` &rarr; `true`        | Toggles the output of this module.                                    |
+| `$class-link`                            | `"link"`                       | String to use for the class name of the link module.                  |
 | `$link-text-decoration`                  | `none`                         | Sets the text decoration property.                                    |
 | `$link-text-decoration-hover`            | `null`                         | Sets the text decoration property on hover state.                     |
 | `$link-transition`                       | `null`                         | Sets the transition property.                                         |
@@ -573,11 +574,12 @@ The list module helps add styles to unordered (`<ul>`) and ordered (`<ol>`) list
 </ol>
 ```
 
-| Variable         | Default                 | Description                                     |
-| ---------------- | ----------------------- | ----------------------------------------------- |
-| `$output-list`   | `$output` &rarr; `true` | Toggles the output of this module.              |
-| `$list-gap`      | `1.5em`                 | Sets the margin-left property of list elements. |
-| `$list-item-gap` | `0.5em`                 | Sets the top margin of list items.              |
+| Variable         | Default                 | Description                                          |
+| ---------------- | ----------------------- | ---------------------------------------------------- |
+| `$output-list`   | `$output` &rarr; `true` | Toggles the output of this module.                   |
+| `$class-list`    | `"list"`                | String to use for the class name of the list module. |
+| `$list-gap`      | `1.5em`                 | Sets the margin-left property of list elements.      |
+| `$list-item-gap` | `0.5em`                 | Sets the top margin of list items.                   |
 
 #### `@mixin list()`
 
@@ -627,14 +629,15 @@ This module helps style the HTML `<pre>` element by providing the `.pre` CSS cla
 </pre>
 ```
 
-| Variable             | Default                 | Description                        |
-| -------------------- | ----------------------- | ---------------------------------- |
-| `$output-pre`        | `$output` &rarr; `true` | Toggles the output of this module. |
-| `$pre-padding`       | `1em`                   | Sets the padding property.         |
-| `$pre-background`    | `core.$shade`           | Sets the background property.      |
-| `$pre-border`        | `null`                  | Sets the border property.          |
-| `$pre-border-radius` | `core.$border-radius`   | Sets the border-radius property.   |
-| `$pre-color`         | `core.$color`           | Sets the text color property.      |
+| Variable             | Default                 | Description                                         |
+| -------------------- | ----------------------- | --------------------------------------------------- |
+| `$output-pre`        | `$output` &rarr; `true` | Toggles the output of this module.                  |
+| `$class-pre`         | `"pre"`                 | String to use for the class name of the pre module. |
+| `$pre-padding`       | `1em`                   | Sets the padding property.                          |
+| `$pre-background`    | `core.$shade`           | Sets the background property.                       |
+| `$pre-border`        | `null`                  | Sets the border property.                           |
+| `$pre-border-radius` | `core.$border-radius`   | Sets the border-radius property.                    |
+| `$pre-color`         | `core.$color`           | Sets the text color property.                       |
 
 #### `@mixin pre()`
 

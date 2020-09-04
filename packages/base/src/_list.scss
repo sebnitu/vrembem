@@ -2,7 +2,7 @@
 @use "./mixins" as mix;
 
 @if (var.$output-list) {
-  .#{var.$prefix-block}list {
+  .#{var.$prefix-block}#{var.$class-list} {
     @include mix.list();
   }
 }
