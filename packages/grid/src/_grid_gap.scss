@@ -10,7 +10,9 @@ $_v: var.$prefix-modifier-value;
   .#{$_b}grid#{$_m}gap#{$_v}#{$key} {
     @include core.flex-gap($value, $prop: "padding");
   }
+}
 
+@each $key, $value in var.$gap-map {
   .#{$_b}grid#{$_m}gap-x#{$_v}#{$key} {
     @include core.flex-gap($value, 'x', $prop: "padding");
   }

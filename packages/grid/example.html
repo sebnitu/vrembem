@@ -17,7 +17,8 @@
       border-top: 3px solid rgba(0, 0, 0, 0.05);
     }
 
-    .box-container {
+    .grid,
+    .grid__item {
       transition: all 0.3s ease;
     }
 
@@ -26,24 +27,6 @@
       transition: all 0.3s ease;
       border: 2px solid rgba(76, 175, 80, 0.5);
       background: rgba(76, 175, 80, 0.1);
-    }
-
-    .label-block {
-      display: block;
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      border-radius: 3px;
-      background: rgba(0, 0, 0, 0.025);
-      cursor: pointer;
-    }
-
-    .label-block:hover,
-    .label-block:focus {
-      border-color: rgba(0, 0, 0, 0.2);
-    }
-
-    .label-block.is-active {
-      border-color: rgba(0, 0, 0, 0.4);
-      background: #fff;
     }
   </style>
 </head>
@@ -70,14 +53,14 @@
   </header>
 
   <div id="app" class="section">
-    <div class="container spacing">
+    <div class="container gap-y">
 
       <h2 class="text-size-lg">Grid</h2>
 
       <div>
         <div class="grid">
           <div class="grid__item">
-            <label class="display-block spacing-sm">
+            <label class="display-block gap-y-sm">
               <div>grid_gap_[key]</div>
               <select class="input input_type_select" v-model="classGap">
                 <option v-for="item in gap" :value="item">{{ item }}</option>
@@ -85,7 +68,7 @@
             </label>
           </div>
           <div class="grid__item">
-            <label class="display-block spacing-sm">
+            <label class="display-block gap-y-sm">
               <div>grid_gap-x_[key]</div>
               <select class="input input_type_select" v-model="classGapX">
                 <option v-for="item in gapX" :value="item">{{ item }}</option>
@@ -93,7 +76,7 @@
             </label>
           </div>
           <div class="grid__item">
-            <label class="display-block spacing-sm">
+            <label class="display-block gap-y-sm">
               <div>grid_gap-y_[key]</div>
               <select class="input input_type_select" v-model="classGapY">
                 <option v-for="item in gapY" :value="item">{{ item }}</option>
