@@ -11,23 +11,41 @@ usage:
 
 ## notice
 
+The most basic imlementation of the notice component consists of the `notice` container element wrapping text content.
+
 {% include demo_open.html %}
 <div class="notice">
-  <div class="notice__body">
-    <p>Notice content goes here...</p>
-  </div>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
 </div>
 {% include demo_switch.html %}
 ```html
 <div class="notice">
-  <div class="notice__body">
-    ...
-  </div>
+  ...
+</div>
+```
+{% include demo_close.html %}
+
+## notice__title
+
+Add a title to your notice using the `notice__title` element.
+
+{% include demo_open.html %}
+<div class="notice">
+  <h2 class="notice__title">Notice title</h2>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="notice">
+  <h2 class="notice__title">...</h2>
+  <p>...</p>
 </div>
 ```
 {% include demo_close.html %}
 
 ## notice + media
+
+For cases where a notice message should be displayed alongside an icon or image, try combining it with the media component.
 
 {% include demo_open.html class_parent="gap-y" %}
 <div class="notice notice_type_danger">
@@ -65,28 +83,23 @@ usage:
 ```
 {% include demo_close.html %}
 
-## notice__actions
+## notice + icon-action
+
+When a notice needs to be dismissable, try adding the icon-action component along with some flex utilities.
 
 {% include demo_open.html class_parent="gap-y" %}
 <div class="notice">
-  <div class="notice__body">
-    <p>Notice content goes here...</p>
-  </div>
-  <div class="notice__actions">
-    <button class="notice__dismiss icon-action">
+  <div class="flex flex-justify-between">
+    <p>Hello, world!</p>
+    <button class="icon-action" aria-label="Close">
       {% include icon.html icon="x" %}
     </button>
   </div>
 </div>
 <div class="notice">
-  <div class="notice__body">
-    <p>Did you mean to do this action?</p>
-  </div>
-  <div class="notice__actions">
-    <button class="button button_size_sm">
-      Undo
-    </button>
-    <button class="button button_size_sm button_icon">
+  <div class="flex flex-justify-between flex-gap-x-sm">
+    <p>Lorem ipsum dolor sit amet, consectetur adip iscing elit. Vivamus libero est, fermen.</p>
+    <button class="icon-action" aria-label="Close">
       {% include icon.html icon="x" %}
     </button>
   </div>
@@ -94,162 +107,40 @@ usage:
 {% include demo_switch.html %}
 ```html
 <div class="notice">
-  <div class="notice__body">
-    ...
-  </div>
-  <div class="notice__actions">
-    ...
-  </div>
-</div>
-```
-{% include demo_close.html %}
-
-## notice__title
-
-{% include demo_open.html %}
-<div class="notice flex_align_start">
-  <div class="notice__body gap-sm">
-    <h2 class="notice__title">Oops, wait what?</h2>
-    <p>You should know that the action you just did had some consequences.</p>
-  </div>
-  <div class="notice__actions">
-    <button class="icon-action">
-      {% include icon.html icon="x" %}
-    </button>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="notice flex_align_start">
-  <div class="notice__body">
-    <h2 class="notice__title">...</h2>
+  <div class="flex flex-justify-between">
     <p>...</p>
-  </div>
-  <div class="notice__actions">
-    ...
+    <button class="icon-action">
+      <svg class="icon" role="img">...</svg>
+    </button>
   </div>
 </div>
 ```
 {% include demo_close.html %}
 
-## notice_stack
-
-{% include demo_open.html class_parent="gap-y" %}
-<div class="notice notice_stack">
-  <div class="notice__body gap-y-sm">
-    <h2 class="notice__title">Oops, wait what?</h2>
-    <p>You should know that the action you just did had some consequences.</p>
-  </div>
-  <div class="notice__actions">
-    <button class="button">
-      Delete
-    </button>
-    <button class="button">
-      Add Item
-    </button>
-    <button class="button button_color_subtle button_icon">
-      {% include icon.html icon="x" %}
-    </button>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="notice notice_stack">
-  <div class="notice__body gap-y-sm">
-    <h2 class="notice__title">...</h2>
-    <p>...</p>
-  </div>
-  <div class="notice__actions">
-    ...
-  </div>
-</div>
-```
-{% include demo_close.html %}
-
-## notice_color_[key]
-
-{% include demo_open.html class_parent="gap-y" %}
-<div class="notice notice_color_primary">
-  <div class="notice__body">
-    <p>Notice <a href="#">content</a> goes here...</p>
-  </div>
-  <div class="notice__actions">
-    <button class="icon-action">
-      {% include icon.html icon="x" %}
-    </button>
-  </div>
-</div>
-<div class="notice notice_color_secondary">
-  <div class="notice__body">
-    <p>Notice <a href="#">content</a> goes here...</p>
-  </div>
-  <div class="notice__actions">
-    <button class="icon-action">
-      {% include icon.html icon="x" %}
-    </button>
-  </div>
-</div>
-<div class="notice notice_color_dark">
-  <div class="notice__body">
-    <p>Notice <a href="#">content</a> goes here...</p>
-  </div>
-  <div class="notice__actions">
-    <button class="icon-action">
-      {% include icon.html icon="x" %}
-    </button>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="notice notice_color_primary">...</div>
-<div class="notice notice_color_secondary">...</div>
-<div class="notice notice_color_dark">...</div>
-```
-{% include demo_close.html %}
+> Dismissable JavaScript behavior is not provided.
 
 ## notice_type_[key]
 
+A type modifier that changes the visual context of a notice.
+
 {% include demo_open.html class_parent="gap-y" %}
+
 <div class="notice notice_type_info">
-  <div class="notice__body">
-    <p>Notice <a href="#">content</a> goes here...</p>
-  </div>
-  <div class="notice__actions">
-    <button class="flex">
-      {% include icon.html icon="x" %}
-    </button>
-  </div>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est.</p>
 </div>
+
 <div class="notice notice_type_success">
-  <div class="notice__body">
-    <p>Notice <a href="#">content</a> goes here...</p>
-  </div>
-  <div class="notice__actions">
-    <button class="flex">
-      {% include icon.html icon="x" %}
-    </button>
-  </div>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est.</p>
 </div>
+
 <div class="notice notice_type_caution">
-  <div class="notice__body">
-    <p>Notice <a href="#">content</a> goes here...</p>
-  </div>
-  <div class="notice__actions">
-    <button class="flex">
-      {% include icon.html icon="x" %}
-    </button>
-  </div>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est.</p>
 </div>
+
 <div class="notice notice_type_danger">
-  <div class="notice__body">
-    <p>Notice <a href="#">content</a> goes here...</p>
-  </div>
-  <div class="notice__actions">
-    <button class="flex">
-      {% include icon.html icon="x" %}
-    </button>
-  </div>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est.</p>
 </div>
+
 {% include demo_switch.html %}
 ```html
 <div class="notice notice_type_info">...</div>
@@ -259,104 +150,86 @@ usage:
 ```
 {% include demo_close.html %}
 
-## notice_type_[key]-bold
+## Sass Variables
 
-{% include demo_open.html class_parent="gap-y" %}
-<div class="notice notice_type_info-bold">
-  <div class="notice__body">
-    <p>Notice <a href="#">content</a> goes here...</p>
-  </div>
-  <div class="notice__actions">
-    <button class="flex">
-      {% include icon.html icon="x" %}
-    </button>
-  </div>
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Prefixes -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-block</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">String to prefix blocks with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-element</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"__"</code></td>
+        <td data-mobile-label="Desc">String to prefix elements with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-modifier</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"_"</code></td>
+        <td data-mobile-label="Desc">String to prefix modifiers with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-modifier-value</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"_"</code></td>
+        <td data-mobile-label="Desc">String to prefix modifier values with.</td>
+      </tr>
+      <!-- General -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$gap</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">0.5em</code></td>
+        <td data-mobile-label="Desc">The default gap spacing for the notice component.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">1em</code></td>
+        <td data-mobile-label="Desc">Sets the padding property of the notice.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the border property of the notice.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border-radius</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$border-radius</code></td>
+        <td data-mobile-label="Desc">Sets the border-radius property of the notice.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$shade</code></td>
+        <td data-mobile-label="Desc">Sets the background property of the notice.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the box-shadow property of the notice.</td>
+      </tr>
+      <!-- Title -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$title-font-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$font-size-lg</code></td>
+        <td data-mobile-label="Desc">Sets the font-size property of the <code class="code">notice__title</code> element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$title-line-height</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$line-height-lg</code></td>
+        <td data-mobile-label="Desc">Sets the line-height property of the <code class="code">notice__title</code> element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$title-font-weight</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.font-weight("semi-bold")</code></td>
+        <td data-mobile-label="Desc">Sets the font-weight property of the <code class="code">notice__title</code> element.</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-<div class="notice notice_type_success-bold">
-  <div class="notice__body">
-    <p>Notice <a href="#">content</a> goes here...</p>
-  </div>
-  <div class="notice__actions">
-    <button class="flex">
-      {% include icon.html icon="x" %}
-    </button>
-  </div>
-</div>
-<div class="notice notice_type_caution-bold">
-  <div class="notice__body">
-    <p>Notice <a href="#">content</a> goes here...</p>
-  </div>
-  <div class="notice__actions">
-    <button class="flex">
-      {% include icon.html icon="x" %}
-    </button>
-  </div>
-</div>
-<div class="notice notice_type_danger-bold">
-  <div class="notice__body">
-    <p>Notice <a href="#">content</a> goes here...</p>
-  </div>
-  <div class="notice__actions">
-    <button class="flex">
-      {% include icon.html icon="x" %}
-    </button>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="notice notice_type_info-bold">...</div>
-<div class="notice notice_type_success-bold">...</div>
-<div class="notice notice_type_caution-bold">...</div>
-<div class="notice notice_type_danger-bold">...</div>
-```
-{% include demo_close.html %}
-
-## Examples
-
-{% include demo_open.html %}
-<div class="notice notice_stack notice_color_dark elevate-16dp">
-  <div class="notice__body margin-bottom-lg gap-y-sm">
-    <h2 class="notice__title flex">
-      <span class="flex-grow-1">This site uses cookies</span>
-      <button class="icon-action icon-action_invert icon-action_color_subtle">
-        {% include icon.html icon="x" %}
-      </button>
-    </h2>
-    <p>By using this site you agree with our use of cookies. <a class="link link_invert" href="#">Read more about our cookie policy &rarr;</a></p>
-  </div>
-  <div class="notice__body">
-    <div class="button-group button-group_full button-group_wrap">
-      <button class="button button_invert">
-        I consent to cookies
-      </button>
-      <button class="button button_invert">
-        Want to know more?
-      </button>
-    </div>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="notice notice_stack notice_color_dark elevate-16dp">
-  <div class="notice__body margin-bottom-lg gap-y-sm">
-    <h2 class="notice__title flex">
-      <span class="flex-grow-1">...</span>
-      <button class="icon-action icon-action_invert icon-action_color_subtle">
-        ...
-      </button>
-    </h2>
-    <p>...</p>
-  </div>
-  <div class="notice__body">
-    <div class="button-group button-group_full button-group_wrap">
-      <button class="button button_invert">
-        ...
-      </button>
-      <button class="button button_invert">
-        ...
-      </button>
-    </div>
-  </div>
-</div>
-```
-{% include demo_close.html %}

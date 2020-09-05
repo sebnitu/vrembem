@@ -1,40 +1,16 @@
+@use "@vrembem/core";
 @use "./variables" as var;
 
 $_b: var.$prefix-block;
 $_e: var.$prefix-element;
 
 .#{$_b}notice {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  @include core.gap(var.$gap, 'y');
   padding: var.$padding;
   border: var.$border;
   border-radius: var.$border-radius;
   background: var.$background;
   box-shadow: var.$box-shadow;
-}
-
-.#{$_b}notice#{$_e}body {
-  flex: 1 1 auto;
-  margin-right: var.$body-spacing;
-  margin-left: var.$body-spacing;
-
-  &:first-child {
-    margin-left: 0;
-  }
-
-  &:last-child {
-    margin-right: 0;
-  }
-}
-
-.#{$_b}notice#{$_e}actions {
-  display: flex;
-  flex: 0 0 auto;
-
-  > * + * {
-    margin-left: var.$actions-spacing;
-  }
 }
 
 .#{$_b}notice#{$_e}title {

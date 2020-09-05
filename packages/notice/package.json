@@ -25,7 +25,6 @@
     "directory": "packages/notice"
   },
   "dependencies": {
-    "@vrembem/base": "^1.18.2",
     "@vrembem/core": "^1.18.2"
   },
   "publishConfig": {
