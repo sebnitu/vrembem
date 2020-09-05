@@ -63,7 +63,7 @@ usage:
 
 ## notice_type_[key]
 
-{% include demo_open.html class_parent="spacing" %}
+{% include demo_open.html class_parent="gap-y" %}
 
 <div class="notice notice_type_info">
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est.</p>
