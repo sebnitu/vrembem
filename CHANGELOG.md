@@ -14,9 +14,20 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.18.2 to CHANGELOG.md
+chore(release): add v1.19.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.19.0 (2020-09-05)
+
+#### :tada: New Feature
+* `base`, `button-group`, `button`, `card`, `checkbox`, `core`, `grid`, `icon-action`, `level`, `media`, `menu`, `notice`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
+  * [#370](https://github.com/sebnitu/vrembem/pull/370) Add new flex-gap and gap modules
+
+#### :house: Refactor
+* `icon-action`, `notice`, `vrembem`
+  * [#377](https://github.com/sebnitu/vrembem/pull/377) Refactored notice component to remove unneeded complexity
 
 
 ## v1.18.2 (2020-09-03)
