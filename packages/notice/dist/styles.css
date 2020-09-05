@@ -3,6 +3,9 @@
   border-radius: 4px;
   background: #f5f5f5;
 }
+.notice > * + * {
+  margin-top: 0.5em;
+}
 
 .notice__title {
   font-size: 1.125em;
