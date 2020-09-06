@@ -361,12 +361,11 @@ Adds a breakpoint for when grid items should be stacked vertically. Values and c
 
 ## span
 
-Set the width, max-width and flex based on a column set using the `span` utility. Span widths are based on a column set based on the `$columns` variable. There are a number of options available:
+Set the width, max-width and flex basis on a column set using the `span` utility. Span widths are based on a column set based on the `$span-columns` variable. There are a number of options available:
 
-- `span-[col]`: Sets the number of columns an element should span.
-- `span-[col]-[breakpoint]`: Sets the number of columns an element should span based on a breakpoint condition.
-- `span-auto`: Sets an elements width to `auto`.
-- `span-full`: Sets an elements width to `100%`.
+- `span-[col]-[breakpoint]` - Sets the number of columns an element should span with an optional breakpoint condition.
+- `span-auto-[breakpoint]` - Sets an elements width to `auto` with an optional breakpoint condition.
+- `span-full-[breakpoint]` - Sets an elements width to `100%` with an optional breakpoint condition.
 
 <div class="scroll-box">
   <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
@@ -402,9 +401,9 @@ Set the width, max-width and flex based on a column set using the `span` utility
   </table>
 </div>
 
-### span-[col]
+### span-[col]-[breakpoint]
 
-Sets the number of columns an element should span. The total number of columns is set in the `$columns` variable.
+Sets the number of columns an element should span with an optional breakpoint condition. The total number of columns is set in the `$span-columns` variable. Breakpoint keys are built from the [`$breakpoints`](#breakpoints) variable map.
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="grid grid_flatten">
@@ -438,9 +437,7 @@ Sets the number of columns an element should span. The total number of columns i
 ```
 {% include demo_close.html %}
 
-### span-[col]-[breakpoint]
-
-Sets the number of columns an element should span based on a breakpoint conditon. The total number of columns is set in the `$columns` variable. Breakpoint keys are built from the `$breakpoints` variable map.
+Here's an example of using the optional breakpoint variants. Breakpoints variants should be added with a mobile-first approach.
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="grid grid_flatten">
@@ -468,35 +465,9 @@ Sets the number of columns an element should span based on a breakpoint conditon
 ```
 {% include demo_close.html %}
 
-### span-auto
+### span-full-[breakpoint]
 
-Sets an elements width to `auto`.
-
-{% include demo_open.html class_grid="grid_stack" %}
-<div class="grid grid_flatten">
-  <div class="grid__item span-auto">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="grid">
-  <div class="grid__item span-auto">...</div>
-  <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
-{% include demo_close.html %}
-
-### span-full
-
-Sets an elements width to `100%`.
+Sets an elements width to `100%` with an optional breakpoint condition.
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="grid grid_flatten">
@@ -514,6 +485,32 @@ Sets an elements width to `100%`.
 ```html
 <div class="grid">
   <div class="grid__item span-full">...</div>
+  <div class="grid__item">...</div>
+  <div class="grid__item">...</div>
+</div>
+```
+{% include demo_close.html %}
+
+### span-auto-[breakpoint]
+
+Sets an elements width to `auto` with an optional breakpoint condition.
+
+{% include demo_open.html class_grid="grid_stack" %}
+<div class="grid grid_flatten">
+  <div class="grid__item span-auto">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+  <div class="grid__item">
+    <div class="box">...</div>
+  </div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="grid">
+  <div class="grid__item span-auto">...</div>
   <div class="grid__item">...</div>
   <div class="grid__item">...</div>
 </div>

@@ -5,46 +5,42 @@ $_p: var.$prefix-span;
 $_c: var.$class-span;
 
 @if (var.$output-span) {
-  @for $i from 1 through var.$span-columns {
-    .#{$_p}#{$_c}-#{$i} {
-      flex: 0 0 (100% * ($i/var.$span-columns));
-      width: (100% * ($i/var.$span-columns));
-      max-width: (100% * ($i/var.$span-columns));
-    }
-  }
-
   .#{$_p}#{$_c}-auto {
     flex: 0 0 auto;
     width: auto;
     max-width: none;
   }
 
-  .#{$_p}#{$_c}-full {
-    flex: 0 0 100%;
-    width: 100%;
-    max-width: 100%;
+  @for $i from 1 through var.$span-columns {
+    $_s: ".#{$_p}#{$_c}-#{$i}";
+    @if ($i == var.$span-columns) {
+      $_s: "#{$_s}, .#{$_p}#{$_c}-full";
+    }
+    #{$_s} {
+      flex: 0 0 (100% * ($i/var.$span-columns));
+      width: (100% * ($i/var.$span-columns));
+      max-width: (100% * ($i/var.$span-columns));
+    }
   }
 
   @each $key, $value in var.$breakpoints {
     @include core.media-min($value) {
-      @for $i from 1 through var.$span-columns {
-        .#{$_p}#{$_c}-#{$i}-#{$key} {
-          flex-basis: (100% * ($i/var.$span-columns));
-          width: (100% * ($i/var.$span-columns));
-          max-width: (100% * ($i/var.$span-columns));
-        }
-      }
-
       .#{$_p}#{$_c}-auto-#{$key} {
         flex: 0 0 auto;
         width: auto;
         max-width: none;
       }
 
-      .#{$_p}#{$_c}-full-#{$key} {
-        flex: 0 0 100%;
-        width: 100%;
-        max-width: 100%;
+      @for $i from 1 through var.$span-columns {
+        $_s: ".#{$_p}#{$_c}-#{$i}-#{$key}";
+        @if ($i == var.$span-columns) {
+          $_s: "#{$_s}, .#{$_p}#{$_c}-full-#{$key}";
+        }
+        #{$_s} {
+          flex-basis: (100% * ($i/var.$span-columns));
+          width: (100% * ($i/var.$span-columns));
+          max-width: (100% * ($i/var.$span-columns));
+        }
       }
     }
   }
