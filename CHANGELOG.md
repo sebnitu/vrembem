@@ -14,9 +14,20 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.19.0 to CHANGELOG.md
+chore(release): add v1.20.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.20.0 (2020-09-06)
+
+#### :bug: Bug Fix
+* `level`, `vrembem`
+  * [#379](https://github.com/sebnitu/vrembem/pull/379) Give level children max-width of 100% to fix overflow
+
+#### :house: Refactor
+* `grid`, `utility`, `vrembem`
+  * [#378](https://github.com/sebnitu/vrembem/pull/378) Move span to the grid component and refactor
 
 
 ## v1.19.0 (2020-09-05)
