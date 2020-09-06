@@ -10,9 +10,8 @@ $_v: var.$prefix-modifier-value;
   flex-direction: column;
 
   > .#{$_b}grid#{$_e}item {
-    flex: 1 0 100%;
+    flex: none;
     width: 100%;
-    max-width: 100%;
   }
 }
 
@@ -29,9 +28,8 @@ $_v: var.$prefix-modifier-value;
 
   @include core.media-max($value) {
     .#{$_b}grid#{$_m}stack#{$_v}#{$key} > .#{$_b}grid#{$_e}item {
-      flex: 1 0 100%;
+      flex: none;
       width: 100%;
-      max-width: 100%;
     }
   }
 }

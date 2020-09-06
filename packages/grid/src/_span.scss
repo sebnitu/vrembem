@@ -7,8 +7,6 @@ $_c: var.$class-span;
 @if (var.$output-span) {
   .#{$_p}#{$_c}-auto {
     flex: 0 0 auto;
-    width: auto;
-    max-width: none;
   }
 
   @for $i from 1 through var.$span-columns {
@@ -17,9 +15,8 @@ $_c: var.$class-span;
       $_s: "#{$_s}, .#{$_p}#{$_c}-full";
     }
     #{$_s} {
-      flex-basis: (100% * ($i/var.$span-columns));
+      flex: none;
       width: (100% * ($i/var.$span-columns));
-      max-width: (100% * ($i/var.$span-columns));
     }
   }
 
@@ -27,8 +24,6 @@ $_c: var.$class-span;
     @include core.media-min($value) {
       .#{$_p}#{$_c}-auto-#{$key} {
         flex: 0 0 auto;
-        width: auto;
-        max-width: none;
       }
 
       @for $i from 1 through var.$span-columns {
@@ -37,9 +32,8 @@ $_c: var.$class-span;
           $_s: "#{$_s}, .#{$_p}#{$_c}-full-#{$key}";
         }
         #{$_s} {
-          flex-basis: (100% * ($i/var.$span-columns));
+          flex: none;
           width: (100% * ($i/var.$span-columns));
-          max-width: (100% * ($i/var.$span-columns));
         }
       }
     }

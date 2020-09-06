@@ -1973,8 +1973,6 @@ input::-moz-placeholder {
 
 .grid__item {
   flex: 1 1 0;
-  width: auto;
-  max-width: 100%;
 }
 
 .grid__clear {
@@ -2140,9 +2138,8 @@ input::-moz-placeholder {
   flex-direction: column;
 }
 .grid_stack > .grid__item {
-  flex: 1 0 100%;
+  flex: none;
   width: 100%;
-  max-width: 100%;
 }
 
 .grid_stack_xs {
@@ -2156,9 +2153,8 @@ input::-moz-placeholder {
 }
 @media (max-width: 479px) {
   .grid_stack_xs > .grid__item {
-    flex: 1 0 100%;
+    flex: none;
     width: 100%;
-    max-width: 100%;
   }
 }
 .grid_stack_sm {
@@ -2172,9 +2168,8 @@ input::-moz-placeholder {
 }
 @media (max-width: 619px) {
   .grid_stack_sm > .grid__item {
-    flex: 1 0 100%;
+    flex: none;
     width: 100%;
-    max-width: 100%;
   }
 }
 .grid_stack_md {
@@ -2188,9 +2183,8 @@ input::-moz-placeholder {
 }
 @media (max-width: 759px) {
   .grid_stack_md > .grid__item {
-    flex: 1 0 100%;
+    flex: none;
     width: 100%;
-    max-width: 100%;
   }
 }
 .grid_stack_lg {
@@ -2204,9 +2198,8 @@ input::-moz-placeholder {
 }
 @media (max-width: 989px) {
   .grid_stack_lg > .grid__item {
-    flex: 1 0 100%;
+    flex: none;
     width: 100%;
-    max-width: 100%;
   }
 }
 .grid_stack_xl {
@@ -2220,482 +2213,397 @@ input::-moz-placeholder {
 }
 @media (max-width: 1379px) {
   .grid_stack_xl > .grid__item {
-    flex: 1 0 100%;
+    flex: none;
     width: 100%;
-    max-width: 100%;
   }
 }
 .span-auto {
   flex: 0 0 auto;
-  width: auto;
-  max-width: none;
 }
 
 .span-1 {
-  flex-basis: 8.3333333333%;
+  flex: none;
   width: 8.3333333333%;
-  max-width: 8.3333333333%;
 }
 
 .span-2 {
-  flex-basis: 16.6666666667%;
+  flex: none;
   width: 16.6666666667%;
-  max-width: 16.6666666667%;
 }
 
 .span-3 {
-  flex-basis: 25%;
+  flex: none;
   width: 25%;
-  max-width: 25%;
 }
 
 .span-4 {
-  flex-basis: 33.3333333333%;
+  flex: none;
   width: 33.3333333333%;
-  max-width: 33.3333333333%;
 }
 
 .span-5 {
-  flex-basis: 41.6666666667%;
+  flex: none;
   width: 41.6666666667%;
-  max-width: 41.6666666667%;
 }
 
 .span-6 {
-  flex-basis: 50%;
+  flex: none;
   width: 50%;
-  max-width: 50%;
 }
 
 .span-7 {
-  flex-basis: 58.3333333333%;
+  flex: none;
   width: 58.3333333333%;
-  max-width: 58.3333333333%;
 }
 
 .span-8 {
-  flex-basis: 66.6666666667%;
+  flex: none;
   width: 66.6666666667%;
-  max-width: 66.6666666667%;
 }
 
 .span-9 {
-  flex-basis: 75%;
+  flex: none;
   width: 75%;
-  max-width: 75%;
 }
 
 .span-10 {
-  flex-basis: 83.3333333333%;
+  flex: none;
   width: 83.3333333333%;
-  max-width: 83.3333333333%;
 }
 
 .span-11 {
-  flex-basis: 91.6666666667%;
+  flex: none;
   width: 91.6666666667%;
-  max-width: 91.6666666667%;
 }
 
 .span-12, .span-full {
-  flex-basis: 100%;
+  flex: none;
   width: 100%;
-  max-width: 100%;
 }
 
 @media (min-width: 480px) {
   .span-auto-xs {
     flex: 0 0 auto;
-    width: auto;
-    max-width: none;
   }
 
   .span-1-xs {
-    flex-basis: 8.3333333333%;
+    flex: none;
     width: 8.3333333333%;
-    max-width: 8.3333333333%;
   }
 
   .span-2-xs {
-    flex-basis: 16.6666666667%;
+    flex: none;
     width: 16.6666666667%;
-    max-width: 16.6666666667%;
   }
 
   .span-3-xs {
-    flex-basis: 25%;
+    flex: none;
     width: 25%;
-    max-width: 25%;
   }
 
   .span-4-xs {
-    flex-basis: 33.3333333333%;
+    flex: none;
     width: 33.3333333333%;
-    max-width: 33.3333333333%;
   }
 
   .span-5-xs {
-    flex-basis: 41.6666666667%;
+    flex: none;
     width: 41.6666666667%;
-    max-width: 41.6666666667%;
   }
 
   .span-6-xs {
-    flex-basis: 50%;
+    flex: none;
     width: 50%;
-    max-width: 50%;
   }
 
   .span-7-xs {
-    flex-basis: 58.3333333333%;
+    flex: none;
     width: 58.3333333333%;
-    max-width: 58.3333333333%;
   }
 
   .span-8-xs {
-    flex-basis: 66.6666666667%;
+    flex: none;
     width: 66.6666666667%;
-    max-width: 66.6666666667%;
   }
 
   .span-9-xs {
-    flex-basis: 75%;
+    flex: none;
     width: 75%;
-    max-width: 75%;
   }
 
   .span-10-xs {
-    flex-basis: 83.3333333333%;
+    flex: none;
     width: 83.3333333333%;
-    max-width: 83.3333333333%;
   }
 
   .span-11-xs {
-    flex-basis: 91.6666666667%;
+    flex: none;
     width: 91.6666666667%;
-    max-width: 91.6666666667%;
   }
 
   .span-12-xs, .span-full-xs {
-    flex-basis: 100%;
+    flex: none;
     width: 100%;
-    max-width: 100%;
   }
 }
 @media (min-width: 620px) {
   .span-auto-sm {
     flex: 0 0 auto;
-    width: auto;
-    max-width: none;
   }
 
   .span-1-sm {
-    flex-basis: 8.3333333333%;
+    flex: none;
     width: 8.3333333333%;
-    max-width: 8.3333333333%;
   }
 
   .span-2-sm {
-    flex-basis: 16.6666666667%;
+    flex: none;
     width: 16.6666666667%;
-    max-width: 16.6666666667%;
   }
 
   .span-3-sm {
-    flex-basis: 25%;
+    flex: none;
     width: 25%;
-    max-width: 25%;
   }
 
   .span-4-sm {
-    flex-basis: 33.3333333333%;
+    flex: none;
     width: 33.3333333333%;
-    max-width: 33.3333333333%;
   }
 
   .span-5-sm {
-    flex-basis: 41.6666666667%;
+    flex: none;
     width: 41.6666666667%;
-    max-width: 41.6666666667%;
   }
 
   .span-6-sm {
-    flex-basis: 50%;
+    flex: none;
     width: 50%;
-    max-width: 50%;
   }
 
   .span-7-sm {
-    flex-basis: 58.3333333333%;
+    flex: none;
     width: 58.3333333333%;
-    max-width: 58.3333333333%;
   }
 
   .span-8-sm {
-    flex-basis: 66.6666666667%;
+    flex: none;
     width: 66.6666666667%;
-    max-width: 66.6666666667%;
   }
 
   .span-9-sm {
-    flex-basis: 75%;
+    flex: none;
     width: 75%;
-    max-width: 75%;
   }
 
   .span-10-sm {
-    flex-basis: 83.3333333333%;
+    flex: none;
     width: 83.3333333333%;
-    max-width: 83.3333333333%;
   }
 
   .span-11-sm {
-    flex-basis: 91.6666666667%;
+    flex: none;
     width: 91.6666666667%;
-    max-width: 91.6666666667%;
   }
 
   .span-12-sm, .span-full-sm {
-    flex-basis: 100%;
+    flex: none;
     width: 100%;
-    max-width: 100%;
   }
 }
 @media (min-width: 760px) {
   .span-auto-md {
     flex: 0 0 auto;
-    width: auto;
-    max-width: none;
   }
 
   .span-1-md {
-    flex-basis: 8.3333333333%;
+    flex: none;
     width: 8.3333333333%;
-    max-width: 8.3333333333%;
   }
 
   .span-2-md {
-    flex-basis: 16.6666666667%;
+    flex: none;
     width: 16.6666666667%;
-    max-width: 16.6666666667%;
   }
 
   .span-3-md {
-    flex-basis: 25%;
+    flex: none;
     width: 25%;
-    max-width: 25%;
   }
 
   .span-4-md {
-    flex-basis: 33.3333333333%;
+    flex: none;
     width: 33.3333333333%;
-    max-width: 33.3333333333%;
   }
 
   .span-5-md {
-    flex-basis: 41.6666666667%;
+    flex: none;
     width: 41.6666666667%;
-    max-width: 41.6666666667%;
   }
 
   .span-6-md {
-    flex-basis: 50%;
+    flex: none;
     width: 50%;
-    max-width: 50%;
   }
 
   .span-7-md {
-    flex-basis: 58.3333333333%;
+    flex: none;
     width: 58.3333333333%;
-    max-width: 58.3333333333%;
   }
 
   .span-8-md {
-    flex-basis: 66.6666666667%;
+    flex: none;
     width: 66.6666666667%;
-    max-width: 66.6666666667%;
   }
 
   .span-9-md {
-    flex-basis: 75%;
+    flex: none;
     width: 75%;
-    max-width: 75%;
   }
 
   .span-10-md {
-    flex-basis: 83.3333333333%;
+    flex: none;
     width: 83.3333333333%;
-    max-width: 83.3333333333%;
   }
 
   .span-11-md {
-    flex-basis: 91.6666666667%;
+    flex: none;
     width: 91.6666666667%;
-    max-width: 91.6666666667%;
   }
 
   .span-12-md, .span-full-md {
-    flex-basis: 100%;
+    flex: none;
     width: 100%;
-    max-width: 100%;
   }
 }
 @media (min-width: 990px) {
   .span-auto-lg {
     flex: 0 0 auto;
-    width: auto;
-    max-width: none;
   }
 
   .span-1-lg {
-    flex-basis: 8.3333333333%;
+    flex: none;
     width: 8.3333333333%;
-    max-width: 8.3333333333%;
   }
 
   .span-2-lg {
-    flex-basis: 16.6666666667%;
+    flex: none;
     width: 16.6666666667%;
-    max-width: 16.6666666667%;
   }
 
   .span-3-lg {
-    flex-basis: 25%;
+    flex: none;
     width: 25%;
-    max-width: 25%;
   }
 
   .span-4-lg {
-    flex-basis: 33.3333333333%;
+    flex: none;
     width: 33.3333333333%;
-    max-width: 33.3333333333%;
   }
 
   .span-5-lg {
-    flex-basis: 41.6666666667%;
+    flex: none;
     width: 41.6666666667%;
-    max-width: 41.6666666667%;
   }
 
   .span-6-lg {
-    flex-basis: 50%;
+    flex: none;
     width: 50%;
-    max-width: 50%;
   }
 
   .span-7-lg {
-    flex-basis: 58.3333333333%;
+    flex: none;
     width: 58.3333333333%;
-    max-width: 58.3333333333%;
   }
 
   .span-8-lg {
-    flex-basis: 66.6666666667%;
+    flex: none;
     width: 66.6666666667%;
-    max-width: 66.6666666667%;
   }
 
   .span-9-lg {
-    flex-basis: 75%;
+    flex: none;
     width: 75%;
-    max-width: 75%;
   }
 
   .span-10-lg {
-    flex-basis: 83.3333333333%;
+    flex: none;
     width: 83.3333333333%;
-    max-width: 83.3333333333%;
   }
 
   .span-11-lg {
-    flex-basis: 91.6666666667%;
+    flex: none;
     width: 91.6666666667%;
-    max-width: 91.6666666667%;
   }
 
   .span-12-lg, .span-full-lg {
-    flex-basis: 100%;
+    flex: none;
     width: 100%;
-    max-width: 100%;
   }
 }
 @media (min-width: 1380px) {
   .span-auto-xl {
     flex: 0 0 auto;
-    width: auto;
-    max-width: none;
   }
 
   .span-1-xl {
-    flex-basis: 8.3333333333%;
+    flex: none;
     width: 8.3333333333%;
-    max-width: 8.3333333333%;
   }
 
   .span-2-xl {
-    flex-basis: 16.6666666667%;
+    flex: none;
     width: 16.6666666667%;
-    max-width: 16.6666666667%;
   }
 
   .span-3-xl {
-    flex-basis: 25%;
+    flex: none;
     width: 25%;
-    max-width: 25%;
   }
 
   .span-4-xl {
-    flex-basis: 33.3333333333%;
+    flex: none;
     width: 33.3333333333%;
-    max-width: 33.3333333333%;
   }
 
   .span-5-xl {
-    flex-basis: 41.6666666667%;
+    flex: none;
     width: 41.6666666667%;
-    max-width: 41.6666666667%;
   }
 
   .span-6-xl {
-    flex-basis: 50%;
+    flex: none;
     width: 50%;
-    max-width: 50%;
   }
 
   .span-7-xl {
-    flex-basis: 58.3333333333%;
+    flex: none;
     width: 58.3333333333%;
-    max-width: 58.3333333333%;
   }
 
   .span-8-xl {
-    flex-basis: 66.6666666667%;
+    flex: none;
     width: 66.6666666667%;
-    max-width: 66.6666666667%;
   }
 
   .span-9-xl {
-    flex-basis: 75%;
+    flex: none;
     width: 75%;
-    max-width: 75%;
   }
 
   .span-10-xl {
-    flex-basis: 83.3333333333%;
+    flex: none;
     width: 83.3333333333%;
-    max-width: 83.3333333333%;
   }
 
   .span-11-xl {
-    flex-basis: 91.6666666667%;
+    flex: none;
     width: 91.6666666667%;
-    max-width: 91.6666666667%;
   }
 
   .span-12-xl, .span-full-xl {
-    flex-basis: 100%;
+    flex: none;
     width: 100%;
-    max-width: 100%;
   }
 }
 .icon {
