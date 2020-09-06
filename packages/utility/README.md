@@ -1,4 +1,4 @@
-# Utility
+# Utility <!-- omit in toc -->
 
 The utility component provides a set of atomic classes that specialize in a single function.
 
@@ -6,19 +6,19 @@ The utility component provides a set of atomic classes that specialize in a sing
 
 [Documentation](https://vrembem.com/packages/utility)
 
-## Installation
+## Installation <!-- omit in toc -->
 
 ```sh
 npm install @vrembem/utility
 ```
 
-### Styles
+### Styles <!-- omit in toc -->
 
 ```scss
 @use "@vrembem/utility";
 ```
 
-### Markup
+### Markup <!-- omit in toc -->
 
 Once loaded, the utility component provides a number of classes that can be used independently or to supplement other loaded components.
 
@@ -50,7 +50,7 @@ Each utility has a corresponding `$output-[module]` and `$class-[module]` variab
 );
 ```
 
-#### Global Variables
+#### Global Variables <!-- omit in toc -->
 
 Setting these variables will apply to all utility modules.
 
@@ -62,7 +62,7 @@ Setting these variables will apply to all utility modules.
 | `$gap`            | `core.$gap` &rarr; `1em`                       | Used as the default spacing unit for many utilities.                                                                          |
 | `$gap-map`        | [`core.$gap-map` Ref &darr;](#gap-map)         | Used to build gap variants for many utilities.                                                                                |
 
-#### `$breakpoints`
+#### `$breakpoints` <!-- omit in toc -->
 
 A map of breakpoints used by utilities that provide breakpoint specific variations such as the [`display`](#display) and [`span`](#span) utilities.
 
@@ -77,7 +77,7 @@ $breakpoints: (
 ) !default;
 ```
 
-#### `$gap-map`
+#### `$gap-map` <!-- omit in toc -->
 
 Used to build gap variants for [`flex-gap`](#flex-gap-key), [`flex-gap-x`](#flex-gap-x-key), [`flex-gap-y`](#flex-gap-y-key), [`gap-x`](#gap-x-key), [`gap-y`](#gap-y-key), [`margin`](#margin) and [`padding`](#padding) utilities.
 
@@ -93,7 +93,7 @@ $gap-map: (
 ) !default;
 ```
 
-## Modules
+## Modules <!-- omit in toc -->
 
 The utility component consists of a number of modules with their own set of specific customizable class and output variables.
 
@@ -111,7 +111,6 @@ The utility component consists of a number of modules with their own set of spec
 - [`gap-y-[key]`](#gap-y-key)
 - [`margin`](#margin)
 - [`padding`](#padding)
-- [`span`](#span)
 - [`text`](#text)
 
 ### `background`
@@ -151,7 +150,7 @@ Applies border property with optional sides variants.
 | `$output-border` | `$output` &rarr; `true` | Toggles the output of this utility.                     |
 | `$class-border`  | `"border"`              | String to use for the class name of the border utility. |
 
-#### `border-none`
+#### `border-none` <!-- omit in toc -->
 
 Remove border styles with `border-none` utilities and optional side variants.
 
@@ -163,7 +162,7 @@ Remove border styles with `border-none` utilities and optional side variants.
 <div class="border-left-none"></div>
 ```
 
-#### `border-color`
+#### `border-color` <!-- omit in toc -->
 
 Add border color utilities with light, dark and darker variants.
 
@@ -207,7 +206,7 @@ Applies border-radius styles with optional corner variants. The value used by th
 | `$output-border-radius` | `$output` &rarr; `true` | Toggles the output of this utility.                            |
 | `$class-border-radius`  | `"radius"`              | String to use for the class name of the border-radius utility. |
 
-#### `radius-circle`
+#### `radius-circle` <!-- omit in toc -->
 
 Applies the maximum value to border-radius with optional corner variants. The value used by radius-circle utility is pulled from the `core.$border-radius-circle` variable.
 
@@ -228,7 +227,7 @@ Applies the maximum value to border-radius with optional corner variants. The va
 <div class="radius-circle-bottom-left"></div>
 ```
 
-#### `radius-square`
+#### `radius-square` <!-- omit in toc -->
 
 Removes border-radius by setting it's value to `0` with optional corner variants.
 
@@ -330,7 +329,7 @@ Available properties are generated from the `$display-properties` variable map a
 | `$class-display`      | `"display"`                                  | String to use for the class name of the display utility.                     |
 | `$display-properties` | [`Sass Map` Ref &darr;](#display-properties) | A list of display properties to output along with their breakpoint variants. |
 
-#### `$display-properties`
+#### `$display-properties` <!-- omit in toc -->
 
 A list of display properties to output along with their breakpoint variants.
 
@@ -363,7 +362,7 @@ The flex utility is a great way to adjust individual flex properties on componen
 | `$output-flex` | `$output` &rarr; `true` | Toggles the output of this utility.                   |
 | `$class-flex`  | `"flex"`                | String to use for the class name of the flex utility. |
 
-#### flex-align-[value]
+#### flex-align-[value] <!-- omit in toc -->
 
 Adjust the `align-items` property of grid columns using the `flex-align-[value]` utility. Available values are:
 
@@ -390,7 +389,7 @@ Adjust the `align-items` property of grid columns using the `flex-align-[value]`
 </div>
 ```
 
-#### flex-justify-[value]
+#### flex-justify-[value] <!-- omit in toc -->
 
 Change the `justify-content` property of grid columns using the `flex-justify-[value]` utility. Best used along with the `grid_auto` modifier. Avaliable values are:
 
@@ -565,73 +564,6 @@ Add padding to an element using directional and size modifiers. Padding size and
 | ----------------- | ----------------------- | -------------------------------------------------------- |
 | `$output-padding` | `$output` &rarr; `true` | Toggles the output of this utility.                      |
 | `$class-padding`  | `"padding"`             | String to use for the class name of the padding utility. |
-
-### `span`
-
-Set the width, max-width and flex based on a column set using the `span` utility. Span widths are based on a column set based on the `$span-columns` variable. There are a number of options available:
-
-- `span-[col]` - Sets the number of columns an element should span.
-- `span-[col]-[breakpoint]` - Sets the number of columns an element should span based on a breakpoint condition.
-- `span-auto` - Sets an elements width to `auto`.
-- `span-full` - Sets an elements width to `100%`.
-
-| Variable        | Default                 | Description                                           |
-| --------------- | ----------------------- | ----------------------------------------------------- |
-| `$output-span`  | `$output` &rarr; `true` | Toggles the output of this utility.                   |
-| `$class-span`   | `"span"`                | String to use for the class name of the span utility. |
-| `$span-columns` | `12`                    | The columns value to use when building span variants. |
-
-#### `span-[col]`
-
-Sets the number of columns an element should span. The total number of columns is set in the `$span-columns` variable.
-
-```html
-<div class="grid">
-  <div class="grid__item span-6">...</div>
-  <div class="grid__item span-6">...</div>
-  <div class="grid__break"></div>
-  <div class="grid__item span-6">...</div>
-  <div class="grid__item span-3">...</div>
-  <div class="grid__item span-3">...</div>
-</div>
-```
-
-#### `span-[col]-[breakpoint]`
-
-Sets the number of columns an element should span based on a breakpoint conditon. The total number of columns is set in the `$span-columns` variable. Breakpoint keys are built from the [`$breakpoints`](#breakpoints) variable map.
-
-```html
-<div class="grid">
-  <div class="grid__item span-12 span-6-xs span-8-sm span-4-md span-3-lg">...</div>
-  <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">...</div>
-  <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">...</div>
-  <div class="grid__item span-12 span-6-xs span-8-sm span-12-md span-3-lg">...</div>
-</div>
-```
-
-#### `span-auto`
-
-Sets an elements width to `auto`.
-
-```html
-<div class="grid">
-  <div class="grid__item span-auto">...</div>
-  <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
-
-#### `span-full`
-
-Sets an elements width to `100%`.
-
-```html
-<div class="grid">
-  <div class="grid__item span-full">...</div>
-  <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
 
 ### `text`
 

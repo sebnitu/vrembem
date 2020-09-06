@@ -359,160 +359,6 @@ Adds a breakpoint for when grid items should be stacked vertically. Values and c
 - `grid_stack_lg`
 - `grid_stack_xl`
 
-## flex
-
-The [flex utility](/packages/utility#flex) is a great way to adjust individual flex properties on components that use flex layout. These are some available flex property based utilities:
-
-- `flex-align-[key]`
-- `flex-justify-[key]`
-- `flex-grow-[key]`
-- `flex-shrink-[key]`
-- `flex-basis-[key]`
-- `flex-wrap`
-- `flex-nowrap`
-- `flex-items-[key]`
-
-### flex-align-[value]
-
-Adjust the `align-items` property of grid columns using the `flex-align-[value]` utility. Avaliable values are:
-
-- `flex-align-start`
-- `flex-align-center`
-- `flex-align-end`
-- `flex-align-stretch`
-- `flex-align-baseline`
-
-{% include demo_open.html %}
-<div class="grid flex-align-start">
-  <div class="grid__item">
-    <div class="box" style="height: 100px;">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">
-      ...
-    </div>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="grid flex-align-start">
-  <div class="grid__item" style="height: 100px;">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
-{% include demo_close.html %}
-
-{% include demo_open.html %}
-<div class="grid flex-align-center">
-  <div class="grid__item">
-    <div class="box" style="height: 100px;">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">
-      ...
-    </div>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="grid flex-align-center">
-  <div class="grid__item" style="height: 100px;">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
-{% include demo_close.html %}
-
-{% include demo_open.html %}
-<div class="grid flex-align-end">
-  <div class="grid__item">
-    <div class="box" style="height: 100px;">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">
-      ...
-    </div>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="grid flex-align-end">
-  <div class="grid__item" style="height: 100px;">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
-{% include demo_close.html %}
-
-### flex-justify-[value]
-
-Change the `justify-content` property of grid columns using the `flex-justify-[value]` utility. Best used along with the `grid_auto` modifier. Avaliable values are:
-
-- `flex-justify-start`
-- `flex-justify-center`
-- `flex-justify-end`
-- `flex-justify-between`
-- `flex-justify-around`
-- `flex-justify-evenly`
-
-{% include demo_open.html %}
-<div class="grid grid_auto flex-justify-start">
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="grid flex-justify-start">...</div>
-```
-{% include demo_close.html %}
-
-{% include demo_open.html %}
-<div class="grid grid_auto flex-justify-center">
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="grid flex-justify-center">...</div>
-```
-{% include demo_close.html %}
-
-{% include demo_open.html %}
-<div class="grid grid_auto flex-justify-end">
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="grid flex-justify-end">...</div>
-```
-{% include demo_close.html %}
-
-{% include demo_open.html %}
-<div class="grid grid_auto flex-justify-between">
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="grid flex-justify-between">...</div>
-```
-{% include demo_close.html %}
-
 ## span
 
 Set the width, max-width and flex based on a column set using the `span` utility. Span widths are based on a column set based on the `$columns` variable. There are a number of options available:
@@ -521,6 +367,36 @@ Set the width, max-width and flex based on a column set using the `span` utility
 - `span-[col]-[breakpoint]`: Sets the number of columns an element should span based on a breakpoint condition.
 - `span-auto`: Sets an elements width to `auto`.
 - `span-full`: Sets an elements width to `100%`.
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Prefixes -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-span</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-span</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"span"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the span module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$span-columns</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">12</code></td>
+        <td data-mobile-label="Desc">The columns value to use when building span variants.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ### span-[col]
 
