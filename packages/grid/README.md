@@ -170,6 +170,71 @@ Adds a breakpoint for when grid items should be stacked vertically. Values and c
 - `grid_stack_lg`
 - `grid_stack_xl`
 
+### `span`
+
+Set the flex-basis, width and max-width on an element using the `span` module. Span column widths are built from the `$span-columns` variable. Breakpoint keys are built from the [`$breakpoints`](#breakpoints) variable map. These are the available variants:
+
+- `span-[col]-[key]` - Sets the number of columns an element should span with an optional breakpoint condition.
+- `span-auto-[key]` - Sets an elements width to `auto` with an optional breakpoint condition.
+- `span-full-[key]` - Sets an elements width to `100%` with an optional breakpoint condition.
+
+| Variable        | Default  | Description                                           |
+| --------------- | -------- | ----------------------------------------------------- |
+| `$output-span`  | `true`   | Toggles the output of this module.                    |
+| `$class-span`   | `"span"` | String to use for the class name of the span module.  |
+| `$prefix-span`  | `null`   | String to prefix the span module with.                |
+| `$span-columns` | `12`     | The columns value to use when building span variants. |
+
+#### `span-[col]-[key]`
+
+Sets the number of columns an element should span with an optional breakpoint condition. The total number of columns is set in the `$span-columns` variable. Breakpoint keys are built from the [`$breakpoints`](#breakpoints) variable map.
+
+```html
+<div class="grid">
+  <div class="grid__item span-6">...</div>
+  <div class="grid__item span-6">...</div>
+  <div class="grid__break"></div>
+  <div class="grid__item span-6">...</div>
+  <div class="grid__item span-3">...</div>
+  <div class="grid__item span-3">...</div>
+</div>
+```
+
+Here's an example of using the optional breakpoint variants. Breakpoints variants should be added with a mobile-first approach.
+
+```html
+<div class="grid">
+  <div class="grid__item span-12 span-6-xs span-8-sm span-4-md span-3-lg">...</div>
+  <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">...</div>
+  <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">...</div>
+  <div class="grid__item span-12 span-6-xs span-8-sm span-12-md span-3-lg">...</div>
+</div>
+```
+
+#### `span-auto-[key]`
+
+Sets an elements width to `auto` with an optional breakpoint condition.
+
+```html
+<div class="grid">
+  <div class="grid__item span-auto">...</div>
+  <div class="grid__item">...</div>
+  <div class="grid__item">...</div>
+</div>
+```
+
+#### `span-full-[key]`
+
+Sets an elements width to `100%` with an optional breakpoint condition.
+
+```html
+<div class="grid">
+  <div class="grid__item span-full">...</div>
+  <div class="grid__item">...</div>
+  <div class="grid__item">...</div>
+</div>
+```
+
 ## Customization
 
 ### Sass Variables

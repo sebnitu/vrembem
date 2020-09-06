@@ -9,7 +9,7 @@ usage:
   scss: true
 ---
 
-## Intro
+## Intro <!-- omit in toc -->
 
 Once loaded, the utility component provides a number of classes that can be used independently or to supplement other loaded components.
 
@@ -123,22 +123,21 @@ $gap-map: (
 
 The utility component consists of a number of modules with their own set of specific customizable class and output variables.
 
-- [`background`](#background)
-- [`border`](#border)
-- [`border-radius`](#border-radius)
-- [`elevate`](#elevate)
-- [`color`](#color)
-- [`display`](#display)
-- [`flex`](#flex)
-- [`flex-gap-[key]`](#flex-gap-key)
-- [`flex-gap-x-[key]`](#flex-gap-x-key)
-- [`flex-gap-y-[key]`](#flex-gap-y-key)
-- [`gap-x-[key]`](#gap-x-key)
-- [`gap-y-[key]`](#gap-y-key)
-- [`margin`](#margin)
-- [`padding`](#padding)
-- [`span`](#span)
-- [`text`](#text)
+- [background](#background)
+- [border](#border)
+- [border-radius](#border-radius)
+- [box-shadow](#box-shadow)
+- [color](#color)
+- [display](#display)
+- [flex](#flex)
+- [flex-gap-[key]](#flex-gap-key)
+- [flex-gap-x-[key]](#flex-gap-x-key)
+- [flex-gap-y-[key]](#flex-gap-y-key)
+- [gap-x-[key]](#gap-x-key)
+- [gap-y-[key]](#gap-y-key)
+- [margin](#margin)
+- [padding](#padding)
+- [text](#text)
 
 ## background
 
@@ -285,7 +284,7 @@ Applies border property with optional sides variants.
   </table>
 </div>
 
-### border-none
+### border-none <!-- omit in toc -->
 
 Remove border styles with `border-none` utilities and optional side variants.
 
@@ -307,7 +306,7 @@ Remove border styles with `border-none` utilities and optional side variants.
 ```
 {% include demo_close.html %}
 
-### border-color
+### border-color <!-- omit in toc -->
 
 Add border color utilities with light, dark and darker variants.
 
@@ -345,7 +344,7 @@ Add border color utilities with light, dark and darker variants.
 ```
 {% include demo_close.html %}
 
-## radius
+## border-radius
 
 Applies border-radius styles with optional corner variants. The value used by the radius utility is pulled from the `core.$border-radius` variable.
 
@@ -406,7 +405,7 @@ Applies border-radius styles with optional corner variants. The value used by th
   </table>
 </div>
 
-### radius-circle
+### radius-circle <!-- omit in toc -->
 
 Applies the maximum value to border-radius with optional corner variants. The value used by radius-circle utility is pulled from the `core.$border-radius-circle` variable.
 
@@ -443,7 +442,7 @@ Applies the maximum value to border-radius with optional corner variants. The va
 ```
 {% include demo_close.html %}
 
-### radius-square
+### radius-square <!-- omit in toc -->
 
 Removes border-radius by setting it's value to `0` with optional corner variants.
 
@@ -480,7 +479,7 @@ Removes border-radius by setting it's value to `0` with optional corner variants
 ```
 {% include demo_close.html %}
 
-## elevate
+## box-shadow
 
 Applies different levels of elevation through box-shadow styles.
 
@@ -797,7 +796,7 @@ Display utilities allow you to toggle the display property on an element with an
   </table>
 </div>
 
-### $display-properties
+### $display-properties <!-- omit in toc -->
 
 A list of display properties to output along with their breakpoint variants.
 
@@ -849,7 +848,7 @@ The flex utility is a great way to adjust individual flex properties on componen
   </table>
 </div>
 
-### flex-align-[value]
+### flex-align-[value] <!-- omit in toc -->
 
 Adjust the `align-items` property of grid columns using the `flex-align-[value]` utility. Available values are:
 
@@ -919,7 +918,7 @@ Adjust the `align-items` property of grid columns using the `flex-align-[value]`
 ```
 {% include demo_close.html %}
 
-### flex-justify-[value]
+### flex-justify-[value] <!-- omit in toc -->
 
 Change the `justify-content` property of grid columns using the `flex-justify-[value]` utility. Best used along with the `grid_auto` modifier. Avaliable values are:
 
@@ -1387,162 +1386,6 @@ Add padding to an element using directional and size modifiers. Padding size and
   </table>
 </div>
 
-## span
-
-Set the width, max-width and flex based on a column set using the `span` utility. Span widths are based on a column set based on the `$span-columns` variable. There are a number of options available:
-
-* `span-[col]` - Sets the number of columns an element should span.
-* `span-[col]-[breakpoint]` - Sets the number of columns an element should span based on a breakpoint condition.
-* `span-auto` - Sets an elements width to `auto`.
-* `span-full` - Sets an elements width to `100%`.
-
-<div class="scroll-box">
-  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
-    <thead>
-      <tr>
-        <th>Variable</th>
-        <th>Default</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$output-span</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
-        <td data-mobile-label="Desc">Toggles the output of this module.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$class-span</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"span"</code></td>
-        <td data-mobile-label="Desc">String to use for the class name of the span utility.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$span-columns</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">12</code></td>
-        <td data-mobile-label="Desc">The columns value to use when building span variants.</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-### span-[col]
-
-Sets the number of columns an element should span. The total number of columns is set in the `$span-columns` variable.
-
-{% include demo_open.html class_grid="grid_stack" %}
-<div class="grid grid_flatten">
-  <div class="grid__item span-6">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item span-6">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__break"></div>
-  <div class="grid__item span-6">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item span-3">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item span-3">
-    <div class="box">...</div>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="grid">
-  <div class="grid__item span-6">...</div>
-  <div class="grid__item span-6">...</div>
-  <div class="grid__break"></div>
-  <div class="grid__item span-6">...</div>
-  <div class="grid__item span-3">...</div>
-  <div class="grid__item span-3">...</div>
-</div>
-```
-{% include demo_close.html %}
-
-### span-[col]-[breakpoint]
-
-Sets the number of columns an element should span based on a breakpoint conditon. The total number of columns is set in the `$span-columns` variable. Breakpoint keys are built from the [`$breakpoints`](#breakpoints) variable map.
-
-{% include demo_open.html class_grid="grid_stack" %}
-<div class="grid grid_flatten">
-  <div class="grid__item span-12 span-6-xs span-8-sm span-4-md span-3-lg">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item span-12 span-6-xs span-8-sm span-12-md span-3-lg">
-    <div class="box">...</div>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="grid">
-  <div class="grid__item span-12 span-6-xs span-8-sm span-4-md span-3-lg">...</div>
-  <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">...</div>
-  <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">...</div>
-  <div class="grid__item span-12 span-6-xs span-8-sm span-12-md span-3-lg">...</div>
-</div>
-```
-{% include demo_close.html %}
-
-### span-auto
-
-Sets an elements width to `auto`.
-
-{% include demo_open.html class_grid="grid_stack" %}
-<div class="grid grid_flatten">
-  <div class="grid__item span-auto">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="grid">
-  <div class="grid__item span-auto">...</div>
-  <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
-{% include demo_close.html %}
-
-### span-full
-
-Sets an elements width to `100%`.
-
-{% include demo_open.html class_grid="grid_stack" %}
-<div class="grid grid_flatten">
-  <div class="grid__item span-full">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-  <div class="grid__item">
-    <div class="box">...</div>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="grid">
-  <div class="grid__item span-full">...</div>
-  <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
-{% include demo_close.html %}
-
 ## text
 
 A utility for adjusting various text styles.
@@ -1652,7 +1495,7 @@ A utility for adjusting various text styles.
   </table>
 </div>
 
-### text-overflow-ellipsis
+### text-overflow-ellipsis <!-- omit in toc -->
 
 Adds ellipsis styles to an element that will display an ellipsis (...) for text that would otherwise wrap.
 
