@@ -2866,6 +2866,7 @@ input::-moz-placeholder {
 }
 .level > * {
   flex: 0 0 auto;
+  max-width: 100%;
 }
 
 .level_gap_none {
