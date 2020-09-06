@@ -273,73 +273,73 @@
 }
 
 .span-1 {
-  flex: 0 0 8.3333333333%;
+  flex-basis: 8.3333333333%;
   width: 8.3333333333%;
   max-width: 8.3333333333%;
 }
 
 .span-2 {
-  flex: 0 0 16.6666666667%;
+  flex-basis: 16.6666666667%;
   width: 16.6666666667%;
   max-width: 16.6666666667%;
 }
 
 .span-3 {
-  flex: 0 0 25%;
+  flex-basis: 25%;
   width: 25%;
   max-width: 25%;
 }
 
 .span-4 {
-  flex: 0 0 33.3333333333%;
+  flex-basis: 33.3333333333%;
   width: 33.3333333333%;
   max-width: 33.3333333333%;
 }
 
 .span-5 {
-  flex: 0 0 41.6666666667%;
+  flex-basis: 41.6666666667%;
   width: 41.6666666667%;
   max-width: 41.6666666667%;
 }
 
 .span-6 {
-  flex: 0 0 50%;
+  flex-basis: 50%;
   width: 50%;
   max-width: 50%;
 }
 
 .span-7 {
-  flex: 0 0 58.3333333333%;
+  flex-basis: 58.3333333333%;
   width: 58.3333333333%;
   max-width: 58.3333333333%;
 }
 
 .span-8 {
-  flex: 0 0 66.6666666667%;
+  flex-basis: 66.6666666667%;
   width: 66.6666666667%;
   max-width: 66.6666666667%;
 }
 
 .span-9 {
-  flex: 0 0 75%;
+  flex-basis: 75%;
   width: 75%;
   max-width: 75%;
 }
 
 .span-10 {
-  flex: 0 0 83.3333333333%;
+  flex-basis: 83.3333333333%;
   width: 83.3333333333%;
   max-width: 83.3333333333%;
 }
 
 .span-11 {
-  flex: 0 0 91.6666666667%;
+  flex-basis: 91.6666666667%;
   width: 91.6666666667%;
   max-width: 91.6666666667%;
 }
 
 .span-12, .span-full {
-  flex: 0 0 100%;
+  flex-basis: 100%;
   width: 100%;
   max-width: 100%;
 }

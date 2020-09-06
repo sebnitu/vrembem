@@ -172,11 +172,11 @@ Adds a breakpoint for when grid items should be stacked vertically. Values and c
 
 ### `span`
 
-Set the width, max-width and flex basis on a column set using the `span` utility. Span widths are based on a column set based on the `$span-columns` variable. There are a number of options available:
+Set the flex-basis, width and max-width on an element using the `span` module. Span column widths are built from the `$span-columns` variable. Breakpoint keys are built from the [`$breakpoints`](#breakpoints) variable map. These are the available variants:
 
-- `span-[col]-[breakpoint]` - Sets the number of columns an element should span with an optional breakpoint condition.
-- `span-auto-[breakpoint]` - Sets an elements width to `auto` with an optional breakpoint condition.
-- `span-full-[breakpoint]` - Sets an elements width to `100%` with an optional breakpoint condition.
+- `span-[col]-[key]` - Sets the number of columns an element should span with an optional breakpoint condition.
+- `span-auto-[key]` - Sets an elements width to `auto` with an optional breakpoint condition.
+- `span-full-[key]` - Sets an elements width to `100%` with an optional breakpoint condition.
 
 | Variable        | Default  | Description                                           |
 | --------------- | -------- | ----------------------------------------------------- |
@@ -185,7 +185,7 @@ Set the width, max-width and flex basis on a column set using the `span` utility
 | `$prefix-span`  | `null`   | String to prefix the span module with.                |
 | `$span-columns` | `12`     | The columns value to use when building span variants. |
 
-#### `span-[col]-[breakpoint]`
+#### `span-[col]-[key]`
 
 Sets the number of columns an element should span with an optional breakpoint condition. The total number of columns is set in the `$span-columns` variable. Breakpoint keys are built from the [`$breakpoints`](#breakpoints) variable map.
 
@@ -211,25 +211,25 @@ Here's an example of using the optional breakpoint variants. Breakpoints variant
 </div>
 ```
 
-#### `span-full-[breakpoint]`
-
-Sets an elements width to `100%` with an optional breakpoint condition.
-
-```html
-<div class="grid">
-  <div class="grid__item span-full">...</div>
-  <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
-
-#### `span-auto-[breakpoint]`
+#### `span-auto-[key]`
 
 Sets an elements width to `auto` with an optional breakpoint condition.
 
 ```html
 <div class="grid">
   <div class="grid__item span-auto">...</div>
+  <div class="grid__item">...</div>
+  <div class="grid__item">...</div>
+</div>
+```
+
+#### `span-full-[key]`
+
+Sets an elements width to `100%` with an optional breakpoint condition.
+
+```html
+<div class="grid">
+  <div class="grid__item span-full">...</div>
   <div class="grid__item">...</div>
   <div class="grid__item">...</div>
 </div>

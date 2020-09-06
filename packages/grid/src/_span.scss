@@ -17,7 +17,7 @@ $_c: var.$class-span;
       $_s: "#{$_s}, .#{$_p}#{$_c}-full";
     }
     #{$_s} {
-      flex: 0 0 (100% * ($i/var.$span-columns));
+      flex-basis: (100% * ($i/var.$span-columns));
       width: (100% * ($i/var.$span-columns));
       max-width: (100% * ($i/var.$span-columns));
     }
