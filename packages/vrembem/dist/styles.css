@@ -1973,6 +1973,7 @@ input::-moz-placeholder {
 
 .grid__item {
   flex: 1 1 0;
+  max-width: 100%;
 }
 
 .grid__clear {
