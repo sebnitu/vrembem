@@ -183,6 +183,7 @@ Set the width, max-width and flex based on a column set using the `span` utility
 | --------------- | -------- | ----------------------------------------------------- |
 | `$output-span`  | `true`   | Toggles the output of this module.                    |
 | `$class-span`   | `"span"` | String to use for the class name of the span module.  |
+| `$prefix-span`  | `null`   | String to prefix the span module with.                |
 | `$span-columns` | `12`     | The columns value to use when building span variants. |
 
 #### `span-[col]`

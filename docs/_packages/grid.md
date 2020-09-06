@@ -378,7 +378,6 @@ Set the width, max-width and flex based on a column set using the `span` utility
       </tr>
     </thead>
     <tbody>
-      <!-- Prefixes -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$output-span</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">true</code></td>
@@ -388,6 +387,11 @@ Set the width, max-width and flex based on a column set using the `span` utility
         <td data-mobile-label="Var"><code class="code text-nowrap">$class-span</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"span"</code></td>
         <td data-mobile-label="Desc">String to use for the class name of the span module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-span</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">String to prefix the span module with.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$span-columns</code></td>
