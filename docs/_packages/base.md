@@ -93,18 +93,18 @@ Setting these variables will impact more than one or up to all base modules.
 
 The base component consists of a number of modules with their own set of specific customizable variables and output mixins.
 
-- [`base`](#base)
-- [`arrow`](#arrow)
-- [`blockquote`](#blockquote)
-- [`code`](#code)
-- [`embed`](#embed)
-- [`heading`](#heading)
-- [`link`](#link)
-- [`list`](#list)
-- [`pre`](#pre)
-- [`scroll-box`](#scroll-box)
-- [`separator`](#separator)
-- [`type`](#type)
+- [base](#base)
+- [arrow](#arrow)
+- [blockquote](#blockquote)
+- [code](#code)
+- [embed](#embed)
+- [heading](#heading)
+- [link](#link)
+- [list](#list)
+- [pre](#pre)
+- [scroll-box](#scroll-box)
+- [separator](#separator)
+- [type](#type)
 
 > Modules are sorted by the order they're imported; alphabetically except for `base` having priority as first import.
 
