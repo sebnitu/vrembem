@@ -5,6 +5,19 @@ $_u: var.$prefix-utility;
 $_c: var.$class-font;
 
 @if (var.$output-font) {
+
+  .#{$_u}#{$_c}-family-sans {
+    font-family: core.$font-family-sans !important;
+  }
+
+  .#{$_u}#{$_c}-family-serif {
+    font-family: core.$font-family-serif !important;
+  }
+
+  .#{$_u}#{$_c}-family-mono {
+    font-family: core.$font-family-mono !important;
+  }
+
   .#{$_u}#{$_c}-size-sm {
     font-size: core.$font-size-sm !important;
   }
@@ -19,6 +32,18 @@ $_c: var.$class-font;
 
   .#{$_u}#{$_c}-leading-lg {
     line-height: core.$line-height-lg !important;
+  }
+
+  .#{$_u}#{$_c}-kerning-0 {
+    letter-spacing: 0 !important;
+  }
+
+  .#{$_u}#{$_c}-kerning-1 {
+    letter-spacing: 1px !important;
+  }
+
+  .#{$_u}#{$_c}-kerning-2 {
+    letter-spacing: 2px !important;
   }
 
   .#{$_u}#{$_c}-weight-normal {

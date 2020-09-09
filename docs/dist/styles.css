@@ -5682,6 +5682,18 @@ input::-moz-placeholder {
   margin-top: 2em !important;
 }
 
+.font-family-sans {
+  font-family: blinkmacsystemfont, -apple-system, system-ui, "Segoe UI", "Roboto", "Helvetica Neue", arial, sans-serif !important;
+}
+
+.font-family-serif {
+  font-family: constantia, "Lucida Bright", lucidabright, "Lucida Serif", lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", georgia, serif !important;
+}
+
+.font-family-mono {
+  font-family: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace !important;
+}
+
 .font-size-sm {
   font-size: 0.875em !important;
 }
@@ -5696,6 +5708,18 @@ input::-moz-placeholder {
 
 .font-leading-lg {
   line-height: 1.625 !important;
+}
+
+.font-kerning-0 {
+  letter-spacing: 0 !important;
+}
+
+.font-kerning-1 {
+  letter-spacing: 1px !important;
+}
+
+.font-kerning-2 {
+  letter-spacing: 2px !important;
 }
 
 .font-weight-normal {
