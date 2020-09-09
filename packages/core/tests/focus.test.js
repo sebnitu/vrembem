@@ -198,8 +198,8 @@ test('should tear down focus trap when destroy method is run', () => {
   expect(focusTrap.focusableFirst).toBe(null);
   expect(focusTrap.focusableLast).toBe(null);
 
-  userEvent.tab();
-  expect(document.activeElement).not.toHaveClass('first');
+  userEvent.tab({ shift: true });
+  expect(document.activeElement).not.toHaveClass('last');
 });
 
 test('should do nothing if focus trap destroy is called before its been initialized', () => {
