@@ -154,7 +154,7 @@
     $value: 400;
   } @else if ($keyword == "medium") {
     $value: 500;
-  } @else if ($keyword == "semi-bold") {
+  } @else if ($keyword == "semi-bold" or $keyword == "semibold") {
     $value: 600;
   } @else if ($keyword == "bold") {
     $value: 700;
