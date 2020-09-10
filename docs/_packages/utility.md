@@ -133,6 +133,7 @@ The utility component consists of a number of modules with their own set of spec
 - [flex-gap-[key]](#flex-gap-key)
 - [flex-gap-x-[key]](#flex-gap-x-key)
 - [flex-gap-y-[key]](#flex-gap-y-key)
+- [font](#font)
 - [gap-x-[key]](#gap-x-key)
 - [gap-y-[key]](#gap-y-key)
 - [margin](#margin)
@@ -1145,6 +1146,127 @@ Adds flex-gap spacing vertically between an element's children using margin-top.
   </table>
 </div>
 
+## font
+
+A utility for adjusting various font styles.
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-font</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-font</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"font"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the font utility.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_md">
+    <thead>
+      <tr>
+        <th class="table__auto">Class</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code class="code text-nowrap">font-family-sans</code></td>
+        <td><p class="font-family-sans">Font example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">font-family-serif</code></td>
+        <td><p class="font-family-serif">Font example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">font-family-mono</code></td>
+        <td><p class="font-family-mono">Font example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">font-size-base</code></td>
+        <td><p class="font-size-base">Font example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">font-size-sm</code></td>
+        <td><p class="font-size-sm">Font example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">font-size-lg</code></td>
+        <td><p class="font-size-lg">Font example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">font-leading-base</code></td>
+        <td><p class="font-leading-base">Lorem ipsum dolor sit amet<br>consectetur adipiscing elit.</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">font-leading-sm</code></td>
+        <td><p class="font-leading-sm">Lorem ipsum dolor sit amet<br>consectetur adipiscing elit.</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">font-leading-lg</code></td>
+        <td><p class="font-leading-lg">Lorem ipsum dolor sit amet<br>consectetur adipiscing elit.</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">font-kerning-0</code></td>
+        <td><p class="font-kerning-0">Font example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">font-kerning-1</code></td>
+        <td><p class="font-kerning-1">Font example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">font-kerning-2</code></td>
+        <td><p class="font-kerning-2">Font example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">font-weight-normal</code></td>
+        <td><p class="font-weight-normal">Font example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">font-weight-medium</code></td>
+        <td><p class="font-weight-medium">Font example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">font-weight-semibold</code></td>
+        <td><p class="font-weight-semibold">Font example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">font-weight-bold</code></td>
+        <td><p class="font-weight-bold">Font example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">font-weight-lighter</code></td>
+        <td><p class="font-weight-lighter">Font example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">font-weight-bolder</code></td>
+        <td><p class="font-weight-bolder">Font example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">font-style-normal</code></td>
+        <td><p class="font-style-normal">Font example...</p></td>
+      </tr>
+      <tr>
+        <td><code class="code text-nowrap">font-style-italic</code></td>
+        <td><p class="font-style-italic">Font example...</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 ## gap-x-[key]
 
 Adds gap spacing horizontally using margin-left and the `> * + *` selector. Gap-x keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
@@ -1424,14 +1546,6 @@ A utility for adjusting various text styles.
     </thead>
     <tbody>
       <tr>
-        <td><code class="code text-nowrap">text-size-sm</code></td>
-        <td><p class="text-size-sm">Text example...</p></td>
-      </tr>
-      <tr>
-        <td><code class="code text-nowrap">text-size-lg</code></td>
-        <td><p class="text-size-lg">Text example...</p></td>
-      </tr>
-      <tr>
         <td><code class="code text-nowrap">text-capitalize</code></td>
         <td><p class="text-capitalize">Text example...</p></td>
       </tr>
@@ -1454,18 +1568,6 @@ A utility for adjusting various text styles.
       <tr>
         <td><code class="code text-nowrap">text-align-right</code></td>
         <td><p class="text-align-right">Text example...</p></td>
-      </tr>
-      <tr>
-        <td><code class="code text-nowrap">text-bold</code></td>
-        <td><p class="text-bold">Text example...</p></td>
-      </tr>
-      <tr>
-        <td><code class="code text-nowrap">text-normal</code></td>
-        <td><p class="text-normal">Text example...</p></td>
-      </tr>
-      <tr>
-        <td><code class="code text-nowrap">text-italic</code></td>
-        <td><p class="text-italic">Text example...</p></td>
       </tr>
       <tr>
         <td><code class="code text-nowrap">text-strike</code></td>

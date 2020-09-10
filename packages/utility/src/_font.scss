@@ -18,12 +18,20 @@ $_c: var.$class-font;
     font-family: core.$font-family-mono !important;
   }
 
+  .#{$_u}#{$_c}-size-base {
+    font-size: core.$font-size !important;
+  }
+
   .#{$_u}#{$_c}-size-sm {
     font-size: core.$font-size-sm !important;
   }
 
   .#{$_u}#{$_c}-size-lg {
     font-size: core.$font-size-lg !important;
+  }
+
+  .#{$_u}#{$_c}-leading-base {
+    line-height: core.$line-height !important;
   }
 
   .#{$_u}#{$_c}-leading-sm {
@@ -39,11 +47,11 @@ $_c: var.$class-font;
   }
 
   .#{$_u}#{$_c}-kerning-1 {
-    letter-spacing: 1px !important;
+    letter-spacing: 0.1em !important;
   }
 
   .#{$_u}#{$_c}-kerning-2 {
-    letter-spacing: 2px !important;
+    letter-spacing: 0.2em !important;
   }
 
   .#{$_u}#{$_c}-weight-normal {

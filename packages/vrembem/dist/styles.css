@@ -5694,12 +5694,20 @@ input::-moz-placeholder {
   font-family: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace !important;
 }
 
+.font-size-base {
+  font-size: 16px !important;
+}
+
 .font-size-sm {
   font-size: 0.875em !important;
 }
 
 .font-size-lg {
   font-size: 1.125em !important;
+}
+
+.font-leading-base {
+  line-height: 1.5 !important;
 }
 
 .font-leading-sm {
@@ -5715,11 +5723,11 @@ input::-moz-placeholder {
 }
 
 .font-kerning-1 {
-  letter-spacing: 1px !important;
+  letter-spacing: 0.1em !important;
 }
 
 .font-kerning-2 {
-  letter-spacing: 2px !important;
+  letter-spacing: 0.2em !important;
 }
 
 .font-weight-normal {
