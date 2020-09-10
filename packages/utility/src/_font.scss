@@ -5,7 +5,6 @@ $_u: var.$prefix-utility;
 $_c: var.$class-font;
 
 @if (var.$output-font) {
-
   .#{$_u}#{$_c}-family-sans {
     font-family: core.$font-family-sans !important;
   }
