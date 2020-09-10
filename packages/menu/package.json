@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/menu",
   "description": "Menus represent groups of links, actions or tools that a user can interact with.",
-  "version": "1.19.0",
+  "version": "1.21.0",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -25,7 +25,7 @@
     "directory": "packages/menu"
   },
   "dependencies": {
-    "@vrembem/core": "^1.19.0"
+    "@vrembem/core": "^1.21.0"
   },
   "publishConfig": {
     "access": "public"

@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/table",
   "description": "A table component for displaying HTML tables.",
-  "version": "1.19.0",
+  "version": "1.21.0",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -25,7 +25,7 @@
     "directory": "packages/table"
   },
   "dependencies": {
-    "@vrembem/core": "^1.19.0"
+    "@vrembem/core": "^1.21.0"
   },
   "publishConfig": {
     "access": "public"
