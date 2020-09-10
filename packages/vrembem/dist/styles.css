@@ -5682,6 +5682,86 @@ input::-moz-placeholder {
   margin-top: 2em !important;
 }
 
+.font-family-sans {
+  font-family: blinkmacsystemfont, -apple-system, system-ui, "Segoe UI", "Roboto", "Helvetica Neue", arial, sans-serif !important;
+}
+
+.font-family-serif {
+  font-family: constantia, "Lucida Bright", lucidabright, "Lucida Serif", lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", georgia, serif !important;
+}
+
+.font-family-mono {
+  font-family: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace !important;
+}
+
+.font-size-base {
+  font-size: 16px !important;
+}
+
+.font-size-sm {
+  font-size: 0.875em !important;
+}
+
+.font-size-lg {
+  font-size: 1.125em !important;
+}
+
+.font-leading-base {
+  line-height: 1.5 !important;
+}
+
+.font-leading-sm {
+  line-height: 1.375 !important;
+}
+
+.font-leading-lg {
+  line-height: 1.625 !important;
+}
+
+.font-kerning-0 {
+  letter-spacing: 0 !important;
+}
+
+.font-kerning-1 {
+  letter-spacing: 0.1em !important;
+}
+
+.font-kerning-2 {
+  letter-spacing: 0.2em !important;
+}
+
+.font-weight-normal {
+  font-weight: 400 !important;
+}
+
+.font-weight-medium {
+  font-weight: 500 !important;
+}
+
+.font-weight-semibold {
+  font-weight: 600 !important;
+}
+
+.font-weight-bold {
+  font-weight: 700 !important;
+}
+
+.font-weight-lighter {
+  font-weight: lighter !important;
+}
+
+.font-weight-bolder {
+  font-weight: bolder !important;
+}
+
+.font-style-normal {
+  font-style: normal !important;
+}
+
+.font-style-italic {
+  font-style: italic !important;
+}
+
 .gap-x > * + * {
   margin-left: 1em !important;
 }
@@ -6119,14 +6199,6 @@ input::-moz-placeholder {
   padding-bottom: 2em !important;
 }
 
-.text-size-sm {
-  font-size: 0.875em !important;
-}
-
-.text-size-lg {
-  font-size: 1.125em !important;
-}
-
 .text-capitalize {
   text-transform: capitalize !important;
 }
@@ -6149,18 +6221,6 @@ input::-moz-placeholder {
 
 .text-align-right {
   text-align: right !important;
-}
-
-.text-bold {
-  font-weight: 700 !important;
-}
-
-.text-normal {
-  font-weight: 400 !important;
-}
-
-.text-italic {
-  font-style: italic !important;
 }
 
 .text-strike {

@@ -1,0 +1,87 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
+$_u: var.$prefix-utility;
+$_c: var.$class-font;
+
+@if (var.$output-font) {
+  .#{$_u}#{$_c}-family-sans {
+    font-family: core.$font-family-sans !important;
+  }
+
+  .#{$_u}#{$_c}-family-serif {
+    font-family: core.$font-family-serif !important;
+  }
+
+  .#{$_u}#{$_c}-family-mono {
+    font-family: core.$font-family-mono !important;
+  }
+
+  .#{$_u}#{$_c}-size-base {
+    font-size: core.$font-size !important;
+  }
+
+  .#{$_u}#{$_c}-size-sm {
+    font-size: core.$font-size-sm !important;
+  }
+
+  .#{$_u}#{$_c}-size-lg {
+    font-size: core.$font-size-lg !important;
+  }
+
+  .#{$_u}#{$_c}-leading-base {
+    line-height: core.$line-height !important;
+  }
+
+  .#{$_u}#{$_c}-leading-sm {
+    line-height: core.$line-height-sm !important;
+  }
+
+  .#{$_u}#{$_c}-leading-lg {
+    line-height: core.$line-height-lg !important;
+  }
+
+  .#{$_u}#{$_c}-kerning-0 {
+    letter-spacing: 0 !important;
+  }
+
+  .#{$_u}#{$_c}-kerning-1 {
+    letter-spacing: 0.1em !important;
+  }
+
+  .#{$_u}#{$_c}-kerning-2 {
+    letter-spacing: 0.2em !important;
+  }
+
+  .#{$_u}#{$_c}-weight-normal {
+    font-weight: core.font-weight("normal") !important;
+  }
+
+  .#{$_u}#{$_c}-weight-medium {
+    font-weight: core.font-weight("medium") !important;
+  }
+
+  .#{$_u}#{$_c}-weight-semibold {
+    font-weight: core.font-weight("semibold") !important;
+  }
+
+  .#{$_u}#{$_c}-weight-bold {
+    font-weight: core.font-weight("bold") !important;
+  }
+
+  .#{$_u}#{$_c}-weight-lighter {
+    font-weight: lighter !important;
+  }
+
+  .#{$_u}#{$_c}-weight-bolder {
+    font-weight: bolder !important;
+  }
+
+  .#{$_u}#{$_c}-style-normal {
+    font-style: normal !important;
+  }
+
+  .#{$_u}#{$_c}-style-italic {
+    font-style: italic !important;
+  }
+}

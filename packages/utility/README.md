@@ -107,6 +107,7 @@ The utility component consists of a number of modules with their own set of spec
 - [`flex-gap-[key]`](#flex-gap-key)
 - [`flex-gap-x-[key]`](#flex-gap-x-key)
 - [`flex-gap-y-[key]`](#flex-gap-y-key)
+- [`font`](#font)
 - [`gap-x-[key]`](#gap-x-key)
 - [`gap-y-[key]`](#gap-y-key)
 - [`margin`](#margin)
@@ -482,6 +483,36 @@ Adds flex-gap spacing vertically between an element's children using margin-top.
 | `$output-flex-gap-y` | `$output` &rarr; `true` | Toggles the output of this utility.                         |
 | `$class-flex-gap-y`  | `"flex-gap-y"`          | String to use for the class name of the flex-gap-y utility. |
 
+### `font`
+
+A utility for adjusting various font styles.
+
+| Variable       | Default                 | Description                                           |
+| -------------- | ----------------------- | ----------------------------------------------------- |
+| `$output-font` | `$output` &rarr; `true` | Toggles the output of this utility.                   |
+| `$class-font`  | `"font"`                | String to use for the class name of the font utility. |
+
+- `font-family-sans` - Sets the font-family property to the sans-serif font stack.
+- `font-family-serif` - Sets the font-family property to the serif font stack.
+- `font-family-mono` - Sets the font-family property to the monospace font stack.
+- `font-size-base` - Sets the font-size property to the base value.
+- `font-size-sm` - Sets the font-size property to small variable.
+- `font-size-lg` - Sets the font-size property to large variable.
+- `font-leading-base` - Sets the line-height property to the base value.
+- `font-leading-sm` - Sets the line-height property to small variable.
+- `font-leading-lg` - Sets the line-height property to large variable.
+- `font-kerning-0` - Sets the letter-spacing property to 0.
+- `font-kerning-1` - Sets the letter-spacing property to `0.1em`.
+- `font-kerning-2` - Sets the letter-spacing property to `0.2em`.
+- `font-weight-normal` - Sets the font-weight property to "normal" (`400`).
+- `font-weight-medium` - Sets the font-weight property to "medium" (`500`).
+- `font-weight-semibold` - Sets the font-weight property to "semibold" (`600`).
+- `font-weight-bold` - Sets the font-weight property to "bold" (`700`).
+- `font-weight-lighter` - Sets the font-weight property to the relative "lighter" value.
+- `font-weight-bolder` - Sets the font-weight property to the relative "bolder" value.
+- `font-style-normal` - Sets the font-style property to normal.
+- `font-style-italic` - Sets the font-style property to italic.
+
 ### `gap-x-[key]`
 
 Adds gap spacing horizontally using margin-left and the `> * + *` selector. Gap-x keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
@@ -574,17 +605,12 @@ A utility for adjusting various text styles.
 | `$output-text` | `$output` &rarr; `true` | Toggles the output of this utility.                   |
 | `$class-text`  | `"text"`                | String to use for the class name of the text utility. |
 
-- `text-size-sm` - Adds a smaller font-size relative to base font-size.
-- `text-size-lg` - Adds a larger font-size relative to base font-size.
 - `text-capitalize` - Sets text-transform to capitalize.
 - `text-lowercase` - Sets text-transform to lowercase.
 - `text-uppercase` - Sets text-transform to uppercase.
 - `text-align-left` - Sets text-align to left.
 - `text-align-center` - Sets text-align to center.
 - `text-align-right` - Sets text-align to right.
-- `text-bold` - Sets font-weight to bold.
-- `text-normal` - Sets font-weight to normal.
-- `text-italic` - Sets font-style to italic.
 - `text-strike` - Sets text-decoration to line-through.
 - `text-underline` - Sets text-decoration to underline.
 - `text-underline-dotted` - Sets text-decoration to underline with dotted style.
