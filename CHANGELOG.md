@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.20.0 to CHANGELOG.md
+chore(release): add v1.21.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.21.0 (2020-09-10)
+
+#### :tada: New Feature
+* `core`, `utility`, `vrembem`
+  * [#390](https://github.com/sebnitu/vrembem/pull/390) Split font properties into their own utility module
 
 
 ## v1.20.0 (2020-09-06)
