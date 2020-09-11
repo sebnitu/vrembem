@@ -44,28 +44,6 @@ $_c: var.$class-flex;
     flex-wrap: wrap-reverse !important;
   }
 
-  // flex-align-[key]
-
-  .#{$_u}#{$_c}-align-start {
-    align-items: flex-start !important;
-  }
-
-  .#{$_u}#{$_c}-align-center {
-    align-items: center !important;
-  }
-
-  .#{$_u}#{$_c}-align-end {
-    align-items: flex-end !important;
-  }
-
-  .#{$_u}#{$_c}-align-stretch {
-    align-items: stretch !important;
-  }
-
-  .#{$_u}#{$_c}-align-baseline {
-    align-items: baseline !important;
-  }
-
   // flex-justify-[key]
 
   .#{$_u}#{$_c}-justify-start {
@@ -90,6 +68,28 @@ $_c: var.$class-flex;
 
   .#{$_u}#{$_c}-justify-evenly {
     justify-content: space-evenly !important;
+  }
+
+  // flex-align-[key]
+
+  .#{$_u}#{$_c}-align-start {
+    align-items: flex-start !important;
+  }
+
+  .#{$_u}#{$_c}-align-center {
+    align-items: center !important;
+  }
+
+  .#{$_u}#{$_c}-align-end {
+    align-items: flex-end !important;
+  }
+
+  .#{$_u}#{$_c}-align-stretch {
+    align-items: stretch !important;
+  }
+
+  .#{$_u}#{$_c}-align-baseline {
+    align-items: baseline !important;
   }
 
   // flex-grow-[key]
