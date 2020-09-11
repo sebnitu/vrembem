@@ -12,6 +12,26 @@ $_c: var.$class-flex;
     display: inline-flex !important;
   }
 
+  // flex-direction-[key]
+
+  .#{$_u}#{$_c}-direction-row {
+    flex-direction: row !important;
+  }
+
+  .#{$_u}#{$_c}-direction-row-reverse {
+    flex-direction: row-reverse !important;
+  }
+
+  .#{$_u}#{$_c}-direction-column {
+    flex-direction: column !important;
+  }
+
+  .#{$_u}#{$_c}-direction-column-reverse {
+    flex-direction: column-reverse !important;
+  }
+
+  // flex-align-[key]
+
   .#{$_u}#{$_c}-align-start {
     align-items: flex-start !important;
   }
@@ -31,6 +51,8 @@ $_c: var.$class-flex;
   .#{$_u}#{$_c}-align-baseline {
     align-items: baseline !important;
   }
+
+  // flex-justify-[key]
 
   .#{$_u}#{$_c}-justify-start {
     justify-content: flex-start !important;
@@ -56,6 +78,8 @@ $_c: var.$class-flex;
     justify-content: space-evenly !important;
   }
 
+  // flex-grow-[key]
+
   .#{$_u}#{$_c}-grow-0 {
     flex-grow: 0 !important;
   }
@@ -67,6 +91,8 @@ $_c: var.$class-flex;
   .#{$_u}#{$_c}-grow-2 {
     flex-grow: 2 !important;
   }
+
+  // flex-shrink-[key]
 
   .#{$_u}#{$_c}-shrink-0 {
     flex-shrink: 0 !important;
@@ -80,6 +106,8 @@ $_c: var.$class-flex;
     flex-shrink: 2 !important;
   }
 
+  // flex-basis-[key]
+
   .#{$_u}#{$_c}-basis-0 {
     flex-basis: 0 !important;
   }
@@ -88,13 +116,19 @@ $_c: var.$class-flex;
     flex-basis: auto !important;
   }
 
+  // flex-wrap
+
   .#{$_u}#{$_c}-wrap {
     flex-wrap: wrap !important;
   }
 
+  // flex-nowrap
+
   .#{$_u}#{$_c}-nowrap {
     flex-wrap: nowrap !important;
   }
+
+  // flex-items-[key]
 
   .#{$_u}#{$_c}-items-equal {
     > * {
