@@ -92,6 +92,14 @@ $_c: var.$class-flex;
     align-items: baseline !important;
   }
 
+  // flex-order-[key]
+
+  @for $i from 1 through var.$flex-order-count {
+    .#{$_u}#{$_c}-order-#{$i} {
+      order: $i !important;
+    }
+  }
+
   // flex-grow-[key]
 
   .#{$_u}#{$_c}-grow-0 {
