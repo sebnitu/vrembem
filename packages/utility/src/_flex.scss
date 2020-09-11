@@ -130,6 +130,32 @@ $_c: var.$class-flex;
     flex-basis: auto !important;
   }
 
+  // flex-self-[key]
+
+  .#{$_u}#{$_c}-self-auto {
+    align-self: auto !important;
+  }
+
+  .#{$_u}#{$_c}-self-start {
+    align-self: flex-start !important;
+  }
+
+  .#{$_u}#{$_c}-self-center {
+    align-self: center !important;
+  }
+
+  .#{$_u}#{$_c}-self-end {
+    align-self: flex-end !important;
+  }
+
+  .#{$_u}#{$_c}-self-stretch {
+    align-self: stretch !important;
+  }
+
+  .#{$_u}#{$_c}-self-baseline {
+    align-self: baseline !important;
+  }
+
   // flex-items-[key]
 
   .#{$_u}#{$_c}-items-equal {
