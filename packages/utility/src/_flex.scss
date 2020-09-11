@@ -102,30 +102,18 @@ $_c: var.$class-flex;
 
   // flex-grow-[key]
 
-  .#{$_u}#{$_c}-grow-0 {
-    flex-grow: 0 !important;
-  }
-
-  .#{$_u}#{$_c}-grow-1 {
-    flex-grow: 1 !important;
-  }
-
-  .#{$_u}#{$_c}-grow-2 {
-    flex-grow: 2 !important;
+  @for $i from 0 through var.$flex-grow-count {
+    .#{$_u}#{$_c}-grow-#{$i} {
+      flex-grow: $i !important;
+    }
   }
 
   // flex-shrink-[key]
 
-  .#{$_u}#{$_c}-shrink-0 {
-    flex-shrink: 0 !important;
-  }
-
-  .#{$_u}#{$_c}-shrink-1 {
-    flex-shrink: 1 !important;
-  }
-
-  .#{$_u}#{$_c}-shrink-2 {
-    flex-shrink: 2 !important;
+  @for $i from 0 through var.$flex-shrink-count {
+    .#{$_u}#{$_c}-shrink-#{$i} {
+      flex-shrink: $i !important;
+    }
   }
 
   // flex-basis-[key]

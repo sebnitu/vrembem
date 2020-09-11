@@ -795,6 +795,22 @@
   flex-grow: 2 !important;
 }
 
+.flex-grow-3 {
+  flex-grow: 3 !important;
+}
+
+.flex-grow-4 {
+  flex-grow: 4 !important;
+}
+
+.flex-grow-5 {
+  flex-grow: 5 !important;
+}
+
+.flex-grow-6 {
+  flex-grow: 6 !important;
+}
+
 .flex-shrink-0 {
   flex-shrink: 0 !important;
 }
@@ -805,6 +821,22 @@
 
 .flex-shrink-2 {
   flex-shrink: 2 !important;
+}
+
+.flex-shrink-3 {
+  flex-shrink: 3 !important;
+}
+
+.flex-shrink-4 {
+  flex-shrink: 4 !important;
+}
+
+.flex-shrink-5 {
+  flex-shrink: 5 !important;
+}
+
+.flex-shrink-6 {
+  flex-shrink: 6 !important;
 }
 
 .flex-basis-0 {
