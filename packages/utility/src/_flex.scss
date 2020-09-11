@@ -30,6 +30,20 @@ $_c: var.$class-flex;
     flex-direction: column-reverse !important;
   }
 
+  // flex-wrap
+
+  .#{$_u}#{$_c}-nowrap {
+    flex-wrap: nowrap !important;
+  }
+
+  .#{$_u}#{$_c}-wrap {
+    flex-wrap: wrap !important;
+  }
+
+  .#{$_u}#{$_c}-wrap-reverse {
+    flex-wrap: wrap-reverse !important;
+  }
+
   // flex-align-[key]
 
   .#{$_u}#{$_c}-align-start {
@@ -114,18 +128,6 @@ $_c: var.$class-flex;
 
   .#{$_u}#{$_c}-basis-auto {
     flex-basis: auto !important;
-  }
-
-  // flex-wrap
-
-  .#{$_u}#{$_c}-wrap {
-    flex-wrap: wrap !important;
-  }
-
-  // flex-nowrap
-
-  .#{$_u}#{$_c}-nowrap {
-    flex-wrap: nowrap !important;
   }
 
   // flex-items-[key]

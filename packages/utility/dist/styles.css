@@ -679,6 +679,18 @@
   flex-direction: column-reverse !important;
 }
 
+.flex-nowrap {
+  flex-wrap: nowrap !important;
+}
+
+.flex-wrap {
+  flex-wrap: wrap !important;
+}
+
+.flex-wrap-reverse {
+  flex-wrap: wrap-reverse !important;
+}
+
 .flex-align-start {
   align-items: flex-start !important;
 }
@@ -753,14 +765,6 @@
 
 .flex-basis-auto {
   flex-basis: auto !important;
-}
-
-.flex-wrap {
-  flex-wrap: wrap !important;
-}
-
-.flex-nowrap {
-  flex-wrap: nowrap !important;
 }
 
 .flex-items-equal > * {
