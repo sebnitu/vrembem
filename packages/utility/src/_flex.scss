@@ -92,6 +92,20 @@ $_c: var.$class-flex;
     align-items: baseline !important;
   }
 
+  // flex-items-[key]
+
+  .#{$_u}#{$_c}-items-equal {
+    > * {
+      flex: 1 1 0 !important;
+    }
+  }
+
+  .#{$_u}#{$_c}-items-auto {
+    > * {
+      flex: 0 0 auto !important;
+    }
+  }
+
   // flex-order-[key]
 
   @for $i from 1 through var.$flex-order-count {
@@ -150,19 +164,5 @@ $_c: var.$class-flex;
 
   .#{$_u}#{$_c}-self-baseline {
     align-self: baseline !important;
-  }
-
-  // flex-items-[key]
-
-  .#{$_u}#{$_c}-items-equal {
-    > * {
-      flex: 1 1 0 !important;
-    }
-  }
-
-  .#{$_u}#{$_c}-items-auto {
-    > * {
-      flex: 0 0 auto !important;
-    }
   }
 }

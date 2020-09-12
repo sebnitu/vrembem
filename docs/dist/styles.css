@@ -5501,6 +5501,14 @@ input::-moz-placeholder {
   align-items: baseline !important;
 }
 
+.flex-items-equal > * {
+  flex: 1 1 0 !important;
+}
+
+.flex-items-auto > * {
+  flex: 0 0 auto !important;
+}
+
 .flex-order-1 {
   order: 1 !important;
 }
@@ -5635,14 +5643,6 @@ input::-moz-placeholder {
 
 .flex-self-baseline {
   align-self: baseline !important;
-}
-
-.flex-items-equal > * {
-  flex: 1 1 0 !important;
-}
-
-.flex-items-auto > * {
-  flex: 0 0 auto !important;
 }
 
 .flex-gap {

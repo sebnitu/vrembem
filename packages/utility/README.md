@@ -347,52 +347,57 @@ $display-properties: (
 
 ### `flex`
 
-The flex utility is a great way to adjust individual flex properties on components that use flex layout. These are some available flex property based utilities:
+The flex utility is a great way to adjust individual flex properties on components that use flex layout. Flex utilities fall under two categories: 1) those that are appleid to a flexbox container and 2) those that are applied to flexbox children elements directly. These are some available flex property based utilities:
 
-- `flex-align-[key]`
-- `flex-justify-[key]`
-- `flex-grow-[key]`
-- `flex-shrink-[key]`
-- `flex-basis-[key]`
-- `flex-wrap`
-- `flex-nowrap`
-- `flex-items-[key]`
+**Applied to flex containers**
 
-| Variable       | Default                 | Description                                           |
-| -------------- | ----------------------- | ----------------------------------------------------- |
-| `$output-flex` | `$output` &rarr; `true` | Toggles the output of this utility.                   |
-| `$class-flex`  | `"flex"`                | String to use for the class name of the flex utility. |
+- `flex` & `flex-inline` - Sets the display flex or flex-inline property.
+- `flex-direction-[key]` - Applies a flex direction property with the provided key as the value.
+- `flex-nowrap` - Applies the flex-wrap property with the value of `nowrap`.
+- `flex-wrap` - Applies the flex-wrap property with the value of `wrap`.
+- `flex-wrap-reverse` - Applies the flex-wrap property with the value of `wrap-reverse`.
+- `flex-justify-[key]` - Applies the justify-content property with the provided key as the value.
+- `flex-align-[key]` - Applies the align-items property with the provided key as the value.
+- `flex-items-[key]` - Gives all direct children the flex property to either share the container space equally (`equal`) or keep their content's width (`auto`).
 
-#### flex-align-[value] <!-- omit in toc -->
+**Applied to flex children elements**
 
-Adjust the `align-items` property of grid columns using the `flex-align-[value]` utility. Available values are:
+- `flex-order-[key]` - Applies the order property with the provided key as the value.
+- `flex-grow-[key]` - Applies the flex-grow property with the provided key as the value.
+- `flex-shrink-[key]` - Applies the flex-shrink property with the provided key as the value.
+- `flex-basis-[key]` - Applies the flex-basis property with the provided key (`0` || `auto`) as the value.
+- `flex-self-[key]` - Applies the align-self property with the provided key as the value.
 
-- `flex-align-start`
-- `flex-align-center`
-- `flex-align-end`
-- `flex-align-stretch`
-- `flex-align-baseline`
 
-```html
-<div class="grid flex-align-start">
-  <div class="grid__item" style="height: 100px;">...</div>
-  <div class="grid__item">...</div>
-</div>
+| Variable             | Default                 | Description                                                |
+| -------------------- | ----------------------- | ---------------------------------------------------------- |
+| `$output-flex`       | `$output` &rarr; `true` | Toggles the output of this utility.                        |
+| `$class-flex`        | `"flex"`                | String to use for the class name of the flex utility.      |
+| `$flex-order-count`  | `12`                    | Number of flex order utilities to output starting from 1.  |
+| `$flex-grow-count`   | `6`                     | Number of flex-grow utilities to output starting from 0.   |
+| `$flex-shrink-count` | `6`                     | Number of flex-shrink utilities to output starting from 0. |
 
-<div class="grid flex-align-center">
-  <div class="grid__item" style="height: 100px;">...</div>
-  <div class="grid__item">...</div>
-</div>
+#### `flex-direction-[value]` <!-- omit in toc -->
 
-<div class="grid flex-align-end">
-  <div class="grid__item" style="height: 100px;">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
+Applies a flex direction property with the provided key value.
 
-#### flex-justify-[value] <!-- omit in toc -->
+- `flex-direction-row`
+- `flex-direction-row-reverse`
+- `flex-direction-column`
+- `flex-direction-column-reverse`
 
-Change the `justify-content` property of grid columns using the `flex-justify-[value]` utility. Best used along with the `grid_auto` modifier. Avaliable values are:
+#### `flex-wrap` <!-- omit in toc -->
+
+Applies various flex-wrap property values.
+
+- `flex-nowrap` - Applies the flex-wrap property with the value of `nowrap`.
+- `flex-wrap` - Applies the flex-wrap property with the value of `wrap`.
+- `flex-wrap-reverse` - Applies the flex-wrap property with the value of `wrap-reverse`.
+
+
+#### `flex-justify-[value]` <!-- omit in toc -->
+
+Applies the justify-content property with the provided key as the value.
 
 - `flex-justify-start`
 - `flex-justify-center`
@@ -401,12 +406,22 @@ Change the `justify-content` property of grid columns using the `flex-justify-[v
 - `flex-justify-around`
 - `flex-justify-evenly`
 
-```html
-<div class="grid flex-justify-start">...</div>
-<div class="grid flex-justify-center">...</div>
-<div class="grid flex-justify-end">...</div>
-<div class="grid flex-justify-between">...</div>
-```
+#### `flex-align-[value]` <!-- omit in toc -->
+
+Applies the align-items property with the provided key as the value.
+
+- `flex-align-start`
+- `flex-align-center`
+- `flex-align-end`
+- `flex-align-stretch`
+- `flex-align-baseline`
+
+#### `flex-items-[key]` <!-- omit in toc -->
+
+Gives all direct children the flex property to either share the container space equally (`equal`) or keep their content's width (`auto`).
+
+- `flex-items-equal` - Applies the flex property children elements with the value of `1 1 0` to share the container space equally.
+- `flex-items-auto` - Applies the flex property children elements with the value of `0 0 auto` to keep their content's width.
 
 ### `flex-gap-[key]`
 
