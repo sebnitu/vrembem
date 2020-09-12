@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.21.0 to CHANGELOG.md
+chore(release): add v1.22.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.22.0 (2020-09-12)
+
+#### :tada: New Feature
+* `utility`, `vrembem`
+  * [#391](https://github.com/sebnitu/vrembem/pull/391) Add more flexbox utilities
 
 
 ## v1.21.0 (2020-09-10)
