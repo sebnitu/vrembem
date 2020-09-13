@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.22.0 to CHANGELOG.md
+chore(release): add v1.22.1 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.22.1 (2020-09-13)
+
+#### :house: Refactor
+* `checkbox`, `core`, `drawer`, `modal`, `vrembem`
+  * [#393](https://github.com/sebnitu/vrembem/pull/393) Add esm bundle and update pkg module fields
 
 
 ## v1.22.0 (2020-09-12)
