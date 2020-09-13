@@ -1,4 +1,4 @@
-export const defaults = {
+export default {
   autoInit: false,
 
   // Data attributes

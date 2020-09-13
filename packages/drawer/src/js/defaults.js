@@ -1,6 +1,6 @@
 import { breakpoints } from '@vrembem/core/index';
 
-export const defaults = {
+export default {
   autoInit: false,
 
   // Data attributes

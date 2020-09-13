@@ -4,7 +4,7 @@ import { FocusTrap, focusTarget, focusTrigger } from '@vrembem/core/index';
 import { openTransition, closeTransition } from '@vrembem/core/index';
 import { moveElement } from '@vrembem/core/index';
 
-import { defaults } from './src/js/defaults';
+import defaults from './src/js/defaults';
 import { handlerClick, handlerKeyup } from './src/js/handlers';
 import { setInitialState } from './src/js/initialState';
 

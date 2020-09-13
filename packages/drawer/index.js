@@ -3,7 +3,7 @@ import { setInert, setOverflowHidden, setTabindex } from '@vrembem/core/index';
 import { FocusTrap, focusTarget, focusTrigger } from '@vrembem/core/index';
 import { openTransition, closeTransition } from '@vrembem/core/index';
 
-import { defaults } from './src/js/defaults';
+import defaults from './src/js/defaults';
 import { Breakpoint } from './src/js/breakpoint';
 import { handlerClick, handlerKeyup } from './src/js/handlers';
 import { stateClear, stateSave, stateSet } from './src/js/state';
