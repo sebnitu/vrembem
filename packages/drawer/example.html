@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://unpkg.com/@vrembem/base/dist/styles.min.css">
   <link rel="stylesheet" href="https://unpkg.com/@vrembem/utility/dist/styles.min.css">
   <link rel="stylesheet" href="https://unpkg.com/@vrembem/dialog/dist/styles.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/@vrembem/grid/dist/styles.min.css">
   <!-- Component styles -->
   <link rel="stylesheet" href="./dist/styles.min.css">
 </head>
@@ -21,7 +22,7 @@
           <h2 class="dialog__title">Drawer Modal Always</h2>
           <button data-drawer-close class="link">Close</button>
         </div>
-        <div class="dialog__body spacing">
+        <div class="dialog__body gap-y">
           <p>This drawer will always be a modal.</p>
           <ul class="list">
             <li><a class="link" href="#">Focusable 1</a></li>
@@ -107,14 +108,14 @@
 
     <section role="main" class="drawer__main">
 
-      <div class="padding-xl spacing background-shade">
+      <div class="padding-xl gap-y background-shade">
         <h1 class="text-size-lg">@vrembem/drawer</h1>
         <p class="span-8-md span-6-lg">
           A container component that slides in from the left or right. Typically containing menus, search or other content.
         </p>
       </div>
 
-      <div class="padding-xl spacing">
+      <div class="padding-xl gap-y">
         <ul class="list">
           <li>
             <button class="link" data-drawer-toggle="drawer-default-left">

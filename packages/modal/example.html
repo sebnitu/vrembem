@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://unpkg.com/@vrembem/base/dist/styles.min.css">
   <link rel="stylesheet" href="https://unpkg.com/@vrembem/utility/dist/styles.min.css">
   <link rel="stylesheet" href="https://unpkg.com/@vrembem/dialog/dist/styles.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/@vrembem/grid/dist/styles.min.css">
   <!-- Component styles -->
   <link rel="stylesheet" href="./dist/styles.min.css">
 </head>
@@ -15,14 +16,14 @@
   
   <div role="main">
 
-    <div class="padding-xl spacing background-shade">
+    <div class="padding-xl gap-y background-shade">
       <h1 class="text-size-lg">@vrembem/modal</h1>
       <p class="span-8-md span-6-lg">
         A component for changing the mode of a page to complete a critical task. This is usually used in conjunction with the Dialog component to make modal dialogs.
       </p>
     </div>
 
-    <div class="padding-xl spacing">
+    <div class="padding-xl gap-y">
 
       <ul class="list">
 
@@ -47,7 +48,7 @@
                 <h2 class="dialog__title">Modal Focus Trap</h2>
                 <button data-modal-close class="dialog__close link">Close</button>
               </div>
-              <div class="dialog__body spacing">
+              <div class="dialog__body gap-y">
                 <p tabindex="0">This paragraph is focusable because of the <code class="code">tabindex="0"</code> attribute.</p>
                 <p>
                   <input class="input" type="text">
@@ -80,7 +81,7 @@
           <button data-modal-open="modal-empty" class="link">Modal Focus Empty</button>
           <div data-modal="modal-empty" class="modal">
             <a class="display-none" href="#">Focusable, but hidden...</a>
-            <div data-modal-dialog class="modal__dialog padding background-white radius spacing">
+            <div data-modal-dialog class="modal__dialog padding background-white radius gap-y">
               <p>Modal Focus Empty</p>
             </div>
             <a class="display-none" href="#">Focusable, but hidden...</a>
