@@ -15,6 +15,7 @@
       });
     }
   };
+
   var setOverflowHidden = function setOverflowHidden(state, selector) {
     if (selector) {
       var els = document.querySelectorAll(selector);
@@ -27,6 +28,7 @@
       });
     }
   };
+
   var setTabindex = function setTabindex(state, selector) {
     if (selector) {
       var els = document.querySelectorAll(selector);
@@ -39,13 +41,14 @@
       });
     }
   };
-
   /**
    * Adds a class or classes to an element or NodeList
    * ---
    * @param {Node || NodeList} el - Element(s) to add class(es) to
    * @param {String || Array} cl - Class(es) to add
    */
+
+
   var addClass = function addClass(el) {
     for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       cl[_key - 1] = arguments[_key];
@@ -95,16 +98,17 @@
       if (innerElement) innerElement.focus();
     }
   };
+
   var focusTrigger = function focusTrigger() {
     var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
     if (!obj || !obj.memory || !obj.memory.trigger) return;
     obj.memory.trigger.focus();
     obj.memory.trigger = null;
   };
+
   var FocusTrap = /*#__PURE__*/function () {
     function FocusTrap() {
       classCallCheck(this, FocusTrap);
-
       this.target = null;
       this.__handlerFocusTrap = this.handlerFocusTrap.bind(this);
     }
@@ -178,22 +182,21 @@
         return focusable;
       }
     }]);
-
     return FocusTrap;
   }();
-
   /**
    * Get an element(s) from a selector or return value if not a string
    * ---
    * @param {String} selector - Selector to query
    * @param {Boolean} single - Whether to return a single or all matches
    */
+
+
   var getElement = function getElement(selector) {
     var single = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
     if (typeof selector != 'string') return selector;
     return single ? document.querySelector(selector) : document.querySelectorAll(selector);
   };
-
   /**
    * Checks an element or NodeList whether they contain a class or classes
    * Ref: https://davidwalsh.name/nodelist-array
@@ -202,6 +205,8 @@
    * @param {String || Array} c - Class(es) to check
    * @returns {Boolean} - Returns true if class exists, otherwise false
    */
+
+
   var hasClass = function hasClass(el) {
     el = el.forEach ? el : [el];
     el = [].slice.call(el);
@@ -216,7 +221,6 @@
       });
     });
   };
-
   /**
    * Moves element(s) in the DOM based on a reference and move type
    * ---
@@ -224,6 +228,7 @@
    * @param {String} type - Move type can be 'after', 'before', 'append' or 'prepend'
    * @param {String} reference - The reference element the move is relative to
    */
+
 
   function moveElement(target, type) {
     var reference = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
@@ -273,13 +278,14 @@
       });
     }
   }
-
   /**
    * Remove a class or classes from an element or NodeList
    * ---
    * @param {Node || NodeList} el - Element(s) to remove class(es) from
    * @param {String || Array} cl - Class(es) to remove
    */
+
+
   var removeClass = function removeClass(el) {
     for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       cl[_key - 1] = arguments[_key];
@@ -311,6 +317,7 @@
       }
     });
   };
+
   var closeTransition = function closeTransition(el, settings) {
     return new Promise(function (resolve) {
       if (settings.transition) {
@@ -355,14 +362,43 @@
 
   var defineProperty = _defineProperty;
 
-  function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+  function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
 
-  function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly) symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+      keys.push.apply(keys, symbols);
+    }
+
+    return keys;
+  }
+
+  function _objectSpread(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+
+      if (i % 2) {
+        ownKeys(Object(source), true).forEach(function (key) {
+          defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys(Object(source)).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
+      }
+    }
+
+    return target;
+  }
 
   var Checkbox = /*#__PURE__*/function () {
     function Checkbox(options) {
       classCallCheck(this, Checkbox);
-
       this.defaults = {
         autoInit: false,
         stateAttr: 'aria-checked',
@@ -433,22 +469,21 @@
         });
       }
     }]);
-
     return Checkbox;
   }();
 
   function createCommonjsModule(fn, basedir, module) {
-  	return module = {
-  	  path: basedir,
-  	  exports: {},
-  	  require: function (path, base) {
-        return commonjsRequire(path, (base === undefined || base === null) ? module.path : base);
+    return module = {
+      path: basedir,
+      exports: {},
+      require: function require(path, base) {
+        return commonjsRequire(path, base === undefined || base === null ? module.path : base);
       }
-  	}, fn(module, module.exports), module.exports;
+    }, fn(module, module.exports), module.exports;
   }
 
-  function commonjsRequire () {
-  	throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
+  function commonjsRequire() {
+    throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
   }
 
   var _typeof_1 = createCommonjsModule(function (module) {
@@ -479,7 +514,6 @@
      * LICENSE file in the root directory of this source tree.
      */
     var runtime = function (exports) {
-
       var Op = Object.prototype;
       var hasOwn = Op.hasOwnProperty;
       var undefined$1; // More compressible than void 0.
@@ -1161,7 +1195,7 @@
     // as the regeneratorRuntime namespace. Otherwise create a new empty
     // object. Either way, the resulting object will be used to initialize
     // the regeneratorRuntime variable at the top of this file.
-     module.exports );
+    module.exports);
 
     try {
       regeneratorRuntime = runtime;
@@ -1178,7 +1212,6 @@
       Function("r", "regeneratorRuntime = r")(runtime);
     }
   });
-
   var regenerator = runtime_1;
 
   function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
@@ -1218,7 +1251,6 @@
   }
 
   var asyncToGenerator = _asyncToGenerator;
-
   var defaults = {
     autoInit: false,
     // Data attributes
@@ -1361,7 +1393,6 @@
   var Breakpoint = /*#__PURE__*/function () {
     function Breakpoint(parent) {
       classCallCheck(this, Breakpoint);
-
       this.mediaQueryLists = [];
       this.parent = parent;
       this.__check = this.check.bind(this);
@@ -1433,7 +1464,6 @@
         }
       }
     }]);
-
     return Breakpoint;
   }();
 
@@ -1487,6 +1517,7 @@
       return;
     }
   }
+
   function handlerKeyup(event) {
     // Working catch
     if (this.working) return;
@@ -1514,6 +1545,7 @@
     });
     return state;
   }
+
   function stateSave(target, settings) {
     // If save state is disabled
     if (!settings.stateSave) return stateClear(settings); // Get the currently saved object if it exists
@@ -1531,6 +1563,7 @@
     localStorage.setItem(settings.stateKey, JSON.stringify(state));
     return state;
   }
+
   function stateClear(settings) {
     if (localStorage.getItem(settings.stateKey)) {
       localStorage.removeItem(settings.stateKey);
@@ -1539,14 +1572,43 @@
     return {};
   }
 
-  function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+  function ownKeys$1(object, enumerableOnly) {
+    var keys = Object.keys(object);
 
-  function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly) symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+      keys.push.apply(keys, symbols);
+    }
+
+    return keys;
+  }
+
+  function _objectSpread$1(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+
+      if (i % 2) {
+        ownKeys$1(Object(source), true).forEach(function (key) {
+          defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys$1(Object(source)).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
+      }
+    }
+
+    return target;
+  }
 
   var Drawer = /*#__PURE__*/function () {
     function Drawer(options) {
       classCallCheck(this, Drawer);
-
       this.defaults = defaults;
       this.settings = _objectSpread$1(_objectSpread$1({}, this.defaults), options);
       this.working = false;
@@ -1602,7 +1664,6 @@
       value: function setTabindex$1() {
         var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
         var selectorTabindex = "\n      [data-".concat(this.settings.dataDrawer, "]\n      [data-").concat(this.settings.dataDialog, "]\n    ");
-
         setTabindex(state, selectorTabindex);
       }
       /**
@@ -1817,7 +1878,6 @@
         return close;
       }()
     }]);
-
     return Drawer;
   }();
 
@@ -1943,14 +2003,43 @@
     });
   }
 
-  function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+  function ownKeys$2(object, enumerableOnly) {
+    var keys = Object.keys(object);
 
-  function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly) symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+      keys.push.apply(keys, symbols);
+    }
+
+    return keys;
+  }
+
+  function _objectSpread$2(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+
+      if (i % 2) {
+        ownKeys$2(Object(source), true).forEach(function (key) {
+          defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys$2(Object(source)).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
+      }
+    }
+
+    return target;
+  }
 
   var Modal = /*#__PURE__*/function () {
     function Modal(options) {
       classCallCheck(this, Modal);
-
       this.defaults = defaults$1;
       this.settings = _objectSpread$2(_objectSpread$2({}, this.defaults), options);
       this.working = false;
@@ -2001,7 +2090,6 @@
       value: function setTabindex$1() {
         var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
         var selectorTabindex = "\n      [data-".concat(this.settings.dataModal, "]\n      [data-").concat(this.settings.dataDialog, "]\n    ");
-
         setTabindex(state, selectorTabindex);
       }
     }, {
@@ -2129,7 +2217,6 @@
         return close;
       }()
     }]);
-
     return Modal;
   }();
 
@@ -2720,6 +2807,28 @@
     }
   })();
 
+  function _classCallCheck$2(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  function _defineProperties$2(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  function _createClass$2(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties$2(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties$2(Constructor, staticProps);
+    return Constructor;
+  }
+
   /**
    * This work is licensed under the W3C Software and Document License
    * (http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document).
@@ -2767,7 +2876,7 @@
        * @param {!InertManager} inertManager The global singleton InertManager object.
        */
       function InertRoot(rootElement, inertManager) {
-        classCallCheck(this, InertRoot);
+        _classCallCheck$2(this, InertRoot);
 
         /** @type {!InertManager} */
         this._inertManager = inertManager;
@@ -2812,7 +2921,7 @@
        */
 
 
-      createClass(InertRoot, [{
+      _createClass$2(InertRoot, [{
         key: "destructor",
         value: function destructor() {
           this._observer.disconnect();
@@ -3078,7 +3187,7 @@
        * @param {!InertRoot} inertRoot The inert root element associated with this inert node.
        */
       function InertNode(node, inertRoot) {
-        classCallCheck(this, InertNode);
+        _classCallCheck$2(this, InertNode);
 
         /** @type {!Node} */
         this._node = node;
@@ -3106,7 +3215,7 @@
        */
 
 
-      createClass(InertNode, [{
+      _createClass$2(InertNode, [{
         key: "destructor",
         value: function destructor() {
           this._throwIfDestroyed();
@@ -3283,7 +3392,7 @@
        * @param {!Document} document
        */
       function InertManager(document) {
-        classCallCheck(this, InertManager);
+        _classCallCheck$2(this, InertManager);
 
         if (!document) {
           throw new Error('Missing required argument; InertManager needs to wrap a document.');
@@ -3326,7 +3435,7 @@
        */
 
 
-      createClass(InertManager, [{
+      _createClass$2(InertManager, [{
         key: "setInert",
         value: function setInert(root, inert) {
           if (inert) {

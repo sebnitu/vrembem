@@ -5,7 +5,7 @@ import { terser } from 'rollup-plugin-terser';
 
 const entry = './src/js/app.js';
 const babelConfig = {
-  babelHelpers: 'runtime',
+  babelHelpers: 'bundled',
   rootMode: 'upward'
 };
 
