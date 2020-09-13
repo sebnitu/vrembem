@@ -1,12 +1,15 @@
-module.exports = function(api) {
-  api.cache(true);
+module.exports = (api) => {
+  const config = {};
 
-  const presets = ['@babel/preset-env'];
-  const plugins = ['@babel/plugin-transform-runtime'];
+  if (api.env('test')) {
+    config.presets = [[
+      '@babel/preset-env',
+      { targets: { node: 'current' } }
+    ]];
+  } else {
+    config.presets = ['@babel/preset-env'];
+    config.plugins = ['@babel/plugin-transform-runtime'];
+  }
 
-  return {
-    presets,
-    plugins,
-    comments: false
-  };
+  return config;
 };

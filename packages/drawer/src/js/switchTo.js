@@ -1,5 +1,5 @@
-import { addClass, hasClass, removeClass } from '@vrembem/core';
-import { setInert, setOverflowHidden } from '@vrembem/core';
+import { addClass, hasClass, removeClass } from '@vrembem/core/index';
+import { setInert, setOverflowHidden } from '@vrembem/core/index';
 
 export async function switchToModal(drawerKey, obj) {
   // Initial guards

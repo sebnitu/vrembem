@@ -1,6 +1,6 @@
 import babel from '@rollup/plugin-babel';
-import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
 
 const entry = './index.js';
@@ -11,6 +11,17 @@ const babelConfig = {
 };
 
 export default [{
+  input: entry,
+  output: {
+    file: './dist/scripts.esm.js',
+    format: 'es'
+  },
+  plugins: [
+    resolve(),
+    commonjs(),
+    babel(babelConfig)
+  ]
+}, {
   input: entry,
   output: {
     file: './dist/scripts.js',
