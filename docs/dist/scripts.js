@@ -15,6 +15,7 @@
       });
     }
   };
+
   var setOverflowHidden = function setOverflowHidden(state, selector) {
     if (selector) {
       var els = document.querySelectorAll(selector);
@@ -27,6 +28,7 @@
       });
     }
   };
+
   var setTabindex = function setTabindex(state, selector) {
     if (selector) {
       var els = document.querySelectorAll(selector);
@@ -39,13 +41,14 @@
       });
     }
   };
-
   /**
    * Adds a class or classes to an element or NodeList
    * ---
    * @param {Node || NodeList} el - Element(s) to add class(es) to
    * @param {String || Array} cl - Class(es) to add
    */
+
+
   var addClass = function addClass(el) {
     for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       cl[_key - 1] = arguments[_key];
@@ -59,47 +62,13 @@
     });
   };
 
-  function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
-    try {
-      var info = gen[key](arg);
-      var value = info.value;
-    } catch (error) {
-      reject(error);
-      return;
-    }
-
-    if (info.done) {
-      resolve(value);
-    } else {
-      Promise.resolve(value).then(_next, _throw);
-    }
-  }
-
-  function _asyncToGenerator(fn) {
-    return function () {
-      var self = this,
-          args = arguments;
-      return new Promise(function (resolve, reject) {
-        var gen = fn.apply(self, args);
-
-        function _next(value) {
-          asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
-        }
-
-        function _throw(err) {
-          asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
-        }
-
-        _next(undefined);
-      });
-    };
-  }
-
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
     }
   }
+
+  var classCallCheck = _classCallCheck;
 
   function _defineProperties(target, props) {
     for (var i = 0; i < props.length; i++) {
@@ -117,54 +86,7 @@
     return Constructor;
   }
 
-  function _defineProperty(obj, key, value) {
-    if (key in obj) {
-      Object.defineProperty(obj, key, {
-        value: value,
-        enumerable: true,
-        configurable: true,
-        writable: true
-      });
-    } else {
-      obj[key] = value;
-    }
-
-    return obj;
-  }
-
-  function ownKeys(object, enumerableOnly) {
-    var keys = Object.keys(object);
-
-    if (Object.getOwnPropertySymbols) {
-      var symbols = Object.getOwnPropertySymbols(object);
-      if (enumerableOnly) symbols = symbols.filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-      });
-      keys.push.apply(keys, symbols);
-    }
-
-    return keys;
-  }
-
-  function _objectSpread2(target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i] != null ? arguments[i] : {};
-
-      if (i % 2) {
-        ownKeys(Object(source), true).forEach(function (key) {
-          _defineProperty(target, key, source[key]);
-        });
-      } else if (Object.getOwnPropertyDescriptors) {
-        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-      } else {
-        ownKeys(Object(source)).forEach(function (key) {
-          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-        });
-      }
-    }
-
-    return target;
-  }
+  var createClass = _createClass;
 
   var focusTarget = function focusTarget(target, settings) {
     var innerFocus = target.querySelector("[data-".concat(settings.dataFocus, "]"));
@@ -176,21 +98,22 @@
       if (innerElement) innerElement.focus();
     }
   };
+
   var focusTrigger = function focusTrigger() {
     var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
     if (!obj || !obj.memory || !obj.memory.trigger) return;
     obj.memory.trigger.focus();
     obj.memory.trigger = null;
   };
+
   var FocusTrap = /*#__PURE__*/function () {
     function FocusTrap() {
-      _classCallCheck(this, FocusTrap);
-
+      classCallCheck(this, FocusTrap);
       this.target = null;
       this.__handlerFocusTrap = this.handlerFocusTrap.bind(this);
     }
 
-    _createClass(FocusTrap, [{
+    createClass(FocusTrap, [{
       key: "init",
       value: function init(target) {
         this.target = target;
@@ -259,22 +182,21 @@
         return focusable;
       }
     }]);
-
     return FocusTrap;
   }();
-
   /**
    * Get an element(s) from a selector or return value if not a string
    * ---
    * @param {String} selector - Selector to query
    * @param {Boolean} single - Whether to return a single or all matches
    */
+
+
   var getElement = function getElement(selector) {
     var single = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
     if (typeof selector != 'string') return selector;
     return single ? document.querySelector(selector) : document.querySelectorAll(selector);
   };
-
   /**
    * Checks an element or NodeList whether they contain a class or classes
    * Ref: https://davidwalsh.name/nodelist-array
@@ -283,6 +205,8 @@
    * @param {String || Array} c - Class(es) to check
    * @returns {Boolean} - Returns true if class exists, otherwise false
    */
+
+
   var hasClass = function hasClass(el) {
     el = el.forEach ? el : [el];
     el = [].slice.call(el);
@@ -297,7 +221,6 @@
       });
     });
   };
-
   /**
    * Moves element(s) in the DOM based on a reference and move type
    * ---
@@ -305,6 +228,7 @@
    * @param {String} type - Move type can be 'after', 'before', 'append' or 'prepend'
    * @param {String} reference - The reference element the move is relative to
    */
+
 
   function moveElement(target, type) {
     var reference = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
@@ -354,13 +278,14 @@
       });
     }
   }
-
   /**
    * Remove a class or classes from an element or NodeList
    * ---
    * @param {Node || NodeList} el - Element(s) to remove class(es) from
    * @param {String || Array} cl - Class(es) to remove
    */
+
+
   var removeClass = function removeClass(el) {
     for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       cl[_key - 1] = arguments[_key];
@@ -392,6 +317,7 @@
       }
     });
   };
+
   var closeTransition = function closeTransition(el, settings) {
     return new Promise(function (resolve) {
       if (settings.transition) {
@@ -419,25 +345,75 @@
     xl: '1380px'
   };
 
+  function _defineProperty(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+
+    return obj;
+  }
+
+  var defineProperty = _defineProperty;
+
+  function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
+
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly) symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+      keys.push.apply(keys, symbols);
+    }
+
+    return keys;
+  }
+
+  function _objectSpread(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+
+      if (i % 2) {
+        ownKeys(Object(source), true).forEach(function (key) {
+          defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys(Object(source)).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
+      }
+    }
+
+    return target;
+  }
+
   var Checkbox = /*#__PURE__*/function () {
     function Checkbox(options) {
-      _classCallCheck(this, Checkbox);
-
+      classCallCheck(this, Checkbox);
       this.defaults = {
         autoInit: false,
         stateAttr: 'aria-checked',
         stateValue: 'mixed'
       };
-      this.settings = _objectSpread2(_objectSpread2({}, this.defaults), options);
+      this.settings = _objectSpread(_objectSpread({}, this.defaults), options);
       this.__handlerClick = this.handlerClick.bind(this);
       if (this.settings.autoInit) this.init();
     }
 
-    _createClass(Checkbox, [{
+    createClass(Checkbox, [{
       key: "init",
       value: function init() {
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-        if (options) this.settings = _objectSpread2(_objectSpread2({}, this.settings), options);
+        if (options) this.settings = _objectSpread(_objectSpread({}, this.settings), options);
         var selector = "[".concat(this.settings.stateAttr, "=\"").concat(this.settings.stateValue, "\"]");
         var mixed = document.querySelectorAll(selector);
         this.setIndeterminate(mixed);
@@ -493,10 +469,788 @@
         });
       }
     }]);
-
     return Checkbox;
   }();
 
+  function createCommonjsModule(fn, basedir, module) {
+    return module = {
+      path: basedir,
+      exports: {},
+      require: function require(path, base) {
+        return commonjsRequire(path, base === undefined || base === null ? module.path : base);
+      }
+    }, fn(module, module.exports), module.exports;
+  }
+
+  function commonjsRequire() {
+    throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
+  }
+
+  var _typeof_1 = createCommonjsModule(function (module) {
+    function _typeof(obj) {
+      "@babel/helpers - typeof";
+
+      if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+        module.exports = _typeof = function _typeof(obj) {
+          return typeof obj;
+        };
+      } else {
+        module.exports = _typeof = function _typeof(obj) {
+          return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+        };
+      }
+
+      return _typeof(obj);
+    }
+
+    module.exports = _typeof;
+  });
+
+  var runtime_1 = createCommonjsModule(function (module) {
+    /**
+     * Copyright (c) 2014-present, Facebook, Inc.
+     *
+     * This source code is licensed under the MIT license found in the
+     * LICENSE file in the root directory of this source tree.
+     */
+    var runtime = function (exports) {
+      var Op = Object.prototype;
+      var hasOwn = Op.hasOwnProperty;
+      var undefined$1; // More compressible than void 0.
+
+      var $Symbol = typeof Symbol === "function" ? Symbol : {};
+      var iteratorSymbol = $Symbol.iterator || "@@iterator";
+      var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+      var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+      function wrap(innerFn, outerFn, self, tryLocsList) {
+        // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+        var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+        var generator = Object.create(protoGenerator.prototype);
+        var context = new Context(tryLocsList || []); // The ._invoke method unifies the implementations of the .next,
+        // .throw, and .return methods.
+
+        generator._invoke = makeInvokeMethod(innerFn, self, context);
+        return generator;
+      }
+
+      exports.wrap = wrap; // Try/catch helper to minimize deoptimizations. Returns a completion
+      // record like context.tryEntries[i].completion. This interface could
+      // have been (and was previously) designed to take a closure to be
+      // invoked without arguments, but in all the cases we care about we
+      // already have an existing method we want to call, so there's no need
+      // to create a new function object. We can even get away with assuming
+      // the method takes exactly one argument, since that happens to be true
+      // in every case, so we don't have to touch the arguments object. The
+      // only additional allocation required is the completion record, which
+      // has a stable shape and so hopefully should be cheap to allocate.
+
+      function tryCatch(fn, obj, arg) {
+        try {
+          return {
+            type: "normal",
+            arg: fn.call(obj, arg)
+          };
+        } catch (err) {
+          return {
+            type: "throw",
+            arg: err
+          };
+        }
+      }
+
+      var GenStateSuspendedStart = "suspendedStart";
+      var GenStateSuspendedYield = "suspendedYield";
+      var GenStateExecuting = "executing";
+      var GenStateCompleted = "completed"; // Returning this object from the innerFn has the same effect as
+      // breaking out of the dispatch switch statement.
+
+      var ContinueSentinel = {}; // Dummy constructor functions that we use as the .constructor and
+      // .constructor.prototype properties for functions that return Generator
+      // objects. For full spec compliance, you may wish to configure your
+      // minifier not to mangle the names of these two functions.
+
+      function Generator() {}
+
+      function GeneratorFunction() {}
+
+      function GeneratorFunctionPrototype() {} // This is a polyfill for %IteratorPrototype% for environments that
+      // don't natively support it.
+
+
+      var IteratorPrototype = {};
+
+      IteratorPrototype[iteratorSymbol] = function () {
+        return this;
+      };
+
+      var getProto = Object.getPrototypeOf;
+      var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+
+      if (NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+        // This environment has a native %IteratorPrototype%; use it instead
+        // of the polyfill.
+        IteratorPrototype = NativeIteratorPrototype;
+      }
+
+      var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype);
+      GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+      GeneratorFunctionPrototype.constructor = GeneratorFunction;
+      GeneratorFunctionPrototype[toStringTagSymbol] = GeneratorFunction.displayName = "GeneratorFunction"; // Helper for defining the .next, .throw, and .return methods of the
+      // Iterator interface in terms of a single ._invoke method.
+
+      function defineIteratorMethods(prototype) {
+        ["next", "throw", "return"].forEach(function (method) {
+          prototype[method] = function (arg) {
+            return this._invoke(method, arg);
+          };
+        });
+      }
+
+      exports.isGeneratorFunction = function (genFun) {
+        var ctor = typeof genFun === "function" && genFun.constructor;
+        return ctor ? ctor === GeneratorFunction || // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction" : false;
+      };
+
+      exports.mark = function (genFun) {
+        if (Object.setPrototypeOf) {
+          Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+        } else {
+          genFun.__proto__ = GeneratorFunctionPrototype;
+
+          if (!(toStringTagSymbol in genFun)) {
+            genFun[toStringTagSymbol] = "GeneratorFunction";
+          }
+        }
+
+        genFun.prototype = Object.create(Gp);
+        return genFun;
+      }; // Within the body of any async function, `await x` is transformed to
+      // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+      // `hasOwn.call(value, "__await")` to determine if the yielded value is
+      // meant to be awaited.
+
+
+      exports.awrap = function (arg) {
+        return {
+          __await: arg
+        };
+      };
+
+      function AsyncIterator(generator, PromiseImpl) {
+        function invoke(method, arg, resolve, reject) {
+          var record = tryCatch(generator[method], generator, arg);
+
+          if (record.type === "throw") {
+            reject(record.arg);
+          } else {
+            var result = record.arg;
+            var value = result.value;
+
+            if (value && _typeof_1(value) === "object" && hasOwn.call(value, "__await")) {
+              return PromiseImpl.resolve(value.__await).then(function (value) {
+                invoke("next", value, resolve, reject);
+              }, function (err) {
+                invoke("throw", err, resolve, reject);
+              });
+            }
+
+            return PromiseImpl.resolve(value).then(function (unwrapped) {
+              // When a yielded Promise is resolved, its final value becomes
+              // the .value of the Promise<{value,done}> result for the
+              // current iteration.
+              result.value = unwrapped;
+              resolve(result);
+            }, function (error) {
+              // If a rejected Promise was yielded, throw the rejection back
+              // into the async generator function so it can be handled there.
+              return invoke("throw", error, resolve, reject);
+            });
+          }
+        }
+
+        var previousPromise;
+
+        function enqueue(method, arg) {
+          function callInvokeWithMethodAndArg() {
+            return new PromiseImpl(function (resolve, reject) {
+              invoke(method, arg, resolve, reject);
+            });
+          }
+
+          return previousPromise = // If enqueue has been called before, then we want to wait until
+          // all previous Promises have been resolved before calling invoke,
+          // so that results are always delivered in the correct order. If
+          // enqueue has not been called before, then it is important to
+          // call invoke immediately, without waiting on a callback to fire,
+          // so that the async generator function has the opportunity to do
+          // any necessary setup in a predictable way. This predictability
+          // is why the Promise constructor synchronously invokes its
+          // executor callback, and why async functions synchronously
+          // execute code before the first await. Since we implement simple
+          // async functions in terms of async generators, it is especially
+          // important to get this right, even though it requires care.
+          previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, // Avoid propagating failures to Promises returned by later
+          // invocations of the iterator.
+          callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
+        } // Define the unified helper method that is used to implement .next,
+        // .throw, and .return (see defineIteratorMethods).
+
+
+        this._invoke = enqueue;
+      }
+
+      defineIteratorMethods(AsyncIterator.prototype);
+
+      AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+        return this;
+      };
+
+      exports.AsyncIterator = AsyncIterator; // Note that simple async functions are implemented on top of
+      // AsyncIterator objects; they just return a Promise for the value of
+      // the final result produced by the iterator.
+
+      exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) {
+        if (PromiseImpl === void 0) PromiseImpl = Promise;
+        var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl);
+        return exports.isGeneratorFunction(outerFn) ? iter // If outerFn is a generator, return the full iterator.
+        : iter.next().then(function (result) {
+          return result.done ? result.value : iter.next();
+        });
+      };
+
+      function makeInvokeMethod(innerFn, self, context) {
+        var state = GenStateSuspendedStart;
+        return function invoke(method, arg) {
+          if (state === GenStateExecuting) {
+            throw new Error("Generator is already running");
+          }
+
+          if (state === GenStateCompleted) {
+            if (method === "throw") {
+              throw arg;
+            } // Be forgiving, per 25.3.3.3.3 of the spec:
+            // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+
+
+            return doneResult();
+          }
+
+          context.method = method;
+          context.arg = arg;
+
+          while (true) {
+            var delegate = context.delegate;
+
+            if (delegate) {
+              var delegateResult = maybeInvokeDelegate(delegate, context);
+
+              if (delegateResult) {
+                if (delegateResult === ContinueSentinel) continue;
+                return delegateResult;
+              }
+            }
+
+            if (context.method === "next") {
+              // Setting context._sent for legacy support of Babel's
+              // function.sent implementation.
+              context.sent = context._sent = context.arg;
+            } else if (context.method === "throw") {
+              if (state === GenStateSuspendedStart) {
+                state = GenStateCompleted;
+                throw context.arg;
+              }
+
+              context.dispatchException(context.arg);
+            } else if (context.method === "return") {
+              context.abrupt("return", context.arg);
+            }
+
+            state = GenStateExecuting;
+            var record = tryCatch(innerFn, self, context);
+
+            if (record.type === "normal") {
+              // If an exception is thrown from innerFn, we leave state ===
+              // GenStateExecuting and loop back for another invocation.
+              state = context.done ? GenStateCompleted : GenStateSuspendedYield;
+
+              if (record.arg === ContinueSentinel) {
+                continue;
+              }
+
+              return {
+                value: record.arg,
+                done: context.done
+              };
+            } else if (record.type === "throw") {
+              state = GenStateCompleted; // Dispatch the exception by looping back around to the
+              // context.dispatchException(context.arg) call above.
+
+              context.method = "throw";
+              context.arg = record.arg;
+            }
+          }
+        };
+      } // Call delegate.iterator[context.method](context.arg) and handle the
+      // result, either by returning a { value, done } result from the
+      // delegate iterator, or by modifying context.method and context.arg,
+      // setting context.delegate to null, and returning the ContinueSentinel.
+
+
+      function maybeInvokeDelegate(delegate, context) {
+        var method = delegate.iterator[context.method];
+
+        if (method === undefined$1) {
+          // A .throw or .return when the delegate iterator has no .throw
+          // method always terminates the yield* loop.
+          context.delegate = null;
+
+          if (context.method === "throw") {
+            // Note: ["return"] must be used for ES3 parsing compatibility.
+            if (delegate.iterator["return"]) {
+              // If the delegate iterator has a return method, give it a
+              // chance to clean up.
+              context.method = "return";
+              context.arg = undefined$1;
+              maybeInvokeDelegate(delegate, context);
+
+              if (context.method === "throw") {
+                // If maybeInvokeDelegate(context) changed context.method from
+                // "return" to "throw", let that override the TypeError below.
+                return ContinueSentinel;
+              }
+            }
+
+            context.method = "throw";
+            context.arg = new TypeError("The iterator does not provide a 'throw' method");
+          }
+
+          return ContinueSentinel;
+        }
+
+        var record = tryCatch(method, delegate.iterator, context.arg);
+
+        if (record.type === "throw") {
+          context.method = "throw";
+          context.arg = record.arg;
+          context.delegate = null;
+          return ContinueSentinel;
+        }
+
+        var info = record.arg;
+
+        if (!info) {
+          context.method = "throw";
+          context.arg = new TypeError("iterator result is not an object");
+          context.delegate = null;
+          return ContinueSentinel;
+        }
+
+        if (info.done) {
+          // Assign the result of the finished delegate to the temporary
+          // variable specified by delegate.resultName (see delegateYield).
+          context[delegate.resultName] = info.value; // Resume execution at the desired location (see delegateYield).
+
+          context.next = delegate.nextLoc; // If context.method was "throw" but the delegate handled the
+          // exception, let the outer generator proceed normally. If
+          // context.method was "next", forget context.arg since it has been
+          // "consumed" by the delegate iterator. If context.method was
+          // "return", allow the original .return call to continue in the
+          // outer generator.
+
+          if (context.method !== "return") {
+            context.method = "next";
+            context.arg = undefined$1;
+          }
+        } else {
+          // Re-yield the result returned by the delegate method.
+          return info;
+        } // The delegate iterator is finished, so forget it and continue with
+        // the outer generator.
+
+
+        context.delegate = null;
+        return ContinueSentinel;
+      } // Define Generator.prototype.{next,throw,return} in terms of the
+      // unified ._invoke helper method.
+
+
+      defineIteratorMethods(Gp);
+      Gp[toStringTagSymbol] = "Generator"; // A Generator should always return itself as the iterator object when the
+      // @@iterator function is called on it. Some browsers' implementations of the
+      // iterator prototype chain incorrectly implement this, causing the Generator
+      // object to not be returned from this call. This ensures that doesn't happen.
+      // See https://github.com/facebook/regenerator/issues/274 for more details.
+
+      Gp[iteratorSymbol] = function () {
+        return this;
+      };
+
+      Gp.toString = function () {
+        return "[object Generator]";
+      };
+
+      function pushTryEntry(locs) {
+        var entry = {
+          tryLoc: locs[0]
+        };
+
+        if (1 in locs) {
+          entry.catchLoc = locs[1];
+        }
+
+        if (2 in locs) {
+          entry.finallyLoc = locs[2];
+          entry.afterLoc = locs[3];
+        }
+
+        this.tryEntries.push(entry);
+      }
+
+      function resetTryEntry(entry) {
+        var record = entry.completion || {};
+        record.type = "normal";
+        delete record.arg;
+        entry.completion = record;
+      }
+
+      function Context(tryLocsList) {
+        // The root entry object (effectively a try statement without a catch
+        // or a finally block) gives us a place to store values thrown from
+        // locations where there is no enclosing try statement.
+        this.tryEntries = [{
+          tryLoc: "root"
+        }];
+        tryLocsList.forEach(pushTryEntry, this);
+        this.reset(true);
+      }
+
+      exports.keys = function (object) {
+        var keys = [];
+
+        for (var key in object) {
+          keys.push(key);
+        }
+
+        keys.reverse(); // Rather than returning an object with a next method, we keep
+        // things simple and return the next function itself.
+
+        return function next() {
+          while (keys.length) {
+            var key = keys.pop();
+
+            if (key in object) {
+              next.value = key;
+              next.done = false;
+              return next;
+            }
+          } // To avoid creating an additional object, we just hang the .value
+          // and .done properties off the next function object itself. This
+          // also ensures that the minifier will not anonymize the function.
+
+
+          next.done = true;
+          return next;
+        };
+      };
+
+      function values(iterable) {
+        if (iterable) {
+          var iteratorMethod = iterable[iteratorSymbol];
+
+          if (iteratorMethod) {
+            return iteratorMethod.call(iterable);
+          }
+
+          if (typeof iterable.next === "function") {
+            return iterable;
+          }
+
+          if (!isNaN(iterable.length)) {
+            var i = -1,
+                next = function next() {
+              while (++i < iterable.length) {
+                if (hasOwn.call(iterable, i)) {
+                  next.value = iterable[i];
+                  next.done = false;
+                  return next;
+                }
+              }
+
+              next.value = undefined$1;
+              next.done = true;
+              return next;
+            };
+
+            return next.next = next;
+          }
+        } // Return an iterator with no values.
+
+
+        return {
+          next: doneResult
+        };
+      }
+
+      exports.values = values;
+
+      function doneResult() {
+        return {
+          value: undefined$1,
+          done: true
+        };
+      }
+
+      Context.prototype = {
+        constructor: Context,
+        reset: function reset(skipTempReset) {
+          this.prev = 0;
+          this.next = 0; // Resetting context._sent for legacy support of Babel's
+          // function.sent implementation.
+
+          this.sent = this._sent = undefined$1;
+          this.done = false;
+          this.delegate = null;
+          this.method = "next";
+          this.arg = undefined$1;
+          this.tryEntries.forEach(resetTryEntry);
+
+          if (!skipTempReset) {
+            for (var name in this) {
+              // Not sure about the optimal order of these conditions:
+              if (name.charAt(0) === "t" && hasOwn.call(this, name) && !isNaN(+name.slice(1))) {
+                this[name] = undefined$1;
+              }
+            }
+          }
+        },
+        stop: function stop() {
+          this.done = true;
+          var rootEntry = this.tryEntries[0];
+          var rootRecord = rootEntry.completion;
+
+          if (rootRecord.type === "throw") {
+            throw rootRecord.arg;
+          }
+
+          return this.rval;
+        },
+        dispatchException: function dispatchException(exception) {
+          if (this.done) {
+            throw exception;
+          }
+
+          var context = this;
+
+          function handle(loc, caught) {
+            record.type = "throw";
+            record.arg = exception;
+            context.next = loc;
+
+            if (caught) {
+              // If the dispatched exception was caught by a catch block,
+              // then let that catch block handle the exception normally.
+              context.method = "next";
+              context.arg = undefined$1;
+            }
+
+            return !!caught;
+          }
+
+          for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+            var entry = this.tryEntries[i];
+            var record = entry.completion;
+
+            if (entry.tryLoc === "root") {
+              // Exception thrown outside of any try block that could handle
+              // it, so set the completion value of the entire function to
+              // throw the exception.
+              return handle("end");
+            }
+
+            if (entry.tryLoc <= this.prev) {
+              var hasCatch = hasOwn.call(entry, "catchLoc");
+              var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+              if (hasCatch && hasFinally) {
+                if (this.prev < entry.catchLoc) {
+                  return handle(entry.catchLoc, true);
+                } else if (this.prev < entry.finallyLoc) {
+                  return handle(entry.finallyLoc);
+                }
+              } else if (hasCatch) {
+                if (this.prev < entry.catchLoc) {
+                  return handle(entry.catchLoc, true);
+                }
+              } else if (hasFinally) {
+                if (this.prev < entry.finallyLoc) {
+                  return handle(entry.finallyLoc);
+                }
+              } else {
+                throw new Error("try statement without catch or finally");
+              }
+            }
+          }
+        },
+        abrupt: function abrupt(type, arg) {
+          for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+            var entry = this.tryEntries[i];
+
+            if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) {
+              var finallyEntry = entry;
+              break;
+            }
+          }
+
+          if (finallyEntry && (type === "break" || type === "continue") && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc) {
+            // Ignore the finally entry if control is not jumping to a
+            // location outside the try/catch block.
+            finallyEntry = null;
+          }
+
+          var record = finallyEntry ? finallyEntry.completion : {};
+          record.type = type;
+          record.arg = arg;
+
+          if (finallyEntry) {
+            this.method = "next";
+            this.next = finallyEntry.finallyLoc;
+            return ContinueSentinel;
+          }
+
+          return this.complete(record);
+        },
+        complete: function complete(record, afterLoc) {
+          if (record.type === "throw") {
+            throw record.arg;
+          }
+
+          if (record.type === "break" || record.type === "continue") {
+            this.next = record.arg;
+          } else if (record.type === "return") {
+            this.rval = this.arg = record.arg;
+            this.method = "return";
+            this.next = "end";
+          } else if (record.type === "normal" && afterLoc) {
+            this.next = afterLoc;
+          }
+
+          return ContinueSentinel;
+        },
+        finish: function finish(finallyLoc) {
+          for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+            var entry = this.tryEntries[i];
+
+            if (entry.finallyLoc === finallyLoc) {
+              this.complete(entry.completion, entry.afterLoc);
+              resetTryEntry(entry);
+              return ContinueSentinel;
+            }
+          }
+        },
+        "catch": function _catch(tryLoc) {
+          for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+            var entry = this.tryEntries[i];
+
+            if (entry.tryLoc === tryLoc) {
+              var record = entry.completion;
+
+              if (record.type === "throw") {
+                var thrown = record.arg;
+                resetTryEntry(entry);
+              }
+
+              return thrown;
+            }
+          } // The context.catch method must only be called with a location
+          // argument that corresponds to a known catch block.
+
+
+          throw new Error("illegal catch attempt");
+        },
+        delegateYield: function delegateYield(iterable, resultName, nextLoc) {
+          this.delegate = {
+            iterator: values(iterable),
+            resultName: resultName,
+            nextLoc: nextLoc
+          };
+
+          if (this.method === "next") {
+            // Deliberately forget the last sent value so that we don't
+            // accidentally pass it on to the delegate.
+            this.arg = undefined$1;
+          }
+
+          return ContinueSentinel;
+        }
+      }; // Regardless of whether this script is executing as a CommonJS module
+      // or not, return the runtime object so that we can declare the variable
+      // regeneratorRuntime in the outer scope, which allows this module to be
+      // injected easily by `bin/regenerator --include-runtime script.js`.
+
+      return exports;
+    }( // If this script is executing as a CommonJS module, use module.exports
+    // as the regeneratorRuntime namespace. Otherwise create a new empty
+    // object. Either way, the resulting object will be used to initialize
+    // the regeneratorRuntime variable at the top of this file.
+    module.exports);
+
+    try {
+      regeneratorRuntime = runtime;
+    } catch (accidentalStrictMode) {
+      // This module should not be running in strict mode, so the above
+      // assignment should always work unless something is misconfigured. Just
+      // in case runtime.js accidentally runs in strict mode, we can escape
+      // strict mode using a global Function call. This could conceivably fail
+      // if a Content Security Policy forbids using Function, but in that case
+      // the proper solution is to fix the accidental strict mode problem. If
+      // you've misconfigured your bundler to force strict mode and applied a
+      // CSP to forbid Function, and you're not willing to fix either of those
+      // problems, please detail your unique predicament in a GitHub issue.
+      Function("r", "regeneratorRuntime = r")(runtime);
+    }
+  });
+  var regenerator = runtime_1;
+
+  function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+    try {
+      var info = gen[key](arg);
+      var value = info.value;
+    } catch (error) {
+      reject(error);
+      return;
+    }
+
+    if (info.done) {
+      resolve(value);
+    } else {
+      Promise.resolve(value).then(_next, _throw);
+    }
+  }
+
+  function _asyncToGenerator(fn) {
+    return function () {
+      var self = this,
+          args = arguments;
+      return new Promise(function (resolve, reject) {
+        var gen = fn.apply(self, args);
+
+        function _next(value) {
+          asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+        }
+
+        function _throw(err) {
+          asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+        }
+
+        _next(undefined);
+      });
+    };
+  }
+
+  var asyncToGenerator = _asyncToGenerator;
   var defaults = {
     autoInit: false,
     // Data attributes
@@ -531,9 +1285,9 @@
   }
 
   function _switchToModal() {
-    _switchToModal = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(drawerKey, obj) {
+    _switchToModal = asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(drawerKey, obj) {
       var drawer;
-      return regeneratorRuntime.wrap(function _callee$(_context) {
+      return regenerator.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
@@ -581,9 +1335,9 @@
   }
 
   function _switchToDefault() {
-    _switchToDefault = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(drawerKey, obj) {
+    _switchToDefault = asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee2(drawerKey, obj) {
       var drawer, drawerState;
-      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      return regenerator.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
@@ -638,14 +1392,13 @@
 
   var Breakpoint = /*#__PURE__*/function () {
     function Breakpoint(parent) {
-      _classCallCheck(this, Breakpoint);
-
+      classCallCheck(this, Breakpoint);
       this.mediaQueryLists = [];
       this.parent = parent;
       this.__check = this.check.bind(this);
     }
 
-    _createClass(Breakpoint, [{
+    createClass(Breakpoint, [{
       key: "init",
       value: function init() {
         var _this = this;
@@ -711,7 +1464,6 @@
         }
       }
     }]);
-
     return Breakpoint;
   }();
 
@@ -765,6 +1517,7 @@
       return;
     }
   }
+
   function handlerKeyup(event) {
     // Working catch
     if (this.working) return;
@@ -792,6 +1545,7 @@
     });
     return state;
   }
+
   function stateSave(target, settings) {
     // If save state is disabled
     if (!settings.stateSave) return stateClear(settings); // Get the currently saved object if it exists
@@ -809,6 +1563,7 @@
     localStorage.setItem(settings.stateKey, JSON.stringify(state));
     return state;
   }
+
   function stateClear(settings) {
     if (localStorage.getItem(settings.stateKey)) {
       localStorage.removeItem(settings.stateKey);
@@ -817,12 +1572,45 @@
     return {};
   }
 
+  function ownKeys$1(object, enumerableOnly) {
+    var keys = Object.keys(object);
+
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly) symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+      keys.push.apply(keys, symbols);
+    }
+
+    return keys;
+  }
+
+  function _objectSpread$1(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+
+      if (i % 2) {
+        ownKeys$1(Object(source), true).forEach(function (key) {
+          defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys$1(Object(source)).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
+      }
+    }
+
+    return target;
+  }
+
   var Drawer = /*#__PURE__*/function () {
     function Drawer(options) {
-      _classCallCheck(this, Drawer);
-
+      classCallCheck(this, Drawer);
       this.defaults = defaults;
-      this.settings = _objectSpread2(_objectSpread2({}, this.defaults), options);
+      this.settings = _objectSpread$1(_objectSpread$1({}, this.defaults), options);
       this.working = false;
       this.memory = {};
       this.state = {};
@@ -833,11 +1621,11 @@
       if (this.settings.autoInit) this.init();
     }
 
-    _createClass(Drawer, [{
+    createClass(Drawer, [{
       key: "init",
       value: function init() {
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-        if (options) this.settings = _objectSpread2(_objectSpread2({}, this.settings), options);
+        if (options) this.settings = _objectSpread$1(_objectSpread$1({}, this.settings), options);
         this.stateSet();
         this.setTabindex(this.settings.setTabindex);
         this.breakpoint.init();
@@ -876,7 +1664,6 @@
       value: function setTabindex$1() {
         var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
         var selectorTabindex = "\n      [data-".concat(this.settings.dataDrawer, "]\n      [data-").concat(this.settings.dataDialog, "]\n    ");
-
         setTabindex(state, selectorTabindex);
       }
       /**
@@ -920,9 +1707,9 @@
     }, {
       key: "toggle",
       value: function () {
-        var _toggle = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(drawerKey) {
+        var _toggle = asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(drawerKey) {
           var drawer, isOpen;
-          return regeneratorRuntime.wrap(function _callee$(_context) {
+          return regenerator.wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
                 case 0:
@@ -965,9 +1752,9 @@
     }, {
       key: "open",
       value: function () {
-        var _open = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(drawerKey) {
+        var _open = asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee2(drawerKey) {
           var drawer, isModal;
-          return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          return regenerator.wrap(function _callee2$(_context2) {
             while (1) {
               switch (_context2.prev = _context2.next) {
                 case 0:
@@ -1032,9 +1819,9 @@
     }, {
       key: "close",
       value: function () {
-        var _close = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(drawerKey) {
+        var _close = asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee3(drawerKey) {
           var drawer;
-          return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          return regenerator.wrap(function _callee3$(_context3) {
             while (1) {
               switch (_context3.prev = _context3.next) {
                 case 0:
@@ -1091,7 +1878,6 @@
         return close;
       }()
     }]);
-
     return Drawer;
   }();
 
@@ -1127,9 +1913,9 @@
   }
 
   function _handlerClick() {
-    _handlerClick = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
+    _handlerClick = asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(event) {
       var trigger, modalKey, fromModal;
-      return regeneratorRuntime.wrap(function _callee$(_context) {
+      return regenerator.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
@@ -1217,12 +2003,45 @@
     });
   }
 
+  function ownKeys$2(object, enumerableOnly) {
+    var keys = Object.keys(object);
+
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly) symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+      keys.push.apply(keys, symbols);
+    }
+
+    return keys;
+  }
+
+  function _objectSpread$2(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+
+      if (i % 2) {
+        ownKeys$2(Object(source), true).forEach(function (key) {
+          defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys$2(Object(source)).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
+      }
+    }
+
+    return target;
+  }
+
   var Modal = /*#__PURE__*/function () {
     function Modal(options) {
-      _classCallCheck(this, Modal);
-
+      classCallCheck(this, Modal);
       this.defaults = defaults$1;
-      this.settings = _objectSpread2(_objectSpread2({}, this.defaults), options);
+      this.settings = _objectSpread$2(_objectSpread$2({}, this.defaults), options);
       this.working = false;
       this.memory = {};
       this.focusTrap = new FocusTrap();
@@ -1231,11 +2050,11 @@
       if (this.settings.autoInit) this.init();
     }
 
-    _createClass(Modal, [{
+    createClass(Modal, [{
       key: "init",
       value: function init() {
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-        if (options) this.settings = _objectSpread2(_objectSpread2({}, this.settings), options);
+        if (options) this.settings = _objectSpread$2(_objectSpread$2({}, this.settings), options);
         this.moveModals();
         this.setTabindex(this.settings.setTabindex);
         this.setInitialState();
@@ -1271,7 +2090,6 @@
       value: function setTabindex$1() {
         var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
         var selectorTabindex = "\n      [data-".concat(this.settings.dataModal, "]\n      [data-").concat(this.settings.dataDialog, "]\n    ");
-
         setTabindex(state, selectorTabindex);
       }
     }, {
@@ -1294,9 +2112,9 @@
     }, {
       key: "open",
       value: function () {
-        var _open = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(modalKey) {
+        var _open = asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(modalKey) {
           var modal;
-          return regeneratorRuntime.wrap(function _callee$(_context) {
+          return regenerator.wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
                 case 0:
@@ -1350,11 +2168,11 @@
     }, {
       key: "close",
       value: function () {
-        var _close = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+        var _close = asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee2() {
           var returnFocus,
               modal,
               _args2 = arguments;
-          return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          return regenerator.wrap(function _callee2$(_context2) {
             while (1) {
               switch (_context2.prev = _context2.next) {
                 case 0:
@@ -1399,7 +2217,6 @@
         return close;
       }()
     }]);
-
     return Modal;
   }();
 
@@ -1440,7 +2257,7 @@
     return obj;
   }
 
-  function ownKeys$1(object, enumerableOnly) {
+  function ownKeys$3(object, enumerableOnly) {
     var keys = Object.keys(object);
 
     if (Object.getOwnPropertySymbols) {
@@ -1454,18 +2271,18 @@
     return keys;
   }
 
-  function _objectSpread2$1(target) {
+  function _objectSpread2(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i] != null ? arguments[i] : {};
 
       if (i % 2) {
-        ownKeys$1(Object(source), true).forEach(function (key) {
+        ownKeys$3(Object(source), true).forEach(function (key) {
           _defineProperty$1(target, key, source[key]);
         });
       } else if (Object.getOwnPropertyDescriptors) {
         Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
       } else {
-        ownKeys$1(Object(source)).forEach(function (key) {
+        ownKeys$3(Object(source)).forEach(function (key) {
           Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
         });
       }
@@ -1660,7 +2477,7 @@
     function ScrollStash(options) {
       _classCallCheck$1(this, ScrollStash);
 
-      this.settings = _objectSpread2$1(_objectSpread2$1({}, defaults$2), options);
+      this.settings = _objectSpread2(_objectSpread2({}, defaults$2), options);
       this.state = {};
       this.scrolls = [];
       this.ticking = false;
@@ -1674,7 +2491,7 @@
         var _this = this;
 
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-        if (options) this.settings = _objectSpread2$1(_objectSpread2$1({}, this.settings), options);
+        if (options) this.settings = _objectSpread2(_objectSpread2({}, this.settings), options);
         this.state = stateSet$1(this.settings);
         this.state = !Object.keys(this.state).length ? stateSave$1(this.settings) : this.state;
         this.scrolls = document.querySelectorAll("[data-".concat(this.settings.dataScroll, "]"));
@@ -2031,14 +2848,12 @@
      */
 
 
-    var InertRoot = /*#__PURE__*/function () {
+    class InertRoot {
       /**
        * @param {!Element} rootElement The Element at the root of the inert subtree.
        * @param {!InertManager} inertManager The global singleton InertManager object.
        */
-      function InertRoot(rootElement, inertManager) {
-        _classCallCheck(this, InertRoot);
-
+      constructor(rootElement, inertManager) {
         /** @type {!InertManager} */
         this._inertManager = inertManager;
         /** @type {!Element} */
@@ -2082,250 +2897,229 @@
        */
 
 
-      _createClass(InertRoot, [{
-        key: "destructor",
-        value: function destructor() {
-          this._observer.disconnect();
+      destructor() {
+        this._observer.disconnect();
 
-          if (this._rootElement) {
-            if (this._savedAriaHidden !== null) {
-              this._rootElement.setAttribute('aria-hidden', this._savedAriaHidden);
-            } else {
-              this._rootElement.removeAttribute('aria-hidden');
-            }
-          }
-
-          this._managedNodes.forEach(function (inertNode) {
-            this._unmanageNode(inertNode.node);
-          }, this); // Note we cast the nulls to the ANY type here because:
-          // 1) We want the class properties to be declared as non-null, or else we
-          //    need even more casts throughout this code. All bets are off if an
-          //    instance has been destroyed and a method is called.
-          // 2) We don't want to cast "this", because we want type-aware optimizations
-          //    to know which properties we're setting.
-
-
-          this._observer =
-          /** @type {?} */
-          null;
-          this._rootElement =
-          /** @type {?} */
-          null;
-          this._managedNodes =
-          /** @type {?} */
-          null;
-          this._inertManager =
-          /** @type {?} */
-          null;
-        }
-        /**
-         * @return {!Set<!InertNode>} A copy of this InertRoot's managed nodes set.
-         */
-
-      }, {
-        key: "_makeSubtreeUnfocusable",
-
-        /**
-         * @param {!Node} startNode
-         */
-        value: function _makeSubtreeUnfocusable(startNode) {
-          var _this2 = this;
-
-          composedTreeWalk(startNode, function (node) {
-            return _this2._visitNode(node);
-          });
-          var activeElement = document.activeElement;
-
-          if (!document.body.contains(startNode)) {
-            // startNode may be in shadow DOM, so find its nearest shadowRoot to get the activeElement.
-            var node = startNode;
-            /** @type {!ShadowRoot|undefined} */
-
-            var root = undefined;
-
-            while (node) {
-              if (node.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
-                root =
-                /** @type {!ShadowRoot} */
-                node;
-                break;
-              }
-
-              node = node.parentNode;
-            }
-
-            if (root) {
-              activeElement = root.activeElement;
-            }
-          }
-
-          if (startNode.contains(activeElement)) {
-            activeElement.blur(); // In IE11, if an element is already focused, and then set to tabindex=-1
-            // calling blur() will not actually move the focus.
-            // To work around this we call focus() on the body instead.
-
-            if (activeElement === document.activeElement) {
-              document.body.focus();
-            }
+        if (this._rootElement) {
+          if (this._savedAriaHidden !== null) {
+            this._rootElement.setAttribute('aria-hidden', this._savedAriaHidden);
+          } else {
+            this._rootElement.removeAttribute('aria-hidden');
           }
         }
-        /**
-         * @param {!Node} node
-         */
 
-      }, {
-        key: "_visitNode",
-        value: function _visitNode(node) {
-          if (node.nodeType !== Node.ELEMENT_NODE) {
-            return;
+        this._managedNodes.forEach(function (inertNode) {
+          this._unmanageNode(inertNode.node);
+        }, this); // Note we cast the nulls to the ANY type here because:
+        // 1) We want the class properties to be declared as non-null, or else we
+        //    need even more casts throughout this code. All bets are off if an
+        //    instance has been destroyed and a method is called.
+        // 2) We don't want to cast "this", because we want type-aware optimizations
+        //    to know which properties we're setting.
+
+
+        this._observer =
+        /** @type {?} */
+        null;
+        this._rootElement =
+        /** @type {?} */
+        null;
+        this._managedNodes =
+        /** @type {?} */
+        null;
+        this._inertManager =
+        /** @type {?} */
+        null;
+      }
+      /**
+       * @return {!Set<!InertNode>} A copy of this InertRoot's managed nodes set.
+       */
+
+
+      get managedNodes() {
+        return new Set(this._managedNodes);
+      }
+      /** @return {boolean} */
+
+
+      get hasSavedAriaHidden() {
+        return this._savedAriaHidden !== null;
+      }
+      /** @param {?string} ariaHidden */
+
+
+      set savedAriaHidden(ariaHidden) {
+        this._savedAriaHidden = ariaHidden;
+      }
+      /** @return {?string} */
+
+
+      get savedAriaHidden() {
+        return this._savedAriaHidden;
+      }
+      /**
+       * @param {!Node} startNode
+       */
+
+
+      _makeSubtreeUnfocusable(startNode) {
+        composedTreeWalk(startNode, node => this._visitNode(node));
+        var activeElement = document.activeElement;
+
+        if (!document.body.contains(startNode)) {
+          // startNode may be in shadow DOM, so find its nearest shadowRoot to get the activeElement.
+          var node = startNode;
+          /** @type {!ShadowRoot|undefined} */
+
+          var root = undefined;
+
+          while (node) {
+            if (node.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
+              root =
+              /** @type {!ShadowRoot} */
+              node;
+              break;
+            }
+
+            node = node.parentNode;
           }
 
-          var element =
+          if (root) {
+            activeElement = root.activeElement;
+          }
+        }
+
+        if (startNode.contains(activeElement)) {
+          activeElement.blur(); // In IE11, if an element is already focused, and then set to tabindex=-1
+          // calling blur() will not actually move the focus.
+          // To work around this we call focus() on the body instead.
+
+          if (activeElement === document.activeElement) {
+            document.body.focus();
+          }
+        }
+      }
+      /**
+       * @param {!Node} node
+       */
+
+
+      _visitNode(node) {
+        if (node.nodeType !== Node.ELEMENT_NODE) {
+          return;
+        }
+
+        var element =
+        /** @type {!Element} */
+        node; // If a descendant inert root becomes un-inert, its descendants will still be inert because of
+        // this inert root, so all of its managed nodes need to be adopted by this InertRoot.
+
+        if (element !== this._rootElement && element.hasAttribute('inert')) {
+          this._adoptInertRoot(element);
+        }
+
+        if (matches.call(element, _focusableElementsString) || element.hasAttribute('tabindex')) {
+          this._manageNode(element);
+        }
+      }
+      /**
+       * Register the given node with this InertRoot and with InertManager.
+       * @param {!Node} node
+       */
+
+
+      _manageNode(node) {
+        var inertNode = this._inertManager.register(node, this);
+
+        this._managedNodes.add(inertNode);
+      }
+      /**
+       * Unregister the given node with this InertRoot and with InertManager.
+       * @param {!Node} node
+       */
+
+
+      _unmanageNode(node) {
+        var inertNode = this._inertManager.deregister(node, this);
+
+        if (inertNode) {
+          this._managedNodes.delete(inertNode);
+        }
+      }
+      /**
+       * Unregister the entire subtree starting at `startNode`.
+       * @param {!Node} startNode
+       */
+
+
+      _unmanageSubtree(startNode) {
+        composedTreeWalk(startNode, node => this._unmanageNode(node));
+      }
+      /**
+       * If a descendant node is found with an `inert` attribute, adopt its managed nodes.
+       * @param {!Element} node
+       */
+
+
+      _adoptInertRoot(node) {
+        var inertSubroot = this._inertManager.getInertRoot(node); // During initialisation this inert root may not have been registered yet,
+        // so register it now if need be.
+
+
+        if (!inertSubroot) {
+          this._inertManager.setInert(node, true);
+
+          inertSubroot = this._inertManager.getInertRoot(node);
+        }
+
+        inertSubroot.managedNodes.forEach(function (savedInertNode) {
+          this._manageNode(savedInertNode.node);
+        }, this);
+      }
+      /**
+       * Callback used when mutation observer detects subtree additions, removals, or attribute changes.
+       * @param {!Array<!MutationRecord>} records
+       * @param {!MutationObserver} self
+       */
+
+
+      _onMutation(records, self) {
+        records.forEach(function (record) {
+          var target =
           /** @type {!Element} */
-          node; // If a descendant inert root becomes un-inert, its descendants will still be inert because of
-          // this inert root, so all of its managed nodes need to be adopted by this InertRoot.
+          record.target;
 
-          if (element !== this._rootElement && element.hasAttribute('inert')) {
-            this._adoptInertRoot(element);
-          }
+          if (record.type === 'childList') {
+            // Manage added nodes
+            slice.call(record.addedNodes).forEach(function (node) {
+              this._makeSubtreeUnfocusable(node);
+            }, this); // Un-manage removed nodes
 
-          if (matches.call(element, _focusableElementsString) || element.hasAttribute('tabindex')) {
-            this._manageNode(element);
-          }
-        }
-        /**
-         * Register the given node with this InertRoot and with InertManager.
-         * @param {!Node} node
-         */
+            slice.call(record.removedNodes).forEach(function (node) {
+              this._unmanageSubtree(node);
+            }, this);
+          } else if (record.type === 'attributes') {
+            if (record.attributeName === 'tabindex') {
+              // Re-initialise inert node if tabindex changes
+              this._manageNode(target);
+            } else if (target !== this._rootElement && record.attributeName === 'inert' && target.hasAttribute('inert')) {
+              // If a new inert root is added, adopt its managed nodes and make sure it knows about the
+              // already managed nodes from this inert subroot.
+              this._adoptInertRoot(target);
 
-      }, {
-        key: "_manageNode",
-        value: function _manageNode(node) {
-          var inertNode = this._inertManager.register(node, this);
+              var inertSubroot = this._inertManager.getInertRoot(target);
 
-          this._managedNodes.add(inertNode);
-        }
-        /**
-         * Unregister the given node with this InertRoot and with InertManager.
-         * @param {!Node} node
-         */
-
-      }, {
-        key: "_unmanageNode",
-        value: function _unmanageNode(node) {
-          var inertNode = this._inertManager.deregister(node, this);
-
-          if (inertNode) {
-            this._managedNodes.delete(inertNode);
-          }
-        }
-        /**
-         * Unregister the entire subtree starting at `startNode`.
-         * @param {!Node} startNode
-         */
-
-      }, {
-        key: "_unmanageSubtree",
-        value: function _unmanageSubtree(startNode) {
-          var _this3 = this;
-
-          composedTreeWalk(startNode, function (node) {
-            return _this3._unmanageNode(node);
-          });
-        }
-        /**
-         * If a descendant node is found with an `inert` attribute, adopt its managed nodes.
-         * @param {!Element} node
-         */
-
-      }, {
-        key: "_adoptInertRoot",
-        value: function _adoptInertRoot(node) {
-          var inertSubroot = this._inertManager.getInertRoot(node); // During initialisation this inert root may not have been registered yet,
-          // so register it now if need be.
-
-
-          if (!inertSubroot) {
-            this._inertManager.setInert(node, true);
-
-            inertSubroot = this._inertManager.getInertRoot(node);
-          }
-
-          inertSubroot.managedNodes.forEach(function (savedInertNode) {
-            this._manageNode(savedInertNode.node);
-          }, this);
-        }
-        /**
-         * Callback used when mutation observer detects subtree additions, removals, or attribute changes.
-         * @param {!Array<!MutationRecord>} records
-         * @param {!MutationObserver} self
-         */
-
-      }, {
-        key: "_onMutation",
-        value: function _onMutation(records, self) {
-          records.forEach(function (record) {
-            var target =
-            /** @type {!Element} */
-            record.target;
-
-            if (record.type === 'childList') {
-              // Manage added nodes
-              slice.call(record.addedNodes).forEach(function (node) {
-                this._makeSubtreeUnfocusable(node);
-              }, this); // Un-manage removed nodes
-
-              slice.call(record.removedNodes).forEach(function (node) {
-                this._unmanageSubtree(node);
-              }, this);
-            } else if (record.type === 'attributes') {
-              if (record.attributeName === 'tabindex') {
-                // Re-initialise inert node if tabindex changes
-                this._manageNode(target);
-              } else if (target !== this._rootElement && record.attributeName === 'inert' && target.hasAttribute('inert')) {
-                // If a new inert root is added, adopt its managed nodes and make sure it knows about the
-                // already managed nodes from this inert subroot.
-                this._adoptInertRoot(target);
-
-                var inertSubroot = this._inertManager.getInertRoot(target);
-
-                this._managedNodes.forEach(function (managedNode) {
-                  if (target.contains(managedNode.node)) {
-                    inertSubroot._manageNode(managedNode.node);
-                  }
-                });
-              }
+              this._managedNodes.forEach(function (managedNode) {
+                if (target.contains(managedNode.node)) {
+                  inertSubroot._manageNode(managedNode.node);
+                }
+              });
             }
-          }, this);
-        }
-      }, {
-        key: "managedNodes",
-        get: function get() {
-          return new Set(this._managedNodes);
-        }
-        /** @return {boolean} */
+          }
+        }, this);
+      }
 
-      }, {
-        key: "hasSavedAriaHidden",
-        get: function get() {
-          return this._savedAriaHidden !== null;
-        }
-        /** @param {?string} ariaHidden */
-
-      }, {
-        key: "savedAriaHidden",
-        set: function set(ariaHidden) {
-          this._savedAriaHidden = ariaHidden;
-        }
-        /** @return {?string} */
-        ,
-        get: function get() {
-          return this._savedAriaHidden;
-        }
-      }]);
-
-      return InertRoot;
-    }();
+    }
     /**
      * `InertNode` initialises and manages a single inert node.
      * A node is inert if it is a descendant of one or more inert root elements.
@@ -2342,14 +3136,12 @@
      */
 
 
-    var InertNode = /*#__PURE__*/function () {
+    class InertNode {
       /**
        * @param {!Node} node A focusable element to be made inert.
        * @param {!InertRoot} inertRoot The inert root element associated with this inert node.
        */
-      function InertNode(node, inertRoot) {
-        _classCallCheck(this, InertNode);
-
+      constructor(node, inertRoot) {
         /** @type {!Node} */
         this._node = node;
         /** @type {boolean} */
@@ -2376,167 +3168,156 @@
        */
 
 
-      _createClass(InertNode, [{
-        key: "destructor",
-        value: function destructor() {
-          this._throwIfDestroyed();
+      destructor() {
+        this._throwIfDestroyed();
 
-          if (this._node && this._node.nodeType === Node.ELEMENT_NODE) {
-            var element =
-            /** @type {!Element} */
-            this._node;
+        if (this._node && this._node.nodeType === Node.ELEMENT_NODE) {
+          var element =
+          /** @type {!Element} */
+          this._node;
 
-            if (this._savedTabIndex !== null) {
-              element.setAttribute('tabindex', this._savedTabIndex);
-            } else {
-              element.removeAttribute('tabindex');
-            } // Use `delete` to restore native focus method.
+          if (this._savedTabIndex !== null) {
+            element.setAttribute('tabindex', this._savedTabIndex);
+          } else {
+            element.removeAttribute('tabindex');
+          } // Use `delete` to restore native focus method.
 
 
-            if (this._overrodeFocusMethod) {
-              delete element.focus;
-            }
-          } // See note in InertRoot.destructor for why we cast these nulls to ANY.
-
-
-          this._node =
-          /** @type {?} */
-          null;
-          this._inertRoots =
-          /** @type {?} */
-          null;
-          this._destroyed = true;
-        }
-        /**
-         * @type {boolean} Whether this object is obsolete because the managed node is no longer inert.
-         * If the object has been destroyed, any attempt to access it will cause an exception.
-         */
-
-      }, {
-        key: "_throwIfDestroyed",
-
-        /**
-         * Throw if user tries to access destroyed InertNode.
-         */
-        value: function _throwIfDestroyed() {
-          if (this.destroyed) {
-            throw new Error('Trying to access destroyed InertNode');
+          if (this._overrodeFocusMethod) {
+            delete element.focus;
           }
+        } // See note in InertRoot.destructor for why we cast these nulls to ANY.
+
+
+        this._node =
+        /** @type {?} */
+        null;
+        this._inertRoots =
+        /** @type {?} */
+        null;
+        this._destroyed = true;
+      }
+      /**
+       * @type {boolean} Whether this object is obsolete because the managed node is no longer inert.
+       * If the object has been destroyed, any attempt to access it will cause an exception.
+       */
+
+
+      get destroyed() {
+        return (
+          /** @type {!InertNode} */
+          this._destroyed
+        );
+      }
+      /**
+       * Throw if user tries to access destroyed InertNode.
+       */
+
+
+      _throwIfDestroyed() {
+        if (this.destroyed) {
+          throw new Error('Trying to access destroyed InertNode');
         }
-        /** @return {boolean} */
+      }
+      /** @return {boolean} */
 
-      }, {
-        key: "ensureUntabbable",
 
-        /** Save the existing tabindex value and make the node untabbable and unfocusable */
-        value: function ensureUntabbable() {
-          if (this.node.nodeType !== Node.ELEMENT_NODE) {
+      get hasSavedTabIndex() {
+        return this._savedTabIndex !== null;
+      }
+      /** @return {!Node} */
+
+
+      get node() {
+        this._throwIfDestroyed();
+
+        return this._node;
+      }
+      /** @param {?number} tabIndex */
+
+
+      set savedTabIndex(tabIndex) {
+        this._throwIfDestroyed();
+
+        this._savedTabIndex = tabIndex;
+      }
+      /** @return {?number} */
+
+
+      get savedTabIndex() {
+        this._throwIfDestroyed();
+
+        return this._savedTabIndex;
+      }
+      /** Save the existing tabindex value and make the node untabbable and unfocusable */
+
+
+      ensureUntabbable() {
+        if (this.node.nodeType !== Node.ELEMENT_NODE) {
+          return;
+        }
+
+        var element =
+        /** @type {!Element} */
+        this.node;
+
+        if (matches.call(element, _focusableElementsString)) {
+          if (
+          /** @type {!HTMLElement} */
+          element.tabIndex === -1 && this.hasSavedTabIndex) {
             return;
           }
 
-          var element =
-          /** @type {!Element} */
-          this.node;
-
-          if (matches.call(element, _focusableElementsString)) {
-            if (
-            /** @type {!HTMLElement} */
-            element.tabIndex === -1 && this.hasSavedTabIndex) {
-              return;
-            }
-
-            if (element.hasAttribute('tabindex')) {
-              this._savedTabIndex =
-              /** @type {!HTMLElement} */
-              element.tabIndex;
-            }
-
-            element.setAttribute('tabindex', '-1');
-
-            if (element.nodeType === Node.ELEMENT_NODE) {
-              element.focus = function () {};
-
-              this._overrodeFocusMethod = true;
-            }
-          } else if (element.hasAttribute('tabindex')) {
+          if (element.hasAttribute('tabindex')) {
             this._savedTabIndex =
             /** @type {!HTMLElement} */
             element.tabIndex;
-            element.removeAttribute('tabindex');
           }
-        }
-        /**
-         * Add another inert root to this inert node's set of managing inert roots.
-         * @param {!InertRoot} inertRoot
-         */
 
-      }, {
-        key: "addInertRoot",
-        value: function addInertRoot(inertRoot) {
-          this._throwIfDestroyed();
+          element.setAttribute('tabindex', '-1');
 
-          this._inertRoots.add(inertRoot);
-        }
-        /**
-         * Remove the given inert root from this inert node's set of managing inert roots.
-         * If the set of managing inert roots becomes empty, this node is no longer inert,
-         * so the object should be destroyed.
-         * @param {!InertRoot} inertRoot
-         */
+          if (element.nodeType === Node.ELEMENT_NODE) {
+            element.focus = function () {};
 
-      }, {
-        key: "removeInertRoot",
-        value: function removeInertRoot(inertRoot) {
-          this._throwIfDestroyed();
-
-          this._inertRoots.delete(inertRoot);
-
-          if (this._inertRoots.size === 0) {
-            this.destructor();
+            this._overrodeFocusMethod = true;
           }
+        } else if (element.hasAttribute('tabindex')) {
+          this._savedTabIndex =
+          /** @type {!HTMLElement} */
+          element.tabIndex;
+          element.removeAttribute('tabindex');
         }
-      }, {
-        key: "destroyed",
-        get: function get() {
-          return (
-            /** @type {!InertNode} */
-            this._destroyed
-          );
+      }
+      /**
+       * Add another inert root to this inert node's set of managing inert roots.
+       * @param {!InertRoot} inertRoot
+       */
+
+
+      addInertRoot(inertRoot) {
+        this._throwIfDestroyed();
+
+        this._inertRoots.add(inertRoot);
+      }
+      /**
+       * Remove the given inert root from this inert node's set of managing inert roots.
+       * If the set of managing inert roots becomes empty, this node is no longer inert,
+       * so the object should be destroyed.
+       * @param {!InertRoot} inertRoot
+       */
+
+
+      removeInertRoot(inertRoot) {
+        this._throwIfDestroyed();
+
+        this._inertRoots.delete(inertRoot);
+
+        if (this._inertRoots.size === 0) {
+          this.destructor();
         }
-      }, {
-        key: "hasSavedTabIndex",
-        get: function get() {
-          return this._savedTabIndex !== null;
-        }
-        /** @return {!Node} */
+      }
 
-      }, {
-        key: "node",
-        get: function get() {
-          this._throwIfDestroyed();
-
-          return this._node;
-        }
-        /** @param {?number} tabIndex */
-
-      }, {
-        key: "savedTabIndex",
-        set: function set(tabIndex) {
-          this._throwIfDestroyed();
-
-          this._savedTabIndex = tabIndex;
-        }
-        /** @return {?number} */
-        ,
-        get: function get() {
-          this._throwIfDestroyed();
-
-          return this._savedTabIndex;
-        }
-      }]);
-
-      return InertNode;
-    }();
+    }
     /**
      * InertManager is a per-document singleton object which manages all inert roots and nodes.
      *
@@ -2548,13 +3329,11 @@
      */
 
 
-    var InertManager = /*#__PURE__*/function () {
+    class InertManager {
       /**
        * @param {!Document} document
        */
-      function InertManager(document) {
-        _classCallCheck(this, InertManager);
-
+      constructor(document) {
         if (!document) {
           throw new Error('Missing required argument; InertManager needs to wrap a document.');
         }
@@ -2596,181 +3375,172 @@
        */
 
 
-      _createClass(InertManager, [{
-        key: "setInert",
-        value: function setInert(root, inert) {
-          if (inert) {
-            if (this._inertRoots.has(root)) {
-              // element is already inert
-              return;
-            }
+      setInert(root, inert) {
+        if (inert) {
+          if (this._inertRoots.has(root)) {
+            // element is already inert
+            return;
+          }
 
-            var inertRoot = new InertRoot(root, this);
-            root.setAttribute('inert', '');
+          var inertRoot = new InertRoot(root, this);
+          root.setAttribute('inert', '');
 
-            this._inertRoots.set(root, inertRoot); // If not contained in the document, it must be in a shadowRoot.
-            // Ensure inert styles are added there.
+          this._inertRoots.set(root, inertRoot); // If not contained in the document, it must be in a shadowRoot.
+          // Ensure inert styles are added there.
 
 
-            if (!this._document.body.contains(root)) {
-              var parent = root.parentNode;
+          if (!this._document.body.contains(root)) {
+            var parent = root.parentNode;
 
-              while (parent) {
-                if (parent.nodeType === 11) {
-                  addInertStyle(parent);
-                }
-
-                parent = parent.parentNode;
+            while (parent) {
+              if (parent.nodeType === 11) {
+                addInertStyle(parent);
               }
+
+              parent = parent.parentNode;
             }
-          } else {
-            if (!this._inertRoots.has(root)) {
-              // element is already non-inert
-              return;
-            }
-
-            var _inertRoot = this._inertRoots.get(root);
-
-            _inertRoot.destructor();
-
-            this._inertRoots.delete(root);
-
-            root.removeAttribute('inert');
           }
-        }
-        /**
-         * Get the InertRoot object corresponding to the given inert root element, if any.
-         * @param {!Node} element
-         * @return {!InertRoot|undefined}
-         */
-
-      }, {
-        key: "getInertRoot",
-        value: function getInertRoot(element) {
-          return this._inertRoots.get(element);
-        }
-        /**
-         * Register the given InertRoot as managing the given node.
-         * In the case where the node has a previously existing inert root, this inert root will
-         * be added to its set of inert roots.
-         * @param {!Node} node
-         * @param {!InertRoot} inertRoot
-         * @return {!InertNode} inertNode
-         */
-
-      }, {
-        key: "register",
-        value: function register(node, inertRoot) {
-          var inertNode = this._managedNodes.get(node);
-
-          if (inertNode !== undefined) {
-            // node was already in an inert subtree
-            inertNode.addInertRoot(inertRoot);
-          } else {
-            inertNode = new InertNode(node, inertRoot);
+        } else {
+          if (!this._inertRoots.has(root)) {
+            // element is already non-inert
+            return;
           }
 
-          this._managedNodes.set(node, inertNode);
+          var _inertRoot = this._inertRoots.get(root);
 
-          return inertNode;
+          _inertRoot.destructor();
+
+          this._inertRoots.delete(root);
+
+          root.removeAttribute('inert');
         }
-        /**
-         * De-register the given InertRoot as managing the given inert node.
-         * Removes the inert root from the InertNode's set of managing inert roots, and remove the inert
-         * node from the InertManager's set of managed nodes if it is destroyed.
-         * If the node is not currently managed, this is essentially a no-op.
-         * @param {!Node} node
-         * @param {!InertRoot} inertRoot
-         * @return {?InertNode} The potentially destroyed InertNode associated with this node, if any.
-         */
+      }
+      /**
+       * Get the InertRoot object corresponding to the given inert root element, if any.
+       * @param {!Node} element
+       * @return {!InertRoot|undefined}
+       */
 
-      }, {
-        key: "deregister",
-        value: function deregister(node, inertRoot) {
-          var inertNode = this._managedNodes.get(node);
 
-          if (!inertNode) {
-            return null;
-          }
+      getInertRoot(element) {
+        return this._inertRoots.get(element);
+      }
+      /**
+       * Register the given InertRoot as managing the given node.
+       * In the case where the node has a previously existing inert root, this inert root will
+       * be added to its set of inert roots.
+       * @param {!Node} node
+       * @param {!InertRoot} inertRoot
+       * @return {!InertNode} inertNode
+       */
 
-          inertNode.removeInertRoot(inertRoot);
 
-          if (inertNode.destroyed) {
-            this._managedNodes.delete(node);
-          }
+      register(node, inertRoot) {
+        var inertNode = this._managedNodes.get(node);
 
-          return inertNode;
+        if (inertNode !== undefined) {
+          // node was already in an inert subtree
+          inertNode.addInertRoot(inertRoot);
+        } else {
+          inertNode = new InertNode(node, inertRoot);
         }
-        /**
-         * Callback used when document has finished loading.
-         */
 
-      }, {
-        key: "_onDocumentLoaded",
-        value: function _onDocumentLoaded() {
-          // Find all inert roots in document and make them actually inert.
-          var inertElements = slice.call(this._document.querySelectorAll('[inert]'));
-          inertElements.forEach(function (inertElement) {
-            this.setInert(inertElement, true);
-          }, this); // Comment this out to use programmatic API only.
+        this._managedNodes.set(node, inertNode);
 
-          this._observer.observe(this._document.body || this._document.documentElement, {
-            attributes: true,
-            subtree: true,
-            childList: true
-          });
+        return inertNode;
+      }
+      /**
+       * De-register the given InertRoot as managing the given inert node.
+       * Removes the inert root from the InertNode's set of managing inert roots, and remove the inert
+       * node from the InertManager's set of managed nodes if it is destroyed.
+       * If the node is not currently managed, this is essentially a no-op.
+       * @param {!Node} node
+       * @param {!InertRoot} inertRoot
+       * @return {?InertNode} The potentially destroyed InertNode associated with this node, if any.
+       */
+
+
+      deregister(node, inertRoot) {
+        var inertNode = this._managedNodes.get(node);
+
+        if (!inertNode) {
+          return null;
         }
-        /**
-         * Callback used when mutation observer detects attribute changes.
-         * @param {!Array<!MutationRecord>} records
-         * @param {!MutationObserver} self
-         */
 
-      }, {
-        key: "_watchForInert",
-        value: function _watchForInert(records, self) {
-          var _this = this;
+        inertNode.removeInertRoot(inertRoot);
 
-          records.forEach(function (record) {
-            switch (record.type) {
-              case 'childList':
-                slice.call(record.addedNodes).forEach(function (node) {
-                  if (node.nodeType !== Node.ELEMENT_NODE) {
-                    return;
-                  }
+        if (inertNode.destroyed) {
+          this._managedNodes.delete(node);
+        }
 
-                  var inertElements = slice.call(node.querySelectorAll('[inert]'));
+        return inertNode;
+      }
+      /**
+       * Callback used when document has finished loading.
+       */
 
-                  if (matches.call(node, '[inert]')) {
-                    inertElements.unshift(node);
-                  }
 
-                  inertElements.forEach(function (inertElement) {
-                    this.setInert(inertElement, true);
-                  }, _this);
-                }, _this);
-                break;
+      _onDocumentLoaded() {
+        // Find all inert roots in document and make them actually inert.
+        var inertElements = slice.call(this._document.querySelectorAll('[inert]'));
+        inertElements.forEach(function (inertElement) {
+          this.setInert(inertElement, true);
+        }, this); // Comment this out to use programmatic API only.
 
-              case 'attributes':
-                if (record.attributeName !== 'inert') {
+        this._observer.observe(this._document.body || this._document.documentElement, {
+          attributes: true,
+          subtree: true,
+          childList: true
+        });
+      }
+      /**
+       * Callback used when mutation observer detects attribute changes.
+       * @param {!Array<!MutationRecord>} records
+       * @param {!MutationObserver} self
+       */
+
+
+      _watchForInert(records, self) {
+        var _this = this;
+
+        records.forEach(function (record) {
+          switch (record.type) {
+            case 'childList':
+              slice.call(record.addedNodes).forEach(function (node) {
+                if (node.nodeType !== Node.ELEMENT_NODE) {
                   return;
                 }
 
-                var target =
-                /** @type {!Element} */
-                record.target;
-                var inert = target.hasAttribute('inert');
+                var inertElements = slice.call(node.querySelectorAll('[inert]'));
 
-                _this.setInert(target, inert);
+                if (matches.call(node, '[inert]')) {
+                  inertElements.unshift(node);
+                }
 
-                break;
-            }
-          }, this);
-        }
-      }]);
+                inertElements.forEach(function (inertElement) {
+                  this.setInert(inertElement, true);
+                }, _this);
+              }, _this);
+              break;
 
-      return InertManager;
-    }();
+            case 'attributes':
+              if (record.attributeName !== 'inert') {
+                return;
+              }
+
+              var target =
+              /** @type {!Element} */
+              record.target;
+              var inert = target.hasAttribute('inert');
+
+              _this.setInert(target, inert);
+
+              break;
+          }
+        }, this);
+      }
+
+    }
     /**
      * Recursively walk the composed tree from |node|.
      * @param {!Node} node
@@ -4554,14 +5324,14 @@
     var search$1 = document.querySelector('.filter .search');
     var searchClear = document.querySelector('.filter .search_clear');
 
-    var isMenuLinkActive = function isMenuLinkActive() {
+    var isMenuLinkActive = () => {
       var menuLinks = document.querySelectorAll('#listjs .menu__link');
       var isActive = menuLinks.classList.contains('is-active');
       return isActive;
     }; // On search complete callback
 
 
-    list.on('searchComplete', function () {
+    list.on('searchComplete', () => {
       // Update the search text in empty notice
       var value = search$1.value;
       noticeEmptyText.innerHTML = value;
@@ -4585,7 +5355,7 @@
       }
     }); // Click events for category and clears
 
-    document.addEventListener('click', function () {
+    document.addEventListener('click', () => {
       var trigger_search_clear = event.target.closest('.search_clear');
       var trigger_search_cat = event.target.closest('.category');
 
@@ -4660,7 +5430,7 @@
     selectorTopElem: '.dialog__header'
   });
   var el$1 = document.querySelector('[data-scroll-stash]');
-  document.addEventListener('drawer:opened', function () {
+  document.addEventListener('drawer:opened', () => {
     var anchor = scrollStash.anchorGet(el$1);
     anchor.scrollIntoView({
       behavior: 'smooth',
