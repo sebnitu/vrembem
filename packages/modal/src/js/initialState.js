@@ -1,6 +1,6 @@
-import { addClass, removeClass } from '@vrembem/core';
-import { setInert, setOverflowHidden } from '@vrembem/core';
-import { focusTrigger } from '@vrembem/core';
+import { addClass, removeClass } from '@vrembem/core/index';
+import { setInert, setOverflowHidden } from '@vrembem/core/index';
+import { focusTrigger } from '@vrembem/core/index';
 
 export function setInitialState(obj) {
   const modals = document.querySelectorAll(`[data-${obj.settings.dataModal}]`);

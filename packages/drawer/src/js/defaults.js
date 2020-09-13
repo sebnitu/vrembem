@@ -1,4 +1,4 @@
-import { breakpoints } from '@vrembem/core';
+import { breakpoints } from '@vrembem/core/index';
 
 export const defaults = {
   autoInit: false,

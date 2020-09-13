@@ -10,7 +10,8 @@
     "drawer"
   ],
   "main": "dist/scripts.js",
-  "module": "index.js",
+  "module": "dist/scripts.esm.js",
+  "unpkg": "dist/scripts.js",
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean scripts styles",

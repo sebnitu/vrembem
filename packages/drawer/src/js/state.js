@@ -1,4 +1,4 @@
-import { addClass, hasClass, removeClass } from '@vrembem/core';
+import { addClass, hasClass, removeClass } from '@vrembem/core/index';
 
 export function stateSet(settings) {
   // If save state is disabled

@@ -40,6 +40,12 @@
     }
   };
 
+  /**
+   * Adds a class or classes to an element or NodeList
+   * ---
+   * @param {Node || NodeList} el - Element(s) to add class(es) to
+   * @param {String || Array} cl - Class(es) to add
+   */
   var addClass = function addClass(el) {
     for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       cl[_key - 1] = arguments[_key];
@@ -95,7 +101,7 @@
     obj.memory.trigger.focus();
     obj.memory.trigger = null;
   };
-  var FocusTrap = function () {
+  var FocusTrap = /*#__PURE__*/function () {
     function FocusTrap() {
       classCallCheck(this, FocusTrap);
 
@@ -176,12 +182,26 @@
     return FocusTrap;
   }();
 
+  /**
+   * Get an element(s) from a selector or return value if not a string
+   * ---
+   * @param {String} selector - Selector to query
+   * @param {Boolean} single - Whether to return a single or all matches
+   */
   var getElement = function getElement(selector) {
     var single = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
     if (typeof selector != 'string') return selector;
     return single ? document.querySelector(selector) : document.querySelectorAll(selector);
   };
 
+  /**
+   * Checks an element or NodeList whether they contain a class or classes
+   * Ref: https://davidwalsh.name/nodelist-array
+   * ---
+   * @param {Node} el - Element(s) to check class(es) on
+   * @param {String || Array} c - Class(es) to check
+   * @returns {Boolean} - Returns true if class exists, otherwise false
+   */
   var hasClass = function hasClass(el) {
     el = el.forEach ? el : [el];
     el = [].slice.call(el);
@@ -196,6 +216,14 @@
       });
     });
   };
+
+  /**
+   * Moves element(s) in the DOM based on a reference and move type
+   * ---
+   * @param {String} target - The element(s) to move
+   * @param {String} type - Move type can be 'after', 'before', 'append' or 'prepend'
+   * @param {String} reference - The reference element the move is relative to
+   */
 
   function moveElement(target, type) {
     var reference = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
@@ -246,6 +274,12 @@
     }
   }
 
+  /**
+   * Remove a class or classes from an element or NodeList
+   * ---
+   * @param {Node || NodeList} el - Element(s) to remove class(es) from
+   * @param {String || Array} cl - Class(es) to remove
+   */
   var removeClass = function removeClass(el) {
     for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       cl[_key - 1] = arguments[_key];
@@ -325,7 +359,7 @@
 
   function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-  var Checkbox = function () {
+  var Checkbox = /*#__PURE__*/function () {
     function Checkbox(options) {
       classCallCheck(this, Checkbox);
 
@@ -403,8 +437,6 @@
     return Checkbox;
   }();
 
-  var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
-
   function createCommonjsModule(fn, basedir, module) {
   	return module = {
   	  path: basedir,
@@ -440,25 +472,44 @@
   });
 
   var runtime_1 = createCommonjsModule(function (module) {
+    /**
+     * Copyright (c) 2014-present, Facebook, Inc.
+     *
+     * This source code is licensed under the MIT license found in the
+     * LICENSE file in the root directory of this source tree.
+     */
     var runtime = function (exports) {
 
       var Op = Object.prototype;
       var hasOwn = Op.hasOwnProperty;
-      var undefined$1;
+      var undefined$1; // More compressible than void 0.
+
       var $Symbol = typeof Symbol === "function" ? Symbol : {};
       var iteratorSymbol = $Symbol.iterator || "@@iterator";
       var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
       var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
 
       function wrap(innerFn, outerFn, self, tryLocsList) {
+        // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
         var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
         var generator = Object.create(protoGenerator.prototype);
-        var context = new Context(tryLocsList || []);
+        var context = new Context(tryLocsList || []); // The ._invoke method unifies the implementations of the .next,
+        // .throw, and .return methods.
+
         generator._invoke = makeInvokeMethod(innerFn, self, context);
         return generator;
       }
 
-      exports.wrap = wrap;
+      exports.wrap = wrap; // Try/catch helper to minimize deoptimizations. Returns a completion
+      // record like context.tryEntries[i].completion. This interface could
+      // have been (and was previously) designed to take a closure to be
+      // invoked without arguments, but in all the cases we care about we
+      // already have an existing method we want to call, so there's no need
+      // to create a new function object. We can even get away with assuming
+      // the method takes exactly one argument, since that happens to be true
+      // in every case, so we don't have to touch the arguments object. The
+      // only additional allocation required is the completion record, which
+      // has a stable shape and so hopefully should be cheap to allocate.
 
       function tryCatch(fn, obj, arg) {
         try {
@@ -477,14 +528,21 @@
       var GenStateSuspendedStart = "suspendedStart";
       var GenStateSuspendedYield = "suspendedYield";
       var GenStateExecuting = "executing";
-      var GenStateCompleted = "completed";
-      var ContinueSentinel = {};
+      var GenStateCompleted = "completed"; // Returning this object from the innerFn has the same effect as
+      // breaking out of the dispatch switch statement.
+
+      var ContinueSentinel = {}; // Dummy constructor functions that we use as the .constructor and
+      // .constructor.prototype properties for functions that return Generator
+      // objects. For full spec compliance, you may wish to configure your
+      // minifier not to mangle the names of these two functions.
 
       function Generator() {}
 
       function GeneratorFunction() {}
 
-      function GeneratorFunctionPrototype() {}
+      function GeneratorFunctionPrototype() {} // This is a polyfill for %IteratorPrototype% for environments that
+      // don't natively support it.
+
 
       var IteratorPrototype = {};
 
@@ -496,13 +554,16 @@
       var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
 
       if (NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+        // This environment has a native %IteratorPrototype%; use it instead
+        // of the polyfill.
         IteratorPrototype = NativeIteratorPrototype;
       }
 
       var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype);
       GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
       GeneratorFunctionPrototype.constructor = GeneratorFunction;
-      GeneratorFunctionPrototype[toStringTagSymbol] = GeneratorFunction.displayName = "GeneratorFunction";
+      GeneratorFunctionPrototype[toStringTagSymbol] = GeneratorFunction.displayName = "GeneratorFunction"; // Helper for defining the .next, .throw, and .return methods of the
+      // Iterator interface in terms of a single ._invoke method.
 
       function defineIteratorMethods(prototype) {
         ["next", "throw", "return"].forEach(function (method) {
@@ -514,7 +575,9 @@
 
       exports.isGeneratorFunction = function (genFun) {
         var ctor = typeof genFun === "function" && genFun.constructor;
-        return ctor ? ctor === GeneratorFunction || (ctor.displayName || ctor.name) === "GeneratorFunction" : false;
+        return ctor ? ctor === GeneratorFunction || // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction" : false;
       };
 
       exports.mark = function (genFun) {
@@ -530,7 +593,11 @@
 
         genFun.prototype = Object.create(Gp);
         return genFun;
-      };
+      }; // Within the body of any async function, `await x` is transformed to
+      // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+      // `hasOwn.call(value, "__await")` to determine if the yielded value is
+      // meant to be awaited.
+
 
       exports.awrap = function (arg) {
         return {
@@ -557,9 +624,14 @@
             }
 
             return PromiseImpl.resolve(value).then(function (unwrapped) {
+              // When a yielded Promise is resolved, its final value becomes
+              // the .value of the Promise<{value,done}> result for the
+              // current iteration.
               result.value = unwrapped;
               resolve(result);
             }, function (error) {
+              // If a rejected Promise was yielded, throw the rejection back
+              // into the async generator function so it can be handled there.
               return invoke("throw", error, resolve, reject);
             });
           }
@@ -574,8 +646,24 @@
             });
           }
 
-          return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
-        }
+          return previousPromise = // If enqueue has been called before, then we want to wait until
+          // all previous Promises have been resolved before calling invoke,
+          // so that results are always delivered in the correct order. If
+          // enqueue has not been called before, then it is important to
+          // call invoke immediately, without waiting on a callback to fire,
+          // so that the async generator function has the opportunity to do
+          // any necessary setup in a predictable way. This predictability
+          // is why the Promise constructor synchronously invokes its
+          // executor callback, and why async functions synchronously
+          // execute code before the first await. Since we implement simple
+          // async functions in terms of async generators, it is especially
+          // important to get this right, even though it requires care.
+          previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, // Avoid propagating failures to Promises returned by later
+          // invocations of the iterator.
+          callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
+        } // Define the unified helper method that is used to implement .next,
+        // .throw, and .return (see defineIteratorMethods).
+
 
         this._invoke = enqueue;
       }
@@ -586,12 +674,15 @@
         return this;
       };
 
-      exports.AsyncIterator = AsyncIterator;
+      exports.AsyncIterator = AsyncIterator; // Note that simple async functions are implemented on top of
+      // AsyncIterator objects; they just return a Promise for the value of
+      // the final result produced by the iterator.
 
       exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) {
         if (PromiseImpl === void 0) PromiseImpl = Promise;
         var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl);
-        return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) {
+        return exports.isGeneratorFunction(outerFn) ? iter // If outerFn is a generator, return the full iterator.
+        : iter.next().then(function (result) {
           return result.done ? result.value : iter.next();
         });
       };
@@ -606,7 +697,9 @@
           if (state === GenStateCompleted) {
             if (method === "throw") {
               throw arg;
-            }
+            } // Be forgiving, per 25.3.3.3.3 of the spec:
+            // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+
 
             return doneResult();
           }
@@ -627,6 +720,8 @@
             }
 
             if (context.method === "next") {
+              // Setting context._sent for legacy support of Babel's
+              // function.sent implementation.
               context.sent = context._sent = context.arg;
             } else if (context.method === "throw") {
               if (state === GenStateSuspendedStart) {
@@ -643,6 +738,8 @@
             var record = tryCatch(innerFn, self, context);
 
             if (record.type === "normal") {
+              // If an exception is thrown from innerFn, we leave state ===
+              // GenStateExecuting and loop back for another invocation.
               state = context.done ? GenStateCompleted : GenStateSuspendedYield;
 
               if (record.arg === ContinueSentinel) {
@@ -654,27 +751,40 @@
                 done: context.done
               };
             } else if (record.type === "throw") {
-              state = GenStateCompleted;
+              state = GenStateCompleted; // Dispatch the exception by looping back around to the
+              // context.dispatchException(context.arg) call above.
+
               context.method = "throw";
               context.arg = record.arg;
             }
           }
         };
-      }
+      } // Call delegate.iterator[context.method](context.arg) and handle the
+      // result, either by returning a { value, done } result from the
+      // delegate iterator, or by modifying context.method and context.arg,
+      // setting context.delegate to null, and returning the ContinueSentinel.
+
 
       function maybeInvokeDelegate(delegate, context) {
         var method = delegate.iterator[context.method];
 
         if (method === undefined$1) {
+          // A .throw or .return when the delegate iterator has no .throw
+          // method always terminates the yield* loop.
           context.delegate = null;
 
           if (context.method === "throw") {
+            // Note: ["return"] must be used for ES3 parsing compatibility.
             if (delegate.iterator["return"]) {
+              // If the delegate iterator has a return method, give it a
+              // chance to clean up.
               context.method = "return";
               context.arg = undefined$1;
               maybeInvokeDelegate(delegate, context);
 
               if (context.method === "throw") {
+                // If maybeInvokeDelegate(context) changed context.method from
+                // "return" to "throw", let that override the TypeError below.
                 return ContinueSentinel;
               }
             }
@@ -705,23 +815,40 @@
         }
 
         if (info.done) {
-          context[delegate.resultName] = info.value;
-          context.next = delegate.nextLoc;
+          // Assign the result of the finished delegate to the temporary
+          // variable specified by delegate.resultName (see delegateYield).
+          context[delegate.resultName] = info.value; // Resume execution at the desired location (see delegateYield).
+
+          context.next = delegate.nextLoc; // If context.method was "throw" but the delegate handled the
+          // exception, let the outer generator proceed normally. If
+          // context.method was "next", forget context.arg since it has been
+          // "consumed" by the delegate iterator. If context.method was
+          // "return", allow the original .return call to continue in the
+          // outer generator.
 
           if (context.method !== "return") {
             context.method = "next";
             context.arg = undefined$1;
           }
         } else {
+          // Re-yield the result returned by the delegate method.
           return info;
-        }
+        } // The delegate iterator is finished, so forget it and continue with
+        // the outer generator.
+
 
         context.delegate = null;
         return ContinueSentinel;
-      }
+      } // Define Generator.prototype.{next,throw,return} in terms of the
+      // unified ._invoke helper method.
+
 
       defineIteratorMethods(Gp);
-      Gp[toStringTagSymbol] = "Generator";
+      Gp[toStringTagSymbol] = "Generator"; // A Generator should always return itself as the iterator object when the
+      // @@iterator function is called on it. Some browsers' implementations of the
+      // iterator prototype chain incorrectly implement this, causing the Generator
+      // object to not be returned from this call. This ensures that doesn't happen.
+      // See https://github.com/facebook/regenerator/issues/274 for more details.
 
       Gp[iteratorSymbol] = function () {
         return this;
@@ -756,6 +883,9 @@
       }
 
       function Context(tryLocsList) {
+        // The root entry object (effectively a try statement without a catch
+        // or a finally block) gives us a place to store values thrown from
+        // locations where there is no enclosing try statement.
         this.tryEntries = [{
           tryLoc: "root"
         }];
@@ -770,7 +900,9 @@
           keys.push(key);
         }
 
-        keys.reverse();
+        keys.reverse(); // Rather than returning an object with a next method, we keep
+        // things simple and return the next function itself.
+
         return function next() {
           while (keys.length) {
             var key = keys.pop();
@@ -780,7 +912,10 @@
               next.done = false;
               return next;
             }
-          }
+          } // To avoid creating an additional object, we just hang the .value
+          // and .done properties off the next function object itself. This
+          // also ensures that the minifier will not anonymize the function.
+
 
           next.done = true;
           return next;
@@ -817,7 +952,8 @@
 
             return next.next = next;
           }
-        }
+        } // Return an iterator with no values.
+
 
         return {
           next: doneResult
@@ -837,7 +973,9 @@
         constructor: Context,
         reset: function reset(skipTempReset) {
           this.prev = 0;
-          this.next = 0;
+          this.next = 0; // Resetting context._sent for legacy support of Babel's
+          // function.sent implementation.
+
           this.sent = this._sent = undefined$1;
           this.done = false;
           this.delegate = null;
@@ -847,6 +985,7 @@
 
           if (!skipTempReset) {
             for (var name in this) {
+              // Not sure about the optimal order of these conditions:
               if (name.charAt(0) === "t" && hasOwn.call(this, name) && !isNaN(+name.slice(1))) {
                 this[name] = undefined$1;
               }
@@ -877,6 +1016,8 @@
             context.next = loc;
 
             if (caught) {
+              // If the dispatched exception was caught by a catch block,
+              // then let that catch block handle the exception normally.
               context.method = "next";
               context.arg = undefined$1;
             }
@@ -889,6 +1030,9 @@
             var record = entry.completion;
 
             if (entry.tryLoc === "root") {
+              // Exception thrown outside of any try block that could handle
+              // it, so set the completion value of the entire function to
+              // throw the exception.
               return handle("end");
             }
 
@@ -927,6 +1071,8 @@
           }
 
           if (finallyEntry && (type === "break" || type === "continue") && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc) {
+            // Ignore the finally entry if control is not jumping to a
+            // location outside the try/catch block.
             finallyEntry = null;
           }
 
@@ -984,7 +1130,9 @@
 
               return thrown;
             }
-          }
+          } // The context.catch method must only be called with a location
+          // argument that corresponds to a known catch block.
+
 
           throw new Error("illegal catch attempt");
         },
@@ -996,18 +1144,37 @@
           };
 
           if (this.method === "next") {
+            // Deliberately forget the last sent value so that we don't
+            // accidentally pass it on to the delegate.
             this.arg = undefined$1;
           }
 
           return ContinueSentinel;
         }
-      };
+      }; // Regardless of whether this script is executing as a CommonJS module
+      // or not, return the runtime object so that we can declare the variable
+      // regeneratorRuntime in the outer scope, which allows this module to be
+      // injected easily by `bin/regenerator --include-runtime script.js`.
+
       return exports;
-    }( module.exports );
+    }( // If this script is executing as a CommonJS module, use module.exports
+    // as the regeneratorRuntime namespace. Otherwise create a new empty
+    // object. Either way, the resulting object will be used to initialize
+    // the regeneratorRuntime variable at the top of this file.
+     module.exports );
 
     try {
       regeneratorRuntime = runtime;
     } catch (accidentalStrictMode) {
+      // This module should not be running in strict mode, so the above
+      // assignment should always work unless something is misconfigured. Just
+      // in case runtime.js accidentally runs in strict mode, we can escape
+      // strict mode using a global Function call. This could conceivably fail
+      // if a Content Security Policy forbids using Function, but in that case
+      // the proper solution is to fix the accidental strict mode problem. If
+      // you've misconfigured your bundler to force strict mode and applied a
+      // CSP to forbid Function, and you're not willing to fix either of those
+      // problems, please detail your unique predicament in a GitHub issue.
       Function("r", "regeneratorRuntime = r")(runtime);
     }
   });
@@ -1054,6 +1221,7 @@
 
   var defaults = {
     autoInit: false,
+    // Data attributes
     dataDrawer: 'drawer',
     dataDialog: 'drawer-dialog',
     dataToggle: 'drawer-toggle',
@@ -1061,13 +1229,17 @@
     dataClose: 'drawer-close',
     dataBreakpoint: 'drawer-breakpoint',
     dataFocus: 'drawer-focus',
+    // State classes
     stateOpened: 'is-opened',
     stateOpening: 'is-opening',
     stateClosing: 'is-closing',
     stateClosed: 'is-closed',
+    // Classes
     classModal: 'drawer_modal',
+    // Selectors
     selectorInert: null,
     selectorOverflow: null,
+    // Feature toggles
     breakpoints: breakpoints,
     customEventPrefix: 'drawer:',
     stateSave: true,
@@ -1081,12 +1253,13 @@
   }
 
   function _switchToModal() {
-    _switchToModal = asyncToGenerator(regenerator.mark(function _callee(drawerKey, obj) {
+    _switchToModal = asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(drawerKey, obj) {
       var drawer;
       return regenerator.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              // Initial guards
               drawer = obj.getDrawer(drawerKey);
 
               if (drawer) {
@@ -1105,9 +1278,11 @@
               return _context.abrupt("return");
 
             case 5:
+              // Enable modal state
               addClass(drawer, obj.settings.classModal);
               addClass(drawer, obj.settings.stateClosed);
-              removeClass(drawer, obj.settings.stateOpened);
+              removeClass(drawer, obj.settings.stateOpened); // Dispatch custom event
+
               drawer.dispatchEvent(new CustomEvent(obj.settings.customEventPrefix + 'toModal', {
                 bubbles: true
               }));
@@ -1128,12 +1303,13 @@
   }
 
   function _switchToDefault() {
-    _switchToDefault = asyncToGenerator(regenerator.mark(function _callee2(drawerKey, obj) {
+    _switchToDefault = asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee2(drawerKey, obj) {
       var drawer, drawerState;
       return regenerator.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
+              // Initial guards
               drawer = obj.getDrawer(drawerKey);
 
               if (drawer) {
@@ -1152,17 +1328,20 @@
               return _context2.abrupt("return");
 
             case 5:
+              // Tear down modal state
               setInert(false, obj.settings.selectorInert);
               setOverflowHidden(false, obj.settings.selectorOverflow);
               removeClass(drawer, obj.settings.classModal);
-              obj.focusTrap.destroy();
+              obj.focusTrap.destroy(); // Restore drawers saved state
+
               drawerKey = drawer.getAttribute("data-".concat(obj.settings.dataDrawer));
               drawerState = obj.state[drawerKey];
 
               if (drawerState == obj.settings.stateOpened) {
                 addClass(drawer, obj.settings.stateOpened);
                 removeClass(drawer, obj.settings.stateClosed);
-              }
+              } // Dispatch custom event
+
 
               drawer.dispatchEvent(new CustomEvent(obj.settings.customEventPrefix + 'toDefault', {
                 bubbles: true
@@ -1179,7 +1358,7 @@
     return _switchToDefault.apply(this, arguments);
   }
 
-  var Breakpoint = function () {
+  var Breakpoint = /*#__PURE__*/function () {
     function Breakpoint(parent) {
       classCallCheck(this, Breakpoint);
 
@@ -1232,6 +1411,8 @@
 
         if (this.mediaQueryLists && this.mediaQueryLists.length) {
           this.mediaQueryLists.forEach(function (item) {
+            // If an event is passed, filter out drawers that don't match the query
+            // If event is null, run all drawers through match
             var filter = event ? event.media == item.mql.media : true;
             if (!filter) return;
             var drawer = document.querySelector("[data-".concat(_this3.parent.settings.dataDrawer, "=\"").concat(item.drawer, "\"]"));
@@ -1257,7 +1438,9 @@
   }();
 
   function handlerClick(event) {
-    if (this.working) return;
+    // Working catch
+    if (this.working) return; // Toggle data trigger
+
     var trigger = event.target.closest("[data-".concat(this.settings.dataToggle, "]"));
 
     if (trigger) {
@@ -1266,7 +1449,8 @@
       this.toggle(selector);
       event.preventDefault();
       return;
-    }
+    } // Open data trigger
+
 
     trigger = event.target.closest("[data-".concat(this.settings.dataOpen, "]"));
 
@@ -1277,7 +1461,8 @@
       this.open(_selector);
       event.preventDefault();
       return;
-    }
+    } // Close data trigger
+
 
     trigger = event.target.closest("[data-".concat(this.settings.dataClose, "]"));
 
@@ -1294,7 +1479,8 @@
 
       event.preventDefault();
       return;
-    }
+    } // Screen modal trigger
+
 
     if (event.target.hasAttribute("data-".concat(this.settings.dataDrawer))) {
       this.close(event.target);
@@ -1302,6 +1488,7 @@
     }
   }
   function handlerKeyup(event) {
+    // Working catch
     if (this.working) return;
 
     if (event.keyCode == 27) {
@@ -1314,8 +1501,11 @@
   }
 
   function stateSet(settings) {
-    if (!settings.stateSave) return stateClear(settings);
-    if (!localStorage.getItem(settings.stateKey)) return stateSave(null, settings);
+    // If save state is disabled
+    if (!settings.stateSave) return stateClear(settings); // If there isn't an existing state to set
+
+    if (!localStorage.getItem(settings.stateKey)) return stateSave(null, settings); // Set the existing state
+
     var state = JSON.parse(localStorage.getItem(settings.stateKey));
     Object.keys(state).forEach(function (key) {
       var item = document.querySelector("[data-".concat(settings.dataDrawer, "=\"").concat(key, "\"]"));
@@ -1325,14 +1515,19 @@
     return state;
   }
   function stateSave(target, settings) {
-    if (!settings.stateSave) return stateClear(settings);
-    var state = localStorage.getItem(settings.stateKey) ? JSON.parse(localStorage.getItem(settings.stateKey)) : {};
-    var drawers = target ? [target] : document.querySelectorAll("[data-".concat(settings.dataDrawer, "]"));
+    // If save state is disabled
+    if (!settings.stateSave) return stateClear(settings); // Get the currently saved object if it exists
+
+    var state = localStorage.getItem(settings.stateKey) ? JSON.parse(localStorage.getItem(settings.stateKey)) : {}; // Are we saving a single target or the entire suite?
+
+    var drawers = target ? [target] : document.querySelectorAll("[data-".concat(settings.dataDrawer, "]")); // Loop through drawers and save their states
+
     drawers.forEach(function (el) {
       if (hasClass(el, settings.classModal)) return;
       var drawerKey = el.getAttribute("data-".concat(settings.dataDrawer));
       state[drawerKey] = hasClass(el, settings.stateOpened) ? settings.stateOpened : settings.stateClosed;
-    });
+    }); // Save to localStorage and return the state
+
     localStorage.setItem(settings.stateKey, JSON.stringify(state));
     return state;
   }
@@ -1348,7 +1543,7 @@
 
   function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-  var Drawer = function () {
+  var Drawer = /*#__PURE__*/function () {
     function Drawer(options) {
       classCallCheck(this, Drawer);
 
@@ -1387,6 +1582,10 @@
         document.removeEventListener('touchend', this.__handlerClick, false);
         document.removeEventListener('keyup', this.__handlerKeyup, false);
       }
+      /**
+       * Helpers
+       */
+
     }, {
       key: "getDrawer",
       value: function getDrawer(drawerKey) {
@@ -1406,6 +1605,10 @@
 
         setTabindex(state, selectorTabindex);
       }
+      /**
+       * Save state functionality
+       */
+
     }, {
       key: "stateSet",
       value: function stateSet$1() {
@@ -1422,6 +1625,10 @@
       value: function stateClear$1() {
         this.state = stateClear(this.settings);
       }
+      /**
+       * SwitchTo functionality
+       */
+
     }, {
       key: "switchToDefault",
       value: function switchToDefault$1(drawerKey) {
@@ -1432,10 +1639,14 @@
       value: function switchToModal$1(drawerKey) {
         return switchToModal(drawerKey, this);
       }
+      /**
+       * Change state functionality
+       */
+
     }, {
       key: "toggle",
       value: function () {
-        var _toggle = asyncToGenerator(regenerator.mark(function _callee(drawerKey) {
+        var _toggle = asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(drawerKey) {
           var drawer, isOpen;
           return regenerator.wrap(function _callee$(_context) {
             while (1) {
@@ -1480,7 +1691,7 @@
     }, {
       key: "open",
       value: function () {
-        var _open = asyncToGenerator(regenerator.mark(function _callee2(drawerKey) {
+        var _open = asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee2(drawerKey) {
           var drawer, isModal;
           return regenerator.wrap(function _callee2$(_context2) {
             while (1) {
@@ -1547,7 +1758,7 @@
     }, {
       key: "close",
       value: function () {
-        var _close = asyncToGenerator(regenerator.mark(function _callee3(drawerKey) {
+        var _close = asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee3(drawerKey) {
           var drawer;
           return regenerator.wrap(function _callee3$(_context3) {
             while (1) {
@@ -1612,18 +1823,22 @@
 
   var defaults$1 = {
     autoInit: false,
+    // Data attributes
     dataModal: 'modal',
     dataDialog: 'modal-dialog',
     dataOpen: 'modal-open',
     dataClose: 'modal-close',
     dataFocus: 'modal-focus',
     dataRequired: 'modal-required',
+    // State classes
     stateOpened: 'is-opened',
     stateOpening: 'is-opening',
     stateClosing: 'is-closing',
     stateClosed: 'is-closed',
+    // Selector
     selectorInert: null,
     selectorOverflow: 'body',
+    // Feature toggles
     customEventPrefix: 'modal:',
     moveModals: {
       ref: null,
@@ -1638,7 +1853,7 @@
   }
 
   function _handlerClick() {
-    _handlerClick = asyncToGenerator(regenerator.mark(function _callee(event) {
+    _handlerClick = asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(event) {
       var trigger, modalKey, fromModal;
       return regenerator.wrap(function _callee$(_context) {
         while (1) {
@@ -1652,6 +1867,7 @@
               return _context.abrupt("return");
 
             case 2:
+              // Trigger click
               trigger = event.target.closest("[data-".concat(this.settings.dataOpen, "]"));
 
               if (!trigger) {
@@ -1700,6 +1916,7 @@
   }
 
   function handlerKeyup$1(event) {
+    // Working catch
     if (this.working) return;
 
     if (event.key === 'Escape' || event.keyCode === 27) {
@@ -1730,7 +1947,7 @@
 
   function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-  var Modal = function () {
+  var Modal = /*#__PURE__*/function () {
     function Modal(options) {
       classCallCheck(this, Modal);
 
@@ -1764,6 +1981,10 @@
         document.removeEventListener('touchend', this.__handlerClick, false);
         document.removeEventListener('keyup', this.__handlerKeyup, false);
       }
+      /**
+       * Helpers
+       */
+
     }, {
       key: "getModal",
       value: function getModal(modalKey) {
@@ -1796,10 +2017,14 @@
         var modals = document.querySelectorAll("[data-".concat(this.settings.dataModal, "]"));
         if (modals.length) moveElement(modals, type, ref);
       }
+      /**
+       * Change state functionality
+       */
+
     }, {
       key: "open",
       value: function () {
-        var _open = asyncToGenerator(regenerator.mark(function _callee(modalKey) {
+        var _open = asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee(modalKey) {
           var modal;
           return regenerator.wrap(function _callee$(_context) {
             while (1) {
@@ -1855,7 +2080,7 @@
     }, {
       key: "close",
       value: function () {
-        var _close = asyncToGenerator(regenerator.mark(function _callee2() {
+        var _close = asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee2() {
           var returnFocus,
               modal,
               _args2 = arguments;
@@ -1908,413 +2133,76 @@
     return Modal;
   }();
 
-  var FUNC_ERROR_TEXT = 'Expected a function';
-  var NAN = 0 / 0;
-  var symbolTag = '[object Symbol]';
-  var reTrim = /^\s+|\s+$/g;
-  var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
-  var reIsBinary = /^0b[01]+$/i;
-  var reIsOctal = /^0o[0-7]+$/i;
-  var freeParseInt = parseInt;
-  var freeGlobal = _typeof_1(commonjsGlobal) == 'object' && commonjsGlobal && commonjsGlobal.Object === Object && commonjsGlobal;
-  var freeSelf = (typeof self === "undefined" ? "undefined" : _typeof_1(self)) == 'object' && self && self.Object === Object && self;
-  var root = freeGlobal || freeSelf || Function('return this')();
-  var objectProto = Object.prototype;
-  var objectToString = objectProto.toString;
-  var nativeMax = Math.max,
-      nativeMin = Math.min;
-
-  var now = function now() {
-    return root.Date.now();
-  };
-
-  function debounce(func, wait, options) {
-    var lastArgs,
-        lastThis,
-        maxWait,
-        result,
-        timerId,
-        lastCallTime,
-        lastInvokeTime = 0,
-        leading = false,
-        maxing = false,
-        trailing = true;
-
-    if (typeof func != 'function') {
-      throw new TypeError(FUNC_ERROR_TEXT);
+  function _classCallCheck$1(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
     }
-
-    wait = toNumber(wait) || 0;
-
-    if (isObject(options)) {
-      leading = !!options.leading;
-      maxing = 'maxWait' in options;
-      maxWait = maxing ? nativeMax(toNumber(options.maxWait) || 0, wait) : maxWait;
-      trailing = 'trailing' in options ? !!options.trailing : trailing;
-    }
-
-    function invokeFunc(time) {
-      var args = lastArgs,
-          thisArg = lastThis;
-      lastArgs = lastThis = undefined;
-      lastInvokeTime = time;
-      result = func.apply(thisArg, args);
-      return result;
-    }
-
-    function leadingEdge(time) {
-      lastInvokeTime = time;
-      timerId = setTimeout(timerExpired, wait);
-      return leading ? invokeFunc(time) : result;
-    }
-
-    function remainingWait(time) {
-      var timeSinceLastCall = time - lastCallTime,
-          timeSinceLastInvoke = time - lastInvokeTime,
-          result = wait - timeSinceLastCall;
-      return maxing ? nativeMin(result, maxWait - timeSinceLastInvoke) : result;
-    }
-
-    function shouldInvoke(time) {
-      var timeSinceLastCall = time - lastCallTime,
-          timeSinceLastInvoke = time - lastInvokeTime;
-      return lastCallTime === undefined || timeSinceLastCall >= wait || timeSinceLastCall < 0 || maxing && timeSinceLastInvoke >= maxWait;
-    }
-
-    function timerExpired() {
-      var time = now();
-
-      if (shouldInvoke(time)) {
-        return trailingEdge(time);
-      }
-
-      timerId = setTimeout(timerExpired, remainingWait(time));
-    }
-
-    function trailingEdge(time) {
-      timerId = undefined;
-
-      if (trailing && lastArgs) {
-        return invokeFunc(time);
-      }
-
-      lastArgs = lastThis = undefined;
-      return result;
-    }
-
-    function cancel() {
-      if (timerId !== undefined) {
-        clearTimeout(timerId);
-      }
-
-      lastInvokeTime = 0;
-      lastArgs = lastCallTime = lastThis = timerId = undefined;
-    }
-
-    function flush() {
-      return timerId === undefined ? result : trailingEdge(now());
-    }
-
-    function debounced() {
-      var time = now(),
-          isInvoking = shouldInvoke(time);
-      lastArgs = arguments;
-      lastThis = this;
-      lastCallTime = time;
-
-      if (isInvoking) {
-        if (timerId === undefined) {
-          return leadingEdge(lastCallTime);
-        }
-
-        if (maxing) {
-          timerId = setTimeout(timerExpired, wait);
-          return invokeFunc(lastCallTime);
-        }
-      }
-
-      if (timerId === undefined) {
-        timerId = setTimeout(timerExpired, wait);
-      }
-
-      return result;
-    }
-
-    debounced.cancel = cancel;
-    debounced.flush = flush;
-    return debounced;
   }
 
-  function throttle(func, wait, options) {
-    var leading = true,
-        trailing = true;
-
-    if (typeof func != 'function') {
-      throw new TypeError(FUNC_ERROR_TEXT);
+  function _defineProperties$1(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
     }
-
-    if (isObject(options)) {
-      leading = 'leading' in options ? !!options.leading : leading;
-      trailing = 'trailing' in options ? !!options.trailing : trailing;
-    }
-
-    return debounce(func, wait, {
-      'leading': leading,
-      'maxWait': wait,
-      'trailing': trailing
-    });
   }
 
-  function isObject(value) {
-    var type = _typeof_1(value);
-
-    return !!value && (type == 'object' || type == 'function');
+  function _createClass$1(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties$1(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties$1(Constructor, staticProps);
+    return Constructor;
   }
 
-  function isObjectLike(value) {
-    return !!value && _typeof_1(value) == 'object';
+  function _defineProperty$1(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+
+    return obj;
   }
 
-  function isSymbol(value) {
-    return _typeof_1(value) == 'symbol' || isObjectLike(value) && objectToString.call(value) == symbolTag;
+  function ownKeys$3(object, enumerableOnly) {
+    var keys = Object.keys(object);
+
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly) symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+      keys.push.apply(keys, symbols);
+    }
+
+    return keys;
   }
 
-  function toNumber(value) {
-    if (typeof value == 'number') {
-      return value;
+  function _objectSpread2(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+
+      if (i % 2) {
+        ownKeys$3(Object(source), true).forEach(function (key) {
+          _defineProperty$1(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys$3(Object(source)).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
+      }
     }
 
-    if (isSymbol(value)) {
-      return NAN;
-    }
-
-    if (isObject(value)) {
-      var other = typeof value.valueOf == 'function' ? value.valueOf() : value;
-      value = isObject(other) ? other + '' : other;
-    }
-
-    if (typeof value != 'string') {
-      return value === 0 ? value : +value;
-    }
-
-    value = value.replace(reTrim, '');
-    var isBinary = reIsBinary.test(value);
-    return isBinary || reIsOctal.test(value) ? freeParseInt(value.slice(2), isBinary ? 2 : 8) : reIsBadHex.test(value) ? NAN : +value;
+    return target;
   }
-
-  var lodash_throttle = throttle;
-
-  var lodash_isempty = createCommonjsModule(function (module, exports) {
-    var MAX_SAFE_INTEGER = 9007199254740991;
-    var argsTag = '[object Arguments]',
-        funcTag = '[object Function]',
-        genTag = '[object GeneratorFunction]',
-        mapTag = '[object Map]',
-        objectTag = '[object Object]',
-        promiseTag = '[object Promise]',
-        setTag = '[object Set]',
-        weakMapTag = '[object WeakMap]';
-    var dataViewTag = '[object DataView]';
-    var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
-    var reIsHostCtor = /^\[object .+?Constructor\]$/;
-    var freeGlobal = _typeof_1(commonjsGlobal) == 'object' && commonjsGlobal && commonjsGlobal.Object === Object && commonjsGlobal;
-    var freeSelf = (typeof self === "undefined" ? "undefined" : _typeof_1(self)) == 'object' && self && self.Object === Object && self;
-    var root = freeGlobal || freeSelf || Function('return this')();
-    var freeExports =  exports && !exports.nodeType && exports;
-    var freeModule = freeExports && 'object' == 'object' && module && !module.nodeType && module;
-    var moduleExports = freeModule && freeModule.exports === freeExports;
-
-    function getValue(object, key) {
-      return object == null ? undefined : object[key];
-    }
-
-    function isHostObject(value) {
-      var result = false;
-
-      if (value != null && typeof value.toString != 'function') {
-        try {
-          result = !!(value + '');
-        } catch (e) {}
-      }
-
-      return result;
-    }
-
-    function overArg(func, transform) {
-      return function (arg) {
-        return func(transform(arg));
-      };
-    }
-
-    var funcProto = Function.prototype,
-        objectProto = Object.prototype;
-    var coreJsData = root['__core-js_shared__'];
-
-    var maskSrcKey = function () {
-      var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || '');
-      return uid ? 'Symbol(src)_1.' + uid : '';
-    }();
-
-    var funcToString = funcProto.toString;
-    var hasOwnProperty = objectProto.hasOwnProperty;
-    var objectToString = objectProto.toString;
-    var reIsNative = RegExp('^' + funcToString.call(hasOwnProperty).replace(reRegExpChar, '\\$&').replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$');
-    var Buffer = moduleExports ? root.Buffer : undefined,
-        propertyIsEnumerable = objectProto.propertyIsEnumerable;
-    var nativeIsBuffer = Buffer ? Buffer.isBuffer : undefined,
-        nativeKeys = overArg(Object.keys, Object);
-    var DataView = getNative(root, 'DataView'),
-        Map = getNative(root, 'Map'),
-        Promise = getNative(root, 'Promise'),
-        Set = getNative(root, 'Set'),
-        WeakMap = getNative(root, 'WeakMap');
-    var nonEnumShadows = !propertyIsEnumerable.call({
-      'valueOf': 1
-    }, 'valueOf');
-    var dataViewCtorString = toSource(DataView),
-        mapCtorString = toSource(Map),
-        promiseCtorString = toSource(Promise),
-        setCtorString = toSource(Set),
-        weakMapCtorString = toSource(WeakMap);
-
-    function baseGetTag(value) {
-      return objectToString.call(value);
-    }
-
-    function baseIsNative(value) {
-      if (!isObject(value) || isMasked(value)) {
-        return false;
-      }
-
-      var pattern = isFunction(value) || isHostObject(value) ? reIsNative : reIsHostCtor;
-      return pattern.test(toSource(value));
-    }
-
-    function getNative(object, key) {
-      var value = getValue(object, key);
-      return baseIsNative(value) ? value : undefined;
-    }
-
-    var getTag = baseGetTag;
-
-    if (DataView && getTag(new DataView(new ArrayBuffer(1))) != dataViewTag || Map && getTag(new Map()) != mapTag || Promise && getTag(Promise.resolve()) != promiseTag || Set && getTag(new Set()) != setTag || WeakMap && getTag(new WeakMap()) != weakMapTag) {
-      getTag = function getTag(value) {
-        var result = objectToString.call(value),
-            Ctor = result == objectTag ? value.constructor : undefined,
-            ctorString = Ctor ? toSource(Ctor) : undefined;
-
-        if (ctorString) {
-          switch (ctorString) {
-            case dataViewCtorString:
-              return dataViewTag;
-
-            case mapCtorString:
-              return mapTag;
-
-            case promiseCtorString:
-              return promiseTag;
-
-            case setCtorString:
-              return setTag;
-
-            case weakMapCtorString:
-              return weakMapTag;
-          }
-        }
-
-        return result;
-      };
-    }
-
-    function isMasked(func) {
-      return !!maskSrcKey && maskSrcKey in func;
-    }
-
-    function isPrototype(value) {
-      var Ctor = value && value.constructor,
-          proto = typeof Ctor == 'function' && Ctor.prototype || objectProto;
-      return value === proto;
-    }
-
-    function toSource(func) {
-      if (func != null) {
-        try {
-          return funcToString.call(func);
-        } catch (e) {}
-
-        try {
-          return func + '';
-        } catch (e) {}
-      }
-
-      return '';
-    }
-
-    function isArguments(value) {
-      return isArrayLikeObject(value) && hasOwnProperty.call(value, 'callee') && (!propertyIsEnumerable.call(value, 'callee') || objectToString.call(value) == argsTag);
-    }
-
-    var isArray = Array.isArray;
-
-    function isArrayLike(value) {
-      return value != null && isLength(value.length) && !isFunction(value);
-    }
-
-    function isArrayLikeObject(value) {
-      return isObjectLike(value) && isArrayLike(value);
-    }
-
-    var isBuffer = nativeIsBuffer || stubFalse;
-
-    function isEmpty(value) {
-      if (isArrayLike(value) && (isArray(value) || typeof value == 'string' || typeof value.splice == 'function' || isBuffer(value) || isArguments(value))) {
-        return !value.length;
-      }
-
-      var tag = getTag(value);
-
-      if (tag == mapTag || tag == setTag) {
-        return !value.size;
-      }
-
-      if (nonEnumShadows || isPrototype(value)) {
-        return !nativeKeys(value).length;
-      }
-
-      for (var key in value) {
-        if (hasOwnProperty.call(value, key)) {
-          return false;
-        }
-      }
-
-      return true;
-    }
-
-    function isFunction(value) {
-      var tag = isObject(value) ? objectToString.call(value) : '';
-      return tag == funcTag || tag == genTag;
-    }
-
-    function isLength(value) {
-      return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
-    }
-
-    function isObject(value) {
-      var type = _typeof_1(value);
-
-      return !!value && (type == 'object' || type == 'function');
-    }
-
-    function isObjectLike(value) {
-      return !!value && _typeof_1(value) == 'object';
-    }
-
-    function stubFalse() {
-      return false;
-    }
-
-    module.exports = isEmpty;
-  });
 
   var defaults$2 = {
     autoInit: false,
@@ -2325,7 +2213,9 @@
     selectorTopElem: '',
     selectorBotElem: '',
     alignment: 'nearest',
+    // start | end | nearest
     behavior: 'auto',
+    // auto | smooth
     anchorPadding: 16,
     saveKey: 'ScrollStash',
     throttleDelay: 100,
@@ -2342,6 +2232,7 @@
 
     return anchor.offsetTop - pos;
   };
+
   var anchorPositionEnd = function anchorPositionEnd(el, anchor, settings) {
     var pos = settings.anchorPadding;
 
@@ -2352,11 +2243,13 @@
 
     return anchor.offsetTop - (el.offsetHeight - (anchor.offsetHeight + pos));
   };
+
   var anchorPositionCenter = function anchorPositionCenter(el, anchor, settings) {
     var posTop = anchorPositionStart(el, anchor, settings);
     var posBot = anchorPositionEnd(el, anchor, settings);
     return posBot + (posTop - posBot) / 2;
   };
+
   var anchorPositionNearest = function anchorPositionNearest(el, anchor, settings) {
     var posTop = anchorPositionStart(el, anchor, settings);
     var posBot = anchorPositionEnd(el, anchor, settings);
@@ -2364,12 +2257,14 @@
     if (el.scrollTop < posBot) return posBot;
     return false;
   };
+
   var anchorInView = function anchorInView(el, anchor, settings) {
     var posTop = anchorPositionStart(el, anchor, settings);
     var posBot = anchorPositionEnd(el, anchor, settings);
     if (el.scrollTop > posTop || el.scrollTop < posBot) return false;
     return true;
   };
+
   var anchorPositionGet = function anchorPositionGet(el, anchor, settings) {
     var inView = anchorInView(el, anchor, settings);
 
@@ -2411,6 +2306,7 @@
 
     return selectorAnchor ? selectorAnchor : null;
   };
+
   var anchorShow = function anchorShow(el, behavior, settings) {
     var anchor = anchorGet(el, settings);
 
@@ -2470,6 +2366,7 @@
     }));
     return state;
   };
+
   var stateSet$1 = function stateSet(settings) {
     if (localStorage.getItem(settings.saveKey)) {
       var state = JSON.parse(localStorage.getItem(settings.saveKey));
@@ -2489,36 +2386,30 @@
     }
   };
 
-  function ownKeys$3(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-  function _objectSpread$3(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$3(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$3(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-  var ScrollStash = function () {
+  var ScrollStash = /*#__PURE__*/function () {
     function ScrollStash(options) {
-      classCallCheck(this, ScrollStash);
+      _classCallCheck$1(this, ScrollStash);
 
-      this.settings = _objectSpread$3(_objectSpread$3({}, defaults$2), options);
+      this.settings = _objectSpread2(_objectSpread2({}, defaults$2), options);
       this.state = {};
       this.scrolls = [];
-      this.throttleRef = lodash_throttle(this.handler, this.settings.throttleDelay, {
-        leading: false
-      }).bind(this);
+      this.ticking = false;
+      this.handlerRef = this.handler.bind(this);
       if (this.settings.autoInit) this.init();
     }
 
-    createClass(ScrollStash, [{
+    _createClass$1(ScrollStash, [{
       key: "init",
       value: function init() {
         var _this = this;
 
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-        if (options) this.settings = _objectSpread$3(_objectSpread$3({}, this.settings), options);
+        if (options) this.settings = _objectSpread2(_objectSpread2({}, this.settings), options);
         this.state = stateSet$1(this.settings);
-        this.state = lodash_isempty(this.state) ? stateSave$1(this.settings) : this.state;
+        this.state = !Object.keys(this.state).length ? stateSave$1(this.settings) : this.state;
         this.scrolls = document.querySelectorAll("[data-".concat(this.settings.dataScroll, "]"));
         this.scrolls.forEach(function (item) {
-          item.addEventListener('scroll', _this.throttleRef);
-
+          item.addEventListener('scroll', _this.handlerRef);
           anchorShow(item, false, _this.settings);
         });
       }
@@ -2528,7 +2419,7 @@
         var _this2 = this;
 
         this.scrolls.forEach(function (item) {
-          item.removeEventListener('scroll', _this2.throttleRef);
+          item.removeEventListener('scroll', _this2.handlerRef);
         });
         this.state = {};
         this.scrolls = [];
@@ -2537,7 +2428,14 @@
     }, {
       key: "handler",
       value: function handler() {
-        this.state = stateSave$1(this.settings);
+        var _this3 = this;
+
+        if (this.ticking) return;
+        this.ticking = true;
+        setTimeout(function () {
+          _this3.state = stateSave$1(_this3.settings);
+          _this3.ticking = false;
+        }, this.settings.throttleDelay);
       }
     }, {
       key: "anchorGet",
@@ -2560,12 +2458,17 @@
    *            See https://github.com/Keyamoon/svgxuse
    * @version   1.2.6
    */
+
+  /*jslint browser: true */
+
+  /*global XDomainRequest, MutationObserver, window */
   (function () {
 
     if (typeof window !== "undefined" && window.addEventListener) {
-      var cache = Object.create(null);
+      var cache = Object.create(null); // holds xhr objects to prevent multiple requests
+
       var checkUseElems;
-      var tid;
+      var tid; // timeout id
 
       var debouncedCheck = function debouncedCheck() {
         clearTimeout(tid);
@@ -2608,6 +2511,9 @@
       };
 
       var createRequest = function createRequest(url) {
+        // In IE 9, cross origin requests can only be sent using XDomainRequest.
+        // XDomainRequest would fail if CORS headers are not set.
+        // Therefore, XDomainRequest should only be used with cross origin requests.
         function getOrigin(loc) {
           var a;
 
@@ -2645,6 +2551,7 @@
       checkUseElems = function checkUseElems() {
         var base;
         var bcr;
+
         var hash;
         var href;
         var i;
@@ -2656,11 +2563,14 @@
         var xhr;
 
         function observeIfDone() {
+          // If done with making changes, start watching for chagnes in DOM again
           inProgressCount -= 1;
 
           if (inProgressCount === 0) {
-            unobserveChanges();
-            observeChanges();
+            // if all xhrs were resolved
+            unobserveChanges(); // make sure to remove old handlers
+
+            observeChanges(); // watch for changes to DOM
           }
         }
 
@@ -2706,13 +2616,16 @@
           };
         }
 
-        unobserveChanges();
+        unobserveChanges(); // stop watching for changes to DOM
+        // find all use elements
+
         uses = document.getElementsByTagName("use");
 
         for (i = 0; i < uses.length; i += 1) {
           try {
             bcr = uses[i].getBoundingClientRect();
           } catch (ignore) {
+            // failed to get bounding rectangle of the use element
             bcr = false;
           }
 
@@ -2735,9 +2648,11 @@
             }
 
             if (base.length) {
+              // schedule updating xlink:href
               xhr = cache[base];
 
               if (xhr !== true) {
+                // true signifies that prepending the SVG was not required
                 setTimeout(attrUpdateFunc({
                   useEl: uses[i],
                   base: base,
@@ -2763,8 +2678,11 @@
           } else {
             if (!isHidden) {
               if (cache[base] === undefined) {
+                // remember this URL if the use element was not empty and no request was sent
                 cache[base] = true;
               } else if (cache[base].onload) {
+                // if it turns out that prepending the SVG is not necessary,
+                // abort the in-progress xhr.
                 cache[base].abort();
                 delete cache[base].onload;
                 cache[base] = true;
@@ -2787,45 +2705,98 @@
       var _winLoad;
 
       _winLoad = function winLoad() {
-        window.removeEventListener("load", _winLoad, false);
+        window.removeEventListener("load", _winLoad, false); // to prevent memory leaks
+
         tid = setTimeout(checkUseElems, 0);
       };
 
       if (document.readyState !== "complete") {
+        // The load event fires when all resources have finished loading, which allows detecting whether SVG use elements are empty.
         window.addEventListener("load", _winLoad, false);
       } else {
+        // No need to add a listener if the document is already loaded, initialize immediately.
         _winLoad();
       }
     }
   })();
 
+  /**
+   * This work is licensed under the W3C Software and Document License
+   * (http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document).
+   */
   (function () {
+    // Return early if we're not running inside of the browser.
     if (typeof window === 'undefined') {
       return;
-    }
+    } // Convenience function for converting NodeLists.
+
+    /** @type {typeof Array.prototype.slice} */
+
 
     var slice = Array.prototype.slice;
+    /**
+     * IE has a non-standard name for "matches".
+     * @type {typeof Element.prototype.matches}
+     */
+
     var matches = Element.prototype.matches || Element.prototype.msMatchesSelector;
+    /** @type {string} */
 
     var _focusableElementsString = ['a[href]', 'area[href]', 'input:not([disabled])', 'select:not([disabled])', 'textarea:not([disabled])', 'button:not([disabled])', 'details', 'summary', 'iframe', 'object', 'embed', '[contenteditable]'].join(',');
+    /**
+     * `InertRoot` manages a single inert subtree, i.e. a DOM subtree whose root element has an `inert`
+     * attribute.
+     *
+     * Its main functions are:
+     *
+     * - to create and maintain a set of managed `InertNode`s, including when mutations occur in the
+     *   subtree. The `makeSubtreeUnfocusable()` method handles collecting `InertNode`s via registering
+     *   each focusable node in the subtree with the singleton `InertManager` which manages all known
+     *   focusable nodes within inert subtrees. `InertManager` ensures that a single `InertNode`
+     *   instance exists for each focusable node which has at least one inert root as an ancestor.
+     *
+     * - to notify all managed `InertNode`s when this subtree stops being inert (i.e. when the `inert`
+     *   attribute is removed from the root node). This is handled in the destructor, which calls the
+     *   `deregister` method on `InertManager` for each managed inert node.
+     */
 
-    var InertRoot = function () {
+
+    var InertRoot = /*#__PURE__*/function () {
+      /**
+       * @param {!Element} rootElement The Element at the root of the inert subtree.
+       * @param {!InertManager} inertManager The global singleton InertManager object.
+       */
       function InertRoot(rootElement, inertManager) {
         classCallCheck(this, InertRoot);
 
+        /** @type {!InertManager} */
         this._inertManager = inertManager;
+        /** @type {!Element} */
+
         this._rootElement = rootElement;
-        this._managedNodes = new Set();
+        /**
+         * @type {!Set<!InertNode>}
+         * All managed focusable nodes in this InertRoot's subtree.
+         */
+
+        this._managedNodes = new Set(); // Make the subtree hidden from assistive technology
 
         if (this._rootElement.hasAttribute('aria-hidden')) {
+          /** @type {?string} */
           this._savedAriaHidden = this._rootElement.getAttribute('aria-hidden');
         } else {
           this._savedAriaHidden = null;
         }
 
-        this._rootElement.setAttribute('aria-hidden', 'true');
+        this._rootElement.setAttribute('aria-hidden', 'true'); // Make all focusable elements in the subtree unfocusable and add them to _managedNodes
 
-        this._makeSubtreeUnfocusable(this._rootElement);
+
+        this._makeSubtreeUnfocusable(this._rootElement); // Watch for:
+        // - any additions in the subtree: make them unfocusable too
+        // - any removals from the subtree: remove them from this inert root's managed nodes
+        // - attribute changes: if `tabindex` is added, or removed from an intrinsically focusable
+        //   element, make that node a managed node.
+
 
         this._observer = new MutationObserver(this._onMutation.bind(this));
 
@@ -2835,6 +2806,11 @@
           subtree: true
         });
       }
+      /**
+       * Call this whenever this object is about to become obsolete.  This unwinds all of the state
+       * stored in this object and updates the state of all of the managed nodes.
+       */
+
 
       createClass(InertRoot, [{
         key: "destructor",
@@ -2851,15 +2827,37 @@
 
           this._managedNodes.forEach(function (inertNode) {
             this._unmanageNode(inertNode.node);
-          }, this);
+          }, this); // Note we cast the nulls to the ANY type here because:
+          // 1) We want the class properties to be declared as non-null, or else we
+          //    need even more casts throughout this code. All bets are off if an
+          //    instance has been destroyed and a method is called.
+          // 2) We don't want to cast "this", because we want type-aware optimizations
+          //    to know which properties we're setting.
 
-          this._observer = null;
-          this._rootElement = null;
-          this._managedNodes = null;
-          this._inertManager = null;
+
+          this._observer =
+          /** @type {?} */
+          null;
+          this._rootElement =
+          /** @type {?} */
+          null;
+          this._managedNodes =
+          /** @type {?} */
+          null;
+          this._inertManager =
+          /** @type {?} */
+          null;
         }
+        /**
+         * @return {!Set<!InertNode>} A copy of this InertRoot's managed nodes set.
+         */
+
       }, {
         key: "_makeSubtreeUnfocusable",
+
+        /**
+         * @param {!Node} startNode
+         */
         value: function _makeSubtreeUnfocusable(startNode) {
           var _this2 = this;
 
@@ -2869,12 +2867,17 @@
           var activeElement = document.activeElement;
 
           if (!document.body.contains(startNode)) {
+            // startNode may be in shadow DOM, so find its nearest shadowRoot to get the activeElement.
             var node = startNode;
+            /** @type {!ShadowRoot|undefined} */
+
             var root = undefined;
 
             while (node) {
               if (node.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
-                root = node;
+                root =
+                /** @type {!ShadowRoot} */
+                node;
                 break;
               }
 
@@ -2887,13 +2890,19 @@
           }
 
           if (startNode.contains(activeElement)) {
-            activeElement.blur();
+            activeElement.blur(); // In IE11, if an element is already focused, and then set to tabindex=-1
+            // calling blur() will not actually move the focus.
+            // To work around this we call focus() on the body instead.
 
             if (activeElement === document.activeElement) {
               document.body.focus();
             }
           }
         }
+        /**
+         * @param {!Node} node
+         */
+
       }, {
         key: "_visitNode",
         value: function _visitNode(node) {
@@ -2901,7 +2910,10 @@
             return;
           }
 
-          var element = node;
+          var element =
+          /** @type {!Element} */
+          node; // If a descendant inert root becomes un-inert, its descendants will still be inert because of
+          // this inert root, so all of its managed nodes need to be adopted by this InertRoot.
 
           if (element !== this._rootElement && element.hasAttribute('inert')) {
             this._adoptInertRoot(element);
@@ -2911,6 +2923,11 @@
             this._manageNode(element);
           }
         }
+        /**
+         * Register the given node with this InertRoot and with InertManager.
+         * @param {!Node} node
+         */
+
       }, {
         key: "_manageNode",
         value: function _manageNode(node) {
@@ -2918,15 +2935,25 @@
 
           this._managedNodes.add(inertNode);
         }
+        /**
+         * Unregister the given node with this InertRoot and with InertManager.
+         * @param {!Node} node
+         */
+
       }, {
         key: "_unmanageNode",
         value: function _unmanageNode(node) {
           var inertNode = this._inertManager.deregister(node, this);
 
           if (inertNode) {
-            this._managedNodes["delete"](inertNode);
+            this._managedNodes.delete(inertNode);
           }
         }
+        /**
+         * Unregister the entire subtree starting at `startNode`.
+         * @param {!Node} startNode
+         */
+
       }, {
         key: "_unmanageSubtree",
         value: function _unmanageSubtree(startNode) {
@@ -2936,10 +2963,17 @@
             return _this3._unmanageNode(node);
           });
         }
+        /**
+         * If a descendant node is found with an `inert` attribute, adopt its managed nodes.
+         * @param {!Element} node
+         */
+
       }, {
         key: "_adoptInertRoot",
         value: function _adoptInertRoot(node) {
-          var inertSubroot = this._inertManager.getInertRoot(node);
+          var inertSubroot = this._inertManager.getInertRoot(node); // During initialisation this inert root may not have been registered yet,
+          // so register it now if need be.
+
 
           if (!inertSubroot) {
             this._inertManager.setInert(node, true);
@@ -2951,23 +2985,36 @@
             this._manageNode(savedInertNode.node);
           }, this);
         }
+        /**
+         * Callback used when mutation observer detects subtree additions, removals, or attribute changes.
+         * @param {!Array<!MutationRecord>} records
+         * @param {!MutationObserver} self
+         */
+
       }, {
         key: "_onMutation",
         value: function _onMutation(records, self) {
           records.forEach(function (record) {
-            var target = record.target;
+            var target =
+            /** @type {!Element} */
+            record.target;
 
             if (record.type === 'childList') {
+              // Manage added nodes
               slice.call(record.addedNodes).forEach(function (node) {
                 this._makeSubtreeUnfocusable(node);
-              }, this);
+              }, this); // Un-manage removed nodes
+
               slice.call(record.removedNodes).forEach(function (node) {
                 this._unmanageSubtree(node);
               }, this);
             } else if (record.type === 'attributes') {
               if (record.attributeName === 'tabindex') {
+                // Re-initialise inert node if tabindex changes
                 this._manageNode(target);
               } else if (target !== this._rootElement && record.attributeName === 'inert' && target.hasAttribute('inert')) {
+                // If a new inert root is added, adopt its managed nodes and make sure it knows about the
+                // already managed nodes from this inert subroot.
                 this._adoptInertRoot(target);
 
                 var inertSubroot = this._inertManager.getInertRoot(target);
@@ -2986,16 +3033,22 @@
         get: function get() {
           return new Set(this._managedNodes);
         }
+        /** @return {boolean} */
+
       }, {
         key: "hasSavedAriaHidden",
         get: function get() {
           return this._savedAriaHidden !== null;
         }
+        /** @param {?string} ariaHidden */
+
       }, {
         key: "savedAriaHidden",
         set: function set(ariaHidden) {
           this._savedAriaHidden = ariaHidden;
-        },
+        }
+        /** @return {?string} */
+        ,
         get: function get() {
           return this._savedAriaHidden;
         }
@@ -3003,18 +3056,55 @@
 
       return InertRoot;
     }();
+    /**
+     * `InertNode` initialises and manages a single inert node.
+     * A node is inert if it is a descendant of one or more inert root elements.
+     *
+     * On construction, `InertNode` saves the existing `tabindex` value for the node, if any, and
+     * either removes the `tabindex` attribute or sets it to `-1`, depending on whether the element
+     * is intrinsically focusable or not.
+     *
+     * `InertNode` maintains a set of `InertRoot`s which are descendants of this `InertNode`. When an
+     * `InertRoot` is destroyed, and calls `InertManager.deregister()`, the `InertManager` notifies the
+     * `InertNode` via `removeInertRoot()`, which in turn destroys the `InertNode` if no `InertRoot`s
+     * remain in the set. On destruction, `InertNode` reinstates the stored `tabindex` if one exists,
+     * or removes the `tabindex` attribute if the element is intrinsically focusable.
+     */
 
-    var InertNode = function () {
+
+    var InertNode = /*#__PURE__*/function () {
+      /**
+       * @param {!Node} node A focusable element to be made inert.
+       * @param {!InertRoot} inertRoot The inert root element associated with this inert node.
+       */
       function InertNode(node, inertRoot) {
         classCallCheck(this, InertNode);
 
+        /** @type {!Node} */
         this._node = node;
+        /** @type {boolean} */
+
         this._overrodeFocusMethod = false;
+        /**
+         * @type {!Set<!InertRoot>} The set of descendant inert roots.
+         *    If and only if this set becomes empty, this node is no longer inert.
+         */
+
         this._inertRoots = new Set([inertRoot]);
+        /** @type {?number} */
+
         this._savedTabIndex = null;
-        this._destroyed = false;
+        /** @type {boolean} */
+
+        this._destroyed = false; // Save any prior tabindex info and make this node untabbable
+
         this.ensureUntabbable();
       }
+      /**
+       * Call this whenever this object is about to become obsolete.
+       * This makes the managed node focusable again and deletes all of the previously stored state.
+       */
+
 
       createClass(InertNode, [{
         key: "destructor",
@@ -3022,46 +3112,73 @@
           this._throwIfDestroyed();
 
           if (this._node && this._node.nodeType === Node.ELEMENT_NODE) {
-            var element = this._node;
+            var element =
+            /** @type {!Element} */
+            this._node;
 
             if (this._savedTabIndex !== null) {
               element.setAttribute('tabindex', this._savedTabIndex);
             } else {
               element.removeAttribute('tabindex');
-            }
+            } // Use `delete` to restore native focus method.
+
 
             if (this._overrodeFocusMethod) {
               delete element.focus;
             }
-          }
+          } // See note in InertRoot.destructor for why we cast these nulls to ANY.
 
-          this._node = null;
-          this._inertRoots = null;
+
+          this._node =
+          /** @type {?} */
+          null;
+          this._inertRoots =
+          /** @type {?} */
+          null;
           this._destroyed = true;
         }
+        /**
+         * @type {boolean} Whether this object is obsolete because the managed node is no longer inert.
+         * If the object has been destroyed, any attempt to access it will cause an exception.
+         */
+
       }, {
         key: "_throwIfDestroyed",
+
+        /**
+         * Throw if user tries to access destroyed InertNode.
+         */
         value: function _throwIfDestroyed() {
           if (this.destroyed) {
             throw new Error('Trying to access destroyed InertNode');
           }
         }
+        /** @return {boolean} */
+
       }, {
         key: "ensureUntabbable",
+
+        /** Save the existing tabindex value and make the node untabbable and unfocusable */
         value: function ensureUntabbable() {
           if (this.node.nodeType !== Node.ELEMENT_NODE) {
             return;
           }
 
-          var element = this.node;
+          var element =
+          /** @type {!Element} */
+          this.node;
 
           if (matches.call(element, _focusableElementsString)) {
-            if (element.tabIndex === -1 && this.hasSavedTabIndex) {
+            if (
+            /** @type {!HTMLElement} */
+            element.tabIndex === -1 && this.hasSavedTabIndex) {
               return;
             }
 
             if (element.hasAttribute('tabindex')) {
-              this._savedTabIndex = element.tabIndex;
+              this._savedTabIndex =
+              /** @type {!HTMLElement} */
+              element.tabIndex;
             }
 
             element.setAttribute('tabindex', '-1');
@@ -3072,10 +3189,17 @@
               this._overrodeFocusMethod = true;
             }
           } else if (element.hasAttribute('tabindex')) {
-            this._savedTabIndex = element.tabIndex;
+            this._savedTabIndex =
+            /** @type {!HTMLElement} */
+            element.tabIndex;
             element.removeAttribute('tabindex');
           }
         }
+        /**
+         * Add another inert root to this inert node's set of managing inert roots.
+         * @param {!InertRoot} inertRoot
+         */
+
       }, {
         key: "addInertRoot",
         value: function addInertRoot(inertRoot) {
@@ -3083,12 +3207,19 @@
 
           this._inertRoots.add(inertRoot);
         }
+        /**
+         * Remove the given inert root from this inert node's set of managing inert roots.
+         * If the set of managing inert roots becomes empty, this node is no longer inert,
+         * so the object should be destroyed.
+         * @param {!InertRoot} inertRoot
+         */
+
       }, {
         key: "removeInertRoot",
         value: function removeInertRoot(inertRoot) {
           this._throwIfDestroyed();
 
-          this._inertRoots["delete"](inertRoot);
+          this._inertRoots.delete(inertRoot);
 
           if (this._inertRoots.size === 0) {
             this.destructor();
@@ -3097,13 +3228,18 @@
       }, {
         key: "destroyed",
         get: function get() {
-          return this._destroyed;
+          return (
+            /** @type {!InertNode} */
+            this._destroyed
+          );
         }
       }, {
         key: "hasSavedTabIndex",
         get: function get() {
           return this._savedTabIndex !== null;
         }
+        /** @return {!Node} */
+
       }, {
         key: "node",
         get: function get() {
@@ -3111,13 +3247,17 @@
 
           return this._node;
         }
+        /** @param {?number} tabIndex */
+
       }, {
         key: "savedTabIndex",
         set: function set(tabIndex) {
           this._throwIfDestroyed();
 
           this._savedTabIndex = tabIndex;
-        },
+        }
+        /** @return {?number} */
+        ,
         get: function get() {
           this._throwIfDestroyed();
 
@@ -3127,20 +3267,51 @@
 
       return InertNode;
     }();
+    /**
+     * InertManager is a per-document singleton object which manages all inert roots and nodes.
+     *
+     * When an element becomes an inert root by having an `inert` attribute set and/or its `inert`
+     * property set to `true`, the `setInert` method creates an `InertRoot` object for the element.
+     * The `InertRoot` in turn registers itself as managing all of the element's focusable descendant
+     * nodes via the `register()` method. The `InertManager` ensures that a single `InertNode` instance
+     * is created for each such node, via the `_managedNodes` map.
+     */
 
-    var InertManager = function () {
+
+    var InertManager = /*#__PURE__*/function () {
+      /**
+       * @param {!Document} document
+       */
       function InertManager(document) {
         classCallCheck(this, InertManager);
 
         if (!document) {
           throw new Error('Missing required argument; InertManager needs to wrap a document.');
         }
+        /** @type {!Document} */
+
 
         this._document = document;
+        /**
+         * All managed nodes known to this InertManager. In a map to allow looking up by Node.
+         * @type {!Map<!Node, !InertNode>}
+         */
+
         this._managedNodes = new Map();
+        /**
+         * All inert roots known to this InertManager. In a map to allow looking up by Node.
+         * @type {!Map<!Node, !InertRoot>}
+         */
+
         this._inertRoots = new Map();
-        this._observer = new MutationObserver(this._watchForInert.bind(this));
-        addInertStyle(document.head || document.body || document.documentElement);
+        /**
+         * Observer for mutations on `document.body`.
+         * @type {!MutationObserver}
+         */
+
+        this._observer = new MutationObserver(this._watchForInert.bind(this)); // Add inert style.
+
+        addInertStyle(document.head || document.body || document.documentElement); // Wait for document to be loaded.
 
         if (document.readyState === 'loading') {
           document.addEventListener('DOMContentLoaded', this._onDocumentLoaded.bind(this));
@@ -3148,19 +3319,28 @@
           this._onDocumentLoaded();
         }
       }
+      /**
+       * Set whether the given element should be an inert root or not.
+       * @param {!Element} root
+       * @param {boolean} inert
+       */
+
 
       createClass(InertManager, [{
         key: "setInert",
         value: function setInert(root, inert) {
           if (inert) {
             if (this._inertRoots.has(root)) {
+              // element is already inert
               return;
             }
 
             var inertRoot = new InertRoot(root, this);
             root.setAttribute('inert', '');
 
-            this._inertRoots.set(root, inertRoot);
+            this._inertRoots.set(root, inertRoot); // If not contained in the document, it must be in a shadowRoot.
+            // Ensure inert styles are added there.
+
 
             if (!this._document.body.contains(root)) {
               var parent = root.parentNode;
@@ -3175,6 +3355,7 @@
             }
           } else {
             if (!this._inertRoots.has(root)) {
+              // element is already non-inert
               return;
             }
 
@@ -3182,22 +3363,38 @@
 
             _inertRoot.destructor();
 
-            this._inertRoots["delete"](root);
+            this._inertRoots.delete(root);
 
             root.removeAttribute('inert');
           }
         }
+        /**
+         * Get the InertRoot object corresponding to the given inert root element, if any.
+         * @param {!Node} element
+         * @return {!InertRoot|undefined}
+         */
+
       }, {
         key: "getInertRoot",
         value: function getInertRoot(element) {
           return this._inertRoots.get(element);
         }
+        /**
+         * Register the given InertRoot as managing the given node.
+         * In the case where the node has a previously existing inert root, this inert root will
+         * be added to its set of inert roots.
+         * @param {!Node} node
+         * @param {!InertRoot} inertRoot
+         * @return {!InertNode} inertNode
+         */
+
       }, {
         key: "register",
         value: function register(node, inertRoot) {
           var inertNode = this._managedNodes.get(node);
 
           if (inertNode !== undefined) {
+            // node was already in an inert subtree
             inertNode.addInertRoot(inertRoot);
           } else {
             inertNode = new InertNode(node, inertRoot);
@@ -3207,6 +3404,16 @@
 
           return inertNode;
         }
+        /**
+         * De-register the given InertRoot as managing the given inert node.
+         * Removes the inert root from the InertNode's set of managing inert roots, and remove the inert
+         * node from the InertManager's set of managed nodes if it is destroyed.
+         * If the node is not currently managed, this is essentially a no-op.
+         * @param {!Node} node
+         * @param {!InertRoot} inertRoot
+         * @return {?InertNode} The potentially destroyed InertNode associated with this node, if any.
+         */
+
       }, {
         key: "deregister",
         value: function deregister(node, inertRoot) {
@@ -3219,18 +3426,23 @@
           inertNode.removeInertRoot(inertRoot);
 
           if (inertNode.destroyed) {
-            this._managedNodes["delete"](node);
+            this._managedNodes.delete(node);
           }
 
           return inertNode;
         }
+        /**
+         * Callback used when document has finished loading.
+         */
+
       }, {
         key: "_onDocumentLoaded",
         value: function _onDocumentLoaded() {
+          // Find all inert roots in document and make them actually inert.
           var inertElements = slice.call(this._document.querySelectorAll('[inert]'));
           inertElements.forEach(function (inertElement) {
             this.setInert(inertElement, true);
-          }, this);
+          }, this); // Comment this out to use programmatic API only.
 
           this._observer.observe(this._document.body || this._document.documentElement, {
             attributes: true,
@@ -3238,6 +3450,12 @@
             childList: true
           });
         }
+        /**
+         * Callback used when mutation observer detects attribute changes.
+         * @param {!Array<!MutationRecord>} records
+         * @param {!MutationObserver} self
+         */
+
       }, {
         key: "_watchForInert",
         value: function _watchForInert(records, self) {
@@ -3268,7 +3486,9 @@
                   return;
                 }
 
-                var target = record.target;
+                var target =
+                /** @type {!Element} */
+                record.target;
                 var inert = target.hasAttribute('inert');
 
                 _this.setInert(target, inert);
@@ -3281,24 +3501,46 @@
 
       return InertManager;
     }();
+    /**
+     * Recursively walk the composed tree from |node|.
+     * @param {!Node} node
+     * @param {(function (!Element))=} callback Callback to be called for each element traversed,
+     *     before descending into child nodes.
+     * @param {?ShadowRoot=} shadowRootAncestor The nearest ShadowRoot ancestor, if any.
+     */
+
 
     function composedTreeWalk(node, callback, shadowRootAncestor) {
       if (node.nodeType == Node.ELEMENT_NODE) {
-        var element = node;
+        var element =
+        /** @type {!Element} */
+        node;
 
         if (callback) {
           callback(element);
-        }
+        } // Descend into node:
+        // If it has a ShadowRoot, ignore all child elements - these will be picked
+        // up by the <content> or <shadow> elements. Descend straight into the
+        // ShadowRoot.
 
-        var shadowRoot = element.shadowRoot;
+
+        var shadowRoot =
+        /** @type {!HTMLElement} */
+        element.shadowRoot;
 
         if (shadowRoot) {
           composedTreeWalk(shadowRoot, callback);
           return;
-        }
+        } // If it is a <content> element, descend into distributed elements - these
+        // are elements from outside the shadow root which are rendered inside the
+        // shadow DOM.
+
 
         if (element.localName == 'content') {
-          var content = element;
+          var content =
+          /** @type {!HTMLContentElement} */
+          element; // Verifies if ShadowDom v0 is supported.
+
           var distributedNodes = content.getDistributedNodes ? content.getDistributedNodes() : [];
 
           for (var i = 0; i < distributedNodes.length; i++) {
@@ -3306,10 +3548,15 @@
           }
 
           return;
-        }
+        } // If it is a <slot> element, descend into assigned nodes - these
+        // are elements from outside the shadow root which are rendered inside the
+        // shadow DOM.
+
 
         if (element.localName == 'slot') {
-          var slot = element;
+          var slot =
+          /** @type {!HTMLSlotElement} */
+          element; // Verify if ShadowDom v1 is supported.
 
           var _distributedNodes = slot.assignedNodes ? slot.assignedNodes({
             flatten: true
@@ -3321,7 +3568,9 @@
 
           return;
         }
-      }
+      } // If it is neither the parent of a ShadowRoot, a <content> element, a <slot>
+      // element, nor a <shadow> element recurse normally.
+
 
       var child = node.firstChild;
 
@@ -3330,6 +3579,11 @@
         child = child.nextSibling;
       }
     }
+    /**
+     * Adds a style element to the node containing the inert specific styles
+     * @param {!Node} node
+     */
+
 
     function addInertStyle(node) {
       if (node.querySelector('style#inert-style, link#inert-style')) {
@@ -3341,15 +3595,21 @@
       style.textContent = '\n' + '[inert] {\n' + '  pointer-events: none;\n' + '  cursor: default;\n' + '}\n' + '\n' + '[inert], [inert] * {\n' + '  -webkit-user-select: none;\n' + '  -moz-user-select: none;\n' + '  -ms-user-select: none;\n' + '  user-select: none;\n' + '}\n';
       node.appendChild(style);
     }
+    /** @type {!InertManager} */
+
 
     var inertManager = new InertManager(document);
 
     if (!Element.prototype.hasOwnProperty('inert')) {
       Object.defineProperty(Element.prototype, 'inert', {
         enumerable: true,
+
+        /** @this {!Element} */
         get: function get() {
           return this.hasAttribute('inert');
         },
+
+        /** @this {!Element} */
         set: function set(inert) {
           inertManager.setInert(this, inert);
         }
@@ -3402,7 +3662,7 @@
           ++numEndB;
         }
 
-        var difference = numEndA - numStartA - numEndB + numStartB;
+        var difference = numEndA - numStartA - numEndB + numStartB; // numA length - numB length
 
         if (difference) {
           return difference;
@@ -3476,6 +3736,19 @@
   });
   var naturalCompare_1 = naturalCompare;
 
+  /**
+   * A cross-browser implementation of getElementsByClass.
+   * Heavily based on Dustin Diaz's function: http://dustindiaz.com/getelementsbyclass.
+   *
+   * Find all elements with class `className` inside `container`.
+   * Use `single = true` to increase performance in older browsers
+   * when only one element is needed.
+   *
+   * @param {String} className
+   * @param {Element} container
+   * @param {Boolean} single
+   * @api public
+   */
   var getElementsByClassName = function getElementsByClassName(container, className, single) {
     if (single) {
       return container.getElementsByClassName(className)[0];
@@ -3529,8 +3802,12 @@
     };
   }();
 
+  /*
+   * Source: https://github.com/segmentio/extend
+   */
   var extend = function extend(object) {
-    var args = Array.prototype.slice.call(arguments, 1);
+    // Takes an unlimited number of extenders.
+    var args = Array.prototype.slice.call(arguments, 1); // For each extender, copy their properties on our object.
 
     for (var i = 0, source; source = args[i]; i++) {
       if (!source) continue;
@@ -3555,6 +3832,16 @@
     return -1;
   };
 
+  /**
+   * Source: https://github.com/timoxley/to-array
+   *
+   * Convert an array-like object into an `Array`.
+   * If `collection` is already an `Array`, then will return a clone of `collection`.
+   *
+   * @param {Array | Mixed} collection An `Array` or array-like object to convert e.g. `arguments` or `NodeList`
+   * @return {Array} Naive conversion of `collection` to a new `Array`.
+   * @api public
+   */
   var toArray = function toArray(collection) {
     if (typeof collection === 'undefined') return [];
     if (collection === null) return [null];
@@ -3582,6 +3869,15 @@
   var bind = window.addEventListener ? 'addEventListener' : 'attachEvent',
       unbind = window.removeEventListener ? 'removeEventListener' : 'detachEvent',
       prefix = bind !== 'addEventListener' ? 'on' : '';
+  /**
+   * Bind `el` event `type` to `fn`.
+   *
+   * @param {Element} el, NodeList, HTMLCollection or Array
+   * @param {String} type
+   * @param {Function} fn
+   * @param {Boolean} capture
+   * @api public
+   */
 
   var bind_1 = function bind_1(el, type, fn, capture) {
     el = toArray(el);
@@ -3590,6 +3886,16 @@
       el[i][bind](prefix + type, fn, capture || false);
     }
   };
+  /**
+   * Unbind `el` event `type`'s callback `fn`.
+   *
+   * @param {Element} el, NodeList, HTMLCollection or Array
+   * @param {String} type
+   * @param {Function} fn
+   * @param {Boolean} capture
+   * @api public
+   */
+
 
   var unbind_1 = function unbind_1(el, type, fn, capture) {
     el = toArray(el);
@@ -3611,11 +3917,33 @@
     return s;
   };
 
+  /**
+   * Module dependencies.
+   */
+
+  /**
+   * Whitespace regexp.
+   */
+
   var re = /\s+/;
+  /**
+   * Wrap `el` in a `ClassList`.
+   *
+   * @param {Element} el
+   * @return {ClassList}
+   * @api public
+   */
 
   var classes = function classes(el) {
     return new ClassList(el);
   };
+  /**
+   * Initialize a new ClassList for `el`.
+   *
+   * @param {Element} el
+   * @api private
+   */
+
 
   function ClassList(el) {
     if (!el || !el.nodeType) {
@@ -3625,12 +3953,22 @@
     this.el = el;
     this.list = el.classList;
   }
+  /**
+   * Add class `name` if not already present.
+   *
+   * @param {String} name
+   * @return {ClassList}
+   * @api public
+   */
+
 
   ClassList.prototype.add = function (name) {
+    // classList
     if (this.list) {
       this.list.add(name);
       return this;
-    }
+    } // fallback
+
 
     var arr = this.array();
     var i = indexOf_1(arr, name);
@@ -3638,12 +3976,24 @@
     this.el.className = arr.join(' ');
     return this;
   };
+  /**
+   * Remove class `name` when present, or
+   * pass a regular expression to remove
+   * any which match.
+   *
+   * @param {String|RegExp} name
+   * @return {ClassList}
+   * @api public
+   */
+
 
   ClassList.prototype.remove = function (name) {
+    // classList
     if (this.list) {
       this.list.remove(name);
       return this;
-    }
+    } // fallback
+
 
     var arr = this.array();
     var i = indexOf_1(arr, name);
@@ -3651,19 +4001,33 @@
     this.el.className = arr.join(' ');
     return this;
   };
+  /**
+   * Toggle class `name`, can force state via `force`.
+   *
+   * For browsers that support classList, but do not support `force` yet,
+   * the mistake will be detected and corrected.
+   *
+   * @param {String} name
+   * @param {Boolean} force
+   * @return {ClassList}
+   * @api public
+   */
+
 
   ClassList.prototype.toggle = function (name, force) {
+    // classList
     if (this.list) {
       if ("undefined" !== typeof force) {
         if (force !== this.list.toggle(name, force)) {
-          this.list.toggle(name);
+          this.list.toggle(name); // toggle again to correct
         }
       } else {
         this.list.toggle(name);
       }
 
       return this;
-    }
+    } // fallback
+
 
     if ("undefined" !== typeof force) {
       if (!force) {
@@ -3681,6 +4045,13 @@
 
     return this;
   };
+  /**
+   * Return an array of classes.
+   *
+   * @return {Array}
+   * @api public
+   */
+
 
   ClassList.prototype.array = function () {
     var className = this.el.getAttribute('class') || '';
@@ -3689,11 +4060,29 @@
     if ('' === arr[0]) arr.shift();
     return arr;
   };
+  /**
+   * Check if class `name` is present.
+   *
+   * @param {String} name
+   * @return {ClassList}
+   * @api public
+   */
+
 
   ClassList.prototype.has = ClassList.prototype.contains = function (name) {
     return this.list ? this.list.contains(name) : !!~indexOf_1(this.array(), name);
   };
 
+  /**
+   * A cross-browser implementation of getAttribute.
+   * Source found here: http://stackoverflow.com/a/3755343/361337 written by Vivin Paliath
+   *
+   * Return the value for `attr` at `element`.
+   *
+   * @param {Element} el
+   * @param {String} attr
+   * @api public
+   */
   var getAttribute = function getAttribute(el, attr) {
     var result = el.getAttribute && el.getAttribute(attr) || null;
 
@@ -3717,8 +4106,9 @@
     return function (initValues, element, notCreate) {
       var item = this;
       this._values = {};
-      this.found = false;
-      this.filtered = false;
+      this.found = false; // Show if list.searched == true and this.found == true
+
+      this.filtered = false; // Show if list.filtered == true and this.filtered == true
 
       var init = function init(initValues, element, notCreate) {
         if (element === undefined) {
@@ -3802,7 +4192,7 @@
       pagingList.clear();
 
       for (var i = 1; i <= pages; i++) {
-        var className = currentPage === i ? "active" : "";
+        var className = currentPage === i ? "active" : ""; //console.log(i, left, right, currentPage, (currentPage - innerWindow), (currentPage + innerWindow), className);
 
         if (is.number(i, left, right, currentPage, innerWindow)) {
           item = pagingList.add({
@@ -3882,6 +4272,7 @@
           items = [];
 
       for (var i = 0, il = nodes.length; i < il; i++) {
+        // Only textnodes have a data attribute
         if (nodes[i].data === undefined) {
           items.push(nodes[i]);
         }
@@ -3897,7 +4288,8 @@
     };
 
     var parseAsync = function parseAsync(itemElements, valueNames) {
-      var itemsToIndex = itemElements.splice(0, 50);
+      var itemsToIndex = itemElements.splice(0, 50); // TODO: If < 100 items, what happens in IE etc?
+
       parse(itemsToIndex, valueNames);
 
       if (itemElements.length > 0) {
@@ -3968,6 +4360,7 @@
         var nodes = list.list.childNodes;
 
         for (var i = 0, il = nodes.length; i < il; i++) {
+          // Only textnodes have a data attribute
           if (nodes[i].data === undefined) {
             return nodes[i].cloneNode(true);
           }
@@ -4078,6 +4471,9 @@
       if (itemSource === undefined) {
         throw new Error("The list need to have at list one item on init otherwise you'll have to add a template.");
       }
+      /* If item source does not exists, use the first item in list as
+      source for new items */
+
 
       var newItem = itemSource.cloneNode(true);
       newItem.removeAttribute('id');
@@ -4104,6 +4500,7 @@
     };
 
     this.clear = function () {
+      /* .innerHTML = ''; fucks up IE */
       if (list.list.hasChildNodes()) {
         while (list.list.childNodes.length >= 1) {
           list.list.removeChild(list.list.firstChild);
@@ -4150,7 +4547,8 @@
       },
       setSearchString: function setSearchString(s) {
         s = _list.utils.toString(s).toLowerCase();
-        s = s.replace(/[-[\]{}()*+?.,\\^$|#]/g, "\\$&");
+        s = s.replace(/[-[\]{}()*+?.,\\^$|#]/g, "\\$&"); // Escape regular expression characters
+
         searchString = s;
       },
       toArray: function toArray(values) {
@@ -4202,7 +4600,8 @@
 
       prepare.resetList();
       prepare.setSearchString(str);
-      prepare.setOptions(arguments);
+      prepare.setOptions(arguments); // str, cols|searchFunction, searchFunction
+
       prepare.setColumns();
 
       if (searchString === "") {
@@ -4229,12 +4628,15 @@
 
     _list.utils.events.bind(_list.utils.getByClass(_list.listContainer, _list.searchClass), 'keyup', function (e) {
       var target = e.target || e.srcElement,
-          alreadyCleared = target.value === "" && !_list.searched;
+          // IE have srcElement
+      alreadyCleared = target.value === "" && !_list.searched;
 
       if (!alreadyCleared) {
+        // If oninput already have resetted the list, do nothing
         searchMethod(target.value);
       }
-    });
+    }); // Used to detect click on HTML5 clear button
+
 
     _list.utils.events.bind(_list.utils.getByClass(_list.listContainer, _list.searchClass), 'input', function (e) {
       var target = e.target || e.srcElement;
@@ -4248,11 +4650,13 @@
   };
 
   var filter = function filter(list) {
+    // Add handlers
     list.handlers.filterStart = list.handlers.filterStart || [];
     list.handlers.filterComplete = list.handlers.filterComplete || [];
     return function (filterFunction) {
       list.trigger('filterStart');
-      list.i = 1;
+      list.i = 1; // Reset paging
+
       list.reset.filter();
 
       if (filterFunction === undefined) {
@@ -4347,7 +4751,9 @@
       }
 
       buttons.clear();
-      buttons.setOrder(options);
+      buttons.setOrder(options); // caseInsensitive
+      // alphabet
+
       var customSortFunction = options.sortFunction || list.sortFunction || null,
           multi = options.order === 'desc' ? -1 : 1,
           sortFunction;
@@ -4372,7 +4778,8 @@
       list.items.sort(sortFunction);
       list.update();
       list.trigger('sortComplete');
-    };
+    }; // Add handlers
+
 
     list.handlers.sortStart = list.handlers.sortStart || [];
     list.handlers.sortComplete = list.handlers.sortComplete || [];
@@ -4384,11 +4791,16 @@
   };
 
   var fuzzy = function fuzzy(text, pattern, options) {
-    var Match_Location = options.location || 0;
-    var Match_Distance = options.distance || 100;
+    // Aproximately where in the text is the pattern expected to be found?
+    var Match_Location = options.location || 0; //Determines how close the match must be to the fuzzy location (specified above). An exact letter match which is 'distance' characters away from the fuzzy location would score as a complete mismatch. A distance of '0' requires the match be at the exact location specified, a threshold of '1000' would require a perfect match to be within 800 characters of the fuzzy location to be found using a 0.8 threshold.
+
+    var Match_Distance = options.distance || 100; // At what point does the match algorithm give up. A threshold of '0.0' requires a perfect match (of both letters and location), a threshold of '1.0' would match anything.
+
     var Match_Threshold = options.threshold || 0.4;
-    if (pattern === text) return true;
-    if (pattern.length > 32) return false;
+    if (pattern === text) return true; // Exact match
+
+    if (pattern.length > 32) return false; // This algorithm cannot be used
+    // Set starting location at beginning text and initialise the alphabet.
 
     var loc = Match_Location,
         s = function () {
@@ -4404,13 +4816,16 @@
       }
 
       return q;
-    }();
+    }(); // Compute and return the score for a match with e errors and x location.
+    // Accesses loc and pattern through being a closure.
+
 
     function match_bitapScore_(e, x) {
       var accuracy = e / pattern.length,
           proximity = Math.abs(loc - x);
 
       if (!Match_Distance) {
+        // Dodge divide by zero error.
         return proximity ? 1.0 : accuracy;
       }
 
@@ -4418,16 +4833,19 @@
     }
 
     var score_threshold = Match_Threshold,
-        best_loc = text.indexOf(pattern, loc);
+        // Highest score beyond which we give up.
+    best_loc = text.indexOf(pattern, loc); // Is there a nearby exact match? (speedup)
 
     if (best_loc != -1) {
-      score_threshold = Math.min(match_bitapScore_(0, best_loc), score_threshold);
+      score_threshold = Math.min(match_bitapScore_(0, best_loc), score_threshold); // What about in the other direction? (speedup)
+
       best_loc = text.lastIndexOf(pattern, loc + pattern.length);
 
       if (best_loc != -1) {
         score_threshold = Math.min(match_bitapScore_(0, best_loc), score_threshold);
       }
-    }
+    } // Initialise the bit arrays.
+
 
     var matchmask = 1 << pattern.length - 1;
     best_loc = -1;
@@ -4436,6 +4854,9 @@
     var last_rd;
 
     for (var d = 0; d < pattern.length; d++) {
+      // Scan for the best match; each iteration allows for one more error.
+      // Run a binary search to determine how far from 'loc' we can stray at this
+      // error level.
       bin_min = 0;
       bin_mid = bin_max;
 
@@ -4447,7 +4868,8 @@
         }
 
         bin_mid = Math.floor((bin_max - bin_min) / 2 + bin_min);
-      }
+      } // Use the result from this iteration as the maximum for the next.
+
 
       bin_max = bin_mid;
       var start = Math.max(1, loc - bin_mid + 1);
@@ -4456,29 +4878,38 @@
       rd[finish + 1] = (1 << d) - 1;
 
       for (var j = finish; j >= start; j--) {
+        // The alphabet (s) is a sparse hash, so the following line generates
+        // warnings.
         var charMatch = s[text.charAt(j - 1)];
 
         if (d === 0) {
+          // First pass: exact match.
           rd[j] = (rd[j + 1] << 1 | 1) & charMatch;
         } else {
+          // Subsequent passes: fuzzy match.
           rd[j] = (rd[j + 1] << 1 | 1) & charMatch | ((last_rd[j + 1] | last_rd[j]) << 1 | 1) | last_rd[j + 1];
         }
 
         if (rd[j] & matchmask) {
-          var score = match_bitapScore_(d, j - 1);
+          var score = match_bitapScore_(d, j - 1); // This match will almost certainly be better than any existing match.
+          // But check anyway.
 
           if (score <= score_threshold) {
+            // Told you so.
             score_threshold = score;
             best_loc = j - 1;
 
             if (best_loc > loc) {
+              // When passing loc, don't exceed our current distance from loc.
               start = Math.max(1, 2 * loc - best_loc);
             } else {
+              // Already passed loc, downhill from here on in.
               break;
             }
           }
         }
-      }
+      } // No hope for a (better) match at greater error levels.
+
 
       if (match_bitapScore_(d + 1, loc) > score_threshold) {
         break;
@@ -4501,6 +4932,7 @@
     }, options);
     var fuzzySearch = {
       search: function search(searchString, columns) {
+        // Substract arguments from the searchString or put searchString as only argument
         var searchArguments = options.multiSearch ? searchString.replace(/ +$/, '').split(/ +/) : [searchString];
 
         for (var k = 0, kl = list.items.length; k < kl; k++) {
@@ -4539,7 +4971,8 @@
       }
     };
     events.bind(getByClass(list.listContainer, options.searchClass), 'keyup', function (e) {
-      var target = e.target || e.srcElement;
+      var target = e.target || e.srcElement; // IE have srcElement
+
       list.search(target.value, fuzzySearch.search);
     });
     return function (str, columns) {
@@ -4630,6 +5063,9 @@
         }
       }
     };
+    /*
+    * Re-parse the List, use if html have changed
+    */
 
     this.reIndex = function () {
       self.items = [];
@@ -4649,6 +5085,10 @@
 
       return json;
     };
+    /*
+    * Add object to list
+    */
+
 
     this.add = function (values, callback) {
       if (values.length === 0) {
@@ -4685,6 +5125,11 @@
       self.update();
       return self;
     };
+    /* Removes object from list.
+    * Loops through the list and removes objects where
+    * property "valuename" === value
+    */
+
 
     this.remove = function (valueName, value, options) {
       var found = 0;
@@ -4702,6 +5147,10 @@
       self.update();
       return found;
     };
+    /* Gets the objects in the list which
+    * property "valueName" === value
+    */
+
 
     this.get = function (valueName, value) {
       var matchedItems = [];
@@ -4716,10 +5165,18 @@
 
       return matchedItems;
     };
+    /*
+    * Get size of the list
+    */
+
 
     this.size = function () {
       return self.items.length;
     };
+    /*
+    * Removes all items from the list
+    */
+
 
     this.clear = function () {
       self.templater.clear();
@@ -4804,6 +5261,7 @@
   };
 
   if (document.getElementById('listjs')) {
+    // Init our list.js component
     var list = new src('listjs', {
       fuzzySearch: {
         searchClass: 'search',
@@ -4816,9 +5274,12 @@
         data: ['category']
       }],
       listClass: 'menu'
-    });
+    }); // Empty Notice
+    // Displayed when the search returns no results
+
     var noticeEmpty = document.querySelector('.notice_empty');
-    var noticeEmptyText = noticeEmpty.querySelector('.search_text');
+    var noticeEmptyText = noticeEmpty.querySelector('.search_text'); // Clear search button
+
     var filter$1 = document.querySelector('.filter');
     var search$1 = document.querySelector('.filter .search');
     var searchClear = document.querySelector('.filter .search_clear');
@@ -4827,12 +5288,14 @@
       var menuLinks = document.querySelectorAll('#listjs .menu__link');
       var isActive = menuLinks.classList.contains('is-active');
       return isActive;
-    };
+    }; // On search complete callback
+
 
     list.on('searchComplete', function () {
+      // Update the search text in empty notice
       var value = search$1.value;
       noticeEmptyText.innerHTML = value;
-      localStorage.setItem('SearchValue', value);
+      localStorage.setItem('SearchValue', value); // Show clear search button if a value there is something in search
 
       if (value) {
         filter$1.classList.add('is-active');
@@ -4842,14 +5305,16 @@
         filter$1.classList.remove('is-active');
         search$1.classList.remove('is-active');
         searchClear.classList.add('display-none');
-      }
+      } // Toggle notice depending on the number of visible items
+
 
       if (list.visibleItems.length > 0) {
         noticeEmpty.classList.add('display-none');
       } else {
         noticeEmpty.classList.remove('display-none');
       }
-    });
+    }); // Click events for category and clears
+
     document.addEventListener('click', function () {
       var trigger_search_clear = event.target.closest('.search_clear');
       var trigger_search_cat = event.target.closest('.category');
@@ -4865,7 +5330,7 @@
         list.search(search$1.value);
         event.preventDefault();
       }
-    }, false);
+    }, false); // Restore our local storage value
 
     if (localStorage.getItem('SearchValue')) {
       search$1.value = localStorage.getItem('SearchValue');
