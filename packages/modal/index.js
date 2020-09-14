@@ -1,8 +1,8 @@
-import { hasClass } from '@vrembem/core/index';
-import { setInert, setOverflowHidden, setTabindex } from '@vrembem/core/index';
-import { FocusTrap, focusTarget, focusTrigger } from '@vrembem/core/index';
-import { openTransition, closeTransition } from '@vrembem/core/index';
-import { moveElement } from '@vrembem/core/index';
+import { hasClass } from '@vrembem/core';
+import { setInert, setOverflowHidden, setTabindex } from '@vrembem/core';
+import { FocusTrap, focusTarget, focusTrigger } from '@vrembem/core';
+import { openTransition, closeTransition } from '@vrembem/core';
+import { moveElement } from '@vrembem/core';
 
 import defaults from './src/js/defaults';
 import { handlerClick, handlerKeyup } from './src/js/handlers';

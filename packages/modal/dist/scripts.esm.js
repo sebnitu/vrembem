@@ -1,4 +1,4 @@
-import { setInert, setOverflowHidden, focusTrigger, removeClass, addClass, setTabindex, moveElement, hasClass, openTransition, focusTarget, closeTransition, FocusTrap } from '@vrembem/core/index';
+import { setInert, setOverflowHidden, focusTrigger, removeClass, addClass, setTabindex, moveElement, hasClass, openTransition, focusTarget, closeTransition, FocusTrap } from '@vrembem/core';
 
 function _extends() {
   _extends = Object.assign || function (target) {

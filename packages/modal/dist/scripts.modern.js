@@ -1,4 +1,4 @@
-import { setInert, setOverflowHidden, focusTrigger, removeClass, addClass, FocusTrap, setTabindex, moveElement, hasClass, openTransition, focusTarget, closeTransition } from '@vrembem/core/index';
+import { setInert, setOverflowHidden, focusTrigger, removeClass, addClass, FocusTrap, setTabindex, moveElement, hasClass, openTransition, focusTarget, closeTransition } from '@vrembem/core';
 
 var defaults = {
   autoInit: false,

@@ -1,8 +1,8 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('@vrembem/core/index')) :
-  typeof define === 'function' && define.amd ? define(['@vrembem/core/index'], factory) :
-  (global = global || self, (global.vrembem = global.vrembem || {}, global.vrembem.Modal = factory(global.index)));
-}(this, (function (index) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('@vrembem/core')) :
+  typeof define === 'function' && define.amd ? define(['@vrembem/core'], factory) :
+  (global = global || self, (global.vrembem = global.vrembem || {}, global.vrembem.Modal = factory(global.vrembem.core)));
+}(this, (function (core) {
   function _extends() {
     _extends = Object.assign || function (target) {
       for (var i = 1; i < arguments.length; i++) {
@@ -113,14 +113,14 @@
     var modals = document.querySelectorAll("[data-" + obj.settings.dataModal + "]");
     modals.forEach(function (el) {
       if (el.classList.contains(obj.settings.stateOpened)) {
-        index.setInert(false, obj.settings.selectorInert);
-        index.setOverflowHidden(false, obj.settings.selectorOverflow);
-        index.focusTrigger(obj);
+        core.setInert(false, obj.settings.selectorInert);
+        core.setOverflowHidden(false, obj.settings.selectorOverflow);
+        core.focusTrigger(obj);
         obj.focusTrap.destroy();
       }
 
-      index.removeClass(el, obj.settings.stateOpened, obj.settings.stateOpening, obj.settings.stateClosing);
-      index.addClass(el, obj.settings.stateClosed);
+      core.removeClass(el, obj.settings.stateOpened, obj.settings.stateOpening, obj.settings.stateClosing);
+      core.addClass(el, obj.settings.stateClosed);
     });
   }
 
@@ -130,7 +130,7 @@
       this.settings = _extends({}, this.defaults, options);
       this.working = false;
       this.memory = {};
-      this.focusTrap = new index.FocusTrap();
+      this.focusTrap = new core.FocusTrap();
       this.__handlerClick = handlerClick.bind(this);
       this.__handlerKeyup = handlerKeyup.bind(this);
       if (this.settings.autoInit) this.init();
@@ -179,7 +179,7 @@
 
       var selectorTabindex = "\n      [data-" + this.settings.dataModal + "]\n      [data-" + this.settings.dataDialog + "]\n    ";
 
-      index.setTabindex(state, selectorTabindex);
+      core.setTabindex(state, selectorTabindex);
     };
 
     _proto.setInitialState = function setInitialState$1() {
@@ -196,7 +196,7 @@
       }
 
       var modals = document.querySelectorAll("[data-" + this.settings.dataModal + "]");
-      if (modals.length) index.moveElement(modals, type, ref);
+      if (modals.length) core.moveElement(modals, type, ref);
     }
     /**
      * Change state functionality
@@ -211,14 +211,14 @@
 
         if (!modal) return Promise.resolve(_this2.modalNotFound(modalKey));
 
-        if (index.hasClass(modal, _this2.settings.stateClosed)) {
+        if (core.hasClass(modal, _this2.settings.stateClosed)) {
           _this2.working = true;
-          index.setOverflowHidden(true, _this2.settings.selectorOverflow);
-          return Promise.resolve(index.openTransition(modal, _this2.settings)).then(function () {
+          core.setOverflowHidden(true, _this2.settings.selectorOverflow);
+          return Promise.resolve(core.openTransition(modal, _this2.settings)).then(function () {
             _this2.focusTrap.init(modal);
 
-            index.focusTarget(modal, _this2.settings);
-            index.setInert(true, _this2.settings.selectorInert);
+            core.focusTarget(modal, _this2.settings);
+            core.setInert(true, _this2.settings.selectorInert);
             modal.dispatchEvent(new CustomEvent(_this2.settings.customEventPrefix + 'opened', {
               bubbles: true
             }));
@@ -245,10 +245,10 @@
 
         if (modal) {
           _this4.working = true;
-          index.setInert(false, _this4.settings.selectorInert);
-          index.setOverflowHidden(false, _this4.settings.selectorOverflow);
-          return Promise.resolve(index.closeTransition(modal, _this4.settings)).then(function () {
-            if (returnFocus) index.focusTrigger(_this4);
+          core.setInert(false, _this4.settings.selectorInert);
+          core.setOverflowHidden(false, _this4.settings.selectorOverflow);
+          return Promise.resolve(core.closeTransition(modal, _this4.settings)).then(function () {
+            if (returnFocus) core.focusTrigger(_this4);
 
             _this4.focusTrap.destroy();
 
