@@ -9,12 +9,13 @@
     "component",
     "modal"
   ],
+  "source": "index.js",
   "main": "dist/scripts.js",
   "module": "dist/scripts.esm.js",
-  "unpkg": "dist/scripts.js",
+  "unpkg": "dist/scripts.umd.js",
   "style": "index.scss",
   "scripts": {
-    "build": "npm-run-all clean scripts styles",
+    "build": "microbundle --name=vrembem.Modal --no-compress",
     "clean": "del dist",
     "scripts": "rollup -c",
     "styles": "npm-run-all styles:compile styles:min",
