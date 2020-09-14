@@ -43,12 +43,6 @@
     }
   };
 
-  /**
-   * Adds a class or classes to an element or NodeList
-   * ---
-   * @param {Node || NodeList} el - Element(s) to add class(es) to
-   * @param {String || Array} cl - Class(es) to add
-   */
   var addClass = function addClass(el) {
     for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       cl[_key - 1] = arguments[_key];
@@ -62,12 +56,6 @@
     });
   };
 
-  /**
-   * Takes a hyphen cased string and converts it to camel case
-   * ---
-   * @param {String } str - the string to convert to camel case
-   * @returns {Boolean} - returns a camel cased string
-   */
   var camelCase = function camelCase(str) {
     return str.replace(/-([a-z])/g, function (g) {
       return g[1].toUpperCase();
@@ -116,7 +104,7 @@
     obj.memory.trigger.focus();
     obj.memory.trigger = null;
   };
-  var FocusTrap = /*#__PURE__*/function () {
+  var FocusTrap = function () {
     function FocusTrap() {
       classCallCheck(this, FocusTrap);
 
@@ -197,26 +185,12 @@
     return FocusTrap;
   }();
 
-  /**
-   * Get an element(s) from a selector or return value if not a string
-   * ---
-   * @param {String} selector - Selector to query
-   * @param {Boolean} single - Whether to return a single or all matches
-   */
   var getElement = function getElement(selector) {
     var single = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
     if (typeof selector != 'string') return selector;
     return single ? document.querySelector(selector) : document.querySelectorAll(selector);
   };
 
-  /**
-   * Checks an element or NodeList whether they contain a class or classes
-   * Ref: https://davidwalsh.name/nodelist-array
-   * ---
-   * @param {Node} el - Element(s) to check class(es) on
-   * @param {String || Array} c - Class(es) to check
-   * @returns {Boolean} - Returns true if class exists, otherwise false
-   */
   var hasClass = function hasClass(el) {
     el = el.forEach ? el : [el];
     el = [].slice.call(el);
@@ -232,25 +206,11 @@
     });
   };
 
-  /**
-   * Takes a camel cased string and converts it to hyphen case
-   * ---
-   * @param {String } str - the string to convert to hyphen case
-   * @returns {Boolean} - returns a hyphen cased string
-   */
   var hyphenCase = function hyphenCase(str) {
     return str.replace(/([a-z][A-Z])/g, function (g) {
       return g[0] + '-' + g[1].toLowerCase();
     });
   };
-
-  /**
-   * Moves element(s) in the DOM based on a reference and move type
-   * ---
-   * @param {String} target - The element(s) to move
-   * @param {String} type - Move type can be 'after', 'before', 'append' or 'prepend'
-   * @param {String} reference - The reference element the move is relative to
-   */
 
   function moveElement(target, type) {
     var reference = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
@@ -301,12 +261,6 @@
     }
   }
 
-  /**
-   * Remove a class or classes from an element or NodeList
-   * ---
-   * @param {Node || NodeList} el - Element(s) to remove class(es) from
-   * @param {String || Array} cl - Class(es) to remove
-   */
   var removeClass = function removeClass(el) {
     for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       cl[_key - 1] = arguments[_key];
@@ -320,12 +274,6 @@
     });
   };
 
-  /**
-   * Toggle a class or classes on an element or NodeList
-   * ---
-   * @param {Node || NodeList} el - Element(s) to toggle class(es) on
-   * @param {String || Array} cl - Class(es) to toggle
-   */
   var toggleClass = function toggleClass(el) {
     for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       cl[_key - 1] = arguments[_key];
