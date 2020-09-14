@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.22.1 to CHANGELOG.md
+chore(release): add v1.22.2 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.22.2 (2020-09-14)
+
+#### :house: Refactor
+* `checkbox`, `core`, `drawer`, `modal`, `vrembem`
+  * [#394](https://github.com/sebnitu/vrembem/pull/394) Optimize bundles
 
 
 ## v1.22.1 (2020-09-13)
