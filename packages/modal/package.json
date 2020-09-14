@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/modal",
   "description": "A component for changing the mode of a page to complete a critical task. This is usually used in conjunction with the dialog component to make modal dialogs.",
-  "version": "1.22.1",
+  "version": "1.22.2",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -30,7 +30,7 @@
     "directory": "packages/modal"
   },
   "dependencies": {
-    "@vrembem/core": "^1.22.1"
+    "@vrembem/core": "^1.22.2"
   },
   "publishConfig": {
     "access": "public"
