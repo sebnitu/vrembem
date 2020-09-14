@@ -1,7 +1,7 @@
-var setInert = function setInert(state, selector) {
+const setInert = (state, selector) => {
   if (selector) {
-    var els = document.querySelectorAll(selector);
-    els.forEach(function (el) {
+    const els = document.querySelectorAll(selector);
+    els.forEach(el => {
       if (state) {
         el.inert = true;
         el.setAttribute('aria-hidden', true);
@@ -12,10 +12,10 @@ var setInert = function setInert(state, selector) {
     });
   }
 };
-var setOverflowHidden = function setOverflowHidden(state, selector) {
+const setOverflowHidden = (state, selector) => {
   if (selector) {
-    var els = document.querySelectorAll(selector);
-    els.forEach(function (el) {
+    const els = document.querySelectorAll(selector);
+    els.forEach(el => {
       if (state) {
         el.style.overflow = 'hidden';
       } else {
@@ -24,10 +24,10 @@ var setOverflowHidden = function setOverflowHidden(state, selector) {
     });
   }
 };
-var setTabindex = function setTabindex(state, selector) {
+const setTabindex = (state, selector) => {
   if (selector) {
-    var els = document.querySelectorAll(selector);
-    els.forEach(function (el) {
+    const els = document.querySelectorAll(selector);
+    els.forEach(el => {
       if (state) {
         el.setAttribute('tabindex', '-1');
       } else {
@@ -43,13 +43,10 @@ var setTabindex = function setTabindex(state, selector) {
  * @param {Node || NodeList} el - Element(s) to add class(es) to
  * @param {String || Array} cl - Class(es) to add
  */
-var addClass = function addClass(el) {
-  var _arguments = arguments;
+const addClass = (el, ...cl) => {
   el = el.forEach ? el : [el];
-  el.forEach(function (el) {
-    var _el$classList;
-
-    (_el$classList = el.classList).add.apply(_el$classList, [].slice.call(_arguments, 1));
+  el.forEach(el => {
+    el.classList.add(...cl);
   });
 };
 
@@ -59,40 +56,34 @@ var addClass = function addClass(el) {
  * @param {String } str - the string to convert to camel case
  * @returns {Boolean} - returns a camel cased string
  */
-var camelCase = function camelCase(str) {
+const camelCase = str => {
   return str.replace(/-([a-z])/g, function (g) {
     return g[1].toUpperCase();
   });
 };
 
-var focusTarget = function focusTarget(target, settings) {
-  var innerFocus = target.querySelector("[data-" + settings.dataFocus + "]");
+const focusTarget = (target, settings) => {
+  const innerFocus = target.querySelector(`[data-${settings.dataFocus}]`);
 
   if (innerFocus) {
     innerFocus.focus();
   } else {
-    var innerElement = target.querySelector('[tabindex="-1"]');
+    const innerElement = target.querySelector('[tabindex="-1"]');
     if (innerElement) innerElement.focus();
   }
 };
-var focusTrigger = function focusTrigger(obj) {
-  if (obj === void 0) {
-    obj = null;
-  }
-
+const focusTrigger = (obj = null) => {
   if (!obj || !obj.memory || !obj.memory.trigger) return;
   obj.memory.trigger.focus();
   obj.memory.trigger = null;
 };
-var FocusTrap = /*#__PURE__*/function () {
-  function FocusTrap() {
+class FocusTrap {
+  constructor() {
     this.target = null;
     this.__handlerFocusTrap = this.handlerFocusTrap.bind(this);
   }
 
-  var _proto = FocusTrap.prototype;
-
-  _proto.init = function init(target) {
+  init(target) {
     this.target = target;
     this.inner = this.target.querySelector('[tabindex="-1"]');
     this.focusable = this.getFocusable();
@@ -104,9 +95,9 @@ var FocusTrap = /*#__PURE__*/function () {
     } else {
       this.target.addEventListener('keydown', this.handlerFocusLock);
     }
-  };
+  }
 
-  _proto.destroy = function destroy() {
+  destroy() {
     if (!this.target) return;
     this.inner = null;
     this.focusable = null;
@@ -115,10 +106,10 @@ var FocusTrap = /*#__PURE__*/function () {
     this.target.removeEventListener('keydown', this.__handlerFocusTrap);
     this.target.removeEventListener('keydown', this.handlerFocusLock);
     this.target = null;
-  };
+  }
 
-  _proto.handlerFocusTrap = function handlerFocusTrap(event) {
-    var isTab = event.key === 'Tab' || event.keyCode === 9;
+  handlerFocusTrap(event) {
+    const isTab = event.key === 'Tab' || event.keyCode === 9;
     if (!isTab) return;
 
     if (event.shiftKey) {
@@ -132,18 +123,27 @@ var FocusTrap = /*#__PURE__*/function () {
         event.preventDefault();
       }
     }
-  };
+  }
 
-  _proto.handlerFocusLock = function handlerFocusLock(event) {
-    var isTab = event.key === 'Tab' || event.keyCode === 9;
+  handlerFocusLock(event) {
+    const isTab = event.key === 'Tab' || event.keyCode === 9;
     if (isTab) event.preventDefault();
-  };
+  }
 
-  _proto.getFocusable = function getFocusable() {
-    var focusable = [];
-    var initFocus = document.activeElement;
-    var initScrollTop = this.inner ? this.inner.scrollTop : 0;
-    this.target.querySelectorAll("\n      a[href]:not([disabled]),\n      button:not([disabled]),\n      textarea:not([disabled]),\n      input[type=\"text\"]:not([disabled]),\n      input[type=\"radio\"]:not([disabled]),\n      input[type=\"checkbox\"]:not([disabled]),\n      select:not([disabled]),\n      [tabindex]:not([tabindex=\"-1\"])\n    ").forEach(function (el) {
+  getFocusable() {
+    const focusable = [];
+    const initFocus = document.activeElement;
+    const initScrollTop = this.inner ? this.inner.scrollTop : 0;
+    this.target.querySelectorAll(`
+      a[href]:not([disabled]),
+      button:not([disabled]),
+      textarea:not([disabled]),
+      input[type="text"]:not([disabled]),
+      input[type="radio"]:not([disabled]),
+      input[type="checkbox"]:not([disabled]),
+      select:not([disabled]),
+      [tabindex]:not([tabindex="-1"])
+    `).forEach(el => {
       el.focus();
 
       if (el === document.activeElement) {
@@ -153,10 +153,9 @@ var FocusTrap = /*#__PURE__*/function () {
     if (this.inner) this.inner.scrollTop = initScrollTop;
     initFocus.focus();
     return focusable;
-  };
+  }
 
-  return FocusTrap;
-}();
+}
 
 /**
  * Get an element(s) from a selector or return value if not a string
@@ -164,11 +163,7 @@ var FocusTrap = /*#__PURE__*/function () {
  * @param {String} selector - Selector to query
  * @param {Boolean} single - Whether to return a single or all matches
  */
-var getElement = function getElement(selector, single) {
-  if (single === void 0) {
-    single = 0;
-  }
-
+const getElement = function (selector, single = 0) {
   if (typeof selector != 'string') return selector;
   return single ? document.querySelector(selector) : document.querySelectorAll(selector);
 };
@@ -181,11 +176,11 @@ var getElement = function getElement(selector, single) {
  * @param {String || Array} c - Class(es) to check
  * @returns {Boolean} - Returns true if class exists, otherwise false
  */
-var hasClass = function hasClass(el) {
+const hasClass = (el, ...cl) => {
   el = el.forEach ? el : [el];
   el = [].slice.call(el);
-  return [].slice.call(arguments, 1).some(function (cl) {
-    return el.some(function (el) {
+  return cl.some(cl => {
+    return el.some(el => {
       if (el.classList.contains(cl)) return true;
     });
   });
@@ -197,7 +192,7 @@ var hasClass = function hasClass(el) {
  * @param {String } str - the string to convert to hyphen case
  * @returns {Boolean} - returns a hyphen cased string
  */
-var hyphenCase = function hyphenCase(str) {
+const hyphenCase = str => {
   return str.replace(/([a-z][A-Z])/g, function (g) {
     return g[0] + '-' + g[1].toLowerCase();
   });
@@ -211,52 +206,48 @@ var hyphenCase = function hyphenCase(str) {
  * @param {String} reference - The reference element the move is relative to
  */
 
-function moveElement(target, type, reference) {
-  if (reference === void 0) {
-    reference = false;
-  }
-
+function moveElement(target, type, reference = false) {
   if (reference) {
-    var els = getElement(target);
-    if (!els.length) throw new Error("Move target element \"" + target + "\" not found!");
-    var ref = getElement(reference, 1);
-    if (!ref) throw new Error("Move reference element \"" + reference + "\" not found!");
-    els.forEach(function (el) {
+    const els = getElement(target);
+    if (!els.length) throw new Error(`Move target element "${target}" not found!`);
+    const ref = getElement(reference, 1);
+    if (!ref) throw new Error(`Move reference element "${reference}" not found!`);
+    els.forEach(el => {
       switch (type) {
         case 'after':
           ref.after(el);
           return {
-            ref: ref,
-            el: el,
-            type: type
+            ref,
+            el,
+            type
           };
 
         case 'before':
           ref.before(el);
           return {
-            ref: ref,
-            el: el,
-            type: type
+            ref,
+            el,
+            type
           };
 
         case 'append':
           ref.append(el);
           return {
-            ref: ref,
-            el: el,
-            type: type
+            ref,
+            el,
+            type
           };
 
         case 'prepend':
           ref.prepend(el);
           return {
-            ref: ref,
-            el: el,
-            type: type
+            ref,
+            el,
+            type
           };
 
         default:
-          throw new Error("Move type \"" + type + "\" does not exist!");
+          throw new Error(`Move type "${type}" does not exist!`);
       }
     });
   }
@@ -268,13 +259,10 @@ function moveElement(target, type, reference) {
  * @param {Node || NodeList} el - Element(s) to remove class(es) from
  * @param {String || Array} cl - Class(es) to remove
  */
-var removeClass = function removeClass(el) {
-  var _arguments = arguments;
+const removeClass = (el, ...cl) => {
   el = el.forEach ? el : [el];
-  el.forEach(function (el) {
-    var _el$classList;
-
-    (_el$classList = el.classList).remove.apply(_el$classList, [].slice.call(_arguments, 1));
+  el.forEach(el => {
+    el.classList.remove(...cl);
   });
 };
 
@@ -284,18 +272,17 @@ var removeClass = function removeClass(el) {
  * @param {Node || NodeList} el - Element(s) to toggle class(es) on
  * @param {String || Array} cl - Class(es) to toggle
  */
-var toggleClass = function toggleClass(el) {
-  var _arguments = arguments;
+const toggleClass = (el, ...cl) => {
   el = el.forEach ? el : [el];
-  el.forEach(function (el) {
-    [].slice.call(_arguments, 1).forEach(function (cl) {
+  el.forEach(el => {
+    cl.forEach(cl => {
       el.classList.toggle(cl);
     });
   });
 };
 
-var openTransition = function openTransition(el, settings) {
-  return new Promise(function (resolve) {
+const openTransition = (el, settings) => {
+  return new Promise(resolve => {
     if (settings.transition) {
       el.classList.remove(settings.stateClosed);
       el.classList.add(settings.stateOpening);
@@ -312,8 +299,8 @@ var openTransition = function openTransition(el, settings) {
     }
   });
 };
-var closeTransition = function closeTransition(el, settings) {
-  return new Promise(function (resolve) {
+const closeTransition = (el, settings) => {
+  return new Promise(resolve => {
     if (settings.transition) {
       el.classList.add(settings.stateClosing);
       el.classList.remove(settings.stateOpened);
@@ -331,7 +318,7 @@ var closeTransition = function closeTransition(el, settings) {
   });
 };
 
-var breakpoints = {
+const breakpoints = {
   xs: '480px',
   sm: '620px',
   md: '760px',
@@ -340,4 +327,4 @@ var breakpoints = {
 };
 
 export { FocusTrap, addClass, breakpoints, camelCase, closeTransition, focusTarget, focusTrigger, getElement, hasClass, hyphenCase, moveElement, openTransition, removeClass, setInert, setOverflowHidden, setTabindex, toggleClass };
-//# sourceMappingURL=scripts.esm.js.map
+//# sourceMappingURL=scripts.modern.js.map
