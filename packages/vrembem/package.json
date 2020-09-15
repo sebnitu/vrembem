@@ -14,7 +14,7 @@
   "unpkg": "dist/scripts.js",
   "style": "index.scss",
   "scripts": {
-    "build": "npm-run-all clean scripts styles",
+    "build": "microbundle --name=vrembem --external=none --no-compress --globals @vrembem/core=vrembem.core,@vrembem/checkbox=vrembem.Checkbox,@vrembem/drawer=vrembem.Drawer,@vrembem/modal=vrembem.Modal",
     "clean": "del dist",
     "scripts": "rollup -c",
     "styles": "npm-run-all styles:compile styles:min",
