@@ -1,8 +1,8 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('@vrembem/core/index')) :
-  typeof define === 'function' && define.amd ? define(['@vrembem/core/index'], factory) :
-  (global = global || self, (global.vrembem = global.vrembem || {}, global.vrembem.Drawer = factory(global.index)));
-}(this, (function (index) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global = global || self, (global.vrembem = global.vrembem || {}, global.vrembem.Drawer = factory()));
+}(this, (function () {
   function _extends() {
     _extends = Object.assign || function (target) {
       for (var i = 1; i < arguments.length; i++) {
@@ -20,6 +20,233 @@
 
     return _extends.apply(this, arguments);
   }
+
+  var setInert = function setInert(state, selector) {
+    if (selector) {
+      var els = document.querySelectorAll(selector);
+      els.forEach(function (el) {
+        if (state) {
+          el.inert = true;
+          el.setAttribute('aria-hidden', true);
+        } else {
+          el.inert = null;
+          el.removeAttribute('aria-hidden');
+        }
+      });
+    }
+  };
+  var setOverflowHidden = function setOverflowHidden(state, selector) {
+    if (selector) {
+      var els = document.querySelectorAll(selector);
+      els.forEach(function (el) {
+        if (state) {
+          el.style.overflow = 'hidden';
+        } else {
+          el.style.removeProperty('overflow');
+        }
+      });
+    }
+  };
+  var setTabindex = function setTabindex(state, selector) {
+    if (selector) {
+      var els = document.querySelectorAll(selector);
+      els.forEach(function (el) {
+        if (state) {
+          el.setAttribute('tabindex', '-1');
+        } else {
+          el.removeAttribute('tabindex');
+        }
+      });
+    }
+  };
+
+  /**
+   * Adds a class or classes to an element or NodeList
+   * ---
+   * @param {Node || NodeList} el - Element(s) to add class(es) to
+   * @param {String || Array} cl - Class(es) to add
+   */
+  var addClass = function addClass(el) {
+    var _arguments = arguments;
+    el = el.forEach ? el : [el];
+    el.forEach(function (el) {
+      var _el$classList;
+
+      (_el$classList = el.classList).add.apply(_el$classList, [].slice.call(_arguments, 1));
+    });
+  };
+
+  var focusTarget = function focusTarget(target, settings) {
+    var innerFocus = target.querySelector("[data-" + settings.dataFocus + "]");
+
+    if (innerFocus) {
+      innerFocus.focus();
+    } else {
+      var innerElement = target.querySelector('[tabindex="-1"]');
+      if (innerElement) innerElement.focus();
+    }
+  };
+  var focusTrigger = function focusTrigger(obj) {
+    if (obj === void 0) {
+      obj = null;
+    }
+
+    if (!obj || !obj.memory || !obj.memory.trigger) return;
+    obj.memory.trigger.focus();
+    obj.memory.trigger = null;
+  };
+  var FocusTrap = /*#__PURE__*/function () {
+    function FocusTrap() {
+      this.target = null;
+      this.__handlerFocusTrap = this.handlerFocusTrap.bind(this);
+    }
+
+    var _proto = FocusTrap.prototype;
+
+    _proto.init = function init(target) {
+      this.target = target;
+      this.inner = this.target.querySelector('[tabindex="-1"]');
+      this.focusable = this.getFocusable();
+
+      if (this.focusable.length) {
+        this.focusableFirst = this.focusable[0];
+        this.focusableLast = this.focusable[this.focusable.length - 1];
+        this.target.addEventListener('keydown', this.__handlerFocusTrap);
+      } else {
+        this.target.addEventListener('keydown', this.handlerFocusLock);
+      }
+    };
+
+    _proto.destroy = function destroy() {
+      if (!this.target) return;
+      this.inner = null;
+      this.focusable = null;
+      this.focusableFirst = null;
+      this.focusableLast = null;
+      this.target.removeEventListener('keydown', this.__handlerFocusTrap);
+      this.target.removeEventListener('keydown', this.handlerFocusLock);
+      this.target = null;
+    };
+
+    _proto.handlerFocusTrap = function handlerFocusTrap(event) {
+      var isTab = event.key === 'Tab' || event.keyCode === 9;
+      if (!isTab) return;
+
+      if (event.shiftKey) {
+        if (document.activeElement === this.focusableFirst || document.activeElement === this.inner) {
+          this.focusableLast.focus();
+          event.preventDefault();
+        }
+      } else {
+        if (document.activeElement === this.focusableLast || document.activeElement === this.inner) {
+          this.focusableFirst.focus();
+          event.preventDefault();
+        }
+      }
+    };
+
+    _proto.handlerFocusLock = function handlerFocusLock(event) {
+      var isTab = event.key === 'Tab' || event.keyCode === 9;
+      if (isTab) event.preventDefault();
+    };
+
+    _proto.getFocusable = function getFocusable() {
+      var focusable = [];
+      var initFocus = document.activeElement;
+      var initScrollTop = this.inner ? this.inner.scrollTop : 0;
+      this.target.querySelectorAll("\n      a[href]:not([disabled]),\n      button:not([disabled]),\n      textarea:not([disabled]),\n      input[type=\"text\"]:not([disabled]),\n      input[type=\"radio\"]:not([disabled]),\n      input[type=\"checkbox\"]:not([disabled]),\n      select:not([disabled]),\n      [tabindex]:not([tabindex=\"-1\"])\n    ").forEach(function (el) {
+        el.focus();
+
+        if (el === document.activeElement) {
+          focusable.push(el);
+        }
+      });
+      if (this.inner) this.inner.scrollTop = initScrollTop;
+      initFocus.focus();
+      return focusable;
+    };
+
+    return FocusTrap;
+  }();
+
+  /**
+   * Checks an element or NodeList whether they contain a class or classes
+   * Ref: https://davidwalsh.name/nodelist-array
+   * ---
+   * @param {Node} el - Element(s) to check class(es) on
+   * @param {String || Array} c - Class(es) to check
+   * @returns {Boolean} - Returns true if class exists, otherwise false
+   */
+  var hasClass = function hasClass(el) {
+    el = el.forEach ? el : [el];
+    el = [].slice.call(el);
+    return [].slice.call(arguments, 1).some(function (cl) {
+      return el.some(function (el) {
+        if (el.classList.contains(cl)) return true;
+      });
+    });
+  };
+
+  /**
+   * Remove a class or classes from an element or NodeList
+   * ---
+   * @param {Node || NodeList} el - Element(s) to remove class(es) from
+   * @param {String || Array} cl - Class(es) to remove
+   */
+  var removeClass = function removeClass(el) {
+    var _arguments = arguments;
+    el = el.forEach ? el : [el];
+    el.forEach(function (el) {
+      var _el$classList;
+
+      (_el$classList = el.classList).remove.apply(_el$classList, [].slice.call(_arguments, 1));
+    });
+  };
+
+  var openTransition = function openTransition(el, settings) {
+    return new Promise(function (resolve) {
+      if (settings.transition) {
+        el.classList.remove(settings.stateClosed);
+        el.classList.add(settings.stateOpening);
+        el.addEventListener('transitionend', function _f() {
+          el.classList.add(settings.stateOpened);
+          el.classList.remove(settings.stateOpening);
+          resolve(el);
+          this.removeEventListener('transitionend', _f);
+        });
+      } else {
+        el.classList.add(settings.stateOpened);
+        el.classList.remove(settings.stateClosed);
+        resolve(el);
+      }
+    });
+  };
+  var closeTransition = function closeTransition(el, settings) {
+    return new Promise(function (resolve) {
+      if (settings.transition) {
+        el.classList.add(settings.stateClosing);
+        el.classList.remove(settings.stateOpened);
+        el.addEventListener('transitionend', function _f() {
+          el.classList.remove(settings.stateClosing);
+          el.classList.add(settings.stateClosed);
+          resolve(el);
+          this.removeEventListener('transitionend', _f);
+        });
+      } else {
+        el.classList.add(settings.stateClosed);
+        el.classList.remove(settings.stateOpened);
+        resolve(el);
+      }
+    });
+  };
+
+  var breakpoints = {
+    xs: '480px',
+    sm: '620px',
+    md: '760px',
+    lg: '990px',
+    xl: '1380px'
+  };
 
   var defaults = {
     autoInit: false,
@@ -42,7 +269,7 @@
     selectorInert: null,
     selectorOverflow: null,
     // Feature toggles
-    breakpoints: index.breakpoints,
+    breakpoints: breakpoints,
     customEventPrefix: 'drawer:',
     stateSave: true,
     stateKey: 'DrawerState',
@@ -55,19 +282,19 @@
       // Initial guards
       var drawer = obj.getDrawer(drawerKey);
       if (!drawer) return Promise.resolve(obj.drawerNotFound(drawerKey));
-      if (!index.hasClass(drawer, obj.settings.classModal)) return Promise.resolve(); // Tear down modal state
+      if (!hasClass(drawer, obj.settings.classModal)) return Promise.resolve(); // Tear down modal state
 
-      index.setInert(false, obj.settings.selectorInert);
-      index.setOverflowHidden(false, obj.settings.selectorOverflow);
-      index.removeClass(drawer, obj.settings.classModal);
+      setInert(false, obj.settings.selectorInert);
+      setOverflowHidden(false, obj.settings.selectorOverflow);
+      removeClass(drawer, obj.settings.classModal);
       obj.focusTrap.destroy(); // Restore drawers saved state
 
       drawerKey = drawer.getAttribute("data-" + obj.settings.dataDrawer);
       var drawerState = obj.state[drawerKey];
 
       if (drawerState == obj.settings.stateOpened) {
-        index.addClass(drawer, obj.settings.stateOpened);
-        index.removeClass(drawer, obj.settings.stateClosed);
+        addClass(drawer, obj.settings.stateOpened);
+        removeClass(drawer, obj.settings.stateClosed);
       } // Dispatch custom event
 
 
@@ -84,11 +311,11 @@
       // Initial guards
       var drawer = obj.getDrawer(drawerKey);
       if (!drawer) return Promise.resolve(obj.drawerNotFound(drawerKey));
-      if (index.hasClass(drawer, obj.settings.classModal)) return Promise.resolve(); // Enable modal state
+      if (hasClass(drawer, obj.settings.classModal)) return Promise.resolve(); // Enable modal state
 
-      index.addClass(drawer, obj.settings.classModal);
-      index.addClass(drawer, obj.settings.stateClosed);
-      index.removeClass(drawer, obj.settings.stateOpened); // Dispatch custom event
+      addClass(drawer, obj.settings.classModal);
+      addClass(drawer, obj.settings.stateClosed);
+      removeClass(drawer, obj.settings.stateOpened); // Dispatch custom event
 
       drawer.dispatchEvent(new CustomEvent(obj.settings.customEventPrefix + 'toModal', {
         bubbles: true
@@ -247,7 +474,7 @@
     Object.keys(state).forEach(function (key) {
       var item = document.querySelector("[data-" + settings.dataDrawer + "=\"" + key + "\"]");
       if (!item) return;
-      state[key] == settings.stateOpened ? index.addClass(item, settings.stateOpened) : index.removeClass(item, settings.stateOpened);
+      state[key] == settings.stateOpened ? addClass(item, settings.stateOpened) : removeClass(item, settings.stateOpened);
     });
     return state;
   }
@@ -260,9 +487,9 @@
     var drawers = target ? [target] : document.querySelectorAll("[data-" + settings.dataDrawer + "]"); // Loop through drawers and save their states
 
     drawers.forEach(function (el) {
-      if (index.hasClass(el, settings.classModal)) return;
+      if (hasClass(el, settings.classModal)) return;
       var drawerKey = el.getAttribute("data-" + settings.dataDrawer);
-      state[drawerKey] = index.hasClass(el, settings.stateOpened) ? settings.stateOpened : settings.stateClosed;
+      state[drawerKey] = hasClass(el, settings.stateOpened) ? settings.stateOpened : settings.stateClosed;
     }); // Save to localStorage and return the state
 
     localStorage.setItem(settings.stateKey, JSON.stringify(state));
@@ -283,7 +510,7 @@
       this.working = false;
       this.memory = {};
       this.state = {};
-      this.focusTrap = new index.FocusTrap();
+      this.focusTrap = new FocusTrap();
       this.breakpoint = new Breakpoint(this);
       this.__handlerClick = handlerClick.bind(this);
       this.__handlerKeyup = handlerKeyup.bind(this);
@@ -329,14 +556,14 @@
       return Promise.reject(new Error("Did not find drawer with key: \"" + key + "\""));
     };
 
-    _proto.setTabindex = function setTabindex(state) {
+    _proto.setTabindex = function setTabindex$1(state) {
       if (state === void 0) {
         state = true;
       }
 
       var selectorTabindex = "\n      [data-" + this.settings.dataDrawer + "]\n      [data-" + this.settings.dataDialog + "]\n    ";
 
-      index.setTabindex(state, selectorTabindex);
+      setTabindex(state, selectorTabindex);
     }
     /**
      * Save state functionality
@@ -382,7 +609,7 @@
         var drawer = _this2.getDrawer(drawerKey);
 
         if (!drawer) return Promise.resolve(_this2.drawerNotFound(drawerKey));
-        var isOpen = index.hasClass(drawer, _this2.settings.stateOpened);
+        var isOpen = hasClass(drawer, _this2.settings.stateOpened);
 
         if (!isOpen) {
           return Promise.resolve(_this2.open(drawer));
@@ -402,24 +629,24 @@
 
         if (!drawer) return Promise.resolve(_this4.drawerNotFound(drawerKey));
 
-        if (!index.hasClass(drawer, _this4.settings.stateOpened)) {
+        if (!hasClass(drawer, _this4.settings.stateOpened)) {
           _this4.working = true;
-          var isModal = index.hasClass(drawer, _this4.settings.classModal);
+          var isModal = hasClass(drawer, _this4.settings.classModal);
 
           if (isModal) {
-            index.setOverflowHidden(true, _this4.settings.selectorOverflow);
+            setOverflowHidden(true, _this4.settings.selectorOverflow);
           }
 
-          return Promise.resolve(index.openTransition(drawer, _this4.settings)).then(function () {
+          return Promise.resolve(openTransition(drawer, _this4.settings)).then(function () {
             _this4.stateSave(drawer);
 
             if (isModal) {
               _this4.focusTrap.init(drawer);
 
-              index.setInert(true, _this4.settings.selectorInert);
+              setInert(true, _this4.settings.selectorInert);
             }
 
-            index.focusTarget(drawer, _this4.settings);
+            focusTarget(drawer, _this4.settings);
             drawer.dispatchEvent(new CustomEvent(_this4.settings.customEventPrefix + 'opened', {
               bubbles: true
             }));
@@ -427,7 +654,7 @@
             return drawer;
           });
         } else {
-          index.focusTarget(drawer, _this4.settings);
+          focusTarget(drawer, _this4.settings);
           return Promise.resolve(drawer);
         }
       } catch (e) {
@@ -443,18 +670,18 @@
 
         if (!drawer) return Promise.resolve(_this6.drawerNotFound(drawerKey));
 
-        if (index.hasClass(drawer, _this6.settings.stateOpened)) {
+        if (hasClass(drawer, _this6.settings.stateOpened)) {
           _this6.working = true;
 
-          if (index.hasClass(drawer, _this6.settings.classModal)) {
-            index.setInert(false, _this6.settings.selectorInert);
-            index.setOverflowHidden(false, _this6.settings.selectorOverflow);
+          if (hasClass(drawer, _this6.settings.classModal)) {
+            setInert(false, _this6.settings.selectorInert);
+            setOverflowHidden(false, _this6.settings.selectorOverflow);
           }
 
-          return Promise.resolve(index.closeTransition(drawer, _this6.settings)).then(function () {
+          return Promise.resolve(closeTransition(drawer, _this6.settings)).then(function () {
             _this6.stateSave(drawer);
 
-            index.focusTrigger(_this6);
+            focusTrigger(_this6);
 
             _this6.focusTrap.destroy();
 

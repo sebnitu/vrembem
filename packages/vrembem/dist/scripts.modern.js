@@ -805,308 +805,6 @@ class Drawer {
 
 }
 
-var setInert$1 = function setInert(state, selector) {
-  if (selector) {
-    var els = document.querySelectorAll(selector);
-    els.forEach(function (el) {
-      if (state) {
-        el.inert = true;
-        el.setAttribute('aria-hidden', true);
-      } else {
-        el.inert = null;
-        el.removeAttribute('aria-hidden');
-      }
-    });
-  }
-};
-
-var setOverflowHidden$1 = function setOverflowHidden(state, selector) {
-  if (selector) {
-    var els = document.querySelectorAll(selector);
-    els.forEach(function (el) {
-      if (state) {
-        el.style.overflow = 'hidden';
-      } else {
-        el.style.removeProperty('overflow');
-      }
-    });
-  }
-};
-
-var setTabindex$1 = function setTabindex(state, selector) {
-  if (selector) {
-    var els = document.querySelectorAll(selector);
-    els.forEach(function (el) {
-      if (state) {
-        el.setAttribute('tabindex', '-1');
-      } else {
-        el.removeAttribute('tabindex');
-      }
-    });
-  }
-};
-/**
- * Adds a class or classes to an element or NodeList
- * ---
- * @param {Node || NodeList} el - Element(s) to add class(es) to
- * @param {String || Array} cl - Class(es) to add
- */
-
-
-var addClass$1 = function addClass(el) {
-  var _arguments = arguments;
-  el = el.forEach ? el : [el];
-  el.forEach(function (el) {
-    var _el$classList;
-
-    (_el$classList = el.classList).add.apply(_el$classList, [].slice.call(_arguments, 1));
-  });
-};
-
-var focusTarget$1 = function focusTarget(target, settings) {
-  var innerFocus = target.querySelector("[data-" + settings.dataFocus + "]");
-
-  if (innerFocus) {
-    innerFocus.focus();
-  } else {
-    var innerElement = target.querySelector('[tabindex="-1"]');
-    if (innerElement) innerElement.focus();
-  }
-};
-
-var focusTrigger$1 = function focusTrigger(obj) {
-  if (obj === void 0) {
-    obj = null;
-  }
-
-  if (!obj || !obj.memory || !obj.memory.trigger) return;
-  obj.memory.trigger.focus();
-  obj.memory.trigger = null;
-};
-
-var FocusTrap$1 = /*#__PURE__*/function () {
-  function FocusTrap() {
-    this.target = null;
-    this.__handlerFocusTrap = this.handlerFocusTrap.bind(this);
-  }
-
-  var _proto = FocusTrap.prototype;
-
-  _proto.init = function init(target) {
-    this.target = target;
-    this.inner = this.target.querySelector('[tabindex="-1"]');
-    this.focusable = this.getFocusable();
-
-    if (this.focusable.length) {
-      this.focusableFirst = this.focusable[0];
-      this.focusableLast = this.focusable[this.focusable.length - 1];
-      this.target.addEventListener('keydown', this.__handlerFocusTrap);
-    } else {
-      this.target.addEventListener('keydown', this.handlerFocusLock);
-    }
-  };
-
-  _proto.destroy = function destroy() {
-    if (!this.target) return;
-    this.inner = null;
-    this.focusable = null;
-    this.focusableFirst = null;
-    this.focusableLast = null;
-    this.target.removeEventListener('keydown', this.__handlerFocusTrap);
-    this.target.removeEventListener('keydown', this.handlerFocusLock);
-    this.target = null;
-  };
-
-  _proto.handlerFocusTrap = function handlerFocusTrap(event) {
-    var isTab = event.key === 'Tab' || event.keyCode === 9;
-    if (!isTab) return;
-
-    if (event.shiftKey) {
-      if (document.activeElement === this.focusableFirst || document.activeElement === this.inner) {
-        this.focusableLast.focus();
-        event.preventDefault();
-      }
-    } else {
-      if (document.activeElement === this.focusableLast || document.activeElement === this.inner) {
-        this.focusableFirst.focus();
-        event.preventDefault();
-      }
-    }
-  };
-
-  _proto.handlerFocusLock = function handlerFocusLock(event) {
-    var isTab = event.key === 'Tab' || event.keyCode === 9;
-    if (isTab) event.preventDefault();
-  };
-
-  _proto.getFocusable = function getFocusable() {
-    var focusable = [];
-    var initFocus = document.activeElement;
-    var initScrollTop = this.inner ? this.inner.scrollTop : 0;
-    this.target.querySelectorAll("\n      a[href]:not([disabled]),\n      button:not([disabled]),\n      textarea:not([disabled]),\n      input[type=\"text\"]:not([disabled]),\n      input[type=\"radio\"]:not([disabled]),\n      input[type=\"checkbox\"]:not([disabled]),\n      select:not([disabled]),\n      [tabindex]:not([tabindex=\"-1\"])\n    ").forEach(function (el) {
-      el.focus();
-
-      if (el === document.activeElement) {
-        focusable.push(el);
-      }
-    });
-    if (this.inner) this.inner.scrollTop = initScrollTop;
-    initFocus.focus();
-    return focusable;
-  };
-
-  return FocusTrap;
-}();
-/**
- * Get an element(s) from a selector or return value if not a string
- * ---
- * @param {String} selector - Selector to query
- * @param {Boolean} single - Whether to return a single or all matches
- */
-
-
-var getElement$1 = function getElement(selector, single) {
-  if (single === void 0) {
-    single = 0;
-  }
-
-  if (typeof selector != 'string') return selector;
-  return single ? document.querySelector(selector) : document.querySelectorAll(selector);
-};
-/**
- * Checks an element or NodeList whether they contain a class or classes
- * Ref: https://davidwalsh.name/nodelist-array
- * ---
- * @param {Node} el - Element(s) to check class(es) on
- * @param {String || Array} c - Class(es) to check
- * @returns {Boolean} - Returns true if class exists, otherwise false
- */
-
-
-var hasClass$1 = function hasClass(el) {
-  el = el.forEach ? el : [el];
-  el = [].slice.call(el);
-  return [].slice.call(arguments, 1).some(function (cl) {
-    return el.some(function (el) {
-      if (el.classList.contains(cl)) return true;
-    });
-  });
-};
-/**
- * Moves element(s) in the DOM based on a reference and move type
- * ---
- * @param {String} target - The element(s) to move
- * @param {String} type - Move type can be 'after', 'before', 'append' or 'prepend'
- * @param {String} reference - The reference element the move is relative to
- */
-
-
-function moveElement$1(target, type, reference) {
-  if (reference === void 0) {
-    reference = false;
-  }
-
-  if (reference) {
-    var els = getElement$1(target);
-    if (!els.length) throw new Error("Move target element \"" + target + "\" not found!");
-    var ref = getElement$1(reference, 1);
-    if (!ref) throw new Error("Move reference element \"" + reference + "\" not found!");
-    els.forEach(function (el) {
-      switch (type) {
-        case 'after':
-          ref.after(el);
-          return {
-            ref: ref,
-            el: el,
-            type: type
-          };
-
-        case 'before':
-          ref.before(el);
-          return {
-            ref: ref,
-            el: el,
-            type: type
-          };
-
-        case 'append':
-          ref.append(el);
-          return {
-            ref: ref,
-            el: el,
-            type: type
-          };
-
-        case 'prepend':
-          ref.prepend(el);
-          return {
-            ref: ref,
-            el: el,
-            type: type
-          };
-
-        default:
-          throw new Error("Move type \"" + type + "\" does not exist!");
-      }
-    });
-  }
-}
-/**
- * Remove a class or classes from an element or NodeList
- * ---
- * @param {Node || NodeList} el - Element(s) to remove class(es) from
- * @param {String || Array} cl - Class(es) to remove
- */
-
-
-var removeClass$1 = function removeClass(el) {
-  var _arguments = arguments;
-  el = el.forEach ? el : [el];
-  el.forEach(function (el) {
-    var _el$classList;
-
-    (_el$classList = el.classList).remove.apply(_el$classList, [].slice.call(_arguments, 1));
-  });
-};
-
-var openTransition$1 = function openTransition(el, settings) {
-  return new Promise(function (resolve) {
-    if (settings.transition) {
-      el.classList.remove(settings.stateClosed);
-      el.classList.add(settings.stateOpening);
-      el.addEventListener('transitionend', function _f() {
-        el.classList.add(settings.stateOpened);
-        el.classList.remove(settings.stateOpening);
-        resolve(el);
-        this.removeEventListener('transitionend', _f);
-      });
-    } else {
-      el.classList.add(settings.stateOpened);
-      el.classList.remove(settings.stateClosed);
-      resolve(el);
-    }
-  });
-};
-
-var closeTransition$1 = function closeTransition(el, settings) {
-  return new Promise(function (resolve) {
-    if (settings.transition) {
-      el.classList.add(settings.stateClosing);
-      el.classList.remove(settings.stateOpened);
-      el.addEventListener('transitionend', function _f() {
-        el.classList.remove(settings.stateClosing);
-        el.classList.add(settings.stateClosed);
-        resolve(el);
-        this.removeEventListener('transitionend', _f);
-      });
-    } else {
-      el.classList.add(settings.stateClosed);
-      el.classList.remove(settings.stateOpened);
-      resolve(el);
-    }
-  });
-};
-
 var defaults$1 = {
   autoInit: false,
   // Data attributes
@@ -1180,14 +878,14 @@ function setInitialState(obj) {
   const modals = document.querySelectorAll(`[data-${obj.settings.dataModal}]`);
   modals.forEach(el => {
     if (el.classList.contains(obj.settings.stateOpened)) {
-      setInert$1(false, obj.settings.selectorInert);
-      setOverflowHidden$1(false, obj.settings.selectorOverflow);
-      focusTrigger$1(obj);
+      setInert(false, obj.settings.selectorInert);
+      setOverflowHidden(false, obj.settings.selectorOverflow);
+      focusTrigger(obj);
       obj.focusTrap.destroy();
     }
 
-    removeClass$1(el, obj.settings.stateOpened, obj.settings.stateOpening, obj.settings.stateClosing);
-    addClass$1(el, obj.settings.stateClosed);
+    removeClass(el, obj.settings.stateOpened, obj.settings.stateOpening, obj.settings.stateClosing);
+    addClass(el, obj.settings.stateClosed);
   });
 }
 
@@ -1199,7 +897,7 @@ class Modal {
     };
     this.working = false;
     this.memory = {};
-    this.focusTrap = new FocusTrap$1();
+    this.focusTrap = new FocusTrap();
     this.__handlerClick = handlerClick$1.bind(this);
     this.__handlerKeyup = handlerKeyup$1.bind(this);
     if (this.settings.autoInit) this.init();
@@ -1242,7 +940,7 @@ class Modal {
       [data-${this.settings.dataModal}]
       [data-${this.settings.dataDialog}]
     `;
-    setTabindex$1(state, selectorTabindex);
+    setTabindex(state, selectorTabindex);
   }
 
   setInitialState() {
@@ -1251,7 +949,7 @@ class Modal {
 
   moveModals(type = this.settings.moveModals.type, ref = this.settings.moveModals.ref) {
     const modals = document.querySelectorAll(`[data-${this.settings.dataModal}]`);
-    if (modals.length) moveElement$1(modals, type, ref);
+    if (modals.length) moveElement(modals, type, ref);
   }
   /**
    * Change state functionality
@@ -1262,13 +960,13 @@ class Modal {
     const modal = this.getModal(modalKey);
     if (!modal) return this.modalNotFound(modalKey);
 
-    if (hasClass$1(modal, this.settings.stateClosed)) {
+    if (hasClass(modal, this.settings.stateClosed)) {
       this.working = true;
-      setOverflowHidden$1(true, this.settings.selectorOverflow);
-      await openTransition$1(modal, this.settings);
+      setOverflowHidden(true, this.settings.selectorOverflow);
+      await openTransition(modal, this.settings);
       this.focusTrap.init(modal);
-      focusTarget$1(modal, this.settings);
-      setInert$1(true, this.settings.selectorInert);
+      focusTarget(modal, this.settings);
+      setInert(true, this.settings.selectorInert);
       modal.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'opened', {
         bubbles: true
       }));
@@ -1284,10 +982,10 @@ class Modal {
 
     if (modal) {
       this.working = true;
-      setInert$1(false, this.settings.selectorInert);
-      setOverflowHidden$1(false, this.settings.selectorOverflow);
-      await closeTransition$1(modal, this.settings);
-      if (returnFocus) focusTrigger$1(this);
+      setInert(false, this.settings.selectorInert);
+      setOverflowHidden(false, this.settings.selectorOverflow);
+      await closeTransition(modal, this.settings);
+      if (returnFocus) focusTrigger(this);
       this.focusTrap.destroy();
       modal.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'closed', {
         bubbles: true

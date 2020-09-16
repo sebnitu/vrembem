@@ -15,7 +15,7 @@
   "unpkg": "dist/scripts.umd.js",
   "style": "index.scss",
   "scripts": {
-    "build": "microbundle --name=vrembem.Checkbox --no-compress --globals @vrembem/core=vrembem.core",
+    "build": "microbundle --name=vrembem.Checkbox --no-compress",
     "clean": "del dist",
     "scripts": "rollup -c",
     "styles": "npm-run-all styles:compile styles:min",

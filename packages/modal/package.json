@@ -15,7 +15,7 @@
   "unpkg": "dist/scripts.umd.js",
   "style": "index.scss",
   "scripts": {
-    "build": "microbundle --name=vrembem.Modal --no-compress --globals @vrembem/core=vrembem.core",
+    "build": "microbundle --name=vrembem.Modal --external=none --no-compress --globals @vrembem/core/index=vrembem.core",
     "clean": "del dist",
     "scripts": "rollup -c",
     "styles": "npm-run-all styles:compile styles:min",

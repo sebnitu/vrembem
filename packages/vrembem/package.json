@@ -14,7 +14,7 @@
   "unpkg": "dist/scripts.js",
   "style": "index.scss",
   "scripts": {
-    "build": "microbundle --name=vrembem --external=none --no-compress --globals @vrembem/core=vrembem.core,@vrembem/checkbox=vrembem.Checkbox,@vrembem/drawer=vrembem.Drawer,@vrembem/modal=vrembem.Modal",
+    "build": "microbundle --name=vrembem --external=none --no-compress --globals @vrembem/core/index=vrembem.core,@vrembem/checkbox/index=vrembem.Checkbox,@vrembem/drawer/index=vrembem.Drawer,@vrembem/modal/index=vrembem.Modal",
     "clean": "del dist",
     "scripts": "rollup -c",
     "styles": "npm-run-all styles:compile styles:min",
