@@ -78,21 +78,14 @@ export class FocusTrap {
     const initFocus = document.activeElement;
     const initScrollTop = (this.inner) ? this.inner.scrollTop : 0;
 
-    this.target.querySelectorAll(`
-      a[href]:not([disabled]),
-      button:not([disabled]),
-      textarea:not([disabled]),
-      input[type="text"]:not([disabled]),
-      input[type="radio"]:not([disabled]),
-      input[type="checkbox"]:not([disabled]),
-      select:not([disabled]),
-      [tabindex]:not([tabindex="-1"])
-    `).forEach((el) => {
-      el.focus();
-      if (el === document.activeElement) {
-        focusable.push(el);
-      }
-    });
+    this.target
+      .querySelectorAll('a[href]:not([disabled]),button:not([disabled]),textarea:not([disabled]),input[type="text"]:not([disabled]),input[type="radio"]:not([disabled]),input[type="checkbox"]:not([disabled]),select:not([disabled]),[tabindex]:not([tabindex="-1"])')
+      .forEach((el) => {
+        el.focus();
+        if (el === document.activeElement) {
+          focusable.push(el);
+        }
+      });
 
     if (this.inner) this.inner.scrollTop = initScrollTop;
     initFocus.focus();
