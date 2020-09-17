@@ -15,9 +15,9 @@
   "unpkg": "dist/scripts.umd.js",
   "style": "index.scss",
   "scripts": {
-    "build": "microbundle --name=vrembem.core --no-compress",
+    "build": "npm-run-all clean scripts",
     "clean": "del dist",
-    "scripts": "rollup -c",
+    "scripts": "microbundle --name=vrembem.core",
     "watch": "npm run watch:scripts",
     "watch:scripts": "nodemon -e js -x 'npm run scripts' -i dist"
   },
