@@ -9,27 +9,21 @@ const babelConfig = {
   rootMode: 'upward'
 };
 
-export default [{
+export default {
   input: entry,
-  output: {
+  output: [{
     file: './dist/scripts.js',
     format: 'iife'
-  },
+  }, {
+    file: './dist/scripts.min.js',
+    format: 'iife',
+    plugins: [terser({
+      output: { comments: false }
+    })]
+  }],
   plugins: [
     resolve(),
     commonjs(),
     babel(babelConfig)
   ]
-}, {
-  input: entry,
-  output: {
-    file: './dist/scripts.min.js',
-    format: 'iife'
-  },
-  plugins: [
-    resolve(),
-    commonjs(),
-    babel(babelConfig),
-    terser()
-  ]
-}];
+};

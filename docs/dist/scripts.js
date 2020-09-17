@@ -43,17 +43,52 @@
   };
 
   var addClass = function addClass(el) {
-    var _arguments = arguments;
+    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      cl[_key - 1] = arguments[_key];
+    }
+
     el = el.forEach ? el : [el];
     el.forEach(function (el) {
       var _el$classList;
 
-      (_el$classList = el.classList).add.apply(_el$classList, [].slice.call(_arguments, 1));
+      (_el$classList = el.classList).add.apply(_el$classList, cl);
     });
   };
 
+  var camelCase = function camelCase(str) {
+    return str.replace(/-([a-z])/g, function (g) {
+      return g[1].toUpperCase();
+    });
+  };
+
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  var classCallCheck = _classCallCheck;
+
+  function _defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  function _createClass(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties(Constructor, staticProps);
+    return Constructor;
+  }
+
+  var createClass = _createClass;
+
   var focusTarget = function focusTarget(target, settings) {
-    var innerFocus = target.querySelector("[data-" + settings.dataFocus + "]");
+    var innerFocus = target.querySelector("[data-".concat(settings.dataFocus, "]"));
 
     if (innerFocus) {
       innerFocus.focus();
@@ -63,11 +98,8 @@
     }
   };
 
-  var focusTrigger = function focusTrigger(obj) {
-    if (obj === void 0) {
-      obj = null;
-    }
-
+  var focusTrigger = function focusTrigger() {
+    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
     if (!obj || !obj.memory || !obj.memory.trigger) return;
     obj.memory.trigger.focus();
     obj.memory.trigger = null;
@@ -75,83 +107,85 @@
 
   var FocusTrap = function () {
     function FocusTrap() {
+      classCallCheck(this, FocusTrap);
       this.target = null;
       this.__handlerFocusTrap = this.handlerFocusTrap.bind(this);
     }
 
-    var _proto = FocusTrap.prototype;
+    createClass(FocusTrap, [{
+      key: "init",
+      value: function init(target) {
+        this.target = target;
+        this.inner = this.target.querySelector('[tabindex="-1"]');
+        this.focusable = this.getFocusable();
 
-    _proto.init = function init(target) {
-      this.target = target;
-      this.inner = this.target.querySelector('[tabindex="-1"]');
-      this.focusable = this.getFocusable();
-
-      if (this.focusable.length) {
-        this.focusableFirst = this.focusable[0];
-        this.focusableLast = this.focusable[this.focusable.length - 1];
-        this.target.addEventListener('keydown', this.__handlerFocusTrap);
-      } else {
-        this.target.addEventListener('keydown', this.handlerFocusLock);
-      }
-    };
-
-    _proto.destroy = function destroy() {
-      if (!this.target) return;
-      this.inner = null;
-      this.focusable = null;
-      this.focusableFirst = null;
-      this.focusableLast = null;
-      this.target.removeEventListener('keydown', this.__handlerFocusTrap);
-      this.target.removeEventListener('keydown', this.handlerFocusLock);
-      this.target = null;
-    };
-
-    _proto.handlerFocusTrap = function handlerFocusTrap(event) {
-      var isTab = event.key === 'Tab' || event.keyCode === 9;
-      if (!isTab) return;
-
-      if (event.shiftKey) {
-        if (document.activeElement === this.focusableFirst || document.activeElement === this.inner) {
-          this.focusableLast.focus();
-          event.preventDefault();
-        }
-      } else {
-        if (document.activeElement === this.focusableLast || document.activeElement === this.inner) {
-          this.focusableFirst.focus();
-          event.preventDefault();
+        if (this.focusable.length) {
+          this.focusableFirst = this.focusable[0];
+          this.focusableLast = this.focusable[this.focusable.length - 1];
+          this.target.addEventListener('keydown', this.__handlerFocusTrap);
+        } else {
+          this.target.addEventListener('keydown', this.handlerFocusLock);
         }
       }
-    };
+    }, {
+      key: "destroy",
+      value: function destroy() {
+        if (!this.target) return;
+        this.inner = null;
+        this.focusable = null;
+        this.focusableFirst = null;
+        this.focusableLast = null;
+        this.target.removeEventListener('keydown', this.__handlerFocusTrap);
+        this.target.removeEventListener('keydown', this.handlerFocusLock);
+        this.target = null;
+      }
+    }, {
+      key: "handlerFocusTrap",
+      value: function handlerFocusTrap(event) {
+        var isTab = event.key === 'Tab' || event.keyCode === 9;
+        if (!isTab) return;
 
-    _proto.handlerFocusLock = function handlerFocusLock(event) {
-      var isTab = event.key === 'Tab' || event.keyCode === 9;
-      if (isTab) event.preventDefault();
-    };
-
-    _proto.getFocusable = function getFocusable() {
-      var focusable = [];
-      var initFocus = document.activeElement;
-      var initScrollTop = this.inner ? this.inner.scrollTop : 0;
-      this.target.querySelectorAll("\n      a[href]:not([disabled]),\n      button:not([disabled]),\n      textarea:not([disabled]),\n      input[type=\"text\"]:not([disabled]),\n      input[type=\"radio\"]:not([disabled]),\n      input[type=\"checkbox\"]:not([disabled]),\n      select:not([disabled]),\n      [tabindex]:not([tabindex=\"-1\"])\n    ").forEach(function (el) {
-        el.focus();
-
-        if (el === document.activeElement) {
-          focusable.push(el);
+        if (event.shiftKey) {
+          if (document.activeElement === this.focusableFirst || document.activeElement === this.inner) {
+            this.focusableLast.focus();
+            event.preventDefault();
+          }
+        } else {
+          if (document.activeElement === this.focusableLast || document.activeElement === this.inner) {
+            this.focusableFirst.focus();
+            event.preventDefault();
+          }
         }
-      });
-      if (this.inner) this.inner.scrollTop = initScrollTop;
-      initFocus.focus();
-      return focusable;
-    };
+      }
+    }, {
+      key: "handlerFocusLock",
+      value: function handlerFocusLock(event) {
+        var isTab = event.key === 'Tab' || event.keyCode === 9;
+        if (isTab) event.preventDefault();
+      }
+    }, {
+      key: "getFocusable",
+      value: function getFocusable() {
+        var focusable = [];
+        var initFocus = document.activeElement;
+        var initScrollTop = this.inner ? this.inner.scrollTop : 0;
+        this.target.querySelectorAll('a[href]:not([disabled]),button:not([disabled]),textarea:not([disabled]),input[type="text"]:not([disabled]),input[type="radio"]:not([disabled]),input[type="checkbox"]:not([disabled]),select:not([disabled]),[tabindex]:not([tabindex="-1"])').forEach(function (el) {
+          el.focus();
 
+          if (el === document.activeElement) {
+            focusable.push(el);
+          }
+        });
+        if (this.inner) this.inner.scrollTop = initScrollTop;
+        initFocus.focus();
+        return focusable;
+      }
+    }]);
     return FocusTrap;
   }();
 
-  var getElement = function getElement(selector, single) {
-    if (single === void 0) {
-      single = 0;
-    }
-
+  var getElement = function getElement(selector) {
+    var single = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
     if (typeof selector != 'string') return selector;
     return single ? document.querySelector(selector) : document.querySelectorAll(selector);
   };
@@ -159,23 +193,32 @@
   var hasClass = function hasClass(el) {
     el = el.forEach ? el : [el];
     el = [].slice.call(el);
-    return [].slice.call(arguments, 1).some(function (cl) {
+
+    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      cl[_key - 1] = arguments[_key];
+    }
+
+    return cl.some(function (cl) {
       return el.some(function (el) {
         if (el.classList.contains(cl)) return true;
       });
     });
   };
 
-  function moveElement(target, type, reference) {
-    if (reference === void 0) {
-      reference = false;
-    }
+  var hyphenCase = function hyphenCase(str) {
+    return str.replace(/([a-z][A-Z])/g, function (g) {
+      return g[0] + '-' + g[1].toLowerCase();
+    });
+  };
+
+  function moveElement(target, type) {
+    var reference = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
     if (reference) {
       var els = getElement(target);
-      if (!els.length) throw new Error("Move target element \"" + target + "\" not found!");
+      if (!els.length) throw new Error("Move target element \"".concat(target, "\" not found!"));
       var ref = getElement(reference, 1);
-      if (!ref) throw new Error("Move reference element \"" + reference + "\" not found!");
+      if (!ref) throw new Error("Move reference element \"".concat(reference, "\" not found!"));
       els.forEach(function (el) {
         switch (type) {
           case 'after':
@@ -211,19 +254,35 @@
             };
 
           default:
-            throw new Error("Move type \"" + type + "\" does not exist!");
+            throw new Error("Move type \"".concat(type, "\" does not exist!"));
         }
       });
     }
   }
 
   var removeClass = function removeClass(el) {
-    var _arguments = arguments;
+    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      cl[_key - 1] = arguments[_key];
+    }
+
     el = el.forEach ? el : [el];
     el.forEach(function (el) {
       var _el$classList;
 
-      (_el$classList = el.classList).remove.apply(_el$classList, [].slice.call(_arguments, 1));
+      (_el$classList = el.classList).remove.apply(_el$classList, cl);
+    });
+  };
+
+  var toggleClass = function toggleClass(el) {
+    for (var _len = arguments.length, cl = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      cl[_key - 1] = arguments[_key];
+    }
+
+    el = el.forEach ? el : [el];
+    el.forEach(function (el) {
+      cl.forEach(function (cl) {
+        el.classList.toggle(cl);
+      });
     });
   };
 
@@ -272,101 +331,798 @@
     lg: '990px',
     xl: '1380px'
   };
+  var index = Object.freeze({
+    __proto__: null,
+    setInert: setInert,
+    setOverflowHidden: setOverflowHidden,
+    setTabindex: setTabindex,
+    addClass: addClass,
+    camelCase: camelCase,
+    focusTarget: focusTarget,
+    focusTrigger: focusTrigger,
+    FocusTrap: FocusTrap,
+    getElement: getElement,
+    hasClass: hasClass,
+    hyphenCase: hyphenCase,
+    moveElement: moveElement,
+    removeClass: removeClass,
+    toggleClass: toggleClass,
+    openTransition: openTransition,
+    closeTransition: closeTransition,
+    breakpoints: breakpoints
+  });
 
-  function _extends() {
-    _extends = Object.assign || function (target) {
-      for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
+  function _defineProperty(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
 
-        for (var key in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key)) {
-            target[key] = source[key];
-          }
-        }
+    return obj;
+  }
+
+  var defineProperty = _defineProperty;
+
+  function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
+
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly) symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+      keys.push.apply(keys, symbols);
+    }
+
+    return keys;
+  }
+
+  function _objectSpread(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+
+      if (i % 2) {
+        ownKeys(Object(source), true).forEach(function (key) {
+          defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys(Object(source)).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
       }
+    }
 
-      return target;
-    };
-
-    return _extends.apply(this, arguments);
+    return target;
   }
 
   var Checkbox = function () {
     function Checkbox(options) {
+      classCallCheck(this, Checkbox);
       this.defaults = {
         autoInit: false,
         stateAttr: 'aria-checked',
         stateValue: 'mixed'
       };
-      this.settings = _extends({}, this.defaults, options);
+      this.settings = _objectSpread(_objectSpread({}, this.defaults), options);
       this.__handlerClick = this.handlerClick.bind(this);
       if (this.settings.autoInit) this.init();
     }
 
-    var _proto = Checkbox.prototype;
-
-    _proto.init = function init(options) {
-      if (options === void 0) {
-        options = null;
+    createClass(Checkbox, [{
+      key: "init",
+      value: function init() {
+        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+        if (options) this.settings = _objectSpread(_objectSpread({}, this.settings), options);
+        var selector = "[".concat(this.settings.stateAttr, "=\"").concat(this.settings.stateValue, "\"]");
+        var mixed = document.querySelectorAll(selector);
+        this.setIndeterminate(mixed);
+        document.addEventListener('click', this.__handlerClick, false);
       }
-
-      if (options) this.settings = _extends({}, this.settings, options);
-      var selector = "[" + this.settings.stateAttr + "=\"" + this.settings.stateValue + "\"]";
-      var mixed = document.querySelectorAll(selector);
-      this.setIndeterminate(mixed);
-      document.addEventListener('click', this.__handlerClick, false);
-    };
-
-    _proto.destroy = function destroy() {
-      document.removeEventListener('click', this.__handlerClick, false);
-    };
-
-    _proto.handlerClick = function handlerClick(event) {
-      var selector = "[" + this.settings.stateAttr + "=\"" + this.settings.stateValue + "\"]";
-      var el = event.target.closest(selector);
-      if (!el) return;
-      this.removeAriaState(el);
-      this.setIndeterminate(el);
-    };
-
-    _proto.setAriaState = function setAriaState(el, value) {
-      var _this = this;
-
-      if (value === void 0) {
-        value = this.settings.stateValue;
+    }, {
+      key: "destroy",
+      value: function destroy() {
+        document.removeEventListener('click', this.__handlerClick, false);
       }
+    }, {
+      key: "handlerClick",
+      value: function handlerClick(event) {
+        var selector = "[".concat(this.settings.stateAttr, "=\"").concat(this.settings.stateValue, "\"]");
+        var el = event.target.closest(selector);
+        if (!el) return;
+        this.removeAriaState(el);
+        this.setIndeterminate(el);
+      }
+    }, {
+      key: "setAriaState",
+      value: function setAriaState(el) {
+        var _this = this;
 
-      el = el.forEach ? el : [el];
-      el.forEach(function (el) {
-        el.setAttribute(_this.settings.stateAttr, value);
-      });
-    };
+        var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.settings.stateValue;
+        el = el.forEach ? el : [el];
+        el.forEach(function (el) {
+          el.setAttribute(_this.settings.stateAttr, value);
+        });
+      }
+    }, {
+      key: "removeAriaState",
+      value: function removeAriaState(el) {
+        var _this2 = this;
 
-    _proto.removeAriaState = function removeAriaState(el) {
-      var _this2 = this;
+        el = el.forEach ? el : [el];
+        el.forEach(function (el) {
+          el.removeAttribute(_this2.settings.stateAttr);
+        });
+      }
+    }, {
+      key: "setIndeterminate",
+      value: function setIndeterminate(el) {
+        var _this3 = this;
 
-      el = el.forEach ? el : [el];
-      el.forEach(function (el) {
-        el.removeAttribute(_this2.settings.stateAttr);
-      });
-    };
-
-    _proto.setIndeterminate = function setIndeterminate(el) {
-      var _this3 = this;
-
-      el = el.forEach ? el : [el];
-      el.forEach(function (el) {
-        if (el.hasAttribute(_this3.settings.stateAttr)) {
-          el.indeterminate = true;
-        } else {
-          el.indeterminate = false;
-        }
-      });
-    };
-
+        el = el.forEach ? el : [el];
+        el.forEach(function (el) {
+          if (el.hasAttribute(_this3.settings.stateAttr)) {
+            el.indeterminate = true;
+          } else {
+            el.indeterminate = false;
+          }
+        });
+      }
+    }]);
     return Checkbox;
   }();
 
+  function createCommonjsModule(fn, basedir, module) {
+    return module = {
+      path: basedir,
+      exports: {},
+      require: function require(path, base) {
+        return commonjsRequire(path, base === undefined || base === null ? module.path : base);
+      }
+    }, fn(module, module.exports), module.exports;
+  }
+
+  function commonjsRequire() {
+    throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
+  }
+
+  var _typeof_1 = createCommonjsModule(function (module) {
+    function _typeof(obj) {
+      "@babel/helpers - typeof";
+
+      if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+        module.exports = _typeof = function _typeof(obj) {
+          return typeof obj;
+        };
+      } else {
+        module.exports = _typeof = function _typeof(obj) {
+          return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+        };
+      }
+
+      return _typeof(obj);
+    }
+
+    module.exports = _typeof;
+  });
+
+  var runtime_1 = createCommonjsModule(function (module) {
+    var runtime = function (exports) {
+      var Op = Object.prototype;
+      var hasOwn = Op.hasOwnProperty;
+      var undefined$1;
+      var $Symbol = typeof Symbol === "function" ? Symbol : {};
+      var iteratorSymbol = $Symbol.iterator || "@@iterator";
+      var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+      var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+      function wrap(innerFn, outerFn, self, tryLocsList) {
+        var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+        var generator = Object.create(protoGenerator.prototype);
+        var context = new Context(tryLocsList || []);
+        generator._invoke = makeInvokeMethod(innerFn, self, context);
+        return generator;
+      }
+
+      exports.wrap = wrap;
+
+      function tryCatch(fn, obj, arg) {
+        try {
+          return {
+            type: "normal",
+            arg: fn.call(obj, arg)
+          };
+        } catch (err) {
+          return {
+            type: "throw",
+            arg: err
+          };
+        }
+      }
+
+      var GenStateSuspendedStart = "suspendedStart";
+      var GenStateSuspendedYield = "suspendedYield";
+      var GenStateExecuting = "executing";
+      var GenStateCompleted = "completed";
+      var ContinueSentinel = {};
+
+      function Generator() {}
+
+      function GeneratorFunction() {}
+
+      function GeneratorFunctionPrototype() {}
+
+      var IteratorPrototype = {};
+
+      IteratorPrototype[iteratorSymbol] = function () {
+        return this;
+      };
+
+      var getProto = Object.getPrototypeOf;
+      var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+
+      if (NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+        IteratorPrototype = NativeIteratorPrototype;
+      }
+
+      var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype);
+      GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+      GeneratorFunctionPrototype.constructor = GeneratorFunction;
+      GeneratorFunctionPrototype[toStringTagSymbol] = GeneratorFunction.displayName = "GeneratorFunction";
+
+      function defineIteratorMethods(prototype) {
+        ["next", "throw", "return"].forEach(function (method) {
+          prototype[method] = function (arg) {
+            return this._invoke(method, arg);
+          };
+        });
+      }
+
+      exports.isGeneratorFunction = function (genFun) {
+        var ctor = typeof genFun === "function" && genFun.constructor;
+        return ctor ? ctor === GeneratorFunction || (ctor.displayName || ctor.name) === "GeneratorFunction" : false;
+      };
+
+      exports.mark = function (genFun) {
+        if (Object.setPrototypeOf) {
+          Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+        } else {
+          genFun.__proto__ = GeneratorFunctionPrototype;
+
+          if (!(toStringTagSymbol in genFun)) {
+            genFun[toStringTagSymbol] = "GeneratorFunction";
+          }
+        }
+
+        genFun.prototype = Object.create(Gp);
+        return genFun;
+      };
+
+      exports.awrap = function (arg) {
+        return {
+          __await: arg
+        };
+      };
+
+      function AsyncIterator(generator, PromiseImpl) {
+        function invoke(method, arg, resolve, reject) {
+          var record = tryCatch(generator[method], generator, arg);
+
+          if (record.type === "throw") {
+            reject(record.arg);
+          } else {
+            var result = record.arg;
+            var value = result.value;
+
+            if (value && _typeof_1(value) === "object" && hasOwn.call(value, "__await")) {
+              return PromiseImpl.resolve(value.__await).then(function (value) {
+                invoke("next", value, resolve, reject);
+              }, function (err) {
+                invoke("throw", err, resolve, reject);
+              });
+            }
+
+            return PromiseImpl.resolve(value).then(function (unwrapped) {
+              result.value = unwrapped;
+              resolve(result);
+            }, function (error) {
+              return invoke("throw", error, resolve, reject);
+            });
+          }
+        }
+
+        var previousPromise;
+
+        function enqueue(method, arg) {
+          function callInvokeWithMethodAndArg() {
+            return new PromiseImpl(function (resolve, reject) {
+              invoke(method, arg, resolve, reject);
+            });
+          }
+
+          return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
+        }
+
+        this._invoke = enqueue;
+      }
+
+      defineIteratorMethods(AsyncIterator.prototype);
+
+      AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+        return this;
+      };
+
+      exports.AsyncIterator = AsyncIterator;
+
+      exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) {
+        if (PromiseImpl === void 0) PromiseImpl = Promise;
+        var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl);
+        return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) {
+          return result.done ? result.value : iter.next();
+        });
+      };
+
+      function makeInvokeMethod(innerFn, self, context) {
+        var state = GenStateSuspendedStart;
+        return function invoke(method, arg) {
+          if (state === GenStateExecuting) {
+            throw new Error("Generator is already running");
+          }
+
+          if (state === GenStateCompleted) {
+            if (method === "throw") {
+              throw arg;
+            }
+
+            return doneResult();
+          }
+
+          context.method = method;
+          context.arg = arg;
+
+          while (true) {
+            var delegate = context.delegate;
+
+            if (delegate) {
+              var delegateResult = maybeInvokeDelegate(delegate, context);
+
+              if (delegateResult) {
+                if (delegateResult === ContinueSentinel) continue;
+                return delegateResult;
+              }
+            }
+
+            if (context.method === "next") {
+              context.sent = context._sent = context.arg;
+            } else if (context.method === "throw") {
+              if (state === GenStateSuspendedStart) {
+                state = GenStateCompleted;
+                throw context.arg;
+              }
+
+              context.dispatchException(context.arg);
+            } else if (context.method === "return") {
+              context.abrupt("return", context.arg);
+            }
+
+            state = GenStateExecuting;
+            var record = tryCatch(innerFn, self, context);
+
+            if (record.type === "normal") {
+              state = context.done ? GenStateCompleted : GenStateSuspendedYield;
+
+              if (record.arg === ContinueSentinel) {
+                continue;
+              }
+
+              return {
+                value: record.arg,
+                done: context.done
+              };
+            } else if (record.type === "throw") {
+              state = GenStateCompleted;
+              context.method = "throw";
+              context.arg = record.arg;
+            }
+          }
+        };
+      }
+
+      function maybeInvokeDelegate(delegate, context) {
+        var method = delegate.iterator[context.method];
+
+        if (method === undefined$1) {
+          context.delegate = null;
+
+          if (context.method === "throw") {
+            if (delegate.iterator["return"]) {
+              context.method = "return";
+              context.arg = undefined$1;
+              maybeInvokeDelegate(delegate, context);
+
+              if (context.method === "throw") {
+                return ContinueSentinel;
+              }
+            }
+
+            context.method = "throw";
+            context.arg = new TypeError("The iterator does not provide a 'throw' method");
+          }
+
+          return ContinueSentinel;
+        }
+
+        var record = tryCatch(method, delegate.iterator, context.arg);
+
+        if (record.type === "throw") {
+          context.method = "throw";
+          context.arg = record.arg;
+          context.delegate = null;
+          return ContinueSentinel;
+        }
+
+        var info = record.arg;
+
+        if (!info) {
+          context.method = "throw";
+          context.arg = new TypeError("iterator result is not an object");
+          context.delegate = null;
+          return ContinueSentinel;
+        }
+
+        if (info.done) {
+          context[delegate.resultName] = info.value;
+          context.next = delegate.nextLoc;
+
+          if (context.method !== "return") {
+            context.method = "next";
+            context.arg = undefined$1;
+          }
+        } else {
+          return info;
+        }
+
+        context.delegate = null;
+        return ContinueSentinel;
+      }
+
+      defineIteratorMethods(Gp);
+      Gp[toStringTagSymbol] = "Generator";
+
+      Gp[iteratorSymbol] = function () {
+        return this;
+      };
+
+      Gp.toString = function () {
+        return "[object Generator]";
+      };
+
+      function pushTryEntry(locs) {
+        var entry = {
+          tryLoc: locs[0]
+        };
+
+        if (1 in locs) {
+          entry.catchLoc = locs[1];
+        }
+
+        if (2 in locs) {
+          entry.finallyLoc = locs[2];
+          entry.afterLoc = locs[3];
+        }
+
+        this.tryEntries.push(entry);
+      }
+
+      function resetTryEntry(entry) {
+        var record = entry.completion || {};
+        record.type = "normal";
+        delete record.arg;
+        entry.completion = record;
+      }
+
+      function Context(tryLocsList) {
+        this.tryEntries = [{
+          tryLoc: "root"
+        }];
+        tryLocsList.forEach(pushTryEntry, this);
+        this.reset(true);
+      }
+
+      exports.keys = function (object) {
+        var keys = [];
+
+        for (var key in object) {
+          keys.push(key);
+        }
+
+        keys.reverse();
+        return function next() {
+          while (keys.length) {
+            var key = keys.pop();
+
+            if (key in object) {
+              next.value = key;
+              next.done = false;
+              return next;
+            }
+          }
+
+          next.done = true;
+          return next;
+        };
+      };
+
+      function values(iterable) {
+        if (iterable) {
+          var iteratorMethod = iterable[iteratorSymbol];
+
+          if (iteratorMethod) {
+            return iteratorMethod.call(iterable);
+          }
+
+          if (typeof iterable.next === "function") {
+            return iterable;
+          }
+
+          if (!isNaN(iterable.length)) {
+            var i = -1,
+                next = function next() {
+              while (++i < iterable.length) {
+                if (hasOwn.call(iterable, i)) {
+                  next.value = iterable[i];
+                  next.done = false;
+                  return next;
+                }
+              }
+
+              next.value = undefined$1;
+              next.done = true;
+              return next;
+            };
+
+            return next.next = next;
+          }
+        }
+
+        return {
+          next: doneResult
+        };
+      }
+
+      exports.values = values;
+
+      function doneResult() {
+        return {
+          value: undefined$1,
+          done: true
+        };
+      }
+
+      Context.prototype = {
+        constructor: Context,
+        reset: function reset(skipTempReset) {
+          this.prev = 0;
+          this.next = 0;
+          this.sent = this._sent = undefined$1;
+          this.done = false;
+          this.delegate = null;
+          this.method = "next";
+          this.arg = undefined$1;
+          this.tryEntries.forEach(resetTryEntry);
+
+          if (!skipTempReset) {
+            for (var name in this) {
+              if (name.charAt(0) === "t" && hasOwn.call(this, name) && !isNaN(+name.slice(1))) {
+                this[name] = undefined$1;
+              }
+            }
+          }
+        },
+        stop: function stop() {
+          this.done = true;
+          var rootEntry = this.tryEntries[0];
+          var rootRecord = rootEntry.completion;
+
+          if (rootRecord.type === "throw") {
+            throw rootRecord.arg;
+          }
+
+          return this.rval;
+        },
+        dispatchException: function dispatchException(exception) {
+          if (this.done) {
+            throw exception;
+          }
+
+          var context = this;
+
+          function handle(loc, caught) {
+            record.type = "throw";
+            record.arg = exception;
+            context.next = loc;
+
+            if (caught) {
+              context.method = "next";
+              context.arg = undefined$1;
+            }
+
+            return !!caught;
+          }
+
+          for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+            var entry = this.tryEntries[i];
+            var record = entry.completion;
+
+            if (entry.tryLoc === "root") {
+              return handle("end");
+            }
+
+            if (entry.tryLoc <= this.prev) {
+              var hasCatch = hasOwn.call(entry, "catchLoc");
+              var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+              if (hasCatch && hasFinally) {
+                if (this.prev < entry.catchLoc) {
+                  return handle(entry.catchLoc, true);
+                } else if (this.prev < entry.finallyLoc) {
+                  return handle(entry.finallyLoc);
+                }
+              } else if (hasCatch) {
+                if (this.prev < entry.catchLoc) {
+                  return handle(entry.catchLoc, true);
+                }
+              } else if (hasFinally) {
+                if (this.prev < entry.finallyLoc) {
+                  return handle(entry.finallyLoc);
+                }
+              } else {
+                throw new Error("try statement without catch or finally");
+              }
+            }
+          }
+        },
+        abrupt: function abrupt(type, arg) {
+          for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+            var entry = this.tryEntries[i];
+
+            if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) {
+              var finallyEntry = entry;
+              break;
+            }
+          }
+
+          if (finallyEntry && (type === "break" || type === "continue") && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc) {
+            finallyEntry = null;
+          }
+
+          var record = finallyEntry ? finallyEntry.completion : {};
+          record.type = type;
+          record.arg = arg;
+
+          if (finallyEntry) {
+            this.method = "next";
+            this.next = finallyEntry.finallyLoc;
+            return ContinueSentinel;
+          }
+
+          return this.complete(record);
+        },
+        complete: function complete(record, afterLoc) {
+          if (record.type === "throw") {
+            throw record.arg;
+          }
+
+          if (record.type === "break" || record.type === "continue") {
+            this.next = record.arg;
+          } else if (record.type === "return") {
+            this.rval = this.arg = record.arg;
+            this.method = "return";
+            this.next = "end";
+          } else if (record.type === "normal" && afterLoc) {
+            this.next = afterLoc;
+          }
+
+          return ContinueSentinel;
+        },
+        finish: function finish(finallyLoc) {
+          for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+            var entry = this.tryEntries[i];
+
+            if (entry.finallyLoc === finallyLoc) {
+              this.complete(entry.completion, entry.afterLoc);
+              resetTryEntry(entry);
+              return ContinueSentinel;
+            }
+          }
+        },
+        "catch": function _catch(tryLoc) {
+          for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+            var entry = this.tryEntries[i];
+
+            if (entry.tryLoc === tryLoc) {
+              var record = entry.completion;
+
+              if (record.type === "throw") {
+                var thrown = record.arg;
+                resetTryEntry(entry);
+              }
+
+              return thrown;
+            }
+          }
+
+          throw new Error("illegal catch attempt");
+        },
+        delegateYield: function delegateYield(iterable, resultName, nextLoc) {
+          this.delegate = {
+            iterator: values(iterable),
+            resultName: resultName,
+            nextLoc: nextLoc
+          };
+
+          if (this.method === "next") {
+            this.arg = undefined$1;
+          }
+
+          return ContinueSentinel;
+        }
+      };
+      return exports;
+    }(module.exports);
+
+    try {
+      regeneratorRuntime = runtime;
+    } catch (accidentalStrictMode) {
+      Function("r", "regeneratorRuntime = r")(runtime);
+    }
+  });
+  var regenerator = runtime_1;
+
+  function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+    try {
+      var info = gen[key](arg);
+      var value = info.value;
+    } catch (error) {
+      reject(error);
+      return;
+    }
+
+    if (info.done) {
+      resolve(value);
+    } else {
+      Promise.resolve(value).then(_next, _throw);
+    }
+  }
+
+  function _asyncToGenerator(fn) {
+    return function () {
+      var self = this,
+          args = arguments;
+      return new Promise(function (resolve, reject) {
+        var gen = fn.apply(self, args);
+
+        function _next(value) {
+          asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+        }
+
+        function _throw(err) {
+          asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+        }
+
+        _next(undefined);
+      });
+    };
+  }
+
+  var asyncToGenerator = _asyncToGenerator;
   var defaults = {
     autoInit: false,
     dataDrawer: 'drawer',
@@ -391,138 +1147,200 @@
     transition: true
   };
 
-  var switchToDefault = function switchToDefault(drawerKey, obj) {
-    try {
-      var drawer = obj.getDrawer(drawerKey);
-      if (!drawer) return Promise.resolve(obj.drawerNotFound(drawerKey));
-      if (!hasClass(drawer, obj.settings.classModal)) return Promise.resolve();
-      setInert(false, obj.settings.selectorInert);
-      setOverflowHidden(false, obj.settings.selectorOverflow);
-      removeClass(drawer, obj.settings.classModal);
-      obj.focusTrap.destroy();
-      drawerKey = drawer.getAttribute("data-" + obj.settings.dataDrawer);
-      var drawerState = obj.state[drawerKey];
+  function switchToModal(_x, _x2) {
+    return _switchToModal.apply(this, arguments);
+  }
 
-      if (drawerState == obj.settings.stateOpened) {
-        addClass(drawer, obj.settings.stateOpened);
-        removeClass(drawer, obj.settings.stateClosed);
-      }
+  function _switchToModal() {
+    _switchToModal = asyncToGenerator(regenerator.mark(function _callee(drawerKey, obj) {
+      var drawer;
+      return regenerator.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              drawer = obj.getDrawer(drawerKey);
 
-      drawer.dispatchEvent(new CustomEvent(obj.settings.customEventPrefix + 'toDefault', {
-        bubbles: true
-      }));
-      return Promise.resolve(drawer);
-    } catch (e) {
-      return Promise.reject(e);
-    }
-  };
+              if (drawer) {
+                _context.next = 3;
+                break;
+              }
 
-  var switchToModal = function switchToModal(drawerKey, obj) {
-    try {
-      var drawer = obj.getDrawer(drawerKey);
-      if (!drawer) return Promise.resolve(obj.drawerNotFound(drawerKey));
-      if (hasClass(drawer, obj.settings.classModal)) return Promise.resolve();
-      addClass(drawer, obj.settings.classModal);
-      addClass(drawer, obj.settings.stateClosed);
-      removeClass(drawer, obj.settings.stateOpened);
-      drawer.dispatchEvent(new CustomEvent(obj.settings.customEventPrefix + 'toModal', {
-        bubbles: true
-      }));
-      return Promise.resolve(drawer);
-    } catch (e) {
-      return Promise.reject(e);
-    }
-  };
+              return _context.abrupt("return", obj.drawerNotFound(drawerKey));
+
+            case 3:
+              if (!hasClass(drawer, obj.settings.classModal)) {
+                _context.next = 5;
+                break;
+              }
+
+              return _context.abrupt("return");
+
+            case 5:
+              addClass(drawer, obj.settings.classModal);
+              addClass(drawer, obj.settings.stateClosed);
+              removeClass(drawer, obj.settings.stateOpened);
+              drawer.dispatchEvent(new CustomEvent(obj.settings.customEventPrefix + 'toModal', {
+                bubbles: true
+              }));
+              return _context.abrupt("return", drawer);
+
+            case 10:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+    return _switchToModal.apply(this, arguments);
+  }
+
+  function switchToDefault(_x3, _x4) {
+    return _switchToDefault.apply(this, arguments);
+  }
+
+  function _switchToDefault() {
+    _switchToDefault = asyncToGenerator(regenerator.mark(function _callee2(drawerKey, obj) {
+      var drawer, drawerState;
+      return regenerator.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              drawer = obj.getDrawer(drawerKey);
+
+              if (drawer) {
+                _context2.next = 3;
+                break;
+              }
+
+              return _context2.abrupt("return", obj.drawerNotFound(drawerKey));
+
+            case 3:
+              if (hasClass(drawer, obj.settings.classModal)) {
+                _context2.next = 5;
+                break;
+              }
+
+              return _context2.abrupt("return");
+
+            case 5:
+              setInert(false, obj.settings.selectorInert);
+              setOverflowHidden(false, obj.settings.selectorOverflow);
+              removeClass(drawer, obj.settings.classModal);
+              obj.focusTrap.destroy();
+              drawerKey = drawer.getAttribute("data-".concat(obj.settings.dataDrawer));
+              drawerState = obj.state[drawerKey];
+
+              if (drawerState == obj.settings.stateOpened) {
+                addClass(drawer, obj.settings.stateOpened);
+                removeClass(drawer, obj.settings.stateClosed);
+              }
+
+              drawer.dispatchEvent(new CustomEvent(obj.settings.customEventPrefix + 'toDefault', {
+                bubbles: true
+              }));
+              return _context2.abrupt("return", drawer);
+
+            case 14:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+    return _switchToDefault.apply(this, arguments);
+  }
 
   var Breakpoint = function () {
     function Breakpoint(parent) {
+      classCallCheck(this, Breakpoint);
       this.mediaQueryLists = [];
       this.parent = parent;
       this.__check = this.check.bind(this);
     }
 
-    var _proto = Breakpoint.prototype;
+    createClass(Breakpoint, [{
+      key: "init",
+      value: function init() {
+        var _this = this;
 
-    _proto.init = function init() {
-      var _this = this;
+        var drawers = document.querySelectorAll("[data-".concat(this.parent.settings.dataBreakpoint, "]"));
+        drawers.forEach(function (drawer) {
+          var id = drawer.getAttribute("data-".concat(_this.parent.settings.dataDrawer));
+          var key = drawer.getAttribute("data-".concat(_this.parent.settings.dataBreakpoint));
+          var bp = _this.parent.settings.breakpoints[key] ? _this.parent.settings.breakpoints[key] : key;
+          var mql = window.matchMedia('(min-width:' + bp + ')');
 
-      var drawers = document.querySelectorAll("[data-" + this.parent.settings.dataBreakpoint + "]");
-      drawers.forEach(function (drawer) {
-        var id = drawer.getAttribute("data-" + _this.parent.settings.dataDrawer);
-        var key = drawer.getAttribute("data-" + _this.parent.settings.dataBreakpoint);
-        var bp = _this.parent.settings.breakpoints[key] ? _this.parent.settings.breakpoints[key] : key;
-        var mql = window.matchMedia('(min-width:' + bp + ')');
+          _this.match(mql, drawer);
 
-        _this.match(mql, drawer);
+          mql.addListener(_this.__check);
 
-        mql.addListener(_this.__check);
-
-        _this.mediaQueryLists.push({
-          'mql': mql,
-          'drawer': id
-        });
-      });
-    };
-
-    _proto.destroy = function destroy() {
-      var _this2 = this;
-
-      if (this.mediaQueryLists && this.mediaQueryLists.length) {
-        this.mediaQueryLists.forEach(function (item) {
-          item.mql.removeListener(_this2.__check);
+          _this.mediaQueryLists.push({
+            'mql': mql,
+            'drawer': id
+          });
         });
       }
+    }, {
+      key: "destroy",
+      value: function destroy() {
+        var _this2 = this;
 
-      this.mediaQueryLists = null;
-    };
+        if (this.mediaQueryLists && this.mediaQueryLists.length) {
+          this.mediaQueryLists.forEach(function (item) {
+            item.mql.removeListener(_this2.__check);
+          });
+        }
 
-    _proto.check = function check(event) {
-      var _this3 = this;
-
-      if (event === void 0) {
-        event = null;
+        this.mediaQueryLists = null;
       }
+    }, {
+      key: "check",
+      value: function check() {
+        var _this3 = this;
 
-      if (this.mediaQueryLists && this.mediaQueryLists.length) {
-        this.mediaQueryLists.forEach(function (item) {
-          var filter = event ? event.media == item.mql.media : true;
-          if (!filter) return;
-          var drawer = document.querySelector("[data-" + _this3.parent.settings.dataDrawer + "=\"" + item.drawer + "\"]");
-          if (drawer) _this3.match(item.mql, drawer);
-        });
-        document.dispatchEvent(new CustomEvent(this.parent.settings.customEventPrefix + 'breakpoint', {
-          bubbles: true
-        }));
+        var event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+        if (this.mediaQueryLists && this.mediaQueryLists.length) {
+          this.mediaQueryLists.forEach(function (item) {
+            var filter = event ? event.media == item.mql.media : true;
+            if (!filter) return;
+            var drawer = document.querySelector("[data-".concat(_this3.parent.settings.dataDrawer, "=\"").concat(item.drawer, "\"]"));
+            if (drawer) _this3.match(item.mql, drawer);
+          });
+          document.dispatchEvent(new CustomEvent(this.parent.settings.customEventPrefix + 'breakpoint', {
+            bubbles: true
+          }));
+        }
       }
-    };
-
-    _proto.match = function match(mql, drawer) {
-      if (mql.matches) {
-        switchToDefault(drawer, this.parent);
-      } else {
-        switchToModal(drawer, this.parent);
+    }, {
+      key: "match",
+      value: function match(mql, drawer) {
+        if (mql.matches) {
+          switchToDefault(drawer, this.parent);
+        } else {
+          switchToModal(drawer, this.parent);
+        }
       }
-    };
-
+    }]);
     return Breakpoint;
   }();
 
   function handlerClick(event) {
     if (this.working) return;
-    var trigger = event.target.closest("[data-" + this.settings.dataToggle + "]");
+    var trigger = event.target.closest("[data-".concat(this.settings.dataToggle, "]"));
 
     if (trigger) {
-      var selector = trigger.getAttribute("data-" + this.settings.dataToggle);
+      var selector = trigger.getAttribute("data-".concat(this.settings.dataToggle));
       this.memory.trigger = trigger;
       this.toggle(selector);
       event.preventDefault();
       return;
     }
 
-    trigger = event.target.closest("[data-" + this.settings.dataOpen + "]");
+    trigger = event.target.closest("[data-".concat(this.settings.dataOpen, "]"));
 
     if (trigger) {
-      var _selector = trigger.getAttribute("data-" + this.settings.dataOpen);
+      var _selector = trigger.getAttribute("data-".concat(this.settings.dataOpen));
 
       this.memory.trigger = trigger;
       this.open(_selector);
@@ -530,16 +1348,16 @@
       return;
     }
 
-    trigger = event.target.closest("[data-" + this.settings.dataClose + "]");
+    trigger = event.target.closest("[data-".concat(this.settings.dataClose, "]"));
 
     if (trigger) {
-      var _selector2 = trigger.getAttribute("data-" + this.settings.dataClose);
+      var _selector2 = trigger.getAttribute("data-".concat(this.settings.dataClose));
 
       if (_selector2) {
         this.memory.trigger = trigger;
         this.close(_selector2);
       } else {
-        var target = event.target.closest("[data-" + this.settings.dataDrawer + "]");
+        var target = event.target.closest("[data-".concat(this.settings.dataDrawer, "]"));
         if (target) this.close(target);
       }
 
@@ -547,7 +1365,7 @@
       return;
     }
 
-    if (event.target.hasAttribute("data-" + this.settings.dataDrawer)) {
+    if (event.target.hasAttribute("data-".concat(this.settings.dataDrawer))) {
       this.close(event.target);
       return;
     }
@@ -557,7 +1375,7 @@
     if (this.working) return;
 
     if (event.keyCode == 27) {
-      var target = document.querySelector("." + this.settings.classModal + "." + this.settings.stateOpened);
+      var target = document.querySelector(".".concat(this.settings.classModal, ".").concat(this.settings.stateOpened));
 
       if (target) {
         this.close(target);
@@ -570,7 +1388,7 @@
     if (!localStorage.getItem(settings.stateKey)) return stateSave(null, settings);
     var state = JSON.parse(localStorage.getItem(settings.stateKey));
     Object.keys(state).forEach(function (key) {
-      var item = document.querySelector("[data-" + settings.dataDrawer + "=\"" + key + "\"]");
+      var item = document.querySelector("[data-".concat(settings.dataDrawer, "=\"").concat(key, "\"]"));
       if (!item) return;
       state[key] == settings.stateOpened ? addClass(item, settings.stateOpened) : removeClass(item, settings.stateOpened);
     });
@@ -580,10 +1398,10 @@
   function stateSave(target, settings) {
     if (!settings.stateSave) return stateClear(settings);
     var state = localStorage.getItem(settings.stateKey) ? JSON.parse(localStorage.getItem(settings.stateKey)) : {};
-    var drawers = target ? [target] : document.querySelectorAll("[data-" + settings.dataDrawer + "]");
+    var drawers = target ? [target] : document.querySelectorAll("[data-".concat(settings.dataDrawer, "]"));
     drawers.forEach(function (el) {
       if (hasClass(el, settings.classModal)) return;
-      var drawerKey = el.getAttribute("data-" + settings.dataDrawer);
+      var drawerKey = el.getAttribute("data-".concat(settings.dataDrawer));
       state[drawerKey] = hasClass(el, settings.stateOpened) ? settings.stateOpened : settings.stateClosed;
     });
     localStorage.setItem(settings.stateKey, JSON.stringify(state));
@@ -598,10 +1416,45 @@
     return {};
   }
 
+  function ownKeys$1(object, enumerableOnly) {
+    var keys = Object.keys(object);
+
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly) symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+      keys.push.apply(keys, symbols);
+    }
+
+    return keys;
+  }
+
+  function _objectSpread$1(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+
+      if (i % 2) {
+        ownKeys$1(Object(source), true).forEach(function (key) {
+          defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys$1(Object(source)).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
+      }
+    }
+
+    return target;
+  }
+
   var Drawer = function () {
     function Drawer(options) {
+      classCallCheck(this, Drawer);
       this.defaults = defaults;
-      this.settings = _extends({}, this.defaults, options);
+      this.settings = _objectSpread$1(_objectSpread$1({}, this.defaults), options);
       this.working = false;
       this.memory = {};
       this.state = {};
@@ -612,171 +1465,247 @@
       if (this.settings.autoInit) this.init();
     }
 
-    var _proto = Drawer.prototype;
-
-    _proto.init = function init(options) {
-      if (options === void 0) {
-        options = null;
+    createClass(Drawer, [{
+      key: "init",
+      value: function init() {
+        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+        if (options) this.settings = _objectSpread$1(_objectSpread$1({}, this.settings), options);
+        this.stateSet();
+        this.setTabindex(this.settings.setTabindex);
+        this.breakpoint.init();
+        document.addEventListener('click', this.__handlerClick, false);
+        document.addEventListener('touchend', this.__handlerClick, false);
+        document.addEventListener('keyup', this.__handlerKeyup, false);
       }
-
-      if (options) this.settings = _extends({}, this.settings, options);
-      this.stateSet();
-      this.setTabindex(this.settings.setTabindex);
-      this.breakpoint.init();
-      document.addEventListener('click', this.__handlerClick, false);
-      document.addEventListener('touchend', this.__handlerClick, false);
-      document.addEventListener('keyup', this.__handlerKeyup, false);
-    };
-
-    _proto.destroy = function destroy() {
-      this.breakpoint.destroy();
-      this.memory = {};
-      this.state = {};
-      localStorage.removeItem(this.settings.stateKey);
-      document.removeEventListener('click', this.__handlerClick, false);
-      document.removeEventListener('touchend', this.__handlerClick, false);
-      document.removeEventListener('keyup', this.__handlerKeyup, false);
-    };
-
-    _proto.getDrawer = function getDrawer(drawerKey) {
-      if (typeof drawerKey !== 'string') return drawerKey;
-      return document.querySelector("[data-" + this.settings.dataDrawer + "=\"" + drawerKey + "\"]");
-    };
-
-    _proto.drawerNotFound = function drawerNotFound(key) {
-      return Promise.reject(new Error("Did not find drawer with key: \"" + key + "\""));
-    };
-
-    _proto.setTabindex = function setTabindex$1(state) {
-      if (state === void 0) {
-        state = true;
+    }, {
+      key: "destroy",
+      value: function destroy() {
+        this.breakpoint.destroy();
+        this.memory = {};
+        this.state = {};
+        localStorage.removeItem(this.settings.stateKey);
+        document.removeEventListener('click', this.__handlerClick, false);
+        document.removeEventListener('touchend', this.__handlerClick, false);
+        document.removeEventListener('keyup', this.__handlerKeyup, false);
       }
-
-      var selectorTabindex = "\n      [data-" + this.settings.dataDrawer + "]\n      [data-" + this.settings.dataDialog + "]\n    ";
-      setTabindex(state, selectorTabindex);
-    };
-
-    _proto.stateSet = function stateSet$1() {
-      this.state = stateSet(this.settings);
-    };
-
-    _proto.stateSave = function stateSave$1(target) {
-      if (target === void 0) {
-        target = null;
+    }, {
+      key: "getDrawer",
+      value: function getDrawer(drawerKey) {
+        if (typeof drawerKey !== 'string') return drawerKey;
+        return document.querySelector("[data-".concat(this.settings.dataDrawer, "=\"").concat(drawerKey, "\"]"));
       }
-
-      this.state = stateSave(target, this.settings);
-    };
-
-    _proto.stateClear = function stateClear$1() {
-      this.state = stateClear(this.settings);
-    };
-
-    _proto.switchToDefault = function switchToDefault$1(drawerKey) {
-      return switchToDefault(drawerKey, this);
-    };
-
-    _proto.switchToModal = function switchToModal$1(drawerKey) {
-      return switchToModal(drawerKey, this);
-    };
-
-    _proto.toggle = function toggle(drawerKey) {
-      try {
-        var _this2 = this;
-
-        var drawer = _this2.getDrawer(drawerKey);
-
-        if (!drawer) return Promise.resolve(_this2.drawerNotFound(drawerKey));
-        var isOpen = hasClass(drawer, _this2.settings.stateOpened);
-
-        if (!isOpen) {
-          return Promise.resolve(_this2.open(drawer));
-        } else {
-          return Promise.resolve(_this2.close(drawer));
-        }
-      } catch (e) {
-        return Promise.reject(e);
+    }, {
+      key: "drawerNotFound",
+      value: function drawerNotFound(key) {
+        return Promise.reject(new Error("Did not find drawer with key: \"".concat(key, "\"")));
       }
-    };
+    }, {
+      key: "setTabindex",
+      value: function setTabindex$1() {
+        var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+        var selectorTabindex = "\n      [data-".concat(this.settings.dataDrawer, "]\n      [data-").concat(this.settings.dataDialog, "]\n    ");
+        setTabindex(state, selectorTabindex);
+      }
+    }, {
+      key: "stateSet",
+      value: function stateSet$1() {
+        this.state = stateSet(this.settings);
+      }
+    }, {
+      key: "stateSave",
+      value: function stateSave$1() {
+        var target = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+        this.state = stateSave(target, this.settings);
+      }
+    }, {
+      key: "stateClear",
+      value: function stateClear$1() {
+        this.state = stateClear(this.settings);
+      }
+    }, {
+      key: "switchToDefault",
+      value: function switchToDefault$1(drawerKey) {
+        return switchToDefault(drawerKey, this);
+      }
+    }, {
+      key: "switchToModal",
+      value: function switchToModal$1(drawerKey) {
+        return switchToModal(drawerKey, this);
+      }
+    }, {
+      key: "toggle",
+      value: function () {
+        var _toggle = asyncToGenerator(regenerator.mark(function _callee(drawerKey) {
+          var drawer, isOpen;
+          return regenerator.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  drawer = this.getDrawer(drawerKey);
 
-    _proto.open = function open(drawerKey) {
-      try {
-        var _this4 = this;
+                  if (drawer) {
+                    _context.next = 3;
+                    break;
+                  }
 
-        var drawer = _this4.getDrawer(drawerKey);
+                  return _context.abrupt("return", this.drawerNotFound(drawerKey));
 
-        if (!drawer) return Promise.resolve(_this4.drawerNotFound(drawerKey));
+                case 3:
+                  isOpen = hasClass(drawer, this.settings.stateOpened);
 
-        if (!hasClass(drawer, _this4.settings.stateOpened)) {
-          _this4.working = true;
-          var isModal = hasClass(drawer, _this4.settings.classModal);
+                  if (isOpen) {
+                    _context.next = 8;
+                    break;
+                  }
 
-          if (isModal) {
-            setOverflowHidden(true, _this4.settings.selectorOverflow);
-          }
+                  return _context.abrupt("return", this.open(drawer));
 
-          return Promise.resolve(openTransition(drawer, _this4.settings)).then(function () {
-            _this4.stateSave(drawer);
+                case 8:
+                  return _context.abrupt("return", this.close(drawer));
 
-            if (isModal) {
-              _this4.focusTrap.init(drawer);
-
-              setInert(true, _this4.settings.selectorInert);
+                case 9:
+                case "end":
+                  return _context.stop();
+              }
             }
+          }, _callee, this);
+        }));
 
-            focusTarget(drawer, _this4.settings);
-            drawer.dispatchEvent(new CustomEvent(_this4.settings.customEventPrefix + 'opened', {
-              bubbles: true
-            }));
-            _this4.working = false;
-            return drawer;
-          });
-        } else {
-          focusTarget(drawer, _this4.settings);
-          return Promise.resolve(drawer);
+        function toggle(_x) {
+          return _toggle.apply(this, arguments);
         }
-      } catch (e) {
-        return Promise.reject(e);
-      }
-    };
 
-    _proto.close = function close(drawerKey) {
-      try {
-        var _this6 = this;
+        return toggle;
+      }()
+    }, {
+      key: "open",
+      value: function () {
+        var _open = asyncToGenerator(regenerator.mark(function _callee2(drawerKey) {
+          var drawer, isModal;
+          return regenerator.wrap(function _callee2$(_context2) {
+            while (1) {
+              switch (_context2.prev = _context2.next) {
+                case 0:
+                  drawer = this.getDrawer(drawerKey);
 
-        var drawer = _this6.getDrawer(drawerKey);
+                  if (drawer) {
+                    _context2.next = 3;
+                    break;
+                  }
 
-        if (!drawer) return Promise.resolve(_this6.drawerNotFound(drawerKey));
+                  return _context2.abrupt("return", this.drawerNotFound(drawerKey));
 
-        if (hasClass(drawer, _this6.settings.stateOpened)) {
-          _this6.working = true;
+                case 3:
+                  if (hasClass(drawer, this.settings.stateOpened)) {
+                    _context2.next = 17;
+                    break;
+                  }
 
-          if (hasClass(drawer, _this6.settings.classModal)) {
-            setInert(false, _this6.settings.selectorInert);
-            setOverflowHidden(false, _this6.settings.selectorOverflow);
-          }
+                  this.working = true;
+                  isModal = hasClass(drawer, this.settings.classModal);
 
-          return Promise.resolve(closeTransition(drawer, _this6.settings)).then(function () {
-            _this6.stateSave(drawer);
+                  if (isModal) {
+                    setOverflowHidden(true, this.settings.selectorOverflow);
+                  }
 
-            focusTrigger(_this6);
+                  _context2.next = 9;
+                  return openTransition(drawer, this.settings);
 
-            _this6.focusTrap.destroy();
+                case 9:
+                  this.stateSave(drawer);
 
-            drawer.dispatchEvent(new CustomEvent(_this6.settings.customEventPrefix + 'closed', {
-              bubbles: true
-            }));
-            _this6.working = false;
-            return drawer;
-          });
-        } else {
-          return Promise.resolve(drawer);
+                  if (isModal) {
+                    this.focusTrap.init(drawer);
+                    setInert(true, this.settings.selectorInert);
+                  }
+
+                  focusTarget(drawer, this.settings);
+                  drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'opened', {
+                    bubbles: true
+                  }));
+                  this.working = false;
+                  return _context2.abrupt("return", drawer);
+
+                case 17:
+                  focusTarget(drawer, this.settings);
+                  return _context2.abrupt("return", drawer);
+
+                case 19:
+                case "end":
+                  return _context2.stop();
+              }
+            }
+          }, _callee2, this);
+        }));
+
+        function open(_x2) {
+          return _open.apply(this, arguments);
         }
-      } catch (e) {
-        return Promise.reject(e);
-      }
-    };
 
+        return open;
+      }()
+    }, {
+      key: "close",
+      value: function () {
+        var _close = asyncToGenerator(regenerator.mark(function _callee3(drawerKey) {
+          var drawer;
+          return regenerator.wrap(function _callee3$(_context3) {
+            while (1) {
+              switch (_context3.prev = _context3.next) {
+                case 0:
+                  drawer = this.getDrawer(drawerKey);
+
+                  if (drawer) {
+                    _context3.next = 3;
+                    break;
+                  }
+
+                  return _context3.abrupt("return", this.drawerNotFound(drawerKey));
+
+                case 3:
+                  if (!hasClass(drawer, this.settings.stateOpened)) {
+                    _context3.next = 16;
+                    break;
+                  }
+
+                  this.working = true;
+
+                  if (hasClass(drawer, this.settings.classModal)) {
+                    setInert(false, this.settings.selectorInert);
+                    setOverflowHidden(false, this.settings.selectorOverflow);
+                  }
+
+                  _context3.next = 8;
+                  return closeTransition(drawer, this.settings);
+
+                case 8:
+                  this.stateSave(drawer);
+                  focusTrigger(this);
+                  this.focusTrap.destroy();
+                  drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'closed', {
+                    bubbles: true
+                  }));
+                  this.working = false;
+                  return _context3.abrupt("return", drawer);
+
+                case 16:
+                  return _context3.abrupt("return", drawer);
+
+                case 17:
+                case "end":
+                  return _context3.stop();
+              }
+            }
+          }, _callee3, this);
+        }));
+
+        function close(_x3) {
+          return _close.apply(this, arguments);
+        }
+
+        return close;
+      }()
+    }]);
     return Drawer;
   }();
 
@@ -803,65 +1732,86 @@
     transition: true
   };
 
-  var handlerClick$1 = function handlerClick(event) {
-    try {
-      var _exit2;
+  function handlerClick$1(_x) {
+    return _handlerClick.apply(this, arguments);
+  }
 
-      var _this2 = this;
+  function _handlerClick() {
+    _handlerClick = asyncToGenerator(regenerator.mark(function _callee(event) {
+      var trigger, modalKey, fromModal;
+      return regenerator.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              if (!this.working) {
+                _context.next = 2;
+                break;
+              }
 
-      function _temp3(_result) {
-        if (_exit2) return _result;
+              return _context.abrupt("return");
 
-        if (event.target.closest("[data-" + _this2.settings.dataClose + "]")) {
-          event.preventDefault();
+            case 2:
+              trigger = event.target.closest("[data-".concat(this.settings.dataOpen, "]"));
 
-          _this2.close();
+              if (!trigger) {
+                _context.next = 12;
+                break;
+              }
 
-          return;
+              event.preventDefault();
+              modalKey = trigger.getAttribute("data-".concat(this.settings.dataOpen));
+              fromModal = event.target.closest("[data-".concat(this.settings.dataModal, "]"));
+              if (!fromModal) this.memory.trigger = trigger;
+              _context.next = 10;
+              return this.close(!fromModal);
+
+            case 10:
+              this.open(modalKey);
+              return _context.abrupt("return");
+
+            case 12:
+              if (!event.target.closest("[data-".concat(this.settings.dataClose, "]"))) {
+                _context.next = 16;
+                break;
+              }
+
+              event.preventDefault();
+              this.close();
+              return _context.abrupt("return");
+
+            case 16:
+              if (!(event.target.hasAttribute("data-".concat(this.settings.dataModal)) && !event.target.hasAttribute("data-".concat(this.settings.dataRequired)))) {
+                _context.next = 19;
+                break;
+              }
+
+              this.close();
+              return _context.abrupt("return");
+
+            case 19:
+            case "end":
+              return _context.stop();
+          }
         }
-
-        if (event.target.hasAttribute("data-" + _this2.settings.dataModal) && !event.target.hasAttribute("data-" + _this2.settings.dataRequired)) {
-          _this2.close();
-        }
-      }
-
-      if (_this2.working) return Promise.resolve();
-      var trigger = event.target.closest("[data-" + _this2.settings.dataOpen + "]");
-
-      var _temp4 = function () {
-        if (trigger) {
-          event.preventDefault();
-          var modalKey = trigger.getAttribute("data-" + _this2.settings.dataOpen);
-          var fromModal = event.target.closest("[data-" + _this2.settings.dataModal + "]");
-          if (!fromModal) _this2.memory.trigger = trigger;
-          return Promise.resolve(_this2.close(!fromModal)).then(function () {
-            _this2.open(modalKey);
-
-            _exit2 = 1;
-          });
-        }
-      }();
-
-      return Promise.resolve(_temp4 && _temp4.then ? _temp4.then(_temp3) : _temp3(_temp4));
-    } catch (e) {
-      return Promise.reject(e);
-    }
-  };
+      }, _callee, this);
+    }));
+    return _handlerClick.apply(this, arguments);
+  }
 
   function handlerKeyup$1(event) {
     if (this.working) return;
 
     if (event.key === 'Escape' || event.keyCode === 27) {
-      var target = document.querySelector("[data-" + this.settings.dataModal + "]." + this.settings.stateOpened);
+      var target = document.querySelector("[data-".concat(this.settings.dataModal, "].").concat(this.settings.stateOpened));
 
-      if (target && !target.hasAttribute("data-" + this.settings.dataRequired)) {
+      if (target && !target.hasAttribute("data-".concat(this.settings.dataRequired))) {
         this.close();
       }
     }
   }
 
   function setInitialState(obj) {
-    var modals = document.querySelectorAll("[data-" + obj.settings.dataModal + "]");
+    var modals = document.querySelectorAll("[data-".concat(obj.settings.dataModal, "]"));
     modals.forEach(function (el) {
       if (el.classList.contains(obj.settings.stateOpened)) {
         setInert(false, obj.settings.selectorInert);
@@ -875,10 +1825,45 @@
     });
   }
 
+  function ownKeys$2(object, enumerableOnly) {
+    var keys = Object.keys(object);
+
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly) symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
+      keys.push.apply(keys, symbols);
+    }
+
+    return keys;
+  }
+
+  function _objectSpread$2(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+
+      if (i % 2) {
+        ownKeys$2(Object(source), true).forEach(function (key) {
+          defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+      } else {
+        ownKeys$2(Object(source)).forEach(function (key) {
+          Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+        });
+      }
+    }
+
+    return target;
+  }
+
   var Modal = function () {
     function Modal(options) {
+      classCallCheck(this, Modal);
       this.defaults = defaults$1;
-      this.settings = _extends({}, this.defaults, options);
+      this.settings = _objectSpread$2(_objectSpread$2({}, this.defaults), options);
       this.working = false;
       this.memory = {};
       this.focusTrap = new FocusTrap();
@@ -887,127 +1872,165 @@
       if (this.settings.autoInit) this.init();
     }
 
-    var _proto = Modal.prototype;
-
-    _proto.init = function init(options) {
-      if (options === void 0) {
-        options = null;
+    createClass(Modal, [{
+      key: "init",
+      value: function init() {
+        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+        if (options) this.settings = _objectSpread$2(_objectSpread$2({}, this.settings), options);
+        this.moveModals();
+        this.setTabindex(this.settings.setTabindex);
+        this.setInitialState();
+        document.addEventListener('click', this.__handlerClick, false);
+        document.addEventListener('touchend', this.__handlerClick, false);
+        document.addEventListener('keyup', this.__handlerKeyup, false);
       }
-
-      if (options) this.settings = _extends({}, this.settings, options);
-      this.moveModals();
-      this.setTabindex(this.settings.setTabindex);
-      this.setInitialState();
-      document.addEventListener('click', this.__handlerClick, false);
-      document.addEventListener('touchend', this.__handlerClick, false);
-      document.addEventListener('keyup', this.__handlerKeyup, false);
-    };
-
-    _proto.destroy = function destroy() {
-      this.memory = {};
-      document.removeEventListener('click', this.__handlerClick, false);
-      document.removeEventListener('touchend', this.__handlerClick, false);
-      document.removeEventListener('keyup', this.__handlerKeyup, false);
-    };
-
-    _proto.getModal = function getModal(modalKey) {
-      if (typeof modalKey !== 'string') return modalKey;
-      return document.querySelector("[data-" + this.settings.dataModal + "=\"" + modalKey + "\"]");
-    };
-
-    _proto.modalNotFound = function modalNotFound(key) {
-      return Promise.reject(new Error("Did not find modal with key: \"" + key + "\""));
-    };
-
-    _proto.setTabindex = function setTabindex$1(state) {
-      if (state === void 0) {
-        state = true;
+    }, {
+      key: "destroy",
+      value: function destroy() {
+        this.memory = {};
+        document.removeEventListener('click', this.__handlerClick, false);
+        document.removeEventListener('touchend', this.__handlerClick, false);
+        document.removeEventListener('keyup', this.__handlerKeyup, false);
       }
-
-      var selectorTabindex = "\n      [data-" + this.settings.dataModal + "]\n      [data-" + this.settings.dataDialog + "]\n    ";
-      setTabindex(state, selectorTabindex);
-    };
-
-    _proto.setInitialState = function setInitialState$1() {
-      setInitialState(this);
-    };
-
-    _proto.moveModals = function moveModals(type, ref) {
-      if (type === void 0) {
-        type = this.settings.moveModals.type;
+    }, {
+      key: "getModal",
+      value: function getModal(modalKey) {
+        if (typeof modalKey !== 'string') return modalKey;
+        return document.querySelector("[data-".concat(this.settings.dataModal, "=\"").concat(modalKey, "\"]"));
       }
-
-      if (ref === void 0) {
-        ref = this.settings.moveModals.ref;
+    }, {
+      key: "modalNotFound",
+      value: function modalNotFound(key) {
+        return Promise.reject(new Error("Did not find modal with key: \"".concat(key, "\"")));
       }
+    }, {
+      key: "setTabindex",
+      value: function setTabindex$1() {
+        var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+        var selectorTabindex = "\n      [data-".concat(this.settings.dataModal, "]\n      [data-").concat(this.settings.dataDialog, "]\n    ");
+        setTabindex(state, selectorTabindex);
+      }
+    }, {
+      key: "setInitialState",
+      value: function setInitialState$1() {
+        setInitialState(this);
+      }
+    }, {
+      key: "moveModals",
+      value: function moveModals() {
+        var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.settings.moveModals.type;
+        var ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.settings.moveModals.ref;
+        var modals = document.querySelectorAll("[data-".concat(this.settings.dataModal, "]"));
+        if (modals.length) moveElement(modals, type, ref);
+      }
+    }, {
+      key: "open",
+      value: function () {
+        var _open = asyncToGenerator(regenerator.mark(function _callee(modalKey) {
+          var modal;
+          return regenerator.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  modal = this.getModal(modalKey);
 
-      var modals = document.querySelectorAll("[data-" + this.settings.dataModal + "]");
-      if (modals.length) moveElement(modals, type, ref);
-    };
+                  if (modal) {
+                    _context.next = 3;
+                    break;
+                  }
 
-    _proto.open = function open(modalKey) {
-      try {
-        var _this2 = this;
+                  return _context.abrupt("return", this.modalNotFound(modalKey));
 
-        var modal = _this2.getModal(modalKey);
+                case 3:
+                  if (!hasClass(modal, this.settings.stateClosed)) {
+                    _context.next = 16;
+                    break;
+                  }
 
-        if (!modal) return Promise.resolve(_this2.modalNotFound(modalKey));
+                  this.working = true;
+                  setOverflowHidden(true, this.settings.selectorOverflow);
+                  _context.next = 8;
+                  return openTransition(modal, this.settings);
 
-        if (hasClass(modal, _this2.settings.stateClosed)) {
-          _this2.working = true;
-          setOverflowHidden(true, _this2.settings.selectorOverflow);
-          return Promise.resolve(openTransition(modal, _this2.settings)).then(function () {
-            _this2.focusTrap.init(modal);
+                case 8:
+                  this.focusTrap.init(modal);
+                  focusTarget(modal, this.settings);
+                  setInert(true, this.settings.selectorInert);
+                  modal.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'opened', {
+                    bubbles: true
+                  }));
+                  this.working = false;
+                  return _context.abrupt("return", modal);
 
-            focusTarget(modal, _this2.settings);
-            setInert(true, _this2.settings.selectorInert);
-            modal.dispatchEvent(new CustomEvent(_this2.settings.customEventPrefix + 'opened', {
-              bubbles: true
-            }));
-            _this2.working = false;
-            return modal;
-          });
-        } else {
-          return Promise.resolve(modal);
+                case 16:
+                  return _context.abrupt("return", modal);
+
+                case 17:
+                case "end":
+                  return _context.stop();
+              }
+            }
+          }, _callee, this);
+        }));
+
+        function open(_x) {
+          return _open.apply(this, arguments);
         }
-      } catch (e) {
-        return Promise.reject(e);
-      }
-    };
 
-    _proto.close = function close(returnFocus) {
-      if (returnFocus === void 0) {
-        returnFocus = true;
-      }
+        return open;
+      }()
+    }, {
+      key: "close",
+      value: function () {
+        var _close = asyncToGenerator(regenerator.mark(function _callee2() {
+          var returnFocus,
+              modal,
+              _args2 = arguments;
+          return regenerator.wrap(function _callee2$(_context2) {
+            while (1) {
+              switch (_context2.prev = _context2.next) {
+                case 0:
+                  returnFocus = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : true;
+                  modal = document.querySelector("[data-".concat(this.settings.dataModal, "].").concat(this.settings.stateOpened));
 
-      try {
-        var _this4 = this;
+                  if (!modal) {
+                    _context2.next = 15;
+                    break;
+                  }
 
-        var modal = document.querySelector("[data-" + _this4.settings.dataModal + "]." + _this4.settings.stateOpened);
+                  this.working = true;
+                  setInert(false, this.settings.selectorInert);
+                  setOverflowHidden(false, this.settings.selectorOverflow);
+                  _context2.next = 8;
+                  return closeTransition(modal, this.settings);
 
-        if (modal) {
-          _this4.working = true;
-          setInert(false, _this4.settings.selectorInert);
-          setOverflowHidden(false, _this4.settings.selectorOverflow);
-          return Promise.resolve(closeTransition(modal, _this4.settings)).then(function () {
-            if (returnFocus) focusTrigger(_this4);
+                case 8:
+                  if (returnFocus) focusTrigger(this);
+                  this.focusTrap.destroy();
+                  modal.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'closed', {
+                    bubbles: true
+                  }));
+                  this.working = false;
+                  return _context2.abrupt("return", modal);
 
-            _this4.focusTrap.destroy();
+                case 15:
+                  return _context2.abrupt("return", modal);
 
-            modal.dispatchEvent(new CustomEvent(_this4.settings.customEventPrefix + 'closed', {
-              bubbles: true
-            }));
-            _this4.working = false;
-            return modal;
-          });
-        } else {
-          return Promise.resolve(modal);
+                case 16:
+                case "end":
+                  return _context2.stop();
+              }
+            }
+          }, _callee2, this);
+        }));
+
+        function close() {
+          return _close.apply(this, arguments);
         }
-      } catch (e) {
-        return Promise.reject(e);
-      }
-    };
 
+        return close;
+      }()
+    }]);
     return Modal;
   }();
 
@@ -1439,15 +2462,15 @@
     }
   })();
 
-  function _classCallCheck(instance, Constructor) {
+  function _classCallCheck$1(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
     }
   }
 
-  var classCallCheck = _classCallCheck;
+  var classCallCheck$1 = _classCallCheck$1;
 
-  function _defineProperties(target, props) {
+  function _defineProperties$1(target, props) {
     for (var i = 0; i < props.length; i++) {
       var descriptor = props[i];
       descriptor.enumerable = descriptor.enumerable || false;
@@ -1457,13 +2480,13 @@
     }
   }
 
-  function _createClass(Constructor, protoProps, staticProps) {
-    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) _defineProperties(Constructor, staticProps);
+  function _createClass$1(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties$1(Constructor.prototype, protoProps);
+    if (staticProps) _defineProperties$1(Constructor, staticProps);
     return Constructor;
   }
 
-  var createClass = _createClass;
+  var createClass$1 = _createClass$1;
 
   (function () {
     if (typeof window === 'undefined') {
@@ -1477,7 +2500,7 @@
 
     var InertRoot = function () {
       function InertRoot(rootElement, inertManager) {
-        classCallCheck(this, InertRoot);
+        classCallCheck$1(this, InertRoot);
 
         this._inertManager = inertManager;
         this._rootElement = rootElement;
@@ -1502,7 +2525,7 @@
         });
       }
 
-      createClass(InertRoot, [{
+      createClass$1(InertRoot, [{
         key: "destructor",
         value: function destructor() {
           this._observer.disconnect();
@@ -1672,7 +2695,7 @@
 
     var InertNode = function () {
       function InertNode(node, inertRoot) {
-        classCallCheck(this, InertNode);
+        classCallCheck$1(this, InertNode);
 
         this._node = node;
         this._overrodeFocusMethod = false;
@@ -1682,7 +2705,7 @@
         this.ensureUntabbable();
       }
 
-      createClass(InertNode, [{
+      createClass$1(InertNode, [{
         key: "destructor",
         value: function destructor() {
           this._throwIfDestroyed();
@@ -1796,7 +2819,7 @@
 
     var InertManager = function () {
       function InertManager(document) {
-        classCallCheck(this, InertManager);
+        classCallCheck$1(this, InertManager);
 
         if (!document) {
           throw new Error('Missing required argument; InertManager needs to wrap a document.');
@@ -1815,7 +2838,7 @@
         }
       }
 
-      createClass(InertManager, [{
+      createClass$1(InertManager, [{
         key: "setInert",
         value: function setInert(root, inert) {
           if (inert) {
