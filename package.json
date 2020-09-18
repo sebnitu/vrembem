@@ -3,8 +3,8 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "lerna run build --parallel",
-    "clean": "lerna run clean --parallel",
+    "build": "lerna run build --stream",
+    "clean": "lerna run clean --stream",
     "docs": "concurrently --kill-others 'npm run server' 'npm run watch --c=docs' 'npm run watch:vb'",
     "fix": "npm-run-all fix:styles fix:scripts",
     "fix:scripts": "eslint --fix packages",
