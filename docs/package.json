@@ -1,5 +1,5 @@
 {
-  "name": "@vrembem/docs",
+  "name": "docs",
   "description": "A container component that slides in from the left or right. It typically contains menus, search or other content for your app.",
   "version": "1.22.2",
   "private": true,
