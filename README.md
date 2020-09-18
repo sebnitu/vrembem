@@ -41,7 +41,7 @@ If you'd like to use Vrembem for prototyping or just want to take it for a test 
 </div>
 
 <!-- Include Vrembem JavaScript -->
-<script src="https://unpkg.com/vrembem/dist/scripts.min.js"></script>
+<script src="https://unpkg.com/vrembem"></script>
 
 <!-- Instantiate the component rendered in the document -->
 <script>
@@ -54,22 +54,32 @@ Also see [`example.html`](./example.html) for a more comprehensive working demo 
 
 **CDN References**
 
+Vrembem all-in-one package:
+
 ```html
 <!-- Vrembem styles (expanded or compressed) -->
 <link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.css">
 <link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.min.css">
 
-<!-- Vrembem scripts (expanded or compressed) -->
-<script src="https://unpkg.com/vrembem/dist/scripts.js"></script>
-<script src="https://unpkg.com/vrembem/dist/scripts.min.js"></script>
+<!-- Vrembem scripts -->
+<script src="https://unpkg.com/vrembem"></script>
 
+<!-- A modern bundle specially designed to work in all modern browsers -->
+<script type="module" src="https://unpkg.com/vrembem/dist/scripts.modern.js"></script>
+```
+
+Component specific package (replace "drawer" with the component you wan to use):
+
+```html
 <!-- Component specific styles (expanded or compressed) -->
 <link rel="stylesheet" href="https://unpkg.com/@vrembem/drawer/dist/styles.css">
 <link rel="stylesheet" href="https://unpkg.com/@vrembem/drawer/dist/styles.min.css">
 
-<!-- Component specific scripts (expanded or compressed) -->
-<script src="https://unpkg.com/@vrembem/drawer/dist/scripts.js"></script>
-<script src="https://unpkg.com/@vrembem/drawer/dist/scripts.min.js"></script>
+<!-- Component specific scripts -->
+<script src="https://unpkg.com/@vrembem/drawer"></script>
+
+<!-- A modern bundle specially designed to work in all modern browsers -->
+<script type="module" src="https://unpkg.com/@vrembem/drawer/dist/scripts.modern.js"></script>
 ```
 
 ### Using NPM
