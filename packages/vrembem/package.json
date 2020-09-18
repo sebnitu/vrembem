@@ -9,9 +9,10 @@
     "component",
     "library"
   ],
+  "source": "index.js",
   "main": "dist/scripts.js",
   "module": "dist/scripts.esm.js",
-  "unpkg": "dist/scripts.js",
+  "unpkg": "dist/scripts.umd.js",
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean scripts styles",
