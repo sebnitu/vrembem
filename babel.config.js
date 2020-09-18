@@ -6,10 +6,6 @@ module.exports = (api) => {
       '@babel/preset-env',
       { targets: { node: 'current' } }
     ]];
-  } else {
-    config.presets = ['@babel/preset-env'];
-    config.plugins = ['@babel/plugin-transform-runtime'];
-    config.comments = false;
   }
 
   return config;
