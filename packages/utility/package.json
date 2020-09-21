@@ -9,13 +9,14 @@
     "component",
     "utility"
   ],
-  "style": "index.scss",
+  "sass": "index.scss",
+  "style": "dist/styles.css",
   "scripts": {
     "build": "npm-run-all clean styles",
-    "clean": "del dist",
-    "styles": "npm-run-all styles:compile styles:min",
-    "styles:compile": "sass index.scss dist/styles.css --load-path node_modules",
-    "styles:min": "sass dist/styles.css dist/styles.min.css --style compressed",
+    "clean": "del dev && del dist",
+    "styles": "npm-run-all styles:dev styles:dist",
+    "styles:dev": "sass index.scss dev/styles.css --load-path=node_modules",
+    "styles:dist": "sass index.scss dist/styles.css --load-path=node_modules --style=compressed",
     "watch": "npm run watch:styles",
     "watch:styles": "nodemon -e scss -x 'npm run styles'"
   },
