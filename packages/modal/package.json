@@ -14,6 +14,13 @@
   "module": "dist/modal.esm.js",
   "unpkg": "dist/modal.umd.js",
   "style": "index.scss",
+  "files": [
+    "dev",
+    "dist",
+    "src",
+    "index.js",
+    "index.scss"
+  ],
   "scripts": {
     "build": "npm-run-all clean scripts styles",
     "clean": "del dev && del dist",
