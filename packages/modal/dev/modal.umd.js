@@ -565,4 +565,4 @@
   return Modal;
 
 })));
-//# sourceMappingURL=scripts.umd.js.map
+//# sourceMappingURL=modal.umd.js.map

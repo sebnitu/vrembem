@@ -558,4 +558,4 @@ var Modal = /*#__PURE__*/function () {
 }();
 
 module.exports = Modal;
-//# sourceMappingURL=scripts.js.map
+//# sourceMappingURL=modal.js.map

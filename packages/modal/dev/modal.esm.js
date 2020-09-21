@@ -558,4 +558,4 @@ var Modal = /*#__PURE__*/function () {
 }();
 
 export default Modal;
-//# sourceMappingURL=scripts.esm.js.map
+//# sourceMappingURL=modal.esm.js.map

@@ -465,4 +465,4 @@ class Modal {
 }
 
 export default Modal;
-//# sourceMappingURL=scripts.modern.js.map
+//# sourceMappingURL=modal.modern.js.map
