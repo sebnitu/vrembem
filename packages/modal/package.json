@@ -16,7 +16,7 @@
   "style": "index.scss",
   "scripts": {
     "build": "npm-run-all clean scripts styles",
-    "clean": "del dist && del dev",
+    "clean": "del dev && del dist",
     "scripts": "npm-run-all scripts:dev scripts:dist",
     "scripts:dev": "npm run scripts:dist -- --output=dev/modal.js --no-compress",
     "scripts:dist": "microbundle --name=vrembem.Modal --external=none --globals=@vrembem/core/index=vrembem.core",
