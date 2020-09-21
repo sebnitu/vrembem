@@ -10,16 +10,25 @@
     "core"
   ],
   "source": "index.js",
-  "main": "dist/scripts.js",
-  "module": "dist/scripts.esm.js",
-  "unpkg": "dist/scripts.umd.js",
+  "main": "dist/core.js",
+  "module": "dist/core.esm.js",
+  "unpkg": "dist/core.umd.js",
   "style": "index.scss",
+  "files": [
+    "dev",
+    "dist",
+    "src",
+    "index.js",
+    "index.scss"
+  ],
   "scripts": {
     "build": "npm-run-all clean scripts",
-    "clean": "del dist",
-    "scripts": "microbundle --name=vrembem.core",
+    "clean": "del dev && del dist",
+    "scripts": "npm-run-all scripts:dev scripts:dist",
+    "scripts:dev": "npm run scripts:dist -- --output=dev/core.js --no-compress",
+    "scripts:dist": "microbundle --name=vrembem.core",
     "watch": "npm run watch:scripts",
-    "watch:scripts": "nodemon -e js -x 'npm run scripts' -i dist"
+    "watch:scripts": "nodemon -e js -x 'npm run scripts' -i dev -i dist"
   },
   "repository": {
     "type": "git",
