@@ -15,7 +15,7 @@ Via CDN
 <link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.min.css">
 
 <!-- Include scripts -->
-<script src="https://unpkg.com/vrembem/dist/scripts.min.js"></script>
+<script src="https://unpkg.com/vrembem"></script>
 
 <script>
   // All Vrembem JS modules are loaded into the vrembem namespace
