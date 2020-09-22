@@ -6,7 +6,32 @@ package: "vrembem"
 category: compound
 usage:
   npm: true
+  scss: true
+  js: true
 ---
+
+## Installation
+
+Via CDN
+
+```html
+<!-- Include styles -->
+<link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.css">
+
+<!-- Include scripts -->
+<script src="https://unpkg.com/vrembem"></script>
+
+<script>
+  // All Vrembem JS modules are loaded into the vrembem namespace
+  console.log(vrembem);
+</script>
+```
+
+Via NPM
+
+```sh
+npm install vrembem
+```
 
 ## Styles
 
