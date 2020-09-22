@@ -12,7 +12,7 @@ Via CDN
 
 ```html
 <!-- Include styles -->
-<link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.min.css">
+<link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.css">
 
 <!-- Include scripts -->
 <script src="https://unpkg.com/vrembem"></script>
