@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.22.2 to CHANGELOG.md
+chore(release): add v1.22.3 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.22.3 (2020-09-23)
+
+#### :house: Refactor
+* `base`, `breadcrumb`, `button-group`, `button`, `card`, `checkbox`, `container`, `core`, `dialog`, `drawer`, `dropdown`, `grid`, `icon-action`, `icon`, `input`, `level`, `media`, `menu`, `modal`, `notice`, `radio`, `section`, `switch`, `table`, `tooltip`, `utility`, `vrembem`
+  * [#401](https://github.com/sebnitu/vrembem/pull/401) Add microbundle to output more optimal bundles
 
 
 ## v1.22.2 (2020-09-14)
