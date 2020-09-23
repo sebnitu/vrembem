@@ -2,6 +2,6 @@
 .DS_Store
 _site
 coverage
-dev
-dist
+packages/**/dev
+packages/**/dist
 node_modules
