@@ -52,7 +52,7 @@ If you'd like to use Vrembem for prototyping or just want to take it for a test 
 
 Also see [`example.html`](./example.html) for a more comprehensive working demo of using Vrembem via CDN.
 
-**CDN References**
+#### CDN References
 
 Vrembem packges all bundles in two areas, `dist` contains all compressed production ready bundles and `dev` contains uncompressed versions (all using the same file names). Components that ship with JavaScript include 4 bundles:
 
@@ -63,19 +63,19 @@ Vrembem packges all bundles in two areas, `dist` contains all compressed product
 | __CJS__    | `.js`        | CommonJS bundles that are intended for older bundlers like [Browserify](http://browserify.org/) or [Webpack 1](https://webpack.github.io/). This is the default file from `pkg.main` pointing to `scripts.js`.                  |
 | __Modern__ | `.modern.js` | Modern bundles specially designed to work in all modern browsers. Specifically compiles down to browsers that support `<script type="module">` which are smaller and faster to execute than the `esm` bundle.                   |
 
-#### CDN link format:
+#### CDN Link Format
 
 ```html
-# CSS Styles
+# Styles
 Uncompressed: https://unpkg.com/[COMPONENT]/dev/styles.css
 Compressed:   https://unpkg.com/[COMPONENT]/dist/styles.css
 
-# JavaScript
+# Scripts
 Uncompressed: https://unpkg.com/[COMPONENT]/dev/scripts.umd.js
 Compressed:   https://unpkg.com/[COMPONENT]/dist/scripts.umd.js
 ```
 
-For example, if you wanted to include the styles and scripts for the `drawer` component, you could use the following link and script tags:
+For example, if you wanted to include the styles and scripts for the `@vrembem/drawer` component, you could use the following link and script tags:
 
 ```html
 <!-- Component specific styles (expanded or compressed) -->
