@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/input",
   "description": "A component for displaying form input elements.",
-  "version": "1.22.2",
+  "version": "1.22.3",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -26,7 +26,7 @@
     "directory": "packages/input"
   },
   "dependencies": {
-    "@vrembem/core": "^1.22.2"
+    "@vrembem/core": "^1.22.3"
   },
   "publishConfig": {
     "access": "public"
