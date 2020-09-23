@@ -27,7 +27,7 @@ If you'd like to use Vrembem for prototyping or just want to take it for a test 
 
 ```html
 <!-- Include Vrembem styles -->
-<link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.min.css">
+<link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.css">
 
 <!-- Render a component -->
 <button class="link" data-modal-open="modal-id">Open modal</button>
@@ -41,7 +41,7 @@ If you'd like to use Vrembem for prototyping or just want to take it for a test 
 </div>
 
 <!-- Include Vrembem JavaScript -->
-<script src="https://unpkg.com/vrembem/dist/scripts.min.js"></script>
+<script src="https://unpkg.com/vrembem"></script>
 
 <!-- Instantiate the component rendered in the document -->
 <script>
@@ -54,22 +54,41 @@ Also see [`example.html`](./example.html) for a more comprehensive working demo 
 
 **CDN References**
 
+Vrembem packges all bundles in two areas, `dist` contains all compressed production ready bundles and `dev` contains uncompressed versions (all using the same file names). Components that ship with JavaScript include 4 bundles:
+
+| Type       | Extension    | Description                                                                                                                                                                                                                     |
+| ---------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| __UMD__    | `.umd.js`    | Universal Module Definition bundles that can be used directly in the browser via a `<script>` tag. This is the default file from `pkg.unpkg` pointing to `scripts.umd.js`.                                                      |
+| __ESM__    | `.esm.js`    | ES Module bundles that are intended for use with modern bundlers like [Webpack 2](https://webpack.js.org/) or [Rollup](http://rollupjs.org/guide/en/). This is the default file from `pkg.module` pointing to `scripts.esm.js`. |
+| __CJS__    | `.js`        | CommonJS bundles that are intended for older bundlers like [Browserify](http://browserify.org/) or [Webpack 1](https://webpack.github.io/). This is the default file from `pkg.main` pointing to `scripts.js`.                  |
+| __Modern__ | `.modern.js` | Modern bundles specially designed to work in all modern browsers. Specifically compiles down to browsers that support `<script type="module">` which are smaller and faster to execute than the `esm` bundle.                   |
+
+#### CDN link format:
+
 ```html
-<!-- Vrembem styles (expanded or compressed) -->
-<link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.css">
-<link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.min.css">
+# CSS Styles
+Uncompressed: https://unpkg.com/[COMPONENT]/dev/styles.css
+Compressed:   https://unpkg.com/[COMPONENT]/dist/styles.css
 
-<!-- Vrembem scripts (expanded or compressed) -->
-<script src="https://unpkg.com/vrembem/dist/scripts.js"></script>
-<script src="https://unpkg.com/vrembem/dist/scripts.min.js"></script>
+# JavaScript
+Uncompressed: https://unpkg.com/[COMPONENT]/dev/scripts.umd.js
+Compressed:   https://unpkg.com/[COMPONENT]/dist/scripts.umd.js
+```
 
+For example, if you wanted to include the styles and scripts for the `drawer` component, you could use the following link and script tags:
+
+```html
 <!-- Component specific styles (expanded or compressed) -->
+<link rel="stylesheet" href="https://unpkg.com/@vrembem/drawer/dev/styles.css">
 <link rel="stylesheet" href="https://unpkg.com/@vrembem/drawer/dist/styles.css">
-<link rel="stylesheet" href="https://unpkg.com/@vrembem/drawer/dist/styles.min.css">
 
-<!-- Component specific scripts (expanded or compressed) -->
-<script src="https://unpkg.com/@vrembem/drawer/dist/scripts.js"></script>
-<script src="https://unpkg.com/@vrembem/drawer/dist/scripts.min.js"></script>
+<!-- Component specific scripts -->
+<script src="https://unpkg.com/@vrembem/drawer/dev/scripts.umd.js"></script>
+<script src="https://unpkg.com/@vrembem/drawer/dist/scripts.umd.js"></script>
+
+<!-- A modern bundle specially designed to work in all modern browsers with UMD fallback -->
+<script type="module" src="https://unpkg.com/@vrembem/drawer/dist/scripts.modern.js"></script>
+<script nomodule src="https://unpkg.com/@vrembem/drawer/dist/scripts.umd.js"></script>
 ```
 
 ### Using NPM

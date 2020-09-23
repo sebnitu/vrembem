@@ -3,30 +3,27 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "lerna run build --parallel",
-    "clean": "lerna run clean --parallel",
-    "docs": "concurrently --kill-others 'npm run server' 'npm run watch --c=docs' 'npm run watch:vb'",
+    "build": "lerna run build --stream",
+    "clean": "lerna run clean --stream",
+    "docs": "concurrently --kill-others 'npm run server' 'npm run watch:docs' 'npm run watch:vb'",
     "fix": "npm-run-all fix:styles fix:scripts",
     "fix:scripts": "eslint --fix packages",
     "fix:styles": "stylelint --fix 'packages/**/*.scss'",
     "lint": "npm-run-all lint:styles lint:scripts",
     "lint:scripts": "eslint packages",
     "lint:styles": "stylelint 'packages/**/*.scss'",
-    "server": "lerna run server --scope @vrembem/docs --parallel",
+    "server": "lerna run server --scope=docs --parallel",
     "sink": "npm-run-all build lint test:coverage",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
-    "watch": "lerna run watch --scope @vrembem/$npm_config_c --parallel",
-    "watch:vb": "lerna run watch --scope vrembem --parallel"
+    "watch": "lerna run watch --scope=@vrembem/$npm_config_c --parallel",
+    "watch:docs": "lerna run watch --scope=vrembem --parallel",
+    "watch:vb": "lerna run watch --scope=vrembem --parallel"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
-    "@babel/plugin-transform-runtime": "^7.11.5",
     "@babel/preset-env": "^7.11.5",
-    "@rollup/plugin-babel": "^5.2.1",
-    "@rollup/plugin-commonjs": "^15.1.0",
-    "@rollup/plugin-node-resolve": "^9.0.0",
     "@testing-library/dom": "^7.24.2",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/user-event": "^12.1.5",
@@ -39,10 +36,9 @@
     "jest": "^26.4.2",
     "lerna": "^3.22.1",
     "lerna-changelog": "^1.0.1",
+    "microbundle": "^0.12.3",
     "nodemon": "^2.0.4",
     "npm-run-all": "^4.1.5",
-    "rollup": "^2.28.1",
-    "rollup-plugin-terser": "^7.0.2",
     "sass": "^1.26.11",
     "stylelint": "^13.7.1",
     "stylelint-config-standard": "^20.0.0",
@@ -52,13 +48,9 @@
   },
   "jest": {
     "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "/dist/"
+      "/dev/",
+      "/dist/",
+      "/node_modules/"
     ]
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+  }
 }

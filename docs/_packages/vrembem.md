@@ -6,7 +6,32 @@ package: "vrembem"
 category: compound
 usage:
   npm: true
+  scss: true
+  js: true
 ---
+
+## Installation
+
+Via CDN
+
+```html
+<!-- Include styles -->
+<link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.css">
+
+<!-- Include scripts -->
+<script src="https://unpkg.com/vrembem"></script>
+
+<script>
+  // All Vrembem JS modules are loaded into the vrembem namespace
+  console.log(vrembem);
+</script>
+```
+
+Via NPM
+
+```sh
+npm install vrembem
+```
 
 ## Styles
 
@@ -38,11 +63,11 @@ Import and initialize the components you'll need:
 
 ```js
 // Import all under the vb namespace
-import * as vb from "vrembem";
+import * as vb from 'vrembem';
 const drawer = new vb.Drawer({ autoInit: true });
 
 // Or import individual components
-import { Drawer } from "vrembem";
+import { Drawer } from 'vrembem';
 const drawer = new Drawer({ autoInit: true });
 ```
 

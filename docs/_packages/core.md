@@ -31,20 +31,20 @@ To make use of the core JavaScript modules, import the specific named export you
 
 ```js
 // Import specific named exports
-import { addClass, removeClass } from "@vrembem/core";
+import { addClass, removeClass } from '@vrembem/core';
 
 // Usage
-addClass(el, "some-class");
+addClass(el, 'some-class');
 ```
 
 You can also include all core named exports under a namespace by importing the entire module's contents:
 
 ```js
 // Import all named exports under the 'core' namespace
-import * as core from "@vrembem/core";
+import * as core from '@vrembem/core';
 
 // Usage
-core.removeClass(el, "some-class");
+core.removeClass(el, 'some-class');
 ```
 
 ## Sass Variables

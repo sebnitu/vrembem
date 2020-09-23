@@ -1,12 +1,14 @@
 {
-  "name": "@vrembem/docs",
+  "name": "docs",
   "description": "A container component that slides in from the left or right. It typically contains menus, search or other content for your app.",
   "version": "1.22.2",
   "private": true,
+  "source": "src/js/app.js",
+  "browser": "dist/bundle.js",
   "scripts": {
     "build": "npm-run-all clean scripts styles",
     "clean": "del dist",
-    "scripts": "rollup -c",
+    "scripts": "microbundle --external=none --output=dist/bundle.js --format=iife",
     "styles": "npm-run-all styles:compile styles:min",
     "styles:compile": "sass src/css/app.scss dist/styles.css --load-path node_modules --load-path node_modules/vrembem/node_modules",
     "styles:min": "sass dist/styles.css dist/styles.min.css --style compressed",

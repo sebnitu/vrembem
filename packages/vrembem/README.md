@@ -12,10 +12,10 @@ Via CDN
 
 ```html
 <!-- Include styles -->
-<link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.min.css">
+<link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.css">
 
 <!-- Include scripts -->
-<script src="https://unpkg.com/vrembem/dist/scripts.min.js"></script>
+<script src="https://unpkg.com/vrembem"></script>
 
 <script>
   // All Vrembem JS modules are loaded into the vrembem namespace
@@ -59,11 +59,11 @@ Import and initialize the components you'll need:
 
 ```js
 // Import all under the vb namespace
-import * as vb from "vrembem";
+import * as vb from 'vrembem';
 const drawer = new vb.Drawer({ autoInit: true });
 
 // Or import individual components
-import { Drawer } from "vrembem";
+import { Drawer } from 'vrembem';
 const drawer = new Drawer({ autoInit: true });
 ```
 

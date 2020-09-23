@@ -713,7 +713,7 @@ Display utilities allow you to toggle the display property on an element with an
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="grid grid_gap_sm">
   <div class="grid__item grid__item_fill span-auto">
-    <div class="notice notice_type_info flex-align-center">
+    <div class="notice notice_type_info flex flex-align-center">
       {% include icon.html icon="eye" %}
     </div>
   </div>
