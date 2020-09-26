@@ -8,6 +8,22 @@ $_c: var.$class-padding;
     padding: var.$gap;
   }
 
+  .#{$_u}#{$_c}-top {
+    padding-top: var.$gap;
+  }
+
+  .#{$_u}#{$_c}-bottom {
+    padding-bottom: var.$gap;
+  }
+
+  .#{$_u}#{$_c}-left {
+    padding-left: var.$gap;
+  }
+
+  .#{$_u}#{$_c}-right {
+    padding-right: var.$gap;
+  }
+
   @each $key, $value in var.$gap-map {
     .#{$_u}#{$_c}-#{$key} {
       padding: $value !important;
