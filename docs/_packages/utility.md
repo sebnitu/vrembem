@@ -1537,8 +1537,9 @@ Adds gap spacing vertically using margin-top and the `> * + *` selector. Gap-y k
 Add margin to an element using directional and size modifiers. Margin size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
 
 - `margin` - Adds margins on all sides.
+- `margin-[direction]` - Adds default margin to a specific side.
 - `margin-[size]` - Adds margins on all sides with a specific size key.
-- `margin-[direction]-[size]` - Adds margins on a specific size and with size key.
+- `margin-[direction]-[size]` - Adds margins on a specific side and size.
 - `margin-x-[size]` - Adds left and right margins with a specific size key.
 - `margin-y-[size]` - Adds top and bottom margins with a specific size key.
 - `margin-auto` - Sets left and right margins to auto.
@@ -1606,9 +1607,10 @@ Add margin to an element using directional and size modifiers. Margin size and s
 
 Add padding to an element using directional and size modifiers. Padding size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
 
-- `padding` - Adds padding on all sides.
+- `padding` - Adds default padding on all sides.
+- `padding-[direction]` - Adds default padding to a specific side.
 - `padding-[size]` - Adds padding on all sides with a specific size key.
-- `padding-[direction]-[size]` - Adds padding on a specific size and with size key.
+- `padding-[direction]-[size]` - Adds padding on a specific side and size.
 - `padding-x-[size]` - Adds left and right padding with a specific size key.
 - `padding-y-[size]` - Adds top and bottom padding with a specific size key.
 
