@@ -5946,6 +5946,22 @@ input::-moz-placeholder {
   margin: 1em;
 }
 
+.margin-top {
+  margin-top: 1em;
+}
+
+.margin-bottom {
+  margin-bottom: 1em;
+}
+
+.margin-left {
+  margin-left: 1em;
+}
+
+.margin-right {
+  margin-right: 1em;
+}
+
 .margin-none {
   margin: 0 !important;
 }
@@ -6141,6 +6157,22 @@ input::-moz-placeholder {
 
 .padding {
   padding: 1em;
+}
+
+.padding-top {
+  padding-top: 1em;
+}
+
+.padding-bottom {
+  padding-bottom: 1em;
+}
+
+.padding-left {
+  padding-left: 1em;
+}
+
+.padding-right {
+  padding-right: 1em;
 }
 
 .padding-none {

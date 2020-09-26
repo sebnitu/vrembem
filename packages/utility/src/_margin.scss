@@ -8,6 +8,22 @@ $_c: var.$class-margin;
     margin: var.$gap;
   }
 
+  .#{$_u}#{$_c}-top {
+    margin-top: var.$gap;
+  }
+
+  .#{$_u}#{$_c}-bottom {
+    margin-bottom: var.$gap;
+  }
+
+  .#{$_u}#{$_c}-left {
+    margin-left: var.$gap;
+  }
+
+  .#{$_u}#{$_c}-right {
+    margin-right: var.$gap;
+  }
+
   @each $key, $value in var.$gap-map {
     .#{$_u}#{$_c}-#{$key} {
       margin: $value !important;
