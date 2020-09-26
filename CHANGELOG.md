@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.22.3 to CHANGELOG.md
+chore(release): add v1.23.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.23.0 (2020-09-26)
+
+#### :tada: New Feature
+* `utility`
+  * [#409](https://github.com/sebnitu/vrembem/pull/409) Add default direction variants for padding and margin utilities
 
 
 ## v1.22.3 (2020-09-23)
