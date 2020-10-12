@@ -33,7 +33,7 @@
     "del-cli": "^3.0.1",
     "eslint": "^7.11.0",
     "eslint-plugin-jest": "^24.1.0",
-    "jest": "^26.5.2",
+    "jest": "^26.5.3",
     "lerna": "^3.22.1",
     "lerna-changelog": "^1.0.1",
     "microbundle": "^0.12.4",
