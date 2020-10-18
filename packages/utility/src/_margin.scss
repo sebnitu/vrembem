@@ -5,23 +5,23 @@ $_c: var.$class-margin;
 
 @if (var.$output-margin) {
   .#{$_u}#{$_c} {
-    margin: var.$gap;
+    margin: var.$gap !important;
   }
 
   .#{$_u}#{$_c}-top {
-    margin-top: var.$gap;
+    margin-top: var.$gap !important;
   }
 
   .#{$_u}#{$_c}-bottom {
-    margin-bottom: var.$gap;
+    margin-bottom: var.$gap !important;
   }
 
   .#{$_u}#{$_c}-left {
-    margin-left: var.$gap;
+    margin-left: var.$gap !important;
   }
 
   .#{$_u}#{$_c}-right {
-    margin-right: var.$gap;
+    margin-right: var.$gap !important;
   }
 
   @each $key, $value in var.$gap-map {
