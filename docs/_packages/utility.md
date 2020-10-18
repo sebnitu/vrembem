@@ -1534,7 +1534,7 @@ Adds gap spacing vertically using margin-top and the `> * + *` selector. Gap-y k
 
 ## margin
 
-Add margin to an element using directional and size modifiers. Margin size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
+Add margin to an element using directional and size variations. Margin size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
 
 - `margin` - Adds margins on all sides.
 - `margin-[direction]` - Adds default margin to a specific side.
@@ -1542,9 +1542,10 @@ Add margin to an element using directional and size modifiers. Margin size and s
 - `margin-[direction]-[size]` - Adds margins on a specific side and size.
 - `margin-x-[size]` - Adds left and right margins with a specific size key.
 - `margin-y-[size]` - Adds top and bottom margins with a specific size key.
-- `margin-auto` - Sets left and right margins to auto.
-- `margin-left-auto` - Sets left margin to auto.
-- `margin-right-auto` - Sets right margin to auto.
+- `margin-auto` - Sets margins to auto.
+- `margin-[direction]-auto` - Sets margins auto to a specific side.
+- `margin-x-auto` - Sets left and right margins to auto.
+- `margin-y-auto` - Sets top and bottom margins to auto.
 
 <div>
   <div class="grid grid_stack_xs">
@@ -1558,6 +1559,8 @@ Add margin to an element using directional and size modifiers. Margin size and s
           <p><code>right</code></p>
           <p><code>bottom</code></p>
           <p><code>left</code></p>
+          <p><code>x <span class="color-subtle">left &amp; right</span></code></p>
+          <p><code>y <span class="color-subtle">top &amp; bottom</span></code></p>
         </div>
       </div>
     </div>
@@ -1573,6 +1576,7 @@ Add margin to an element using directional and size modifiers. Margin size and s
           <p><code>md <span class="color-subtle">...1em</span></code></p>
           <p><code>lg <span class="color-subtle">...1.5em</span></code></p>
           <p><code>xl <span class="color-subtle">...2em</span></code></p>
+          <p><code>auto <span class="color-subtle">...auto</span></code></p>
         </div>
       </div>
     </div>
@@ -1605,14 +1609,14 @@ Add margin to an element using directional and size modifiers. Margin size and s
 
 ## padding
 
-Add padding to an element using directional and size modifiers. Padding size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
+Add padding to an element using directional and size variations. Padding size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
 
 - `padding` - Adds default padding on all sides.
 - `padding-[direction]` - Adds default padding to a specific side.
 - `padding-[size]` - Adds padding on all sides with a specific size key.
 - `padding-[direction]-[size]` - Adds padding on a specific side and size.
-- `padding-x-[size]` - Adds left and right padding with a specific size key.
-- `padding-y-[size]` - Adds top and bottom padding with a specific size key.
+- `padding-x-[size]` - Sets left and right padding to a specific size key.
+- `padding-y-[size]` - Sets top and bottom padding to a specific size key.
 
 <div>
   <div class="grid grid_stack_xs">
@@ -1626,6 +1630,8 @@ Add padding to an element using directional and size modifiers. Padding size and
           <p><code>right</code></p>
           <p><code>bottom</code></p>
           <p><code>left</code></p>
+          <p><code>x <span class="color-subtle">left &amp; right</span></code></p>
+          <p><code>y <span class="color-subtle">top &amp; bottom</span></code></p>
         </div>
       </div>
     </div>
