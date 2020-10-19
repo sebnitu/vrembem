@@ -12,7 +12,7 @@ usage:
 ## section
 
 <div class="section section_size_xl">
-<div class="section__container container">
+<div class="section__container">
 <div class="section__intro type type_invert gap-y">
   <h1>Huge section with a screen &amp; background image</h1>
   <p class="text_lead">This is a demonstration of section area using the intro element along with a screen and background image. The screen color is set using the background modifiers and can be changed as needed.</p>
@@ -21,11 +21,11 @@ usage:
     <button class="button button_color_secondary">Second Action</button>
   </div>
 </div>
-<hr class="sep sep_invert margin-vert-xl" />
+<hr class="sep border-color-invert margin-y-xl" />
 <div markdown="1">
 ```html
 <div class="section section_size_xl">
-  <div class="section__container container">
+  <div class="section__container">
     <div class="section__intro">
       ...
     </div>
@@ -53,7 +53,7 @@ Sections have a few size modifier options to help adjust the space that is used 
 ---
 
 <div class="section section_size_xs">
-<div class="section__container container" markdown="1">
+<div class="section__container" markdown="1">
 ```html
 <div class="section section_size_xs">
   ...
@@ -65,7 +65,7 @@ Sections have a few size modifier options to help adjust the space that is used 
 ---
 
 <div class="section section_size_sm">
-<div class="section__container container" markdown="1">
+<div class="section__container" markdown="1">
 ```html
 <div class="section section_size_sm">
 ...
@@ -77,7 +77,7 @@ Sections have a few size modifier options to help adjust the space that is used 
 ---
 
 <div class="section section_size_md">
-<div class="section__container container" markdown="1">
+<div class="section__container" markdown="1">
 ```html
 <div class="section section_size_md">
 ...
@@ -89,7 +89,7 @@ Sections have a few size modifier options to help adjust the space that is used 
 ---
 
 <div class="section section_size_lg">
-<div class="section__container container" markdown="1">
+<div class="section__container" markdown="1">
 ```html
 <div class="section section_size_lg">
 ...
@@ -101,7 +101,7 @@ Sections have a few size modifier options to help adjust the space that is used 
 ---
 
 <div class="section section_size_xl">
-<div class="section__container container" markdown="1">
+<div class="section__container" markdown="1">
 ```html
 <div class="section section_size_xl">
 ...
