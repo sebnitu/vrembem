@@ -5,23 +5,23 @@ $_c: var.$class-margin;
 
 @if (var.$output-margin) {
   .#{$_u}#{$_c} {
-    margin: var.$gap;
+    margin: var.$gap !important;
   }
 
   .#{$_u}#{$_c}-top {
-    margin-top: var.$gap;
+    margin-top: var.$gap !important;
   }
 
   .#{$_u}#{$_c}-bottom {
-    margin-bottom: var.$gap;
+    margin-bottom: var.$gap !important;
   }
 
   .#{$_u}#{$_c}-left {
-    margin-left: var.$gap;
+    margin-left: var.$gap !important;
   }
 
   .#{$_u}#{$_c}-right {
-    margin-right: var.$gap;
+    margin-right: var.$gap !important;
   }
 
   @each $key, $value in var.$gap-map {
@@ -69,8 +69,15 @@ $_c: var.$class-margin;
   }
 
   .#{$_u}#{$_c}-auto {
-    margin-right: auto !important;
-    margin-left: auto !important;
+    margin: auto !important;
+  }
+
+  .#{$_u}#{$_c}-top-auto {
+    margin-top: auto !important;
+  }
+
+  .#{$_u}#{$_c}-bottom-auto {
+    margin-bottom: auto !important;
   }
 
   .#{$_u}#{$_c}-left-auto {
@@ -79,5 +86,15 @@ $_c: var.$class-margin;
 
   .#{$_u}#{$_c}-right-auto {
     margin-right: auto !important;
+  }
+
+  .#{$_u}#{$_c}-x-auto {
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+
+  .#{$_u}#{$_c}-y-auto {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
   }
 }

@@ -1408,31 +1408,6 @@ input::-moz-placeholder {
   opacity: 1;
 }
 
-.container {
-  max-width: 70rem;
-  margin: 0 auto;
-}
-
-.container_size_xs {
-  max-width: 45rem;
-}
-
-.container_size_sm {
-  max-width: 60rem;
-}
-
-.container_size_md {
-  max-width: 70rem;
-}
-
-.container_size_lg {
-  max-width: 80rem;
-}
-
-.container_size_xl {
-  max-width: 90rem;
-}
-
 .dialog {
   position: relative;
   z-index: 500;
@@ -5943,23 +5918,23 @@ input::-moz-placeholder {
 }
 
 .margin {
-  margin: 1em;
+  margin: 1em !important;
 }
 
 .margin-top {
-  margin-top: 1em;
+  margin-top: 1em !important;
 }
 
 .margin-bottom {
-  margin-bottom: 1em;
+  margin-bottom: 1em !important;
 }
 
 .margin-left {
-  margin-left: 1em;
+  margin-left: 1em !important;
 }
 
 .margin-right {
-  margin-right: 1em;
+  margin-right: 1em !important;
 }
 
 .margin-none {
@@ -6143,8 +6118,15 @@ input::-moz-placeholder {
 }
 
 .margin-auto {
-  margin-right: auto !important;
-  margin-left: auto !important;
+  margin: auto !important;
+}
+
+.margin-top-auto {
+  margin-top: auto !important;
+}
+
+.margin-bottom-auto {
+  margin-bottom: auto !important;
 }
 
 .margin-left-auto {
@@ -6155,24 +6137,66 @@ input::-moz-placeholder {
   margin-right: auto !important;
 }
 
+.margin-x-auto {
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+.margin-y-auto {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+}
+
+.max-width {
+  max-width: 70rem !important;
+}
+
+.max-width-none {
+  max-width: none !important;
+}
+
+.max-width-xs {
+  max-width: 45rem !important;
+}
+
+.max-width-sm {
+  max-width: 60rem !important;
+}
+
+.max-width-md {
+  max-width: 70rem !important;
+}
+
+.max-width-lg {
+  max-width: 80rem !important;
+}
+
+.max-width-xl {
+  max-width: 90rem !important;
+}
+
+.max-width-full {
+  max-width: 100% !important;
+}
+
 .padding {
-  padding: 1em;
+  padding: 1em !important;
 }
 
 .padding-top {
-  padding-top: 1em;
+  padding-top: 1em !important;
 }
 
 .padding-bottom {
-  padding-bottom: 1em;
+  padding-bottom: 1em !important;
 }
 
 .padding-left {
-  padding-left: 1em;
+  padding-left: 1em !important;
 }
 
 .padding-right {
-  padding-right: 1em;
+  padding-right: 1em !important;
 }
 
 .padding-none {

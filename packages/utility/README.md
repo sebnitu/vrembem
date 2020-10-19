@@ -111,6 +111,7 @@ The utility component consists of a number of modules with their own set of spec
 - [`gap-x-[key]`](#gap-x-key)
 - [`gap-y-[key]`](#gap-y-key)
 - [`margin`](#margin)
+- [`max-width`](#max-width)
 - [`padding`](#padding)
 - [`text`](#text)
 
@@ -580,7 +581,7 @@ Adds gap spacing vertically using margin-top and the `> * + *` selector. Gap-y k
 
 ### `margin`
 
-Add margin to an element using directional and size modifiers. Margin size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
+Add margin to an element using directional and size variations. Margin size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
 
 - `margin` - Adds margins on all sides.
 - `margin-[direction]` - Adds default margin to a specific side.
@@ -588,25 +589,58 @@ Add margin to an element using directional and size modifiers. Margin size and s
 - `margin-[direction]-[size]` - Adds margins on a specific side and size.
 - `margin-x-[size]` - Adds left and right margins with a specific size key.
 - `margin-y-[size]` - Adds top and bottom margins with a specific size key.
-- `margin-auto` - Sets left and right margins to auto.
-- `margin-left-auto` - Sets left margin to auto.
-- `margin-right-auto` - Sets right margin to auto.
+- `margin-auto` - Sets margins to auto.
+- `margin-[direction]-auto` - Sets margins auto to a specific side.
+- `margin-x-auto` - Sets left and right margins to auto.
+- `margin-y-auto` - Sets top and bottom margins to auto.
 
 | Variable         | Default                 | Description                                             |
 | ---------------- | ----------------------- | ------------------------------------------------------- |
 | `$output-margin` | `$output` &rarr; `true` | Toggles the output of this utility.                     |
 | `$class-margin`  | `"margin"`              | String to use for the class name of the margin utility. |
 
+### `max-width`
+
+Set the max-width property on an element using values mapped from scale keys. Scale variations are built using the [`$max-width-scale`](#max-width-scale) variable map.
+
+- `max-width` - Sets the max-width propertry to the default value set in `$max-width`.
+- `max-width-none` - Sets the max-width property to `none`.
+- `max-width-[key]` - Sets the max-width property to the value of a specific scale key.
+- `max-width-full` - Sets the max-width property to `100%`.
+
+| Variable            | Default                                 | Description                                                |
+| ------------------- | --------------------------------------- | ---------------------------------------------------------- |
+| `$output-max-width` | `$output` &rarr; `true`                 | Toggles the output of this module.                         |
+| `$class-max-width`  | `"max-width"`                           | String to use for the class name of the max-width utility. |
+| `$max-width`        | `70rem`                                 | The default value used to set max-width.                   |
+| `$max-width-scale`  | [Sass map ref &darr;](#max-width-scale) | Map used to build max-width utility variants.              |
+
+#### `$max-width-scale`<!-- omit in toc -->
+
+A scale map used for building max-width utility variations using the key as variant name.
+
+```scss
+$max-width-scale: (
+  'none': none,
+  'xs': 45rem,
+  'sm': 60rem,
+  'md': 70rem,
+  'lg': 80rem,
+  'xl': 90rem,
+  'full': 100%
+) !default;
+```
+
 ### `padding`
 
-Add padding to an element using directional and size modifiers. Padding size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
+Add padding to an element using directional and size variations. Padding size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
 
 - `padding` - Adds default padding on all sides.
 - `padding-[direction]` - Adds default padding to a specific side.
 - `padding-[size]` - Adds padding on all sides with a specific size key.
 - `padding-[direction]-[size]` - Adds padding on a specific side and size.
-- `padding-x-[size]` - Adds left and right padding with a specific size key.
-- `padding-y-[size]` - Adds top and bottom padding with a specific size key.
+- `padding-x-[size]` - Sets left and right padding to a specific size key.
+- `padding-y-[size]` - Sets top and bottom padding to a specific size key.
 
 | Variable          | Default                 | Description                                              |
 | ----------------- | ----------------------- | -------------------------------------------------------- |

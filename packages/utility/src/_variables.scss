@@ -17,6 +17,7 @@ $output-font: $output !default;
 $output-gap-x: $output !default;
 $output-gap-y: $output !default;
 $output-margin: $output !default;
+$output-max-width: $output !default;
 $output-padding: $output !default;
 $output-text: $output !default;
 
@@ -34,6 +35,7 @@ $class-font: "font" !default;
 $class-gap-x: "gap-x" !default;
 $class-gap-y: "gap-y" !default;
 $class-margin: "margin" !default;
+$class-max-width: "max-width" !default;
 $class-padding: "padding" !default;
 $class-text: "text" !default;
 
@@ -51,3 +53,13 @@ $gap-map: core.$gap-map !default;
 $flex-order-count: 12 !default;
 $flex-grow-count: 6 !default;
 $flex-shrink-count: 6 !default;
+$max-width: 70rem !default;
+$max-width-scale: (
+  'none': none,
+  'xs': 45rem,
+  'sm': 60rem,
+  'md': 70rem,
+  'lg': 80rem,
+  'xl': 90rem,
+  'full': 100%
+) !default;
