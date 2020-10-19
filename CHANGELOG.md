@@ -14,9 +14,15 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.23.0 to CHANGELOG.md
+chore(release): add v1.24.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+## v1.24.0 (2020-10-19)
+
+#### :tada: New Feature
+* `container`, `utility`, `vrembem`
+  * [#432](https://github.com/sebnitu/vrembem/pull/432) Deprecate container component in favor of new max-width and updated margin-auto utilities
 
 
 ## v1.23.0 (2020-09-26)
