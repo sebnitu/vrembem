@@ -137,6 +137,7 @@ The utility component consists of a number of modules with their own set of spec
 - [gap-x-[key]](#gap-x-key)
 - [gap-y-[key]](#gap-y-key)
 - [margin](#margin)
+- [max-width](#max-width)
 - [padding](#padding)
 - [text](#text)
 
@@ -1606,6 +1607,65 @@ Add margin to an element using directional and size variations. Margin size and 
     </tbody>
   </table>
 </div>
+
+## max-width
+
+Set the max-width property on an element using values mapped from scale keys. Scale variations are built using the [`$max-width-scale`](#max-width-scale) variable map.
+
+- `max-width` - Sets the max-width propertry to the default value set in `$max-width`.
+- `max-width-none` - Sets the max-width property to `none`.
+- `max-width-[key]` - Sets the max-width property to the value of a specific scale key.
+- `max-width-full` - Sets the max-width property to `100%`.
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-max-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-max-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"max-width"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the max-width utility.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$max-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">70rem</code></td>
+        <td data-mobile-label="Desc">The default value used to set max-width.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$max-width-scale</code></td>
+        <td data-mobile-label="Default"><a class="link" href="#max-width-scale">Sass map ref &darr;</a></td>
+        <td data-mobile-label="Desc">Map used to build max-width utility variants.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### $max-width-scale<!-- omit in toc -->
+
+A scale map used for building max-width utility variations using the key as variant name.
+
+```scss
+$max-width-scale: (
+  'none': none,
+  'xs': 45rem,
+  'sm': 60rem,
+  'md': 70rem,
+  'lg': 80rem,
+  'xl': 90rem,
+  'full': 100%
+) !default;
+```
 
 ## padding
 

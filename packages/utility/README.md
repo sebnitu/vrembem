@@ -111,6 +111,7 @@ The utility component consists of a number of modules with their own set of spec
 - [`gap-x-[key]`](#gap-x-key)
 - [`gap-y-[key]`](#gap-y-key)
 - [`margin`](#margin)
+- [`max-width`](#max-width)
 - [`padding`](#padding)
 - [`text`](#text)
 
@@ -597,6 +598,38 @@ Add margin to an element using directional and size variations. Margin size and 
 | ---------------- | ----------------------- | ------------------------------------------------------- |
 | `$output-margin` | `$output` &rarr; `true` | Toggles the output of this utility.                     |
 | `$class-margin`  | `"margin"`              | String to use for the class name of the margin utility. |
+
+### `max-width`
+
+Set the max-width property on an element using values mapped from scale keys. Scale variations are built using the [`$max-width-scale`](#max-width-scale) variable map.
+
+- `max-width` - Sets the max-width propertry to the default value set in `$max-width`.
+- `max-width-none` - Sets the max-width property to `none`.
+- `max-width-[key]` - Sets the max-width property to the value of a specific scale key.
+- `max-width-full` - Sets the max-width property to `100%`.
+
+| Variable            | Default                                 | Description                                                |
+| ------------------- | --------------------------------------- | ---------------------------------------------------------- |
+| `$output-max-width` | `$output` &rarr; `true`                 | Toggles the output of this module.                         |
+| `$class-max-width`  | `"max-width"`                           | String to use for the class name of the max-width utility. |
+| `$max-width`        | `70rem`                                 | The default value used to set max-width.                   |
+| `$max-width-scale`  | [Sass map ref &darr;](#max-width-scale) | Map used to build max-width utility variants.              |
+
+#### `$max-width-scale`<!-- omit in toc -->
+
+A scale map used for building max-width utility variations using the key as variant name.
+
+```scss
+$max-width-scale: (
+  'none': none,
+  'xs': 45rem,
+  'sm': 60rem,
+  'md': 70rem,
+  'lg': 80rem,
+  'xl': 90rem,
+  'full': 100%
+) !default;
+```
 
 ### `padding`
 
