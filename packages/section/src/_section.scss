@@ -12,10 +12,12 @@ $_e: var.$prefix-element;
 .#{$_b}section#{$_e}container {
   position: relative;
   z-index: 3;
+  max-width: var.$max-width-container;
+  margin: auto;
 }
 
 .#{$_b}section#{$_e}intro {
-  max-width: var.$intro-max-width;
+  max-width: var.$max-width-intro;
   margin: 0 auto;
   text-align: center;
 }

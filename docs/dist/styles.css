@@ -3984,6 +3984,8 @@ input::-moz-placeholder {
 .section__container {
   position: relative;
   z-index: 3;
+  max-width: 70rem;
+  margin: auto;
 }
 
 .section__intro {
