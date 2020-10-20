@@ -13,9 +13,9 @@ usage:
 
 <div class="section section_size_xl">
 <div class="section__container">
-<div class="section__intro type type_invert gap-y">
-  <h1>Huge section with a screen &amp; background image</h1>
-  <p class="text_lead">This is a demonstration of section area using the intro element along with a screen and background image. The screen color is set using the background modifiers and can be changed as needed.</p>
+<div class="max-width-xs margin-x-auto text-align-center color-white gap-y">
+  <h1 class="h1">Section with a screen &amp; background image</h1>
+  <p class="font-size-lg">This is a demonstration of section area using the intro element along with a screen and background image. The screen color is set using the background modifiers and can be changed as needed.</p>
   <div class="level flex-justify-center">
     <button class="button button_color_primary">First Action</button>
     <button class="button button_color_secondary">Second Action</button>
@@ -26,9 +26,7 @@ usage:
 ```html
 <div class="section section_size_xl">
   <div class="section__container">
-    <div class="section__intro">
-      ...
-    </div>
+    ...
   </div>
   <img class="section__background" src="..." />
   <div class="section__screen"></div>
@@ -49,63 +47,3 @@ Sections have a few size modifier options to help adjust the space that is used 
 * `section_size_md`
 * `section_size_xl`
 * `section_size_lg`
-
----
-
-<div class="section section_size_xs">
-<div class="section__container" markdown="1">
-```html
-<div class="section section_size_xs">
-  ...
-</div>
-```
-</div>
-</div>
-
----
-
-<div class="section section_size_sm">
-<div class="section__container" markdown="1">
-```html
-<div class="section section_size_sm">
-...
-</div>
-```
-</div>
-</div>
-
----
-
-<div class="section section_size_md">
-<div class="section__container" markdown="1">
-```html
-<div class="section section_size_md">
-...
-</div>
-```
-</div>
-</div>
-
----
-
-<div class="section section_size_lg">
-<div class="section__container" markdown="1">
-```html
-<div class="section section_size_lg">
-...
-</div>
-```
-</div>
-</div>
-
----
-
-<div class="section section_size_xl">
-<div class="section__container" markdown="1">
-```html
-<div class="section section_size_xl">
-...
-</div>
-```
-</div>
-</div>

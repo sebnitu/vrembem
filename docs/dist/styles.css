@@ -3988,12 +3988,6 @@ input::-moz-placeholder {
   margin: auto;
 }
 
-.section__intro {
-  max-width: 45rem;
-  margin: 0 auto;
-  text-align: center;
-}
-
 @media (min-width: 760px) {
   .section {
     padding: 2em 1.5em;
@@ -4006,13 +4000,13 @@ input::-moz-placeholder {
 }
 .section__background,
 .section__screen {
+  width: 100%;
+  height: 100%;
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
 }
 
 .section__background {
@@ -4023,7 +4017,7 @@ input::-moz-placeholder {
 .section__screen {
   z-index: 2;
   background: #424242;
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 .section_size_xs {
