@@ -6,12 +6,15 @@ $_e: var.$prefix-element;
 
 .#{$_b}section {
   position: relative;
+  display: flex;
   padding: map-get(var.$padding, 'base');
 }
 
 .#{$_b}section#{$_e}container {
   position: relative;
   z-index: 3;
+  flex-grow: 1;
+  width: 100%;
   max-width: var.$max-width;
   margin: auto;
 }
