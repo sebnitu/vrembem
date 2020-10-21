@@ -3978,12 +3978,15 @@ input::-moz-placeholder {
 
 .section {
   position: relative;
+  display: flex;
   padding: 1.5em;
 }
 
 .section__container {
   position: relative;
   z-index: 3;
+  flex-grow: 1;
+  width: 100%;
   max-width: 70rem;
   margin: auto;
 }
