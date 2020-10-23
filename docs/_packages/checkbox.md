@@ -91,7 +91,6 @@ For checkboxes with lables, just wrap the checkbox component along with label te
       </tr>
     </thead>
     <tbody>
-      <!-- Prefixes -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-block</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
@@ -112,8 +111,6 @@ For checkboxes with lables, just wrap the checkbox component along with label te
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"_"</code></td>
         <td data-mobile-label="Desc">String to prefix modifier values with.</td>
       </tr>
-
-      <!-- General styles -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$color</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$primary</code></td>
@@ -124,7 +121,6 @@ For checkboxes with lables, just wrap the checkbox component along with label te
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2.5em</code></td>
         <td data-mobile-label="Desc">Sets the width and height of the <code class="code">checkbox__background</code> element.</td>
       </tr>
-
       <tr>
         <td data-mobile-label="Var"><code class="code">$transition-duration</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">core.$transition-duration-short</code></td>
@@ -135,8 +131,6 @@ For checkboxes with lables, just wrap the checkbox component along with label te
         <td data-mobile-label="Default"><code class="code color-secondary">core.$transition-timing-function-sharp</code></td>
         <td data-mobile-label="Desc">Sets the transition-timing-function property for the <code class="code">checkbox__icon</code> element.</td>
       </tr>
-
-      <!-- checkbox__background -->
       <tr>
         <td data-mobile-label="Var"><code class="code">$background</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">transparent</code></td>
@@ -167,8 +161,6 @@ For checkboxes with lables, just wrap the checkbox component along with label te
         <td data-mobile-label="Default"><code class="code color-secondary">core.$border-radius-circle</code></td>
         <td data-mobile-label="Desc">Sets the border-radius property for the <code class="code">checkbox__background</code> element.</td>
       </tr>
-
-      <!-- checkbox__box -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$box-size</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">18px</code></td>
@@ -199,7 +191,6 @@ For checkboxes with lables, just wrap the checkbox component along with label te
         <td data-mobile-label="Default"><code class="code color-secondary">$color</code></td>
         <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:checked</code> state.</td>
       </tr>
-
       <tr>
         <td data-mobile-label="Var"><code class="code">$box-border-color</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">core.$gray-400</code></td>
@@ -225,7 +216,6 @@ For checkboxes with lables, just wrap the checkbox component along with label te
         <td data-mobile-label="Default"><code class="code color-secondary">$color</code></td>
         <td data-mobile-label="Desc">Sets the border-color property on <code class="code">:checked</code> state.</td>
       </tr>
-
       <tr>
         <td data-mobile-label="Var"><code class="code">$box-border-width</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">2px</code></td>
@@ -236,8 +226,6 @@ For checkboxes with lables, just wrap the checkbox component along with label te
         <td data-mobile-label="Default"><code class="code color-secondary">core.$border-radius</code></td>
         <td data-mobile-label="Desc">Sets the border-radius property on the <code class="code">checkbox__box</code> element.</td>
       </tr>
-
-      <!-- checkbox__icon -->
       <tr>
         <td data-mobile-label="Var"><code class="code">$icon-size</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">12px</code></td>
@@ -263,7 +251,6 @@ For checkboxes with lables, just wrap the checkbox component along with label te
         <td data-mobile-label="Default"><a class="link" href="#icon-indeterminate"><code class="code color-secondary">'data:image/svg...'</code> Ref &darr;</a></td>
         <td data-mobile-label="Desc">The data:image/svg string used as the background-image property for the <code class="code">checkbox__icon</code> element in it's indeterminate state.</td>
       </tr>
-
     </tbody>
   </table>
 </div>
@@ -285,7 +272,7 @@ $icon-indeterminate: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000
 <div class="scroll-box">
   <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
     <thead>
-      <tr class="border_top_0">
+      <tr>
         <th>Key</th>
         <th>Default</th>
         <th>Description</th>
@@ -293,18 +280,18 @@ $icon-indeterminate: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000
     </thead>
     <tbody>
       <tr>
-        <td data-mobile-label="Key"><code class="code text_nowrap">autoInit</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">false</code></td>
+        <td data-mobile-label="Key"><code class="code text-nowrap">autoInit</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">false</code></td>
         <td data-mobile-label="Desc">Automatically initializes the instance.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Key"><code class="code text_nowrap">stateAttr</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'aria-checked'</code></td>
+        <td data-mobile-label="Key"><code class="code text-nowrap">stateAttr</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'aria-checked'</code></td>
         <td data-mobile-label="Desc">Attribute to check mixed state against.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Key"><code class="code text_nowrap">stateValue</code></td>
-        <td data-mobile-label="Default"><code class="code color_secondary text_nowrap">'mixed'</code></td>
+        <td data-mobile-label="Key"><code class="code text-nowrap">stateValue</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'mixed'</code></td>
         <td data-mobile-label="Desc">The mixed value to check for. Applied as the value of <code class="code">stateAttr</code>.</td>
       </tr>
     </tbody>
