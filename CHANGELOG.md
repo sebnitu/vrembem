@@ -14,9 +14,17 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.24.0 to CHANGELOG.md
+chore(release): add v1.24.1 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.24.1 (2020-10-23)
+
+#### :house: Refactor
+* `section`
+  * [#434](https://github.com/sebnitu/vrembem/pull/434) Audit and refactor section component
+
 
 ## v1.24.0 (2020-10-19)
 
