@@ -704,7 +704,7 @@ Section headings in HTML are represented by the `<h1>` through `<h6>` elements. 
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$heading-scale</code></td>
         <td data-mobile-label="Default">
-          <a href="#heading-scale"><code class="code color-secondary text-nowrap">Sass Map</code> Ref &darr;</a>
+          <a href="#heading-scale" class="link"><code class="code color-secondary text-nowrap">Sass Map</code> Ref &darr;</a>
         </td>
         <td data-mobile-label="Desc">A map containing the font-size and optional line-height scale for HTML headings.</td>
       </tr>
