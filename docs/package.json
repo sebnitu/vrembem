@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "feather-icons": "^4.28.0",
-    "list.js": "^2.1.0",
+    "list.js": "^2.3.0",
     "scroll-stash": "^1.1.1",
     "svgxuse": "^1.2.6",
     "vrembem": "^1.24.1",
