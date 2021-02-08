@@ -14,9 +14,15 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.24.1 to CHANGELOG.md
+chore(release): add v1.24.2 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+## v1.24.2 (2021-02-08)
+
+#### :hammer: Chore
+* [#476](https://github.com/sebnitu/vrembem/pull/476) Update sink task
+* [#478](https://github.com/sebnitu/vrembem/pull/478) chore: setup initial workflow build and remove travis config
 
 
 ## v1.24.1 (2020-10-23)

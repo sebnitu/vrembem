@@ -16,9 +16,6 @@
   "changelog": {
     "repo": "sebnitu/vrembem",
     "cacheDir": ".changelog",
-    "ignoreCommitters": [
-      "[bot]"
-    ],
     "labels": {
       "PR: breaking": ":fire: Breaking Changes",
       "PR: feat": ":tada: New Feature",
