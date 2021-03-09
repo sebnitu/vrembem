@@ -17,7 +17,7 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
-    "watch": "lerna run watch --scope=@vrembem/$npm_config_c --parallel",
+    "watch": "lerna run watch --scope=\"@vrembem/$npm_config_component\" --parallel",
     "watch:docs": "lerna run watch --scope=docs --parallel",
     "watch:vb": "lerna run watch --scope=vrembem --parallel"
   },
