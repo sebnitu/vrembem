@@ -6,20 +6,20 @@ $_v: #{var.$prefix-modifier-value};
 
 .#{$_b}icon#{$_m}size#{$_v}xs {
   stroke-width: var.$size-xs-stroke-width;
-  font-size: var.$size-xs-font-size;
+  font-size: var.$size-xs;
 }
 
 .#{$_b}icon#{$_m}size#{$_v}sm {
   stroke-width: var.$size-sm-stroke-width;
-  font-size: var.$size-sm-font-size;
+  font-size: var.$size-sm;
 }
 
 .#{$_b}icon#{$_m}size#{$_v}lg {
   stroke-width: var.$size-lg-stroke-width;
-  font-size: var.$size-lg-font-size;
+  font-size: var.$size-lg;
 }
 
 .#{$_b}icon#{$_m}size#{$_v}xl {
   stroke-width: var.$size-xl-stroke-width;
-  font-size: var.$size-xl-font-size;
+  font-size: var.$size-xl;
 }

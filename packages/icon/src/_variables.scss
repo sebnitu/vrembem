@@ -6,20 +6,20 @@ $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
 $style: "stroke" !default;
-$font-size: 1.25em !default;
+$size: 1.25em !default;
 $stroke-width: 2px !default;
 $stroke-linecap: round !default;
 $stroke-linejoin: round !default;
 $vertical-align: top !default;
 
-$size-xs-font-size: 0.75em !default;
+$size-xs: 0.75em !default;
 $size-xs-stroke-width: null !default;
 
-$size-sm-font-size: 1em !default;
+$size-sm: 1em !default;
 $size-sm-stroke-width: null !default;
 
-$size-lg-font-size: 1.75em !default;
+$size-lg: 1.75em !default;
 $size-lg-stroke-width: null !default;
 
-$size-xl-font-size: 2.25em !default;
+$size-xl: 2.25em !default;
 $size-xl-stroke-width: null !default;
