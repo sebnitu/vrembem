@@ -14,9 +14,24 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.24.2 to CHANGELOG.md
+chore(release): add v1.25.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+## v1.25.0 (2021-03-14)
+
+#### :tada: New Feature
+* `icon`
+  * [#521](https://github.com/sebnitu/vrembem/pull/521) Add new icon size modifier
+
+#### :bug: Bug Fix
+* `drawer`
+  * [#524](https://github.com/sebnitu/vrembem/pull/524) Fix drawer initial state when local storage returns an empty object
+
+#### :books: Documentation
+* `button-group`
+  * [#522](https://github.com/sebnitu/vrembem/pull/522) Fix reference links in button-group docs
+
 
 ## v1.24.2 (2021-02-08)
 
