@@ -2598,6 +2598,22 @@ input::-moz-placeholder {
   vertical-align: top;
 }
 
+.icon_size_xs {
+  font-size: 0.75em;
+}
+
+.icon_size_sm {
+  font-size: 1em;
+}
+
+.icon_size_lg {
+  font-size: 1.75em;
+}
+
+.icon_size_xl {
+  font-size: 2.25em;
+}
+
 .icon_style_stroke {
   stroke: currentColor;
   stroke-width: 2px;

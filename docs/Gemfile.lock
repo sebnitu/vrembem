@@ -243,9 +243,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  commonmarker
   github-pages
   jekyll-feed (~> 0.8)
   tzinfo-data
 
 BUNDLED WITH
-   2.1.4
+   2.2.9
