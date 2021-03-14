@@ -103,22 +103,15 @@ Output unique styles for an icons based on their style type.
 | `$prefix-modifier-value` | `"_"`      | String to prefix modifier values with.                                              |
 | `$style`                 | `"stroke"` | The default icon styles to output. Current options include `"stroke"` and `"fill"`. |
 | `$size`                  | `1.25em`   | The base size of icons. This is applied using the `font-size` property.             |
-| `$stroke-width`          | `2xp`      | Sets the stroke width property of icons.                                            |
-
-<!--
-$stroke-linecap: round !default;
-$stroke-linejoin: round !default;
-$vertical-align: top !default;
-
-$size-xs: 0.75em !default;
-$size-xs-stroke-width: null !default;
-
-$size-sm: 1em !default;
-$size-sm-stroke-width: null !default;
-
-$size-lg: 1.75em !default;
-$size-lg-stroke-width: null !default;
-
-$size-xl: 2.25em !default;
-$size-xl-stroke-width: null !default;
--->
+| `$stroke-width`          | `2xp`      | Sets the stroke-width property of icons.                                            |
+| `$stroke-linecap`        | `round`    | Sets the stroke-linecap property of icons.                                          |
+| `$stroke-linejoin`       | `round`    | Sets the stroke-linejoin property of icons.                                         |
+| `$vertical-align`        | `top`      | Sets the vertical-align property of icons.                                          |
+| `$size-xs`               | `0.75em`   | Sets the font-size property of icons with the `icon_size_xs` modifier.              |
+| `$size-xs-stroke-width`  | `null`     | Sets the stroke-width property of icons with the `icon_size_xs` modifier.           |
+| `$size-sm`               | `1em`      | Sets the font-size property of icons with the `icon_size_sm` modifier.              |
+| `$size-sm-stroke-width`  | `null`     | Sets the stroke-width property of icons with the `icon_size_sm` modifier.           |
+| `$size-lg`               | `1.75em`   | Sets the font-size property of icons with the `icon_size_lg` modifier.              |
+| `$size-lg-stroke-width`  | `null`     | Sets the stroke-width property of icons with the `icon_size_lg` modifier.           |
+| `$size-xl`               | `2.75em`   | Sets the font-size property of icons with the `icon_size_xl` modifier.              |
+| `$size-xl-stroke-width`  | `null`     | Sets the stroke-width property of icons with the `icon_size_xl` modifier.           |

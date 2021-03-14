@@ -170,6 +170,11 @@ Output unique styles for an icons based on their style type.
       </tr>
       <!-- General -->
       <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$style</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"stroke"</code></td>
+        <td data-mobile-label="Desc">The default icon styles to output. Current options include <code class="code color-secondary text-nowrap">"stroke"</code> and <code class="code color-secondary text-nowrap">"fill"</code>.</td>
+      </tr>
+      <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$size</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1.25em</code></td>
         <td data-mobile-label="Desc">The base size of icons. This is applied using the <code class="code color-secondary">font-size</code> property.</td>
@@ -177,7 +182,62 @@ Output unique styles for an icons based on their style type.
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$stroke-width</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2xp</code></td>
-        <td data-mobile-label="Desc">Sets the stroke width property of icons.</td>
+        <td data-mobile-label="Desc">Sets the stroke-width property of icons.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$stroke-linecap</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">round</code></td>
+        <td data-mobile-label="Desc">Sets the stroke-linecap property of icons.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$stroke-linejoin</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">round</code></td>
+        <td data-mobile-label="Desc">Sets the stroke-linejoin property of icons.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$vertical-align</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">round</code></td>
+        <td data-mobile-label="Desc">Sets the vertical-align property of icons.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-xs</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">0.75em</code></td>
+        <td data-mobile-label="Desc">Sets the font-size property of icons with the <code class="code color-secondary text-nowrap">icon_size_xs</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-xs-stroke-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the stroke-width property of icons with the <code class="code color-secondary text-nowrap">icon_size_xs</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-sm</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1em</code></td>
+        <td data-mobile-label="Desc">Sets the font-size property of icons with the <code class="code color-secondary text-nowrap">icon_size_sm</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-sm-stroke-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the stroke-width property of icons with the <code class="code color-secondary text-nowrap">icon_size_sm</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-lg</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1.75em</code></td>
+        <td data-mobile-label="Desc">Sets the font-size property of icons with the <code class="code color-secondary text-nowrap">icon_size_lg</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-lg-stroke-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the stroke-width property of icons with the <code class="code color-secondary text-nowrap">icon_size_lg</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-xl</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2.75em</code></td>
+        <td data-mobile-label="Desc">Sets the font-size property of icons with the <code class="code color-secondary text-nowrap">icon_size_xl</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-xl-stroke-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the stroke-width property of icons with the <code class="code color-secondary text-nowrap">icon_size_xl</code> modifier.</td>
       </tr>
     </tbody>
   </table>
