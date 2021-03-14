@@ -55,6 +55,10 @@ The default icon style is set using the `$icon-style` variable. You can also exp
 <svg class="icon icon_style_stroke" role="img">
   <use xlink:href="#icon-heart"></use>
 </svg>
+
+<svg class="icon icon_style_fill" role="img">
+  <use xlink:href="#icon-heart"></use>
+</svg>
 ```
 
 #### Available Variations
@@ -62,13 +66,59 @@ The default icon style is set using the `$icon-style` variable. You can also exp
 - `icon_style_stroke`
 - `icon_style_fill`
 
+#### `@mixin icon-style($style)`
+
+Output unique styles for an icons based on their style type.
+
+**Arguments**
+
+| Variable | Type     | Description                                                                                         |
+| -------- | -------- | --------------------------------------------------------------------------------------------------- |
+| `$style` | `string` | The icon styles to output. Current options include `"stroke"` and `"fill"`, defaults to `"stroke"`. |
+
+**Example**
+
+```scss
+.icon-selector {
+  @include icon-style("fill");
+}
+
+// CSS Output
+.icon-selector {
+  stroke: none;
+  stroke-width: 0;
+  fill: currentColor;
+}
+```
+
 ## Customization
 
 ### Sass Variables
 
-| Variable                 | Default | Description                            |
-| ------------------------ | ------- | -------------------------------------- |
-| `$prefix-block`          | `null`  | String to prefix blocks with.          |
-| `$prefix-element`        | `"__"`  | String to prefix element with.         |
-| `$prefix-modifier`       | `"_"`   | String to prefix modifier with.        |
-| `$prefix-modifier-value` | `"_"`   | String to prefix modifier values with. |
+| Variable                 | Default    | Description                                                                         |
+| ------------------------ | ---------- | ----------------------------------------------------------------------------------- |
+| `$prefix-block`          | `null`     | String to prefix blocks with.                                                       |
+| `$prefix-element`        | `"__"`     | String to prefix element with.                                                      |
+| `$prefix-modifier`       | `"_"`      | String to prefix modifier with.                                                     |
+| `$prefix-modifier-value` | `"_"`      | String to prefix modifier values with.                                              |
+| `$style`                 | `"stroke"` | The default icon styles to output. Current options include `"stroke"` and `"fill"`. |
+| `$size`                  | `1.25em`   | The base size of icons. This is applied using the `font-size` property.             |
+| `$stroke-width`          | `2xp`      | Sets the stroke width property of icons.                                            |
+
+<!--
+$stroke-linecap: round !default;
+$stroke-linejoin: round !default;
+$vertical-align: top !default;
+
+$size-xs: 0.75em !default;
+$size-xs-stroke-width: null !default;
+
+$size-sm: 1em !default;
+$size-sm-stroke-width: null !default;
+
+$size-lg: 1.75em !default;
+$size-lg-stroke-width: null !default;
+
+$size-xl: 2.25em !default;
+$size-xl-stroke-width: null !default;
+-->

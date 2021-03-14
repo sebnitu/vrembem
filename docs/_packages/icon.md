@@ -92,3 +92,93 @@ The default icon style is set using the `$icon-style` variable. You can also exp
 
 - `icon_style_stroke`
 - `icon_style_fill`
+
+### `@mixin icon-style($style)`
+
+Output unique styles for an icons based on their style type.
+
+**Arguments**
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$style</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">string</code></td>
+        <td data-mobile-label="Desc">The icon styles to output. Current options include <code class="code text-nowrap">'stroke'</code> and <code class="code text-nowrap">'fill'</code>, defaults to <code class="code text-nowrap">'stroke'</code>.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+**Example**
+
+```scss
+.icon-selector {
+  @include icon-style("fill");
+}
+
+// CSS Output
+.icon-selector {
+  stroke: none;
+  stroke-width: 0;
+  fill: currentColor;
+}
+```
+
+## Customization
+
+### Sass Variables
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Prefixes -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-block</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">String to prefix blocks with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-element</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"__"</code></td>
+        <td data-mobile-label="Desc">String to prefix elements with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-modifier</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"_"</code></td>
+        <td data-mobile-label="Desc">String to prefix modifiers with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-modifier-value</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"_"</code></td>
+        <td data-mobile-label="Desc">String to prefix modifier values with.</td>
+      </tr>
+      <!-- General -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1.25em</code></td>
+        <td data-mobile-label="Desc">The base size of icons. This is applied using the <code class="code color-secondary">font-size</code> property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$stroke-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2xp</code></td>
+        <td data-mobile-label="Desc">Sets the stroke width property of icons.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
