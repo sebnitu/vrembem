@@ -94,7 +94,7 @@ A modifier to allow a button-group to span the full width of it's container. Val
 
 ## button-group_gap_[key]
 
-Adjusts the gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
+Adjusts the gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-map) variable map.
 
 {% include demo_open.html %}
 <div class="button-group button-group_gap_xs">
@@ -240,7 +240,7 @@ Adds a breakpoint for when button-group elements should be stacked vertically. V
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$gap-map</code></td>
         <td data-mobile-label="Default">
-          <a class="link text-nowrap" href="#gap-scale"><code class="code color-secondary">Sass Map</code> Ref &darr;</a>
+          <a class="link text-nowrap" href="#gap-map"><code class="code color-secondary">Sass Map</code> Ref &darr;</a>
         </td>
         <td data-mobile-label="Desc">Used to output gap modifiers.</td>
       </tr>

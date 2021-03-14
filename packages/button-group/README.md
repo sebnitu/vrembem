@@ -68,7 +68,7 @@ A modifier to allow a button-group to span the full width of it's container. Val
 
 ### `button-group_gap_[key]`
 
-Adjusts the gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
+Adjusts the gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-map) variable map.
 
 ```html
 <div class="button-group button-group_gap_xs">
@@ -134,7 +134,7 @@ Adds a breakpoint for when button-group elements should be stacked vertically. V
 | `$border-radius`         | `core.$border-radius`                          | Sets the border-radius styles of buttons when button-group adjusts them.                                               |
 | `$gap`                   | `0.5em`                                        | The default gap spacing for the button-group component.                                                                |
 | `$gap-join`              | `-1px`                                         | The gap spacing used for the `button-group_join` modifier.                                                             |
-| `$gap-map`               | [`Sass Map` Ref &darr;](#gap-scale)            | Used to output gap modifiers.                                                                                          |
+| `$gap-map`               | [`Sass Map` Ref &darr;](#gap-map)              | Used to output gap modifiers.                                                                                          |
 
 #### `$breakpoints`
 
