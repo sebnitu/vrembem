@@ -6,8 +6,10 @@ export function stateSet(settings) {
     return stateClear(settings);
 
   // If there isn't an existing state to set
-  if (!localStorage.getItem(settings.stateKey))
+  const storageCheck = localStorage.getItem(settings.stateKey);
+  if (!storageCheck || (storageCheck && Object.keys(JSON.parse(storageCheck)).length === 0)) {
     return stateSave(null, settings);
+  }
 
   // Set the existing state
   const state = JSON.parse(localStorage.getItem(settings.stateKey));

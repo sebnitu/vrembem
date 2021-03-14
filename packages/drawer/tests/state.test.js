@@ -56,6 +56,17 @@ test('should save initial states to local storage', () => {
   expect(state['drawer-two']).toMatch('is-closed');
 });
 
+test('should save initial states if an empty object is stored', () => {
+  document.body.innerHTML = markup;
+  localStorage.setItem('DrawerState', JSON.stringify({}));
+  drawer = new Drawer({ autoInit: true });
+
+  const state = JSON.parse(localStorage.getItem('DrawerState'));
+  expect(state).toMatchObject(drawer.state);
+  expect(state['drawer-one']).toMatch('is-closed');
+  expect(state['drawer-two']).toMatch('is-closed');
+});
+
 test('should restore state based on existing values in local storage', () => {
   document.body.innerHTML = markup;
   drawer = new Drawer();
