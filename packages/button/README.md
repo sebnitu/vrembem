@@ -35,3 +35,15 @@ When disabled using the `disabled` attribute, a button will inherit styles to vi
 <input class="button" type="button" value="Button" disabled>
 <a class="button" role="button" disabled>Button</a>
 ```
+
+Elements within a button are centered vertically and spaced accordingly using the value set in `$inner-spacing` (defaults to `0.5em`). When elements are added inside a button, the button's text should also be wrapped in a `<span>` so that it can be spaced properly.
+
+```html
+<button class="button">
+  <svg role="img" class="icon">
+    <use xlink:href="#anchor"></use>
+  </svg>
+  <span>Button</span>
+  <span class="arrow"></span>
+</button>
+```

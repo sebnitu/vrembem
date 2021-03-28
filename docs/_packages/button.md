@@ -43,19 +43,17 @@ When disabled using the `disabled` attribute, a button will inherit styles to vi
 ```
 {% include demo_close.html %}
 
-## button > [elements]
-
-Elements inside the button component receive appropriate spacing using the `> * + *` selector rule.
+Elements within a button are centered vertically and spaced accordingly using the value set in `$inner-spacing` (defaults to `0.5em`). When elements are added inside a button, the button's text should also be wrapped in a `<span>` so that it can be spaced properly.
 
 {% include demo_open.html %}
 <div class="level">
   <button class="button button_color_primary">
     {% include icon.html icon="anchor" %}
-    <span class="button__item">Button</span>
+    <span>Button</span>
     <span class="arrow"></span>
   </button>
   <button class="button button_color_primary">
-    <span class="button__item">Button</span>
+    <span>Button</span>
     {% include icon.html icon="anchor" %}
     <span class="arrow"></span>
   </button>
@@ -70,7 +68,7 @@ Elements inside the button component receive appropriate spacing using the `> * 
   <svg role="img" class="icon">
     <use xlink:href="#anchor"></use>
   </svg>
-  <span class="button__item">Button</span>
+  <span>Button</span>
   <span class="arrow"></span>
 </button>
 ```
