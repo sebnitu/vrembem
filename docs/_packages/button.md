@@ -11,29 +11,35 @@ usage:
 
 ## button
 
+The most basic imlementation of the button component consists of the `button` class that can be applied to `<button>`, `<input type="button">` or `<a role="button">` elements. [Remember to add `role="button"`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role) to any none semantic buttons as needed.
+
 {% include demo_open.html %}
 <div class="level">
-  <a href="#" class="button">Button</a>
   <button class="button">Button</button>
+  <input class="button" type="button" value="Button">
+  <a class="button" role="button">Button</a>
 </div>
 {% include demo_switch.html %}
 ```html
-<a href="#" class="button">Button</a>
 <button class="button">Button</button>
+<input class="button" type="button" value="Button">
+<a class="button" role="button">Button</a>
 ```
 {% include demo_close.html %}
 
-## button disabled
+When disabled using the `disabled` attribute, a button will inherit styles to visually appear noninteractive.
 
 {% include demo_open.html %}
 <div class="level">
-  <a href="#" class="button" disabled>Button</a>
   <button class="button" disabled>Button</button>
+  <input class="button" type="button" value="Button" disabled>
+  <a class="button" role="button" disabled>Button</a>
 </div>
 {% include demo_switch.html %}
 ```html
-<a href="#" class="button" disabled>Button</a>
 <button class="button" disabled>Button</button>
+<input class="button" type="button" value="Button" disabled>
+<a class="button" role="button" disabled>Button</a>
 ```
 {% include demo_close.html %}
 
