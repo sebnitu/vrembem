@@ -148,67 +148,55 @@ Adjust the size of a button by inceasing or decreasing its padding and font-size
 
 ### Sass Variables
 
-| Variable                 | Default                                        | Description                                                                     |
-| ------------------------ | ---------------------------------------------- | ------------------------------------------------------------------------------- |
-| `$prefix-block`          | `null`                                         | String to prefix blocks with.                                                   |
-| `$prefix-element`        | `"__"`                                         | String to prefix element with.                                                  |
-| `$prefix-modifier`       | `"_"`                                          | String to prefix modifier with.                                                 |
-| `$prefix-modifier-value` | `"_"`                                          | String to prefix modifier values with.                                          |
-| `$breakpoints`           | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the `button_block_[key]` modifier uses to build its styles. |
-
-<!--
-$min-size: 2.5rem !default; // 40px
-$padding: core.$padding !default;
-$inner-spacing: 0.5em !default;
-$font-size: core.$font-size !default;
-$line-height: 1.5 !default;
-$font-weight: inherit !default;
-$text-transform: null !default;
-$letter-spacing: null !default;
-$border-radius: core.$border-radius !default;
-$outline-focus: none !default;
-$outline-focus-offset: null !default;
-
-$background: rgba(core.$black, 0.06) !default;
-$background-hover: rgba(core.$black, 0.09) !default;
-$background-focus: rgba(core.$black, 0.12) !default;
-$background-active: rgba(core.$black, 0.15) !default;
-
-$box-shadow: null !default;
-$box-shadow-hover: null !default;
-$box-shadow-focus: null !default;
-$box-shadow-active: null !default;
-
-$border: none !default;
-$border-color-hover: null !default;
-$border-color-focus: null !default;
-$border-color-active: null !default;
-
-$color: core.$color !default;
-$color-hover: null !default;
-$color-focus: null !default;
-$color-active: null !default;
-
-$loading-size: 1em !default;
-$loading-animation-duration: 0.6s !default;
-$loading-border-color: $color !default;
-$loading-border: 2px solid !default;
-$loading-border-tpl: 1 1 0 0;
-
-$disabled-opacity: 0.5 !default;
-
-$size-sm-min-size: 1.875rem !default; // 30px
-$size-sm-padding: core.$padding-sm !default;
-$size-sm-font-size: core.$font-size-sm !default;
-$size-sm-line-height: core.$line-height-sm !default;
-
-$size-lg-min-size: 3.125rem !default; // 50px
-$size-lg-padding: core.$padding-lg !default;
-$size-lg-font-size: core.$font-size-lg !default;
-$size-lg-line-height: core.$line-height-lg !default;
-
-$outline-border-width: 1px !default;
--->
+| Variable                      | Default                                        | Description                                                                     |
+| ----------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------- |
+| `$prefix-block`               | `null`                                         | String to prefix blocks with.                                                   |
+| `$prefix-element`             | `"__"`                                         | String to prefix element with.                                                  |
+| `$prefix-modifier`            | `"_"`                                          | String to prefix modifier with.                                                 |
+| `$prefix-modifier-value`      | `"_"`                                          | String to prefix modifier values with.                                          |
+| `$breakpoints`                | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the `button_block_[key]` modifier uses to build its styles. |
+| `$min-size`                   | `2.5rem`                                       | ...                                                                             |
+| `$padding`                    | `core.$padding` &rarr; `0.5em 1em`             | ...                                                                             |
+| `$inner-spacing`              | `0.5em`                                        | ...                                                                             |
+| `$font-size`                  | `1em`                                          | ...                                                                             |
+| `$line-height`                | `core.$line-height` &rarr; `1.5`               | ...                                                                             |
+| `$font-weight`                | `inherit`                                      | ...                                                                             |
+| `$text-transform`             | `null`                                         | ...                                                                             |
+| `$letter-spacing`             | `null`                                         | ...                                                                             |
+| `$border-radius`              | `core.$border-radius` &rarr; `4px`             | ...                                                                             |
+| `$outline-focus`              | `none`                                         | ...                                                                             |
+| `$outline-focus-offset`       | `null`                                         | ...                                                                             |
+| `$background`                 | `rgba(core.$black, 0.06)`                      | ...                                                                             |
+| `$background-hover`           | `rgba(core.$black, 0.09)`                      | ...                                                                             |
+| `$background-focus`           | `rgba(core.$black, 0.12)`                      | ...                                                                             |
+| `$background-active`          | `rgba(core.$black, 0.15)`                      | ...                                                                             |
+| `$box-shadow`                 | `null`                                         | ...                                                                             |
+| `$box-shadow-hover`           | `null`                                         | ...                                                                             |
+| `$box-shadow-focus`           | `null`                                         | ...                                                                             |
+| `$box-shadow-active`          | `null`                                         | ...                                                                             |
+| `$border`                     | `none`                                         | ...                                                                             |
+| `$border-color-hover`         | `null`                                         | ...                                                                             |
+| `$border-color-focus`         | `null`                                         | ...                                                                             |
+| `$border-color-active`        | `null`                                         | ...                                                                             |
+| `$color`                      | `core.$color` &rarr; `#212121`                 | ...                                                                             |
+| `$color-hover`                | `null`                                         | ...                                                                             |
+| `$color-focus`                | `null`                                         | ...                                                                             |
+| `$color-active`               | `null`                                         | ...                                                                             |
+| `$disabled-opacity`           | `0.5`                                          | ...                                                                             |
+| `$loading-size`               | `1em`                                          | ...                                                                             |
+| `$loading-animation-duration` | `0.6s`                                         | ...                                                                             |
+| `$loading-border-color`       | `$color`                                       | ...                                                                             |
+| `$loading-border`             | `2px solid`                                    | ...                                                                             |
+| `$loading-border-tpl`         | `1 1 0 0`                                      | ...                                                                             |
+| `$size-sm-min-size`           | `1.875rem`                                     | ...                                                                             |
+| `$size-sm-padding`            | `core.$padding-sm` &rarr; `0.25rem 0.5rem`     | ...                                                                             |
+| `$size-sm-font-size`          | `core.$font-size-sm` &rarr; `0.875em`          | ...                                                                             |
+| `$size-sm-line-height`        | `core.$line-height-sm` &rarr; `1.375`          | ...                                                                             |
+| `$size-lg-min-size`           | `3.125rem`                                     | ...                                                                             |
+| `$size-lg-padding`            | `core.$padding-lg` &rarr; `0.648rem 1.5rem`    | ...                                                                             |
+| `$size-lg-font-size`          | `core.$font-size-lg` &rarr; `1.125em`          | ...                                                                             |
+| `$size-lg-line-height`        | `core.$line-height-lg` &rarr; `1.625`          | ...                                                                             |
+| `$outline-border-width`       | `1px`                                          | ...                                                                             |
 
 #### `$breakpoints`
 
