@@ -4,56 +4,54 @@ $prefix-block: core.$prefix-block !default;
 $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
-
 $breakpoints: core.$breakpoints !default;
 $min-size: 2.5rem !default; // 40px
 $padding: core.$padding !default;
-$inner-spacing: 0.5em !default;
-$font-size: 1em !default;
-$line-height: core.$line-height !default;
-$font-weight: inherit !default;
-$text-transform: null !default;
-$letter-spacing: null !default;
-$border-radius: core.$border-radius !default;
-$outline-focus: none !default;
-$outline-focus-offset: null !default;
-
-$background: rgba(core.$black, 0.06) !default;
-$background-hover: rgba(core.$black, 0.09) !default;
-$background-focus: rgba(core.$black, 0.12) !default;
-$background-active: rgba(core.$black, 0.15) !default;
-
-$box-shadow: null !default;
-$box-shadow-hover: null !default;
-$box-shadow-focus: null !default;
-$box-shadow-active: null !default;
-
+$gap: 0.5em !default;
 $border: none !default;
 $border-color-hover: null !default;
 $border-color-focus: null !default;
 $border-color-active: null !default;
-
+$border-radius: core.$border-radius !default;
+$background: rgba(core.$black, 0.06) !default;
+$background-hover: rgba(core.$black, 0.09) !default;
+$background-focus: rgba(core.$black, 0.12) !default;
+$background-active: rgba(core.$black, 0.15) !default;
+$box-shadow: null !default;
+$box-shadow-hover: null !default;
+$box-shadow-focus: null !default;
+$box-shadow-active: null !default;
 $color: core.$color !default;
 $color-hover: null !default;
 $color-focus: null !default;
 $color-active: null !default;
+$font-size: 1em !default;
+$font-weight: inherit !default;
+$letter-spacing: null !default;
+$line-height: core.$line-height !default;
+$text-transform: null !default;
+$outline-focus: none !default;
+$outline-focus-offset: null !default;
 
+// disabled
 $disabled-opacity: 0.5 !default;
 
+// is-loading
 $loading-size: 1em !default;
 $loading-animation-duration: 0.6s !default;
 $loading-border-color: $color !default;
 $loading-border: 2px solid !default;
 $loading-border-tpl: 1 1 0 0;
 
+// button_size_[key]
 $size-sm-min-size: 1.875rem !default; // 30px
 $size-sm-padding: core.$padding-sm !default;
 $size-sm-font-size: core.$font-size-sm !default;
 $size-sm-line-height: core.$line-height-sm !default;
-
 $size-lg-min-size: 3.125rem !default; // 50px
 $size-lg-padding: core.$padding-lg !default;
 $size-lg-font-size: core.$font-size-lg !default;
 $size-lg-line-height: core.$line-height-lg !default;
 
+// button_outline_[key]
 $outline-border-width: 1px !default;

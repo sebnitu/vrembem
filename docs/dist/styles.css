@@ -607,12 +607,12 @@ input::-moz-placeholder {
   white-space: nowrap;
   cursor: pointer;
 }
+.button > * + * {
+  margin-left: 0.5em;
+}
 .button[disabled] {
   opacity: 0.5;
   pointer-events: none;
-}
-.button > * + * {
-  margin-left: 0.5em;
 }
 .button:hover {
   background-color: rgba(0, 0, 0, 0.09);

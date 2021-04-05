@@ -36,7 +36,7 @@ When disabled using the `disabled` attribute, a button will inherit styles to vi
 <a class="button" role="button" disabled>Button</a>
 ```
 
-Elements within a button are centered vertically and spaced accordingly using the value set in `$inner-spacing` (defaults to `0.5em`). When elements are added inside a button, the button's text should also be wrapped in a `<span>` so that it can be spaced properly.
+Elements within a button are centered vertically and spaced accordingly using the value set in `$gap` (defaults to `0.5em`). When elements are added inside a button, the button's text should also be wrapped in a `<span>` so that it can be spaced properly.
 
 ```html
 <button class="button">
@@ -91,7 +91,7 @@ Adds styles for changing the look and feel of a button. These are usually done w
 
 ### `button_icon`
 
-Adds styles that make icon-only buttons more balanced and are typically squared if the icons used have equal height and widths.
+Adds styles that make icon-only buttons more balanced and will appear square if the icon used also has equal width and height.
 
 ```html
 <button class="button button_icon">
@@ -103,7 +103,7 @@ Adds styles that make icon-only buttons more balanced and are typically squared 
 
 ### `button_invert`
 
-A supplemental button modifier that allows [`_color`](#button_color_key) or [`_outline`](#button_outline_key) modified buttons to provide an inversed version of itself. Since not all button styles require an inversed variant, this is typically used for when the background context of a button matters.
+A supplemental button modifier that allows [`button_color_[key]`](#button_color_key) or [`button_outline_[key]`](#button_outline_key) modified buttons to provide an inversed version of itself. Since not all button styles require an inversed variant, this is typically used for when the background context of a button matters.
 
 ```html
 <button class="button button_invert">Button</button>
@@ -119,7 +119,7 @@ A supplemental button modifier that allows [`_color`](#button_color_key) or [`_o
 
 ### `button_outline_[key]`
 
-Outline styles usually have a more subtle appearance compared to [`_color`](#button_color_key) variants. They use a border to outline the button and have a transparent background color. Consider using [`button_invert`](#button_invert) when the contrast of a button needs to be inversed.
+Outline styles usually have a more subtle appearance compared to [`button_color_[key]`](#button_color_key) variants. They use a border to outline the button and have a transparent background color. Consider using [`button_invert`](#button_invert) when the contrast of a button needs to be inverted.
 
 ```html
 <button class="button button_outline_primary">Button</button>
@@ -133,7 +133,7 @@ Outline styles usually have a more subtle appearance compared to [`_color`](#but
 
 ### `button_size_[key]`
 
-Adjust the size of a button by inceasing or decreasing its padding and font-size. By default, the button scale should goes a height of 30px (small variant), 40px (default) to 50px (large variant).
+Adjust the size of a button by inceasing or decreasing its padding and font-size. By default, the button scale will provide a button height of 30px (`button_size_sm`), 40px (default) and 50px (`button_size_lg`).
 
 ```html
 <button class="button button_size_sm">Button</button>
@@ -148,55 +148,55 @@ Adjust the size of a button by inceasing or decreasing its padding and font-size
 
 ### Sass Variables
 
-| Variable                      | Default                                        | Description                                                                     |
-| ----------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------- |
-| `$prefix-block`               | `null`                                         | String to prefix blocks with.                                                   |
-| `$prefix-element`             | `"__"`                                         | String to prefix element with.                                                  |
-| `$prefix-modifier`            | `"_"`                                          | String to prefix modifier with.                                                 |
-| `$prefix-modifier-value`      | `"_"`                                          | String to prefix modifier values with.                                          |
-| `$breakpoints`                | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the `button_block_[key]` modifier uses to build its styles. |
-| `$min-size`                   | `2.5rem`                                       | ...                                                                             |
-| `$padding`                    | `core.$padding` &rarr; `0.5em 1em`             | ...                                                                             |
-| `$inner-spacing`              | `0.5em`                                        | ...                                                                             |
-| `$font-size`                  | `1em`                                          | ...                                                                             |
-| `$line-height`                | `core.$line-height` &rarr; `1.5`               | ...                                                                             |
-| `$font-weight`                | `inherit`                                      | ...                                                                             |
-| `$text-transform`             | `null`                                         | ...                                                                             |
-| `$letter-spacing`             | `null`                                         | ...                                                                             |
-| `$border-radius`              | `core.$border-radius` &rarr; `4px`             | ...                                                                             |
-| `$outline-focus`              | `none`                                         | ...                                                                             |
-| `$outline-focus-offset`       | `null`                                         | ...                                                                             |
-| `$background`                 | `rgba(core.$black, 0.06)`                      | ...                                                                             |
-| `$background-hover`           | `rgba(core.$black, 0.09)`                      | ...                                                                             |
-| `$background-focus`           | `rgba(core.$black, 0.12)`                      | ...                                                                             |
-| `$background-active`          | `rgba(core.$black, 0.15)`                      | ...                                                                             |
-| `$box-shadow`                 | `null`                                         | ...                                                                             |
-| `$box-shadow-hover`           | `null`                                         | ...                                                                             |
-| `$box-shadow-focus`           | `null`                                         | ...                                                                             |
-| `$box-shadow-active`          | `null`                                         | ...                                                                             |
-| `$border`                     | `none`                                         | ...                                                                             |
-| `$border-color-hover`         | `null`                                         | ...                                                                             |
-| `$border-color-focus`         | `null`                                         | ...                                                                             |
-| `$border-color-active`        | `null`                                         | ...                                                                             |
-| `$color`                      | `core.$color` &rarr; `#212121`                 | ...                                                                             |
-| `$color-hover`                | `null`                                         | ...                                                                             |
-| `$color-focus`                | `null`                                         | ...                                                                             |
-| `$color-active`               | `null`                                         | ...                                                                             |
-| `$disabled-opacity`           | `0.5`                                          | ...                                                                             |
-| `$loading-size`               | `1em`                                          | ...                                                                             |
-| `$loading-animation-duration` | `0.6s`                                         | ...                                                                             |
-| `$loading-border-color`       | `$color`                                       | ...                                                                             |
-| `$loading-border`             | `2px solid`                                    | ...                                                                             |
-| `$loading-border-tpl`         | `1 1 0 0`                                      | ...                                                                             |
-| `$size-sm-min-size`           | `1.875rem`                                     | ...                                                                             |
-| `$size-sm-padding`            | `core.$padding-sm` &rarr; `0.25rem 0.5rem`     | ...                                                                             |
-| `$size-sm-font-size`          | `core.$font-size-sm` &rarr; `0.875em`          | ...                                                                             |
-| `$size-sm-line-height`        | `core.$line-height-sm` &rarr; `1.375`          | ...                                                                             |
-| `$size-lg-min-size`           | `3.125rem`                                     | ...                                                                             |
-| `$size-lg-padding`            | `core.$padding-lg` &rarr; `0.648rem 1.5rem`    | ...                                                                             |
-| `$size-lg-font-size`          | `core.$font-size-lg` &rarr; `1.125em`          | ...                                                                             |
-| `$size-lg-line-height`        | `core.$line-height-lg` &rarr; `1.625`          | ...                                                                             |
-| `$outline-border-width`       | `1px`                                          | ...                                                                             |
+| Variable                      | Default                                        | Description                                                                                                                          |
+| ----------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `$prefix-block`               | `null`                                         | String to prefix blocks with.                                                                                                        |
+| `$prefix-element`             | `"__"`                                         | String to prefix element with.                                                                                                       |
+| `$prefix-modifier`            | `"_"`                                          | String to prefix modifier with.                                                                                                      |
+| `$prefix-modifier-value`      | `"_"`                                          | String to prefix modifier values with.                                                                                               |
+| `$breakpoints`                | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the `button_block_[key]` modifier uses to build its styles.                                                      |
+| `$min-size`                   | `2.5rem`                                       | Sets the minimum size of a button using the min-height and min-width properties.                                                     |
+| `$padding`                    | `core.$padding` &rarr; `0.5em 1em`             | Sets the padding property.                                                                                                           |
+| `$gap`                        | `0.5em`                                        | The default horizontal gap spacing for elements inside the button component.                                                         |
+| `$border`                     | `none`                                         | Sets the border property.                                                                                                            |
+| `$border-color-hover`         | `null`                                         | Sets the border-color property on `:hover` state.                                                                                    |
+| `$border-color-focus`         | `null`                                         | Sets the border-color property on `:focus` state.                                                                                    |
+| `$border-color-active`        | `null`                                         | Sets the border-color property on `:active` state.                                                                                   |
+| `$border-radius`              | `core.$border-radius` &rarr; `4px`             | Sets the border-radius property.                                                                                                     |
+| `$background`                 | `rgba(core.$black, 0.06)`                      | Sets the background property.                                                                                                        |
+| `$background-hover`           | `rgba(core.$black, 0.09)`                      | Sets the background-color property on `:hover` state.                                                                                |
+| `$background-focus`           | `rgba(core.$black, 0.12)`                      | Sets the background-color property on `:focus` state.                                                                                |
+| `$background-active`          | `rgba(core.$black, 0.15)`                      | Sets the background-color property on `:active` state.                                                                               |
+| `$box-shadow`                 | `null`                                         | Sets the box-shadow property.                                                                                                        |
+| `$box-shadow-hover`           | `null`                                         | Sets the box-shadow property on `:hover` state.                                                                                      |
+| `$box-shadow-focus`           | `null`                                         | Sets the box-shadow property on `:focus` state.                                                                                      |
+| `$box-shadow-active`          | `null`                                         | Sets the box-shadow property on `:active` state.                                                                                     |
+| `$color`                      | `core.$color` &rarr; `#212121`                 | Sets the color property.                                                                                                             |
+| `$color-hover`                | `null`                                         | Sets the color property on `:hover` state.                                                                                           |
+| `$color-focus`                | `null`                                         | Sets the color property on `:focus` state.                                                                                           |
+| `$color-active`               | `null`                                         | Sets the color property on `:active` state.                                                                                          |
+| `$font-size`                  | `1em`                                          | Sets the font-size property.                                                                                                         |
+| `$font-weight`                | `inherit`                                      | Sets the font-weight property.                                                                                                       |
+| `$letter-spacing`             | `null`                                         | Sets the letter-spacing property.                                                                                                    |
+| `$line-height`                | `core.$line-height` &rarr; `1.5`               | Sets the line-height property.                                                                                                       |
+| `$text-transform`             | `null`                                         | Sets the text-transformation property.                                                                                               |
+| `$outline-focus`              | `none`                                         | Sets the outline property on `:focus` state.                                                                                         |
+| `$outline-focus-offset`       | `null`                                         | Sets the outline-offset property on `:focus` state.                                                                                  |
+| `$disabled-opacity`           | `0.5`                                          | Sets the opacity property when disabled attribute is applied.                                                                        |
+| `$loading-size`               | `1em`                                          | Sets the size of the loading spinner.                                                                                                |
+| `$loading-animation-duration` | `0.6s`                                         | Sets the animation-duration property of the loading spinner.                                                                         |
+| `$loading-border-color`       | `$color`                                       | Sets the border-color property of the loading spinner.                                                                               |
+| `$loading-border`             | `2px solid`                                    | Sets the border property of the loading spinner.                                                                                     |
+| `$loading-border-tpl`         | `1 1 0 0`                                      | The template for where to apply the border-color property. Takes boolean `1` and `0` values for top, right, bottom and left borders. |
+| `$size-sm-min-size`           | `1.875rem`                                     | Sets the minimum size of the `button_size_sm` modifier using the min-height and min-width properties.                                |
+| `$size-sm-padding`            | `core.$padding-sm` &rarr; `0.25rem 0.5rem`     | Sets the padding property of the `button_size_sm` modifier.                                                                          |
+| `$size-sm-font-size`          | `core.$font-size-sm` &rarr; `0.875em`          | Sets the font-size property of the `button_size_sm` modifier.                                                                        |
+| `$size-sm-line-height`        | `core.$line-height-sm` &rarr; `1.375`          | Sets the line-height property of the `button_size_sm` modifier.                                                                      |
+| `$size-lg-min-size`           | `3.125rem`                                     | Sets the minimum size of the `button_size_lg` modifier using the min-height and min-width properties.                                |
+| `$size-lg-padding`            | `core.$padding-lg` &rarr; `0.648rem 1.5rem`    | Sets the padding property of the `button_size_lg` modifier.                                                                          |
+| `$size-lg-font-size`          | `core.$font-size-lg` &rarr; `1.125em`          | Sets the font-size property of the `button_size_lg` modifier.                                                                        |
+| `$size-lg-line-height`        | `core.$line-height-lg` &rarr; `1.625`          | Sets the line-height property of the `button_size_lg` modifier.                                                                      |
+| `$outline-border-width`       | `1px`                                          | Sets the border-width property of the [`button_outline_[key]`](#button_outline_key) modifiers.                                       |
 
 #### `$breakpoints`
 

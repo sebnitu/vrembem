@@ -12,6 +12,7 @@
 }
 
 .#{var.$prefix-block}button {
+  @include core.gap(var.$gap, 'x');
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -39,10 +40,6 @@
   &[disabled] {
     opacity: var.$disabled-opacity;
     pointer-events: none;
-  }
-
-  > * + * {
-    margin-left: var.$inner-spacing;
   }
 
   &:hover {
