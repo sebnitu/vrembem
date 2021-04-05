@@ -321,6 +321,33 @@ Adjust the size of a button by inceasing or decreasing its padding and font-size
         <td data-mobile-label="Desc">String to prefix modifier values with.</td>
       </tr>
       <!-- General -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$breakpoints</code></td>
+        <td data-mobile-label="Default">
+          <a class="link text-nowrap" href="#breakpoints"><code class="code color-secondary">core.$breakpoints</code> Ref &darr;</a>
+        </td>
+        <td data-mobile-label="Desc">The breakpoints map the <code class="code">button_block_[key]</code> modifier uses to build its styles.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$min-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2.5rem</code></td>
+        <td data-mobile-label="Desc">Sets the minimum size of a button using the min-height and min-width properties.</td>
+      </tr>
     </tbody>
   </table>
 </div>
+
+### $breakpoints
+
+The breakpoints map the `button_block_[key]` modifier uses to build its styles.
+
+```scss
+// Inherited from: core.$breakpoints
+$breakpoints: (
+  "xs": 480px,
+  "sm": 620px,
+  "md": 760px,
+  "lg": 990px,
+  "xl": 1380px
+) !default;
+```

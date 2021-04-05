@@ -228,7 +228,7 @@ The media component really shines when combining gap and stack modifiers.
         <td data-mobile-label="Default">
           <a class="link" href="#breakpoints"><code class="code color-secondary">core.$breakpoints</code> Ref &darr;</a>
         </td>
-        <td data-mobile-label="Desc">The breakpoints map the <code class="code">media_stack_[key]</code> modifier uses to build it's styles.</td>
+        <td data-mobile-label="Desc">The breakpoints map the <code class="code">media_stack_[key]</code> modifier uses to build its styles.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$min-height</code></td>
@@ -258,7 +258,7 @@ The media component really shines when combining gap and stack modifiers.
 
 ### $breakpoints
 
-The breakpoints map the `media_stack_[key]` modifier uses to build it's styles.
+The breakpoints map the `media_stack_[key]` modifier uses to build its styles.
 
 ```scss
 // Inherited from: core.$breakpoints
