@@ -9,8 +9,8 @@ $breakpoints: core.$breakpoints !default;
 $min-size: 2.5rem !default; // 40px
 $padding: core.$padding !default;
 $inner-spacing: 0.5em !default;
-$font-size: core.$font-size !default;
-$line-height: 1.5 !default;
+$font-size: 1em !default;
+$line-height: core.$line-height !default;
 $font-weight: inherit !default;
 $text-transform: null !default;
 $letter-spacing: null !default;
@@ -38,13 +38,13 @@ $color-hover: null !default;
 $color-focus: null !default;
 $color-active: null !default;
 
+$disabled-opacity: 0.5 !default;
+
 $loading-size: 1em !default;
 $loading-animation-duration: 0.6s !default;
 $loading-border-color: $color !default;
 $loading-border: 2px solid !default;
 $loading-border-tpl: 1 1 0 0;
-
-$disabled-opacity: 0.5 !default;
 
 $size-sm-min-size: 1.875rem !default; // 30px
 $size-sm-padding: core.$padding-sm !default;
