@@ -52,9 +52,10 @@ Buttons can also have a loading state by adding the `is-loading` state class. Th
 
 ```html
 <button class="button is-loading">Button</button>
-<input class="button is-loading" type="button" value="Button">
 <a class="button is-loading" role="button">Button</a>
 ```
+
+> Warning: the `is-loading` state class will not work on `<input type="button">` buttons since it uses the `::after` pseudo-element to display the loading spinner.
 
 ## Modifiers
 
@@ -80,7 +81,9 @@ Gives a button "block" styles so that it spans the full width of its container. 
 Adds styles for changing the look and feel of a button. These are usually done with different background and text colors.
 
 ```html
+<button class="button button_color_subtle">Button</button>
 <button class="button button_color_primary">Button</button>
+<button class="button button_color_secondary">Button</button>
 ```
 
 #### Available Variations
@@ -107,6 +110,7 @@ A supplemental button modifier that allows [`button_color_[key]`](#button_color_
 
 ```html
 <button class="button button_invert">Button</button>
+<button class="button button_invert button_color_subtle">Button</button>
 ```
 
 #### Available Combinations
@@ -137,6 +141,7 @@ Adjust the size of a button by inceasing or decreasing its padding and font-size
 
 ```html
 <button class="button button_size_sm">Button</button>
+<button class="button button_size_lg">Button</button>
 ```
 
 #### Available Variations
