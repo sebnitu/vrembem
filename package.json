@@ -22,7 +22,7 @@
     "watch:vb": "lerna run watch --scope=vrembem --parallel"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.13",
+    "@babel/core": "^7.13.14",
     "@babel/preset-env": "^7.13.12",
     "@testing-library/dom": "^7.30.1",
     "@testing-library/jest-dom": "^5.11.10",
