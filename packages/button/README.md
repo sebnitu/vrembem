@@ -28,14 +28,6 @@ The most basic imlementation of the button component consists of the `button` cl
 <a class="button" role="button">Button</a>
 ```
 
-When disabled using the `disabled` attribute, a button will inherit styles to visually appear noninteractive.
-
-```html
-<button class="button" disabled>Button</button>
-<input class="button" type="button" value="Button" disabled>
-<a class="button" role="button" disabled>Button</a>
-```
-
 Elements within a button are centered vertically and spaced accordingly using the value set in `$gap` (defaults to `0.5em`). When elements are added inside a button, the button's text should also be wrapped in a `<span>` so that it can be spaced properly.
 
 ```html
@@ -47,6 +39,18 @@ Elements within a button are centered vertically and spaced accordingly using th
   <span class="arrow"></span>
 </button>
 ```
+
+#### Disabled
+
+When disabled using the `disabled` attribute, a button will inherit styles to visually appear noninteractive.
+
+```html
+<button class="button" disabled>Button</button>
+<input class="button" type="button" value="Button" disabled>
+<a class="button" role="button" disabled>Button</a>
+```
+
+#### Loading
 
 Buttons can also have a loading state by adding the `is-loading` state class. This is useful when a button has an action that has a delayed response in order to give users a visual indicator that their action is being processed.
 
@@ -153,55 +157,55 @@ Adjust the size of a button by inceasing or decreasing its padding and font-size
 
 ### Sass Variables
 
-| Variable                      | Default                                        | Description                                                                                                                          |
-| ----------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `$prefix-block`               | `null`                                         | String to prefix blocks with.                                                                                                        |
-| `$prefix-element`             | `"__"`                                         | String to prefix element with.                                                                                                       |
-| `$prefix-modifier`            | `"_"`                                          | String to prefix modifier with.                                                                                                      |
-| `$prefix-modifier-value`      | `"_"`                                          | String to prefix modifier values with.                                                                                               |
-| `$breakpoints`                | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the `button_block_[key]` modifier uses to build its styles.                                                      |
-| `$min-size`                   | `2.5rem`                                       | Sets the minimum size of a button using the min-height and min-width properties.                                                     |
-| `$padding`                    | `core.$padding` &rarr; `0.5em 1em`             | Sets the padding property.                                                                                                           |
-| `$gap`                        | `0.5em`                                        | The default horizontal gap spacing for elements inside the button component.                                                         |
-| `$border`                     | `none`                                         | Sets the border property.                                                                                                            |
-| `$border-color-hover`         | `null`                                         | Sets the border-color property on `:hover` state.                                                                                    |
-| `$border-color-focus`         | `null`                                         | Sets the border-color property on `:focus` state.                                                                                    |
-| `$border-color-active`        | `null`                                         | Sets the border-color property on `:active` state.                                                                                   |
-| `$border-radius`              | `core.$border-radius` &rarr; `4px`             | Sets the border-radius property.                                                                                                     |
-| `$background`                 | `rgba(core.$black, 0.06)`                      | Sets the background property.                                                                                                        |
-| `$background-hover`           | `rgba(core.$black, 0.09)`                      | Sets the background-color property on `:hover` state.                                                                                |
-| `$background-focus`           | `rgba(core.$black, 0.12)`                      | Sets the background-color property on `:focus` state.                                                                                |
-| `$background-active`          | `rgba(core.$black, 0.15)`                      | Sets the background-color property on `:active` state.                                                                               |
-| `$box-shadow`                 | `null`                                         | Sets the box-shadow property.                                                                                                        |
-| `$box-shadow-hover`           | `null`                                         | Sets the box-shadow property on `:hover` state.                                                                                      |
-| `$box-shadow-focus`           | `null`                                         | Sets the box-shadow property on `:focus` state.                                                                                      |
-| `$box-shadow-active`          | `null`                                         | Sets the box-shadow property on `:active` state.                                                                                     |
-| `$color`                      | `core.$color` &rarr; `#212121`                 | Sets the color property.                                                                                                             |
-| `$color-hover`                | `null`                                         | Sets the color property on `:hover` state.                                                                                           |
-| `$color-focus`                | `null`                                         | Sets the color property on `:focus` state.                                                                                           |
-| `$color-active`               | `null`                                         | Sets the color property on `:active` state.                                                                                          |
-| `$font-size`                  | `1em`                                          | Sets the font-size property.                                                                                                         |
-| `$font-weight`                | `inherit`                                      | Sets the font-weight property.                                                                                                       |
-| `$letter-spacing`             | `null`                                         | Sets the letter-spacing property.                                                                                                    |
-| `$line-height`                | `core.$line-height` &rarr; `1.5`               | Sets the line-height property.                                                                                                       |
-| `$text-transform`             | `null`                                         | Sets the text-transformation property.                                                                                               |
-| `$outline-focus`              | `none`                                         | Sets the outline property on `:focus` state.                                                                                         |
-| `$outline-focus-offset`       | `null`                                         | Sets the outline-offset property on `:focus` state.                                                                                  |
-| `$disabled-opacity`           | `0.5`                                          | Sets the opacity property when disabled attribute is applied.                                                                        |
-| `$loading-size`               | `1em`                                          | Sets the size of the loading spinner.                                                                                                |
-| `$loading-animation-duration` | `0.6s`                                         | Sets the animation-duration property of the loading spinner.                                                                         |
-| `$loading-border-color`       | `$color`                                       | Sets the border-color property of the loading spinner.                                                                               |
-| `$loading-border`             | `2px solid`                                    | Sets the border property of the loading spinner.                                                                                     |
-| `$loading-border-tpl`         | `1 1 0 0`                                      | The template for where to apply the border-color property. Takes boolean `1` and `0` values for top, right, bottom and left borders. |
-| `$size-sm-min-size`           | `1.875rem`                                     | Sets the minimum size of the `button_size_sm` modifier using the min-height and min-width properties.                                |
-| `$size-sm-padding`            | `core.$padding-sm` &rarr; `0.25rem 0.5rem`     | Sets the padding property of the `button_size_sm` modifier.                                                                          |
-| `$size-sm-font-size`          | `core.$font-size-sm` &rarr; `0.875em`          | Sets the font-size property of the `button_size_sm` modifier.                                                                        |
-| `$size-sm-line-height`        | `core.$line-height-sm` &rarr; `1.375`          | Sets the line-height property of the `button_size_sm` modifier.                                                                      |
-| `$size-lg-min-size`           | `3.125rem`                                     | Sets the minimum size of the `button_size_lg` modifier using the min-height and min-width properties.                                |
-| `$size-lg-padding`            | `core.$padding-lg` &rarr; `0.648rem 1.5rem`    | Sets the padding property of the `button_size_lg` modifier.                                                                          |
-| `$size-lg-font-size`          | `core.$font-size-lg` &rarr; `1.125em`          | Sets the font-size property of the `button_size_lg` modifier.                                                                        |
-| `$size-lg-line-height`        | `core.$line-height-lg` &rarr; `1.625`          | Sets the line-height property of the `button_size_lg` modifier.                                                                      |
-| `$outline-border-width`       | `1px`                                          | Sets the border-width property of the [`button_outline_[key]`](#button_outline_key) modifiers.                                       |
+| Variable                      | Default                                        | Description                                                                                                                                       |
+| ----------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `$prefix-block`               | `null`                                         | String to prefix blocks with.                                                                                                                     |
+| `$prefix-element`             | `"__"`                                         | String to prefix element with.                                                                                                                    |
+| `$prefix-modifier`            | `"_"`                                          | String to prefix modifier with.                                                                                                                   |
+| `$prefix-modifier-value`      | `"_"`                                          | String to prefix modifier values with.                                                                                                            |
+| `$breakpoints`                | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the `button_block_[key]` modifier uses to build its styles.                                                                   |
+| `$min-size`                   | `2.5rem`                                       | Sets the minimum size of a button using the min-height and min-width properties.                                                                  |
+| `$padding`                    | `core.$padding` &rarr; `0.5em 1em`             | Sets the padding property.                                                                                                                        |
+| `$gap`                        | `0.5em`                                        | The default horizontal gap spacing for elements inside the button component.                                                                      |
+| `$border`                     | `none`                                         | Sets the border property.                                                                                                                         |
+| `$border-color-hover`         | `null`                                         | Sets the border-color property on `:hover` state.                                                                                                 |
+| `$border-color-focus`         | `null`                                         | Sets the border-color property on `:focus` state.                                                                                                 |
+| `$border-color-active`        | `null`                                         | Sets the border-color property on `:active` state.                                                                                                |
+| `$border-radius`              | `core.$border-radius` &rarr; `4px`             | Sets the border-radius property.                                                                                                                  |
+| `$background`                 | `rgba(core.$black, 0.06)`                      | Sets the background property.                                                                                                                     |
+| `$background-hover`           | `rgba(core.$black, 0.09)`                      | Sets the background-color property on `:hover` state.                                                                                             |
+| `$background-focus`           | `rgba(core.$black, 0.12)`                      | Sets the background-color property on `:focus` state.                                                                                             |
+| `$background-active`          | `rgba(core.$black, 0.15)`                      | Sets the background-color property on `:active` state.                                                                                            |
+| `$box-shadow`                 | `null`                                         | Sets the box-shadow property.                                                                                                                     |
+| `$box-shadow-hover`           | `null`                                         | Sets the box-shadow property on `:hover` state.                                                                                                   |
+| `$box-shadow-focus`           | `null`                                         | Sets the box-shadow property on `:focus` state.                                                                                                   |
+| `$box-shadow-active`          | `null`                                         | Sets the box-shadow property on `:active` state.                                                                                                  |
+| `$color`                      | `core.$color` &rarr; `#212121`                 | Sets the color property.                                                                                                                          |
+| `$color-hover`                | `null`                                         | Sets the color property on `:hover` state.                                                                                                        |
+| `$color-focus`                | `null`                                         | Sets the color property on `:focus` state.                                                                                                        |
+| `$color-active`               | `null`                                         | Sets the color property on `:active` state.                                                                                                       |
+| `$font-size`                  | `1em`                                          | Sets the font-size property.                                                                                                                      |
+| `$font-weight`                | `inherit`                                      | Sets the font-weight property.                                                                                                                    |
+| `$letter-spacing`             | `null`                                         | Sets the letter-spacing property.                                                                                                                 |
+| `$line-height`                | `core.$line-height` &rarr; `1.5`               | Sets the line-height property.                                                                                                                    |
+| `$text-transform`             | `null`                                         | Sets the text-transformation property.                                                                                                            |
+| `$outline-focus`              | `none`                                         | Sets the outline property on `:focus` state.                                                                                                      |
+| `$outline-focus-offset`       | `null`                                         | Sets the outline-offset property on `:focus` state.                                                                                               |
+| `$disabled-opacity`           | `0.5`                                          | Sets the opacity property when disabled attribute is applied.                                                                                     |
+| `$loading-size`               | `1em`                                          | Sets the size of the loading spinner.                                                                                                             |
+| `$loading-animation-duration` | `0.6s`                                         | Sets the animation-duration property of the loading spinner.                                                                                      |
+| `$loading-border-color`       | `$color`                                       | Sets the border-color property of the loading spinner.                                                                                            |
+| `$loading-border`             | `2px solid`                                    | Sets the border property of the loading spinner.                                                                                                  |
+| `$loading-border-tpl`         | `1 1 0 0`                                      | The template for where to apply the border-color property. Takes boolean `1` and `0` values for top, right, bottom and left borders respectively. |
+| `$size-sm-min-size`           | `1.875rem`                                     | Sets the minimum size of the `button_size_sm` modifier using the min-height and min-width properties.                                             |
+| `$size-sm-padding`            | `core.$padding-sm` &rarr; `0.25rem 0.5rem`     | Sets the padding property of the `button_size_sm` modifier.                                                                                       |
+| `$size-sm-font-size`          | `core.$font-size-sm` &rarr; `0.875em`          | Sets the font-size property of the `button_size_sm` modifier.                                                                                     |
+| `$size-sm-line-height`        | `core.$line-height-sm` &rarr; `1.375`          | Sets the line-height property of the `button_size_sm` modifier.                                                                                   |
+| `$size-lg-min-size`           | `3.125rem`                                     | Sets the minimum size of the `button_size_lg` modifier using the min-height and min-width properties.                                             |
+| `$size-lg-padding`            | `core.$padding-lg` &rarr; `0.648rem 1.5rem`    | Sets the padding property of the `button_size_lg` modifier.                                                                                       |
+| `$size-lg-font-size`          | `core.$font-size-lg` &rarr; `1.125em`          | Sets the font-size property of the `button_size_lg` modifier.                                                                                     |
+| `$size-lg-line-height`        | `core.$line-height-lg` &rarr; `1.625`          | Sets the line-height property of the `button_size_lg` modifier.                                                                                   |
+| `$outline-border-width`       | `1px`                                          | Sets the border-width property of the [`button_outline_[key]`](#button_outline_key) modifiers.                                                    |
 
 #### `$breakpoints`
 

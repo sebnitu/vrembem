@@ -27,22 +27,6 @@ The most basic imlementation of the button component consists of the `button` cl
 ```
 {% include demo_close.html %}
 
-When disabled using the `disabled` attribute, a button will inherit styles to visually appear noninteractive.
-
-{% include demo_open.html %}
-<div class="level">
-  <button class="button" disabled>Button</button>
-  <input class="button" type="button" value="Button" disabled>
-  <a class="button" role="button" disabled>Button</a>
-</div>
-{% include demo_switch.html %}
-```html
-<button class="button" disabled>Button</button>
-<input class="button" type="button" value="Button" disabled>
-<a class="button" role="button" disabled>Button</a>
-```
-{% include demo_close.html %}
-
 Elements within a button are centered vertically and spaced accordingly using the value set in `$gap` (defaults to `0.5em`). When elements are added inside a button, the button's text should also be wrapped in a `<span>` so that it can be spaced properly.
 
 {% include demo_open.html %}
@@ -73,6 +57,26 @@ Elements within a button are centered vertically and spaced accordingly using th
 </button>
 ```
 {% include demo_close.html %}
+
+### Disabled
+
+When disabled using the `disabled` attribute, a button will inherit styles to visually appear noninteractive.
+
+{% include demo_open.html %}
+<div class="level">
+  <button class="button" disabled>Button</button>
+  <input class="button" type="button" value="Button" disabled>
+  <a class="button" role="button" disabled>Button</a>
+</div>
+{% include demo_switch.html %}
+```html
+<button class="button" disabled>Button</button>
+<input class="button" type="button" value="Button" disabled>
+<a class="button" role="button" disabled>Button</a>
+```
+{% include demo_close.html %}
+
+### Loading
 
 Buttons can also have a loading state by adding the `is-loading` state class. This is useful when a button has an action that has a delayed response in order to give users a visual indicator that their action is being processed.
 
@@ -332,6 +336,211 @@ Adjust the size of a button by inceasing or decreasing its padding and font-size
         <td data-mobile-label="Var"><code class="code text-nowrap">$min-size</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2.5rem</code></td>
         <td data-mobile-label="Desc">Sets the minimum size of a button using the min-height and min-width properties.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$padding</code></td>
+        <td data-mobile-label="Desc">Sets the padding property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$gap</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">0.5em</code></td>
+        <td data-mobile-label="Desc">The default horizontal gap spacing for elements inside the button component.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">none</code></td>
+        <td data-mobile-label="Desc">Sets the border property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border-color-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the border-color property on <code class="code">:hover</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border-color-focus</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the border-color property on <code class="code">:focus</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border-color-active</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the border-color property on <code class="code">:active</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border-radius</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-radius</code></td>
+        <td data-mobile-label="Desc">Sets the border-radius property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba(core.$black, 0.06)</code></td>
+        <td data-mobile-label="Desc">Sets the background property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$background-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba(core.$black, 0.09)</code></td>
+        <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:hover</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$background-focus</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba(core.$black, 0.12)</code></td>
+        <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:focus</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$background-active</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba(core.$black, 0.15)</code></td>
+        <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:active</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the box-shadow property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the box-shadow property on <code class="code">:hover</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow-focus</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the box-shadow property on <code class="code">:focus</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow-active</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the box-shadow property on <code class="code">:active</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$color</code></td>
+        <td data-mobile-label="Desc">Sets the color property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the color property on <code class="code">:hover</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color-focus</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the color property on <code class="code">:focus</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color-active</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the color property on <code class="code">:active</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$font-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1em</code></td>
+        <td data-mobile-label="Desc">Sets the font-size property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$font-weight</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">inherit</code></td>
+        <td data-mobile-label="Desc">Sets the font-weight property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$letter-spacing</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the letter-spacing property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$line-height</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$line-height</code></td>
+        <td data-mobile-label="Desc">Sets the line-height property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$text-transform</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the text-transformation property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-focus</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">none</code></td>
+        <td data-mobile-label="Desc">Sets the outline property on <code class="code">:focus</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-focus-offset</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the outline-offset property on <code class="code">:focus</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$disabled-opacity</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">0.5</code></td>
+        <td data-mobile-label="Desc">Sets the opacity property when disabled attribute is applied.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$loading-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1em</code></td>
+        <td data-mobile-label="Desc">Sets the size of the loading spinner.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$loading-animation-duration</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">0.6s</code></td>
+        <td data-mobile-label="Desc">Sets the animation-duration property of the loading spinner.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$loading-border-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$color</code></td>
+        <td data-mobile-label="Desc">Sets the border-color property of the loading spinner.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$loading-border</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2px solid</code></td>
+        <td data-mobile-label="Desc">Sets the border property of the loading spinner.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$loading-border-tpl</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1 1 0 0</code></td>
+        <td data-mobile-label="Desc">The template for where to apply the border-color property. Takes boolean <code class="code">1</code> and <code class="code">0</code> values for top, right, bottom and left borders respectively.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-sm-min-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1.875rem</code></td>
+        <td data-mobile-label="Desc">Sets the minimum size of the <code class="code">button_size_sm</code> modifier using the min-height and min-width properties.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-sm-padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$padding-sm</code></td>
+        <td data-mobile-label="Desc">Sets the padding property of the <code class="code">button_size_sm</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-sm-font-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$font-size-sm</code></td>
+        <td data-mobile-label="Desc">Sets the font-size property of the <code class="code">button_size_sm</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-sm-line-height</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$line-height-sm</code></td>
+        <td data-mobile-label="Desc">Sets the line-height property of the <code class="code">button_size_sm</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-lg-min-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">3.125rem</code></td>
+        <td data-mobile-label="Desc">Sets the minimum size of the <code class="code">button_size_lg</code> modifier using the min-height and min-width properties.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-lg-padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$padding-lg</code></td>
+        <td data-mobile-label="Desc">Sets the padding property of the <code class="code">button_size_lg</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-lg-font-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$font-size-lg</code></td>
+        <td data-mobile-label="Desc">Sets the font-size property of the <code class="code">button_size_lg</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-lg-line-height</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$line-height-lg</code></td>
+        <td data-mobile-label="Desc">Sets the line-height property of the <code class="code">button_size_lg</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-border-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1px</code></td>
+        <td data-mobile-label="Desc">Sets the border-width property of the <a class="link" href="#button_outline_key"><code class="code">button_outline_[key]</code></a> modifiers.</td>
       </tr>
     </tbody>
   </table>
