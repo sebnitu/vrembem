@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.25.0 to CHANGELOG.md
+chore(release): add v1.25.1 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+## v1.25.1 (2021-04-06)
+
+#### :books: Documentation
+* `button`, `grid`, `media`, `notice`
+  * [#544](https://github.com/sebnitu/vrembem/pull/544) Add button readme docs
+
 
 ## v1.25.0 (2021-03-14)
 
