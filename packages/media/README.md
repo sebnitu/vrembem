@@ -131,21 +131,21 @@ The media component really shines when combining gap and stack modifiers.
 
 ### Sass Variables
 
-| Variable                 | Default                                        | Description                                                                     |
-| ------------------------ | ---------------------------------------------- | ------------------------------------------------------------------------------- |
-| `$prefix-block`          | `null`                                         | String to prefix blocks with.                                                   |
-| `$prefix-element`        | `"__"`                                         | String to prefix element with.                                                  |
-| `$prefix-modifier`       | `"_"`                                          | String to prefix modifier with.                                                 |
-| `$prefix-modifier-value` | `"_"`                                          | String to prefix modifier values with.                                          |
-| `$breakpoints`           | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the `media_stack_[key]` modifier uses to build it's styles. |
-| `$min-height`            | `(core.$line-height * 1em)`                    | Sets the min-height property of the `media__obj` element.                       |
-| `$max-width`             | `30%`                                          | Sets the max-width property of the `media__obj` element.                        |
-| `$gap`                   | `0.5em`                                        | The default gap spacing for the media component.                                |
-| `$gap-map`               | [`Sass Map` Ref &darr;](#gap-scale)            | Used to output gap modifiers.                                                   |
+| Variable                 | Default                                        | Description                                                                    |
+| ------------------------ | ---------------------------------------------- | ------------------------------------------------------------------------------ |
+| `$prefix-block`          | `null`                                         | String to prefix blocks with.                                                  |
+| `$prefix-element`        | `"__"`                                         | String to prefix element with.                                                 |
+| `$prefix-modifier`       | `"_"`                                          | String to prefix modifier with.                                                |
+| `$prefix-modifier-value` | `"_"`                                          | String to prefix modifier values with.                                         |
+| `$breakpoints`           | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the `media_stack_[key]` modifier uses to build its styles. |
+| `$min-height`            | `(core.$line-height * 1em)`                    | Sets the min-height property of the `media__obj` element.                      |
+| `$max-width`             | `30%`                                          | Sets the max-width property of the `media__obj` element.                       |
+| `$gap`                   | `0.5em`                                        | The default gap spacing for the media component.                               |
+| `$gap-map`               | [`Sass Map` Ref &darr;](#gap-scale)            | Used to output gap modifiers.                                                  |
 
 #### $breakpoints
 
-The breakpoints map the `media_stack_[key]` modifier uses to build it's styles.
+The breakpoints map the `media_stack_[key]` modifier uses to build its styles.
 
 ```scss
 // Inherited from: core.$breakpoints

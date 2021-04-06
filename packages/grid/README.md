@@ -239,19 +239,19 @@ Sets an elements width to `100%` with an optional breakpoint condition.
 
 ### Sass Variables
 
-| Variable                 | Default                                        | Description                                                                    |
-| ------------------------ | ---------------------------------------------- | ------------------------------------------------------------------------------ |
-| `$prefix-block`          | `null`                                         | String to prefix blocks with.                                                  |
-| `$prefix-element`        | `"__"`                                         | String to prefix element with.                                                 |
-| `$prefix-modifier`       | `"_"`                                          | String to prefix modifier with.                                                |
-| `$prefix-modifier-value` | `"_"`                                          | String to prefix modifier values with.                                         |
-| `$breakpoints`           | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the `grid_stack_[key]` modifier uses to build it's styles. |
-| `$gap`                   | `2em`                                          | The default gap spacing for the grid component.                                |
-| `$gap-map`               | [`Sass Map` Ref &darr;](#gap-scale)            | Used to output gap modifiers.                                                  |
+| Variable                 | Default                                        | Description                                                                   |
+| ------------------------ | ---------------------------------------------- | ----------------------------------------------------------------------------- |
+| `$prefix-block`          | `null`                                         | String to prefix blocks with.                                                 |
+| `$prefix-element`        | `"__"`                                         | String to prefix element with.                                                |
+| `$prefix-modifier`       | `"_"`                                          | String to prefix modifier with.                                               |
+| `$prefix-modifier-value` | `"_"`                                          | String to prefix modifier values with.                                        |
+| `$breakpoints`           | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the `grid_stack_[key]` modifier uses to build its styles. |
+| `$gap`                   | `2em`                                          | The default gap spacing for the grid component.                               |
+| `$gap-map`               | [`Sass Map` Ref &darr;](#gap-scale)            | Used to output gap modifiers.                                                 |
 
 #### `$breakpoints`
 
-The breakpoints map the `grid_stack_[key]` modifier uses to build it's styles.
+The breakpoints map the `grid_stack_[key]` modifier uses to build its styles.
 
 ```scss
 // Inherited from: core.$breakpoints

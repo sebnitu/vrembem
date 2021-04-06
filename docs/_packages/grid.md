@@ -556,7 +556,7 @@ Sets an elements width to `100%` with an optional breakpoint condition.
         <td data-mobile-label="Default">
           <a class="link text-nowrap" href="#breakpoints"><code class="code color-secondary">core.$breakpoints</code> Ref &darr;</a>
         </td>
-        <td data-mobile-label="Desc">The breakpoints map the <code class="code">grid_stack_[key]</code> modifier uses to build it's styles.</td>
+        <td data-mobile-label="Desc">The breakpoints map the <code class="code">grid_stack_[key]</code> modifier uses to build its styles.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$gap</code></td>
@@ -576,7 +576,7 @@ Sets an elements width to `100%` with an optional breakpoint condition.
 
 ### $breakpoints
 
-The breakpoints map the `grid_stack_[key]` modifier uses to build it's styles.
+The breakpoints map the `grid_stack_[key]` modifier uses to build its styles.
 
 ```scss
 // Inherited from: core.$breakpoints

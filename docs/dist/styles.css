@@ -599,7 +599,7 @@ input::-moz-placeholder {
   background-clip: border-box;
   color: #212121;
   font-family: inherit;
-  font-size: 16px;
+  font-size: 1em;
   font-weight: inherit;
   line-height: 1.5;
   text-decoration: none;
@@ -607,12 +607,12 @@ input::-moz-placeholder {
   white-space: nowrap;
   cursor: pointer;
 }
+.button > * + * {
+  margin-left: 0.5em;
+}
 .button[disabled] {
   opacity: 0.5;
   pointer-events: none;
-}
-.button > * + * {
-  margin-left: 0.5em;
 }
 .button:hover {
   background-color: rgba(0, 0, 0, 0.09);

@@ -15,7 +15,7 @@ title: "Home"
         <div class="grid__item">
           <a href="http://github.com/{{ site.repository }}" class="button button_color_primary">
             {% include icon.html icon="github" %}
-            <span class="button__item">GitHub Repo</span>
+            <span>GitHub Repo</span>
           </a>
         </div>
         <div class="grid__item">
