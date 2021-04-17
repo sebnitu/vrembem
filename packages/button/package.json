@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/button",
   "description": "Buttons are a simple component that allow users to take actions.",
-  "version": "1.25.1",
+  "version": "1.25.2",
   "license": "MIT",
   "keywords": [
     "BEM",
