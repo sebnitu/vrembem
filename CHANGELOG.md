@@ -14,9 +14,17 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.25.1 to CHANGELOG.md
+chore(release): add v1.25.2 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.25.2 (2021-04-17)
+
+#### :books: Documentation
+* `breadcrumb`
+  * [#551](https://github.com/sebnitu/vrembem/pull/551) Add breadcrumb component README documentation
+
 
 ## v1.25.1 (2021-04-06)
 
