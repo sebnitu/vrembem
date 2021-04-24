@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Radio Button
+title: Radio
 description: "Radios allow the user to select a single option from a set."
 package: "@vrembem/radio"
 category: simple
