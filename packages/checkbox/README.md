@@ -27,7 +27,7 @@ const checkbox = new Checkbox({ autoInit: true });
 
 ### Markup
 
-Checkboxes are composed using a set of `<span>` elements alongside the native `<input type="cehckbox">` element which should be given the `checkbox__native` class and come before the remaining presentational `<span>` elements.
+Checkboxes are composed using a set of `<span>` elements alongside the native `<input type="checkbox">` element which should be given the `checkbox__native` class and come before the remaining presentational `<span>` elements.
 
 ```html
 <span class="checkbox">
@@ -42,7 +42,7 @@ Checkboxes are composed using a set of `<span>` elements alongside the native `<
 
 > For indeterminate checkboxes, apply the `aria-checked="mixed"` attribute to the `<input type="checkbox">` element and initialize the checkbox component script.
 
-For checkboxes with lables, just wrap the checkbox component along with label text using the `<label>` element.
+For checkboxes with labels, just wrap the checkbox component along with label text using the `<label>` element.
 
 ```html
 <label>
@@ -123,7 +123,7 @@ Initializes the checkbox instance. During initialization, the following processe
 
 **Parameters**
 
-- `options [Object] (optional)` An options object for passing yout custom settings.
+- `options [Object] (optional)` An options object for passing your custom settings.
 
 ```js
 const checkbox = new Checkbox();
@@ -147,7 +147,7 @@ Sets the aria attribute value for mixed checkboxes.
 
 **Parameters**
 
-- `el` The element or elements whos aria state should be set.
+- `el` The element or elements whose aria state should be set.
 - `value` `(Default: settings.stateValue)` The value that should be set to the aria attribute.
 
 > Example removes presentational `<span>` elements for brevity but should be included in your implementation.
@@ -177,7 +177,7 @@ Removes the aria attribute value for mixed checkboxes.
 
 **Parameters**
 
-- `el` The element or elements whos aria state should be removed.
+- `el` The element or elements whose aria state should be removed.
 
 > Example removes presentational `<span>` elements for brevity but should be included in your implementation.
 
@@ -206,7 +206,7 @@ Sets the indeterminate state of a checkbox based on whether or not the `aria-che
 
 **Parameters**
 
-- `el` The element or elements whos indeterminate state should be set.
+- `el` The element or elements whose indeterminate state should be set.
 
 ```js
 const els = document.querySelectorAll('.checkbox__native');
