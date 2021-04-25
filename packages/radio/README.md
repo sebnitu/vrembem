@@ -20,7 +20,7 @@ npm install @vrembem/radio
 
 ### Markup
 
-...
+Radio buttons are composed using a set of `<span>` elements alongside the native `<input type="radio">` element which should be given the `radio__native` class and come before the remaining presentational `<span>` elements.
 
 ```html
 <span class="radio">
@@ -33,13 +33,49 @@ npm install @vrembem/radio
 </span>
 ```
 
+For radio buttons with labels, just wrap the radio component along with label text using the `<label>` element.
+
+```html
+<label>
+  <span class="radio">
+    ...
+  </span>
+  Radio with a label
+</label>
+```
+
 ## Customization
 
 ### Sass Variables
 
-| Variable                 | Default | Description                            |
-| ------------------------ | ------- | -------------------------------------- |
-| `$prefix-block`          | `null`  | String to prefix blocks with.          |
-| `$prefix-element`        | `"__"`  | String to prefix element with.         |
-| `$prefix-modifier`       | `"_"`   | String to prefix modifier with.        |
-| `$prefix-modifier-value` | `"_"`   | String to prefix modifier values with. |
+| Variable                       | Default                                  | Description                                                                |
+| ------------------------------ | ---------------------------------------- | -------------------------------------------------------------------------- |
+| `$prefix-block`                | `null`                                   | String to prefix blocks with.                                              |
+| `$prefix-element`              | `"__"`                                   | String to prefix element with.                                             |
+| `$prefix-modifier`             | `"_"`                                    | String to prefix modifier with.                                            |
+| `$prefix-modifier-value`       | `"_"`                                    | String to prefix modifier values with.                                     |
+| `$color`                       | `core.$primary`                          | Sets the base color theme for the radio component.                         |
+| `$size`                        | `2.5em`                                  | Sets the width and height of the `radio__background` element.              |
+| `$transition-duration`         | `core.$transition-duration-short`        | Sets the transition-duration property for the `radio__dot` element.        |
+| `$transition-timing-function`  | `core.$transition-timing-function-sharp` | Sets the transition-timing-function property for the `radio__dot` element. |
+| `$background`                  | `transparent`                            | Sets the background-color property for the `radio__background` element.    |
+| `$background-hover`            | `rgba(core.$black, 0.03)`                | Sets the background-color property on `:hover` state.                      |
+| `$background-focus`            | `rgba(core.$black, 0.03)`                | Sets the background-color property on `:focus` state.                      |
+| `$background-active`           | `rgba(core.$black, 0.06)`                | Sets the background-color property on `:active` state.                     |
+| `$background-checked`          | `null`                                   | Sets the background-color property on `:checked` state.                    |
+| `$background-border-radius`    | `core.$border-radius-circle`             | Sets the border-radius property for the `radio__background` element.       |
+| `$circle-size`                 | `20px`                                   | Sets the width and height of the `radio__circle` element.                  |
+| `$circle-background`           | `null`                                   | Sets the background-color property for the `radio__circle` element.        |
+| `$circle-background-hover`     | `null`                                   | Sets the background-color property on `:hover` state.                      |
+| `$circle-background-focus`     | `null`                                   | Sets the background-color property on `:focus` state.                      |
+| `$circle-background-active`    | `null`                                   | Sets the background-color property on `:active` state.                     |
+| `$circle-background-checked`   | `$color`                                 | Sets the background-color property on `:checked` state.                    |
+| `$circle-border-color`         | `core.$gray-400`                         | Sets the border-color property for the `radio__circle` element.            |
+| `$circle-border-color-hover`   | `$color`                                 | Sets the border-color property on `:hover` state.                          |
+| `$circle-border-color-focus`   | `$color`                                 | Sets the border-color property on `:focus` state.                          |
+| `$circle-border-color-active`  | `$color`                                 | Sets the border-color property on `:active` state.                         |
+| `$circle-border-color-checked` | `$color`                                 | Sets the border-color property on `:checked` state.                        |
+| `$circle-border-width`         | `2px`                                    | Sets the border-width property on the `radio__circle` element.             |
+| `$circle-border-radius`        | `core.$border-radius`                    | Sets the border-radius property on the `radio__circle` element.            |
+| `$dot-size`                    | `8px`                                    | Sets the width and height property on the `radio__dot` element.            |
+| `$dot-color`                   | `core.$white`                            | Sets the background-color property of the `radio__dot` element.            |
