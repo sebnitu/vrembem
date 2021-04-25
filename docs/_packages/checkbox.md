@@ -42,7 +42,7 @@ const checkbox = new Checkbox({ autoInit: true });
 
 ## checkbox + label
 
-For checkboxes with lables, just wrap the checkbox component along with label text using the `<label>` element.
+For checkboxes with labels, just wrap the checkbox component along with label text using the `<label>` element.
 
 {% include demo_open.html %}
 <p>
@@ -91,6 +91,7 @@ For checkboxes with lables, just wrap the checkbox component along with label te
       </tr>
     </thead>
     <tbody>
+      <!-- Prefixes -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-block</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
@@ -111,6 +112,7 @@ For checkboxes with lables, just wrap the checkbox component along with label te
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"_"</code></td>
         <td data-mobile-label="Desc">String to prefix modifier values with.</td>
       </tr>
+      <!-- General -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$color</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$primary</code></td>
@@ -219,27 +221,27 @@ For checkboxes with lables, just wrap the checkbox component along with label te
       <tr>
         <td data-mobile-label="Var"><code class="code">$box-border-width</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">2px</code></td>
-        <td data-mobile-label="Desc">Sets the border-width property on the <code class="code">checkbox__box</code> element.</td>
+        <td data-mobile-label="Desc">Sets the border-width property for the <code class="code">checkbox__box</code> element.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code">$box-border-radius</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">core.$border-radius</code></td>
-        <td data-mobile-label="Desc">Sets the border-radius property on the <code class="code">checkbox__box</code> element.</td>
+        <td data-mobile-label="Desc">Sets the border-radius property for the <code class="code">checkbox__box</code> element.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code">$icon-size</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">12px</code></td>
-        <td data-mobile-label="Desc">Sets the width and height property on the <code class="code">checkbox__icon</code> svg data:image.</td>
+        <td data-mobile-label="Desc">Sets the width and height property for the <code class="code">checkbox__icon</code> svg data:image.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code">$icon-color</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">core.$white</code></td>
-        <td data-mobile-label="Desc">Sets the stroke property on the <code class="code">checkbox__icon</code> svg data:image.</td>
+        <td data-mobile-label="Desc">Sets the stroke property for the <code class="code">checkbox__icon</code> svg data:image.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code">$icon-stroke</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">2.5</code></td>
-        <td data-mobile-label="Desc">Sets the stroke-width property on the <code class="code">checkbox__icon</code> svg data:image.</td>
+        <td data-mobile-label="Desc">Sets the stroke-width property for the <code class="code">checkbox__icon</code> svg data:image.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code">$icon-checked</code></td>
@@ -309,7 +311,7 @@ Initializes the checkbox instance. During initialization, the following processe
 
 **Parameters**
 
-- `options [Object] (optional)` An options object for passing yout custom settings.
+- `options [Object] (optional)` An options object for passing your custom settings.
 
 ```js
 const checkbox = new Checkbox();
@@ -333,7 +335,7 @@ Sets the aria attribute value for mixed checkboxes.
 
 **Parameters**
 
-- `el` The element or elements whos aria state should be set.
+- `el` The element or elements whose aria state should be set.
 - `value` `(Default: settings.stateValue)` The value that should be set to the aria attribute.
 
 > Example removes presentational `<span>` elements for brevity but should be included in your implementation.
@@ -363,7 +365,7 @@ Removes the aria attribute value for mixed checkboxes.
 
 **Parameters**
 
-- `el` The element or elements whos aria state should be removed.
+- `el` The element or elements whose aria state should be removed.
 
 > Example removes presentational `<span>` elements for brevity but should be included in your implementation.
 
@@ -392,7 +394,7 @@ Sets the indeterminate state of a checkbox based on whether or not the `aria-che
 
 **Parameters**
 
-- `el` The element or elements whos indeterminate state should be set.
+- `el` The element or elements whose indeterminate state should be set.
 
 ```js
 const els = document.querySelectorAll('.checkbox__native');
