@@ -20,7 +20,7 @@ npm install @vrembem/icon
 
 ### Markup
 
-The most basic imlementation of the icon component consists of the `icon` class applied to an svg element.
+The most basic implementation of the icon component consists of the `icon` class applied to an svg element.
 
 ```html
 <svg class="icon" role="img">
@@ -49,7 +49,7 @@ Add a size modifier to adjust the size of your icons. Icon sizes are controlled 
 
 ### `icon_style_[key]`
 
-The default icon style is set using the `$icon-style` variable. You can also explicity style an icon using the style modifier.
+The default icon style is set using the `$icon-style` variable. You can also explicitly style an icon using the style modifier.
 
 ```html
 <svg class="icon icon_style_stroke" role="img">
