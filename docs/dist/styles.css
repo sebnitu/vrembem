@@ -1201,6 +1201,9 @@ input::-moz-placeholder {
 .card__body {
   flex: 1 1 auto;
 }
+.card__body + .card__body {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
 
 .card__image {
   flex: 0 1 auto;
