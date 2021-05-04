@@ -1293,6 +1293,7 @@ input::-moz-placeholder {
   background: #424242;
   color: #fff;
 }
+.card_invert .card__body,
 .card_invert .card__header,
 .card_invert .card__footer {
   border-color: rgba(255, 255, 255, 0.1);

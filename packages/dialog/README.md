@@ -83,29 +83,21 @@ Used to separate distinct dialog sections for headers and footers. Typically the
 
 ### Sass Variables
 
-| Variable                 | Default | Description                            |
-| ------------------------ | ------- | -------------------------------------- |
-| `$prefix-block`          | `null`  | String to prefix blocks with.          |
-| `$prefix-element`        | `"__"`  | String to prefix elements with.        |
-| `$prefix-modifier`       | `"_"`   | String to prefix modifiers with.       |
-| `$prefix-modifier-value` | `"_"`   | String to prefix modifier values with. |
-
-<!--
-$prefix-block: core.$prefix-block !default;
-$prefix-element: core.$prefix-element !default;
-$prefix-modifier: core.$prefix-modifier !default;
-$prefix-modifier-value: core.$prefix-modifier-value !default;
-
-$zindex: 500 !default;
-$padding: 1em !default;
-$spacing: 0.5em !default;
-$background: core.$white !default;
-$border: null !default;
-$sep-border: core.$border !default;
-$border-radius: core.$border-radius !default;
-$box-shadow: core.$box-shadow-16dp !default;
-
-$title-font-size: core.$font-size-lg !default;
-$title-line-height: core.$line-height-lg !default;
-$title-font-weight: core.font-weight("semi-bold") !default;
--->
+| Variable                 | Default                         | Description                            |
+| ------------------------ | ------------------------------- | -------------------------------------- |
+| `$prefix-block`          | `null`                          | String to prefix blocks with.          |
+| `$prefix-element`        | `"__"`                          | String to prefix elements with.        |
+| `$prefix-modifier`       | `"_"`                           | String to prefix modifiers with.       |
+| `$prefix-modifier-value` | `"_"`                           | String to prefix modifier values with. |
+| `$zindex`                | `500`                           | ...                                    |
+| `$padding`               | `1em`                           | ...                                    |
+| `$spacing`               | `0.5em`                         | ...                                    |
+| `$background`            | `core.$white`                   | ...                                    |
+| `$border`                | `null`                          | ...                                    |
+| `$sep-border`            | `core.$border`                  | ...                                    |
+| `$border-radius`         | `core.$border-radius`           | ...                                    |
+| `$box-shadow`            | `core.$box-shadow-16dp`         | ...                                    |
+| `$color`                 | `null`                          | Sets the color property.               |
+| `$title-font-size`       | `core.$font-size-lg`            | ...                                    |
+| `$title-line-height`     | `core.$line-height-lg`          | ...                                    |
+| `$title-font-weight`     | `core.font-weight("semi-bold")` | ...                                    |

@@ -211,3 +211,41 @@ A style enhancement modifier for when the [`card__background` element](#card__sc
 </div>
 ```
 {% include demo_close.html %}
+
+## Sass Variables
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Prefixes -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-block</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">String to prefix blocks with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-element</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"__"</code></td>
+        <td data-mobile-label="Desc">String to prefix elements with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-modifier</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"_"</code></td>
+        <td data-mobile-label="Desc">String to prefix modifiers with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-modifier-value</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"_"</code></td>
+        <td data-mobile-label="Desc">String to prefix modifier values with.</td>
+      </tr>
+      <!-- General -->
+    </tbody>
+  </table>
+</div>
