@@ -127,8 +127,8 @@ Adds a breakpoint for when button-group elements should be stacked vertically. V
 | Variable                 | Default                                        | Description                                                                                                            |
 | ------------------------ | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | `$prefix-block`          | `null`                                         | String to prefix blocks with.                                                                                          |
-| `$prefix-element`        | `"__"`                                         | String to prefix element with.                                                                                         |
-| `$prefix-modifier`       | `"_"`                                          | String to prefix modifier with.                                                                                        |
+| `$prefix-element`        | `"__"`                                         | String to prefix elements with.                                                                                        |
+| `$prefix-modifier`       | `"_"`                                          | String to prefix modifiers with.                                                                                       |
 | `$prefix-modifier-value` | `"_"`                                          | String to prefix modifier values with.                                                                                 |
 | `$breakpoints`           | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the `button-group_full_[key]` and  `button-group_stack_[key]` modifiers use to build their styles. |
 | `$border-radius`         | `core.$border-radius`                          | Sets the border-radius styles of buttons when button-group adjusts them.                                               |

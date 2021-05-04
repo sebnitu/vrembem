@@ -53,8 +53,8 @@ Inverts the colors of the breadcrumb component to be used on dark backgrounds wh
 | Variable                    | Default                            | Description                                                                                                            |
 | --------------------------- | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | `$prefix-block`             | `null`                             | String to prefix blocks with.                                                                                          |
-| `$prefix-element`           | `"__"`                             | String to prefix element with.                                                                                         |
-| `$prefix-modifier`          | `"_"`                              | String to prefix modifier with.                                                                                        |
+| `$prefix-element`           | `"__"`                             | String to prefix elements with.                                                                                        |
+| `$prefix-modifier`          | `"_"`                              | String to prefix modifiers with.                                                                                       |
 | `$prefix-modifier-value`    | `"_"`                              | String to prefix modifier values with.                                                                                 |
 | `$color`                    | `core.$color-subtle`               | Sets the color property.                                                                                               |
 | `$delimiter`                | `"/"`                              | Sets the delimiter character used after each `breadcrumb__item` element.                                               |

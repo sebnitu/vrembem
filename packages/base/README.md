@@ -62,8 +62,8 @@ Setting these variables will impact more than one or up to all base modules.
 | Variable                 | Default | Description                                |
 | ------------------------ | ------- | ------------------------------------------ |
 | `$prefix-block`          | `null`  | String to prefix blocks with.              |
-| `$prefix-element`        | `"__"`  | String to prefix element with.             |
-| `$prefix-modifier`       | `"_"`   | String to prefix modifier with.            |
+| `$prefix-element`        | `"__"`  | String to prefix elements with.            |
+| `$prefix-modifier`       | `"_"`   | String to prefix modifiers with.           |
 | `$prefix-modifier-value` | `"_"`   | String to prefix modifier values with.     |
 | `$output`                | `true`  | Toggles the default output of all modules. |
 

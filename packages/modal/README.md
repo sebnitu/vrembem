@@ -174,8 +174,8 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
 | Variable                      | Default                            | Description                                                               |
 | ----------------------------- | ---------------------------------- | ------------------------------------------------------------------------- |
 | `$prefix-block`               | `null`                             | String to prefix blocks with.                                             |
-| `$prefix-element`             | `"__"`                             | String to prefix element with.                                            |
-| `$prefix-modifier`            | `"_"`                              | String to prefix modifier with.                                           |
+| `$prefix-element`             | `"__"`                             | String to prefix elements with.                                           |
+| `$prefix-modifier`            | `"_"`                              | String to prefix modifiers with.                                          |
 | `$prefix-modifier-value`      | `"_"`                              | String to prefix modifier values with.                                    |
 | `$zindex`                     | `1000`                             | Applied z-index to modals to control the stack order.                     |
 | `$width`                      | `38em`                             | The default max width of modals.                                          |

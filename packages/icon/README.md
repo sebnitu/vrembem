@@ -98,8 +98,8 @@ Output unique styles for an icons based on their style type.
 | Variable                 | Default    | Description                                                                         |
 | ------------------------ | ---------- | ----------------------------------------------------------------------------------- |
 | `$prefix-block`          | `null`     | String to prefix blocks with.                                                       |
-| `$prefix-element`        | `"__"`     | String to prefix element with.                                                      |
-| `$prefix-modifier`       | `"_"`      | String to prefix modifier with.                                                     |
+| `$prefix-element`        | `"__"`     | String to prefix elements with.                                                     |
+| `$prefix-modifier`       | `"_"`      | String to prefix modifiers with.                                                    |
 | `$prefix-modifier-value` | `"_"`      | String to prefix modifier values with.                                              |
 | `$style`                 | `"stroke"` | The default icon styles to output. Current options include `"stroke"` and `"fill"`. |
 | `$size`                  | `1.25em`   | The base size of icons. This is applied using the `font-size` property.             |

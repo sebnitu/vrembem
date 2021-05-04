@@ -104,8 +104,8 @@ Adjusts the vertical gap spacing based on the provided key. Gap key output is ba
 | Variable                 | Default                             | Description                                      |
 | ------------------------ | ----------------------------------- | ------------------------------------------------ |
 | `$prefix-block`          | `null`                              | String to prefix blocks with.                    |
-| `$prefix-element`        | `"__"`                              | String to prefix element with.                   |
-| `$prefix-modifier`       | `"_"`                               | String to prefix modifier with.                  |
+| `$prefix-element`        | `"__"`                              | String to prefix elements with.                  |
+| `$prefix-modifier`       | `"_"`                               | String to prefix modifiers with.                 |
 | `$prefix-modifier-value` | `"_"`                               | String to prefix modifier values with.           |
 | `$gap`                   | `0.5em`                             | The default gap spacing for the level component. |
 | `$gap-map`               | [`Sass Map` Ref &darr;](#gap-scale) | Used to output gap modifiers.                    |
