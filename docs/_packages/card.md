@@ -13,9 +13,9 @@ usage:
 
 The base card component comes with a number of elements for card composition. The three most basic being:
 
-* `card__body`
-* `card__image`
-* `card__title`
+- `card__body`
+- `card__image`
+- `card__title`
 
 {% include demo_open.html %}
 <div class="card">
@@ -40,12 +40,12 @@ The base card component comes with a number of elements for card composition. Th
 ```
 {% include demo_close.html %}
 
-## card__header + card__footer
+### card__header + card__footer
 
-These are used for when you need separated card headers and footers.
+Used to separate distinct card sections for headers and footers. It's also possible to include multiple `card__body` elements as needed.
 
-* `card__header`
-* `card__footer`
+- `card__header`
+- `card__footer`
 
 {% include demo_open.html %}
 <div class="card">
@@ -75,12 +75,12 @@ These are used for when you need separated card headers and footers.
 ```
 {% include demo_close.html %}
 
-## card__screen + card__background
+### card__screen + card__background
 
-Card screens and backgrounds are displayed behind the other card elements. These are typically paired with `.card_invert` which switches text colors to better suite a dark background.
+Card screens and backgrounds are displayed behind the other card elements. These are typically paired with the [`card_invert` modifier](#card_invert) which switches text colors to better suite a dark background theme.
 
-* `card__screen`
-* `card__background`
+- `card__screen`
+- `card__background`
 
 {% include demo_open.html %}
 <div class="card card_invert">
@@ -106,7 +106,35 @@ Card screens and backgrounds are displayed behind the other card elements. These
 ```
 {% include demo_close.html %}
 
+## card_fade
+
+Hides the content of a card so that [only the `card__background` is visible](#card__screen--card__background). The content is then revealed on user interaction via `:hover` and `:focus` events.
+
+{% include demo_open.html %}
+<div class="card card_invert card_fade">
+  <div class="card__body gap-y text-align-center">
+    <h3 class="card__title">Card Title</h3>
+    <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
+    <p>
+      <a href="#" class="button button_invert button_outline">Card Action</a>
+    </p>
+  </div>
+  <img src="https://picsum.photos/600/400/?20" class="card__background" width="600" height="400">
+  <div class="card__screen"></div>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="card card_fade">
+  ...
+  <img src="..." class="card__background">
+  <div class="card__screen"></div>
+</div>
+```
+{% include demo_close.html %}
+
 ## card_invert
+
+Inverts the contrast of the card component (by default adds a dark background with white text). This can be used together with the [`card__screen` and `card__background` elements](#card__screen--card__background) to help keep the content of a card legible. 
 
 {% include demo_open.html %}
 <div class="card card_invert">
@@ -138,6 +166,8 @@ Card screens and backgrounds are displayed behind the other card elements. These
 
 ## card_link
 
+Add styles to a card when the entire component is a clickable link. 
+
 {% include demo_open.html %}
 <a href="#" class="card card_link">
   <div class="card__body gap-y text-align-center">
@@ -156,31 +186,9 @@ Card screens and backgrounds are displayed behind the other card elements. These
 ```
 {% include demo_close.html %}
 
-## card_fade
-
-{% include demo_open.html %}
-<div class="card card_invert card_fade">
-  <div class="card__body gap-y text-align-center">
-    <h3 class="card__title">Card Title</h3>
-    <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
-    <p>
-      <a href="#" class="button button_invert button_outline">Card Action</a>
-    </p>
-  </div>
-  <img src="https://picsum.photos/600/400/?20" class="card__background" width="600" height="400">
-  <div class="card__screen"></div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="card card_fade">
-  ...
-  <img src="..." class="card__background">
-  <div class="card__screen"></div>
-</div>
-```
-{% include demo_close.html %}
-
 ## card_zoom
+
+A style enhancement modifier for when the [`card__background` element](#card__screen--card__background) is used. This will create a "zoom" effect when the card is hovered or focused.
 
 {% include demo_open.html %}
 <div class="card card_invert card_zoom">
@@ -203,191 +211,3 @@ Card screens and backgrounds are displayed behind the other card elements. These
 </div>
 ```
 {% include demo_close.html %}
-
-## card_invert card_fade card_zoom
-
-<div class="demo">
-  <div class="demp__render">
-    <div class="grid grid_stack-md">
-      {%- for counter in (1..3) -%}
-      <div class="grid__item grid__item_fill">
-        <div class="card card_invert card_fade card_zoom">
-          <div class="card__body gap-y text-align-center">
-            <h3 class="card__title">Card Title</h3>
-            <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque.</p>
-            <p>
-              <button class="button button_invert button_outline">
-                <span>Card Action</span>
-                {%- include icon.html icon="arrow-right" -%}
-              </button>
-            </p>
-          </div>
-          <img src="https://picsum.photos/600/400/?3{{ counter }}" class="card__background" width="600" height="400">
-          <div class="card__screen"></div>
-        </div>
-      </div>
-      {%- endfor -%}
-    </div>
-  </div>
-</div>
-
-## card_link
-
-<div class="demo">
-  <div class="demp__render">
-    <div class="grid grid_stack-md">
-      {%- for counter in (1..3) -%}
-      <div class="grid__item grid__item_fill">
-        <a href="#" class="card card_link">
-          <img src="https://picsum.photos/600/400/?2{{ counter }}" class="card__image" width="600" height="400">
-          <div class="card__body gap-y">
-            <h3 class="card__title level flex-justify-between">
-              <span>Card Title</span>
-              {%- include icon.html icon="arrow-right" -%}
-            </h3>
-            <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque.</p>
-          </div>
-        </a>
-      </div>
-      {%- endfor -%}
-    </div>
-    <div class="grid grid_stack-md">
-      {%- for counter in (1..3) -%}
-      <div class="grid__item grid__item_fill">
-        <a href="#" class="card card_link">
-          <div class="card__body">
-            <div class="media">
-              <div class="media__image text-size-lg">
-                {%- include icon.html icon="check-circle" -%}
-              </div>
-              <div class="media__body">
-                <h3 class="card__title">Card Title</h3>
-                <p>Quisque eget erat non dolor rutrum vel dui.</p>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-      {%- endfor -%}
-    </div>
-  </div>
-</div>
-
-## Demos
-
-<div class="grid">
-
-  <div class="grid__item span-12 span-6-xs span-4-md grid__item_fill">
-    <div class="card">
-      <img src="https://picsum.photos/600/400/?2" class="card__image" width="600" height="400">
-      <div class="card__body gap-y">
-        <h3 class="card__title">Card Title</h3>
-        <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
-        <p><button class="button button_color_primary">Card Action</button></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="grid__item span-12 span-6-xs span-4-md grid__item_fill">
-    <div class="card">
-      <div class="card__body gap-y">
-        <h3 class="card__title">Card Title</h3>
-        <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
-        <p><button class="button button_color_secondary">Card Action</button></p>
-      </div>
-      <img src="https://picsum.photos/600/400/?3" class="card__image" width="600" height="400">
-    </div>
-  </div>
-
-  <div class="grid__item span-12 span-6-xs span-4-md grid__item_fill">
-    <div class="card">
-      <div class="card__header">
-        <h3 class="card__title">Card Title</h3>
-      </div>
-      <div class="card__body gap-y">
-        <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
-      </div>
-      <div class="card__footer">
-        <p><button class="button button_color_primary">Card Action</button></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="grid__item span-12 span-6-xs grid__item_fill">
-    <div class="card card_invert card_link card_fade">
-      <div class="card__header level flex-justify-between">
-        <h3 class="card__title">Card Title</h3>
-        {%- include icon.html icon="arrow-right" -%}
-      </div>
-      <div class="card__body">
-        <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
-      </div>
-      <div class="card__footer">
-        <button class="button button_invert">Card Action</button>
-      </div>
-      <img src="https://picsum.photos/600/400/?4" class="card__background" width="600" height="400">
-      <div class="card__screen"></div>
-    </div>
-  </div>
-
-  <div class="grid__item span-12 span-6-md grid__item_fill">
-    <a href="#" class="card card_link">
-      <div class="card__body">
-        <blockquote>
-          <p class="text-lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et, efficitur ultricies metus. Vestibulum rutrum dolor dui, lacinia viverra tellus molestie eget. Proin tempor mauris id velit luctus, sit amet varius erat vestibulum.</p>
-          <footer class="text-subtle">
-            <cite title="Source Title">
-              &mdash; Someone famous in Source Title
-            </cite>
-          </footer>
-        </blockquote>
-      </div>
-    </a>
-  </div>
-
-  <div class="grid__item span-12 span-6-xs span-4-md grid__item_fill">
-    <div class="card">
-      <img src="https://picsum.photos/600/400/?11" class="card__image" width="600" height="400">
-      <div class="card__header">
-        <h3 class="card__title">Card Title</h3>
-      </div>
-      <div class="card__body gap-y">
-        <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
-      </div>
-      <div class="card__footer">
-        <p><button class="button button_outline_primary">Card Action</button></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="grid__item span-12 span-6-xs span-4-md grid__item_fill">
-    <div class="card">
-      <div class="card__header">
-        <h3 class="card__title">Card Title</h3>
-      </div>
-      <img src="https://picsum.photos/600/400/?12" class="card__image" width="600" height="400">
-      <div class="card__body gap-y">
-        <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
-      </div>
-      <div class="card__footer">
-        <p><button class="button button_outline_secondary">Card Action</button></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="grid__item span-12 span-4-md grid__item_fill">
-    <div class="card">
-      <div class="card__header">
-        <h3 class="card__title">Card Title</h3>
-      </div>
-      <div class="card__body gap-y">
-        <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
-      </div>
-      <div class="card__footer">
-        <p><button class="button button_outline_accent">Card Action</button></p>
-      </div>
-      <img src="https://picsum.photos/600/400/?13" class="card__image" width="600" height="400">
-    </div>
-  </div>
-
-</div><!-- .grid -->

@@ -78,7 +78,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
 
 ### `card_fade`
 
-Hides the content of a card so that only the [`card__background`](#card__header-+-card__footer) is visible. The content is then revealed on user interaction via `:hover` and `:focus` events.
+Hides the content of a card so that [only the `card__background` is visible](#card__screen-+-card__background). The content is then revealed on user interaction via `:hover` and `:focus` events.
 
 ```html
 <div class="card card_fade">
@@ -90,7 +90,7 @@ Hides the content of a card so that only the [`card__background`](#card__header-
 
 ### `card_invert`
 
-Inverts the contrast of the card component (by default adds a dark background with white text). This can be used together with the [`card__screen` and `card__background` elements](#card__header-+-card__footer) to help keep the content of a card legible. 
+Inverts the contrast of the card component (by default adds a dark background with white text). This can be used together with the [`card__screen` and `card__background` elements](#card__screen-+-card__background) to help keep the content of a card legible. 
 
 ```html
 <div class="card card_invert">
@@ -110,7 +110,7 @@ Add styles to a card when the entire component is a clickable link.
 
 ### `card_zoom`
 
-A style enhancement modifier for when the [`card__background`](#card__header-+-card__footer) element is used. This will create a "zoom" effect when the card is hovered or focused.
+A style enhancement modifier for when the [`card__background` element](#card__screen-+-card__background) is used. This will create a "zoom" effect when the card is hovered or focused.
 
 ```html
 <div class="card card_zoom">
