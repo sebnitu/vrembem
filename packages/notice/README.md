@@ -99,8 +99,8 @@ A type modifier that changes the visual context of a notice.
 | Variable                 | Default                         | Description                                                                |
 | ------------------------ | ------------------------------- | -------------------------------------------------------------------------- |
 | `$prefix-block`          | `null`                          | String to prefix blocks with.                                              |
-| `$prefix-element`        | `"__"`                          | String to prefix element with.                                             |
-| `$prefix-modifier`       | `"_"`                           | String to prefix modifier with.                                            |
+| `$prefix-element`        | `"__"`                          | String to prefix elements with.                                            |
+| `$prefix-modifier`       | `"_"`                           | String to prefix modifiers with.                                           |
 | `$prefix-modifier-value` | `"_"`                           | String to prefix modifier values with.                                     |
 | `$gap`                   | `0.5em`                         | The default vertical gap spacing for elements inside the notice component. |
 | `$padding`               | `1em`                           | Sets the padding property.                                                 |

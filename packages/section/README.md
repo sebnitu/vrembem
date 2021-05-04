@@ -64,8 +64,8 @@ Sections have a few size modifier options to help adjust the space that is used 
 | Variable                 | Default                               | Description                                                       |
 | ------------------------ | ------------------------------------- | ----------------------------------------------------------------- |
 | `$prefix-block`          | `null`                                | String to prefix blocks with.                                     |
-| `$prefix-element`        | `"__"`                                | String to prefix element with.                                    |
-| `$prefix-modifier`       | `"_"`                                 | String to prefix modifier with.                                   |
+| `$prefix-element`        | `"__"`                                | String to prefix elements with.                                   |
+| `$prefix-modifier`       | `"_"`                                 | String to prefix modifiers with.                                  |
 | `$prefix-modifier-value` | `"_"`                                 | String to prefix modifier values with.                            |
 | `$max-width`             | `70rem`                               | Sets the max-width property on the section container element.     |
 | `$screen-opacity`        | `0.7`                                 | Sets the opacity property on the section screen element.          |

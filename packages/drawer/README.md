@@ -209,8 +209,8 @@ Drawers can slide in from the left or right using the position modifiers:
 | Variable                         | Default                            | Description                                                                                          |
 | -------------------------------- | ---------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | `$prefix-block`                  | `null`                             | String to prefix blocks with.                                                                        |
-| `$prefix-element`                | `"__"`                             | String to prefix element with.                                                                       |
-| `$prefix-modifier`               | `"_"`                              | String to prefix modifier with.                                                                      |
+| `$prefix-element`                | `"__"`                             | String to prefix elements with.                                                                      |
+| `$prefix-modifier`               | `"_"`                              | String to prefix modifiers with.                                                                     |
 | `$prefix-modifier-value`         | `"_"`                              | String to prefix modifier values with.                                                               |
 | `$width`                         | `18em`                             | The width of drawers.                                                                                |
 | `$max-width`                     | `100%`                             | The max-width of drawers.                                                                            |

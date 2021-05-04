@@ -51,8 +51,8 @@ For radio buttons with labels, just wrap the radio component along with label te
 | Variable                       | Default                                  | Description                                                                |
 | ------------------------------ | ---------------------------------------- | -------------------------------------------------------------------------- |
 | `$prefix-block`                | `null`                                   | String to prefix blocks with.                                              |
-| `$prefix-element`              | `"__"`                                   | String to prefix element with.                                             |
-| `$prefix-modifier`             | `"_"`                                    | String to prefix modifier with.                                            |
+| `$prefix-element`              | `"__"`                                   | String to prefix elements with.                                            |
+| `$prefix-modifier`             | `"_"`                                    | String to prefix modifiers with.                                           |
 | `$prefix-modifier-value`       | `"_"`                                    | String to prefix modifier values with.                                     |
 | `$color`                       | `core.$primary`                          | Sets the base color theme for the radio component.                         |
 | `$size`                        | `2.5em`                                  | Sets the width and height of the `radio__background` element.              |

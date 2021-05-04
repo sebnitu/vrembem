@@ -242,8 +242,8 @@ Sets an elements width to `100%` with an optional breakpoint condition.
 | Variable                 | Default                                        | Description                                                                   |
 | ------------------------ | ---------------------------------------------- | ----------------------------------------------------------------------------- |
 | `$prefix-block`          | `null`                                         | String to prefix blocks with.                                                 |
-| `$prefix-element`        | `"__"`                                         | String to prefix element with.                                                |
-| `$prefix-modifier`       | `"_"`                                          | String to prefix modifier with.                                               |
+| `$prefix-element`        | `"__"`                                         | String to prefix elements with.                                               |
+| `$prefix-modifier`       | `"_"`                                          | String to prefix modifiers with.                                              |
 | `$prefix-modifier-value` | `"_"`                                          | String to prefix modifier values with.                                        |
 | `$breakpoints`           | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the `grid_stack_[key]` modifier uses to build its styles. |
 | `$gap`                   | `2em`                                          | The default gap spacing for the grid component.                               |

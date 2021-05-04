@@ -134,8 +134,8 @@ The media component really shines when combining gap and stack modifiers.
 | Variable                 | Default                                        | Description                                                                    |
 | ------------------------ | ---------------------------------------------- | ------------------------------------------------------------------------------ |
 | `$prefix-block`          | `null`                                         | String to prefix blocks with.                                                  |
-| `$prefix-element`        | `"__"`                                         | String to prefix element with.                                                 |
-| `$prefix-modifier`       | `"_"`                                          | String to prefix modifier with.                                                |
+| `$prefix-element`        | `"__"`                                         | String to prefix elements with.                                                |
+| `$prefix-modifier`       | `"_"`                                          | String to prefix modifiers with.                                               |
 | `$prefix-modifier-value` | `"_"`                                          | String to prefix modifier values with.                                         |
 | `$breakpoints`           | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the `media_stack_[key]` modifier uses to build its styles. |
 | `$min-height`            | `(core.$line-height * 1em)`                    | Sets the min-height property of the `media__obj` element.                      |
