@@ -34,6 +34,10 @@ $_e: var.$prefix-element;
 
 .#{$_b}card#{$_e}body {
   flex: 1 1 auto;
+
+  & + & {
+    border-top: var.$sep-border;
+  }
 }
 
 .#{$_b}card#{$_e}image {
