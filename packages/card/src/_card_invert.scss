@@ -7,13 +7,12 @@ $_m: var.$prefix-modifier;
 
 .#{$_b}card#{$_m}invert {
   background: var.$invert-background;
-  color: core.color-switch(var.$invert-background);
+  color: var.$invert-color;
 
-  @if (core.is-dark(var.$invert-background)) {
-    .#{$_b}card#{$_e}header,
-    .#{$_b}card#{$_e}footer {
-      border-color: core.$border-color-invert;
-    }
+  .#{$_b}card#{$_e}body,
+  .#{$_b}card#{$_e}header,
+  .#{$_b}card#{$_e}footer {
+    border-color: var.$invert-sep-border-color;
   }
 
   .#{$_b}card#{$_e}screen {
