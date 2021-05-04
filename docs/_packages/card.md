@@ -11,7 +11,7 @@ usage:
 
 ## card
 
-The base card component comes with a number of elements for card composition. The three most basic being:
+Card is a highly composable container component that comes with a variety of elements. The three most basic are:
 
 - `card__body`
 - `card__image`
