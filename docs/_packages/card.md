@@ -91,7 +91,7 @@ Card screens and backgrounds are displayed behind the other card elements. These
       <button class="button button_color_primary">Card Action</button>
     </p>
   </div>
-  <img src="https://picsum.photos/600/400/?20" class="card__background" width="600" height="400">
+  <img src="https://picsum.photos/600/400/?random" class="card__background" width="600" height="400">
   <div class="card__screen"></div>
 </div>
 {% include demo_switch.html %}
@@ -119,7 +119,7 @@ Hides the content of a card so that [only the `card__background` is visible](#ca
       <a href="#" class="button button_invert button_outline">Card Action</a>
     </p>
   </div>
-  <img src="https://picsum.photos/600/400/?20" class="card__background" width="600" height="400">
+  <img src="https://picsum.photos/600/400/?random" class="card__background" width="600" height="400">
   <div class="card__screen"></div>
 </div>
 {% include demo_switch.html %}
@@ -199,7 +199,7 @@ A style enhancement modifier for when the [`card__background` element](#card__sc
       <a href="#" class="button button_invert button_outline">Card Action</a>
     </p>
   </div>
-  <img src="https://picsum.photos/600/400/?20" class="card__background" width="600" height="400">
+  <img src="https://picsum.photos/600/400/?random" class="card__background" width="600" height="400">
   <div class="card__screen"></div>
 </div>
 {% include demo_switch.html %}
