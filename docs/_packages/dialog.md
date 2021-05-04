@@ -9,7 +9,9 @@ usage:
   scss: true
 ---
 
-## dialog + dialog__body
+## dialog
+
+Dialog is a highly composable container component that comes with a variety of elements. The most basic implementation being `dialog` and a `dialog__body` element:
 
 {% include demo_open.html %}
 <div class="dialog">
@@ -28,6 +30,8 @@ usage:
 {% include demo_close.html %}
 
 ## dialog__close
+
+Use the `dialog__close` element as a hook for providing users a way to dismiss dialogs arbitrarily. This can either be placed before the `dialog__body` element which will add appropriate padding, or inside the `dialog__header` element along side a `dialog__title`.
 
 {% include demo_open.html %}
 <div class="dialog">
@@ -55,12 +59,14 @@ usage:
 
 ## dialog__title
 
+Used for adding a title to the dialog.
+
 {% include demo_open.html %}
 <div class="dialog">
   <button class="dialog__close icon-action">
     {% include icon.html icon="x" %}
   </button>
-  <div class="dialog__body gap">
+  <div class="dialog__body gap-y">
     <h2 class="dialog__title">Dialog Title</h2>
     <p>This is some dialog content...</p>
   </div>
@@ -80,6 +86,8 @@ usage:
 {% include demo_close.html %}
 
 ## dialog__header + dialog__footer
+
+Used to separate distinct dialog sections for headers and footers. Typically the `dialog__header` element will contain the `dialog__title` and `dialog__close` elements while the `dialog__footer` contains a dialogs call to actions. It's also possible to include multiple `dialog__body` elements as needed.
 
 {% include demo_open.html %}
 <div class="dialog">
@@ -107,103 +115,6 @@ usage:
     ...
   </div>
   <div class="dialog__footer">
-    ...
-  </div>
-</div>
-```
-{% include demo_close.html %}
-
-## Dialog examples
-
-The dialog is a very flexible component and can be used in many different contexts. Here are more examples of the dialog component.
-
-## Message
-
-{% include demo_open.html %}
-<div class="dialog">
-  <div class="dialog__header">
-    <h2 class="dialog__title">New Message</h2>
-    <div class="dialog__group">
-      <button class="dialog__group-item icon-action">
-        {% include icon.html icon="minus" %}
-      </button>
-      <button class="dialog__group-item icon-action">
-        {% include icon.html icon="maximize-2" %}
-      </button>
-      <button class="dialog__group-item dialog__close icon-action">
-        {% include icon.html icon="x" %}
-      </button>
-    </div>
-  </div>
-  <form class="dialog__body gap">
-    <input type="text" class="input" placeholder="Recipients" />
-    <input type="text" class="input" placeholder="Subjects" />
-    <textarea class="input input_type_textarea" rows="3" placeholder="..."></textarea>
-  </form>
-  <div class="dialog__footer flex-justify-between">
-    <div class="button-group">
-      <button class="button button_color_primary">Send</button>
-      <button class="button button_icon">
-        {% include icon.html icon="paperclip" %}
-      </button>
-      <button class="button button_icon">
-        {% include icon.html icon="image" %}
-      </button>
-    </div>
-    <div class="button-group">
-      <button class="button button_icon">
-        {% include icon.html icon="trash" %}
-      </button>
-      <button class="button button_icon">
-        {% include icon.html icon="chevron-up" %}
-      </button>
-    </div>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="dialog">
-  <div class="dialog__header">
-    <h2 class="dialog__title">...</h2>
-    <div class="dialog__group">
-      ...
-    </div>
-  </div>
-  <form class="dialog__body">
-    ...
-  </form>
-  <div class="dialog__footer flex-justify-between">
-    <div class="button-group">
-      ...
-    </div>
-    <div class="button-group">
-      ...
-    </div>
-  </div>
-</div>
-```
-{% include demo_close.html %}
-
-## Confirmation
-
-{% include demo_open.html %}
-<div class="dialog">
-  <div class="dialog__body gap-y padding-lg">
-    <h2 class="dialog__title">Did you forget an attachment?</h2>
-    <p>You wrote "I have attached" in your message, but there are no files attached. Send anyway?</p>
-  </div>
-  <div class="dialog__footer flex-justify-end">
-    <button class="button">Cancel</button>
-    <button class="button button_color_primary">Send</button>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<div class="dialog">
-  <div class="dialog__body padding-lg">
-    ...
-  </div>
-  <div class="dialog__footer flex-justify-end">
     ...
   </div>
 </div>
