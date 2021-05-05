@@ -155,6 +155,67 @@ Used to separate distinct dialog sections for headers and footers. Typically the
         <td data-mobile-label="Desc">String to prefix modifier values with.</td>
       </tr>
       <!-- General -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$zindex</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">500</code></td>
+        <td data-mobile-label="Desc">Sets the z-index property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1em</code></td>
+        <td data-mobile-label="Desc">Sets the padding property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$spacing</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">0.5em</code></td>
+        <td data-mobile-label="Desc">Sets the horizontal spacing between elements in the <code class="code">dialog__header</code> and <code class="code">dialog__footer</code> elements.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$white</code></td>
+        <td data-mobile-label="Desc">Sets the background property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the border property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$sep-border</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border</code></td>
+        <td data-mobile-label="Desc">Sets the border property that separates dialog elements.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border-radius</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-radius</code></td>
+        <td data-mobile-label="Desc">Sets the border-radius property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$box-shadow-16dp</code></td>
+        <td data-mobile-label="Desc">Sets the box-shadow property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the color property.</td>
+      </tr>
+      <!-- dialog__title -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$title-font-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$font-size-lg</code></td>
+        <td data-mobile-label="Desc">Sets the font-size property on the <code class="code">dialog__title</code> element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$title-line-height</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$line-height-lg</code></td>
+        <td data-mobile-label="Desc">Sets the line-height property on the <code class="code">dialog__title</code> element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$title-font-weight</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.font-weight("semi-bold")</code></td>
+        <td data-mobile-label="Desc">Sets the font-weight property on the <code class="code">dialog__title</code> element.</td>
+      </tr>
     </tbody>
   </table>
 </div>
