@@ -124,31 +124,31 @@ A style enhancement modifier for when the [`card__background` element](#card__sc
 
 ### Sass Variables
 
-| Variable                      | Default                                                 | Description                                                                                    |
-| ----------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `$prefix-block`               | `null`                                                  | String to prefix blocks with.                                                                  |
-| `$prefix-element`             | `"__"`                                                  | String to prefix elements with.                                                                |
-| `$prefix-modifier`            | `"_"`                                                   | String to prefix modifiers with.                                                               |
-| `$prefix-modifier-value`      | `"_"`                                                   | String to prefix modifier values with.                                                         |
-| `$padding`                    | `1.25em`                                                | Sets the padding property on the `card__body`, `card__header` and `card__footer` elements.     |
-| `$background`                 | `core.$white`                                           | Sets the background property.                                                                  |
-| `$border`                     | `null`                                                  | Sets the border property.                                                                      |
-| `$sep-border`                 | `core.$border`                                          | Sets the border property that separates card elements.                                         |
-| `$border-radius`              | `core.$border-radius`                                   | Sets the border-radius property.                                                               |
-| `$box-shadow`                 | `core.$box-shadow-1dp`                                  | Sets the box-shadow property.                                                                  |
-| `$color`                      | `null`                                                  | Sets the color property.                                                                       |
-| `$transition-property`        | `background-color, border-color, box-shadow, transform` | Sets the transition-property property.                                                         |
-| `$transition-duration`        | `core.$transition-duration`                             | Sets the transition-duration property.                                                         |
-| `$transition-timing-function` | `core.$transition-timing-function`                      | Sets the transition-timing-function property.                                                  |
-| `$title-font-size`            | `core.$font-size-lg`                                    | Sets the font-size property on the `card__title` element.                                      |
-| `$title-line-height`          | `core.$line-height-lg`                                  | Sets the line-height property on the `card__title` element.                                    |
-| `$title-font-weight`          | `core.font-weight("semi-bold")`                         | Sets the font-weight property on the `card__title` element.                                    |
-| `$screen-opacity`             | `0.7`                                                   | Sets the opacity property on the `card__screen` element.                                       |
-| `$screen-background`          | `core.$night`                                           | Sets the background property on the `card__screen` element.                                    |
-| `$invert-background`          | `core.$night`                                           | Sets the background property of the `card_invert` modifier.                                    |
-| `$invert-border-color`        | `null`                                                  | Sets the border-color property of the `card_invert` modifier.                                  |
-| `$invert-sep-border-color`    | `core.$border-color-invert`                             | Sets the border-color property that separates card elements of the `card_invert` modifier.     |
-| `$invert-color`               | `core.$white`                                           | Sets the background property of the `card_invert` modifier.                                    |
-| `$link-shadow`                | `core.$box-shadow-4dp`                                  | Sets the box-shadow property of the `card_link` modifier.                                      |
-| `$link-shadow-hover`          | `core.$box-shadow-8dp`                                  | Sets the box-shadow property of the `card_link` modifier on `:hover` state.                    |
-| `$link-offset`                | `0.25em`                                                | Sets the distance that the card will travel vertically on `:hover` of the `card_link` modifier |
+| Variable                      | Default                                                 | Description                                                                                     |
+| ----------------------------- | ------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `$prefix-block`               | `null`                                                  | String to prefix blocks with.                                                                   |
+| `$prefix-element`             | `"__"`                                                  | String to prefix elements with.                                                                 |
+| `$prefix-modifier`            | `"_"`                                                   | String to prefix modifiers with.                                                                |
+| `$prefix-modifier-value`      | `"_"`                                                   | String to prefix modifier values with.                                                          |
+| `$padding`                    | `1.25em`                                                | Sets the padding property on the `card__body`, `card__header` and `card__footer` elements.      |
+| `$background`                 | `core.$white`                                           | Sets the background property.                                                                   |
+| `$border`                     | `null`                                                  | Sets the border property.                                                                       |
+| `$sep-border`                 | `core.$border`                                          | Sets the border property that separates card elements.                                          |
+| `$border-radius`              | `core.$border-radius`                                   | Sets the border-radius property.                                                                |
+| `$box-shadow`                 | `core.$box-shadow-1dp`                                  | Sets the box-shadow property.                                                                   |
+| `$color`                      | `null`                                                  | Sets the color property.                                                                        |
+| `$transition-property`        | `background-color, border-color, box-shadow, transform` | Sets the transition-property property.                                                          |
+| `$transition-duration`        | `core.$transition-duration`                             | Sets the transition-duration property.                                                          |
+| `$transition-timing-function` | `core.$transition-timing-function`                      | Sets the transition-timing-function property.                                                   |
+| `$title-font-size`            | `core.$font-size-lg`                                    | Sets the font-size property on the `card__title` element.                                       |
+| `$title-line-height`          | `core.$line-height-lg`                                  | Sets the line-height property on the `card__title` element.                                     |
+| `$title-font-weight`          | `core.font-weight("semi-bold")`                         | Sets the font-weight property on the `card__title` element.                                     |
+| `$screen-opacity`             | `0.7`                                                   | Sets the opacity property on the `card__screen` element.                                        |
+| `$screen-background`          | `core.$night`                                           | Sets the background property on the `card__screen` element.                                     |
+| `$invert-background`          | `core.$night`                                           | Sets the background property of the `card_invert` modifier.                                     |
+| `$invert-border-color`        | `null`                                                  | Sets the border-color property of the `card_invert` modifier.                                   |
+| `$invert-sep-border-color`    | `core.$border-color-invert`                             | Sets the border-color property that separates card elements of the `card_invert` modifier.      |
+| `$invert-color`               | `core.$white`                                           | Sets the background property of the `card_invert` modifier.                                     |
+| `$link-shadow`                | `core.$box-shadow-4dp`                                  | Sets the box-shadow property of the `card_link` modifier.                                       |
+| `$link-shadow-hover`          | `core.$box-shadow-8dp`                                  | Sets the box-shadow property of the `card_link` modifier on `:hover` state.                     |
+| `$link-offset`                | `0.25em`                                                | Sets the distance that the card will travel vertically on `:hover` of the `card_link` modifier. |
