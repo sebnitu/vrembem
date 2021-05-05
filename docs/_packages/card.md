@@ -11,7 +11,7 @@ usage:
 
 ## card
 
-The base card component comes with a number of elements for card composition. The three most basic being:
+Card is a highly composable container component that comes with a variety of elements. The three most basic are:
 
 - `card__body`
 - `card__image`
@@ -211,3 +211,155 @@ A style enhancement modifier for when the [`card__background` element](#card__sc
 </div>
 ```
 {% include demo_close.html %}
+
+## Sass Variables
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Prefixes -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-block</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">String to prefix blocks with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-element</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"__"</code></td>
+        <td data-mobile-label="Desc">String to prefix elements with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-modifier</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"_"</code></td>
+        <td data-mobile-label="Desc">String to prefix modifiers with.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-modifier-value</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"_"</code></td>
+        <td data-mobile-label="Desc">String to prefix modifier values with.</td>
+      </tr>
+      <!-- General -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1.25em</code></td>
+        <td data-mobile-label="Desc">Sets the padding property on the <code class="code">card__body</code>, <code class="code">card__header</code> and <code class="code">card__footer</code> elements.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$white</code></td>
+        <td data-mobile-label="Desc">Sets the background property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the border property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$sep-border</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border</code></td>
+        <td data-mobile-label="Desc">Sets the border property that separates card elements.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border-radius</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-radius</code></td>
+        <td data-mobile-label="Desc">Sets the border-radius property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$box-shadow-1dp</code></td>
+        <td data-mobile-label="Desc">Sets the box-shadow property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the color property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$transition-property</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">background-color, border-color, box-shadow, transform</code></td>
+        <td data-mobile-label="Desc">Sets the transition-property property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$transition-duration</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$transition-duration</code></td>
+        <td data-mobile-label="Desc">Sets the transition-duration property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$transition-timing-function</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$transition-timing-function</code></td>
+        <td data-mobile-label="Desc">Sets the transition-timing-function property.</td>
+      </tr>
+      <!-- card__title -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$title-font-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$font-size-lg</code></td>
+        <td data-mobile-label="Desc">Sets the font-size property on the <code class="code">card__title</code> element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$title-line-height</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$line-height-lg</code></td>
+        <td data-mobile-label="Desc">Sets the line-height property on the <code class="code">card__title</code> element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$title-font-weight</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.font-weight("semi-bold")</code></td>
+        <td data-mobile-label="Desc">Sets the font-weight property on the <code class="code">card__title</code> element.</td>
+      </tr>
+      <!-- card__screen -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$screen-opacity</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">0.7</code></td>
+        <td data-mobile-label="Desc">Sets the opacity property on the <code class="code">card__screen</code> element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$screen-background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$night</code></td>
+        <td data-mobile-label="Desc">Sets the background property on the <code class="code">card__screen</code> element.</td>
+      </tr>
+      <!-- card_invert -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$invert-background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$night</code></td>
+        <td data-mobile-label="Desc">Sets the background property of the <code class="code">card_invert</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$invert-border-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the border-color property of the <code class="code">card_invert</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$invert-sep-border-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-color-invert</code></td>
+        <td data-mobile-label="Desc">Sets the border-color property that separates card elements of the <code class="code">card_invert</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$invert-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$white</code></td>
+        <td data-mobile-label="Desc">Sets the background property of the <code class="code">card_invert</code> modifier.</td>
+      </tr>
+      <!-- card_link -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-shadow</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$box-shadow-4dp</code></td>
+        <td data-mobile-label="Desc">Sets the box-shadow property of the <code class="code">card_link</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-shadow-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$box-shadow-8dp</code></td>
+        <td data-mobile-label="Desc">Sets the box-shadow property of the <code class="code">card_link</code> modifier on <code class="code">:hover</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-offset</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">0.25em</code></td>
+        <td data-mobile-label="Desc">Sets the distance that the card will travel vertically on <code class="code">:hover</code> of the <code class="code">card_link</code> modifier.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

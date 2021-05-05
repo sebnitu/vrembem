@@ -11,6 +11,7 @@ $border: null !default;
 $sep-border: core.$border !default;
 $border-radius: core.$border-radius !default;
 $box-shadow: core.$box-shadow-1dp !default;
+$color: null !default;
 $transition-property: background-color, border-color, box-shadow, transform !default;
 $transition-duration: core.$transition-duration !default;
 $transition-timing-function: core.$transition-timing-function !default;
@@ -23,6 +24,9 @@ $screen-opacity: 0.7 !default;
 $screen-background: core.$night !default;
 
 $invert-background: core.$night !default;
+$invert-border-color: null !default;
+$invert-sep-border-color: core.$border-color-invert !default;
+$invert-color: core.$white !default;
 $link-shadow: core.$box-shadow-4dp !default;
 $link-shadow-hover: core.$box-shadow-8dp !default;
 $link-offset: 0.25em !default;

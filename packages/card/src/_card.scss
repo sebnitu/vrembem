@@ -16,6 +16,7 @@ $_e: var.$prefix-element;
   border-radius: var.$border-radius;
   background: var.$background;
   box-shadow: var.$box-shadow;
+  color: var.$color;
 }
 
 .#{$_b}card#{$_e}header,
