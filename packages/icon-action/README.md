@@ -90,9 +90,17 @@ Adds styles for changing the look and feel of an icon-action to better reflect t
 
 ### Sass Variables
 
-| Variable                 | Default | Description                            |
-| ------------------------ | ------- | -------------------------------------- |
-| `$prefix-block`          | `null`  | String to prefix blocks with.          |
-| `$prefix-element`        | `"__"`  | String to prefix elements with.        |
-| `$prefix-modifier`       | `"_"`   | String to prefix modifiers with.       |
-| `$prefix-modifier-value` | `"_"`   | String to prefix modifier values with. |
+| Variable                 | Default                                      | Description                                                   |
+| ------------------------ | -------------------------------------------- | ------------------------------------------------------------- |
+| `$prefix-block`          | `null`                                       | String to prefix blocks with.                                 |
+| `$prefix-element`        | `"__"`                                       | String to prefix elements with.                               |
+| `$prefix-modifier`       | `"_"`                                        | String to prefix modifiers with.                              |
+| `$prefix-modifier-value` | `"_"`                                        | String to prefix modifier values with.                        |
+| `$size`                  | `(core.$font-size * core.$line-height)`      | Sets the width and height properties.                         |
+| `$border-radius`         | `core.$border-radius-circle` &rarr; `9999px` | Sets the border-radius property.                              |
+| `$background`            | `rgba(core.$black, 0.3)`                     | Sets the background property.                                 |
+| `$background-hover`      | `rgba(core.$black, 0.4)`                     | Sets the background property on `:hover` state.               |
+| `$background-focus`      | `rgba(core.$black, 0.5)`                     | Sets the background property on `:focus` state.               |
+| `$background-active`     | `rgba(core.$black, 0.5)`                     | Sets the background property on `:active` state.              |
+| `$icon-stroke-width`     | `2.5px`                                      | Sets the stroke-width property on the child `icon` component. |
+| `$icon-font-size`        | `core.$font-size-sm`                         | Sets the font-size property on the child `icon` component.    |

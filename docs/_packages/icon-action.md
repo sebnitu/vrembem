@@ -153,6 +153,47 @@ Adds styles for changing the look and feel of an icon-action to better reflect t
         <td data-mobile-label="Desc">String to prefix modifier values with.</td>
       </tr>
       <!-- General -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">(core.$font-size * core.$line-height)</code></td>
+        <td data-mobile-label="Desc">Sets the width and height properties.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border-radius</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$border-radius-circle</code></td>
+        <td data-mobile-label="Desc">Sets the border-radius property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.3)</code></td>
+        <td data-mobile-label="Desc">Sets the background property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$background-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.4)</code></td>
+        <td data-mobile-label="Desc">Sets the background property on <code class="code">:hover</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$background-focus</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.5)</code></td>
+        <td data-mobile-label="Desc">Sets the background property on <code class="code">:focus</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$background-active</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.5)</code></td>
+        <td data-mobile-label="Desc">Sets the background property on <code class="code">:active</code> state.</td>
+      </tr>
+      <!-- icon -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$icon-stroke-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">2.5px</code></td>
+        <td data-mobile-label="Desc">Sets the stroke-width property on the child <code class="code">icon</code> component.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$icon-font-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$font-size-sm</code></td>
+        <td data-mobile-label="Desc">Sets the font-size property on the child <code class="code">icon</code> component.</td>
+      </tr>
     </tbody>
   </table>
 </div>
