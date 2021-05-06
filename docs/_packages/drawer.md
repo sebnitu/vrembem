@@ -69,7 +69,7 @@ Drawer dialogs are the actual dialog element within a drawer and are defined usi
     <div data-drawer-dialog class="drawer__dialog dialog">
       <div class="dialog__header">
         <h2 class="dialog__title">Drawer Dialog</h2>
-        <button class="dialog__close icon-action icon-action_color_fade drawer__trigger" data-drawer-close>
+        <button class="dialog__close icon-action drawer__trigger" data-drawer-close>
           {% include icon.html icon="x" %}
         </button>
       </div>

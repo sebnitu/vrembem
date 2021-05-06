@@ -255,7 +255,7 @@ The default position of modals is in the center of the viewport. The position mo
 
 <div data-modal="modal-pos-top" class="modal modal_pos_top">
   <div data-modal-dialog class="modal__dialog dialog">
-    <button data-modal-close class="dialog__close icon-action icon-action_color_fade">
+    <button data-modal-close class="dialog__close icon-action">
       {% include icon.html icon="x" %}
     </button>
     <div class="dialog__body">
@@ -277,7 +277,7 @@ The default position of modals is in the center of the viewport. The position mo
 
 <div data-modal="modal-pos-bottom" class="modal modal_pos_bottom">
   <div data-modal-dialog class="modal__dialog dialog">
-    <button data-modal-close class="dialog__close icon-action icon-action_color_fade">
+    <button data-modal-close class="dialog__close icon-action">
       {% include icon.html icon="x" %}
     </button>
     <div class="dialog__body">
@@ -299,7 +299,7 @@ The default position of modals is in the center of the viewport. The position mo
 
 <div data-modal="modal-pos-left" class="modal modal_pos_left">
   <div data-modal-dialog class="modal__dialog dialog">
-    <button data-modal-close class="dialog__close icon-action icon-action_color_fade">
+    <button data-modal-close class="dialog__close icon-action">
       {% include icon.html icon="x" %}
     </button>
     <div class="dialog__body">
@@ -325,7 +325,7 @@ The default position of modals is in the center of the viewport. The position mo
 
 <div data-modal="modal-pos-right" class="modal modal_pos_right">
   <div data-modal-dialog class="modal__dialog dialog">
-    <button data-modal-close class="dialog__close icon-action icon-action_color_fade">
+    <button data-modal-close class="dialog__close icon-action">
       {% include icon.html icon="x" %}
     </button>
     <div class="dialog__body">
