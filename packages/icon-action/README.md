@@ -41,7 +41,7 @@ The icon-action component consists of two parts, the `icon-action` and it's chil
 
 ### `icon-action_invert`
 
-...
+A supplemental icon-action modifier that allows base component and the [`icon-action_subtle`](#icon-action_subtle) modifier to provide an inversed version of itself. Since not all icon-action styles require an inversed variant, this is typically used for when the background context of an action matters.
 
 ```html
 <button class="icon-action icon-action_invert" aria-label="...">
@@ -49,9 +49,14 @@ The icon-action component consists of two parts, the `icon-action` and it's chil
 </button>
 ```
 
+#### Available Combinations
+
+- `icon-action icon-action_invert`
+- `icon-action icon-action_invert icon-action_subtle`
+
 ### `icon-action_subtle`
 
-...
+Applies more subtle button styles to the icon-action. Can also be inverted using the [`icon-action_invert`](#icon-action_invert) supplemental modifier.
 
 ```html
 <button class="icon-action icon-action_subtle" aria-label="...">
@@ -59,7 +64,12 @@ The icon-action component consists of two parts, the `icon-action` and it's chil
 </button>
 ```
 
-### `icon-action_type_[key]`
+### Available Combinations
+
+- `icon-action icon-action_subtle`
+- `icon-action icon-action_subtle icon-action_invert`
+
+### `icon-action_type_[value]`
 
 Adds styles for changing the look and feel of an icon-action to better reflect the urgency or status of the action.
 
