@@ -2657,48 +2657,6 @@ input::-moz-placeholder {
   font-size: 0.875em;
 }
 
-.icon-action_color_danger {
-  background: #f44336;
-  color: #fff;
-}
-.icon-action_color_danger:hover {
-  background: #ea1c0d;
-}
-.icon-action_color_danger:focus {
-  background: #ba160a;
-}
-.icon-action_color_danger:active {
-  background: #ba160a;
-}
-
-.icon-action_color_caution {
-  background: #ff9800;
-  color: #fff;
-}
-.icon-action_color_caution:hover {
-  background: #e68900;
-}
-.icon-action_color_caution:focus {
-  background: #cc7a00;
-}
-.icon-action_color_caution:active {
-  background: #cc7a00;
-}
-
-.icon-action_color_success {
-  background: #4caf50;
-  color: #fff;
-}
-.icon-action_color_success:hover {
-  background: #3d8b40;
-}
-.icon-action_color_success:focus {
-  background: #2d682f;
-}
-.icon-action_color_success:active {
-  background: #2d682f;
-}
-
 .icon-action_invert {
   background: rgba(255, 255, 255, 0.5);
   color: #212121;
@@ -2738,6 +2696,62 @@ input::-moz-placeholder {
 }
 .icon-action_subtle.icon-action_invert:active {
   background: rgba(255, 255, 255, 0.2);
+}
+
+.icon-action_type_info {
+  background: #03a9f4;
+  color: #fff;
+}
+.icon-action_type_info:hover {
+  background: #0286c2;
+}
+.icon-action_type_info:focus {
+  background: #02638f;
+}
+.icon-action_type_info:active {
+  background: #02638f;
+}
+
+.icon-action_type_success {
+  background: #4caf50;
+  color: #fff;
+}
+.icon-action_type_success:hover {
+  background: #3d8b40;
+}
+.icon-action_type_success:focus {
+  background: #2d682f;
+}
+.icon-action_type_success:active {
+  background: #2d682f;
+}
+
+.icon-action_type_caution {
+  background: #ff9800;
+  color: #fff;
+}
+.icon-action_type_caution:hover {
+  background: #e68900;
+}
+.icon-action_type_caution:focus {
+  background: #cc7a00;
+}
+.icon-action_type_caution:active {
+  background: #cc7a00;
+}
+
+.icon-action_type_danger {
+  background: #f44336;
+  color: #fff;
+}
+.icon-action_type_danger:hover {
+  background: #ea1c0d;
+}
+.icon-action_type_danger:focus {
+  background: #ba160a;
+}
+.icon-action_type_danger:active {
+  background: #ba160a;
 }
 
 .input {
