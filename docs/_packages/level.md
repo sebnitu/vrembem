@@ -11,7 +11,7 @@ usage:
 
 ## Level
 
-The most basic imlementation of the level component consists of the `level` container with any number of children. Layout styles are applied to the direct children of the level component using the `> *` selector.
+The most basic implementation of the level component consists of the `level` container with any number of children. Layout styles are applied to the direct children of the level component using the `> *` selector.
 
 {% include demo_open.html %}
 <div class="level">

@@ -11,7 +11,7 @@ usage:
 
 ## media
 
-The most basic imlementation of the media component consists of the `media` container and atleast one body element (`media__body`) and one object element (`media__obj`).
+The most basic implementation of the media component consists of the `media` container and atleast one body element (`media__body`) and one object element (`media__obj`).
 
 {% include demo_open.html class_parent="gap-y" %}
 <div class="media">

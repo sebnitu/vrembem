@@ -85,7 +85,7 @@ For cases where a notice message should be displayed alongside an icon or image,
 
 ## notice + icon-action
 
-When a notice needs to be dismissable, try adding the icon-action component along with some flex utilities.
+When a notice needs to be dismissible, try adding the icon-action component along with some flex utilities.
 
 {% include demo_open.html class_parent="gap-y" %}
 <div class="notice">
@@ -117,9 +117,9 @@ When a notice needs to be dismissable, try adding the icon-action component alon
 ```
 {% include demo_close.html %}
 
-> Dismissable JavaScript behavior is not provided.
+> Dismissible JavaScript behavior is not provided.
 
-## notice_type_[key]
+## notice_type_[value]
 
 A type modifier that changes the visual context of a notice.
 

@@ -50,7 +50,7 @@ For basic table styles, only the `table` component class is required. Use [prope
 > </div>
 > ```
 
-## table_style_[key]
+## table_style_[value]
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="scroll-box">
@@ -106,7 +106,7 @@ For basic table styles, only the `table` component class is required. Use [prope
 
 ## table_responsive_[key]
 
-When `scroll-box` isn't mobile friendly enough, `table_responsive_[key]` is available to turn tables into a more readable format on smaller devices. Mobile labels are set using the `data-mobile-lable` attribute.
+When `scroll-box` isn't mobile friendly enough, `table_responsive_[key]` is available to turn tables into a more readable format on smaller devices. Mobile labels are set using the `data-mobile-label` attribute.
 
 {% include demo_open.html class_grid="grid_stack" class_parent="gap-y" %}
 <div class="scroll-box">

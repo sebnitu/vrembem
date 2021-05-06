@@ -20,7 +20,7 @@ npm install @vrembem/button-group
 
 ### Markup
 
-The most basic imlementation of the button-group component consists of the `button-group` container wrapping a group of buttons.
+The most basic implementation of the button-group component consists of the `button-group` container wrapping a group of buttons.
 
 ```html
 <div class="button-group">

@@ -40,7 +40,7 @@ You can inject svg icons directly or use svg sprites. The only requirement is th
 ```
 {% include demo_close.html %}
 
-## icon_size_[key]
+## icon_size_[value]
 
 Add a size modifier to adjust the size of your icons. Icon sizes are controlled using the font-size attribute and optionally a stroke width.
 
@@ -67,9 +67,9 @@ Add a size modifier to adjust the size of your icons. Icon sizes are controlled 
 - `icon_size_lg`
 - `icon_size_xl`
 
-## icon_style_[key]
+## icon_style_[value]
 
-The default icon style is set using the `$icon-style` variable. You can also explicity style an icon using the style modifier.
+The default icon style is set using the `$icon-style` variable. You can also explicitly style an icon using the style modifier.
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="level level_gap_xl">

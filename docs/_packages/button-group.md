@@ -11,7 +11,7 @@ usage:
 
 ## button-group
 
-The most basic imlementation of the button-group component consists of the `button-group` container wrapping a group of buttons.
+The most basic implementation of the button-group component consists of the `button-group` container wrapping a group of buttons.
 
 {% include demo_open.html %}
 <div class="button-group">

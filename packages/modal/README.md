@@ -142,7 +142,7 @@ Adds styles to a modal that make it fill the entire viewport when opened.
 <div data-modal="[unique-id]" class="modal modal_full">...</div>
 ```
 
-### `modal_pos_[key]`
+### `modal_pos_[value]`
 
 The default position of modals is in the center of the viewport. The position modifier allows you four other options:
 
@@ -158,7 +158,7 @@ The default position of modals is in the center of the viewport. The position mo
 <div data-modal="[unique-id]" class="modal modal_pos_right">...</div>
 ```
 
-### `modal_size_[key]`
+### `modal_size_[value]`
 
 Adjusts the size of modals. This modifier provides two options, `modal_size_sm` and `modal_size_lg` all relative to the default modal size.
 

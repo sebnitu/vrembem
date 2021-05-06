@@ -73,7 +73,7 @@ usage:
 ```
 {% include demo_close.html %}
 
-## dropdown_pos_[key]
+## dropdown_pos_[value]
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="level">

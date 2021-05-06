@@ -44,7 +44,7 @@ $loading-border-color: $color !default;
 $loading-border: 2px solid !default;
 $loading-border-tpl: 1 1 0 0;
 
-// button_size_[key]
+// button_size_[value]
 $size-sm-min-size: 1.875rem !default; // 30px
 $size-sm-padding: core.$padding-sm !default;
 $size-sm-font-size: core.$font-size-sm !default;
@@ -54,5 +54,5 @@ $size-lg-padding: core.$padding-lg !default;
 $size-lg-font-size: core.$font-size-lg !default;
 $size-lg-line-height: core.$line-height-lg !default;
 
-// button_outline_[key]
+// button_outline_[value]
 $outline-border-width: 1px !default;

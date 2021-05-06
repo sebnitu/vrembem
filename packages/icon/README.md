@@ -30,7 +30,7 @@ The most basic implementation of the icon component consists of the `icon` class
 
 ## Modifiers
 
-### `icon_size_[key]`
+### `icon_size_[value]`
 
 Add a size modifier to adjust the size of your icons. Icon sizes are controlled using the font-size attribute and optionally a stroke width.
 
@@ -47,7 +47,7 @@ Add a size modifier to adjust the size of your icons. Icon sizes are controlled 
 - `icon_size_lg`
 - `icon_size_xl`
 
-### `icon_style_[key]`
+### `icon_style_[value]`
 
 The default icon style is set using the `$icon-style` variable. You can also explicitly style an icon using the style modifier.
 

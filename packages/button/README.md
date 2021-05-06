@@ -20,7 +20,7 @@ npm install @vrembem/button
 
 ### Markup
 
-The most basic imlementation of the button component consists of the `button` class that can be applied to `<button>`, `<input type="button">` or `<a role="button">` elements. [Remember to add `role="button"`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role) to any none semantic buttons as needed.
+The most basic implementation of the button component consists of the `button` class that can be applied to `<button>`, `<input type="button">` or `<a role="button">` elements. [Remember to add `role="button"`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role) to any none semantic buttons as needed.
 
 ```html
 <button class="button">Button</button>
@@ -80,7 +80,7 @@ Gives a button "block" styles so that it spans the full width of its container. 
 - `button_block_lg`
 - `button_block_xl`
 
-### `button_color_[key]`
+### `button_color_[value]`
 
 Adds styles for changing the look and feel of a button. These are usually done with different background and text colors.
 
@@ -110,7 +110,7 @@ Adds styles that make icon-only buttons more balanced and will appear square if 
 
 ### `button_invert`
 
-A supplemental button modifier that allows [`button_color_[key]`](#button_color_key) or [`button_outline_[key]`](#button_outline_key) modified buttons to provide an inversed version of itself. Since not all button styles require an inversed variant, this is typically used for when the background context of a button matters.
+A supplemental button modifier that allows [`button_color_[value]`](#button_color_value) or [`button_outline_[value]`](#button_outline_value) modified buttons to provide an inversed version of itself. Since not all button styles require an inversed variant, this is typically used for when the background context of a button matters.
 
 ```html
 <button class="button button_invert">Button</button>
@@ -125,9 +125,9 @@ A supplemental button modifier that allows [`button_color_[key]`](#button_color_
 - `button button_invert button_outline_primary`
 - `button button_invert button_outline_secondary`
 
-### `button_outline_[key]`
+### `button_outline_[value]`
 
-Outline styles usually have a more subtle appearance compared to [`button_color_[key]`](#button_color_key) variants. They use a border to outline the button and have a transparent background color. Consider using [`button_invert`](#button_invert) when the contrast of a button needs to be inverted.
+Outline styles usually have a more subtle appearance compared to [`button_color_[value]`](#button_color_value) variants. They use a border to outline the button and have a transparent background color. Consider using [`button_invert`](#button_invert) when the contrast of a button needs to be inverted.
 
 ```html
 <button class="button button_outline_primary">Button</button>
@@ -139,9 +139,9 @@ Outline styles usually have a more subtle appearance compared to [`button_color_
 - `button_outline_primary`
 - `button_outline_secondary`
 
-### `button_size_[key]`
+### `button_size_[value]`
 
-Adjust the size of a button by inceasing or decreasing its padding and font-size. By default, the button scale will provide a button height of 30px (`button_size_sm`), 40px (default) and 50px (`button_size_lg`).
+Adjust the size of a button by increasing or decreasing its padding and font-size. By default, the button scale will provide a button height of 30px (`button_size_sm`), 40px (default) and 50px (`button_size_lg`).
 
 ```html
 <button class="button button_size_sm">Button</button>
@@ -205,7 +205,7 @@ Adjust the size of a button by inceasing or decreasing its padding and font-size
 | `$size-lg-padding`            | `core.$padding-lg` &rarr; `0.648rem 1.5rem`    | Sets the padding property of the `button_size_lg` modifier.                                                                                       |
 | `$size-lg-font-size`          | `core.$font-size-lg` &rarr; `1.125em`          | Sets the font-size property of the `button_size_lg` modifier.                                                                                     |
 | `$size-lg-line-height`        | `core.$line-height-lg` &rarr; `1.625`          | Sets the line-height property of the `button_size_lg` modifier.                                                                                   |
-| `$outline-border-width`       | `1px`                                          | Sets the border-width property of the [`button_outline_[key]`](#button_outline_key) modifiers.                                                    |
+| `$outline-border-width`       | `1px`                                          | Sets the border-width property of the [`button_outline_[value]`](#button_outline_value) modifiers.                                                |
 
 #### `$breakpoints`
 

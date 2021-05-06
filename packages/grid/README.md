@@ -20,7 +20,7 @@ npm install @vrembem/grid
 
 ### Markup
 
-The most basic imlementation of the grid component consists of two elements. By default, `grid__item`'s split the available space within the `grid` parent evenly:
+The most basic implementation of the grid component consists of two elements. By default, `grid__item`'s split the available space within the `grid` parent evenly:
 
 - `grid`
 - `grid__item`

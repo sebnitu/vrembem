@@ -58,7 +58,7 @@ For cases where a notice message should be displayed alongside an icon or image,
 
 #### `notice + icon-action`
 
-When a notice needs to be dismissable, try adding the icon-action component along with some flex utilities.
+When a notice needs to be dismissible, try adding the icon-action component along with some flex utilities.
 
 ```html
 <div class="notice">
@@ -71,17 +71,17 @@ When a notice needs to be dismissable, try adding the icon-action component alon
 </div>
 ```
 
-> Dismissable JavaScript behavior is not provided.
+> Dismissible JavaScript behavior is not provided.
 
 ## Modifiers
 
-### `notice_type_[key]`
+### `notice_type_[value]`
 
 A type modifier that changes the visual context of a notice.
 
 ```html
 <div class="notice notice_type_danger">
-  <p>An error has occured!</p>
+  <p>An error has occurred!</p>
 </div>
 ```
 

@@ -20,7 +20,7 @@ npm install @vrembem/media
 
 ### Markup
 
-The most basic imlementation of the media component consists of the `media` container and atleast one body element (`media__body`) and one object element (`media__obj`).
+The most basic implementation of the media component consists of the `media` container and atleast one body element (`media__body`) and one object element (`media__obj`).
 
 ```html
 <div class="media">
