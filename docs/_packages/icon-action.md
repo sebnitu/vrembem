@@ -13,7 +13,7 @@ usage:
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="level">
-  <button class="icon-action" aria-label="Close">
+  <button class="icon-action" aria-label="Close button">
     {% include icon.html icon="x" %}
   </button>
   <button class="icon-action" aria-label="Minimize">
@@ -30,28 +30,6 @@ usage:
     <!-- SVG markup or link ID goes here.. -->
   </svg>
 </button>
-```
-{% include demo_close.html %}
-
-## icon-action_color
-
-{% include demo_open.html class_grid="grid_stack" %}
-<div class="level">
-  <button class="icon-action icon-action_color_danger" aria-label="Close">
-    {% include icon.html icon="x" %}
-  </button>
-  <button class="icon-action icon-action_color_caution" aria-label="Minimize">
-    {% include icon.html icon="minus" %}
-  </button>
-  <button class="icon-action icon-action_color_success" aria-label="Fullscreen">
-    {% include icon.html icon="maximize-2" %}
-  </button>
-</div>
-{% include demo_switch.html %}
-```html
-<button class="icon-action icon-action_color_danger" aria-label="Close">...</button>
-<button class="icon-action icon-action_color_caution" aria-label="Minimize">...</button>
-<button class="icon-action icon-action_color_success" aria-label="Fullscreen">...</button>
 ```
 {% include demo_close.html %}
 
@@ -87,5 +65,31 @@ usage:
 ```html
 <button class="icon-action icon-action_subtle" aria-label="Close">...</button>
 <button class="icon-action icon-action_subtle icon-action_invert" aria-label="Close">...</button>
+```
+{% include demo_close.html %}
+
+## icon-action_type_[key]
+
+{% include demo_open.html class_grid="grid_stack" %}
+<div class="level">
+  <button class="icon-action icon-action_type_info" aria-label="Helpful information">
+    {% include icon.html icon="anchor" %}
+  </button>
+  <button class="icon-action icon-action_type_success" aria-label="Fullscreen">
+    {% include icon.html icon="maximize-2" %}
+  </button>
+  <button class="icon-action icon-action_type_caution" aria-label="Minimize">
+    {% include icon.html icon="minus" %}
+  </button>
+  <button class="icon-action icon-action_type_danger" aria-label="Close">
+    {% include icon.html icon="x" %}
+  </button>
+</div>
+{% include demo_switch.html %}
+```html
+<button class="icon-action icon-action_type_info" aria-label="Helpful information">...</button>
+<button class="icon-action icon-action_type_success" aria-label="Fullscreen">...</button>
+<button class="icon-action icon-action_type_caution" aria-label="Minimize">...</button>
+<button class="icon-action icon-action_type_danger" aria-label="Close">...</button>
 ```
 {% include demo_close.html %}
