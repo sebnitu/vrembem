@@ -18,13 +18,6 @@ npm install @vrembem/icon-action
 @use "@vrembem/icon-action";
 ```
 
-### JavaScript
-
-```js
-import icon-action from '@vrembem/icon-action';
-const icon-action = new icon-action({ autoInit: true });
-```
-
 ### Markup
 
 The icon-action component consists of two parts, the `icon-action` and it's child `icon` component. Because icon-actions only contain an icon as its content, it's important to add an `aria-label` attribute with a label of what the action does for accessibility.
