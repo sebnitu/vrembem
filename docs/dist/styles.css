@@ -4254,9 +4254,70 @@ input::-moz-placeholder {
   position: relative;
   z-index: 1;
 }
-.table_hover tbody tr:hover {
+.table_hover tbody tr:hover,
+.table_hover tbody tr:focus {
   z-index: 2;
   background-color: rgba(255, 235, 59, 0.3);
+}
+
+.table_responsive thead,
+.table_responsive tbody,
+.table_responsive tr,
+.table_responsive th,
+.table_responsive td {
+  display: block;
+}
+.table_responsive thead,
+.table_responsive [rowspan] {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+.table_responsive [data-mobile-label] {
+  position: relative;
+  padding-left: calc(8rem + 1em);
+  white-space: normal;
+}
+.table_responsive [data-mobile-label]::before {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  content: attr(data-mobile-label);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 8rem;
+  padding: 0.5em 1em;
+  font-weight: 600;
+}
+.table_responsive.table_size_sm [data-mobile-label] {
+  padding-left: calc(8rem + 0.5rem);
+}
+.table_responsive.table_size_sm [data-mobile-label]::before {
+  padding: 0.25rem 0.5rem;
+}
+.table_responsive.table_size_lg [data-mobile-label] {
+  padding-left: calc(8rem + 1.5rem);
+}
+.table_responsive.table_size_lg [data-mobile-label]::before {
+  padding: 0.648rem 1.5rem;
+}
+.table_responsive.table_style_bordered {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.table_responsive.table_style_bordered td {
+  border: none;
+}
+.table_responsive.table_style_bordered td + td,
+.table_responsive.table_style_bordered th + td {
+  border-top: 1px dotted rgba(0, 0, 0, 0.1);
+}
+.table_responsive.table_style_bordered [data-mobile-label]::before {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+.table_responsive.table_style_bordered tr + tr {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 479px) {
