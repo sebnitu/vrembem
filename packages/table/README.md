@@ -174,13 +174,33 @@ Adds zebra styled rows to a table to help increase its readability. This is done
 
 ### Sass Variables
 
-| Variable                 | Default                                        | Description                                                                                                  |
-| ------------------------ | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `$prefix-block`          | `null`                                         | String to prefix blocks with.                                                                                |
-| `$prefix-element`        | `"__"`                                         | String to prefix elements with.                                                                              |
-| `$prefix-modifier`       | `"_"`                                          | String to prefix modifiers with.                                                                             |
-| `$prefix-modifier-value` | `"_"`                                          | String to prefix modifier values with.                                                                       |
-| `$breakpoints`           | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the [`table_responsive_[key]` modifier](#table_responsive_key) uses to build its styles. |
+| Variable                    | Default                                        | Description                                                                                                  |
+| --------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `$prefix-block`             | `null`                                         | String to prefix blocks with.                                                                                |
+| `$prefix-element`           | `"__"`                                         | String to prefix elements with.                                                                              |
+| `$prefix-modifier`          | `"_"`                                          | String to prefix modifiers with.                                                                             |
+| `$prefix-modifier-value`    | `"_"`                                          | String to prefix modifier values with.                                                                       |
+| `$breakpoints`              | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the [`table_responsive_[key]` modifier](#table_responsive_key) uses to build its styles. |
+| `$padding`                  | `core.$padding`                                | Sets the padding property on the `<th>`, `<td>` and `<caption>` elements.                                    |
+| `$padding-sm`               | `core.$padding-sm`                             | Sets the padding property of the `table_size_sm` modifier.                                                   |
+| `$padding-lg`               | `core.$padding-lg`                             | Sets the padding property of the `table_size_lg` modifier.                                                   |
+| `$border-color`             | `core.$border-color`                           | Sets the border-color value in `$border` and `$border-alt` variables.                                        |
+| `$border`                   | `1px solid $border-color`                      | Sets the border property.                                                                                    |
+| `$border-alt`               | `1px dotted $border-color`                     | Sets the border property in between `<td>` elements of the `table_responsive_[key]` modifier.                |
+| `$background`               | `null`                                         | Sets the background-color property.                                                                          |
+| `$background-zebra`         | `rgba(core.$black, 0.03)`                      | Sets the background-color property of the `table_zebra` modifier.                                            |
+| `$background-hover`         | `rgba(core.$yellow, 0.3)`                      | Sets the background-color property of the `table_hover` modifier.                                            |
+| `$box-shadow-hover`         | `null`                                         | Sets the box-shadow property of the `table_hover` modifier.                                                  |
+| `$color`                    | `null`                                         | Sets the color property.                                                                                     |
+| `$color-hover`              | `null`                                         | Sets the color property of the `table_hover` modifier.                                                       |
+| `$th-font-weight`           | `core.font-weight("bold")`                     | Sets the font-weight property on the `<th>` element.                                                         |
+| `$th-background`            | `null`                                         | Sets the background-color property on the `<th>` element.                                                    |
+| `$td-background`            | `null`                                         | Sets the background-color property on the `<td>` element.                                                    |
+| `$mobile-label-attr`        | `"data-mobile-label"`                          | Attribute value to use for settings the mobile label of the `table_responsive_[key]` modifier.               |
+| `$mobile-label-width`       | `8rem`                                         | Sets the width property on the mobile label pseudo-element.                                                  |
+| `$mobile-label-background`  | `null`                                         | Sets the background-color property on the mobile label pseudo-element.                                       |
+| `$mobile-label-color`       | `null`                                         | Sets the color property on the mobile label pseudo-element.                                                  |
+| `$mobile-label-font-weight` | `core.font-weight("semi-bold")`                | Sets the font-weight property on the mobile label pseudo-element.                                            |
 
 #### `$breakpoints`
 

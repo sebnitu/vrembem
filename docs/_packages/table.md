@@ -334,6 +334,107 @@ Adds zebra styled rows to a table to help increase its readability. This is done
         </td>
         <td data-mobile-label="Desc">The breakpoints map the <a class="link" href="#table_responsive_key"><code class="code">table_responsive_[key]</code> modifier</a> uses to build its styles.</td>
       </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$padding</code></td>
+        <td data-mobile-label="Desc">Sets the padding property on the <code class="code">&lt;th&gt;</code>, <code class="code">&lt;td&gt;</code> and <code class="code">&lt;caption&gt;</code> elements.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$padding-sm</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$padding-sm</code></td>
+        <td data-mobile-label="Desc">Sets the padding property of the <code class="code">table_size_sm</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$padding-lg</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$padding-lg</code></td>
+        <td data-mobile-label="Desc">Sets the padding property of the <code class="code">table_size_lg</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$border-color</code></td>
+        <td data-mobile-label="Desc">Sets the border-color value in <code class="code">$border</code> and <code class="code">$border-alt</code> variables.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">1px solid $border-color</code></td>
+        <td data-mobile-label="Desc">Sets the border property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border-alt</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">1px dotted $border-color</code></td>
+        <td data-mobile-label="Desc">Sets the border property in between <code class="code">&lt;td&gt;</code> elements of the <code class="code">table_responsive_[key]</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the background-color property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$background-zebra</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.03)</code></td>
+        <td data-mobile-label="Desc">Sets the background-color property of the <code class="code">table_zebra</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$background-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$yellow, 0.3)</code></td>
+        <td data-mobile-label="Desc">Sets the background-color property of the <code class="code">table_hover</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the box-shadow property of the <code class="code">table_hover</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the color property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the color property of the <code class="code">table_hover</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$th-font-weight</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.font-weight("bold")</code></td>
+        <td data-mobile-label="Desc">Sets the font-weight property on the <code class="code">&lt;th&gt;</code> element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$th-background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the background-color property on the <code class="code">&lt;th&gt;</code> element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$td-background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the background-color property on the <code class="code">&lt;td&gt;</code> element.</td>
+      </tr>
+      <!-- [data-mobile-label] -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$mobile-label-attr</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">"data-mobile-label"</code></td>
+        <td data-mobile-label="Desc">Attribute value to use for settings the mobile label of the <code class="code">table_responsive_[key]</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$mobile-label-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">8rem</code></td>
+        <td data-mobile-label="Desc">Sets the width property on the mobile label pseudo-element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$mobile-label-background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the background-color property on the mobile label pseudo-element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$mobile-label-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the color property on the mobile label pseudo-element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$mobile-label-font-weight</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.font-weight("semi-bold")</code></td>
+        <td data-mobile-label="Desc">Sets the font-weight property on the mobile label pseudo-element.</td>
+      </tr>
     </tbody>
   </table>
 </div>
