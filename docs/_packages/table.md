@@ -24,13 +24,11 @@ For basic table styles, only the `table` component class is required. Use [prope
   <thead>
     <tr>
       <th>...</th>
-      <th>...</th>
       ...
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>...</td>
       <td>...</td>
       ...
     </tr>
