@@ -9,7 +9,8 @@ $_m: var.$prefix-modifier;
     z-index: 1;
   }
 
-  tbody tr:hover {
+  tbody tr:hover,
+  tbody tr:focus {
     z-index: 2;
     background-color: var.$background-hover;
     box-shadow: var.$box-shadow-hover;
