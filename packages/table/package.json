@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/table",
   "description": "A table component for displaying HTML tables.",
-  "version": "1.22.3",
+  "version": "1.26.0",
   "license": "MIT",
   "keywords": [
     "BEM",

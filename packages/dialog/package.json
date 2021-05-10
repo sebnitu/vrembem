@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/dialog",
   "description": "A component that facilitates a conversation between the system and the user. They often request information or an action from the user.",
-  "version": "1.22.3",
+  "version": "1.26.0",
   "license": "MIT",
   "keywords": [
     "BEM",

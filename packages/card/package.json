@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/card",
   "description": "The cards component provides a flexible and extensive content container with multiple variants and options.",
-  "version": "1.22.3",
+  "version": "1.26.0",
   "license": "MIT",
   "keywords": [
     "BEM",
