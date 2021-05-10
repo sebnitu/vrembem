@@ -14,9 +14,30 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.25.2 to CHANGELOG.md
+chore(release): add v1.26.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.26.0 (2021-05-10)
+
+#### :house: Refactor
+* `icon-action`
+  * [#574](https://github.com/sebnitu/vrembem/pull/574) Audit and refactor the icon-action component
+* `table`
+  * [#575](https://github.com/sebnitu/vrembem/pull/575) Audit and refactor the table component
+
+#### :books: Documentation
+* `card`, `dialog`
+  * [#573](https://github.com/sebnitu/vrembem/pull/573) Add README docs for dialog component
+* `card`
+  * [#572](https://github.com/sebnitu/vrembem/pull/572) Add README docs for card component
+* `base`, `breadcrumb`, `button-group`, `button`, `checkbox`, `drawer`, `grid`, `icon`, `level`, `media`, `modal`, `notice`, `radio`, `section`, `switch`
+  * [#571](https://github.com/sebnitu/vrembem/pull/571) Fix copy on shared table descriptions
+* `switch`
+  * [#556](https://github.com/sebnitu/vrembem/pull/556) Add README docs for switch component
+* `checkbox`, `radio`
+  * [#555](https://github.com/sebnitu/vrembem/pull/555) Add README docs for radio component
 
 
 ## v1.25.2 (2021-04-17)
