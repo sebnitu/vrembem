@@ -11,11 +11,13 @@ usage:
 
 ## input
 
+The most basic implementation of the input component consists of the `input` class applied to an `<input>` element.
+
 {% include demo_open.html %}
-<input class="input" placeholder="Text input..." type="text" />
+<input class="input" type="text" />
 {% include demo_switch.html %}
 ```html
-<input class="input" placeholder="Text input..." type="text" />
+<input class="input" type="text" />
 ```
 {% include demo_close.html %}
 

@@ -2788,21 +2788,6 @@ input::-moz-placeholder {
   width: auto;
 }
 
-.input_color_invert {
-  border-color: rgba(255, 255, 255, 0);
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: none;
-  color: #fff;
-}
-.input_color_invert:focus {
-  border-color: rgba(255, 255, 255, 0);
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: none;
-}
-.input_color_invert::placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-
 .input_size_sm {
   padding: 0.25rem 0.5rem;
   font-size: 0.875em;
