@@ -145,7 +145,7 @@ When the [`scroll-box` base module](/packages/base#scroll-box) isn't mobile frie
 
 {% include demo_open.html class_grid="grid_stack" class_parent="gap-y" %}
 <div class="scroll-box">
-  <table class="table table_responsive table_style_bordered">
+  <table class="table table_responsive_lg table_style_bordered">
     <thead>
       <tr>
         <th>#</th>
