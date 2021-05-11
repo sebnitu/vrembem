@@ -91,7 +91,7 @@ Modal dialogs are the actual dialog element within a modal and are defined using
 
 ## data-modal-focus
 
-By default, the modal dialog gains focus when a modal is opened. If focus on a specific element inside a modal is preferred, give that element the `data-modal-focus` attribute. Focus is returned to the element that activated the modal once the modal is closed.
+Modal dialogs are given focus on open by default as long as the `setTabindex` option is set to `true` or if the drawer dialog has `tabindex="-1"` set manually. Focus is returned to the element that activated the modal once the modal is closed.
 
 {% include demo_open.html class_grid="grid_stack" class_parent="padding border radius" %}
 <div class="level">
@@ -160,7 +160,7 @@ Required modals can not be closed without an explicit action. That means clickin
       <p>Required modals can not be closed without an explicit action. That means clicking on the background or pressing the escape key to close is disabled.</p>
       <div class="flex flex-justify-end">
         <div class="button-group">
-          <button data-modal-close class="button button_color_primary">I undersand</button>
+          <button data-modal-close class="button button_color_primary">I understand</button>
           <button data-modal-close class="button button_color_secondary">Cancel</button>
         </div>
       </div>
@@ -187,9 +187,9 @@ Modals on the web have an expected set of patterns that this component follows. 
 3. While the modal is active, contents obscured by the modal are inaccessible to all users.
 4. When a modal is closed, focus is returned to the initial trigger element that activated the dialog.
 
-To take full advantage of modal's accessibility features, it's recommened to that you set the `selectorInert` option to all elements that are ouside the modal. If you have modal markup throughout your document, use the `moveModals` option or `moveModals()` method to consolidate all modals in the DOM to a single location. All elements that match the `selectorInert` selector will be given the `inert` attribute as well as `aria-hidden="true"` when a modal is opened.
+To take full advantage of modal's accessibility features, it's recommended to that you set the `selectorInert` option to all elements that are outside the modal. If you have modal markup throughout your document, use the `moveModals` option or `moveModals()` method to consolidate all modals in the DOM to a single location. All elements that match the `selectorInert` selector will be given the `inert` attribute as well as `aria-hidden="true"` when a modal is opened.
 
-> Inert is not currently widly supportted by all browsers. Consider using a polyfill such as [wicg-inert](https://github.com/WICG/inert) or Google's [inert-polyfill](https://github.com/GoogleChrome/inert-polyfill).
+> Inert is not currently widely supported by all browsers. Consider using a polyfill such as [wicg-inert](https://github.com/WICG/inert) or Google's [inert-polyfill](https://github.com/GoogleChrome/inert-polyfill).
 
 ### Example
 
@@ -423,7 +423,6 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"_"</code></td>
         <td data-mobile-label="Desc">String to prefix modifier values with.</td>
       </tr>
-
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$zindex</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1000</code></td>
@@ -444,7 +443,6 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">56em</code></td>
         <td data-mobile-label="Desc">The large width applied to modals with <code class="code">_size_lg</code> modifier.</td>
       </tr>
-
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$travel</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">5em</code></td>
@@ -460,7 +458,6 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$transition-timing-function</code></td>
         <td data-mobile-label="Desc">Timing function used for modal transitions.</td>
       </tr>
-
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$background</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$night</code></td>
@@ -476,7 +473,6 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$box-shadow-24dp</code></td>
         <td data-mobile-label="Desc">Box shadow applied to modal dialog elements.</td>
       </tr>
-
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$aside-width</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">16em</code></td>
@@ -487,7 +483,6 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">90%</code></td>
         <td data-mobile-label="Desc">Max width applied to modals using <code class="code">_pos_left</code> and <code class="code">_pos_right</code> modifiers.</td>
       </tr>
-
     </tbody>
   </table>
 </div>
@@ -509,7 +504,6 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">false</code></td>
         <td data-mobile-label="Desc">Automatically initializes the instance.</td>
       </tr>
-
       <!-- Data attributes -->
       <tr>
         <td data-mobile-label="Key"><code class="code text-nowrap">dataModal</code></td>
@@ -542,7 +536,6 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
         <td data-mobile-label="Desc">Data attribute for making a modal required.</td>
       </tr>
     </tbody>
-
     <!-- State classes -->
     <tr>
       <td data-mobile-label="Key"><code class="code text-nowrap">stateOpened</code></td>
@@ -564,7 +557,6 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
       <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'is-closed'</code></td>
       <td data-mobile-label="Desc">Class used for closed state.</td>
     </tr>
-
     <!-- Selectors -->
     <tr>
       <td data-mobile-label="Key"><code class="code text-nowrap">selectorInert</code></td>
@@ -576,7 +568,6 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
       <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'body'</code></td>
       <td data-mobile-label="Desc">Applies <code class="code">overflow:hidden</code> styles on all matching elements when a modal is opened.</td>
     </tr>
-
     <!-- Feature toggles -->
     <tr>
       <td data-mobile-label="Key"><code class="code text-nowrap">customEventPrefix</code></td>
