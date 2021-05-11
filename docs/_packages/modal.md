@@ -155,7 +155,7 @@ Required modals can not be closed without an explicit action. That means clickin
 <button data-modal-open="modal-required" class="link">Modal required</button>
 <div data-modal="modal-required" data-modal-required class="modal">
   <div class="modal__dialog dialog">
-    <div class="dialog__body gap">
+    <div class="dialog__body gap-y">
       <h2 class="dialog__title">Required modal</h2>
       <p>Required modals can not be closed without an explicit action. That means clicking on the background or pressing the escape key to close is disabled.</p>
       <div class="flex flex-justify-end">
