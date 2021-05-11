@@ -20,25 +20,23 @@ if (document.getElementById('listjs')) {
 
   // Empty Notice
   // Displayed when the search returns no results
-  let noticeEmpty = document.querySelector('.notice_empty');
-  let noticeEmptyText = noticeEmpty.querySelector('.search_text');
+  const noticeEmpty = document.querySelector('.notice_empty');
+  const noticeEmptyText = noticeEmpty.querySelector('.search_text');
 
   // Clear search button
-  let filter = document.querySelector('.filter');
-  let search = document.querySelector('.filter .search');
-  let searchClear = document.querySelector('.filter .search_clear');
+  const filter = document.querySelector('.filter');
+  const search = document.querySelector('.filter .search');
+  const searchClear = document.querySelector('.filter .search_clear');
 
-  let isMenuLinkActive = () => {
-    let menuLinks = document.querySelectorAll('#listjs .menu__link');
-    let isActive = menuLinks.classList.contains('is-active');
-    return isActive;
+  const isMenuLinkActive = () => {
+    return document.querySelectorAll('#listjs .menu__link.is-active');
   };
 
   // On search complete callback
   list.on('searchComplete', () => {
 
     // Update the search text in empty notice
-    let value = search.value;
+    const value = search.value;
     noticeEmptyText.innerHTML = value;
     localStorage.setItem('SearchValue', value);
 
@@ -63,8 +61,8 @@ if (document.getElementById('listjs')) {
 
   // Click events for category and clears
   document.addEventListener('click', () => {
-    let trigger_search_clear = event.target.closest('.search_clear');
-    let trigger_search_cat = event.target.closest('.category');
+    const trigger_search_clear = event.target.closest('.search_clear');
+    const trigger_search_cat = event.target.closest('.category');
 
     if (trigger_search_clear) {
       search.value = '';
