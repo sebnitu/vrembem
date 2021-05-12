@@ -7,8 +7,8 @@
       $_color: $color;
     }
     $_value: var.$box-shadow-hover-values $_color;
-    @if var.$box-shadow-hover-inner {
-      $_value: $_value, inset var.$box-shadow-hover-inner;
+    @if var.$inset-box-shadow-hover {
+      $_value: $_value, inset var.$inset-box-shadow-hover;
     }
     box-shadow: $_value;
   }
@@ -19,8 +19,8 @@
       $_color: $color;
     }
     $_value: var.$box-shadow-focus-values $_color;
-    @if var.$box-shadow-focus-inner {
-      $_value: $_value, inset var.$box-shadow-focus-inner;
+    @if var.$inset-box-shadow-focus {
+      $_value: $_value, inset var.$inset-box-shadow-focus;
     }
     box-shadow: $_value;
   }
@@ -31,8 +31,8 @@
       $_color: $color;
     }
     $_value: var.$box-shadow-values $_color;
-    @if var.$box-shadow-inner {
-      $_value: $_value, inset var.$box-shadow-inner;
+    @if var.$inset-box-shadow {
+      $_value: $_value, inset var.$inset-box-shadow;
     }
     box-shadow: $_value;
   }

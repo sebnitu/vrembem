@@ -15,5 +15,5 @@ $_v: var.$prefix-modifier-value;
 .#{$_b}input#{$_m}type#{$_v}textarea {
   max-width: 100%;
   height: auto;
-  min-height: 2.375em; // rows="2"
+  min-height: var.$type-textarea-min-height; // rows="2"
 }

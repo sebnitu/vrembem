@@ -25,13 +25,14 @@ $background-focus: core.$white !default;
 
 $box-shadow-values: 0 0 0 1px !default;
 $box-shadow-color: core.$border-color-dark !default;
-$box-shadow-inner: 0 1px 3px rgba(core.$black, 0.1) !default;
 $box-shadow-hover-values: 0 0 0 1px !default;
 $box-shadow-hover-color: core.$border-color-darker !default;
-$box-shadow-hover-inner: 0 1px 3px rgba(core.$black, 0.1) !default;
 $box-shadow-focus-values: 0 0 0 2px !default;
 $box-shadow-focus-color: core.$primary !default;
-$box-shadow-focus-inner: null !default;
+
+$inset-box-shadow: 0 1px 3px rgba(core.$black, 0.1) !default;
+$inset-box-shadow-hover: 0 1px 3px rgba(core.$black, 0.1) !default;
+$inset-box-shadow-focus: null !default;
 
 $border: none !default;
 $border-color-hover: null !default;
@@ -39,5 +40,5 @@ $border-color-focus: null !default;
 $border-radius: (core.$border-radius - 1px) !default;
 
 $type-select-icon-color: core.$color !default;
-
 $type-select-icon: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="#{core.encodecolor($type-select-icon-color)}"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>' !default;
+$type-textarea-min-height: 2.375em !default;
