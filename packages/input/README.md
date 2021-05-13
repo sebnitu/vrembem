@@ -26,6 +26,22 @@ The most basic implementation of the input component consists of the `input` cla
 <input class="input" type="text" />
 ```
 
+#### `disabled`
+
+Adding the boolean `disabled` attribute to the input will provide visual indication that the input is not available for use.
+
+```html
+<input class="input" type="text" disabled />
+```
+
+#### `readonly`
+
+Adding the boolean `readonly` attribute to the input will provide visual indication that the user should not be able to edit the value of the input.
+
+```html
+<input class="input" type="text" readonly />
+```
+
 ## Modifiers
 
 ### `input_auto`
