@@ -34,6 +34,14 @@ $_b: var.$prefix-block;
     background-color: var.$background-focus;
   }
 
+  &[disabled] {
+    background-color: var.$background-disabled;
+  }
+
+  &[readonly] {
+    background-color: var.$background-readonly;
+  }
+
   &::placeholder {
     color: core.$color-subtle;
   }

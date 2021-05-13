@@ -22,6 +22,8 @@ $color-placeholder: core.$color-subtle !default;
 
 $background: core.$white !default;
 $background-focus: core.$white !default;
+$background-disabled: core.$shade !default;
+$background-readonly: core.$shade !default;
 
 $box-shadow-values: 0 0 0 1px !default;
 $box-shadow-color: core.$border-color-dark !default;

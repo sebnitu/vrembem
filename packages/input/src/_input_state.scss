@@ -6,6 +6,18 @@ $_b: var.$prefix-block;
 $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
+.#{$_b}input#{$_m}state#{$_v}info {
+  @include mix.box-shadow("default", rgba(core.$info, 1));
+
+  &:hover {
+    @include mix.box-shadow("hover", rgba(core.$info, 1));
+  }
+
+  &:focus {
+    @include mix.box-shadow("focus", rgba(core.$info, 1));
+  }
+}
+
 .#{$_b}input#{$_m}state#{$_v}success {
   @include mix.box-shadow("default", rgba(core.$success, 1));
 

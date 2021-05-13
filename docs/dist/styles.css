@@ -2780,6 +2780,12 @@ input::-moz-placeholder {
   outline: none;
   background-color: #fff;
 }
+.input[disabled] {
+  background-color: #f5f5f5;
+}
+.input[readonly] {
+  background-color: #f5f5f5;
+}
 .input::placeholder {
   color: #9e9e9e;
 }
@@ -2798,6 +2804,16 @@ input::-moz-placeholder {
   padding: 0.648rem;
   font-size: 1.125em;
   line-height: 1.625;
+}
+
+.input_state_info {
+  box-shadow: 0 0 0 1px #03a9f4, inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.input_state_info:hover {
+  box-shadow: 0 0 0 1px #03a9f4, inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.input_state_info:focus {
+  box-shadow: 0 0 0 2px #03a9f4;
 }
 
 .input_state_success {
