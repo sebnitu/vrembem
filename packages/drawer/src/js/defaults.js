@@ -28,6 +28,7 @@ export default {
   // Feature toggles
   breakpoints: breakpoints,
   customEventPrefix: 'drawer:',
+  eventListeners: true,
   stateSave: true,
   stateKey: 'DrawerState',
   setTabindex: true,

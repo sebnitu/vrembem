@@ -28,9 +28,9 @@ export default class Drawer {
     this.stateSet();
     this.setTabindex(this.settings.setTabindex);
     this.breakpoint.init();
-    document.addEventListener('click', this.__handlerClick, false);
-    document.addEventListener('touchend', this.__handlerClick, false);
-    document.addEventListener('keyup', this.__handlerKeyup, false);
+    if (this.settings.eventListeners) {
+      this.initEventListener();
+    }
   }
 
   destroy() {
@@ -38,9 +38,9 @@ export default class Drawer {
     this.memory = {};
     this.state = {};
     localStorage.removeItem(this.settings.stateKey);
-    document.removeEventListener('click', this.__handlerClick, false);
-    document.removeEventListener('touchend', this.__handlerClick, false);
-    document.removeEventListener('keyup', this.__handlerKeyup, false);
+    if (this.settings.eventListeners) {
+      this.removeEventListener();
+    }
   }
 
   /**
@@ -66,6 +66,22 @@ export default class Drawer {
       [data-${this.settings.dataDialog}]
     `;
     setTabindex(state, selectorTabindex);
+  }
+
+  /**
+   * Event listeners
+   */
+
+  initEventListener() {
+    document.addEventListener('click', this.__handlerClick, false);
+    document.addEventListener('touchend', this.__handlerClick, false);
+    document.addEventListener('keyup', this.__handlerKeyup, false);
+  }
+
+  destroyEventListener() {
+    document.removeEventListener('click', this.__handlerClick, false);
+    document.removeEventListener('touchend', this.__handlerClick, false);
+    document.removeEventListener('keyup', this.__handlerKeyup, false);
   }
 
   /**
