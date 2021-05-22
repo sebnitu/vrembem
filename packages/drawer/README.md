@@ -252,6 +252,7 @@ Drawers can slide in from the left or right using the position modifiers:
 | `selectorOverflow`  | `null`                | Applies `overflow:hidden` styles on all matching elements when a modal drawer is opened.             |
 | `breakpoints`       | `core.breakpoints`    | An object with key/value pairs defining a breakpoints set.                                           |
 | `customEventPrefix` | `'drawer:'`           | Prefix to be used on custom events.                                                                  |
+| `eventListeners`    | `true`                | Whether or not to set the document event listeners on init.                                          |
 | `stateSave`         | `true`                | Toggles the save state feature.                                                                      |
 | `stateKey`          | `"DrawerState"`       | Defines the localStorage key where drawer states are saved.                                          |
 | `setTabindex`       | `true`                | Whether or not to set `tabindex="-1"` on all drawer dialog elements on init.                         |
@@ -298,6 +299,27 @@ const drawer = new Drawer();
 drawer.init();
 // ...
 drawer.destroy();
+```
+
+### `drawer.initEventListeners()`
+
+Set the document event listeners for click, touchend and keyup events.
+
+```js
+const drawer = new Drawer({ eventListeners: false });
+drawer.init();
+drawer.initEventListeners();
+```
+
+### `drawer.destroyEventListeners()`
+
+Remove the document event listeners for click, touchend and keyup events.
+
+```js
+const drawer = new Drawer();
+drawer.init();
+// ...
+drawer.destroyEventListeners();
 ```
 
 ### `drawer.toggle(key)`

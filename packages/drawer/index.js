@@ -44,6 +44,22 @@ export default class Drawer {
   }
 
   /**
+   * Event listeners
+   */
+
+  initEventListeners() {
+    document.addEventListener('click', this.__handlerClick, false);
+    document.addEventListener('touchend', this.__handlerClick, false);
+    document.addEventListener('keyup', this.__handlerKeyup, false);
+  }
+
+  destroyEventListeners() {
+    document.removeEventListener('click', this.__handlerClick, false);
+    document.removeEventListener('touchend', this.__handlerClick, false);
+    document.removeEventListener('keyup', this.__handlerKeyup, false);
+  }
+
+  /**
    * Helpers
    */
 
@@ -66,22 +82,6 @@ export default class Drawer {
       [data-${this.settings.dataDialog}]
     `;
     setTabindex(state, selectorTabindex);
-  }
-
-  /**
-   * Event listeners
-   */
-
-  initEventListeners() {
-    document.addEventListener('click', this.__handlerClick, false);
-    document.addEventListener('touchend', this.__handlerClick, false);
-    document.addEventListener('keyup', this.__handlerKeyup, false);
-  }
-
-  destroyEventListeners() {
-    document.removeEventListener('click', this.__handlerClick, false);
-    document.removeEventListener('touchend', this.__handlerClick, false);
-    document.removeEventListener('keyup', this.__handlerKeyup, false);
   }
 
   /**
