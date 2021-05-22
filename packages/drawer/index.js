@@ -29,7 +29,7 @@ export default class Drawer {
     this.setTabindex(this.settings.setTabindex);
     this.breakpoint.init();
     if (this.settings.eventListeners) {
-      this.initEventListener();
+      this.initEventListeners();
     }
   }
 
@@ -39,7 +39,7 @@ export default class Drawer {
     this.state = {};
     localStorage.removeItem(this.settings.stateKey);
     if (this.settings.eventListeners) {
-      this.removeEventListener();
+      this.destroyEventListeners();
     }
   }
 
@@ -72,13 +72,13 @@ export default class Drawer {
    * Event listeners
    */
 
-  initEventListener() {
+  initEventListeners() {
     document.addEventListener('click', this.__handlerClick, false);
     document.addEventListener('touchend', this.__handlerClick, false);
     document.addEventListener('keyup', this.__handlerKeyup, false);
   }
 
-  destroyEventListener() {
+  destroyEventListeners() {
     document.removeEventListener('click', this.__handlerClick, false);
     document.removeEventListener('touchend', this.__handlerClick, false);
     document.removeEventListener('keyup', this.__handlerKeyup, false);
