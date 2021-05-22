@@ -103,8 +103,13 @@ export default class Drawer {
   async toggle(drawerKey) {
     const drawer = this.getDrawer(drawerKey);
     if (!drawer) return this.drawerNotFound(drawerKey);
-    const isOpen = hasClass(drawer, this.settings.stateOpened);
-    if (!isOpen) {
+    const isClosed = !hasClass(
+      drawer,
+      this.settings.stateOpened,
+      this.settings.stateOpening,
+      this.settings.stateClosing
+    );
+    if (isClosed) {
       return this.open(drawer);
     } else {
       return this.close(drawer);
