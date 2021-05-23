@@ -47,6 +47,23 @@ A supplemental icon-action modifier that allows base component and the [`icon-ac
 - `icon-action icon-action_invert`
 - `icon-action icon-action_invert icon-action_subtle`
 
+### `icon-action_state_[value]`
+
+Adds styles for changing the look and feel of an icon-action to better reflect the urgency or status of the action.
+
+```html
+<button class="icon-action icon-action_state_info" aria-label="...">
+  ...
+</button>
+```
+
+#### Available Variations
+
+- `icon-action_state_info`
+- `icon-action_state_success`
+- `icon-action_state_caution`
+- `icon-action_state_danger`
+
 ### `icon-action_subtle`
 
 Applies more subtle button styles to the icon-action. Can also be inverted using the [`icon-action_invert`](#icon-action_invert) supplemental modifier.
@@ -61,23 +78,6 @@ Applies more subtle button styles to the icon-action. Can also be inverted using
 
 - `icon-action icon-action_subtle`
 - `icon-action icon-action_subtle icon-action_invert`
-
-### `icon-action_type_[value]`
-
-Adds styles for changing the look and feel of an icon-action to better reflect the urgency or status of the action.
-
-```html
-<button class="icon-action icon-action_type_info" aria-label="...">
-  ...
-</button>
-```
-
-#### Available Variations
-
-- `icon-action_type_info`
-- `icon-action_type_success`
-- `icon-action_type_caution`
-- `icon-action_type_danger`
 
 ## Customization
 
