@@ -5,7 +5,7 @@ $_b: var.$prefix-block;
 $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
-.#{$_b}icon-action#{$_m}type#{$_v}info {
+.#{$_b}icon-action#{$_m}state#{$_v}info {
   background: core.$info;
   color: core.color-switch(core.$info);
 
@@ -22,7 +22,7 @@ $_v: var.$prefix-modifier-value;
   }
 }
 
-.#{$_b}icon-action#{$_m}type#{$_v}success {
+.#{$_b}icon-action#{$_m}state#{$_v}success {
   background: core.$success;
   color: core.color-switch(core.$success);
 
@@ -39,7 +39,7 @@ $_v: var.$prefix-modifier-value;
   }
 }
 
-.#{$_b}icon-action#{$_m}type#{$_v}caution {
+.#{$_b}icon-action#{$_m}state#{$_v}caution {
   background: core.$caution;
   color: core.color-switch(core.$caution);
 
@@ -56,7 +56,7 @@ $_v: var.$prefix-modifier-value;
   }
 }
 
-.#{$_b}icon-action#{$_m}type#{$_v}danger {
+.#{$_b}icon-action#{$_m}state#{$_v}danger {
   background: core.$danger;
   color: core.color-switch(core.$danger);
 

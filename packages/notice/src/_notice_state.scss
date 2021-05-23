@@ -5,22 +5,22 @@ $_b: var.$prefix-block;
 $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
-.#{$_b}notice#{$_m}type#{$_v}info {
+.#{$_b}notice#{$_m}state#{$_v}info {
   background-color: core.$info-lighter;
   color: core.$info-darker;
 }
 
-.#{$_b}notice#{$_m}type#{$_v}success {
+.#{$_b}notice#{$_m}state#{$_v}success {
   background-color: core.$success-lighter;
   color: core.$success-darker;
 }
 
-.#{$_b}notice#{$_m}type#{$_v}caution {
+.#{$_b}notice#{$_m}state#{$_v}caution {
   background-color: core.$caution-lighter;
   color: core.$caution-darker;
 }
 
-.#{$_b}notice#{$_m}type#{$_v}danger {
+.#{$_b}notice#{$_m}state#{$_v}danger {
   background-color: core.$danger-lighter;
   color: core.$danger-darker;
 }

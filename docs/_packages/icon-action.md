@@ -41,8 +41,14 @@ A supplemental icon-action modifier that allows base component and the [`icon-ac
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="padding radius background-night">
-  <button class="icon-action icon-action_invert" aria-label="Close button">
+  <button class="icon-action icon-action_invert" aria-label="Dismiss component">
     {% include icon.html icon="x" %}
+  </button>
+  <button class="icon-action icon-action_invert" aria-label="Minimize component">
+    {% include icon.html icon="minus" %}
+  </button>
+  <button class="icon-action icon-action_invert" aria-label="Toggle fullscreen mode">
+    {% include icon.html icon="maximize-2" %}
   </button>
 </div>
 {% include demo_switch.html %}
@@ -56,6 +62,41 @@ A supplemental icon-action modifier that allows base component and the [`icon-ac
 
 - `icon-action icon-action_invert`
 - `icon-action icon-action_invert icon-action_subtle`
+
+## icon-action_state_[value]
+
+Adds styles for changing the look and feel of an icon-action to better reflect the urgency or status of the action.
+
+{% include demo_open.html class_grid="grid_stack" %}
+<div class="level">
+  <button class="icon-action icon-action_state_info" aria-label="Helpful information">
+    {% include icon.html icon="anchor" %}
+  </button>
+  <button class="icon-action icon-action_state_success" aria-label="Fullscreen">
+    {% include icon.html icon="maximize-2" %}
+  </button>
+  <button class="icon-action icon-action_state_caution" aria-label="Minimize">
+    {% include icon.html icon="minus" %}
+  </button>
+  <button class="icon-action icon-action_state_danger" aria-label="Close">
+    {% include icon.html icon="x" %}
+  </button>
+</div>
+{% include demo_switch.html %}
+```html
+<button class="icon-action icon-action_state_info" aria-label="...">...</button>
+<button class="icon-action icon-action_state_success" aria-label="...">...</button>
+<button class="icon-action icon-action_state_caution" aria-label="...">...</button>
+<button class="icon-action icon-action_state_danger" aria-label="...">...</button>
+```
+{% include demo_close.html %}
+
+### Available Variations
+
+- `icon-action_state_info`
+- `icon-action_state_success`
+- `icon-action_state_caution`
+- `icon-action_state_danger`
 
 ## icon-action_subtle
 
@@ -83,41 +124,6 @@ Applies more subtle button styles to the icon-action. Can also be inverted using
 
 - `icon-action icon-action_subtle`
 - `icon-action icon-action_subtle icon-action_invert`
-
-## icon-action_type_[value]
-
-Adds styles for changing the look and feel of an icon-action to better reflect the urgency or status of the action.
-
-{% include demo_open.html class_grid="grid_stack" %}
-<div class="level">
-  <button class="icon-action icon-action_type_info" aria-label="Helpful information">
-    {% include icon.html icon="anchor" %}
-  </button>
-  <button class="icon-action icon-action_type_success" aria-label="Fullscreen">
-    {% include icon.html icon="maximize-2" %}
-  </button>
-  <button class="icon-action icon-action_type_caution" aria-label="Minimize">
-    {% include icon.html icon="minus" %}
-  </button>
-  <button class="icon-action icon-action_type_danger" aria-label="Close">
-    {% include icon.html icon="x" %}
-  </button>
-</div>
-{% include demo_switch.html %}
-```html
-<button class="icon-action icon-action_type_info" aria-label="...">...</button>
-<button class="icon-action icon-action_type_success" aria-label="...">...</button>
-<button class="icon-action icon-action_type_caution" aria-label="...">...</button>
-<button class="icon-action icon-action_type_danger" aria-label="...">...</button>
-```
-{% include demo_close.html %}
-
-### Available Variations
-
-- `icon-action_type_info`
-- `icon-action_type_success`
-- `icon-action_type_caution`
-- `icon-action_type_danger`
 
 ## Sass Variables
 

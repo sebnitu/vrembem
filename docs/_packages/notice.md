@@ -11,7 +11,7 @@ usage:
 
 ## notice
 
-The most basic imlementation of the notice component consists of the `notice` container element wrapping text content.
+The most basic implementation of the notice component consists of the `notice` container element wrapping text content.
 
 {% include demo_open.html %}
 <div class="notice">
@@ -48,7 +48,7 @@ Add a title to your notice using the `notice__title` element.
 For cases where a notice message should be displayed alongside an icon or image, try combining it with the media component.
 
 {% include demo_open.html class_parent="gap-y" %}
-<div class="notice notice_type_danger">
+<div class="notice notice_state_danger">
   <div class="media media_gap_sm">
     <div class="media__obj">
       {% include icon.html icon="alert-circle" %}
@@ -58,7 +58,7 @@ For cases where a notice message should be displayed alongside an icon or image,
     </div>
   </div>
 </div>
-<div class="notice notice_type_info">
+<div class="notice notice_state_info">
   <div class="media media_gap_sm">
     <div class="media__body">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
@@ -119,34 +119,34 @@ When a notice needs to be dismissible, try adding the icon-action component alon
 
 > Dismissible JavaScript behavior is not provided.
 
-## notice_type_[value]
+## notice_state_[value]
 
 A type modifier that changes the visual context of a notice.
 
 {% include demo_open.html class_parent="gap-y" %}
 
-<div class="notice notice_type_info">
+<div class="notice notice_state_info">
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est.</p>
 </div>
 
-<div class="notice notice_type_success">
+<div class="notice notice_state_success">
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est.</p>
 </div>
 
-<div class="notice notice_type_caution">
+<div class="notice notice_state_caution">
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est.</p>
 </div>
 
-<div class="notice notice_type_danger">
+<div class="notice notice_state_danger">
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est.</p>
 </div>
 
 {% include demo_switch.html %}
 ```html
-<div class="notice notice_type_info">...</div>
-<div class="notice notice_type_success">...</div>
-<div class="notice notice_type_caution">...</div>
-<div class="notice notice_type_danger">...</div>
+<div class="notice notice_state_info">...</div>
+<div class="notice notice_state_success">...</div>
+<div class="notice notice_state_caution">...</div>
+<div class="notice notice_state_danger">...</div>
 ```
 {% include demo_close.html %}
 

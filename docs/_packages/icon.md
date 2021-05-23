@@ -9,7 +9,7 @@ usage:
   scss: true
 ---
 
-<div class="notice notice_type_info">
+<div class="notice notice_state_info">
   <div class="notice__body type">
     <p>You can use any icon set but may require changing default icon variables. Default styles are intended for <a href="https://feathericons.com/">feather icons</a> which is a great open source option.</p>
   </div>
