@@ -49,7 +49,7 @@ core.removeClass(el, 'some-class');
 
 ## Sass Variables
 
-<div class="notice notice_type_caution">
+<div class="notice notice_state_caution">
   <div class="notice__body">
     <div class="media media_stack_lg media_gap_xs">
       <div class="media__body media media_gap_xs">
@@ -69,7 +69,7 @@ core.removeClass(el, 'some-class');
 
 ## Modules
 
-<div class="notice notice_type_caution">
+<div class="notice notice_state_caution">
   <div class="notice__body">
     <div class="media media_stack_lg media_gap_xs">
       <div class="media__body media media_gap_xs">

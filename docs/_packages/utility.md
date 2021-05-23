@@ -714,27 +714,27 @@ Display utilities allow you to toggle the display property on an element with an
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="grid grid_gap_sm">
   <div class="grid__item grid__item_fill span-auto">
-    <div class="notice notice_type_info flex flex-align-center">
+    <div class="notice notice_state_info flex flex-align-center">
       {% include icon.html icon="eye" %}
     </div>
   </div>
   <div class="grid__item">
-    <div class="notice notice_type_success display-block display-none-xs">
+    <div class="notice notice_state_success display-block display-none-xs">
       <p>Small Mobile</p>
     </div>
-    <div class="notice notice_type_success display-none display-block-xs display-none-sm">
+    <div class="notice notice_state_success display-none display-block-xs display-none-sm">
       <p>Small Mobile &rarr; Mobile</p>
     </div>
-    <div class="notice notice_type_success display-none display-block-sm display-none-md">
+    <div class="notice notice_state_success display-none display-block-sm display-none-md">
       <p>Mobile &rarr; Tablet</p>
     </div>
-    <div class="notice notice_type_success display-none display-block-md display-none-lg">
+    <div class="notice notice_state_success display-none display-block-md display-none-lg">
       <p>Tablet &rarr; Desktop</p>
     </div>
-    <div class="notice notice_type_success display-none display-block-lg display-none-xl">
+    <div class="notice notice_state_success display-none display-block-lg display-none-xl">
       <p>Desktop &rarr; Large Desktop</p>
     </div>
-    <div class="notice notice_type_success display-none display-block-xl">
+    <div class="notice notice_state_success display-none display-block-xl">
       <p>Large Desktop</p>
     </div>
   </div>

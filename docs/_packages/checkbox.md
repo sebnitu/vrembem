@@ -31,7 +31,7 @@ Checkboxes are composed using a set of `<span>` elements alongside the native `<
 ```
 {% include demo_close.html %}
 
-<div class="notice notice_type_info type"  markdown="1">
+<div class="notice notice_state_info type"  markdown="1">
 For indeterminate checkboxes, apply the `aria-checked="mixed"` attribute to the `<input type="checkbox">` element and initialize the checkbox component script.
 </div>
 

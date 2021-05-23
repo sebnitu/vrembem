@@ -20,7 +20,7 @@ npm install @vrembem/notice
 
 ### Markup
 
-The most basic imlementation component consists of the `notice` container element wrapping text content.
+The most basic implementation component consists of the `notice` container element wrapping text content.
 
 ```html
 <div class="notice">
@@ -75,22 +75,22 @@ When a notice needs to be dismissible, try adding the icon-action component alon
 
 ## Modifiers
 
-### `notice_type_[value]`
+### `notice_state_[value]`
 
 A type modifier that changes the visual context of a notice.
 
 ```html
-<div class="notice notice_type_danger">
+<div class="notice notice_state_danger">
   <p>An error has occurred!</p>
 </div>
 ```
 
 #### Available Variations
 
-- `notice_type_info`
-- `notice_type_success`
-- `notice_type_caution`
-- `notice_type_danger`
+- `notice_state_info`
+- `notice_state_success`
+- `notice_state_caution`
+- `notice_state_danger`
 
 ## Customization
 

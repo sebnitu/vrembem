@@ -3908,22 +3908,22 @@ input::-moz-placeholder {
   line-height: 1.625;
 }
 
-.notice_type_info {
+.notice_state_info {
   background-color: #e1f5fe;
   color: #01579b;
 }
 
-.notice_type_success {
+.notice_state_success {
   background-color: #e8f5e9;
   color: #1b5e20;
 }
 
-.notice_type_caution {
+.notice_state_caution {
   background-color: #fff3e0;
   color: #bf360c;
 }
 
-.notice_type_danger {
+.notice_state_danger {
   background-color: #ffebee;
   color: #b71c1c;
 }
