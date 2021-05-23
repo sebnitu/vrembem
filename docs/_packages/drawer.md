@@ -336,7 +336,6 @@ Drawers can slide in from the left or right using the position modifiers:
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"_"</code></td>
         <td data-mobile-label="Desc">String to prefix modifier values with.</td>
       </tr>
-
       <!-- General styles -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$width</code></td>
@@ -383,14 +382,12 @@ Drawers can slide in from the left or right using the position modifiers:
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$transition-timing-function</code></td>
         <td data-mobile-label="Desc">Timing function used for drawer transitions.</td>
       </tr>
-
       <!-- drawer_wrapper styles -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$wrapper-height</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">100%</code></td>
         <td data-mobile-label="Desc">The height given to drawer wrapper element.</td>
       </tr>
-
       <!-- drawer_modal styles -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$modal-zindex</code></td>
@@ -432,7 +429,6 @@ Drawers can slide in from the left or right using the position modifiers:
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">0.8</code></td>
         <td data-mobile-label="Desc">The alpha channel for the modal screen.</td>
       </tr>
-
     </tbody>
   </table>
 </div>
@@ -454,7 +450,6 @@ Drawers can slide in from the left or right using the position modifiers:
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">false</code></td>
         <td data-mobile-label="Desc">Automatically initializes the instance.</td>
       </tr>
-
       <!-- Data attributes -->
       <tr>
         <td data-mobile-label="Key"><code class="code text-nowrap">dataDrawer</code></td>
@@ -492,7 +487,6 @@ Drawers can slide in from the left or right using the position modifiers:
         <td data-mobile-label="Desc">Data attribute for setting a drawer's focus element.</td>
       </tr>
     </tbody>
-
     <!-- State classes -->
     <tr>
       <td data-mobile-label="Key"><code class="code text-nowrap">stateOpen</code></td>
@@ -514,14 +508,12 @@ Drawers can slide in from the left or right using the position modifiers:
       <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'is-closed'</code></td>
       <td data-mobile-label="Desc">Class used for closed state.</td>
     </tr>
-
     <!-- Classes -->
     <tr>
       <td data-mobile-label="Key"><code class="code text-nowrap">classModal</code></td>
       <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'drawer_modal'</code></td>
       <td data-mobile-label="Desc">Class used for toggling the drawer modal state.</td>
     </tr>
-
     <!-- Selectors -->
     <tr>
       <td data-mobile-label="Key"><code class="code text-nowrap">selectorInert</code></td>
@@ -533,7 +525,6 @@ Drawers can slide in from the left or right using the position modifiers:
       <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
       <td data-mobile-label="Desc">Applies <code class="code">overflow:hidden</code> styles on all matching elements when a modal drawer is opened.</td>
     </tr>
-
     <!-- Feature toggles -->
     <tr>
       <td data-mobile-label="Key"><code class="code text-nowrap">breakpoints</code></td>
@@ -544,6 +535,11 @@ Drawers can slide in from the left or right using the position modifiers:
       <td data-mobile-label="Key"><code class="code text-nowrap">customEventPrefix</code></td>
       <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'drawer:'</code></td>
       <td data-mobile-label="Desc">Prefix to be used on custom events.</td>
+    </tr>
+    <tr>
+      <td data-mobile-label="Key"><code class="code text-nowrap">eventListeners</code></td>
+      <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">true</code></td>
+      <td data-mobile-label="Desc">Whether or not to set the document event listeners on init.</td>
     </tr>
     <tr>
       <td data-mobile-label="Key"><code class="code text-nowrap">stateSave</code></td>
@@ -609,6 +605,27 @@ const drawer = new Drawer();
 drawer.init();
 // ...
 drawer.destroy();
+```
+
+### `drawer.initEventListeners()`
+
+Set the document event listeners for click, touchend and keyup events.
+
+```js
+const drawer = new Drawer({ eventListeners: false });
+drawer.init();
+drawer.initEventListeners();
+```
+
+### `drawer.destroyEventListeners()`
+
+Remove the document event listeners for click, touchend and keyup events.
+
+```js
+const drawer = new Drawer();
+drawer.init();
+// ...
+drawer.destroyEventListeners();
 ```
 
 ### `drawer.toggle(key)`

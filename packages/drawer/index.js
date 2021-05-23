@@ -28,9 +28,9 @@ export default class Drawer {
     this.stateSet();
     this.setTabindex(this.settings.setTabindex);
     this.breakpoint.init();
-    document.addEventListener('click', this.__handlerClick, false);
-    document.addEventListener('touchend', this.__handlerClick, false);
-    document.addEventListener('keyup', this.__handlerKeyup, false);
+    if (this.settings.eventListeners) {
+      this.initEventListeners();
+    }
   }
 
   destroy() {
@@ -38,6 +38,22 @@ export default class Drawer {
     this.memory = {};
     this.state = {};
     localStorage.removeItem(this.settings.stateKey);
+    if (this.settings.eventListeners) {
+      this.destroyEventListeners();
+    }
+  }
+
+  /**
+   * Event listeners
+   */
+
+  initEventListeners() {
+    document.addEventListener('click', this.__handlerClick, false);
+    document.addEventListener('touchend', this.__handlerClick, false);
+    document.addEventListener('keyup', this.__handlerKeyup, false);
+  }
+
+  destroyEventListeners() {
     document.removeEventListener('click', this.__handlerClick, false);
     document.removeEventListener('touchend', this.__handlerClick, false);
     document.removeEventListener('keyup', this.__handlerKeyup, false);
@@ -103,8 +119,8 @@ export default class Drawer {
   async toggle(drawerKey) {
     const drawer = this.getDrawer(drawerKey);
     if (!drawer) return this.drawerNotFound(drawerKey);
-    const isOpen = hasClass(drawer, this.settings.stateOpened);
-    if (!isOpen) {
+    const isClosed = !hasClass(drawer, this.settings.stateOpened);
+    if (isClosed) {
       return this.open(drawer);
     } else {
       return this.close(drawer);
