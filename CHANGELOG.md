@@ -14,9 +14,20 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.26.0 to CHANGELOG.md
+chore(release): add v1.27.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.27.0 (2021-05-23)
+
+#### :tada: New Feature
+* `drawer`
+  * [#587](https://github.com/sebnitu/vrembem/pull/587) Add ability to disable event listeners on init
+
+#### :books: Documentation
+* `drawer`, `modal`
+  * [#579](https://github.com/sebnitu/vrembem/pull/579) Add copy about tabindex -1 to modal and fix typos
 
 
 ## v1.26.0 (2021-05-10)
