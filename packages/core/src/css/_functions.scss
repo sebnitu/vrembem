@@ -62,7 +62,7 @@
   $maps: ($map,);
   $result: null;
   @if meta.type-of(list.nth($keys, -1)) == "map" {
-    @warn "The last key you specified is a map; it will be overrided with `#{$value}`.";
+    @warn "The last key you specified is a map; it will be overridden with `#{$value}`.";
   }
   @if list.length($keys) == 1 {
     @return map.merge($map, ($keys: $value));
@@ -90,7 +90,7 @@
 /// @return {Number} - Unitless number
 @function strip-unit($number) {
   @if meta.type-of($number) == "number" and not math.is-unitless($number) {
-    @return $number / ($number * 0 + 1);
+    @return math.div($number, $number * 0 + 1);
   }
   @return $number;
 }
@@ -106,7 +106,7 @@
   @if math.is-unitless($base) {
     $base: 1px * $base;
   }
-  $px: ($px / $base) * 1em;
+  $px: math.div($px, $base) * 1em;
   @return strip-unit($px) * 1em;
 }
 
@@ -120,7 +120,7 @@
   @if math.is-unitless(var.$font-size) {
     $font-size: 1px * var.$font-size;
   }
-  $px: ($px / $font-size) * 1rem;
+  $px: math.div($px, $font-size) * 1rem;
   @return strip-unit($px) * 1rem;
 }
 
@@ -135,7 +135,7 @@
   @if math.is-unitless($base) {
     $base: 1px * $base;
   }
-  $em: ($em * $base) / 1px;
+  $em: math.div($em * $base, 1px);
   @return strip-unit($em) * 1px;
 }
 
@@ -234,7 +234,7 @@
 ) {
   // Checkout base color to lightness threshold
   @if (color.lightness($background-color) > var.$lightness-threshold) {
-    // Lighter backgorund, return dark color
+    // Lighter background, return dark color
     @return $color-dark;
   } @else {
     // Darker background, return light color
