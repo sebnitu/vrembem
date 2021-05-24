@@ -50,7 +50,38 @@ Adding the boolean `readonly` attribute to the input will provide visual indicat
 
 ### `input_state_[value]`
 
+Adds styles for changing the look and feel of an input to better reflect the urgency or status.
+
+```html
+<input class="input input_state_danger" type="text">
+```
+
+### Available Variations
+
+- `input_state_info`
+- `input_state_success`
+- `input_state_caution`
+- `input_state_danger`
+
 ### `input_type_[value]`
+
+Adds unique styles for various form input types. These form controls share styles with the basic form input such as [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) and [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) HTML elements.
+
+```html
+<select class="input input_type_select" name="">
+  <option value="">Select one</option>
+  <option value="1">Option 1</option>
+  <option value="2">Option 2</option>
+  <option value="3">Option 3</option>
+</select>
+
+<textarea class="input input_type_textarea" rows="3"></textarea>
+```
+
+### Available Variations
+
+- `input_type_select`
+- `input_type_textarea`
 
 ## Customization
 
