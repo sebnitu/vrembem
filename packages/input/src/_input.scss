@@ -9,6 +9,7 @@ $_b: var.$prefix-block;
   position: relative;
   display: block;
   width: 100%;
+  max-width: 100%;
   padding: var.$padding;
   transition: box-shadow core.$transition-duration core.$transition-timing-function;
   border: var.$border;

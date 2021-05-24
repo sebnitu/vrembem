@@ -2759,6 +2759,7 @@ input::-moz-placeholder {
   position: relative;
   display: block;
   width: 100%;
+  max-width: 100%;
   padding: 0.5em 0.5em;
   transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: none;
@@ -2855,7 +2856,6 @@ input::-moz-placeholder {
 }
 
 .input_type_textarea {
-  max-width: 100%;
   height: auto;
   min-height: 2.375em;
 }
