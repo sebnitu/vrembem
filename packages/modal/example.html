@@ -290,19 +290,11 @@
 
     document.addEventListener('click', async () => {
       if (event.target.classList.contains('api-open')) {
-        // return modal.open('modal-api').then(console.log);
-        modal.open('modal-api').then((result) => {
-          console.log({ result });
-        });
-        return;
+        return modal.open('modal-api').then(console.log);
       }
 
       if (event.target.classList.contains('api-close')) {
-        // return modal.close().then(console.log);
-        modal.close().then((result) => {
-          console.log({ result });
-        });
-        return;
+        return modal.close().then(console.log);
       }
     });
   </script>
