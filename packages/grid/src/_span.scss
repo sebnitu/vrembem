@@ -1,3 +1,4 @@
+@use "sass:math";
 @use "@vrembem/core";
 @use "./variables" as var;
 
@@ -16,7 +17,7 @@ $_c: var.$class-span;
     }
     #{$_s} {
       flex: none;
-      width: (100% * ($i/var.$span-columns));
+      width: (100% * (math.div($i, var.$span-columns)));
     }
   }
 
@@ -33,7 +34,7 @@ $_c: var.$class-span;
         }
         #{$_s} {
           flex: none;
-          width: (100% * ($i/var.$span-columns));
+          width: (100% * (math.div($i, var.$span-columns)));
         }
       }
     }
