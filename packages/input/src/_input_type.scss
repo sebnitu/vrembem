@@ -15,15 +15,15 @@ $_v: var.$prefix-modifier-value;
 .#{$_b}input#{$_m}type#{$_v}textarea {
   min-width: var.$type-textarea-min-width;
   height: auto;
-  min-height: var.$min-size;
+  min-height: var.$height;
 
   &.#{$_b}input#{$_m}size#{$_v}sm {
     height: auto;
-    min-height: var.$size-sm-min-size;
+    min-height: var.$size-sm-height;
   }
 
   &.#{$_b}input#{$_m}size#{$_v}lg {
     height: auto;
-    min-height: var.$size-lg-min-size;
+    min-height: var.$size-lg-height;
   }
 }

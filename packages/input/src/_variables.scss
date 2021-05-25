@@ -6,7 +6,7 @@ $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
-$min-size: 2.5rem !default;
+$height: 2.5rem !default;
 $padding: list.nth(core.$padding, 1) !default;
 $transition: box-shadow core.$transition-duration-short core.$transition-timing-function !default;
 $border-width: core.$border-width !default;
@@ -41,11 +41,11 @@ $disabled-background: core.$shade !default;
 $readonly-background: core.$shade !default;
 
 // input_size_[value]
-$size-sm-min-size: 1.875rem !default;
+$size-sm-height: 1.875rem !default;
 $size-sm-padding: list.nth(core.$padding-sm, 1) !default;
 $size-sm-font-size: core.$font-size-sm !default;
 $size-sm-line-height: core.$line-height-sm !default;
-$size-lg-min-size: 3.125rem !default;
+$size-lg-height: 3.125rem !default;
 $size-lg-padding: list.nth(core.$padding-lg, 1) !default;
 $size-lg-font-size: core.$font-size-lg !default;
 $size-lg-line-height: core.$line-height-lg !default;

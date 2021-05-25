@@ -11,7 +11,7 @@ $_b: var.$prefix-block;
   display: block;
   width: 100%;
   max-width: 100%;
-  height: var.$min-size;
+  height: var.$height;
   transition: var.$transition;
   border-width: var.$border-width;
   border-style: var.$border-style;
