@@ -2,9 +2,9 @@
 
 @mixin box-shadow($state: "default", $color: null) {
   @if ($state == "hover") {
-    $_color: var.$box-shadow-hover-color;
+    $_color: rgba(var.$box-shadow-hover-color, var.$box-shadow-hover-alpha);
     @if $color {
-      $_color: $color;
+      $_color: rgba($color, var.$box-shadow-hover-alpha);
     }
     $_value: var.$box-shadow-hover-values $_color;
     @if var.$inset-box-shadow-hover {
@@ -14,9 +14,9 @@
   }
 
   @else if ($state == "focus") {
-    $_color: var.$box-shadow-focus-color;
+    $_color: rgba(var.$box-shadow-focus-color, var.$box-shadow-focus-alpha);
     @if $color {
-      $_color: $color;
+      $_color: rgba($color, var.$box-shadow-focus-alpha);
     }
     $_value: var.$box-shadow-focus-values $_color;
     @if var.$inset-box-shadow-focus {
@@ -26,9 +26,9 @@
   }
 
   @else {
-    $_color: var.$box-shadow-color;
+    $_color: rgba(var.$box-shadow-color, var.$box-shadow-alpha);
     @if $color {
-      $_color: $color;
+      $_color: rgba($color, var.$box-shadow-alpha);
     }
     $_value: var.$box-shadow-values $_color;
     @if var.$inset-box-shadow {

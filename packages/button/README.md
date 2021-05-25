@@ -55,8 +55,8 @@ When disabled using the `disabled` attribute, a button will inherit styles to vi
 Buttons can also have a loading state by adding the `is-loading` state class. This is useful when a button has an action that has a delayed response in order to give users a visual indicator that their action is being processed.
 
 ```html
-<button class="button is-loading">Button</button>
-<a class="button is-loading" role="button">Button</a>
+<button class="button is-loading" disabled>Button</button>
+<a class="button is-loading" role="button" disabled>Button</a>
 ```
 
 > Warning: the `is-loading` state class will not work on `<input type="button">` buttons since it uses the `::after` pseudo-element to display the loading spinner.
@@ -167,10 +167,12 @@ Adjust the size of a button by increasing or decreasing its padding and font-siz
 | `$min-size`                   | `2.5rem`                                       | Sets the minimum size of a button using the min-height and min-width properties.                                                                  |
 | `$padding`                    | `core.$padding` &rarr; `0.5em 1em`             | Sets the padding property.                                                                                                                        |
 | `$gap`                        | `0.5em`                                        | The default horizontal gap spacing for elements inside the button component.                                                                      |
-| `$border`                     | `none`                                         | Sets the border property.                                                                                                                         |
-| `$border-color-hover`         | `null`                                         | Sets the border-color property on `:hover` state.                                                                                                 |
-| `$border-color-focus`         | `null`                                         | Sets the border-color property on `:focus` state.                                                                                                 |
-| `$border-color-active`        | `null`                                         | Sets the border-color property on `:active` state.                                                                                                |
+| `$border-width`               | `core.$border-width`                           | Sets the border-width property.                                                                                                                   |
+| `$border-style`               | `core.$border-style`                           | Sets the border-style property.                                                                                                                   |
+| `$border-color`               | `core.$border-color`                           | Sets the border-color property.                                                                                                                   |
+| `$border-color-hover`         | `core.$border-color-dark`                      | Sets the border-color property on `:hover` state.                                                                                                 |
+| `$border-color-focus`         | `core.$border-color-dark`                      | Sets the border-color property on `:focus` state.                                                                                                 |
+| `$border-color-active`        | `core.$border-color-darker`                    | Sets the border-color property on `:active` state.                                                                                                |
 | `$border-radius`              | `core.$border-radius` &rarr; `4px`             | Sets the border-radius property.                                                                                                                  |
 | `$background`                 | `rgba(core.$black, 0.06)`                      | Sets the background property.                                                                                                                     |
 | `$background-hover`           | `rgba(core.$black, 0.09)`                      | Sets the background-color property on `:hover` state.                                                                                             |

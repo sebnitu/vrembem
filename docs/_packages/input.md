@@ -14,8 +14,13 @@ usage:
 The most basic implementation of the input component consists of the `input` class applied to an `<input>` element.
 
 {% include demo_open.html %}
-<div class="gap-y">
-  <input class="input" type="text">
+<div class="level">
+  <span>
+    <input class="input" type="text">
+  </span>
+  <span>
+    <button class="button">Button</button>
+  </span>
 </div>
 {% include demo_switch.html %}
 ```html

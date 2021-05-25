@@ -6,20 +6,26 @@ $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
-$min-size: 2.5rem !default; // 40px
-$padding: list.nth(core.$padding, 1) 0.5em !default;
-$border: none !default;
-$border-color-hover: null !default;
-$border-color-focus: null !default;
-$border-radius: (core.$border-radius - 1px) !default;
+$min-size: 2.5rem !default;
+$padding: list.nth(core.$padding, 1) !default;
+$transition: box-shadow core.$transition-duration-short core.$transition-timing-function !default;
+$border-width: core.$border-width !default;
+$border-style: core.$border-style !default;
+$border-color: core.$border-color-dark !default;
+$border-color-hover: core.$border-color-darker !default;
+$border-color-focus: core.$primary !default;
+$border-radius: core.$border-radius !default;
 $background: core.$white !default;
 $background-focus: core.$white !default;
-$box-shadow-values: 0 0 0 1px !default;
-$box-shadow-color: core.$border-color-dark !default;
-$box-shadow-hover-values: 0 0 0 1px !default;
-$box-shadow-hover-color: core.$border-color-darker !default;
-$box-shadow-focus-values: 0 0 0 2px !default;
+$box-shadow-values: 0 0 0 0 !default;
+$box-shadow-color: core.$black !default;
+$box-shadow-alpha: 0 !default;
+$box-shadow-hover-values: 0 0 0 0 !default;
+$box-shadow-hover-color: core.$black !default;
+$box-shadow-hover-alpha: 0 !default;
+$box-shadow-focus-values: 0 0 0 3px !default;
 $box-shadow-focus-color: core.$primary !default;
+$box-shadow-focus-alpha: 0.4 !default;
 $inset-box-shadow: 0 1px 3px rgba(core.$black, 0.1) !default;
 $inset-box-shadow-hover: 0 1px 3px rgba(core.$black, 0.1) !default;
 $inset-box-shadow-focus: null !default;
@@ -35,16 +41,19 @@ $disabled-background: core.$shade !default;
 $readonly-background: core.$shade !default;
 
 // input_size_[value]
-$size-sm-min-size: 1.875rem !default; // 30px
-$size-sm-padding: core.$padding-sm !default;
+$size-sm-min-size: 1.875rem !default;
+$size-sm-padding: list.nth(core.$padding-sm, 1) !default;
 $size-sm-font-size: core.$font-size-sm !default;
 $size-sm-line-height: core.$line-height-sm !default;
-$size-lg-min-size: 3.125rem !default; // 50px
+$size-lg-min-size: 3.125rem !default;
 $size-lg-padding: list.nth(core.$padding-lg, 1) !default;
 $size-lg-font-size: core.$font-size-lg !default;
 $size-lg-line-height: core.$line-height-lg !default;
 
+// input_state_[value]
+$state-enable-background-color: false !default;
+
 // input_type_[value]
 $type-select-icon-color: core.$color !default;
 $type-select-icon: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="#{core.encodecolor($type-select-icon-color)}"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>' !default;
-$type-textarea-min-height: 2.375em !default;
+$type-textarea-min-width: 100% !default;

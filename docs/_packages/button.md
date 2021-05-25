@@ -82,10 +82,10 @@ Buttons can also have a loading state by adding the `is-loading` state class. Th
 
 {% include demo_open.html %}
 <div class="level">
-  <button class="is-loading button">Button</button>
-  <button class="is-loading button button_color_subtle">Button</button>
-  <button class="is-loading button button_color_primary">Button</button>
-  <button class="is-loading button button_color_secondary">Button</button>
+  <button class="is-loading button" disabled>Button</button>
+  <button class="is-loading button button_color_subtle" disabled>Button</button>
+  <button class="is-loading button button_color_primary" disabled>Button</button>
+  <button class="is-loading button button_color_secondary" disabled>Button</button>
 </div>
 {% include demo_switch.html %}
 ```html
@@ -347,23 +347,33 @@ Adjust the size of a button by increasing or decreasing its padding and font-siz
         <td data-mobile-label="Desc">The default horizontal gap spacing for elements inside the button component.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$border</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">none</code></td>
-        <td data-mobile-label="Desc">Sets the border property.</td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-width</code></td>
+        <td data-mobile-label="Desc">Sets the border-width property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border-style</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-style</code></td>
+        <td data-mobile-label="Desc">Sets the border-style property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-color</code></td>
+        <td data-mobile-label="Desc">Sets the border-color property.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$border-color-hover</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-color-dark</code></td>
         <td data-mobile-label="Desc">Sets the border-color property on <code class="code">:hover</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$border-color-focus</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-color-dark</code></td>
         <td data-mobile-label="Desc">Sets the border-color property on <code class="code">:focus</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$border-color-active</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-color-darker</code></td>
         <td data-mobile-label="Desc">Sets the border-color property on <code class="code">:active</code> state.</td>
       </tr>
       <tr>
