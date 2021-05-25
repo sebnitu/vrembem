@@ -14,7 +14,7 @@
     .example + .example {
       margin-top: 2em;
       padding-top: 1em;
-      border-top: 3px solid rgba(0, 0, 0, 0.05);
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     .box-container {
@@ -30,26 +30,18 @@
 
     .label-block {
       display: block;
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      border-radius: 3px;
-      background: rgba(0, 0, 0, 0.025);
       cursor: pointer;
     }
 
     .label-block:hover,
     .label-block:focus {
-      border-color: rgba(0, 0, 0, 0.2);
-    }
-
-    .label-block.is-active {
-      border-color: rgba(0, 0, 0, 0.4);
-      background: #fff;
+      background: rgba(0, 0, 0, 0.025);
     }
   </style>
 </head>
 <body>
   <header class="section background-shade">
-    <div class="container gap-y">
+    <div class="section__container gap-y">
       <h1 class="text-size-lg">@vrembem/utility</h1>
       <p>The utility component provides a set of atomic classes that specialize in a single function.</p>
       <ol class="breadcrumb">
@@ -70,7 +62,7 @@
   </header>
 
   <div id="app" class="section">
-    <div class="container">
+    <div class="section__container">
 
       <Example 
         title="flex-gap-[key?]"

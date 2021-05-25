@@ -53,7 +53,7 @@ Also see [`example.html`](./example.html) for a more comprehensive working demo 
 
 #### CDN References
 
-Vrembem packges all bundles in two areas, `dist` contains all compressed production ready bundles and `dev` contains uncompressed versions (all using the same file names). Components that ship with JavaScript include 4 bundles:
+Vrembem packages all bundles in two areas, `dist` contains all compressed production ready bundles and `dev` contains uncompressed versions (all using the same file names). Components that ship with JavaScript include 4 bundles:
 
 | Type       | Extension    | Description                                                                                                                                                                                                                     |
 | ---------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

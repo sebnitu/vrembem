@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vrembem</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://sebnitu.com//dist/favicon.png">
   <!-- Include Vrembem styles -->
   <link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.css">
 </head>
@@ -11,43 +12,67 @@
 
   <div role="main">
     <div class="section background-shade">
-      <div class="container gap-y">
+      <div class="section__container gap-y">
         <h1 class="text-size-lg">Vrembem</h1>
-        <p>A component library based on the BEM methodology.</p>
+        <p class="max-width-xs">A component library based on the BEM methodology. This document is using the CDN implementation of Vrembem.</p>
       </div>
     </div>
 
     <div class="section">
-      <div class="container gap-y">
-        <p>This document is using the CDN implementation of Vrembem.</p>
-        <h2>Example Menu Component</h2>
-        <ul class="menu menu_stack_sm">
-          <li class="menu__item">
-            <a href="https://vrembem.com" class="menu__link">Documentation</a>
-          </li>
-          <li class="menu__item">
-            <a href="https://github.com/sebnitu/vrembem/tree/master/packages" class="menu__link">Components</a>
-          </li>
-          <li class="menu__item">
-            <a href="https://github.com/sebnitu/vrembem/blob/master/CHANGELOG.md" class="menu__link">Changelog</a>
-          </li>
+      <div class="section__container gap-y">
+        <h2>Quick links</h2>
+        <ul class="list">
+          <li><a class="link" href="https://vrembem.com">Documentation</a></li>
+          <li><a class="link" href="https://github.com/sebnitu/vrembem/tree/master/packages">Components</a></li>
+          <li><a class="link" href="https://github.com/sebnitu/vrembem/blob/master/CHANGELOG.md">Changelog</a></li>
         </ul>
-        <hr class="sep margin-vert-lg">
-        <h2>Example Modal Component</h2>
+        <hr class="sep margin-y-xl">
+        <h2>Example Component</h2>
         <p>
           <button class="link" data-modal-open="modal-default">
             Open modal
           </button>
         </p>
+        <hr class="sep margin-y-xl">
+        <h2>Starter Template</h2>
+
+<pre class="pre"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;...&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/vrembem/dist/styles.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  
+  &lt;!-- Markup goes here... --&gt;
+
+  &lt;script src=&quot;https://unpkg.com/vrembem&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
       </div>
     </div>
   </div>
 
-  <div data-modal="modal-default" class="modal modal_size_sm">
-    <div data-modal-dialog class="modal__dialog padding background-white radius">
-      <div class="flex flex-justify-between">
-        <p>Hello, world!</p>
-        <button data-modal-close class="link">Close</button>
+  <div data-modal="modal-default" class="modal">
+    <div data-modal-dialog class="modal__dialog dialog">
+      <div class="dialog__header flex-justify-between">
+        <h2>Hello, world!</h2>
+        <button data-modal-close class="dialog__close icon-action" aria-label="Close button">
+          <svg class="icon icon-x" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="dialog__body">
+        This is an example modal implementation.
+      </div>
+      <div class="dialog__footer">
+        <button data-modal-close class="button button_color_primary">Sounds Good!</button>
+        <button data-modal-close class="button button_color_secondary">Close</button>
       </div>
     </div>
   </div>
