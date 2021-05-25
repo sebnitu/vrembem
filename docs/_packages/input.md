@@ -15,15 +15,11 @@ The most basic implementation of the input component consists of the `input` cla
 
 {% include demo_open.html %}
 <div class="gap-y">
-  <input type="text" class="input" />
-  <input type="text" class="input" placeholder="Placeholder example" />
-  <input type="text" class="input" value="Value example" />
+  <input class="input" type="text">
 </div>
 {% include demo_switch.html %}
 ```html
-<input type="text" class="input" />
-<input type="text" class="input" placeholder="Placeholder example" />
-<input type="text" class="input" value="Value example" />
+<input class="input" type="text">
 ```
 {% include demo_close.html %}
 
@@ -33,15 +29,11 @@ Adding the boolean `disabled` attribute to the input will provide visual indicat
 
 {% include demo_open.html %}
 <div class="gap-y">
-  <input type="text" class="input" disabled />
-  <input type="text" class="input" placeholder="Placeholder example" disabled />
-  <input type="text" class="input" value="Value example" disabled />
+  <input class="input" type="text" disabled>
 </div>
 {% include demo_switch.html %}
 ```html
-<input type="text" class="input" disabled />
-<input type="text" class="input" placeholder="Placeholder example" disabled />
-<input type="text" class="input" value="Value example" disabled />
+<input class="input" type="text" disabled>
 ```
 {% include demo_close.html %}
 
@@ -51,141 +43,73 @@ Adding the boolean `readonly` attribute to the input will provide visual indicat
 
 {% include demo_open.html %}
 <div class="gap-y">
-  <input type="text" class="input" readonly />
-  <input type="text" class="input" placeholder="Placeholder example" readonly />
-  <input type="text" class="input" value="Value example" readonly />
+  <input class="input" type="text" value="email@example.com" readonly>
 </div>
 {% include demo_switch.html %}
 ```html
-<input type="text" class="input" readonly />
-<input type="text" class="input" placeholder="Placeholder example" readonly />
-<input type="text" class="input" value="Value example" readonly />
+<input class="input" type="text" value="..." readonly>
 ```
 {% include demo_close.html %}
 
 ## input_auto
 
+Sets the width of an input to `auto` instead of the base component width of `100%`.
+
 {% include demo_open.html %}
-<input type="text" class="input input_auto" />
+<input class="input input_auto" type="text">
 {% include demo_switch.html %}
 ```html
-<input type="text" class="input input_auto" />
+<input class="input input_auto" type="text">
 ```
 {% include demo_close.html %}
 
 ## input_size_[value]
 
+Adjust the size of an input by increasing or decreasing its padding and font-size. By default, the input scale will provide an input height of 30px (small `input_size_sm`), 40px (default) and 50px (large `input_size_lg`).
+
 {% include demo_open.html class_parent="gap-y" %}
-<input class="input input_size_sm" placeholder="Default input..." type="text" />
-<input class="input" placeholder="Default input..." type="text" />
-<input class="input input_size_lg" placeholder="Default input..." type="text" />
-<select class="input input_type_select input_size_sm">
-  <option>Option 1</option>
-  <option>Option 2</option>
-  <option>Option 3</option>
-</select>
-<select class="input input_type_select">
-  <option>Option 1</option>
-  <option>Option 2</option>
-  <option>Option 3</option>
-</select>
-<select class="input input_type_select input_size_lg">
-  <option>Option 1</option>
-  <option>Option 2</option>
-  <option>Option 3</option>
-</select>
+<input class="input input_size_sm" type="text">
+<input class="input input_size_lg" type="text">
 {% include demo_switch.html %}
 ```html
-<input class="input input_size_sm" placeholder="Default input..." type="text" />
-<input class="input input_size_lg" placeholder="Default input..." type="text" />
-<select class="input input_type_select input_size_sm">...</select>
-<select class="input input_type_select input_size_lg">...</select>
+<input class="input input_size_sm" type="text">
+<input class="input input_size_lg" type="text">
 ```
 {% include demo_close.html %}
+
+### Available Variations
+
+- `button_size_sm`
+- `button_size_lg`
 
 ## input_state_[value]
 
+Adds styles for changing the look and feel of an input to better reflect the urgency or status.
+
 {% include demo_open.html class_parent="gap-y" %}
-<input class="input input_state_info" type="text" />
-<select class="input input_state_info input_type_select">
-  <option>Option 1</option>
-  <option>Option 2</option>
-  <option>Option 3</option>
-</select>
-<textarea class="input input_state_info input_type_textarea" rows="3"></textarea>
+<input class="input input_state_info" type="text">
+<input class="input input_state_success" type="text">
+<input class="input input_state_caution" type="text">
+<input class="input input_state_danger" type="text">
 {% include demo_switch.html %}
 ```html
-<input class="input input_state_info" type="text" />
-<select class="input input_state_info input_type_select">
-  <option>Option 1</option>
-  <option>Option 2</option>
-  <option>Option 3</option>
-</select>
-<textarea class="input input_state_info input_type_textarea" rows="3"></textarea>
+<input class="input input_state_info" type="text">
+<input class="input input_state_success" type="text">
+<input class="input input_state_caution" type="text">
+<input class="input input_state_danger" type="text">
 ```
 {% include demo_close.html %}
 
-{% include demo_open.html class_parent="gap-y" %}
-<input class="input input_state_success" type="text" />
-<select class="input input_state_success input_type_select">
-  <option>Option 1</option>
-  <option>Option 2</option>
-  <option>Option 3</option>
-</select>
-<textarea class="input input_state_success input_type_textarea" rows="3"></textarea>
-{% include demo_switch.html %}
-```html
-<input class="input input_state_success" type="text" />
-<select class="input input_state_success input_type_select">
-  <option>Option 1</option>
-  <option>Option 2</option>
-  <option>Option 3</option>
-</select>
-<textarea class="input input_state_success input_type_textarea" rows="3"></textarea>
-```
-{% include demo_close.html %}
+### Available Variations
 
-{% include demo_open.html class_parent="gap-y" %}
-<input class="input input_state_caution" type="text" />
-<select class="input input_state_caution input_type_select">
-  <option>Option 1</option>
-  <option>Option 2</option>
-  <option>Option 3</option>
-</select>
-<textarea class="input input_state_caution input_type_textarea" rows="3"></textarea>
-{% include demo_switch.html %}
-```html
-<input class="input input_state_caution" type="text" />
-<select class="input input_state_caution input_type_select">
-  <option>Option 1</option>
-  <option>Option 2</option>
-  <option>Option 3</option>
-</select>
-<textarea class="input input_state_caution input_type_textarea" rows="3"></textarea>
-```
-{% include demo_close.html %}
-
-{% include demo_open.html class_parent="gap-y" %}
-<input class="input input_state_danger" type="text" />
-<select class="input input_state_danger input_type_select">
-  <option>Option 1</option>
-  <option>Option 2</option>
-  <option>Option 3</option>
-</select>
-<textarea class="input input_state_danger input_type_textarea" rows="3"></textarea>
-{% include demo_switch.html %}
-```html
-<input class="input input_state_danger" type="text" />
-<select class="input input_state_danger input_type_select">
-  <option>Option 1</option>
-  <option>Option 2</option>
-  <option>Option 3</option>
-</select>
-<textarea class="input input_state_danger input_type_textarea" rows="3"></textarea>
-```
-{% include demo_close.html %}
+- `input_state_info`
+- `input_state_success`
+- `input_state_caution`
+- `input_state_danger`
 
 ## input_type_[value]
+
+Adds unique styles for various form input types. These form controls share styles with the basic form input such as [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) and [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) HTML elements.
 
 {% include demo_open.html %}
 <select class="input input_type_select">
@@ -205,15 +129,16 @@ Adding the boolean `readonly` attribute to the input will provide visual indicat
 
 {% include demo_open.html class_parent="gap-y" %}
 <textarea class="input input_type_textarea" rows="3"></textarea>
-<textarea class="input input_type_textarea" rows="2"></textarea>
-<textarea class="input input_type_textarea" rows="1"></textarea>
 {% include demo_switch.html %}
 ```html
 <textarea class="input input_type_textarea" rows="3"></textarea>
-<textarea class="input input_type_textarea" rows="2"></textarea>
-<textarea class="input input_type_textarea" rows="1"></textarea>
 ```
 {% include demo_close.html %}
+
+### Available Variations
+
+- `input_type_select`
+- `input_type_textarea`
 
 ## Sass Variables
 

@@ -23,7 +23,7 @@ npm install @vrembem/input
 The most basic implementation of the input component consists of the `input` class applied to an `<input>` element.
 
 ```html
-<input class="input" type="text" />
+<input class="input" type="text">
 ```
 
 #### `disabled`
@@ -31,7 +31,7 @@ The most basic implementation of the input component consists of the `input` cla
 Adding the boolean `disabled` attribute to the input will provide visual indication that the input is not available for use.
 
 ```html
-<input class="input" type="text" disabled />
+<input class="input" type="text" disabled>
 ```
 
 #### `readonly`
@@ -39,14 +39,32 @@ Adding the boolean `disabled` attribute to the input will provide visual indicat
 Adding the boolean `readonly` attribute to the input will provide visual indication that the user should not be able to edit the value of the input.
 
 ```html
-<input class="input" type="text" readonly />
+<input class="input" type="text" readonly>
 ```
 
 ## Modifiers
 
 ### `input_auto`
 
+Sets the width of an input to `auto` instead of the base component width of `100%`.
+
+```html
+<input class="input input_auto" type="text">
+```
+
 ### `input_size_[value]`
+
+Adjust the size of an input by increasing or decreasing its padding and font-size. By default, the input scale will provide an input height of 30px (small `input_size_sm`), 40px (default) and 50px (large `input_size_lg`).
+
+```html
+<input class="input input_size_sm" type="text">
+<input class="input input_size_lg" type="text">
+```
+
+#### Available Variations
+
+- `input_size_sm`
+- `input_size_lg`
 
 ### `input_state_[value]`
 
