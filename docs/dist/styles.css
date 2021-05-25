@@ -2762,7 +2762,6 @@ input::-moz-placeholder {
   max-width: 100%;
   min-height: 2.5rem;
   padding: 0.5em 0.5em;
-  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: none;
   border-radius: 3px;
   background: #fff;
@@ -2812,6 +2811,7 @@ input::-moz-placeholder {
 
 .input_state_info {
   box-shadow: 0 0 0 1px #03a9f4, inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: #e1f5fe;
 }
 .input_state_info:hover {
   box-shadow: 0 0 0 1px #03a9f4, inset 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -2822,6 +2822,7 @@ input::-moz-placeholder {
 
 .input_state_success {
   box-shadow: 0 0 0 1px #4caf50, inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: #e8f5e9;
 }
 .input_state_success:hover {
   box-shadow: 0 0 0 1px #4caf50, inset 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -2832,6 +2833,7 @@ input::-moz-placeholder {
 
 .input_state_caution {
   box-shadow: 0 0 0 1px #ff9800, inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: #fff3e0;
 }
 .input_state_caution:hover {
   box-shadow: 0 0 0 1px #ff9800, inset 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -2842,6 +2844,7 @@ input::-moz-placeholder {
 
 .input_state_danger {
   box-shadow: 0 0 0 1px #f44336, inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: #ffebee;
 }
 .input_state_danger:hover {
   box-shadow: 0 0 0 1px #f44336, inset 0 1px 3px rgba(0, 0, 0, 0.1);

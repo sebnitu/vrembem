@@ -8,6 +8,7 @@ $_v: var.$prefix-modifier-value;
 
 .#{$_b}input#{$_m}state#{$_v}info {
   @include mix.box-shadow("default", rgba(core.$info, 1));
+  background-color: core.$info-lighter;
 
   &:hover {
     @include mix.box-shadow("hover", rgba(core.$info, 1));
@@ -20,6 +21,7 @@ $_v: var.$prefix-modifier-value;
 
 .#{$_b}input#{$_m}state#{$_v}success {
   @include mix.box-shadow("default", rgba(core.$success, 1));
+  background-color: core.$success-lighter;
 
   &:hover {
     @include mix.box-shadow("hover", rgba(core.$success, 1));
@@ -32,6 +34,7 @@ $_v: var.$prefix-modifier-value;
 
 .#{$_b}input#{$_m}state#{$_v}caution {
   @include mix.box-shadow("default", rgba(core.$caution, 1));
+  background-color: core.$caution-lighter;
 
   &:hover {
     @include mix.box-shadow("hover", rgba(core.$caution, 1));
@@ -44,6 +47,7 @@ $_v: var.$prefix-modifier-value;
 
 .#{$_b}input#{$_m}state#{$_v}danger {
   @include mix.box-shadow("default", rgba(core.$danger, 1));
+  background-color: core.$danger-lighter;
 
   &:hover {
     @include mix.box-shadow("hover", rgba(core.$danger, 1));

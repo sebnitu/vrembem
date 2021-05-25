@@ -12,7 +12,6 @@ $_b: var.$prefix-block;
   max-width: 100%;
   min-height: var.$min-size;
   padding: var.$padding;
-  transition: box-shadow core.$transition-duration core.$transition-timing-function;
   border: var.$border;
   border-radius: var.$border-radius;
   background: var.$background;
