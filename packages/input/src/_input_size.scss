@@ -1,3 +1,4 @@
+@use "@vrembem/core";
 @use "./variables" as var;
 
 $_b: var.$prefix-block;
@@ -5,15 +6,15 @@ $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
 .#{$_b}input#{$_m}size#{$_v}sm {
-  min-height: var.$size-sm-min-size;
-  padding: var.$size-sm-padding;
+  @include core.calc-padding(var.$size-sm-padding, var.$border-width);
+  height: var.$size-sm-min-size;
   font-size: var.$size-sm-font-size;
   line-height: var.$size-sm-line-height;
 }
 
 .#{$_b}input#{$_m}size#{$_v}lg {
-  min-height: var.$size-lg-min-size;
-  padding: var.$size-lg-padding;
+  @include core.calc-padding(var.$size-lg-padding, var.$border-width);
+  height: var.$size-lg-min-size;
   font-size: var.$size-lg-font-size;
   line-height: var.$size-lg-line-height;
 }

@@ -5,15 +5,18 @@
 $_b: var.$prefix-block;
 
 .#{$_b}input {
+  @include core.calc-padding(var.$padding, var.$border-width);
   @include mix.box-shadow();
   position: relative;
   display: block;
   width: 100%;
   max-width: 100%;
-  min-height: var.$min-size;
-  padding: var.$padding;
-  border: var.$border;
+  height: var.$min-size;
+  transition: var.$transition;
+  border-width: var.$border-width;
+  border-style: var.$border-style;
   border-radius: var.$border-radius;
+  border-color: var.$border-color;
   background: var.$background;
   color: core.$color;
   font-family: core.$font-family;
