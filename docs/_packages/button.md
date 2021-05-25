@@ -264,8 +264,7 @@ Outline styles usually have a more subtle appearance compared to [`button_color_
 
 ## button_size_[value]
 
-Adjust the size of a button by increasing or decreasing its padding and font-size. By default, the button scale will provide a button height of 30px (`button_size_sm`), 40px (default) and 50px (`button_size_lg`).
-
+Adjust the size of a button by increasing or decreasing its padding and font-size. By default, the button scale will provide a button height of 30px (small `button_size_sm`), 40px (default) and 50px (large `button_size_lg`).
 
 {% include demo_open.html %}
 <div class="level">
