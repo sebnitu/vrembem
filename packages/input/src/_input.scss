@@ -10,6 +10,7 @@ $_b: var.$prefix-block;
   display: block;
   width: 100%;
   max-width: 100%;
+  min-height: var.$min-size;
   padding: var.$padding;
   transition: box-shadow core.$transition-duration core.$transition-timing-function;
   border: var.$border;
@@ -36,11 +37,11 @@ $_b: var.$prefix-block;
   }
 
   &[disabled] {
-    background-color: var.$background-disabled;
+    background-color: var.$disabled-background;
   }
 
   &[readonly] {
-    background-color: var.$background-readonly;
+    background-color: var.$readonly-background;
   }
 
   &::placeholder {

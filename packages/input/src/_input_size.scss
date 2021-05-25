@@ -5,12 +5,14 @@ $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
 .#{$_b}input#{$_m}size#{$_v}sm {
+  min-height: var.$size-sm-min-size;
   padding: var.$size-sm-padding;
   font-size: var.$size-sm-font-size;
   line-height: var.$size-sm-line-height;
 }
 
 .#{$_b}input#{$_m}size#{$_v}lg {
+  min-height: var.$size-lg-min-size;
   padding: var.$size-lg-padding;
   font-size: var.$size-lg-font-size;
   line-height: var.$size-lg-line-height;

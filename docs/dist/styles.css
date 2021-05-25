@@ -2760,6 +2760,7 @@ input::-moz-placeholder {
   display: block;
   width: 100%;
   max-width: 100%;
+  min-height: 2.5rem;
   padding: 0.5em 0.5em;
   transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: none;
@@ -2796,12 +2797,14 @@ input::-moz-placeholder {
 }
 
 .input_size_sm {
+  min-height: 1.875rem;
   padding: 0.25rem 0.5rem;
   font-size: 0.875em;
   line-height: 1.375;
 }
 
 .input_size_lg {
+  min-height: 3.125rem;
   padding: 0.648rem;
   font-size: 1.125em;
   line-height: 1.625;

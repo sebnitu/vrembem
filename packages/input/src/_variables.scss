@@ -1,3 +1,4 @@
+@use "sass:list";
 @use "@vrembem/core";
 
 $prefix-block: core.$prefix-block !default;
@@ -5,42 +6,45 @@ $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
-$padding: nth(core.$padding, 1) 0.5em !default;
-$font-size: core.$font-size !default;
-$line-height: core.$line-height !default;
-
-$size-sm-padding: core.$padding-sm !default;
-$size-sm-font-size: core.$font-size-sm !default;
-$size-sm-line-height: core.$line-height-sm !default;
-
-$size-lg-padding: nth(core.$padding-lg, 1) !default;
-$size-lg-font-size: core.$font-size-lg !default;
-$size-lg-line-height: core.$line-height-lg !default;
-
-$color: core.$color !default;
-$color-placeholder: core.$color-subtle !default;
-
+$min-size: 2.5rem !default; // 40px
+$padding: list.nth(core.$padding, 1) 0.5em !default;
+$border: none !default;
+$border-color-hover: null !default;
+$border-color-focus: null !default;
+$border-radius: (core.$border-radius - 1px) !default;
 $background: core.$white !default;
 $background-focus: core.$white !default;
-$background-disabled: core.$shade !default;
-$background-readonly: core.$shade !default;
-
 $box-shadow-values: 0 0 0 1px !default;
 $box-shadow-color: core.$border-color-dark !default;
 $box-shadow-hover-values: 0 0 0 1px !default;
 $box-shadow-hover-color: core.$border-color-darker !default;
 $box-shadow-focus-values: 0 0 0 2px !default;
 $box-shadow-focus-color: core.$primary !default;
-
 $inset-box-shadow: 0 1px 3px rgba(core.$black, 0.1) !default;
 $inset-box-shadow-hover: 0 1px 3px rgba(core.$black, 0.1) !default;
 $inset-box-shadow-focus: null !default;
+$color: core.$color !default;
+$color-placeholder: core.$color-subtle !default;
+$font-size: core.$font-size !default;
+$line-height: core.$line-height !default;
 
-$border: none !default;
-$border-color-hover: null !default;
-$border-color-focus: null !default;
-$border-radius: (core.$border-radius - 1px) !default;
+// disabled
+$disabled-background: core.$shade !default;
 
+// readonly
+$readonly-background: core.$shade !default;
+
+// input_size_[value]
+$size-sm-min-size: 1.875rem !default; // 30px
+$size-sm-padding: core.$padding-sm !default;
+$size-sm-font-size: core.$font-size-sm !default;
+$size-sm-line-height: core.$line-height-sm !default;
+$size-lg-min-size: 3.125rem !default; // 50px
+$size-lg-padding: list.nth(core.$padding-lg, 1) !default;
+$size-lg-font-size: core.$font-size-lg !default;
+$size-lg-line-height: core.$line-height-lg !default;
+
+// input_type_[value]
 $type-select-icon-color: core.$color !default;
 $type-select-icon: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="#{core.encodecolor($type-select-icon-color)}"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>' !default;
 $type-textarea-min-height: 2.375em !default;
