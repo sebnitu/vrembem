@@ -50,7 +50,7 @@
 
 /// A gap mixin that creates spacing between inline or block level elements.
 /// Spacing is added using the `> * + *` selector and can either be applied
-/// horizontaller or vertically by passing $dir "x" or "y" repectively.
+/// horizontally or vertically by passing $dir "x" or "y" respectively.
 /// @param {number unit} $val - the number unit
 /// @param {null | string} $dir - direction to apply gap ("x", "y")
 /// @param {null | true} $imp - whether or not to add `!important` flag
@@ -127,10 +127,30 @@
   white-space: nowrap;
 }
 
-/// A utility mixin for quickely setting the width and height of an element.
+/// A utility mixin for quickly setting the width and height of an element.
 /// @param {number (with unit) | string} $width - width size unit
 /// @param {number (with unit) | string} $height - height size unit
 @mixin size($width, $height: $width) {
   width: $width;
   height: $height;
+}
+
+/// A utility that calculates the padding property for a component by
+/// subtracting the component's border width value.
+/// @param {null | list} $padding - padding property value
+/// @param {null | number (with unit)} $border-width - border-width property value
+@mixin calc-padding($padding, $border-width) {
+  $_padding: null;
+  @if $border-width and $border-width != 0 and $border-width != none {
+    @each $item in $padding {
+      @if $item and $item != 0 {
+        $_padding: #{$_padding} calc(#{$item} - #{$border-width});
+      } @else {
+        $_padding: #{$_padding} #{$item};
+      }
+    }
+  } @else {
+    $_padding: $padding;
+  }
+  padding: $_padding;
 }
