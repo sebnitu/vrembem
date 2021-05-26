@@ -55,7 +55,7 @@ For switch with labels, just wrap the switch component along with label text usi
 | `$prefix-modifier`            | `"_"`                              | String to prefix modifiers with.                                              |
 | `$prefix-modifier-value`      | `"_"`                              | String to prefix modifier values with.                                        |
 | `$color`                      | `core.$primary`                    | Sets the base color theme for the switch component.                           |
-| `$size`                       | `2.5em`                            | Sets the width and height of the `switch__background` element.                |
+| `$size`                       | `core.$form-control-size`          | Sets the width and height of the `switch__background` element.                |
 | `$transition-duration`        | `core.$transition-duration`        | Sets the transition-duration property for the `switch__thumb` element.        |
 | `$transition-timing-function` | `core.$transition-timing-function` | Sets the transition-timing-function property for the `switch__thumb` element. |
 | `$background`                 | `transparent`                      | Sets the background-color property for the `switch__background` element.      |
