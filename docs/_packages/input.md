@@ -173,8 +173,8 @@ Adds unique styles for various form input types. These form controls share style
       </tr>
       <!-- General -->
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$height</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2.5rem</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$form-control-size</code></td>
         <td data-mobile-label="Desc">Sets the height property on <code class="code">input</code> and min-height property of the <code class="code">input_type_textarea</code> modifier.</td>
       </tr>
       <tr>
@@ -326,8 +326,8 @@ Adds unique styles for various form input types. These form controls share style
       </tr>
       <!-- input_size_[value] -->
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$size-sm-height</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1.875rem</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-sm</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$form-control-size-sm</code></td>
         <td data-mobile-label="Desc">Sets the height property on <code class="code">input</code> and min-height property of the <code class="code">input_type_textarea</code> and <code class="code">input_size_sm</code> modifier combination.</td>
       </tr>
       <tr>
@@ -346,8 +346,8 @@ Adds unique styles for various form input types. These form controls share style
         <td data-mobile-label="Desc">Sets the line-height property of the `input_size_sm` modifier.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$size-lg-height</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">3.125rem</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-lg</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$form-control-size-lg</code></td>
         <td data-mobile-label="Desc">Sets the height property on <code class="code">input</code> and min-height property of the <code class="code">input_type_textarea</code> and <code class="code">input_size_lg</code> modifier combination.</td>
       </tr>
       <tr>
