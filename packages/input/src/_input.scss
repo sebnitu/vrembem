@@ -29,6 +29,7 @@ $_b: var.$prefix-block;
   &:hover {
     @include mix.box-shadow("hover");
     border-color: var.$border-color-hover;
+    background-color: var.$background-hover;
   }
 
   &:focus {
@@ -40,6 +41,13 @@ $_b: var.$prefix-block;
 
   &[disabled] {
     background-color: var.$disabled-background;
+
+    &:hover,
+    &:focus {
+      @include mix.box-shadow();
+      border-color: var.$border-color;
+      background-color: var.$disabled-background;
+    }
   }
 
   &[readonly] {
