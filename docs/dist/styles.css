@@ -2815,7 +2815,7 @@ input::-moz-placeholder {
 }
 
 .input_size_sm {
-  padding: calc(0.25rem - 1px);
+  padding: calc(0.25rem - 1px) calc(0.5rem - 1px);
   height: 1.875rem;
   font-size: 0.875em;
   line-height: 1.375;
