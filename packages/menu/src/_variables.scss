@@ -6,7 +6,7 @@ $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
 $breakpoints: core.$breakpoints !default;
-$min-size: 2.5rem !default;
+$size: core.$form-control-size !default;
 $gap: 1px !default;
 $padding: core.$padding !default;
 $icon-padding: 0.1em !default;
