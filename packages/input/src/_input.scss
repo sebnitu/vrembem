@@ -5,16 +5,20 @@
 $_b: var.$prefix-block;
 
 .#{$_b}input {
+  @include core.calc-padding(var.$padding, var.$border-width);
   @include mix.box-shadow();
   position: relative;
   display: block;
   width: 100%;
-  padding: var.$padding;
-  transition: box-shadow core.$transition-duration core.$transition-timing-function;
-  border: var.$border;
+  max-width: 100%;
+  height: var.$height;
+  transition: var.$transition;
+  border-width: var.$border-width;
+  border-style: var.$border-style;
   border-radius: var.$border-radius;
+  border-color: var.$border-color;
   background: var.$background;
-  color: core.$color;
+  color: var.$color;
   font-family: core.$font-family;
   font-size: var.$font-size;
   line-height: var.$line-height;
@@ -25,6 +29,7 @@ $_b: var.$prefix-block;
   &:hover {
     @include mix.box-shadow("hover");
     border-color: var.$border-color-hover;
+    background-color: var.$background-hover;
   }
 
   &:focus {
@@ -32,6 +37,21 @@ $_b: var.$prefix-block;
     outline: none;
     border-color: var.$border-color-focus;
     background-color: var.$background-focus;
+  }
+
+  &[disabled] {
+    background-color: var.$disabled-background;
+
+    &:hover,
+    &:focus {
+      @include mix.box-shadow();
+      border-color: var.$border-color;
+      background-color: var.$disabled-background;
+    }
+  }
+
+  &[readonly] {
+    background-color: var.$readonly-background;
   }
 
   &::placeholder {

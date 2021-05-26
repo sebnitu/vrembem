@@ -6,13 +6,15 @@ $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
 $breakpoints: core.$breakpoints !default;
-$min-size: 2.5rem !default; // 40px
+$min-size: 2.5rem !default;
 $padding: core.$padding !default;
 $gap: 0.5em !default;
-$border: none !default;
-$border-color-hover: null !default;
-$border-color-focus: null !default;
-$border-color-active: null !default;
+$border-width: core.$border-width !default;
+$border-style: core.$border-style !default;
+$border-color: core.$border-color !default;
+$border-color-hover: core.$border-color-dark !default;
+$border-color-focus: core.$border-color-dark !default;
+$border-color-active: core.$border-color-darker !default;
 $border-radius: core.$border-radius !default;
 $background: rgba(core.$black, 0.06) !default;
 $background-hover: rgba(core.$black, 0.09) !default;
@@ -45,11 +47,11 @@ $loading-border: 2px solid !default;
 $loading-border-tpl: 1 1 0 0;
 
 // button_size_[value]
-$size-sm-min-size: 1.875rem !default; // 30px
+$size-sm-min-size: 1.875rem !default;
 $size-sm-padding: core.$padding-sm !default;
 $size-sm-font-size: core.$font-size-sm !default;
 $size-sm-line-height: core.$line-height-sm !default;
-$size-lg-min-size: 3.125rem !default; // 50px
+$size-lg-min-size: 3.125rem !default;
 $size-lg-padding: core.$padding-lg !default;
 $size-lg-font-size: core.$font-size-lg !default;
 $size-lg-line-height: core.$line-height-lg !default;

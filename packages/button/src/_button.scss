@@ -13,15 +13,17 @@
 
 .#{var.$prefix-block}button {
   @include core.gap(var.$gap, 'x');
+  @include core.calc-padding(var.$padding, var.$border-width);
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-width: var.$min-size;
   min-height: var.$min-size;
-  padding: var.$padding;
-  border: var.$border;
+  border-width: var.$border-width;
+  border-style: var.$border-style;
   border-radius: var.$border-radius;
+  border-color: var.$border-color;
   background: var.$background;
   background-clip: border-box;
   box-shadow: var.$box-shadow;
@@ -37,7 +39,7 @@
   white-space: nowrap;
   cursor: pointer;
 
-  &[disabled] {
+  &[disabled]:not(.is-loading) {
     opacity: var.$disabled-opacity;
     pointer-events: none;
   }

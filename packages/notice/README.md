@@ -77,7 +77,7 @@ When a notice needs to be dismissible, try adding the icon-action component alon
 
 ### `notice_state_[value]`
 
-A type modifier that changes the visual context of a notice.
+Adds styles for changing the look and feel of a notice to better reflect the urgency or status.
 
 ```html
 <div class="notice notice_state_danger">

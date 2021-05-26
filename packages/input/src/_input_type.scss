@@ -13,7 +13,17 @@ $_v: var.$prefix-modifier-value;
 }
 
 .#{$_b}input#{$_m}type#{$_v}textarea {
-  max-width: 100%;
+  min-width: var.$type-textarea-min-width;
   height: auto;
-  min-height: 2.375em; // rows="2"
+  min-height: var.$height;
+
+  &.#{$_b}input#{$_m}size#{$_v}sm {
+    height: auto;
+    min-height: var.$size-sm-height;
+  }
+
+  &.#{$_b}input#{$_m}size#{$_v}lg {
+    height: auto;
+    min-height: var.$size-lg-height;
+  }
 }

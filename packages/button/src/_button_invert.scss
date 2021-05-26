@@ -2,16 +2,19 @@
 @use "./variables" as var;
 
 .#{var.$prefix-block}button#{var.$prefix-modifier}invert {
+  border-color: transparent;
   background: rgba(core.$white, 0.05);
   color: core.$white;
 
   &:hover {
+    border-color: transparent;
     background: rgba(core.$white, 0.1);
     color: core.$white;
   }
 
   &:focus,
   &:active {
+    border-color: transparent;
     background: rgba(core.$white, 0.15);
     color: core.$white;
   }
