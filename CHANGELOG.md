@@ -14,9 +14,24 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.27.0 to CHANGELOG.md
+chore(release): add v1.28.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.28.0 (2021-05-26)
+
+#### :house: Refactor
+* `button`, `core`, `input`, `notice`
+  * [#580](https://github.com/sebnitu/vrembem/pull/580) Audit and refactor the input and button components
+* `core`
+  * [#594](https://github.com/sebnitu/vrembem/pull/594) Migrate the use of slash to math.div
+* `icon-action`, `notice`
+  * [#590](https://github.com/sebnitu/vrembem/pull/590) Rename type modifier to state to be more accurate
+
+#### :books: Documentation
+* `drawer`, `grid`, `modal`, `utility`, `vrembem`
+  * [#595](https://github.com/sebnitu/vrembem/pull/595) Update example templates
 
 
 ## v1.27.0 (2021-05-23)
