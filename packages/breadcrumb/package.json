@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/breadcrumb",
   "description": "A navigation component that shows the hierarchical path to a users current location.",
-  "version": "1.25.2",
+  "version": "1.28.0",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -26,8 +26,8 @@
     "directory": "packages/breadcrumb"
   },
   "dependencies": {
-    "@vrembem/base": "^1.22.3",
-    "@vrembem/core": "^1.22.3"
+    "@vrembem/base": "^1.28.0",
+    "@vrembem/core": "^1.28.0"
   },
   "publishConfig": {
     "access": "public"
