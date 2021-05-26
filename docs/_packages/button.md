@@ -332,8 +332,8 @@ Adjust the size of a button by increasing or decreasing its padding and font-siz
         <td data-mobile-label="Desc">The breakpoints map the <code class="code">button_block_[key]</code> modifier uses to build its styles.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$min-size</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2.5rem</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$form-control-size</code></td>
         <td data-mobile-label="Desc">Sets the minimum size of a button using the min-height and min-width properties.</td>
       </tr>
       <tr>
@@ -507,8 +507,8 @@ Adjust the size of a button by increasing or decreasing its padding and font-siz
         <td data-mobile-label="Desc">The template for where to apply the border-color property. Takes boolean <code class="code">1</code> and <code class="code">0</code> values for top, right, bottom and left borders respectively.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$size-sm-min-size</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1.875rem</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-sm</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$form-control-size-sm</code></td>
         <td data-mobile-label="Desc">Sets the minimum size of the <code class="code">button_size_sm</code> modifier using the min-height and min-width properties.</td>
       </tr>
       <tr>
@@ -527,8 +527,8 @@ Adjust the size of a button by increasing or decreasing its padding and font-siz
         <td data-mobile-label="Desc">Sets the line-height property of the <code class="code">button_size_sm</code> modifier.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$size-lg-min-size</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">3.125rem</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-lg</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$form-control-size-lg</code></td>
         <td data-mobile-label="Desc">Sets the minimum size of the <code class="code">button_size_lg</code> modifier using the min-height and min-width properties.</td>
       </tr>
       <tr>
