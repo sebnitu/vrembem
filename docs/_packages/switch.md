@@ -29,7 +29,7 @@ Switch form controls are composed using a set of `<span>` elements alongside the
 ```
 {% include demo_close.html %}
 
-## switch + label
+### switch + label
 
 For switch with labels, just wrap the switch component along with label text using the `<label>` element.
 
