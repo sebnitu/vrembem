@@ -4087,6 +4087,32 @@ input::-moz-placeholder {
   opacity: 1;
 }
 
+.radio_size_sm .radio__background {
+  width: 1.875rem;
+  height: 1.875rem;
+}
+.radio_size_sm .radio__circle {
+  width: 16px;
+  height: 16px;
+}
+.radio_size_sm .radio__native:checked + .radio__background .radio__dot {
+  width: 6px;
+  height: 6px;
+}
+
+.radio_size_lg .radio__background {
+  width: 3.125rem;
+  height: 3.125rem;
+}
+.radio_size_lg .radio__circle {
+  width: 26px;
+  height: 26px;
+}
+.radio_size_lg .radio__native:checked + .radio__background .radio__dot {
+  width: 10px;
+  height: 10px;
+}
+
 .section {
   position: relative;
   display: flex;

@@ -46,6 +46,27 @@ For radio buttons with labels, just wrap the radio component along with label te
 </label>
 ```
 
+## Modifiers
+
+### radio_size_[value]
+
+Adjust the size of a radio by increasing or decreasing its width and height. By default, the radio scale will provide a radio height of 30px (small `radio_size_sm`), 40px (default) and 50px (large `radio_size_lg`).
+
+```html
+<span class="radio radio_size_sm">
+  ...
+</span>
+
+<span class="radio radio_size_lg">
+  ...
+</span>
+```
+
+#### Available Variations
+
+- `radio_size_sm`
+- `radio_size_lg`
+
 ## Customization
 
 ### Sass Variables

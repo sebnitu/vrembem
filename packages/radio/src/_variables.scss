@@ -33,3 +33,10 @@ $circle-border-radius: core.$border-radius !default;
 
 $dot-size: 8px !default;
 $dot-color: core.$white !default;
+
+$size-sm: core.$form-control-size-sm !default;
+$size-sm-circle: 16px !default;
+$size-sm-dot: 6px !default;
+$size-lg: core.$form-control-size-lg !default;
+$size-lg-circle: 26px !default;
+$size-lg-dot: 10px !default;

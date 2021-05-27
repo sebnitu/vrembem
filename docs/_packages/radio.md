@@ -62,6 +62,38 @@ For radio buttons with labels, just wrap the radio component along with label te
 ```
 {% include demo_close.html %}
 
+## radio_size_[value]
+
+Adjust the size of a radio by increasing or decreasing its width and height. By default, the radio scale will provide a radio height of 30px (small `radio_size_sm`), 40px (default) and 50px (large `radio_size_lg`).
+
+{% include demo_open.html class_parent="gap-y" %}
+<div>
+  {% include radio.html name="radio-3" class="radio_size_sm" checked="" %}
+  {% include radio.html name="radio-3" class="radio_size_sm" indeterminate="true" %}
+  {% include radio.html name="radio-3" class="radio_size_sm" %}
+</div>
+<div>
+  {% include radio.html name="radio-4" class="radio_size_lg" checked="" %}
+  {% include radio.html name="radio-4" class="radio_size_lg" indeterminate="true" %}
+  {% include radio.html name="radio-4" class="radio_size_lg" %}
+</div>
+{% include demo_switch.html %}
+```html
+<span class="radio radio_size_sm">
+  ...
+</span>
+
+<span class="radio radio_size_lg">
+  ...
+</span>
+```
+{% include demo_close.html %}
+
+### Available Variations
+
+- `radio_size_sm`
+- `radio_size_lg`
+
 ## Sass variables
 
 <div class="scroll-box">
