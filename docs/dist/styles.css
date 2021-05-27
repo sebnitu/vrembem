@@ -4261,7 +4261,7 @@ input::-moz-placeholder {
   position: absolute;
   top: 0;
   left: -0.625rem;
-  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: left 0.15s cubic-bezier(0.4, 0, 0.6, 1);
   border-radius: 9999px;
   background-color: transparent;
 }
@@ -4283,7 +4283,7 @@ input::-moz-placeholder {
   top: 0;
   left: 0;
   display: block;
-  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: left 0.15s cubic-bezier(0.4, 0, 0.6, 1);
   border-radius: 9999px;
   background-color: #fff;
   box-shadow: 0 0 0 2px #bdbdbd;

@@ -8,8 +8,8 @@ $prefix-modifier-value: core.$prefix-modifier-value !default;
 $color: core.$primary !default;
 $size: core.$form-control-size !default;
 $border-width: 2px !default;
-$transition-duration: core.$transition-duration !default;
-$transition-timing-function: core.$transition-timing-function !default;
+$transition-duration: core.$transition-duration-short !default;
+$transition-timing-function: core.$transition-timing-function-sharp !default;
 
 $background: transparent !default;
 $background-hover: rgba(core.$black, 0.03) !default;

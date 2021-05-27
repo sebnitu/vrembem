@@ -202,12 +202,12 @@ Adjust the size of a switch by increasing or decreasing its width and height. By
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$transition-duration</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$transition-duration</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$transition-duration-short</code></td>
         <td data-mobile-label="Desc">Sets the transition-duration property for the <code class="code">switch__thumb</code> element.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$transition-timing-function</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$transition-timing-function</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$transition-timing-function-sharp</code></td>
         <td data-mobile-label="Desc">Sets the transition-timing-function property for the <code class="code">switch__thumb</code> element.</td>
       </tr>
       <!-- switch__background -->
