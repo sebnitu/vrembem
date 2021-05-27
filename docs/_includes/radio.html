@@ -1,5 +1,10 @@
-<span class="radio">
-  <input type="radio" class="radio__native" name="{{ include.name }}"{% if include.checked %} checked{% endif %}{% if include.id %} id="{{ include.id }}"{% endif %}>
+<span class="radio{% if include.class %} {{ include.class }}{% endif %}">
+  <input
+    type="radio"
+    class="radio__native"
+    name="{{ include.name }}"
+    {% if include.checked %}checked{% endif %}
+    {% if include.id %} id="{{ include.id }}" {% endif %}>
   <span class="radio__background">
     <span class="radio__circle">
       <span class="radio__dot"></span>
