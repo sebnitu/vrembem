@@ -62,6 +62,36 @@ For switch with labels, just wrap the switch component along with label text usi
 ```
 {% include demo_close.html %}
 
+## switch_size_[value]
+
+Adjust the size of a switch by increasing or decreasing its width and height. By default, the switch scale will provide a switch height of 30px (small `switch_size_sm`), 40px (default) and 50px (large `switch_size_lg`).
+
+{% include demo_open.html class_parent="gap-y" %}
+<div>
+  {% include switch.html class="switch_size_sm" checked="" %}
+  {% include switch.html class="switch_size_sm" %}
+</div>
+<div>
+  {% include switch.html class="switch_size_lg" checked="" %}
+  {% include switch.html class="switch_size_lg" %}
+</div>
+{% include demo_switch.html %}
+```html
+<span class="switch switch_size_sm">
+  ...
+</span>
+
+<span class="switch switch_size_lg">
+  ...
+</span>
+```
+{% include demo_close.html %}
+
+### Available Variations
+
+- `switch_size_sm`
+- `switch_size_lg`
+
 ## Sass variables
 
 <div class="scroll-box">
@@ -105,6 +135,11 @@ For switch with labels, just wrap the switch component along with label text usi
         <td data-mobile-label="Var"><code class="code text-nowrap">$size</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$form-control-size</code></td>
         <td data-mobile-label="Desc">Sets the width and height of the <code class="code">switch__background</code> element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2px</code></td>
+        <td data-mobile-label="Desc">...</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$transition-duration</code></td>
@@ -204,11 +239,6 @@ For switch with labels, just wrap the switch component along with label text usi
         <td data-mobile-label="Desc">Sets the border-color property on <code class="code">:checked</code> state.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$track-border-width</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2px</code></td>
-        <td data-mobile-label="Desc">Sets the border-width property for the <code class="code">switch__track</code> element.</td>
-      </tr>
-      <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$track-border-radius</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-radius-circle</code></td>
         <td data-mobile-label="Desc">Sets the border-radius property for the <code class="code">switch__track</code> element.</td>
@@ -245,29 +275,29 @@ For switch with labels, just wrap the switch component along with label text usi
         <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:checked</code> state.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$thumb-box-shadow</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">0 0 0 2px core.$gray-400</code></td>
-        <td data-mobile-label="Desc">Sets the box-shadow property for the <code class="code">switch__thumb</code> element.</td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$thumb-box-shadow-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$gray-400</code></td>
+        <td data-mobile-label="Desc">Sets the box-shadow color property for the <code class="code">switch__thumb</code> element.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$thumb-box-shadow-hover</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">0 0 0 2px $color</code></td>
-        <td data-mobile-label="Desc">Sets the box-shadow property on <code class="code">:hover</code> state.</td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$thumb-box-shadow-color-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$color</code></td>
+        <td data-mobile-label="Desc">Sets the box-shadow color property on <code class="code">:hover</code> state.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$thumb-box-shadow-focus</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">0 0 0 2px $color</code></td>
-        <td data-mobile-label="Desc">Sets the box-shadow property on <code class="code">:focus</code> state.</td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$thumb-box-shadow-color-focus</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$color</code></td>
+        <td data-mobile-label="Desc">Sets the box-shadow color property on <code class="code">:focus</code> state.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$thumb-box-shadow-active</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">0 0 0 2px $color</code></td>
-        <td data-mobile-label="Desc">Sets the box-shadow property on <code class="code">:active</code> state.</td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$thumb-box-shadow-color-active</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$color</code></td>
+        <td data-mobile-label="Desc">Sets the box-shadow color property on <code class="code">:active</code> state.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$thumb-box-shadow-checked</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">0 0 0 2px $color</code></td>
-        <td data-mobile-label="Desc">Sets the box-shadow property on <code class="code">:checked</code> state.</td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$thumb-box-shadow-color-checked</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$color</code></td>
+        <td data-mobile-label="Desc">Sets the box-shadow color property on <code class="code">:checked</code> state.</td>
       </tr>
     </tbody>
   </table>
