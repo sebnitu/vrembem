@@ -1420,6 +1420,32 @@ input::-moz-placeholder {
   opacity: 1;
 }
 
+.checkbox_size_sm .checkbox__background {
+  width: 1.875rem;
+  height: 1.875rem;
+}
+.checkbox_size_sm .checkbox__box {
+  width: 16px;
+  height: 16px;
+}
+.checkbox_size_sm .checkbox__icon {
+  width: 10px;
+  height: 10px;
+}
+
+.checkbox_size_lg .checkbox__background {
+  width: 3.125rem;
+  height: 3.125rem;
+}
+.checkbox_size_lg .checkbox__box {
+  width: 24px;
+  height: 24px;
+}
+.checkbox_size_lg .checkbox__icon {
+  width: 18px;
+  height: 18px;
+}
+
 .dialog {
   position: relative;
   z-index: 500;

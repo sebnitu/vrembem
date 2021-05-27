@@ -40,3 +40,6 @@ $icon-checked:
 
 $icon-indeterminate:
   'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="#{$icon-size}" height="#{$icon-size}" fill="none" stroke="#{core.encodecolor($icon-color)}" stroke-width="#{$icon-stroke}" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6" /></svg>' !default;
+
+$size-sm: core.$form-control-size-sm !default;
+$size-lg: core.$form-control-size-lg !default;

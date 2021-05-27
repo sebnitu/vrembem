@@ -1,0 +1,35 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}checkbox#{$_m}size#{$_v}sm {
+  .#{$_b}checkbox#{$_e}background {
+    @include core.size(var.$size-sm);
+  }
+
+  .#{$_b}checkbox#{$_e}box {
+    @include core.size(16px); // 18px
+  }
+
+  .#{$_b}checkbox#{$_e}icon {
+    @include core.size(10px); // 12px
+  }
+}
+
+.#{$_b}checkbox#{$_m}size#{$_v}lg {
+  .#{$_b}checkbox#{$_e}background {
+    @include core.size(var.$size-lg);
+  }
+
+  .#{$_b}checkbox#{$_e}box {
+    @include core.size(24px); // 18px
+  }
+
+  .#{$_b}checkbox#{$_e}icon {
+    @include core.size(18px); // 12px
+  }
+}
