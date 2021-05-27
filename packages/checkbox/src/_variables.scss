@@ -35,15 +35,11 @@ $icon-size: 12px !default;
 $icon-color: core.$white !default;
 $icon-stroke: 2.5 !default;
 
-$icon-checked:
-  'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="#{$icon-size}" height="#{$icon-size}" fill="none" stroke="#{core.encodecolor($icon-color)}" stroke-width="#{$icon-stroke}" stroke-linecap="round" stroke-linejoin="round"><polyline points="9.5,3 4.5,8.5 2,6"></polyline></svg>' !default;
-
-$icon-indeterminate:
-  'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="#{$icon-size}" height="#{$icon-size}" fill="none" stroke="#{core.encodecolor($icon-color)}" stroke-width="#{$icon-stroke}" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6" /></svg>' !default;
-
 $size-sm: core.$form-control-size-sm !default;
 $size-sm-box: 14px !default;
 $size-sm-icon: 10px !default;
+$size-sm-icon-stroke: 2.5 !default;
 $size-lg: core.$form-control-size-lg !default;
 $size-lg-box: 24px !default;
 $size-lg-icon: 18px !default;
+$size-lg-icon-stroke: 2 !default;

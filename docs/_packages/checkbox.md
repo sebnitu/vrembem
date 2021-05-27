@@ -275,31 +275,9 @@ Adjust the size of a checkbox by increasing or decreasing its width and height. 
         <td data-mobile-label="Default"><code class="code color-secondary">2.5</code></td>
         <td data-mobile-label="Desc">Sets the stroke-width property for the <code class="code">checkbox__icon</code> svg data:image.</td>
       </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code">$icon-checked</code></td>
-        <td data-mobile-label="Default"><a class="link" href="#icon-checked"><code class="code color-secondary">'data:image/svg...'</code> Ref &darr;</a></td>
-        <td data-mobile-label="Desc">The data:image/svg string used as the background-image property for the <code class="code">checkbox__icon</code> element.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code">$icon-indeterminate</code></td>
-        <td data-mobile-label="Default"><a class="link" href="#icon-indeterminate"><code class="code color-secondary">'data:image/svg...'</code> Ref &darr;</a></td>
-        <td data-mobile-label="Desc">The data:image/svg string used as the background-image property for the <code class="code">checkbox__icon</code> element in it's indeterminate state.</td>
-      </tr>
     </tbody>
   </table>
 </div>
-
-### `$icon-checked`
-
-```scss
-$icon-checked: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="#{$icon-size}" height="#{$icon-size}" fill="none" stroke="#{core.encodecolor($icon-color)}" stroke-width="#{$icon-stroke}" stroke-linecap="round" stroke-linejoin="round"><polyline points="9.5,3 4.5,8.5 2,6"></polyline></svg>' !default;
-```
-
-### `$icon-indeterminate`
-
-```scss
-$icon-indeterminate: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="#{$icon-size}" height="#{$icon-size}" fill="none" stroke="#{core.encodecolor($icon-color)}" stroke-width="#{$icon-stroke}" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6" /></svg>' !default;
-```
 
 ## JavaScript Options
 

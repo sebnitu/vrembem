@@ -80,52 +80,38 @@ Adjust the size of a checkbox by increasing or decreasing its width and height. 
 
 ### Sass Variables
 
-| Variable                      | Default                                                 | Description                                                                                                                   |
-| ----------------------------- | ------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `$prefix-block`               | `null`                                                  | String to prefix blocks with.                                                                                                 |
-| `$prefix-element`             | `"__"`                                                  | String to prefix elements with.                                                                                               |
-| `$prefix-modifier`            | `"_"`                                                   | String to prefix modifiers with.                                                                                              |
-| `$prefix-modifier-value`      | `"_"`                                                   | String to prefix modifier values with.                                                                                        |
-| `$color`                      | `core.$primary`                                         | Sets the base color theme for the checkbox component.                                                                         |
-| `$size`                       | `core.$form-control-size`                               | Sets the width and height of the `checkbox__background` element.                                                              |
-| `$transition-duration`        | `core.$transition-duration-short`                       | Sets the transition-duration property for the `checkbox__icon` element.                                                       |
-| `$transition-timing-function` | `core.$transition-timing-function-sharp`                | Sets the transition-timing-function property for the `checkbox__icon` element.                                                |
-| `$background`                 | `transparent`                                           | Sets the background-color property for the `checkbox__background` element.                                                    |
-| `$background-hover`           | `rgba(core.$black, 0.03)`                               | Sets the background-color property on `:hover` state.                                                                         |
-| `$background-focus`           | `rgba(core.$black, 0.03)`                               | Sets the background-color property on `:focus` state.                                                                         |
-| `$background-active`          | `rgba(core.$black, 0.06)`                               | Sets the background-color property on `:active` state.                                                                        |
-| `$background-checked`         | `null`                                                  | Sets the background-color property on `:checked` state.                                                                       |
-| `$background-border-radius`   | `core.$border-radius-circle`                            | Sets the border-radius property for the `checkbox__background` element.                                                       |
-| `$box-size`                   | `18px`                                                  | Sets the width and height of the `checkbox__box` element.                                                                     |
-| `$box-background`             | `null`                                                  | Sets the background-color property for the `checkbox__box` element.                                                           |
-| `$box-background-hover`       | `null`                                                  | Sets the background-color property on `:hover` state.                                                                         |
-| `$box-background-focus`       | `null`                                                  | Sets the background-color property on `:focus` state.                                                                         |
-| `$box-background-active`      | `null`                                                  | Sets the background-color property on `:active` state.                                                                        |
-| `$box-background-checked`     | `$color`                                                | Sets the background-color property on `:checked` state.                                                                       |
-| `$box-border-color`           | `core.$gray-400`                                        | Sets the border-color property for the `checkbox__box` element.                                                               |
-| `$box-border-color-hover`     | `$color`                                                | Sets the border-color property on `:hover` state.                                                                             |
-| `$box-border-color-focus`     | `$color`                                                | Sets the border-color property on `:focus` state.                                                                             |
-| `$box-border-color-active`    | `$color`                                                | Sets the border-color property on `:active` state.                                                                            |
-| `$box-border-color-checked`   | `$color`                                                | Sets the border-color property on `:checked` state.                                                                           |
-| `$box-border-width`           | `2px`                                                   | Sets the border-width property for the `checkbox__box` element.                                                               |
-| `$box-border-radius`          | `core.$border-radius`                                   | Sets the border-radius property for the `checkbox__box` element.                                                              |
-| `$icon-size`                  | `12px`                                                  | Sets the width and height property for the `checkbox__icon` svg data:image.                                                   |
-| `$icon-color`                 | `core.$white`                                           | Sets the stroke property for the `checkbox__icon` svg data:image.                                                             |
-| `$icon-stroke`                | `2.5`                                                   | Sets the stroke-width property for the `checkbox__icon` svg data:image.                                                       |
-| `$icon-checked`               | [`'data:image/svg...'` Ref &darr;](#icon-checked)       | The data:image/svg string used as the background-image property for the `checkbox__icon` element.                             |
-| `$icon-indeterminate`         | [`'data:image/svg...'` Ref &darr;](#icon-indeterminate) | The data:image/svg string used as the background-image property for the `checkbox__icon` element in it's indeterminate state. |
-
-#### `$icon-checked`
-
-```scss
-$icon-checked: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="#{$icon-size}" height="#{$icon-size}" fill="none" stroke="#{core.encodecolor($icon-color)}" stroke-width="#{$icon-stroke}" stroke-linecap="round" stroke-linejoin="round"><polyline points="9.5,3 4.5,8.5 2,6"></polyline></svg>' !default;
-```
-
-#### `$icon-indeterminate`
-
-```scss
-$icon-indeterminate: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="#{$icon-size}" height="#{$icon-size}" fill="none" stroke="#{core.encodecolor($icon-color)}" stroke-width="#{$icon-stroke}" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6" /></svg>' !default;
-```
+| Variable                      | Default                                  | Description                                                                    |
+| ----------------------------- | ---------------------------------------- | ------------------------------------------------------------------------------ |
+| `$prefix-block`               | `null`                                   | String to prefix blocks with.                                                  |
+| `$prefix-element`             | `"__"`                                   | String to prefix elements with.                                                |
+| `$prefix-modifier`            | `"_"`                                    | String to prefix modifiers with.                                               |
+| `$prefix-modifier-value`      | `"_"`                                    | String to prefix modifier values with.                                         |
+| `$color`                      | `core.$primary`                          | Sets the base color theme for the checkbox component.                          |
+| `$size`                       | `core.$form-control-size`                | Sets the width and height of the `checkbox__background` element.               |
+| `$transition-duration`        | `core.$transition-duration-short`        | Sets the transition-duration property for the `checkbox__icon` element.        |
+| `$transition-timing-function` | `core.$transition-timing-function-sharp` | Sets the transition-timing-function property for the `checkbox__icon` element. |
+| `$background`                 | `transparent`                            | Sets the background-color property for the `checkbox__background` element.     |
+| `$background-hover`           | `rgba(core.$black, 0.03)`                | Sets the background-color property on `:hover` state.                          |
+| `$background-focus`           | `rgba(core.$black, 0.03)`                | Sets the background-color property on `:focus` state.                          |
+| `$background-active`          | `rgba(core.$black, 0.06)`                | Sets the background-color property on `:active` state.                         |
+| `$background-checked`         | `null`                                   | Sets the background-color property on `:checked` state.                        |
+| `$background-border-radius`   | `core.$border-radius-circle`             | Sets the border-radius property for the `checkbox__background` element.        |
+| `$box-size`                   | `18px`                                   | Sets the width and height of the `checkbox__box` element.                      |
+| `$box-background`             | `null`                                   | Sets the background-color property for the `checkbox__box` element.            |
+| `$box-background-hover`       | `null`                                   | Sets the background-color property on `:hover` state.                          |
+| `$box-background-focus`       | `null`                                   | Sets the background-color property on `:focus` state.                          |
+| `$box-background-active`      | `null`                                   | Sets the background-color property on `:active` state.                         |
+| `$box-background-checked`     | `$color`                                 | Sets the background-color property on `:checked` state.                        |
+| `$box-border-color`           | `core.$gray-400`                         | Sets the border-color property for the `checkbox__box` element.                |
+| `$box-border-color-hover`     | `$color`                                 | Sets the border-color property on `:hover` state.                              |
+| `$box-border-color-focus`     | `$color`                                 | Sets the border-color property on `:focus` state.                              |
+| `$box-border-color-active`    | `$color`                                 | Sets the border-color property on `:active` state.                             |
+| `$box-border-color-checked`   | `$color`                                 | Sets the border-color property on `:checked` state.                            |
+| `$box-border-width`           | `2px`                                    | Sets the border-width property for the `checkbox__box` element.                |
+| `$box-border-radius`          | `core.$border-radius`                    | Sets the border-radius property for the `checkbox__box` element.               |
+| `$icon-size`                  | `12px`                                   | Sets the width and height property for the `checkbox__icon` svg data:image.    |
+| `$icon-color`                 | `core.$white`                            | Sets the stroke property for the `checkbox__icon` svg data:image.              |
+| `$icon-stroke`                | `2.5`                                    | Sets the stroke-width property for the `checkbox__icon` svg data:image.        |
 
 ### JavaScript Options
 
