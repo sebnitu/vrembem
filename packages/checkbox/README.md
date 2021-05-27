@@ -57,7 +57,7 @@ For checkboxes with labels, just wrap the checkbox component along with label te
 
 ## Modifiers
 
-## checkbox_size_[value]
+### checkbox_size_[value]
 
 Adjust the size of a checkbox by increasing or decreasing its width and height. By default, the checkbox scale will provide a checkbox height of 30px (small `checkbox_size_sm`), 40px (default) and 50px (large `checkbox_size_lg`).
 
@@ -71,7 +71,7 @@ Adjust the size of a checkbox by increasing or decreasing its width and height. 
 </span>
 ```
 
-### Available Variations
+#### Available Variations
 
 - `checkbox_size_sm`
 - `checkbox_size_lg`
