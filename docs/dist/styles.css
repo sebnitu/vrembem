@@ -1425,8 +1425,8 @@ input::-moz-placeholder {
   height: 1.875rem;
 }
 .checkbox_size_sm .checkbox__box {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
 }
 .checkbox_size_sm .checkbox__icon {
   width: 10px;

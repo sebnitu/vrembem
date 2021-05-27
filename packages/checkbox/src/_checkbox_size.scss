@@ -12,11 +12,11 @@ $_v: var.$prefix-modifier-value;
   }
 
   .#{$_b}checkbox#{$_e}box {
-    @include core.size(16px); // 18px
+    @include core.size(var.$size-sm-box);
   }
 
   .#{$_b}checkbox#{$_e}icon {
-    @include core.size(10px); // 12px
+    @include core.size(var.$size-sm-icon);
   }
 }
 
@@ -26,10 +26,10 @@ $_v: var.$prefix-modifier-value;
   }
 
   .#{$_b}checkbox#{$_e}box {
-    @include core.size(24px); // 18px
+    @include core.size(var.$size-lg-box);
   }
 
   .#{$_b}checkbox#{$_e}icon {
-    @include core.size(18px); // 12px
+    @include core.size(var.$size-lg-icon);
   }
 }
