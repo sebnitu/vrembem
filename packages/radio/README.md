@@ -33,6 +33,8 @@ Radio buttons are composed using a set of `<span>` elements alongside the native
 </span>
 ```
 
+#### radio + label
+
 For radio buttons with labels, just wrap the radio component along with label text using the `<label>` element.
 
 ```html
