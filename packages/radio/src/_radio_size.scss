@@ -13,6 +13,7 @@ $_v: var.$prefix-modifier-value;
 
   .#{$_b}radio#{$_e}circle {
     @include core.size(var.$size-sm-circle);
+    border-width: var.$size-sm-border-width;
   }
 
   .#{$_b}radio#{$_e}native:checked + .#{$_b}radio#{$_e}background .#{$_b}radio#{$_e}dot {
@@ -27,6 +28,7 @@ $_v: var.$prefix-modifier-value;
 
   .#{$_b}radio#{$_e}circle {
     @include core.size(var.$size-lg-circle);
+    border-width: var.$size-lg-border-width;
   }
 
   .#{$_b}radio#{$_e}native:checked + .#{$_b}radio#{$_e}background .#{$_b}radio#{$_e}dot {

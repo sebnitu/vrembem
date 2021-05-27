@@ -92,6 +92,65 @@ Adjust the size of a switch by increasing or decreasing its width and height. By
 - `switch_size_sm`
 - `switch_size_lg`
 
+## Example
+
+<div class="grid">
+  <div class="grid__item">
+    <input type="text" class="input input_size_sm">
+  </div>
+  <div class="grid__item span-auto">
+    {% include checkbox.html class="checkbox_size_sm" %}
+  </div>
+  <div class="grid__item span-auto">
+    {% include radio.html name="radio-1" class="radio_size_sm" %}
+    {% include radio.html name="radio-1" class="radio_size_sm" %}
+  </div>
+  <div class="grid__item span-auto">
+    {% include switch.html class="switch_size_sm" %}
+  </div>
+  <div class="grid__item span-auto">
+    <button class="button button_size_sm">Button</button>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="grid__item">
+    <input type="text" class="input">
+  </div>
+  <div class="grid__item span-auto">
+    {% include checkbox.html class="" %}
+  </div>
+  <div class="grid__item span-auto">
+    {% include radio.html name="radio-2" class="" %}
+    {% include radio.html name="radio-2" class="" %}
+  </div>
+  <div class="grid__item span-auto">
+    {% include switch.html class="" %}
+  </div>
+  <div class="grid__item span-auto">
+    <button class="button">Button</button>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="grid__item">
+    <input type="text" class="input input_size_lg">
+  </div>
+  <div class="grid__item span-auto">
+    {% include checkbox.html class="checkbox_size_lg" %}
+  </div>
+  <div class="grid__item span-auto">
+    {% include radio.html name="radio-3" class="radio_size_lg" %}
+    {% include radio.html name="radio-3" class="radio_size_lg" %}
+  </div>
+  <div class="grid__item span-auto">
+    {% include switch.html class="switch_size_lg" %}
+  </div>
+  <div class="grid__item span-auto">
+    <button class="button button_size_lg">Button</button>
+  </div>
+</div>
+
 ## Sass variables
 
 <div class="scroll-box">
@@ -139,7 +198,7 @@ Adjust the size of a switch by increasing or decreasing its width and height. By
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$border-width</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2px</code></td>
-        <td data-mobile-label="Desc">...</td>
+        <td data-mobile-label="Desc">Sets the border-width property for the <code class="code">switch__track</code> element and box-shadow spread for other elements and states.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$transition-duration</code></td>

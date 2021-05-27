@@ -79,6 +79,7 @@ Adjust the size of a radio by increasing or decreasing its width and height. By 
 | `$prefix-modifier-value`       | `"_"`                                    | String to prefix modifier values with.                                     |
 | `$color`                       | `core.$primary`                          | Sets the base color theme for the radio component.                         |
 | `$size`                        | `core.$form-control-size`                | Sets the width and height of the `radio__background` element.              |
+| `$border-width`                | `2px`                                    | Sets the border-width property for the `radio__circle` element.            |
 | `$transition-duration`         | `core.$transition-duration-short`        | Sets the transition-duration property for the `radio__dot` element.        |
 | `$transition-timing-function`  | `core.$transition-timing-function-sharp` | Sets the transition-timing-function property for the `radio__dot` element. |
 | `$background`                  | `transparent`                            | Sets the background-color property for the `radio__background` element.    |
@@ -98,7 +99,6 @@ Adjust the size of a radio by increasing or decreasing its width and height. By 
 | `$circle-border-color-focus`   | `$color`                                 | Sets the border-color property on `:focus` state.                          |
 | `$circle-border-color-active`  | `$color`                                 | Sets the border-color property on `:active` state.                         |
 | `$circle-border-color-checked` | `$color`                                 | Sets the border-color property on `:checked` state.                        |
-| `$circle-border-width`         | `2px`                                    | Sets the border-width property for the `radio__circle` element.            |
 | `$circle-border-radius`        | `core.$border-radius`                    | Sets the border-radius property for the `radio__circle` element.           |
 | `$dot-size`                    | `8px`                                    | Sets the width and height property for the `radio__dot` element.           |
 | `$dot-color`                   | `core.$white`                            | Sets the background-color property for the `radio__dot` element.           |

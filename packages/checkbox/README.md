@@ -88,6 +88,7 @@ Adjust the size of a checkbox by increasing or decreasing its width and height. 
 | `$prefix-modifier-value`      | `"_"`                                    | String to prefix modifier values with.                                         |
 | `$color`                      | `core.$primary`                          | Sets the base color theme for the checkbox component.                          |
 | `$size`                       | `core.$form-control-size`                | Sets the width and height of the `checkbox__background` element.               |
+| `$border-width`               | `2px`                                    | Sets the border-width property for the `checkbox__box` element.                |
 | `$transition-duration`        | `core.$transition-duration-short`        | Sets the transition-duration property for the `checkbox__icon` element.        |
 | `$transition-timing-function` | `core.$transition-timing-function-sharp` | Sets the transition-timing-function property for the `checkbox__icon` element. |
 | `$background`                 | `transparent`                            | Sets the background-color property for the `checkbox__background` element.     |
@@ -107,7 +108,6 @@ Adjust the size of a checkbox by increasing or decreasing its width and height. 
 | `$box-border-color-focus`     | `$color`                                 | Sets the border-color property on `:focus` state.                              |
 | `$box-border-color-active`    | `$color`                                 | Sets the border-color property on `:active` state.                             |
 | `$box-border-color-checked`   | `$color`                                 | Sets the border-color property on `:checked` state.                            |
-| `$box-border-width`           | `2px`                                    | Sets the border-width property for the `checkbox__box` element.                |
 | `$box-border-radius`          | `core.$border-radius`                    | Sets the border-radius property for the `checkbox__box` element.               |
 | `$icon-size`                  | `12px`                                   | Sets the width and height property for the `checkbox__icon` svg data:image.    |
 | `$icon-color`                 | `core.$white`                            | Sets the stroke property for the `checkbox__icon` svg data:image.              |

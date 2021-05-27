@@ -156,6 +156,11 @@ Adjust the size of a checkbox by increasing or decreasing its width and height. 
         <td data-mobile-label="Desc">Sets the width and height of the <code class="code">checkbox__background</code> element.</td>
       </tr>
       <tr>
+        <td data-mobile-label="Var"><code class="code">$border-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">2px</code></td>
+        <td data-mobile-label="Desc">Sets the border-width property for the <code class="code">checkbox__box</code> element.</td>
+      </tr>
+      <tr>
         <td data-mobile-label="Var"><code class="code">$transition-duration</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">core.$transition-duration-short</code></td>
         <td data-mobile-label="Desc">Sets the transition-duration property for the <code class="code">checkbox__icon</code> element.</td>
@@ -249,11 +254,6 @@ Adjust the size of a checkbox by increasing or decreasing its width and height. 
         <td data-mobile-label="Var"><code class="code">$box-border-color-checked</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">$color</code></td>
         <td data-mobile-label="Desc">Sets the border-color property on <code class="code">:checked</code> state.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code">$box-border-width</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">2px</code></td>
-        <td data-mobile-label="Desc">Sets the border-width property for the <code class="code">checkbox__box</code> element.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code">$box-border-radius</code></td>

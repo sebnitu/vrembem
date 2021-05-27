@@ -14,6 +14,7 @@ $_v: var.$prefix-modifier-value;
 
   .#{$_b}checkbox#{$_e}box {
     @include core.size(var.$size-sm-box);
+    border-width: var.$size-sm-border-width;
   }
 
   .#{$_b}checkbox#{$_e}icon {
@@ -33,6 +34,7 @@ $_v: var.$prefix-modifier-value;
 
   .#{$_b}checkbox#{$_e}box {
     @include core.size(var.$size-lg-box);
+    border-width: var.$size-lg-border-width;
   }
 
   .#{$_b}checkbox#{$_e}icon {

@@ -139,6 +139,11 @@ Adjust the size of a radio by increasing or decreasing its width and height. By 
         <td data-mobile-label="Desc">Sets the width and height of the <code class="code">radio__background</code> element.</td>
       </tr>
       <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2px</code></td>
+        <td data-mobile-label="Desc">Sets the background-color property for the <code class="code">radio__circle</code> element.</td>
+      </tr>
+      <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$transition-duration</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$transition-duration-short</code></td>
         <td data-mobile-label="Desc">Sets the transition-duration property for the <code class="code">radio__dot</code> element.</td>
@@ -229,11 +234,6 @@ Adjust the size of a radio by increasing or decreasing its width and height. By 
         <td data-mobile-label="Var"><code class="code text-nowrap">$circle-border-color-checked</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$color</code></td>
         <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:checked</code> state.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$circle-border-width</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2px</code></td>
-        <td data-mobile-label="Desc">Sets the background-color property for the <code class="code">radio__circle</code> element.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$circle-border-radius</code></td>
