@@ -42,6 +42,8 @@ Checkboxes are composed using a set of `<span>` elements alongside the native `<
 
 > For indeterminate checkboxes, apply the `aria-checked="mixed"` attribute to the `<input type="checkbox">` element and initialize the checkbox component script.
 
+#### checkbox + label
+
 For checkboxes with labels, just wrap the checkbox component along with label text using the `<label>` element.
 
 ```html
@@ -52,6 +54,27 @@ For checkboxes with labels, just wrap the checkbox component along with label te
   Checkbox with a label
 </label>
 ```
+
+## Modifiers
+
+## checkbox_size_[value]
+
+Adjust the size of a checkbox by increasing or decreasing its width and height. By default, the checkbox scale will provide a checkbox height of 30px (small `checkbox_size_sm`), 40px (default) and 50px (large `checkbox_size_lg`).
+
+```html
+<span class="checkbox checkbox_size_sm">
+  ...
+</span>
+
+<span class="checkbox checkbox_size_lg">
+  ...
+</span>
+```
+
+### Available Variations
+
+- `checkbox_size_sm`
+- `checkbox_size_lg`
 
 ## Customization
 

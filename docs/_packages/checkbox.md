@@ -40,7 +40,7 @@ import Checkbox from "@vrembem/checkbox";
 const checkbox = new Checkbox({ autoInit: true });
 ```
 
-## checkbox + label
+### checkbox + label
 
 For checkboxes with labels, just wrap the checkbox component along with label text using the `<label>` element.
 
@@ -78,6 +78,38 @@ For checkboxes with labels, just wrap the checkbox component along with label te
 </label>
 ```
 {% include demo_close.html %}
+
+## checkbox_size_[value]
+
+Adjust the size of a checkbox by increasing or decreasing its width and height. By default, the checkbox scale will provide a checkbox height of 30px (small `checkbox_size_sm`), 40px (default) and 50px (large `checkbox_size_lg`).
+
+{% include demo_open.html class_parent="gap-y" %}
+<div>
+  {% include checkbox.html class="checkbox_size_sm" checked="" %}
+  {% include checkbox.html class="checkbox_size_sm" indeterminate="true" %}
+  {% include checkbox.html class="checkbox_size_sm" %}
+</div>
+<div>
+  {% include checkbox.html class="checkbox_size_lg" checked="" %}
+  {% include checkbox.html class="checkbox_size_lg" indeterminate="true" %}
+  {% include checkbox.html class="checkbox_size_lg" %}
+</div>
+{% include demo_switch.html %}
+```html
+<span class="checkbox checkbox_size_sm">
+  ...
+</span>
+
+<span class="checkbox checkbox_size_lg">
+  ...
+</span>
+```
+{% include demo_close.html %}
+
+### Available Variations
+
+- `checkbox_size_sm`
+- `checkbox_size_lg`
 
 ## Sass variables
 
