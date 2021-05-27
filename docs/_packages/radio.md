@@ -103,7 +103,7 @@ For radio buttons with labels, just wrap the radio component along with label te
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$size</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2.5em</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$form-control-size</code></td>
         <td data-mobile-label="Desc">Sets the width and height of the <code class="code">radio__background</code> element.</td>
       </tr>
       <tr>

@@ -55,7 +55,7 @@ For radio buttons with labels, just wrap the radio component along with label te
 | `$prefix-modifier`             | `"_"`                                    | String to prefix modifiers with.                                           |
 | `$prefix-modifier-value`       | `"_"`                                    | String to prefix modifier values with.                                     |
 | `$color`                       | `core.$primary`                          | Sets the base color theme for the radio component.                         |
-| `$size`                        | `2.5em`                                  | Sets the width and height of the `radio__background` element.              |
+| `$size`                        | `core.$form-control-size`                | Sets the width and height of the `radio__background` element.              |
 | `$transition-duration`         | `core.$transition-duration-short`        | Sets the transition-duration property for the `radio__dot` element.        |
 | `$transition-timing-function`  | `core.$transition-timing-function-sharp` | Sets the transition-timing-function property for the `radio__dot` element. |
 | `$background`                  | `transparent`                            | Sets the background-color property for the `radio__background` element.    |

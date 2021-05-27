@@ -103,7 +103,7 @@ For switch with labels, just wrap the switch component along with label text usi
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$size</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2.5em</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$form-control-size</code></td>
         <td data-mobile-label="Desc">Sets the width and height of the <code class="code">switch__background</code> element.</td>
       </tr>
       <tr>

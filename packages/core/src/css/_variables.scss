@@ -126,6 +126,13 @@ $border-invert-darker: $border-width $border-style $border-color-invert-darker !
 $border-radius: 4px !default;
 $border-radius-circle: 9999px !default;
 
+// Form controls
+// ---
+
+$form-control-size: 2.5rem !default; // 40px
+$form-control-size-sm: 1.875rem !default; // 30px
+$form-control-size-lg: 3.125rem !default; // 50px
+
 // Typography
 // ---
 

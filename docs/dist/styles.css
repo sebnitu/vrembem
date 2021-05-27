@@ -1336,8 +1336,8 @@ input::-moz-placeholder {
 }
 
 .checkbox__background {
-  width: 2.5em;
-  height: 2.5em;
+  width: 2.5rem;
+  height: 2.5rem;
   position: relative;
   z-index: 1;
   display: flex;
@@ -3981,8 +3981,8 @@ input::-moz-placeholder {
 }
 
 .radio__background {
-  width: 2.5em;
-  height: 2.5em;
+  width: 2.5rem;
+  height: 2.5rem;
   position: relative;
   z-index: 1;
   display: flex;
@@ -4176,14 +4176,14 @@ input::-moz-placeholder {
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  padding-right: 0.625em;
-  padding-left: 0.625em;
+  padding-right: 0.625rem;
+  padding-left: 0.625rem;
   vertical-align: middle;
 }
 
 .switch__background {
-  width: 2.5em;
-  height: 2.5em;
+  width: 2.5rem;
+  height: 2.5rem;
   position: relative;
   z-index: 1;
   display: flex;
@@ -4191,12 +4191,12 @@ input::-moz-placeholder {
   justify-content: center;
 }
 .switch__background::after {
-  width: 2.5em;
-  height: 2.5em;
+  width: 2.5rem;
+  height: 2.5rem;
   content: "";
   position: absolute;
   top: 0;
-  left: -0.625em;
+  left: -0.625rem;
   transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 9999px;
   background-color: transparent;
@@ -4254,7 +4254,7 @@ input::-moz-placeholder {
   box-shadow: 0 0 0 2px #00bcd4;
 }
 .switch__native:checked + .switch__background::after {
-  left: calc(100% - 1.875em);
+  left: calc(100% - 1.875rem);
 }
 .switch__native:checked + .switch__background .switch__track {
   border-color: #00bcd4;

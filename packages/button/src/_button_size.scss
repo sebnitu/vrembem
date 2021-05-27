@@ -7,8 +7,8 @@ $_v: var.$prefix-modifier-value;
 
 .#{$_b}button#{$_m}size#{$_v}sm {
   @include core.calc-padding(var.$size-sm-padding, var.$border-width);
-  min-width: var.$size-sm-min-size;
-  min-height: var.$size-sm-min-size;
+  min-width: var.$size-sm;
+  min-height: var.$size-sm;
   font-size: var.$size-sm-font-size;
   line-height: var.$size-sm-line-height;
 
@@ -19,8 +19,8 @@ $_v: var.$prefix-modifier-value;
 
 .#{$_b}button#{$_m}size#{$_v}lg {
   @include core.calc-padding(var.$size-lg-padding, var.$border-width);
-  min-width: var.$size-lg-min-size;
-  min-height: var.$size-lg-min-size;
+  min-width: var.$size-lg;
+  min-height: var.$size-lg;
   font-size: var.$size-lg-font-size;
   line-height: var.$size-lg-line-height;
 
