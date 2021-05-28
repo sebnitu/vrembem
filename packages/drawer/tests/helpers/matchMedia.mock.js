@@ -5,7 +5,6 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
     matches: checkMatch(query),
     media: query,
     onchange: null,
-    addListener: e => e('mediaQueryListEvent'),
     removeListener: jest.fn(),
     addEventListener: jest.fn(),
     removeEventListener: jest.fn(),
