@@ -170,6 +170,7 @@ Adjust the size of a checkbox by increasing or decreasing its width and height. 
         <td data-mobile-label="Default"><code class="code color-secondary">core.$transition-timing-function-sharp</code></td>
         <td data-mobile-label="Desc">Sets the transition-timing-function property for the <code class="code">checkbox__icon</code> element.</td>
       </tr>
+      <!-- checkbox__background -->
       <tr>
         <td data-mobile-label="Var"><code class="code">$background</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">transparent</code></td>
@@ -200,6 +201,7 @@ Adjust the size of a checkbox by increasing or decreasing its width and height. 
         <td data-mobile-label="Default"><code class="code color-secondary">core.$border-radius-circle</code></td>
         <td data-mobile-label="Desc">Sets the border-radius property for the <code class="code">checkbox__background</code> element.</td>
       </tr>
+      <!-- checkbox__box -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$box-size</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">18px</code></td>
@@ -260,6 +262,7 @@ Adjust the size of a checkbox by increasing or decreasing its width and height. 
         <td data-mobile-label="Default"><code class="code color-secondary">core.$border-radius</code></td>
         <td data-mobile-label="Desc">Sets the border-radius property for the <code class="code">checkbox__box</code> element.</td>
       </tr>
+      <!-- checkbox__icon -->
       <tr>
         <td data-mobile-label="Var"><code class="code">$icon-size</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">12px</code></td>
@@ -274,6 +277,57 @@ Adjust the size of a checkbox by increasing or decreasing its width and height. 
         <td data-mobile-label="Var"><code class="code">$icon-stroke</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">2.5</code></td>
         <td data-mobile-label="Desc">Sets the stroke-width property for the <code class="code">checkbox__icon</code> svg data:image.</td>
+      </tr>
+      <!-- checkbox_size_[value] -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$size-sm</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$form-control-size-sm</code></td>
+        <td data-mobile-label="Desc">Sets the width and height of the <code class="code">checkbox__background</code> element of the <code class="code">checkbox_size_sm</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$size-sm-border-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">2px</code></td>
+        <td data-mobile-label="Desc">Sets the border-width property for the <code class="code">checkbox__box</code> element of the <code class="code">checkbox_size_sm</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$size-sm-box</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">14px</code></td>
+        <td data-mobile-label="Desc">Sets the width and height of the <code class="code">checkbox__box</code> element of the <code class="code">checkbox_size_sm</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$size-sm-icon</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">10px</code></td>
+        <td data-mobile-label="Desc">Sets the width and height property for the <code class="code">checkbox__icon</code> svg data:image of the <code class="code">checkbox_size_sm</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$size-sm-icon-stroke</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">2.5</code></td>
+        <td data-mobile-label="Desc">Sets the stroke-width property for the <code class="code">checkbox__icon</code> svg data:image of the <code class="code">checkbox_size_sm</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$size-lg</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$form-control-size-lg</code></td>
+        <td data-mobile-label="Desc">Sets the width and height of the <code class="code">checkbox__background</code> element of the <code class="code">checkbox_size_lg</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$size-lg-border-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">2.5px</code></td>
+        <td data-mobile-label="Desc">Sets the border-width property for the <code class="code">checkbox__box</code> element of the <code class="code">checkbox_size_lg</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$size-lg-box</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">24px</code></td>
+        <td data-mobile-label="Desc">Sets the width and height of the <code class="code">checkbox__box</code> element of the <code class="code">checkbox_size_lg</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$size-lg-icon</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">18px</code></td>
+        <td data-mobile-label="Desc">Sets the width and height property for the <code class="code">checkbox__icon</code> svg data:image of the <code class="code">checkbox_size_lg</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$size-lg-icon-stroke</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">2</code></td>
+        <td data-mobile-label="Desc">Sets the stroke-width property for the <code class="code">checkbox__icon</code> svg data:image of the <code class="code">checkbox_size_lg</code> modifier.</td>
       </tr>
     </tbody>
   </table>
