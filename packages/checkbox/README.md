@@ -131,6 +131,62 @@ Adjust the size of a checkbox by increasing or decreasing its width and height. 
 | `stateAttr`  | `'aria-checked'` | Attribute to check mixed state against.                            |
 | `StateValue` | `'mixed'`        | The mixed value to check for. Applied as the value of `stateAttr`. |
 
+## Sass Functions
+
+### `@function icon-check($size, $color, $stroke)`
+
+Outputs data image string for check SVG icon. Used as the value of `url()` in background-image property.
+
+**Returns:** `String` - Data image string
+
+**Arguments**
+
+| Variable  | Type                 | Description                            |
+| --------- | -------------------- | -------------------------------------- |
+| `$size`   | `number (with unit)` | Value for width and height attributes. |
+| `$color`  | `color`              | Value for stroke attribute.            |
+| `$stroke` | `number (unitless)`  | Value for stroke-width attribute.      |
+
+**Example**
+
+```scss
+.icon-check {
+  background-image: url(icon-check(18px, #fff, 2));
+}
+
+// CSS Output
+.icon-check {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" fill="none" stroke="%23FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9.5,3 4.5,8.5 2,6"></polyline></svg>');
+}
+```
+
+### `@function icon-minus($size, $color, $stroke)`
+
+Outputs data image string for minus SVG icon. Used as the value of `url()` in background-image property.
+
+**Returns:** `String` - Data image string
+
+**Arguments**
+
+| Variable  | Type                 | Description                            |
+| --------- | -------------------- | -------------------------------------- |
+| `$size`   | `number (with unit)` | Value for width and height attributes. |
+| `$color`  | `color`              | Value for stroke attribute.            |
+| `$stroke` | `number (unitless)`  | Value for stroke-width attribute.      |
+
+**Example**
+
+```scss
+.icon-minus {
+  background-image: url(icon-minus(18px, #fff, 2));
+}
+
+// CSS Output
+.icon-minus {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" fill="none" stroke="%23FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6" /></svg>');
+}
+```
+
 ## API
 
 ### `checkbox.init(options)`

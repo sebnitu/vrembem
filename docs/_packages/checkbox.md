@@ -364,6 +364,118 @@ Adjust the size of a checkbox by increasing or decreasing its width and height. 
   </table>
 </div>
 
+## Sass Functions
+
+### `@function icon-check($size, $color, $stroke)`
+
+Outputs data image string for check SVG icon. Used as the value of `url()` in background-image property.
+
+<table class="table table_style_bordered">
+  <tr>
+    <th class="table__auto">Returns</th>
+    <td><code class="code">String</code> - Data image string</td>
+  </tr>
+</table>
+
+**Arguments**
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">number (with unit)</code></td>
+        <td data-mobile-label="Desc">Value for width and height attributes.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">color</code></td>
+        <td data-mobile-label="Desc">Value for stroke attribute.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$stroke</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">number (unitless)</code></td>
+        <td data-mobile-label="Desc">Value for stroke-width attribute.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+**Example**
+
+```scss
+.icon-check {
+  background-image: url(icon-check(18px, #fff, 2));
+}
+
+// CSS Output
+.icon-check {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" fill="none" stroke="%23FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9.5,3 4.5,8.5 2,6"></polyline></svg>');
+}
+```
+
+### `@function icon-minus($size, $color, $stroke)`
+
+Outputs data image string for minus SVG icon. Used as the value of `url()` in background-image property.
+
+<table class="table table_style_bordered">
+  <tr>
+    <th class="table__auto">Returns</th>
+    <td><code class="code">String</code> - Data image string</td>
+  </tr>
+</table>
+
+**Arguments**
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">number (with unit)</code></td>
+        <td data-mobile-label="Desc">Value for width and height attributes.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">color</code></td>
+        <td data-mobile-label="Desc">Value for stroke attribute.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$stroke</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">number (unitless)</code></td>
+        <td data-mobile-label="Desc">Value for stroke-width attribute.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+**Example**
+
+```scss
+.icon-minus {
+  background-image: url(icon-minus(18px, #fff, 2));
+}
+
+// CSS Output
+.icon-minus {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" fill="none" stroke="%23FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6" /></svg>');
+}
+```
+
 ## API
 
 ### `checkbox.init(options)`
