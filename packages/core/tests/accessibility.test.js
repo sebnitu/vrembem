@@ -67,23 +67,19 @@ describe('running setOverflowHidden', () => {
 });
 
 describe('running setTabindex', () => {
+  it('should do nothing if selector is not passed', () => {
+    expect(aside1).not.toHaveAttribute('tabindex');
+    expect(aside2).not.toHaveAttribute('tabindex');
+    setTabindex();
+    expect(aside1).not.toHaveAttribute('tabindex');
+    expect(aside2).not.toHaveAttribute('tabindex');
+  });
+
   it('should apply overflow hidden to passed selectors', () => {
     expect(aside1).not.toHaveAttribute('tabindex');
     expect(aside2).not.toHaveAttribute('tabindex');
-    setTabindex(true, '.aside');
+    setTabindex('.aside');
     expect(aside1).toHaveAttribute('tabindex', '-1');
     expect(aside2).toHaveAttribute('tabindex', '-1');
-  });
-
-  it('should remove overflow hidden when set to false', () => {
-    setTabindex(false, '.aside');
-    expect(aside1).not.toHaveAttribute('tabindex');
-    expect(aside2).not.toHaveAttribute('tabindex');
-  });
-
-  it('should do nothing if selector is not passed', () => {
-    setTabindex(true);
-    expect(aside1).not.toHaveAttribute('tabindex');
-    expect(aside2).not.toHaveAttribute('tabindex');
   });
 });

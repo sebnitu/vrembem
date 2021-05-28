@@ -26,7 +26,9 @@ export default class Drawer {
   init(options = null) {
     if (options) this.settings = { ...this.settings, ...options };
     this.stateSet();
-    this.setTabindex(this.settings.setTabindex);
+    if (this.settings.setTabindex) {
+      this.setTabindex();
+    }
     this.breakpoint.init();
     if (this.settings.eventListeners) {
       this.initEventListeners();
@@ -76,12 +78,12 @@ export default class Drawer {
     );
   }
 
-  setTabindex(state = true) {
+  setTabindex() {
     const selectorTabindex = `
       [data-${this.settings.dataDrawer}]
       [data-${this.settings.dataDialog}]
     `;
-    setTabindex(state, selectorTabindex);
+    setTabindex(selectorTabindex);
   }
 
   /**
