@@ -40,7 +40,7 @@ import Checkbox from "@vrembem/checkbox";
 const checkbox = new Checkbox({ autoInit: true });
 ```
 
-## checkbox + label
+### checkbox + label
 
 For checkboxes with labels, just wrap the checkbox component along with label text using the `<label>` element.
 
@@ -78,6 +78,38 @@ For checkboxes with labels, just wrap the checkbox component along with label te
 </label>
 ```
 {% include demo_close.html %}
+
+## checkbox_size_[value]
+
+Adjust the size of a checkbox by increasing or decreasing its width and height. By default, the checkbox scale will provide a checkbox height of 30px (small `checkbox_size_sm`), 40px (default) and 50px (large `checkbox_size_lg`).
+
+{% include demo_open.html class_parent="gap-y" %}
+<div>
+  {% include checkbox.html class="checkbox_size_sm" checked="" %}
+  {% include checkbox.html class="checkbox_size_sm" indeterminate="true" %}
+  {% include checkbox.html class="checkbox_size_sm" %}
+</div>
+<div>
+  {% include checkbox.html class="checkbox_size_lg" checked="" %}
+  {% include checkbox.html class="checkbox_size_lg" indeterminate="true" %}
+  {% include checkbox.html class="checkbox_size_lg" %}
+</div>
+{% include demo_switch.html %}
+```html
+<span class="checkbox checkbox_size_sm">
+  ...
+</span>
+
+<span class="checkbox checkbox_size_lg">
+  ...
+</span>
+```
+{% include demo_close.html %}
+
+### Available Variations
+
+- `checkbox_size_sm`
+- `checkbox_size_lg`
 
 ## Sass variables
 
@@ -124,6 +156,11 @@ For checkboxes with labels, just wrap the checkbox component along with label te
         <td data-mobile-label="Desc">Sets the width and height of the <code class="code">checkbox__background</code> element.</td>
       </tr>
       <tr>
+        <td data-mobile-label="Var"><code class="code">$border-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">2px</code></td>
+        <td data-mobile-label="Desc">Sets the border-width property for the <code class="code">checkbox__box</code> element.</td>
+      </tr>
+      <tr>
         <td data-mobile-label="Var"><code class="code">$transition-duration</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">core.$transition-duration-short</code></td>
         <td data-mobile-label="Desc">Sets the transition-duration property for the <code class="code">checkbox__icon</code> element.</td>
@@ -133,6 +170,7 @@ For checkboxes with labels, just wrap the checkbox component along with label te
         <td data-mobile-label="Default"><code class="code color-secondary">core.$transition-timing-function-sharp</code></td>
         <td data-mobile-label="Desc">Sets the transition-timing-function property for the <code class="code">checkbox__icon</code> element.</td>
       </tr>
+      <!-- checkbox__background -->
       <tr>
         <td data-mobile-label="Var"><code class="code">$background</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">transparent</code></td>
@@ -163,6 +201,7 @@ For checkboxes with labels, just wrap the checkbox component along with label te
         <td data-mobile-label="Default"><code class="code color-secondary">core.$border-radius-circle</code></td>
         <td data-mobile-label="Desc">Sets the border-radius property for the <code class="code">checkbox__background</code> element.</td>
       </tr>
+      <!-- checkbox__box -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$box-size</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">18px</code></td>
@@ -219,15 +258,11 @@ For checkboxes with labels, just wrap the checkbox component along with label te
         <td data-mobile-label="Desc">Sets the border-color property on <code class="code">:checked</code> state.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code">$box-border-width</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">2px</code></td>
-        <td data-mobile-label="Desc">Sets the border-width property for the <code class="code">checkbox__box</code> element.</td>
-      </tr>
-      <tr>
         <td data-mobile-label="Var"><code class="code">$box-border-radius</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">core.$border-radius</code></td>
         <td data-mobile-label="Desc">Sets the border-radius property for the <code class="code">checkbox__box</code> element.</td>
       </tr>
+      <!-- checkbox__icon -->
       <tr>
         <td data-mobile-label="Var"><code class="code">$icon-size</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">12px</code></td>
@@ -243,31 +278,60 @@ For checkboxes with labels, just wrap the checkbox component along with label te
         <td data-mobile-label="Default"><code class="code color-secondary">2.5</code></td>
         <td data-mobile-label="Desc">Sets the stroke-width property for the <code class="code">checkbox__icon</code> svg data:image.</td>
       </tr>
+      <!-- checkbox_size_[value] -->
       <tr>
-        <td data-mobile-label="Var"><code class="code">$icon-checked</code></td>
-        <td data-mobile-label="Default"><a class="link" href="#icon-checked"><code class="code color-secondary">'data:image/svg...'</code> Ref &darr;</a></td>
-        <td data-mobile-label="Desc">The data:image/svg string used as the background-image property for the <code class="code">checkbox__icon</code> element.</td>
+        <td data-mobile-label="Var"><code class="code">$size-sm</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$form-control-size-sm</code></td>
+        <td data-mobile-label="Desc">Sets the width and height of the <code class="code">checkbox__background</code> element of the <code class="code">checkbox_size_sm</code> modifier.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code">$icon-indeterminate</code></td>
-        <td data-mobile-label="Default"><a class="link" href="#icon-indeterminate"><code class="code color-secondary">'data:image/svg...'</code> Ref &darr;</a></td>
-        <td data-mobile-label="Desc">The data:image/svg string used as the background-image property for the <code class="code">checkbox__icon</code> element in it's indeterminate state.</td>
+        <td data-mobile-label="Var"><code class="code">$size-sm-border-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">2px</code></td>
+        <td data-mobile-label="Desc">Sets the border-width property for the <code class="code">checkbox__box</code> element of the <code class="code">checkbox_size_sm</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$size-sm-box</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">14px</code></td>
+        <td data-mobile-label="Desc">Sets the width and height of the <code class="code">checkbox__box</code> element of the <code class="code">checkbox_size_sm</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$size-sm-icon</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">10px</code></td>
+        <td data-mobile-label="Desc">Sets the width and height property for the <code class="code">checkbox__icon</code> svg data:image of the <code class="code">checkbox_size_sm</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$size-sm-icon-stroke</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">2.5</code></td>
+        <td data-mobile-label="Desc">Sets the stroke-width property for the <code class="code">checkbox__icon</code> svg data:image of the <code class="code">checkbox_size_sm</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$size-lg</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$form-control-size-lg</code></td>
+        <td data-mobile-label="Desc">Sets the width and height of the <code class="code">checkbox__background</code> element of the <code class="code">checkbox_size_lg</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$size-lg-border-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">2.5px</code></td>
+        <td data-mobile-label="Desc">Sets the border-width property for the <code class="code">checkbox__box</code> element of the <code class="code">checkbox_size_lg</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$size-lg-box</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">24px</code></td>
+        <td data-mobile-label="Desc">Sets the width and height of the <code class="code">checkbox__box</code> element of the <code class="code">checkbox_size_lg</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$size-lg-icon</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">18px</code></td>
+        <td data-mobile-label="Desc">Sets the width and height property for the <code class="code">checkbox__icon</code> svg data:image of the <code class="code">checkbox_size_lg</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code">$size-lg-icon-stroke</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">2</code></td>
+        <td data-mobile-label="Desc">Sets the stroke-width property for the <code class="code">checkbox__icon</code> svg data:image of the <code class="code">checkbox_size_lg</code> modifier.</td>
       </tr>
     </tbody>
   </table>
 </div>
-
-### `$icon-checked`
-
-```scss
-$icon-checked: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="#{$icon-size}" height="#{$icon-size}" fill="none" stroke="#{core.encodecolor($icon-color)}" stroke-width="#{$icon-stroke}" stroke-linecap="round" stroke-linejoin="round"><polyline points="9.5,3 4.5,8.5 2,6"></polyline></svg>' !default;
-```
-
-### `$icon-indeterminate`
-
-```scss
-$icon-indeterminate: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="#{$icon-size}" height="#{$icon-size}" fill="none" stroke="#{core.encodecolor($icon-color)}" stroke-width="#{$icon-stroke}" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6" /></svg>' !default;
-```
 
 ## JavaScript Options
 
@@ -299,6 +363,118 @@ $icon-indeterminate: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000
     </tbody>
   </table>
 </div>
+
+## Sass Functions
+
+### `@function icon-check($size, $color, $stroke)`
+
+Outputs data image string for check SVG icon. Used as the value of `url()` in background-image property.
+
+<table class="table table_style_bordered">
+  <tr>
+    <th class="table__auto">Returns</th>
+    <td><code class="code">String</code> - Data image string</td>
+  </tr>
+</table>
+
+**Arguments**
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">number (with unit)</code></td>
+        <td data-mobile-label="Desc">Value for width and height attributes.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">color</code></td>
+        <td data-mobile-label="Desc">Value for stroke attribute.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$stroke</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">number (unitless)</code></td>
+        <td data-mobile-label="Desc">Value for stroke-width attribute.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+**Example**
+
+```scss
+.icon-check {
+  background-image: url(icon-check(18px, #fff, 2));
+}
+
+// CSS Output
+.icon-check {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" fill="none" stroke="%23FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9.5,3 4.5,8.5 2,6"></polyline></svg>');
+}
+```
+
+### `@function icon-minus($size, $color, $stroke)`
+
+Outputs data image string for minus SVG icon. Used as the value of `url()` in background-image property.
+
+<table class="table table_style_bordered">
+  <tr>
+    <th class="table__auto">Returns</th>
+    <td><code class="code">String</code> - Data image string</td>
+  </tr>
+</table>
+
+**Arguments**
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">number (with unit)</code></td>
+        <td data-mobile-label="Desc">Value for width and height attributes.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">color</code></td>
+        <td data-mobile-label="Desc">Value for stroke attribute.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$stroke</code></td>
+        <td data-mobile-label="Type"><code class="code color-secondary text-nowrap">number (unitless)</code></td>
+        <td data-mobile-label="Desc">Value for stroke-width attribute.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+**Example**
+
+```scss
+.icon-minus {
+  background-image: url(icon-minus(18px, #fff, 2));
+}
+
+// CSS Output
+.icon-minus {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" fill="none" stroke="%23FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6" /></svg>');
+}
+```
 
 ## API
 

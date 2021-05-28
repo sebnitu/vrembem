@@ -1,5 +1,6 @@
 @use "@vrembem/core";
 @use "./variables" as var;
+@use "./functions" as fun;
 
 $_b: var.$prefix-block;
 $_e: var.$prefix-element;
@@ -29,7 +30,7 @@ $_e: var.$prefix-element;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: var.$box-border-width solid var.$box-border-color;
+  border: var.$border-width solid var.$box-border-color;
   border-radius: var.$box-border-radius;
   background-color: var.$box-background;
   color: transparent;
@@ -37,7 +38,7 @@ $_e: var.$prefix-element;
 
 .#{$_b}checkbox#{$_e}icon {
   @include core.size(var.$icon-size);
-  background-image: url(var.$icon-checked);
+  background-image: url(fun.icon-check(var.$icon-size, var.$icon-color, var.$icon-stroke));
   background-repeat: no-repeat;
   background-position: center (var.$icon-size * -1);
   background-size: 100%;
@@ -109,7 +110,7 @@ $_e: var.$prefix-element;
       transition-property: opacity, background-position;
       transition-duration: var.$transition-duration;
       transition-timing-function: var.$transition-timing-function;
-      background-image: url(var.$icon-indeterminate);
+      background-image: url(fun.icon-minus(var.$icon-size, var.$icon-color, var.$icon-stroke));
       background-position: center center;
       opacity: 1;
     }

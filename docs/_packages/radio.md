@@ -29,7 +29,7 @@ Radio buttons are composed using a set of `<span>` elements alongside the native
 ```
 {% include demo_close.html %}
 
-## radio + label
+### radio + label
 
 For radio buttons with labels, just wrap the radio component along with label text using the `<label>` element.
 
@@ -61,6 +61,38 @@ For radio buttons with labels, just wrap the radio component along with label te
 </label>
 ```
 {% include demo_close.html %}
+
+## radio_size_[value]
+
+Adjust the size of a radio by increasing or decreasing its width and height. By default, the radio scale will provide a radio height of 30px (small <code class="code">radio_size_sm</code>), 40px (default) and 50px (large <code class="code">radio_size_lg</code>).
+
+{% include demo_open.html class_parent="gap-y" %}
+<div>
+  {% include radio.html name="radio-3" class="radio_size_sm" checked="" %}
+  {% include radio.html name="radio-3" class="radio_size_sm" indeterminate="true" %}
+  {% include radio.html name="radio-3" class="radio_size_sm" %}
+</div>
+<div>
+  {% include radio.html name="radio-4" class="radio_size_lg" checked="" %}
+  {% include radio.html name="radio-4" class="radio_size_lg" indeterminate="true" %}
+  {% include radio.html name="radio-4" class="radio_size_lg" %}
+</div>
+{% include demo_switch.html %}
+```html
+<span class="radio radio_size_sm">
+  ...
+</span>
+
+<span class="radio radio_size_lg">
+  ...
+</span>
+```
+{% include demo_close.html %}
+
+### Available Variations
+
+- <code class="code">radio_size_sm</code>
+- <code class="code">radio_size_lg</code>
 
 ## Sass variables
 
@@ -107,13 +139,18 @@ For radio buttons with labels, just wrap the radio component along with label te
         <td data-mobile-label="Desc">Sets the width and height of the <code class="code">radio__background</code> element.</td>
       </tr>
       <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2px</code></td>
+        <td data-mobile-label="Desc">Sets the background-color property for the <code class="code">radio__circle</code> element.</td>
+      </tr>
+      <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$transition-duration</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$transition-duration-short</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$transition-duration-short</code></td>
         <td data-mobile-label="Desc">Sets the transition-duration property for the <code class="code">radio__dot</code> element.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$transition-timing-function</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$transition-timing-function-sharp</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$transition-timing-function-sharp</code></td>
         <td data-mobile-label="Desc">Sets the transition-timing-function property for the <code class="code">radio__dot</code> element.</td>
       </tr>
       <!-- radio__background -->
@@ -199,11 +236,6 @@ For radio buttons with labels, just wrap the radio component along with label te
         <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:checked</code> state.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$circle-border-width</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2px</code></td>
-        <td data-mobile-label="Desc">Sets the background-color property for the <code class="code">radio__circle</code> element.</td>
-      </tr>
-      <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$circle-border-radius</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-radius</code></td>
         <td data-mobile-label="Desc">Sets the border-radius property for the <code class="code">radio__circle</code> element.</td>
@@ -218,6 +250,47 @@ For radio buttons with labels, just wrap the radio component along with label te
         <td data-mobile-label="Var"><code class="code text-nowrap">$dot-color</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$white</code></td>
         <td data-mobile-label="Desc">Sets the background-color property for the <code class="code">radio__dot</code> element.</td>
+      </tr>
+      <!-- radio_size_[value] -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-sm</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$form-control-size-sm</code></td>
+        <td data-mobile-label="Desc">Sets the width and height of the <code class="code">radio__background</code> element of the <code class="code">radio_size_sm</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-sm-border-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2px</code></td>
+        <td data-mobile-label="Desc">Sets the border-width property for the <code class="code">radio__circle</code> element of the <code class="code">radio_size_sm</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-sm-circle</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">16px</code></td>
+        <td data-mobile-label="Desc">Sets the width and height of the <code class="code">radio__circle</code> element of the <code class="code">radio_size_sm</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-sm-dot</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">6px</code></td>
+        <td data-mobile-label="Desc">Sets the width and height property for the <code class="code">radio__dot</code> element of the <code class="code">radio_size_sm</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-lg</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$form-control-size-lg</code></td>
+        <td data-mobile-label="Desc">Sets the width and height of the <code class="code">radio__background</code> element of the <code class="code">radio_size_lg</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-lg-border-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">2.5px`</code></td>
+        <td data-mobile-label="Desc">Sets the border-width property for the <code class="code">radio__circle</code> element of the <code class="code">radio_size_lg</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-lg-circle</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">26px</code></td>
+        <td data-mobile-label="Desc">Sets the width and height of the <code class="code">radio__circle</code> element of the <code class="code">radio_size_lg</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-lg-dot</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">10px</code></td>
+        <td data-mobile-label="Desc">Sets the width and height property for the <code class="code">radio__dot</code> element of the <code class="code">radio_size_lg</code> modifier.</td>
       </tr>
     </tbody>
   </table>

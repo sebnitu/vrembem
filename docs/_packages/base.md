@@ -383,7 +383,7 @@ The HTML blockquote element is used for marking up extended quotations. This mod
 <blockquote class="blockquote" cite="...">
   <p>...</p>
   <footer>
-    ...,
+    ...
     <cite>...</cite>
   </footer>
 </blockquote>

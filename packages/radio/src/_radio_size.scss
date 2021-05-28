@@ -1,0 +1,37 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}radio#{$_m}size#{$_v}sm {
+  .#{$_b}radio#{$_e}background {
+    @include core.size(var.$size-sm);
+  }
+
+  .#{$_b}radio#{$_e}circle {
+    @include core.size(var.$size-sm-circle);
+    border-width: var.$size-sm-border-width;
+  }
+
+  .#{$_b}radio#{$_e}native:checked + .#{$_b}radio#{$_e}background .#{$_b}radio#{$_e}dot {
+    @include core.size(var.$size-sm-dot);
+  }
+}
+
+.#{$_b}radio#{$_m}size#{$_v}lg {
+  .#{$_b}radio#{$_e}background {
+    @include core.size(var.$size-lg);
+  }
+
+  .#{$_b}radio#{$_e}circle {
+    @include core.size(var.$size-lg-circle);
+    border-width: var.$size-lg-border-width;
+  }
+
+  .#{$_b}radio#{$_e}native:checked + .#{$_b}radio#{$_e}background .#{$_b}radio#{$_e}dot {
+    @include core.size(var.$size-lg-dot);
+  }
+}

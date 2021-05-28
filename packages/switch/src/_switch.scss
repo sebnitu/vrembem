@@ -4,6 +4,8 @@
 $_b: var.$prefix-block;
 $_e: var.$prefix-element;
 
+$_thumb-size: var.$track-size - (var.$border-width * 2);
+
 .#{$_b}switch {
   position: relative;
   display: inline-flex;
@@ -39,13 +41,13 @@ $_e: var.$prefix-element;
   @include core.size(100%, var.$track-size);
   position: relative;
   display: block;
-  border: var.$track-border-width solid var.$track-border-color;
+  border: var.$border-width solid var.$track-border-color;
   border-radius: var.$track-border-radius;
   background-color: var.$track-background;
 }
 
 .#{$_b}switch#{$_e}thumb {
-  @include core.size(var.$thumb-size);
+  @include core.size($_thumb-size);
   position: absolute;
   top: 0;
   left: 0;
@@ -53,7 +55,7 @@ $_e: var.$prefix-element;
   transition: left var.$transition-duration var.$transition-timing-function;
   border-radius: core.$border-radius-circle;
   background-color: var.$thumb-background;
-  box-shadow: var.$thumb-box-shadow;
+  box-shadow: 0 0 0 var.$border-width var.$thumb-box-shadow-color;
 }
 
 .#{$_b}switch#{$_e}native {
@@ -77,7 +79,7 @@ $_e: var.$prefix-element;
 
     .#{$_b}switch#{$_e}thumb {
       background-color: var.$thumb-background-hover;
-      box-shadow: var.$thumb-box-shadow-hover;
+      box-shadow: 0 0 0 var.$border-width var.$thumb-box-shadow-color-hover;
     }
   }
 
@@ -93,7 +95,7 @@ $_e: var.$prefix-element;
 
     .#{$_b}switch#{$_e}thumb {
       background-color: var.$thumb-background-focus;
-      box-shadow: var.$thumb-box-shadow-focus;
+      box-shadow: 0 0 0 var.$border-width var.$thumb-box-shadow-color-focus;
     }
   }
 
@@ -109,7 +111,7 @@ $_e: var.$prefix-element;
 
     .#{$_b}switch#{$_e}thumb {
       background-color: var.$thumb-background-active;
-      box-shadow: var.$thumb-box-shadow-active;
+      box-shadow: 0 0 0 var.$border-width var.$thumb-box-shadow-color-active;
     }
   }
 
@@ -125,9 +127,9 @@ $_e: var.$prefix-element;
     }
 
     .#{$_b}switch#{$_e}thumb {
-      left: calc(100% - #{var.$thumb-size});
+      left: calc(100% - #{$_thumb-size});
       background-color: var.$thumb-background-checked;
-      box-shadow: var.$thumb-box-shadow-checked;
+      box-shadow: 0 0 0 var.$border-width var.$thumb-box-shadow-color-checked;
     }
   }
 }

@@ -7,6 +7,7 @@ $prefix-modifier-value: core.$prefix-modifier-value !default;
 
 $color: core.$primary !default;
 $size: core.$form-control-size !default;
+$border-width: 2px !default;
 $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function-sharp !default;
 
@@ -28,15 +29,19 @@ $box-border-color-hover: $color !default;
 $box-border-color-focus: $color !default;
 $box-border-color-active: $color !default;
 $box-border-color-checked: $color !default;
-$box-border-width: 2px !default;
 $box-border-radius: core.$border-radius !default;
 
 $icon-size: 12px !default;
 $icon-color: core.$white !default;
 $icon-stroke: 2.5 !default;
 
-$icon-checked:
-  'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="#{$icon-size}" height="#{$icon-size}" fill="none" stroke="#{core.encodecolor($icon-color)}" stroke-width="#{$icon-stroke}" stroke-linecap="round" stroke-linejoin="round"><polyline points="9.5,3 4.5,8.5 2,6"></polyline></svg>' !default;
-
-$icon-indeterminate:
-  'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="#{$icon-size}" height="#{$icon-size}" fill="none" stroke="#{core.encodecolor($icon-color)}" stroke-width="#{$icon-stroke}" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6" /></svg>' !default;
+$size-sm: core.$form-control-size-sm !default;
+$size-sm-border-width: 2px !default;
+$size-sm-box: 14px !default;
+$size-sm-icon: 10px !default;
+$size-sm-icon-stroke: 2.5 !default;
+$size-lg: core.$form-control-size-lg !default;
+$size-lg-border-width: 2.5px !default;
+$size-lg-box: 24px !default;
+$size-lg-icon: 18px !default;
+$size-lg-icon-stroke: 2 !default;
