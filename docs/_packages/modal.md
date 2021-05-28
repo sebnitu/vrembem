@@ -575,6 +575,11 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
       <td data-mobile-label="Desc">Prefix to be used on custom events.</td>
     </tr>
     <tr>
+      <td data-mobile-label="Key"><code class="code text-nowrap">eventListeners</code></td>
+      <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">true</code></td>
+      <td data-mobile-label="Desc">Whether or not to set the document event listeners on init.</td>
+    </tr>
+    <tr>
       <td data-mobile-label="Key"><code class="code text-nowrap">moveModals</code></td>
       <td data-mobile-label="Default">
         <pre class="code color-secondary">{
@@ -632,6 +637,27 @@ const modal = new Modal();
 modal.init();
 // ...
 modal.destroy();
+```
+
+### `modal.initEventListeners()`
+
+Set the document event listeners for click, touchend and keyup events.
+
+```js
+const modal = new Modal({ eventListeners: false });
+modal.init();
+modal.initEventListeners();
+```
+
+### `modal.destroyEventListeners()`
+
+Remove the document event listeners for click, touchend and keyup events.
+
+```js
+const modal = new Modal();
+modal.init();
+// ...
+modal.destroyEventListeners();
 ```
 
 ### `modal.open(key)`

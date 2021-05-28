@@ -208,6 +208,7 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
 | `selectorInert`     | `null`                      | Applies `inert` and `aria-hidden` attributes to all matching elements when a modal is opened.                                                                         |
 | `selectorOverflow`  | `'body'`                    | Applies `overflow:hidden` styles on all matching elements when a modal is opened.                                                                                     |
 | `customEventPrefix` | `'modal:'`                  | Prefix to be used on custom events.                                                                                                                                   |
+| `eventListeners`    | `true`                      | Whether or not to set the document event listeners on init.                                                                                                           |
 | `moveModals`        | `{ type: null, ref: null }` | Moves all modals to a location in the DOM relative to the passed reference selector on `init()`. Move type options include `after`, `before`, `append` and `prepend`. |
 | `setTabindex`       | `true`                      | Whether or not to set `tabindex="-1"` on all modal dialog elements on init.                                                                                           |
 | `transition`        | `true`                      | Toggle the transition animation for the modal. Set to `false` to disable.                                                                                             |
@@ -247,6 +248,27 @@ const modal = new Modal();
 modal.init();
 // ...
 modal.destroy();
+```
+
+### `modal.initEventListeners()`
+
+Set the document event listeners for click, touchend and keyup events.
+
+```js
+const modal = new Modal({ eventListeners: false });
+modal.init();
+modal.initEventListeners();
+```
+
+### `modal.destroyEventListeners()`
+
+Remove the document event listeners for click, touchend and keyup events.
+
+```js
+const modal = new Modal();
+modal.init();
+// ...
+modal.destroyEventListeners();
 ```
 
 ### `modal.open(key)`
