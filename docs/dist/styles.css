@@ -743,13 +743,13 @@ input::-moz-placeholder {
   color: #fff;
 }
 .button_color_primary:hover {
-  background: #00a1b5;
+  background: #00b1c7;
 }
 .button_color_primary:focus {
-  background: #0093a6;
+  background: #00abc1;
 }
 .button_color_primary:active {
-  background: #008697;
+  background: #00a5bb;
 }
 .button_color_primary.is-loading::after {
   border-color: #fff #fff transparent transparent;
@@ -760,13 +760,13 @@ input::-moz-placeholder {
   color: #fff;
 }
 .button_color_secondary:hover {
-  background: #536d79;
+  background: #5a7683;
 }
 .button_color_secondary:focus {
-  background: #4d6570;
+  background: #57727e;
 }
 .button_color_secondary:active {
-  background: #475c67;
+  background: #546e7a;
 }
 .button_color_secondary.is-loading::after {
   border-color: #fff #fff transparent transparent;
@@ -2720,13 +2720,13 @@ input::-moz-placeholder {
   color: #fff;
 }
 .icon-action_state_info:hover {
-  background: #0286c2;
+  background: #0398dc;
 }
 .icon-action_state_info:focus {
-  background: #02638f;
+  background: #0287c3;
 }
 .icon-action_state_info:active {
-  background: #02638f;
+  background: #0276ab;
 }
 
 .icon-action_state_success {
@@ -2734,13 +2734,13 @@ input::-moz-placeholder {
   color: #fff;
 }
 .icon-action_state_success:hover {
-  background: #3d8b40;
+  background: #449e48;
 }
 .icon-action_state_success:focus {
-  background: #2d682f;
+  background: #3d8c40;
 }
 .icon-action_state_success:active {
-  background: #2d682f;
+  background: #357b38;
 }
 
 .icon-action_state_caution {
@@ -2754,7 +2754,7 @@ input::-moz-placeholder {
   background: #cc7a00;
 }
 .icon-action_state_caution:active {
-  background: #cc7a00;
+  background: #b36a00;
 }
 
 .icon-action_state_danger {
@@ -2762,13 +2762,13 @@ input::-moz-placeholder {
   color: #fff;
 }
 .icon-action_state_danger:hover {
-  background: #ea1c0d;
+  background: #f2291a;
 }
 .icon-action_state_danger:focus {
-  background: #ba160a;
+  background: #e21b0c;
 }
 .icon-action_state_danger:active {
-  background: #ba160a;
+  background: #c6180b;
 }
 
 .icon-action_subtle {

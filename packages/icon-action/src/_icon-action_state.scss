@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "@vrembem/core";
 @use "./variables" as var;
 
@@ -10,15 +11,15 @@ $_v: var.$prefix-modifier-value;
   color: core.color-switch(core.$info);
 
   &:hover {
-    background: darken(core.$info, 10%);
+    background: color.scale(core.$info, $lightness: -10%);
   }
 
   &:focus {
-    background: darken(core.$info, 20%);
+    background: color.scale(core.$info, $lightness: -20%);
   }
 
   &:active {
-    background: darken(core.$info, 20%);
+    background: color.scale(core.$info, $lightness: -30%);
   }
 }
 
@@ -27,15 +28,15 @@ $_v: var.$prefix-modifier-value;
   color: core.color-switch(core.$success);
 
   &:hover {
-    background: darken(core.$success, 10%);
+    background: color.scale(core.$success, $lightness: -10%);
   }
 
   &:focus {
-    background: darken(core.$success, 20%);
+    background: color.scale(core.$success, $lightness: -20%);
   }
 
   &:active {
-    background: darken(core.$success, 20%);
+    background: color.scale(core.$success, $lightness: -30%);
   }
 }
 
@@ -44,15 +45,15 @@ $_v: var.$prefix-modifier-value;
   color: core.color-switch(core.$caution);
 
   &:hover {
-    background: darken(core.$caution, 5%);
+    background: color.scale(core.$caution, $lightness: -10%);
   }
 
   &:focus {
-    background: darken(core.$caution, 10%);
+    background: color.scale(core.$caution, $lightness: -20%);
   }
 
   &:active {
-    background: darken(core.$caution, 10%);
+    background: color.scale(core.$caution, $lightness: -30%);
   }
 }
 
@@ -61,14 +62,14 @@ $_v: var.$prefix-modifier-value;
   color: core.color-switch(core.$danger);
 
   &:hover {
-    background: darken(core.$danger, 10%);
+    background: color.scale(core.$danger, $lightness: -10%);
   }
 
   &:focus {
-    background: darken(core.$danger, 20%);
+    background: color.scale(core.$danger, $lightness: -20%);
   }
 
   &:active {
-    background: darken(core.$danger, 20%);
+    background: color.scale(core.$danger, $lightness: -30%);
   }
 }

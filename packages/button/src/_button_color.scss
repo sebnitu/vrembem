@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "@vrembem/core";
 @use "./variables" as var;
 
@@ -51,15 +52,15 @@ $_v: var.$prefix-modifier-value;
   color: core.$white;
 
   &:hover {
-    background: darken(core.$primary, 6%);
+    background: color.scale(core.$primary, $lightness: -6%);
   }
 
   &:focus {
-    background: darken(core.$primary, 9%);
+    background: color.scale(core.$primary, $lightness: -9%);
   }
 
   &:active {
-    background: darken(core.$primary, 12%);
+    background: color.scale(core.$primary, $lightness: -12%);
   }
 
   &.is-loading::after {
@@ -72,15 +73,15 @@ $_v: var.$prefix-modifier-value;
   color: core.$white;
 
   &:hover {
-    background: darken(core.$secondary, 6%);
+    background: color.scale(core.$secondary, $lightness: -6%);
   }
 
   &:focus {
-    background: darken(core.$secondary, 9%);
+    background: color.scale(core.$secondary, $lightness: -9%);
   }
 
   &:active {
-    background: darken(core.$secondary, 12%);
+    background: color.scale(core.$secondary, $lightness: -12%);
   }
 
   &.is-loading::after {
