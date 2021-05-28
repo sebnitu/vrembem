@@ -14,9 +14,18 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.28.0 to CHANGELOG.md
+chore(release): add v1.29.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.29.0 (2021-05-28)
+
+#### :tada: New Feature
+* `base`, `checkbox`, `radio`, `switch`
+  * [#600](https://github.com/sebnitu/vrembem/pull/600) Add size modifiers to checkbox, radio and switch components
+* `button`, `checkbox`, `core`, `input`, `menu`, `radio`, `switch`
+  * [#599](https://github.com/sebnitu/vrembem/pull/599) Add form-control size variables to core that form-control components inherit
 
 
 ## v1.28.0 (2021-05-26)
