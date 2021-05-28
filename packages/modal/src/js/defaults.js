@@ -21,6 +21,7 @@ export default {
 
   // Feature toggles
   customEventPrefix: 'modal:',
+  eventListeners: true,
   moveModals: {
     ref: null,
     type: null
