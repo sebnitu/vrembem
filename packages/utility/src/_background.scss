@@ -5,6 +5,18 @@ $_u: var.$prefix-utility;
 $_c: var.$class-background;
 
 @if (var.$output-background) {
+  .#{$_u}#{$_c}-clip-border {
+    background-clip: border-box;
+  }
+
+  .#{$_u}#{$_c}-clip-content {
+    background-clip: content-box;
+  }
+
+  .#{$_u}#{$_c}-clip-padding {
+    background-clip: padding-box;
+  }
+
   .#{$_u}#{$_c}-black {
     background-color: core.$black !important;
   }
