@@ -23,7 +23,9 @@ export default class Modal {
   init(options = null) {
     if (options) this.settings = { ...this.settings, ...options };
     this.moveModals();
-    this.setTabindex(this.settings.setTabindex);
+    if (this.settings.setTabindex) {
+      this.setTabindex();
+    }
     this.setInitialState();
     if (this.settings.eventListeners) {
       this.initEventListeners();
@@ -70,12 +72,12 @@ export default class Modal {
     );
   }
 
-  setTabindex(state = true) {
+  setTabindex() {
     const selectorTabindex = `
       [data-${this.settings.dataModal}]
       [data-${this.settings.dataDialog}]
     `;
-    setTabindex(state, selectorTabindex);
+    setTabindex(selectorTabindex);
   }
 
   setInitialState() {
