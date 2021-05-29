@@ -14,9 +14,26 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.29.0 to CHANGELOG.md
+chore(release): add v1.30.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.30.0 (2021-05-29)
+
+#### :tada: New Feature
+* `modal`
+  * [#602](https://github.com/sebnitu/vrembem/pull/602) Apply init/destroy EventListeners feature to modal component
+
+#### :bug: Bug Fix
+* `core`, `drawer`, `modal`
+  * [#603](https://github.com/sebnitu/vrembem/pull/603) Fix setTabindex from removing tabindex attributes when set to false
+
+#### :house: Refactor
+* `button`, `icon-action`
+  * [#604](https://github.com/sebnitu/vrembem/pull/604) Use the color module scale method instead of darken function
+* `drawer`
+  * [#605](https://github.com/sebnitu/vrembem/pull/605) Update MediaQueryList to use addEventListener instead of the deprecated addListener
 
 
 ## v1.29.0 (2021-05-28)
