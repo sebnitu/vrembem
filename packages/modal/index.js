@@ -25,13 +25,29 @@ export default class Modal {
     this.moveModals();
     this.setTabindex(this.settings.setTabindex);
     this.setInitialState();
+    if (this.settings.eventListeners) {
+      this.initEventListeners();
+    }
+  }
+
+  destroy() {
+    this.memory = {};
+    if (this.settings.eventListeners) {
+      this.destroyEventListeners();
+    }
+  }
+
+  /**
+   * Event listeners
+   */
+
+  initEventListeners() {
     document.addEventListener('click', this.__handlerClick, false);
     document.addEventListener('touchend', this.__handlerClick, false);
     document.addEventListener('keyup', this.__handlerKeyup, false);
   }
 
-  destroy() {
-    this.memory = {};
+  destroyEventListeners() {
     document.removeEventListener('click', this.__handlerClick, false);
     document.removeEventListener('touchend', this.__handlerClick, false);
     document.removeEventListener('keyup', this.__handlerKeyup, false);
