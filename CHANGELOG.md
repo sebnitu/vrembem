@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.30.0 to CHANGELOG.md
+chore(release): add v1.30.1 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.30.1 (2021-05-29)
+
+#### :tada: New Feature
+* `button`, `utility`
+  * [#606](https://github.com/sebnitu/vrembem/pull/606) Add background-clip-[value] utilities and border-color-transparent
 
 
 ## v1.30.0 (2021-05-29)
