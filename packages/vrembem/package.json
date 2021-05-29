@@ -1,7 +1,7 @@
 {
   "name": "vrembem",
   "description": "A component library based on the BEM methodology.",
-  "version": "1.30.0",
+  "version": "1.30.1",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -42,7 +42,7 @@
   "dependencies": {
     "@vrembem/base": "^1.30.0",
     "@vrembem/breadcrumb": "^1.30.0",
-    "@vrembem/button": "^1.30.0",
+    "@vrembem/button": "^1.30.1",
     "@vrembem/button-group": "^1.30.0",
     "@vrembem/card": "^1.30.0",
     "@vrembem/checkbox": "^1.30.0",
@@ -64,7 +64,7 @@
     "@vrembem/switch": "^1.30.0",
     "@vrembem/table": "^1.30.0",
     "@vrembem/tooltip": "^1.30.0",
-    "@vrembem/utility": "^1.30.0"
+    "@vrembem/utility": "^1.30.1"
   },
   "publishConfig": {
     "access": "public"
