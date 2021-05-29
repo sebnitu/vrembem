@@ -17,17 +17,17 @@ The primary elements when composing the `menu` component are `menu__item`'s cont
 <div class="scroll-box">
   <ul class="menu">
     <li class="menu__item">
-      <a class="menu__link" href="#">Create</a>
+      <button class="menu__link">Create</button>
     </li>
     <li class="menu__item">
-      <a class="menu__link" href="#">Edit</a>
+      <button class="menu__link">Edit</button>
     </li>
     <li class="menu__item">
-      <a class="menu__link" href="#">Delete</a>
+      <button class="menu__link">Delete</button>
     </li>
     <li class="menu__sep"></li>
     <li class="menu__item">
-      <a class="menu__link" href="#">Logout</a>
+      <button class="menu__link">Logout</button>
     </li>
   </ul>
 </div>
@@ -35,9 +35,9 @@ The primary elements when composing the `menu` component are `menu__item`'s cont
 ```html
 <ul class="menu">
   <li class="menu__item">
-    <a class="menu__link" href="#">
+    <button class="menu__link">
       ...
-    </a>
+    </button>
   </li>
   <li class="menu__sep"></li>
 </ul>
