@@ -626,7 +626,7 @@ input::-moz-placeholder {
   background-color: rgba(0, 0, 0, 0.12);
 }
 .button:active {
-  border-color: rgba(0, 0, 0, 0.5);
+  border-color: rgba(0, 0, 0, 0.2);
   background-color: rgba(0, 0, 0, 0.15);
 }
 .button.is-loading {
@@ -5020,6 +5020,18 @@ input::-moz-placeholder {
   opacity: 1;
 }
 
+.background-clip-border {
+  background-clip: border-box !important;
+}
+
+.background-clip-content {
+  background-clip: content-box !important;
+}
+
+.background-clip-padding {
+  background-clip: padding-box !important;
+}
+
 .background-black {
   background-color: #000 !important;
 }
@@ -5242,6 +5254,10 @@ input::-moz-placeholder {
 
 .border-color-invert-darker {
   border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.border-color-transparent {
+  border-color: transparent !important;
 }
 
 .radius {
