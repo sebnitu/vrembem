@@ -15,7 +15,7 @@ export class Breakpoint {
       const bp = this.parent.settings.breakpoints[key] ? this.parent.settings.breakpoints[key] : key;
       const mql = window.matchMedia('(min-width:' + bp + ')');
       this.match(mql, drawer);
-      mql.addListener(this.__check);
+      mql.addEventListener('change', this.__check);
       this.mediaQueryLists.push({
         'mql': mql,
         'drawer': id
