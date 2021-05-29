@@ -128,6 +128,14 @@ Applies background color property. Most options include light, lighter, dark and
 ...
 ```
 
+Also available are utility classes for the `background-clip-[value]` property.
+
+```html
+<div class="background-clip-border"></div>
+<div class="background-clip-content"></div>
+<div class="background-clip-padding"></div>
+```
+
 | Variable             | Default                 | Description                                                 |
 | -------------------- | ----------------------- | ----------------------------------------------------------- |
 | `$output-background` | `$output` &rarr; `true` | Toggles the output of this utility.                         |
@@ -166,7 +174,7 @@ Remove border styles with `border-none` utilities and optional side variants.
 
 #### `border-color` <!-- omit in toc -->
 
-Add border color utilities with light, dark and darker variants.
+Add border color utilities with light, dark and darker variants. Also available is the `border-color-transparent` utility which sets the border-color property to transparent.
 
 ```html
 <!-- border-color -->

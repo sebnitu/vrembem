@@ -216,6 +216,14 @@ Applies background color property. Most options include light, lighter, dark and
 ```
 {% include demo_close.html %}
 
+Also available are utility classes for the `background-clip-[value]` property.
+
+```html
+<div class="background-clip-border"></div>
+<div class="background-clip-content"></div>
+<div class="background-clip-padding"></div>
+```
+
 <div class="scroll-box">
   <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
     <thead>
@@ -310,7 +318,7 @@ Remove border styles with `border-none` utilities and optional side variants.
 
 ### border-color <!-- omit in toc -->
 
-Add border color utilities with light, dark and darker variants.
+Add border color utilities with light, dark and darker variants. Also available is the `border-color-transparent` utility which sets the border-color property to transparent.
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="swatch-group">
