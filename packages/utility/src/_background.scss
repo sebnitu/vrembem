@@ -6,15 +6,15 @@ $_c: var.$class-background;
 
 @if (var.$output-background) {
   .#{$_u}#{$_c}-clip-border {
-    background-clip: border-box;
+    background-clip: border-box !important;
   }
 
   .#{$_u}#{$_c}-clip-content {
-    background-clip: content-box;
+    background-clip: content-box !important;
   }
 
   .#{$_u}#{$_c}-clip-padding {
-    background-clip: padding-box;
+    background-clip: padding-box !important;
   }
 
   .#{$_u}#{$_c}-black {
