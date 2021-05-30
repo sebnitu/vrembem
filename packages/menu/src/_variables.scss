@@ -42,3 +42,22 @@ $text-color: core.$color !default;
 $sep-spacing: 0.5em !default;
 $sep-width: 1px !default;
 $sep-background: core.$border-color !default;
+
+// menu_invert
+
+$invert-color: core.$white !default;
+$invert-color-hover: null !default;
+$invert-color-focus: null !default;
+$invert-color-active: null !default;
+$invert-color-is-active: core.$primary !default;
+$invert-color-is-disabled: rgba(core.$white, 0.5) !default;
+
+$invert-background: null !default;
+$invert-background-hover: rgba(core.$white, 0.06) !default;
+$invert-background-focus: rgba(core.$white, 0.09) !default;
+$invert-background-active: rgba(core.$white, 0.12) !default;
+$invert-background-is-active: none !default;
+$invert-background-is-disabled: none !default;
+
+$invert-text-color: core.$white !default;
+$invert-sep-background: core.$border-color-invert !default;

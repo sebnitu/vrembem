@@ -1,0 +1,62 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_e: var.$prefix-element;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}menu#{$_m}invert {
+  .#{$_b}menu#{$_e}sep {
+    background: var.$invert-sep-background;
+  }
+
+  .#{$_b}menu#{$_e}link {
+    background: var.$invert-background;
+    color: var.$invert-color;
+
+    &:hover {
+      background: var.$invert-background-hover;
+      color: var.$invert-color-hover;
+    }
+
+    &:focus {
+      background: var.$invert-background-focus;
+      color: var.$invert-color-focus;
+    }
+
+    &:active {
+      background: var.$invert-background-active;
+      color: var.$invert-color-active;
+    }
+
+    &.is-active {
+      background: var.$invert-background-is-active;
+      color: var.$invert-color-is-active;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background: var.$invert-background-is-active;
+        color: var.$invert-color-is-active;
+      }
+    }
+
+    &.is-disabled {
+      background: var.$invert-background-is-disabled;
+      color: var.$invert-color-is-disabled;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background: var.$invert-background-is-disabled;
+        color: var.$invert-color-is-disabled;
+      }
+    }
+  }
+
+  .#{$_b}menu#{$_e}text {
+    background: var.$invert-background;
+    color: var.$invert-text-color;
+  }
+}
