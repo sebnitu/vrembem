@@ -3522,11 +3522,12 @@ input::-moz-placeholder {
 .menu__action:active {
   background: rgba(0, 0, 0, 0.12);
 }
-.menu__action.is-active {
+.menu__action.is-active, .menu__action.is-active[disabled] {
   background: none;
   color: #00bcd4;
+  cursor: default;
 }
-.menu__action.is-active:hover, .menu__action.is-active:focus, .menu__action.is-active:active {
+.menu__action.is-active:hover, .menu__action.is-active:focus, .menu__action.is-active:active, .menu__action.is-active[disabled]:hover, .menu__action.is-active[disabled]:focus, .menu__action.is-active[disabled]:active {
   background: none;
   color: #00bcd4;
 }
@@ -3755,19 +3756,19 @@ input::-moz-placeholder {
 .menu_invert .menu__action:active {
   background: rgba(255, 255, 255, 0.12);
 }
-.menu_invert .menu__action.is-active {
+.menu_invert .menu__action.is-active, .menu_invert .menu__action.is-active[disabled] {
   background: none;
   color: #00bcd4;
 }
-.menu_invert .menu__action.is-active:hover, .menu_invert .menu__action.is-active:focus, .menu_invert .menu__action.is-active:active {
+.menu_invert .menu__action.is-active:hover, .menu_invert .menu__action.is-active:focus, .menu_invert .menu__action.is-active:active, .menu_invert .menu__action.is-active[disabled]:hover, .menu_invert .menu__action.is-active[disabled]:focus, .menu_invert .menu__action.is-active[disabled]:active {
   background: none;
   color: #00bcd4;
 }
-.menu_invert .menu__action.is-disabled {
+.menu_invert .menu__action.is-disabled, .menu_invert .menu__action[disabled] {
   background: none;
   color: rgba(255, 255, 255, 0.5);
 }
-.menu_invert .menu__action.is-disabled:hover, .menu_invert .menu__action.is-disabled:focus, .menu_invert .menu__action.is-disabled:active {
+.menu_invert .menu__action.is-disabled:hover, .menu_invert .menu__action.is-disabled:focus, .menu_invert .menu__action.is-disabled:active, .menu_invert .menu__action[disabled]:hover, .menu_invert .menu__action[disabled]:focus, .menu_invert .menu__action[disabled]:active {
   background: none;
   color: rgba(255, 255, 255, 0.5);
 }

@@ -20,7 +20,7 @@ npm install @vrembem/menu
 
 ### Markup
 
-The primary elements when composing the `menu` component are `menu__item`'s containing `menu__action`'s. Use the optional `menu__sep` in between `menu__item`'s to create separators.
+The menu component is composed of at minimum three parts: `menu`, `menu__item` and `menu__action`. The menu and menu items should be a `<ul>` and list items `<li>` respectively while the menu action can be either an `<a>` or `<button>` element. Also available is the optional `menu__sep` element to create separators in between menu items.
 
 ```html
 <ul class="menu">
@@ -33,7 +33,17 @@ The primary elements when composing the `menu` component are `menu__item`'s cont
 </ul>
 ```
 
-For links that only contain an icon, you can use the `menu__action_icon` modifier to create a square link similar to the `button_icon` modifier.
+Use the `menu__text` element to wrap text inside the `menu__action` element. Additional elements inside the menu action receive appropriate spacing.
+
+```html
+<button class="menu__action">
+  <span>...</span>
+  <span class="menu__text">...</span>
+  <span>...</span>
+</button>
+```
+
+For links that only contain an icon, you can use the `menu__action_icon` element modifier to create a square link similar to the `button_icon` modifier.
 
 ```html
 <button class="menu__action menu__action_icon">
@@ -41,40 +51,105 @@ For links that only contain an icon, you can use the `menu__action_icon` modifie
 </button>
 ```
 
-Elements inside the `menu__action` and `menu__text` elements receive appropriate children spacing as long as text nodes are wrapped with `span` elements.
+#### is-active
+
+Adding the `is-active` class will provide visual indication that the action is currently in an active state.
 
 ```html
-<button class="menu__action">
-  <svg class="icon" role="img">
-    <!-- Icon markup... -->
-  </svg>
-  <span>Text node...</span>
-</button>
-```
-
-#### `is-active`
-
-```html
-<button class="menu__action is-active">
+<button class="menu__action is-active" disabled>
   ...
 </button>
 ```
 
-#### `is-disabled`
+#### is-disabled
+
+Adding the boolean `disabled` attribute or `is-disabled` class will provide visual indication that the user should not be able to interact with the action.
 
 ```html
-<button class="menu__action is-disabled">
+<button class="menu__action is-disabled" disabled>
   ...
 </button>
+```
+
+## Modifiers
+
+### menu_inline_[key]
+
+Used to apply horizontal menu styles. This is typically used for short menus or toolbars where vertical space can be saved.
+
+```html
+<ul class="menu menu_inline">...</ul>
+```
+
+To set a menu to inline **above** a specific breakpoint, use the inline breakpoint modifier: `menu_inline_[key]`
+
+```html
+<ul class="menu menu_inline_lg">...</ul>
+```
+
+#### Available Variations
+
+- `menu_inline_xl`
+- `menu_inline_lg`
+- `menu_inline_md`
+- `menu_inline_sm`
+- `menu_inline_xs`
+
+### menu_full_[key]
+
+Used to span a horizontal menu to fill the full width of its container. This modifier is meant to be paired with the `menu_inline` modifier as the default styles of a vertical menu already fill the full width of their container.
+
+```html
+<ul class="menu menu_inline menu_full">...</ul>
+```
+
+To set a menu to full **below** a specific breakpoint, use the full breakpoint modifier: `menu_full_[key]`
+
+```html
+<ul class="menu menu_inline menu_full_lg">...</ul>
+```
+
+#### Available Variations
+
+- `menu_full_xl`
+- `menu_full_lg`
+- `menu_full_md`
+- `menu_full_sm`
+- `menu_full_xs`
+
+### menu_invert
+
+A modifier that provides an inversed menu style for better contrast on a dark background.
+
+```html
+<ul class="menu menu_invert">
+  ...
+</ul>
 ```
 
 ## Customization
 
 ### Sass Variables
 
-| Variable                 | Default | Description                            |
-| ------------------------ | ------- | -------------------------------------- |
-| `$prefix-block`          | `null`  | String to prefix blocks with.          |
-| `$prefix-element`        | `"__"`  | String to prefix elements with.        |
-| `$prefix-modifier`       | `"_"`   | String to prefix modifiers with.       |
-| `$prefix-modifier-value` | `"_"`   | String to prefix modifier values with. |
+| Variable                 | Default                                        | Description                                                                                             |
+| ------------------------ | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `$prefix-block`          | `null`                                         | String to prefix blocks with.                                                                           |
+| `$prefix-element`        | `"__"`                                         | String to prefix elements with.                                                                         |
+| `$prefix-modifier`       | `"_"`                                          | String to prefix modifiers with.                                                                        |
+| `$prefix-modifier-value` | `"_"`                                          | String to prefix modifier values with.                                                                  |
+| `$breakpoints`           | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the `menu_inline_[key]` and `menu_full_[key]` modifiers uses to build their styles. |
+
+### $breakpoints
+
+The breakpoints map the `menu_inline_[key]` and `menu_full_[key]` modifiers uses to build their styles.
+
+```scss
+// Inherited from: core.$breakpoints
+$breakpoints: (
+  "xs": 480px,
+  "sm": 620px,
+  "md": 760px,
+  "lg": 990px,
+  "xl": 1380px
+) !default;
+```
