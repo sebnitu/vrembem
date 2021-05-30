@@ -102,3 +102,7 @@ $_e: var.$prefix-element;
     }
   }
 }
+
+.#{$_b}menu#{$_e}text {
+  flex-grow: 1;
+}

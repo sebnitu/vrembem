@@ -18,29 +18,30 @@ The primary elements when composing the `menu` component are `menu__item`'s cont
   <ul class="menu">
     <li class="menu__item">
       <button class="menu__action">
-        {% include icon.html icon="scissors" %}
-        <span>Cut</span>
-        <span>&#x2318;X</span>
+        {% include icon.html class="color-primary" icon="scissors" %}
+        <span class="menu__text">Cut</span>
+        <span class="color-subtle">&#x2318;X</span>
       </button>
     </li>
     <li class="menu__item">
       <a class="menu__action" href="#">
-        {% include icon.html icon="copy" %}
-        <span>Copy</span>
-        <span>&#x2318;C</span>
+        {% include icon.html class="color-primary" icon="copy" %}
+        <span class="menu__text">Copy</span>
+        <span class="color-subtle">&#x2318;C</span>
       </a>
     </li>
     <li class="menu__item">
       <button class="menu__action">
-        {% include icon.html icon="clipboard" %}
-        <span>Paste</span>
-        <span>&#x2318;V</span>
+        {% include icon.html class="color-primary" icon="clipboard" %}
+        <span class="menu__text">Paste</span>
+        <span class="color-subtle">&#x2318;V</span>
       </button>
     </li>
     <li class="menu__sep"></li>
     <li class="menu__item">
       <button class="menu__action">
-        Logout
+        {% include icon.html class="color-primary" icon="log-out" %}
+        <span class="menu__text">Logout</span>
       </button>
     </li>
   </ul>
@@ -62,7 +63,7 @@ For links that only contain an icon, you can use the `menu__action_icon` modifie
 
 {% include demo_open.html %}
 <div class="scroll-box">
-  <ul class="menu">
+  <ul class="menu menu_inline">
     <li class="menu__item">
       <a class="menu__action menu__action_icon" href="#">
         {% include icon.html icon="arrow-left" %}
@@ -108,7 +109,7 @@ Elements inside the `menu__action` element receive appropriate children spacing 
 
 {% include demo_open.html %}
 <div class="scroll-box">
-  <ul class="menu">
+  <ul class="menu menu_inline">
     <li class="menu__item">
       <a class="menu__action" href="#">
         {% include icon.html icon="thumbs-up" %}
