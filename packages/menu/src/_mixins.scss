@@ -8,7 +8,7 @@ $_e: var.$prefix-element;
     flex: 1 1 auto;
   }
 
-  .#{$_b}menu#{$_e}link {
+  .#{$_b}menu#{$_e}action {
     justify-content: center;
   }
 }
@@ -36,7 +36,7 @@ $_e: var.$prefix-element;
     }
   }
 
-  .#{$_b}menu#{$_e}link,
+  .#{$_b}menu#{$_e}action,
   .#{$_b}menu#{$_e}text {
     justify-content: center;
     white-space: nowrap;
@@ -67,7 +67,7 @@ $_e: var.$prefix-element;
     }
   }
 
-  .#{$_b}menu#{$_e}link,
+  .#{$_b}menu#{$_e}action,
   .#{$_b}menu#{$_e}text {
     justify-content: flex-start;
     white-space: normal;

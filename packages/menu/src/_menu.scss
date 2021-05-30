@@ -33,7 +33,7 @@ $_e: var.$prefix-element;
   }
 }
 
-.#{$_b}menu#{$_e}link,
+.#{$_b}menu#{$_e}action,
 .#{$_b}menu#{$_e}text {
   position: relative;
   display: flex;
@@ -51,7 +51,7 @@ $_e: var.$prefix-element;
   }
 }
 
-.#{$_b}menu#{$_e}link {
+.#{$_b}menu#{$_e}action {
   background: var.$background;
   box-shadow: var.$box-shadow;
   color: var.$color;

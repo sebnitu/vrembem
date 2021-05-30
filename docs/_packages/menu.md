@@ -11,23 +11,23 @@ usage:
 
 ## menu
 
-The primary elements when composing the `menu` component are `menu__item`'s containing `menu__link`'s. Use the optional `menu__sep` in between `menu__item`'s to create separators.
+The primary elements when composing the `menu` component are `menu__item`'s containing `menu__action`'s. Use the optional `menu__sep` in between `menu__item`'s to create separators.
 
 {% include demo_open.html %}
 <div class="scroll-box">
   <ul class="menu">
     <li class="menu__item">
-      <button class="menu__link">Create</button>
+      <button class="menu__action">Create</button>
     </li>
     <li class="menu__item">
-      <button class="menu__link">Edit</button>
+      <button class="menu__action">Edit</button>
     </li>
     <li class="menu__item">
-      <button class="menu__link">Delete</button>
+      <button class="menu__action">Delete</button>
     </li>
     <li class="menu__sep"></li>
     <li class="menu__item">
-      <button class="menu__link">Logout</button>
+      <button class="menu__action">Logout</button>
     </li>
   </ul>
 </div>
@@ -35,7 +35,7 @@ The primary elements when composing the `menu` component are `menu__item`'s cont
 ```html
 <ul class="menu">
   <li class="menu__item">
-    <button class="menu__link">
+    <button class="menu__action">
       ...
     </button>
   </li>
@@ -44,39 +44,39 @@ The primary elements when composing the `menu` component are `menu__item`'s cont
 ```
 {% include demo_close.html %}
 
-For links that only contain an icon, you can use the `menu__link_icon` modifier to create a square link similar to the `button_icon` modifier.
+For links that only contain an icon, you can use the `menu__action_icon` modifier to create a square link similar to the `button_icon` modifier.
 
 {% include demo_open.html %}
 <div class="scroll-box">
   <ul class="menu">
     <li class="menu__item">
-      <a class="menu__link menu__link_icon" href="#">
+      <a class="menu__action menu__action_icon" href="#">
         {% include icon.html icon="arrow-left" %}
       </a>
     </li>
     <li class="menu__item">
-      <a class="menu__link menu__link_icon" href="#">
+      <a class="menu__action menu__action_icon" href="#">
         {% include icon.html icon="arrow-right" %}
       </a>
     </li>
     <li class="menu__item">
-      <a class="menu__link menu__link_icon" href="#">
+      <a class="menu__action menu__action_icon" href="#">
         {% include icon.html icon="rotate-cw" %}
       </a>
     </li>
     <li class="menu__item">
-      <a class="menu__link menu__link_icon" href="#">
+      <a class="menu__action menu__action_icon" href="#">
         {% include icon.html icon="home" %}
       </a>
     </li>
     <li class="menu__sep"></li>
     <li class="menu__item">
-      <a class="menu__link menu__link_icon" href="#">
+      <a class="menu__action menu__action_icon" href="#">
         {% include icon.html icon="at-sign" %}
       </a>
     </li>
     <li class="menu__item">
-      <a class="menu__link menu__link_icon" href="#">
+      <a class="menu__action menu__action_icon" href="#">
         {% include icon.html icon="more-vertical" %}
       </a>
     </li>
@@ -84,38 +84,38 @@ For links that only contain an icon, you can use the `menu__link_icon` modifier 
 </div>
 {% include demo_switch.html %}
 ```html
-<a class="menu__link menu__link_icon" href="#">
+<a class="menu__action menu__action_icon" href="#">
   ...
 </a>
 ```
 {% include demo_close.html %}
 
-Elements inside the `menu__link` and `menu__text` elements receive appropriate children spacing as long as text nodes are wrapped with `span` elements.
+Elements inside the `menu__action` and `menu__text` elements receive appropriate children spacing as long as text nodes are wrapped with `span` elements.
 
 {% include demo_open.html %}
 <div class="scroll-box">
   <ul class="menu">
     <li class="menu__item">
-      <a class="menu__link" href="#">
+      <a class="menu__action" href="#">
         {% include icon.html icon="thumbs-up" %}
         <span>30k</span>
       </a>
     </li>
     <li class="menu__item">
-      <a class="menu__link" href="#">
+      <a class="menu__action" href="#">
         {% include icon.html icon="thumbs-down" %}
         <span>1k</span>
       </a>
     </li>
     <li class="menu__item">
-      <a class="menu__link" href="#">
+      <a class="menu__action" href="#">
         {% include icon.html icon="share" %}
         <span>Share</span>
       </a>
     </li>
     <li class="menu__sep"></li>
     <li class="menu__item">
-      <a class="menu__link menu__link_icon" href="#">
+      <a class="menu__action menu__action_icon" href="#">
         {% include icon.html icon="more-horizontal" %}
       </a>
     </li>
@@ -123,7 +123,7 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate c
 </div>
 {% include demo_switch.html %}
 ```html
-<a class="menu__link" href="#">
+<a class="menu__action" href="#">
   <svg class="icon" role="img">
     <!-- Icon markup... -->
   </svg>
@@ -138,13 +138,13 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate c
 <div class="scroll-box">
   <ul class="menu">
     <li class="menu__item">
-      <a class="menu__link is-active" href="#">Active</a>
+      <a class="menu__action is-active" href="#">Active</a>
     </li>
     <li class="menu__item">
-      <a class="menu__link is-disabled" href="#">Disabled</a>
+      <a class="menu__action is-disabled" href="#">Disabled</a>
     </li>
     <li class="menu__item">
-      <a class="menu__link" href="#">Normal</a>
+      <a class="menu__action" href="#">Normal</a>
     </li>
   </ul>
 </div>
@@ -152,12 +152,12 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate c
 ```html
 <ul class="menu">
   <li class="menu__item">
-    <a class="menu__link is-active" href="#">
+    <a class="menu__action is-active" href="#">
       ...
     </a>
   </li>
   <li class="menu__item">
-    <a class="menu__link is-disabled" href="#">
+    <a class="menu__action is-disabled" href="#">
       ...
     </a>
   </li>
@@ -171,17 +171,17 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate c
 <div class="scroll-box">
   <ul class="menu menu_full">
     <li class="menu__item">
-      <a class="menu__link" href="#">Create</a>
+      <a class="menu__action" href="#">Create</a>
     </li>
     <li class="menu__item">
-      <a class="menu__link" href="#">Edit</a>
+      <a class="menu__action" href="#">Edit</a>
     </li>
     <li class="menu__item">
-      <a class="menu__link" href="#">Delete</a>
+      <a class="menu__action" href="#">Delete</a>
     </li>
     <li class="menu__sep"></li>
     <li class="menu__item">
-      <a class="menu__link" href="#">Logout</a>
+      <a class="menu__action" href="#">Logout</a>
     </li>
   </ul>
 </div>
@@ -197,17 +197,17 @@ To set a menu to full below a specific breakpoint, use the full breakpoint modif
 <div class="scroll-box">
   <ul class="menu menu_full_lg">
     <li class="menu__item">
-      <a class="menu__link" href="#">Create</a>
+      <a class="menu__action" href="#">Create</a>
     </li>
     <li class="menu__item">
-      <a class="menu__link" href="#">Edit</a>
+      <a class="menu__action" href="#">Edit</a>
     </li>
     <li class="menu__item">
-      <a class="menu__link" href="#">Delete</a>
+      <a class="menu__action" href="#">Delete</a>
     </li>
     <li class="menu__sep"></li>
     <li class="menu__item">
-      <a class="menu__link" href="#">Logout</a>
+      <a class="menu__action" href="#">Logout</a>
     </li>
   </ul>
 </div>
@@ -222,17 +222,17 @@ To set a menu to full below a specific breakpoint, use the full breakpoint modif
 {% include demo_open.html %}
 <ul class="menu menu_stack">
   <li class="menu__item">
-    <a class="menu__link" href="#">Create</a>
+    <a class="menu__action" href="#">Create</a>
   </li>
   <li class="menu__item">
-    <a class="menu__link" href="#">Edit</a>
+    <a class="menu__action" href="#">Edit</a>
   </li>
   <li class="menu__item">
-    <a class="menu__link" href="#">Delete</a>
+    <a class="menu__action" href="#">Delete</a>
   </li>
   <li class="menu__sep"></li>
   <li class="menu__item">
-    <a class="menu__link" href="#">Logout</a>
+    <a class="menu__action" href="#">Logout</a>
   </li>
 </ul>
 {% include demo_switch.html %}
@@ -248,17 +248,17 @@ To create a stacked menu below a specific breakpoint, use the stack breakpoint m
 {% include demo_open.html %}
 <ul class="menu menu_stack_lg">
   <li class="menu__item">
-    <a class="menu__link" href="#">Create</a>
+    <a class="menu__action" href="#">Create</a>
   </li>
   <li class="menu__item">
-    <a class="menu__link" href="#">Edit</a>
+    <a class="menu__action" href="#">Edit</a>
   </li>
   <li class="menu__item">
-    <a class="menu__link" href="#">Delete</a>
+    <a class="menu__action" href="#">Delete</a>
   </li>
   <li class="menu__sep"></li>
   <li class="menu__item">
-    <a class="menu__link" href="#">Logout</a>
+    <a class="menu__action" href="#">Logout</a>
   </li>
 </ul>
 {% include demo_switch.html %}
@@ -278,39 +278,39 @@ A theme for using menus on a dark background.
   <div class="scroll-box">
     <ul class="menu menu_theme_invert">
       <li class="menu__item">
-        <a class="menu__link is-active" href="#">Create</a>
+        <a class="menu__action is-active" href="#">Create</a>
       </li>
       <li class="menu__item">
-        <a class="menu__link" href="#">Read</a>
+        <a class="menu__action" href="#">Read</a>
       </li>
       <li class="menu__item">
-        <a class="menu__link is-disabled" href="#">Update</a>
+        <a class="menu__action is-disabled" href="#">Update</a>
       </li>
       <li class="menu__item">
-        <a class="menu__link" href="#">Delete</a>
+        <a class="menu__action" href="#">Delete</a>
       </li>
       <li class="menu__sep"></li>
       <li class="menu__item">
-        <a class="menu__link" href="#">Logout</a>
+        <a class="menu__action" href="#">Logout</a>
       </li>
     </ul>
   </div>
   <ul class="menu menu_stack menu_theme_invert">
     <li class="menu__item">
-      <a class="menu__link is-active" href="#">Create</a>
+      <a class="menu__action is-active" href="#">Create</a>
     </li>
     <li class="menu__item">
-      <a class="menu__link" href="#">Read</a>
+      <a class="menu__action" href="#">Read</a>
     </li>
     <li class="menu__item">
-      <a class="menu__link is-disabled" href="#">Update</a>
+      <a class="menu__action is-disabled" href="#">Update</a>
     </li>
     <li class="menu__item">
-      <a class="menu__link" href="#">Delete</a>
+      <a class="menu__action" href="#">Delete</a>
     </li>
     <li class="menu__sep"></li>
     <li class="menu__item">
-      <a class="menu__link" href="#">Logout</a>
+      <a class="menu__action" href="#">Logout</a>
     </li>
   </ul>
 </div>
@@ -331,39 +331,39 @@ A theme for creating tab styled menus.
   <div class="scroll-box">
     <ul class="menu menu_theme_tabs">
       <li class="menu__item">
-        <a class="menu__link is-active" href="#">Create</a>
+        <a class="menu__action is-active" href="#">Create</a>
       </li>
       <li class="menu__item">
-        <a class="menu__link" href="#">Read</a>
+        <a class="menu__action" href="#">Read</a>
       </li>
       <li class="menu__item">
-        <a class="menu__link is-disabled" href="#">Update</a>
+        <a class="menu__action is-disabled" href="#">Update</a>
       </li>
       <li class="menu__item">
-        <a class="menu__link" href="#">Delete</a>
+        <a class="menu__action" href="#">Delete</a>
       </li>
       <li class="menu__sep"></li>
       <li class="menu__item">
-        <a class="menu__link" href="#">Logout</a>
+        <a class="menu__action" href="#">Logout</a>
       </li>
     </ul>
   </div>
   <ul class="menu menu_stack menu_theme_tabs">
     <li class="menu__item">
-      <a class="menu__link is-active" href="#">Create</a>
+      <a class="menu__action is-active" href="#">Create</a>
     </li>
     <li class="menu__item">
-      <a class="menu__link" href="#">Read</a>
+      <a class="menu__action" href="#">Read</a>
     </li>
     <li class="menu__item">
-      <a class="menu__link is-disabled" href="#">Update</a>
+      <a class="menu__action is-disabled" href="#">Update</a>
     </li>
     <li class="menu__item">
-      <a class="menu__link" href="#">Delete</a>
+      <a class="menu__action" href="#">Delete</a>
     </li>
     <li class="menu__sep"></li>
     <li class="menu__item">
-      <a class="menu__link" href="#">Logout</a>
+      <a class="menu__action" href="#">Logout</a>
     </li>
   </ul>
 </div>

@@ -20,12 +20,12 @@ npm install @vrembem/menu
 
 ### Markup
 
-The primary elements when composing the `menu` component are `menu__item`'s containing `menu__link`'s. Use the optional `menu__sep` in between `menu__item`'s to create separators.
+The primary elements when composing the `menu` component are `menu__item`'s containing `menu__action`'s. Use the optional `menu__sep` in between `menu__item`'s to create separators.
 
 ```html
 <ul class="menu">
   <li class="menu__item">
-    <button class="menu__link">
+    <button class="menu__action">
       ...
     </button>
   </li>
@@ -33,18 +33,18 @@ The primary elements when composing the `menu` component are `menu__item`'s cont
 </ul>
 ```
 
-For links that only contain an icon, you can use the `menu__link_icon` modifier to create a square link similar to the `button_icon` modifier.
+For links that only contain an icon, you can use the `menu__action_icon` modifier to create a square link similar to the `button_icon` modifier.
 
 ```html
-<button class="menu__link menu__link_icon">
+<button class="menu__action menu__action_icon">
   ...
 </button>
 ```
 
-Elements inside the `menu__link` and `menu__text` elements receive appropriate children spacing as long as text nodes are wrapped with `span` elements.
+Elements inside the `menu__action` and `menu__text` elements receive appropriate children spacing as long as text nodes are wrapped with `span` elements.
 
 ```html
-<button class="menu__link">
+<button class="menu__action">
   <svg class="icon" role="img">
     <!-- Icon markup... -->
   </svg>
@@ -55,7 +55,7 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate c
 #### `is-active`
 
 ```html
-<button class="menu__link is-active">
+<button class="menu__action is-active">
   ...
 </button>
 ```
@@ -63,7 +63,7 @@ Elements inside the `menu__link` and `menu__text` elements receive appropriate c
 #### `is-disabled`
 
 ```html
-<button class="menu__link is-disabled">
+<button class="menu__action is-disabled">
   ...
 </button>
 ```

@@ -29,7 +29,7 @@ if (document.getElementById('listjs')) {
   const searchClear = document.querySelector('.filter .search_clear');
 
   const isMenuLinkActive = () => {
-    return document.querySelectorAll('#listjs .menu__link.is-active');
+    return document.querySelectorAll('#listjs .menu__action.is-active');
   };
 
   // On search complete callback

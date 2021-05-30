@@ -22,7 +22,7 @@ $link-padding: null !default;
     margin-left: ($padding * 0.5);
   }
 
-  .#{$_b}menu#{$_e}link {
+  .#{$_b}menu#{$_e}action {
     padding: $link-padding;
     border-bottom: 0;
     border-radius: $border-radius;
@@ -51,7 +51,7 @@ $link-padding: null !default;
     margin-left: inherit;
   }
 
-  .#{$_b}menu#{$_e}link {
+  .#{$_b}menu#{$_e}action {
     border-right: 0;
     border-bottom: inherit;
     border-radius: $border-radius;
