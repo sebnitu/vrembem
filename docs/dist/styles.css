@@ -3510,14 +3510,14 @@ input::-moz-placeholder {
   padding: 0.5em;
 }
 .menu__action:hover {
-  background: rgba(0, 0, 0, 0.03);
+  background: rgba(0, 0, 0, 0.06);
 }
 .menu__action:focus {
   outline: none;
-  background: rgba(0, 0, 0, 0.06);
+  background: rgba(0, 0, 0, 0.09);
 }
 .menu__action:active {
-  background: rgba(0, 0, 0, 0.09);
+  background: rgba(0, 0, 0, 0.12);
 }
 .menu__action.is-active {
   background: none;

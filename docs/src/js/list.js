@@ -60,22 +60,20 @@ if (document.getElementById('listjs')) {
   });
 
   // Click events for category and clears
-  document.addEventListener('click', () => {
+  document.addEventListener('click', (event) => {
     const trigger_search_clear = event.target.closest('.search_clear');
-    const trigger_search_cat = event.target.closest('.category');
-
     if (trigger_search_clear) {
+      event.preventDefault();
       search.value = '';
       list.search();
-      event.preventDefault();
     }
 
+    const trigger_search_cat = event.target.closest('.category');
     if (trigger_search_cat) {
+      event.preventDefault();
       search.value = trigger_search_cat.dataset.category;
       list.search(search.value);
-      event.preventDefault();
     }
-
   }, false);
 
   // Restore our local storage value
