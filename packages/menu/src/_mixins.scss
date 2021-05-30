@@ -2,14 +2,17 @@
 
 $_b: var.$prefix-block;
 $_e: var.$prefix-element;
+$_m: var.$prefix-modifier;
 
 @mixin menu-full() {
-  .#{$_b}menu#{$_e}item {
-    flex: 1 1 auto;
-  }
+  &.#{$_b}menu#{$_m}inline {
+    .#{$_b}menu#{$_e}item {
+      flex: 1 1 auto;
+    }
 
-  .#{$_b}menu#{$_e}action {
-    justify-content: center;
+    .#{$_b}menu#{$_e}action {
+      justify-content: center;
+    }
   }
 }
 
@@ -39,35 +42,5 @@ $_e: var.$prefix-element;
   .#{$_b}menu#{$_e}action {
     justify-content: center;
     white-space: nowrap;
-  }
-}
-
-@mixin menu-stack() {
-  flex-direction: column;
-  align-items: stretch;
-  overflow: visible;
-
-  .#{$_b}menu#{$_e}item + .#{$_b}menu#{$_e}item {
-    margin-top: var.$gap;
-    margin-left: 0;
-  }
-
-  .#{$_b}menu#{$_e}sep {
-    width: auto;
-    height: var.$sep-width;
-    margin: var.$sep-spacing 0;
-
-    &:first-child {
-      margin-top: 0;
-    }
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  .#{$_b}menu#{$_e}action {
-    justify-content: flex-start;
-    white-space: normal;
   }
 }

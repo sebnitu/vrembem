@@ -10,50 +10,51 @@ $size: core.$form-control-size !default;
 $gap: 1px !default;
 $padding: core.$padding !default;
 $icon-padding: 0.1em !default;
-$inner-spacing: 0.5em !default;
+$inner-spacing: 1em !default;
 $font-size: 1em !default;
 $line-height: 1.5 !default;
 $border-radius: core.$border-radius !default;
 $outline-focus: none !default;
 $outline-focus-offset: null !default;
-
 $background: none !default;
 $background-hover: rgba(core.$black, 0.06) !default;
 $background-focus: rgba(core.$black, 0.09) !default;
 $background-active: rgba(core.$black, 0.12) !default;
-$background-is-active: none !default;
-$background-is-disabled: none !default;
-
 $box-shadow: null !default;
 $box-shadow-hover: null !default;
 $box-shadow-focus: null !default;
 $box-shadow-active: null !default;
-
 $color: core.$color !default;
 $color-hover: null !default;
 $color-focus: null !default;
 $color-active: null !default;
-$color-is-active: core.$primary !default;
-$color-is-disabled: core.$color-subtle !default;
-
 $sep-spacing: 0.5em !default;
 $sep-width: 1px !default;
 $sep-background: core.$border-color !default;
 
+// is-active
+$background-is-active: none !default;
+$color-is-active: core.$primary !default;
+
+// is-disabled
+$background-is-disabled: none !default;
+$color-is-disabled: core.$color-subtle !default;
+
 // menu_invert
-
-$invert-color: core.$white !default;
-$invert-color-hover: null !default;
-$invert-color-focus: null !default;
-$invert-color-active: null !default;
-$invert-color-is-active: core.$primary !default;
-$invert-color-is-disabled: rgba(core.$white, 0.5) !default;
-
 $invert-background: null !default;
 $invert-background-hover: rgba(core.$white, 0.06) !default;
 $invert-background-focus: rgba(core.$white, 0.09) !default;
 $invert-background-active: rgba(core.$white, 0.12) !default;
-$invert-background-is-active: none !default;
-$invert-background-is-disabled: none !default;
-
+$invert-color: core.$white !default;
+$invert-color-hover: null !default;
+$invert-color-focus: null !default;
+$invert-color-active: null !default;
 $invert-sep-background: core.$border-color-invert !default;
+
+// is-active
+$invert-background-is-active: none !default;
+$invert-color-is-active: core.$primary !default;
+
+// is-disabled
+$invert-background-is-disabled: none !default;
+$invert-color-is-disabled: rgba(core.$white, 0.5) !default;

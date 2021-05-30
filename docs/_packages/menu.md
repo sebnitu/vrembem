@@ -11,7 +11,40 @@ usage:
 
 ## menu
 
-The primary elements when composing the `menu` component are `menu__item`'s containing `menu__action`'s. Use the optional `menu__sep` in between `menu__item`'s to create separators.
+The menu component is composed of three parts: `menu`, `menu__item` and `menu__action`. The `menu__action` element can be either an `<a>` or `<button>` element. Use the optional `menu__sep` in between `menu__item` elements to create separators.
+
+{% include demo_open.html %}
+<div class="scroll-box">
+  <ul class="menu">
+    <li class="menu__item">
+      <button class="menu__action">Cut</button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">Copy</button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">Paste</button>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <button class="menu__action">Logout</button>
+    </li>
+  </ul>
+</div>
+{% include demo_switch.html %}
+```html
+<ul class="menu">
+  <li class="menu__item">
+    <button class="menu__action">
+      ...
+    </button>
+  </li>
+  <li class="menu__sep"></li>
+</ul>
+```
+{% include demo_close.html %}
+
+Elements inside `menu__action` are given spacing and an actions text should be wrapped with `menu__text`.
 
 {% include demo_open.html %}
 <div class="scroll-box">
@@ -184,7 +217,7 @@ Elements inside the `menu__action` element receive appropriate children spacing 
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="scroll-box">
-  <ul class="menu menu_full">
+  <ul class="menu menu_inline menu_full">
     <li class="menu__item">
       <a class="menu__action" href="#">Create</a>
     </li>
@@ -210,7 +243,7 @@ To set a menu to full below a specific breakpoint, use the full breakpoint modif
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="scroll-box">
-  <ul class="menu menu_full_lg">
+  <ul class="menu menu_inline menu_full_lg">
     <li class="menu__item">
       <a class="menu__action" href="#">Create</a>
     </li>
@@ -232,58 +265,6 @@ To set a menu to full below a specific breakpoint, use the full breakpoint modif
 ```
 {% include demo_close.html %}
 
-## menu_stack
-
-{% include demo_open.html %}
-<ul class="menu menu_stack">
-  <li class="menu__item">
-    <a class="menu__action" href="#">Create</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__action" href="#">Edit</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__action" href="#">Delete</a>
-  </li>
-  <li class="menu__sep"></li>
-  <li class="menu__item">
-    <a class="menu__action" href="#">Logout</a>
-  </li>
-</ul>
-{% include demo_switch.html %}
-```html
-<ul class="menu menu_stack">
-  ...
-</ul>
-```
-{% include demo_close.html %}
-
-To create a stacked menu below a specific breakpoint, use the stack breakpoint modifier: `menu_stack_[key]`
-
-{% include demo_open.html %}
-<ul class="menu menu_stack_lg">
-  <li class="menu__item">
-    <a class="menu__action" href="#">Create</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__action" href="#">Edit</a>
-  </li>
-  <li class="menu__item">
-    <a class="menu__action" href="#">Delete</a>
-  </li>
-  <li class="menu__sep"></li>
-  <li class="menu__item">
-    <a class="menu__action" href="#">Logout</a>
-  </li>
-</ul>
-{% include demo_switch.html %}
-```html
-<ul class="menu menu_stack_lg">
-  ...
-</ul>
-```
-{% include demo_close.html %}
-
 ## menu_invert
 
 A theme for using menus on a dark background.
@@ -291,7 +272,7 @@ A theme for using menus on a dark background.
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="padding background-night radius gap">
   <div class="scroll-box">
-    <ul class="menu menu_invert">
+    <ul class="menu menu_inline menu_invert">
       <li class="menu__item">
         <a class="menu__action is-active" href="#">Create</a>
       </li>
@@ -310,7 +291,7 @@ A theme for using menus on a dark background.
       </li>
     </ul>
   </div>
-  <ul class="menu menu_stack menu_invert">
+  <ul class="menu menu_invert">
     <li class="menu__item">
       <a class="menu__action is-active" href="#">Create</a>
     </li>
@@ -344,7 +325,7 @@ A theme for creating tab styled menus.
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="gap">
   <div class="scroll-box">
-    <ul class="menu menu_theme_tabs">
+    <ul class="menu menu_inline menu_theme_tabs">
       <li class="menu__item">
         <a class="menu__action is-active" href="#">Create</a>
       </li>
@@ -363,7 +344,7 @@ A theme for creating tab styled menus.
       </li>
     </ul>
   </div>
-  <ul class="menu menu_stack menu_theme_tabs">
+  <ul class="menu menu_theme_tabs">
     <li class="menu__item">
       <a class="menu__action is-active" href="#">Create</a>
     </li>
