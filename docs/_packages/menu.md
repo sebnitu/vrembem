@@ -11,7 +11,7 @@ usage:
 
 ## menu
 
-The menu component is composed of three parts: `menu`, `menu__item` and `menu__action`. The `menu__action` element can be either an `<a>` or `<button>` element. Use the optional `menu__sep` in between `menu__item` elements to create separators.
+The menu component is composed of three parts: `menu`, `menu__item` and `menu__action`. The menu action can be either an `<a>` or `<button>` element. Also available is the optional `menu__sep` elements to create separators in between menu items.
 
 {% include demo_open.html %}
 <div class="scroll-box">
@@ -27,7 +27,7 @@ The menu component is composed of three parts: `menu`, `menu__item` and `menu__a
     </li>
     <li class="menu__sep"></li>
     <li class="menu__item">
-      <button class="menu__action">Logout</button>
+      <a class="menu__action" href="#">Logout</a>
     </li>
   </ul>
 </div>
@@ -44,7 +44,7 @@ The menu component is composed of three parts: `menu`, `menu__item` and `menu__a
 ```
 {% include demo_close.html %}
 
-Elements inside `menu__action` are given spacing and an actions text should be wrapped with `menu__text`.
+Use the `menu__text` element to wrap action text inside `menu__action`.
 
 {% include demo_open.html %}
 <div class="scroll-box">
@@ -72,23 +72,20 @@ Elements inside `menu__action` are given spacing and an actions text should be w
     </li>
     <li class="menu__sep"></li>
     <li class="menu__item">
-      <button class="menu__action">
+      <a class="menu__action" href="#">
         {% include icon.html class="color-primary" icon="log-out" %}
         <span class="menu__text">Logout</span>
-      </button>
+      </a>
     </li>
   </ul>
 </div>
 {% include demo_switch.html %}
 ```html
-<ul class="menu">
-  <li class="menu__item">
-    <button class="menu__action">
-      ...
-    </button>
-  </li>
-  <li class="menu__sep"></li>
-</ul>
+...
+<button class="menu__action">
+  <span class="menu__text">...</span>
+  ...
+</button>
 ```
 {% include demo_close.html %}
 
