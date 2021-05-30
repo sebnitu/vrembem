@@ -5,14 +5,12 @@ $_e: var.$prefix-element;
 $_m: var.$prefix-modifier;
 
 @mixin menu-full() {
-  &.#{$_b}menu#{$_m}inline {
-    .#{$_b}menu#{$_e}item {
-      flex: 1 1 auto;
-    }
+  .#{$_b}menu#{$_e}item {
+    flex: 1 1 auto;
+  }
 
-    .#{$_b}menu#{$_e}action {
-      justify-content: center;
-    }
+  .#{$_b}menu#{$_e}action {
+    justify-content: center;
   }
 }
 

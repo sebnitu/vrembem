@@ -210,6 +210,56 @@ Elements inside the `menu__action` element receive appropriate children spacing 
 ```
 {% include demo_close.html %}
 
+## menu_inline
+
+{% include demo_open.html class_grid="grid_stack" %}
+<div class="scroll-box">
+  <ul class="menu menu_inline">
+    <li class="menu__item">
+      <a class="menu__action" href="#">Create</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__action" href="#">Edit</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__action" href="#">Delete</a>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <a class="menu__action" href="#">Logout</a>
+    </li>
+  </ul>
+</div>
+{% include demo_switch.html %}
+```html
+<ul class="menu menu_inline">...</ul>
+```
+{% include demo_close.html %}
+
+{% include demo_open.html class_grid="grid_stack" %}
+<div class="scroll-box">
+  <ul class="menu menu_inline_lg">
+    <li class="menu__item">
+      <a class="menu__action" href="#">Create</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__action" href="#">Edit</a>
+    </li>
+    <li class="menu__item">
+      <a class="menu__action" href="#">Delete</a>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <a class="menu__action" href="#">Logout</a>
+    </li>
+  </ul>
+</div>
+{% include demo_switch.html %}
+```html
+<ul class="menu menu_inline_lg">...</ul>
+```
+{% include demo_close.html %}
+
 ## menu_full
 
 {% include demo_open.html class_grid="grid_stack" %}
@@ -310,59 +360,6 @@ A theme for using menus on a dark background.
 {% include demo_switch.html %}
 ```html
 <ul class="menu menu_invert">
-  ...
-</ul>
-```
-{% include demo_close.html %}
-
-## menu_theme_tabs
-
-A theme for creating tab styled menus.
-
-{% include demo_open.html class_grid="grid_stack" %}
-<div class="gap">
-  <div class="scroll-box">
-    <ul class="menu menu_inline menu_theme_tabs">
-      <li class="menu__item">
-        <a class="menu__action is-active" href="#">Create</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__action" href="#">Read</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__action is-disabled" href="#">Update</a>
-      </li>
-      <li class="menu__item">
-        <a class="menu__action" href="#">Delete</a>
-      </li>
-      <li class="menu__sep"></li>
-      <li class="menu__item">
-        <a class="menu__action" href="#">Logout</a>
-      </li>
-    </ul>
-  </div>
-  <ul class="menu menu_theme_tabs">
-    <li class="menu__item">
-      <a class="menu__action is-active" href="#">Create</a>
-    </li>
-    <li class="menu__item">
-      <a class="menu__action" href="#">Read</a>
-    </li>
-    <li class="menu__item">
-      <a class="menu__action is-disabled" href="#">Update</a>
-    </li>
-    <li class="menu__item">
-      <a class="menu__action" href="#">Delete</a>
-    </li>
-    <li class="menu__sep"></li>
-    <li class="menu__item">
-      <a class="menu__action" href="#">Logout</a>
-    </li>
-  </ul>
-</div>
-{% include demo_switch.html %}
-```html
-<ul class="menu menu_theme_tabs">
   ...
 </ul>
 ```
