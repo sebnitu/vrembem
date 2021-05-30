@@ -3489,8 +3489,7 @@ input::-moz-placeholder {
   margin-bottom: 0;
 }
 
-.menu__action,
-.menu__text {
+.menu__action {
   position: relative;
   display: flex;
   align-items: center;
@@ -3500,16 +3499,12 @@ input::-moz-placeholder {
   min-height: 2.5rem;
   padding: 0.5em 1em;
   border-radius: 4px;
-  white-space: normal;
-}
-.menu__action > * + *,
-.menu__text > * + * {
-  margin-left: 0.5em;
-}
-
-.menu__action {
   background: none;
   color: #212121;
+  white-space: normal;
+}
+.menu__action > * + * {
+  margin-left: 0.5em;
 }
 .menu__action_icon {
   padding: 0.5em;
@@ -3532,19 +3527,14 @@ input::-moz-placeholder {
   background: none;
   color: #00bcd4;
 }
-.menu__action.is-disabled {
+.menu__action.is-disabled, .menu__action[disabled] {
   background: none;
   color: #9e9e9e;
   cursor: default;
 }
-.menu__action.is-disabled:hover, .menu__action.is-disabled:focus, .menu__action.is-disabled:active {
+.menu__action.is-disabled:hover, .menu__action.is-disabled:focus, .menu__action.is-disabled:active, .menu__action[disabled]:hover, .menu__action[disabled]:focus, .menu__action[disabled]:active {
   background: none;
   color: #9e9e9e;
-}
-
-.menu__text {
-  color: #212121;
-  text-decoration: none;
 }
 
 .menu_full .menu__item {
@@ -3779,9 +3769,6 @@ input::-moz-placeholder {
 .menu_invert .menu__action.is-disabled:hover, .menu_invert .menu__action.is-disabled:focus, .menu_invert .menu__action.is-disabled:active {
   background: none;
   color: rgba(255, 255, 255, 0.5);
-}
-.menu_invert .menu__text {
-  color: #fff;
 }
 
 .menu_stack {

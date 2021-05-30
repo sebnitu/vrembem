@@ -54,9 +54,4 @@ $_v: var.$prefix-modifier-value;
       }
     }
   }
-
-  .#{$_b}menu#{$_e}text {
-    background: var.$invert-background;
-    color: var.$invert-text-color;
-  }
 }

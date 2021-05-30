@@ -17,17 +17,31 @@ The primary elements when composing the `menu` component are `menu__item`'s cont
 <div class="scroll-box">
   <ul class="menu">
     <li class="menu__item">
-      <button class="menu__action">Create</button>
+      <button class="menu__action">
+        {% include icon.html icon="scissors" %}
+        <span>Cut</span>
+        <span>&#x2318;X</span>
+      </button>
     </li>
     <li class="menu__item">
-      <button class="menu__action">Edit</button>
+      <a class="menu__action" href="#">
+        {% include icon.html icon="copy" %}
+        <span>Copy</span>
+        <span>&#x2318;C</span>
+      </a>
     </li>
     <li class="menu__item">
-      <button class="menu__action">Delete</button>
+      <button class="menu__action">
+        {% include icon.html icon="clipboard" %}
+        <span>Paste</span>
+        <span>&#x2318;V</span>
+      </button>
     </li>
     <li class="menu__sep"></li>
     <li class="menu__item">
-      <button class="menu__action">Logout</button>
+      <button class="menu__action">
+        Logout
+      </button>
     </li>
   </ul>
 </div>
@@ -90,7 +104,7 @@ For links that only contain an icon, you can use the `menu__action_icon` modifie
 ```
 {% include demo_close.html %}
 
-Elements inside the `menu__action` and `menu__text` elements receive appropriate children spacing as long as text nodes are wrapped with `span` elements.
+Elements inside the `menu__action` element receive appropriate children spacing as long as text nodes are wrapped with `span` elements.
 
 {% include demo_open.html %}
 <div class="scroll-box">
@@ -269,14 +283,14 @@ To create a stacked menu below a specific breakpoint, use the stack breakpoint m
 ```
 {% include demo_close.html %}
 
-## menu_theme_invert
+## menu_invert
 
 A theme for using menus on a dark background.
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="padding background-night radius gap">
   <div class="scroll-box">
-    <ul class="menu menu_theme_invert">
+    <ul class="menu menu_invert">
       <li class="menu__item">
         <a class="menu__action is-active" href="#">Create</a>
       </li>
@@ -295,7 +309,7 @@ A theme for using menus on a dark background.
       </li>
     </ul>
   </div>
-  <ul class="menu menu_stack menu_theme_invert">
+  <ul class="menu menu_stack menu_invert">
     <li class="menu__item">
       <a class="menu__action is-active" href="#">Create</a>
     </li>
@@ -316,7 +330,7 @@ A theme for using menus on a dark background.
 </div>
 {% include demo_switch.html %}
 ```html
-<ul class="menu menu_theme_invert">
+<ul class="menu menu_invert">
   ...
 </ul>
 ```
