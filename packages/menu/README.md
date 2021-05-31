@@ -157,12 +157,10 @@ Adjust the size of a menu by increasing or decreasing its padding and font-size.
 | `$prefix-modifier`            | `"_"`                                          | String to prefix modifiers with.                                                                        |
 | `$prefix-modifier-value`      | `"_"`                                          | String to prefix modifier values with.                                                                  |
 | `$breakpoints`                | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the `menu_inline_[key]` and `menu_full_[key]` modifiers uses to build their styles. |
-| `$size`                       | `core.$form-control-size`                      | ...                                                                                                     |
+| `$size`                       | `core.$form-control-size`                      | Sets the minimum size of a menu action using the min-height and min-width properties.                   |
+| `$padding`                    | `core.$padding`                                | Sets the padding property.                                                                              |
 | `$gap`                        | `1px`                                          | ...                                                                                                     |
-| `$padding`                    | `core.$padding`                                | ...                                                                                                     |
 | `$inner-gap`                  | `1em`                                          | ...                                                                                                     |
-| `$font-size`                  | `1em`                                          | ...                                                                                                     |
-| `$line-height`                | `1.5`                                          | ...                                                                                                     |
 | `$border-radius`              | `core.$border-radius`                          | ...                                                                                                     |
 | `$background`                 | `none`                                         | ...                                                                                                     |
 | `$background-hover`           | `rgba(core.$black, 0.06)`                      | ...                                                                                                     |
@@ -172,11 +170,13 @@ Adjust the size of a menu by increasing or decreasing its padding and font-size.
 | `$color-hover`                | `null`                                         | ...                                                                                                     |
 | `$color-focus`                | `null`                                         | ...                                                                                                     |
 | `$color-active`               | `null`                                         | ...                                                                                                     |
+| `$font-size`                  | `1em`                                          | ...                                                                                                     |
+| `$line-height`                | `1.5`                                          | ...                                                                                                     |
+| `$outline-focus`              | `none`                                         | ...                                                                                                     |
+| `$outline-focus-offset`       | `null`                                         | ...                                                                                                     |
 | `$sep-size`                   | `1px`                                          | ...                                                                                                     |
 | `$sep-gap`                    | `0.5em`                                        | ...                                                                                                     |
 | `$sep-background`             | `core.$border-color`                           | ...                                                                                                     |
-| `$outline-focus`              | `none`                                         | ...                                                                                                     |
-| `$outline-focus-offset`       | `null`                                         | ...                                                                                                     |
 | `$active-background`          | `none`                                         | ...                                                                                                     |
 | `$active-color`               | `core.$primary`                                | ...                                                                                                     |
 | `$disabled-background`        | `none`                                         | ...                                                                                                     |

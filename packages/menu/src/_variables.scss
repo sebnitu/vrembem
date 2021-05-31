@@ -7,11 +7,9 @@ $prefix-modifier-value: core.$prefix-modifier-value !default;
 
 $breakpoints: core.$breakpoints !default;
 $size: core.$form-control-size !default;
-$gap: 1px !default;
 $padding: core.$padding !default;
+$gap: 1px !default;
 $inner-gap: 1em !default;
-$font-size: 1em !default;
-$line-height: 1.5 !default;
 $border-radius: core.$border-radius !default;
 $background: none !default;
 $background-hover: rgba(core.$black, 0.06) !default;
@@ -21,11 +19,13 @@ $color: core.$color !default;
 $color-hover: null !default;
 $color-focus: null !default;
 $color-active: null !default;
+$font-size: 1em !default;
+$line-height: 1.5 !default;
+$outline-focus: none !default;
+$outline-focus-offset: null !default;
 $sep-size: 1px !default;
 $sep-gap: 0.5em !default;
 $sep-background: core.$border-color !default;
-$outline-focus: none !default;
-$outline-focus-offset: null !default;
 
 // is-active
 $active-background: none !default;
