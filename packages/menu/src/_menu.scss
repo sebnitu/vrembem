@@ -44,7 +44,6 @@ $_e: var.$prefix-element;
   padding: var.$padding;
   border-radius: var.$border-radius;
   background: var.$background;
-  box-shadow: var.$box-shadow;
   color: var.$color;
   white-space: normal;
 
@@ -62,7 +61,6 @@ $_e: var.$prefix-element;
 
   &:hover {
     background: var.$background-hover;
-    box-shadow: var.$box-shadow-hover;
     color: var.$color-hover;
   }
 
@@ -70,13 +68,11 @@ $_e: var.$prefix-element;
     outline: var.$outline-focus;
     outline-offset: var.$outline-focus-offset;
     background: var.$background-focus;
-    box-shadow: var.$box-shadow-focus;
     color: var.$color-focus;
   }
 
   &:active {
     background: var.$background-active;
-    box-shadow: var.$box-shadow-active;
     color: var.$color-active;
   }
 
