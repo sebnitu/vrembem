@@ -3773,6 +3773,32 @@ input::-moz-placeholder {
   color: rgba(255, 255, 255, 0.5);
 }
 
+.menu_size_sm {
+  font-size: 0.875em;
+  line-height: 1.375;
+}
+.menu_size_sm .menu__action {
+  min-width: 1.875rem;
+  min-height: 1.875rem;
+  padding: 0.25rem 0.5rem;
+}
+.menu_size_sm .menu__action_icon {
+  padding: 0.25rem;
+}
+
+.menu_size_lg {
+  font-size: 1.125em;
+  line-height: 1.625;
+}
+.menu_size_lg .menu__action {
+  min-width: 3.125rem;
+  min-height: 3.125rem;
+  padding: 0.648rem 1.5rem;
+}
+.menu_size_lg .menu__action_icon {
+  padding: 0.648rem;
+}
+
 .modal {
   position: fixed;
   z-index: 1000;

@@ -365,6 +365,66 @@ A modifier that provides an inversed menu style for better contrast on a dark ba
 ```
 {% include demo_close.html %}
 
+## menu_size_[value]
+
+Adjust the size of a menu by increasing or decreasing its padding and font-size. By default, the menu scale will provide an action height of 30px (small `menu_size_sm`), 40px (default) and 50px (large `menu_size_lg`).
+
+{% include demo_open.html %}
+<div class="scroll-box gap-y padding-y-md">
+  <ul class="menu menu_inline menu_size_sm">
+    <li class="menu__item">
+      <button class="menu__action">Undo</button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">Redo</button>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <button class="menu__action">Cut</button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">Copy</button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">Paste</button>
+    </li>
+  </ul>
+  <ul class="menu menu_inline menu_size_lg">
+    <li class="menu__item">
+      <button class="menu__action">Undo</button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">Redo</button>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <button class="menu__action">Cut</button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">Copy</button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">Paste</button>
+    </li>
+  </ul>
+</div>
+{% include demo_switch.html %}
+```html
+<ul class="menu menu_size_sm">
+  ...
+</ul>
+
+<ul class="menu menu_size_lg">
+  ...
+</ul>
+```
+{% include demo_close.html %}
+
+### Available Variations
+
+- `menu_size_sm`
+- `menu_size_lg`
+
 ## Sass Variables
 
 <div class="scroll-box">
@@ -406,6 +466,7 @@ A modifier that provides an inversed menu style for better contrast on a dark ba
         </td>
         <td data-mobile-label="Desc">The breakpoints map the <code class="code">menu_inline_[key]</code> and <code class="code">menu_full_[key]</code> modifiers uses to build their styles.</td>
       </tr>
+      <!-- menu_invert -->
     </tbody>
   </table>
 </div>

@@ -127,6 +127,25 @@ A modifier that provides an inversed menu style for better contrast on a dark ba
 </ul>
 ```
 
+### menu_size_[value]
+
+Adjust the size of a menu by increasing or decreasing its padding and font-size. By default, the menu scale will provide an action height of 30px (small `menu_size_sm`), 40px (default) and 50px (large `menu_size_lg`).
+
+```html
+<ul class="menu menu_size_sm">
+  ...
+</ul>
+
+<ul class="menu menu_size_lg">
+  ...
+</ul>
+```
+
+#### Available Variations
+
+- `menu_size_sm`
+- `menu_size_lg`
+
 ## Customization
 
 ### Sass Variables
@@ -138,6 +157,55 @@ A modifier that provides an inversed menu style for better contrast on a dark ba
 | `$prefix-modifier`       | `"_"`                                          | String to prefix modifiers with.                                                                        |
 | `$prefix-modifier-value` | `"_"`                                          | String to prefix modifier values with.                                                                  |
 | `$breakpoints`           | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the `menu_inline_[key]` and `menu_full_[key]` modifiers uses to build their styles. |
+| `$size`                  | `core.$form-control-size`                      | ...                                                                                                     |
+| `$gap`                   | `1px`                                          | ...                                                                                                     |
+| `$padding`               | `core.$padding`                                | ...                                                                                                     |
+| `$inner-gap`             | `1em`                                          | ...                                                                                                     |
+| `$font-size`             | `1em`                                          | ...                                                                                                     |
+| `$line-height`           | `1.5`                                          | ...                                                                                                     |
+| `$border-radius`         | `core.$border-radius`                          | ...                                                                                                     |
+| `$background`            | `none`                                         | ...                                                                                                     |
+| `$background-hover`      | `rgba(core.$black, 0.06)`                      | ...                                                                                                     |
+| `$background-focus`      | `rgba(core.$black, 0.09)`                      | ...                                                                                                     |
+| `$background-active`     | `rgba(core.$black, 0.12)`                      | ...                                                                                                     |
+| `$color`                 | `core.$color`                                  | ...                                                                                                     |
+| `$color-hover`           | `null`                                         | ...                                                                                                     |
+| `$color-focus`           | `null`                                         | ...                                                                                                     |
+| `$color-active`          | `null`                                         | ...                                                                                                     |
+| `$sep-size`              | `1px`                                          | ...                                                                                                     |
+| `$sep-gap`               | `0.5em`                                        | ...                                                                                                     |
+| `$sep-background`        | `core.$border-color`                           | ...                                                                                                     |
+| `$outline-focus`         | `none`                                         | ...                                                                                                     |
+| `$outline-focus-offset`  | `null`                                         | ...                                                                                                     |
+
+<!--
+// is-active
+$background-is-active: none !default;
+$color-is-active: core.$primary !default;
+
+// is-disabled
+$background-is-disabled: none !default;
+$color-is-disabled: core.$color-subtle !default;
+
+// menu_invert
+$invert-background: null !default;
+$invert-background-hover: rgba(core.$white, 0.06) !default;
+$invert-background-focus: rgba(core.$white, 0.09) !default;
+$invert-background-active: rgba(core.$white, 0.12) !default;
+$invert-color: core.$white !default;
+$invert-color-hover: null !default;
+$invert-color-focus: null !default;
+$invert-color-active: null !default;
+$invert-sep-background: core.$border-color-invert !default;
+
+// is-active
+$invert-background-is-active: none !default;
+$invert-color-is-active: core.$primary !default;
+
+// is-disabled
+$invert-background-is-disabled: none !default;
+$invert-color-is-disabled: rgba(core.$white, 0.5) !default;
+-->
 
 ### $breakpoints
 

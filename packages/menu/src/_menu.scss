@@ -20,8 +20,8 @@ $_e: var.$prefix-element;
   flex-shrink: 0;
   align-self: stretch;
   width: auto;
-  height: var.$sep-width;
-  margin: var.$sep-spacing 0;
+  height: var.$sep-size;
+  margin: var.$sep-gap 0;
   background: var.$sep-background;
 
   &:first-child {
@@ -52,7 +52,7 @@ $_e: var.$prefix-element;
   }
 
   > * + * {
-    margin-left: var.$inner-spacing;
+    margin-left: var.$inner-gap;
   }
 
   &_icon {

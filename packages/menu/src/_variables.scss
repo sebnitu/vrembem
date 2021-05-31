@@ -9,13 +9,10 @@ $breakpoints: core.$breakpoints !default;
 $size: core.$form-control-size !default;
 $gap: 1px !default;
 $padding: core.$padding !default;
-$icon-padding: 0.1em !default;
-$inner-spacing: 1em !default;
+$inner-gap: 1em !default;
 $font-size: 1em !default;
 $line-height: 1.5 !default;
 $border-radius: core.$border-radius !default;
-$outline-focus: none !default;
-$outline-focus-offset: null !default;
 $background: none !default;
 $background-hover: rgba(core.$black, 0.06) !default;
 $background-focus: rgba(core.$black, 0.09) !default;
@@ -24,9 +21,11 @@ $color: core.$color !default;
 $color-hover: null !default;
 $color-focus: null !default;
 $color-active: null !default;
-$sep-spacing: 0.5em !default;
-$sep-width: 1px !default;
+$sep-size: 1px !default;
+$sep-gap: 0.5em !default;
 $sep-background: core.$border-color !default;
+$outline-focus: none !default;
+$outline-focus-offset: null !default;
 
 // is-active
 $background-is-active: none !default;
@@ -54,3 +53,13 @@ $invert-color-is-active: core.$primary !default;
 // is-disabled
 $invert-background-is-disabled: none !default;
 $invert-color-is-disabled: rgba(core.$white, 0.5) !default;
+
+// menu_size_[value]
+$size-sm: core.$form-control-size-sm !default;
+$size-sm-padding: core.$padding-sm !default;
+$size-sm-font-size: core.$font-size-sm !default;
+$size-sm-line-height: core.$line-height-sm !default;
+$size-lg: core.$form-control-size-lg !default;
+$size-lg-padding: core.$padding-lg !default;
+$size-lg-font-size: core.$font-size-lg !default;
+$size-lg-line-height: core.$line-height-lg !default;

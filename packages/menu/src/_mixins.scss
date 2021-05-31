@@ -24,9 +24,9 @@ $_m: var.$prefix-modifier;
   }
 
   .#{$_b}menu#{$_e}sep {
-    width: var.$sep-width;
+    width: var.$sep-size;
     height: auto;
-    margin: 0 var.$sep-spacing;
+    margin: 0 var.$sep-gap;
 
     &:first-child {
       margin-left: 0;
