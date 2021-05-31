@@ -157,51 +157,51 @@ Adjust the size of a menu by increasing or decreasing its padding and font-size.
 | `$prefix-modifier`            | `"_"`                                          | String to prefix modifiers with.                                                                        |
 | `$prefix-modifier-value`      | `"_"`                                          | String to prefix modifier values with.                                                                  |
 | `$breakpoints`                | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the `menu_inline_[key]` and `menu_full_[key]` modifiers uses to build their styles. |
-| `$size`                       | `core.$form-control-size`                      | Sets the minimum size of a menu action using the min-height and min-width properties.                   |
+| `$size`                       | `core.$form-control-size`                      | Sets the minimum size of menu actions using the min-height and min-width properties.                    |
 | `$padding`                    | `core.$padding`                                | Sets the padding property.                                                                              |
-| `$gap`                        | `1px`                                          | ...                                                                                                     |
-| `$inner-gap`                  | `1em`                                          | ...                                                                                                     |
-| `$border-radius`              | `core.$border-radius`                          | ...                                                                                                     |
-| `$background`                 | `none`                                         | ...                                                                                                     |
-| `$background-hover`           | `rgba(core.$black, 0.06)`                      | ...                                                                                                     |
-| `$background-focus`           | `rgba(core.$black, 0.09)`                      | ...                                                                                                     |
-| `$background-active`          | `rgba(core.$black, 0.12)`                      | ...                                                                                                     |
-| `$color`                      | `core.$color`                                  | ...                                                                                                     |
-| `$color-hover`                | `null`                                         | ...                                                                                                     |
-| `$color-focus`                | `null`                                         | ...                                                                                                     |
-| `$color-active`               | `null`                                         | ...                                                                                                     |
-| `$font-size`                  | `1em`                                          | ...                                                                                                     |
-| `$line-height`                | `1.5`                                          | ...                                                                                                     |
-| `$outline-focus`              | `none`                                         | ...                                                                                                     |
-| `$outline-focus-offset`       | `null`                                         | ...                                                                                                     |
-| `$sep-size`                   | `1px`                                          | ...                                                                                                     |
-| `$sep-gap`                    | `0.5em`                                        | ...                                                                                                     |
-| `$sep-background`             | `core.$border-color`                           | ...                                                                                                     |
-| `$active-background`          | `none`                                         | ...                                                                                                     |
-| `$active-color`               | `core.$primary`                                | ...                                                                                                     |
-| `$disabled-background`        | `none`                                         | ...                                                                                                     |
-| `$disabled-color`             | `core.$color-subtle`                           | ...                                                                                                     |
-| `$invert-background`          | `null`                                         | ...                                                                                                     |
-| `$invert-background-hover`    | `rgba(core.$white, 0.06)`                      | ...                                                                                                     |
-| `$invert-background-focus`    | `rgba(core.$white, 0.09)`                      | ...                                                                                                     |
-| `$invert-background-active`   | `rgba(core.$white, 0.12)`                      | ...                                                                                                     |
-| `$invert-color`               | `core.$white`                                  | ...                                                                                                     |
-| `$invert-color-hover`         | `null`                                         | ...                                                                                                     |
-| `$invert-color-focus`         | `null`                                         | ...                                                                                                     |
-| `$invert-color-active`        | `null`                                         | ...                                                                                                     |
-| `$invert-sep-background`      | `core.$border-color-invert`                    | ...                                                                                                     |
-| `$invert-active-background`   | `none`                                         | ...                                                                                                     |
-| `$invert-active-color`        | `core.$primary`                                | ...                                                                                                     |
-| `$invert-disabled-background` | `none`                                         | ...                                                                                                     |
-| `$invert-disabled-color`      | `rgba(core.$white, 0.5)`                       | ...                                                                                                     |
-| `$size-sm`                    | `core.$form-control-size-sm`                   | ...                                                                                                     |
-| `$size-sm-padding`            | `core.$padding-sm`                             | ...                                                                                                     |
-| `$size-sm-font-size`          | `core.$font-size-sm`                           | ...                                                                                                     |
-| `$size-sm-line-height`        | `core.$line-height-sm`                         | ...                                                                                                     |
-| `$size-lg`                    | `core.$form-control-size-lg`                   | ...                                                                                                     |
-| `$size-lg-padding`            | `core.$padding-lg`                             | ...                                                                                                     |
-| `$size-lg-font-size`          | `core.$font-size-lg`                           | ...                                                                                                     |
-| `$size-lg-line-height`        | `core.$line-height-lg`                         | ...                                                                                                     |
+| `$gap`                        | `1px`                                          | Sets the gap spacing between `menu__item` elements.                                                     |
+| `$inner-gap`                  | `1em`                                          | The horizontal gap spacing for elements inside the `menu__action` element.                              |
+| `$border-radius`              | `core.$border-radius`                          | Sets the border-radius property.                                                                        |
+| `$background`                 | `none`                                         | Sets the background property.                                                                           |
+| `$background-hover`           | `rgba(core.$black, 0.06)`                      | Sets the background property on `:hover` state.                                                         |
+| `$background-focus`           | `rgba(core.$black, 0.09)`                      | Sets the background property on `:focus` state.                                                         |
+| `$background-active`          | `rgba(core.$black, 0.12)`                      | Sets the background property on `:active` state.                                                        |
+| `$color`                      | `core.$color`                                  | Sets the color property.                                                                                |
+| `$color-hover`                | `null`                                         | Sets the color property on `:hover` state.                                                              |
+| `$color-focus`                | `null`                                         | Sets the color property on `:focus` state.                                                              |
+| `$color-active`               | `null`                                         | Sets the color property on `:active` state.                                                             |
+| `$font-size`                  | `1em`                                          | Sets the font-size property.                                                                            |
+| `$line-height`                | `1.5`                                          | Sets the lin-height property.                                                                           |
+| `$outline-focus`              | `none`                                         | Sets the outline property on `:focus` state.                                                            |
+| `$outline-focus-offset`       | `null`                                         | Sets the outline-offset property on `:focus` state.                                                     |
+| `$sep-size`                   | `1px`                                          | Sets the size on the `menu__sep` element using height and width properties based on orientation.        |
+| `$sep-gap`                    | `0.5em`                                        | Sets the spacing gap created around the `menu__sep` element.                                            |
+| `$sep-background`             | `core.$border-color`                           | Sets the background property on the `menu__sep` element.                                                |
+| `$active-background`          | `none`                                         | Sets the background property on `is-active` state class.                                                |
+| `$active-color`               | `core.$primary`                                | Sets the color property on `is-active` state class.                                                     |
+| `$disabled-background`        | `none`                                         | Sets the background property on `is-disabled` state class.                                              |
+| `$disabled-color`             | `core.$color-subtle`                           | Sets the color property on `is-disabled` state class.                                                   |
+| `$invert-background`          | `null`                                         | Sets the background property of the `menu_invert` modifier.                                             |
+| `$invert-background-hover`    | `rgba(core.$white, 0.06)`                      | Sets the background property of the `menu_invert` modifier on `:hover` state.                           |
+| `$invert-background-focus`    | `rgba(core.$white, 0.09)`                      | Sets the background property of the `menu_invert` modifier on `:focus` state.                           |
+| `$invert-background-active`   | `rgba(core.$white, 0.12)`                      | Sets the background property of the `menu_invert` modifier on `:active` state.                          |
+| `$invert-color`               | `core.$white`                                  | Sets the color property of the `menu_invert` modifier.                                                  |
+| `$invert-color-hover`         | `null`                                         | Sets the color property of the `menu_invert` modifier on `:hover` state.                                |
+| `$invert-color-focus`         | `null`                                         | Sets the color property of the `menu_invert` modifier on `:focus` state.                                |
+| `$invert-color-active`        | `null`                                         | Sets the color property of the `menu_invert` modifier on `:active` state.                               |
+| `$invert-sep-background`      | `core.$border-color-invert`                    | Sets the background property on the `menu__sep` element of the `menu_invert` modifier.                  |
+| `$invert-active-background`   | `none`                                         | Sets the background property on `is-active` state class of the `menu_invert` modifier.                  |
+| `$invert-active-color`        | `core.$primary`                                | Sets the color property on `is-active` state class of the `menu_invert` modifier.                       |
+| `$invert-disabled-background` | `none`                                         | Sets the background property on `is-disabled` state class of the `menu_invert` modifier.                |
+| `$invert-disabled-color`      | `rgba(core.$white, 0.5)`                       | Sets the color property on `is-disabled` state class of the `menu_invert` modifier.                     |
+| `$size-sm`                    | `core.$form-control-size-sm`                   | Sets the minimum size of menu actions of the `menu_size_sm` modifier.                                   |
+| `$size-sm-padding`            | `core.$padding-sm`                             | Sets the padding property of the `menu_size_sm` modifier.                                               |
+| `$size-sm-font-size`          | `core.$font-size-sm`                           | Sets the font-size property of the `menu_size_sm` modifier.                                             |
+| `$size-sm-line-height`        | `core.$line-height-sm`                         | Sets the lin-height property of the `menu_size_sm` modifier.                                            |
+| `$size-lg`                    | `core.$form-control-size-lg`                   | Sets the minimum size of menu actions of the `menu_size_lg` modifier.                                   |
+| `$size-lg-padding`            | `core.$padding-lg`                             | Sets the padding property of the `menu_size_lg` modifier.                                               |
+| `$size-lg-font-size`          | `core.$font-size-lg`                           | Sets the font-size property of the `menu_size_lg` modifier.                                             |
+| `$size-lg-line-height`        | `core.$line-height-lg`                         | Sets the lin-height property of the `menu_size_lg` modifier.                                            |
 
 ### $breakpoints
 
