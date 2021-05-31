@@ -177,17 +177,12 @@ Adjust the size of a menu by increasing or decreasing its padding and font-size.
 | `$sep-background`        | `core.$border-color`                           | ...                                                                                                     |
 | `$outline-focus`         | `none`                                         | ...                                                                                                     |
 | `$outline-focus-offset`  | `null`                                         | ...                                                                                                     |
+| `$active-background`     | `none`                                         | ...                                                                                                     |
+| `$active-color`          | `core.$primary`                                | ...                                                                                                     |
+| `$disabled-background`   | `none`                                         | ...                                                                                                     |
+| `$disabled-color`        | `core.$color-subtle`                           | ...                                                                                                     |
 
 <!--
-// is-active
-$background-is-active: none !default;
-$color-is-active: core.$primary !default;
-
-// is-disabled
-$background-is-disabled: none !default;
-$color-is-disabled: core.$color-subtle !default;
-
-// menu_invert
 $invert-background: null !default;
 $invert-background-hover: rgba(core.$white, 0.06) !default;
 $invert-background-focus: rgba(core.$white, 0.09) !default;
@@ -199,12 +194,22 @@ $invert-color-active: null !default;
 $invert-sep-background: core.$border-color-invert !default;
 
 // is-active
-$invert-background-is-active: none !default;
-$invert-color-is-active: core.$primary !default;
+$invert-active-background: none !default;
+$invert-active-color: core.$primary !default;
 
 // is-disabled
-$invert-background-is-disabled: none !default;
-$invert-color-is-disabled: rgba(core.$white, 0.5) !default;
+$invert-disabled-background: none !default;
+$invert-disabled-color: rgba(core.$white, 0.5) !default;
+
+// menu_size_[value]
+$size-sm: core.$form-control-size-sm !default;
+$size-sm-padding: core.$padding-sm !default;
+$size-sm-font-size: core.$font-size-sm !default;
+$size-sm-line-height: core.$line-height-sm !default;
+$size-lg: core.$form-control-size-lg !default;
+$size-lg-padding: core.$padding-lg !default;
+$size-lg-font-size: core.$font-size-lg !default;
+$size-lg-line-height: core.$line-height-lg !default;
 -->
 
 ### $breakpoints

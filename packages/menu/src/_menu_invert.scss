@@ -32,27 +32,27 @@ $_v: var.$prefix-modifier-value;
 
     &.is-active,
     &.is-active[disabled] {
-      background: var.$invert-background-is-active;
-      color: var.$invert-color-is-active;
+      background: var.$invert-active-background;
+      color: var.$invert-active-color;
 
       &:hover,
       &:focus,
       &:active {
-        background: var.$invert-background-is-active;
-        color: var.$invert-color-is-active;
+        background: var.$invert-active-background;
+        color: var.$invert-active-color;
       }
     }
 
     &.is-disabled,
     &[disabled] {
-      background: var.$invert-background-is-disabled;
-      color: var.$invert-color-is-disabled;
+      background: var.$invert-disabled-background;
+      color: var.$invert-disabled-color;
 
       &:hover,
       &:focus,
       &:active {
-        background: var.$invert-background-is-disabled;
-        color: var.$invert-color-is-disabled;
+        background: var.$invert-disabled-background;
+        color: var.$invert-disabled-color;
       }
     }
   }

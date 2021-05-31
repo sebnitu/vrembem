@@ -28,12 +28,12 @@ $outline-focus: none !default;
 $outline-focus-offset: null !default;
 
 // is-active
-$background-is-active: none !default;
-$color-is-active: core.$primary !default;
+$active-background: none !default;
+$active-color: core.$primary !default;
 
 // is-disabled
-$background-is-disabled: none !default;
-$color-is-disabled: core.$color-subtle !default;
+$disabled-background: none !default;
+$disabled-color: core.$color-subtle !default;
 
 // menu_invert
 $invert-background: null !default;
@@ -47,12 +47,12 @@ $invert-color-active: null !default;
 $invert-sep-background: core.$border-color-invert !default;
 
 // is-active
-$invert-background-is-active: none !default;
-$invert-color-is-active: core.$primary !default;
+$invert-active-background: none !default;
+$invert-active-color: core.$primary !default;
 
 // is-disabled
-$invert-background-is-disabled: none !default;
-$invert-color-is-disabled: rgba(core.$white, 0.5) !default;
+$invert-disabled-background: none !default;
+$invert-disabled-color: rgba(core.$white, 0.5) !default;
 
 // menu_size_[value]
 $size-sm: core.$form-control-size-sm !default;

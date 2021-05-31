@@ -78,29 +78,29 @@ $_e: var.$prefix-element;
 
   &.is-active,
   &.is-active[disabled] {
-    background: var.$background-is-active;
-    color: var.$color-is-active;
+    background: var.$active-background;
+    color: var.$active-color;
     cursor: default;
 
     &:hover,
     &:focus,
     &:active {
-      background: var.$background-is-active;
-      color: var.$color-is-active;
+      background: var.$active-background;
+      color: var.$active-color;
     }
   }
 
   &.is-disabled,
   &[disabled] {
-    background: var.$background-is-disabled;
-    color: var.$color-is-disabled;
+    background: var.$disabled-background;
+    color: var.$disabled-color;
     cursor: default;
 
     &:hover,
     &:focus,
     &:active {
-      background: var.$background-is-disabled;
-      color: var.$color-is-disabled;
+      background: var.$disabled-background;
+      color: var.$disabled-color;
     }
   }
 }
