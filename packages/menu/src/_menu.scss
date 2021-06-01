@@ -5,56 +5,55 @@ $_e: var.$prefix-element;
 
 .#{$_b}menu {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
   font-size: var.$font-size;
   line-height: var.$line-height;
   list-style: none;
 }
 
-.#{$_b}menu#{$_e}item {
-  & + & {
-    margin-left: var.$gap;
-  }
+.#{$_b}menu#{$_e}item + .#{$_b}menu#{$_e}item {
+  margin-top: var.$gap;
 }
 
 .#{$_b}menu#{$_e}sep {
   flex-shrink: 0;
   align-self: stretch;
-  width: var.$sep-width;
-  height: auto;
-  margin: 0 var.$sep-spacing;
+  width: auto;
+  height: var.$sep-size;
+  margin: var.$sep-gap 0;
   background: var.$sep-background;
 
   &:first-child {
-    margin-left: 0;
+    margin-top: 0;
   }
 
   &:last-child {
-    margin-right: 0;
+    margin-bottom: 0;
   }
 }
 
-.#{$_b}menu#{$_e}link,
-.#{$_b}menu#{$_e}text {
+.#{$_b}menu#{$_e}action {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  width: 100%;
   min-width: var.$size;
   min-height: var.$size;
   padding: var.$padding;
   border-radius: var.$border-radius;
-  white-space: nowrap;
+  background: var.$background;
+  color: var.$color;
+  white-space: normal;
+
+  > * {
+    flex: 0 0 auto;
+  }
 
   > * + * {
-    margin-left: var.$inner-spacing;
+    margin-left: var.$inner-gap;
   }
-}
-
-.#{$_b}menu#{$_e}link {
-  background: var.$background;
-  box-shadow: var.$box-shadow;
-  color: var.$color;
 
   &_icon {
     padding: nth(var.$padding, 1);
@@ -62,7 +61,6 @@ $_e: var.$prefix-element;
 
   &:hover {
     background: var.$background-hover;
-    box-shadow: var.$box-shadow-hover;
     color: var.$color-hover;
   }
 
@@ -70,44 +68,43 @@ $_e: var.$prefix-element;
     outline: var.$outline-focus;
     outline-offset: var.$outline-focus-offset;
     background: var.$background-focus;
-    box-shadow: var.$box-shadow-focus;
     color: var.$color-focus;
   }
 
   &:active {
     background: var.$background-active;
-    box-shadow: var.$box-shadow-active;
     color: var.$color-active;
   }
 
-  &.is-active {
-    background: var.$background-is-active;
-    color: var.$color-is-active;
-
-    &:hover,
-    &:focus,
-    &:active {
-      background: var.$background-is-active;
-      color: var.$color-is-active;
-    }
-  }
-
-  &.is-disabled {
-    background: var.$background-is-disabled;
-    color: var.$color-is-disabled;
+  &.is-active,
+  &.is-active[disabled] {
+    background: var.$active-background;
+    color: var.$active-color;
     cursor: default;
 
     &:hover,
     &:focus,
     &:active {
-      background: var.$background-is-disabled;
-      color: var.$color-is-disabled;
+      background: var.$active-background;
+      color: var.$active-color;
+    }
+  }
+
+  &.is-disabled,
+  &[disabled] {
+    background: var.$disabled-background;
+    color: var.$disabled-color;
+    cursor: default;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: var.$disabled-background;
+      color: var.$disabled-color;
     }
   }
 }
 
 .#{$_b}menu#{$_e}text {
-  background: var.$text-background;
-  color: var.$text-color;
-  text-decoration: none;
+  flex-grow: 1;
 }

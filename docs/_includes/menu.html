@@ -4,7 +4,7 @@
   </div>
 </div>
 
-<ul class="menu menu_drawer menu_stack">
+<ul class="menu menu_drawer">
   {%- for item in site.packages -%}
 
   {%- assign class = '' -%}
@@ -16,8 +16,8 @@
   {%- endif -%}
 
   <li class="menu__item" data-category="{{ item.category }}">
-    <a class="menu__link{{ class }}" href="{{ item.url }}">
-      <span class="name span">{{ item.title }}</span>
+    <a class="menu__action{{ class }}" href="{{ item.url }}">
+      <span class="menu__text name">{{ item.title }}</span>
       {%- if item.category == 'layout' -%}
       <span class="menu__icon category" data-category="{{ item.category }}" data-tooltip="{{ item.category }}" data-tooltip-pos="left">
         {%- include icon.html icon="layout" -%}

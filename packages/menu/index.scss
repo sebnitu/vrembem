@@ -2,6 +2,6 @@
 @forward "./src/mixins";
 @forward "./src/menu";
 @forward "./src/menu_full";
-@forward "./src/menu_stack";
-@forward "./src/menu_theme_invert" as theme-invert-*;
-@forward "./src/menu_theme_tabs" as theme-tabs-*;
+@forward "./src/menu_inline";
+@forward "./src/menu_invert";
+@forward "./src/menu_size";

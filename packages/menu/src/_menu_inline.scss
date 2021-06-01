@@ -6,14 +6,14 @@ $_b: var.$prefix-block;
 $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
-.#{$_b}menu#{$_m}stack {
-  @include mix.menu-stack();
+.#{$_b}menu#{$_m}inline {
+  @include mix.menu-inline();
 }
 
 @each $key, $value in var.$breakpoints {
-  @include core.media-max($value) {
-    .#{$_b}menu#{$_m}stack#{$_v}#{$key} {
-      @include mix.menu-stack();
+  @include core.media-min($value) {
+    .#{$_b}menu#{$_m}inline#{$_v}#{$key} {
+      @include mix.menu-inline();
     }
   }
 }
