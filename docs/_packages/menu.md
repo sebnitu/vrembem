@@ -270,6 +270,48 @@ To set a menu to inline **above** a specific breakpoint, use the inline breakpoi
 - `menu_inline_sm`
 - `menu_inline_xs`
 
+### `@mixin menu-inline()`
+
+Output the styles for an inline menu.
+
+**Example**
+
+```scss
+.menu_custom {
+  @include menu-inline();
+}
+
+// CSS Output
+.menu_custom {
+  flex-direction: row;
+  align-items: center;
+}
+
+.menu_custom .menu__item + .menu__item {
+  margin-top: 0;
+  margin-left: 1px;
+}
+
+.menu_custom .menu__sep {
+  width: 1px;
+  height: auto;
+  margin: 0 0.5em;
+}
+
+.menu_custom .menu__sep:first-child {
+  margin-left: 0;
+}
+
+.menu_custom .menu__sep:last-child {
+  margin-right: 0;
+}
+
+.menu_custom .menu__action {
+  justify-content: center;
+  white-space: nowrap;
+}
+```
+
 ## menu_full_[key]
 
 Used to span a horizontal menu to fill the full width of its container. This modifier is meant to be paired with the `menu_inline` modifier as the default styles of a vertical menu already fill the full width of their container.
@@ -331,6 +373,27 @@ To set a menu to full **below** a specific breakpoint, use the full breakpoint m
 - `menu_full_md`
 - `menu_full_sm`
 - `menu_full_xs`
+
+### `@mixin menu-full()`
+
+Output the styles for a full width menu (should be applied to menus that are already inline).
+
+**Example**
+
+```scss
+.menu_custom {
+  @include menu-full();
+}
+
+// CSS Output
+.menu_custom .menu__item {
+  flex: 1 1 auto;
+}
+
+.menu_custom .menu__action {
+  justify-content: center;
+}
+```
 
 ## menu_invert
 
