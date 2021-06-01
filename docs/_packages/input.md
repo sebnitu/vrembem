@@ -399,7 +399,7 @@ $type-select-icon: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/s
 
 ## Sass Mixins
 
-### `@mixin box-shadow($state: "default", $color: null)`
+### `@mixin box-shadow($state, $color)`
 
 Output an inputs box-shadow property provided a state and optional color parameter.
 
