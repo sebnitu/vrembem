@@ -3517,10 +3517,10 @@ input::-moz-placeholder {
 }
 .menu__action:focus {
   outline: none;
-  background: rgba(0, 0, 0, 0.09);
+  background: rgba(0, 0, 0, 0.06);
 }
 .menu__action:active {
-  background: rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.09);
 }
 .menu__action.is-active, .menu__action.is-active[disabled] {
   background: none;
@@ -3751,10 +3751,10 @@ input::-moz-placeholder {
   background: rgba(255, 255, 255, 0.06);
 }
 .menu_invert .menu__action:focus {
-  background: rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.06);
 }
 .menu_invert .menu__action:active {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.09);
 }
 .menu_invert .menu__action.is-active, .menu_invert .menu__action.is-active[disabled] {
   background: none;

@@ -466,7 +466,233 @@ Adjust the size of a menu by increasing or decreasing its padding and font-size.
         </td>
         <td data-mobile-label="Desc">The breakpoints map the <code class="code">menu_inline_[key]</code> and <code class="code">menu_full_[key]</code> modifiers uses to build their styles.</td>
       </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$form-control-size</code></td>
+        <td data-mobile-label="Desc">Sets the minimum size of menu actions using the min-height and min-width properties.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$padding</code></td>
+        <td data-mobile-label="Desc">Sets the padding property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$gap</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">1px</code></td>
+        <td data-mobile-label="Desc">Sets the gap spacing between <code class="code">menu__item</code> elements.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$inner-gap</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">1em</code></td>
+        <td data-mobile-label="Desc">The horizontal gap spacing for elements inside the <code class="code">menu__action</code> element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border-radius</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$border-radius</code></td>
+        <td data-mobile-label="Desc">Sets the border-radius property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">none</code></td>
+        <td data-mobile-label="Desc">Sets the background property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$background-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.06)</code></td>
+        <td data-mobile-label="Desc">Sets the background property on <code class="code">:hover</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$background-focus</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.06)</code></td>
+        <td data-mobile-label="Desc">Sets the background property on <code class="code">:focus</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$background-active</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.09)</code></td>
+        <td data-mobile-label="Desc">Sets the background property on <code class="code">:active</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$color</code></td>
+        <td data-mobile-label="Desc">Sets the color property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the color property on <code class="code">:hover</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color-focus</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the color property on <code class="code">:focus</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color-active</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the color property on <code class="code">:active</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$font-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">1em</code></td>
+        <td data-mobile-label="Desc">Sets the font-size property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$line-height</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">1.5</code></td>
+        <td data-mobile-label="Desc">Sets the line-height property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-focus</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">none</code></td>
+        <td data-mobile-label="Desc">Sets the outline property on <code class="code">:focus</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-focus-offset</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the outline-offset property on <code class="code">:focus</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$sep-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">1px</code></td>
+        <td data-mobile-label="Desc">Sets the size on the <code class="code">menu__sep</code> element using height and width properties based on orientation.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$sep-gap</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">0.5em</code></td>
+        <td data-mobile-label="Desc">Sets the spacing gap created around the <code class="code">menu__sep</code> element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$sep-background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$border-color</code></td>
+        <td data-mobile-label="Desc">Sets the background property on the <code class="code">menu__sep</code> element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$active-background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">none</code></td>
+        <td data-mobile-label="Desc">Sets the background property on <code class="code">is-active</code> state class.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$active-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$primary</code></td>
+        <td data-mobile-label="Desc">Sets the color property on <code class="code">is-active</code> state class.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$disabled-background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">none</code></td>
+        <td data-mobile-label="Desc">Sets the background property on <code class="code">is-disabled</code> state class.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$disabled-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$color-subtle</code></td>
+        <td data-mobile-label="Desc">Sets the color property on <code class="code">is-disabled</code> state class.</td>
+      </tr>
       <!-- menu_invert -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$invert-background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the background property of the <code class="code">menu_invert</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$invert-background-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$white, 0.06)</code></td>
+        <td data-mobile-label="Desc">Sets the background property of the <code class="code">menu_invert</code> modifier on <code class="code">:hover</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$invert-background-focus</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$white, 0.06)</code></td>
+        <td data-mobile-label="Desc">Sets the background property of the <code class="code">menu_invert</code> modifier on <code class="code">:focus</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$invert-background-active</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$white, 0.09)</code></td>
+        <td data-mobile-label="Desc">Sets the background property of the <code class="code">menu_invert</code> modifier on <code class="code">:active</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$invert-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the color property of the <code class="code">menu_invert</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$invert-color-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$white, 0.06)</code></td>
+        <td data-mobile-label="Desc">Sets the color property of the <code class="code">menu_invert</code> modifier on <code class="code">:hover</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$invert-color-focus</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$white, 0.06)</code></td>
+        <td data-mobile-label="Desc">Sets the color property of the <code class="code">menu_invert</code> modifier on <code class="code">:focus</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$invert-color-active</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$white, 0.09)</code></td>
+        <td data-mobile-label="Desc">Sets the color property of the <code class="code">menu_invert</code> modifier on <code class="code">:active</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$invert-sep-background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$border-color-invert</code></td>
+        <td data-mobile-label="Desc">Sets the background property on the <code class="code">menu__sep</code> element of the <code class="code">menu_invert</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$invert-active-background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">none</code></td>
+        <td data-mobile-label="Desc">Sets the background property on <code class="code">is-active</code> state class of the <code class="code">menu_invert</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$invert-active-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$primary</code></td>
+        <td data-mobile-label="Desc">Sets the color property on <code class="code">is-active</code> state class of the <code class="code">menu_invert</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$invert-disabled-background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">none</code></td>
+        <td data-mobile-label="Desc">Sets the background property on <code class="code">is-disabled</code> state class of the <code class="code">menu_invert</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$invert-disabled-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$white, 0.5)</code></td>
+        <td data-mobile-label="Desc">Sets the color property on <code class="code">is-disabled</code> state class of the <code class="code">menu_invert</code> modifier.</td>
+      </tr>
+      <!-- menu_size_[value] -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-sm</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$form-control-size-sm</code></td>
+        <td data-mobile-label="Desc">Sets the minimum size of menu actions of the <code class="code">menu_size_sm</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-sm-padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$padding-sm</code></td>
+        <td data-mobile-label="Desc">Sets the padding property of the <code class="code">menu_size_sm</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-sm-font-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$font-size-sm</code></td>
+        <td data-mobile-label="Desc">Sets the font-size property of the <code class="code">menu_size_sm</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-sm-line-height</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$line-height-sm</code></td>
+        <td data-mobile-label="Desc">Sets the line-height property of the <code class="code">menu_size_sm</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-lg</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$form-control-size-lg</code></td>
+        <td data-mobile-label="Desc">Sets the minimum size of menu actions of the <code class="code">menu_size_lg</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-lg-padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$padding-lg</code></td>
+        <td data-mobile-label="Desc">Sets the padding property of the <code class="code">menu_size_lg</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-lg-font-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$font-size-lg</code></td>
+        <td data-mobile-label="Desc">Sets the font-size property of the <code class="code">menu_size_lg</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-lg-line-height</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$line-height-lg</code></td>
+        <td data-mobile-label="Desc">Sets the line-height property of the <code class="code">menu_size_lg</code> modifier.</td>
+      </tr>
     </tbody>
   </table>
 </div>

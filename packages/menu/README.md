@@ -164,14 +164,14 @@ Adjust the size of a menu by increasing or decreasing its padding and font-size.
 | `$border-radius`              | `core.$border-radius`                          | Sets the border-radius property.                                                                        |
 | `$background`                 | `none`                                         | Sets the background property.                                                                           |
 | `$background-hover`           | `rgba(core.$black, 0.06)`                      | Sets the background property on `:hover` state.                                                         |
-| `$background-focus`           | `rgba(core.$black, 0.09)`                      | Sets the background property on `:focus` state.                                                         |
-| `$background-active`          | `rgba(core.$black, 0.12)`                      | Sets the background property on `:active` state.                                                        |
+| `$background-focus`           | `rgba(core.$black, 0.06)`                      | Sets the background property on `:focus` state.                                                         |
+| `$background-active`          | `rgba(core.$black, 0.09)`                      | Sets the background property on `:active` state.                                                        |
 | `$color`                      | `core.$color`                                  | Sets the color property.                                                                                |
 | `$color-hover`                | `null`                                         | Sets the color property on `:hover` state.                                                              |
 | `$color-focus`                | `null`                                         | Sets the color property on `:focus` state.                                                              |
 | `$color-active`               | `null`                                         | Sets the color property on `:active` state.                                                             |
 | `$font-size`                  | `1em`                                          | Sets the font-size property.                                                                            |
-| `$line-height`                | `1.5`                                          | Sets the lin-height property.                                                                           |
+| `$line-height`                | `1.5`                                          | Sets the line-height property.                                                                          |
 | `$outline-focus`              | `none`                                         | Sets the outline property on `:focus` state.                                                            |
 | `$outline-focus-offset`       | `null`                                         | Sets the outline-offset property on `:focus` state.                                                     |
 | `$sep-size`                   | `1px`                                          | Sets the size on the `menu__sep` element using height and width properties based on orientation.        |
@@ -183,8 +183,8 @@ Adjust the size of a menu by increasing or decreasing its padding and font-size.
 | `$disabled-color`             | `core.$color-subtle`                           | Sets the color property on `is-disabled` state class.                                                   |
 | `$invert-background`          | `null`                                         | Sets the background property of the `menu_invert` modifier.                                             |
 | `$invert-background-hover`    | `rgba(core.$white, 0.06)`                      | Sets the background property of the `menu_invert` modifier on `:hover` state.                           |
-| `$invert-background-focus`    | `rgba(core.$white, 0.09)`                      | Sets the background property of the `menu_invert` modifier on `:focus` state.                           |
-| `$invert-background-active`   | `rgba(core.$white, 0.12)`                      | Sets the background property of the `menu_invert` modifier on `:active` state.                          |
+| `$invert-background-focus`    | `rgba(core.$white, 0.06)`                      | Sets the background property of the `menu_invert` modifier on `:focus` state.                           |
+| `$invert-background-active`   | `rgba(core.$white, 0.09)`                      | Sets the background property of the `menu_invert` modifier on `:active` state.                          |
 | `$invert-color`               | `core.$white`                                  | Sets the color property of the `menu_invert` modifier.                                                  |
 | `$invert-color-hover`         | `null`                                         | Sets the color property of the `menu_invert` modifier on `:hover` state.                                |
 | `$invert-color-focus`         | `null`                                         | Sets the color property of the `menu_invert` modifier on `:focus` state.                                |
@@ -197,11 +197,11 @@ Adjust the size of a menu by increasing or decreasing its padding and font-size.
 | `$size-sm`                    | `core.$form-control-size-sm`                   | Sets the minimum size of menu actions of the `menu_size_sm` modifier.                                   |
 | `$size-sm-padding`            | `core.$padding-sm`                             | Sets the padding property of the `menu_size_sm` modifier.                                               |
 | `$size-sm-font-size`          | `core.$font-size-sm`                           | Sets the font-size property of the `menu_size_sm` modifier.                                             |
-| `$size-sm-line-height`        | `core.$line-height-sm`                         | Sets the lin-height property of the `menu_size_sm` modifier.                                            |
+| `$size-sm-line-height`        | `core.$line-height-sm`                         | Sets the line-height property of the `menu_size_sm` modifier.                                           |
 | `$size-lg`                    | `core.$form-control-size-lg`                   | Sets the minimum size of menu actions of the `menu_size_lg` modifier.                                   |
 | `$size-lg-padding`            | `core.$padding-lg`                             | Sets the padding property of the `menu_size_lg` modifier.                                               |
 | `$size-lg-font-size`          | `core.$font-size-lg`                           | Sets the font-size property of the `menu_size_lg` modifier.                                             |
-| `$size-lg-line-height`        | `core.$line-height-lg`                         | Sets the lin-height property of the `menu_size_lg` modifier.                                            |
+| `$size-lg-line-height`        | `core.$line-height-lg`                         | Sets the line-height property of the `menu_size_lg` modifier.                                           |
 
 ### $breakpoints
 
