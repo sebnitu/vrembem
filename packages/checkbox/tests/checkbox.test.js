@@ -65,7 +65,6 @@ test('destroy should remove event listener', () => {
   checkbox.destroy();
   input.click();
   expect(input.hasAttribute('aria-checked')).toBe(true);
-  expect(input.indeterminate).toBe(true);
 });
 
 test('set aria checked state attribute', () => {
