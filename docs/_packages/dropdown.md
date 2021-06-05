@@ -199,3 +199,102 @@ usage:
 <div class="dropdown dropdown_pos_right-end">...</div>
 ```
 {% include demo_close.html %}
+
+## dropdown_size_[value]
+
+<div>
+  <div class="level">
+    <div class="dropdown dropdown_size_auto dropdown_pos_top">
+      <button class="dropdown__trigger button button_color_secondary">dropdown_size_auto</button>
+      <div class="dropdown__target">
+        <ul class="menu">
+          <li class="menu__item">
+            <button class="menu__action">Undo</button>
+          </li>
+          <li class="menu__item">
+            <button class="menu__action">Redo</button>
+          </li>
+          <li class="menu__sep"></li>
+          <li class="menu__item">
+            <button class="menu__action">Cut</button>
+          </li>
+          <li class="menu__item">
+            <button class="menu__action">Copy</button>
+          </li>
+          <li class="menu__item">
+            <button class="menu__action">Paste</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="dropdown dropdown_size_sm dropdown_pos_top-start">
+      <button class="dropdown__trigger button button_color_secondary">dropdown_size_sm</button>
+      <div class="dropdown__target">
+        <ul class="menu">
+          <li class="menu__item">
+            <button class="menu__action">Undo</button>
+          </li>
+          <li class="menu__item">
+            <button class="menu__action">Redo</button>
+          </li>
+          <li class="menu__sep"></li>
+          <li class="menu__item">
+            <button class="menu__action">Cut</button>
+          </li>
+          <li class="menu__item">
+            <button class="menu__action">Copy</button>
+          </li>
+          <li class="menu__item">
+            <button class="menu__action">Paste</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="dropdown dropdown_pos_top-start">
+      <button class="dropdown__trigger button button_color_secondary">default</button>
+      <div class="dropdown__target">
+        <ul class="menu">
+          <li class="menu__item">
+            <button class="menu__action">Undo</button>
+          </li>
+          <li class="menu__item">
+            <button class="menu__action">Redo</button>
+          </li>
+          <li class="menu__sep"></li>
+          <li class="menu__item">
+            <button class="menu__action">Cut</button>
+          </li>
+          <li class="menu__item">
+            <button class="menu__action">Copy</button>
+          </li>
+          <li class="menu__item">
+            <button class="menu__action">Paste</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="dropdown dropdown_size_lg dropdown_pos_top-start">
+      <button class="dropdown__trigger button button_color_secondary">dropdown_size_lg</button>
+      <div class="dropdown__target">
+        <ul class="menu">
+          <li class="menu__item">
+            <button class="menu__action">Undo</button>
+          </li>
+          <li class="menu__item">
+            <button class="menu__action">Redo</button>
+          </li>
+          <li class="menu__sep"></li>
+          <li class="menu__item">
+            <button class="menu__action">Cut</button>
+          </li>
+          <li class="menu__item">
+            <button class="menu__action">Copy</button>
+          </li>
+          <li class="menu__item">
+            <button class="menu__action">Paste</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
