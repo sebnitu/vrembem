@@ -11,64 +11,37 @@ usage:
 
 ## dropdown
 
-{% include demo_open.html class_grid="grid_stack" %}
+{% include demo_open.html %}
 <div class="dropdown">
   <button class="dropdown__trigger button button_color_primary">Trigger</button>
-  <ul class="dropdown__menu">
-    <li class="dropdown__item">
-      <div class="dropdown__content">
-        <h2 class="dropdown__title">Dropdown Title</h2>
-        <p>This is some content for a dropdown...</p>
-      </div>
-    </li>
-    <li class="dropdown__sep"></li>
-    <li class="dropdown__item">
-      <a href="#" class="dropdown__link">Dropdown Item</a>
-    </li>
-    <li class="dropdown__item">
-      <a href="#" class="dropdown__link is-active">Dropdown Item</a>
-    </li>
-    <li class="dropdown__item">
-      <a href="#" class="dropdown__link">Dropdown Item</a>
-    </li>
-    <li class="dropdown__sep"></li>
-    <li class="dropdown__item">
-      <a href="#" class="dropdown__link is-disabled">Dropdown Item</a>
-    </li>
-    <li class="dropdown__item">
-      <a href="#" class="dropdown__link">Dropdown Item</a>
-    </li>
-  </ul>
+  <div class="dropdown__target">
+    <ul class="menu">
+      <li class="menu__item">
+        <button class="menu__action">Undo</button>
+      </li>
+      <li class="menu__item">
+        <button class="menu__action">Redo</button>
+      </li>
+      <li class="menu__sep"></li>
+      <li class="menu__item">
+        <button class="menu__action">Cut</button>
+      </li>
+      <li class="menu__item">
+        <button class="menu__action">Copy</button>
+      </li>
+      <li class="menu__item">
+        <button class="menu__action">Paste</button>
+      </li>
+    </ul>
+  </div>
 </div>
 {% include demo_switch.html %}
 ```html
 <div class="dropdown">
-  <button class="dropdown__trigger button button_color_primary">Dropdown</button>
-  <ul class="dropdown__menu">
-    <li class="dropdown__item">
-      <div class="dropdown__content">
-        <h2 class="dropdown__title">Dropdown Title</h2>
-        <p>This is some content for a dropdown...</p>
-      </div>
-    </li>
-    <li class="dropdown__sep"></li>
-    <li class="dropdown__item">
-      <a href="#" class="dropdown__link">Dropdown Item</a>
-    </li>
-    <li class="dropdown__item">
-      <a href="#" class="dropdown__link is-active">Dropdown Item</a>
-    </li>
-    <li class="dropdown__item">
-      <a href="#" class="dropdown__link">Dropdown Item</a>
-    </li>
-    <li class="dropdown__sep"></li>
-    <li class="dropdown__item">
-      <a href="#" class="dropdown__link is-disabled">Dropdown Item</a>
-    </li>
-    <li class="dropdown__item">
-      <a href="#" class="dropdown__link">Dropdown Item</a>
-    </li>
-  </ul>
+  <button class="dropdown__trigger">...</button>
+  <div class="dropdown__target">
+    ...
+  </div>
 </div>
 ```
 {% include demo_close.html %}
@@ -80,29 +53,29 @@ usage:
   <div class="dropdown dropdown_pos_down-left">
     <button class="button">
       <span>Down left</span>
-      {% include icon.html icon="chevron-down" %}
+      <span class="arrow-down"></span>
     </button>
-    <ul class="dropdown__menu">
-      <li class="dropdown__item dropdown__content">This is a dropdown...</li>
-    </ul>
+    <div class="dropdown__target">
+      <div class="padding">This is a dropdown...</div>
+    </div>
   </div><!-- .dropdown -->
   <div class="dropdown dropdown_pos_down">
     <button class="button">
       <span>Down</span>
-      {% include icon.html icon="chevron-down" %}
+      <span class="arrow-down"></span>
     </button>
-    <ul class="dropdown__menu">
-      <li class="dropdown__item dropdown__content">This is a dropdown...</li>
-    </ul>
+    <div class="dropdown__target">
+      <div class="padding">This is a dropdown...</div>
+    </div>
   </div><!-- .dropdown -->
   <div class="dropdown dropdown_pos_down-right">
     <button class="button">
       <span>Down right</span>
-      {% include icon.html icon="chevron-down" %}
+      <span class="arrow-down"></span>
     </button>
-    <ul class="dropdown__menu">
-      <li class="dropdown__item dropdown__content">This is a dropdown...</li>
-    </ul>
+    <div class="dropdown__target">
+      <div class="padding">This is a dropdown...</div>
+    </div>
   </div><!-- .dropdown -->
 </div>
 {% include demo_switch.html %}
@@ -118,29 +91,29 @@ usage:
   <div class="dropdown dropdown_pos_up-left">
     <button class="button">
       <span>Up left</span>
-      {% include icon.html icon="chevron-up" %}
+      <span class="arrow-up"></span>
     </button>
-    <ul class="dropdown__menu">
-      <li class="dropdown__item dropdown__content">This is a dropdown...</li>
-    </ul>
+    <div class="dropdown__target">
+      <div class="padding">This is a dropdown...</div>
+    </div>
   </div><!-- .dropdown -->
   <div class="dropdown dropdown_pos_up">
     <button class="button">
       <span>Up</span>
-      {% include icon.html icon="chevron-up" %}
+      <span class="arrow-up"></span>
     </button>
-    <ul class="dropdown__menu">
-      <li class="dropdown__item dropdown__content">This is a dropdown...</li>
-    </ul>
+    <div class="dropdown__target">
+      <div class="padding">This is a dropdown...</div>
+    </div>
   </div><!-- .dropdown -->
   <div class="dropdown dropdown_pos_up-right">
     <button class="button">
       <span>Up right</span>
-      {% include icon.html icon="chevron-up" %}
+      <span class="arrow-up"></span>
     </button>
-    <ul class="dropdown__menu">
-      <li class="dropdown__item dropdown__content">This is a dropdown...</li>
-    </ul>
+    <div class="dropdown__target">
+      <div class="padding">This is a dropdown...</div>
+    </div>
   </div><!-- .dropdown -->
 </div>
 {% include demo_switch.html %}
@@ -155,30 +128,30 @@ usage:
 <div class="level flex-justify-end">
   <div class="dropdown dropdown_pos_left-up">
     <button class="button">
-      {% include icon.html icon="chevron-left" %}
+      <span class="arrow-left"></span>
       <span>Left up</span>
     </button>
-    <ul class="dropdown__menu">
-      <li class="dropdown__item dropdown__content">This is a dropdown...</li>
-    </ul>
+    <div class="dropdown__target">
+      <div class="padding">This is a dropdown...</div>
+    </div>
   </div><!-- .dropdown -->
   <div class="dropdown dropdown_pos_left">
     <button class="button">
-      {% include icon.html icon="chevron-left" %}
+      <span class="arrow-left"></span>
       <span>Left</span>
     </button>
-    <ul class="dropdown__menu">
-      <li class="dropdown__item dropdown__content">This is a dropdown...</li>
-    </ul>
+    <div class="dropdown__target">
+      <div class="padding">This is a dropdown...</div>
+    </div>
   </div><!-- .dropdown -->
   <div class="dropdown dropdown_pos_left-down">
     <button class="button">
-      {% include icon.html icon="chevron-left" %}
+      <span class="arrow-left"></span>
       <span>Left down</span>
     </button>
-    <ul class="dropdown__menu">
-      <li class="dropdown__item dropdown__content">This is a dropdown...</li>
-    </ul>
+    <div class="dropdown__target">
+      <div class="padding">This is a dropdown...</div>
+    </div>
   </div><!-- .dropdown -->
 </div>
 {% include demo_switch.html %}
@@ -194,29 +167,29 @@ usage:
   <div class="dropdown dropdown_pos_right-up">
     <button class="button">
       <span>Right up</span>
-      {% include icon.html icon="chevron-right" %}
+      <span class="arrow-right"></span>
     </button>
-    <ul class="dropdown__menu">
-      <li class="dropdown__item dropdown__content">This is a dropdown...</li>
-    </ul>
+    <div class="dropdown__target">
+      <div class="padding">This is a dropdown...</div>
+    </div>
   </div><!-- .dropdown -->
   <div class="dropdown dropdown_pos_right">
     <button class="button">
       <span>Right</span>
-      {% include icon.html icon="chevron-right" %}
+      <span class="arrow-right"></span>
     </button>
-    <ul class="dropdown__menu">
-      <li class="dropdown__item dropdown__content">This is a dropdown...</li>
-    </ul>
+    <div class="dropdown__target">
+      <div class="padding">This is a dropdown...</div>
+    </div>
   </div><!-- .dropdown -->
   <div class="dropdown dropdown_pos_right-down">
     <button class="button">
       <span>Right down</span>
-      {% include icon.html icon="chevron-right" %}
+      <span class="arrow-right"></span>
     </button>
-    <ul class="dropdown__menu">
-      <li class="dropdown__item dropdown__content">This is a dropdown...</li>
-    </ul>
+    <div class="dropdown__target">
+      <div class="padding">This is a dropdown...</div>
+    </div>
   </div><!-- .dropdown -->
 </div>
 {% include demo_switch.html %}

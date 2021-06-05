@@ -8,7 +8,7 @@ $_e: var.$prefix-element;
   display: inline-flex;
 }
 
-.#{$_b}dropdown#{$_e}menu {
+.#{$_b}dropdown#{$_e}target {
   position: absolute;
   z-index: var.$z-index;
   top: 100%;
@@ -17,8 +17,8 @@ $_e: var.$prefix-element;
   left: 0;
   display: none;
   width: var.$width;
-  margin: var.$pos-spacing 0 0;
-  padding: var.$spacing 0;
+  margin: var.$offset 0 0;
+  padding: var.$padding;
   border: var.$border;
   border-radius: var.$border-radius;
   background: var.$background;
@@ -38,111 +38,30 @@ $_e: var.$prefix-element;
     bottom: 100%;
     left: 0;
     width: 100%;
-    height: var.$pos-spacing;
+    height: var.$offset;
   }
-}
-
-.#{$_b}dropdown#{$_e}sep {
-  margin: var.$spacing 0;
-  border-bottom: var.$sep-border;
-}
-
-.#{$_b}dropdown#{$_e}link {
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding: var.$link-padding;
-  border: none;
-  background: var.$link-background;
-  color: var.$link-color;
-  vertical-align: middle;
-
-  > * + * {
-    margin-left: var.$link-inner-spacing;
-  }
-
-  &:hover {
-    background: var.$link-background-hover;
-    color: var.$link-color-hover;
-  }
-
-  &:focus {
-    background: var.$link-background-focus;
-    color: var.$link-color-focus;
-  }
-
-  &:active {
-    background: var.$link-background-active;
-    color: var.$link-color-active;
-  }
-
-  &.is-active {
-    background: var.$link-background-is-active;
-    color: var.$link-color-is-active;
-
-    &:hover,
-    &:focus,
-    &:active {
-      background: var.$link-background-is-active;
-      color: var.$link-color-is-active;
-    }
-  }
-
-  &.is-disabled {
-    background: var.$link-background-is-disabled;
-    color: var.$link-color-is-disabled;
-    cursor: auto;
-
-    &:hover,
-    &:focus,
-    &:active {
-      background: var.$link-background-is-disabled;
-      color: var.$link-color-is-disabled;
-    }
-  }
-}
-
-.#{$_b}dropdown#{$_e}content {
-  display: block;
-  padding: var.$link-padding;
-
-  > * + * {
-    margin-top: var.$spacing;
-  }
-}
-
-.#{$_b}dropdown#{$_e}title {
-  font-size: var.$title-font-size;
-  font-weight: var.$title-font-weight;
-  line-height: var.$title-line-height;
-}
-
-.#{$_b}dropdown#{$_e}item {
-  position: relative;
-  display: block;
-  margin: var.$item-margin;
 }
 
 /**
  * Active states
  */
 
-.is-active > .#{$_b}dropdown#{$_e}menu,
-.#{$_b}dropdown:not(.on-click):hover > .#{$_b}dropdown#{$_e}menu,
-.#{$_b}dropdown:not(.on-click):focus > .#{$_b}dropdown#{$_e}menu,
-.#{$_b}dropdown:not(.on-click):focus-within > .#{$_b}dropdown#{$_e}menu {
+.is-active > .#{$_b}dropdown#{$_e}target,
+.#{$_b}dropdown:not(.on-click):hover > .#{$_b}dropdown#{$_e}target,
+.#{$_b}dropdown:not(.on-click):focus > .#{$_b}dropdown#{$_e}target,
+.#{$_b}dropdown:not(.on-click):focus-within > .#{$_b}dropdown#{$_e}target {
   display: block;
 }
 
-.is-active > .#{$_b}dropdown#{$_e}menu {
+.is-active > .#{$_b}dropdown#{$_e}target {
   z-index: (var.$z-index + 1);
 }
 
-.#{$_b}dropdown:not(.on-click):focus > .#{$_b}dropdown#{$_e}menu,
-.#{$_b}dropdown:not(.on-click):focus-within > .#{$_b}dropdown#{$_e}menu {
+.#{$_b}dropdown:not(.on-click):focus > .#{$_b}dropdown#{$_e}target,
+.#{$_b}dropdown:not(.on-click):focus-within > .#{$_b}dropdown#{$_e}target {
   z-index: (var.$z-index + 2);
 }
 
-.#{$_b}dropdown:not(.on-click):hover > .#{$_b}dropdown#{$_e}menu {
+.#{$_b}dropdown:not(.on-click):hover > .#{$_b}dropdown#{$_e}target {
   z-index: (var.$z-index + 3);
 }

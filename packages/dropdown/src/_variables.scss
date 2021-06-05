@@ -6,7 +6,8 @@ $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
 $z-index: 10 !default;
-$spacing: 0.5em !default;
+$offset: 0.5em !default;
+$padding: 0.5em !default;
 $width: 16em !default;
 $font-size: core.$font-size-sm !default;
 $line-height: null !default;
@@ -14,34 +15,6 @@ $background: core.$white !default;
 $border: null !default;
 $border-radius: core.$border-radius !default;
 $box-shadow: core.$box-shadow-8dp !default;
-
-$item-margin: 1px 0 !default;
-$item-background: null !default;
-
-$link-inner-spacing: 0.5em !default;
-$link-padding: core.$padding !default;
-
-$link-color: core.$color !default;
-$link-color-hover: null !default;
-$link-color-focus: null !default;
-$link-color-active: null !default;
-$link-color-is-active: core.$primary !default;
-$link-color-is-disabled: core.$color-subtle !default;
-
-$link-background: null !default;
-$link-background-hover: rgba(core.$black, 0.06) !default;
-$link-background-focus: rgba(core.$black, 0.06) !default;
-$link-background-active: rgba(core.$black, 0.09) !default;
-$link-background-is-active: core.$white !default;
-$link-background-is-disabled: core.$white !default;
-
-$sep-border: core.$border !default;
-
-$title-font-size: core.$font-size-lg !default;
-$title-line-height: core.$line-height-lg !default;
-$title-font-weight: core.font-weight("semi-bold") !default;
-
-$pos-spacing: 0.5em !default;
 
 $size-sm-width: 12em !default;
 $size-lg-width: 20em !default;
