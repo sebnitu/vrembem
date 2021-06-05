@@ -50,27 +50,27 @@ usage:
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="level">
-  <div class="dropdown dropdown_pos_down-left">
+  <div class="dropdown dropdown_pos_bottom-start">
     <button class="button">
-      <span>Down left</span>
+      <span>bottom-start</span>
       <span class="arrow-down"></span>
     </button>
     <div class="dropdown__target">
       <div class="padding">This is a dropdown...</div>
     </div>
   </div><!-- .dropdown -->
-  <div class="dropdown dropdown_pos_down">
+  <div class="dropdown dropdown_pos_bottom">
     <button class="button">
-      <span>Down</span>
+      <span>bottom</span>
       <span class="arrow-down"></span>
     </button>
     <div class="dropdown__target">
       <div class="padding">This is a dropdown...</div>
     </div>
   </div><!-- .dropdown -->
-  <div class="dropdown dropdown_pos_down-right">
+  <div class="dropdown dropdown_pos_bottom-end">
     <button class="button">
-      <span>Down right</span>
+      <span>bottom-end</span>
       <span class="arrow-down"></span>
     </button>
     <div class="dropdown__target">
@@ -80,35 +80,35 @@ usage:
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="dropdown dropdown_pos_down-left">...</div>
-<div class="dropdown dropdown_pos_down">...</div>
-<div class="dropdown dropdown_pos_down-right">...</div>
+<div class="dropdown dropdown_pos_bottom-start">...</div>
+<div class="dropdown dropdown_pos_bottom">...</div>
+<div class="dropdown dropdown_pos_bottom-end">...</div>
 ```
 {% include demo_close.html %}
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="level">
-  <div class="dropdown dropdown_pos_up-left">
+  <div class="dropdown dropdown_pos_top-start">
     <button class="button">
-      <span>Up left</span>
+      <span>top-start</span>
       <span class="arrow-up"></span>
     </button>
     <div class="dropdown__target">
       <div class="padding">This is a dropdown...</div>
     </div>
   </div><!-- .dropdown -->
-  <div class="dropdown dropdown_pos_up">
+  <div class="dropdown dropdown_pos_top">
     <button class="button">
-      <span>Up</span>
+      <span>top</span>
       <span class="arrow-up"></span>
     </button>
     <div class="dropdown__target">
       <div class="padding">This is a dropdown...</div>
     </div>
   </div><!-- .dropdown -->
-  <div class="dropdown dropdown_pos_up-right">
+  <div class="dropdown dropdown_pos_top-end">
     <button class="button">
-      <span>Up right</span>
+      <span>top-end</span>
       <span class="arrow-up"></span>
     </button>
     <div class="dropdown__target">
@@ -118,18 +118,18 @@ usage:
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="dropdown dropdown_pos_up-left">...</div>
-<div class="dropdown dropdown_pos_up">...</div>
-<div class="dropdown dropdown_pos_up-right">...</div>
+<div class="dropdown dropdown_pos_top-start">...</div>
+<div class="dropdown dropdown_pos_top">...</div>
+<div class="dropdown dropdown_pos_top-end">...</div>
 ```
 {% include demo_close.html %}
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="level flex-justify-end">
-  <div class="dropdown dropdown_pos_left-up">
+  <div class="dropdown dropdown_pos_left-start">
     <button class="button">
       <span class="arrow-left"></span>
-      <span>Left up</span>
+      <span>left-start</span>
     </button>
     <div class="dropdown__target">
       <div class="padding">This is a dropdown...</div>
@@ -138,16 +138,16 @@ usage:
   <div class="dropdown dropdown_pos_left">
     <button class="button">
       <span class="arrow-left"></span>
-      <span>Left</span>
+      <span>left</span>
     </button>
     <div class="dropdown__target">
       <div class="padding">This is a dropdown...</div>
     </div>
   </div><!-- .dropdown -->
-  <div class="dropdown dropdown_pos_left-down">
+  <div class="dropdown dropdown_pos_left-end">
     <button class="button">
       <span class="arrow-left"></span>
-      <span>Left down</span>
+      <span>left-end</span>
     </button>
     <div class="dropdown__target">
       <div class="padding">This is a dropdown...</div>
@@ -156,17 +156,17 @@ usage:
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="dropdown dropdown_pos_left-up">...</div>
+<div class="dropdown dropdown_pos_left-start">...</div>
 <div class="dropdown dropdown_pos_left">...</div>
-<div class="dropdown dropdown_pos_left-down">...</div>
+<div class="dropdown dropdown_pos_left-end">...</div>
 ```
 {% include demo_close.html %}
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="level">
-  <div class="dropdown dropdown_pos_right-up">
+  <div class="dropdown dropdown_pos_right-start">
     <button class="button">
-      <span>Right up</span>
+      <span>right-start</span>
       <span class="arrow-right"></span>
     </button>
     <div class="dropdown__target">
@@ -175,16 +175,16 @@ usage:
   </div><!-- .dropdown -->
   <div class="dropdown dropdown_pos_right">
     <button class="button">
-      <span>Right</span>
+      <span>right</span>
       <span class="arrow-right"></span>
     </button>
     <div class="dropdown__target">
       <div class="padding">This is a dropdown...</div>
     </div>
   </div><!-- .dropdown -->
-  <div class="dropdown dropdown_pos_right-down">
+  <div class="dropdown dropdown_pos_right-end">
     <button class="button">
-      <span>Right down</span>
+      <span>right-end</span>
       <span class="arrow-right"></span>
     </button>
     <div class="dropdown__target">
@@ -194,8 +194,8 @@ usage:
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="dropdown dropdown_pos_right-up">...</div>
+<div class="dropdown dropdown_pos_right-start">...</div>
 <div class="dropdown dropdown_pos_right">...</div>
-<div class="dropdown dropdown_pos_right-down">...</div>
+<div class="dropdown dropdown_pos_right-end">...</div>
 ```
 {% include demo_close.html %}
