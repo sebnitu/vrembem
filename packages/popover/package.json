@@ -1,13 +1,13 @@
 {
-  "name": "@vrembem/dropdown",
-  "description": "A component that is initially hidden and revealed upon user interaction either through a click or hover event. Dropdown components typically display lists of possible actions or navigation.",
+  "name": "@vrembem/popover",
+  "description": "A component that is initially hidden and revealed upon user interaction either through a click or hover event. Popover can contain lists of actions, links, or additional supplementary content.",
   "version": "1.30.0",
   "license": "MIT",
   "keywords": [
     "BEM",
     "front-end",
     "component",
-    "dropdown"
+    "popover"
   ],
   "sass": "index.scss",
   "style": "dist/styles.css",
@@ -23,7 +23,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sebnitu/vrembem.git",
-    "directory": "packages/dropdown"
+    "directory": "packages/popover"
   },
   "dependencies": {
     "@vrembem/core": "^1.30.0"

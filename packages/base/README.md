@@ -160,7 +160,7 @@ The arrow (caret) module creates directional triangles drawn with CSS.
 
 #### Example
 
-Arrows are great indicators for buttons and menu items when interacting with them would toggle a dropdown or other togglable components.
+Arrows are great indicators for buttons and menu items when interacting with them would toggle a popover or other togglable components.
 
 ```html
 <button class="button">

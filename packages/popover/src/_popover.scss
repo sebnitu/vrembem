@@ -3,12 +3,12 @@
 $_b: var.$prefix-block;
 $_e: var.$prefix-element;
 
-.#{$_b}dropdown {
+.#{$_b}popover {
   position: relative;
   display: inline-flex;
 }
 
-.#{$_b}dropdown#{$_e}target {
+.#{$_b}popover#{$_e}target {
   position: absolute;
   z-index: var.$z-index;
   top: 100%;
@@ -46,22 +46,22 @@ $_e: var.$prefix-element;
  * Active states
  */
 
-.is-active > .#{$_b}dropdown#{$_e}target,
-.#{$_b}dropdown:not(.on-click):hover > .#{$_b}dropdown#{$_e}target,
-.#{$_b}dropdown:not(.on-click):focus > .#{$_b}dropdown#{$_e}target,
-.#{$_b}dropdown:not(.on-click):focus-within > .#{$_b}dropdown#{$_e}target {
+.is-active > .#{$_b}popover#{$_e}target,
+.#{$_b}popover:not(.on-click):hover > .#{$_b}popover#{$_e}target,
+.#{$_b}popover:not(.on-click):focus > .#{$_b}popover#{$_e}target,
+.#{$_b}popover:not(.on-click):focus-within > .#{$_b}popover#{$_e}target {
   display: block;
 }
 
-.is-active > .#{$_b}dropdown#{$_e}target {
+.is-active > .#{$_b}popover#{$_e}target {
   z-index: (var.$z-index + 1);
 }
 
-.#{$_b}dropdown:not(.on-click):focus > .#{$_b}dropdown#{$_e}target,
-.#{$_b}dropdown:not(.on-click):focus-within > .#{$_b}dropdown#{$_e}target {
+.#{$_b}popover:not(.on-click):focus > .#{$_b}popover#{$_e}target,
+.#{$_b}popover:not(.on-click):focus-within > .#{$_b}popover#{$_e}target {
   z-index: (var.$z-index + 2);
 }
 
-.#{$_b}dropdown:not(.on-click):hover > .#{$_b}dropdown#{$_e}target {
+.#{$_b}popover:not(.on-click):hover > .#{$_b}popover#{$_e}target {
   z-index: (var.$z-index + 3);
 }

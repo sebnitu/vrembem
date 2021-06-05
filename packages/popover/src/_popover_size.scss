@@ -5,14 +5,14 @@ $_e: var.$prefix-element;
 $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
-.#{$_b}dropdown#{$_m}size#{$_v}sm .#{$_b}dropdown#{$_e}target {
+.#{$_b}popover#{$_m}size#{$_v}sm .#{$_b}popover#{$_e}target {
   width: var.$size-sm-width;
 }
 
-.#{$_b}dropdown#{$_m}size#{$_v}lg .#{$_b}dropdown#{$_e}target {
+.#{$_b}popover#{$_m}size#{$_v}lg .#{$_b}popover#{$_e}target {
   width: var.$size-lg-width;
 }
 
-.#{$_b}dropdown#{$_m}size#{$_v}auto .#{$_b}dropdown#{$_e}target {
+.#{$_b}popover#{$_m}size#{$_v}auto .#{$_b}popover#{$_e}target {
   width: auto;
 }
