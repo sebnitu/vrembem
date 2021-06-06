@@ -3700,32 +3700,24 @@ input::-moz-placeholder {
   color: #b71c1c;
 }
 
-.popover {
-  position: relative;
-  display: inline-flex;
+:root {
+  --popover-offset: 10;
 }
 
-.popover__target {
-  position: absolute;
+.popover {
+  position: relative;
   z-index: 10;
-  top: 100%;
-  right: auto;
-  bottom: auto;
-  left: 0;
   display: none;
   width: 16em;
-  margin: 0.5em 0 0;
+  margin: 10 0 0;
   padding: 0.5em;
   border-radius: 4px;
   background: #fff;
   background-clip: padding-box;
   box-shadow: 0 0 0 1px rgba(33, 33, 33, 0.05), 0 5px 5px -3px rgba(33, 33, 33, 0.1), 0 8px 10px 1px rgba(33, 33, 33, 0.08), 0 3px 14px 2px rgba(33, 33, 33, 0.06);
   font-size: 0.875em;
-  list-style: none;
-  text-align: left;
-  white-space: normal;
 }
-.popover__target::before {
+.popover::before {
   content: "";
   position: absolute;
   top: auto;
@@ -3733,178 +3725,60 @@ input::-moz-placeholder {
   bottom: 100%;
   left: 0;
   width: 100%;
-  height: 0.5em;
+  height: 10px;
+  background: pink;
 }
-
-/**
- * Active states
- */
-.is-active > .popover__target,
-.popover:not(.on-click):hover > .popover__target,
-.popover:not(.on-click):focus > .popover__target,
-.popover:not(.on-click):focus-within > .popover__target {
+.popover.is-active {
+  z-index: 11;
   display: block;
 }
 
-.is-active > .popover__target {
-  z-index: 11;
-}
-
-.popover:not(.on-click):focus > .popover__target,
-.popover:not(.on-click):focus-within > .popover__target {
-  z-index: 12;
-}
-
-.popover:not(.on-click):hover > .popover__target {
-  z-index: 13;
-}
-
-.popover_pos_bottom-start .popover__target,
-.popover_pos_bottom-end .popover__target,
-.popover_pos_bottom .popover__target {
-  top: 100%;
-  bottom: auto;
-  margin: 0.5em 0 0;
-}
-.popover_pos_bottom-start .popover__target::before,
-.popover_pos_bottom-end .popover__target::before,
-.popover_pos_bottom .popover__target::before {
-  top: auto;
-  right: 0;
-  bottom: 100%;
-  left: 0;
-  width: 100%;
-  height: 0.5em;
-}
-
-.popover_pos_bottom-start .popover__target {
-  right: auto;
-  left: 0;
-}
-
-.popover_pos_bottom-end .popover__target {
-  right: 0;
-  left: auto;
-}
-
-.popover_pos_bottom .popover__target {
-  right: auto;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.popover_pos_top-start .popover__target,
-.popover_pos_top-end .popover__target,
-.popover_pos_top .popover__target {
-  top: auto;
-  bottom: 100%;
-  margin: 0 0 0.5em;
-}
-.popover_pos_top-start .popover__target::before,
-.popover_pos_top-end .popover__target::before,
-.popover_pos_top .popover__target::before {
+.popover[data-popper-placement^=top]::before {
   top: 100%;
   right: 0;
   bottom: auto;
   left: 0;
   width: 100%;
-  height: 0.5em;
+  height: 10;
 }
 
-.popover_pos_top-start .popover__target {
-  right: auto;
-  left: 0;
-}
-
-.popover_pos_top-end .popover__target {
+.popover[data-popper-placement^=bottom]::before {
+  top: auto;
   right: 0;
-  left: auto;
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  height: 10;
 }
 
-.popover_pos_top .popover__target {
-  right: auto;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.popover_pos_right-start .popover__target,
-.popover_pos_right-end .popover__target,
-.popover_pos_right .popover__target {
-  right: auto;
-  left: 100%;
-  margin: 0 0 0 0.5em;
-}
-.popover_pos_right-start .popover__target::before,
-.popover_pos_right-end .popover__target::before,
-.popover_pos_right .popover__target::before {
-  top: 0;
-  right: 100%;
-  bottom: 0;
-  left: auto;
-  width: 0.5em;
-  height: 100%;
-}
-
-.popover_pos_right-start .popover__target {
-  top: auto;
-  bottom: 0;
-}
-
-.popover_pos_right-end .popover__target {
-  top: 0;
-  bottom: auto;
-}
-
-.popover_pos_right .popover__target {
-  top: 50%;
-  bottom: auto;
-  transform: translateY(-50%);
-}
-
-.popover_pos_left-start .popover__target,
-.popover_pos_left-end .popover__target,
-.popover_pos_left .popover__target {
-  right: 100%;
-  left: auto;
-  margin: 0 0.5em 0 0;
-}
-.popover_pos_left-start .popover__target::before,
-.popover_pos_left-end .popover__target::before,
-.popover_pos_left .popover__target::before {
+.popover[data-popper-placement^=left]::before {
   top: 0;
   right: auto;
   bottom: 0;
   left: 100%;
-  width: 0.5em;
+  width: 10;
   height: 100%;
 }
 
-.popover_pos_left-start .popover__target {
-  top: auto;
-  bottom: 0;
-}
-
-.popover_pos_left-end .popover__target {
+.popover[data-popper-placement^=right]::before {
   top: 0;
-  bottom: auto;
+  right: 100%;
+  bottom: 0;
+  left: auto;
+  width: 10;
+  height: 100%;
 }
 
-.popover_pos_left .popover__target {
-  top: 50%;
-  bottom: auto;
-  transform: translateY(-50%);
+.popover_size_auto {
+  width: auto;
 }
 
-.popover_size_sm .popover__target {
+.popover_size_sm {
   width: 12em;
 }
 
-.popover_size_lg .popover__target {
+.popover_size_lg {
   width: 20em;
-}
-
-.popover_size_auto .popover__target {
-  width: auto;
 }
 
 .radio {

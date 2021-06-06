@@ -11,34 +11,33 @@ usage:
 
 ## popover
 
-{% include demo_open.html %}
-<div class="popover">
-  <button class="popover__trigger button button_color_primary">Trigger</button>
-  <div class="popover__target">
-    <ul class="menu">
-      <li class="menu__item">
-        <button class="menu__action">Undo</button>
-      </li>
-      <li class="menu__item">
-        <button class="menu__action">Redo</button>
-      </li>
-      <li class="menu__sep"></li>
-      <li class="menu__item">
-        <button class="menu__action">Cut</button>
-      </li>
-      <li class="menu__item">
-        <button class="menu__action">Copy</button>
-      </li>
-      <li class="menu__item">
-        <button class="menu__action">Paste</button>
-      </li>
-    </ul>
-  </div>
+{% include demo_open.html class_parent="text-align-center" %}
+<button class="button button_color_primary" data-popover-trigger>Trigger</button>
+<div class="popover is-active" data-popover data-popover-placement="bottom-start">
+  <!-- <div class="arrow" data-popper-arrow></div> -->
+  <ul class="menu">
+    <li class="menu__item">
+      <button class="menu__action">Undo</button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">Redo</button>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <button class="menu__action">Cut</button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">Copy</button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">Paste</button>
+    </li>
+  </ul>
 </div>
 {% include demo_switch.html %}
 ```html
 <div class="popover">
-  <button class="popover__trigger">...</button>
+  <button class="button">...</button>
   <div class="popover__target">
     ...
   </div>
@@ -205,7 +204,7 @@ usage:
 <div>
   <div class="level">
     <div class="popover popover_size_auto popover_pos_top">
-      <button class="popover__trigger button button_color_secondary">popover_size_auto</button>
+      <button class="button button_color_secondary">popover_size_auto</button>
       <div class="popover__target">
         <ul class="menu">
           <li class="menu__item">
@@ -228,7 +227,7 @@ usage:
       </div>
     </div>
     <div class="popover popover_size_sm popover_pos_top-start">
-      <button class="popover__trigger button button_color_secondary">popover_size_sm</button>
+      <button class="button button_color_secondary">popover_size_sm</button>
       <div class="popover__target">
         <ul class="menu">
           <li class="menu__item">
@@ -251,7 +250,7 @@ usage:
       </div>
     </div>
     <div class="popover popover_pos_top-start">
-      <button class="popover__trigger button button_color_secondary">default</button>
+      <button class="button button_color_secondary">default</button>
       <div class="popover__target">
         <ul class="menu">
           <li class="menu__item">
@@ -274,7 +273,7 @@ usage:
       </div>
     </div>
     <div class="popover popover_size_lg popover_pos_top-start">
-      <button class="popover__trigger button button_color_secondary">popover_size_lg</button>
+      <button class="button button_color_secondary">popover_size_lg</button>
       <div class="popover__target">
         <ul class="menu">
           <li class="menu__item">

@@ -5,46 +5,7 @@ $_e: var.$prefix-element;
 $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
-.#{$_b}popover#{$_m}pos#{$_v}bottom-start .#{$_b}popover#{$_e}target,
-.#{$_b}popover#{$_m}pos#{$_v}bottom-end .#{$_b}popover#{$_e}target,
-.#{$_b}popover#{$_m}pos#{$_v}bottom .#{$_b}popover#{$_e}target {
-  top: 100%;
-  bottom: auto;
-  margin: var.$offset 0 0;
-
-  &::before {
-    top: auto;
-    right: 0;
-    bottom: 100%;
-    left: 0;
-    width: 100%;
-    height: var.$offset;
-  }
-}
-
-.#{$_b}popover#{$_m}pos#{$_v}bottom-start .#{$_b}popover#{$_e}target {
-  right: auto;
-  left: 0;
-}
-
-.#{$_b}popover#{$_m}pos#{$_v}bottom-end .#{$_b}popover#{$_e}target {
-  right: 0;
-  left: auto;
-}
-
-.#{$_b}popover#{$_m}pos#{$_v}bottom .#{$_b}popover#{$_e}target {
-  right: auto;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.#{$_b}popover#{$_m}pos#{$_v}top-start .#{$_b}popover#{$_e}target,
-.#{$_b}popover#{$_m}pos#{$_v}top-end .#{$_b}popover#{$_e}target,
-.#{$_b}popover#{$_m}pos#{$_v}top .#{$_b}popover#{$_e}target {
-  top: auto;
-  bottom: 100%;
-  margin: 0 0 var.$offset;
-
+.#{$_b}popover[data-popper-placement^="top"] {
   &::before {
     top: 100%;
     right: 0;
@@ -55,62 +16,18 @@ $_v: var.$prefix-modifier-value;
   }
 }
 
-.#{$_b}popover#{$_m}pos#{$_v}top-start .#{$_b}popover#{$_e}target {
-  right: auto;
-  left: 0;
-}
-
-.#{$_b}popover#{$_m}pos#{$_v}top-end .#{$_b}popover#{$_e}target {
-  right: 0;
-  left: auto;
-}
-
-.#{$_b}popover#{$_m}pos#{$_v}top .#{$_b}popover#{$_e}target {
-  right: auto;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.#{$_b}popover#{$_m}pos#{$_v}right-start .#{$_b}popover#{$_e}target,
-.#{$_b}popover#{$_m}pos#{$_v}right-end .#{$_b}popover#{$_e}target,
-.#{$_b}popover#{$_m}pos#{$_v}right .#{$_b}popover#{$_e}target {
-  right: auto;
-  left: 100%;
-  margin: 0 0 0 var.$offset;
-
+.#{$_b}popover[data-popper-placement^="bottom"] {
   &::before {
-    top: 0;
-    right: 100%;
-    bottom: 0;
-    left: auto;
-    width: var.$offset;
-    height: 100%;
+    top: auto;
+    right: 0;
+    bottom: 100%;
+    left: 0;
+    width: 100%;
+    height: var.$offset;
   }
 }
 
-.#{$_b}popover#{$_m}pos#{$_v}right-start .#{$_b}popover#{$_e}target {
-  top: auto;
-  bottom: 0;
-}
-
-.#{$_b}popover#{$_m}pos#{$_v}right-end .#{$_b}popover#{$_e}target {
-  top: 0;
-  bottom: auto;
-}
-
-.#{$_b}popover#{$_m}pos#{$_v}right .#{$_b}popover#{$_e}target {
-  top: 50%;
-  bottom: auto;
-  transform: translateY(-50%);
-}
-
-.#{$_b}popover#{$_m}pos#{$_v}left-start .#{$_b}popover#{$_e}target,
-.#{$_b}popover#{$_m}pos#{$_v}left-end .#{$_b}popover#{$_e}target,
-.#{$_b}popover#{$_m}pos#{$_v}left .#{$_b}popover#{$_e}target {
-  right: 100%;
-  left: auto;
-  margin: 0 var.$offset 0 0;
-
+.#{$_b}popover[data-popper-placement^="left"] {
   &::before {
     top: 0;
     right: auto;
@@ -121,18 +38,13 @@ $_v: var.$prefix-modifier-value;
   }
 }
 
-.#{$_b}popover#{$_m}pos#{$_v}left-start .#{$_b}popover#{$_e}target {
-  top: auto;
-  bottom: 0;
-}
-
-.#{$_b}popover#{$_m}pos#{$_v}left-end .#{$_b}popover#{$_e}target {
-  top: 0;
-  bottom: auto;
-}
-
-.#{$_b}popover#{$_m}pos#{$_v}left .#{$_b}popover#{$_e}target {
-  top: 50%;
-  bottom: auto;
-  transform: translateY(-50%);
+.#{$_b}popover[data-popper-placement^="right"] {
+  &::before {
+    top: 0;
+    right: 100%;
+    bottom: 0;
+    left: auto;
+    width: var.$offset;
+    height: 100%;
+  }
 }
