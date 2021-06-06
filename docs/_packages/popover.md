@@ -11,10 +11,12 @@ usage:
 
 ## popover
 
-{% include demo_open.html class_parent="text-align-center" %}
-<button class="button button_color_primary" data-popover-trigger>Trigger</button>
-<div class="popover is-active" data-popover>
-  <!-- <div class="arrow" data-popper-arrow></div> -->
+{% include demo_open.html %}
+<button class="button button_color_primary" data-popover-trigger>
+  <span>Trigger</span>
+  <span class="arrow-down"></span>
+</button>
+<div class="popover" data-popover>
   <ul class="menu">
     <li class="menu__item">
       <button class="menu__action">Undo</button>

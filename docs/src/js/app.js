@@ -56,8 +56,7 @@ function getOffset() {
   return offset ? offset : 0;
 }
 
-function showPopover(target, popper, modifiers, event) {
-  console.log(event);
+function showPopover(target, popper, modifiers) {
   target.classList.add('is-active');
   popper.setOptions({
     modifiers: [
@@ -73,14 +72,14 @@ function showPopover(target, popper, modifiers, event) {
 // TODO: set params for both trigger and target. Then check for whether or not the popover
 // should be closed. This can then be used for both mouseleave and blur events.
 
-function hidePopover(target, popper, modifiers, event) {
-  console.log(event);
-  const isHovered = target.closest(':hover') === target;
+function hidePopover(trigger, target, popper, modifiers) {
   setTimeout(() => {
-    const isFocused = document.activeElement.closest('[data-popover]') === target;
-    console.log({ isHovered });
-    console.log({ isFocused });
-
+    const isHovered =
+      target.closest(':hover') === target ||
+      trigger.closest(':hover') === trigger;
+    const isFocused =
+      document.activeElement.closest('[data-popover]') === target ||
+      document.activeElement.closest('[data-popover-trigger]') === trigger;
     if (!isHovered && !isFocused) {
       target.classList.remove('is-active');
       popper.setOptions({
@@ -88,8 +87,9 @@ function hidePopover(target, popper, modifiers, event) {
           {
             name: 'eventListeners',
             enabled: false
-          }
-        ].concat(modifiers)
+          },
+          ...modifiers
+        ]
       });
     }
   }, 1);
@@ -126,14 +126,15 @@ popovers.forEach((trigger) => {
     // TODO: add click events and the option to set which events to listen for
 
     const showEvents = ['mouseenter', 'focus'];
-    const hideEvents = ['mouseleave', 'blur'];
+    const hideEvents = ['mouseleave', 'focusout'];
 
     showEvents.forEach(event => {
       trigger.addEventListener(event, showPopover.bind(null, target, popperInstance, modifiers));
     });
 
     hideEvents.forEach(event => {
-      trigger.addEventListener(event, hidePopover.bind(null, target, popperInstance, modifiers));
+      trigger.addEventListener(event, hidePopover.bind(null, trigger, target, popperInstance, modifiers));
+      target.addEventListener(event, hidePopover.bind(null, trigger, target, popperInstance, modifiers));
     });
   }
 });
