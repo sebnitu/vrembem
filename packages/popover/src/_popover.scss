@@ -4,6 +4,10 @@
 $_b: var.$prefix-block;
 
 :root {
+  @if var.$placement {
+    --popover-placement: #{var.$placement};
+  }
+
   --popover-offset: #{core.strip-unit(var.$offset)};
   --popover-offset-overflow: #{core.strip-unit(var.$offset-overflow)};
 }

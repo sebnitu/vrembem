@@ -106,12 +106,10 @@ function hidePopover(trigger, target, popper, modifiers) {
 const popovers = document.querySelectorAll('[data-popover-trigger]');
 popovers.forEach((trigger) => {
   const target = getPopoverTarget(trigger);
-
   if (target) {
-
     const placement = target.hasAttribute('data-popover-placement') ?
       target.getAttribute('data-popover-placement') :
-      'bottom';
+      getCSSVar('--popover-placement', 'bottom-start');
     const modifiers = [
       {
         name: 'offset',
@@ -126,13 +124,11 @@ popovers.forEach((trigger) => {
         }
       }
     ];
-    console.log(modifiers);
+
     const popperInstance = window.Popper.createPopper(trigger, target, {
       placement: placement,
       modifiers: modifiers
     });
-
-    console.log(getCSSVar('--popover-offset-overflow', 0));
 
     const showEvents = ['mouseenter', 'focus'];
     const hideEvents = ['mouseleave', 'focusout'];

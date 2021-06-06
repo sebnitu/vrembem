@@ -3701,6 +3701,7 @@ input::-moz-placeholder {
 }
 
 :root {
+  --popover-placement: bottom-start;
   --popover-offset: 8;
   --popover-offset-overflow: 20;
 }
