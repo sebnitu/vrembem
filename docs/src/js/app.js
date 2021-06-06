@@ -43,6 +43,15 @@ document.addEventListener('drawer:opened', () => {
 // TODO: Maybe will need focus management for when a trigger and target are connected
 // via attribute values and focus needs to be returned to the element after trigger
 
+// TODO: Add behavior strategies. This should include the following types:
+// 1. Trigger hover/focus only
+// 2. Trigger and target hover/focus
+// 3. Click events
+
+// TODO: Add keyRouting support when popover is open
+// - Pressing 'Escape' should close popovers
+// - Process 'Enter', 'ArrowUp', 'ArrowDown', 'Tab', 'Space'
+
 function getPopoverTarget(trigger) {
   return trigger.getAttribute('data-popover-trigger').trim() ?
     document.querySelector(`[data-popover="${trigger.getAttribute('data-popover-trigger')}"]`) :
@@ -64,15 +73,14 @@ function showPopover(target, popper, modifiers) {
         name: 'eventListeners',
         enabled: true
       },
-    ].concat(modifiers)
+      ...modifiers
+    ]
   });
   popper.update();
 }
 
-// TODO: set params for both trigger and target. Then check for whether or not the popover
-// should be closed. This can then be used for both mouseleave and blur events.
-
 function hidePopover(trigger, target, popper, modifiers) {
+  // setTimeout is needed to correctly check which element is currently being focused
   setTimeout(() => {
     const isHovered =
       target.closest(':hover') === target ||
@@ -125,8 +133,6 @@ popovers.forEach((trigger) => {
     });
 
     console.log(getCSSVar('--popover-offset-overflow', 0));
-
-    // TODO: add click events and the option to set which events to listen for
 
     const showEvents = ['mouseenter', 'focus'];
     const hideEvents = ['mouseleave', 'focusout'];
