@@ -3701,7 +3701,7 @@ input::-moz-placeholder {
 }
 
 :root {
-  --popover-offset: 10;
+  --popover-offset: 8;
 }
 
 .popover {
@@ -3709,7 +3709,7 @@ input::-moz-placeholder {
   z-index: 10;
   display: none;
   width: 16em;
-  margin: 10 0 0;
+  margin: 8 0 0;
   padding: 0.5em;
   border-radius: 4px;
   background: #fff;
@@ -3725,8 +3725,7 @@ input::-moz-placeholder {
   bottom: 100%;
   left: 0;
   width: 100%;
-  height: 10px;
-  background: pink;
+  height: 8px;
 }
 .popover.is-active {
   z-index: 11;
@@ -3739,7 +3738,7 @@ input::-moz-placeholder {
   bottom: auto;
   left: 0;
   width: 100%;
-  height: 10;
+  height: 8px;
 }
 
 .popover[data-popper-placement^=bottom]::before {
@@ -3748,7 +3747,7 @@ input::-moz-placeholder {
   bottom: 100%;
   left: 0;
   width: 100%;
-  height: 10;
+  height: 8px;
 }
 
 .popover[data-popper-placement^=left]::before {
@@ -3756,7 +3755,7 @@ input::-moz-placeholder {
   right: auto;
   bottom: 0;
   left: 100%;
-  width: 10;
+  width: 8px;
   height: 100%;
 }
 
@@ -3765,7 +3764,7 @@ input::-moz-placeholder {
   right: 100%;
   bottom: 0;
   left: auto;
-  width: 10;
+  width: 8px;
   height: 100%;
 }
 

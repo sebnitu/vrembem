@@ -13,7 +13,7 @@ usage:
 
 {% include demo_open.html class_parent="text-align-center" %}
 <button class="button button_color_primary" data-popover-trigger>Trigger</button>
-<div class="popover is-active" data-popover data-popover-placement="bottom-start">
+<div class="popover is-active" data-popover>
   <!-- <div class="arrow" data-popper-arrow></div> -->
   <ul class="menu">
     <li class="menu__item">
@@ -49,33 +49,33 @@ usage:
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="level">
-  <div class="popover popover_pos_bottom-start">
-    <button class="button">
+  <div>
+    <button class="button" data-popover-trigger>
       <span>bottom-start</span>
       <span class="arrow-down"></span>
     </button>
-    <div class="popover__target">
+    <div class="popover" data-popover data-popover-placement="bottom-start">
       <div class="padding">This is a popover...</div>
     </div>
-  </div><!-- .popover -->
-  <div class="popover popover_pos_bottom">
-    <button class="button">
+  </div>
+  <div>
+    <button class="button" data-popover-trigger>
       <span>bottom</span>
       <span class="arrow-down"></span>
     </button>
-    <div class="popover__target">
+    <div class="popover" data-popover data-popover-placement="bottom">
       <div class="padding">This is a popover...</div>
     </div>
-  </div><!-- .popover -->
-  <div class="popover popover_pos_bottom-end">
-    <button class="button">
+  </div>
+  <div>
+    <button class="button" data-popover-trigger>
       <span>bottom-end</span>
       <span class="arrow-down"></span>
     </button>
-    <div class="popover__target">
+    <div class="popover" data-popover data-popover-placement="bottom-end">
       <div class="padding">This is a popover...</div>
     </div>
-  </div><!-- .popover -->
+  </div>
 </div>
 {% include demo_switch.html %}
 ```html
@@ -87,33 +87,33 @@ usage:
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="level">
-  <div class="popover popover_pos_top-start">
-    <button class="button">
+  <div>
+    <button class="button" data-popover-trigger>
       <span>top-start</span>
       <span class="arrow-up"></span>
     </button>
-    <div class="popover__target">
+    <div class="popover" data-popover data-popover-placement="top-start">
       <div class="padding">This is a popover...</div>
     </div>
-  </div><!-- .popover -->
-  <div class="popover popover_pos_top">
-    <button class="button">
+  </div>
+  <div>
+    <button class="button" data-popover-trigger>
       <span>top</span>
       <span class="arrow-up"></span>
     </button>
-    <div class="popover__target">
+    <div class="popover" data-popover data-popover-placement="top">
       <div class="padding">This is a popover...</div>
     </div>
-  </div><!-- .popover -->
-  <div class="popover popover_pos_top-end">
-    <button class="button">
+  </div>
+  <div>
+    <button class="button" data-popover-trigger>
       <span>top-end</span>
       <span class="arrow-up"></span>
     </button>
-    <div class="popover__target">
+    <div class="popover" data-popover data-popover-placement="top-end">
       <div class="padding">This is a popover...</div>
     </div>
-  </div><!-- .popover -->
+  </div>
 </div>
 {% include demo_switch.html %}
 ```html
@@ -125,33 +125,33 @@ usage:
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="level flex-justify-end">
-  <div class="popover popover_pos_left-start">
-    <button class="button">
+  <div>
+    <button class="button" data-popover-trigger>
       <span class="arrow-left"></span>
       <span>left-start</span>
     </button>
-    <div class="popover__target">
+    <div class="popover" data-popover data-popover-placement="left-start">
       <div class="padding">This is a popover...</div>
     </div>
-  </div><!-- .popover -->
-  <div class="popover popover_pos_left">
-    <button class="button">
+  </div>
+  <div>
+    <button class="button" data-popover-trigger>
       <span class="arrow-left"></span>
       <span>left</span>
     </button>
-    <div class="popover__target">
+    <div class="popover" data-popover data-popover-placement="left-start">
       <div class="padding">This is a popover...</div>
     </div>
-  </div><!-- .popover -->
-  <div class="popover popover_pos_left-end">
-    <button class="button">
+  </div>
+  <div>
+    <button class="button" data-popover-trigger>
       <span class="arrow-left"></span>
       <span>left-end</span>
     </button>
-    <div class="popover__target">
+    <div class="popover" data-popover data-popover-placement="left-end">
       <div class="padding">This is a popover...</div>
     </div>
-  </div><!-- .popover -->
+  </div>
 </div>
 {% include demo_switch.html %}
 ```html
@@ -163,33 +163,33 @@ usage:
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="level">
-  <div class="popover popover_pos_right-start">
-    <button class="button">
+  <div>
+    <button class="button" data-popover-trigger>
       <span>right-start</span>
       <span class="arrow-right"></span>
     </button>
-    <div class="popover__target">
+    <div class="popover" data-popover data-popover-placement="right-start">
       <div class="padding">This is a popover...</div>
     </div>
-  </div><!-- .popover -->
-  <div class="popover popover_pos_right">
-    <button class="button">
+  </div>
+  <div>
+    <button class="button" data-popover-trigger>
       <span>right</span>
       <span class="arrow-right"></span>
     </button>
-    <div class="popover__target">
+    <div class="popover" data-popover data-popover-placement="right">
       <div class="padding">This is a popover...</div>
     </div>
-  </div><!-- .popover -->
-  <div class="popover popover_pos_right-end">
-    <button class="button">
+  </div>
+  <div>
+    <button class="button" data-popover-trigger>
       <span>right-end</span>
       <span class="arrow-right"></span>
     </button>
-    <div class="popover__target">
+    <div class="popover" data-popover data-popover-placement="right-end">
       <div class="padding">This is a popover...</div>
     </div>
-  </div><!-- .popover -->
+  </div>
 </div>
 {% include demo_switch.html %}
 ```html
@@ -203,97 +203,93 @@ usage:
 
 <div>
   <div class="level">
-    <div class="popover popover_size_auto popover_pos_top">
-      <button class="button button_color_secondary">popover_size_auto</button>
-      <div class="popover__target">
-        <ul class="menu">
-          <li class="menu__item">
-            <button class="menu__action">Undo</button>
-          </li>
-          <li class="menu__item">
-            <button class="menu__action">Redo</button>
-          </li>
-          <li class="menu__sep"></li>
-          <li class="menu__item">
-            <button class="menu__action">Cut</button>
-          </li>
-          <li class="menu__item">
-            <button class="menu__action">Copy</button>
-          </li>
-          <li class="menu__item">
-            <button class="menu__action">Paste</button>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="popover popover_size_sm popover_pos_top-start">
-      <button class="button button_color_secondary">popover_size_sm</button>
-      <div class="popover__target">
-        <ul class="menu">
-          <li class="menu__item">
-            <button class="menu__action">Undo</button>
-          </li>
-          <li class="menu__item">
-            <button class="menu__action">Redo</button>
-          </li>
-          <li class="menu__sep"></li>
-          <li class="menu__item">
-            <button class="menu__action">Cut</button>
-          </li>
-          <li class="menu__item">
-            <button class="menu__action">Copy</button>
-          </li>
-          <li class="menu__item">
-            <button class="menu__action">Paste</button>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="popover popover_pos_top-start">
-      <button class="button button_color_secondary">default</button>
-      <div class="popover__target">
-        <ul class="menu">
-          <li class="menu__item">
-            <button class="menu__action">Undo</button>
-          </li>
-          <li class="menu__item">
-            <button class="menu__action">Redo</button>
-          </li>
-          <li class="menu__sep"></li>
-          <li class="menu__item">
-            <button class="menu__action">Cut</button>
-          </li>
-          <li class="menu__item">
-            <button class="menu__action">Copy</button>
-          </li>
-          <li class="menu__item">
-            <button class="menu__action">Paste</button>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="popover popover_size_lg popover_pos_top-start">
-      <button class="button button_color_secondary">popover_size_lg</button>
-      <div class="popover__target">
-        <ul class="menu">
-          <li class="menu__item">
-            <button class="menu__action">Undo</button>
-          </li>
-          <li class="menu__item">
-            <button class="menu__action">Redo</button>
-          </li>
-          <li class="menu__sep"></li>
-          <li class="menu__item">
-            <button class="menu__action">Cut</button>
-          </li>
-          <li class="menu__item">
-            <button class="menu__action">Copy</button>
-          </li>
-          <li class="menu__item">
-            <button class="menu__action">Paste</button>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <button class="button" data-popover-trigger="size-auto">popover_size_auto</button>
+    <button class="button" data-popover-trigger="size-sm">popover_size_sm</button>
+    <button class="button" data-popover-trigger="size-default">default</button>
+    <button class="button" data-popover-trigger="size-lg">popover_size_lg</button>
   </div>
+</div>
+
+<div class="popover popover_size_auto" data-popover="size-auto">
+  <ul class="menu">
+    <li class="menu__item">
+      <button class="menu__action">Undo</button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">Redo</button>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <button class="menu__action">Cut</button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">Copy</button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">Paste</button>
+    </li>
+  </ul>
+</div>
+
+<div class="popover popover_size_sm" data-popover="size-sm">
+  <ul class="menu">
+    <li class="menu__item">
+      <button class="menu__action">Undo</button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">Redo</button>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <button class="menu__action">Cut</button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">Copy</button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">Paste</button>
+    </li>
+  </ul>
+</div>
+
+<div class="popover" data-popover="size-default">
+  <ul class="menu">
+    <li class="menu__item">
+      <button class="menu__action">Undo</button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">Redo</button>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <button class="menu__action">Cut</button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">Copy</button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">Paste</button>
+    </li>
+  </ul>
+</div>
+
+<div class="popover popover_size_lg" data-popover="size-lg">
+  <ul class="menu">
+    <li class="menu__item">
+      <button class="menu__action">Undo</button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">Redo</button>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <button class="menu__action">Cut</button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">Copy</button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">Paste</button>
+    </li>
+  </ul>
 </div>

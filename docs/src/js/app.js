@@ -43,33 +43,74 @@ function getPopoverTarget(trigger) {
       trigger.nextElementSibling : false;
 }
 
+function getOffset() {
+  const styles = getComputedStyle(document.documentElement);
+  const offset = styles.getPropertyValue('--popover-offset');
+  return offset ? offset : 0;
+}
+
+function showPopover(target, popper, modifiers) {
+  target.classList.add('is-active');
+  popper.setOptions({
+    modifiers: [
+      {
+        name: 'eventListeners',
+        enabled: true
+      },
+    ].concat(modifiers)
+  });
+  popper.update();
+}
+
+function hidePopover(target, popper, modifiers) {
+  target.classList.remove('is-active');
+  popper.setOptions({
+    modifiers: [
+      {
+        name: 'eventListeners',
+        enabled: false
+      }
+    ].concat(modifiers)
+  });
+}
+
 const popovers = document.querySelectorAll('[data-popover-trigger]');
 popovers.forEach((trigger) => {
   const target = getPopoverTarget(trigger);
 
   if (target) {
-    const cssOffset = getComputedStyle(document.documentElement).getPropertyValue('--popover-offset');
-    const offset = cssOffset ? cssOffset : 0;
+
     const placement = target.hasAttribute('data-popover-placement') ?
       target.getAttribute('data-popover-placement') :
       'bottom';
+    const modifiers = [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, getOffset()]
+        }
+      },
+      {
+        name: 'preventOverflow',
+        options: {
+          padding: 10
+        }
+      }
+    ];
     const popperInstance = window.Popper.createPopper(trigger, target, {
       placement: placement,
-      modifiers: [
-        {
-          name: 'offset',
-          options: {
-            offset: [0, offset]
-          }
-        },
-        {
-          name: 'preventOverflow',
-          options: {
-            padding: 10
-          }
-        }
-      ]
+      modifiers: modifiers
     });
-    console.log(popperInstance);
+
+    const showEvents = ['mouseenter', 'focus'];
+    const hideEvents = ['mouseleave', 'blur'];
+
+    showEvents.forEach(event => {
+      trigger.addEventListener(event, showPopover.bind(null, target, popperInstance, modifiers));
+    });
+
+    hideEvents.forEach(event => {
+      trigger.addEventListener(event, hidePopover.bind(null, target, popperInstance, modifiers));
+    });
   }
 });
