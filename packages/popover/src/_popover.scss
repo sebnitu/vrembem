@@ -5,6 +5,7 @@ $_b: var.$prefix-block;
 
 :root {
   --popover-offset: #{core.strip-unit(var.$offset)};
+  --popover-offset-overflow: #{core.strip-unit(var.$offset-overflow)};
 }
 
 .#{$_b}popover {

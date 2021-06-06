@@ -50,10 +50,10 @@ function getPopoverTarget(trigger) {
       trigger.nextElementSibling : false;
 }
 
-function getOffset() {
+function getCSSVar(property, fallback) {
   const styles = getComputedStyle(document.documentElement);
-  const offset = styles.getPropertyValue('--popover-offset');
-  return offset ? offset : 0;
+  const value = styles.getPropertyValue(property).trim();
+  return value ? value : fallback;
 }
 
 function showPopover(target, popper, modifiers) {
@@ -108,20 +108,23 @@ popovers.forEach((trigger) => {
       {
         name: 'offset',
         options: {
-          offset: [0, getOffset()]
+          offset: [0, parseInt(getCSSVar('--popover-offset', 0), 10)]
         }
       },
       {
         name: 'preventOverflow',
         options: {
-          padding: 10
+          padding: parseInt(getCSSVar('--popover-offset-overflow', 0), 10)
         }
       }
     ];
+    console.log(modifiers);
     const popperInstance = window.Popper.createPopper(trigger, target, {
       placement: placement,
       modifiers: modifiers
     });
+
+    console.log(getCSSVar('--popover-offset-overflow', 0));
 
     // TODO: add click events and the option to set which events to listen for
 
