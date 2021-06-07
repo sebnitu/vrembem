@@ -59,8 +59,8 @@ function getPopoverTarget(trigger) {
       trigger.nextElementSibling : false;
 }
 
-function getCSSVar(property, fallback) {
-  const styles = getComputedStyle(document.documentElement);
+function getCSSVar(property, fallback = false, el = document.documentElement) {
+  const styles = getComputedStyle(el);
   const value = styles.getPropertyValue(property).trim();
   return value ? value : fallback;
 }
@@ -103,24 +103,28 @@ function hidePopover(trigger, target, popper, modifiers) {
   }, 1);
 }
 
-const popovers = document.querySelectorAll('[data-popover-trigger]');
-popovers.forEach((trigger) => {
+const showEvents = ['mouseenter', 'focus'];
+const hideEvents = ['mouseleave', 'focusout'];
+
+const popoverTriggers = document.querySelectorAll('[data-popover-trigger]');
+popoverTriggers.forEach((trigger) => {
   const target = getPopoverTarget(trigger);
   if (target) {
     const placement = target.hasAttribute('data-popover-placement') ?
       target.getAttribute('data-popover-placement') :
-      getCSSVar('--popover-placement', 'bottom-start');
+      getCSSVar('--popover-placement', 'bottom-start', target);
+
     const modifiers = [
       {
         name: 'offset',
         options: {
-          offset: [0, parseInt(getCSSVar('--popover-offset', 0), 10)]
+          offset: [0, parseInt(getCSSVar('--popover-offset', 0, target), 10)]
         }
       },
       {
         name: 'preventOverflow',
         options: {
-          padding: parseInt(getCSSVar('--popover-offset-overflow', 0), 10)
+          padding: parseInt(getCSSVar('--popover-offset-overflow', 0, target), 10)
         }
       }
     ];
@@ -130,8 +134,7 @@ popovers.forEach((trigger) => {
       modifiers: modifiers
     });
 
-    const showEvents = ['mouseenter', 'focus'];
-    const hideEvents = ['mouseleave', 'focusout'];
+    console.log(getCSSVar('--popover-offset', 0, target));
 
     showEvents.forEach(event => {
       trigger.addEventListener(event, showPopover.bind(null, target, popperInstance, modifiers));

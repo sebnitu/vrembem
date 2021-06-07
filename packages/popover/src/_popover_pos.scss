@@ -12,7 +12,7 @@ $_v: var.$prefix-modifier-value;
     bottom: auto;
     left: 0;
     width: 100%;
-    height: (var.$offset * 1px);
+    height: calc(var(--popover-offset) * 1px);
   }
 }
 
@@ -23,7 +23,7 @@ $_v: var.$prefix-modifier-value;
     bottom: 100%;
     left: 0;
     width: 100%;
-    height: (var.$offset * 1px);
+    height: calc(var(--popover-offset) * 1px);
   }
 }
 
@@ -33,7 +33,7 @@ $_v: var.$prefix-modifier-value;
     right: auto;
     bottom: 0;
     left: 100%;
-    width: (var.$offset * 1px);
+    width: calc(var(--popover-offset) * 1px);
     height: 100%;
   }
 }
@@ -44,7 +44,7 @@ $_v: var.$prefix-modifier-value;
     right: 100%;
     bottom: 0;
     left: auto;
-    width: (var.$offset * 1px);
+    width: calc(var(--popover-offset) * 1px);
     height: 100%;
   }
 }

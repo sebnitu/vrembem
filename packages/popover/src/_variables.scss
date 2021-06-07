@@ -5,18 +5,21 @@ $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
-$z-index: 10 !default;
+$event: "click" !default;
 $placement: "bottom-start" !default;
 $offset: 8 !default;
 $offset-overflow: 20 !default;
-$padding: 0.5em !default;
+
+$z-index: 10 !default;
 $width: 16em !default;
-$font-size: core.$font-size-sm !default;
-$line-height: null !default;
-$background: core.$white !default;
+$padding: 0.5em !default;
 $border: null !default;
 $border-radius: core.$border-radius !default;
+$background: core.$white !default;
+$background-clip: padding-box !default;
 $box-shadow: core.$box-shadow-8dp !default;
+$font-size: core.$font-size-sm !default;
+$line-height: null !default;
 
 $size-sm-width: 12em !default;
 $size-lg-width: 20em !default;

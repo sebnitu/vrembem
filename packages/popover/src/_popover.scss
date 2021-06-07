@@ -4,6 +4,10 @@
 $_b: var.$prefix-block;
 
 :root {
+  @if var.$event {
+    --popover-event: #{var.$event};
+  }
+
   @if var.$placement {
     --popover-placement: #{var.$placement};
   }
@@ -17,12 +21,11 @@ $_b: var.$prefix-block;
   z-index: var.$z-index;
   display: none;
   width: var.$width;
-  margin: var.$offset 0 0;
   padding: var.$padding;
   border: var.$border;
   border-radius: var.$border-radius;
   background: var.$background;
-  background-clip: padding-box;
+  background-clip: var.$background-clip;
   box-shadow: var.$box-shadow;
   font-size: var.$font-size;
   line-height: var.$line-height;
@@ -35,7 +38,7 @@ $_b: var.$prefix-block;
     bottom: 100%;
     left: 0;
     width: 100%;
-    height: (var.$offset * 1px);
+    height: calc(var(--popover-offset) * 1px);
   }
 
   &.is-active {
