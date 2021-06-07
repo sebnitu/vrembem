@@ -40,6 +40,8 @@ document.addEventListener('drawer:opened', () => {
  * Popover prototyping
  */
 
+// TODO: Store all popover targets, and popper instances in an array
+
 // TODO: Maybe will need focus management for when a trigger and target are connected
 // via attribute values and focus needs to be returned to the element after trigger
 
@@ -102,11 +104,23 @@ function maybeHidePopover(trigger, target, popper, modifiers) {
   }, 1);
 }
 
-function clickHandler(target, popper, modifiers) {
+function clickHandler(trigger, target, popper, modifiers) {
   if (target.classList.contains('is-active')) {
     hidePopover(target, popper, modifiers);
   } else {
     showPopover(target, popper, modifiers);
+    document.addEventListener('click', function _f(event) {
+      const result = event.target.closest('[data-popover], [data-popover-trigger]');
+      const match = result === target || result === trigger;
+      if (!match) {
+        hidePopover(target, popper, modifiers);
+        this.removeEventListener('click', _f);
+      } else {
+        if (!target.classList.contains('is-active')) {
+          this.removeEventListener('click', _f);
+        }
+      }
+    });
   }
 }
 
@@ -151,7 +165,7 @@ popoverTriggers.forEach((trigger) => {
         target.addEventListener(event, maybeHidePopover.bind(null, trigger, target, popperInstance, modifiers));
       });
     } else {
-      trigger.addEventListener('click', clickHandler.bind(null, target, popperInstance, modifiers));
+      trigger.addEventListener('click', clickHandler.bind(null, trigger, target, popperInstance, modifiers));
     }
   }
 });
