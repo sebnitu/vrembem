@@ -43,11 +43,6 @@ document.addEventListener('drawer:opened', () => {
 // TODO: Maybe will need focus management for when a trigger and target are connected
 // via attribute values and focus needs to be returned to the element after trigger
 
-// TODO: Add behavior strategies. This should include the following types:
-// 1. Trigger hover/focus only
-// 2. Trigger and target hover/focus
-// 3. Click events
-
 // TODO: Add keyRouting support when popover is open
 // - Pressing 'Escape' should close popovers
 // - Process 'Enter', 'ArrowUp', 'ArrowDown', 'Tab', 'Space'
@@ -79,7 +74,20 @@ function showPopover(target, popper, modifiers) {
   popper.update();
 }
 
-function hidePopover(trigger, target, popper, modifiers) {
+function hidePopover(target, popper, modifiers) {
+  target.classList.remove('is-active');
+  popper.setOptions({
+    modifiers: [
+      {
+        name: 'eventListeners',
+        enabled: false
+      },
+      ...modifiers
+    ]
+  });
+}
+
+function maybeHidePopover(trigger, target, popper, modifiers) {
   // setTimeout is needed to correctly check which element is currently being focused
   setTimeout(() => {
     const isHovered =
@@ -89,19 +97,20 @@ function hidePopover(trigger, target, popper, modifiers) {
       document.activeElement.closest('[data-popover]') === target ||
       document.activeElement.closest('[data-popover-trigger]') === trigger;
     if (!isHovered && !isFocused) {
-      target.classList.remove('is-active');
-      popper.setOptions({
-        modifiers: [
-          {
-            name: 'eventListeners',
-            enabled: false
-          },
-          ...modifiers
-        ]
-      });
+      hidePopover(target, popper, modifiers);
     }
   }, 1);
 }
+
+function clickHandler(target, popper, modifiers) {
+  if (target.classList.contains('is-active')) {
+    hidePopover(target, popper, modifiers);
+  } else {
+    showPopover(target, popper, modifiers);
+  }
+}
+
+const eventType = 'click';
 
 const showEvents = ['mouseenter', 'focus'];
 const hideEvents = ['mouseleave', 'focusout'];
@@ -111,9 +120,7 @@ popoverTriggers.forEach((trigger) => {
   const target = getPopoverTarget(trigger);
   if (target) {
     const placement = target.hasAttribute('data-popover-placement') ?
-      target.getAttribute('data-popover-placement') :
-      getCSSVar('--popover-placement', 'bottom-start', target);
-
+      target.getAttribute('data-popover-placement') : 'bottom-start';
     const modifiers = [
       {
         name: 'offset',
@@ -134,15 +141,17 @@ popoverTriggers.forEach((trigger) => {
       modifiers: modifiers
     });
 
-    console.log(getCSSVar('--popover-offset', 0, target));
+    if (eventType === 'hover') {
+      showEvents.forEach(event => {
+        trigger.addEventListener(event, showPopover.bind(null, target, popperInstance, modifiers));
+      });
 
-    showEvents.forEach(event => {
-      trigger.addEventListener(event, showPopover.bind(null, target, popperInstance, modifiers));
-    });
-
-    hideEvents.forEach(event => {
-      trigger.addEventListener(event, hidePopover.bind(null, trigger, target, popperInstance, modifiers));
-      target.addEventListener(event, hidePopover.bind(null, trigger, target, popperInstance, modifiers));
-    });
+      hideEvents.forEach(event => {
+        trigger.addEventListener(event, maybeHidePopover.bind(null, trigger, target, popperInstance, modifiers));
+        target.addEventListener(event, maybeHidePopover.bind(null, trigger, target, popperInstance, modifiers));
+      });
+    } else {
+      trigger.addEventListener('click', clickHandler.bind(null, target, popperInstance, modifiers));
+    }
   }
 });
