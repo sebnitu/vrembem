@@ -44,7 +44,7 @@ export function handlerClick(event) {
   }
 }
 
-export function handlerKeyup(event) {
+export function handlerKeydown(event) {
   // Working catch
   if (this.working) return;
 
