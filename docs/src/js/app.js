@@ -40,15 +40,6 @@ document.addEventListener('drawer:opened', () => {
  * Popover prototyping
  */
 
-// TODO: Store all popover targets, and popper instances in an array
-
-// TODO: Maybe will need focus management for when a trigger and target are connected
-// via attribute values and focus needs to be returned to the element after trigger
-
-// TODO: Add keyRouting support when popover is open
-// - Pressing 'Escape' should close popovers
-// - Process 'Enter', 'ArrowUp', 'ArrowDown', 'Tab', 'Space'
-
 function getPopoverTarget(trigger) {
   return trigger.getAttribute('data-popover-trigger').trim() ?
     document.querySelector(`[data-popover="${trigger.getAttribute('data-popover-trigger')}"]`) :
@@ -62,61 +53,69 @@ function getCSSVar(property, fallback = false, el = document.documentElement) {
   return value ? value : fallback;
 }
 
-function showPopover(target, popper, modifiers) {
-  target.classList.add('is-active');
-  popper.setOptions({
+function showPopover(popover) {
+  popover.target.classList.add('is-active');
+  popover.popper.setOptions({
     modifiers: [
       {
         name: 'eventListeners',
         enabled: true
       },
-      ...modifiers
+      ...popover.modifiers
     ]
   });
-  popper.update();
+  popover.popper.update();
+  const index = popovers.findIndex((item) => {
+    return item.target === popover.target;
+  });
+  popovers[index].state = 'show';
 }
 
-function hidePopover(target, popper, modifiers) {
-  target.classList.remove('is-active');
-  popper.setOptions({
+function hidePopover(popover) {
+  popover.target.classList.remove('is-active');
+  popover.popper.setOptions({
     modifiers: [
       {
         name: 'eventListeners',
         enabled: false
       },
-      ...modifiers
+      ...popover.modifiers
     ]
   });
+  const index = popovers.findIndex((item) => {
+    return item.target === popover.target;
+  });
+  popovers[index].state = 'hide';
 }
 
-function maybeHidePopover(trigger, target, popper, modifiers) {
+function maybeHidePopover(popover) {
   // setTimeout is needed to correctly check which element is currently being focused
   setTimeout(() => {
     const isHovered =
-      target.closest(':hover') === target ||
-      trigger.closest(':hover') === trigger;
+      popover.target.closest(':hover') === popover.target ||
+      popover.trigger.closest(':hover') === popover.trigger;
     const isFocused =
-      document.activeElement.closest('[data-popover]') === target ||
-      document.activeElement.closest('[data-popover-trigger]') === trigger;
+      document.activeElement.closest('[data-popover]') === popover.target ||
+      document.activeElement.closest('[data-popover-trigger]') === popover.trigger;
     if (!isHovered && !isFocused) {
-      hidePopover(target, popper, modifiers);
+      hidePopover(popover);
     }
   }, 1);
 }
 
-function clickHandler(trigger, target, popper, modifiers) {
-  if (target.classList.contains('is-active')) {
-    hidePopover(target, popper, modifiers);
+function clickHandler(popover) {
+  if (popover.target.classList.contains('is-active')) {
+    hidePopover(popover);
   } else {
-    showPopover(target, popper, modifiers);
+    showPopover(popover);
     document.addEventListener('click', function _f(event) {
       const result = event.target.closest('[data-popover], [data-popover-trigger]');
-      const match = result === target || result === trigger;
+      const match = result === popover.target || result === popover.trigger;
       if (!match) {
-        hidePopover(target, popper, modifiers);
+        hidePopover(popover);
         this.removeEventListener('click', _f);
       } else {
-        if (!target.classList.contains('is-active')) {
+        if (!popover.target.classList.contains('is-active')) {
           this.removeEventListener('click', _f);
         }
       }
@@ -124,6 +123,7 @@ function clickHandler(trigger, target, popper, modifiers) {
   }
 }
 
+const popovers = [];
 const eventType = 'click';
 
 const showEvents = ['mouseenter', 'focus'];
@@ -155,17 +155,39 @@ popoverTriggers.forEach((trigger) => {
       modifiers: modifiers
     });
 
+    const popover = {
+      trigger: trigger,
+      target: target,
+      state: 'hide',
+      popper: popperInstance,
+      modifiers: modifiers
+    };
+
+    popovers.push(popover);
+
     if (eventType === 'hover') {
       showEvents.forEach(event => {
-        trigger.addEventListener(event, showPopover.bind(null, target, popperInstance, modifiers));
+        trigger.addEventListener(event, showPopover.bind(null, popover));
       });
 
       hideEvents.forEach(event => {
-        trigger.addEventListener(event, maybeHidePopover.bind(null, trigger, target, popperInstance, modifiers));
-        target.addEventListener(event, maybeHidePopover.bind(null, trigger, target, popperInstance, modifiers));
+        trigger.addEventListener(event, maybeHidePopover.bind(null, popover));
+        target.addEventListener(event, maybeHidePopover.bind(null, popover));
       });
     } else {
-      trigger.addEventListener('click', clickHandler.bind(null, trigger, target, popperInstance, modifiers));
+      trigger.addEventListener('click', clickHandler.bind(null, popover));
+    }
+  }
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    console.log('keydown:', event.key);
+    const popover = popovers.find((item) => {
+      return item.state === 'show';
+    });
+    if (popover) {
+      hidePopover(popover);
     }
   }
 });
