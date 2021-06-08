@@ -9,10 +9,13 @@ $_b: var.$prefix-block;
 }
 
 .#{$_b}popover {
-  position: relative;
+  position: absolute;
   z-index: var.$z-index;
+  top: 100%;
+  left: 0;
   display: none;
-  width: var.$width;
+  min-width: var.$width;
+  margin: calc(var(--popover-offset) * 1px) 0 0;
   padding: var.$padding;
   border: var.$border;
   border-radius: var.$border-radius;
@@ -42,5 +45,57 @@ $_b: var.$prefix-block;
   &:focus,
   &:focus-within {
     z-index: (var.$z-index + 2);
+  }
+}
+
+.#{$_b}popover[data-popper-placement^="top"] {
+  margin: 0 0 calc(var(--popover-offset) * 1px) 0;
+
+  &::before {
+    top: 100%;
+    right: 0;
+    bottom: auto;
+    left: 0;
+    width: 100%;
+    height: calc(var(--popover-offset) * 1px);
+  }
+}
+
+.#{$_b}popover[data-popper-placement^="bottom"] {
+  margin: calc(var(--popover-offset) * 1px) 0 0 0;
+
+  &::before {
+    top: auto;
+    right: 0;
+    bottom: 100%;
+    left: 0;
+    width: 100%;
+    height: calc(var(--popover-offset) * 1px);
+  }
+}
+
+.#{$_b}popover[data-popper-placement^="left"] {
+  margin: 0 calc(var(--popover-offset) * 1px) 0 0;
+
+  &::before {
+    top: 0;
+    right: auto;
+    bottom: 0;
+    left: 100%;
+    width: calc(var(--popover-offset) * 1px);
+    height: 100%;
+  }
+}
+
+.#{$_b}popover[data-popper-placement^="right"] {
+  margin: 0 0 0 calc(var(--popover-offset) * 1px);
+
+  &::before {
+    top: 0;
+    right: 100%;
+    bottom: 0;
+    left: auto;
+    width: calc(var(--popover-offset) * 1px);
+    height: 100%;
   }
 }
