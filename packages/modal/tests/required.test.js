@@ -4,7 +4,7 @@ import { transitionEnd } from './helpers/transition';
 
 let modal;
 const keyEv = new KeyboardEvent('keydown', {
-  keyCode: 27
+  key: 'Escape'
 });
 
 const markup = `

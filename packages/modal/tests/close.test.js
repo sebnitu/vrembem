@@ -4,10 +4,10 @@ import { transitionStart, transitionEnd } from './helpers/transition';
 
 let modal;
 const keyEsc = new KeyboardEvent('keydown', {
-  keyCode: 27
+  key: 'Escape'
 });
 const keySpace = new KeyboardEvent('keydown', {
-  keyCode: 32
+  key: 'Space'
 });
 
 const markup = `

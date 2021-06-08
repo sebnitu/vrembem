@@ -4,10 +4,10 @@ import '@testing-library/jest-dom/extend-expect';
 
 let drawer;
 const keyEscape = new KeyboardEvent('keydown', {
-  keyCode: 27
+  key: 'Escape'
 });
 const keySpace = new KeyboardEvent('keydown', {
-  keyCode: 32
+  key: 'Space'
 });
 
 const markup = `
