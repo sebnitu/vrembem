@@ -13,33 +13,7 @@ usage:
 
 {% include demo_open.html class_parent="level" %}
 <div>
-  <button class="button button_color_primary" data-popover-trigger data-popover-event="hover">
-    <span>Hover Trigger</span>
-    <span class="arrow-down"></span>
-  </button>
-  <div class="popover" data-popover>
-    <ul class="menu">
-      <li class="menu__item">
-        <button class="menu__action">Undo</button>
-      </li>
-      <li class="menu__item">
-        <button class="menu__action">Redo</button>
-      </li>
-      <li class="menu__sep"></li>
-      <li class="menu__item">
-        <button class="menu__action">Cut</button>
-      </li>
-      <li class="menu__item">
-        <button class="menu__action">Copy</button>
-      </li>
-      <li class="menu__item">
-        <button class="menu__action">Paste</button>
-      </li>
-    </ul>
-  </div>
-</div>
-<div>
-  <button class="button button_color_secondary" data-popover-trigger data-popover-event="click">
+  <button class="button button_color_primary" data-popover-trigger data-popover-event="click">
     <span>Click Trigger</span>
     <span class="arrow-down"></span>
   </button>
@@ -104,18 +78,39 @@ usage:
     </ul>
   </div>
 </div>
-{% include demo_switch.html %}
-```html
-<div class="popover">
-  <button class="button">...</button>
-  <div class="popover__target">
-    ...
+<div>
+  <button class="button button_color_secondary" data-popover-trigger data-popover-event="hover">
+    <span>Hover Trigger</span>
+    <span class="arrow-down"></span>
+  </button>
+  <div class="popover" data-popover>
+    <ul class="menu">
+      <li class="menu__item">
+        <button class="menu__action">Undo</button>
+      </li>
+      <li class="menu__item">
+        <button class="menu__action">Redo</button>
+      </li>
+      <li class="menu__sep"></li>
+      <li class="menu__item">
+        <button class="menu__action">Cut</button>
+      </li>
+      <li class="menu__item">
+        <button class="menu__action">Copy</button>
+      </li>
+      <li class="menu__item">
+        <button class="menu__action">Paste</button>
+      </li>
+    </ul>
   </div>
 </div>
+{% include demo_switch.html %}
+```html
+...
 ```
 {% include demo_close.html %}
 
-## popover_pos_[value]
+## data-popover-placement
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="level">
@@ -149,9 +144,7 @@ usage:
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="popover popover_pos_bottom-start">...</div>
-<div class="popover popover_pos_bottom">...</div>
-<div class="popover popover_pos_bottom-end">...</div>
+...
 ```
 {% include demo_close.html %}
 
@@ -187,9 +180,7 @@ usage:
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="popover popover_pos_top-start">...</div>
-<div class="popover popover_pos_top">...</div>
-<div class="popover popover_pos_top-end">...</div>
+...
 ```
 {% include demo_close.html %}
 
@@ -225,9 +216,7 @@ usage:
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="popover popover_pos_left-start">...</div>
-<div class="popover popover_pos_left">...</div>
-<div class="popover popover_pos_left-end">...</div>
+...
 ```
 {% include demo_close.html %}
 
@@ -263,9 +252,7 @@ usage:
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="popover popover_pos_right-start">...</div>
-<div class="popover popover_pos_right">...</div>
-<div class="popover popover_pos_right-end">...</div>
+...
 ```
 {% include demo_close.html %}
 
