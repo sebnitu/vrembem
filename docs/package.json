@@ -23,6 +23,7 @@
     "directory": "packages/docs"
   },
   "dependencies": {
+    "@popperjs/core": "^2.9.2",
     "feather-icons": "^4.28.0",
     "list.js": "^2.3.1",
     "scroll-stash": "^1.1.2",

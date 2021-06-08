@@ -1,5 +1,6 @@
 import * as vb from 'vrembem';
 import ScrollStash from 'scroll-stash';
+import { createPopper } from '@popperjs/core/dist/esm/popper';
 import 'svgxuse';
 import 'wicg-inert';
 import './list.js';
@@ -39,8 +40,6 @@ document.addEventListener('drawer:opened', () => {
 /**
  * Popover prototyping
  */
-
-// TODO: Properly set popover as shown if `is-active` is present on init
 
 const popovers = [];
 const showEvents = ['mouseenter', 'focus'];
@@ -109,23 +108,27 @@ function maybeHidePopover(popover) {
   }, 1);
 }
 
+function documentClickListener(popover) {
+  document.addEventListener('click', function _f(event) {
+    const result = event.target.closest('[data-popover], [data-popover-trigger]');
+    const match = result === popover.target || result === popover.trigger;
+    if (!match) {
+      hidePopover(popover);
+      this.removeEventListener('click', _f);
+    } else {
+      if (!popover.target.classList.contains('is-active')) {
+        this.removeEventListener('click', _f);
+      }
+    }
+  });
+}
+
 function clickHandler(popover) {
   if (popover.target.classList.contains('is-active')) {
     hidePopover(popover);
   } else {
     showPopover(popover);
-    document.addEventListener('click', function _f(event) {
-      const result = event.target.closest('[data-popover], [data-popover-trigger]');
-      const match = result === popover.target || result === popover.trigger;
-      if (!match) {
-        hidePopover(popover);
-        this.removeEventListener('click', _f);
-      } else {
-        if (!popover.target.classList.contains('is-active')) {
-          this.removeEventListener('click', _f);
-        }
-      }
-    });
+    documentClickListener(popover);
   }
 }
 
@@ -150,7 +153,7 @@ popoverTriggers.forEach((trigger) => {
       }
     ];
 
-    const popperInstance = window.Popper.createPopper(trigger, target, {
+    const popperInstance = createPopper(trigger, target, {
       placement: placement,
       modifiers: modifiers
     });
@@ -179,6 +182,11 @@ popoverTriggers.forEach((trigger) => {
       });
     } else {
       trigger.addEventListener('click', clickHandler.bind(null, popover));
+    }
+
+    if (target.classList.contains('is-active')) {
+      showPopover(popover);
+      documentClickListener(popover);
     }
   }
 });

@@ -3706,10 +3706,13 @@ input::-moz-placeholder {
 }
 
 .popover {
-  position: relative;
+  position: absolute;
   z-index: 10;
+  top: 100%;
+  left: 0;
   display: none;
-  width: 16em;
+  min-width: 16em;
+  margin: calc(var(--popover-offset) * 1px) 0 0;
   padding: 0.5em;
   border-radius: 4px;
   background: #fff;
@@ -3735,6 +3738,9 @@ input::-moz-placeholder {
   z-index: 12;
 }
 
+.popover[data-popper-placement^=top] {
+  margin: 0 0 calc(var(--popover-offset) * 1px) 0;
+}
 .popover[data-popper-placement^=top]::before {
   top: 100%;
   right: 0;
@@ -3744,6 +3750,9 @@ input::-moz-placeholder {
   height: calc(var(--popover-offset) * 1px);
 }
 
+.popover[data-popper-placement^=bottom] {
+  margin: calc(var(--popover-offset) * 1px) 0 0 0;
+}
 .popover[data-popper-placement^=bottom]::before {
   top: auto;
   right: 0;
@@ -3753,6 +3762,9 @@ input::-moz-placeholder {
   height: calc(var(--popover-offset) * 1px);
 }
 
+.popover[data-popper-placement^=left] {
+  margin: 0 calc(var(--popover-offset) * 1px) 0 0;
+}
 .popover[data-popper-placement^=left]::before {
   top: 0;
   right: auto;
@@ -3762,6 +3774,9 @@ input::-moz-placeholder {
   height: 100%;
 }
 
+.popover[data-popper-placement^=right] {
+  margin: 0 0 0 calc(var(--popover-offset) * 1px);
+}
 .popover[data-popper-placement^=right]::before {
   top: 0;
   right: 100%;
@@ -3772,15 +3787,15 @@ input::-moz-placeholder {
 }
 
 .popover_size_auto {
-  width: auto;
+  min-width: 0;
 }
 
 .popover_size_sm {
-  width: 12em;
+  min-width: 12em;
 }
 
 .popover_size_lg {
-  width: 20em;
+  min-width: 20em;
 }
 
 .radio {
