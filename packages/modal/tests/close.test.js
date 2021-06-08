@@ -3,10 +3,10 @@ import '@testing-library/jest-dom/extend-expect';
 import { transitionStart, transitionEnd } from './helpers/transition';
 
 let modal;
-const keyEsc = new KeyboardEvent('keyup', {
+const keyEsc = new KeyboardEvent('keydown', {
   keyCode: 27
 });
-const keySpace = new KeyboardEvent('keyup', {
+const keySpace = new KeyboardEvent('keydown', {
   keyCode: 32
 });
 
