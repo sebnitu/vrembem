@@ -35,7 +35,7 @@ export function handlerKeydown(event) {
   // Working catch
   if (this.working) return;
 
-  if (event.key === 'Escape' || event.keyCode === 27) {
+  if (event.key === 'Escape') {
     const target = document.querySelector(
       `[data-${this.settings.dataModal}].${this.settings.stateOpened}`
     );
