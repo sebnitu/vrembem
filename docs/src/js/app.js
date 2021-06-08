@@ -41,6 +41,11 @@ document.addEventListener('drawer:opened', () => {
  * Popover prototyping
  */
 
+// Handle a11y attributes for when a popover is opened or closed. E.g:
+// aria-expanded="true | false" on trigger element
+// aria-hidden="true | false" on popover element
+// aria-labelledby="triggerID" on popover element (handled in markup)
+
 const popovers = [];
 const showEvents = ['mouseenter', 'focus'];
 const hideEvents = ['mouseleave', 'focusout'];
