@@ -617,7 +617,7 @@ Initializes the modal instance. During initialization, the following processes a
 - Sets `tabindex="-1"` on all modal dialog elements if `setTabindex` is set to `true`.
 - Moves all modals in the DOM to a location specified in the `moveModals` option.
 - Adds the `click` event listener to the document.
-- Adds the `keyup` event listener for closing modals with the `esc` key.
+- Adds the `keydown` event listener for closing modals with the `esc` key.
 
 ```js
 const modal = new Modal();
@@ -630,7 +630,7 @@ Destroys and cleans up the modal instantiation. During cleanup, the following pr
 
 - Clears the stored `modal.memory` object.
 - Removes the `click` event listener from the document.
-- Removes the `keyup` event listener from the document.
+- Removes the `keydown` event listener from the document.
 
 ```js
 const modal = new Modal();
@@ -641,7 +641,7 @@ modal.destroy();
 
 ### `modal.initEventListeners()`
 
-Set the document event listeners for click, touchend and keyup events.
+Set the document event listeners for click, touchend and keydown events.
 
 ```js
 const modal = new Modal({ eventListeners: false });
@@ -651,7 +651,7 @@ modal.initEventListeners();
 
 ### `modal.destroyEventListeners()`
 
-Remove the document event listeners for click, touchend and keyup events.
+Remove the document event listeners for click, touchend and keydown events.
 
 ```js
 const modal = new Modal();

@@ -276,7 +276,7 @@ Initializes the drawer instance. During initialization, the following processes 
 - Runs `setTabindex()` to apply tabindex for all drawer dialogs.
 - Runs `breakpoint.init()` to initialize all breakpoints for drawers.
 - Adds the `click` event listener to the document.
-- Adds the `keyup` event listener for closing modal drawers with the `esc` key.
+- Adds the `keydown` event listener for closing modal drawers with the `esc` key.
 
 ```js
 const drawer = new Drawer();
@@ -292,7 +292,7 @@ Destroys and cleans up the drawer instantiation. During cleanup, the following p
 - Clears the stored `drawer.state` object.
 - Removes the saved state from local storage.
 - Removes the `click` event listener from the document.
-- Removes the `keyup` event listener from the document.
+- Removes the `keydown` event listener from the document.
 
 ```js
 const drawer = new Drawer();
@@ -303,7 +303,7 @@ drawer.destroy();
 
 ### `drawer.initEventListeners()`
 
-Set the document event listeners for click, touchend and keyup events.
+Set the document event listeners for click, touchend and keydown events.
 
 ```js
 const drawer = new Drawer({ eventListeners: false });
@@ -313,7 +313,7 @@ drawer.initEventListeners();
 
 ### `drawer.destroyEventListeners()`
 
-Remove the document event listeners for click, touchend and keyup events.
+Remove the document event listeners for click, touchend and keydown events.
 
 ```js
 const drawer = new Drawer();
