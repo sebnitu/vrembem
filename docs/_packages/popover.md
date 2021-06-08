@@ -12,7 +12,7 @@ usage:
 ## popover
 
 {% include demo_open.html %}
-<button class="button button_color_primary" data-popover-trigger>
+<button class="button button_color_primary" data-popover-trigger data-popover-event="hover">
   <span>Trigger</span>
   <span class="arrow-down"></span>
 </button>

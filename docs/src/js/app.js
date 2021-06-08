@@ -40,6 +40,10 @@ document.addEventListener('drawer:opened', () => {
  * Popover prototyping
  */
 
+const popovers = [];
+const showEvents = ['mouseenter', 'focus'];
+const hideEvents = ['mouseleave', 'focusout'];
+
 function getPopoverTarget(trigger) {
   return trigger.getAttribute('data-popover-trigger').trim() ?
     document.querySelector(`[data-popover="${trigger.getAttribute('data-popover-trigger')}"]`) :
@@ -123,12 +127,6 @@ function clickHandler(popover) {
   }
 }
 
-const popovers = [];
-const eventType = 'click';
-
-const showEvents = ['mouseenter', 'focus'];
-const hideEvents = ['mouseleave', 'focusout'];
-
 const popoverTriggers = document.querySelectorAll('[data-popover-trigger]');
 popoverTriggers.forEach((trigger) => {
   const target = getPopoverTarget(trigger);
@@ -164,6 +162,9 @@ popoverTriggers.forEach((trigger) => {
     };
 
     popovers.push(popover);
+
+    const eventType = trigger.hasAttribute('data-popover-event') ?
+      trigger.getAttribute('data-popover-event') : 'click';
 
     if (eventType === 'hover') {
       showEvents.forEach(event => {
