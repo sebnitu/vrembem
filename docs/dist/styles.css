@@ -62,7 +62,7 @@ pre {
 }
 
 small {
-  font-size: 0.875em;
+  font-size: 0.875rem;
 }
 
 table {
@@ -895,7 +895,7 @@ input::-moz-placeholder {
   padding: calc(0.25rem - 1px) calc(0.5rem - 1px);
   min-width: 1.875rem;
   min-height: 1.875rem;
-  font-size: 0.875em;
+  font-size: 0.875rem;
   line-height: 1.375;
 }
 .button_size_sm .icon {
@@ -906,7 +906,7 @@ input::-moz-placeholder {
   padding: calc(0.648rem - 1px) calc(1.5rem - 1px);
   min-width: 3.125rem;
   min-height: 3.125rem;
-  font-size: 1.125em;
+  font-size: 1.125rem;
   line-height: 1.625;
 }
 .button_size_lg:not(.button_icon) .icon:first-child {
@@ -1245,7 +1245,7 @@ input::-moz-placeholder {
 
 .card__title {
   flex-grow: 1;
-  font-size: 1.125em;
+  font-size: 1.125rem;
   font-weight: 600;
   line-height: 1.625;
 }
@@ -1509,7 +1509,7 @@ input::-moz-placeholder {
 
 .dialog__title {
   flex-grow: 1;
-  font-size: 1.125em;
+  font-size: 1.125rem;
   font-weight: 600;
   line-height: 1.625;
 }
@@ -2427,7 +2427,7 @@ input::-moz-placeholder {
 }
 .icon-action .icon {
   stroke-width: 2.5px;
-  font-size: 0.875em;
+  font-size: 0.875rem;
 }
 
 .icon-action_invert {
@@ -2582,14 +2582,14 @@ input::-moz-placeholder {
 .input_size_sm {
   padding: calc(0.25rem - 1px) calc(0.5rem - 1px);
   height: 1.875rem;
-  font-size: 0.875em;
+  font-size: 0.875rem;
   line-height: 1.375;
 }
 
 .input_size_lg {
   padding: calc(0.648rem - 1px);
   height: 3.125rem;
-  font-size: 1.125em;
+  font-size: 1.125rem;
   line-height: 1.625;
 }
 
@@ -3503,7 +3503,7 @@ input::-moz-placeholder {
 }
 
 .menu_size_sm {
-  font-size: 0.875em;
+  font-size: 0.875rem;
   line-height: 1.375;
 }
 .menu_size_sm .menu__action {
@@ -3516,7 +3516,7 @@ input::-moz-placeholder {
 }
 
 .menu_size_lg {
-  font-size: 1.125em;
+  font-size: 1.125rem;
   line-height: 1.625;
 }
 .menu_size_lg .menu__action {
@@ -3675,7 +3675,7 @@ input::-moz-placeholder {
 }
 
 .notice__title {
-  font-size: 1.125em;
+  font-size: 1.125rem;
   font-weight: 600;
   line-height: 1.625;
 }
@@ -3715,7 +3715,7 @@ input::-moz-placeholder {
   background: #fff;
   background-clip: padding-box;
   box-shadow: 0 0 0 1px rgba(33, 33, 33, 0.05), 0 5px 5px -3px rgba(33, 33, 33, 0.1), 0 8px 10px 1px rgba(33, 33, 33, 0.08), 0 3px 14px 2px rgba(33, 33, 33, 0.06);
-  font-size: 0.875em;
+  font-size: 0.875rem;
 }
 .popover::before {
   content: "";
@@ -3730,6 +3730,9 @@ input::-moz-placeholder {
 .popover.is-active {
   z-index: 11;
   display: block;
+}
+.popover:hover, .popover:focus, .popover:focus-within {
+  z-index: 12;
 }
 
 .popover[data-popper-placement^=top]::before {
@@ -5868,11 +5871,11 @@ input::-moz-placeholder {
 }
 
 .font-size-sm {
-  font-size: 0.875em !important;
+  font-size: 0.875rem !important;
 }
 
 .font-size-lg {
-  font-size: 1.125em !important;
+  font-size: 1.125rem !important;
 }
 
 .font-leading-base {
@@ -6673,7 +6676,7 @@ input::-moz-placeholder {
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 0 0 1px rgba(33, 33, 33, 0.05), 0 5px 5px -3px rgba(33, 33, 33, 0.1), 0 8px 10px 1px rgba(33, 33, 33, 0.08), 0 3px 14px 2px rgba(33, 33, 33, 0.06);
   font-family: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 0.875em;
+  font-size: 0.875rem;
 }
 .debug::before {
   content: "Debug";

@@ -40,6 +40,8 @@ document.addEventListener('drawer:opened', () => {
  * Popover prototyping
  */
 
+// TODO: Properly set popover as shown if `is-active` is present on init
+
 const popovers = [];
 const showEvents = ['mouseenter', 'focus'];
 const hideEvents = ['mouseleave', 'focusout'];

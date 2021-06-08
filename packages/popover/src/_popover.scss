@@ -37,4 +37,10 @@ $_b: var.$prefix-block;
     z-index: (var.$z-index + 1);
     display: block;
   }
+
+  &:hover,
+  &:focus,
+  &:focus-within {
+    z-index: (var.$z-index + 2);
+  }
 }

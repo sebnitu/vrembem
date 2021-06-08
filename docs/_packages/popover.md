@@ -11,30 +11,98 @@ usage:
 
 ## popover
 
-{% include demo_open.html %}
-<button class="button button_color_primary" data-popover-trigger data-popover-event="hover">
-  <span>Trigger</span>
-  <span class="arrow-down"></span>
-</button>
-<div class="popover" data-popover>
-  <ul class="menu">
-    <li class="menu__item">
-      <button class="menu__action">Undo</button>
-    </li>
-    <li class="menu__item">
-      <button class="menu__action">Redo</button>
-    </li>
-    <li class="menu__sep"></li>
-    <li class="menu__item">
-      <button class="menu__action">Cut</button>
-    </li>
-    <li class="menu__item">
-      <button class="menu__action">Copy</button>
-    </li>
-    <li class="menu__item">
-      <button class="menu__action">Paste</button>
-    </li>
-  </ul>
+{% include demo_open.html class_parent="level" %}
+<div>
+  <button class="button button_color_primary" data-popover-trigger data-popover-event="hover">
+    <span>Hover Trigger</span>
+    <span class="arrow-down"></span>
+  </button>
+  <div class="popover" data-popover>
+    <ul class="menu">
+      <li class="menu__item">
+        <button class="menu__action">Undo</button>
+      </li>
+      <li class="menu__item">
+        <button class="menu__action">Redo</button>
+      </li>
+      <li class="menu__sep"></li>
+      <li class="menu__item">
+        <button class="menu__action">Cut</button>
+      </li>
+      <li class="menu__item">
+        <button class="menu__action">Copy</button>
+      </li>
+      <li class="menu__item">
+        <button class="menu__action">Paste</button>
+      </li>
+    </ul>
+  </div>
+</div>
+<div>
+  <button class="button button_color_secondary" data-popover-trigger data-popover-event="click">
+    <span>Click Trigger</span>
+    <span class="arrow-down"></span>
+  </button>
+  <div class="popover" data-popover>
+    <ul class="menu">
+      <li class="menu__item">
+        <button class="menu__action">
+          <span class="menu__text">Bold</span>
+          <span class="color-subtle">&#8984;B</span>
+        </button>
+      </li>
+      <li class="menu__item">
+        <button class="menu__action">
+          <span class="menu__text">Italic</span>
+          <span class="color-subtle">&#8984;I</span>
+        </button>
+      </li>
+      <li class="menu__item">
+        <button class="menu__action">
+          <span class="menu__text">Underline</span>
+          <span class="color-subtle">&#8984;U</span>
+        </button>
+      </li>
+      <li class="menu__sep"></li>
+      <li class="menu__item">
+        <button class="menu__action">
+          <span class="menu__text">Paragraph Styles</span>
+          <span class="color-subtle arrow-right"></span>
+        </button>
+      </li>
+      <li class="menu__item">
+        <button class="menu__action">
+          <span class="menu__text">Align</span>
+          <span class="color-subtle arrow-right"></span>
+        </button>
+      </li>
+      <li class="menu__item">
+        <button class="menu__action">
+          <span class="menu__text">Line spacing</span>
+          <span class="color-subtle arrow-right"></span>
+        </button>
+      </li>
+      <li class="menu__item">
+        <button class="menu__action">
+          <span class="menu__text">Numbered lists</span>
+          <span class="color-subtle arrow-right"></span>
+        </button>
+      </li>
+      <li class="menu__item">
+        <button class="menu__action">
+          <span class="menu__text">List options</span>
+          <span class="color-subtle arrow-right"></span>
+        </button>
+      </li>
+      <li class="menu__sep"></li>
+      <li class="menu__item">
+        <button class="menu__action">
+          <span class="menu__text">Clear formatting</span>
+          <span class="color-subtle">&#8984;/</span>
+        </button>
+      </li>
+    </ul>
+  </div>
 </div>
 {% include demo_switch.html %}
 ```html
