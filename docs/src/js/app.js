@@ -182,7 +182,6 @@ popoverTriggers.forEach((trigger) => {
 
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
-    console.log('keydown:', event.key);
     const popover = popovers.find((item) => {
       return item.state === 'show';
     });
