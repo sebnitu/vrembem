@@ -3,11 +3,11 @@ import { transition } from './helpers/transition';
 import '@testing-library/jest-dom/extend-expect';
 
 let drawer;
-const keyEscape = new KeyboardEvent('keyup', {
-  keyCode: 27
+const keyEscape = new KeyboardEvent('keydown', {
+  key: 'Escape'
 });
-const keySpace = new KeyboardEvent('keyup', {
-  keyCode: 32
+const keySpace = new KeyboardEvent('keydown', {
+  key: 'Space'
 });
 
 const markup = `

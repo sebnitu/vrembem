@@ -5,7 +5,7 @@ import { openTransition, closeTransition } from '@vrembem/core/index';
 import { moveElement } from '@vrembem/core/index';
 
 import defaults from './src/js/defaults';
-import { handlerClick, handlerKeyup } from './src/js/handlers';
+import { handlerClick, handlerKeydown } from './src/js/handlers';
 import { setInitialState } from './src/js/initialState';
 
 export default class Modal {
@@ -16,7 +16,7 @@ export default class Modal {
     this.memory = {};
     this.focusTrap = new FocusTrap();
     this.__handlerClick = handlerClick.bind(this);
-    this.__handlerKeyup = handlerKeyup.bind(this);
+    this.__handlerKeydown = handlerKeydown.bind(this);
     if (this.settings.autoInit) this.init();
   }
 
@@ -46,13 +46,13 @@ export default class Modal {
   initEventListeners() {
     document.addEventListener('click', this.__handlerClick, false);
     document.addEventListener('touchend', this.__handlerClick, false);
-    document.addEventListener('keyup', this.__handlerKeyup, false);
+    document.addEventListener('keydown', this.__handlerKeydown, false);
   }
 
   destroyEventListeners() {
     document.removeEventListener('click', this.__handlerClick, false);
     document.removeEventListener('touchend', this.__handlerClick, false);
-    document.removeEventListener('keyup', this.__handlerKeyup, false);
+    document.removeEventListener('keydown', this.__handlerKeydown, false);
   }
 
   /**

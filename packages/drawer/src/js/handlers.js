@@ -44,11 +44,11 @@ export function handlerClick(event) {
   }
 }
 
-export function handlerKeyup(event) {
+export function handlerKeydown(event) {
   // Working catch
   if (this.working) return;
 
-  if (event.keyCode == 27) {
+  if (event.key === 'Escape') {
     const target = document.querySelector(
       `.${this.settings.classModal}.${this.settings.stateOpened}`
     );

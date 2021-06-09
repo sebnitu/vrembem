@@ -3,8 +3,8 @@ import '@testing-library/jest-dom/extend-expect';
 import { transitionEnd } from './helpers/transition';
 
 let modal;
-const keyEv = new KeyboardEvent('keyup', {
-  keyCode: 27
+const keyEv = new KeyboardEvent('keydown', {
+  key: 'Escape'
 });
 
 const markup = `

@@ -5,7 +5,7 @@ import { openTransition, closeTransition } from '@vrembem/core/index';
 
 import defaults from './src/js/defaults';
 import { Breakpoint } from './src/js/breakpoint';
-import { handlerClick, handlerKeyup } from './src/js/handlers';
+import { handlerClick, handlerKeydown } from './src/js/handlers';
 import { stateClear, stateSave, stateSet } from './src/js/state';
 import { switchToDefault, switchToModal } from './src/js/switchTo';
 
@@ -19,7 +19,7 @@ export default class Drawer {
     this.focusTrap = new FocusTrap();
     this.breakpoint = new Breakpoint(this);
     this.__handlerClick = handlerClick.bind(this);
-    this.__handlerKeyup = handlerKeyup.bind(this);
+    this.__handlerKeydown = handlerKeydown.bind(this);
     if (this.settings.autoInit) this.init();
   }
 
@@ -52,13 +52,13 @@ export default class Drawer {
   initEventListeners() {
     document.addEventListener('click', this.__handlerClick, false);
     document.addEventListener('touchend', this.__handlerClick, false);
-    document.addEventListener('keyup', this.__handlerKeyup, false);
+    document.addEventListener('keydown', this.__handlerKeydown, false);
   }
 
   destroyEventListeners() {
     document.removeEventListener('click', this.__handlerClick, false);
     document.removeEventListener('touchend', this.__handlerClick, false);
-    document.removeEventListener('keyup', this.__handlerKeyup, false);
+    document.removeEventListener('keydown', this.__handlerKeydown, false);
   }
 
   /**
