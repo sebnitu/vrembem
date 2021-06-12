@@ -45,23 +45,45 @@
 
     <div class="padding-xl gap-y">
 
-      <div>
-        <button class="button" data-popover-trigger>
-          Popover Trigger
-        </button>
-        <div class="popover" data-popover>
-          <ul class="menu">
-            <li class="menu__item">
-              <button class="menu__action">Add</button>
-            </li>
-            <li class="menu__item">
-              <button class="menu__action">Remove</button>
-            </li>
-            <li class="menu__item">
-              <button class="menu__action">Edit</button>
-            </li>
-          </ul>
+      <div class="flex flex-gap">
+        <div>
+          <button class="button" data-popover-trigger>
+            Popover Click
+          </button>
+          <div class="popover" data-popover>
+            <ul class="menu">
+              <li class="menu__item">
+                <button class="menu__action">Add</button>
+              </li>
+              <li class="menu__item">
+                <button class="menu__action">Remove</button>
+              </li>
+              <li class="menu__item">
+                <button class="menu__action">Edit</button>
+              </li>
+            </ul>
+          </div>
         </div>
+        
+        <div>
+          <button class="button" data-popover-trigger data-popover-event="hover">
+            Popover Hover
+          </button>
+          <div class="popover" data-popover>
+            <ul class="menu">
+              <li class="menu__item">
+                <button class="menu__action">Add</button>
+              </li>
+              <li class="menu__item">
+                <button class="menu__action">Remove</button>
+              </li>
+              <li class="menu__item">
+                <button class="menu__action">Edit</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+
       </div>
 
     </div>
