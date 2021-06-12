@@ -27,20 +27,7 @@ export default class Popover {
       if (target) {
         const placement = target.hasAttribute('data-popover-placement') ?
           target.getAttribute('data-popover-placement') : 'bottom-start';
-        const modifiers = [
-          {
-            name: 'offset',
-            options: {
-              offset: [0, parseInt(this.getCSSVar('--popover-offset', 0, target), 10)]
-            }
-          },
-          {
-            name: 'preventOverflow',
-            options: {
-              padding: parseInt(this.getCSSVar('--popover-offset-overflow', 0, target), 10)
-            }
-          }
-        ];
+        const modifiers = this.getModifiers(target);
 
         const popperInstance = createPopper(trigger, target, {
           placement: placement,
@@ -75,7 +62,7 @@ export default class Popover {
           trigger.addEventListener('click', this.clickHandler.bind(this, popover));
         }
 
-        if (target.classList.contains('is-active')) {
+        if (target.classList.contains(this.settings.stateActive)) {
           this.showPopover(popover);
           this.documentClickListener(popover);
         }
@@ -122,8 +109,22 @@ export default class Popover {
     return value ? value : fallback;
   }
 
+  getModifiers(popover) {
+    return [{
+      name: 'offset',
+      options: {
+        offset: [0, parseInt(this.getCSSVar('--popover-offset', 0, popover), 10)]
+      }
+    }, {
+      name: 'preventOverflow',
+      options: {
+        padding: parseInt(this.getCSSVar('--popover-offset-overflow', 0, popover), 10)
+      }
+    }];
+  }
+
   clickHandler(popover) {
-    if (popover.target.classList.contains('is-active')) {
+    if (popover.target.classList.contains(this.settings.stateActive)) {
       this.hidePopover(popover);
     } else {
       this.showPopover(popover);
@@ -140,7 +141,7 @@ export default class Popover {
         rootThis.hidePopover(popover);
         this.removeEventListener('click', _f);
       } else {
-        if (!popover.target.classList.contains('is-active')) {
+        if (!popover.target.classList.contains(rootThis.settings.stateActive)) {
           this.removeEventListener('click', _f);
         }
       }
@@ -158,8 +159,15 @@ export default class Popover {
     }
   }
 
+  /**
+   * Show and Hide functionality
+   */
+
   showPopover(popover) {
-    popover.target.classList.add('is-active');
+    // Update state class
+    popover.target.classList.add(this.settings.stateActive);
+
+    // Set popper options and update
     popover.popper.setOptions({
       modifiers: [
         {
@@ -170,6 +178,8 @@ export default class Popover {
       ]
     });
     popover.popper.update();
+
+    // Update popovers status with new state
     const index = this.popovers.findIndex((item) => {
       return item.target === popover.target;
     });
@@ -177,7 +187,10 @@ export default class Popover {
   }
 
   hidePopover(popover) {
-    popover.target.classList.remove('is-active');
+    // Update state class
+    popover.target.classList.remove(this.settings.stateActive);
+
+    // Set popper options
     popover.popper.setOptions({
       modifiers: [
         {
@@ -187,6 +200,8 @@ export default class Popover {
         ...popover.modifiers
       ]
     });
+
+    // Update popovers status with new state
     const index = this.popovers.findIndex((item) => {
       return item.target === popover.target;
     });
@@ -196,12 +211,17 @@ export default class Popover {
   maybeHidePopover(popover) {
     // setTimeout is needed to correctly check which element is currently being focused
     setTimeout(() => {
+      // Check if trigger or target are being hovered
       const isHovered =
         popover.target.closest(':hover') === popover.target ||
         popover.trigger.closest(':hover') === popover.trigger;
+
+      // Check if trigger or target are being focused
       const isFocused =
         document.activeElement.closest('[data-popover]') === popover.target ||
         document.activeElement.closest('[data-popover-trigger]') === popover.trigger;
+
+      // Only hide popover if the trigger and target are not currently hovered or focused
       if (!isHovered && !isFocused) {
         this.hidePopover(popover);
       }

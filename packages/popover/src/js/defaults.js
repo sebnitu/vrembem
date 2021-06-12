@@ -1,3 +1,6 @@
 export default {
-  autoInit: false
+  autoInit: false,
+
+  // State classes
+  stateActive: 'is-active',
 };
