@@ -73,7 +73,7 @@ export default class Popover {
   }
 
   destroy() {
-    // TODO: Should disable popper...
+    // TODO: Should disable popover...
   }
 
   /**
@@ -107,6 +107,10 @@ export default class Popover {
     const styles = getComputedStyle(el);
     const value = styles.getPropertyValue(property).trim();
     return value ? value : fallback;
+  }
+
+  setCSSVar(property, value, el = document.documentElement) {
+    el.style.setProperty(property, value);
   }
 
   getModifiers(popover) {
@@ -174,7 +178,7 @@ export default class Popover {
           name: 'eventListeners',
           enabled: true
         },
-        ...popover.modifiers
+        ...this.getModifiers(popover.target)
       ]
     });
     popover.popper.update();
@@ -197,7 +201,7 @@ export default class Popover {
           name: 'eventListeners',
           enabled: false
         },
-        ...popover.modifiers
+        ...this.getModifiers(popover.target)
       ]
     });
 
