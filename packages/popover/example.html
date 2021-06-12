@@ -7,6 +7,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="https://sebnitu.com//dist/favicon.png">
   <!-- Setup styles -->
   <link rel="stylesheet" href="https://unpkg.com/@vrembem/base/dist/styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/@vrembem/button/dist/styles.css">
   <link rel="stylesheet" href="https://unpkg.com/@vrembem/breadcrumb/dist/styles.css">
   <link rel="stylesheet" href="https://unpkg.com/@vrembem/menu/dist/styles.css">
   <link rel="stylesheet" href="https://unpkg.com/@vrembem/utility/dist/styles.css">
@@ -44,7 +45,22 @@
 
     <div class="padding-xl gap-y">
 
-      <p>Examples go here...</p>
+      <button class="button" data-popover-trigger>
+        Popover Trigger
+      </button>
+      <div class="popover" data-popover>
+        <ul class="menu">
+          <li class="menu__item">
+            <button class="menu__action">Add</button>
+          </li>
+          <li class="menu__item">
+            <button class="menu__action">Remove</button>
+          </li>
+          <li class="menu__item">
+            <button class="menu__action">Edit</button>
+          </li>
+        </ul>
+      </div>
 
     </div>
   </div>
