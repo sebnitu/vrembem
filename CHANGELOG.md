@@ -14,9 +14,20 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.31.0 to CHANGELOG.md
+chore(release): add v1.31.1 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.31.1 (2021-06-12)
+
+#### :bug: Bug Fix
+* `menu`
+  * Run build and ensure correct assets are being used in unpkg source
+
+#### :house: Refactor
+* `drawer`, `modal`
+  * [#621](https://github.com/sebnitu/vrembem/pull/621) Use KeyboardEvent.key instead of the deprecated KeyboardEvent.keyCode
 
 
 ## v1.31.0 (2021-06-01)
@@ -24,10 +35,10 @@ chore(release): add v1.31.0 to CHANGELOG.md
 #### :fire: Breaking Changes
 * `menu`
   * [#607](https://github.com/sebnitu/vrembem/pull/607) Audit and refactor menu component
-    * Menu now stacks as the default styles and removes the `menu_stack_[value]` modifier.
-    * Adds the new `menu_inline_[value]` modifier for making a menu inline (horizontal styles).
-    * Adds new `menu_size_[value]` modifier and matches sizing scale to other form-control components.
-    * Refactors, renames and deprecates a number of menu variables.
+    * Menu now stacks as the default styles and removes the `menu_stack_[value]` modifier
+    * Adds the new `menu_inline_[value]` modifier for making a menu inline (horizontal styles)
+    * Adds new `menu_size_[value]` modifier and matches sizing scale to other form-control components
+    * Refactors, renames and deprecates a number of menu variables
 
 #### :house: Refactor
 * `menu`
