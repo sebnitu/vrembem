@@ -19,7 +19,6 @@ export default class Popover {
 
   init(options = null) {
     if (options) this.settings = { ...this.settings, ...options };
-    console.log(createPopper);
 
     const popoverTriggers = document.querySelectorAll('[data-popover-trigger]');
     popoverTriggers.forEach((trigger) => {
@@ -27,21 +26,18 @@ export default class Popover {
       if (target) {
         const placement = target.hasAttribute('data-popover-placement') ?
           target.getAttribute('data-popover-placement') : 'bottom-start';
-        const modifiers = this.getModifiers(target);
 
         const popperInstance = createPopper(trigger, target, {
           placement: placement,
-          modifiers: modifiers
+          modifiers: this.getModifiers(target)
         });
 
         const popover = {
           trigger: trigger,
           target: target,
           state: 'hide',
-          popper: popperInstance,
-          modifiers: modifiers
+          popper: popperInstance
         };
-
         this.popovers.push(popover);
 
         const eventType = trigger.hasAttribute('data-popover-event') ?
@@ -51,25 +47,25 @@ export default class Popover {
 
         if (eventType === 'hover') {
           showEvents.forEach(event => {
-            trigger.addEventListener(event, this.showPopover.bind(this, popover));
+            trigger.addEventListener(event, this.show.bind(this, popover));
           });
 
           hideEvents.forEach(event => {
-            trigger.addEventListener(event, this.maybeHidePopover.bind(this, popover));
-            target.addEventListener(event, this.maybeHidePopover.bind(this, popover));
+            trigger.addEventListener(event, this.hideCheck.bind(this, popover));
+            target.addEventListener(event, this.hideCheck.bind(this, popover));
           });
         } else {
-          trigger.addEventListener('click', this.clickHandler.bind(this, popover));
+          trigger.addEventListener('click', this.handlerClick.bind(this, popover));
         }
 
         if (target.classList.contains(this.settings.stateActive)) {
-          this.showPopover(popover);
-          this.documentClickListener(popover);
+          this.show(popover);
+          this.documentListenerClick(popover);
         }
       }
     });
 
-    document.addEventListener('keydown', this.documentKeyListener.bind(this));
+    document.addEventListener('keydown', this.handlerKeydown.bind(this));
   }
 
   destroy() {
@@ -90,6 +86,46 @@ export default class Popover {
     // document.removeEventListener('click', this.__handlerClick, false);
     // document.removeEventListener('touchend', this.__handlerClick, false);
     // document.removeEventListener('keyup', this.__handlerKeyup, false);
+  }
+
+  /**
+   * Event handlers & listeners
+   */
+
+  handlerClick(popover) {
+    if (popover.target.classList.contains(this.settings.stateActive)) {
+      this.hide(popover);
+    } else {
+      this.show(popover);
+      this.documentListenerClick(popover);
+    }
+  }
+
+  handlerKeydown(event) {
+    if (event.key === 'Escape') {
+      const popover = this.popovers.find((item) => {
+        return item.state === 'show';
+      });
+      if (popover) {
+        this.hide(popover);
+      }
+    }
+  }
+
+  documentListenerClick(popover) {
+    const rootThis = this;
+    document.addEventListener('click', function _f(event) {
+      const result = event.target.closest('[data-popover], [data-popover-trigger]');
+      const match = result === popover.target || result === popover.trigger;
+      if (!match) {
+        rootThis.hide(popover);
+        this.removeEventListener('click', _f);
+      } else {
+        if (!popover.target.classList.contains(rootThis.settings.stateActive)) {
+          this.removeEventListener('click', _f);
+        }
+      }
+    });
   }
 
   /**
@@ -127,57 +163,18 @@ export default class Popover {
     }];
   }
 
-  clickHandler(popover) {
-    if (popover.target.classList.contains(this.settings.stateActive)) {
-      this.hidePopover(popover);
-    } else {
-      this.showPopover(popover);
-      this.documentClickListener(popover);
-    }
-  }
-
-  documentClickListener(popover) {
-    const rootThis = this;
-    document.addEventListener('click', function _f(event) {
-      const result = event.target.closest('[data-popover], [data-popover-trigger]');
-      const match = result === popover.target || result === popover.trigger;
-      if (!match) {
-        rootThis.hidePopover(popover);
-        this.removeEventListener('click', _f);
-      } else {
-        if (!popover.target.classList.contains(rootThis.settings.stateActive)) {
-          this.removeEventListener('click', _f);
-        }
-      }
-    });
-  }
-
-  documentKeyListener(event) {
-    if (event.key === 'Escape') {
-      const popover = this.popovers.find((item) => {
-        return item.state === 'show';
-      });
-      if (popover) {
-        this.hidePopover(popover);
-      }
-    }
-  }
-
   /**
    * Show and Hide functionality
    */
 
-  showPopover(popover) {
+  show(popover) {
     // Update state class
     popover.target.classList.add(this.settings.stateActive);
 
-    // Set popper options and update
+    // Enable popper event listeners and update position
     popover.popper.setOptions({
       modifiers: [
-        {
-          name: 'eventListeners',
-          enabled: true
-        },
+        { name: 'eventListeners', enabled: true },
         ...this.getModifiers(popover.target)
       ]
     });
@@ -190,17 +187,14 @@ export default class Popover {
     this.popovers[index].state = 'show';
   }
 
-  hidePopover(popover) {
+  hide(popover) {
     // Update state class
     popover.target.classList.remove(this.settings.stateActive);
 
-    // Set popper options
+    // Disable popper event listeners
     popover.popper.setOptions({
       modifiers: [
-        {
-          name: 'eventListeners',
-          enabled: false
-        },
+        { name: 'eventListeners', enabled: false },
         ...this.getModifiers(popover.target)
       ]
     });
@@ -212,7 +206,7 @@ export default class Popover {
     this.popovers[index].state = 'hide';
   }
 
-  maybeHidePopover(popover) {
+  hideCheck(popover) {
     // setTimeout is needed to correctly check which element is currently being focused
     setTimeout(() => {
       // Check if trigger or target are being hovered
@@ -227,7 +221,7 @@ export default class Popover {
 
       // Only hide popover if the trigger and target are not currently hovered or focused
       if (!isHovered && !isFocused) {
-        this.hidePopover(popover);
+        this.hide(popover);
       }
     }, 1);
   }
