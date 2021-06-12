@@ -1,11 +1,7 @@
 import defaults from './src/js/defaults';
 import { createPopper } from '@popperjs/core/dist/esm';
 
-// TODO:
-// Handle a11y attributes for when a popover is opened or closed. E.g:
-// aria-expanded="true | false" on trigger element
-// aria-hidden="true | false" on popover element
-// aria-labelledby="triggerID" on popover element (handled in markup)
+// TODO: Move feature methods into their own modules
 
 export default class Popover {
   constructor(options) {
@@ -24,6 +20,7 @@ export default class Popover {
     popoverTriggers.forEach((trigger) => {
       const target = this.getPopoverTarget(trigger);
       if (target) {
+        // TODO: Maybe move into getPlacement method?
         const placement = target.hasAttribute('data-popover-placement') ?
           target.getAttribute('data-popover-placement') : 'bottom-start';
 
@@ -32,6 +29,7 @@ export default class Popover {
           modifiers: this.getModifiers(target)
         });
 
+        // Build popover object and push to popovers array
         const popover = {
           trigger: trigger,
           target: target,
@@ -40,11 +38,14 @@ export default class Popover {
         };
         this.popovers.push(popover);
 
+        // TODO: maybe move into getEventType method?
         const eventType = trigger.hasAttribute('data-popover-event') ?
           trigger.getAttribute('data-popover-event') : 'click';
         const showEvents = ['mouseenter', 'focus'];
         const hideEvents = ['mouseleave', 'focusout'];
 
+        // Add event listeners based on event type
+        // TODO: Move into if (this.settings.eventListeners) conditional and add eventListeners to default options
         if (eventType === 'hover') {
           showEvents.forEach(event => {
             trigger.addEventListener(event, this.show.bind(this, popover));
@@ -58,6 +59,7 @@ export default class Popover {
           trigger.addEventListener('click', this.handlerClick.bind(this, popover));
         }
 
+        // Update state if popover loaded in active by default (via markup)
         if (target.classList.contains(this.settings.stateActive)) {
           this.show(popover);
           this.documentListenerClick(popover);
@@ -65,6 +67,7 @@ export default class Popover {
       }
     });
 
+    // Add keydown global event listener
     document.addEventListener('keydown', this.handlerKeydown.bind(this));
   }
 
@@ -75,6 +78,8 @@ export default class Popover {
   /**
    * Event listeners
    */
+
+  //TODO: Move event listeners to these init and destroy methods
 
   initEventListeners() {
     // document.addEventListener('click', this.__handlerClick, false);
@@ -139,6 +144,8 @@ export default class Popover {
         trigger.nextElementSibling : false;
   }
 
+  // TODO: Maybe move getCSSVar and setCSSVar to core?
+
   getCSSVar(property, fallback = false, el = document.documentElement) {
     const styles = getComputedStyle(el);
     const value = styles.getPropertyValue(property).trim();
@@ -166,6 +173,12 @@ export default class Popover {
   /**
    * Show and Hide functionality
    */
+
+  // TODO:
+  // Handle a11y attributes for when a popover is opened or closed. E.g:
+  // aria-expanded="true | false" on trigger element
+  // aria-hidden="true | false" on popover element
+  // aria-labelledby="triggerID" on popover element (handled in markup?)
 
   show(popover) {
     // Update state class
