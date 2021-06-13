@@ -110,12 +110,7 @@ export default class Popover {
 
   handlerKeydown(event) {
     if (event.key === 'Escape') {
-      const popover = this.popovers.find((item) => {
-        return item.state === 'show';
-      });
-      if (popover) {
-        this.hide(popover);
-      }
+      this.hideAll();
     }
   }
 
@@ -145,8 +140,6 @@ export default class Popover {
       trigger.nextElementSibling.hasAttribute('data-popover') ?
         trigger.nextElementSibling : false;
   }
-
-  // TODO: Maybe move getCSSVar and setCSSVar to core?
 
   getCSSVar(property, fallback = false, el = document.documentElement) {
     const styles = getComputedStyle(el);
@@ -219,6 +212,14 @@ export default class Popover {
       return item.target === popover.target;
     });
     this.popovers[index].state = 'hide';
+  }
+
+  hideAll() {
+    this.popovers.forEach((popover) => {
+      if (popover.state === 'show') {
+        this.hide(popover);
+      }
+    });
   }
 
   hideCheck(popover) {
