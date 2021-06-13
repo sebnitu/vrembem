@@ -1,6 +1,8 @@
 import defaults from './src/js/defaults';
 import { createPopper } from '@popperjs/core/dist/esm';
 
+// TODO: Move data attributes into defaults module
+// TODO: Add placement and event type defaults
 // TODO: Move feature methods into their own modules
 
 export default class Popover {

@@ -6,13 +6,13 @@ $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
 .#{$_b}popover#{$_m}size#{$_v}auto {
-  min-width: 0;
+  width: auto;
 }
 
 .#{$_b}popover#{$_m}size#{$_v}sm {
-  min-width: var.$size-sm-width;
+  width: var.$size-sm-width;
 }
 
 .#{$_b}popover#{$_m}size#{$_v}lg {
-  min-width: var.$size-lg-width;
+  width: var.$size-lg-width;
 }

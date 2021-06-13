@@ -53,13 +53,23 @@
           <div class="popover" data-popover>
             <ul class="menu">
               <li class="menu__item">
-                <button class="menu__action">Add</button>
+                <button class="menu__action">
+                  <span class="menu__text">Add</span>
+                  <span class="color-subtle">&plus;</span>
+                </button>
               </li>
               <li class="menu__item">
-                <button class="menu__action">Remove</button>
+                <button class="menu__action">
+                  <span class="menu__text">Remove</span>
+                  <span class="color-subtle">&minus;</span>
+                </button>
               </li>
+              <li class="menu__sep"></li>
               <li class="menu__item">
-                <button class="menu__action">Edit</button>
+                <button class="menu__action">
+                  <span class="menu__text">Edit</span>
+                  <span>&#9999;&#65039;</span>
+                </button>
               </li>
             </ul>
           </div>
@@ -69,18 +79,8 @@
           <button class="button" data-popover-trigger data-popover-event="hover">
             Popover Hover
           </button>
-          <div class="popover" data-popover>
-            <ul class="menu">
-              <li class="menu__item">
-                <button class="menu__action">Add</button>
-              </li>
-              <li class="menu__item">
-                <button class="menu__action">Remove</button>
-              </li>
-              <li class="menu__item">
-                <button class="menu__action">Edit</button>
-              </li>
-            </ul>
+          <div class="popover popover_size_lg" data-popover tabindex="0">
+            <p class="padding-sm">Random content, but it's focusable thanks to the tabindex attribute!</p>
           </div>
         </div>
 
