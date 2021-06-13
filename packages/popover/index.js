@@ -9,7 +9,7 @@ export default class Popover {
   constructor(options) {
     this.defaults = defaults;
     this.settings = { ...this.defaults, ...options };
-    this.popovers = [];
+    this.collection = [];
     this.__handlerKeydown = this.handlerKeydown.bind(this);
     if (this.settings.autoInit) this.init();
   }
@@ -17,32 +17,16 @@ export default class Popover {
   init(options = null) {
     if (options) this.settings = { ...this.settings, ...options };
 
-    // Initial popovers setup
+    // Initial collection setup
     // Get all the triggers
     const popoverTriggers = document.querySelectorAll('[data-popover-trigger]');
     popoverTriggers.forEach((trigger) => {
       // Get the triggers target
       const target = this.getPopoverTarget(trigger);
       if (target) {
-        // Get the placement
-        const placement = this.getPlacement(target);
-
-        // Create popper instance
-        const popperInstance = createPopper(trigger, target, {
-          placement: placement,
-          modifiers: this.getModifiers(target)
-        });
-
-        // Build popover object and push to popovers array
-        const popover = {
-          state: 'hide',
-          trigger: trigger,
-          target: target,
-          popper: popperInstance
-        };
-        this.popovers.push(popover);
-
-        // Set initial state of popovers
+        // Register the popover and save to collection array
+        const popover = this.register(trigger, target);
+        // Set initial state of popover
         if (target.classList.contains(this.settings.stateActive)) {
           this.show(popover);
           this.documentListenerClick(popover);
@@ -64,31 +48,91 @@ export default class Popover {
   }
 
   /**
+   *  Register popover
+   */
+
+  register(trigger, target, collection = this.collection) {
+    // Check if this item has already been registered in the collection
+    const index = collection.findIndex((item) => {
+      return (item.trigger === trigger && item.target === target);
+    });
+
+    // Return item if it already exists in collection
+    if (index >= 0) return collection[index];
+
+    // Get the placement
+    const placement = this.getPlacement(target);
+
+    // Create popper instance
+    const popperInstance = createPopper(trigger, target, {
+      placement: placement,
+      modifiers: this.getModifiers(target)
+    });
+
+    // Build popover object and push to collection array
+    const popover = {
+      state: 'hide',
+      trigger: trigger,
+      target: target,
+      popper: popperInstance
+    };
+
+    // Setup event listeners
+    // Add event listeners based on event type
+    if (this.settings.eventListeners) {
+      const eventType = this.getEventType(popover.trigger);
+      if (eventType === 'hover') {
+        popover.__ref = {
+          __show: this.show.bind(this, popover),
+          __hideCheck: this.hideCheck.bind(this, popover),
+        };
+        trigger.addEventListener('mouseenter', popover.__ref.__show, false);
+        trigger.addEventListener('focus', popover.__ref.__show, false);
+        trigger.addEventListener('mouseleave', popover.__ref.__hideCheck, false);
+        trigger.addEventListener('focusout', popover.__ref.__hideCheck, false);
+        target.addEventListener('mouseleave', popover.__ref.__hideCheck, false);
+        target.addEventListener('focusout', popover.__ref.__hideCheck, false);
+      } else {
+        popover.__ref = {
+          __handlerClick: this.handlerClick.bind(this, popover),
+        };
+        trigger.addEventListener('click', popover.__ref.__handlerClick, false);
+      }
+    }
+
+    // Add item to collection
+    this.collection.push(popover);
+
+    // Return the popover object
+    return popover;
+  }
+
+  /**
    * Event listeners
    */
 
   initEventListeners() {
-    // Loop through popovers and setup event listeners
-    this.popovers.forEach((popover, index) => {
-      if (!this.popovers[index].__ref) {
+    // Loop through collection and setup event listeners
+    this.collection.forEach((popover, index) => {
+      if (!this.collection[index].__ref) {
         // Add event listeners based on event type
         const eventType = this.getEventType(popover.trigger);
         if (eventType === 'hover') {
-          this.popovers[index].__ref = {
+          this.collection[index].__ref = {
             __show: this.show.bind(this, popover),
             __hideCheck: this.hideCheck.bind(this, popover),
           };
-          popover.trigger.addEventListener('mouseenter', this.popovers[index].__ref.__show, false);
-          popover.trigger.addEventListener('focus', this.popovers[index].__ref.__show, false);
-          popover.trigger.addEventListener('mouseleave', this.popovers[index].__ref.__hideCheck, false);
-          popover.trigger.addEventListener('focusout', this.popovers[index].__ref.__hideCheck, false);
-          popover.target.addEventListener('mouseleave', this.popovers[index].__ref.__hideCheck, false);
-          popover.target.addEventListener('focusout', this.popovers[index].__ref.__hideCheck, false);
+          popover.trigger.addEventListener('mouseenter', this.collection[index].__ref.__show, false);
+          popover.trigger.addEventListener('focus', this.collection[index].__ref.__show, false);
+          popover.trigger.addEventListener('mouseleave', this.collection[index].__ref.__hideCheck, false);
+          popover.trigger.addEventListener('focusout', this.collection[index].__ref.__hideCheck, false);
+          popover.target.addEventListener('mouseleave', this.collection[index].__ref.__hideCheck, false);
+          popover.target.addEventListener('focusout', this.collection[index].__ref.__hideCheck, false);
         } else {
-          this.popovers[index].__ref = {
+          this.collection[index].__ref = {
             __handlerClick: this.handlerClick.bind(this, popover),
           };
-          popover.trigger.addEventListener('click', this.popovers[index].__ref.__handlerClick, false);
+          popover.trigger.addEventListener('click', this.collection[index].__ref.__handlerClick, false);
         }
       }
     });
@@ -98,22 +142,22 @@ export default class Popover {
   }
 
   destroyEventListeners() {
-    // Loop through popovers and remove event listeners
-    this.popovers.forEach((popover, index) => {
-      if (this.popovers[index].__ref) {
+    // Loop through collection and remove event listeners
+    this.collection.forEach((popover, index) => {
+      if (this.collection[index].__ref) {
         // Remove event listeners based on event type
         const eventType = this.getEventType(popover.trigger);
         if (eventType === 'hover') {
-          popover.trigger.removeEventListener('mouseenter', this.popovers[index].__ref.__show, false);
-          popover.trigger.removeEventListener('focus', this.popovers[index].__ref.__show, false);
-          popover.trigger.removeEventListener('mouseleave', this.popovers[index].__ref.__hideCheck, false);
-          popover.trigger.removeEventListener('focusout', this.popovers[index].__ref.__hideCheck, false);
-          popover.target.removeEventListener('mouseleave', this.popovers[index].__ref.__hideCheck, false);
-          popover.target.removeEventListener('focusout', this.popovers[index].__ref.__hideCheck, false);
-          delete this.popovers[index].__ref;
+          popover.trigger.removeEventListener('mouseenter', this.collection[index].__ref.__show, false);
+          popover.trigger.removeEventListener('focus', this.collection[index].__ref.__show, false);
+          popover.trigger.removeEventListener('mouseleave', this.collection[index].__ref.__hideCheck, false);
+          popover.trigger.removeEventListener('focusout', this.collection[index].__ref.__hideCheck, false);
+          popover.target.removeEventListener('mouseleave', this.collection[index].__ref.__hideCheck, false);
+          popover.target.removeEventListener('focusout', this.collection[index].__ref.__hideCheck, false);
+          delete this.collection[index].__ref;
         } else {
-          popover.trigger.removeEventListener('click', this.popovers[index].__ref.__handlerClick, false);
-          delete this.popovers[index].__ref;
+          popover.trigger.removeEventListener('click', this.collection[index].__ref.__handlerClick, false);
+          delete this.collection[index].__ref;
         }
       }
     });
@@ -224,11 +268,11 @@ export default class Popover {
     });
     popover.popper.update();
 
-    // Update popovers status with new state
-    const index = this.popovers.findIndex((item) => {
+    // Update collection status with new state
+    const index = this.collection.findIndex((item) => {
       return item.target === popover.target;
     });
-    this.popovers[index].state = 'show';
+    this.collection[index].state = 'show';
   }
 
   hide(popover) {
@@ -246,15 +290,15 @@ export default class Popover {
       ]
     });
 
-    // Update popovers status with new state
-    const index = this.popovers.findIndex((item) => {
+    // Update collection status with new state
+    const index = this.collection.findIndex((item) => {
       return item.target === popover.target;
     });
-    this.popovers[index].state = 'hide';
+    this.collection[index].state = 'hide';
   }
 
   hideAll() {
-    this.popovers.forEach((popover) => {
+    this.collection.forEach((popover) => {
       if (popover.state === 'show') {
         this.hide(popover);
       }
