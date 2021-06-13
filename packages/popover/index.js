@@ -10,22 +10,21 @@ export default class Popover {
     this.defaults = defaults;
     this.settings = { ...this.defaults, ...options };
     this.popovers = [];
-    // this.__handlerClick = handlerClick.bind(this);
-    // this.__handlerKeyup = handlerKeyup.bind(this);
+    this.__handlerKeydown = this.handlerKeydown.bind(this);
     if (this.settings.autoInit) this.init();
   }
 
   init(options = null) {
     if (options) this.settings = { ...this.settings, ...options };
 
+    // Initial popovers setup
+    // Get all the triggers
     const popoverTriggers = document.querySelectorAll('[data-popover-trigger]');
     popoverTriggers.forEach((trigger) => {
+      // Get the triggers target
       const target = this.getPopoverTarget(trigger);
       if (target) {
-        // TODO: Maybe move into getPlacement method?
-        const placement = target.hasAttribute('data-popover-placement') ?
-          target.getAttribute('data-popover-placement') : 'bottom-start';
-
+        const placement = this.getPlacement(target);
         const popperInstance = createPopper(trigger, target, {
           placement: placement,
           modifiers: this.getModifiers(target)
@@ -40,27 +39,6 @@ export default class Popover {
         };
         this.popovers.push(popover);
 
-        // TODO: maybe move into getEventType method?
-        const eventType = trigger.hasAttribute('data-popover-event') ?
-          trigger.getAttribute('data-popover-event') : 'click';
-        const showEvents = ['mouseenter', 'focus'];
-        const hideEvents = ['mouseleave', 'focusout'];
-
-        // Add event listeners based on event type
-        // TODO: Move into if (this.settings.eventListeners) conditional and add eventListeners to default options
-        if (eventType === 'hover') {
-          showEvents.forEach(event => {
-            trigger.addEventListener(event, this.show.bind(this, popover));
-          });
-
-          hideEvents.forEach(event => {
-            trigger.addEventListener(event, this.hideCheck.bind(this, popover));
-            target.addEventListener(event, this.hideCheck.bind(this, popover));
-          });
-        } else {
-          trigger.addEventListener('click', this.handlerClick.bind(this, popover));
-        }
-
         // Set initial state of popovers
         if (target.classList.contains(this.settings.stateActive)) {
           this.show(popover);
@@ -71,19 +49,37 @@ export default class Popover {
       }
     });
 
+    // Loop through popovers and setup event listeners
+    this.popovers.forEach((popover) => {
+      // Add event listeners based on event type
+      // TODO: Move into if (this.settings.eventListeners) conditional and add eventListeners to default options
+      const eventType = this.getEventType(popover.trigger);
+      if (eventType === 'hover') {
+        popover.trigger.addEventListener('mouseenter', this.show.bind(this, popover), false);
+        popover.trigger.addEventListener('focus', this.show.bind(this, popover), false);
+        popover.trigger.addEventListener('mouseleave', this.hideCheck.bind(this, popover), false);
+        popover.trigger.addEventListener('focusout', this.hideCheck.bind(this, popover), false);
+        popover.target.addEventListener('mouseleave', this.hideCheck.bind(this, popover), false);
+        popover.target.addEventListener('focusout', this.hideCheck.bind(this, popover), false);
+      } else {
+        popover.trigger.addEventListener('click', this.handlerClick.bind(this, popover), false);
+      }
+    });
+
     // Add keydown global event listener
-    document.addEventListener('keydown', this.handlerKeydown.bind(this));
+    document.addEventListener('keydown', this.__handlerKeydown, false);
   }
 
   destroy() {
-    // TODO: Should disable popover...
+    // Remove keydown global event listener
+    document.removeEventListener('keydown', this.__handlerKeydown, false);
   }
 
   /**
    * Event listeners
    */
 
-  //TODO: Move event listeners to these init and destroy methods
+  // TODO: Move event listeners to these init and destroy methods
 
   initEventListeners() {
     // document.addEventListener('click', this.__handlerClick, false);
@@ -136,13 +132,6 @@ export default class Popover {
    * Helpers
    */
 
-  getPopoverTarget(trigger) {
-    return trigger.getAttribute('data-popover-trigger').trim() ?
-      document.querySelector(`[data-popover="${trigger.getAttribute('data-popover-trigger')}"]`) :
-      trigger.nextElementSibling.hasAttribute('data-popover') ?
-        trigger.nextElementSibling : false;
-  }
-
   getCSSVar(property, fallback = false, el = document.documentElement) {
     const styles = getComputedStyle(el);
     const value = styles.getPropertyValue(property).trim();
@@ -151,6 +140,25 @@ export default class Popover {
 
   setCSSVar(property, value, el = document.documentElement) {
     el.style.setProperty(property, value);
+  }
+
+  getPopoverTarget(trigger) {
+    return trigger.getAttribute('data-popover-trigger').trim() ?
+      document.querySelector(`[data-popover="${trigger.getAttribute('data-popover-trigger')}"]`) :
+      trigger.nextElementSibling.hasAttribute('data-popover') ?
+        trigger.nextElementSibling : false;
+  }
+
+  getEventType(trigger) {
+    return trigger.hasAttribute('data-popover-event') ?
+      trigger.getAttribute('data-popover-event') :
+      'click';
+  }
+
+  getPlacement(popover) {
+    return popover.hasAttribute('data-popover-placement') ?
+      popover.getAttribute('data-popover-placement') :
+      'bottom-start';
   }
 
   getModifiers(popover) {
