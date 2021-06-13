@@ -17,21 +17,11 @@ export default class Popover {
     // Update settings with passed options
     if (options) this.settings = { ...this.settings, ...options };
 
-    // Get all the triggers
-    const popoverTriggers = document.querySelectorAll(`[data-${this.settings.dataTrigger}]`);
-    popoverTriggers.forEach((trigger) => {
-      // Get the triggers target
-      const target = this.getPopover(trigger);
-      if (target) {
-        // Register the popover and save to collection array
-        const popover = this.register(trigger, target);
-        // Set initial state of popover
-        this.setState(popover);
-      }
-    });
+    // Build the collections array with popover instances
+    this.buildCollection();
 
     // If eventListeners is enabled and popover triggers exist on page
-    if (this.settings.eventListeners && popoverTriggers.length) {
+    if (this.settings.eventListeners) {
       // Setup init event listeners
       this.initEventListeners(false);
     }
@@ -57,36 +47,39 @@ export default class Popover {
    */
 
   register(trigger, target, collection = this.collection) {
+    // Initiate popover variable
+    let popover;
+
     // Check if this item has already been registered in the collection
     const index = collection.findIndex((item) => {
       return (item.trigger === trigger && item.target === target);
     });
 
-    // Return item if it already exists in collection
-    if (index >= 0) return collection[index];
+    // Check if it already exists in collection
+    if (index >= 0) {
+      // Set popover as item from collection
+      popover = collection[index];
+    } else {
+      // Create popper instance
+      const popperInstance = createPopper(trigger, target, {
+        placement: this.getPlacement(target),
+        modifiers: this.getModifiers(target)
+      });
 
-    // Get the placement
-    const placement = this.getPlacement(target);
+      // Build popover object and push to collection array
+      popover = {
+        state: 'hide',
+        trigger: trigger,
+        target: target,
+        popper: popperInstance
+      };
 
-    // Create popper instance
-    const popperInstance = createPopper(trigger, target, {
-      placement: placement,
-      modifiers: this.getModifiers(target)
-    });
-
-    // Build popover object and push to collection array
-    const popover = {
-      state: 'hide',
-      trigger: trigger,
-      target: target,
-      popper: popperInstance
-    };
+      // Add item to collection
+      this.collection.push(popover);
+    }
 
     // Setup event listeners
     this.registerEventListeners(popover);
-
-    // Add item to collection
-    this.collection.push(popover);
 
     // Return the popover object
     return popover;
@@ -159,6 +152,27 @@ export default class Popover {
       // Remove eventListeners object from collection
       delete popover.__eventListeners;
     }
+  }
+
+  /**
+   * Collection
+   */
+
+  buildCollection(collection = this.collection) {
+    // Get all the triggers
+    const popoverTriggers = document.querySelectorAll(`[data-${this.settings.dataTrigger}]`);
+    popoverTriggers.forEach((trigger) => {
+      // Get the triggers target
+      const target = this.getPopover(trigger);
+      if (target) {
+        // Register the popover and save to collection array
+        const popover = this.register(trigger, target, collection);
+        // Set initial state of popover
+        this.setState(popover);
+      }
+    });
+
+    return collection;
   }
 
   /**
