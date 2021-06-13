@@ -15,35 +15,41 @@ export default class Popover {
   }
 
   init(options = null) {
+    // Update settings with passed options
     if (options) this.settings = { ...this.settings, ...options };
 
-    // Initial collection setup
     // Get all the triggers
     const popoverTriggers = document.querySelectorAll('[data-popover-trigger]');
     popoverTriggers.forEach((trigger) => {
       // Get the triggers target
-      const target = this.getPopoverTarget(trigger);
+      const target = this.getPopover(trigger);
       if (target) {
         // Register the popover and save to collection array
         const popover = this.register(trigger, target);
         // Set initial state of popover
-        if (target.classList.contains(this.settings.stateActive)) {
-          this.show(popover);
-          this.documentListenerClick(popover);
-        } else {
-          this.hide(popover);
-        }
+        this.setState(popover);
       }
     });
 
-    if (this.settings.eventListeners) {
-      this.initEventListeners();
+    // If eventListeners is enabled and popover triggers exist on page
+    if (this.settings.eventListeners && popoverTriggers.length) {
+      // Setup init event listeners
+      this.initEventListeners(false);
     }
   }
 
   destroy() {
+    // Unregister all popovers from collection
+    this.collection.forEach((popover) => {
+      this.unregister(popover);
+    });
+
+    // Rest the collection array
+    this.collection = [];
+
+    // If eventListeners is enabled
     if (this.settings.eventListeners) {
-      this.destroyEventListeners();
+      this.destroyEventListeners(false);
     }
   }
 
@@ -78,26 +84,8 @@ export default class Popover {
     };
 
     // Setup event listeners
-    // Add event listeners based on event type
     if (this.settings.eventListeners) {
-      const eventType = this.getEventType(popover.trigger);
-      if (eventType === 'hover') {
-        popover.__ref = {
-          __show: this.show.bind(this, popover),
-          __hideCheck: this.hideCheck.bind(this, popover),
-        };
-        trigger.addEventListener('mouseenter', popover.__ref.__show, false);
-        trigger.addEventListener('focus', popover.__ref.__show, false);
-        trigger.addEventListener('mouseleave', popover.__ref.__hideCheck, false);
-        trigger.addEventListener('focusout', popover.__ref.__hideCheck, false);
-        target.addEventListener('mouseleave', popover.__ref.__hideCheck, false);
-        target.addEventListener('focusout', popover.__ref.__hideCheck, false);
-      } else {
-        popover.__ref = {
-          __handlerClick: this.handlerClick.bind(this, popover),
-        };
-        trigger.addEventListener('click', popover.__ref.__handlerClick, false);
-      }
+      this.registerEventListeners(popover);
     }
 
     // Add item to collection
@@ -107,60 +95,102 @@ export default class Popover {
     return popover;
   }
 
+  unregister(popover) {
+    console.log('unregister():', popover);
+
+    // Hide the popover
+    if (popover.state === 'show') {
+      this.hide(popover);
+    }
+
+    // Remove event listeners
+    if (this.settings.eventListeners) {
+      this.unregisterEventListeners(popover);
+    }
+  }
+
+  registerEventListeners(popover) {
+    // If event listeners aren't already setup
+    if (!popover.__eventListeners) {
+      // Add event listeners based on event type
+      const eventType = this.getEventType(popover.trigger);
+      if (eventType === 'hover') {
+        // Setup event listeners object for hover
+        popover.__eventListeners = [{
+          el: ['trigger'],
+          type: ['mouseenter', 'focus'],
+          listener: this.show.bind(this, popover)
+        }, {
+          el: ['trigger', 'target'],
+          type: ['mouseleave', 'focusout'],
+          listener: this.hideCheck.bind(this, popover)
+        }];
+        // Loop through listeners and apply to appropriate elements
+        popover.__eventListeners.forEach((obj) => {
+          obj.el.forEach((el) => {
+            obj.type.forEach((type) => {
+              popover[el].addEventListener(type, obj.listener, false);
+            });
+          });
+        });
+      } else {
+        // Setup event listeners object for click
+        popover.__eventListeners = [{
+          el: ['trigger'],
+          type: ['click'],
+          listener: this.handlerClick.bind(this, popover)
+        }];
+        // Loop through listeners and apply to appropriate elements
+        popover.__eventListeners.forEach((obj) => {
+          obj.el.forEach((el) => {
+            obj.type.forEach((type) => {
+              popover[el].addEventListener(type, obj.listener, false);
+            });
+          });
+        });
+      }
+    }
+  }
+
+  unregisterEventListeners(popover) {
+    // If event listeners have been setup
+    if (popover.__eventListeners) {
+      // Loop through listeners and remove from appropriate elements
+      popover.__eventListeners.forEach((obj) => {
+        obj.el.forEach((el) => {
+          obj.type.forEach((type) => {
+            popover[el].removeEventListener(type, obj.listener, false);
+          });
+        });
+      });
+      // Remove eventListeners object from collection
+      delete popover.__eventListeners;
+    }
+  }
+
   /**
    * Event listeners
    */
 
-  initEventListeners() {
-    // Loop through collection and setup event listeners
-    this.collection.forEach((popover, index) => {
-      if (!this.collection[index].__ref) {
-        // Add event listeners based on event type
-        const eventType = this.getEventType(popover.trigger);
-        if (eventType === 'hover') {
-          this.collection[index].__ref = {
-            __show: this.show.bind(this, popover),
-            __hideCheck: this.hideCheck.bind(this, popover),
-          };
-          popover.trigger.addEventListener('mouseenter', this.collection[index].__ref.__show, false);
-          popover.trigger.addEventListener('focus', this.collection[index].__ref.__show, false);
-          popover.trigger.addEventListener('mouseleave', this.collection[index].__ref.__hideCheck, false);
-          popover.trigger.addEventListener('focusout', this.collection[index].__ref.__hideCheck, false);
-          popover.target.addEventListener('mouseleave', this.collection[index].__ref.__hideCheck, false);
-          popover.target.addEventListener('focusout', this.collection[index].__ref.__hideCheck, false);
-        } else {
-          this.collection[index].__ref = {
-            __handlerClick: this.handlerClick.bind(this, popover),
-          };
-          popover.trigger.addEventListener('click', this.collection[index].__ref.__handlerClick, false);
-        }
-      }
-    });
+  initEventListeners(collection = true) {
+    if (collection) {
+      // Loop through collection and setup event listeners
+      this.collection.forEach((popover) => {
+        this.registerEventListeners(popover);
+      });
+    }
 
     // Add keydown global event listener
     document.addEventListener('keydown', this.__handlerKeydown, false);
   }
 
-  destroyEventListeners() {
-    // Loop through collection and remove event listeners
-    this.collection.forEach((popover, index) => {
-      if (this.collection[index].__ref) {
-        // Remove event listeners based on event type
-        const eventType = this.getEventType(popover.trigger);
-        if (eventType === 'hover') {
-          popover.trigger.removeEventListener('mouseenter', this.collection[index].__ref.__show, false);
-          popover.trigger.removeEventListener('focus', this.collection[index].__ref.__show, false);
-          popover.trigger.removeEventListener('mouseleave', this.collection[index].__ref.__hideCheck, false);
-          popover.trigger.removeEventListener('focusout', this.collection[index].__ref.__hideCheck, false);
-          popover.target.removeEventListener('mouseleave', this.collection[index].__ref.__hideCheck, false);
-          popover.target.removeEventListener('focusout', this.collection[index].__ref.__hideCheck, false);
-          delete this.collection[index].__ref;
-        } else {
-          popover.trigger.removeEventListener('click', this.collection[index].__ref.__handlerClick, false);
-          delete this.collection[index].__ref;
-        }
-      }
-    });
+  destroyEventListeners(collection = true) {
+    if (collection) {
+      // Loop through collection and remove event listeners
+      this.collection.forEach((popover) => {
+        this.unregisterEventListeners(popover);
+      });
+    }
 
     // Remove keydown global event listener
     document.removeEventListener('keydown', this.__handlerKeydown, false);
@@ -185,6 +215,7 @@ export default class Popover {
     }
   }
 
+  // TODO: Maybe refactor this?
   documentListenerClick(popover) {
     const rootThis = this;
     document.addEventListener('click', function _f(event) {
@@ -215,7 +246,7 @@ export default class Popover {
     el.style.setProperty(property, value);
   }
 
-  getPopoverTarget(trigger) {
+  getPopover(trigger) {
     return trigger.getAttribute('data-popover-trigger').trim() ?
       document.querySelector(`[data-popover="${trigger.getAttribute('data-popover-trigger')}"]`) :
       trigger.nextElementSibling.hasAttribute('data-popover') ?
@@ -323,5 +354,14 @@ export default class Popover {
         this.hide(popover);
       }
     }, 1);
+  }
+
+  setState(popover) {
+    if (popover.target.classList.contains(this.settings.stateActive)) {
+      this.show(popover);
+      this.documentListenerClick(popover);
+    } else {
+      this.hide(popover);
+    }
   }
 }
