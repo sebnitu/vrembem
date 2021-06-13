@@ -1,8 +1,7 @@
-import defaults from './src/js/defaults';
 import { createPopper } from '@popperjs/core/dist/esm';
 
-// TODO: Move data attributes into defaults module
-// TODO: Add placement and event type defaults
+import defaults from './src/js/defaults';
+
 // TODO: Move feature methods into their own modules
 
 export default class Popover {
@@ -19,7 +18,7 @@ export default class Popover {
     if (options) this.settings = { ...this.settings, ...options };
 
     // Get all the triggers
-    const popoverTriggers = document.querySelectorAll('[data-popover-trigger]');
+    const popoverTriggers = document.querySelectorAll(`[data-${this.settings.dataTrigger}]`);
     popoverTriggers.forEach((trigger) => {
       // Get the triggers target
       const target = this.getPopover(trigger);
@@ -94,8 +93,6 @@ export default class Popover {
   }
 
   unregister(popover) {
-    console.log('unregister():', popover);
-
     // Hide the popover
     if (popover.state === 'show') {
       this.hide(popover);
@@ -192,8 +189,28 @@ export default class Popover {
     document.removeEventListener('keydown', this.__handlerKeydown, false);
   }
 
+  documentListenerClick(popover) {
+    const rootThis = this;
+    document.addEventListener('click', function _f(event) {
+      const result = event.target.closest(
+        `[data-${rootThis.settings.dataPopover}], [data-${rootThis.settings.dataTrigger}]`
+      );
+      const match = result === popover.target || result === popover.trigger;
+      if (!match) {
+        if (popover.target.classList.contains(rootThis.settings.stateActive)) {
+          rootThis.hide(popover);
+        }
+        this.removeEventListener('click', _f);
+      } else {
+        if (!popover.target.classList.contains(rootThis.settings.stateActive)) {
+          this.removeEventListener('click', _f);
+        }
+      }
+    });
+  }
+
   /**
-   * Event handlers & listeners
+   * Event handlers
    */
 
   handlerClick(popover) {
@@ -211,25 +228,6 @@ export default class Popover {
     }
   }
 
-  // TODO: Maybe refactor this?
-  documentListenerClick(popover) {
-    const rootThis = this;
-    document.addEventListener('click', function _f(event) {
-      const result = event.target.closest('[data-popover], [data-popover-trigger]');
-      const match = result === popover.target || result === popover.trigger;
-      if (!match) {
-        if (popover.target.classList.contains(rootThis.settings.stateActive)) {
-          rootThis.hide(popover);
-        }
-        this.removeEventListener('click', _f);
-      } else {
-        if (!popover.target.classList.contains(rootThis.settings.stateActive)) {
-          this.removeEventListener('click', _f);
-        }
-      }
-    });
-  }
-
   /**
    * Helpers
    */
@@ -245,22 +243,24 @@ export default class Popover {
   }
 
   getPopover(trigger) {
-    return trigger.getAttribute('data-popover-trigger').trim() ?
-      document.querySelector(`[data-popover="${trigger.getAttribute('data-popover-trigger')}"]`) :
-      trigger.nextElementSibling.hasAttribute('data-popover') ?
+    return trigger.getAttribute(`data-${this.settings.dataTrigger}`).trim() ?
+      document.querySelector(
+        `[data-${this.settings.dataPopover}="${trigger.getAttribute(`data-${this.settings.dataTrigger}`)}"]`
+      ) :
+      trigger.nextElementSibling.hasAttribute(`data-${this.settings.dataPopover}`) ?
         trigger.nextElementSibling : false;
   }
 
   getEventType(trigger) {
-    return trigger.hasAttribute('data-popover-event') ?
-      trigger.getAttribute('data-popover-event') :
-      'click';
+    return trigger.hasAttribute(`data-${this.settings.dataEventType}`) ?
+      trigger.getAttribute(`data-${this.settings.dataEventType}`) :
+      this.settings.eventType;
   }
 
   getPlacement(target) {
-    return target.hasAttribute('data-popover-placement') ?
-      target.getAttribute('data-popover-placement') :
-      'bottom-start';
+    return target.hasAttribute(`data-${this.settings.dataPlacement}`) ?
+      target.getAttribute(`data-${this.settings.dataPlacement}`) :
+      this.settings.placement;
   }
 
   getModifiers(target) {
@@ -344,8 +344,8 @@ export default class Popover {
 
       // Check if trigger or target are being focused
       const isFocused =
-        document.activeElement.closest('[data-popover]') === popover.target ||
-        document.activeElement.closest('[data-popover-trigger]') === popover.trigger;
+        document.activeElement.closest(`[data-${this.settings.dataPopover}]`) === popover.target ||
+        document.activeElement.closest(`[data-${this.settings.dataTrigger}]`) === popover.trigger;
 
       // Only hide popover if the trigger and target are not currently hovered or focused
       if (!isHovered && !isFocused) {

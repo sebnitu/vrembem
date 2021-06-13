@@ -1,9 +1,17 @@
 export default {
   autoInit: false,
 
+  // Data attributes
+  dataPopover: 'popover',
+  dataTrigger: 'popover-trigger',
+  dataEventType: 'popover-event',
+  dataPlacement: 'popover-placement',
+
   // State classes
   stateActive: 'is-active',
 
   // Feature toggles
-  eventListeners: true
+  eventType: 'click',
+  eventListeners: true,
+  placement: 'bottom-start'
 };
