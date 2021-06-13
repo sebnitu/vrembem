@@ -3,4 +3,7 @@ export default {
 
   // State classes
   stateActive: 'is-active',
+
+  // Feature toggles
+  eventListeners: true
 };
