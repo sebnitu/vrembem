@@ -252,10 +252,6 @@ export default class Popover {
     return value ? value : fallback;
   }
 
-  setCSSVar(property, value, el = document.documentElement) {
-    el.style.setProperty(property, value);
-  }
-
   getPopover(trigger) {
     return trigger.getAttribute(`data-${this.settings.dataTrigger}`).trim() ?
       document.querySelector(
