@@ -259,22 +259,22 @@ export default class Popover {
       'click';
   }
 
-  getPlacement(popover) {
-    return popover.hasAttribute('data-popover-placement') ?
-      popover.getAttribute('data-popover-placement') :
+  getPlacement(target) {
+    return target.hasAttribute('data-popover-placement') ?
+      target.getAttribute('data-popover-placement') :
       'bottom-start';
   }
 
-  getModifiers(popover) {
+  getModifiers(target) {
     return [{
       name: 'offset',
       options: {
-        offset: [0, parseInt(this.getCSSVar('--popover-offset', 0, popover), 10)]
+        offset: [0, parseInt(this.getCSSVar('--popover-offset', 0, target), 10)]
       }
     }, {
       name: 'preventOverflow',
       options: {
-        padding: parseInt(this.getCSSVar('--popover-offset-overflow', 0, popover), 10)
+        padding: parseInt(this.getCSSVar('--popover-offset-overflow', 0, target), 10)
       }
     }];
   }
