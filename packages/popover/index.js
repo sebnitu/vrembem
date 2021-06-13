@@ -59,10 +59,12 @@ export default class Popover {
           trigger.addEventListener('click', this.handlerClick.bind(this, popover));
         }
 
-        // Update state if popover loaded in active by default (via markup)
+        // Set initial state of popovers
         if (target.classList.contains(this.settings.stateActive)) {
           this.show(popover);
           this.documentListenerClick(popover);
+        } else {
+          this.hide(popover);
         }
       }
     });
@@ -174,15 +176,12 @@ export default class Popover {
    * Show and Hide functionality
    */
 
-  // TODO:
-  // Handle a11y attributes for when a popover is opened or closed. E.g:
-  // aria-expanded="true | false" on trigger element
-  // aria-hidden="true | false" on popover element
-  // aria-labelledby="triggerID" on popover element (handled in markup?)
-
   show(popover) {
     // Update state class
     popover.target.classList.add(this.settings.stateActive);
+
+    // Update a11y attributes
+    popover.trigger.setAttribute('aria-expanded', 'true');
 
     // Enable popper event listeners and update position
     popover.popper.setOptions({
@@ -203,6 +202,9 @@ export default class Popover {
   hide(popover) {
     // Update state class
     popover.target.classList.remove(this.settings.stateActive);
+
+    // Update a11y attributes
+    popover.trigger.setAttribute('aria-expanded', 'false');
 
     // Disable popper event listeners
     popover.popper.setOptions({
