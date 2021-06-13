@@ -84,9 +84,7 @@ export default class Popover {
     };
 
     // Setup event listeners
-    if (this.settings.eventListeners) {
-      this.registerEventListeners(popover);
-    }
+    this.registerEventListeners(popover);
 
     // Add item to collection
     this.collection.push(popover);
@@ -104,9 +102,7 @@ export default class Popover {
     }
 
     // Remove event listeners
-    if (this.settings.eventListeners) {
-      this.unregisterEventListeners(popover);
-    }
+    this.unregisterEventListeners(popover);
   }
 
   registerEventListeners(popover) {
@@ -216,12 +212,14 @@ export default class Popover {
   }
 
   // TODO: Maybe refactor this?
+  // BUG: Event listener throws error if popover is open and destroy() is run
   documentListenerClick(popover) {
     const rootThis = this;
     document.addEventListener('click', function _f(event) {
       const result = event.target.closest('[data-popover], [data-popover-trigger]');
       const match = result === popover.target || result === popover.trigger;
       if (!match) {
+        // BUG: maybe check if popover is open before hiding?
         rootThis.hide(popover);
         this.removeEventListener('click', _f);
       } else {
