@@ -168,7 +168,12 @@ export default class Popover {
         // Register the popover and save to collection array
         const popover = this.register(trigger, target, collection);
         // Set initial state of popover
-        this.setState(popover);
+        if (popover.target.classList.contains(this.settings.stateActive)) {
+          this.show(popover);
+          this.documentListenerClick(popover);
+        } else {
+          this.hide(popover);
+        }
       }
     });
 
@@ -362,14 +367,5 @@ export default class Popover {
         this.hide(popover);
       }
     }, 1);
-  }
-
-  setState(popover) {
-    if (popover.target.classList.contains(this.settings.stateActive)) {
-      this.show(popover);
-      this.documentListenerClick(popover);
-    } else {
-      this.hide(popover);
-    }
   }
 }
