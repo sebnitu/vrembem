@@ -212,15 +212,15 @@ export default class Popover {
   }
 
   // TODO: Maybe refactor this?
-  // BUG: Event listener throws error if popover is open and destroy() is run
   documentListenerClick(popover) {
     const rootThis = this;
     document.addEventListener('click', function _f(event) {
       const result = event.target.closest('[data-popover], [data-popover-trigger]');
       const match = result === popover.target || result === popover.trigger;
       if (!match) {
-        // BUG: maybe check if popover is open before hiding?
-        rootThis.hide(popover);
+        if (popover.target.classList.contains(rootThis.settings.stateActive)) {
+          rootThis.hide(popover);
+        }
         this.removeEventListener('click', _f);
       } else {
         if (!popover.target.classList.contains(rootThis.settings.stateActive)) {
