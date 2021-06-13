@@ -184,8 +184,8 @@ export default class Popover {
    * Event listeners
    */
 
-  initEventListeners(collection = true) {
-    if (collection) {
+  initEventListeners(processCollection = true) {
+    if (processCollection) {
       // Loop through collection and setup event listeners
       this.collection.forEach((popover) => {
         this.registerEventListeners(popover);
@@ -196,8 +196,8 @@ export default class Popover {
     document.addEventListener('keydown', this.__handlerKeydown, false);
   }
 
-  destroyEventListeners(collection = true) {
-    if (collection) {
+  destroyEventListeners(processCollection = true) {
+    if (processCollection) {
       // Loop through collection and remove event listeners
       this.collection.forEach((popover) => {
         this.unregisterEventListeners(popover);
