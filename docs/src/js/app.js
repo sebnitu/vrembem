@@ -16,11 +16,15 @@ new vb.Drawer({
 new vb.Modal({
   autoInit: true,
   selectorInert: '.page',
+  selectorOverflow: 'body, [role="main"]',
   moveModals: {
     type: 'append',
     ref: '[role="modals-container"]'
-  },
-  toggleOverflow: 'body, .page__article'
+  }
+});
+
+new vb.Popover({
+  autoInit: true
 });
 
 const scrollStash = new ScrollStash({
