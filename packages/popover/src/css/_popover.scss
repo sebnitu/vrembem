@@ -2,6 +2,7 @@
 @use "./variables" as var;
 
 $_b: var.$prefix-block;
+$_offset: calc(calc(var(--popover-offset) + 1) * 1px);
 
 :root {
   --popover-offset: #{core.strip-unit(var.$offset)};
@@ -34,7 +35,7 @@ $_b: var.$prefix-block;
     bottom: 100%;
     left: 0;
     width: 100%;
-    height: calc(var(--popover-offset) * 1px);
+    height: $_offset;
   }
 
   &.is-active {
@@ -58,7 +59,7 @@ $_b: var.$prefix-block;
     bottom: auto;
     left: 0;
     width: 100%;
-    height: calc(var(--popover-offset) * 1px);
+    height: $_offset;
   }
 }
 
@@ -71,7 +72,7 @@ $_b: var.$prefix-block;
     bottom: 100%;
     left: 0;
     width: 100%;
-    height: calc(var(--popover-offset) * 1px);
+    height: $_offset;
   }
 }
 
@@ -83,7 +84,7 @@ $_b: var.$prefix-block;
     right: auto;
     bottom: 0;
     left: 100%;
-    width: calc(var(--popover-offset) * 1px);
+    width: $_offset;
     height: 100%;
   }
 }
@@ -96,7 +97,7 @@ $_b: var.$prefix-block;
     right: 100%;
     bottom: 0;
     left: auto;
-    width: calc(var(--popover-offset) * 1px);
+    width: $_offset;
     height: 100%;
   }
 }
