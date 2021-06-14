@@ -14,9 +14,20 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.31.1 to CHANGELOG.md
+chore(release): add v1.31.2 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.31.2 (2021-06-14)
+
+#### :bug: Bug Fix
+* `menu`
+  * [#624](https://github.com/sebnitu/vrembem/pull/624) Fix menu text element overflow bug
+
+#### :books: Documentation
+* `drawer`, `grid`, `input`, `modal`, `utility`, `vrembem`
+  * [5be1181](https://github.com/sebnitu/vrembem/commit/5be1181eed118dda6dbfb9156095071febe27e0f) Remove extra `/` from favicon href in example files
 
 
 ## v1.31.1 (2021-06-12)
