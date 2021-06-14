@@ -77,7 +77,7 @@ export default class Popover {
   }
 
   /**
-   *  Register popover
+   * Register popover functionality
    */
 
   register(trigger, target) {
@@ -101,7 +101,7 @@ export default class Popover {
   }
 
   /**
-   * Show and Hide functionality
+   * Change state functionality
    */
 
   show(popover) {
