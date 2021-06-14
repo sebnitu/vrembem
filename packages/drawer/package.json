@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/drawer",
   "description": "A container component that slides in from the left or right. Typically containing menus, search or other content.",
-  "version": "1.31.1",
+  "version": "1.31.2",
   "license": "MIT",
   "keywords": [
     "BEM",
