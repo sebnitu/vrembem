@@ -3542,7 +3542,7 @@ input::-moz-placeholder {
 }
 
 .menu__text {
-  flex-grow: 1;
+  flex: 1 1 auto;
 }
 
 .menu_full .menu__item {
