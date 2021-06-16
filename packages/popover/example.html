@@ -5,14 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>@vrembem/popover</title>
   <link rel="icon" type="image/png" sizes="32x32" href="https://sebnitu.com/dist/favicon.png">
-  <!-- Setup styles -->
-  <link rel="stylesheet" href="https://unpkg.com/@vrembem/base/dist/styles.css">
-  <link rel="stylesheet" href="https://unpkg.com/@vrembem/button/dist/styles.css">
-  <link rel="stylesheet" href="https://unpkg.com/@vrembem/breadcrumb/dist/styles.css">
-  <link rel="stylesheet" href="https://unpkg.com/@vrembem/menu/dist/styles.css">
-  <link rel="stylesheet" href="https://unpkg.com/@vrembem/utility/dist/styles.css">
-  <!-- Component styles -->
+  <!-- Styles -->
+  <link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.css">
   <link rel="stylesheet" href="./dist/styles.css">
+  <!-- Vue -->
+  <script src="https://unpkg.com/vue@next"></script>
 </head>
 <body>
   
@@ -44,46 +41,69 @@
     </div>
 
     <div class="padding-xl gap-y">
-      <div class="flex flex-wrap flex-gap">
-
-        <div>
-          <button class="button" data-popover-trigger>
-            Popover Click
-          </button>
-          <div class="popover" data-popover>
-            <ul class="menu">
-              <li class="menu__item">
-                <button class="menu__action">
-                  <span class="menu__text">Add</span>
-                  <span class="color-subtle">&plus;</span>
-                </button>
-              </li>
-              <li class="menu__item">
-                <button class="menu__action">
-                  <span class="menu__text">Remove</span>
-                  <span class="color-subtle">&minus;</span>
-                </button>
-              </li>
-              <li class="menu__sep"></li>
-              <li class="menu__item">
-                <button class="menu__action">
-                  <span class="menu__text">Edit</span>
-                  <span>&#9999;&#65039;</span>
-                </button>
-              </li>
-            </ul>
+      <h2>Static Examples:</h2>
+      <div>
+        <div class="flex flex-wrap flex-gap">
+          <div>
+            <button class="button" data-popover-trigger>
+              Popover Click
+            </button>
+            <div class="popover" data-popover>
+              <ul class="menu">
+                <li class="menu__item">
+                  <button class="menu__action">
+                    <span class="menu__text">Add</span>
+                    <span class="color-subtle">&plus;</span>
+                  </button>
+                </li>
+                <li class="menu__item">
+                  <button class="menu__action">
+                    <span class="menu__text">Remove</span>
+                    <span class="color-subtle">&minus;</span>
+                  </button>
+                </li>
+                <li class="menu__sep"></li>
+                <li class="menu__item">
+                  <button class="menu__action">
+                    <span class="menu__text">Edit</span>
+                    <span>&#9999;&#65039;</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <button class="button" data-popover-trigger data-popover-event="hover">
+              Popover Hover
+            </button>
+            <div class="popover popover_size_lg" data-popover tabindex="0">
+              <p class="padding-sm">Random content, but it's focusable thanks to the tabindex attribute!</p>
+            </div>
           </div>
         </div>
-        
+      </div>
+
+      <hr class="sep">
+
+      <div id="app" class="gap-y">
+        <h2>{{ title }}</h2>
         <div>
-          <button class="button" data-popover-trigger data-popover-event="hover">
-            Popover Hover
-          </button>
-          <div class="popover popover_size_lg" data-popover tabindex="0">
-            <p class="padding-sm">Random content, but it's focusable thanks to the tabindex attribute!</p>
+          <div class="level">
+            <div>
+              <input type="text" class="input">
+            </div>
+            <button class="button button_color_primary">Add</button>
           </div>
         </div>
-
+        <ul class="list">
+          <li v-for="popover in examples">
+            <popover-set 
+              placement="right"
+              v-bind:popover="popover"
+              v-bind:key="popover.id">
+            </popover-set>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -94,12 +114,70 @@
   <!-- Implementation scripts -->
   <script>
     const popover = new vrembem.Popover({
-      autoInit: true,
-      // eventListeners: false
+      autoInit: true
     });
 
-    console.log({ popover });
-  </script>
+    console.log('Before Vue!');
+    console.log(popover.collection);
 
+    // What should Vue do in this example?
+    // - Be able to add and remove popover instances
+    // - Be able to set a popover's placement
+    // - Be able to set a popover's event type
+
+    const AppConfig = {
+      data() {
+        return {
+          title: 'Dynamic Examples:',
+          examples: [
+            { id: 0, text: 'Example popover one' },
+            { id: 1, text: 'Example popover two' },
+            { id: 2, text: 'Example popover three' }
+          ]
+        }
+      },
+      mounted() {
+        console.log('After Vue!');
+        console.log(popover.collection);
+      }
+    }
+
+    const app = Vue.createApp(AppConfig)
+
+    app.component('popover-trigger', {
+      props: ['popover'],
+      template: `
+        <button class="link" data-popover-trigger>
+          Trigger {{ popover.id }}
+        </button>
+      `
+    });
+
+    app.component('popover', {
+      props: ['popover', 'placement'],
+      template: `
+        <div class="popover" data-popover v-bind:data-popover-placement="placement">
+          {{ popover.text }}
+        </div>
+      `
+    });
+
+    app.component('popover-set', {
+      props: ['popover', 'placement'],
+      mounted() {
+        const trigger = this.$el.querySelector('[data-popover-trigger]')
+        const target = this.$el.querySelector('[data-popover]')
+        popover.register(trigger, target);
+      },
+      template: `
+        <div>
+          <popover-trigger v-bind:popover="popover"></popover-trigger>
+          <popover v-bind:popover="popover" v-bind:placement="placement"></popover>
+        </div>
+      `
+    });
+
+    app.mount('#app');
+  </script>
 </body>
 </html>

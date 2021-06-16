@@ -40,18 +40,43 @@ export function register(trigger, target, obj) {
   // Setup event listeners
   registerEventListeners(popover, obj);
 
+  // Set initial state of popover
+  if (popover.target.classList.contains(obj.settings.stateActive)) {
+    show(popover, obj);
+    documentClick(popover, obj);
+  } else {
+    hide(popover, obj);
+  }
+
   // Return the popover object
   return popover;
 }
 
 export function unregister(popover, obj) {
-  // Hide the popover
-  if (popover.state === 'show') {
-    hide(popover, obj);
+  // Check if this item has been registered in the collection
+  const index = obj.collection.findIndex((item) => {
+    return (item.trigger === popover.trigger && item.target === popover.target);
+  });
+
+  // If the item exists in the collection
+  if (index >= 0) {
+    // Hide the popover
+    if (popover.state === 'show') {
+      hide(popover, obj);
+    }
+
+    // Clean up the popper instance
+    popover.popper.destroy();
+
+    // Remove event listeners
+    unregisterEventListeners(popover);
+
+    // Remove item from collection
+    obj.collection.splice(index, 1);
   }
 
-  // Remove event listeners
-  unregisterEventListeners(popover);
+  // Return the new collection
+  return obj.collection;
 }
 
 export function registerEventListeners(popover, obj) {
@@ -95,6 +120,9 @@ export function registerEventListeners(popover, obj) {
       });
     }
   }
+
+  // Return the popover object
+  return popover;
 }
 
 export function unregisterEventListeners(popover) {
@@ -111,6 +139,9 @@ export function unregisterEventListeners(popover) {
     // Remove eventListeners object from collection
     delete popover.__eventListeners;
   }
+
+  // Return the popover object
+  return popover;
 }
 
 export function registerCollection(obj) {
@@ -121,14 +152,20 @@ export function registerCollection(obj) {
     const target = getPopover(trigger, obj.settings);
     if (target) {
       // Register the popover and save to collection array
-      const popover = register(trigger, target, obj);
-      // Set initial state of popover
-      if (popover.target.classList.contains(obj.settings.stateActive)) {
-        show(popover, obj);
-        documentClick(popover, obj);
-      } else {
-        hide(popover, obj);
-      }
+      register(trigger, target, obj);
     }
   });
+
+  // Return the popover collection
+  return obj.collection;
+}
+
+export function unregisterCollection(obj) {
+  // Loop through all items within the collection and pass them to unregister()
+  while (obj.collection.length > 0) {
+    unregister(obj.collection[0], obj);
+  }
+
+  // Return the popover collection
+  return obj.collection;
 }

@@ -7,7 +7,8 @@ import {
   unregister,
   registerEventListeners,
   unregisterEventListeners,
-  registerCollection
+  registerCollection,
+  unregisterCollection
 } from './register';
 
 export default class Popover {
@@ -28,24 +29,26 @@ export default class Popover {
 
     // If eventListeners is enabled and popover triggers exist on page
     if (this.settings.eventListeners) {
-      // Setup init event listeners
+      // Pass false to initEventListeners() since registerCollection()
+      // already adds event listeners to popovers
       this.initEventListeners(false);
     }
+
+    return this;
   }
 
   destroy() {
     // Unregister all popovers from collection
-    this.collection.forEach((popover) => {
-      unregister(popover, this);
-    });
-
-    // Rest the collection array
-    this.collection = [];
+    unregisterCollection(this);
 
     // If eventListeners is enabled
     if (this.settings.eventListeners) {
+      // Pass false to destroyEventListeners() since unregisterCollection()
+      // already removes event listeners from popovers
       this.destroyEventListeners(false);
     }
+
+    return this;
   }
 
   /**
@@ -62,6 +65,8 @@ export default class Popover {
 
     // Add keydown global event listener
     document.addEventListener('keydown', this.__handlerKeydown, false);
+
+    return this;
   }
 
   destroyEventListeners(processCollection = true) {
@@ -74,6 +79,8 @@ export default class Popover {
 
     // Remove keydown global event listener
     document.removeEventListener('keydown', this.__handlerKeydown, false);
+
+    return this;
   }
 
   /**
@@ -81,23 +88,27 @@ export default class Popover {
    */
 
   register(trigger, target) {
-    register(trigger, target, this);
+    return register(trigger, target, this);
   }
 
   unregister(popover) {
-    unregister(popover, this);
+    return unregister(popover, this);
   }
 
   registerEventListeners(popover) {
-    registerEventListeners(popover, this);
+    return registerEventListeners(popover, this);
   }
 
   unregisterEventListeners(popover) {
-    unregisterEventListeners(popover);
+    return unregisterEventListeners(popover);
   }
 
   registerCollection() {
-    registerCollection(this);
+    return registerCollection(this);
+  }
+
+  unregisterCollection() {
+    return unregisterCollection(this);
   }
 
   /**
@@ -105,14 +116,14 @@ export default class Popover {
    */
 
   show(popover) {
-    show(popover, this);
+    return show(popover, this);
   }
 
   hide(popover) {
-    hide(popover, this);
+    return hide(popover, this);
   }
 
   hideAll(popover) {
-    hideAll(popover, this);
+    return hideAll(popover, this);
   }
 }
