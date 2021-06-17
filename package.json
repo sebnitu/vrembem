@@ -47,6 +47,9 @@
     "stylelint-selector-bem-pattern": "^2.1.0"
   },
   "jest": {
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(@popperjs)/)"
+    ]
   }
 }
