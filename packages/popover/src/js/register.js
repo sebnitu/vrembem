@@ -161,16 +161,8 @@ export function registerCollection(obj) {
   // Get all the triggers
   const triggers = document.querySelectorAll(`[data-${obj.settings.dataTrigger}]`);
   triggers.forEach((trigger) => {
-    // Get the triggers target
-    const target = getPopover(trigger, obj.settings);
-    if (target) {
-      // Register the popover and save to collection array
-      register(trigger, target, obj);
-    } else {
-      console.error(
-        'No popover associated with the provided trigger:', trigger
-      );
-    }
+    // Register the popover and save to collection array
+    register(trigger, false, obj);
   });
 
   // Return the popover collection

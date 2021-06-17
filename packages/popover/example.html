@@ -166,8 +166,7 @@
       props: ['popover', 'placement'],
       mounted() {
         const trigger = this.$el.querySelector('[data-popover-trigger]')
-        const target = this.$el.querySelector('[data-popover]')
-        popover.register(trigger, target);
+        popover.register(trigger);
       },
       template: `
         <div>
