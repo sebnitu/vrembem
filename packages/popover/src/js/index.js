@@ -123,7 +123,7 @@ export default class Popover {
     return hide(popover, this);
   }
 
-  hideAll(popover) {
-    return hideAll(popover, this);
+  hideAll() {
+    return hideAll(this);
   }
 }
