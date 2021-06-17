@@ -146,6 +146,10 @@
 
     app.component('popover-trigger', {
       props: ['popover'],
+      mounted() {
+        console.log('Register:', this.$el);
+        popover.register(this.$el);
+      },
       template: `
         <button class="link" data-popover-trigger>
           Trigger {{ popover.id }}
@@ -164,10 +168,6 @@
 
     app.component('popover-set', {
       props: ['popover', 'placement'],
-      mounted() {
-        const trigger = this.$el.querySelector('[data-popover-trigger]')
-        popover.register(trigger);
-      },
       template: `
         <div>
           <popover-trigger v-bind:popover="popover"></popover-trigger>
