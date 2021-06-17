@@ -8,14 +8,16 @@ export function getPopover(trigger, settings) {
   return trigger.getAttribute(`data-${settings.dataTrigger}`).trim() ?
     document.querySelector(
       `[data-${settings.dataPopover}="${trigger.getAttribute(`data-${settings.dataTrigger}`)}"]`
-    ) :
-    trigger.nextElementSibling.hasAttribute(`data-${settings.dataPopover}`) ?
+    ) : (
+      trigger.nextElementSibling &&
+      trigger.nextElementSibling.hasAttribute(`data-${settings.dataPopover}`)
+    ) ?
       trigger.nextElementSibling : false;
 }
 
-export function getEventType(trigger, settings) {
-  return trigger.hasAttribute(`data-${settings.dataEventType}`) ?
-    trigger.getAttribute(`data-${settings.dataEventType}`) :
+export function getEventType(target, settings) {
+  return target.hasAttribute(`data-${settings.dataEventType}`) ?
+    target.getAttribute(`data-${settings.dataEventType}`) :
     settings.eventType;
 }
 

@@ -6,13 +6,26 @@ import { hide, hideCheck } from './hide';
 import { show } from './show';
 
 export function register(trigger, target, obj) {
-  // Initiate popover variable
-  let popover;
+  // If no target is passed
+  if (!target) {
+    // Try and get the target
+    target = getPopover(trigger, obj.settings);
+    // If still no target is returned, log an error and return false
+    if (!target) {
+      console.error(
+        'No popover associated with the provided trigger:', trigger
+      );
+      return false;
+    }
+  }
 
   // Check if this item has already been registered in the collection
   const index = obj.collection.findIndex((item) => {
     return (item.trigger === trigger && item.target === target);
   });
+
+  // Initiate popover variable
+  let popover;
 
   // Check if it already exists in collection
   if (index >= 0) {
@@ -83,7 +96,7 @@ export function registerEventListeners(popover, obj) {
   // If event listeners aren't already setup
   if (!popover.__eventListeners) {
     // Add event listeners based on event type
-    const eventType = getEventType(popover.trigger, obj.settings);
+    const eventType = getEventType(popover.target, obj.settings);
     if (eventType === 'hover') {
       // Setup event listeners object for hover
       popover.__eventListeners = [{
@@ -146,13 +159,17 @@ export function unregisterEventListeners(popover) {
 
 export function registerCollection(obj) {
   // Get all the triggers
-  const popoverTriggers = document.querySelectorAll(`[data-${obj.settings.dataTrigger}]`);
-  popoverTriggers.forEach((trigger) => {
+  const triggers = document.querySelectorAll(`[data-${obj.settings.dataTrigger}]`);
+  triggers.forEach((trigger) => {
     // Get the triggers target
     const target = getPopover(trigger, obj.settings);
     if (target) {
       // Register the popover and save to collection array
       register(trigger, target, obj);
+    } else {
+      console.error(
+        'No popover associated with the provided trigger:', trigger
+      );
     }
   });
 

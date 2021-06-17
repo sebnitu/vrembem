@@ -13,11 +13,11 @@ usage:
 
 {% include demo_open.html class_parent="level" %}
 <div>
-  <button class="button button_color_primary" data-popover-trigger data-popover-event="click">
+  <button class="button button_color_primary" data-popover-trigger>
     <span>Click Trigger</span>
     <span class="arrow-down"></span>
   </button>
-  <div class="popover" data-popover>
+  <div class="popover" data-popover data-popover-event="click">
     <ul class="menu">
       <li class="menu__item">
         <button class="menu__action">
@@ -79,11 +79,11 @@ usage:
   </div>
 </div>
 <div>
-  <button class="button button_color_secondary" data-popover-trigger data-popover-event="hover">
+  <button class="button button_color_secondary" data-popover-trigger>
     <span>Hover Trigger</span>
     <span class="arrow-down"></span>
   </button>
-  <div class="popover" data-popover>
+  <div class="popover" data-popover data-popover-event="hover">
     <ul class="menu">
       <li class="menu__item">
         <button class="menu__action">Undo</button>

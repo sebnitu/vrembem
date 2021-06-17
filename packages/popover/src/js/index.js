@@ -87,7 +87,7 @@ export default class Popover {
    * Register popover functionality
    */
 
-  register(trigger, target) {
+  register(trigger, target = false) {
     return register(trigger, target, this);
   }
 
