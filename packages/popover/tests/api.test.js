@@ -24,7 +24,7 @@ afterEach(() => {
   document.body.innerHTML = null;
 });
 
-describe('init()', () => {
+describe('init() & destroy()', () => {
   test('should initialize the popover module when init is run', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
@@ -67,6 +67,20 @@ describe('init()', () => {
     expect(popover.settings.dataPopover).toBe('asdf');
     popover.init({ dataPopover: 'popover' });
     expect(popover.settings.dataPopover).toBe('popover');
+  });
+
+  test('should remove all event listeners and clear collection', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover({ autoInit: true });
+
+    const trigger = document.querySelector('[data-popover-trigger]');
+    const target = document.querySelector('[data-popover]');
+
+    expect(popover.collection.length).toBe(2);
+    popover.destroy();
+    expect(popover.collection.length).toBe(0);
+    trigger.click();
+    expect(target).not.toHaveClass('is-active');
   });
 });
 
