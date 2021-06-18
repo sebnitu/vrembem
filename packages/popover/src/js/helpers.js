@@ -1,30 +1,13 @@
-function getCSSVar(property, fallback = false, el = document.documentElement) {
+function getCSSVar(property, fallback, el = document.documentElement) {
   const styles = getComputedStyle(el);
   const value = styles.getPropertyValue(property).trim();
   return value ? value : fallback;
 }
 
-export function getPopover(trigger, settings) {
-  return trigger.getAttribute(`data-${settings.dataTrigger}`).trim() ?
-    document.querySelector(
-      `[data-${settings.dataPopover}="${trigger.getAttribute(`data-${settings.dataTrigger}`)}"]`
-    ) : (
-      trigger.nextElementSibling &&
-      trigger.nextElementSibling.hasAttribute(`data-${settings.dataPopover}`)
-    ) ?
-      trigger.nextElementSibling : false;
-}
-
-export function getEventType(target, settings) {
-  return target.hasAttribute(`data-${settings.dataEventType}`) ?
-    target.getAttribute(`data-${settings.dataEventType}`) :
-    settings.eventType;
-}
-
-export function getPlacement(target, settings) {
-  return target.hasAttribute(`data-${settings.dataPlacement}`) ?
-    target.getAttribute(`data-${settings.dataPlacement}`) :
-    settings.placement;
+export function getDataValue(el, data, fallback = null) {
+  return el.hasAttribute(`data-${data}`) ?
+    el.getAttribute(`data-${data}`) :
+    fallback;
 }
 
 export function getModifiers(target) {
@@ -39,4 +22,15 @@ export function getModifiers(target) {
       padding: parseInt(getCSSVar('--popover-offset-overflow', 0, target), 10)
     }
   }];
+}
+
+export function getPopover(trigger, settings) {
+  return trigger.getAttribute(`data-${settings.dataTrigger}`).trim() ?
+    document.querySelector(
+      `[data-${settings.dataPopover}="${trigger.getAttribute(`data-${settings.dataTrigger}`)}"]`
+    ) : (
+      trigger.nextElementSibling &&
+      trigger.nextElementSibling.hasAttribute(`data-${settings.dataPopover}`)
+    ) ?
+      trigger.nextElementSibling : false;
 }

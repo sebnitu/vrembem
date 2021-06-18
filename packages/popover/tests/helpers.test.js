@@ -1,0 +1,145 @@
+import Popover from '../index.js';
+import { getDataValue, getModifiers, getPopover } from '../src/js/helpers';
+import '@testing-library/jest-dom/extend-expect';
+
+let popover;
+
+const markup = `
+  <div id="app">
+    <button data-popover-trigger>...</button>
+    <div 
+      class="popover"
+      data-popover
+      data-popover-event="hover"
+      data-popover-placement="top"
+    >
+      ...
+    </div>
+    <button data-popover-trigger="unique-id">...</button>
+  </div>
+  <div class="popover" data-popover="unique-id">
+    ...
+  </div>
+`;
+
+const markupMissing = '<button data-popover-trigger>...</button>';
+
+afterEach(() => {
+  if (popover && 'destroy' in popover) {
+    popover.destroy();
+  }
+  popover = null;
+  document.body.innerHTML = null;
+});
+
+describe('getDataValue()', () => {
+  test('should return the event type value', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover();
+    const target = document.querySelector('[data-popover]');
+    const result = getDataValue(
+      target,
+      popover.settings.dataEventType,
+      popover.settings.eventType
+    );
+    expect(result).toBe('hover');
+  });
+
+  test('should return the preferred placement value', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover();
+    const target = document.querySelector('[data-popover]');
+    const result = getDataValue(
+      target,
+      popover.settings.dataPlacement,
+      popover.settings.placement
+    );
+    expect(result).toBe('top');
+  });
+
+  test('should return the default value if data attribute is not found', () => {
+    document.body.innerHTML = markup;
+    const target = document.querySelector('[data-popover]');
+    const result = getDataValue(
+      target,
+      'missing',
+      'asdf'
+    );
+    expect(result).toBe('asdf');
+  });
+
+  test('should return null if data attribute is not found and no default value is passed', () => {
+    document.body.innerHTML = markup;
+    const target = document.querySelector('[data-popover]');
+    const result = getDataValue(
+      target,
+      'missing'
+    );
+    expect(result).toBe(null);
+  });
+});
+
+describe('getPopover()', () => {
+  test('should return a popover using a trigger', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover();
+    const trigger = document.querySelector('[data-popover-trigger]');
+    const target = document.querySelector('[data-popover]');
+    const result = getPopover(trigger, popover.settings);
+    expect(result).toHaveClass('popover');
+    expect(result).toBe(target);
+  });
+
+  test('should return a popover using a shared unique ID', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover();
+    const trigger = document.querySelector('[data-popover-trigger="unique-id"]');
+    const target = document.querySelector('[data-popover="unique-id"]');
+    const result = getPopover(trigger, popover.settings);
+    expect(result).toHaveClass('popover');
+    expect(result).toBe(target);
+  });
+
+  test('should return false if a popover can not be found', () => {
+    document.body.innerHTML = markupMissing;
+    popover = new Popover();
+    const trigger = document.querySelector('[data-popover-trigger]');
+    const result = getPopover(trigger, popover.settings);
+    expect(result).toBe(false);
+  });
+});
+
+describe('getModifiers()', () => {
+  test('should return modifiers using defaults', () => {
+    document.body.innerHTML = markup;
+    const target = document.querySelector('[data-popover]');
+    const result = getModifiers(target);
+    const offset = result.find(item => item.name === 'offset');
+    const overflow = result.find(item => item.name === 'preventOverflow');
+    expect(offset.options.offset).toEqual([0, 0]);
+    expect(overflow.options.padding).toEqual(0);
+  });
+
+  test('should return modifiers with custom CSS variables set', () => {
+    document.body.innerHTML = markup;
+    const target = document.querySelector('[data-popover]');
+    target.style.setProperty('--popover-offset', '10');
+    target.style.setProperty('--popover-offset-overflow', '20');
+    const result = getModifiers(target);
+    const offset = result.find(item => item.name === 'offset');
+    const overflow = result.find(item => item.name === 'preventOverflow');
+    expect(offset.options.offset).toEqual([0, 10]);
+    expect(overflow.options.padding).toEqual(20);
+  });
+
+  test('should return modifiers with custom CSS variables set to root document', () => {
+    document.body.innerHTML = markup;
+    document.documentElement.style.setProperty('--popover-offset', '5');
+    document.documentElement.style.setProperty('--popover-offset-overflow', '10');
+    const result = getModifiers();
+    const offset = result.find(item => item.name === 'offset');
+    const overflow = result.find(item => item.name === 'preventOverflow');
+    expect(offset.options.offset).toEqual([0, 5]);
+    expect(overflow.options.padding).toEqual(10);
+  });
+});

@@ -31,7 +31,7 @@ export function hideAll(obj) {
 }
 
 export function hideCheck(popover, obj) {
-  // setTimeout is needed to correctly check which element is currently being focused
+  // Needed to correctly check which element is currently being focused
   setTimeout(() => {
     // Check if trigger or target are being hovered
     const isHovered =
@@ -43,7 +43,7 @@ export function hideCheck(popover, obj) {
       document.activeElement.closest(`[data-${obj.settings.dataPopover}]`) === popover.target ||
       document.activeElement.closest(`[data-${obj.settings.dataTrigger}]`) === popover.trigger;
 
-    // Only hide popover if the trigger and target are not currently hovered or focused
+    // Hide if the trigger and target are not currently hovered or focused
     if (!isHovered && !isFocused) {
       hide(popover, obj);
     }
