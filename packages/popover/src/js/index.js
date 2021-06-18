@@ -27,7 +27,7 @@ export default class Popover {
     // Build the collections array with popover instances
     registerCollection(this);
 
-    // If eventListeners is enabled and popover triggers exist on page
+    // If eventListeners is enabled
     if (this.settings.eventListeners) {
       // Pass false to initEventListeners() since registerCollection()
       // already adds event listeners to popovers
