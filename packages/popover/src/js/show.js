@@ -21,4 +21,7 @@ export function show(popover, obj) {
     return item.target === popover.target;
   });
   obj.collection[index].state = 'show';
+
+  // Return the popover
+  return popover;
 }

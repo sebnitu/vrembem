@@ -20,6 +20,9 @@ export function hide(popover, obj) {
     return item.target === popover.target;
   });
   obj.collection[index].state = 'hide';
+
+  // Return the popover
+  return popover;
 }
 
 export function hideAll(obj) {
@@ -28,6 +31,9 @@ export function hideAll(obj) {
       hide(popover, obj);
     }
   });
+
+  // Return the collection
+  return obj.collection;
 }
 
 export function hideCheck(popover, obj) {
@@ -47,5 +53,8 @@ export function hideCheck(popover, obj) {
     if (!isHovered && !isFocused) {
       hide(popover, obj);
     }
+
+    // Return the popover
+    return popover;
   }, 1);
 }
