@@ -29,8 +29,10 @@ describe('hide()', () => {
   test('should hide the provided popover', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
+    expect(popover.collection[0].state).toBe('show');
     expect(popover.collection[0].target).toHaveClass('is-active');
     hide(popover.collection[0], popover);
+    expect(popover.collection[0].state).toBe('hide');
     expect(popover.collection[0].target).not.toHaveClass('is-active');
   });
 });
