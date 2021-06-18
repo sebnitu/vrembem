@@ -85,3 +85,18 @@ describe('handlerKeydown()', () => {
     expect(popover.collection[1].target).toHaveClass('is-active');
   });
 });
+
+describe('documentClick()', () => {
+  test('should close other popover instances when a new one is toggled', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover({ autoInit: true });
+
+    expect(popover.collection[0].target).not.toHaveClass('is-active');
+    expect(popover.collection[1].target).toHaveClass('is-active');
+
+    popover.collection[0].trigger.click();
+
+    expect(popover.collection[0].target).toHaveClass('is-active');
+    expect(popover.collection[1].target).not.toHaveClass('is-active');
+  });
+});
