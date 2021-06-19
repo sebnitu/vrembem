@@ -87,9 +87,19 @@
       <hr class="sep margin-y-xl">
 
       <div id="app">
-        <h2 class="margin-bottom">{{ title }}</h2>
+        <div class="margin-bottom level flex-justify-between">
+          <h2>{{ title }}</h2>
+          <button @click="removeAll" class="link">Remove all</button>
+        </div>
         <div class="level">
-          <button @click="addPopover" class="button button_color_primary">Add</button>
+          <button class="button button_color_primary button_icon" data-popover-trigger>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-settings">
+              <circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </button>
+          <div class="popover" data-popover>
+            <popover-form @create="createPopover"></popover-form>
+          </div>
           <popover-set 
             v-for="popover in examples"
             v-bind:key="popover.id"
@@ -111,15 +121,6 @@
       autoInit: true
     });
 
-    console.log('Before Vue!', popover.collection);
-
-    // What should Vue do in this example?
-    // - [x] Be able to add and remove popover instances
-    // - [ ] Be able to set a popover's placement
-    // - [ ] Be able to set a popover's event type
-    // - [ ] Be able to set a popover's content
-    // - [ ] Add a computed variable for dynamic popover count (examples.length?)
-
     /**
      * Vue config & createApp
      */
@@ -127,7 +128,6 @@
     const AppConfig = {
       data() {
         return {
-          title: 'Dynamic Examples',
           examples: [
             { id: 0, text: 'Example popover 1' },
             { id: 1, text: 'Example popover 2' },
@@ -135,20 +135,28 @@
           ]
         }
       },
+      computed: {
+        title() {
+          return `Dynamic Examples (${this.examples.length})`
+        }
+      },
       methods: {
-        addPopover() {
+        createPopover(obj) {
           this.examples.push({
             id: this.examples.length,
-            text: `Example popover ${this.examples.length + 1}`
+            ...obj
           });
         },
         removePopover(id) {
           const index = this.examples.findIndex(el => el.id === id);
           this.examples.splice(index, 1);
+        },
+        removeAll() {
+          this.examples = [];
         }
       },
       mounted() {
-        console.log('After Vue!', popover.collection);
+        popover.registerCollection();
       }
     }
 
@@ -157,6 +165,57 @@
     /**
      * Components
      */
+
+    app.component('popover-form', {
+      data() {
+        return {
+          text: null,
+          placement: null,
+          eventType: null
+        }
+      },
+      emits: ['create'],
+      methods: {
+        create() {
+          config = {}
+          config.text = this.text;
+          config.placement = this.placement;
+          config.eventType = this.eventType;
+          this.$emit('create', config);
+          this.text = null;
+        }
+      },
+      template: `
+        <form @submit.prevent="create" class="padding-sm gap-y">
+          <h3>Create a popover</h3>
+          <hr class="sep">
+          <div class="gap-y-sm">
+            <label for="input-popover-text">Copy</label>
+            <input v-model="text" id="input-popover-text" type="text" class="input">
+          </div>
+          <div class="gap-y-sm">
+            <label for="input-popover-placement">Placement</label>
+            <select v-model="placement" id="input-popover-placement" class="input input_type_select">
+              <option value="">--</option>
+              <option value="top">Top</option>
+              <option value="right">Right</option>
+              <option value="bottom">Bottom</option>
+              <option value="left">Left</option>
+            </select>
+          </div>
+          <div class="gap-y-sm">
+            <label for="input-popover-event">Event Type</label>
+            <select v-model="eventType" id="input-popover-event" class="input input_type_select">
+              <option value="">--</option>
+              <option value="click">Click</option>
+              <option value="hover">Hover</option>
+            </select>
+          </div>
+          <hr class="sep">
+          <button class="button button_block">Create</button>
+        </form>
+      `
+    });
 
     app.component('popover-trigger', {
       props: ['popover'],
@@ -171,7 +230,7 @@
     });
 
     app.component('popover', {
-      props: ['popover', 'placement', 'eventType'],
+      props: ['popover'],
       emits: ['remove'],
       methods: {
         removePopover() {
@@ -186,8 +245,8 @@
         <div
           class="popover"
           data-popover
-          v-bind:data-popover-placement="placement"
-          v-bind:data-popover-event="eventType">
+          v-bind:data-popover-placement="popover.placement"
+          v-bind:data-popover-event="popover.eventType">
           <div v-if="popover.text" class="notice notice_state_info margin-bottom-sm">
             {{ popover.text }}
           </div>
@@ -204,7 +263,7 @@
     });
 
     app.component('popover-set', {
-      props: ['popover', 'placement', 'eventType'],
+      props: ['popover'],
       emits: ['remove'],
       methods: {
         removePopover(id) {
@@ -218,8 +277,6 @@
           ></popover-trigger>
           <popover
             v-bind:popover="popover"
-            v-bind:placement="placement"
-            v-bind:event-type="eventType"
             @remove="removePopover"
           ></popover>
         </div>
