@@ -5,7 +5,8 @@
       "message": "chore(release): bump to %s",
       "ignoreChanges": [
         "**/tests/**",
-        "**/*.md"
+        "**/*.md",
+        "packages/**/*.html"
       ]
     }
   },
