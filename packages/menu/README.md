@@ -73,7 +73,7 @@ Adding the boolean `disabled` attribute or `is-disabled` class will provide visu
 
 ## Modifiers
 
-### menu_inline_[key]
+### `menu_inline_[key]`
 
 Used to apply horizontal menu styles. This is typically used for short menus or toolbars where vertical space can be saved.
 
@@ -137,7 +137,7 @@ Output the styles for an inline menu.
 }
 ```
 
-### menu_full_[key]
+### `menu_full_[key]`
 
 Used to span a horizontal menu to fill the full width of its container. This modifier is meant to be paired with the `menu_inline` modifier as the default styles of a vertical menu already fill the full width of their container.
 
@@ -180,7 +180,7 @@ Output the styles for a full width menu (should be applied to menus that are alr
 }
 ```
 
-### menu_invert
+### `menu_invert`
 
 A modifier that provides an inversed menu style for better contrast on a dark background.
 
@@ -190,7 +190,7 @@ A modifier that provides an inversed menu style for better contrast on a dark ba
 </ul>
 ```
 
-### menu_size_[value]
+### `menu_size_[value]`
 
 Adjust the size of a menu by increasing or decreasing its padding and font-size. By default, the menu scale will provide an action height of 30px (small `menu_size_sm`), 40px (default) and 50px (large `menu_size_lg`).
 

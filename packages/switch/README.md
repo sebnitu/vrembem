@@ -48,7 +48,7 @@ For switch with labels, just wrap the switch component along with label text usi
 
 ## Modifiers
 
-### switch_size_[value]
+### `switch_size_[value]`
 
 Adjust the size of a switch by increasing or decreasing its width and height. By default, the switch scale will provide a switch height of 30px (small `switch_size_sm`), 40px (default) and 50px (large `switch_size_lg`).
 
