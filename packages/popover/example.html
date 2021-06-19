@@ -12,10 +12,8 @@
   <script src="https://unpkg.com/vue@next"></script>
 </head>
 <body>
-  
-  <div role="main">
-
-    <div class="padding-xl gap-y background-shade">
+  <header class="section background-shade">
+    <div class="section__container gap-y">
       <h1 class="text-size-lg">@vrembem/popover</h1>
       <p class="max-width-xs">
         A component that is initially hidden and revealed upon user interaction either through a click or hover event. Popover can contain lists of actions, links, or additional supplementary content.
@@ -39,9 +37,12 @@
         </li>
       </ol>
     </div>
+  </header>
 
-    <div class="padding-xl gap-y">
-      <h2>Static Examples:</h2>
+  <section class="section">
+    <div class="section__container gap-y">
+
+      <h2>Static Examples</h2>
       <div>
         <div class="flex flex-wrap flex-gap">
           <div>
@@ -83,33 +84,23 @@
         </div>
       </div>
 
-      <hr class="sep">
+      <hr class="sep margin-y-xl">
 
       <div id="app">
         <h2 class="margin-bottom">{{ title }}</h2>
-        <div class="grid">
-          <div class="grid__item gap-y">
-            <div>
-              <input type="text" class="input">
-            </div>
-            <button @click="addPopover" class="button button_color_primary">Add</button>
-          </div>
-          <div class="grid__item">
-            <ul class="list">
-              <li v-for="popover in examples">
-                <popover-set 
-                  placement="top"
-                  v-bind:popover="popover"
-                  v-bind:key="popover.id"
-                  @remove="removePopover">
-                </popover-set>
-              </li>
-            </ul>
-          </div>
+        <div class="level">
+          <button @click="addPopover" class="button button_color_primary">Add</button>
+          <popover-set 
+            v-for="popover in examples"
+            v-bind:key="popover.id"
+            v-bind:popover="popover"
+            @remove="removePopover">
+          </popover-set>
         </div>
       </div>
+      
     </div>
-  </div>
+  </section>
 
   <!-- Component scripts -->
   <script src="./dist/scripts.umd.js"></script>
@@ -126,16 +117,21 @@
     // - [x] Be able to add and remove popover instances
     // - [ ] Be able to set a popover's placement
     // - [ ] Be able to set a popover's event type
-    // - [ ] be able to set a popover's content
+    // - [ ] Be able to set a popover's content
+    // - [ ] Add a computed variable for dynamic popover count (examples.length?)
+
+    /**
+     * Vue config & createApp
+     */
 
     const AppConfig = {
       data() {
         return {
-          title: 'Dynamic Examples:',
+          title: 'Dynamic Examples',
           examples: [
-            { id: 0, text: 'Example popover 0' },
-            { id: 1, text: 'Example popover 1' },
-            { id: 2, text: 'Example popover 2' }
+            { id: 0, text: 'Example popover 1' },
+            { id: 1, text: 'Example popover 2' },
+            { id: 2, text: 'Example popover 3' }
           ]
         }
       },
@@ -143,7 +139,7 @@
         addPopover() {
           this.examples.push({
             id: this.examples.length,
-            text: `Example popover ${this.examples.length}`
+            text: `Example popover ${this.examples.length + 1}`
           });
         },
         removePopover(id) {
@@ -158,51 +154,84 @@
 
     const app = Vue.createApp(AppConfig)
 
+    /**
+     * Components
+     */
+
     app.component('popover-trigger', {
       props: ['popover'],
       mounted() {
-        console.log('mounted()', this.$el);
         popover.register(this.$el);
       },
       template: `
-        <button class="link" data-popover-trigger>
-          Trigger {{ popover.id }}
+        <button class="button" data-popover-trigger>
+          Trigger {{ popover.id + 1 }}
         </button>
       `
     });
 
     app.component('popover', {
-      props: ['popover', 'placement'],
-      beforeUnmount() {
-        console.log('beforeUnmount()', this.$el);
-        const item = popover.collection.find(el => el.target === this.$el);
-        popover.unregister(item);
-      },
-      template: `
-        <div class="popover" data-popover v-bind:data-popover-placement="placement">
-          {{ popover.text }}
-        </div>
-      `
-    });
-
-    app.component('popover-set', {
-      props: ['popover', 'placement'],
+      props: ['popover', 'placement', 'eventType'],
       emits: ['remove'],
       methods: {
         removePopover() {
           this.$emit('remove', this.popover.id);
         }
       },
+      beforeUnmount() {
+        const item = popover.collection.find(el => el.target === this.$el);
+        popover.unregister(item);
+      },
       template: `
-        <div class="level flex-justify-between">
-          <popover-trigger v-bind:popover="popover"></popover-trigger>
-          <popover v-bind:popover="popover" v-bind:placement="placement"></popover>
-          <button @click="removePopover" class="link">Remove</button>
+        <div
+          class="popover"
+          data-popover
+          v-bind:data-popover-placement="placement"
+          v-bind:data-popover-event="eventType">
+          <div v-if="popover.text" class="notice notice_state_info margin-bottom-sm">
+            {{ popover.text }}
+          </div>
+          <ul class="menu">
+            <li class="menu__item">
+              <button @click="removePopover" class="menu__action">
+                <span class="menu__text">Remove</span>
+                <span class="color-subtle">&minus;</span>
+              </button>
+            </li>
+          </ul>
         </div>
       `
     });
 
+    app.component('popover-set', {
+      props: ['popover', 'placement', 'eventType'],
+      emits: ['remove'],
+      methods: {
+        removePopover(id) {
+          this.$emit('remove', id);
+        }
+      },
+      template: `
+        <div>
+          <popover-trigger 
+            v-bind:popover="popover"
+          ></popover-trigger>
+          <popover
+            v-bind:popover="popover"
+            v-bind:placement="placement"
+            v-bind:event-type="eventType"
+            @remove="removePopover"
+          ></popover>
+        </div>
+      `
+    });
+
+    /**
+     * Vue mount 
+     */
+
     app.mount('#app');
+
   </script>
 </body>
 </html>
