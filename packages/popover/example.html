@@ -85,25 +85,28 @@
 
       <hr class="sep">
 
-      <div id="app" class="gap-y">
-        <h2>{{ title }}</h2>
-        <div>
-          <div class="level">
+      <div id="app">
+        <h2 class="margin-bottom">{{ title }}</h2>
+        <div class="grid">
+          <div class="grid__item gap-y">
             <div>
               <input type="text" class="input">
             </div>
-            <button class="button button_color_primary">Add</button>
+            <button @click="addPopover" class="button button_color_primary">Add</button>
+          </div>
+          <div class="grid__item">
+            <ul class="list">
+              <li v-for="popover in examples">
+                <popover-set 
+                  placement="top"
+                  v-bind:popover="popover"
+                  v-bind:key="popover.id"
+                  @remove="removePopover">
+                </popover-set>
+              </li>
+            </ul>
           </div>
         </div>
-        <ul class="list">
-          <li v-for="popover in examples">
-            <popover-set 
-              placement="right"
-              v-bind:popover="popover"
-              v-bind:key="popover.id">
-            </popover-set>
-          </li>
-        </ul>
       </div>
     </div>
   </div>
@@ -117,28 +120,39 @@
       autoInit: true
     });
 
-    console.log('Before Vue!');
-    console.log(popover.collection);
+    console.log('Before Vue!', popover.collection);
 
     // What should Vue do in this example?
-    // - Be able to add and remove popover instances
-    // - Be able to set a popover's placement
-    // - Be able to set a popover's event type
+    // - [x] Be able to add and remove popover instances
+    // - [ ] Be able to set a popover's placement
+    // - [ ] Be able to set a popover's event type
+    // - [ ] be able to set a popover's content
 
     const AppConfig = {
       data() {
         return {
           title: 'Dynamic Examples:',
           examples: [
-            { id: 0, text: 'Example popover one' },
-            { id: 1, text: 'Example popover two' },
-            { id: 2, text: 'Example popover three' }
+            { id: 0, text: 'Example popover 0' },
+            { id: 1, text: 'Example popover 1' },
+            { id: 2, text: 'Example popover 2' }
           ]
         }
       },
+      methods: {
+        addPopover() {
+          this.examples.push({
+            id: this.examples.length,
+            text: `Example popover ${this.examples.length}`
+          });
+        },
+        removePopover(id) {
+          const index = this.examples.findIndex(el => el.id === id);
+          this.examples.splice(index, 1);
+        }
+      },
       mounted() {
-        console.log('After Vue!');
-        console.log(popover.collection);
+        console.log('After Vue!', popover.collection);
       }
     }
 
@@ -147,7 +161,7 @@
     app.component('popover-trigger', {
       props: ['popover'],
       mounted() {
-        console.log('Register:', this.$el);
+        console.log('mounted()', this.$el);
         popover.register(this.$el);
       },
       template: `
@@ -159,6 +173,11 @@
 
     app.component('popover', {
       props: ['popover', 'placement'],
+      beforeUnmount() {
+        console.log('beforeUnmount()', this.$el);
+        const item = popover.collection.find(el => el.target === this.$el);
+        popover.unregister(item);
+      },
       template: `
         <div class="popover" data-popover v-bind:data-popover-placement="placement">
           {{ popover.text }}
@@ -168,10 +187,17 @@
 
     app.component('popover-set', {
       props: ['popover', 'placement'],
+      emits: ['remove'],
+      methods: {
+        removePopover() {
+          this.$emit('remove', this.popover.id);
+        }
+      },
       template: `
-        <div>
+        <div class="level flex-justify-between">
           <popover-trigger v-bind:popover="popover"></popover-trigger>
           <popover v-bind:popover="popover" v-bind:placement="placement"></popover>
+          <button @click="removePopover" class="link">Remove</button>
         </div>
       `
     });
