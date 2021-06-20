@@ -170,8 +170,8 @@
       data() {
         return {
           text: null,
-          placement: null,
-          eventType: null
+          placement: '',
+          eventType: ''
         }
       },
       emits: ['create'],
@@ -179,8 +179,8 @@
         create() {
           config = {}
           config.text = this.text;
-          config.placement = this.placement;
-          config.eventType = this.eventType;
+          config.placement = (this.placement === '') ? null : this.placement;
+          config.eventType = (this.eventType === '') ? null : this.eventType;
           this.$emit('create', config);
           this.text = null;
         }
@@ -191,7 +191,7 @@
           <hr class="sep">
           <div class="gap-y-sm">
             <label for="input-popover-text">Copy</label>
-            <input v-model="text" id="input-popover-text" type="text" class="input">
+            <input v-model="text" id="input-popover-text" type="text" class="input" autocomplete="off">
           </div>
           <div class="gap-y-sm">
             <label for="input-popover-placement">Placement</label>
