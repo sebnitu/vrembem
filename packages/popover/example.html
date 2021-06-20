@@ -171,7 +171,8 @@
         return {
           text: null,
           placement: '',
-          eventType: ''
+          eventType: '',
+          size: ''
         }
       },
       emits: ['create'],
@@ -179,8 +180,9 @@
         create() {
           config = {}
           config.text = this.text;
-          config.placement = (this.placement === '') ? null : this.placement;
-          config.eventType = (this.eventType === '') ? null : this.eventType;
+          config.placement = (this.placement != '') ? this.placement : null;
+          config.eventType = (this.eventType != '') ? this.eventType : null;
+          config.size = (this.size != '') ? this.size : null;
           this.$emit('create', config);
           this.text = null;
         }
@@ -209,6 +211,15 @@
               <option value="">--</option>
               <option value="click">Click</option>
               <option value="hover">Hover</option>
+            </select>
+          </div>
+          <div class="gap-y-sm">
+            <label for="input-popover-event">Size Modifier</label>
+            <select v-model="size" id="input-popover-event" class="input input_type_select">
+              <option value="">--</option>
+              <option value="popover_size_auto">Auto</option>
+              <option value="popover_size_sm">Small</option>
+              <option value="popover_size_lg">Large</option>
             </select>
           </div>
           <hr class="sep">
@@ -243,8 +254,9 @@
       },
       template: `
         <div
-          class="popover"
           data-popover
+          class="popover"
+          v-bind:class="popover.size"
           v-bind:data-popover-placement="popover.placement"
           v-bind:data-popover-event="popover.eventType">
           <div v-if="popover.text" class="notice notice_state_info margin-bottom-sm">
