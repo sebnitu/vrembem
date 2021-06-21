@@ -132,10 +132,12 @@ The advantage to having these values set via a CSS variable is that they can be 
 
 ### `popover_size_[value]`
 
-...
+Adjusts the size of the popover. There are two options relative to the default size, `popover_size_sm` and `popover_size_lg`. Also available is `popover_size_auto` which allows the popover to adjust based on it's content.
 
 ```html
-...
+<div class="popover popover_size_sm" data-popover>
+  ...
+</div>
 ```
 
 #### Available Variations
