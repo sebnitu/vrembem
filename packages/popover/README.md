@@ -159,83 +159,168 @@ Adjusts the size of the popover. There are two options relative to the default s
 
 ### Sass Variables
 
-| Variable                 | Default | Description                            |
-| ------------------------ | ------- | -------------------------------------- |
-| `$prefix-block`          | `null`  | String to prefix blocks with.          |
-| `$prefix-element`        | `"__"`  | String to prefix elements with.        |
-| `$prefix-modifier`       | `"_"`   | String to prefix modifiers with.       |
-| `$prefix-modifier-value` | `"_"`   | String to prefix modifier values with. |
-
-<!--
-$event: null !default;
-$placement: null !default;
-$offset: 8 !default;
-$overflow-padding: 10 !default;
-
-$z-index: 10 !default;
-$width: 16em !default;
-$padding: 0.5em !default;
-$border: null !default;
-$border-radius: core.$border-radius !default;
-$background: core.$white !default;
-$background-clip: padding-box !default;
-$box-shadow: core.$box-shadow-8dp !default;
-$font-size: core.$font-size-sm !default;
-$line-height: null !default;
-
-$size-sm-width: 12em !default;
-$size-lg-width: 20em !default;
--->
+| Variable                 | Default                | Description                                                                                                                   |
+| ------------------------ | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `$prefix-block`          | `null`                 | String to prefix blocks with.                                                                                                 |
+| `$prefix-element`        | `"__"`                 | String to prefix elements with.                                                                                               |
+| `$prefix-modifier`       | `"_"`                  | String to prefix modifiers with.                                                                                              |
+| `$prefix-modifier-value` | `"_"`                  | String to prefix modifier values with.                                                                                        |
+| `$event`                 | `null`                 | Outputs a CSS variable for setting the default popover behavior. Can either be `click` or `hover`.                            |
+| `$placement`             | `null`                 | Outputs a CSS variable for setting the preferred popover placement.                                                           |
+| `$offset`                | `8`                    | Sets the distance from the reference element that a popover will position itself. Also outputs a CSS variable.                |
+| `$overflow-padding`      | `10`                   | Sets the distance before a popover is cut off and will try to reposition itself to stay visible. Also outputs a CSS variable. |
+| `$z-index`               | `10`                   | Sets the z-index property.                                                                                                    |
+| `$width`                 | `16em`                 | Sets the width property.                                                                                                      |
+| `$padding`               | `0.5em`                | Sets the padding property.                                                                                                    |
+| `$border`                | `null`                 | Sets the border property.                                                                                                     |
+| `$border-radius`         | `core.$border-radius`  | Sets the border-radius property.                                                                                              |
+| `$background`            | `core.$white`          | Sets the background property.                                                                                                 |
+| `$background-clip`       | `padding-box`          | Sets the background-clip property.                                                                                            |
+| `$box-shadow`            | `core.$box-shadow-8dp` | Sets the box-shadow property.                                                                                                 |
+| `$font-size`             | `core.$font-size-sm`   | Sets the font-size property.                                                                                                  |
+| `$line-height`           | `null`                 | Sets the line-height property.                                                                                                |
+| `$size-sm-width`         | `12em`                 | Sets the width property of the `popover_size_sm` modifier.                                                                    |
+| `$size-lg-width`         | `20em`                 | Sets the width property of the `popover_size_lg` modifier.                                                                    |
 
 ### JavaScript Options
 
-| Key        | Default | Description                             |
-| ---------- | ------- | --------------------------------------- |
-| `autoInit` | `false` | Automatically initializes the instance. |
-
-<!--
-// Data attributes
-dataPopover: 'popover',
-dataTrigger: 'popover-trigger',
-dataEventType: 'popover-event',
-dataPlacement: 'popover-placement',
-
-// State classes
-stateActive: 'is-active',
-
-// Feature toggles
-eventType: 'click',
-eventListeners: true,
-placement: 'bottom-start'
--->
+| Key              | Default               | Description                                                      |
+| ---------------- | --------------------- | ---------------------------------------------------------------- |
+| `autoInit`       | `false`               | Automatically initializes the instance.                          |
+| `dataPopover`    | `'popover'`           | Data attribute for defining a popover.                           |
+| `dataTrigger`    | `'popover-trigger'`   | Data attribute for defining a popover trigger.                   |
+| `dataEventType`  | `'popover-event'`     | Data attribute for setting the popover event type.               |
+| `dataPlacement`  | `'popover-placement'` | Data attribute for setting the preferred placement of a popover. |
+| `stateActive`    | `'is-active'`         | Class used for active state.                                     |
+| `eventType`      | `'click'`             | The default event type. Can be either `'click'` or `'hover'`.    |
+| `eventListeners` | `true`                | Whether or not to output global event listeners.                 |
+| `placement`      | `'bottom-start'`      | The default preferred placement.                                 |
 
 ## API
 
+### `popover.collection`
+
+An array where all registered popovers are stored. Each entry in the collection takes the following format:
+
+```js
+{
+  state: String, // The current state of the popover. Either 'hide' or 'show'
+  trigger: HTMLElement, // The popover trigger HTML element
+  target: HTMLElement, // The popover HTML element
+  popper: Object // The popper JS instance
+}
+```
+
 ### `popover.init(options)`
 
-...
+Initializes the popover instance. During initialization, the following processes are run:
+
+- Builds the popover collection by running `registerCollection()`
+- Sets up the global event listeners by running `initEventListeners()`
 
 **Parameters**
 
-- `options [Object] (optional)` An options object for passing your custom settings.
+- `options [Object] (optional) (default null)` An options object for passing your custom settings.
 
 ```js
-const popover = new popover();
+const popover = new Popover();
 popover.init();
 ```
 
-<!--
-init(options = null)
-destroy()
-initEventListeners(processCollection = true)
-destroyEventListeners(processCollection = true)
-register(trigger, target = false)
-unregister(popover)
-registerEventListeners(popover)
-unregisterEventListeners(popover)
-registerCollection()
-unregisterCollection()
-show(popover)
-hide(popover)
-hideAll()
--->
+### `popover.destroy()`
+
+Destroys and cleans up the popover instantiation. During cleanup, the following processes are run:
+
+- Builds the popover collection by running `unregisterCollection()`
+- Sets up the global event listeners by running `destroyEventListeners()`
+
+```js
+const popover = new Popover();
+popover.init();
+// ...
+popover.destroy();
+```
+
+### `popover.initEventListeners(processCollection)`
+
+Set the document event listeners.
+
+**Parameters**
+
+- `processCollection [Boolean] (default true)` Whether or not to process the event listeners of popover collection.
+
+```js
+const drawer = new Drawer({ eventListeners: false });
+drawer.init();
+drawer.initEventListeners();
+```
+
+### `popover.destroyEventListeners(processCollection)`
+
+Remove the document event listeners.
+
+**Parameters**
+
+- `processCollection [Boolean] (default true)` Whether or not to process the event listeners of popover collection.
+
+```js
+const drawer = new Drawer();
+drawer.init();
+// ...
+drawer.destroyEventListeners();
+```
+
+### `popover.register(trigger, target)`
+
+Registers a popover into the collection. This also sets the initial state, creates the popper instance and attaches event listeners.
+
+**Parameters**
+
+- `trigger [HTMLElement]` The popover trigger element.
+- `target [HTMLElement] (optional) (default false)` The popover element. If not provided, a popover element will be searched for using the trigger element.
+
+**Returns**
+
+- `Object` The popover object that gets stored in the collection.
+
+```js
+const trigger = document.querySelector('[data-popover-trigger]');
+const obj = popover.register(trigger);
+
+console.log(obj);
+// => Object { state: "hide", trigger: HTMLElement, target: HTMLElement, popper: {…}, __eventListeners: (1) […] }
+```
+
+### `popover.unregister(popover)`
+
+Unregisters the popover from the collection. This hides the popover if it's active, cleans up the popper instance, removes event listeners and then removes the entry from the collection.
+
+**Parameters**
+
+- `popover [Object]` The popover instance in the collection to unregister.
+
+**Returns**
+
+- `Array` Returns the newly modified collection array.
+
+```js
+const item = popover.collection[0];
+const array = popover.unregister(item);
+
+console.log(array);
+// => Array []
+```
+
+### `popover.registerEventListeners(popover)`
+
+### `popover.unregisterEventListeners(popover)`
+
+### `popover.registerCollection()`
+
+### `popover.unregisterCollection()`
+
+### `popover.show(popover)`
+
+### `popover.hide(popover)`
+
+### `popover.hideAll()`
