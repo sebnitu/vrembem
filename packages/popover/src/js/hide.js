@@ -1,5 +1,3 @@
-import { getModifiers } from './helpers';
-
 export function hide(popover, obj) {
   // Update state class
   popover.target.classList.remove(obj.settings.stateActive);
@@ -9,10 +7,7 @@ export function hide(popover, obj) {
 
   // Disable popper event listeners
   popover.popper.setOptions({
-    modifiers: [
-      { name: 'eventListeners', enabled: false },
-      ...getModifiers(popover.target)
-    ]
+    modifiers: [{ name: 'eventListeners', enabled: false }]
   });
 
   // Update collection status with new state

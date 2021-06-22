@@ -27,7 +27,7 @@ const popover = new Popover({ autoInit: true });
 
 ### Markup
 
-The popover component consists of a single element with the `popover` class. To hook up the necessary JavaScript behavior, you'll need the following data attributes:
+The popover is a simple container component consisting of the `popover` class. To hook up the necessary JavaScript behavior, you'll need the following data attributes:
 
 - `data-popover` - This is placed on our popover component itself.
 - `data-popover-trigger` - This is placed on any element we use to trigger our popover.
@@ -39,7 +39,7 @@ The popover component consists of a single element with the `popover` class. To 
 </div>
 ```
 
-If the data attributes are valueless, the popover trigger will try to find it's associated popover by inspecting it's sibling element. If you're not able to place the popover directly following the trigger, you should give them both a shared unique ID to link them together. The popover can then be placed anywhere in the DOM, but is still recommended to be as closely after the trigger as possible for keyboard accessibility.
+If the data attributes are valueless, the popover trigger will try to find it's associated popover by inspecting the next sibling element. If the popover can't be placed as a direct sibling of the trigger, you should give them both a shared unique ID to link them together. The popover can then be placed anywhere in the DOM, but it is still recommended to be as closely after the trigger as possible for keyboard focus tabbing accessibility.
 
 ```html
 <button data-popover-trigger="unique-id">...</button>
@@ -66,7 +66,7 @@ popover.init({
 });
 ```
 
-You can also set the event type on a per-popover basis by using the `data-popover-event` attribute and giving it an event type value.
+Alternatively, this value can be overridden using the [`--popover-event` CSS variable](#css-variables). This can be done either through your own custom CSS or using the `style` attribute. You can also set the event type on a per-popover basis by using the `data-popover-event` attribute and giving it an event type value.
 
 ```html
 <div class="popover" data-popover data-popover-event="hover">
@@ -81,16 +81,16 @@ Popover uses the [Popper JS positioning engine](https://popper.js.org/) to deter
 ```js
 // Set on instantiation
 const popover = new Popover({
-  placement: 'click'
+  placement: 'top'
 });
 
 // Set on initialization
 popover.init({
-  placement: 'hover'
+  placement: 'bottom'
 });
 ```
 
-If you'd like to set the preferred popover placement per-popover, use the `data-popover-placement` attribute and providing a valid placement value.
+Alternatively, this value can be overridden using the [`--popover-placement` CSS variable](#css-variables). This can be done either through your own custom CSS or using the `style` attribute. If you'd like to set the preferred popover placement per-popover, use the `data-popover-placement` attribute providing a valid placement value.
 
 ```html
 <div class="popover" data-popover data-popover-placement="top">
@@ -98,8 +98,9 @@ If you'd like to set the preferred popover placement per-popover, use the `data-
 </div>
 ```
 
-**Available Placement Options**
+**Available Placement Values**
 
+- `auto` - Will choose the side with most space.
 - `top`
 - `top-start`
 - `top-end`
@@ -115,12 +116,20 @@ If you'd like to set the preferred popover placement per-popover, use the `data-
 
 #### CSS Variables
 
-Popover sets two CSS variables via `:root` for controlling the offset and offset-overflow. These values are then consumed by the JavaScript implementation and used to set popper's modifier options. The variables are initially set by `$offset` and `$offset-overflow` Sass variables whose values map to `--popover-offset` and `--popover-offset-overflow` respectively.
+Popover provides some CSS variables on the `:root` element for controlling the event type, preferred placement, offset and overflow-padding. They're consumed by the JavaScript implementation to set options dynamically. These are the Sass variable that output CSS variables:
 
+- `$event` &rarr; `--popover-event` - Controls the event type in the same way `data-popover-event` does. Can be set to `click` or `hover`.
+- `$placement` &rarr; `--popover-placement` - Controls the preferred placement for the popover in the same way `data-popover-placement` does. [More details &rarr;](https://popper.js.org/docs/v2/constructors/#placement)
 - `$offset` &rarr; `--popover-offset` - Controls the distance from the reference element (`data-popover-trigger`) that a popover will position itself. [More details &rarr;](https://popper.js.org/docs/v2/modifiers/offset/)
-- `$offset-overflow` &rarr; `--popover-offset-overflow` - Controls the distance before a popover is cut off when it will try and reposition itself to stay visible. [More details &rarr;](https://popper.js.org/docs/v2/modifiers/prevent-overflow/#padding)
+- `$overflow-padding` &rarr; `--popover-overflow-padding` - Controls the distance before a popover is cut off and will try to reposition itself to stay visible. [More details &rarr;](https://popper.js.org/docs/v2/modifiers/prevent-overflow/#padding)
 
 The advantage to having these values set via a CSS variable is that they can be given new values for specific use cases either in your own stylesheet or by setting the variables in a `style` attribute.
+
+```css
+.header .popover {
+  --popover-placement: bottom;
+}
+```
 
 ```html
 <div class="popover" data-popover style="--popover-offset: 6;">

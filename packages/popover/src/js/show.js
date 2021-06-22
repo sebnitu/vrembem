@@ -1,4 +1,4 @@
-import { getModifiers } from './helpers';
+import { getPlacement, getModifiers } from './helpers';
 
 export function show(popover, obj) {
   // Update state class
@@ -9,6 +9,7 @@ export function show(popover, obj) {
 
   // Enable popper event listeners and update position
   popover.popper.setOptions({
+    placement: getPlacement(popover.target, obj.settings),
     modifiers: [
       { name: 'eventListeners', enabled: true },
       ...getModifiers(popover.target)

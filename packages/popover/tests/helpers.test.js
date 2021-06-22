@@ -1,5 +1,5 @@
 import Popover from '../index.js';
-import { getDataValue, getModifiers, getPopover } from '../src/js/helpers';
+import { getEventType, getPlacement, getModifiers, getPopover } from '../src/js/helpers';
 import '@testing-library/jest-dom/extend-expect';
 
 let popover;
@@ -7,12 +7,17 @@ let popover;
 const markup = `
   <div id="app">
     <button data-popover-trigger>...</button>
-    <div 
+    <div
+      id="pop-1"
       class="popover"
       data-popover
       data-popover-event="hover"
       data-popover-placement="top"
     >
+      ...
+    </div>
+    <button data-popover-trigger>...</button>
+    <div id="pop-2" class="popover" data-popover>
       ...
     </div>
     <button data-popover-trigger="unique-id">...</button>
@@ -33,49 +38,121 @@ afterEach(() => {
 });
 
 describe('getDataValue()', () => {
-  test('should return the event type value', () => {
+  // test('should return the event type value', () => {
+  //   document.body.innerHTML = markup;
+  //   popover = new Popover();
+  //   const target = document.querySelector('[data-popover]');
+  //   const result = getDataValue(
+  //     target,
+  //     popover.settings.dataEventType,
+  //     popover.settings.eventType
+  //   );
+  //   expect(result).toBe('hover');
+  // });
+
+  // test('should return the preferred placement value', () => {
+  //   document.body.innerHTML = markup;
+  //   popover = new Popover();
+  //   const target = document.querySelector('[data-popover]');
+  //   const result = getDataValue(
+  //     target,
+  //     popover.settings.dataPlacement,
+  //     popover.settings.placement
+  //   );
+  //   expect(result).toBe('top');
+  // });
+
+  // test('should return the default value if data attribute is not found', () => {
+  //   document.body.innerHTML = markup;
+  //   const target = document.querySelector('[data-popover]');
+  //   const result = getDataValue(
+  //     target,
+  //     'missing',
+  //     'asdf'
+  //   );
+  //   expect(result).toBe('asdf');
+  // });
+
+  // test('should return null if data attribute is not found and no default value is passed', () => {
+  //   document.body.innerHTML = markup;
+  //   const target = document.querySelector('[data-popover]');
+  //   const result = getDataValue(
+  //     target,
+  //     'missing'
+  //   );
+  //   expect(result).toBe(null);
+  // });
+});
+
+describe('getEventType()', () => {
+  test('should return the event type from the data attribute value', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     const target = document.querySelector('[data-popover]');
-    const result = getDataValue(
+    const result = getEventType(
       target,
-      popover.settings.dataEventType,
-      popover.settings.eventType
+      popover.settings,
     );
     expect(result).toBe('hover');
   });
 
-  test('should return the preferred placement value', () => {
+  test('should return the event type from the CSS variable value', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover();
+    const target = document.querySelector('#pop-2');
+    target.style.setProperty('--popover-event', 'focus');
+    const result = getEventType(
+      target,
+      popover.settings,
+    );
+    expect(result).toBe('focus');
+  });
+
+  test('should return the event type from the default settings', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover();
+    const target = document.querySelector('#pop-2');
+    const result = getEventType(
+      target,
+      popover.settings,
+    );
+    expect(result).toBe('click');
+  });
+});
+
+describe('getPlacement()', () => {
+  test('should return the event type from the data attribute value', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     const target = document.querySelector('[data-popover]');
-    const result = getDataValue(
+    const result = getPlacement(
       target,
-      popover.settings.dataPlacement,
-      popover.settings.placement
+      popover.settings,
     );
     expect(result).toBe('top');
   });
 
-  test('should return the default value if data attribute is not found', () => {
+  test('should return the event type from the CSS variable value', () => {
     document.body.innerHTML = markup;
-    const target = document.querySelector('[data-popover]');
-    const result = getDataValue(
+    popover = new Popover();
+    const target = document.querySelector('#pop-2');
+    target.style.setProperty('--popover-placement', 'right');
+    const result = getPlacement(
       target,
-      'missing',
-      'asdf'
+      popover.settings,
     );
-    expect(result).toBe('asdf');
+    expect(result).toBe('right');
   });
 
-  test('should return null if data attribute is not found and no default value is passed', () => {
+  test('should return the event type from the CSS variable value', () => {
     document.body.innerHTML = markup;
-    const target = document.querySelector('[data-popover]');
-    const result = getDataValue(
+    popover = new Popover();
+    const target = document.querySelector('#pop-2');
+    const result = getPlacement(
       target,
-      'missing'
+      popover.settings,
     );
-    expect(result).toBe(null);
+    expect(result).toBe('bottom-start');
   });
 });
 
@@ -124,7 +201,7 @@ describe('getModifiers()', () => {
     document.body.innerHTML = markup;
     const target = document.querySelector('[data-popover]');
     target.style.setProperty('--popover-offset', '10');
-    target.style.setProperty('--popover-offset-overflow', '20');
+    target.style.setProperty('--popover-overflow-padding', '20');
     const result = getModifiers(target);
     const offset = result.find(item => item.name === 'offset');
     const overflow = result.find(item => item.name === 'preventOverflow');
@@ -135,8 +212,8 @@ describe('getModifiers()', () => {
   test('should return modifiers with custom CSS variables set to root document', () => {
     document.body.innerHTML = markup;
     document.documentElement.style.setProperty('--popover-offset', '5');
-    document.documentElement.style.setProperty('--popover-offset-overflow', '10');
-    const result = getModifiers();
+    document.documentElement.style.setProperty('--popover-overflow-padding', '10');
+    const result = getModifiers(document.documentElement);
     const offset = result.find(item => item.name === 'offset');
     const overflow = result.find(item => item.name === 'preventOverflow');
     expect(offset.options.offset).toEqual([0, 5]);
