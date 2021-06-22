@@ -33,8 +33,6 @@ export default class Popover {
       // already adds event listeners to popovers
       this.initEventListeners(false);
     }
-
-    return this;
   }
 
   destroy() {
@@ -47,8 +45,6 @@ export default class Popover {
       // already removes event listeners from popovers
       this.destroyEventListeners(false);
     }
-
-    return this;
   }
 
   /**
@@ -65,8 +61,6 @@ export default class Popover {
 
     // Add keydown global event listener
     document.addEventListener('keydown', this.__handlerKeydown, false);
-
-    return this;
   }
 
   destroyEventListeners(processCollection = true) {
@@ -79,8 +73,6 @@ export default class Popover {
 
     // Remove keydown global event listener
     document.removeEventListener('keydown', this.__handlerKeydown, false);
-
-    return this;
   }
 
   /**

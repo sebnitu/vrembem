@@ -166,11 +166,48 @@ Adjusts the size of the popover. There are two options relative to the default s
 | `$prefix-modifier`       | `"_"`   | String to prefix modifiers with.       |
 | `$prefix-modifier-value` | `"_"`   | String to prefix modifier values with. |
 
+<!--
+$event: null !default;
+$placement: null !default;
+$offset: 8 !default;
+$overflow-padding: 10 !default;
+
+$z-index: 10 !default;
+$width: 16em !default;
+$padding: 0.5em !default;
+$border: null !default;
+$border-radius: core.$border-radius !default;
+$background: core.$white !default;
+$background-clip: padding-box !default;
+$box-shadow: core.$box-shadow-8dp !default;
+$font-size: core.$font-size-sm !default;
+$line-height: null !default;
+
+$size-sm-width: 12em !default;
+$size-lg-width: 20em !default;
+-->
+
 ### JavaScript Options
 
 | Key        | Default | Description                             |
 | ---------- | ------- | --------------------------------------- |
 | `autoInit` | `false` | Automatically initializes the instance. |
+
+<!--
+// Data attributes
+dataPopover: 'popover',
+dataTrigger: 'popover-trigger',
+dataEventType: 'popover-event',
+dataPlacement: 'popover-placement',
+
+// State classes
+stateActive: 'is-active',
+
+// Feature toggles
+eventType: 'click',
+eventListeners: true,
+placement: 'bottom-start'
+-->
 
 ## API
 
@@ -186,3 +223,19 @@ Adjusts the size of the popover. There are two options relative to the default s
 const popover = new popover();
 popover.init();
 ```
+
+<!--
+init(options = null)
+destroy()
+initEventListeners(processCollection = true)
+destroyEventListeners(processCollection = true)
+register(trigger, target = false)
+unregister(popover)
+registerEventListeners(popover)
+unregisterEventListeners(popover)
+registerCollection()
+unregisterCollection()
+show(popover)
+hide(popover)
+hideAll()
+-->
