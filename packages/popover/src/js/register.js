@@ -1,7 +1,7 @@
 import { createPopper } from '@popperjs/core/dist/esm';
 
 import { handlerClick, documentClick } from './handlers';
-import { getEventType, getPlacement, getModifiers, getPopover } from './helpers';
+import { getConfig, getData, getPopover } from './helpers';
 import { hide, hideCheck } from './hide';
 import { show } from './show';
 
@@ -33,17 +33,15 @@ export function register(trigger, target, obj) {
     popover = obj.collection[index];
   } else {
     // Create popper instance
-    const popperInstance = createPopper(trigger, target, {
-      placement: getPlacement(target, obj.settings),
-      modifiers: getModifiers(target)
-    });
+    const popperInstance = createPopper(trigger, target);
 
     // Build popover object and push to collection array
     popover = {
       state: 'hide',
       trigger: trigger,
       target: target,
-      popper: popperInstance
+      popper: popperInstance,
+      config: getConfig(target, obj.settings)
     };
 
     // Add item to collection
@@ -96,7 +94,9 @@ export function registerEventListeners(popover, obj) {
   // If event listeners aren't already setup
   if (!popover.__eventListeners) {
     // Add event listeners based on event type
-    const eventType = getEventType(popover.target, obj.settings);
+    const eventType = getData(
+      popover.target, obj.settings.dataEventType, popover.config['event']
+    );
     if (eventType === 'hover') {
       // Setup event listeners object for hover
       popover.__eventListeners = [{

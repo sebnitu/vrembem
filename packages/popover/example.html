@@ -156,6 +156,7 @@
         }
       },
       mounted() {
+        popover.unregisterCollection();
         popover.registerCollection();
       }
     }
@@ -231,6 +232,7 @@
     app.component('popover-trigger', {
       props: ['popover'],
       mounted() {
+        console.log('popover.register()', this.$el);
         popover.register(this.$el);
       },
       template: `
@@ -250,6 +252,7 @@
       },
       beforeUnmount() {
         const item = popover.collection.find(el => el.target === this.$el);
+        console.log('popover.unregister()', item);
         popover.unregister(item);
       },
       template: `

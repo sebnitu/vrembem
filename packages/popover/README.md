@@ -209,6 +209,7 @@ An array where all registered popovers are stored. Each entry in the collection 
   state: String, // The current state of the popover. Either 'hide' or 'show'
   trigger: HTMLElement, // The popover trigger HTML element
   target: HTMLElement, // The popover HTML element
+  config: Object // Stores the popovers configuration options
   popper: Object // The popper JS instance
   __eventListeners: Array // An array of active event listener details and references
 }
@@ -342,7 +343,7 @@ popover.registerCollection()
 
 ### `popover.show(popover)`
 
-Used to open a specific popover.
+Used to show a specific popover.
 
 **Parameters**
 

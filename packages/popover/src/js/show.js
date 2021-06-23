@@ -1,4 +1,4 @@
-import { getPlacement, getModifiers } from './helpers';
+import { getConfig, getData, getModifiers } from './helpers';
 
 export function show(popover, obj) {
   // Update state class
@@ -7,14 +7,21 @@ export function show(popover, obj) {
   // Update a11y attributes
   popover.trigger.setAttribute('aria-expanded', 'true');
 
-  // Enable popper event listeners and update position
+  // Update popover config
+  popover.config = getConfig(popover.target, obj.settings);
+
+  // Enable popper event listeners and set placement/modifiers
   popover.popper.setOptions({
-    placement: getPlacement(popover.target, obj.settings),
+    placement: getData(
+      popover.target, obj.settings.dataPlacement, popover.config['placement']
+    ),
     modifiers: [
       { name: 'eventListeners', enabled: true },
-      ...getModifiers(popover.target)
+      ...getModifiers(popover.config)
     ]
   });
+
+  // Update popover's position
   popover.popper.update();
 
   // Update collection status with new state
