@@ -3703,6 +3703,7 @@ input::-moz-placeholder {
 :root {
   --popover-offset: 8;
   --popover-overflow-padding: 10;
+  --popover-flip-padding: 10;
 }
 
 .popover {
@@ -3712,7 +3713,7 @@ input::-moz-placeholder {
   left: 0;
   display: none;
   width: 16em;
-  max-width: calc(100vw - calc(calc(var(--popover-overflow-padding) * 2) * 1px));
+  max-width: calc(100vw - 20px);
   margin: calc(var(--popover-offset) * 1px) 0 0;
   padding: 0.5em;
   border-radius: 4px;
