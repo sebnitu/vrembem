@@ -178,35 +178,6 @@ describe('register() & unregister()', () => {
   });
 });
 
-describe('registerEventListeners() & unregisterEventListeners()', () => {
-  test('should remove the event listeners of a popover', () => {
-    document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
-
-    const trigger = document.querySelector('[data-popover-trigger]');
-    const target = document.querySelector('[data-popover]');
-
-    popover.unregisterEventListeners(popover.collection[0]);
-
-    trigger.click();
-    expect(target).not.toHaveClass('is-active');
-  });
-
-  test('should add the event listeners of a popover', () => {
-    document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
-
-    const trigger = document.querySelector('[data-popover-trigger]');
-    const target = document.querySelector('[data-popover]');
-
-    popover.unregisterEventListeners(popover.collection[0]);
-    popover.registerEventListeners(popover.collection[0]);
-
-    trigger.click();
-    expect(target).toHaveClass('is-active');
-  });
-});
-
 describe('registerCollection() & unregisterCollection()', () => {
   test('should remove all items from collection and their event listeners', () => {
     document.body.innerHTML = markup;

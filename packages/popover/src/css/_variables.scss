@@ -9,9 +9,11 @@ $event: null !default;
 $placement: null !default;
 $offset: 8 !default;
 $overflow-padding: 10 !default;
+$flip-padding: 10 !default;
 
 $z-index: 10 !default;
 $width: 16em !default;
+$max-width: calc(100vw - 20px) !default;
 $padding: 0.5em !default;
 $border: null !default;
 $border-radius: core.$border-radius !default;

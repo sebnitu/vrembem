@@ -1,3 +1,5 @@
+@use "sass:list";
+
 @use "@vrembem/core";
 @use "./variables" as var;
 
@@ -15,6 +17,7 @@ $_offset: calc(calc(var(--popover-offset) + 1) * 1px);
 
   --popover-offset: #{core.strip-unit(var.$offset)};
   --popover-overflow-padding: #{core.strip-unit(var.$overflow-padding)};
+  --popover-flip-padding: #{core.strip-unit(var.$flip-padding)};
 }
 
 .#{$_b}popover {
@@ -24,7 +27,7 @@ $_offset: calc(calc(var(--popover-offset) + 1) * 1px);
   left: 0;
   display: none;
   width: var.$width;
-  max-width: calc(100vw - calc(calc(var(--popover-overflow-padding) * 2) * 1px));
+  max-width: var.$max-width;
   margin: calc(var(--popover-offset) * 1px) 0 0;
   padding: var.$padding;
   border: var.$border;

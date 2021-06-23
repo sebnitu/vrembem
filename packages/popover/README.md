@@ -122,6 +122,7 @@ Popover provides some CSS variables on the `:root` element for controlling the e
 - `$placement` &rarr; `--popover-placement` - Controls the preferred placement for the popover in the same way `data-popover-placement` does. [More details &rarr;](https://popper.js.org/docs/v2/constructors/#placement)
 - `$offset` &rarr; `--popover-offset` - Controls the distance from the reference element (`data-popover-trigger`) that a popover will position itself. [More details &rarr;](https://popper.js.org/docs/v2/modifiers/offset/)
 - `$overflow-padding` &rarr; `--popover-overflow-padding` - Controls the distance before a popover is cut off and will try to reposition itself to stay visible. [More details &rarr;](https://popper.js.org/docs/v2/modifiers/prevent-overflow/#padding)
+- `$flip-padding` &rarr; `--popover-flip-padding` - Controls the distance before a popover is cut off and will try to flip it's placement to stay visible. [More details &rarr;](https://popper.js.org/docs/v2/modifiers/flip/#padding)
 
 The advantage to having these values set via a CSS variable is that they can be given new values for specific use cases either in your own stylesheet or by setting the variables in a `style` attribute.
 
@@ -159,28 +160,29 @@ Adjusts the size of the popover. There are two options relative to the default s
 
 ### Sass Variables
 
-| Variable                 | Default                | Description                                                                                                                   |
-| ------------------------ | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `$prefix-block`          | `null`                 | String to prefix blocks with.                                                                                                 |
-| `$prefix-element`        | `"__"`                 | String to prefix elements with.                                                                                               |
-| `$prefix-modifier`       | `"_"`                  | String to prefix modifiers with.                                                                                              |
-| `$prefix-modifier-value` | `"_"`                  | String to prefix modifier values with.                                                                                        |
-| `$event`                 | `null`                 | Outputs a CSS variable for setting the default popover behavior. Can either be `click` or `hover`.                            |
-| `$placement`             | `null`                 | Outputs a CSS variable for setting the preferred popover placement.                                                           |
-| `$offset`                | `8`                    | Sets the distance from the reference element that a popover will position itself. Also outputs a CSS variable.                |
-| `$overflow-padding`      | `10`                   | Sets the distance before a popover is cut off and will try to reposition itself to stay visible. Also outputs a CSS variable. |
-| `$z-index`               | `10`                   | Sets the z-index property.                                                                                                    |
-| `$width`                 | `16em`                 | Sets the width property.                                                                                                      |
-| `$padding`               | `0.5em`                | Sets the padding property.                                                                                                    |
-| `$border`                | `null`                 | Sets the border property.                                                                                                     |
-| `$border-radius`         | `core.$border-radius`  | Sets the border-radius property.                                                                                              |
-| `$background`            | `core.$white`          | Sets the background property.                                                                                                 |
-| `$background-clip`       | `padding-box`          | Sets the background-clip property.                                                                                            |
-| `$box-shadow`            | `core.$box-shadow-8dp` | Sets the box-shadow property.                                                                                                 |
-| `$font-size`             | `core.$font-size-sm`   | Sets the font-size property.                                                                                                  |
-| `$line-height`           | `null`                 | Sets the line-height property.                                                                                                |
-| `$size-sm-width`         | `12em`                 | Sets the width property of the `popover_size_sm` modifier.                                                                    |
-| `$size-lg-width`         | `20em`                 | Sets the width property of the `popover_size_lg` modifier.                                                                    |
+| Variable                 | Default                | Description                                                                                                                     |
+| ------------------------ | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `$prefix-block`          | `null`                 | String to prefix blocks with.                                                                                                   |
+| `$prefix-element`        | `"__"`                 | String to prefix elements with.                                                                                                 |
+| `$prefix-modifier`       | `"_"`                  | String to prefix modifiers with.                                                                                                |
+| `$prefix-modifier-value` | `"_"`                  | String to prefix modifier values with.                                                                                          |
+| `$event`                 | `null`                 | Outputs a CSS variable for setting the default popover behavior. Can either be `click` or `hover`.                              |
+| `$placement`             | `null`                 | Outputs a CSS variable for setting the preferred popover placement.                                                             |
+| `$offset`                | `8`                    | Sets the distance from the reference element that a popover will position itself. Also outputs a CSS variable.                  |
+| `$overflow-padding`      | `10`                   | Sets the distance before a popover is cut off and will try to reposition itself to stay visible. Also outputs a CSS variable.   |
+| `$flip-padding`          | `10`                   | Sets the distance before a popover is cut off and will try to flip it's placement to stay visible. Also outputs a CSS variable. |
+| `$z-index`               | `10`                   | Sets the z-index property.                                                                                                      |
+| `$width`                 | `16em`                 | Sets the width property.                                                                                                        |
+| `$padding`               | `0.5em`                | Sets the padding property.                                                                                                      |
+| `$border`                | `null`                 | Sets the border property.                                                                                                       |
+| `$border-radius`         | `core.$border-radius`  | Sets the border-radius property.                                                                                                |
+| `$background`            | `core.$white`          | Sets the background property.                                                                                                   |
+| `$background-clip`       | `padding-box`          | Sets the background-clip property.                                                                                              |
+| `$box-shadow`            | `core.$box-shadow-8dp` | Sets the box-shadow property.                                                                                                   |
+| `$font-size`             | `core.$font-size-sm`   | Sets the font-size property.                                                                                                    |
+| `$line-height`           | `null`                 | Sets the line-height property.                                                                                                  |
+| `$size-sm-width`         | `12em`                 | Sets the width property of the `popover_size_sm` modifier.                                                                      |
+| `$size-lg-width`         | `20em`                 | Sets the width property of the `popover_size_lg` modifier.                                                                      |
 
 ### JavaScript Options
 
@@ -208,6 +210,7 @@ An array where all registered popovers are stored. Each entry in the collection 
   trigger: HTMLElement, // The popover trigger HTML element
   target: HTMLElement, // The popover HTML element
   popper: Object // The popper JS instance
+  __eventListeners: Array // An array of active event listener details and references
 }
 ```
 
@@ -281,14 +284,14 @@ Registers a popover into the collection. This also sets the initial state, creat
 
 **Returns**
 
-- `Object` The popover object that gets stored in the collection.
+- `Object` The popover object that got stored in the collection.
 
 ```js
 const trigger = document.querySelector('[data-popover-trigger]');
 const obj = popover.register(trigger);
 
 console.log(obj);
-// => Object { state: "hide", trigger: HTMLElement, target: HTMLElement, popper: {…}, __eventListeners: (1) […] }
+// => Object { state: "hide", trigger: HTMLElement, target: HTMLElement, popper: {…}, ... }
 ```
 
 ### `popover.unregister(popover)`
@@ -311,16 +314,77 @@ console.log(array);
 // => Array []
 ```
 
-### `popover.registerEventListeners(popover)`
-
-### `popover.unregisterEventListeners(popover)`
-
 ### `popover.registerCollection()`
+
+Registers all popovers in the DOM to the collections array. This is done by getting all popover triggers and running them through the `register()` method.
+
+**Returns**
+
+- `Array` Returns the collection array.
+
+```js
+popover.registerCollection()
+// => Array [...]
+```
 
 ### `popover.unregisterCollection()`
 
+Unregisters all popovers in the collections array. This is done by looping through the collection's array and passing each popover through the `unregister()` method.
+
+**Returns**
+
+- `Array` Returns a now empty collection array.
+
+```js
+popover.registerCollection()
+// => Array []
+```
+
 ### `popover.show(popover)`
+
+Used to open a specific popover.
+
+**Parameters**
+
+- `popover [Object]` The popover instance that should be shown.
+
+**Returns**
+
+- `Object` The popover object has been shown.
+
+```js
+const item = popover.collection[0];
+popover.show(item)
+// => Object { state: "show", ... }
+```
 
 ### `popover.hide(popover)`
 
+Used to hide a specific popover.
+
+**Parameters**
+
+- `popover [Object]` The popover instance that should be hidden.
+
+**Returns**
+
+- `Object` The popover object has been hidden.
+
+```js
+const item = popover.collection[0];
+popover.show(item)
+// => Object { state: "hide", ... }
+```
+
 ### `popover.hideAll()`
+
+Hides all popovers. This searches for all shown popovers in the collection and hides them.
+
+**Returns**
+
+- `Array` Returns the collection array.
+
+```js
+popover.hideAll();
+// => Array [...]
+```

@@ -87,14 +87,6 @@ export default class Popover {
     return unregister(popover, this);
   }
 
-  registerEventListeners(popover) {
-    return registerEventListeners(popover, this);
-  }
-
-  unregisterEventListeners(popover) {
-    return unregisterEventListeners(popover);
-  }
-
   registerCollection() {
     return registerCollection(this);
   }

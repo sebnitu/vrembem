@@ -1,5 +1,5 @@
 import Popover from '../index.js';
-import { getEventType, getPlacement, getModifiers, getPopover } from '../src/js/helpers';
+import { getPadding, getEventType, getPlacement, getModifiers, getPopover } from '../src/js/helpers';
 import '@testing-library/jest-dom/extend-expect';
 
 let popover;
@@ -37,51 +37,31 @@ afterEach(() => {
   document.body.innerHTML = null;
 });
 
-describe('getDataValue()', () => {
-  // test('should return the event type value', () => {
-  //   document.body.innerHTML = markup;
-  //   popover = new Popover();
-  //   const target = document.querySelector('[data-popover]');
-  //   const result = getDataValue(
-  //     target,
-  //     popover.settings.dataEventType,
-  //     popover.settings.eventType
-  //   );
-  //   expect(result).toBe('hover');
-  // });
+describe('getPadding()', () => {
+  test('should return an integer if a single number string is passed', () => {
+    const value = '64';
+    expect(getPadding(value)).toEqual(64);
+  });
 
-  // test('should return the preferred placement value', () => {
-  //   document.body.innerHTML = markup;
-  //   popover = new Popover();
-  //   const target = document.querySelector('[data-popover]');
-  //   const result = getDataValue(
-  //     target,
-  //     popover.settings.dataPlacement,
-  //     popover.settings.placement
-  //   );
-  //   expect(result).toBe('top');
-  // });
+  test('should return a padding object if a string of two numbers are passed', () => {
+    const value = '64 32';
+    expect(getPadding(value)).toEqual({ top: 64, right: 32, bottom: 64, left: 32 });
+  });
 
-  // test('should return the default value if data attribute is not found', () => {
-  //   document.body.innerHTML = markup;
-  //   const target = document.querySelector('[data-popover]');
-  //   const result = getDataValue(
-  //     target,
-  //     'missing',
-  //     'asdf'
-  //   );
-  //   expect(result).toBe('asdf');
-  // });
+  test('should return a padding object if a string of three numbers are passed', () => {
+    const value = '64 32 16';
+    expect(getPadding(value)).toEqual({ top: 64, right: 32, bottom: 16, left: 32 });
+  });
 
-  // test('should return null if data attribute is not found and no default value is passed', () => {
-  //   document.body.innerHTML = markup;
-  //   const target = document.querySelector('[data-popover]');
-  //   const result = getDataValue(
-  //     target,
-  //     'missing'
-  //   );
-  //   expect(result).toBe(null);
-  // });
+  test('should return a padding object if a string of four numbers are passed', () => {
+    const value = '64 32 16 8';
+    expect(getPadding(value)).toEqual({ top: 64, right: 32, bottom: 16, left: 8 });
+  });
+
+  test('should return false if more than four numbers exist in the string', () => {
+    const value = '64 32 16 8 4';
+    expect(getPadding(value)).toEqual(false);
+  });
 });
 
 describe('getEventType()', () => {
