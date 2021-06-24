@@ -37,6 +37,41 @@ afterEach(() => {
   document.body.innerHTML = null;
 });
 
+describe('getConfig()', () => {
+  test('Should return the config with all default options if no CSS vars are set', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover();
+    const target = document.querySelector('#pop-1');
+    const config = getConfig(target, popover.settings);
+    expect(config).toEqual({
+      'placement': 'bottom-start',
+      'event': 'click',
+      'offset': 0,
+      'overflow-padding': 0,
+      'flip-padding': 0
+    });
+  });
+
+  test('Should return the config with the values of custom CSS variable values', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover();
+    const target = document.querySelector('#pop-1');
+    target.style.setProperty('--popover-placement', 'top');
+    target.style.setProperty('--popover-event', 'focus');
+    target.style.setProperty('--popover-offset', '32');
+    target.style.setProperty('--popover-overflow-padding', '16');
+    target.style.setProperty('--popover-flip-padding', '8');
+    const config = getConfig(target, popover.settings);
+    expect(config).toEqual({
+      'placement': 'top',
+      'event': 'focus',
+      'offset': '32',
+      'overflow-padding': '16',
+      'flip-padding': '8'
+    });
+  });
+});
+
 describe('getData()', () => {
   test('Should return the data attribute value of an element', () => {
     document.body.innerHTML = markup;

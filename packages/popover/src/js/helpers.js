@@ -13,13 +13,11 @@ export function getConfig(el, settings) {
 
   // Loop through config obj
   for (const prop in config) {
-    if (Object.prototype.hasOwnProperty.call(config, prop)) {
-      // Get the CSS variable property values
-      const val = styles.getPropertyValue(`--popover-${prop}`).trim();
-      // If a value was found, replace the default in config obj
-      if (val) {
-        config[prop] = val;
-      }
+    // Get the CSS variable property values
+    const val = styles.getPropertyValue(`--popover-${prop}`).trim();
+    // If a value was found, replace the default in config obj
+    if (val) {
+      config[prop] = val;
     }
   }
 
