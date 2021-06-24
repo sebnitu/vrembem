@@ -21,8 +21,9 @@ The popover is a simple container component consisting of the `popover` class. T
   <span>Popover</span>
   <span class="arrow-down"></span>
 </button>
-<div class="popover" data-popover>
+<div class="popover is-active" data-popover>
   {% include example_menu.html %}
+  <span class="popover__arrow" data-popper-arrow></span>
 </div>
 {% include demo_switch.html %}
 ```html
@@ -111,7 +112,6 @@ Alternatively, this value can be overridden using the [`--popover-placement` CSS
 {% include demo_open.html %}
 <button class="button button_color_primary" data-popover-trigger>
   <span>Top Popover</span>
-  <span class="arrow-down"></span>
 </button>
 <div class="popover" data-popover data-popover-placement="top">
   {% include example_menu.html type="short" %}
@@ -194,7 +194,7 @@ The advantage to having these values set via a CSS variable is that they can be 
 {% include demo_open.html %}
 <div style="--popover-placement: right;">
   <button class="button button_color_primary" data-popover-trigger>
-    <span>Top Popover</span>
+    <span>Right Popover</span>
     <span class="arrow-right"></span>
   </button>
   <div class="popover" data-popover style="--popover-offset: 0;">
@@ -295,6 +295,32 @@ Adjusts the size of the popover. There are two options relative to the default s
   </table>
 </div>
 
+<!--
+| Variable                 | Default                | Description                                                                                                                     |
+| ------------------------ | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `$prefix-block`          | `null`                 | String to prefix blocks with.                                                                                                   |
+| `$prefix-element`        | `"__"`                 | String to prefix elements with.                                                                                                 |
+| `$prefix-modifier`       | `"_"`                  | String to prefix modifiers with.                                                                                                |
+| `$prefix-modifier-value` | `"_"`                  | String to prefix modifier values with.                                                                                          |
+| `$event`                 | `null`                 | Outputs a CSS variable for setting the default popover behavior. Can either be `click` or `hover`.                              |
+| `$placement`             | `null`                 | Outputs a CSS variable for setting the preferred popover placement.                                                             |
+| `$offset`                | `8`                    | Sets the distance from the reference element that a popover will position itself. Also outputs a CSS variable.                  |
+| `$overflow-padding`      | `10`                   | Sets the distance before a popover is cut off and will try to reposition itself to stay visible. Also outputs a CSS variable.   |
+| `$flip-padding`          | `10`                   | Sets the distance before a popover is cut off and will try to flip it's placement to stay visible. Also outputs a CSS variable. |
+| `$z-index`               | `10`                   | Sets the z-index property.                                                                                                      |
+| `$width`                 | `16em`                 | Sets the width property.                                                                                                        |
+| `$padding`               | `0.5em`                | Sets the padding property.                                                                                                      |
+| `$border`                | `null`                 | Sets the border property.                                                                                                       |
+| `$border-radius`         | `core.$border-radius`  | Sets the border-radius property.                                                                                                |
+| `$background`            | `core.$white`          | Sets the background property.                                                                                                   |
+| `$background-clip`       | `padding-box`          | Sets the background-clip property.                                                                                              |
+| `$box-shadow`            | `core.$box-shadow-8dp` | Sets the box-shadow property.                                                                                                   |
+| `$font-size`             | `core.$font-size-sm`   | Sets the font-size property.                                                                                                    |
+| `$line-height`           | `null`                 | Sets the line-height property.                                                                                                  |
+| `$size-sm-width`         | `12em`                 | Sets the width property of the `popover_size_sm` modifier.                                                                      |
+| `$size-lg-width`         | `20em`                 | Sets the width property of the `popover_size_lg` modifier.                                                                      |
+-->
+
 ## JavaScript Options
 
 <div class="scroll-box">
@@ -316,6 +342,20 @@ Adjusts the size of the popover. There are two options relative to the default s
     </tbody>
   </table>
 </div>
+
+<!--
+| Key              | Default               | Description                                                      |
+| ---------------- | --------------------- | ---------------------------------------------------------------- |
+| `autoInit`       | `false`               | Automatically initializes the instance.                          |
+| `dataPopover`    | `'popover'`           | Data attribute for defining a popover.                           |
+| `dataTrigger`    | `'popover-trigger'`   | Data attribute for defining a popover trigger.                   |
+| `dataEventType`  | `'popover-event'`     | Data attribute for setting the popover event type.               |
+| `dataPlacement`  | `'popover-placement'` | Data attribute for setting the preferred placement of a popover. |
+| `stateActive`    | `'is-active'`         | Class used for active state.                                     |
+| `eventType`      | `'click'`             | The default event type. Can be either `'click'` or `'hover'`.    |
+| `eventListeners` | `true`                | Whether or not to output global event listeners.                 |
+| `placement`      | `'bottom-start'`      | The default preferred placement.                                 |
+-->
 
 ## API
 
