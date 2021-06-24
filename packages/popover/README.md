@@ -29,8 +29,8 @@ const popover = new Popover({ autoInit: true });
 
 The popover is a simple container component consisting of the `popover` class. To hook up the necessary JavaScript behavior, you'll need the following data attributes:
 
-- `data-popover` - This is placed on our popover component itself.
-- `data-popover-trigger` - This is placed on any element we use to trigger our popover.
+- `data-popover` - Placed on our popover component itself.
+- `data-popover-trigger` - Placed on any element we use to trigger the popover.
 
 ```html
 <button data-popover-trigger>...</button>
@@ -39,7 +39,7 @@ The popover is a simple container component consisting of the `popover` class. T
 </div>
 ```
 
-If the data attributes are valueless, the popover trigger will try to find it's associated popover by inspecting the next sibling element. If the popover can't be placed as a direct sibling of the trigger, you should give them both a shared unique ID to link them together. The popover can then be placed anywhere in the DOM, but it is still recommended to be as closely after the trigger as possible for keyboard focus tabbing accessibility.
+If the data attributes are valueless, the popover trigger will try to find it's associated popover by inspecting the next sibling element. If the popover can't be placed as a direct sibling of the trigger, you should give both attributes a shared unique ID to link them together. The popover can then be placed anywhere in the DOM, but it is still recommended to be as closely after the trigger as possible for keyboard focus tabbing accessibility.
 
 ```html
 <button data-popover-trigger="unique-id">...</button>
@@ -100,7 +100,7 @@ Alternatively, this value can be overridden using the [`--popover-placement` CSS
 
 **Available Placement Values**
 
-- `auto` - Will choose the side with most space.
+- `auto` - Will choose the side with the most space.
 - `top`
 - `top-start`
 - `top-end`
@@ -209,7 +209,7 @@ An array where all registered popovers are stored. Each entry in the collection 
   state: String, // The current state of the popover. Either 'hide' or 'show'
   trigger: HTMLElement, // The popover trigger HTML element
   target: HTMLElement, // The popover HTML element
-  config: Object // Stores the popovers configuration options
+  config: Object // Stores the popover configuration options
   popper: Object // The popper JS instance
   __eventListeners: Array // An array of active event listener details and references
 }
