@@ -48,7 +48,9 @@ describe('getConfig()', () => {
       'event': 'click',
       'offset': 0,
       'overflow-padding': 0,
-      'flip-padding': 0
+      'flip-padding': 0,
+      'arrow-element': '[data-popover-arrow]',
+      'arrow-padding': 0
     });
   });
 
@@ -61,13 +63,17 @@ describe('getConfig()', () => {
     target.style.setProperty('--popover-offset', '32');
     target.style.setProperty('--popover-overflow-padding', '16');
     target.style.setProperty('--popover-flip-padding', '8');
+    target.style.setProperty('--popover-arrow-element', '[data-popover-asdf]');
+    target.style.setProperty('--popover-arrow-padding', '4');
     const config = getConfig(target, popover.settings);
     expect(config).toEqual({
       'placement': 'top',
       'event': 'focus',
       'offset': '32',
       'overflow-padding': '16',
-      'flip-padding': '8'
+      'flip-padding': '8',
+      'arrow-element': '[data-popover-asdf]',
+      'arrow-padding': '4'
     });
   });
 });
