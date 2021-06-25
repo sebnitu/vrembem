@@ -4,6 +4,7 @@ export default {
   // Data attributes
   dataPopover: 'popover',
   dataTrigger: 'popover-trigger',
+  dataArrow: 'popover-arrow',
   dataEventType: 'popover-event',
   dataPlacement: 'popover-placement',
 

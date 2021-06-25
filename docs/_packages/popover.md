@@ -21,9 +21,8 @@ The popover is a simple container component consisting of the `popover` class. T
   <span>Popover</span>
   <span class="arrow-down"></span>
 </button>
-<div class="popover is-active" data-popover>
+<div class="popover" data-popover>
   {% include example_menu.html %}
-  <span class="popover__arrow" data-popper-arrow></span>
 </div>
 {% include demo_switch.html %}
 ```html
@@ -53,6 +52,28 @@ If the data attributes are valueless, the popover trigger will try to find it's 
 <!-- Somewhere else in the DOM -->
 <div class="popover" data-popover="unique-id">
   ...
+</div>
+```
+{% include demo_close.html %}
+
+### `data-popover-arrow`
+
+The popover arrow is an inner element of the popper that is positioned center relative to the reference element. This can be defined using the `popover__arrow` class for styling and is hooked into the JavaScript implementation using the `data-popover-arrow` boolean attribute.
+
+{% include demo_open.html %}
+<button class="button button_color_primary" data-popover-trigger>
+  <span>Popover</span>
+</button>
+<div class="popover" data-popover data-popover-placement="auto">
+  {% include example_menu.html type="short" %}
+  <span class="popover__arrow" data-popover-arrow></span>
+</div>
+{% include demo_switch.html %}
+```html
+<button data-popover-trigger>...</button>
+<div class="popover" data-popover>
+  ...
+  <span class="popover__arrow" data-popover-arrow></span>
 </div>
 ```
 {% include demo_close.html %}
@@ -112,6 +133,7 @@ Alternatively, this value can be overridden using the [`--popover-placement` CSS
 {% include demo_open.html %}
 <button class="button button_color_primary" data-popover-trigger>
   <span>Top Popover</span>
+  <span class="arrow-up"></span>
 </button>
 <div class="popover" data-popover data-popover-placement="top">
   {% include example_menu.html type="short" %}
@@ -179,35 +201,47 @@ Popover provides some CSS variables on the `:root` element for controlling the e
         <td data-mobile-label="CSS"><code class="code color-secondary">--popover-flip-padding</code></td>
         <td data-mobile-label="Desc">Controls the distance before a popover is cut off and will try to flip it's placement to stay visible. <a href="https://popper.js.org/docs/v2/modifiers/flip/#padding" class="link">More details &rarr;</a></td>
       </tr>
+      <tr>
+        <td data-mobile-label="Sass"><code class="code text-nowrap">$arrow-padding</code></td>
+        <td data-mobile-label="CSS"><code class="code color-secondary">--popover-arrow-padding</code></td>
+        <td data-mobile-label="Desc">Controls the distance before a popover arrow reaches the edge of the popover. <a href="https://popper.js.org/docs/v2/modifiers/arrow/#padding" class="link">More details &rarr;</a></td>
+      </tr>
     </tbody>
   </table>
 </div>
 
-The advantage to having these values set via a CSS variable is that they can be given new values for specific use cases either in your own stylesheet or by setting the variables in a `style` attribute.
-
-```css
-.parent .popover {
-  --popover-placement: right;
-}
-```
+The advantage to having these values set by a CSS variable is that they can be given new values for specific use cases either in your own stylesheet or by setting the variables in a `style` attribute.
 
 {% include demo_open.html %}
-<div style="--popover-placement: right;">
-  <button class="button button_color_primary" data-popover-trigger>
-    <span>Right Popover</span>
-    <span class="arrow-right"></span>
-  </button>
-  <div class="popover" data-popover style="--popover-offset: 0;">
-    {% include example_menu.html type="short" %}
+<div class="level flex-justify-between" style="--popover-offset: 0;">
+  <div style="--popover-placement: right;">
+    <button class="button button_color_primary" data-popover-trigger>
+      <span class="arrow-right"></span>
+    </button>
+    <div class="popover" data-popover>
+      {% include example_menu.html type="short" %}
+      <span class="popover__arrow" data-popover-arrow></span>
+    </div>
+  </div>
+  <div style="--popover-placement: left;">
+    <button class="button button_color_primary" data-popover-trigger>
+      <span class="arrow-left"></span>
+    </button>
+    <div class="popover" data-popover>
+      {% include example_menu.html type="short" %}
+      <span class="popover__arrow" data-popover-arrow></span>
+    </div>
   </div>
 </div>
 {% include demo_switch.html %}
 ```html
-<div
-  class="popover"
-  data-popover
-  style="--popover-offset: 0;">
-  ...
+<div style="--popover-offset: 0;">
+  <div style="--popover-placement: right;">
+    ...
+  </div>
+  <div style="--popover-placement: left;">
+    ...
+  </div>
 </div>
 ```
 {% include demo_close.html %}
@@ -273,53 +307,131 @@ Adjusts the size of the popover. There are two options relative to the default s
     <tbody>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-block</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
         <td data-mobile-label="Desc">String to prefix blocks with.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-element</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"__"</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">"__"</code></td>
         <td data-mobile-label="Desc">String to prefix elements with.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-modifier</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"_"</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">"_"</code></td>
         <td data-mobile-label="Desc">String to prefix modifiers with.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-modifier-value</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"_"</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">"_"</code></td>
         <td data-mobile-label="Desc">String to prefix modifier values with.</td>
+      </tr>
+      <!-- CSS Variable Output -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$event</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Outputs a CSS variable for setting the default popover behavior. Can either be <code class="code">click</code> or <code class="code">hover</code>.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$placement</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Outputs a CSS variable for setting the preferred popover placement.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$offset</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">8</code></td>
+        <td data-mobile-label="Desc">Sets the distance from the reference element that a popover will position itself. Also outputs a CSS variable.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$overflow-padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">10</code></td>
+        <td data-mobile-label="Desc">Sets the distance before a popover is cut off and will try to reposition itself to stay visible. Also outputs a CSS variable.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$flip-padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">10</code></td>
+        <td data-mobile-label="Desc">Sets the distance before a popover is cut off and will try to flip it's placement to stay visible. Also outputs a CSS variable.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$arrow-padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">10</code></td>
+        <td data-mobile-label="Desc">Sets the distance before a popover arrow reaches the edge of the popover.</td>
+      </tr>
+      <!-- General -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$z-index</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">10</code></td>
+        <td data-mobile-label="Desc">Sets the z-index property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">10</code></td>
+        <td data-mobile-label="Desc">Sets the width property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">0.5em</code></td>
+        <td data-mobile-label="Desc">Sets the padding property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the border property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border-radius</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$border-radius</code></td>
+        <td data-mobile-label="Desc">Sets the border-radius property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$white</code></td>
+        <td data-mobile-label="Desc">Sets the background property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$background-clip</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">padding-box</code></td>
+        <td data-mobile-label="Desc">Sets the background-clip property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$box-shadow-8dp</code></td>
+        <td data-mobile-label="Desc">Sets the box-shadow property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$font-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$font-size-sm</code></td>
+        <td data-mobile-label="Desc">Sets the font-size property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$line-height</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the line-height property.</td>
+      </tr>
+      <!-- popover__arrow -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$arrow-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">8px</code></td>
+        <td data-mobile-label="Desc">Sets the width and height properties of the <code class="code">popover__arrow</code> element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$arrow-border</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$border-light</code></td>
+        <td data-mobile-label="Desc">Sets the border property of the <code class="code">popover__arrow</code> element.</td>
+      </tr>
+      <!-- popover_size_[value] -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-sm-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">12em</code></td>
+        <td data-mobile-label="Desc">Sets the width property of the <code class="code">popover_size_sm</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-lg-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">20em</code></td>
+        <td data-mobile-label="Desc">Sets the width property of the <code class="code">popover_size_lg</code> modifier.</td>
       </tr>
     </tbody>
   </table>
 </div>
-
-<!--
-| Variable                 | Default                | Description                                                                                                                     |
-| ------------------------ | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `$prefix-block`          | `null`                 | String to prefix blocks with.                                                                                                   |
-| `$prefix-element`        | `"__"`                 | String to prefix elements with.                                                                                                 |
-| `$prefix-modifier`       | `"_"`                  | String to prefix modifiers with.                                                                                                |
-| `$prefix-modifier-value` | `"_"`                  | String to prefix modifier values with.                                                                                          |
-| `$event`                 | `null`                 | Outputs a CSS variable for setting the default popover behavior. Can either be `click` or `hover`.                              |
-| `$placement`             | `null`                 | Outputs a CSS variable for setting the preferred popover placement.                                                             |
-| `$offset`                | `8`                    | Sets the distance from the reference element that a popover will position itself. Also outputs a CSS variable.                  |
-| `$overflow-padding`      | `10`                   | Sets the distance before a popover is cut off and will try to reposition itself to stay visible. Also outputs a CSS variable.   |
-| `$flip-padding`          | `10`                   | Sets the distance before a popover is cut off and will try to flip it's placement to stay visible. Also outputs a CSS variable. |
-| `$z-index`               | `10`                   | Sets the z-index property.                                                                                                      |
-| `$width`                 | `16em`                 | Sets the width property.                                                                                                        |
-| `$padding`               | `0.5em`                | Sets the padding property.                                                                                                      |
-| `$border`                | `null`                 | Sets the border property.                                                                                                       |
-| `$border-radius`         | `core.$border-radius`  | Sets the border-radius property.                                                                                                |
-| `$background`            | `core.$white`          | Sets the background property.                                                                                                   |
-| `$background-clip`       | `padding-box`          | Sets the background-clip property.                                                                                              |
-| `$box-shadow`            | `core.$box-shadow-8dp` | Sets the box-shadow property.                                                                                                   |
-| `$font-size`             | `core.$font-size-sm`   | Sets the font-size property.                                                                                                    |
-| `$line-height`           | `null`                 | Sets the line-height property.                                                                                                  |
-| `$size-sm-width`         | `12em`                 | Sets the width property of the `popover_size_sm` modifier.                                                                      |
-| `$size-lg-width`         | `20em`                 | Sets the width property of the `popover_size_lg` modifier.                                                                      |
--->
 
 ## JavaScript Options
 
@@ -339,23 +451,56 @@ Adjusts the size of the popover. There are two options relative to the default s
         <td data-mobile-label="Desc">Automatically initializes the instance.</td>
       </tr>
       <!-- Data attributes -->
+      <tr>
+        <td data-mobile-label="Key"><code class="code text-nowrap">dataPopover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'popover'</code></td>
+        <td data-mobile-label="Desc">Data attribute for defining a popover.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Key"><code class="code text-nowrap">dataTrigger</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'popover-trigger'</code></td>
+        <td data-mobile-label="Desc">Data attribute for defining a popover trigger.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Key"><code class="code text-nowrap">dataArrow</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'popover-arrow'</code></td>
+        <td data-mobile-label="Desc">Data attribute for defining a popover arrow.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Key"><code class="code text-nowrap">dataEventType</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'popover-event'</code></td>
+        <td data-mobile-label="Desc">Data attribute for setting the popover event type.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Key"><code class="code text-nowrap">dataPlacement</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'popover-placement'</code></td>
+        <td data-mobile-label="Desc">Data attribute for setting the preferred placement of a popover.</td>
+      </tr>
+      <!-- State classes -->
+      <tr>
+        <td data-mobile-label="Key"><code class="code text-nowrap">stateActive</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'is-active'</code></td>
+        <td data-mobile-label="Desc">Class used for active state.</td>
+      </tr>
+      <!-- Feature toggles -->
+      <tr>
+        <td data-mobile-label="Key"><code class="code text-nowrap">eventType</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'click'</code></td>
+        <td data-mobile-label="Desc">The default event type. Can be either <code class="code">'click'</code> or <code class="code">'hover'</code>.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Key"><code class="code text-nowrap">eventListeners</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Whether or not to output global event listeners.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Key"><code class="code text-nowrap">placement</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'bottom-start'</code></td>
+        <td data-mobile-label="Desc">The default preferred placement.</td>
+      </tr>
     </tbody>
   </table>
 </div>
-
-<!--
-| Key              | Default               | Description                                                      |
-| ---------------- | --------------------- | ---------------------------------------------------------------- |
-| `autoInit`       | `false`               | Automatically initializes the instance.                          |
-| `dataPopover`    | `'popover'`           | Data attribute for defining a popover.                           |
-| `dataTrigger`    | `'popover-trigger'`   | Data attribute for defining a popover trigger.                   |
-| `dataEventType`  | `'popover-event'`     | Data attribute for setting the popover event type.               |
-| `dataPlacement`  | `'popover-placement'` | Data attribute for setting the preferred placement of a popover. |
-| `stateActive`    | `'is-active'`         | Class used for active state.                                     |
-| `eventType`      | `'click'`             | The default event type. Can be either `'click'` or `'hover'`.    |
-| `eventListeners` | `true`                | Whether or not to output global event listeners.                 |
-| `placement`      | `'bottom-start'`      | The default preferred placement.                                 |
--->
 
 ## API
 

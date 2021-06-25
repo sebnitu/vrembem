@@ -10,6 +10,7 @@ $placement: null !default;
 $offset: 8 !default;
 $overflow-padding: 10 !default;
 $flip-padding: 10 !default;
+$arrow-padding: 10 !default;
 
 $z-index: 10 !default;
 $width: 16em !default;
@@ -22,6 +23,9 @@ $background-clip: padding-box !default;
 $box-shadow: core.$box-shadow-8dp !default;
 $font-size: core.$font-size-sm !default;
 $line-height: null !default;
+
+$arrow-size: 8px !default;
+$arrow-border: core.$border-light !default;
 
 $size-sm-width: 12em !default;
 $size-lg-width: 20em !default;

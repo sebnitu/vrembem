@@ -4,55 +4,59 @@
 $_b: var.$prefix-block;
 $_e: var.$prefix-element;
 
+:root {
+  @if (var.$arrow-padding) {
+    --popover-arrow-padding: #{var.$arrow-padding};
+  }
+}
+
 .#{$_b}popover#{$_e}arrow,
-.#{$_b}popover#{$_e}arrow::before,
 .#{$_b}popover#{$_e}arrow::after {
+  @include core.size(var.$arrow-size);
   position: absolute;
+  z-index: -1;
   visibility: hidden;
-  width: 8px;
-  height: 8px;
   background-color: inherit;
 }
 
-.#{$_b}popover#{$_e}arrow::before,
 .#{$_b}popover#{$_e}arrow::after {
   content: '';
   visibility: visible;
   transform: rotate(45deg);
-}
-
-[data-popper-placement] > .#{$_b}popover#{$_e}arrow::before {
-  background-color: rgba(core.$black, 0.1);
+  border: var.$arrow-border;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  background-clip: padding-box;
 }
 
 [data-popper-placement^="top"] > .#{$_b}popover#{$_e}arrow {
-  bottom: -4px;
+  bottom: -(var.$arrow-size * 0.5);
 
-  &::before {
-    margin: 1px 0 0 0;
+  &::after {
+    transform: rotate(-135deg);
   }
 }
 
 [data-popper-placement^="bottom"] > .#{$_b}popover#{$_e}arrow {
-  top: -4px;
+  top: -(var.$arrow-size * 0.5);
 
-  &::before {
-    margin: -1px 0 0 0;
+  &::after {
+    transform: rotate(45deg);
   }
 }
 
 [data-popper-placement^="left"] > .#{$_b}popover#{$_e}arrow {
-  right: -4px;
+  right: -(var.$arrow-size * 0.5);
 
-  &::before {
-    margin: 0 0 0 1px;
+  &::after {
+    transform: rotate(135deg);
   }
 }
 
 [data-popper-placement^="right"] > .#{$_b}popover#{$_e}arrow {
-  left: -4px;
+  left: -(var.$arrow-size * 0.5);
 
-  &::before {
-    margin: 0 0 0 -1px;
+  &::after {
+    transform: rotate(-45deg);
   }
 }

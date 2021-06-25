@@ -8,7 +8,9 @@ export function getConfig(el, settings) {
     'event': settings.eventType,
     'offset': 0,
     'overflow-padding': 0,
-    'flip-padding': 0
+    'flip-padding': 0,
+    'arrow-element': `[data-${settings.dataArrow}]`,
+    'arrow-padding': 0
   };
 
   // Loop through config obj
@@ -95,6 +97,12 @@ export function getModifiers(options) {
     name: 'flip',
     options: {
       padding: getPadding(options['flip-padding'])
+    }
+  }, {
+    name: 'arrow',
+    options: {
+      element: options['arrow-element'],
+      padding: getPadding(options['arrow-padding'])
     }
   }];
 }

@@ -50,6 +50,18 @@ If the data attributes are valueless, the popover trigger will try to find it's 
 </div>
 ```
 
+#### `data-popover-arrow`
+
+The popover arrow is an inner element of the popper that is positioned center relative to the reference element. This can be defined using the `popover__arrow` class for styling and is hooked into the JavaScript implementation using the `data-popover-arrow` boolean attribute.
+
+```html
+<button data-popover-trigger>...</button>
+<div class="popover" data-popover>
+  ...
+  <span class="popover__arrow" data-popover-arrow></span>
+</div>
+```
+
 #### `data-popover-event`
 
 There are two event types to trigger a popover, `click` (the default) or `hover` (hover also applies focus events). You an set your preferred default event type by passing it as an option on instantiation or initialization.
@@ -125,19 +137,19 @@ Popover provides some CSS variables on the `:root` element for controlling the e
 | `$offset`           | `--popover-offset`           | Controls the distance from the reference element (`data-popover-trigger`) that a popover will position itself. [More details &rarr;](https://popper.js.org/docs/v2/modifiers/offset/)         |
 | `$overflow-padding` | `--popover-overflow-padding` | Controls the distance before a popover is cut off and will try to reposition itself to stay visible. [More details &rarr;](https://popper.js.org/docs/v2/modifiers/prevent-overflow/#padding) |
 | `$flip-padding`     | `--popover-flip-padding`     | Controls the distance before a popover is cut off and will try to flip it's placement to stay visible. [More details &rarr;](https://popper.js.org/docs/v2/modifiers/flip/#padding)           |
+| `$arrow-padding`    | `--popover-arrow-padding`    | Controls the distance before a popover arrow reaches the edge of the popover. [More details &rarr;](https://popper.js.org/docs/v2/modifiers/arrow/#padding)                                   |
 
 
-The advantage to having these values set via a CSS variable is that they can be given new values for specific use cases either in your own stylesheet or by setting the variables in a `style` attribute.
-
-```css
-.header .popover {
-  --popover-placement: bottom;
-}
-```
+The advantage to having these values set by a CSS variable is that they can be given new values for specific use cases either in your own stylesheet or by setting the variables in a `style` attribute.
 
 ```html
-<div class="popover" data-popover style="--popover-offset: 6;">
-  ...
+<div style="--popover-offset: 0;">
+  <div style="--popover-placement: right;">
+    ...
+  </div>
+  <div style="--popover-placement: left;">
+    ...
+  </div>
 </div>
 ```
 
@@ -174,6 +186,7 @@ Adjusts the size of the popover. There are two options relative to the default s
 | `$offset`                | `8`                    | Sets the distance from the reference element that a popover will position itself. Also outputs a CSS variable.                  |
 | `$overflow-padding`      | `10`                   | Sets the distance before a popover is cut off and will try to reposition itself to stay visible. Also outputs a CSS variable.   |
 | `$flip-padding`          | `10`                   | Sets the distance before a popover is cut off and will try to flip it's placement to stay visible. Also outputs a CSS variable. |
+| `$arrow-padding`         | `10`                   | Sets the distance before a popover arrow reaches the edge of the popover.                                                       |
 | `$z-index`               | `10`                   | Sets the z-index property.                                                                                                      |
 | `$width`                 | `16em`                 | Sets the width property.                                                                                                        |
 | `$padding`               | `0.5em`                | Sets the padding property.                                                                                                      |
@@ -184,6 +197,8 @@ Adjusts the size of the popover. There are two options relative to the default s
 | `$box-shadow`            | `core.$box-shadow-8dp` | Sets the box-shadow property.                                                                                                   |
 | `$font-size`             | `core.$font-size-sm`   | Sets the font-size property.                                                                                                    |
 | `$line-height`           | `null`                 | Sets the line-height property.                                                                                                  |
+| `$arrow-size`            | `8px`                  | Sets the width and height properties of the `popover__arrow` element.                                                           |
+| `$arrow-border`          | `core.$border-light`   | Sets the border property of the `popover__arrow` element.                                                                       |
 | `$size-sm-width`         | `12em`                 | Sets the width property of the `popover_size_sm` modifier.                                                                      |
 | `$size-lg-width`         | `20em`                 | Sets the width property of the `popover_size_lg` modifier.                                                                      |
 
@@ -194,6 +209,7 @@ Adjusts the size of the popover. There are two options relative to the default s
 | `autoInit`       | `false`               | Automatically initializes the instance.                          |
 | `dataPopover`    | `'popover'`           | Data attribute for defining a popover.                           |
 | `dataTrigger`    | `'popover-trigger'`   | Data attribute for defining a popover trigger.                   |
+| `dataArrow`      | `'popover-arrow'`     | Data attribute for defining a popover arrow.                     |
 | `dataEventType`  | `'popover-event'`     | Data attribute for setting the popover event type.               |
 | `dataPlacement`  | `'popover-placement'` | Data attribute for setting the preferred placement of a popover. |
 | `stateActive`    | `'is-active'`         | Class used for active state.                                     |

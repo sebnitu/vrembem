@@ -5,15 +5,15 @@ import 'wicg-inert';
 import './list.js';
 import './version';
 
-new vb.Checkbox({ autoInit: true });
+const checkbox = new vb.Checkbox({ autoInit: true });
 
-new vb.Drawer({
+const drawer = new vb.Drawer({
   autoInit: true,
   selectorInert: '[role="main"]',
   selectorOverflow: 'body, [role="main"]'
 });
 
-new vb.Modal({
+const modal = new vb.Modal({
   autoInit: true,
   selectorInert: '.page',
   selectorOverflow: 'body, [role="main"]',
@@ -23,9 +23,14 @@ new vb.Modal({
   }
 });
 
-new vb.Popover({
+const popover = new vb.Popover({
   autoInit: true
 });
+
+window.checkbox = checkbox;
+window.drawer = drawer;
+window.modal = modal;
+window.popover = popover;
 
 const scrollStash = new ScrollStash({
   autoInit: true,
