@@ -14,9 +14,20 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.31.2 to CHANGELOG.md
+chore(release): add v1.32.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.32.0 (2021-06-26)
+
+#### :fire: Breaking Changes
+* `base`, `core`, `dropdown`, `popover`, `vrembem`
+  * [#614](https://github.com/sebnitu/vrembem/pull/614) Refactor dropdown component, rename to popover and implement popper js
+
+#### :tada: New Feature
+* `base`, `core`, `dropdown`, `popover`, `vrembem`
+  * [#614](https://github.com/sebnitu/vrembem/pull/614) Refactor dropdown component, rename to popover and implement popper js
 
 
 ## v1.31.2 (2021-06-14)
