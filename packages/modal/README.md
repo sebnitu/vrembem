@@ -220,7 +220,7 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
 
 ## API
 
-### `modal.init()`
+### `modal.init(options)`
 
 Initializes the modal instance. During initialization, the following processes are run:
 
@@ -229,6 +229,10 @@ Initializes the modal instance. During initialization, the following processes a
 - Moves all modals in the DOM to a location specified in the `moveModals` option.
 - Adds the `click` event listener to the document.
 - Adds the `keydown` event listener for closing modals with the `esc` key.
+
+**Parameters**
+
+- `options [Object] (optional) (default null)` An options object for passing your custom settings.
 
 ```js
 const modal = new Modal();
