@@ -222,7 +222,7 @@ Drawers can slide in from the left or right using the position modifiers:
 | `$transition-duration`           | `core.$transition-duration`        | Duration of drawer transition.                                                                       |
 | `$transition-timing-function`    | `core.$transition-timing-function` | Timing function used for drawer transitions.                                                         |
 | `$wrapper-height`                | `100%`                             | The height given to drawer wrapper element.                                                          |
-| `$modal-zindex`                  | `900`                              | Modal z-index to help control the stack order. Should be highest priority as modal.                  |
+| `$modal-z-index`                 | `900`                              | Modal z-index to help control the stack order. Should be highest priority as modal.                  |
 | `$modal-width`                   | `$width`                           | The width of modal drawers.                                                                          |
 | `$modal-max-width`               | `80%`                              | The max-width of modal drawers.                                                                      |
 | `$modal-sep-border`              | `null`                             | Border color applied to dialog components within modal drawer items.                                 |

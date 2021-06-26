@@ -156,7 +156,7 @@ Used to separate distinct dialog sections for headers and footers. Typically the
       </tr>
       <!-- General -->
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$zindex</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$z-index</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">500</code></td>
         <td data-mobile-label="Desc">Sets the z-index property.</td>
       </tr>

@@ -390,7 +390,7 @@ Drawers can slide in from the left or right using the position modifiers:
       </tr>
       <!-- drawer_modal styles -->
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$modal-zindex</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$modal-z-index</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">900</code></td>
         <td data-mobile-label="Desc">Modal z-index to help control the stack order. Should be highest priority as modal.</td>
       </tr>

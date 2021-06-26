@@ -5,7 +5,7 @@ $_e: var.$prefix-element;
 
 .#{$_b}dialog {
   position: relative;
-  z-index: var.$zindex;
+  z-index: var.$z-index;
   display: flex;
   flex-direction: column;
   overflow: auto;
