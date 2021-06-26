@@ -6,7 +6,7 @@ $_e: var.$prefix-element;
 
 .#{$_b}modal {
   position: fixed;
-  z-index: var.$zindex;
+  z-index: var.$z-index;
   top: 0;
   right: 0;
   display: flex;
@@ -68,15 +68,15 @@ $_e: var.$prefix-element;
 }
 
 .#{$_b}modal.is-opening {
-  z-index: (var.$zindex + 1);
+  z-index: (var.$z-index + 1);
 }
 
 .#{$_b}modal.is-opened {
-  z-index: var.$zindex;
+  z-index: var.$z-index;
 }
 
 .#{$_b}modal.is-closing {
-  z-index: (var.$zindex - 1);
+  z-index: (var.$z-index - 1);
 
   .#{$_b}modal#{$_e}dialog {
     transform: translateY(-(var.$travel));

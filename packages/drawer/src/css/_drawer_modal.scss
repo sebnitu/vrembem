@@ -6,7 +6,7 @@ $_m: var.$prefix-modifier;
 
 .#{$_b}drawer#{$_m}modal {
   position: fixed;
-  z-index: var.$modal-zindex;
+  z-index: var.$modal-z-index;
   width: 0;
   height: 0;
   overflow: hidden;
@@ -14,7 +14,7 @@ $_m: var.$prefix-modifier;
 
   .#{$_b}drawer#{$_e}dialog {
     position: relative;
-    z-index: (var.$modal-zindex + 1);
+    z-index: (var.$modal-z-index + 1);
     width: var.$modal-width;
     max-width: var.$modal-max-width;
     background-color: var.$modal-background;

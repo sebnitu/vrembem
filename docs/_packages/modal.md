@@ -424,7 +424,7 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
         <td data-mobile-label="Desc">String to prefix modifier values with.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$zindex</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$z-index</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1000</code></td>
         <td data-mobile-label="Desc">Applied z-index to modals to control the stack order.</td>
       </tr>

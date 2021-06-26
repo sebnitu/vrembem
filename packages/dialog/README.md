@@ -89,7 +89,7 @@ Used to separate distinct dialog sections for headers and footers. Typically the
 | `$prefix-element`        | `"__"`                          | String to prefix elements with.                                                                     |
 | `$prefix-modifier`       | `"_"`                           | String to prefix modifiers with.                                                                    |
 | `$prefix-modifier-value` | `"_"`                           | String to prefix modifier values with.                                                              |
-| `$zindex`                | `500`                           | Sets the z-index property.                                                                          |
+| `$z-index`               | `500`                           | Sets the z-index property.                                                                          |
 | `$padding`               | `1em`                           | Sets the padding property.                                                                          |
 | `$spacing`               | `0.5em`                         | Sets the horizontal spacing between elements in the `dialog__header` and `dialog__footer` elements. |
 | `$background`            | `core.$white`                   | Sets the background property.                                                                       |
