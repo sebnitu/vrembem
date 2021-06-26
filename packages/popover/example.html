@@ -156,7 +156,7 @@
         }
       },
       mounted() {
-        popover.unregisterCollection();
+        popover.deregisterCollection();
         popover.registerCollection();
       }
     }
@@ -252,8 +252,8 @@
       },
       beforeUnmount() {
         const item = popover.collection.find(el => el.target === this.$el);
-        console.log('popover.unregister()', item);
-        popover.unregister(item);
+        console.log('popover.deregister()', item);
+        popover.deregister(item);
       },
       template: `
         <div

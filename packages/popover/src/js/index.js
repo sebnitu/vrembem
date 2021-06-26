@@ -4,11 +4,11 @@ import { hide, hideAll } from './hide';
 import { show } from './show';
 import {
   register,
-  unregister,
+  deregister,
   registerEventListeners,
-  unregisterEventListeners,
+  deregisterEventListeners,
   registerCollection,
-  unregisterCollection
+  deregisterCollection
 } from './register';
 
 export default class Popover {
@@ -36,12 +36,12 @@ export default class Popover {
   }
 
   destroy() {
-    // Unregister all popovers from collection
-    unregisterCollection(this);
+    // Deregister all popovers from collection
+    deregisterCollection(this);
 
     // If eventListeners is enabled
     if (this.settings.eventListeners) {
-      // Pass false to destroyEventListeners() since unregisterCollection()
+      // Pass false to destroyEventListeners() since deregisterCollection()
       // already removes event listeners from popovers
       this.destroyEventListeners(false);
     }
@@ -67,7 +67,7 @@ export default class Popover {
     if (processCollection) {
       // Loop through collection and remove event listeners
       this.collection.forEach((popover) => {
-        unregisterEventListeners(popover);
+        deregisterEventListeners(popover);
       });
     }
 
@@ -83,16 +83,16 @@ export default class Popover {
     return register(trigger, target, this);
   }
 
-  unregister(popover) {
-    return unregister(popover, this);
+  deregister(popover) {
+    return deregister(popover, this);
   }
 
   registerCollection() {
     return registerCollection(this);
   }
 
-  unregisterCollection() {
-    return unregisterCollection(this);
+  deregisterCollection() {
+    return deregisterCollection(this);
   }
 
   /**

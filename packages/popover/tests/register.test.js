@@ -1,5 +1,5 @@
 import Popover from '../index.js';
-import { register, unregister } from '../src/js/register';
+import { register, deregister } from '../src/js/register';
 import '@testing-library/jest-dom/extend-expect';
 
 let popover;
@@ -72,15 +72,15 @@ describe('register()', () => {
   });
 });
 
-describe('unregister()', () => {
-  test('should unregister a popover and do nothing for popovers not in collection', () => {
+describe('deregister()', () => {
+  test('should deregister a popover and do nothing for popovers not in collection', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
     expect(popover.collection.length).toBe(2);
     const item = popover.collection[0];
-    unregister(item, popover);
+    deregister(item, popover);
     expect(popover.collection.length).toBe(1);
-    unregister(item, popover);
+    deregister(item, popover);
     expect(popover.collection.length).toBe(1);
   });
 });

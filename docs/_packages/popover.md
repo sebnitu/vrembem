@@ -539,7 +539,7 @@ popover.init();
 
 Destroys and cleans up the popover instantiation. During cleanup, the following processes are run:
 
-- Builds the popover collection by running `unregisterCollection()`
+- Builds the popover collection by running `deregisterCollection()`
 - Sets up the global event listeners by running `destroyEventListeners()`
 
 ```js
@@ -599,13 +599,13 @@ console.log(obj);
 // => Object { state: "hide", trigger: HTMLElement, target: HTMLElement, popper: {…}, ... }
 ```
 
-### `popover.unregister(popover)`
+### `popover.deregister(popover)`
 
-Unregisters the popover from the collection. This hides the popover if it's active, cleans up the popper instance, removes event listeners and then removes the entry from the collection.
+Deregister the popover from the collection. This hides the popover if it's active, cleans up the popper instance, removes event listeners and then removes the entry from the collection.
 
 **Parameters**
 
-- `popover [Object]` The popover instance in the collection to unregister.
+- `popover [Object]` The popover instance in the collection to deregister.
 
 **Returns**
 
@@ -613,7 +613,7 @@ Unregisters the popover from the collection. This hides the popover if it's acti
 
 ```js
 const item = popover.collection[0];
-const array = popover.unregister(item);
+const array = popover.deregister(item);
 
 console.log(array);
 // => Array []
@@ -632,9 +632,9 @@ popover.registerCollection()
 // => Array [...]
 ```
 
-### `popover.unregisterCollection()`
+### `popover.deregisterCollection()`
 
-Unregisters all popovers in the collections array. This is done by looping through the collection's array and passing each popover through the `unregister()` method.
+Deregister all popovers in the collections array. This is done by looping through the collection's array and passing each popover through the `deregister()` method.
 
 **Returns**
 

@@ -63,7 +63,7 @@ export function register(trigger, target, obj) {
   return popover;
 }
 
-export function unregister(popover, obj) {
+export function deregister(popover, obj) {
   // Check if this item has been registered in the collection
   const index = obj.collection.findIndex((item) => {
     return (item.trigger === popover.trigger && item.target === popover.target);
@@ -80,7 +80,7 @@ export function unregister(popover, obj) {
     popover.popper.destroy();
 
     // Remove event listeners
-    unregisterEventListeners(popover);
+    deregisterEventListeners(popover);
 
     // Remove item from collection
     obj.collection.splice(index, 1);
@@ -138,7 +138,7 @@ export function registerEventListeners(popover, obj) {
   return popover;
 }
 
-export function unregisterEventListeners(popover) {
+export function deregisterEventListeners(popover) {
   // If event listeners have been setup
   if (popover.__eventListeners) {
     // Loop through listeners and remove from appropriate elements
@@ -169,10 +169,10 @@ export function registerCollection(obj) {
   return obj.collection;
 }
 
-export function unregisterCollection(obj) {
-  // Loop through all items within the collection and pass them to unregister()
+export function deregisterCollection(obj) {
+  // Loop through all items within the collection and pass them to deregister()
   while (obj.collection.length > 0) {
-    unregister(obj.collection[0], obj);
+    deregister(obj.collection[0], obj);
   }
 
   // Return the popover collection

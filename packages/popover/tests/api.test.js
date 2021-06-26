@@ -146,7 +146,7 @@ describe('initEventListeners() & destroyEventListeners()', () => {
   });
 });
 
-describe('register() & unregister()', () => {
+describe('register() & deregister()', () => {
   test('should be able to manually register a popover', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
@@ -162,12 +162,12 @@ describe('register() & unregister()', () => {
     expect(popover.collection[0].target).toBe(target);
   });
 
-  test('should be able to manually unregister a popover', () => {
+  test('should be able to manually deregister a popover', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
     expect(popover.collection.length).toBe(2);
-    popover.unregister(popover.collection[0]);
+    popover.deregister(popover.collection[0]);
     expect(popover.collection.length).toBe(1);
 
     const trigger = document.querySelector('[data-popover-trigger]');
@@ -178,7 +178,7 @@ describe('register() & unregister()', () => {
   });
 });
 
-describe('registerCollection() & unregisterCollection()', () => {
+describe('registerCollection() & deregisterCollection()', () => {
   test('should remove all items from collection and their event listeners', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
@@ -190,7 +190,7 @@ describe('registerCollection() & unregisterCollection()', () => {
     trigger.click();
     expect(target).toHaveClass('is-active');
 
-    popover.unregisterCollection();
+    popover.deregisterCollection();
 
     expect(popover.collection.length).toBe(0);
     expect(target).not.toHaveClass('is-active');
