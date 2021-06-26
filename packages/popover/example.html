@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@vrembem/popover</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://sebnitu.com/dist/favicon.png">
+  <!-- Styles -->
+  <link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.css">
+  <link rel="stylesheet" href="./dist/styles.css">
+  <!-- Vue -->
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <header class="section background-shade">
+    <div class="section__container gap-y">
+      <h1 class="text-size-lg">@vrembem/popover</h1>
+      <p class="max-width-xs">
+        A component that is initially hidden and revealed upon user interaction either through a click or hover event. Popover can contain lists of actions, links, or additional supplementary content.
+      </p>
+      <ol class="breadcrumb">
+        <li class="breadcrumb__item">
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+          </svg>
+          <a class="breadcrumb__link" href="https://github.com/sebnitu/vrembem">
+            <span>vrembem</span>
+          </a>
+        </li>
+        <li class="breadcrumb__item">
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
+          </svg>
+          <a class="breadcrumb__link" href="https://github.com/sebnitu/vrembem/tree/master/packages/popover">
+            <span>popover</span>
+          </a>
+        </li>
+      </ol>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="section__container gap-y">
+
+      <h2>Static Examples</h2>
+      <div>
+        <div class="flex flex-wrap flex-gap">
+          <div>
+            <button class="button" data-popover-trigger>
+              Popover Click
+            </button>
+            <div class="popover" data-popover>
+              <ul class="menu">
+                <li class="menu__item">
+                  <button class="menu__action">
+                    <span class="menu__text">Add</span>
+                    <span class="color-subtle">&plus;</span>
+                  </button>
+                </li>
+                <li class="menu__item">
+                  <button class="menu__action">
+                    <span class="menu__text">Remove</span>
+                    <span class="color-subtle">&minus;</span>
+                  </button>
+                </li>
+                <li class="menu__sep"></li>
+                <li class="menu__item">
+                  <button class="menu__action">
+                    <span class="menu__text">Edit</span>
+                    <span>&#9999;&#65039;</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <button class="button" data-popover-trigger>
+              Popover Hover
+            </button>
+            <div class="popover popover_size_lg" data-popover data-popover-event="hover" tabindex="0">
+              <p class="padding-sm">Random content, but it's focusable thanks to the tabindex attribute!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="sep margin-y-xl">
+
+      <div id="app">
+        <div class="margin-bottom level flex-justify-between">
+          <h2>{{ title }}</h2>
+          <button @click="removeAll" class="link">Remove all</button>
+        </div>
+        <div class="level">
+          <button class="button button_color_primary button_icon" data-popover-trigger>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-settings">
+              <circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </button>
+          <div class="popover" data-popover data-popover-placement="auto">
+            <popover-form @create="createPopover"></popover-form>
+          </div>
+          <popover-set 
+            v-for="popover in examples"
+            v-bind:key="popover.id"
+            v-bind:popover="popover"
+            @remove="removePopover">
+          </popover-set>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- Component scripts -->
+  <script src="./dist/scripts.umd.js"></script>
+
+  <!-- Implementation scripts -->
+  <script>
+    const popover = new vrembem.Popover({
+      autoInit: true
+    });
+
+    /**
+     * Vue config & createApp
+     */
+
+    const AppConfig = {
+      data() {
+        return {
+          examples: [
+            { id: 0, text: 'Example popover 1' },
+            { id: 1, text: 'Example popover 2' },
+            { id: 2, text: 'Example popover 3' }
+          ]
+        }
+      },
+      computed: {
+        title() {
+          return `Dynamic Examples (${this.examples.length})`
+        }
+      },
+      methods: {
+        createPopover(obj) {
+          this.examples.push({
+            id: this.examples.length,
+            ...obj
+          });
+        },
+        removePopover(id) {
+          const index = this.examples.findIndex(el => el.id === id);
+          this.examples.splice(index, 1);
+        },
+        removeAll() {
+          this.examples = [];
+        }
+      },
+      mounted() {
+        popover.deregisterCollection();
+        popover.registerCollection();
+      }
+    }
+
+    const app = Vue.createApp(AppConfig)
+
+    /**
+     * Components
+     */
+
+    app.component('popover-form', {
+      data() {
+        return {
+          text: null,
+          placement: '',
+          eventType: '',
+          size: ''
+        }
+      },
+      emits: ['create'],
+      methods: {
+        create() {
+          config = {}
+          config.text = this.text;
+          config.placement = (this.placement != '') ? this.placement : null;
+          config.eventType = (this.eventType != '') ? this.eventType : null;
+          config.size = (this.size != '') ? this.size : null;
+          this.$emit('create', config);
+          this.text = null;
+        }
+      },
+      template: `
+        <form @submit.prevent="create" class="padding-sm gap-y">
+          <h3>Create a popover</h3>
+          <hr class="sep">
+          <div class="gap-y-sm">
+            <label for="input-popover-text">Copy</label>
+            <input v-model="text" id="input-popover-text" type="text" class="input" autocomplete="off">
+          </div>
+          <div class="gap-y-sm">
+            <label for="input-popover-placement">Placement</label>
+            <select v-model="placement" id="input-popover-placement" class="input input_type_select">
+              <option value="">--</option>
+              <option value="top">Top</option>
+              <option value="right">Right</option>
+              <option value="bottom">Bottom</option>
+              <option value="left">Left</option>
+            </select>
+          </div>
+          <div class="gap-y-sm">
+            <label for="input-popover-event">Event Type</label>
+            <select v-model="eventType" id="input-popover-event" class="input input_type_select">
+              <option value="">--</option>
+              <option value="click">Click</option>
+              <option value="hover">Hover</option>
+            </select>
+          </div>
+          <div class="gap-y-sm">
+            <label for="input-popover-event">Size Modifier</label>
+            <select v-model="size" id="input-popover-event" class="input input_type_select">
+              <option value="">--</option>
+              <option value="popover_size_auto">Auto</option>
+              <option value="popover_size_sm">Small</option>
+              <option value="popover_size_lg">Large</option>
+            </select>
+          </div>
+          <hr class="sep">
+          <button class="button button_block">Create</button>
+        </form>
+      `
+    });
+
+    app.component('popover-trigger', {
+      props: ['popover'],
+      mounted() {
+        console.log('popover.register()', this.$el);
+        popover.register(this.$el);
+      },
+      template: `
+        <button class="button" data-popover-trigger>
+          Trigger {{ popover.id + 1 }}
+        </button>
+      `
+    });
+
+    app.component('popover', {
+      props: ['popover'],
+      emits: ['remove'],
+      methods: {
+        removePopover() {
+          this.$emit('remove', this.popover.id);
+        }
+      },
+      beforeUnmount() {
+        const item = popover.collection.find(el => el.target === this.$el);
+        console.log('popover.deregister()', item);
+        popover.deregister(item);
+      },
+      template: `
+        <div
+          data-popover
+          class="popover"
+          v-bind:class="popover.size"
+          v-bind:data-popover-placement="popover.placement"
+          v-bind:data-popover-event="popover.eventType">
+          <div v-if="popover.text" class="notice notice_state_info margin-bottom-sm">
+            {{ popover.text }}
+          </div>
+          <ul class="menu">
+            <li class="menu__item">
+              <button @click="removePopover" class="menu__action">
+                <span class="menu__text">Remove</span>
+                <span class="color-subtle">&minus;</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      `
+    });
+
+    app.component('popover-set', {
+      props: ['popover'],
+      emits: ['remove'],
+      methods: {
+        removePopover(id) {
+          this.$emit('remove', id);
+        }
+      },
+      template: `
+        <div>
+          <popover-trigger 
+            v-bind:popover="popover"
+          ></popover-trigger>
+          <popover
+            v-bind:popover="popover"
+            @remove="removePopover"
+          ></popover>
+        </div>
+      `
+    });
+
+    /**
+     * Vue mount 
+     */
+
+    app.mount('#app');
+
+  </script>
+</body>
+</html>

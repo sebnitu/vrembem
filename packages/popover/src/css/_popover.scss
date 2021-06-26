@@ -1,0 +1,112 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_offset: calc(calc(var(--popover-offset) + 1) * 1px);
+
+:root {
+  @if (var.$event) {
+    --popover-event: #{var.$event};
+  }
+
+  @if (var.$placement) {
+    --popover-placement: #{var.$placement};
+  }
+
+  --popover-offset: #{core.strip-unit(var.$offset)};
+  --popover-overflow-padding: #{core.strip-unit(var.$overflow-padding)};
+  --popover-flip-padding: #{core.strip-unit(var.$flip-padding)};
+}
+
+.#{$_b}popover {
+  position: absolute;
+  z-index: var.$z-index;
+  top: 100%;
+  left: 0;
+  display: none;
+  width: var.$width;
+  max-width: var.$max-width;
+  margin: calc(var(--popover-offset) * 1px) 0 0;
+  padding: var.$padding;
+  border: var.$border;
+  border-radius: var.$border-radius;
+  background: var.$background;
+  background-clip: var.$background-clip;
+  box-shadow: var.$box-shadow;
+  font-size: var.$font-size;
+  line-height: var.$line-height;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: auto;
+    right: 0;
+    bottom: 100%;
+    left: 0;
+    width: 100%;
+    height: $_offset;
+  }
+
+  &.is-active {
+    z-index: (var.$z-index + 1);
+    display: block;
+  }
+
+  &:hover,
+  &:focus,
+  &:focus-within {
+    z-index: (var.$z-index + 2);
+  }
+}
+
+.#{$_b}popover[data-popper-placement^="top"] {
+  margin: 0 0 calc(var(--popover-offset) * 1px) 0;
+
+  &::before {
+    top: 100%;
+    right: 0;
+    bottom: auto;
+    left: 0;
+    width: 100%;
+    height: $_offset;
+  }
+}
+
+.#{$_b}popover[data-popper-placement^="bottom"] {
+  margin: calc(var(--popover-offset) * 1px) 0 0 0;
+
+  &::before {
+    top: auto;
+    right: 0;
+    bottom: 100%;
+    left: 0;
+    width: 100%;
+    height: $_offset;
+  }
+}
+
+.#{$_b}popover[data-popper-placement^="left"] {
+  margin: 0 calc(var(--popover-offset) * 1px) 0 0;
+
+  &::before {
+    top: 0;
+    right: auto;
+    bottom: 0;
+    left: 100%;
+    width: $_offset;
+    height: 100%;
+  }
+}
+
+.#{$_b}popover[data-popper-placement^="right"] {
+  margin: 0 0 0 calc(var(--popover-offset) * 1px);
+
+  &::before {
+    top: 0;
+    right: 100%;
+    bottom: 0;
+    left: auto;
+    width: $_offset;
+    height: 100%;
+  }
+}

@@ -1,13 +1,13 @@
 {
-  "name": "vrembem",
-  "description": "A component library based on the BEM methodology.",
-  "version": "1.31.2",
+  "name": "@vrembem/popover",
+  "description": "A component that is initially hidden and revealed upon user interaction either through a click or hover event. Popover can contain lists of actions, links, or additional supplementary content.",
+  "version": "1.30.0",
   "license": "MIT",
   "keywords": [
     "BEM",
     "front-end",
     "component",
-    "library"
+    "popover"
   ],
   "source": "index.js",
   "main": "dist/scripts.js",
@@ -18,6 +18,7 @@
   "files": [
     "dev",
     "dist",
+    "src",
     "index.js",
     "index.scss"
   ],
@@ -26,7 +27,7 @@
     "clean": "del dev && del dist",
     "scripts": "npm-run-all scripts:dev scripts:dist",
     "scripts:dev": "npm run scripts:dist -- --output=dev/scripts.js --no-compress",
-    "scripts:dist": "microbundle --name=vrembem --external=none --globals @vrembem/core/index=vrembem.core,@vrembem/checkbox/index=vrembem.Checkbox,@vrembem/drawer/index=vrembem.Drawer,@vrembem/modal/index=vrembem.Modal",
+    "scripts:dist": "microbundle --name=vrembem.Popover --external=none --globals=@vrembem/core/index=vrembem.core",
     "styles": "npm-run-all styles:dev styles:dist",
     "styles:dev": "sass index.scss dev/styles.css --load-path=node_modules",
     "styles:dist": "sass index.scss dist/styles.css --load-path=node_modules --style=compressed",
@@ -37,34 +38,11 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sebnitu/vrembem.git",
-    "directory": "packages/vrembem"
+    "directory": "packages/popover"
   },
   "dependencies": {
-    "@vrembem/base": "^1.30.0",
-    "@vrembem/breadcrumb": "^1.30.0",
-    "@vrembem/button": "^1.30.1",
-    "@vrembem/button-group": "^1.30.0",
-    "@vrembem/card": "^1.30.0",
-    "@vrembem/checkbox": "^1.30.0",
-    "@vrembem/core": "^1.30.0",
-    "@vrembem/dialog": "^1.30.0",
-    "@vrembem/drawer": "^1.31.2",
-    "@vrembem/grid": "^1.31.2",
-    "@vrembem/icon": "^1.30.0",
-    "@vrembem/icon-action": "^1.30.0",
-    "@vrembem/input": "^1.31.2",
-    "@vrembem/level": "^1.30.0",
-    "@vrembem/media": "^1.30.0",
-    "@vrembem/menu": "^1.31.2",
-    "@vrembem/modal": "^1.31.2",
-    "@vrembem/notice": "^1.30.0",
-    "@vrembem/popover": "^1.30.0",
-    "@vrembem/radio": "^1.30.0",
-    "@vrembem/section": "^1.30.0",
-    "@vrembem/switch": "^1.30.0",
-    "@vrembem/table": "^1.30.0",
-    "@vrembem/tooltip": "^1.30.0",
-    "@vrembem/utility": "^1.31.2"
+    "@popperjs/core": "^2.9.2",
+    "@vrembem/core": "^1.30.0"
   },
   "publishConfig": {
     "access": "public"
