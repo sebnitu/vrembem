@@ -14,9 +14,20 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.32.0 to CHANGELOG.md
+chore(release): add v1.32.1 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.32.1 (2021-06-26)
+
+#### :bug: Bug Fix
+* `dialog`, `drawer`, `modal`
+  * [#640](https://github.com/sebnitu/vrembem/pull/640) Change zindex variable names to z-index
+
+#### :books: Documentation
+* `drawer`, `modal`
+  * [#641](https://github.com/sebnitu/vrembem/pull/641) Update modal and drawer docs to include missing JS API parameter docs
 
 
 ## v1.32.0 (2021-06-26)
