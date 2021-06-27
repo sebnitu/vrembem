@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.32.1 to CHANGELOG.md
+chore(release): add v1.32.2 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.32.2 (2021-06-27)
+
+#### :hammer: Chore
+* `base`, `breadcrumb`, `button-group`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `grid`, `icon-action`, `icon`, `input`, `level`, `media`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `tooltip`, `utility`, `vrembem`
+  * [#642](https://github.com/sebnitu/vrembem/pull/642) Add homepage value to package json files
 
 
 ## v1.32.1 (2021-06-26)
