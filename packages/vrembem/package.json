@@ -39,6 +39,7 @@
     "url": "git+https://github.com/sebnitu/vrembem.git",
     "directory": "packages/vrembem"
   },
+  "homepage": "https://github.com/sebnitu/vrembem#readme",
   "dependencies": {
     "@vrembem/base": "^1.32.0",
     "@vrembem/breadcrumb": "^1.32.0",

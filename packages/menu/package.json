@@ -25,6 +25,7 @@
     "url": "git+https://github.com/sebnitu/vrembem.git",
     "directory": "packages/menu"
   },
+  "homepage": "https://github.com/sebnitu/vrembem/tree/master/packages/menu#readme",
   "dependencies": {
     "@vrembem/core": "^1.32.0"
   },
