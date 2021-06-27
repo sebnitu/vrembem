@@ -25,7 +25,7 @@
     "url": "git+https://github.com/sebnitu/vrembem.git",
     "directory": "packages/dialog"
   },
-  "homepage": "https://github.com/sebnitu/vrembem/tree/master/packages/core#readme",
+  "homepage": "https://github.com/sebnitu/vrembem/tree/master/packages/dialog#readme",
   "dependencies": {
     "@vrembem/core": "^1.32.0"
   },
