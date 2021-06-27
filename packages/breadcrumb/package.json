@@ -25,6 +25,7 @@
     "url": "git+https://github.com/sebnitu/vrembem.git",
     "directory": "packages/breadcrumb"
   },
+  "homepage": "https://github.com/sebnitu/vrembem/tree/master/packages/breadcrumb#readme",
   "dependencies": {
     "@vrembem/base": "^1.32.0",
     "@vrembem/core": "^1.32.0"
