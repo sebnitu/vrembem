@@ -1536,7 +1536,7 @@ Modules that get mapped to HTML elements include:
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$type-gap</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
-        <td data-mobile-label="Desc">Applies vertical gap between elements via the <code class="code color-secondary text-nowrap">gap</code> module.</td>
+        <td data-mobile-label="Desc">Applies vertical gap between elements via the <code class="code">gap</code> module.</td>
       </tr>
     </tbody>
   </table>
