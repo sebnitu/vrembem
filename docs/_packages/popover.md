@@ -189,7 +189,7 @@ Popover provides some CSS variables on the `:root` element for controlling the e
       <tr>
         <td data-mobile-label="Sass"><code class="code text-nowrap">$offset</code></td>
         <td data-mobile-label="CSS"><code class="code color-secondary">--popover-offset</code></td>
-        <td data-mobile-label="Desc">Controls the distance from the reference element (`data-popover-trigger`) that a popover will position itself. <a href="https://popper.js.org/docs/v2/modifiers/offset/" class="link">More details &rarr;</a></td>
+        <td data-mobile-label="Desc">Controls the distance from the reference element (<code class="code">data-popover-trigger</code>) that a popover will position itself. <a href="https://popper.js.org/docs/v2/modifiers/offset/" class="link">More details &rarr;</a></td>
       </tr>
       <tr>
         <td data-mobile-label="Sass"><code class="code text-nowrap">$overflow-padding</code></td>
