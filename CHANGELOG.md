@@ -14,9 +14,18 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.32.2 to CHANGELOG.md
+chore(release): add v1.33.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.33.0 (2021-07-10)
+
+#### :tada: New Feature
+* `button`
+  * [#657](https://github.com/sebnitu/vrembem/pull/657) Add new state modifier to button component
+* `utility`
+  * [#656](https://github.com/sebnitu/vrembem/pull/656) Add the position module to utilities
 
 
 ## v1.32.2 (2021-06-27)
