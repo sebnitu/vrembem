@@ -113,6 +113,7 @@ The utility component consists of a number of modules with their own set of spec
 - [`margin`](#margin)
 - [`max-width`](#max-width)
 - [`padding`](#padding)
+- [`position`](#position)
 - [`text`](#text)
 
 ### `background`
@@ -654,6 +655,21 @@ Add padding to an element using directional and size variations. Padding size an
 | ----------------- | ----------------------- | -------------------------------------------------------- |
 | `$output-padding` | `$output` &rarr; `true` | Toggles the output of this utility.                      |
 | `$class-padding`  | `"padding"`             | String to use for the class name of the padding utility. |
+
+### `position`
+
+A utility for setting the position CSS property.
+
+- `position-absolute` - Sets the position property to absolute.
+- `position-fixed` - Sets the position property to fixed.
+- `position-relative` - Sets the position property to relative.
+- `position-static` - Sets the position property to static.
+- `position-sticky` - Sets the position property to sticky.
+
+| Variable           | Default                 | Description                                               |
+| ------------------ | ----------------------- | --------------------------------------------------------- |
+| `$output-position` | `$output` &rarr; `true` | Toggles the output of this utility.                       |
+| `$class-position`  | `"position"`            | String to use for the class name of the position utility. |
 
 ### `text`
 

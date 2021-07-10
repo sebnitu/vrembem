@@ -19,6 +19,7 @@ $output-gap-y: $output !default;
 $output-margin: $output !default;
 $output-max-width: $output !default;
 $output-padding: $output !default;
+$output-position: $output !default;
 $output-text: $output !default;
 
 $class-background: "background" !default;
@@ -37,6 +38,7 @@ $class-gap-y: "gap-y" !default;
 $class-margin: "margin" !default;
 $class-max-width: "max-width" !default;
 $class-padding: "padding" !default;
+$class-position: "position" !default;
 $class-text: "text" !default;
 
 $breakpoints: core.$breakpoints !default;

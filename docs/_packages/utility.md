@@ -139,6 +139,7 @@ The utility component consists of a number of modules with their own set of spec
 - [margin](#margin)
 - [max-width](#max-width)
 - [padding](#padding)
+- [position](#position)
 - [text](#text)
 
 ## background
@@ -1740,6 +1741,40 @@ Add padding to an element using directional and size variations. Padding size an
         <td data-mobile-label="Var"><code class="code text-nowrap">$class-padding</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"padding"</code></td>
         <td data-mobile-label="Desc">String to use for the class name of the padding utility.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## position
+
+A utility for setting the position CSS property.
+
+- `position-absolute` - Sets the position property to absolute.
+- `position-fixed` - Sets the position property to fixed.
+- `position-relative` - Sets the position property to relative.
+- `position-static` - Sets the position property to static.
+- `position-sticky` - Sets the position property to sticky.
+
+<div class="scroll-box">
+  <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-position</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
+        <td data-mobile-label="Desc">Toggles the output of this module.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-position</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"position"</code></td>
+        <td data-mobile-label="Desc">String to use for the class name of the position utility.</td>
       </tr>
     </tbody>
   </table>
