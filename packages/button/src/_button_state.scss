@@ -1,0 +1,91 @@
+@use "sass:color";
+@use "@vrembem/core";
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_v: var.$prefix-modifier-value;
+
+.#{$_b}button#{$_m}state#{$_v}info {
+  background: core.$info;
+  color: core.$white;
+
+  &:hover {
+    background: color.scale(core.$info, $lightness: -6%);
+  }
+
+  &:focus {
+    background: color.scale(core.$info, $lightness: -9%);
+  }
+
+  &:active {
+    background: color.scale(core.$info, $lightness: -12%);
+  }
+
+  &.is-loading::after {
+    border-color: core.set-border-color(var.$loading-border-tpl, core.$white);
+  }
+}
+
+.#{$_b}button#{$_m}state#{$_v}success {
+  background: core.$success;
+  color: core.$white;
+
+  &:hover {
+    background: color.scale(core.$success, $lightness: -6%);
+  }
+
+  &:focus {
+    background: color.scale(core.$success, $lightness: -9%);
+  }
+
+  &:active {
+    background: color.scale(core.$success, $lightness: -12%);
+  }
+
+  &.is-loading::after {
+    border-color: core.set-border-color(var.$loading-border-tpl, core.$white);
+  }
+}
+
+.#{$_b}button#{$_m}state#{$_v}caution {
+  background: core.$caution;
+  color: core.$white;
+
+  &:hover {
+    background: color.scale(core.$caution, $lightness: -6%);
+  }
+
+  &:focus {
+    background: color.scale(core.$caution, $lightness: -9%);
+  }
+
+  &:active {
+    background: color.scale(core.$caution, $lightness: -12%);
+  }
+
+  &.is-loading::after {
+    border-color: core.set-border-color(var.$loading-border-tpl, core.$white);
+  }
+}
+
+.#{$_b}button#{$_m}state#{$_v}danger {
+  background: core.$danger;
+  color: core.$white;
+
+  &:hover {
+    background: color.scale(core.$danger, $lightness: -6%);
+  }
+
+  &:focus {
+    background: color.scale(core.$danger, $lightness: -9%);
+  }
+
+  &:active {
+    background: color.scale(core.$danger, $lightness: -12%);
+  }
+
+  &.is-loading::after {
+    border-color: core.set-border-color(var.$loading-border-tpl, core.$white);
+  }
+}

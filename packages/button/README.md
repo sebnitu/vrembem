@@ -153,6 +153,24 @@ Adjust the size of a button by increasing or decreasing its padding and font-siz
 - `button_size_sm`
 - `button_size_lg`
 
+## button_state_[value]
+
+Adds styles for changing the look and feel of a button to better reflect the urgency or status.
+
+```html
+<button class="button button_state_info">Button</button>
+<button class="button button_state_success">Button</button>
+<button class="button button_state_caution">Button</button>
+<button class="button button_state_danger">Button</button>
+```
+
+### Available Variations
+
+- `button_state_info`
+- `button_state_success`
+- `button_state_caution`
+- `button_state_danger`
+
 ## Customization
 
 ### Sass Variables

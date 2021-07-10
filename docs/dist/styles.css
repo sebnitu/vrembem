@@ -916,6 +916,74 @@ input::-moz-placeholder {
   margin-right: -0.25em;
 }
 
+.button_state_info {
+  background: #03a9f4;
+  color: #fff;
+}
+.button_state_info:hover {
+  background: #039fe5;
+}
+.button_state_info:focus {
+  background: #039ade;
+}
+.button_state_info:active {
+  background: #0395d7;
+}
+.button_state_info.is-loading::after {
+  border-color: #fff #fff transparent transparent;
+}
+
+.button_state_success {
+  background: #4caf50;
+  color: #fff;
+}
+.button_state_success:hover {
+  background: #47a54b;
+}
+.button_state_success:focus {
+  background: #459f49;
+}
+.button_state_success:active {
+  background: #439a46;
+}
+.button_state_success.is-loading::after {
+  border-color: #fff #fff transparent transparent;
+}
+
+.button_state_caution {
+  background: #ff9800;
+  color: #fff;
+}
+.button_state_caution:hover {
+  background: #f08f00;
+}
+.button_state_caution:focus {
+  background: #e88a00;
+}
+.button_state_caution:active {
+  background: #e08600;
+}
+.button_state_caution.is-loading::after {
+  border-color: #fff #fff transparent transparent;
+}
+
+.button_state_danger {
+  background: #f44336;
+  color: #fff;
+}
+.button_state_danger:hover {
+  background: #f33325;
+}
+.button_state_danger:focus {
+  background: #f32b1d;
+}
+.button_state_danger:active {
+  background: #f22314;
+}
+.button_state_danger.is-loading::after {
+  border-color: #fff #fff transparent transparent;
+}
+
 .button-group {
   margin-top: -0.5em;
   margin-left: -0.5em;
