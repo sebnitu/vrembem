@@ -220,7 +220,6 @@ A boolean button modifier that allows buttons and their modifiers to provide a m
 | `$size-lg-padding`            | `core.$padding-lg` &rarr; `0.648rem 1.5rem`    | Sets the padding property of the `button_size_lg` modifier.                                                                                       |
 | `$size-lg-font-size`          | `core.$font-size-lg` &rarr; `1.125em`          | Sets the font-size property of the `button_size_lg` modifier.                                                                                     |
 | `$size-lg-line-height`        | `core.$line-height-lg` &rarr; `1.625`          | Sets the line-height property of the `button_size_lg` modifier.                                                                                   |
-| `$outline-border-width`       | `1px`                                          | Sets the border-width property of the [`button_outline_[value]`](#button_outline_value) modifiers.                                                |
 
 #### `$breakpoints`
 

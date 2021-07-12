@@ -561,11 +561,6 @@ A boolean button modifier that allows buttons and their modifiers to provide a m
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$line-height-lg</code></td>
         <td data-mobile-label="Desc">Sets the line-height property of the <code class="code">button_size_lg</code> modifier.</td>
       </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-border-width</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1px</code></td>
-        <td data-mobile-label="Desc">Sets the border-width property of the <a class="link" href="#button_outline_value"><code class="code">button_outline_[value]</code></a> modifiers.</td>
-      </tr>
     </tbody>
   </table>
 </div>

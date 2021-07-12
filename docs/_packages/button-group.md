@@ -65,11 +65,6 @@ A modifier to allow a button-group to span the full width of it's container. Val
   <button class="button">Button</button>
   <button class="button">Button</button>
 </div>
-<div class="button-group button-group_full_xl">
-  <button class="button button_outline">Button</button>
-  <button class="button button_outline">Button</button>
-  <button class="button button_outline">Button</button>
-</div>
 {% include demo_switch.html %}
 ```html
 <div class="button-group button-group_full">
@@ -131,13 +126,6 @@ A modifier to join buttons without a button-group component. This removes all ga
     <button class="button button_color_primary">Button</button>
     <button class="button button_color_primary">Button</button>
     <button class="button button_color_primary">Button</button>
-  </div>
-</div>
-<div>
-  <div class="button-group button-group_join">
-    <button class="button button_outline">Button</button>
-    <button class="button button_outline">Button</button>
-    <button class="button button_outline">Button</button>
   </div>
 </div>
 {% include demo_switch.html %}
