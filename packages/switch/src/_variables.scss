@@ -14,9 +14,9 @@ $outline-focus: core.$outline !default;
 $outline-focus-offset: core.$outline-offset !default;
 
 $background: transparent !default;
-$background-hover: rgba(core.$black, 0.03) !default;
-$background-focus: rgba(core.$black, 0.03) !default;
-$background-active: rgba(core.$black, 0.06) !default;
+$background-hover: rgba($color, 0.1) !default;
+$background-focus: rgba($color, 0.1) !default;
+$background-active: rgba($color, 0.2) !default;
 $background-checked: null !default;
 $background-border-radius: core.$border-radius-circle !default;
 

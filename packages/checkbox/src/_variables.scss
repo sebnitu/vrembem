@@ -14,17 +14,17 @@ $outline-focus: core.$outline !default;
 $outline-focus-offset: core.$outline-offset !default;
 
 $background: transparent !default;
-$background-hover: rgba(core.$black, 0.05) !default;
-$background-focus: rgba(core.$black, 0.05) !default;
-$background-active: rgba(core.$black, 0.1) !default;
+$background-hover: rgba($color, 0.1) !default;
+$background-focus: rgba($color, 0.1) !default;
+$background-active: rgba($color, 0.2) !default;
 $background-checked: null !default;
 $background-border-radius: core.$border-radius-circle !default;
 
 $box-size: 18px !default;
 $box-background: null !default;
-$box-background-hover: null !default;
-$box-background-focus: null !default;
-$box-background-active: null !default;
+$box-background-hover: core.$white !default;
+$box-background-focus: core.$white !default;
+$box-background-active: core.$white !default;
 $box-background-checked: $color !default;
 $box-border-color: core.$gray-400 !default;
 $box-border-color-hover: $color !default;
