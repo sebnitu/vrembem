@@ -93,7 +93,9 @@ Applies more subtle button styles to the icon-action. Can also be inverted using
 | `$border-radius`         | `core.$border-radius-circle` &rarr; `9999px` | Sets the border-radius property.                              |
 | `$background`            | `rgba(core.$black, 0.3)`                     | Sets the background property.                                 |
 | `$background-hover`      | `rgba(core.$black, 0.4)`                     | Sets the background property on `:hover` state.               |
-| `$background-focus`      | `rgba(core.$black, 0.5)`                     | Sets the background property on `:focus` state.               |
+| `$background-focus`      | `rgba(core.$black, 0.4)`                     | Sets the background property on `:focus` state.               |
 | `$background-active`     | `rgba(core.$black, 0.5)`                     | Sets the background property on `:active` state.              |
+| `$outline-focus`         | `none`                                       | Sets the outline property on `:focus` state.                  |
+| `$outline-focus-offset`  | `null`                                       | Sets the outline-offset property on `:focus` state.           |
 | `$icon-stroke-width`     | `2.5px`                                      | Sets the stroke-width property on the child `icon` component. |
 | `$icon-font-size`        | `core.$font-size-sm`                         | Sets the font-size property on the child `icon` component.    |

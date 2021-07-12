@@ -6,61 +6,17 @@ $_b: var.$prefix-block;
 $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
-.#{$_b}button#{$_m}color#{$_v}subtle {
-  background: none;
-
-  &:hover {
-    background: rgba(core.$black, 0.06);
-  }
-
-  &:focus {
-    background: rgba(core.$black, 0.09);
-  }
-
-  &:active {
-    background: rgba(core.$black, 0.12);
-  }
-
-  &.is-loading::after {
-    border-color: core.set-border-color(var.$loading-border-tpl, core.$color-subtle);
-  }
-
-  &.#{$_b}button#{$_m}invert {
-    background: none;
-    color: core.$white;
-
-    &:hover {
-      background: rgba(core.$white, 0.06);
-    }
-
-    &:focus {
-      background: rgba(core.$white, 0.09);
-    }
-
-    &:active {
-      background: rgba(core.$white, 0.12);
-    }
-
-    &.is-loading::after {
-      border-color: core.set-border-color(var.$loading-border-tpl, core.$color-invert-subtle);
-    }
-  }
-}
-
 .#{$_b}button#{$_m}color#{$_v}primary {
   background: core.$primary;
   color: core.$white;
 
-  &:hover {
-    background: color.scale(core.$primary, $lightness: -6%);
-  }
-
+  &:hover,
   &:focus {
-    background: color.scale(core.$primary, $lightness: -9%);
+    background: color.scale(core.$primary, $lightness: -10%);
   }
 
   &:active {
-    background: color.scale(core.$primary, $lightness: -12%);
+    background: color.scale(core.$primary, $lightness: -20%);
   }
 
   &.is-loading::after {
@@ -72,16 +28,13 @@ $_v: var.$prefix-modifier-value;
   background: core.$secondary;
   color: core.$white;
 
-  &:hover {
-    background: color.scale(core.$secondary, $lightness: -6%);
-  }
-
+  &:hover,
   &:focus {
-    background: color.scale(core.$secondary, $lightness: -9%);
+    background: color.scale(core.$secondary, $lightness: -10%);
   }
 
   &:active {
-    background: color.scale(core.$secondary, $lightness: -12%);
+    background: color.scale(core.$secondary, $lightness: -20%);
   }
 
   &.is-loading::after {

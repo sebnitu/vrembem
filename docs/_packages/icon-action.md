@@ -181,13 +181,23 @@ Applies more subtle button styles to the icon-action. Can also be inverted using
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$background-focus</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.5)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.4)</code></td>
         <td data-mobile-label="Desc">Sets the background property on <code class="code">:focus</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$background-active</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.5)</code></td>
         <td data-mobile-label="Desc">Sets the background property on <code class="code">:active</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-focus</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">none</code></td>
+        <td data-mobile-label="Desc">Sets the outline property on <code class="code">:focus</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-focus-offset</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the outline-offset property on <code class="code">:focus</code> state.</td>
       </tr>
       <!-- icon -->
       <tr>

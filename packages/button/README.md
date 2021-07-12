@@ -85,14 +85,12 @@ Gives a button "block" styles so that it spans the full width of its container. 
 Adds styles for changing the look and feel of a button. These are usually done with different background and text colors.
 
 ```html
-<button class="button button_color_subtle">Button</button>
 <button class="button button_color_primary">Button</button>
 <button class="button button_color_secondary">Button</button>
 ```
 
 #### Available Variations
 
-- `button_color_subtle`
 - `button_color_primary`
 - `button_color_secondary`
 
@@ -110,34 +108,17 @@ Adds styles that make icon-only buttons more balanced and will appear square if 
 
 ### `button_invert`
 
-A supplemental button modifier that allows [`button_color_[value]`](#button_color_value) or [`button_outline_[value]`](#button_outline_value) modified buttons to provide an inversed version of itself. Since not all button styles require an inversed variant, this is typically used for when the background context of a button matters.
+A boolean button modifier that allows buttons and their modifiers to provide an inversed version of themselves. Since not all button styles require an inversed variant, this is typically used for when the background context of a button matters. Can be combined with [`button_subtle`](#button_subtle) boolean modifier.
 
 ```html
 <button class="button button_invert">Button</button>
-<button class="button button_invert button_color_subtle">Button</button>
+<button class="button button_invert button_subtle">Button</button>
 ```
 
 #### Available Combinations
 
 - `button button_invert`
-- `button button_invert button_color_subtle`
-- `button button_invert button_outline`
-- `button button_invert button_outline_primary`
-- `button button_invert button_outline_secondary`
-
-### `button_outline_[value]`
-
-Outline styles usually have a more subtle appearance compared to [`button_color_[value]`](#button_color_value) variants. They use a border to outline the button and have a transparent background color. Consider using [`button_invert`](#button_invert) when the contrast of a button needs to be inverted.
-
-```html
-<button class="button button_outline_primary">Button</button>
-```
-
-#### Available Variations
-
-- `button_outline`
-- `button_outline_primary`
-- `button_outline_secondary`
+- `button button_invert button_subtle`
 
 ### `button_size_[value]`
 
@@ -171,6 +152,20 @@ Adds styles for changing the look and feel of a button to better reflect the urg
 - `button_state_caution`
 - `button_state_danger`
 
+## button_subtle
+
+A boolean button modifier that allows buttons and their modifiers to provide a more subtle version of themselves. Can be combined with [`button_invert`](#button_invert) boolean modifier.
+
+```html
+<button class="button button_subtle">Default Subtle</button>
+<button class="button button_subtle button_invert">Subtle Invert</button>
+```
+
+### Available Combinations
+
+- `button button_subtle`
+- `button button_subtle button_invert`
+
 ## Customization
 
 ### Sass Variables
@@ -192,10 +187,10 @@ Adds styles for changing the look and feel of a button to better reflect the urg
 | `$border-color-focus`         | `core.$border-color-dark`                      | Sets the border-color property on `:focus` state.                                                                                                 |
 | `$border-color-active`        | `core.$border-color-darker`                    | Sets the border-color property on `:active` state.                                                                                                |
 | `$border-radius`              | `core.$border-radius` &rarr; `4px`             | Sets the border-radius property.                                                                                                                  |
-| `$background`                 | `rgba(core.$black, 0.06)`                      | Sets the background property.                                                                                                                     |
-| `$background-hover`           | `rgba(core.$black, 0.09)`                      | Sets the background-color property on `:hover` state.                                                                                             |
-| `$background-focus`           | `rgba(core.$black, 0.12)`                      | Sets the background-color property on `:focus` state.                                                                                             |
-| `$background-active`          | `rgba(core.$black, 0.15)`                      | Sets the background-color property on `:active` state.                                                                                            |
+| `$background`                 | `rgba(core.$black, 0)`                         | Sets the background property.                                                                                                                     |
+| `$background-hover`           | `rgba(core.$black, 0.06)`                      | Sets the background-color property on `:hover` state.                                                                                             |
+| `$background-focus`           | `rgba(core.$black, 0.06)`                      | Sets the background-color property on `:focus` state.                                                                                             |
+| `$background-active`          | `rgba(core.$black, 0.12)`                      | Sets the background-color property on `:active` state.                                                                                            |
 | `$box-shadow`                 | `null`                                         | Sets the box-shadow property.                                                                                                                     |
 | `$box-shadow-hover`           | `null`                                         | Sets the box-shadow property on `:hover` state.                                                                                                   |
 | `$box-shadow-focus`           | `null`                                         | Sets the box-shadow property on `:focus` state.                                                                                                   |
@@ -225,7 +220,6 @@ Adds styles for changing the look and feel of a button to better reflect the urg
 | `$size-lg-padding`            | `core.$padding-lg` &rarr; `0.648rem 1.5rem`    | Sets the padding property of the `button_size_lg` modifier.                                                                                       |
 | `$size-lg-font-size`          | `core.$font-size-lg` &rarr; `1.125em`          | Sets the font-size property of the `button_size_lg` modifier.                                                                                     |
 | `$size-lg-line-height`        | `core.$line-height-lg` &rarr; `1.625`          | Sets the line-height property of the `button_size_lg` modifier.                                                                                   |
-| `$outline-border-width`       | `1px`                                          | Sets the border-width property of the [`button_outline_[value]`](#button_outline_value) modifiers.                                                |
 
 #### `$breakpoints`
 

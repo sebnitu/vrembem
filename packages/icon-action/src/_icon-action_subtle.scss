@@ -8,32 +8,26 @@ $_m: var.$prefix-modifier;
   background: none;
   color: core.$color;
 
-  &:hover {
-    background: rgba(core.$black, 0.1);
-  }
-
+  &:hover,
   &:focus {
-    background: rgba(core.$black, 0.2);
+    background: rgba(core.$black, 0.06);
   }
 
   &:active {
-    background: rgba(core.$black, 0.2);
+    background: rgba(core.$black, 0.12);
   }
 
   &.#{$_b}icon-action#{$_m}invert {
     background: none;
     color: core.$color-invert;
 
-    &:hover {
-      background: rgba(core.$white, 0.1);
-    }
-
+    &:hover,
     &:focus {
-      background: rgba(core.$white, 0.2);
+      background: rgba(core.$white, 0.06);
     }
 
     &:active {
-      background: rgba(core.$white, 0.2);
+      background: rgba(core.$white, 0.12);
     }
   }
 }

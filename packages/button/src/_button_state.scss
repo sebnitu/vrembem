@@ -10,16 +10,13 @@ $_v: var.$prefix-modifier-value;
   background: core.$info;
   color: core.$white;
 
-  &:hover {
-    background: color.scale(core.$info, $lightness: -6%);
-  }
-
+  &:hover,
   &:focus {
-    background: color.scale(core.$info, $lightness: -9%);
+    background: color.scale(core.$info, $lightness: -10%);
   }
 
   &:active {
-    background: color.scale(core.$info, $lightness: -12%);
+    background: color.scale(core.$info, $lightness: -20%);
   }
 
   &.is-loading::after {
@@ -31,16 +28,13 @@ $_v: var.$prefix-modifier-value;
   background: core.$success;
   color: core.$white;
 
-  &:hover {
-    background: color.scale(core.$success, $lightness: -6%);
-  }
-
+  &:hover,
   &:focus {
-    background: color.scale(core.$success, $lightness: -9%);
+    background: color.scale(core.$success, $lightness: -10%);
   }
 
   &:active {
-    background: color.scale(core.$success, $lightness: -12%);
+    background: color.scale(core.$success, $lightness: -20%);
   }
 
   &.is-loading::after {
@@ -52,16 +46,13 @@ $_v: var.$prefix-modifier-value;
   background: core.$caution;
   color: core.$white;
 
-  &:hover {
-    background: color.scale(core.$caution, $lightness: -6%);
-  }
-
+  &:hover,
   &:focus {
-    background: color.scale(core.$caution, $lightness: -9%);
+    background: color.scale(core.$caution, $lightness: -10%);
   }
 
   &:active {
-    background: color.scale(core.$caution, $lightness: -12%);
+    background: color.scale(core.$caution, $lightness: -20%);
   }
 
   &.is-loading::after {
@@ -73,16 +64,13 @@ $_v: var.$prefix-modifier-value;
   background: core.$danger;
   color: core.$white;
 
-  &:hover {
-    background: color.scale(core.$danger, $lightness: -6%);
-  }
-
+  &:hover,
   &:focus {
-    background: color.scale(core.$danger, $lightness: -9%);
+    background: color.scale(core.$danger, $lightness: -20%);
   }
 
   &:active {
-    background: color.scale(core.$danger, $lightness: -12%);
+    background: color.scale(core.$danger, $lightness: -30%);
   }
 
   &.is-loading::after {

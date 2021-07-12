@@ -116,7 +116,7 @@ Hides the content of a card so that [only the `card__background` is visible](#ca
     <h3 class="card__title">Card Title</h3>
     <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
     <p>
-      <a href="#" class="button button_invert button_outline">Card Action</a>
+      <a href="#" class="button button_invert">Card Action</a>
     </p>
   </div>
   <img src="https://picsum.photos/600/400/?random" class="card__background" width="600" height="400">
@@ -174,7 +174,7 @@ Add styles to a card when the entire component is a clickable link.
     <h3 class="card__title">Card Title</h3>
     <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
     <p>
-      <span class="button button_outline">Card Action</span>
+      <span class="button">Card Action</span>
     </p>
   </div>
 </a>
@@ -196,7 +196,7 @@ A style enhancement modifier for when the [`card__background` element](#card__sc
     <h3 class="card__title">Card Title</h3>
     <p>Quisque eget erat non dolor rutrum pellentesque ac vel dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur.</p>
     <p>
-      <a href="#" class="button button_invert button_outline">Card Action</a>
+      <a href="#" class="button button_invert">Card Action</a>
     </p>
   </div>
   <img src="https://picsum.photos/600/400/?random" class="card__background" width="600" height="400">

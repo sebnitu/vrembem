@@ -2,18 +2,15 @@
 @use "./variables" as var;
 
 .#{var.$prefix-block}icon-action#{var.$prefix-modifier}invert {
-  background: rgba(core.$white, 0.5);
+  background: rgba(core.$white, 0.4);
   color: core.$color;
 
-  &:hover {
-    background: rgba(core.$white, 0.6);
-  }
-
+  &:hover,
   &:focus {
-    background: rgba(core.$white, 0.7);
+    background: rgba(core.$white, 0.5);
   }
 
   &:active {
-    background: rgba(core.$white, 0.7);
+    background: rgba(core.$white, 0.6);
   }
 }
