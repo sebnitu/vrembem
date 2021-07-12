@@ -140,8 +140,8 @@
   }
 
   &:focus {
-    outline: currentColor dotted 1px;
-    outline-offset: 3px;
+    outline: var.$link-outline-focus;
+    outline-offset: var.$link-outline-focus-offset;
     border-bottom: var.$link-border-hover;
     color: var.$link-color-hover;
     text-decoration: var.$link-text-decoration-hover;

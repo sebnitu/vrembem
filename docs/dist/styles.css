@@ -269,7 +269,7 @@ input::-moz-placeholder {
 }
 .link:focus {
   outline: currentColor dotted 1px;
-  outline-offset: 3px;
+  outline-offset: 0.125rem;
   border-bottom: 1px solid currentColor;
   color: #0097a7;
 }
@@ -427,7 +427,7 @@ input::-moz-placeholder {
 .type > a:focus,
 .type > :not(div) a:focus {
   outline: currentColor dotted 1px;
-  outline-offset: 3px;
+  outline-offset: 0.125rem;
   border-bottom: 1px solid currentColor;
   color: #0097a7;
 }
