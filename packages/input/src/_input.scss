@@ -34,7 +34,8 @@ $_b: var.$prefix-block;
 
   &:focus {
     @include mix.box-shadow("focus");
-    outline: none;
+    outline: var.$outline-focus;
+    outline-offset: var.$outline-focus-offset;
     border-color: var.$border-color-focus;
     background-color: var.$background-focus;
   }

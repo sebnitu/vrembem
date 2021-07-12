@@ -123,8 +123,14 @@ $border-invert-darker: $border-width $border-style $border-color-invert-darker !
 // Border radius
 // ---
 
-$border-radius: 4px !default;
+$border-radius: 0.25rem !default;
 $border-radius-circle: 9999px !default;
+
+// Outline
+// ---
+
+$outline: none;
+$outline-offset: null;
 
 // Form controls
 // ---

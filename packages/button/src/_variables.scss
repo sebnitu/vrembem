@@ -33,8 +33,8 @@ $font-weight: inherit !default;
 $letter-spacing: null !default;
 $line-height: core.$line-height !default;
 $text-transform: null !default;
-$outline-focus: none !default;
-$outline-focus-offset: null !default;
+$outline-focus: core.$outline !default;
+$outline-focus-offset: core.$outline-offset !default;
 
 // disabled
 $disabled-opacity: 0.5 !default;

@@ -64,6 +64,8 @@ $_e: var.$prefix-element;
   }
 
   &:focus + .#{$_b}checkbox#{$_e}background {
+    outline: var.$outline-focus;
+    outline-offset: var.$outline-focus-offset;
     background-color: var.$background-focus;
 
     .#{$_b}checkbox#{$_e}box {
