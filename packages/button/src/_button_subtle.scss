@@ -1,0 +1,52 @@
+@use "sass:color";
+@use "@vrembem/core";
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+
+.#{$_b}button#{$_m}subtle {
+  border-color: transparent;
+  background: none;
+  color: core.$color-subtle;
+
+  &:hover,
+  &:focus {
+    border-color: transparent;
+    background: rgba(core.$black, 0.06);
+    color: core.$color;
+  }
+
+  &:active {
+    border-color: transparent;
+    background: rgba(core.$black, 0.12);
+    color: core.$color;
+  }
+
+  &.is-loading::after {
+    border-color: core.set-border-color(var.$loading-border-tpl, core.$color-subtle);
+  }
+
+  &.#{$_b}button#{$_m}invert {
+    border-color: transparent;
+    background: none;
+    color: core.$color-invert-subtle;
+
+    &:hover,
+    &:focus {
+      border-color: transparent;
+      background: rgba(core.$white, 0.06);
+      color: core.$color-invert;
+    }
+
+    &:active {
+      border-color: transparent;
+      background: rgba(core.$white, 0.12);
+      color: core.$color-invert;
+    }
+
+    &.is-loading::after {
+      border-color: core.set-border-color(var.$loading-border-tpl, core.$color-invert-subtle);
+    }
+  }
+}

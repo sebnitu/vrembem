@@ -10,16 +10,13 @@ $_v: var.$prefix-modifier-value;
   background: core.$info;
   color: core.color-switch(core.$info);
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: color.scale(core.$info, $lightness: -10%);
   }
 
-  &:focus {
-    background: color.scale(core.$info, $lightness: -20%);
-  }
-
   &:active {
-    background: color.scale(core.$info, $lightness: -30%);
+    background: color.scale(core.$info, $lightness: -20%);
   }
 }
 
@@ -27,16 +24,13 @@ $_v: var.$prefix-modifier-value;
   background: core.$success;
   color: core.color-switch(core.$success);
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: color.scale(core.$success, $lightness: -10%);
   }
 
-  &:focus {
-    background: color.scale(core.$success, $lightness: -20%);
-  }
-
   &:active {
-    background: color.scale(core.$success, $lightness: -30%);
+    background: color.scale(core.$success, $lightness: -20%);
   }
 }
 
@@ -44,16 +38,13 @@ $_v: var.$prefix-modifier-value;
   background: core.$caution;
   color: core.color-switch(core.$caution);
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: color.scale(core.$caution, $lightness: -10%);
   }
 
-  &:focus {
-    background: color.scale(core.$caution, $lightness: -20%);
-  }
-
   &:active {
-    background: color.scale(core.$caution, $lightness: -30%);
+    background: color.scale(core.$caution, $lightness: -20%);
   }
 }
 
@@ -61,10 +52,7 @@ $_v: var.$prefix-modifier-value;
   background: core.$danger;
   color: core.color-switch(core.$danger);
 
-  &:hover {
-    background: color.scale(core.$danger, $lightness: -10%);
-  }
-
+  &:hover,
   &:focus {
     background: color.scale(core.$danger, $lightness: -20%);
   }

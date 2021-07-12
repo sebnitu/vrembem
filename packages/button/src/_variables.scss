@@ -14,12 +14,12 @@ $border-style: core.$border-style !default;
 $border-color: core.$border-color !default;
 $border-color-hover: core.$border-color-dark !default;
 $border-color-focus: core.$border-color-dark !default;
-$border-color-active: core.$border-color-dark !default;
+$border-color-active: core.$border-color-darker !default;
 $border-radius: core.$border-radius !default;
-$background: rgba(core.$black, 0.06) !default;
-$background-hover: rgba(core.$black, 0.09) !default;
-$background-focus: rgba(core.$black, 0.12) !default;
-$background-active: rgba(core.$black, 0.15) !default;
+$background: rgba(core.$black, 0) !default;
+$background-hover: rgba(core.$black, 0.06) !default;
+$background-focus: rgba(core.$black, 0.06) !default;
+$background-active: rgba(core.$black, 0.12) !default;
 $box-shadow: null !default;
 $box-shadow-hover: null !default;
 $box-shadow-focus: null !default;
@@ -55,6 +55,3 @@ $size-lg: core.$form-control-size-lg !default;
 $size-lg-padding: core.$padding-lg !default;
 $size-lg-font-size: core.$font-size-lg !default;
 $size-lg-line-height: core.$line-height-lg !default;
-
-// button_outline_[value]
-$outline-border-width: 1px !default;

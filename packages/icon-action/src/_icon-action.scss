@@ -18,6 +18,8 @@
   }
 
   &:focus {
+    outline: var.$outline-focus;
+    outline-offset: var.$outline-focus-offset;
     background: var.$background-focus;
   }
 

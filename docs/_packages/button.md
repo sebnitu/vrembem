@@ -17,7 +17,7 @@ The most basic implementation of the button component consists of the `button` c
 <div class="level">
   <button class="button">Button</button>
   <input class="button" type="button" value="Button">
-  <a class="button" role="button">Button</a>
+  <a href="#" class="button" role="button">Button</a>
 </div>
 {% include demo_switch.html %}
 ```html
@@ -83,7 +83,7 @@ Buttons can also have a loading state by adding the `is-loading` state class. Th
 {% include demo_open.html %}
 <div class="level">
   <button class="is-loading button" disabled>Button</button>
-  <button class="is-loading button button_color_subtle" disabled>Button</button>
+  <button class="is-loading button button_subtle" disabled>Button</button>
   <button class="is-loading button button_color_primary" disabled>Button</button>
   <button class="is-loading button button_color_secondary" disabled>Button</button>
 </div>
@@ -129,14 +129,12 @@ Adds styles for changing the look and feel of a button. These are usually done w
 {% include demo_open.html class_grid="grid_stack" class_parent="gap-y" %}
 <div class="padding background_white radius">
   <div class="level">
-    <button class="button button_color_subtle">Color Subtle</button>
     <button class="button button_color_primary">Color Primary</button>
     <button class="button button_color_secondary">Color Secondary</button>
   </div>
 </div>
 {% include demo_switch.html %}
 ```html
-<button class="button button_color_subtle">Button</button>
 <button class="button button_color_primary">Button</button>
 <button class="button button_color_secondary">Button</button>
 ```
@@ -144,7 +142,6 @@ Adds styles for changing the look and feel of a button. These are usually done w
 
 ### Available Variations
 
-- `button_color_subtle`
 - `button_color_primary`
 - `button_color_secondary`
 
@@ -203,64 +200,26 @@ Adds styles that make icon-only buttons more balanced and will appear square if 
 
 ## button_invert
 
-A supplemental button modifier that allows [`button_color_[value]`](#button_color_value) or [`button_outline_[value]`](#button_outline_value) modified buttons to provide an inversed version of itself. Since not all button styles require an inversed variant, this is typically used for when the background context of a button matters.
+A boolean button modifier that allows buttons and their modifiers to provide an inversed version of themselves. Since not all button styles require an inversed variant, this is typically used for when the background context of a button matters. Can be combined with [`button_subtle`](#button_subtle) boolean modifier.
 
 {% include demo_open.html class_grid="grid_stack" class_parent="gap-y" %}
 <div class="padding background-night radius">
   <div class="level">
     <button class="button button_invert">Default Invert</button>
-    <button class="button button_invert button_color_subtle">Color Subtle Invert</button>
-    <button class="button button_invert button_outline">Default Outline Invert</button>
-    <button class="button button_invert button_outline_primary">Outline Primary</button>
-    <button class="button button_invert button_outline_secondary">Outline Secondary Invert</button>
+    <button class="button button_invert button_subtle">Invert Subtle</button>
   </div>
 </div>
 {% include demo_switch.html %}
 ```html
 <button class="button button_invert">Default Invert</button>
-<button class="button button_invert button_color_subtle">Color Subtle Invert</button>
+<button class="button button_invert button_subtle">Invert Subtle</button>
 ```
 {% include demo_close.html %}
 
 ### Available Combinations
 
 - `button button_invert`
-- `button button_invert button_color_subtle`
-- `button button_invert button_outline`
-- `button button_invert button_outline_primary`
-- `button button_invert button_outline_secondary`
-
-## button_outline_[value]
-
-Outline styles usually have a more subtle appearance compared to [`button_color_[value]`](#button_color_value) variants. They use a border to outline the button and have a transparent background color. Consider using [`button_invert`](#button_invert) when the contrast of a button needs to be inverted.
-
-{% include demo_open.html class_grid="grid_stack" class_parent="gap-y" %}
-<div class="padding background_white radius">
-  <div class="level">
-    <button class="button button_outline">Default Outline</button>
-    <button class="button button_outline_primary">Outline Primary</button>
-    <button class="button button_outline_secondary">Outline Secondary</button>
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<!-- Colors -->
-<button class="button button_outline">Default Outline</button>
-<button class="button button_outline_primary">Outline Primary</button>
-<button class="button button_outline_secondary">Outline Secondary</button>
-
-<!-- Invert -->
-<button class="button button_invert button_outline">Default Outline Invert</button>
-<button class="button button_invert button_outline_primary">Outline Primary</button>
-<button class="button button_invert button_outline_secondary">Outline Secondary Invert</button>
-```
-{% include demo_close.html %}
-
-### Available Variations
-
-- `button_outline`
-- `button_outline_primary`
-- `button_outline_secondary`
+- `button button_invert button_subtle`
 
 ## button_size_[value]
 
@@ -318,6 +277,33 @@ Adds styles for changing the look and feel of a button to better reflect the urg
 - `button_state_success`
 - `button_state_caution`
 - `button_state_danger`
+
+## button_subtle
+
+A boolean button modifier that allows buttons and their modifiers to provide a more subtle version of themselves. Can be combined with [`button_invert`](#button_invert) boolean modifier.
+
+{% include demo_open.html class_grid="grid_stack" class_parent="flex flex-items-equal" %}
+<div class="padding radius background-white border margin-right-sm">
+  <button class="button button_subtle">
+    Default Subtle
+  </button>
+</div>
+<div class="padding radius background-night margin-left-sm">
+  <button class="button button_subtle button_invert">
+    Subtle Inverted
+  </button>
+</div>
+{% include demo_switch.html %}
+```html
+<button class="button button_subtle">Default Subtle</button>
+<button class="button button_subtle button_invert">Subtle Invert</button>
+```
+{% include demo_close.html %}
+
+### Available Combinations
+
+- `button button_subtle`
+- `button button_subtle button_invert`
 
 ## Sass Variables
 
@@ -412,22 +398,22 @@ Adds styles for changing the look and feel of a button to better reflect the urg
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$background</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba(core.$black, 0.06)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba(core.$black, 0)</code></td>
         <td data-mobile-label="Desc">Sets the background property.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$background-hover</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba(core.$black, 0.09)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba(core.$black, 0.06)</code></td>
         <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:hover</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$background-focus</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba(core.$black, 0.12)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba(core.$black, 0.06)</code></td>
         <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:focus</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$background-active</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba(core.$black, 0.15)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba(core.$black, 0.12)</code></td>
         <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:active</code> state.</td>
       </tr>
       <tr>
