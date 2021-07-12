@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.33.0 to CHANGELOG.md
+chore(release): add v1.33.1 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.33.1 (2021-07-12)
+
+#### :house: Refactor
+* `button`, `icon-action`
+  * [#660](https://github.com/sebnitu/vrembem/pull/660) Update button and icon-action styles and deprecate `button_outline_[value]` modifier
 
 
 ## v1.33.0 (2021-07-10)
