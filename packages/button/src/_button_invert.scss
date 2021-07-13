@@ -9,7 +9,7 @@
     $border: core.$border-color-invert-dark,
     $border-hover: core.$border-color-invert-darker,
     $border-active: core.$white,
-    $box-shadow: 0 0 0 0 rgba(core.$white, 0),
-    $box-shadow-focus: 0 0 0 3px rgba(core.$white, 0.2),
+    $outline: rgba(core.$white, 0),
+    $outline-focus-visible: rgba(core.$white, 0.15),
   );
 }

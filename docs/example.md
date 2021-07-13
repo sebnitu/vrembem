@@ -62,6 +62,11 @@ permalink: /example
   <div>
     <div class="grid grid_gap-x_xs grid_stack_sm">
       <div class="grid__item grid__item_auto">
+        <button type="button" class="button button_icon button_color_secondary">
+          {% include icon.html icon="anchor" %}
+        </button>
+      </div>
+      <div class="grid__item grid__item_auto">
         <button type="button" class="button button_color_secondary">
           {% include icon.html icon="anchor" %}
           <span>Button</span>
@@ -76,8 +81,18 @@ permalink: /example
           {% include icon.html icon="anchor" %}
         </button>
       </div>
+      <div class="grid__item grid__item_auto">
+        <button type="button" class="button button_icon">
+          {% include icon.html icon="anchor" %}
+        </button>
+      </div>
     </div>
     <div class="grid grid_gap-x_xs grid_stack_sm">
+      <div class="grid__item grid__item_auto">
+        <button type="button" class="button button_icon button_size_sm button_color_secondary">
+          {% include icon.html icon="anchor" %}
+        </button>
+      </div>
       <div class="grid__item grid__item_auto">
         <button type="button" class="button button_size_sm button_color_secondary">
           {% include icon.html icon="anchor" %}
@@ -93,8 +108,18 @@ permalink: /example
           {% include icon.html icon="anchor" %}
         </button>
       </div>
+      <div class="grid__item grid__item_auto">
+        <button type="button" class="button button_icon button_size_sm">
+          {% include icon.html icon="anchor" %}
+        </button>
+      </div>
     </div>
     <div class="grid grid_gap-x_xs grid_stack_sm">
+      <div class="grid__item grid__item_auto">
+        <button type="button" class="button button_icon button_size_lg button_color_secondary">
+          {% include icon.html icon="anchor" %}
+        </button>
+      </div>
       <div class="grid__item grid__item_auto">
         <button type="button" class="button button_size_lg button_color_secondary">
           {% include icon.html icon="anchor" %}
@@ -110,23 +135,16 @@ permalink: /example
           {% include icon.html icon="anchor" %}
         </button>
       </div>
-    </div>
-  </div>
-  <div class="margin-top-xl">
-    <div class="level">
-      <button type="button" class="button button_color_primary">
-        {% include icon.html icon="anchor" %}
-        <span>Button</span>
-      </button>
-      <button type="button" class="button">
-        <span>Button</span>
-        {% include icon.html icon="anchor" %}
-      </button>
+      <div class="grid__item grid__item_auto">
+        <button type="button" class="button button_icon button_size_lg">
+          {% include icon.html icon="anchor" %}
+        </button>
+      </div>
     </div>
   </div>
 </form>
 
-## Buttons
+## Button
 
 <div class="padding">
   <div class="level">
@@ -250,45 +268,4 @@ permalink: /example
       {% include icon.html icon="x" %}
     </button>
   </div>
-</div>
-
-## Menu
-
-<div class="gap-y">
-  <ul class="menu menu_inline">
-    <li class="menu__item">
-      <button class="menu__action">Undo</button>
-    </li>
-    <li class="menu__item">
-      <button class="menu__action">Redo</button>
-    </li>
-    <li class="menu__sep"></li>
-    <li class="menu__item">
-      <button class="menu__action">Cut</button>
-    </li>
-    <li class="menu__item">
-      <button class="menu__action">Copy</button>
-    </li>
-    <li class="menu__item">
-      <button class="menu__action">Paste</button>
-    </li>
-  </ul>
-  <ul class="menu">
-    <li class="menu__item">
-      <button class="menu__action">Undo</button>
-    </li>
-    <li class="menu__item">
-      <button class="menu__action">Redo</button>
-    </li>
-    <li class="menu__sep"></li>
-    <li class="menu__item">
-      <button class="menu__action">Cut</button>
-    </li>
-    <li class="menu__item">
-      <button class="menu__action">Copy</button>
-    </li>
-    <li class="menu__item">
-      <button class="menu__action">Paste</button>
-    </li>
-  </ul>
 </div>

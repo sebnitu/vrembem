@@ -6,26 +6,33 @@
   $color,
   $background,
   $border: transparent,
-  $box-shadow: 0 0 0 0 rgba($background, 0),
+  $box-shadow: null,
+  $outline: rgba($background, 0),
   $color-hover: null,
   $color-focus: $color-hover,
   $color-active: $color-focus,
   $background-hover: if($background == transparent, transparent, color.scale($background, $lightness: -10%)),
-  $background-focus: if($background == transparent, transparent, color.scale($background, $lightness: -10%)),
+  $background-focus: $background-hover,
   $background-active: if($background == transparent, transparent, color.scale($background, $lightness: -20%)),
   $border-hover: $border,
   $border-focus: $border-hover,
   $border-active: $border-focus,
   $box-shadow-hover: $box-shadow,
-  $box-shadow-focus: 0 0 0 3px rgba($background, 0.4),
+  $box-shadow-focus: $box-shadow-hover,
   $box-shadow-active: $box-shadow-focus,
+  $outline-hover: null,
+  $outline-focus: null,
+  $outline-focus-visible: rgba($background, 0.5),
+  $outline-active: null,
 ) {
+  outline-color: $outline;
   border-color: $border;
   background-color: $background;
   box-shadow: $box-shadow;
   color: $color;
 
   &:hover {
+    outline-color: $outline-hover;
     border-color: $border-hover;
     background-color: $background-hover;
     box-shadow: $box-shadow-hover;
@@ -33,13 +40,19 @@
   }
 
   &:focus {
+    outline-color: $outline-focus;
     border-color: $border-focus;
     background-color: $background-focus;
     box-shadow: $box-shadow-focus;
     color: $color-focus;
   }
 
+  &:focus-visible {
+    outline-color: $outline-focus-visible;
+  }
+
   &:active {
+    outline-color: $outline-active;
     border-color: $border-active;
     background-color: $background-active;
     box-shadow: $box-shadow-active;

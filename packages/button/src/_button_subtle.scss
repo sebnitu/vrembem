@@ -1,4 +1,3 @@
-@use "sass:color";
 @use "@vrembem/core";
 @use "./variables" as var;
 @use "./mixins" as mix;
@@ -12,10 +11,10 @@ $_m: var.$prefix-modifier;
     $color-hover: core.$color,
     $background: transparent,
     $border: transparent,
-    $border-focus: core.$border-color-dark,
-    $border-active: core.$border-color-darker,
-    $box-shadow: 0 0 0 0 rgba(core.$color, 0),
-    $box-shadow-focus: 0 0 0 3px rgba(core.$color, 0.1),
+    $border-focus: core.$border-color-darker,
+    $border-active: core.$color,
+    $outline: rgba(core.$color, 0),
+    $outline-focus-visible: rgba(core.$color, 0.15),
   );
 
   &.#{$_b}button#{$_m}invert {
@@ -24,10 +23,10 @@ $_m: var.$prefix-modifier;
       $color-hover: core.$color-invert,
       $background: transparent,
       $border: transparent,
-      $border-focus: core.$border-color-invert-dark,
-      $border-active: core.$border-color-invert-darker,
-      $box-shadow: 0 0 0 0 rgba(core.$color-invert, 0),
-      $box-shadow-focus: 0 0 0 3px rgba(core.$color-invert, 0.1),
+      $border-focus: core.$border-color-invert-darker,
+      $border-active: core.$color-invert,
+      $outline: rgba(core.$color-invert, 0),
+      $outline-focus-visible: rgba(core.$color-invert, 0.15),
     );
   }
 }
