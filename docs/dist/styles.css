@@ -585,12 +585,15 @@ input::-moz-placeholder {
   min-width: 2.5rem;
   height: 2.5rem;
   padding: 0.5em 1em;
-  transition: box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-property: outline, outline-offset;
+  transition-duration: 0.15s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  outline: rgba(0, 0, 0, 0) solid 0;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.25rem;
   background: transparent;
   background-clip: border-box;
-  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  box-shadow: none;
   color: #212121;
   font-family: inherit;
   font-size: 1em;
@@ -610,18 +613,17 @@ input::-moz-placeholder {
 .button:hover {
   border-color: rgba(0, 0, 0, 0.5);
   background-color: transparent;
-  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
 }
 .button:focus {
-  outline: none;
   border-color: rgba(0, 0, 0, 0.5);
   background-color: transparent;
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+}
+.button:focus-visible {
+  outline: rgba(0, 0, 0, 0.15) solid 3px;
 }
 .button:active {
   border-color: #212121;
   background-color: transparent;
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
 }
 .button.is-loading {
   color: transparent !important;
@@ -709,50 +711,50 @@ input::-moz-placeholder {
   }
 }
 .button_color_primary {
+  outline-color: rgba(0, 188, 212, 0);
   border-color: transparent;
   background-color: #00bcd4;
-  box-shadow: 0 0 0 0 rgba(0, 188, 212, 0);
   color: #fff;
 }
 .button_color_primary:hover {
   border-color: transparent;
   background-color: #00a9bf;
-  box-shadow: 0 0 0 0 rgba(0, 188, 212, 0);
 }
 .button_color_primary:focus {
   border-color: transparent;
   background-color: #00a9bf;
-  box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.4);
+}
+.button_color_primary:focus-visible {
+  outline-color: rgba(0, 188, 212, 0.5);
 }
 .button_color_primary:active {
   border-color: transparent;
   background-color: #0096aa;
-  box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.4);
 }
 .button_color_primary.is-loading::after {
   border-color: #fff #fff transparent transparent;
 }
 
 .button_color_secondary {
+  outline-color: rgba(96, 125, 139, 0);
   border-color: transparent;
   background-color: #607d8b;
-  box-shadow: 0 0 0 0 rgba(96, 125, 139, 0);
   color: #fff;
 }
 .button_color_secondary:hover {
   border-color: transparent;
   background-color: #56717d;
-  box-shadow: 0 0 0 0 rgba(96, 125, 139, 0);
 }
 .button_color_secondary:focus {
   border-color: transparent;
   background-color: #56717d;
-  box-shadow: 0 0 0 3px rgba(96, 125, 139, 0.4);
+}
+.button_color_secondary:focus-visible {
+  outline-color: rgba(96, 125, 139, 0.5);
 }
 .button_color_secondary:active {
   border-color: transparent;
   background-color: #4d646f;
-  box-shadow: 0 0 0 3px rgba(96, 125, 139, 0.4);
 }
 .button_color_secondary.is-loading::after {
   border-color: #fff #fff transparent transparent;
@@ -769,25 +771,25 @@ input::-moz-placeholder {
 }
 
 .button_invert {
+  outline-color: rgba(255, 255, 255, 0);
   border-color: rgba(255, 255, 255, 0.2);
   background-color: transparent;
-  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
   color: #fff;
 }
 .button_invert:hover {
   border-color: rgba(255, 255, 255, 0.5);
   background-color: transparent;
-  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
 }
 .button_invert:focus {
   border-color: rgba(255, 255, 255, 0.5);
   background-color: transparent;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+}
+.button_invert:focus-visible {
+  outline-color: rgba(255, 255, 255, 0.15);
 }
 .button_invert:active {
   border-color: #fff;
   background-color: transparent;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
 }
 .button_invert.is-loading::after {
   border-color: #fff #fff transparent transparent;
@@ -810,154 +812,154 @@ input::-moz-placeholder {
 }
 
 .button_state_info {
+  outline-color: rgba(3, 169, 244, 0);
   border-color: transparent;
   background-color: #03a9f4;
-  box-shadow: 0 0 0 0 rgba(3, 169, 244, 0);
   color: #fff;
 }
 .button_state_info:hover {
   border-color: transparent;
   background-color: #0398dc;
-  box-shadow: 0 0 0 0 rgba(3, 169, 244, 0);
 }
 .button_state_info:focus {
   border-color: transparent;
   background-color: #0398dc;
-  box-shadow: 0 0 0 3px rgba(3, 169, 244, 0.4);
+}
+.button_state_info:focus-visible {
+  outline-color: rgba(3, 169, 244, 0.5);
 }
 .button_state_info:active {
   border-color: transparent;
   background-color: #0287c3;
-  box-shadow: 0 0 0 3px rgba(3, 169, 244, 0.4);
 }
 .button_state_info.is-loading::after {
   border-color: #fff #fff transparent transparent;
 }
 
 .button_state_success {
+  outline-color: rgba(76, 175, 80, 0);
   border-color: transparent;
   background-color: #4caf50;
-  box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
   color: #fff;
 }
 .button_state_success:hover {
   border-color: transparent;
   background-color: #449e48;
-  box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
 }
 .button_state_success:focus {
   border-color: transparent;
   background-color: #449e48;
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.4);
+}
+.button_state_success:focus-visible {
+  outline-color: rgba(76, 175, 80, 0.5);
 }
 .button_state_success:active {
   border-color: transparent;
   background-color: #3d8c40;
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.4);
 }
 .button_state_success.is-loading::after {
   border-color: #fff #fff transparent transparent;
 }
 
 .button_state_caution {
+  outline-color: rgba(255, 152, 0, 0);
   border-color: transparent;
   background-color: #ff9800;
-  box-shadow: 0 0 0 0 rgba(255, 152, 0, 0);
   color: #fff;
 }
 .button_state_caution:hover {
   border-color: transparent;
   background-color: #e68900;
-  box-shadow: 0 0 0 0 rgba(255, 152, 0, 0);
 }
 .button_state_caution:focus {
   border-color: transparent;
   background-color: #e68900;
-  box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.4);
+}
+.button_state_caution:focus-visible {
+  outline-color: rgba(255, 152, 0, 0.5);
 }
 .button_state_caution:active {
   border-color: transparent;
   background-color: #cc7a00;
-  box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.4);
 }
 .button_state_caution.is-loading::after {
   border-color: #fff #fff transparent transparent;
 }
 
 .button_state_danger {
+  outline-color: rgba(244, 67, 54, 0);
   border-color: transparent;
   background-color: #f44336;
-  box-shadow: 0 0 0 0 rgba(244, 67, 54, 0);
   color: #fff;
 }
 .button_state_danger:hover {
   border-color: transparent;
   background-color: #f2291a;
-  box-shadow: 0 0 0 0 rgba(244, 67, 54, 0);
 }
 .button_state_danger:focus {
   border-color: transparent;
   background-color: #f2291a;
-  box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.4);
+}
+.button_state_danger:focus-visible {
+  outline-color: rgba(244, 67, 54, 0.5);
 }
 .button_state_danger:active {
   border-color: transparent;
   background-color: #e21b0c;
-  box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.4);
 }
 .button_state_danger.is-loading::after {
   border-color: #fff #fff transparent transparent;
 }
 
 .button_subtle {
+  outline-color: rgba(33, 33, 33, 0);
   border-color: transparent;
   background-color: transparent;
-  box-shadow: 0 0 0 0 rgba(33, 33, 33, 0);
   color: #9e9e9e;
 }
 .button_subtle:hover {
   border-color: transparent;
   background-color: transparent;
-  box-shadow: 0 0 0 0 rgba(33, 33, 33, 0);
   color: #212121;
 }
 .button_subtle:focus {
-  border-color: rgba(0, 0, 0, 0.2);
-  background-color: transparent;
-  box-shadow: 0 0 0 3px rgba(33, 33, 33, 0.1);
-  color: #212121;
-}
-.button_subtle:active {
   border-color: rgba(0, 0, 0, 0.5);
   background-color: transparent;
-  box-shadow: 0 0 0 3px rgba(33, 33, 33, 0.1);
+  color: #212121;
+}
+.button_subtle:focus-visible {
+  outline-color: rgba(33, 33, 33, 0.15);
+}
+.button_subtle:active {
+  border-color: #212121;
+  background-color: transparent;
   color: #212121;
 }
 .button_subtle.is-loading::after {
   border-color: #9e9e9e #9e9e9e transparent transparent;
 }
 .button_subtle.button_invert {
+  outline-color: rgba(255, 255, 255, 0);
   border-color: transparent;
   background-color: transparent;
-  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
   color: rgba(255, 255, 255, 0.6);
 }
 .button_subtle.button_invert:hover {
   border-color: transparent;
   background-color: transparent;
-  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
   color: #fff;
 }
 .button_subtle.button_invert:focus {
-  border-color: rgba(255, 255, 255, 0.2);
-  background-color: transparent;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
-  color: #fff;
-}
-.button_subtle.button_invert:active {
   border-color: rgba(255, 255, 255, 0.5);
   background-color: transparent;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+.button_subtle.button_invert:focus-visible {
+  outline-color: rgba(255, 255, 255, 0.15);
+}
+.button_subtle.button_invert:active {
+  border-color: #fff;
+  background-color: transparent;
   color: #fff;
 }
 .button_subtle.button_invert.is-loading::after {
@@ -1452,7 +1454,7 @@ input::-moz-placeholder {
 .checkbox__native:checked + .checkbox__background .checkbox__icon {
   transition-property: opacity, background-position;
   transition-duration: 0.15s;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   background-position: center center;
   opacity: 1;
 }
@@ -1463,7 +1465,7 @@ input::-moz-placeholder {
 .checkbox__native:indeterminate + .checkbox__background .checkbox__icon {
   transition-property: opacity, background-position;
   transition-duration: 0.15s;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12px" height="12px" fill="none" stroke="%23FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6" /></svg>');
   background-position: center center;
   opacity: 1;
@@ -3981,7 +3983,7 @@ input::-moz-placeholder {
   height: 8px;
   transition-property: opacity, width, height;
   transition-duration: 0.15s;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   background-position: center center;
   opacity: 1;
 }
@@ -4158,7 +4160,7 @@ input::-moz-placeholder {
   position: absolute;
   top: 0;
   left: -0.625rem;
-  transition: left 0.15s cubic-bezier(0.4, 0, 0.6, 1);
+  transition: left 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 9999px;
   background-color: transparent;
 }
@@ -4181,7 +4183,7 @@ input::-moz-placeholder {
   top: 0;
   left: 0;
   display: block;
-  transition: left 0.15s cubic-bezier(0.4, 0, 0.6, 1);
+  transition: left 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 9999px;
   background-color: #fff;
   box-shadow: 0 0 0 2px #bdbdbd;
