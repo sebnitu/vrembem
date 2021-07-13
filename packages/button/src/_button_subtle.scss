@@ -13,8 +13,8 @@ $_m: var.$prefix-modifier;
     $border: transparent,
     $border-focus: core.$border-color-darker,
     $border-active: core.$color,
-    $outline: rgba(core.$color, 0),
-    $outline-focus-visible: rgba(core.$color, 0.15),
+    $outline-color: core.$color,
+    $outline-alpha: 0.15,
   );
 
   &.#{$_b}button#{$_m}invert {
@@ -25,8 +25,8 @@ $_m: var.$prefix-modifier;
       $border: transparent,
       $border-focus: core.$border-color-invert-darker,
       $border-active: core.$color-invert,
-      $outline: rgba(core.$color-invert, 0),
-      $outline-focus-visible: rgba(core.$color-invert, 0.15),
+      $outline-color: core.$color-invert,
+      $outline-alpha: 0.15,
     );
   }
 }
