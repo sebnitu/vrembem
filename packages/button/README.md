@@ -20,12 +20,14 @@ npm install @vrembem/button
 
 ### Markup
 
-The most basic implementation of the button component consists of the `button` class that can be applied to `<button>`, `<input type="button">` or `<a role="button">` elements. [Remember to add `role="button"`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role) to any none semantic buttons as needed.
+The most basic implementation of the button component consists of the `button` class that can be applied to `<button>`, `<a role="button">` or `<input>` elements with a type attribute of "button", "submit" or "reset". [Remember to add `role="button"`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role) to any none semantic buttons as needed.
 
 ```html
 <button class="button">Button</button>
-<input class="button" type="button" value="Button">
-<a class="button" role="button">Button</a>
+<a class="button" role="button">Anchor</a>
+<input class="button" type="button" value="Input">
+<input class="button" type="submit" value="Submit">
+<input class="button" type="reset" value="Reset">
 ```
 
 Elements within a button are centered vertically and spaced accordingly using the value set in `$gap` (defaults to `0.5em`). When elements are added inside a button, the button's text should also be wrapped in a `<span>` so that it can be spaced properly.
