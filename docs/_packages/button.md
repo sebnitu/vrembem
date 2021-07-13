@@ -11,19 +11,23 @@ usage:
 
 ## button
 
-The most basic implementation of the button component consists of the `button` class that can be applied to `<button>`, `<input type="button">` or `<a role="button">` elements. [Remember to add `role="button"`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role) to any none semantic buttons as needed.
+The most basic implementation of the button component consists of the `button` class that can be applied to `<button>`, `<a role="button">` or `<input>` elements with a type attribute of "button", "submit" or "reset". [Remember to add `role="button"`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role) to any none semantic buttons as needed.
 
 {% include demo_open.html %}
 <div class="level">
   <button class="button">Button</button>
-  <input class="button" type="button" value="Button">
-  <a href="#" class="button" role="button">Button</a>
+  <a href="#" class="button" role="button">Anchor</a>
+  <input class="button" type="button" value="Input">
+  <input class="button" type="submit" value="Submit">
+  <input class="button" type="reset" value="Reset">
 </div>
 {% include demo_switch.html %}
 ```html
 <button class="button">Button</button>
-<input class="button" type="button" value="Button">
-<a class="button" role="button">Button</a>
+<a class="button" role="button">Anchor</a>
+<input class="button" type="button" value="Input">
+<input class="button" type="submit" value="Submit">
+<input class="button" type="reset" value="Reset">
 ```
 {% include demo_close.html %}
 
