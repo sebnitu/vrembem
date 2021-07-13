@@ -19,10 +19,10 @@ $background-checked: null !default;
 $background-border-radius: core.$border-radius-circle !default;
 
 $circle-size: 20px !default;
-$circle-background: null !default;
-$circle-background-hover: core.$white !default;
-$circle-background-focus: core.$white !default;
-$circle-background-active: core.$white !default;
+$circle-background: core.$white !default;
+$circle-background-hover: null !default;
+$circle-background-focus: null !default;
+$circle-background-active: null !default;
 $circle-background-checked: $color !default;
 $circle-border-color: core.$gray-400 !default;
 $circle-border-color-hover: $color !default;

@@ -159,17 +159,17 @@ Adjust the size of a switch by increasing or decreasing its width and height. By
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$background-hover</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba(core.$black, 0.03)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba($color, 0.1)</code></td>
         <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:hover</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$background-focus</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba(core.$black, 0.03)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba($color, 0.1)</code></td>
         <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:focus</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$background-active</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba(core.$black, 0.06)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba($color, 0.2)</code></td>
         <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:active</code> state.</td>
       </tr>
       <tr>
@@ -210,7 +210,7 @@ Adjust the size of a switch by increasing or decreasing its width and height. By
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$track-background-checked</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$primary-lighter</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$color</code></td>
         <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:checked</code> state.</td>
       </tr>
       <tr>

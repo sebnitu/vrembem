@@ -22,8 +22,8 @@
   }
 
   &:focus-visible {
-    outline: var.$outline-focus;
-    outline-offset: var.$outline-focus-offset;
+    outline: var.$outline-focus-visible;
+    outline-offset: var.$outline-focus-visible-offset;
   }
 
   &:active {

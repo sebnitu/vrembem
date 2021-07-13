@@ -1373,6 +1373,7 @@ input::-moz-placeholder {
   justify-content: center;
   border: 2px solid #bdbdbd;
   border-radius: 0.25rem;
+  background-color: #fff;
   color: transparent;
 }
 
@@ -1401,21 +1402,18 @@ input::-moz-placeholder {
 }
 .checkbox__native:hover + .checkbox__background .checkbox__box {
   border-color: #00bcd4;
-  background-color: #fff;
 }
 .checkbox__native:focus + .checkbox__background {
   background-color: rgba(0, 188, 212, 0.1);
 }
 .checkbox__native:focus + .checkbox__background .checkbox__box {
   border-color: #00bcd4;
-  background-color: #fff;
 }
 .checkbox__native:focus-visible + .checkbox__background, .checkbox__native:active + .checkbox__background {
   background-color: rgba(0, 188, 212, 0.2);
 }
 .checkbox__native:focus-visible + .checkbox__background .checkbox__box, .checkbox__native:active + .checkbox__background .checkbox__box {
   border-color: #00bcd4;
-  background-color: #fff;
 }
 .checkbox__native:checked + .checkbox__background .checkbox__box {
   border-color: #00bcd4;
@@ -3906,6 +3904,7 @@ input::-moz-placeholder {
   justify-content: center;
   border: 2px solid #bdbdbd;
   border-radius: 20px;
+  background-color: #fff;
   color: transparent;
 }
 
@@ -3932,21 +3931,18 @@ input::-moz-placeholder {
 }
 .radio__native:hover + .radio__background .radio__circle {
   border-color: #00bcd4;
-  background-color: #fff;
 }
 .radio__native:focus + .radio__background {
   background-color: rgba(0, 188, 212, 0.1);
 }
 .radio__native:focus + .radio__background .radio__circle {
   border-color: #00bcd4;
-  background-color: #fff;
 }
 .radio__native:focus-visible + .radio__background, .radio__native:active + .radio__background {
   background-color: rgba(0, 188, 212, 0.2);
 }
 .radio__native:focus-visible + .radio__background .radio__circle, .radio__native:active + .radio__background .radio__circle {
   border-color: #00bcd4;
-  background-color: #fff;
 }
 .radio__native:checked + .radio__background .radio__circle {
   border-color: #00bcd4;
