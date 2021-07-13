@@ -5,18 +5,16 @@
 $_b: var.$prefix-block;
 
 .#{$_b}input {
-  @include core.calc-padding(var.$padding, var.$border-width);
   @include mix.box-shadow();
   position: relative;
   display: block;
   width: 100%;
   max-width: 100%;
   height: var.$size;
+  padding: var.$padding;
   transition: var.$transition;
-  border-width: var.$border-width;
-  border-style: var.$border-style;
+  border: var.$border;
   border-radius: var.$border-radius;
-  border-color: var.$border-color;
   background: var.$background;
   color: var.$color;
   font-family: core.$font-family;
@@ -45,7 +43,7 @@ $_b: var.$prefix-block;
     &:hover,
     &:focus {
       @include mix.box-shadow();
-      border-color: var.$border-color;
+      border: var.$border;
       background-color: var.$disabled-background;
     }
   }

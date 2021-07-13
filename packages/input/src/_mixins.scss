@@ -1,15 +1,12 @@
 @use "./variables" as var;
 
-/// Output an inputs box-shadow property provided a state and optional color parameter.
-/// @param {string} $state - the state that should be output. Can either be "hover", "focus" or omitted for default output
-/// @param {color} $color - the base color to use in the box-shadow property value
 @mixin box-shadow($state: "default", $color: null) {
   @if ($state == "hover") {
     $_color: rgba(var.$box-shadow-hover-color, var.$box-shadow-hover-alpha);
     @if $color {
       $_color: rgba($color, var.$box-shadow-hover-alpha);
     }
-    $_value: var.$box-shadow-hover-values $_color;
+    $_value: var.$box-shadow-hover-value $_color;
     @if var.$inset-box-shadow-hover {
       $_value: $_value, inset var.$inset-box-shadow-hover;
     }
@@ -21,7 +18,7 @@
     @if $color {
       $_color: rgba($color, var.$box-shadow-focus-alpha);
     }
-    $_value: var.$box-shadow-focus-values $_color;
+    $_value: var.$box-shadow-focus-value $_color;
     @if var.$inset-box-shadow-focus {
       $_value: $_value, inset var.$inset-box-shadow-focus;
     }
@@ -33,7 +30,7 @@
     @if $color {
       $_color: rgba($color, var.$box-shadow-alpha);
     }
-    $_value: var.$box-shadow-values $_color;
+    $_value: var.$box-shadow-value $_color;
     @if var.$inset-box-shadow {
       $_value: $_value, inset var.$inset-box-shadow;
     }

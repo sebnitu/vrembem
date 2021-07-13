@@ -59,10 +59,69 @@ permalink: /example
       </div>
     </div>
   </div>
+  <div>
+    <div class="grid grid_gap-x_xs grid_stack_sm">
+      <div class="grid__item grid__item_auto">
+        <button type="button" class="button button_color_secondary">
+          {% include icon.html icon="anchor" %}
+          <span>Button</span>
+        </button>
+      </div>
+      <div class="grid__item">
+        <input class="input" type="text">
+      </div>
+      <div class="grid__item grid__item_auto">
+        <button type="button" class="button">
+          <span>Button</span>
+          {% include icon.html icon="anchor" %}
+        </button>
+      </div>
+    </div>
+    <div class="grid grid_gap-x_xs grid_stack_sm">
+      <div class="grid__item grid__item_auto">
+        <button type="button" class="button button_size_sm button_color_secondary">
+          {% include icon.html icon="anchor" %}
+          <span>Button</span>
+        </button>
+      </div>
+      <div class="grid__item">
+        <input class="input input_size_sm" type="text">
+      </div>
+      <div class="grid__item grid__item_auto">
+        <button type="button" class="button button_size_sm">
+          <span>Button</span>
+          {% include icon.html icon="anchor" %}
+        </button>
+      </div>
+    </div>
+    <div class="grid grid_gap-x_xs grid_stack_sm">
+      <div class="grid__item grid__item_auto">
+        <button type="button" class="button button_size_lg button_color_secondary">
+          {% include icon.html icon="anchor" %}
+          <span>Button</span>
+        </button>
+      </div>
+      <div class="grid__item">
+        <input class="input input_size_lg" type="text">
+      </div>
+      <div class="grid__item grid__item_auto">
+        <button type="button" class="button button_size_lg">
+          <span>Button</span>
+          {% include icon.html icon="anchor" %}
+        </button>
+      </div>
+    </div>
+  </div>
   <div class="margin-top-xl">
     <div class="level">
-      <button type="button" class="button button_color_primary">Button</button>
-      <button type="button" class="button">Button</button>
+      <button type="button" class="button button_color_primary">
+        {% include icon.html icon="anchor" %}
+        <span>Button</span>
+      </button>
+      <button type="button" class="button">
+        <span>Button</span>
+        {% include icon.html icon="anchor" %}
+      </button>
     </div>
   </div>
 </form>
@@ -92,6 +151,32 @@ permalink: /example
     <button class="button button_state_success">Button</button>
     <button class="button button_state_caution">Button</button>
     <button class="button button_state_danger">Button</button>
+  </div>
+</div>
+
+<div class="padding">
+  <div class="level">
+    <button class="button is-loading">Button</button>
+    <button class="button is-loading button_subtle">Button</button>
+    <button class="button is-loading button_color_primary">Button</button>
+    <button class="button is-loading button_color_secondary">Button</button>
+    <button class="button is-loading button_state_info">Button</button>
+    <button class="button is-loading button_state_success">Button</button>
+    <button class="button is-loading button_state_caution">Button</button>
+    <button class="button is-loading button_state_danger">Button</button>
+  </div>
+</div>
+
+<div class="padding radius background-night">
+  <div class="level">
+    <button class="button is-loading button_invert">Button</button>
+    <button class="button is-loading button_subtle button_invert">Button</button>
+    <button class="button is-loading button_color_primary">Button</button>
+    <button class="button is-loading button_color_secondary">Button</button>
+    <button class="button is-loading button_state_info">Button</button>
+    <button class="button is-loading button_state_success">Button</button>
+    <button class="button is-loading button_state_caution">Button</button>
+    <button class="button is-loading button_state_danger">Button</button>
   </div>
 </div>
 
