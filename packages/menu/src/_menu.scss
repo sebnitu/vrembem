@@ -70,11 +70,6 @@ $_e: var.$prefix-element;
     color: var.$color-focus;
   }
 
-  &:focus-visible {
-    outline: var.$outline-focus-visible;
-    outline-offset: var.$outline-focus-visible-offset;
-  }
-
   &:active {
     background: var.$background-active;
     color: var.$color-active;
@@ -91,10 +86,6 @@ $_e: var.$prefix-element;
     &:active {
       background: var.$active-background;
       color: var.$active-color;
-    }
-
-    &:focus-visible {
-      outline-color: rgba(var.$active-color, 0.25);
     }
   }
 
