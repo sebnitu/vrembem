@@ -7,7 +7,9 @@
   $background,
   $border: transparent,
   $box-shadow: null,
-  $outline: rgba($background, 0),
+  $outline-color: $background,
+  $outline-alpha: 0.5,
+  $outline: rgba($outline-color, 0),
   $color-hover: null,
   $color-focus: $color-hover,
   $color-active: $color-focus,
@@ -20,10 +22,10 @@
   $box-shadow-hover: $box-shadow,
   $box-shadow-focus: $box-shadow-hover,
   $box-shadow-active: $box-shadow-focus,
-  $outline-hover: null,
-  $outline-focus: null,
-  $outline-focus-visible: rgba($background, 0.5),
-  $outline-active: null,
+  $outline-hover: if(var.$outline-hover, rgba($outline-color, $outline-alpha), null),
+  $outline-focus: if(var.$outline-focus, rgba($outline-color, $outline-alpha), null),
+  $outline-focus-visible: if(var.$outline-focus-visible, rgba($outline-color, $outline-alpha), null),
+  $outline-active: if(var.$outline-active, rgba($outline-color, $outline-alpha), null),
 ) {
   outline-color: $outline;
   border-color: $border;

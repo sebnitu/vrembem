@@ -4,12 +4,12 @@
 
 .#{var.$prefix-block}button#{var.$prefix-modifier}invert {
   @include mix.button-variant(
-    $color: core.$white,
+    $color: core.$color-invert,
     $background: transparent,
     $border: core.$border-color-invert-dark,
     $border-hover: core.$border-color-invert-darker,
-    $border-active: core.$white,
-    $outline: rgba(core.$white, 0),
-    $outline-focus-visible: rgba(core.$white, 0.15),
+    $border-active: core.$color-invert,
+    $outline-color: core.$color-invert,
+    $outline-alpha: 0.15,
   );
 }
