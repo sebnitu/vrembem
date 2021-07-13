@@ -1,62 +1,33 @@
 @use "sass:color";
 @use "@vrembem/core";
 @use "./variables" as var;
+@use "./mixins" as mix;
 
 $_b: var.$prefix-block;
 $_m: var.$prefix-modifier;
 
 .#{$_b}button#{$_m}subtle {
-  border-color: transparent;
-  background: none;
-  color: core.$color-subtle;
-
-  &:hover,
-  &:focus {
-    border-color: transparent;
-    background: rgba(core.$black, 0.1);
-    color: core.$color;
-  }
-
-  &:focus-visible {
-    outline: rgba(core.$black, 0.1) solid 2px;
-    outline-offset: 2px;
-  }
-
-  &:active {
-    border-color: transparent;
-    background: rgba(core.$black, 0.15);
-    color: core.$color;
-  }
-
-  &.is-loading::after {
-    border-color: core.set-border-color(var.$loading-border-tpl, core.$color-subtle);
-  }
+  @include mix.button-variant(
+    $color: core.$color-subtle,
+    $color-hover: core.$color,
+    $background: transparent,
+    $border: transparent,
+    $border-focus: core.$border-color-dark,
+    $border-active: core.$border-color-darker,
+    $box-shadow: 0 0 0 0 rgba(core.$color, 0),
+    $box-shadow-focus: 0 0 0 3px rgba(core.$color, 0.1),
+  );
 
   &.#{$_b}button#{$_m}invert {
-    border-color: transparent;
-    background: none;
-    color: core.$color-invert-subtle;
-
-    &:hover,
-    &:focus {
-      border-color: transparent;
-      background: rgba(core.$white, 0.1);
-      color: core.$color-invert;
-    }
-
-    &:focus-visible {
-      outline: rgba(core.$white, 0.1) solid 2px;
-      outline-offset: 2px;
-    }
-
-    &:active {
-      border-color: transparent;
-      background: rgba(core.$white, 0.15);
-      color: core.$color-invert;
-    }
-
-    &.is-loading::after {
-      border-color: core.set-border-color(var.$loading-border-tpl, core.$color-invert-subtle);
-    }
+    @include mix.button-variant(
+      $color: core.$color-invert-subtle,
+      $color-hover: core.$color-invert,
+      $background: transparent,
+      $border: transparent,
+      $border-focus: core.$border-color-invert-dark,
+      $border-active: core.$border-color-invert-darker,
+      $box-shadow: 0 0 0 0 rgba(core.$color-invert, 0),
+      $box-shadow-focus: 0 0 0 3px rgba(core.$color-invert, 0.1),
+    );
   }
 }

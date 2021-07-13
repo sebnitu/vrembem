@@ -1,29 +1,19 @@
 @use "@vrembem/core";
 @use "./variables" as var;
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
+@use "./mixins" as mix;
 
 .#{var.$prefix-block}button {
-  @include core.gap(var.$gap, 'x');
-  @include core.calc-padding(var.$padding, var.$border-width);
+  @include core.gap(var.$gap, "x");
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-width: var.$size;
-  min-height: var.$size;
-  border-width: var.$border-width;
-  border-style: var.$border-style;
+  height: var.$size;
+  padding: var.$padding;
+  transition: var.$transition;
+  border: var.$border;
   border-radius: var.$border-radius;
-  border-color: var.$border-color;
   background: var.$background;
   background-clip: border-box;
   box-shadow: var.$box-shadow;
@@ -35,7 +25,6 @@
   line-height: var.$line-height;
   text-decoration: none;
   text-transform: var.$text-transform;
-  vertical-align: top;
   white-space: nowrap;
   cursor: pointer;
 
@@ -52,15 +41,11 @@
   }
 
   &:focus {
+    outline: none;
     border-color: var.$border-color-focus;
     background-color: var.$background-focus;
     box-shadow: var.$box-shadow-focus;
     color: var.$color-focus;
-  }
-
-  &:focus-visible {
-    outline: var.$outline-focus-visible;
-    outline-offset: var.$outline-focus-visible-offset;
   }
 
   &:active {
@@ -85,5 +70,15 @@
       border-radius: core.$border-radius-circle;
       border-color: core.set-border-color(var.$loading-border-tpl, var.$loading-border-color);
     }
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }
