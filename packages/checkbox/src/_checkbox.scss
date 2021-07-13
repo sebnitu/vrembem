@@ -72,6 +72,7 @@ $_e: var.$prefix-element;
     }
   }
 
+  &:focus-visible + .#{$_b}checkbox#{$_e}background,
   &:active + .#{$_b}checkbox#{$_e}background {
     background-color: var.$background-active;
 

@@ -12,14 +12,14 @@ $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function-sharp !default;
 
 $background: transparent !default;
-$background-hover: rgba(core.$black, 0.03) !default;
-$background-focus: rgba(core.$black, 0.03) !default;
-$background-active: rgba(core.$black, 0.06) !default;
+$background-hover: rgba($color, 0.1) !default;
+$background-focus: rgba($color, 0.1) !default;
+$background-active: rgba($color, 0.2) !default;
 $background-checked: null !default;
 $background-border-radius: core.$border-radius-circle !default;
 
 $box-size: 18px !default;
-$box-background: null !default;
+$box-background: core.$white !default;
 $box-background-hover: null !default;
 $box-background-focus: null !default;
 $box-background-active: null !default;

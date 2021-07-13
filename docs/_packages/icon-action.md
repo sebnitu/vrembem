@@ -41,15 +41,17 @@ A boolean icon-action modifier that allows icon-actions and their modifiers to p
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="padding radius background-night">
-  <button class="icon-action icon-action_invert" aria-label="Dismiss component">
-    {% include icon.html icon="x" %}
-  </button>
-  <button class="icon-action icon-action_invert" aria-label="Minimize component">
-    {% include icon.html icon="minus" %}
-  </button>
-  <button class="icon-action icon-action_invert" aria-label="Toggle fullscreen mode">
-    {% include icon.html icon="maximize-2" %}
-  </button>
+  <div class="level">
+    <button class="icon-action icon-action_invert" aria-label="Dismiss component">
+      {% include icon.html icon="x" %}
+    </button>
+    <button class="icon-action icon-action_invert" aria-label="Minimize component">
+      {% include icon.html icon="minus" %}
+    </button>
+    <button class="icon-action icon-action_invert" aria-label="Toggle fullscreen mode">
+      {% include icon.html icon="maximize-2" %}
+    </button>
+  </div>
 </div>
 {% include demo_switch.html %}
 ```html
@@ -190,13 +192,13 @@ A boolean icon-action modifier that allows icon-actions and their modifiers to p
         <td data-mobile-label="Desc">Sets the background property on <code class="code">:active</code> state.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-focus</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">none</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-focus-visible</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.4) solid 2px</code></td>
         <td data-mobile-label="Desc">Sets the outline property on <code class="code">:focus</code> state.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-focus-offset</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-focus-visible-offset</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">2px</code></td>
         <td data-mobile-label="Desc">Sets the outline-offset property on <code class="code">:focus</code> state.</td>
       </tr>
       <!-- icon -->

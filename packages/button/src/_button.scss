@@ -52,12 +52,15 @@
   }
 
   &:focus {
-    outline: var.$outline-focus;
-    outline-offset: var.$outline-focus-offset;
     border-color: var.$border-color-focus;
     background-color: var.$background-focus;
     box-shadow: var.$box-shadow-focus;
     color: var.$color-focus;
+  }
+
+  &:focus-visible {
+    outline: var.$outline-focus-visible;
+    outline-offset: var.$outline-focus-visible-offset;
   }
 
   &:active {

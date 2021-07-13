@@ -65,8 +65,7 @@ $_e: var.$prefix-element;
   }
 
   &:focus {
-    outline: var.$outline-focus;
-    outline-offset: var.$outline-focus-offset;
+    outline: none;
     background: var.$background-focus;
     color: var.$color-focus;
   }
@@ -80,7 +79,7 @@ $_e: var.$prefix-element;
   &.is-active[disabled] {
     background: var.$active-background;
     color: var.$active-color;
-    cursor: default;
+    cursor: pointer;
 
     &:hover,
     &:focus,

@@ -49,6 +49,7 @@ $_thumb-size: var.$track-size - (var.$border-width * 2);
 .#{$_b}switch#{$_e}thumb {
   @include core.size($_thumb-size);
   position: absolute;
+  z-index: 1;
   top: 0;
   left: 0;
   display: block;
@@ -99,6 +100,7 @@ $_thumb-size: var.$track-size - (var.$border-width * 2);
     }
   }
 
+  &:focus-visible + .#{$_b}switch#{$_e}background,
   &:active + .#{$_b}switch#{$_e}background {
     &::after {
       background-color: var.$background-active;

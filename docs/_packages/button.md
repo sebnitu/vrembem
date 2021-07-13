@@ -373,22 +373,22 @@ A boolean button modifier that allows buttons and their modifiers to provide a m
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$border-color</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-color-dark</code></td>
         <td data-mobile-label="Desc">Sets the border-color property.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$border-color-hover</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-color-dark</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-color-darker</code></td>
         <td data-mobile-label="Desc">Sets the border-color property on <code class="code">:hover</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$border-color-focus</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-color-dark</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-color-darker</code></td>
         <td data-mobile-label="Desc">Sets the border-color property on <code class="code">:focus</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$border-color-active</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-color-darker</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
         <td data-mobile-label="Desc">Sets the border-color property on <code class="code">:active</code> state.</td>
       </tr>
       <tr>
@@ -398,22 +398,22 @@ A boolean button modifier that allows buttons and their modifiers to provide a m
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$background</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba(core.$black, 0)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">transparent</code></td>
         <td data-mobile-label="Desc">Sets the background property.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$background-hover</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba(core.$black, 0.06)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">transparent</code></td>
         <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:hover</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$background-focus</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba(core.$black, 0.06)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">transparent</code></td>
         <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:focus</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$background-active</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba(core.$black, 0.12)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba(core.$black, 0.05)</code></td>
         <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:active</code> state.</td>
       </tr>
       <tr>
@@ -482,12 +482,12 @@ A boolean button modifier that allows buttons and their modifiers to provide a m
         <td data-mobile-label="Desc">Sets the text-transformation property.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-focus</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">none</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-focus-visible</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">rgba(core.$black, 0.1) solid 3px</code></td>
         <td data-mobile-label="Desc">Sets the outline property on <code class="code">:focus</code> state.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-focus-offset</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-focus-visible-offset</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
         <td data-mobile-label="Desc">Sets the outline-offset property on <code class="code">:focus</code> state.</td>
       </tr>

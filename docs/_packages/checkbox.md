@@ -178,17 +178,17 @@ Adjust the size of a checkbox by increasing or decreasing its width and height. 
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code">$background-hover</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.03)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba($color, 0.1)</code></td>
         <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:hover</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code">$background-focus</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.03)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba($color, 0.1)</code></td>
         <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:focus</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code">$background-active</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.06)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba($color, 0.2)</code></td>
         <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:active</code> state.</td>
       </tr>
       <tr>
@@ -209,7 +209,7 @@ Adjust the size of a checkbox by increasing or decreasing its width and height. 
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code">$box-background</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$white</code></td>
         <td data-mobile-label="Desc">Sets the background-color property for the <code class="code">checkbox__box</code> element.</td>
       </tr>
       <tr>

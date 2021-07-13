@@ -10,6 +10,10 @@
     background: rgba(core.$white, 0.5);
   }
 
+  &:focus-visible {
+    outline-color: rgba(core.$white, 0.5);
+  }
+
   &:active {
     background: rgba(core.$white, 0.6);
   }

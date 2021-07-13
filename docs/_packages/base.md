@@ -916,6 +916,16 @@ A link—usually represented by an anchor (`<a>`) HTML element with `href` attri
         <td data-mobile-label="Desc">Sets the transition property.</td>
       </tr>
       <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-outline-focus</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">currentColor dotted 1px</code></td>
+        <td data-mobile-label="Desc">Sets the outline property on <code class="code">:focus</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-outline-focus-offset</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">0.125rem</code></td>
+        <td data-mobile-label="Desc">Sets the outline-offset property on <code class="code">:focus</code> state.</td>
+      </tr>
+      <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$link-color</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$primary</code></td>
         <td data-mobile-label="Desc">Sets the text color property.</td>

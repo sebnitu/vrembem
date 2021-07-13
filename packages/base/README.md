@@ -475,6 +475,8 @@ A link—usually represented by an anchor (`<a>`) HTML element with `href` attri
 | `$link-text-decoration`                  | `none`                         | Sets the text decoration property.                                    |
 | `$link-text-decoration-hover`            | `null`                         | Sets the text decoration property on hover state.                     |
 | `$link-transition`                       | `null`                         | Sets the transition property.                                         |
+| `$link-outline-focus`                    | `currentColor dotted 1px`      | Sets the outline property on `:focus` state.                          |
+| `$link-outline-focus-offset`             | `0.125rem`                     | Sets the outline-offset property on `:focus` state.                   |
 | `$link-color`                            | `core.$primary`                | Sets the text color property.                                         |
 | `$link-color-hover`                      | `core.$primary-dark`           | Sets the text color property on hover state.                          |
 | `$link-border`                           | `1px solid core.$border-color` | Sets the border property.                                             |

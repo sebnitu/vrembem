@@ -116,6 +116,8 @@ $heading-scale: (
 $link-text-decoration: none !default;
 $link-text-decoration-hover: null !default;
 $link-transition: null !default;
+$link-outline-focus: currentColor dotted 1px !default;
+$link-outline-focus-offset: 0.125rem !default;
 
 $link-color: core.$primary !default;
 $link-color-hover: core.$primary-dark !default;

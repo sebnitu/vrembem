@@ -92,13 +92,13 @@ Adjust the size of a checkbox by increasing or decreasing its width and height. 
 | `$transition-duration`        | `core.$transition-duration-short`        | Sets the transition-duration property for the `checkbox__icon` element.                                        |
 | `$transition-timing-function` | `core.$transition-timing-function-sharp` | Sets the transition-timing-function property for the `checkbox__icon` element.                                 |
 | `$background`                 | `transparent`                            | Sets the background-color property for the `checkbox__background` element.                                     |
-| `$background-hover`           | `rgba(core.$black, 0.03)`                | Sets the background-color property on `:hover` state.                                                          |
-| `$background-focus`           | `rgba(core.$black, 0.03)`                | Sets the background-color property on `:focus` state.                                                          |
-| `$background-active`          | `rgba(core.$black, 0.06)`                | Sets the background-color property on `:active` state.                                                         |
+| `$background-hover`           | `rgba($color, 0.1)`                      | Sets the background-color property on `:hover` state.                                                          |
+| `$background-focus`           | `rgba($color, 0.1)`                      | Sets the background-color property on `:focus` state.                                                          |
+| `$background-active`          | `rgba($color, 0.2)`                      | Sets the background-color property on `:active` state.                                                         |
 | `$background-checked`         | `null`                                   | Sets the background-color property on `:checked` state.                                                        |
 | `$background-border-radius`   | `core.$border-radius-circle`             | Sets the border-radius property for the `checkbox__background` element.                                        |
 | `$box-size`                   | `18px`                                   | Sets the width and height of the `checkbox__box` element.                                                      |
-| `$box-background`             | `null`                                   | Sets the background-color property for the `checkbox__box` element.                                            |
+| `$box-background`             | `core.$white`                            | Sets the background-color property for the `checkbox__box` element.                                            |
 | `$box-background-hover`       | `null`                                   | Sets the background-color property on `:hover` state.                                                          |
 | `$box-background-focus`       | `null`                                   | Sets the background-color property on `:focus` state.                                                          |
 | `$box-background-active`      | `null`                                   | Sets the background-color property on `:active` state.                                                         |

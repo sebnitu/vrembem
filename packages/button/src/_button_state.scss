@@ -7,16 +7,24 @@ $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
 .#{$_b}button#{$_m}state#{$_v}info {
+  border-color: transparent;
   background: core.$info;
   color: core.$white;
 
   &:hover,
   &:focus {
+    border-color: transparent;
     background: color.scale(core.$info, $lightness: -10%);
   }
 
   &:active {
+    border-color: transparent;
     background: color.scale(core.$info, $lightness: -20%);
+  }
+
+  &:focus-visible {
+    outline: color.scale(core.$info, $lightness: -10%) solid 2px;
+    outline-offset: 2px;
   }
 
   &.is-loading::after {
@@ -25,16 +33,24 @@ $_v: var.$prefix-modifier-value;
 }
 
 .#{$_b}button#{$_m}state#{$_v}success {
+  border-color: transparent;
   background: core.$success;
   color: core.$white;
 
   &:hover,
   &:focus {
+    border-color: transparent;
     background: color.scale(core.$success, $lightness: -10%);
   }
 
   &:active {
+    border-color: transparent;
     background: color.scale(core.$success, $lightness: -20%);
+  }
+
+  &:focus-visible {
+    outline: color.scale(core.$success, $lightness: -10%) solid 2px;
+    outline-offset: 2px;
   }
 
   &.is-loading::after {
@@ -43,16 +59,24 @@ $_v: var.$prefix-modifier-value;
 }
 
 .#{$_b}button#{$_m}state#{$_v}caution {
+  border-color: transparent;
   background: core.$caution;
   color: core.$white;
 
   &:hover,
   &:focus {
+    border-color: transparent;
     background: color.scale(core.$caution, $lightness: -10%);
   }
 
   &:active {
+    border-color: transparent;
     background: color.scale(core.$caution, $lightness: -20%);
+  }
+
+  &:focus-visible {
+    outline: color.scale(core.$caution, $lightness: -10%) solid 2px;
+    outline-offset: 2px;
   }
 
   &.is-loading::after {
@@ -61,16 +85,24 @@ $_v: var.$prefix-modifier-value;
 }
 
 .#{$_b}button#{$_m}state#{$_v}danger {
+  border-color: transparent;
   background: core.$danger;
   color: core.$white;
 
   &:hover,
   &:focus {
+    border-color: transparent;
     background: color.scale(core.$danger, $lightness: -20%);
   }
 
   &:active {
+    border-color: transparent;
     background: color.scale(core.$danger, $lightness: -30%);
+  }
+
+  &:focus-visible {
+    outline: color.scale(core.$danger, $lightness: -20%) solid 2px;
+    outline-offset: 2px;
   }
 
   &.is-loading::after {

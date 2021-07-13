@@ -561,17 +561,17 @@ Adjust the size of a menu by increasing or decreasing its padding and font-size.
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$background-hover</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.06)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.05)</code></td>
         <td data-mobile-label="Desc">Sets the background property on <code class="code">:hover</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$background-focus</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.06)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.05)</code></td>
         <td data-mobile-label="Desc">Sets the background property on <code class="code">:focus</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$background-active</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.09)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.1)</code></td>
         <td data-mobile-label="Desc">Sets the background property on <code class="code">:active</code> state.</td>
       </tr>
       <tr>
@@ -603,16 +603,6 @@ Adjust the size of a menu by increasing or decreasing its padding and font-size.
         <td data-mobile-label="Var"><code class="code text-nowrap">$line-height</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">1.5</code></td>
         <td data-mobile-label="Desc">Sets the line-height property.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-focus</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">none</code></td>
-        <td data-mobile-label="Desc">Sets the outline property on <code class="code">:focus</code> state.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-focus-offset</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
-        <td data-mobile-label="Desc">Sets the outline-offset property on <code class="code">:focus</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$sep-size</code></td>
@@ -657,37 +647,37 @@ Adjust the size of a menu by increasing or decreasing its padding and font-size.
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$invert-background-hover</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$white, 0.06)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$white, 0.05)</code></td>
         <td data-mobile-label="Desc">Sets the background property of the <code class="code">menu_invert</code> modifier on <code class="code">:hover</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$invert-background-focus</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$white, 0.06)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$white, 0.05)</code></td>
         <td data-mobile-label="Desc">Sets the background property of the <code class="code">menu_invert</code> modifier on <code class="code">:focus</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$invert-background-active</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$white, 0.09)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$white, 0.1)</code></td>
         <td data-mobile-label="Desc">Sets the background property of the <code class="code">menu_invert</code> modifier on <code class="code">:active</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$invert-color</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$white</code></td>
         <td data-mobile-label="Desc">Sets the color property of the <code class="code">menu_invert</code> modifier.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$invert-color-hover</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$white, 0.06)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
         <td data-mobile-label="Desc">Sets the color property of the <code class="code">menu_invert</code> modifier on <code class="code">:hover</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$invert-color-focus</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$white, 0.06)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
         <td data-mobile-label="Desc">Sets the color property of the <code class="code">menu_invert</code> modifier on <code class="code">:focus</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$invert-color-active</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$white, 0.09)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
         <td data-mobile-label="Desc">Sets the color property of the <code class="code">menu_invert</code> modifier on <code class="code">:active</code> state.</td>
       </tr>
       <tr>

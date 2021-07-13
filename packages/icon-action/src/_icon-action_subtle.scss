@@ -10,11 +10,15 @@ $_m: var.$prefix-modifier;
 
   &:hover,
   &:focus {
-    background: rgba(core.$black, 0.06);
+    background: rgba(core.$black, 0.1);
+  }
+
+  &:focus-visible {
+    outline-color: rgba(core.$black, 0.1);
   }
 
   &:active {
-    background: rgba(core.$black, 0.12);
+    background: rgba(core.$black, 0.2);
   }
 
   &.#{$_b}icon-action#{$_m}invert {
@@ -23,11 +27,15 @@ $_m: var.$prefix-modifier;
 
     &:hover,
     &:focus {
-      background: rgba(core.$white, 0.06);
+      background: rgba(core.$white, 0.1);
+    }
+
+    &:focus-visible {
+      outline-color: rgba(core.$white, 0.1);
     }
 
     &:active {
-      background: rgba(core.$white, 0.12);
+      background: rgba(core.$white, 0.2);
     }
   }
 }

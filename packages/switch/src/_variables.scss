@@ -12,9 +12,9 @@ $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function-sharp !default;
 
 $background: transparent !default;
-$background-hover: rgba(core.$black, 0.03) !default;
-$background-focus: rgba(core.$black, 0.03) !default;
-$background-active: rgba(core.$black, 0.06) !default;
+$background-hover: rgba($color, 0.1) !default;
+$background-focus: rgba($color, 0.1) !default;
+$background-active: rgba($color, 0.2) !default;
 $background-checked: null !default;
 $background-border-radius: core.$border-radius-circle !default;
 
@@ -23,7 +23,7 @@ $track-background: core.$gray-200 !default;
 $track-background-hover: null !default;
 $track-background-focus: null !default;
 $track-background-active: null !default;
-$track-background-checked: core.$primary-lighter !default;
+$track-background-checked: $color !default;
 $track-border-color: core.$gray-400 !default;
 $track-border-color-hover: null !default;
 $track-border-color-focus: null !default;

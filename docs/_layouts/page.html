@@ -1,0 +1,31 @@
+---
+layout: default
+---
+
+<article class="article">
+
+  <header class="article__intro section section_size_lg">
+    <div class="section__container">
+      <div class="grid grid_stack_lg">
+
+        <div class="grid__item span-12">
+          <h1 class="article__title">{{ page.title }}</h1>
+        </div>
+
+        {% if page.description %}
+        <div class="grid__item span-6 gap-y">
+          <p>{{ page.description }}</p>
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </header>
+
+  <div class="article__body section">
+    <div class="section__container gap-y-xl type type_custom">
+      {{ content }}
+    </div>
+  </div>
+
+</article>
