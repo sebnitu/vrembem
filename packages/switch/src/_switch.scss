@@ -85,9 +85,6 @@ $_thumb-size: var.$track-size - (var.$border-width * 2);
   }
 
   &:focus + .#{$_b}switch#{$_e}background {
-    outline: var.$outline-focus;
-    outline-offset: var.$outline-focus-offset;
-
     &::after {
       background-color: var.$background-focus;
     }
@@ -103,6 +100,7 @@ $_thumb-size: var.$track-size - (var.$border-width * 2);
     }
   }
 
+  &:focus-visible + .#{$_b}switch#{$_e}background,
   &:active + .#{$_b}switch#{$_e}background {
     &::after {
       background-color: var.$background-active;

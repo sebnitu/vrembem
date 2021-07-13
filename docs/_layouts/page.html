@@ -12,6 +12,12 @@ layout: default
           <h1 class="article__title">{{ page.title }}</h1>
         </div>
 
+        {% if page.description %}
+        <div class="grid__item span-6 gap-y">
+          <p>{{ page.description }}</p>
+        </div>
+        {% endif %}
+
       </div>
     </div>
   </header>

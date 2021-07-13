@@ -2,20 +2,23 @@
 @use "./variables" as var;
 
 .#{var.$prefix-block}button#{var.$prefix-modifier}invert {
-  border-color: core.$border-color-invert;
-  background: rgba(core.$white, 0);
+  border-color: core.$border-color-invert-dark;
+  background: transparent;
   color: core.$white;
 
   &:hover,
   &:focus {
-    border-color: core.$border-color-invert-dark;
-    background: rgba(core.$white, 0.06);
+    border-color: core.$border-color-invert-darker;
+    background: transparent;
     color: core.$white;
   }
 
+  &:focus-visible {
+    outline-color: rgba(core.$white, 0.1);
+  }
+
   &:active {
-    border-color: core.$border-color-invert-darker;
-    background: rgba(core.$white, 0.06);
+    background: rgba(core.$white, 0.05);
     color: core.$white;
   }
 

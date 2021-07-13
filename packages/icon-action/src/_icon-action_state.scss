@@ -15,6 +15,10 @@ $_v: var.$prefix-modifier-value;
     background: color.scale(core.$info, $lightness: -10%);
   }
 
+  &:focus-visible {
+    outline-color: color.scale(core.$info, $lightness: -10%);
+  }
+
   &:active {
     background: color.scale(core.$info, $lightness: -20%);
   }
@@ -27,6 +31,10 @@ $_v: var.$prefix-modifier-value;
   &:hover,
   &:focus {
     background: color.scale(core.$success, $lightness: -10%);
+  }
+
+  &:focus-visible {
+    outline-color: color.scale(core.$success, $lightness: -10%);
   }
 
   &:active {
@@ -43,6 +51,10 @@ $_v: var.$prefix-modifier-value;
     background: color.scale(core.$caution, $lightness: -10%);
   }
 
+  &:focus-visible {
+    outline-color: color.scale(core.$caution, $lightness: -10%);
+  }
+
   &:active {
     background: color.scale(core.$caution, $lightness: -20%);
   }
@@ -55,6 +67,10 @@ $_v: var.$prefix-modifier-value;
   &:hover,
   &:focus {
     background: color.scale(core.$danger, $lightness: -20%);
+  }
+
+  &:focus-visible {
+    outline-color: color.scale(core.$danger, $lightness: -20%);
   }
 
   &:active {

@@ -13,6 +13,10 @@ $_m: var.$prefix-modifier;
     background: rgba(core.$black, 0.1);
   }
 
+  &:focus-visible {
+    outline-color: rgba(core.$black, 0.1);
+  }
+
   &:active {
     background: rgba(core.$black, 0.2);
   }
@@ -24,6 +28,10 @@ $_m: var.$prefix-modifier;
     &:hover,
     &:focus {
       background: rgba(core.$white, 0.1);
+    }
+
+    &:focus-visible {
+      outline-color: rgba(core.$white, 0.1);
     }
 
     &:active {

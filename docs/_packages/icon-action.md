@@ -41,15 +41,17 @@ A boolean icon-action modifier that allows icon-actions and their modifiers to p
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="padding radius background-night">
-  <button class="icon-action icon-action_invert" aria-label="Dismiss component">
-    {% include icon.html icon="x" %}
-  </button>
-  <button class="icon-action icon-action_invert" aria-label="Minimize component">
-    {% include icon.html icon="minus" %}
-  </button>
-  <button class="icon-action icon-action_invert" aria-label="Toggle fullscreen mode">
-    {% include icon.html icon="maximize-2" %}
-  </button>
+  <div class="level">
+    <button class="icon-action icon-action_invert" aria-label="Dismiss component">
+      {% include icon.html icon="x" %}
+    </button>
+    <button class="icon-action icon-action_invert" aria-label="Minimize component">
+      {% include icon.html icon="minus" %}
+    </button>
+    <button class="icon-action icon-action_invert" aria-label="Toggle fullscreen mode">
+      {% include icon.html icon="maximize-2" %}
+    </button>
+  </div>
 </div>
 {% include demo_switch.html %}
 ```html

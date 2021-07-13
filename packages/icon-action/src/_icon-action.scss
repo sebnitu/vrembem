@@ -18,9 +18,12 @@
   }
 
   &:focus {
+    background: var.$background-focus;
+  }
+
+  &:focus-visible {
     outline: var.$outline-focus;
     outline-offset: var.$outline-focus-offset;
-    background: var.$background-focus;
   }
 
   &:active {
