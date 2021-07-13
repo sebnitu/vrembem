@@ -25,6 +25,10 @@ $_v: var.$prefix-modifier-value;
       color: var.$invert-color-focus;
     }
 
+    &:focus-visible {
+      outline-color: rgba(var.$invert-color, 0.25);
+    }
+
     &:active {
       background: var.$invert-background-active;
       color: var.$invert-color-active;

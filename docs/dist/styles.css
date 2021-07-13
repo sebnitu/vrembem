@@ -3274,8 +3274,8 @@ input::-moz-placeholder {
   background: rgba(0, 0, 0, 0.05);
 }
 .menu__action:focus-visible {
-  outline: currentColor solid 1px;
-  outline-offset: -0.25rem;
+  outline: rgba(33, 33, 33, 0.25) solid 1px;
+  outline-offset: -1px;
 }
 .menu__action:active {
   background: rgba(0, 0, 0, 0.1);
@@ -3288,6 +3288,9 @@ input::-moz-placeholder {
 .menu__action.is-active:hover, .menu__action.is-active:focus, .menu__action.is-active:active, .menu__action.is-active[disabled]:hover, .menu__action.is-active[disabled]:focus, .menu__action.is-active[disabled]:active {
   background: none;
   color: #00bcd4;
+}
+.menu__action.is-active:focus-visible, .menu__action.is-active[disabled]:focus-visible {
+  outline-color: rgba(0, 188, 212, 0.25);
 }
 .menu__action.is-disabled, .menu__action[disabled] {
   background: none;
@@ -3510,6 +3513,9 @@ input::-moz-placeholder {
 }
 .menu_invert .menu__action:focus {
   background: rgba(255, 255, 255, 0.05);
+}
+.menu_invert .menu__action:focus-visible {
+  outline-color: rgba(255, 255, 255, 0.25);
 }
 .menu_invert .menu__action:active {
   background: rgba(255, 255, 255, 0.1);

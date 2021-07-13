@@ -92,6 +92,10 @@ $_e: var.$prefix-element;
       background: var.$active-background;
       color: var.$active-color;
     }
+
+    &:focus-visible {
+      outline-color: rgba(var.$active-color, 0.25);
+    }
   }
 
   &.is-disabled,
