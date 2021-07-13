@@ -585,7 +585,7 @@ input::-moz-placeholder {
   min-width: 2.5rem;
   height: 2.5rem;
   padding: 0.5em 1em;
-  transition-property: outline, outline-offset;
+  transition-property: box-shadow, outline, outline-offset;
   transition-duration: 0.15s;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   outline: rgba(0, 0, 0, 0) solid 0;
@@ -619,7 +619,7 @@ input::-moz-placeholder {
   background-color: transparent;
 }
 .button:focus-visible {
-  outline: rgba(0, 0, 0, 0.15) solid 3px;
+  outline: rgba(0, 0, 0, 0.15) solid 0.2rem;
 }
 .button:active {
   border-color: #212121;
@@ -2590,7 +2590,9 @@ input::-moz-placeholder {
   max-width: 100%;
   height: 2.5rem;
   padding: 0.5em;
-  transition: box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-property: box-shadow, outline, outline-offset;
+  transition-duration: 0.15s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.25rem;
   background: #fff;
@@ -2608,7 +2610,7 @@ input::-moz-placeholder {
   background-color: #fff;
 }
 .input:focus {
-  box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.4);
+  box-shadow: 0 0 0 0.2rem rgba(0, 188, 212, 0.4);
   outline: none;
   border-color: #00bcd4;
   background-color: #fff;
@@ -2655,7 +2657,7 @@ input::-moz-placeholder {
   border-color: #03a9f4;
 }
 .input_state_info:focus {
-  box-shadow: 0 0 0 3px rgba(3, 169, 244, 0.4);
+  box-shadow: 0 0 0 0.2rem rgba(3, 169, 244, 0.4);
   border-color: #03a9f4;
 }
 
@@ -2668,7 +2670,7 @@ input::-moz-placeholder {
   border-color: #4caf50;
 }
 .input_state_success:focus {
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.4);
+  box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.4);
   border-color: #4caf50;
 }
 
@@ -2681,7 +2683,7 @@ input::-moz-placeholder {
   border-color: #ff9800;
 }
 .input_state_caution:focus {
-  box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.4);
+  box-shadow: 0 0 0 0.2rem rgba(255, 152, 0, 0.4);
   border-color: #ff9800;
 }
 
@@ -2694,7 +2696,7 @@ input::-moz-placeholder {
   border-color: #f44336;
 }
 .input_state_danger:focus {
-  box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.4);
+  box-shadow: 0 0 0 0.2rem rgba(244, 67, 54, 0.4);
   border-color: #f44336;
 }
 

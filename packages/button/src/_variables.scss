@@ -9,7 +9,7 @@ $breakpoints: core.$breakpoints !default;
 $size: core.$form-control-size !default;
 $padding: core.$padding !default;
 $gap: 0.5rem !default;
-$transition-property: outline, outline-offset !default;
+$transition-property: box-shadow, outline, outline-offset !default;
 $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function !default;
 $border-radius: core.$border-radius !default;
@@ -42,7 +42,7 @@ $color-active: null !default;
 $outline: rgba(core.$black, 0) solid 0 !default;
 $outline-hover: null !default;
 $outline-focus: null !default;
-$outline-focus-visible: rgba(core.$black, 0.15) solid 3px !default;
+$outline-focus-visible: rgba(core.$black, 0.15) solid 0.2rem !default;
 $outline-active: null !default;
 
 $outline-offset: null !default;
