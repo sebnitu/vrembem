@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.33.1 to CHANGELOG.md
+chore(release): add v1.33.2 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.33.2 (2021-07-13)
+
+#### :tada: New Feature
+* `base`, `button`, `checkbox`, `core`, `icon-action`, `menu`, `radio`, `switch`
+  * [#664](https://github.com/sebnitu/vrembem/pull/664) Improve focus and focus-visible styles of form-control components
 
 
 ## v1.33.1 (2021-07-12)
