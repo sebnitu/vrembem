@@ -2808,6 +2808,9 @@ input::-moz-placeholder {
 .input_type_select:read-only {
   background-color: #fff;
 }
+.input_type_select:disabled {
+  background-color: #f5f5f5;
+}
 
 .input_type_textarea {
   min-width: 100%;
