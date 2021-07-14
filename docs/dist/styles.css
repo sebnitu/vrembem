@@ -606,7 +606,7 @@ input::-moz-placeholder {
 .button > * + * {
   margin-left: 0.5rem;
 }
-.button[disabled]:not(.is-loading) {
+.button:disabled:not(.is-loading) {
   opacity: 0.6;
   pointer-events: none;
 }
@@ -2453,6 +2453,7 @@ input::-moz-placeholder {
 .icon-action {
   width: 24px;
   height: 24px;
+  position: relative;
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
@@ -2461,10 +2462,14 @@ input::-moz-placeholder {
   outline-offset: 0.1rem;
   border-radius: 9999px;
   background: rgba(0, 0, 0, 0.4);
+  background-clip: border-box;
   box-shadow: none;
   color: #fff;
-  vertical-align: top;
   cursor: pointer;
+}
+.icon-action:disabled:not(.is-loading) {
+  opacity: 0.6;
+  pointer-events: none;
 }
 .icon-action:hover {
   background-color: rgba(0, 0, 0, 0.5);
@@ -2482,7 +2487,31 @@ input::-moz-placeholder {
   stroke-width: 2.5px;
   font-size: 0.875rem;
 }
+.icon-action.is-loading {
+  color: transparent !important;
+  pointer-events: none;
+}
+.icon-action.is-loading::after {
+  width: 0.7em;
+  height: 0.7em;
+  content: "";
+  position: absolute;
+  top: calc(50% - (0.7em * 0.5));
+  left: calc(50% - (0.7em * 0.5));
+  animation: spin 0.6s infinite linear;
+  border: 2px solid;
+  border-radius: 9999px;
+  border-color: #fff #fff transparent transparent;
+}
 
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .icon-action_invert {
   outline-color: rgba(255, 255, 255, 0);
   border-color: transparent;
@@ -2503,6 +2532,9 @@ input::-moz-placeholder {
 .icon-action_invert:active {
   border-color: transparent;
   background-color: rgba(255, 255, 255, 0.7);
+}
+.icon-action_invert.is-loading::after {
+  border-color: #212121 #212121 transparent transparent;
 }
 
 .icon-action_state_info {
@@ -2526,6 +2558,9 @@ input::-moz-placeholder {
   border-color: transparent;
   background-color: #0287c3;
 }
+.icon-action_state_info.is-loading::after {
+  border-color: #fff #fff transparent transparent;
+}
 
 .icon-action_state_success {
   outline-color: rgba(68, 158, 72, 0);
@@ -2547,6 +2582,9 @@ input::-moz-placeholder {
 .icon-action_state_success:active {
   border-color: transparent;
   background-color: #3d8c40;
+}
+.icon-action_state_success.is-loading::after {
+  border-color: #fff #fff transparent transparent;
 }
 
 .icon-action_state_caution {
@@ -2570,6 +2608,9 @@ input::-moz-placeholder {
   border-color: transparent;
   background-color: #cc7a00;
 }
+.icon-action_state_caution.is-loading::after {
+  border-color: #fff #fff transparent transparent;
+}
 
 .icon-action_state_danger {
   outline-color: rgba(242, 41, 26, 0);
@@ -2591,6 +2632,9 @@ input::-moz-placeholder {
 .icon-action_state_danger:active {
   border-color: transparent;
   background-color: #e21b0c;
+}
+.icon-action_state_danger.is-loading::after {
+  border-color: #fff #fff transparent transparent;
 }
 
 .icon-action_subtle {
@@ -2614,6 +2658,9 @@ input::-moz-placeholder {
   border-color: transparent;
   background-color: rgba(33, 33, 33, 0.25);
 }
+.icon-action_subtle.is-loading::after {
+  border-color: #212121 #212121 transparent transparent;
+}
 .icon-action_subtle.icon-action_invert {
   outline-color: rgba(255, 255, 255, 0);
   border-color: transparent;
@@ -2634,6 +2681,9 @@ input::-moz-placeholder {
 .icon-action_subtle.icon-action_invert:active {
   border-color: transparent;
   background-color: rgba(255, 255, 255, 0.25);
+}
+.icon-action_subtle.icon-action_invert.is-loading::after {
+  border-color: #fff #fff transparent transparent;
 }
 
 .input {
@@ -2667,17 +2717,11 @@ input::-moz-placeholder {
   border-color: #00bcd4;
   box-shadow: none;
 }
-.input[disabled] {
+.input:disabled {
   background-color: #f5f5f5;
+  pointer-events: none;
 }
-.input[disabled]:hover, .input[disabled]:focus {
-  outline: rgba(0, 188, 212, 0) solid 0;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  background-color: #fff;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-  color: #212121;
-}
-.input[readonly] {
+.input:read-only {
   background-color: #f5f5f5;
 }
 .input::placeholder {
@@ -2760,6 +2804,9 @@ input::-moz-placeholder {
   background-repeat: no-repeat;
   background-position: 100% center;
   cursor: pointer;
+}
+.input_type_select:read-only {
+  background-color: #fff;
 }
 
 .input_type_textarea {

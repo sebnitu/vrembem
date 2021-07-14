@@ -30,6 +30,30 @@ The icon-action component consists of two parts, the `icon-action` and it's chil
 </button>
 ```
 
+#### Disabled
+
+When disabled using the `disabled` attribute, an icon-action will inherit styles to visually appear noninteractive.
+
+```html
+<button class="icon-action" disabled>
+  <svg role="img" class="icon">
+    <!-- SVG markup or link ID goes here... -->
+  </svg>
+</button>
+```
+
+#### Loading
+
+Icon-actions can also have a loading state by adding the `is-loading` state class. This is useful when an icon-action has an action that has a delayed response in order to give users a visual indicator that their action is being processed.
+
+```html
+<button class="icon-action is-loading" disabled>
+  <svg role="img" class="icon">
+    <!-- SVG markup or link ID goes here... -->
+  </svg>
+</button>
+```
+
 ## Modifiers
 
 ### `icon-action_invert`

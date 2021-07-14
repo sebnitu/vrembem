@@ -48,8 +48,6 @@ When disabled using the `disabled` attribute, a button will inherit styles to vi
 
 ```html
 <button class="button" disabled>Button</button>
-<input class="button" type="button" value="Button" disabled>
-<a class="button" role="button" disabled>Button</a>
 ```
 
 #### Loading
@@ -58,7 +56,6 @@ Buttons can also have a loading state by adding the `is-loading` state class. Th
 
 ```html
 <button class="button is-loading" disabled>Button</button>
-<a class="button is-loading" role="button" disabled>Button</a>
 ```
 
 > Warning: the `is-loading` state class will not work on `<input type="button">` buttons since it uses the `::after` pseudo-element to display the loading spinner.

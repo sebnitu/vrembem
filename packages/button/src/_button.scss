@@ -24,14 +24,12 @@
   font-family: inherit;
   font-size: var.$font-size;
   font-weight: var.$font-weight;
-  letter-spacing: var.$letter-spacing;
   line-height: var.$line-height;
   text-decoration: none;
-  text-transform: var.$text-transform;
   white-space: nowrap;
   cursor: pointer;
 
-  &[disabled]:not(.is-loading) {
+  &:disabled:not(.is-loading) {
     opacity: var.$disabled-opacity;
     pointer-events: none;
   }

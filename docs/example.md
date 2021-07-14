@@ -258,22 +258,22 @@ permalink: /example
 
 <div class="padding">
   <div class="level">
-    <button type="button" class="icon-action">
+    <button class="icon-action">
       {% include icon.html icon="x" %}
     </button>
-    <button type="button" class="icon-action">
+    <button class="icon-action">
       {% include icon.html icon="minus" %}
     </button>
-    <button type="button" class="icon-action">
+    <button class="icon-action">
       {% include icon.html icon="maximize-2" %}
     </button>
-    <button type="button" class="icon-action icon-action_subtle">
+    <button class="icon-action icon-action_subtle">
       {% include icon.html icon="x" %}
     </button>
-    <button type="button" class="icon-action icon-action_subtle">
+    <button class="icon-action icon-action_subtle">
       {% include icon.html icon="minus" %}
     </button>
-    <button type="button" class="icon-action icon-action_subtle">
+    <button class="icon-action icon-action_subtle">
       {% include icon.html icon="maximize-2" %}
     </button>
     <button class="icon-action icon-action_state_info">
@@ -293,22 +293,22 @@ permalink: /example
 
 <div class="padding radius background-night">
   <div class="level">
-    <button type="button" class="icon-action icon-action_invert">
+    <button class="icon-action icon-action_invert">
       {% include icon.html icon="x" %}
     </button>
-    <button type="button" class="icon-action icon-action_invert">
+    <button class="icon-action icon-action_invert">
       {% include icon.html icon="minus" %}
     </button>
-    <button type="button" class="icon-action icon-action_invert">
+    <button class="icon-action icon-action_invert">
       {% include icon.html icon="maximize-2" %}
     </button>
-    <button type="button" class="icon-action icon-action_subtle icon-action_invert">
+    <button class="icon-action icon-action_subtle icon-action_invert">
       {% include icon.html icon="x" %}
     </button>
-    <button type="button" class="icon-action icon-action_subtle icon-action_invert">
+    <button class="icon-action icon-action_subtle icon-action_invert">
       {% include icon.html icon="minus" %}
     </button>
-    <button type="button" class="icon-action icon-action_subtle icon-action_invert">
+    <button class="icon-action icon-action_subtle icon-action_invert">
       {% include icon.html icon="maximize-2" %}
     </button>
     <button class="icon-action icon-action_state_info">
@@ -321,6 +321,76 @@ permalink: /example
       {% include icon.html icon="minus" %}
     </button>
     <button class="icon-action icon-action_state_danger">
+      {% include icon.html icon="x" %}
+    </button>
+  </div>
+</div>
+
+<div class="padding">
+  <div class="level">
+    <button class="icon-action is-loading">
+      {% include icon.html icon="x" %}
+    </button>
+    <button class="icon-action is-loading">
+      {% include icon.html icon="minus" %}
+    </button>
+    <button class="icon-action is-loading">
+      {% include icon.html icon="maximize-2" %}
+    </button>
+    <button class="icon-action is-loading icon-action_subtle">
+      {% include icon.html icon="x" %}
+    </button>
+    <button class="icon-action is-loading icon-action_subtle">
+      {% include icon.html icon="minus" %}
+    </button>
+    <button class="icon-action is-loading icon-action_subtle">
+      {% include icon.html icon="maximize-2" %}
+    </button>
+    <button class="icon-action is-loading icon-action_state_info">
+      {% include icon.html icon="anchor" %}
+    </button>
+    <button class="icon-action is-loading icon-action_state_success">
+      {% include icon.html icon="maximize-2" %}
+    </button>
+    <button class="icon-action is-loading icon-action_state_caution">
+      {% include icon.html icon="minus" %}
+    </button>
+    <button class="icon-action is-loading icon-action_state_danger">
+      {% include icon.html icon="x" %}
+    </button>
+  </div>
+</div>
+
+<div class="padding radius background-night">
+  <div class="level">
+    <button class="icon-action is-loading icon-action_invert">
+      {% include icon.html icon="x" %}
+    </button>
+    <button class="icon-action is-loading icon-action_invert">
+      {% include icon.html icon="minus" %}
+    </button>
+    <button class="icon-action is-loading icon-action_invert">
+      {% include icon.html icon="maximize-2" %}
+    </button>
+    <button class="icon-action is-loading icon-action_subtle icon-action_invert">
+      {% include icon.html icon="x" %}
+    </button>
+    <button class="icon-action is-loading icon-action_subtle icon-action_invert">
+      {% include icon.html icon="minus" %}
+    </button>
+    <button class="icon-action is-loading icon-action_subtle icon-action_invert">
+      {% include icon.html icon="maximize-2" %}
+    </button>
+    <button class="icon-action is-loading icon-action_state_info">
+      {% include icon.html icon="anchor" %}
+    </button>
+    <button class="icon-action is-loading icon-action_state_success">
+      {% include icon.html icon="maximize-2" %}
+    </button>
+    <button class="icon-action is-loading icon-action_state_caution">
+      {% include icon.html icon="minus" %}
+    </button>
+    <button class="icon-action is-loading icon-action_state_danger">
       {% include icon.html icon="x" %}
     </button>
   </div>

@@ -35,6 +35,52 @@ The icon-action component consists of two parts, the `icon-action` and it's chil
 ```
 {% include demo_close.html %}
 
+### Disabled
+
+When disabled using the `disabled` attribute, an icon-action will inherit styles to visually appear noninteractive.
+
+{% include demo_open.html class_grid="grid_stack" %}
+<div class="level">
+  <button class="icon-action" disabled>
+    {% include icon.html icon="x" %}
+  </button>
+  <button class="icon-action icon-action_subtle" disabled>
+    {% include icon.html icon="x" %}
+  </button>
+</div>
+{% include demo_switch.html %}
+```html
+<button class="icon-action" disabled>
+  <svg role="img" class="icon">
+    <!-- SVG markup or link ID goes here... -->
+  </svg>
+</button>
+```
+{% include demo_close.html %}
+
+### Loading
+
+Icon-actions can also have a loading state by adding the `is-loading` state class. This is useful when an icon-action has an action that has a delayed response in order to give users a visual indicator that their action is being processed.
+
+{% include demo_open.html class_grid="grid_stack" %}
+<div class="level">
+  <button class="is-loading icon-action" disabled>
+    {% include icon.html icon="x" %}
+  </button>
+  <button class="is-loading icon-action icon-action_subtle" disabled>
+    {% include icon.html icon="x" %}
+  </button>
+</div>
+{% include demo_switch.html %}
+```html
+<button class="icon-action is-loading" disabled>
+  <svg role="img" class="icon">
+    <!-- SVG markup or link ID goes here... -->
+  </svg>
+</button>
+```
+{% include demo_close.html %}
+
 ## icon-action_invert
 
 A boolean icon-action modifier that allows icon-actions and their modifiers to provide an inversed version of themselves. Since not all icon-action styles require an inversed variant, this is typically used for when the background context of a button matters. Can be combined with [`icon-action_subtle`](#icon-action_subtle) boolean modifier.

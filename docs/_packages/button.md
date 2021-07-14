@@ -69,14 +69,13 @@ When disabled using the `disabled` attribute, a button will inherit styles to vi
 {% include demo_open.html %}
 <div class="level">
   <button class="button" disabled>Button</button>
-  <input class="button" type="button" value="Button" disabled>
-  <a class="button" role="button" disabled>Button</a>
+  <button class="button button_subtle" disabled>Button</button>
+  <button class="button button_color_primary" disabled>Button</button>
+  <button class="button button_color_secondary" disabled>Button</button>
 </div>
 {% include demo_switch.html %}
 ```html
 <button class="button" disabled>Button</button>
-<input class="button" type="button" value="Button" disabled>
-<a class="button" role="button" disabled>Button</a>
 ```
 {% include demo_close.html %}
 
@@ -93,8 +92,7 @@ Buttons can also have a loading state by adding the `is-loading` state class. Th
 </div>
 {% include demo_switch.html %}
 ```html
-<button class="button is-loading">Button</button>
-<a class="button is-loading" role="button">Button</a>
+<button class="button is-loading" disabled>Button</button>
 ```
 {% include demo_close.html %}
 
@@ -130,12 +128,10 @@ Gives a button "block" styles so that it spans the full width of its container. 
 
 Adds styles for changing the look and feel of a button. These are usually done with different background and text colors.
 
-{% include demo_open.html class_grid="grid_stack" class_parent="gap-y" %}
-<div class="padding background_white radius">
-  <div class="level">
-    <button class="button button_color_primary">Color Primary</button>
-    <button class="button button_color_secondary">Color Secondary</button>
-  </div>
+{% include demo_open.html class_grid="grid_stack" %}
+<div class="level">
+  <button class="button button_color_primary">Color Primary</button>
+  <button class="button button_color_secondary">Color Secondary</button>
 </div>
 {% include demo_switch.html %}
 ```html
@@ -257,14 +253,12 @@ Adjust the size of a button by increasing or decreasing its padding and font-siz
 
 Adds styles for changing the look and feel of a button to better reflect the urgency or status.
 
-{% include demo_open.html class_grid="grid_stack" class_parent="gap-y" %}
-<div class="padding background_white radius">
-  <div class="level">
-    <button class="button button_state_info">State Info</button>
-    <button class="button button_state_success">State Success</button>
-    <button class="button button_state_caution">State Caution</button>
-    <button class="button button_state_danger">State Danger</button>
-  </div>
+{% include demo_open.html class_grid="grid_stack" %}
+<div class="level">
+  <button class="button button_state_info">State Info</button>
+  <button class="button button_state_success">State Success</button>
+  <button class="button button_state_caution">State Caution</button>
+  <button class="button button_state_danger">State Danger</button>
 </div>
 {% include demo_switch.html %}
 ```html

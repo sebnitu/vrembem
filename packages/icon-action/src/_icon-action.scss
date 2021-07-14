@@ -3,6 +3,7 @@
 
 .#{var.$prefix-block}icon-action {
   @include core.size(var.$size);
+  position: relative;
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
@@ -12,10 +13,15 @@
   border: var.$border;
   border-radius: var.$border-radius;
   background: var.$background;
+  background-clip: border-box;
   box-shadow: var.$box-shadow;
-  color: core.$white;
-  vertical-align: top;
+  color: var.$color;
   cursor: pointer;
+
+  &:disabled:not(.is-loading) {
+    opacity: var.$disabled-opacity;
+    pointer-events: none;
+  }
 
   &:hover {
     outline: var.$outline-hover;
@@ -52,5 +58,32 @@
   .#{var.$prefix-block}icon {
     stroke-width: var.$icon-stroke-width;
     font-size: var.$icon-font-size;
+  }
+
+  &.is-loading {
+    color: transparent !important;
+    pointer-events: none;
+
+    &::after {
+      @include core.size(var.$loading-size);
+      content: "";
+      position: absolute;
+      top: calc(50% - (#{var.$loading-size} * 0.5));
+      left: calc(50% - (#{var.$loading-size} * 0.5));
+      animation: spin var.$loading-animation-duration infinite linear;
+      border: var.$loading-border;
+      border-radius: core.$border-radius-circle;
+      border-color: core.set-border-color(var.$loading-border-tpl, var.$loading-border-color);
+    }
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }

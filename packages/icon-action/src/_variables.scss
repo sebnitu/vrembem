@@ -23,7 +23,7 @@ $box-shadow-hover: null !default;
 $box-shadow-focus: null !default;
 $box-shadow-active: null !default;
 
-$color: core.$color !default;
+$color: core.$color-invert !default;
 $color-hover: null !default;
 $color-focus: null !default;
 $color-active: null !default;
@@ -40,5 +40,16 @@ $outline-offset-focus: null !default;
 $outline-offset-focus-visible: null !default;
 $outline-offset-active: null !default;
 
+// > icon
 $icon-stroke-width: 2.5px !default;
 $icon-font-size: core.$font-size-sm !default;
+
+// disabled
+$disabled-opacity: 0.6 !default;
+
+// is-loading
+$loading-size: 0.7em !default;
+$loading-animation-duration: 0.6s !default;
+$loading-border-color: $color !default;
+$loading-border: 2px solid !default;
+$loading-border-tpl: 1 1 0 0;

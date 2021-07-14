@@ -45,22 +45,13 @@ $_b: var.$prefix-block;
     color: var.$color-focus;
   }
 
-  &[disabled] {
+  &:disabled {
     background-color: var.$disabled-background;
-
-    &:hover,
-    &:focus {
-      outline: var.$outline;
-      outline-offset: var.$outline-offset;
-      border: var.$border;
-      background-color: var.$background;
-      box-shadow: var.$box-shadow;
-      color: var.$color;
-    }
+    pointer-events: none;
   }
 
-  &[readonly] {
-    background-color: var.$readonly-background;
+  &:read-only {
+    background-color: var.$read-only-background;
   }
 
   &::placeholder {
