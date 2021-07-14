@@ -3817,8 +3817,8 @@ input::-moz-placeholder {
 
 .popover__arrow,
 .popover__arrow::after {
-  width: 8px;
-  height: 8px;
+  width: 12px;
+  height: 12px;
   position: absolute;
   z-index: -1;
   visibility: hidden;
@@ -3836,28 +3836,28 @@ input::-moz-placeholder {
 }
 
 [data-popper-placement^=top] > .popover__arrow {
-  bottom: -4px;
+  bottom: -6px;
 }
 [data-popper-placement^=top] > .popover__arrow::after {
   transform: rotate(-135deg);
 }
 
 [data-popper-placement^=bottom] > .popover__arrow {
-  top: -4px;
+  top: -6px;
 }
 [data-popper-placement^=bottom] > .popover__arrow::after {
   transform: rotate(45deg);
 }
 
 [data-popper-placement^=left] > .popover__arrow {
-  right: -4px;
+  right: -6px;
 }
 [data-popper-placement^=left] > .popover__arrow::after {
   transform: rotate(135deg);
 }
 
 [data-popper-placement^=right] > .popover__arrow {
-  left: -4px;
+  left: -6px;
 }
 [data-popper-placement^=right] > .popover__arrow::after {
   transform: rotate(-45deg);
