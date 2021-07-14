@@ -13,10 +13,10 @@ $border-color-hover: null !default;
 $border-color-focus: null !default;
 $border-color-active: null !default;
 
-$background: rgba(core.$black, 0.3) !default;
-$background-hover: rgba(core.$black, 0.4) !default;
-$background-focus: rgba(core.$black, 0.4) !default;
-$background-active: rgba(core.$black, 0.5) !default;
+$background: rgba(core.$black, 0.4) !default;
+$background-hover: rgba(core.$black, 0.5) !default;
+$background-focus: rgba(core.$black, 0.5) !default;
+$background-active: rgba(core.$black, 0.6) !default;
 
 $box-shadow: none !default;
 $box-shadow-hover: null !default;
@@ -31,7 +31,7 @@ $color-active: null !default;
 $outline: rgba(core.$black, 0) solid 0 !default;
 $outline-hover: null !default;
 $outline-focus: null !default;
-$outline-focus-visible: rgba(core.$black, 0.4) solid 0.15rem !default;
+$outline-focus-visible: rgba(core.$black, 0.5) solid 0.15rem !default;
 $outline-active: null !default;
 
 $outline-offset: 0.1rem !default;
