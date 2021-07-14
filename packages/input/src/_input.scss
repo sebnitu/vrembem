@@ -1,11 +1,9 @@
 @use "@vrembem/core";
 @use "./variables" as var;
-@use "./mixins" as mix;
 
 $_b: var.$prefix-block;
 
 .#{$_b}input {
-  @include mix.box-shadow();
   position: relative;
   display: block;
   width: 100%;
@@ -15,9 +13,12 @@ $_b: var.$prefix-block;
   transition-property: var.$transition-property;
   transition-duration: var.$transition-duration;
   transition-timing-function: var.$transition-timing-function;
+  outline: var.$outline;
+  outline-offset: var.$outline-offset;
   border: var.$border;
   border-radius: var.$border-radius;
   background: var.$background;
+  box-shadow: var.$box-shadow;
   color: var.$color;
   font-family: core.$font-family;
   font-size: var.$font-size;
@@ -27,16 +28,21 @@ $_b: var.$prefix-block;
   appearance: none;
 
   &:hover {
-    @include mix.box-shadow("hover");
+    outline: var.$outline-hover;
+    outline-offset: var.$outline-offset-hover;
     border-color: var.$border-color-hover;
     background-color: var.$background-hover;
+    box-shadow: var.$box-shadow-hover;
+    color: var.$color-hover;
   }
 
   &:focus {
-    @include mix.box-shadow("focus");
-    outline: none;
+    outline: var.$outline-focus;
+    outline-offset: var.$outline-offset-focus;
     border-color: var.$border-color-focus;
     background-color: var.$background-focus;
+    box-shadow: var.$box-shadow-focus;
+    color: var.$color-focus;
   }
 
   &[disabled] {
@@ -44,9 +50,12 @@ $_b: var.$prefix-block;
 
     &:hover,
     &:focus {
-      @include mix.box-shadow();
+      outline: var.$outline;
+      outline-offset: var.$outline-offset;
       border: var.$border;
-      background-color: var.$disabled-background;
+      background-color: var.$background;
+      box-shadow: var.$box-shadow;
+      color: var.$color;
     }
   }
 

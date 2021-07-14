@@ -2583,7 +2583,6 @@ input::-moz-placeholder {
 }
 
 .input {
-  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0), inset 0 1px 3px rgba(0, 0, 0, 0.1);
   position: relative;
   display: block;
   width: 100%;
@@ -2593,9 +2592,11 @@ input::-moz-placeholder {
   transition-property: box-shadow, outline, outline-offset;
   transition-duration: 0.15s;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  outline: rgba(0, 188, 212, 0) solid 0;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.25rem;
   background: #fff;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
   color: #212121;
   font-family: blinkmacsystemfont, -apple-system, system-ui, "Segoe UI", "Roboto", "Helvetica Neue", arial, sans-serif;
   font-size: 16px;
@@ -2605,23 +2606,22 @@ input::-moz-placeholder {
   appearance: none;
 }
 .input:hover {
-  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0), inset 0 1px 3px rgba(0, 0, 0, 0.1);
   border-color: rgba(0, 0, 0, 0.5);
-  background-color: #fff;
 }
 .input:focus {
-  box-shadow: 0 0 0 0.2rem rgba(0, 188, 212, 0.4);
-  outline: none;
+  outline: rgba(0, 188, 212, 0.5) solid 0.2rem;
   border-color: #00bcd4;
-  background-color: #fff;
+  box-shadow: none;
 }
 .input[disabled] {
   background-color: #f5f5f5;
 }
 .input[disabled]:hover, .input[disabled]:focus {
-  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0), inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  outline: rgba(0, 188, 212, 0) solid 0;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  background-color: #f5f5f5;
+  background-color: #fff;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  color: #212121;
 }
 .input[readonly] {
   background-color: #f5f5f5;
@@ -2649,54 +2649,54 @@ input::-moz-placeholder {
 }
 
 .input_state_info {
-  box-shadow: 0 0 0 0 rgba(3, 169, 244, 0), inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  outline-color: rgba(3, 169, 244, 0);
   border-color: #03a9f4;
+  color: #212121;
 }
 .input_state_info:hover {
-  box-shadow: 0 0 0 0 rgba(3, 169, 244, 0), inset 0 1px 3px rgba(0, 0, 0, 0.1);
   border-color: #03a9f4;
 }
 .input_state_info:focus {
-  box-shadow: 0 0 0 0.2rem rgba(3, 169, 244, 0.4);
+  outline-color: rgba(3, 169, 244, 0.5);
   border-color: #03a9f4;
 }
 
 .input_state_success {
-  box-shadow: 0 0 0 0 rgba(76, 175, 80, 0), inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  outline-color: rgba(76, 175, 80, 0);
   border-color: #4caf50;
+  color: #212121;
 }
 .input_state_success:hover {
-  box-shadow: 0 0 0 0 rgba(76, 175, 80, 0), inset 0 1px 3px rgba(0, 0, 0, 0.1);
   border-color: #4caf50;
 }
 .input_state_success:focus {
-  box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.4);
+  outline-color: rgba(76, 175, 80, 0.5);
   border-color: #4caf50;
 }
 
 .input_state_caution {
-  box-shadow: 0 0 0 0 rgba(255, 152, 0, 0), inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  outline-color: rgba(255, 152, 0, 0);
   border-color: #ff9800;
+  color: #212121;
 }
 .input_state_caution:hover {
-  box-shadow: 0 0 0 0 rgba(255, 152, 0, 0), inset 0 1px 3px rgba(0, 0, 0, 0.1);
   border-color: #ff9800;
 }
 .input_state_caution:focus {
-  box-shadow: 0 0 0 0.2rem rgba(255, 152, 0, 0.4);
+  outline-color: rgba(255, 152, 0, 0.5);
   border-color: #ff9800;
 }
 
 .input_state_danger {
-  box-shadow: 0 0 0 0 rgba(244, 67, 54, 0), inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  outline-color: rgba(244, 67, 54, 0);
   border-color: #f44336;
+  color: #212121;
 }
 .input_state_danger:hover {
-  box-shadow: 0 0 0 0 rgba(244, 67, 54, 0), inset 0 1px 3px rgba(0, 0, 0, 0.1);
   border-color: #f44336;
 }
 .input_state_danger:focus {
-  box-shadow: 0 0 0 0.2rem rgba(244, 67, 54, 0.4);
+  outline-color: rgba(244, 67, 54, 0.5);
   border-color: #f44336;
 }
 
