@@ -159,29 +159,3 @@ Adds unique styles for various form input types. These form controls share style
 ```scss
 $type-select-icon: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="#{core.encodecolor($type-select-icon-color)}"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>' !default;
 ```
-
-## Sass Mixins
-
-### `@mixin box-shadow($state, $color)`
-
-Output an inputs box-shadow property provided a state and optional color parameter.
-
-**Arguments**
-
-| Variable             | Type     | Description                                                                                        |
-| -------------------- | -------- | -------------------------------------------------------------------------------------------------- |
-| `$state ("default")` | `string` | The state that should be output. Can either be `"hover"`, `"focus"` or omitted for default output. |
-| `$color (null)`      | `color`  | The base color to use in the box-shadow property value.                                            |
-
-**Example**
-
-```scss
-.input_custom:focus {
-  @include box-shadow("focus", #800080);
-}
-
-// CSS Output
-.input_custom:focus {
-  box-shadow: 0 0 0 3px rgba(128, 0, 128, 0.4);
-}
-```
