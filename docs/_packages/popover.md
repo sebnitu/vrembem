@@ -7,6 +7,7 @@ category: compound
 usage:
   npm: true
   scss: true
+  js: true
 ---
 
 ## popover
