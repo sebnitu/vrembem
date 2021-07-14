@@ -1,79 +1,23 @@
-@use "sass:color";
 @use "@vrembem/core";
 @use "./variables" as var;
+@use "./mixins" as mix;
 
 $_b: var.$prefix-block;
 $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
 .#{$_b}icon-action#{$_m}state#{$_v}info {
-  background: core.$info;
-  color: core.color-switch(core.$info);
-
-  &:hover,
-  &:focus {
-    background: color.scale(core.$info, $lightness: -10%);
-  }
-
-  &:focus-visible {
-    outline-color: color.scale(core.$info, $lightness: -10%);
-  }
-
-  &:active {
-    background: color.scale(core.$info, $lightness: -20%);
-  }
+  @include mix.icon-action-variant(core.$color-invert, core.$info);
 }
 
 .#{$_b}icon-action#{$_m}state#{$_v}success {
-  background: core.$success;
-  color: core.color-switch(core.$success);
-
-  &:hover,
-  &:focus {
-    background: color.scale(core.$success, $lightness: -10%);
-  }
-
-  &:focus-visible {
-    outline-color: color.scale(core.$success, $lightness: -10%);
-  }
-
-  &:active {
-    background: color.scale(core.$success, $lightness: -20%);
-  }
+  @include mix.icon-action-variant(core.$color-invert, core.$success);
 }
 
 .#{$_b}icon-action#{$_m}state#{$_v}caution {
-  background: core.$caution;
-  color: core.color-switch(core.$caution);
-
-  &:hover,
-  &:focus {
-    background: color.scale(core.$caution, $lightness: -10%);
-  }
-
-  &:focus-visible {
-    outline-color: color.scale(core.$caution, $lightness: -10%);
-  }
-
-  &:active {
-    background: color.scale(core.$caution, $lightness: -20%);
-  }
+  @include mix.icon-action-variant(core.$color-invert, core.$caution);
 }
 
 .#{$_b}icon-action#{$_m}state#{$_v}danger {
-  background: core.$danger;
-  color: core.color-switch(core.$danger);
-
-  &:hover,
-  &:focus {
-    background: color.scale(core.$danger, $lightness: -20%);
-  }
-
-  &:focus-visible {
-    outline-color: color.scale(core.$danger, $lightness: -20%);
-  }
-
-  &:active {
-    background: color.scale(core.$danger, $lightness: -30%);
-  }
+  @include mix.icon-action-variant(core.$color-invert, core.$danger);
 }
