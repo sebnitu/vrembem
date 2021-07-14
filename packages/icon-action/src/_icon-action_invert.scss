@@ -1,20 +1,14 @@
 @use "@vrembem/core";
 @use "./variables" as var;
+@use "./mixins" as mix;
 
 .#{var.$prefix-block}icon-action#{var.$prefix-modifier}invert {
-  background: rgba(core.$white, 0.4);
-  color: core.$color;
-
-  &:hover,
-  &:focus {
-    background: rgba(core.$white, 0.5);
-  }
-
-  &:focus-visible {
-    outline-color: rgba(core.$white, 0.5);
-  }
-
-  &:active {
-    background: rgba(core.$white, 0.6);
-  }
+  @include mix.icon-action-variant(
+    $color: core.$color,
+    $background: rgba(core.$color-invert, 0.5),
+    $background-hover: rgba(core.$color-invert, 0.6),
+    $background-active: rgba(core.$color-invert, 0.7),
+    $outline-color: core.$color-invert,
+    $outline-alpha: 0.6,
+  );
 }

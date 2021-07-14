@@ -211,9 +211,6 @@ $transition-duration: 0.3s !default;
 $transition-duration-short: 0.15s !default;
 $transition-duration-long: 0.6s !default;
 $transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !default;
-$transition-timing-function-deceleration: cubic-bezier(0, 0, 0.2, 1) !default;
-$transition-timing-function-acceleration: cubic-bezier(0.4, 0, 1, 1) !default;
-$transition-timing-function-sharp: cubic-bezier(0.4, 0, 0.6, 1) !default;
 
 // Miscellaneous
 // ---

@@ -1,41 +1,28 @@
 @use "@vrembem/core";
 @use "./variables" as var;
+@use "./mixins" as mix;
 
 $_b: var.$prefix-block;
 $_m: var.$prefix-modifier;
 
 .#{$_b}icon-action#{$_m}subtle {
-  background: none;
-  color: core.$color;
-
-  &:hover,
-  &:focus {
-    background: rgba(core.$black, 0.1);
-  }
-
-  &:focus-visible {
-    outline-color: rgba(core.$black, 0.1);
-  }
-
-  &:active {
-    background: rgba(core.$black, 0.2);
-  }
+  @include mix.icon-action-variant(
+    $color: core.$color,
+    $background: transparent,
+    $background-hover: rgba(core.$color, 0.2),
+    $background-active: rgba(core.$color, 0.25),
+    $outline-color: core.$color,
+    $outline-alpha: 0.2,
+  );
 
   &.#{$_b}icon-action#{$_m}invert {
-    background: none;
-    color: core.$color-invert;
-
-    &:hover,
-    &:focus {
-      background: rgba(core.$white, 0.1);
-    }
-
-    &:focus-visible {
-      outline-color: rgba(core.$white, 0.1);
-    }
-
-    &:active {
-      background: rgba(core.$white, 0.2);
-    }
+    @include mix.icon-action-variant(
+      $color: core.$color-invert,
+      $background: transparent,
+      $background-hover: rgba(core.$color-invert, 0.2),
+      $background-active: rgba(core.$color-invert, 0.25),
+      $outline-color: core.$color-invert,
+      $outline-alpha: 0.2,
+    );
   }
 }

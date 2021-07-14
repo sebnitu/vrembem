@@ -9,7 +9,7 @@ $color: core.$primary !default;
 $size: core.$form-control-size !default;
 $border-width: 2px !default;
 $transition-duration: core.$transition-duration-short !default;
-$transition-timing-function: core.$transition-timing-function-sharp !default;
+$transition-timing-function: core.$transition-timing-function !default;
 
 $background: transparent !default;
 $background-hover: rgba($color, 0.1) !default;
