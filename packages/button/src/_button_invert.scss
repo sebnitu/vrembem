@@ -6,9 +6,9 @@
   @include mix.button-variant(
     $color: core.$color-invert,
     $background: transparent,
+    $background-active: rgba(core.$white, 0.05),
     $border: core.$border-color-invert-dark,
     $border-hover: core.$border-color-invert-darker,
-    $border-active: core.$color-invert,
     $outline-color: core.$color-invert,
     $outline-alpha: 0.15,
   );

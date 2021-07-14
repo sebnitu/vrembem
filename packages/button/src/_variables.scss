@@ -20,14 +20,14 @@ $line-height: core.$line-height !default;
 $border: 1px solid core.$border-color-dark !default;
 $border-color-hover: core.$border-color-darker !default;
 $border-color-focus: core.$border-color-darker !default;
-$border-color-active: core.$color !default;
+$border-color-active: null !default;
 
 $background: transparent !default;
 $background-hover: transparent !default;
 $background-focus: transparent !default;
-$background-active: transparent !default;
+$background-active: rgba(core.$black, 0.05) !default;
 
-$box-shadow: none !default;
+$box-shadow: null !default;
 $box-shadow-hover: null !default;
 $box-shadow-focus: null !default;
 $box-shadow-active: null !default;

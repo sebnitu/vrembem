@@ -593,7 +593,6 @@ input::-moz-placeholder {
   border-radius: 0.25rem;
   background: transparent;
   background-clip: border-box;
-  box-shadow: none;
   color: #212121;
   font-family: inherit;
   font-size: 1em;
@@ -622,8 +621,7 @@ input::-moz-placeholder {
   outline: rgba(0, 0, 0, 0.15) solid 0.2rem;
 }
 .button:active {
-  border-color: #212121;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.05);
 }
 .button.is-loading {
   color: transparent !important;
@@ -788,8 +786,8 @@ input::-moz-placeholder {
   outline-color: rgba(255, 255, 255, 0.15);
 }
 .button_invert:active {
-  border-color: #fff;
-  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.05);
 }
 .button_invert.is-loading::after {
   border-color: #fff #fff transparent transparent;
@@ -923,14 +921,15 @@ input::-moz-placeholder {
   color: #212121;
 }
 .button_subtle:focus {
-  border-color: rgba(0, 0, 0, 0.5);
+  border-color: rgba(0, 0, 0, 0.2);
   background-color: transparent;
+  color: #212121;
 }
 .button_subtle:focus-visible {
-  outline-color: rgba(33, 33, 33, 0.15);
+  outline-color: rgba(33, 33, 33, 0.1);
 }
 .button_subtle:active {
-  border-color: #212121;
+  border-color: rgba(0, 0, 0, 0.5);
   background-color: transparent;
 }
 .button_subtle.is-loading::after {
@@ -948,14 +947,15 @@ input::-moz-placeholder {
   color: #fff;
 }
 .button_subtle.button_invert:focus {
-  border-color: rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.2);
   background-color: transparent;
+  color: #fff;
 }
 .button_subtle.button_invert:focus-visible {
-  outline-color: rgba(255, 255, 255, 0.15);
+  outline-color: rgba(255, 255, 255, 0.1);
 }
 .button_subtle.button_invert:active {
-  border-color: #fff;
+  border-color: rgba(255, 255, 255, 0.5);
   background-color: transparent;
 }
 .button_subtle.button_invert.is-loading::after {
@@ -2463,7 +2463,6 @@ input::-moz-placeholder {
   border-radius: 9999px;
   background: rgba(0, 0, 0, 0.4);
   background-clip: border-box;
-  box-shadow: none;
   color: #fff;
   cursor: pointer;
 }

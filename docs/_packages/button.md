@@ -412,7 +412,7 @@ A boolean button modifier that allows buttons and their modifiers to provide a m
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$border-color-active</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">core.$color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
         <td data-mobile-label="Desc">Sets the border-color property on <code class="code">:active</code> state.</td>
       </tr>
       <!-- background -->
@@ -433,13 +433,13 @@ A boolean button modifier that allows buttons and their modifiers to provide a m
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$background-active</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">transparent</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.05)</code></td>
         <td data-mobile-label="Desc">Sets the background-color property on <code class="code">:active</code> state.</td>
       </tr>
       <!-- box-shadow -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">none</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
         <td data-mobile-label="Desc">Sets the box-shadow property.</td>
       </tr>
       <tr>

@@ -217,35 +217,141 @@ A boolean icon-action modifier that allows icon-actions and their modifiers to p
         <td data-mobile-label="Default"><code class="code color-secondary">core.$border-radius-circle</code></td>
         <td data-mobile-label="Desc">Sets the border-radius property.</td>
       </tr>
+      <!-- border -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the border property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border-color-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the border-color property on <code class="code">:hover</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border-color-focus</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the border-color property on <code class="code">:focus</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$border-color-active</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the border-color property on <code class="code">:active</code> state.</td>
+      </tr>
+      <!-- background -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$background</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.3)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.4)</code></td>
         <td data-mobile-label="Desc">Sets the background property.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$background-hover</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.4)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.5)</code></td>
         <td data-mobile-label="Desc">Sets the background property on <code class="code">:hover</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$background-focus</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.4)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.5)</code></td>
         <td data-mobile-label="Desc">Sets the background property on <code class="code">:focus</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$background-active</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.5)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.6)</code></td>
         <td data-mobile-label="Desc">Sets the background property on <code class="code">:active</code> state.</td>
       </tr>
+      <!-- box-shadow -->
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-focus-visible</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.4) solid 2px</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the box-shadow property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the box-shadow property on <code class="code">:hover</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow-focus</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the box-shadow property on <code class="code">:focus</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow-active</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the box-shadow property on <code class="code">:active</code> state.</td>
+      </tr>
+      <!-- color -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$color-invert</code></td>
+        <td data-mobile-label="Desc">Sets the color property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the color property on <code class="code">:hover</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color-focus</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the color property on <code class="code">:focus</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$color-active</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the color property on <code class="code">:active</code> state.</td>
+      </tr>
+      <!-- outline -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$outline</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0) solid 0</code></td>
+        <td data-mobile-label="Desc">Sets the outline property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the outline property on <code class="code">:hover</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-focus</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
         <td data-mobile-label="Desc">Sets the outline property on <code class="code">:focus</code> state.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-focus-visible-offset</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">2px</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-focus-visible</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.5) solid 2px</code></td>
+        <td data-mobile-label="Desc">Sets the outline property on <code class="code">:focus-visible</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-active</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the outline property on <code class="code">:active</code> state.</td>
+      </tr>
+      <!-- outline-offset -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-offset</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">0.1rem</code></td>
+        <td data-mobile-label="Desc">Sets the outline-offset property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-offset-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the outline-offset property on <code class="code">:hover</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-offset-focus</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
         <td data-mobile-label="Desc">Sets the outline-offset property on <code class="code">:focus</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-offset-focus-visible</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the outline-offset property on <code class="code">:focus-visible</code> state.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-offset-active</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">Sets the outline-offset property on <code class="code">:active</code> state.</td>
       </tr>
       <!-- icon -->
       <tr>
@@ -257,6 +363,38 @@ A boolean icon-action modifier that allows icon-actions and their modifiers to p
         <td data-mobile-label="Var"><code class="code text-nowrap">$icon-font-size</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">core.$font-size-sm</code></td>
         <td data-mobile-label="Desc">Sets the font-size property on the child <code class="code">icon</code> component.</td>
+      </tr>
+      <!-- disabled -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$disabled-opacity</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">0.6</code></td>
+        <td data-mobile-label="Desc">Sets the opacity property when disabled attribute is applied.</td>
+      </tr>
+      <!-- loading -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$loading-size</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">0.7em</code></td>
+        <td data-mobile-label="Desc">Sets the size of the loading spinner.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$loading-animation-duration</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">0.6s</code></td>
+        <td data-mobile-label="Desc">Sets the animation-duration property of the loading spinner.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$loading-border-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">$color</code></td>
+        <td data-mobile-label="Desc">Sets the border-color property of the loading spinner.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$loading-border</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">2px solid</code></td>
+        <td data-mobile-label="Desc">Sets the border property of the loading spinner.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$loading-border-tpl</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">1 1 0 0</code></td>
+        <td data-mobile-label="Desc">The template for where to apply the border-color property. Takes boolean <code class="code">1</code> and <code class="code">0</code> values for top, right, bottom and left borders respectively.</td>
       </tr>
     </tbody>
   </table>
