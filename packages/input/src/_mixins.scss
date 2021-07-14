@@ -1,39 +1,43 @@
 @use "./variables" as var;
 
-@mixin box-shadow($state: "default", $color: null) {
-  @if ($state == "hover") {
-    $_color: rgba(var.$box-shadow-hover-color, var.$box-shadow-hover-alpha);
-    @if $color {
-      $_color: rgba($color, var.$box-shadow-hover-alpha);
-    }
-    $_value: var.$box-shadow-hover-value $_color;
-    @if var.$inset-box-shadow-hover {
-      $_value: $_value, inset var.$inset-box-shadow-hover;
-    }
-    box-shadow: $_value;
+@mixin input-variant(
+  $border,
+  $background: null,
+  $box-shadow: null,
+  $color: var.$color,
+  $outline-color: $border,
+  $outline-alpha: 0.5,
+  $outline: rgba($outline-color, 0),
+  $border-hover: $border,
+  $border-focus: $border-hover,
+  $background-hover: null,
+  $background-focus: $background-hover,
+  $box-shadow-hover: $box-shadow,
+  $box-shadow-focus: $box-shadow-hover,
+  $color-hover: null,
+  $color-focus: $color-hover,
+  $outline-hover: if(var.$outline-hover, rgba($outline-color, $outline-alpha), null),
+  $outline-focus: if(var.$outline-focus, rgba($outline-color, $outline-alpha), null),
+) {
+  outline-color: $outline;
+  border-color: $border;
+  background-color: $background;
+  box-shadow: $box-shadow;
+  color: $color;
+
+  &:hover {
+    outline-color: $outline-hover;
+    border-color: $border-hover;
+    background-color: $background-hover;
+    box-shadow: $box-shadow-hover;
+    color: $color-hover;
   }
 
-  @else if ($state == "focus") {
-    $_color: rgba(var.$box-shadow-focus-color, var.$box-shadow-focus-alpha);
-    @if $color {
-      $_color: rgba($color, var.$box-shadow-focus-alpha);
-    }
-    $_value: var.$box-shadow-focus-value $_color;
-    @if var.$inset-box-shadow-focus {
-      $_value: $_value, inset var.$inset-box-shadow-focus;
-    }
-    box-shadow: $_value;
-  }
-
-  @else {
-    $_color: rgba(var.$box-shadow-color, var.$box-shadow-alpha);
-    @if $color {
-      $_color: rgba($color, var.$box-shadow-alpha);
-    }
-    $_value: var.$box-shadow-value $_color;
-    @if var.$inset-box-shadow {
-      $_value: $_value, inset var.$inset-box-shadow;
-    }
-    box-shadow: $_value;
+  &:focus {
+    outline-color: $outline-focus;
+    border-color: $border-focus;
+    background-color: $background-focus;
+    box-shadow: $box-shadow-focus;
+    color: $color-focus;
   }
 }
