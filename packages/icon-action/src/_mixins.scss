@@ -1,0 +1,62 @@
+@use "sass:color";
+@use "./variables" as var;
+
+@mixin icon-action-variant(
+  $color,
+  $background,
+  $border: transparent,
+  $box-shadow: null,
+  $outline-color: color.scale($background, $lightness: -10%),
+  $outline-alpha: 1,
+  $outline: rgba($outline-color, 0),
+  $color-hover: null,
+  $color-focus: $color-hover,
+  $color-active: $color-focus,
+  $background-hover: if($background == transparent, transparent, color.scale($background, $lightness: -10%)),
+  $background-focus: $background-hover,
+  $background-active: if($background == transparent, transparent, color.scale($background, $lightness: -20%)),
+  $border-hover: $border,
+  $border-focus: $border-hover,
+  $border-active: $border-focus,
+  $box-shadow-hover: $box-shadow,
+  $box-shadow-focus: $box-shadow-hover,
+  $box-shadow-active: $box-shadow-focus,
+  $outline-hover: if(var.$outline-hover, rgba($outline-color, $outline-alpha), null),
+  $outline-focus: if(var.$outline-focus, rgba($outline-color, $outline-alpha), null),
+  $outline-focus-visible: if(var.$outline-focus-visible, rgba($outline-color, $outline-alpha), null),
+  $outline-active: if(var.$outline-active, rgba($outline-color, $outline-alpha), null),
+) {
+  outline-color: $outline;
+  border-color: $border;
+  background-color: $background;
+  box-shadow: $box-shadow;
+  color: $color;
+
+  &:hover {
+    outline-color: $outline-hover;
+    border-color: $border-hover;
+    background-color: $background-hover;
+    box-shadow: $box-shadow-hover;
+    color: $color-hover;
+  }
+
+  &:focus {
+    outline-color: $outline-focus;
+    border-color: $border-focus;
+    background-color: $background-focus;
+    box-shadow: $box-shadow-focus;
+    color: $color-focus;
+  }
+
+  &:focus-visible {
+    outline-color: $outline-focus-visible;
+  }
+
+  &:active {
+    outline-color: $outline-active;
+    border-color: $border-active;
+    background-color: $background-active;
+    box-shadow: $box-shadow-active;
+    color: $color-active;
+  }
+}

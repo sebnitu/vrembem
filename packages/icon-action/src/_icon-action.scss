@@ -7,27 +7,46 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
+  outline: var.$outline;
+  outline-offset: var.$outline-offset;
+  border: var.$border;
   border-radius: var.$border-radius;
   background: var.$background;
+  box-shadow: var.$box-shadow;
   color: core.$white;
   vertical-align: top;
   cursor: pointer;
 
   &:hover {
-    background: var.$background-hover;
+    outline: var.$outline-hover;
+    outline-offset: var.$outline-offset-hover;
+    border-color: var.$border-color-hover;
+    background-color: var.$background-hover;
+    box-shadow: var.$box-shadow-hover;
+    color: var.$color-hover;
   }
 
   &:focus {
-    background: var.$background-focus;
+    outline: var.$outline-focus;
+    outline-offset: var.$outline-offset-focus;
+    border-color: var.$border-color-focus;
+    background-color: var.$background-focus;
+    box-shadow: var.$box-shadow-focus;
+    color: var.$color-focus;
   }
 
   &:focus-visible {
     outline: var.$outline-focus-visible;
-    outline-offset: var.$outline-focus-visible-offset;
+    outline-offset: var.$outline-offset-focus-visible;
   }
 
   &:active {
-    background: var.$background-active;
+    outline: var.$outline-active;
+    outline-offset: var.$outline-offset-active;
+    border-color: var.$border-color-active;
+    background-color: var.$background-active;
+    box-shadow: var.$box-shadow-active;
+    color: var.$color-active;
   }
 
   .#{var.$prefix-block}icon {
