@@ -925,7 +925,6 @@ input::-moz-placeholder {
 .button_subtle:focus {
   border-color: rgba(0, 0, 0, 0.5);
   background-color: transparent;
-  color: #212121;
 }
 .button_subtle:focus-visible {
   outline-color: rgba(33, 33, 33, 0.15);
@@ -933,7 +932,6 @@ input::-moz-placeholder {
 .button_subtle:active {
   border-color: #212121;
   background-color: transparent;
-  color: #212121;
 }
 .button_subtle.is-loading::after {
   border-color: #9e9e9e #9e9e9e transparent transparent;
@@ -952,7 +950,6 @@ input::-moz-placeholder {
 .button_subtle.button_invert:focus {
   border-color: rgba(255, 255, 255, 0.5);
   background-color: transparent;
-  color: #fff;
 }
 .button_subtle.button_invert:focus-visible {
   outline-color: rgba(255, 255, 255, 0.15);
@@ -960,7 +957,6 @@ input::-moz-placeholder {
 .button_subtle.button_invert:active {
   border-color: #fff;
   background-color: transparent;
-  color: #fff;
 }
 .button_subtle.button_invert.is-loading::after {
   border-color: rgba(255, 255, 255, 0.6) rgba(255, 255, 255, 0.6) transparent transparent;
@@ -2464,23 +2460,23 @@ input::-moz-placeholder {
   outline: rgba(0, 0, 0, 0) solid 0;
   outline-offset: 0.1rem;
   border-radius: 9999px;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.4);
   box-shadow: none;
   color: #fff;
   vertical-align: top;
   cursor: pointer;
 }
 .icon-action:hover {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .icon-action:focus {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .icon-action:focus-visible {
-  outline: rgba(0, 0, 0, 0.4) solid 0.15rem;
+  outline: rgba(0, 0, 0, 0.5) solid 0.15rem;
 }
 .icon-action:active {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 .icon-action .icon {
   stroke-width: 2.5px;
@@ -2488,25 +2484,25 @@ input::-moz-placeholder {
 }
 
 .icon-action_invert {
-  outline-color: rgba(230, 230, 230, 0);
+  outline-color: rgba(255, 255, 255, 0);
   border-color: transparent;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.5);
   color: #212121;
 }
 .icon-action_invert:hover {
   border-color: transparent;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.6);
 }
 .icon-action_invert:focus {
   border-color: transparent;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.6);
 }
 .icon-action_invert:focus-visible {
-  outline-color: rgba(255, 255, 255, 0.5);
+  outline-color: rgba(255, 255, 255, 0.6);
 }
 .icon-action_invert:active {
   border-color: transparent;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .icon-action_state_info {
@@ -2598,46 +2594,46 @@ input::-moz-placeholder {
 }
 
 .icon-action_subtle {
-  outline-color: rgba(0, 0, 0, 0);
+  outline-color: rgba(33, 33, 33, 0);
   border-color: transparent;
   background-color: transparent;
   color: #212121;
 }
 .icon-action_subtle:hover {
   border-color: transparent;
-  background-color: rgba(33, 33, 33, 0.1);
+  background-color: rgba(33, 33, 33, 0.2);
 }
 .icon-action_subtle:focus {
   border-color: transparent;
-  background-color: rgba(33, 33, 33, 0.1);
+  background-color: rgba(33, 33, 33, 0.2);
 }
 .icon-action_subtle:focus-visible {
-  outline-color: rgba(33, 33, 33, 0.1);
+  outline-color: rgba(33, 33, 33, 0.2);
 }
 .icon-action_subtle:active {
   border-color: transparent;
-  background-color: rgba(33, 33, 33, 0.2);
+  background-color: rgba(33, 33, 33, 0.25);
 }
 .icon-action_subtle.icon-action_invert {
-  outline-color: rgba(0, 0, 0, 0);
+  outline-color: rgba(255, 255, 255, 0);
   border-color: transparent;
   background-color: transparent;
   color: #fff;
 }
 .icon-action_subtle.icon-action_invert:hover {
   border-color: transparent;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 .icon-action_subtle.icon-action_invert:focus {
   border-color: transparent;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 .icon-action_subtle.icon-action_invert:focus-visible {
-  outline-color: rgba(255, 255, 255, 0.1);
+  outline-color: rgba(255, 255, 255, 0.2);
 }
 .icon-action_subtle.icon-action_invert:active {
   border-color: transparent;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.25);
 }
 
 .input {
