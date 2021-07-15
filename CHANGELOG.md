@@ -14,9 +14,20 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.33.2 to CHANGELOG.md
+chore(release): add v1.34.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.34.0 (2021-07-15)
+
+#### :tada: New Feature
+* `button`, `checkbox`, `core`, `icon-action`, `input`, `radio`, `switch`
+  * [#665](https://github.com/sebnitu/vrembem/pull/665) Improve focus states and internal variant generation logic on form-control components
+
+#### :house: Refactor
+* `popover`
+  * [#666](https://github.com/sebnitu/vrembem/pull/666) Update popover arrow size default and fix missing docs argument
 
 
 ## v1.33.2 (2021-07-13)
