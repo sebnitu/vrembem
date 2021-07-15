@@ -1,59 +1,15 @@
-@use "sass:color";
 @use "@vrembem/core";
 @use "./variables" as var;
+@use "./mixins" as mix;
 
 $_b: var.$prefix-block;
 $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
 .#{$_b}button#{$_m}color#{$_v}primary {
-  border-color: transparent;
-  background: core.$primary;
-  color: core.$white;
-
-  &:hover,
-  &:focus {
-    border-color: transparent;
-    background: color.scale(core.$primary, $lightness: -10%);
-  }
-
-  &:active {
-    border-color: transparent;
-    background: color.scale(core.$primary, $lightness: -20%);
-  }
-
-  &:focus-visible {
-    outline: color.scale(core.$primary, $lightness: -10%) solid 2px;
-    outline-offset: 2px;
-  }
-
-  &.is-loading::after {
-    border-color: core.set-border-color(var.$loading-border-tpl, core.$white);
-  }
+  @include mix.button-variant(core.$white, core.$primary);
 }
 
 .#{$_b}button#{$_m}color#{$_v}secondary {
-  border-color: transparent;
-  background: core.$secondary;
-  color: core.$white;
-
-  &:hover,
-  &:focus {
-    border-color: transparent;
-    background: color.scale(core.$secondary, $lightness: -10%);
-  }
-
-  &:active {
-    border-color: transparent;
-    background: color.scale(core.$secondary, $lightness: -20%);
-  }
-
-  &:focus-visible {
-    outline: color.scale(core.$secondary, $lightness: -10%) solid 2px;
-    outline-offset: 2px;
-  }
-
-  &.is-loading::after {
-    border-color: core.set-border-color(var.$loading-border-tpl, core.$white);
-  }
+  @include mix.button-variant(core.$white, core.$secondary);
 }

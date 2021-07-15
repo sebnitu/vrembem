@@ -8,36 +8,49 @@ $prefix-modifier-value: core.$prefix-modifier-value !default;
 $breakpoints: core.$breakpoints !default;
 $size: core.$form-control-size !default;
 $padding: core.$padding !default;
-$gap: 0.5em !default;
-$border-width: core.$border-width !default;
-$border-style: core.$border-style !default;
-$border-color: core.$border-color-dark !default;
+$gap: 0.5rem !default;
+$transition-property: box-shadow, outline, outline-offset !default;
+$transition-duration: core.$transition-duration-short !default;
+$transition-timing-function: core.$transition-timing-function !default;
+$border-radius: core.$border-radius !default;
+$font-size: 1em !default;
+$font-weight: inherit !default;
+$line-height: core.$line-height !default;
+
+$border: 1px solid core.$border-color-dark !default;
 $border-color-hover: core.$border-color-darker !default;
 $border-color-focus: core.$border-color-darker !default;
 $border-color-active: null !default;
-$border-radius: core.$border-radius !default;
+
 $background: transparent !default;
 $background-hover: transparent !default;
 $background-focus: transparent !default;
 $background-active: rgba(core.$black, 0.05) !default;
+
 $box-shadow: null !default;
 $box-shadow-hover: null !default;
 $box-shadow-focus: null !default;
 $box-shadow-active: null !default;
+
 $color: core.$color !default;
 $color-hover: null !default;
 $color-focus: null !default;
 $color-active: null !default;
-$font-size: 1em !default;
-$font-weight: inherit !default;
-$letter-spacing: null !default;
-$line-height: core.$line-height !default;
-$text-transform: null !default;
-$outline-focus-visible: rgba(core.$black, 0.1) solid 3px !default;
-$outline-focus-visible-offset: null !default;
+
+$outline: rgba(core.$black, 0) solid 0 !default;
+$outline-hover: null !default;
+$outline-focus: null !default;
+$outline-focus-visible: rgba(core.$black, 0.15) solid 0.2rem !default;
+$outline-active: null !default;
+
+$outline-offset: null !default;
+$outline-offset-hover: null !default;
+$outline-offset-focus: null !default;
+$outline-offset-focus-visible: null !default;
+$outline-offset-active: null !default;
 
 // disabled
-$disabled-opacity: 0.5 !default;
+$disabled-opacity: 0.6 !default;
 
 // is-loading
 $loading-size: 1em !default;

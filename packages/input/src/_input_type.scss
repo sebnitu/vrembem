@@ -10,6 +10,14 @@ $_v: var.$prefix-modifier-value;
   background-repeat: no-repeat;
   background-position: 100% center;
   cursor: pointer;
+
+  &:read-only {
+    background-color: var.$background;
+  }
+
+  &:disabled {
+    background-color: var.$disabled-background;
+  }
 }
 
 .#{$_b}input#{$_m}type#{$_v}textarea {

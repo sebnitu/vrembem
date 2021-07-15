@@ -1,28 +1,15 @@
 @use "@vrembem/core";
 @use "./variables" as var;
+@use "./mixins" as mix;
 
 .#{var.$prefix-block}button#{var.$prefix-modifier}invert {
-  border-color: core.$border-color-invert-dark;
-  background: transparent;
-  color: core.$white;
-
-  &:hover,
-  &:focus {
-    border-color: core.$border-color-invert-darker;
-    background: transparent;
-    color: core.$white;
-  }
-
-  &:focus-visible {
-    outline-color: rgba(core.$white, 0.1);
-  }
-
-  &:active {
-    background: rgba(core.$white, 0.05);
-    color: core.$white;
-  }
-
-  &.is-loading::after {
-    border-color: core.set-border-color(var.$loading-border-tpl, core.$white);
-  }
+  @include mix.button-variant(
+    $color: core.$color-invert,
+    $background: transparent,
+    $background-active: rgba(core.$white, 0.05),
+    $border: core.$border-color-invert-dark,
+    $border-hover: core.$border-color-invert-darker,
+    $outline-color: core.$color-invert,
+    $outline-alpha: 0.15,
+  );
 }

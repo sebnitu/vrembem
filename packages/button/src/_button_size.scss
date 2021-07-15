@@ -6,29 +6,17 @@ $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
 .#{$_b}button#{$_m}size#{$_v}sm {
-  @include core.calc-padding(var.$size-sm-padding, var.$border-width);
   min-width: var.$size-sm;
-  min-height: var.$size-sm;
+  height: var.$size-sm;
+  padding: var.$size-sm-padding;
   font-size: var.$size-sm-font-size;
   line-height: var.$size-sm-line-height;
-
-  .#{$_b}icon {
-    padding: 0.129em;
-  }
 }
 
 .#{$_b}button#{$_m}size#{$_v}lg {
-  @include core.calc-padding(var.$size-lg-padding, var.$border-width);
   min-width: var.$size-lg;
-  min-height: var.$size-lg;
+  height: var.$size-lg;
+  padding: var.$size-lg-padding;
   font-size: var.$size-lg-font-size;
   line-height: var.$size-lg-line-height;
-
-  &:not(.#{$_b}button#{$_m}icon) .icon:first-child {
-    margin-left: -0.25em;
-  }
-
-  &:not(.#{$_b}button#{$_m}icon) .icon:last-child {
-    margin-right: -0.25em;
-  }
 }

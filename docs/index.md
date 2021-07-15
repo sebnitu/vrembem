@@ -13,7 +13,7 @@ title: "Home"
       {%- endif -%}
       <div class="grid grid_auto grid_gap_sm flex-align-center">
         <div class="grid__item">
-          <a href="http://github.com/{{ site.repository }}" class="button button_color_primary background-clip-padding">
+          <a href="http://github.com/{{ site.repository }}" class="button button_color_primary">
             {% include icon.html icon="github" %}
             <span>GitHub Repo</span>
           </a>

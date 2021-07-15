@@ -7,73 +7,17 @@ $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
 .#{$_b}input#{$_m}state#{$_v}info {
-  @include mix.box-shadow("default", rgba(core.$info, 1));
-  border-color: core.$info;
-  @if var.$state-enable-background-color {
-    background-color: core.$info-lighter;
-  }
-
-  &:hover {
-    @include mix.box-shadow("hover", rgba(core.$info, 1));
-    border-color: core.$info;
-  }
-
-  &:focus {
-    @include mix.box-shadow("focus", rgba(core.$info, 0.5));
-    border-color: core.$info;
-  }
+  @include mix.input-variant(core.$info);
 }
 
 .#{$_b}input#{$_m}state#{$_v}success {
-  @include mix.box-shadow("default", rgba(core.$success, 1));
-  border-color: core.$success;
-  @if var.$state-enable-background-color {
-    background-color: core.$success-lighter;
-  }
-
-  &:hover {
-    @include mix.box-shadow("hover", rgba(core.$success, 1));
-    border-color: core.$success;
-  }
-
-  &:focus {
-    @include mix.box-shadow("focus", rgba(core.$success, 0.5));
-    border-color: core.$success;
-  }
+  @include mix.input-variant(core.$success);
 }
 
 .#{$_b}input#{$_m}state#{$_v}caution {
-  @include mix.box-shadow("default", rgba(core.$caution, 1));
-  border-color: core.$caution;
-  @if var.$state-enable-background-color {
-    background-color: core.$caution-lighter;
-  }
-
-  &:hover {
-    @include mix.box-shadow("hover", rgba(core.$caution, 1));
-    border-color: core.$caution;
-  }
-
-  &:focus {
-    @include mix.box-shadow("focus", rgba(core.$caution, 0.5));
-    border-color: core.$caution;
-  }
+  @include mix.input-variant(core.$caution);
 }
 
 .#{$_b}input#{$_m}state#{$_v}danger {
-  @include mix.box-shadow("default", rgba(core.$danger, 1));
-  border-color: core.$danger;
-  @if var.$state-enable-background-color {
-    background-color: core.$danger-lighter;
-  }
-
-  &:hover {
-    @include mix.box-shadow("hover", rgba(core.$danger, 1));
-    border-color: core.$danger;
-  }
-
-  &:focus {
-    @include mix.box-shadow("focus", rgba(core.$danger, 0.5));
-    border-color: core.$danger;
-  }
+  @include mix.input-variant(core.$danger);
 }

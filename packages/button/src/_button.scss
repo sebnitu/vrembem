@@ -1,29 +1,22 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .#{var.$prefix-block}button {
-  @include core.gap(var.$gap, 'x');
-  @include core.calc-padding(var.$padding, var.$border-width);
+  @include core.gap(var.$gap, "x");
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-width: var.$size;
-  min-height: var.$size;
-  border-width: var.$border-width;
-  border-style: var.$border-style;
+  height: var.$size;
+  padding: var.$padding;
+  transition-property: var.$transition-property;
+  transition-duration: var.$transition-duration;
+  transition-timing-function: var.$transition-timing-function;
+  outline: var.$outline;
+  outline-offset: var.$outline-offset;
+  border: var.$border;
   border-radius: var.$border-radius;
-  border-color: var.$border-color;
   background: var.$background;
   background-clip: border-box;
   box-shadow: var.$box-shadow;
@@ -31,20 +24,19 @@
   font-family: inherit;
   font-size: var.$font-size;
   font-weight: var.$font-weight;
-  letter-spacing: var.$letter-spacing;
   line-height: var.$line-height;
   text-decoration: none;
-  text-transform: var.$text-transform;
-  vertical-align: top;
   white-space: nowrap;
   cursor: pointer;
 
-  &[disabled]:not(.is-loading) {
+  &:disabled:not(.is-loading) {
     opacity: var.$disabled-opacity;
     pointer-events: none;
   }
 
   &:hover {
+    outline: var.$outline-hover;
+    outline-offset: var.$outline-offset-hover;
     border-color: var.$border-color-hover;
     background-color: var.$background-hover;
     box-shadow: var.$box-shadow-hover;
@@ -52,6 +44,8 @@
   }
 
   &:focus {
+    outline: var.$outline-focus;
+    outline-offset: var.$outline-offset-focus;
     border-color: var.$border-color-focus;
     background-color: var.$background-focus;
     box-shadow: var.$box-shadow-focus;
@@ -60,10 +54,12 @@
 
   &:focus-visible {
     outline: var.$outline-focus-visible;
-    outline-offset: var.$outline-focus-visible-offset;
+    outline-offset: var.$outline-offset-focus-visible;
   }
 
   &:active {
+    outline: var.$outline-active;
+    outline-offset: var.$outline-offset-active;
     border-color: var.$border-color-active;
     background-color: var.$background-active;
     box-shadow: var.$box-shadow-active;
@@ -85,5 +81,15 @@
       border-radius: core.$border-radius-circle;
       border-color: core.set-border-color(var.$loading-border-tpl, var.$loading-border-color);
     }
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }

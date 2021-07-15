@@ -1,23 +1,24 @@
 @use "@vrembem/core";
 @use "./variables" as var;
-@use "./mixins" as mix;
 
 $_b: var.$prefix-block;
 
 .#{$_b}input {
-  @include core.calc-padding(var.$padding, var.$border-width);
-  @include mix.box-shadow();
   position: relative;
   display: block;
   width: 100%;
   max-width: 100%;
   height: var.$size;
-  transition: var.$transition;
-  border-width: var.$border-width;
-  border-style: var.$border-style;
+  padding: var.$padding;
+  transition-property: var.$transition-property;
+  transition-duration: var.$transition-duration;
+  transition-timing-function: var.$transition-timing-function;
+  outline: var.$outline;
+  outline-offset: var.$outline-offset;
+  border: var.$border;
   border-radius: var.$border-radius;
-  border-color: var.$border-color;
   background: var.$background;
+  box-shadow: var.$box-shadow;
   color: var.$color;
   font-family: core.$font-family;
   font-size: var.$font-size;
@@ -27,31 +28,30 @@ $_b: var.$prefix-block;
   appearance: none;
 
   &:hover {
-    @include mix.box-shadow("hover");
+    outline: var.$outline-hover;
+    outline-offset: var.$outline-offset-hover;
     border-color: var.$border-color-hover;
     background-color: var.$background-hover;
+    box-shadow: var.$box-shadow-hover;
+    color: var.$color-hover;
   }
 
   &:focus {
-    @include mix.box-shadow("focus");
-    outline: none;
+    outline: var.$outline-focus;
+    outline-offset: var.$outline-offset-focus;
     border-color: var.$border-color-focus;
     background-color: var.$background-focus;
+    box-shadow: var.$box-shadow-focus;
+    color: var.$color-focus;
   }
 
-  &[disabled] {
+  &:disabled {
     background-color: var.$disabled-background;
-
-    &:hover,
-    &:focus {
-      @include mix.box-shadow();
-      border-color: var.$border-color;
-      background-color: var.$disabled-background;
-    }
+    pointer-events: none;
   }
 
-  &[readonly] {
-    background-color: var.$readonly-background;
+  &:read-only {
+    background-color: var.$read-only-background;
   }
 
   &::placeholder {
