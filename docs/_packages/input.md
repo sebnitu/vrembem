@@ -63,7 +63,7 @@ Sets the width of an input to `auto` instead of the base component width of `100
 
 ## input_size_[value]
 
-Adjust the size of an input by increasing or decreasing its padding and font-size. By default, the input scale will provide an input height of 30px (small <code class="code">input_size_sm</code>), 40px (default) and 50px (large <code class="code">input_size_lg</code>).
+Adjust the size of an input by increasing or decreasing its padding and font-size. By default, the input scale will provide an input height of 30px (small `input_size_sm`), 40px (default) and 50px (large `input_size_lg`).
 
 {% include demo_open.html class_parent="gap-y" %}
 <input class="input input_size_sm" type="text">
