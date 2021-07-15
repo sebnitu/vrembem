@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.34.0 to CHANGELOG.md
+chore(release): add v1.34.1 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.34.1 (2021-07-15)
+
+#### :house: Refactor
+* `button`, `icon-action`
+  * [#667](https://github.com/sebnitu/vrembem/pull/667) Update the subtle button and icon-action styles
 
 
 ## v1.34.0 (2021-07-15)
