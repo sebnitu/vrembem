@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/icon-action",
   "description": "A component for displaying simple action buttons using icons.",
-  "version": "1.34.0",
+  "version": "1.34.1",
   "license": "MIT",
   "keywords": [
     "BEM",
