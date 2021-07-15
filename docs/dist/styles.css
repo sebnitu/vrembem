@@ -926,7 +926,7 @@ input::-moz-placeholder {
   color: #212121;
 }
 .button_subtle:focus-visible {
-  outline-color: rgba(33, 33, 33, 0.1);
+  outline-color: rgba(33, 33, 33, 0.05);
 }
 .button_subtle:active {
   border-color: rgba(0, 0, 0, 0.5);
@@ -952,7 +952,7 @@ input::-moz-placeholder {
   color: #fff;
 }
 .button_subtle.button_invert:focus-visible {
-  outline-color: rgba(255, 255, 255, 0.1);
+  outline-color: rgba(255, 255, 255, 0.05);
 }
 .button_subtle.button_invert:active {
   border-color: rgba(255, 255, 255, 0.5);
@@ -2644,18 +2644,18 @@ input::-moz-placeholder {
 }
 .icon-action_subtle:hover {
   border-color: transparent;
-  background-color: rgba(33, 33, 33, 0.2);
+  background-color: rgba(33, 33, 33, 0.1);
 }
 .icon-action_subtle:focus {
   border-color: transparent;
-  background-color: rgba(33, 33, 33, 0.2);
+  background-color: rgba(33, 33, 33, 0.1);
 }
 .icon-action_subtle:focus-visible {
-  outline-color: rgba(33, 33, 33, 0.2);
+  outline-color: rgba(33, 33, 33, 0.1);
 }
 .icon-action_subtle:active {
   border-color: transparent;
-  background-color: rgba(33, 33, 33, 0.25);
+  background-color: rgba(33, 33, 33, 0.15);
 }
 .icon-action_subtle.is-loading::after {
   border-color: #212121 #212121 transparent transparent;
@@ -2668,18 +2668,18 @@ input::-moz-placeholder {
 }
 .icon-action_subtle.icon-action_invert:hover {
   border-color: transparent;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 .icon-action_subtle.icon-action_invert:focus {
   border-color: transparent;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 .icon-action_subtle.icon-action_invert:focus-visible {
-  outline-color: rgba(255, 255, 255, 0.2);
+  outline-color: rgba(255, 255, 255, 0.1);
 }
 .icon-action_subtle.icon-action_invert:active {
   border-color: transparent;
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.15);
 }
 .icon-action_subtle.icon-action_invert.is-loading::after {
   border-color: #fff #fff transparent transparent;
