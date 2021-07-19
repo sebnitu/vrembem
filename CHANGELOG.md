@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.34.1 to CHANGELOG.md
+chore(release): add v1.34.2 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.34.2 (2021-07-19)
+
+#### :house: Refactor
+* `button`, `icon-action`, `input`
+  * [#668](https://github.com/sebnitu/vrembem/pull/668) Use box-shadows instead of outline on form control components
 
 
 ## v1.34.1 (2021-07-15)
