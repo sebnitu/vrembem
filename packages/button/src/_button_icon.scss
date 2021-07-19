@@ -6,13 +6,13 @@ $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
 .#{$_b}button#{$_m}icon {
-  padding: list.nth(var.$padding, 1);
+  padding: var.$icon-padding;
 
   &.#{$_b}button#{$_m}size#{$_v}sm {
-    padding: list.nth(var.$size_sm-padding, 1);
+    padding: var.$icon-padding-sm;
   }
 
   &.#{$_b}button#{$_m}size#{$_v}lg {
-    padding: list.nth(var.$size_lg-padding, 1);
+    padding: var.$icon-padding-lg;
   }
 }

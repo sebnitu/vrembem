@@ -213,6 +213,21 @@ A boolean icon-action modifier that allows icon-actions and their modifiers to p
         <td data-mobile-label="Desc">Sets the width and height properties.</td>
       </tr>
       <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$transition-property</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">box-shadow, outline, outline-offset</code></td>
+        <td data-mobile-label="Desc">Sets the transition-property property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$transition-duration</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$transition-duration-short</code></td>
+        <td data-mobile-label="Desc">Sets the transition-duration property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$transition-timing-function</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$transition-timing-function</code></td>
+        <td data-mobile-label="Desc">Sets the transition-timing-function property.</td>
+      </tr>
+      <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$border-radius</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">core.$border-radius-circle</code></td>
         <td data-mobile-label="Desc">Sets the border-radius property.</td>
@@ -262,7 +277,7 @@ A boolean icon-action modifier that allows icon-actions and their modifiers to p
       <!-- box-shadow -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">0 0 0 0 rgba(core.$black, 0)</code></td>
         <td data-mobile-label="Desc">Sets the box-shadow property.</td>
       </tr>
       <tr>
@@ -272,7 +287,7 @@ A boolean icon-action modifier that allows icon-actions and their modifiers to p
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow-focus</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">0 0 0 0.2rem rgba(core.$black, 0.2)</code></td>
         <td data-mobile-label="Desc">Sets the box-shadow property on <code class="code">:focus</code> state.</td>
       </tr>
       <tr>
@@ -304,7 +319,7 @@ A boolean icon-action modifier that allows icon-actions and their modifiers to p
       <!-- outline -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$outline</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0) solid 0</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">none</code></td>
         <td data-mobile-label="Desc">Sets the outline property.</td>
       </tr>
       <tr>
@@ -318,11 +333,6 @@ A boolean icon-action modifier that allows icon-actions and their modifiers to p
         <td data-mobile-label="Desc">Sets the outline property on <code class="code">:focus</code> state.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-focus-visible</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.5) solid 2px</code></td>
-        <td data-mobile-label="Desc">Sets the outline property on <code class="code">:focus-visible</code> state.</td>
-      </tr>
-      <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$outline-active</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
         <td data-mobile-label="Desc">Sets the outline property on <code class="code">:active</code> state.</td>
@@ -330,7 +340,7 @@ A boolean icon-action modifier that allows icon-actions and their modifiers to p
       <!-- outline-offset -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$outline-offset</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">0.1rem</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
         <td data-mobile-label="Desc">Sets the outline-offset property.</td>
       </tr>
       <tr>
@@ -342,11 +352,6 @@ A boolean icon-action modifier that allows icon-actions and their modifiers to p
         <td data-mobile-label="Var"><code class="code text-nowrap">$outline-offset-focus</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
         <td data-mobile-label="Desc">Sets the outline-offset property on <code class="code">:focus</code> state.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-offset-focus-visible</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
-        <td data-mobile-label="Desc">Sets the outline-offset property on <code class="code">:focus-visible</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$outline-offset-active</code></td>

@@ -283,7 +283,7 @@ A boolean button modifier that allows buttons and their modifiers to provide a m
 {% include demo_open.html class_grid="grid_stack" class_parent="flex flex-items-equal" %}
 <div class="padding radius background-white border margin-right-sm">
   <button class="button button_subtle">
-    Default Subtle
+    Subtle
   </button>
 </div>
 <div class="padding radius background-night margin-left-sm">
@@ -351,7 +351,7 @@ A boolean button modifier that allows buttons and their modifiers to provide a m
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$padding</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">core.$padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">calc(0.5em - 1px) 1em</code></td>
         <td data-mobile-label="Desc">Sets the padding property.</td>
       </tr>
       <tr>
@@ -439,7 +439,7 @@ A boolean button modifier that allows buttons and their modifiers to provide a m
       <!-- box-shadow -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">0 0 0 0 rgba(core.$black, 0)</code></td>
         <td data-mobile-label="Desc">Sets the box-shadow property.</td>
       </tr>
       <tr>
@@ -449,7 +449,7 @@ A boolean button modifier that allows buttons and their modifiers to provide a m
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow-focus</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">0 0 0 0.2rem rgba(core.$black, 0.15)</code></td>
         <td data-mobile-label="Desc">Sets the box-shadow property on <code class="code">:focus</code> state.</td>
       </tr>
       <tr>
@@ -481,7 +481,7 @@ A boolean button modifier that allows buttons and their modifiers to provide a m
       <!-- outline -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$outline</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0) solid 0</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">none</code></td>
         <td data-mobile-label="Desc">Sets the outline property.</td>
       </tr>
       <tr>
@@ -493,11 +493,6 @@ A boolean button modifier that allows buttons and their modifiers to provide a m
         <td data-mobile-label="Var"><code class="code text-nowrap">$outline-focus</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
         <td data-mobile-label="Desc">Sets the outline property on <code class="code">:focus</code> state.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$outline-focus-visible</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$black, 0.1) solid 3px</code></td>
-        <td data-mobile-label="Desc">Sets the outline property on <code class="code">:focus-visible</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$outline-active</code></td>
@@ -519,11 +514,6 @@ A boolean button modifier that allows buttons and their modifiers to provide a m
         <td data-mobile-label="Var"><code class="code text-nowrap">$outline-offset-focus</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
         <td data-mobile-label="Desc">Sets the outline-offset property on <code class="code">:focus</code> state.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code">$outline-offset-focus-visible</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
-        <td data-mobile-label="Desc">Sets the outline-offset property on <code class="code">:focus-visible</code> state.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$outline-offset-active</code></td>
@@ -562,6 +552,22 @@ A boolean button modifier that allows buttons and their modifiers to provide a m
         <td data-mobile-label="Default"><code class="code color-secondary">1 1 0 0</code></td>
         <td data-mobile-label="Desc">The template for where to apply the border-color property. Takes boolean <code class="code">1</code> and <code class="code">0</code> values for top, right, bottom and left borders respectively.</td>
       </tr>
+      <!-- button_icon -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$icon-padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">calc(0.5em - 1px)</code></td>
+        <td data-mobile-label="Desc">Sets the padding property of the <code class="code">button_icon</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$icon-sm-padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">calc(0.25rem - 1px)</code></td>
+        <td data-mobile-label="Desc">Sets the padding property of the <code class="code">button_icon</code> with <code class="code">button_size_sm</code> modifier.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$icon-lg-padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">calc(0.648rem - 1px)</code></td>
+        <td data-mobile-label="Desc">Sets the padding property of the <code class="code">button_icon</code> with <code class="code">button_size_lg</code> modifier.</td>
+      </tr>
       <!-- button_size_sm -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$size-sm</code></td>
@@ -570,7 +576,7 @@ A boolean button modifier that allows buttons and their modifiers to provide a m
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$size-sm-padding</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">core.$padding-sm</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">calc(0.25rem - 1px) 0.5rem</code></td>
         <td data-mobile-label="Desc">Sets the padding property of the <code class="code">button_size_sm</code> modifier.</td>
       </tr>
       <tr>
@@ -591,7 +597,7 @@ A boolean button modifier that allows buttons and their modifiers to provide a m
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$size-lg-padding</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">core.$padding-lg</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">calc(0.648rem - 1px) 1.5rem</code></td>
         <td data-mobile-label="Desc">Sets the padding property of the <code class="code">button_size_lg</code> modifier.</td>
       </tr>
       <tr>

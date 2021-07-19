@@ -11,8 +11,8 @@ $_m: var.$prefix-modifier;
     $background: transparent,
     $background-hover: rgba(core.$color, 0.1),
     $background-active: rgba(core.$color, 0.15),
-    $outline-color: core.$color,
-    $outline-alpha: 0.1,
+    $box-shadow: none,
+    $box-shadow-focus: none,
   );
 
   &.#{$_b}icon-action#{$_m}invert {
@@ -21,8 +21,8 @@ $_m: var.$prefix-modifier;
       $background: transparent,
       $background-hover: rgba(core.$color-invert, 0.1),
       $background-active: rgba(core.$color-invert, 0.15),
-      $outline-color: core.$color-invert,
-      $outline-alpha: 0.1,
+      $box-shadow: none,
+      $box-shadow-focus: none,
     );
   }
 }

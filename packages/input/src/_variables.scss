@@ -7,7 +7,7 @@ $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
 $size: core.$form-control-size !default;
-$padding: list.nth(core.$padding, 1) !default;
+$padding: calc(#{list.nth(core.$padding, 1)} - 1px) !default;
 $transition-property: box-shadow, outline, outline-offset !default;
 $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function !default;
@@ -24,17 +24,17 @@ $background: core.$white !default;
 $background-hover: null !default;
 $background-focus: null !default;
 
-$box-shadow: inset 0 1px 3px rgba(core.$black, 0.1) !default;
+$box-shadow: 0 0 0 0 rgba(core.$primary, 0), inset 0 0.1rem 0.2rem rgba(core.$black, 0.1) !default;
 $box-shadow-hover: null !default;
-$box-shadow-focus: none !default;
+$box-shadow-focus: 0 0 0 0.2rem rgba(core.$primary, 0.5), inset 0 0 0 rgba(core.$black, 0) !default;
 
 $color: core.$color !default;
 $color-hover: null !default;
 $color-focus: null !default;
 
-$outline: rgba(core.$primary, 0) solid 0 !default;
+$outline: none !default;
 $outline-hover: null !default;
-$outline-focus: rgba(core.$primary, 0.5) solid 0.2rem !default;
+$outline-focus: null !default;
 
 $outline-offset: null !default;
 $outline-offset-hover: null !default;
@@ -48,11 +48,11 @@ $read-only-background: core.$shade !default;
 
 // input_size_[value]
 $size-sm: core.$form-control-size-sm !default;
-$size-sm-padding: core.$padding-sm !default;
+$size-sm-padding: calc(#{list.nth(core.$padding-sm, 1)} - 1px) list.nth(core.$padding-sm, 2) !default;
 $size-sm-font-size: core.$font-size-sm !default;
 $size-sm-line-height: core.$line-height-sm !default;
 $size-lg: core.$form-control-size-lg !default;
-$size-lg-padding: list.nth(core.$padding-lg, 1) !default;
+$size-lg-padding: calc(#{list.nth(core.$padding-lg, 1)} - 1px) !default;
 $size-lg-font-size: core.$font-size-lg !default;
 $size-lg-line-height: core.$line-height-lg !default;
 
