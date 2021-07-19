@@ -63,12 +63,13 @@ $icon-padding: calc(#{list.nth(core.$padding, 1)} - 1px);
 $icon-padding-sm: calc(#{list.nth(core.$padding-sm, 1)} - 1px);
 $icon-padding-lg: calc(#{list.nth(core.$padding-lg, 1)} - 1px);
 
-// button_size_[value]
+// button_size_sm
 $size-sm: core.$form-control-size-sm !default;
 $size-sm-padding: calc(#{list.nth(core.$padding-sm, 1)} - 1px) list.nth(core.$padding-sm, 2) !default;
 $size-sm-font-size: core.$font-size-sm !default;
 $size-sm-line-height: core.$line-height-sm !default;
 
+// button_size_lg
 $size-lg: core.$form-control-size-lg !default;
 $size-lg-padding: calc(#{list.nth(core.$padding-lg, 1)} - 1px) list.nth(core.$padding-lg, 2) !default;
 $size-lg-font-size: core.$font-size-lg !default;
