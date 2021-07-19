@@ -8,6 +8,9 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
+  transition-property: var.$transition-property;
+  transition-duration: var.$transition-duration;
+  transition-timing-function: var.$transition-timing-function;
   outline: var.$outline;
   outline-offset: var.$outline-offset;
   border: var.$border;
@@ -39,11 +42,6 @@
     background-color: var.$background-focus;
     box-shadow: var.$box-shadow-focus;
     color: var.$color-focus;
-  }
-
-  &:focus-visible {
-    outline: var.$outline-focus-visible;
-    outline-offset: var.$outline-offset-focus-visible;
   }
 
   &:active {

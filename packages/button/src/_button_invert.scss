@@ -9,7 +9,7 @@
     $background-active: rgba(core.$white, 0.05),
     $border: core.$border-color-invert-dark,
     $border-hover: core.$border-color-invert-darker,
-    $outline-color: core.$color-invert,
-    $outline-alpha: 0.15,
+    $box-shadow: 0 0 0 0 rgba(core.$color-invert, 0),
+    $box-shadow-focus: 0 0 0 0.2rem rgba(core.$color-invert, 0.15),
   );
 }

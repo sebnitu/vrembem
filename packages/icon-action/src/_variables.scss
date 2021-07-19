@@ -6,6 +6,9 @@ $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
 $size: (core.$font-size * core.$line-height) !default;
+$transition-property: box-shadow, outline, outline-offset !default;
+$transition-duration: core.$transition-duration-short !default;
+$transition-timing-function: core.$transition-timing-function !default;
 $border-radius: core.$border-radius-circle !default;
 
 $border: null !default;
@@ -18,9 +21,9 @@ $background-hover: rgba(core.$black, 0.5) !default;
 $background-focus: rgba(core.$black, 0.5) !default;
 $background-active: rgba(core.$black, 0.6) !default;
 
-$box-shadow: null !default;
+$box-shadow: 0 0 0 0 rgba(core.$black, 0) !default;
 $box-shadow-hover: null !default;
-$box-shadow-focus: null !default;
+$box-shadow-focus: 0 0 0 0.2rem rgba(core.$black, 0.2) !default;
 $box-shadow-active: null !default;
 
 $color: core.$color-invert !default;
@@ -28,16 +31,14 @@ $color-hover: null !default;
 $color-focus: null !default;
 $color-active: null !default;
 
-$outline: rgba(core.$black, 0) solid 0 !default;
+$outline: none !default;
 $outline-hover: null !default;
 $outline-focus: null !default;
-$outline-focus-visible: rgba(core.$black, 0.5) solid 0.15rem !default;
 $outline-active: null !default;
 
-$outline-offset: 0.1rem !default;
+$outline-offset: null !default;
 $outline-offset-hover: null !default;
 $outline-offset-focus: null !default;
-$outline-offset-focus-visible: null !default;
 $outline-offset-active: null !default;
 
 // > icon

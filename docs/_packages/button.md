@@ -283,7 +283,7 @@ A boolean button modifier that allows buttons and their modifiers to provide a m
 {% include demo_open.html class_grid="grid_stack" class_parent="flex flex-items-equal" %}
 <div class="padding radius background-white border margin-right-sm">
   <button class="button button_subtle">
-    Default Subtle
+    Subtle
   </button>
 </div>
 <div class="padding radius background-night margin-left-sm">
