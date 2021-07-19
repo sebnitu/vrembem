@@ -179,7 +179,7 @@ Adds unique styles for various form input types. These form controls share style
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$padding</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">list.nth(core.$padding, 1)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">calc(0.5em - 1px)</code></td>
         <td data-mobile-label="Desc">Sets the padding property.</td>
       </tr>
       <tr>
@@ -252,7 +252,7 @@ Adds unique styles for various form input types. These form controls share style
       <!-- box-shadow -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">inset 0 1px 3px rgba(core.$black, 0.1)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">0 0 0 0 rgba(core.$primary, 0), inset 0 0.1rem 0.2rem rgba(core.$black, 0.1)</code></td>
         <td data-mobile-label="Desc">Sets the box-shadow property.</td>
       </tr>
       <tr>
@@ -262,7 +262,7 @@ Adds unique styles for various form input types. These form controls share style
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow-focus</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">none</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">0 0 0 0.2rem rgba(core.$primary, 0.5), inset 0 0 0 rgba(core.$black, 0)</code></td>
         <td data-mobile-label="Desc">Sets the box-shadow property on <code class="code">:focus</code> state.</td>
       </tr>
       <!-- color -->
@@ -284,7 +284,7 @@ Adds unique styles for various form input types. These form controls share style
       <!-- outline -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$outline</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$primary, 0) solid 0</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">none</code></td>
         <td data-mobile-label="Desc">Sets the outline property.</td>
       </tr>
       <tr>
@@ -294,7 +294,7 @@ Adds unique styles for various form input types. These form controls share style
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$outline-focus</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">rgba(core.$primary, 0.5) solid 0.2rem</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
         <td data-mobile-label="Desc">Sets the outline property on <code class="code">:focus</code> state.</td>
       </tr>
       <!-- outline-offset -->
@@ -333,7 +333,7 @@ Adds unique styles for various form input types. These form controls share style
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$size-sm-padding</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">core.$padding-sm</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">calc(0.25rem - 1px) 0.5rem</code></td>
         <td data-mobile-label="Desc">Sets the padding property of the <code class="code">input_size_sm</code> modifier.</td>
       </tr>
       <tr>
@@ -354,7 +354,7 @@ Adds unique styles for various form input types. These form controls share style
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$size-lg-padding</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">list.nth(core.$padding-lg, 1)</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">calc(0.648rem - 1px)</code></td>
         <td data-mobile-label="Desc">Sets the padding property of the <code class="code">input_size_lg</code> modifier.</td>
       </tr>
       <tr>
