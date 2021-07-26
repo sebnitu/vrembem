@@ -44,7 +44,7 @@
     "stylelint-config-standard": "^22.0.0",
     "stylelint-order": "^4.1.0",
     "stylelint-scss": "^3.20.1",
-    "stylelint-selector-bem-pattern": "^2.1.0"
+    "stylelint-selector-bem-pattern": "^2.1.1"
   },
   "jest": {
     "testEnvironment": "jsdom",
