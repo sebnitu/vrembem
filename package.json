@@ -32,7 +32,7 @@
     "coveralls": "^3.1.1",
     "del-cli": "^4.0.1",
     "eslint": "^7.31.0",
-    "eslint-plugin-jest": "^24.3.6",
+    "eslint-plugin-jest": "^24.4.0",
     "jest": "^27.0.6",
     "lerna": "^4.0.0",
     "lerna-changelog": "^1.0.1",
