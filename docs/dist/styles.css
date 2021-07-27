@@ -3782,12 +3782,24 @@ input::-moz-placeholder {
   transform: translateX(100%);
 }
 
-.modal_size_sm .modal__dialog {
+.modal_size_xs .modal__dialog {
   width: 18em;
 }
 
+.modal_size_sm .modal__dialog {
+  width: 26em;
+}
+
+.modal_size_md .modal__dialog {
+  width: 38em;
+}
+
 .modal_size_lg .modal__dialog {
-  width: 56em;
+  width: 46em;
+}
+
+.modal_size_xl .modal__dialog {
+  width: 58em;
 }
 
 .notice {
