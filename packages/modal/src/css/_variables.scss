@@ -7,15 +7,22 @@ $prefix-modifier-value: core.$prefix-modifier-value !default;
 
 $z-index: 1000 !default;
 $width: 38em !default;
-$width-sm: 18em !default;
-$width-lg: 56em !default;
 $travel: 5em !default;
 $transition-duration: core.$transition-duration !default;
 $transition-timing-function: core.$transition-timing-function !default;
-
 $background: core.$night !default;
 $background-alpha: 0.8 !default;
 $box-shadow: core.$box-shadow-24dp !default;
 
+// modal_pos_[value]
 $aside-width: 16em !default;
 $aside-max-width: 90% !default;
+
+// modal_size_[key]
+$size-scale: (
+  'xs': 18em,
+  'sm': 26em,
+  'md': 38em,
+  'lg': 46em,
+  'xl': 58em
+) !default;

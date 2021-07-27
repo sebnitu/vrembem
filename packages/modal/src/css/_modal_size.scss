@@ -5,10 +5,8 @@ $_e: var.$prefix-element;
 $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
-.#{$_b}modal#{$_m}size#{$_v}sm .#{$_b}modal#{$_e}dialog {
-  width: var.$width-sm;
-}
-
-.#{$_b}modal#{$_m}size#{$_v}lg .#{$_b}modal#{$_e}dialog {
-  width: var.$width-lg;
+@each $key, $value in var.$size-scale {
+  .#{$_b}modal#{$_m}size#{$_v}#{$key} .#{$_b}modal#{$_e}dialog {
+    width: $value;
+  }
 }

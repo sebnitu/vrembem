@@ -144,12 +144,7 @@ Adds styles to a modal that make it fill the entire viewport when opened.
 
 ### `modal_pos_[value]`
 
-The default position of modals is in the center of the viewport. The position modifier allows you four other options:
-
-- `modal_pos_top`
-- `modal_pos_left`
-- `modal_pos_right`
-- `modal_pos_bottom`
+The default position of modals is in the center of the viewport. The position modifier allows positioning a modal to the top, bottom, left and right side of the document viewport.
 
 ```html
 <div data-modal="[unique-id]" class="modal modal_pos_top">...</div>
@@ -158,37 +153,63 @@ The default position of modals is in the center of the viewport. The position mo
 <div data-modal="[unique-id]" class="modal modal_pos_right">...</div>
 ```
 
+#### Available Variations
+- `modal_pos_top`
+- `modal_pos_left`
+- `modal_pos_right`
+- `modal_pos_bottom`
+
 ### `modal_size_[value]`
 
-Adjusts the size of modals. This modifier provides two options, `modal_size_sm` and `modal_size_lg` all relative to the default modal size.
+Adjusts the size of modals. This modifier provides five options that get built from the [`$size-scale`](#size-scale) variable map.
 
 ```html
 <div data-modal="[unique-id]" class="modal modal_size_sm">...</div>
-<div data-modal="[unique-id]" class="modal modal_size_lg">...</div>
 ```
+
+#### Available Variations
+
+- `modal_size_xs`
+- `modal_size_sm`
+- `modal_size_md`
+- `modal_size_lg`
+- `modal_size_xl`
 
 ## Customization
 
 ### Sass Variables
 
-| Variable                      | Default                            | Description                                                               |
-| ----------------------------- | ---------------------------------- | ------------------------------------------------------------------------- |
-| `$prefix-block`               | `null`                             | String to prefix blocks with.                                             |
-| `$prefix-element`             | `"__"`                             | String to prefix elements with.                                           |
-| `$prefix-modifier`            | `"_"`                              | String to prefix modifiers with.                                          |
-| `$prefix-modifier-value`      | `"_"`                              | String to prefix modifier values with.                                    |
-| `$z-index`                    | `1000`                             | Applied z-index to modals to control the stack order.                     |
-| `$width`                      | `38em`                             | The default max width of modals.                                          |
-| `$width-sm`                   | `18em`                             | The small width applied to modals with `_size_sm` modifier.               |
-| `$width-lg`                   | `56em`                             | The large width applied to modals with `_size_lg` modifier.               |
-| `$travel`                     | `5em`                              | Distance that modal travel during their transition.                       |
-| `$transition-duration`        | `core.$transition-duration`        | Duration of modal transition.                                             |
-| `$transition-timing-function` | `core.$transition-timing-function` | Timing function used for modal transitions.                               |
-| `$background`                 | `core.$night`                      | Background color of modal screen.                                         |
-| `$background-alpha`           | `0.8`                              | The alpha channel for the modal screen.                                   |
-| `$box-shadow`                 | `core.$box-shadow-24dp`            | Box shadow applied to modal dialog elements.                              |
-| `$aside-width`                | `16em`                             | Width applied to modals using `_pos_left` and `_pos_right` modifiers.     |
-| `$aside-max-width`            | `90%`                              | Max width applied to modals using `_pos_left` and `_pos_right` modifiers. |
+| Variable                      | Default                            | Description                                                                  |
+| ----------------------------- | ---------------------------------- | ---------------------------------------------------------------------------- |
+| `$prefix-block`               | `null`                             | String to prefix blocks with.                                                |
+| `$prefix-element`             | `"__"`                             | String to prefix elements with.                                              |
+| `$prefix-modifier`            | `"_"`                              | String to prefix modifiers with.                                             |
+| `$prefix-modifier-value`      | `"_"`                              | String to prefix modifier values with.                                       |
+| `$z-index`                    | `1000`                             | Applied z-index to modals to control the stack order.                        |
+| `$width`                      | `38em`                             | The default max width of modals.                                             |
+| `$travel`                     | `5em`                              | Distance that modal travel during their transition.                          |
+| `$transition-duration`        | `core.$transition-duration`        | Duration of modal transition.                                                |
+| `$transition-timing-function` | `core.$transition-timing-function` | Timing function used for modal transitions.                                  |
+| `$background`                 | `core.$night`                      | Background color of modal screen.                                            |
+| `$background-alpha`           | `0.8`                              | The alpha channel for the modal screen.                                      |
+| `$box-shadow`                 | `core.$box-shadow-24dp`            | Box shadow applied to modal dialog elements.                                 |
+| `$aside-width`                | `16em`                             | Width applied to modals using `_pos_left` and `_pos_right` modifiers.        |
+| `$aside-max-width`            | `90%`                              | Max width applied to modals using `_pos_left` and `_pos_right` modifiers.    |
+| `$size-scale`                 | [Map Ref &darr;](#size-scale)      | The size scale map the `modal_size_[key]` modifier uses to build its styles. |
+
+#### $size-scale
+
+The size scale map the `modal_size_[key]` modifier uses to build its styles.
+
+```scss
+$size-scale: (
+  'xs': 18em,
+  'sm': 26em,
+  'md': 38em,
+  'lg': 46em,
+  'xl': 58em
+) !default;
+```
 
 ### JavaScript Options
 
