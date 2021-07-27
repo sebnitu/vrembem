@@ -230,12 +230,7 @@ Adds styles to a modal that make it fill the entire viewport when opened.
 
 ## modal_pos_[value]
 
-The default position of modals is in the center of the viewport. The position modifier allows you four other options:
-
-- `modal_pos_top`
-- `modal_pos_left`
-- `modal_pos_right`
-- `modal_pos_bottom`
+The default position of modals is in the center of the viewport. The position modifier allows positioning a modal to the top, bottom, left and right side of the document viewport.
 
 {% include demo_open.html class_grid="grid_stack" class_parent="padding border radius" %}
 <div class="level">
@@ -357,20 +352,48 @@ The default position of modals is in the center of the viewport. The position mo
 ```
 {% include demo_close.html %}
 
-## modal_size_[value]
+### Available Variations
 
-Adjusts the size of modals. This modifier provides two options, `modal_size_sm` and `modal_size_lg` all relative to the default modal size.
+- `modal_pos_top`
+- `modal_pos_left`
+- `modal_pos_right`
+- `modal_pos_bottom`
+
+## modal_size_[key]
+
+Adjusts the size of modals. This modifier provides five options that get built from the [`$size-scale`](#size-scale) variable map.
 
 {% include demo_open.html class_grid="grid_stack" class_parent="padding border radius" %}
 <div class="level">
+  <button data-modal-open="modal-size-xs" class="link">Extra small modal</button>
   <button data-modal-open="modal-size-sm" class="link">Small modal</button>
+  <button data-modal-open="modal-size-md" class="link">Medium modal</button>
   <button data-modal-open="modal-size-lg" class="link">Large modal</button>
+  <button data-modal-open="modal-size-xl" class="link">Extra large modal</button>
+</div>
+
+<div data-modal="modal-size-xs" class="modal modal_size_xs">
+  <div data-modal-dialog class="modal__dialog dialog">
+    <div class="dialog__body level flex-justify-between">
+      <p>Extra small modal</p>
+      <button data-modal-close class="link">Close</button>
+    </div>
+  </div>
 </div>
 
 <div data-modal="modal-size-sm" class="modal modal_size_sm">
   <div data-modal-dialog class="modal__dialog dialog">
     <div class="dialog__body level flex-justify-between">
       <p>Small modal</p>
+      <button data-modal-close class="link">Close</button>
+    </div>
+  </div>
+</div>
+
+<div data-modal="modal-size-md" class="modal modal_size_md">
+  <div data-modal-dialog class="modal__dialog dialog">
+    <div class="dialog__body level flex-justify-between">
+      <p>Medium modal</p>
       <button data-modal-close class="link">Close</button>
     </div>
   </div>
@@ -384,12 +407,30 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
     </div>
   </div>
 </div>
+
+<div data-modal="modal-size-xl" class="modal modal_size_xl">
+  <div data-modal-dialog class="modal__dialog dialog">
+    <div class="dialog__body level flex-justify-between">
+      <p>Extra large modal</p>
+      <button data-modal-close class="link">Close</button>
+    </div>
+  </div>
+</div>
+
 {% include demo_switch.html %}
 ```html
 <div data-modal="[unique-id]" class="modal modal_size_sm">...</div>
 <div data-modal="[unique-id]" class="modal modal_size_lg">...</div>
 ```
 {% include demo_close.html %}
+
+### Available Variations
+
+- `modal_size_xs`
+- `modal_size_sm`
+- `modal_size_md`
+- `modal_size_lg`
+- `modal_size_xl`
 
 ## Sass variables
 
@@ -434,16 +475,6 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
         <td data-mobile-label="Desc">The default max width of modals.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$width-sm</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">18em</code></td>
-        <td data-mobile-label="Desc">The small width applied to modals with <code class="code">_size_sm</code> modifier.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$width-lg</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">56em</code></td>
-        <td data-mobile-label="Desc">The large width applied to modals with <code class="code">_size_lg</code> modifier.</td>
-      </tr>
-      <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$travel</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">5em</code></td>
         <td data-mobile-label="Desc">Distance that modal travel during their transition.</td>
@@ -473,6 +504,7 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$box-shadow-24dp</code></td>
         <td data-mobile-label="Desc">Box shadow applied to modal dialog elements.</td>
       </tr>
+      <!-- modal_pos_[value] -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$aside-width</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">16em</code></td>
@@ -483,9 +515,31 @@ Adjusts the size of modals. This modifier provides two options, `modal_size_sm` 
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">90%</code></td>
         <td data-mobile-label="Desc">Max width applied to modals using <code class="code">_pos_left</code> and <code class="code">_pos_right</code> modifiers.</td>
       </tr>
+      <!-- modal_size_[key] -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$size-scale</code></td>
+        <td data-mobile-label="Default">
+          <a class="link text-nowrap" href="#size-scale">Map Ref &darr;</a>
+        </td>
+        <td data-mobile-label="Desc">The size scale map the <code class="code">modal_size_[key]</code> modifier uses to build its styles.</td>
+      </tr>
     </tbody>
   </table>
 </div>
+
+### $size-scale
+
+The size scale map the `modal_size_[key]` modifier uses to build its styles.
+
+```scss
+$size-scale: (
+  'xs': 18em,
+  'sm': 26em,
+  'md': 38em,
+  'lg': 46em,
+  'xl': 58em
+) !default;
+```
 
 ## JavaScript Options
 

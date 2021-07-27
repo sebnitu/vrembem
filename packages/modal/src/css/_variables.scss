@@ -10,7 +10,6 @@ $width: 38em !default;
 $travel: 5em !default;
 $transition-duration: core.$transition-duration !default;
 $transition-timing-function: core.$transition-timing-function !default;
-
 $background: core.$night !default;
 $background-alpha: 0.8 !default;
 $box-shadow: core.$box-shadow-24dp !default;
@@ -19,11 +18,11 @@ $box-shadow: core.$box-shadow-24dp !default;
 $aside-width: 16em !default;
 $aside-max-width: 90% !default;
 
-// modal_size_[value]
+// modal_size_[key]
 $size-scale: (
   'xs': 18em,
   'sm': 26em,
   'md': 38em,
   'lg': 46em,
   'xl': 58em
-);
+) !default;
