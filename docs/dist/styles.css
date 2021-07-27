@@ -3670,7 +3670,7 @@ input::-moz-placeholder {
 }
 
 .modal__dialog {
-  width: 38em;
+  width: 36em;
   max-width: 100%;
   overflow: auto;
   transform: translateY(-5em);
@@ -3783,23 +3783,23 @@ input::-moz-placeholder {
 }
 
 .modal_size_xs .modal__dialog {
-  width: 18em;
+  width: 20em;
 }
 
 .modal_size_sm .modal__dialog {
-  width: 26em;
+  width: 24em;
 }
 
 .modal_size_md .modal__dialog {
-  width: 38em;
+  width: 36em;
 }
 
 .modal_size_lg .modal__dialog {
-  width: 46em;
+  width: 48em;
 }
 
 .modal_size_xl .modal__dialog {
-  width: 58em;
+  width: 60em;
 }
 
 .notice {
