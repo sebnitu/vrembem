@@ -186,7 +186,7 @@ Adjusts the size of modals. This modifier provides five options that get built f
 | `$prefix-modifier`            | `"_"`                              | String to prefix modifiers with.                                             |
 | `$prefix-modifier-value`      | `"_"`                              | String to prefix modifier values with.                                       |
 | `$z-index`                    | `1000`                             | Applied z-index to modals to control the stack order.                        |
-| `$width`                      | `38em`                             | The default max width of modals.                                             |
+| `$width`                      | `36em`                             | The default max width of modals.                                             |
 | `$travel`                     | `5em`                              | Distance that modal travel during their transition.                          |
 | `$transition-duration`        | `core.$transition-duration`        | Duration of modal transition.                                                |
 | `$transition-timing-function` | `core.$transition-timing-function` | Timing function used for modal transitions.                                  |
@@ -203,11 +203,11 @@ The size scale map the `modal_size_[key]` modifier uses to build its styles.
 
 ```scss
 $size-scale: (
-  'xs': 18em,
-  'sm': 26em,
-  'md': 38em,
-  'lg': 46em,
-  'xl': 58em
+  'xs': 20em, // 288px
+  'sm': 24em, // 384px
+  'md': 36em, // 576px
+  'lg': 48em, // 768px
+  'xl': 60em  // 960px
 ) !default;
 ```
 

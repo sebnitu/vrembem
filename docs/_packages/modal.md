@@ -471,7 +471,7 @@ Adjusts the size of modals. This modifier provides five options that get built f
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$width</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">38em</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">36em</code></td>
         <td data-mobile-label="Desc">The default max width of modals.</td>
       </tr>
       <tr>
@@ -533,11 +533,11 @@ The size scale map the `modal_size_[key]` modifier uses to build its styles.
 
 ```scss
 $size-scale: (
-  'xs': 18em,
-  'sm': 26em,
-  'md': 38em,
-  'lg': 46em,
-  'xl': 58em
+  'xs': 20em, // 288px
+  'sm': 24em, // 384px
+  'md': 36em, // 576px
+  'lg': 48em, // 768px
+  'xl': 60em  // 960px
 ) !default;
 ```
 

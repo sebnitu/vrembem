@@ -6,7 +6,7 @@ $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
 $z-index: 1000 !default;
-$width: 38em !default;
+$width: 36em !default;
 $travel: 5em !default;
 $transition-duration: core.$transition-duration !default;
 $transition-timing-function: core.$transition-timing-function !default;
@@ -20,9 +20,9 @@ $aside-max-width: 90% !default;
 
 // modal_size_[key]
 $size-scale: (
-  'xs': 18em,
-  'sm': 26em,
-  'md': 38em,
-  'lg': 46em,
-  'xl': 58em
+  'xs': 20em, // 288px
+  'sm': 24em, // 384px
+  'md': 36em, // 576px
+  'lg': 48em, // 768px
+  'xl': 60em  // 960px
 ) !default;
