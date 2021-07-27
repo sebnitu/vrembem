@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.35.0 to CHANGELOG.md
+chore(release): add v1.35.1 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.35.1 (2021-07-27)
+
+#### :house: Refactor
+* `modal`
+  * [#681](https://github.com/sebnitu/vrembem/pull/681) Update modal size scale to more usable values
 
 
 ## v1.35.0 (2021-07-27)
