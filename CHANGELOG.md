@@ -23,7 +23,7 @@ chore(release): add v1.35.0 to CHANGELOG.md
 
 #### :tada: New Feature
 * `modal`
-  * [#680](https://github.com/sebnitu/vrembem/pull/680) Modal size modifier
+  * [#680](https://github.com/sebnitu/vrembem/pull/680) Add more size modifiers to modal component
 
 
 ## v1.34.2 (2021-07-19)
