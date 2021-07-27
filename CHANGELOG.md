@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.34.2 to CHANGELOG.md
+chore(release): add v1.35.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.35.0 (2021-07-27)
+
+#### :tada: New Feature
+* `modal`
+  * [#680](https://github.com/sebnitu/vrembem/pull/680) Modal size modifier
 
 
 ## v1.34.2 (2021-07-19)
