@@ -30,7 +30,7 @@ The most basic implementation of the level component consists of the `level` con
 </div>
 ```
 
-> Level is a flex based layout component. That means you can use the [`@vremben/utility`](https://github.com/sebnitu/vrembem/tree/master/packages/utility) module—specifically the [`flex`](https://github.com/sebnitu/vrembem/tree/master/packages/utility#flex) utility—to further customize your layout.
+> Level is a flex based layout component. That means you can use the [`@vremben/utility`](https://github.com/sebnitu/vrembem/tree/master/packages/utility) package—specifically the [`flex`](https://github.com/sebnitu/vrembem/tree/master/packages/utility#flex) module—to further customize your layout.
 
 ## Modifiers
 
@@ -96,6 +96,18 @@ Adjusts the vertical gap spacing based on the provided key. Gap key output is ba
 - `level_gap-y_md`
 - `level_gap-y_lg`
 - `level_gap-y_xl`
+
+## level_nowrap
+
+Removes the ability for level children to wrap and allows them to shrink as needed.
+
+```html
+<div class="level level_nowrap">
+  <div>...</div>
+  <div>...</div>
+  <div>...</div>
+</div>
+```
 
 ## Customization
 
