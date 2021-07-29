@@ -2985,6 +2985,13 @@ input::-moz-placeholder {
   margin-top: 1.5em;
 }
 
+.level_nowrap {
+  flex-wrap: nowrap;
+}
+.level_nowrap > * {
+  flex-shrink: 1;
+}
+
 .media {
   display: flex;
   align-items: flex-start;

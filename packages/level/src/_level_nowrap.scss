@@ -1,0 +1,13 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+
+.#{$_b}level#{$_m}nowrap {
+  flex-wrap: nowrap;
+
+  > * {
+    flex-shrink: 1;
+  }
+}

@@ -38,6 +38,8 @@ The most basic implementation of the grid component consists of two elements. By
 ```
 {% include demo_close.html %}
 
+> Grid is a flex based layout component. That means you can use the [`@vremben/utility`](https://github.com/sebnitu/vrembem/tree/master/packages/utility) package—specifically [`flex`](https://github.com/sebnitu/vrembem/tree/master/packages/utility#flex) and [`span`](https://github.com/sebnitu/vrembem/tree/master/packages/utility#span) modules—to further customize your layout.
+
 ### grid__clear
 
 The clear element allows you to start a new row at any point in a column set.
