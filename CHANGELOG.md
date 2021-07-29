@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.35.1 to CHANGELOG.md
+chore(release): add v1.35.2 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.35.2 (2021-07-29)
+
+#### :bug: Bug Fix
+* `level`
+  * [#683](https://github.com/sebnitu/vrembem/pull/683) Fix max-width for children elements of the level component
 
 
 ## v1.35.1 (2021-07-27)
