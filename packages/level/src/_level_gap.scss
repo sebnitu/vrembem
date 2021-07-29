@@ -8,10 +8,18 @@ $_v: var.$prefix-modifier-value;
 @each $key, $value in var.$gap-map {
   .#{$_b}level#{$_m}gap#{$_v}#{$key} {
     @include core.flex-gap($value);
+
+    > * {
+      max-width: calc(100% - #{$value});
+    }
   }
 
   .#{$_b}level#{$_m}gap-x#{$_v}#{$key} {
     @include core.flex-gap($value, 'x');
+
+    > * {
+      max-width: calc(100% - #{$value});
+    }
   }
 
   .#{$_b}level#{$_m}gap-y#{$_v}#{$key} {
