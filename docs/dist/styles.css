@@ -2808,7 +2808,7 @@ input::-moz-placeholder {
 }
 .level > * {
   flex: 0 0 auto;
-  max-width: 100%;
+  max-width: calc(100% - var.$gap);
 }
 
 .level_gap_none {
@@ -2819,12 +2819,18 @@ input::-moz-placeholder {
   margin-top: 0;
   margin-left: 0;
 }
+.level_gap_none > * {
+  max-width: calc(100% - $value);
+}
 
 .level_gap-x_none {
   margin-left: 0;
 }
 .level_gap-x_none > * {
   margin-left: 0;
+}
+.level_gap-x_none > * {
+  max-width: calc(100% - $value);
 }
 
 .level_gap-y_none {
@@ -2842,12 +2848,18 @@ input::-moz-placeholder {
   margin-top: 1px;
   margin-left: 1px;
 }
+.level_gap_xs > * {
+  max-width: calc(100% - $value);
+}
 
 .level_gap-x_xs {
   margin-left: -1px;
 }
 .level_gap-x_xs > * {
   margin-left: 1px;
+}
+.level_gap-x_xs > * {
+  max-width: calc(100% - $value);
 }
 
 .level_gap-y_xs {
@@ -2865,12 +2877,18 @@ input::-moz-placeholder {
   margin-top: 0.25em;
   margin-left: 0.25em;
 }
+.level_gap_sm > * {
+  max-width: calc(100% - $value);
+}
 
 .level_gap-x_sm {
   margin-left: -0.25em;
 }
 .level_gap-x_sm > * {
   margin-left: 0.25em;
+}
+.level_gap-x_sm > * {
+  max-width: calc(100% - $value);
 }
 
 .level_gap-y_sm {
@@ -2888,12 +2906,18 @@ input::-moz-placeholder {
   margin-top: 0.5em;
   margin-left: 0.5em;
 }
+.level_gap_md > * {
+  max-width: calc(100% - $value);
+}
 
 .level_gap-x_md {
   margin-left: -0.5em;
 }
 .level_gap-x_md > * {
   margin-left: 0.5em;
+}
+.level_gap-x_md > * {
+  max-width: calc(100% - $value);
 }
 
 .level_gap-y_md {
@@ -2911,12 +2935,18 @@ input::-moz-placeholder {
   margin-top: 1em;
   margin-left: 1em;
 }
+.level_gap_lg > * {
+  max-width: calc(100% - $value);
+}
 
 .level_gap-x_lg {
   margin-left: -1em;
 }
 .level_gap-x_lg > * {
   margin-left: 1em;
+}
+.level_gap-x_lg > * {
+  max-width: calc(100% - $value);
 }
 
 .level_gap-y_lg {
@@ -2934,12 +2964,18 @@ input::-moz-placeholder {
   margin-top: 1.5em;
   margin-left: 1.5em;
 }
+.level_gap_xl > * {
+  max-width: calc(100% - $value);
+}
 
 .level_gap-x_xl {
   margin-left: -1.5em;
 }
 .level_gap-x_xl > * {
   margin-left: 1.5em;
+}
+.level_gap-x_xl > * {
+  max-width: calc(100% - $value);
 }
 
 .level_gap-y_xl {
