@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.35.2 to CHANGELOG.md
+chore(release): add v1.36.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.36.0 (2021-07-29)
+
+#### :tada: New Feature
+* `grid`, `level`
+  * [#684](https://github.com/sebnitu/vrembem/pull/684) Add new level nowrap modifier
 
 
 ## v1.35.2 (2021-07-29)
