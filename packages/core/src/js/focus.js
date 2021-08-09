@@ -16,6 +16,17 @@ export const focusTrigger = (obj = null) => {
   obj.memory.trigger = null;
 };
 
+export const focusableSelectors = [
+  'a[href]:not([disabled])',
+  'button:not([disabled])',
+  'textarea:not([disabled])',
+  'input[type="text"]:not([disabled])',
+  'input[type="radio"]:not([disabled])',
+  'input[type="checkbox"]:not([disabled])',
+  'select:not([disabled])',
+  '[tabindex]:not([tabindex^="-"])'
+];
+
 export class FocusTrap {
   constructor() {
     this.target = null;
@@ -79,7 +90,7 @@ export class FocusTrap {
     const initScrollTop = (this.inner) ? this.inner.scrollTop : 0;
 
     this.target
-      .querySelectorAll('a[href]:not([disabled]),button:not([disabled]),textarea:not([disabled]),input[type="text"]:not([disabled]),input[type="radio"]:not([disabled]),input[type="checkbox"]:not([disabled]),select:not([disabled]),[tabindex]:not([tabindex="-1"])')
+      .querySelectorAll(focusableSelectors.join(','))
       .forEach((el) => {
         el.focus();
         if (el === document.activeElement) {
