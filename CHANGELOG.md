@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.36.0 to CHANGELOG.md
+chore(release): add v1.36.1 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.36.1 (2021-09-25)
+
+#### :house: Refactor
+* `core`
+  * [#713](https://github.com/sebnitu/vrembem/pull/713) Move focusable selectors into array and join when needed
 
 
 ## v1.36.0 (2021-07-29)
