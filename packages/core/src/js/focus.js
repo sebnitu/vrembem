@@ -1,3 +1,5 @@
+import focusableSelectors from 'focusable-selectors';
+
 export const focusTarget = (target, settings) => {
   const innerFocus = target.querySelector(
     `[data-${settings.dataFocus}]`
@@ -79,7 +81,7 @@ export class FocusTrap {
     const initScrollTop = (this.inner) ? this.inner.scrollTop : 0;
 
     this.target
-      .querySelectorAll('a[href]:not([disabled]),button:not([disabled]),textarea:not([disabled]),input[type="text"]:not([disabled]),input[type="radio"]:not([disabled]),input[type="checkbox"]:not([disabled]),select:not([disabled]),[tabindex]:not([tabindex="-1"])')
+      .querySelectorAll(focusableSelectors.join(','))
       .forEach((el) => {
         el.focus();
         if (el === document.activeElement) {
