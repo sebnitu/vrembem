@@ -2820,7 +2820,7 @@ input::-moz-placeholder {
   margin-left: 0;
 }
 .level_gap_none > * {
-  max-width: calc(100% - 0);
+  max-width: 100%;
 }
 
 .level_gap-x_none {
@@ -2830,7 +2830,7 @@ input::-moz-placeholder {
   margin-left: 0;
 }
 .level_gap-x_none > * {
-  max-width: calc(100% - 0);
+  max-width: 100%;
 }
 
 .level_gap-y_none {
@@ -3910,7 +3910,7 @@ input::-moz-placeholder {
   bottom: 100%;
   left: 0;
   width: 100%;
-  height: calc(calc(var(--popover-offset) + 1) * 1px);
+  height: calc((var(--popover-offset) + 1) * 1px);
 }
 .popover.is-active {
   z-index: 11;
@@ -3929,7 +3929,7 @@ input::-moz-placeholder {
   bottom: auto;
   left: 0;
   width: 100%;
-  height: calc(calc(var(--popover-offset) + 1) * 1px);
+  height: calc((var(--popover-offset) + 1) * 1px);
 }
 
 .popover[data-popper-placement^=bottom] {
@@ -3941,7 +3941,7 @@ input::-moz-placeholder {
   bottom: 100%;
   left: 0;
   width: 100%;
-  height: calc(calc(var(--popover-offset) + 1) * 1px);
+  height: calc((var(--popover-offset) + 1) * 1px);
 }
 
 .popover[data-popper-placement^=left] {
@@ -3952,7 +3952,7 @@ input::-moz-placeholder {
   right: auto;
   bottom: 0;
   left: 100%;
-  width: calc(calc(var(--popover-offset) + 1) * 1px);
+  width: calc((var(--popover-offset) + 1) * 1px);
   height: 100%;
 }
 
@@ -3964,7 +3964,7 @@ input::-moz-placeholder {
   right: 100%;
   bottom: 0;
   left: auto;
-  width: calc(calc(var(--popover-offset) + 1) * 1px);
+  width: calc((var(--popover-offset) + 1) * 1px);
   height: 100%;
 }
 
@@ -7353,8 +7353,8 @@ input::-moz-placeholder {
   height: 1.25em;
   content: "";
   position: absolute;
-  top: calc(50% - (1.25em * 0.5));
-  left: calc(50% - (1.25em * 0.5));
+  top: calc(50% - 0.625em);
+  left: calc(50% - 0.625em);
   animation: spin 0.6s infinite linear;
   border: 2px solid;
   border-radius: 9999px;
