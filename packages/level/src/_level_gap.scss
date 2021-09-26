@@ -10,7 +10,11 @@ $_v: var.$prefix-modifier-value;
     @include core.flex-gap($value);
 
     > * {
-      max-width: calc(100% - #{$value});
+      @if ($value > 0) {
+        max-width: calc(100% - #{$value});
+      } @else {
+        max-width: 100%;
+      }
     }
   }
 
@@ -18,7 +22,11 @@ $_v: var.$prefix-modifier-value;
     @include core.flex-gap($value, 'x');
 
     > * {
-      max-width: calc(100% - #{$value});
+      @if ($value > 0) {
+        max-width: calc(100% - #{$value});
+      } @else {
+        max-width: 100%;
+      }
     }
   }
 
