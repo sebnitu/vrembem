@@ -48,6 +48,31 @@ export class FocusTrap {
     this.target = null;
   }
 
+  refresh() {
+    // Check if a target has been set
+    if (!this.target) return;
+
+    // Remove existing  events
+    this.target.removeEventListener('keydown', this.__handlerFocusTrap);
+    this.target.removeEventListener('keydown', this.handlerFocusLock);
+
+    // Get the focusable elements
+    this.focusable = this.getFocusable();
+
+    // Setup the focus handlers based on focusable length
+    if (this.focusable.length) {
+      // If there are focusable elements, setup focus trap
+      this.focusableFirst = this.focusable[0];
+      this.focusableLast = this.focusable[this.focusable.length - 1];
+      this.target.addEventListener('keydown', this.__handlerFocusTrap);
+    } else {
+      // If there are no focusable elements, setup focus lock
+      this.focusableFirst = null;
+      this.focusableLast = null;
+      this.target.addEventListener('keydown', this.handlerFocusLock);
+    }
+  }
+
   handlerFocusTrap(event) {
     const isTab = (event.key === 'Tab' || event.keyCode === 9);
     if (!isTab) return;
