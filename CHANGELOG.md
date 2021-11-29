@@ -14,9 +14,17 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.36.1 to CHANGELOG.md
+chore(release): add v1.37.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+## v1.37.0 (2021-11-29)
+
+#### :tada: New Feature
+* `drawer`, `modal`
+  * [#771](https://github.com/sebnitu/vrembem/pull/771) Attach a components module to custom events detail
+* `core`
+  * [#770](https://github.com/sebnitu/vrembem/pull/770) Add refresh functionality to the focus trap module
 
 
 ## v1.36.1 (2021-09-25)
