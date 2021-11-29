@@ -213,6 +213,45 @@ test('Should not throw error if tabindex="-1" is not present on inner target', (
   expect(focusTrap.init.bind(focusTrap, el)).not.toThrowError();
 });
 
+describe(('FocusTrap.refresh'), () => {
+  it('should correctly update the list of focusable elements', () => {
+    const el = document.querySelector('.item-1');
+    const focusTrap = new FocusTrap();
+
+    focusTrap.init(el);
+
+    expect(focusTrap.focusable.length).toBe(3);
+
+    el.querySelector('.middle').remove();
+
+    focusTrap.refresh();
+
+    expect(focusTrap.focusable.length).toBe(2);
+  });
+
+  it('should correctly setup a focus lock if no focusable elements are found', () => {
+    const el = document.querySelector('.item-1');
+    const focusTrap = new FocusTrap();
+
+    focusTrap.init(el);
+
+    expect(focusTrap.focusable.length).toBe(3);
+
+    el.querySelector('.first').remove();
+    el.querySelector('.middle').remove();
+    el.querySelector('.last').remove();
+
+    focusTrap.refresh();
+
+    expect(focusTrap.focusable.length).toBe(0);
+  });
+
+  it('should not throw an error if focus trap has not been initialized yet', () => {
+    const focusTrap = new FocusTrap();
+    expect(() => { focusTrap.refresh(); }).not.toThrow();
+  });
+});
+
 // NOTICE: Requires a headless browser to test properly
 
 // const markupPruneFocusable = `
