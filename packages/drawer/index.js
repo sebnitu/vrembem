@@ -146,6 +146,7 @@ export default class Drawer {
       }
       focusTarget(drawer, this.settings);
       drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'opened', {
+        detail: this,
         bubbles: true
       }));
       this.working = false;
@@ -170,6 +171,7 @@ export default class Drawer {
       focusTrigger(this);
       this.focusTrap.destroy();
       drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'closed', {
+        detail: this,
         bubbles: true
       }));
       this.working = false;

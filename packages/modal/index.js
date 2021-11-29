@@ -104,6 +104,7 @@ export default class Modal {
       focusTarget(modal, this.settings);
       setInert(true, this.settings.selectorInert);
       modal.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'opened', {
+        detail: this,
         bubbles: true
       }));
       this.working = false;
@@ -125,6 +126,7 @@ export default class Modal {
       if (returnFocus) focusTrigger(this);
       this.focusTrap.destroy();
       modal.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'closed', {
+        detail: this,
         bubbles: true
       }));
       this.working = false;
