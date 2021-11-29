@@ -280,12 +280,14 @@
 
     console.log(modal);
 
-    document.addEventListener('modal:opened', () => {
-      console.log(modal.memory);
+    document.addEventListener('modal:opened', (event) => {
+      console.log('Target:', event.target);
+      console.log('Detail:', event.detail);
     });
 
     document.addEventListener('modal:closed', () => {
-      console.log(modal.memory);
+      console.log('Target:', event.target);
+      console.log('Detail:', event.detail);
     });
 
     document.addEventListener('click', async () => {
