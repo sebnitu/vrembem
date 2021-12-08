@@ -57,11 +57,11 @@ $flex-grow-count: 6 !default;
 $flex-shrink-count: 6 !default;
 $max-width: 70rem !default;
 $max-width-scale: (
-  'none': none,
-  'xs': 45rem,
-  'sm': 60rem,
-  'md': 70rem,
-  'lg': 80rem,
-  'xl': 90rem,
-  'full': 100%
+  "none": none,
+  "xs": 45rem,
+  "sm": 60rem,
+  "md": 70rem,
+  "lg": 80rem,
+  "xl": 90rem,
+  "full": 100%
 ) !default;

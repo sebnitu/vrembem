@@ -1,38 +1,39 @@
-module.exports = {
-  // Extends
-  // https://github.com/stylelint/stylelint-config-standard
-  "extends": "stylelint-config-standard",
-
-  // Plugins
-  "plugins": [
-    "stylelint-order",
-    "stylelint-scss",
-    "stylelint-selector-bem-pattern"
+{
+  "extends": [
+    "stylelint-config-standard-scss"
   ],
-
+  "plugins": [
+    "stylelint-order"
+  ],
   "rules": {
-    // Rules
-    // https://stylelint.io/user-guide/rules
+    "scss/at-else-closing-brace-newline-after": null,
+    "scss/at-else-closing-brace-space-after": null,
+    "scss/at-else-empty-line-before": null,
+    "scss/at-if-closing-brace-newline-after": null,
+    "scss/at-if-closing-brace-space-after": null,
+    "scss/at-import-no-partial-leading-underscore": true,
+    "scss/at-mixin-argumentless-call-parentheses": null,
+    "scss/at-rule-conditional-no-parentheses": null,
+    "scss/dollar-variable-colon-space-after": null,
+    "scss/dollar-variable-empty-line-before": null,
+    "scss/dollar-variable-pattern": null,
+    "scss/double-slash-comment-empty-line-before": null,
+    "scss/selector-no-redundant-nesting-selector": true,
     "at-rule-no-unknown": null,
     "at-rule-empty-line-before": null,
-    "block-closing-brace-newline-after": [
-      "always", {
-        "ignoreAtRules": [
-          "if",
-          "else"
-        ]
-      }
-    ],
+    "block-closing-brace-newline-after": "always",
+    "color-function-notation": "legacy",
     "color-hex-length": null,
     "declaration-empty-line-before": "never",
+    "max-line-length": null,
+    "media-feature-name-no-vendor-prefix": null,
     "no-descending-specificity": null,
     "property-no-unknown": true,
+    "property-no-vendor-prefix": null,
     "selector-max-compound-selectors": 3,
     "selector-max-id": 0,
     "selector-no-qualifying-type": true,
-
-    // Rules: stylelint-order
-    // https://github.com/hudochenkov/stylelint-order
+    "selector-no-vendor-prefix": null,
     "order/order": [
       [
         {
@@ -43,29 +44,18 @@ module.exports = {
         "declarations"
       ]
     ],
-    // "order/properties-alphabetical-order": true,
     "order/properties-order": [
-
-      // Heading
-
       "content",
       "quotes",
-
-      // Position
-
       "position",
       "z-index",
       "top",
       "right",
       "bottom",
       "left",
-
-      // Box
       "display",
       "visibility",
-
       "box-sizing",
-
       "grid",
       "grid-after",
       "grid-area",
@@ -90,7 +80,6 @@ module.exports = {
       "grid-template-areas",
       "grid-template-columns",
       "grid-template-rows",
-
       "flex",
       "flex-basis",
       "flex-direction",
@@ -103,36 +92,29 @@ module.exports = {
       "align-self",
       "justify-content",
       "order",
-
       "width",
       "min-width",
       "max-width",
       "height",
       "min-height",
       "max-height",
-
       "margin",
       "margin-top",
       "margin-right",
       "margin-bottom",
       "margin-left",
-
       "padding",
       "padding-top",
       "padding-right",
       "padding-bottom",
       "padding-left",
-
       "float",
       "clear",
-
       "overflow",
       "overflow-x",
       "overflow-y",
-
       "clip",
       "zoom",
-
       "columns",
       "column-gap",
       "column-fill",
@@ -140,7 +122,6 @@ module.exports = {
       "column-span",
       "column-count",
       "column-width",
-
       "table-layout",
       "empty-cells",
       "caption-side",
@@ -150,9 +131,6 @@ module.exports = {
       "list-style-position",
       "list-style-type",
       "list-style-image",
-
-      // Animation
-
       "animation",
       "animation-name",
       "animation-duration",
@@ -161,66 +139,52 @@ module.exports = {
       "animation-delay",
       "animation-iteration-count",
       "animation-direction",
-
       "transform",
       "transform-origin",
       "transform-style",
       "backface-visibility",
       "perspective",
       "perspective-origin",
-
       "transition",
       "transition-property",
       "transition-duration",
       "transition-timing-function",
       "transition-delay",
-
-      // Border
-
       "outline",
       "outline-color",
       "outline-offset",
       "outline-style",
       "outline-width",
-
       "border",
       "border-top",
       "border-right",
       "border-bottom",
       "border-left",
-
       "border-width",
       "border-top-width",
       "border-right-width",
       "border-bottom-width",
       "border-left-width",
-
       "border-style",
       "border-top-style",
       "border-right-style",
       "border-bottom-style",
       "border-left-style",
-
       "border-radius",
       "border-top-left-radius",
       "border-top-right-radius",
       "border-bottom-left-radius",
       "border-bottom-right-radius",
-
       "border-color",
       "border-top-color",
       "border-right-color",
       "border-bottom-color",
       "border-left-color",
-
       "stroke",
       "stroke-width",
       "stroke-linecap",
       "stroke-dasharray",
       "stroke-dashoffset",
-
-      // Background
-
       "background",
       "background-color",
       "background-image",
@@ -228,15 +192,10 @@ module.exports = {
       "background-position",
       "background-size",
       "background-clip",
-
       "box-shadow",
       "opacity",
       "fill",
-
-      // Text
-
       "color",
-
       "font",
       "font-family",
       "font-size",
@@ -246,16 +205,13 @@ module.exports = {
       "font-style",
       "font-variant",
       "font-weight",
-
       "font-emphasize",
       "font-emphasize-position",
       "font-emphasize-style",
-
       "letter-spacing",
       "line-height",
       "list-style",
       "word-spacing",
-
       "text-align",
       "text-align-last",
       "text-decoration",
@@ -269,25 +225,18 @@ module.exports = {
       "text-shadow",
       "text-transform",
       "text-wrap",
-
       "word-wrap",
       "overflow-wrap",
       "word-break",
-
       "text-emphasis",
       "text-emphasis-color",
       "text-emphasis-style",
       "text-emphasis-position",
-
       "vertical-align",
       "white-space",
       "word-spacing",
       "hyphens",
-
       "src",
-
-      // Other
-
       "tab-size",
       "counter-reset",
       "counter-increment",
@@ -301,18 +250,6 @@ module.exports = {
       "nav-right",
       "nav-down",
       "nav-left"
-
-    ],
-
-    // Rules: stylelint-scss
-    // https://github.com/kristerkari/stylelint-scss
-    "scss/selector-no-redundant-nesting-selector": true,
-    "scss/at-import-no-partial-leading-underscore": true,
-
-    // Rules: stylelint-selector-bem-pattern
-    // https://github.com/simonsmith/stylelint-selector-bem-pattern
-    "plugin/selector-bem-pattern": {
-      "preset": "bem"
-    }
+    ]
   }
 }
