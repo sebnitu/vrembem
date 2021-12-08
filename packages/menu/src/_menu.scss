@@ -1,3 +1,5 @@
+@use "sass:list";
+
 @use "./variables" as var;
 
 $_b: var.$prefix-block;
@@ -56,7 +58,7 @@ $_e: var.$prefix-element;
   }
 
   &_icon {
-    padding: nth(var.$padding, 1);
+    padding: list.nth(var.$padding, 1);
   }
 
   &:hover {

@@ -71,7 +71,7 @@
     $current-key: list.nth($keys, $i);
     $current-map: list.nth($maps, -1);
     $current-get: map.get($current-map, $current-key);
-    @if $current-get == null {
+    @if not $current-get {
       @error "Key `#{$key}` doesn't exist at current level in map.";
     }
     $maps: list.append($maps, $current-get);
@@ -180,7 +180,7 @@
 @function encodecolor($string) {
   @if meta.type-of($string) == "color" {
     $hex: string.slice(color.ie-hex-str($string), 4);
-    $string:unquote("#{$hex}");
+    $string: string.unquote("#{$hex}");
   }
   $string: "%23" + $string;
   @return $string;

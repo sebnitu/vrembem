@@ -30,15 +30,15 @@
   border-radius: $radius;
   pointer-events: none;
 
-  @if $dir == 'up' {
+  @if $dir == "up" {
     transform: rotate(180deg);
   }
 
-  @else if $dir == 'left' {
+  @else if $dir == "left" {
     transform: rotate(90deg);
   }
 
-  @else if $dir == 'right' {
+  @else if $dir == "right" {
     transform: rotate(-90deg);
   }
 }
@@ -47,7 +47,7 @@
 // ---
 
 @mixin blockquote() {
-  @include core.gap(var.$blockquote-gap, 'y');
+  @include core.gap(var.$blockquote-gap, "y");
   position: relative;
   padding: var.$blockquote-padding;
   border: var.$blockquote-border;
@@ -246,7 +246,7 @@
 
 @mixin type() {
   @include core.add-clearfix();
-  @include core.gap(var.$type-gap, 'y');
+  @include core.gap(var.$type-gap, "y");
   color: var.$type-color;
   font-family: var.$type-font-family;
   font-size: var.$type-font-size;

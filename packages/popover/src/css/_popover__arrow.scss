@@ -20,7 +20,7 @@ $_e: var.$prefix-element;
 }
 
 .#{$_b}popover#{$_e}arrow::after {
-  content: '';
+  content: "";
   visibility: visible;
   transform: rotate(45deg);
   border: var.$arrow-border;

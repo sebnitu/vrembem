@@ -1,3 +1,5 @@
+@use "sass:map";
+
 @use "@vrembem/core";
 @use "./variables" as var;
 
@@ -8,7 +10,7 @@ $_e: var.$prefix-element;
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: map-get(var.$padding, 'base');
+  padding: map.get(var.$padding, "base");
 }
 
 .#{$_b}section#{$_e}container {
@@ -20,7 +22,7 @@ $_e: var.$prefix-element;
 }
 
 @each $bp, $value in var.$padding {
-  @if ($bp != 'base') {
+  @if ($bp != "base") {
     @include core.media-min($bp) {
       .#{$_b}section {
         padding: $value;

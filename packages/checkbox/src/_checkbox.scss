@@ -38,7 +38,7 @@ $_e: var.$prefix-element;
 
 .#{$_b}checkbox#{$_e}icon {
   @include core.size(var.$icon-size);
-  background-image: url(fun.icon-check(var.$icon-size, var.$icon-color, var.$icon-stroke));
+  background-image: url("#{fun.icon-check(var.$icon-size, var.$icon-color, var.$icon-stroke)}");
   background-repeat: no-repeat;
   background-position: center (var.$icon-size * -1);
   background-size: 100%;
@@ -111,7 +111,7 @@ $_e: var.$prefix-element;
       transition-property: opacity, background-position;
       transition-duration: var.$transition-duration;
       transition-timing-function: var.$transition-timing-function;
-      background-image: url(fun.icon-minus(var.$icon-size, var.$icon-color, var.$icon-stroke));
+      background-image: url("#{fun.icon-minus(var.$icon-size, var.$icon-color, var.$icon-stroke)}");
       background-position: center center;
       opacity: 1;
     }

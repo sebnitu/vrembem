@@ -13,11 +13,11 @@ $_c: var.$class-type;
   .#{$_b}h6 {
     @include mix.heading-base();
   }
-  @include mix.heading-levels($prefix: '.#{$_b}');
+  @include mix.heading-levels($prefix: ".#{$_b}");
 }
 
 @if (var.$output-type) {
   .#{$_b}#{$_c} {
-    @include mix.heading-levels($prefix: '.#{$_b}');
+    @include mix.heading-levels($prefix: ".#{$_b}");
   }
 }

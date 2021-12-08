@@ -19,7 +19,7 @@ $_v: var.$prefix-modifier-value;
   }
 
   .#{$_b}level#{$_m}gap-x#{$_v}#{$key} {
-    @include core.flex-gap($value, 'x');
+    @include core.flex-gap($value, "x");
 
     > * {
       @if ($value > 0) {
@@ -31,6 +31,6 @@ $_v: var.$prefix-modifier-value;
   }
 
   .#{$_b}level#{$_m}gap-y#{$_v}#{$key} {
-    @include core.flex-gap($value, 'y');
+    @include core.flex-gap($value, "y");
   }
 }
