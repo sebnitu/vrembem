@@ -13,7 +13,8 @@
     @media (max-width: (map.get(var.$breakpoints, $point) - 1)) {
       @content;
     }
-  } @else {
+  }
+  @else {
     @if (type-of($point) == number) {
       @media (max-width: ($point - 1)) {
         @content;
@@ -32,7 +33,8 @@
     @media (min-width: map.get(var.$breakpoints, $point)) {
       @content;
     }
-  } @else {
+  }
+  @else {
     @if (type-of($point) == number) {
       @media (min-width: $point) {
         @content;
@@ -60,7 +62,8 @@
 @mixin flex-gap($val, $dir: null, $imp: null, $prop: "margin") {
   @if ($imp) {
     $imp: "!important";
-  } @else if ($imp == false) {
+  }
+  @else if ($imp == false) {
     $imp: null;
   }
 
@@ -70,13 +73,15 @@
     > * {
       #{$prop}-left: $val #{$imp};
     }
-  } @else if ($dir == "y") {
+  }
+  @else if ($dir == "y") {
     margin-top: ($val * -1) #{$imp};
 
     > * {
       #{$prop}-top: $val #{$imp};
     }
-  } @else {
+  }
+  @else {
     margin-top: ($val * -1) #{$imp};
     margin-left: ($val * -1) #{$imp};
 
@@ -96,7 +101,8 @@
 @mixin gap($val, $dir: "y", $imp: null) {
   @if ($imp) {
     $imp: "!important";
-  } @else if ($imp == false) {
+  }
+  @else if ($imp == false) {
     $imp: null;
   }
 
@@ -104,7 +110,8 @@
     > * + * {
       margin-left: $val #{$imp};
     }
-  } @else if ($dir == "y") {
+  }
+  @else if ($dir == "y") {
     > * + * {
       margin-top: $val #{$imp};
     }

@@ -23,7 +23,8 @@
     // If not in deep mode, simply merge current map with map
     @if not $deep {
       $map: map.merge($map, $current);
-    } @else {
+    }
+    @else {
       // If in deep mode, loop through all tuples in current map
       @each $key, $value in $current {
         // If value is a nested map and same key from map is a nested map as well
@@ -146,21 +147,29 @@
   $value: null;
   @if ($keyword == "hairline" or $keyword == "thin") {
     $value: 100;
-  } @else if ($keyword == "extra-light") {
+  }
+  @else if ($keyword == "extra-light") {
     $value: 200;
-  } @else if ($keyword == "light") {
+  }
+  @else if ($keyword == "light") {
     $value: 300;
-  } @else if ($keyword == "regular" or $keyword == "normal") {
+  }
+  @else if ($keyword == "regular" or $keyword == "normal") {
     $value: 400;
-  } @else if ($keyword == "medium") {
+  }
+  @else if ($keyword == "medium") {
     $value: 500;
-  } @else if ($keyword == "semi-bold" or $keyword == "semibold") {
+  }
+  @else if ($keyword == "semi-bold" or $keyword == "semibold") {
     $value: 600;
-  } @else if ($keyword == "bold") {
+  }
+  @else if ($keyword == "bold") {
     $value: 700;
-  } @else if ($keyword == "extra-bold") {
+  }
+  @else if ($keyword == "extra-bold") {
     $value: 800;
-  } @else if ($keyword == "black") {
+  }
+  @else if ($keyword == "black") {
     $value: 900;
   }
   @return $value;
@@ -200,10 +209,12 @@
         $result,
         replace(list.nth($list, $i), $old-value, $new-value, $recursive)
       );
-    } @else {
+    }
+    @else {
       @if list.nth($list, $i) == $old-value {
         $result: list.append($result, $new-value);
-      } @else {
+      }
+      @else {
         $result: list.append($result, list.nth($list, $i));
       }
     }
@@ -236,7 +247,8 @@
   @if (color.lightness($background-color) > var.$lightness-threshold) {
     // Lighter background, return dark color
     @return $color-dark;
-  } @else {
+  }
+  @else {
     // Darker background, return light color
     @return $color-light;
   }

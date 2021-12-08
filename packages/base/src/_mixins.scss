@@ -33,11 +33,9 @@
   @if $dir == "up" {
     transform: rotate(180deg);
   }
-
   @else if $dir == "left" {
     transform: rotate(90deg);
   }
-
   @else if $dir == "right" {
     transform: rotate(-90deg);
   }
@@ -111,7 +109,8 @@
   $value: null;
   @if meta.type-of($level) == number {
     $value: list.nth(map.values($map), $level);
-  } @else if meta.type-of($level) == string {
+  }
+  @else if meta.type-of($level) == string {
     $value: map.get($map, $level);
   }
   $font-size: $value;

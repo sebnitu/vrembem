@@ -22,15 +22,7 @@
     "scss/selector-no-redundant-nesting-selector": true,
     "at-rule-no-unknown": null,
     "at-rule-empty-line-before": null,
-    "block-closing-brace-newline-after": [
-      "always",
-      {
-        "ignoreAtRules": [
-          "if",
-          "else"
-        ]
-      }
-    ],
+    "block-closing-brace-newline-after": "always",
     "color-function-notation": "legacy",
     "color-hex-length": null,
     "declaration-empty-line-before": "never",

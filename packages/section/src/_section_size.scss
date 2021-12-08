@@ -11,7 +11,8 @@ $_v: var.$prefix-modifier-value;
       .#{$_b}section#{$_m}size#{$_v}#{$key} {
         padding: $value;
       }
-    } @else {
+    }
+    @else {
       @include core.media-min($bp) {
         .#{$_b}section#{$_m}size#{$_v}#{$key} {
           padding: $value;
