@@ -1,13 +1,11 @@
 {
-  "extends": "stylelint-config-standard-scss",
+  "extends": [
+    "stylelint-config-standard-scss"
+  ],
   "plugins": [
     "stylelint-order",
-    "stylelint-scss",
-    "stylelint-selector-bem-pattern"
+    "stylelint-scss"
   ],
-  "plugin/selector-bem-pattern": {
-    "preset": "bem"
-  },
   "rules": {
     "scss/at-else-closing-brace-newline-after": null,
     "scss/at-else-closing-brace-space-after": null,
