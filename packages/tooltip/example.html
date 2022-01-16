@@ -42,19 +42,28 @@
   <section class="section">
     <div class="section__container gap-y">
 
-      <p>...</p>
+      <div>
+        <span data-tooltip="Tooltip...">Tooltip Trigger</span>
+      </div>
       
+      <div>
+        <button data-popover-trigger>Tooltip Trigger</button>
+        <div class="popover popover_tooltip" data-popover data-popover-event="hover" data-popover-placement="top">
+          ...
+        </div>
+      </div>
+
     </div>
   </section>
 
   <!-- Component scripts -->
+  <script src="https://unpkg.com/vrembem"></script>
   <script src="./dist/scripts.umd.js"></script>
 
   <!-- Implementation scripts -->
   <script>
-    const tooltip = new vrembem.Tooltip({
-      autoInit: true
-    });
+    new vrembem.Popover({ autoInit: true });
+    new vrembem.Tooltip({ autoInit: true });
   </script>
 </body>
 </html>
