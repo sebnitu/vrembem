@@ -10,7 +10,6 @@ $placement: null !default;
 $offset: 8 !default;
 $overflow-padding: 10 !default;
 $flip-padding: 10 !default;
-$arrow-padding: 10 !default;
 
 $z-index: 10 !default;
 $width: 16em !default;
@@ -25,6 +24,7 @@ $font-size: core.$font-size-sm !default;
 $line-height: null !default;
 
 $arrow-size: 12px !default;
+$arrow-padding: 10 !default;
 $arrow-border: core.$border-light !default;
 
 $size-sm-width: 12em !default;

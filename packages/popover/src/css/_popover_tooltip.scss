@@ -2,12 +2,21 @@
 @use "./variables" as var;
 
 $_b: var.$prefix-block;
+$_e: var.$prefix-element;
 $_m: var.$prefix-modifier;
 
 .#{$_b}popover#{$_m}tooltip {
+  --popover-event: hover;
+  --popover-placement: top;
+  --popover-arrow-size: 8px;
+
   width: auto;
   padding: 0.5em 0.75em;
-  background: rgba(core.$color, 0.9);
+  background: core.$color;
   color: core.$white;
   font-size: core.px-to-em(12px);
+
+  .#{$_b}popover#{$_e}arrow::after {
+    border: none;
+  }
 }
