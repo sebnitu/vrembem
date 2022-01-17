@@ -3969,13 +3969,15 @@ input::-moz-placeholder {
 }
 
 :root {
+  --popover-arrow-size: 12px;
   --popover-arrow-padding: 10;
+  --popover-arrow-border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .popover__arrow,
 .popover__arrow::after {
-  width: 12px;
-  height: 12px;
+  width: var(--popover-arrow-size);
+  height: var(--popover-arrow-size);
   position: absolute;
   z-index: -1;
   visibility: hidden;
@@ -3986,35 +3988,35 @@ input::-moz-placeholder {
   content: "";
   visibility: visible;
   transform: rotate(45deg);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: var(--popover-arrow-border);
   border-right-color: transparent;
   border-bottom-color: transparent;
   background-clip: padding-box;
 }
 
 [data-popper-placement^=top] > .popover__arrow {
-  bottom: -6px;
+  bottom: calc(var(--popover-arrow-size) * -0.5);
 }
 [data-popper-placement^=top] > .popover__arrow::after {
   transform: rotate(-135deg);
 }
 
 [data-popper-placement^=bottom] > .popover__arrow {
-  top: -6px;
+  top: calc(var(--popover-arrow-size) * -0.5);
 }
 [data-popper-placement^=bottom] > .popover__arrow::after {
   transform: rotate(45deg);
 }
 
 [data-popper-placement^=left] > .popover__arrow {
-  right: -6px;
+  right: calc(var(--popover-arrow-size) * -0.5);
 }
 [data-popper-placement^=left] > .popover__arrow::after {
   transform: rotate(135deg);
 }
 
 [data-popper-placement^=right] > .popover__arrow {
-  left: -6px;
+  left: calc(var(--popover-arrow-size) * -0.5);
 }
 [data-popper-placement^=right] > .popover__arrow::after {
   transform: rotate(-45deg);
@@ -4030,6 +4032,18 @@ input::-moz-placeholder {
 
 .popover_size_lg {
   width: 20em;
+}
+
+.popover_tooltip {
+  --popover-event: hover;
+  --popover-placement: top;
+  --popover-arrow-size: 8px;
+  --popover-arrow-border: none;
+  width: auto;
+  padding: 0.5em 0.75em;
+  background: #212121;
+  color: #fff;
+  font-size: 0.75em;
 }
 
 .radio {
