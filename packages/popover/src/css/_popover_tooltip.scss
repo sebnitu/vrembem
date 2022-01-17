@@ -7,7 +7,7 @@ $_m: var.$prefix-modifier;
 .#{$_b}popover#{$_m}tooltip {
   width: auto;
   padding: 0.5em 0.75em;
-  font-size: core.px-to-em(12px);
   background: rgba(core.$color, 0.9);
   color: core.$white;
+  font-size: core.px-to-em(12px);
 }
