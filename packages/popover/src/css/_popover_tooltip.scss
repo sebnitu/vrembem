@@ -9,14 +9,11 @@ $_m: var.$prefix-modifier;
   --popover-event: hover;
   --popover-placement: top;
   --popover-arrow-size: 8px;
+  --popover-arrow-border: none;
 
   width: auto;
   padding: 0.5em 0.75em;
   background: core.$color;
   color: core.$white;
   font-size: core.px-to-em(12px);
-
-  .#{$_b}popover#{$_e}arrow::after {
-    border: none;
-  }
 }
