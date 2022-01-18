@@ -4040,7 +4040,8 @@ input::-moz-placeholder {
   --popover-arrow-size: 8px;
   --popover-arrow-border: none;
   width: auto;
-  padding: 0.5em 0.75em;
+  max-width: 16rem;
+  padding: 0.5rem 0.75rem;
   background: #212121;
   color: #fff;
   font-size: 0.75em;
