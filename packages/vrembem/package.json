@@ -64,7 +64,6 @@
     "@vrembem/section": "^1.37.0",
     "@vrembem/switch": "^1.37.0",
     "@vrembem/table": "^1.37.0",
-    "@vrembem/tooltip": "^1.37.0",
     "@vrembem/utility": "^1.37.0"
   },
   "publishConfig": {
