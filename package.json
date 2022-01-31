@@ -13,7 +13,7 @@
     "lint:scripts": "eslint packages",
     "lint:styles": "stylelint 'packages/**/*.scss'",
     "server": "lerna run server --scope=docs --parallel",
-    "sink": "npm ci && npm-run-all build lint test:coverage",
+    "sink": "npm ci && lerna bootstrap && npm-run-all build lint test:coverage",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
