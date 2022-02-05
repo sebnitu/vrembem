@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.37.0 to CHANGELOG.md
+chore(release): add v1.38.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+## v1.38.0 (2022-02-05)
+
+#### :tada: New Feature
+* `popover`, `tooltip`, `vrembem`
+  * [#788](https://github.com/sebnitu/vrembem/pull/788) Merge tooltip into the popover component as a modifier
+
 
 ## v1.37.0 (2021-11-29)
 
