@@ -1,9 +1,7 @@
 @use "./variables" as var;
 
-$_cp: var.$prefix-custom-property;
-
 :root {
   @each $key, $value in var.$breakpoints {
-    --#{$_cp}breakpoint-#{$key}: #{$value};
+    --#{var.$prefix-variable}breakpoint-#{$key}: #{$value};
   }
 }

@@ -3,7 +3,7 @@
 // Prefixes
 // ---
 
-$prefix-custom-property: null !default;
+$prefix-variable: "vb-" !default;
 $prefix-block: null !default;
 $prefix-element: "__" !default;
 $prefix-modifier: "_" !default;
@@ -11,6 +11,12 @@ $prefix-modifier-value: "_" !default;
 
 // Breakpoints
 // ---
+
+$breakpoint-xs: 480px !default;
+$breakpoint-sm: 620px !default;
+$breakpoint-md: 760px !default;
+$breakpoint-lg: 990px !default;
+$breakpoint-xl: 1380px !default;
 
 $breakpoints: (
   "xs": 480px,
