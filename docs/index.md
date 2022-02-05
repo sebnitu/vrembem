@@ -19,10 +19,14 @@ title: "Home"
           </a>
         </div>
         <div class="grid__item">
-          <a href="http://github.com/{{ site.repository }}/releases" class="cover__version" data-tooltip="View releases on Github" data-tooltip-pos="down-left">
-              <span>Version</span>
-              <span class="version loading" data-role="version"></span>
+          <a href="http://github.com/{{ site.repository }}/releases" class="cover__version" data-popover-trigger>
+            <span>Version</span>
+            <span class="version loading" data-role="version"></span>
           </a>
+          <div class="popover popover_tooltip" data-popover data-popover-placement="bottom-start">
+            View releases on Github
+            <span class="popover__arrow" data-popover-arrow></span>
+          </div>
         </div>
       </div>
     </div>

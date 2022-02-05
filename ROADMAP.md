@@ -44,8 +44,7 @@ Milestones to reach before Vrembem is ready for it's v2 release.
 | 21  | `section`      | ✅      | There is a need for `__background` and `__screen` elements within a container, not sure if this fills that need. `card` uses similar styles.                                                    |
 | 22  | `switch`       | ✅      | Staple form control.                                                                                                                                                                            |
 | 23  | `table`        | ✅      | Table styles are important.                                                                                                                                                                     |
-| 24  | `tooltip`      | 📐      | Audit and refactor.                                                                                                                                                                             |
-| 25  | `utility`      | ✅      | Very stable with strong existing patterns. Can only grow.                                                                                                                                       |
+| 24  | `utility`      | ✅      | Very stable with strong existing patterns. Can only grow.                                                                                                                                       |
 
 **🔗 Merged Components:**
 
@@ -56,3 +55,4 @@ Milestones to reach before Vrembem is ready for it's v2 release.
 - `dropdown` - Renamed to `popover` during refactor.
 - `panel` - Deprecated for being too generic.
 - `container` - Deprecate in favor of `max-width` and `margin-auto` utilities.
+- `tooltip` - Deprecate in favor of rolling into `popover` as a modifier `popover_tooltip`.

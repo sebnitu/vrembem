@@ -294,6 +294,25 @@ Adjusts the size of the popover. There are two options relative to the default s
 - `popover_size_sm`
 - `popover_size_lg`
 
+## popover_tooltip
+
+Applies styles to a popover to better fit a "tooltip" application. The default placement will be set to `top` and are triggered by the `hover` event.
+
+{% include demo_open.html %}
+<button class="button" data-popover-trigger>Tooltip Trigger</button>
+<div class="popover popover_tooltip" data-popover>
+  This is a tooltip...
+  <span class="popover__arrow" data-popover-arrow></span>
+</div>
+{% include demo_switch.html %}
+```html
+<div class="popover popover_tooltip" data-popover>
+  ...
+  <span class="popover__arrow" data-popover-arrow></span>
+</div>
+```
+{% include demo_close.html %}
+
 ## Sass variables
 
 <div class="scroll-box">
