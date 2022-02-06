@@ -1,3 +1,12 @@
+:root {
+  --vrembem-variable-prefix: vb-;
+  --vb-breakpoint-xs: 480px;
+  --vb-breakpoint-sm: 620px;
+  --vb-breakpoint-md: 760px;
+  --vb-breakpoint-lg: 990px;
+  --vb-breakpoint-xl: 1380px;
+}
+
 *,
 *::before,
 *::after {
