@@ -4,6 +4,7 @@ export class Breakpoint {
   constructor(parent) {
     this.mediaQueryLists = [];
     this.parent = parent;
+    this.prefix = this.getVariablePrefix();
     this.__check = this.check.bind(this);
   }
 
@@ -12,7 +13,7 @@ export class Breakpoint {
     drawers.forEach((drawer) => {
       const id = drawer.getAttribute(`data-${this.parent.settings.dataDrawer}`);
       const key = drawer.getAttribute(`data-${this.parent.settings.dataBreakpoint}`);
-      const bp = this.parent.settings.breakpoints[key] ? this.parent.settings.breakpoints[key] : key;
+      const bp = this.getBreakpoint(key);
       const mql = window.matchMedia('(min-width:' + bp + ')');
       this.match(mql, drawer);
       mql.addEventListener('change', this.__check);
@@ -56,5 +57,25 @@ export class Breakpoint {
     } else {
       switchToModal(drawer, this.parent);
     }
+  }
+
+  getBreakpoint(key) {
+    console.log('getBreakpoint():', key);
+    let breakpoint = key;
+    if (this.parent.settings.breakpoints && this.parent.settings.breakpoints[key]) {
+      breakpoint = this.parent.settings.breakpoints[key];
+      console.log('Get value from settings array...', breakpoint);
+    } else if (getComputedStyle(document.body).getPropertyValue(this.prefix + key)) {
+      breakpoint = getComputedStyle(document.body).getPropertyValue(this.prefix + key);
+      console.log('Get value from CSS variable', breakpoint);
+    }
+    return breakpoint;
+  }
+
+  getVariablePrefix() {
+    let prefix = '--';
+    prefix += getComputedStyle(document.body).getPropertyValue('--vrembem-variable-prefix');
+    prefix += 'breakpoint-';
+    return prefix;
   }
 }
