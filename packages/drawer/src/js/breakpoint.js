@@ -60,14 +60,11 @@ export class Breakpoint {
   }
 
   getBreakpoint(key) {
-    console.log('getBreakpoint():', key);
     let breakpoint = key;
     if (this.parent.settings.breakpoints && this.parent.settings.breakpoints[key]) {
       breakpoint = this.parent.settings.breakpoints[key];
-      console.log('Get value from settings array...', breakpoint);
     } else if (getComputedStyle(document.body).getPropertyValue(this.prefix + key)) {
       breakpoint = getComputedStyle(document.body).getPropertyValue(this.prefix + key);
-      console.log('Get value from CSS variable', breakpoint);
     }
     return breakpoint;
   }
