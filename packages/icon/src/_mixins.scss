@@ -2,13 +2,13 @@
 
 @mixin icon-style($style) {
   @if ($style == "stroke") {
-    stroke: currentColor;
+    stroke: currentcolor;
     stroke-width: var.$stroke-width;
     fill: none;
   }
   @else if ($style == "fill") {
     stroke: none;
     stroke-width: 0;
-    fill: currentColor;
+    fill: currentcolor;
   }
 }

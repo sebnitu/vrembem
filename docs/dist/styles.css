@@ -135,7 +135,7 @@ input::-moz-placeholder {
   width: 0;
   height: 0;
   transform-origin: center;
-  border-top: 6px solid currentColor;
+  border-top: 6px solid currentcolor;
   border-right: 4px solid transparent;
   border-left: 4px solid transparent;
   border-radius: 2px;
@@ -264,13 +264,13 @@ input::-moz-placeholder {
   text-decoration: none;
 }
 .link:hover {
-  border-bottom: 1px solid currentColor;
+  border-bottom: 1px solid currentcolor;
   color: #0097a7;
 }
 .link:focus {
-  outline: currentColor dotted 1px;
+  outline: currentcolor dotted 1px;
   outline-offset: 0.125rem;
-  border-bottom: 1px solid currentColor;
+  border-bottom: 1px solid currentcolor;
   color: #0097a7;
 }
 
@@ -279,7 +279,7 @@ input::-moz-placeholder {
   color: #9e9e9e;
 }
 .link_subtle:hover, .link_subtle:focus {
-  border-color: currentColor;
+  border-color: currentcolor;
   color: #0097a7;
 }
 
@@ -288,7 +288,7 @@ input::-moz-placeholder {
   color: #fff;
 }
 .link_invert:hover, .link_invert:focus {
-  border-color: currentColor;
+  border-color: currentcolor;
   color: #fff;
 }
 
@@ -297,7 +297,7 @@ input::-moz-placeholder {
   color: rgba(255, 255, 255, 0.6);
 }
 .link_invert-subtle:hover, .link_invert-subtle:focus {
-  border-color: currentColor;
+  border-color: currentcolor;
   color: #fff;
 }
 
@@ -306,7 +306,7 @@ input::-moz-placeholder {
   color: #9e9e9e;
 }
 .type .link_subtle:hover, .type .link_subtle:focus {
-  border-color: currentColor;
+  border-color: currentcolor;
   color: #0097a7;
 }
 
@@ -315,7 +315,7 @@ input::-moz-placeholder {
   color: #fff;
 }
 .type .link_invert:hover, .type .link_invert:focus {
-  border-color: currentColor;
+  border-color: currentcolor;
   color: #fff;
 }
 
@@ -324,7 +324,7 @@ input::-moz-placeholder {
   color: rgba(255, 255, 255, 0.6);
 }
 .type .link_invert-subtle:hover, .type .link_invert-subtle:focus {
-  border-color: currentColor;
+  border-color: currentcolor;
   color: #fff;
 }
 
@@ -421,14 +421,14 @@ input::-moz-placeholder {
 }
 .type > a:hover,
 .type > :not(div) a:hover {
-  border-bottom: 1px solid currentColor;
+  border-bottom: 1px solid currentcolor;
   color: #0097a7;
 }
 .type > a:focus,
 .type > :not(div) a:focus {
-  outline: currentColor dotted 1px;
+  outline: currentcolor dotted 1px;
   outline-offset: 0.125rem;
-  border-bottom: 1px solid currentColor;
+  border-bottom: 1px solid currentcolor;
   color: #0097a7;
 }
 .type > code,
@@ -514,7 +514,7 @@ input::-moz-placeholder {
 .type_invert > a:hover, .type_invert > a:focus,
 .type_invert > :not(div) a:hover,
 .type_invert > :not(div) a:focus {
-  border-color: currentColor;
+  border-color: currentcolor;
   color: #fff;
 }
 .type_invert > code,
@@ -2388,7 +2388,7 @@ input::-moz-placeholder {
   }
 }
 .icon {
-  stroke: currentColor;
+  stroke: currentcolor;
   stroke-width: 2px;
   fill: none;
   display: inline-block;
@@ -2420,7 +2420,7 @@ input::-moz-placeholder {
 }
 
 .icon_style_stroke {
-  stroke: currentColor;
+  stroke: currentcolor;
   stroke-width: 2px;
   fill: none;
 }
@@ -2428,7 +2428,7 @@ input::-moz-placeholder {
 .icon_style_fill {
   stroke: none;
   stroke-width: 0;
-  fill: currentColor;
+  fill: currentcolor;
 }
 
 .icon-action {
