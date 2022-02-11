@@ -58,7 +58,7 @@ $body-background: null !default;
 // Arrow
 // ---
 
-$arrow-color: currentColor !default;
+$arrow-color: currentcolor !default;
 $arrow-size: 8px 6px !default;
 $arrow-radius: 2px !default;
 
@@ -116,28 +116,28 @@ $heading-scale: (
 $link-text-decoration: none !default;
 $link-text-decoration-hover: null !default;
 $link-transition: null !default;
-$link-outline-focus: currentColor dotted 1px !default;
+$link-outline-focus: currentcolor dotted 1px !default;
 $link-outline-focus-offset: 0.125rem !default;
 
 $link-color: core.$primary !default;
 $link-color-hover: core.$primary-dark !default;
 $link-border: 1px solid core.$border-color !default;
-$link-border-hover: 1px solid currentColor !default;
+$link-border-hover: 1px solid currentcolor !default;
 
 $link-subtle-color: core.$color-subtle !default;
 $link-subtle-color-hover: $link-color-hover !default;
 $link-subtle-border-color: core.$border-color !default;
-$link-subtle-border-color-hover: currentColor !default;
+$link-subtle-border-color-hover: currentcolor !default;
 
 $link-invert-color: core.$white !default;
 $link-invert-color-hover: core.$white !default;
 $link-invert-border-color: rgba(core.$white, 0.5) !default;
-$link-invert-border-color-hover: currentColor !default;
+$link-invert-border-color-hover: currentcolor !default;
 
 $link-invert-subtle-color: core.$color-invert-subtle !default;
 $link-invert-subtle-color-hover: core.$color-invert !default;
 $link-invert-subtle-border-color: rgba(core.$white, 0.5) !default;
-$link-invert-subtle-border-color-hover: currentColor !default;
+$link-invert-subtle-border-color-hover: currentcolor !default;
 
 // List
 // ---
