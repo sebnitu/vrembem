@@ -1,21 +1,22 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
+$_v: var.$prefix-variable;
 $_b: var.$prefix-block;
-$_offset: calc(calc(var(--popover-offset) + 1) * 1px);
+$_offset: calc(calc(var(--#{$_v}popover-offset) + 1) * 1px);
 
 :root {
   @if (var.$event) {
-    --popover-event: #{var.$event};
+    --#{$_v}popover-event: #{var.$event};
   }
 
   @if (var.$placement) {
-    --popover-placement: #{var.$placement};
+    --#{$_v}popover-placement: #{var.$placement};
   }
 
-  --popover-offset: #{core.strip-unit(var.$offset)};
-  --popover-overflow-padding: #{core.strip-unit(var.$overflow-padding)};
-  --popover-flip-padding: #{core.strip-unit(var.$flip-padding)};
+  --#{$_v}popover-offset: #{core.strip-unit(var.$offset)};
+  --#{$_v}popover-overflow-padding: #{core.strip-unit(var.$overflow-padding)};
+  --#{$_v}popover-flip-padding: #{core.strip-unit(var.$flip-padding)};
 }
 
 .#{$_b}popover {
@@ -26,7 +27,7 @@ $_offset: calc(calc(var(--popover-offset) + 1) * 1px);
   display: none;
   width: var.$width;
   max-width: var.$max-width;
-  margin: calc(var(--popover-offset) * 1px) 0 0;
+  margin: calc(var(--#{$_v}popover-offset) * 1px) 0 0;
   padding: var.$padding;
   border: var.$border;
   border-radius: var.$border-radius;
@@ -60,7 +61,7 @@ $_offset: calc(calc(var(--popover-offset) + 1) * 1px);
 }
 
 .#{$_b}popover[data-popper-placement^="top"] {
-  margin: 0 0 calc(var(--popover-offset) * 1px) 0;
+  margin: 0 0 calc(var(--#{$_v}popover-offset) * 1px) 0;
 
   &::before {
     top: 100%;
@@ -73,7 +74,7 @@ $_offset: calc(calc(var(--popover-offset) + 1) * 1px);
 }
 
 .#{$_b}popover[data-popper-placement^="bottom"] {
-  margin: calc(var(--popover-offset) * 1px) 0 0 0;
+  margin: calc(var(--#{$_v}popover-offset) * 1px) 0 0 0;
 
   &::before {
     top: auto;
@@ -86,7 +87,7 @@ $_offset: calc(calc(var(--popover-offset) + 1) * 1px);
 }
 
 .#{$_b}popover[data-popper-placement^="left"] {
-  margin: 0 calc(var(--popover-offset) * 1px) 0 0;
+  margin: 0 calc(var(--#{$_v}popover-offset) * 1px) 0 0;
 
   &::before {
     top: 0;
@@ -99,7 +100,7 @@ $_offset: calc(calc(var(--popover-offset) + 1) * 1px);
 }
 
 .#{$_b}popover[data-popper-placement^="right"] {
-  margin: 0 0 0 calc(var(--popover-offset) * 1px);
+  margin: 0 0 0 calc(var(--#{$_v}popover-offset) * 1px);
 
   &::before {
     top: 0;

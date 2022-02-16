@@ -9,4 +9,3 @@ export * from './src/js/moveElement';
 export * from './src/js/removeClass';
 export * from './src/js/toggleClass';
 export * from './src/js/transition';
-export * from './src/js/variables';

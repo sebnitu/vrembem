@@ -1,6 +1,7 @@
 import Drawer from '../index.js';
 import { checkMatch } from './helpers/checkMatch';
 import { resizeWindow } from './helpers/resizeWindow';
+import { setBreakpointVars } from './helpers/setBreakpointVars';
 import './helpers/matchMedia.mock.js';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -65,6 +66,8 @@ window.addEventListener('resize', () => {
   }
 });
 
+setBreakpointVars();
+
 beforeEach(() => {
   document.body.innerHTML = null;
   window.innerWidth = 1200;
@@ -80,7 +83,7 @@ test('should switch modal drawer modifier when above and below media breakpoint'
   drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer="drawer-one"]');
   const bp = el.dataset.drawerBreakpoint;
-  const value = drawer.settings.breakpoints[bp];
+  const value = drawer.breakpoint.getBreakpoint(bp);
 
   expect(bp).toBe('md');
   expect(value).toBe('760px');
@@ -116,7 +119,7 @@ test('should switch to modal when using a custom data breakpoint attribute', () 
     dataBreakpoint: 'bp'
   });
   const el = document.querySelector('[data-drawer="drawer-one"]');
-  const value = drawer.settings.breakpoints[el.dataset.bp];
+  const value = drawer.breakpoint.getBreakpoint(el.dataset.bp);
 
   expect(el).not.toHaveClass('drawer_modal');
   resizeWindow(300);

@@ -1,5 +1,3 @@
-import { breakpoints } from '@vrembem/core/index';
-
 export default {
   autoInit: false,
 
@@ -26,7 +24,7 @@ export default {
   selectorOverflow: null,
 
   // Feature toggles
-  breakpoints: breakpoints,
+  breakpoints: null,
   customEventPrefix: 'drawer:',
   eventListeners: true,
   stateSave: true,

@@ -24,6 +24,7 @@
     "block-closing-brace-newline-after": "always",
     "color-function-notation": "legacy",
     "color-hex-length": null,
+    "custom-property-pattern": null,
     "declaration-empty-line-before": "never",
     "max-line-length": null,
     "media-feature-name-no-vendor-prefix": null,

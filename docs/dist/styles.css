@@ -1,3 +1,11 @@
+:root {
+  --breakpoint-xs: 480px;
+  --breakpoint-sm: 620px;
+  --breakpoint-md: 760px;
+  --breakpoint-lg: 990px;
+  --breakpoint-xl: 1380px;
+}
+
 *,
 *::before,
 *::after {
