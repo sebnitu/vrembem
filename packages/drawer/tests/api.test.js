@@ -1,6 +1,7 @@
 import Drawer from '../index.js';
 import { checkMatch } from './helpers/checkMatch';
 import { resizeWindow } from './helpers/resizeWindow';
+import { setBreakpointVars } from './helpers/setBreakpointVars';
 import { transition } from './helpers/transition';
 import './helpers/matchMedia.mock.js';
 import '@testing-library/jest-dom/extend-expect';
@@ -54,6 +55,8 @@ window.addEventListener('resize', () => {
     });
   }
 });
+
+setBreakpointVars();
 
 beforeEach(() => {
   document.body.innerHTML = null;
