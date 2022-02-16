@@ -19,11 +19,11 @@ $breakpoint-lg: 990px !default;
 $breakpoint-xl: 1380px !default;
 
 $breakpoints: (
-  "xs": 480px,
-  "sm": 620px,
-  "md": 760px,
-  "lg": 990px,
-  "xl": 1380px
+  "xs": $breakpoint-xs,
+  "sm": $breakpoint-sm,
+  "md": $breakpoint-md,
+  "lg": $breakpoint-lg,
+  "xl": $breakpoint-xl
 ) !default;
 
 // Colors
