@@ -14,9 +14,20 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.38.0 to CHANGELOG.md
+chore(release): add v1.39.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+## v1.39.0 (2022-02-16)
+
+#### :tada: New Feature
+* `core`, `drawer`, `popover`
+  * [#815](https://github.com/sebnitu/vrembem/pull/815) Use custom properties for sharing values between CSS and JavaScript
+
+#### :hammer: Chore
+* [#824](https://github.com/sebnitu/vrembem/pull/824) Bump node js to the most current version
+* [#822](https://github.com/sebnitu/vrembem/pull/822) Update github workflows build node versions to match tool-version
+
 
 ## v1.38.0 (2022-02-05)
 
