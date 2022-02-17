@@ -1,18 +1,35 @@
-import { hide, hideAll } from './hide';
+import { hide, hideAll, hideCheck } from './hide';
 import { show } from './show';
 
 export function handlerClick(popover) {
   if (popover.target.classList.contains(this.settings.stateActive)) {
     hide(popover, this);
   } else {
+    // Save the trigger element in memory
+    this.memory.trigger = popover.trigger;
     show(popover, this);
     documentClick(popover, this);
   }
 }
 
 export function handlerKeydown(event) {
-  if (event.key === 'Escape') {
-    hideAll(this);
+  switch (event.key) {
+    case 'Escape':
+      // Return the focus on trigger element if it has been stored
+      if (this.memory.trigger) {
+        this.memory.trigger.focus();
+      }
+      hideAll(this);
+      return;
+
+    case 'Tab':
+      this.collection.forEach((popover) => {
+        hideCheck(popover, this);
+      });
+      return;
+
+    default:
+      return;
   }
 }
 

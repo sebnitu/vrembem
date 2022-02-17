@@ -16,6 +16,11 @@ export function hide(popover, obj) {
   });
   obj.collection[index].state = 'hide';
 
+  // Clear the memory if popover trigger matches the ones saved in memory
+  if (popover.trigger === obj.memory.trigger) {
+    obj.memory.trigger = null;
+  }
+
   // Return the popover
   return popover;
 }
@@ -32,6 +37,8 @@ export function hideAll(obj) {
 }
 
 export function hideCheck(popover, obj) {
+  // Only run hideCheck if provided popover is currently open
+  if (popover.state != 'show') return;
   // Needed to correctly check which element is currently being focused
   setTimeout(() => {
     // Check if trigger or target are being hovered

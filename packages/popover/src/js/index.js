@@ -16,6 +16,7 @@ export default class Popover {
     this.defaults = defaults;
     this.settings = { ...this.defaults, ...options };
     this.collection = [];
+    this.memory = { trigger: null };
     this.__handlerKeydown = handlerKeydown.bind(this);
     if (this.settings.autoInit) this.init();
   }
