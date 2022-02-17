@@ -4,12 +4,18 @@ import '@testing-library/jest-dom/extend-expect';
 
 let popover;
 
+jest.useFakeTimers();
+
 const keyEsc = new KeyboardEvent('keydown', {
   key: 'Escape'
 });
 
 const keySpace = new KeyboardEvent('keydown', {
   key: 'Space'
+});
+
+const keyTab = new KeyboardEvent('keydown', {
+  key: 'Tab'
 });
 
 const markup = `
@@ -83,6 +89,16 @@ describe('handlerKeydown()', () => {
     expect(popover.collection[1].target).toHaveClass('is-active');
     document.dispatchEvent(keySpace);
     expect(popover.collection[1].target).toHaveClass('is-active');
+  });
+
+  test('should run hide check when the tab key is pressed', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover({ autoInit: true });
+
+    expect(popover.collection[1].target).toHaveClass('is-active');
+    document.dispatchEvent(keyTab);
+    jest.advanceTimersByTime(100);
+    expect(popover.collection[1].target).not.toHaveClass('is-active');
   });
 });
 
