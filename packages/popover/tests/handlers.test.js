@@ -4,6 +4,8 @@ import '@testing-library/jest-dom/extend-expect';
 
 let popover;
 
+jest.useFakeTimers();
+
 const keyEsc = new KeyboardEvent('keydown', {
   key: 'Escape'
 });
@@ -12,11 +14,15 @@ const keySpace = new KeyboardEvent('keydown', {
   key: 'Space'
 });
 
+const keyTab = new KeyboardEvent('keydown', {
+  key: 'Tab'
+});
+
 const markup = `
   <div id="app">
     <button data-popover-trigger>...</button>
     <div class="popover" data-popover>
-      ...
+      <button class="focus-test">...</button>
     </div>
     <button data-popover-trigger>...</button>
     <div class="popover is-active" data-popover>
@@ -83,6 +89,33 @@ describe('handlerKeydown()', () => {
     expect(popover.collection[1].target).toHaveClass('is-active');
     document.dispatchEvent(keySpace);
     expect(popover.collection[1].target).toHaveClass('is-active');
+  });
+
+  test('should return focus to the trigger element when escape key is pressed', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover({ autoInit: true });
+    const button = document.querySelector('.focus-test');
+    
+    expect(popover.memory.trigger).toBe(null);
+    popover.collection[0].trigger.click();
+    expect(popover.memory.trigger).toBe(popover.collection[0].trigger);
+
+    button.focus();
+    expect(document.activeElement).toBe(button);
+
+    document.dispatchEvent(keyEsc);
+    expect(document.activeElement).toBe(popover.collection[0].trigger);
+    expect(popover.memory.trigger).toBe(null);
+  });
+
+  test('should run hide check when the tab key is pressed', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover({ autoInit: true });
+
+    expect(popover.collection[1].target).toHaveClass('is-active');
+    document.dispatchEvent(keyTab);
+    jest.advanceTimersByTime(100);
+    expect(popover.collection[1].target).not.toHaveClass('is-active');
   });
 });
 
