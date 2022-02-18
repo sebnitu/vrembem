@@ -85,9 +85,7 @@ In cases where you'd like a drawer to switch to a drawer modal on a specific bre
 </aside>
 ```
 
-When a breakpoint key is passed, it resolves by first checking the options breakpoints object. If no results return, it checks for a CSS variable for the value (e.g. `--breakpoint-[key]`).
-
-A custom breakpoints object can be passed in using the `breakpoints` option. Otherwise, default values are set via the core variables module.
+A custom breakpoints object can be passed in using the `breakpoints` option. Otherwise, breakpoints are resolved by looking up a CSS variable using the passed key (e.g: `--breakpoint-[key]`).
 
 ```js
 const drawer = new Drawer({
@@ -99,6 +97,16 @@ const drawer = new Drawer({
     xl: '1380px'
   }
 });
+```
+
+```scss
+:root {
+  --breakpoint-xs: 480px;
+  --breakpoint-sm: 620px;
+  --breakpoint-md: 760px;
+  --breakpoint-lg: 990px;
+  --breakpoint-xl: 1380px;
+}
 ```
 
 #### `data-drawer-focus`
