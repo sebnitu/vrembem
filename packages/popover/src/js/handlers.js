@@ -5,7 +5,6 @@ export function handlerClick(popover) {
   if (popover.target.classList.contains(this.settings.stateActive)) {
     hide(popover, this);
   } else {
-    // Save the trigger element in memory
     this.memory.trigger = popover.trigger;
     show(popover, this);
     documentClick(popover, this);
@@ -15,7 +14,6 @@ export function handlerClick(popover) {
 export function handlerKeydown(event) {
   switch (event.key) {
     case 'Escape':
-      // Return the focus on trigger element if it has been stored
       if (this.memory.trigger) {
         this.memory.trigger.focus();
       }
