@@ -85,6 +85,8 @@ In cases where you'd like a drawer to switch to a drawer modal on a specific bre
 </aside>
 ```
 
+When a breakpoint key is passed, it resolves by first checking the options breakpoints object. If no results return, it checks for a CSS variable for the value (e.g. `--breakpoint-[key]`).
+
 A custom breakpoints object can be passed in using the `breakpoints` option. Otherwise, default values are set via the core variables module.
 
 ```js
