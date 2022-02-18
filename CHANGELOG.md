@@ -14,9 +14,17 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.39.0 to CHANGELOG.md
+chore(release): add v1.40.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.40.0 (2022-02-18)
+
+#### :tada: New Feature
+* `popover`
+  * [#830](https://github.com/sebnitu/vrembem/pull/830) Add trigger memory support for popover component
+
 
 ## v1.39.0 (2022-02-16)
 
