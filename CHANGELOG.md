@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.40.0 to CHANGELOG.md
+chore(release): add v1.40.1 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.40.1 (2022-02-18)
+
+#### :bug: Bug Fix
+* `core`, `drawer`
+  * [#831](https://github.com/sebnitu/vrembem/pull/831) Add option to disable core root output and update docs for drawer breakpoints
 
 
 ## v1.40.0 (2022-02-18)
