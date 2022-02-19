@@ -1,6 +1,6 @@
 import { getConfig, getData, getModifiers } from './helpers';
 
-export function show(popover, obj) {
+export function open(popover, obj) {
   // Update state class
   popover.target.classList.add(obj.settings.stateActive);
 
@@ -28,7 +28,7 @@ export function show(popover, obj) {
   const index = obj.collection.findIndex((item) => {
     return item.target === popover.target;
   });
-  obj.collection[index].state = 'show';
+  obj.collection[index].state = 'opened';
 
   // Return the popover
   return popover;

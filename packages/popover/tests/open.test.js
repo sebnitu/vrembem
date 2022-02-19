@@ -1,5 +1,5 @@
 import Popover from '../index.js';
-import { show } from '../src/js/show';
+import { open } from '../src/js/open';
 import '@testing-library/jest-dom/extend-expect';
 
 let popover;
@@ -21,14 +21,14 @@ afterEach(() => {
   document.body.innerHTML = null;
 });
 
-describe('show()', () => {
-  test('should show the provided popover', () => {
+describe('open()', () => {
+  test('should open the provided popover', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
-    expect(popover.collection[0].state).toBe('hide');
+    expect(popover.collection[0].state).toBe('closed');
     expect(popover.collection[0].target).not.toHaveClass('is-active');
-    show(popover.collection[0], popover);
-    expect(popover.collection[0].state).toBe('show');
+    open(popover.collection[0], popover);
+    expect(popover.collection[0].state).toBe('opened');
     expect(popover.collection[0].target).toHaveClass('is-active');
   });
 });

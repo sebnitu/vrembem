@@ -2,8 +2,8 @@ import { createPopper } from '@popperjs/core/dist/esm';
 
 import { handlerClick, documentClick } from './handlers';
 import { getConfig, getData, getPopover } from './helpers';
-import { hide, hideCheck } from './hide';
-import { show } from './show';
+import { close, closeCheck } from './close';
+import { open } from './open';
 
 export function register(trigger, target, obj) {
   // If no target is passed
@@ -37,7 +37,7 @@ export function register(trigger, target, obj) {
 
     // Build popover object and push to collection array
     popover = {
-      state: 'hide',
+      state: 'closed',
       trigger: trigger,
       target: target,
       popper: popperInstance,
@@ -53,10 +53,10 @@ export function register(trigger, target, obj) {
 
   // Set initial state of popover
   if (popover.target.classList.contains(obj.settings.stateActive)) {
-    show(popover, obj);
+    open(popover, obj);
     documentClick(popover, obj);
   } else {
-    hide(popover, obj);
+    close(popover, obj);
   }
 
   // Return the popover object
@@ -71,9 +71,9 @@ export function deregister(popover, obj) {
 
   // If the item exists in the collection
   if (index >= 0) {
-    // Hide the popover
-    if (popover.state === 'show') {
-      hide(popover, obj);
+    // Close the popover
+    if (popover.state === 'opened') {
+      close(popover, obj);
     }
 
     // Clean up the popper instance
@@ -102,11 +102,11 @@ export function registerEventListeners(popover, obj) {
       popover.__eventListeners = [{
         el: ['trigger'],
         type: ['mouseenter', 'focus'],
-        listener: show.bind(null, popover, obj)
+        listener: open.bind(null, popover, obj)
       }, {
         el: ['trigger', 'target'],
         type: ['mouseleave', 'focusout'],
-        listener: hideCheck.bind(null, popover, obj)
+        listener: closeCheck.bind(null, popover, obj)
       }];
       // Loop through listeners and apply to appropriate elements
       popover.__eventListeners.forEach((evObj) => {

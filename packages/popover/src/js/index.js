@@ -1,7 +1,7 @@
 import defaults from './defaults';
 import { handlerKeydown } from './handlers';
-import { hide, hideAll } from './hide';
-import { show } from './show';
+import { close, closeAll } from './close';
+import { open } from './open';
 import {
   register,
   deregister,
@@ -100,15 +100,15 @@ export default class Popover {
    * Change state functionality
    */
 
-  show(popover) {
-    return show(popover, this);
+  open(popover) {
+    return open(popover, this);
   }
 
-  hide(popover) {
-    return hide(popover, this);
+  close(popover) {
+    return close(popover, this);
   }
 
-  hideAll() {
-    return hideAll(this);
+  closeAll() {
+    return closeAll(this);
   }
 }

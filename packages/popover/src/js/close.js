@@ -1,4 +1,4 @@
-export function hide(popover, obj) {
+export function close(popover, obj) {
   // Update state class
   popover.target.classList.remove(obj.settings.stateActive);
 
@@ -14,7 +14,7 @@ export function hide(popover, obj) {
   const index = obj.collection.findIndex((item) => {
     return item.target === popover.target;
   });
-  obj.collection[index].state = 'hide';
+  obj.collection[index].state = 'closed';
 
   // Clear the memory if popover trigger matches the ones saved in memory
   if (popover.trigger === obj.memory.trigger) {
@@ -25,10 +25,10 @@ export function hide(popover, obj) {
   return popover;
 }
 
-export function hideAll(obj) {
+export function closeAll(obj) {
   obj.collection.forEach((popover) => {
-    if (popover.state === 'show') {
-      hide(popover, obj);
+    if (popover.state === 'opened') {
+      close(popover, obj);
     }
   });
 
@@ -36,9 +36,9 @@ export function hideAll(obj) {
   return obj.collection;
 }
 
-export function hideCheck(popover, obj) {
-  // Only run hideCheck if provided popover is currently open
-  if (popover.state != 'show') return;
+export function closeCheck(popover, obj) {
+  // Only run closeCheck if provided popover is currently open
+  if (popover.state != 'opened') return;
   // Needed to correctly check which element is currently being focused
   setTimeout(() => {
     // Check if trigger or target are being hovered
@@ -51,9 +51,9 @@ export function hideCheck(popover, obj) {
       document.activeElement.closest(`[data-${obj.settings.dataPopover}]`) === popover.target ||
       document.activeElement.closest(`[data-${obj.settings.dataTrigger}]`) === popover.trigger;
 
-    // Hide if the trigger and target are not currently hovered or focused
+    // Close if the trigger and target are not currently hovered or focused
     if (!isHovered && !isFocused) {
-      hide(popover, obj);
+      close(popover, obj);
     }
 
     // Return the popover

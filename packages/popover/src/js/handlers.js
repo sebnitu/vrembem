@@ -1,12 +1,12 @@
-import { hide, hideAll, hideCheck } from './hide';
-import { show } from './show';
+import { close, closeAll, closeCheck } from './close';
+import { open } from './open';
 
 export function handlerClick(popover) {
   if (popover.target.classList.contains(this.settings.stateActive)) {
-    hide(popover, this);
+    close(popover, this);
   } else {
     this.memory.trigger = popover.trigger;
-    show(popover, this);
+    open(popover, this);
     documentClick(popover, this);
   }
 }
@@ -17,12 +17,12 @@ export function handlerKeydown(event) {
       if (this.memory.trigger) {
         this.memory.trigger.focus();
       }
-      hideAll(this);
+      closeAll(this);
       return;
 
     case 'Tab':
       this.collection.forEach((popover) => {
-        hideCheck(popover, this);
+        closeCheck(popover, this);
       });
       return;
 
@@ -39,7 +39,7 @@ export function documentClick(popover, obj) {
     const match = result === popover.target || result === popover.trigger;
     if (!match) {
       if (popover.target.classList.contains(obj.settings.stateActive)) {
-        hide(popover, obj);
+        close(popover, obj);
       }
       this.removeEventListener('click', _f);
     } else {

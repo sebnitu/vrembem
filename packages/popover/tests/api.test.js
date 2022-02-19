@@ -217,46 +217,46 @@ describe('registerCollection() & deregisterCollection()', () => {
   });
 });
 
-describe('show() & hide() & hideAll()', () => {
-  test('should show the provided popover', () => {
+describe('open() & close() & closeAll()', () => {
+  test('should open the provided popover', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
     const target = document.querySelector('[data-popover]');
 
     expect(target).not.toHaveClass('is-active');
-    popover.show(popover.collection[0]);
+    popover.open(popover.collection[0]);
     expect(target).toHaveClass('is-active');
   });
 
-  test('should hide the provided popover', () => {
+  test('should close the provided popover', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
     const target = document.querySelector('[data-popover]');
 
-    popover.show(popover.collection[0]);
-    popover.hide(popover.collection[0]);
+    popover.open(popover.collection[0]);
+    popover.close(popover.collection[0]);
     expect(target).not.toHaveClass('is-active');
   });
 
-  test('should hide all popovers', () => {
+  test('should close all popovers', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
     popover.collection.forEach((item) => {
-      popover.show(item);
+      popover.open(item);
     });
 
     popover.collection.forEach((item) => {
-      expect(item.state).toBe('show');
+      expect(item.state).toBe('opened');
       expect(item.target).toHaveClass('is-active');
     });
 
-    popover.hideAll();
+    popover.closeAll();
 
     popover.collection.forEach((item) => {
-      expect(item.state).toBe('hide');
+      expect(item.state).toBe('closed');
       expect(item.target).not.toHaveClass('is-active');
     });
   });
