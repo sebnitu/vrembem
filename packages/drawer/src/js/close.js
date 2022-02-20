@@ -3,9 +3,11 @@ import { setInert, setOverflowHidden } from '@vrembem/core/index';
 import { focusTrigger } from '@vrembem/core/index';
 import { closeTransition } from '@vrembem/core/index';
 
+import { drawerNotFound } from './helpers';
+
 export async function close(drawerKey) {
   const drawer = this.getDrawer(drawerKey);
-  if (!drawer) return this.drawerNotFound(drawerKey);
+  if (!drawer) return drawerNotFound(drawerKey);
   if (hasClass(drawer, this.settings.stateOpened)) {
     this.working = true;
     if (hasClass(drawer, this.settings.classModal)) {

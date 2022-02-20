@@ -5,6 +5,7 @@ import defaults from './defaults';
 import { Breakpoint } from './breakpoint';
 import { close } from './close';
 import { handlerClick, handlerKeydown } from './handlers';
+import { getDrawer } from './helpers';
 import { open } from './open';
 import { stateClear, stateSave, stateSet } from './state';
 import { switchToDefault, switchToModal } from './switchTo';
@@ -67,24 +68,14 @@ export default class Drawer {
    */
 
   getDrawer(drawerKey) {
-    if (typeof drawerKey !== 'string') return drawerKey;
-    return document.querySelector(
-      `[data-${this.settings.dataDrawer}="${drawerKey}"]`
-    );
-  }
-
-  drawerNotFound(key) {
-    return Promise.reject(
-      new Error(`Did not find drawer with key: "${key}"`)
-    );
+    return getDrawer.call(this, drawerKey);
   }
 
   setTabindex() {
-    const selectorTabindex = `
+    return setTabindex(`
       [data-${this.settings.dataDrawer}]
       [data-${this.settings.dataDialog}]
-    `;
-    setTabindex(selectorTabindex);
+    `);
   }
 
   /**

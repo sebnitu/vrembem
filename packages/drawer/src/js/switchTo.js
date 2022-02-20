@@ -1,10 +1,12 @@
 import { addClass, hasClass, removeClass } from '@vrembem/core/index';
 import { setInert, setOverflowHidden } from '@vrembem/core/index';
 
+import { drawerNotFound } from './helpers';
+
 export async function switchToModal(drawerKey) {
   // Initial guards
   const drawer = this.getDrawer(drawerKey);
-  if (!drawer) return this.drawerNotFound(drawerKey);
+  if (!drawer) return drawerNotFound(drawerKey);
   if (hasClass(drawer, this.settings.classModal)) return;
 
   // Enable modal state
@@ -22,7 +24,7 @@ export async function switchToModal(drawerKey) {
 export async function switchToDefault(drawerKey) {
   // Initial guards
   const drawer = this.getDrawer(drawerKey);
-  if (!drawer) return this.drawerNotFound(drawerKey);
+  if (!drawer) return drawerNotFound(drawerKey);
   if (!hasClass(drawer, this.settings.classModal)) return;
 
   // Tear down modal state
