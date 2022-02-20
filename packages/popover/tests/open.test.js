@@ -1,5 +1,4 @@
 import Popover from '../index.js';
-import { open } from '../src/js/open';
 import '@testing-library/jest-dom/extend-expect';
 
 let popover;
@@ -8,8 +7,12 @@ jest.useFakeTimers();
 
 const markup = `
   <div id="app">
+    <button data-popover-trigger="unique-id">...</button>
     <button data-popover-trigger>...</button>
     <div class="popover" data-popover>
+      ...
+    </div>
+    <div class="popover" data-popover="unique-id">
       ...
     </div>
   </div>
@@ -27,7 +30,7 @@ describe('open()', () => {
     popover = new Popover({ autoInit: true });
     expect(popover.collection[0].state).toBe('closed');
     expect(popover.collection[0].target).not.toHaveClass('is-active');
-    open(popover.collection[0], popover);
+    popover.open(popover.collection[0]);
     expect(popover.collection[0].state).toBe('opened');
     expect(popover.collection[0].target).toHaveClass('is-active');
   });

@@ -1,6 +1,6 @@
-export function close(popover, obj) {
+export function close(popover) {
   // Update state class
-  popover.target.classList.remove(obj.settings.stateActive);
+  popover.target.classList.remove(this.settings.stateActive);
 
   // Update a11y attributes
   popover.trigger.setAttribute('aria-expanded', 'false');
@@ -11,32 +11,32 @@ export function close(popover, obj) {
   });
 
   // Update collection status with new state
-  const index = obj.collection.findIndex((item) => {
+  const index = this.collection.findIndex((item) => {
     return item.target === popover.target;
   });
-  obj.collection[index].state = 'closed';
+  this.collection[index].state = 'closed';
 
   // Clear the memory if popover trigger matches the ones saved in memory
-  if (popover.trigger === obj.memory.trigger) {
-    obj.memory.trigger = null;
+  if (popover.trigger === this.memory.trigger) {
+    this.memory.trigger = null;
   }
 
   // Return the popover
   return popover;
 }
 
-export function closeAll(obj) {
-  obj.collection.forEach((popover) => {
+export function closeAll() {
+  this.collection.forEach((popover) => {
     if (popover.state === 'opened') {
-      close(popover, obj);
+      this.close(popover);
     }
   });
 
   // Return the collection
-  return obj.collection;
+  return this.collection;
 }
 
-export function closeCheck(popover, obj) {
+export function closeCheck(popover) {
   // Only run closeCheck if provided popover is currently open
   if (popover.state != 'opened') return;
   // Needed to correctly check which element is currently being focused
@@ -48,12 +48,12 @@ export function closeCheck(popover, obj) {
 
     // Check if trigger or target are being focused
     const isFocused =
-      document.activeElement.closest(`[data-${obj.settings.dataPopover}]`) === popover.target ||
-      document.activeElement.closest(`[data-${obj.settings.dataTrigger}]`) === popover.trigger;
+      document.activeElement.closest(`[data-${this.settings.dataPopover}]`) === popover.target ||
+      document.activeElement.closest(`[data-${this.settings.dataTrigger}]`) === popover.trigger;
 
     // Close if the trigger and target are not currently hovered or focused
     if (!isHovered && !isFocused) {
-      close(popover, obj);
+      this.close(popover);
     }
 
     // Return the popover

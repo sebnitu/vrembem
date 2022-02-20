@@ -2,14 +2,14 @@ import { createPopper } from '@popperjs/core/dist/esm';
 
 import { handlerClick, documentClick } from './handlers';
 import { getConfig, getData, getPopover } from './helpers';
-import { close, closeCheck } from './close';
+import { closeCheck } from './close';
 import { open } from './open';
 
-export function register(trigger, target, obj) {
+export function register(trigger, target) {
   // If no target is passed
   if (!target) {
     // Try and get the target
-    target = getPopover(trigger, obj.settings);
+    target = getPopover(trigger, this.settings);
     // If still no target is returned, log an error and return false
     if (!target) {
       console.error(
@@ -20,7 +20,7 @@ export function register(trigger, target, obj) {
   }
 
   // Check if this item has already been registered in the collection
-  const index = obj.collection.findIndex((item) => {
+  const index = this.collection.findIndex((item) => {
     return (item.trigger === trigger && item.target === target);
   });
 
@@ -30,7 +30,7 @@ export function register(trigger, target, obj) {
   // Check if it already exists in collection
   if (index >= 0) {
     // Set popover as item from collection
-    popover = obj.collection[index];
+    popover = this.collection[index];
   } else {
     // Create popper instance
     const popperInstance = createPopper(trigger, target);
@@ -41,31 +41,31 @@ export function register(trigger, target, obj) {
       trigger: trigger,
       target: target,
       popper: popperInstance,
-      config: getConfig(target, obj.settings)
+      config: getConfig(target, this.settings)
     };
 
     // Add item to collection
-    obj.collection.push(popover);
+    this.collection.push(popover);
   }
 
   // Setup event listeners
-  registerEventListeners(popover, obj);
+  registerEventListeners.call(this, popover);
 
   // Set initial state of popover
-  if (popover.target.classList.contains(obj.settings.stateActive)) {
-    open(popover, obj);
-    documentClick(popover, obj);
+  if (popover.target.classList.contains(this.settings.stateActive)) {
+    this.open(popover);
+    documentClick.call(this, popover);
   } else {
-    close(popover, obj);
+    this.close(popover);
   }
 
   // Return the popover object
   return popover;
 }
 
-export function deregister(popover, obj) {
+export function deregister(popover) {
   // Check if this item has been registered in the collection
-  const index = obj.collection.findIndex((item) => {
+  const index = this.collection.findIndex((item) => {
     return (item.trigger === popover.trigger && item.target === popover.target);
   });
 
@@ -73,7 +73,7 @@ export function deregister(popover, obj) {
   if (index >= 0) {
     // Close the popover
     if (popover.state === 'opened') {
-      close(popover, obj);
+      this.close(popover);
     }
 
     // Clean up the popper instance
@@ -83,30 +83,30 @@ export function deregister(popover, obj) {
     deregisterEventListeners(popover);
 
     // Remove item from collection
-    obj.collection.splice(index, 1);
+    this.collection.splice(index, 1);
   }
 
   // Return the new collection
-  return obj.collection;
+  return this.collection;
 }
 
-export function registerEventListeners(popover, obj) {
+export function registerEventListeners(popover) {
   // If event listeners aren't already setup
   if (!popover.__eventListeners) {
     // Add event listeners based on event type
     const eventType = getData(
-      popover.target, obj.settings.dataEventType, popover.config['event']
+      popover.target, this.settings.dataEventType, popover.config['event']
     );
     if (eventType === 'hover') {
       // Setup event listeners object for hover
       popover.__eventListeners = [{
         el: ['trigger'],
         type: ['mouseenter', 'focus'],
-        listener: open.bind(null, popover, obj)
+        listener: open.bind(this, popover)
       }, {
         el: ['trigger', 'target'],
         type: ['mouseleave', 'focusout'],
-        listener: closeCheck.bind(null, popover, obj)
+        listener: closeCheck.bind(this, popover)
       }];
       // Loop through listeners and apply to appropriate elements
       popover.__eventListeners.forEach((evObj) => {
@@ -121,7 +121,7 @@ export function registerEventListeners(popover, obj) {
       popover.__eventListeners = [{
         el: ['trigger'],
         type: ['click'],
-        listener: handlerClick.bind(obj, popover)
+        listener: handlerClick.bind(this, popover)
       }];
       // Loop through listeners and apply to appropriate elements
       popover.__eventListeners.forEach((evObj) => {
@@ -157,24 +157,24 @@ export function deregisterEventListeners(popover) {
   return popover;
 }
 
-export function registerCollection(obj) {
+export function registerCollection() {
   // Get all the triggers
-  const triggers = document.querySelectorAll(`[data-${obj.settings.dataTrigger}]`);
+  const triggers = document.querySelectorAll(`[data-${this.settings.dataTrigger}]`);
   triggers.forEach((trigger) => {
     // Register the popover and save to collection array
-    register(trigger, false, obj);
+    this.register(trigger, false);
   });
 
   // Return the popover collection
-  return obj.collection;
+  return this.collection;
 }
 
-export function deregisterCollection(obj) {
+export function deregisterCollection() {
   // Loop through all items within the collection and pass them to deregister()
-  while (obj.collection.length > 0) {
-    deregister(obj.collection[0], obj);
+  while (this.collection.length > 0) {
+    this.deregister(this.collection[0]);
   }
 
   // Return the popover collection
-  return obj.collection;
+  return this.collection;
 }

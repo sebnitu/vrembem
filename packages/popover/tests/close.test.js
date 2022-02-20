@@ -1,5 +1,5 @@
 import Popover from '../index.js';
-import { close, closeAll, closeCheck } from '../src/js/close';
+import { closeCheck } from '../src/js/close';
 import '@testing-library/jest-dom/extend-expect';
 
 let popover;
@@ -31,7 +31,7 @@ describe('close()', () => {
     popover = new Popover({ autoInit: true });
     expect(popover.collection[0].state).toBe('opened');
     expect(popover.collection[0].target).toHaveClass('is-active');
-    close(popover.collection[0], popover);
+    popover.close(popover.collection[0]);
     expect(popover.collection[0].state).toBe('closed');
     expect(popover.collection[0].target).not.toHaveClass('is-active');
   });
@@ -44,7 +44,7 @@ describe('closeAll()', () => {
     expect(popover.collection.length).toBe(2);
     expect(popover.collection[0].target).toHaveClass('is-active');
     expect(popover.collection[1].target).toHaveClass('is-active');
-    closeAll(popover);
+    popover.closeAll();
     expect(popover.collection[0].target).not.toHaveClass('is-active');
     expect(popover.collection[1].target).not.toHaveClass('is-active');
   });
@@ -55,7 +55,7 @@ describe('closeCheck()', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
     expect(popover.collection.length).toBe(2);
-    closeCheck(popover.collection[0], popover);
+    closeCheck.call(popover, popover.collection[0]);
     jest.advanceTimersByTime(100);
     expect(popover.collection[0].target).not.toHaveClass('is-active');
   });
@@ -64,7 +64,7 @@ describe('closeCheck()', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
     popover.collection[0].trigger.focus();
-    closeCheck(popover.collection[0], popover);
+    closeCheck.call(popover, popover.collection[0]);
     jest.advanceTimersByTime(100);
     expect(popover.collection[0].target).toHaveClass('is-active');
   });
@@ -73,7 +73,7 @@ describe('closeCheck()', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
     popover.collection[0].target.focus();
-    closeCheck(popover.collection[0], popover);
+    closeCheck.call(popover, popover.collection[0]);
     jest.advanceTimersByTime(100);
     expect(popover.collection[0].target).toHaveClass('is-active');
   });

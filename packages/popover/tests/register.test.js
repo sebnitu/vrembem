@@ -1,5 +1,4 @@
 import Popover from '../index.js';
-import { register, deregister } from '../src/js/register';
 import '@testing-library/jest-dom/extend-expect';
 
 let popover;
@@ -33,7 +32,7 @@ describe('register()', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     const trigger = document.querySelector('#first');
-    register(trigger, false, popover);
+    popover.register(trigger, false);
     expect(popover.collection.length).toBe(1);
     expect(popover.collection[0].__eventListeners.length).toBe(1);
   });
@@ -43,7 +42,7 @@ describe('register()', () => {
     popover = new Popover();
     const trigger = document.querySelector('#first');
     const target = document.querySelector('#orphan');
-    register(trigger, target, popover);
+    popover.register(trigger, target);
     expect(popover.collection.length).toBe(1);
     expect(popover.collection[0].trigger).toBe(trigger);
     expect(popover.collection[0].target).toBe(target);
@@ -57,7 +56,7 @@ describe('register()', () => {
     console.error = jest.fn();
     popover = new Popover();
     const trigger = document.querySelector('[data-popover-trigger]');
-    register(trigger, false, popover);
+    popover.register(trigger, false);
     expect(popover.collection.length).toBe(0);
     expect(console.error).toHaveBeenCalledWith('No popover associated with the provided trigger:', trigger);
   });
@@ -66,7 +65,7 @@ describe('register()', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     const trigger = document.querySelector('#second');
-    register(trigger, false, popover);
+    popover.register(trigger, false);
     expect(popover.collection.length).toBe(1);
     expect(popover.collection[0].__eventListeners.length).toBe(2);
   });
@@ -78,9 +77,9 @@ describe('deregister()', () => {
     popover = new Popover({ autoInit: true });
     expect(popover.collection.length).toBe(2);
     const item = popover.collection[0];
-    deregister(item, popover);
+    popover.deregister(item);
     expect(popover.collection.length).toBe(1);
-    deregister(item, popover);
+    popover.deregister(item);
     expect(popover.collection.length).toBe(1);
   });
 });

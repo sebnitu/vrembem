@@ -1,13 +1,12 @@
-import { close, closeAll, closeCheck } from './close';
-import { open } from './open';
+import { closeCheck } from './close';
 
 export function handlerClick(popover) {
   if (popover.target.classList.contains(this.settings.stateActive)) {
-    close(popover, this);
+    this.close(popover);
   } else {
     this.memory.trigger = popover.trigger;
-    open(popover, this);
-    documentClick(popover, this);
+    this.open(popover);
+    documentClick.call(this, popover);
   }
 }
 
@@ -17,12 +16,12 @@ export function handlerKeydown(event) {
       if (this.memory.trigger) {
         this.memory.trigger.focus();
       }
-      closeAll(this);
+      this.closeAll();
       return;
 
     case 'Tab':
       this.collection.forEach((popover) => {
-        closeCheck(popover, this);
+        closeCheck.call(this, popover);
       });
       return;
 
@@ -31,7 +30,8 @@ export function handlerKeydown(event) {
   }
 }
 
-export function documentClick(popover, obj) {
+export function documentClick(popover) {
+  const obj = this;
   document.addEventListener('click', function _f(event) {
     const result = event.target.closest(
       `[data-${obj.settings.dataPopover}], [data-${obj.settings.dataTrigger}]`
@@ -39,7 +39,7 @@ export function documentClick(popover, obj) {
     const match = result === popover.target || result === popover.trigger;
     if (!match) {
       if (popover.target.classList.contains(obj.settings.stateActive)) {
-        close(popover, obj);
+        obj.close(popover);
       }
       this.removeEventListener('click', _f);
     } else {
