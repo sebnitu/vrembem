@@ -1,13 +1,14 @@
-import { hasClass } from '@vrembem/core/index';
-import { setInert, setOverflowHidden, setTabindex } from '@vrembem/core/index';
-import { FocusTrap, focusTarget, focusTrigger } from '@vrembem/core/index';
-import { openTransition, closeTransition } from '@vrembem/core/index';
+import { setTabindex } from '@vrembem/core/index';
+import { FocusTrap } from '@vrembem/core/index';
 
 import defaults from './defaults';
 import { Breakpoint } from './breakpoint';
+import { close } from './close';
 import { handlerClick, handlerKeydown } from './handlers';
+import { open } from './open';
 import { stateClear, stateSave, stateSet } from './state';
 import { switchToDefault, switchToModal } from './switchTo';
+import { toggle } from './toggle';
 
 export default class Drawer {
   constructor(options) {
@@ -107,77 +108,26 @@ export default class Drawer {
    */
 
   switchToDefault(drawerKey) {
-    return switchToDefault(drawerKey, this);
+    return switchToDefault.call(this, drawerKey);
   }
 
   switchToModal(drawerKey) {
-    return switchToModal(drawerKey, this);
+    return switchToModal.call(this, drawerKey);
   }
 
   /**
    * Change state functionality
    */
 
-  async toggle(drawerKey) {
-    const drawer = this.getDrawer(drawerKey);
-    if (!drawer) return this.drawerNotFound(drawerKey);
-    const isClosed = !hasClass(drawer, this.settings.stateOpened);
-    if (isClosed) {
-      return this.open(drawer);
-    } else {
-      return this.close(drawer);
-    }
+  toggle(drawerKey) {
+    return toggle.call(this, drawerKey);
   }
 
-  async open(drawerKey) {
-    const drawer = this.getDrawer(drawerKey);
-    if (!drawer) return this.drawerNotFound(drawerKey);
-    if (!hasClass(drawer, this.settings.stateOpened)) {
-      this.working = true;
-      const isModal = hasClass(drawer, this.settings.classModal);
-      if (isModal) {
-        setOverflowHidden(true, this.settings.selectorOverflow);
-      }
-      await openTransition(drawer, this.settings);
-      this.stateSave(drawer);
-      if (isModal) {
-        this.focusTrap.init(drawer);
-        setInert(true, this.settings.selectorInert);
-      }
-      focusTarget(drawer, this.settings);
-      drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'opened', {
-        detail: this,
-        bubbles: true
-      }));
-      this.working = false;
-      return drawer;
-    } else {
-      focusTarget(drawer, this.settings);
-      return drawer;
-    }
+  open(drawerKey) {
+    return open.call(this, drawerKey);
   }
 
-  async close(drawerKey) {
-    const drawer = this.getDrawer(drawerKey);
-    if (!drawer) return this.drawerNotFound(drawerKey);
-    if (hasClass(drawer, this.settings.stateOpened)) {
-      this.working = true;
-      if (hasClass(drawer, this.settings.classModal)) {
-        setInert(false, this.settings.selectorInert);
-        setOverflowHidden(false, this.settings.selectorOverflow);
-      }
-      await closeTransition(drawer, this.settings);
-      this.stateSave(drawer);
-      focusTrigger(this);
-      this.focusTrap.destroy();
-      drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'closed', {
-        detail: this,
-        bubbles: true
-      }));
-      this.working = false;
-      return drawer;
-    } else {
-      return drawer;
-    }
+  close(drawerKey) {
+    return close.call(this, drawerKey);
   }
 }
