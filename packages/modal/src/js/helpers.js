@@ -1,6 +1,7 @@
 import { moveElement } from '@vrembem/core/index';
 
 export function getModal(modalKey) {
+  if (typeof modalKey !== 'string') return modalKey;
   return document.querySelector(
     `[data-${this.settings.dataModal}="${modalKey}"]`
   );

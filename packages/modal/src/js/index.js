@@ -63,11 +63,6 @@ export default class Modal {
     return getModal.call(this, modalKey);
   }
 
-  // TODO: Convert this into an async function
-  moveModals(type, ref) {
-    return moveModals.call(this, type, ref);
-  }
-
   setTabindex() {
     return setTabindex(`
       [data-${this.settings.dataModal}]
@@ -77,6 +72,10 @@ export default class Modal {
 
   setInitialState() {
     return setInitialState.call(this);
+  }
+
+  moveModals(type, ref) {
+    return moveModals.call(this, type, ref);
   }
 
   /**
