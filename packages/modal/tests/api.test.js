@@ -167,10 +167,9 @@ test('should set initial state even when modal is open', async () => {
   expect(el.classList.length).toBe(2);
 });
 
-test('should return argument if not a string when getModal is called', () => {
+test('should return null if getModal is not found', () => {
   document.body.innerHTML = markup;
   modal = new Modal({ autoInit: true });
-  const el = document.querySelector('[data-modal="modal-default"]');
-  const getEl = modal.getModal(el);
-  expect(getEl).toBe(el);
+  const el = modal.getModal('asdf');
+  expect(el).toBe(null);
 });

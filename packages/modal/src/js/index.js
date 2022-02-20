@@ -1,12 +1,12 @@
-import { hasClass } from '@vrembem/core/index';
-import { setInert, setOverflowHidden, setTabindex } from '@vrembem/core/index';
-import { FocusTrap, focusTarget, focusTrigger } from '@vrembem/core/index';
-import { openTransition, closeTransition } from '@vrembem/core/index';
-import { moveElement } from '@vrembem/core/index';
+import { setTabindex } from '@vrembem/core/index';
+import { FocusTrap } from '@vrembem/core/index';
 
 import defaults from './defaults';
+import { close } from './close';
 import { handlerClick, handlerKeydown } from './handlers';
+import { getModal, moveModals } from './helpers';
 import { setInitialState } from './initialState';
+import { open } from './open';
 
 export default class Modal {
   constructor(options) {
@@ -23,10 +23,10 @@ export default class Modal {
   init(options = null) {
     if (options) this.settings = { ...this.settings, ...options };
     this.moveModals();
+    this.setInitialState();
     if (this.settings.setTabindex) {
       this.setTabindex();
     }
-    this.setInitialState();
     if (this.settings.eventListeners) {
       this.initEventListeners();
     }
@@ -60,79 +60,34 @@ export default class Modal {
    */
 
   getModal(modalKey) {
-    if (typeof modalKey !== 'string') return modalKey;
-    return document.querySelector(
-      `[data-${this.settings.dataModal}="${modalKey}"]`
-    );
+    return getModal.call(this, modalKey);
   }
 
-  modalNotFound(key) {
-    return Promise.reject(
-      new Error(`Did not find modal with key: "${key}"`)
-    );
+  // TODO: Convert this into an async function
+  moveModals(type, ref) {
+    return moveModals.call(this, type, ref);
   }
 
   setTabindex() {
-    const selectorTabindex = `
+    return setTabindex(`
       [data-${this.settings.dataModal}]
       [data-${this.settings.dataDialog}]
-    `;
-    setTabindex(selectorTabindex);
+    `);
   }
 
   setInitialState() {
-    setInitialState(this);
-  }
-
-  moveModals(type = this.settings.moveModals.type, ref = this.settings.moveModals.ref) {
-    const modals = document.querySelectorAll(`[data-${this.settings.dataModal}]`);
-    if (modals.length) moveElement(modals, type, ref);
+    return setInitialState.call(this);
   }
 
   /**
    * Change state functionality
    */
 
-  async open(modalKey) {
-    const modal = this.getModal(modalKey);
-    if (!modal) return this.modalNotFound(modalKey);
-    if (hasClass(modal, this.settings.stateClosed)) {
-      this.working = true;
-      setOverflowHidden(true, this.settings.selectorOverflow);
-      await openTransition(modal, this.settings);
-      this.focusTrap.init(modal);
-      focusTarget(modal, this.settings);
-      setInert(true, this.settings.selectorInert);
-      modal.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'opened', {
-        detail: this,
-        bubbles: true
-      }));
-      this.working = false;
-      return modal;
-    } else {
-      return modal;
-    }
+  open(modalKey) {
+    return open.call(this, modalKey);
   }
 
-  async close(returnFocus = true) {
-    const modal = document.querySelector(
-      `[data-${this.settings.dataModal}].${this.settings.stateOpened}`
-    );
-    if (modal) {
-      this.working = true;
-      setInert(false, this.settings.selectorInert);
-      setOverflowHidden(false, this.settings.selectorOverflow);
-      await closeTransition(modal, this.settings);
-      if (returnFocus) focusTrigger(this);
-      this.focusTrap.destroy();
-      modal.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'closed', {
-        detail: this,
-        bubbles: true
-      }));
-      this.working = false;
-      return modal;
-    } else {
-      return modal;
-    }
+  close(returnFocus) {
+    return close.call(this, returnFocus);
   }
 }
