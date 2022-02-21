@@ -1,22 +1,22 @@
+import Collection from './collection';
+
 import defaults from './defaults';
 import { close, closeAll } from './close';
 import { handlerKeydown } from './handlers';
 import { open } from './open';
 import {
-  get,
   register,
   deregister,
   registerEventListeners,
   deregisterEventListeners,
-  registerCollection,
-  deregisterCollection
 } from './register';
 
-export default class Popover {
+export default class Popover extends Collection {
   constructor(options) {
+    super();
     this.defaults = defaults;
     this.settings = { ...this.defaults, ...options };
-    this.collection = [];
+    // this.collection = [];
     this.memory = { trigger: null };
     this.__handlerKeydown = handlerKeydown.bind(this);
     if (this.settings.autoInit) this.init();
@@ -26,8 +26,11 @@ export default class Popover {
     // Update settings with passed options
     if (options) this.settings = { ...this.settings, ...options };
 
+    // Get all the popover elements
+    const triggers = document.querySelectorAll(`[data-${this.settings.dataTrigger}]`);
+
     // Build the collections array with popover instances
-    this.registerCollection();
+    this.registerCollection(triggers);
 
     // If eventListeners is enabled
     if (this.settings.eventListeners) {
@@ -89,21 +92,9 @@ export default class Popover {
     return deregister.call(this, popover);
   }
 
-  registerCollection() {
-    return registerCollection.call(this);
-  }
-
-  deregisterCollection() {
-    return deregisterCollection.call(this);
-  }
-
   /**
    * Change state functionality
    */
-
-  get(search) {
-    return get.call(this, search);
-  }
 
   open(popover) {
     return open.call(this, popover);

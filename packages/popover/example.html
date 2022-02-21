@@ -118,7 +118,7 @@
   </section>
 
   <!-- Component scripts -->
-  <script src="./dist/scripts.umd.js"></script>
+  <script src="./dev/scripts.umd.js"></script>
 
   <!-- Implementation scripts -->
   <script>
@@ -164,8 +164,9 @@
         }
       },
       mounted() {
+        const triggers = document.querySelectorAll(`[data-${popover.settings.dataTrigger}]`);
         popover.deregisterCollection();
-        popover.registerCollection();
+        popover.registerCollection(triggers);
       }
     }
 

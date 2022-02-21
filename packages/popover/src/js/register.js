@@ -5,34 +5,6 @@ import { getConfig, getData, getPopover } from './helpers';
 import { closeCheck } from './close';
 import { open } from './open';
 
-function getPropertyKey(query) {
-  let type = null;
-  // Check if it's a string
-  if (typeof query === 'string') {
-    type = 'id';
-  }
-  // Check if it's the trigger element
-  else if (query.hasAttribute(`data-${this.settings.dataPopover}`)) {
-    type = 'target';
-  }
-  // Check if it's the target element
-  else if (query.hasAttribute(`data-${this.settings.dataTrigger}`)) {
-    type = 'trigger';
-  }
-  // Return the query type
-  return type;
-}
-
-export function get(search) {
-  // Get the collection property type
-  let key = getPropertyKey.call(this, search);
-  // Return found popover or null if not found in the collection
-  const result = this.collection.find((popover) => {
-    return popover[key] === search;
-  });
-  return result || null;
-}
-
 export function register(trigger, target) {
   // If no target is passed
   if (!target) {
@@ -184,26 +156,4 @@ export function deregisterEventListeners(popover) {
 
   // Return the popover object
   return popover;
-}
-
-export function registerCollection() {
-  // Get all the triggers
-  const triggers = document.querySelectorAll(`[data-${this.settings.dataTrigger}]`);
-  triggers.forEach((trigger) => {
-    // Register the popover and save to collection array
-    this.register(trigger, false);
-  });
-
-  // Return the popover collection
-  return this.collection;
-}
-
-export function deregisterCollection() {
-  // Loop through all items within the collection and pass them to deregister()
-  while (this.collection.length > 0) {
-    this.deregister(this.collection[0]);
-  }
-
-  // Return the popover collection
-  return this.collection;
 }
