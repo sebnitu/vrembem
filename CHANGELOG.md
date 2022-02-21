@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.40.1 to CHANGELOG.md
+chore(release): add v1.40.2 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.40.2 (2022-02-21)
+
+#### :house: Refactor
+* `checkbox`, `core`, `drawer`, `modal`, `popover`
+  * [#832](https://github.com/sebnitu/vrembem/pull/832) Refactor JS modules
 
 
 ## v1.40.1 (2022-02-18)
