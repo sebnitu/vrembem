@@ -1,8 +1,9 @@
 import defaults from './defaults';
-import { handlerKeydown } from './handlers';
 import { close, closeAll } from './close';
+import { handlerKeydown } from './handlers';
 import { open } from './open';
 import {
+  get,
   register,
   deregister,
   registerEventListeners,
@@ -99,6 +100,10 @@ export default class Popover {
   /**
    * Change state functionality
    */
+
+  get(search) {
+    return get.call(this, search);
+  }
 
   open(popover) {
     return open.call(this, popover);

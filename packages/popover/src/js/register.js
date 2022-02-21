@@ -5,6 +5,34 @@ import { getConfig, getData, getPopover } from './helpers';
 import { closeCheck } from './close';
 import { open } from './open';
 
+function getPropertyKey(query) {
+  let type = null;
+  // Check if it's a string
+  if (typeof query === 'string') {
+    type = 'id';
+  }
+  // Check if it's the trigger element
+  else if (query.hasAttribute(`data-${this.settings.dataPopover}`)) {
+    type = 'target';
+  }
+  // Check if it's the target element
+  else if (query.hasAttribute(`data-${this.settings.dataTrigger}`)) {
+    type = 'trigger';
+  }
+  // Return the query type
+  return type;
+}
+
+export function get(search) {
+  // Get the collection property type
+  let key = getPropertyKey.call(this, search);
+  // Return found popover or null if not found in the collection
+  const result = this.collection.find((popover) => {
+    return popover[key] === search;
+  });
+  return result || null;
+}
+
 export function register(trigger, target) {
   // If no target is passed
   if (!target) {
@@ -37,6 +65,7 @@ export function register(trigger, target) {
 
     // Build popover object and push to collection array
     popover = {
+      id: target.id,
       state: 'closed',
       trigger: trigger,
       target: target,
