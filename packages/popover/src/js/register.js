@@ -2,7 +2,7 @@ import { createPopper } from '@popperjs/core/dist/esm';
 
 import { handlerClick, documentClick } from './handlers';
 import { getConfig, getData, getPopover } from './helpers';
-import { closeCheck } from './close';
+import { close, closeCheck } from './close';
 import { open } from './open';
 
 export function register(trigger, target) {
@@ -54,10 +54,10 @@ export function register(trigger, target) {
 
   // Set initial state of popover
   if (popover.target.classList.contains(this.settings.stateActive)) {
-    this.open(popover);
+    open.call(this, popover);
     documentClick.call(this, popover);
   } else {
-    this.close(popover);
+    close.call(this, popover);
   }
 
   // Return the popover object
@@ -74,7 +74,7 @@ export function deregister(popover) {
   if (index >= 0) {
     // Close the popover
     if (popover.state === 'opened') {
-      this.close(popover);
+      close.call(this, popover);
     }
 
     // Clean up the popper instance

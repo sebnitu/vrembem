@@ -96,11 +96,13 @@ export default class Popover extends Collection {
    * Change state functionality
    */
 
-  open(popover) {
+  open(id) {
+    const popover = this.get(id);
     return open.call(this, popover);
   }
 
-  close(popover) {
+  close(id) {
+    const popover = this.get(id);
     return close.call(this, popover);
   }
 
