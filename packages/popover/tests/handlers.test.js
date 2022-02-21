@@ -38,7 +38,7 @@ afterEach(() => {
 });
 
 describe('handlerClick()', () => {
-  test('should show popover if it does not contain the active class', () => {
+  test('should open popover if it does not contain the active class', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -48,7 +48,7 @@ describe('handlerClick()', () => {
     expect(popover.collection[0].target).toHaveClass('is-active');
   });
 
-  test('should hide popover if it contains the active class', () => {
+  test('should close popover if it contains the active class', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -58,7 +58,7 @@ describe('handlerClick()', () => {
     expect(popover.collection[1].target).not.toHaveClass('is-active');
   });
 
-  test('should attach document click event listener when popover is shown', () => {
+  test('should attach document click event listener when popover is opened', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -95,7 +95,7 @@ describe('handlerKeydown()', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
     const button = document.querySelector('.focus-test');
-    
+
     expect(popover.memory.trigger).toBe(null);
     popover.collection[0].trigger.click();
     expect(popover.memory.trigger).toBe(popover.collection[0].trigger);
@@ -108,7 +108,7 @@ describe('handlerKeydown()', () => {
     expect(popover.memory.trigger).toBe(null);
   });
 
-  test('should run hide check when the tab key is pressed', () => {
+  test('should run close check when the tab key is pressed', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 

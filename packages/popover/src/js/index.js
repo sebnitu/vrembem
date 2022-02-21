@@ -1,7 +1,7 @@
 import defaults from './defaults';
 import { handlerKeydown } from './handlers';
-import { hide, hideAll } from './hide';
-import { show } from './show';
+import { close, closeAll } from './close';
+import { open } from './open';
 import {
   register,
   deregister,
@@ -26,7 +26,7 @@ export default class Popover {
     if (options) this.settings = { ...this.settings, ...options };
 
     // Build the collections array with popover instances
-    registerCollection(this);
+    this.registerCollection();
 
     // If eventListeners is enabled
     if (this.settings.eventListeners) {
@@ -38,7 +38,7 @@ export default class Popover {
 
   destroy() {
     // Deregister all popovers from collection
-    deregisterCollection(this);
+    this.deregisterCollection();
 
     // If eventListeners is enabled
     if (this.settings.eventListeners) {
@@ -56,7 +56,7 @@ export default class Popover {
     if (processCollection) {
       // Loop through collection and setup event listeners
       this.collection.forEach((popover) => {
-        registerEventListeners(popover, this);
+        registerEventListeners.call(this, popover);
       });
     }
 
@@ -81,34 +81,34 @@ export default class Popover {
    */
 
   register(trigger, target = false) {
-    return register(trigger, target, this);
+    return register.call(this, trigger, target);
   }
 
   deregister(popover) {
-    return deregister(popover, this);
+    return deregister.call(this, popover);
   }
 
   registerCollection() {
-    return registerCollection(this);
+    return registerCollection.call(this);
   }
 
   deregisterCollection() {
-    return deregisterCollection(this);
+    return deregisterCollection.call(this);
   }
 
   /**
    * Change state functionality
    */
 
-  show(popover) {
-    return show(popover, this);
+  open(popover) {
+    return open.call(this, popover);
   }
 
-  hide(popover) {
-    return hide(popover, this);
+  close(popover) {
+    return close.call(this, popover);
   }
 
-  hideAll() {
-    return hideAll(this);
+  closeAll() {
+    return closeAll.call(this);
   }
 }

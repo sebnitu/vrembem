@@ -172,5 +172,12 @@ test('should return argument if not a string when getModal is called', () => {
   modal = new Modal({ autoInit: true });
   const el = document.querySelector('[data-modal="modal-default"]');
   const getEl = modal.getModal(el);
-  expect(getEl).toBe(el);
+  expect(el).toBe(getEl);
+});
+
+test('should return null if getModal is not found', () => {
+  document.body.innerHTML = markup;
+  modal = new Modal({ autoInit: true });
+  const el = modal.getModal('asdf');
+  expect(el).toBe(null);
 });

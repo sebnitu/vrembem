@@ -1,5 +1,3 @@
-import { switchToDefault, switchToModal } from './switchTo';
-
 export class Breakpoint {
   constructor(parent) {
     this.mediaQueryLists = [];
@@ -53,9 +51,9 @@ export class Breakpoint {
 
   match(mql, drawer) {
     if (mql.matches) {
-      switchToDefault(drawer, this.parent);
+      this.parent.switchToDefault(drawer);
     } else {
-      switchToModal(drawer, this.parent);
+      this.parent.switchToModal(drawer);
     }
   }
 

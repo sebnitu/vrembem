@@ -1,13 +1,11 @@
 import { getElement } from './getElement';
 
 /**
- * Moves element(s) in the DOM based on a reference and move type
- * ---
- * @param {String} target - The element(s) to move
- * @param {String} type - Move type can be 'after', 'before', 'append' or 'prepend'
- * @param {String} reference - The reference element the move is relative to
+ * Moves element(s) in the DOM based on a reference and move type.
+ * @param {String} target - The element(s) to move.
+ * @param {String} type - Move type can be 'after', 'before', 'append' or 'prepend'.
+ * @param {String} reference - The reference element the move is relative to.
  */
-
 export function moveElement(target, type, reference = false) {
   if (reference) {
     const els = getElement(target);

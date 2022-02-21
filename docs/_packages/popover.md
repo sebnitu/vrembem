@@ -530,7 +530,7 @@ An array where all registered popovers are stored. Each entry in the collection 
 
 ```js
 {
-  state: String, // The current state of the popover. Either 'hide' or 'show'
+  state: String, // The current state of the popover. Either 'closed' or 'opened'
   trigger: HTMLElement, // The popover trigger HTML element
   target: HTMLElement, // The popover HTML element
   config: Object // Stores the popover configuration options
@@ -616,12 +616,12 @@ const trigger = document.querySelector('[data-popover-trigger]');
 const obj = popover.register(trigger);
 
 console.log(obj);
-// => Object { state: "hide", trigger: HTMLElement, target: HTMLElement, popper: {…}, ... }
+// => Object { state: "closed", trigger: HTMLElement, target: HTMLElement, popper: {…}, ... }
 ```
 
 ### `popover.deregister(popover)`
 
-Deregister the popover from the collection. This hides the popover if it's active, cleans up the popper instance, removes event listeners and then removes the entry from the collection.
+Deregister the popover from the collection. This closes the popover if it's active, cleans up the popper instance, removes event listeners and then removes the entry from the collection.
 
 **Parameters**
 
@@ -665,51 +665,51 @@ popover.registerCollection()
 // => Array []
 ```
 
-### `popover.show(popover)`
+### `popover.open(popover)`
 
-Used to show a specific popover.
-
-**Parameters**
-
-- `popover [Object]` The popover instance that should be shown.
-
-**Returns**
-
-- `Object` The popover object has been shown.
-
-```js
-const item = popover.collection[0];
-popover.show(item)
-// => Object { state: "show", ... }
-```
-
-### `popover.hide(popover)`
-
-Used to hide a specific popover.
+Used to open a specific popover.
 
 **Parameters**
 
-- `popover [Object]` The popover instance that should be hidden.
+- `popover [Object]` The popover instance that should be opened.
 
 **Returns**
 
-- `Object` The popover object has been hidden.
+- `Object` The popover object has been opened.
 
 ```js
 const item = popover.collection[0];
-popover.show(item)
-// => Object { state: "hide", ... }
+popover.open(item)
+// => Object { state: "opened", ... }
 ```
 
-### `popover.hideAll()`
+### `popover.close(popover)`
 
-Hides all popovers. This searches for all shown popovers in the collection and hides them.
+Used to close a specific popover.
+
+**Parameters**
+
+- `popover [Object]` The popover instance that should be closed.
+
+**Returns**
+
+- `Object` The popover object has been closed.
+
+```js
+const item = popover.collection[0];
+popover.close(item)
+// => Object { state: "closed", ... }
+```
+
+### `popover.closeAll()`
+
+Closes all popovers. This searches for all opened popovers in the collection and closes them.
 
 **Returns**
 
 - `Array` Returns the collection array.
 
 ```js
-popover.hideAll();
+popover.closeAll();
 // => Array [...]
 ```
