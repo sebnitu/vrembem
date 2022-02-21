@@ -35,6 +35,22 @@ export function register(trigger, target) {
     // Create popper instance
     const popperInstance = createPopper(trigger, target);
 
+    // Save root this for use inside object
+    const root = this;
+
+    // Create methods API
+    const methods = {
+      open() {
+        open.call(root, this);
+      },
+      close() {
+        close.call(root, this);
+      },
+      deregister() {
+        deregister.call(root, this);
+      }
+    };
+
     // Build popover object and push to collection array
     popover = {
       id: target.id,
@@ -42,7 +58,8 @@ export function register(trigger, target) {
       trigger: trigger,
       target: target,
       popper: popperInstance,
-      config: getConfig(target, this.settings)
+      config: getConfig(target, this.settings),
+      ...methods
     };
 
     // Add item to collection
@@ -83,7 +100,12 @@ export function deregister(popover) {
     // Remove event listeners
     deregisterEventListeners(popover);
 
-    // Remove item from collection
+    // Delete properties from popover object
+    Object.getOwnPropertyNames(popover).forEach((prop) => {
+      delete popover[prop];
+    });
+
+    // Remove popover from collection
     this.collection.splice(index, 1);
   }
 
