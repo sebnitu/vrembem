@@ -1,10 +1,8 @@
+import defaults from './defaults';
+
 export default class Checkbox {
   constructor(options) {
-    this.defaults = {
-      autoInit: false,
-      stateAttr: 'aria-checked',
-      stateValue: 'mixed'
-    };
+    this.defaults = defaults;
     this.settings = { ...this.defaults, ...options };
     this.__handlerClick = this.handlerClick.bind(this);
     if (this.settings.autoInit) this.init();
