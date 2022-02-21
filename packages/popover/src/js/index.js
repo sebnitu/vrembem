@@ -102,11 +102,11 @@ export default class Popover extends Collection {
   }
 
   close(id) {
-    const popover = this.get(id);
-    return close.call(this, popover);
-  }
-
-  closeAll() {
-    return closeAll.call(this);
+    if (id) {
+      const popover = this.get(id);
+      return close.call(this, popover);
+    } else {
+      return closeAll.call(this);
+    }
   }
 }
