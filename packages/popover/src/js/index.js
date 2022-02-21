@@ -26,7 +26,7 @@ export default class Popover extends Collection {
     // Update settings with passed options
     if (options) this.settings = { ...this.settings, ...options };
 
-    // Get all the popover elements
+    // Get all the popover triggers
     const triggers = document.querySelectorAll(`[data-${this.settings.dataTrigger}]`);
 
     // Build the collections array with popover instances
