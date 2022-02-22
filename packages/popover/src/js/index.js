@@ -3,7 +3,7 @@ import Collection from './collection';
 import defaults from './defaults';
 import { close, closeAll } from './close';
 import { handlerKeydown } from './handlers';
-import { getPopoverElements } from './helpers';
+import { getPopoverID, getPopoverElements } from './helpers';
 import { open } from './open';
 import {
   register,
@@ -91,8 +91,9 @@ export default class Popover extends Collection {
     return register.call(this, els.trigger, els.target);
   }
 
-  // TODO: Accept either an ID or a popover obj
-  deregister(popover) {
+  deregister(query) {
+    const popover = this.get(getPopoverID(query));
+    if (!popover) return false;
     return deregister.call(this, popover);
   }
 
@@ -102,12 +103,14 @@ export default class Popover extends Collection {
 
   open(id) {
     const popover = this.get(id);
+    if (!popover) return false;
     return open.call(this, popover);
   }
 
   close(id) {
     if (id) {
       const popover = this.get(id);
+      if (!popover) return false;
       return close.call(this, popover);
     } else {
       return closeAll.call(this);
