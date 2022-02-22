@@ -1,12 +1,12 @@
 import Popover from '../index.js';
-import { getConfig, getData, getPadding, getModifiers, getPopover } from '../src/js/helpers';
+import { getConfig, getData, getPadding, getModifiers } from '../src/js/helpers';
 import '@testing-library/jest-dom/extend-expect';
 
 let popover;
 
 const markup = `
   <div id="app">
-    <button data-popover-trigger>...</button>
+    <button data-popover-trigger aria-controls="pop-1">...</button>
     <div
       id="pop-1"
       class="popover"
@@ -16,18 +16,16 @@ const markup = `
     >
       ...
     </div>
-    <button data-popover-trigger>...</button>
+    <button data-popover-trigger aria-controls="pop-2">...</button>
     <div id="pop-2" class="popover" data-popover>
       ...
     </div>
-    <button data-popover-trigger="unique-id">...</button>
+    <button data-popover-trigger aria-controls="pop-3">...</button>
   </div>
-  <div class="popover" data-popover="unique-id">
+  <div id="pop-3" class="popover" data-popover>
     ...
   </div>
 `;
-
-const markupMissing = '<button data-popover-trigger>...</button>';
 
 afterEach(() => {
   if (popover && 'destroy' in popover) {
