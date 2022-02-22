@@ -32,19 +32,19 @@ export function handlerKeydown(event) {
 }
 
 export function documentClick(popover) {
-  const obj = this;
+  const root = this;
   document.addEventListener('click', function _f(event) {
     const result = event.target.closest(
-      `[data-${obj.settings.dataPopover}], [data-${obj.settings.dataTrigger}]`
+      `[data-${root.settings.dataPopover}], [data-${root.settings.dataTrigger}]`
     );
     const match = result === popover.target || result === popover.trigger;
     if (!match) {
-      if (popover.target.classList.contains(obj.settings.stateActive)) {
-        close.call(obj, popover);
+      if (popover.target.classList.contains(root.settings.stateActive)) {
+        close.call(root, popover);
       }
       this.removeEventListener('click', _f);
     } else {
-      if (!popover.target.classList.contains(obj.settings.stateActive)) {
+      if (!popover.target.classList.contains(root.settings.stateActive)) {
         this.removeEventListener('click', _f);
       }
     }
