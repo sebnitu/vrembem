@@ -109,12 +109,27 @@ export function getModifiers(options) {
 }
 
 export function getPopoverID(obj) {
+  // If it's a string
   if (typeof obj === 'string') {
     return obj;
-  } else if (obj.id) {
+  }
+
+  // If it's an HTML element
+  else if (typeof obj.hasAttribute === 'function') {
+    // If it's a popover trigger
+    if (obj.hasAttribute(`data-${this.settings.dataTrigger}`)) {
+      return obj.getAttribute('aria-controls');
+    }
+
+    // If it's a popover target
+    else if (obj.hasAttribute(`data-${this.settings.dataPopover}`)) {
+      return obj.id;
+    }
+  }
+
+  // If it has an ID property
+  else if (obj.id) {
     return obj.id;
-  } else if (obj.hasAttribute(`data-${this.settings.dataTrigger}`)) {
-    return obj.getAttribute('aria-controls');
   }
 }
 
