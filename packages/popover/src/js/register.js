@@ -6,53 +6,39 @@ import { close, closeCheck } from './close';
 import { open } from './open';
 
 export function register(trigger, target) {
-  // TODO: Better handling of duplicate ID registrations
-  // Check if this item has already been registered in the collection
-  const index = this.collection.findIndex((item) => {
-    return (item.id === target.id);
-  });
+  // Deregister popover if it already exists in the collection
+  this.deregister(target.id);
 
-  // Initiate popover variable
-  let popover;
+  // Create popper instance
+  const popperInstance = createPopper(trigger, target);
 
-  // Check if it already exists in collection
-  if (index >= 0) {
-    // Set popover as item from collection
-    popover = this.collection[index];
-  } else {
-    // Create popper instance
-    const popperInstance = createPopper(trigger, target);
+  // Save root this for use inside object & create methods API
+  const root = this;
+  const methods = {
+    open() {
+      open.call(root, this);
+    },
+    close() {
+      close.call(root, this);
+    },
+    deregister() {
+      deregister.call(root, this);
+    }
+  };
 
-    // Save root this for use inside object
-    const root = this;
+  // Build popover object and push to collection array
+  const popover = {
+    id: target.id,
+    state: 'closed',
+    trigger: trigger,
+    target: target,
+    popper: popperInstance,
+    config: getConfig(target, this.settings),
+    ...methods
+  };
 
-    // Create methods API
-    const methods = {
-      open() {
-        open.call(root, this);
-      },
-      close() {
-        close.call(root, this);
-      },
-      deregister() {
-        deregister.call(root, this);
-      }
-    };
-
-    // Build popover object and push to collection array
-    popover = {
-      id: target.id,
-      state: 'closed',
-      trigger: trigger,
-      target: target,
-      popper: popperInstance,
-      config: getConfig(target, this.settings),
-      ...methods
-    };
-
-    // Add item to collection
-    this.collection.push(popover);
-  }
+  // Add item to collection
+  this.collection.push(popover);
 
   // Setup event listeners
   registerEventListeners.call(this, popover);
