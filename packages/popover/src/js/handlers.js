@@ -34,17 +34,21 @@ export function handlerKeydown(event) {
 export function documentClick(popover) {
   const root = this;
   document.addEventListener('click', function _f(event) {
+    // Check if a popover was clicked
     const result = event.target.closest(
       `[data-${root.settings.dataPopover}], [data-${root.settings.dataTrigger}]`
     );
+    // Check if clicked popover match the current popover
     const match = result === popover.target || result === popover.trigger;
     if (!match) {
-      if (popover.target.classList.contains(root.settings.stateActive)) {
+      // If it doesn't match and popover is open, close it and remove event listener
+      if (popover.target && popover.target.classList.contains(root.settings.stateActive)) {
         close.call(root, popover);
       }
       this.removeEventListener('click', _f);
     } else {
-      if (!popover.target.classList.contains(root.settings.stateActive)) {
+      // If it does match and popover isn't currently active, remove event listener
+      if (popover.target && !popover.target.classList.contains(root.settings.stateActive)) {
         this.removeEventListener('click', _f);
       }
     }
