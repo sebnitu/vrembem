@@ -46,6 +46,10 @@
       <div>
         <div class="flex flex-wrap flex-gap">
           <div>
+            <button class="button" data-popover-trigger aria-controls="popover-asdf">Missing Popover</button>
+            <div id="popover-fdsa" class="popover" data-popover>Missing Trigger</div>
+          </div>
+          <div>
             <button class="button" data-popover-trigger aria-controls="popover-click">Popover Click</button>
             <div id="popover-click" class="popover" data-popover>
               <ul class="menu">
@@ -97,14 +101,7 @@
           <button @click="removeAll" class="link">Remove all</button>
         </div>
         <div class="level">
-          <button class="button button_color_primary button_icon" data-popover-trigger aria-controls="popover-create">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-settings">
-              <circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-            </svg>
-          </button>
-          <div id="popover-create" class="popover" data-popover data-popover-placement="auto">
-            <popover-form @create="createPopover"></popover-form>
-          </div>
+          <popover-form @create="createPopover"></popover-form>
           <popover-set 
             v-for="popover in examples"
             v-bind:key="popover.id"
@@ -162,11 +159,6 @@
         uniqueID() {
           return Math.floor(Math.random() * 100000000)
         }
-      },
-      mounted() {
-        const triggers = document.querySelectorAll(`[data-${popover.settings.dataTrigger}]`);
-        popover.deregisterCollection();
-        popover.registerCollection(triggers);
       }
     }
 
@@ -197,44 +189,55 @@
           this.text = null;
         }
       },
+      mounted() {
+        console.log('popover.register()', this.$refs.target);
+        popover.register(this.$refs.target);
+      },
       template: `
-        <form @submit.prevent="create" class="padding-sm gap-y">
-          <h3>Create a popover</h3>
-          <hr class="sep">
-          <div class="gap-y-sm">
-            <label for="input-popover-text">Copy</label>
-            <input v-model="text" id="input-popover-text" type="text" class="input" autocomplete="off">
-          </div>
-          <div class="gap-y-sm">
-            <label for="input-popover-placement">Placement</label>
-            <select v-model="placement" id="input-popover-placement" class="input input_type_select">
-              <option value="">--</option>
-              <option value="top">Top</option>
-              <option value="right">Right</option>
-              <option value="bottom">Bottom</option>
-              <option value="left">Left</option>
-            </select>
-          </div>
-          <div class="gap-y-sm">
-            <label for="input-popover-event">Event Type</label>
-            <select v-model="eventType" id="input-popover-event" class="input input_type_select">
-              <option value="">--</option>
-              <option value="click">Click</option>
-              <option value="hover">Hover</option>
-            </select>
-          </div>
-          <div class="gap-y-sm">
-            <label for="input-popover-event">Size Modifier</label>
-            <select v-model="size" id="input-popover-event" class="input input_type_select">
-              <option value="">--</option>
-              <option value="popover_size_auto">Auto</option>
-              <option value="popover_size_sm">Small</option>
-              <option value="popover_size_lg">Large</option>
-            </select>
-          </div>
-          <hr class="sep">
-          <button class="button button_block">Create</button>
-        </form>
+        <button class="button button_color_primary button_icon" data-popover-trigger aria-controls="popover-create" ref="trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-settings">
+            <circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </button>
+        <div id="popover-create" class="popover" data-popover data-popover-placement="auto" ref="target">
+          <form @submit.prevent="create" class="padding-sm gap-y">
+            <h3>Create a popover</h3>
+            <hr class="sep">
+            <div class="gap-y-sm">
+              <label for="input-popover-text">Copy</label>
+              <input v-model="text" id="input-popover-text" type="text" class="input" autocomplete="off">
+            </div>
+            <div class="gap-y-sm">
+              <label for="input-popover-placement">Placement</label>
+              <select v-model="placement" id="input-popover-placement" class="input input_type_select">
+                <option value="">--</option>
+                <option value="top">Top</option>
+                <option value="right">Right</option>
+                <option value="bottom">Bottom</option>
+                <option value="left">Left</option>
+              </select>
+            </div>
+            <div class="gap-y-sm">
+              <label for="input-popover-event">Event Type</label>
+              <select v-model="eventType" id="input-popover-event" class="input input_type_select">
+                <option value="">--</option>
+                <option value="click">Click</option>
+                <option value="hover">Hover</option>
+              </select>
+            </div>
+            <div class="gap-y-sm">
+              <label for="input-popover-event">Size Modifier</label>
+              <select v-model="size" id="input-popover-event" class="input input_type_select">
+                <option value="">--</option>
+                <option value="popover_size_auto">Auto</option>
+                <option value="popover_size_sm">Small</option>
+                <option value="popover_size_lg">Large</option>
+              </select>
+            </div>
+            <hr class="sep">
+            <button class="button button_block">Create</button>
+          </form>
+        </div>
       `
     });
 

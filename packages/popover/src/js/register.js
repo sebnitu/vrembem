@@ -1,27 +1,15 @@
 import { createPopper } from '@popperjs/core/dist/esm';
 
 import { handlerClick, documentClick } from './handlers';
-import { getConfig, getData, getPopover } from './helpers';
+import { getConfig, getData } from './helpers';
 import { close, closeCheck } from './close';
 import { open } from './open';
 
 export function register(trigger, target) {
-  // If no target is passed
-  if (!target) {
-    // Try and get the target
-    target = getPopover(trigger, this.settings);
-    // If still no target is returned, log an error and return false
-    if (!target) {
-      console.error(
-        'No popover associated with the provided trigger:', trigger
-      );
-      return false;
-    }
-  }
-
+  // TODO: Better handling of duplicate ID registrations
   // Check if this item has already been registered in the collection
   const index = this.collection.findIndex((item) => {
-    return (item.trigger === trigger && item.target === target);
+    return (item.id === target.id);
   });
 
   // Initiate popover variable
@@ -84,7 +72,7 @@ export function register(trigger, target) {
 export function deregister(popover) {
   // Check if this item has been registered in the collection
   const index = this.collection.findIndex((item) => {
-    return (item.trigger === popover.trigger && item.target === popover.target);
+    return (item.id === popover.id);
   });
 
   // If the item exists in the collection

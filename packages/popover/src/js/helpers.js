@@ -108,22 +108,32 @@ export function getModifiers(options) {
   }];
 }
 
-export function getPopover(trigger, settings) {
-  // Get the value of the popover trigger attribute
-  const id = trigger.getAttribute(`data-${settings.dataTrigger}`).trim();
-  if (id) {
-    // If trigger attribute value exists, return the querySelector element using
-    // the provided popover trigger attribute's value
-    return document.querySelector(`[data-${settings.dataPopover}="${id}"]`);
+export function getPopoverID(obj) {
+  if (typeof obj === 'string') {
+    return obj;
+  } else if (obj.id) {
+    return obj.id;
+  } else if (obj.hasAttribute(`data-${this.settings.dataTrigger}`)) {
+    return obj.getAttribute('aria-controls');
+  }
+}
+
+export function getPopoverElements(query) {
+  const id = getPopoverID.call(this, query);
+  const trigger = document.querySelector(`[aria-controls="${id}"]`);
+  const target = document.querySelector(`#${id}`);
+
+  if (!trigger && !target) {
+    console.error('No popover elements found using the provided ID:', id);
+  } else if (!trigger) {
+    console.error('No popover trigger associated with the provided popover:', target);
+  } else if (!target) {
+    console.error('No popover associated with the provided popover trigger:', trigger);
+  }
+
+  if (!trigger || !target) {
+    return false;
   } else {
-    // If trigger attribute value doesn't exist, check if 
-    // - There is a nextElementSibling relative to the trigger
-    // - And it has the popover data attribute.
-    return (
-      trigger.nextElementSibling &&
-      trigger.nextElementSibling.hasAttribute(`data-${settings.dataPopover}`)
-    ) ?
-      // Return the element or false if the two checks fail
-      trigger.nextElementSibling : false;
+    return { trigger, target };
   }
 }
