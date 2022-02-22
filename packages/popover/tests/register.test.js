@@ -5,21 +5,17 @@ let popover;
 
 const markup = `
   <div id="app">
-    <button id="first" data-popover-trigger>...</button>
-    <div class="popover" data-popover>
+    <button id="first" data-popover-trigger aria-controls="asdf">...</button>
+    <div id="asdf" class="popover" data-popover>
       ...
     </div>
-    <button id="second" data-popover-trigger>...</button>
-    <div class="popover" data-popover data-popover-event="hover">
+    <button id="second" data-popover-trigger aria-controls="fdsa">...</button>
+    <div id="fdsa" class="popover" data-popover data-popover-event="hover">
       ...
     </div>
-    <div id="orphan" class="popover" data-popover>
-      ...
-    </div>
+    <button id="third" data-popover-trigger aria-controls="missing">...</button>
   </div>
 `;
-
-const markupMissing = '<button data-popover-trigger>...</button>';
 
 afterEach(() => {
   popover.destroy();
@@ -37,12 +33,12 @@ describe('register()', () => {
     expect(popover.collection[0].__eventListeners.length).toBe(1);
   });
 
-  test('should register a popover using the provided trigger and target', () => {
+  test('should register a popover using the provided ID', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     const trigger = document.querySelector('#first');
-    const target = document.querySelector('#orphan');
-    popover.register(trigger, target);
+    const target = document.querySelector('#asdf');
+    popover.register('asdf');
     expect(popover.collection.length).toBe(1);
     expect(popover.collection[0].trigger).toBe(trigger);
     expect(popover.collection[0].target).toBe(target);
@@ -52,13 +48,13 @@ describe('register()', () => {
   });
 
   test('should log an error if the provided trigger has no associated target', () => {
-    document.body.innerHTML = markupMissing;
+    document.body.innerHTML = markup;
     console.error = jest.fn();
     popover = new Popover();
-    const trigger = document.querySelector('[data-popover-trigger]');
-    popover.register(trigger, false);
+    const trigger = document.querySelector('#third');
+    popover.register(trigger);
     expect(popover.collection.length).toBe(0);
-    expect(console.error).toHaveBeenCalledWith('No popover associated with the provided trigger:', trigger);
+    expect(console.error).toHaveBeenCalledWith('No popover associated with the provided popover trigger:', trigger);
   });
 
   test('should attach hover event listeners when registered', () => {

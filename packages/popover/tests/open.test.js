@@ -7,12 +7,12 @@ jest.useFakeTimers();
 
 const markup = `
   <div id="app">
-    <button data-popover-trigger="unique-id">...</button>
-    <button data-popover-trigger>...</button>
-    <div class="popover" data-popover>
+    <button data-popover-trigger aria-controls="asdf">...</button>
+    <button data-popover-trigger aria-controls="fdsa">...</button>
+    <div id="asdf" class="popover" data-popover>
       ...
     </div>
-    <div class="popover" data-popover="unique-id">
+    <div id="fdsa" class="popover" data-popover>
       ...
     </div>
   </div>
@@ -30,7 +30,7 @@ describe('open()', () => {
     popover = new Popover({ autoInit: true });
     expect(popover.collection[0].state).toBe('closed');
     expect(popover.collection[0].target).not.toHaveClass('is-active');
-    popover.open(popover.collection[0]);
+    popover.open(popover.collection[0].id);
     expect(popover.collection[0].state).toBe('opened');
     expect(popover.collection[0].target).toHaveClass('is-active');
   });

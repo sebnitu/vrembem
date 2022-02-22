@@ -8,12 +8,12 @@ const keyEsc = new KeyboardEvent('keydown', {
 });
 
 const markup = `
-  <button data-popover-trigger>...</button>
-  <div class="popover" data-popover>
+  <button data-popover-trigger aria-controls="asdf">...</button>
+  <div id="asdf" class="popover" data-popover>
     ...
   </div>
-  <button data-popover-trigger>...</button>
-  <div class="popover" data-popover>
+  <button data-popover-trigger aria-controls="fdsa">...</button>
+  <div id="fdsa" class="popover" data-popover>
     ...
   </div>
 `;
@@ -204,12 +204,13 @@ describe('registerCollection() & deregisterCollection()', () => {
 
     const trigger = document.querySelector('[data-popover-trigger]');
     const target = document.querySelector('[data-popover]');
+    const items = document.querySelectorAll('[data-popover]');
 
     expect(popover.collection.length).toBe(0);
     trigger.click();
     expect(target).not.toHaveClass('is-active');
 
-    popover.registerCollection();
+    popover.registerCollection(items);
 
     expect(popover.collection.length).toBe(2);
     trigger.click();
@@ -217,7 +218,7 @@ describe('registerCollection() & deregisterCollection()', () => {
   });
 });
 
-describe('open() & close() & closeAll()', () => {
+describe('open() & close()', () => {
   test('should open the provided popover', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
@@ -225,7 +226,7 @@ describe('open() & close() & closeAll()', () => {
     const target = document.querySelector('[data-popover]');
 
     expect(target).not.toHaveClass('is-active');
-    popover.open(popover.collection[0]);
+    popover.open(popover.collection[0].id);
     expect(target).toHaveClass('is-active');
   });
 
@@ -235,8 +236,8 @@ describe('open() & close() & closeAll()', () => {
 
     const target = document.querySelector('[data-popover]');
 
-    popover.open(popover.collection[0]);
-    popover.close(popover.collection[0]);
+    popover.open(popover.collection[0].id);
+    popover.close(popover.collection[0].id);
     expect(target).not.toHaveClass('is-active');
   });
 
@@ -245,7 +246,7 @@ describe('open() & close() & closeAll()', () => {
     popover = new Popover({ autoInit: true });
 
     popover.collection.forEach((item) => {
-      popover.open(item);
+      popover.open(item.id);
     });
 
     popover.collection.forEach((item) => {
@@ -253,7 +254,7 @@ describe('open() & close() & closeAll()', () => {
       expect(item.target).toHaveClass('is-active');
     });
 
-    popover.closeAll();
+    popover.close();
 
     popover.collection.forEach((item) => {
       expect(item.state).toBe('closed');

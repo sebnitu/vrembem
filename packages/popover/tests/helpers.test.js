@@ -176,32 +176,32 @@ describe('getConfig() & getModifiers()', () => {
   });
 });
 
-describe('getPopover()', () => {
-  test('should return a popover using a trigger', () => {
-    document.body.innerHTML = markup;
-    popover = new Popover();
-    const trigger = document.querySelector('[data-popover-trigger]');
-    const target = document.querySelector('[data-popover]');
-    const result = getPopover(trigger, popover.settings);
-    expect(result).toHaveClass('popover');
-    expect(result).toBe(target);
-  });
+// describe('getPopover()', () => {
+//   test('should return a popover using a trigger', () => {
+//     document.body.innerHTML = markup;
+//     popover = new Popover();
+//     const trigger = document.querySelector('[data-popover-trigger]');
+//     const target = document.querySelector('[data-popover]');
+//     const result = getPopover(trigger, popover.settings);
+//     expect(result).toHaveClass('popover');
+//     expect(result).toBe(target);
+//   });
 
-  test('should return a popover using a shared unique ID', () => {
-    document.body.innerHTML = markup;
-    popover = new Popover();
-    const trigger = document.querySelector('[data-popover-trigger="unique-id"]');
-    const target = document.querySelector('[data-popover="unique-id"]');
-    const result = getPopover(trigger, popover.settings);
-    expect(result).toHaveClass('popover');
-    expect(result).toBe(target);
-  });
+//   test('should return a popover using a shared unique ID', () => {
+//     document.body.innerHTML = markup;
+//     popover = new Popover();
+//     const trigger = document.querySelector('[data-popover-trigger="unique-id"]');
+//     const target = document.querySelector('[data-popover="unique-id"]');
+//     const result = getPopover(trigger, popover.settings);
+//     expect(result).toHaveClass('popover');
+//     expect(result).toBe(target);
+//   });
 
-  test('should return false if a popover can not be found', () => {
-    document.body.innerHTML = markupMissing;
-    popover = new Popover();
-    const trigger = document.querySelector('[data-popover-trigger]');
-    const result = getPopover(trigger, popover.settings);
-    expect(result).toBe(false);
-  });
-});
+//   test('should return false if a popover can not be found', () => {
+//     document.body.innerHTML = markupMissing;
+//     popover = new Popover();
+//     const trigger = document.querySelector('[data-popover-trigger]');
+//     const result = getPopover(trigger, popover.settings);
+//     expect(result).toBe(false);
+//   });
+// });
