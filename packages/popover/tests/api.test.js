@@ -261,4 +261,20 @@ describe('open() & close()', () => {
       expect(item.target).not.toHaveClass('is-active');
     });
   });
+
+  test('should return false if open is run with a popover it could not find', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover({ autoInit: true });
+
+    const result = popover.open('missing');
+    expect(result).toBe(false);
+  });
+
+  test('should return false if close is run with a popover it could not find', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover({ autoInit: true });
+
+    const result = popover.close('missing');
+    expect(result).toBe(false);
+  });
 });
