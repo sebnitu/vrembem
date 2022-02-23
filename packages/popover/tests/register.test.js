@@ -6,12 +6,12 @@ let popover;
 
 const markup = `
   <div id="app">
-    <button id="first" aria-controls="asdf">...</button>
-    <div id="asdf" class="popover" data-popover>
+    <button id="asdf-trigger" aria-controls="asdf">...</button>
+    <div id="asdf" class="popover">
       ...
     </div>
-    <button id="second" aria-controls="fdsa">...</button>
-    <div id="fdsa" class="popover" data-popover data-popover-event="hover">
+    <button id="fdsa-trigger" aria-controls="fdsa">...</button>
+    <div id="fdsa" class="popover" style="--popover-event: hover;">
       ...
     </div>
     <button id="third" aria-controls="missing">...</button>
@@ -28,7 +28,7 @@ describe('register()', () => {
   test('should register a popover using the provided trigger', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
-    const trigger = document.querySelector('#first');
+    const trigger = document.querySelector('#asdf-trigger');
     popover.register(trigger, false);
     expect(popover.collection.length).toBe(1);
     expect(popover.collection[0].__eventListeners.length).toBe(1);
@@ -37,7 +37,7 @@ describe('register()', () => {
   test('should register a popover using the provided ID', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
-    const trigger = document.querySelector('#first');
+    const trigger = document.querySelector('#asdf-trigger');
     const target = document.querySelector('#asdf');
     popover.register('asdf');
     expect(popover.collection.length).toBe(1);
@@ -61,7 +61,7 @@ describe('register()', () => {
   test('should attach hover event listeners when registered', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
-    const trigger = document.querySelector('#second');
+    const trigger = document.querySelector('#fdsa-trigger');
     popover.register(trigger, false);
     expect(popover.collection.length).toBe(1);
     expect(popover.collection[0].__eventListeners.length).toBe(2);

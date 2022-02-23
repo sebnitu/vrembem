@@ -203,16 +203,13 @@ Applies styles to a popover to better fit a "tooltip" application. The default p
 
 ### JavaScript Options
 
-| Key              | Default               | Description                                                      |
-| ---------------- | --------------------- | ---------------------------------------------------------------- |
-| `autoInit`       | `false`               | Automatically initializes the instance.                          |
-| `dataArrow`      | `'popover-arrow'`     | Data attribute for defining a popover arrow.                     |
-| `dataEventType`  | `'popover-event'`     | Data attribute for setting the popover event type.               |
-| `dataPlacement`  | `'popover-placement'` | Data attribute for setting the preferred placement of a popover. |
-| `stateActive`    | `'is-active'`         | Class used for active state.                                     |
-| `eventType`      | `'click'`             | The default event type. Can be either `'click'` or `'hover'`.    |
-| `eventListeners` | `true`                | Whether or not to output global event listeners.                 |
-| `placement`      | `'bottom-start'`      | The default preferred placement.                                 |
+| Key              | Default          | Description                                                   |
+| ---------------- | ---------------- | ------------------------------------------------------------- |
+| `autoInit`       | `false`          | Automatically initializes the instance.                       |
+| `stateActive`    | `'is-active'`    | Class used for active state.                                  |
+| `eventType`      | `'click'`        | The default event type. Can be either `'click'` or `'hover'`. |
+| `eventListeners` | `true`           | Whether or not to output global event listeners.              |
+| `placement`      | `'bottom-start'` | The default preferred placement.                              |
 
 ## API
 

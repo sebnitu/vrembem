@@ -1,4 +1,4 @@
-import { getConfig, getData, getModifiers } from './helpers';
+import { getConfig, getModifiers } from './helpers';
 
 export function open(popover) {
   // Update state class
@@ -12,9 +12,7 @@ export function open(popover) {
 
   // Enable popper event listeners and set placement/modifiers
   popover.popper.setOptions({
-    placement: getData(
-      popover.target, this.settings.dataPlacement, popover.config['placement']
-    ),
+    placement: popover.config['placement'],
     modifiers: [
       { name: 'eventListeners', enabled: true },
       ...getModifiers(popover.config)

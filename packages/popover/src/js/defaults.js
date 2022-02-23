@@ -1,10 +1,6 @@
 export default {
   autoInit: false,
 
-  // Data attributes
-  dataEventType: 'popover-event',
-  dataPlacement: 'popover-placement',
-
   // Selectors
   selectorPopover: '.popover',
   selectorArrow: '.popover__arrow',
@@ -15,5 +11,5 @@ export default {
   // Feature toggles
   eventListeners: true,
   eventType: 'click',
-  placement: 'bottom-start'
+  placement: 'bottom'
 };

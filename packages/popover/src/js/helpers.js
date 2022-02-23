@@ -17,21 +17,15 @@ export function getConfig(el, settings) {
   for (const prop in config) {
     // Get the CSS variable property values
     const prefix = getComputedStyle(document.body).getPropertyValue('--vrembem-variable-prefix');
-    const val = styles.getPropertyValue(`--${prefix}popover-${prop}`).trim();
+    const value = styles.getPropertyValue(`--${prefix}popover-${prop}`).trim();
     // If a value was found, replace the default in config obj
-    if (val) {
-      config[prop] = val;
+    if (value) {
+      config[prop] = value;
     }
   }
 
   // Return the config obj
   return config;
-}
-
-export function getData(el, attr, fallback = false) {
-  return el.hasAttribute(`data-${attr}`) ?
-    el.getAttribute(`data-${attr}`) :
-    fallback;
 }
 
 export function getPadding(value) {

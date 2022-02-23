@@ -21,11 +21,11 @@ const keyTab = new KeyboardEvent('keydown', {
 const markup = `
   <div id="app">
     <button aria-controls="asdf">...</button>
-    <div id="asdf" class="popover" data-popover>
+    <div id="asdf" class="popover">
       <button class="focus-test">...</button>
     </div>
     <button aria-controls="fdsa">...</button>
-    <div id="fdsa" class="popover is-active" data-popover>
+    <div id="fdsa" class="popover is-active">
       ...
     </div>
   </div>

@@ -47,7 +47,7 @@
         <div class="flex flex-wrap flex-gap">
           <div>
             <button class="button" aria-controls="popover-click">Popover Click</button>
-            <div id="popover-click" class="popover" data-popover>
+            <div id="popover-click" class="popover">
               <ul class="menu">
                 <li class="menu__item">
                   <button class="menu__action">
@@ -69,26 +69,26 @@
                   </button>
                 </li>
               </ul>
-              <span class="popover__arrow" data-popover-arrow></span>
+              <span class="popover__arrow"></span>
             </div>
           </div>
           <div>
             <button class="button" aria-controls="popover-hover">Popover Hover</button>
-            <div id="popover-hover" class="popover popover_size_lg" data-popover data-popover-event="hover" tabindex="0">
+            <div id="popover-hover" class="popover popover_size_lg" style="--popover-event: hover;" tabindex="0">
               <p class="padding-sm">Random content, but it's focusable thanks to the tabindex attribute!</p>
-              <span class="popover__arrow" data-popover-arrow></span>
+              <span class="popover__arrow"></span>
             </div>
           </div>
           <div>
             <button class="button" aria-controls="popover-tooltip">Tooltip Trigger</button>
-            <div id="popover-tooltip" class="popover popover_tooltip" data-popover>
+            <div id="popover-tooltip" class="popover popover_tooltip">
               This is a tooltip...
-              <span class="popover__arrow" data-popover-arrow></span>
+              <span class="popover__arrow"></span>
             </div>
           </div>
           <div>
             <button class="button" aria-controls="popover-asdf">Missing Popover</button>
-            <div id="popover-fdsa" class="popover" data-popover>Missing Trigger</div>
+            <div id="popover-fdsa" class="popover">Missing Trigger</div>
           </div>
         </div>
       </div>
@@ -172,8 +172,6 @@
       data() {
         return {
           text: null,
-          placement: '',
-          eventType: '',
           size: ''
         }
       },
@@ -182,8 +180,6 @@
         create() {
           config = {}
           config.text = this.text;
-          config.placement = (this.placement != '') ? this.placement : null;
-          config.eventType = (this.eventType != '') ? this.eventType : null;
           config.size = (this.size != '') ? this.size : null;
           this.$emit('create', config);
           this.text = null;
@@ -199,31 +195,13 @@
             <circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
           </svg>
         </button>
-        <div id="popover-create" class="popover" data-popover data-popover-placement="auto" ref="target">
+        <div id="popover-create" class="popover" style="--popover-placement: auto;" ref="target">
           <form @submit.prevent="create" class="padding-sm gap-y">
             <h3>Create a popover</h3>
             <hr class="sep">
             <div class="gap-y-sm">
               <label for="input-popover-text">Copy</label>
               <input v-model="text" id="input-popover-text" type="text" class="input" autocomplete="off">
-            </div>
-            <div class="gap-y-sm">
-              <label for="input-popover-placement">Placement</label>
-              <select v-model="placement" id="input-popover-placement" class="input input_type_select">
-                <option value="">--</option>
-                <option value="top">Top</option>
-                <option value="right">Right</option>
-                <option value="bottom">Bottom</option>
-                <option value="left">Left</option>
-              </select>
-            </div>
-            <div class="gap-y-sm">
-              <label for="input-popover-event">Event Type</label>
-              <select v-model="eventType" id="input-popover-event" class="input input_type_select">
-                <option value="">--</option>
-                <option value="click">Click</option>
-                <option value="hover">Hover</option>
-              </select>
             </div>
             <div class="gap-y-sm">
               <label for="input-popover-event">Size Modifier</label>
@@ -269,12 +247,9 @@
       },
       template: `
         <div
-          data-popover
           class="popover"
           v-bind:id="'popover-' + popover.id"
-          v-bind:class="popover.size"
-          v-bind:data-popover-placement="popover.placement"
-          v-bind:data-popover-event="popover.eventType">
+          v-bind:class="popover.size">
           <div v-if="popover.text" class="notice notice_state_info margin-bottom-sm">
             {{ popover.text }}
           </div>

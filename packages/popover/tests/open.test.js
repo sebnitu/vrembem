@@ -6,12 +6,8 @@ let popover;
 jest.useFakeTimers();
 
 const markup = `
-  <div id="app">
-    <button aria-controls="asdf">...</button>
-    <div id="asdf" class="popover" data-popover>
-      ...
-    </div>
-  </div>
+  <button aria-controls="asdf">...</button>
+  <div id="asdf" class="popover">...</div>
 `;
 
 afterEach(() => {

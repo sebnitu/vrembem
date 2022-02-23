@@ -1,7 +1,7 @@
 import { createPopper } from '@popperjs/core/dist/esm';
 
 import { handlerClick, documentClick } from './handlers';
-import { getConfig, getData } from './helpers';
+import { getConfig } from './helpers';
 import { close, closeCheck } from './close';
 import { open } from './open';
 
@@ -94,9 +94,7 @@ export function registerEventListeners(popover) {
   // If event listeners aren't already setup
   if (!popover.__eventListeners) {
     // Add event listeners based on event type
-    const eventType = getData(
-      popover.target, this.settings.dataEventType, popover.config['event']
-    );
+    const eventType = popover.config['event'];
     if (eventType === 'hover') {
       // Setup event listeners object for hover
       popover.__eventListeners = [{

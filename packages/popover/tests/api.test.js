@@ -9,13 +9,9 @@ const keyEsc = new KeyboardEvent('keydown', {
 
 const markup = `
   <button aria-controls="asdf">...</button>
-  <div id="asdf" class="popover" data-popover>
-    ...
-  </div>
+  <div id="asdf" class="popover">...</div>
   <button aria-controls="fdsa">...</button>
-  <div id="fdsa" class="popover" data-popover>
-    ...
-  </div>
+  <div id="fdsa" class="popover">...</div>
 `;
 
 afterEach(() => {
@@ -53,7 +49,7 @@ describe('init() & destroy()', () => {
     });
 
     const trigger = document.querySelector('button');
-    const target = document.querySelector('[data-popover]');
+    const target = document.querySelector('.popover');
 
     trigger.click();
     expect(target).toHaveClass('is-active');
@@ -74,7 +70,7 @@ describe('init() & destroy()', () => {
     popover = new Popover({ autoInit: true });
 
     const trigger = document.querySelector('button');
-    const target = document.querySelector('[data-popover]');
+    const target = document.querySelector('.popover');
 
     expect(popover.collection.length).toBe(2);
     popover.destroy();
@@ -90,7 +86,7 @@ describe('initEventListeners() & destroyEventListeners()', () => {
     popover = new Popover({ autoInit: true });
 
     const trigger = document.querySelector('button');
-    const target = document.querySelector('[data-popover]');
+    const target = document.querySelector('.popover');
 
     popover.destroyEventListeners();
 
@@ -103,7 +99,7 @@ describe('initEventListeners() & destroyEventListeners()', () => {
     popover = new Popover({ autoInit: true });
 
     const trigger = document.querySelector('button');
-    const target = document.querySelector('[data-popover]');
+    const target = document.querySelector('.popover');
 
     popover.destroyEventListeners();
     popover.initEventListeners();
@@ -117,7 +113,7 @@ describe('initEventListeners() & destroyEventListeners()', () => {
     popover = new Popover({ autoInit: true });
 
     const trigger = document.querySelector('button');
-    const target = document.querySelector('[data-popover]');
+    const target = document.querySelector('.popover');
 
     trigger.click();
     expect(target).toHaveClass('is-active');
@@ -133,7 +129,7 @@ describe('initEventListeners() & destroyEventListeners()', () => {
     popover = new Popover({ autoInit: true });
 
     const trigger = document.querySelector('button');
-    const target = document.querySelector('[data-popover]');
+    const target = document.querySelector('.popover');
 
     trigger.click();
     expect(target).toHaveClass('is-active');
@@ -154,7 +150,7 @@ describe('register() & deregister()', () => {
     expect(popover.collection.length).toBe(0);
 
     const trigger = document.querySelector('button');
-    const target = document.querySelector('[data-popover]');
+    const target = document.querySelector('.popover');
 
     popover.register(trigger);
     expect(popover.collection.length).toBe(1);
@@ -171,7 +167,7 @@ describe('register() & deregister()', () => {
     expect(popover.collection.length).toBe(1);
 
     const trigger = document.querySelector('button');
-    const target = document.querySelector('[data-popover]');
+    const target = document.querySelector('.popover');
 
     trigger.click();
     expect(target).not.toHaveClass('is-active');
@@ -184,7 +180,7 @@ describe('registerCollection() & deregisterCollection()', () => {
     popover = new Popover({ autoInit: true });
 
     const trigger = document.querySelector('button');
-    const target = document.querySelector('[data-popover]');
+    const target = document.querySelector('.popover');
 
     expect(popover.collection.length).toBe(2);
     trigger.click();
@@ -203,8 +199,8 @@ describe('registerCollection() & deregisterCollection()', () => {
     popover = new Popover();
 
     const trigger = document.querySelector('button');
-    const target = document.querySelector('[data-popover]');
-    const items = document.querySelectorAll('[data-popover]');
+    const target = document.querySelector('.popover');
+    const items = document.querySelectorAll('.popover');
 
     expect(popover.collection.length).toBe(0);
     trigger.click();
@@ -223,7 +219,7 @@ describe('open() & close()', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
-    const target = document.querySelector('[data-popover]');
+    const target = document.querySelector('.popover');
 
     expect(target).not.toHaveClass('is-active');
     popover.open(popover.collection[0].id);
@@ -234,7 +230,7 @@ describe('open() & close()', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
-    const target = document.querySelector('[data-popover]');
+    const target = document.querySelector('.popover');
 
     popover.open(popover.collection[0].id);
     popover.close(popover.collection[0].id);

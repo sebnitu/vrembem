@@ -1,7 +1,6 @@
 import Popover from '../index.js';
 import {
   getConfig,
-  getData,
   getPadding,
   getModifiers,
   getPopoverID,
@@ -13,27 +12,17 @@ let popover;
 
 const markup = `
   <button aria-controls="pop-1">...</button>
-  <div
-    id="pop-1"
-    class="popover"
-    data-popover
-    data-popover-event="hover"
-    data-popover-placement="top"
-  >
-    ...
-  </div>
+  <div id="pop-1" class="popover">...</div>
+
   <button aria-controls="pop-2">...</button>
-  <div id="pop-2" class="popover" data-popover>
-    ...
-  </div>
+  <div id="pop-2" class="popover">...</div>
+
   <button aria-controls="pop-3">...</button>
-  <div id="pop-3" class="popover" data-popover>
-    ...
-  </div>
+  <div id="pop-3" class="popover">...</div>
+
   <button aria-controls="asdf">...</button>
-  <div id="fdsa" class="popover" data-popover>
-    ...
-  </div>
+  <div id="fdsa" class="popover">...</div>
+
   <button id="missing-attribute">...</button>
 `;
 
@@ -49,10 +38,10 @@ describe('getConfig()', () => {
   test('Should return the config with all default options if no CSS vars are set', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
-    const target = document.querySelector('#pop-1');
+    const target = document.querySelector('#pop-2');
     const config = getConfig(target, popover.settings);
     expect(config).toEqual({
-      'placement': 'bottom-start',
+      'placement': 'bottom',
       'event': 'click',
       'offset': 0,
       'overflow-padding': 0,
@@ -71,7 +60,7 @@ describe('getConfig()', () => {
     target.style.setProperty('--popover-offset', '32');
     target.style.setProperty('--popover-overflow-padding', '16');
     target.style.setProperty('--popover-flip-padding', '8');
-    target.style.setProperty('--popover-arrow-element', '[data-popover-asdf]');
+    target.style.setProperty('--popover-arrow-element', '.asdf');
     target.style.setProperty('--popover-arrow-padding', '4');
     const config = getConfig(target, popover.settings);
     expect(config).toEqual({
@@ -80,39 +69,9 @@ describe('getConfig()', () => {
       'offset': '32',
       'overflow-padding': '16',
       'flip-padding': '8',
-      'arrow-element': '[data-popover-asdf]',
+      'arrow-element': '.asdf',
       'arrow-padding': '4'
     });
-  });
-});
-
-describe('getData()', () => {
-  test('Should return the data attribute value of an element', () => {
-    document.body.innerHTML = markup;
-    const target = document.querySelector('#pop-1');
-    const result = getData(target, 'popover-event');
-    expect(result).toBe('hover');
-  });
-
-  test('Should return false if an element does not have the attribute', () => {
-    document.body.innerHTML = markup;
-    const target = document.querySelector('#pop-1');
-    const result = getData(target, 'missing');
-    expect(result).toBe(false);
-  });
-
-  test('Should return the fallback if an element does not have the attribute', () => {
-    document.body.innerHTML = markup;
-    const target = document.querySelector('#pop-1');
-    const result = getData(target, 'missing', 'asdf');
-    expect(result).toBe('asdf');
-  });
-
-  test('Should return an empty string for boolean data attributes', () => {
-    document.body.innerHTML = markup;
-    const target = document.querySelector('#pop-1');
-    const result = getData(target, 'popover');
-    expect(result).toBe('');
   });
 });
 
@@ -147,7 +106,7 @@ describe('getConfig() & getModifiers()', () => {
   test('should return modifiers using defaults', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
-    const target = document.querySelector('[data-popover]');
+    const target = document.querySelector('.popover');
     const config = getConfig(target, popover.settings);
     const result = getModifiers(config);
     const offset = result.find(item => item.name === 'offset');
@@ -159,7 +118,7 @@ describe('getConfig() & getModifiers()', () => {
   test('should return modifiers with custom CSS variables set', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
-    const target = document.querySelector('[data-popover]');
+    const target = document.querySelector('.popover');
     target.style.setProperty('--popover-offset', '10');
     target.style.setProperty('--popover-overflow-padding', '20');
     const config = getConfig(target, popover.settings);
