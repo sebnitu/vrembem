@@ -8,11 +8,15 @@ export default class Collection {
     return this.collection;
   }
 
-  deregister(item) {
+  deregister(ref) {
     const index = this.collection.findIndex((entry) => {
-      return (entry === item);
+      return (entry === ref);
     });
     if (index >= 0) {
+      const entry = this.collection[index];
+      Object.getOwnPropertyNames(entry).forEach((prop) => {
+        delete entry[prop];
+      });
       this.collection.splice(index, 1);
     }
     return this.collection;
