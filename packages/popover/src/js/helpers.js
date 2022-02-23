@@ -9,7 +9,7 @@ export function getConfig(el, settings) {
     'offset': 0,
     'overflow-padding': 0,
     'flip-padding': 0,
-    'arrow-element': `[data-${settings.dataArrow}]`,
+    'arrow-element': settings.selectorArrow,
     'arrow-padding': 0
   };
 

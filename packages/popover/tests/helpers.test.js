@@ -57,7 +57,7 @@ describe('getConfig()', () => {
       'offset': 0,
       'overflow-padding': 0,
       'flip-padding': 0,
-      'arrow-element': '[data-popover-arrow]',
+      'arrow-element': '.popover__arrow',
       'arrow-padding': 0
     });
   });
