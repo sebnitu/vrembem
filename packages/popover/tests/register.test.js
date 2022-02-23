@@ -6,15 +6,15 @@ let popover;
 
 const markup = `
   <div id="app">
-    <button id="first" data-popover-trigger aria-controls="asdf">...</button>
+    <button id="first" aria-controls="asdf">...</button>
     <div id="asdf" class="popover" data-popover>
       ...
     </div>
-    <button id="second" data-popover-trigger aria-controls="fdsa">...</button>
+    <button id="second" aria-controls="fdsa">...</button>
     <div id="fdsa" class="popover" data-popover data-popover-event="hover">
       ...
     </div>
-    <button id="third" data-popover-trigger aria-controls="missing">...</button>
+    <button id="third" aria-controls="missing">...</button>
   </div>
 `;
 
@@ -72,7 +72,7 @@ describe('register()', () => {
     popover = new Popover();
     popover.register('asdf');
     const entry = popover.get('asdf');
-    
+
     entry.open();
     expect(entry.state).toBe('opened');
     expect(entry.target).toHaveClass('is-active');

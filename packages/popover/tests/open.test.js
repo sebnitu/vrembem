@@ -7,12 +7,8 @@ jest.useFakeTimers();
 
 const markup = `
   <div id="app">
-    <button data-popover-trigger aria-controls="asdf">...</button>
-    <button data-popover-trigger aria-controls="fdsa">...</button>
+    <button aria-controls="asdf">...</button>
     <div id="asdf" class="popover" data-popover>
-      ...
-    </div>
-    <div id="fdsa" class="popover" data-popover>
       ...
     </div>
   </div>

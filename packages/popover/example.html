@@ -46,7 +46,7 @@
       <div>
         <div class="flex flex-wrap flex-gap">
           <div>
-            <button class="button" data-popover-trigger aria-controls="popover-click">Popover Click</button>
+            <button class="button" aria-controls="popover-click">Popover Click</button>
             <div id="popover-click" class="popover" data-popover>
               <ul class="menu">
                 <li class="menu__item">
@@ -73,21 +73,21 @@
             </div>
           </div>
           <div>
-            <button class="button" data-popover-trigger aria-controls="popover-hover">Popover Hover</button>
+            <button class="button" aria-controls="popover-hover">Popover Hover</button>
             <div id="popover-hover" class="popover popover_size_lg" data-popover data-popover-event="hover" tabindex="0">
               <p class="padding-sm">Random content, but it's focusable thanks to the tabindex attribute!</p>
               <span class="popover__arrow" data-popover-arrow></span>
             </div>
           </div>
           <div>
-            <button class="button" data-popover-trigger aria-controls="popover-tooltip">Tooltip Trigger</button>
+            <button class="button" aria-controls="popover-tooltip">Tooltip Trigger</button>
             <div id="popover-tooltip" class="popover popover_tooltip" data-popover>
               This is a tooltip...
               <span class="popover__arrow" data-popover-arrow></span>
             </div>
           </div>
           <div>
-            <button class="button" data-popover-trigger aria-controls="popover-asdf">Missing Popover</button>
+            <button class="button" aria-controls="popover-asdf">Missing Popover</button>
             <div id="popover-fdsa" class="popover" data-popover>Missing Trigger</div>
           </div>
         </div>
@@ -194,7 +194,7 @@
         popover.register(this.$refs.target);
       },
       template: `
-        <button class="button button_color_primary button_icon" data-popover-trigger aria-controls="popover-create" ref="trigger">
+        <button class="button button_color_primary button_icon" aria-controls="popover-create" ref="trigger">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-settings">
             <circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
           </svg>
@@ -248,7 +248,7 @@
         popover.register(this.$el);
       },
       template: `
-        <button class="button" data-popover-trigger v-bind:aria-controls="'popover-' + popover.id">
+        <button class="button" v-bind:aria-controls="'popover-' + popover.id">
           Trigger
         </button>
       `

@@ -117,7 +117,7 @@ export function getPopoverID(obj) {
   // If it's an HTML element
   else if (typeof obj.hasAttribute === 'function') {
     // If it's a popover trigger
-    if (obj.hasAttribute(`data-${this.settings.dataTrigger}`)) {
+    if (obj.hasAttribute('aria-controls')) {
       return obj.getAttribute('aria-controls');
     }
 
@@ -158,7 +158,7 @@ export function getPopoverElements(query) {
     } else {
       return { trigger, target };
     }
-    
+
   } else {
     console.error('Could not resolve the popover ID:', query);
     return false;

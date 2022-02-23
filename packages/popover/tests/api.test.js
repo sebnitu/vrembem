@@ -8,11 +8,11 @@ const keyEsc = new KeyboardEvent('keydown', {
 });
 
 const markup = `
-  <button data-popover-trigger aria-controls="asdf">...</button>
+  <button aria-controls="asdf">...</button>
   <div id="asdf" class="popover" data-popover>
     ...
   </div>
-  <button data-popover-trigger aria-controls="fdsa">...</button>
+  <button aria-controls="fdsa">...</button>
   <div id="fdsa" class="popover" data-popover>
     ...
   </div>
@@ -52,7 +52,7 @@ describe('init() & destroy()', () => {
       eventListeners: false
     });
 
-    const trigger = document.querySelector('[data-popover-trigger]');
+    const trigger = document.querySelector('button');
     const target = document.querySelector('[data-popover]');
 
     trigger.click();
@@ -73,7 +73,7 @@ describe('init() & destroy()', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
-    const trigger = document.querySelector('[data-popover-trigger]');
+    const trigger = document.querySelector('button');
     const target = document.querySelector('[data-popover]');
 
     expect(popover.collection.length).toBe(2);
@@ -89,7 +89,7 @@ describe('initEventListeners() & destroyEventListeners()', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
-    const trigger = document.querySelector('[data-popover-trigger]');
+    const trigger = document.querySelector('button');
     const target = document.querySelector('[data-popover]');
 
     popover.destroyEventListeners();
@@ -102,7 +102,7 @@ describe('initEventListeners() & destroyEventListeners()', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
-    const trigger = document.querySelector('[data-popover-trigger]');
+    const trigger = document.querySelector('button');
     const target = document.querySelector('[data-popover]');
 
     popover.destroyEventListeners();
@@ -116,7 +116,7 @@ describe('initEventListeners() & destroyEventListeners()', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
-    const trigger = document.querySelector('[data-popover-trigger]');
+    const trigger = document.querySelector('button');
     const target = document.querySelector('[data-popover]');
 
     trigger.click();
@@ -132,7 +132,7 @@ describe('initEventListeners() & destroyEventListeners()', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
-    const trigger = document.querySelector('[data-popover-trigger]');
+    const trigger = document.querySelector('button');
     const target = document.querySelector('[data-popover]');
 
     trigger.click();
@@ -153,7 +153,7 @@ describe('register() & deregister()', () => {
 
     expect(popover.collection.length).toBe(0);
 
-    const trigger = document.querySelector('[data-popover-trigger]');
+    const trigger = document.querySelector('button');
     const target = document.querySelector('[data-popover]');
 
     popover.register(trigger);
@@ -170,7 +170,7 @@ describe('register() & deregister()', () => {
     popover.deregister(popover.collection[0]);
     expect(popover.collection.length).toBe(1);
 
-    const trigger = document.querySelector('[data-popover-trigger]');
+    const trigger = document.querySelector('button');
     const target = document.querySelector('[data-popover]');
 
     trigger.click();
@@ -183,7 +183,7 @@ describe('registerCollection() & deregisterCollection()', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
-    const trigger = document.querySelector('[data-popover-trigger]');
+    const trigger = document.querySelector('button');
     const target = document.querySelector('[data-popover]');
 
     expect(popover.collection.length).toBe(2);
@@ -202,7 +202,7 @@ describe('registerCollection() & deregisterCollection()', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
 
-    const trigger = document.querySelector('[data-popover-trigger]');
+    const trigger = document.querySelector('button');
     const target = document.querySelector('[data-popover]');
     const items = document.querySelectorAll('[data-popover]');
 

@@ -27,25 +27,13 @@ const popover = new Popover({ autoInit: true });
 
 ### Markup
 
-The popover is a simple container component consisting of the `popover` class. To hook up the necessary JavaScript behavior, you'll need the following data attributes:
+The popover is a simple container component consisting of the `popover` class, `data-popover` attribute and an `id`. To link a popover to a trigger element, use `aria-controls` set to the ID of the popover element. Trigger elements should also have :
 
 - `data-popover` - Placed on our popover component itself.
-- `data-popover-trigger` - Placed on any element we use to trigger the popover.
 
 ```html
-<button data-popover-trigger>...</button>
-<div class="popover" data-popover>
-  ...
-</div>
-```
-
-If the data attributes are valueless, the popover trigger will try to find it's associated popover by inspecting the next sibling element. If the popover can't be placed as a direct sibling of the trigger, you should give both attributes a shared unique ID to link them together. The popover can then be placed anywhere in the DOM, but it is still recommended to be as closely after the trigger as possible for keyboard focus tabbing accessibility.
-
-```html
-<button data-popover-trigger="unique-id">...</button>
-
-<!-- Somewhere else in the DOM -->
-<div class="popover" data-popover="unique-id">
+<button aria-controls="unique-id">...</button>
+<div data-popover class="popover" id="unique-id">
   ...
 </div>
 ```
@@ -55,8 +43,8 @@ If the data attributes are valueless, the popover trigger will try to find it's 
 The popover arrow is an inner element of the popper that is positioned center relative to the reference element. This can be defined using the `popover__arrow` class for styling and is hooked into the JavaScript implementation using the `data-popover-arrow` boolean attribute.
 
 ```html
-<button data-popover-trigger>...</button>
-<div class="popover" data-popover>
+<button aria-controls="unique-id">...</button>
+<div id="unique-id" class="popover" data-popover>
   ...
   <span class="popover__arrow" data-popover-arrow></span>
 </div>
@@ -134,7 +122,7 @@ Popover provides some CSS variables on the `:root` element for controlling the e
 | ------------------- | ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `$event`            | `--popover-event`            | Controls the event type in the same way `data-popover-event` does. Can be set to `click` or `hover`.                                                                                          |
 | `$placement`        | `--popover-placement`        | Controls the preferred placement for the popover in the same way `data-popover-placement` does. [More details &rarr;](https://popper.js.org/docs/v2/constructors/#placement)                  |
-| `$offset`           | `--popover-offset`           | Controls the distance from the reference element (`data-popover-trigger`) that a popover will position itself. [More details &rarr;](https://popper.js.org/docs/v2/modifiers/offset/)         |
+| `$offset`           | `--popover-offset`           | Controls the distance from the reference element (`aria-controls`) that a popover will position itself. [More details &rarr;](https://popper.js.org/docs/v2/modifiers/offset/)                |
 | `$overflow-padding` | `--popover-overflow-padding` | Controls the distance before a popover is cut off and will try to reposition itself to stay visible. [More details &rarr;](https://popper.js.org/docs/v2/modifiers/prevent-overflow/#padding) |
 | `$flip-padding`     | `--popover-flip-padding`     | Controls the distance before a popover is cut off and will try to flip it's placement to stay visible. [More details &rarr;](https://popper.js.org/docs/v2/modifiers/flip/#padding)           |
 | `$arrow-padding`    | `--popover-arrow-padding`    | Controls the distance before a popover arrow reaches the edge of the popover. [More details &rarr;](https://popper.js.org/docs/v2/modifiers/arrow/#padding)                                   |
@@ -219,7 +207,6 @@ Applies styles to a popover to better fit a "tooltip" application. The default p
 | ---------------- | --------------------- | ---------------------------------------------------------------- |
 | `autoInit`       | `false`               | Automatically initializes the instance.                          |
 | `dataPopover`    | `'popover'`           | Data attribute for defining a popover.                           |
-| `dataTrigger`    | `'popover-trigger'`   | Data attribute for defining a popover trigger.                   |
 | `dataArrow`      | `'popover-arrow'`     | Data attribute for defining a popover arrow.                     |
 | `dataEventType`  | `'popover-event'`     | Data attribute for setting the popover event type.               |
 | `dataPlacement`  | `'popover-placement'` | Data attribute for setting the preferred placement of a popover. |
@@ -318,8 +305,8 @@ Registers a popover into the collection. This also sets the initial state, creat
 - `Object` The popover object that got stored in the collection.
 
 ```js
-const trigger = document.querySelector('[data-popover-trigger]');
-const obj = popover.register(trigger);
+const items = document.querySelector('.popover');
+const obj = popover.register(items);
 
 console.log(obj);
 // => Object { state: "closed", trigger: HTMLElement, target: HTMLElement, popper: {…}, ... }

@@ -12,7 +12,7 @@ import '@testing-library/jest-dom/extend-expect';
 let popover;
 
 const markup = `
-  <button data-popover-trigger aria-controls="pop-1">...</button>
+  <button aria-controls="pop-1">...</button>
   <div
     id="pop-1"
     class="popover"
@@ -22,15 +22,15 @@ const markup = `
   >
     ...
   </div>
-  <button data-popover-trigger aria-controls="pop-2">...</button>
+  <button aria-controls="pop-2">...</button>
   <div id="pop-2" class="popover" data-popover>
     ...
   </div>
-  <button data-popover-trigger aria-controls="pop-3">...</button>
+  <button aria-controls="pop-3">...</button>
   <div id="pop-3" class="popover" data-popover>
     ...
   </div>
-  <button data-popover-trigger aria-controls="asdf">...</button>
+  <button aria-controls="asdf">...</button>
   <div id="fdsa" class="popover" data-popover>
     ...
   </div>

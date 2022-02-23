@@ -35,15 +35,11 @@ export function documentClick(popover) {
   const root = this;
   document.addEventListener('click', function _f(event) {
     // Check if a popover was clicked
-    const result = event.target.closest(
-      `[data-${root.settings.dataPopover}], [data-${root.settings.dataTrigger}]`
-    );
-    // Check if clicked popover match the current popover
-    const match = result === popover.target || result === popover.trigger;
-    if (!match) {
+    const result = event.target.closest(`#${popover.id}, [aria-controls="${popover.id}"]`);
+    if (!result) {
       // If it doesn't match and popover is open, close it and remove event listener
       if (popover.target && popover.target.classList.contains(root.settings.stateActive)) {
-        close.call(root, popover);
+        popover.close();
       }
       this.removeEventListener('click', _f);
     } else {
