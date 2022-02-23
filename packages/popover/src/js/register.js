@@ -57,29 +57,32 @@ export function register(trigger, target) {
 
 export function deregister(popover) {
   // Check if this item has been registered in the collection
-  const index = this.collection.findIndex((item) => {
-    return (item.id === popover.id);
+  const index = this.collection.findIndex((entry) => {
+    return (entry.id === popover.id);
   });
 
-  // If the item exists in the collection
+  // If the entry exists in the collection
   if (index >= 0) {
-    // Close the popover
-    if (popover.state === 'opened') {
-      close.call(this, popover);
+    // Get the collection entry
+    const entry = this.collection[index];
+
+    // Close the collection entry if it's open
+    if (entry.state === 'opened') {
+      entry.close();
     }
 
     // Clean up the popper instance
-    popover.popper.destroy();
+    entry.popper.destroy();
 
     // Remove event listeners
-    deregisterEventListeners(popover);
+    deregisterEventListeners(entry);
 
-    // Delete properties from popover object
-    Object.getOwnPropertyNames(popover).forEach((prop) => {
-      delete popover[prop];
+    // Delete properties from collection entry
+    Object.getOwnPropertyNames(entry).forEach((prop) => {
+      delete entry[prop];
     });
 
-    // Remove popover from collection
+    // Remove entry from collection
     this.collection.splice(index, 1);
   }
 
