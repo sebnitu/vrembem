@@ -1,30 +1,40 @@
 import Popover from '../index.js';
-import { getConfig, getData, getPadding, getModifiers } from '../src/js/helpers';
+import {
+  getConfig,
+  getData,
+  getPadding,
+  getModifiers,
+  getPopoverID,
+  getPopoverElements
+} from '../src/js/helpers';
 import '@testing-library/jest-dom/extend-expect';
 
 let popover;
 
 const markup = `
-  <div id="app">
-    <button data-popover-trigger aria-controls="pop-1">...</button>
-    <div
-      id="pop-1"
-      class="popover"
-      data-popover
-      data-popover-event="hover"
-      data-popover-placement="top"
-    >
-      ...
-    </div>
-    <button data-popover-trigger aria-controls="pop-2">...</button>
-    <div id="pop-2" class="popover" data-popover>
-      ...
-    </div>
-    <button data-popover-trigger aria-controls="pop-3">...</button>
+  <button data-popover-trigger aria-controls="pop-1">...</button>
+  <div
+    id="pop-1"
+    class="popover"
+    data-popover
+    data-popover-event="hover"
+    data-popover-placement="top"
+  >
+    ...
   </div>
+  <button data-popover-trigger aria-controls="pop-2">...</button>
+  <div id="pop-2" class="popover" data-popover>
+    ...
+  </div>
+  <button data-popover-trigger aria-controls="pop-3">...</button>
   <div id="pop-3" class="popover" data-popover>
     ...
   </div>
+  <button data-popover-trigger aria-controls="asdf">...</button>
+  <div id="fdsa" class="popover" data-popover>
+    ...
+  </div>
+  <button id="missing-attribute">...</button>
 `;
 
 afterEach(() => {
@@ -174,32 +184,66 @@ describe('getConfig() & getModifiers()', () => {
   });
 });
 
-// describe('getPopover()', () => {
-//   test('should return a popover using a trigger', () => {
-//     document.body.innerHTML = markup;
-//     popover = new Popover();
-//     const trigger = document.querySelector('[data-popover-trigger]');
-//     const target = document.querySelector('[data-popover]');
-//     const result = getPopover(trigger, popover.settings);
-//     expect(result).toHaveClass('popover');
-//     expect(result).toBe(target);
-//   });
+describe('getPopoverID()', () => {
+  test('should return false if html element does not have the correct attributes', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover();
+    const trigger = document.querySelector('#missing-attribute');
+    const result = getPopoverID.call(popover, trigger);
+    expect(result).toBe(false);
+  })
 
-//   test('should return a popover using a shared unique ID', () => {
-//     document.body.innerHTML = markup;
-//     popover = new Popover();
-//     const trigger = document.querySelector('[data-popover-trigger="unique-id"]');
-//     const target = document.querySelector('[data-popover="unique-id"]');
-//     const result = getPopover(trigger, popover.settings);
-//     expect(result).toHaveClass('popover');
-//     expect(result).toBe(target);
-//   });
+  test('should return false if passed object does not resolve an ID', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover();
+    const result = getPopoverID.call(popover, true);
+    expect(result).toBe(false);
+  })
+});
 
-//   test('should return false if a popover can not be found', () => {
-//     document.body.innerHTML = markupMissing;
-//     popover = new Popover();
-//     const trigger = document.querySelector('[data-popover-trigger]');
-//     const result = getPopover(trigger, popover.settings);
-//     expect(result).toBe(false);
-//   });
-// });
+describe('getPopoverElements()', () => {
+  test('should throw error if no popover elements are found using an ID', () => {
+    document.body.innerHTML = markup;
+    console.error = jest.fn();
+    popover = new Popover();
+    const result = getPopoverElements.call(popover, 'pop-4');
+    expect(console.error).toHaveBeenCalledWith('No popover elements found using the provided ID:', 'pop-4');
+  });
+
+  test('should throw error if no popover is found using a trigger element', () => {
+    document.body.innerHTML = markup;
+    console.error = jest.fn();
+    const trigger = document.querySelector('[aria-controls="asdf"]');
+    popover = new Popover();
+    const result = getPopoverElements.call(popover, trigger);
+    expect(console.error).toHaveBeenCalledWith('No popover associated with the provided popover trigger:', trigger);
+  });
+
+  test('should throw error if no popover trigger is found using a popover', () => {
+    document.body.innerHTML = markup;
+    console.error = jest.fn();
+    const target = document.querySelector('#fdsa');
+    popover = new Popover();
+    const result = getPopoverElements.call(popover, target);
+    expect(console.error).toHaveBeenCalledWith('No popover trigger associated with the provided popover:', target);
+  });
+
+  test('should return popover target and trigger elements when found using ID', () => {
+    document.body.innerHTML = markup;
+    const trigger = document.querySelector('[aria-controls="pop-1"]');
+    const target = document.querySelector('#pop-1');
+    popover = new Popover();
+    const result = getPopoverElements.call(popover, 'pop-1');
+    expect(result.target).toBe(target);
+    expect(result.trigger).toBe(trigger);
+  });
+
+  test('should throw error if unable to resolve a popover ID with provided query', () => {
+    document.body.innerHTML = markup;
+    console.error = jest.fn();
+    const trigger = document.querySelector('#missing-attribute');
+    popover = new Popover();
+    const result = getPopoverElements.call(popover, trigger);
+    expect(console.error).toHaveBeenCalledWith('Could not resolve the popover ID:', trigger);
+  });
+});
