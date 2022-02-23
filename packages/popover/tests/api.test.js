@@ -63,10 +63,10 @@ describe('init() & destroy()', () => {
 
   test('should be able to pass options through init method', () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ dataPopover: 'asdf' });
-    expect(popover.settings.dataPopover).toBe('asdf');
-    popover.init({ dataPopover: 'popover' });
-    expect(popover.settings.dataPopover).toBe('popover');
+    popover = new Popover({ selectorPopover: '.asdf' });
+    expect(popover.settings.selectorPopover).toBe('.asdf');
+    popover.init({ selectorPopover: '.popover' });
+    expect(popover.settings.selectorPopover).toBe('.popover');
   });
 
   test('should remove all event listeners and clear collection', () => {

@@ -28,7 +28,7 @@ export default class Popover extends Collection {
     if (options) this.settings = { ...this.settings, ...options };
 
     // Get all the popovers
-    const popovers = document.querySelectorAll(`[data-${this.settings.dataPopover}]`);
+    const popovers = document.querySelectorAll(this.settings.selectorPopover);
 
     // Build the collections array with popover instances
     this.registerCollection(popovers);

@@ -122,7 +122,7 @@ export function getPopoverID(obj) {
     }
 
     // If it's a popover target
-    else if (obj.hasAttribute(`data-${this.settings.dataPopover}`)) {
+    else if (obj.closest(this.settings.selectorPopover)) {
       return obj.id;
     }
 

@@ -206,7 +206,6 @@ Applies styles to a popover to better fit a "tooltip" application. The default p
 | Key              | Default               | Description                                                      |
 | ---------------- | --------------------- | ---------------------------------------------------------------- |
 | `autoInit`       | `false`               | Automatically initializes the instance.                          |
-| `dataPopover`    | `'popover'`           | Data attribute for defining a popover.                           |
 | `dataArrow`      | `'popover-arrow'`     | Data attribute for defining a popover arrow.                     |
 | `dataEventType`  | `'popover-event'`     | Data attribute for setting the popover event type.               |
 | `dataPlacement`  | `'popover-placement'` | Data attribute for setting the preferred placement of a popover. |
