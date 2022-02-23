@@ -1,4 +1,5 @@
 import Popover from '../index.js';
+import { deregister, registerEventListeners } from '../src/js/register';
 import '@testing-library/jest-dom/extend-expect';
 
 let popover;
@@ -65,6 +66,48 @@ describe('register()', () => {
     expect(popover.collection.length).toBe(1);
     expect(popover.collection[0].__eventListeners.length).toBe(2);
   });
+
+  test('should attach open and close methods to registered popover', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover();
+    popover.register('asdf');
+    const entry = popover.get('asdf');
+    
+    entry.open();
+    expect(entry.state).toBe('opened');
+    expect(entry.target).toHaveClass('is-active');
+
+    entry.close();
+    expect(entry.state).toBe('closed');
+    expect(entry.target).not.toHaveClass('is-active');
+  });
+
+  test('should attach deregister method to registered popover', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover();
+    popover.register('asdf');
+    const entry = popover.get('asdf');
+    const target = document.querySelector('#asdf');
+
+    entry.trigger.click();
+    expect(target).toHaveClass('is-active');
+    expect(entry.state).toBe('opened');
+
+    entry.deregister();
+    expect(target).not.toHaveClass('is-active');
+    expect(entry.id).toBe(undefined);
+  });
+
+  test('should not register more event listeners if registerEventListeners is run on existing popover', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover();
+    popover.register('asdf');
+    const entry = popover.get('asdf');
+    registerEventListeners.call(popover, entry);
+    entry.trigger.click();
+    expect(entry.target).toHaveClass('is-active');
+    expect(entry.state).toBe('opened');
+  });
 });
 
 describe('deregister()', () => {
@@ -73,9 +116,9 @@ describe('deregister()', () => {
     popover = new Popover({ autoInit: true });
     expect(popover.collection.length).toBe(2);
     const item = popover.collection[0];
-    popover.deregister(item);
+    deregister.call(popover, item);
     expect(popover.collection.length).toBe(1);
-    popover.deregister(item);
+    deregister.call(popover, item);
     expect(popover.collection.length).toBe(1);
   });
 });
