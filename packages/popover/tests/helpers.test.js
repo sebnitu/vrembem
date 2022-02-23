@@ -191,14 +191,14 @@ describe('getPopoverID()', () => {
     const trigger = document.querySelector('#missing-attribute');
     const result = getPopoverID.call(popover, trigger);
     expect(result).toBe(false);
-  })
+  });
 
   test('should return false if passed object does not resolve an ID', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     const result = getPopoverID.call(popover, true);
     expect(result).toBe(false);
-  })
+  });
 });
 
 describe('getPopoverElements()', () => {
@@ -207,6 +207,7 @@ describe('getPopoverElements()', () => {
     console.error = jest.fn();
     popover = new Popover();
     const result = getPopoverElements.call(popover, 'pop-4');
+    expect(result).toBe(false);
     expect(console.error).toHaveBeenCalledWith('No popover elements found using the provided ID:', 'pop-4');
   });
 
@@ -216,6 +217,7 @@ describe('getPopoverElements()', () => {
     const trigger = document.querySelector('[aria-controls="asdf"]');
     popover = new Popover();
     const result = getPopoverElements.call(popover, trigger);
+    expect(result).toBe(false);
     expect(console.error).toHaveBeenCalledWith('No popover associated with the provided popover trigger:', trigger);
   });
 
@@ -225,6 +227,7 @@ describe('getPopoverElements()', () => {
     const target = document.querySelector('#fdsa');
     popover = new Popover();
     const result = getPopoverElements.call(popover, target);
+    expect(result).toBe(false);
     expect(console.error).toHaveBeenCalledWith('No popover trigger associated with the provided popover:', target);
   });
 
@@ -244,6 +247,7 @@ describe('getPopoverElements()', () => {
     const trigger = document.querySelector('#missing-attribute');
     popover = new Popover();
     const result = getPopoverElements.call(popover, trigger);
+    expect(result).toBe(false);
     expect(console.error).toHaveBeenCalledWith('Could not resolve the popover ID:', trigger);
   });
 });

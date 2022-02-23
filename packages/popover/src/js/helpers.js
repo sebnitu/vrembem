@@ -127,7 +127,7 @@ export function getPopoverID(obj) {
     }
 
     // Return false if no id was found
-    else { return false }
+    else return false;
   }
 
   // If it has an ID property
@@ -136,7 +136,7 @@ export function getPopoverID(obj) {
   }
 
   // Return false if no id was found
-  else { return false }
+  else return false;
 }
 
 export function getPopoverElements(query) {
@@ -161,5 +161,6 @@ export function getPopoverElements(query) {
     
   } else {
     console.error('Could not resolve the popover ID:', query);
+    return false;
   }
 }

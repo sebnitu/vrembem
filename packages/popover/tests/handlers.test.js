@@ -144,5 +144,5 @@ describe('documentClick()', () => {
 
     expect(popover.collection[0].target).not.toHaveClass('is-active');
     expect(popover.collection[1].target).not.toHaveClass('is-active');
-  })
+  });
 });

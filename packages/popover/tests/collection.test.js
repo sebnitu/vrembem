@@ -1,4 +1,4 @@
-import Collection from "../src/js/collection";
+import Collection from '../src/js/collection';
 
 let obj;
 
@@ -44,7 +44,7 @@ describe('register() & deregister()', () => {
     expect(obj.collection.length).toBe(1);
     expect(obj.collection[0].id).toBe('asdf');
     expect(item.id).toBe('fdsa');
-  })
+  });
 
   test('should remove item from collection if it exists', () => {
     const item = obj.collection[0];
