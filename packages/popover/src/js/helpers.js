@@ -125,30 +125,41 @@ export function getPopoverID(obj) {
     else if (obj.hasAttribute(`data-${this.settings.dataPopover}`)) {
       return obj.id;
     }
+
+    // Return false if no id was found
+    else { return false }
   }
 
   // If it has an ID property
   else if (obj.id) {
     return obj.id;
   }
+
+  // Return false if no id was found
+  else { return false }
 }
 
 export function getPopoverElements(query) {
   const id = getPopoverID.call(this, query);
-  const trigger = document.querySelector(`[aria-controls="${id}"]`);
-  const target = document.querySelector(`#${id}`);
+  if (id) {
+    const trigger = document.querySelector(`[aria-controls="${id}"]`);
+    const target = document.querySelector(`#${id}`);
 
-  if (!trigger && !target) {
-    console.error('No popover elements found using the provided ID:', id);
-  } else if (!trigger) {
-    console.error('No popover trigger associated with the provided popover:', target);
-  } else if (!target) {
-    console.error('No popover associated with the provided popover trigger:', trigger);
-  }
+    if (!trigger && !target) {
+      console.error('No popover elements found using the provided ID:', id);
+    } else if (!trigger) {
+      console.error('No popover trigger associated with the provided popover:', target);
+    } else if (!target) {
+      console.error('No popover associated with the provided popover trigger:', trigger);
+    }
 
-  if (!trigger || !target) {
-    return false;
+    if (!trigger || !target) {
+      return false;
+    } else {
+      return { trigger, target };
+    }
+    
   } else {
-    return { trigger, target };
+    console.error('Could not resolve the popover ID:', query);
   }
 }
