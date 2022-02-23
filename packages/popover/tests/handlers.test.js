@@ -132,4 +132,17 @@ describe('documentClick()', () => {
     expect(popover.collection[0].target).toHaveClass('is-active');
     expect(popover.collection[1].target).not.toHaveClass('is-active');
   });
+
+  test('should remove document event listener when popover is closed', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover({ autoInit: true });
+
+    expect(popover.collection[0].target).not.toHaveClass('is-active');
+    expect(popover.collection[1].target).toHaveClass('is-active');
+
+    popover.collection[1].trigger.click();
+
+    expect(popover.collection[0].target).not.toHaveClass('is-active');
+    expect(popover.collection[1].target).not.toHaveClass('is-active');
+  })
 });
