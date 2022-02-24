@@ -4,6 +4,7 @@ export default class Collection {
   }
 
   register(item) {
+    this.deregister(item);
     this.collection.push(item);
     return this.collection;
   }

@@ -37,9 +37,6 @@ export function register(trigger, target) {
     ...methods
   };
 
-  // Add item to collection
-  this.collection.push(popover);
-
   // Setup event listeners
   registerEventListeners.call(this, popover);
 
@@ -50,6 +47,9 @@ export function register(trigger, target) {
   } else {
     close.call(this, popover);
   }
+
+  // Add item to collection
+  this.collection.push(popover);
 
   // Return the popover object
   return popover;
