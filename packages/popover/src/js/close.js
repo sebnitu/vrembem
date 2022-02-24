@@ -10,13 +10,10 @@ export function close(popover) {
     modifiers: [{ name: 'eventListeners', enabled: false }]
   });
 
-  // Update collection status with new state
-  const index = this.collection.findIndex((item) => {
-    return item.target === popover.target;
-  });
-  this.collection[index].state = 'closed';
+  // Update popover state
+  popover.state = 'closed';
 
-  // Clear the memory if popover trigger matches the ones saved in memory
+  // Clear memory if popover trigger matches the one saved in memory
   if (popover.trigger === this.memory.trigger) {
     this.memory.trigger = null;
   }

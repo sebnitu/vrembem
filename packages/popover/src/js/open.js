@@ -4,7 +4,7 @@ export function open(popover) {
   // Update state class
   popover.target.classList.add(this.settings.stateActive);
 
-  // Update a11y attributes
+  // Update a11y attribute
   popover.trigger.setAttribute('aria-expanded', 'true');
 
   // Update popover config
@@ -19,14 +19,11 @@ export function open(popover) {
     ]
   });
 
-  // Update popover's position
+  // Update popover position
   popover.popper.update();
 
-  // Update collection status with new state
-  const index = this.collection.findIndex((item) => {
-    return item.target === popover.target;
-  });
-  this.collection[index].state = 'opened';
+  // Update popover state
+  popover.state = 'opened';
 
   // Return the popover
   return popover;
