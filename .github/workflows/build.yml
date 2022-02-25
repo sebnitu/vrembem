@@ -1,4 +1,4 @@
-name: Build and Test
+name: Build
 
 on:
   pull_request:
@@ -16,30 +16,17 @@ jobs:
         with:
           node-version: 17.5.0
   
-  build:
-    needs: setup
-    steps:
       - name: Install and Build
         run: |
           npm ci
           npx lerna bootstrap
           npm run build
 
-  lint:
-    needs: [setup, build]
-    steps: 
-      - name: Lint 
-        run: npm run lint
+      - name: Lint & Test
+        run: |
+          npm run lint
+          npm run test:coverage
 
-  test:
-    needs: [setup, lint]
-    steps:
-      - name: Test
-        run: npm run test:coverage
-
-  coveralls:
-    needs: [setup, test]
-    steps:
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
