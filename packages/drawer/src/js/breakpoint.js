@@ -9,12 +9,23 @@ export class Breakpoint {
   init() {
     const drawers = document.querySelectorAll(`[data-${this.parent.settings.dataBreakpoint}]`);
     drawers.forEach((drawer) => {
+      // Setup mediaQueryList object
       const id = drawer.getAttribute(`data-${this.parent.settings.dataDrawer}`);
       const key = drawer.getAttribute(`data-${this.parent.settings.dataBreakpoint}`);
       const bp = this.getBreakpoint(key);
       const mql = window.matchMedia('(min-width:' + bp + ')');
+
+      // Run match check
       this.match(mql, drawer);
-      mql.addEventListener('change', this.__check);
+
+      // For IE11 support, conditionally use addListner
+      if (typeof mql.addEventListener === 'function') {
+        mql.addEventListener('change', this.__check);
+      } else if (typeof mql.addListener === 'function') {
+        mql.addListener(this.__check);
+      }
+      
+      // Push to mediaQueryLists array along with drawer ID
       this.mediaQueryLists.push({
         'mql': mql,
         'drawer': id
