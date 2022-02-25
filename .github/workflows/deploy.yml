@@ -1,11 +1,11 @@
-name: Build and Test
+name: Build and Deploy
 
 on:
-  pull_request:
+  push:
     branches: [master]
 
 jobs:
-  build-and-test:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,12 +22,8 @@ jobs:
           npx lerna bootstrap
           npm run build
 
-      - name: Lint and Test
-        run: |
-          npm run lint
-          npm run test:coverage
-
-      - name: Send Coverage
-        uses: coverallsapp/github-action@master
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          branch: docs
+          folder: docs
