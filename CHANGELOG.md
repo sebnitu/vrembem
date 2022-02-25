@@ -14,9 +14,20 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.40.3 to CHANGELOG.md
+chore(release): add v1.41.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.41.0 (2022-02-25)
+
+#### :tada: New Feature
+* `popover`
+  * [#838](https://github.com/sebnitu/vrembem/pull/838) Further refactor Popover JS module and improve a11y
+
+#### :hammer: Chore
+* [#849](https://github.com/sebnitu/vrembem/pull/849) Add lint, test and coveralls to deploy workflow
+* [#845](https://github.com/sebnitu/vrembem/pull/845) Refactor gh-actions and add new deploy flow
 
 
 ## v1.40.3 (2022-02-25)
