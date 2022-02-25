@@ -8,14 +8,10 @@ const keyEsc = new KeyboardEvent('keydown', {
 });
 
 const markup = `
-  <button data-popover-trigger>...</button>
-  <div class="popover" data-popover>
-    ...
-  </div>
-  <button data-popover-trigger>...</button>
-  <div class="popover" data-popover>
-    ...
-  </div>
+  <button aria-controls="asdf">...</button>
+  <div id="asdf" class="popover">...</div>
+  <button aria-controls="fdsa">...</button>
+  <div id="fdsa" class="popover">...</div>
 `;
 
 afterEach(() => {
@@ -52,8 +48,8 @@ describe('init() & destroy()', () => {
       eventListeners: false
     });
 
-    const trigger = document.querySelector('[data-popover-trigger]');
-    const target = document.querySelector('[data-popover]');
+    const trigger = document.querySelector('button');
+    const target = document.querySelector('.popover');
 
     trigger.click();
     expect(target).toHaveClass('is-active');
@@ -63,18 +59,18 @@ describe('init() & destroy()', () => {
 
   test('should be able to pass options through init method', () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ dataPopover: 'asdf' });
-    expect(popover.settings.dataPopover).toBe('asdf');
-    popover.init({ dataPopover: 'popover' });
-    expect(popover.settings.dataPopover).toBe('popover');
+    popover = new Popover({ selectorPopover: '.asdf' });
+    expect(popover.settings.selectorPopover).toBe('.asdf');
+    popover.init({ selectorPopover: '.popover' });
+    expect(popover.settings.selectorPopover).toBe('.popover');
   });
 
   test('should remove all event listeners and clear collection', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
-    const trigger = document.querySelector('[data-popover-trigger]');
-    const target = document.querySelector('[data-popover]');
+    const trigger = document.querySelector('button');
+    const target = document.querySelector('.popover');
 
     expect(popover.collection.length).toBe(2);
     popover.destroy();
@@ -89,8 +85,8 @@ describe('initEventListeners() & destroyEventListeners()', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
-    const trigger = document.querySelector('[data-popover-trigger]');
-    const target = document.querySelector('[data-popover]');
+    const trigger = document.querySelector('button');
+    const target = document.querySelector('.popover');
 
     popover.destroyEventListeners();
 
@@ -102,8 +98,8 @@ describe('initEventListeners() & destroyEventListeners()', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
-    const trigger = document.querySelector('[data-popover-trigger]');
-    const target = document.querySelector('[data-popover]');
+    const trigger = document.querySelector('button');
+    const target = document.querySelector('.popover');
 
     popover.destroyEventListeners();
     popover.initEventListeners();
@@ -116,8 +112,8 @@ describe('initEventListeners() & destroyEventListeners()', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
-    const trigger = document.querySelector('[data-popover-trigger]');
-    const target = document.querySelector('[data-popover]');
+    const trigger = document.querySelector('button');
+    const target = document.querySelector('.popover');
 
     trigger.click();
     expect(target).toHaveClass('is-active');
@@ -132,8 +128,8 @@ describe('initEventListeners() & destroyEventListeners()', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
-    const trigger = document.querySelector('[data-popover-trigger]');
-    const target = document.querySelector('[data-popover]');
+    const trigger = document.querySelector('button');
+    const target = document.querySelector('.popover');
 
     trigger.click();
     expect(target).toHaveClass('is-active');
@@ -153,8 +149,8 @@ describe('register() & deregister()', () => {
 
     expect(popover.collection.length).toBe(0);
 
-    const trigger = document.querySelector('[data-popover-trigger]');
-    const target = document.querySelector('[data-popover]');
+    const trigger = document.querySelector('button');
+    const target = document.querySelector('.popover');
 
     popover.register(trigger);
     expect(popover.collection.length).toBe(1);
@@ -170,8 +166,8 @@ describe('register() & deregister()', () => {
     popover.deregister(popover.collection[0]);
     expect(popover.collection.length).toBe(1);
 
-    const trigger = document.querySelector('[data-popover-trigger]');
-    const target = document.querySelector('[data-popover]');
+    const trigger = document.querySelector('button');
+    const target = document.querySelector('.popover');
 
     trigger.click();
     expect(target).not.toHaveClass('is-active');
@@ -183,8 +179,8 @@ describe('registerCollection() & deregisterCollection()', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
-    const trigger = document.querySelector('[data-popover-trigger]');
-    const target = document.querySelector('[data-popover]');
+    const trigger = document.querySelector('button');
+    const target = document.querySelector('.popover');
 
     expect(popover.collection.length).toBe(2);
     trigger.click();
@@ -202,14 +198,15 @@ describe('registerCollection() & deregisterCollection()', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
 
-    const trigger = document.querySelector('[data-popover-trigger]');
-    const target = document.querySelector('[data-popover]');
+    const trigger = document.querySelector('button');
+    const target = document.querySelector('.popover');
+    const items = document.querySelectorAll('.popover');
 
     expect(popover.collection.length).toBe(0);
     trigger.click();
     expect(target).not.toHaveClass('is-active');
 
-    popover.registerCollection();
+    popover.registerCollection(items);
 
     expect(popover.collection.length).toBe(2);
     trigger.click();
@@ -217,15 +214,15 @@ describe('registerCollection() & deregisterCollection()', () => {
   });
 });
 
-describe('open() & close() & closeAll()', () => {
+describe('open() & close()', () => {
   test('should open the provided popover', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
-    const target = document.querySelector('[data-popover]');
+    const target = document.querySelector('.popover');
 
     expect(target).not.toHaveClass('is-active');
-    popover.open(popover.collection[0]);
+    popover.open(popover.collection[0].id);
     expect(target).toHaveClass('is-active');
   });
 
@@ -233,10 +230,10 @@ describe('open() & close() & closeAll()', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
-    const target = document.querySelector('[data-popover]');
+    const target = document.querySelector('.popover');
 
-    popover.open(popover.collection[0]);
-    popover.close(popover.collection[0]);
+    popover.open(popover.collection[0].id);
+    popover.close(popover.collection[0].id);
     expect(target).not.toHaveClass('is-active');
   });
 
@@ -245,7 +242,7 @@ describe('open() & close() & closeAll()', () => {
     popover = new Popover({ autoInit: true });
 
     popover.collection.forEach((item) => {
-      popover.open(item);
+      popover.open(item.id);
     });
 
     popover.collection.forEach((item) => {
@@ -253,11 +250,27 @@ describe('open() & close() & closeAll()', () => {
       expect(item.target).toHaveClass('is-active');
     });
 
-    popover.closeAll();
+    popover.close();
 
     popover.collection.forEach((item) => {
       expect(item.state).toBe('closed');
       expect(item.target).not.toHaveClass('is-active');
     });
+  });
+
+  test('should return false if open is run with a popover it could not find', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover({ autoInit: true });
+
+    const result = popover.open('missing');
+    expect(result).toBe(false);
+  });
+
+  test('should return false if close is run with a popover it could not find', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover({ autoInit: true });
+
+    const result = popover.close('missing');
+    expect(result).toBe(false);
   });
 });

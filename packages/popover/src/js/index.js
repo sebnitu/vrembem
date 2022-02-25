@@ -1,21 +1,22 @@
+import Collection from './collection';
+
 import defaults from './defaults';
+import { closeAll } from './close';
 import { handlerKeydown } from './handlers';
-import { close, closeAll } from './close';
-import { open } from './open';
+import { getPopoverID, getPopoverElements } from './helpers';
 import {
   register,
   deregister,
   registerEventListeners,
   deregisterEventListeners,
-  registerCollection,
-  deregisterCollection
 } from './register';
 
-export default class Popover {
+export default class Popover extends Collection {
   constructor(options) {
+    super();
     this.defaults = defaults;
     this.settings = { ...this.defaults, ...options };
-    this.collection = [];
+    // this.collection = [];
     this.memory = { trigger: null };
     this.__handlerKeydown = handlerKeydown.bind(this);
     if (this.settings.autoInit) this.init();
@@ -25,8 +26,11 @@ export default class Popover {
     // Update settings with passed options
     if (options) this.settings = { ...this.settings, ...options };
 
+    // Get all the popovers
+    const popovers = document.querySelectorAll(this.settings.selectorPopover);
+
     // Build the collections array with popover instances
-    this.registerCollection();
+    this.registerCollection(popovers);
 
     // If eventListeners is enabled
     if (this.settings.eventListeners) {
@@ -80,35 +84,35 @@ export default class Popover {
    * Register popover functionality
    */
 
-  register(trigger, target = false) {
-    return register.call(this, trigger, target);
+  register(query) {
+    const els = getPopoverElements.call(this, query);
+    if (!els) return false;
+    return register.call(this, els.trigger, els.target);
   }
 
-  deregister(popover) {
+  deregister(query) {
+    const popover = this.get(getPopoverID(query));
+    if (!popover) return false;
     return deregister.call(this, popover);
-  }
-
-  registerCollection() {
-    return registerCollection.call(this);
-  }
-
-  deregisterCollection() {
-    return deregisterCollection.call(this);
   }
 
   /**
    * Change state functionality
    */
 
-  open(popover) {
-    return open.call(this, popover);
+  open(id) {
+    const popover = this.get(id);
+    if (!popover) return false;
+    return popover.open();
   }
 
-  close(popover) {
-    return close.call(this, popover);
-  }
-
-  closeAll() {
-    return closeAll.call(this);
+  close(id) {
+    if (id) {
+      const popover = this.get(id);
+      if (!popover) return false;
+      return popover.close();
+    } else {
+      return closeAll.call(this);
+    }
   }
 }

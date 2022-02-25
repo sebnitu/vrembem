@@ -12,76 +12,50 @@ usage:
 
 ## popover
 
-The popover is a simple container component consisting of the `popover` class. To hook up the necessary JavaScript behavior, you'll need the following data attributes:
-
-- `data-popover` - Placed on our popover component itself.
-- `data-popover-trigger` - Placed on any element we use to trigger the popover.
+The popover is a simple container component consisting of the `popover` class and an `id`. Popover triggers should have an `aria-controls` attribute set to the ID of the popover element.
 
 {% include demo_open.html %}
-<button class="button button_color_primary" data-popover-trigger>
+<button class="button button_color_primary" aria-controls="popover-1">
   <span>Popover</span>
   <span class="arrow-down"></span>
 </button>
-<div class="popover" data-popover>
+<div class="popover" id="popover-1">
   {% include example_menu.html %}
 </div>
 {% include demo_switch.html %}
 ```html
-<button data-popover-trigger>...</button>
-<div class="popover" data-popover>
+<button aria-controls="unique-id">...</button>
+<div class="popover" id="unique-id">
   ...
 </div>
 ```
 {% include demo_close.html %}
 
-If the data attributes are valueless, the popover trigger will try to find it's associated popover by inspecting the next sibling element. If the popover can't be placed as a direct sibling of the trigger, you should give both attributes a shared unique ID to link them together. The popover can then be placed anywhere in the DOM, but it is still recommended to be as closely after the trigger as possible for keyboard focus tabbing accessibility.
+### `popover__arrow`
+
+Adds an arrow to a popover using an empty `<div>` or `<span>` with the `popover__arrow` class. Popover arrows are positioned center relative to the reference element.
 
 {% include demo_open.html %}
-<button class="button button_color_primary" data-popover-trigger="example-1">
-  <span>Popover</span>
-  <span class="arrow-down"></span>
-</button>
-<div>
-  <div class="popover" data-popover="example-1">
-    {% include example_menu.html %}
-  </div>
-</div>
-{% include demo_switch.html %}
-```html
-<button data-popover-trigger="unique-id">...</button>
-
-<!-- Somewhere else in the DOM -->
-<div class="popover" data-popover="unique-id">
-  ...
-</div>
-```
-{% include demo_close.html %}
-
-### `data-popover-arrow`
-
-The popover arrow is an inner element of the popper that is positioned center relative to the reference element. This can be defined using the `popover__arrow` class for styling and is hooked into the JavaScript implementation using the `data-popover-arrow` boolean attribute.
-
-{% include demo_open.html %}
-<button class="button button_color_primary" data-popover-trigger>
+<button class="button button_color_primary" aria-controls="popover-2">
   <span>Popover</span>
 </button>
-<div class="popover" data-popover data-popover-placement="auto">
+<div class="popover" id="popover-2">
   {% include example_menu.html type="short" %}
-  <span class="popover__arrow" data-popover-arrow></span>
+  <span class="popover__arrow"></span>
 </div>
 {% include demo_switch.html %}
 ```html
-<button data-popover-trigger>...</button>
-<div class="popover" data-popover>
+<button aria-controls="unique-id">...</button>
+<div id="unique-id" class="popover">
   ...
-  <span class="popover__arrow" data-popover-arrow></span>
+  <span class="popover__arrow"></span>
 </div>
 ```
 {% include demo_close.html %}
 
-### `data-popover-event`
+## Event Type
 
-There are two event types to trigger a popover, `click` (the default) or `hover` (hover also applies focus events). You an set your preferred default event type by passing it as an option on instantiation or initialization.
+There are two event types that can trigger a popover: `click` (the default) and `hover` (hover also applies focus events). You an set your preferred default event type by passing it as an option on instantiation or initialization.
 
 ```js
 // Set on instantiation
@@ -95,27 +69,27 @@ popover.init({
 });
 ```
 
-Alternatively, this value can be overridden using the [`--popover-event` CSS variable](#css-variables). This can be done either through your own custom CSS or using the `style` attribute. You can also set the event type on a per-popover basis by using the `data-popover-event` attribute and giving it an event type value.
+Alternatively, this value can be overridden using the [`--popover-event` CSS variable](#css-variables). This can be done either through your own custom CSS or using the `style` attribute.
 
 {% include demo_open.html %}
-<button class="button button_color_primary" data-popover-trigger>
+<button class="button button_color_primary" aria-controls="popover-3">
   <span>Hover Popover</span>
   <span class="arrow-down"></span>
 </button>
-<div class="popover" data-popover data-popover-event="hover">
+<div class="popover" id="popover-3" style="--popover-event: hover;">
   {% include example_menu.html type="short" %}
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="popover" data-popover data-popover-event="hover">
+<div id="unique-id" class="popover" style="--popover-event: hover;">
   ...
 </div>
 ```
 {% include demo_close.html %}
 
-### `data-popover-placement`
+## Placement
 
-Popover uses the [Popper JS positioning engine](https://popper.js.org/) to determine the optimal place to display a popover. The default preference is `bottom-start` but can be changed by passing it as an option on instantiation or initialization.
+Popover uses the [Popper JS positioning engine](https://popper.js.org/) to determine the optimal place to display a popover. The default preference is `bottom` but can be changed by passing it as an option on instantiation or initialization.
 
 ```js
 // Set on instantiation
@@ -129,19 +103,19 @@ popover.init({
 });
 ```
 
-Alternatively, this value can be overridden using the [`--popover-placement` CSS variable](#css-variables). This can be done either through your own custom CSS or using the `style` attribute. If you'd like to set the preferred popover placement per-popover, use the `data-popover-placement` attribute providing a valid placement value.
+Alternatively, this value can be overridden using the [`--popover-placement` CSS variable](#css-variables). This can be done either through your own custom CSS or using the `style` attribute.
 
 {% include demo_open.html %}
-<button class="button button_color_primary" data-popover-trigger>
+<button class="button button_color_primary" aria-controls="popover-4">
   <span>Top Popover</span>
   <span class="arrow-up"></span>
 </button>
-<div class="popover" data-popover data-popover-placement="top">
+<div class="popover" id="popover-4" style="--popover-placement: top;">
   {% include example_menu.html type="short" %}
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="popover" data-popover data-popover-placement="top">
+<div id="unique-id" class="popover" style="--popover-placement: top;">
   ...
 </div>
 ```
@@ -149,7 +123,9 @@ Alternatively, this value can be overridden using the [`--popover-placement` CSS
 
 ### Available Placement Values
 
-- `auto` - Will choose the side with the most space.
+- `auto`
+- `auto-start`
+- `auto-end`
 - `top`
 - `top-start`
 - `top-end`
@@ -163,9 +139,9 @@ Alternatively, this value can be overridden using the [`--popover-placement` CSS
 - `right-start`
 - `right-end`
 
-### CSS Variables
+## CSS Variables
 
-Popover provides some CSS variables on the `:root` element for controlling the event type, preferred placement, offset and overflow-padding. They're consumed by the JavaScript implementation to set options dynamically. These are the Sass variable that output CSS variables:
+Popover provides CSS variables on the `:root` element for controlling the event type, preferred placement, offset and overflow-padding. They're consumed by the JavaScript implementation to set options dynamically. The following Sass variable are output as CSS variables:
 
 <div class="scroll-box">
   <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
@@ -180,17 +156,17 @@ Popover provides some CSS variables on the `:root` element for controlling the e
       <tr>
         <td data-mobile-label="Sass"><code class="code text-nowrap">$event</code></td>
         <td data-mobile-label="CSS"><code class="code color-secondary">--popover-event</code></td>
-        <td data-mobile-label="Desc">Controls the event type in the same way <code class="code">data-popover-event</code> does. Can be set to <code class="code">click</code> or <code class="code">hover</code>.</td>
+        <td data-mobile-label="Desc">Controls the event type. Can be set to <code class="code">click</code> or <code class="code">hover</code>.</td>
       </tr>
       <tr>
         <td data-mobile-label="Sass"><code class="code text-nowrap">$placement</code></td>
         <td data-mobile-label="CSS"><code class="code color-secondary">--popover-placement</code></td>
-        <td data-mobile-label="Desc">Controls the preferred placement for the popover in the same way <code class="code">data-popover-placement</code> does. <a href="https://popper.js.org/docs/v2/constructors/#placement" class="link">More details &rarr;</a></td>
+        <td data-mobile-label="Desc">Controls the preferred placement for the popover. <a href="https://popper.js.org/docs/v2/constructors/#placement" class="link">More details &rarr;</a></td>
       </tr>
       <tr>
         <td data-mobile-label="Sass"><code class="code text-nowrap">$offset</code></td>
         <td data-mobile-label="CSS"><code class="code color-secondary">--popover-offset</code></td>
-        <td data-mobile-label="Desc">Controls the distance from the reference element (<code class="code">data-popover-trigger</code>) that a popover will position itself. <a href="https://popper.js.org/docs/v2/modifiers/offset/" class="link">More details &rarr;</a></td>
+        <td data-mobile-label="Desc">Controls the distance from the popover trigger element (<code class="code">aria-controls</code>) that a popover will position itself. <a href="https://popper.js.org/docs/v2/modifiers/offset/" class="link">More details &rarr;</a></td>
       </tr>
       <tr>
         <td data-mobile-label="Sass"><code class="code text-nowrap">$overflow-padding</code></td>
@@ -216,21 +192,21 @@ The advantage to having these values set by a CSS variable is that they can be g
 {% include demo_open.html %}
 <div class="level flex-justify-between" style="--popover-offset: 0;">
   <div style="--popover-placement: right;">
-    <button class="button button_color_primary" data-popover-trigger>
+    <button class="button button_color_primary" aria-controls="popover-5">
       <span class="arrow-right"></span>
     </button>
-    <div class="popover" data-popover>
+    <div class="popover" id="popover-5">
       {% include example_menu.html type="short" %}
-      <span class="popover__arrow" data-popover-arrow></span>
+      <span class="popover__arrow"></span>
     </div>
   </div>
   <div style="--popover-placement: left;">
-    <button class="button button_color_primary" data-popover-trigger>
+    <button class="button button_color_primary" aria-controls="popover-6">
       <span class="arrow-left"></span>
     </button>
-    <div class="popover" data-popover>
+    <div class="popover" id="popover-6">
       {% include example_menu.html type="short" %}
-      <span class="popover__arrow" data-popover-arrow></span>
+      <span class="popover__arrow"></span>
     </div>
   </div>
 </div>
@@ -252,37 +228,37 @@ The advantage to having these values set by a CSS variable is that they can be g
 Adjusts the size of the popover. There are two options relative to the default size, `popover_size_sm` and `popover_size_lg`. Also available is `popover_size_auto` which allows the popover to adjust based on it's content.
 
 {% include demo_open.html %}
-<button class="button" data-popover-trigger>
+<button class="button" aria-controls="popover-7">
   <span>Auto</span>
   <span class="arrow-down"></span>
 </button>
-<div class="popover popover_size_auto" data-popover>
+<div class="popover popover_size_auto" id="popover-7">
   {% include example_menu.html type="short" %}
 </div>
-<button class="button" data-popover-trigger>
+<button class="button" aria-controls="popover-8">
   <span>Small</span>
   <span class="arrow-down"></span>
 </button>
-<div class="popover popover_size_sm" data-popover>
+<div class="popover popover_size_sm" id="popover-8">
   {% include example_menu.html type="short" %}
 </div>
-<button class="button" data-popover-trigger>
+<button class="button" aria-controls="popover-9">
   <span>Default</span>
   <span class="arrow-down"></span>
 </button>
-<div class="popover" data-popover>
+<div class="popover" id="popover-9">
   {% include example_menu.html type="short" %}
 </div>
-<button class="button" data-popover-trigger>
+<button class="button" aria-controls="popover-10">
   <span>Large</span>
   <span class="arrow-down"></span>
 </button>
-<div class="popover popover_size_lg" data-popover>
+<div class="popover popover_size_lg" id="popover-10">
   {% include example_menu.html type="short" %}
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="popover popover_size_sm" data-popover>
+<div id="unique-id" class="popover popover_size_sm">
   ...
 </div>
 ```
@@ -299,16 +275,16 @@ Adjusts the size of the popover. There are two options relative to the default s
 Applies styles to a popover to better fit a "tooltip" application. The default placement will be set to `top` and are triggered by the `hover` event.
 
 {% include demo_open.html %}
-<button class="button" data-popover-trigger>Tooltip Trigger</button>
-<div class="popover popover_tooltip" data-popover>
+<button class="button" aria-controls="popover-11">Tooltip Trigger</button>
+<div class="popover popover_tooltip" id="popover-11">
   This is a tooltip...
-  <span class="popover__arrow" data-popover-arrow></span>
+  <span class="popover__arrow"></span>
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="popover popover_tooltip" data-popover>
+<div id="unique-id" class="popover popover_tooltip">
   ...
-  <span class="popover__arrow" data-popover-arrow></span>
+  <span class="popover__arrow"></span>
 </div>
 ```
 {% include demo_close.html %}
@@ -325,6 +301,11 @@ Applies styles to a popover to better fit a "tooltip" application. The default p
       </tr>
     </thead>
     <tbody>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-variable</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
+        <td data-mobile-label="Desc">String to prefix CSS variables with.</td>
+      </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$prefix-block</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">null</code></td>
@@ -371,11 +352,6 @@ Applies styles to a popover to better fit a "tooltip" application. The default p
         <td data-mobile-label="Default"><code class="code color-secondary">10</code></td>
         <td data-mobile-label="Desc">Sets the distance before a popover is cut off and will try to flip it's placement to stay visible. Also outputs a CSS variable.</td>
       </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$arrow-padding</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">10</code></td>
-        <td data-mobile-label="Desc">Sets the distance before a popover arrow reaches the edge of the popover.</td>
-      </tr>
       <!-- General -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$z-index</code></td>
@@ -386,6 +362,11 @@ Applies styles to a popover to better fit a "tooltip" application. The default p
         <td data-mobile-label="Var"><code class="code text-nowrap">$width</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">10</code></td>
         <td data-mobile-label="Desc">Sets the width property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$max-width</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">calc(100vw - 20px)</code></td>
+        <td data-mobile-label="Desc">Sets the max-width property.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$padding</code></td>
@@ -434,6 +415,11 @@ Applies styles to a popover to better fit a "tooltip" application. The default p
         <td data-mobile-label="Desc">Sets the width and height properties of the <code class="code">popover__arrow</code> element.</td>
       </tr>
       <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$arrow-padding</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">10</code></td>
+        <td data-mobile-label="Desc">Sets the distance before a popover arrow reaches the edge of the popover.</td>
+      </tr>
+      <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$arrow-border</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary">core.$border-light</code></td>
         <td data-mobile-label="Desc">Sets the border property of the <code class="code">popover__arrow</code> element.</td>
@@ -470,31 +456,16 @@ Applies styles to a popover to better fit a "tooltip" application. The default p
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">false</code></td>
         <td data-mobile-label="Desc">Automatically initializes the instance.</td>
       </tr>
-      <!-- Data attributes -->
+      <!-- Selectors -->
       <tr>
-        <td data-mobile-label="Key"><code class="code text-nowrap">dataPopover</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'popover'</code></td>
-        <td data-mobile-label="Desc">Data attribute for defining a popover.</td>
+        <td data-mobile-label="Key"><code class="code text-nowrap">selectorPopover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'.popover'</code></td>
+        <td data-mobile-label="Desc">Selector for finding popover elements.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Key"><code class="code text-nowrap">dataTrigger</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'popover-trigger'</code></td>
-        <td data-mobile-label="Desc">Data attribute for defining a popover trigger.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Key"><code class="code text-nowrap">dataArrow</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'popover-arrow'</code></td>
-        <td data-mobile-label="Desc">Data attribute for defining a popover arrow.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Key"><code class="code text-nowrap">dataEventType</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'popover-event'</code></td>
-        <td data-mobile-label="Desc">Data attribute for setting the popover event type.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Key"><code class="code text-nowrap">dataPlacement</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'popover-placement'</code></td>
-        <td data-mobile-label="Desc">Data attribute for setting the preferred placement of a popover.</td>
+        <td data-mobile-label="Key"><code class="code text-nowrap">selectorArrow</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'.popover__arrow'</code></td>
+        <td data-mobile-label="Desc">Selector for finding popover arrow elements.</td>
       </tr>
       <!-- State classes -->
       <tr>
@@ -515,7 +486,7 @@ Applies styles to a popover to better fit a "tooltip" application. The default p
       </tr>
       <tr>
         <td data-mobile-label="Key"><code class="code text-nowrap">placement</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'bottom-start'</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'bottom'</code></td>
         <td data-mobile-label="Desc">The default preferred placement.</td>
       </tr>
     </tbody>
@@ -526,16 +497,20 @@ Applies styles to a popover to better fit a "tooltip" application. The default p
 
 ### `popover.collection`
 
-An array where all registered popovers are stored. Each entry in the collection takes the following format:
+An array where all registered popovers are stored. Each entry in the collection contains the following properties:
 
 ```js
 {
-  state: String, // The current state of the popover. Either 'closed' or 'opened'
-  trigger: HTMLElement, // The popover trigger HTML element
-  target: HTMLElement, // The popover HTML element
-  config: Object // Stores the popover configuration options
-  popper: Object // The popper JS instance
-  __eventListeners: Array // An array of active event listener details and references
+  id: String, // The unique ID of the popover.
+  state: String, // The current state of the popover ('closed' or 'opened').
+  trigger: HTMLElement, // The popover trigger HTML element.
+  target: HTMLElement, // The popover HTML element.
+  popper: Object // The popper JS instance.
+  config: Object // Stores the popover configuration options.
+  open: Function // Method to open this popover.
+  close: Function // Method to close this popover.
+  deregister: Function // Method to deregister this popover.
+  __eventListeners: Array // An array of active event listener details and references.
 }
 ```
 
@@ -548,7 +523,7 @@ Initializes the popover instance. During initialization, the following processes
 
 **Parameters**
 
-- `options [Object] (optional) (default null)` An options object for passing your custom settings.
+- `options [Object] (optional) (default null)` An options object for passing custom settings.
 
 ```js
 const popover = new Popover();
@@ -571,61 +546,60 @@ popover.destroy();
 
 ### `popover.initEventListeners(processCollection)`
 
-Set the document event listeners.
+Set document and collection entry event listeners.
 
 **Parameters**
 
 - `processCollection [Boolean] (default true)` Whether or not to process the event listeners of popover collection.
 
 ```js
-const drawer = new Drawer({ eventListeners: false });
-drawer.init();
-drawer.initEventListeners();
+const popover = new Popover({ eventListeners: false });
+popover.init();
+popover.initEventListeners();
 ```
 
 ### `popover.destroyEventListeners(processCollection)`
 
-Remove the document event listeners.
+Remove document and collection entry event listeners.
 
 **Parameters**
 
 - `processCollection [Boolean] (default true)` Whether or not to process the event listeners of popover collection.
 
 ```js
-const drawer = new Drawer();
-drawer.init();
+const popover = new Popover();
+popover.init();
 // ...
-drawer.destroyEventListeners();
+popover.destroyEventListeners();
 ```
 
-### `popover.register(trigger, target)`
+### `popover.register(query)`
 
 Registers a popover into the collection. This also sets the initial state, creates the popper instance and attaches event listeners.
 
 **Parameters**
 
-- `trigger [HTMLElement]` The popover trigger element.
-- `target [HTMLElement] (optional) (default false)` The popover element. If not provided, a popover element will be searched for using the trigger element.
+- `query [String | Object]` A popover ID or an HTML element of either a popover or its trigger.
 
 **Returns**
 
 - `Object` The popover object that got stored in the collection.
 
 ```js
-const trigger = document.querySelector('[data-popover-trigger]');
-const obj = popover.register(trigger);
+const items = document.querySelector('.popover');
+const obj = popover.register(items);
 
 console.log(obj);
-// => Object { state: "closed", trigger: HTMLElement, target: HTMLElement, popper: {…}, ... }
+// => Object { id: 'popover-id', state: 'closed', trigger: HTMLElement, target: HTMLElement, popper: {…}, ... }
 ```
 
-### `popover.deregister(popover)`
+### `popover.deregister(query)`
 
 Deregister the popover from the collection. This closes the popover if it's active, cleans up the popper instance, removes event listeners and then removes the entry from the collection.
 
 **Parameters**
 
-- `popover [Object]` The popover instance in the collection to deregister.
+- `query [String | Object]` A popover ID or an HTML element of either a popover or its trigger.
 
 **Returns**
 
@@ -639,77 +613,84 @@ console.log(array);
 // => Array []
 ```
 
-### `popover.registerCollection()`
+### `popover.registerCollection(items)`
 
-Registers all popovers in the DOM to the collections array. This is done by getting all popover triggers and running them through the `register()` method.
+Registers array of popovers to the collection. All popovers in array are run through the `register()` method.
+
+**Parameters**
+
+- `items [Array]` An array of items to register.
 
 **Returns**
 
 - `Array` Returns the collection array.
 
 ```js
-popover.registerCollection()
+popover.registerCollection(items);
 // => Array [...]
 ```
 
 ### `popover.deregisterCollection()`
 
-Deregister all popovers in the collections array. This is done by looping through the collection's array and passing each popover through the `deregister()` method.
+Deregister all popovers in the collections array. All popovers in collection are run through the `deregister()` method.
 
 **Returns**
 
-- `Array` Returns a now empty collection array.
+- `Array` Returns an empty collection array.
 
 ```js
-popover.registerCollection()
+popover.registerCollection();
 // => Array []
 ```
 
-### `popover.open(popover)`
+### `popover.get(query, key)`
 
-Used to open a specific popover.
+Used to look up a popover entry within the collection. Query should match the key type to search by: e.g. to search by target elements, pass the target html node with a key of `'target'`. Defaults to `'id'`.
 
 **Parameters**
 
-- `popover [Object]` The popover instance that should be opened.
+- `query [String | Object]` The value or object to match against for within the collection.
+- `key [String] (optional) (default 'id')` The entry property to search.
 
 **Returns**
 
-- `Object` The popover object has been opened.
+- `Object | null` The popover entry if found otherwise `null`.
 
 ```js
-const item = popover.collection[0];
-popover.open(item)
-// => Object { state: "opened", ... }
+popover.get('popover-id')
+// => Object { id: 'popover-id', ... }
 ```
 
-### `popover.close(popover)`
+### `popover.open(id)`
 
 Used to close a specific popover.
 
 **Parameters**
 
-- `popover [Object]` The popover instance that should be closed.
+- `id [String]` The ID of the popover that should be opened.
 
 **Returns**
 
-- `Object` The popover object has been closed.
+- `Object` The popover object that has been opened.
 
 ```js
-const item = popover.collection[0];
-popover.close(item)
-// => Object { state: "closed", ... }
+popover.open('popover-id')
+// => Object { state: 'opened', ... }
 ```
 
-### `popover.closeAll()`
+### `popover.close(id)`
 
-Closes all popovers. This searches for all opened popovers in the collection and closes them.
+Used to closed a specific popover. Can be called without a parameter to close all open popovers.
+
+**Parameters**
+
+- `id [String] (optional)` The ID of the popover that should be closed.
 
 **Returns**
 
-- `Array` Returns the collection array.
+- `Object` The popover object that has been closed.
 
 ```js
-popover.closeAll();
-// => Array [...]
+popover.close('popover-id')
+// => Object { state: 'closed', ... }
 ```

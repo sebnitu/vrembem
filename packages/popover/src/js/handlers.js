@@ -1,11 +1,11 @@
-import { closeCheck } from './close';
+import { closeAll, closeCheck } from './close';
 
 export function handlerClick(popover) {
   if (popover.target.classList.contains(this.settings.stateActive)) {
-    this.close(popover);
+    popover.close();
   } else {
     this.memory.trigger = popover.trigger;
-    this.open(popover);
+    popover.open();
     documentClick.call(this, popover);
   }
 }
@@ -16,7 +16,7 @@ export function handlerKeydown(event) {
       if (this.memory.trigger) {
         this.memory.trigger.focus();
       }
-      this.closeAll();
+      closeAll.call(this);
       return;
 
     case 'Tab':
@@ -31,19 +31,19 @@ export function handlerKeydown(event) {
 }
 
 export function documentClick(popover) {
-  const obj = this;
+  const root = this;
   document.addEventListener('click', function _f(event) {
-    const result = event.target.closest(
-      `[data-${obj.settings.dataPopover}], [data-${obj.settings.dataTrigger}]`
-    );
-    const match = result === popover.target || result === popover.trigger;
-    if (!match) {
-      if (popover.target.classList.contains(obj.settings.stateActive)) {
-        obj.close(popover);
+    // Check if a popover was clicked
+    const result = event.target.closest(`#${popover.id}, [aria-controls="${popover.id}"]`);
+    if (!result) {
+      // If it doesn't match and popover is open, close it and remove event listener
+      if (popover.target && popover.target.classList.contains(root.settings.stateActive)) {
+        popover.close();
       }
       this.removeEventListener('click', _f);
     } else {
-      if (!popover.target.classList.contains(obj.settings.stateActive)) {
+      // If it does match and popover isn't currently active, remove event listener
+      if (popover.target && !popover.target.classList.contains(root.settings.stateActive)) {
         this.removeEventListener('click', _f);
       }
     }

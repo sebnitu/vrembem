@@ -1,63 +1,55 @@
 import { createPopper } from '@popperjs/core/dist/esm';
 
 import { handlerClick, documentClick } from './handlers';
-import { getConfig, getData, getPopover } from './helpers';
-import { closeCheck } from './close';
+import { getConfig } from './helpers';
+import { close, closeCheck } from './close';
 import { open } from './open';
 
 export function register(trigger, target) {
-  // If no target is passed
-  if (!target) {
-    // Try and get the target
-    target = getPopover(trigger, this.settings);
-    // If still no target is returned, log an error and return false
-    if (!target) {
-      console.error(
-        'No popover associated with the provided trigger:', trigger
-      );
-      return false;
+  // Deregister popover if it already exists in the collection
+  this.deregister(target.id);
+
+  // Create popper instance
+  const popperInstance = createPopper(trigger, target);
+
+  // Save root this for use inside object & create methods API
+  const root = this;
+  const methods = {
+    open() {
+      open.call(root, this);
+    },
+    close() {
+      close.call(root, this);
+    },
+    deregister() {
+      deregister.call(root, this);
     }
-  }
+  };
 
-  // Check if this item has already been registered in the collection
-  const index = this.collection.findIndex((item) => {
-    return (item.trigger === trigger && item.target === target);
-  });
-
-  // Initiate popover variable
-  let popover;
-
-  // Check if it already exists in collection
-  if (index >= 0) {
-    // Set popover as item from collection
-    popover = this.collection[index];
-  } else {
-    // Create popper instance
-    const popperInstance = createPopper(trigger, target);
-
-    // Build popover object and push to collection array
-    popover = {
-      state: 'closed',
-      trigger: trigger,
-      target: target,
-      popper: popperInstance,
-      config: getConfig(target, this.settings)
-    };
-
-    // Add item to collection
-    this.collection.push(popover);
-  }
+  // Build popover object and push to collection array
+  const popover = {
+    id: target.id,
+    state: 'closed',
+    trigger: trigger,
+    target: target,
+    popper: popperInstance,
+    config: getConfig(target, this.settings),
+    ...methods
+  };
 
   // Setup event listeners
   registerEventListeners.call(this, popover);
 
   // Set initial state of popover
   if (popover.target.classList.contains(this.settings.stateActive)) {
-    this.open(popover);
+    popover.open();
     documentClick.call(this, popover);
   } else {
-    this.close(popover);
+    popover.close();
   }
+
+  // Add item to collection
+  this.collection.push(popover);
 
   // Return the popover object
   return popover;
@@ -65,24 +57,32 @@ export function register(trigger, target) {
 
 export function deregister(popover) {
   // Check if this item has been registered in the collection
-  const index = this.collection.findIndex((item) => {
-    return (item.trigger === popover.trigger && item.target === popover.target);
+  const index = this.collection.findIndex((entry) => {
+    return (entry.id === popover.id);
   });
 
-  // If the item exists in the collection
+  // If the entry exists in the collection
   if (index >= 0) {
-    // Close the popover
-    if (popover.state === 'opened') {
-      this.close(popover);
+    // Get the collection entry
+    const entry = this.collection[index];
+
+    // Close the collection entry if it's open
+    if (entry.state === 'opened') {
+      entry.close();
     }
 
     // Clean up the popper instance
-    popover.popper.destroy();
+    entry.popper.destroy();
 
     // Remove event listeners
-    deregisterEventListeners(popover);
+    deregisterEventListeners(entry);
 
-    // Remove item from collection
+    // Delete properties from collection entry
+    Object.getOwnPropertyNames(entry).forEach((prop) => {
+      delete entry[prop];
+    });
+
+    // Remove entry from collection
     this.collection.splice(index, 1);
   }
 
@@ -94,9 +94,7 @@ export function registerEventListeners(popover) {
   // If event listeners aren't already setup
   if (!popover.__eventListeners) {
     // Add event listeners based on event type
-    const eventType = getData(
-      popover.target, this.settings.dataEventType, popover.config['event']
-    );
+    const eventType = popover.config['event'];
     if (eventType === 'hover') {
       // Setup event listeners object for hover
       popover.__eventListeners = [{
@@ -155,26 +153,4 @@ export function deregisterEventListeners(popover) {
 
   // Return the popover object
   return popover;
-}
-
-export function registerCollection() {
-  // Get all the triggers
-  const triggers = document.querySelectorAll(`[data-${this.settings.dataTrigger}]`);
-  triggers.forEach((trigger) => {
-    // Register the popover and save to collection array
-    this.register(trigger, false);
-  });
-
-  // Return the popover collection
-  return this.collection;
-}
-
-export function deregisterCollection() {
-  // Loop through all items within the collection and pass them to deregister()
-  while (this.collection.length > 0) {
-    this.deregister(this.collection[0]);
-  }
-
-  // Return the popover collection
-  return this.collection;
 }

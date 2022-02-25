@@ -9,7 +9,7 @@ export function getConfig(el, settings) {
     'offset': 0,
     'overflow-padding': 0,
     'flip-padding': 0,
-    'arrow-element': `[data-${settings.dataArrow}]`,
+    'arrow-element': settings.selectorArrow,
     'arrow-padding': 0
   };
 
@@ -17,21 +17,15 @@ export function getConfig(el, settings) {
   for (const prop in config) {
     // Get the CSS variable property values
     const prefix = getComputedStyle(document.body).getPropertyValue('--vrembem-variable-prefix');
-    const val = styles.getPropertyValue(`--${prefix}popover-${prop}`).trim();
+    const value = styles.getPropertyValue(`--${prefix}popover-${prop}`).trim();
     // If a value was found, replace the default in config obj
-    if (val) {
-      config[prop] = val;
+    if (value) {
+      config[prop] = value;
     }
   }
 
   // Return the config obj
   return config;
-}
-
-export function getData(el, attr, fallback = false) {
-  return el.hasAttribute(`data-${attr}`) ?
-    el.getAttribute(`data-${attr}`) :
-    fallback;
 }
 
 export function getPadding(value) {
@@ -108,22 +102,59 @@ export function getModifiers(options) {
   }];
 }
 
-export function getPopover(trigger, settings) {
-  // Get the value of the popover trigger attribute
-  const id = trigger.getAttribute(`data-${settings.dataTrigger}`).trim();
+export function getPopoverID(obj) {
+  // If it's a string
+  if (typeof obj === 'string') {
+    return obj;
+  }
+
+  // If it's an HTML element
+  else if (typeof obj.hasAttribute === 'function') {
+    // If it's a popover trigger
+    if (obj.hasAttribute('aria-controls')) {
+      return obj.getAttribute('aria-controls');
+    }
+
+    // If it's a popover target
+    else if (obj.closest(this.settings.selectorPopover)) {
+      return obj.id;
+    }
+
+    // Return false if no id was found
+    else return false;
+  }
+
+  // If it has an ID property
+  else if (obj.id) {
+    return obj.id;
+  }
+
+  // Return false if no id was found
+  else return false;
+}
+
+export function getPopoverElements(query) {
+  const id = getPopoverID.call(this, query);
   if (id) {
-    // If trigger attribute value exists, return the querySelector element using
-    // the provided popover trigger attribute's value
-    return document.querySelector(`[data-${settings.dataPopover}="${id}"]`);
+    const trigger = document.querySelector(`[aria-controls="${id}"]`);
+    const target = document.querySelector(`#${id}`);
+
+    if (!trigger && !target) {
+      console.error('No popover elements found using the provided ID:', id);
+    } else if (!trigger) {
+      console.error('No popover trigger associated with the provided popover:', target);
+    } else if (!target) {
+      console.error('No popover associated with the provided popover trigger:', trigger);
+    }
+
+    if (!trigger || !target) {
+      return false;
+    } else {
+      return { trigger, target };
+    }
+
   } else {
-    // If trigger attribute value doesn't exist, check if 
-    // - There is a nextElementSibling relative to the trigger
-    // - And it has the popover data attribute.
-    return (
-      trigger.nextElementSibling &&
-      trigger.nextElementSibling.hasAttribute(`data-${settings.dataPopover}`)
-    ) ?
-      // Return the element or false if the two checks fail
-      trigger.nextElementSibling : false;
+    console.error('Could not resolve the popover ID:', query);
+    return false;
   }
 }

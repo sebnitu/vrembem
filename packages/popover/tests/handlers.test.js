@@ -20,12 +20,12 @@ const keyTab = new KeyboardEvent('keydown', {
 
 const markup = `
   <div id="app">
-    <button data-popover-trigger>...</button>
-    <div class="popover" data-popover>
+    <button aria-controls="asdf">...</button>
+    <div id="asdf" class="popover">
       <button class="focus-test">...</button>
     </div>
-    <button data-popover-trigger>...</button>
-    <div class="popover is-active" data-popover>
+    <button aria-controls="fdsa">...</button>
+    <div id="fdsa" class="popover is-active">
       ...
     </div>
   </div>
@@ -130,6 +130,19 @@ describe('documentClick()', () => {
     popover.collection[0].trigger.click();
 
     expect(popover.collection[0].target).toHaveClass('is-active');
+    expect(popover.collection[1].target).not.toHaveClass('is-active');
+  });
+
+  test('should remove document event listener when popover is closed', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover({ autoInit: true });
+
+    expect(popover.collection[0].target).not.toHaveClass('is-active');
+    expect(popover.collection[1].target).toHaveClass('is-active');
+
+    popover.collection[1].trigger.click();
+
+    expect(popover.collection[0].target).not.toHaveClass('is-active');
     expect(popover.collection[1].target).not.toHaveClass('is-active');
   });
 });

@@ -1,5 +1,5 @@
 import Popover from '../index.js';
-import { closeCheck } from '../src/js/close';
+import { closeAll, closeCheck } from '../src/js/close';
 import '@testing-library/jest-dom/extend-expect';
 
 let popover;
@@ -7,16 +7,10 @@ let popover;
 jest.useFakeTimers();
 
 const markup = `
-  <div id="app">
-    <button data-popover-trigger>...</button>
-    <div class="popover is-active" data-popover tabindex="0">
-      ...
-    </div>
-    <button data-popover-trigger>...</button>
-    <div class="popover is-active" data-popover>
-      ...
-    </div>
-  </div>
+  <button aria-controls="asdf">...</button>
+  <div id="asdf" class="popover is-active" tabindex="0">...</div>
+  <button aria-controls="fdsa">...</button>
+  <div id="fdsa" class="popover is-active">...</div>
 `;
 
 afterEach(() => {
@@ -31,7 +25,7 @@ describe('close()', () => {
     popover = new Popover({ autoInit: true });
     expect(popover.collection[0].state).toBe('opened');
     expect(popover.collection[0].target).toHaveClass('is-active');
-    popover.close(popover.collection[0]);
+    popover.close(popover.collection[0].id);
     expect(popover.collection[0].state).toBe('closed');
     expect(popover.collection[0].target).not.toHaveClass('is-active');
   });
@@ -44,7 +38,7 @@ describe('closeAll()', () => {
     expect(popover.collection.length).toBe(2);
     expect(popover.collection[0].target).toHaveClass('is-active');
     expect(popover.collection[1].target).toHaveClass('is-active');
-    popover.closeAll();
+    closeAll.call(popover);
     expect(popover.collection[0].target).not.toHaveClass('is-active');
     expect(popover.collection[1].target).not.toHaveClass('is-active');
   });
