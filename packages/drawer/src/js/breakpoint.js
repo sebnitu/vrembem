@@ -21,10 +21,10 @@ export class Breakpoint {
       // For IE11 support, conditionally use addListner
       if (typeof mql.addEventListener === 'function') {
         mql.addEventListener('change', this.__check);
-      } else if (typeof mql.addListener === 'function') {
+      } else {
         mql.addListener(this.__check);
       }
-      
+
       // Push to mediaQueryLists array along with drawer ID
       this.mediaQueryLists.push({
         'mql': mql,
