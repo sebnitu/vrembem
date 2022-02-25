@@ -42,10 +42,10 @@ export function register(trigger, target) {
 
   // Set initial state of popover
   if (popover.target.classList.contains(this.settings.stateActive)) {
-    open.call(this, popover);
+    popover.open();
     documentClick.call(this, popover);
   } else {
-    close.call(this, popover);
+    popover.close();
   }
 
   // Add item to collection

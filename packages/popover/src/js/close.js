@@ -25,7 +25,7 @@ export function close(popover) {
 export function closeAll() {
   this.collection.forEach((popover) => {
     if (popover.state === 'opened') {
-      close.call(this, popover);
+      popover.close();
     }
   });
 
@@ -48,7 +48,7 @@ export function closeCheck(popover) {
 
     // Close if the trigger and target are not currently hovered or focused
     if (!isHovered && !isFocused) {
-      close.call(this, popover);
+      popover.close();
     }
 
     // Return the popover

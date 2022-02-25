@@ -1,12 +1,11 @@
-import { close, closeAll, closeCheck } from './close';
-import { open } from './open';
+import { closeAll, closeCheck } from './close';
 
 export function handlerClick(popover) {
   if (popover.target.classList.contains(this.settings.stateActive)) {
-    close.call(this, popover);
+    popover.close();
   } else {
     this.memory.trigger = popover.trigger;
-    open.call(this, popover);
+    popover.open();
     documentClick.call(this, popover);
   }
 }

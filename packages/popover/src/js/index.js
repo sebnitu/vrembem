@@ -1,10 +1,9 @@
 import Collection from './collection';
 
 import defaults from './defaults';
-import { close, closeAll } from './close';
+import { closeAll } from './close';
 import { handlerKeydown } from './handlers';
 import { getPopoverID, getPopoverElements } from './helpers';
-import { open } from './open';
 import {
   register,
   deregister,
@@ -104,14 +103,14 @@ export default class Popover extends Collection {
   open(id) {
     const popover = this.get(id);
     if (!popover) return false;
-    return open.call(this, popover);
+    return popover.open();
   }
 
   close(id) {
     if (id) {
       const popover = this.get(id);
       if (!popover) return false;
-      return close.call(this, popover);
+      return popover.close();
     } else {
       return closeAll.call(this);
     }
