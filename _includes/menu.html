@@ -18,7 +18,7 @@
   <li class="menu__item" data-category="{{ item.category }}">
     <a class="menu__action{{ class }}" href="{{ item.url }}">
       <span class="menu__text name">{{ item.title }}</span>
-      <span class="menu__icon category" data-category="{{ item.category }}" data-popover-trigger>
+      <span class="menu__icon category" data-category="{{ item.category }}" aria-controls="popover-category-{{ forloop.index }}">
         {%- if item.category == 'layout' -%}
         {%- include icon.html icon="layout" -%}
         {%- elsif item.category == 'compound' -%}
@@ -29,9 +29,9 @@
         {%- include icon.html icon="settings" -%}
         {%- endif -%}
       </span>
-      <div class="popover popover_tooltip" data-popover data-popover-placement="left">
+      <div id="popover-category-{{ forloop.index }}" class="popover popover_tooltip" style="--popover-placement: left;">
         {{ item.category }}
-        <span class="popover__arrow" data-popover-arrow></span>
+        <span class="popover__arrow"></span>
       </div>
     </a>
   </li>
