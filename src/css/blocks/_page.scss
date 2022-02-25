@@ -1,0 +1,52 @@
+@use "vrembem" as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.page__toolbar {
+  flex-grow: 0;
+}
+
+.page__main {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  height: 100vh;
+}
+
+.page__aside {
+  flex-grow: 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+
+  .dialog__header,
+  .dialog__footer {
+    background: $core-shade;
+  }
+
+  .dialog__body {
+    background: $core-shade;
+  }
+}
+
+.page__article {
+  flex-grow: 1;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.page__toolbar + .page__main {
+  height: calc(100vh - 56px);
+  margin-top: 56px;
+}
+
+@include core-media-min('md') {
+  .page__toolbar + .page__main {
+    height: calc(100vh - 72px);
+    margin-top: 72px;
+  }
+}

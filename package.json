@@ -1,0 +1,33 @@
+{
+  "name": "docs",
+  "description": "A container component that slides in from the left or right. It typically contains menus, search or other content for your app.",
+  "version": "1.40.3",
+  "private": true,
+  "source": "src/js/app.js",
+  "browser": "dist/bundle.js",
+  "scripts": {
+    "build": "npm-run-all clean scripts styles",
+    "clean": "del dist",
+    "scripts": "microbundle --external=none --output=dist/bundle.js --format=iife",
+    "styles": "npm-run-all styles:compile styles:min",
+    "styles:compile": "sass src/css/app.scss dist/styles.css --load-path node_modules --load-path node_modules/vrembem/node_modules",
+    "styles:min": "sass dist/styles.css dist/styles.min.css --style compressed",
+    "watch": "concurrently --kill-others 'npm run watch:scripts' 'npm run watch:styles'",
+    "watch:scripts": "nodemon -e js -x 'npm run scripts'",
+    "watch:styles": "nodemon -e scss -x 'npm run styles'",
+    "server": "bundle exec jekyll serve --livereload"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebnitu/vrembem.git",
+    "directory": "packages/docs"
+  },
+  "dependencies": {
+    "feather-icons": "^4.28.0",
+    "list.js": "^2.3.1",
+    "scroll-stash": "^1.1.2",
+    "svgxuse": "^1.2.6",
+    "vrembem": "^1.40.3",
+    "wicg-inert": "^3.1.1"
+  }
+}

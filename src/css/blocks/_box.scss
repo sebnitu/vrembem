@@ -1,0 +1,7 @@
+@use "vrembem" as *;
+
+.box {
+  padding: calc(1em - 2px);
+  border: 2px solid rgba($core-green, 0.5);
+  background: rgba($core-green, 0.1);
+}

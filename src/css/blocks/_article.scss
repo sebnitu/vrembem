@@ -1,0 +1,23 @@
+@use "vrembem" as *;
+
+.article__section {
+  padding: 1.5em;
+}
+
+.article__title {
+  @include base-heading-base();
+  @include base-heading(1);
+}
+
+.article__footer {
+  border-top: $core-border;
+}
+
+@include core-media-min('md') {
+  .article__intro,
+  .article__body,
+  .article__footer {
+    padding-right: 3em;
+    padding-left: 3em;
+  }
+}

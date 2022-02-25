@@ -1,0 +1,33 @@
+---
+layout: compress
+---
+
+{%- include head.html -%}
+
+<div class="page">
+  {%- include toolbar.html class="page__toolbar" -%}
+  <div class="page__main drawer__wrapper">
+
+    <aside
+      id="listjs"
+      class="page__aside drawer drawer_pos_left is-opened"
+      data-drawer="drawer-menu"
+      data-drawer-breakpoint="850px">
+      <div class="drawer__dialog dialog" data-drawer-dialog data-scroll-stash="component-menu">
+        <div class="dialog__header gap-y">
+          {%- include filter.html -%}
+        </div>
+        <div class="dialog__body">
+          {%- include menu.html -%}
+        </div>
+      </div>
+    </aside>
+
+    <div role="main" class="page__article drawer__main">
+      {{ content }}
+    </div>
+
+  </div>
+</div>
+
+{%- include foot.html -%}

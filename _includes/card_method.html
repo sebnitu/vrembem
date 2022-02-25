@@ -1,0 +1,25 @@
+<div class="card card_theme_bordered">
+  <div class="card__body gap-y-y">
+    {% if include.title %}
+    <h3 class="card__title">{{ include.title }}</h3>
+    {% endif %}
+    {% if include.desc %}
+    <p>{{ include.desc }}</p>
+    {% endif %}
+    {% if include.param %}
+    <p>{{ include.param }}</p>
+    {% endif %}
+    {% if include.script %}
+    <div>
+      <div class="grid grid_gap_sm">
+        <div class="grid__item">
+          <code>{{ include.script }}</code>
+        </div>
+        <div class="grid__item span-auto">
+          <a href="#" class="button button_size_sm grow-0" data-script="{{ include.script }}">Run</a>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>

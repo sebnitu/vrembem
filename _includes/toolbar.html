@@ -1,0 +1,53 @@
+<div class="toolbar{% if include.class %} {{ include.class }}{% endif %}">
+  <div class="grid grid_auto grid_gap_none flex-justify-between">
+
+    <div class="grid__item">
+      <ul class="menu menu_inline menu_invert">
+        <li class="menu__item">
+          <button class="menu__action menu__action_icon" data-drawer-toggle="drawer-menu">
+            {% include icon.html icon="menu" %}
+          </button>
+        </li>
+        <li class="menu__sep"></li>
+        <li class="menu__item">
+          <a href="{{ site.url }}{{ site.baseurl }}" class="menu__action">
+            <span>{{ site.title }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="grid__item">
+      <ul class="menu menu_inline menu_invert">
+
+        {%- if page.previous -%}
+        <li class="menu__item">
+          <a href="{{ page.previous.url }}" class="menu__action menu__action_icon">
+            {% include icon.html icon="arrow-left" %}
+          </a>
+        </li>
+        {%- endif -%}
+
+        {%- if page.next -%}
+        <li class="menu__item">
+          <a href="{{ page.next.url }}" class="menu__action menu__action_icon">
+            {% include icon.html icon="arrow-right" %}
+          </a>
+        </li>
+        {%- endif -%}
+
+        {%- if page.previous or page.next -%}
+        <li class="menu__sep"></li>
+        {%- endif -%}
+
+        <li class="menu__item">
+          <a href="https://github.com/{{ site.repository }}" class="menu__action menu__action_icon">
+            {% include icon.html icon="github" %}
+          </a>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,6 @@
+@use "vrembem" as *;
+
+.swatch {
+  @include core-size(4rem);
+  display: inline-flex;
+}

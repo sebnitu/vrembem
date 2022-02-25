@@ -1,0 +1,17 @@
+{%- assign class_gridItem = '' -%}
+{%- assign class_parent = '' -%}
+
+{%- if include.class_gridItem -%}
+{%- assign class_gridItem = ' ' | append: include.class_gridItem -%}
+{%- else -%}
+{%- assign class_gridItem = ' span-6' -%}
+{%- endif -%}
+
+{%- if include.class_parent -%}
+{%- assign class_parent = ' ' | append: include.class_parent -%}
+{%- endif -%}
+
+</div>
+</div>
+<div class="grid__item{{ class_gridItem | rstrip }}">
+  <div class="demo__code{{ class_parent | rstrip }}" markdown="1">

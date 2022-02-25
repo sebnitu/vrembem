@@ -1,0 +1,44 @@
+@use "vrembem" as *;
+
+.filter {
+  position: relative;
+  z-index: 4;
+  flex-grow: 1;
+  background: $core-shade;
+
+  &.is-active {
+    border-color: $core-primary;
+  }
+
+  .search {
+    padding: 0.75em 2.75em;
+    border: none;
+    border-radius: $core-border-radius;
+    background: $core-white;
+    box-shadow: none;
+
+    &:focus,
+    &.is-active {
+      background: $core-white;
+      box-shadow: $core-box-shadow;
+      color: $core-primary;
+    }
+  }
+
+  .search_label,
+  .search_clear {
+    position: absolute;
+    z-index: 5;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+
+  .search_label {
+    left: 0.75em;
+    display: flex;
+  }
+
+  .search_clear {
+    right: 0.75em;
+  }
+}

@@ -1,0 +1,31 @@
+@use "vrembem" as *;
+
+.debug {
+  position: absolute;
+  right: 1em;
+  bottom: 1em;
+  display: flex;
+  border-radius: $core-border-radius;
+  background: rgba($core-white, 0.9);
+  box-shadow: $core-box-shadow-8dp;
+  font-family: $core-font-family-mono;
+  font-size: $core-font-size-sm;
+
+  &::before {
+    content: "Debug";
+    padding: $core-padding;
+    border-top-left-radius: $core-border-radius;
+    border-bottom-left-radius: $core-border-radius;
+    background: $core-pink;
+    color: $core-white;
+    font-weight: bold;
+  }
+
+  &::after {
+    content: "#{$core-padding}";
+    padding: $core-padding;
+    border-top-right-radius: $core-border-radius;
+    border-bottom-right-radius: $core-border-radius;
+    color: $core-pink;
+  }
+}

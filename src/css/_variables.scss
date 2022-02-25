@@ -1,0 +1,9 @@
+@use "vrembem" as *;
+
+$background-color: $core-blue-gray-900;
+$background-gradient:
+  linear-gradient(
+    148deg,
+    $core-blue-gray-700 0,
+    $core-blue-gray-900 100%
+  );

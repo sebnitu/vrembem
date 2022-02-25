@@ -1,0 +1,40 @@
+<div class="notice notice_state_danger border notice_empty display-none">
+  <div class="notice__body">
+    <p>No results found for: "<span class="search_text"></span>"</p>
+  </div>
+</div>
+
+<ul class="menu menu_drawer">
+  {%- for item in site.packages -%}
+
+  {%- assign class = '' -%}
+
+  {%- if item.url != '/' and page.url == item.url -%}
+  {%- assign class = class | append: ' is-active' -%}
+  {%- elsif item.url != '/' and page.url contains item.url or item.url contains page.parent -%}
+  {%- assign class = class | append: ' is-parent' -%}
+  {%- endif -%}
+
+  <li class="menu__item" data-category="{{ item.category }}">
+    <a class="menu__action{{ class }}" href="{{ item.url }}">
+      <span class="menu__text name">{{ item.title }}</span>
+      <span class="menu__icon category" data-category="{{ item.category }}" data-popover-trigger>
+        {%- if item.category == 'layout' -%}
+        {%- include icon.html icon="layout" -%}
+        {%- elsif item.category == 'compound' -%}
+        {%- include icon.html icon="layers" -%}
+        {%- elsif item.category == 'simple' -%}
+        {%- include icon.html icon="box" -%}
+        {%- elsif item.category == 'core' -%}
+        {%- include icon.html icon="settings" -%}
+        {%- endif -%}
+      </span>
+      <div class="popover popover_tooltip" data-popover data-popover-placement="left">
+        {{ item.category }}
+        <span class="popover__arrow" data-popover-arrow></span>
+      </div>
+    </a>
+  </li>
+
+  {%- endfor -%}
+</ul>

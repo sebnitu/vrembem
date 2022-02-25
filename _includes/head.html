@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}" {% if page.class %}class="{{ page.class }}"{% endif %}>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {%- if site.google_analytics and jekyll.environment == 'production' -%}
+    {%- include google-analytics.html -%}
+  {%- endif -%}
+
+  {%- include seo.html -%}
+
+  <!-- RSS -->
+  {%- feed_meta -%}
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ site.url }}{{ site.baseurl }}/assets/favicon.png">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="{{ site.url }}{{ site.baseurl }}/dist/styles.min.css">
+
+  {%- if page.include.css -%}
+    {%- for file in page.include.css -%}
+      <link rel="stylesheet" href="{%- include asset.html src=file -%}">
+    {%- endfor -%}
+  {%- endif -%}
+
+</head>
+<body>
+{%- include svg/symbols.svg -%}
