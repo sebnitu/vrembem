@@ -3,7 +3,9 @@ export function close(popover) {
   popover.target.classList.remove(this.settings.stateActive);
 
   // Update a11y attributes
-  popover.trigger.setAttribute('aria-expanded', 'false');
+  if (popover.trigger.hasAttribute('aria-controls')) {
+    popover.trigger.setAttribute('aria-expanded', 'false');
+  }
 
   // Disable popper event listeners
   popover.popper.setOptions({

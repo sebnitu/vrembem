@@ -5,7 +5,9 @@ export function open(popover) {
   popover.target.classList.add(this.settings.stateActive);
 
   // Update a11y attribute
-  popover.trigger.setAttribute('aria-expanded', 'true');
+  if (popover.trigger.hasAttribute('aria-controls')) {
+    popover.trigger.setAttribute('aria-expanded', 'true');
+  }
 
   // Update popover config
   popover.config = getConfig(popover.target, this.settings);
