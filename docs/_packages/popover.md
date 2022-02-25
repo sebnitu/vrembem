@@ -272,22 +272,28 @@ Adjusts the size of the popover. There are two options relative to the default s
 
 ## popover_tooltip
 
-Applies styles to a popover to better fit a "tooltip" application. The default placement will be set to `top` and are triggered by the `hover` event.
+Applies styles to create a popover tooltip. The default placement of a tooltip is `top` and are triggered by the `hover` and `focus` events. Tooltips also require a different set of attributes for accessibility:
+
+- The popover element should have the `role="tooltip"` set.
+- The popover trigger should have `aria-describedby` (instead of `aria-controls`) set to the ID of the popover element.
 
 {% include demo_open.html %}
-<button class="button" aria-controls="popover-11">Tooltip Trigger</button>
-<div class="popover popover_tooltip" id="popover-11">
-  This is a tooltip...
+<span class="border-bottom" aria-describedby="popover-11">HTML</span>
+<div id="popover-11" class="popover popover_tooltip" role="tooltip">
+  Hypertext Markup Language
   <span class="popover__arrow"></span>
 </div>
 {% include demo_switch.html %}
 ```html
-<div id="unique-id" class="popover popover_tooltip">
-  ...
+<span aria-describedby="unique-id">HTML</span>
+<div id="unique-id" class="popover popover_tooltip" role="tooltip">
+  Hypertext Markup Language
   <span class="popover__arrow"></span>
 </div>
 ```
 {% include demo_close.html %}
+
+> For more information regarding tooltip accessibility and best practices: [ARIA: tooltip role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tooltip_role)
 
 ## Sass variables
 

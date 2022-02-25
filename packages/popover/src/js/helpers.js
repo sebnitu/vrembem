@@ -115,6 +115,11 @@ export function getPopoverID(obj) {
       return obj.getAttribute('aria-controls');
     }
 
+    // If it's a popover tooltip trigger
+    else if (obj.hasAttribute('aria-describedby')) {
+      return obj.getAttribute('aria-describedby');
+    }
+
     // If it's a popover target
     else if (obj.closest(this.settings.selectorPopover)) {
       return obj.id;
@@ -136,7 +141,9 @@ export function getPopoverID(obj) {
 export function getPopoverElements(query) {
   const id = getPopoverID.call(this, query);
   if (id) {
-    const trigger = document.querySelector(`[aria-controls="${id}"]`);
+    const trigger =
+      document.querySelector(`[aria-controls="${id}"]`) ||
+      document.querySelector(`[aria-describedby="${id}"]`);
     const target = document.querySelector(`#${id}`);
 
     if (!trigger && !target) {

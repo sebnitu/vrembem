@@ -11,6 +11,8 @@ const markup = `
   <div id="asdf" class="popover is-active" tabindex="0">...</div>
   <button aria-controls="fdsa">...</button>
   <div id="fdsa" class="popover is-active">...</div>
+  <span aria-describedby="afsd">...</span>
+  <div id="afsd" class="popover popover_tooltip is-active" role="tooltip">...</div>
 `;
 
 afterEach(() => {
@@ -23,11 +25,27 @@ describe('close()', () => {
   test('should close the provided popover', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
-    expect(popover.collection[0].state).toBe('opened');
-    expect(popover.collection[0].target).toHaveClass('is-active');
-    popover.close(popover.collection[0].id);
-    expect(popover.collection[0].state).toBe('closed');
-    expect(popover.collection[0].target).not.toHaveClass('is-active');
+    const el = popover.get('asdf');
+    expect(el.state).toBe('opened');
+    expect(el.target).toHaveClass('is-active');
+    expect(el.trigger.getAttribute('aria-expanded')).toBe('true');
+    el.close();
+    expect(el.state).toBe('closed');
+    expect(el.target).not.toHaveClass('is-active');
+    expect(el.trigger.getAttribute('aria-expanded')).toBe('false');
+  });
+
+  test('should close the provided popover tooltip', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover({ autoInit: true });
+    const el = popover.get('afsd');
+    expect(el.state).toBe('opened');
+    expect(el.target).toHaveClass('is-active');
+    expect(el.trigger.hasAttribute('aria-expanded')).toBe(false);
+    el.close();
+    expect(el.state).toBe('closed');
+    expect(el.target).not.toHaveClass('is-active');
+    expect(el.trigger.hasAttribute('aria-expanded')).toBe(false);
   });
 });
 
@@ -35,7 +53,7 @@ describe('closeAll()', () => {
   test('should close all popovers', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
-    expect(popover.collection.length).toBe(2);
+    expect(popover.collection.length).toBe(3);
     expect(popover.collection[0].target).toHaveClass('is-active');
     expect(popover.collection[1].target).toHaveClass('is-active');
     closeAll.call(popover);
@@ -48,7 +66,7 @@ describe('closeCheck()', () => {
   test('should close popover if closeCheck does not detect a hover or focus on trigger or target elements', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
-    expect(popover.collection.length).toBe(2);
+    expect(popover.collection.length).toBe(3);
     closeCheck.call(popover, popover.collection[0]);
     jest.advanceTimersByTime(100);
     expect(popover.collection[0].target).not.toHaveClass('is-active');
