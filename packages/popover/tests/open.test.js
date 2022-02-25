@@ -8,6 +8,8 @@ jest.useFakeTimers();
 const markup = `
   <button aria-controls="asdf">...</button>
   <div id="asdf" class="popover">...</div>
+  <span aria-describedby="fdsa">...</span>
+  <div id="fdsa" class="popover popover_tooltip" role="tooltip">...</div>
 `;
 
 afterEach(() => {
@@ -20,10 +22,26 @@ describe('open()', () => {
   test('should open the provided popover', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
-    expect(popover.collection[0].state).toBe('closed');
-    expect(popover.collection[0].target).not.toHaveClass('is-active');
-    popover.open(popover.collection[0].id);
-    expect(popover.collection[0].state).toBe('opened');
-    expect(popover.collection[0].target).toHaveClass('is-active');
+    const el = popover.get('asdf');
+    expect(el.state).toBe('closed');
+    expect(el.target).not.toHaveClass('is-active');
+    expect(el.trigger.getAttribute('aria-expanded')).toBe('false');
+    el.open();
+    expect(el.state).toBe('opened');
+    expect(el.target).toHaveClass('is-active');
+    expect(el.trigger.getAttribute('aria-expanded')).toBe('true');
+  });
+
+  test('should open the provided popover tooltip', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover({ autoInit: true });
+    const el = popover.get('fdsa');
+    expect(el.state).toBe('closed');
+    expect(el.target).not.toHaveClass('is-active');
+    expect(el.trigger.hasAttribute('aria-expanded')).toBe(false);
+    el.open();
+    expect(el.state).toBe('opened');
+    expect(el.target).toHaveClass('is-active');
+    expect(el.trigger.hasAttribute('aria-expanded')).toBe(false);
   });
 });

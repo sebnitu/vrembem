@@ -17,8 +17,8 @@ const markup = `
   <button aria-controls="pop-2">...</button>
   <div id="pop-2" class="popover">...</div>
 
-  <button aria-controls="pop-3">...</button>
-  <div id="pop-3" class="popover">...</div>
+  <span aria-describedby="pop-3">...</span>
+  <div id="pop-3" class="popover popover_tooltip" role="tooltip">...</div>
 
   <button aria-controls="asdf">...</button>
   <div id="fdsa" class="popover">...</div>
@@ -144,6 +144,30 @@ describe('getConfig() & getModifiers()', () => {
 });
 
 describe('getPopoverID()', () => {
+  test('should return the popover id using a popover', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover();
+    const el = document.querySelector('.popover');
+    const result = getPopoverID.call(popover, el);
+    expect(result).toBe('pop-1');
+  });
+
+  test('should return the popover id using a popover trigger', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover();
+    const el = document.querySelector('[aria-controls="pop-2"]');
+    const result = getPopoverID.call(popover, el);
+    expect(result).toBe('pop-2');
+  });
+
+  test('should return the popover id using a popover tooltip trigger', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover();
+    const el = document.querySelector('[aria-describedby="pop-3"]');
+    const result = getPopoverID.call(popover, el);
+    expect(result).toBe('pop-3');
+  });
+
   test('should return false if html element does not have the correct attributes', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
@@ -190,16 +214,6 @@ describe('getPopoverElements()', () => {
     expect(console.error).toHaveBeenCalledWith('No popover trigger associated with the provided popover:', target);
   });
 
-  test('should return popover target and trigger elements when found using ID', () => {
-    document.body.innerHTML = markup;
-    const trigger = document.querySelector('[aria-controls="pop-1"]');
-    const target = document.querySelector('#pop-1');
-    popover = new Popover();
-    const result = getPopoverElements.call(popover, 'pop-1');
-    expect(result.target).toBe(target);
-    expect(result.trigger).toBe(trigger);
-  });
-
   test('should throw error if unable to resolve a popover ID with provided query', () => {
     document.body.innerHTML = markup;
     console.error = jest.fn();
@@ -208,5 +222,15 @@ describe('getPopoverElements()', () => {
     const result = getPopoverElements.call(popover, trigger);
     expect(result).toBe(false);
     expect(console.error).toHaveBeenCalledWith('Could not resolve the popover ID:', trigger);
+  });
+
+  test('should return popover target and trigger elements when found using ID', () => {
+    document.body.innerHTML = markup;
+    const trigger = document.querySelector('[aria-controls="pop-1"]');
+    const target = document.querySelector('#pop-1');
+    popover = new Popover();
+    const result = getPopoverElements.call(popover, 'pop-1');
+    expect(result.target).toBe(target);
+    expect(result.trigger).toBe(trigger);
   });
 });
