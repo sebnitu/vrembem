@@ -30,7 +30,7 @@ The most basic implementation of the level component consists of the `level` con
 </div>
 ```
 
-> Level is a flex based layout component. That means you can use the [`@vremben/utility`](https://github.com/sebnitu/vrembem/tree/master/packages/utility) package—specifically the [`flex`](https://github.com/sebnitu/vrembem/tree/master/packages/utility#flex) module—to further customize your layout.
+> Level is a flex based layout component. That means you can use the [`@vremben/utility`](https://github.com/sebnitu/vrembem/tree/main/packages/utility) package—specifically the [`flex`](https://github.com/sebnitu/vrembem/tree/main/packages/utility#flex) module—to further customize your layout.
 
 ## Modifiers
 

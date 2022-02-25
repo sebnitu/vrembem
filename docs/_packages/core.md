@@ -61,7 +61,7 @@ core.removeClass(el, 'some-class');
         </div>
       </div>
       <div class="media__obj">
-        <a class="link text-nowrap" href="https://github.com/sebnitu/vrembem/blob/master/packages/core/src/css/_variables.scss">View source &rarr;</a>
+        <a class="link text-nowrap" href="https://github.com/sebnitu/vrembem/blob/main/packages/core/src/css/_variables.scss">View source &rarr;</a>
       </div>
     </div>
   </div>
@@ -81,7 +81,7 @@ core.removeClass(el, 'some-class');
         </div>
       </div>
       <div class="media__obj">
-        <a class="link text-nowrap" href="https://github.com/sebnitu/vrembem/tree/master/packages/core/src/js">View source &rarr;</a>
+        <a class="link text-nowrap" href="https://github.com/sebnitu/vrembem/tree/main/packages/core/src/js">View source &rarr;</a>
       </div>
     </div>
   </div>

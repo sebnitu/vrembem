@@ -25,7 +25,7 @@
     "url": "git+https://github.com/sebnitu/vrembem.git",
     "directory": "packages/card"
   },
-  "homepage": "https://github.com/sebnitu/vrembem/tree/master/packages/card#readme",
+  "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/card#readme",
   "dependencies": {
     "@vrembem/core": "^1.40.2"
   },

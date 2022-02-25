@@ -4,7 +4,7 @@ A component library based on the BEM methodology.
 
 [![NPM Version](https://img.shields.io/npm/v/vrembem.svg)](https://www.npmjs.com/package/vrembem)
 [![Build Status](https://github.com/sebnitu/vrembem/actions/workflows/build.yml/badge.svg)](https://github.com/sebnitu/vrembem/actions/workflows/build.yml)
-[![Coverage Status](https://coveralls.io/repos/github/sebnitu/vrembem/badge.svg?branch=master)](https://coveralls.io/github/sebnitu/vrembem?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/sebnitu/vrembem/badge.svg?branch=main)](https://coveralls.io/github/sebnitu/vrembem?branch=main)
 
 ## About
 
@@ -188,4 +188,4 @@ const drawer = new Drawer({ autoInit: true });
 
 ## Copyright and License
 
-Vrembem and Vrembem documentation copyright (c) 2022 Sebastian Nitu. Vrembem is released under the [MIT license](https://github.com/sebnitu/vrembem/blob/master/LICENSE) and Vrembem documentation is released under [Creative Commons](https://github.com/sebnitu/vrembem/blob/master/docs/LICENSE).
+Vrembem and Vrembem documentation copyright (c) 2022 Sebastian Nitu. Vrembem is released under the [MIT license](https://github.com/sebnitu/vrembem/blob/main/LICENSE) and Vrembem documentation is released under [Creative Commons](https://github.com/sebnitu/vrembem/blob/main/docs/LICENSE).

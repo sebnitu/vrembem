@@ -40,7 +40,7 @@
     "url": "git+https://github.com/sebnitu/vrembem.git",
     "directory": "packages/checkbox"
   },
-  "homepage": "https://github.com/sebnitu/vrembem/tree/master/packages/checkbox#readme",
+  "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/checkbox#readme",
   "dependencies": {
     "@vrembem/core": "^1.40.2"
   },

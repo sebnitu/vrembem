@@ -40,7 +40,7 @@
     "url": "git+https://github.com/sebnitu/vrembem.git",
     "directory": "packages/core"
   },
-  "homepage": "https://github.com/sebnitu/vrembem/tree/master/packages/core#readme",
+  "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/core#readme",
   "publishConfig": {
     "access": "public"
   },

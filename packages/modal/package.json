@@ -40,7 +40,7 @@
     "url": "git+https://github.com/sebnitu/vrembem.git",
     "directory": "packages/modal"
   },
-  "homepage": "https://github.com/sebnitu/vrembem/tree/master/packages/modal#readme",
+  "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/modal#readme",
   "dependencies": {
     "@vrembem/core": "^1.40.2"
   },

@@ -137,7 +137,7 @@ body {
 // Continued ...
 ```
 
-For a complete understanding of what this module does, checkout the source: [`_base.scss`](https://github.com/sebnitu/vrembem/blob/master/packages/base/src/_base.scss)
+For a complete understanding of what this module does, checkout the source: [`_base.scss`](https://github.com/sebnitu/vrembem/blob/main/packages/base/src/_base.scss)
 
 ### `arrow`
 

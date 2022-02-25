@@ -40,7 +40,7 @@
     "url": "git+https://github.com/sebnitu/vrembem.git",
     "directory": "packages/drawer"
   },
-  "homepage": "https://github.com/sebnitu/vrembem/tree/master/packages/drawer#readme",
+  "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/drawer#readme",
   "dependencies": {
     "@vrembem/core": "^1.40.2"
   },

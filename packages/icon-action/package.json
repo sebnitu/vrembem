@@ -25,7 +25,7 @@
     "url": "git+https://github.com/sebnitu/vrembem.git",
     "directory": "packages/icon-action"
   },
-  "homepage": "https://github.com/sebnitu/vrembem/tree/master/packages/icon-action#readme",
+  "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/icon-action#readme",
   "dependencies": {
     "@vrembem/core": "^1.40.2"
   },

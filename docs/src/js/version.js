@@ -1,4 +1,4 @@
-const url = 'https://api.github.com/repos/sebnitu/vrembem/contents/packages/vrembem/package.json?ref=master';
+const url = 'https://api.github.com/repos/sebnitu/vrembem/contents/packages/vrembem/package.json?ref=main';
 const ajax = new XMLHttpRequest();
 const el = document.querySelector('[data-role="version"]');
 if (el) {

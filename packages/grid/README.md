@@ -33,7 +33,7 @@ The most basic implementation of the grid component consists of two elements. By
 </div>
 ```
 
-> Grid is a flex based layout component. That means you can use the [`@vremben/utility`](https://github.com/sebnitu/vrembem/tree/master/packages/utility) package—specifically [`flex`](https://github.com/sebnitu/vrembem/tree/master/packages/utility#flex) and [`span`](https://github.com/sebnitu/vrembem/tree/master/packages/utility#span) modules—to further customize your layout.
+> Grid is a flex based layout component. That means you can use the [`@vremben/utility`](https://github.com/sebnitu/vrembem/tree/main/packages/utility) package—specifically [`flex`](https://github.com/sebnitu/vrembem/tree/main/packages/utility#flex) and [`span`](https://github.com/sebnitu/vrembem/tree/main/packages/utility#span) modules—to further customize your layout.
 
 #### `grid__clear`
 

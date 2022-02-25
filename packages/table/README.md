@@ -41,7 +41,7 @@ For basic table styles, only the `table` component class is required. Use [prope
 </table>
 ```
 
-For simple responsive table styles, wrap your tables in the [`scroll-box` base module](https://github.com/sebnitu/vrembem/tree/master/packages/base#scroll-box) which provides horizontal scrolling when tables can't fit in their container.
+For simple responsive table styles, wrap your tables in the [`scroll-box` base module](https://github.com/sebnitu/vrembem/tree/main/packages/base#scroll-box) which provides horizontal scrolling when tables can't fit in their container.
 
 ```html
 <div class="scroll-box">
@@ -86,7 +86,7 @@ Adds hover and focus state styles for table row (`<tr>`) elements.
 
 ### `table_responsive_[key]`
 
-When the [`scroll-box` base module](https://github.com/sebnitu/vrembem/tree/master/packages/base#scroll-box) isn't mobile friendly enough, this modifier adds responsive styles to a table so that it's easier to read on specific breakpoints. This is done by using the `data-mobile-label` attribute on table cells that should correspond to the table column header for that specific cell. Use the value-less `table_responsive` modifier to apply these styles universally.
+When the [`scroll-box` base module](https://github.com/sebnitu/vrembem/tree/main/packages/base#scroll-box) isn't mobile friendly enough, this modifier adds responsive styles to a table so that it's easier to read on specific breakpoints. This is done by using the `data-mobile-label` attribute on table cells that should correspond to the table column header for that specific cell. Use the value-less `table_responsive` modifier to apply these styles universally.
 
 ```html
 <table class="table table_responsive_lg">

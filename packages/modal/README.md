@@ -47,7 +47,7 @@ Modals are composed using classes for styling and data attributes for JavaScript
 </div>
 ```
 
-Modal dialogs are the actual dialog element within a modal and are defined using a the value-less `data-modal-dialog` attribute. The [dialog component](https://github.com/sebnitu/vrembem/tree/master/packages/dialog) is a great fit for composing a modal’s dialog.
+Modal dialogs are the actual dialog element within a modal and are defined using a the value-less `data-modal-dialog` attribute. The [dialog component](https://github.com/sebnitu/vrembem/tree/main/packages/dialog) is a great fit for composing a modal’s dialog.
 
 ```html
 <div data-modal="[unique-id]" class="modal">

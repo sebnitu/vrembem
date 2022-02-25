@@ -25,7 +25,7 @@
     "url": "git+https://github.com/sebnitu/vrembem.git",
     "directory": "packages/button-group"
   },
-  "homepage": "https://github.com/sebnitu/vrembem/tree/master/packages/button-group#readme",
+  "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/button-group#readme",
   "dependencies": {
     "@vrembem/core": "^1.40.2"
   },
