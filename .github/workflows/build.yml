@@ -5,7 +5,7 @@ on:
     branches: [master]
 
 jobs:
-  build-and-test:
+  setup:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -15,19 +15,32 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 17.5.0
-
+  
+  build:
+    needs: setup
+    steps:
       - name: Install and Build
         run: |
           npm ci
           npx lerna bootstrap
           npm run build
 
-      - name: Lint and Test
-        run: |
-          npm run lint
-          npm run test:coverage
+  lint:
+    needs: build
+    steps: 
+      - name: Lint 
+        run: npm run lint
 
-      - name: Send Coverage
+  test:
+    needs: lint
+    steps:
+      - name: Test
+        run: npm run test:coverage
+
+  coveralls:
+    needs: test
+    steps:
+      - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
