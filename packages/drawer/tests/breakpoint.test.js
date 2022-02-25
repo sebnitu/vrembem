@@ -239,10 +239,23 @@ test('should not throw error when a drawer in mediaQueryLists doesn\'t exist in 
   drawer = new Drawer({ autoInit: true });
   drawer.breakpoint.mediaQueryLists[0].drawer = 'asdf-drawer';
   drawer.breakpoint.check();
-  // console.log(drawer.breakpoint.mediaQueryLists);
   expect(drawer.breakpoint.check.bind(drawer)).not.toThrow();
 });
 
-// test('should not throw error if breakpoint check doesn\'t find a specific drawer', () => {
-
-// });
+test('Should run addListener if addEventListener is undefined', () => {
+  document.body.innerHTML = markup;
+  window.matchMedia = jest.fn().mockImplementation((query) => {
+    return {
+      matches: checkMatch(query),
+      media: query,
+      onchange: null,
+      addListener: jest.fn(),
+      removeListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      dispatchEvent: jest.fn()
+    };
+  });
+  window.innerWidth = 300;
+  drawer = new Drawer({ autoInit: true });
+  expect(drawer.breakpoint.mediaQueryLists[0].mql.addListener).toHaveBeenCalledTimes(1);
+});
