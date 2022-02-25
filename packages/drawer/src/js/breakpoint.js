@@ -18,7 +18,7 @@ export class Breakpoint {
       // Run match check
       this.match(mql, drawer);
 
-      // For IE11 support, conditionally use addListner
+      // Conditionally use addListner() for IE11 support
       if (typeof mql.addEventListener === 'function') {
         mql.addEventListener('change', this.__check);
       } else {
