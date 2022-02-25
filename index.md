@@ -19,11 +19,11 @@ title: "Home"
           </a>
         </div>
         <div class="grid__item">
-          <a href="http://github.com/{{ site.repository }}/releases" class="cover__version" aria-controls="popover-release">
+          <a href="http://github.com/{{ site.repository }}/releases" class="cover__version" aria-describedby="popover-release">
             <span>Version</span>
             <span class="version loading" data-role="version"></span>
           </a>
-          <div id="popover-release" class="popover popover_tooltip" style="--popover-placement: bottom-start;">
+          <div id="popover-release" class="popover popover_tooltip" role="tooltip" style="--popover-placement: bottom-start;">
             View releases on Github
             <span class="popover__arrow"></span>
           </div>
