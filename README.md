@@ -1,6 +1,6 @@
 # Vrembem
 
-A component library based on the BEM methodology..
+A component library based on the BEM methodology.
 
 [![NPM Version](https://img.shields.io/npm/v/vrembem.svg)](https://www.npmjs.com/package/vrembem)
 [![Build Status](https://github.com/sebnitu/vrembem/actions/workflows/build.yml/badge.svg)](https://github.com/sebnitu/vrembem/actions/workflows/build.yml)
