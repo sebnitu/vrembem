@@ -26,19 +26,19 @@ jobs:
           npm run build
 
   lint:
-    needs: build
+    needs: [setup, build]
     steps: 
       - name: Lint 
         run: npm run lint
 
   test:
-    needs: lint
+    needs: [setup, lint]
     steps:
       - name: Test
         run: npm run test:coverage
 
   coveralls:
-    needs: test
+    needs: [setup, test]
     steps:
       - name: Coveralls
         uses: coverallsapp/github-action@master
