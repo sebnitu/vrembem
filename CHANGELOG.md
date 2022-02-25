@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.40.2 to CHANGELOG.md
+chore(release): add v1.40.3 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.40.3 (2022-02-25)
+
+#### :tada: New Feature
+* `drawer`
+  * [#844](https://github.com/sebnitu/vrembem/pull/844) Add IE11 mediaQueryList event listener support
 
 
 ## v1.40.2 (2022-02-21)
