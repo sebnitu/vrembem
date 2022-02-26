@@ -1,4 +1,4 @@
-export default class Collection {
+export class Collection {
   constructor() {
     this.collection = [];
   }

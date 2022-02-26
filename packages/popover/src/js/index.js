@@ -1,4 +1,4 @@
-import Collection from './collection';
+import { Collection } from '@vrembem/core';
 
 import defaults from './defaults';
 import { closeAll } from './close';

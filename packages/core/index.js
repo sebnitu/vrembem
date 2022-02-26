@@ -1,6 +1,7 @@
 export * from './src/js/accessibility';
 export * from './src/js/addClass';
 export * from './src/js/camelCase';
+export * from './src/js/collection';
 export * from './src/js/focus';
 export * from './src/js/getElement';
 export * from './src/js/hasClass';
