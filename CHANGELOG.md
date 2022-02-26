@@ -14,9 +14,17 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.41.0 to CHANGELOG.md
+chore(release): add v1.42.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+#### :tada: New Feature
+* `popover`
+  * [#852](https://github.com/sebnitu/vrembem/pull/852) Accessible popover tooltip support using aria-describedby
+
+#### :books: Documentation
+* [#850](https://github.com/sebnitu/vrembem/pull/850) Update docs popover implementation
 
 
 ## v1.41.0 (2022-02-25)
