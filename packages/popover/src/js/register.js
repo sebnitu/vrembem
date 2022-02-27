@@ -15,13 +15,13 @@ export function register(trigger, target) {
   // Setup methods API
   const methods = {
     open() {
-      open.call(root, this);
+      return open.call(root, this);
     },
     close() {
-      close.call(root, this);
+      return close.call(root, this);
     },
     deregister() {
-      deregister.call(root, this);
+      return deregister.call(root, this);
     }
   };
 

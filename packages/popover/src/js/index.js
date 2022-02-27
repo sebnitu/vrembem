@@ -1,7 +1,7 @@
 import { Collection } from '@vrembem/core/index';
 
 import defaults from './defaults';
-import { closeAll } from './close';
+import { close, closeAll } from './close';
 import { handlerKeydown } from './handlers';
 import { getPopoverID, getPopoverElements } from './helpers';
 import {
@@ -10,6 +10,7 @@ import {
   registerEventListeners,
   deregisterEventListeners,
 } from './register';
+import { open } from './open';
 
 export default class Popover extends Collection {
   constructor(options) {
@@ -105,14 +106,14 @@ export default class Popover extends Collection {
   open(id) {
     const popover = this.get(id);
     if (!popover) return false;
-    return popover.open();
+    return open.call(this, popover);
   }
 
   close(id) {
     if (id) {
       const popover = this.get(id);
       if (!popover) return false;
-      return popover.close();
+      return close.call(this, popover);
     } else {
       return closeAll.call(this);
     }
