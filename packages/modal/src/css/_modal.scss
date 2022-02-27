@@ -36,7 +36,7 @@ $_e: var.$prefix-element;
     outline: var.$outline-focus;
   }
 
-  [data-modal-required] &:focus {
+  &[role="alertdialog"]:focus {
     outline: var.$outline-focus-required;
   }
 }

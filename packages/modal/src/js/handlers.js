@@ -11,7 +11,7 @@ export async function handlerClick(event) {
     const fromModal = event.target.closest(this.settings.selectorModal);
     if (!fromModal) this.memory.trigger = trigger;
     await this.close(null, this.settings.transition, !fromModal);
-    this.open(getModalID(trigger));
+    this.open(getModalID.call(this, trigger));
     return;
   }
 
@@ -19,14 +19,14 @@ export async function handlerClick(event) {
   trigger = event.target.closest(`[data-${this.settings.dataClose}]`);
   if (trigger) {
     event.preventDefault();
-    this.close(getModalID(trigger));
+    this.close(getModalID.call(this, trigger));
     return;
   }
 
   // If the modal screen was clicked, close the modal.
   if (
     event.target.matches(this.settings.selectorModal) &&
-    !event.target.matches(this.settings.selectorRequired)
+    !event.target.querySelector(this.settings.selectorRequired)
   ) {
     this.close();
     return;
@@ -43,7 +43,7 @@ export function handlerKeydown(event) {
     const modal = this.get('opened', 'state');
 
     // If a modal is opened and not required, close the modal.
-    if (modal && !modal.target.matches(this.settings.selectorRequired)) {
+    if (modal && !modal.dialog.matches(this.settings.selectorRequired)) {
       this.close();
     }
   }

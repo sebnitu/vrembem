@@ -9,7 +9,7 @@ export default {
   // Selectors
   selectorModal: '.modal',
   selectorDialog: '.modal__dialog',
-  selectorRequired: '[data-modal-required]',
+  selectorRequired: '[role="alertdialog"]',
   selectorInert: null,
   selectorOverflow: 'body',
 
