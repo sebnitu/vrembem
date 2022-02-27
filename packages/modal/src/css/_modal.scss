@@ -37,7 +37,7 @@ $_e: var.$prefix-element;
   }
 
   &[role="alertdialog"]:focus {
-    outline: var.$outline-focus-required;
+    outline: var.$outline-focus-alert;
   }
 }
 
