@@ -10,8 +10,8 @@ export function register(target, dialog) {
 
   // Setup methods API
   const methods = {
-    open() {
-      open.call(root, this);
+    open(transition = root.settings.transition) {
+      open.call(root, this, transition);
     },
     close() {
       close.call(root, this);

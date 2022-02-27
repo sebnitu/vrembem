@@ -101,10 +101,10 @@ export default class Modal extends Collection {
    * Change state functionality
    */
 
-  open(id) {
+  open(id, transition = this.settings.transition) {
     const modal = this.get(id);
     if (!modal) return false;
-    return modal.open();
+    return modal.open(transition);
   }
 
   close(returnFocus) {
