@@ -16,6 +16,7 @@ $box-shadow: core.$box-shadow-24dp !default;
 
 $outline: 0 solid rgba(core.$primary, 0) !default;
 $outline-focus: 4px solid rgba(core.$primary, 1) !default;
+$outline-focus-required: 4px solid rgba(core.$danger, 1) !default;
 
 // modal_pos_[value]
 $aside-width: 16em !default;

@@ -1,29 +1,32 @@
+import { getModalID } from './helpers';
+
 export async function handlerClick(event) {
+  // Check if modal is busy.
   if (this.busy) return;
 
-  // Trigger click
-  const trigger = event.target.closest(`[data-${this.settings.dataOpen}]`);
+  // If a open button was clicked, open the modal.
+  let trigger = event.target.closest(`[data-${this.settings.dataOpen}]`);
   if (trigger) {
     event.preventDefault();
-    const modalKey = trigger.getAttribute(`data-${this.settings.dataOpen}`);
     const fromModal = event.target.closest(this.settings.selectorModal);
     if (!fromModal) this.memory.trigger = trigger;
     await this.close(null, this.settings.transition, !fromModal);
-    this.open(modalKey);
+    this.open(getModalID(trigger));
     return;
   }
 
-  // Close click
-  if (event.target.closest(`[data-${this.settings.dataClose}]`)) {
+  // If a close button was clicked, close the modal.
+  trigger = event.target.closest(`[data-${this.settings.dataClose}]`);
+  if (trigger) {
     event.preventDefault();
-    this.close();
+    this.close(getModalID(trigger));
     return;
   }
 
-  // Root click
+  // If the modal screen was clicked, close the modal.
   if (
-    event.target === event.target.closest(this.settings.selectorModal) &&
-    !event.target.hasAttribute(`data-${this.settings.dataRequired}`)
+    event.target.matches(this.settings.selectorModal) &&
+    !event.target.matches(this.settings.selectorRequired)
   ) {
     this.close();
     return;
@@ -31,13 +34,16 @@ export async function handlerClick(event) {
 }
 
 export function handlerKeydown(event) {
+  // Check if modal is busy.
   if (this.busy) return;
 
+  // If escape key was pressed.
   if (event.key === 'Escape') {
-    const target = document.querySelector(
-      `${this.settings.selectorModal}.${this.settings.stateOpened}`
-    );
-    if (target && !target.hasAttribute(`data-${this.settings.dataRequired}`)) {
+    // Query for an open modal.
+    const modal = this.get('opened', 'state');
+
+    // If a modal is opened and not required, close the modal.
+    if (modal && !modal.target.matches(this.settings.selectorRequired)) {
       this.close();
     }
   }

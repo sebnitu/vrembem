@@ -5,11 +5,11 @@ export default {
   dataOpen: 'modal-open',
   dataClose: 'modal-close',
   dataFocus: 'modal-focus',
-  dataRequired: 'modal-required',
 
   // Selectors
   selectorModal: '.modal',
   selectorDialog: '.modal__dialog',
+  selectorRequired: '[data-modal-required]',
   selectorInert: null,
   selectorOverflow: 'body',
 
