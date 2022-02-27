@@ -13,8 +13,8 @@ export function register(target, dialog) {
     open(transition = root.settings.transition) {
       open.call(root, this, transition);
     },
-    close() {
-      close.call(root, this);
+    close(transition = root.settings.transition) {
+      close.call(root, this, transition);
     },
     deregister() {
       deregister.call(root, this);

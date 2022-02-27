@@ -8,7 +8,7 @@ export async function handlerClick(event) {
     const modalKey = trigger.getAttribute(`data-${this.settings.dataOpen}`);
     const fromModal = event.target.closest(this.settings.selectorModal);
     if (!fromModal) this.memory.trigger = trigger;
-    await this.close(!fromModal);
+    await this.close(null, this.settings.transition, !fromModal);
     this.open(modalKey);
     return;
   }

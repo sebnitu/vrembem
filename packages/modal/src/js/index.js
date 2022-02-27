@@ -107,7 +107,8 @@ export default class Modal extends Collection {
     return modal.open(transition);
   }
 
-  close(returnFocus) {
-    return close.call(this, returnFocus);
+  close(id, transition = this.settings.transition, returnFocus) {
+    const modal = this.get(id);
+    return close.call(this, modal, transition, returnFocus);
   }
 }
