@@ -5,19 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>@vrembem/modal</title>
   <link rel="icon" type="image/png" sizes="32x32" href="https://sebnitu.com/dist/favicon.png">
-  <!-- Setup styles -->
-  <link rel="stylesheet" href="https://unpkg.com/@vrembem/base/dist/styles.css">
-  <link rel="stylesheet" href="https://unpkg.com/@vrembem/breadcrumb/dist/styles.css">
-  <link rel="stylesheet" href="https://unpkg.com/@vrembem/utility/dist/styles.css">
-  <link rel="stylesheet" href="https://unpkg.com/@vrembem/dialog/dist/styles.css">
-  <!-- Component styles -->
-  <link rel="stylesheet" href="./dev/styles.css">
+  <!-- Styles -->
+  <link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.css">
+  <link rel="stylesheet" href="./dist/styles.css">
 </head>
 <body>
   
-  <div role="main">
+  <header class="section background-shade">
+    <div class="section__container gap-y">
 
-    <div class="padding-xl gap-y background-shade">
       <h1 class="text-size-lg">@vrembem/modal</h1>
       <p class="max-width-xs">
         A component for changing the mode of a page to complete a critical task. This is usually used in conjunction with the Dialog component to make modal dialogs.
@@ -41,8 +37,10 @@
         </li>
       </ol>
     </div>
+  </header>
 
-    <div class="padding-xl gap-y">
+  <section class="section">
+    <div class="section__container gap-y">
 
       <ul class="list">
 
@@ -256,7 +254,7 @@
       </div>
 
     </div>
-  </div>
+  </section>
 
   <div class="modals"></div>
 
