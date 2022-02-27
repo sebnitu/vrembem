@@ -26,7 +26,15 @@ $_e: var.$prefix-element;
   overflow: auto;
   transform: translateY(-(var.$travel));
   box-shadow: var.$box-shadow;
+  outline: var.$outline;
   opacity: 0;
+  transition-property: outline;
+  transition-duration: var.$transition-duration;
+  transition-timing-function: var.$transition-timing-function;
+
+  &:focus {
+    outline: var.$outline-focus;
+  }
 }
 
 .#{$_b}modal.is-closed {
