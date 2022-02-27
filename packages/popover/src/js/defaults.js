@@ -8,7 +8,7 @@ export default {
   // State classes
   stateActive: 'is-active',
 
-  // Feature toggles
+  // Feature settings
   eventListeners: true,
   eventType: 'click',
   placement: 'bottom'
