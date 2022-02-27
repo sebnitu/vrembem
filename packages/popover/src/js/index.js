@@ -1,4 +1,4 @@
-import { Collection } from '@vrembem/core';
+import { Collection } from '@vrembem/core/index';
 
 import defaults from './defaults';
 import { closeAll } from './close';
@@ -16,7 +16,7 @@ export default class Popover extends Collection {
     super();
     this.defaults = defaults;
     this.settings = { ...this.defaults, ...options };
-    this.memory = { trigger: null };
+    this.memory = {};
     this.__handlerKeydown = handlerKeydown.bind(this);
     if (this.settings.autoInit) this.init();
   }
@@ -40,6 +40,9 @@ export default class Popover extends Collection {
   }
 
   destroy() {
+    // Reset memory obj
+    this.memory = {};
+
     // Deregister all popovers from collection
     this.deregisterCollection();
 
@@ -80,7 +83,7 @@ export default class Popover extends Collection {
   }
 
   /**
-   * Register popover functionality
+   * Register functionality
    */
 
   register(query) {
