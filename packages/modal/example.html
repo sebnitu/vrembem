@@ -131,11 +131,6 @@
             </div>
           </div>
         </li>
-
-        <li>
-          <button class="link api-close">API Close</button>
-        </li>
-
       </ul>
 
       <hr class="sep">
@@ -270,10 +265,7 @@
       autoInit: true,
       selectorInert: '[role="main"]',
       selectorOverflow: 'body, [role="main"]',
-      moveModals: {
-        ref: '.modals',
-        type: 'append'
-      }
+      teleport: '.modals'
     });
 
     console.log(modal);
@@ -288,13 +280,13 @@
       console.log('Detail:', event.detail);
     });
 
-    document.addEventListener('click', async () => {
+    document.addEventListener('click', () => {
       if (event.target.classList.contains('api-open')) {
         return modal.open('modal-api').then(console.log);
       }
 
       if (event.target.classList.contains('api-close')) {
-        return modal.close().then(console.log);
+        return modal.close('modal-api').then(console.log);
       }
     });
   </script>

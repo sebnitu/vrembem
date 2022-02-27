@@ -5,7 +5,7 @@ import { closeTransition } from '@vrembem/core/index';
 export async function close(modal = null, transition = this.settings.transition, returnFocus = true) {
   // If modal wasn't passed, query for an open modal
   modal = modal || this.get('opened', 'state');
-  if (modal) {
+  if (modal && modal.state === 'opened') {
     // Set busy flag to true
     this.busy = true;
 

@@ -19,13 +19,11 @@ export default {
   stateClosing: 'is-closing',
   stateClosed: 'is-closed',
 
-  // Feature toggles
+  // Feature settings
   customEventPrefix: 'modal:',
   eventListeners: true,
-  moveModals: {
-    ref: null,
-    type: null
-  },
+  teleport: null,
+  teleportMethod: 'append',
   setTabindex: true,
   transition: true
 };

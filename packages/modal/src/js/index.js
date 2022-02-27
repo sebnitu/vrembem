@@ -3,8 +3,9 @@ import { Collection, FocusTrap } from '@vrembem/core/index';
 import defaults from './defaults';
 import { close } from './close';
 import { handlerClick, handlerKeydown } from './handlers';
-import { moveModals, getModalID, getModalElements } from './helpers';
+import { getModalID, getModalElements } from './helpers';
 import { setInitialState } from './initialState';
+import { open } from './open';
 import { register, deregister } from './register';
 
 export default class Modal extends Collection {
@@ -22,8 +23,6 @@ export default class Modal extends Collection {
 
   init(options = null) {
     if (options) this.settings = { ...this.settings, ...options };
-
-    this.moveModals();
 
     // Get all the modals
     const modals = document.querySelectorAll(this.settings.selectorModal);
@@ -77,10 +76,6 @@ export default class Modal extends Collection {
     return setInitialState.call(this);
   }
 
-  moveModals(type, ref) {
-    return moveModals.call(this, type, ref);
-  }
-
   /**
    * Register functionality
    */
@@ -104,7 +99,7 @@ export default class Modal extends Collection {
   open(id, transition = this.settings.transition) {
     const modal = this.get(id);
     if (!modal) return false;
-    return modal.open(transition);
+    return open.call(this, modal, transition);
   }
 
   close(id, transition = this.settings.transition, returnFocus) {

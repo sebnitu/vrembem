@@ -1,10 +1,3 @@
-import { moveElement } from '@vrembem/core/index';
-
-export function moveModals(type = this.settings.moveModals.type, ref = this.settings.moveModals.ref) {
-  const modals = document.querySelectorAll(this.settings.selectorModal);
-  if (modals.length) moveElement(modals, type, ref);
-}
-
 export function getModalID(obj) {
   // If it's a string
   if (typeof obj === 'string') {

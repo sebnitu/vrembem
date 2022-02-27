@@ -1,3 +1,5 @@
+import { teleport } from '@vrembem/core/index';
+
 import { close } from './close';
 import { open } from './open';
 
@@ -11,13 +13,31 @@ export function register(target, dialog) {
   // Setup methods API
   const methods = {
     open(transition = root.settings.transition) {
-      open.call(root, this, transition);
+      return open.call(root, this, transition);
     },
     close(transition = root.settings.transition) {
-      close.call(root, this, transition);
+      return close.call(root, this, transition);
     },
     deregister() {
-      deregister.call(root, this);
+      return deregister.call(root, this);
+    },
+    teleport(ref = root.settings.teleport, method = root.settings.teleportMethod) {
+      if (!this.returnRef) {
+        this.returnRef = teleport(this.target, ref, method);
+        return this.target;
+      } else {
+        console.error('Element has already been teleported:', this.target);
+        return false;
+      }
+    },
+    teleportReturn() {
+      if (this.returnRef) {
+        this.returnRef = teleport(this.target, this.returnRef);
+        return this.target;
+      } else {
+        console.error('No return reference found:', this.target);
+        return false;
+      }
     }
   };
 
@@ -27,6 +47,7 @@ export function register(target, dialog) {
     state: 'closed',
     target: target,
     dialog: dialog,
+    returnRef: null,
     ...methods
   };
 
@@ -39,6 +60,11 @@ export function register(target, dialog) {
 
   if (this.settings.setTabindex) {
     item.dialog.setAttribute('tabindex', '-1');
+  }
+
+  // Teleport if a reference is provided
+  if (this.settings.teleport) {
+    item.teleport();
   }
 
   // Add item to collection
