@@ -1,15 +1,15 @@
-import { setTabindex } from '@vrembem/core/index';
-import { FocusTrap } from '@vrembem/core/index';
+import { Collection, FocusTrap, setTabindex } from '@vrembem/core/index';
 
 import defaults from './defaults';
 import { close } from './close';
 import { handlerClick, handlerKeydown } from './handlers';
-import { getModal, moveModals } from './helpers';
+import { getModal, moveModals, getModalID, getModalElements } from './helpers';
 import { setInitialState } from './initialState';
-import { open } from './open';
+import { register, deregister } from './register';
 
-export default class Modal {
+export default class Modal extends Collection {
   constructor(options) {
+    super();
     this.defaults = defaults;
     this.settings = { ...this.defaults, ...options };
     this.working = false;
@@ -22,11 +22,23 @@ export default class Modal {
 
   init(options = null) {
     if (options) this.settings = { ...this.settings, ...options };
+
     this.moveModals();
+
+    // Get all the modals
+    const modals = document.querySelectorAll(`[data-${this.settings.dataModal}]`);
+
+    // Build the collections array with popover instances
+    this.registerCollection(modals);
+
     this.setInitialState();
+
+    // If setTabindex is enabled
     if (this.settings.setTabindex) {
       this.setTabindex();
     }
+
+    // If eventListeners is enabled
     if (this.settings.eventListeners) {
       this.initEventListeners();
     }
@@ -34,6 +46,7 @@ export default class Modal {
 
   destroy() {
     this.memory = {};
+    this.deregisterCollection();
     if (this.settings.eventListeners) {
       this.destroyEventListeners();
     }
@@ -79,11 +92,29 @@ export default class Modal {
   }
 
   /**
+   * Register functionality
+   */
+
+  register(query) {
+    const els = getModalElements.call(this, query);
+    if (!els) return false;
+    return register.call(this, els.target, els.dialog);
+  }
+
+  deregister(query) {
+    const popover = this.get(getModalID(query));
+    if (!popover) return false;
+    return deregister.call(this, popover);
+  }
+
+  /**
    * Change state functionality
    */
 
-  open(modalKey) {
-    return open.call(this, modalKey);
+  open(id) {
+    const modal = this.get(id);
+    if (!modal) return false;
+    return modal.open();
   }
 
   close(returnFocus) {
