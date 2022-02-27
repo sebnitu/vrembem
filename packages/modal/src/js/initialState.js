@@ -3,7 +3,7 @@ import { setInert, setOverflowHidden } from '@vrembem/core/index';
 import { focusTrigger } from '@vrembem/core/index';
 
 export function setInitialState() {
-  const modals = document.querySelectorAll(`[data-${this.settings.dataModal}]`);
+  const modals = document.querySelectorAll(this.settings.selectorModal);
   modals.forEach((el) => {
     // Remove opened state setup
     if (el.classList.contains(this.settings.stateOpened)) {

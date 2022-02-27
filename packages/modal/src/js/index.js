@@ -1,9 +1,9 @@
-import { Collection, FocusTrap, setTabindex } from '@vrembem/core/index';
+import { Collection, FocusTrap } from '@vrembem/core/index';
 
 import defaults from './defaults';
 import { close } from './close';
 import { handlerClick, handlerKeydown } from './handlers';
-import { getModal, moveModals, getModalID, getModalElements } from './helpers';
+import { moveModals, getModalID, getModalElements } from './helpers';
 import { setInitialState } from './initialState';
 import { register, deregister } from './register';
 
@@ -12,7 +12,7 @@ export default class Modal extends Collection {
     super();
     this.defaults = defaults;
     this.settings = { ...this.defaults, ...options };
-    this.working = false;
+    this.busy = false;
     this.memory = {};
     this.focusTrap = new FocusTrap();
     this.__handlerClick = handlerClick.bind(this);
@@ -26,17 +26,13 @@ export default class Modal extends Collection {
     this.moveModals();
 
     // Get all the modals
-    const modals = document.querySelectorAll(`[data-${this.settings.dataModal}]`);
+    const modals = document.querySelectorAll(this.settings.selectorModal);
 
     // Build the collections array with popover instances
     this.registerCollection(modals);
 
+    // Set the initial state
     this.setInitialState();
-
-    // If setTabindex is enabled
-    if (this.settings.setTabindex) {
-      this.setTabindex();
-    }
 
     // If eventListeners is enabled
     if (this.settings.eventListeners) {
@@ -45,8 +41,13 @@ export default class Modal extends Collection {
   }
 
   destroy() {
+    // Clear any stored memory
     this.memory = {};
+
+    // Remove all entries from the collection
     this.deregisterCollection();
+
+    // If eventListeners is enabled
     if (this.settings.eventListeners) {
       this.destroyEventListeners();
     }
@@ -71,17 +72,6 @@ export default class Modal extends Collection {
   /**
    * Helpers
    */
-
-  getModal(modalKey) {
-    return getModal.call(this, modalKey);
-  }
-
-  setTabindex() {
-    return setTabindex(`
-      [data-${this.settings.dataModal}]
-      [data-${this.settings.dataDialog}]
-    `);
-  }
 
   setInitialState() {
     return setInitialState.call(this);

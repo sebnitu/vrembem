@@ -2,22 +2,22 @@ export default {
   autoInit: false,
 
   // Data attributes
-  dataModal: 'modal',
-  dataDialog: 'modal-dialog',
   dataOpen: 'modal-open',
   dataClose: 'modal-close',
   dataFocus: 'modal-focus',
   dataRequired: 'modal-required',
+
+  // Selectors
+  selectorModal: '.modal',
+  selectorDialog: '.modal__dialog',
+  selectorInert: null,
+  selectorOverflow: 'body',
 
   // State classes
   stateOpened: 'is-opened',
   stateOpening: 'is-opening',
   stateClosing: 'is-closing',
   stateClosed: 'is-closed',
-
-  // Selector
-  selectorInert: null,
-  selectorOverflow: 'body',
 
   // Feature toggles
   customEventPrefix: 'modal:',

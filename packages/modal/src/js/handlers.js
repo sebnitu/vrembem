@@ -1,13 +1,12 @@
 export async function handlerClick(event) {
-  // Working catch
-  if (this.working) return;
+  if (this.busy) return;
 
   // Trigger click
   const trigger = event.target.closest(`[data-${this.settings.dataOpen}]`);
   if (trigger) {
     event.preventDefault();
     const modalKey = trigger.getAttribute(`data-${this.settings.dataOpen}`);
-    const fromModal = event.target.closest(`[data-${this.settings.dataModal}]`);
+    const fromModal = event.target.closest(this.settings.selectorModal);
     if (!fromModal) this.memory.trigger = trigger;
     await this.close(!fromModal);
     this.open(modalKey);
@@ -23,7 +22,7 @@ export async function handlerClick(event) {
 
   // Root click
   if (
-    event.target.hasAttribute(`data-${this.settings.dataModal}`) &&
+    event.target === event.target.closest(this.settings.selectorModal) &&
     !event.target.hasAttribute(`data-${this.settings.dataRequired}`)
   ) {
     this.close();
@@ -32,12 +31,11 @@ export async function handlerClick(event) {
 }
 
 export function handlerKeydown(event) {
-  // Working catch
-  if (this.working) return;
+  if (this.busy) return;
 
   if (event.key === 'Escape') {
     const target = document.querySelector(
-      `[data-${this.settings.dataModal}].${this.settings.stateOpened}`
+      `${this.settings.selectorModal}.${this.settings.stateOpened}`
     );
     if (target && !target.hasAttribute(`data-${this.settings.dataRequired}`)) {
       this.close();

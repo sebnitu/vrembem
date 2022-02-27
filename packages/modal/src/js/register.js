@@ -31,9 +31,15 @@ export function register(target, dialog) {
   };
 
   // Setup accessibility attributes
-  item.dialog.setAttribute('role', 'dialog');
   item.dialog.setAttribute('aria-modal', 'true');
-  item.dialog.setAttribute('tabindex', '-1');
+
+  if (!item.dialog.hasAttribute('role')) {
+    item.dialog.setAttribute('role', 'dialog');
+  }
+
+  if (this.settings.setTabindex) {
+    item.dialog.setAttribute('tabindex', '-1');
+  }
 
   // Add item to collection
   this.collection.push(item);

@@ -6,7 +6,7 @@ import { openTransition } from '@vrembem/core/index';
 export async function open(modal) {
   console.log('open():', modal);
   if (hasClass(modal.target, this.settings.stateClosed)) {
-    this.working = true;
+    this.busy = true;
     setOverflowHidden(true, this.settings.selectorOverflow);
     modal.state = 'opening';
     await openTransition(modal.target, this.settings);
@@ -18,7 +18,7 @@ export async function open(modal) {
       detail: this,
       bubbles: true
     }));
-    this.working = false;
+    this.busy = false;
     return modal;
   } else {
     return modal;

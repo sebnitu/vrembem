@@ -1,20 +1,7 @@
 import { moveElement } from '@vrembem/core/index';
 
-export function getModal(modalKey) {
-  if (typeof modalKey !== 'string') return modalKey;
-  return document.querySelector(
-    `[data-${this.settings.dataModal}="${modalKey}"]`
-  );
-}
-
-export function modalNotFound(key) {
-  return Promise.reject(
-    new Error(`Did not find modal with key: "${key}"`)
-  );
-}
-
 export function moveModals(type = this.settings.moveModals.type, ref = this.settings.moveModals.ref) {
-  const modals = document.querySelectorAll(`[data-${this.settings.dataModal}]`);
+  const modals = document.querySelectorAll(this.settings.selectorModal);
   if (modals.length) moveElement(modals, type, ref);
 }
 
@@ -27,8 +14,8 @@ export function getModalID(obj) {
   // If it's an HTML element
   else if (typeof obj.hasAttribute === 'function') {
     // If it's a modal target
-    if (obj.closest(`[data-${this.settings.dataModal}]`)) {
-      return obj.getAttribute(`data-${this.settings.dataModal}`);
+    if (obj.closest(this.settings.selectorModal)) {
+      return obj.id;
     }
 
     // If it's a modal open trigger
@@ -58,7 +45,7 @@ export function getModalElements(query) {
   const id = getModalID.call(this, query);
   if (id) {
     const target = document.querySelector(`#${id}`);
-    const dialog = target.querySelector(`[data-${this.settings.dataDialog}]`);
+    const dialog = target.querySelector(this.settings.selectorDialog);
 
     if (!target && !dialog) {
       console.error('No modal elements found using the provided ID:', id);

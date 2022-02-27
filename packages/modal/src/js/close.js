@@ -4,10 +4,10 @@ import { closeTransition } from '@vrembem/core/index';
 
 export async function close(returnFocus = true) {
   const modal = document.querySelector(
-    `[data-${this.settings.dataModal}].${this.settings.stateOpened}`
+    `${this.settings.selectorModal}.${this.settings.stateOpened}`
   );
   if (modal) {
-    this.working = true;
+    this.busy = true;
     setInert(false, this.settings.selectorInert);
     setOverflowHidden(false, this.settings.selectorOverflow);
     await closeTransition(modal, this.settings);
@@ -17,7 +17,7 @@ export async function close(returnFocus = true) {
       detail: this,
       bubbles: true
     }));
-    this.working = false;
+    this.busy = false;
     return modal;
   } else {
     return modal;
