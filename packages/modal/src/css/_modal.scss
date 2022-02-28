@@ -25,12 +25,12 @@ $_e: var.$prefix-element;
   max-width: 100%;
   overflow: auto;
   transform: translateY(-(var.$travel));
-  box-shadow: var.$box-shadow;
-  outline: var.$outline;
-  opacity: 0;
   transition-property: outline;
   transition-duration: var.$transition-duration;
   transition-timing-function: var.$transition-timing-function;
+  outline: var.$outline;
+  box-shadow: var.$box-shadow;
+  opacity: 0;
 
   &:focus {
     outline: var.$outline-focus;
