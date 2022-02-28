@@ -3,7 +3,7 @@
 A component library based on the BEM methodology.
 
 [![NPM Version](https://img.shields.io/npm/v/vrembem.svg)](https://www.npmjs.com/package/vrembem)
-[![Build Status](https://github.com/sebnitu/vrembem/actions/workflows/build.yml/badge.svg)](https://github.com/sebnitu/vrembem/actions/workflows/build.yml)
+[![Deploy](https://github.com/sebnitu/vrembem/actions/workflows/deploy.yml/badge.svg)](https://github.com/sebnitu/vrembem/actions/workflows/deploy.yml)
 [![Coverage Status](https://coveralls.io/repos/github/sebnitu/vrembem/badge.svg)](https://coveralls.io/github/sebnitu/vrembem)
 
 ## About
