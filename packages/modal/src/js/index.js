@@ -22,12 +22,13 @@ export default class Modal extends Collection {
   }
 
   init(options = null) {
+    // Update settings with passed options.
     if (options) this.settings = { ...this.settings, ...options };
 
     // Get all the modals.
     const modals = document.querySelectorAll(this.settings.selectorModal);
 
-    // Build the collections array with popover instances.
+    // Register the collections array with modal instances.
     this.registerCollection(modals);
 
     // If eventListeners are enabled, init event listeners.

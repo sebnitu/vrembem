@@ -1,7 +1,7 @@
-export async function deregister(el) {
-  // Check if this item has been registered in the collection.
+export async function deregister(obj) {
+  // Check if entry has been registered in the collection.
   const index = this.collection.findIndex((entry) => {
-    return (entry.id === el.id);
+    return (entry.id === obj.id);
   });
 
   // If the entry exists in the collection.
@@ -9,9 +9,8 @@ export async function deregister(el) {
     // Get the collection entry.
     const entry = this.collection[index];
 
-    // If entry is in the opened state.
+    // If entry is in the opened state, close it.
     if (entry.state === 'opened') {
-      // Close the entry with disabled transitions.
       await entry.close(false);
     }
 
