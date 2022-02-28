@@ -1,6 +1,5 @@
 import Popover from '../index.js';
 import { registerEventListeners } from '../src/js/register';
-import { deregister } from '../src/js/deregister';
 import '@testing-library/jest-dom/extend-expect';
 
 let popover;
@@ -108,18 +107,5 @@ describe('register()', () => {
     entry.trigger.click();
     expect(entry.target).toHaveClass('is-active');
     expect(entry.state).toBe('opened');
-  });
-});
-
-describe('deregister()', () => {
-  test('should deregister a popover and do nothing for popovers not in collection', () => {
-    document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
-    expect(popover.collection.length).toBe(2);
-    const item = popover.collection[0];
-    deregister.call(popover, item);
-    expect(popover.collection.length).toBe(1);
-    deregister.call(popover, item);
-    expect(popover.collection.length).toBe(1);
   });
 });
