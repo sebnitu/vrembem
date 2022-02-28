@@ -1,16 +1,17 @@
 import { teleport } from '@vrembem/core/index';
 
-import { close } from './close';
+import { deregister } from './deregister';
 import { open } from './open';
+import { close } from './close';
 
 export async function register(target, dialog) {
-  // Deregister item if it already exists in the collection
+  // Deregister entry if it already exists in the collection.
   await this.deregister(target.id);
 
-  // Save root this for use inside methods API
+  // Save root this for use inside methods API.
   const root = this;
 
-  // Setup methods API
+  // Setup methods API.
   const methods = {
     open(transition = root.settings.transition) {
       return open.call(root, this, transition);
@@ -41,8 +42,8 @@ export async function register(target, dialog) {
     }
   };
 
-  // Build object
-  const item = {
+  // Setup the modal object.
+  const entry = {
     id: target.id,
     state: 'closed',
     target: target,
@@ -51,62 +52,30 @@ export async function register(target, dialog) {
     ...methods
   };
 
-  // Setup accessibility attributes
-  item.dialog.setAttribute('aria-modal', 'true');
+  // Set aria-modal attribute to true.
+  entry.dialog.setAttribute('aria-modal', 'true');
 
-  if (!item.dialog.hasAttribute('role')) {
-    item.dialog.setAttribute('role', 'dialog');
+  // If a role attribute is not set, set it to "dialog" as the default.
+  if (!entry.dialog.hasAttribute('role')) {
+    entry.dialog.setAttribute('role', 'dialog');
   }
 
+  // Set tabindex="-1" so dialog is focusable via JS or click.
   if (this.settings.setTabindex) {
-    item.dialog.setAttribute('tabindex', '-1');
+    entry.dialog.setAttribute('tabindex', '-1');
   }
 
-  // Add the default state class
-  item.target.classList.add(this.settings.stateClosed);
+  // Add the default state class.
+  entry.target.classList.add(this.settings.stateClosed);
 
-  // Teleport if a reference is provided
+  // Teleport modal if a reference has been set.
   if (this.settings.teleport) {
-    item.teleport();
+    entry.teleport();
   }
 
-  // Add item to collection
-  this.collection.push(item);
+  // Add entry to collection.
+  this.collection.push(entry);
 
-  // Return the registered object
-  return item;
-}
-
-export async function deregister(el) {
-  // Check if this item has been registered in the collection
-  const index = this.collection.findIndex((entry) => {
-    return (entry.id === el.id);
-  });
-
-  // If the entry exists in the collection
-  if (index >= 0) {
-    // Get the collection entry
-    const entry = this.collection[index];
-
-    // Close the collection entry if it's open
-    if (entry.state === 'opened') {
-      await entry.close(false);
-    }
-
-    // Return teleport if a reference is provided
-    if (this.settings.teleport) {
-      entry.teleportReturn();
-    }
-
-    // Delete properties from collection entry
-    Object.getOwnPropertyNames(entry).forEach((prop) => {
-      delete entry[prop];
-    });
-
-    // Remove entry from collection
-    this.collection.splice(index, 1);
-  }
-
-  // Return the new collection
-  return this.collection;
+  // Return the registered entry.
+  return entry;
 }

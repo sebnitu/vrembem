@@ -1,11 +1,12 @@
 import { Collection, FocusTrap } from '@vrembem/core/index';
 
 import defaults from './defaults';
-import { close } from './close';
 import { handlerClick, handlerKeydown } from './handlers';
-import { getModalID, getModalElements } from './helpers';
+import { register } from './register';
+import { deregister } from './deregister';
 import { open } from './open';
-import { register, deregister } from './register';
+import { close } from './close';
+import { getModalID, getModalElements } from './helpers';
 
 export default class Modal extends Collection {
   constructor(options) {
@@ -23,34 +24,30 @@ export default class Modal extends Collection {
   init(options = null) {
     if (options) this.settings = { ...this.settings, ...options };
 
-    // Get all the modals
+    // Get all the modals.
     const modals = document.querySelectorAll(this.settings.selectorModal);
 
-    // Build the collections array with popover instances
+    // Build the collections array with popover instances.
     this.registerCollection(modals);
 
-    // If eventListeners is enabled
+    // If eventListeners are enabled, init event listeners.
     if (this.settings.eventListeners) {
       this.initEventListeners();
     }
   }
 
   destroy() {
-    // Clear any stored memory
+    // Clear any stored memory.
     this.memory = {};
 
-    // Remove all entries from the collection
+    // Remove all entries from the collection.
     this.deregisterCollection();
 
-    // If eventListeners is enabled
+    // If eventListeners are enabled, destroy event listeners.
     if (this.settings.eventListeners) {
       this.destroyEventListeners();
     }
   }
-
-  /**
-   * Event listeners
-   */
 
   initEventListeners() {
     document.addEventListener('click', this.__handlerClick, false);
@@ -64,10 +61,6 @@ export default class Modal extends Collection {
     document.removeEventListener('keydown', this.__handlerKeydown, false);
   }
 
-  /**
-   * Register functionality
-   */
-
   register(query) {
     const els = getModalElements.call(this, query);
     if (!els) return false;
@@ -79,10 +72,6 @@ export default class Modal extends Collection {
     if (!popover) return false;
     return deregister.call(this, popover);
   }
-
-  /**
-   * Change state functionality
-   */
 
   open(id, transition = this.settings.transition) {
     const modal = this.get(id);
