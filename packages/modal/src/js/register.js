@@ -3,9 +3,9 @@ import { teleport } from '@vrembem/core/index';
 import { close } from './close';
 import { open } from './open';
 
-export function register(target, dialog) {
+export async function register(target, dialog) {
   // Deregister item if it already exists in the collection
-  this.deregister(target.id);
+  await this.deregister(target.id);
 
   // Save root this for use inside methods API
   const root = this;
@@ -62,6 +62,9 @@ export function register(target, dialog) {
     item.dialog.setAttribute('tabindex', '-1');
   }
 
+  // Add the default state class
+  item.target.classList.add(this.settings.stateClosed);
+
   // Teleport if a reference is provided
   if (this.settings.teleport) {
     item.teleport();
@@ -74,7 +77,7 @@ export function register(target, dialog) {
   return item;
 }
 
-export function deregister(el) {
+export async function deregister(el) {
   // Check if this item has been registered in the collection
   const index = this.collection.findIndex((entry) => {
     return (entry.id === el.id);
@@ -87,7 +90,12 @@ export function deregister(el) {
 
     // Close the collection entry if it's open
     if (entry.state === 'opened') {
-      entry.close();
+      await entry.close(false);
+    }
+
+    // Return teleport if a reference is provided
+    if (this.settings.teleport) {
+      entry.teleportReturn();
     }
 
     // Delete properties from collection entry
