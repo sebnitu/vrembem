@@ -4,7 +4,6 @@ import defaults from './defaults';
 import { close } from './close';
 import { handlerClick, handlerKeydown } from './handlers';
 import { getModalID, getModalElements } from './helpers';
-import { setInitialState } from './initialState';
 import { open } from './open';
 import { register, deregister } from './register';
 
@@ -29,9 +28,6 @@ export default class Modal extends Collection {
 
     // Build the collections array with popover instances
     this.registerCollection(modals);
-
-    // Set the initial state
-    this.setInitialState();
 
     // If eventListeners is enabled
     if (this.settings.eventListeners) {
@@ -66,14 +62,6 @@ export default class Modal extends Collection {
     document.removeEventListener('click', this.__handlerClick, false);
     document.removeEventListener('touchend', this.__handlerClick, false);
     document.removeEventListener('keydown', this.__handlerKeydown, false);
-  }
-
-  /**
-   * Helpers
-   */
-
-  setInitialState() {
-    return setInitialState.call(this);
   }
 
   /**
