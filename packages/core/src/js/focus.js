@@ -1,9 +1,7 @@
 import focusableSelectors from 'focusable-selectors';
 
 export const focusTarget = (target, settings) => {
-  const innerFocus = target.querySelector(
-    `[data-${settings.dataFocus}]`
-  );
+  const innerFocus = target.querySelector(settings.selectorFocus);
   if (innerFocus) {
     innerFocus.focus();
   } else {

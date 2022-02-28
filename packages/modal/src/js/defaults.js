@@ -4,12 +4,12 @@ export default {
   // Data attributes
   dataOpen: 'modal-open',
   dataClose: 'modal-close',
-  dataFocus: 'modal-focus',
 
   // Selectors
   selectorModal: '.modal',
   selectorDialog: '.modal__dialog',
   selectorRequired: '[role="alertdialog"]',
+  selectorFocus: '[data-focus]',
   selectorInert: null,
   selectorOverflow: 'body',
 
