@@ -41,6 +41,17 @@ export async function close(modal = null, transition = this.settings.transition,
     // Update modal state.
     modal.state = 'closed';
 
+    // Remove z-index styles
+    modal.target.style.zIndex = null;
+
+    // Get index of modal in stack array
+    const index = this.stack.findIndex((entry) => {
+      return (entry.id === modal.id);
+    });
+
+    // Remove modal from stack array.
+    this.stack.splice(index, 1);
+
     // Set busy flag to false.
     this.busy = false;
 

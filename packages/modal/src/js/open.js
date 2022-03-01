@@ -1,12 +1,37 @@
 import { setInert, setOverflowHidden } from '@vrembem/core/index';
 import { focusTarget } from '@vrembem/core/index';
 import { openTransition } from '@vrembem/core/index';
+import { updateStackIndex } from './helpers';
 
 export async function open(modal, transition = this.settings.transition) {
+  // Check if modal exists in the stack
+  const index = this.stack.findIndex((entry) => {
+    return (entry.id === modal.id);
+  });
+
+  if (index >= 0) {
+    // Remove modal from stack array.
+    this.stack.splice(index, 1);
+
+    // Update stack z-index
+    this.stack.push(modal);
+  }
+
+  // Update stack z-index
+  updateStackIndex(this.stack);
+
   // If the modal is currently closed.
   if (modal.state === 'closed') {
     // Set busy flag to true.
     this.busy = true;
+
+    // Apply z-index styles
+    modal.target.style.zIndex = null;
+    const value = getComputedStyle(modal.target)['z-index'];
+    modal.target.style.zIndex = parseInt(value) + this.stack.length + 1;
+    
+    // Store modal in stack array.
+    this.stack.push(modal);
 
     // Update modal state.
     modal.state = 'opening';

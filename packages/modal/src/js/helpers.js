@@ -1,3 +1,11 @@
+export function updateStackIndex(stack) {
+  stack.forEach((entry, index) => {
+    entry.target.style.zIndex = null;
+    const value = getComputedStyle(entry.target)['z-index'];
+    entry.target.style.zIndex = parseInt(value) + index + 1;
+  });
+}
+
 export function getModalID(obj) {
   // If it's a string, return the string.
   if (typeof obj === 'string') {

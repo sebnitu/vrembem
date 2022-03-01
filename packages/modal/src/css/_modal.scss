@@ -79,18 +79,6 @@ $_e: var.$prefix-element;
   }
 }
 
-.#{$_b}modal.is-opening {
-  z-index: (var.$z-index + 1);
-}
-
-.#{$_b}modal.is-opened {
-  z-index: var.$z-index;
-}
-
-.#{$_b}modal.is-closing {
-  z-index: (var.$z-index - 1);
-
-  .#{$_b}modal#{$_e}dialog {
-    transform: translateY(-(var.$travel));
-  }
+.#{$_b}modal.is-closing .#{$_b}modal#{$_e}dialog {
+  transform: translateY(-(var.$travel));
 }
