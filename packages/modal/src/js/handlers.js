@@ -9,6 +9,7 @@ export async function handlerClick(event) {
   if (trigger) {
     event.preventDefault();
     const fromModal = event.target.closest(this.settings.selectorModal);
+    // TODO: Always store trigger to modal entry
     if (!fromModal) this.memory.trigger = trigger;
     return this.open(getModalID.call(this, trigger));
   }

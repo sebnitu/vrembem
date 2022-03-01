@@ -23,6 +23,7 @@ export class FocusTrap {
   }
 
   init(target) {
+    this.destroy();
     this.target = target;
     this.inner = this.target.querySelector('[tabindex="-1"]');
     this.focusable = this.getFocusable();

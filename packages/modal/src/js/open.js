@@ -13,11 +13,17 @@ export async function open(modal, transition = this.settings.transition) {
     // Remove modal from stack array.
     this.stack.splice(index, 1);
 
-    // Update stack z-index
+    // Move back to end of stack.
     this.stack.push(modal);
+
+    // Initialize the focus trap.
+    this.focusTrap.init(modal.target);
+
+    // Set focus to the target.
+    focusTarget(modal.target, this.settings);
   }
 
-  // Update stack z-index
+  // Update z-index styles of stack,
   updateStackIndex(this.stack);
 
   // If the modal is currently closed.
@@ -25,7 +31,7 @@ export async function open(modal, transition = this.settings.transition) {
     // Set busy flag to true.
     this.busy = true;
 
-    // Apply z-index styles
+    // Apply z-index styles based on stack length.
     modal.target.style.zIndex = null;
     const value = getComputedStyle(modal.target)['z-index'];
     modal.target.style.zIndex = parseInt(value) + this.stack.length + 1;

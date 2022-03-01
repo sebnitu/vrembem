@@ -1,5 +1,5 @@
 import { setInert, setOverflowHidden } from '@vrembem/core/index';
-import { focusTrigger } from '@vrembem/core/index';
+import { focusTarget, focusTrigger } from '@vrembem/core/index';
 import { closeTransition } from '@vrembem/core/index';
 
 export async function close(modal = null, transition = this.settings.transition) {
@@ -26,7 +26,7 @@ export async function close(modal = null, transition = this.settings.transition)
     // Destroy the focus trap.
     this.focusTrap.destroy();
 
-    // Return focus if last modal open
+    // Return focus if this was last modal in stack.
     if (this.stack.length <= 1) {
       focusTrigger(this);
     }
@@ -43,16 +43,26 @@ export async function close(modal = null, transition = this.settings.transition)
     // Update modal state.
     modal.state = 'closed';
 
-    // Remove z-index styles
+    // Remove z-index styles.
     modal.target.style.zIndex = null;
 
-    // Get index of modal in stack array
+    // Get index of modal in stack array.
     const index = this.stack.findIndex((entry) => {
       return (entry.id === modal.id);
     });
 
     // Remove modal from stack array.
     this.stack.splice(index, 1);
+
+    // Re-activate focusTrap on next modal in stack
+    const next = this.stack[this.stack.length - 1];
+    if (next) {
+      // Initialize the focus trap.
+      this.focusTrap.init(next.target);
+
+      // Set focus to the target.
+      focusTarget(next.target, this.settings);
+    }
 
     // Set busy flag to false.
     this.busy = false;
