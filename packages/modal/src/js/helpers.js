@@ -2,6 +2,7 @@ export function updateStackIndex(stack) {
   stack.forEach((entry, index) => {
     entry.target.style.zIndex = null;
     const value = getComputedStyle(entry.target)['z-index'];
+    console.log('updateStackIndex => z-index:', value, index);
     entry.target.style.zIndex = parseInt(value) + index + 1;
   });
 }

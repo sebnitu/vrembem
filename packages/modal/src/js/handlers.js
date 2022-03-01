@@ -26,7 +26,7 @@ export async function handlerClick(event) {
     event.target.matches(this.settings.selectorModal) &&
     !event.target.querySelector(this.settings.selectorRequired)
   ) {
-    this.close();
+    this.close(getModalID.call(this, event.target));
     return;
   }
 }
@@ -38,7 +38,7 @@ export function handlerKeydown(event) {
   // If escape key was pressed.
   if (event.key === 'Escape') {
     // Query for an open modal.
-    const modal = this.get('opened', 'state');
+    const modal = this.stack[this.stack.length - 1];
 
     // If a modal is opened and not required, close the modal.
     if (modal && !modal.dialog.matches(this.settings.selectorRequired)) {

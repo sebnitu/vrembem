@@ -28,6 +28,7 @@ export async function open(modal, transition = this.settings.transition) {
     // Apply z-index styles
     modal.target.style.zIndex = null;
     const value = getComputedStyle(modal.target)['z-index'];
+    console.log('getComputedStyle => z-index:', value);
     modal.target.style.zIndex = parseInt(value) + this.stack.length + 1;
     
     // Store modal in stack array.

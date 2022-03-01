@@ -3,8 +3,8 @@ import { focusTrigger } from '@vrembem/core/index';
 import { closeTransition } from '@vrembem/core/index';
 
 export async function close(modal = null, transition = this.settings.transition, returnFocus = true) {
-  // If modal wasn't passed, query for an open modal.
-  modal = modal || this.get('opened', 'state');
+  // If modal wasn't passed, get the top modal in stack.
+  modal = modal || this.stack[this.stack.length - 1];
 
   // If a modal exists and its state is opened.
   if (modal && modal.state === 'opened') {
