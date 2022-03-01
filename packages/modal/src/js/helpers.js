@@ -6,19 +6,19 @@ export function getModalID(obj) {
 
   // If it's an HTML element.
   else if (typeof obj.hasAttribute === 'function') {
-    // If it's a modal target, return the id.
-    if (obj.closest(this.settings.selectorModal)) {
-      return obj.id;
-    }
-
     // If it's a modal open trigger, return data value.
-    else if (obj.closest(`[data-${this.settings.dataOpen}]`)) {
+    if (obj.closest(`[data-${this.settings.dataOpen}]`)) {
       return obj.getAttribute(`data-${this.settings.dataOpen}`);
     }
 
     // If it's a modal close trigger, return data value or false.
     else if (obj.closest(`[data-${this.settings.dataClose}]`)) {
       return obj.getAttribute(`data-${this.settings.dataClose}`) || false;
+    }
+
+    // If it's a modal target, return the id.
+    else if (obj.closest(this.settings.selectorModal)) {
+      return obj.id;
     }
 
     // Return false if no id was found.

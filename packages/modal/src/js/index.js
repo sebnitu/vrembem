@@ -69,7 +69,7 @@ export default class Modal extends Collection {
   }
 
   deregister(query) {
-    const popover = this.get(getModalID(query));
+    const popover = this.get(getModalID.call(this, query));
     if (!popover) return false;
     return deregister.call(this, popover);
   }
