@@ -85,4 +85,12 @@ export default class Modal extends Collection {
     const modal = this.get(id);
     return close.call(this, modal, transition, returnFocus);
   }
+
+  async closeAll() {
+    const result = [];
+    await Promise.all(this.stack.map(async (modal) => {
+      result.push(await modal.close());
+    }));
+    return result;
+  }
 }
