@@ -3,22 +3,21 @@ import { getModalID } from './helpers';
 export async function handlerClick(event) {
   // Check if modal is busy.
   if (this.busy) return;
+
   // If a open button was clicked, open the modal.
   let trigger = event.target.closest(`[data-${this.settings.dataOpen}]`);
   if (trigger) {
     event.preventDefault();
     const fromModal = event.target.closest(this.settings.selectorModal);
     if (!fromModal) this.memory.trigger = trigger;
-    this.open(getModalID.call(this, trigger));
-    return;
+    return this.open(getModalID.call(this, trigger));
   }
 
   // If a close button was clicked, close the modal.
   trigger = event.target.closest(`[data-${this.settings.dataClose}]`);
   if (trigger) {
     event.preventDefault();
-    this.close(getModalID.call(this, trigger));
-    return;
+    return this.close(getModalID.call(this, trigger));
   }
 
   // If the modal screen was clicked, close the modal.
@@ -26,8 +25,7 @@ export async function handlerClick(event) {
     event.target.matches(this.settings.selectorModal) &&
     !event.target.querySelector(this.settings.selectorRequired)
   ) {
-    this.close(getModalID.call(this, event.target));
-    return;
+    return this.close(getModalID.call(this, event.target));
   }
 }
 
@@ -42,7 +40,7 @@ export function handlerKeydown(event) {
 
     // If a modal is opened and not required, close the modal.
     if (modal && !modal.dialog.matches(this.settings.selectorRequired)) {
-      this.close();
+      return this.close();
     }
   }
 }
