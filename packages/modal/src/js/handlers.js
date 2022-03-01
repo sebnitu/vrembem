@@ -8,10 +8,13 @@ export async function handlerClick(event) {
   let trigger = event.target.closest(`[data-${this.settings.dataOpen}]`);
   if (trigger) {
     event.preventDefault();
+    // Save the root trigger
     const fromModal = event.target.closest(this.settings.selectorModal);
-    // TODO: Always store trigger to modal entry
     if (!fromModal) this.memory.trigger = trigger;
-    return this.open(getModalID.call(this, trigger));
+    // Get the modal, store trigger and open
+    const modal = this.get(getModalID.call(this, trigger));
+    modal.trigger = trigger;
+    return modal.open();
   }
 
   // If a close button was clicked, close the modal.

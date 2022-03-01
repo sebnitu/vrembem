@@ -46,6 +46,7 @@ export async function register(target, dialog) {
   const entry = {
     id: target.id,
     state: 'closed',
+    trigger: null,
     target: target,
     dialog: dialog,
     returnRef: null,

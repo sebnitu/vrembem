@@ -4,17 +4,21 @@ import { openTransition } from '@vrembem/core/index';
 import { updateStackIndex } from './helpers';
 
 export async function open(modal, transition = this.settings.transition) {
-  // Check if modal exists in the stack
+  // Check if modal is already in the stack.
   const index = this.stack.findIndex((entry) => {
     return (entry.id === modal.id);
   });
 
+  // If modal is already open.
   if (index >= 0) {
     // Remove modal from stack array.
     this.stack.splice(index, 1);
 
     // Move back to end of stack.
     this.stack.push(modal);
+
+    // Update z-index styles of stack.
+    updateStackIndex(this.stack);
 
     // Initialize the focus trap.
     this.focusTrap.init(modal.target);
@@ -23,13 +27,13 @@ export async function open(modal, transition = this.settings.transition) {
     focusTarget(modal.target, this.settings);
   }
 
-  // Update z-index styles of stack,
-  updateStackIndex(this.stack);
-
   // If the modal is currently closed.
   if (modal.state === 'closed') {
     // Set busy flag to true.
     this.busy = true;
+
+    // Update modal state.
+    modal.state = 'opening';
 
     // Apply z-index styles based on stack length.
     modal.target.style.zIndex = null;
@@ -38,9 +42,6 @@ export async function open(modal, transition = this.settings.transition) {
 
     // Store modal in stack array.
     this.stack.push(modal);
-
-    // Update modal state.
-    modal.state = 'opening';
 
     // Set overflow state.
     setOverflowHidden(true, this.settings.selectorOverflow);
@@ -57,14 +58,14 @@ export async function open(modal, transition = this.settings.transition) {
     // Set inert state.
     setInert(true, this.settings.selectorInert);
 
+    // Update modal state.
+    modal.state = 'opened';
+
     // Dispatch custom opened event.
     modal.target.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'opened', {
       detail: this,
       bubbles: true
     }));
-
-    // Update modal state.
-    modal.state = 'opened';
 
     // Set busy flag to false.
     this.busy = false;
