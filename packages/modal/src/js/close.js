@@ -2,7 +2,7 @@ import { setInert, setOverflowHidden } from '@vrembem/core/index';
 import { focusTrigger } from '@vrembem/core/index';
 import { closeTransition } from '@vrembem/core/index';
 
-export async function close(modal = null, transition = this.settings.transition, returnFocus = true) {
+export async function close(modal = null, transition = this.settings.transition) {
   // If modal wasn't passed, get the top modal in stack.
   modal = modal || this.stack[this.stack.length - 1];
 
@@ -26,8 +26,10 @@ export async function close(modal = null, transition = this.settings.transition,
     // Destroy the focus trap.
     this.focusTrap.destroy();
 
-    // Maybe return focus to trigger element.
-    if (returnFocus) focusTrigger(this);
+    // Return focus if last modal open
+    if (this.stack.length <= 1) {
+      focusTrigger(this);
+    }
 
     // Set overflow state.
     setOverflowHidden(false, this.settings.selectorOverflow);

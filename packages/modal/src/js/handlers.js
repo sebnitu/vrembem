@@ -17,7 +17,12 @@ export async function handlerClick(event) {
   trigger = event.target.closest(`[data-${this.settings.dataClose}]`);
   if (trigger) {
     event.preventDefault();
-    return this.close(getModalID.call(this, trigger));
+    const value = trigger.getAttribute(`data-${this.settings.dataClose}`);
+    if (value === '*') {
+      return this.closeAll();
+    } else {
+      return this.close(value);
+    }
   }
 
   // If the modal screen was clicked, close the modal.

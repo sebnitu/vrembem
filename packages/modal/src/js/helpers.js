@@ -15,12 +15,12 @@ export function getModalID(obj) {
   // If it's an HTML element.
   else if (typeof obj.hasAttribute === 'function') {
     // If it's a modal open trigger, return data value.
-    if (obj.closest(`[data-${this.settings.dataOpen}]`)) {
+    if (obj.hasAttribute(`data-${this.settings.dataOpen}`)) {
       return obj.getAttribute(`data-${this.settings.dataOpen}`);
     }
 
     // If it's a modal close trigger, return data value or false.
-    else if (obj.closest(`[data-${this.settings.dataClose}]`)) {
+    else if (obj.hasAttribute(`data-${this.settings.dataClose}`)) {
       return obj.getAttribute(`data-${this.settings.dataClose}`) || false;
     }
 
