@@ -40,7 +40,7 @@ test('should focus modal dialog when opened and refocus trigger when closed', as
 
 test('should focus inner modal element and refocus trigger when closed', async () => {
   document.body.innerHTML = markup;
-  Modal({ autoInit: true });
+  new Modal({ autoInit: true });
   const el = document.querySelector('#modal-two');
   const btnOpen = document.querySelector('[data-modal-open="modal-two"]');
   const btnClose = el.querySelector('[data-modal-close]');
@@ -56,12 +56,11 @@ test('should focus inner modal element and refocus trigger when closed', async (
 
 test('should remember initial trigger when opening modal through another modal', async () => {
   document.body.innerHTML = markup;
-  Modal({ autoInit: true });
+  const modal = new Modal({ autoInit: true });
   const elOne = document.querySelector('#modal-one');
   const elTwo = document.querySelector('#modal-two');
   const btnOpen = document.querySelector('[data-modal-open="modal-one"]');
   const btnTwo = elOne.querySelector('[data-modal-open="modal-two"]');
-  const btnClose = elTwo.querySelector('[data-modal-close]');
 
   btnOpen.click();
   await transition(elOne);
@@ -70,21 +69,19 @@ test('should remember initial trigger when opening modal through another modal',
   await transition(elOne);
   await transition(elTwo);
 
-  btnClose.click();
-  await transition(elTwo);
+  expect(elOne).toHaveClass('is-opened');
+  expect(elTwo).toHaveClass('is-opened');
+
+  await modal.closeAll(false);
 
   expect(btnOpen).toHaveFocus();
 });
 
-test('should throw error if modal is not found on open call', async () => {
+test('should return false if modal is not found', async () => {
   document.body.innerHTML = markup;
   const modal = new Modal({ autoInit: true });
   const result = modal.open('asdf');
-  console.log(result);
-  expect(result).toBe('asdf');
-  // .catch((error) => {
-  //   expect(error.message).toBe('Did not find modal with key: "asdf"');
-  // });
+  expect(result).toBe(false);
 });
 
 test('should retain focus on modal if nothing inner is focusable', async () => {

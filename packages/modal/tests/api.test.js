@@ -2,40 +2,19 @@ import Modal from '../index.js';
 import '@testing-library/jest-dom/extend-expect';
 import { transition } from './helpers/transition';
 
-let modal;
-
 const markup = `
   <button data-modal-open="modal-default">Modal Default</button>
-  <div data-modal="modal-default" class="modal">
-    <div data-modal-dialog class="modal__dialog">
+  <div id="modal-default" class="modal">
+    <div class="modal__dialog">
       <button data-modal-close>Close</button>
     </div>
   </div>
 `;
 
-const markupState = `
-  <div data-modal="modal-one" class="modal">
-    <div data-modal-dialog class="modal__dialog">
-      ...
-    </div>
-  </div>
-  <div data-modal="modal-two" class="modal is-opened is-closed is-opening is-closing">
-    <div data-modal-dialog class="modal__dialog">
-      ...
-    </div>
-  </div>
-`;
-
-afterEach(() => {
-  modal.destroy();
-  modal = null;
-  document.body.innerHTML = null;
-});
-
 test('should open modal using api call', async () => {
   document.body.innerHTML = markup;
-  modal = new Modal({ autoInit: true });
-  const el = document.querySelector('[data-modal]');
+  const modal = new Modal({ autoInit: true });
+  const el = document.querySelector('.modal');
 
   modal.open('modal-default');
   await transition(el);
@@ -46,8 +25,8 @@ test('should open modal using api call', async () => {
 
 test('should do nothing if open api is called on modal that\'s already open', async () => {
   document.body.innerHTML = markup;
-  modal = new Modal({ autoInit: true });
-  const el = document.querySelector('[data-modal]');
+  const modal = new Modal({ autoInit: true });
+  const el = document.querySelector('.modal');
 
   modal.open('modal-default');
   await transition(el);
@@ -62,8 +41,8 @@ test('should do nothing if open api is called on modal that\'s already open', as
 
 test('should close modal using api call', async () => {
   document.body.innerHTML = markup;
-  modal = new Modal({ autoInit: true });
-  const el = document.querySelector('[data-modal]');
+  const modal = new Modal({ autoInit: true });
+  const el = document.querySelector('.modal');
   const btnOpen = document.querySelector('[data-modal-open]');
 
   btnOpen.click();
@@ -81,8 +60,8 @@ test('should close modal using api call', async () => {
 
 test('should run function when promise is returned from open api', async () => {
   document.body.innerHTML = markup;
-  modal = new Modal({ autoInit: true });
-  const el = document.querySelector('[data-modal]');
+  const modal = new Modal({ autoInit: true });
+  const el = document.querySelector('.modal');
   let callbackCheck = false;
 
   modal.open('modal-default').then(() => {
@@ -95,8 +74,8 @@ test('should run function when promise is returned from open api', async () => {
 
 test('should run function when promise is returned from close api', async () => {
   document.body.innerHTML = markup;
-  modal = new Modal({ autoInit: true });
-  const el = document.querySelector('[data-modal]');
+  const modal = new Modal({ autoInit: true });
+  const el = document.querySelector('.modal');
   let callbackCheck = false;
 
   modal.open('modal-default');
@@ -112,8 +91,8 @@ test('should run function when promise is returned from close api', async () => 
 
 test('should properly destroy drawer instance on api call', async () => {
   document.body.innerHTML = markup;
-  modal = new Modal({ autoInit: true });
-  const el = document.querySelector('[data-modal]');
+  const modal = new Modal({ autoInit: true });
+  const el = document.querySelector('.modal');
   const btnOpen = document.querySelector('[data-modal-open]');
 
   modal.destroy();
@@ -125,59 +104,17 @@ test('should properly destroy drawer instance on api call', async () => {
   expect(el.classList.length).toBe(2);
 });
 
-test('should set tabindex attribute with api call', () => {
+test('should return registered modal object if a registered target is passed', () => {
   document.body.innerHTML = markup;
-  modal = new Modal({
-    autoInit: true,
-    setTabindex: false
-  });
-  const dialog = document.querySelector('[data-modal-dialog]');
-  expect(dialog).not.toHaveAttribute('tabindex');
-  modal.setTabindex();
-  expect(dialog).toHaveAttribute('tabindex');
+  const modal = new Modal({ autoInit: true });
+  const el = document.querySelector('#modal-default');
+  const result = modal.get(el.id);
+  expect(el).toBe(result.target);
 });
 
-test('should set initial state on api call', () => {
-  document.body.innerHTML = markupState;
-  modal = new Modal();
-  const modalOne = document.querySelector('[data-modal="modal-one"]');
-  const modalTwo = document.querySelector('[data-modal="modal-two"]');
-  expect(modalOne).not.toHaveClass('is-closed');
-  expect(modalOne.classList.length).toBe(1);
-  expect(modalTwo).toHaveClass('modal is-opened is-closed is-opening is-closing');
-  expect(modalTwo.classList.length).toBe(5);
-
-  modal.setInitialState();
-  expect(modalOne).toHaveClass('modal is-closed');
-  expect(modalOne.classList.length).toBe(2);
-  expect(modalTwo).toHaveClass('modal is-closed');
-  expect(modalTwo.classList.length).toBe(2);
-});
-
-test('should set initial state even when modal is open', async () => {
+test('should return null if modal.get() does not return a modal', () => {
   document.body.innerHTML = markup;
-  modal = new Modal({ autoInit: true });
-  const el = document.querySelector('[data-modal="modal-default"]');
-  modal.open('modal-default');
-  await transition(el);
-  expect(el).toHaveClass('is-opened');
-
-  modal.setInitialState();
-  expect(el).toHaveClass('is-closed');
-  expect(el.classList.length).toBe(2);
-});
-
-test('should return argument if not a string when getModal is called', () => {
-  document.body.innerHTML = markup;
-  modal = new Modal({ autoInit: true });
-  const el = document.querySelector('[data-modal="modal-default"]');
-  const getEl = modal.getModal(el);
-  expect(el).toBe(getEl);
-});
-
-test('should return null if getModal is not found', () => {
-  document.body.innerHTML = markup;
-  modal = new Modal({ autoInit: true });
-  const el = modal.getModal('asdf');
+  const modal = new Modal({ autoInit: true });
+  const el = modal.get('asdf');
   expect(el).toBe(null);
 });

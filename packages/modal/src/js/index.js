@@ -81,15 +81,15 @@ export default class Modal extends Collection {
     return open.call(this, modal, transition);
   }
 
-  close(id, transition = this.settings.transition, returnFocus) {
+  close(id, transition = this.settings.transition) {
     const modal = this.get(id);
-    return close.call(this, modal, transition, returnFocus);
+    return close.call(this, modal, transition);
   }
 
-  async closeAll() {
+  async closeAll(transition = this.settings.transition) {
     const result = [];
     await Promise.all(this.stack.map(async (modal) => {
-      result.push(await modal.close());
+      result.push(await modal.close(transition));
     }));
     return result;
   }
