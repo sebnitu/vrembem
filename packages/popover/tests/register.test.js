@@ -25,7 +25,7 @@ afterEach(() => {
 });
 
 describe('register()', () => {
-  test('should register a popover using the provided trigger', () => {
+  it('should register a popover using the provided trigger', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     const trigger = document.querySelector('#asdf-trigger');
@@ -34,7 +34,7 @@ describe('register()', () => {
     expect(popover.collection[0].__eventListeners.length).toBe(1);
   });
 
-  test('should register a popover using the provided ID', () => {
+  it('should register a popover using the provided ID', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     const trigger = document.querySelector('#asdf-trigger');
@@ -48,7 +48,7 @@ describe('register()', () => {
     expect(popover.collection[0].target).toHaveClass('is-active');
   });
 
-  test('should log an error if the provided trigger has no associated target', () => {
+  it('should log an error if the provided trigger has no associated target', () => {
     document.body.innerHTML = markup;
     console.error = jest.fn();
     popover = new Popover();
@@ -58,7 +58,7 @@ describe('register()', () => {
     expect(console.error).toHaveBeenCalledWith('No popover associated with the provided popover trigger:', trigger);
   });
 
-  test('should attach hover event listeners when registered', () => {
+  it('should attach hover event listeners when registered', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     const trigger = document.querySelector('#fdsa-trigger');
@@ -67,7 +67,7 @@ describe('register()', () => {
     expect(popover.collection[0].__eventListeners.length).toBe(2);
   });
 
-  test('should attach open and close methods to registered popover', () => {
+  it('should attach open and close methods to registered popover', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     popover.register('asdf');
@@ -82,7 +82,7 @@ describe('register()', () => {
     expect(entry.target).not.toHaveClass('is-active');
   });
 
-  test('should attach deregister method to registered popover', () => {
+  it('should attach deregister method to registered popover', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     popover.register('asdf');
@@ -98,7 +98,7 @@ describe('register()', () => {
     expect(entry.id).toBe(undefined);
   });
 
-  test('should not register more event listeners if registerEventListeners is run on existing popover', () => {
+  it('should not register more event listeners if registerEventListeners is run on existing popover', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     popover.register('asdf');

@@ -38,7 +38,7 @@ afterEach(() => {
 });
 
 describe('handlerClick()', () => {
-  test('should open popover if it does not contain the active class', () => {
+  it('should open popover if it does not contain the active class', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -48,7 +48,7 @@ describe('handlerClick()', () => {
     expect(popover.collection[0].target).toHaveClass('is-active');
   });
 
-  test('should close popover if it contains the active class', () => {
+  it('should close popover if it contains the active class', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -58,7 +58,7 @@ describe('handlerClick()', () => {
     expect(popover.collection[1].target).not.toHaveClass('is-active');
   });
 
-  test('should attach document click event listener when popover is opened', () => {
+  it('should attach document click event listener when popover is opened', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -73,7 +73,7 @@ describe('handlerClick()', () => {
 });
 
 describe('handlerKeydown()', () => {
-  test('should close open popover when escape key is pressed', () => {
+  it('should close open popover when escape key is pressed', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -82,7 +82,7 @@ describe('handlerKeydown()', () => {
     expect(popover.collection[1].target).not.toHaveClass('is-active');
   });
 
-  test('should do nothing when a non-escape key is pressed', () => {
+  it('should do nothing when a non-escape key is pressed', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -91,12 +91,12 @@ describe('handlerKeydown()', () => {
     expect(popover.collection[1].target).toHaveClass('is-active');
   });
 
-  test('should return focus to the trigger element when escape key is pressed', () => {
+  it('should return focus to the trigger element when escape key is pressed', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
     const button = document.querySelector('.focus-test');
 
-    expect(popover.memory.trigger).toBe(null);
+    expect(popover.memory.trigger).toBe(undefined);
     popover.collection[0].trigger.click();
     expect(popover.memory.trigger).toBe(popover.collection[0].trigger);
 
@@ -108,7 +108,7 @@ describe('handlerKeydown()', () => {
     expect(popover.memory.trigger).toBe(null);
   });
 
-  test('should run close check when the tab key is pressed', () => {
+  it('should run close check when the tab key is pressed', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -120,7 +120,7 @@ describe('handlerKeydown()', () => {
 });
 
 describe('documentClick()', () => {
-  test('should close other popover instances when a new one is toggled', () => {
+  it('should close other popover instances when a new one is toggled', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -133,7 +133,7 @@ describe('documentClick()', () => {
     expect(popover.collection[1].target).not.toHaveClass('is-active');
   });
 
-  test('should remove document event listener when popover is closed', () => {
+  it('should remove document event listener when popover is closed', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 

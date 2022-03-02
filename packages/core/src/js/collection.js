@@ -23,16 +23,16 @@ export class Collection {
     return this.collection;
   }
 
-  async registerCollection(items) {
-    await items.forEach(async (item) => {
-      await this.register(item);
+  registerCollection(items) {
+    items.forEach((item) => {
+      this.register(item);
     });
     return this.collection;
   }
 
-  async deregisterCollection() {
+  deregisterCollection() {
     while (this.collection.length > 0) {
-      await this.deregister(this.collection[0]);
+      this.deregister(this.collection[0]);
     }
     return this.collection;
   }

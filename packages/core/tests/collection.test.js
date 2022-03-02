@@ -23,7 +23,7 @@ function buildData() {
 }
 
 describe('constructor()', () => {
-  test('should setup an empty collection array on instantiation', () => {
+  it('should setup an empty collection array on instantiation', () => {
     obj = new Collection();
     expect(typeof obj.collection).toBe('object');
     expect(obj.collection.length).toBe(0);
@@ -35,7 +35,7 @@ describe('register()', () => {
     obj.deregisterCollection();
   });
 
-  test('should add an item to the registered collection and return collection', () => {
+  it('should add an item to the registered collection and return collection', () => {
     const data = buildData();
     let result;
 
@@ -56,7 +56,7 @@ describe('deregister()', () => {
     obj.deregisterCollection();
   });
 
-  test('should do nothing if item does not exist in collection', () => {
+  it('should do nothing if item does not exist in collection', () => {
     const data = buildData();
     obj.register(data[0]);
     obj.deregister(data[1]);
@@ -65,7 +65,7 @@ describe('deregister()', () => {
     expect(data[1].id).toBe('fdsa');
   });
 
-  test('should remove item from collection if it exists', () => {
+  it('should remove item from collection if it exists', () => {
     const item = obj.collection[0];
     obj.deregister(item);
     expect(obj.collection.length).toBe(0);
@@ -75,9 +75,9 @@ describe('deregister()', () => {
 });
 
 describe('registerCollection() & deregisterCollection()', () => {
-  test('should add multiple items to the registered collection', async () => {
+  it('should add multiple items to the registered collection', () => {
     const data = buildData();
-    await obj.registerCollection(data);
+    obj.registerCollection(data);
     expect(obj.collection.length).toBe(4);
     expect(obj.collection[0]).toBe(data[0]);
     expect(obj.collection[1]).toBe(data[1]);
@@ -85,14 +85,14 @@ describe('registerCollection() & deregisterCollection()', () => {
     expect(obj.collection[3]).toBe(data[3]);
   });
 
-  test('should remove all items from collection', async () => {
-    await obj.deregisterCollection();
+  it('should remove all items from collection', () => {
+    obj.deregisterCollection();
     expect(obj.collection.length).toBe(0);
   });
 });
 
 describe('get()', () => {
-  test('should return entry from collection using the passed ID', () => {
+  it('should return entry from collection using the passed ID', () => {
     let entry;
     const data = buildData();
     obj.registerCollection(data);
@@ -106,7 +106,7 @@ describe('get()', () => {
     expect(entry.text).toBe('5678');
   });
 
-  test('should return null if no items is found in collection', () => {
+  it('should return null if no items is found in collection', () => {
     let entry = obj.get('aaaa');
     expect(entry).toBe(null);
   });

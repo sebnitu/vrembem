@@ -19,7 +19,7 @@ const markup = `
 `;
 
 describe('deregister()', () => {
-  test('should deregister a popover and do nothing for popovers not in collection', () => {
+  it('should deregister a popover and do nothing for popovers not in collection', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
     expect(popover.collection.length).toBe(2);

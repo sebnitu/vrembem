@@ -19,7 +19,7 @@ afterEach(() => {
 });
 
 describe('open()', () => {
-  test('should open the provided popover', () => {
+  it('should open the provided popover', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
     const el = popover.get('asdf');
@@ -32,7 +32,7 @@ describe('open()', () => {
     expect(el.trigger.getAttribute('aria-expanded')).toBe('true');
   });
 
-  test('should open the provided popover tooltip', () => {
+  it('should open the provided popover tooltip', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
     const el = popover.get('fdsa');

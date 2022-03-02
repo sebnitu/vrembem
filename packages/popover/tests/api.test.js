@@ -21,27 +21,27 @@ afterEach(() => {
 });
 
 describe('init() & destroy()', () => {
-  test('should initialize the popover module when init is run', () => {
+  it('should initialize the popover module when init is run', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     popover.init();
     expect(popover.collection.length).toBe(2);
   });
 
-  test('should auto initialize the popover module autoInit is set to true', () => {
+  it('should auto initialize the popover module autoInit is set to true', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
     expect(popover.collection.length).toBe(2);
   });
 
-  test('running init multiple times should not create duplicates in collection', () => {
+  it('running init multiple times should not create duplicates in collection', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
     popover.init();
     expect(popover.collection.length).toBe(2);
   });
 
-  test('should not attach keyboard event listener if eventListeners is set to false', () => {
+  it('should not attach keyboard event listener if eventListeners is set to false', () => {
     document.body.innerHTML = markup;
     popover = new Popover({
       autoInit: true,
@@ -57,7 +57,7 @@ describe('init() & destroy()', () => {
     expect(target).toHaveClass('is-active');
   });
 
-  test('should be able to pass options through init method', () => {
+  it('should be able to pass options through init method', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ selectorPopover: '.asdf' });
     expect(popover.settings.selectorPopover).toBe('.asdf');
@@ -65,7 +65,7 @@ describe('init() & destroy()', () => {
     expect(popover.settings.selectorPopover).toBe('.popover');
   });
 
-  test('should remove all event listeners and clear collection', () => {
+  it('should remove all event listeners and clear collection', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -81,7 +81,7 @@ describe('init() & destroy()', () => {
 });
 
 describe('initEventListeners() & destroyEventListeners()', () => {
-  test('should remove event listeners', () => {
+  it('should remove event listeners', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -94,7 +94,7 @@ describe('initEventListeners() & destroyEventListeners()', () => {
     expect(target).not.toHaveClass('is-active');
   });
 
-  test('should re-initialize event listeners', () => {
+  it('should re-initialize event listeners', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -108,7 +108,7 @@ describe('initEventListeners() & destroyEventListeners()', () => {
     expect(target).toHaveClass('is-active');
   });
 
-  test('should remove keyboard event listener', () => {
+  it('should remove keyboard event listener', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -124,7 +124,7 @@ describe('initEventListeners() & destroyEventListeners()', () => {
     expect(target).toHaveClass('is-active');
   });
 
-  test('should re-initialize keyboard event listener', () => {
+  it('should re-initialize keyboard event listener', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -143,7 +143,7 @@ describe('initEventListeners() & destroyEventListeners()', () => {
 });
 
 describe('register() & deregister()', () => {
-  test('should be able to manually register a popover', () => {
+  it('should be able to manually register a popover', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
 
@@ -158,7 +158,7 @@ describe('register() & deregister()', () => {
     expect(popover.collection[0].target).toBe(target);
   });
 
-  test('should be able to manually deregister a popover', () => {
+  it('should be able to manually deregister a popover', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -175,7 +175,7 @@ describe('register() & deregister()', () => {
 });
 
 describe('registerCollection() & deregisterCollection()', () => {
-  test('should remove all items from collection and their event listeners', () => {
+  it('should remove all items from collection and their event listeners', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -194,7 +194,7 @@ describe('registerCollection() & deregisterCollection()', () => {
     expect(target).not.toHaveClass('is-active');
   });
 
-  test('should register all items into collection and add their event listeners', () => {
+  it('should register all items into collection and add their event listeners', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
 
@@ -215,7 +215,7 @@ describe('registerCollection() & deregisterCollection()', () => {
 });
 
 describe('open() & close()', () => {
-  test('should open the provided popover', () => {
+  it('should open the provided popover', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -226,7 +226,7 @@ describe('open() & close()', () => {
     expect(target).toHaveClass('is-active');
   });
 
-  test('should close the provided popover', () => {
+  it('should close the provided popover', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -237,7 +237,7 @@ describe('open() & close()', () => {
     expect(target).not.toHaveClass('is-active');
   });
 
-  test('should close all popovers', () => {
+  it('should close all popovers', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -258,7 +258,7 @@ describe('open() & close()', () => {
     });
   });
 
-  test('should return false if open is run with a popover it could not find', () => {
+  it('should return false if open is run with a popover it could not find', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -266,7 +266,7 @@ describe('open() & close()', () => {
     expect(result).toBe(false);
   });
 
-  test('should return false if close is run with a popover it could not find', () => {
+  it('should return false if close is run with a popover it could not find', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
