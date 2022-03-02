@@ -75,9 +75,9 @@ describe('deregister()', () => {
 });
 
 describe('registerCollection() & deregisterCollection()', () => {
-  test('should add multiple items to the registered collection', () => {
+  test('should add multiple items to the registered collection', async () => {
     const data = buildData();
-    obj.registerCollection(data);
+    await obj.registerCollection(data);
     expect(obj.collection.length).toBe(4);
     expect(obj.collection[0]).toBe(data[0]);
     expect(obj.collection[1]).toBe(data[1]);
@@ -85,8 +85,8 @@ describe('registerCollection() & deregisterCollection()', () => {
     expect(obj.collection[3]).toBe(data[3]);
   });
 
-  test('should remove all items from collection', () => {
-    obj.deregisterCollection();
+  test('should remove all items from collection', async () => {
+    await obj.deregisterCollection();
     expect(obj.collection.length).toBe(0);
   });
 });
