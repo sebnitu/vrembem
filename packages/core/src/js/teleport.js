@@ -21,8 +21,8 @@ export function teleport(what, where, how) {
   if (isComment) how = 'after';
 
   // Must be a valid reference element and method.
-  if (!where) throw new Error('Not a valid teleport reference.');
-  if (typeof where[how] != 'function') throw new Error('Not a valid teleport method:', how);
+  if (!where) throw new Error(`Not a valid teleport reference: '${where}'`);
+  if (typeof where[how] != 'function') throw new Error(`Not a valid teleport method: '${how}'`);
 
   // Initial return ref is null.
   let returnRef = null;
