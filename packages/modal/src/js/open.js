@@ -27,7 +27,7 @@ export async function open(modal, transition = this.settings.transition) {
     focusTarget(modal.target, this.settings);
   }
 
-  // If the modal is currently closed.
+  // If modal is closed.
   if (modal.state === 'closed') {
     // Set busy flag to true.
     this.busy = true;
@@ -43,6 +43,9 @@ export async function open(modal, transition = this.settings.transition) {
     // Store modal in stack array.
     this.stack.push(modal);
 
+    // Set inert state.
+    setInert(true, this.settings.selectorInert);
+
     // Set overflow state.
     setOverflowHidden(true, this.settings.selectorOverflow);
 
@@ -54,9 +57,6 @@ export async function open(modal, transition = this.settings.transition) {
 
     // Set focus to the target.
     focusTarget(modal.target, this.settings);
-
-    // Set inert state.
-    setInert(true, this.settings.selectorInert);
 
     // Update modal state.
     modal.state = 'opened';

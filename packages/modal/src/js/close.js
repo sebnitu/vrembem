@@ -20,14 +20,14 @@ export async function close(modal = null, transition = this.settings.transition)
     // Set inert state.
     setInert(false, this.settings.selectorInert);
 
+    // Set overflow state.
+    setOverflowHidden(false, this.settings.selectorOverflow);
+
     // Run the close transition.
     await closeTransition(modal.target, { ...this.settings, ...{ transition: transition } });
 
     // Destroy the focus trap.
     this.focusTrap.destroy();
-
-    // Set overflow state.
-    setOverflowHidden(false, this.settings.selectorOverflow);
 
     // Remove z-index styles.
     modal.target.style.zIndex = null;
