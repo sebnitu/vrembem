@@ -1,50 +1,41 @@
 import Modal from '../index.js';
-import '@testing-library/jest-dom/extend-expect';
 import { transition } from './helpers/transition';
 
-let modal;
-
 const markup = `
-  <div role="main">
+  <main>
     <button data-modal-open="modal-default">...</button>
-  </div>
-  <div data-modal="modal-default" class="modal">
-    <div data-modal-dialog class="modal__dialog">
+  </main>
+  <div id="modal-default" class="modal">
+    <div class="modal__dialog">
       <button data-modal-close>...</button>
     </div>
   </div>
 `;
 
-describe('when selectorInert is set...', () => {
-  let main, el, btn, cls;
+describe('when selectorInert is set:', () => {
+  let main, el;
 
   beforeAll(() => {
     document.body.innerHTML = markup;
-    modal = new Modal({
+    new Modal({
       autoInit: true,
-      selectorInert: '[role="main"]'
+      selectorInert: 'main'
     });
-    main = document.querySelector('[role="main"]');
-    el = document.querySelector('[data-modal]');
-    btn = document.querySelector('[data-modal-open]');
-    cls = document.querySelector('[data-modal-close]');
-  });
-
-  afterAll(() => {
-    modal.destroy();
-    modal = null;
-    document.body.innerHTML = null;
+    main = document.querySelector('main');
+    el = document.querySelector('#modal-default');
   });
 
   it('should properly hide content when modal is opened', async () => {
-    btn.click();
+    const btnOpen = document.querySelector('[data-modal-open]');
+    btnOpen.click();
     await transition(el);
     expect(main.inert).toBe(true);
     expect(main.getAttribute('aria-hidden')).toBe('true');
   });
 
   it('should properly show content when modal is closed', async () => {
-    cls.click();
+    const btnClose = document.querySelector('[data-modal-close]');
+    btnClose.click();
     await transition(el);
     expect(main.inert).toBe(null);
     expect(main.hasAttribute('aria-hidden')).toBe(false);

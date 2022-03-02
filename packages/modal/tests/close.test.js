@@ -1,8 +1,7 @@
 import Modal from '../index.js';
 import '@testing-library/jest-dom/extend-expect';
-import { transitionStart, transitionEnd } from './helpers/transition';
+import { transitionEnd } from './helpers/transition';
 
-let modal;
 const keyEsc = new KeyboardEvent('keydown', {
   key: 'Escape'
 });
@@ -12,23 +11,17 @@ const keySpace = new KeyboardEvent('keydown', {
 
 const markup = `
   <button data-modal-open="modal-default">Modal Default</button>
-  <div data-modal="modal-default" class="modal is-closed">
+  <div id="modal-default" class="modal is-closed">
     <div class="modal__dialog">
       <button data-modal-close>Close</button>
     </div>
   </div>
 `;
 
-afterEach(() => {
-  modal.destroy();
-  modal = null;
-  document.body.innerHTML = null;
-});
-
 test('should close when root modal (screen) is clicked', async () => {
   document.body.innerHTML = markup;
-  modal = new Modal({ autoInit: true });
-  const el = document.querySelector('[data-modal]');
+  new Modal({ autoInit: true });
+  const el = document.querySelector('.modal');
   const dialog = document.querySelector('.modal__dialog');
   const btnOpen = document.querySelector('[data-modal-open]');
 
@@ -49,12 +42,11 @@ test('should close when root modal (screen) is clicked', async () => {
 
 test('should close when the escape key is pressed', async () => {
   document.body.innerHTML = markup;
-  modal = new Modal({ autoInit: true });
-  const el = document.querySelector('[data-modal]');
+  new Modal({ autoInit: true });
+  const el = document.querySelector('.modal');
   const btnOpen = document.querySelector('[data-modal-open]');
 
   btnOpen.click();
-  await transitionStart(el);
   expect(el).toHaveClass('modal is-opening');
 
   await transitionEnd(el);
@@ -70,12 +62,11 @@ test('should close when the escape key is pressed', async () => {
 
 test('should do nothing if none escape key is pressed', async () => {
   document.body.innerHTML = markup;
-  modal = new Modal({ autoInit: true });
-  const el = document.querySelector('[data-modal]');
+  new Modal({ autoInit: true });
+  const el = document.querySelector('.modal');
   const btnOpen = document.querySelector('[data-modal-open]');
 
   btnOpen.click();
-  await transitionStart(el);
   expect(el).toHaveClass('modal is-opening');
 
   await transitionEnd(el);
@@ -91,12 +82,11 @@ test('should do nothing if none escape key is pressed', async () => {
 
 test('should not be able to close while modal transition is in process', async () => {
   document.body.innerHTML = markup;
-  modal = new Modal({ autoInit: true });
-  const el = document.querySelector('[data-modal]');
+  new Modal({ autoInit: true });
+  const el = document.querySelector('.modal');
   const btnOpen = document.querySelector('[data-modal-open]');
 
   btnOpen.click();
-  await transitionStart(el);
   expect(el).toHaveClass('modal is-opening');
 
   document.dispatchEvent(keyEsc);
