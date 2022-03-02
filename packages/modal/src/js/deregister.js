@@ -1,4 +1,4 @@
-export async function deregister(obj) {
+export function deregister(obj) {
   // Check if entry has been registered in the collection.
   const index = this.collection.findIndex((entry) => {
     return (entry.id === obj.id);
@@ -11,7 +11,7 @@ export async function deregister(obj) {
 
     // If entry is in the opened state, close it.
     if (entry.state === 'opened') {
-      await entry.close(false);
+      entry.close(false);
     }
 
     // Return teleported modal if a reference has been set.
