@@ -18,7 +18,7 @@ export default class Popover extends Collection {
     if (this.settings.autoInit) this.init();
   }
 
-  init(options = null) {
+  async init(options = null) {
     // Update settings with passed options.
     if (options) this.settings = { ...this.settings, ...options };
 
@@ -26,7 +26,7 @@ export default class Popover extends Collection {
     const popovers = document.querySelectorAll(this.settings.selectorPopover);
 
     // Register the collections array with popover instances.
-    this.registerCollection(popovers);
+    await this.registerCollection(popovers);
 
     // If eventListeners are enabled, init event listeners.
     if (this.settings.eventListeners) {
@@ -36,12 +36,12 @@ export default class Popover extends Collection {
     }
   }
 
-  destroy() {
+  async destroy() {
     // Clear any stored memory.
     this.memory = {};
 
     // Remove all entries from the collection.
-    this.deregisterCollection();
+    await this.deregisterCollection();
 
     // If eventListeners are enabled, destroy event listeners.
     if (this.settings.eventListeners) {

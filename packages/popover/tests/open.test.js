@@ -1,5 +1,5 @@
-import Popover from '../index.js';
 import '@testing-library/jest-dom/extend-expect';
+import Popover from '../index.js';
 
 let popover;
 

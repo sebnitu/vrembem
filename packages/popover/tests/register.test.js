@@ -1,6 +1,6 @@
+import '@testing-library/jest-dom/extend-expect';
 import Popover from '../index.js';
 import { registerEventListeners } from '../src/js/register';
-import '@testing-library/jest-dom/extend-expect';
 
 let popover;
 

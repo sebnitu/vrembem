@@ -1,6 +1,6 @@
+import '@testing-library/jest-dom/extend-expect';
 import Popover from '../index.js';
 import { deregister } from '../src/js/deregister';
-import '@testing-library/jest-dom/extend-expect';
 
 let popover;
 

@@ -1,6 +1,6 @@
+import '@testing-library/jest-dom/extend-expect';
 import Popover from '../index.js';
 import { closeAll, closeCheck } from '../src/js/close';
-import '@testing-library/jest-dom/extend-expect';
 
 let popover;
 

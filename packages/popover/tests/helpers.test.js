@@ -1,3 +1,4 @@
+import '@testing-library/jest-dom/extend-expect';
 import Popover from '../index.js';
 import {
   getConfig,
@@ -6,7 +7,6 @@ import {
   getPopoverID,
   getPopoverElements
 } from '../src/js/helpers';
-import '@testing-library/jest-dom/extend-expect';
 
 let popover;
 

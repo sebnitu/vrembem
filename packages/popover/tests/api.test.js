@@ -1,5 +1,5 @@
-import Popover from '../index.js';
 import '@testing-library/jest-dom/extend-expect';
+import Popover from '../index.js';
 
 let popover;
 
@@ -34,10 +34,10 @@ describe('init() & destroy()', () => {
     expect(popover.collection.length).toBe(2);
   });
 
-  it('running init multiple times should not create duplicates in collection', () => {
+  it('running init multiple times should not create duplicates in collection', async () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
-    popover.init();
+    await popover.init();
     expect(popover.collection.length).toBe(2);
   });
 
@@ -57,15 +57,15 @@ describe('init() & destroy()', () => {
     expect(target).toHaveClass('is-active');
   });
 
-  it('should be able to pass options through init method', () => {
+  it('should be able to pass options through init method', async () => {
     document.body.innerHTML = markup;
     popover = new Popover({ selectorPopover: '.asdf' });
     expect(popover.settings.selectorPopover).toBe('.asdf');
-    popover.init({ selectorPopover: '.popover' });
+    await popover.init({ selectorPopover: '.popover' });
     expect(popover.settings.selectorPopover).toBe('.popover');
   });
 
-  it('should remove all event listeners and clear collection', () => {
+  it('should remove all event listeners and clear collection', async () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -73,7 +73,7 @@ describe('init() & destroy()', () => {
     const target = document.querySelector('.popover');
 
     expect(popover.collection.length).toBe(2);
-    popover.destroy();
+    await popover.destroy();
     expect(popover.collection.length).toBe(0);
     trigger.click();
     expect(target).not.toHaveClass('is-active');
@@ -175,7 +175,7 @@ describe('register() & deregister()', () => {
 });
 
 describe('registerCollection() & deregisterCollection()', () => {
-  it('should remove all items from collection and their event listeners', () => {
+  it('should remove all items from collection and their event listeners', async () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -186,7 +186,7 @@ describe('registerCollection() & deregisterCollection()', () => {
     trigger.click();
     expect(target).toHaveClass('is-active');
 
-    popover.deregisterCollection();
+    await popover.deregisterCollection();
 
     expect(popover.collection.length).toBe(0);
     expect(target).not.toHaveClass('is-active');
