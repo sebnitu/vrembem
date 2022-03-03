@@ -18,6 +18,15 @@ const markup = `
   </div>
 `;
 
+const markupReq = `
+  <button data-modal-open="modal-default">Modal Required</button>
+  <div id="modal-default" class="modal">
+    <div class="modal__dialog" role="alertdialog">
+      <button data-modal-close data-focus>Close</button>
+    </div>
+  </div>
+`;
+
 test('should close when root modal (screen) is clicked', async () => {
   document.body.innerHTML = markup;
   const modal = new Modal();
@@ -98,5 +107,31 @@ test('should not be able to close while modal transition is in process', async (
 
   await transitionEnd(el);
   expect(el).toHaveClass('is-opened');
+  expect(el.classList.length).toBe(2);
+});
+
+test('should prevent escape or screen click closing modal if required', async () => {
+  document.body.innerHTML = markupReq;
+  const modal = new Modal();
+  await modal.init();
+  const el = document.querySelector('.modal');
+  const btnOpen = document.querySelector('[data-modal-open]');
+  const btnClose = el.querySelector('[data-modal-close]');
+
+  btnOpen.click();
+  await transitionEnd(el);
+  expect(el).toHaveClass('modal is-opened');
+
+  document.dispatchEvent(keyEsc);
+  await transitionEnd(el);
+  expect(el).toHaveClass('modal is-opened');
+
+  el.click();
+  await transitionEnd(el);
+  expect(el).toHaveClass('modal is-opened');
+
+  btnClose.click();
+  await transitionEnd(el);
+  expect(el).toHaveClass('modal is-closed');
   expect(el.classList.length).toBe(2);
 });

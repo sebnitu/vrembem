@@ -44,12 +44,6 @@ test('should apply state classes on `click` and `transitionend` events', async (
   expect(el).not.toHaveClass('is-opening is-opened is-closing');
 });
 
-test('should be able to pass options on init method', () => {
-  const modal = new Modal({ customEventPrefix: 'OnNew' });
-  modal.init({ customEventPrefix: 'OnInit' });
-  expect(modal.settings.customEventPrefix).toBe('OnInit');
-});
-
 test('should apply custom state classes', async () => {
   document.body.innerHTML = markupCustomState;
   const modal = new Modal({

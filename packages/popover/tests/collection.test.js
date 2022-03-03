@@ -24,7 +24,7 @@ afterEach(() => {
   document.body.innerHTML = null;
 });
 
-describe('register()', () => {
+describe('register() & entry.deregister()', () => {
   it('should register a popover using the provided trigger', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
