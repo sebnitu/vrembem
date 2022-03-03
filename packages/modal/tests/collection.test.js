@@ -1,5 +1,5 @@
-import Modal from '../index';
 import '@testing-library/jest-dom/extend-expect';
+import Modal from '../index';
 
 const markup = `
   <div id="modal-1" class="modal">

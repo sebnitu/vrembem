@@ -27,7 +27,7 @@ test('should apply state classes on `click` and `transitionend` events', async (
   const btnOpen = document.querySelector('[data-modal-open]');
   const btnClose = el.querySelector('[data-modal-close]');
 
-  modal.init();
+  await modal.init();
   expect(el).toHaveClass('modal');
 
   btnOpen.click();
@@ -52,13 +52,13 @@ test('should be able to pass options on init method', () => {
 
 test('should apply custom state classes', async () => {
   document.body.innerHTML = markupCustomState;
-  new Modal({
-    autoInit: true,
+  const modal = new Modal({
     stateOpened: 'on',
     stateOpening: 'enable',
     stateClosing: 'disable',
     stateClosed: 'off'
   });
+  await modal.init();
   const el = document.querySelector('.modal');
   const btnOpen = document.querySelector('[data-modal-open]');
   const btnClose = el.querySelector('[data-modal-close]');

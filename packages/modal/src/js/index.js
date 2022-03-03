@@ -22,7 +22,7 @@ export default class Modal extends Collection {
     if (this.settings.autoInit) this.init();
   }
 
-  init(options = null) {
+  async init(options = null) {
     // Update settings with passed options.
     if (options) this.settings = { ...this.settings, ...options };
 
@@ -30,7 +30,7 @@ export default class Modal extends Collection {
     const modals = document.querySelectorAll(this.settings.selectorModal);
 
     // Register the collections array with modal instances.
-    this.registerCollection(modals);
+    await this.registerCollection(modals);
 
     // If eventListeners are enabled, init event listeners.
     if (this.settings.eventListeners) {
@@ -38,12 +38,12 @@ export default class Modal extends Collection {
     }
   }
 
-  destroy() {
+  async destroy() {
     // Clear any stored memory.
     this.memory = {};
 
     // Remove all entries from the collection.
-    this.deregisterCollection();
+    await this.deregisterCollection();
 
     // If eventListeners are enabled, destroy event listeners.
     if (this.settings.eventListeners) {
