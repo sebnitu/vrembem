@@ -4,12 +4,15 @@ import { transition } from './helpers/transition';
 import Modal from '../index';
 
 const markup = `
-  <button data-modal-open="modal-default">Modal Default</button>
-  <div id="modal-default" class="modal">
-    <div class="modal__dialog">
-      <button data-modal-close>Close</button>
+  <main>
+    <button data-modal-open="modal-default">Modal Default</button>
+    <div id="modal-default" class="modal">
+      <div class="modal__dialog">
+        <button data-modal-close>Close</button>
+      </div>
     </div>
-  </div>
+  </main>
+  <div class="modals"></div>
 `;
 
 const markupMulti = `
@@ -51,40 +54,98 @@ describe('init() & destroy()', () => {
     await delay();
     expect(el).toHaveClass('is-closed');
   });
+
+  it('should initialize the modal instance with event listeners disabled', async () => {
+    const spy = jest.spyOn(modal, 'initEventListeners');
+    await modal.init({
+      eventListeners: false,
+      transition: false
+    });
+    expect(modal.settings.eventListeners).toBe(false);
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  it('should destroy the modal instance with event listeners disabled', async () => {
+    const spy = jest.spyOn(modal, 'destroyEventListeners');
+    expect(modal.settings.eventListeners).toBe(false);
+    await modal.destroy();
+    expect(spy).not.toHaveBeenCalled();
+  });
 });
 
-// describe('initEventListeners() & destroyEventListeners()', () => {});
-// describe('register() & deregister()', () => {});
+describe('initEventListeners() & destroyEventListeners()', () => {
+  let modal, entry, btnOpen, btnClose;
 
-// test('should properly destroy modal instance on api call', async () => {
-//   document.body.innerHTML = markup;
-//   const modal = new Modal({ autoInit: true });
-//   const el = document.querySelector('.modal');
-//   const btnOpen = document.querySelector('[data-modal-open]');
+  beforeAll(async () => {
+    document.body.innerHTML = markup;
+    modal = new Modal({
+      eventListeners: false,
+      transition: false
+    });
+    await modal.init();
+    entry = modal.get('modal-default');
+    btnOpen = document.querySelector('[data-modal-open]');
+    btnClose = document.querySelector('[data-modal-close]');
+  });
 
-//   modal.destroy();
-//   btnOpen.click();
-//   await transition(el);
+  it('should initialize event listeners', async () => {
+    modal.initEventListeners();
+    btnOpen.click();
+    await delay();
+    expect(entry.state).toBe('opened');
+    expect(entry.target).toHaveClass('is-opened');
+  });
 
-//   expect(Object.keys(modal.memory).length).toBe(0);
-//   expect(el).toHaveClass('modal is-closed');
-//   expect(el.classList.length).toBe(2);
-// });
+  it('should destroy event listeners', async () => {
+    modal.destroyEventListeners();
+    btnClose.click();
+    await delay();
+    expect(entry.state).toBe('opened');
+    expect(entry.target).toHaveClass('is-opened');
+  });
+});
 
-// test('should return registered modal object if a registered target is passed', () => {
-//   document.body.innerHTML = markup;
-//   const modal = new Modal({ autoInit: true });
-//   const el = document.querySelector('#modal-default');
-//   const result = modal.get(el.id);
-//   expect(el).toBe(result.target);
-// });
+describe('register() & deregister()', () => {
+  let modal, entry;
+  console.error = jest.fn();
 
-// test('should return null if modal.get() does not return a modal', () => {
-//   document.body.innerHTML = markup;
-//   const modal = new Modal({ autoInit: true });
-//   const el = modal.get('asdf');
-//   expect(el).toBe(null);
-// });
+  beforeAll(() => {
+    document.body.innerHTML = markup;
+    modal = new Modal({
+      teleport: '.modals'
+    });
+  });
+
+  it('should register modal in the collection', async () => {
+    expect(modal.collection.length).toBe(0);
+    const result = await modal.register('modal-default');
+    expect(modal.collection.length).toBe(1);
+
+    entry = modal.get('modal-default');
+    expect(result).toBe(entry);
+    expect(entry.id).toBe('modal-default');
+    expect(entry.state).toBe('closed');
+  });
+
+  it('should deregister modal from the collection', async () => {
+    expect(modal.collection.length).toBe(1);
+    const result = await modal.deregister('modal-default');
+    expect(modal.collection.length).toBe(0);
+    expect(entry).toEqual({});
+    expect(result).toBe(modal.collection);
+  });
+
+  it('should return false and log error if trying to register non-existent modal', async () => {
+    const result = await modal.register('asdf');
+    expect(result).toBe(false);
+    expect(console.error).toBeCalledWith('No modal elements found using the provided ID:', 'asdf');
+  });
+
+  it('should return false and log error if trying to deregister non-existent modal', async () => {
+    const result = await modal.deregister('asdf');
+    expect(result).toBe(false);
+  });
+});
 
 describe('open() & close()', () => {
   let modal, el, entry;

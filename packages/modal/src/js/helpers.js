@@ -46,7 +46,7 @@ export function getModalElements(query) {
   const id = getModalID.call(this, query);
   if (id) {
     const target = document.querySelector(`#${id}`);
-    const dialog = target.querySelector(this.settings.selectorDialog);
+    const dialog = target ? target.querySelector(this.settings.selectorDialog) : null;
 
     if (!target && !dialog) {
       console.error('No modal elements found using the provided ID:', id);
