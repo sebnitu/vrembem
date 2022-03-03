@@ -4,7 +4,7 @@ export class Collection {
   }
 
   async register(item) {
-    this.deregister(item);
+    await this.deregister(item);
     this.collection.push(item);
     return this.collection;
   }
@@ -24,7 +24,7 @@ export class Collection {
   }
 
   async registerCollection(items) {
-    await Promise.all(items.map((item) => {
+    await Promise.all(Array.from(items).map((item) => {
       this.register(item);
     }));
     return this.collection;
