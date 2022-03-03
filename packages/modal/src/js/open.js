@@ -3,7 +3,7 @@ import { focusTarget } from '@vrembem/core/index';
 import { openTransition } from '@vrembem/core/index';
 import { updateStackIndex } from './helpers';
 
-export async function open(modal, transition = this.settings.transition) {
+export async function open(modal, transition) {
   // Check if modal is already in the stack.
   const index = this.stack.findIndex((entry) => {
     return (entry.id === modal.id);

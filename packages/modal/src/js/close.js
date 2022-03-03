@@ -2,7 +2,7 @@ import { setInert, setOverflowHidden } from '@vrembem/core/index';
 import { focusTarget, focusTrigger } from '@vrembem/core/index';
 import { closeTransition } from '@vrembem/core/index';
 
-export async function close(modal = null, transition = this.settings.transition) {
+export async function close(modal, transition) {
   // If modal wasn't passed, get the top modal in stack.
   modal = modal || this.stack[this.stack.length - 1];
 
