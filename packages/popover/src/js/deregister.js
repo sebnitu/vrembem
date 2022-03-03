@@ -4,30 +4,27 @@ export function deregister(obj) {
     return (entry.id === obj.id);
   });
 
-  // If the entry exists in the collection.
-  if (index >= 0) {
-    // Get the collection entry.
-    const entry = this.collection[index];
+  // Get the collection entry.
+  const entry = this.collection[index];
 
-    // If entry is in the opened state, close it.
-    if (entry.state === 'opened') {
-      entry.close();
-    }
-
-    // Clean up the popper instance.
-    entry.popper.destroy();
-
-    // Remove event listeners.
-    deregisterEventListeners(entry);
-
-    // Delete properties from collection entry.
-    Object.getOwnPropertyNames(entry).forEach((prop) => {
-      delete entry[prop];
-    });
-
-    // Remove entry from collection.
-    this.collection.splice(index, 1);
+  // If entry is in the opened state, close it.
+  if (entry.state === 'opened') {
+    entry.close();
   }
+
+  // Clean up the popper instance.
+  entry.popper.destroy();
+
+  // Remove event listeners.
+  deregisterEventListeners(entry);
+
+  // Delete properties from collection entry.
+  Object.getOwnPropertyNames(entry).forEach((prop) => {
+    delete entry[prop];
+  });
+
+  // Remove entry from collection.
+  this.collection.splice(index, 1);
 
   // Return the modified collection.
   return this.collection;
