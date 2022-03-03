@@ -1,6 +1,6 @@
-import Modal from '../index';
 import '@testing-library/jest-dom/extend-expect';
 import { transitionEnd } from './helpers/transition';
+import Modal from '../index';
 
 const markup = `
   <button data-modal-open="modal-default">Modal Default</button>

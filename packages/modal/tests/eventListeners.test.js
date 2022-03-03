@@ -1,6 +1,6 @@
-import Modal from '../index';
 import '@testing-library/jest-dom/extend-expect';
 import { transitionStart, transitionEnd } from './helpers/transition';
+import Modal from '../index';
 
 const ev = new Event('transitionend');
 

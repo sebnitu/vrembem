@@ -1,7 +1,7 @@
-import Modal from '../index';
 import '@testing-library/jest-dom/extend-expect';
 import userEvent from '@testing-library/user-event';
 import { transition } from './helpers/transition';
+import Modal from '../index';
 
 const markup = `
   <button data-modal-open="modal-one">Modal One</button>

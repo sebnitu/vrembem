@@ -1,5 +1,5 @@
-import Modal from '../index';
 import { transition } from './helpers/transition';
+import Modal from '../index';
 
 const markup = `
   <main>
