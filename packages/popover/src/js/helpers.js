@@ -113,6 +113,7 @@ export function getPopoverID(obj) {
   else if (typeof obj.hasAttribute === 'function') {
     // If it's a popover target, return the id.
     if (obj.closest(this.settings.selectorPopover)) {
+      obj = obj.closest(this.settings.selectorPopover);
       return obj.id;
     }
 

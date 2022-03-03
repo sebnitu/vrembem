@@ -26,6 +26,7 @@ export function getModalID(obj) {
 
     // If it's a modal target, return the id.
     else if (obj.closest(this.settings.selectorModal)) {
+      obj = obj.closest(this.settings.selectorModal);
       return obj.id;
     }
 
