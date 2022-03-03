@@ -24,7 +24,7 @@ export class Collection {
   }
 
   async registerCollection(items) {
-    await Promise.all(Array.from(items).map((item) => {
+    await Promise.all(Array.from(items, (item) => {
       this.register(item);
     }));
     return this.collection;

@@ -53,18 +53,18 @@ describe('deregister()', () => {
     obj = new Collection();
   });
 
-  it('should do nothing if item does not exist in collection', () => {
+  it('should do nothing if item does not exist in collection', async () => {
     const data = buildData();
-    obj.register(data[0]);
-    obj.deregister(data[1]);
+    await obj.register(data[0]);
+    await obj.deregister(data[1]);
     expect(obj.collection.length).toBe(1);
     expect(obj.collection[0].id).toBe('asdf');
     expect(data[1].id).toBe('fdsa');
   });
 
-  it('should remove item from collection if it exists', () => {
+  it('should remove item from collection if it exists', async () => {
     const item = obj.collection[0];
-    obj.deregister(item);
+    await obj.deregister(item);
     expect(obj.collection.length).toBe(0);
     expect(item.id).toBe(undefined);
     expect(item.text).toBe(undefined);
@@ -101,10 +101,10 @@ describe('get()', () => {
     obj = new Collection();
   });
 
-  it('should return entry from collection using the passed ID', () => {
+  it('should return entry from collection using the passed ID', async () => {
     let entry;
     const data = buildData();
-    obj.registerCollection(data);
+    await obj.registerCollection(data);
 
     entry = obj.get('asdf');
     expect(entry.id).toBe('asdf');
