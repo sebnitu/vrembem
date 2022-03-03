@@ -1,4 +1,4 @@
-import Modal from '../index.js';
+import Modal from '../index';
 import { transition } from './helpers/transition';
 
 const markup = `
