@@ -1,3 +1,28 @@
+import { focusTarget, focusTrigger } from '@vrembem/core/index';
+
+export function updateFocus(trigger = null) {
+  // Re-activate focusTrap on next modal in stack.
+  const next = this.stack[this.stack.length - 1];
+  if (next) {
+    // Initialize the focus trap.
+    this.focusTrap.init(next.target);
+
+    // Get the parent modal of the modal trigger.
+    const parent = (trigger) ? trigger.closest(this.settings.selectorModal) : null;
+    const parentModal = this.get(parent, 'target');
+
+    // Set focus to the trigger if parent is opened, otherwise focus target.
+    if (trigger && parentModal && parentModal.state === 'opened') {
+      trigger.focus();
+    } else {
+      focusTarget(next.target, this.settings);
+    }
+  } else {
+    // If all modals are closed, return focus to root trigger.
+    focusTrigger(this);
+  }
+}
+
 export function updateStackIndex(stack) {
   stack.forEach((entry, index) => {
     entry.target.style.zIndex = null;

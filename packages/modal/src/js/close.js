@@ -1,8 +1,8 @@
 import { setInert, setOverflowHidden } from '@vrembem/core/index';
-import { focusTarget, focusTrigger } from '@vrembem/core/index';
 import { closeTransition } from '@vrembem/core/index';
+import { updateFocus, updateStackIndex } from './helpers';
 
-export async function close(modal, transition) {
+export async function close(modal, transition, bulk = false) {
   // If modal wasn't passed, get the top modal in stack.
   modal = modal || this.stack[this.stack.length - 1];
 
@@ -40,30 +40,15 @@ export async function close(modal, transition) {
     // Remove modal from stack array.
     this.stack.splice(index, 1);
 
-    // Re-activate focusTrap on next modal in stack.
-    const next = this.stack[this.stack.length - 1];
-    if (next) {
-      // Initialize the focus trap.
-      this.focusTrap.init(next.target);
+    // Update the focus if it isn't a bulk action.
+    if (!bulk) {
+      // Update the z-index since they may be out of sync.
+      updateStackIndex(this.stack);
 
-      // Get the parent modal of the modal trigger.
-      const parent = (modal.trigger) ? modal.trigger.closest(this.settings.selectorModal) : null;
-      const parentModal = this.get(parent, 'target');
+      // Update focus.
+      updateFocus.call(this, modal.trigger);
 
-      // Set focus to the trigger if parent is opened, otherwise focus target.
-      if (modal.trigger && parentModal && parentModal.state === 'opened') {
-        modal.trigger.focus();
-      } else {
-        focusTarget(next.target, this.settings);
-      }
-
-      // Clear entry trigger.
-      modal.trigger = null;
-
-    } else {
-      // If all modals are closed, return focus to root trigger.
-      focusTrigger(this);
-      // Clear entry trigger.
+      // Clear the stored trigger.
       modal.trigger = null;
     }
 

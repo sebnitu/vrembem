@@ -8,7 +8,12 @@ import { open } from './open';
 import { close } from './close';
 import { closeAll } from './closeAll';
 import { replace } from './replace';
-import { getModalID, getModalElements } from './helpers';
+import {
+  updateFocus,
+  updateStackIndex,
+  getModalID,
+  getModalElements
+} from './helpers';
 
 export default class Modal extends Collection {
   constructor(options) {
@@ -88,13 +93,16 @@ export default class Modal extends Collection {
     return close.call(this, modal, transition);
   }
 
-  closeAll(exclude = false, transition = this.settings.transition) {
-    return closeAll(this.stack, exclude, transition);
-  }
-
   replace(id, transition = this.settings.transition) {
     const modal = this.get(id);
     if (!modal) return false;
     return replace.call(this, modal, transition);
+  }
+
+  async closeAll(exclude = false, transition = this.settings.transition) {
+    const result = await closeAll.call(this, exclude, transition);
+    updateStackIndex(this.stack);
+    updateFocus.call(this);
+    return result;
   }
 }

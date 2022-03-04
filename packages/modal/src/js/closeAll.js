@@ -1,11 +1,14 @@
-export async function closeAll(array, exclude, transition) {
+import { close } from './close';
+
+export async function closeAll(exclude, transition) {
   const result = [];
-  await Promise.all(array.map(async (modal) => {
+  await Promise.all(this.stack.map(async (modal) => {
     if (exclude && exclude === modal.id) {
-      Promise.resolve(); 
+      Promise.resolve();
     } else {
-      result.push(await modal.close(transition));
+      result.push(await close.call(this, modal, transition, true));
     }
+    modal.trigger = null;
   }));
   return result;
 }
