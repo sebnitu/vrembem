@@ -51,8 +51,6 @@ export function getModalElements(query) {
 
     if (!target && !dialog) {
       console.error('No modal elements found using the provided ID:', id);
-    } else if (!target) {
-      console.error('No modal associated with the provided modal ID:', id);
     } else if (!dialog) {
       console.error('No modal dialog associated with the provided modal:', target);
     }
