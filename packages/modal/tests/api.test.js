@@ -224,6 +224,72 @@ describe('open() & close()', () => {
   });
 });
 
+describe('replace()', () => {
+  it('should close a modal and open a new one simultaneously', async () => {
+    document.body.innerHTML = markupMulti;
+    const modal = new Modal();
+    await modal.init();
+
+    let entry = modal.get('modal-1');
+
+    modal.open('modal-1');
+    expect(entry.target).toHaveClass('is-opening');
+    expect(entry.state).toBe('opening');
+    await transition(entry.target);
+    expect(entry.target).toHaveClass('is-opened');
+    expect(entry.state).toBe('opened');
+
+    modal.replace('modal-2');
+    await transition(entry.target);
+
+    expect(entry.target).toHaveClass('is-closed');
+    expect(entry.state).toBe('closed');
+
+    entry = modal.get('modal-2');
+    await transition(entry.target);
+    expect(entry.target).toHaveClass('is-opened');
+    expect(entry.state).toBe('opened');
+  });
+
+  it('should close all open modals except for the replacement', async () => {
+    document.body.innerHTML = markupMulti;
+    const modal = new Modal();
+    await modal.init();
+
+    modal.open('modal-1');
+    modal.open('modal-2');
+    modal.open('modal-3');
+
+    await Promise.all(modal.collection.map(async (entry) => {
+      await transition(entry.target);
+    }));
+
+    expect(modal.stack.length).toBe(3);
+    expect(modal.get('modal-1').state).toBe('opened');
+    expect(modal.get('modal-2').state).toBe('opened');
+    expect(modal.get('modal-3').state).toBe('opened');
+
+    modal.replace('modal-2');
+
+    await Promise.all(modal.collection.map(async (entry) => {
+      await transition(entry.target);
+    }));
+
+    expect(modal.stack.length).toBe(1);
+    expect(modal.get('modal-1').state).toBe('closed');
+    expect(modal.get('modal-2').state).toBe('opened');
+    expect(modal.get('modal-3').state).toBe('closed');
+  });
+
+  it('should return false and log error if trying to run replace on non-existent modal', async () => {
+    document.body.innerHTML = markupMulti;
+    const modal = new Modal();
+    const result = await modal.replace('asdf');
+    expect(result).toBe(false);
+    expect(console.error).toBeCalledWith('No modal elements found using the provided ID:', 'asdf');
+  });
+});
+
 describe('closeAll()', () => {
   it('should close all open modals', async () => {
     document.body.innerHTML = markupMulti;

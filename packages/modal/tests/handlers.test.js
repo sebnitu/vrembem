@@ -10,19 +10,20 @@ const keySpace = new KeyboardEvent('keydown', {
 });
 
 const markup = `
-  <button data-modal-open="modal-default">Modal Default</button>
-  <div id="modal-default" class="modal is-closed">
+  <button data-modal-open="modal-default">...</button>
+  <button data-modal-replace="modal-default">...</button>
+  <div id="modal-default" class="modal">
     <div class="modal__dialog">
-      <button data-modal-close>Close</button>
+      <button data-modal-close>...</button>
     </div>
   </div>
 `;
 
 const markupReq = `
-  <button data-modal-open="modal-default">Modal Required</button>
+  <button data-modal-open="modal-default">...</button>
   <div id="modal-default" class="modal">
     <div class="modal__dialog" role="alertdialog">
-      <button data-modal-close data-focus>Close</button>
+      <button data-modal-close data-focus>...</button>
     </div>
   </div>
 `;
@@ -133,5 +134,19 @@ test('should prevent escape or screen click closing modal if required', async ()
   btnClose.click();
   await transitionEnd(el);
   expect(el).toHaveClass('modal is-closed');
+  expect(el.classList.length).toBe(2);
+});
+
+test('should run the replace method when replace button is clicked', async () => {
+  document.body.innerHTML = markup;
+  const modal = new Modal();
+  await modal.init();
+  const el = document.querySelector('.modal');
+  const btnReplace = document.querySelector('[data-modal-replace]');
+
+  btnReplace.click();
+  await transitionEnd(el);
+
+  expect(el).toHaveClass('modal is-opened');
   expect(el.classList.length).toBe(2);
 });

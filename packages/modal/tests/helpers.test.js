@@ -4,6 +4,7 @@ import { updateStackIndex, getModalID, getModalElements } from '../src/js/helper
 document.body.innerHTML = `
   <button data-modal-open="modal-1">...</button>
   <button data-modal-close="modal-1">...</button>
+  <button data-modal-replace="modal-1">...</button>
   <div id="modal-1" class="modal">
     <div class="modal__dialog">...</div>
   </div>
@@ -26,6 +27,7 @@ const mockObj = {
   settings: {
     dataOpen: 'modal-open',
     dataClose: 'modal-close',
+    dataReplace: 'modal-replace',
     selectorModal: '.modal',
     selectorDialog: '.modal__dialog'
   }
@@ -66,6 +68,12 @@ describe('getModalID()', () => {
 
   it('should return the resolved id of a passed modal close button', () => {
     const el = document.querySelector('[data-modal-close]');
+    const result = getModalID.call(mockObj, el);
+    expect(result).toBe('modal-1');
+  });
+
+  it('should return the resolved id of a passed modal replace button', () => {
+    const el = document.querySelector('[data-modal-replace]');
     const result = getModalID.call(mockObj, el);
     expect(result).toBe('modal-1');
   });

@@ -4,42 +4,30 @@ export async function handlerClick(event) {
   // Check if modal is busy.
   if (this.busy) return;
 
-  // If a open button was clicked, open the modal.
-  let trigger = event.target.closest(`[data-${this.settings.dataOpen}]`);
+  // If a open or replace button were clicked, open or replace the modal.
+  let trigger = event.target.closest(
+    `[data-${this.settings.dataOpen}], [data-${this.settings.dataReplace}]`
+  );
   if (trigger) {
     event.preventDefault();
-    // Save the root trigger
+    // Save the root trigger.
     const fromModal = event.target.closest(this.settings.selectorModal);
     if (!fromModal) this.memory.trigger = trigger;
-    // Get the modal, store trigger and open
+    // Get the modal and save the trigger.
     const modal = this.get(getModalID.call(this, trigger));
     modal.trigger = trigger;
-    return modal.open();
+    // Depending on the button type, either open or replace the modal.
+    return (trigger.matches(`[data-${this.settings.dataOpen}]`)) ? modal.open() : modal.replace();
   }
 
   // If a close button was clicked, close the modal.
   trigger = event.target.closest(`[data-${this.settings.dataClose}]`);
   if (trigger) {
     event.preventDefault();
+    // Get the value of the data attribute.
     const value = trigger.getAttribute(`data-${this.settings.dataClose}`);
-    if (value === '*') {
-      return this.closeAll();
-    } else {
-      return this.close(value);
-    }
-  }
-
-  // If a replace button was clicked, close all and open modal.
-  trigger = event.target.closest(`[data-${this.settings.dataReplace}]`);
-  if (trigger) {
-    event.preventDefault();
-    // Save the root trigger
-    const fromModal = event.target.closest(this.settings.selectorModal);
-    if (!fromModal) this.memory.trigger = trigger;
-    // Get the modal, store trigger and open
-    const modal = this.get(getModalID.call(this, trigger));
-    modal.trigger = trigger;
-    return modal.replace();
+    // Close all if * wildcard is passed, otherwise close a single modal.
+    return (value === '*') ? this.closeAll() : this.close(value);
   }
 
   // If the modal screen was clicked, close the modal.

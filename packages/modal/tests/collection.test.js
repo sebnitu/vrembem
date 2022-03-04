@@ -61,7 +61,7 @@ describe('register() & entry.deregister()', () => {
   });
 });
 
-describe('entry.open() & entry.close()', () => {
+describe('entry.open() & entry.close() & entry.replace()', () => {
   let modal;
 
   beforeAll(() => {
@@ -88,5 +88,20 @@ describe('entry.open() & entry.close()', () => {
     await entry.close();
     expect(entry.state).toBe('closed');
     expect(entry.target).toHaveClass('is-closed');
+  });
+
+  it('should replace modal with transitions disabled', async () => {
+    const entry1 = modal.get('modal-1');
+    const entry2 = modal.get('modal-2');
+
+    await entry1.open();
+    expect(entry1.state).toBe('opened');
+    expect(entry1.target).toHaveClass('is-opened');
+
+    await entry2.replace();
+    expect(entry2.state).toBe('opened');
+    expect(entry2.target).toHaveClass('is-opened');
+    expect(entry1.state).toBe('closed');
+    expect(entry1.target).toHaveClass('is-closed');
   });
 });
