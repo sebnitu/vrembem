@@ -3,6 +3,7 @@ import { teleport } from '@vrembem/core/index';
 import { deregister } from './deregister';
 import { open } from './open';
 import { close } from './close';
+import { replace } from './replace';
 
 export function register(target, dialog) {
   // Deregister entry if it already exists in the collection.
@@ -18,6 +19,9 @@ export function register(target, dialog) {
     },
     close(transition = root.settings.transition) {
       return close.call(root, this, transition);
+    },
+    replace(transition = root.settings.transition) {
+      return replace.call(root, this, transition);
     },
     deregister() {
       return deregister.call(root, this);

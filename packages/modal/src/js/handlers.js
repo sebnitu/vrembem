@@ -33,8 +33,13 @@ export async function handlerClick(event) {
   trigger = event.target.closest(`[data-${this.settings.dataReplace}]`);
   if (trigger) {
     event.preventDefault();
-    const value = trigger.getAttribute(`data-${this.settings.dataReplace}`);
-    return modal.replace(value);
+    // Save the root trigger
+    const fromModal = event.target.closest(this.settings.selectorModal);
+    if (!fromModal) this.memory.trigger = trigger;
+    // Get the modal, store trigger and open
+    const modal = this.get(getModalID.call(this, trigger));
+    modal.trigger = trigger;
+    return modal.replace();
   }
 
   // If the modal screen was clicked, close the modal.

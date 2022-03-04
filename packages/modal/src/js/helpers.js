@@ -24,6 +24,11 @@ export function getModalID(obj) {
       return obj.getAttribute(`data-${this.settings.dataClose}`) || false;
     }
 
+    // If it's a modal replace trigger, return data value.
+    else if (obj.hasAttribute(`data-${this.settings.dataReplace}`)) {
+      return obj.getAttribute(`data-${this.settings.dataReplace}`);
+    }
+
     // If it's a modal target, return the id.
     else if (obj.closest(this.settings.selectorModal)) {
       obj = obj.closest(this.settings.selectorModal);
