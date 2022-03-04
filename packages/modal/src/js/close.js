@@ -46,13 +46,20 @@ export async function close(modal, transition) {
       // Initialize the focus trap.
       this.focusTrap.init(next.target);
 
-      // Set focus to the trigger or target.
-      if (modal.trigger) {
+      // Get the parent modal of the modal trigger.
+      const parent = (modal.trigger) ? modal.trigger.closest(this.settings.selectorModal) : null;
+      const parentModal = this.get(parent, 'target');
+
+      // Set focus to the trigger if parent is opened, otherwise focus target.
+      if (modal.trigger && parentModal && parentModal.state === 'opened') {
         modal.trigger.focus();
-        modal.trigger = null;
       } else {
         focusTarget(next.target, this.settings);
       }
+
+      // Clear entry trigger.
+      modal.trigger = null;
+
     } else {
       // If all modals are closed, return focus to root trigger.
       focusTrigger(this);

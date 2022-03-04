@@ -119,7 +119,7 @@ test('should close the currently opened modal and update stack array and z-index
 
   expect(modal3.state).toBe('closed');
   expect(modal3.trigger).toBe(null);
-  expect(document.activeElement).toBe(btn3);
+  expect(document.activeElement).toBe(modal1.dialog);
 
   expect(modal.stack.length).toBe(1);
   expect(modal.stack[0]).toBe(modal1);
