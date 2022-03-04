@@ -6,6 +6,7 @@ import { register } from './register';
 import { deregister } from './deregister';
 import { open } from './open';
 import { close } from './close';
+import { replace } from './replace';
 import { getModalID, getModalElements } from './helpers';
 
 export default class Modal extends Collection {
@@ -86,11 +87,21 @@ export default class Modal extends Collection {
     return close.call(this, modal, transition);
   }
 
-  async closeAll(transition = this.settings.transition) {
+  async closeAll(exclude = false, transition = this.settings.transition) {
     const result = [];
     await Promise.all(this.stack.map(async (modal) => {
-      result.push(await modal.close(transition));
+      if (exclude && exclude === modal.id) {
+        Promise.resolve(); 
+      } else {
+        result.push(await modal.close(transition));
+      }
     }));
     return result;
+  }
+
+  async replace(id, transition = this.settings.transition) {
+    const modal = this.get(id);
+    if (!modal) return false;
+    return replace.call(this, modal, transition);
   }
 }

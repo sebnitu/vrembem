@@ -159,7 +159,10 @@
               <button data-modal-close class="dialog__close link">Close</button>
             </div>
             <div class="dialog__body">
-              <button data-modal-close="*" class="link">Close all</button>
+              <div class="level flex-justify-between">
+                <button data-modal-close="*" class="link">Close all</button>
+                <button data-modal-replace="modal-pos-bottom" class="link">Replace</button>
+              </div>
             </div>
             <div class="dialog__footer flex-justify-between">
               <button data-modal-open="modal-pos-left" class="link">
@@ -182,7 +185,10 @@
               <button data-modal-close class="dialog__close link">Close</button>
             </div>
             <div class="dialog__body">
-              <button data-modal-close="*" class="link">Close all</button>
+              <div class="level flex-justify-between">
+                <button data-modal-close="*" class="link">Close all</button>
+                <button data-modal-replace="modal-pos-top" class="link">Replace</button>
+              </div>
             </div>
             <div class="dialog__footer flex-justify-between">
               <button data-modal-open="modal-pos-left" class="link">
@@ -276,13 +282,17 @@
     console.log(modal);
 
     document.addEventListener('modal:opened', (event) => {
-      console.log('Target:', event.target);
-      console.log('Detail:', event.detail);
+      console.log('modal:opened', {
+        target: event.target,
+        detail: event.detail
+      });
     });
 
     document.addEventListener('modal:closed', () => {
-      console.log('Target:', event.target);
-      console.log('Detail:', event.detail);
+      console.log('modal:closed', {
+        target: event.target,
+        detail: event.detail
+      });
     });
 
     document.addEventListener('click', () => {

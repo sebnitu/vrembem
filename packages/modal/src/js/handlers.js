@@ -29,6 +29,14 @@ export async function handlerClick(event) {
     }
   }
 
+  // If a replace button was clicked, close all and open modal.
+  trigger = event.target.closest(`[data-${this.settings.dataReplace}]`);
+  if (trigger) {
+    event.preventDefault();
+    const value = trigger.getAttribute(`data-${this.settings.dataReplace}`);
+    return modal.replace(value);
+  }
+
   // If the modal screen was clicked, close the modal.
   if (
     event.target.matches(this.settings.selectorModal) &&

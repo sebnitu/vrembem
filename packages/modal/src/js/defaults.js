@@ -4,6 +4,7 @@ export default {
   // Data attributes
   dataOpen: 'modal-open',
   dataClose: 'modal-close',
+  dataReplace: 'modal-replace',
 
   // Selectors
   selectorModal: '.modal',
