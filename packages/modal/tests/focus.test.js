@@ -80,13 +80,6 @@ test('should remember initial trigger when opening modal through another modal',
   expect(btnOpen).toHaveFocus();
 });
 
-test('should return false if modal is not found', async () => {
-  document.body.innerHTML = markup;
-  const modal = new Modal({ autoInit: true });
-  const result = modal.open('asdf');
-  expect(result).toBe(false);
-});
-
 test('should retain focus on modal if nothing inner is focusable', async () => {
   document.body.innerHTML = markup;
   const modal = new Modal({ autoInit: true });

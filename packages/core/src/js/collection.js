@@ -38,9 +38,8 @@ export class Collection {
   }
 
   get(query, key = 'id') {
-    const result = this.collection.find((item) => {
+    return this.collection.find((item) => {
       return item[key] === query;
     });
-    return result || null;
   }
 }

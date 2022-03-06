@@ -1,9 +1,12 @@
 import { setInert, setOverflowHidden } from '@vrembem/core/index';
 import { focusTarget } from '@vrembem/core/index';
 import { openTransition } from '@vrembem/core/index';
-import { updateStackIndex } from './helpers';
+import { getModal, updateStackIndex } from './helpers';
 
-export async function open(modal, transition) {
+export async function open(query, transition) {
+  // Get the modal from collection.
+  const modal = getModal.call(this, query);
+
   // Check if modal is already in the stack.
   const index = this.stack.findIndex((entry) => {
     return (entry.id === modal.id);
@@ -69,11 +72,8 @@ export async function open(modal, transition) {
 
     // Set busy flag to false.
     this.busy = false;
-
-    // Return the modal that was opened.
-    return modal;
-  } else {
-    // Return modal that was tried to open.
-    return modal;
   }
+
+  // Return the modal.
+  return modal;
 }

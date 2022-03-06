@@ -6,8 +6,8 @@ import { close } from './close';
 import { replace } from './replace';
 
 export function register(target, dialog) {
-  // Deregister entry if it already exists in the collection.
-  this.deregister(target.id);
+  // Deregister entry if id already exists in the collection.
+  deregister.call(this, { id: target.id });
 
   // Save root this for use inside methods API.
   const root = this;

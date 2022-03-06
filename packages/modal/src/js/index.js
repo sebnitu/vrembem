@@ -8,12 +8,7 @@ import { open } from './open';
 import { close } from './close';
 import { closeAll } from './closeAll';
 import { replace } from './replace';
-import {
-  updateFocus,
-  updateStackIndex,
-  getModalID,
-  getModalElements
-} from './helpers';
+import { updateFocus, updateStackIndex, getModalElements, getModalID } from './helpers';
 
 export default class Modal extends Collection {
   constructor(options) {
@@ -72,20 +67,18 @@ export default class Modal extends Collection {
 
   register(query) {
     const els = getModalElements.call(this, query);
-    if (!els) return false;
+    if (!els) return Promise.reject(new Error('Modal elements not found!'));
     return register.call(this, els.target, els.dialog);
   }
 
   deregister(query) {
-    const popover = this.get(getModalID.call(this, query));
-    if (!popover) return false;
-    return deregister.call(this, popover);
+    const modal = this.get(getModalID.call(this, query));
+    if (!modal) return Promise.reject(new Error('Modal is not registered!'));
+    return deregister.call(this, modal);
   }
 
   open(id, transition = this.settings.transition) {
-    const modal = this.get(id);
-    if (!modal) return false;
-    return open.call(this, modal, transition);
+    return open.call(this, id, transition);
   }
 
   close(id, transition = this.settings.transition) {
@@ -94,9 +87,7 @@ export default class Modal extends Collection {
   }
 
   replace(id, transition = this.settings.transition) {
-    const modal = this.get(id);
-    if (!modal) return false;
-    return replace.call(this, modal, transition);
+    return replace.call(this, id, transition);
   }
 
   async closeAll(exclude = false, transition = this.settings.transition) {

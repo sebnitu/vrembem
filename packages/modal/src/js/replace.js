@@ -1,7 +1,10 @@
 import { closeAll } from './closeAll';
-import { updateFocus, updateStackIndex } from './helpers';
+import { getModal, updateFocus, updateStackIndex } from './helpers';
 
-export async function replace(modal, transition) {
+export async function replace(query, transition) {
+  // Get the modal from collection.
+  const modal = getModal.call(this, query);
+
   // Setup results for return.
   let resultOpened, resultClosed;
 

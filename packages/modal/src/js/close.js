@@ -63,11 +63,8 @@ export async function close(modal, transition, bulk = false) {
 
     // Set busy flag to false.
     this.busy = false;
-
-    // Return the modal that was closed.
-    return modal;
-  } else {
-    // Return modal that was tried to close.
-    return modal;
   }
+
+  // Return the modal.
+  return modal;
 }

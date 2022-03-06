@@ -117,6 +117,6 @@ describe('get()', () => {
 
   it('should return null if no items is found in collection', () => {
     let entry = obj.get('aaaa');
-    expect(entry).toBe(null);
+    expect(entry).toBe(undefined);
   });
 });

@@ -31,6 +31,18 @@ export function updateStackIndex(stack) {
   });
 }
 
+export function getModal(query) {
+  // Get the modal from collection if it's a string, otherwise pass the query.
+  const modal = (typeof query === 'string') ? this.get(query) : query;
+
+  // Return modal if it was resolved, otherwise throw error.
+  if (modal) {
+    return modal;
+  } else {
+    throw new Error(`Modal not found in collection with id of "${query}".`);
+  }
+}
+
 export function getModalID(obj) {
   // If it's a string, return the string.
   if (typeof obj === 'string') {
@@ -80,9 +92,9 @@ export function getModalElements(query) {
     const dialog = target ? target.querySelector(this.settings.selectorDialog) : null;
 
     if (!target && !dialog) {
-      console.error('No modal elements found using the provided ID:', id);
+      throw new Error(`No modal elements found using the provided ID: "${id}".`);
     } else if (!dialog) {
-      console.error('No modal dialog associated with the provided modal:', target);
+      throw new Error('Modal is missing dialog element.');
     }
 
     if (!target || !dialog) {
@@ -92,7 +104,6 @@ export function getModalElements(query) {
     }
 
   } else {
-    console.error('Could not resolve the modal ID:', query);
-    return false;
+    throw new Error(`Could not resolve the modal ID: "${id}".`);
   }
 }
