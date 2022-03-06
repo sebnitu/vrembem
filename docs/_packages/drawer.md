@@ -223,7 +223,7 @@ Drawers when in their modal context follow a set of patterns expected from other
 3. While the drawer modal is active, contents obscured by the drawer modal are inaccessible to all users.
 4. When a drawer modal is closed, focus is returned to the initial trigger element that activated the dialog.
 
-To take full advantage of drawer modal's accessibility features, it's recommended to that you set the `selectorInert` option to all elements that are outside the drawer modal (most likely the `drawer__main` element). All elements that match the `selectorInert` selector will be given the `inert` attribute as well as `aria-hidden="true"` when a modal is opened.
+To take full advantage of drawer modal's accessibility features, it's recommended to set the `selectorInert` option to all elements that are outside the drawer modal (most likely the `drawer__main` element). All elements that match the `selectorInert` selector will be given the `inert` attribute as well as `aria-hidden="true"` when a modal is opened.
 
 > Inert is not currently widely supported by all browsers. Consider using a polyfill such as [wicg-inert](https://github.com/WICG/inert) or Google's [inert-polyfill](https://github.com/GoogleChrome/inert-polyfill).
 

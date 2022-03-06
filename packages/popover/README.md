@@ -313,10 +313,9 @@ Registers a popover into the collection. This also sets the initial state, creat
 - `Object` The popover object that got stored in the collection.
 
 ```js
-const items = document.querySelector('.popover');
-const obj = popover.register(items);
+const result = popover.register('popover-id');
 
-console.log(obj);
+console.log(result);
 // => Object { id: 'popover-id', state: 'closed', trigger: HTMLElement, target: HTMLElement, popper: {…}, ... }
 ```
 
@@ -333,11 +332,10 @@ Deregister the popover from the collection. This closes the popover if it's acti
 - `Array` Returns the newly modified collection array.
 
 ```js
-const item = popover.collection[0];
-const array = popover.deregister(item);
+const result = popover.deregister('popover-id');
 
-console.log(array);
-// => Array []
+console.log(result);
+// => Array [ ... ]
 ```
 
 ### `popover.registerCollection(items)`
@@ -376,12 +374,12 @@ Used to look up a popover entry within the collection. Query should match the ke
 
 **Parameters**
 
-- `query [String | Object]` The value or object to match against for within the collection.
-- `key [String] (optional) (default 'id')` The entry property to search.
+- `query [String | Object]` The value or object to match against within the collection.
+- `key [String] (optional) (default 'id')` The property key to query.
 
 **Returns**
 
-- `Object | null` The popover entry if found otherwise `null`.
+- `Object | null` The collection entry if found otherwise `null`.
 
 ```js
 popover.get('popover-id')
