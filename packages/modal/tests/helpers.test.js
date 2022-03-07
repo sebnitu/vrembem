@@ -115,8 +115,6 @@ describe('getModalID()', () => {
 });
 
 describe('getModalElements()', () => {
-  console.error = jest.fn();
-
   it('should return the modal and modal dialog elements using the passed id', () => {
     const result = getModalElements.call(mockObj, 'modal-1');
     const modal = document.querySelector('#modal-1');
@@ -125,23 +123,20 @@ describe('getModalElements()', () => {
     expect(result.dialog).toBe(dialog);
   });
 
-  // it('should return false and log error if no modal elements are found', () => {
-  //   const result = getModalElements.call(mockObj, 'asdf');
-  //   expect(result).toBe(false);
-  //   expect(console.error).toBeCalledWith('No modal elements found using the provided ID:', 'asdf');
-  // });
+  it('should return false and log error if no modal elements are found', () => {
+    const func = getModalElements.call(mockObj, 'asdf');
+    expect(func.error.message).toBe('No modal elements found using the ID: "asdf".');
+  });
 
-  // it('should return false and log error if no modal dialog is found', () => {
-  //   const el = document.querySelector('#missing-dialog');
-  //   const result = getModalElements.call(mockObj, el);
-  //   expect(result).toBe(false);
-  //   expect(console.error).toBeCalledWith('No modal dialog associated with the provided modal:', el);
-  // });
+  it('should return false and log error if no modal dialog is found', () => {
+    const el = document.querySelector('#missing-dialog');
+    const func = getModalElements.call(mockObj, el);
+    expect(func.error.message).toBe('Modal is missing dialog element.');
+  });
 
-  // it('should return false and log error if modal id could not be resolved', () => {
-  //   const el = document.querySelector('.missing-id');
-  //   const result = getModalElements.call(mockObj, el);
-  //   expect(result).toBe(false);
-  //   expect(console.error).toBeCalledWith('Could not resolve the modal ID:', el);
-  // });
+  it('should return false and log error if modal id could not be resolved', () => {
+    const el = document.querySelector('.missing-id');
+    const func = getModalElements.call(mockObj, el);
+    expect(func.error.message).toBe('Could not resolve the modal ID.');
+  });
 });

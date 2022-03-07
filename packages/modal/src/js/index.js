@@ -67,13 +67,12 @@ export default class Modal extends Collection {
 
   register(query) {
     const els = getModalElements.call(this, query);
-    if (!els) return Promise.reject(new Error('Modal elements not found!'));
+    if (els.error) return Promise.reject(els.error);
     return register.call(this, els.target, els.dialog);
   }
 
   deregister(query) {
     const modal = this.get(getModalID.call(this, query));
-    if (!modal) return Promise.reject(new Error('Modal is not registered!'));
     return deregister.call(this, modal);
   }
 

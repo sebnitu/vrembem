@@ -33,7 +33,7 @@ export function updateStackIndex(stack) {
 
 export function getModal(query) {
   // Get the modal from collection if it's a string, otherwise pass the query.
-  const modal = (typeof query === 'string') ? this.get(query) : query;
+  const modal = (typeof query === 'string') ? this.get(query) : this.get(query.id);
 
   // Return modal if it was resolved, otherwise throw error.
   if (modal) {
@@ -92,18 +92,13 @@ export function getModalElements(query) {
     const dialog = target ? target.querySelector(this.settings.selectorDialog) : null;
 
     if (!target && !dialog) {
-      throw new Error(`No modal elements found using the provided ID: "${id}".`);
+      return { error: new Error(`No modal elements found using the ID: "${id}".`) };
     } else if (!dialog) {
-      throw new Error('Modal is missing dialog element.');
-    }
-
-    if (!target || !dialog) {
-      return false;
+      return { error: new Error('Modal is missing dialog element.') };
     } else {
       return { target, dialog };
     }
-
   } else {
-    throw new Error(`Could not resolve the modal ID: "${id}".`);
+    return { error: new Error('Could not resolve the modal ID.') };
   }
 }
