@@ -172,6 +172,12 @@ describe('register() & deregister()', () => {
     trigger.click();
     expect(target).not.toHaveClass('is-active');
   });
+
+  it('should return collection if deregister is run non-existent popover', async () => {
+    popover = new Popover({ autoInit: true });
+    const result = await popover.deregister('asdf');
+    expect(result).toBe(popover.collection);
+  });
 });
 
 describe('registerCollection() & deregisterCollection()', () => {

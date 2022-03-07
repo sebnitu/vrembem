@@ -82,8 +82,7 @@ export default class Popover extends Collection {
   }
 
   deregister(query) {
-    const popover = this.get(getPopoverID(query));
-    if (!popover) return false;
+    const popover = this.get(getPopoverID.call(this, query));
     return deregister.call(this, popover);
   }
 

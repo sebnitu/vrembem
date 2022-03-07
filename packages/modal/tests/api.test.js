@@ -135,15 +135,16 @@ describe('register() & deregister()', () => {
   });
 
   it('should reject promise with error if register is called on non-existent modal', async () => {
-    modal.register('asdf').catch((error) => {
-      expect(error.message).toBe('No modal elements found using the ID: "asdf".');
+    let result;
+    await modal.register('asdf').catch((error) => {
+      result = error.message;
     });
+    expect(result).toBe('No modal elements found using the ID: "asdf".');
   });
 
-  it('should reject promise with error if deregister is called on non-existent modal', async () => {
-    modal.deregister('asdf').catch((error) => {
-      expect(error.message).toBe('Modal is not registered!');
-    });
+  it('should return collection if deregister is run non-existent modal', async () => {
+    const result = await modal.deregister('asdf');
+    expect(result).toBe(modal.collection);
   });
 });
 
@@ -223,10 +224,12 @@ describe('open() & close()', () => {
     expect(callbackCheck).toBe(true);
   });
 
-  it('should reject promise with error if open is called on non-existent modal', () => {
-    modal.open('asdf').catch((error) => {
-      expect(error.message).toBe('Modal not found in collection with id of "asdf".');
+  it('should reject promise with error if open is called on non-existent modal', async () => {
+    let result;
+    await modal.open('asdf').catch((error) => {
+      result = error.message;
     });
+    expect(result).toBe('Modal not found in collection with id of "asdf".');
   });
 });
 
@@ -290,9 +293,11 @@ describe('replace()', () => {
   it('should reject promise with error if replace is called on non-existent modal', async () => {
     document.body.innerHTML = markupMulti;
     const modal = new Modal();
-    modal.replace('asdf').catch((error) => {
-      expect(error.message).toBe('Modal not found in collection with id of "asdf".');
+    let result;
+    await modal.replace('asdf').catch((error) => {
+      result = error.message;
     });
+    expect(result).toBe('Modal not found in collection with id of "asdf".');
   });
 });
 

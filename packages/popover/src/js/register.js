@@ -7,8 +7,8 @@ import { close, closeCheck } from './close';
 import { getConfig } from './helpers';
 
 export function register(trigger, target) {
-  // Deregister entry if it already exists in the collection.
-  this.deregister(target.id);
+  // Deregister entry incase it has already been registered.
+  deregister.call(this, target);
 
   // Save root this for use inside methods API.
   const root = this;
