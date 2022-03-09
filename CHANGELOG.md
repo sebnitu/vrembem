@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.42.0 to CHANGELOG.md
+chore(release): add v1.42.1 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v1.42.1 (2022-03-09)
+
+#### :tada: New Feature
+* `modal`
+  * [#857](https://github.com/sebnitu/vrembem/pull/857) Allow configuring a modal on a per-modal basis
 
 
 ## v1.42.0 (2022-02-25)
