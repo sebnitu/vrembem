@@ -1,5 +1,15 @@
 import { moveElement } from '@vrembem/core/index';
 
+export function getModalConfig(modal) {
+  const json = modal.getAttribute('data-modal-config');
+  if (json) {
+    const config = JSON.parse(json);
+    return { ...this.settings, ...config };
+  } else {
+    return this.settings;
+  }
+}
+
 export function getModal(modalKey) {
   if (typeof modalKey !== 'string') return modalKey;
   return document.querySelector(
