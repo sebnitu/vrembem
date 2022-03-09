@@ -1,7 +1,7 @@
 import { moveElement } from '@vrembem/core/index';
 
 export function getModalConfig(modal) {
-  const json = modal.getAttribute('data-modal-config');
+  const json = modal.getAttribute(`data-${this.settings.dataConfig}`);
   if (json) {
     const config = JSON.parse(json);
     return { ...this.settings, ...config };

@@ -8,6 +8,7 @@ export default {
   dataClose: 'modal-close',
   dataFocus: 'modal-focus',
   dataRequired: 'modal-required',
+  dataConfig: 'modal-config',
 
   // State classes
   stateOpened: 'is-opened',
