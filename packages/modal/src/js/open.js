@@ -3,19 +3,20 @@ import { setInert, setOverflowHidden } from '@vrembem/core/index';
 import { focusTarget } from '@vrembem/core/index';
 import { openTransition } from '@vrembem/core/index';
 
-import { getModal, modalNotFound } from './helpers';
+import { getModalConfig, getModal, modalNotFound } from './helpers';
 
 export async function open(modalKey) {
   const modal = getModal.call(this, modalKey);
   if (!modal) return modalNotFound(modalKey);
-  if (hasClass(modal, this.settings.stateClosed)) {
+  const config = getModalConfig.call(this, modal);
+  if (hasClass(modal, config.stateClosed)) {
     this.working = true;
-    setOverflowHidden(true, this.settings.selectorOverflow);
-    await openTransition(modal, this.settings);
+    setOverflowHidden(true, config.selectorOverflow);
+    await openTransition(modal, config);
     this.focusTrap.init(modal);
-    focusTarget(modal, this.settings);
-    setInert(true, this.settings.selectorInert);
-    modal.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'opened', {
+    focusTarget(modal, config);
+    setInert(true, config.selectorInert);
+    modal.dispatchEvent(new CustomEvent(config.customEventPrefix + 'opened', {
       detail: this,
       bubbles: true
     }));

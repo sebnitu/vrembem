@@ -26,6 +26,15 @@ const markupState = `
   </div>
 `;
 
+const markupConfig = `
+  <button data-modal-open="modal-default">Modal Default</button>
+  <div data-modal="modal-default" data-modal-config='{ "transition": false }' class="modal">
+    <div data-modal-dialog class="modal__dialog">
+      <button data-modal-close>Close</button>
+    </div>
+  </div>
+`;
+
 afterEach(() => {
   modal.destroy();
   modal = null;
@@ -137,7 +146,7 @@ test('should set tabindex attribute with api call', () => {
   expect(dialog).toHaveAttribute('tabindex');
 });
 
-test('should set initial state on api call', () => {
+test('should set initial() state on api call', () => {
   document.body.innerHTML = markupState;
   modal = new Modal();
   const modalOne = document.querySelector('[data-modal="modal-one"]');
@@ -180,4 +189,14 @@ test('should return null if getModal is not found', () => {
   modal = new Modal({ autoInit: true });
   const el = modal.getModal('asdf');
   expect(el).toBe(null);
+});
+
+test('should use a modal config to update the settings object', () => {
+  document.body.innerHTML = markupConfig;
+  modal = new Modal({ autoInit: true });
+
+  modal.open('modal-default');
+  const el = modal.getModal('modal-default');
+  expect(el).toHaveAttribute('data-modal-config');
+  expect(el).toHaveClass('is-opened');
 });

@@ -1,6 +1,7 @@
 import { setInert, setOverflowHidden } from '@vrembem/core/index';
 import { focusTrigger } from '@vrembem/core/index';
 import { closeTransition } from '@vrembem/core/index';
+import { getModalConfig } from './helpers';
 
 export async function close(returnFocus = true) {
   const modal = document.querySelector(
@@ -8,12 +9,13 @@ export async function close(returnFocus = true) {
   );
   if (modal) {
     this.working = true;
-    setInert(false, this.settings.selectorInert);
-    setOverflowHidden(false, this.settings.selectorOverflow);
-    await closeTransition(modal, this.settings);
+    const config = getModalConfig.call(this, modal);
+    setInert(false, config.selectorInert);
+    setOverflowHidden(false, config.selectorOverflow);
+    await closeTransition(modal, config);
     if (returnFocus) focusTrigger(this);
     this.focusTrap.destroy();
-    modal.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'closed', {
+    modal.dispatchEvent(new CustomEvent(config.customEventPrefix + 'closed', {
       detail: this,
       bubbles: true
     }));
