@@ -5,7 +5,7 @@ import { handlerKeydown } from './handlers';
 import { register, registerEventListeners } from './register';
 import { deregister, deregisterEventListeners } from './deregister';
 import { open } from './open';
-import { close, closeAll } from './close';
+import { close } from './close';
 import { getPopoverID, getPopoverElements } from './helpers';
 
 export default class Popover extends Collection {
