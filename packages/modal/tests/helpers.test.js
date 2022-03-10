@@ -123,18 +123,18 @@ describe('getModalElements()', () => {
     expect(result.dialog).toBe(dialog);
   });
 
-  it('should return false and log error if no modal elements are found', () => {
+  it('should return error if no modal elements are found', () => {
     const func = getModalElements.call(mockObj, 'asdf');
     expect(func.error.message).toBe('No modal elements found using the ID: "asdf".');
   });
 
-  it('should return false and log error if no modal dialog is found', () => {
+  it('should return error if no modal dialog is found', () => {
     const el = document.querySelector('#missing-dialog');
     const func = getModalElements.call(mockObj, el);
     expect(func.error.message).toBe('Modal is missing dialog element.');
   });
 
-  it('should return false and log error if modal id could not be resolved', () => {
+  it('should return error if modal id could not be resolved', () => {
     const el = document.querySelector('.missing-id');
     const func = getModalElements.call(mockObj, el);
     expect(func.error.message).toBe('Could not resolve the modal ID.');

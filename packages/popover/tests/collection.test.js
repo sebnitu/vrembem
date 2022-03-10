@@ -48,14 +48,16 @@ describe('register() & entry.deregister()', () => {
     expect(popover.collection[0].target).toHaveClass('is-active');
   });
 
-  it('should log an error if the provided trigger has no associated target', () => {
+  it('should return an error if the provided trigger has no associated target', async () => {
     document.body.innerHTML = markup;
-    console.error = jest.fn();
     popover = new Popover();
     const trigger = document.querySelector('#third');
-    popover.register(trigger);
-    expect(popover.collection.length).toBe(0);
-    expect(console.error).toHaveBeenCalledWith('No popover associated with the provided popover trigger:', trigger);
+    let catchError = false;
+    await popover.register(trigger).catch((error) => {
+      expect(error.message).toBe('No popover associated with the provided popover trigger.');
+      catchError = true;
+    });
+    expect(catchError).toBe(true);
   });
 
   it('should attach hover event listeners when registered', () => {

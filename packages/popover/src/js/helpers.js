@@ -149,21 +149,15 @@ export function getPopoverElements(query) {
     const target = document.querySelector(`#${id}`);
 
     if (!trigger && !target) {
-      console.error('No popover elements found using the provided ID:', id);
+      return { error: new Error(`No popover elements found using the ID: "${id}".`) };
     } else if (!trigger) {
-      console.error('No popover trigger associated with the provided popover:', target);
+      return { error: new Error('No popover trigger associated with the provided popover.') };
     } else if (!target) {
-      console.error('No popover associated with the provided popover trigger:', trigger);
-    }
-
-    if (!trigger || !target) {
-      return false;
+      return { error: new Error('No popover associated with the provided popover trigger.') };
     } else {
       return { trigger, target };
     }
-
   } else {
-    console.error('Could not resolve the popover ID:', query);
-    return false;
+    return { error: new Error('Could not resolve the popover ID.') };
   }
 }
