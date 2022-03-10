@@ -6,7 +6,7 @@ import { open } from './open';
 import { close, closeCheck } from './close';
 import { getConfig } from './helpers';
 
-export function register(trigger, target) {
+export async function register(trigger, target) {
   // Deregister entry incase it has already been registered.
   deregister.call(this, target);
 

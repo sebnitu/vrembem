@@ -1,4 +1,4 @@
-export function deregister(obj) {
+export async function deregister(obj) {
   // Return collection if nothing was passed.
   if (!obj) return this.collection;
 
