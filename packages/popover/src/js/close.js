@@ -2,27 +2,31 @@ import { getPopover } from './helpers';
 
 export async function close(query) {
   // Get the popover from collection.
-  const popover = getPopover.call(this, query);
+  const popover = (query) ? getPopover.call(this, query) : closeAll.call(this);
 
-  // Update state class.
-  popover.target.classList.remove(this.settings.stateActive);
+  // If a modal exists and its state is opened.
+  if (popover && popover.state === 'opened') {
 
-  // Update accessibility attribute(s).
-  if (popover.trigger.hasAttribute('aria-controls')) {
-    popover.trigger.setAttribute('aria-expanded', 'false');
-  }
+    // Update state class.
+    popover.target.classList.remove(this.settings.stateActive);
 
-  // Disable popper event listeners.
-  popover.popper.setOptions({
-    modifiers: [{ name: 'eventListeners', enabled: false }]
-  });
+    // Update accessibility attribute(s).
+    if (popover.trigger.hasAttribute('aria-controls')) {
+      popover.trigger.setAttribute('aria-expanded', 'false');
+    }
 
-  // Update popover state.
-  popover.state = 'closed';
+    // Disable popper event listeners.
+    popover.popper.setOptions({
+      modifiers: [{ name: 'eventListeners', enabled: false }]
+    });
 
-  // Clear memory if popover trigger matches the one saved in memory.
-  if (popover.trigger === this.memory.trigger) {
-    this.memory.trigger = null;
+    // Update popover state.
+    popover.state = 'closed';
+
+    // Clear memory if popover trigger matches the one saved in memory.
+    if (popover.trigger === this.memory.trigger) {
+      this.memory.trigger = null;
+    }
   }
 
   // Return the popover.

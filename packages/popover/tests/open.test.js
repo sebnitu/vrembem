@@ -19,14 +19,15 @@ afterEach(() => {
 });
 
 describe('open()', () => {
-  it('should open the provided popover', () => {
+  it('should open the provided popover', async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover();
+    await popover.init();
     const el = popover.get('asdf');
     expect(el.state).toBe('closed');
     expect(el.target).not.toHaveClass('is-active');
     expect(el.trigger.getAttribute('aria-expanded')).toBe('false');
-    el.open();
+    await el.open();
     expect(el.state).toBe('opened');
     expect(el.target).toHaveClass('is-active');
     expect(el.trigger.getAttribute('aria-expanded')).toBe('true');

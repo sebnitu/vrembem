@@ -231,6 +231,14 @@ describe('open() & close()', () => {
     });
     expect(result).toBe('Modal not found in collection with id of "asdf".');
   });
+
+  it('should reject promise with error if close is called on non-existent modal', async () => {
+    let result;
+    await modal.close('asdf').catch((error) => {
+      result = error.message;
+    });
+    expect(result).toBe('Modal not found in collection with id of "asdf".');
+  });
 });
 
 describe('replace()', () => {

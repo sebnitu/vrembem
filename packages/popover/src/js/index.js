@@ -91,10 +91,6 @@ export default class Popover extends Collection {
   }
 
   close(id) {
-    if (id) {
-      return close.call(this, id);
-    } else {
-      return closeAll.call(this);
-    }
+    return close.call(this, id);
   }
 }

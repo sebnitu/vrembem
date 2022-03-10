@@ -81,8 +81,7 @@ export default class Modal extends Collection {
   }
 
   close(id, transition = this.settings.transition) {
-    const modal = this.get(id);
-    return close.call(this, modal, transition);
+    return close.call(this, id, transition);
   }
 
   replace(id, transition = this.settings.transition) {

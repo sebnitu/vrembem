@@ -243,12 +243,13 @@ describe('open() & close()', () => {
     expect(target).not.toHaveClass('is-active');
   });
 
-  it('should close all popovers', () => {
+  it('should close all popovers', async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover();
+    await popover.init();
 
-    popover.collection.forEach((item) => {
-      popover.open(item.id);
+    popover.collection.forEach(async (item) => {
+      await popover.open(item.id);
     });
 
     popover.collection.forEach((item) => {
@@ -256,7 +257,7 @@ describe('open() & close()', () => {
       expect(item.target).toHaveClass('is-active');
     });
 
-    popover.close();
+    await popover.close();
 
     popover.collection.forEach((item) => {
       expect(item.state).toBe('closed');
@@ -264,7 +265,7 @@ describe('open() & close()', () => {
     });
   });
 
-  it('should return false if open is run with a popover it could not find', async () => {
+  it('should reject promise with error when open is run on popover it could not find', async () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     await popover.init();
@@ -277,7 +278,7 @@ describe('open() & close()', () => {
     expect(catchError).toBe(true);
   });
 
-  it('should return false if close is run with a popover it could not find', async () => {
+  it('should reject promise with error when close is run on popover it could not find', async () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 

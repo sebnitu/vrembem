@@ -37,6 +37,11 @@ export async function register(trigger, target) {
     ...methods
   };
 
+  // Set aria-expanded to false if trigger has aria-controls attribute.
+  if (item.trigger.hasAttribute('aria-controls')) {
+    item.trigger.setAttribute('aria-expanded', 'false');
+  }
+
   // Setup event listeners.
   registerEventListeners.call(this, item);
 
@@ -47,8 +52,6 @@ export async function register(trigger, target) {
   if (item.target.classList.contains(this.settings.stateActive)) {
     await item.open();
     documentClick.call(this, item);
-  } else {
-    await item.close();
   }
 
   // Return the registered entry.
