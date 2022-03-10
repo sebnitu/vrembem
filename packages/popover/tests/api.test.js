@@ -277,11 +277,15 @@ describe('open() & close()', () => {
     expect(catchError).toBe(true);
   });
 
-  it('should return false if close is run with a popover it could not find', () => {
+  it('should return false if close is run with a popover it could not find', async () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
-    const result = popover.close('missing');
-    expect(result).toBe(false);
+    let catchError = false;
+    await popover.close('missing').catch((error) => {
+      expect(error.message).toBe('Popover not found in collection with id of "missing".');
+      catchError = true;
+    });
+    expect(catchError).toBe(true);
   });
 });

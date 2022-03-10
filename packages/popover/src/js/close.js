@@ -1,4 +1,9 @@
-export function close(popover) {
+import { getPopover } from './helpers';
+
+export async function close(query) {
+  // Get the popover from collection.
+  const popover = getPopover.call(this, query);
+
   // Update state class.
   popover.target.classList.remove(this.settings.stateActive);
 
