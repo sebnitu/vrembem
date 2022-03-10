@@ -37,9 +37,9 @@ export class Collection {
     return this.collection;
   }
 
-  get(query, key = 'id') {
+  get(value, key = 'id') {
     return this.collection.find((item) => {
-      return item[key] === query;
+      return item[key] === value;
     });
   }
 }

@@ -18,7 +18,7 @@ export default class Popover extends Collection {
     if (this.settings.autoInit) this.init();
   }
 
-  async init(options = null) {
+  async init(options) {
     // Update settings with passed options.
     if (options) this.settings = { ...this.settings, ...options };
 
