@@ -32,12 +32,12 @@ export function updateStackIndex(stack) {
 }
 
 export function getModal(query) {
-  // Get the modal from collection if it's a string, otherwise pass the query.
-  const modal = (typeof query === 'string') ? this.get(query) : this.get(query.id);
+  // Get the entry from collection.
+  const entry = (typeof query === 'string') ? this.get(query) : this.get(query.id);
 
-  // Return modal if it was resolved, otherwise throw error.
-  if (modal) {
-    return modal;
+  // Return entry if it was resolved, otherwise throw error.
+  if (entry) {
+    return entry;
   } else {
     throw new Error(`Modal not found in collection with id of "${query}".`);
   }

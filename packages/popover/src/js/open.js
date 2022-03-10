@@ -1,6 +1,9 @@
-import { getConfig, getModifiers } from './helpers';
+import { getConfig, getModifiers, getPopover } from './helpers';
 
-export function open(popover) {
+export async function open(query) {
+  // Get the popover from collection.
+  const popover = getPopover.call(this, query);
+
   // Update state class.
   popover.target.classList.add(this.settings.stateActive);
 

@@ -30,16 +30,17 @@ const markup = `
   </div>
 `;
 
-afterEach(() => {
-  popover.destroy();
+afterEach(async () => {
+  await popover.destroy();
   popover = null;
   document.body.innerHTML = null;
 });
 
 describe('handlerClick()', () => {
-  it('should open popover if it does not contain the active class', () => {
+  it('should open popover if it does not contain the active class', async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover();
+    await popover.init();
 
     expect(popover.collection.length).toBe(2);
 
@@ -47,9 +48,10 @@ describe('handlerClick()', () => {
     expect(popover.collection[0].target).toHaveClass('is-active');
   });
 
-  it('should close popover if it contains the active class', () => {
+  it('should close popover if it contains the active class', async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover();
+    await popover.init();
 
     expect(popover.collection.length).toBe(2);
 
@@ -57,15 +59,18 @@ describe('handlerClick()', () => {
     expect(popover.collection[1].target).not.toHaveClass('is-active');
   });
 
-  it('should attach document click event listener when popover is opened', () => {
+  it('should attach document click event listener when popover is opened', async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover();
+    await popover.init();
 
     handlerClick.bind(popover, popover.collection[0])();
     expect(popover.collection[0].target).toHaveClass('is-active');
     expect(popover.collection[1].target).toHaveClass('is-active');
 
     document.querySelector('#app').click();
+    await delay();
+
     expect(popover.collection[0].target).not.toHaveClass('is-active');
     expect(popover.collection[1].target).not.toHaveClass('is-active');
   });
@@ -129,9 +134,10 @@ describe('handlerKeydown()', () => {
 });
 
 describe('documentClick()', () => {
-  it('should close other popover instances when a new one is toggled', () => {
+  it('should close other popover instances when a new one is toggled', async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover();
+    await popover.init();
 
     expect(popover.collection[0].target).not.toHaveClass('is-active');
     expect(popover.collection[1].target).toHaveClass('is-active');
@@ -142,9 +148,10 @@ describe('documentClick()', () => {
     expect(popover.collection[1].target).not.toHaveClass('is-active');
   });
 
-  it('should remove document event listener when popover is closed', () => {
+  it('should remove document event listener when popover is closed', async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover();
+    await popover.init();
 
     expect(popover.collection[0].target).not.toHaveClass('is-active');
     expect(popover.collection[1].target).toHaveClass('is-active');

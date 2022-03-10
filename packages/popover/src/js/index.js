@@ -87,9 +87,7 @@ export default class Popover extends Collection {
   }
 
   open(id) {
-    const popover = this.get(id);
-    if (!popover) return false;
-    return open.call(this, popover);
+    return open.call(this, id);
   }
 
   close(id) {

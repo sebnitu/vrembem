@@ -40,16 +40,16 @@ export async function register(trigger, target) {
   // Setup event listeners.
   registerEventListeners.call(this, item);
 
-  // Set initial state.
-  if (item.target.classList.contains(this.settings.stateActive)) {
-    item.open();
-    documentClick.call(this, item);
-  } else {
-    item.close();
-  }
-
   // Add entry to collection.
   this.collection.push(item);
+
+  // Set initial state.
+  if (item.target.classList.contains(this.settings.stateActive)) {
+    await item.open();
+    documentClick.call(this, item);
+  } else {
+    await item.close();
+  }
 
   // Return the registered entry.
   return item;
