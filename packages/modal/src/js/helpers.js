@@ -43,6 +43,16 @@ export function getModal(query) {
   }
 }
 
+export function getModalConfig(modal) {
+  const json = modal.getAttribute(`data-${this.settings.dataConfig}`);
+  if (json) {
+    const config = JSON.parse(json);
+    return { ...this.settings, ...config };
+  } else {
+    return this.settings;
+  }
+}
+
 export function getModalID(obj) {
   // If it's a string, return the string.
   if (typeof obj === 'string') {

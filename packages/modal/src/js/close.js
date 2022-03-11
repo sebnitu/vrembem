@@ -1,6 +1,6 @@
 import { setInert, setOverflowHidden } from '@vrembem/core/index';
 import { closeTransition } from '@vrembem/core/index';
-import { updateFocus, updateStackIndex, getModal } from './helpers';
+import { updateFocus, updateStackIndex, getModal, getModalConfig } from './helpers';
 
 export async function close(query, transition, bulk = false) {
   // Get the modal from collection, or top modal in stack if no query is provided.
@@ -14,6 +14,9 @@ export async function close(query, transition, bulk = false) {
     // Update modal state.
     modal.state = 'closing';
 
+    // Get the modal config.
+    // const config = getModalConfig.call(this, modal);
+    
     // Remove focus from active element.
     document.activeElement.blur();
 

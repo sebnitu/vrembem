@@ -1,11 +1,14 @@
 import { setInert, setOverflowHidden } from '@vrembem/core/index';
 import { focusTarget } from '@vrembem/core/index';
 import { openTransition } from '@vrembem/core/index';
-import { getModal, updateStackIndex } from './helpers';
+import { updateStackIndex, getModal, getModalConfig } from './helpers';
 
 export async function open(query, transition) {
   // Get the modal from collection.
   const modal = getModal.call(this, query);
+
+  // Get the modal config.
+  // const config = getModalConfig.call(this, modal);
 
   // Check if modal is already in the stack.
   const index = this.stack.findIndex((entry) => {
