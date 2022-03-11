@@ -2,7 +2,7 @@ import { getPopover } from './helpers';
 
 export async function close(query) {
   // Get the popover from collection.
-  const popover = (query) ? getPopover.call(this, query) : closeAll.call(this);
+  const popover = (query) ? getPopover.call(this, query) : await closeAll.call(this);
 
   // If a modal exists and its state is opened.
   if (popover && popover.state === 'opened') {
@@ -33,13 +33,14 @@ export async function close(query) {
   return popover;
 }
 
-export function closeAll() {
-  this.collection.forEach((popover) => {
+export async function closeAll() {
+  const result = [];
+  await Promise.all(this.collection.map(async (popover) => {
     if (popover.state === 'opened') {
-      popover.close();
+      result.push(await close.call(this, popover));
     }
-  });
-  return this.collection;
+  }));
+  return result;
 }
 
 export function closeCheck(popover) {
