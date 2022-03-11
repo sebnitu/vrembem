@@ -202,6 +202,18 @@ describe('open() & close()', () => {
     expect(entry.state).toBe('closed');
   });
 
+  it('should open and close modal with transitions option passed', async () => {
+    await modal.open('modal-default', false);
+
+    expect(el).toHaveClass('modal is-opened');
+    expect(entry.state).toBe('opened');
+
+    await modal.close('modal-default', false);
+
+    expect(el).toHaveClass('modal is-closed');
+    expect(entry.state).toBe('closed');
+  });
+
   it('should run function when promise is returned from open api', async () => {
     let callbackCheck = false;
 

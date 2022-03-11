@@ -8,7 +8,8 @@ export async function open(query, transition) {
   const modal = getModal.call(this, query);
 
   // Get the modal config.
-  // const config = getModalConfig.call(this, modal);
+  const overrides = (transition != undefined) ? { transition: transition } : transition;
+  const config = getModalConfig.call(this, modal.target, overrides);
 
   // Check if modal is already in the stack.
   const index = this.stack.findIndex((entry) => {
@@ -30,7 +31,7 @@ export async function open(query, transition) {
     this.focusTrap.init(modal.target);
 
     // Set focus to the target.
-    focusTarget(modal.target, this.settings);
+    focusTarget(modal.target, config);
   }
 
   // If modal is closed.
@@ -50,25 +51,25 @@ export async function open(query, transition) {
     this.stack.push(modal);
 
     // Set inert state.
-    setInert(true, this.settings.selectorInert);
+    setInert(true, config.selectorInert);
 
     // Set overflow state.
-    setOverflowHidden(true, this.settings.selectorOverflow);
+    setOverflowHidden(true, config.selectorOverflow);
 
     // Run the open transition.
-    await openTransition(modal.target, { ...this.settings, ...{ transition: transition } });
+    await openTransition(modal.target, config);
 
     // Initialize the focus trap.
     this.focusTrap.init(modal.target);
 
     // Set focus to the target.
-    focusTarget(modal.target, this.settings);
+    focusTarget(modal.target, config);
 
     // Update modal state.
     modal.state = 'opened';
 
     // Dispatch custom opened event.
-    modal.target.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'opened', {
+    modal.target.dispatchEvent(new CustomEvent(config.customEventPrefix + 'opened', {
       detail: this,
       bubbles: true
     }));

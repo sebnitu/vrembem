@@ -43,13 +43,13 @@ export function getModal(query) {
   }
 }
 
-export function getModalConfig(modal) {
+export function getModalConfig(modal, overrides = {}) {
   const json = modal.getAttribute(`data-${this.settings.dataConfig}`);
   if (json) {
     const config = JSON.parse(json);
-    return { ...this.settings, ...config };
+    return { ...this.settings, ...config, ...overrides };
   } else {
-    return this.settings;
+    return { ...this.settings, ...overrides };
   }
 }
 

@@ -15,19 +15,20 @@ export async function close(query, transition, bulk = false) {
     modal.state = 'closing';
 
     // Get the modal config.
-    // const config = getModalConfig.call(this, modal);
-    
+    const overrides = (transition != undefined) ? { transition: transition } : transition;
+    const config = getModalConfig.call(this, modal.target, overrides);
+
     // Remove focus from active element.
     document.activeElement.blur();
 
     // Set inert state.
-    setInert(false, this.settings.selectorInert);
+    setInert(false, config.selectorInert);
 
     // Set overflow state.
-    setOverflowHidden(false, this.settings.selectorOverflow);
+    setOverflowHidden(false, config.selectorOverflow);
 
     // Run the close transition.
-    await closeTransition(modal.target, { ...this.settings, ...{ transition: transition } });
+    await closeTransition(modal.target, config);
 
     // Destroy the focus trap.
     this.focusTrap.destroy();
@@ -59,7 +60,7 @@ export async function close(query, transition, bulk = false) {
     modal.state = 'closed';
 
     // Dispatch custom closed event.
-    modal.target.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'closed', {
+    modal.target.dispatchEvent(new CustomEvent(config.customEventPrefix + 'closed', {
       detail: this,
       bubbles: true
     }));

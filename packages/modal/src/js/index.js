@@ -76,19 +76,19 @@ export default class Modal extends Collection {
     return deregister.call(this, modal);
   }
 
-  open(id, transition = this.settings.transition) {
+  open(id, transition) {
     return open.call(this, id, transition);
   }
 
-  close(id, transition = this.settings.transition) {
+  close(id, transition) {
     return close.call(this, id, transition);
   }
 
-  replace(id, transition = this.settings.transition) {
+  replace(id, transition) {
     return replace.call(this, id, transition);
   }
 
-  async closeAll(exclude = false, transition = this.settings.transition) {
+  async closeAll(exclude = false, transition) {
     const result = await closeAll.call(this, exclude, transition);
     updateStackIndex(this.stack);
     updateFocus.call(this);

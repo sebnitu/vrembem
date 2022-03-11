@@ -20,6 +20,13 @@ const markupCustomState = `
   </div>
 `;
 
+const markupConfig = `
+  <button data-modal-open="modal-default">...</button>
+  <div id="modal-default" class="modal" data-modal-config='{ "transition": false }'>
+    <div class="modal__dialog">...</div>
+  </div>
+`;
+
 test('should apply state classes on `click` and `transitionend` events', async () => {
   document.body.innerHTML = markup;
   const modal = new Modal();
@@ -85,4 +92,19 @@ test('should not apply transition classes when transitions are disabled', async 
   await modal.close('modal-default');
   expect(el).toHaveClass('is-closed');
   expect(el.classList.length).toBe(2);
+});
+
+test('should open and close modal while using the data modal config attribute', async () => {
+  document.body.innerHTML = markupConfig;
+  const modal = new Modal();
+  await modal.init();
+
+  const modalObj = modal.get('modal-default');
+  await modalObj.open();
+  expect(modalObj.target).toHaveClass('is-opened');
+  expect(modalObj.state).toBe('opened');
+
+  await modalObj.close();
+  expect(modalObj.target).toHaveClass('is-closed');
+  expect(modalObj.state).toBe('closed');
 });

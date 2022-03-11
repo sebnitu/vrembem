@@ -14,13 +14,13 @@ export async function register(target, dialog) {
 
   // Setup methods API.
   const methods = {
-    open(transition = root.settings.transition) {
+    open(transition) {
       return open.call(root, this, transition);
     },
-    close(transition = root.settings.transition) {
+    close(transition) {
       return close.call(root, this, transition);
     },
-    replace(transition = root.settings.transition) {
+    replace(transition) {
       return replace.call(root, this, transition);
     },
     deregister() {
