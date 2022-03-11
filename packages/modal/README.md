@@ -48,7 +48,7 @@ Modals and their dialogs are composed using classes and data attributes for thei
 </div>
 ```
 
-Modal dialogs are the actual dialog element within a modal and are defined using the `modal__dialog` class. Modal dialogs should also be given the `role` attribute with a value of either [`dialog`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/dialog_role) or [`alertdialog`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/alertdialog_role) and the `aria-modal` attribute with a value of `true`. Authors should also provide modal dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes to enhance their accessibility.
+Modal dialogs are the dialog elements within a modal and are defined using the `modal__dialog` class. Modal dialogs should also be given the `role` attribute with a value of either [`dialog`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/dialog_role) or [`alertdialog`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/alertdialog_role) and the `aria-modal` attribute with a value of `true`. Authors should also consider providing modal dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes to further improve accessibility.
 
 ```html
 <div id="modal-id" class="modal">
@@ -98,7 +98,7 @@ While a modal is active, the contents obscured by the modal are made inaccessibl
 
 #### Required Modals
 
-Required modals can not be closed without an explicit action. That means clicking on the background or pressing the escape key to close a required modal is disabled. By default, required modals are set by giving a dialog the attribute `role` with a value of `alertdialog`.
+Required modals are modals that require an explicit action to be closed. That means clicking on the background or pressing the escape key to close a required modal is disabled. By default, required modals are set by giving a dialog the attribute `role` with a value of `alertdialog`.
 
 ```html
 <div id="[unique-id]" class="modal">
@@ -135,7 +135,7 @@ const modal = new Modal({
   teleportMethod: 'after'
 });
 
-modal.init();
+await modal.init();
 ```
 
 To return a modal to its original location, use the collection API method `teleportReturn()`:
@@ -195,26 +195,26 @@ Adjusts the size of modals. This modifier provides five options that get built f
 
 ### Sass Variables
 
-| Variable                      | Default                            | Description                                                                  |
-| ----------------------------- | ---------------------------------- | ---------------------------------------------------------------------------- |
-| `$prefix-block`               | `null`                             | String to prefix blocks with.                                                |
-| `$prefix-element`             | `"__"`                             | String to prefix elements with.                                              |
-| `$prefix-modifier`            | `"_"`                              | String to prefix modifiers with.                                             |
-| `$prefix-modifier-value`      | `"_"`                              | String to prefix modifier values with.                                       |
-| `$z-index`                    | `1000`                             | Applied z-index to modals to control the stack order.                        |
-| `$width`                      | `36em`                             | The default max width of modals.                                             |
-| `$travel`                     | `5em`                              | Distance that modal travel during their transition.                          |
-| `$transition-duration`        | `core.$transition-duration`        | Duration of modal transition.                                                |
-| `$transition-timing-function` | `core.$transition-timing-function` | Timing function used for modal transitions.                                  |
-| `$background`                 | `core.$night`                      | Background color of modal screen.                                            |
-| `$background-alpha`           | `0.8`                              | The alpha channel for the modal screen.                                      |
-| `$box-shadow`                 | `core.$box-shadow-24dp`            | Box shadow applied to modal dialog elements.                                 |
-| `$outline`                    | `0 solid rgba(core.$primary, 0)`   | Outline applied to modal dialog elements.                                    |
-| `$outline-focus`              | `4px solid rgba(core.$primary, 1)` | Outline applied to modal dialog elements in their focus state.               |
-| `$outline-focus-alert`        | `4px solid rgba(core.$danger, 1)`  | Outline applied to required modal dialog elements in their focus state.      |
-| `$aside-width`                | `16em`                             | Width applied to modals using `_pos_left` and `_pos_right` modifiers.        |
-| `$aside-max-width`            | `90%`                              | Max width applied to modals using `_pos_left` and `_pos_right` modifiers.    |
-| `$size-scale`                 | [Map Ref &darr;](#size-scale)      | The size scale map the `modal_size_[key]` modifier uses to build its styles. |
+| Variable                      | Default                            | Description                                                                         |
+| ----------------------------- | ---------------------------------- | ----------------------------------------------------------------------------------- |
+| `$prefix-block`               | `null`                             | String to prefix blocks with.                                                       |
+| `$prefix-element`             | `"__"`                             | String to prefix elements with.                                                     |
+| `$prefix-modifier`            | `"_"`                              | String to prefix modifiers with.                                                    |
+| `$prefix-modifier-value`      | `"_"`                              | String to prefix modifier values with.                                              |
+| `$z-index`                    | `1000`                             | Base z-index of modals. Stacked modals are incremented by 1.                        |
+| `$width`                      | `36em`                             | The default max width of modals.                                                    |
+| `$travel`                     | `5em`                              | Distance that modal travel during their transition.                                 |
+| `$transition-duration`        | `core.$transition-duration`        | Duration of modal transition.                                                       |
+| `$transition-timing-function` | `core.$transition-timing-function` | Timing function used for modal transitions.                                         |
+| `$background`                 | `core.$night`                      | Background color of modal screen.                                                   |
+| `$background-alpha`           | `0.8`                              | The alpha channel for the modal screen.                                             |
+| `$box-shadow`                 | `core.$box-shadow-24dp`            | Box shadow applied to modal dialog elements.                                        |
+| `$outline`                    | `0 solid rgba(core.$primary, 0)`   | Outline applied to modal dialog elements.                                           |
+| `$outline-focus`              | `4px solid rgba(core.$primary, 1)` | Outline applied to modal dialog elements in their focus state.                      |
+| `$outline-focus-alert`        | `4px solid rgba(core.$danger, 1)`  | Outline applied to required modal dialog elements in their focus state.             |
+| `$aside-width`                | `16em`                             | Width applied to modals using `modal_pos_left` and `modal_pos_right` modifiers.     |
+| `$aside-max-width`            | `90%`                              | Max width applied to modals using `modal_pos_left` and `modal_pos_right` modifiers. |
+| `$size-scale`                 | [Map Ref &darr;](#size-scale)      | The size scale map the `modal_size_[key]` modifier uses to build its styles.        |
 
 #### $size-scale
 
@@ -241,7 +241,7 @@ $size-scale: (
 | `selectorModal`     | `'.modal'`               | Selector for modal component.                                                                                 |
 | `selectorDialog`    | `'.modal__dialog'`       | Selector for modal dialog element.                                                                            |
 | `selectorRequired`  | `'[role="alertdialog"]'` | Selector used to apply required modal state.                                                                  |
-| `selectorFocus`     | `'[data-focus]'`         | Selector to apply focus preference to when modals are initially opened.                                       |
+| `selectorFocus`     | `'[data-focus]'`         | Focus preference selector for when modals are initially opened.                                               |
 | `selectorInert`     | `null`                   | Applies `inert` and `aria-hidden` attributes to all matching elements when a modal is opened.                 |
 | `selectorOverflow`  | `'body'`                 | Applies `overflow:hidden` styles on all matching elements when a modal is opened.                             |
 | `stateOpened`       | `'is-opened'`            | Class used for open state.                                                                                    |
@@ -251,7 +251,7 @@ $size-scale: (
 | `customEventPrefix` | `'modal:'`               | Prefix to be used on custom events.                                                                           |
 | `eventListeners`    | `true`                   | Whether or not to set the document event listeners on init.                                                   |
 | `teleport`          | `null`                   | Teleport selector where modals get moved to. Leave as `null` to disable teleport.                             |
-| `teleportMethod`    | `null`                   | Teleport method options include `after`, `before`, `append` and `prepend` relative to the teleport reference. |
+| `teleportMethod`    | `'append'`                   | Teleport method options include `after`, `before`, `append` and `prepend` relative to the teleport reference. |
 | `setTabindex`       | `true`                   | Whether or not to set `tabindex="-1"` on all modal dialog elements on init.                                   |
 | `transition`        | `true`                   | Toggle the transition animation for the modal. Set to `false` to disable.                                     |
 
@@ -264,7 +264,7 @@ $size-scale: (
 
 ### `modal.collection`
 
-An array where all registered modals are stored. Each entry in the collection contains the following properties:
+An array where all modal objects are stored when registered. Each modal object contains the following properties:
 
 ```js
 {
@@ -273,62 +273,63 @@ An array where all registered modals are stored. Each entry in the collection co
   trigger: HTMLElement, // The trigger HTML element that opened the modal.
   target: HTMLElement, // The modal HTML element.
   dialog: HTMLElement // The modal dialog JS instance.
-  returnRef: HTMLComment // The return reference comment left when a modal is teleported.
+  returnRef: HTMLComment // The return reference left when a modal is teleported.
   open: Function // Method to open this modal.
   close: Function // Method to close this modal.
-  replace: Function // Method to replace an open modal with this modal.
+  replace: Function // Method to replace open modal(s) with this modal.
   deregister: Function // Method to deregister this modal.
   teleport: Function // Method to teleport this modal.
   teleportReturn: Function // Method to return this modal to its previous location.
 }
 ```
+
 ### `modal.init(options)`
 
 Initializes the modal instance. During initialization, the following processes are run:
 
-- Builds the modal collection by running `registerCollection()`
-- Sets up the global event listeners by running `initEventListeners()`
+- Register each modal in the collection by running `registerCollection()`.
+- Sets up global event listeners by running `initEventListeners()`.
 
 **Parameters**
 
-- `options [Object] (optional) (default null)` An options object for passing your custom settings.
+- `options [Object] (optional)` An options object for passing custom settings.
 
 ```js
 const modal = new Modal();
-modal.init();
+await modal.init();
 ```
 
 ### `modal.destroy()`
 
-Destroys and cleans up the modal instantiation. During cleanup, the following processes are run:
+Destroys and cleans up the modal initialization. During cleanup, the following processes are run:
 
-- Builds the modal collection by running `deregisterCollection()`
-- Sets up the global event listeners by running `destroyEventListeners()`
+- Deregister the modal collection by running `deregisterCollection()`.
+- Removes global event listeners by running `destroyEventListeners()`.
 
 ```js
 const modal = new Modal();
-modal.init();
+await modal.init();
 // ...
-modal.destroy();
+await modal.destroy();
 ```
 
 ### `modal.initEventListeners()`
 
-Set the document event listeners for click, touchend and keydown events.
+Set document event listeners.
 
 ```js
 const modal = new Modal({ eventListeners: false });
-modal.init();
+await modal.init();
 modal.initEventListeners();
 ```
 
 ### `modal.destroyEventListeners()`
 
-Remove the document event listeners for click, touchend and keydown events.
+Remove document event listeners.
 
 ```js
 const modal = new Modal();
-modal.init();
+await modal.init();
 // ...
 modal.destroyEventListeners();
 ```
@@ -339,36 +340,32 @@ Registers a modal into the collection. This also sets the initial state and appl
 
 **Parameters**
 
-- `query [String | Object]` A modal ID or an HTML element of either a modal or its trigger.
+- `query [String | Object]` A modal ID or an HTML element of either the modal or its trigger.
 
 **Returns**
 
 - `Object` The modal object that got stored in the collection.
 
 ```js
-const result = modal.register('modal-id');
-
-console.log(result);
-// => Object { id: 'modal-id', state: 'closed', target: HTMLElement, dialog: HTMLElement, ... }
+const result = await modal.register('modal-id');
+// => Object { id: 'modal-id', ... }
 ```
 
 ### `modal.deregister(query)`
 
-Deregister the modal from the collection. This closes the modal if it's opened, returns a modal if it has been teleported and then removes the entry from the collection.
+Deregister the modal from the collection. This closes the modal if it's opened, returns a modal if it has been teleported and removes the entry from the collection.
 
 **Parameters**
 
-- `query [String | Object]` A modal ID or an HTML element of either a modal or its trigger.
+- `query [String | Object]` A modal ID or an HTML element of either the modal or its trigger.
 
 **Returns**
 
 - `Array` Returns the newly modified collection array.
 
 ```js
-const result = modal.deregister('modal-id');
-
-console.log(result);
-// => Array [ ... ]
+const result = await modal.deregister('modal-id');
+// => Array [{}, {}, ...]
 ```
 
 ### `modal.registerCollection(items)`
@@ -377,15 +374,16 @@ Registers array of modals to the collection. All modals in array are run through
 
 **Parameters**
 
-- `items [Array]` An array of items to register.
+- `items [Array]` An array of modals or modal IDs to register.
 
 **Returns**
 
 - `Array` Returns the collection array.
 
 ```js
-modal.registerCollection(items);
-// => Array [...]
+const modals = document.querySelectorAll('.modal');
+const result = await modal.registerCollection(modals);
+// => Array [{}, {}, ...]
 ```
 
 ### `modal.deregisterCollection()`
@@ -394,127 +392,99 @@ Deregister all modals in the collections array. All modals in collection are run
 
 **Returns**
 
-- `Array` Returns an empty collection array.
+- `Array` Returns the empty collection array.
 
 ```js
-modal.registerCollection();
+const result = await modal.registerCollection();
 // => Array []
 ```
 
-### `modal.get(id, key)`
+### `modal.get(value, key)`
 
-Used to look up a modal entry within the collection. Query should match the key type to search by: e.g. to search by target elements, pass the target html node with a key of `'target'`. Defaults to `'id'`.
+Used to retrieve a registered modal object from the collection. The value should match the key type to search by: e.g. to search by target elements, pass the target html node with a key of `'target'`. Defaults to `'id'`.
 
 **Parameters**
 
-- `query [String | Object]` The value or object to match against within the collection.
-- `key [String] (optional) (default 'id')` The property key to query.
+- `value [String | Object]` The value to search for within the collection.
+- `key [String] (optional) (default 'id')` The property key to search the value against.
 
 **Returns**
 
-- `Object | null` The collection entry if found otherwise `null`.
+- `Object | undefined` The first element in the collection that matches the provided query and key. Otherwise, undefined is returned.
 
 ```js
-modal.get('modal-id')
+const entry = modal.get('modal-id');
 // => Object { id: 'modal-id', ... }
 ```
 
 ### `modal.open(id, transition)`
 
-Opens a modal provided the modal key and returns a promise that resolves to the modal object once the transition has finished.
+Opens a modal using the provided ID.
 
 **Parameters**
 
 - `id [String]` The ID of the modal to open.
-- `transition [Boolean]` Whether or not to animate the transition.
+- `transition [Boolean] (optional)` Whether or not to animate the transition.
 
 **Returns**
 
-- `Promise` The returned promise value will either be the `HTML object` of the modal that was opened, or `error` if a modal was not found.
-
-```html
-<div class="modal is-closed" data-modal="modal-key">...</div>
-```
+- `Object` The modal object that was opened.
 
 ```js
-// Open modal
-modal.open('modal-key');
-
-// Run some code after promise resolves
-modal.open('modal-key').then((result) => {
-  console.log(result);
-  // => Object { id: 'modal-id', ... }
-});
+const entry = await modal.open('modal-key');
+// => Object { id: 'modal-id', ... }
 ```
 
 ### `modal.close(id, transition)`
 
-Closes a modal and returns a promise that resolves to the modal object once the transition has finished. Optionally disable the return focus on trigger by passing `false` as the parameter.
+Closes a modal using the provided ID. Can be called without an ID to close most recently opened modal.
 
 **Parameters**
 
-- `id [String]` The ID of the modal to close. Will close the most recently opened modal if no ID is passed.
-- `transition [Boolean]` Whether or not to animate the transition.
+- `id [String] (optional)` The ID of the modal to close.
+- `transition [Boolean] (optional)` Whether or not to animate the transition.
 
 **Returns**
 
-- `Promise` The returned promise value will either be the `HTML object` of the modal that was closed, or `null` if an open modal was not found.
-
-```html
-<div class="modal is-opened" data-modal="modal-key">...</div>
-```
+- `Object` The modal object that was closed.
 
 ```js
-// Open modal
-modal.close();
-
-// Run some code after promise resolves
-modal.close().then((result) => {
-  console.log(result);
-  // => Object { id: 'modal-id', ... }
-});
+const entry = await modal.close();
+// => Object { id: 'modal-id', ... }
 ```
 
 ### `modal.replace(id, transition)`
 
-Replaces the currently opened modal(s) with the modal of the provided ID. This should be used to trigger a modal when it's preferred for modals not to stack.
+Replaces currently opened modal(s) with the modal of the id provided. This could be used to trigger a modal when modal stacking is not desired.
 
 **Parameters**
 
 - `id [String]` The ID of the modal to open. Will close all other opened modals.
-- `transition [Boolean]` Whether or not to animate the transition.
+- `transition [Boolean] (optional)` Whether or not to animate the transition.
 
 **Returns**
 
-- `Promise` The returned promise value will be an object with `opened` and `closed` properties the values being the opened modal and an array of modals that were closed.
+- `Object` An object with `opened` and `closed` properties whose values will be the opened modal and an array of modals that were closed.
 
 ```js
-// Replace modal
-modal.replace('modal-id');
-
-// Run some code after promise resolves
-modal.replace().then((result) => {
-  console.log(result);
-  // => Object { opened: {}, closed: [{}, {}, ...] }
-});
+const obj = await modal.replace('modal-id');
+// => Object { opened: { id: 'modal-id', ... }, closed: [...] }
 ```
 
 ### `modal.closeAll(exclude, transition)`
 
-Closes all open modals. Will exclude a modal if provided ID is an open modal.
+Closes all open modals. Will exclude closing a modal using the provided ID.
 
 **Parameters**
 
-- `exclude [String]` The ID of the modal to exclude from closing. Will close all other opened modals.
-- `transition [Boolean]` Whether or not to animate the transition.
+- `exclude [String] (optional)` The ID of a modal to exclude from closing. Will close all other opened modals.
+- `transition [Boolean] (optional)` Whether or not to animate the transition.
 
 **Returns**
 
-- `Promise` The returned promise value will be an array of all modals that got closed.
+- `Array` An array of all modals that were closed.
 
 ```js
-modal.closeAll().then((result) => {
-  console.log(result);
-  // => Array [{}, {}, ...]
-});
+const array = await modal.closeAll();
+// => Array [{}, {}, ...]
 ```
