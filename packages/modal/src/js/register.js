@@ -4,6 +4,7 @@ import { deregister } from './deregister';
 import { open } from './open';
 import { close } from './close';
 import { replace } from './replace';
+import { getConfig } from './helpers';
 
 export async function register(target, dialog) {
   // Deregister entry incase it has already been registered.
@@ -53,6 +54,7 @@ export async function register(target, dialog) {
     trigger: null,
     target: target,
     dialog: dialog,
+    config: getConfig(target, this.settings),
     returnRef: null,
     ...methods
   };

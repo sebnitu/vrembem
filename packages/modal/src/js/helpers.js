@@ -31,6 +31,16 @@ export function updateStackIndex(stack) {
   });
 }
 
+export function getConfig(el, settings) {
+  const json = el.getAttribute(`data-${settings.dataConfig}`);
+  if (json) {
+    const config = JSON.parse(json);
+    return { ...settings, ...config };
+  } else {
+    return settings;
+  }
+}
+
 export function getModal(query) {
   // Get the entry from collection.
   const entry = (typeof query === 'string') ? this.get(query) : this.get(query.id);
