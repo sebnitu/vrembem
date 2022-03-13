@@ -22,7 +22,7 @@ const markupCustomState = `
 
 const markupConfig = `
   <button data-modal-open="modal-default">...</button>
-  <div id="modal-default" class="modal" data-modal-config='{ "transition": false }'>
+  <div id="modal-default" class="modal" data-modal-config="{ 'transition': false }">
     <div class="modal__dialog">...</div>
   </div>
 `;
@@ -107,4 +107,16 @@ test('should open and close modal while using the data modal config attribute', 
   await modalObj.close();
   expect(modalObj.target).toHaveClass('is-closed');
   expect(modalObj.state).toBe('closed');
+});
+
+test('should return modal config if set, otherwise should return global settings', async () => {
+  document.body.innerHTML = markupConfig;
+  const modal = new Modal();
+  await modal.init();
+
+  const entry = modal.get('modal-default');
+  expect(entry.getSetting('transition')).toBe(false);
+  expect(modal.settings.transition).toBe(true);
+  expect(entry.getSetting('teleport')).toBe(null);
+  expect(modal.settings.teleport).toBe(null);
 });

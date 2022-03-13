@@ -1,15 +1,17 @@
 import { setInert, setOverflowHidden } from '@vrembem/core/index';
 import { focusTarget } from '@vrembem/core/index';
 import { openTransition } from '@vrembem/core/index';
-import { updateStackIndex, getModal, getModalConfig } from './helpers';
+import { updateStackIndex, getModal } from './helpers';
 
 export async function open(query, transition) {
   // Get the modal from collection.
   const modal = getModal.call(this, query);
 
-  // Get the modal config.
-  const overrides = (transition != undefined) ? { transition: transition } : transition;
-  const config = getModalConfig.call(this, modal.target, overrides);
+  // Get the modal configuration.
+  const config = { ...this.settings, ...modal.config }
+
+  // Add transition parameter to configuration.
+  if (transition != undefined) config.transition = transition;
 
   // Check if modal is already in the stack.
   const index = this.stack.findIndex((entry) => {

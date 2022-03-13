@@ -31,14 +31,10 @@ export function updateStackIndex(stack) {
   });
 }
 
-export function getConfig(el, settings) {
-  const json = el.getAttribute(`data-${settings.dataConfig}`);
-  if (json) {
-    const config = JSON.parse(json);
-    return { ...settings, ...config };
-  } else {
-    return settings;
-  }
+export function getConfig(el) {
+  const string = el.getAttribute(`data-${this.settings.dataConfig}`) || '';
+  const json = string.replace(/'/g, '"');
+  return (json) ? JSON.parse(json) : {};
 }
 
 export function getModal(query) {
@@ -50,16 +46,6 @@ export function getModal(query) {
     return entry;
   } else {
     throw new Error(`Modal not found in collection with id of "${query}".`);
-  }
-}
-
-export function getModalConfig(modal, overrides = {}) {
-  const json = modal.getAttribute(`data-${this.settings.dataConfig}`);
-  if (json) {
-    const config = JSON.parse(json);
-    return { ...this.settings, ...config, ...overrides };
-  } else {
-    return { ...this.settings, ...overrides };
   }
 }
 

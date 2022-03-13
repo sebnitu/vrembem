@@ -27,7 +27,7 @@ export async function register(target, dialog) {
     deregister() {
       return deregister.call(root, this);
     },
-    teleport(ref = root.settings.teleport, method = root.settings.teleportMethod) {
+    teleport(ref = this.getSetting('teleport'), method = this.getSetting('teleportMethod')) {
       if (!this.returnRef) {
         this.returnRef = teleport(this.target, ref, method);
         return this.target;
@@ -44,6 +44,9 @@ export async function register(target, dialog) {
         console.error('No return reference found:', this.target);
         return false;
       }
+    },
+    getSetting(key) {
+      return (this.config.hasOwnProperty(key)) ? this.config[key] : root.settings[key];
     }
   };
 
@@ -54,7 +57,7 @@ export async function register(target, dialog) {
     trigger: null,
     target: target,
     dialog: dialog,
-    config: getConfig(target, this.settings),
+    config: getConfig.call(this, target),
     returnRef: null,
     ...methods
   };
@@ -68,7 +71,7 @@ export async function register(target, dialog) {
   }
 
   // Set tabindex="-1" so dialog is focusable via JS or click.
-  if (this.settings.setTabindex) {
+  if (entry.getSetting('setTabindex')) {
     entry.dialog.setAttribute('tabindex', '-1');
   }
 
@@ -76,7 +79,7 @@ export async function register(target, dialog) {
   entry.target.classList.add(this.settings.stateClosed);
 
   // Teleport modal if a reference has been set.
-  if (this.settings.teleport) {
+  if (entry.getSetting('teleport')) {
     entry.teleport();
   }
 

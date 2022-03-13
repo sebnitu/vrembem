@@ -17,7 +17,7 @@ export async function deregister(obj) {
     }
 
     // Return teleported modal if a reference has been set.
-    if (this.settings.teleport) {
+    if (entry.getSetting('teleport')) {
       entry.teleportReturn();
     }
 
