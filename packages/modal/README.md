@@ -238,6 +238,7 @@ $size-scale: (
 | `dataOpen`          | `'modal-open'`           | Data attribute for a modal open trigger.                                                                      |
 | `dataClose`         | `'modal-close'`          | Data attribute for a modal close trigger.                                                                     |
 | `dataReplace`       | `'modal-replace'`        | Data attribute for a modal replace trigger.                                                                   |
+| `dataConfig`        | `'modal-config'`         | Data attribute to find modal specific configuration settings. Value should be a JSON object.                  |
 | `selectorModal`     | `'.modal'`               | Selector for modal component.                                                                                 |
 | `selectorDialog`    | `'.modal__dialog'`       | Selector for modal dialog element.                                                                            |
 | `selectorRequired`  | `'[role="alertdialog"]'` | Selector used to apply required modal state.                                                                  |
@@ -251,7 +252,7 @@ $size-scale: (
 | `customEventPrefix` | `'modal:'`               | Prefix to be used on custom events.                                                                           |
 | `eventListeners`    | `true`                   | Whether or not to set the document event listeners on init.                                                   |
 | `teleport`          | `null`                   | Teleport selector where modals get moved to. Leave as `null` to disable teleport.                             |
-| `teleportMethod`    | `'append'`                   | Teleport method options include `after`, `before`, `append` and `prepend` relative to the teleport reference. |
+| `teleportMethod`    | `'append'`               | Teleport method options include `after`, `before`, `append` and `prepend` relative to the teleport reference. |
 | `setTabindex`       | `true`                   | Whether or not to set `tabindex="-1"` on all modal dialog elements on init.                                   |
 | `transition`        | `true`                   | Toggle the transition animation for the modal. Set to `false` to disable.                                     |
 
@@ -270,6 +271,7 @@ An array where all modal objects are stored when registered. Each modal object c
 {
   id: String, // The unique ID of the modal.
   state: String, // The current state of the modal ('closing', 'closed', 'opening' or 'opened').
+  settings: Object // The modal specific settings.
   trigger: HTMLElement, // The trigger HTML element that opened the modal.
   target: HTMLElement, // The modal HTML element.
   dialog: HTMLElement // The modal dialog JS instance.
@@ -280,6 +282,7 @@ An array where all modal objects are stored when registered. Each modal object c
   deregister: Function // Method to deregister this modal.
   teleport: Function // Method to teleport this modal.
   teleportReturn: Function // Method to return this modal to its previous location.
+  getSetting: Function // Method that returns either a modal specific setting or global modal setting.
 }
 ```
 

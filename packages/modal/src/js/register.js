@@ -46,7 +46,7 @@ export async function register(target, dialog) {
       }
     },
     getSetting(key) {
-      return (this.config.hasOwnProperty(key)) ? this.config[key] : root.settings[key];
+      return (this.settings.hasOwnProperty(key)) ? this.settings[key] : root.settings[key];
     }
   };
 
@@ -54,10 +54,10 @@ export async function register(target, dialog) {
   const entry = {
     id: target.id,
     state: 'closed',
+    settings: getConfig.call(this, target),
     trigger: null,
     target: target,
     dialog: dialog,
-    config: getConfig.call(this, target),
     returnRef: null,
     ...methods
   };

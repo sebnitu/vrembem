@@ -15,7 +15,7 @@ export async function close(query, transition, bulk = false) {
     modal.state = 'closing';
 
     // Get the modal configuration.
-    const config = { ...this.settings, ...modal.config }
+    const config = { ...this.settings, ...modal.settings }
 
     // Add transition parameter to configuration.
     if (transition != undefined) config.transition = transition;
