@@ -604,6 +604,11 @@ $size-scale: (
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'modal-replace'</code></td>
         <td data-mobile-label="Desc">Data attribute for a modal replace trigger.</td>
       </tr>
+      <tr>
+        <td data-mobile-label="Key"><code class="code text-nowrap">dataConfig</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'modal-config'</code></td>
+        <td data-mobile-label="Desc">Data attribute to find modal specific configuration settings. Value should be a JSON object.</td>
+      </tr>
       <!-- Selectors -->
       <tr>
         <td data-mobile-label="Key"><code class="code text-nowrap">selectorModal</code></td>
@@ -706,6 +711,7 @@ An array where all modal objects are stored when registered. Each modal object c
 {
   id: String, // The unique ID of the modal.
   state: String, // The current state of the modal ('closing', 'closed', 'opening' or 'opened').
+  settings: Object // The modal specific settings.
   trigger: HTMLElement, // The trigger HTML element that opened the modal.
   target: HTMLElement, // The modal HTML element.
   dialog: HTMLElement // The modal dialog JS instance.
@@ -716,6 +722,7 @@ An array where all modal objects are stored when registered. Each modal object c
   deregister: Function // Method to deregister this modal.
   teleport: Function // Method to teleport this modal.
   teleportReturn: Function // Method to return this modal to its previous location.
+  getSetting: Function // Method that returns either a modal specific setting or global modal setting.
 }
 ```
 
