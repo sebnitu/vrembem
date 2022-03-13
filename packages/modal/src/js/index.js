@@ -15,7 +15,6 @@ export default class Modal extends Collection {
     super();
     this.defaults = defaults;
     this.settings = { ...this.defaults, ...options };
-    this.busy = false;
     this.memory = {};
     this.stack = [];
     this.focusTrap = new FocusTrap();

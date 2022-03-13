@@ -38,9 +38,6 @@ export async function open(query, transition) {
 
   // If modal is closed.
   if (modal.state === 'closed') {
-    // Set busy flag to true.
-    this.busy = true;
-
     // Update modal state.
     modal.state = 'opening';
 
@@ -75,9 +72,6 @@ export async function open(query, transition) {
       detail: this,
       bubbles: true
     }));
-
-    // Set busy flag to false.
-    this.busy = false;
   }
 
   // Return the modal.
