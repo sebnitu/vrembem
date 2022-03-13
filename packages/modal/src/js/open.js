@@ -8,10 +8,10 @@ export async function open(query, transition) {
   const modal = getModal.call(this, query);
 
   // Get the modal configuration.
-  const config = { ...this.settings, ...modal.settings }
+  const config = { ...this.settings, ...modal.settings };
 
   // Add transition parameter to configuration.
-  if (transition != undefined) config.transition = transition;
+  if (transition !== undefined) config.transition = transition;
 
   // Check if modal is already in the stack.
   const index = this.stack.findIndex((entry) => {

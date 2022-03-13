@@ -46,7 +46,7 @@ export async function register(target, dialog) {
       }
     },
     getSetting(key) {
-      return (this.settings.hasOwnProperty(key)) ? this.settings[key] : root.settings[key];
+      return (this.settings[key] !== undefined) ? this.settings[key] : root.settings[key];
     }
   };
 
