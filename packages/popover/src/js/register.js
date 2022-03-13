@@ -27,7 +27,7 @@ export async function register(trigger, target) {
   };
 
   // Setup the popover object.
-  const item = {
+  const entry = {
     id: target.id,
     state: 'closed',
     trigger: trigger,
@@ -38,24 +38,24 @@ export async function register(trigger, target) {
   };
 
   // Set aria-expanded to false if trigger has aria-controls attribute.
-  if (item.trigger.hasAttribute('aria-controls')) {
-    item.trigger.setAttribute('aria-expanded', 'false');
+  if (entry.trigger.hasAttribute('aria-controls')) {
+    entry.trigger.setAttribute('aria-expanded', 'false');
   }
 
   // Setup event listeners.
-  registerEventListeners.call(this, item);
+  registerEventListeners.call(this, entry);
 
   // Add entry to collection.
-  this.collection.push(item);
+  this.collection.push(entry);
 
   // Set initial state.
-  if (item.target.classList.contains(this.settings.stateActive)) {
-    await item.open();
-    documentClick.call(this, item);
+  if (entry.target.classList.contains(this.settings.stateActive)) {
+    await entry.open();
+    documentClick.call(this, entry);
   }
 
   // Return the registered entry.
-  return item;
+  return entry;
 }
 
 export function registerEventListeners(entry) {
