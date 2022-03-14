@@ -1,46 +1,46 @@
 import { focusTarget, focusTrigger, setInert, setOverflowHidden } from '@vrembem/core/index';
 
 export function updateGlobalState(trigger) {
-  // Get the modal at the top of the stack.
-  const next = this.stack[this.stack.length - 1];
+  // Get the modal entry at the top of the stack.
+  const entry = this.stack[this.stack.length - 1];
 
-  // Set inert state.
-  setInert(!!next, this.settings.selectorInert);
+  // Set inert state based on if an entry was returned.
+  setInert(!!entry, this.settings.selectorInert);
 
-  // Set overflow state.
-  setOverflowHidden(!!next, this.settings.selectorOverflow);
+  // Set overflow state based on if an entry was returned.
+  setOverflowHidden(!!entry, this.settings.selectorOverflow);
 
   // Update the z-index of the stack.
   updateStackIndex(this.stack);
 
   // Update focus.
-  updateFocus.call(this, trigger);
+  updateFocus.call(this, trigger, entry);
 
-  // If nothing is open or opening, destroy any active focus trap.
-  if (next) {
-    // Initialize the focus trap.
-    this.focusTrap.init(next.target);
-  } else {
-    this.focusTrap.destroy();
-  }
+  // If a modal entry was returned, initialize the focus trap. Otherwise,
+  // destroy any active focus traps.
+  (entry) ? this.focusTrap.init(entry.target) : this.focusTrap.destroy();
 }
 
-export function updateFocus(trigger) {
-  // Get the modal at the top of the stack.
-  const next = this.stack[this.stack.length - 1];
-  if (next) {
-    // Get the parent modal of the modal trigger.
+export function updateFocus(trigger, entry) {
+  // If a target was provided.
+  if (entry) {
+    // Get the parent modal of the modal trigger if it exists.
     const parent = (trigger) ? trigger.closest(this.settings.selectorModal) : null;
     const parentModal = this.get(parent, 'target');
 
-    // Set focus to the trigger if parent is opened, otherwise focus target.
+    // Set focus to the trigger if it is in a parent modal and its opened.
     if (trigger && parentModal && parentModal.state === 'opened') {
       trigger.focus();
-    } else {
-      focusTarget(next.target, this.settings);
     }
-  } else {
-    // If all modals are closed, return focus to root trigger.
+
+    // Else focus the target.
+    else {
+      focusTarget(entry.target, this.settings);
+    }
+  }
+
+  // Else no target is provided, return focus to root trigger.
+  else {
     focusTrigger(this);
   }
 }
