@@ -8,7 +8,7 @@ import { open } from './open';
 import { close } from './close';
 import { closeAll } from './closeAll';
 import { replace } from './replace';
-import { updateGlobalState, updateFocus, updateStackIndex, getModalElements, getModalID } from './helpers';
+import { updateGlobalState, getModalElements, getModalID } from './helpers';
 
 export default class Modal extends Collection {
   constructor(options) {
@@ -89,8 +89,6 @@ export default class Modal extends Collection {
 
   async closeAll(exclude = false, transition) {
     const result = await closeAll.call(this, exclude, transition);
-    updateStackIndex(this.stack);
-    updateFocus.call(this);
     updateGlobalState.call(this);
     return result;
   }

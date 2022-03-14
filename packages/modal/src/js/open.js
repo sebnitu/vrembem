@@ -1,6 +1,5 @@
-import { focusTarget } from '@vrembem/core/index';
 import { openTransition } from '@vrembem/core/index';
-import { updateGlobalState, updateStackIndex, getModal } from './helpers';
+import { updateGlobalState, getModal } from './helpers';
 
 export async function open(query, transition, bulk = false) {
   // Get the modal from collection.
@@ -24,12 +23,6 @@ export async function open(query, transition, bulk = false) {
 
     // Move back to end of stack.
     this.stack.push(modal);
-
-    // Update z-index styles of stack.
-    updateStackIndex(this.stack);
-
-    // Set focus to the target.
-    focusTarget(modal.target, config);
       
     // Update global state.
     updateGlobalState.call(this);
@@ -51,15 +44,8 @@ export async function open(query, transition, bulk = false) {
     // Run the open transition.
     await openTransition(modal.target, config);
     
-    // If it isn't a bulk action.
-    if (!bulk) {
-      // Update z-index styles of stack.
-      updateStackIndex(this.stack);
-
-      // Set focus to the target.
-      focusTarget(modal.target, config);
-        
-      // Update global state.
+    // If it isn't a bulk action, update the global state.
+    if (!bulk) {   
       updateGlobalState.call(this);
     }
 

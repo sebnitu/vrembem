@@ -1,5 +1,5 @@
 import { closeTransition } from '@vrembem/core/index';
-import { updateGlobalState, updateFocus, updateStackIndex, getModal } from './helpers';
+import { updateGlobalState, getModal } from './helpers';
 
 export async function close(query, transition, bulk = false) {
   // Get the modal from collection, or top modal in stack if no query is provided.
@@ -35,14 +35,8 @@ export async function close(query, transition, bulk = false) {
 
     // Update focus and global state if it isn't a bulk action.
     if (!bulk) {
-      // Update the z-index since they may be out of sync.
-      updateStackIndex(this.stack);
-
-      // Update focus.
-      updateFocus.call(this, modal.trigger);
-
       // Update the global state
-      updateGlobalState.call(this);
+      updateGlobalState.call(this, modal.trigger);
 
       // Clear the stored trigger.
       modal.trigger = null;

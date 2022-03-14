@@ -1,6 +1,6 @@
 import { focusTarget, focusTrigger, setInert, setOverflowHidden } from '@vrembem/core/index';
 
-export function updateGlobalState() {
+export function updateGlobalState(trigger) {
   // Get the modal at the top of the stack.
   const next = this.stack[this.stack.length - 1];
 
@@ -9,6 +9,12 @@ export function updateGlobalState() {
 
   // Set overflow state.
   setOverflowHidden(!!next, this.settings.selectorOverflow);
+
+  // Update the z-index of the stack.
+  updateStackIndex(this.stack);
+
+  // Update focus.
+  updateFocus.call(this, trigger);
 
   // If nothing is open or opening, destroy any active focus trap.
   if (next) {
@@ -19,7 +25,7 @@ export function updateGlobalState() {
   }
 }
 
-export function updateFocus(trigger = null) {
+export function updateFocus(trigger) {
   // Get the modal at the top of the stack.
   const next = this.stack[this.stack.length - 1];
   if (next) {
