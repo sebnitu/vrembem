@@ -22,7 +22,7 @@
     "watch:vb": "lerna run watch --scope=vrembem --parallel"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.5",
+    "@babel/core": "^7.17.7",
     "@babel/preset-env": "^7.16.11",
     "@testing-library/dom": "^8.11.3",
     "@testing-library/jest-dom": "^5.16.2",
@@ -31,7 +31,7 @@
     "concurrently": "^7.0.0",
     "coveralls": "^3.1.1",
     "del-cli": "^4.0.1",
-    "eslint": "^8.10.0",
+    "eslint": "^8.11.0",
     "eslint-plugin-jest": "^26.1.1",
     "jest": "^27.5.1",
     "lerna": "^4.0.0",
