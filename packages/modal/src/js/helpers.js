@@ -1,24 +1,20 @@
 import { focusTarget, focusTrigger, setInert, setOverflowHidden } from '@vrembem/core/index';
 
 export function updateGlobalState(trigger) {
-  // Get the modal entry at the top of the stack.
-  const entry = this.stack[this.stack.length - 1];
+  // Set inert state based on if a modal is active.
+  setInert(!!this.active, this.settings.selectorInert);
 
-  // Set inert state based on if an entry was returned.
-  setInert(!!entry, this.settings.selectorInert);
-
-  // Set overflow state based on if an entry was returned.
-  setOverflowHidden(!!entry, this.settings.selectorOverflow);
+  // Set overflow state based on if a modal is active.
+  setOverflowHidden(!!this.active, this.settings.selectorOverflow);
 
   // Update the z-index of the stack.
   updateStackIndex(this.stack);
 
   // Update focus.
-  updateFocus.call(this, trigger, entry);
+  updateFocus.call(this, trigger, this.active);
 
-  // If a modal entry was returned, initialize the focus trap. Otherwise,
-  // destroy any active focus traps.
-  (entry) ? this.focusTrap.init(entry.target) : this.focusTrap.destroy();
+  // If a modal is active, initialize focus trap else destroy active traps.
+  (this.active) ? this.focusTrap.init(this.active.target) : this.focusTrap.destroy();
 }
 
 export function updateFocus(trigger, entry) {

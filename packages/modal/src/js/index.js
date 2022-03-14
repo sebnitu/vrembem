@@ -23,6 +23,10 @@ export default class Modal extends Collection {
     if (this.settings.autoInit) this.init();
   }
 
+  get active() {
+    return this.stack[this.stack.length - 1];
+  }
+
   async init(options) {
     // Update settings with passed options.
     if (options) this.settings = { ...this.settings, ...options };

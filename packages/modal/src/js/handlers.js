@@ -39,11 +39,8 @@ export async function handleClick(event) {
 export function handleKeydown(event) {
   // If escape key was pressed.
   if (event.key === 'Escape') {
-    // Query for an open modal.
-    const modal = this.stack[this.stack.length - 1];
-
     // If a modal is opened and not required, close the modal.
-    if (modal && !modal.dialog.matches(this.settings.selectorRequired)) {
+    if (this.active && !this.active.dialog.matches(this.settings.selectorRequired)) {
       return this.close();
     }
   }

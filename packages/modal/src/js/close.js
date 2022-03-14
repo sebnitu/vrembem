@@ -3,7 +3,7 @@ import { updateGlobalState, getModal } from './helpers';
 
 export async function close(query, transition, bulk = false) {
   // Get the modal from collection, or top modal in stack if no query is provided.
-  const modal = (query) ? getModal.call(this, query) : this.stack[this.stack.length - 1];
+  const modal = (query) ? getModal.call(this, query) : this.active;
 
   // If a modal exists and its state is opened.
   if (modal && modal.state === 'opened') {
