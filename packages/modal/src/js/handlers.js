@@ -1,6 +1,6 @@
 import { getModalID } from './helpers';
 
-export async function handlerClick(event) {
+export async function handleClick(event) {
   // If a open or replace button were clicked, open or replace the modal.
   let trigger = event.target.closest(
     `[data-${this.settings.dataOpen}], [data-${this.settings.dataReplace}]`
@@ -36,7 +36,7 @@ export async function handlerClick(event) {
   }
 }
 
-export function handlerKeydown(event) {
+export function handleKeydown(event) {
   // If escape key was pressed.
   if (event.key === 'Escape') {
     // Query for an open modal.

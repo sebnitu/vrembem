@@ -1,9 +1,8 @@
-import { setInert, setOverflowHidden } from '@vrembem/core/index';
 import { focusTarget } from '@vrembem/core/index';
 import { openTransition } from '@vrembem/core/index';
-import { updateStackIndex, getModal } from './helpers';
+import { updateGlobalState, updateStackIndex, getModal } from './helpers';
 
-export async function open(query, transition) {
+export async function open(query, transition, bulk = false) {
   // Get the modal from collection.
   const modal = getModal.call(this, query);
 
@@ -29,11 +28,11 @@ export async function open(query, transition) {
     // Update z-index styles of stack.
     updateStackIndex(this.stack);
 
-    // Initialize the focus trap.
-    this.focusTrap.init(modal.target);
-
     // Set focus to the target.
     focusTarget(modal.target, config);
+      
+    // Update global state.
+    updateGlobalState.call(this);
   }
 
   // If modal is closed.
@@ -49,20 +48,20 @@ export async function open(query, transition) {
     // Store modal in stack array.
     this.stack.push(modal);
 
-    // Set inert state.
-    setInert(true, config.selectorInert);
-
-    // Set overflow state.
-    setOverflowHidden(true, config.selectorOverflow);
-
     // Run the open transition.
     await openTransition(modal.target, config);
+    
+    // If it isn't a bulk action.
+    if (!bulk) {
+      // Update z-index styles of stack.
+      updateStackIndex(this.stack);
 
-    // Initialize the focus trap.
-    this.focusTrap.init(modal.target);
-
-    // Set focus to the target.
-    focusTarget(modal.target, config);
+      // Set focus to the target.
+      focusTarget(modal.target, config);
+        
+      // Update global state.
+      updateGlobalState.call(this);
+    }
 
     // Update modal state.
     modal.state = 'opened';

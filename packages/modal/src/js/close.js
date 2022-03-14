@@ -1,6 +1,5 @@
-import { setInert, setOverflowHidden } from '@vrembem/core/index';
 import { closeTransition } from '@vrembem/core/index';
-import { updateFocus, updateStackIndex, getModal } from './helpers';
+import { updateGlobalState, updateFocus, updateStackIndex, getModal } from './helpers';
 
 export async function close(query, transition, bulk = false) {
   // Get the modal from collection, or top modal in stack if no query is provided.
@@ -20,17 +19,8 @@ export async function close(query, transition, bulk = false) {
     // Remove focus from active element.
     document.activeElement.blur();
 
-    // Set inert state.
-    setInert(false, config.selectorInert);
-
-    // Set overflow state.
-    setOverflowHidden(false, config.selectorOverflow);
-
     // Run the close transition.
     await closeTransition(modal.target, config);
-
-    // Destroy the focus trap.
-    this.focusTrap.destroy();
 
     // Remove z-index styles.
     modal.target.style.zIndex = null;
@@ -43,13 +33,16 @@ export async function close(query, transition, bulk = false) {
     // Remove modal from stack array.
     this.stack.splice(index, 1);
 
-    // Update the focus if it isn't a bulk action.
+    // Update focus and global state if it isn't a bulk action.
     if (!bulk) {
       // Update the z-index since they may be out of sync.
       updateStackIndex(this.stack);
 
       // Update focus.
       updateFocus.call(this, modal.trigger);
+
+      // Update the global state
+      updateGlobalState.call(this);
 
       // Clear the stored trigger.
       modal.trigger = null;

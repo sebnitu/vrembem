@@ -1,12 +1,28 @@
-import { focusTarget, focusTrigger } from '@vrembem/core/index';
+import { focusTarget, focusTrigger, setInert, setOverflowHidden } from '@vrembem/core/index';
 
-export function updateFocus(trigger = null) {
-  // Re-activate focusTrap on next modal in stack.
+export function updateGlobalState() {
+  // Get the modal at the top of the stack.
   const next = this.stack[this.stack.length - 1];
+
+  // Set inert state.
+  setInert(!!next, this.settings.selectorInert);
+
+  // Set overflow state.
+  setOverflowHidden(!!next, this.settings.selectorOverflow);
+
+  // If nothing is open or opening, destroy any active focus trap.
   if (next) {
     // Initialize the focus trap.
     this.focusTrap.init(next.target);
+  } else {
+    this.focusTrap.destroy();
+  }
+}
 
+export function updateFocus(trigger = null) {
+  // Get the modal at the top of the stack.
+  const next = this.stack[this.stack.length - 1];
+  if (next) {
     // Get the parent modal of the modal trigger.
     const parent = (trigger) ? trigger.closest(this.settings.selectorModal) : null;
     const parentModal = this.get(parent, 'target');
