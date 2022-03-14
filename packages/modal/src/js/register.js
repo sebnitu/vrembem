@@ -75,9 +75,6 @@ export async function register(target, dialog) {
     entry.dialog.setAttribute('tabindex', '-1');
   }
 
-  // Add the default state class.
-  entry.target.classList.add(this.settings.stateClosed);
-
   // Teleport modal if a reference has been set.
   if (entry.getSetting('teleport')) {
     entry.teleport();
@@ -85,6 +82,18 @@ export async function register(target, dialog) {
 
   // Add entry to collection.
   this.collection.push(entry);
+
+  // Setup initial state.
+  if (entry.target.classList.contains(this.settings.stateOpened)) {
+    // Open modal with transitions disabled.
+    open.call(this, entry, false);
+  } else {
+    // Remove transition state classes.
+    entry.target.classList.remove(this.settings.stateOpening);
+    entry.target.classList.remove(this.settings.stateClosing);
+    // Add closed state class.
+    entry.target.classList.add(this.settings.stateClosed);
+  }
 
   // Return the registered entry.
   return entry;

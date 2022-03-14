@@ -27,6 +27,18 @@ const markupMulti = `
   </div>
 `;
 
+const markupPreOpened = `
+  <main>
+    <button data-modal-open="modal-default">Modal Default</button>
+    <div id="modal-default" class="modal is-opened">
+      <div class="modal__dialog">
+        <button data-modal-close>Close</button>
+      </div>
+    </div>
+  </main>
+  <div class="modals"></div>
+`;
+
 describe('init() & destroy()', () => {
   let modal, entry, el, btnOpen;
 
@@ -145,6 +157,22 @@ describe('register() & deregister()', () => {
   it('should return collection if deregister is run non-existent modal', async () => {
     const result = await modal.deregister('asdf');
     expect(result).toBe(modal.collection);
+  });
+
+  it('should open and update global state if modal already has opened class', async () => {
+    document.body.innerHTML = markupPreOpened;
+    const main = document.querySelector('main');
+    modal = new Modal({
+      selectorInert: 'main',
+      selectorOverflow: 'body, main',
+      teleport: '.modals'
+    });
+    await modal.init();
+    expect(document.body.style.overflow).toBe('hidden');
+    expect(main).toHaveAttribute('aria-hidden', 'true');
+    expect(main.inert).toBe(true);
+    expect(main.style.overflow).toBe('hidden');
+    expect(modal.get('modal-default').state).toBe('opened');
   });
 });
 
