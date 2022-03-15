@@ -1,6 +1,6 @@
 import { focusTarget, focusTrigger, setInert, setOverflowHidden } from '@vrembem/core/index';
 
-export function updateGlobalState(trigger) {
+export function updateGlobalState() {
   // Set inert state based on if a modal is active.
   setInert(!!this.active, this.settings.selectorInert);
 
@@ -9,35 +9,18 @@ export function updateGlobalState(trigger) {
 
   // Update the z-index of the stack.
   updateStackIndex(this.stack);
-
-  // Update focus.
-  updateFocus.call(this, trigger, this.active);
-
-  // If a modal is active, initialize focus trap else destroy active traps.
-  (this.active) ? this.focusTrap.init(this.active.target) : this.focusTrap.destroy();
 }
 
-export function updateFocus(trigger, entry) {
-  // If a target was provided.
-  if (entry) {
-    // Get the parent modal of the modal trigger if it exists.
-    const parent = (trigger) ? trigger.closest(this.settings.selectorModal) : null;
-    const parentModal = this.get(parent, 'target');
-
-    // Set focus to the trigger if it is in a parent modal and its opened.
-    if (trigger && parentModal && parentModal.state === 'opened') {
-      trigger.focus();
-    }
-
-    // Else focus the target.
-    else {
-      focusTarget(entry.target, this.settings);
-    }
-  }
-
-  // Else no target is provided, return focus to root trigger.
-  else {
+export function updateFocusState() {
+  // Check if there's an active modal
+  if (this.active) {
+    // Set focus and init focus trap on active modal.
+    focusTarget(this.active.target, this.settings);
+    this.focusTrap.init(this.active.target);
+  } else {
+    // Set focus to root trigger and destroy focus trap.
     focusTrigger(this);
+    this.focusTrap.destroy();
   }
 }
 

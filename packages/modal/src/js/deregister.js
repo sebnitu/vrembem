@@ -21,7 +21,9 @@ export async function deregister(obj, close = true) {
       });
 
       // Remove modal from stack array.
-      this.stack.splice(stackIndex, 1);
+      if (stackIndex >= 0) {
+        this.stack.splice(stackIndex, 1);
+      }
     }
 
     // Return teleported modal if a reference has been set.

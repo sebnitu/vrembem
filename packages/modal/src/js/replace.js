@@ -1,6 +1,6 @@
 import { open } from './open';
 import { closeAll } from './closeAll';
-import { getModal, updateGlobalState } from './helpers';
+import { updateFocusState, getModal } from './helpers';
 
 export async function replace(query, transition) {
   // Get the modal from collection.
@@ -20,8 +20,8 @@ export async function replace(query, transition) {
     await Promise.all([resultOpened, resultClosed]);
   }
 
-  // Update the global state.
-  updateGlobalState.call(this, resultOpened.trigger);
+  // Update the focus state.
+  updateFocusState.call(this);
 
   // Return the modals there were opened and closed.
   return { opened: resultOpened, closed: resultClosed };

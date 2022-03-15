@@ -272,7 +272,6 @@ Returns an array where all modal objects are stored when registered. Each modal 
   id: String, // The unique ID of the modal.
   state: String, // The current state of the modal ('closing', 'closed', 'opening' or 'opened').
   settings: Object // The modal specific settings.
-  trigger: HTMLElement, // The trigger HTML element that opened the modal.
   target: HTMLElement, // The modal HTML element.
   dialog: HTMLElement // The modal dialog JS instance.
   returnRef: HTMLComment // The return reference left when a modal is teleported.

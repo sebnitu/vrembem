@@ -55,7 +55,6 @@ export async function register(target, dialog) {
     id: target.id,
     state: 'closed',
     settings: getConfig.call(this, target),
-    trigger: null,
     target: target,
     dialog: dialog,
     returnRef: null,
@@ -86,7 +85,7 @@ export async function register(target, dialog) {
   // Setup initial state.
   if (entry.target.classList.contains(this.settings.stateOpened)) {
     // Open modal with transitions disabled.
-    open.call(this, entry, false);
+    entry.open(false);
   } else {
     // Remove transition state classes.
     entry.target.classList.remove(this.settings.stateOpening);

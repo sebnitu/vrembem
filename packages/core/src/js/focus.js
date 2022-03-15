@@ -10,7 +10,7 @@ export const focusTarget = (target, settings) => {
   }
 };
 
-export const focusTrigger = (obj = null) => {
+export const focusTrigger = (obj) => {
   if (!obj || !obj.memory || !obj.memory.trigger) return;
   obj.memory.trigger.focus();
   obj.memory.trigger = null;

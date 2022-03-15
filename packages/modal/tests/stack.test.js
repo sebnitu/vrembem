@@ -67,12 +67,6 @@ test('should have set focus to the modal dialog of the last modal opened', () =>
   expect(document.activeElement).toBe(modal3.dialog);
 });
 
-test('should have stored all the trigger elements in collection entries', () => {
-  expect(modal1.trigger).toBe(btn1);
-  expect(modal2.trigger).toBe(btn2);
-  expect(modal3.trigger).toBe(btn3);
-});
-
 test('should correctly update the z-index styles when modal stack order is changed', async () => {
   btn4.click();
   await delay();
@@ -88,14 +82,12 @@ test('should have set focus to the correct modal dialog when stack order is chan
 
 test('should close the currently opened modal at the top of the stack', async () => {
   expect(modal2.state).toBe('opened');
-  expect(modal2.trigger).toBe(btn4);
 
   modal.close();
   await delay();
 
   expect(modal2.state).toBe('closed');
-  expect(modal2.trigger).toBe(null);
-  expect(document.activeElement).toBe(btn4);
+  expect(document.activeElement).toBe(modal3.dialog);
 });
 
 test('should update the stack array and z-index of remaining active modals', () => {
@@ -110,13 +102,11 @@ test('should update the stack array and z-index of remaining active modals', () 
 
 test('should close the currently opened modal and update stack array and z-index styles', async () => {
   expect(modal3.state).toBe('opened');
-  expect(modal3.trigger).toBe(btn3);
 
   modal.close();
   await delay();
 
   expect(modal3.state).toBe('closed');
-  expect(modal3.trigger).toBe(null);
   expect(document.activeElement).toBe(modal1.dialog);
 
   expect(modal.stack.length).toBe(1);
@@ -129,13 +119,11 @@ test('should close the currently opened modal and update stack array and z-index
 
 test('should focus root trigger when the last modal in stack is closed', async () => {
   expect(modal1.state).toBe('opened');
-  expect(modal1.trigger).toBe(btn1);
 
   modal.close();
   await delay();
 
   expect(modal1.state).toBe('closed');
-  expect(modal1.trigger).toBe(null);
   expect(document.activeElement).toBe(btn1);
 
   expect(modal.stack.length).toBe(0);
@@ -161,4 +149,23 @@ test('should close all open modals when close button with value of * is set', as
   expect(modal1.state).toBe('closed');
   expect(modal2.state).toBe('closed');
   expect(modal3.state).toBe('closed');
+});
+
+test('should properly replace all modal modals with the trigger modal', async () => {
+  btn1.click();
+  await delay();
+  btn2.click();
+  await delay();
+
+  expect(modal.stack.length).toBe(2);
+  expect(modal1.state).toBe('opened');
+  expect(modal2.state).toBe('opened');
+  expect(modal3.state).toBe('closed');
+
+  await modal.replace('modal-3');
+
+  expect(modal.stack.length).toBe(1);
+  expect(modal1.state).toBe('closed');
+  expect(modal2.state).toBe('closed');
+  expect(modal3.state).toBe('opened');
 });

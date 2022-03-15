@@ -8,7 +8,7 @@ import { open } from './open';
 import { close } from './close';
 import { closeAll } from './closeAll';
 import { replace } from './replace';
-import { updateGlobalState, getModalElements, getModalID } from './helpers';
+import { updateGlobalState, updateFocusState, getModalElements, getModalID } from './helpers';
 
 export default class Modal extends Collection {
   constructor(options) {
@@ -16,8 +16,20 @@ export default class Modal extends Collection {
     this.defaults = defaults;
     this.settings = { ...this.defaults, ...options };
     this.memory = {};
-    this.stack = [];
     this.focusTrap = new FocusTrap();
+
+    // Setup a proxy for stack array.
+    this.stack = new Proxy([], {
+      set: (target, property, value) => {
+        target[property] = value;
+        // Update global state whenever the length property of stack changes.
+        if (property === 'length') {
+          updateGlobalState.call(this);
+        }
+        return true;
+      }
+    });
+
     this.__handleClick = handleClick.bind(this);
     this.__handleKeydown = handleKeydown.bind(this);
     if (this.settings.autoInit) this.init();
@@ -93,7 +105,7 @@ export default class Modal extends Collection {
 
   async closeAll(exclude = false, transition) {
     const result = await closeAll.call(this, exclude, transition);
-    updateGlobalState.call(this);
+    updateFocusState.call(this);
     return result;
   }
 }

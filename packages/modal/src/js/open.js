@@ -1,5 +1,5 @@
 import { openTransition } from '@vrembem/core/index';
-import { updateGlobalState, getModal } from './helpers';
+import { updateFocusState, getModal } from './helpers';
 
 export async function open(query, transition, bulk = false) {
   // Get the modal from collection.
@@ -23,9 +23,6 @@ export async function open(query, transition, bulk = false) {
 
     // Move back to end of stack.
     this.stack.push(modal);
-      
-    // Update global state.
-    updateGlobalState.call(this);
   }
 
   // If modal is closed.
@@ -43,21 +40,21 @@ export async function open(query, transition, bulk = false) {
 
     // Run the open transition.
     await openTransition(modal.target, config);
-    
-    // If it isn't a bulk action, update the global state.
-    if (!bulk) {   
-      updateGlobalState.call(this);
-    }
 
     // Update modal state.
     modal.state = 'opened';
-
-    // Dispatch custom opened event.
-    modal.target.dispatchEvent(new CustomEvent(config.customEventPrefix + 'opened', {
-      detail: this,
-      bubbles: true
-    }));
   }
+
+  // Update the focus state if this is not a bulk action.
+  if (!bulk) {
+    updateFocusState.call(this);
+  }
+
+  // Dispatch custom opened event.
+  modal.target.dispatchEvent(new CustomEvent(config.customEventPrefix + 'opened', {
+    detail: this,
+    bubbles: true
+  }));
 
   // Return the modal.
   return modal;
