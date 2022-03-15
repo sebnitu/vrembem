@@ -27,11 +27,11 @@ const modal = new Modal({ autoInit: true });
 
 ### Markup
 
-Modals and their dialogs are composed using classes and data attributes for their triggers. The basic structure of a modal is the `modal` element and a `modal__dialog` child element. There are three types of modal triggers, each defined by a data attribute:
+Modals are composed using classes and data attributes for their triggers. The basic structure of a modal is an element with the `modal` class and an `id` containing a child element with the `modal__dialog` class. There are three types of modal triggers, each defined by a data attribute:
 
-- `data-modal-open` - Opens a modal. Should take the id of the modal it's meant to open.
-- `data-modal-close` - Closes a modal. If left value-less, it'll close the last opened modal. Can also take a modal id or `"*"` to close all open modals.
-- `data-modal-replace` - Replaces currently opened modal(s) with the modal of the id provided.
+- `data-modal-open`: Opens a modal. Should take the id of the modal it's meant to open. Will cause modals to stack if triggered from an already opened modal.
+- `data-modal-close`: Closes a modal. If left value-less, it'll close the last opened modal. Can also take a modal id to close a specific modal, or `"*"` to close all open modals.
+- `data-modal-replace`: Replaces currently opened modal(s) with the modal of the id provided.
 
 ```html
 <!-- Modal trigger -->
@@ -48,7 +48,7 @@ Modals and their dialogs are composed using classes and data attributes for thei
 </div>
 ```
 
-Modal dialogs are the dialog elements within a modal and are defined using the `modal__dialog` class. Modal dialogs should also be given the `role` attribute with a value of either [`dialog`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/dialog_role) or [`alertdialog`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/alertdialog_role) and the `aria-modal` attribute with a value of `true`. Authors should also consider providing modal dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes to further improve accessibility.
+Modal dialogs—the dialog elements within a modal—are defined using the `modal__dialog` class. Modal dialogs should also be given the `role` attribute with a value of either [`dialog`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/dialog_role) or [`alertdialog`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/alertdialog_role) and the `aria-modal` attribute with a value of `true`. Authors should also consider providing modal dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes to further improve accessibility.
 
 ```html
 <div id="modal-id" class="modal">
@@ -70,7 +70,7 @@ Modal dialogs are the dialog elements within a modal and are defined using the `
 
 #### Focus Management
 
-Modal dialogs are given focus when they're opened by default as long as the `setTabindex` option is set to `true` or if the drawer dialog has `tabindex="-1"` set manually. If focus on a specific element inside a modal is preferred, give that element the `data-focus` attribute. Focus is returned to the element that activated the modal once the modal is closed.
+Modal dialogs are given focus when they're opened as long as the `setTabindex` option is set to `true` or if the modal dialog has `tabindex="-1"` set manually. If focus on a specific element inside a modal is preferred, give that element the `data-focus` attribute. Focus is returned to the element that initially triggered the modal once closed.
 
 ```html
 <!-- Focus is returned to the trigger when a modal is closed -->
@@ -265,7 +265,7 @@ $size-scale: (
 
 ### `modal.collection`
 
-An array where all modal objects are stored when registered. Each modal object contains the following properties:
+Returns an array where all modal objects are stored when registered. Each modal object contains the following properties:
 
 ```js
 {
@@ -285,6 +285,26 @@ An array where all modal objects are stored when registered. Each modal object c
   getSetting: Function // Method that returns either a modal specific setting or global modal setting.
 }
 ```
+
+**Returns**
+
+- `Array` An array of collection entries.
+
+### `modal.stack`
+
+Returns an array of all currently opened modals. These are sorted in the order they're added to the array (first item was opened first, last item was opened last).
+
+**Returns**
+
+- `Array` An array of collection entries.
+
+### `modal.active`
+
+Returns the currently active modal or the modal at the top of the stack if multiple modals are open. Will return `undefined` if no modals are open.
+
+**Returns**
+
+- `Object || undefined` Collection entry
 
 ### `modal.init(options)`
 
@@ -343,7 +363,7 @@ Registers a modal into the collection. This also sets the initial state and appl
 
 **Parameters**
 
-- `query [String | Object]` A modal ID or an HTML element of either the modal or its trigger.
+- `query [String || Object]` A modal ID or an HTML element of either the modal or its trigger.
 
 **Returns**
 
@@ -360,7 +380,7 @@ Deregister the modal from the collection. This closes the modal if it's opened, 
 
 **Parameters**
 
-- `query [String | Object]` A modal ID or an HTML element of either the modal or its trigger.
+- `query [String || Object]` A modal ID or an HTML element of either the modal or its trigger.
 
 **Returns**
 
@@ -408,12 +428,12 @@ Used to retrieve a registered modal object from the collection. The value should
 
 **Parameters**
 
-- `value [String | Object]` The value to search for within the collection.
+- `value [String || Object]` The value to search for within the collection.
 - `key [String] (optional) (default 'id')` The property key to search the value against.
 
 **Returns**
 
-- `Object | undefined` The first element in the collection that matches the provided query and key. Otherwise, undefined is returned.
+- `Object || undefined` The first element in the collection that matches the provided query and key. Otherwise, undefined is returned.
 
 ```js
 const entry = modal.get('modal-id');

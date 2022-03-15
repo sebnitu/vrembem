@@ -9,18 +9,15 @@ const checkbox = new vb.Checkbox({ autoInit: true });
 
 const drawer = new vb.Drawer({
   autoInit: true,
-  selectorInert: '[role="main"]',
-  selectorOverflow: 'body, [role="main"]'
+  selectorInert: 'main',
+  selectorOverflow: 'body, main'
 });
 
 const modal = new vb.Modal({
   autoInit: true,
   selectorInert: '.page',
-  selectorOverflow: 'body, [role="main"]',
-  moveModals: {
-    type: 'append',
-    ref: '[role="modals-container"]'
-  }
+  selectorOverflow: 'body, main',
+  teleport: '.modals-container'
 });
 
 const popover = new vb.Popover({
