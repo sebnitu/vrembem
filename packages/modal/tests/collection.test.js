@@ -20,10 +20,9 @@ describe('register() & entry.deregister()', () => {
     el2 = document.querySelector('#modal-2');
   });
 
-  it('should create collection entry when register is called with modal ID', () => {
+  it('should create collection entry when register is called with modal ID', async () => {
     expect(modal.collection.length).toBe(0);
-    modal.register('modal-1');
-    entry1 = modal.get('modal-1');
+    entry1 = await modal.register('modal-1');
     expect(modal.collection.length).toBe(1);
     expect(entry1.target).toBe(el1);
   });
@@ -34,29 +33,28 @@ describe('register() & entry.deregister()', () => {
     expect(entry1.dialog.getAttribute('tabindex')).toBe('-1');
   });
 
-  it('should register modal without tabindex if setTabindex is disabled', () => {
+  it('should register modal without tabindex if setTabindex is disabled', async () => {
     modal.settings.setTabindex = false;
-    modal.register('modal-2');
-    entry2 = modal.get('modal-2');
+    entry2 = await modal.register('modal-2');
     expect(entry1.dialog.getAttribute('tabindex')).toBe('-1');
     expect(entry2.target).toBe(el2);
   });
 
-  it('should not be able to register the same modal multiple times', () => {
+  it('should not be able to register the same modal multiple times', async () => {
     expect(modal.collection.length).toBe(2);
     expect(modal.collection[0].id).toBe('modal-1');
     expect(modal.collection[1].id).toBe('modal-2');
-    modal.register('modal-1');
+    await modal.register('modal-1');
     expect(modal.collection.length).toBe(2);
     expect(modal.collection[0].id).toBe('modal-2');
     expect(modal.collection[1].id).toBe('modal-1');
   });
 
-  it('should remove entry from collection when entry method deregister is run', () => {
+  it('should remove entry from collection when entry method deregister is run', async () => {
     entry1 = modal.get('modal-1');
     entry2 = modal.get('modal-2');
-    entry1.deregister();
-    entry2.deregister();
+    await entry1.deregister();
+    await entry2.deregister();
     expect(modal.collection.length).toBe(0);
   });
 });
@@ -64,12 +62,10 @@ describe('register() & entry.deregister()', () => {
 describe('entry.open() & entry.close() & entry.replace()', () => {
   let modal;
 
-  beforeAll(() => {
+  beforeAll(async () => {
     document.body.innerHTML = markup;
-    modal = new Modal({
-      autoInit: true,
-      transition: false
-    });
+    modal = new Modal({ transition: false });
+    await modal.init();
   });
 
   it('should open modal with transitions disabled', async () => {

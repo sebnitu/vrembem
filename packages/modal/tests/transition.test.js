@@ -81,10 +81,8 @@ test('should apply custom state classes', async () => {
 test('should not apply transition classes when transitions are disabled', async () => {
   document.body.innerHTML = markup;
   const el = document.querySelector('.modal');
-  const modal = new Modal({
-    autoInit: true,
-    transition: false
-  });
+  const modal = new Modal({ transition: false });
+  await modal.init();
   await modal.open('modal-default');
   expect(el).toHaveClass('is-opened');
   expect(el.classList.length).toBe(2);

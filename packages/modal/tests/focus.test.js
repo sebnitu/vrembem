@@ -82,7 +82,8 @@ test('should remember initial trigger when opening modal through another modal',
 
 test('should retain focus on modal if nothing inner is focusable', async () => {
   document.body.innerHTML = markup;
-  const modal = new Modal({ autoInit: true });
+  const modal = new Modal();
+  await modal.init();
   const elModal = document.querySelector('#modal-empty');
   const dialog = elModal.querySelector('.modal__dialog');
   modal.open('modal-empty');

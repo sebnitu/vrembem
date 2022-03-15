@@ -1,4 +1,4 @@
-export async function deregister(obj) {
+export async function deregister(obj, close = true) {
   // Return collection if nothing was passed.
   if (!obj) return this.collection;
 
@@ -12,8 +12,16 @@ export async function deregister(obj) {
     const entry = this.collection[index];
 
     // If entry is in the opened state, close it.
-    if (entry.state === 'opened') {
+    if (close && entry.state === 'opened') {
       await entry.close(false);
+    } else {
+      // Get index of modal in stack array.
+      const stackIndex = this.stack.findIndex((item) => {
+        return (item.id === entry.id);
+      });
+
+      // Remove modal from stack array.
+      this.stack.splice(stackIndex, 1);
     }
 
     // Return teleported modal if a reference has been set.

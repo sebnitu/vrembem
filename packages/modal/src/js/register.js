@@ -8,7 +8,7 @@ import { getConfig } from './helpers';
 
 export async function register(target, dialog) {
   // Deregister entry incase it has already been registered.
-  deregister.call(this, target);
+  await deregister.call(this, target, false);
 
   // Save root this for use inside methods API.
   const root = this;

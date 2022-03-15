@@ -25,11 +25,9 @@ document.body.innerHTML = `
   </div>
 `;
 
-beforeAll(() => {
-  modal = new Modal({
-    autoInit: true,
-    transition: false
-  });
+beforeAll(async () => {
+  modal = new Modal({ transition: false });
+  await modal.init();
 
   modal1 = modal.get('modal-1');
   modal2 = modal.get('modal-2');

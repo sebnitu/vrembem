@@ -174,14 +174,25 @@ describe('register() & deregister()', () => {
     expect(main.style.overflow).toBe('hidden');
     expect(modal.get('modal-default').state).toBe('opened');
   });
+
+  it('re-registering a modal that is already open should retain the open state', async () => {
+    document.body.innerHTML = markupPreOpened;
+    modal = new Modal({ teleport: '.modals' });
+    await modal.init();
+    await modal.open('modal-default');
+    expect(modal.active.id).toBe('modal-default');
+    await modal.register('modal-default');
+    expect(modal.active.id).toBe('modal-default');
+  });
 });
 
 describe('open() & close()', () => {
   let modal, el, entry;
 
-  beforeAll(() => {
+  beforeAll(async () => {
     document.body.innerHTML = markup;
-    modal = new Modal({ autoInit: true });
+    modal = new Modal();
+    await modal.init();
     el = document.querySelector('.modal');
     entry = modal.get('modal-default');
   });
@@ -352,7 +363,8 @@ describe('replace()', () => {
 describe('closeAll()', () => {
   it('should close all open modals', async () => {
     document.body.innerHTML = markupMulti;
-    const modal = new Modal({ autoInit: true });
+    const modal = new Modal();
+    await modal.init();
 
     modal.open('modal-1');
     modal.open('modal-2');
