@@ -29,13 +29,11 @@ If you'd like to use Vrembem for prototyping or just want to take it for a test 
 <link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.css">
 
 <!-- Render a component -->
-<button class="link" data-modal-open="modal-id">Open modal</button>
-<div data-modal="modal-id" class="modal modal_size_sm" tabindex="-1">
-  <div class="modal__dialog padding background-white radius spacing">
-    <div class="flex flex-justify-between">
-      <p>Hello, world!</p>
-      <button data-modal-close class="link">Close</button>
-    </div>
+<button data-modal-open="modal-id" class="link">Open modal</button>
+<div id="modal-id" class="modal modal_size_sm">
+  <div class="modal__dialog dialog" role="dialog" aria-modal="true">
+    <p>Hello, world!</p>
+    <button data-modal-close class="link">Close</button>
   </div>
 </div>
 
@@ -140,8 +138,8 @@ Include the component's markup into your project. Use the [online docs](https://
 
 ```html
 <button data-modal-open="[unique-id]">Modal</button>
-<div data-modal="[unique-id]" class="modal">
-  <div data-modal-dialog class="modal__dialog">
+<div id="[unique-id]" class="modal">
+  <div class="modal__dialog" role="dialog" aria-modal="true">
     <button data-modal-close>Close</button>
     ...
   </div>
