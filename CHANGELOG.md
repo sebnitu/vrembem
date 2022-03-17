@@ -14,10 +14,32 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v1.42.1 to CHANGELOG.md
+chore(release): add v2.0.0 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
 
+## v2.0.0 (2022-03-17)
+
+#### :tada: New Feature
+* `core`, `drawer`, `modal`, `popover`
+  * [#853](https://github.com/sebnitu/vrembem/pull/853) Refactor and improve the modal JS module
+    * Modal stacking: multiple modals can now be open at the same time. Use `data-modal-replace` trigger or `modal.replace()` method for support of close to open functionality between modals.
+    * Teleport: moveModal has been removed in favor of a teleport and teleportReturn API that are now attached to each collection entries modal object.
+    * Better handling of accessibility attributes for modals (`role` and `aria-modal`).
+    * Better handling of modal specific configurations.
+    * Better handling of modal initial and document global states.
+
+#### :fire: Breaking Changes
+* `core`, `drawer`, `modal`, `popover`
+  * [#853](https://github.com/sebnitu/vrembem/pull/853) Refactor and improve the modal JS module
+    * Modals now require an `id` attribute instead of the `data-modal` data attribute. The dialog data attribute `data-modal-dialog` has also been deprecated and is no longer required.
+    * **Option changes**
+      * `moveModals.ref` => `teleport`: Takes a valid CSS selector string.
+      * `moveModals.type` => `teleportMethod`: Method options include `'after'`, `'before'`, `'append'` and `'prepend'`.
+      * `dataModal` => `selectorModal`: Takes a valid CSS selector string.
+      * `dataDialog` => `selectorDialog`: Takes a valid CSS selector string.
+      * `dataRequired` => `selectorRequired`: Takes a valid CSS selector string.
+      * `dataFocus` => `selectorFocus`: Takes a valid CSS selector string (defaults to`[data-focus]`).
 
 ## v1.42.1 (2022-03-09)
 
