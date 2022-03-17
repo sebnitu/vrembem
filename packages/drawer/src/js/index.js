@@ -1,5 +1,4 @@
-import { setTabindex } from '@vrembem/core/index';
-import { FocusTrap } from '@vrembem/core/index';
+import { Collection, FocusTrap, setTabindex } from '@vrembem/core/index';
 
 import defaults from './defaults';
 import { Breakpoint } from './breakpoint';
@@ -11,14 +10,15 @@ import { stateClear, stateSave, stateSet } from './state';
 import { switchToDefault, switchToModal } from './switchTo';
 import { toggle } from './toggle';
 
-export default class Drawer {
+export default class Drawer extends Collection {
   constructor(options) {
+    super();
     this.defaults = defaults;
     this.settings = { ...this.defaults, ...options };
-    this.working = false;
     this.memory = {};
-    this.state = {};
     this.focusTrap = new FocusTrap();
+    this.working = false;
+    this.state = {};
     this.breakpoint = new Breakpoint(this);
     this.__handlerClick = handlerClick.bind(this);
     this.__handlerKeydown = handlerKeydown.bind(this);

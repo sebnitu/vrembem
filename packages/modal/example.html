@@ -13,7 +13,6 @@
   <main>
     <header class="section background-shade">
       <div class="section__container gap-y">
-
         <h1 class="text-size-lg">@vrembem/modal</h1>
         <p class="max-width-xs">
           A component for changing the mode of a page to complete a critical task. This is usually used in conjunction with the Dialog component to make modal dialogs.
@@ -112,21 +111,6 @@
                 <div class="flex flex-justify-between">
                   <p>Modal Required</p>
                   <button data-modal-close class="link">Close</button>
-                </div>
-              </div>
-            </div>
-          </li>
-
-          <li>
-            <button class="link api-open">API Open</button>
-            <div id="modal-api" class="modal">
-              <div class="modal__dialog dialog" aria-labelledby="modal-api-title">
-                <div class="dialog__header">
-                  <h2 id="modal-api-title" class="dialog__title">Modal API</h2>
-                  <button class="dialog__close link api-close">API Close</button>
-                </div>
-                <div class="dialog__body">
-                  <p>This modal is controlled using modal API calls instead of data attributes.</p>
                 </div>
               </div>
             </div>
@@ -279,7 +263,7 @@
       teleport: '.modals'
     });
 
-    console.log(modal);
+    console.log('modal:', modal);
 
     document.addEventListener('modal:opened', (event) => {
       console.log('modal:opened', {
@@ -293,16 +277,6 @@
         target: event.target,
         detail: event.detail
       });
-    });
-
-    document.addEventListener('click', () => {
-      if (event.target.classList.contains('api-open')) {
-        return modal.open('modal-api').then(console.log);
-      }
-
-      if (event.target.classList.contains('api-close')) {
-        return modal.close('modal-api').then(console.log);
-      }
     });
   </script>
 
