@@ -1,10 +1,9 @@
+import '@testing-library/jest-dom/extend-expect';
+import { delay } from './helpers/delay';
 import Popover from '../index.js';
 import { handlerClick } from '../src/js/handlers';
-import '@testing-library/jest-dom/extend-expect';
 
 let popover;
-
-jest.useFakeTimers();
 
 const keyEsc = new KeyboardEvent('keydown', {
   key: 'Escape'
@@ -31,16 +30,17 @@ const markup = `
   </div>
 `;
 
-afterEach(() => {
-  popover.destroy();
+afterEach(async () => {
+  await popover.destroy();
   popover = null;
   document.body.innerHTML = null;
 });
 
 describe('handlerClick()', () => {
-  test('should open popover if it does not contain the active class', () => {
+  it('should open popover if it does not contain the active class', async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover();
+    await popover.init();
 
     expect(popover.collection.length).toBe(2);
 
@@ -48,9 +48,10 @@ describe('handlerClick()', () => {
     expect(popover.collection[0].target).toHaveClass('is-active');
   });
 
-  test('should close popover if it contains the active class', () => {
+  it('should close popover if it contains the active class', async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover();
+    await popover.init();
 
     expect(popover.collection.length).toBe(2);
 
@@ -58,45 +59,54 @@ describe('handlerClick()', () => {
     expect(popover.collection[1].target).not.toHaveClass('is-active');
   });
 
-  test('should attach document click event listener when popover is opened', () => {
+  it('should attach document click event listener when popover is opened', async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover();
+    await popover.init();
 
     handlerClick.bind(popover, popover.collection[0])();
     expect(popover.collection[0].target).toHaveClass('is-active');
     expect(popover.collection[1].target).toHaveClass('is-active');
 
     document.querySelector('#app').click();
+    await delay();
+
     expect(popover.collection[0].target).not.toHaveClass('is-active');
     expect(popover.collection[1].target).not.toHaveClass('is-active');
   });
 });
 
 describe('handlerKeydown()', () => {
-  test('should close open popover when escape key is pressed', () => {
+  it('should close open popover when escape key is pressed', async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover();
+    await popover.init();
 
     expect(popover.collection[1].target).toHaveClass('is-active');
     document.dispatchEvent(keyEsc);
+    await delay();
     expect(popover.collection[1].target).not.toHaveClass('is-active');
   });
 
-  test('should do nothing when a non-escape key is pressed', () => {
+  it('should do nothing when a non-escape key is pressed', async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover();
+    await popover.init();
 
     expect(popover.collection[1].target).toHaveClass('is-active');
     document.dispatchEvent(keySpace);
+    await delay();
     expect(popover.collection[1].target).toHaveClass('is-active');
   });
 
-  test('should return focus to the trigger element when escape key is pressed', () => {
+  it('should return focus to the trigger element when escape key is pressed', async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover();
+    await popover.init();
+
     const button = document.querySelector('.focus-test');
 
-    expect(popover.memory.trigger).toBe(null);
+    expect(popover.memory.trigger).toBe(undefined);
     popover.collection[0].trigger.click();
     expect(popover.memory.trigger).toBe(popover.collection[0].trigger);
 
@@ -104,25 +114,30 @@ describe('handlerKeydown()', () => {
     expect(document.activeElement).toBe(button);
 
     document.dispatchEvent(keyEsc);
+    await delay();
+
     expect(document.activeElement).toBe(popover.collection[0].trigger);
     expect(popover.memory.trigger).toBe(null);
   });
 
-  test('should run close check when the tab key is pressed', () => {
+  it('should run close check when the tab key is pressed', async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover();
+    await popover.init();
 
+    expect(popover.collection.length).toBe(2);
     expect(popover.collection[1].target).toHaveClass('is-active');
     document.dispatchEvent(keyTab);
-    jest.advanceTimersByTime(100);
+    await delay();
     expect(popover.collection[1].target).not.toHaveClass('is-active');
   });
 });
 
 describe('documentClick()', () => {
-  test('should close other popover instances when a new one is toggled', () => {
+  it('should close other popover instances when a new one is toggled', async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover();
+    await popover.init();
 
     expect(popover.collection[0].target).not.toHaveClass('is-active');
     expect(popover.collection[1].target).toHaveClass('is-active');
@@ -133,9 +148,10 @@ describe('documentClick()', () => {
     expect(popover.collection[1].target).not.toHaveClass('is-active');
   });
 
-  test('should remove document event listener when popover is closed', () => {
+  it('should remove document event listener when popover is closed', async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover();
+    await popover.init();
 
     expect(popover.collection[0].target).not.toHaveClass('is-active');
     expect(popover.collection[1].target).toHaveClass('is-active');

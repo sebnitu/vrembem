@@ -25,8 +25,20 @@ $_e: var.$prefix-element;
   max-width: 100%;
   overflow: auto;
   transform: translateY(-(var.$travel));
+  transition-property: outline;
+  transition-duration: var.$transition-duration;
+  transition-timing-function: var.$transition-timing-function;
+  outline: var.$outline;
   box-shadow: var.$box-shadow;
   opacity: 0;
+
+  &:focus {
+    outline: var.$outline-focus;
+  }
+
+  &[role="alertdialog"]:focus {
+    outline: var.$outline-focus-alert;
+  }
 }
 
 .#{$_b}modal.is-closed {
@@ -67,18 +79,6 @@ $_e: var.$prefix-element;
   }
 }
 
-.#{$_b}modal.is-opening {
-  z-index: (var.$z-index + 1);
-}
-
-.#{$_b}modal.is-opened {
-  z-index: var.$z-index;
-}
-
-.#{$_b}modal.is-closing {
-  z-index: (var.$z-index - 1);
-
-  .#{$_b}modal#{$_e}dialog {
-    transform: translateY(-(var.$travel));
-  }
+.#{$_b}modal.is-closing .#{$_b}modal#{$_e}dialog {
+  transform: translateY(-(var.$travel));
 }

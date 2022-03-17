@@ -1,5 +1,5 @@
-import Popover from '../index.js';
 import '@testing-library/jest-dom/extend-expect';
+import Popover from '../index.js';
 
 let popover;
 
@@ -21,27 +21,27 @@ afterEach(() => {
 });
 
 describe('init() & destroy()', () => {
-  test('should initialize the popover module when init is run', () => {
+  it('should initialize the popover module when init is run', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     popover.init();
     expect(popover.collection.length).toBe(2);
   });
 
-  test('should auto initialize the popover module autoInit is set to true', () => {
+  it('should auto initialize the popover module autoInit is set to true', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
     expect(popover.collection.length).toBe(2);
   });
 
-  test('running init multiple times should not create duplicates in collection', () => {
+  it('running init multiple times should not create duplicates in collection', async () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
-    popover.init();
+    await popover.init();
     expect(popover.collection.length).toBe(2);
   });
 
-  test('should not attach keyboard event listener if eventListeners is set to false', () => {
+  it('should not attach keyboard event listener if eventListeners is set to false', () => {
     document.body.innerHTML = markup;
     popover = new Popover({
       autoInit: true,
@@ -57,15 +57,15 @@ describe('init() & destroy()', () => {
     expect(target).toHaveClass('is-active');
   });
 
-  test('should be able to pass options through init method', () => {
+  it('should be able to pass options through init method', async () => {
     document.body.innerHTML = markup;
     popover = new Popover({ selectorPopover: '.asdf' });
     expect(popover.settings.selectorPopover).toBe('.asdf');
-    popover.init({ selectorPopover: '.popover' });
+    await popover.init({ selectorPopover: '.popover' });
     expect(popover.settings.selectorPopover).toBe('.popover');
   });
 
-  test('should remove all event listeners and clear collection', () => {
+  it('should remove all event listeners and clear collection', async () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -73,7 +73,7 @@ describe('init() & destroy()', () => {
     const target = document.querySelector('.popover');
 
     expect(popover.collection.length).toBe(2);
-    popover.destroy();
+    await popover.destroy();
     expect(popover.collection.length).toBe(0);
     trigger.click();
     expect(target).not.toHaveClass('is-active');
@@ -81,7 +81,7 @@ describe('init() & destroy()', () => {
 });
 
 describe('initEventListeners() & destroyEventListeners()', () => {
-  test('should remove event listeners', () => {
+  it('should remove event listeners', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -94,7 +94,7 @@ describe('initEventListeners() & destroyEventListeners()', () => {
     expect(target).not.toHaveClass('is-active');
   });
 
-  test('should re-initialize event listeners', () => {
+  it('should re-initialize event listeners', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -108,7 +108,7 @@ describe('initEventListeners() & destroyEventListeners()', () => {
     expect(target).toHaveClass('is-active');
   });
 
-  test('should remove keyboard event listener', () => {
+  it('should remove keyboard event listener', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -124,7 +124,7 @@ describe('initEventListeners() & destroyEventListeners()', () => {
     expect(target).toHaveClass('is-active');
   });
 
-  test('should re-initialize keyboard event listener', () => {
+  it('should re-initialize keyboard event listener', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -143,7 +143,7 @@ describe('initEventListeners() & destroyEventListeners()', () => {
 });
 
 describe('register() & deregister()', () => {
-  test('should be able to manually register a popover', () => {
+  it('should be able to manually register a popover', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
 
@@ -158,7 +158,7 @@ describe('register() & deregister()', () => {
     expect(popover.collection[0].target).toBe(target);
   });
 
-  test('should be able to manually deregister a popover', () => {
+  it('should be able to manually deregister a popover', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -172,10 +172,16 @@ describe('register() & deregister()', () => {
     trigger.click();
     expect(target).not.toHaveClass('is-active');
   });
+
+  it('should return collection if deregister is run non-existent popover', async () => {
+    popover = new Popover({ autoInit: true });
+    const result = await popover.deregister('asdf');
+    expect(result).toBe(popover.collection);
+  });
 });
 
 describe('registerCollection() & deregisterCollection()', () => {
-  test('should remove all items from collection and their event listeners', () => {
+  it('should remove all items from collection and their event listeners', async () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -186,7 +192,7 @@ describe('registerCollection() & deregisterCollection()', () => {
     trigger.click();
     expect(target).toHaveClass('is-active');
 
-    popover.deregisterCollection();
+    await popover.deregisterCollection();
 
     expect(popover.collection.length).toBe(0);
     expect(target).not.toHaveClass('is-active');
@@ -194,7 +200,7 @@ describe('registerCollection() & deregisterCollection()', () => {
     expect(target).not.toHaveClass('is-active');
   });
 
-  test('should register all items into collection and add their event listeners', () => {
+  it('should register all items into collection and add their event listeners', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
 
@@ -215,7 +221,7 @@ describe('registerCollection() & deregisterCollection()', () => {
 });
 
 describe('open() & close()', () => {
-  test('should open the provided popover', () => {
+  it('should open the provided popover', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -226,7 +232,7 @@ describe('open() & close()', () => {
     expect(target).toHaveClass('is-active');
   });
 
-  test('should close the provided popover', () => {
+  it('should close the provided popover', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
@@ -237,12 +243,13 @@ describe('open() & close()', () => {
     expect(target).not.toHaveClass('is-active');
   });
 
-  test('should close all popovers', () => {
+  it('should close all popovers', async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover();
+    await popover.init();
 
-    popover.collection.forEach((item) => {
-      popover.open(item.id);
+    popover.collection.forEach(async (item) => {
+      await popover.open(item.id);
     });
 
     popover.collection.forEach((item) => {
@@ -250,7 +257,7 @@ describe('open() & close()', () => {
       expect(item.target).toHaveClass('is-active');
     });
 
-    popover.close();
+    await popover.close();
 
     popover.collection.forEach((item) => {
       expect(item.state).toBe('closed');
@@ -258,19 +265,28 @@ describe('open() & close()', () => {
     });
   });
 
-  test('should return false if open is run with a popover it could not find', () => {
+  it('should reject promise with error when open is run on popover it could not find', async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
-
-    const result = popover.open('missing');
-    expect(result).toBe(false);
+    popover = new Popover();
+    await popover.init();
+    
+    let catchError = false;
+    await popover.open('missing').catch((error) => {
+      expect(error.message).toBe('Popover not found in collection with id of "missing".');
+      catchError = true;
+    });
+    expect(catchError).toBe(true);
   });
 
-  test('should return false if close is run with a popover it could not find', () => {
+  it('should reject promise with error when close is run on popover it could not find', async () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
 
-    const result = popover.close('missing');
-    expect(result).toBe(false);
+    let catchError = false;
+    await popover.close('missing').catch((error) => {
+      expect(error.message).toBe('Popover not found in collection with id of "missing".');
+      catchError = true;
+    });
+    expect(catchError).toBe(true);
   });
 });

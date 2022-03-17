@@ -5,258 +5,262 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>@vrembem/modal</title>
   <link rel="icon" type="image/png" sizes="32x32" href="https://sebnitu.com/dist/favicon.png">
-  <!-- Setup styles -->
-  <link rel="stylesheet" href="https://unpkg.com/@vrembem/base/dist/styles.css">
-  <link rel="stylesheet" href="https://unpkg.com/@vrembem/breadcrumb/dist/styles.css">
-  <link rel="stylesheet" href="https://unpkg.com/@vrembem/utility/dist/styles.css">
-  <link rel="stylesheet" href="https://unpkg.com/@vrembem/dialog/dist/styles.css">
-  <!-- Component styles -->
+  <!-- Styles -->
+  <link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.css">
   <link rel="stylesheet" href="./dist/styles.css">
 </head>
 <body>
-  
-  <div role="main">
+  <main>
+    <header class="section background-shade">
+      <div class="section__container gap-y">
 
-    <div class="padding-xl gap-y background-shade">
-      <h1 class="text-size-lg">@vrembem/modal</h1>
-      <p class="max-width-xs">
-        A component for changing the mode of a page to complete a critical task. This is usually used in conjunction with the Dialog component to make modal dialogs.
-      </p>
-      <ol class="breadcrumb">
-        <li class="breadcrumb__item">
-          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-          </svg>
-          <a class="breadcrumb__link" href="https://github.com/sebnitu/vrembem">
-            <span>vrembem</span>
-          </a>
-        </li>
-        <li class="breadcrumb__item">
-          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
-          </svg>
-          <a class="breadcrumb__link" href="https://github.com/sebnitu/vrembem/tree/main/packages/modal">
-            <span>modal</span>
-          </a>
-        </li>
-      </ol>
-    </div>
+        <h1 class="text-size-lg">@vrembem/modal</h1>
+        <p class="max-width-xs">
+          A component for changing the mode of a page to complete a critical task. This is usually used in conjunction with the Dialog component to make modal dialogs.
+        </p>
+        <ol class="breadcrumb">
+          <li class="breadcrumb__item">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+            <a class="breadcrumb__link" href="https://github.com/sebnitu/vrembem">
+              <span>vrembem</span>
+            </a>
+          </li>
+          <li class="breadcrumb__item">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+            <a class="breadcrumb__link" href="https://github.com/sebnitu/vrembem/tree/main/packages/modal">
+              <span>modal</span>
+            </a>
+          </li>
+        </ol>
+      </div>
+    </header>
 
-    <div class="padding-xl gap-y">
+    <section class="section">
+      <div class="section__container gap-y">
 
-      <ul class="list">
+        <ul class="list">
 
-        <li>
-          <button data-modal-open="modal-default" class="link">Modal Default</button>
-          <div data-modal="modal-default" class="modal">
-            <div data-modal-dialog class="modal__dialog dialog" role="dialog" aria-modal="true" aria-labelledby="modal-default-title" tabindex="-1">
-              <button data-modal-close class="dialog__close link">Close</button>
-              <div class="dialog__body">
-                <p id="modal-default-title">Modal Default</p>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <li>
-          <button data-modal-open="modal-focus-trap" class="link">Modal Focus Trap</button>
-          <div data-modal="modal-focus-trap" class="modal">
-            <div data-modal-dialog class="modal__dialog dialog" role="dialog" aria-modal="true" aria-labelledby="modal-focus-trap-title" tabindex="-1">
-              <a class="display-none" href="#">Focusable, but hidden...</a>
-              <div class="dialog__header">
-                <h2 id="modal-focus-trap-title" class="dialog__title">Modal Focus Trap</h2>
+          <li>
+            <button data-modal-open="modal-default" class="link">Modal Default</button>
+            <div id="modal-default" class="modal">
+              <div class="modal__dialog dialog">
                 <button data-modal-close class="dialog__close link">Close</button>
+                <div class="dialog__body">
+                  <p>Modal Default</p>
+                </div>
               </div>
-              <div class="dialog__body gap-y">
-                <p tabindex="0">This paragraph is focusable because of the <code class="code">tabindex="0"</code> attribute.</p>
-                <p>
-                  <input class="input" type="text">
-                </p>
-                <p>
-                  <input class="input" type="text">
-                </p>
+            </div>
+          </li>
+
+          <li>
+            <button data-modal-open="modal-focus-trap" class="link">Modal Focus Trap</button>
+            <div id="modal-focus-trap" class="modal">
+              <div class="modal__dialog dialog" aria-labelledby="modal-focus-trap-title">
+                <a class="display-none" href="#">Focusable, but hidden...</a>
+                <div class="dialog__header">
+                  <h2 id="modal-focus-trap-title" class="dialog__title">Modal Focus Trap</h2>
+                  <button data-modal-close class="dialog__close link">Close</button>
+                </div>
+                <div class="dialog__body gap-y">
+                  <p tabindex="0">This paragraph is focusable because of the <code class="code">tabindex="0"</code> attribute.</p>
+                  <p>
+                    <input class="input" type="text" data-focus>
+                  </p>
+                  <p>
+                    <input class="input" type="text">
+                  </p>
+                </div>
+                <div class="dialog__footer">
+                  <button data-modal-close class="link">Close</button>
+                </div>
+                <a class="display-none" href="#">Focusable, but hidden...</a>
               </div>
-              <div class="dialog__footer">
-                <button data-modal-close class="link">Close</button>
+            </div>
+          </li>
+
+          <li>
+            <button data-modal-open="modal-focus" class="link">Modal Focus</button>
+            <div id="modal-focus" class="modal">
+              <div class="modal__dialog padding background-white radius">
+                <div class="flex flex-justify-between">
+                  <p>Modal Focus</p>
+                  <button data-modal-close data-focus class="link">Close</button>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <button data-modal-open="modal-empty" class="link">Modal Focus Empty</button>
+            <div id="modal-empty" class="modal">
+              <a class="display-none" href="#">Focusable, but hidden...</a>
+              <div class="modal__dialog padding background-white radius gap-y">
+                <p>Modal Focus Empty</p>
               </div>
               <a class="display-none" href="#">Focusable, but hidden...</a>
             </div>
-          </div>
-        </li>
+          </li>
 
-        <li>
-          <button data-modal-open="modal-focus" class="link">Modal Focus</button>
-          <div data-modal="modal-focus" class="modal">
-            <div data-modal-dialog class="modal__dialog padding background-white radius">
-              <div class="flex flex-justify-between">
-                <p>Modal Focus</p>
-                <button data-modal-close data-modal-focus class="link">Close</button>
+          <li>
+            <button data-modal-open="modal-required" class="link">Modal Required</button>
+            <div id="modal-required" class="modal">
+              <div class="modal__dialog padding background-white radius" role="alertdialog">
+                <div class="flex flex-justify-between">
+                  <p>Modal Required</p>
+                  <button data-modal-close class="link">Close</button>
+                </div>
               </div>
             </div>
-          </div>
-        </li>
+          </li>
 
-        <li>
-          <button data-modal-open="modal-empty" class="link">Modal Focus Empty</button>
-          <div data-modal="modal-empty" class="modal">
-            <a class="display-none" href="#">Focusable, but hidden...</a>
-            <div data-modal-dialog class="modal__dialog padding background-white radius gap-y">
-              <p>Modal Focus Empty</p>
-            </div>
-            <a class="display-none" href="#">Focusable, but hidden...</a>
-          </div>
-        </li>
-
-        <li>
-          <button data-modal-open="modal-required" class="link">Modal Required</button>
-          <div data-modal="modal-required" data-modal-required class="modal">
-            <div data-modal-dialog class="modal__dialog padding background-white radius">
-              <div class="flex flex-justify-between">
-                <p>Modal Required</p>
-                <button data-modal-close class="link">Close</button>
+          <li>
+            <button class="link api-open">API Open</button>
+            <div id="modal-api" class="modal">
+              <div class="modal__dialog dialog" aria-labelledby="modal-api-title">
+                <div class="dialog__header">
+                  <h2 id="modal-api-title" class="dialog__title">Modal API</h2>
+                  <button class="dialog__close link api-close">API Close</button>
+                </div>
+                <div class="dialog__body">
+                  <p>This modal is controlled using modal API calls instead of data attributes.</p>
+                </div>
               </div>
             </div>
-          </div>
-        </li>
+          </li>
+        </ul>
 
-        <li>
-          <button class="link api-open">API Open</button>
-          <div data-modal="modal-api" class="modal">
-            <div data-modal-dialog class="modal__dialog dialog">
-              <div class="dialog__header">
-                <h2 class="dialog__title">Modal API</h2>
-                <button class="dialog__close link api-close">API Close</button>
-              </div>
-              <div class="dialog__body">
-                <p>This modal is controlled using modal API calls instead of data attributes.</p>
+        <hr class="sep">
+
+        <h2>Position Modifiers</h2>
+
+        <ul class="list">
+          <li>
+            <button data-modal-open="modal-pos-top" class="link">&uarr; Modal top</button>
+          </li>
+          <li>
+            <button data-modal-open="modal-pos-bottom" class="link">&darr; Modal bottom</button>
+          </li>
+          <li>
+            <button data-modal-open="modal-pos-left" class="link">&larr; Modal left</button>
+          </li>
+          <li>
+            <button data-modal-open="modal-pos-right" class="link">&rarr; Modal right</button>
+          </li>
+        </ul>
+        
+        <div id="modal-pos-top" class="modal modal_pos_top">
+          <div class="modal__dialog dialog">
+            <div class="dialog__header">
+              <h2 class="dialog__title">Top modal</h2>
+              <button data-modal-close class="dialog__close link">Close</button>
+            </div>
+            <div class="dialog__body">
+              <div class="level flex-justify-between">
+                <button data-modal-close="*" class="link">Close all</button>
+                <button data-modal-replace="modal-pos-bottom" class="link">Replace</button>
               </div>
             </div>
-          </div>
-        </li>
-
-        <li>
-          <button class="link api-close">API Close</button>
-        </li>
-
-      </ul>
-
-      <hr class="sep">
-
-      <h2>Position Modifiers</h2>
-
-      <ul class="list">
-        <li>
-          <button data-modal-open="modal-pos-top" class="link">&uarr; Modal top</button>
-        </li>
-        <li>
-          <button data-modal-open="modal-pos-bottom" class="link">&darr; Modal bottom</button>
-        </li>
-        <li>
-          <button data-modal-open="modal-pos-left" class="link">&larr; Modal left</button>
-        </li>
-        <li>
-          <button data-modal-open="modal-pos-right" class="link">&rarr; Modal right</button>
-        </li>
-      </ul>
-      
-      <div data-modal="modal-pos-top" class="modal modal_pos_top">
-        <div data-modal-dialog class="modal__dialog dialog">
-          <button data-modal-close class="dialog__close link">
-            Close
-          </button>
-          <div class="dialog__body">
-            <p>Top position modal</p>
-          </div>
-          <div class="dialog__footer flex-justify-between">
-            <button data-modal-open="modal-pos-left" class="link">
-              &larr; Left modal
-            </button>
-            <button data-modal-open="modal-pos-bottom" class="link">
-              &darr; Bottom modal
-            </button>
-            <button data-modal-open="modal-pos-right" class="link">
-              &rarr; Right modal
-            </button>
+            <div class="dialog__footer flex-justify-between">
+              <button data-modal-open="modal-pos-left" class="link">
+                &larr; Left modal
+              </button>
+              <button data-modal-open="modal-pos-bottom" class="link">
+                &darr; Bottom modal
+              </button>
+              <button data-modal-open="modal-pos-right" class="link">
+                &rarr; Right modal
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      
-      <div data-modal="modal-pos-bottom" class="modal modal_pos_bottom">
-        <div data-modal-dialog class="modal__dialog dialog">
-          <button data-modal-close class="dialog__close link">
-            Close
-          </button>
-          <div class="dialog__body">
-            <p>Bottom position modal</p>
-          </div>
-          <div class="dialog__footer flex-justify-between">
-            <button data-modal-open="modal-pos-left" class="link">
-              &larr; Left modal
-            </button>
-            <button data-modal-open="modal-pos-top" class="link">
-              &uarr; Top modal
-            </button>
-            <button data-modal-open="modal-pos-right" class="link">
-              &rarr; Right modal
-            </button>
-          </div>
-        </div>
-      </div>
-      
-      <div data-modal="modal-pos-left" class="modal modal_pos_left">
-        <div data-modal-dialog class="modal__dialog dialog">
-          <button data-modal-close class="dialog__close link">
-            Close
-          </button>
-          <div class="dialog__body">
-            <p>Left position modal</p>
-          </div>
-          <div class="dialog__footer">
-            <button data-modal-open="modal-pos-top" class="link">
-              &uarr; Top modal
-            </button>
-          </div>
-          <div class="dialog__footer">
-            <button data-modal-open="modal-pos-right" class="link">
-              &rarr; Right modal
-            </button>
-          </div>
-          <div class="dialog__footer">
-            <button data-modal-open="modal-pos-bottom" class="link">
-              &darr; Bottom modal
-            </button>
+        
+        <div id="modal-pos-bottom" class="modal modal_pos_bottom">
+          <div class="modal__dialog dialog">
+            <div class="dialog__header">
+              <h2 class="dialog__title">Bottom modal</h2>
+              <button data-modal-close class="dialog__close link">Close</button>
+            </div>
+            <div class="dialog__body">
+              <div class="level flex-justify-between">
+                <button data-modal-close="*" class="link">Close all</button>
+                <button data-modal-replace="modal-pos-top" class="link">Replace</button>
+              </div>
+            </div>
+            <div class="dialog__footer flex-justify-between">
+              <button data-modal-open="modal-pos-left" class="link">
+                &larr; Left modal
+              </button>
+              <button data-modal-open="modal-pos-top" class="link">
+                &uarr; Top modal
+              </button>
+              <button data-modal-open="modal-pos-right" class="link">
+                &rarr; Right modal
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      
-      <div data-modal="modal-pos-right" class="modal modal_pos_right">
-        <div data-modal-dialog class="modal__dialog dialog">
-          <button data-modal-close class="dialog__close link">
-            Close
-          </button>
-          <div class="dialog__body">
-            <p>Right position modal</p>
-          </div>
-          <div class="dialog__footer">
-            <button data-modal-open="modal-pos-top" class="link">
-              &uarr; Top modal
-            </button>
-          </div>
-          <div class="dialog__footer">
-            <button data-modal-open="modal-pos-left" class="link">
-              &larr; Left modal
-            </button>
-          </div>
-          <div class="dialog__footer">
-            <button data-modal-open="modal-pos-bottom" class="link">
-              &darr; Bottom modal
-            </button>
+        
+        <div id="modal-pos-left" class="modal modal_pos_left">
+          <div class="modal__dialog dialog">
+            <div class="dialog__header">
+              <h2 class="dialog__title">Left modal</h2>
+              <button data-modal-close class="dialog__close link">Close</button>
+            </div>
+            <div class="dialog__body">
+              <button data-modal-close="*" class="link">Close all</button>
+            </div>
+            <div class="dialog__footer">
+              <button data-modal-open="modal-pos-top" class="link">
+                &uarr; Top modal
+              </button>
+            </div>
+            <div class="dialog__footer">
+              <button data-modal-open="modal-pos-right" class="link">
+                &rarr; Right modal
+              </button>
+            </div>
+            <div class="dialog__footer">
+              <button data-modal-open="modal-pos-bottom" class="link">
+                &darr; Bottom modal
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+        
+        <div id="modal-pos-right" class="modal modal_pos_right">
+          <div class="modal__dialog dialog">
+            <div class="dialog__header">
+              <h2 class="dialog__title">Right modal</h2>
+              <button data-modal-close class="dialog__close link">Close</button>
+            </div>
+            <div class="dialog__body">
+              <button data-modal-close="*" class="link">Close all</button>
+            </div>
+            <div class="dialog__footer">
+              <button data-modal-open="modal-pos-top" class="link">
+                &uarr; Top modal
+              </button>
+            </div>
+            <div class="dialog__footer">
+              <button data-modal-open="modal-pos-left" class="link">
+                &larr; Left modal
+              </button>
+            </div>
+            <div class="dialog__footer">
+              <button data-modal-open="modal-pos-bottom" class="link">
+                &darr; Bottom modal
+              </button>
+            </div>
+          </div>
+        </div>
 
-    </div>
-  </div>
+      </div>
+    </section>
+  </main>
 
   <div class="modals"></div>
 
@@ -264,39 +268,40 @@
   <script src="https://unpkg.com/wicg-inert/dist/inert.min.js"></script>
 
   <!-- Component scripts -->
-  <script src="./dist/scripts.umd.js"></script>
+  <script src="./dev/scripts.umd.js"></script>
 
   <!-- Implementation scripts -->
   <script>
     const modal = new vrembem.Modal({
       autoInit: true,
-      selectorInert: '[role="main"]',
-      selectorOverflow: 'body, [role="main"]',
-      moveModals: {
-        ref: '.modals',
-        type: 'append'
-      }
+      selectorInert: 'main',
+      selectorOverflow: 'body, main',
+      teleport: '.modals'
     });
 
     console.log(modal);
 
     document.addEventListener('modal:opened', (event) => {
-      console.log('Target:', event.target);
-      console.log('Detail:', event.detail);
+      console.log('modal:opened', {
+        target: event.target,
+        detail: event.detail
+      });
     });
 
     document.addEventListener('modal:closed', () => {
-      console.log('Target:', event.target);
-      console.log('Detail:', event.detail);
+      console.log('modal:closed', {
+        target: event.target,
+        detail: event.detail
+      });
     });
 
-    document.addEventListener('click', async () => {
+    document.addEventListener('click', () => {
       if (event.target.classList.contains('api-open')) {
         return modal.open('modal-api').then(console.log);
       }
 
       if (event.target.classList.contains('api-close')) {
-        return modal.close().then(console.log);
+        return modal.close('modal-api').then(console.log);
       }
     });
   </script>

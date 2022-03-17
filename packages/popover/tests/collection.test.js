@@ -1,85 +1,113 @@
-import Collection from '../src/js/collection';
+import '@testing-library/jest-dom/extend-expect';
+import Popover from '../index.js';
+import { registerEventListeners } from '../src/js/register';
 
-let obj;
+let popover;
 
-document.body.innerHTML = `
-  <div id="asdf">1234</div>
-  <div id="fdsa">5678</div>
-  <div id="afsd">8765</div>
-  <div id="dsfa">4321</div>
+const markup = `
+  <div id="app">
+    <button id="asdf-trigger" aria-controls="asdf">...</button>
+    <div id="asdf" class="popover">
+      ...
+    </div>
+    <button id="fdsa-trigger" aria-controls="fdsa">...</button>
+    <div id="fdsa" class="popover" style="--popover-event: hover;">
+      ...
+    </div>
+    <button id="third" aria-controls="missing">...</button>
+  </div>
 `;
 
-function buildData() {
-  const data = [];
-  const nodes = document.querySelectorAll('div');
-  nodes.forEach((node) => {
-    data.push({
-      id: node.id,
-      text: node.innerHTML,
-      node: node
+afterEach(() => {
+  popover.destroy();
+  popover = null;
+  document.body.innerHTML = null;
+});
+
+describe('register() & entry.deregister()', () => {
+  it('should register a popover using the provided trigger', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover();
+    const trigger = document.querySelector('#asdf-trigger');
+    popover.register(trigger, false);
+    expect(popover.collection.length).toBe(1);
+    expect(popover.collection[0].__eventListeners.length).toBe(1);
+  });
+
+  it('should register a popover using the provided ID', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover();
+    const trigger = document.querySelector('#asdf-trigger');
+    const target = document.querySelector('#asdf');
+    popover.register('asdf');
+    expect(popover.collection.length).toBe(1);
+    expect(popover.collection[0].trigger).toBe(trigger);
+    expect(popover.collection[0].target).toBe(target);
+    expect(popover.collection[0].__eventListeners.length).toBe(1);
+    trigger.click();
+    expect(popover.collection[0].target).toHaveClass('is-active');
+  });
+
+  it('should return an error if the provided trigger has no associated target', async () => {
+    document.body.innerHTML = markup;
+    popover = new Popover();
+    const trigger = document.querySelector('#third');
+    let catchError = false;
+    await popover.register(trigger).catch((error) => {
+      expect(error.message).toBe('No popover associated with the provided popover trigger.');
+      catchError = true;
     });
-  });
-  return data;
-}
-
-describe('constructor()', () => {
-  test('should setup an empty collection array on instantiation', () => {
-    obj = new Collection();
-    expect(typeof obj.collection).toBe('object');
-    expect(obj.collection.length).toBe(0);
-  });
-});
-
-describe('register() & deregister()', () => {
-  test('should add an item to the registered collection', () => {
-    const item = buildData()[0];
-    obj.register(item);
-    expect(obj.collection.length).toBe(1);
-    expect(obj.collection[0]).toBe(item);
+    expect(catchError).toBe(true);
   });
 
-  test('should do nothing if item does not exist in collection', () => {
-    const item = buildData()[1];
-    obj.deregister(item);
-    expect(obj.collection.length).toBe(1);
-    expect(obj.collection[0].id).toBe('asdf');
-    expect(item.id).toBe('fdsa');
+  it('should attach hover event listeners when registered', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover();
+    const trigger = document.querySelector('#fdsa-trigger');
+    popover.register(trigger, false);
+    expect(popover.collection.length).toBe(1);
+    expect(popover.collection[0].__eventListeners.length).toBe(2);
   });
 
-  test('should remove item from collection if it exists', () => {
-    const item = obj.collection[0];
-    obj.deregister(item);
-    expect(obj.collection.length).toBe(0);
-    expect(item.id).toBe(undefined);
-    expect(item.text).toBe(undefined);
-  });
-});
+  it('should attach open and close methods to registered popover', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover();
+    popover.register('asdf');
+    const entry = popover.get('asdf');
 
-describe('registerCollection() & deregisterCollection()', () => {
-  test('should add multiple items to the registered collection', () => {
-    obj.registerCollection(buildData());
-    expect(obj.collection.length).toBe(4);
-    expect(obj.collection[0].id).toBe('asdf');
-    expect(obj.collection[0].text).toBe('1234');
-    expect(obj.collection[3].id).toBe('dsfa');
-    expect(obj.collection[3].text).toBe('4321');
+    entry.open();
+    expect(entry.state).toBe('opened');
+    expect(entry.target).toHaveClass('is-active');
+
+    entry.close();
+    expect(entry.state).toBe('closed');
+    expect(entry.target).not.toHaveClass('is-active');
   });
 
-  test('should remove all items from collection', () => {
-    obj.deregisterCollection();
-    expect(obj.collection.length).toBe(0);
+  it('should attach deregister method to registered popover', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover();
+    popover.register('asdf');
+    const entry = popover.get('asdf');
+    const target = document.querySelector('#asdf');
+
+    entry.trigger.click();
+    expect(target).toHaveClass('is-active');
+    expect(entry.state).toBe('opened');
+
+    entry.deregister();
+    expect(target).not.toHaveClass('is-active');
+    expect(entry.id).toBe(undefined);
   });
-});
 
-describe('get()', () => {
-  test('should return entry from collection using the passed ID', () => {
-    obj.registerCollection(buildData());
-    let entry = obj.get('asdf');
-    expect(entry.id).toBe('asdf');
-    expect(entry.text).toBe('1234');
-
-    entry = obj.get('fdsa');
-    expect(entry.id).toBe('fdsa');
-    expect(entry.text).toBe('5678');
+  it('should not register more event listeners if registerEventListeners is run on existing popover', () => {
+    document.body.innerHTML = markup;
+    popover = new Popover();
+    popover.register('asdf');
+    const entry = popover.get('asdf');
+    registerEventListeners.call(popover, entry);
+    entry.trigger.click();
+    expect(entry.target).toHaveClass('is-active');
+    expect(entry.state).toBe('opened');
   });
 });

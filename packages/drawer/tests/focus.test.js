@@ -14,7 +14,7 @@ const markup = `
     </div>
     <div class="drawer" data-drawer="drawer-two">
       <div data-drawer-dialog class="drawer__dialog">
-        <button class="close-two" data-drawer-close data-drawer-focus>
+        <button class="close-two" data-drawer-close data-focus>
           ...
         </button>
       </div>
@@ -126,7 +126,7 @@ test('should re-focus the target if open triggers while drawer is already opened
   document.body.innerHTML = markup;
   drawer = new Drawer({ autoInit: true });
   const el = document.querySelector('[data-drawer="drawer-two"]');
-  const elFocus = el.querySelector('[data-drawer-focus]');
+  const elFocus = el.querySelector('[data-focus]');
   const btn = document.querySelector('.toggle-three');
 
   btn.click();

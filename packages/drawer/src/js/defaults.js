@@ -8,7 +8,11 @@ export default {
   dataOpen: 'drawer-open',
   dataClose: 'drawer-close',
   dataBreakpoint: 'drawer-breakpoint',
-  dataFocus: 'drawer-focus',
+
+  // Selectors
+  selectorFocus: '[data-focus]',
+  selectorInert: null,
+  selectorOverflow: null,
 
   // State classes
   stateOpened: 'is-opened',
@@ -18,10 +22,6 @@ export default {
 
   // Classes
   classModal: 'drawer_modal',
-
-  // Selectors
-  selectorInert: null,
-  selectorOverflow: null,
 
   // Feature toggles
   breakpoints: null,

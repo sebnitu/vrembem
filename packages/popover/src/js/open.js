@@ -1,18 +1,21 @@
-import { getConfig, getModifiers } from './helpers';
+import { getConfig, getModifiers, getPopover } from './helpers';
 
-export function open(popover) {
-  // Update state class
+export async function open(query) {
+  // Get the popover from collection.
+  const popover = getPopover.call(this, query);
+
+  // Update state class.
   popover.target.classList.add(this.settings.stateActive);
 
-  // Update a11y attribute
+  // Update accessibility attribute(s).
   if (popover.trigger.hasAttribute('aria-controls')) {
     popover.trigger.setAttribute('aria-expanded', 'true');
   }
 
-  // Update popover config
+  // Update popover config.
   popover.config = getConfig(popover.target, this.settings);
 
-  // Enable popper event listeners and set placement/modifiers
+  // Enable popper event listeners and set placement/modifiers.
   popover.popper.setOptions({
     placement: popover.config['placement'],
     modifiers: [
@@ -21,12 +24,12 @@ export function open(popover) {
     ]
   });
 
-  // Update popover position
+  // Update popover position.
   popover.popper.update();
 
-  // Update popover state
+  // Update popover state.
   popover.state = 'opened';
 
-  // Return the popover
+  // Return the popover.
   return popover;
 }

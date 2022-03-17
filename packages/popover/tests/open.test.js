@@ -1,5 +1,5 @@
-import Popover from '../index.js';
 import '@testing-library/jest-dom/extend-expect';
+import Popover from '../index.js';
 
 let popover;
 
@@ -19,20 +19,21 @@ afterEach(() => {
 });
 
 describe('open()', () => {
-  test('should open the provided popover', () => {
+  it('should open the provided popover', async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover();
+    await popover.init();
     const el = popover.get('asdf');
     expect(el.state).toBe('closed');
     expect(el.target).not.toHaveClass('is-active');
     expect(el.trigger.getAttribute('aria-expanded')).toBe('false');
-    el.open();
+    await el.open();
     expect(el.state).toBe('opened');
     expect(el.target).toHaveClass('is-active');
     expect(el.trigger.getAttribute('aria-expanded')).toBe('true');
   });
 
-  test('should open the provided popover tooltip', () => {
+  it('should open the provided popover tooltip', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
     const el = popover.get('fdsa');

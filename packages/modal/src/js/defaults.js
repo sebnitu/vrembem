@@ -2,13 +2,18 @@ export default {
   autoInit: false,
 
   // Data attributes
-  dataModal: 'modal',
-  dataDialog: 'modal-dialog',
   dataOpen: 'modal-open',
   dataClose: 'modal-close',
-  dataFocus: 'modal-focus',
-  dataRequired: 'modal-required',
+  dataReplace: 'modal-replace',
   dataConfig: 'modal-config',
+
+  // Selectors
+  selectorModal: '.modal',
+  selectorDialog: '.modal__dialog',
+  selectorRequired: '[role="alertdialog"]',
+  selectorFocus: '[data-focus]',
+  selectorInert: null,
+  selectorOverflow: 'body',
 
   // State classes
   stateOpened: 'is-opened',
@@ -16,17 +21,11 @@ export default {
   stateClosing: 'is-closing',
   stateClosed: 'is-closed',
 
-  // Selector
-  selectorInert: null,
-  selectorOverflow: 'body',
-
-  // Feature toggles
+  // Feature settings
   customEventPrefix: 'modal:',
   eventListeners: true,
-  moveModals: {
-    ref: null,
-    type: null
-  },
+  teleport: null,
+  teleportMethod: 'append',
   setTabindex: true,
   transition: true
 };

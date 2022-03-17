@@ -1,6 +1,6 @@
+import '@testing-library/jest-dom/extend-expect';
 import Popover from '../index.js';
 import { closeAll, closeCheck } from '../src/js/close';
-import '@testing-library/jest-dom/extend-expect';
 
 let popover;
 
@@ -22,7 +22,7 @@ afterEach(() => {
 });
 
 describe('close()', () => {
-  test('should close the provided popover', () => {
+  it('should close the provided popover', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
     const el = popover.get('asdf');
@@ -35,7 +35,7 @@ describe('close()', () => {
     expect(el.trigger.getAttribute('aria-expanded')).toBe('false');
   });
 
-  test('should close the provided popover tooltip', () => {
+  it('should close the provided popover tooltip', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
     const el = popover.get('afsd');
@@ -50,7 +50,7 @@ describe('close()', () => {
 });
 
 describe('closeAll()', () => {
-  test('should close all popovers', () => {
+  it('should close all popovers', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
     expect(popover.collection.length).toBe(3);
@@ -63,7 +63,7 @@ describe('closeAll()', () => {
 });
 
 describe('closeCheck()', () => {
-  test('should close popover if closeCheck does not detect a hover or focus on trigger or target elements', () => {
+  it('should close popover if closeCheck does not detect a hover or focus on trigger or target elements', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
     expect(popover.collection.length).toBe(3);
@@ -72,7 +72,7 @@ describe('closeCheck()', () => {
     expect(popover.collection[0].target).not.toHaveClass('is-active');
   });
 
-  test('should not close popover if closeCheck detects a focus on trigger elements', () => {
+  it('should not close popover if closeCheck detects a focus on trigger elements', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
     popover.collection[0].trigger.focus();
@@ -81,7 +81,7 @@ describe('closeCheck()', () => {
     expect(popover.collection[0].target).toHaveClass('is-active');
   });
 
-  test('should not close popover if closeCheck detects a focus on target elements', () => {
+  it('should not close popover if closeCheck detects a focus on target elements', () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoInit: true });
     popover.collection[0].target.focus();

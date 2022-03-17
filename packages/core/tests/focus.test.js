@@ -3,7 +3,7 @@ import '@testing-library/jest-dom/extend-expect';
 import userEvent from '@testing-library/user-event';
 
 const settings = {
-  dataFocus: 'focus'
+  selectorFocus: '[data-focus]'
 };
 
 const markup = `

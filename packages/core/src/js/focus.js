@@ -1,9 +1,7 @@
 import focusableSelectors from 'focusable-selectors';
 
 export const focusTarget = (target, settings) => {
-  const innerFocus = target.querySelector(
-    `[data-${settings.dataFocus}]`
-  );
+  const innerFocus = target.querySelector(settings.selectorFocus);
   if (innerFocus) {
     innerFocus.focus();
   } else {
@@ -12,7 +10,7 @@ export const focusTarget = (target, settings) => {
   }
 };
 
-export const focusTrigger = (obj = null) => {
+export const focusTrigger = (obj) => {
   if (!obj || !obj.memory || !obj.memory.trigger) return;
   obj.memory.trigger.focus();
   obj.memory.trigger = null;
@@ -25,6 +23,7 @@ export class FocusTrap {
   }
 
   init(target) {
+    this.destroy();
     this.target = target;
     this.inner = this.target.querySelector('[tabindex="-1"]');
     this.focusable = this.getFocusable();

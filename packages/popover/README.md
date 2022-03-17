@@ -144,7 +144,7 @@ The advantage to having these values set by a CSS variable is that they can be g
 
 ### `popover_size_[value]`
 
-Adjusts the size of the popover. There are two options relative to the default size, `popover_size_sm` and `popover_size_lg`. Also available is `popover_size_auto` which allows the popover to adjust based on it's content.
+Adjusts the size of the popover. There are two options relative to the default size, `popover_size_sm` and `popover_size_lg`. Also available is `popover_size_auto` which allows the popover to adjust size based on its content.
 
 ```html
 <div id="unique-id" class="popover popover_size_sm">
@@ -224,7 +224,7 @@ Applies styles to create a popover tooltip. The default placement of a tooltip i
 
 ### `popover.collection`
 
-An array where all registered popovers are stored. Each entry in the collection contains the following properties:
+An array where all popover objects are stored when registered. Each popover object contains the following properties:
 
 ```js
 {
@@ -237,7 +237,6 @@ An array where all registered popovers are stored. Each entry in the collection 
   open: Function // Method to open this popover.
   close: Function // Method to close this popover.
   deregister: Function // Method to deregister this popover.
-  __eventListeners: Array // An array of active event listener details and references.
 }
 ```
 
@@ -250,25 +249,25 @@ Initializes the popover instance. During initialization, the following processes
 
 **Parameters**
 
-- `options [Object] (optional) (default null)` An options object for passing custom settings.
+- `options [Object] (optional)` An options object for passing custom settings.
 
 ```js
 const popover = new Popover();
-popover.init();
+await popover.init();
 ```
 
 ### `popover.destroy()`
 
-Destroys and cleans up the popover instantiation. During cleanup, the following processes are run:
+Destroys and cleans up the popover initialization. During cleanup, the following processes are run:
 
-- Builds the popover collection by running `deregisterCollection()`
-- Sets up the global event listeners by running `destroyEventListeners()`
+- Deregister the popover collection by running `deregisterCollection()`
+- Removes global event listeners by running `destroyEventListeners()`
 
 ```js
 const popover = new Popover();
-popover.init();
+await popover.init();
 // ...
-popover.destroy();
+await popover.destroy();
 ```
 
 ### `popover.initEventListeners(processCollection)`
@@ -281,7 +280,7 @@ Set document and collection entry event listeners.
 
 ```js
 const popover = new Popover({ eventListeners: false });
-popover.init();
+await popover.init();
 popover.initEventListeners();
 ```
 
@@ -295,7 +294,7 @@ Remove document and collection entry event listeners.
 
 ```js
 const popover = new Popover();
-popover.init();
+await popover.init();
 // ...
 popover.destroyEventListeners();
 ```
@@ -313,16 +312,13 @@ Registers a popover into the collection. This also sets the initial state, creat
 - `Object` The popover object that got stored in the collection.
 
 ```js
-const items = document.querySelector('.popover');
-const obj = popover.register(items);
-
-console.log(obj);
-// => Object { id: 'popover-id', state: 'closed', trigger: HTMLElement, target: HTMLElement, popper: {…}, ... }
+const result = await popover.register('popover-id');
+// => Object { id: 'popover-id', ... }
 ```
 
 ### `popover.deregister(query)`
 
-Deregister the popover from the collection. This closes the popover if it's active, cleans up the popper instance, removes event listeners and then removes the entry from the collection.
+Deregister the popover from the collection. This closes the popover if it's opened, cleans up the popper instance, removes event listeners and then removes the entry from the collection.
 
 **Parameters**
 
@@ -333,11 +329,8 @@ Deregister the popover from the collection. This closes the popover if it's acti
 - `Array` Returns the newly modified collection array.
 
 ```js
-const item = popover.collection[0];
-const array = popover.deregister(item);
-
-console.log(array);
-// => Array []
+const result = await popover.deregister('popover-id');
+// => Array [{}, {}, ...]
 ```
 
 ### `popover.registerCollection(items)`
@@ -346,15 +339,16 @@ Registers array of popovers to the collection. All popovers in array are run thr
 
 **Parameters**
 
-- `items [Array]` An array of items to register.
+- `items [Array]` An array of popovers or popover IDs to register.
 
 **Returns**
 
 - `Array` Returns the collection array.
 
 ```js
-popover.registerCollection(items);
-// => Array [...]
+const popovers = document.querySelectorAll('.popover');
+const result = await popover.registerCollection(popovers);
+// => Array [{}, {}, ...]
 ```
 
 ### `popover.deregisterCollection()`
@@ -366,31 +360,31 @@ Deregister all popovers in the collections array. All popovers in collection are
 - `Array` Returns an empty collection array.
 
 ```js
-popover.registerCollection();
+const result = await popover.registerCollection();
 // => Array []
 ```
 
-### `popover.get(query, key)`
+### `popover.get(value, key)`
 
-Used to look up a popover entry within the collection. Query should match the key type to search by: e.g. to search by target elements, pass the target html node with a key of `'target'`. Defaults to `'id'`.
+Used to retrieve a registered popover object from the collection. Query should match the key type to search by: e.g. to search by target elements, pass the target html node with a key of `'target'`. Defaults to `'id'`.
 
 **Parameters**
 
-- `query [String | Object]` The value or object to match against for within the collection.
-- `key [String] (optional) (default 'id')` The entry property to search.
+- `value [String | Object]` The value to search for within the collection.
+- `key [String] (optional) (default 'id')` The property key to search the value against.
 
 **Returns**
 
-- `Object | null` The popover entry if found otherwise `null`.
+- `Object | undefined` The first element in the collection that matches the provided query and key. Otherwise, undefined is returned.
 
 ```js
-popover.get('popover-id')
+const entry = popover.get('popover-id');
 // => Object { id: 'popover-id', ... }
 ```
 
 ### `popover.open(id)`
 
-Used to close a specific popover.
+Opens a popover using the provided ID.
 
 **Parameters**
 
@@ -398,7 +392,7 @@ Used to close a specific popover.
 
 **Returns**
 
-- `Object` The popover object that has been opened.
+- `Object` The popover object that was opened.
 
 ```js
 popover.open('popover-id')
@@ -407,7 +401,7 @@ popover.open('popover-id')
 
 ### `popover.close(id)`
 
-Used to closed a specific popover. Can be called without a parameter to close all open popovers.
+Close a popover using the provided ID. Can be called without an ID to close all open popovers.
 
 **Parameters**
 
@@ -415,9 +409,9 @@ Used to closed a specific popover. Can be called without a parameter to close al
 
 **Returns**
 
-- `Object` The popover object that has been closed.
+- `Object | Array` The popover object or array of popover objects that were closed.
 
 ```js
-popover.close('popover-id')
-// => Object { state: 'closed', ... }
+const entry = await popover.close();
+// => Array [{}, {}, ...]
 ```

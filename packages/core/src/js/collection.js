@@ -1,15 +1,15 @@
-export default class Collection {
+export class Collection {
   constructor() {
     this.collection = [];
   }
 
-  register(item) {
-    this.deregister(item);
+  async register(item) {
+    await this.deregister(item);
     this.collection.push(item);
     return this.collection;
   }
 
-  deregister(ref) {
+  async deregister(ref) {
     const index = this.collection.findIndex((entry) => {
       return (entry === ref);
     });
@@ -23,24 +23,23 @@ export default class Collection {
     return this.collection;
   }
 
-  registerCollection(items) {
-    items.forEach((item) => {
+  async registerCollection(items) {
+    await Promise.all(Array.from(items, (item) => {
       this.register(item);
-    });
+    }));
     return this.collection;
   }
 
-  deregisterCollection() {
+  async deregisterCollection() {
     while (this.collection.length > 0) {
-      this.deregister(this.collection[0]);
+      await this.deregister(this.collection[0]);
     }
     return this.collection;
   }
 
-  get(query, key = 'id') {
-    const result = this.collection.find((item) => {
-      return item[key] === query;
+  get(value, key = 'id') {
+    return this.collection.find((item) => {
+      return item[key] === value;
     });
-    return result || null;
   }
 }
