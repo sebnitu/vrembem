@@ -3725,8 +3725,18 @@ input::-moz-placeholder {
   max-width: 100%;
   overflow: auto;
   transform: translateY(-5em);
+  transition-property: outline;
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  outline: 0 solid rgba(0, 188, 212, 0);
   box-shadow: 0 0 0 1px rgba(33, 33, 33, 0.05), 0 11px 15px -7px rgba(33, 33, 33, 0.1), 0 24px 38px 3px rgba(33, 33, 33, 0.08), 0 9px 46px 8px rgba(33, 33, 33, 0.06);
   opacity: 0;
+}
+.modal__dialog:focus {
+  outline: 4px solid #00bcd4;
+}
+.modal__dialog[role=alertdialog]:focus {
+  outline: 4px solid #f44336;
 }
 
 .modal.is-closed {
@@ -3763,17 +3773,6 @@ input::-moz-placeholder {
   opacity: 1;
 }
 
-.modal.is-opening {
-  z-index: 1001;
-}
-
-.modal.is-opened {
-  z-index: 1000;
-}
-
-.modal.is-closing {
-  z-index: 999;
-}
 .modal.is-closing .modal__dialog {
   transform: translateY(-5em);
 }
