@@ -257,13 +257,12 @@
   <!-- Implementation scripts -->
   <script>
     const modal = new vrembem.Modal({
-      autoInit: true,
       selectorInert: 'main',
       selectorOverflow: 'body, main',
       teleport: '.modals'
     });
 
-    console.log('modal:', modal);
+    modal.init().then((result) => console.log('modal.init() => ', result));
 
     document.addEventListener('modal:opened', (event) => {
       console.log('modal:opened', {

@@ -53,6 +53,8 @@ export default class Modal extends Collection {
     if (this.settings.eventListeners) {
       this.initEventListeners();
     }
+
+    return this;
   }
 
   async destroy() {
@@ -66,6 +68,8 @@ export default class Modal extends Collection {
     if (this.settings.eventListeners) {
       this.destroyEventListeners();
     }
+
+    return this;
   }
 
   initEventListeners() {

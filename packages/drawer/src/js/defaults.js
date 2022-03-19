@@ -4,12 +4,14 @@ export default {
   // Data attributes
   dataDrawer: 'drawer',
   dataDialog: 'drawer-dialog',
-  dataToggle: 'drawer-toggle',
   dataOpen: 'drawer-open',
   dataClose: 'drawer-close',
+  dataToggle: 'drawer-toggle',
   dataBreakpoint: 'drawer-breakpoint',
 
   // Selectors
+  selectorDrawer: '.drawer',
+  selectorDialog: '.drawer__dialog',
   selectorFocus: '[data-focus]',
   selectorInert: null,
   selectorOverflow: null,

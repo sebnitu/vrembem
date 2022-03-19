@@ -2,13 +2,15 @@ import { Collection, FocusTrap, setTabindex } from '@vrembem/core/index';
 
 import defaults from './defaults';
 import { Breakpoint } from './breakpoint';
-import { close } from './close';
 import { handlerClick, handlerKeydown } from './handlers';
-import { getDrawer } from './helpers';
+import { register } from './register';
+import { deregister } from './deregister';
 import { open } from './open';
+import { close } from './close';
+import { toggle } from './toggle';
+import { getDrawer, getDrawerID, getDrawerElements } from './helpers';
 import { stateClear, stateSave, stateSet } from './state';
 import { switchToDefault, switchToModal } from './switchTo';
-import { toggle } from './toggle';
 
 export default class Drawer extends Collection {
   constructor(options) {
@@ -17,39 +19,71 @@ export default class Drawer extends Collection {
     this.settings = { ...this.defaults, ...options };
     this.memory = {};
     this.focusTrap = new FocusTrap();
-    this.working = false;
-    this.state = {};
+
+    // TODO: refactor breakpoint functionality
     this.breakpoint = new Breakpoint(this);
+
+    // TODO: refactor to local storage feature functionality
+    this.state = {};
+
+    // TODO: remove global working state
+    this.working = false;
+
     this.__handlerClick = handlerClick.bind(this);
     this.__handlerKeydown = handlerKeydown.bind(this);
     if (this.settings.autoInit) this.init();
   }
 
-  init(options = null) {
+  async init(options = null) {
+    // Update settings with passed options.
     if (options) this.settings = { ...this.settings, ...options };
+
+    // TODO: refactor to local storage feature functionality
     this.stateSet();
+
+    // TODO: move set tabindex into register method
     if (this.settings.setTabindex) {
       this.setTabindex();
     }
+
+    // TODO: refactor breakpoint functionality
     this.breakpoint.init();
+
+    // Get all the modals.
+    const drawers = document.querySelectorAll(this.settings.selectorDrawer);
+
+    // Register the collections array with modal instances.
+    await this.registerCollection(drawers);
+
+    // If eventListeners are enabled, init event listeners.
     if (this.settings.eventListeners) {
       this.initEventListeners();
     }
+
+    return this;
   }
 
-  destroy() {
-    this.breakpoint.destroy();
+  async destroy() {
+    // Clear any stored memory.
     this.memory = {};
+
+    // TODO: refactor breakpoint functionality
+    this.breakpoint.destroy();
+
+    // TODO: refactor to local storage feature functionality
     this.state = {};
     localStorage.removeItem(this.settings.stateKey);
+
+    // Remove all entries from the collection.
+    await this.deregisterCollection();
+
+    // If eventListeners are enabled, init event listeners.
     if (this.settings.eventListeners) {
       this.destroyEventListeners();
     }
-  }
 
-  /**
-   * Event listeners
-   */
+    return this;
+  }
 
   initEventListeners() {
     document.addEventListener('click', this.__handlerClick, false);
@@ -63,9 +97,16 @@ export default class Drawer extends Collection {
     document.removeEventListener('keydown', this.__handlerKeydown, false);
   }
 
-  /**
-   * Helpers
-   */
+  register(query) {
+    const els = getDrawerElements.call(this, query);
+    if (els.error) return Promise.reject(els.error);
+    return register.call(this, els.target, els.dialog);
+  }
+
+  deregister(query) {
+    const modal = this.get(getDrawerID.call(this, query));
+    return deregister.call(this, modal);
+  }
 
   getDrawer(drawerKey) {
     return getDrawer.call(this, drawerKey);
@@ -77,10 +118,6 @@ export default class Drawer extends Collection {
       [data-${this.settings.dataDialog}]
     `);
   }
-
-  /**
-   * Save state functionality
-   */
 
   stateSet() {
     this.state = stateSet(this.settings);
@@ -94,10 +131,6 @@ export default class Drawer extends Collection {
     this.state = stateClear(this.settings);
   }
 
-  /**
-   * SwitchTo functionality
-   */
-
   switchToDefault(drawerKey) {
     return switchToDefault.call(this, drawerKey);
   }
@@ -105,10 +138,6 @@ export default class Drawer extends Collection {
   switchToModal(drawerKey) {
     return switchToModal.call(this, drawerKey);
   }
-
-  /**
-   * Change state functionality
-   */
 
   toggle(drawerKey) {
     return toggle.call(this, drawerKey);
