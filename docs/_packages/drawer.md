@@ -589,7 +589,6 @@ Drawers can slide in from the left or right using the position modifiers:
 Initializes the drawer instance. During initialization, the following processes are run:
 
 - Runs `stateSet()` to apply the initial state for all drawers.
-- Runs `setTabindex()` to apply tabindex for all drawer dialogs.
 - Runs `breakpoint.init()` to initialize all breakpoints for drawers.
 - Adds the `click` event listener to the document.
 - Adds the `keydown` event listener for closing modal drawers with the `esc` key.
@@ -742,32 +741,6 @@ const el = drawer.getDrawer('drawer-key');
 
 // Returns HTML Element Object
 console.log(el);
-```
-
-### `drawer.setTabindex()`
-
-Sets the `tabindex="-1"` attribute on all drawer dialogs. This makes it possible to set focus on the dialog when opened but won't allow users to focus it using the keyboard. This is ran automatically on `drawer.init()` if the `setTabindex` option is set to `true`.
-
-```html
-<!-- Initial HTML -->
-<aside data-drawer="[unique-id]" class="drawer">
-  <div data-drawer-dialog class="drawer__dialog">
-    ...
-  </div>
-</aside>
-```
-
-```js
-drawer.setTabindex();
-```
-
-```html
-<!-- Result -->
-<aside data-drawer="[unique-id]" class="drawer">
-  <div data-drawer-dialog class="drawer__dialog" tabindex="-1">
-    ...
-  </div>
-</aside>
 ```
 
 ### `drawer.breakpoint.init()`

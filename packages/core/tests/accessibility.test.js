@@ -1,4 +1,4 @@
-import { setInert, setOverflowHidden, setTabindex } from '../index';
+import { setInert, setOverflowHidden } from '../index';
 import '@testing-library/jest-dom/extend-expect';
 
 document.body.innerHTML = `
@@ -10,8 +10,6 @@ document.body.innerHTML = `
 
 const header = document.querySelector('.header');
 const main = document.querySelector('.main');
-const aside1 = document.querySelector('.aside-1');
-const aside2 = document.querySelector('.aside-2');
 
 describe('running setInert', () => {
   it('should apply inert and aria hidden to passed selectors', () => {
@@ -63,23 +61,5 @@ describe('running setOverflowHidden', () => {
     setOverflowHidden(true);
     expect(document.body).not.toHaveStyle('overflow: hidden');
     expect(main).not.toHaveStyle('overflow: hidden');
-  });
-});
-
-describe('running setTabindex', () => {
-  it('should do nothing if selector is not passed', () => {
-    expect(aside1).not.toHaveAttribute('tabindex');
-    expect(aside2).not.toHaveAttribute('tabindex');
-    setTabindex();
-    expect(aside1).not.toHaveAttribute('tabindex');
-    expect(aside2).not.toHaveAttribute('tabindex');
-  });
-
-  it('should apply overflow hidden to passed selectors', () => {
-    expect(aside1).not.toHaveAttribute('tabindex');
-    expect(aside2).not.toHaveAttribute('tabindex');
-    setTabindex('.aside');
-    expect(aside1).toHaveAttribute('tabindex', '-1');
-    expect(aside2).toHaveAttribute('tabindex', '-1');
   });
 });

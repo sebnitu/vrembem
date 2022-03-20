@@ -1,4 +1,4 @@
-import { Collection, FocusTrap, setTabindex } from '@vrembem/core/index';
+import { Collection, FocusTrap } from '@vrembem/core/index';
 
 import defaults from './defaults';
 import { Breakpoint } from './breakpoint';
@@ -40,11 +40,6 @@ export default class Drawer extends Collection {
 
     // TODO: refactor to local storage feature functionality
     this.stateSet();
-
-    // TODO: move set tabindex into register method
-    if (this.settings.setTabindex) {
-      this.setTabindex();
-    }
 
     // TODO: refactor breakpoint functionality
     this.breakpoint.init();
@@ -110,13 +105,6 @@ export default class Drawer extends Collection {
 
   getDrawer(drawerKey) {
     return getDrawer.call(this, drawerKey);
-  }
-
-  setTabindex() {
-    return setTabindex(`
-      [data-${this.settings.dataDrawer}]
-      [data-${this.settings.dataDialog}]
-    `);
   }
 
   stateSet() {

@@ -22,6 +22,11 @@ export async function register(target, dialog) {
     ...methods
   };
 
+  // Set tabindex="-1" so dialog is focusable via JS or click.
+  if (this.settings.setTabindex) {
+    entry.dialog.setAttribute('tabindex', '-1');
+  }
+
   // Add entry to collection.
   this.collection.push(entry);
 

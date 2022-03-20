@@ -25,12 +25,3 @@ export const setOverflowHidden = (state, selector) => {
     });
   }
 };
-
-export const setTabindex = (selector) => {
-  if (selector) {
-    const els = document.querySelectorAll(selector);
-    els.forEach((el) => {
-      el.setAttribute('tabindex', '-1');
-    });
-  }
-};
