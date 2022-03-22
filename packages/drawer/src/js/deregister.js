@@ -11,6 +11,9 @@ export async function deregister(obj) {
     // Get the collection entry.
     const entry = this.collection[index];
 
+    // Unmount the MatchMedia functionality.
+    entry.unmountBreakpoint();
+
     // Delete properties from collection entry.
     Object.getOwnPropertyNames(entry).forEach((prop) => {
       delete entry[prop];

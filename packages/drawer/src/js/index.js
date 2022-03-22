@@ -1,7 +1,6 @@
 import { Collection, FocusTrap } from '@vrembem/core/index';
 
 import defaults from './defaults';
-import { Breakpoint } from './breakpoint';
 import { handlerClick, handlerKeydown } from './handlers';
 import { register } from './register';
 import { deregister } from './deregister';
@@ -19,9 +18,6 @@ export default class Drawer extends Collection {
     this.settings = { ...this.defaults, ...options };
     this.memory = {};
     this.focusTrap = new FocusTrap();
-
-    // TODO: refactor breakpoint functionality
-    this.breakpoint = new Breakpoint(this);
 
     // TODO: refactor to local storage feature functionality
     this.state = {};
@@ -41,9 +37,6 @@ export default class Drawer extends Collection {
     // TODO: refactor to local storage feature functionality
     this.stateSet();
 
-    // TODO: refactor breakpoint functionality
-    this.breakpoint.init();
-
     // Get all the modals.
     const drawers = document.querySelectorAll(this.settings.selectorDrawer);
 
@@ -61,9 +54,6 @@ export default class Drawer extends Collection {
   async destroy() {
     // Clear any stored memory.
     this.memory = {};
-
-    // TODO: refactor breakpoint functionality
-    this.breakpoint.destroy();
 
     // TODO: refactor to local storage feature functionality
     this.state = {};
