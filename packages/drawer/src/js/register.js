@@ -1,5 +1,8 @@
 import { Breakpoint } from '@vrembem/core/index';
 import { deregister } from './deregister';
+import { open } from './open';
+import { close } from './close';
+import { toggle } from './toggle';
 import { getBreakpoint } from './helpers';
 
 export async function register(target, dialog) {
@@ -14,6 +17,15 @@ export async function register(target, dialog) {
 
   // Setup methods API.
   const methods = {
+    open(transition) {
+      return open.call(root, this, transition);
+    },
+    close(transition) {
+      return close.call(root, this, transition);
+    },
+    toggle(transition) {
+      return toggle.call(root, this, transition);
+    },
     deregister() {
       return deregister.call(root, this);
     },

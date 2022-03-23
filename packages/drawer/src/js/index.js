@@ -121,15 +121,15 @@ export default class Drawer extends Collection {
     return switchToModal.call(this, query);
   }
 
-  toggle(query) {
-    return toggle.call(this, query);
+  open(id, transition) {
+    return open.call(this, id, transition);
   }
 
-  open(query) {
-    return open.call(this, query);
+  close(id, transition) {
+    return close.call(this, id, transition);
   }
 
-  close(query) {
-    return close.call(this, query);
+  toggle(id, transition) {
+    return toggle.call(this, id, transition);
   }
 }
