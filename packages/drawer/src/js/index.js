@@ -7,7 +7,7 @@ import { deregister } from './deregister';
 import { open } from './open';
 import { close } from './close';
 import { toggle } from './toggle';
-import { getDrawer, getDrawerID, getDrawerElements } from './helpers';
+import { getDrawerID, getDrawerElements } from './helpers';
 import { stateClear, stateSave, stateSet } from './state';
 import { switchToDefault, switchToModal } from './switchTo';
 
@@ -19,7 +19,7 @@ export default class Drawer extends Collection {
     this.memory = {};
     this.focusTrap = new FocusTrap();
 
-    // TODO: refactor to local storage feature functionality
+    // TODO: refactor the state module.
     this.state = {};
 
     // TODO: remove global working state
@@ -30,18 +30,26 @@ export default class Drawer extends Collection {
     if (this.settings.autoInit) this.init();
   }
 
+  get currentState() {
+    const result = {};
+    this.collection.forEach((entry) => {
+      result[entry.id] = entry.state;
+    });
+    return result;
+  }
+
   async init(options = null) {
     // Update settings with passed options.
     if (options) this.settings = { ...this.settings, ...options };
-
-    // TODO: refactor to local storage feature functionality
-    this.stateSet();
 
     // Get all the modals.
     const drawers = document.querySelectorAll(this.settings.selectorDrawer);
 
     // Register the collections array with modal instances.
     await this.registerCollection(drawers);
+
+    // TODO: refactor the state module.
+    this.stateSet();
 
     // If eventListeners are enabled, init event listeners.
     if (this.settings.eventListeners) {
@@ -55,7 +63,7 @@ export default class Drawer extends Collection {
     // Clear any stored memory.
     this.memory = {};
 
-    // TODO: refactor to local storage feature functionality
+    // TODO: refactor the state module.
     this.state = {};
     localStorage.removeItem(this.settings.stateKey);
 
@@ -93,12 +101,8 @@ export default class Drawer extends Collection {
     return deregister.call(this, modal);
   }
 
-  getDrawer(drawerKey) {
-    return getDrawer.call(this, drawerKey);
-  }
-
   stateSet() {
-    this.state = stateSet(this.settings);
+    this.state = stateSet.call(this, this.settings);
   }
 
   stateSave(target = null) {
@@ -109,23 +113,23 @@ export default class Drawer extends Collection {
     this.state = stateClear(this.settings);
   }
 
-  switchToDefault(drawerKey) {
-    return switchToDefault.call(this, drawerKey);
+  switchToDefault(query) {
+    return switchToDefault.call(this, query);
   }
 
-  switchToModal(drawerKey) {
-    return switchToModal.call(this, drawerKey);
+  switchToModal(query) {
+    return switchToModal.call(this, query);
   }
 
-  toggle(drawerKey) {
-    return toggle.call(this, drawerKey);
+  toggle(query) {
+    return toggle.call(this, query);
   }
 
-  open(drawerKey) {
-    return open.call(this, drawerKey);
+  open(query) {
+    return open.call(this, query);
   }
 
-  close(drawerKey) {
-    return close.call(this, drawerKey);
+  close(query) {
+    return close.call(this, query);
   }
 }

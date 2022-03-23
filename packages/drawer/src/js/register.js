@@ -29,9 +29,9 @@ export async function register(target, dialog) {
     },
     handleBreakpoint(mql) {
       if (mql.matches) {
-        root.switchToDefault(this.target);
+        root.switchToDefault(this);
       } else {
-        root.switchToModal(this.target);
+        root.switchToModal(this);
       }
       return this;
     }
@@ -40,6 +40,7 @@ export async function register(target, dialog) {
   // Setup the drawer object.
   const entry = {
     id: target.id,
+    state: 'closed',
     target: target,
     dialog: dialog,
     get breakpoint() {
@@ -53,11 +54,11 @@ export async function register(target, dialog) {
     entry.dialog.setAttribute('tabindex', '-1');
   }
 
-  // Mount the breakpoint functionality.
-  entry.mountBreakpoint();
-
   // Add entry to collection.
   this.collection.push(entry);
+
+  // Mount media query breakpoint functionality.
+  entry.mountBreakpoint();
 
   // Return the registered entry.
   return entry;

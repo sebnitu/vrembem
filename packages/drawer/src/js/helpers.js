@@ -17,17 +17,16 @@ export function getVariablePrefix() {
   return prefix;
 }
 
-export function getDrawer(drawerKey) {
-  if (typeof drawerKey !== 'string') return drawerKey;
-  return document.querySelector(
-    `[data-${this.settings.dataDrawer}="${drawerKey}"]`
-  );
-}
+export function getDrawer(query) {
+  // Get the entry from collection.
+  const entry = (typeof query === 'string') ? this.get(query) : this.get(query.id);
 
-export function drawerNotFound(key) {
-  return Promise.reject(
-    new Error(`Did not find drawer with key: "${key}"`)
-  );
+  // Return entry if it was resolved, otherwise throw error.
+  if (entry) {
+    return entry;
+  } else {
+    throw new Error(`Drawer not found in collection with id of "${query}".`);
+  }
 }
 
 export function getDrawerID(obj) {

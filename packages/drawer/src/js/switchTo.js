@@ -1,49 +1,54 @@
 import { addClass, hasClass, removeClass } from '@vrembem/core/index';
 import { setInert, setOverflowHidden } from '@vrembem/core/index';
 
-import { drawerNotFound } from './helpers';
+import { open } from './open';
+import { close } from './close';
+import { getDrawer } from './helpers';
 
-export async function switchToModal(drawerKey) {
-  // Initial guards
-  const drawer = this.getDrawer(drawerKey);
-  if (!drawer) return drawerNotFound(drawerKey);
-  if (hasClass(drawer, this.settings.classModal)) return;
+export async function switchToModal(query) {
+  // Get the drawer from collection.
+  const drawer = getDrawer.call(this, query);
 
-  // Enable modal state
-  addClass(drawer, this.settings.classModal);
-  addClass(drawer, this.settings.stateClosed);
-  removeClass(drawer, this.settings.stateOpened);
+  // TODO: store the drawer mode in entry instead of checking the classModal.
+  if (hasClass(drawer.target, this.settings.classModal)) return;
+
+  // Enable modal state.
+  addClass(drawer.target, this.settings.classModal);
+  await close.call(this, drawer, false, true);
 
   // Dispatch custom event
-  drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'toModal', {
+  drawer.target.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'toModal', {
     bubbles: true
   }));
+
+  // Return the drawer.
   return drawer;
 }
 
-export async function switchToDefault(drawerKey) {
-  // Initial guards
-  const drawer = this.getDrawer(drawerKey);
-  if (!drawer) return drawerNotFound(drawerKey);
-  if (!hasClass(drawer, this.settings.classModal)) return;
+export async function switchToDefault(query) {
+  // Get the drawer from collection.
+  const drawer = getDrawer.call(this, query);
 
-  // Tear down modal state
+  // TODO: store the drawer mode in entry instead of checking the classModal.
+  if (!hasClass(drawer.target, this.settings.classModal)) return;
+
+  // Tear down modal state.
   setInert(false, this.settings.selectorInert);
   setOverflowHidden(false, this.settings.selectorOverflow);
-  removeClass(drawer, this.settings.classModal);
+  removeClass(drawer.target, this.settings.classModal);
   this.focusTrap.destroy();
 
-  // Restore drawers saved state
-  drawerKey = drawer.getAttribute(`data-${this.settings.dataDrawer}`);
-  const drawerState = this.state[drawerKey];
+  // Restore drawers saved state.
+  const drawerState = this.state[drawer.id];
   if (drawerState == this.settings.stateOpened) {
-    addClass(drawer, this.settings.stateOpened);
-    removeClass(drawer, this.settings.stateClosed);
+    await open.call(this, drawer, false, true);
   }
 
   // Dispatch custom event
-  drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'toDefault', {
+  drawer.target.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'toDefault', {
     bubbles: true
   }));
+
+  // Return the drawer.
   return drawer;
 }

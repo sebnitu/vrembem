@@ -1,6 +1,9 @@
-import { addClass, hasClass, removeClass } from '@vrembem/core/index';
+import { hasClass } from '@vrembem/core/index';
 
-export function stateSet(settings) {
+import { open } from './open';
+import { close } from './close';
+
+export async function stateSet(settings) {
   // If save state is disabled
   if (!settings.stateSave)
     return stateClear(settings);
@@ -13,14 +16,16 @@ export function stateSet(settings) {
 
   // Set the existing state
   const state = JSON.parse(localStorage.getItem(settings.stateKey));
-  Object.keys(state).forEach((key) => {
+  Object.keys(state).forEach(async (key) => {
     const item = document.querySelector(
       `[data-${settings.dataDrawer}="${key}"]`
     );
     if (!item) return;
-    (state[key] == settings.stateOpened) ?
-      addClass(item, settings.stateOpened) :
-      removeClass(item, settings.stateOpened);
+    if (state[key] == settings.stateOpened) {
+      await open.call(this, key, false, true);
+    } else {
+      await close.call(this, key, false, true);
+    }
   });
   return state;
 }

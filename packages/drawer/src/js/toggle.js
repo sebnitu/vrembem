@@ -1,12 +1,11 @@
-import { hasClass } from '@vrembem/core/index';
+import { getDrawer } from './helpers';
 
-import { drawerNotFound } from './helpers';
+export async function toggle(query) {
+  // Get the drawer from collection.
+  const drawer = getDrawer.call(this, query);
 
-export async function toggle(drawerKey) {
-  const drawer = this.getDrawer(drawerKey);
-  if (!drawer) return drawerNotFound(drawerKey);
-  const isClosed = !hasClass(drawer, this.settings.stateOpened);
-  if (isClosed) {
+  // Open or close the drawer based on its current state.
+  if (drawer.state === 'closed') {
     return this.open(drawer);
   } else {
     return this.close(drawer);
