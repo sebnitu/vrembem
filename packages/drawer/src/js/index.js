@@ -21,9 +21,6 @@ export default class Drawer extends Collection {
     // TODO: refactor the state module.
     this.state = {};
 
-    // TODO: remove global working state
-    this.working = false;
-
     this.__handlerClick = handlerClick.bind(this);
     this.__handlerKeydown = handlerKeydown.bind(this);
     if (this.settings.autoInit) this.init();

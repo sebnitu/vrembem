@@ -1,7 +1,4 @@
 export function handlerClick(event) {
-  // Working catch
-  if (this.working) return;
-
   // Toggle data trigger
   let trigger = event.target.closest(`[data-${this.settings.dataToggle}]`);
   if (trigger) {
@@ -45,9 +42,6 @@ export function handlerClick(event) {
 }
 
 export function handlerKeydown(event) {
-  // Working catch
-  if (this.working) return;
-
   if (event.key === 'Escape') {
     const target = document.querySelector(
       `.${this.settings.classModal}.${this.settings.stateOpened}`
