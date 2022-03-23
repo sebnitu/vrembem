@@ -106,7 +106,7 @@ export default class Drawer extends Collection {
   }
 
   stateSave(target = null) {
-    this.state = stateSave(target, this.settings);
+    this.state = stateSave.call(this, target, this.settings);
   }
 
   stateClear() {

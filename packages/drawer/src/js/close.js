@@ -21,7 +21,8 @@ export async function close(query, transition, bulk = false) {
     drawer.state = 'closing';
 
     // TODO: store the drawer mode in entry instead of checking the classModal.
-    if (hasClass(drawer.target, this.settings.classModal)) {
+    const isModal = hasClass(drawer.target, this.settings.classModal);
+    if (isModal) {
       setInert(false, this.settings.selectorInert);
       setOverflowHidden(false, this.settings.selectorOverflow);
     }
@@ -33,7 +34,9 @@ export async function close(query, transition, bulk = false) {
     await closeTransition(drawer.target, config);
 
     // TODO: refactor the state module.
-    this.stateSave(drawer.target);
+    if (!isModal) {
+      this.stateSave(drawer.target);
+    }
 
     // Return focus to trigger element if this is not a bulk action.
     if (!bulk) {

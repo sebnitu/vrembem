@@ -30,7 +30,9 @@ export async function open(query, transition, bulk = false) {
     await openTransition(drawer.target, config);
 
     // TODO: refactor the state module.
-    this.stateSave(drawer.target);
+    if (!isModal) {
+      this.stateSave(drawer.target);
+    }
 
     // TODO: store the drawer mode in entry instead of checking the classModal.
     if (isModal) {

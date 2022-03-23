@@ -39,9 +39,10 @@ export async function switchToDefault(query) {
   this.focusTrap.destroy();
 
   // Restore drawers saved state.
-  const drawerState = this.state[drawer.id];
-  if (drawerState == this.settings.stateOpened) {
+  if (this.state[drawer.id] === 'opened') {
     await open.call(this, drawer, false, true);
+  } else {
+    await close.call(this, drawer, false, true);
   }
 
   // Dispatch custom event
