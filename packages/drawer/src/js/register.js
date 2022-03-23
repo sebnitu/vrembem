@@ -3,6 +3,7 @@ import { deregister } from './deregister';
 import { open } from './open';
 import { close } from './close';
 import { toggle } from './toggle';
+import { switchMode } from './switchMode';
 import { getBreakpoint } from './helpers';
 
 export async function register(target, dialog) {
@@ -40,11 +41,7 @@ export async function register(target, dialog) {
       return this;
     },
     handleBreakpoint(mql) {
-      if (mql.matches) {
-        root.switchToDefault(this);
-      } else {
-        root.switchToModal(this);
-      }
+      this.mode = (mql.matches) ? 'inline' : 'modal';
       return this;
     }
   };
@@ -58,8 +55,18 @@ export async function register(target, dialog) {
     get breakpoint() {
       return getBreakpoint.call(root, target);
     },
+    get mode() {
+      return mode;
+    },
+    set mode(param) {
+      mode = param;
+      switchMode.call(root, this);
+    },
     ...methods
   };
+
+  // Create the mode var with the default mode value.
+  let mode = 'inline';
 
   // Set tabindex="-1" so dialog is focusable via JS or click.
   if (this.settings.setTabindex) {

@@ -7,9 +7,8 @@ import { deregister } from './deregister';
 import { open } from './open';
 import { close } from './close';
 import { toggle } from './toggle';
-import { getDrawerID, getDrawerElements } from './helpers';
 import { stateClear, stateSave, stateSet } from './state';
-import { switchToDefault, switchToModal } from './switchTo';
+import { getDrawerID, getDrawerElements } from './helpers';
 
 export default class Drawer extends Collection {
   constructor(options) {
@@ -111,14 +110,6 @@ export default class Drawer extends Collection {
 
   stateClear() {
     this.state = stateClear(this.settings);
-  }
-
-  switchToDefault(query) {
-    return switchToDefault.call(this, query);
-  }
-
-  switchToModal(query) {
-    return switchToModal.call(this, query);
   }
 
   open(id, transition) {
