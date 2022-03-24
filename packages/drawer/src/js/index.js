@@ -1,7 +1,7 @@
 import { Collection, FocusTrap } from '@vrembem/core/index';
 
 import defaults from './defaults';
-import { handlerClick, handlerKeydown } from './handlers';
+import { handleClick, handleKeydown } from './handlers';
 import { register } from './register';
 import { deregister } from './deregister';
 import { open } from './open';
@@ -21,8 +21,8 @@ export default class Drawer extends Collection {
     // TODO: refactor the state module.
     this.state = {};
 
-    this.__handlerClick = handlerClick.bind(this);
-    this.__handlerKeydown = handlerKeydown.bind(this);
+    this.__handleClick = handleClick.bind(this);
+    this.__handleKeydown = handleKeydown.bind(this);
     if (this.settings.autoInit) this.init();
   }
 
@@ -81,15 +81,15 @@ export default class Drawer extends Collection {
   }
 
   initEventListeners() {
-    document.addEventListener('click', this.__handlerClick, false);
-    document.addEventListener('touchend', this.__handlerClick, false);
-    document.addEventListener('keydown', this.__handlerKeydown, false);
+    document.addEventListener('click', this.__handleClick, false);
+    document.addEventListener('touchend', this.__handleClick, false);
+    document.addEventListener('keydown', this.__handleKeydown, false);
   }
 
   destroyEventListeners() {
-    document.removeEventListener('click', this.__handlerClick, false);
-    document.removeEventListener('touchend', this.__handlerClick, false);
-    document.removeEventListener('keydown', this.__handlerKeydown, false);
+    document.removeEventListener('click', this.__handleClick, false);
+    document.removeEventListener('touchend', this.__handleClick, false);
+    document.removeEventListener('keydown', this.__handleKeydown, false);
   }
 
   register(query) {
