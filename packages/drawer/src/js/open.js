@@ -1,5 +1,6 @@
 import { openTransition } from '@vrembem/core/index';
 
+// import { stateSave } from './state';
 import { updateGlobalState, updateFocusState, getDrawer } from './helpers';
 
 export async function open(query, transition, focus = true) {
@@ -20,15 +21,14 @@ export async function open(query, transition, focus = true) {
     // Run the open transition.
     await openTransition(drawer.target, config);
 
-    // Update the global state if mode is modal, otherwise save inline state.
-    if (drawer.mode === 'modal') {
-      updateGlobalState.call(this, true);
-    } else {
-      this.stateSave(drawer.target);
-    }
+    // Update the global state if mode is modal.
+    if (drawer.mode === 'modal') updateGlobalState.call(this, true);
 
     // Update drawer state.
     drawer.state = 'opened';
+
+    // Save state to store if mode is inline.
+    if (drawer.mode === 'inline') this.store[drawer.id] = drawer.state;
   }
 
   // Set focus to the target element if the focus param is true.

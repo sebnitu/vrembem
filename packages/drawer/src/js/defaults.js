@@ -2,8 +2,6 @@ export default {
   autoInit: false,
 
   // Data attributes
-  dataDrawer: 'drawer',
-  dataDialog: 'drawer-dialog',
   dataOpen: 'drawer-open',
   dataClose: 'drawer-close',
   dataToggle: 'drawer-toggle',
@@ -29,8 +27,8 @@ export default {
   breakpoints: null,
   customEventPrefix: 'drawer:',
   eventListeners: true,
-  stateSave: true,
-  stateKey: 'DrawerState',
+  store: true,
+  storeKey: 'DrawerState',
   setTabindex: true,
   transition: true
 };

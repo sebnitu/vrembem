@@ -1,11 +1,13 @@
+export * from './src/js/Breakpoint';
+export * from './src/js/Collection';
+export * from './src/js/FocusTrap';
+
 export * from './src/js/accessibility';
 export * from './src/js/addClass';
-export * from './src/js/breakpoint';
 export * from './src/js/camelCase';
-export * from './src/js/collection';
-export * from './src/js/focus';
 export * from './src/js/hasClass';
 export * from './src/js/hyphenCase';
+export * from './src/js/localStore';
 export * from './src/js/removeClass';
 export * from './src/js/teleport';
 export * from './src/js/toggleClass';

@@ -1,4 +1,4 @@
-import { Collection, FocusTrap } from '@vrembem/core/index';
+import { Collection, FocusTrap, localStore } from '@vrembem/core/index';
 
 import defaults from './defaults';
 import { handleClick, handleKeydown } from './handlers';
@@ -7,7 +7,6 @@ import { deregister } from './deregister';
 import { open } from './open';
 import { close } from './close';
 import { toggle } from './toggle';
-import { stateClear, stateSave, stateSet } from './state';
 import { getDrawerID, getDrawerElements } from './helpers';
 
 export default class Drawer extends Collection {
@@ -18,8 +17,8 @@ export default class Drawer extends Collection {
     this.memory = {};
     this.focusTrap = new FocusTrap();
 
-    // TODO: refactor the state module.
-    this.state = {};
+    // Setup local store for store state management.
+    this.store = localStore(this.settings.storeKey, this.settings.store);
 
     this.__handleClick = handleClick.bind(this);
     this.__handleKeydown = handleKeydown.bind(this);
@@ -32,14 +31,6 @@ export default class Drawer extends Collection {
     });
   }
 
-  get currentState() {
-    const result = {};
-    this.collection.forEach((entry) => {
-      result[entry.id] = entry.state;
-    });
-    return result;
-  }
-
   async init(options = null) {
     // Update settings with passed options.
     if (options) this.settings = { ...this.settings, ...options };
@@ -49,9 +40,6 @@ export default class Drawer extends Collection {
 
     // Register the collections array with modal instances.
     await this.registerCollection(drawers);
-
-    // TODO: refactor the state module.
-    this.stateSet();
 
     // If eventListeners are enabled, init event listeners.
     if (this.settings.eventListeners) {
@@ -64,10 +52,6 @@ export default class Drawer extends Collection {
   async destroy() {
     // Clear any stored memory.
     this.memory = {};
-
-    // TODO: refactor the state module.
-    this.state = {};
-    localStorage.removeItem(this.settings.stateKey);
 
     // Remove all entries from the collection.
     await this.deregisterCollection();
@@ -99,20 +83,8 @@ export default class Drawer extends Collection {
   }
 
   deregister(query) {
-    const modal = this.get(getDrawerID.call(this, query));
-    return deregister.call(this, modal);
-  }
-
-  stateSet() {
-    this.state = stateSet.call(this, this.settings);
-  }
-
-  stateSave(target = null) {
-    this.state = stateSave.call(this, target, this.settings);
-  }
-
-  stateClear() {
-    this.state = stateClear(this.settings);
+    const entry = this.get(getDrawerID.call(this, query));
+    return deregister.call(this, entry);
   }
 
   open(id, transition) {

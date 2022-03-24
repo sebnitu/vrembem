@@ -29,7 +29,7 @@ async function toInline(entry) {
   this.focusTrap.destroy();
 
   // Restore drawers to saved inline state.
-  if (this.state[entry.id] === 'opened') {
+  if (this.store[entry.id] === 'opened') {
     await open.call(this, entry, false, false);
   } else {
     await close.call(this, entry, false, false);

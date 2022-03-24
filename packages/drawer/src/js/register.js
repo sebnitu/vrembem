@@ -87,6 +87,13 @@ export async function register(target, dialog) {
   // Add entry to collection.
   this.collection.push(entry);
 
+  // Restore state from local store.
+  if (this.store[entry.id] === 'opened') {
+    await open.call(this, entry, false, false);
+  } else {
+    await close.call(this, entry, false, false);
+  }
+
   // Mount media query breakpoint functionality.
   entry.mountBreakpoint();
 

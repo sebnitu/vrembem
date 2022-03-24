@@ -1,5 +1,6 @@
 import { closeTransition } from '@vrembem/core/index';
 
+// import { stateSave } from './state';
 import { updateGlobalState, updateFocusState, getDrawer } from './helpers';
 
 export async function close(query, transition, focus = true) {
@@ -23,12 +24,8 @@ export async function close(query, transition, focus = true) {
     // Run the close transition.
     await closeTransition(drawer.target, config);
 
-    // Update the global state if mode is modal, otherwise save inline state.
-    if (drawer.mode === 'modal') {
-      updateGlobalState.call(this, false);
-    } else {
-      this.stateSave(drawer.target);
-    }
+    // Update the global state if mode is modal.
+    if (drawer.mode === 'modal') updateGlobalState.call(this, false);
 
     // Set focus to the trigger element if the focus param is true.
     if (focus) {
@@ -37,6 +34,9 @@ export async function close(query, transition, focus = true) {
 
     // Update drawer state.
     drawer.state = 'closed';
+
+    // Save state to store if mode is inline.
+    if (drawer.mode === 'inline') this.store[drawer.id] = drawer.state;
 
     // Dispatch custom closed event.
     drawer.target.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'closed', {
