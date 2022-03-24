@@ -21,6 +21,7 @@ export async function open(query, transition, bulk = false) {
     drawer.state = 'opening';
 
     // TODO: store the drawer mode in entry instead of checking the classModal.
+    // TODO: move this to updateGlobalState helper.
     const isModal = hasClass(drawer.target, this.settings.classModal);
     if (isModal) {
       setOverflowHidden(true, this.settings.selectorOverflow);
@@ -35,7 +36,9 @@ export async function open(query, transition, bulk = false) {
     }
 
     // TODO: store the drawer mode in entry instead of checking the classModal.
+    // TODO: move this to updateGlobalState helper.
     if (isModal) {
+      // TODO: move this to updateFocusState helper.
       this.focusTrap.init(drawer.target);
       setInert(true, this.settings.selectorInert);
     }
@@ -46,6 +49,7 @@ export async function open(query, transition, bulk = false) {
 
   // Set focus to the target element if this is not a bulk action.
   if (!bulk) {
+    // TODO: move this to updateFocusState helper.
     focusTarget(drawer.target, this.settings);
   }
 

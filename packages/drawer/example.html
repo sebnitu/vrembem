@@ -224,8 +224,8 @@
   <!-- Implementation scripts -->
   <script>
     const drawer = new vrembem.Drawer({
-      selectorInert: '[role="main"]',
-      selectorOverflow: 'body, [role="main"]'
+      selectorInert: '.drawer__main',
+      selectorOverflow: 'body, .drawer__main'
     });
 
     drawer.init().then((result) => console.log('drawer.init() => ', result));

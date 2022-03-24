@@ -21,6 +21,7 @@ export async function close(query, transition, bulk = false) {
     drawer.state = 'closing';
 
     // TODO: store the drawer mode in entry instead of checking the classModal.
+    // TODO: move this to updateGlobalState helper.
     const isModal = hasClass(drawer.target, this.settings.classModal);
     if (isModal) {
       setInert(false, this.settings.selectorInert);
@@ -38,11 +39,13 @@ export async function close(query, transition, bulk = false) {
       this.stateSave(drawer.target);
     }
 
+    // TODO: move this to updateFocusState helper.
     // Return focus to trigger element if this is not a bulk action.
     if (!bulk) {
       focusTrigger(this);
     }
 
+    // TODO: move this to updateFocusState helper.
     // Destroy focus trap.
     this.focusTrap.destroy();
 

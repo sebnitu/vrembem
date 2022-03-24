@@ -6,23 +6,23 @@ import { close } from './close';
 export function switchMode(entry) {
   switch (entry.mode) {
     case 'inline':
-      return switchToInline.call(this, entry);
+      return switchModeToInline.call(this, entry);
     case 'modal':
-      return switchToModal.call(this, entry);
+      return switchModeToModal.call(this, entry);
     default:
       throw new Error(`"${entry.mode}" is not a valid drawer mode.`);
   }
 }
 
-async function switchToModal(entry) {
+async function switchModeToModal(entry) {
   // Add the modal class.
   entry.target.classList.add(this.settings.classModal);
 
-  // Modals default state is closed.
+  // Modal drawer defaults to closed state.
   await close.call(this, entry, false, true);
 
   // Dispatch custom switch event.
-  entry.target.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'switched-mode', {
+  entry.target.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'switchMode', {
     detail: this,
     bubbles: true
   }));
@@ -31,16 +31,16 @@ async function switchToModal(entry) {
   return entry;
 }
 
-async function switchToInline(entry) {
+async function switchModeToInline(entry) {
   // Remove the modal class.
   entry.target.classList.remove(this.settings.classModal);
 
-  // Tear down modal state.
+  // TODO: move this to updateGlobalState helper.
   setInert(false, this.settings.selectorInert);
   setOverflowHidden(false, this.settings.selectorOverflow);
   this.focusTrap.destroy();
 
-  // Restore drawers saved state.
+  // Restore drawers to saved inline state.
   if (this.state[entry.id] === 'opened') {
     await open.call(this, entry, false, true);
   } else {
@@ -48,7 +48,7 @@ async function switchToInline(entry) {
   }
 
   // Dispatch custom switch event.
-  entry.target.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'switched-mode', {
+  entry.target.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'switchMode', {
     detail: this,
     bubbles: true
   }));

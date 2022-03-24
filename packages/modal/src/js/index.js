@@ -22,7 +22,7 @@ export default class Modal extends Collection {
     this.stack = new Proxy([], {
       set: (target, property, value) => {
         target[property] = value;
-        // Update global state whenever the length property of stack changes.
+        // Update global state if stack length changed.
         if (property === 'length') {
           updateGlobalState.call(this);
         }
