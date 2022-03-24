@@ -1,11 +1,8 @@
-import { hasClass } from '@vrembem/core/index';
-import { setInert, setOverflowHidden } from '@vrembem/core/index';
-import { focusTarget } from '@vrembem/core/index';
 import { openTransition } from '@vrembem/core/index';
 
-import { getDrawer } from './helpers';
+import { updateGlobalState, updateFocusState, getDrawer } from './helpers';
 
-export async function open(query, transition, bulk = false) {
+export async function open(query, transition, focus = true) {
   // Get the drawer from collection.
   const drawer = getDrawer.call(this, query);
 
@@ -20,37 +17,23 @@ export async function open(query, transition, bulk = false) {
     // Update drawer state.
     drawer.state = 'opening';
 
-    // TODO: store the drawer mode in entry instead of checking the classModal.
-    // TODO: move this to updateGlobalState helper.
-    const isModal = hasClass(drawer.target, this.settings.classModal);
-    if (isModal) {
-      setOverflowHidden(true, this.settings.selectorOverflow);
-    }
-
     // Run the open transition.
     await openTransition(drawer.target, config);
 
-    // TODO: refactor the state module.
-    if (!isModal) {
+    // Update the global state if mode is modal, otherwise save inline state.
+    if (drawer.mode === 'modal') {
+      updateGlobalState.call(this, true);
+    } else {
       this.stateSave(drawer.target);
-    }
-
-    // TODO: store the drawer mode in entry instead of checking the classModal.
-    // TODO: move this to updateGlobalState helper.
-    if (isModal) {
-      // TODO: move this to updateFocusState helper.
-      this.focusTrap.init(drawer.target);
-      setInert(true, this.settings.selectorInert);
     }
 
     // Update drawer state.
     drawer.state = 'opened';
   }
 
-  // Set focus to the target element if this is not a bulk action.
-  if (!bulk) {
-    // TODO: move this to updateFocusState helper.
-    focusTarget(drawer.target, this.settings);
+  // Set focus to the target element if the focus param is true.
+  if (focus) {
+    updateFocusState.call(this, drawer);
   }
 
   // Dispatch custom opened event.

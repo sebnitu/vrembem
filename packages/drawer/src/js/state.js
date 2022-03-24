@@ -25,9 +25,9 @@ export async function stateSet(settings) {
     if (entry.state === state[key]) return;
 
     if (state[key] === 'opened') {
-      await open.call(this, key, false, true);
+      await open.call(this, key, false, false);
     } else {
-      await close.call(this, key, false, true);
+      await close.call(this, key, false, false);
     }
   });
 

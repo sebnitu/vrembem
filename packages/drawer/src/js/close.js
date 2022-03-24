@@ -1,11 +1,8 @@
-import { hasClass } from '@vrembem/core/index';
-import { setInert, setOverflowHidden } from '@vrembem/core/index';
-import { focusTrigger } from '@vrembem/core/index';
 import { closeTransition } from '@vrembem/core/index';
 
-import { getDrawer } from './helpers';
+import { updateGlobalState, updateFocusState, getDrawer } from './helpers';
 
-export async function close(query, transition, bulk = false) {
+export async function close(query, transition, focus = true) {
   // Get the drawer from collection.
   const drawer = getDrawer.call(this, query);
 
@@ -20,34 +17,23 @@ export async function close(query, transition, bulk = false) {
     // Update drawer state.
     drawer.state = 'closing';
 
-    // TODO: store the drawer mode in entry instead of checking the classModal.
-    // TODO: move this to updateGlobalState helper.
-    const isModal = hasClass(drawer.target, this.settings.classModal);
-    if (isModal) {
-      setInert(false, this.settings.selectorInert);
-      setOverflowHidden(false, this.settings.selectorOverflow);
-    }
-
     // Remove focus from active element.
     document.activeElement.blur();
 
     // Run the close transition.
     await closeTransition(drawer.target, config);
 
-    // TODO: refactor the state module.
-    if (!isModal) {
+    // Update the global state if mode is modal, otherwise save inline state.
+    if (drawer.mode === 'modal') {
+      updateGlobalState.call(this, false);
+    } else {
       this.stateSave(drawer.target);
     }
 
-    // TODO: move this to updateFocusState helper.
-    // Return focus to trigger element if this is not a bulk action.
-    if (!bulk) {
-      focusTrigger(this);
+    // Set focus to the trigger element if the focus param is true.
+    if (focus) {
+      updateFocusState.call(this, drawer);
     }
-
-    // TODO: move this to updateFocusState helper.
-    // Destroy focus trap.
-    this.focusTrap.destroy();
 
     // Update drawer state.
     drawer.state = 'closed';

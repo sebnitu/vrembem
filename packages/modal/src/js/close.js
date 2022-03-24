@@ -1,7 +1,7 @@
 import { closeTransition } from '@vrembem/core/index';
 import { updateFocusState, getModal } from './helpers';
 
-export async function close(query, transition, bulk = false) {
+export async function close(query, transition, focus = true) {
   // Get the modal from collection, or top modal in stack if no query is provided.
   const modal = (query) ? getModal.call(this, query) : this.active;
 
@@ -34,7 +34,7 @@ export async function close(query, transition, bulk = false) {
     this.stack.splice(index, 1);
 
     // Update the focus state if this is not a bulk action.
-    if (!bulk) {
+    if (focus) {
       updateFocusState.call(this);
     }
 

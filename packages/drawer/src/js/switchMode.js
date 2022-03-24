@@ -19,7 +19,7 @@ async function switchModeToModal(entry) {
   entry.target.classList.add(this.settings.classModal);
 
   // Modal drawer defaults to closed state.
-  await close.call(this, entry, false, true);
+  await close.call(this, entry, false, false);
 
   // Dispatch custom switch event.
   entry.target.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'switchMode', {
@@ -42,9 +42,9 @@ async function switchModeToInline(entry) {
 
   // Restore drawers to saved inline state.
   if (this.state[entry.id] === 'opened') {
-    await open.call(this, entry, false, true);
+    await open.call(this, entry, false, false);
   } else {
-    await close.call(this, entry, false, true);
+    await close.call(this, entry, false, false);
   }
 
   // Dispatch custom switch event.

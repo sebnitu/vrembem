@@ -65,13 +65,13 @@ export async function register(target, dialog) {
     ...methods
   };
 
-  // Create the mode var with the default mode value.
-  let mode = 'inline';
-
   // Set tabindex="-1" so dialog is focusable via JS or click.
   if (this.settings.setTabindex) {
     entry.dialog.setAttribute('tabindex', '-1');
   }
+
+  // Create the mode var with the initial mode.
+  let mode = (target.classList.contains(this.settings.classModal)) ? 'modal' : 'inline';
 
   // Add entry to collection.
   this.collection.push(entry);

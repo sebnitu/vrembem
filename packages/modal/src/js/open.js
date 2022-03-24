@@ -1,7 +1,7 @@
 import { openTransition } from '@vrembem/core/index';
 import { updateFocusState, getModal } from './helpers';
 
-export async function open(query, transition, bulk = false) {
+export async function open(query, transition, focus = true) {
   // Get the modal from collection.
   const modal = getModal.call(this, query);
 
@@ -45,8 +45,8 @@ export async function open(query, transition, bulk = false) {
     modal.state = 'opened';
   }
 
-  // Update the focus state if this is not a bulk action.
-  if (!bulk) {
+  // Set focus to the target element if the focus param is true.
+  if (focus) {
     updateFocusState.call(this);
   }
 

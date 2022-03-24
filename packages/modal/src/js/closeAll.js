@@ -6,7 +6,7 @@ export async function closeAll(exclude, transition) {
     if (exclude && exclude === modal.id) {
       Promise.resolve();
     } else {
-      result.push(await close.call(this, modal, transition, true));
+      result.push(await close.call(this, modal, transition, false));
     }
     modal.trigger = null;
   }));

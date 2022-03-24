@@ -26,6 +26,12 @@ export default class Drawer extends Collection {
     if (this.settings.autoInit) this.init();
   }
 
+  get activeModal() {
+    return this.collection.find((entry) => {
+      return entry.state === 'opened' && entry.mode === 'modal';
+    });
+  }
+
   get currentState() {
     const result = {};
     this.collection.forEach((entry) => {

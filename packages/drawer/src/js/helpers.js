@@ -1,3 +1,26 @@
+import { focusTarget, focusTrigger, setInert, setOverflowHidden } from '@vrembem/core/index';
+
+export function updateGlobalState(param) {
+  // Set inert state based on if a modal is active.
+  setInert(!!param, this.settings.selectorInert);
+
+  // Set overflow state based on if a modal is active.
+  setOverflowHidden(!!param, this.settings.selectorOverflow);
+}
+
+export function updateFocusState(entry) {
+  // Check if there's an active modal
+  if (entry.state === 'opened') {
+    // Set focus and init focus trap on active modal.
+    focusTarget(entry.target, this.settings);
+    this.focusTrap.init(entry.target);
+  } else {
+    // Set focus to root trigger and destroy focus trap.
+    focusTrigger(this);
+    this.focusTrap.destroy();
+  }
+}
+
 export function getBreakpoint(drawer) {
   const prefix = getVariablePrefix();
   const bp = drawer.getAttribute(`data-${this.settings.dataBreakpoint}`);
