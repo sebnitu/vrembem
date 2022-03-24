@@ -1,4 +1,5 @@
 import { Breakpoint } from '@vrembem/core/index';
+
 import { deregister } from './deregister';
 import { open } from './open';
 import { close } from './close';

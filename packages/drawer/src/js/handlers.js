@@ -21,17 +21,17 @@ export function handleClick(event) {
     event.preventDefault();
     const selector = trigger.getAttribute(`data-${this.settings.dataClose}`);
     if (selector) {
-      // Get the entry from collection using the trigger.
-      const entry = this.get(getDrawerID.call(this, trigger));
       // TODO: move trigger memory into collection entries
       this.memory.trigger = trigger;
+      // Get the entry from collection using the trigger.
+      const entry = this.get(getDrawerID.call(this, trigger));
       // Close the drawer.
       entry.close();
     } else {
-      // If no value exists in close trigger, get the parent drawer.
-      const target = event.target.closest(`[data-${this.settings.dataDrawer}]`);
+      // If no value is set on close trigger, get the parent drawer.
+      const parent = event.target.closest(this.settings.selectorDrawer);
       // If a parent drawer was found, close it.
-      if (target) this.close(target);
+      if (parent) this.close(parent);
     }
     return;
   }

@@ -19,8 +19,7 @@ export async function stateSet(settings) {
   Object.keys(state).forEach(async (key) => {
     const entry = this.get(key);
 
-    // TODO: store the drawer mode in entry instead of checking the classModal.
-    if (!entry || hasClass(entry.target, settings.classModal)) return;
+    if (!entry || entry.mode === 'modal') return;
 
     if (entry.state === state[key]) return;
 
@@ -50,8 +49,7 @@ export function stateSave(target, settings) {
   drawers.forEach((el) => {
     const entry = this.get(el.id);
 
-    // TODO: store the drawer mode in entry instead of checking the classModal.
-    if (!entry || hasClass(entry.target, settings.classModal)) return;
+    if (!entry || entry.mode === 'modal') return;
 
     const drawerKey = el.getAttribute(`data-${settings.dataDrawer}`);
     state[drawerKey] = (hasClass(el, settings.stateOpened)) ? 'opened' : 'closed';
