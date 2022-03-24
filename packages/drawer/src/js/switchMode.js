@@ -1,7 +1,7 @@
-import { setInert, setOverflowHidden } from '@vrembem/core/index';
-
 import { open } from './open';
 import { close } from './close';
+
+import { updateGlobalState } from './helpers';
 
 export function switchMode(entry) {
   switch (entry.mode) {
@@ -17,6 +17,10 @@ export function switchMode(entry) {
 async function switchModeToModal(entry) {
   // Add the modal class.
   entry.target.classList.add(this.settings.classModal);
+
+  // Set aria-modal attribute to true and role attribute to "dialog".
+  entry.dialog.setAttribute('aria-modal', 'true');
+  entry.dialog.setAttribute('role', 'dialog');
 
   // Modal drawer defaults to closed state.
   await close.call(this, entry, false, false);
@@ -35,9 +39,14 @@ async function switchModeToInline(entry) {
   // Remove the modal class.
   entry.target.classList.remove(this.settings.classModal);
 
-  // TODO: move this to updateGlobalState helper.
-  setInert(false, this.settings.selectorInert);
-  setOverflowHidden(false, this.settings.selectorOverflow);
+  // Remove the aria-modal attribute and role attribute.
+  entry.dialog.removeAttribute('aria-modal');
+  entry.dialog.removeAttribute('role');
+
+  // Update the global state.
+  updateGlobalState.call(this, false);
+
+  // Remove any focus traps.
   this.focusTrap.destroy();
 
   // Restore drawers to saved inline state.
