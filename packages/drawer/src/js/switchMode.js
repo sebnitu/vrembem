@@ -16,7 +16,7 @@ export function switchMode(entry) {
 
 async function toInline(entry) {
   // Remove the modal class.
-  entry.target.classList.remove(this.settings.classModal);
+  entry.el.classList.remove(this.settings.classModal);
 
   // Remove the aria-modal attribute and role attribute.
   entry.dialog.removeAttribute('aria-modal');
@@ -36,7 +36,7 @@ async function toInline(entry) {
   }
 
   // Dispatch custom switch event.
-  entry.target.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'switchMode', {
+  entry.el.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'switchMode', {
     detail: this,
     bubbles: true
   }));
@@ -47,7 +47,7 @@ async function toInline(entry) {
 
 async function toModal(entry) {
   // Add the modal class.
-  entry.target.classList.add(this.settings.classModal);
+  entry.el.classList.add(this.settings.classModal);
 
   // Set aria-modal attribute to true and role attribute to "dialog".
   entry.dialog.setAttribute('aria-modal', 'true');
@@ -57,7 +57,7 @@ async function toModal(entry) {
   await close.call(this, entry, false, false);
 
   // Dispatch custom switch event.
-  entry.target.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'switchMode', {
+  entry.el.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'switchMode', {
     detail: this,
     bubbles: true
   }));

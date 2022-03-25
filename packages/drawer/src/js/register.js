@@ -7,9 +7,9 @@ import { toggle } from './toggle';
 import { switchMode } from './switchMode';
 import { getBreakpoint } from './helpers';
 
-export async function register(target, dialog) {
+export async function register(el, dialog) {
   // Deregister entry incase it has already been registered.
-  await deregister.call(this, target);
+  await deregister.call(this, el);
 
   // Save root this for use inside methods API.
   const root = this;
@@ -49,12 +49,12 @@ export async function register(target, dialog) {
 
   // Setup the drawer object.
   const entry = {
-    id: target.id,
+    id: el.id,
     state: 'closed',
-    target: target,
+    el: el,
     dialog: dialog,
     get breakpoint() {
-      return getBreakpoint.call(root, target);
+      return getBreakpoint.call(root, el);
     },
     get mode() {
       return mode;
@@ -67,7 +67,7 @@ export async function register(target, dialog) {
   };
 
   // Create the mode var with the initial mode.
-  let mode = (target.classList.contains(this.settings.classModal)) ? 'modal' : 'inline';
+  let mode = (el.classList.contains(this.settings.classModal)) ? 'modal' : 'inline';
 
   if (entry.mode === 'modal') {
     // Set aria-modal attribute to true and role attribute to "dialog".

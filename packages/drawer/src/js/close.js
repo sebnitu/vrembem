@@ -22,7 +22,7 @@ export async function close(query, transition, focus = true) {
     document.activeElement.blur();
 
     // Run the close transition.
-    await closeTransition(drawer.target, config);
+    await closeTransition(drawer.el, config);
 
     // Update the global state if mode is modal.
     if (drawer.mode === 'modal') updateGlobalState.call(this, false);
@@ -39,7 +39,7 @@ export async function close(query, transition, focus = true) {
     if (drawer.mode === 'inline') this.store[drawer.id] = drawer.state;
 
     // Dispatch custom closed event.
-    drawer.target.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'closed', {
+    drawer.el.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'closed', {
       detail: this,
       bubbles: true
     }));

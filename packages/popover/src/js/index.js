@@ -78,7 +78,7 @@ export default class Popover extends Collection {
   register(query) {
     const els = getPopoverElements.call(this, query);
     if (els.error) return Promise.reject(els.error);
-    return register.call(this, els.trigger, els.target);
+    return register.call(this, els.popover, els.trigger);
   }
 
   deregister(query) {

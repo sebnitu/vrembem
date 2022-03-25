@@ -185,13 +185,13 @@ describe('getPopoverID()', () => {
 });
 
 describe('getPopoverElements()', () => {
-  it('should return popover target and trigger elements when found using ID', () => {
+  it('should return popover element and trigger elements when found using ID', () => {
     document.body.innerHTML = markup;
     const trigger = document.querySelector('[aria-controls="pop-1"]');
     const target = document.querySelector('#pop-1');
     popover = new Popover();
     const result = getPopoverElements.call(popover, 'pop-1');
-    expect(result.target).toBe(target);
+    expect(result.popover).toBe(target);
     expect(result.trigger).toBe(trigger);
   });
 

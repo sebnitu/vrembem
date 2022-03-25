@@ -17,7 +17,7 @@ export default class Drawer extends Collection {
     this.memory = {};
     this.focusTrap = new FocusTrap();
 
-    // Setup local store for store state management.
+    // Setup local store for inline drawer state management.
     this.store = localStore(this.settings.storeKey, this.settings.store);
 
     this.__handleClick = handleClick.bind(this);
@@ -79,7 +79,7 @@ export default class Drawer extends Collection {
   register(query) {
     const els = getDrawerElements.call(this, query);
     if (els.error) return Promise.reject(els.error);
-    return register.call(this, els.target, els.dialog);
+    return register.call(this, els.drawer, els.dialog);
   }
 
   deregister(query) {

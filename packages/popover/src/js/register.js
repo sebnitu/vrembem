@@ -6,9 +6,9 @@ import { open } from './open';
 import { close, closeCheck } from './close';
 import { getConfig } from './helpers';
 
-export async function register(trigger, target) {
+export async function register(el, trigger) {
   // Deregister entry incase it has already been registered.
-  deregister.call(this, target);
+  deregister.call(this, el);
 
   // Save root this for use inside methods API.
   const root = this;
@@ -28,12 +28,12 @@ export async function register(trigger, target) {
 
   // Setup the popover object.
   const entry = {
-    id: target.id,
+    id: el.id,
     state: 'closed',
+    el: el,
     trigger: trigger,
-    target: target,
-    popper: createPopper(trigger, target),
-    config: getConfig(target, this.settings),
+    popper: createPopper(trigger, el),
+    config: getConfig(el, this.settings),
     ...methods
   };
 
@@ -49,7 +49,7 @@ export async function register(trigger, target) {
   this.collection.push(entry);
 
   // Set initial state.
-  if (entry.target.classList.contains(this.settings.stateActive)) {
+  if (entry.el.classList.contains(this.settings.stateActive)) {
     await entry.open();
     documentClick.call(this, entry);
   }
@@ -72,7 +72,7 @@ export function registerEventListeners(entry) {
         type: ['mouseenter', 'focus'],
         listener: open.bind(this, entry)
       }, {
-        el: ['trigger', 'target'],
+        el: ['el', 'trigger'],
         type: ['mouseleave', 'focusout'],
         listener: closeCheck.bind(this, entry)
       }];

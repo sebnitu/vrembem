@@ -19,7 +19,7 @@ export async function open(query, transition, focus = true) {
     drawer.state = 'opening';
 
     // Run the open transition.
-    await openTransition(drawer.target, config);
+    await openTransition(drawer.el, config);
 
     // Update the global state if mode is modal.
     if (drawer.mode === 'modal') updateGlobalState.call(this, true);
@@ -31,13 +31,13 @@ export async function open(query, transition, focus = true) {
     if (drawer.mode === 'inline') this.store[drawer.id] = drawer.state;
   }
 
-  // Set focus to the target element if the focus param is true.
+  // Set focus to the drawer element if the focus param is true.
   if (focus) {
     updateFocusState.call(this, drawer);
   }
 
   // Dispatch custom opened event.
-  drawer.target.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'opened', {
+  drawer.el.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'opened', {
     detail: this,
     bubbles: true
   }));

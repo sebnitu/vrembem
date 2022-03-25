@@ -44,9 +44,9 @@ export function handleClick(event) {
 
 export function handleKeydown(event) {
   if (event.key === 'Escape') {
-    const target = this.activeModal;
-    if (target) {
-      this.close(target);
+    const modal = this.activeModal;
+    if (modal) {
+      this.close(modal);
     }
   }
 }

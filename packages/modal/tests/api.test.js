@@ -55,7 +55,7 @@ describe('init() & destroy()', () => {
     btnOpen.click();
     await delay();
     expect(entry.state).toBe('opened');
-    expect(entry.target).toHaveClass('is-opened');
+    expect(entry.el).toHaveClass('is-opened');
   });
 
   it('should destroy the modal instance', async () => {
@@ -105,7 +105,7 @@ describe('initEventListeners() & destroyEventListeners()', () => {
     btnOpen.click();
     await delay();
     expect(entry.state).toBe('opened');
-    expect(entry.target).toHaveClass('is-opened');
+    expect(entry.el).toHaveClass('is-opened');
   });
 
   it('should destroy event listeners', async () => {
@@ -113,7 +113,7 @@ describe('initEventListeners() & destroyEventListeners()', () => {
     btnClose.click();
     await delay();
     expect(entry.state).toBe('opened');
-    expect(entry.target).toHaveClass('is-opened');
+    expect(entry.el).toHaveClass('is-opened');
   });
 });
 
@@ -301,21 +301,21 @@ describe('replace()', () => {
     let entry = modal.get('modal-1');
 
     modal.open('modal-1');
-    expect(entry.target).toHaveClass('is-opening');
+    expect(entry.el).toHaveClass('is-opening');
     expect(entry.state).toBe('opening');
-    await transition(entry.target);
-    expect(entry.target).toHaveClass('is-opened');
+    await transition(entry.el);
+    expect(entry.el).toHaveClass('is-opened');
     expect(entry.state).toBe('opened');
 
     modal.replace('modal-2');
-    await transition(entry.target);
+    await transition(entry.el);
 
-    expect(entry.target).toHaveClass('is-closed');
+    expect(entry.el).toHaveClass('is-closed');
     expect(entry.state).toBe('closed');
 
     entry = modal.get('modal-2');
-    await transition(entry.target);
-    expect(entry.target).toHaveClass('is-opened');
+    await transition(entry.el);
+    expect(entry.el).toHaveClass('is-opened');
     expect(entry.state).toBe('opened');
   });
 
@@ -329,7 +329,7 @@ describe('replace()', () => {
     modal.open('modal-3');
 
     await Promise.all(modal.collection.map(async (entry) => {
-      await transition(entry.target);
+      await transition(entry.el);
     }));
 
     expect(modal.stack.length).toBe(3);
@@ -340,7 +340,7 @@ describe('replace()', () => {
     modal.replace('modal-2');
 
     await Promise.all(modal.collection.map(async (entry) => {
-      await transition(entry.target);
+      await transition(entry.el);
     }));
 
     expect(modal.stack.length).toBe(1);
@@ -371,20 +371,20 @@ describe('closeAll()', () => {
     modal.open('modal-3');
 
     await Promise.all(modal.collection.map(async (entry) => {
-      expect(entry.target).toHaveClass('is-opening');
+      expect(entry.el).toHaveClass('is-opening');
       expect(entry.state).toBe('opening');
-      await transition(entry.target);
-      expect(entry.target).toHaveClass('is-opened');
+      await transition(entry.el);
+      expect(entry.el).toHaveClass('is-opened');
       expect(entry.state).toBe('opened');
     }));
 
     modal.closeAll();
 
     await Promise.all(modal.collection.map(async (entry) => {
-      expect(entry.target).toHaveClass('is-closing');
+      expect(entry.el).toHaveClass('is-closing');
       expect(entry.state).toBe('closing');
-      await transition(entry.target);
-      expect(entry.target).toHaveClass('is-closed');
+      await transition(entry.el);
+      expect(entry.el).toHaveClass('is-closed');
       expect(entry.state).toBe('closed');
     }));
   });

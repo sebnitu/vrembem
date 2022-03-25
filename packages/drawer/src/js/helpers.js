@@ -12,8 +12,8 @@ export function updateFocusState(entry) {
   // Check if there's an active modal
   if (entry.state === 'opened') {
     // Set focus and init focus trap on active modal.
-    focusTarget(entry.target, this.settings);
-    this.focusTrap.init(entry.target);
+    focusTarget(entry.el, this.settings);
+    this.focusTrap.init(entry.el);
   } else {
     // Set focus to root trigger and destroy focus trap.
     focusTrigger(this);
@@ -75,7 +75,7 @@ export function getDrawerID(obj) {
       return obj.getAttribute(`data-${this.settings.dataToggle}`);
     }
 
-    // If it's a drawer target, return the id.
+    // If it's a drawer element, return the id.
     else if (obj.closest(this.settings.selectorDrawer)) {
       obj = obj.closest(this.settings.selectorDrawer);
       return obj.id || false;
@@ -97,15 +97,15 @@ export function getDrawerID(obj) {
 export function getDrawerElements(query) {
   const id = getDrawerID.call(this, query);
   if (id) {
-    const target = document.querySelector(`#${id}`);
-    const dialog = target ? target.querySelector(this.settings.selectorDialog) : null;
+    const drawer = document.querySelector(`#${id}`);
+    const dialog = drawer ? drawer.querySelector(this.settings.selectorDialog) : null;
 
-    if (!target && !dialog) {
+    if (!drawer && !dialog) {
       return { error: new Error(`No drawer elements found using the ID: "${id}".`) };
     } else if (!dialog) {
       return { error: new Error('Drawer is missing dialog element.') };
     } else {
-      return { target, dialog };
+      return { drawer, dialog };
     }
   } else {
     return { error: new Error('Could not resolve the drawer ID.') };

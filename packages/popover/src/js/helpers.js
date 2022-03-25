@@ -123,7 +123,7 @@ export function getPopoverID(obj) {
 
   // If it's an HTML element.
   else if (typeof obj.hasAttribute === 'function') {
-    // If it's a popover target, return the id.
+    // If it's a popover element, return the id.
     if (obj.closest(this.settings.selectorPopover)) {
       obj = obj.closest(this.settings.selectorPopover);
       return obj.id;
@@ -155,19 +155,19 @@ export function getPopoverID(obj) {
 export function getPopoverElements(query) {
   const id = getPopoverID.call(this, query);
   if (id) {
+    const popover = document.querySelector(`#${id}`);
     const trigger =
       document.querySelector(`[aria-controls="${id}"]`) ||
       document.querySelector(`[aria-describedby="${id}"]`);
-    const target = document.querySelector(`#${id}`);
 
-    if (!trigger && !target) {
+    if (!trigger && !popover) {
       return { error: new Error(`No popover elements found using the ID: "${id}".`) };
     } else if (!trigger) {
       return { error: new Error('No popover trigger associated with the provided popover.') };
-    } else if (!target) {
+    } else if (!popover) {
       return { error: new Error('No popover associated with the provided popover trigger.') };
     } else {
-      return { trigger, target };
+      return { popover, trigger };
     }
   } else {
     return { error: new Error('Could not resolve the popover ID.') };

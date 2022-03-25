@@ -149,13 +149,13 @@ describe('register() & deregister()', () => {
 
     expect(popover.collection.length).toBe(0);
 
+    const el = document.querySelector('.popover');
     const trigger = document.querySelector('button');
-    const target = document.querySelector('.popover');
 
     popover.register(trigger);
     expect(popover.collection.length).toBe(1);
+    expect(popover.collection[0].el).toBe(el);
     expect(popover.collection[0].trigger).toBe(trigger);
-    expect(popover.collection[0].target).toBe(target);
   });
 
   it('should be able to manually deregister a popover', () => {
@@ -166,11 +166,11 @@ describe('register() & deregister()', () => {
     popover.deregister(popover.collection[0]);
     expect(popover.collection.length).toBe(1);
 
+    const el = document.querySelector('.popover');
     const trigger = document.querySelector('button');
-    const target = document.querySelector('.popover');
 
     trigger.click();
-    expect(target).not.toHaveClass('is-active');
+    expect(el).not.toHaveClass('is-active');
   });
 
   it('should return collection if deregister is run non-existent popover', async () => {
@@ -254,14 +254,14 @@ describe('open() & close()', () => {
 
     popover.collection.forEach((item) => {
       expect(item.state).toBe('opened');
-      expect(item.target).toHaveClass('is-active');
+      expect(item.el).toHaveClass('is-active');
     });
 
     await popover.close();
 
     popover.collection.forEach((item) => {
       expect(item.state).toBe('closed');
-      expect(item.target).not.toHaveClass('is-active');
+      expect(item.el).not.toHaveClass('is-active');
     });
   });
 
@@ -269,7 +269,7 @@ describe('open() & close()', () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     await popover.init();
-    
+
     let catchError = false;
     await popover.open('missing').catch((error) => {
       expect(error.message).toBe('Popover not found in collection with id of "missing".');

@@ -6,9 +6,9 @@ import { close } from './close';
 import { replace } from './replace';
 import { getConfig } from './helpers';
 
-export async function register(target, dialog) {
+export async function register(el, dialog) {
   // Deregister entry incase it has already been registered.
-  await deregister.call(this, target, false);
+  await deregister.call(this, el, false);
 
   // Save root this for use inside methods API.
   const root = this;
@@ -29,19 +29,19 @@ export async function register(target, dialog) {
     },
     teleport(ref = this.getSetting('teleport'), method = this.getSetting('teleportMethod')) {
       if (!this.returnRef) {
-        this.returnRef = teleport(this.target, ref, method);
-        return this.target;
+        this.returnRef = teleport(this.el, ref, method);
+        return this.el;
       } else {
-        console.error('Element has already been teleported:', this.target);
+        console.error('Element has already been teleported:', this.el);
         return false;
       }
     },
     teleportReturn() {
       if (this.returnRef) {
-        this.returnRef = teleport(this.target, this.returnRef);
-        return this.target;
+        this.returnRef = teleport(this.el, this.returnRef);
+        return this.el;
       } else {
-        console.error('No return reference found:', this.target);
+        console.error('No return reference found:', this.el);
         return false;
       }
     },
@@ -52,12 +52,12 @@ export async function register(target, dialog) {
 
   // Setup the modal object.
   const entry = {
-    id: target.id,
+    id: el.id,
     state: 'closed',
-    settings: getConfig.call(this, target),
-    target: target,
+    el: el,
     dialog: dialog,
     returnRef: null,
+    settings: getConfig.call(this, el),
     ...methods
   };
 
@@ -83,15 +83,15 @@ export async function register(target, dialog) {
   this.collection.push(entry);
 
   // Setup initial state.
-  if (entry.target.classList.contains(this.settings.stateOpened)) {
+  if (entry.el.classList.contains(this.settings.stateOpened)) {
     // Open modal with transitions disabled.
     entry.open(false);
   } else {
     // Remove transition state classes.
-    entry.target.classList.remove(this.settings.stateOpening);
-    entry.target.classList.remove(this.settings.stateClosing);
+    entry.el.classList.remove(this.settings.stateOpening);
+    entry.el.classList.remove(this.settings.stateClosing);
     // Add closed state class.
-    entry.target.classList.add(this.settings.stateClosed);
+    entry.el.classList.add(this.settings.stateClosed);
   }
 
   // Return the registered entry.

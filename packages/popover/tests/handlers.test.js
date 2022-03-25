@@ -45,7 +45,7 @@ describe('handlerClick()', () => {
     expect(popover.collection.length).toBe(2);
 
     handlerClick.bind(popover, popover.collection[0])();
-    expect(popover.collection[0].target).toHaveClass('is-active');
+    expect(popover.collection[0].el).toHaveClass('is-active');
   });
 
   it('should close popover if it contains the active class', async () => {
@@ -56,7 +56,7 @@ describe('handlerClick()', () => {
     expect(popover.collection.length).toBe(2);
 
     handlerClick.bind(popover, popover.collection[1])();
-    expect(popover.collection[1].target).not.toHaveClass('is-active');
+    expect(popover.collection[1].el).not.toHaveClass('is-active');
   });
 
   it('should attach document click event listener when popover is opened', async () => {
@@ -65,14 +65,14 @@ describe('handlerClick()', () => {
     await popover.init();
 
     handlerClick.bind(popover, popover.collection[0])();
-    expect(popover.collection[0].target).toHaveClass('is-active');
-    expect(popover.collection[1].target).toHaveClass('is-active');
+    expect(popover.collection[0].el).toHaveClass('is-active');
+    expect(popover.collection[1].el).toHaveClass('is-active');
 
     document.querySelector('#app').click();
     await delay();
 
-    expect(popover.collection[0].target).not.toHaveClass('is-active');
-    expect(popover.collection[1].target).not.toHaveClass('is-active');
+    expect(popover.collection[0].el).not.toHaveClass('is-active');
+    expect(popover.collection[1].el).not.toHaveClass('is-active');
   });
 });
 
@@ -82,10 +82,10 @@ describe('handlerKeydown()', () => {
     popover = new Popover();
     await popover.init();
 
-    expect(popover.collection[1].target).toHaveClass('is-active');
+    expect(popover.collection[1].el).toHaveClass('is-active');
     document.dispatchEvent(keyEsc);
     await delay();
-    expect(popover.collection[1].target).not.toHaveClass('is-active');
+    expect(popover.collection[1].el).not.toHaveClass('is-active');
   });
 
   it('should do nothing when a non-escape key is pressed', async () => {
@@ -93,10 +93,10 @@ describe('handlerKeydown()', () => {
     popover = new Popover();
     await popover.init();
 
-    expect(popover.collection[1].target).toHaveClass('is-active');
+    expect(popover.collection[1].el).toHaveClass('is-active');
     document.dispatchEvent(keySpace);
     await delay();
-    expect(popover.collection[1].target).toHaveClass('is-active');
+    expect(popover.collection[1].el).toHaveClass('is-active');
   });
 
   it('should return focus to the trigger element when escape key is pressed', async () => {
@@ -126,10 +126,10 @@ describe('handlerKeydown()', () => {
     await popover.init();
 
     expect(popover.collection.length).toBe(2);
-    expect(popover.collection[1].target).toHaveClass('is-active');
+    expect(popover.collection[1].el).toHaveClass('is-active');
     document.dispatchEvent(keyTab);
     await delay();
-    expect(popover.collection[1].target).not.toHaveClass('is-active');
+    expect(popover.collection[1].el).not.toHaveClass('is-active');
   });
 });
 
@@ -139,13 +139,13 @@ describe('documentClick()', () => {
     popover = new Popover();
     await popover.init();
 
-    expect(popover.collection[0].target).not.toHaveClass('is-active');
-    expect(popover.collection[1].target).toHaveClass('is-active');
+    expect(popover.collection[0].el).not.toHaveClass('is-active');
+    expect(popover.collection[1].el).toHaveClass('is-active');
 
     popover.collection[0].trigger.click();
 
-    expect(popover.collection[0].target).toHaveClass('is-active');
-    expect(popover.collection[1].target).not.toHaveClass('is-active');
+    expect(popover.collection[0].el).toHaveClass('is-active');
+    expect(popover.collection[1].el).not.toHaveClass('is-active');
   });
 
   it('should remove document event listener when popover is closed', async () => {
@@ -153,12 +153,12 @@ describe('documentClick()', () => {
     popover = new Popover();
     await popover.init();
 
-    expect(popover.collection[0].target).not.toHaveClass('is-active');
-    expect(popover.collection[1].target).toHaveClass('is-active');
+    expect(popover.collection[0].el).not.toHaveClass('is-active');
+    expect(popover.collection[1].el).toHaveClass('is-active');
 
     popover.collection[1].trigger.click();
 
-    expect(popover.collection[0].target).not.toHaveClass('is-active');
-    expect(popover.collection[1].target).not.toHaveClass('is-active');
+    expect(popover.collection[0].el).not.toHaveClass('is-active');
+    expect(popover.collection[1].el).not.toHaveClass('is-active');
   });
 });

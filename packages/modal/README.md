@@ -271,10 +271,10 @@ Returns an array where all modal objects are stored when registered. Each modal 
 {
   id: String, // The unique ID of the modal.
   state: String, // The current state of the modal ('closing', 'closed', 'opening' or 'opened').
-  settings: Object // The modal specific settings.
-  target: HTMLElement, // The modal HTML element.
+  el: HTMLElement, // The modal HTML element.
   dialog: HTMLElement // The modal dialog JS instance.
   returnRef: HTMLComment // The return reference left when a modal is teleported.
+  settings: Object // The modal specific settings.
   open: Function // Method to open this modal.
   close: Function // Method to close this modal.
   replace: Function // Method to replace open modal(s) with this modal.
@@ -423,7 +423,7 @@ const result = await modal.registerCollection();
 
 ### `modal.get(value, key)`
 
-Used to retrieve a registered modal object from the collection. The value should match the key type to search by: e.g. to search by target elements, pass the target html node with a key of `'target'`. Defaults to `'id'`.
+Used to retrieve a registered modal object from the collection. The value should match the key type to search by: e.g. to search by modal elements, pass the modal html node with a key of `'el'`. Defaults to `'id'`.
 
 **Parameters**
 

@@ -5,7 +5,7 @@ export async function open(query) {
   const popover = getPopover.call(this, query);
 
   // Update state class.
-  popover.target.classList.add(this.settings.stateActive);
+  popover.el.classList.add(this.settings.stateActive);
 
   // Update accessibility attribute(s).
   if (popover.trigger.hasAttribute('aria-controls')) {
@@ -13,7 +13,7 @@ export async function open(query) {
   }
 
   // Update popover config.
-  popover.config = getConfig(popover.target, this.settings);
+  popover.config = getConfig(popover.el, this.settings);
 
   // Enable popper event listeners and set placement/modifiers.
   popover.popper.setOptions({

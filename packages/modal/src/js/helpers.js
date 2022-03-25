@@ -15,8 +15,8 @@ export function updateFocusState() {
   // Check if there's an active modal
   if (this.active) {
     // Set focus and init focus trap on active modal.
-    focusTarget(this.active.target, this.settings);
-    this.focusTrap.init(this.active.target);
+    focusTarget(this.active.el, this.settings);
+    this.focusTrap.init(this.active.el);
   } else {
     // Set focus to root trigger and destroy focus trap.
     focusTrigger(this);
@@ -26,9 +26,9 @@ export function updateFocusState() {
 
 export function updateStackIndex(stack) {
   stack.forEach((entry, index) => {
-    entry.target.style.zIndex = null;
-    const value = getComputedStyle(entry.target)['z-index'];
-    entry.target.style.zIndex = parseInt(value) + index + 1;
+    entry.el.style.zIndex = null;
+    const value = getComputedStyle(entry.el)['z-index'];
+    entry.el.style.zIndex = parseInt(value) + index + 1;
   });
 }
 
@@ -73,7 +73,7 @@ export function getModalID(obj) {
       return obj.getAttribute(`data-${this.settings.dataReplace}`);
     }
 
-    // If it's a modal target, return the id.
+    // If it's a modal element, return the id.
     else if (obj.closest(this.settings.selectorModal)) {
       obj = obj.closest(this.settings.selectorModal);
       return obj.id || false;
@@ -95,15 +95,15 @@ export function getModalID(obj) {
 export function getModalElements(query) {
   const id = getModalID.call(this, query);
   if (id) {
-    const target = document.querySelector(`#${id}`);
-    const dialog = target ? target.querySelector(this.settings.selectorDialog) : null;
+    const modal = document.querySelector(`#${id}`);
+    const dialog = modal ? modal.querySelector(this.settings.selectorDialog) : null;
 
-    if (!target && !dialog) {
+    if (!modal && !dialog) {
       return { error: new Error(`No modal elements found using the ID: "${id}".`) };
     } else if (!dialog) {
       return { error: new Error('Modal is missing dialog element.') };
     } else {
-      return { target, dialog };
+      return { modal, dialog };
     }
   } else {
     return { error: new Error('Could not resolve the modal ID.') };

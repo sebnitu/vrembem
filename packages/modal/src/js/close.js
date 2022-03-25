@@ -20,10 +20,10 @@ export async function close(query, transition, focus = true) {
     document.activeElement.blur();
 
     // Run the close transition.
-    await closeTransition(modal.target, config);
+    await closeTransition(modal.el, config);
 
     // Remove z-index styles.
-    modal.target.style.zIndex = null;
+    modal.el.style.zIndex = null;
 
     // Get index of modal in stack array.
     const index = this.stack.findIndex((entry) => {
@@ -42,7 +42,7 @@ export async function close(query, transition, focus = true) {
     modal.state = 'closed';
 
     // Dispatch custom closed event.
-    modal.target.dispatchEvent(new CustomEvent(config.customEventPrefix + 'closed', {
+    modal.el.dispatchEvent(new CustomEvent(config.customEventPrefix + 'closed', {
       detail: this,
       bubbles: true
     }));

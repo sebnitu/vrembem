@@ -87,7 +87,7 @@ export default class Modal extends Collection {
   register(query) {
     const els = getModalElements.call(this, query);
     if (els.error) return Promise.reject(els.error);
-    return register.call(this, els.target, els.dialog);
+    return register.call(this, els.modal, els.dialog);
   }
 
   deregister(query) {

@@ -99,11 +99,11 @@ test('should open and close modal while using the data modal config attribute', 
 
   const modalObj = modal.get('modal-default');
   await modalObj.open();
-  expect(modalObj.target).toHaveClass('is-opened');
+  expect(modalObj.el).toHaveClass('is-opened');
   expect(modalObj.state).toBe('opened');
 
   await modalObj.close();
-  expect(modalObj.target).toHaveClass('is-closed');
+  expect(modalObj.el).toHaveClass('is-closed');
   expect(modalObj.state).toBe('closed');
 });
 

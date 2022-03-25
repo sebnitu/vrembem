@@ -58,9 +58,9 @@ test('should allow opening multiple modals at once', async () => {
 });
 
 test('should correctly apply z-index styles in the order modals were opened', () => {
-  expect(modal1.target.style.zIndex).toBe('1001');
-  expect(modal2.target.style.zIndex).toBe('1002');
-  expect(modal3.target.style.zIndex).toBe('1003');
+  expect(modal1.el.style.zIndex).toBe('1001');
+  expect(modal2.el.style.zIndex).toBe('1002');
+  expect(modal3.el.style.zIndex).toBe('1003');
 });
 
 test('should have set focus to the modal dialog of the last modal opened', () => {
@@ -71,9 +71,9 @@ test('should correctly update the z-index styles when modal stack order is chang
   btn4.click();
   await delay();
 
-  expect(modal1.target.style.zIndex).toBe('1001');
-  expect(modal2.target.style.zIndex).toBe('1003');
-  expect(modal3.target.style.zIndex).toBe('1002');
+  expect(modal1.el.style.zIndex).toBe('1001');
+  expect(modal2.el.style.zIndex).toBe('1003');
+  expect(modal3.el.style.zIndex).toBe('1002');
 });
 
 test('should have set focus to the correct modal dialog when stack order is changed', () => {
@@ -95,9 +95,9 @@ test('should update the stack array and z-index of remaining active modals', () 
   expect(modal.stack[0]).toBe(modal1);
   expect(modal.stack[1]).toBe(modal3);
 
-  expect(modal1.target.style.zIndex).toBe('1001');
-  expect(modal2.target.style.zIndex).toBe('');
-  expect(modal3.target.style.zIndex).toBe('1002');
+  expect(modal1.el.style.zIndex).toBe('1001');
+  expect(modal2.el.style.zIndex).toBe('');
+  expect(modal3.el.style.zIndex).toBe('1002');
 });
 
 test('should close the currently opened modal and update stack array and z-index styles', async () => {
@@ -112,9 +112,9 @@ test('should close the currently opened modal and update stack array and z-index
   expect(modal.stack.length).toBe(1);
   expect(modal.stack[0]).toBe(modal1);
 
-  expect(modal1.target.style.zIndex).toBe('1001');
-  expect(modal2.target.style.zIndex).toBe('');
-  expect(modal3.target.style.zIndex).toBe('');
+  expect(modal1.el.style.zIndex).toBe('1001');
+  expect(modal2.el.style.zIndex).toBe('');
+  expect(modal3.el.style.zIndex).toBe('');
 });
 
 test('should focus root trigger when the last modal in stack is closed', async () => {

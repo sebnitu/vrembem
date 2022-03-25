@@ -38,14 +38,14 @@ describe('updateStackIndex()', () => {
     const array = document.querySelectorAll('.modal');
     const collectionMock = [];
     for (let i = 0; i < array.length; i++) {
-      collectionMock.push({ target: array[i] });
+      collectionMock.push({ el: array[i] });
     }
 
     updateStackIndex(collectionMock);
 
-    expect(collectionMock[0].target.style.zIndex).toBe('1001');
-    expect(collectionMock[1].target.style.zIndex).toBe('1002');
-    expect(collectionMock[2].target.style.zIndex).toBe('1003');
+    expect(collectionMock[0].el.style.zIndex).toBe('1001');
+    expect(collectionMock[1].el.style.zIndex).toBe('1002');
+    expect(collectionMock[2].el.style.zIndex).toBe('1003');
   });
 });
 
@@ -119,7 +119,7 @@ describe('getModalElements()', () => {
     const result = getModalElements.call(mockObj, 'modal-1');
     const modal = document.querySelector('#modal-1');
     const dialog = modal.querySelector('.modal__dialog');
-    expect(result.target).toBe(modal);
+    expect(result.modal).toBe(modal);
     expect(result.dialog).toBe(dialog);
   });
 

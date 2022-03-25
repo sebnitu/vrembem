@@ -31,27 +31,27 @@ export async function open(query, transition, focus = true) {
     modal.state = 'opening';
 
     // Apply z-index styles based on stack length.
-    modal.target.style.zIndex = null;
-    const value = getComputedStyle(modal.target)['z-index'];
-    modal.target.style.zIndex = parseInt(value) + this.stack.length + 1;
+    modal.el.style.zIndex = null;
+    const value = getComputedStyle(modal.el)['z-index'];
+    modal.el.style.zIndex = parseInt(value) + this.stack.length + 1;
 
     // Store modal in stack array.
     this.stack.push(modal);
 
     // Run the open transition.
-    await openTransition(modal.target, config);
+    await openTransition(modal.el, config);
 
     // Update modal state.
     modal.state = 'opened';
   }
 
-  // Set focus to the target element if the focus param is true.
+  // Set focus to the modal element if the focus param is true.
   if (focus) {
     updateFocusState.call(this);
   }
 
   // Dispatch custom opened event.
-  modal.target.dispatchEvent(new CustomEvent(config.customEventPrefix + 'opened', {
+  modal.el.dispatchEvent(new CustomEvent(config.customEventPrefix + 'opened', {
     detail: this,
     bubbles: true
   }));
