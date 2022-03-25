@@ -1,6 +1,6 @@
 import { createPopper } from '@popperjs/core/dist/esm';
 
-import { handlerClick, documentClick } from './handlers';
+import { handleClick, handleDocumentClick } from './handlers';
 import { deregister } from './deregister';
 import { open } from './open';
 import { close, closeCheck } from './close';
@@ -51,7 +51,7 @@ export async function register(el, trigger) {
   // Set initial state.
   if (entry.el.classList.contains(this.settings.stateActive)) {
     await entry.open();
-    documentClick.call(this, entry);
+    handleDocumentClick.call(this, entry);
   }
 
   // Return the registered entry.
@@ -93,7 +93,7 @@ export function registerEventListeners(entry) {
       entry.__eventListeners = [{
         el: ['trigger'],
         type: ['click'],
-        listener: handlerClick.bind(this, entry)
+        listener: handleClick.bind(this, entry)
       }];
 
       // Loop through listeners and apply to the appropriate elements.

@@ -1,16 +1,16 @@
 import { closeAll, closeCheck } from './close';
 
-export function handlerClick(popover) {
+export function handleClick(popover) {
   if (popover.state === 'opened') {
     popover.close();
   } else {
     this.memory.trigger = popover.trigger;
     popover.open();
-    documentClick.call(this, popover);
+    handleDocumentClick.call(this, popover);
   }
 }
 
-export function handlerKeydown(event) {
+export function handleKeydown(event) {
   switch (event.key) {
     case 'Escape':
       if (this.memory.trigger) {
@@ -30,7 +30,7 @@ export function handlerKeydown(event) {
   }
 }
 
-export function documentClick(popover) {
+export function handleDocumentClick(popover) {
   const root = this;
   document.addEventListener('click', function _f(event) {
     // Check if a popover was clicked.

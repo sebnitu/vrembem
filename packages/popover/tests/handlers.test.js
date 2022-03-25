@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom/extend-expect';
 import { delay } from './helpers/delay';
 import Popover from '../index.js';
-import { handlerClick } from '../src/js/handlers';
+import { handleClick } from '../src/js/handlers';
 
 let popover;
 
@@ -36,7 +36,7 @@ afterEach(async () => {
   document.body.innerHTML = null;
 });
 
-describe('handlerClick()', () => {
+describe('handleClick()', () => {
   it('should open popover if it does not contain the active class', async () => {
     document.body.innerHTML = markup;
     popover = new Popover();
@@ -44,7 +44,7 @@ describe('handlerClick()', () => {
 
     expect(popover.collection.length).toBe(2);
 
-    handlerClick.bind(popover, popover.collection[0])();
+    handleClick.bind(popover, popover.collection[0])();
     expect(popover.collection[0].el).toHaveClass('is-active');
   });
 
@@ -55,7 +55,7 @@ describe('handlerClick()', () => {
 
     expect(popover.collection.length).toBe(2);
 
-    handlerClick.bind(popover, popover.collection[1])();
+    handleClick.bind(popover, popover.collection[1])();
     expect(popover.collection[1].el).not.toHaveClass('is-active');
   });
 
@@ -64,7 +64,7 @@ describe('handlerClick()', () => {
     popover = new Popover();
     await popover.init();
 
-    handlerClick.bind(popover, popover.collection[0])();
+    handleClick.bind(popover, popover.collection[0])();
     expect(popover.collection[0].el).toHaveClass('is-active');
     expect(popover.collection[1].el).toHaveClass('is-active');
 
