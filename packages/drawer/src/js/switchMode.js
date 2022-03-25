@@ -26,7 +26,7 @@ async function toInline(entry) {
   updateGlobalState.call(this, false);
 
   // Remove any focus traps.
-  this.focusTrap.destroy();
+  this.focusTrap.unmount();
 
   // Restore drawers to saved inline state.
   if (this.store[entry.id] === 'opened') {
