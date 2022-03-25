@@ -39,7 +39,7 @@ export default class Popover extends Collection {
   }
 
   async destroy() {
-    // Clear any stored triggers.
+    // Clear stored trigger.
     this.trigger = null;
 
     // Remove all entries from the collection.

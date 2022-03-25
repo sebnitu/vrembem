@@ -9,7 +9,7 @@ export async function handleClick(event) {
     event.preventDefault();
     // Save the trigger if it's not coming from inside a modal.
     const fromModal = event.target.closest(this.settings.selectorModal);
-    if (!fromModal) this.memory.trigger = trigger;
+    if (!fromModal) this.trigger = trigger;
     // Get the modal.
     const modal = this.get(getModalID.call(this, trigger));
     // Depending on the button type, either open or replace the modal.

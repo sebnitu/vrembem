@@ -1,4 +1,4 @@
-import { focusTarget, focusTrigger, FocusTrap } from '../index.js';
+import { focusTarget, FocusTrap } from '../index.js';
 import '@testing-library/jest-dom/extend-expect';
 import userEvent from '@testing-library/user-event';
 
@@ -70,38 +70,6 @@ test('should do nothing if no focusable items or tabindex is found on focusTarge
   focusTarget(el, settings);
   expect(dialog).not.toHaveFocus();
   expect(document.body).toHaveFocus();
-});
-
-test('should focus a trigger from memory object when focusTrigger is called', () => {
-  const trigger = document.querySelector('.trigger-1');
-  const obj = { memory: { trigger: trigger } };
-  expect(trigger).not.toHaveFocus();
-  focusTrigger(obj);
-  expect(trigger).toHaveFocus();
-});
-
-test('should not throw error if focustTrigger is called with no arguments', () => {
-  expect(focusTrigger).not.toThrowError();
-});
-
-test('should do nothing if object doesn\'t have the correct properties', () => {
-  const trigger = document.querySelector('.trigger-2');
-
-  const obj = {};
-  focusTrigger(obj);
-  expect(document.body).toHaveFocus();
-
-  obj.memory = {};
-  focusTrigger(obj);
-  expect(document.body).toHaveFocus();
-
-  obj.memory.trigger = null;
-  focusTrigger(obj);
-  expect(document.body).toHaveFocus();
-
-  obj.memory.trigger = trigger;
-  focusTrigger(obj);
-  expect(trigger).toHaveFocus();
 });
 
 test('FocusTrap should properly cycle through focusable elements while tabbing', async () => {

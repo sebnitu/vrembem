@@ -15,7 +15,7 @@ export default class Modal extends Collection {
     super();
     this.defaults = defaults;
     this.settings = { ...this.defaults, ...options };
-    this.memory = {};
+    this.trigger = null;
     this.focusTrap = new FocusTrap();
 
     // Setup a proxy for stack array.
@@ -58,8 +58,8 @@ export default class Modal extends Collection {
   }
 
   async destroy() {
-    // Clear any stored memory.
-    this.memory = {};
+    // Clear stored trigger.
+    this.trigger = null;
 
     // Remove all entries from the collection.
     await this.deregisterCollection();
