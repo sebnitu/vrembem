@@ -13,7 +13,7 @@ export default class Popover extends Collection {
     super();
     this.defaults = defaults;
     this.settings = { ...this.defaults, ...options };
-    this.memory = {};
+    this.trigger = null;
     this.__handleKeydown = handleKeydown.bind(this);
     if (this.settings.autoInit) this.init();
   }
@@ -39,8 +39,8 @@ export default class Popover extends Collection {
   }
 
   async destroy() {
-    // Clear any stored memory.
-    this.memory = {};
+    // Clear any stored triggers.
+    this.trigger = null;
 
     // Remove all entries from the collection.
     await this.deregisterCollection();

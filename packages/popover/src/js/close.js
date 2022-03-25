@@ -23,9 +23,9 @@ export async function close(query) {
     // Update popover state.
     popover.state = 'closed';
 
-    // Clear memory if popover trigger matches the one saved in memory.
-    if (popover.trigger === this.memory.trigger) {
-      this.memory.trigger = null;
+    // Clear root trigger if popover trigger matches.
+    if (popover.trigger === this.trigger) {
+      this.trigger = null;
     }
   }
 

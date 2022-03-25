@@ -106,9 +106,9 @@ describe('handlerKeydown()', () => {
 
     const button = document.querySelector('.focus-test');
 
-    expect(popover.memory.trigger).toBe(undefined);
+    expect(popover.trigger).toBe(null);
     popover.collection[0].trigger.click();
-    expect(popover.memory.trigger).toBe(popover.collection[0].trigger);
+    expect(popover.trigger).toBe(popover.collection[0].trigger);
 
     button.focus();
     expect(document.activeElement).toBe(button);
@@ -117,7 +117,7 @@ describe('handlerKeydown()', () => {
     await delay();
 
     expect(document.activeElement).toBe(popover.collection[0].trigger);
-    expect(popover.memory.trigger).toBe(null);
+    expect(popover.trigger).toBe(null);
   });
 
   it('should run close check when the tab key is pressed', async () => {

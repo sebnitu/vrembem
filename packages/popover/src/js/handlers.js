@@ -4,7 +4,7 @@ export function handleClick(popover) {
   if (popover.state === 'opened') {
     popover.close();
   } else {
-    this.memory.trigger = popover.trigger;
+    this.trigger = popover.trigger;
     popover.open();
     handleDocumentClick.call(this, popover);
   }
@@ -13,8 +13,8 @@ export function handleClick(popover) {
 export function handleKeydown(event) {
   switch (event.key) {
     case 'Escape':
-      if (this.memory.trigger) {
-        this.memory.trigger.focus();
+      if (this.trigger) {
+        this.trigger.focus();
       }
       closeAll.call(this);
       return;
