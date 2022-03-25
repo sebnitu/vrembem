@@ -34,6 +34,8 @@ export default class Popover extends Collection {
       // already adds event listeners to popovers.
       this.initEventListeners(false);
     }
+
+    return this;
   }
 
   async destroy() {
@@ -49,6 +51,8 @@ export default class Popover extends Collection {
       // already removes event listeners from popovers.
       this.destroyEventListeners(false);
     }
+
+    return this;
   }
 
   initEventListeners(processCollection = true) {
