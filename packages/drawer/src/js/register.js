@@ -53,6 +53,7 @@ export async function register(el, dialog) {
     state: 'closed',
     el: el,
     dialog: dialog,
+    trigger: null,
     get breakpoint() {
       return getBreakpoint.call(root, el);
     },

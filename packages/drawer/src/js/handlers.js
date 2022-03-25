@@ -7,10 +7,10 @@ export function handleClick(event) {
   );
   if (trigger) {
     event.preventDefault();
-    // TODO: move trigger memory into collection entries
-    this.memory.trigger = trigger;
     // Get the entry from collection using the trigger.
     const entry = this.get(getDrawerID.call(this, trigger));
+    // Store the trigger on the entry.
+    entry.trigger = trigger;
     // Depending on the button type, either open or toggle the drawer.
     return (trigger.matches(`[data-${this.settings.dataOpen}]`)) ? entry.open() : entry.toggle();
   }
@@ -21,10 +21,10 @@ export function handleClick(event) {
     event.preventDefault();
     const selector = trigger.getAttribute(`data-${this.settings.dataClose}`);
     if (selector) {
-      // TODO: move trigger memory into collection entries
-      this.memory.trigger = trigger;
       // Get the entry from collection using the trigger.
       const entry = this.get(getDrawerID.call(this, trigger));
+      // Store the trigger on the entry.
+      entry.trigger = trigger;
       // Close the drawer.
       entry.close();
     } else {

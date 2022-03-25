@@ -14,7 +14,6 @@ export default class Drawer extends Collection {
     super();
     this.defaults = defaults;
     this.settings = { ...this.defaults, ...options };
-    this.memory = {};
     this.focusTrap = new FocusTrap();
 
     // Setup local store for inline drawer state management.
@@ -50,9 +49,6 @@ export default class Drawer extends Collection {
   }
 
   async destroy() {
-    // Clear any stored memory.
-    this.memory = {};
-
     // Remove all entries from the collection.
     await this.deregisterCollection();
 
