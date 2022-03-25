@@ -9,12 +9,14 @@ import { close } from './close';
 import { getPopoverID, getPopoverElements } from './helpers';
 
 export default class Popover extends Collection {
+  #handleKeydown;
+
   constructor(options) {
     super();
     this.defaults = defaults;
     this.settings = { ...this.defaults, ...options };
     this.trigger = null;
-    this.__handleKeydown = handleKeydown.bind(this);
+    this.#handleKeydown = handleKeydown.bind(this);
     if (this.settings.autoInit) this.init();
   }
 
@@ -64,7 +66,7 @@ export default class Popover extends Collection {
     }
 
     // Add keydown global event listener.
-    document.addEventListener('keydown', this.__handleKeydown, false);
+    document.addEventListener('keydown', this.#handleKeydown, false);
   }
 
   destroyEventListeners(processCollection = true) {
@@ -76,7 +78,7 @@ export default class Popover extends Collection {
     }
 
     // Remove keydown global event listener.
-    document.removeEventListener('keydown', this.__handleKeydown, false);
+    document.removeEventListener('keydown', this.#handleKeydown, false);
   }
 
   register(query) {

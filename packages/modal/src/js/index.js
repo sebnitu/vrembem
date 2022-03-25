@@ -11,6 +11,9 @@ import { replace } from './replace';
 import { updateGlobalState, updateFocusState, getModalElements, getModalID } from './helpers';
 
 export default class Modal extends Collection {
+  #handleClick;
+  #handleKeydown;
+
   constructor(options) {
     super();
     this.defaults = defaults;
@@ -30,8 +33,8 @@ export default class Modal extends Collection {
       }
     });
 
-    this.__handleClick = handleClick.bind(this);
-    this.__handleKeydown = handleKeydown.bind(this);
+    this.#handleClick = handleClick.bind(this);
+    this.#handleKeydown = handleKeydown.bind(this);
     if (this.settings.autoInit) this.init();
   }
 
@@ -73,15 +76,15 @@ export default class Modal extends Collection {
   }
 
   initEventListeners() {
-    document.addEventListener('click', this.__handleClick, false);
-    document.addEventListener('touchend', this.__handleClick, false);
-    document.addEventListener('keydown', this.__handleKeydown, false);
+    document.addEventListener('click', this.#handleClick, false);
+    document.addEventListener('touchend', this.#handleClick, false);
+    document.addEventListener('keydown', this.#handleKeydown, false);
   }
 
   destroyEventListeners() {
-    document.removeEventListener('click', this.__handleClick, false);
-    document.removeEventListener('touchend', this.__handleClick, false);
-    document.removeEventListener('keydown', this.__handleKeydown, false);
+    document.removeEventListener('click', this.#handleClick, false);
+    document.removeEventListener('touchend', this.#handleClick, false);
+    document.removeEventListener('keydown', this.#handleKeydown, false);
   }
 
   register(query) {
