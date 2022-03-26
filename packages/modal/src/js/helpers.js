@@ -48,7 +48,7 @@ export function getModal(query) {
   if (entry) {
     return entry;
   } else {
-    throw new Error(`Modal not found in collection with id of "${query}".`);
+    throw new Error(`Modal not found in collection with id of "${query.id || query}".`);
   }
 }
 

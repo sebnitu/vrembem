@@ -84,8 +84,8 @@ export async function register(el, dialog) {
 
   // Setup initial state.
   if (entry.el.classList.contains(this.settings.stateOpened)) {
-    // Open modal with transitions disabled.
-    entry.open(false);
+    // Open entry with transitions disabled.
+    await entry.open(false);
   } else {
     // Remove transition state classes.
     entry.el.classList.remove(this.settings.stateOpening);

@@ -1,4 +1,4 @@
-export async function deregister(obj) {
+export async function deregister(obj, close = true) {
   // Return collection if nothing was passed.
   if (!obj) return this.collection;
 
@@ -10,6 +10,15 @@ export async function deregister(obj) {
   if (index >= 0) {
     // Get the collection entry.
     const entry = this.collection[index];
+
+    // If entry is in the opened state.
+    if (close && entry.state === 'opened') {
+      // Close the drawer.
+      await entry.close(false);
+    }
+
+    // Remove entry from local store.
+    delete this.store[entry.id];
 
     // Unmount the MatchMedia functionality.
     entry.unmountBreakpoint();

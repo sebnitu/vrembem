@@ -54,7 +54,7 @@ export function getDrawer(query) {
   if (entry) {
     return entry;
   } else {
-    throw new Error(`Drawer not found in collection with id of "${query}".`);
+    throw new Error(`Drawer not found in collection with id of "${query.id || query}".`);
   }
 }
 

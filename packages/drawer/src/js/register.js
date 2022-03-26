@@ -9,7 +9,7 @@ import { getBreakpoint } from './helpers';
 
 export async function register(el, dialog) {
   // Deregister entry incase it has already been registered.
-  await deregister.call(this, el);
+  await deregister.call(this, el, false);
 
   // Save root this for use inside methods API.
   const root = this;
@@ -88,15 +88,29 @@ export async function register(el, dialog) {
   // Add entry to collection.
   this.collection.push(entry);
 
-  // Restore state from local store.
-  if (this.store[entry.id] === 'opened') {
+  // Setup initial state.
+  if (entry.el.classList.contains(this.settings.stateOpened)) {
+    // Open entry with transitions disabled.
     await open.call(this, entry, false, false);
   } else {
-    await close.call(this, entry, false, false);
+    // Remove transition state classes.
+    entry.el.classList.remove(this.settings.stateOpening);
+    entry.el.classList.remove(this.settings.stateClosing);
+    // Add closed state class.
+    entry.el.classList.add(this.settings.stateClosed);
   }
 
-  // Mount media query breakpoint functionality.
-  entry.mountBreakpoint();
+  if (entry.breakpoint) {
+    // Mount media query breakpoint functionality.
+    entry.mountBreakpoint();
+  } else {
+    // Restore state from local store.
+    if (this.store[entry.id] === 'opened') {
+      await open.call(this, entry, false, false);
+    } else {
+      await close.call(this, entry, false, false);
+    }
+  }
 
   // Return the registered entry.
   return entry;
