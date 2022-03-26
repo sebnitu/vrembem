@@ -41,8 +41,8 @@ export async function register(el, dialog) {
       breakpoint.unmount();
       return this;
     },
-    handleBreakpoint(mql) {
-      this.mode = (mql.matches) ? 'inline' : 'modal';
+    handleBreakpoint(event) {
+      this.mode = (event.matches) ? 'inline' : 'modal';
       return this;
     }
   };

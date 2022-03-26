@@ -1,7 +1,7 @@
-import { FocusTrap } from '../index.js';
 import '@testing-library/jest-dom/extend-expect';
 import userEvent from '@testing-library/user-event';
 
+import { FocusTrap } from '../index.js';
 
 const markup = `
   <button class="outter-1">...</button>
