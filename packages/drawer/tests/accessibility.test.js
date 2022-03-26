@@ -1,57 +1,55 @@
-import Drawer from '../index.js';
 import '@testing-library/jest-dom/extend-expect';
 import { transition } from './helpers/transition';
 
-let drawer;
+import Drawer from '../index.js';
 
-const markup = `
+document.body.innerHTML = `
   <div class="drawer__wrapper">
-    <div class="drawer drawer_modal" data-drawer="drawer-default">
-      <div data-drawer-dialog class="drawer__dialog">
-        <button data-drawer-close>...</button>
-      </div>
+    <div id="drawer-default" class="drawer drawer_modal">
+      <div class="drawer__dialog">...</div>
     </div>
-    <div class="drawer__main" role="main">
+    <main class="drawer__main">
       <button data-drawer-toggle="drawer-default">...</button>
-    </div>
+    </main>
   </div>
 `;
 
-describe('when selectorInert and selectorOverflow are set...', () => {
-  let main, el, btn, cls;
+const drawer = new Drawer({
+  selectorInert: 'main',
+  selectorOverflow: 'body, main'
+});
 
-  beforeAll(() => {
-    document.body.innerHTML = markup;
-    drawer = new Drawer({
-      autoInit: true,
-      selectorInert: '[role="main"]',
-      selectorOverflow: 'body, [role="main"]'
-    });
-    main = document.querySelector('[role="main"]');
-    el = document.querySelector('[data-drawer]');
-    btn = document.querySelector('[data-drawer-toggle]');
-    cls = document.querySelector('[data-drawer-close]');
-  });
+const el = document.querySelector('.drawer');
+const dialog = document.querySelector('.drawer__dialog');
+const main = document.querySelector('.drawer__main');
+const btn = document.querySelector('[data-drawer-toggle]');
 
-  afterAll(() => {
-    drawer.destroy();
-    drawer = null;
-    document.body.innerHTML = null;
-  });
+test('should set accessibility attributes to modal drawer dialog', async () => {
+  expect(dialog.getAttribute('role')).toBe(null);
+  expect(dialog.getAttribute('aria-modal')).toBe(null);
+  expect(dialog.getAttribute('tabindex')).toBe(null);
 
-  it('should properly hide content when modal drawer is opened', async () => {
-    btn.click();
-    await transition(el);
-    expect(main.inert).toBe(true);
-    expect(main.getAttribute('aria-hidden')).toBe('true');
-    expect(main).toHaveStyle({ overflow: 'hidden' });
-  });
+  await drawer.init();
 
-  it('should properly show content when modal drawer is closed', async () => {
-    cls.click();
-    await transition(el);
-    expect(main.inert).toBe(null);
-    expect(main.hasAttribute('aria-hidden')).toBe(false);
-    expect(main).not.toHaveStyle({ overflow: 'hidden' });
-  });
+  expect(dialog.getAttribute('role')).toBe('dialog');
+  expect(dialog.getAttribute('aria-modal')).toBe('true');
+  expect(dialog.getAttribute('tabindex')).toBe('-1');
+});
+
+test('should properly hide content when modal drawer is opened', async () => {
+  btn.click();
+  await transition(el);
+
+  expect(main.inert).toBe(true);
+  expect(main.getAttribute('aria-hidden')).toBe('true');
+  expect(main).toHaveStyle({ overflow: 'hidden' });
+});
+
+test('should properly show content when modal drawer is closed', async () => {
+  btn.click();
+  await transition(el);
+
+  expect(main.inert).toBe(null);
+  expect(main.hasAttribute('aria-hidden')).toBe(false);
+  expect(main).not.toHaveStyle({ overflow: 'hidden' });
 });

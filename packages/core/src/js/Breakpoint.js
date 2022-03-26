@@ -20,7 +20,7 @@ export class Breakpoint {
       } else {
         this.mql.removeListener(this.#handler);
       }
-    };
+    }
     this.#handler = func;
   }
 
