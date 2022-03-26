@@ -19,6 +19,7 @@ export function localStore(key, enable = true) {
     deleteProperty: (target, property) => {
       delete target[property];
       if (enable) setStore(target);
+      return true;
     }
   });
 }
