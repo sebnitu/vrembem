@@ -85,8 +85,8 @@ export class FocusTrap {
       // Set them to focus and check 
       el.focus();
       // Test that the element took focus.
-      if (el === document.activeElement) {
-        // Add them to the focusable array.
+      if (document.activeElement === el) {
+        // Add element to the focusable array.
         focusable.push(el);
       }
     });
