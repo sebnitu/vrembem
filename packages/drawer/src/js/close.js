@@ -35,9 +35,6 @@ export async function close(query, transition, focus = true) {
     // Update drawer state.
     drawer.state = 'closed';
 
-    // Save state to store if mode is inline.
-    if (drawer.mode === 'inline') this.store[drawer.id] = drawer.state;
-
     // Dispatch custom closed event.
     drawer.el.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'closed', {
       detail: this,

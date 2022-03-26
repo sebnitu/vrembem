@@ -14,7 +14,11 @@ export class Breakpoint {
     this.#handler = func;
   }
 
-  mount() {
+  mount(value, handler) {
+    // Update passed params.
+    if (value) this.value = value;
+    if (handler) this.#handler = handler;
+
     // Guard if no breakpoint was set.
     if (!this.value) return this;
 

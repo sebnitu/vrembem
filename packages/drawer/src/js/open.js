@@ -26,9 +26,6 @@ export async function open(query, transition, focus = true) {
 
     // Update drawer state.
     drawer.state = 'opened';
-
-    // Save state to store if mode is inline.
-    if (drawer.mode === 'inline') this.store[drawer.id] = drawer.state;
   }
 
   // Set focus to the drawer element if the focus param is true.

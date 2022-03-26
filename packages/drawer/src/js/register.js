@@ -32,9 +32,9 @@ export async function register(el, dialog) {
       return deregister.call(root, this);
     },
     mountBreakpoint() {
-      breakpoint.value = this.breakpoint;
-      breakpoint.handler = this.handleBreakpoint.bind(this);
-      breakpoint.mount();
+      const value = this.breakpoint;
+      const handler = this.handleBreakpoint.bind(this);
+      breakpoint.mount(value, handler);
       return this;
     },
     unmountBreakpoint() {
@@ -47,28 +47,40 @@ export async function register(el, dialog) {
     }
   };
 
+  // Create the state var with the initial state.
+  let __state = (el.classList.contains(this.settings.stateOpened)) ? 'opened' : 'closed';
+
+  // Create the mode var with the initial mode.
+  let __mode = (el.classList.contains(this.settings.classModal)) ? 'modal' : 'inline';
+
   // Setup the drawer object.
   const entry = {
     id: el.id,
-    state: 'closed',
     el: el,
     dialog: dialog,
     trigger: null,
     get breakpoint() {
       return getBreakpoint.call(root, el);
     },
-    get mode() {
-      return mode;
+    get state() {
+      return __state;
     },
-    set mode(param) {
-      mode = param;
+    set state(value) {
+      __state = value;
+      // Save 'opened' and 'closed' states to store if mode is inline.
+      if (value === 'opened' || value === 'closed') {
+        if (this.mode === 'inline') root.store[this.id] = this.state;
+      }
+    },
+    get mode() {
+      return __mode;
+    },
+    set mode(value) {
+      __mode = value;
       switchMode.call(root, this);
     },
     ...methods
   };
-
-  // Create the mode var with the initial mode.
-  let mode = (el.classList.contains(this.settings.classModal)) ? 'modal' : 'inline';
 
   if (entry.mode === 'modal') {
     // Set aria-modal attribute to true and role attribute to "dialog".
@@ -90,8 +102,8 @@ export async function register(el, dialog) {
 
   // Setup initial state.
   if (entry.el.classList.contains(this.settings.stateOpened)) {
-    // Open entry with transitions disabled.
-    await open.call(this, entry, false, false);
+    // Update drawer state.
+    entry.state = 'opened';
   } else {
     // Remove transition state classes.
     entry.el.classList.remove(this.settings.stateOpening);
