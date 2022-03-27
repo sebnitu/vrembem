@@ -115,6 +115,11 @@ describe('open(), close() & toggle()', () => {
     expect(entry.state).toBe('closed');
     expect(entry.dialog).not.toBe(document.activeElement);
   });
+
+  it('should throw if trying to open unregistered drawer', async () => {
+    const result = await drawer.open('asdf').catch((error) => { return error.message });
+    expect(result).toBe('Drawer not found in collection with id of "asdf".');
+  });
 });
 
 describe('activeModal', () => {
