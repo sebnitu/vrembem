@@ -1,4 +1,4 @@
-import { Collection } from '../src/js/collection';
+import { Collection } from '../src/js/Collection';
 
 document.body.innerHTML = `
   <div id="asdf">1234</div>
