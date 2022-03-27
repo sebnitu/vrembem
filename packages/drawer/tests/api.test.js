@@ -117,7 +117,7 @@ describe('open(), close() & toggle()', () => {
   });
 
   it('should throw if trying to open unregistered drawer', async () => {
-    const result = await drawer.open('asdf').catch((error) => { return error.message });
+    const result = await drawer.open('asdf').catch((error) => { return error.message; });
     expect(result).toBe('Drawer not found in collection with id of "asdf".');
   });
 });

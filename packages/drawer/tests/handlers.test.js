@@ -38,7 +38,7 @@ const btnCloseEmpty = document.querySelector('.empty');
 beforeAll(async () => {
   await drawer.init();
   entry = drawer.get('drawer');
-})
+});
 
 test('should open drawer when clicking data-drawer-open button', async () => {
   expect(entry.state).toBe('closed');
