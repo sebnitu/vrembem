@@ -118,7 +118,6 @@ test('should close modal drawer when pressing the escape key', async () => {
   expect(entry.mode).toBe('modal');
   expect(entry.el).toHaveClass('drawer_modal');
   expect(entry.dialog.getAttribute('aria-modal')).toBe('true');
-  expect(entry.dialog.getAttribute('role')).toBe('dialog');
 
   expect(entry.state).toBe('closed');
 

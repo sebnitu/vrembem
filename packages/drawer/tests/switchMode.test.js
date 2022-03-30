@@ -22,26 +22,22 @@ test('should switch drawer to modal when entry.mode property is set to modal', a
   const entry = await drawer.register('drawer-1');
   expect(entry.el).not.toHaveClass('drawer_modal');
   expect(entry.dialog.getAttribute('aria-modal')).toBe(null);
-  expect(entry.dialog.getAttribute('role')).toBe(null);
 
   entry.mode = 'modal';
 
   expect(entry.el).toHaveClass('drawer_modal');
   expect(entry.dialog.getAttribute('aria-modal')).toBe('true');
-  expect(entry.dialog.getAttribute('role')).toBe('dialog');
 });
 
 test('should switch drawer to inline when entry.mode property is set to inline', async () => {
   const entry = await drawer.register('drawer-1');
   expect(entry.el).toHaveClass('drawer_modal');
   expect(entry.dialog.getAttribute('aria-modal')).toBe('true');
-  expect(entry.dialog.getAttribute('role')).toBe('dialog');
 
   entry.mode = 'inline';
 
   expect(entry.el).not.toHaveClass('drawer_modal');
   expect(entry.dialog.getAttribute('aria-modal')).toBe(null);
-  expect(entry.dialog.getAttribute('role')).toBe(null);
 });
 
 test('should return local store state when switching modes', async () => {
@@ -85,7 +81,7 @@ test('should throw an error when setting mode to an invalid value', async () => 
 
   try {
     entry.mode = 'asdf';
-  } catch(error) {
+  } catch (error) {
     result = error.message;
   }
 

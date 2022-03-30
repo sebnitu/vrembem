@@ -18,9 +18,8 @@ async function toInline(entry) {
   // Remove the modal class.
   entry.el.classList.remove(this.settings.classModal);
 
-  // Remove the aria-modal attribute and role attribute.
+  // Remove the aria-modal attribute.
   entry.dialog.removeAttribute('aria-modal');
-  entry.dialog.removeAttribute('role');
 
   // Update the global state.
   updateGlobalState.call(this, false);
@@ -49,9 +48,8 @@ async function toModal(entry) {
   // Add the modal class.
   entry.el.classList.add(this.settings.classModal);
 
-  // Set aria-modal attribute to true and role attribute to "dialog".
+  // Set aria-modal attribute to true.
   entry.dialog.setAttribute('aria-modal', 'true');
-  entry.dialog.setAttribute('role', 'dialog');
 
   // Modal drawer defaults to closed state.
   await close.call(this, entry, false, false);

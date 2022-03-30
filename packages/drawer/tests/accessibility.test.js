@@ -25,13 +25,11 @@ const main = document.querySelector('.drawer__main');
 const btn = document.querySelector('[data-drawer-toggle]');
 
 test('should set accessibility attributes to modal drawer dialog', async () => {
-  expect(dialog.getAttribute('role')).toBe(null);
   expect(dialog.getAttribute('aria-modal')).toBe(null);
   expect(dialog.getAttribute('tabindex')).toBe(null);
 
   await drawer.init();
 
-  expect(dialog.getAttribute('role')).toBe('dialog');
   expect(dialog.getAttribute('aria-modal')).toBe('true');
   expect(dialog.getAttribute('tabindex')).toBe('-1');
 });

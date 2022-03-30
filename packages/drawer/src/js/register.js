@@ -83,13 +83,11 @@ export async function register(el, dialog) {
   };
 
   if (entry.mode === 'modal') {
-    // Set aria-modal attribute to true and role attribute to "dialog".
+    // Set aria-modal attribute to true.
     entry.dialog.setAttribute('aria-modal', 'true');
-    entry.dialog.setAttribute('role', 'dialog');
   } else {
-    // Remove the aria-modal attribute and role attribute.
+    // Remove the aria-modal attribute.
     entry.dialog.removeAttribute('aria-modal');
-    entry.dialog.removeAttribute('role');
   }
 
   // Set tabindex="-1" so dialog is focusable via JS or click.
