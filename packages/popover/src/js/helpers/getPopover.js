@@ -1,4 +1,4 @@
-export function getDrawer(query) {
+export function getPopover(query) {
   // Get the entry from collection.
   const entry = (typeof query === 'string') ? this.get(query) : this.get(query.id);
 
@@ -6,6 +6,6 @@ export function getDrawer(query) {
   if (entry) {
     return entry;
   } else {
-    throw new Error(`Drawer not found in collection with id of "${query.id || query}".`);
+    throw new Error(`Popover not found in collection with id of "${query}".`);
   }
 }
