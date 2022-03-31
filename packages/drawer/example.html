@@ -12,27 +12,20 @@
 <body>
   <main class="drawer__wrapper">
 
-    <aside id="drawer-modal-always" class="drawer drawer_modal drawer_pos_right">
-      <div class="drawer__dialog dialog">
-        <div class="dialog__header">
-          <h2 class="dialog__title">Drawer Modal Always</h2>
+    <aside id="drawer-pos-left" class="drawer drawer_pos_left">
+      <div class="drawer__dialog padding">
+        <div class="flex flex-justify-between">
+          <p>Drawer Pos Left</p>
           <button data-drawer-close class="link">Close</button>
         </div>
-        <div class="dialog__body gap-y">
-          <p>This drawer will always be a modal.</p>
-          <ul class="list">
-            <li><a class="link" href="#">Focusable 1</a></li>
-            <li><a class="link" href="#">Focusable 2</a></li>
-            <li><a class="link" href="#">Focusable 3</a></li>
-          </ul>
-        </div>
-        <div class="dialog__footer">
-          <button data-drawer-close class="link">
-            Button 1
-          </button>
-          <button data-drawer-close class="link">
-            Button 2
-          </button>
+      </div>
+    </aside><!-- .drawer .drawer_pos_left -->
+
+    <aside id="drawer-pos-right" class="drawer drawer_pos_right">
+      <div class="drawer__dialog padding">
+        <div class="flex flex-justify-between">
+          <p>Drawer Pos Right</p>
+          <button data-drawer-close class="link">Close</button>
         </div>
       </div>
     </aside><!-- .drawer .drawer_pos_right -->
@@ -61,46 +54,30 @@
       </div>
     </aside><!-- .drawer .drawer_pos_right -->
 
-    <aside id="drawer-pos-left" class="drawer drawer_pos_left">
-      <div class="drawer__dialog padding">
-        <div class="flex flex-justify-between">
-          <p>Drawer Pos Left</p>
-          <button data-drawer-close class="link">Close</button>
-        </div>
-      </div>
-    </aside><!-- .drawer .drawer_pos_left -->
-
-    <aside id="drawer-pos-right" class="drawer drawer_pos_right">
-      <div class="drawer__dialog padding">
-        <div class="flex flex-justify-between">
-          <p>Drawer Pos Right</p>
-          <button data-drawer-close class="link">Close</button>
-        </div>
-      </div>
-    </aside><!-- .drawer .drawer_pos_right -->
-
-    <aside id="drawer-data-attr-right" class="drawer drawer_pos_right">
+    <aside id="drawer-modal-always" class="drawer drawer_modal drawer_pos_right">
       <div class="drawer__dialog dialog">
         <div class="dialog__header">
-          <h2 class="dialog__title">Drawer Default Left</h2>
+          <h2 class="dialog__title">Drawer Modal Always</h2>
           <button data-drawer-close class="link">Close</button>
         </div>
-        <div class="dialog__body">
-          <button data-focus class="link">
-            Get focus on open!
+        <div class="dialog__body gap-y">
+          <p>This drawer will always be a modal.</p>
+          <ul class="list">
+            <li><a class="link" href="#">Focusable 1</a></li>
+            <li><a class="link" href="#">Focusable 2</a></li>
+            <li><a class="link" href="#">Focusable 3</a></li>
+          </ul>
+        </div>
+        <div class="dialog__footer">
+          <button data-drawer-close class="link">
+            Button 1
+          </button>
+          <button data-drawer-close class="link">
+            Button 2
           </button>
         </div>
       </div>
     </aside><!-- .drawer .drawer_pos_right -->
-
-    <aside id="drawer-default-left" class="drawer">
-      <div class="drawer__dialog padding">
-        <div class="flex flex-justify-between">
-          <p>Drawer Default Left</p>
-          <button data-drawer-close class="link">Close</button>
-        </div>
-      </div>
-    </aside><!-- .drawer -->
 
     <div class="drawer__main">
 
@@ -136,16 +113,6 @@
 
           <ul class="list">
             <li>
-              <button class="link" data-drawer-toggle="drawer-default-left">
-                Drawer Default Left
-              </button>
-            </li>
-            <li>
-              <button class="link" data-drawer-toggle="drawer-default-right">
-                Drawer Default Right
-              </button>
-            </li>
-            <li>
               <button class="link" data-drawer-toggle="drawer-pos-left">
                 Drawer Pos Left
               </button>
@@ -171,47 +138,10 @@
               </button>
             </li>
           </ul>
-
-          <hr class="sep">
-
-          <h2>Data attributes</h2>
-
-          <ul class="list">
-            <li>
-              <button class="link" data-drawer-toggle="drawer-data-attr-right">
-                data-drawer-toggle
-              </button>
-            </li>
-            <li>
-              <button class="link" data-drawer-open="drawer-data-attr-right">
-                data-drawer-open
-              </button>
-            </li>
-            <li>
-              <button class="link" data-drawer-close="drawer-data-attr-right">
-                data-drawer-close
-              </button>
-            </li>
-            <li>
-              <button class="link" data-drawer-close>
-                data-drawer-close [empty]
-              </button>
-            </li>
-          </ul>
-
         </div>
       </section>
 
     </div><!-- .drawer__main -->
-
-    <aside id="drawer-default-right" class="drawer">
-      <div class="drawer__dialog padding">
-        <div class="flex flex-justify-between">
-          <p>Drawer Default Right</p>
-          <button data-drawer-close class="link">Close</button>
-        </div>
-      </div>
-    </aside><!-- .drawer -->
 
   </main><!-- .drawer__wrapper -->
 

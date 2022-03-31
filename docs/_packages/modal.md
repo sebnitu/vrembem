@@ -15,7 +15,7 @@ usage:
 Modals are composed using classes and data attributes for their triggers. The basic structure of a modal is an element with the `modal` class and an `id` containing a child element with the `modal__dialog` class. There are three types of modal triggers, each defined by a data attribute:
 
 - `data-modal-open`: Opens a modal. Should take the id of the modal it's meant to open. Will cause modals to stack if triggered from an already opened modal.
-- `data-modal-close`: Closes a modal. If left value-less, it'll close the last opened modal. Can also take a modal id to close a specific modal, or `"*"` to close all open modals.
+- `data-modal-close`: Closes a modal. If left value-less, will close the last opened modal. Can also take a modal id to close a specific modal, or `"*"` to close all open modals.
 - `data-modal-replace`: Replaces currently opened modal(s) with the modal of the id provided.
 
 {% include demo_open.html class_grid="grid_stack" class_parent="padding border radius" %}
@@ -75,12 +75,12 @@ Modal dialogs—the dialog elements within a modal—are defined using the `moda
 {% include demo_switch.html %}
 ```html
 <div id="modal-id" class="modal">
-  <div class="modal__dialog dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-description">
+  <div class="modal__dialog dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title" aria-describedby="dialog-description">
     <div class="dialog__header">
-      <h2 id="modal-title">...</h2>
+      <h2 id="dialog-title">...</h2>
     </div>
     <div class="dialog__body">
-      <p id="modal-description">...</p>
+      <p id="dialog-description">...</p>
     </div>
     <div class="dialog__footer">
       ...

@@ -27,40 +27,45 @@ const drawer = new Drawer({ autoInit: true });
 
 ### Markup
 
-Drawers are composed using classes for styling and data attributes for JavaScript functionality. To link a drawer toggle, open or close trigger to a drawer, use a unique identifier as the values for both the trigger and drawer's respective data attributes. Close buttons can be left value-less if placed inside a drawer element they're meant to close.
+Drawers are composed using classes and data attributes for their triggers. The basic structure of a drawer is an element with the `drawer` class and an `id` containing a child element with the `drawer__dialog` class. There are two required structure elements to get drawers to work correctly:
 
-- `data-drawer="[unique-id]"`
-- `data-drawer-dialog`
-- `data-drawer-toggle="[unique-id]"`
-- `data-drawer-open="[unique-id]"`
-- `data-drawer-close="[unique-id]"` (or value-less if inside drawer)
+- `drawer__wrapper`: Applied to the parent element wrapping all drawers and the main content.
+- `drawer__main`: Applied to the element containing the main content. This should be the last sibling of `drawer__wrapper`.
+
+Drawer triggers are defined by three data attributes:
+
+- `data-drawer-open`: Opens a drawer. Should take the id of the drawer it's meant to open.
+- `data-drawer-close`: Closes a drawer. If left value-less, will close the parent drawer. Can also take a drawer id to close a specific drawer.
+- `data-drawer-toggle`: Replaces currently opened modal(s) with the modal of the id provided.
 
 ```html
+<!-- Parent wrapper -->
 <div class="drawer__wrapper">
-  <aside data-drawer="[unique-id]" class="drawer">
-    <div data-drawer-dialog class="drawer__dialog">
-      <button data-drawer-close>...</button>
+
+  <!-- Drawer -->
+  <aside id="drawer-id" class="drawer">
+    <div class="drawer__dialog">
+      ...
     </div>
   </aside>
+
+  <!-- Main content -->
   <div class="drawer__main">
-    <button data-drawer-toggle="[unique-id]">...</button>
-    <button data-drawer-open="[unique-id]">...</button>
-    <button data-drawer-close="[unique-id]">...</button>
+    ...
   </div>
 </div>
 ```
 
-Drawer dialogs are the actual dialog element within a drawer and are defined using a the value-less `data-drawer-dialog` attribute. The [dialog component](/packages/dialog) is a great fit for composing a drawer’s content.
+Drawer dialogs—the dialog elements within a drawer—are defined using the `drawer__dialog` class. Along with a role attribute (e.g. `role="dialog"`), authors should consider providing drawer dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes to further improve accessibility. The `aria-modal` attribute is applied automatically based on the drawers current mode (either `modal` or `inline`).
 
 ```html
-<aside data-drawer="[unique-id]" class="drawer">
-  <div data-drawer-dialog class="drawer__dialog dialog">
+<aside id="drawer-id" class="drawer">
+  <div class="drawer__dialog dialog" role="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description">
     <div class="dialog__header">
-      ...
-      <button data-drawer-close>...</button>
+      <h2 id="dialog-title">...</h2>
     </div>
     <div class="dialog__body">
-      ...
+      <p id="dialog-description">...</p>
     </div>
     <div class="dialog__footer">
       ...
@@ -69,9 +74,11 @@ Drawer dialogs are the actual dialog element within a drawer and are defined usi
 </aside>
 ```
 
-#### `data-drawer-breakpoint`
+> The [dialog component](https://github.com/sebnitu/vrembem/tree/main/packages/dialog) is a great fit for composing a drawer's dialog.
 
-In cases where you'd like a drawer to switch to a drawer modal on a specific breakpoint, use the `data-drawer-breakpoint` data attribute with either a breakpoint key or a specific pixel value.
+#### Modal Drawers
+
+In cases where you'd like a drawer to switch to a modal drawer on a specific breakpoint, use the `data-drawer-breakpoint` data attribute with either a breakpoint key or a specific pixel value.
 
 ```html
 <!-- Switches to modal below `md` breakpoint viewports -->
@@ -109,7 +116,7 @@ const drawer = new Drawer({
 }
 ```
 
-#### `data-drawer-focus`
+#### Focus Management
 
 Drawer dialogs are given focus on open by default as long as the `setTabindex` option is set to `true` or if the drawer dialog has `tabindex="-1"` set manually. If focus on a specific element inside a drawer is preferred, give it the `data-drawer-focus` attribute. The focus in either case is returned to the trigger element once the drawer is closed.
 
