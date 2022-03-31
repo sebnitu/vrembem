@@ -20,14 +20,14 @@ export async function register(el, dialog) {
 
   // Setup methods API.
   const methods = {
-    open(transition) {
-      return open.call(root, this, transition);
+    open(transition, focus) {
+      return open.call(root, this, transition, focus);
     },
-    close(transition) {
-      return close.call(root, this, transition);
+    close(transition, focus) {
+      return close.call(root, this, transition, focus);
     },
-    toggle(transition) {
-      return toggle.call(root, this, transition);
+    toggle(transition, focus) {
+      return toggle.call(root, this, transition, focus);
     },
     deregister() {
       return deregister.call(root, this);

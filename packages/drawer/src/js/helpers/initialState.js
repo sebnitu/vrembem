@@ -1,6 +1,3 @@
-import { open } from '../open';
-import { close } from '../close';
-
 export async function initialState(entry) {
   // Setup initial state using the following priority:
   //  1. If a store state is available, restore from local store.
@@ -9,9 +6,9 @@ export async function initialState(entry) {
   if (this.store[entry.id]) {
     // Restore drawers to saved inline state.
     if (this.store[entry.id] === 'opened') {
-      await open.call(this, entry, false, false);
+      await entry.open(false, false);
     } else {
-      await close.call(this, entry, false, false);
+      await entry.close(false, false);
     }
   } else if (entry.el.classList.contains(this.settings.stateOpened)) {
     // Update drawer state.

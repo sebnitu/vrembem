@@ -86,15 +86,15 @@ export default class Drawer extends Collection {
     return deregister.call(this, entry);
   }
 
-  open(id, transition) {
-    return open.call(this, id, transition);
+  open(id, transition, focus) {
+    return open.call(this, id, transition, focus);
   }
 
-  close(id, transition) {
-    return close.call(this, id, transition);
+  close(id, transition, focus) {
+    return close.call(this, id, transition, focus);
   }
 
-  toggle(id, transition) {
-    return toggle.call(this, id, transition);
+  toggle(id, transition, focus) {
+    return toggle.call(this, id, transition, focus);
   }
 }
