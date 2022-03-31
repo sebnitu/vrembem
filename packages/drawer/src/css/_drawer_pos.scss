@@ -39,14 +39,14 @@ $_v: var.$prefix-modifier-value;
 
 .#{$_b}drawer#{$_m}pos#{$_v}left.is-opening,
 .#{$_b}drawer#{$_m}pos#{$_v}left.is-opened {
-  &:not(.#{$_b}drawer#{$_m}modal) ~ .#{$_b}drawer#{$_e}main {
+  &:not(.#{$_b}drawer#{$_m}modal) ~ .#{$_b}drawer-main {
     margin-left: var.$width;
   }
 }
 
 .#{$_b}drawer#{$_m}pos#{$_v}right.is-opening,
 .#{$_b}drawer#{$_m}pos#{$_v}right.is-opened {
-  &:not(.#{$_b}drawer#{$_m}modal) ~ .#{$_b}drawer#{$_e}main {
+  &:not(.#{$_b}drawer#{$_m}modal) ~ .#{$_b}drawer-main {
     margin-right: var.$width;
   }
 }
