@@ -185,7 +185,7 @@ describe('register() & deregister()', () => {
   it('should register drawer in its modal state', async () => {
     const entry = await drawer.register('drawer-3');
     expect(entry.mode).toBe('modal');
-    expect(entry.state).toBe('closed');
+    expect(entry.state).toBe('opened');
   });
 
   it('should return drawer to state saved in local store', async () => {
@@ -206,15 +206,26 @@ describe('register() & deregister()', () => {
     expect(drawer.collection.length).toBe(3);
   });
 
+  it('should prioritize local store state over initial state class', async () => {
+    const el = document.querySelector('#drawer-4');
+    el.classList.add(drawer.settings.stateOpened);
+
+    drawer.store['drawer-4'] = 'closed';
+    const entry = await drawer.register('drawer-4');
+
+    expect(entry.mode).toBe('inline');
+    expect(entry.state).toBe('closed');
+  });
+
   it('should throw an error when trying to register a drawer that can not be found', async () => {
     const result = await drawer.register('asdf').catch((error) => { return error.message; });
     expect(result).toBe('No drawer elements found using the ID: "asdf".');
   });
 
   it('should do nothing when trying to deregister a drawer that can not be found', async () => {
-    expect(drawer.collection.length).toBe(3);
+    expect(drawer.collection.length).toBe(4);
     const result = await drawer.deregister('asdf');
-    expect(drawer.collection.length).toBe(3);
+    expect(drawer.collection.length).toBe(4);
     expect(result).toBe(drawer.collection);
   });
 });

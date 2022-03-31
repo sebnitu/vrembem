@@ -1,6 +1,6 @@
-import { open } from './open';
 import { close } from './close';
 
+import { initialState } from './helpers/initialState';
 import { updateGlobalState } from './helpers';
 
 export function switchMode(entry) {
@@ -27,12 +27,8 @@ async function toInline(entry) {
   // Remove any focus traps.
   this.focusTrap.unmount();
 
-  // Restore drawers to saved inline state.
-  if (this.store[entry.id] === 'opened') {
-    await open.call(this, entry, false, false);
-  } else {
-    await close.call(this, entry, false, false);
-  }
+  // Setup initial state.
+  await initialState.call(this, entry);
 
   // Dispatch custom switch event.
   entry.el.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'switchMode', {
@@ -50,6 +46,12 @@ async function toModal(entry) {
 
   // Set aria-modal attribute to true.
   entry.dialog.setAttribute('aria-modal', 'true');
+
+  // If there isn't a stored state but also has the opened state class...
+  if (!this.store[entry.id] && entry.el.classList.contains(this.settings.stateOpened)) {
+    // Save the opened state in local store.
+    this.store[entry.id] = 'opened';
+  }
 
   // Modal drawer defaults to closed state.
   await close.call(this, entry, false, false);

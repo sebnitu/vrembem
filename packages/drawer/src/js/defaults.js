@@ -28,7 +28,7 @@ export default {
   customEventPrefix: 'drawer:',
   eventListeners: true,
   store: true,
-  storeKey: 'DrawerState',
+  storeKey: 'VB:DrawerState',
   setTabindex: true,
   transition: true
 };

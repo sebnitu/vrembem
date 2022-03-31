@@ -12,9 +12,12 @@ document.body.innerHTML = `
   <div id="drawer-2" class="drawer" data-drawer-breakpoint="600px">
     <div class="drawer__dialog">...</div>
   </div>
+  <div id="drawer-3" class="drawer is-opened" data-drawer-breakpoint="1200px">
+    <div class="drawer__dialog">...</div>
+  </div>
 `;
 
-document.innerWidth = 800;
+window.innerWidth = 800;
 
 const drawer = new Drawer({ transition: false });
 
@@ -73,6 +76,13 @@ test('should return local store state when switching modes', async () => {
   expect(drawer.store['drawer-1']).toBe('closed');
   expect(entry.mode).toBe('inline');
   expect(entry.state).toBe('closed');
+});
+
+test('should store initial state when switching to modal', async () => {
+  const entry = await drawer.register('drawer-3');
+  expect(entry.mode).toBe('modal');
+  expect(entry.state).toBe('closed');
+  expect(drawer.store[entry.id]).toBe('opened');
 });
 
 test('should throw an error when setting mode to an invalid value', async () => {

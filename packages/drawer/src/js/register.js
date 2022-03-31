@@ -5,6 +5,7 @@ import { open } from './open';
 import { close } from './close';
 import { toggle } from './toggle';
 import { switchMode } from './switchMode';
+import { initialState } from './helpers/initialState';
 import { getBreakpoint } from './helpers';
 
 export async function register(el, dialog) {
@@ -82,6 +83,7 @@ export async function register(el, dialog) {
     ...methods
   };
 
+  // Setup mode specific attributes.
   if (entry.mode === 'modal') {
     // Set aria-modal attribute to true.
     entry.dialog.setAttribute('aria-modal', 'true');
@@ -98,28 +100,13 @@ export async function register(el, dialog) {
   // Add entry to collection.
   this.collection.push(entry);
 
-  // Setup initial state.
-  if (entry.el.classList.contains(this.settings.stateOpened)) {
-    // Update drawer state.
-    entry.state = 'opened';
-  } else {
-    // Remove transition state classes.
-    entry.el.classList.remove(this.settings.stateOpening);
-    entry.el.classList.remove(this.settings.stateClosing);
-    // Add closed state class.
-    entry.el.classList.add(this.settings.stateClosed);
-  }
-
+  // If the entry has a breakpoint...
   if (entry.breakpoint) {
     // Mount media query breakpoint functionality.
     entry.mountBreakpoint();
   } else {
-    // Restore state from local store.
-    if (this.store[entry.id] === 'opened') {
-      await open.call(this, entry, false, false);
-    } else {
-      await close.call(this, entry, false, false);
-    }
+    // Else, Setup initial state.
+    await initialState.call(this, entry);
   }
 
   // Return the registered entry.
