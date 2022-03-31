@@ -33,7 +33,7 @@ export async function close(query, transition, focus = true) {
     // Remove modal from stack array.
     this.stack.splice(index, 1);
 
-    // Update the focus state if this is not a bulk action.
+    // Update focus if the focus param is true.
     if (focus) {
       updateFocusState.call(this);
     }

@@ -45,7 +45,7 @@ export async function open(query, transition, focus = true) {
     modal.state = 'opened';
   }
 
-  // Set focus to the modal element if the focus param is true.
+  // Update focus if the focus param is true.
   if (focus) {
     updateFocusState.call(this);
   }

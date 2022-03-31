@@ -98,21 +98,24 @@ export default class Modal extends Collection {
     return deregister.call(this, modal);
   }
 
-  open(id, transition) {
-    return open.call(this, id, transition);
+  open(id, transition, focus) {
+    return open.call(this, id, transition, focus);
   }
 
-  close(id, transition) {
-    return close.call(this, id, transition);
+  close(id, transition, focus) {
+    return close.call(this, id, transition, focus);
   }
 
-  replace(id, transition) {
-    return replace.call(this, id, transition);
+  replace(id, transition, focus) {
+    return replace.call(this, id, transition, focus);
   }
 
-  async closeAll(exclude = false, transition) {
+  async closeAll(exclude = false, transition, focus = true) {
     const result = await closeAll.call(this, exclude, transition);
-    updateFocusState.call(this);
+    // Update focus if the focus param is true.
+    if (focus) {
+      updateFocusState.call(this);
+    }
     return result;
   }
 }

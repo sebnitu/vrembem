@@ -2,7 +2,7 @@ import { open } from './open';
 import { closeAll } from './closeAll';
 import { updateFocusState, getModal } from './helpers';
 
-export async function replace(query, transition) {
+export async function replace(query, transition, focus = true) {
   // Get the modal from collection.
   const modal = getModal.call(this, query);
 
@@ -20,8 +20,10 @@ export async function replace(query, transition) {
     await Promise.all([resultOpened, resultClosed]);
   }
 
-  // Update the focus state.
-  updateFocusState.call(this);
+  // Update focus if the focus param is true.
+  if (focus) {
+    updateFocusState.call(this);
+  }
 
   // Return the modals there were opened and closed.
   return { opened: resultOpened, closed: resultClosed };
