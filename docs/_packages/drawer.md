@@ -14,15 +14,15 @@ usage:
 
 Drawers are composed using classes for styling and data attributes for JavaScript functionality. To link a drawer toggle, open or close trigger to a drawer, use a unique identifier as the values for both the trigger and drawer's respective data attributes. Close buttons can be left value-less if placed inside a drawer element they're meant to close.
 
-- `data-drawer="[unique-id]"`
+- `id="[unique-id]"`
 - `data-drawer-dialog`
 - `data-drawer-toggle="[unique-id]"`
 - `data-drawer-open="[unique-id]"`
 - `data-drawer-close="[unique-id]"` (or value-less if inside drawer)
 
 {% include demo_open.html class_grid="grid_stack" %}
-<div class="drawer__wrapper border radius">
-  <aside data-drawer="drawer-key" class="drawer drawer_pos_right">
+<div class="drawer-frame border radius">
+  <aside id="drawer-key" class="drawer drawer_pos_right">
     <div data-drawer-dialog class="drawer__dialog padding-xl">
       <div class="flex flex-justify-between">
         <p>Drawer Default</p>
@@ -46,8 +46,8 @@ Drawers are composed using classes for styling and data attributes for JavaScrip
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="drawer__wrapper">
-  <aside data-drawer="[unique-id]" class="drawer">
+<div class="drawer-frame">
+  <aside id="[unique-id]" class="drawer">
     <div data-drawer-dialog class="drawer__dialog">
       <button data-drawer-close>...</button>
     </div>
@@ -64,8 +64,8 @@ Drawers are composed using classes for styling and data attributes for JavaScrip
 Drawer dialogs are the actual dialog element within a drawer and are defined using a the value-less `data-drawer-dialog` attribute. The [dialog component](/packages/dialog) is a great fit for composing a drawer’s content.
 
 {% include demo_open.html class_grid="grid_stack" %}
-<div class="drawer__wrapper border radius">
-  <aside data-drawer="drawer-dialog" class="drawer drawer_pos_right is-opened">
+<div class="drawer-frame border radius">
+  <aside id="drawer-dialog" class="drawer drawer_pos_right is-opened">
     <div data-drawer-dialog class="drawer__dialog dialog">
       <div class="dialog__header">
         <h2 class="dialog__title">Drawer Dialog</h2>
@@ -97,7 +97,7 @@ Drawer dialogs are the actual dialog element within a drawer and are defined usi
 </div>
 {% include demo_switch.html %}
 ```html
-<aside data-drawer="[unique-id]" class="drawer">
+<aside id="[unique-id]" class="drawer">
   <div data-drawer-dialog class="drawer__dialog dialog">
     <div class="dialog__header">
       ...
@@ -120,12 +120,12 @@ In cases where you'd like a drawer to switch to a drawer modal on a specific bre
 
 ```html
 <!-- Switches to modal below `md` breakpoint viewports -->
-<aside data-drawer="[unique-id]" data-drawer-breakpoint="md" class="drawer">
+<aside id="[unique-id]" data-drawer-breakpoint="md" class="drawer">
   ...
 </aside>
 
 <!-- Switches to modal below 900px viewports -->
-<aside data-drawer="[unique-id]" data-drawer-breakpoint="900px" class="drawer">
+<aside id="[unique-id]" data-drawer-breakpoint="900px" class="drawer">
   ...
 </aside>
 ```
@@ -159,8 +159,8 @@ const drawer = new Drawer({
 Drawer dialogs are given focus on open by default as long as the `setTabindex` option is set to `true` or if the drawer dialog has `tabindex="-1"` set manually. If focus on a specific element inside a drawer is preferred, give it the `data-drawer-focus` attribute. The focus in either case is returned to the trigger element once the drawer is closed.
 
 {% include demo_open.html class_grid="grid_stack" %}
-<div class="drawer__wrapper border radius">
-  <aside data-drawer="drawer-focus-self" class="drawer drawer_pos_left" tabindex="-1">
+<div class="drawer-frame border radius">
+  <aside id="drawer-focus-self" class="drawer drawer_pos_left" tabindex="-1">
     <div data-drawer-dialog class="drawer__dialog padding">
       <div class="flex flex-justify-between">
         <p>Focus Dialog</p>
@@ -168,7 +168,7 @@ Drawer dialogs are given focus on open by default as long as the `setTabindex` o
       </div>
     </div>
   </aside>
-  <aside data-drawer="drawer-focus-close" class="drawer drawer_pos_right">
+  <aside id="drawer-focus-close" class="drawer drawer_pos_right">
     <div data-drawer-dialog class="drawer__dialog padding">
       <div class="flex flex-justify-between">
         <p>Focus Close</p>
@@ -187,16 +187,16 @@ Drawer dialogs are given focus on open by default as long as the `setTabindex` o
 </div>
 {% include demo_switch.html %}
 ```html
-<div cass="drawer__wrapper">
+<div cass="drawer-frame">
   <!-- Focuses the drawer dialog on open -->
-  <aside data-drawer="[unique-id]" class="drawer">
+  <aside id="[unique-id]" class="drawer">
     <div data-drawer-dialog class="drawer__dialog">
       ...
     </div>
   </aside>
 
   <!-- Focuses an inner element on open -->
-  <aside data-drawer="[unique-id]" class="drawer">
+  <aside id="[unique-id]" class="drawer">
     <div data-drawer-dialog class="drawer__dialog">
       <button data-drawer-focus>...</button>
     </div>
@@ -244,8 +244,8 @@ const drawer = new Drawer({
 Convert a drawer into it’s modal state with the `drawer_modal` modifier class. Only one modal can be open at a time.
 
 ```html
-<div class="drawer__wrapper">
-  <aside data-drawer="[unique-id]" class="drawer drawer_modal">
+<div class="drawer-frame">
+  <aside id="[unique-id]" class="drawer drawer_modal">
     ...
   </aside>
   <div class="drawer__main">
@@ -264,8 +264,8 @@ Drawers can slide in from the left or right using the position modifiers:
 * `drawer_pos_right`
 
 {% include demo_open.html class_grid="grid_stack" %}
-<div class="drawer__wrapper border radius">
-  <aside data-drawer="drawer-left" class="drawer drawer_pos_left" tabindex="-1">
+<div class="drawer-frame border radius">
+  <aside id="drawer-left" class="drawer drawer_pos_left" tabindex="-1">
     <div data-drawer-dialog class="drawer__dialog padding">
       <div class="flex flex-justify-between">
         <p>Drawer Left</p>
@@ -273,7 +273,7 @@ Drawers can slide in from the left or right using the position modifiers:
       </div>
     </div>
   </aside>
-  <aside data-drawer="drawer-right" class="drawer drawer_pos_right" tabindex="-1">
+  <aside id="drawer-right" class="drawer drawer_pos_right" tabindex="-1">
     <div data-drawer-dialog class="drawer__dialog padding">
       <div class="flex flex-justify-between">
         <p>Drawer Right</p>
@@ -292,11 +292,11 @@ Drawers can slide in from the left or right using the position modifiers:
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="drawer__wrapper">
-  <aside data-drawer="[unique-id]" class="drawer drawer_pos_left">
+<div class="drawer-frame">
+  <aside id="[unique-id]" class="drawer drawer_pos_left">
     ...
   </aside>
-  <aside data-drawer="[unique-id]" class="drawer drawer_pos_right">
+  <aside id="[unique-id]" class="drawer drawer_pos_right">
     ...
   </aside>
   <div class="drawer__main">
@@ -392,11 +392,11 @@ Drawers can slide in from the left or right using the position modifiers:
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$transition-timing-function</code></td>
         <td data-mobile-label="Desc">Timing function used for drawer transitions.</td>
       </tr>
-      <!-- drawer_wrapper styles -->
+      <!-- drawer-frame styles -->
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$wrapper-height</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">100%</code></td>
-        <td data-mobile-label="Desc">The height given to drawer wrapper element.</td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$frame-height</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">100vh</code></td>
+        <td data-mobile-label="Desc">The height given to drawer frame element.</td>
       </tr>
       <!-- drawer_modal styles -->
       <tr>
@@ -654,7 +654,7 @@ Toggles a drawer when provided the drawer key and returns a promise that resolve
 - `Promise` The returned promise value will either be the `HTML object` of the drawer that was toggled, or `error` if a drawer was not found.
 
 ```html
-<div class="drawer" data-drawer="drawer-key">...</div>
+<div class="drawer" id="drawer-key">...</div>
 ```
 
 ```js
@@ -680,7 +680,7 @@ Opens a drawer when provided the drawer key and returns a promise that resolves 
 - `Promise` The returned promise value will either be the `HTML object` of the drawer that was opened, or `error` if a drawer was not found.
 
 ```html
-<div class="drawer" data-drawer="drawer-key">...</div>
+<div class="drawer" id="drawer-key">...</div>
 ```
 
 ```js
@@ -706,7 +706,7 @@ Closes a drawer when provided the drawer key and returns a promise that resolves
 - `Promise` The returned promise value will either be the `HTML object` of the drawer that was closed, or `error` if a drawer was not found.
 
 ```html
-<div class="drawer" data-drawer="drawer-key">...</div>
+<div class="drawer" id="drawer-key">...</div>
 ```
 
 ```js
@@ -733,7 +733,7 @@ Returns a drawer that matches the provided unique drawer key.
 
 
 ```html
-<div class="drawer" data-drawer="drawer-key">...</div>
+<div class="drawer" id="drawer-key">...</div>
 ```
 
 ```js
@@ -748,11 +748,11 @@ console.log(el);
 Initializes the drawer breakpoint feature. During initialization, all drawers with `data-drawer-breakpoint` are retrieved and a `MediaQueryList` is created for each. Each `MediaQueryList` and it's associated drawer key is stored in the `drawer.mediaQueryLists` array. This is ran automatically on `drawer.init()`.
 
 ```html
-<aside data-drawer="drawer-1" data-drawer-breakpoint="420px" class="drawer">
+<aside id="drawer-1" data-drawer-breakpoint="420px" class="drawer">
   ...
 </aside>
 
-<aside data-drawer="drawer-2" data-drawer-breakpoint="740px" class="drawer">
+<aside id="drawer-2" data-drawer-breakpoint="740px" class="drawer">
   ...
 </aside>
 ```
@@ -795,7 +795,7 @@ Force a check of any drawers that meet their breakpoint condition. If their stat
 
 ```html
 <!-- Initial HTML -->
-<aside data-drawer="[unique-id]" data-drawer-breakpoint="sm" class="drawer">
+<aside id="[unique-id]" data-drawer-breakpoint="sm" class="drawer">
   ...
 </aside>
 ```
@@ -807,7 +807,7 @@ drawer.breakpoint.check();
 
 ```html
 <!-- Output if matches breakpoint -->
-<aside data-drawer="[unique-id]" data-drawer-breakpoint="sm" class="drawer drawer_modal">
+<aside id="[unique-id]" data-drawer-breakpoint="sm" class="drawer drawer_modal">
   ...
 </aside>
 ```
@@ -822,7 +822,7 @@ Switches a drawer to it's modal state.
 
 ```html
 <!-- Initial HTML -->
-<div class="drawer" data-drawer="drawer-key">...</div>
+<div class="drawer" id="drawer-key">...</div>
 ```
 
 ```js
@@ -832,7 +832,7 @@ drawer.switchToModal('drawer-key');
 
 ```html
 <!-- Output -->
-<div class="drawer drawer_modal" data-drawer="drawer-key">...</div>
+<div class="drawer drawer_modal" id="drawer-key">...</div>
 ```
 
 ### `drawer.switchToDefault(key)`
@@ -845,7 +845,7 @@ Switches a drawer to it's default non-modal state.
 
 ```html
 <!-- Initial HTML -->
-<div class="drawer drawer_modal" data-drawer="drawer-key">...</div>
+<div class="drawer drawer_modal" id="drawer-key">...</div>
 ```
 
 ```js
@@ -854,7 +854,7 @@ drawer.switchToDefault('drawer-key');
 ```
 ```html
 <!-- Output -->
-<div class="drawer" data-drawer="drawer-key">...</div>
+<div class="drawer" id="drawer-key">...</div>
 ```
 
 ### `drawer.stateSet()`
@@ -863,8 +863,8 @@ Sets the current saved state of all drawer elements based on the values set in l
 
 ```html
 <!-- Initial HTML -->
-<aside data-drawer="drawer-1" class="drawer is-opened">...</aside>
-<aside data-drawer="drawer-2" class="drawer is-opened">...</aside>
+<aside id="drawer-1" class="drawer is-opened">...</aside>
+<aside id="drawer-2" class="drawer is-opened">...</aside>
 ```
 
 ```js
@@ -878,8 +878,8 @@ drawer.stateSet();
 
 ```html
 <!-- Output -->
-<aside data-drawer="drawer-1" class="drawer is-closed">...</aside>
-<aside data-drawer="drawer-2" class="drawer is-closed">...</aside>
+<aside id="drawer-1" class="drawer is-closed">...</aside>
+<aside id="drawer-2" class="drawer is-closed">...</aside>
 ```
 
 ### `drawer.stateSave(target)`
@@ -892,8 +892,8 @@ Saves the current state of drawers to localStorage and drawer's `drawer.state` o
 
 ```html
 <!-- Initial HTML -->
-<aside data-drawer="drawer-1" class="drawer is-closed">...</aside>
-<aside data-drawer="drawer-2" class="drawer is-opened">...</aside>
+<aside id="drawer-1" class="drawer is-closed">...</aside>
+<aside id="drawer-2" class="drawer is-opened">...</aside>
 ```
 
 ```js

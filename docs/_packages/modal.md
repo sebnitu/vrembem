@@ -30,14 +30,10 @@ Modals are composed using classes and data attributes for their triggers. The ba
 </div>
 {% include demo_switch.html %}
 ```html
-<!-- Modal trigger -->
 <button data-modal-open="modal-id">...</button>
 
-<!-- Modal -->
 <div id="modal-id" class="modal">
-  <!-- Modal dialog -->
   <div class="modal__dialog" role="dialog" aria-modal="true">
-    <!-- Modal close trigger -->
     <button data-modal-close>...</button>
     ...
   </div>

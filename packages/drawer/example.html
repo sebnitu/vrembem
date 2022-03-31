@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="./dist/styles.css">
 </head>
 <body>
-  <main class="drawer__wrapper">
+  <div class="drawer-frame">
 
     <aside id="drawer-pos-left" class="drawer drawer_pos_left">
       <div class="drawer__dialog padding">
@@ -79,7 +79,7 @@
       </div>
     </aside><!-- .drawer .drawer_pos_right -->
 
-    <div class="drawer__main">
+    <main class="drawer-main">
 
       <header class="section background-shade">
         <div class="section__container gap-y">
@@ -141,9 +141,9 @@
         </div>
       </section>
 
-    </div><!-- .drawer__main -->
+    </main><!-- .drawer-main -->
 
-  </main><!-- .drawer__wrapper -->
+  </div><!-- .drawer-frame -->
 
   <!-- Inert polyfill -->
   <script src="https://unpkg.com/wicg-inert/dist/inert.min.js"></script>
@@ -154,8 +154,8 @@
   <!-- Implementation scripts -->
   <script>
     const drawer = new vrembem.Drawer({
-      selectorInert: '.drawer__main',
-      selectorOverflow: 'body, .drawer__main',
+      selectorInert: '.drawer-main',
+      selectorOverflow: 'body, .drawer-main',
     });
 
     drawer.init().then((result) => console.log('drawer.init() => ', result));

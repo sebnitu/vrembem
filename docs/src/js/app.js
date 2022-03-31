@@ -37,7 +37,9 @@ const scrollStash = new ScrollStash({
 
 const el = document.querySelector('[data-scroll-stash]');
 
-document.addEventListener('drawer:opened', () => {
-  const anchor = scrollStash.anchorGet(el);
-  anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+document.addEventListener('drawer:opened', (event) => {
+  if (event.target.id === 'listjs') {
+    const anchor = scrollStash.anchorGet(el);
+    anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
 });

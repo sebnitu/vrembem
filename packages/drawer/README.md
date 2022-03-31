@@ -27,10 +27,10 @@ const drawer = new Drawer({ autoInit: true });
 
 ### Markup
 
-Drawers are composed using classes and data attributes for their triggers. The basic structure of a drawer is an element with the `drawer` class and an `id` containing a child element with the `drawer__dialog` class. There are two required structure elements to get drawers to work correctly:
+Drawers are composed using classes and data attributes for their triggers. The basic structure of a drawer is an element with the `drawer` class and an `id` containing a child element with the `drawer__dialog` class. There are two required structure elements for drawers to work correctly:
 
-- `drawer__wrapper`: Applied to the parent element wrapping all drawers and the main content.
-- `drawer__main`: Applied to the element containing the main content. This should be the last sibling of `drawer__wrapper`.
+- `drawer-frame`: Applied to the parent element wrapping all drawers and the main content.
+- `drawer-main`: Applied to the element containing the main content. This should be the last sibling of `drawer-frame`.
 
 Drawer triggers are defined by three data attributes:
 
@@ -39,18 +39,15 @@ Drawer triggers are defined by three data attributes:
 - `data-drawer-toggle`: Replaces currently opened modal(s) with the modal of the id provided.
 
 ```html
-<!-- Parent wrapper -->
-<div class="drawer__wrapper">
+<div class="drawer-frame">
 
-  <!-- Drawer -->
   <aside id="drawer-id" class="drawer">
     <div class="drawer__dialog">
       ...
     </div>
   </aside>
 
-  <!-- Main content -->
-  <div class="drawer__main">
+  <div class="drawer-main">
     ...
   </div>
 </div>
@@ -121,7 +118,7 @@ const drawer = new Drawer({
 Drawer dialogs are given focus on open by default as long as the `setTabindex` option is set to `true` or if the drawer dialog has `tabindex="-1"` set manually. If focus on a specific element inside a drawer is preferred, give it the `data-drawer-focus` attribute. The focus in either case is returned to the trigger element once the drawer is closed.
 
 ```html
-<div cass="drawer__wrapper">
+<div cass="drawer-frame">
   <!-- Focuses the drawer dialog on open -->
   <aside data-drawer="[unique-id]" class="drawer">
     <div data-drawer-dialog class="drawer__dialog">
@@ -136,7 +133,7 @@ Drawer dialogs are given focus on open by default as long as the `setTabindex` o
     </div>
   </aside>
   
-  <div class="drawer__main">
+  <div class="drawer-main">
     <!-- Return focus to toggle on close -->
     <button data-drawer-toggle="[unique-id]">...</button>
   </div>
@@ -156,7 +153,7 @@ Drawers when in their modal context follow a set of patterns expected from other
 3. While the drawer modal is active, contents obscured by the drawer modal are inaccessible to all users.
 4. When a drawer modal is closed, focus is returned to the initial trigger element that activated the dialog.
 
-To take full advantage of drawer modal's accessibility features, it's recommended to set the `selectorInert` option to all elements that are outside the drawer modal (most likely the `drawer__main` element). All elements that match the `selectorInert` selector will be given the `inert` attribute as well as `aria-hidden="true"` when a modal is opened.
+To take full advantage of drawer modal's accessibility features, it's recommended to set the `selectorInert` option to all elements that are outside the drawer modal (most likely the `drawer-main` element). All elements that match the `selectorInert` selector will be given the `inert` attribute as well as `aria-hidden="true"` when a modal is opened.
 
 > Inert is not currently widely supported by all browsers. Consider using a polyfill such as [wicg-inert](https://github.com/WICG/inert) or Google's [inert-polyfill](https://github.com/GoogleChrome/inert-polyfill).
 
@@ -179,11 +176,11 @@ const drawer = new Drawer({
 Convert a drawer into it’s modal state with the `drawer_modal` modifier class. Only one modal can be open at a time.
 
 ```html
-<div class="drawer__wrapper">
+<div class="drawer-frame">
   <aside data-drawer="[unique-id]" class="drawer drawer_modal">
     ...
   </aside>
-  <div class="drawer__main">
+  <div class="drawer-main">
     <button data-drawer-toggle="[unique-id]">
       ...
     </button>
@@ -199,14 +196,14 @@ Drawers can slide in from the left or right using the position modifiers:
 - `drawer_pos_right`
 
 ```html
-<div class="drawer__wrapper">
+<div class="drawer-frame">
   <aside data-drawer="[unique-id]" class="drawer drawer_pos_left">
     ...
   </aside>
   <aside data-drawer="[unique-id]" class="drawer drawer_pos_right">
     ...
   </aside>
-  <div class="drawer__main">
+  <div class="drawer-main">
     <button data-drawer-toggle="[unique-id]">
       ...
     </button>
@@ -238,7 +235,7 @@ Drawers can slide in from the left or right using the position modifiers:
 | `$travel`                        | `5em`                              | Distance that drawers travel during their transition.                                                |
 | `$transition-duration`           | `core.$transition-duration`        | Duration of drawer transition.                                                                       |
 | `$transition-timing-function`    | `core.$transition-timing-function` | Timing function used for drawer transitions.                                                         |
-| `$wrapper-height`                | `100%`                             | The height given to drawer wrapper element.                                                          |
+| `$frame-height`                  | `100vh`                            | The height given to drawer frame element.                                                            |
 | `$modal-z-index`                 | `900`                              | Modal z-index to help control the stack order. Should be highest priority as modal.                  |
 | `$modal-width`                   | `$width`                           | The width of modal drawers.                                                                          |
 | `$modal-max-width`               | `80%`                              | The max-width of modal drawers.                                                                      |
