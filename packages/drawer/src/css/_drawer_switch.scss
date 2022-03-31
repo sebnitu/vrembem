@@ -5,19 +5,7 @@ $_e: var.$prefix-element;
 $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
-.#{$_b}drawer#{$_m}pos#{$_v}left,
-.#{$_b}drawer#{$_m}pos#{$_v}right {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-
-  .#{$_b}drawer#{$_e}dialog {
-    position: absolute;
-    top: 0;
-  }
-}
-
-.#{$_b}drawer#{$_m}pos#{$_v}left {
+.#{$_b}drawer:not(.#{$_b}drawer#{$_m}switch) {
   left: 0;
 
   .#{$_b}drawer#{$_e}dialog {
@@ -27,7 +15,7 @@ $_v: var.$prefix-modifier-value;
   }
 }
 
-.#{$_b}drawer#{$_m}pos#{$_v}right {
+.#{$_b}drawer#{$_m}switch {
   right: 0;
 
   .#{$_b}drawer#{$_e}dialog {
@@ -37,36 +25,34 @@ $_v: var.$prefix-modifier-value;
   }
 }
 
-.#{$_b}drawer#{$_m}pos#{$_v}left.is-opening,
-.#{$_b}drawer#{$_m}pos#{$_v}left.is-opened {
+.#{$_b}drawer:not(.#{$_b}drawer#{$_m}switch).is-opening,
+.#{$_b}drawer:not(.#{$_b}drawer#{$_m}switch).is-opened {
   &:not(.#{$_b}drawer#{$_m}modal) ~ .#{$_b}drawer-main {
     margin-left: var.$width;
   }
 }
 
-.#{$_b}drawer#{$_m}pos#{$_v}right.is-opening,
-.#{$_b}drawer#{$_m}pos#{$_v}right.is-opened {
+.#{$_b}drawer#{$_m}switch.is-opening,
+.#{$_b}drawer#{$_m}switch.is-opened {
   &:not(.#{$_b}drawer#{$_m}modal) ~ .#{$_b}drawer-main {
     margin-right: var.$width;
   }
 }
 
-.#{$_b}drawer#{$_m}pos#{$_v}left.is-opening,
-.#{$_b}drawer#{$_m}pos#{$_v}right.is-opening,
-.#{$_b}drawer#{$_m}pos#{$_v}left.is-opened,
-.#{$_b}drawer#{$_m}pos#{$_v}right.is-opened {
+.#{$_b}drawer.is-opening,
+.#{$_b}drawer.is-opened {
   .#{$_b}drawer#{$_e}dialog {
     transform: translateX(0);
   }
 }
 
-.#{$_b}drawer#{$_m}pos#{$_v}left.is-closing {
+.#{$_b}drawer:not(.#{$_b}drawer#{$_m}switch).is-closing {
   .#{$_b}drawer#{$_e}dialog {
     transform: translateX(-100%);
   }
 }
 
-.#{$_b}drawer#{$_m}pos#{$_v}right.is-closing {
+.#{$_b}drawer#{$_m}switch.is-closing {
   .#{$_b}drawer#{$_e}dialog {
     transform: translateX(100%);
   }

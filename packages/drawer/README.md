@@ -192,15 +192,14 @@ Convert a drawer into it’s modal state with the `drawer_modal` modifier class.
 
 Drawers can slide in from the left or right using the position modifiers:
 
-- `drawer_pos_left`
-- `drawer_pos_right`
+- `drawer_switch`
 
 ```html
 <div class="drawer-frame">
-  <aside data-drawer="[unique-id]" class="drawer drawer_pos_left">
+  <aside data-drawer="[unique-id]" class="drawer">
     ...
   </aside>
-  <aside data-drawer="[unique-id]" class="drawer drawer_pos_right">
+  <aside data-drawer="[unique-id]" class="drawer drawer_switch">
     ...
   </aside>
   <div class="drawer-main">

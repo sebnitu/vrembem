@@ -12,25 +12,7 @@
 <body>
   <div class="drawer-frame">
 
-    <aside id="drawer-pos-left" class="drawer drawer_pos_left">
-      <div class="drawer__dialog padding">
-        <div class="flex flex-justify-between">
-          <p>Drawer Pos Left</p>
-          <button data-drawer-close class="link">Close</button>
-        </div>
-      </div>
-    </aside>
-
-    <aside id="drawer-pos-right" class="drawer drawer_pos_right">
-      <div class="drawer__dialog padding">
-        <div class="flex flex-justify-between">
-          <p>Drawer Pos Right</p>
-          <button data-drawer-close class="link">Close</button>
-        </div>
-      </div>
-    </aside>
-
-    <aside id="drawer-modal-left" class="drawer drawer_pos_left" data-drawer-breakpoint="md">
+    <aside id="drawer-breakpoint-left" class="drawer" data-drawer-breakpoint="md">
       <div class="drawer__dialog dialog">
         <div class="dialog__header">
           <h2 class="dialog__title">Drawer Modal Left</h2>
@@ -42,7 +24,7 @@
       </div>
     </aside>
 
-    <aside id="drawer-modal-right" class="drawer drawer_pos_right" data-drawer-breakpoint="1200px">
+    <aside id="drawer-breakpoint-right" class="drawer drawer_switch" data-drawer-breakpoint="1200px">
       <div class="drawer__dialog dialog">
         <div class="dialog__header">
           <h2 class="dialog__title">Drawer Modal Right</h2>
@@ -54,7 +36,25 @@
       </div>
     </aside>
 
-    <aside id="drawer-modal-always" class="drawer drawer_modal drawer_pos_right">
+    <aside id="drawer-inline-left" class="drawer">
+      <div class="drawer__dialog padding">
+        <div class="flex flex-justify-between">
+          <p>Drawer Pos Left</p>
+          <button data-drawer-close class="link">Close</button>
+        </div>
+      </div>
+    </aside>
+
+    <aside id="drawer-inline-right" class="drawer drawer_switch">
+      <div class="drawer__dialog padding">
+        <div class="flex flex-justify-between">
+          <p>Drawer Pos Right</p>
+          <button data-drawer-close class="link">Close</button>
+        </div>
+      </div>
+    </aside>
+
+    <aside id="drawer-modal-left" class="drawer drawer_modal">
       <div class="drawer__dialog dialog">
         <div class="dialog__header">
           <h2 class="dialog__title">Drawer Modal Always</h2>
@@ -63,17 +63,36 @@
         <div class="dialog__body gap-y">
           <p>This drawer will always be a modal.</p>
           <ul class="list">
-            <li><a class="link" href="#">Focusable 1</a></li>
+            <li><a class="link" href="#" data-focus>Focusable 1</a></li>
             <li><a class="link" href="#">Focusable 2</a></li>
             <li><a class="link" href="#">Focusable 3</a></li>
           </ul>
         </div>
         <div class="dialog__footer">
           <button data-drawer-close class="link">
-            Button 1
+            Close drawer
           </button>
+        </div>
+      </div>
+    </aside>
+
+    <aside id="drawer-modal-right" class="drawer drawer_switch drawer_modal">
+      <div class="drawer__dialog dialog">
+        <div class="dialog__header">
+          <h2 class="dialog__title">Drawer Modal Always</h2>
+          <button data-drawer-close class="link">Close</button>
+        </div>
+        <div class="dialog__body gap-y">
+          <p>This drawer will always be a modal.</p>
+          <ul class="list">
+            <li><a class="link" href="#" data-focus>Focusable 1</a></li>
+            <li><a class="link" href="#">Focusable 2</a></li>
+            <li><a class="link" href="#">Focusable 3</a></li>
+          </ul>
+        </div>
+        <div class="dialog__footer">
           <button data-drawer-close class="link">
-            Button 2
+            Close drawer
           </button>
         </div>
       </div>
@@ -113,28 +132,33 @@
 
           <ul class="list">
             <li>
-              <button class="link" data-drawer-toggle="drawer-pos-left">
-                Drawer Pos Left
+              <button class="link" data-drawer-toggle="drawer-breakpoint-left">
+                Drawer breakpoint left
               </button>
             </li>
             <li>
-              <button class="link" data-drawer-toggle="drawer-pos-right">
-                Drawer Pos Right
+              <button class="link" data-drawer-toggle="drawer-breakpoint-right">
+                Drawer breakpoint right
+              </button>
+            </li>
+            <li>
+              <button class="link" data-drawer-toggle="drawer-inline-left">
+                Drawer inline left
+              </button>
+            </li>
+            <li>
+              <button class="link" data-drawer-toggle="drawer-inline-right">
+                Drawer inline right
               </button>
             </li>
             <li>
               <button class="link" data-drawer-toggle="drawer-modal-left">
-                Drawer Breakpoint Left
+                Drawer modal left
               </button>
             </li>
             <li>
               <button class="link" data-drawer-toggle="drawer-modal-right">
-                Drawer Breakpoint Right
-              </button>
-            </li>
-            <li>
-              <button class="link" data-drawer-toggle="drawer-modal-always">
-                Drawer Modal Always
+                Drawer modal right
               </button>
             </li>
           </ul>

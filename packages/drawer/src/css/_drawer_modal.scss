@@ -13,7 +13,7 @@ $_m: var.$prefix-modifier;
   background-color: rgba(var.$modal-background, 0);
 
   .#{$_b}drawer#{$_e}dialog {
-    position: relative;
+    position: absolute;
     z-index: (var.$modal-z-index + 1);
     width: var.$modal-width;
     max-width: var.$modal-max-width;

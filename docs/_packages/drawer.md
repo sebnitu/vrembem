@@ -22,7 +22,7 @@ Drawers are composed using classes for styling and data attributes for JavaScrip
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="drawer-frame border radius">
-  <aside id="drawer-key" class="drawer drawer_pos_right">
+  <aside id="drawer-key" class="drawer drawer_switch">
     <div data-drawer-dialog class="drawer__dialog padding-xl">
       <div class="flex flex-justify-between">
         <p>Drawer Default</p>
@@ -30,7 +30,7 @@ Drawers are composed using classes for styling and data attributes for JavaScrip
       </div>
     </div>
   </aside>
-  <div class="drawer__main padding-xl type">
+  <div class="drawer-main padding-xl type">
     <ul>
       <li>
         <button data-drawer-toggle="drawer-key" class="link">Drawer Toggle</button>
@@ -52,7 +52,7 @@ Drawers are composed using classes for styling and data attributes for JavaScrip
       <button data-drawer-close>...</button>
     </div>
   </aside>
-  <div class="drawer__main">
+  <div class="drawer-main">
     <button data-drawer-toggle="[unique-id]">...</button>
     <button data-drawer-open="[unique-id]">...</button>
     <button data-drawer-close="[unique-id]">...</button>
@@ -65,7 +65,7 @@ Drawer dialogs are the actual dialog element within a drawer and are defined usi
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="drawer-frame border radius">
-  <aside id="drawer-dialog" class="drawer drawer_pos_right is-opened">
+  <aside id="drawer-dialog" class="drawer drawer_switch is-opened">
     <div data-drawer-dialog class="drawer__dialog dialog">
       <div class="dialog__header">
         <h2 class="dialog__title">Drawer Dialog</h2>
@@ -81,7 +81,7 @@ Drawer dialogs are the actual dialog element within a drawer and are defined usi
       </div>
     </div>
   </aside>
-  <div class="drawer__main padding-xl type">
+  <div class="drawer-main padding-xl type">
     <ul>
       <li>
         <button class="link" data-drawer-toggle="drawer-dialog">Drawer Dialog</button>
@@ -160,7 +160,7 @@ Drawer dialogs are given focus on open by default as long as the `setTabindex` o
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="drawer-frame border radius">
-  <aside id="drawer-focus-self" class="drawer drawer_pos_left" tabindex="-1">
+  <aside id="drawer-focus-self" class="drawer" tabindex="-1">
     <div data-drawer-dialog class="drawer__dialog padding">
       <div class="flex flex-justify-between">
         <p>Focus Dialog</p>
@@ -168,7 +168,7 @@ Drawer dialogs are given focus on open by default as long as the `setTabindex` o
       </div>
     </div>
   </aside>
-  <aside id="drawer-focus-close" class="drawer drawer_pos_right">
+  <aside id="drawer-focus-close" class="drawer drawer_switch">
     <div data-drawer-dialog class="drawer__dialog padding">
       <div class="flex flex-justify-between">
         <p>Focus Close</p>
@@ -176,7 +176,7 @@ Drawer dialogs are given focus on open by default as long as the `setTabindex` o
       </div>
     </div>
   </aside>
-  <div class="drawer__main padding-xl">
+  <div class="drawer-main padding-xl">
     <button class="link" data-drawer-toggle="drawer-focus-self">
       Focus self
     </button>
@@ -202,7 +202,7 @@ Drawer dialogs are given focus on open by default as long as the `setTabindex` o
     </div>
   </aside>
   
-  <div class="drawer__main">
+  <div class="drawer-main">
     <!-- Return focus to toggle on close -->
     <button data-drawer-toggle="[unique-id]">...</button>
   </div>
@@ -223,7 +223,7 @@ Drawers when in their modal context follow a set of patterns expected from other
 3. While the drawer modal is active, contents obscured by the drawer modal are inaccessible to all users.
 4. When a drawer modal is closed, focus is returned to the initial trigger element that activated the dialog.
 
-To take full advantage of drawer modal's accessibility features, it's recommended to set the `selectorInert` option to all elements that are outside the drawer modal (most likely the `drawer__main` element). All elements that match the `selectorInert` selector will be given the `inert` attribute as well as `aria-hidden="true"` when a modal is opened.
+To take full advantage of drawer modal's accessibility features, it's recommended to set the `selectorInert` option to all elements that are outside the drawer modal (most likely the `drawer-main` element). All elements that match the `selectorInert` selector will be given the `inert` attribute as well as `aria-hidden="true"` when a modal is opened.
 
 > Inert is not currently widely supported by all browsers. Consider using a polyfill such as [wicg-inert](https://github.com/WICG/inert) or Google's [inert-polyfill](https://github.com/GoogleChrome/inert-polyfill).
 
@@ -248,7 +248,7 @@ Convert a drawer into it’s modal state with the `drawer_modal` modifier class.
   <aside id="[unique-id]" class="drawer drawer_modal">
     ...
   </aside>
-  <div class="drawer__main">
+  <div class="drawer-main">
     <button data-drawer-toggle="[unique-id]">
       ...
     </button>
@@ -260,12 +260,11 @@ Convert a drawer into it’s modal state with the `drawer_modal` modifier class.
 
 Drawers can slide in from the left or right using the position modifiers:
 
-* `drawer_pos_left`
-* `drawer_pos_right`
+* `drawer_switch`
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="drawer-frame border radius">
-  <aside id="drawer-left" class="drawer drawer_pos_left" tabindex="-1">
+  <aside id="drawer-left" class="drawer" tabindex="-1">
     <div data-drawer-dialog class="drawer__dialog padding">
       <div class="flex flex-justify-between">
         <p>Drawer Left</p>
@@ -273,7 +272,7 @@ Drawers can slide in from the left or right using the position modifiers:
       </div>
     </div>
   </aside>
-  <aside id="drawer-right" class="drawer drawer_pos_right" tabindex="-1">
+  <aside id="drawer-right" class="drawer drawer_switch" tabindex="-1">
     <div data-drawer-dialog class="drawer__dialog padding">
       <div class="flex flex-justify-between">
         <p>Drawer Right</p>
@@ -281,7 +280,7 @@ Drawers can slide in from the left or right using the position modifiers:
       </div>
     </div>
   </aside>
-  <div class="drawer__main padding-xl">
+  <div class="drawer-main padding-xl">
     <button class="link" data-drawer-toggle="drawer-left">
       Drawer left
     </button>
@@ -293,13 +292,13 @@ Drawers can slide in from the left or right using the position modifiers:
 {% include demo_switch.html %}
 ```html
 <div class="drawer-frame">
-  <aside id="[unique-id]" class="drawer drawer_pos_left">
+  <aside id="[unique-id]" class="drawer">
     ...
   </aside>
-  <aside id="[unique-id]" class="drawer drawer_pos_right">
+  <aside id="[unique-id]" class="drawer drawer_switch">
     ...
   </aside>
-  <div class="drawer__main">
+  <div class="drawer-main">
     <button data-drawer-toggle="[unique-id]">
       ...
     </button>
