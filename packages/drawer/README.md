@@ -32,11 +32,6 @@ Drawers are composed using classes and data attributes for their triggers. The b
 - `drawer-frame`: Applied to the parent element wrapping all drawers and the main content.
 - `drawer-main`: Applied to the element containing the main content. This should be the last sibling of `drawer-frame`.
 
-Drawer triggers are defined by three data attributes:
-
-- `data-drawer-open`: Opens a drawer. Should take the id of the drawer it's meant to open.
-- `data-drawer-close`: Closes a drawer. If left value-less, will close the parent drawer. Can also take a drawer id to close a specific drawer.
-- `data-drawer-toggle`: Replaces currently opened modal(s) with the modal of the id provided.
 
 ```html
 <div class="drawer-frame">
@@ -53,7 +48,19 @@ Drawer triggers are defined by three data attributes:
 </div>
 ```
 
-Drawer dialogs—the dialog elements within a drawer—are defined using the `drawer__dialog` class. Along with a role attribute (e.g. `role="dialog"`), authors should consider providing drawer dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes to further improve accessibility. The `aria-modal` attribute is applied automatically based on the drawers current mode (either `modal` or `inline`).
+Drawer triggers are defined by three data attributes:
+
+- `data-drawer-open`: Opens a drawer. Takes the id of the drawer it's meant to open.
+- `data-drawer-close`: Closes a drawer. If left value-less, will close the parent drawer. Can also take a drawer id to close a specific drawer.
+- `data-drawer-toggle`: Toggles a drawer opened or closed. Takes the id of the drawer it's meant to toggle.
+
+```html
+<button data-drawer-open="drawer-id">...</button>
+<button data-drawer-close="drawer-id">...</button>
+<button data-drawer-toggle="drawer-id">...</button>
+```
+
+Drawer dialogs—the dialog elements within a drawer—are defined using the `drawer__dialog` class. Along with a role attribute (e.g. `role="dialog"`), authors should provide drawer dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes if applicable to further improve accessibility. The `aria-modal` attribute is applied automatically based on the drawers current mode (either `modal` or `inline`).
 
 ```html
 <aside id="drawer-id" class="drawer">
@@ -75,16 +82,34 @@ Drawer dialogs—the dialog elements within a drawer—are defined using the `dr
 
 #### Modal Drawers
 
-In cases where you'd like a drawer to switch to a modal drawer on a specific breakpoint, use the `data-drawer-breakpoint` data attribute with either a breakpoint key or a specific pixel value.
+To create a drawer modal, aply the `drawer_modal` modifier.
 
 ```html
-<!-- Switches to modal below `md` breakpoint viewports -->
-<aside data-drawer="[unique-id]" data-drawer-breakpoint="md" class="drawer">
+<aside id="[unique-id]" class="drawer drawer_modal">
+  ...
+</aside>
+```
+
+You can also switch a drawer from `'inline'` to `'modal'` state by setting it's collection entry mode property:
+
+```js
+// Get the drawer object from the collection.
+const entry = modal.get('modal-id');
+
+// Set it's mode to either 'modal' or 'inline'.
+entry.mode = 'modal';
+```
+
+In cases where you'd like a drawer to switch modes based on a specific viewport width, use the `data-drawer-breakpoint` data attribute with either a width value or a breakpoint key.
+
+```html
+<!-- Switches to modal below 900px viewports -->
+<aside id="[unique-id]" class="drawer" data-drawer-breakpoint="900px">
   ...
 </aside>
 
-<!-- Switches to modal below 900px viewports -->
-<aside data-drawer="[unique-id]" data-drawer-breakpoint="900px" class="drawer">
+<!-- Switches to modal below `md` breakpoint viewports -->
+<aside id="[unique-id]" class="drawer" data-drawer-breakpoint="md">
   ...
 </aside>
 ```
