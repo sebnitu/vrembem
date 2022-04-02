@@ -280,355 +280,234 @@ Drawers slide in from the left by default. To create a right side drawer, use th
 
 ## Events
 
-- `drawer:opened` Emits when the drawer has opened.
-- `drawer:closed` Emits when the drawer has closed.
-- `drawer:breakpoint` Emits when the drawer has hit a breakpoint.
-- `drawer:toModal` Emits when the drawer is switched to it's modal state.
-- `drawer:toDefault` Emits when the drawer is switched to it's default state.
+- `drawer:opened` Emits when a drawer has opened.
+- `drawer:closed` Emits when a drawer has closed.
+- `drawer:switchMode` Emits when a drawer's mode changes.
 
 ## API
+
+### `drawer.collection`
+
+Returns an array where all drawer objects are stored when registered. Each drawer object contains the following properties:
+
+```js
+{
+  id: String, // The unique ID of the drawer.
+  state: String, // The current state of the drawer ('closing', 'closed', 'opening' or 'opened').
+  el: HTMLElement, // The drawer HTML element.
+  dialog: HTMLElement // The drawer dialog HTML element.
+  trigger: HTMLElement // The trigger element that opened the drawer.
+  breakpoint: String // Returns the set breakpoint of the drawer. If no breakpoint is set, returns 'null'.
+  mode: String // The current mode of the drawer. Either 'inline' or 'modal'.
+  open: Function // Method to open this drawer.
+  close: Function // Method to close this drawer.
+  toggle: Function // Method to toggle this drawer opened and closed.
+  deregister: Function // Method to deregister this drawer.
+  mountBreakpoint: Function // Method to mount the breakpoint feature on.
+  unmountBreakpoint: Function // Method to unmount the breakpoint feature.
+  handleBreakpoint: Function // The function that runs whenever the breakpoint media match property is changed. Receives the event parameter.
+}
+```
+
+**Returns**
+
+- `Array` An array of collection entries.
+
+### `drawer.activeModal`
+
+Returns the currently active modal drawer. Returns `undefined` if there is no modal drawer open.
+
+**Returns**
+
+- `Object || undefined` Collection entry.
 
 ### `drawer.init(options)`
 
 Initializes the drawer instance. During initialization, the following processes are run:
 
-- Runs `stateSet()` to apply the initial state for all drawers.
-- Runs `breakpoint.init()` to initialize all breakpoints for drawers.
-- Adds the `click` event listener to the document.
-- Adds the `keydown` event listener for closing modal drawers with the `esc` key.
+- Register each drawer in the collection by running `registerCollection()`.
+- Sets up global event listeners by running `initEventListeners()`.
 
 **Parameters**
 
-- `options [Object] (optional) (default null)` An options object for passing your custom settings.
+- `options [Object] (optional)` An options object for passing custom settings.
 
 ```js
 const drawer = new Drawer();
-drawer.init();
+await drawer.init();
 ```
 
 ### `drawer.destroy()`
 
-Destroys and cleans up the drawer instantiation. During cleanup, the following processes are run:
+Destroys and cleans up the drawer initialization. During cleanup, the following processes are run:
 
-- Runs `breakpoint.destroy()` to remove all active breakpoints.
-- Clears the stored `drawer.memory` object.
-- Clears the stored `drawer.state` object.
-- Removes the saved state from local storage.
-- Removes the `click` event listener from the document.
-- Removes the `keydown` event listener from the document.
+- Deregister the drawer collection by running `deregisterCollection()`.
+- Removes global event listeners by running `destroyEventListeners()`.
 
 ```js
 const drawer = new Drawer();
-drawer.init();
+await drawer.init();
 // ...
-drawer.destroy();
+await drawer.destroy();
 ```
 
 ### `drawer.initEventListeners()`
 
-Set the document event listeners for click, touchend and keydown events.
+Set document event listeners.
 
 ```js
 const drawer = new Drawer({ eventListeners: false });
-drawer.init();
+await drawer.init();
 drawer.initEventListeners();
 ```
 
 ### `drawer.destroyEventListeners()`
 
-Remove the document event listeners for click, touchend and keydown events.
+Remove document event listeners.
 
 ```js
 const drawer = new Drawer();
-drawer.init();
+await drawer.init();
 // ...
 drawer.destroyEventListeners();
 ```
 
-### `drawer.toggle(key)`
+### `drawer.register(query)`
 
-Toggles a drawer when provided the drawer key and returns a promise that resolves to the drawer object once the transition has finished.
+Registers a drawer into the collection. This also sets the initial state, mode, mounts any media match breakpoints and applies missing accessibility attributes.
 
 **Parameters**
 
-- `key [String]` A unique key that matches the value of a drawer `data-drawer` attribute.
+- `query [String || Object]` A drawer ID or an HTML element of either the drawer or its trigger.
 
 **Returns**
 
-- `Promise` The returned promise value will either be the `HTML object` of the drawer that was toggled, or `error` if a drawer was not found.
-
-```html
-<div class="drawer" data-drawer="drawer-key">...</div>
-```
+- `Object` The drawer object that got stored in the collection.
 
 ```js
-// Toggle drawer
-drawer.toggle('drawer-key');
-
-// Run some code after promise resolves
-drawer.toggle('drawer-key').then((result) => {
-  console.log(result);
-});
+const result = await drawer.register('drawer-id');
+// => Object { id: 'drawer-id', ... }
 ```
 
-### `drawer.open(key)`
+### `drawer.deregister(query)`
 
-Opens a drawer when provided the drawer key and returns a promise that resolves to the drawer object once the transition has finished.
+Deregister the drawer from the collection. This closes the drawer if it's opened, removes any active media match breakpoints and removes the entry from the collection.
 
 **Parameters**
 
-- `key [String]` A unique key that matches the value of a drawer `data-drawer` attribute.
+- `query [String || Object]` A drawer ID or an HTML element of either the drawer or its trigger.
 
 **Returns**
 
-- `Promise` The returned promise value will either be the `HTML object` of the drawer that was opened, or `error` if a drawer was not found.
-
-```html
-<div class="drawer" data-drawer="drawer-key">...</div>
-```
+- `Array` Returns the newly modified collection array.
 
 ```js
-// Open drawer
-drawer.open('drawer-key');
-
-// Run some code after promise resolves
-drawer.open('drawer-key').then((result) => {
-  console.log(result);
-});
+const result = await drawer.deregister('drawer-id');
+// => Array [{}, {}, ...]
 ```
 
-### `drawer.close(key)`
+### `drawer.registerCollection(items)`
 
-Closes a drawer when provided the drawer key and returns a promise that resolves to the drawer object once the transition has finished.
+Registers array of drawers to the collection. All drawers in array are run through the `register()` method.
 
 **Parameters**
 
-- `key [String]` A unique key that matches the value of a drawer `data-drawer` attribute.
+- `items [Array]` An array of drawers or drawer IDs to register.
 
 **Returns**
 
-- `Promise` The returned promise value will either be the `HTML object` of the drawer that was closed, or `error` if a drawer was not found.
-
-```html
-<div class="drawer" data-drawer="drawer-key">...</div>
-```
+- `Array` Returns the collection array.
 
 ```js
-// Close drawer
-drawer.close('drawer-key');
-
-// Run some code after promise resolves
-drawer.close('drawer-key').then((result) => {
-  console.log(result);
-});
+const drawers = document.querySelectorAll('.drawer');
+const result = await drawer.registerCollection(drawers);
+// => Array [{}, {}, ...]
 ```
 
-### `drawer.getDrawer(key)`
+### `drawer.deregisterCollection()`
 
-Returns a drawer that matches the provided unique drawer key.
-
-**Parameters**
-
-- `key [String]` A unique key that matches the value of a drawer `data-drawer` attribute.
+Deregister all drawers in the collections array. All drawers in collection are run through the `deregister()` method.
 
 **Returns**
 
-- `HTML object` The matching drawer element.
-
-
-```html
-<div class="drawer" data-drawer="drawer-key">...</div>
-```
+- `Array` Returns the empty collection array.
 
 ```js
-const el = drawer.getDrawer('drawer-key');
-
-// Returns HTML Element Object
-console.log(el);
+const result = await drawer.registerCollection();
+// => Array []
 ```
 
-### `drawer.breakpoint.init()`
+### `drawer.get(value, key)`
 
-Initializes the drawer breakpoint feature. During initialization, all drawers with `data-drawer-breakpoint` are retrieved and a `MediaQueryList` is created for each. Each `MediaQueryList` and it's associated drawer key is stored in the `drawer.mediaQueryLists` array. This is ran automatically on `drawer.init()`.
-
-```html
-<aside data-drawer="drawer-1" data-drawer-breakpoint="420px" class="drawer">
-  ...
-</aside>
-
-<aside data-drawer="drawer-2" data-drawer-breakpoint="740px" class="drawer">
-  ...
-</aside>
-```
-
-```js
-// Initialize breakpoints
-drawer.breakpoint.init();
-
-// Output stored lists
-console.log(drawer.mediaQueryLists);
-
-// Log result
-[{
-  mql: MediaQueryList // Obj
-  drawer: 'drawer-1' // String
-}, {
-  mql: MediaQueryList // Obj
-  drawer: 'drawer-2' // String
-}]
-```
-
-### `drawer.breakpoint.destroy()`
-
-Destroys the drawer breakpoint feature. This process involves removeing all attached media match listeners from the stored `MediaQueryList`s and then clearing the stored array. This is ran automatically on `drawer.destroy()`.
-
-```js
-// Initialize breakpoints
-drawer.breakpoint.destroy();
-
-// Output stored lists
-console.log(drawer.mediaQueryLists);
-
-// Log result
-null
-```
-
-### `drawer.breakpoint.check()`
-
-Force a check of any drawers that meet their breakpoint condition. If their state doesn't match the current breakpoint condition, they'll be updated. This is useful when used with frameworks that dynamically re-render components on the fly.
-
-```html
-<!-- Initial HTML -->
-<aside data-drawer="[unique-id]" data-drawer-breakpoint="sm" class="drawer">
-  ...
-</aside>
-```
-
-```js
-// Manually run a breakpoint check
-drawer.breakpoint.check();
-```
-
-```html
-<!-- Output if matches breakpoint -->
-<aside data-drawer="[unique-id]" data-drawer-breakpoint="sm" class="drawer drawer_modal">
-  ...
-</aside>
-```
-
-### `drawer.switchToModal(key)`
-
-Switches a drawer to it's modal state.
+Used to retrieve a registered drawer object from the collection. The value should match the key type to search by: e.g. to search by drawer elements, pass the drawer html node with a key of `'el'`. Defaults to `'id'`.
 
 **Parameters**
 
-- `key [String]` A unique key that matches the value of a drawer `data-drawer` attribute.
+- `value [String || Object]` The value to search for within the collection.
+- `key [String] (optional) (default 'id')` The property key to search the value against.
 
-```html
-<!-- Initial HTML -->
-<div class="drawer" data-drawer="drawer-key">...</div>
-```
+**Returns**
+
+- `Object || undefined` The first element in the collection that matches the provided query and key. Otherwise, undefined is returned.
 
 ```js
-// Switch a drawer to modal state
-drawer.switchToModal('drawer-key');
+const entry = drawer.get('drawer-id');
+// => Object { id: 'drawer-id', ... }
 ```
 
-```html
-<!-- Output -->
-<div class="drawer drawer_modal" data-drawer="drawer-key">...</div>
-```
+### `drawer.open(id, transition, focus)`
 
-### `drawer.switchToDefault(key)`
-
-Switches a drawer to it's default non-modal state.
+Opens a drawer using the provided ID.
 
 **Parameters**
 
-- `key [String]` A unique key that matches the value of a drawer `data-drawer` attribute.
+- `id [String]` The ID of the drawer to open.
+- `transition [Boolean] (optional)` Whether or not to animate the transition.
+- `focus [Boolean] (optional)` Whether or not to handle focus management.
 
-```html
-<!-- Initial HTML -->
-<div class="drawer drawer_modal" data-drawer="drawer-key">...</div>
-```
+**Returns**
 
-```js
-// Switch a drawer to default non-modal state
-drawer.switchToDefault('drawer-key');
-```
-```html
-<!-- Output -->
-<div class="drawer" data-drawer="drawer-key">...</div>
-```
-
-### `drawer.stateSet()`
-
-Sets the current saved state of all drawer elements based on the values set in localStorage and updates the instance `drawer.state` object.
-
-```html
-<!-- Initial HTML -->
-<aside data-drawer="drawer-1" class="drawer is-opened">...</aside>
-<aside data-drawer="drawer-2" class="drawer is-opened">...</aside>
-```
+- `Object` The drawer object that was opened.
 
 ```js
-// If the current saved state in localStorage looks like this:
-// { 
-//   "drawer-1": "is-closed", 
-//   "drawer-2": "is-closed" 
-// }
-drawer.stateSet();
+const entry = await drawer.open('drawer-key');
+// => Object { id: 'drawer-id', ... }
 ```
 
-```html
-<!-- Output -->
-<aside data-drawer="drawer-1" class="drawer is-closed">...</aside>
-<aside data-drawer="drawer-2" class="drawer is-closed">...</aside>
-```
+### `drawer.close(id, transition, focus)`
 
-### `drawer.stateSave(target)`
-
-Saves the current state of drawers to localStorage and drawer's `drawer.state` object. This is useful when state becomes out of sync or the DOM is re-rendered in a way that breaks current state.
+Closes a drawer using the provided ID.
 
 **Parameters**
 
-- `HTML Element [Object]` (Default: null) A specific target to save state. If nothing is passed, all drawers in the DOM will have their state saved.
+- `id [String] (optional)` The ID of the drawer to close.
+- `transition [Boolean] (optional)` Whether or not to animate the transition.
+- `focus [Boolean] (optional)` Whether or not to handle focus management.
 
-```html
-<!-- Initial HTML -->
-<aside data-drawer="drawer-1" class="drawer is-closed">...</aside>
-<aside data-drawer="drawer-2" class="drawer is-opened">...</aside>
-```
+**Returns**
 
-```js
-// If current saved state looks like:
-console.log(drawer.state);
-// { 
-//   "drawer-1": "is-closed", 
-//   "drawer-2": "is-closed" 
-// }
-drawer.stateSave();
-
-// Result
-console.log(drawer.state);
-// { 
-//   "drawer-1": "is-closed", 
-//   "drawer-2": "is-opened" 
-// }
-```
-
-### `drawer.stateClear()`
-
-Clears the existing saved states in both localStorage and drawer's `drawer.state` object.
+- `Object` The drawer object that was closed.
 
 ```js
-console.log(drawer.state);
-// Returns: { 
-//   "drawer-1": "is-closed", 
-//   "drawer-2": "is-closed" 
-// }
-drawer.stateClear();
+const entry = await drawer.close();
+// => Object { id: 'drawer-id', ... }
+```
 
-console.log(drawer.state);
-// Returns: Object { }
+### `drawer.toggle(id, transition, focus)`
+
+Toggles a drawer opened or closed using the provided ID.
+
+**Parameters**
+
+- `id [String] (optional)` The ID of the drawer to toggle.
+- `transition [Boolean] (optional)` Whether or not to animate the transition.
+- `focus [Boolean] (optional)` Whether or not to handle focus management.
+
+**Returns**
+
+- `Object` The drawer object that was closed.
+
+```js
+const entry = await drawer.toggle();
+// => Object { id: 'drawer-id', ... }
 ```

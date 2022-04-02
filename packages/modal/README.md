@@ -254,8 +254,8 @@ $size-scale: (
 
 ## Events
 
-- `modal:opened` Emits when the modal has opened.
-- `modal:closed` Emits when the modal has closed.
+- `modal:opened` Emits when a modal has opened.
+- `modal:closed` Emits when a modal has closed.
 
 ## API
 
@@ -268,7 +268,7 @@ Returns an array where all modal objects are stored when registered. Each modal 
   id: String, // The unique ID of the modal.
   state: String, // The current state of the modal ('closing', 'closed', 'opening' or 'opened').
   el: HTMLElement, // The modal HTML element.
-  dialog: HTMLElement // The modal dialog JS instance.
+  dialog: HTMLElement // The modal dialog HTML element.
   returnRef: HTMLComment // The return reference left when a modal is teleported.
   settings: Object // The modal specific settings.
   open: Function // Method to open this modal.
@@ -299,7 +299,7 @@ Returns the currently active modal or the modal at the top of the stack if multi
 
 **Returns**
 
-- `Object || undefined` Collection entry
+- `Object || undefined` Collection entry.
 
 ### `modal.init(options)`
 
@@ -435,7 +435,7 @@ const entry = modal.get('modal-id');
 // => Object { id: 'modal-id', ... }
 ```
 
-### `modal.open(id, transition)`
+### `modal.open(id, transition, focus)`
 
 Opens a modal using the provided ID.
 
@@ -443,6 +443,7 @@ Opens a modal using the provided ID.
 
 - `id [String]` The ID of the modal to open.
 - `transition [Boolean] (optional)` Whether or not to animate the transition.
+- `focus [Boolean] (optional)` Whether or not to handle focus management.
 
 **Returns**
 
@@ -453,7 +454,7 @@ const entry = await modal.open('modal-key');
 // => Object { id: 'modal-id', ... }
 ```
 
-### `modal.close(id, transition)`
+### `modal.close(id, transition, focus)`
 
 Closes a modal using the provided ID. Can be called without an ID to close most recently opened modal.
 
@@ -461,6 +462,7 @@ Closes a modal using the provided ID. Can be called without an ID to close most 
 
 - `id [String] (optional)` The ID of the modal to close.
 - `transition [Boolean] (optional)` Whether or not to animate the transition.
+- `focus [Boolean] (optional)` Whether or not to handle focus management.
 
 **Returns**
 
@@ -471,7 +473,7 @@ const entry = await modal.close();
 // => Object { id: 'modal-id', ... }
 ```
 
-### `modal.replace(id, transition)`
+### `modal.replace(id, transition, focus`
 
 Replaces currently opened modal(s) with the modal of the id provided. This could be used to trigger a modal when modal stacking is not desired.
 
@@ -479,6 +481,7 @@ Replaces currently opened modal(s) with the modal of the id provided. This could
 
 - `id [String]` The ID of the modal to open. Will close all other opened modals.
 - `transition [Boolean] (optional)` Whether or not to animate the transition.
+- `focus [Boolean] (optional)` Whether or not to handle focus management.
 
 **Returns**
 
@@ -489,7 +492,7 @@ const obj = await modal.replace('modal-id');
 // => Object { opened: { id: 'modal-id', ... }, closed: [...] }
 ```
 
-### `modal.closeAll(exclude, transition)`
+### `modal.closeAll(exclude, transition, focus)`
 
 Closes all open modals. Will exclude closing a modal using the provided ID.
 
@@ -497,6 +500,7 @@ Closes all open modals. Will exclude closing a modal using the provided ID.
 
 - `exclude [String] (optional)` The ID of a modal to exclude from closing. Will close all other opened modals.
 - `transition [Boolean] (optional)` Whether or not to animate the transition.
+- `focus [Boolean] (optional)` Whether or not to handle focus management.
 
 **Returns**
 
