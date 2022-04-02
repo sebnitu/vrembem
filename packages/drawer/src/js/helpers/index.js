@@ -4,4 +4,3 @@ export * from './getDrawerElements';
 export * from './getDrawerID';
 export * from './initialState';
 export * from './updateFocusState';
-export * from './updateGlobalState';

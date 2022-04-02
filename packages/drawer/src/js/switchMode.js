@@ -1,7 +1,6 @@
+import { updateGlobalState } from '@vrembem/core/index';
 import { close } from './close';
-
 import { initialState } from './helpers/initialState';
-import { updateGlobalState } from './helpers';
 
 export function switchMode(entry) {
   switch (entry.mode) {

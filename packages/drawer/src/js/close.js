@@ -1,7 +1,5 @@
-import { closeTransition } from '@vrembem/core/index';
-
-// import { stateSave } from './state';
-import { updateGlobalState, updateFocusState, getDrawer } from './helpers';
+import { closeTransition, updateGlobalState } from '@vrembem/core/index';
+import { updateFocusState, getDrawer } from './helpers';
 
 export async function close(query, transition, focus = true) {
   // Get the drawer from collection.

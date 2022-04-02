@@ -1,4 +1,4 @@
-import { Collection, FocusTrap } from '@vrembem/core/index';
+import { Collection, FocusTrap, updateGlobalState } from '@vrembem/core/index';
 
 import defaults from './defaults';
 import { handleClick, handleKeydown } from './handlers';
@@ -8,7 +8,7 @@ import { open } from './open';
 import { close } from './close';
 import { closeAll } from './closeAll';
 import { replace } from './replace';
-import { updateGlobalState, updateFocusState, getModalElements, getModalID } from './helpers';
+import { updateFocusState, updateStackIndex, getModalElements, getModalID } from './helpers';
 
 export default class Modal extends Collection {
   #handleClick;
@@ -27,7 +27,8 @@ export default class Modal extends Collection {
         target[property] = value;
         // Update global state if stack length changed.
         if (property === 'length') {
-          updateGlobalState.call(this, this.settings);
+          updateGlobalState(this.active, this.settings);
+          updateStackIndex(this.stack);
         }
         return true;
       }
