@@ -103,8 +103,8 @@ entry.mode = 'modal';
 In cases where you'd like a drawer to switch modes based on a specific viewport width, use the `data-drawer-breakpoint` data attribute with either a width value or a breakpoint key.
 
 ```html
-<!-- Switches to modal below 900px viewports -->
-<aside id="drawer-id" class="drawer" data-drawer-breakpoint="900px">
+<!-- Switches to modal below 1200px viewports -->
+<aside id="drawer-id" class="drawer" data-drawer-breakpoint="1200px">
   ...
 </aside>
 

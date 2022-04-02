@@ -155,7 +155,6 @@ To create a modal drawer, apply the `drawer_modal` modifier.
 ```
 {% include demo_close.html %}
 
-
 You can also switch a drawer from `'inline'` to `'modal'` by changing the collection API `mode` property:
 
 ```js
@@ -168,9 +167,41 @@ entry.mode = 'modal';
 
 In cases where you'd like a drawer to switch modes based on a specific viewport width, use the `data-drawer-breakpoint` data attribute with either a width value or a breakpoint key.
 
+{% include demo_open.html class_grid="grid_stack" %}
+<div class="drawer-frame border radius" style="min-height: 16em;">
+  <aside id="drawer-4" class="drawer" data-drawer-breakpoint="1200px" data-drawer-config="{ 'selectorInert': null, 'selectorOverflow': null }">
+    <div class="drawer__dialog padding-xl">
+      <div class="flex flex-justify-between margin-bottom">
+        <p>Breakpoint drawer</p>
+        <button data-drawer-close class="link">Close</button>
+      </div>
+      <p>Media query string:<br><code class="code">(min-width: 1200px)</code></p>
+    </div>
+  </aside>
+  <aside id="drawer-5" class="drawer" data-drawer-breakpoint="md" data-drawer-config="{ 'selectorInert': null, 'selectorOverflow': null }">
+    <div class="drawer__dialog padding-xl">
+      <div class="flex flex-justify-between margin-bottom">
+        <p>Breakpoint drawer</p>
+        <button data-drawer-close class="link">Close</button>
+      </div>
+      <p>Media query string:<br><code class="code">(min-width: 760px)</code></p>
+    </div>
+  </aside>
+  <div class="drawer-main padding-xl type">
+    <ul>
+      <li>
+        <button class="link" data-drawer-toggle="drawer-4" data-drawer-close="drawer-5">Toggle</button> - Switches to modal on < 1200px screens.
+      </li>
+      <li>
+        <button class="link" data-drawer-toggle="drawer-5" data-drawer-close="drawer-4">Toggle</button> - Switches to modal on < 760px screens.
+      </li>
+    </ul>
+  </div>
+</div>
+{% include demo_switch.html %}
 ```html
-<!-- Switches to modal below 900px viewports -->
-<aside id="drawer-id" class="drawer" data-drawer-breakpoint="900px">
+<!-- Switches to modal below 1200px viewports -->
+<aside id="drawer-id" class="drawer" data-drawer-breakpoint="1200px">
   ...
 </aside>
 
@@ -179,6 +210,7 @@ In cases where you'd like a drawer to switch modes based on a specific viewport 
   ...
 </aside>
 ```
+{% include demo_close.html %}
 
 A custom breakpoints object can be passed in using the `breakpoints` option. Otherwise, breakpoints are resolved by looking up a CSS variable using the passed key (e.g: `--breakpoint-[key]`).
 

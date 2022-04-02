@@ -1,52 +1,68 @@
-import { getDrawerID } from './helpers';
-
 export function handleClick(event) {
-  // If an open or toggle button was clicked, open or toggle the drawer.
-  let trigger = event.target.closest(
-    `[data-${this.settings.dataOpen}], [data-${this.settings.dataToggle}]`
-  );
-  if (trigger) {
-    event.preventDefault();
-    // Get the entry from collection using the trigger.
-    const entry = this.get(getDrawerID.call(this, trigger));
-    // Store the trigger on the entry.
-    entry.trigger = trigger;
-    // Depending on the button type, either open or toggle the drawer.
-    return (trigger.matches(`[data-${this.settings.dataOpen}]`)) ? entry.open() : entry.toggle();
-  }
+  // If an open, close or toggle button was clicked, handle the click event.
+  const trigger = event.target.closest(`
+    [data-${this.settings.dataOpen}],
+    [data-${this.settings.dataToggle}],
+    [data-${this.settings.dataClose}]
+  `);
 
-  // If a close button was clicked, close the drawer.
-  trigger = event.target.closest(`[data-${this.settings.dataClose}]`);
   if (trigger) {
+    // Prevent the default behavior of the trigger.
     event.preventDefault();
-    const selector = trigger.getAttribute(`data-${this.settings.dataClose}`);
-    if (selector) {
-      // Get the entry from collection using the trigger.
-      const entry = this.get(getDrawerID.call(this, trigger));
+
+    // If it's a toggle trigger...
+    if (trigger.matches(`[data-${this.settings.dataToggle}]`)) {
+      const selector = trigger.getAttribute(`data-${this.settings.dataToggle}`);
+      // Get the entry from collection using the attribute value.
+      const entry = this.get(selector);
       // Store the trigger on the entry.
       entry.trigger = trigger;
-      // Close the drawer.
-      entry.close();
-    } else {
-      // If no value is set on close trigger, get the parent drawer.
-      const parent = event.target.closest(this.settings.selectorDrawer);
-      // If a parent drawer was found, close it.
-      if (parent) this.close(parent);
+      // Toggle the drawer
+      entry.toggle();
     }
+
+    // If it's a open trigger...
+    if (trigger.matches(`[data-${this.settings.dataOpen}]`)) {
+      const selector = trigger.getAttribute(`data-${this.settings.dataOpen}`);
+      // Get the entry from collection using the attribute value.
+      const entry = this.get(selector);
+      // Store the trigger on the entry.
+      entry.trigger = trigger;
+      // Open the drawer.
+      entry.open();
+    }
+
+    // If it's a close trigger...
+    if (trigger.matches(`[data-${this.settings.dataClose}]`)) {
+      const selector = trigger.getAttribute(`data-${this.settings.dataClose}`);
+      if (selector) {
+        // Get the entry from collection using the attribute value.
+        const entry = this.get(selector);
+        // Store the trigger on the entry.
+        entry.trigger = trigger;
+        // Close the drawer.
+        entry.close();
+      } else {
+        // If no value is set on close trigger, get the parent drawer.
+        const parent = event.target.closest(this.settings.selectorDrawer);
+        // If a parent drawer was found, close it.
+        if (parent) this.close(parent);
+      }
+    }
+
     return;
   }
 
-  // If the modal screen was clicked, close the drawer modal.
+  // If the modal drawer screen was clicked...
   if (event.target.matches(this.settings.selectorDrawer)) {
-    return this.close(getDrawerID.call(this, event.target));
+    // Close the modal drawer.
+    this.close(event.target.id);
   }
 }
 
 export function handleKeydown(event) {
   if (event.key === 'Escape') {
     const modal = this.activeModal;
-    if (modal) {
-      this.close(modal);
-    }
+    if (modal) this.close(modal);
   }
 }
