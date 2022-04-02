@@ -235,7 +235,7 @@ $size-scale: (
 | `dataClose`         | `'modal-close'`          | Data attribute for a modal close trigger.                                                                     |
 | `dataReplace`       | `'modal-replace'`        | Data attribute for a modal replace trigger.                                                                   |
 | `dataConfig`        | `'modal-config'`         | Data attribute to find modal specific configuration settings. Value should be a JSON object.                  |
-| `selectorModal`     | `'.modal'`               | Selector for modal component.                                                                                 |
+| `selectorModal`     | `'.modal'`               | Selector for modal element.                                                                                   |
 | `selectorDialog`    | `'.modal__dialog'`       | Selector for modal dialog element.                                                                            |
 | `selectorRequired`  | `'[role="alertdialog"]'` | Selector used to apply required modal state.                                                                  |
 | `selectorFocus`     | `'[data-focus]'`         | Focus preference selector for when modals are initially opened.                                               |

@@ -238,10 +238,9 @@ Drawers slide in from the left by default. To create a right side drawer, use th
 | `$sep-border`                    | `null`                             | Border color applied to dialog components within drawer items.                                       |
 | `$background`                    | `core.$shade`                      | Background color applied to drawer items.                                                            |
 | `$box-shadow`                    | `none`                             | Box shadow applied to drawer items.                                                                  |
-| `$travel`                        | `5em`                              | Distance that drawers travel during their transition.                                                |
 | `$transition-duration`           | `core.$transition-duration`        | Duration of drawer transition.                                                                       |
 | `$transition-timing-function`    | `core.$transition-timing-function` | Timing function used for drawer transitions.                                                         |
-| `$frame-height`                  | `100vh`                            | The height given to drawer frame element.                                                            |
+| `$frame-height`                  | `100vh`                            | Height given to the `drawer-frame` element.                                                          |
 | `$modal-z-index`                 | `900`                              | Modal z-index to help control the stack order. Should be highest priority as modal.                  |
 | `$modal-width`                   | `$width`                           | The width of modal drawers.                                                                          |
 | `$modal-max-width`               | `80%`                              | The max-width of modal drawers.                                                                      |
@@ -256,25 +255,25 @@ Drawers slide in from the left by default. To create a right side drawer, use th
 | Key                 | Default               | Description                                                                                          |
 | ------------------- | --------------------- | ---------------------------------------------------------------------------------------------------- |
 | `autoInit`          | `false`               | Automatically initializes the instance.                                                              |
-| `dataDrawer`        | `'drawer'`            | Data attribute for a drawer.                                                                         |
-| `dataDialog`        | `'drawer-dialog'`     | Data attribute for a drawer dialog.                                                                  |
-| `dataToggle`        | `'drawer-toggle'`     | Data attribute for a drawer toggle trigger.                                                          |
 | `dataOpen`          | `'drawer-open'`       | Data attribute for a drawer open trigger.                                                            |
 | `dataClose`         | `'drawer-close'`      | Data attribute for a drawer close trigger.                                                           |
+| `dataToggle`        | `'drawer-toggle'`     | Data attribute for a drawer toggle trigger.                                                          |
 | `dataBreakpoint`    | `'drawer-breakpoint'` | Data attribute for setting a drawer's breakpoint.                                                    |
-| `dataFocus`         | `'drawer-focus'`      | Data attribute for setting a drawer's focus element.                                                 |
+| `selectorDrawer`    | `'.drawer'`           | Selector for dialog element.                                                                         |
+| `selectorDialog`    | `'.drawer__dialog'`   | Selector for drawer dialog element.                                                                  |
+| `selectorFocus`     | `'[data-focus]'`      | Focus preference selector for when drawers are initially opened.                                     |
+| `selectorInert`     | `null`                | Applies `inert` and `aria-hidden` attributes to all matching elements when a modal drawer is opened. |
+| `selectorOverflow`  | `body`                | Applies `overflow:hidden` styles on all matching elements when a modal drawer is opened.             |
 | `stateOpen`         | `'is-opened'`         | Class used for open state.                                                                           |
 | `stateOpening`      | `'is-opening'`        | Class used for transitioning to open state.                                                          |
 | `stateClosing`      | `'is-closing'`        | Class used for transitioning to closed state.                                                        |
 | `stateClosed`       | `'is-closed'`         | Class used for closed state.                                                                         |
 | `classModal`        | `'drawer_modal'`      | Class used for toggling the drawer modal state.                                                      |
-| `selectorInert`     | `null`                | Applies `inert` and `aria-hidden` attributes to all matching elements when a modal drawer is opened. |
-| `selectorOverflow`  | `null`                | Applies `overflow:hidden` styles on all matching elements when a modal drawer is opened.             |
-| `breakpoints`       | `core.breakpoints`    | An object with key/value pairs defining a breakpoints set.                                           |
+| `breakpoints`       | `null`                | An object with key/value pairs defining a breakpoint set.                                            |
 | `customEventPrefix` | `'drawer:'`           | Prefix to be used on custom events.                                                                  |
 | `eventListeners`    | `true`                | Whether or not to set the document event listeners on init.                                          |
-| `stateSave`         | `true`                | Toggles the save state feature.                                                                      |
-| `stateKey`          | `"DrawerState"`       | Defines the localStorage key where drawer states are saved.                                          |
+| `store`             | `true`                | Toggles the local store feature.                                                                     |
+| `storeKey`          | `'VB:DrawerState'`    | Defines the localStorage key where drawer states are saved.                                          |
 | `setTabindex`       | `true`                | Whether or not to set `tabindex="-1"` on all drawer dialog elements on init.                         |
 | `transition`        | `true`                | Toggle the transition animation for the drawer. Set to `false` to disable.                           |
 
