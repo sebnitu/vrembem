@@ -5,7 +5,6 @@ $_e: var.$prefix-element;
 $_m: var.$prefix-modifier;
 
 .#{$_b}drawer#{$_m}modal {
-  position: fixed;
   z-index: var.$modal-z-index;
   width: 0;
   height: 0;
