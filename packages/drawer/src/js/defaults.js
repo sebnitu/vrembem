@@ -12,7 +12,7 @@ export default {
   selectorDialog: '.drawer__dialog',
   selectorFocus: '[data-focus]',
   selectorInert: null,
-  selectorOverflow: null,
+  selectorOverflow: 'body',
 
   // State classes
   stateOpened: 'is-opened',

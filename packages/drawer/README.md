@@ -27,10 +27,10 @@ const drawer = new Drawer({ autoInit: true });
 
 ### Markup
 
-Drawers are composed using classes and data attributes for their triggers. The basic structure of a drawer is an element with the `drawer` class and an `id` containing a child element with the `drawer__dialog` class. There are two required structure elements for drawers to work correctly:
+Drawers are composed using classes and data attributes for their triggers. The basic structure of a drawer is an element with and `id` and `drawer` class containing a child element with the `drawer__dialog` class. There are two required structure elements for drawers to work correctly:
 
 - `drawer-frame`: Applied to the parent element wrapping all drawers and the main content.
-- `drawer-main`: Applied to the element containing the main content. This should be the last sibling of `drawer-frame`.
+- `drawer-main`: Applied to the element containing the main content. This should be the last child of `drawer-frame`.
 
 
 ```html
@@ -48,10 +48,10 @@ Drawers are composed using classes and data attributes for their triggers. The b
 </div>
 ```
 
-Drawer triggers are defined by three data attributes:
+Drawer triggers are defined using three data attributes:
 
 - `data-drawer-open`: Opens a drawer. Takes the id of the drawer it's meant to open.
-- `data-drawer-close`: Closes a drawer. If left value-less, will close the parent drawer. Can also take a drawer id to close a specific drawer.
+- `data-drawer-close`: Closes a drawer. Will close the parent drawer if left value-less. Can also take an id of a drawer to close.
 - `data-drawer-toggle`: Toggles a drawer opened or closed. Takes the id of the drawer it's meant to toggle.
 
 ```html
@@ -60,7 +60,7 @@ Drawer triggers are defined by three data attributes:
 <button data-drawer-toggle="drawer-id">...</button>
 ```
 
-Drawer dialogs—the dialog elements within a drawer—are defined using the `drawer__dialog` class. Along with a role attribute (e.g. `role="dialog"`), authors should provide drawer dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes if applicable to further improve accessibility. The `aria-modal` attribute is applied automatically based on the drawers current mode (either `modal` or `inline`).
+The dialog element of a drawer is defined using the `drawer__dialog` class. Along with a role attribute (e.g. `role="dialog"`), authors should provide drawer dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes if applicable to further improve accessibility. The `aria-modal` attribute is applied automatically based on the drawers current mode (either `modal` or `inline`).
 
 ```html
 <aside id="drawer-id" class="drawer">
@@ -82,10 +82,10 @@ Drawer dialogs—the dialog elements within a drawer—are defined using the `dr
 
 #### Modal Drawers
 
-To create a drawer modal, aply the `drawer_modal` modifier.
+To create a modal drawer, apply the `drawer_modal` modifier.
 
 ```html
-<aside id="[unique-id]" class="drawer drawer_modal">
+<aside id="drawer-id" class="drawer drawer_modal">
   ...
 </aside>
 ```
@@ -94,7 +94,7 @@ You can also switch a drawer from `'inline'` to `'modal'` state by setting it's 
 
 ```js
 // Get the drawer object from the collection.
-const entry = modal.get('modal-id');
+const entry = drawer.get('drawer-id');
 
 // Set it's mode to either 'modal' or 'inline'.
 entry.mode = 'modal';
@@ -104,12 +104,12 @@ In cases where you'd like a drawer to switch modes based on a specific viewport 
 
 ```html
 <!-- Switches to modal below 900px viewports -->
-<aside id="[unique-id]" class="drawer" data-drawer-breakpoint="900px">
+<aside id="drawer-id" class="drawer" data-drawer-breakpoint="900px">
   ...
 </aside>
 
-<!-- Switches to modal below `md` breakpoint viewports -->
-<aside id="[unique-id]" class="drawer" data-drawer-breakpoint="md">
+<!-- Switches to modal below "md" breakpoint viewports -->
+<aside id="drawer-id" class="drawer" data-drawer-breakpoint="md">
   ...
 </aside>
 ```
@@ -138,60 +138,66 @@ const drawer = new Drawer({
 }
 ```
 
+While a modal drawer is active, the contents obscured by the drawer are made inaccessible to all users via a focus trap. This means that the `TAB` key, and a screen reader’s virtual cursor (arrow keys) should not be allowed to leave the drawer dialog and traverse the content outside of the dialog. This does not apply to inline drawers.
+
 #### Focus Management
 
-Drawer dialogs are given focus on open by default as long as the `setTabindex` option is set to `true` or if the drawer dialog has `tabindex="-1"` set manually. If focus on a specific element inside a drawer is preferred, give it the `data-drawer-focus` attribute. The focus in either case is returned to the trigger element once the drawer is closed.
+Drawer dialogs are given focus on open by default as long as the `setTabindex` option is set to `true` or if the drawer dialog has `tabindex="-1"` set manually. If focus on a specific element inside a drawer is preferred, give that element the `data-focus` attribute. Focus is returned to the element that initially triggered the drawer once closed.
 
 ```html
-<div cass="drawer-frame">
+<div class="drawer-frame">
   <!-- Focuses the drawer dialog on open -->
-  <aside data-drawer="[unique-id]" class="drawer">
-    <div data-drawer-dialog class="drawer__dialog">
+  <aside id="drawer-id" class="drawer">
+    <div class="drawer__dialog" tabindex="-1">
       ...
     </div>
   </aside>
 
   <!-- Focuses an inner element on open -->
-  <aside data-drawer="[unique-id]" class="drawer">
-    <div data-drawer-dialog class="drawer__dialog">
-      <button data-drawer-focus>...</button>
+  <aside id="drawer-id" class="drawer">
+    <div class="drawer__dialog">
+      <input data-focus type="text">
+      ...
     </div>
   </aside>
   
   <div class="drawer-main">
     <!-- Return focus to toggle on close -->
-    <button data-drawer-toggle="[unique-id]">...</button>
+    <button data-drawer-toggle="drawer-id">...</button>
   </div>
 </div>
 ```
 
+> To change the selector used in finding the preferred focus element, pass your own selector via the `selectorFocus` option (defaults to `'[data-focus]'`).
+
 #### Drawer State
 
-By default, the state of a drawer is saved to local storage and applied persistently under the "DrawerState" local storage variable. Set `stateSave: false` to disable save state. Use `stateKey: "[CUSTOM-KEY]"` to change the key that save state is stored under.
+By default, the state of a drawer is saved to local storage and applied persistently under the `VB:DrawerState` local storage key. Set `store: false` to disable the local storage feature. Use `storeKey: "CUSTOM-KEY"` to change the key that local store is saved under.
 
 ## Behavior and Accessibility
 
 Drawers when in their modal context follow a set of patterns expected from other modals on the web. Here's what to expect:
 
-1. When a drawer modal is opened, focus is moved to the dialog or an element inside.
-2. Drawer modals provide standard methods for the user to close such as using the `esc` key or clicking outside the dialog.
-3. While the drawer modal is active, contents obscured by the drawer modal are inaccessible to all users.
-4. When a drawer modal is closed, focus is returned to the initial trigger element that activated the dialog.
+1. When a modal drawer is opened, focus is moved to the dialog or an element inside.
+2. Modal drawers provide standard methods for the user to close such as using the `esc` key or clicking outside the dialog.
+3. While the modal drawer is active, contents obscured by the modal are inaccessible to all users.
+4. When a modal drawer is closed, focus is returned to the initial trigger element that activated the dialog.
 
-To take full advantage of drawer modal's accessibility features, it's recommended to set the `selectorInert` option to all elements that are outside the drawer modal (most likely the `drawer-main` element). All elements that match the `selectorInert` selector will be given the `inert` attribute as well as `aria-hidden="true"` when a modal is opened.
+To take full advantage of modal drawer's accessibility features, it's recommended to set the `selectorInert` option to all elements that are outside the modal (most likely the `drawer-main` element). All elements that match the `selectorInert` selector will be given the `inert` attribute as well as `aria-hidden="true"` when a modal is opened.
 
 > Inert is not currently widely supported by all browsers. Consider using a polyfill such as [wicg-inert](https://github.com/WICG/inert) or Google's [inert-polyfill](https://github.com/GoogleChrome/inert-polyfill).
 
 ### Example
 
-Here's an example where we want the `[role="main"]` content area to be inaccessible while drawer modals are open. We also want to disable other scrollable elements using the `selectorOverflow` option.
+Here's an example where we want the `<main>` content area to be inaccessible while drawer modals are open. We also want to disable other scrollable elements using the `selectorOverflow` option.
 
 ```js
 const drawer = new Drawer({
-  autoInit: true,
-  selectorInert: '[role="main"]',
-  selectorOverflow: 'body, [role="main"]'
+  selectorInert: 'main',
+  selectorOverflow: 'body, main'
 });
+
+await drawer.init();
 ```
 
 ## Modifiers
@@ -201,44 +207,20 @@ const drawer = new Drawer({
 Convert a drawer into it’s modal state with the `drawer_modal` modifier class. Only one modal can be open at a time.
 
 ```html
-<div class="drawer-frame">
-  <aside data-drawer="[unique-id]" class="drawer drawer_modal">
-    ...
-  </aside>
-  <div class="drawer-main">
-    <button data-drawer-toggle="[unique-id]">
-      ...
-    </button>
-  </div>
-</div>
+<aside id="drawer-id" class="drawer drawer_modal">
+  ...
+</aside>
 ```
 
-### `drawer_pos_[value]`
+### `drawer_switch`
 
-Drawers can slide in from the left or right using the position modifiers:
-
-- `drawer_switch`
+Drawers slide in from the left by default. To switch the position and have a drawer slide in from the right, use the `drawer_switch` modifier.
 
 ```html
-<div class="drawer-frame">
-  <aside data-drawer="[unique-id]" class="drawer">
-    ...
-  </aside>
-  <aside data-drawer="[unique-id]" class="drawer drawer_switch">
-    ...
-  </aside>
-  <div class="drawer-main">
-    <button data-drawer-toggle="[unique-id]">
-      ...
-    </button>
-    <button data-drawer-toggle="[unique-id]">
-      ...
-    </button>
-  </div>
-</div>
+<aside id="drawer-right" class="drawer drawer_switch">
+  ...
+</aside>
 ```
-
-> If a position modifier is not provided, the drawer will appear based on it’s location in the DOM relative to the main content area and other drawers.
 
 ## Customization
 

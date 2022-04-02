@@ -27,10 +27,10 @@ const modal = new Modal({ autoInit: true });
 
 ### Markup
 
-Modals are composed using classes and data attributes for their triggers. The basic structure of a modal is an element with the `modal` class and an `id` containing a child element with the `modal__dialog` class. There are three types of modal triggers, each defined by a data attribute:
+Modals are composed using classes and data attributes for their triggers. The basic structure of a modal is an element with an `id` and the `modal` class containing a child element with the `modal__dialog` class. There are three types of modal triggers, each defined by a data attribute:
 
-- `data-modal-open`: Opens a modal. Should take the id of the modal it's meant to open. Will cause modals to stack if triggered from an already opened modal.
-- `data-modal-close`: Closes a modal. If left value-less, will close the last opened modal. Can also take a modal id to close a specific modal, or `"*"` to close all open modals.
+- `data-modal-open`: Opens a modal. Should take the id of the modal it's meant to open. Will stack modals if triggered from inside an already opened modal.
+- `data-modal-close`: Closes a modal. Will close the last opened modal if left value-less. Can also take a modal id to close a specific modal, or `"*"` to close all open modals.
 - `data-modal-replace`: Replaces currently opened modal(s) with the modal of the id provided.
 
 ```html
@@ -44,7 +44,7 @@ Modals are composed using classes and data attributes for their triggers. The ba
 </div>
 ```
 
-Modal dialogs—the dialog elements within a modal—are defined using the `modal__dialog` class. Modal dialogs should also be given the `role` attribute with a value of either [`dialog`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/dialog_role) or [`alertdialog`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/alertdialog_role) and the `aria-modal` attribute with a value of `true`. Authors should provide modal dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes if applicable to further improve accessibility.
+The dialog element of a modal is defined using the `modal__dialog` class. Modal dialogs should also be given the `role` attribute with a value of either [`dialog`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/dialog_role) or [`alertdialog`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/alertdialog_role) and the `aria-modal` attribute with a value of `true`. Authors should provide modal dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes if applicable to further improve accessibility.
 
 ```html
 <div id="modal-id" class="modal">
@@ -70,17 +70,17 @@ Modal dialogs are given focus when they're opened as long as the `setTabindex` o
 
 ```html
 <!-- Focus is returned to the trigger when a modal is closed -->
-<button data-modal-open="[unique-id]">...</button>
+<button data-modal-open="modal-id">...</button>
 
 <!-- Sets focus to modal dialog when opened -->
-<div id="[unique-id]" class="modal">
+<div id="modal-id" class="modal">
   <div class="modal__dialog" role="dialog" aria-modal="true" tabindex="-1">
     ...
   </div>
 </div>
 
 <!-- Sets focus to data-focus element when opened -->
-<div ud="[unique-id]" class="modal">
+<div id="modal-id" class="modal">
   <div class="modal__dialog" role="dialog" aria-modal="true">
     <input data-focus type="text">
     ...
@@ -94,10 +94,10 @@ While a modal is active, the contents obscured by the modal are made inaccessibl
 
 #### Required Modals
 
-Required modals are modals that require an explicit action to be closed. That means clicking on the background or pressing the escape key to close a required modal is disabled. By default, required modals are set by giving a dialog the attribute `role` with a value of `alertdialog`.
+Required modals are modals that need an explicit action to be closed. That means clicking on the background or pressing the escape key to close a required modal is disabled. By default, required modals are set by giving a dialog the attribute `role` with a value of `alertdialog`.
 
 ```html
-<div id="[unique-id]" class="modal">
+<div id="modal-id" class="modal">
   <div class="modal__dialog" role="alertdialog" aria-modal="true">
     ...
     <button data-modal-close>Agree</button>
@@ -151,7 +151,7 @@ entry.teleportReturn();
 Adds styles to a modal that make it fill the entire viewport when opened.
 
 ```html
-<div id="[unique-id]" class="modal modal_full">...</div>
+<div id="modal-id" class="modal modal_full">...</div>
 ```
 
 ### `modal_pos_[value]`
@@ -159,10 +159,10 @@ Adds styles to a modal that make it fill the entire viewport when opened.
 The default position of modals is in the center of the viewport. The position modifier allows positioning a modal to the top, bottom, left and right side of the document viewport.
 
 ```html
-<div id="[unique-id]" class="modal modal_pos_top">...</div>
-<div id="[unique-id]" class="modal modal_pos_bottom">...</div>
-<div id="[unique-id]" class="modal modal_pos_left">...</div>
-<div id="[unique-id]" class="modal modal_pos_right">...</div>
+<div id="..." class="modal modal_pos_top">...</div>
+<div id="..." class="modal modal_pos_bottom">...</div>
+<div id="..." class="modal modal_pos_left">...</div>
+<div id="..." class="modal modal_pos_right">...</div>
 ```
 
 #### Available Variations
@@ -176,7 +176,7 @@ The default position of modals is in the center of the viewport. The position mo
 Adjusts the size of modals. This modifier provides five options that get built from the [`$size-scale`](#size-scale) variable map.
 
 ```html
-<div id="[unique-id]" class="modal modal_size_sm">...</div>
+<div id="modal-id" class="modal modal_size_sm">...</div>
 ```
 
 #### Available Variations
