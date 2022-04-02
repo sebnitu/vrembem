@@ -66,7 +66,7 @@ The dialog element of a modal is defined using the `modal__dialog` class. Modal 
 
 #### Focus Management
 
-Modal dialogs are given focus when they're opened as long as the `setTabindex` option is set to `true` or if the modal dialog has `tabindex="-1"` set manually. If focus on a specific element inside a modal is preferred, give that element the `data-focus` attribute. Focus is returned to the element that initially triggered the modal once closed.
+Modal dialogs are given focus when opened as long as the `setTabindex` option is set to `true` or if the modal dialog has `tabindex="-1"` set manually. If focus on a specific element inside a modal is preferred, give that element the `data-focus` attribute. Focus is returned to the element that initially triggered the modal once closed.
 
 ```html
 <!-- Focus is returned to the trigger when a modal is closed -->
@@ -94,7 +94,7 @@ While a modal is active, the contents obscured by the modal are made inaccessibl
 
 #### Required Modals
 
-Required modals are modals that need an explicit action to be closed. That means clicking on the background or pressing the escape key to close a required modal is disabled. By default, required modals are set by giving a dialog the attribute `role` with a value of `alertdialog`.
+Required modals are modals that need an explicit action to be closed. That means clicking on the background or pressing the escape key to close a required modal is disabled. Required modals are set by giving a dialog the attribute `role` with a value of `alertdialog`.
 
 ```html
 <div id="modal-id" class="modal">
@@ -122,7 +122,7 @@ To take full advantage of modal's accessibility features, it's recommended to se
 
 ### Example
 
-Here's an example where we want the `<main>` content area to be inaccessible while modals are open. We also want for all modals to be moved outside the main content element using the `after` method.
+Here's an example where we want the `<main>` content area to be inaccessible while modals are open. We also want all modals to be moved outside the main content element using the `after` method.
 
 ```js
 const modal = new Modal({
@@ -173,7 +173,7 @@ The default position of modals is in the center of the viewport. The position mo
 
 ### `modal_size_[value]`
 
-Adjusts the size of modals. This modifier provides five options that get built from the [`$size-scale`](#size-scale) variable map.
+Adjusts the size of modals. This modifier provides five options that get built using the [`$size-scale`](#size-scale) variable map.
 
 ```html
 <div id="modal-id" class="modal modal_size_sm">...</div>

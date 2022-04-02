@@ -27,10 +27,10 @@ const drawer = new Drawer({ autoInit: true });
 
 ### Markup
 
-Drawers are composed using classes and data attributes for their triggers. The basic structure of a drawer is an element with and `id` and `drawer` class containing a child element with the `drawer__dialog` class. There are two required structure elements for drawers to work correctly:
+Drawers are composed using classes and data attributes for their triggers. The basic structure of a drawer is an element with an `id` and `drawer` class containing a child element with the `drawer__dialog` class. There are two required structure elements for drawers to work correctly:
 
 - `drawer-frame`: Applied to the parent element wrapping all drawers and the main content.
-- `drawer-main`: Applied to the element containing the main content. This should be the last child of `drawer-frame`.
+- `drawer-main`: Applied to the element containing the main content. This should be the last child of the `drawer-frame` element.
 
 
 ```html
@@ -90,7 +90,7 @@ To create a modal drawer, apply the `drawer_modal` modifier.
 </aside>
 ```
 
-You can also switch a drawer from `'inline'` to `'modal'` state by setting it's collection entry mode property:
+You can also switch a drawer from `'inline'` to `'modal'` by changing the collection API `mode` property:
 
 ```js
 // Get the drawer object from the collection.
@@ -138,11 +138,11 @@ const drawer = new Drawer({
 }
 ```
 
-While a modal drawer is active, the contents obscured by the drawer are made inaccessible to all users via a focus trap. This means that the `TAB` key, and a screen reader’s virtual cursor (arrow keys) should not be allowed to leave the drawer dialog and traverse the content outside of the dialog. This does not apply to inline drawers.
+While a modal drawer is active, the contents obscured by the modal are made inaccessible to all users via a focus trap. This means that the `TAB` key, and a screen reader’s virtual cursor (arrow keys) should not be allowed to leave the drawer dialog and traverse the content outside of the dialog. This does not apply to inline drawers.
 
 #### Focus Management
 
-Drawer dialogs are given focus on open by default as long as the `setTabindex` option is set to `true` or if the drawer dialog has `tabindex="-1"` set manually. If focus on a specific element inside a drawer is preferred, give that element the `data-focus` attribute. Focus is returned to the element that initially triggered the drawer once closed.
+Drawer dialogs are given focus when opened as long as the `setTabindex` option is set to `true` or if the drawer dialog has `tabindex="-1"` set manually. If focus on a specific element inside a drawer is preferred, give that element the `data-focus` attribute. Focus is returned to the element that initially triggered the drawer once closed.
 
 ```html
 <div class="drawer-frame">
@@ -172,11 +172,11 @@ Drawer dialogs are given focus on open by default as long as the `setTabindex` o
 
 #### Drawer State
 
-By default, the state of a drawer is saved to local storage and applied persistently under the `VB:DrawerState` local storage key. Set `store: false` to disable the local storage feature. Use `storeKey: "CUSTOM-KEY"` to change the key that local store is saved under.
+The state of all drawers are saved to local storage and applied persistently under the `VB:DrawerState` local storage key. Set `store: false` to disable the local storage feature. Use `storeKey: "CUSTOM-KEY"` to change the key that local store is saved under.
 
 ## Behavior and Accessibility
 
-Drawers when in their modal context follow a set of patterns expected from other modals on the web. Here's what to expect:
+Drawers while in their modal state follow a set of patterns expected from other modals on the web. Here's what to expect:
 
 1. When a modal drawer is opened, focus is moved to the dialog or an element inside.
 2. Modal drawers provide standard methods for the user to close such as using the `esc` key or clicking outside the dialog.
@@ -189,12 +189,12 @@ To take full advantage of modal drawer's accessibility features, it's recommende
 
 ### Example
 
-Here's an example where we want the `<main>` content area to be inaccessible while drawer modals are open. We also want to disable other scrollable elements using the `selectorOverflow` option.
+Here's an example where we want the `drawer-main` content area to be inaccessible while drawer modals are open. We also want to disable other scrollable elements using the `selectorOverflow` option.
 
 ```js
 const drawer = new Drawer({
-  selectorInert: 'main',
-  selectorOverflow: 'body, main'
+  selectorInert: '.drawer-main',
+  selectorOverflow: 'body, .drawer-main'
 });
 
 await drawer.init();
@@ -204,7 +204,7 @@ await drawer.init();
 
 ### `drawer_modal`
 
-Convert a drawer into it’s modal state with the `drawer_modal` modifier class. Only one modal can be open at a time.
+Applies modal drawer styles to a drawer. To convert a drawer to its modal state after its been registered, set the collection API `mode` property to `'modal'`. Only one modal can be open at a time.
 
 ```html
 <aside id="drawer-id" class="drawer drawer_modal">
@@ -214,7 +214,7 @@ Convert a drawer into it’s modal state with the `drawer_modal` modifier class.
 
 ### `drawer_switch`
 
-Drawers slide in from the left by default. To switch the position and have a drawer slide in from the right, use the `drawer_switch` modifier.
+Drawers slide in from the left by default. To create a right side drawer, use the `drawer_switch` modifier.
 
 ```html
 <aside id="drawer-right" class="drawer drawer_switch">
