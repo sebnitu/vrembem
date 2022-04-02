@@ -16,13 +16,13 @@ export function switchMode(entry) {
 
 async function toInline(entry) {
   // Remove the modal class.
-  entry.el.classList.remove(this.settings.classModal);
+  entry.el.classList.remove(entry.getSetting('classModal'));
 
   // Remove the aria-modal attribute.
   entry.dialog.removeAttribute('aria-modal');
 
   // Update the global state.
-  updateGlobalState.call(this, false);
+  updateGlobalState(false, { ...this.settings, ...entry.settings });
 
   // Remove any focus traps.
   this.focusTrap.unmount();
@@ -31,7 +31,7 @@ async function toInline(entry) {
   await initialState.call(this, entry);
 
   // Dispatch custom switch event.
-  entry.el.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'switchMode', {
+  entry.el.dispatchEvent(new CustomEvent(entry.getSetting('customEventPrefix') + 'switchMode', {
     detail: this,
     bubbles: true
   }));
@@ -41,14 +41,16 @@ async function toInline(entry) {
 }
 
 async function toModal(entry) {
+  // Get the drawer configuration.
+
   // Add the modal class.
-  entry.el.classList.add(this.settings.classModal);
+  entry.el.classList.add(entry.getSetting('classModal'));
 
   // Set aria-modal attribute to true.
   entry.dialog.setAttribute('aria-modal', 'true');
 
   // If there isn't a stored state but also has the opened state class...
-  if (!this.store[entry.id] && entry.el.classList.contains(this.settings.stateOpened)) {
+  if (!this.store[entry.id] && entry.el.classList.contains(entry.getSetting('stateOpened'))) {
     // Save the opened state in local store.
     this.store[entry.id] = 'opened';
   }
@@ -57,7 +59,7 @@ async function toModal(entry) {
   await close.call(this, entry, false, false);
 
   // Dispatch custom switch event.
-  entry.el.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'switchMode', {
+  entry.el.dispatchEvent(new CustomEvent(entry.getSetting('customEventPrefix') + 'switchMode', {
     detail: this,
     bubbles: true
   }));

@@ -250,7 +250,7 @@ $size-scale: (
 | `teleport`          | `null`                   | Teleport selector where modals get moved to. Leave as `null` to disable teleport.                             |
 | `teleportMethod`    | `'append'`               | Teleport method options include `after`, `before`, `append` and `prepend` relative to the teleport reference. |
 | `setTabindex`       | `true`                   | Whether or not to set `tabindex="-1"` on all modal dialog elements on init.                                   |
-| `transition`        | `true`                   | Toggle the transition animation for the modal. Set to `false` to disable.                                     |
+| `transition`        | `true`                   | Toggle the transition animation of modals.                                                                    |
 
 ## Events
 

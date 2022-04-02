@@ -687,7 +687,7 @@ $size-scale: (
       <tr>
         <td data-mobile-label="Key"><code class="code text-nowrap">transition</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">true</code></td>
-        <td data-mobile-label="Desc">Toggle the transition animation for the modal. Set to <code class="code">false</code> to disable.</td>
+        <td data-mobile-label="Desc">Toggle the transition animation of modals.</td>
       </tr>
     </tbody>
   </table>

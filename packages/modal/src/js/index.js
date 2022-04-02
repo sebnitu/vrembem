@@ -27,7 +27,7 @@ export default class Modal extends Collection {
         target[property] = value;
         // Update global state if stack length changed.
         if (property === 'length') {
-          updateGlobalState.call(this);
+          updateGlobalState.call(this, this.settings);
         }
         return true;
       }

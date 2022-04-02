@@ -9,6 +9,7 @@ const checkbox = new vb.Checkbox({ autoInit: true });
 
 const drawer = new vb.Drawer({
   autoInit: true,
+  selectorInert: 'main',
   selectorOverflow: 'body, main'
 });
 

@@ -8,7 +8,7 @@ export async function open(query, transition, focus = true) {
   const drawer = getDrawer.call(this, query);
 
   // Get the modal configuration.
-  const config = { ...this.settings };
+  const config = { ...this.settings, ...drawer.settings };
 
   // Add transition parameter to configuration.
   if (transition !== undefined) config.transition = transition;
@@ -22,7 +22,7 @@ export async function open(query, transition, focus = true) {
     await openTransition(drawer.el, config);
 
     // Update the global state if mode is modal.
-    if (drawer.mode === 'modal') updateGlobalState.call(this, true);
+    if (drawer.mode === 'modal') updateGlobalState(true, config);
 
     // Update drawer state.
     drawer.state = 'opened';
@@ -34,7 +34,7 @@ export async function open(query, transition, focus = true) {
   }
 
   // Dispatch custom opened event.
-  drawer.el.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'opened', {
+  drawer.el.dispatchEvent(new CustomEvent(config.customEventPrefix + 'opened', {
     detail: this,
     bubbles: true
   }));

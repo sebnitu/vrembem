@@ -32,7 +32,6 @@ Drawers are composed using classes and data attributes for their triggers. The b
 - `drawer-frame`: Applied to the parent element wrapping all drawers and the main content.
 - `drawer-main`: Applied to the element containing the main content. This should be the last child of the `drawer-frame` element.
 
-
 ```html
 <div class="drawer-frame">
 
@@ -45,6 +44,7 @@ Drawers are composed using classes and data attributes for their triggers. The b
   <div class="drawer-main">
     ...
   </div>
+
 </div>
 ```
 
@@ -60,7 +60,7 @@ Drawer triggers are defined using three data attributes:
 <button data-drawer-toggle="drawer-id">...</button>
 ```
 
-The dialog element of a drawer is defined using the `drawer__dialog` class. Along with a role attribute (e.g. `role="dialog"`), authors should provide drawer dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes if applicable to further improve accessibility. The `aria-modal` attribute is applied automatically based on the drawers current mode (either `modal` or `inline`).
+The dialog element of a drawer is defined using the `drawer__dialog` class. Along with a role attribute (e.g. `role="dialog"`), authors should provide drawer dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes if applicable to further improve accessibility. The `aria-modal` attribute is applied automatically based on if the drawer is currently in `'modal'` mode.
 
 ```html
 <aside id="drawer-id" class="drawer">
@@ -235,7 +235,7 @@ Drawers slide in from the left by default. To create a right side drawer, use th
 | `$width`                         | `18em`                             | The width of drawers.                                                                                |
 | `$max-width`                     | `100%`                             | The max-width of drawers.                                                                            |
 | `$border`                        | `null`                             | Border applied to drawer items with position modifiers. Shown on side of drawers facing drawer main. |
-| `$sep-border`                    | `null`                             | Border color applied to dialog components within drawer items.                                       |
+| `$sep-border`                    | `null`                             | Border color applied to dialog elements within drawers.                                              |
 | `$background`                    | `core.$shade`                      | Background color applied to drawer items.                                                            |
 | `$box-shadow`                    | `none`                             | Box shadow applied to drawer items.                                                                  |
 | `$transition-duration`           | `core.$transition-duration`        | Duration of drawer transition.                                                                       |
@@ -244,7 +244,7 @@ Drawers slide in from the left by default. To create a right side drawer, use th
 | `$modal-z-index`                 | `900`                              | Modal z-index to help control the stack order. Should be highest priority as modal.                  |
 | `$modal-width`                   | `$width`                           | The width of modal drawers.                                                                          |
 | `$modal-max-width`               | `80%`                              | The max-width of modal drawers.                                                                      |
-| `$modal-sep-border`              | `null`                             | Border color applied to dialog components within modal drawer items.                                 |
+| `$modal-sep-border`              | `null`                             | Border color applied to dialog elements within modal drawers.                                        |
 | `$modal-background`              | `core.$white`                      | Background color applied to modal drawer items.                                                      |
 | `$modal-box-shadow`              | `core.$box-shadow-24dp`            | Box shadow applied to modal drawer items.                                                            |
 | `$modal-screen-background`       | `core.$night`                      | Background color of modal screen.                                                                    |
@@ -259,6 +259,7 @@ Drawers slide in from the left by default. To create a right side drawer, use th
 | `dataClose`         | `'drawer-close'`      | Data attribute for a drawer close trigger.                                                           |
 | `dataToggle`        | `'drawer-toggle'`     | Data attribute for a drawer toggle trigger.                                                          |
 | `dataBreakpoint`    | `'drawer-breakpoint'` | Data attribute for setting a drawer's breakpoint.                                                    |
+| `dataBreakpoint`    | `'drawer-config'`     | Data attribute to find drawer specific configuration settings. Value should be a JSON object.        |
 | `selectorDrawer`    | `'.drawer'`           | Selector for dialog element.                                                                         |
 | `selectorDialog`    | `'.drawer__dialog'`   | Selector for drawer dialog element.                                                                  |
 | `selectorFocus`     | `'[data-focus]'`      | Focus preference selector for when drawers are initially opened.                                     |
@@ -275,7 +276,7 @@ Drawers slide in from the left by default. To create a right side drawer, use th
 | `store`             | `true`                | Toggles the local store feature.                                                                     |
 | `storeKey`          | `'VB:DrawerState'`    | Defines the localStorage key where drawer states are saved.                                          |
 | `setTabindex`       | `true`                | Whether or not to set `tabindex="-1"` on all drawer dialog elements on init.                         |
-| `transition`        | `true`                | Toggle the transition animation for the drawer. Set to `false` to disable.                           |
+| `transition`        | `true`                | Toggle the transition animation of drawers.                                                          |
 
 ## Events
 
@@ -296,6 +297,7 @@ Returns an array where all drawer objects are stored when registered. Each drawe
   el: HTMLElement, // The drawer HTML element.
   dialog: HTMLElement // The drawer dialog HTML element.
   trigger: HTMLElement // The trigger element that opened the drawer.
+  settings: Object // The drawer specific settings.
   breakpoint: String // Returns the set breakpoint of the drawer. If no breakpoint is set, returns 'null'.
   mode: String // The current mode of the drawer. Either 'inline' or 'modal'.
   open: Function // Method to open this drawer.
@@ -305,6 +307,7 @@ Returns an array where all drawer objects are stored when registered. Each drawe
   mountBreakpoint: Function // Method to mount the breakpoint feature on.
   unmountBreakpoint: Function // Method to unmount the breakpoint feature.
   handleBreakpoint: Function // The function that runs whenever the breakpoint media match property is changed. Receives the event parameter.
+  getSetting: Function // Method that returns either a drawer specific setting or global drawer setting.
 }
 ```
 

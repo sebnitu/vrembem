@@ -1,9 +1,9 @@
 import { setInert, setOverflowHidden } from '@vrembem/core/index';
 
-export function updateGlobalState(param) {
+export function updateGlobalState(param, config) {
   // Set inert state based on if a modal is active.
-  setInert(!!param, this.settings.selectorInert);
+  setInert(!!param, config.selectorInert);
 
   // Set overflow state based on if a modal is active.
-  setOverflowHidden(!!param, this.settings.selectorOverflow);
+  setOverflowHidden(!!param, config.selectorOverflow);
 }

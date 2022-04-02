@@ -1,10 +1,9 @@
-import { teleport } from '@vrembem/core/index';
+import { getConfig, teleport } from '@vrembem/core/index';
 
 import { deregister } from './deregister';
 import { open } from './open';
 import { close } from './close';
 import { replace } from './replace';
-import { getConfig } from './helpers';
 
 export async function register(el, dialog) {
   // Deregister entry incase it has already been registered.
@@ -57,7 +56,7 @@ export async function register(el, dialog) {
     el: el,
     dialog: dialog,
     returnRef: null,
-    settings: getConfig.call(this, el),
+    settings: getConfig(el, this.settings.dataConfig),
     ...methods
   };
 

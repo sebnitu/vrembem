@@ -1,4 +1,4 @@
-import { Breakpoint } from '@vrembem/core/index';
+import { Breakpoint, getConfig } from '@vrembem/core/index';
 
 import { deregister } from './deregister';
 import { open } from './open';
@@ -45,14 +45,11 @@ export async function register(el, dialog) {
     handleBreakpoint(event) {
       this.mode = (event.matches) ? 'inline' : 'modal';
       return this;
+    },
+    getSetting(key) {
+      return (key in this.settings) ? this.settings[key] : root.settings[key];
     }
   };
-
-  // Create the state var with the initial state.
-  let __state = (el.classList.contains(this.settings.stateOpened)) ? 'opened' : 'closed';
-
-  // Create the mode var with the initial mode.
-  let __mode = (el.classList.contains(this.settings.classModal)) ? 'modal' : 'inline';
 
   // Setup the drawer object.
   const entry = {
@@ -60,6 +57,7 @@ export async function register(el, dialog) {
     el: el,
     dialog: dialog,
     trigger: null,
+    settings: getConfig(el, this.settings.dataConfig),
     get breakpoint() {
       return getBreakpoint.call(root, el);
     },
@@ -83,6 +81,12 @@ export async function register(el, dialog) {
     ...methods
   };
 
+  // Create the state var with the initial state.
+  let __state = (el.classList.contains(entry.getSetting('stateOpened'))) ? 'opened' : 'closed';
+
+  // Create the mode var with the initial mode.
+  let __mode = (el.classList.contains(entry.getSetting('classModal'))) ? 'modal' : 'inline';
+
   // Setup mode specific attributes.
   if (entry.mode === 'modal') {
     // Set aria-modal attribute to true.
@@ -93,7 +97,7 @@ export async function register(el, dialog) {
   }
 
   // Set tabindex="-1" so dialog is focusable via JS or click.
-  if (this.settings.setTabindex) {
+  if (entry.getSetting('setTabindex')) {
     entry.dialog.setAttribute('tabindex', '-1');
   }
 

@@ -5,6 +5,7 @@ export * from './src/js/FocusTrap';
 export * from './src/js/accessibility';
 export * from './src/js/addClass';
 export * from './src/js/camelCase';
+export * from './src/js/getConfig';
 export * from './src/js/hasClass';
 export * from './src/js/hyphenCase';
 export * from './src/js/localStore';
