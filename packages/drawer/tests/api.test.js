@@ -37,6 +37,15 @@ const markupInitState = `
   </div>
 `;
 
+const markupConfig = `
+  <div id="drawer-1" class="drawer" data-drawer-config="{ 'transition': false }">
+    <div class="drawer__dialog">...</div>
+  </div>
+  <div id="drawer-2" class="drawer" data-drawer-config="{ 'selectorOverflow': 'main' }">
+    <div class="drawer__dialog">...</div>
+  </div>
+`;
+
 document.body.innerHTML = markup;
 
 const drawer = new Drawer();
@@ -227,5 +236,23 @@ describe('register() & deregister()', () => {
     const result = await drawer.deregister('asdf');
     expect(drawer.collection.length).toBe(4);
     expect(result).toBe(drawer.collection);
+  });
+});
+
+describe('data-drawer-config', () => {
+  beforeAll(async () => {
+    document.body.innerHTML = markupInitState;
+    await drawer.destroy();
+  });
+
+  it('should override global drawer configs using drawer specific data configuration', async () => {
+    document.body.innerHTML = markupConfig;
+    const entry1 = await drawer.register('drawer-1');
+    const entry2 = await drawer.register('drawer-2');
+
+    expect(entry1.getSetting('transition')).toBe(false);
+    expect(entry1.getSetting('selectorOverflow')).toBe('body');
+    expect(entry2.getSetting('transition')).toBe(true);
+    expect(entry2.getSetting('selectorOverflow')).toBe('main');
   });
 });
