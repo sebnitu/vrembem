@@ -4,8 +4,6 @@ export * from './src/js/FocusTrap';
 
 export * from './src/js/getConfig';
 export * from './src/js/localStore';
-export * from './src/js/setInert';
-export * from './src/js/setOverflowHidden';
 export * from './src/js/teleport';
 export * from './src/js/transition';
 export * from './src/js/updateGlobalState';

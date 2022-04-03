@@ -1,4 +1,4 @@
-import { setInert, setOverflowHidden } from '../index';
+import { updateGlobalState } from '../index';
 import '@testing-library/jest-dom/extend-expect';
 
 document.body.innerHTML = `
@@ -10,15 +10,23 @@ document.body.innerHTML = `
 
 const header = document.querySelector('.header');
 const main = document.querySelector('.main');
+const config = {
+  selectorInert: '.main, .header',
+  selectorOverflow: 'body, .main'
+};
+const configEmpty = {
+  selectorInert: null,
+  selectorOverflow: null
+};
 
-describe('running setInert', () => {
+describe('updateGlobalState()', () => {
   it('should apply inert and aria hidden to passed selectors', () => {
     expect(main.inert).not.toBe(true);
     expect(header.inert).not.toBe(true);
     expect(main).not.toHaveAttribute('aria-hidden');
     expect(header).not.toHaveAttribute('aria-hidden');
 
-    setInert(true, '.main, .header');
+    updateGlobalState(true, config);
     expect(main.inert).toBe(true);
     expect(header.inert).toBe(true);
     expect(main).toHaveAttribute('aria-hidden', 'true');
@@ -26,7 +34,7 @@ describe('running setInert', () => {
   });
 
   it('should remove inert and aria hidden when set to false', () => {
-    setInert(false, '.main, .header');
+    updateGlobalState(false, config);
     expect(main.inert).not.toBe(true);
     expect(header.inert).not.toBe(true);
     expect(main).not.toHaveAttribute('aria-hidden');
@@ -34,31 +42,29 @@ describe('running setInert', () => {
   });
 
   it('should do nothing if selector is not passed', () => {
-    setInert(true);
+    updateGlobalState(true, configEmpty);
     expect(main.inert).not.toBe(true);
     expect(header.inert).not.toBe(true);
     expect(main).not.toHaveAttribute('aria-hidden');
     expect(header).not.toHaveAttribute('aria-hidden');
   });
-});
 
-describe('running setOverflowHidden', () => {
   it('should apply overflow hidden to passed selectors', () => {
     expect(document.body).not.toHaveStyle('overflow: hidden');
     expect(main).not.toHaveStyle('overflow: hidden');
-    setOverflowHidden(true, 'body, .main');
+    updateGlobalState(true, config);
     expect(document.body).toHaveStyle('overflow: hidden');
     expect(main).toHaveStyle('overflow: hidden');
   });
 
   it('should remove overflow hidden when set to false', () => {
-    setOverflowHidden(false, 'body, .main');
+    updateGlobalState(false, config);
     expect(document.body).not.toHaveStyle('overflow: hidden');
     expect(main).not.toHaveStyle('overflow: hidden');
   });
 
   it('should do nothing if selector is not passed', () => {
-    setOverflowHidden(true);
+    updateGlobalState(true, configEmpty);
     expect(document.body).not.toHaveStyle('overflow: hidden');
     expect(main).not.toHaveStyle('overflow: hidden');
   });
