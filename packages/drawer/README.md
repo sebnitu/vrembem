@@ -232,6 +232,8 @@ Drawers slide in from the left by default. To create a right side drawer, use th
 | `$prefix-element`                | `"__"`                             | String to prefix elements with.                                                                      |
 | `$prefix-modifier`               | `"_"`                              | String to prefix modifiers with.                                                                     |
 | `$prefix-modifier-value`         | `"_"`                              | String to prefix modifier values with.                                                               |
+| `$class-frame`                   | `$prefix-block'drawer-frame'`      | Class name to use for the `drawer-frame` element.                                                    |
+| `$class-main`                    | `$prefix-block'drawer-main'`       | Class name to use for the `drawer-main` element.                                                     |
 | `$width`                         | `18em`                             | The width of drawers.                                                                                |
 | `$max-width`                     | `100%`                             | The max-width of drawers.                                                                            |
 | `$border`                        | `null`                             | Border applied to drawer items with position modifiers. Shown on side of drawers facing drawer main. |

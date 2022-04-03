@@ -414,6 +414,17 @@ Drawers slide in from the left by default. To create a right side drawer, use th
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">"_"</code></td>
         <td data-mobile-label="Desc">String to prefix modifier values with.</td>
       </tr>
+      <!-- Classes -->
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-frame</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$prefix-block'drawer-frame'</code></td>
+        <td data-mobile-label="Desc">Class name to use for the <code class="code">drawer-frame</code> element.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$class-main</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$prefix-block'drawer-main'</code></td>
+        <td data-mobile-label="Desc">Class name to use for the <code class="code">drawer-main</code> element.</td>
+      </tr>
       <!-- General styles -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$width</code></td>

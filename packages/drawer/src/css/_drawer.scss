@@ -7,14 +7,14 @@ $_e: var.$prefix-element;
  * Required structure styles
  */
 
-.#{$_b}drawer-frame {
+.#{var.$class-frame} {
   position: relative;
   display: flex;
   height: var.$frame-height;
   overflow: hidden auto;
 }
 
-.#{$_b}drawer-main {
+.#{var.$class-main} {
   position: relative;
   flex: 1 1 auto;
   height: 100%;

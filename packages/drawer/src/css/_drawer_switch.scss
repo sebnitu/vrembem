@@ -27,14 +27,14 @@ $_v: var.$prefix-modifier-value;
 
 .#{$_b}drawer:not(.#{$_b}drawer#{$_m}switch).is-opening,
 .#{$_b}drawer:not(.#{$_b}drawer#{$_m}switch).is-opened {
-  &:not(.#{$_b}drawer#{$_m}modal) ~ .#{$_b}drawer-main {
+  &:not(.#{$_b}drawer#{$_m}modal) ~ .#{var.$class-main} {
     margin-left: var.$width;
   }
 }
 
 .#{$_b}drawer#{$_m}switch.is-opening,
 .#{$_b}drawer#{$_m}switch.is-opened {
-  &:not(.#{$_b}drawer#{$_m}modal) ~ .#{$_b}drawer-main {
+  &:not(.#{$_b}drawer#{$_m}modal) ~ .#{var.$class-main} {
     margin-right: var.$width;
   }
 }
