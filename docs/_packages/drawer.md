@@ -131,7 +131,7 @@ To create a modal drawer, apply the `drawer_modal` modifier.
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="drawer-frame border radius" style="min-height: 16em;">
-  <aside id="drawer-3" class="drawer drawer_modal" data-drawer-config="{ 'selectorInert': null, 'selectorOverflow': null }">
+  <aside id="drawer-modal" class="drawer drawer_modal" data-drawer-config="{ 'selectorInert': null, 'selectorOverflow': null }">
     <div class="drawer__dialog padding-xl">
       <div class="flex flex-justify-between">
         <p>Modal drawer</p>
@@ -142,7 +142,7 @@ To create a modal drawer, apply the `drawer_modal` modifier.
   <div class="drawer-main padding-xl type">
     <ul>
       <li>
-        <button class="link" data-drawer-toggle="drawer-3">Toggle</button>
+        <button class="link" data-drawer-toggle="drawer-modal">Toggle</button>
       </li>
     </ul>
   </div>
@@ -247,26 +247,29 @@ Drawer dialogs are given focus when opened as long as the `setTabindex` option i
   <aside id="drawer-focus-self" class="drawer" tabindex="-1">
     <div class="drawer__dialog padding">
       <div class="flex flex-justify-between">
-        <p>Focus Dialog</p>
+        <p>Focus self</p>
         <button data-drawer-close class="link">Close</button>
       </div>
     </div>
   </aside>
-  <aside id="drawer-focus-close" class="drawer drawer_switch">
+  <aside id="drawer-focus-inner" class="drawer drawer_switch">
     <div class="drawer__dialog padding">
-      <div class="flex flex-justify-between">
-        <p>Focus Close</p>
-        <button data-drawer-close data-drawer-focus class="link">Close</button>
+      <div class="flex flex-justify-between margin-bottom">
+        <p>Focus inner</p>
+        <button data-drawer-close class="link">Close</button>
       </div>
+      <input class="input" data-focus type="text">
     </div>
   </aside>
   <div class="drawer-main padding-xl">
-    <button class="link" data-drawer-toggle="drawer-focus-self">
-      Focus self
-    </button>
-    <button class="link" data-drawer-toggle="drawer-focus-close">
-      Focus close
-    </button>
+    <ul class="list">
+      <li>
+        <button class="link" data-drawer-toggle="drawer-focus-self">Focus self</button>
+      </li>
+      <li>
+        <button class="link" data-drawer-toggle="drawer-focus-inner">Focus inner</button>
+      </li>
+    </ul>
   </div>
 </div>
 {% include demo_switch.html %}
@@ -329,7 +332,7 @@ await drawer.init();
 
 ## drawer_modal
 
-Applies modal drawer styles to a drawer. To convert a drawer to its modal state after its been registered, set the collection API `mode` property to `'modal'`. Only one modal can be open at a time.
+Applies modal drawer styles to a drawer. To convert a drawer to its modal state after its been registered, set the collection API `mode` property to `'modal'`. Only one modal drawer can be open at a time.
 
 ```html
 <aside id="drawer-id" class="drawer drawer_modal">
@@ -340,8 +343,6 @@ Applies modal drawer styles to a drawer. To convert a drawer to its modal state 
 ## drawer_switch
 
 Drawers slide in from the left by default. To create a right side drawer, use the `drawer_switch` modifier.
-
-* `drawer_switch`
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="drawer-frame border radius">
@@ -362,12 +363,14 @@ Drawers slide in from the left by default. To create a right side drawer, use th
     </div>
   </aside>
   <div class="drawer-main padding-xl">
-    <button class="link" data-drawer-toggle="drawer-left">
-      Drawer left
-    </button>
-    <button class="link" data-drawer-toggle="drawer-right">
-      Drawer right
-    </button>
+    <ul>
+      <li>
+        <button class="link" data-drawer-toggle="drawer-left">Drawer left</button>
+      </li>
+      <li>
+        <button class="link" data-drawer-toggle="drawer-right">Drawer right</button>
+      </li>
+    </ul>
   </div>
 </div>
 {% include demo_switch.html %}
@@ -569,7 +572,7 @@ Drawers slide in from the left by default. To create a right side drawer, use th
       </tr>
       <tr>
         <td data-mobile-label="Key"><code class="code text-nowrap">selectorOverflow</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">'body'</code></td>
         <td data-mobile-label="Desc">Applies <code class="code">overflow:hidden</code> styles on all matching elements when a modal drawer is opened.</td>
       </tr>
       <!-- State classes -->

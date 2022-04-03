@@ -12,10 +12,10 @@ usage:
 
 ## Modal
 
-Modals are composed using classes and data attributes for their triggers. The basic structure of a modal is an element with the `modal` class and an `id` containing a child element with the `modal__dialog` class. There are three types of modal triggers, each defined by a data attribute:
+Modals are composed using classes and data attributes for their triggers. The basic structure of a modal is an element with an `id` and the `modal` class containing a child element with the `modal__dialog` class. There are three types of modal triggers, each defined by a data attribute:
 
-- `data-modal-open`: Opens a modal. Should take the id of the modal it's meant to open. Will cause modals to stack if triggered from an already opened modal.
-- `data-modal-close`: Closes a modal. If left value-less, will close the last opened modal. Can also take a modal id to close a specific modal, or `"*"` to close all open modals.
+- `data-modal-open`: Opens a modal. Should take the id of the modal it's meant to open. Will stack modals if triggered from inside an already opened modal.
+- `data-modal-close`: Closes a modal. Will close the last opened modal if left value-less. Can also take a modal id to close a specific modal, or `"*"` to close all open modals.
 - `data-modal-replace`: Replaces currently opened modal(s) with the modal of the id provided.
 
 {% include demo_open.html class_grid="grid_stack" class_parent="padding border radius" %}
@@ -41,7 +41,7 @@ Modals are composed using classes and data attributes for their triggers. The ba
 ```
 {% include demo_close.html %}
 
-Modal dialogs—the dialog elements within a modal—are defined using the `modal__dialog` class. Modal dialogs should also be given the `role` attribute with a value of either [`dialog`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/dialog_role) or [`alertdialog`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/alertdialog_role) and the `aria-modal` attribute with a value of `true`. Authors should also consider providing modal dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes to further improve accessibility.
+The dialog element of a modal is defined using the `modal__dialog` class. Modal dialogs should also be given the `role` attribute with a value of either [`dialog`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/dialog_role) or [`alertdialog`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/alertdialog_role) and the `aria-modal` attribute with a value of `true`. Authors should provide modal dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes if applicable to further improve accessibility.
 
 {% include demo_open.html class_grid="grid_stack" class_parent="padding border radius" %}
 <button class="link" data-modal-open="modal-dialog">Modal dialog</button>
@@ -90,7 +90,7 @@ Modal dialogs—the dialog elements within a modal—are defined using the `moda
 
 ## Focus Management
 
-Modal dialogs are given focus when they're opened as long as the `setTabindex` option is set to `true` or if the modal dialog has `tabindex="-1"` set manually. If focus on a specific element inside a modal is preferred, give that element the `data-focus` attribute. Focus is returned to the element that initially triggered the modal once closed.
+Modal dialogs are given focus when opened as long as the `setTabindex` option is set to `true` or if the modal dialog has `tabindex="-1"` set manually. If focus on a specific element inside a modal is preferred, give that element the `data-focus` attribute. Focus is returned to the element that initially triggered the modal once closed.
 
 {% include demo_open.html class_grid="grid_stack" class_parent="padding border radius" %}
 <div class="level">
@@ -150,7 +150,7 @@ While a modal is active, the contents obscured by the modal are made inaccessibl
 
 ## Required Modals
 
-Required modals are modals that require an explicit action to be closed. That means clicking on the background or pressing the escape key to close a required modal is disabled. By default, required modals are set by giving a dialog the attribute `role` with a value of `alertdialog`.
+Required modals are modals that need an explicit action to be closed. That means clicking on the background or pressing the escape key to close a required modal is disabled. Required modals are set by giving a dialog the attribute `role` with a value of `alertdialog`.
 
 {% include demo_open.html class_grid="grid_stack" class_parent="padding border radius" %}
 <button class="link" data-modal-open="modal-required">Modal required</button>
@@ -196,7 +196,7 @@ To take full advantage of modal's accessibility features, it's recommended to se
 
 ### Example
 
-Here's an example where we want the `<main>` content area to be inaccessible while modals are open. We also want for all modals to be moved outside the main content element using the `after` method.
+Here's an example where we want the `<main>` content area to be inaccessible while modals are open. We also want all modals to be moved outside the main content element using the `after` method.
 
 ```js
 const modal = new Modal({
@@ -373,7 +373,7 @@ The default position of modals is in the center of the viewport. The position mo
 
 ## modal_size_[key]
 
-Adjusts the size of modals. This modifier provides five options that get built from the [`$size-scale`](#size-scale) variable map.
+Adjusts the size of modals. This modifier provides five options that get built using the [`$size-scale`](#size-scale) variable map.
 
 {% include demo_open.html class_grid="grid_stack" class_parent="padding border radius" %}
 <div class="level">
@@ -695,8 +695,8 @@ $size-scale: (
 
 ## Events
 
-* `modal:opened` Emits when the modal has opened.
-* `modal:closed` Emits when the modal has closed.
+- `modal:opened` Emits when a modal has opened.
+- `modal:closed` Emits when a modal has closed.
 
 ## API
 
@@ -709,7 +709,7 @@ Returns an array where all modal objects are stored when registered. Each modal 
   id: String, // The unique ID of the modal.
   state: String, // The current state of the modal ('closing', 'closed', 'opening' or 'opened').
   el: HTMLElement, // The modal HTML element.
-  dialog: HTMLElement // The modal dialog JS instance.
+  dialog: HTMLElement // The modal dialog HTML element.
   returnRef: HTMLComment // The return reference left when a modal is teleported.
   settings: Object // The modal specific settings.
   open: Function // Method to open this modal.
@@ -740,7 +740,7 @@ Returns the currently active modal or the modal at the top of the stack if multi
 
 **Returns**
 
-- `Object || undefined` Collection entry
+- `Object || undefined` Collection entry.
 
 ### `modal.init(options)`
 
@@ -876,7 +876,7 @@ const entry = modal.get('modal-id');
 // => Object { id: 'modal-id', ... }
 ```
 
-### `modal.open(id, transition)`
+### `modal.open(id, transition, focus)`
 
 Opens a modal using the provided ID.
 
@@ -884,6 +884,7 @@ Opens a modal using the provided ID.
 
 - `id [String]` The ID of the modal to open.
 - `transition [Boolean] (optional)` Whether or not to animate the transition.
+- `focus [Boolean] (optional)` Whether or not to handle focus management.
 
 **Returns**
 
@@ -894,7 +895,7 @@ const entry = await modal.open('modal-key');
 // => Object { id: 'modal-id', ... }
 ```
 
-### `modal.close(id, transition)`
+### `modal.close(id, transition, focus)`
 
 Closes a modal using the provided ID. Can be called without an ID to close most recently opened modal.
 
@@ -902,6 +903,7 @@ Closes a modal using the provided ID. Can be called without an ID to close most 
 
 - `id [String] (optional)` The ID of the modal to close.
 - `transition [Boolean] (optional)` Whether or not to animate the transition.
+- `focus [Boolean] (optional)` Whether or not to handle focus management.
 
 **Returns**
 
@@ -912,7 +914,7 @@ const entry = await modal.close();
 // => Object { id: 'modal-id', ... }
 ```
 
-### `modal.replace(id, transition)`
+### `modal.replace(id, transition, focus`
 
 Replaces currently opened modal(s) with the modal of the id provided. This could be used to trigger a modal when modal stacking is not desired.
 
@@ -920,6 +922,7 @@ Replaces currently opened modal(s) with the modal of the id provided. This could
 
 - `id [String]` The ID of the modal to open. Will close all other opened modals.
 - `transition [Boolean] (optional)` Whether or not to animate the transition.
+- `focus [Boolean] (optional)` Whether or not to handle focus management.
 
 **Returns**
 
@@ -930,7 +933,7 @@ const obj = await modal.replace('modal-id');
 // => Object { opened: { id: 'modal-id', ... }, closed: [...] }
 ```
 
-### `modal.closeAll(exclude, transition)`
+### `modal.closeAll(exclude, transition, focus)`
 
 Closes all open modals. Will exclude closing a modal using the provided ID.
 
@@ -938,6 +941,7 @@ Closes all open modals. Will exclude closing a modal using the provided ID.
 
 - `exclude [String] (optional)` The ID of a modal to exclude from closing. Will close all other opened modals.
 - `transition [Boolean] (optional)` Whether or not to animate the transition.
+- `focus [Boolean] (optional)` Whether or not to handle focus management.
 
 **Returns**
 

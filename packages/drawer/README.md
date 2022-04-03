@@ -264,7 +264,7 @@ Drawers slide in from the left by default. To create a right side drawer, use th
 | `selectorDialog`    | `'.drawer__dialog'`   | Selector for drawer dialog element.                                                                  |
 | `selectorFocus`     | `'[data-focus]'`      | Focus preference selector for when drawers are initially opened.                                     |
 | `selectorInert`     | `null`                | Applies `inert` and `aria-hidden` attributes to all matching elements when a modal drawer is opened. |
-| `selectorOverflow`  | `body`                | Applies `overflow:hidden` styles on all matching elements when a modal drawer is opened.             |
+| `selectorOverflow`  | `'body'`              | Applies `overflow:hidden` styles on all matching elements when a modal drawer is opened.             |
 | `stateOpen`         | `'is-opened'`         | Class used for open state.                                                                           |
 | `stateOpening`      | `'is-opening'`        | Class used for transitioning to open state.                                                          |
 | `stateClosing`      | `'is-closing'`        | Class used for transitioning to closed state.                                                        |
