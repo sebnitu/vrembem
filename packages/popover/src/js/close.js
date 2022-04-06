@@ -8,7 +8,7 @@ export async function close(query) {
   if (popover && popover.state === 'opened') {
 
     // Update state class.
-    popover.target.classList.remove(this.settings.stateActive);
+    popover.el.classList.remove(this.settings.stateActive);
 
     // Update accessibility attribute(s).
     if (popover.trigger.hasAttribute('aria-controls')) {
@@ -23,9 +23,9 @@ export async function close(query) {
     // Update popover state.
     popover.state = 'closed';
 
-    // Clear memory if popover trigger matches the one saved in memory.
-    if (popover.trigger === this.memory.trigger) {
-      this.memory.trigger = null;
+    // Clear root trigger if popover trigger matches.
+    if (popover.trigger === this.trigger) {
+      this.trigger = null;
     }
   }
 
@@ -49,15 +49,15 @@ export function closeCheck(popover) {
 
   // Needed to correctly check which element is currently being focused.
   setTimeout(() => {
-    // Check if trigger or target are being hovered.
+    // Check if trigger or element are being hovered.
     const isHovered =
-      popover.target.closest(':hover') === popover.target ||
+      popover.el.closest(':hover') === popover.el ||
       popover.trigger.closest(':hover') === popover.trigger;
 
-    // Check if trigger or target are being focused.
+    // Check if trigger or element are being focused.
     const isFocused = document.activeElement.closest(`#${popover.id}, [aria-controls="${popover.id}"]`);
 
-    // Close if the trigger and target are not currently hovered or focused.
+    // Close if the trigger and element are not currently hovered or focused.
     if (!isHovered && !isFocused) {
       popover.close();
     }

@@ -47,7 +47,7 @@ describe('entry.teleport() & entry.teleportReturn()', () => {
   it('should log error if teleport is run on a modal that has already been teleported', () => {
     expect(div.children.length).toBe(1);
     entry.teleport('.modals');
-    expect(console.error).toHaveBeenCalledWith('Element has already been teleported:', entry.target);
+    expect(console.error).toHaveBeenCalledWith('Element has already been teleported:', entry.el);
     expect(div.children.length).toBe(1);
   });
 
@@ -62,7 +62,7 @@ describe('entry.teleport() & entry.teleportReturn()', () => {
     expect(entry.returnRef).toBe(null);
     expect(div.children.length).toBe(0);
     entry.teleportReturn();
-    expect(console.error).toHaveBeenCalledWith('No return reference found:', entry.target);
+    expect(console.error).toHaveBeenCalledWith('No return reference found:', entry.el);
     expect(div.children.length).toBe(0);
   });
 });

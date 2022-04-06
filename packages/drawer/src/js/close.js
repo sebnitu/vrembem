@@ -1,30 +1,45 @@
-import { hasClass } from '@vrembem/core/index';
-import { setInert, setOverflowHidden } from '@vrembem/core/index';
-import { focusTrigger } from '@vrembem/core/index';
-import { closeTransition } from '@vrembem/core/index';
+import { closeTransition, updateGlobalState } from '@vrembem/core/index';
+import { updateFocusState, getDrawer } from './helpers';
 
-import { drawerNotFound } from './helpers';
+export async function close(query, transition, focus = true) {
+  // Get the drawer from collection.
+  const drawer = getDrawer.call(this, query);
 
-export async function close(drawerKey) {
-  const drawer = this.getDrawer(drawerKey);
-  if (!drawer) return drawerNotFound(drawerKey);
-  if (hasClass(drawer, this.settings.stateOpened)) {
-    this.working = true;
-    if (hasClass(drawer, this.settings.classModal)) {
-      setInert(false, this.settings.selectorInert);
-      setOverflowHidden(false, this.settings.selectorOverflow);
+  // Get the modal configuration.
+  const config = { ...this.settings, ...drawer.settings };
+
+  // Add transition parameter to configuration.
+  if (transition !== undefined) config.transition = transition;
+
+  // If drawer is opened.
+  if (drawer.state === 'opened') {
+    // Update drawer state.
+    drawer.state = 'closing';
+
+    // Remove focus from active element.
+    document.activeElement.blur();
+
+    // Run the close transition.
+    await closeTransition(drawer.el, config);
+
+    // Update the global state if mode is modal.
+    if (drawer.mode === 'modal') updateGlobalState(false, config);
+
+    // Set focus to the trigger element if the focus param is true.
+    if (focus) {
+      updateFocusState.call(this, drawer);
     }
-    await closeTransition(drawer, this.settings);
-    this.stateSave(drawer);
-    focusTrigger(this);
-    this.focusTrap.destroy();
-    drawer.dispatchEvent(new CustomEvent(this.settings.customEventPrefix + 'closed', {
+
+    // Update drawer state.
+    drawer.state = 'closed';
+
+    // Dispatch custom closed event.
+    drawer.el.dispatchEvent(new CustomEvent(config.customEventPrefix + 'closed', {
       detail: this,
       bubbles: true
     }));
-    this.working = false;
-    return drawer;
-  } else {
-    return drawer;
   }
+
+  // Return the drawer.
+  return drawer;
 }

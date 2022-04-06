@@ -1,7 +1,7 @@
 import { openTransition } from '@vrembem/core/index';
 import { updateFocusState, getModal } from './helpers';
 
-export async function open(query, transition, bulk = false) {
+export async function open(query, transition, focus = true) {
   // Get the modal from collection.
   const modal = getModal.call(this, query);
 
@@ -31,27 +31,27 @@ export async function open(query, transition, bulk = false) {
     modal.state = 'opening';
 
     // Apply z-index styles based on stack length.
-    modal.target.style.zIndex = null;
-    const value = getComputedStyle(modal.target)['z-index'];
-    modal.target.style.zIndex = parseInt(value) + this.stack.length + 1;
+    modal.el.style.zIndex = null;
+    const value = getComputedStyle(modal.el)['z-index'];
+    modal.el.style.zIndex = parseInt(value) + this.stack.length + 1;
 
     // Store modal in stack array.
     this.stack.push(modal);
 
     // Run the open transition.
-    await openTransition(modal.target, config);
+    await openTransition(modal.el, config);
 
     // Update modal state.
     modal.state = 'opened';
   }
 
-  // Update the focus state if this is not a bulk action.
-  if (!bulk) {
+  // Update focus if the focus param is true.
+  if (focus) {
     updateFocusState.call(this);
   }
 
   // Dispatch custom opened event.
-  modal.target.dispatchEvent(new CustomEvent(config.customEventPrefix + 'opened', {
+  modal.el.dispatchEvent(new CustomEvent(config.customEventPrefix + 'opened', {
     detail: this,
     bubbles: true
   }));

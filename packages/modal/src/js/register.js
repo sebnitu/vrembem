@@ -1,47 +1,46 @@
-import { teleport } from '@vrembem/core/index';
+import { getConfig, teleport } from '@vrembem/core/index';
 
 import { deregister } from './deregister';
 import { open } from './open';
 import { close } from './close';
 import { replace } from './replace';
-import { getConfig } from './helpers';
 
-export async function register(target, dialog) {
+export async function register(el, dialog) {
   // Deregister entry incase it has already been registered.
-  await deregister.call(this, target, false);
+  await deregister.call(this, el, false);
 
   // Save root this for use inside methods API.
   const root = this;
 
   // Setup methods API.
   const methods = {
-    open(transition) {
-      return open.call(root, this, transition);
+    open(transition, focus) {
+      return open.call(root, this, transition, focus);
     },
-    close(transition) {
-      return close.call(root, this, transition);
+    close(transition, focus) {
+      return close.call(root, this, transition, focus);
     },
-    replace(transition) {
-      return replace.call(root, this, transition);
+    replace(transition, focus) {
+      return replace.call(root, this, transition, focus);
     },
     deregister() {
       return deregister.call(root, this);
     },
     teleport(ref = this.getSetting('teleport'), method = this.getSetting('teleportMethod')) {
       if (!this.returnRef) {
-        this.returnRef = teleport(this.target, ref, method);
-        return this.target;
+        this.returnRef = teleport(this.el, ref, method);
+        return this.el;
       } else {
-        console.error('Element has already been teleported:', this.target);
+        console.error('Element has already been teleported:', this.el);
         return false;
       }
     },
     teleportReturn() {
       if (this.returnRef) {
-        this.returnRef = teleport(this.target, this.returnRef);
-        return this.target;
+        this.returnRef = teleport(this.el, this.returnRef);
+        return this.el;
       } else {
-        console.error('No return reference found:', this.target);
+        console.error('No return reference found:', this.el);
         return false;
       }
     },
@@ -52,12 +51,12 @@ export async function register(target, dialog) {
 
   // Setup the modal object.
   const entry = {
-    id: target.id,
+    id: el.id,
     state: 'closed',
-    settings: getConfig.call(this, target),
-    target: target,
+    el: el,
     dialog: dialog,
     returnRef: null,
+    settings: getConfig(el, this.settings.dataConfig),
     ...methods
   };
 
@@ -83,15 +82,15 @@ export async function register(target, dialog) {
   this.collection.push(entry);
 
   // Setup initial state.
-  if (entry.target.classList.contains(this.settings.stateOpened)) {
-    // Open modal with transitions disabled.
-    entry.open(false);
+  if (entry.el.classList.contains(this.settings.stateOpened)) {
+    // Open entry with transitions disabled.
+    await entry.open(false);
   } else {
     // Remove transition state classes.
-    entry.target.classList.remove(this.settings.stateOpening);
-    entry.target.classList.remove(this.settings.stateClosing);
+    entry.el.classList.remove(this.settings.stateOpening);
+    entry.el.classList.remove(this.settings.stateClosing);
     // Add closed state class.
-    entry.target.classList.add(this.settings.stateClosed);
+    entry.el.classList.add(this.settings.stateClosed);
   }
 
   // Return the registered entry.

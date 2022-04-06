@@ -5,250 +5,183 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>@vrembem/drawer</title>
   <link rel="icon" type="image/png" sizes="32x32" href="https://sebnitu.com/dist/favicon.png">
-  <!-- Setup styles -->
-  <link rel="stylesheet" href="https://unpkg.com/@vrembem/base/dist/styles.css">
-  <link rel="stylesheet" href="https://unpkg.com/@vrembem/breadcrumb/dist/styles.css">
-  <link rel="stylesheet" href="https://unpkg.com/@vrembem/utility/dist/styles.css">
-  <link rel="stylesheet" href="https://unpkg.com/@vrembem/dialog/dist/styles.css">
-  <!-- Component styles -->
+  <!-- Styles -->
+  <link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.css">
   <link rel="stylesheet" href="./dist/styles.css">
 </head>
 <body>
+  <div class="drawer-frame">
 
-  <div class="drawer__wrapper">
-
-    <aside data-drawer="drawer-modal-always" class="drawer drawer_modal drawer_pos_right">
-      <div data-drawer-dialog class="drawer__dialog dialog">
+    <aside id="drawer-breakpoint-left" class="drawer" data-drawer-breakpoint="md">
+      <div class="drawer__dialog dialog">
         <div class="dialog__header">
-          <h2 class="dialog__title">Drawer Modal Always</h2>
+          <h2 class="flex-grow-1">Drawer breakpoint left</h2>
+          <button data-drawer-close class="link">Close</button>
+        </div>
+        <div class="dialog__body">
+          <p>Switches to modal on:<br><code class="code">(min-width: 760px)</code></p>
+        </div>
+        <div class="dialog__footer">
+          <button data-drawer-close class="link">Close</button>
+        </div>
+      </div>
+    </aside>
+
+    <aside id="drawer-breakpoint-right" class="drawer drawer_switch" data-drawer-breakpoint="1200px">
+      <div class="drawer__dialog dialog">
+        <div class="dialog__header">
+          <h2 class="flex-grow-1">Drawer breakpoint right</h2>
+          <button data-drawer-close class="link">Close</button>
+        </div>
+        <div class="dialog__body">
+          <p>Switches to modal on:<br><code class="code">(min-width: 1200px)</code></p>
+        </div>
+        <div class="dialog__footer">
+          <button data-drawer-close class="link">Close</button>
+        </div>
+      </div>
+    </aside>
+
+    <aside id="drawer-inline-left" class="drawer">
+      <div class="drawer__dialog dialog">
+        <div class="dialog__header">
+          <h2 class="flex-grow-1">Drawer inline left</h2>
+          <button data-drawer-close class="link">Close</button>
+        </div>
+        <div class="dialog__body">
+          <p>This drawer will always be inline.</p>
+        </div>
+        <div class="dialog__footer">
+          <button data-drawer-close class="link">Close</button>
+        </div>
+      </div>
+    </aside>
+
+    <aside id="drawer-inline-right" class="drawer drawer_switch">
+      <div class="drawer__dialog dialog">
+        <div class="dialog__header">
+          <h2 class="flex-grow-1">Drawer inline right</h2>
+          <button data-drawer-close class="link">Close</button>
+        </div>
+        <div class="dialog__body">
+          <p>This drawer will always be inline.</p>
+        </div>
+        <div class="dialog__footer">
+          <button data-drawer-close class="link">Close</button>
+        </div>
+      </div>
+    </aside>
+
+    <aside id="drawer-modal-left" class="drawer drawer_modal">
+      <div class="drawer__dialog dialog">
+        <div class="dialog__header">
+          <h2 class="flex-grow-1">Drawer modal left</h2>
           <button data-drawer-close class="link">Close</button>
         </div>
         <div class="dialog__body gap-y">
           <p>This drawer will always be a modal.</p>
           <ul class="list">
-            <li><a class="link" href="#">Focusable 1</a></li>
+            <li><a class="link" href="#" data-focus>Focusable 1</a></li>
             <li><a class="link" href="#">Focusable 2</a></li>
             <li><a class="link" href="#">Focusable 3</a></li>
           </ul>
         </div>
         <div class="dialog__footer">
-          <button data-drawer-close class="link">
-            Button 1
-          </button>
-          <button data-drawer-close class="link">
-            Button 2
-          </button>
+          <button data-drawer-close class="link">Close</button>
         </div>
       </div>
     </aside>
 
-    <aside data-drawer="drawer-modal-left" data-drawer-breakpoint="md" class="drawer drawer_pos_left">
-      <div data-drawer-dialog class="drawer__dialog dialog">
+    <aside id="drawer-modal-right" class="drawer drawer_switch drawer_modal">
+      <div class="drawer__dialog dialog">
         <div class="dialog__header">
-          <h2 class="dialog__title">Drawer Modal Left</h2>
+          <h2 class="flex-grow-1">Drawer modal right</h2>
           <button data-drawer-close class="link">Close</button>
         </div>
-        <div class="dialog__body">
-          <p>This drawer will switch to modal on the <code class="code">md</code> breakpoint.</p>
+        <div class="dialog__body gap-y">
+          <p>This drawer will always be a modal.</p>
+          <ul class="list">
+            <li><a class="link" href="#" data-focus>Focusable 1</a></li>
+            <li><a class="link" href="#">Focusable 2</a></li>
+            <li><a class="link" href="#">Focusable 3</a></li>
+          </ul>
         </div>
-      </div>
-    </aside>
-
-    <aside data-drawer="drawer-modal-right" data-drawer-breakpoint="1200px" class="drawer drawer_pos_right">
-      <div data-drawer-dialog class="drawer__dialog dialog">
-        <div class="dialog__header">
-          <h2 class="dialog__title">Drawer Modal Right</h2>
-          <button data-drawer-close class="link">Close</button>
-        </div>
-        <div class="dialog__body">
-          <p>This drawer will switch to modal on the <code class="code">1200px</code> breakpoint.</p>
-        </div>
-      </div>
-    </aside>
-
-    <aside data-drawer="drawer-pos-left" class="drawer drawer_pos_left">
-      <div data-drawer-dialog class="drawer__dialog padding">
-        <div class="flex flex-justify-between">
-          <p>Drawer Pos Left</p>
+        <div class="dialog__footer">
           <button data-drawer-close class="link">Close</button>
         </div>
       </div>
     </aside>
 
-    <aside data-drawer="drawer-pos-right" class="drawer drawer_pos_right">
-      <div data-drawer-dialog class="drawer__dialog padding">
-        <div class="flex flex-justify-between">
-          <p>Drawer Pos Right</p>
-          <button data-drawer-close class="link">Close</button>
+    <main class="drawer-main">
+
+      <header class="section background-shade">
+        <div class="section__container gap-y">
+          <h1 class="text-size-lg">@vrembem/drawer</h1>
+          <p class="max-width-xs">
+            A container component that slides in from the left or right. Typically containing menus, search or other content.
+          </p>
+          <ol class="breadcrumb">
+            <li class="breadcrumb__item">
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+              <a class="breadcrumb__link" href="https://github.com/sebnitu/vrembem">
+                <span>vrembem</span>
+              </a>
+            </li>
+            <li class="breadcrumb__item">
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
+              <a class="breadcrumb__link" href="https://github.com/sebnitu/vrembem/tree/main/packages/drawer">
+                <span>drawer</span>
+              </a>
+            </li>
+          </ol>
         </div>
-      </div>
-    </aside>
+      </header>
 
-    <aside data-drawer="drawer-data-attr-right" class="drawer drawer_pos_right">
-      <div data-drawer-dialog class="drawer__dialog dialog">
-        <div class="dialog__header">
-          <h2 class="dialog__title">Drawer Default Left</h2>
-          <button data-drawer-close class="link">Close</button>
+      <section class="section">
+        <div class="section__container gap-y">
+
+          <ul class="list">
+            <li>
+              <button class="link" data-drawer-toggle="drawer-breakpoint-left" data-drawer-close="drawer-inline-left drawer-modal-left">
+                Drawer breakpoint left
+              </button>
+            </li>
+            <li>
+              <button class="link" data-drawer-toggle="drawer-breakpoint-right" data-drawer-close="drawer-inline-right drawer-modal-right">
+                Drawer breakpoint right
+              </button>
+            </li>
+            <li>
+              <button class="link" data-drawer-toggle="drawer-inline-left" data-drawer-close="drawer-breakpoint-left drawer-modal-left">
+                Drawer inline left
+              </button>
+            </li>
+            <li>
+              <button class="link" data-drawer-toggle="drawer-inline-right" data-drawer-close="drawer-breakpoint-right drawer-modal-right">
+                Drawer inline right
+              </button>
+            </li>
+            <li>
+              <button class="link" data-drawer-toggle="drawer-modal-left" data-drawer-close="drawer-breakpoint-left drawer-inline-left">
+                Drawer modal left
+              </button>
+            </li>
+            <li>
+              <button class="link" data-drawer-toggle="drawer-modal-right" data-drawer-close="drawer-breakpoint-right drawer-inline-right">
+                Drawer modal right
+              </button>
+            </li>
+          </ul>
         </div>
-        <div class="dialog__body">
-          <button data-focus class="link">
-            Get focus on open!
-          </button>
-        </div>
-      </div>
-    </aside>
+      </section>
 
-    <aside data-drawer="drawer-default-left" class="drawer">
-      <div data-drawer-dialog class="drawer__dialog padding">
-        <div class="flex flex-justify-between">
-          <p>Drawer Default Left</p>
-          <button data-drawer-close class="link">Close</button>
-        </div>
-      </div>
-    </aside>
+    </main><!-- .drawer-main -->
 
-    <section role="main" class="drawer__main">
-
-      <div class="padding-xl gap-y background-shade">
-        <h1 class="text-size-lg">@vrembem/drawer</h1>
-        <p class="max-width-xs">
-          A container component that slides in from the left or right. Typically containing menus, search or other content.
-        </p>
-        <ol class="breadcrumb">
-          <li class="breadcrumb__item">
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-            </svg>
-            <a class="breadcrumb__link" href="https://github.com/sebnitu/vrembem">
-              <span>vrembem</span>
-            </a>
-          </li>
-          <li class="breadcrumb__item">
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
-            </svg>
-            <a class="breadcrumb__link" href="https://github.com/sebnitu/vrembem/tree/main/packages/drawer">
-              <span>drawer</span>
-            </a>
-          </li>
-        </ol>
-      </div>
-
-      <div class="padding-xl gap-y">
-        <ul class="list">
-          <li>
-            <button class="link" data-drawer-toggle="drawer-default-left">
-              Drawer Default Left
-            </button>
-          </li>
-          <li>
-            <button class="link" data-drawer-toggle="drawer-default-right">
-              Drawer Default Right
-            </button>
-          </li>
-          <li>
-            <button class="link" data-drawer-toggle="drawer-pos-left">
-              Drawer Pos Left
-            </button>
-          </li>
-          <li>
-            <button class="link" data-drawer-toggle="drawer-pos-right">
-              Drawer Pos Right
-            </button>
-          </li>
-          <li>
-            <button class="link" data-drawer-toggle="drawer-modal-left">
-              Drawer Breakpoint Left
-            </button>
-          </li>
-          <li>
-            <button class="link" data-drawer-toggle="drawer-modal-right">
-              Drawer Breakpoint Right
-            </button>
-          </li>
-          <li>
-            <button class="link" data-drawer-toggle="drawer-modal-always">
-              Drawer Modal Always
-            </button>
-          </li>
-        </ul>
-
-        <hr class="sep">
-
-        <h2>Data attributes</h2>
-
-        <ul class="list">
-          <li>
-            <button class="link" data-drawer-toggle="drawer-data-attr-right">
-              data-drawer-toggle
-            </button>
-          </li>
-          <li>
-            <button class="link" data-drawer-open="drawer-data-attr-right">
-              data-drawer-open
-            </button>
-          </li>
-          <li>
-            <button class="link" data-drawer-close="drawer-data-attr-right">
-              data-drawer-close
-            </button>
-          </li>
-          <li>
-            <button class="link" data-drawer-close>
-              data-drawer-close [empty]
-            </button>
-          </li>
-        </ul>
-
-        <hr class="sep">
-
-        <h2>API</h2>
-
-        <ul class="list">
-          <li>
-            <button class="link js-api-toggle">
-              API Toggle
-            </button>
-          </li>
-          <li>
-            <button class="link js-api-open">
-              API Open
-            </button>
-          </li>
-          <li>
-            <button class="link js-api-close">
-              API Close
-            </button>
-          </li>
-          <li>
-            <button class="link js-api-bp-init">
-              API Breakpoint Init
-            </button>
-          </li>
-          <li>
-            <button class="link js-api-bp-destroy">
-              API Breakpoint Destroy
-            </button>
-          </li>
-          <li>
-            <button class="link js-api-bp-check">
-              API Breakpoint Check
-            </button>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <aside data-drawer="drawer-default-right" class="drawer">
-      <div data-drawer-dialog class="drawer__dialog padding">
-        <div class="flex flex-justify-between">
-          <p>Drawer Default Right</p>
-          <button data-drawer-close class="link">Close</button>
-        </div>
-      </div>
-    </aside>
-
-  </div>
+  </div><!-- .drawer-frame -->
 
   <!-- Inert polyfill -->
   <script src="https://unpkg.com/wicg-inert/dist/inert.min.js"></script>
@@ -259,46 +192,24 @@
   <!-- Implementation scripts -->
   <script>
     const drawer = new vrembem.Drawer({
-      autoInit: true,
-      selectorInert: '[role="main"]',
-      selectorOverflow: 'body, [role="main"]'
+      selectorInert: '.drawer-main',
+      selectorOverflow: 'body, .drawer-main',
     });
 
-    console.log({ drawer });
+    drawer.init().then((result) => console.log('drawer.init() => ', result));
 
-    document.addEventListener('click', () => {
-      if (event.target.closest('.js-api-toggle')) {
-        drawer.toggle('drawer-pos-right').then(console.log);
-        return;
-      }
+    document.addEventListener('drawer:opened', (event) => {
+      console.log('drawer:opened', {
+        target: event.target,
+        detail: event.detail
+      });
+    });
 
-      if (event.target.closest('.js-api-open')) {
-        drawer.open('drawer-pos-right').then(console.log);
-        return;
-      }
-
-      if (event.target.closest('.js-api-close')) {
-        drawer.close('drawer-pos-right').then(console.log);
-        return;
-      }
-
-      if (event.target.closest('.js-api-bp-init')) {
-        drawer.breakpoint.init();
-        console.log('init:', drawer.mediaQueryLists);
-        return;
-      }
-
-      if (event.target.closest('.js-api-bp-destroy')) {
-        drawer.breakpoint.destroy();
-        console.log('destroy:', drawer.mediaQueryLists);
-        return;
-      }
-
-      if (event.target.closest('.js-api-bp-check')) {
-        drawer.breakpoint.check();
-        console.log('check:', drawer.mediaQueryLists);
-        return;
-      }
+    document.addEventListener('drawer:closed', () => {
+      console.log('drawer:closed', {
+        target: event.target,
+        detail: event.detail
+      });
     });
   </script>
 

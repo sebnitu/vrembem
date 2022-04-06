@@ -1,4 +1,4 @@
-import { Collection, FocusTrap } from '@vrembem/core/index';
+import { Collection, FocusTrap, updateGlobalState } from '@vrembem/core/index';
 
 import defaults from './defaults';
 import { handleClick, handleKeydown } from './handlers';
@@ -8,30 +8,34 @@ import { open } from './open';
 import { close } from './close';
 import { closeAll } from './closeAll';
 import { replace } from './replace';
-import { updateGlobalState, updateFocusState, getModalElements, getModalID } from './helpers';
+import { updateFocusState, updateStackIndex, getModalElements, getModalID } from './helpers';
 
 export default class Modal extends Collection {
+  #handleClick;
+  #handleKeydown;
+
   constructor(options) {
     super();
     this.defaults = defaults;
     this.settings = { ...this.defaults, ...options };
-    this.memory = {};
+    this.trigger = null;
     this.focusTrap = new FocusTrap();
 
     // Setup a proxy for stack array.
     this.stack = new Proxy([], {
       set: (target, property, value) => {
         target[property] = value;
-        // Update global state whenever the length property of stack changes.
+        // Update global state if stack length changed.
         if (property === 'length') {
-          updateGlobalState.call(this);
+          updateGlobalState(this.active, this.settings);
+          updateStackIndex(this.stack);
         }
         return true;
       }
     });
 
-    this.__handleClick = handleClick.bind(this);
-    this.__handleKeydown = handleKeydown.bind(this);
+    this.#handleClick = handleClick.bind(this);
+    this.#handleKeydown = handleKeydown.bind(this);
     if (this.settings.autoInit) this.init();
   }
 
@@ -53,11 +57,13 @@ export default class Modal extends Collection {
     if (this.settings.eventListeners) {
       this.initEventListeners();
     }
+
+    return this;
   }
 
   async destroy() {
-    // Clear any stored memory.
-    this.memory = {};
+    // Clear stored trigger.
+    this.trigger = null;
 
     // Remove all entries from the collection.
     await this.deregisterCollection();
@@ -66,24 +72,26 @@ export default class Modal extends Collection {
     if (this.settings.eventListeners) {
       this.destroyEventListeners();
     }
+
+    return this;
   }
 
   initEventListeners() {
-    document.addEventListener('click', this.__handleClick, false);
-    document.addEventListener('touchend', this.__handleClick, false);
-    document.addEventListener('keydown', this.__handleKeydown, false);
+    document.addEventListener('click', this.#handleClick, false);
+    document.addEventListener('touchend', this.#handleClick, false);
+    document.addEventListener('keydown', this.#handleKeydown, false);
   }
 
   destroyEventListeners() {
-    document.removeEventListener('click', this.__handleClick, false);
-    document.removeEventListener('touchend', this.__handleClick, false);
-    document.removeEventListener('keydown', this.__handleKeydown, false);
+    document.removeEventListener('click', this.#handleClick, false);
+    document.removeEventListener('touchend', this.#handleClick, false);
+    document.removeEventListener('keydown', this.#handleKeydown, false);
   }
 
   register(query) {
     const els = getModalElements.call(this, query);
     if (els.error) return Promise.reject(els.error);
-    return register.call(this, els.target, els.dialog);
+    return register.call(this, els.modal, els.dialog);
   }
 
   deregister(query) {
@@ -91,21 +99,24 @@ export default class Modal extends Collection {
     return deregister.call(this, modal);
   }
 
-  open(id, transition) {
-    return open.call(this, id, transition);
+  open(id, transition, focus) {
+    return open.call(this, id, transition, focus);
   }
 
-  close(id, transition) {
-    return close.call(this, id, transition);
+  close(id, transition, focus) {
+    return close.call(this, id, transition, focus);
   }
 
-  replace(id, transition) {
-    return replace.call(this, id, transition);
+  replace(id, transition, focus) {
+    return replace.call(this, id, transition, focus);
   }
 
-  async closeAll(exclude = false, transition) {
+  async closeAll(exclude = false, transition, focus = true) {
     const result = await closeAll.call(this, exclude, transition);
-    updateFocusState.call(this);
+    // Update focus if the focus param is true.
+    if (focus) {
+      updateFocusState.call(this);
+    }
     return result;
   }
 }

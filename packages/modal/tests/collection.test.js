@@ -24,7 +24,7 @@ describe('register() & entry.deregister()', () => {
     expect(modal.collection.length).toBe(0);
     entry1 = await modal.register('modal-1');
     expect(modal.collection.length).toBe(1);
-    expect(entry1.target).toBe(el1);
+    expect(entry1.el).toBe(el1);
   });
 
   it('should add missing accessibility attributes', () => {
@@ -37,7 +37,7 @@ describe('register() & entry.deregister()', () => {
     modal.settings.setTabindex = false;
     entry2 = await modal.register('modal-2');
     expect(entry1.dialog.getAttribute('tabindex')).toBe('-1');
-    expect(entry2.target).toBe(el2);
+    expect(entry2.el).toBe(el2);
   });
 
   it('should not be able to register the same modal multiple times', async () => {
@@ -71,19 +71,19 @@ describe('entry.open() & entry.close() & entry.replace()', () => {
   it('should open modal with transitions disabled', async () => {
     const entry = modal.get('modal-1');
     expect(entry.state).toBe('closed');
-    expect(entry.target).toHaveClass('is-closed');
+    expect(entry.el).toHaveClass('is-closed');
     await entry.open();
     expect(entry.state).toBe('opened');
-    expect(entry.target).toHaveClass('is-opened');
+    expect(entry.el).toHaveClass('is-opened');
   });
 
   it('should close modal with transitions disabled', async () => {
     const entry = modal.get('modal-1');
     expect(entry.state).toBe('opened');
-    expect(entry.target).toHaveClass('is-opened');
+    expect(entry.el).toHaveClass('is-opened');
     await entry.close();
     expect(entry.state).toBe('closed');
-    expect(entry.target).toHaveClass('is-closed');
+    expect(entry.el).toHaveClass('is-closed');
   });
 
   it('should replace modal with transitions disabled', async () => {
@@ -92,12 +92,12 @@ describe('entry.open() & entry.close() & entry.replace()', () => {
 
     await entry1.open();
     expect(entry1.state).toBe('opened');
-    expect(entry1.target).toHaveClass('is-opened');
+    expect(entry1.el).toHaveClass('is-opened');
 
     await entry2.replace();
     expect(entry2.state).toBe('opened');
-    expect(entry2.target).toHaveClass('is-opened');
+    expect(entry2.el).toHaveClass('is-opened');
     expect(entry1.state).toBe('closed');
-    expect(entry1.target).toHaveClass('is-closed');
+    expect(entry1.el).toHaveClass('is-closed');
   });
 });

@@ -16,6 +16,7 @@ const markup = `
 `;
 
 const markupMulti = `
+  <button>...</button>
   <div id="modal-1" class="modal">
     <div class="modal__dialog">...</div>
   </div>
@@ -55,7 +56,7 @@ describe('init() & destroy()', () => {
     btnOpen.click();
     await delay();
     expect(entry.state).toBe('opened');
-    expect(entry.target).toHaveClass('is-opened');
+    expect(entry.el).toHaveClass('is-opened');
   });
 
   it('should destroy the modal instance', async () => {
@@ -105,7 +106,7 @@ describe('initEventListeners() & destroyEventListeners()', () => {
     btnOpen.click();
     await delay();
     expect(entry.state).toBe('opened');
-    expect(entry.target).toHaveClass('is-opened');
+    expect(entry.el).toHaveClass('is-opened');
   });
 
   it('should destroy event listeners', async () => {
@@ -113,7 +114,7 @@ describe('initEventListeners() & destroyEventListeners()', () => {
     btnClose.click();
     await delay();
     expect(entry.state).toBe('opened');
-    expect(entry.target).toHaveClass('is-opened');
+    expect(entry.el).toHaveClass('is-opened');
   });
 });
 
@@ -301,21 +302,21 @@ describe('replace()', () => {
     let entry = modal.get('modal-1');
 
     modal.open('modal-1');
-    expect(entry.target).toHaveClass('is-opening');
+    expect(entry.el).toHaveClass('is-opening');
     expect(entry.state).toBe('opening');
-    await transition(entry.target);
-    expect(entry.target).toHaveClass('is-opened');
+    await transition(entry.el);
+    expect(entry.el).toHaveClass('is-opened');
     expect(entry.state).toBe('opened');
 
     modal.replace('modal-2');
-    await transition(entry.target);
+    await transition(entry.el);
 
-    expect(entry.target).toHaveClass('is-closed');
+    expect(entry.el).toHaveClass('is-closed');
     expect(entry.state).toBe('closed');
 
     entry = modal.get('modal-2');
-    await transition(entry.target);
-    expect(entry.target).toHaveClass('is-opened');
+    await transition(entry.el);
+    expect(entry.el).toHaveClass('is-opened');
     expect(entry.state).toBe('opened');
   });
 
@@ -329,7 +330,7 @@ describe('replace()', () => {
     modal.open('modal-3');
 
     await Promise.all(modal.collection.map(async (entry) => {
-      await transition(entry.target);
+      await transition(entry.el);
     }));
 
     expect(modal.stack.length).toBe(3);
@@ -340,13 +341,31 @@ describe('replace()', () => {
     modal.replace('modal-2');
 
     await Promise.all(modal.collection.map(async (entry) => {
-      await transition(entry.target);
+      await transition(entry.el);
     }));
 
     expect(modal.stack.length).toBe(1);
     expect(modal.get('modal-1').state).toBe('closed');
     expect(modal.get('modal-2').state).toBe('opened');
     expect(modal.get('modal-3').state).toBe('closed');
+  });
+
+  it('should correctly handle focus management when focus param is passed', async () => {
+    document.body.innerHTML = markupMulti;
+    const modal = new Modal({ transition: false });
+    await modal.init();
+
+    const entry = modal.get('modal-2');
+
+    await modal.open('modal-1');
+    await modal.replace('modal-2');
+
+    expect(document.activeElement).toBe(entry.dialog);
+
+    await modal.open('modal-1');
+    await modal.replace('modal-2', false, false);
+
+    expect(document.activeElement).toBe(document.body);
   });
 
   it('should reject promise with error if replace is called on non-existent modal', async () => {
@@ -371,21 +390,63 @@ describe('closeAll()', () => {
     modal.open('modal-3');
 
     await Promise.all(modal.collection.map(async (entry) => {
-      expect(entry.target).toHaveClass('is-opening');
+      expect(entry.el).toHaveClass('is-opening');
       expect(entry.state).toBe('opening');
-      await transition(entry.target);
-      expect(entry.target).toHaveClass('is-opened');
+      await transition(entry.el);
+      expect(entry.el).toHaveClass('is-opened');
       expect(entry.state).toBe('opened');
     }));
 
     modal.closeAll();
 
     await Promise.all(modal.collection.map(async (entry) => {
-      expect(entry.target).toHaveClass('is-closing');
+      expect(entry.el).toHaveClass('is-closing');
       expect(entry.state).toBe('closing');
-      await transition(entry.target);
-      expect(entry.target).toHaveClass('is-closed');
+      await transition(entry.el);
+      expect(entry.el).toHaveClass('is-closed');
       expect(entry.state).toBe('closed');
     }));
+  });
+
+  it('should return focus to stored trigger when all modals are closed', async () => {
+    document.body.innerHTML = markupMulti;
+    const modal = new Modal({ transition: false });
+    await modal.init();
+
+    const btn = document.querySelector('button');
+    modal.trigger = btn;
+
+    await modal.open('modal-1');
+    await modal.open('modal-2');
+    await modal.open('modal-3');
+
+    modal.collection.map(async (entry) => {
+      expect(entry.state).toBe('opened');
+    });
+
+    await modal.closeAll();
+
+    expect(document.activeElement).toBe(btn);
+  });
+
+  it('should not handle focus when param is set to false', async () => {
+    document.body.innerHTML = markupMulti;
+    const modal = new Modal({ transition: false });
+    await modal.init();
+
+    const btn = document.querySelector('button');
+    modal.trigger = btn;
+
+    await modal.open('modal-1');
+    await modal.open('modal-2');
+    await modal.open('modal-3');
+
+    modal.collection.map(async (entry) => {
+      expect(entry.state).toBe('opened');
+    });
+
+    await modal.closeAll(false, false, false);
+
+    expect(document.activeElement).toBe(document.body);
   });
 });

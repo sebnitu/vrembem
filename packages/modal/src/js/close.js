@@ -1,7 +1,7 @@
 import { closeTransition } from '@vrembem/core/index';
 import { updateFocusState, getModal } from './helpers';
 
-export async function close(query, transition, bulk = false) {
+export async function close(query, transition, focus = true) {
   // Get the modal from collection, or top modal in stack if no query is provided.
   const modal = (query) ? getModal.call(this, query) : this.active;
 
@@ -20,10 +20,10 @@ export async function close(query, transition, bulk = false) {
     document.activeElement.blur();
 
     // Run the close transition.
-    await closeTransition(modal.target, config);
+    await closeTransition(modal.el, config);
 
     // Remove z-index styles.
-    modal.target.style.zIndex = null;
+    modal.el.style.zIndex = null;
 
     // Get index of modal in stack array.
     const index = this.stack.findIndex((entry) => {
@@ -33,8 +33,8 @@ export async function close(query, transition, bulk = false) {
     // Remove modal from stack array.
     this.stack.splice(index, 1);
 
-    // Update the focus state if this is not a bulk action.
-    if (!bulk) {
+    // Update focus if the focus param is true.
+    if (focus) {
       updateFocusState.call(this);
     }
 
@@ -42,7 +42,7 @@ export async function close(query, transition, bulk = false) {
     modal.state = 'closed';
 
     // Dispatch custom closed event.
-    modal.target.dispatchEvent(new CustomEvent(config.customEventPrefix + 'closed', {
+    modal.el.dispatchEvent(new CustomEvent(config.customEventPrefix + 'closed', {
       detail: this,
       bubbles: true
     }));

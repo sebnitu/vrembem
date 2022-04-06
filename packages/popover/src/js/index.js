@@ -1,7 +1,7 @@
 import { Collection } from '@vrembem/core/index';
 
 import defaults from './defaults';
-import { handlerKeydown } from './handlers';
+import { handleKeydown } from './handlers';
 import { register, registerEventListeners } from './register';
 import { deregister, deregisterEventListeners } from './deregister';
 import { open } from './open';
@@ -9,12 +9,14 @@ import { close } from './close';
 import { getPopoverID, getPopoverElements } from './helpers';
 
 export default class Popover extends Collection {
+  #handleKeydown;
+
   constructor(options) {
     super();
     this.defaults = defaults;
     this.settings = { ...this.defaults, ...options };
-    this.memory = {};
-    this.__handlerKeydown = handlerKeydown.bind(this);
+    this.trigger = null;
+    this.#handleKeydown = handleKeydown.bind(this);
     if (this.settings.autoInit) this.init();
   }
 
@@ -34,11 +36,13 @@ export default class Popover extends Collection {
       // already adds event listeners to popovers.
       this.initEventListeners(false);
     }
+
+    return this;
   }
 
   async destroy() {
-    // Clear any stored memory.
-    this.memory = {};
+    // Clear stored trigger.
+    this.trigger = null;
 
     // Remove all entries from the collection.
     await this.deregisterCollection();
@@ -49,6 +53,8 @@ export default class Popover extends Collection {
       // already removes event listeners from popovers.
       this.destroyEventListeners(false);
     }
+
+    return this;
   }
 
   initEventListeners(processCollection = true) {
@@ -60,7 +66,7 @@ export default class Popover extends Collection {
     }
 
     // Add keydown global event listener.
-    document.addEventListener('keydown', this.__handlerKeydown, false);
+    document.addEventListener('keydown', this.#handleKeydown, false);
   }
 
   destroyEventListeners(processCollection = true) {
@@ -72,13 +78,13 @@ export default class Popover extends Collection {
     }
 
     // Remove keydown global event listener.
-    document.removeEventListener('keydown', this.__handlerKeydown, false);
+    document.removeEventListener('keydown', this.#handleKeydown, false);
   }
 
   register(query) {
     const els = getPopoverElements.call(this, query);
     if (els.error) return Promise.reject(els.error);
-    return register.call(this, els.trigger, els.target);
+    return register.call(this, els.popover, els.trigger);
   }
 
   deregister(query) {

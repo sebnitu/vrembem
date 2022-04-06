@@ -5,17 +5,19 @@ $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
+$class-frame: $prefix-block"drawer-frame" !default;
+$class-main: $prefix-block"drawer-main" !default;
+
 $width: 18em !default;
 $max-width: 100% !default;
 $border: null !default;
 $sep-border: null !default;
 $background: core.$shade !default;
 $box-shadow: none !default;
-$travel: 5em !default;
 $transition-duration: core.$transition-duration !default;
 $transition-timing-function: core.$transition-timing-function !default;
 
-$wrapper-height: 100% !default;
+$frame-height: 100vh !default;
 
 $modal-z-index: 900 !default;
 $modal-width: $width !default;

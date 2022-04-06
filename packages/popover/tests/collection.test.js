@@ -42,13 +42,13 @@ describe('register() & entry.deregister()', () => {
     popover.register('asdf');
     expect(popover.collection.length).toBe(1);
     expect(popover.collection[0].trigger).toBe(trigger);
-    expect(popover.collection[0].target).toBe(target);
+    expect(popover.collection[0].el).toBe(target);
     expect(popover.collection[0].__eventListeners.length).toBe(1);
     trigger.click();
-    expect(popover.collection[0].target).toHaveClass('is-active');
+    expect(popover.collection[0].el).toHaveClass('is-active');
   });
 
-  it('should return an error if the provided trigger has no associated target', async () => {
+  it('should return an error if the provided trigger has no associated popover', async () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     const trigger = document.querySelector('#third');
@@ -77,11 +77,11 @@ describe('register() & entry.deregister()', () => {
 
     entry.open();
     expect(entry.state).toBe('opened');
-    expect(entry.target).toHaveClass('is-active');
+    expect(entry.el).toHaveClass('is-active');
 
     entry.close();
     expect(entry.state).toBe('closed');
-    expect(entry.target).not.toHaveClass('is-active');
+    expect(entry.el).not.toHaveClass('is-active');
   });
 
   it('should attach deregister method to registered popover', () => {
@@ -107,7 +107,7 @@ describe('register() & entry.deregister()', () => {
     const entry = popover.get('asdf');
     registerEventListeners.call(popover, entry);
     entry.trigger.click();
-    expect(entry.target).toHaveClass('is-active');
+    expect(entry.el).toHaveClass('is-active');
     expect(entry.state).toBe('opened');
   });
 });
