@@ -2,6 +2,7 @@ import '@testing-library/jest-dom/extend-expect';
 import userEvent from '@testing-library/user-event';
 
 import { FocusTrap } from '../index.js';
+const user = userEvent.setup();
 
 const markup = `
   <button class="outter-1">...</button>
@@ -46,35 +47,35 @@ test('mount() should mount the focus trap setup', () => {
   expect(focusTrap.focusableLast).toBe(child_3);
 });
 
-test('should correctly cycle through focusable elements on tab', () => {
+test('should correctly cycle through focusable elements on tab', async () => {
   focusTrap.mount(el);
 
   expect(el).toHaveFocus();
 
-  userEvent.tab();
+  await user.keyboard('{Tab}');
   expect(child_1).toHaveFocus();
 
-  userEvent.tab();
+  await user.keyboard('{Tab}');
   expect(child_2).toHaveFocus();
 
-  userEvent.tab();
+  await user.keyboard('{Tab}');
   expect(child_3).toHaveFocus();
 
-  userEvent.tab();
+  await user.keyboard('{Tab}');
   expect(child_1).toHaveFocus();
 });
 
-test('should correctly cycle through focusable elements on shift-tab', () => {
-  userEvent.tab({ shift: true });
+test('should correctly cycle through focusable elements on shift-tab', async () => {
+  await user.keyboard('{Shift>}{Tab}{/Shift}');
   expect(child_3).toHaveFocus();
 
-  userEvent.tab({ shift: true });
+  await user.keyboard('{Shift>}{Tab}{/Shift}');
   expect(child_2).toHaveFocus();
 
-  userEvent.tab({ shift: true });
+  await user.keyboard('{Shift>}{Tab}{/Shift}');
   expect(child_1).toHaveFocus();
 
-  userEvent.tab({ shift: true });
+  await user.keyboard('{Shift>}{Tab}{/Shift}');
   expect(child_3).toHaveFocus();
 });
 
@@ -115,7 +116,7 @@ test('getFocusable() should return focusable elements array', () => {
   expect(result[2]).toBe(child_3);
 });
 
-test('should correctly setup focus lock when there are no focusable elements', () => {
+test('should correctly setup focus lock when there are no focusable elements', async () => {
   el = document.querySelector('.container-3');
   focusTrap = new FocusTrap(el);
   focusTrap.mount();
@@ -125,9 +126,9 @@ test('should correctly setup focus lock when there are no focusable elements', (
   expect(focusTrap.focusableFirst).toBe(undefined);
   expect(focusTrap.focusableLast).toBe(undefined);
 
-  userEvent.tab();
+  await user.keyboard('{Tab}');
   expect(el).toHaveFocus();
 
-  userEvent.tab({ shift: true });
+  await user.keyboard('{Shift>}{Tab}{/Shift}');
   expect(el).toHaveFocus();
 });
