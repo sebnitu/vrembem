@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/switch",
   "description": "Switches are a binary form element used to toggle between two options.",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/switch#readme",
   "dependencies": {
-    "@vrembem/core": "^2.0.0"
+    "@vrembem/core": "^3.0.0"
   },
   "publishConfig": {
     "access": "public"
