@@ -509,8 +509,8 @@ An array where all popover objects are stored when registered. Each popover obje
 {
   id: String, // The unique ID of the popover.
   state: String, // The current state of the popover ('closed' or 'opened').
+  el: HTMLElement, // The popover HTML element.
   trigger: HTMLElement, // The popover trigger HTML element.
-  target: HTMLElement, // The popover HTML element.
   popper: Object // The popper JS instance.
   config: Object // Stores the popover configuration options.
   open: Function // Method to open this popover.
@@ -645,7 +645,7 @@ const result = await popover.registerCollection();
 
 ### `popover.get(value, key)`
 
-Used to retrieve a registered popover object from the collection. Query should match the key type to search by: e.g. to search by target elements, pass the target html node with a key of `'target'`. Defaults to `'id'`.
+Used to retrieve a registered popover object from the collection. Query should match the key type to search by: e.g. to search by popover elements, pass the popover html node with a key of `'el'`. Defaults to `'id'`.
 
 **Parameters**
 
