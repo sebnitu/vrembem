@@ -679,7 +679,7 @@ Returns an array where all drawer objects are stored when registered. Each drawe
   close: Function // Method to close this drawer.
   toggle: Function // Method to toggle this drawer opened and closed.
   deregister: Function // Method to deregister this drawer.
-  mountBreakpoint: Function // Method to mount the breakpoint feature on.
+  mountBreakpoint: Function // Method to mount the breakpoint feature.
   unmountBreakpoint: Function // Method to unmount the breakpoint feature.
   handleBreakpoint: Function // The function that runs whenever the breakpoint media match property is changed. Receives the event parameter.
   getSetting: Function // Method that returns either a drawer specific setting or global drawer setting.
