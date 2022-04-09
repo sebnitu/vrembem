@@ -76,6 +76,7 @@ export default class Drawer extends Collection {
   }
 
   register(query) {
+    // TODO: Pass "force" param to `deregister()` first before fresh `register()`.
     const els = getDrawerElements.call(this, query);
     if (els.error) return Promise.reject(els.error);
     return register.call(this, els.drawer, els.dialog);

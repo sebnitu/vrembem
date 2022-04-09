@@ -9,6 +9,18 @@ import { initialState } from './helpers/initialState';
 import { getBreakpoint } from './helpers';
 
 export async function register(el, dialog) {
+  // Check if entry is already registered.
+  const asdf = this.get(el.id);
+
+  // Run sync() if entry has already been registered.
+  if (asdf) {
+    console.log('Already registered, run sync()...');
+    return asdf;
+  }
+
+  console.log('Not registered, run register()...');
+
+  // TODO: Only run deregister() if "force" param is passed.
   // Deregister entry incase it has already been registered.
   await deregister.call(this, el, false);
 
@@ -29,7 +41,7 @@ export async function register(el, dialog) {
     toggle(transition, focus) {
       return toggle.call(root, this, transition, focus);
     },
-    refresh() {
+    sync() {
       if (this.mode === 'modal') {
         this.el.classList.add(root.settings.classModal);
       } else {

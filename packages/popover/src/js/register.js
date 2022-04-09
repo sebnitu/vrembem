@@ -21,7 +21,7 @@ export async function register(el, trigger) {
     close() {
       return close.call(root, this);
     },
-    refresh() {
+    sync() {
       if (this.state === 'opened') {
         this.el.classList.add(root.settings.stateActive);
       } else if (this.state === 'closed') {

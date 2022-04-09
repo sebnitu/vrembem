@@ -23,7 +23,7 @@ export async function register(el, dialog) {
     replace(transition, focus) {
       return replace.call(root, this, transition, focus);
     },
-    refresh() {
+    sync() {
       if (this.state === 'opened') {
         this.el.classList.remove(root.settings.stateClosed);
         this.el.classList.add(root.settings.stateOpened);
