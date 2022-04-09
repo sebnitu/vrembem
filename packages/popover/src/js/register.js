@@ -21,6 +21,15 @@ export async function register(el, trigger) {
     close() {
       return close.call(root, this);
     },
+    refresh() {
+      if (this.state === 'opened') {
+        this.el.classList.add(root.settings.stateActive);
+      } else if (this.state === 'closed') {
+        this.el.classList.remove(root.settings.stateActive);
+      }
+
+      return this;
+    },
     deregister() {
       return deregister.call(root, this);
     }

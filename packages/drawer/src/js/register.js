@@ -29,6 +29,23 @@ export async function register(el, dialog) {
     toggle(transition, focus) {
       return toggle.call(root, this, transition, focus);
     },
+    refresh() {
+      if (this.mode === 'modal') {
+        this.el.classList.add(root.settings.classModal);
+      } else {
+        this.el.classList.remove(root.settings.classModal);
+      }
+
+      if (this.state === 'opened') {
+        this.el.classList.remove(root.settings.stateClosed);
+        this.el.classList.add(root.settings.stateOpened);
+      } else if (this.state === 'closed') {
+        this.el.classList.add(root.settings.stateClosed);
+        this.el.classList.remove(root.settings.stateOpened);
+      }
+
+      return this;
+    },
     deregister() {
       return deregister.call(root, this);
     },
