@@ -4,6 +4,7 @@ import { deregister } from './deregister';
 import { open } from './open';
 import { close } from './close';
 import { toggle } from './toggle';
+import { sync } from './sync';
 import { switchMode } from './switchMode';
 import { initialState } from './helpers/initialState';
 import { getBreakpoint } from './helpers';
@@ -14,8 +15,8 @@ export async function register(el, dialog) {
 
   // Run sync() if entry has already been registered.
   if (asdf) {
-    console.log('Already registered, run sync()...');
-    return asdf;
+    // TODO: should sync el => obj
+    return sync.call(this, asdf);
   }
 
   console.log('Not registered, run register()...');
@@ -42,21 +43,8 @@ export async function register(el, dialog) {
       return toggle.call(root, this, transition, focus);
     },
     sync() {
-      if (this.mode === 'modal') {
-        this.el.classList.add(root.settings.classModal);
-      } else {
-        this.el.classList.remove(root.settings.classModal);
-      }
-
-      if (this.state === 'opened') {
-        this.el.classList.remove(root.settings.stateClosed);
-        this.el.classList.add(root.settings.stateOpened);
-      } else if (this.state === 'closed') {
-        this.el.classList.add(root.settings.stateClosed);
-        this.el.classList.remove(root.settings.stateOpened);
-      }
-
-      return this;
+      // TODO: should sync obj => el
+      return sync.call(root, this);
     },
     deregister() {
       return deregister.call(root, this);
