@@ -34,7 +34,9 @@ export function handleDocumentClick(popover) {
   const root = this;
   document.addEventListener('click', function _f(event) {
     // Check if a popover was clicked.
-    const result = event.target.closest(`#${popover.id}, [aria-controls="${popover.id}"]`);
+    const result = event.target.closest(
+      `#${popover.id}, [aria-controls="${popover.id}"], [aria-describedby="${popover.id}"]`
+    );
     if (!result) {
       // If it doesn't match and popover is open, close it and remove event listener.
       if (popover.el && popover.el.classList.contains(root.settings.stateActive)) {
