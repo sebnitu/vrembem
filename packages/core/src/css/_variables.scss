@@ -3,17 +3,11 @@
 // Prefixes
 // ---
 
-$prefix-variable: null !default;
+$prefix-variable: "vb-" !default;
 $prefix-block: null !default;
 $prefix-element: "__" !default;
 $prefix-modifier: "_" !default;
 $prefix-modifier-value: "_" !default;
-
-// Output options
-// ---
-
-$output: true !default;
-$output-root: $output !default;
 
 // Breakpoints
 // ---

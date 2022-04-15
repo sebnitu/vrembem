@@ -2,14 +2,12 @@
 
 $_v: var.$prefix-variable;
 
-@if (var.$output-root) {
-  :root {
-    @if ($_v) {
-      --vrembem-variable-prefix: #{$_v};
-    }
+:root {
+  @if ($_v) {
+    --vrembem-variable-prefix: #{$_v};
+  }
 
-    @each $key, $value in var.$breakpoints {
-      --#{$_v}breakpoint-#{$key}: #{$value};
-    }
+  @each $key, $value in var.$breakpoints {
+    --#{$_v}breakpoint-#{$key}: #{$value};
   }
 }
