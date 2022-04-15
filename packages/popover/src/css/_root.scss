@@ -1,0 +1,21 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
+$_v: var.$prefix-variable;
+
+:root {
+  @if (var.$event) {
+    --#{$_v}popover-event: #{var.$event};
+  }
+
+  @if (var.$placement) {
+    --#{$_v}popover-placement: #{var.$placement};
+  }
+
+  --#{$_v}popover-offset: #{core.strip-unit(var.$offset)};
+  --#{$_v}popover-overflow-padding: #{core.strip-unit(var.$overflow-padding)};
+  --#{$_v}popover-flip-padding: #{core.strip-unit(var.$flip-padding)};
+  --#{$_v}popover-arrow-size: #{var.$arrow-size};
+  --#{$_v}popover-arrow-padding: #{var.$arrow-padding};
+  --#{$_v}popover-arrow-border: #{var.$arrow-border};
+}
