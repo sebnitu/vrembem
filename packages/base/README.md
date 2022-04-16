@@ -802,21 +802,14 @@ Output base type module styles.
 }
 ```
 
-#### `@mixin type-invert($color)`
+#### `@mixin type-invert()`
 
-Output invert modifier styles of the type module. Pass in the background color if you're not sure it will meet the lightness threshold set in `core.$lightness-threshold`.
-
-**Arguments**
-
-| Variable | Type    | Description                                                    |
-| -------- | ------- | -------------------------------------------------------------- |
-| `$color` | `color` | The background color to check the lightness threshold against. |
+Output invert modifier styles of the type module.
 
 **Example**
 
 ```scss
 .element {
-  @include type-invert(#303030);
-  background: #303030;
+  @include type-invert();
 }
 ```

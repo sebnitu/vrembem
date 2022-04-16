@@ -1,8 +1,0 @@
-/// Returns a var stack.
-/// @param {String} $prefix - String to prefix CSS variables with.
-/// @param {String} $prop - The property name of the CSS variable.
-/// @param {Any} $default - The default value of the stack.
-/// @return {Function} - The var function stack.
-@function vars($prefix, $prop, $default) {
-  @return var(--#{$prefix}#{$prop}, var(--#{$prefix}#{$prop}-root, #{$default}));
-}

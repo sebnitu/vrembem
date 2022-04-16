@@ -1,4 +1,3 @@
-@use "@vrembem/core";
 @use "./variables" as var;
 
 $_v: var.$prefix-variable;
@@ -11,8 +10,8 @@ $_v: var.$prefix-variable;
     --#{$_v}placement: #{var.$placement};
   }
 
-  --#{$_v}offset: #{core.strip-unit(var.$offset)};
-  --#{$_v}overflow-padding: #{core.strip-unit(var.$overflow-padding)};
-  --#{$_v}flip-padding: #{core.strip-unit(var.$flip-padding)};
+  --#{$_v}offset: #{var.$offset};
+  --#{$_v}overflow-padding: #{var.$overflow-padding};
+  --#{$_v}flip-padding: #{var.$flip-padding};
   --#{$_v}arrow-padding: #{var.$arrow-padding};
 }
