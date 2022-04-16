@@ -1,6 +1,6 @@
 @use "sass:map";
 @use "sass:meta";
-@use "./variables" as var;
+@use "../variables" as var;
 
 /// A media query mixin that defines a query using max-width. You can pass in a
 /// key to the `$breakpoints()` maps to access that value, or pass a value to

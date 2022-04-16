@@ -1,12 +1,8 @@
-@use "./variables" as var;
+@use "../variables" as var;
 
 $_v: var.$prefix-variable;
 
 :root {
-  @if ($_v) {
-    --vrembem-variable-prefix: #{$_v};
-  }
-
   @each $key, $value in var.$breakpoints {
     --#{$_v}breakpoint-#{$key}: #{$value};
   }

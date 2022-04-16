@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vrembem</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://sebnitu.com/dist/favicon.png">
+  <!-- Styles -->
+  <link rel="stylesheet" href="./dev/styles.css">
+  <style>
+
+    /**
+     * Root styles
+     */
+
+    /* :root {
+      --vb-background-root: lightgreen;
+      --vb-color-root: #333;
+      --vb-popover-background-root: lightblue;
+      --vb-popover-color-root: #111;
+      --vb-popover-tooltip-background-root: #111;
+      --vb-popover-tooltip-color-root: pink;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --vb-background-root: #333;
+        --vb-color-root: lightgreen;
+        --vb-popover-background-root: #111;
+        --vb-popover-color-root: lightblue;
+        --vb-popover-tooltip-background-root: pink;
+        --vb-popover-tooltip-color-root: #111;
+      }
+    } */
+
+    /**
+     * Theme overrides
+     */
+    
+    .theme-root {
+      --vb-background: initial;
+      --vb-color: initial;
+      --vb-popover-background: initial;
+      --vb-popover-color: initial;
+      --vb-popover-tooltip-background: initial;
+      --vb-popover-tooltip-color: initial;
+    }
+
+    .theme-light {
+      --vb-background: lightgreen;
+      --vb-color: #333;
+      --vb-popover-background: lightblue;
+      --vb-popover-color: #111;
+      --vb-popover-tooltip-background: #111;
+      --vb-popover-tooltip-color: pink;
+    }
+
+    .theme-dark {
+      --vb-background: #333;
+      --vb-color: lightgreen;
+      --vb-popover-background: #111;
+      --vb-popover-color: lightblue;
+      --vb-popover-tooltip-background: pink;
+      --vb-popover-tooltip-color: #111;
+    }
+
+  </style>
+</head>
+<body>
+  <header class="section background-shade">
+    <div class="section__container gap-y">
+      <h1 class="text-size-lg">Vrembem</h1>
+      <p class="max-width-xs">
+        A complete collection of all Vrembem components into a single comprehensive package for convenience.
+      </p>
+      <ol class="breadcrumb">
+        <li class="breadcrumb__item">
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+          </svg>
+          <a class="breadcrumb__link" href="https://github.com/sebnitu/vrembem">
+            <span>vrembem</span>
+          </a>
+        </li>
+        <li class="breadcrumb__item">
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
+          </svg>
+          <a class="breadcrumb__link" href="https://github.com/sebnitu/vrembem/tree/main/packages/vrembem">
+            <span>vrembem</span>
+          </a>
+        </li>
+      </ol>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="section__container gap-y">
+
+      <h2>@vrembem/popover</h2>
+      <div>
+        <div class="flex flex-wrap flex-gap">
+          <div>
+            <button class="button" aria-controls="popover-click">Popover Click</button>
+            <div id="popover-click" class="popover">
+              <ul class="menu">
+                <li class="menu__item">
+                  <button class="menu__action">
+                    <span class="menu__text">Add</span>
+                    <span class="color-subtle">&plus;</span>
+                  </button>
+                </li>
+                <li class="menu__item">
+                  <button class="menu__action">
+                    <span class="menu__text">Remove</span>
+                    <span class="color-subtle">&minus;</span>
+                  </button>
+                </li>
+                <li class="menu__sep"></li>
+                <li class="menu__item">
+                  <button class="menu__action">
+                    <span class="menu__text">Edit</span>
+                    <span>&#9999;&#65039;</span>
+                  </button>
+                </li>
+              </ul>
+              <span class="popover__arrow"></span>
+            </div>
+          </div>
+          <div>
+            <button class="button" aria-controls="popover-hover">Popover Hover</button>
+            <div id="popover-hover" class="popover popover_size_lg" style="--popover-event: hover;" tabindex="0">
+              <p class="padding-sm">Random content, but it's focusable thanks to the tabindex attribute!</p>
+              <span class="popover__arrow"></span>
+            </div>
+          </div>
+          <div>
+            <button class="button" aria-describedby="popover-tooltip">Tooltip Trigger</button>
+            <div id="popover-tooltip" class="popover popover_tooltip" role="tooltip">
+              This is a tooltip...
+              <span class="popover__arrow"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- Component scripts -->
+  <script src="../vrembem/dev/scripts.umd.js"></script>
+
+  <!-- Implementation scripts -->
+  <script>
+    console.log(vrembem);
+  </script>
+</body>
+</html>

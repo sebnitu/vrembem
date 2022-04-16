@@ -1,4 +1,5 @@
-@use "@vrembem/core/src/scss/root";
+@use "@vrembem/core/src/scss/root/prefix";
+@use "@vrembem/core/src/scss/root/breakpoints";
 
 @forward "./src/scss/variables";
 @forward "./src/scss/drawer";
