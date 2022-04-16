@@ -6,8 +6,66 @@
   <title>@vrembem/popover</title>
   <link rel="icon" type="image/png" sizes="32x32" href="https://sebnitu.com/dist/favicon.png">
   <!-- Styles -->
-  <link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.css">
-  <link rel="stylesheet" href="./dist/styles.css">
+  <link rel="stylesheet" href="../vrembem/dev/styles.css">
+  <link rel="stylesheet" href="./dev/styles.css">
+  <style>
+
+    /**
+     * Root styles
+     */
+
+    :root {
+      --vb-background-root: lightgreen;
+      --vb-color-root: #333;
+      --vb-popover-background-root: lightblue;
+      --vb-popover-color-root: #111;
+      --vb-popover-tooltip-background-root: #111;
+      --vb-popover-tooltip-color-root: pink;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --vb-background-root: #333;
+        --vb-color-root: lightgreen;
+        --vb-popover-background-root: #111;
+        --vb-popover-color-root: lightblue;
+        --vb-popover-tooltip-background-root: pink;
+        --vb-popover-tooltip-color-root: #111;
+      }
+    }
+
+    /**
+     * Theme overrides
+     */
+    
+    .theme-root {
+      --vb-background: initial;
+      --vb-color: initial;
+      --vb-popover-background: initial;
+      --vb-popover-color: initial;
+      --vb-popover-tooltip-background: initial;
+      --vb-popover-tooltip-color: initial;
+    }
+
+    .theme-light {
+      --vb-background: lightgreen;
+      --vb-color: #333;
+      --vb-popover-background: lightblue;
+      --vb-popover-color: #111;
+      --vb-popover-tooltip-background: #111;
+      --vb-popover-tooltip-color: pink;
+    }
+
+    .theme-dark {
+      --vb-background: #333;
+      --vb-color: lightgreen;
+      --vb-popover-background: #111;
+      --vb-popover-color: lightblue;
+      --vb-popover-tooltip-background: pink;
+      --vb-popover-tooltip-color: #111;
+    }
+
+  </style>
   <!-- Vue -->
   <script src="https://unpkg.com/vue@next"></script>
 </head>
@@ -111,7 +169,7 @@
   </section>
 
   <!-- Component scripts -->
-  <script src="./dev/scripts.umd.js"></script>
+  <script src="../vrembem/dev/scripts.umd.js"></script>
 
   <!-- Implementation scripts -->
   <script>
@@ -237,7 +295,7 @@
         }
       },
       beforeUnmount() {
-        const item = popover.collection.find(el => el.target === this.$el);
+        const item = popover.get(this.$el.id);
         console.log('popover.deregister()', item);
         popover.deregister(item);
       },

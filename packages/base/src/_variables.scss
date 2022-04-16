@@ -45,7 +45,8 @@ $class-type: "type" !default;
 // ---
 
 $root-height: 100% !default;
-$color: core.$color !default;
+$body-background: core.$background !default;
+$body-color: core.$color !default;
 $color-caption: core.$color-subtle !default;
 $font-family: core.$font-family !default;
 $font-family-mono: core.$font-family-mono !default;
@@ -53,7 +54,6 @@ $font-size: core.$font-size !default;
 $font-size-sm: core.$font-size-sm !default;
 $line-height: core.$line-height !default;
 $box-sizing: border-box !default;
-$body-background: null !default;
 
 // Arrow
 // ---

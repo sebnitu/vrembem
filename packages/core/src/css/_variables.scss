@@ -1,3 +1,4 @@
+@use "./functions/vars" as *;
 @use "./palette";
 
 // Prefixes
@@ -158,8 +159,14 @@ $line-height: 1.5 !default; // 24px
 $line-height-sm: 1.375 !default; // 22px
 $line-height-lg: 1.625 !default; // 26px
 
+// Theme Assignment
+// ---
+
+// Background
+$background: vars($prefix-variable, "background", palette.$white) !default;
+
 // Color
-$color: $night-dark !default;
+$color: vars($prefix-variable, "color", palette.$gray-900) !default;
 $color-subtle: palette.$gray-500 !default;
 
 // Color invert

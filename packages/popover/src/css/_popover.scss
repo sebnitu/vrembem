@@ -3,25 +3,26 @@
 
 $_v: var.$prefix-variable;
 $_b: var.$prefix-block;
-$_offset: calc(calc(var(--#{$_v}popover-offset) + 1) * 1px);
+$_offset: calc(calc(core.vars($_v, "offset", var.$offset) + 1) * 1px);
 
 .#{$_b}popover {
   position: absolute;
-  z-index: var.$z-index;
+  z-index: core.vars($_v, "z-index", var.$z-index);
   top: 100%;
   left: 0;
   display: none;
-  width: var.$width;
-  max-width: var.$max-width;
-  margin: calc(var(--#{$_v}popover-offset) * 1px) 0 0;
-  padding: var.$padding;
-  border: var.$border;
-  border-radius: var.$border-radius;
-  background: var.$background;
-  background-clip: var.$background-clip;
-  box-shadow: var.$box-shadow;
-  font-size: var.$font-size;
-  line-height: var.$line-height;
+  width: core.vars($_v, "width", var.$width);
+  max-width: core.vars($_v, "max-width", var.$max-width);
+  margin: calc(core.vars($_v, "offset", var.$offset) * 1px) 0 0;
+  padding: core.vars($_v, "padding", var.$padding);
+  border: core.vars($_v, "border", var.$border);
+  border-radius: core.vars($_v, "border-radius", var.$border-radius);
+  background: core.vars($_v, "background", var.$background);
+  background-clip: core.vars($_v, "background-clip", var.$background-clip);
+  box-shadow: core.vars($_v, "box-shadow", var.$box-shadow);
+  color: core.vars($_v, "color", var.$color);
+  font-size: core.vars($_v, "font-size", var.$font-size);
+  line-height: core.vars($_v, "line-height", var.$line-height);
 
   &::before {
     content: "";
@@ -35,19 +36,19 @@ $_offset: calc(calc(var(--#{$_v}popover-offset) + 1) * 1px);
   }
 
   &.is-active {
-    z-index: (var.$z-index + 1);
+    z-index: calc(core.vars($_v, "z-index", var.$z-index) + 1);
     display: block;
   }
 
   &:hover,
   &:focus,
   &:focus-within {
-    z-index: (var.$z-index + 2);
+    z-index: calc(core.vars($_v, "z-index", var.$z-index) + 2);
   }
 }
 
 .#{$_b}popover[data-popper-placement^="top"] {
-  margin: 0 0 calc(var(--#{$_v}popover-offset) * 1px) 0;
+  margin: 0 0 calc(core.vars($_v, "offset", var.$offset) * 1px) 0;
 
   &::before {
     top: 100%;
@@ -60,7 +61,7 @@ $_offset: calc(calc(var(--#{$_v}popover-offset) + 1) * 1px);
 }
 
 .#{$_b}popover[data-popper-placement^="bottom"] {
-  margin: calc(var(--#{$_v}popover-offset) * 1px) 0 0 0;
+  margin: calc(core.vars($_v, "offset", var.$offset) * 1px) 0 0 0;
 
   &::before {
     top: auto;
@@ -73,7 +74,7 @@ $_offset: calc(calc(var(--#{$_v}popover-offset) + 1) * 1px);
 }
 
 .#{$_b}popover[data-popper-placement^="left"] {
-  margin: 0 calc(var(--#{$_v}popover-offset) * 1px) 0 0;
+  margin: 0 calc(core.vars($_v, "offset", var.$offset) * 1px) 0 0;
 
   &::before {
     top: 0;
@@ -86,7 +87,7 @@ $_offset: calc(calc(var(--#{$_v}popover-offset) + 1) * 1px);
 }
 
 .#{$_b}popover[data-popper-placement^="right"] {
-  margin: 0 0 0 calc(var(--#{$_v}popover-offset) * 1px);
+  margin: 0 0 0 calc(core.vars($_v, "offset", var.$offset) * 1px);
 
   &::before {
     top: 0;

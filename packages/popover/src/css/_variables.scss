@@ -1,6 +1,6 @@
 @use "@vrembem/core";
 
-$prefix-variable: core.$prefix-variable !default;
+$prefix-variable: "#{core.$prefix-variable}popover-" !default;
 $prefix-block: core.$prefix-block !default;
 $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
@@ -18,10 +18,11 @@ $max-width: calc(100vw - 20px) !default;
 $padding: 0.5em !default;
 $border: null !default;
 $border-radius: core.$border-radius !default;
-$background: core.$white !default;
+$background: core.$background !default;
 $background-clip: padding-box !default;
 $box-shadow: core.$box-shadow-8dp !default;
 $font-size: core.$font-size-sm !default;
+$color: core.$color !default;
 $line-height: null !default;
 
 $arrow-size: 12px !default;
@@ -30,3 +31,10 @@ $arrow-border: core.$border-light !default;
 
 $size-sm-width: 12em !default;
 $size-lg-width: 20em !default;
+
+$tooltip-arrow-size: 8px !default;
+$tooltip-max-width: 16em !default;
+$tooltip-padding: 0.5em 0.75em !default;
+$tooltip-background: core.$color !default;
+$tooltip-color: core.$background !default;
+$tooltip-font-size: core.px-to-em(12px) !default;

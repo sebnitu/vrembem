@@ -7,14 +7,17 @@ $_e: var.$prefix-element;
 $_m: var.$prefix-modifier;
 
 .#{$_b}popover#{$_m}tooltip {
-  --#{$_v}popover-event: hover;
-  --#{$_v}popover-placement: top;
-  --#{$_v}popover-arrow-size: 8px;
-  --#{$_v}popover-arrow-border: none;
-  width: auto;
-  max-width: 16rem;
-  padding: 0.5rem 0.75rem;
-  background: core.$color;
-  color: core.$white;
-  font-size: core.px-to-em(12px);
+  --#{$_v}event: hover;
+  --#{$_v}placement: top;
+  --#{$_v}arrow-size: #{var.$tooltip-arrow-size};
+  --#{$_v}arrow-border: none;
+  --#{$_v}width: auto;
+  --#{$_v}max-width: #{var.$tooltip-max-width};
+  --#{$_v}padding: #{var.$tooltip-padding};
+  // --#{$_v}background: #{var.$tooltip-background};
+  // --#{$_v}color: #{var.$tooltip-color};
+  // --#{$_v}font-size: #{var.$tooltip-font-size};
+  background: core.vars($_v, "tooltip-background", var.$tooltip-background);
+  color: core.vars($_v, "tooltip-color", var.$tooltip-color);
+  font-size: core.vars($_v, "tooltip-font-size", var.$tooltip-font-size);
 }

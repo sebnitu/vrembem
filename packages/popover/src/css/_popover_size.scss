@@ -1,3 +1,4 @@
+@use "@vrembem/core";
 @use "./variables" as var;
 
 $_b: var.$prefix-block;
@@ -6,13 +7,13 @@ $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
 .#{$_b}popover#{$_m}size#{$_v}auto {
-  width: auto;
+  --#{var.$prefix-variable}width: auto;
 }
 
 .#{$_b}popover#{$_m}size#{$_v}sm {
-  width: var.$size-sm-width;
+  --#{var.$prefix-variable}width: #{var.$size-sm-width};
 }
 
 .#{$_b}popover#{$_m}size#{$_v}lg {
-  width: var.$size-lg-width;
+  --#{var.$prefix-variable}width: #{var.$size-lg-width};
 }
