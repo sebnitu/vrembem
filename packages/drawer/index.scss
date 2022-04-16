@@ -1,6 +1,6 @@
-@use "@vrembem/core/src/css/root";
+@use "@vrembem/core/src/scss/root";
 
-@forward "./src/css/variables";
-@forward "./src/css/drawer";
-@forward "./src/css/drawer_modal";
-@forward "./src/css/drawer_switch";
+@forward "./src/scss/variables";
+@forward "./src/scss/drawer";
+@forward "./src/scss/drawer_modal";
+@forward "./src/scss/drawer_switch";
