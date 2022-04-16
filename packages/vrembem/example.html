@@ -13,7 +13,7 @@
      * Root styles
      */
 
-    /* :root {
+    :root {
       --vb-background-root: lightgreen;
       --vb-color-root: #333;
       --vb-popover-background-root: lightblue;
@@ -31,7 +31,7 @@
         --vb-popover-tooltip-background-root: pink;
         --vb-popover-tooltip-color-root: #111;
       }
-    } */
+    }
 
     /**
      * Theme overrides
@@ -153,6 +153,9 @@
   <!-- Implementation scripts -->
   <script>
     console.log(vrembem);
+    const popover = new vrembem.Popover({
+      autoInit: true
+    });
   </script>
 </body>
 </html>

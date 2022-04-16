@@ -9,14 +9,11 @@ $_m: var.$prefix-modifier;
 .#{$_b}popover#{$_m}tooltip {
   --#{$_v}event: hover;
   --#{$_v}placement: top;
-  --#{$_v}arrow-size: #{var.$tooltip-arrow-size};
+  --#{$_v}arrow-size: #{core.vars($_v, "tooltip-arrow-size", var.$tooltip-arrow-size)};
   --#{$_v}arrow-border: none;
-  --#{$_v}width: auto;
-  --#{$_v}max-width: #{var.$tooltip-max-width};
-  --#{$_v}padding: #{var.$tooltip-padding};
-  // --#{$_v}background: #{var.$tooltip-background};
-  // --#{$_v}color: #{var.$tooltip-color};
-  // --#{$_v}font-size: #{var.$tooltip-font-size};
+  width: auto;
+  max-width: core.vars($_v, "tooltip-max-width", var.$tooltip-max-width);
+  padding: core.vars($_v, "tooltip-padding", var.$tooltip-padding);
   background: core.vars($_v, "tooltip-background", var.$tooltip-background);
   color: core.vars($_v, "tooltip-color", var.$tooltip-color);
   font-size: core.vars($_v, "tooltip-font-size", var.$tooltip-font-size);

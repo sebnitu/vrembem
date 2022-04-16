@@ -7,13 +7,13 @@ $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
 .#{$_b}popover#{$_m}size#{$_v}auto {
-  --#{var.$prefix-variable}width: auto;
+  width: auto;
 }
 
 .#{$_b}popover#{$_m}size#{$_v}sm {
-  --#{var.$prefix-variable}width: #{var.$size-sm-width};
+  width: core.vars(var.$prefix-variable, "size-sm-width", var.$size-sm-width);
 }
 
 .#{$_b}popover#{$_m}size#{$_v}lg {
-  --#{var.$prefix-variable}width: #{var.$size-lg-width};
+  width: core.vars(var.$prefix-variable, "size-lg-width", var.$size-lg-width);
 }
