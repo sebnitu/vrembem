@@ -43,15 +43,6 @@
   }
 }
 
-/// Media query mixin can be used for setting styles specifically to retina
-/// screens. Used when setting higher resolution background images.
-/// @param {style block} @content - passed in brackets
-@mixin media-retina() {
-  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    @content;
-  }
-}
-
 /// A gap mixin that creates spacing between an elements children comparable to
 /// the gap property for flexbox. Optionally pass a direction string for
 /// column-gap ("x") and row-gaps ("y") output.
@@ -124,15 +115,6 @@
 @mixin size($width, $height: $width) {
   width: $width;
   height: $height;
-}
-
-/// Adds clearfix styles
-@mixin add-clearfix() {
-  &::after {
-    content: "";
-    display: table;
-    clear: both;
-  }
 }
 
 // Add text overflow styles with ellipsis
