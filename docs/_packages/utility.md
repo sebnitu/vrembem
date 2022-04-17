@@ -144,75 +144,65 @@ The utility component consists of a number of modules with their own set of spec
 
 ## background
 
-Applies background color property. Most options include light, lighter, dark and darker variants.
+Applies background color property.
 
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="swatch-group">
   <div class="swatch-group">
-    <div class="swatch background-primary-lighter"></div>
-    <div class="swatch background-primary-light"></div>
-    <div class="swatch background-primary"></div>
-    <div class="swatch background-primary-dark"></div>
-    <div class="swatch background-primary-darker"></div>
+    <div class="swatch background-primary-10"></div>
+    <div class="swatch background-primary-20"></div>
+    <div class="swatch background-primary-30"></div>
+    <div class="swatch background-primary-40"></div>
+    <div class="swatch background-primary-50"></div>
+    <div class="swatch background-primary-60"></div>
+    <div class="swatch background-primary-70"></div>
+    <div class="swatch background-primary-80"></div>
+    <div class="swatch background-primary-90"></div>
+    <div class="swatch background-primary-95"></div>
+    <div class="swatch background-primary-98"></div>
   </div>
   <div class="swatch-group">
-    <div class="swatch background-secondary-lighter"></div>
-    <div class="swatch background-secondary-light"></div>
-    <div class="swatch background-secondary"></div>
-    <div class="swatch background-secondary-dark"></div>
-    <div class="swatch background-secondary-darker"></div>
+    <div class="swatch background-secondary-10"></div>
+    <div class="swatch background-secondary-20"></div>
+    <div class="swatch background-secondary-30"></div>
+    <div class="swatch background-secondary-40"></div>
+    <div class="swatch background-secondary-50"></div>
+    <div class="swatch background-secondary-60"></div>
+    <div class="swatch background-secondary-70"></div>
+    <div class="swatch background-secondary-80"></div>
+    <div class="swatch background-secondary-90"></div>
+    <div class="swatch background-secondary-95"></div>
+    <div class="swatch background-secondary-98"></div>
   </div>
   <div class="swatch-group">
-    <div class="swatch background-shade-light"></div>
-    <div class="swatch background-shade"></div>
-    <div class="swatch background-shade-dark"></div>
+    <div class="swatch background-neutral-10"></div>
+    <div class="swatch background-neutral-20"></div>
+    <div class="swatch background-neutral-30"></div>
+    <div class="swatch background-neutral-40"></div>
+    <div class="swatch background-neutral-50"></div>
+    <div class="swatch background-neutral-60"></div>
+    <div class="swatch background-neutral-70"></div>
+    <div class="swatch background-neutral-80"></div>
+    <div class="swatch background-neutral-90"></div>
+    <div class="swatch background-neutral-95"></div>
+    <div class="swatch background-neutral-98"></div>
   </div>
   <div class="swatch-group">
-    <div class="swatch background-night-light"></div>
-    <div class="swatch background-night"></div>
-    <div class="swatch background-night-dark"></div>
-  </div>
-  <div class="swatch-group">
-    <div class="swatch background-info-lighter"></div>
-    <div class="swatch background-info-light"></div>
-    <div class="swatch background-info"></div>
-    <div class="swatch background-info-dark"></div>
-    <div class="swatch background-info-darker"></div>
-  </div>
-  <div class="swatch-group">
-    <div class="swatch background-success-lighter"></div>
-    <div class="swatch background-success-light"></div>
-    <div class="swatch background-success"></div>
-    <div class="swatch background-success-dark"></div>
-    <div class="swatch background-success-darker"></div>
-  </div>
-  <div class="swatch-group">
-    <div class="swatch background-caution-lighter"></div>
-    <div class="swatch background-caution-light"></div>
-    <div class="swatch background-caution"></div>
-    <div class="swatch background-caution-dark"></div>
-    <div class="swatch background-caution-darker"></div>
-  </div>
-  <div class="swatch-group">
-    <div class="swatch background-danger-lighter"></div>
-    <div class="swatch background-danger-light"></div>
-    <div class="swatch background-danger"></div>
-    <div class="swatch background-danger-dark"></div>
-    <div class="swatch background-danger-darker"></div>
-  </div>
-  <div class="swatch-group">
-    <div class="swatch background-black"></div>
-    <div class="swatch border border-left-none background-white"></div>
-    <div class="swatch border border-left-none background-transparent"></div>
+    <div class="swatch background-important-10"></div>
+    <div class="swatch background-important-20"></div>
+    <div class="swatch background-important-30"></div>
+    <div class="swatch background-important-40"></div>
+    <div class="swatch background-important-50"></div>
+    <div class="swatch background-important-60"></div>
+    <div class="swatch background-important-70"></div>
+    <div class="swatch background-important-80"></div>
+    <div class="swatch background-important-90"></div>
+    <div class="swatch background-important-95"></div>
+    <div class="swatch background-important-98"></div>
   </div>
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="background-primary-lighter"></div>
-<div class="background-primary-light"></div>
-<div class="background-primary"></div>
-<div class="background-primary-dark"></div>
-<div class="background-primary-darker"></div>
 ...
 ```
 {% include demo_close.html %}

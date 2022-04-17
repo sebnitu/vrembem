@@ -11,6 +11,7 @@
 /// @param {String} $key - The key namespace to output the property under.
 /// @param {Color} $seed - The seed color to get hue and saturation from.
 /// @param {List} $lightness - A list of lightness values to output.
+/// @param {String} $prefix - A prefix to apply to custom properties.
 @mixin custom-property-color-range($key, $seed, $lightness: pal.$lightness, $prefix: pre.$prefix-variable) {
   --#{$prefix}#{$key}-hs: #{math.round(color.hue($seed)), math.round(color.saturation($seed))};
   --#{$prefix}#{$key}: var(--#{$prefix}#{$key}-50);

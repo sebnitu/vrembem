@@ -1,10 +1,12 @@
+$_spacing: 1px;
+
 .swatch-group {
   display: flex;
   flex-wrap: wrap;
-  margin: -2em 0 0 -2em;
+  margin: -$_spacing 0 0 -$_spacing;
 
   > * {
-    margin: 2em 0 0 2em;
+    margin: $_spacing 0 0 $_spacing;
   }
 
   .swatch-group {
