@@ -1,7 +1,7 @@
 @use "sass:color";
 @use "sass:math";
 
-@use "../functions" as fun;
+@use "../mixins" as mix;
 @use "../palette" as pal;
 @use "../prefix" as pre;
 
@@ -10,27 +10,7 @@ $_v: pre.$prefix-variable;
 // TODO: figure out how to output the palette custom properties (CSS Vars)
 
 :root {
-  --#{$_v}primary-hs: #{math.round(fun.strip-units(color.hue(pal.$primary-seed)))}, #{math.round(color.saturation(pal.$primary-seed))};
-  @each $key in pal.$lightness {
-    --#{$_v}primary-#{$key}: hsl(var(--#{$_v}primary-hs), #{$key}%);
+  @each $key, $value in pal.$color-seeds {
+    @include mix.custom-property-color-range($key, $value);
   }
-  --#{$_v}primary: var(--#{$_v}primary-50);
-
-  --#{$_v}secondary-hs: #{math.round(fun.strip-units(color.hue(pal.$secondary-seed)))}, #{math.round(color.saturation(pal.$secondary-seed))};
-  @each $key in pal.$lightness {
-    --#{$_v}secondary-#{$key}: hsl(var(--#{$_v}secondary-hs), #{$key}%);
-  }
-  --#{$_v}secondary: var(--#{$_v}primary-50);
-
-  --#{$_v}neutral-hs: #{math.round(fun.strip-units(color.hue(pal.$neutral-seed)))}, #{math.round(color.saturation(pal.$neutral-seed))};
-  @each $key in pal.$lightness {
-    --#{$_v}neutral-#{$key}: hsl(var(--#{$_v}neutral-hs), #{$key}%);
-  }
-  --#{$_v}neutral: var(--#{$_v}primary-50);
-
-  --#{$_v}important-hs: #{math.round(fun.strip-units(color.hue(pal.$important-seed)))}, #{math.round(color.saturation(pal.$important-seed))};
-  @each $key in pal.$lightness {
-    --#{$_v}important-#{$key}: hsl(var(--#{$_v}important-hs), #{$key}%);
-  }
-  --#{$_v}important: var(--#{$_v}primary-50);
 }

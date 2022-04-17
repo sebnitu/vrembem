@@ -1,140 +1,99 @@
 @use "sass:color";
+@use "sass:list";
+@use "sass:map";
+@use "sass:math";
+
+@use "./functions" as fun;
 @use "./prefix" as pre;
 
 $_v: pre.$prefix-variable;
 
-// Palette variables
+// Palette seeds
 // ---
 
-// Base
+$color-seeds: (
+  "primary": hsl(152, 60%, 50%),
+  "secondary": hsl(214, 50%, 30%),
+  "neutral": hsl(213, 20%, 10%),
+  "important": hsl(3, 100%, 40%),
+) !default;
+
+// Build palette color-map
+// ---
+
+$color-map: () !default;
+$lightness: 10, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98 !default;
+
+@function build-color-range-map($key, $seed) {
+  $map: ();
+  @each $number in $lightness {
+    $map: map.set(
+      $map,
+      $number,
+      var(--#{$_v}#{$key}-#{$number}, color.change($seed, $lightness: $number * 1%))
+    );
+  }
+  @return $map;
+}
+
+@each $key, $value in $color-seeds {
+  $color-map: map.set($color-map, $key, build-color-range-map($key, $value));
+}
+
+// Palette variable
+// ---
 
 $white: #fff !default;
 $black: #000 !default;
-$lightness: 10, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98 !default;
 
-// Palette seeds
-
-$primary-seed: hsl(152, 60%, 50%) !default;
-$secondary-seed: hsl(214, 50%, 30%) !default;
-$neutral-seed: hsl(213, 20%, 10%) !default;
-$important-seed: hsl(3, 100%, 40%) !default;
-
-// Primary
-
-$primary-10: var(--#{$_v}primary-10, color.change($primary-seed, $lightness: 10%));
-$primary-20: var(--#{$_v}primary-20, color.change($primary-seed, $lightness: 20%));
-$primary-30: var(--#{$_v}primary-30, color.change($primary-seed, $lightness: 30%));
-$primary-40: var(--#{$_v}primary-40, color.change($primary-seed, $lightness: 40%));
-$primary-50: var(--#{$_v}primary-50, color.change($primary-seed, $lightness: 50%));
-$primary-60: var(--#{$_v}primary-60, color.change($primary-seed, $lightness: 60%));
-$primary-70: var(--#{$_v}primary-70, color.change($primary-seed, $lightness: 70%));
-$primary-80: var(--#{$_v}primary-80, color.change($primary-seed, $lightness: 80%));
-$primary-90: var(--#{$_v}primary-90, color.change($primary-seed, $lightness: 90%));
-$primary-95: var(--#{$_v}primary-95, color.change($primary-seed, $lightness: 95%));
-$primary-98: var(--#{$_v}primary-98, color.change($primary-seed, $lightness: 98%));
-
-$primary-color-map: (
-  "10": $primary-10,
-  "20": $primary-20,
-  "30": $primary-30,
-  "40": $primary-40,
-  "50": $primary-50,
-  "60": $primary-60,
-  "70": $primary-70,
-  "80": $primary-80,
-  "90": $primary-90,
-  "95": $primary-95,
-  "98": $primary-98,
-);
-
+$primary-10: map.get(map.get($color-map, "primary"), 10) !default;
+$primary-20: map.get(map.get($color-map, "primary"), 20) !default;
+$primary-30: map.get(map.get($color-map, "primary"), 30) !default;
+$primary-40: map.get(map.get($color-map, "primary"), 40) !default;
+$primary-50: map.get(map.get($color-map, "primary"), 50) !default;
+$primary-60: map.get(map.get($color-map, "primary"), 60) !default;
+$primary-70: map.get(map.get($color-map, "primary"), 70) !default;
+$primary-80: map.get(map.get($color-map, "primary"), 80) !default;
+$primary-90: map.get(map.get($color-map, "primary"), 90) !default;
+$primary-95: map.get(map.get($color-map, "primary"), 95) !default;
+$primary-98: map.get(map.get($color-map, "primary"), 98) !default;
 $primary: $primary-50 !default;
 
-// Secondary
-
-$secondary-10: var(--#{$_v}secondary-10, color.change($secondary-seed, $lightness: 10%));
-$secondary-20: var(--#{$_v}secondary-20, color.change($secondary-seed, $lightness: 20%));
-$secondary-30: var(--#{$_v}secondary-30, color.change($secondary-seed, $lightness: 30%));
-$secondary-40: var(--#{$_v}secondary-40, color.change($secondary-seed, $lightness: 40%));
-$secondary-50: var(--#{$_v}secondary-50, color.change($secondary-seed, $lightness: 50%));
-$secondary-60: var(--#{$_v}secondary-60, color.change($secondary-seed, $lightness: 60%));
-$secondary-70: var(--#{$_v}secondary-70, color.change($secondary-seed, $lightness: 70%));
-$secondary-80: var(--#{$_v}secondary-80, color.change($secondary-seed, $lightness: 80%));
-$secondary-90: var(--#{$_v}secondary-90, color.change($secondary-seed, $lightness: 90%));
-$secondary-95: var(--#{$_v}secondary-95, color.change($secondary-seed, $lightness: 95%));
-$secondary-98: var(--#{$_v}secondary-98, color.change($secondary-seed, $lightness: 98%));
-
-$secondary-color-map: (
-  "10": $secondary-10,
-  "20": $secondary-20,
-  "30": $secondary-30,
-  "40": $secondary-40,
-  "50": $secondary-50,
-  "60": $secondary-60,
-  "70": $secondary-70,
-  "80": $secondary-80,
-  "90": $secondary-90,
-  "95": $secondary-95,
-  "98": $secondary-98,
-);
-
+$secondary-10: map.get(map.get($color-map, "secondary"), 10) !default;
+$secondary-20: map.get(map.get($color-map, "secondary"), 20) !default;
+$secondary-30: map.get(map.get($color-map, "secondary"), 30) !default;
+$secondary-40: map.get(map.get($color-map, "secondary"), 40) !default;
+$secondary-50: map.get(map.get($color-map, "secondary"), 50) !default;
+$secondary-60: map.get(map.get($color-map, "secondary"), 60) !default;
+$secondary-70: map.get(map.get($color-map, "secondary"), 70) !default;
+$secondary-80: map.get(map.get($color-map, "secondary"), 80) !default;
+$secondary-90: map.get(map.get($color-map, "secondary"), 90) !default;
+$secondary-95: map.get(map.get($color-map, "secondary"), 95) !default;
+$secondary-98: map.get(map.get($color-map, "secondary"), 98) !default;
 $secondary: $secondary-50 !default;
 
-// Neutral
-
-$neutral-10: var(--#{$_v}neutral-10, color.change($neutral-seed, $lightness: 10%));
-$neutral-20: var(--#{$_v}neutral-20, color.change($neutral-seed, $lightness: 20%));
-$neutral-30: var(--#{$_v}neutral-30, color.change($neutral-seed, $lightness: 30%));
-$neutral-40: var(--#{$_v}neutral-40, color.change($neutral-seed, $lightness: 40%));
-$neutral-50: var(--#{$_v}neutral-50, color.change($neutral-seed, $lightness: 50%));
-$neutral-60: var(--#{$_v}neutral-60, color.change($neutral-seed, $lightness: 60%));
-$neutral-70: var(--#{$_v}neutral-70, color.change($neutral-seed, $lightness: 70%));
-$neutral-80: var(--#{$_v}neutral-80, color.change($neutral-seed, $lightness: 80%));
-$neutral-90: var(--#{$_v}neutral-90, color.change($neutral-seed, $lightness: 90%));
-$neutral-95: var(--#{$_v}neutral-95, color.change($neutral-seed, $lightness: 95%));
-$neutral-98: var(--#{$_v}neutral-98, color.change($neutral-seed, $lightness: 98%));
-
-$neutral-color-map: (
-  "10": $neutral-10,
-  "20": $neutral-20,
-  "30": $neutral-30,
-  "40": $neutral-40,
-  "50": $neutral-50,
-  "60": $neutral-60,
-  "70": $neutral-70,
-  "80": $neutral-80,
-  "90": $neutral-90,
-  "95": $neutral-95,
-  "98": $neutral-98,
-);
-
+$neutral-10: map.get(map.get($color-map, "neutral"), 10) !default;
+$neutral-20: map.get(map.get($color-map, "neutral"), 20) !default;
+$neutral-30: map.get(map.get($color-map, "neutral"), 30) !default;
+$neutral-40: map.get(map.get($color-map, "neutral"), 40) !default;
+$neutral-50: map.get(map.get($color-map, "neutral"), 50) !default;
+$neutral-60: map.get(map.get($color-map, "neutral"), 60) !default;
+$neutral-70: map.get(map.get($color-map, "neutral"), 70) !default;
+$neutral-80: map.get(map.get($color-map, "neutral"), 80) !default;
+$neutral-90: map.get(map.get($color-map, "neutral"), 90) !default;
+$neutral-95: map.get(map.get($color-map, "neutral"), 95) !default;
+$neutral-98: map.get(map.get($color-map, "neutral"), 98) !default;
 $neutral: $neutral-50 !default;
 
-// Important
-
-$important-10: var(--#{$_v}important-10, color.change($important-seed, $lightness: 10%));
-$important-20: var(--#{$_v}important-20, color.change($important-seed, $lightness: 20%));
-$important-30: var(--#{$_v}important-30, color.change($important-seed, $lightness: 30%));
-$important-40: var(--#{$_v}important-40, color.change($important-seed, $lightness: 40%));
-$important-50: var(--#{$_v}important-50, color.change($important-seed, $lightness: 50%));
-$important-60: var(--#{$_v}important-60, color.change($important-seed, $lightness: 60%));
-$important-70: var(--#{$_v}important-70, color.change($important-seed, $lightness: 70%));
-$important-80: var(--#{$_v}important-80, color.change($important-seed, $lightness: 80%));
-$important-90: var(--#{$_v}important-90, color.change($important-seed, $lightness: 90%));
-$important-95: var(--#{$_v}important-95, color.change($important-seed, $lightness: 95%));
-$important-98: var(--#{$_v}important-98, color.change($important-seed, $lightness: 98%));
-
-$important-color-map: (
-  "10": $important-10,
-  "20": $important-20,
-  "30": $important-30,
-  "40": $important-40,
-  "50": $important-50,
-  "60": $important-60,
-  "70": $important-70,
-  "80": $important-80,
-  "90": $important-90,
-  "95": $important-95,
-  "98": $important-98,
-);
-
+$important-10: map.get(map.get($color-map, "important"), 10) !default;
+$important-20: map.get(map.get($color-map, "important"), 20) !default;
+$important-30: map.get(map.get($color-map, "important"), 30) !default;
+$important-40: map.get(map.get($color-map, "important"), 40) !default;
+$important-50: map.get(map.get($color-map, "important"), 50) !default;
+$important-60: map.get(map.get($color-map, "important"), 60) !default;
+$important-70: map.get(map.get($color-map, "important"), 70) !default;
+$important-80: map.get(map.get($color-map, "important"), 80) !default;
+$important-90: map.get(map.get($color-map, "important"), 90) !default;
+$important-95: map.get(map.get($color-map, "important"), 95) !default;
+$important-98: map.get(map.get($color-map, "important"), 98) !default;
 $important: $important-50 !default;
