@@ -14,25 +14,25 @@ $_c: var.$class-foreground;
   }
 
   @each $key, $value in core.$primary-color-map {
-    .#{$_u}#{$_c}-#{$key} {
+    .#{$_u}#{$_c}-primary-#{$key} {
       color: $value !important;
     }
   }
 
   @each $key, $value in core.$secondary-color-map {
-    .#{$_u}#{$_c}-#{$key} {
+    .#{$_u}#{$_c}-secondary-#{$key} {
       color: $value !important;
     }
   }
 
   @each $key, $value in core.$neutral-color-map {
-    .#{$_u}#{$_c}-#{$key} {
+    .#{$_u}#{$_c}-neutral-#{$key} {
       color: $value !important;
     }
   }
 
   @each $key, $value in core.$important-color-map {
-    .#{$_u}#{$_c}-#{$key} {
+    .#{$_u}#{$_c}-important-#{$key} {
       color: $value !important;
     }
   }

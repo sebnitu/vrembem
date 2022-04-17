@@ -1,6 +1,6 @@
-@use "../variables" as var;
+@use "../prefix" as pre;
 
-$_v: var.$prefix-variable;
+$_v: pre.$prefix-variable;
 
 :root {
   @if ($_v) {

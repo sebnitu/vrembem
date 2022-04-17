@@ -10,28 +10,33 @@
   <style>
 
     /**
-     * Root styles
+     * Root palette
      */
 
     /* :root {
-      --vb-background-root: lightgreen;
-      --vb-color-root: #333;
-      --vb-popover-background-root: lightblue;
-      --vb-popover-color-root: #111;
-      --vb-popover-tooltip-background-root: #111;
-      --vb-popover-tooltip-color-root: pink;
+      --vb-primary-hs: 300, 50%;
+      --vb-secondary-hs: 143, 46%;
+      --vb-neutral-hs: 50, 6%;
+      --vb-important-hs: 30, 75%;
+    } */
+
+    /**
+     * Root theme
+     */
+
+    :root {
+      --vb-background-root: #fff;
+      --vb-background-dark-root: var(--vb-secondary-95);
+      --vb-foreground-root: var(--vb-neutral-30);
     }
 
     @media (prefers-color-scheme: dark) {
       :root {
-        --vb-background-root: #333;
-        --vb-color-root: lightgreen;
-        --vb-popover-background-root: #111;
-        --vb-popover-color-root: lightblue;
-        --vb-popover-tooltip-background-root: pink;
-        --vb-popover-tooltip-color-root: #111;
+        --vb-background-root: hsl(var(--vb-secondary-hs), 8%);
+        --vb-background-dark-root: hsl(var(--vb-secondary-hs), 6%);
+        --vb-foreground-root: var(--vb-primary-90);
       }
-    } */
+    }
 
     /**
      * Theme overrides
@@ -39,29 +44,20 @@
     
     .theme-root {
       --vb-background: initial;
-      --vb-color: initial;
-      --vb-popover-background: initial;
-      --vb-popover-color: initial;
-      --vb-popover-tooltip-background: initial;
-      --vb-popover-tooltip-color: initial;
+      --vb-background-dark: initial;
+      --vb-foreground: initial;
     }
 
     .theme-light {
-      --vb-background: lightgreen;
-      --vb-color: #333;
-      --vb-popover-background: lightblue;
-      --vb-popover-color: #111;
-      --vb-popover-tooltip-background: #111;
-      --vb-popover-tooltip-color: pink;
+      --vb-background: #fff;
+      --vb-background-dark: var(--vb-secondary-95);
+      --vb-foreground: var(--vb-neutral-30);
     }
 
     .theme-dark {
-      --vb-background: #333;
-      --vb-color: lightgreen;
-      --vb-popover-background: #111;
-      --vb-popover-color: lightblue;
-      --vb-popover-tooltip-background: pink;
-      --vb-popover-tooltip-color: #111;
+      --vb-background: hsl(var(--vb-secondary-hs), 8%);
+      --vb-background-dark: hsl(var(--vb-secondary-hs), 6%);
+      --vb-foreground: var(--vb-primary-90);
     }
 
     /**
@@ -75,10 +71,18 @@
       border: 1px solid rgba(0,0,0, 0.1);
     }
 
+    /**
+     * Layout styles
+     */
+
+    header {
+      background-color: var(--vb-background-dark, var(--vb-background-dark-root));
+    }
+
   </style>
 </head>
 <body>
-  <header class="section background-secondary-98">
+  <header class="section">
     <div class="section__container gap-y">
       <h1 class="text-size-lg">Vrembem</h1>
       <p class="max-width-xs">
@@ -170,32 +174,32 @@
       
       <div class="gap-y">
         <div class="flex flex-items-equal">
-          <div class="padding-xl background-primary-30 foreground-primary-90">
-            <p>foreground-primary-90 on background-primary-20</p>
+          <div class="padding-xl background-primary-40 foreground-primary-90">
+            <p>foreground-primary-90 on background-primary-40</p>
           </div>
           <div class="padding-xl background-primary-90 foreground-primary-20">
             <p>foreground-primary-20 on background-primary-90</p>
           </div>
         </div>
         <div class="flex flex-items-equal">
-          <div class="padding-xl background-secondary-30 foreground-secondary-90">
-            <p>foreground-secondary-90 on background-secondary-20</p>
+          <div class="padding-xl background-secondary-40 foreground-secondary-90">
+            <p>foreground-secondary-90 on background-secondary-40</p>
           </div>
           <div class="padding-xl background-secondary-90 foreground-secondary-20">
             <p>foreground-secondary-20 on background-secondary-90</p>
           </div>
         </div>
         <div class="flex flex-items-equal">
-          <div class="padding-xl background-neutral-30 foreground-neutral-90">
-            <p>foreground-neutral-90 on background-neutral-20</p>
+          <div class="padding-xl background-neutral-40 foreground-neutral-90">
+            <p>foreground-neutral-90 on background-neutral-40</p>
           </div>
           <div class="padding-xl background-neutral-90 foreground-neutral-20">
             <p>foreground-neutral-20 on background-neutral-90</p>
           </div>
         </div>
         <div class="flex flex-items-equal">
-          <div class="padding-xl background-important-30 foreground-important-90">
-            <p>foreground-important-90 on background-important-20</p>
+          <div class="padding-xl background-important-40 foreground-important-90">
+            <p>foreground-important-90 on background-important-40</p>
           </div>
           <div class="padding-xl background-important-90 foreground-important-20">
             <p>foreground-important-20 on background-important-90</p>

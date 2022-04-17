@@ -97,6 +97,13 @@
   @return $result;
 }
 
+/// Removes units from a value.
+/// @param {Number} $number - The number to strip units from.
+/// @return {Number} - The unitless number.
+@function strip-units($number) {
+  @return math.div($number, ($number * 0 + 1));
+}
+
 /// Returns a var stack.
 /// @param {String} $prefix - String to prefix CSS variables with.
 /// @param {String} $prop - The property name of the CSS variable.

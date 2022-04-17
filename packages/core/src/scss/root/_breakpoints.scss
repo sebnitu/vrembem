@@ -1,6 +1,7 @@
+@use "../prefix" as pre;
 @use "../variables" as var;
 
-$_v: var.$prefix-variable;
+$_v: pre.$prefix-variable;
 
 :root {
   @each $key, $value in var.$breakpoints {

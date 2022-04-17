@@ -26,25 +26,25 @@ $_c: var.$class-background;
   }
 
   @each $key, $value in core.$primary-color-map {
-    .#{$_u}#{$_c}-#{$key} {
+    .#{$_u}#{$_c}-primary-#{$key} {
       background: $value !important;
     }
   }
 
   @each $key, $value in core.$secondary-color-map {
-    .#{$_u}#{$_c}-#{$key} {
+    .#{$_u}#{$_c}-secondary-#{$key} {
       background: $value !important;
     }
   }
 
   @each $key, $value in core.$neutral-color-map {
-    .#{$_u}#{$_c}-#{$key} {
+    .#{$_u}#{$_c}-neutral-#{$key} {
       background: $value !important;
     }
   }
 
   @each $key, $value in core.$important-color-map {
-    .#{$_u}#{$_c}-#{$key} {
+    .#{$_u}#{$_c}-important-#{$key} {
       background: $value !important;
     }
   }

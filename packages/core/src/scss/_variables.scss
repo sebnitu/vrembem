@@ -1,14 +1,6 @@
 @use "./functions" as fun;
-@use "./palette";
-
-// Prefixes
-// ---
-
-$prefix-variable: "vb-" !default;
-$prefix-block: null !default;
-$prefix-element: "__" !default;
-$prefix-modifier: "_" !default;
-$prefix-modifier-value: "_" !default;
+@use "./palette" as pal;
+@use "./prefix" as pre;
 
 // Breakpoints
 // ---
@@ -79,21 +71,16 @@ $transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !default;
 
 // Theme variables
 // ---
-// - background
-// - foreground
-// - shadow
-// - action (links)
-// - border
 
-$background: fun.vars($prefix-variable, "background", palette.$white) !default;
-$background-dark: fun.vars($prefix-variable, "background-dark", palette.$neutral-98) !default;
-$background-darker: fun.vars($prefix-variable, "background-darker", palette.$neutral-95) !default;
+$background: fun.vars(pre.$prefix-variable, "background", pal.$white) !default;
+$background-dark: fun.vars(pre.$prefix-variable, "background-dark", pal.$neutral-98) !default;
+$background-darker: fun.vars(pre.$prefix-variable, "background-darker", pal.$neutral-95) !default;
 
-$foreground: fun.vars($prefix-variable, "foreground", palette.$neutral-20) !default;
-$foreground-light: fun.vars($prefix-variable, "foreground", palette.$neutral-40) !default;
-$foreground-lighter: fun.vars($prefix-variable, "foreground", palette.$neutral-60) !default;
+$foreground: fun.vars(pre.$prefix-variable, "foreground", pal.$neutral-20) !default;
+$foreground-light: fun.vars(pre.$prefix-variable, "foreground", pal.$neutral-40) !default;
+$foreground-lighter: fun.vars(pre.$prefix-variable, "foreground", pal.$neutral-60) !default;
 
-$shadow-color: palette.$neutral-20 !default;
+$shadow-color: pal.$neutral-20 !default;
 $shadow-1: 0 0 2px 1px rgba($shadow-color, 0.05), 0 1px 3px rgba($shadow-color, 0.2) !default;
 $shadow-2: 0 0 2px 1px rgba($shadow-color, 0.05), 0 2px 6px rgba($shadow-color, 0.2) !default;
 $shadow-3: 0 0 2px 1px rgba($shadow-color, 0.05), 0 4px 12px rgba($shadow-color, 0.2) !default;
@@ -101,15 +88,15 @@ $shadow-4: 0 0 2px 1px rgba($shadow-color, 0.05), 0 8px 18px rgba($shadow-color,
 $shadow-5: 0 0 2px 1px rgba($shadow-color, 0.05), 0 12px 24px rgba($shadow-color, 0.2) !default;
 $shadow: $shadow-2 !default;
 
-$action: palette.$primary-40 !default;
-$action-hover: palette.$primary-30 !default;
-$action-focus: palette.$primary-30 !default;
-$action-active: palette.$primary-30 !default;
+$action: pal.$primary !default;
+$action-hover: pal.$primary-40 !default;
+$action-focus: pal.$primary-40 !default;
+$action-active: pal.$primary-40 !default;
 
 $border-width: 1px !default;
 $border-style: solid !default;
-$border-color: rgba(palette.$neutral-10, 0.1) !default;
+$border-color: rgba(pal.$neutral-10, 0.1) !default;
 $border: $border-width $border-style $border-color !default;
 
-$border-radius: fun.vars($prefix-variable, "border-radius", 0.25rem) !default;
-$border-radius-circle: fun.vars($prefix-variable, "border-radius-circle", 9999px) !default;
+$border-radius: fun.vars(pre.$prefix-variable, "border-radius", 0.25rem) !default;
+$border-radius-circle: fun.vars(pre.$prefix-variable, "border-radius-circle", 9999px) !default;
