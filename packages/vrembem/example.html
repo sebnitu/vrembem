@@ -13,7 +13,7 @@
      * Root styles
      */
 
-    :root {
+    /* :root {
       --vb-background-root: lightgreen;
       --vb-color-root: #333;
       --vb-popover-background-root: lightblue;
@@ -31,7 +31,7 @@
         --vb-popover-tooltip-background-root: pink;
         --vb-popover-tooltip-color-root: #111;
       }
-    }
+    } */
 
     /**
      * Theme overrides
@@ -64,10 +64,21 @@
       --vb-popover-tooltip-color: #111;
     }
 
+    /**
+     * Box styles
+     */
+
+    .box {
+      width: 64px;
+      height: 64px;
+      border-radius: 6px;
+      border: 1px solid rgba(0,0,0, 0.1);
+    }
+
   </style>
 </head>
 <body>
-  <header class="section background-shade">
+  <header class="section background-secondary-98">
     <div class="section__container gap-y">
       <h1 class="text-size-lg">Vrembem</h1>
       <p class="max-width-xs">
@@ -97,53 +108,79 @@
   <section class="section">
     <div class="section__container gap-y">
 
-      <h2>@vrembem/popover</h2>
-      <div>
-        <div class="flex flex-wrap flex-gap">
-          <div>
-            <button class="button" aria-controls="popover-click">Popover Click</button>
-            <div id="popover-click" class="popover">
-              <ul class="menu">
-                <li class="menu__item">
-                  <button class="menu__action">
-                    <span class="menu__text">Add</span>
-                    <span class="color-subtle">&plus;</span>
-                  </button>
-                </li>
-                <li class="menu__item">
-                  <button class="menu__action">
-                    <span class="menu__text">Remove</span>
-                    <span class="color-subtle">&minus;</span>
-                  </button>
-                </li>
-                <li class="menu__sep"></li>
-                <li class="menu__item">
-                  <button class="menu__action">
-                    <span class="menu__text">Edit</span>
-                    <span>&#9999;&#65039;</span>
-                  </button>
-                </li>
-              </ul>
-              <span class="popover__arrow"></span>
-            </div>
+      <h2>Palette</h2>
+
+      <div class="level">
+        <span class="box background-primary-10"></span>
+        <span class="box background-primary-20"></span>
+        <span class="box background-primary-30"></span>
+        <span class="box background-primary-40"></span>
+        <span class="box background-primary-50"></span>
+        <span class="box background-primary-60"></span>
+        <span class="box background-primary-70"></span>
+        <span class="box background-primary-80"></span>
+        <span class="box background-primary-90"></span>
+        <span class="box background-primary-95"></span>
+        <span class="box background-primary-98"></span>
+      </div>
+
+      <div class="level">
+        <span class="box background-secondary-10"></span>
+        <span class="box background-secondary-20"></span>
+        <span class="box background-secondary-30"></span>
+        <span class="box background-secondary-40"></span>
+        <span class="box background-secondary-50"></span>
+        <span class="box background-secondary-60"></span>
+        <span class="box background-secondary-70"></span>
+        <span class="box background-secondary-80"></span>
+        <span class="box background-secondary-90"></span>
+        <span class="box background-secondary-95"></span>
+        <span class="box background-secondary-98"></span>
+      </div>
+
+      <div class="level">
+        <span class="box background-neutral-10"></span>
+        <span class="box background-neutral-20"></span>
+        <span class="box background-neutral-30"></span>
+        <span class="box background-neutral-40"></span>
+        <span class="box background-neutral-50"></span>
+        <span class="box background-neutral-60"></span>
+        <span class="box background-neutral-70"></span>
+        <span class="box background-neutral-80"></span>
+        <span class="box background-neutral-90"></span>
+        <span class="box background-neutral-95"></span>
+        <span class="box background-neutral-98"></span>
+      </div>
+
+      <h2>Example usage</h2>
+      
+      <div class="gap-y">
+        <div class="flex flex-items-equal">
+          <div class="padding-xl background-primary-20 foreground-primary-80">
+            <p>foreground-primary-80 on background-primary-80</p>
           </div>
-          <div>
-            <button class="button" aria-controls="popover-hover">Popover Hover</button>
-            <div id="popover-hover" class="popover popover_size_lg" style="--popover-event: hover;" tabindex="0">
-              <p class="padding-sm">Random content, but it's focusable thanks to the tabindex attribute!</p>
-              <span class="popover__arrow"></span>
-            </div>
+          <div class="padding-xl background-primary-80 foreground-primary-20">
+            <p>foreground-primary-20 on background-primary-80</p>
           </div>
-          <div>
-            <button class="button" aria-describedby="popover-tooltip">Tooltip Trigger</button>
-            <div id="popover-tooltip" class="popover popover_tooltip" role="tooltip">
-              This is a tooltip...
-              <span class="popover__arrow"></span>
-            </div>
+        </div>
+        <div class="flex flex-items-equal">
+          <div class="padding-xl background-secondary-20 foreground-secondary-80">
+            <p>foreground-secondary-80 on background-secondary-20</p>
+          </div>
+          <div class="padding-xl background-secondary-80 foreground-secondary-20">
+            <p>foreground-secondary-20 on background-secondary-80</p>
+          </div>
+        </div>
+        <div class="flex flex-items-equal">
+          <div class="padding-xl background-neutral-20 foreground-neutral-80">
+            <p>foreground-neutral-80 on background-neutral-20</p>
+          </div>
+          <div class="padding-xl background-neutral-80 foreground-neutral-20">
+            <p>foreground-neutral-20 on background-neutral-80</p>
           </div>
         </div>
       </div>
-      
+
     </div>
   </section>
 
@@ -153,9 +190,6 @@
   <!-- Implementation scripts -->
   <script>
     console.log(vrembem);
-    const popover = new vrembem.Popover({
-      autoInit: true
-    });
   </script>
 </body>
 </html>

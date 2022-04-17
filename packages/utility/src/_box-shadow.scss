@@ -9,10 +9,6 @@ $_c: var.$class-box-shadow;
     box-shadow: core.$box-shadow !important;
   }
 
-  .#{$_u}#{$_c}-flat {
-    box-shadow: core.$box-shadow-flat !important;
-  }
-
   .#{$_u}#{$_c}-1dp {
     box-shadow: core.$box-shadow-1dp !important;
   }
