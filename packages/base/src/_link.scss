@@ -10,30 +10,4 @@ $_t: var.$class-type;
   .#{$_b}#{$_c} {
     @include mix.link();
   }
-
-  .#{$_b}#{$_c}#{$_m}subtle {
-    @include mix.link-modifier("subtle");
-  }
-
-  .#{$_b}#{$_c}#{$_m}invert {
-    @include mix.link-modifier("invert");
-  }
-
-  .#{$_b}#{$_c}#{$_m}invert-subtle {
-    @include mix.link-modifier("invert-subtle");
-  }
-}
-
-@if (var.$output-type) {
-  .#{$_b}#{$_t} .#{$_b}#{$_c}#{$_m}subtle {
-    @include mix.link-modifier("subtle");
-  }
-
-  .#{$_b}#{$_t} .#{$_b}#{$_c}#{$_m}invert {
-    @include mix.link-modifier("invert");
-  }
-
-  .#{$_b}#{$_t} .#{$_b}#{$_c}#{$_m}invert-subtle {
-    @include mix.link-modifier("invert-subtle");
-  }
 }

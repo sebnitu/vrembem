@@ -4,7 +4,7 @@
   position: relative;
   z-index: 4;
   flex-grow: 1;
-  background: $core-shade;
+  background: $core-background-dark;
 
   &.is-active {
     border-color: $core-primary;
@@ -20,7 +20,7 @@
     &:focus,
     &.is-active {
       background: $core-white;
-      box-shadow: $core-box-shadow;
+      box-shadow: $core-shadow;
       color: $core-primary;
     }
   }

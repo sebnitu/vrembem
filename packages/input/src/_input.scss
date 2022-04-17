@@ -55,6 +55,6 @@ $_b: var.$prefix-block;
   }
 
   &::placeholder {
-    color: core.$color-subtle;
+    color: core.$foreground-lighter;
   }
 }

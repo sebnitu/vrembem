@@ -7,9 +7,9 @@ $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
 .#{$_b}button#{$_m}color#{$_v}primary {
-  @include mix.button-variant(core.$white, core.$primary);
+  @include mix.button-variant(core.$white, core.$primary-50);
 }
 
 .#{$_b}button#{$_m}color#{$_v}secondary {
-  @include mix.button-variant(core.$white, core.$secondary);
+  @include mix.button-variant(core.$white, core.$secondary-50);
 }

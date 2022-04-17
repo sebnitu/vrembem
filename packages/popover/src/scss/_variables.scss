@@ -20,14 +20,14 @@ $border: null !default;
 $border-radius: core.$border-radius !default;
 $background: core.$background !default;
 $background-clip: padding-box !default;
-$box-shadow: core.$box-shadow-8dp !default;
+$box-shadow: core.$shadow-2 !default;
 $font-size: core.$font-size-sm !default;
-$color: core.$color !default;
+$color: core.$foreground !default;
 $line-height: null !default;
 
 $arrow-size: 12px !default;
 $arrow-padding: 10 !default;
-$arrow-border: core.$border-light !default;
+$arrow-border: core.$border !default;
 
 $size-sm-width: 12em !default;
 $size-lg-width: 20em !default;
@@ -35,6 +35,6 @@ $size-lg-width: 20em !default;
 $tooltip-arrow-size: 8px !default;
 $tooltip-max-width: 16em !default;
 $tooltip-padding: 0.5em 0.75em !default;
-$tooltip-background: core.$color !default;
+$tooltip-background: core.$foreground !default;
 $tooltip-color: core.$background !default;
 $tooltip-font-size: 0.75em !default;

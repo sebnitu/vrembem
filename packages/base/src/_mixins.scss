@@ -123,65 +123,6 @@
   line-height: $line-height;
 }
 
-// Link
-// ---
-
-@mixin link() {
-  transition: var.$link-transition;
-  border-bottom: var.$link-border;
-  color: var.$link-color;
-  text-decoration: var.$link-text-decoration;
-
-  &:hover {
-    border-bottom: var.$link-border-hover;
-    color: var.$link-color-hover;
-    text-decoration: var.$link-text-decoration-hover;
-  }
-
-  &:focus {
-    outline: var.$link-outline-focus;
-    outline-offset: var.$link-outline-focus-offset;
-    border-bottom: var.$link-border-hover;
-    color: var.$link-color-hover;
-    text-decoration: var.$link-text-decoration-hover;
-  }
-}
-
-@mixin link-modifier($modifier) {
-  @if $modifier == "subtle" {
-    border-color: var.$link-subtle-border-color;
-    color: var.$link-subtle-color;
-
-    &:hover,
-    &:focus {
-      border-color: var.$link-subtle-border-color-hover;
-      color: var.$link-subtle-color-hover;
-    }
-  }
-
-  @else if $modifier == "invert" {
-    border-color: var.$link-invert-border-color;
-    color: var.$link-invert-color;
-
-    &:hover,
-    &:focus {
-      border-color: var.$link-invert-border-color-hover;
-      color: var.$link-invert-color-hover;
-    }
-  }
-
-  @else if $modifier == "invert-subtle" {
-    border-color: var.$link-invert-subtle-border-color;
-    color: var.$link-invert-subtle-color;
-
-    &:hover,
-    &:focus {
-      border-color: var.$link-invert-subtle-border-color-hover;
-      color: var.$link-invert-subtle-color-hover;
-    }
-  }
-}
-
 // List
 // ---
 
@@ -199,6 +140,26 @@
   }
 }
 
+// Link
+// ---
+
+@mixin link() {
+  color: var.$link-color;
+  text-decoration: var.$link-decoration;
+
+  &:hover {
+    color: var.$link-color-hover;
+    text-decoration: var.$link-decoration-hover;
+  }
+
+  &:focus {
+    outline: var.$link-outline-focus;
+    outline-offset: var.$link-outline-focus-offset;
+    color: var.$link-color-hover;
+    text-decoration: var.$link-decoration-hover;
+  }
+}
+
 // Pre
 // ---
 
@@ -208,7 +169,7 @@
   border: var.$pre-border;
   border-radius: var.$pre-border-radius;
   background: var.$pre-background;
-  color: var.$pre-color;
+  color: var.$pre-foreground;
   font-family: var.$font-family-mono;
 
   code {

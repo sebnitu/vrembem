@@ -46,8 +46,8 @@ $class-type: "type" !default;
 
 $root-height: 100% !default;
 $body-background: core.$background !default;
-$body-color: core.$color !default;
-$color-caption: core.$color-subtle !default;
+$body-color: core.$foreground !default;
+$color-caption: core.$foreground-light !default;
 $font-family: core.$font-family !default;
 $font-family-mono: core.$font-family-mono !default;
 $font-size: core.$font-size !default;
@@ -69,12 +69,11 @@ $blockquote-padding: 1.5em !default;
 $blockquote-gap: 1em !default;
 $blockquote-color: inherit !default;
 $blockquote-background: null !default;
-$blockquote-border: core.$border-light !default;
-$blockquote-border-color-invert: core.$border-color-invert !default;
+$blockquote-border: core.$border !default;
 $blockquote-border-radius: null !default;
 $blockquote-accent-width: 4px !default;
 $blockquote-accent-offset: -1px !default;
-$blockquote-accent-color: core.$primary !default;
+$blockquote-accent-color: core.$primary-50 !default;
 
 // Code
 // ---
@@ -83,8 +82,7 @@ $code-padding: null !default;
 $code-background: null !default;
 $code-border: null !default;
 $code-border-radius: null !default;
-$code-color: core.$pink !default;
-$code-color-invert: core.$pink-300 !default;
+$code-color: core.$secondary-50 !default;
 $code-font-family: core.$font-family-mono !default;
 $code-font-size: 0.9em !default;
 
@@ -99,7 +97,6 @@ $embed-ratio: core.aspect-ratio(16, 9) !default;
 $heading-font-family: inherit !default;
 $heading-line-height: core.$line-height-sm !default;
 $heading-color: inherit !default;
-$heading-color-invert: null !default;
 $heading-font-weight: core.font-weight("semi-bold") !default;
 $heading-scale: (
   "h1": 2.25em,
@@ -113,31 +110,13 @@ $heading-scale: (
 // Link
 // ---
 
-$link-text-decoration: none !default;
-$link-text-decoration-hover: null !default;
-$link-transition: null !default;
+$link-color: core.$action !default;
+$link-decoration: underline !default;
+$link-color-hover: core.$action-hover !default;
+$link-decoration-hover: none !default;
+
 $link-outline-focus: currentcolor dotted 1px !default;
 $link-outline-focus-offset: 0.125rem !default;
-
-$link-color: core.$primary !default;
-$link-color-hover: core.$primary-dark !default;
-$link-border: 1px solid core.$border-color !default;
-$link-border-hover: 1px solid currentcolor !default;
-
-$link-subtle-color: core.$color-subtle !default;
-$link-subtle-color-hover: $link-color-hover !default;
-$link-subtle-border-color: core.$border-color !default;
-$link-subtle-border-color-hover: currentcolor !default;
-
-$link-invert-color: core.$white !default;
-$link-invert-color-hover: core.$white !default;
-$link-invert-border-color: rgba(core.$white, 0.5) !default;
-$link-invert-border-color-hover: currentcolor !default;
-
-$link-invert-subtle-color: core.$color-invert-subtle !default;
-$link-invert-subtle-color-hover: core.$color-invert !default;
-$link-invert-subtle-border-color: rgba(core.$white, 0.5) !default;
-$link-invert-subtle-border-color-hover: currentcolor !default;
 
 // List
 // ---
@@ -148,23 +127,21 @@ $list-item-gap: 0.5em !default;
 // Pre
 // ---
 
+$pre-background: core.$neutral-20 !default;
+$pre-foreground: core.$neutral-90 !default;
 $pre-padding: 1em !default;
-$pre-background: core.$shade !default;
 $pre-border: null !default;
 $pre-border-radius: core.$border-radius !default;
-$pre-color: core.$color !default;
 
 // Separator
 // ---
 
 $separator-border: 1px solid core.$border-color !default;
-$separator-border-invert: 1px solid core.$border-color-invert !default;
 
 // Type
 // ---
 
 $type-color: null !default;
-$type-color-invert: core.$color-invert !default;
 $type-font-family: null !default;
 $type-font-size: null !default;
 $type-line-height: null !default;

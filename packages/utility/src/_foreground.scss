@@ -1,0 +1,39 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
+$_u: var.$prefix-utility;
+$_c: var.$class-foreground;
+
+@if (var.$output-foreground) {
+  .#{$_u}#{$_c}-black {
+    color: core.$black !important;
+  }
+
+  .#{$_u}#{$_c}-white {
+    color: core.$white !important;
+  }
+
+  @each $key, $value in core.$primary-color-map {
+    .#{$_u}#{$_c}-#{$key} {
+      color: $value !important;
+    }
+  }
+
+  @each $key, $value in core.$secondary-color-map {
+    .#{$_u}#{$_c}-#{$key} {
+      color: $value !important;
+    }
+  }
+
+  @each $key, $value in core.$neutral-color-map {
+    .#{$_u}#{$_c}-#{$key} {
+      color: $value !important;
+    }
+  }
+
+  @each $key, $value in core.$important-color-map {
+    .#{$_u}#{$_c}-#{$key} {
+      color: $value !important;
+    }
+  }
+}

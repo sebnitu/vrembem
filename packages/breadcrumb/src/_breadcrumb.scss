@@ -34,12 +34,12 @@ $_e: var.$prefix-element;
 }
 
 .#{$_b}breadcrumb#{$_e}link {
-  border-bottom: var.$link-border;
   color: var.$link-color;
+  text-decoration: var.$link-decoration;
 
   &:focus,
   &:hover {
-    border-bottom: var.$link-border-hover;
     color: var.$link-color-hover;
+    text-decoration: var.$link-decoration-hover;
   }
 }

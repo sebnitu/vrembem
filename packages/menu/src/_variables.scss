@@ -15,7 +15,7 @@ $background: none !default;
 $background-hover: rgba(core.$black, 0.05) !default;
 $background-focus: rgba(core.$black, 0.05) !default;
 $background-active: rgba(core.$black, 0.1) !default;
-$color: core.$color !default;
+$color: core.$foreground !default;
 $color-hover: null !default;
 $color-focus: null !default;
 $color-active: null !default;
@@ -33,26 +33,7 @@ $active-color: core.$primary !default;
 
 // is-disabled
 $disabled-background: none !default;
-$disabled-color: core.$color-subtle !default;
-
-// menu_invert
-$invert-background: null !default;
-$invert-background-hover: rgba(core.$white, 0.05) !default;
-$invert-background-focus: rgba(core.$white, 0.05) !default;
-$invert-background-active: rgba(core.$white, 0.1) !default;
-$invert-color: core.$white !default;
-$invert-color-hover: null !default;
-$invert-color-focus: null !default;
-$invert-color-active: null !default;
-$invert-sep-background: core.$border-color-invert !default;
-
-// is-active
-$invert-active-background: none !default;
-$invert-active-color: core.$primary !default;
-
-// is-disabled
-$invert-disabled-background: none !default;
-$invert-disabled-color: rgba(core.$white, 0.5) !default;
+$disabled-color: core.$foreground-light !default;
 
 // menu_size_[value]
 $size-sm: core.$form-control-size-sm !default;

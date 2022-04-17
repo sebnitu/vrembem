@@ -45,34 +45,6 @@ $_c: var.$class-border;
     border-right: 0 !important;
   }
 
-  .#{$_u}#{$_c}-color-light {
-    border-color: core.$border-color-light !important;
-  }
-
-  .#{$_u}#{$_c}-color-dark {
-    border-color: core.$border-color-dark !important;
-  }
-
-  .#{$_u}#{$_c}-color-darker {
-    border-color: core.$border-color-darker !important;
-  }
-
-  .#{$_u}#{$_c}-color-invert {
-    border-color: core.$border-color-invert !important;
-  }
-
-  .#{$_u}#{$_c}-color-invert-light {
-    border-color: core.$border-color-invert-light !important;
-  }
-
-  .#{$_u}#{$_c}-color-invert-dark {
-    border-color: core.$border-color-invert-dark !important;
-  }
-
-  .#{$_u}#{$_c}-color-invert-darker {
-    border-color: core.$border-color-invert-darker !important;
-  }
-
   .#{$_u}#{$_c}-color-transparent {
     border-color: transparent !important;
   }

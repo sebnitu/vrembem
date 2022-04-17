@@ -1,4 +1,3 @@
-@use "sass:color";
 @use "./functions" as fun;
 @use "./palette";
 
@@ -55,93 +54,6 @@ $form-control-size: 2.5rem !default; // 40px
 $form-control-size-sm: 1.875rem !default; // 30px
 $form-control-size-lg: 3.125rem !default; // 50px
 
-// Colors
-// ---
-
-$primary-lighter: palette.$cyan-50 !default;
-$primary-light: palette.$cyan-300 !default;
-$primary: palette.$cyan-500 !default;
-$primary-dark: palette.$cyan-700 !default;
-$primary-darker: palette.$cyan-900 !default;
-
-$secondary-lighter: palette.$blue-gray-50 !default;
-$secondary-light: palette.$blue-gray-300 !default;
-$secondary: palette.$blue-gray-500 !default;
-$secondary-dark: palette.$blue-gray-700 !default;
-$secondary-darker: palette.$blue-gray-900 !default;
-
-$shade-light: palette.$gray-50 !default;
-$shade: palette.$gray-100 !default;
-$shade-dark: palette.$gray-300 !default;
-
-$night-light: palette.$gray-700 !default;
-$night: palette.$gray-800 !default;
-$night-dark: palette.$gray-900 !default;
-
-// State colors
-// ---
-
-$info-lighter: palette.$light-blue-50 !default;
-$info-light: palette.$light-blue-300 !default;
-$info: palette.$light-blue-500 !default;
-$info-dark: palette.$light-blue-700 !default;
-$info-darker: palette.$light-blue-900 !default;
-
-$success-lighter: palette.$green-50 !default;
-$success-light: palette.$green-300 !default;
-$success: palette.$green-500 !default;
-$success-dark: palette.$green-700 !default;
-$success-darker: palette.$green-900 !default;
-
-$caution-lighter: palette.$orange-50 !default;
-$caution-light: palette.$orange-300 !default;
-$caution: palette.$orange-500 !default;
-$caution-dark: palette.$deep-orange-700 !default;
-$caution-darker: palette.$deep-orange-900 !default;
-
-$danger-lighter: palette.$red-50 !default;
-$danger-light: palette.$red-300 !default;
-$danger: palette.$red-500 !default;
-$danger-dark: palette.$red-700 !default;
-$danger-darker: palette.$red-900 !default;
-
-// Border
-// ---
-
-// Border styles
-$border-width: 1px !default;
-$border-style: solid !default;
-
-// Border color
-$border-color-light: rgba(palette.$black, 0.05) !default;
-$border-color: rgba(palette.$black, 0.1) !default;
-$border-color-dark: rgba(palette.$black, 0.2) !default;
-$border-color-darker: rgba(palette.$black, 0.5) !default;
-
-// Compiled border
-$border: $border-width $border-style $border-color !default;
-$border-light: $border-width $border-style $border-color-light !default;
-$border-dark: $border-width $border-style $border-color-dark !default;
-$border-darker: $border-width $border-style $border-color-darker !default;
-
-// Border color invert
-$border-color-invert-light: rgba(palette.$white, 0.05) !default;
-$border-color-invert: rgba(palette.$white, 0.1) !default;
-$border-color-invert-dark: rgba(palette.$white, 0.2) !default;
-$border-color-invert-darker: rgba(palette.$white, 0.5) !default;
-
-// Compiled border invert
-$border-invert: $border-width $border-style $border-color-invert !default;
-$border-invert-light: $border-width $border-style $border-color-invert-light !default;
-$border-invert-dark: $border-width $border-style $border-color-invert-dark !default;
-$border-invert-darker: $border-width $border-style $border-color-invert-darker !default;
-
-// Border radius
-// ---
-
-$border-radius: fun.vars($prefix-variable, "border-radius", 0.25rem) !default;
-$border-radius-circle: fun.vars($prefix-variable, "border-radius-circle", 9999px) !default;
-
 // Typography
 // ---
 
@@ -160,62 +72,6 @@ $line-height: 1.5 !default; // 24px
 $line-height-sm: 1.375 !default; // 22px
 $line-height-lg: 1.625 !default; // 26px
 
-// Theme Assignment
-// ---
-
-// Background
-$background: fun.vars($prefix-variable, "background", palette.$white) !default;
-
-// Color
-$color: fun.vars($prefix-variable, "color", palette.$gray-900) !default;
-$color-subtle: palette.$gray-500 !default;
-
-// Color invert
-$color-invert: palette.$white !default;
-$color-invert-subtle: rgba(palette.$white, 0.6) !default;
-
-// Box shadow
-// ---
-// [inset] | offset-x | offset-y | blur-radius | spread-radius | color
-
-$box-shadow-color: $night-dark !default;
-$box-shadow-shade-outline: rgba($box-shadow-color, 0.05) !default;
-$box-shadow-shade-primary: rgba($box-shadow-color, 0.1) !default;
-$box-shadow-shade-secondary: rgba($box-shadow-color, 0.08) !default;
-$box-shadow-shade-ambient: rgba($box-shadow-color, 0.06) !default;
-
-$box-shadow-1dp:
-  0 0 0 1px $box-shadow-shade-outline,
-  0 2px 1px -1px $box-shadow-shade-primary,
-  0 1px 1px 0 $box-shadow-shade-secondary,
-  0 1px 3px 0 $box-shadow-shade-ambient !default;
-
-$box-shadow-4dp:
-  0 0 0 1px $box-shadow-shade-outline,
-  0 2px 4px -1px $box-shadow-shade-primary,
-  0 4px 5px 0 $box-shadow-shade-secondary,
-  0 1px 10px 0 $box-shadow-shade-ambient !default;
-
-$box-shadow-8dp:
-  0 0 0 1px $box-shadow-shade-outline,
-  0 5px 5px -3px $box-shadow-shade-primary,
-  0 8px 10px 1px $box-shadow-shade-secondary,
-  0 3px 14px 2px $box-shadow-shade-ambient !default;
-
-$box-shadow-16dp:
-  0 0 0 1px $box-shadow-shade-outline,
-  0 8px 10px -5px $box-shadow-shade-primary,
-  0 16px 24px 2px $box-shadow-shade-secondary,
-  0 6px 30px 5px $box-shadow-shade-ambient !default;
-
-$box-shadow-24dp:
-  0 0 0 1px $box-shadow-shade-outline,
-  0 11px 15px -7px $box-shadow-shade-primary,
-  0 24px 38px 3px $box-shadow-shade-secondary,
-  0 9px 46px 8px $box-shadow-shade-ambient !default;
-
-$box-shadow: $box-shadow-4dp !default;
-
 // Transition
 // ---
 // property | duration | timing-function | delay
@@ -225,91 +81,41 @@ $transition-duration-short: 0.15s !default;
 $transition-duration-long: 0.6s !default;
 $transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !default;
 
-// Colors
+// Theme variables
+// ---
+// - background
+// - foreground
+// - shadow
+// - action (links)
+// - border
+
+$background: fun.vars($prefix-variable, "background", palette.$white) !default;
+$background-dark: fun.vars($prefix-variable, "background-dark", palette.$neutral-95) !default;
+$background-darker: fun.vars($prefix-variable, "background-darker", palette.$neutral-90) !default;
+
+$foreground: fun.vars($prefix-variable, "foreground", palette.$neutral-20) !default;
+$foreground-light: fun.vars($prefix-variable, "foreground", palette.$neutral-40) !default;
+$foreground-lighter: fun.vars($prefix-variable, "foreground", palette.$neutral-60) !default;
+
+$shadow-color: rgba(palette.$neutral-20, 0.1) !default;
+$shadow-1: 0 0 0 1px $shadow-color !default;
+$shadow-2: 0 0 2px 4px $shadow-color !default;
+$shadow-3: 0 0 4px 8px $shadow-color !default;
+$shadow-4: 0 0 8px 16px $shadow-color !default;
+$shadow: $shadow-2 !default;
+
+$action: palette.$primary-40 !default;
+$action-hover: palette.$primary-30 !default;
+$action-focus: palette.$primary-30 !default;
+$action-active: palette.$primary-30 !default;
+
+// Border
 // ---
 
-$primary-seed: #00ff6a;
-$secondary-seed: #244672;
-$neutral-seed: #1f242a;
+$border-width: 1px !default;
+$border-style: solid !default;
+$border-color: rgba(palette.$neutral-10, 0.1) !default;
+$border: $border-width $border-style $border-color !default;
 
-$primary-10: color.change($primary-seed, $lightness: 10%);
-$primary-20: color.change($primary-seed, $lightness: 20%);
-$primary-30: color.change($primary-seed, $lightness: 30%);
-$primary-40: color.change($primary-seed, $lightness: 40%);
-$primary-50: color.change($primary-seed, $lightness: 50%);
-$primary-60: color.change($primary-seed, $lightness: 60%);
-$primary-70: color.change($primary-seed, $lightness: 70%);
-$primary-80: color.change($primary-seed, $lightness: 80%);
-$primary-90: color.change($primary-seed, $lightness: 90%);
-$primary-95: color.change($primary-seed, $lightness: 95%);
-$primary-98: color.change($primary-seed, $lightness: 98%);
-
-$secondary-10: color.change($secondary-seed, $lightness: 10%);
-$secondary-20: color.change($secondary-seed, $lightness: 20%);
-$secondary-30: color.change($secondary-seed, $lightness: 30%);
-$secondary-40: color.change($secondary-seed, $lightness: 40%);
-$secondary-50: color.change($secondary-seed, $lightness: 50%);
-$secondary-60: color.change($secondary-seed, $lightness: 60%);
-$secondary-70: color.change($secondary-seed, $lightness: 70%);
-$secondary-80: color.change($secondary-seed, $lightness: 80%);
-$secondary-90: color.change($secondary-seed, $lightness: 90%);
-$secondary-95: color.change($secondary-seed, $lightness: 95%);
-$secondary-98: color.change($secondary-seed, $lightness: 98%);
-
-$neutral-10: color.change($neutral-seed, $lightness: 10%);
-$neutral-20: color.change($neutral-seed, $lightness: 20%);
-$neutral-30: color.change($neutral-seed, $lightness: 30%);
-$neutral-40: color.change($neutral-seed, $lightness: 40%);
-$neutral-50: color.change($neutral-seed, $lightness: 50%);
-$neutral-60: color.change($neutral-seed, $lightness: 60%);
-$neutral-70: color.change($neutral-seed, $lightness: 70%);
-$neutral-80: color.change($neutral-seed, $lightness: 80%);
-$neutral-90: color.change($neutral-seed, $lightness: 90%);
-$neutral-95: color.change($neutral-seed, $lightness: 95%);
-$neutral-98: color.change($neutral-seed, $lightness: 98%);
-
-$color-map: (
-  "primary-10": $primary-10,
-  "primary-20": $primary-20,
-  "primary-30": $primary-30,
-  "primary-40": $primary-40,
-  "primary-50": $primary-50,
-  "primary-60": $primary-60,
-  "primary-70": $primary-70,
-  "primary-80": $primary-80,
-  "primary-90": $primary-90,
-  "primary-95": $primary-95,
-  "primary-98": $primary-98,
-  "secondary-10": $secondary-10,
-  "secondary-20": $secondary-20,
-  "secondary-30": $secondary-30,
-  "secondary-40": $secondary-40,
-  "secondary-50": $secondary-50,
-  "secondary-60": $secondary-60,
-  "secondary-70": $secondary-70,
-  "secondary-80": $secondary-80,
-  "secondary-90": $secondary-90,
-  "secondary-95": $secondary-95,
-  "secondary-98": $secondary-98,
-  "neutral-10": $neutral-10,
-  "neutral-20": $neutral-20,
-  "neutral-30": $neutral-30,
-  "neutral-40": $neutral-40,
-  "neutral-50": $neutral-50,
-  "neutral-60": $neutral-60,
-  "neutral-70": $neutral-70,
-  "neutral-80": $neutral-80,
-  "neutral-90": $neutral-90,
-  "neutral-95": $neutral-95,
-  "neutral-98": $neutral-98,  
-);
-
-@each $key, $value in $color-map {
-  .background-#{$key} {
-    background: $value !important;
-  }
-
-  .foreground-#{$key} {
-    color: $value !important;
-  }
-}
+$border-radius: fun.vars($prefix-variable, "border-radius", 0.25rem) !default;
+$border-radius-circle: fun.vars($prefix-variable, "border-radius-circle", 9999px) !default;

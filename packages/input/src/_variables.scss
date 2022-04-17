@@ -12,23 +12,23 @@ $transition-property: box-shadow, outline, outline-offset !default;
 $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function !default;
 $border-radius: core.$border-radius !default;
-$color-placeholder: core.$color-subtle !default;
+$color-placeholder: core.$foreground-light !default;
 $font-size: core.$font-size !default;
 $line-height: core.$line-height !default;
 
-$border: 1px solid core.$border-color-dark !default;
-$border-color-hover: core.$border-color-darker !default;
-$border-color-focus: core.$primary !default;
+$border: 1px solid core.$border-color !default;
+$border-color-hover: core.$border-color !default;
+$border-color-focus: core.$primary-50 !default;
 
 $background: core.$white !default;
 $background-hover: null !default;
 $background-focus: null !default;
 
-$box-shadow: 0 0 0 0 rgba(core.$primary, 0), inset 0 0.1rem 0.2rem rgba(core.$black, 0.1) !default;
+$box-shadow: 0 0 0 0 rgba(core.$primary-50, 0), inset 0 0.1rem 0.2rem rgba(core.$black, 0.1) !default;
 $box-shadow-hover: null !default;
-$box-shadow-focus: 0 0 0 0.2rem rgba(core.$primary, 0.5), inset 0 0 0 rgba(core.$black, 0) !default;
+$box-shadow-focus: 0 0 0 0.2rem rgba(core.$primary-50, 0.5), inset 0 0 0 rgba(core.$black, 0) !default;
 
-$color: core.$color !default;
+$color: core.$foreground !default;
 $color-hover: null !default;
 $color-focus: null !default;
 
@@ -41,10 +41,10 @@ $outline-offset-hover: null !default;
 $outline-offset-focus: null !default;
 
 // disabled
-$disabled-background: core.$shade !default;
+$disabled-background: core.$background-dark !default;
 
 // read-only
-$read-only-background: core.$shade !default;
+$read-only-background: core.$background-dark !default;
 
 // input_size_[value]
 $size-sm: core.$form-control-size-sm !default;
@@ -57,6 +57,6 @@ $size-lg-font-size: core.$font-size-lg !default;
 $size-lg-line-height: core.$line-height-lg !default;
 
 // input_type_[value]
-$type-select-icon-color: core.$color !default;
+$type-select-icon-color: core.$foreground !default;
 $type-select-icon: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="#{core.encode-color($type-select-icon-color)}"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>' !default;
 $type-textarea-min-width: 100% !default;

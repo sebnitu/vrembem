@@ -6,26 +6,22 @@ $_c: var.$class-box-shadow;
 
 @if (var.$output-box-shadow) {
   .#{$_u}#{$_c} {
-    box-shadow: core.$box-shadow !important;
+    box-shadow: core.$shadow !important;
   }
 
-  .#{$_u}#{$_c}-1dp {
-    box-shadow: core.$box-shadow-1dp !important;
+  .#{$_u}#{$_c}-1 {
+    box-shadow: core.$shadow-1 !important;
   }
 
-  .#{$_u}#{$_c}-4dp {
-    box-shadow: core.$box-shadow-4dp !important;
+  .#{$_u}#{$_c}-2 {
+    box-shadow: core.$shadow-2 !important;
   }
 
-  .#{$_u}#{$_c}-8dp {
-    box-shadow: core.$box-shadow-8dp !important;
+  .#{$_u}#{$_c}-3 {
+    box-shadow: core.$shadow-3 !important;
   }
 
-  .#{$_u}#{$_c}-16dp {
-    box-shadow: core.$box-shadow-16dp !important;
-  }
-
-  .#{$_u}#{$_c}-24dp {
-    box-shadow: core.$box-shadow-24dp !important;
+  .#{$_u}#{$_c}-4 {
+    box-shadow: core.$shadow-4 !important;
   }
 }
