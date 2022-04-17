@@ -9,10 +9,6 @@ $_c: var.$class-font;
     font-family: core.$font-family-sans !important;
   }
 
-  .#{$_u}#{$_c}-family-serif {
-    font-family: core.$font-family-serif !important;
-  }
-
   .#{$_u}#{$_c}-family-mono {
     font-family: core.$font-family-mono !important;
   }

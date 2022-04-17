@@ -25,7 +25,8 @@ $line-height: 1.5 !default;
 // menu__sep
 $sep-size: 1px !default;
 $sep-gap: 0.5em !default;
-$sep-background: core.$border-color !default;
+$sep-background: currentcolor !default;
+$sep-opacity: 0.1 !default;
 
 // is-active
 $active-background: none !default;

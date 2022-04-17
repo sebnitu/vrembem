@@ -10,7 +10,7 @@ $black: #000 !default;
 
 // Primary
 
-$primary-seed: #00ff6a !default;
+$primary-seed: #2fdc77 !default;
 
 $primary-10: color.change($primary-seed, $lightness: 10%);
 $primary-20: color.change($primary-seed, $lightness: 20%);
@@ -38,7 +38,7 @@ $primary-color-map: (
   "primary-98": $primary-98,
 );
 
-$primary: $primary-50 !default;
+$primary: $primary-40 !default;
 
 // Secondary
 

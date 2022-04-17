@@ -1,8 +1,8 @@
-<div class="toolbar{% if include.class %} {{ include.class }}{% endif %}">
+<div class="toolbar{% if include.class %} {{ include.class }}{% endif %} theme-dark">
   <div class="grid grid_auto grid_gap_none flex-justify-between">
 
     <div class="grid__item">
-      <ul class="menu menu_inline menu_invert">
+      <ul class="menu menu_inline">
         <li class="menu__item">
           <button class="menu__action menu__action_icon" data-drawer-toggle="listjs">
             {% include icon.html icon="menu" %}
@@ -18,7 +18,7 @@
     </div>
 
     <div class="grid__item">
-      <ul class="menu menu_inline menu_invert">
+      <ul class="menu menu_inline">
 
         {%- if page.previous -%}
         <li class="menu__item">

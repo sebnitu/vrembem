@@ -13,17 +13,12 @@
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 
-    &:hover,
-    &:focus,
-    &:active,
     &.is-active {
+      background: $core-white;
+
       .menu__icon {
         color: $core-primary;
       }
-    }
-
-    &.is-active {
-      background: $core-white;
     }
   }
 
@@ -34,6 +29,11 @@
     margin-bottom: -0.5em;
     padding: 0.5em;
     color: $core-neutral-40;
+
+    &:hover,
+    &:focus {
+      color: $core-primary;
+    }
   }
 }
 

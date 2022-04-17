@@ -25,6 +25,7 @@ $_e: var.$prefix-element;
   height: var.$sep-size;
   margin: var.$sep-gap 0;
   background: var.$sep-background;
+  opacity: var.$sep-opacity;
 
   &:first-child {
     margin-top: 0;

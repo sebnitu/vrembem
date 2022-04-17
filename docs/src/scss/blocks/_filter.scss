@@ -4,7 +4,7 @@
   position: relative;
   z-index: 4;
   flex-grow: 1;
-  background: $core-background-dark;
+  background: $core-background-darker;
 
   &.is-active {
     border-color: $core-primary;

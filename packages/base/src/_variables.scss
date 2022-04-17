@@ -127,8 +127,8 @@ $list-item-gap: 0.5em !default;
 // Pre
 // ---
 
-$pre-background: core.$neutral-20 !default;
-$pre-foreground: core.$neutral-90 !default;
+$pre-background: core.$background-dark !default;
+$pre-foreground: core.$foreground !default;
 $pre-padding: 1em !default;
 $pre-border: null !default;
 $pre-border-radius: core.$border-radius !default;

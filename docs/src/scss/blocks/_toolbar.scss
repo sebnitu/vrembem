@@ -2,6 +2,7 @@
 @use "../variables" as var;
 
 .toolbar {
+  --vb-foreground: #{$core-white};
   position: fixed;
   z-index: 600;
   top: 0;
@@ -12,7 +13,7 @@
   background: var.$background-gradient;
   background-color: var.$background-color;
   box-shadow: $core-shadow-1;
-  color: $core-white;
+  color: var(--vb-foreground);
 }
 
 @include core-media-min('md') {

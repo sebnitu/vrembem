@@ -24,4 +24,8 @@ $_c: var.$class-box-shadow;
   .#{$_u}#{$_c}-4 {
     box-shadow: core.$shadow-4 !important;
   }
+
+  .#{$_u}#{$_c}-5 {
+    box-shadow: core.$shadow-5 !important;
+  }
 }
