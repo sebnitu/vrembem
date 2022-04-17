@@ -7,6 +7,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="https://sebnitu.com/dist/favicon.png">
   <!-- Styles -->
   <link rel="stylesheet" href="./dev/styles.css">
+  <link rel="stylesheet" href="./node_modules/@vrembem/core/dev/palette.css">
   <style>
 
     /**
@@ -25,16 +26,16 @@
      */
 
     :root {
-      --vb-background-root: #fff;
-      --vb-background-dark-root: var(--vb-secondary-95);
-      --vb-foreground-root: var(--vb-neutral-30);
+      --vb-root-background: #fff;
+      --vb-root-background-dark: var(--vb-secondary-95);
+      --vb-root-foreground: var(--vb-neutral-30);
     }
 
     @media (prefers-color-scheme: dark) {
       :root {
-        --vb-background-root: hsl(var(--vb-secondary-hs), 8%);
-        --vb-background-dark-root: hsl(var(--vb-secondary-hs), 6%);
-        --vb-foreground-root: var(--vb-primary-90);
+        --vb-root-background: hsl(var(--vb-secondary-hs), 8%);
+        --vb-root-background-dark: hsl(var(--vb-secondary-hs), 6%);
+        --vb-root-foreground: var(--vb-primary-90);
       }
     }
 
@@ -76,7 +77,7 @@
      */
 
     header {
-      background-color: var(--vb-background-dark, var(--vb-background-dark-root));
+      background-color: var(--vb-background-dark, var(--vb-root-background-dark));
     }
 
   </style>
@@ -211,7 +212,7 @@
   </section>
 
   <!-- Component scripts -->
-  <script src="../vrembem/dev/scripts.umd.js"></script>
+  <script src="./dev/scripts.umd.js"></script>
 
   <!-- Implementation scripts -->
   <script>

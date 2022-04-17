@@ -7,8 +7,6 @@
 
 $_v: pre.$prefix-variable;
 
-// TODO: figure out how to output the palette custom properties (CSS Vars)
-
 :root {
   @each $key, $value in pal.$color-seeds {
     @include mix.custom-property-color-range($key, $value);
