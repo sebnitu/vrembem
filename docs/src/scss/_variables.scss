@@ -2,8 +2,8 @@
 
 $background-color: $core-neutral-20;
 $background-gradient:
-  linear-gradient(
-    148deg,
+  radial-gradient(
+    circle at top left,
     $core-neutral-40 0,
     $core-neutral-20 100%
   );
