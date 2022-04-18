@@ -8,12 +8,12 @@ $prefix-modifier-value: core.$prefix-modifier-value !default;
 $z-index: 500 !default;
 $padding: 1em !default;
 $spacing: 0.5em !default;
-$background: core.$white !default;
+$background: core.$background !default;
+$foreground: core.$foreground !default;
 $border: null !default;
 $sep-border: core.$border !default;
 $border-radius: core.$border-radius !default;
 $box-shadow: core.$shadow-3 !default;
-$color: null !default;
 
 $title-font-size: core.$font-size-lg !default;
 $title-line-height: core.$line-height-lg !default;

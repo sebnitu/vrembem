@@ -14,7 +14,7 @@ $_e: var.$prefix-element;
   background: var.$background;
   background-clip: padding-box;
   box-shadow: var.$box-shadow;
-  color: var.$color;
+  color: var.$foreground;
   -webkit-overflow-scrolling: touch;
 }
 

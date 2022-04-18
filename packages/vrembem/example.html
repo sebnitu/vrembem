@@ -7,7 +7,6 @@
   <link rel="icon" type="image/png" sizes="32x32" href="https://sebnitu.com/dist/favicon.png">
   <!-- Styles -->
   <link rel="stylesheet" href="./dev/styles.css">
-  <link rel="stylesheet" href="./node_modules/@vrembem/core/dev/palette.css">
   <style>
 
     /**
@@ -25,17 +24,13 @@
      * Root theme
      */
 
-    :root {
-      --vb-root-background: #fff;
-      --vb-root-background-dark: var(--vb-secondary-95);
-      --vb-root-foreground: var(--vb-neutral-30);
-    }
-
     @media (prefers-color-scheme: dark) {
       :root {
         --vb-root-background: hsl(var(--vb-secondary-hs), 8%);
         --vb-root-background-dark: hsl(var(--vb-secondary-hs), 6%);
+        --vb-root-background-darker: hsl(var(--vb-secondary-hs), 4%);
         --vb-root-foreground: var(--vb-primary-90);
+        --vb-root-border-color: rgba(255,255,255, 0.1);
       }
     }
 
@@ -46,19 +41,25 @@
     .theme-root {
       --vb-background: initial;
       --vb-background-dark: initial;
+      --vb-background-darker: initial;
       --vb-foreground: initial;
+      --vb-border-color: initial;
     }
 
     .theme-light {
       --vb-background: #fff;
-      --vb-background-dark: var(--vb-secondary-95);
+      --vb-background-dark: var(--vb-secondary-98);
+      --vb-background-darker: var(--vb-secondary-95);
       --vb-foreground: var(--vb-neutral-30);
+      --vb-border-color: rgba(0,0,0, 0.1);
     }
 
     .theme-dark {
       --vb-background: hsl(var(--vb-secondary-hs), 8%);
       --vb-background-dark: hsl(var(--vb-secondary-hs), 6%);
+      --vb-background-darker: hsl(var(--vb-secondary-hs), 4%);
       --vb-foreground: var(--vb-primary-90);
+      --vb-border-color: rgba(255,255,255, 0.1);
     }
 
     /**
@@ -79,11 +80,11 @@
 
     <aside id="drawer-toc" class="drawer" data-drawer-breakpoint="md">
       <div class="drawer__dialog dialog" aria-labelledby="drawer-toc-title">
-        <div class="dialog__header flex-justify-between">
+        <div class="dialog__header flex-justify-between background-darker">
           <h2 id="drawer-toc-title">Table of Contents</h2>
           <button type="button" class="link" data-drawer-close aria-label="Close table of contents">Close</button>
         </div>
-        <div class="dialog__body">
+        <div class="dialog__body background-darker">
           <ul class="menu">
             <li class="menu__item">
               <a class="menu__action" href="#vrembem-base">@vrembem/base</a>
@@ -156,7 +157,7 @@
             </li>
           </ul>
         </div>
-        <div class="dialog__footer">
+        <div class="dialog__footer background-darker">
           <a class="link" href="#return-to-top">Return to top</a>
         </div>
       </div>

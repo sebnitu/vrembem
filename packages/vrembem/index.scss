@@ -1,3 +1,8 @@
+@forward "@vrembem/core/src/scss/root/prefix";
+@forward "@vrembem/core/src/scss/root/breakpoints";
+@forward "@vrembem/core/src/scss/root/palette";
+@forward "@vrembem/core/src/scss/root/theme";
+
 @forward "@vrembem/core" as core-*;
 @forward "@vrembem/base" as base-*;
 @forward "@vrembem/breadcrumb" as breadcrumb-*;
