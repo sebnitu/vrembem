@@ -5,16 +5,16 @@ $_u: var.$prefix-utility;
 $_c: var.$class-background;
 
 @if (var.$output-background) {
-  .#{$_u}#{$_c}-clip-border {
-    background-clip: border-box !important;
+  .#{$_u}#{$_c} {
+    background-color: core.$background !important;
   }
 
-  .#{$_u}#{$_c}-clip-content {
-    background-clip: content-box !important;
+  .#{$_u}#{$_c}-dark {
+    background-color: core.$background-dark !important;
   }
 
-  .#{$_u}#{$_c}-clip-padding {
-    background-clip: padding-box !important;
+  .#{$_u}#{$_c}-darker {
+    background-color: core.$background-darker !important;
   }
 
   .#{$_u}#{$_c}-black {
@@ -31,5 +31,17 @@ $_c: var.$class-background;
         background: $value !important;
       }
     }
+  }
+
+  .#{$_u}#{$_c}-clip-border {
+    background-clip: border-box !important;
+  }
+
+  .#{$_u}#{$_c}-clip-content {
+    background-clip: content-box !important;
+  }
+
+  .#{$_u}#{$_c}-clip-padding {
+    background-clip: padding-box !important;
   }
 }

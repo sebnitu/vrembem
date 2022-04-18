@@ -97,6 +97,14 @@
   @return $result;
 }
 
+/// Sets the hsla() value provided a color variable.
+/// @param {Color} $color - The color variable to pull hue and saturation values from.
+/// @param {Percent} $lightness - The percentage used as the lightness value.
+/// @param {Number} $alpha - The number used as the alpha value.
+@function set-hsla($color, $lightness, $alpha) {
+  @return hsla(math.round(color.hue($color)), math.round(color.saturation($color)), $lightness, $alpha);
+}
+
 /// Removes units from a value.
 /// @param {Number} $number - The number to strip units from.
 /// @return {Number} - The unitless number.
