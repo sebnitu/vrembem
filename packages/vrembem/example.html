@@ -65,16 +65,11 @@
      * Box styles
      */
 
-    .box {
-      width: 64px;
+    .swatch {
+      display: inline-block;
+      flex-grow: 1;
       height: 64px;
-      border-radius: 6px;
-      border: 1px solid rgba(0,0,0, 0.1);
     }
-
-    /**
-     * Layout styles
-     */
 
   </style>
 </head>
@@ -304,66 +299,60 @@
           <hr class="sep margin-y-xl">
           
           <h2 id="vrembem-utility">@vrembem/utility</h2>
-
-          <div>
-            <div class="level">
-              <span class="box background-primary-10"></span>
-              <span class="box background-primary-20"></span>
-              <span class="box background-primary-30"></span>
-              <span class="box background-primary-40"></span>
-              <span class="box background-primary-50"></span>
-              <span class="box background-primary-60"></span>
-              <span class="box background-primary-70"></span>
-              <span class="box background-primary-80"></span>
-              <span class="box background-primary-90"></span>
-              <span class="box background-primary-95"></span>
-              <span class="box background-primary-98"></span>
-            </div>
-
-            <div class="level">
-              <span class="box background-secondary-10"></span>
-              <span class="box background-secondary-20"></span>
-              <span class="box background-secondary-30"></span>
-              <span class="box background-secondary-40"></span>
-              <span class="box background-secondary-50"></span>
-              <span class="box background-secondary-60"></span>
-              <span class="box background-secondary-70"></span>
-              <span class="box background-secondary-80"></span>
-              <span class="box background-secondary-90"></span>
-              <span class="box background-secondary-95"></span>
-              <span class="box background-secondary-98"></span>
-            </div>
-
-            <div class="level">
-              <span class="box background-neutral-10"></span>
-              <span class="box background-neutral-20"></span>
-              <span class="box background-neutral-30"></span>
-              <span class="box background-neutral-40"></span>
-              <span class="box background-neutral-50"></span>
-              <span class="box background-neutral-60"></span>
-              <span class="box background-neutral-70"></span>
-              <span class="box background-neutral-80"></span>
-              <span class="box background-neutral-90"></span>
-              <span class="box background-neutral-95"></span>
-              <span class="box background-neutral-98"></span>
-            </div>
-
-            <div class="level">
-              <span class="box background-important-10"></span>
-              <span class="box background-important-20"></span>
-              <span class="box background-important-30"></span>
-              <span class="box background-important-40"></span>
-              <span class="box background-important-50"></span>
-              <span class="box background-important-60"></span>
-              <span class="box background-important-70"></span>
-              <span class="box background-important-80"></span>
-              <span class="box background-important-90"></span>
-              <span class="box background-important-95"></span>
-              <span class="box background-important-98"></span>
-            </div>
-          </div>
           
-          <div class="gap-y-xs">
+          <div class="gap-y-border">
+            <div class="flex">
+              <span class="swatch background-primary-10"></span>
+              <span class="swatch background-primary-20"></span>
+              <span class="swatch background-primary-30"></span>
+              <span class="swatch background-primary-40"></span>
+              <span class="swatch background-primary-50"></span>
+              <span class="swatch background-primary-60"></span>
+              <span class="swatch background-primary-70"></span>
+              <span class="swatch background-primary-80"></span>
+              <span class="swatch background-primary-90"></span>
+              <span class="swatch background-primary-95"></span>
+              <span class="swatch background-primary-98"></span>
+            </div>
+            <div class="flex">
+              <span class="swatch background-secondary-10"></span>
+              <span class="swatch background-secondary-20"></span>
+              <span class="swatch background-secondary-30"></span>
+              <span class="swatch background-secondary-40"></span>
+              <span class="swatch background-secondary-50"></span>
+              <span class="swatch background-secondary-60"></span>
+              <span class="swatch background-secondary-70"></span>
+              <span class="swatch background-secondary-80"></span>
+              <span class="swatch background-secondary-90"></span>
+              <span class="swatch background-secondary-95"></span>
+              <span class="swatch background-secondary-98"></span>
+            </div>
+            <div class="flex">
+              <span class="swatch background-neutral-10"></span>
+              <span class="swatch background-neutral-20"></span>
+              <span class="swatch background-neutral-30"></span>
+              <span class="swatch background-neutral-40"></span>
+              <span class="swatch background-neutral-50"></span>
+              <span class="swatch background-neutral-60"></span>
+              <span class="swatch background-neutral-70"></span>
+              <span class="swatch background-neutral-80"></span>
+              <span class="swatch background-neutral-90"></span>
+              <span class="swatch background-neutral-95"></span>
+              <span class="swatch background-neutral-98"></span>
+            </div>
+            <div class="flex">
+              <span class="swatch background-important-10"></span>
+              <span class="swatch background-important-20"></span>
+              <span class="swatch background-important-30"></span>
+              <span class="swatch background-important-40"></span>
+              <span class="swatch background-important-50"></span>
+              <span class="swatch background-important-60"></span>
+              <span class="swatch background-important-70"></span>
+              <span class="swatch background-important-80"></span>
+              <span class="swatch background-important-90"></span>
+              <span class="swatch background-important-95"></span>
+              <span class="swatch background-important-98"></span>
+            </div>
             <div class="flex flex-items-equal">
               <div class="padding-xl background-primary-40 foreground-primary-90">
                 <p>foreground-primary-90 on background-primary-40</p>
