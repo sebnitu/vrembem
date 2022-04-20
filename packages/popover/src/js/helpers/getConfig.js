@@ -16,7 +16,7 @@ export function getConfig(el, settings) {
   // Loop through config obj.
   for (const prop in config) {
     // Get the CSS variable property values.
-    const prefix = getComputedStyle(document.body).getPropertyValue('--vrembem-variable-prefix');
+    const prefix = getComputedStyle(document.body).getPropertyValue('--vrembem-variable-prefix').trim();
     const value = styles.getPropertyValue(`--${prefix}popover-${prop}`).trim();
 
     // If a value was found, replace the default in config obj.
