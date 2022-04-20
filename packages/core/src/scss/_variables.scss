@@ -55,8 +55,8 @@ $border: 1px solid theme.$border-color !default;
 $border-dark: 1px solid theme.$border-color-dark !default;
 $border-darker: 1px solid theme.$border-color-darker !default;
 
-$border-radius: fun.vars(pre.$prefix-variable, "border-radius", 0.25rem) !default;
-$border-radius-circle: fun.vars(pre.$prefix-variable, "border-radius-circle", 9999px) !default;
+$border-radius: var(--#{pre.$prefix-variable}border-radius, 0.25rem) !default;
+$border-radius-circle: var(--#{pre.$prefix-variable}border-radius-circle, 9999px) !default;
 
 // Box shadow
 // ---

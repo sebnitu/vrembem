@@ -7,7 +7,7 @@ $_e: var.$prefix-element;
 
 .#{$_b}popover#{$_e}arrow,
 .#{$_b}popover#{$_e}arrow::after {
-  @include core.size(core.vars($_v, "arrow-size", var.$arrow-size));
+  @include core.size(core.vars($_v, "popover-arrow-size", var.$arrow-size));
   position: absolute;
   z-index: -1;
   visibility: hidden;
@@ -18,14 +18,14 @@ $_e: var.$prefix-element;
   content: "";
   visibility: visible;
   transform: rotate(45deg);
-  border: core.vars($_v, "arrow-border", var.$arrow-border);
+  border: core.vars($_v, "popover-arrow-border", var.$arrow-border);
   border-right-color: transparent;
   border-bottom-color: transparent;
   background-clip: padding-box;
 }
 
 [data-popper-placement^="top"] > .#{$_b}popover#{$_e}arrow {
-  bottom: calc(core.vars($_v, "arrow-size", var.$arrow-size) * -0.5);
+  bottom: calc(core.vars($_v, "popover-arrow-size", var.$arrow-size) * -0.5);
 
   &::after {
     transform: rotate(-135deg);
@@ -33,7 +33,7 @@ $_e: var.$prefix-element;
 }
 
 [data-popper-placement^="bottom"] > .#{$_b}popover#{$_e}arrow {
-  top: calc(core.vars($_v, "arrow-size", var.$arrow-size) * -0.5);
+  top: calc(core.vars($_v, "popover-arrow-size", var.$arrow-size) * -0.5);
 
   &::after {
     transform: rotate(45deg);
@@ -41,7 +41,7 @@ $_e: var.$prefix-element;
 }
 
 [data-popper-placement^="left"] > .#{$_b}popover#{$_e}arrow {
-  right: calc(core.vars($_v, "arrow-size", var.$arrow-size) * -0.5);
+  right: calc(core.vars($_v, "popover-arrow-size", var.$arrow-size) * -0.5);
 
   &::after {
     transform: rotate(135deg);
@@ -49,7 +49,7 @@ $_e: var.$prefix-element;
 }
 
 [data-popper-placement^="right"] > .#{$_b}popover#{$_e}arrow {
-  left: calc(core.vars($_v, "arrow-size", var.$arrow-size) * -0.5);
+  left: calc(core.vars($_v, "popover-arrow-size", var.$arrow-size) * -0.5);
 
   &::after {
     transform: rotate(-45deg);

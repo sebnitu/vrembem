@@ -12,9 +12,9 @@ $_v: pre.$prefix-variable;
 // ---
 
 $primary-seed: hsl(152, 60%, 50%) !default;
-$secondary-seed: hsl(214, 50%, 30%) !default;
-$neutral-seed: hsl(213, 20%, 10%) !default;
-$important-seed: hsl(3, 100%, 40%) !default;
+$secondary-seed: hsl(214, 50%, 50%) !default;
+$neutral-seed: hsl(214, 20%, 50%) !default;
+$important-seed: hsl(0, 80%, 50%) !default;
 
 $color-seeds: (
   "primary": $primary-seed,

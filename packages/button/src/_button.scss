@@ -1,7 +1,10 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
+$_v: var.$prefix-variable;
+
 .#{var.$prefix-block}button {
+  --#{$_v}button-theme: #{core.get-hs(var.$theme)};
   @include core.gap(var.$gap, "x");
   position: relative;
   display: inline-flex;
@@ -13,14 +16,13 @@
   transition-property: var.$transition-property;
   transition-duration: var.$transition-duration;
   transition-timing-function: var.$transition-timing-function;
-  outline: var.$outline;
-  outline-offset: var.$outline-offset;
-  border: var.$border;
-  border-radius: var.$border-radius;
-  background: var.$background;
+  outline: none;
+  border: var.$border core.vars($_v, "button-border-color", transparent);
+  border-radius: var(--#{$_v}button-border-radius, var.$border-radius);
+  background: core.vars($_v, "button-background", hsla(var(--#{$_v}button-theme), 50%, 0));
   background-clip: border-box;
-  box-shadow: var.$box-shadow;
-  color: var.$color;
+  box-shadow: core.vars($_v, "button-shadow", transparent);
+  color: core.vars($_v, "button-foreground", hsl(var(--#{$_v}button-theme), 50%));
   font-family: inherit;
   font-size: var.$font-size;
   font-weight: var.$font-weight;
@@ -29,36 +31,30 @@
   white-space: nowrap;
   cursor: pointer;
 
-  &:disabled:not(.is-loading) {
-    opacity: var.$disabled-opacity;
-    pointer-events: none;
-  }
-
   &:hover {
-    outline: var.$outline-hover;
-    outline-offset: var.$outline-offset-hover;
-    border-color: var.$border-color-hover;
-    background-color: var.$background-hover;
-    box-shadow: var.$box-shadow-hover;
-    color: var.$color-hover;
+    border-color: core.vars($_v, "button-border-color-hover", transparent);
+    background: core.vars($_v, "button-background-hover", hsla(var(--#{$_v}button-theme), 50%, 0.1));
+    box-shadow: core.vars($_v, "button-shadow-hover", transparent);
+    color: core.vars($_v, "button-foreground-hover", hsl(var(--#{$_v}button-theme), 40%));
   }
 
   &:focus {
-    outline: var.$outline-focus;
-    outline-offset: var.$outline-offset-focus;
-    border-color: var.$border-color-focus;
-    background-color: var.$background-focus;
-    box-shadow: var.$box-shadow-focus;
-    color: var.$color-focus;
+    border-color: core.vars($_v, "button-border-color-focus", transparent);
+    background: core.vars($_v, "button-background-focus", hsla(var(--#{$_v}button-theme), 50%, 0.1));
+    box-shadow: core.vars($_v, "button-shadow-focus", transparent);
+    color: core.vars($_v, "button-foreground-focus", hsl(var(--#{$_v}button-theme), 40%));
   }
 
   &:active {
-    outline: var.$outline-active;
-    outline-offset: var.$outline-offset-active;
-    border-color: var.$border-color-active;
-    background-color: var.$background-active;
-    box-shadow: var.$box-shadow-active;
-    color: var.$color-active;
+    border-color: core.vars($_v, "button-border-color-active", transparent);
+    background: core.vars($_v, "button-background-active", hsla(var(--#{$_v}button-theme), 50%, 0.2));
+    box-shadow: core.vars($_v, "button-shadow-active", transparent);
+    color: core.vars($_v, "button-foreground-active", hsl(var(--#{$_v}button-theme), 40%));
+  }
+
+  &:disabled:not(.is-loading) {
+    opacity: var.$disabled-opacity;
+    pointer-events: none;
   }
 
   &.is-loading {

@@ -1,0 +1,24 @@
+@use "sass:color";
+@use "@vrembem/core";
+@use "./variables" as var;
+
+$_v: var.$prefix-variable;
+$_b: var.$prefix-block;
+$_m: var.$prefix-modifier;
+$_mv: var.$prefix-modifier-value;
+
+.#{$_b}button#{$_m}theme#{$_mv}primary {
+  --#{$_v}button-theme: var(--#{$_v}primary-hs, #{core.get-hs(core.$primary-seed)});
+}
+
+.#{$_b}button#{$_m}theme#{$_mv}secondary {
+  --#{$_v}button-theme: var(--#{$_v}secondary-hs, #{core.get-hs(core.$secondary-seed)});
+}
+
+.#{$_b}button#{$_m}theme#{$_mv}neutral {
+  --#{$_v}button-theme: var(--#{$_v}neutral-hs, #{core.get-hs(core.$neutral-seed)});
+}
+
+.#{$_b}button#{$_m}theme#{$_mv}important {
+  --#{$_v}button-theme: var(--#{$_v}important-hs, #{core.get-hs(core.$important-seed)});
+}

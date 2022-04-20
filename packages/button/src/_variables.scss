@@ -1,6 +1,7 @@
 @use "sass:list";
 @use "@vrembem/core";
 
+$prefix-variable: core.$prefix-variable !default;
 $prefix-block: core.$prefix-block !default;
 $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
@@ -13,40 +14,33 @@ $gap: 0.5rem !default;
 $transition-property: box-shadow, outline, outline-offset !default;
 $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function !default;
+$border: 1px solid !default;
 $border-radius: core.$border-radius !default;
 $font-size: 1em !default;
 $font-weight: inherit !default;
 $line-height: core.$line-height !default;
 
-$border: 1px solid core.$neutral-80 !default;
-$border-color-hover: core.$neutral-60 !default;
-$border-color-focus: core.$neutral-60 !default;
-$border-color-active: null !default;
+$theme: core.$black !default;
 
-$background: transparent !default;
-$background-hover: transparent !default;
-$background-focus: transparent !default;
-$background-active: rgba(core.$black, 0.05) !default;
+// $background: transparent !default;
+// $foreground: currentcolor !default;
+// $shadow-color: rgba(core.$black, 0.1) !default;
+// $border-color: core.$border-color-dark !default;
 
-$box-shadow: 0 0 0 0 rgba(core.$black, 0) !default;
-$box-shadow-hover: null !default;
-$box-shadow-focus: 0 0 0 0.2rem rgba(core.$black, 0.15) !default;
-$box-shadow-active: null !default;
+// $background-hover: transparent !default;
+// $foreground-hover: currentcolor !default;
+// $shadow-color-hover: rgba(core.$black, 0.1) !default;
+// $border-color-hover: currentcolor !default;
 
-$color: core.$foreground !default;
-$color-hover: null !default;
-$color-focus: null !default;
-$color-active: null !default;
+// $background-focus: transparent !default;
+// $foreground-focus: currentcolor !default;
+// $shadow-color-focus: rgba(core.$black, 0.1) !default;
+// $border-color-focus: currentcolor !default;
 
-$outline: none !default;
-$outline-hover: null !default;
-$outline-focus: null !default;
-$outline-active: null !default;
-
-$outline-offset: null !default;
-$outline-offset-hover: null !default;
-$outline-offset-focus: null !default;
-$outline-offset-active: null !default;
+// $background-active: rgba(core.$black, 0.05) !default;
+// $foreground-active: currentcolor !default;
+// $shadow-color-active: rgba(core.$black, 0.1) !default;
+// $border-color-active: currentcolor !default;
 
 // disabled
 $disabled-opacity: 0.6 !default;

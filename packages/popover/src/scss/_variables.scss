@@ -1,6 +1,6 @@
 @use "@vrembem/core";
 
-$prefix-variable: "#{core.$prefix-variable}popover-" !default;
+$prefix-variable: core.$prefix-variable !default;
 $prefix-block: core.$prefix-block !default;
 $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;

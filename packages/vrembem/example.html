@@ -29,8 +29,12 @@
         --vb-root-background: hsl(var(--vb-secondary-hs), 8%);
         --vb-root-background-dark: hsl(var(--vb-secondary-hs), 6%);
         --vb-root-background-darker: hsl(var(--vb-secondary-hs), 4%);
-        --vb-root-foreground: var(--vb-primary-90);
+        --vb-root-foreground: var(--vb-neutral-90);
+        --vb-root-foreground-light: var(--vb-neutral-70);
+        --vb-root-foreground-lighter: var(--vb-neutral-50);
         --vb-root-border-color: rgba(255,255,255, 0.1);
+        --vb-root-border-color-dark: rgba(255,255,255, 0.2);
+        --vb-root-border-color-darker: rgba(255,255,255, 0.3);
       }
     }
 
@@ -43,23 +47,35 @@
       --vb-background-dark: initial;
       --vb-background-darker: initial;
       --vb-foreground: initial;
+      --vb-foreground-light: initial;
+      --vb-foreground-lighter: initial;
       --vb-border-color: initial;
+      --vb-border-color-dark: initial;
+      --vb-border-color-darker: initial;
     }
 
     .theme-light {
       --vb-background: #fff;
       --vb-background-dark: var(--vb-secondary-98);
       --vb-background-darker: var(--vb-secondary-95);
-      --vb-foreground: var(--vb-neutral-30);
+      --vb-foreground: var(--vb-neutral-20);
+      --vb-foreground-dark: var(--vb-neutral-40);
+      --vb-foreground-darker: var(--vb-neutral-60);
       --vb-border-color: rgba(0,0,0, 0.1);
+      --vb-border-color-dark: rgba(0,0,0, 0.2);
+      --vb-border-color-darker: rgba(0,0,0, 0.3);
     }
 
     .theme-dark {
       --vb-background: hsl(var(--vb-secondary-hs), 8%);
       --vb-background-dark: hsl(var(--vb-secondary-hs), 6%);
       --vb-background-darker: hsl(var(--vb-secondary-hs), 4%);
-      --vb-foreground: var(--vb-primary-90);
+      --vb-foreground: var(--vb-neutral-90);
+      --vb-foreground-light: var(--vb-neutral-70);
+      --vb-foreground-lighter: var(--vb-neutral-50);
       --vb-border-color: rgba(255,255,255, 0.1);
+      --vb-border-color-dark: rgba(255,255,255, 0.2);
+      --vb-border-color-darker: rgba(255,255,255, 0.3);
     }
 
     /**
@@ -171,6 +187,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" class="icon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             </button>
             <h1 class="text-size-lg">Vrembem</h1>
+            <span class="foreground-lighter">v3.0.0</span>
           </div>
           <p class="max-width-xs">
             A complete collection of all Vrembem components into a single comprehensive package for convenience.
@@ -221,11 +238,27 @@
 
           <h2 id="vrembem-button">@vrembem/button</h2>
 
-          <div>
-            <div class="flex flex-gap-sm">
+          <div class="gap-y-sm">
+            <div class="flex flex-gap-x-sm">
               <button type="button" class="button">Button</button>
-              <button type="button" class="button button_color_primary">Button</button>
-              <button type="button" class="button button_color_secondary">Button</button>
+              <button type="button" class="button button_theme_primary">Button</button>
+              <button type="button" class="button button_theme_secondary">Button</button>
+              <button type="button" class="button button_theme_neutral">Button</button>
+              <button type="button" class="button button_theme_important">Button</button>
+            </div>
+            <div class="flex flex-gap-x-sm">
+              <button type="button" class="button button_style_fill">Button</button>
+              <button type="button" class="button button_style_fill button_theme_primary">Button</button>
+              <button type="button" class="button button_style_fill button_theme_secondary">Button</button>
+              <button type="button" class="button button_style_fill button_theme_neutral">Button</button>
+              <button type="button" class="button button_style_fill button_theme_important">Button</button>
+            </div>
+            <div class="flex flex-gap-x-sm">
+              <button type="button" class="button button_style_outline">Button</button>
+              <button type="button" class="button button_style_outline button_theme_primary">Button</button>
+              <button type="button" class="button button_style_outline button_theme_secondary">Button</button>
+              <button type="button" class="button button_style_outline button_theme_neutral">Button</button>
+              <button type="button" class="button button_style_outline button_theme_important">Button</button>
             </div>
           </div>
 

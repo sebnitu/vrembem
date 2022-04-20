@@ -11,9 +11,9 @@ $_v: var.$prefix-modifier-value;
 }
 
 .#{$_b}popover#{$_m}size#{$_v}sm {
-  width: core.vars(var.$prefix-variable, "size-sm-width", var.$size-sm-width);
+  width: core.vars(var.$prefix-variable, "popover-size-sm-width", var.$size-sm-width);
 }
 
 .#{$_b}popover#{$_m}size#{$_v}lg {
-  width: core.vars(var.$prefix-variable, "size-lg-width", var.$size-lg-width);
+  width: core.vars(var.$prefix-variable, "popover-size-lg-width", var.$size-lg-width);
 }
