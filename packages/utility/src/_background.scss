@@ -29,11 +29,11 @@ $_c: var.$class-background;
   @each $key, $map in core.$color-map {
     @each $num, $value in $map {
       .#{$_u}#{$_c}-#{$key}-#{$num} {
-        background: $value !important;
+        background-color: $value !important;
       }
     }
     .#{$_u}#{$_c}-#{$key} {
-      background: var(--#{$_v}#{$key}) !important;
+      background-color: var(--#{$_v}#{$key}) !important;
     }
   }
 
