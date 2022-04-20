@@ -4,8 +4,9 @@
 $_v: var.$prefix-variable;
 
 .#{var.$prefix-block}button {
-  --#{$_v}button-theme: #{core.get-hs(var.$theme)};
   @include core.gap(var.$gap, "x");
+
+  --#{$_v}button-theme: #{core.get-hs(var.$theme)};
   position: relative;
   display: inline-flex;
   align-items: center;

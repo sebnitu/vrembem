@@ -126,7 +126,8 @@
 @function vars($prefix, $prop, $default: null) {
   @if ($default) {
     @return var(--#{$prefix}#{$prop}, var(--#{$prefix}root-#{$prop}, #{$default}));
-  } @else {
+  }
+  @else {
     @return var(--#{$prefix}#{$prop}, var(--#{$prefix}root-#{$prop}));
   }
 }
