@@ -1,6 +1,7 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
+$_v: var.$prefix-variable;
 $_u: var.$prefix-utility;
 $_c: var.$class-foreground;
 
@@ -30,6 +31,9 @@ $_c: var.$class-foreground;
       .#{$_u}#{$_c}-#{$key}-#{$num} {
         color: $value !important;
       }
+    }
+    .#{$_u}#{$_c}-#{$key} {
+      color: var(--#{$_v}#{$key}) !important;
     }
   }
 }

@@ -1,5 +1,6 @@
 @use "@vrembem/core";
 
+$prefix-variable: core.$prefix-variable !default;
 $prefix-utility: null !default;
 
 $output: true !default;
