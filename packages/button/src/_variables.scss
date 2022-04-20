@@ -7,6 +7,7 @@ $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
+$theme: core.$black !default;
 $breakpoints: core.$breakpoints !default;
 $size: core.$form-control-size !default;
 $padding: calc(#{list.nth(core.$padding, 1)} - 1px) list.nth(core.$padding, 2) !default;
@@ -20,35 +21,13 @@ $font-size: 1em !default;
 $font-weight: inherit !default;
 $line-height: core.$line-height !default;
 
-$theme: core.$black !default;
-
-// $background: transparent !default;
-// $foreground: currentcolor !default;
-// $shadow-color: rgba(core.$black, 0.1) !default;
-// $border-color: core.$border-color-dark !default;
-
-// $background-hover: transparent !default;
-// $foreground-hover: currentcolor !default;
-// $shadow-color-hover: rgba(core.$black, 0.1) !default;
-// $border-color-hover: currentcolor !default;
-
-// $background-focus: transparent !default;
-// $foreground-focus: currentcolor !default;
-// $shadow-color-focus: rgba(core.$black, 0.1) !default;
-// $border-color-focus: currentcolor !default;
-
-// $background-active: rgba(core.$black, 0.05) !default;
-// $foreground-active: currentcolor !default;
-// $shadow-color-active: rgba(core.$black, 0.1) !default;
-// $border-color-active: currentcolor !default;
-
 // disabled
 $disabled-opacity: 0.6 !default;
 
 // is-loading
 $loading-size: 1em !default;
 $loading-animation-duration: 0.6s !default;
-$loading-border-color: core.$foreground-lighter !default;
+$loading-border-color: core.vars($prefix-variable, "button-foreground", hsl(var(--#{$prefix-variable}button-theme), 50%)) !default;
 $loading-border: 2px solid !default;
 $loading-border-tpl: 1 1 0 0;
 

@@ -238,7 +238,7 @@
 
           <h2 id="vrembem-button">@vrembem/button</h2>
 
-          <div class="gap-y-sm">
+          <div id="vrembem-button-examples" class="gap-y-sm">
             <div class="flex flex-gap-x-sm">
               <button type="button" class="button">Button</button>
               <button type="button" class="button button_theme_primary">Button</button>
@@ -259,6 +259,13 @@
               <button type="button" class="button button_style_outline button_theme_secondary">Button</button>
               <button type="button" class="button button_style_outline button_theme_neutral">Button</button>
               <button type="button" class="button button_style_outline button_theme_important">Button</button>
+            </div>
+            <div class="flex flex-gap-x-sm">
+              <button type="button" class="button button_style_fill button_block">Button</button>
+              <button type="button" class="button button_style_fill button_theme_primary button_block">Button</button>
+              <button type="button" class="button button_style_fill button_theme_secondary button_block">Button</button>
+              <button type="button" class="button button_style_fill button_theme_neutral button_block">Button</button>
+              <button type="button" class="button button_style_fill button_theme_important button_block">Button</button>
             </div>
           </div>
 
@@ -441,6 +448,16 @@
   <!-- Implementation scripts -->
   <script>
     const drawer = new vrembem.Drawer({ autoInit: true });
+
+    const buttons = document.querySelectorAll('#vrembem-button-examples .button');
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', (event) => {
+        event.target.classList.add('is-loading');
+        setTimeout(() => {
+        event.target.classList.remove('is-loading');
+        }, 2000);
+      });
+    });
   </script>
 </body>
 </html>
