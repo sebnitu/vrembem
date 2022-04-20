@@ -28,18 +28,18 @@ $_mv: var.$prefix-modifier-value;
 .#{$_b}button#{$_m}style#{$_mv}outline {
   --#{$_v}button-background: transparent;
   --#{$_v}button-foreground: hsl(var(--#{$_v}button-theme), 50%);
-  --#{$_v}button-border-color: currentcolor;
+  --#{$_v}button-border-color: hsl(var(--#{$_v}button-theme), 50%);
   --#{$_v}button-shadow: 0 0 0 0 hsla(var(--#{$_v}button-theme), 50%, 0.4);
   --#{$_v}button-background-hover: transparent;
   --#{$_v}button-foreground-hover: hsl(var(--#{$_v}button-theme), 40%);
-  --#{$_v}button-border-color-hover: currentcolor;
+  --#{$_v}button-border-color-hover: hsl(var(--#{$_v}button-theme), 40%);
   --#{$_v}button-shadow-hover: 0 0 0 0 hsla(var(--#{$_v}button-theme), 50%, 0.4);
   --#{$_v}button-background-focus: transparent;
   --#{$_v}button-foreground-focus: hsl(var(--#{$_v}button-theme), 40%);
-  --#{$_v}button-border-color-focus: currentcolor;
+  --#{$_v}button-border-color-focus: hsl(var(--#{$_v}button-theme), 40%);
   --#{$_v}button-shadow-focus: 0 0 0 0.2rem hsla(var(--#{$_v}button-theme), 50%, 0.4);
   --#{$_v}button-background-active: hsla(var(--#{$_v}button-theme), 50%, 0.1);
   --#{$_v}button-foreground-active: hsl(var(--#{$_v}button-theme), 40%);
-  --#{$_v}button-border-color-active: currentcolor;
+  --#{$_v}button-border-color-active: hsl(var(--#{$_v}button-theme), 40%);
   --#{$_v}button-shadow-active: 0 0 0 0.2rem hsla(var(--#{$_v}button-theme), 50%, 0.4);
 }
