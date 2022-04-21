@@ -15,7 +15,7 @@
     "server": "lerna run server --scope=docs --parallel",
     "sink": "npm ci && lerna bootstrap && npm-run-all build lint test:coverage",
     "test": "jest",
-    "test:coverage": "jest --coverage",
+    "test:coverage": "jest --coverage --no-cache",
     "test:watch": "jest --watch",
     "watch": "lerna run watch --scope=\"@vrembem/$npm_config_component\" --parallel",
     "watch:docs": "lerna run watch --scope=docs --parallel",
