@@ -33,19 +33,24 @@ export function handleKeydown(event) {
 export function handleDocumentClick(popover) {
   const root = this;
   document.addEventListener('click', function _f(event) {
-    // Check if a popover was clicked.
-    const result = event.target.closest(`#${popover.id}, [aria-controls="${popover.id}"]`);
-    if (!result) {
-      // If it doesn't match and popover is open, close it and remove event listener.
+    // Check if a popover or its trigger was clicked.
+    const wasClicked = event.target.closest(
+      `#${popover.id}, [aria-controls="${popover.id}"], [aria-describedby="${popover.id}"]`
+    );
+
+    // If popover or popover trigger was clicked...
+    if (wasClicked) {
+      // If popover element exists and is not active...
+      if (popover.el && !popover.el.classList.contains(root.settings.stateActive)) {
+        this.removeEventListener('click', _f);
+      }
+
+    } else {
+      // If popover element exists and is active...
       if (popover.el && popover.el.classList.contains(root.settings.stateActive)) {
         popover.close();
       }
       this.removeEventListener('click', _f);
-    } else {
-      // If it does match and popover isn't currently active, remove event listener.
-      if (popover.el && !popover.el.classList.contains(root.settings.stateActive)) {
-        this.removeEventListener('click', _f);
-      }
     }
   });
 }
