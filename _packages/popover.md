@@ -69,19 +69,19 @@ popover.init({
 });
 ```
 
-Alternatively, this value can be overridden using the [`--popover-event` CSS variable](#css-variables). This can be done either through your own custom CSS or using the `style` attribute.
+Alternatively, this value can be overridden using the [`--vb-popover-event` CSS variable](#css-variables). This can be done either through your own custom CSS or using the `style` attribute.
 
 {% include demo_open.html %}
 <button class="button button_color_primary" aria-controls="popover-3">
   <span>Hover Popover</span>
   <span class="arrow-down"></span>
 </button>
-<div class="popover" id="popover-3" style="--popover-event: hover;">
+<div class="popover" id="popover-3" style="--vb-popover-event: hover;">
   {% include example_menu.html type="short" %}
 </div>
 {% include demo_switch.html %}
 ```html
-<div id="unique-id" class="popover" style="--popover-event: hover;">
+<div id="unique-id" class="popover" style="--vb-popover-event: hover;">
   ...
 </div>
 ```
@@ -103,19 +103,19 @@ popover.init({
 });
 ```
 
-Alternatively, this value can be overridden using the [`--popover-placement` CSS variable](#css-variables). This can be done either through your own custom CSS or using the `style` attribute.
+Alternatively, this value can be overridden using the [`--vb-popover-placement` CSS variable](#css-variables). This can be done either through your own custom CSS or using the `style` attribute.
 
 {% include demo_open.html %}
 <button class="button button_color_primary" aria-controls="popover-4">
   <span>Top Popover</span>
   <span class="arrow-up"></span>
 </button>
-<div class="popover" id="popover-4" style="--popover-placement: top;">
+<div class="popover" id="popover-4" style="--vb-popover-placement: top;">
   {% include example_menu.html type="short" %}
 </div>
 {% include demo_switch.html %}
 ```html
-<div id="unique-id" class="popover" style="--popover-placement: top;">
+<div id="unique-id" class="popover" style="--vb-popover-placement: top;">
   ...
 </div>
 ```
@@ -155,32 +155,32 @@ Popover provides CSS variables on the `:root` element for controlling the event 
     <tbody>
       <tr>
         <td data-mobile-label="Sass"><code class="code text-nowrap">$event</code></td>
-        <td data-mobile-label="CSS"><code class="code color-secondary">--popover-event</code></td>
+        <td data-mobile-label="CSS"><code class="code color-secondary">--vb-popover-event</code></td>
         <td data-mobile-label="Desc">Controls the event type. Can be set to <code class="code">click</code> or <code class="code">hover</code>.</td>
       </tr>
       <tr>
         <td data-mobile-label="Sass"><code class="code text-nowrap">$placement</code></td>
-        <td data-mobile-label="CSS"><code class="code color-secondary">--popover-placement</code></td>
+        <td data-mobile-label="CSS"><code class="code color-secondary">--vb-popover-placement</code></td>
         <td data-mobile-label="Desc">Controls the preferred placement for the popover. <a href="https://popper.js.org/docs/v2/constructors/#placement" class="link">More details &rarr;</a></td>
       </tr>
       <tr>
         <td data-mobile-label="Sass"><code class="code text-nowrap">$offset</code></td>
-        <td data-mobile-label="CSS"><code class="code color-secondary">--popover-offset</code></td>
+        <td data-mobile-label="CSS"><code class="code color-secondary">--vb-popover-offset</code></td>
         <td data-mobile-label="Desc">Controls the distance from the popover trigger element (<code class="code">aria-controls</code>) that a popover will position itself. <a href="https://popper.js.org/docs/v2/modifiers/offset/" class="link">More details &rarr;</a></td>
       </tr>
       <tr>
         <td data-mobile-label="Sass"><code class="code text-nowrap">$overflow-padding</code></td>
-        <td data-mobile-label="CSS"><code class="code color-secondary">--popover-overflow-padding</code></td>
+        <td data-mobile-label="CSS"><code class="code color-secondary">--vb-popover-overflow-padding</code></td>
         <td data-mobile-label="Desc">Controls the distance before a popover is cut off and will try to reposition itself to stay visible. <a href="https://popper.js.org/docs/v2/modifiers/prevent-overflow/#padding" class="link">More details &rarr;</a></td>
       </tr>
       <tr>
         <td data-mobile-label="Sass"><code class="code text-nowrap">$flip-padding</code></td>
-        <td data-mobile-label="CSS"><code class="code color-secondary">--popover-flip-padding</code></td>
+        <td data-mobile-label="CSS"><code class="code color-secondary">--vb-popover-flip-padding</code></td>
         <td data-mobile-label="Desc">Controls the distance before a popover is cut off and will try to flip it's placement to stay visible. <a href="https://popper.js.org/docs/v2/modifiers/flip/#padding" class="link">More details &rarr;</a></td>
       </tr>
       <tr>
         <td data-mobile-label="Sass"><code class="code text-nowrap">$arrow-padding</code></td>
-        <td data-mobile-label="CSS"><code class="code color-secondary">--popover-arrow-padding</code></td>
+        <td data-mobile-label="CSS"><code class="code color-secondary">--vb-popover-arrow-padding</code></td>
         <td data-mobile-label="Desc">Controls the distance before a popover arrow reaches the edge of the popover. <a href="https://popper.js.org/docs/v2/modifiers/arrow/#padding" class="link">More details &rarr;</a></td>
       </tr>
     </tbody>
@@ -190,8 +190,8 @@ Popover provides CSS variables on the `:root` element for controlling the event 
 The advantage to having these values set by a CSS variable is that they can be given new values for specific use cases either in your own stylesheet or by setting the variables in a `style` attribute.
 
 {% include demo_open.html %}
-<div class="level flex-justify-between" style="--popover-offset: 0;">
-  <div style="--popover-placement: right;">
+<div class="level flex-justify-between" style="--vb-popover-offset: 0;">
+  <div style="--vb-popover-placement: right;">
     <button class="button button_color_primary" aria-controls="popover-5">
       <span class="arrow-right"></span>
     </button>
@@ -200,7 +200,7 @@ The advantage to having these values set by a CSS variable is that they can be g
       <span class="popover__arrow"></span>
     </div>
   </div>
-  <div style="--popover-placement: left;">
+  <div style="--vb-popover-placement: left;">
     <button class="button button_color_primary" aria-controls="popover-6">
       <span class="arrow-left"></span>
     </button>
@@ -212,11 +212,11 @@ The advantage to having these values set by a CSS variable is that they can be g
 </div>
 {% include demo_switch.html %}
 ```html
-<div style="--popover-offset: 0;">
-  <div style="--popover-placement: right;">
+<div style="--vb-popover-offset: 0;">
+  <div style="--vb-popover-placement: right;">
     ...
   </div>
-  <div style="--popover-placement: left;">
+  <div style="--vb-popover-placement: left;">
     ...
   </div>
 </div>
