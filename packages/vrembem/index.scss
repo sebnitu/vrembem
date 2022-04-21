@@ -1,3 +1,6 @@
+@use "@vrembem/core/src/scss/root/prefix";
+@use "@vrembem/core/src/scss/root/breakpoints";
+
 @forward "@vrembem/core" as core-*;
 @forward "@vrembem/base" as base-*;
 @forward "@vrembem/breadcrumb" as breadcrumb-*;
