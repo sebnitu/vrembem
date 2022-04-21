@@ -280,7 +280,7 @@
               </div>
             </div>
             <div class="gap-y-sm">
-              <p>button_size_sm</p>
+              <p>button_size_[key]</p>
               <div class="flex flex-gap-x-sm">
                 <button type="button" class="button button_style_outline button_size_sm">Button</button>
                 <button type="button" class="button button_style_outline button_theme_primary button_size_sm">Button</button>
@@ -288,9 +288,6 @@
                 <button type="button" class="button button_style_outline button_theme_neutral button_size_sm">Button</button>
                 <button type="button" class="button button_style_outline button_theme_important button_size_sm">Button</button>
               </div>
-            </div>
-            <div class="gap-y-sm">
-              <p>button_size_lg</p>
               <div class="flex flex-gap-x-sm">
                 <button type="button" class="button button_style_fill button_size_lg">Button</button>
                 <button type="button" class="button button_style_fill button_theme_primary button_size_lg">Button</button>
@@ -320,6 +317,69 @@
             <p>button-group_full</p>
             <div class="button-group button-group_full">
               <button type="button" class="button button_style_fill">Button</button>
+              <button type="button" class="button button_style_fill button_theme_primary">Button</button>
+              <button type="button" class="button button_style_fill button_theme_secondary">Button</button>
+              <button type="button" class="button button_style_fill button_theme_neutral">Button</button>
+              <button type="button" class="button button_style_fill button_theme_important">Button</button>
+            </div>
+          </div>
+
+          <div class="gap-y-sm">
+            <p>button-group_gap_[key]</p>
+            <div class="button-group button-group_gap_none">
+              <button type="button" class="button button_style_fill button_theme_primary">Button</button>
+              <button type="button" class="button button_style_fill button_theme_secondary">Button</button>
+              <button type="button" class="button button_style_fill button_theme_neutral">Button</button>
+              <button type="button" class="button button_style_fill button_theme_important">Button</button>
+            </div>
+            <br>
+            <div class="button-group button-group_gap_border">
+              <button type="button" class="button button_style_fill button_theme_primary">Button</button>
+              <button type="button" class="button button_style_fill button_theme_secondary">Button</button>
+              <button type="button" class="button button_style_fill button_theme_neutral">Button</button>
+              <button type="button" class="button button_style_fill button_theme_important">Button</button>
+            </div>
+            <br>
+            <div class="button-group button-group_gap_xs">
+              <button type="button" class="button button_style_fill button_theme_primary">Button</button>
+              <button type="button" class="button button_style_fill button_theme_secondary">Button</button>
+              <button type="button" class="button button_style_fill button_theme_neutral">Button</button>
+              <button type="button" class="button button_style_fill button_theme_important">Button</button>
+            </div>
+            <br>
+            <div class="button-group button-group_gap_sm">
+              <button type="button" class="button button_style_fill button_theme_primary">Button</button>
+              <button type="button" class="button button_style_fill button_theme_secondary">Button</button>
+              <button type="button" class="button button_style_fill button_theme_neutral">Button</button>
+              <button type="button" class="button button_style_fill button_theme_important">Button</button>
+            </div>
+            <br>
+            <div class="button-group button-group_gap_md">
+              <button type="button" class="button button_style_fill button_theme_primary">Button</button>
+              <button type="button" class="button button_style_fill button_theme_secondary">Button</button>
+              <button type="button" class="button button_style_fill button_theme_neutral">Button</button>
+              <button type="button" class="button button_style_fill button_theme_important">Button</button>
+            </div>
+            <br>
+            <div class="button-group button-group_gap_lg">
+              <button type="button" class="button button_style_fill button_theme_primary">Button</button>
+              <button type="button" class="button button_style_fill button_theme_secondary">Button</button>
+              <button type="button" class="button button_style_fill button_theme_neutral">Button</button>
+              <button type="button" class="button button_style_fill button_theme_important">Button</button>
+            </div>
+            <br>
+            <div class="button-group button-group_gap_xl">
+              <button type="button" class="button button_style_fill button_theme_primary">Button</button>
+              <button type="button" class="button button_style_fill button_theme_secondary">Button</button>
+              <button type="button" class="button button_style_fill button_theme_neutral">Button</button>
+              <button type="button" class="button button_style_fill button_theme_important">Button</button>
+            </div>
+          </div>
+
+          <div class="gap-y-sm">
+            <p>button-group_join</p>
+            <div class="button-group button-group_join">
+              <input class="input" type="text">
               <button type="button" class="button button_style_fill button_theme_primary">Button</button>
               <button type="button" class="button button_style_fill button_theme_secondary">Button</button>
               <button type="button" class="button button_style_fill button_theme_neutral">Button</button>
@@ -508,7 +568,7 @@
       btn.addEventListener('click', (event) => {
         event.target.classList.add('is-loading');
         setTimeout(() => {
-        event.target.classList.remove('is-loading');
+          event.target.classList.remove('is-loading');
         }, 2000);
       });
     });

@@ -8,12 +8,4 @@ $prefix-modifier-value: core.$prefix-modifier-value !default;
 $breakpoints: core.$breakpoints !default;
 $border-radius: core.$border-radius !default;
 $gap: 0.5em !default;
-$gap-join: -1px !default;
-$gap-map: (
-  "none": 0,
-  "xs": 1px,
-  "sm": 0.25em,
-  "md": 0.5em,
-  "lg": 1em,
-  "xl": 1.5em,
-) !default;
+$gap-map: core.$gap-map !default;
