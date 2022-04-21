@@ -98,38 +98,3 @@
   $result: replace($result, 1, $color-1);
   @return $result;
 }
-
-/// Switch between a dark or light color based on the provided background color
-/// @param {Color} $color - The color to check against a lightness threshold
-/// @param {Color} $color-subtle - The light color to use
-/// @param {Color} $color-dark - The dark color to use
-/// @return {Color} - A light or dark text color based on lightness test
-@function color-switch(
-  $background-color,
-  $color-dark: var.$color,
-  $color-light: var.$color-invert
-) {
-  // Checkout base color to lightness threshold
-  @if (color.lightness($background-color) > var.$lightness-threshold) {
-    // Lighter background, return dark color
-    @return $color-dark;
-  }
-  @else {
-    // Darker background, return light color
-    @return $color-light;
-  }
-}
-
-/// Check whether or not a color is dark
-/// @param {Color} $color - The color to check against a lightness threshold
-/// @return {Boolean} - The result
-@function is-dark($color) {
-  @return (color.lightness($color) < var.$lightness-threshold);
-}
-
-/// Check whether or not a color is light
-/// @param {Color} $color - The color to check against a lightness threshold
-/// @return {Boolean} - The result
-@function is-light($color) {
-  @return (color.lightness($color) > var.$lightness-threshold);
-}
