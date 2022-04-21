@@ -6,7 +6,7 @@
   <title>@vrembem/grid</title>
   <link rel="icon" type="image/png" sizes="32x32" href="https://sebnitu.com/dist/favicon.png">
   <!-- Styles -->
-  <link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.css">
+  <link rel="stylesheet" href="../vrembem/dist/styles.css">
   <link rel="stylesheet" href="./dist/styles.css">
   <!-- Vue -->
   <script src="https://unpkg.com/vue"></script>
@@ -17,7 +17,7 @@
     }
 
     .box {
-      padding: calc(1em - 2px);
+      padding: 1em;
       transition: all 0.3s ease;
       border: 2px solid rgba(76, 175, 80, 0.5);
       background: rgba(76, 175, 80, 0.1);
@@ -141,44 +141,48 @@
   </div>
 
   <script>
-    new Vue({
-      el: '#app',
-      data: {
-        classGap: '',
-        classGapX: '',
-        classGapY: '',
-        gap: [
-          '',
-          'grid_gap',
-          'grid_gap_none',
-          'grid_gap_xs',
-          'grid_gap_sm',
-          'grid_gap_md',
-          'grid_gap_lg',
-          'grid_gap_xl',
-        ],
-        gapX: [
-          '',
-          'grid_gap-x',
-          'grid_gap-x_none',
-          'grid_gap-x_xs',
-          'grid_gap-x_sm',
-          'grid_gap-x_md',
-          'grid_gap-x_lg',
-          'grid_gap-x_xl',
-        ],
-        gapY: [
-          '',
-          'grid_gap-y',
-          'grid_gap-y_none',
-          'grid_gap-y_xs',
-          'grid_gap-y_sm',
-          'grid_gap-y_md',
-          'grid_gap-y_lg',
-          'grid_gap-y_xl',
-        ],
+    const AppConfig = {
+      data() {
+        return {
+          classGap: '',
+          classGapX: '',
+          classGapY: '',
+          gap: [
+            '',
+            'grid_gap',
+            'grid_gap_none',
+            'grid_gap_xs',
+            'grid_gap_sm',
+            'grid_gap_md',
+            'grid_gap_lg',
+            'grid_gap_xl',
+          ],
+          gapX: [
+            '',
+            'grid_gap-x',
+            'grid_gap-x_none',
+            'grid_gap-x_xs',
+            'grid_gap-x_sm',
+            'grid_gap-x_md',
+            'grid_gap-x_lg',
+            'grid_gap-x_xl',
+          ],
+          gapY: [
+            '',
+            'grid_gap-y',
+            'grid_gap-y_none',
+            'grid_gap-y_xs',
+            'grid_gap-y_sm',
+            'grid_gap-y_md',
+            'grid_gap-y_lg',
+            'grid_gap-y_xl',
+          ],
+        }
       }
-    });
+    };
+
+    const app = Vue.createApp(AppConfig);
+    app.mount('#app');
   </script>
 </body>
 </html>
