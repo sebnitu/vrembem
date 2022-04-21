@@ -21,38 +21,38 @@ chore(release): add v3.0.4 to CHANGELOG.md
 
 ## v3.0.4 (2022-04-21)
 
-#### :bug: Bug Fix
+### :bug: Bug Fix
 * `popover`
   * [#886](https://github.com/sebnitu/vrembem/pull/886) Fix missing aria-describedby check in close and handler functions
 
 
 ## v3.0.3 (2022-04-21)
 
-#### :bug: Bug Fix
+### :bug: Bug Fix
 * `drawer`
   * [#884](https://github.com/sebnitu/vrembem/pull/884) Fix drawer class variables default
 
-#### :house: Refactor
+### :house: Refactor
 * `core`, `drawer`, `popover`, `vrembem`
   * [#883](https://github.com/sebnitu/vrembem/pull/883) Update custom property output methodology
 
-#### :books: Documentation
+### :books: Documentation
 * [#885](https://github.com/sebnitu/vrembem/pull/885) Update docs css dir to scss
 
 
 ## v3.0.2 (2022-04-21)
 
-#### :house: Refactor
+### :house: Refactor
 * `checkbox`, `core`, `drawer`, `modal`, `popover`
   * [#881](https://github.com/sebnitu/vrembem/pull/881) Rename css directories to scss
 
-#### :hammer: Chore
+### :hammer: Chore
 * [#882](https://github.com/sebnitu/vrembem/pull/882) Run build on push to main branch
 
 
 ## v3.0.1 (2022-04-21)
 
-#### :bug: Bug Fix
+### :bug: Bug Fix
 * `core`, `drawer`, `popover`
   * [#880](https://github.com/sebnitu/vrembem/pull/880) Trim custom property values and create getPrefix module
 
