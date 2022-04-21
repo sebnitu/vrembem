@@ -6,58 +6,24 @@
 @use "sass:string";
 @use "./variables" as var;
 
-/// Remove the unit of a list.length
-/// @param {Number} $number - Number to remove unit from
-/// @return {Number} - Unitless number
-@function strip-unit($number) {
-  @if meta.type-of($number) == "number" and not math.is-unitless($number) {
-    @return math.div($number, $number * 0 + 1);
-  }
-  @return $number;
+/// Returns the aspect ratio in the form of a percentage.
+/// @param {Number} $width
+/// @param {Number} $height
+/// @return {Percent} - Aspect ratio as a percentage
+@function aspect-ratio($width, $height) {
+  @return math.div($height, $width) * 100%;
 }
 
-/// Converts a pixel value to ems.
-/// @param {Pixel} $px
-/// @param {Pixel} $base [$font-size]
-/// @return {Em} - Calculated em value
-@function px-to-em($px, $base: var.$font-size) {
-  @if math.is-unitless($px) {
-    $px: 1px * $px;
+/// Encodes a color for use in data-uri
+/// @param {String} $string - The color to encode
+/// @return {String} - Encoded color
+@function encodecolor($string) {
+  @if meta.type-of($string) == "color" {
+    $hex: string.slice(color.ie-hex-str($string), 4);
+    $string: string.unquote("#{$hex}");
   }
-  @if math.is-unitless($base) {
-    $base: 1px * $base;
-  }
-  $px: math.div($px, $base) * 1em;
-  @return strip-unit($px) * 1em;
-}
-
-/// Converts a pixel value to rems.
-/// @param {Pixel} $px
-/// @return {Rem} - Calculated rem value
-@function px-to-rem($px) {
-  @if math.is-unitless($px) {
-    $px: 1px * $px;
-  }
-  @if math.is-unitless(var.$font-size) {
-    $font-size: 1px * var.$font-size;
-  }
-  $px: math.div($px, $font-size) * 1rem;
-  @return strip-unit($px) * 1rem;
-}
-
-/// Converts an em value to pixels.
-/// @param {Em} $em
-/// @param {Pixel} $base [$font-size]
-/// @return {Pixel} - Calculated pixel value
-@function em-to-px($em, $base: var.$font-size) {
-  @if math.is-unitless($em) {
-    $em: 1em * $em;
-  }
-  @if math.is-unitless($base) {
-    $base: 1px * $base;
-  }
-  $em: math.div($em * $base, 1px);
-  @return strip-unit($em) * 1px;
+  $string: "%23" + $string;
+  @return $string;
 }
 
 /// Output the font weight value using the a weight keyword.
@@ -93,26 +59,6 @@
     $value: 900;
   }
   @return $value;
-}
-
-/// Returns the aspect ratio in the form of a percentage.
-/// @param {Number} $width
-/// @param {Number} $height
-/// @return {Percent} - Aspect ratio as a percentage
-@function aspect-ratio($width, $height) {
-  @return math.div($height, $width) * 100%;
-}
-
-/// Encodes a color for use in data-uri
-/// @param {String} $string - The color to encode
-/// @return {String} - Encoded color
-@function encodecolor($string) {
-  @if meta.type-of($string) == "color" {
-    $hex: string.slice(color.ie-hex-str($string), 4);
-    $string: string.unquote("#{$hex}");
-  }
-  $string: "%23" + $string;
-  @return $string;
 }
 
 /// Replacing values from list.
