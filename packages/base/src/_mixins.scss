@@ -244,7 +244,6 @@
 // ---
 
 @mixin type() {
-  @include core.add-clearfix();
   @include core.gap(var.$type-gap, "y");
   color: var.$type-color;
   font-family: var.$type-font-family;
