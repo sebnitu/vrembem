@@ -14,9 +14,23 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v3.0.2 to CHANGELOG.md
+chore(release): add v3.0.3 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v3.0.3 (2022-04-21)
+
+#### :bug: Bug Fix
+* `drawer`
+  * [#884](https://github.com/sebnitu/vrembem/pull/884) Fix drawer class variables default
+
+#### :house: Refactor
+* `core`, `drawer`, `popover`, `vrembem`
+  * [#883](https://github.com/sebnitu/vrembem/pull/883) Update custom property output methodology
+
+#### :books: Documentation
+* [#885](https://github.com/sebnitu/vrembem/pull/885) Update docs css dir to scss
 
 
 ## v3.0.2 (2022-04-21)
