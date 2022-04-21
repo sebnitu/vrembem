@@ -14,9 +14,19 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v3.0.1 to CHANGELOG.md
+chore(release): add v3.0.2 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v3.0.2 (2022-04-21)
+
+#### :house: Refactor
+* `checkbox`, `core`, `drawer`, `modal`, `popover`
+  * [#881](https://github.com/sebnitu/vrembem/pull/881) Rename css directories to scss
+
+#### :hammer: Chore
+* [#882](https://github.com/sebnitu/vrembem/pull/882) Run build on push to main branch
 
 
 ## v3.0.1 (2022-04-21)
