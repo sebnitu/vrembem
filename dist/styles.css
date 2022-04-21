@@ -3886,6 +3886,7 @@ input::-moz-placeholder {
   --vb-popover-offset: 8;
   --vb-popover-overflow-padding: 10;
   --vb-popover-flip-padding: 10;
+  --vb-popover-arrow-padding: 10;
 }
 
 .popover {
@@ -3970,16 +3971,10 @@ input::-moz-placeholder {
   height: 100%;
 }
 
-:root {
-  --vb-popover-arrow-size: 12px;
-  --vb-popover-arrow-padding: 10;
-  --vb-popover-arrow-border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
 .popover__arrow,
 .popover__arrow::after {
-  width: var(--vb-popover-arrow-size);
-  height: var(--vb-popover-arrow-size);
+  width: var(--vb-popover-arrow-size, 12px);
+  height: var(--vb-popover-arrow-size, 12px);
   position: absolute;
   z-index: -1;
   visibility: hidden;
@@ -3990,35 +3985,35 @@ input::-moz-placeholder {
   content: "";
   visibility: visible;
   transform: rotate(45deg);
-  border: var(--vb-popover-arrow-border);
+  border: var(--vb-popover-arrow-border, 1px solid rgba(0, 0, 0, 0.05));
   border-right-color: transparent;
   border-bottom-color: transparent;
   background-clip: padding-box;
 }
 
 [data-popper-placement^=top] > .popover__arrow {
-  bottom: calc(var(--vb-popover-arrow-size) * -0.5);
+  bottom: calc(var(--vb-popover-arrow-size, 12px) * -0.5);
 }
 [data-popper-placement^=top] > .popover__arrow::after {
   transform: rotate(-135deg);
 }
 
 [data-popper-placement^=bottom] > .popover__arrow {
-  top: calc(var(--vb-popover-arrow-size) * -0.5);
+  top: calc(var(--vb-popover-arrow-size, 12px) * -0.5);
 }
 [data-popper-placement^=bottom] > .popover__arrow::after {
   transform: rotate(45deg);
 }
 
 [data-popper-placement^=left] > .popover__arrow {
-  right: calc(var(--vb-popover-arrow-size) * -0.5);
+  right: calc(var(--vb-popover-arrow-size, 12px) * -0.5);
 }
 [data-popper-placement^=left] > .popover__arrow::after {
   transform: rotate(135deg);
 }
 
 [data-popper-placement^=right] > .popover__arrow {
-  left: calc(var(--vb-popover-arrow-size) * -0.5);
+  left: calc(var(--vb-popover-arrow-size, 12px) * -0.5);
 }
 [data-popper-placement^=right] > .popover__arrow::after {
   transform: rotate(-45deg);
