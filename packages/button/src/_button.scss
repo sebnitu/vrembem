@@ -9,6 +9,7 @@ $_v: var.$prefix-variable;
   --#{$_v}button-theme: #{core.get-hs(var.$theme)};
   position: relative;
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   min-width: var.$size;
