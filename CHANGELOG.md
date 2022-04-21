@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v3.0.3 to CHANGELOG.md
+chore(release): add v3.0.4 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v3.0.4 (2022-04-21)
+
+#### :bug: Bug Fix
+* `popover`
+  * [#886](https://github.com/sebnitu/vrembem/pull/886) Fix missing aria-describedby check in close and handler functions
 
 
 ## v3.0.3 (2022-04-21)
