@@ -5,20 +5,6 @@ $_v: var.$prefix-variable;
 $_b: var.$prefix-block;
 $_offset: calc(calc(var(--#{$_v}popover-offset) + 1) * 1px);
 
-:root {
-  @if (var.$event) {
-    --#{$_v}popover-event: #{var.$event};
-  }
-
-  @if (var.$placement) {
-    --#{$_v}popover-placement: #{var.$placement};
-  }
-
-  --#{$_v}popover-offset: #{core.strip-unit(var.$offset)};
-  --#{$_v}popover-overflow-padding: #{core.strip-unit(var.$overflow-padding)};
-  --#{$_v}popover-flip-padding: #{core.strip-unit(var.$flip-padding)};
-}
-
 .#{$_b}popover {
   position: absolute;
   z-index: var.$z-index;

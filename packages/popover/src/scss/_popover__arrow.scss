@@ -5,10 +5,6 @@ $_v: var.$prefix-variable;
 $_b: var.$prefix-block;
 $_e: var.$prefix-element;
 
-:root {
-  --#{$_v}popover-arrow-padding: #{var.$arrow-padding};
-}
-
 .#{$_b}popover#{$_e}arrow,
 .#{$_b}popover#{$_e}arrow::after {
   @include core.size(var(--#{$_v}popover-arrow-size, var.$arrow-size));
