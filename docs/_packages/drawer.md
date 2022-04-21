@@ -212,7 +212,7 @@ In cases where you'd like a drawer to switch modes based on a specific viewport 
 ```
 {% include demo_close.html %}
 
-A custom breakpoints object can be passed in using the `breakpoints` option. Otherwise, breakpoints are resolved by looking up a CSS variable using the passed key (e.g: `--breakpoint-[key]`).
+A custom breakpoints object can be passed in using the `breakpoints` option. Otherwise, breakpoints are resolved by looking up a CSS variable using the passed key (e.g: `--vb-breakpoint-[key]`).
 
 ```js
 const drawer = new Drawer({
@@ -228,11 +228,11 @@ const drawer = new Drawer({
 
 ```scss
 :root {
-  --breakpoint-xs: 480px;
-  --breakpoint-sm: 620px;
-  --breakpoint-md: 760px;
-  --breakpoint-lg: 990px;
-  --breakpoint-xl: 1380px;
+  --vb-breakpoint-xs: 480px;
+  --vb-breakpoint-sm: 620px;
+  --vb-breakpoint-md: 760px;
+  --vb-breakpoint-lg: 990px;
+  --vb-breakpoint-xl: 1380px;
 }
 ```
 

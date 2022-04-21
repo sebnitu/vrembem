@@ -64,10 +64,10 @@ popover.init({
 });
 ```
 
-Alternatively, this value can be overridden using the [`--popover-event` CSS variable](#css-variables). This can be done either through your own custom CSS or using the `style` attribute.
+Alternatively, this value can be overridden using the [`--vb-popover-event` CSS variable](#css-variables). This can be done either through your own custom CSS or using the `style` attribute.
 
 ```html
-<div class="popover" style="--popover-event: hover;">
+<div class="popover" style="--vb-popover-event: hover;">
   ...
 </div>
 ```
@@ -88,10 +88,10 @@ popover.init({
 });
 ```
 
-Alternatively, this value can be overridden using the [`--popover-placement` CSS variable](#css-variables). This can be done either through your own custom CSS or using the `style` attribute.
+Alternatively, this value can be overridden using the [`--vb-popover-placement` CSS variable](#css-variables). This can be done either through your own custom CSS or using the `style` attribute.
 
 ```html
-<div class="popover" style="--popover-placement: top;">
+<div class="popover" style="--vb-popover-placement: top;">
   ...
 </div>
 ```
@@ -118,23 +118,23 @@ Alternatively, this value can be overridden using the [`--popover-placement` CSS
 
 Popover provides CSS variables on the `:root` element for controlling the event type, preferred placement, offset and overflow-padding. They're consumed by the JavaScript implementation to set options dynamically. The following Sass variable are output as CSS variables:
 
-| Sass                | CSS                          | Description                                                                                                                                                                                   |
-| ------------------- | ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `$event`            | `--popover-event`            | Controls the event type. Can be set to `click` or `hover`.                                                                                                                                    |
-| `$placement`        | `--popover-placement`        | Controls the preferred placement for the popover. [More details &rarr;](https://popper.js.org/docs/v2/constructors/#placement)                                                                |
-| `$offset`           | `--popover-offset`           | Controls the distance from the popover trigger element (`aria-controls`) that a popover will position itself. [More details &rarr;](https://popper.js.org/docs/v2/modifiers/offset/)          |
-| `$overflow-padding` | `--popover-overflow-padding` | Controls the distance before a popover is cut off and will try to reposition itself to stay visible. [More details &rarr;](https://popper.js.org/docs/v2/modifiers/prevent-overflow/#padding) |
-| `$flip-padding`     | `--popover-flip-padding`     | Controls the distance before a popover is cut off and will try to flip it's placement to stay visible. [More details &rarr;](https://popper.js.org/docs/v2/modifiers/flip/#padding)           |
-| `$arrow-padding`    | `--popover-arrow-padding`    | Controls the distance before a popover arrow reaches the edge of the popover. [More details &rarr;](https://popper.js.org/docs/v2/modifiers/arrow/#padding)                                   |
+| Sass                | CSS                             | Description                                                                                                                                                                                   |
+| ------------------- | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `$event`            | `--vb-popover-event`            | Controls the event type. Can be set to `click` or `hover`.                                                                                                                                    |
+| `$placement`        | `--vb-popover-placement`        | Controls the preferred placement for the popover. [More details &rarr;](https://popper.js.org/docs/v2/constructors/#placement)                                                                |
+| `$offset`           | `--vb-popover-offset`           | Controls the distance from the popover trigger element (`aria-controls`) that a popover will position itself. [More details &rarr;](https://popper.js.org/docs/v2/modifiers/offset/)          |
+| `$overflow-padding` | `--vb-popover-overflow-padding` | Controls the distance before a popover is cut off and will try to reposition itself to stay visible. [More details &rarr;](https://popper.js.org/docs/v2/modifiers/prevent-overflow/#padding) |
+| `$flip-padding`     | `--vb-popover-flip-padding`     | Controls the distance before a popover is cut off and will try to flip it's placement to stay visible. [More details &rarr;](https://popper.js.org/docs/v2/modifiers/flip/#padding)           |
+| `$arrow-padding`    | `--vb-popover-arrow-padding`    | Controls the distance before a popover arrow reaches the edge of the popover. [More details &rarr;](https://popper.js.org/docs/v2/modifiers/arrow/#padding)                                   |
 
 The advantage to having these values set by a CSS variable is that they can be given new values for specific use cases either in your own stylesheet or by setting the variables in a `style` attribute.
 
 ```html
-<div style="--popover-offset: 0;">
-  <div style="--popover-placement: right;">
+<div style="--vb-popover-offset: 0;">
+  <div style="--vb-popover-placement: right;">
     ...
   </div>
-  <div style="--popover-placement: left;">
+  <div style="--vb-popover-placement: left;">
     ...
   </div>
 </div>
