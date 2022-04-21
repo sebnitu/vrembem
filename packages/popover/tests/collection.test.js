@@ -11,12 +11,16 @@ const markup = `
       ...
     </div>
     <button id="fdsa-trigger" aria-controls="fdsa">...</button>
-    <div id="fdsa" class="popover" style="--popover-event: hover;">
+    <div id="fdsa" class="popover" style="--vb-popover-event: hover;">
       ...
     </div>
     <button id="third" aria-controls="missing">...</button>
   </div>
 `;
+
+beforeAll(() => {
+  document.body.style.setProperty('--vrembem-variable-prefix', 'vb-');
+});
 
 afterEach(() => {
   popover.destroy();

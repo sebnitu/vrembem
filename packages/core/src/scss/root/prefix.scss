@@ -1,0 +1,9 @@
+@use "../prefix" as pre;
+
+$_v: pre.$prefix-variable;
+
+:root {
+  @if ($_v) {
+    --vrembem-variable-prefix: #{$_v};
+  }
+}
