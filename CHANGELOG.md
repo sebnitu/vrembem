@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v3.0.0 to CHANGELOG.md
+chore(release): add v3.0.1 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v3.0.1 (2022-04-21)
+
+#### :bug: Bug Fix
+* `core`, `drawer`, `popover`
+  * [#880](https://github.com/sebnitu/vrembem/pull/880) Trim custom property values and create getPrefix module
 
 
 ## v3.0.0 (2022-04-06)
