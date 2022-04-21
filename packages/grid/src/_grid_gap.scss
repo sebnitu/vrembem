@@ -8,16 +8,16 @@ $_v: var.$prefix-modifier-value;
 
 @each $key, $value in var.$gap-map {
   .#{$_b}grid#{$_m}gap#{$_v}#{$key} {
-    @include core.flex-gap($value, $prop: "padding");
+    @include core.flex-gap($value);
   }
 }
 
 @each $key, $value in var.$gap-map {
   .#{$_b}grid#{$_m}gap-x#{$_v}#{$key} {
-    @include core.flex-gap($value, "x", $prop: "padding");
+    @include core.flex-gap($value, "x");
   }
 
   .#{$_b}grid#{$_m}gap-y#{$_v}#{$key} {
-    @include core.flex-gap($value, "y", $prop: "padding");
+    @include core.flex-gap($value, "y");
   }
 }

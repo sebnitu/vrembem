@@ -66,8 +66,7 @@
 /// @param {number unit} $val - the number unit
 /// @param {null | string} $dir - direction to apply flex-gap ("x", "y" or null for x and y)
 /// @param {null | true} $imp - whether or not to add `!important` flag
-/// @param {string} $prop - the property to apply gap with ("margin" | "padding")
-@mixin flex-gap($val, $dir: null, $imp: null, $prop: "margin") {
+@mixin flex-gap($val, $dir: null, $imp: null) {
   @if ($imp) {
     $imp: "!important";
   }
