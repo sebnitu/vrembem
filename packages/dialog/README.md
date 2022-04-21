@@ -83,21 +83,21 @@ Used to separate distinct dialog sections for headers and footers. Typically the
 
 ### Sass Variables
 
-| Variable                 | Default                         | Description                                                                                         |
-| ------------------------ | ------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `$prefix-block`          | `null`                          | String to prefix blocks with.                                                                       |
-| `$prefix-element`        | `"__"`                          | String to prefix elements with.                                                                     |
-| `$prefix-modifier`       | `"_"`                           | String to prefix modifiers with.                                                                    |
-| `$prefix-modifier-value` | `"_"`                           | String to prefix modifier values with.                                                              |
-| `$z-index`               | `500`                           | Sets the z-index property.                                                                          |
-| `$padding`               | `1em`                           | Sets the padding property.                                                                          |
-| `$spacing`               | `0.5em`                         | Sets the horizontal spacing between elements in the `dialog__header` and `dialog__footer` elements. |
-| `$background`            | `core.$white`                   | Sets the background property.                                                                       |
-| `$border`                | `null`                          | Sets the border property.                                                                           |
-| `$sep-border`            | `core.$border`                  | Sets the border property that separates dialog elements.                                            |
-| `$border-radius`         | `core.$border-radius`           | Sets the border-radius property.                                                                    |
-| `$box-shadow`            | `core.$box-shadow-16dp`         | Sets the box-shadow property.                                                                       |
-| `$color`                 | `null`                          | Sets the color property.                                                                            |
-| `$title-font-size`       | `core.$font-size-lg`            | Sets the font-size property on the `dialog__title` element.                                         |
-| `$title-line-height`     | `core.$line-height-lg`          | Sets the line-height property on the `dialog__title` element.                                       |
-| `$title-font-weight`     | `core.font-weight("semi-bold")` | Sets the font-weight property on the `dialog__title` element.                                       |
+| Variable                 | Default                       | Description                                                                                         |
+| ------------------------ | ----------------------------- | --------------------------------------------------------------------------------------------------- |
+| `$prefix-block`          | `null`                        | String to prefix blocks with.                                                                       |
+| `$prefix-element`        | `"__"`                        | String to prefix elements with.                                                                     |
+| `$prefix-modifier`       | `"_"`                         | String to prefix modifiers with.                                                                    |
+| `$prefix-modifier-value` | `"_"`                         | String to prefix modifier values with.                                                              |
+| `$z-index`               | `500`                         | Sets the z-index property.                                                                          |
+| `$padding`               | `1em`                         | Sets the padding property.                                                                          |
+| `$spacing`               | `0.5em`                       | Sets the horizontal spacing between elements in the `dialog__header` and `dialog__footer` elements. |
+| `$background`            | `core.$white`                 | Sets the background property.                                                                       |
+| `$border`                | `null`                        | Sets the border property.                                                                           |
+| `$sep-border`            | `core.$border`                | Sets the border property that separates dialog elements.                                            |
+| `$border-radius`         | `core.$border-radius`         | Sets the border-radius property.                                                                    |
+| `$box-shadow`            | `core.$box-shadow-16dp`       | Sets the box-shadow property.                                                                       |
+| `$color`                 | `null`                        | Sets the color property.                                                                            |
+| `$title-font-size`       | `core.$font-size-lg`          | Sets the font-size property on the `dialog__title` element.                                         |
+| `$title-line-height`     | `core.$line-height-lg`        | Sets the line-height property on the `dialog__title` element.                                       |
+| `$title-font-weight`     | `core.$font-weight-semi-bold` | Sets the font-weight property on the `dialog__title` element.                                       |

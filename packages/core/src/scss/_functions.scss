@@ -6,14 +6,6 @@
 @use "sass:string";
 @use "./variables" as var;
 
-/// Returns the aspect ratio in the form of a percentage.
-/// @param {Number} $width
-/// @param {Number} $height
-/// @return {Percent} - Aspect ratio as a percentage
-@function aspect-ratio($width, $height) {
-  @return math.div($height, $width) * 100%;
-}
-
 /// Encodes a color for use in data-uri
 /// @param {String} $string - The color to encode
 /// @return {String} - Encoded color
@@ -24,41 +16,6 @@
   }
   $string: "%23" + $string;
   @return $string;
-}
-
-/// Output the font weight value using the a weight keyword.
-/// @param {String} $weight - Font weight keyword
-/// @return {Number} - Font weight value
-@function font-weight($keyword) {
-  $value: null;
-  @if ($keyword == "hairline" or $keyword == "thin") {
-    $value: 100;
-  }
-  @else if ($keyword == "extra-light") {
-    $value: 200;
-  }
-  @else if ($keyword == "light") {
-    $value: 300;
-  }
-  @else if ($keyword == "regular" or $keyword == "normal") {
-    $value: 400;
-  }
-  @else if ($keyword == "medium") {
-    $value: 500;
-  }
-  @else if ($keyword == "semi-bold" or $keyword == "semibold") {
-    $value: 600;
-  }
-  @else if ($keyword == "bold") {
-    $value: 700;
-  }
-  @else if ($keyword == "extra-bold") {
-    $value: 800;
-  }
-  @else if ($keyword == "black") {
-    $value: 900;
-  }
-  @return $value;
 }
 
 /// Replacing values from list.

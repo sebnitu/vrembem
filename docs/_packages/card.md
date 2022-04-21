@@ -309,7 +309,7 @@ A style enhancement modifier for when the [`card__background` element](#card__sc
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$title-font-weight</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.font-weight("semi-bold")</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$font-weight-semi-bold</code></td>
         <td data-mobile-label="Desc">Sets the font-weight property on the <code class="code">card__title</code> element.</td>
       </tr>
       <!-- card__screen -->

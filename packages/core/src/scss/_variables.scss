@@ -144,6 +144,29 @@ $font-size: 16px !default;
 $font-size-sm: 0.875rem !default; // 14px
 $font-size-lg: 1.125rem !default; // 18px
 
+// Font weight
+$font-weight-thin: 100 !default;
+$font-weight-extra-light: 200 !default;
+$font-weight-light: 300 !default;
+$font-weight-regular: 400 !default;
+$font-weight-medium: 500 !default;
+$font-weight-semi-bold: 600 !default;
+$font-weight-bold: 700 !default;
+$font-weight-extra-bold: 800 !default;
+$font-weight-black: 900 !default;
+
+$font-weight-map: (
+  "thin": $font-weight-thin,
+  "extra-light": $font-weight-extra-light,
+  "light": $font-weight-light,
+  "regular": $font-weight-regular,
+  "medium": $font-weight-medium,
+  "semi-bold": $font-weight-semi-bold,
+  "bold": $font-weight-bold,
+  "extra-bold": $font-weight-extra-bold,
+  "black": $font-weight-black,
+) !default;
+
 // Line height
 $line-height: 1.5 !default; // 24px
 $line-height-sm: 1.375 !default; // 22px

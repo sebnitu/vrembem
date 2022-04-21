@@ -142,7 +142,7 @@ A style enhancement modifier for when the [`card__background` element](#card__sc
 | `$transition-timing-function` | `core.$transition-timing-function`                      | Sets the transition-timing-function property.                                                   |
 | `$title-font-size`            | `core.$font-size-lg`                                    | Sets the font-size property on the `card__title` element.                                       |
 | `$title-line-height`          | `core.$line-height-lg`                                  | Sets the line-height property on the `card__title` element.                                     |
-| `$title-font-weight`          | `core.font-weight("semi-bold")`                         | Sets the font-weight property on the `card__title` element.                                     |
+| `$title-font-weight`          | `core.$font-weight-semi-bold`                           | Sets the font-weight property on the `card__title` element.                                     |
 | `$screen-opacity`             | `0.7`                                                   | Sets the opacity property on the `card__screen` element.                                        |
 | `$screen-background`          | `core.$night`                                           | Sets the background property on the `card__screen` element.                                     |
 | `$invert-background`          | `core.$night`                                           | Sets the background property of the `card_invert` modifier.                                     |

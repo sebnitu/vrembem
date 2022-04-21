@@ -213,7 +213,7 @@ Used to separate distinct dialog sections for headers and footers. Typically the
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$title-font-weight</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.font-weight("semi-bold")</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$font-weight-semi-bold</code></td>
         <td data-mobile-label="Desc">Sets the font-weight property on the <code class="code">dialog__title</code> element.</td>
       </tr>
     </tbody>

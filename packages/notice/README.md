@@ -96,18 +96,18 @@ Adds styles for changing the look and feel of a notice to better reflect the urg
 
 ### Sass Variables
 
-| Variable                 | Default                         | Description                                                                |
-| ------------------------ | ------------------------------- | -------------------------------------------------------------------------- |
-| `$prefix-block`          | `null`                          | String to prefix blocks with.                                              |
-| `$prefix-element`        | `"__"`                          | String to prefix elements with.                                            |
-| `$prefix-modifier`       | `"_"`                           | String to prefix modifiers with.                                           |
-| `$prefix-modifier-value` | `"_"`                           | String to prefix modifier values with.                                     |
-| `$gap`                   | `0.5em`                         | The default vertical gap spacing for elements inside the notice component. |
-| `$padding`               | `1em`                           | Sets the padding property.                                                 |
-| `$border`                | `null`                          | Sets the border property.                                                  |
-| `$border-radius`         | `core.$border-radius`           | Sets the border-radius property.                                           |
-| `$background`            | `core.$shade`                   | Sets the background property.                                              |
-| `$box-shadow`            | `null`                          | Sets the box-shadow property.                                              |
-| `$title-font-size`       | `core.$font-size-lg`            | Sets the font-size property of the `notice__title` element.                |
-| `$title-font-weight`     | `core.font-weight("semi-bold")` | Sets the font-weight property of the `notice__title` element.              |
-| `$title-line-height`     | `core.$line-height-lg`          | Sets the line-height property of the `notice__title` element.              |
+| Variable                 | Default                       | Description                                                                |
+| ------------------------ | ----------------------------- | -------------------------------------------------------------------------- |
+| `$prefix-block`          | `null`                        | String to prefix blocks with.                                              |
+| `$prefix-element`        | `"__"`                        | String to prefix elements with.                                            |
+| `$prefix-modifier`       | `"_"`                         | String to prefix modifiers with.                                           |
+| `$prefix-modifier-value` | `"_"`                         | String to prefix modifier values with.                                     |
+| `$gap`                   | `0.5em`                       | The default vertical gap spacing for elements inside the notice component. |
+| `$padding`               | `1em`                         | Sets the padding property.                                                 |
+| `$border`                | `null`                        | Sets the border property.                                                  |
+| `$border-radius`         | `core.$border-radius`         | Sets the border-radius property.                                           |
+| `$background`            | `core.$shade`                 | Sets the background property.                                              |
+| `$box-shadow`            | `null`                        | Sets the box-shadow property.                                              |
+| `$title-font-size`       | `core.$font-size-lg`          | Sets the font-size property of the `notice__title` element.                |
+| `$title-font-weight`     | `core.$font-weight-semi-bold` | Sets the font-weight property of the `notice__title` element.              |
+| `$title-line-height`     | `core.$line-height-lg`        | Sets the line-height property of the `notice__title` element.              |

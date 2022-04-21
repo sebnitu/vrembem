@@ -53,20 +53,10 @@ $_c: var.$class-font;
     letter-spacing: 0.2em !important;
   }
 
-  .#{$_u}#{$_c}-weight-normal {
-    font-weight: core.font-weight("normal") !important;
-  }
-
-  .#{$_u}#{$_c}-weight-medium {
-    font-weight: core.font-weight("medium") !important;
-  }
-
-  .#{$_u}#{$_c}-weight-semibold {
-    font-weight: core.font-weight("semibold") !important;
-  }
-
-  .#{$_u}#{$_c}-weight-bold {
-    font-weight: core.font-weight("bold") !important;
+  @each $key, $value in core.$font-weight-map {
+    .#{$_u}#{$_c}-weight-#{$key} {
+      font-weight: $value !important;
+    }
   }
 
   .#{$_u}#{$_c}-weight-lighter {
