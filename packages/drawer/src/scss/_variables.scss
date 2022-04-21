@@ -5,8 +5,8 @@ $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
-$class-frame: $prefix-block"drawer-frame" !default;
-$class-main: $prefix-block"drawer-main" !default;
+$class-frame: "#{$prefix-block}drawer-frame" !default;
+$class-main: "#{$prefix-block}drawer-main" !default;
 
 $width: 18em !default;
 $max-width: 100% !default;
