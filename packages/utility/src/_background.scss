@@ -1,6 +1,7 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
+$_v: var.$prefix-variable;
 $_u: var.$prefix-utility;
 $_c: var.$class-background;
 
@@ -17,6 +18,18 @@ $_c: var.$class-background;
     background-clip: padding-box !important;
   }
 
+  .#{$_u}#{$_c} {
+    color: core.$background !important;
+  }
+
+  .#{$_u}#{$_c}-dark {
+    color: core.$background-dark !important;
+  }
+
+  .#{$_u}#{$_c}-darker {
+    color: core.$background-darker !important;
+  }
+
   .#{$_u}#{$_c}-black {
     background-color: core.$black !important;
   }
@@ -29,147 +42,14 @@ $_c: var.$class-background;
     background-color: transparent !important;
   }
 
-  .#{$_u}#{$_c}-primary-lighter {
-    background-color: core.$primary-lighter !important;
-  }
-
-  .#{$_u}#{$_c}-primary-light {
-    background-color: core.$primary-light !important;
-  }
-
-  .#{$_u}#{$_c}-primary {
-    background-color: core.$primary !important;
-  }
-
-  .#{$_u}#{$_c}-primary-dark {
-    background-color: core.$primary-dark !important;
-  }
-
-  .#{$_u}#{$_c}-primary-darker {
-    background-color: core.$primary-darker !important;
-  }
-
-  .#{$_u}#{$_c}-secondary-lighter {
-    background-color: core.$secondary-lighter !important;
-  }
-
-  .#{$_u}#{$_c}-secondary-light {
-    background-color: core.$secondary-light !important;
-  }
-
-  .#{$_u}#{$_c}-secondary {
-    background-color: core.$secondary !important;
-  }
-
-  .#{$_u}#{$_c}-secondary-dark {
-    background-color: core.$secondary-dark !important;
-  }
-
-  .#{$_u}#{$_c}-secondary-darker {
-    background-color: core.$secondary-darker !important;
-  }
-
-  .#{$_u}#{$_c}-shade-light {
-    background-color: core.$shade_light !important;
-  }
-
-  .#{$_u}#{$_c}-shade {
-    background-color: core.$shade !important;
-  }
-
-  .#{$_u}#{$_c}-shade-dark {
-    background-color: core.$shade_dark !important;
-  }
-
-  .#{$_u}#{$_c}-night-light {
-    background-color: core.$night-light !important;
-  }
-
-  .#{$_u}#{$_c}-night {
-    background-color: core.$night !important;
-  }
-
-  .#{$_u}#{$_c}-night-dark {
-    background-color: core.$night-dark !important;
-  }
-
-  .#{$_u}#{$_c}-info-lighter {
-    background-color: core.$info-lighter !important;
-  }
-
-  .#{$_u}#{$_c}-info-light {
-    background-color: core.$info-light !important;
-  }
-
-  .#{$_u}#{$_c}-info {
-    background-color: core.$info !important;
-  }
-
-  .#{$_u}#{$_c}-info-dark {
-    background-color: core.$info-dark !important;
-  }
-
-  .#{$_u}#{$_c}-info-darker {
-    background-color: core.$info-darker !important;
-  }
-
-  .#{$_u}#{$_c}-success-lighter {
-    background-color: core.$success-lighter !important;
-  }
-
-  .#{$_u}#{$_c}-success-light {
-    background-color: core.$success-light !important;
-  }
-
-  .#{$_u}#{$_c}-success {
-    background-color: core.$success !important;
-  }
-
-  .#{$_u}#{$_c}-success-dark {
-    background-color: core.$success-dark !important;
-  }
-
-  .#{$_u}#{$_c}-success-darker {
-    background-color: core.$success-darker !important;
-  }
-
-  .#{$_u}#{$_c}-caution-lighter {
-    background-color: core.$caution-lighter !important;
-  }
-
-  .#{$_u}#{$_c}-caution-light {
-    background-color: core.$caution-light !important;
-  }
-
-  .#{$_u}#{$_c}-caution {
-    background-color: core.$caution !important;
-  }
-
-  .#{$_u}#{$_c}-caution-dark {
-    background-color: core.$caution-dark !important;
-  }
-
-  .#{$_u}#{$_c}-caution-darker {
-    background-color: core.$caution-darker !important;
-  }
-
-  .#{$_u}#{$_c}-danger-lighter {
-    background-color: core.$danger-lighter !important;
-  }
-
-  .#{$_u}#{$_c}-danger-light {
-    background-color: core.$danger-light !important;
-  }
-
-  .#{$_u}#{$_c}-danger {
-    background-color: core.$danger !important;
-  }
-
-  .#{$_u}#{$_c}-danger-dark {
-    background-color: core.$danger-dark !important;
-  }
-
-  .#{$_u}#{$_c}-danger-darker {
-    background-color: core.$danger-darker !important;
+  @each $key, $map in core.$color-map {
+    @each $num, $value in $map {
+      .#{$_u}#{$_c}-#{$key}-#{$num} {
+        background-color: $value !important;
+      }
+    }
+    .#{$_u}#{$_c}-#{$key} {
+      background-color: var(--#{$_v}#{$key}) !important;
+    }
   }
 }
