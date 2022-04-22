@@ -14,6 +14,4 @@ $_v: pre.$prefix-variable;
   --#{$_v}root-border-color-dark: #{theme.$border-color-dark};
   --#{$_v}root-border-color-darker: #{theme.$border-color-darker};
   --#{$_v}root-shadow-color: #{theme.$shadow-color};
-  --#{$_v}root-action: #{theme.$action};
-  --#{$_v}root-action-hover: #{theme.$action-hover};
 }
