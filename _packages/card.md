@@ -273,7 +273,7 @@ A style enhancement modifier for when the [`card__background` element](#card__sc
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$box-shadow-1dp</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$box-shadow-1</code></td>
         <td data-mobile-label="Desc">Sets the box-shadow property.</td>
       </tr>
       <tr>
@@ -309,7 +309,7 @@ A style enhancement modifier for when the [`card__background` element](#card__sc
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$title-font-weight</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.font-weight("semi-bold")</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$font-weight-semi-bold</code></td>
         <td data-mobile-label="Desc">Sets the font-weight property on the <code class="code">card__title</code> element.</td>
       </tr>
       <!-- card__screen -->
@@ -347,12 +347,12 @@ A style enhancement modifier for when the [`card__background` element](#card__sc
       <!-- card_link -->
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$link-shadow</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$box-shadow-4dp</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$box-shadow-2</code></td>
         <td data-mobile-label="Desc">Sets the box-shadow property of the <code class="code">card_link</code> modifier.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$link-shadow-hover</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$box-shadow-8dp</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$box-shadow-3</code></td>
         <td data-mobile-label="Desc">Sets the box-shadow property of the <code class="code">card_link</code> modifier on <code class="code">:hover</code> state.</td>
       </tr>
       <tr>

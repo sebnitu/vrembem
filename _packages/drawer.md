@@ -500,7 +500,7 @@ Drawers slide in from the left by default. To create a right side drawer, use th
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$modal-box-shadow</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$box-shadow-24dp</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$box-shadow-4</code></td>
         <td data-mobile-label="Desc">Box shadow applied to modal drawer items.</td>
       </tr>
       <tr>

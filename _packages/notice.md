@@ -227,7 +227,7 @@ Adds styles for changing the look and feel of a notice to better reflect the urg
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$title-font-weight</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">core.font-weight("semi-bold")</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$font-weight-semi-bold</code></td>
         <td data-mobile-label="Desc">Sets the font-weight property of the <code class="code">notice__title</code> element.</td>
       </tr>
     </tbody>
