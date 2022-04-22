@@ -6,18 +6,6 @@ $_b: var.$prefix-block;
 $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
-.#{$_b}input#{$_m}state#{$_v}info {
-  @include mix.input-variant(core.$info);
-}
-
-.#{$_b}input#{$_m}state#{$_v}success {
-  @include mix.input-variant(core.$success);
-}
-
-.#{$_b}input#{$_m}state#{$_v}caution {
-  @include mix.input-variant(core.$caution);
-}
-
-.#{$_b}input#{$_m}state#{$_v}danger {
-  @include mix.input-variant(core.$danger);
+.#{$_b}input#{$_m}error {
+  @include mix.input-variant(core.$important-seed);
 }
