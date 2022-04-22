@@ -17,6 +17,3 @@ $border-color-dark: fun.vars($_v, "border-color-dark", rgba(pal.$black, 0.2)) !d
 $border-color-darker: fun.vars($_v, "border-color-darker", rgba(pal.$black, 0.3)) !default;
 
 $shadow-color: fun.vars($_v, "shadow-color", pal.$neutral-20) !default;
-
-$action: fun.vars($_v, "action", pal.$primary) !default;
-$action-hover: fun.vars($_v, "action-hover", pal.$primary-40) !default;
