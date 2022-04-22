@@ -29,7 +29,7 @@ $_e: var.$prefix-element;
   transition-duration: var.$transition-duration;
   transition-timing-function: var.$transition-timing-function;
   outline: var.$outline;
-  box-shadow: var.$box-shadow;
+  box-shadow: var.$shadow;
   opacity: 0;
 
   &:focus {
