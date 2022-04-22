@@ -26,6 +26,7 @@
     "color-hex-length": null,
     "custom-property-pattern": null,
     "declaration-empty-line-before": "never",
+    "hue-degree-notation": null,
     "max-line-length": null,
     "media-feature-name-no-vendor-prefix": null,
     "no-descending-specificity": null,
