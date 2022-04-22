@@ -401,7 +401,7 @@ Applies styles to create a popover tooltip. The default placement of a tooltip i
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">core.$box-shadow-8dp</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$box-shadow-2</code></td>
         <td data-mobile-label="Desc">Sets the box-shadow property.</td>
       </tr>
       <tr>

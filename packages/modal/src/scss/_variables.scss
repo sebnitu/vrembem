@@ -12,7 +12,7 @@ $transition-duration: core.$transition-duration !default;
 $transition-timing-function: core.$transition-timing-function !default;
 $background: core.$night !default;
 $background-alpha: 0.8 !default;
-$box-shadow: core.$box-shadow-24dp !default;
+$box-shadow: core.$box-shadow-5 !default;
 
 $outline: 0 solid rgba(core.$primary, 0) !default;
 $outline-focus: 4px solid rgba(core.$primary, 1) !default;

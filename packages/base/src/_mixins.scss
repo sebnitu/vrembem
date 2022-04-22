@@ -291,43 +291,41 @@
   }
 }
 
-@mixin type-invert($color: black) {
-  @if (lightness($color) < core.$lightness-threshold) {
-    color: var.$type-color-invert;
+@mixin type-invert() {
+  color: var.$type-color-invert;
 
-    > h1,
-    > h2,
-    > h3,
-    > h4,
-    > h5,
-    > h6 {
-      color: var.$heading-color-invert;
-    }
+  > h1,
+  > h2,
+  > h3,
+  > h4,
+  > h5,
+  > h6 {
+    color: var.$heading-color-invert;
+  }
 
-    > hr {
-      @include separator(var.$separator-border-invert);
-    }
+  > hr {
+    @include separator(var.$separator-border-invert);
+  }
 
-    > blockquote {
-      border-color: var.$blockquote-border-color-invert;
-    }
+  > blockquote {
+    border-color: var.$blockquote-border-color-invert;
+  }
 
-    > a,
-    > :not(div) a {
-      @include link-modifier("invert");
-    }
+  > a,
+  > :not(div) a {
+    @include link-modifier("invert");
+  }
 
-    > code,
-    > :not(div) code {
-      color: var.$code-color-invert;
-    }
+  > code,
+  > :not(div) code {
+    color: var.$code-color-invert;
+  }
 
-    > pre {
-      color: var.$pre-color;
+  > pre {
+    color: var.$pre-color;
 
-      code {
-        color: inherit;
-      }
+    code {
+      color: inherit;
     }
   }
 }

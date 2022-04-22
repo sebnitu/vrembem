@@ -10,26 +10,26 @@ $_c: var.$class-box-shadow;
   }
 
   .#{$_u}#{$_c}-flat {
-    box-shadow: core.$box-shadow-flat !important;
+    box-shadow: 0 0 0 0 transparent !important;
   }
 
-  .#{$_u}#{$_c}-1dp {
-    box-shadow: core.$box-shadow-1dp !important;
+  .#{$_u}#{$_c}-1 {
+    box-shadow: core.$box-shadow-1 !important;
   }
 
-  .#{$_u}#{$_c}-4dp {
-    box-shadow: core.$box-shadow-4dp !important;
+  .#{$_u}#{$_c}-2 {
+    box-shadow: core.$box-shadow-2 !important;
   }
 
-  .#{$_u}#{$_c}-8dp {
-    box-shadow: core.$box-shadow-8dp !important;
+  .#{$_u}#{$_c}-3 {
+    box-shadow: core.$box-shadow-3 !important;
   }
 
-  .#{$_u}#{$_c}-16dp {
-    box-shadow: core.$box-shadow-16dp !important;
+  .#{$_u}#{$_c}-4 {
+    box-shadow: core.$box-shadow-4 !important;
   }
 
-  .#{$_u}#{$_c}-24dp {
-    box-shadow: core.$box-shadow-24dp !important;
+  .#{$_u}#{$_c}-5 {
+    box-shadow: core.$box-shadow-5 !important;
   }
 }

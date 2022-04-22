@@ -96,7 +96,7 @@ Used to separate distinct dialog sections for headers and footers. Typically the
 | `$border`                | `null`                        | Sets the border property.                                                                           |
 | `$sep-border`            | `core.$border`                | Sets the border property that separates dialog elements.                                            |
 | `$border-radius`         | `core.$border-radius`         | Sets the border-radius property.                                                                    |
-| `$box-shadow`            | `core.$box-shadow-16dp`       | Sets the box-shadow property.                                                                       |
+| `$box-shadow`            | `core.$box-shadow-4`          | Sets the box-shadow property.                                                                       |
 | `$color`                 | `null`                        | Sets the color property.                                                                            |
 | `$title-font-size`       | `core.$font-size-lg`          | Sets the font-size property on the `dialog__title` element.                                         |
 | `$title-line-height`     | `core.$line-height-lg`        | Sets the line-height property on the `dialog__title` element.                                       |

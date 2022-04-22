@@ -192,7 +192,7 @@ Used to separate distinct dialog sections for headers and footers. Typically the
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$box-shadow</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$box-shadow-16dp</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$box-shadow-3</code></td>
         <td data-mobile-label="Desc">Sets the box-shadow property.</td>
       </tr>
       <tr>

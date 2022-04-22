@@ -135,7 +135,7 @@ A style enhancement modifier for when the [`card__background` element](#card__sc
 | `$border`                     | `null`                                                  | Sets the border property.                                                                       |
 | `$sep-border`                 | `core.$border`                                          | Sets the border property that separates card elements.                                          |
 | `$border-radius`              | `core.$border-radius`                                   | Sets the border-radius property.                                                                |
-| `$box-shadow`                 | `core.$box-shadow-1dp`                                  | Sets the box-shadow property.                                                                   |
+| `$box-shadow`                 | `core.$box-shadow-1`                                    | Sets the box-shadow property.                                                                   |
 | `$color`                      | `null`                                                  | Sets the color property.                                                                        |
 | `$transition-property`        | `background-color, border-color, box-shadow, transform` | Sets the transition-property property.                                                          |
 | `$transition-duration`        | `core.$transition-duration`                             | Sets the transition-duration property.                                                          |
@@ -149,6 +149,6 @@ A style enhancement modifier for when the [`card__background` element](#card__sc
 | `$invert-border-color`        | `null`                                                  | Sets the border-color property of the `card_invert` modifier.                                   |
 | `$invert-sep-border-color`    | `core.$border-color-invert`                             | Sets the border-color property that separates card elements of the `card_invert` modifier.      |
 | `$invert-color`               | `core.$white`                                           | Sets the background property of the `card_invert` modifier.                                     |
-| `$link-shadow`                | `core.$box-shadow-4dp`                                  | Sets the box-shadow property of the `card_link` modifier.                                       |
-| `$link-shadow-hover`          | `core.$box-shadow-8dp`                                  | Sets the box-shadow property of the `card_link` modifier on `:hover` state.                     |
+| `$link-shadow`                | `core.$box-shadow-2`                                    | Sets the box-shadow property of the `card_link` modifier.                                       |
+| `$link-shadow-hover`          | `core.$box-shadow-3`                                    | Sets the box-shadow property of the `card_link` modifier on `:hover` state.                     |
 | `$link-offset`                | `0.25em`                                                | Sets the distance that the card will travel vertically on `:hover` of the `card_link` modifier. |
