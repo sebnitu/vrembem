@@ -27,7 +27,7 @@ $color-seeds: (
 // ---
 
 $color-map: () !default;
-$lightness: 10, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98 !default;
+$lightness: 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !default;
 
 @function build-color-range-map($key, $seed) {
   $map: ();
@@ -51,6 +51,7 @@ $lightness: 10, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98 !default;
 $white: #fff !default;
 $black: #000 !default;
 
+$primary-0: map.get($color-map, "primary", 0) !default;
 $primary-10: map.get($color-map, "primary", 10) !default;
 $primary-20: map.get($color-map, "primary", 20) !default;
 $primary-30: map.get($color-map, "primary", 30) !default;
@@ -62,8 +63,10 @@ $primary-80: map.get($color-map, "primary", 80) !default;
 $primary-90: map.get($color-map, "primary", 90) !default;
 $primary-95: map.get($color-map, "primary", 95) !default;
 $primary-98: map.get($color-map, "primary", 98) !default;
+$primary-100: map.get($color-map, "primary", 100) !default;
 $primary: $primary-50 !default;
 
+$secondary-0: map.get($color-map, "secondary", 0) !default;
 $secondary-10: map.get($color-map, "secondary", 10) !default;
 $secondary-20: map.get($color-map, "secondary", 20) !default;
 $secondary-30: map.get($color-map, "secondary", 30) !default;
@@ -75,8 +78,10 @@ $secondary-80: map.get($color-map, "secondary", 80) !default;
 $secondary-90: map.get($color-map, "secondary", 90) !default;
 $secondary-95: map.get($color-map, "secondary", 95) !default;
 $secondary-98: map.get($color-map, "secondary", 98) !default;
+$secondary-100: map.get($color-map, "secondary", 100) !default;
 $secondary: $secondary-50 !default;
 
+$neutral-0: map.get($color-map, "neutral", 0) !default;
 $neutral-10: map.get($color-map, "neutral", 10) !default;
 $neutral-20: map.get($color-map, "neutral", 20) !default;
 $neutral-30: map.get($color-map, "neutral", 30) !default;
@@ -88,8 +93,10 @@ $neutral-80: map.get($color-map, "neutral", 80) !default;
 $neutral-90: map.get($color-map, "neutral", 90) !default;
 $neutral-95: map.get($color-map, "neutral", 95) !default;
 $neutral-98: map.get($color-map, "neutral", 98) !default;
+$neutral-100: map.get($color-map, "neutral", 100) !default;
 $neutral: $neutral-50 !default;
 
+$important-0: map.get($color-map, "important", 0) !default;
 $important-10: map.get($color-map, "important", 10) !default;
 $important-20: map.get($color-map, "important", 20) !default;
 $important-30: map.get($color-map, "important", 30) !default;
@@ -101,4 +108,5 @@ $important-80: map.get($color-map, "important", 80) !default;
 $important-90: map.get($color-map, "important", 90) !default;
 $important-95: map.get($color-map, "important", 95) !default;
 $important-98: map.get($color-map, "important", 98) !default;
+$important-100: map.get($color-map, "important", 100) !default;
 $important: $important-50 !default;

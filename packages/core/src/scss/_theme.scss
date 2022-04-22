@@ -4,7 +4,7 @@
 
 $_v: pre.$prefix-variable;
 
-$background: fun.vars($_v, "background", pal.$white) !default;
+$background: fun.vars($_v, "background", pal.$neutral-100) !default;
 $background-dark: fun.vars($_v, "background-dark", pal.$neutral-98) !default;
 $background-darker: fun.vars($_v, "background-darker", pal.$neutral-95) !default;
 
