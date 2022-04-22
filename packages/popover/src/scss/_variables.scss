@@ -20,13 +20,13 @@ $border: null !default;
 $border-radius: core.$border-radius !default;
 $background: core.$white !default;
 $background-clip: padding-box !default;
-$box-shadow: core.$box-shadow-2 !default;
+$shadow: core.$shadow-2 !default;
 $font-size: core.$font-size-sm !default;
 $line-height: null !default;
 
 $arrow-size: 12px !default;
 $arrow-padding: 10 !default;
-$arrow-border: core.$border-light !default;
+$arrow-border: core.$border !default;
 
 $size-sm-width: 12em !default;
 $size-lg-width: 20em !default;

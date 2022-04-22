@@ -14,7 +14,7 @@ $_m: var.$prefix-modifier;
   width: auto;
   max-width: 16rem;
   padding: 0.5rem 0.75rem;
-  background: core.$color;
-  color: core.$white;
+  background: core.$foreground;
+  color: core.$background;
   font-size: 0.75em;
 }
