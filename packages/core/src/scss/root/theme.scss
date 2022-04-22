@@ -1,17 +1,18 @@
 @use "../prefix" as pre;
+@use "../palette";
 @use "../theme";
 
 $_v: pre.$prefix-variable;
 
 :root {
-  --#{$_v}root-background: #{theme.$background};
-  --#{$_v}root-background-dark: #{theme.$background-dark};
-  --#{$_v}root-background-darker: #{theme.$background-darker};
-  --#{$_v}root-foreground: #{theme.$foreground};
-  --#{$_v}root-foreground-light: #{theme.$foreground-light};
-  --#{$_v}root-foreground-lighter: #{theme.$foreground-lighter};
-  --#{$_v}root-border-color: #{theme.$border-color};
-  --#{$_v}root-border-color-dark: #{theme.$border-color-dark};
-  --#{$_v}root-border-color-darker: #{theme.$border-color-darker};
-  --#{$_v}root-shadow-color: #{theme.$shadow-color};
+  --#{$_v}root-background: #{palette.$neutral-100};
+  --#{$_v}root-background-dark: #{palette.$neutral-98};
+  --#{$_v}root-background-darker: #{palette.$neutral-95};
+  --#{$_v}root-foreground: #{palette.$neutral-20};
+  --#{$_v}root-foreground-light: #{palette.$neutral-40};
+  --#{$_v}root-foreground-lighter: #{palette.$neutral-60};
+  --#{$_v}root-border-color: #{rgba(palette.$black, 0.1)};
+  --#{$_v}root-border-color-dark: #{rgba(palette.$black, 0.2)};
+  --#{$_v}root-border-color-darker: #{rgba(palette.$black, 0.3)};
+  --#{$_v}root-shadow-color: #{palette.$neutral-20};
 }
