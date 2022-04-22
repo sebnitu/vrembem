@@ -61,11 +61,11 @@
   @return math.round(color.hue($color)), math.round(color.saturation($color));
 }
 
-/// Sets the hsla() value provided a color variable.
+/// Sets the hsl() value provided a color variable.
 /// @param {Color} $color - The color variable to pull hue and saturation values from.
 /// @param {Percent} $lightness - The percentage used as the lightness value.
 /// @param {Number} $alpha - The number used as the alpha value.
-@function set-hsla($color, $lightness, $alpha) {
+@function set-hsl($color, $lightness, $alpha) {
   @if ($alpha) {
     @return hsl(math.round(color.hue($color)), math.round(color.saturation($color)), $lightness, $alpha);
   }
