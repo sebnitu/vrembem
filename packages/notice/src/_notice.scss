@@ -10,7 +10,7 @@ $_e: var.$prefix-element;
   border: var.$border;
   border-radius: var.$border-radius;
   background: var.$background;
-  box-shadow: var.$box-shadow;
+  box-shadow: var.$shadow;
 }
 
 .#{$_b}notice#{$_e}title {
