@@ -14,9 +14,22 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v3.0.4 to CHANGELOG.md
+chore(release): add v3.0.5 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v3.0.5 (2022-04-22)
+
+### :house: Refactor
+* `base`, `card`, `core`, `dialog`, `drawer`, `modal`, `notice`, `popover`, `table`, `utility`
+  * [#890](https://github.com/sebnitu/vrembem/pull/890) Refactor core module, theme variables and removal of unused functions and mixins
+* `popover`
+  * [#888](https://github.com/sebnitu/vrembem/pull/888) Refactor custom properties output in popover component
+
+### :books: Documentation
+* `drawer`, `grid`, `input`, `modal`, `popover`, `utility`
+  * [#889](https://github.com/sebnitu/vrembem/pull/889) Update example templates
 
 
 ## v3.0.4 (2022-04-21)
