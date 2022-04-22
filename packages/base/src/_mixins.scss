@@ -51,7 +51,7 @@
   border: var.$blockquote-border;
   border-radius: var.$blockquote-border-radius;
   background: var.$blockquote-background;
-  color: var.$blockquote-color;
+  color: var.$blockquote-foreground;
 
   @if var.$blockquote-accent-color {
     &::before {
@@ -74,7 +74,7 @@
   border: var.$code-border;
   border-radius: var.$code-border-radius;
   background: var.$code-background;
-  color: var.$code-color;
+  color: var.$code-foreground;
   font-family: var.$font-family-mono;
   font-size: var.$code-font-size;
   word-break: break-word;
@@ -127,58 +127,19 @@
 // ---
 
 @mixin link() {
-  transition: var.$link-transition;
-  border-bottom: var.$link-border;
   color: var.$link-color;
-  text-decoration: var.$link-text-decoration;
+  text-decoration: var.$link-decoration;
 
   &:hover {
-    border-bottom: var.$link-border-hover;
     color: var.$link-color-hover;
-    text-decoration: var.$link-text-decoration-hover;
+    text-decoration: var.$link-decoration-hover;
   }
 
   &:focus {
     outline: var.$link-outline-focus;
     outline-offset: var.$link-outline-focus-offset;
-    border-bottom: var.$link-border-hover;
     color: var.$link-color-hover;
-    text-decoration: var.$link-text-decoration-hover;
-  }
-}
-
-@mixin link-modifier($modifier) {
-  @if $modifier == "subtle" {
-    border-color: var.$link-subtle-border-color;
-    color: var.$link-subtle-color;
-
-    &:hover,
-    &:focus {
-      border-color: var.$link-subtle-border-color-hover;
-      color: var.$link-subtle-color-hover;
-    }
-  }
-
-  @else if $modifier == "invert" {
-    border-color: var.$link-invert-border-color;
-    color: var.$link-invert-color;
-
-    &:hover,
-    &:focus {
-      border-color: var.$link-invert-border-color-hover;
-      color: var.$link-invert-color-hover;
-    }
-  }
-
-  @else if $modifier == "invert-subtle" {
-    border-color: var.$link-invert-subtle-border-color;
-    color: var.$link-invert-subtle-color;
-
-    &:hover,
-    &:focus {
-      border-color: var.$link-invert-subtle-border-color-hover;
-      color: var.$link-invert-subtle-color-hover;
-    }
+    text-decoration: var.$link-decoration-hover;
   }
 }
 
@@ -208,7 +169,7 @@
   border: var.$pre-border;
   border-radius: var.$pre-border-radius;
   background: var.$pre-background;
-  color: var.$pre-color;
+  color: var.$pre-foreground;
   font-family: var.$font-family-mono;
 
   code {
@@ -288,44 +249,5 @@
 
   > pre {
     @include pre();
-  }
-}
-
-@mixin type-invert() {
-  color: var.$type-color-invert;
-
-  > h1,
-  > h2,
-  > h3,
-  > h4,
-  > h5,
-  > h6 {
-    color: var.$heading-color-invert;
-  }
-
-  > hr {
-    @include separator(var.$separator-border-invert);
-  }
-
-  > blockquote {
-    border-color: var.$blockquote-border-color-invert;
-  }
-
-  > a,
-  > :not(div) a {
-    @include link-modifier("invert");
-  }
-
-  > code,
-  > :not(div) code {
-    color: var.$code-color-invert;
-  }
-
-  > pre {
-    color: var.$pre-color;
-
-    code {
-      color: inherit;
-    }
   }
 }
