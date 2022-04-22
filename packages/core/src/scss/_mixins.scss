@@ -1,5 +1,9 @@
+@use "sass:color";
 @use "sass:map";
-@use "sass:meta";
+@use "sass:math";
+
+@use "./prefix";
+@use "./palette";
 @use "./variables" as var;
 
 /// Outputs a color range into custom properties (CSS variables).
@@ -7,7 +11,7 @@
 /// @param {Color} $seed - The seed color to get hue and saturation from.
 /// @param {List} $lightness - A list of lightness values to output.
 /// @param {String} $prefix - A prefix to apply to custom properties.
-@mixin custom-property-color-range($key, $seed, $lightness: pal.$lightness, $prefix: pre.$prefix-variable) {
+@mixin custom-property-color-range($key, $seed, $lightness: palette.$lightness, $prefix: prefix.$prefix-variable) {
   --#{$prefix}#{$key}-hs: #{math.round(color.hue($seed)), math.round(color.saturation($seed))};
   --#{$prefix}#{$key}: var(--#{$prefix}#{$key}-50);
   @each $value in $lightness {
