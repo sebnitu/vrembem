@@ -126,15 +126,6 @@
   height: $height;
 }
 
-/// Adds clearfix styles
-@mixin add-clearfix() {
-  &::after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-}
-
 // Add text overflow styles with ellipsis
 @mixin overflow-ellipsis() {
   overflow: hidden;

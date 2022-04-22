@@ -179,34 +179,34 @@ Applies styles to create a popover tooltip. The default placement of a tooltip i
 
 ### Sass Variables
 
-| Variable                 | Default                | Description                                                                                                                     |
-| ------------------------ | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `$prefix-variable`       | `null`                 | String to prefix CSS variables with.                                                                                            |
-| `$prefix-block`          | `null`                 | String to prefix blocks with.                                                                                                   |
-| `$prefix-element`        | `"__"`                 | String to prefix elements with.                                                                                                 |
-| `$prefix-modifier`       | `"_"`                  | String to prefix modifiers with.                                                                                                |
-| `$prefix-modifier-value` | `"_"`                  | String to prefix modifier values with.                                                                                          |
-| `$event`                 | `null`                 | Outputs a CSS variable for setting the default popover behavior. Can either be `click` or `hover`.                              |
-| `$placement`             | `null`                 | Outputs a CSS variable for setting the preferred popover placement.                                                             |
-| `$offset`                | `8`                    | Sets the distance from the reference element that a popover will position itself. Also outputs a CSS variable.                  |
-| `$overflow-padding`      | `10`                   | Sets the distance before a popover is cut off and will try to reposition itself to stay visible. Also outputs a CSS variable.   |
-| `$flip-padding`          | `10`                   | Sets the distance before a popover is cut off and will try to flip it's placement to stay visible. Also outputs a CSS variable. |
-| `$z-index`               | `10`                   | Sets the z-index property.                                                                                                      |
-| `$width`                 | `16em`                 | Sets the width property.                                                                                                        |
-| `$max-width`             | `calc(100vw - 20px)`   | Sets the max-width property.                                                                                                    |
-| `$padding`               | `0.5em`                | Sets the padding property.                                                                                                      |
-| `$border`                | `null`                 | Sets the border property.                                                                                                       |
-| `$border-radius`         | `core.$border-radius`  | Sets the border-radius property.                                                                                                |
-| `$background`            | `core.$white`          | Sets the background property.                                                                                                   |
-| `$background-clip`       | `padding-box`          | Sets the background-clip property.                                                                                              |
-| `$box-shadow`            | `core.$box-shadow-8dp` | Sets the box-shadow property.                                                                                                   |
-| `$font-size`             | `core.$font-size-sm`   | Sets the font-size property.                                                                                                    |
-| `$line-height`           | `null`                 | Sets the line-height property.                                                                                                  |
-| `$arrow-size`            | `8px`                  | Sets the width and height properties of the `popover__arrow` element.                                                           |
-| `$arrow-padding`         | `10`                   | Sets the distance before a popover arrow reaches the edge of the popover.                                                       |
-| `$arrow-border`          | `core.$border-light`   | Sets the border property of the `popover__arrow` element.                                                                       |
-| `$size-sm-width`         | `12em`                 | Sets the width property of the `popover_size_sm` modifier.                                                                      |
-| `$size-lg-width`         | `20em`                 | Sets the width property of the `popover_size_lg` modifier.                                                                      |
+| Variable                 | Default               | Description                                                                                                                     |
+| ------------------------ | --------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `$prefix-variable`       | `null`                | String to prefix CSS variables with.                                                                                            |
+| `$prefix-block`          | `null`                | String to prefix blocks with.                                                                                                   |
+| `$prefix-element`        | `"__"`                | String to prefix elements with.                                                                                                 |
+| `$prefix-modifier`       | `"_"`                 | String to prefix modifiers with.                                                                                                |
+| `$prefix-modifier-value` | `"_"`                 | String to prefix modifier values with.                                                                                          |
+| `$event`                 | `null`                | Outputs a CSS variable for setting the default popover behavior. Can either be `click` or `hover`.                              |
+| `$placement`             | `null`                | Outputs a CSS variable for setting the preferred popover placement.                                                             |
+| `$offset`                | `8`                   | Sets the distance from the reference element that a popover will position itself. Also outputs a CSS variable.                  |
+| `$overflow-padding`      | `10`                  | Sets the distance before a popover is cut off and will try to reposition itself to stay visible. Also outputs a CSS variable.   |
+| `$flip-padding`          | `10`                  | Sets the distance before a popover is cut off and will try to flip it's placement to stay visible. Also outputs a CSS variable. |
+| `$z-index`               | `10`                  | Sets the z-index property.                                                                                                      |
+| `$width`                 | `16em`                | Sets the width property.                                                                                                        |
+| `$max-width`             | `calc(100vw - 20px)`  | Sets the max-width property.                                                                                                    |
+| `$padding`               | `0.5em`               | Sets the padding property.                                                                                                      |
+| `$border`                | `null`                | Sets the border property.                                                                                                       |
+| `$border-radius`         | `core.$border-radius` | Sets the border-radius property.                                                                                                |
+| `$background`            | `core.$white`         | Sets the background property.                                                                                                   |
+| `$background-clip`       | `padding-box`         | Sets the background-clip property.                                                                                              |
+| `$box-shadow`            | `core.$box-shadow-2`  | Sets the box-shadow property.                                                                                                   |
+| `$font-size`             | `core.$font-size-sm`  | Sets the font-size property.                                                                                                    |
+| `$line-height`           | `null`                | Sets the line-height property.                                                                                                  |
+| `$arrow-size`            | `8px`                 | Sets the width and height properties of the `popover__arrow` element.                                                           |
+| `$arrow-padding`         | `10`                  | Sets the distance before a popover arrow reaches the edge of the popover.                                                       |
+| `$arrow-border`          | `core.$border-light`  | Sets the border property of the `popover__arrow` element.                                                                       |
+| `$size-sm-width`         | `12em`                | Sets the width property of the `popover_size_sm` modifier.                                                                      |
+| `$size-lg-width`         | `20em`                | Sets the width property of the `popover_size_lg` modifier.                                                                      |
 
 ### JavaScript Options
 

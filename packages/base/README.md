@@ -75,7 +75,6 @@ The base component consists of a number of modules with their own set of specifi
 - [`arrow`](#arrow)
 - [`blockquote`](#blockquote)
 - [`code`](#code)
-- [`embed`](#embed)
 - [`heading`](#heading)
 - [`link`](#link)
 - [`list`](#list)
@@ -310,22 +309,6 @@ code {
 }
 ```
 
-### `embed`
-
-The embed module is used to wrap iframes or video elements and keep them responsive. It consists of two primary elements, `.embed` wrapper and a single `embed__item` child element which could be applied to an iframe directly.
-
-```html
-<div class="embed">
-  <iframe class="embed__item" src="..." width="560" height="315"></iframe>
-</div>
-```
-
-| Variable        | Default                    | Description                                           |
-| --------------- | -------------------------- | ----------------------------------------------------- |
-| `$output-embed` | `$output` &rarr; `true`    | Toggles the output of this module.                    |
-| `$class-embed`  | `"embed"`                  | String to use for the class name of the embed module. |
-| `$embed-ratio`  | `core.aspect-ratio(16, 9)` | The default aspect ratio to use.                      |
-
 ### `heading`
 
 Section headings in HTML are represented by the `<h1>` through `<h6>` elements. This module helps style these elements by providing the `.h1`-`.h6` CSS classes.
@@ -346,7 +329,7 @@ Section headings in HTML are represented by the `<h1>` through `<h6>` elements. 
 | `$heading-line-height`  | `core.$line-height-sm`                  | Sets the line-height property.                                                                |
 | `$heading-color`        | `inherit`                               | Sets the text color property.                                                                 |
 | `$heading-color-invert` | `null`                                  | Sets the inverted text color. This is used when heading elements appear on a dark background. |
-| `$heading-font-weight`  | `core.font-weight("semi-bold")`         | Sets the font-weight property.                                                                |
+| `$heading-font-weight`  | `core.$font-weight-semi-bold`           | Sets the font-weight property.                                                                |
 | `$heading-scale`        | [`Sass Map` Ref &darr;](#heading-scale) | A map containing the font-size and optional line-height scale for HTML headings.              |
 
 #### `$heading-scale`

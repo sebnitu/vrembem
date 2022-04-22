@@ -394,7 +394,7 @@ Adds zebra styled rows to a table to help increase its readability. This is done
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$th-font-weight</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">core.font-weight("bold")</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$font-weight-bold</code></td>
         <td data-mobile-label="Desc">Sets the font-weight property on the <code class="code">&lt;th&gt;</code> element.</td>
       </tr>
       <tr>
@@ -430,7 +430,7 @@ Adds zebra styled rows to a table to help increase its readability. This is done
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$mobile-label-font-weight</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary">core.font-weight("semi-bold")</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary">core.$font-weight-semi-bold</code></td>
         <td data-mobile-label="Desc">Sets the font-weight property on the mobile label pseudo-element.</td>
       </tr>
     </tbody>

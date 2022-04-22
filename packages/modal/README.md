@@ -204,7 +204,7 @@ Adjusts the size of modals. This modifier provides five options that get built u
 | `$transition-timing-function` | `core.$transition-timing-function` | Timing function used for modal transitions.                                         |
 | `$background`                 | `core.$night`                      | Background color of modal screen.                                                   |
 | `$background-alpha`           | `0.8`                              | The alpha channel for the modal screen.                                             |
-| `$box-shadow`                 | `core.$box-shadow-24dp`            | Box shadow applied to modal dialog elements.                                        |
+| `$box-shadow`                 | `core.$box-shadow-5`               | Box shadow applied to modal dialog elements.                                        |
 | `$outline`                    | `0 solid rgba(core.$primary, 0)`   | Outline applied to modal dialog elements.                                           |
 | `$outline-focus`              | `4px solid rgba(core.$primary, 1)` | Outline applied to modal dialog elements in their focus state.                      |
 | `$outline-focus-alert`        | `4px solid rgba(core.$danger, 1)`  | Outline applied to required modal dialog elements in their focus state.             |

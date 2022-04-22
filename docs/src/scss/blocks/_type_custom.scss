@@ -4,7 +4,7 @@
   > h2,
   > h3 {
     font-size: $core-font-size;
-    font-weight: core-font-weight('semi-bold');
+    font-weight: $core-font-weight-semi-bold;
     letter-spacing: 1px;
     line-height: $core-line-height;
     text-transform: uppercase;

@@ -191,14 +191,14 @@ Adds zebra styled rows to a table to help increase its readability. This is done
 | `$box-shadow-hover`         | `null`                                         | Sets the box-shadow property of the `table_hover` modifier.                                                  |
 | `$color`                    | `null`                                         | Sets the color property.                                                                                     |
 | `$color-hover`              | `null`                                         | Sets the color property of the `table_hover` modifier.                                                       |
-| `$th-font-weight`           | `core.font-weight("bold")`                     | Sets the font-weight property on the `<th>` element.                                                         |
+| `$th-font-weight`           | `core.$font-weight-bold`                       | Sets the font-weight property on the `<th>` element.                                                         |
 | `$th-background`            | `null`                                         | Sets the background-color property on the `<th>` element.                                                    |
 | `$td-background`            | `null`                                         | Sets the background-color property on the `<td>` element.                                                    |
 | `$mobile-label-attr`        | `"data-mobile-label"`                          | Attribute value to use for settings the mobile label of the `table_responsive_[key]` modifier.               |
 | `$mobile-label-width`       | `8rem`                                         | Sets the width property on the mobile label pseudo-element.                                                  |
 | `$mobile-label-background`  | `null`                                         | Sets the background-color property on the mobile label pseudo-element.                                       |
 | `$mobile-label-color`       | `null`                                         | Sets the color property on the mobile label pseudo-element.                                                  |
-| `$mobile-label-font-weight` | `core.font-weight("semi-bold")`                | Sets the font-weight property on the mobile label pseudo-element.                                            |
+| `$mobile-label-font-weight` | `core.$font-weight-semi-bold`                  | Sets the font-weight property on the mobile label pseudo-element.                                            |
 
 #### `$breakpoints`
 
