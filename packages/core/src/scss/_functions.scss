@@ -67,7 +67,7 @@
 /// @param {Number} $alpha - The number used as the alpha value.
 @function set-hsla($color, $lightness, $alpha) {
   @if ($alpha) {
-    @return hsla(math.round(color.hue($color)), math.round(color.saturation($color)), $lightness, $alpha);
+    @return hsl(math.round(color.hue($color)), math.round(color.saturation($color)), $lightness, $alpha);
   }
   @else {
     @return hsl(math.round(color.hue($color)), math.round(color.saturation($color)), $lightness);
