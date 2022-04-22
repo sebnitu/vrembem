@@ -13,7 +13,7 @@ $_m: var.$prefix-modifier;
   tbody tr:focus {
     z-index: 2;
     background-color: var.$background-hover;
-    box-shadow: var.$box-shadow-hover;
+    box-shadow: var.$shadow-hover;
     color: var.$color-hover;
   }
 }
