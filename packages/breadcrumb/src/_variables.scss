@@ -6,7 +6,7 @@ $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
-$color: core.$color-subtle !default;
+$color: core.$foreground-lighter !default;
 $delimiter: "/" !default;
 $delimiter-color: core.$border-color-dark !default;
 $delimiter-padding: 0 0.5em !default;
@@ -16,10 +16,3 @@ $link-color: base.$link-color !default;
 $link-color-hover: base.$link-color-hover !default;
 $link-border: core.$border !default;
 $link-border-hover: 1px solid base.$link-color-hover !default;
-
-$invert-color: core.$color-invert-subtle !default;
-$invert-delimiter-color: core.$border-color-invert-dark !default;
-$invert-link-color: base.$link-invert-color !default;
-$invert-link-color-hover: base.$link-invert-color-hover !default;
-$invert-link-border: core.$border-invert !default;
-$invert-link-border-hover: 1px solid core.$white !default;
