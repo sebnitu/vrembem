@@ -55,3 +55,31 @@
   $result: replace($result, 1, $color-1);
   @return $result;
 }
+
+/// Output the hue and saturation values of a provided color.
+/// @param {Color} $color - The color variable to pull hue and saturation values from.
+@function get-hs($color) {
+  @return math.round(color.hue($color)), math.round(color.saturation($color));
+}
+
+/// Sets the hsla() value provided a color variable.
+/// @param {Color} $color - The color variable to pull hue and saturation values from.
+/// @param {Percent} $lightness - The percentage used as the lightness value.
+/// @param {Number} $alpha - The number used as the alpha value.
+@function set-hsla($color, $lightness, $alpha) {
+  @return hsla(math.round(color.hue($color)), math.round(color.saturation($color)), $lightness, $alpha);
+}
+
+/// Returns a variable stack.
+/// @param {String} $prefix - String to prefix CSS variables with.
+/// @param {String} $prop - The property name of the CSS variable.
+/// @param {Any} $default - The default value of the stack.
+/// @return {Function} - The var function stack.
+@function vars($prefix, $prop, $default: null) {
+  @if ($default) {
+    @return var(--#{$prefix}#{$prop}, var(--#{$prefix}root-#{$prop}, #{$default}));
+  }
+  @else {
+    @return var(--#{$prefix}#{$prop}, var(--#{$prefix}root-#{$prop}));
+  }
+}

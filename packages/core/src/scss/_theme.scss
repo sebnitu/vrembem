@@ -1,63 +1,22 @@
-@use "./palette";
+@use "./functions" as fun;
+@use "./prefix" as pre;
+@use "./palette" as pal;
 
-$primary-lighter: palette.$cyan-50 !default;
-$primary-light: palette.$cyan-300 !default;
-$primary: palette.$cyan-500 !default;
-$primary-dark: palette.$cyan-700 !default;
-$primary-darker: palette.$cyan-900 !default;
+$_v: pre.$prefix-variable;
 
-$secondary-lighter: palette.$blue-gray-50 !default;
-$secondary-light: palette.$blue-gray-300 !default;
-$secondary: palette.$blue-gray-500 !default;
-$secondary-dark: palette.$blue-gray-700 !default;
-$secondary-darker: palette.$blue-gray-900 !default;
+$background: fun.vars($_v, "background", pal.$white) !default;
+$background-dark: fun.vars($_v, "background-dark", pal.$neutral-98) !default;
+$background-darker: fun.vars($_v, "background-darker", pal.$neutral-95) !default;
 
-$shade-light: palette.$gray-50 !default;
-$shade: palette.$gray-100 !default;
-$shade-dark: palette.$gray-300 !default;
+$foreground: fun.vars($_v, "foreground", pal.$neutral-20) !default;
+$foreground-light: fun.vars($_v, "foreground-light", pal.$neutral-40) !default;
+$foreground-lighter: fun.vars($_v, "foreground-lighter", pal.$neutral-60) !default;
 
-$night-light: palette.$gray-700 !default;
-$night: palette.$gray-800 !default;
-$night-dark: palette.$gray-900 !default;
+$border-color: fun.vars($_v, "border-color", rgba(pal.$black, 0.1)) !default;
+$border-color-dark: fun.vars($_v, "border-color-dark", rgba(pal.$black, 0.2)) !default;
+$border-color-darker: fun.vars($_v, "border-color-darker", rgba(pal.$black, 0.3)) !default;
 
-$info-lighter: palette.$light-blue-50 !default;
-$info-light: palette.$light-blue-300 !default;
-$info: palette.$light-blue-500 !default;
-$info-dark: palette.$light-blue-700 !default;
-$info-darker: palette.$light-blue-900 !default;
+$shadow-color: fun.vars($_v, "shadow-color", pal.$neutral-20) !default;
 
-$success-lighter: palette.$green-50 !default;
-$success-light: palette.$green-300 !default;
-$success: palette.$green-500 !default;
-$success-dark: palette.$green-700 !default;
-$success-darker: palette.$green-900 !default;
-
-$caution-lighter: palette.$orange-50 !default;
-$caution-light: palette.$orange-300 !default;
-$caution: palette.$orange-500 !default;
-$caution-dark: palette.$deep-orange-700 !default;
-$caution-darker: palette.$deep-orange-900 !default;
-
-$danger-lighter: palette.$red-50 !default;
-$danger-light: palette.$red-300 !default;
-$danger: palette.$red-500 !default;
-$danger-dark: palette.$red-700 !default;
-$danger-darker: palette.$red-900 !default;
-
-$color: $night-dark !default;
-$color-subtle: palette.$gray-500 !default;
-
-$color-invert: palette.$white !default;
-$color-invert-subtle: rgba(palette.$white, 0.6) !default;
-
-$border-color-light: rgba(palette.$black, 0.05) !default;
-$border-color: rgba(palette.$black, 0.1) !default;
-$border-color-dark: rgba(palette.$black, 0.2) !default;
-$border-color-darker: rgba(palette.$black, 0.5) !default;
-
-$border-color-invert-light: rgba(palette.$white, 0.05) !default;
-$border-color-invert: rgba(palette.$white, 0.1) !default;
-$border-color-invert-dark: rgba(palette.$white, 0.2) !default;
-$border-color-invert-darker: rgba(palette.$white, 0.5) !default;
-
-$box-shadow-color: palette.$gray-900 !default;
+$action: fun.vars($_v, "action", pal.$primary) !default;
+$action-hover: fun.vars($_v, "action-hover", pal.$primary-40) !default;

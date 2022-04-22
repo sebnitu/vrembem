@@ -1,0 +1,14 @@
+@use "sass:color";
+@use "sass:math";
+
+@use "../mixins" as mix;
+@use "../palette" as pal;
+@use "../prefix" as pre;
+
+$_v: pre.$prefix-variable;
+
+:root {
+  @each $key, $value in pal.$color-seeds {
+    @include mix.custom-property-color-range($key, $value);
+  }
+}
