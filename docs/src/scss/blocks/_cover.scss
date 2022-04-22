@@ -41,7 +41,7 @@
   position: relative;
   z-index: 2;
   flex: 1 1 auto;
-  background: $core-shade;
+  background: $core-background-darker;
 }
 
 @include core-media-min('md') {
@@ -85,7 +85,7 @@
 .cover__header,
 .cover__content {
   padding: 1em;
-  background: $core-shade;
+  background: $core-background-darker;
 }
 
 .cover__header {
