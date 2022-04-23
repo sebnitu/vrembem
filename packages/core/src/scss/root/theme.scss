@@ -14,5 +14,5 @@ $_v: pre.$prefix-variable;
   --#{$_v}root-border-color: #{rgba(black, 0.1)};
   --#{$_v}root-border-color-dark: #{rgba(black, 0.2)};
   --#{$_v}root-border-color-darker: #{rgba(black, 0.3)};
-  --#{$_v}root-shadow-color: #{palette.get("neutral", 20)};
+  --#{$_v}root-shadow-color: hsl(#{palette.get("neutral", "hs")}, 20%, 10%);
 }
