@@ -1,3 +1,3 @@
-@use "vrembem" as *;
+@use "@vrembem/core";
 
-$background-color: $core-neutral-30;
+$background-color: core.palette-get('neutral', 30);

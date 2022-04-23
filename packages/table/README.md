@@ -186,7 +186,7 @@ Adds zebra styled rows to a table to help increase its readability. This is done
 | `$border`                   | `1px solid $border-color`                      | Sets the border property.                                                                                    |
 | `$border-alt`               | `1px dotted $border-color`                     | Sets the border property in between `<td>` elements of the `table_responsive_[key]` modifier.                |
 | `$background`               | `null`                                         | Sets the background-color property.                                                                          |
-| `$background-zebra`         | `rgba(core.$black, 0.03)`                      | Sets the background-color property of the `table_zebra` modifier.                                            |
+| `$background-zebra`         | `rgba(black, 0.03)`                            | Sets the background-color property of the `table_zebra` modifier.                                            |
 | `$background-hover`         | `rgba(core.$yellow, 0.3)`                      | Sets the background-color property of the `table_hover` modifier.                                            |
 | `$box-shadow-hover`         | `null`                                         | Sets the box-shadow property of the `table_hover` modifier.                                                  |
 | `$color`                    | `null`                                         | Sets the color property.                                                                                     |

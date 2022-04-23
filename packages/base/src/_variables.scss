@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/src/scss/palette";
 
 // Prefixes
 // ---
@@ -71,14 +72,14 @@ $blockquote-border: core.$border !default;
 $blockquote-border-radius: null !default;
 $blockquote-accent-width: 4px !default;
 $blockquote-accent-offset: -1px !default;
-$blockquote-accent-color: core.$primary !default;
+$blockquote-accent-color: core.palette-get("primary") !default;
 
 // Code
 // ---
 
 $code-padding: null !default;
 $code-background: null !default;
-$code-foreground: core.$secondary !default;
+$code-foreground: core.palette-get("secondary") !default;
 $code-border: null !default;
 $code-border-radius: null !default;
 $code-font-family: core.$font-family-mono !default;
@@ -103,8 +104,8 @@ $heading-scale: (
 // Link
 // ---
 
-$link-color: core.$primary-50 !default;
-$link-color-hover: core.$primary-40 !default;
+$link-color: core.palette-get("primary") !default;
+$link-color-hover: core.palette-get("primary", 40) !default;
 $link-decoration: underline !default;
 $link-decoration-hover: none !default;
 $link-outline-focus: currentcolor dotted 1px !default;

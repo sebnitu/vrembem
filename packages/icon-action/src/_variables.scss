@@ -16,19 +16,19 @@ $border-color-hover: null !default;
 $border-color-focus: null !default;
 $border-color-active: null !default;
 
-$background: rgba(core.$black, 0.4) !default;
-$background-hover: rgba(core.$black, 0.5) !default;
-$background-focus: rgba(core.$black, 0.5) !default;
-$background-active: rgba(core.$black, 0.6) !default;
+$background: rgba(black, 0.4) !default;
+$background-hover: rgba(black, 0.5) !default;
+$background-focus: rgba(black, 0.5) !default;
+$background-active: rgba(black, 0.6) !default;
 
 $foreground: core.$foreground !default;
 $foreground-hover: null !default;
 $foreground-focus: null !default;
 $foreground-active: null !default;
 
-$shadow: 0 0 0 0 rgba(core.$black, 0) !default;
+$shadow: 0 0 0 0 rgba(black, 0) !default;
 $shadow-hover: null !default;
-$shadow-focus: 0 0 0 0.2rem rgba(core.$black, 0.2) !default;
+$shadow-focus: 0 0 0 0.2rem rgba(black, 0.2) !default;
 $shadow-active: null !default;
 
 // > icon

@@ -12,9 +12,9 @@ $gap: 1px !default;
 $inner-gap: 1em !default;
 $border-radius: core.$border-radius !default;
 $background: none !default;
-$background-hover: rgba(core.$black, 0.05) !default;
-$background-focus: rgba(core.$black, 0.05) !default;
-$background-active: rgba(core.$black, 0.1) !default;
+$background-hover: rgba(black, 0.05) !default;
+$background-focus: rgba(black, 0.05) !default;
+$background-active: rgba(black, 0.1) !default;
 $foreground: core.$foreground !default;
 $foreground-hover: null !default;
 $foreground-focus: null !default;
@@ -29,7 +29,7 @@ $sep-background: core.$border-color !default;
 
 // is-active
 $active-background: none !default;
-$active-foreground: core.$primary !default;
+$active-foreground: core.palette-get("primary") !default;
 
 // is-disabled
 $disabled-background: none !default;

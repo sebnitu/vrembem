@@ -1,4 +1,4 @@
-@use "vrembem" as *;
+@use "@vrembem/core";
 
 .menu_drawer {
   .menu__item + .menu__item {
@@ -23,10 +23,10 @@
     }
 
     &.is-active {
-      background: $core-white;
+      background: white;
 
       .menu__icon {
-        color: $core-primary;
+        color: core.palette-get('primary');
       }
     }
   }
@@ -37,10 +37,10 @@
     margin-right: -0.5em;
     margin-bottom: -0.5em;
     padding: 0.5em;
-    color: $core-foreground-lighter;
+    color: core.$foreground-lighter;
 
     &:hover {
-      color: $core-primary;
+      color: core.palette-get('primary');
     }
   }
 }
@@ -48,5 +48,5 @@
 .cover__content .menu_drawer .menu__action {
   margin-right: 0;
   padding-right: 1em;
-  border-radius: $core-border-radius;
+  border-radius: core.$border-radius;
 }

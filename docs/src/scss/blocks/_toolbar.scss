@@ -1,4 +1,4 @@
-@use "vrembem" as *;
+@use "@vrembem/core";
 @use "../variables" as var;
 
 .toolbar {
@@ -12,8 +12,8 @@
   flex-grow: 0;
   padding: 0.5em;
   background-color: var.$background-color;
-  box-shadow: $core-shadow-2;
-  color: $core-white;
+  box-shadow: core.$shadow-2;
+  color: white;
 
   .menu__action {
     &:hover {
@@ -27,7 +27,7 @@
   }
 }
 
-@include core-media-min('md') {
+@include core.media-min('md') {
   .toolbar {
     padding: 1em;
   }

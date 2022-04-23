@@ -5,7 +5,7 @@ $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
-$color: core.$primary !default;
+$color: core.palette-get("primary") !default;
 $size: core.$form-control-size !default;
 $border-width: 2px !default;
 $transition-duration: core.$transition-duration-short !default;
@@ -19,12 +19,12 @@ $background-checked: null !default;
 $background-border-radius: core.$border-radius-circle !default;
 
 $box-size: 18px !default;
-$box-background: core.$white !default;
+$box-background: white !default;
 $box-background-hover: null !default;
 $box-background-focus: null !default;
 $box-background-active: null !default;
 $box-background-checked: $color !default;
-$box-border-color: core.$neutral-50 !default;
+$box-border-color: core.palette-get("neutral") !default;
 $box-border-color-hover: $color !default;
 $box-border-color-focus: $color !default;
 $box-border-color-active: $color !default;
@@ -32,7 +32,7 @@ $box-border-color-checked: $color !default;
 $box-border-radius: core.$border-radius !default;
 
 $icon-size: 12px !default;
-$icon-color: core.$white !default;
+$icon-color: white !default;
 $icon-stroke: 2.5 !default;
 
 $size-sm: core.$form-control-size-sm !default;

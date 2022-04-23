@@ -232,7 +232,7 @@ The HTML blockquote element is used for marking up extended quotations. This mod
 | `$blockquote-border-radius`       | `null`                      | Sets the border-radius property.                                                                           |
 | `$blockquote-accent-width`        | `4px`                       | Sets the width of the accent CSS pseudo-element which renders on the right side of the blockquote element. |
 | `$blockquote-accent-offset`       | `-1px`                      | Sets the offset of the accent CSS pseudo-element. Recommended to set negative of the border width.         |
-| `$blockquote-accent-color`        | `core.$primary`             | Sets the color of the accent CSS pseudo-element.                                                           |
+| `$blockquote-accent-color`        | `--vb-primary-50`           | Sets the color of the accent CSS pseudo-element.                                                           |
 
 #### `@mixin blockquote()`
 
@@ -460,21 +460,21 @@ A link—usually represented by an anchor (`<a>`) HTML element with `href` attri
 | `$link-transition`                       | `null`                         | Sets the transition property.                                         |
 | `$link-outline-focus`                    | `currentColor dotted 1px`      | Sets the outline property on `:focus` state.                          |
 | `$link-outline-focus-offset`             | `0.125rem`                     | Sets the outline-offset property on `:focus` state.                   |
-| `$link-color`                            | `core.$primary`                | Sets the text color property.                                         |
-| `$link-color-hover`                      | `core.$primary-dark`           | Sets the text color property on hover state.                          |
+| `$link-color`                            | `--vb-primary`                 | Sets the text color property.                                         |
+| `$link-color-hover`                      | `--vb-primary-40`              | Sets the text color property on hover state.                          |
 | `$link-border`                           | `1px solid core.$border-color` | Sets the border property.                                             |
 | `$link-border-hover`                     | `1px solid currentColor`       | Sets the border property on hover state.                              |
 | `$link-subtle-color`                     | `core.$color-subtle`           | Sets the text color property on subtle modifier.                      |
 | `$link-subtle-color-hover`               | `$link-color-hover`            | Sets the text color property on subtle modifier hover state.          |
 | `$link-subtle-border-color`              | `core.$border-color`           | Sets the border-color property on subtle modifier.                    |
 | `$link-subtle-border-color-hover`        | `currentColor`                 | Sets the border-color property on subtle modifier hover state.        |
-| `$link-invert-color`                     | `core.$white`                  | Sets the text color property on invert modifier.                      |
-| `$link-invert-color-hover`               | `core.$white`                  | Sets the text color property on invert modifier hover state.          |
-| `$link-invert-border-color`              | `rgba(core.$white, 0.5)`       | Sets the border-color property on invert modifier.                    |
+| `$link-invert-color`                     | `white`                        | Sets the text color property on invert modifier.                      |
+| `$link-invert-color-hover`               | `white`                        | Sets the text color property on invert modifier hover state.          |
+| `$link-invert-border-color`              | `rgba(white, 0.5)`             | Sets the border-color property on invert modifier.                    |
 | `$link-invert-border-color-hover`        | `currentColor`                 | Sets the border-color property on invert modifier hover state.        |
 | `$link-invert-subtle-color`              | `core.$color-invert-subtle`    | Sets the text color property on invert-subtle modifier.               |
 | `$link-invert-subtle-color-hover`        | `core.$color-invert`           | Sets the text color property on invert-subtle modifier hover state.   |
-| `$link-invert-subtle-border-color`       | `rgba(core.$white, 0.5)`       | Sets the border-color property on invert-subtle modifier.             |
+| `$link-invert-subtle-border-color`       | `rgba(white, 0.5)`             | Sets the border-color property on invert-subtle modifier.             |
 | `$link-invert-subtle-border-color-hover` | `currentColor`                 | Sets the border-color property on invert-subtle modifier hover state. |
 
 #### `@mixin link()`

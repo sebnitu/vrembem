@@ -1,6 +1,5 @@
 @use "./functions" as fun;
 @use "./prefix" as pre;
-@use "./palette" as pal;
 
 $_v: pre.$prefix-variable;
 

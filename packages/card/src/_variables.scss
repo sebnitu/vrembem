@@ -6,7 +6,7 @@ $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
 $padding: 1.25em !default;
-$background: core.$white !default;
+$background: white !default;
 $foreground: null !default;
 $border: null !default;
 $sep-border: core.$border !default;
@@ -21,7 +21,7 @@ $title-line-height: core.$line-height-lg !default;
 $title-font-weight: core.$font-weight-semi-bold !default;
 
 $screen-opacity: 0.7 !default;
-$screen-background: core.$neutral-10 !default;
+$screen-background: core.palette-get("neutral", 10) !default;
 
 $link-shadow: core.$shadow-2 !default;
 $link-shadow-hover: core.$shadow-3 !default;

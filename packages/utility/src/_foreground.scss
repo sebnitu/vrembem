@@ -19,18 +19,18 @@ $_c: var.$class-foreground;
   }
 
   .#{$_u}#{$_c}-black {
-    color: core.$black !important;
+    color: black !important;
   }
 
   .#{$_u}#{$_c}-white {
-    color: core.$white !important;
+    color: white !important;
   }
 
   .#{$_u}#{$_c}-transparent {
     color: transparent !important;
   }
 
-  @each $key, $map in core.$color-map {
+  @each $key, $map in core.palette-get() {
     @each $num, $value in $map {
       .#{$_u}#{$_c}-#{$key}-#{$num} {
         color: $value !important;

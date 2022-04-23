@@ -70,4 +70,4 @@ Inverts the colors of the breadcrumb component to be used on dark backgrounds wh
 | `$invert-link-color`        | `base.$link-invert-color`          | Sets the color property on the `breadcrumb__link` element on the `breadcrumb_invert` modifier.                         |
 | `$invert-link-color-hover`  | `base.$link-invert-color-hover`    | Sets the color property on the `breadcrumb__link` element on the `breadcrumb_invert` modifier for its `:hover` state.  |
 | `$invert-link-border`       | `core.$border-invert`              | Sets the border property on the `breadcrumb__link` element on the `breadcrumb_invert` modifier.                        |
-| `$invert-link-border-hover` | `1px solid core.$white`            | Sets the border property on the `breadcrumb__link` element on the `breadcrumb_invert` modifier for its `:hover` state. |
+| `$invert-link-border-hover` | `1px solid white`                  | Sets the border property on the `breadcrumb__link` element on the `breadcrumb_invert` modifier for its `:hover` state. |

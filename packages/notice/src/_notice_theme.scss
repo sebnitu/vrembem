@@ -6,21 +6,21 @@ $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
 .#{$_b}notice#{$_m}theme#{$_v}primary {
-  background-color: core.$primary-90;
-  color: core.$primary-30;
+  background-color: core.palette-get("primary", 90);
+  color: core.palette-get("primary", 30);
 }
 
 .#{$_b}notice#{$_m}theme#{$_v}secondary {
-  background-color: core.$secondary-90;
-  color: core.$secondary-30;
+  background-color: core.palette-get("secondary", 90);
+  color: core.palette-get("secondary", 30);
 }
 
 .#{$_b}notice#{$_m}theme#{$_v}neutral {
-  background-color: core.$neutral-90;
-  color: core.$neutral-30;
+  background-color: core.palette-get("neutral", 90);
+  color: core.palette-get("neutral", 30);
 }
 
 .#{$_b}notice#{$_m}theme#{$_v}important {
-  background-color: core.$important-90;
-  color: core.$important-30;
+  background-color: core.palette-get("important", 90);
+  color: core.palette-get("important", 30);
 }

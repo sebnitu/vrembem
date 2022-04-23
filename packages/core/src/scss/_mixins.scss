@@ -1,23 +1,6 @@
-@use "sass:color";
 @use "sass:map";
-@use "sass:math";
 
-@use "./prefix";
-@use "./palette";
 @use "./variables" as var;
-
-/// Outputs a color range into custom properties (CSS variables).
-/// @param {String} $key - The key namespace to output the property under.
-/// @param {Color} $seed - The seed color to get hue and saturation from.
-/// @param {List} $lightness - A list of lightness values to output.
-/// @param {String} $prefix - A prefix to apply to custom properties.
-@mixin custom-property-color-range($key, $seed, $lightness: palette.$lightness, $prefix: prefix.$prefix-variable) {
-  --#{$prefix}#{$key}-hs: #{math.round(color.hue($seed)), math.round(color.saturation($seed))};
-  --#{$prefix}#{$key}: var(--#{$prefix}#{$key}-50);
-  @each $value in $lightness {
-    --#{$prefix}#{$key}-#{$value}: hsl(var(--#{$prefix}#{$key}-hs), #{$value}%);
-  }
-}
 
 /// A media query mixin that defines a query using max-width. You can pass in a
 /// key to the `$breakpoints()` maps to access that value, or pass a value to

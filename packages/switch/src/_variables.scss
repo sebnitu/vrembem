@@ -5,7 +5,7 @@ $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
-$color: core.$primary !default;
+$color: core.palette-get("primary") !default;
 $size: core.$form-control-size !default;
 $border-width: 2px !default;
 $transition-duration: core.$transition-duration-short !default;
@@ -19,24 +19,24 @@ $background-checked: null !default;
 $background-border-radius: core.$border-radius-circle !default;
 
 $track-size: 20px !default;
-$track-background: core.$neutral-80 !default;
+$track-background: core.palette-get("neutral", 80) !default;
 $track-background-hover: null !default;
 $track-background-focus: null !default;
 $track-background-active: null !default;
 $track-background-checked: $color !default;
-$track-border-color: core.$neutral-50 !default;
+$track-border-color: core.palette-get("neutral") !default;
 $track-border-color-hover: null !default;
 $track-border-color-focus: null !default;
 $track-border-color-active: null !default;
 $track-border-color-checked: $color !default;
 $track-border-radius: core.$border-radius-circle !default;
 
-$thumb-background: core.$white !default;
+$thumb-background: white !default;
 $thumb-background-hover: null !default;
 $thumb-background-focus: null !default;
 $thumb-background-active: null !default;
 $thumb-background-checked: null !default;
-$thumb-box-shadow-color: core.$neutral-50 !default;
+$thumb-box-shadow-color: core.palette-get("neutral") !default;
 $thumb-box-shadow-color-hover: $color !default;
 $thumb-box-shadow-color-focus: $color !default;
 $thumb-box-shadow-color-active: $color !default;

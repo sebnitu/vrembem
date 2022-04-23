@@ -1,4 +1,4 @@
-@use "vrembem" as *;
+@use "@vrembem/core";
 
 .page {
   display: flex;
@@ -25,11 +25,11 @@
 
   .dialog__header,
   .dialog__footer {
-    background: $core-background-darker;
+    background: core.$background-darker;
   }
 
   .dialog__body {
-    background: $core-background-darker;
+    background: core.$background-darker;
   }
 }
 
@@ -44,7 +44,7 @@
   margin-top: 56px;
 }
 
-@include core-media-min('md') {
+@include core.media-min('md') {
   .page__toolbar + .page__main {
     height: calc(100vh - 72px);
     margin-top: 72px;

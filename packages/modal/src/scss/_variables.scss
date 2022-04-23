@@ -10,13 +10,13 @@ $width: 36em !default;
 $travel: 5em !default;
 $transition-duration: core.$transition-duration !default;
 $transition-timing-function: core.$transition-timing-function !default;
-$background: core.$neutral-10 !default;
+$background: core.palette-get("neutral", 10) !default;
 $background-alpha: 0.8 !default;
 $shadow: core.$shadow-5 !default;
 
-$outline: 0 solid rgba(core.$primary, 0) !default;
-$outline-focus: 4px solid rgba(core.$primary, 1) !default;
-$outline-focus-alert: 4px solid rgba(core.$important, 1) !default;
+$outline: 0 solid transparent !default;
+$outline-focus: 4px solid core.palette-get("primary") !default;
+$outline-focus-alert: 4px solid core.palette-get("important") !default;
 
 // modal_pos_[value]
 $aside-width: 16em !default;

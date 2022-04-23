@@ -7,5 +7,5 @@ $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
 .#{$_b}input#{$_m}error {
-  @include mix.input-variant(core.$important-seed);
+  @include mix.input-variant(core.palette-get("important", "seed"));
 }

@@ -77,7 +77,7 @@ Adjust the size of a radio by increasing or decreasing its width and height. By 
 | `$prefix-element`              | `"__"`                             | String to prefix elements with.                                                                  |
 | `$prefix-modifier`             | `"_"`                              | String to prefix modifiers with.                                                                 |
 | `$prefix-modifier-value`       | `"_"`                              | String to prefix modifier values with.                                                           |
-| `$color`                       | `core.$primary`                    | Sets the base color theme for the radio component.                                               |
+| `$color`                       | `--vb-primary`                     | Sets the base color theme for the radio component.                                               |
 | `$size`                        | `core.$form-control-size`          | Sets the width and height of the `radio__background` element.                                    |
 | `$border-width`                | `2px`                              | Sets the border-width property for the `radio__circle` element.                                  |
 | `$transition-duration`         | `core.$transition-duration-short`  | Sets the transition-duration property for the `radio__dot` element.                              |
@@ -89,7 +89,7 @@ Adjust the size of a radio by increasing or decreasing its width and height. By 
 | `$background-checked`          | `null`                             | Sets the background-color property on `:checked` state.                                          |
 | `$background-border-radius`    | `core.$border-radius-circle`       | Sets the border-radius property for the `radio__background` element.                             |
 | `$circle-size`                 | `20px`                             | Sets the width and height of the `radio__circle` element.                                        |
-| `$circle-background`           | `core.$white`                      | Sets the background-color property for the `radio__circle` element.                              |
+| `$circle-background`           | `white`                            | Sets the background-color property for the `radio__circle` element.                              |
 | `$circle-background-hover`     | `null`                             | Sets the background-color property on `:hover` state.                                            |
 | `$circle-background-focus`     | `null`                             | Sets the background-color property on `:focus` state.                                            |
 | `$circle-background-active`    | `null`                             | Sets the background-color property on `:active` state.                                           |
@@ -101,7 +101,7 @@ Adjust the size of a radio by increasing or decreasing its width and height. By 
 | `$circle-border-color-checked` | `$color`                           | Sets the border-color property on `:checked` state.                                              |
 | `$circle-border-radius`        | `core.$border-radius`              | Sets the border-radius property for the `radio__circle` element.                                 |
 | `$dot-size`                    | `8px`                              | Sets the width and height property for the `radio__dot` element.                                 |
-| `$dot-color`                   | `core.$white`                      | Sets the background-color property for the `radio__dot` element.                                 |
+| `$dot-color`                   | `white`                            | Sets the background-color property for the `radio__dot` element.                                 |
 | `$size-sm`                     | `core.$form-control-size-sm`       | Sets the width and height of the `radio__background` element of the `radio_size_sm` modifier.    |
 | `$size-sm-border-width`        | `2px`                              | Sets the border-width property for the `radio__circle` element of the `radio_size_sm` modifier.  |
 | `$size-sm-circle`              | `16px`                             | Sets the width and height of the `radio__circle` element of the `radio_size_sm` modifier.        |

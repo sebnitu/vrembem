@@ -17,9 +17,9 @@ $line-height: core.$line-height !default;
 
 $border: 1px solid core.$border-color-dark !default;
 $border-color-hover: core.$border-color-darker !default;
-$border-color-focus: core.$primary !default;
+$border-color-focus: core.palette-get("primary") !default;
 
-$background: core.$white !default;
+$background: white !default;
 $background-hover: null !default;
 $background-focus: null !default;
 
@@ -28,9 +28,9 @@ $foreground-hover: null !default;
 $foreground-focus: null !default;
 $foreground-placeholder: core.$foreground-lighter !default;
 
-$shadow: 0 0 0 0 rgba(core.$primary, 0), inset 0 0.1rem 0.2rem rgba(core.$black, 0.1) !default;
+$shadow: 0 0 0 0 rgba(core.palette-get("primary"), 0), inset 0 0.1rem 0.2rem rgba(black, 0.1) !default;
 $shadow-hover: null !default;
-$shadow-focus: 0 0 0 0.2rem rgba(core.$primary, 0.5), inset 0 0 0 rgba(core.$black, 0) !default;
+$shadow-focus: 0 0 0 0.2rem rgba(core.palette-get("primary"), 0.5), inset 0 0 0 rgba(black, 0) !default;
 
 $outline: none !default;
 
@@ -51,6 +51,6 @@ $size-lg-font-size: core.$font-size-lg !default;
 $size-lg-line-height: core.$line-height-lg !default;
 
 // input_type_[value]
-$type-select-icon-color: core.$neutral-seed !default;
+$type-select-icon-color: core.palette-get("neutral", "seed") !default;
 $type-select-icon: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="#{core.encodecolor($type-select-icon-color)}"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>' !default;
 $type-textarea-min-width: 100% !default;

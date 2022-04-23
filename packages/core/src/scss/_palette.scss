@@ -7,106 +7,67 @@
 @use "./prefix" as pre;
 
 $_v: pre.$prefix-variable;
+$_p: ();
 
-// Palette seeds
-// ---
-
-$primary-seed: hsl(152, 60%, 50%) !default;
-$secondary-seed: hsl(214, 50%, 50%) !default;
-$neutral-seed: hsl(214, 20%, 50%) !default;
-$important-seed: hsl(0, 80%, 50%) !default;
-
-$color-seeds: (
-  "primary": $primary-seed,
-  "secondary": $secondary-seed,
-  "neutral": $neutral-seed,
-  "important": $important-seed,
+$seeds: (
+  "primary": hsl(152, 60%, 50%),
+  "secondary": hsl(214, 50%, 50%),
+  "neutral": hsl(214, 20%, 50%),
+  "important": hsl(0, 80%, 50%),
 ) !default;
 
-// Palette color-map
-// ---
-
-$color-map: () !default;
 $lightness: 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !default;
+$lightness-default: 50 !default;
 
-@function build-color-range-map($key, $seed) {
+/// Returns a given palette value provided a key and lightness value.
+@function get($key: null, $lightness: $lightness-default) {
+  @if not ($key) {
+    @return $_p;
+  }
+  @else if ($lightness == "seed") {
+    @return map.get($seeds, $key);
+  }
+  @else {
+    @return map.get($_p, $key, $lightness);
+  }
+}
+
+@function -build-range-map($key, $seed) {
   $map: ();
-  @each $number in $lightness {
+  @each $value in $lightness {
     $map: map.set(
       $map,
-      $number,
-      var(--#{$_v}#{$key}-#{$number}, color.change($seed, $lightness: $number * 1%))
+      $value,
+      var(--#{$_v}#{$key}-#{$value}, hsl(fun.get-hs($seed) ..., $lightness: $value * 1%))
     );
   }
   @return $map;
 }
 
-@each $key, $value in $color-seeds {
-  $color-map: map.set($color-map, $key, build-color-range-map($key, $value));
+@mixin build($seeds: $seeds) {
+  @each $key, $value in $seeds {
+    $_p: map.set($_p, $key, -build-range-map($key, $value)) !global;
+  }
 }
 
-// Palette variable
-// ---
+@mixin add($map) {
+  $seeds: map.merge($seeds, $map) !global;
+  @include build();
+}
 
-$white: #fff !default;
-$black: #000 !default;
+@mixin remove($keys...) {
+  $seeds: map.remove($seeds, $keys...) !global;
+  @include build();
+}
 
-$primary-0: map.get($color-map, "primary", 0) !default;
-$primary-10: map.get($color-map, "primary", 10) !default;
-$primary-20: map.get($color-map, "primary", 20) !default;
-$primary-30: map.get($color-map, "primary", 30) !default;
-$primary-40: map.get($color-map, "primary", 40) !default;
-$primary-50: map.get($color-map, "primary", 50) !default;
-$primary-60: map.get($color-map, "primary", 60) !default;
-$primary-70: map.get($color-map, "primary", 70) !default;
-$primary-80: map.get($color-map, "primary", 80) !default;
-$primary-90: map.get($color-map, "primary", 90) !default;
-$primary-95: map.get($color-map, "primary", 95) !default;
-$primary-98: map.get($color-map, "primary", 98) !default;
-$primary-100: map.get($color-map, "primary", 100) !default;
-$primary: $primary-50 !default;
+@mixin custom-properties($seeds: $seeds, $lightness: $lightness, $default: $lightness-default) {
+  @each $key, $seed in $seeds {
+    --#{$_v}#{$key}-hs: #{fun.get-hs($seed)};
+    --#{$_v}#{$key}: var(--#{$_v}#{$key}-#{$default});
+    @each $value in $lightness {
+      --#{$_v}#{$key}-#{$value}: hsl(var(--#{$_v}#{$key}-hs), #{$value}%);
+    }
+  }
+}
 
-$secondary-0: map.get($color-map, "secondary", 0) !default;
-$secondary-10: map.get($color-map, "secondary", 10) !default;
-$secondary-20: map.get($color-map, "secondary", 20) !default;
-$secondary-30: map.get($color-map, "secondary", 30) !default;
-$secondary-40: map.get($color-map, "secondary", 40) !default;
-$secondary-50: map.get($color-map, "secondary", 50) !default;
-$secondary-60: map.get($color-map, "secondary", 60) !default;
-$secondary-70: map.get($color-map, "secondary", 70) !default;
-$secondary-80: map.get($color-map, "secondary", 80) !default;
-$secondary-90: map.get($color-map, "secondary", 90) !default;
-$secondary-95: map.get($color-map, "secondary", 95) !default;
-$secondary-98: map.get($color-map, "secondary", 98) !default;
-$secondary-100: map.get($color-map, "secondary", 100) !default;
-$secondary: $secondary-50 !default;
-
-$neutral-0: map.get($color-map, "neutral", 0) !default;
-$neutral-10: map.get($color-map, "neutral", 10) !default;
-$neutral-20: map.get($color-map, "neutral", 20) !default;
-$neutral-30: map.get($color-map, "neutral", 30) !default;
-$neutral-40: map.get($color-map, "neutral", 40) !default;
-$neutral-50: map.get($color-map, "neutral", 50) !default;
-$neutral-60: map.get($color-map, "neutral", 60) !default;
-$neutral-70: map.get($color-map, "neutral", 70) !default;
-$neutral-80: map.get($color-map, "neutral", 80) !default;
-$neutral-90: map.get($color-map, "neutral", 90) !default;
-$neutral-95: map.get($color-map, "neutral", 95) !default;
-$neutral-98: map.get($color-map, "neutral", 98) !default;
-$neutral-100: map.get($color-map, "neutral", 100) !default;
-$neutral: $neutral-50 !default;
-
-$important-0: map.get($color-map, "important", 0) !default;
-$important-10: map.get($color-map, "important", 10) !default;
-$important-20: map.get($color-map, "important", 20) !default;
-$important-30: map.get($color-map, "important", 30) !default;
-$important-40: map.get($color-map, "important", 40) !default;
-$important-50: map.get($color-map, "important", 50) !default;
-$important-60: map.get($color-map, "important", 60) !default;
-$important-70: map.get($color-map, "important", 70) !default;
-$important-80: map.get($color-map, "important", 80) !default;
-$important-90: map.get($color-map, "important", 90) !default;
-$important-95: map.get($color-map, "important", 95) !default;
-$important-98: map.get($color-map, "important", 98) !default;
-$important-100: map.get($color-map, "important", 100) !default;
-$important: $important-50 !default;
+@include build();
