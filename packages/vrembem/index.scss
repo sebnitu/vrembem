@@ -1,5 +1,4 @@
-@use "@vrembem/core/src/scss/root/root";
-
+@forward "@vrembem/core/root";
 @forward "@vrembem/core" as core-*;
 @forward "@vrembem/base" as base-*;
 @forward "@vrembem/breadcrumb" as breadcrumb-*;
