@@ -21,7 +21,7 @@ $mapping: (
 ) !default;
 
 @function get($key) {
-  @return map.get($mapping, $key);
+  @return var(--#{$_v}#{$key}, map.get($mapping, $key));
 }
 
 @mixin add($key, $value: null) {

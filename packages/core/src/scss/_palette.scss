@@ -38,7 +38,7 @@ $lightness-default: 50 !default;
     $map: map.set(
       $map,
       $value,
-      var(--#{$_v}#{$key}-#{$value}, hsl(fun.get-hs($color) ..., $lightness: $value * 1%))
+      var(--#{$_v}#{$key}-#{$value}, hsl(fun.get-hs($color)..., $lightness: $value * 1%))
     );
   }
   @return $map;
