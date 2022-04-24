@@ -17,7 +17,7 @@ $mapping: (
   "border-color": rgba(black, 0.1),
   "border-color-dark": rgba(black, 0.2),
   "border-color-darker": rgba(black, 0.3),
-  "shadow-color": hsl(var(--vb-neutral-hs), 20%, 20%),
+  "shadow-color": hsl(palette.get("neutral", "var"), 20%, 20%),
 ) !default;
 
 @function get($key) {
