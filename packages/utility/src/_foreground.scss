@@ -7,15 +7,15 @@ $_c: var.$class-foreground;
 
 @if (var.$output-foreground) {
   .#{$_u}#{$_c} {
-    color: core.$foreground !important;
+    color: core.theme-get('foreground') !important;
   }
 
   .#{$_u}#{$_c}-light {
-    color: core.$foreground-light !important;
+    color: core.theme-get('foreground-light') !important;
   }
 
   .#{$_u}#{$_c}-lighter {
-    color: core.$foreground-lighter !important;
+    color: core.theme-get('foreground-lighter') !important;
   }
 
   .#{$_u}#{$_c}-black {
@@ -31,13 +31,13 @@ $_c: var.$class-foreground;
   }
 
   @each $key, $map in core.palette-get() {
+    .#{$_u}#{$_c}-#{$key} {
+      color: var(--#{$_v}#{$key}) !important;
+    }
     @each $num, $value in $map {
       .#{$_u}#{$_c}-#{$key}-#{$num} {
         color: $value !important;
       }
-    }
-    .#{$_u}#{$_c}-#{$key} {
-      color: var(--#{$_v}#{$key}) !important;
     }
   }
 }

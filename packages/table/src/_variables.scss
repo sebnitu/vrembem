@@ -12,12 +12,12 @@ $padding: core.$padding !default;
 $padding-sm: core.$padding-sm !default;
 $padding-lg: core.$padding-lg !default;
 
-$border-color: core.$border-color !default;
+$border-color: core.theme-get('border-color') !default;
 $border: 1px solid $border-color !default;
 $border-alt: 1px dotted $border-color !default;
 
 $background: null !default;
-$background-zebra: core.$background-dark !default;
+$background-zebra: core.theme-get('background-dark') !default;
 $background-hover: hsla(60, 100%, 100%, 30%) !default;
 $shadow-hover: null !default;
 

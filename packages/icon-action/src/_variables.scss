@@ -21,7 +21,7 @@ $background-hover: rgba(black, 0.5) !default;
 $background-focus: rgba(black, 0.5) !default;
 $background-active: rgba(black, 0.6) !default;
 
-$foreground: core.$foreground !default;
+$foreground: core.theme-get('foreground') !default;
 $foreground-hover: null !default;
 $foreground-focus: null !default;
 $foreground-active: null !default;
@@ -41,6 +41,6 @@ $disabled-opacity: 0.6 !default;
 // is-loading
 $loading-size: 0.7em !default;
 $loading-animation-duration: 0.6s !default;
-$loading-border-color: core.$foreground !default;
+$loading-border-color: core.theme-get('foreground') !default;
 $loading-border: 2px solid !default;
 $loading-border-tpl: 1 1 0 0;
