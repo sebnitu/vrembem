@@ -3,7 +3,7 @@
 @use "./functions" as fun;
 @use "./prefix";
 
-$_v: prefix.$prefix-variable;
+$_v: prefix.$variable;
 $_p: ();
 
 $seeds: (
