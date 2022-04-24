@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "sass:meta";
 
 @use "./functions" as fun;
 @use "./prefix";
@@ -43,14 +44,19 @@ $lightness-default: 50 !default;
   @return $map;
 }
 
-@mixin build($seeds: $seeds) {
+@mixin build() {
   @each $key, $value in $seeds {
     $_p: map.set($_p, $key, -build-range-map($key, $value)) !global;
   }
 }
 
-@mixin add($map) {
-  $seeds: map.merge($seeds, $map) !global;
+@mixin add($key, $value: null) {
+  @if (meta.type-of($key) == 'map') {
+    $seeds: map.merge($seeds, $key) !global;
+  }
+  @else {
+    $seeds: map.set($seeds, $key, $value) !global;
+  }
   @include build();
 }
 

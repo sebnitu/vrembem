@@ -1,5 +1,5 @@
 @use "sass:map";
-@use "sass:list";
+@use "sass:meta";
 
 @use "./functions" as fun;
 @use "./prefix";
@@ -22,6 +22,19 @@ $mapping: (
 
 @function get($key) {
   @return map.get($mapping, $key);
+}
+
+@mixin add($key, $value: null) {
+  @if (meta.type-of($key) == 'map') {
+    $mapping: map.merge($mapping, $key) !global;
+  }
+  @else {
+    $mapping: map.set($mapping, $key, $value) !global;
+  }
+}
+
+@mixin remove($keys...) {
+  $mapping: map.remove($mapping, $keys...) !global;
 }
 
 @mixin custom-properties() {
