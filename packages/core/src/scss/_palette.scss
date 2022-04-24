@@ -21,11 +21,11 @@ $lightness-default: 50 !default;
   @if not ($key) {
     @return $_p;
   }
-  @else if ($value == "hs") {
-    @return fun.get-hs(map.get($seeds, $key));
-  }
   @else if ($value == "seed") {
     @return map.get($seeds, $key);
+  }
+  @else if ($value == "hs") {
+    @return fun.get-hs(map.get($seeds, $key));
   }
   @else if ($value == "var") {
     @return var(--#{$_v}#{$key}-hs, fun.get-hs(map.get($seeds, $key)));
