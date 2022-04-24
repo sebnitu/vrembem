@@ -1,12 +1,9 @@
-@use "sass:color";
-@use "sass:list";
 @use "sass:map";
-@use "sass:math";
 
 @use "./functions" as fun;
-@use "./prefix" as pre;
+@use "./prefix";
 
-$_v: pre.$prefix-variable;
+$_v: prefix.$prefix-variable;
 $_p: ();
 
 $seeds: (
@@ -34,13 +31,13 @@ $lightness-default: 50 !default;
   }
 }
 
-@function -build-range-map($key, $seed) {
+@function -build-range-map($key, $color) {
   $map: ();
   @each $value in $lightness {
     $map: map.set(
       $map,
       $value,
-      var(--#{$_v}#{$key}-#{$value}, hsl(fun.get-hs($seed) ..., $lightness: $value * 1%))
+      var(--#{$_v}#{$key}-#{$value}, hsl(fun.get-hs($color) ..., $lightness: $value * 1%))
     );
   }
   @return $map;
