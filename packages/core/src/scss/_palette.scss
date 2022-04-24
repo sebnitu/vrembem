@@ -51,7 +51,7 @@ $lightness-default: 50 !default;
 }
 
 @mixin add($key, $value: null) {
-  @if (meta.type-of($key) == 'map') {
+  @if (meta.type-of($key) == "map") {
     $seeds: map.merge($seeds, $key) !global;
   }
   @else {

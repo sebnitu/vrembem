@@ -25,7 +25,7 @@ $mapping: (
 }
 
 @mixin add($key, $value: null) {
-  @if (meta.type-of($key) == 'map') {
+  @if (meta.type-of($key) == "map") {
     $mapping: map.merge($mapping, $key) !global;
   }
   @else {
