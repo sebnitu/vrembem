@@ -497,24 +497,24 @@ Applies different levels of elevation through box-shadow styles.
 {% include demo_open.html class_grid="grid_stack" %}
 <div class="padding-lg background-shade radius">
   <div class="swatch-group">
-    <div class="swatch background-white elevate"></div>
-    <div class="swatch background-white elevate-flat"></div>
-    <div class="swatch background-white elevate-1dp"></div>
-    <div class="swatch background-white elevate-4dp"></div>
-    <div class="swatch background-white elevate-8dp"></div>
-    <div class="swatch background-white elevate-16dp"></div>
-    <div class="swatch background-white elevate-24dp"></div>
+    <div class="swatch background-white shadow"></div>
+    <div class="swatch background-white shadow-flat"></div>
+    <div class="swatch background-white shadow-1"></div>
+    <div class="swatch background-white shadow-2"></div>
+    <div class="swatch background-white shadow-3"></div>
+    <div class="swatch background-white shadow-4"></div>
+    <div class="swatch background-white shadow-5"></div>
   </div>
 </div>
 {% include demo_switch.html %}
 ```html
-<div class="elevate"></div>
-<div class="elevate-flat"></div>
-<div class="elevate-1dp"></div>
-<div class="elevate-4dp"></div>
-<div class="elevate-8dp"></div>
-<div class="elevate-16dp"></div>
-<div class="elevate-24dp"></div>
+<div class="shadow"></div>
+<div class="shadow-flat"></div>
+<div class="shadow-1"></div>
+<div class="shadow-2"></div>
+<div class="shadow-3"></div>
+<div class="shadow-4"></div>
+<div class="shadow-5"></div>
 ```
 {% include demo_close.html %}
 
