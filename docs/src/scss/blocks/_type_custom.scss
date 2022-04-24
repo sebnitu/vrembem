@@ -23,13 +23,13 @@
 
   > h3 {
     margin-bottom: -1em !important;
-    color: core.$foreground-lighter;
+    color: core.theme-get("foreground-lighter");
 
     code {
       padding: 0.2em 0.4em;
       border-radius: core.$border-radius;
-      background: core.$background-dark;
-      color: core.$foreground;
+      background: core.theme-get("background-dark");
+      color: core.theme-get("foreground");
       font-size: core.$font-size;
       letter-spacing: 0;
       text-transform: none;

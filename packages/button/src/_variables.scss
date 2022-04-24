@@ -18,9 +18,9 @@ $font-size: 1em !default;
 $font-weight: inherit !default;
 $line-height: core.$line-height !default;
 
-$border: 1px solid core.theme-get('border-color-dark') !default;
-$border-color-hover: core.theme-get('border-color-darker') !default;
-$border-color-focus: core.theme-get('border-color-darker') !default;
+$border: 1px solid core.theme-get("border-color-dark") !default;
+$border-color-hover: core.theme-get("border-color-darker") !default;
+$border-color-focus: core.theme-get("border-color-darker") !default;
 $border-color-active: null !default;
 
 $background: transparent !default;
@@ -33,7 +33,7 @@ $box-shadow-hover: null !default;
 $box-shadow-focus: 0 0 0 0.2rem rgba(black, 0.15) !default;
 $box-shadow-active: null !default;
 
-$color: core.theme-get('foreground') !default;
+$color: core.theme-get("foreground") !default;
 $color-hover: null !default;
 $color-focus: null !default;
 $color-active: null !default;

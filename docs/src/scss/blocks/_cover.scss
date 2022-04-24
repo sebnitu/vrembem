@@ -8,7 +8,7 @@
   align-items: stretch;
 }
 
-@include core.media-min('md') {
+@include core.media-min("md") {
   .cover {
     flex-direction: row;
     height: 100%;
@@ -41,10 +41,10 @@
   position: relative;
   z-index: 2;
   flex: 1 1 auto;
-  background: core.$background-darker;
+  background: core.theme-get("background-darker");
 }
 
-@include core.media-min('md') {
+@include core.media-min("md") {
   .cover__hero,
   .cover__aside {
     flex: 1 0 0;
@@ -65,13 +65,13 @@
   padding: 1.5em;
 }
 
-@include core.media-min('xs') {
+@include core.media-min("xs") {
   .cover__inner {
     padding: 2em;
   }
 }
 
-@include core.media-min('md') {
+@include core.media-min("md") {
   .cover__inner {
     max-width: 46em;
     padding: 4em;
@@ -85,7 +85,7 @@
 .cover__header,
 .cover__content {
   padding: 1em;
-  background: core.$background-darker;
+  background: core.theme-get("background-darker");
 }
 
 .cover__header {
@@ -133,7 +133,7 @@
   }
 }
 
-@include core.media-min('md') {
+@include core.media-min("md") {
   .cover__title {
     font-size: 5em;
   }

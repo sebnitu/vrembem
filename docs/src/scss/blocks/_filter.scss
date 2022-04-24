@@ -4,10 +4,10 @@
   position: relative;
   z-index: 4;
   flex-grow: 1;
-  background: core.$background-darker;
+  background: core.theme-get("background-darker");
 
   &.is-active {
-    border-color: core.palette-get('primary');
+    border-color: core.palette-get("primary");
   }
 
   .search {
@@ -21,7 +21,7 @@
     &.is-active {
       background: white;
       box-shadow: core.$shadow;
-      color: core.palette-get('primary');
+      color: core.palette-get("primary");
     }
   }
 

@@ -26,7 +26,7 @@
       background: white;
 
       .menu__icon {
-        color: core.palette-get('primary');
+        color: core.palette-get("primary");
       }
     }
   }
@@ -37,10 +37,10 @@
     margin-right: -0.5em;
     margin-bottom: -0.5em;
     padding: 0.5em;
-    color: core.$foreground-lighter;
+    color: core.theme-get("foreground-lighter");
 
     &:hover {
-      color: core.palette-get('primary');
+      color: core.palette-get("primary");
     }
   }
 }

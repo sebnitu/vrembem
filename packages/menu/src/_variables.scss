@@ -15,7 +15,7 @@ $background: none !default;
 $background-hover: rgba(black, 0.05) !default;
 $background-focus: rgba(black, 0.05) !default;
 $background-active: rgba(black, 0.1) !default;
-$foreground: core.theme-get('foreground') !default;
+$foreground: core.theme-get("foreground") !default;
 $foreground-hover: null !default;
 $foreground-focus: null !default;
 $foreground-active: null !default;
@@ -25,7 +25,7 @@ $line-height: 1.5 !default;
 // menu__sep
 $sep-size: 1px !default;
 $sep-gap: 0.5em !default;
-$sep-background: core.theme-get('border-color') !default;
+$sep-background: core.theme-get("border-color") !default;
 
 // is-active
 $active-background: none !default;
@@ -33,7 +33,7 @@ $active-foreground: core.palette-get("primary") !default;
 
 // is-disabled
 $disabled-background: none !default;
-$disabled-foreground: core.theme-get('foreground-lighter') !default;
+$disabled-foreground: core.theme-get("foreground-lighter") !default;
 
 // menu_size_[value]
 $size-sm: core.$form-control-size-sm !default;

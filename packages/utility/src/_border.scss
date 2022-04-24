@@ -46,11 +46,11 @@ $_c: var.$class-border;
   }
 
   .#{$_u}#{$_c}-color-dark {
-    border-color: core.theme-get('border-color-dark') !important;
+    border-color: core.theme-get("border-color-dark") !important;
   }
 
   .#{$_u}#{$_c}-color-darker {
-    border-color: core.theme-get('border-color-darker') !important;
+    border-color: core.theme-get("border-color-darker") !important;
   }
 
   .#{$_u}#{$_c}-color-transparent {

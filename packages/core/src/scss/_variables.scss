@@ -88,11 +88,11 @@ $font-weight-map: (
 // Box shadow
 // ---
 
-$shadow-1: 0 1px 3px theme.get('shadow-color') !default;
-$shadow-2: 0 2px 6px theme.get('shadow-color') !default;
-$shadow-3: 0 4px 12px theme.get('shadow-color') !default;
-$shadow-4: 0 8px 18px theme.get('shadow-color') !default;
-$shadow-5: 0 12px 24px theme.get('shadow-color') !default;
+$shadow-1: 0 1px 3px theme.get("shadow-color") !default;
+$shadow-2: 0 2px 6px theme.get("shadow-color") !default;
+$shadow-3: 0 4px 12px theme.get("shadow-color") !default;
+$shadow-4: 0 8px 18px theme.get("shadow-color") !default;
+$shadow-5: 0 12px 24px theme.get("shadow-color") !default;
 $shadow: $shadow-2 !default;
 
 // Border
@@ -101,9 +101,9 @@ $shadow: $shadow-2 !default;
 $border-width: 1px !default;
 $border-style: solid !default;
 
-$border: $border-width $border-style theme.get('border-color') !default;
-$border-dark: $border-width $border-style theme.get('border-color-dark') !default;
-$border-darker: $border-width $border-style theme.get('border-color-darker') !default;
+$border: $border-width $border-style theme.get("border-color") !default;
+$border-dark: $border-width $border-style theme.get("border-color-dark") !default;
+$border-darker: $border-width $border-style theme.get("border-color-darker") !default;
 
 $border-radius: 0.25rem !default;
 $border-radius-circle: 9999px !default;

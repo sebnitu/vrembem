@@ -7,15 +7,15 @@ $_c: var.$class-foreground;
 
 @if (var.$output-foreground) {
   .#{$_u}#{$_c} {
-    color: core.theme-get('foreground') !important;
+    color: core.theme-get("foreground") !important;
   }
 
   .#{$_u}#{$_c}-light {
-    color: core.theme-get('foreground-light') !important;
+    color: core.theme-get("foreground-light") !important;
   }
 
   .#{$_u}#{$_c}-lighter {
-    color: core.theme-get('foreground-lighter') !important;
+    color: core.theme-get("foreground-lighter") !important;
   }
 
   .#{$_u}#{$_c}-black {

@@ -15,18 +15,18 @@ $border-radius: core.$border-radius !default;
 $font-size: core.$font-size !default;
 $line-height: core.$line-height !default;
 
-$border: 1px solid core.theme-get('border-color-dark') !default;
-$border-color-hover: core.theme-get('border-color-darker') !default;
+$border: 1px solid core.theme-get("border-color-dark") !default;
+$border-color-hover: core.theme-get("border-color-darker") !default;
 $border-color-focus: core.palette-get("primary") !default;
 
 $background: white !default;
 $background-hover: null !default;
 $background-focus: null !default;
 
-$foreground: core.theme-get('foreground') !default;
+$foreground: core.theme-get("foreground") !default;
 $foreground-hover: null !default;
 $foreground-focus: null !default;
-$foreground-placeholder: core.theme-get('foreground-lighter') !default;
+$foreground-placeholder: core.theme-get("foreground-lighter") !default;
 
 $shadow: 0 0 0 0 rgba(core.palette-get("primary"), 0), inset 0 0.1rem 0.2rem rgba(black, 0.1) !default;
 $shadow-hover: null !default;
@@ -35,10 +35,10 @@ $shadow-focus: 0 0 0 0.2rem rgba(core.palette-get("primary"), 0.5), inset 0 0 0 
 $outline: none !default;
 
 // disabled
-$disabled-background: core.theme-get('background-darker') !default;
+$disabled-background: core.theme-get("background-darker") !default;
 
 // read-only
-$read-only-background: core.theme-get('background-darker') !default;
+$read-only-background: core.theme-get("background-darker") !default;
 
 // input_size_[value]
 $size-sm: core.$form-control-size-sm !default;

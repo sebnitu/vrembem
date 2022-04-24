@@ -1,6 +1,5 @@
-@use "@vrembem/core";
-
 .swatch {
-  @include core.size(4rem);
+  width: 4rem;
+  height: 4rem;
   display: inline-flex;
 }
