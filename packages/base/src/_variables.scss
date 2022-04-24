@@ -44,9 +44,9 @@ $class-type: "type" !default;
 // ---
 
 $root-height: 100% !default;
-$body-background: core.$background !default;
-$body-foreground: core.$foreground !default;
-$color-caption: core.$foreground-lighter !default;
+$body-background: core.theme-get('background') !default;
+$body-foreground: core.theme-get('foreground') !default;
+$color-caption: core.theme-get('foreground-lighter') !default;
 $font-family: core.$font-family !default;
 $font-family-mono: core.$font-family-mono !default;
 $font-size: core.$font-size !default;
@@ -121,15 +121,15 @@ $list-item-gap: 0.5em !default;
 // ---
 
 $pre-padding: 1em !default;
-$pre-background: core.$background-dark !default;
-$pre-foreground: core.$foreground !default;
+$pre-background: core.theme-get('background-dark') !default;
+$pre-foreground: core.theme-get('foreground') !default;
 $pre-border: null !default;
 $pre-border-radius: core.$border-radius !default;
 
 // Separator
 // ---
 
-$separator-border: 1px solid core.$border-color !default;
+$separator-border: 1px solid core.theme-get('border-color') !default;
 
 // Type
 // ---
