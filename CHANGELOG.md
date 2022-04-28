@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v3.0.6 to CHANGELOG.md
+chore(release): add v3.0.7 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v3.0.7 (2022-04-28)
+
+### :hammer: Chore
+* `core`
+  * [#894](https://github.com/sebnitu/vrembem/pull/894) Remove console log
 
 
 ## v3.0.6 (2022-04-28)
