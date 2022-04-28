@@ -11,7 +11,6 @@ export function localStore(key, enable = true) {
 
   return new Proxy(getStore(), {
     set: (target, property, value) => {
-      console.log('localStore() => set');
       if (value === undefined) {
         delete target[property];
       } else {
