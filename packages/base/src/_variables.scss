@@ -1,5 +1,6 @@
 @use "@vrembem/core";
-@use "@vrembem/core/src/scss/palette";
+@use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
 
 // Prefixes
 // ---
@@ -44,9 +45,9 @@ $class-type: "type" !default;
 // ---
 
 $root-height: 100% !default;
-$body-background: core.theme-get("background") !default;
-$body-foreground: core.theme-get("foreground") !default;
-$color-caption: core.theme-get("foreground-lighter") !default;
+$body-background: theme.get("background") !default;
+$body-foreground: theme.get("foreground") !default;
+$color-caption: theme.get("foreground-lighter") !default;
 $font-family: core.$font-family !default;
 $font-family-mono: core.$font-family-mono !default;
 $font-size: core.$font-size !default;
@@ -72,14 +73,14 @@ $blockquote-border: core.$border !default;
 $blockquote-border-radius: null !default;
 $blockquote-accent-width: 4px !default;
 $blockquote-accent-offset: -1px !default;
-$blockquote-accent-color: core.palette-get("primary") !default;
+$blockquote-accent-color: palette.get("primary") !default;
 
 // Code
 // ---
 
 $code-padding: null !default;
 $code-background: null !default;
-$code-foreground: core.palette-get("secondary") !default;
+$code-foreground: palette.get("secondary") !default;
 $code-border: null !default;
 $code-border-radius: null !default;
 $code-font-family: core.$font-family-mono !default;
@@ -104,8 +105,8 @@ $heading-scale: (
 // Link
 // ---
 
-$link-color: core.palette-get("primary") !default;
-$link-color-hover: core.palette-get("primary", 40) !default;
+$link-color: palette.get("primary") !default;
+$link-color-hover: palette.get("primary", 40) !default;
 $link-decoration: underline !default;
 $link-decoration-hover: none !default;
 $link-outline-focus: currentcolor dotted 1px !default;
@@ -121,15 +122,15 @@ $list-item-gap: 0.5em !default;
 // ---
 
 $pre-padding: 1em !default;
-$pre-background: core.theme-get("background-dark") !default;
-$pre-foreground: core.theme-get("foreground") !default;
+$pre-background: theme.get("background-dark") !default;
+$pre-foreground: theme.get("foreground") !default;
 $pre-border: null !default;
 $pre-border-radius: core.$border-radius !default;
 
 // Separator
 // ---
 
-$separator-border: 1px solid core.theme-get("border-color") !default;
+$separator-border: 1px solid theme.get("border-color") !default;
 
 // Type
 // ---

@@ -1,4 +1,6 @@
 @use "@vrembem/core";
+@use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
 
 $prefix-block: core.$prefix-block !default;
 $prefix-element: core.$prefix-element !default;
@@ -12,7 +14,7 @@ $width: 18em !default;
 $max-width: 100% !default;
 $border: null !default;
 $sep-border: null !default;
-$background: core.theme-get("background-darker") !default;
+$background: theme.get("background-darker") !default;
 $shadow: none !default;
 $transition-duration: core.$transition-duration !default;
 $transition-timing-function: core.$transition-timing-function !default;
@@ -25,5 +27,5 @@ $modal-max-width: 80% !default;
 $modal-sep-border: null !default;
 $modal-background: white !default;
 $modal-shadow: core.$shadow-5 !default;
-$modal-screen-background: core.palette-get("neutral", 10) !default;
+$modal-screen-background: palette.get("neutral", 10) !default;
 $modal-screen-background-alpha: 0.8 !default;

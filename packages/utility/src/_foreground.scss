@@ -1,4 +1,5 @@
-@use "@vrembem/core";
+@use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
 @use "./variables" as var;
 
 $_v: var.$prefix-variable;
@@ -7,15 +8,15 @@ $_c: var.$class-foreground;
 
 @if (var.$output-foreground) {
   .#{$_u}#{$_c} {
-    color: core.theme-get("foreground") !important;
+    color: theme.get("foreground") !important;
   }
 
   .#{$_u}#{$_c}-light {
-    color: core.theme-get("foreground-light") !important;
+    color: theme.get("foreground-light") !important;
   }
 
   .#{$_u}#{$_c}-lighter {
-    color: core.theme-get("foreground-lighter") !important;
+    color: theme.get("foreground-lighter") !important;
   }
 
   .#{$_u}#{$_c}-black {
@@ -30,7 +31,7 @@ $_c: var.$class-foreground;
     color: transparent !important;
   }
 
-  @each $key, $map in core.palette-get() {
+  @each $key, $map in palette.get() {
     .#{$_u}#{$_c}-#{$key} {
       color: var(--#{$_v}#{$key}) !important;
     }

@@ -1,4 +1,4 @@
-@use "@vrembem/core";
+@use "@vrembem/core/palette";
 @use "./variables" as var;
 @use "./mixins" as mix;
 
@@ -7,5 +7,5 @@ $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
 .#{$_b}input#{$_m}error {
-  @include mix.input-variant(core.palette-get("important", "seed"));
+  @include mix.input-variant(palette.get("important", "seed"));
 }

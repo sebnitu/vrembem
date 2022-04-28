@@ -1,5 +1,7 @@
 @use "sass:list";
 @use "@vrembem/core";
+@use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
 
 $prefix-block: core.$prefix-block !default;
 $prefix-element: core.$prefix-element !default;
@@ -15,30 +17,30 @@ $border-radius: core.$border-radius !default;
 $font-size: core.$font-size !default;
 $line-height: core.$line-height !default;
 
-$border: 1px solid core.theme-get("border-color-dark") !default;
-$border-color-hover: core.theme-get("border-color-darker") !default;
-$border-color-focus: core.palette-get("primary") !default;
+$border: 1px solid theme.get("border-color-dark") !default;
+$border-color-hover: theme.get("border-color-darker") !default;
+$border-color-focus: palette.get("primary") !default;
 
 $background: white !default;
 $background-hover: null !default;
 $background-focus: null !default;
 
-$foreground: core.theme-get("foreground") !default;
+$foreground: theme.get("foreground") !default;
 $foreground-hover: null !default;
 $foreground-focus: null !default;
-$foreground-placeholder: core.theme-get("foreground-lighter") !default;
+$foreground-placeholder: theme.get("foreground-lighter") !default;
 
-$shadow: 0 0 0 0 rgba(core.palette-get("primary"), 0), inset 0 0.1rem 0.2rem rgba(black, 0.1) !default;
+$shadow: 0 0 0 0 rgba(palette.get("primary"), 0), inset 0 0.1rem 0.2rem rgba(black, 0.1) !default;
 $shadow-hover: null !default;
-$shadow-focus: 0 0 0 0.2rem rgba(core.palette-get("primary"), 0.5), inset 0 0 0 rgba(black, 0) !default;
+$shadow-focus: 0 0 0 0.2rem rgba(palette.get("primary"), 0.5), inset 0 0 0 rgba(black, 0) !default;
 
 $outline: none !default;
 
 // disabled
-$disabled-background: core.theme-get("background-darker") !default;
+$disabled-background: theme.get("background-darker") !default;
 
 // read-only
-$read-only-background: core.theme-get("background-darker") !default;
+$read-only-background: theme.get("background-darker") !default;
 
 // input_size_[value]
 $size-sm: core.$form-control-size-sm !default;
@@ -51,6 +53,6 @@ $size-lg-font-size: core.$font-size-lg !default;
 $size-lg-line-height: core.$line-height-lg !default;
 
 // input_type_[value]
-$type-select-icon-color: core.palette-get("neutral", "seed") !default;
+$type-select-icon-color: palette.get("neutral", "seed") !default;
 $type-select-icon: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="#{core.encodecolor($type-select-icon-color)}"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>' !default;
 $type-textarea-min-width: 100% !default;

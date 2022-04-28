@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/theme";
 @use "@vrembem/base/src/variables" as base;
 
 $prefix-block: core.$prefix-block !default;
@@ -6,9 +7,9 @@ $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
-$color: core.theme-get("foreground-lighter") !default;
+$color: theme.get("foreground-lighter") !default;
 $delimiter: "/" !default;
-$delimiter-color: core.theme-get("border-color-dark") !default;
+$delimiter-color: theme.get("border-color-dark") !default;
 $delimiter-padding: 0 0.5em !default;
 $delimiter-last: false !default;
 
