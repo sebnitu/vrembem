@@ -11,13 +11,12 @@ export function localStore(key, enable = true) {
 
   return new Proxy(getStore(), {
     set: (target, property, value) => {
-      target[property] = value;
-      if (enable) setStore(target);
-      return true;
-    },
-
-    deleteProperty: (target, property) => {
-      delete target[property];
+      console.log('localStore() => set');
+      if (value === undefined) {
+        delete target[property];
+      } else {
+        target[property] = value;
+      }
       if (enable) setStore(target);
       return true;
     }

@@ -30,15 +30,15 @@ test('should disable saving local storage if enable param is set to false', () =
   result = localStorage.getItem('asdf');
   expect(JSON.parse(result)['fdsa']).toBe(undefined);
 
-  delete store['asdf'];
+  store['asdf'] = undefined;
 
   result = localStorage.getItem('asdf');
   expect(JSON.parse(result)['asdf']).toEqual('fdsa');
 });
 
-test('should update local storage on delete', () => {
+test('should remove property from local storage when value is set to undefined', () => {
   const store = localStore('asdf');
-  delete store['asdf'];
+  store['asdf'] = undefined;
 
   result = localStorage.getItem('asdf');
   expect(JSON.parse(result)['asdf']).toBe(undefined);
