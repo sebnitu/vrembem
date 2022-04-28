@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v3.0.5 to CHANGELOG.md
+chore(release): add v3.0.6 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v3.0.6 (2022-04-28)
+
+### :bug: Bug Fix
+* `core`, `drawer`
+  * [#893](https://github.com/sebnitu/vrembem/pull/893) Fix support for proxy polyfill and available traps
 
 
 ## v3.0.5 (2022-04-22)
