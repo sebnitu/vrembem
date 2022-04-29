@@ -1,31 +1,20 @@
 export function localStore(key, enable = true) {
-
-  function getStore() {
-    const value = localStorage.getItem(key);
-    return (value) ? JSON.parse(value) : {};
-  }
-
-  function setStore(obj) {
-    localStorage.setItem(key, JSON.stringify(obj));
-  }
+  const local = localStorage.getItem(key);
+  const store = (local) ? JSON.parse(local) : {};
 
   return {
-    proxy: getStore(),
-
-    get value() {
-      return this.proxy;
+    get(prop) {
+      return (prop) ? store[prop] : store;
     },
 
-    add(prop, value) {
-      this.proxy[prop] = value;
-      if (enable) setStore(this.value);
-      return this.value;
-    },
-
-    remove(prop) {
-      delete this.proxy[prop];
-      if (enable) setStore(this.value);
-      return this.value;
+    set(prop, value) {
+      if (value) {
+        store[prop] = value;
+      } else {
+        delete store[prop];
+      }
+      if (enable) localStorage.setItem(key, JSON.stringify(store));
+      return store;
     }
   };
 }

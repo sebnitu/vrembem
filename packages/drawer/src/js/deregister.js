@@ -18,7 +18,7 @@ export async function deregister(obj, close = true) {
     }
 
     // Remove entry from local store.
-    this.store[entry.id] = undefined;
+    this.store.set(entry.id);
 
     // Unmount the MatchMedia functionality.
     entry.unmountBreakpoint();
