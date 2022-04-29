@@ -9,15 +9,23 @@ export function localStore(key, enable = true) {
     localStorage.setItem(key, JSON.stringify(obj));
   }
 
-  return new Proxy(getStore(), {
-    set: (target, property, value) => {
-      if (value === undefined) {
-        delete target[property];
-      } else {
-        target[property] = value;
-      }
-      if (enable) setStore(target);
-      return true;
+  return {
+    proxy: getStore(),
+
+    get value() {
+      return this.proxy;
+    },
+
+    add(prop, value) {
+      this.proxy[prop] = value;
+      if (enable) setStore(this.value);
+      return this.value;
+    },
+
+    remove(prop) {
+      delete this.proxy[prop];
+      if (enable) setStore(this.value);
+      return this.value;
     }
-  });
+  };
 }
