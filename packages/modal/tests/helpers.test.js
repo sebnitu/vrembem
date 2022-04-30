@@ -1,5 +1,5 @@
 import './mocks/getComputedStyle.mock';
-import { updateStackIndex, getModalID, getModalElements } from '../src/js/helpers';
+import { getModalID, getModalElements } from '../src/js/helpers';
 
 document.body.innerHTML = `
   <button data-modal-open="modal-1">...</button>
@@ -32,22 +32,6 @@ const mockObj = {
     selectorDialog: '.modal__dialog'
   }
 };
-
-describe('updateStackIndex()', () => {
-  it('should update the z-index of a modal array', () => {
-    const array = document.querySelectorAll('.modal');
-    const collectionMock = [];
-    for (let i = 0; i < array.length; i++) {
-      collectionMock.push({ el: array[i] });
-    }
-
-    updateStackIndex(collectionMock);
-
-    expect(collectionMock[0].el.style.zIndex).toBe('1001');
-    expect(collectionMock[1].el.style.zIndex).toBe('1002');
-    expect(collectionMock[2].el.style.zIndex).toBe('1003');
-  });
-});
 
 describe('getModalID()', () => {
   it('should return the string if a string is passed', () => {

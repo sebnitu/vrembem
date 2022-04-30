@@ -11,32 +11,16 @@ export async function open(query, transition, focus = true) {
   // Add transition parameter to configuration.
   if (transition !== undefined) config.transition = transition;
 
-  // Check if modal is already in the stack.
-  const index = this.stack.findIndex((entry) => {
-    return (entry.id === modal.id);
-  });
-
-  // If modal is already open.
-  if (index >= 0) {
-    // Remove modal from stack array.
-    this.stack.splice(index, 1);
-
-    // Move back to end of stack.
-    this.stack.push(modal);
-  }
+  // Maybe add modal to top of stack.
+  this.stack.maybeAdd(modal);
 
   // If modal is closed.
   if (modal.state === 'closed') {
     // Update modal state.
     modal.state = 'opening';
 
-    // Apply z-index styles based on stack length.
-    modal.el.style.zIndex = null;
-    const value = getComputedStyle(modal.el)['z-index'];
-    modal.el.style.zIndex = parseInt(value) + this.stack.length + 1;
-
-    // Store modal in stack array.
-    this.stack.push(modal);
+    // Add modal to stack.
+    this.stack.add(modal);
 
     // Run the open transition.
     await openTransition(modal.el, config);

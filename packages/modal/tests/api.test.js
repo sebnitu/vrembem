@@ -333,7 +333,7 @@ describe('replace()', () => {
       await transition(entry.el);
     }));
 
-    expect(modal.stack.length).toBe(3);
+    expect(modal.stack.value.length).toBe(3);
     expect(modal.get('modal-1').state).toBe('opened');
     expect(modal.get('modal-2').state).toBe('opened');
     expect(modal.get('modal-3').state).toBe('opened');
@@ -344,7 +344,7 @@ describe('replace()', () => {
       await transition(entry.el);
     }));
 
-    expect(modal.stack.length).toBe(1);
+    expect(modal.stack.value.length).toBe(1);
     expect(modal.get('modal-1').state).toBe('closed');
     expect(modal.get('modal-2').state).toBe('opened');
     expect(modal.get('modal-3').state).toBe('closed');
