@@ -1,4 +1,4 @@
-import { Collection, FocusTrap, updateGlobalState } from '@vrembem/core/index';
+import { Collection, FocusTrap } from '@vrembem/core/index';
 
 import defaults from './defaults';
 import { handleClick, handleKeydown } from './handlers';
@@ -8,7 +8,8 @@ import { open } from './open';
 import { close } from './close';
 import { closeAll } from './closeAll';
 import { replace } from './replace';
-import { updateFocusState, updateStackIndex, getModalElements, getModalID } from './helpers';
+import { stack } from './stack';
+import { updateFocusState, getModalElements, getModalID } from './helpers';
 
 export default class Modal extends Collection {
   #handleClick;
@@ -21,18 +22,8 @@ export default class Modal extends Collection {
     this.trigger = null;
     this.focusTrap = new FocusTrap();
 
-    // Setup a proxy for stack array.
-    this.stack = new Proxy([], {
-      set: (target, property, value) => {
-        target[property] = value;
-        // Update global state if stack length changed.
-        if (property === 'length') {
-          updateGlobalState(this.active, this.settings);
-          updateStackIndex(this.stack);
-        }
-        return true;
-      }
-    });
+    // Setup stack module.
+    this.stack = stack(this.settings);
 
     this.#handleClick = handleClick.bind(this);
     this.#handleKeydown = handleKeydown.bind(this);
@@ -40,7 +31,7 @@ export default class Modal extends Collection {
   }
 
   get active() {
-    return this.stack[this.stack.length - 1];
+    return this.stack.top;
   }
 
   async init(options) {

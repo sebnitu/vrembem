@@ -68,7 +68,7 @@ export async function register(el, dialog) {
       __state = value;
       // Save 'opened' and 'closed' states to store if mode is inline.
       if (value === 'opened' || value === 'closed') {
-        if (this.mode === 'inline') root.store[this.id] = this.state;
+        if (this.mode === 'inline') root.store.set(this.id, this.state);
       }
     },
     get mode() {

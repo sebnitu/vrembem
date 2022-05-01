@@ -8,7 +8,7 @@ test('should setup a poxy that updates local storage on set', () => {
   result = localStorage.getItem('asdf');
   expect(result).toBe(null);
 
-  store['asdf'] = 'fdsa';
+  store.set('asdf', 'fdsa');
 
   result = localStorage.getItem('asdf');
   expect(JSON.parse(result)['asdf']).toBe('fdsa');
@@ -16,7 +16,12 @@ test('should setup a poxy that updates local storage on set', () => {
 
 test('should restore the state of an existing local storage object', () => {
   const store = localStore('asdf');
-  expect(store['asdf']).toBe('fdsa');
+  expect(store.get('asdf')).toBe('fdsa');
+});
+
+test('should return the store object when get is not provided a param', () => {
+  const store = localStore('asdf');
+  expect(store.get()).toEqual({ 'asdf': 'fdsa' });
 });
 
 test('should disable saving local storage if enable param is set to false', () => {
@@ -25,12 +30,12 @@ test('should disable saving local storage if enable param is set to false', () =
   result = localStorage.getItem('asdf');
   expect(JSON.parse(result)['asdf']).toEqual('fdsa');
 
-  store['fdsa'] = 'asdf';
+  store.set('fdsa', 'asdf');
 
   result = localStorage.getItem('asdf');
   expect(JSON.parse(result)['fdsa']).toBe(undefined);
 
-  store['asdf'] = undefined;
+  store.set('asdf');
 
   result = localStorage.getItem('asdf');
   expect(JSON.parse(result)['asdf']).toEqual('fdsa');
@@ -38,7 +43,7 @@ test('should disable saving local storage if enable param is set to false', () =
 
 test('should remove property from local storage when value is set to undefined', () => {
   const store = localStore('asdf');
-  store['asdf'] = undefined;
+  store.set('asdf');
 
   result = localStorage.getItem('asdf');
   expect(JSON.parse(result)['asdf']).toBe(undefined);

@@ -22,16 +22,8 @@ export async function close(query, transition, focus = true) {
     // Run the close transition.
     await closeTransition(modal.el, config);
 
-    // Remove z-index styles.
-    modal.el.style.zIndex = null;
-
-    // Get index of modal in stack array.
-    const index = this.stack.findIndex((entry) => {
-      return (entry.id === modal.id);
-    });
-
-    // Remove modal from stack array.
-    this.stack.splice(index, 1);
+    // Remove modal from stack.
+    this.stack.remove(modal);
 
     // Update focus if the focus param is true.
     if (focus) {

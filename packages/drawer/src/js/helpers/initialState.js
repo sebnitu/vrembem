@@ -3,9 +3,9 @@ export async function initialState(entry) {
   //  1. If a store state is available, restore from local store.
   //  2. If opened state class is set, set state to opened.
   //  3. Else, initialize default state.
-  if (this.store[entry.id]) {
+  if (this.store.get(entry.id)) {
     // Restore drawers to saved inline state.
-    if (this.store[entry.id] === 'opened') {
+    if (this.store.get(entry.id) === 'opened') {
       await entry.open(false, false);
     } else {
       await entry.close(false, false);

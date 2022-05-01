@@ -198,7 +198,7 @@ describe('register() & deregister()', () => {
   });
 
   it('should return drawer to state saved in local store', async () => {
-    drawer.store['drawer-4'] = 'opened';
+    drawer.store.set('drawer-4', 'opened');
     const entry = await drawer.register('drawer-4');
     expect(entry.mode).toBe('inline');
     expect(entry.state).toBe('opened');
@@ -219,7 +219,7 @@ describe('register() & deregister()', () => {
     const el = document.querySelector('#drawer-4');
     el.classList.add(drawer.settings.stateOpened);
 
-    drawer.store['drawer-4'] = 'closed';
+    drawer.store.set('drawer-4', 'closed');
     const entry = await drawer.register('drawer-4');
 
     expect(entry.mode).toBe('inline');

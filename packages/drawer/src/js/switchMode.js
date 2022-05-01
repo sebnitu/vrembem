@@ -49,9 +49,9 @@ async function toModal(entry) {
   entry.dialog.setAttribute('aria-modal', 'true');
 
   // If there isn't a stored state but also has the opened state class...
-  if (!this.store[entry.id] && entry.el.classList.contains(entry.getSetting('stateOpened'))) {
+  if (!this.store.get(entry.id) && entry.el.classList.contains(entry.getSetting('stateOpened'))) {
     // Save the opened state in local store.
-    this.store[entry.id] = 'opened';
+    this.store.set(entry.id, 'opened');
   }
 
   // Modal drawer defaults to closed state.
