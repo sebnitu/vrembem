@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v3.0.7 to CHANGELOG.md
+chore(release): add v3.0.8 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v3.0.8 (2022-05-01)
+
+### :house: Refactor
+* `core`, `drawer`, `modal`
+  * [#895](https://github.com/sebnitu/vrembem/pull/895) Remove the use of proxies in favor of modules
 
 
 ## v3.0.7 (2022-04-28)
