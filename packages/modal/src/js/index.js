@@ -31,7 +31,7 @@ export default class Modal extends Collection {
   }
 
   get active() {
-    return this.stack.last;
+    return this.stack.top;
   }
 
   async init(options) {

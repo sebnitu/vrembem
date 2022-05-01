@@ -12,7 +12,7 @@ export async function open(query, transition, focus = true) {
   if (transition !== undefined) config.transition = transition;
 
   // Maybe add modal to top of stack.
-  this.stack.maybeAdd(modal);
+  this.stack.moveToTop(modal);
 
   // If modal is closed.
   if (modal.state === 'closed') {

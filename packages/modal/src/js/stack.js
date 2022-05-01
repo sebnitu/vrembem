@@ -9,7 +9,7 @@ export function stack(settings) {
       return [...stackArray];
     },
 
-    get last() {
+    get top() {
       return stackArray[stackArray.length - 1];
     },
 
@@ -22,7 +22,7 @@ export function stack(settings) {
     },
 
     updateGlobalState() {
-      updateGlobalState(this.last, settings);
+      updateGlobalState(this.top, settings);
       this.updateIndex();
     },
 
@@ -58,7 +58,7 @@ export function stack(settings) {
       }
     },
 
-    maybeAdd(entry) {
+    moveToTop(entry) {
       // Get the index of the entry.
       const index = stackArray.findIndex((item) => {
         return (item.id === entry.id);
