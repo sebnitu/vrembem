@@ -6,7 +6,7 @@ export function stack(settings) {
 
   return {
     get value() {
-      return stackArray;
+      return [...stackArray];
     },
 
     get last() {
@@ -21,7 +21,7 @@ export function stack(settings) {
       });
     },
 
-    update() {
+    updateGlobalState() {
       updateGlobalState(this.last, settings);
       this.updateIndex();
     },
@@ -36,11 +36,11 @@ export function stack(settings) {
       stackArray.push(entry);
 
       // Update the global state.
-      this.update();
+      this.updateGlobalState();
     },
 
     remove(entry) {
-      // Get index of modal in stack array.
+      // Get the index of the entry.
       const index = stackArray.findIndex((item) => {
         return (item.id === entry.id);
       });
@@ -54,12 +54,12 @@ export function stack(settings) {
         stackArray.splice(index, 1);
 
         // Update the global state.
-        this.update();
+        this.updateGlobalState();
       }
     },
 
     maybeAdd(entry) {
-      // Check if modal is already in the stack.
+      // Get the index of the entry.
       const index = stackArray.findIndex((item) => {
         return (item.id === entry.id);
       });
