@@ -1,0 +1,37 @@
+{
+  "name": "@vrembem/breadcrumb",
+  "description": "A navigation component that shows the hierarchical path to a users current location.",
+  "version": "3.0.8",
+  "license": "MIT",
+  "keywords": [
+    "BEM",
+    "front-end",
+    "component",
+    "breadcrumb"
+  ],
+  "sass": "index.scss",
+  "style": "dist/styles.css",
+  "scripts": {
+    "build": "npm-run-all clean styles",
+    "clean": "del dev && del dist",
+    "styles": "npm-run-all styles:dev styles:dist",
+    "styles:dev": "sass index.scss dev/styles.css --load-path=node_modules",
+    "styles:dist": "sass index.scss dist/styles.css --load-path=node_modules --style=compressed",
+    "watch": "npm run watch:styles",
+    "watch:styles": "nodemon -e scss -x 'npm run styles'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebnitu/vrembem.git",
+    "directory": "packages/breadcrumb"
+  },
+  "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/breadcrumb#readme",
+  "dependencies": {
+    "@vrembem/base": "^3.0.8",
+    "@vrembem/core": "^3.0.8"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "d966f513f86f66dddf93ed60ddefe51124562dc0"
+}
