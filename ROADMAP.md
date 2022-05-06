@@ -22,29 +22,28 @@ Milestones to reach before Vrembem is ready for it's v2 release.
 | #   | Component      | Status | Notes                                                                                                                                                                                           |
 | --- | -------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1   | `base`         | ✅      | Very stable with strong existing patterns. Can only grow.                                                                                                                                       |
-| 2   | `breadcrumb`   | ✅      | This is fine.                                                                                                                                                                                   |
-| 3   | `button`       | ✅      | The staple of any component library.                                                                                                                                                            |
-| 4   | `button-group` | ✅      | Has been audited. There's enough unique modifiers to keep this it's own component.                                                                                                              |
-| 5   | `card`         | ✅      | Extremely versatile container component.                                                                                                                                                        |
-| 6   | `checkbox`     | ✅      | Staple form control.                                                                                                                                                                            |
-| 7   | `core`         | ✅      | Very well established root variables, mixins and functions. Can only grow.                                                                                                                      |
-| 8   | `dialog`       | ✅      | Similar to `card`, extremely versatile container component. Used in both `drawer` and `modal` for composition.                                                                                  |
-| 9   | `drawer`       | ✅      | Super stable component and pattern. maybe audit the need for `drawer__wrapper` and `drawer__main` since they're the only component elements that sit outside the base `drawer` component class. |
-| 10  | `grid`         | ✅      | Well established pattern. Won't change much.                                                                                                                                                    |
-| 11  | `icon`         | ✅      | I like the idea of having an `icon` component. Should audit the existing modifiers though.                                                                                                      |
-| 12  | `icon-action`  | ✅      | Maybe merge this into a `button` modifier.                                                                                                                                                      |
-| 13  | `input`        | ✅      | Staple form control.                                                                                                                                                                            |
-| 14  | `level`        | ✅      | Base styles are well done and very stable. Worth exploring modifier changes for inclusion of `button-group` component.                                                                          |
-| 15  | `media`        | ✅      | Super versatile layout component.                                                                                                                                                               |
-| 16  | `menu`         | ✅      | Super versatile component with well established patterns. Won't change much.                                                                                                                    |
-| 17  | `modal`        | ✅      | Super stable component and pattern.                                                                                                                                                             |
-| 18  | `notice`       | ✅      | A staple component. Has been refactored and removed unneeded complexity.                                                                                                                        |
-| 19  | `popover`      | ✅      | Renamed to `popover` from `dropdown`. Complete refactor to be primarily a container component for better composition.                                                                           |
-| 20  | `radio`        | ✅      | Staple form control.                                                                                                                                                                            |
-| 21  | `section`      | ✅      | There is a need for `__background` and `__screen` elements within a container, not sure if this fills that need. `card` uses similar styles.                                                    |
-| 22  | `switch`       | ✅      | Staple form control.                                                                                                                                                                            |
-| 23  | `table`        | ✅      | Table styles are important.                                                                                                                                                                     |
-| 24  | `utility`      | ✅      | Very stable with strong existing patterns. Can only grow.                                                                                                                                       |
+| 2   | `button`       | ✅      | The staple of any component library.                                                                                                                                                            |
+| 3   | `button-group` | ✅      | Has been audited. There's enough unique modifiers to keep this it's own component.                                                                                                              |
+| 4   | `card`         | ✅      | Extremely versatile container component.                                                                                                                                                        |
+| 5   | `checkbox`     | ✅      | Staple form control.                                                                                                                                                                            |
+| 6   | `core`         | ✅      | Very well established root variables, mixins and functions. Can only grow.                                                                                                                      |
+| 7   | `dialog`       | ✅      | Similar to `card`, extremely versatile container component. Used in both `drawer` and `modal` for composition.                                                                                  |
+| 8   | `drawer`       | ✅      | Super stable component and pattern. maybe audit the need for `drawer__wrapper` and `drawer__main` since they're the only component elements that sit outside the base `drawer` component class. |
+| 9   | `grid`         | ✅      | Well established pattern. Won't change much.                                                                                                                                                    |
+| 10  | `icon`         | ✅      | I like the idea of having an `icon` component. Should audit the existing modifiers though.                                                                                                      |
+| 11  | `icon-action`  | ✅      | Maybe merge this into a `button` modifier.                                                                                                                                                      |
+| 12  | `input`        | ✅      | Staple form control.                                                                                                                                                                            |
+| 13  | `level`        | ✅      | Base styles are well done and very stable. Worth exploring modifier changes for inclusion of `button-group` component.                                                                          |
+| 14  | `media`        | ✅      | Super versatile layout component.                                                                                                                                                               |
+| 15  | `menu`         | ✅      | Super versatile component with well established patterns. Won't change much.                                                                                                                    |
+| 16  | `modal`        | ✅      | Super stable component and pattern.                                                                                                                                                             |
+| 17  | `notice`       | ✅      | A staple component. Has been refactored and removed unneeded complexity.                                                                                                                        |
+| 18  | `popover`      | ✅      | Renamed to `popover` from `dropdown`. Complete refactor to be primarily a container component for better composition.                                                                           |
+| 19  | `radio`        | ✅      | Staple form control.                                                                                                                                                                            |
+| 20  | `section`      | ✅      | There is a need for `__background` and `__screen` elements within a container, not sure if this fills that need. `card` uses similar styles.                                                    |
+| 21  | `switch`       | ✅      | Staple form control.                                                                                                                                                                            |
+| 22  | `table`        | ✅      | Table styles are important.                                                                                                                                                                     |
+| 23  | `utility`      | ✅      | Very stable with strong existing patterns. Can only grow.                                                                                                                                       |
 
 **🔗 Merged Components:**
 
@@ -52,6 +51,7 @@ Milestones to reach before Vrembem is ready for it's v2 release.
 
 **🚫 Deprecated Components:**
 
+- `breadcrumb` - Deprecated in favor of basic utilities and existing base modules.
 - `dropdown` - Renamed to `popover` during refactor.
 - `panel` - Deprecated for being too generic.
 - `container` - Deprecate in favor of `max-width` and `margin-auto` utilities.
