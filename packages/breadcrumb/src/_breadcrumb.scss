@@ -7,7 +7,8 @@ $_e: var.$prefix-element;
   display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
-  color: var.$color;
+  background: var.$background;
+  color: var.$foreground;
   list-style: none;
 }
 
@@ -34,12 +35,18 @@ $_e: var.$prefix-element;
 }
 
 .#{$_b}breadcrumb#{$_e}link {
-  border-bottom: var.$link-border;
   color: var.$link-color;
+  text-decoration: var.$link-decoration;
 
-  &:focus,
   &:hover {
-    border-bottom: var.$link-border-hover;
     color: var.$link-color-hover;
+    text-decoration: var.$link-decoration-hover;
+  }
+
+  &:focus {
+    outline: var.$link-outline-focus;
+    outline-offset: var.$link-outline-focus-offset;
+    color: var.$link-color-hover;
+    text-decoration: var.$link-decoration-hover;
   }
 }

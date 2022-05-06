@@ -7,7 +7,9 @@ $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
-$color: theme.get("foreground-lighter") !default;
+$background: null !default;
+$foreground: theme.get("foreground-lighter") !default;
+
 $delimiter: "/" !default;
 $delimiter-color: theme.get("border-color-dark") !default;
 $delimiter-padding: 0 0.5em !default;
@@ -15,5 +17,7 @@ $delimiter-last: false !default;
 
 $link-color: base.$link-color !default;
 $link-color-hover: base.$link-color-hover !default;
-$link-border: core.$border !default;
-$link-border-hover: 1px solid base.$link-color-hover !default;
+$link-decoration: base.$link-decoration !default;
+$link-decoration-hover: base.$link-decoration-hover !default;
+$link-outline-focus: base.$link-outline-focus !default;
+$link-outline-focus-offset: base.$link-outline-focus-offset !default;
