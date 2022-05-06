@@ -39,10 +39,10 @@ Alternatively, you can disable CSS output using the `$output` and `$output-[modu
   $output-type: false
 );
 
-// Will disable all modules, but enables the normalize module
+// Will disable all modules, but enables the base module
 @use "@vrembem/base" with (
   $output: false,
-  $output-normalize: true
+  $output-base: true
 );
 ```
 
@@ -93,7 +93,7 @@ Setting these variables will impact more than one or up to all base modules.
 
 The base component consists of a number of modules with their own set of specific customizable variables and output mixins.
 
-- [normalize](#normalize)
+- [base](#base)
 - [arrow](#arrow)
 - [blockquote](#blockquote)
 - [code](#code)
@@ -105,11 +105,11 @@ The base component consists of a number of modules with their own set of specifi
 - [separator](#separator)
 - [type](#type)
 
-> Modules are sorted by the order they're imported; alphabetically except for `normalize` having priority as the first output import.
+> Modules are sorted by the order they're imported; alphabetically except for `base` having priority as first import.
 
-## normalize
+## base
 
-Outputs a number of base and reset element styles to help normalize html elements in a predictable and easier to work with way. Some more global options are set via the `@vrembem/core` component, while others that are specific to the base component are set directly here.
+Outputs a number of base and reset element styles to help keep html elements predictable and easier to work with. Some more global options are set via the `@vrembem/core` component, while others that are specific to the base component are set directly here.
 
 <div class="scroll-box">
   <table class="table table_style_bordered table_zebra table_hover table_responsive_lg">
@@ -122,7 +122,7 @@ Outputs a number of base and reset element styles to help normalize html element
     </thead>
     <tbody>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$output-normalize</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$output-base</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">$output</code> &rarr; <code class="code color-secondary text-nowrap">true</code></td>
         <td data-mobile-label="Desc">Toggles the output of this module.</td>
       </tr>
@@ -213,7 +213,7 @@ body {
 // Continued ...
 ```
 
-For a complete understanding of what this module does, checkout the source: [`_normalize.scss`](https://github.com/sebnitu/vrembem/blob/main/packages/base/src/_normalize.scss)
+For a complete understanding of what this module does, checkout the source: [`_base.scss`](https://github.com/sebnitu/vrembem/blob/main/packages/base/src/_base.scss)
 
 ## arrow
 
