@@ -219,20 +219,19 @@ The HTML blockquote element is used for marking up extended quotations. This mod
 </blockquote>
 ```
 
-| Variable                          | Default                     | Description                                                                                                |
-| --------------------------------- | --------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `$output-blockquote`              | `$output` &rarr; `true`     | Toggles the output of this module.                                                                         |
-| `$class-blockquote`               | `"blockquote"`              | String to use for the class name of the blockquote module.                                                 |
-| `$blockquote-padding`             | `1.5em`                     | Sets the padding property.                                                                                 |
-| `$blockquote-gap`                 | `1em`                       | Sets the vertical gap between elements inside a blockquote using the margin property.                      |
-| `$blockquote-color`               | `inherit`                   | Sets the text color property.                                                                              |
-| `$blockquote-background`          | `null`                      | Sets the background color property.                                                                        |
-| `$blockquote-border`              | `core.$border-light`        | Sets the border property.                                                                                  |
-| `$blockquote-border-color-invert` | `core.$border-color-invert` | Sets the inverted border color. This is used when blockquotes appear on a dark background.                 |
-| `$blockquote-border-radius`       | `null`                      | Sets the border-radius property.                                                                           |
-| `$blockquote-accent-width`        | `4px`                       | Sets the width of the accent CSS pseudo-element which renders on the right side of the blockquote element. |
-| `$blockquote-accent-offset`       | `-1px`                      | Sets the offset of the accent CSS pseudo-element. Recommended to set negative of the border width.         |
-| `$blockquote-accent-color`        | `--vb-primary-50`           | Sets the color of the accent CSS pseudo-element.                                                           |
+| Variable                    | Default                 | Description                                                                                                |
+| --------------------------- | ----------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `$output-blockquote`        | `$output` &rarr; `true` | Toggles the output of this module.                                                                         |
+| `$class-blockquote`         | `"blockquote"`          | String to use for the class name of the blockquote module.                                                 |
+| `$blockquote-padding`       | `1.5em`                 | Sets the padding property.                                                                                 |
+| `$blockquote-gap`           | `1em`                   | Sets the vertical gap between elements inside a blockquote using the margin property.                      |
+| `$blockquote-background`    | `null`                  | Sets the background color property.                                                                        |
+| `$blockquote-foreground`    | `inherit`               | Sets the text color property.                                                                              |
+| `$blockquote-border`        | `core.$border-light`    | Sets the border property.                                                                                  |
+| `$blockquote-border-radius` | `null`                  | Sets the border-radius property.                                                                           |
+| `$blockquote-accent-width`  | `4px`                   | Sets the width of the accent CSS pseudo-element which renders on the right side of the blockquote element. |
+| `$blockquote-accent-offset` | `-1px`                  | Sets the offset of the accent CSS pseudo-element. Recommended to set negative of the border width.         |
+| `$blockquote-accent-color`  | `--vb-primary-50`       | Sets the color of the accent CSS pseudo-element.                                                           |
 
 #### `@mixin blockquote()`
 
@@ -276,18 +275,17 @@ The HTML code element displays its contents styled in a fashion intended to indi
 <code class="code">a = 17</code>
 ```
 
-| Variable              | Default                  | Description                                                                                |
-| --------------------- | ------------------------ | ------------------------------------------------------------------------------------------ |
-| `$output-code`        | `$output` &rarr; `true`  | Toggles the output of this module.                                                         |
-| `$class-code`         | `"code"`                 | String to use for the class name of the code module.                                       |
-| `$code-padding`       | `null`                   | Sets the padding property.                                                                 |
-| `$code-background`    | `null`                   | Sets the background property.                                                              |
-| `$code-border`        | `null`                   | Sets the border property.                                                                  |
-| `$code-border-radius` | `null`                   | Sets the border-radius property.                                                           |
-| `$code-color`         | `core.$pink`             | Sets the text color property.                                                              |
-| `$code-color-invert`  | `core.$pink-300`         | Sets the inverted text color. This is used when code elements appear on a dark background. |
-| `$code-font-family`   | `core.$font-family-mono` | Sets the font-family property.                                                             |
-| `$code-font-size`     | `0.9em`                  | Sets the font-size property.                                                               |
+| Variable              | Default                  | Description                                          |
+| --------------------- | ------------------------ | ---------------------------------------------------- |
+| `$output-code`        | `$output` &rarr; `true`  | Toggles the output of this module.                   |
+| `$class-code`         | `"code"`                 | String to use for the class name of the code module. |
+| `$code-padding`       | `null`                   | Sets the padding property.                           |
+| `$code-background`    | `null`                   | Sets the background property.                        |
+| `$code-foreground`    | `--vb-secondary-50`      | Sets the text color property.                        |
+| `$code-border`        | `null`                   | Sets the border property.                            |
+| `$code-border-radius` | `null`                   | Sets the border-radius property.                     |
+| `$code-font-family`   | `core.$font-family-mono` | Sets the font-family property.                       |
+| `$code-font-size`     | `0.9em`                  | Sets the font-size property.                         |
 
 #### `@mixin code()`
 
