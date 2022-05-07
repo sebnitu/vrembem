@@ -57,7 +57,7 @@ The dialog element of a modal is defined using the `modal__dialog` class. Modal 
       <p id="modal-dialog-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean porta diam eget lectus interdum, eu aliquet augue rutrum. Morbi faucibus mauris lectus, in imperdiet augue cursus vel.</p>
     </div>
     <div class="dialog__footer flex-justify-end">
-      <div class="button-group">
+      <div class="level">
         <button data-modal-close class="button button_color_primary">
           Some action
         </button>
@@ -160,7 +160,7 @@ Required modals are modals that need an explicit action to be closed. That means
       <h2 class="dialog__title">Required modal</h2>
       <p>Required modals can not be closed without an explicit action. That means clicking on the background or pressing the escape key to close is disabled.</p>
       <div class="flex flex-justify-end">
-        <div class="button-group">
+        <div class="level">
           <button data-modal-close class="button button_color_primary">I understand</button>
           <button data-modal-close class="button button_color_secondary">Cancel</button>
         </div>

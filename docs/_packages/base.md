@@ -277,7 +277,7 @@ The arrow (caret) module creates directional triangles drawn with CSS.
 Arrows are great indicators for buttons and menu items when interacting with them would toggle a popover or other togglable components.
 
 {% include demo_open.html %}
-<div class="button-group button-group_wrap">
+<div class="level">
   <button class="button button_color_primary">
     <span>Button</span>
     <span class="arrow"></span>
