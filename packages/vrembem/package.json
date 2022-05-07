@@ -42,7 +42,6 @@
   "homepage": "https://github.com/sebnitu/vrembem#readme",
   "dependencies": {
     "@vrembem/base": "^3.0.8",
-    "@vrembem/breadcrumb": "^3.0.8",
     "@vrembem/button": "^3.0.8",
     "@vrembem/button-group": "^3.0.8",
     "@vrembem/card": "^3.0.8",
