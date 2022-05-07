@@ -197,7 +197,7 @@ Applies styles to create a popover tooltip. The default placement of a tooltip i
 | `$padding`               | `0.5em`               | Sets the padding property.                                                                                                      |
 | `$border`                | `null`                | Sets the border property.                                                                                                       |
 | `$border-radius`         | `core.$border-radius` | Sets the border-radius property.                                                                                                |
-| `$background`            | `core.$white`         | Sets the background property.                                                                                                   |
+| `$background`            | `white`               | Sets the background property.                                                                                                   |
 | `$background-clip`       | `padding-box`         | Sets the background-clip property.                                                                                              |
 | `$box-shadow`            | `core.$box-shadow-2`  | Sets the box-shadow property.                                                                                                   |
 | `$font-size`             | `core.$font-size-sm`  | Sets the font-size property.                                                                                                    |

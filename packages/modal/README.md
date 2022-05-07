@@ -205,8 +205,8 @@ Adjusts the size of modals. This modifier provides five options that get built u
 | `$background`                 | `core.$night`                      | Background color of modal screen.                                                   |
 | `$background-alpha`           | `0.8`                              | The alpha channel for the modal screen.                                             |
 | `$box-shadow`                 | `core.$box-shadow-5`               | Box shadow applied to modal dialog elements.                                        |
-| `$outline`                    | `0 solid rgba(core.$primary, 0)`   | Outline applied to modal dialog elements.                                           |
-| `$outline-focus`              | `4px solid rgba(core.$primary, 1)` | Outline applied to modal dialog elements in their focus state.                      |
+| `$outline`                    | `0 solid rgba(--vb-primary, 0)`    | Outline applied to modal dialog elements.                                           |
+| `$outline-focus`              | `4px solid rgba(--vb-primary, 1)`  | Outline applied to modal dialog elements in their focus state.                      |
 | `$outline-focus-alert`        | `4px solid rgba(core.$danger, 1)`  | Outline applied to required modal dialog elements in their focus state.             |
 | `$aside-width`                | `16em`                             | Width applied to modals using `modal_pos_left` and `modal_pos_right` modifiers.     |
 | `$aside-max-width`            | `90%`                              | Max width applied to modals using `modal_pos_left` and `modal_pos_right` modifiers. |

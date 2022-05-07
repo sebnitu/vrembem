@@ -1,4 +1,6 @@
 @use "@vrembem/core";
+@use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
 
 // Prefixes
 // ---
@@ -22,7 +24,6 @@ $output-list: $output !default;
 $output-pre: $output !default;
 $output-scroll-box: $output !default;
 $output-separator: $output !default;
-$output-symbols: $output !default;
 $output-type: $output !default;
 
 // Base component classes
@@ -36,22 +37,21 @@ $class-list: "list" !default;
 $class-pre: "pre" !default;
 $class-scroll-box: "scroll-box" !default;
 $class-separator: "sep" !default;
-$class-symbols: "symbols" !default;
 $class-type: "type" !default;
 
 // Base settings
 // ---
 
 $root-height: 100% !default;
-$color: core.$color !default;
-$color-caption: core.$color-subtle !default;
+$body-background: theme.get("background") !default;
+$body-foreground: theme.get("foreground") !default;
+$color-caption: theme.get("foreground-lighter") !default;
 $font-family: core.$font-family !default;
 $font-family-mono: core.$font-family-mono !default;
 $font-size: core.$font-size !default;
 $font-size-sm: core.$font-size-sm !default;
 $line-height: core.$line-height !default;
 $box-sizing: border-box !default;
-$body-background: null !default;
 
 // Arrow
 // ---
@@ -65,24 +65,22 @@ $arrow-radius: 2px !default;
 
 $blockquote-padding: 1.5em !default;
 $blockquote-gap: 1em !default;
-$blockquote-color: inherit !default;
 $blockquote-background: null !default;
-$blockquote-border: core.$border-light !default;
-$blockquote-border-color-invert: core.$border-color-invert !default;
+$blockquote-foreground: inherit !default;
+$blockquote-border: core.$border !default;
 $blockquote-border-radius: null !default;
 $blockquote-accent-width: 4px !default;
 $blockquote-accent-offset: -1px !default;
-$blockquote-accent-color: core.$primary !default;
+$blockquote-accent-color: palette.get("primary") !default;
 
 // Code
 // ---
 
 $code-padding: null !default;
 $code-background: null !default;
+$code-foreground: palette.get("secondary") !default;
 $code-border: null !default;
 $code-border-radius: null !default;
-$code-color: core.$pink !default;
-$code-color-invert: core.$pink-300 !default;
 $code-font-family: core.$font-family-mono !default;
 $code-font-size: 0.9em !default;
 
@@ -92,7 +90,6 @@ $code-font-size: 0.9em !default;
 $heading-font-family: inherit !default;
 $heading-line-height: core.$line-height-sm !default;
 $heading-color: inherit !default;
-$heading-color-invert: null !default;
 $heading-font-weight: core.$font-weight-semi-bold !default;
 $heading-scale: (
   "h1": 2.25em,
@@ -106,31 +103,12 @@ $heading-scale: (
 // Link
 // ---
 
-$link-text-decoration: none !default;
-$link-text-decoration-hover: null !default;
-$link-transition: null !default;
+$link-color: palette.get("primary") !default;
+$link-color-hover: palette.get("primary", 40) !default;
+$link-decoration: underline !default;
+$link-decoration-hover: none !default;
 $link-outline-focus: currentcolor dotted 1px !default;
 $link-outline-focus-offset: 0.125rem !default;
-
-$link-color: core.$primary !default;
-$link-color-hover: core.$primary-dark !default;
-$link-border: 1px solid core.$border-color !default;
-$link-border-hover: 1px solid currentcolor !default;
-
-$link-subtle-color: core.$color-subtle !default;
-$link-subtle-color-hover: $link-color-hover !default;
-$link-subtle-border-color: core.$border-color !default;
-$link-subtle-border-color-hover: currentcolor !default;
-
-$link-invert-color: core.$white !default;
-$link-invert-color-hover: core.$white !default;
-$link-invert-border-color: rgba(core.$white, 0.5) !default;
-$link-invert-border-color-hover: currentcolor !default;
-
-$link-invert-subtle-color: core.$color-invert-subtle !default;
-$link-invert-subtle-color-hover: core.$color-invert !default;
-$link-invert-subtle-border-color: rgba(core.$white, 0.5) !default;
-$link-invert-subtle-border-color-hover: currentcolor !default;
 
 // List
 // ---
@@ -142,22 +120,20 @@ $list-item-gap: 0.5em !default;
 // ---
 
 $pre-padding: 1em !default;
-$pre-background: core.$shade !default;
+$pre-background: theme.get("background-dark") !default;
+$pre-foreground: theme.get("foreground") !default;
 $pre-border: null !default;
 $pre-border-radius: core.$border-radius !default;
-$pre-color: core.$color !default;
 
 // Separator
 // ---
 
-$separator-border: 1px solid core.$border-color !default;
-$separator-border-invert: 1px solid core.$border-color-invert !default;
+$separator-border: 1px solid theme.get("border-color") !default;
 
 // Type
 // ---
 
 $type-color: null !default;
-$type-color-invert: core.$color-invert !default;
 $type-font-family: null !default;
 $type-font-size: null !default;
 $type-line-height: null !default;

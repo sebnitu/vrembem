@@ -219,20 +219,19 @@ The HTML blockquote element is used for marking up extended quotations. This mod
 </blockquote>
 ```
 
-| Variable                          | Default                     | Description                                                                                                |
-| --------------------------------- | --------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `$output-blockquote`              | `$output` &rarr; `true`     | Toggles the output of this module.                                                                         |
-| `$class-blockquote`               | `"blockquote"`              | String to use for the class name of the blockquote module.                                                 |
-| `$blockquote-padding`             | `1.5em`                     | Sets the padding property.                                                                                 |
-| `$blockquote-gap`                 | `1em`                       | Sets the vertical gap between elements inside a blockquote using the margin property.                      |
-| `$blockquote-color`               | `inherit`                   | Sets the text color property.                                                                              |
-| `$blockquote-background`          | `null`                      | Sets the background color property.                                                                        |
-| `$blockquote-border`              | `core.$border-light`        | Sets the border property.                                                                                  |
-| `$blockquote-border-color-invert` | `core.$border-color-invert` | Sets the inverted border color. This is used when blockquotes appear on a dark background.                 |
-| `$blockquote-border-radius`       | `null`                      | Sets the border-radius property.                                                                           |
-| `$blockquote-accent-width`        | `4px`                       | Sets the width of the accent CSS pseudo-element which renders on the right side of the blockquote element. |
-| `$blockquote-accent-offset`       | `-1px`                      | Sets the offset of the accent CSS pseudo-element. Recommended to set negative of the border width.         |
-| `$blockquote-accent-color`        | `core.$primary`             | Sets the color of the accent CSS pseudo-element.                                                           |
+| Variable                    | Default                 | Description                                                                                                |
+| --------------------------- | ----------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `$output-blockquote`        | `$output` &rarr; `true` | Toggles the output of this module.                                                                         |
+| `$class-blockquote`         | `"blockquote"`          | String to use for the class name of the blockquote module.                                                 |
+| `$blockquote-padding`       | `1.5em`                 | Sets the padding property.                                                                                 |
+| `$blockquote-gap`           | `1em`                   | Sets the vertical gap between elements inside a blockquote using the margin property.                      |
+| `$blockquote-background`    | `null`                  | Sets the background color property.                                                                        |
+| `$blockquote-foreground`    | `inherit`               | Sets the text color property.                                                                              |
+| `$blockquote-border`        | `core.$border-light`    | Sets the border property.                                                                                  |
+| `$blockquote-border-radius` | `null`                  | Sets the border-radius property.                                                                           |
+| `$blockquote-accent-width`  | `4px`                   | Sets the width of the accent CSS pseudo-element which renders on the right side of the blockquote element. |
+| `$blockquote-accent-offset` | `-1px`                  | Sets the offset of the accent CSS pseudo-element. Recommended to set negative of the border width.         |
+| `$blockquote-accent-color`  | `--vb-primary-50`       | Sets the color of the accent CSS pseudo-element.                                                           |
 
 #### `@mixin blockquote()`
 
@@ -276,18 +275,17 @@ The HTML code element displays its contents styled in a fashion intended to indi
 <code class="code">a = 17</code>
 ```
 
-| Variable              | Default                  | Description                                                                                |
-| --------------------- | ------------------------ | ------------------------------------------------------------------------------------------ |
-| `$output-code`        | `$output` &rarr; `true`  | Toggles the output of this module.                                                         |
-| `$class-code`         | `"code"`                 | String to use for the class name of the code module.                                       |
-| `$code-padding`       | `null`                   | Sets the padding property.                                                                 |
-| `$code-background`    | `null`                   | Sets the background property.                                                              |
-| `$code-border`        | `null`                   | Sets the border property.                                                                  |
-| `$code-border-radius` | `null`                   | Sets the border-radius property.                                                           |
-| `$code-color`         | `core.$pink`             | Sets the text color property.                                                              |
-| `$code-color-invert`  | `core.$pink-300`         | Sets the inverted text color. This is used when code elements appear on a dark background. |
-| `$code-font-family`   | `core.$font-family-mono` | Sets the font-family property.                                                             |
-| `$code-font-size`     | `0.9em`                  | Sets the font-size property.                                                               |
+| Variable              | Default                  | Description                                          |
+| --------------------- | ------------------------ | ---------------------------------------------------- |
+| `$output-code`        | `$output` &rarr; `true`  | Toggles the output of this module.                   |
+| `$class-code`         | `"code"`                 | String to use for the class name of the code module. |
+| `$code-padding`       | `null`                   | Sets the padding property.                           |
+| `$code-background`    | `null`                   | Sets the background property.                        |
+| `$code-foreground`    | `--vb-secondary-50`      | Sets the text color property.                        |
+| `$code-border`        | `null`                   | Sets the border property.                            |
+| `$code-border-radius` | `null`                   | Sets the border-radius property.                     |
+| `$code-font-family`   | `core.$font-family-mono` | Sets the font-family property.                       |
+| `$code-font-size`     | `0.9em`                  | Sets the font-size property.                         |
 
 #### `@mixin code()`
 
@@ -460,21 +458,21 @@ A link—usually represented by an anchor (`<a>`) HTML element with `href` attri
 | `$link-transition`                       | `null`                         | Sets the transition property.                                         |
 | `$link-outline-focus`                    | `currentColor dotted 1px`      | Sets the outline property on `:focus` state.                          |
 | `$link-outline-focus-offset`             | `0.125rem`                     | Sets the outline-offset property on `:focus` state.                   |
-| `$link-color`                            | `core.$primary`                | Sets the text color property.                                         |
-| `$link-color-hover`                      | `core.$primary-dark`           | Sets the text color property on hover state.                          |
+| `$link-color`                            | `--vb-primary`                 | Sets the text color property.                                         |
+| `$link-color-hover`                      | `--vb-primary-40`              | Sets the text color property on hover state.                          |
 | `$link-border`                           | `1px solid core.$border-color` | Sets the border property.                                             |
 | `$link-border-hover`                     | `1px solid currentColor`       | Sets the border property on hover state.                              |
 | `$link-subtle-color`                     | `core.$color-subtle`           | Sets the text color property on subtle modifier.                      |
 | `$link-subtle-color-hover`               | `$link-color-hover`            | Sets the text color property on subtle modifier hover state.          |
 | `$link-subtle-border-color`              | `core.$border-color`           | Sets the border-color property on subtle modifier.                    |
 | `$link-subtle-border-color-hover`        | `currentColor`                 | Sets the border-color property on subtle modifier hover state.        |
-| `$link-invert-color`                     | `core.$white`                  | Sets the text color property on invert modifier.                      |
-| `$link-invert-color-hover`               | `core.$white`                  | Sets the text color property on invert modifier hover state.          |
-| `$link-invert-border-color`              | `rgba(core.$white, 0.5)`       | Sets the border-color property on invert modifier.                    |
+| `$link-invert-color`                     | `white`                        | Sets the text color property on invert modifier.                      |
+| `$link-invert-color-hover`               | `white`                        | Sets the text color property on invert modifier hover state.          |
+| `$link-invert-border-color`              | `rgba(white, 0.5)`             | Sets the border-color property on invert modifier.                    |
 | `$link-invert-border-color-hover`        | `currentColor`                 | Sets the border-color property on invert modifier hover state.        |
 | `$link-invert-subtle-color`              | `core.$color-invert-subtle`    | Sets the text color property on invert-subtle modifier.               |
 | `$link-invert-subtle-color-hover`        | `core.$color-invert`           | Sets the text color property on invert-subtle modifier hover state.   |
-| `$link-invert-subtle-border-color`       | `rgba(core.$white, 0.5)`       | Sets the border-color property on invert-subtle modifier.             |
+| `$link-invert-subtle-border-color`       | `rgba(white, 0.5)`             | Sets the border-color property on invert-subtle modifier.             |
 | `$link-invert-subtle-border-color-hover` | `currentColor`                 | Sets the border-color property on invert-subtle modifier hover state. |
 
 #### `@mixin link()`

@@ -1,4 +1,5 @@
-@use "vrembem" as *;
+@use "@vrembem/core";
+@use "@vrembem/base";
 @use "../variables" as var;
 
 .cover {
@@ -7,7 +8,7 @@
   align-items: stretch;
 }
 
-@include core-media-min('md') {
+@include core.media-min("md") {
   .cover {
     flex-direction: row;
     height: 100%;
@@ -32,19 +33,18 @@
   display: flex;
   flex: 0 0 auto;
   overflow: hidden;
-  background: var.$background-gradient;
   background-color: var.$background-color;
-  color: $core-white;
+  color: white;
 }
 
 .cover__aside {
   position: relative;
   z-index: 2;
   flex: 1 1 auto;
-  background: $core-shade;
+  background: core.theme-get("background-darker");
 }
 
-@include core-media-min('md') {
+@include core.media-min("md") {
   .cover__hero,
   .cover__aside {
     flex: 1 0 0;
@@ -65,13 +65,13 @@
   padding: 1.5em;
 }
 
-@include core-media-min('xs') {
+@include core.media-min("xs") {
   .cover__inner {
     padding: 2em;
   }
 }
 
-@include core-media-min('md') {
+@include core.media-min("md") {
   .cover__inner {
     max-width: 46em;
     padding: 4em;
@@ -85,14 +85,14 @@
 .cover__header,
 .cover__content {
   padding: 1em;
-  background: $core-shade;
+  background: core.theme-get("background-darker");
 }
 
 .cover__header {
   position: sticky;
   z-index: 2;
   top: 0;
-  border-bottom: 1px solid rgba($core-black, 0.05);
+  border-bottom: 1px solid rgba(black, 0.05);
 }
 
 .cover__content {
@@ -107,7 +107,7 @@
 .cover__title {
   margin-bottom: 1rem;
   font-size: 2.5em;
-  font-weight: $base-heading-font-weight;
+  font-weight: base.$heading-font-weight;
   line-height: 1.325em;
 }
 
@@ -120,7 +120,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba($core-white, 0.5);
+  color: rgba(white, 0.5);
 
   > * + * {
     margin-left: 0.5em;
@@ -128,12 +128,12 @@
 
   &:hover {
     .version-number {
-      color: $core-white;
+      color: white;
     }
   }
 }
 
-@include core-media-min('md') {
+@include core.media-min("md") {
   .cover__title {
     font-size: 5em;
   }

@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/theme";
 
 $prefix-block: core.$prefix-block !default;
 $prefix-element: core.$prefix-element !default;
@@ -9,8 +10,8 @@ $gap: 0.5em !default;
 $padding: 1em !default;
 $border: null !default;
 $border-radius: core.$border-radius !default;
-$background: core.$shade !default;
-$box-shadow: null !default;
+$background: theme.get("background-dark") !default;
+$shadow: null !default;
 
 // notice__title
 $title-font-size: core.$font-size-lg !default;

@@ -435,11 +435,6 @@ The HTML blockquote element is used for marking up extended quotations. This mod
         <td data-mobile-label="Desc">Sets the border property.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$blockquote-border-color-invert</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-color-invert</code></td>
-        <td data-mobile-label="Desc">Sets the inverted border color. This is used when blockquotes appear on a dark background.</td>
-      </tr>
-      <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$blockquote-border-radius</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
         <td data-mobile-label="Desc">Sets the border-radius property.</td>
@@ -540,6 +535,11 @@ The HTML code element displays its contents styled in a fashion intended to indi
         <td data-mobile-label="Desc">Sets the background property.</td>
       </tr>
       <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$code-foreground</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">--secondary-50</code></td>
+        <td data-mobile-label="Desc">Sets the text color property.</td>
+      </tr>
+      <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$code-border</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
         <td data-mobile-label="Desc">Sets the border property.</td>
@@ -548,16 +548,6 @@ The HTML code element displays its contents styled in a fashion intended to indi
         <td data-mobile-label="Var"><code class="code text-nowrap">$code-border-radius</code></td>
         <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-radius</code></td>
         <td data-mobile-label="Desc">Sets the border-radius property.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$code-color</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$pink</code></td>
-        <td data-mobile-label="Desc">Sets the text color property.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$code-color-invert</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$pink-300</code></td>
-        <td data-mobile-label="Desc">Sets the inverted text color. This is used when code elements appear on a dark background.</td>
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$code-font-family</code></td>

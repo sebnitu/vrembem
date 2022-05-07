@@ -1,11 +1,12 @@
 @use "@vrembem/core";
+@use "@vrembem/core/palette";
 
 $prefix-block: core.$prefix-block !default;
 $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
-$color: core.$primary !default;
+$color: palette.get("primary") !default;
 $size: core.$form-control-size !default;
 $border-width: 2px !default;
 $transition-duration: core.$transition-duration-short !default;
@@ -19,12 +20,12 @@ $background-checked: null !default;
 $background-border-radius: core.$border-radius-circle !default;
 
 $circle-size: 20px !default;
-$circle-background: core.$white !default;
+$circle-background: white !default;
 $circle-background-hover: null !default;
 $circle-background-focus: null !default;
 $circle-background-active: null !default;
 $circle-background-checked: $color !default;
-$circle-border-color: core.$gray-400 !default;
+$circle-border-color: palette.get("neutral") !default;
 $circle-border-color-hover: $color !default;
 $circle-border-color-focus: $color !default;
 $circle-border-color-active: $color !default;
@@ -32,7 +33,7 @@ $circle-border-color-checked: $color !default;
 $circle-border-radius: core.$border-radius !default;
 
 $dot-size: 8px !default;
-$dot-color: core.$white !default;
+$dot-color: white !default;
 
 $size-sm: core.$form-control-size-sm !default;
 $size-sm-border-width: 2px !default;

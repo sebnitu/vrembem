@@ -42,35 +42,6 @@ The breadcrumb component is composed of three parts: `breadcrumb`, `breadcrumb__
 ```
 {% include demo_close.html %}
 
-## breadcrumb_invert
-
-Inverts the colors of the breadcrumb component to be used on dark backgrounds when more contrast is needed.
-
-{% include demo_open.html class_grid="grid_stack" %}
-<div class="padding background-night radius">
-  <ol class="breadcrumb breadcrumb_invert">
-    <li class="breadcrumb__item">
-      <a href="#" class="breadcrumb__link">&larr; Home</a>
-    </li>
-    <li class="breadcrumb__item">
-      <a href="#" class="breadcrumb__link">Blog</a>
-    </li>
-    <li class="breadcrumb__item">
-      <a href="#" class="breadcrumb__link">Category</a>
-    </li>
-    <li class="breadcrumb__item">
-      <span class="breadcrumb__text">Current Page</span>
-    </li>
-  </ol>
-</div>
-{% include demo_switch.html %}
-```html
-<ol class="breadcrumb breadcrumb_invert">
-  ...
-</ol>
-```
-{% include demo_close.html %}
-
 ## Sass Variables
 
 <div class="scroll-box">
@@ -106,8 +77,13 @@ Inverts the colors of the breadcrumb component to be used on dark backgrounds wh
       </tr>
       <!-- General -->
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$color</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$color-subtle</code></td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$background</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">null</code></td>
+        <td data-mobile-label="Desc">Sets the background property.</td>
+      </tr>
+      <tr>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$foreground</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">--vb-foreground-lighter</code></td>
         <td data-mobile-label="Desc">Sets the color property.</td>
       </tr>
       <!-- Delimiter -->
@@ -118,7 +94,7 @@ Inverts the colors of the breadcrumb component to be used on dark backgrounds wh
       </tr>
       <tr>
         <td data-mobile-label="Var"><code class="code text-nowrap">$delimiter-color</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-color-dark</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">--vb-border-color-dark</code></td>
         <td data-mobile-label="Desc">Sets the color property for the delimiter character.</td>
       </tr>
       <tr>
@@ -143,45 +119,24 @@ Inverts the colors of the breadcrumb component to be used on dark backgrounds wh
         <td data-mobile-label="Desc">Sets the color property on the <code class="code">breadcrumb__link</code> element for its <code class="code">:hover</code> state.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$link-border</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border</code></td>
-        <td data-mobile-label="Desc">Sets the border property on the <code class="code">breadcrumb__link</code> element.</td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">base.$link-decoration</code></td>
+        <td data-mobile-label="Desc">Sets the decoration property on the <code class="code">breadcrumb__link</code> element.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$link-border-hover</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1px solid base.$link-color-hover</code></td>
-        <td data-mobile-label="Desc">Sets the border property on the <code class="code">breadcrumb__link</code> element for its <code class="code">:hover</code> state.</td>
-      </tr>
-      <!-- Invert modifier -->
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$invert-color</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$color-invert-subtle</code></td>
-        <td data-mobile-label="Desc">Sets the color property on the <code class="code">breadcrumb_invert</code> modifier.</td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-color-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">base.$link-decoration-hover</code></td>
+        <td data-mobile-label="Desc">Sets the decoration property on the <code class="code">breadcrumb__link</code> element for its <code class="code">:hover</code> state.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$invert-delimiter-color</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-color-invert-dark</code></td>
-        <td data-mobile-label="Desc">Sets the color property for the delimiter character on the <code class="code">breadcrumb_invert</code> modifier.</td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-color</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">base.$link-outline-focus</code></td>
+        <td data-mobile-label="Desc">Sets the outline property on the <code class="code">breadcrumb__link</code> element for its <code class="code">:focus</code> state.</td>
       </tr>
       <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$invert-link-color</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">base.$link-invert-color</code></td>
-        <td data-mobile-label="Desc">Sets the color property on the <code class="code">breadcrumb__link</code> element on the <code class="code">breadcrumb_invert</code> modifier.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$invert-link-color-hover</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">base.$link-invert-color-hover</code></td>
-        <td data-mobile-label="Desc">Sets the color property on the <code class="code">breadcrumb__link</code> element on the <code class="code">breadcrumb_invert</code> modifier for its <code class="code">:hover</code> state.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$invert-link-border</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">core.$border-invert</code></td>
-        <td data-mobile-label="Desc">Sets the border property on the <code class="code">breadcrumb__link</code> element on the <code class="code">breadcrumb_invert</code> modifier.</td>
-      </tr>
-      <tr>
-        <td data-mobile-label="Var"><code class="code text-nowrap">$invert-link-border-hover</code></td>
-        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">1px solid core.$white</code></td>
-        <td data-mobile-label="Desc">Sets the border property on the <code class="code">breadcrumb__link</code> element on the <code class="code">breadcrumb_invert</code> modifier for its <code class="code">:hover</code> state.</td>
+        <td data-mobile-label="Var"><code class="code text-nowrap">$link-color-hover</code></td>
+        <td data-mobile-label="Default"><code class="code color-secondary text-nowrap">base.$link-outline-offset-focus</code></td>
+        <td data-mobile-label="Desc">Sets the outline-offset property on the <code class="code">breadcrumb__link</code> element for its <code class="code">:focus</code> state.</td>
       </tr>
     </tbody>
   </table>

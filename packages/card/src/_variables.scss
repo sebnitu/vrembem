@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/palette";
 
 $prefix-block: core.$prefix-block !default;
 $prefix-element: core.$prefix-element !default;
@@ -6,12 +7,12 @@ $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
 $padding: 1.25em !default;
-$background: core.$white !default;
+$background: white !default;
+$foreground: null !default;
 $border: null !default;
 $sep-border: core.$border !default;
 $border-radius: core.$border-radius !default;
-$box-shadow: core.$box-shadow-1 !default;
-$color: null !default;
+$shadow: core.$shadow-1 !default;
 $transition-property: background-color, border-color, box-shadow, transform !default;
 $transition-duration: core.$transition-duration !default;
 $transition-timing-function: core.$transition-timing-function !default;
@@ -21,12 +22,8 @@ $title-line-height: core.$line-height-lg !default;
 $title-font-weight: core.$font-weight-semi-bold !default;
 
 $screen-opacity: 0.7 !default;
-$screen-background: core.$night !default;
+$screen-background: palette.get("neutral", 10) !default;
 
-$invert-background: core.$night !default;
-$invert-border-color: null !default;
-$invert-sep-border-color: core.$border-color-invert !default;
-$invert-color: core.$white !default;
-$link-shadow: core.$box-shadow-2 !default;
-$link-shadow-hover: core.$box-shadow-3 !default;
+$link-shadow: core.$shadow-2 !default;
+$link-shadow-hover: core.$shadow-3 !default;
 $link-offset: 0.25em !default;

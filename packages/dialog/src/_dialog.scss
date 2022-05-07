@@ -13,8 +13,8 @@ $_e: var.$prefix-element;
   border-radius: var.$border-radius;
   background: var.$background;
   background-clip: padding-box;
-  box-shadow: var.$box-shadow;
-  color: var.$color;
+  box-shadow: var.$shadow;
+  color: var.$foreground;
   -webkit-overflow-scrolling: touch;
 }
 

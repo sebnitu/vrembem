@@ -1,5 +1,7 @@
 @use "sass:map";
 @use "@vrembem/core";
+@use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
 
 $prefix-block: core.$prefix-block !default;
 $prefix-element: core.$prefix-element !default;
@@ -12,14 +14,14 @@ $padding: core.$padding !default;
 $padding-sm: core.$padding-sm !default;
 $padding-lg: core.$padding-lg !default;
 
-$border-color: core.$border-color !default;
+$border-color: theme.get("border-color") !default;
 $border: 1px solid $border-color !default;
 $border-alt: 1px dotted $border-color !default;
 
 $background: null !default;
-$background-zebra: rgba(core.$black, 0.03) !default;
-$background-hover: rgba(core.$yellow, 0.3) !default;
-$box-shadow-hover: null !default;
+$background-zebra: hsl(palette.get("neutral", "var"), 50%, 3%) !default;
+$background-hover: hsl(53, 100%, 50%, 15%) !default;
+$shadow-hover: null !default;
 
 $color: null !default;
 $color-hover: null !default;

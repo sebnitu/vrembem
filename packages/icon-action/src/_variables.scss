@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/theme";
 
 $prefix-block: core.$prefix-block !default;
 $prefix-element: core.$prefix-element !default;
@@ -16,30 +17,20 @@ $border-color-hover: null !default;
 $border-color-focus: null !default;
 $border-color-active: null !default;
 
-$background: rgba(core.$black, 0.4) !default;
-$background-hover: rgba(core.$black, 0.5) !default;
-$background-focus: rgba(core.$black, 0.5) !default;
-$background-active: rgba(core.$black, 0.6) !default;
+$background: rgba(black, 0.4) !default;
+$background-hover: rgba(black, 0.5) !default;
+$background-focus: rgba(black, 0.5) !default;
+$background-active: rgba(black, 0.6) !default;
 
-$box-shadow: 0 0 0 0 rgba(core.$black, 0) !default;
-$box-shadow-hover: null !default;
-$box-shadow-focus: 0 0 0 0.2rem rgba(core.$black, 0.2) !default;
-$box-shadow-active: null !default;
+$foreground: theme.get("foreground") !default;
+$foreground-hover: null !default;
+$foreground-focus: null !default;
+$foreground-active: null !default;
 
-$color: core.$color-invert !default;
-$color-hover: null !default;
-$color-focus: null !default;
-$color-active: null !default;
-
-$outline: none !default;
-$outline-hover: null !default;
-$outline-focus: null !default;
-$outline-active: null !default;
-
-$outline-offset: null !default;
-$outline-offset-hover: null !default;
-$outline-offset-focus: null !default;
-$outline-offset-active: null !default;
+$shadow: 0 0 0 0 rgba(black, 0) !default;
+$shadow-hover: null !default;
+$shadow-focus: 0 0 0 0.2rem rgba(black, 0.2) !default;
+$shadow-active: null !default;
 
 // > icon
 $icon-stroke-width: 2.5px !default;
@@ -51,6 +42,6 @@ $disabled-opacity: 0.6 !default;
 // is-loading
 $loading-size: 0.7em !default;
 $loading-animation-duration: 0.6s !default;
-$loading-border-color: $color !default;
+$loading-border-color: theme.get("foreground") !default;
 $loading-border: 2px solid !default;
 $loading-border-tpl: 1 1 0 0;

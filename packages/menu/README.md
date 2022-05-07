@@ -226,9 +226,9 @@ Adjust the size of a menu by increasing or decreasing its padding and font-size.
 | `$inner-gap`                  | `1em`                                          | The horizontal gap spacing for elements inside the `menu__action` element.                              |
 | `$border-radius`              | `core.$border-radius`                          | Sets the border-radius property.                                                                        |
 | `$background`                 | `none`                                         | Sets the background property.                                                                           |
-| `$background-hover`           | `rgba(core.$black, 0.05)`                      | Sets the background property on `:hover` state.                                                         |
-| `$background-focus`           | `rgba(core.$black, 0.05)`                      | Sets the background property on `:focus` state.                                                         |
-| `$background-active`          | `rgba(core.$black, 0.1)`                       | Sets the background property on `:active` state.                                                        |
+| `$background-hover`           | `rgba(black, 0.05)`                            | Sets the background property on `:hover` state.                                                         |
+| `$background-focus`           | `rgba(black, 0.05)`                            | Sets the background property on `:focus` state.                                                         |
+| `$background-active`          | `rgba(black, 0.1)`                             | Sets the background property on `:active` state.                                                        |
 | `$color`                      | `core.$color`                                  | Sets the color property.                                                                                |
 | `$color-hover`                | `null`                                         | Sets the color property on `:hover` state.                                                              |
 | `$color-focus`                | `null`                                         | Sets the color property on `:focus` state.                                                              |
@@ -239,22 +239,22 @@ Adjust the size of a menu by increasing or decreasing its padding and font-size.
 | `$sep-gap`                    | `0.5em`                                        | Sets the spacing gap created around the `menu__sep` element.                                            |
 | `$sep-background`             | `core.$border-color`                           | Sets the background property on the `menu__sep` element.                                                |
 | `$active-background`          | `none`                                         | Sets the background property on `is-active` state class.                                                |
-| `$active-color`               | `core.$primary`                                | Sets the color property on `is-active` state class.                                                     |
+| `$active-color`               | `--vb-primary`                                 | Sets the color property on `is-active` state class.                                                     |
 | `$disabled-background`        | `none`                                         | Sets the background property on `is-disabled` state class.                                              |
 | `$disabled-color`             | `core.$color-subtle`                           | Sets the color property on `is-disabled` state class.                                                   |
 | `$invert-background`          | `null`                                         | Sets the background property of the `menu_invert` modifier.                                             |
-| `$invert-background-hover`    | `rgba(core.$white, 0.05)`                      | Sets the background property of the `menu_invert` modifier on `:hover` state.                           |
-| `$invert-background-focus`    | `rgba(core.$white, 0.05)`                      | Sets the background property of the `menu_invert` modifier on `:focus` state.                           |
-| `$invert-background-active`   | `rgba(core.$white, 0.1)`                       | Sets the background property of the `menu_invert` modifier on `:active` state.                          |
-| `$invert-color`               | `core.$white`                                  | Sets the color property of the `menu_invert` modifier.                                                  |
+| `$invert-background-hover`    | `rgba(white, 0.05)`                            | Sets the background property of the `menu_invert` modifier on `:hover` state.                           |
+| `$invert-background-focus`    | `rgba(white, 0.05)`                            | Sets the background property of the `menu_invert` modifier on `:focus` state.                           |
+| `$invert-background-active`   | `rgba(white, 0.1)`                             | Sets the background property of the `menu_invert` modifier on `:active` state.                          |
+| `$invert-color`               | `white`                                        | Sets the color property of the `menu_invert` modifier.                                                  |
 | `$invert-color-hover`         | `null`                                         | Sets the color property of the `menu_invert` modifier on `:hover` state.                                |
 | `$invert-color-focus`         | `null`                                         | Sets the color property of the `menu_invert` modifier on `:focus` state.                                |
 | `$invert-color-active`        | `null`                                         | Sets the color property of the `menu_invert` modifier on `:active` state.                               |
 | `$invert-sep-background`      | `core.$border-color-invert`                    | Sets the background property on the `menu__sep` element of the `menu_invert` modifier.                  |
 | `$invert-active-background`   | `none`                                         | Sets the background property on `is-active` state class of the `menu_invert` modifier.                  |
-| `$invert-active-color`        | `core.$primary`                                | Sets the color property on `is-active` state class of the `menu_invert` modifier.                       |
+| `$invert-active-color`        | `--vb-primary`                                 | Sets the color property on `is-active` state class of the `menu_invert` modifier.                       |
 | `$invert-disabled-background` | `none`                                         | Sets the background property on `is-disabled` state class of the `menu_invert` modifier.                |
-| `$invert-disabled-color`      | `rgba(core.$white, 0.5)`                       | Sets the color property on `is-disabled` state class of the `menu_invert` modifier.                     |
+| `$invert-disabled-color`      | `rgba(white, 0.5)`                             | Sets the color property on `is-disabled` state class of the `menu_invert` modifier.                     |
 | `$size-sm`                    | `core.$form-control-size-sm`                   | Sets the minimum size of menu actions of the `menu_size_sm` modifier.                                   |
 | `$size-sm-padding`            | `core.$padding-sm`                             | Sets the padding property of the `menu_size_sm` modifier.                                               |
 | `$size-sm-font-size`          | `core.$font-size-sm`                           | Sets the font-size property of the `menu_size_sm` modifier.                                             |

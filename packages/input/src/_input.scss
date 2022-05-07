@@ -13,13 +13,12 @@ $_b: var.$prefix-block;
   transition-property: var.$transition-property;
   transition-duration: var.$transition-duration;
   transition-timing-function: var.$transition-timing-function;
-  outline: var.$outline;
-  outline-offset: var.$outline-offset;
+  outline: none;
   border: var.$border;
   border-radius: var.$border-radius;
   background: var.$background;
-  box-shadow: var.$box-shadow;
-  color: var.$color;
+  box-shadow: var.$shadow;
+  color: var.$foreground;
   font-family: core.$font-family;
   font-size: var.$font-size;
   line-height: var.$line-height;
@@ -28,21 +27,17 @@ $_b: var.$prefix-block;
   appearance: none;
 
   &:hover {
-    outline: var.$outline-hover;
-    outline-offset: var.$outline-offset-hover;
     border-color: var.$border-color-hover;
     background-color: var.$background-hover;
-    box-shadow: var.$box-shadow-hover;
-    color: var.$color-hover;
+    box-shadow: var.$shadow-hover;
+    color: var.$foreground-hover;
   }
 
   &:focus {
-    outline: var.$outline-focus;
-    outline-offset: var.$outline-offset-focus;
     border-color: var.$border-color-focus;
     background-color: var.$background-focus;
-    box-shadow: var.$box-shadow-focus;
-    color: var.$color-focus;
+    box-shadow: var.$shadow-focus;
+    color: var.$foreground-focus;
   }
 
   &:disabled {
@@ -55,6 +50,6 @@ $_b: var.$prefix-block;
   }
 
   &::placeholder {
-    color: core.$color-subtle;
+    color: var.$foreground-placeholder;
   }
 }

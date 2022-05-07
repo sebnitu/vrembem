@@ -1,7 +1,7 @@
-@use "vrembem" as *;
+@use "@vrembem/base";
 
 .highlight pre {
-  @include base-pre();
+  @include base.pre();
 }
 
 .highlight {

@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/palette";
 
 $prefix-block: core.$prefix-block !default;
 $prefix-element: core.$prefix-element !default;
@@ -10,13 +11,13 @@ $width: 36em !default;
 $travel: 5em !default;
 $transition-duration: core.$transition-duration !default;
 $transition-timing-function: core.$transition-timing-function !default;
-$background: core.$night !default;
+$background: palette.get("neutral", 10) !default;
 $background-alpha: 0.8 !default;
-$box-shadow: core.$box-shadow-5 !default;
+$shadow: core.$shadow-5 !default;
 
-$outline: 0 solid rgba(core.$primary, 0) !default;
-$outline-focus: 4px solid rgba(core.$primary, 1) !default;
-$outline-focus-alert: 4px solid rgba(core.$danger, 1) !default;
+$outline: 0 solid transparent !default;
+$outline-focus: 4px solid palette.get("primary") !default;
+$outline-focus-alert: 4px solid palette.get("important") !default;
 
 // modal_pos_[value]
 $aside-width: 16em !default;

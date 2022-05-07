@@ -247,7 +247,7 @@ Drawers slide in from the left by default. To create a right side drawer, use th
 | `$modal-width`                   | `$width`                           | The width of modal drawers.                                                                          |
 | `$modal-max-width`               | `80%`                              | The max-width of modal drawers.                                                                      |
 | `$modal-sep-border`              | `null`                             | Border color applied to dialog elements within modal drawers.                                        |
-| `$modal-background`              | `core.$white`                      | Background color applied to modal drawer items.                                                      |
+| `$modal-background`              | `white`                            | Background color applied to modal drawer items.                                                      |
 | `$modal-box-shadow`              | `core.$box-shadow-5`               | Box shadow applied to modal drawer items.                                                            |
 | `$modal-screen-background`       | `core.$night`                      | Background color of modal screen.                                                                    |
 | `$modal-screen-background-alpha` | `0.8`                              | The alpha channel for the modal screen.                                                              |

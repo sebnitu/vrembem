@@ -1,7 +1,9 @@
-@use "vrembem" as *;
+@use "@vrembem/core";
 @use "../variables" as var;
 
 .toolbar {
+  --vb-foreground: hsl(0, 100%, 100%);
+  --vb-border-color: hsl(0, 100%, 100%, 10%);
   position: fixed;
   z-index: 600;
   top: 0;
@@ -9,13 +11,23 @@
   left: 0;
   flex-grow: 0;
   padding: 0.5em;
-  background: var.$background-gradient;
   background-color: var.$background-color;
-  box-shadow: $core-box-shadow-2;
-  color: $core-white;
+  box-shadow: core.$shadow-2;
+  color: white;
+
+  .menu__action {
+    &:hover {
+      background-color: hsl(0, 100%, 100%, 5%);    
+    }
+
+    &:focus,
+    &:active {
+        background-color: hsl(0, 100%, 100%, 10%);    
+    }
+  }
 }
 
-@include core-media-min('md') {
+@include core.media-min('md') {
   .toolbar {
     padding: 1em;
   }

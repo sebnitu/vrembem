@@ -92,7 +92,7 @@ Used to separate distinct dialog sections for headers and footers. Typically the
 | `$z-index`               | `500`                         | Sets the z-index property.                                                                          |
 | `$padding`               | `1em`                         | Sets the padding property.                                                                          |
 | `$spacing`               | `0.5em`                       | Sets the horizontal spacing between elements in the `dialog__header` and `dialog__footer` elements. |
-| `$background`            | `core.$white`                 | Sets the background property.                                                                       |
+| `$background`            | `white`                       | Sets the background property.                                                                       |
 | `$border`                | `null`                        | Sets the border property.                                                                           |
 | `$sep-border`            | `core.$border`                | Sets the border property that separates dialog elements.                                            |
 | `$border-radius`         | `core.$border-radius`         | Sets the border-radius property.                                                                    |

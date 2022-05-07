@@ -1,4 +1,6 @@
 @use "@vrembem/core";
+@use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
 
 $prefix-block: core.$prefix-block !default;
 $prefix-element: core.$prefix-element !default;
@@ -12,47 +14,28 @@ $gap: 1px !default;
 $inner-gap: 1em !default;
 $border-radius: core.$border-radius !default;
 $background: none !default;
-$background-hover: rgba(core.$black, 0.05) !default;
-$background-focus: rgba(core.$black, 0.05) !default;
-$background-active: rgba(core.$black, 0.1) !default;
-$color: core.$color !default;
-$color-hover: null !default;
-$color-focus: null !default;
-$color-active: null !default;
+$background-hover: rgba(black, 0.05) !default;
+$background-focus: rgba(black, 0.05) !default;
+$background-active: rgba(black, 0.1) !default;
+$foreground: theme.get("foreground") !default;
+$foreground-hover: null !default;
+$foreground-focus: null !default;
+$foreground-active: null !default;
 $font-size: 1em !default;
 $line-height: 1.5 !default;
 
 // menu__sep
 $sep-size: 1px !default;
 $sep-gap: 0.5em !default;
-$sep-background: core.$border-color !default;
+$sep-background: theme.get("border-color") !default;
 
 // is-active
 $active-background: none !default;
-$active-color: core.$primary !default;
+$active-foreground: palette.get("primary") !default;
 
 // is-disabled
 $disabled-background: none !default;
-$disabled-color: core.$color-subtle !default;
-
-// menu_invert
-$invert-background: null !default;
-$invert-background-hover: rgba(core.$white, 0.05) !default;
-$invert-background-focus: rgba(core.$white, 0.05) !default;
-$invert-background-active: rgba(core.$white, 0.1) !default;
-$invert-color: core.$white !default;
-$invert-color-hover: null !default;
-$invert-color-focus: null !default;
-$invert-color-active: null !default;
-$invert-sep-background: core.$border-color-invert !default;
-
-// is-active
-$invert-active-background: none !default;
-$invert-active-color: core.$primary !default;
-
-// is-disabled
-$invert-disabled-background: none !default;
-$invert-disabled-color: rgba(core.$white, 0.5) !default;
+$disabled-foreground: theme.get("foreground-lighter") !default;
 
 // menu_size_[value]
 $size-sm: core.$form-control-size-sm !default;

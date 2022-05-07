@@ -1,10 +1,8 @@
 @use "sass:color";
 @use "sass:list";
-@use "sass:map";
 @use "sass:math";
 @use "sass:meta";
 @use "sass:string";
-@use "./variables" as var;
 
 /// Encodes a color for use in data-uri
 /// @param {String} $string - The color to encode
@@ -54,4 +52,10 @@
   $result: replace($tpl, 0, $color-0);
   $result: replace($result, 1, $color-1);
   @return $result;
+}
+
+/// Output the hue and saturation values of a provided color.
+/// @param {Color} $color - The color variable to pull hue and saturation values from.
+@function get-hs($color) {
+  @return math.round(color.hue($color)), math.round(color.saturation($color));
 }
