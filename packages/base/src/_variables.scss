@@ -14,7 +14,7 @@ $prefix-modifier-value: core.$prefix-modifier-value !default;
 // ---
 
 $output: true !default;
-$output-base: $output !default;
+$output-normalize: $output !default;
 $output-arrow: $output !default;
 $output-blockquote: $output !default;
 $output-code: $output !default;
@@ -39,7 +39,7 @@ $class-scroll-box: "scroll-box" !default;
 $class-separator: "sep" !default;
 $class-type: "type" !default;
 
-// Base settings
+// Normalize
 // ---
 
 $root-height: 100% !default;
