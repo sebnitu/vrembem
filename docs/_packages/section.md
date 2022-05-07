@@ -23,7 +23,7 @@ Sections are composed using the base wrapper (`section`) along with three option
 <div class="gap-y color-white text-align-center">
   <h1 class="h1">Section with a screen &amp; background image</h1>
   <p class="font-size-lg">This is a demonstration of section area using the intro element along with a screen and background image. The screen color is set using the background modifiers and can be changed as needed.</p>
-  <div class="button-group">
+  <div class="level flex-justify-center">
     <button class="button button_color_primary">First Action</button>
     <button class="button button_color_secondary">Second Action</button>
   </div>
