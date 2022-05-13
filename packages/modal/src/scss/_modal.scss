@@ -17,7 +17,7 @@ $_e: var.$prefix-element;
   width: 0;
   height: 0;
   overflow: hidden;
-  background-color: rgba(var.$background, 0);
+  background-color: var.$background;
 }
 
 .#{$_b}modal#{$_e}dialog {
@@ -71,7 +71,7 @@ $_e: var.$prefix-element;
 
 .#{$_b}modal.is-opening,
 .#{$_b}modal.is-opened {
-  background-color: rgba(var.$background, var.$background-alpha);
+  background-color: var.$background;
 
   .#{$_b}modal#{$_e}dialog {
     transform: translateY(0);
