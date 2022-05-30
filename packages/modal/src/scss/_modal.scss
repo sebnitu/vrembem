@@ -17,7 +17,19 @@ $_e: var.$prefix-element;
   width: 0;
   height: 0;
   overflow: hidden;
-  background-color: rgba(var.$background, 0);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var.$screen-background;
+    opacity: 0;
+  }
 }
 
 .#{$_b}modal#{$_e}dialog {
@@ -60,7 +72,9 @@ $_e: var.$prefix-element;
 
 .#{$_b}modal.is-opening,
 .#{$_b}modal.is-closing {
-  transition: background-color var.$transition-duration var.$transition-timing-function;
+  &::before {
+    transition: opacity var.$transition-duration var.$transition-timing-function;
+  }
 
   .#{$_b}modal#{$_e}dialog {
     transition-property: opacity, transform;
@@ -71,7 +85,9 @@ $_e: var.$prefix-element;
 
 .#{$_b}modal.is-opening,
 .#{$_b}modal.is-opened {
-  background-color: rgba(var.$background, var.$background-alpha);
+  &::before {
+    opacity: var.$screen-opacity;
+  }
 
   .#{$_b}modal#{$_e}dialog {
     transform: translateY(0);

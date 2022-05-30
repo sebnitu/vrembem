@@ -11,9 +11,10 @@ $width: 36em !default;
 $travel: 5em !default;
 $transition-duration: core.$transition-duration !default;
 $transition-timing-function: core.$transition-timing-function !default;
-$background: palette.get("neutral", 10) !default;
-$background-alpha: 0.8 !default;
 $shadow: core.$shadow-5 !default;
+
+$screen-background: palette.get("neutral", 10) !default;
+$screen-opacity: 0.8 !default;
 
 $outline: 0 solid transparent !default;
 $outline-focus: 4px solid palette.get("primary") !default;
