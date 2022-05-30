@@ -72,26 +72,26 @@ $_e: var.$prefix-element;
 
 .#{$_b}modal.is-opening,
 .#{$_b}modal.is-closing {
+  &::before {
+    transition: opacity var.$transition-duration var.$transition-timing-function;
+  }
+
   .#{$_b}modal#{$_e}dialog {
     transition-property: opacity, transform;
     transition-duration: var.$transition-duration;
     transition-timing-function: var.$transition-timing-function;
   }
-
-  &::before {
-    transition: opacity var.$transition-duration var.$transition-timing-function;
-  }
 }
 
 .#{$_b}modal.is-opening,
 .#{$_b}modal.is-opened {
+  &::before {
+    opacity: var.$screen-opacity;
+  }
+
   .#{$_b}modal#{$_e}dialog {
     transform: translateY(0);
     opacity: 1;
-  }
-
-  &::before {
-    opacity: var.$screen-opacity;
   }
 }
 
