@@ -45,7 +45,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
   var InertRoot = function () {
     /**
-     * @param {!Element} rootElement The Element at the root of the inert subtree.
+     * @param {!HTMLElement} rootElement The HTMLElement at the root of the inert subtree.
      * @param {!InertManager} inertManager The global singleton InertManager object.
      */
     function InertRoot(rootElement, inertManager) {
@@ -54,7 +54,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       /** @type {!InertManager} */
       this._inertManager = inertManager;
 
-      /** @type {!Element} */
+      /** @type {!HTMLElement} */
       this._rootElement = rootElement;
 
       /**
@@ -176,7 +176,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         if (node.nodeType !== Node.ELEMENT_NODE) {
           return;
         }
-        var element = /** @type {!Element} */node;
+        var element = /** @type {!HTMLElement} */node;
 
         // If a descendant inert root becomes un-inert, its descendants will still be inert because of
         // this inert root, so all of its managed nodes need to be adopted by this InertRoot.
@@ -232,7 +232,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       /**
        * If a descendant node is found with an `inert` attribute, adopt its managed nodes.
-       * @param {!Element} node
+       * @param {!HTMLElement} node
        */
 
     }, {
@@ -262,7 +262,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       key: '_onMutation',
       value: function _onMutation(records, self) {
         records.forEach(function (record) {
-          var target = /** @type {!Element} */record.target;
+          var target = /** @type {!HTMLElement} */record.target;
           if (record.type === 'childList') {
             // Manage added nodes
             slice.call(record.addedNodes).forEach(function (node) {
@@ -381,7 +381,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this._throwIfDestroyed();
 
         if (this._node && this._node.nodeType === Node.ELEMENT_NODE) {
-          var element = /** @type {!Element} */this._node;
+          var element = /** @type {!HTMLElement} */this._node;
           if (this._savedTabIndex !== null) {
             element.setAttribute('tabindex', this._savedTabIndex);
           } else {
@@ -429,7 +429,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         if (this.node.nodeType !== Node.ELEMENT_NODE) {
           return;
         }
-        var element = /** @type {!Element} */this.node;
+        var element = /** @type {!HTMLElement} */this.node;
         if (matches.call(element, _focusableElementsString)) {
           if ( /** @type {!HTMLElement} */element.tabIndex === -1 && this.hasSavedTabIndex) {
             return;
@@ -574,7 +574,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     /**
      * Set whether the given element should be an inert root or not.
-     * @param {!Element} root
+     * @param {!HTMLElement} root
      * @param {boolean} inert
      */
 
@@ -725,7 +725,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               if (record.attributeName !== 'inert') {
                 return;
               }
-              var target = /** @type {!Element} */record.target;
+              var target = /** @type {!HTMLElement} */record.target;
               var inert = target.hasAttribute('inert');
               _this.setInert(target, inert);
               break;
@@ -740,7 +740,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   /**
    * Recursively walk the composed tree from |node|.
    * @param {!Node} node
-   * @param {(function (!Element))=} callback Callback to be called for each element traversed,
+   * @param {(function (!HTMLElement))=} callback Callback to be called for each element traversed,
    *     before descending into child nodes.
    * @param {?ShadowRoot=} shadowRootAncestor The nearest ShadowRoot ancestor, if any.
    */
@@ -748,7 +748,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
   function composedTreeWalk(node, callback, shadowRootAncestor) {
     if (node.nodeType == Node.ELEMENT_NODE) {
-      var element = /** @type {!Element} */node;
+      var element = /** @type {!HTMLElement} */node;
       if (callback) {
         callback(element);
       }
@@ -813,17 +813,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     node.appendChild(style);
   }
 
-  if (!Element.prototype.hasOwnProperty('inert')) {
+  if (!HTMLElement.prototype.hasOwnProperty('inert')) {
     /** @type {!InertManager} */
     var inertManager = new InertManager(document);
 
-    Object.defineProperty(Element.prototype, 'inert', {
+    Object.defineProperty(HTMLElement.prototype, 'inert', {
       enumerable: true,
-      /** @this {!Element} */
+      /** @this {!HTMLElement} */
       get: function get() {
         return this.hasAttribute('inert');
       },
-      /** @this {!Element} */
+      /** @this {!HTMLElement} */
       set: function set(inert) {
         inertManager.setInert(this, inert);
       }
