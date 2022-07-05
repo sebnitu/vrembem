@@ -34,7 +34,7 @@
     "del-cli": "^4.0.1",
     "eslint": "^8.19.0",
     "eslint-plugin-jest": "^26.5.3",
-    "jest": "^28.1.1",
+    "jest": "^28.1.2",
     "jest-environment-jsdom": "^28.1.1",
     "lerna": "^5.1.6",
     "lerna-changelog": "^2.2.0",
