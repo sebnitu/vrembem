@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v3.0.8 to CHANGELOG.md
+chore(release): add v3.0.9 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v3.0.9 (2022-07-10)
+
+#### :bug: Bug Fix
+* `core`, `vrembem`
+  * [#942](https://github.com/sebnitu/vrembem/pull/942) Fix core Sass module order and move root manifest
 
 
 ## v3.0.8 (2022-05-01)
