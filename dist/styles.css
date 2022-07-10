@@ -1,15 +1,3 @@
-:root {
-  --vrembem-variable-prefix: vb-;
-}
-
-:root {
-  --vb-breakpoint-xs: 480px;
-  --vb-breakpoint-sm: 620px;
-  --vb-breakpoint-md: 760px;
-  --vb-breakpoint-lg: 990px;
-  --vb-breakpoint-xl: 1380px;
-}
-
 *,
 *::before,
 *::after {
@@ -3769,6 +3757,10 @@ input::-moz-placeholder {
 }
 
 :root {
+  --vrembem-variable-prefix: vb-;
+}
+
+:root {
   --vb-popover-offset: 8;
   --vb-popover-overflow-padding: 10;
   --vb-popover-flip-padding: 10;
@@ -6498,6 +6490,14 @@ input::-moz-placeholder {
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
+}
+
+:root {
+  --vb-breakpoint-xs: 480px;
+  --vb-breakpoint-sm: 620px;
+  --vb-breakpoint-md: 760px;
+  --vb-breakpoint-lg: 990px;
+  --vb-breakpoint-xl: 1380px;
 }
 
 .article__section {
