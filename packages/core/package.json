@@ -20,7 +20,10 @@
     "dist",
     "src",
     "index.js",
-    "index.scss"
+    "index.scss",
+    "palette.scss",
+    "theme.scss",
+    "root.scss"
   ],
   "scripts": {
     "build": "npm-run-all clean styles root scripts",
