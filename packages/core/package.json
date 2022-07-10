@@ -20,7 +20,8 @@
     "dist",
     "src",
     "index.js",
-    "index.scss"
+    "index.scss",
+    "root.scss"
   ],
   "scripts": {
     "build": "npm-run-all clean scripts root",
