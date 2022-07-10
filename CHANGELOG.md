@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v3.0.9 to CHANGELOG.md
+chore(release): add v3.0.10 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v3.0.10 (2022-07-10)
+
+#### :bug: Bug Fix
+* `core`
+  * [#943](https://github.com/sebnitu/vrembem/pull/943) Add core root.scss to the NPM files field
 
 
 ## v3.0.9 (2022-07-10)
