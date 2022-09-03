@@ -12,7 +12,8 @@
   "devDependencies": {
     "@astrojs/vue": "^1.0.0",
     "astro": "^1.1.1",
-    "vue": "^3.2.37",
-    "vrembem": "^3.0.8"
+    "sass": "^1.54.8",
+    "vrembem": "^3.0.8",
+    "vue": "^3.2.37"
   }
 }

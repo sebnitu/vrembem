@@ -5,4 +5,8 @@
   .#{var.$prefix-block}#{var.$class-list} {
     @include mix.list();
   }
+
+  .list-style-none {
+    list-style: none !important;
+  }
 }
