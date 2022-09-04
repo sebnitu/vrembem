@@ -1,4 +1,6 @@
 ---
+import '../styles/global.scss';
+
 const { title } = Astro.props;
 ---
 
@@ -15,7 +17,3 @@ const { title } = Astro.props;
 		<slot />
 	</body>
 </html>
-
-<style lang="scss">
-	@use "vrembem";
-</style>
