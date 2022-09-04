@@ -1,0 +1,11 @@
+---
+const packages = await Astro.glob('../pages/packages/*.md');
+---
+
+<ul class="list">
+{
+  packages.map((item) => (
+    <li><a class="link" href={item.url}>{item.frontmatter.name}</a></li>
+  ))
+}
+</ul>

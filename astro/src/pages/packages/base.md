@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/Page.astro
-title: Base
-description: "Includes useful default styles and base modules for common HTML elements."
+name: Base
+desc: "Includes useful default styles and base modules for common HTML elements."
 package: "@vrembem/base"
 ---
 

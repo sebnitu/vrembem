@@ -1,6 +1,6 @@
 ---
 import Home from '../layouts/Home.astro';
-import Card from '../components/Card.astro';
+import Menu from '../components/Menu.astro';
 ---
 
 <Home title="Vrembem">
@@ -8,9 +8,5 @@ import Card from '../components/Card.astro';
 		<h1 class="h1">Vrembem</h1>
 		<p>A component library based on the BEM methodology. You're viewing the component catalog where you can test all available components.</p>
 	</div>
-	<ul class="list">
-		<li><a class="link" href="./packages/base">Base</a></li>
-		<li><a class="link" href="./packages/button">Button</a></li>
-		<li><a class="link" href="./packages/card">Card</a></li>
-	</ul>
+	<Menu />
 </Home>
