@@ -5,45 +5,12 @@ import Card from '../components/Card.astro';
 
 <Home title="Vrembem">
 	<div>
-		<h1 class="h1">Welcome to <span class="text-gradient">Astro</span></h1>
-		<p>Check out the <code class="code">src/pages</code> directory to get started.</p>
-	</div>
-	<div class="notice notice_theme_primary">
-		<p><strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.</p>
+		<h1 class="h1">Vrembem</h1>
+		<p>A component library based on the BEM methodology. You're viewing the component catalog where you can test all available components.</p>
 	</div>
 	<ul class="list">
+		<li><a class="link" href="./packages/base">Base</a></li>
 		<li><a class="link" href="./packages/button">Button</a></li>
+		<li><a class="link" href="./packages/card">Card</a></li>
 	</ul>
-	<div>
-		<ul role="list" class="grid grid_stack_md list-style-none">
-			<li class="grid__item span-6">
-				<Card
-					href="https://docs.astro.build/"
-					title="Documentation"
-					body="Learn how Astro works and explore the official API docs."
-				/>
-			</li>
-			<li class="grid__item span-6">
-				<Card
-					href="https://astro.build/integrations/"
-					title="Integrations"
-					body="Supercharge your project with new frameworks and libraries."
-				/>
-			</li>
-			<li class="grid__item span-6">
-				<Card
-					href="https://astro.build/themes/"
-					title="Themes"
-					body="Explore a galaxy of community-built starter themes."
-				/>
-			</li>
-			<li class="grid__item span-6">
-				<Card
-					href="https://astro.build/chat/"
-					title="Chat"
-					body="Come say hi to our amazing Discord community. ❤️"
-				/>
-			</li>
-		</ul>
-	</div>
 </Home>

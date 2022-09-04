@@ -7,6 +7,7 @@ const { frontmatter } = Astro.props;
 <Base title={frontmatter.title}>
   <main class="section">
 		<div class="section__container max-width-xs type gap-y">
+      <a href="/">&larr; Back</a>
       <slot />
     </div>
   </main>
