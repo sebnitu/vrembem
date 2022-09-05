@@ -1,10 +1,10 @@
 ---
 import Base from './Base.astro';
 
-const { frontmatter } = Astro.props;
+const title = (Astro.props.frontmatter) ? Astro.props.frontmatter.name : Astro.props.title;
 ---
 
-<Base title={frontmatter.title}>
+<Base title={title}>
   <main class="section">
 		<div class="section__container max-width-xs type gap-y">
       <a href="/">&larr; Back</a>
