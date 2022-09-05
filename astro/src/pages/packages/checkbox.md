@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/Page.astro
-name: Checkbox
+title: Checkbox
 desc: "Checkboxes allow the user to select multiple options from a set."
 package: "@vrembem/checkbox"
 ---

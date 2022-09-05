@@ -1,7 +1,7 @@
 ---
 import Base from './Base.astro';
 
-const title = (Astro.props.frontmatter) ? Astro.props.frontmatter.name : Astro.props.title;
+const { title } = Astro.props.frontmatter || Astro.props;
 ---
 
 <Base title={title}>
