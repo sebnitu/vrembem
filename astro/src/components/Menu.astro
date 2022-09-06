@@ -1,5 +1,5 @@
 ---
-const packages = await Astro.glob('../pages/packages/*.md');
+const packages = await Astro.glob('../pages/packages/*+(.md|.mdx)');
 ---
 
 <ul class="list">

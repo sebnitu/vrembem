@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/Page.astro
 title: Dialog
-desc: "A component that facilitates a conversation between the system and the user. They often request information or an action from the user."
+description: "A component that facilitates a conversation between the system and the user. They often request information or an action from the user."
 package: "@vrembem/dialog"
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/Page.astro
 title: Card
-desc: "The cards component provides a flexible and extensive content container with multiple variants and options."
+description: "The cards component provides a flexible and extensive content container with multiple variants and options."
 package: "@vrembem/card"
 ---
 

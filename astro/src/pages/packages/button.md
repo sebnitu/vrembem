@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/Page.astro
 title: Button
-desc: "Buttons are a simple component that allow users to take actions."
+description: "Buttons are a simple component that allow users to take actions."
 package: "@vrembem/button"
 ---
 

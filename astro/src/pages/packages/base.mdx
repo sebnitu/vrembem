@@ -1,9 +1,11 @@
 ---
 layout: ../../layouts/Page.astro
 title: Base
-desc: "Includes useful default styles and base modules for common HTML elements."
+description: "Includes useful default styles and base modules for common HTML elements."
 package: "@vrembem/base"
 ---
+
+import Counter from '../../components/Counter.vue';
 
 # Base
 
@@ -24,6 +26,10 @@ npm install @vrembem/base
 ```scss
 @use "@vrembem/base";
 ```
+
+### Counter
+
+<Counter client:load />
 
 ### Markup
 
