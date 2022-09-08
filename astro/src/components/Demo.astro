@@ -1,0 +1,53 @@
+---
+const { 
+  gridClasses = 'grid_stack_md',
+  gridSpanClasses = 'span-6'
+} = Astro.props;
+---
+
+<div class="demo">
+  <div class={ `grid ${gridClasses}` }>
+    
+    <div class={ `grid__item ${gridSpanClasses}` }>
+      <div class="demo__input type">
+        <slot />
+      </div>
+    </div>
+
+    <div class={ `grid__item ${gridSpanClasses}` }>
+      <div class="demo__output">
+        <slot name="demo" />
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style lang="scss">
+  @use '@vrembem/core';
+
+  .demo {
+    margin: 2rem 0 !important;
+  }
+
+  .demo__input,
+  .demo__output {
+    border-top: 1px solid core.theme-get("background-darker");
+
+    &::before {
+      display: inline-block;
+      padding: core.$padding-sm;
+      margin-bottom: 1em;
+      font-size: core.$font-size-sm;
+      background: core.theme-get("background-darker");
+    }
+  }
+
+  .demo__input::before {
+    content: 'Input';
+  }
+
+  .demo__output::before {
+    content: 'Output';
+  }
+</style>
