@@ -1,9 +1,10 @@
 ---
-layout: ../../layouts/Page.astro
 title: Base
 description: "Includes useful default styles and base modules for common HTML elements."
 package: "@vrembem/base"
 ---
+
+import Demo from '../components/Demo.astro';
 
 # Base
 
@@ -149,12 +150,20 @@ For a complete understanding of what this module does, checkout the source: [`_b
 
 The arrow (caret) module creates directional triangles drawn with CSS.
 
-```html
-<span class="arrow"></span>
-<span class="arrow-up"></span>
-<span class="arrow-left"></span>
-<span class="arrow-right"></span>
-```
+<Demo>
+  <div slot="demo" class="level">
+    <span class="arrow"></span>
+    <span class="arrow-up"></span>
+    <span class="arrow-left"></span>
+    <span class="arrow-right"></span>
+  </div>
+  ```html
+  <span class="arrow"></span>
+  <span class="arrow-up"></span>
+  <span class="arrow-left"></span>
+  <span class="arrow-right"></span>
+  ```
+</Demo>
 
 | Variable        | Default                 | Description                                                                                                                                      |
 | --------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |

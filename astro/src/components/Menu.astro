@@ -1,11 +1,17 @@
 ---
-const packages = await Astro.glob('../pages/packages/*+(.md|.mdx)');
+import Path from 'node:path';
+
+const packages = await Astro.glob('../packages/*+(.md|.mdx)');
 ---
 
 <ul class="list">
 {
   packages.map((item) => (
-    <li><a class="link" href={item.url}>{item.frontmatter.title}</a></li>
+    <li>
+      <a class="link" href={`packages/${Path.parse(item.file).name}`}>
+        {item.frontmatter.title}
+      </a>
+    </li>
   ))
 }
 </ul>

@@ -1,0 +1,17 @@
+---
+import Path from 'node:path';
+import Layout from '../../layouts/Page.astro';
+import Pre from '../../components/Pre.astro';
+
+export async function getStaticPaths() {
+  const pages = await Astro.glob('../../packages/*.mdx');
+  return pages.map(page => ({
+    params: { slug: Path.parse(page.file).name },
+    props: page,
+  }));
+}
+---
+
+<Layout>
+  <Astro.props.default components={{ pre: Pre }} />
+</Layout>

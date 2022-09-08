@@ -12,6 +12,7 @@
   "devDependencies": {
     "@astrojs/mdx": "^0.11.1",
     "@astrojs/vue": "^1.0.0",
+    "@types/node": "^18.7.16",
     "@vrembem/core": "^3.0.8",
     "astro": "^1.1.1",
     "rehype-add-classes": "^1.0.0",
