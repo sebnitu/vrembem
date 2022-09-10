@@ -17,9 +17,3 @@ const title = `Vrembem${(Astro.props.title) ? ` | ${Astro.props.title}` : ''}`;
 		<slot />
 	</body>
 </html>
-
-<script>
-	import { Modal } from 'vrembem';
-	const modal = new Modal({ autoInit: true });
-	window['modal'] = modal;
-</script>
