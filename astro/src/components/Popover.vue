@@ -8,12 +8,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { popover } from '../modules/usePopover.mjs';
 
 function uniqueID() {
-  return Math.floor(Math.random() * Date.now())
+  return Math.floor(Math.random() * Date.now());
 }
 
 export default {

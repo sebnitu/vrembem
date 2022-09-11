@@ -15,7 +15,6 @@
     "@types/node": "^18.7.16",
     "@vrembem/core": "^3.0.8",
     "astro": "^1.1.1",
-    "rehype-add-classes": "^1.0.0",
     "sass": "^1.54.8",
     "vrembem": "^3.0.8",
     "vue": "^3.2.37"

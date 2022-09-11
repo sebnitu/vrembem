@@ -1,32 +1,22 @@
 <template>
   <div class="code-block">
-    <div class="code-block__topbar">
-      <span v-if="label">{{ label }}</span>
-      <Popover triggerClass="code-block__copy-button foreground-neutral-50 flex" targetClass="popover_tooltip" :triggerAction="copyCode" :arrow="true" aria-label="Copy code example">
-        <template #trigger>
-          <svg v-if="!copied" class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-          <svg v-else class="icon icon_size_sm foreground-primary-50" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-        </template>
-        <template #content>
-          <span>Copied!</span>
-        </template>
-      </Popover>
-    </div>
+    <Popover triggerClass="code-block__copy-button foreground-neutral-50 flex" targetClass="popover_tooltip" :triggerAction="copyCode" :arrow="true" aria-label="Copy code example">
+      <template #trigger>
+        <svg v-if="!copied" class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+        <svg v-else class="icon icon_size_sm foreground-primary-50" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      </template>
+      <template #content>
+        <span>Copied!</span>
+      </template>
+    </Popover>
     <pre class="pre"><slot /></pre>
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import Popover from './Popover.vue';
 import { popover } from '../modules/usePopover.mjs';
 import { ref } from 'vue';
-
-const props = defineProps({
-  label: {
-    type: String,
-    default: null
-  }
-});
 
 const copied = ref(false);
 
@@ -56,10 +46,6 @@ function copyCode(event) {
 
     .pre {
       background-color: core.palette-get('neutral', 20);
-
-      code {
-        color: core.palette-get('secondary', 80);
-      }
     }
 
     .popover {
@@ -67,10 +53,6 @@ function copyCode(event) {
       --vb-popover-placement: left;
       --vb-foreground: #{core.palette-get('primary')};
     }
-  }
-
-  .code-block__topbar {
-    position: relative;
   }
 
   .code-block__copy-button {
