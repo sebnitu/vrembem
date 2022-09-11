@@ -16,11 +16,12 @@ export default defineConfig({
     rehypePlugins: [
       [addClasses, additions],
     ],
-    shikiConfig: {
-      // Choose from Shiki's built-in themes (or add your own)
-      // https://github.com/shikijs/shiki/blob/main/docs/themes.md
-      theme: 'one-dark-pro'
-    },
+    syntaxHighlight: 'prism',
+    // shikiConfig: {
+    //   // Choose from Shiki's built-in themes (or add your own)
+    //   // https://github.com/shikijs/shiki/blob/main/docs/themes.md
+    //   theme: 'one-dark-pro'
+    // },
     // Preserve Astro's default plugins: GitHub-flavored Markdown and Smartypants
     // default: false
     extendDefaultPlugins: true,
