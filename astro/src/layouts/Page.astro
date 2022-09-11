@@ -12,3 +12,9 @@ const { title } = Astro.props.frontmatter || Astro.props;
     </div>
   </main>
 </Base>
+
+<style is:global>
+  .type > astro-island {
+    display: block;
+  }
+</style>
