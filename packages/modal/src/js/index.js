@@ -69,13 +69,11 @@ export default class Modal extends Collection {
 
   initEventListeners() {
     document.addEventListener('click', this.#handleClick, false);
-    document.addEventListener('touchend', this.#handleClick, false);
     document.addEventListener('keydown', this.#handleKeydown, false);
   }
 
   destroyEventListeners() {
     document.removeEventListener('click', this.#handleClick, false);
-    document.removeEventListener('touchend', this.#handleClick, false);
     document.removeEventListener('keydown', this.#handleKeydown, false);
   }
 
