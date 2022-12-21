@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v3.0.10 to CHANGELOG.md
+chore(release): add v3.0.11 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v3.0.11 (2022-12-20)
+
+#### :bug: Bug Fix
+* `base`, `breadcrumb`, `button-group`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `grid`, `icon-action`, `icon`, `input`, `level`, `media`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `tooltip`, `utility`, `vrembem`
+  * [#1075](https://github.com/sebnitu/vrembem/pull/1075) Remove touchend events from modal and drawer click handling
 
 
 ## v3.0.10 (2022-07-10)
