@@ -14,10 +14,15 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v3.0.11 to CHANGELOG.md
+chore(release): add v3.0.12 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
 
+
+## v3.0.12 (2023-01-02)
+
+#### :hammer: Chore
+* [#1080](https://github.com/sebnitu/vrembem/pull/1080) Bump to current year
 
 ## v3.0.11 (2022-12-20)
 
