@@ -10,13 +10,13 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "@astrojs/mdx": "^0.11.1",
-    "@astrojs/vue": "^1.0.0",
-    "@types/node": "^18.7.16",
+    "@astrojs/mdx": "^0.16.0",
+    "@astrojs/vue": "^2.0.1",
+    "@types/node": "^18.13.0",
     "@vrembem/core": "^3.0.8",
-    "astro": "^1.1.1",
-    "sass": "^1.54.8",
+    "astro": "^2.0.11",
+    "sass": "^1.58.1",
     "vrembem": "^3.0.8",
-    "vue": "^3.2.37"
+    "vue": "^3.2.47"
   }
 }
