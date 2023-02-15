@@ -1,15 +1,15 @@
 ---
-import Path from 'node:path';
+import { getCollection } from 'astro:content';
 
-const packages = await Astro.glob('../packages/*+(.md|.mdx)');
+const packages = await getCollection('packages');
 ---
 
 <ul class="list">
 {
-  packages.map((item) => (
+  packages.map((entry) => (
     <li>
-      <a class="link" href={`packages/${Path.parse(item.file).name}`}>
-        {item.frontmatter.title}
+      <a class="link" href={`packages/${entry.slug}`}>
+        {entry.data.title}
       </a>
     </li>
   ))

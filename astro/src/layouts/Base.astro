@@ -1,7 +1,7 @@
 ---
 import '../styles/global.scss';
 
-const title = `Vrembem${(Astro.props.title) ? ` | ${Astro.props.title}` : ''}`;
+const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -11,7 +11,7 @@ const title = `Vrembem${(Astro.props.title) ? ` | ${Astro.props.title}` : ''}`;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		<title>Vrembem{(title) ? ' | ' + title : ''}</title>
 	</head>
 	<body>
 		<slot />
