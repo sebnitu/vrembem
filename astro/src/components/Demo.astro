@@ -1,22 +1,50 @@
 ---
-const { 
-  gridClasses = 'grid_stack_md',
-  gridSpanClasses = 'span-6'
+interface Props {
+  stack: string;
+  span: number;
+}
+
+let { 
+  stack = 'md',
+  span = 6,
 } = Astro.props;
+
+const stackOptions = ['xs', 'sm', 'md', 'lg', 'xl'];
+let spanInput: string, spanOutput: string;
+
+if (typeof stack === 'string') {
+  if (stackOptions.includes(stack)) {
+    stack = ' grid_stack_' + stack;
+  } else {
+    throw new Error(`Not a valid stack option: "${stack}". Valid stack options include: ${stackOptions}`);
+  }
+} else if (stack === true) {
+  stack = ' grid_stack';
+} else {
+  stack = '';
+}
+
+if (span > 12 || span < 1) {
+  throw new Error(`Not a valid span option: "${span}". Span must be a value between 1 and 12`);
+} else {
+  spanInput = `span-${span}`;
+  spanOutput = `span-${(span == 12) ? 12 : 12 - span}`;
+}
+
 ---
 
 <div class="demo">
-  <div class={ `grid ${gridClasses}` }>
+  <div class={ `grid${stack}` }>
     
-    <div class={ `grid__item ${gridSpanClasses}` }>
+    <div class={ `grid__item ${spanInput}` }>
       <div class="demo__input type">
-        <slot />
+        <slot name="input" />
       </div>
     </div>
 
-    <div class={ `grid__item ${gridSpanClasses}` }>
+    <div class={ `grid__item ${spanOutput}` }>
       <div class="demo__output">
-        <slot name="demo" />
+        <slot name="output" />
       </div>
     </div>
 
@@ -24,7 +52,7 @@ const {
 </div>
 
 <style lang="scss">
-  @use '@vrembem/core';
+  @use "@vrembem/core";
 
   .demo {
     margin: 2rem 0 !important;
@@ -44,10 +72,10 @@ const {
   }
 
   .demo__input::before {
-    content: 'Input';
+    content: "Input";
   }
 
   .demo__output::before {
-    content: 'Output';
+    content: "Output";
   }
 </style>
