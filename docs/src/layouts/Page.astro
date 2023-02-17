@@ -1,0 +1,20 @@
+---
+import Base from './Base.astro';
+
+const { title } = Astro.props;
+---
+
+<Base title={ title }>
+  <main class="section">
+		<div class="section__container max-width-xs type gap-y">
+      <a href="/">&larr; Back</a>
+      <slot />
+    </div>
+  </main>
+</Base>
+
+<style is:global>
+  .type > astro-island {
+    display: block;
+  }
+</style>

@@ -5,20 +5,18 @@
   "scripts": {
     "build": "lerna run build --stream",
     "clean": "lerna run clean --stream",
-    "docs": "concurrently --kill-others 'npm run server' 'npm run watch:docs' 'npm run watch:vb'",
+    "docs": "npm run dev --prefix docs",
     "fix": "npm-run-all fix:styles fix:scripts",
     "fix:scripts": "eslint --fix packages",
     "fix:styles": "stylelint --fix 'packages/**/*.scss'",
     "lint": "npm-run-all lint:styles lint:scripts",
     "lint:scripts": "eslint packages",
     "lint:styles": "stylelint 'packages/**/*.scss'",
-    "server": "lerna run server --scope=docs --parallel",
     "sink": "npm ci && lerna bootstrap && npm-run-all build lint test:coverage",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
     "watch": "lerna run watch --scope=\"@vrembem/$npm_config_component\" --parallel",
-    "watch:docs": "lerna run watch --scope=docs --parallel",
     "watch:vb": "lerna run watch --scope=vrembem --parallel"
   },
   "devDependencies": {

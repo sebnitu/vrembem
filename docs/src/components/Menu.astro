@@ -1,0 +1,17 @@
+---
+import { getCollection } from 'astro:content';
+
+const packages = await getCollection('packages');
+---
+
+<ul class="list">
+{
+  packages.map((entry) => (
+    <li>
+      <a class="link" href={`packages/${entry.slug}`}>
+        {entry.data.title}
+      </a>
+    </li>
+  ))
+}
+</ul>

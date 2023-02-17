@@ -1,0 +1,19 @@
+---
+export interface Props {
+	title: string;
+	body: string;
+	href: string;
+}
+
+const { href, title, body } = Astro.props;
+---
+
+<a class="card card_link" href={href} target="_blank">
+	<div class="card__body">
+    <h2 class="card__title flex flex-justify-between">
+			<span>{title}</span>
+			<span>&rarr;</span>
+		</h2>
+    <p>{body}</p>
+  </div>
+</a>
