@@ -1,6 +1,6 @@
 {
   "name": "astro",
-  "version": "0.0.1",
+  "version": "4.0.0-alpha.1",
   "private": true,
   "scripts": {
     "dev": "astro dev",
@@ -13,10 +13,10 @@
     "@astrojs/mdx": "^0.16.0",
     "@astrojs/vue": "^2.0.1",
     "@types/node": "^18.13.0",
-    "@vrembem/core": "^3.0.8",
+    "@vrembem/core": "^4.0.0-alpha.1",
     "astro": "^2.0.11",
     "sass": "^1.58.1",
-    "vrembem": "^3.0.8",
+    "vrembem": "^4.0.0-alpha.1",
     "vue": "^3.2.47"
   }
 }
