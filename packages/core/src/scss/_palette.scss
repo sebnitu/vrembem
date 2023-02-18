@@ -73,7 +73,7 @@ $lightness-default: 50 !default;
     --#{$_v}#{$key}-hs: #{fun.get-hs($seed)};
     --#{$_v}#{$key}: var(--#{$_v}#{$key}-#{$lightness-default});
     @each $value in $lightness {
-      --#{$_v}#{$key}-#{$value}: hsl(var(--#{$_v}#{$key}-hs), #{$value}%);
+      --#{$_v}#{$key}-#{$value}: hsl(var(--#{$_v}#{$key}-hs), #{$value + '%'});
     }
   }
 }
