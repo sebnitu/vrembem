@@ -4,6 +4,8 @@ description: "The utility component provides a set of atomic classes that specia
 package: "@vrembem/utility"
 ---
 
+import Demo from '../../components/Demo.astro';
+
 # Utility
 
 The utility component provides a set of atomic classes that specialize in a single function.
@@ -126,14 +128,74 @@ The utility component consists of a number of modules with their own set of spec
 
 Applies background color property. Most options include light, lighter, dark and darker variants.
 
-```html
-<div class="background-primary-lighter"></div>
-<div class="background-primary-light"></div>
-<div class="background-primary"></div>
-<div class="background-primary-dark"></div>
-<div class="background-primary-darker"></div>
-...
-```
+<Demo stack={true}>
+  <div slot="input">
+    ```html
+    <div class="background"></div>
+    <div class="background-dark"></div>
+    <div class="background-darker"></div>
+    <div class="background-primary"></div>
+    ...
+    ```
+  </div>
+  <div slot="output" class="flex flex-wrap">
+    <div class="swatch background"></div>
+    <div class="swatch background-dark"></div>
+    <div class="swatch background-darker"></div>
+    <div class="swatch background-primary-0"></div>
+    <div class="swatch background-primary-10"></div>
+    <div class="swatch background-primary-20"></div>
+    <div class="swatch background-primary-30"></div>
+    <div class="swatch background-primary-40"></div>
+    <div class="swatch background-primary-50"></div>
+    <div class="swatch background-primary-60"></div>
+    <div class="swatch background-primary-70"></div>
+    <div class="swatch background-primary-80"></div>
+    <div class="swatch background-primary-90"></div>
+    <div class="swatch background-primary-95"></div>
+    <div class="swatch background-primary-98"></div>
+    <div class="swatch background-primary-100"></div>
+    <div class="swatch background-secondary-0"></div>
+    <div class="swatch background-secondary-10"></div>
+    <div class="swatch background-secondary-20"></div>
+    <div class="swatch background-secondary-30"></div>
+    <div class="swatch background-secondary-40"></div>
+    <div class="swatch background-secondary-50"></div>
+    <div class="swatch background-secondary-60"></div>
+    <div class="swatch background-secondary-70"></div>
+    <div class="swatch background-secondary-80"></div>
+    <div class="swatch background-secondary-90"></div>
+    <div class="swatch background-secondary-95"></div>
+    <div class="swatch background-secondary-98"></div>
+    <div class="swatch background-secondary-100"></div>
+    <div class="swatch background-neutral-0"></div>
+    <div class="swatch background-neutral-10"></div>
+    <div class="swatch background-neutral-20"></div>
+    <div class="swatch background-neutral-30"></div>
+    <div class="swatch background-neutral-40"></div>
+    <div class="swatch background-neutral-50"></div>
+    <div class="swatch background-neutral-60"></div>
+    <div class="swatch background-neutral-70"></div>
+    <div class="swatch background-neutral-80"></div>
+    <div class="swatch background-neutral-90"></div>
+    <div class="swatch background-neutral-95"></div>
+    <div class="swatch background-neutral-98"></div>
+    <div class="swatch background-neutral-100"></div>
+    <div class="swatch background-important-0"></div>
+    <div class="swatch background-important-10"></div>
+    <div class="swatch background-important-20"></div>
+    <div class="swatch background-important-30"></div>
+    <div class="swatch background-important-40"></div>
+    <div class="swatch background-important-50"></div>
+    <div class="swatch background-important-60"></div>
+    <div class="swatch background-important-70"></div>
+    <div class="swatch background-important-80"></div>
+    <div class="swatch background-important-90"></div>
+    <div class="swatch background-important-95"></div>
+    <div class="swatch background-important-98"></div>
+    <div class="swatch background-important-100"></div>
+  </div>
+</Demo>
 
 Also available are utility classes for the `background-clip-[value]` property.
 
