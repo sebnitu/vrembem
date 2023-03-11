@@ -45,7 +45,7 @@
     "sass": "^1.58.3",
     "stylelint": "^14.16.1",
     "stylelint-config-standard-scss": "^6.1.0",
-    "stylelint-order": "^6.0.2"
+    "stylelint-order": "^6.0.3"
   },
   "jest": {
     "collectCoverageFrom": [
