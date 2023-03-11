@@ -7,6 +7,8 @@ updates:
     open-pull-requests-limit: 20
     versioning-strategy: increase
     target-branch: "main"
+    labels:
+      - "npm dependencies"
 
   - package-ecosystem: npm
     directory: "/"
@@ -15,3 +17,5 @@ updates:
     open-pull-requests-limit: 20
     versioning-strategy: increase
     target-branch: "next"
+    labels:
+      - "npm dependencies on next"
