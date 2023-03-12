@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/base",
   "description": "Includes useful default styles and base modules for common HTML elements.",
-  "version": "4.0.0-alpha.0",
+  "version": "4.0.0-alpha.1",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/base#readme",
   "dependencies": {
-    "@vrembem/core": "^4.0.0-alpha.0"
+    "@vrembem/core": "^4.0.0-alpha.1"
   },
   "publishConfig": {
     "access": "public"
