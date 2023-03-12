@@ -11,6 +11,15 @@ updates:
       - "npm dependencies on next"
 
   - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 20
+    versioning-strategy: increase
+    labels:
+      - "npm dependencies"
+
+  - package-ecosystem: npm
     directory: "/docs"
     schedule:
       interval: weekly
@@ -19,15 +28,6 @@ updates:
     target-branch: "next"
     labels:
       - "npm docs dependencies on next"
-
-  - package-ecosystem: npm
-    directory: "/"
-    schedule:
-      interval: weekly
-    open-pull-requests-limit: 20
-    versioning-strategy: increase
-    labels:
-      - "npm dependencies"
 
   - package-ecosystem: npm
     directory: "/docs"
