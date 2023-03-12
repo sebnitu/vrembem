@@ -18,24 +18,3 @@ updates:
     versioning-strategy: increase
     labels:
       - "dep"
-
-  - package-ecosystem: npm
-    directory: "/docs"
-    schedule:
-      interval: weekly
-    open-pull-requests-limit: 20
-    versioning-strategy: increase
-    target-branch: "next"
-    labels:
-      - "dep next"
-      - "docs"
-
-  - package-ecosystem: npm
-    directory: "/docs"
-    schedule:
-      interval: weekly
-    open-pull-requests-limit: 20
-    versioning-strategy: increase
-    labels:
-      - "dep"
-      - "docs"
