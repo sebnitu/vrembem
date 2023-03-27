@@ -12,7 +12,7 @@
   "devDependencies": {
     "@astrojs/mdx": "^0.18.0",
     "@astrojs/vue": "^2.1.0",
-    "@types/node": "^18.15.2",
+    "@types/node": "^18.15.10",
     "@vrembem/core": "^4.0.0-alpha.1",
     "astro": "^2.1.7",
     "sass": "^1.59.2",
