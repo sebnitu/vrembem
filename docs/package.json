@@ -15,7 +15,7 @@
     "@types/node": "^18.15.11",
     "@vrembem/core": "^4.0.0-alpha.1",
     "astro": "^2.1.9",
-    "sass": "^1.60.0",
+    "sass": "^1.61.0",
     "vrembem": "^4.0.0-alpha.1",
     "vue": "^3.2.47"
   }
