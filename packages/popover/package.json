@@ -42,7 +42,7 @@
   },
   "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/popover#readme",
   "dependencies": {
-    "@popperjs/core": "^2.11.7",
+    "@popperjs/core": "^2.11.8",
     "@vrembem/core": "^4.0.0-alpha.1"
   },
   "publishConfig": {
