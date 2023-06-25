@@ -1,5 +1,9 @@
 {
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
   "version": "4.0.0-alpha.1",
+  "packages": [
+    "packages/*"
+  ],
   "command": {
     "publish": {
       "message": "chore(release): bump to %s",
@@ -8,24 +12,6 @@
         "**/*.md",
         "packages/**/*.html"
       ]
-    }
-  },
-  "packages": [
-    "astro",
-    "docs",
-    "packages/*"
-  ],
-  "changelog": {
-    "repo": "sebnitu/vrembem",
-    "cacheDir": ".changelog",
-    "labels": {
-      "PR: breaking": ":fire: Breaking Changes",
-      "PR: feat": ":tada: New Feature",
-      "PR: fix": ":bug: Bug Fix",
-      "PR: refactor": ":house: Refactor",
-      "PR: test": ":white_check_mark: Testing",
-      "PR: docs": ":books: Documentation",
-      "PR: chore": ":hammer: Chore"
     }
   }
 }
