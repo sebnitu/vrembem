@@ -29,8 +29,8 @@
     "scripts:dev": "npm run scripts:dist -- --output=dev/scripts.js --no-compress",
     "scripts:dist": "microbundle --name=vrembem.Modal --external=none --globals=@vrembem/core/index=vrembem.core",
     "styles": "npm-run-all styles:dev styles:dist",
-    "styles:dev": "sass index.scss dev/styles.css --load-path=node_modules",
-    "styles:dist": "sass index.scss dist/styles.css --load-path=node_modules --style=compressed",
+    "styles:dev": "sass index.scss dev/styles.css --load-path=../../node_modules",
+    "styles:dist": "sass index.scss dist/styles.css --load-path=../../node_modules --style=compressed",
     "watch": "concurrently --kill-others 'npm run watch:scripts' 'npm run watch:styles'",
     "watch:scripts": "nodemon -e js -x 'npm run scripts' -i dev -i dist",
     "watch:styles": "nodemon -e scss -x 'npm run styles'"
