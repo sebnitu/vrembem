@@ -16,7 +16,6 @@ jobs:
       - name: Install and Build
         run: |
           npm ci
-          npx lerna bootstrap
           npx lerna run build --scope docs
 
       - name: Deploy
