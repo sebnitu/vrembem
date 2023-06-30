@@ -10,7 +10,7 @@
     "clean": "del dist",
     "scripts": "microbundle --external=none --output=dist/bundle.js --format=iife",
     "styles": "npm-run-all styles:compile styles:min",
-    "styles:compile": "sass src/scss/app.scss dist/styles.css --load-path node_modules --load-path node_modules/vrembem/node_modules",
+    "styles:compile": "sass src/scss/app.scss dist/styles.css --load-path=../node_modules",
     "styles:min": "sass dist/styles.css dist/styles.min.css --style compressed",
     "watch": "concurrently --kill-others 'npm run watch:scripts' 'npm run watch:styles'",
     "watch:scripts": "nodemon -e js -x 'npm run scripts'",

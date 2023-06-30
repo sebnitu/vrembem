@@ -2,6 +2,10 @@
   "name": "root",
   "private": true,
   "license": "MIT",
+  "workspaces": [
+    "docs",
+    "packages/*"
+  ],
   "scripts": {
     "build": "lerna run build --stream",
     "clean": "lerna run clean --stream",
@@ -13,7 +17,7 @@
     "lint:scripts": "eslint packages",
     "lint:styles": "stylelint 'packages/**/*.scss'",
     "server": "lerna run server --scope=docs --parallel",
-    "sink": "npm ci && lerna bootstrap && npm-run-all build lint test:coverage",
+    "sink": "npm ci && npm-run-all build lint test:coverage",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
@@ -35,7 +39,7 @@
     "eslint-plugin-jest": "^27.2.2",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
-    "lerna": "^6.6.2",
+    "lerna": "^7.1.0",
     "lerna-changelog": "^2.2.0",
     "microbundle": "^0.15.1",
     "nodemon": "^2.0.22",
@@ -45,6 +49,9 @@
     "stylelint": "^14.16.1",
     "stylelint-config-standard-scss": "^6.1.0",
     "stylelint-order": "^6.0.3"
+  },
+  "overrides": {
+    "nwsapi": "2.2.2"
   },
   "jest": {
     "collectCoverageFrom": [
