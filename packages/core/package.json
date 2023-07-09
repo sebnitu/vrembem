@@ -44,7 +44,7 @@
     "root:dev": "sass src/scss/root:dev --load-path=../../node_modules",
     "root:dist": "sass src/scss/root:dist --load-path=../../node_modules --style=compressed",
     "watch": "concurrently --kill-others 'npm run watch:scripts' 'npm run watch:styles' 'npm run watch:root'",
-    "watch:scripts": "vite build --watch",
+    "watch:scripts": "concurrently 'npm run scripts:dev -- --watch' 'npm run scripts:dist -- --watch'",
     "watch:styles": "nodemon -e scss -x 'npm run styles'",
     "watch:root": "nodemon -e scss -x 'npm run root'"
   },

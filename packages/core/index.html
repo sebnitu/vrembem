@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>@vrembem/core</title>
   <link rel="icon" type="image/png" sizes="32x32" href="https://sebnitu.com/dist/favicon.png">
-  <!-- Styles -->
-  <link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/vrembem@alpha/dist/styles.css">
   <link rel="stylesheet" href="./dev/root.css">
+
 </head>
 <body>
   <main>
@@ -46,12 +48,16 @@
     </section>
   </main>
 
-  <!-- Component scripts -->
+  <!-- CJS -->
   <script src="./dev/index.umd.cjs"></script>
 
-  <!-- Implementation scripts -->
-  <script>
-    console.log('Vrembem', vrembem.core);
+  <!-- MJS -->
+  <script type="module">
+    import * as core from './dev/index.js';
+    window.vb = {};
+    vb.core = core;
+    console.log('Vrembem CJS:', vrembem);
+    console.log('Vrembem MJS', vb);
   </script>
 
 </body>
