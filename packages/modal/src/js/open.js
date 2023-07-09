@@ -1,4 +1,4 @@
-import { openTransition } from '@vrembem/core/index';
+import { openTransition } from '@vrembem/core';
 import { updateFocusState, getModal } from './helpers';
 
 export async function open(query, transition, focus = true) {

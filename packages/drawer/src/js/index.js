@@ -1,4 +1,4 @@
-import { Collection, FocusTrap, localStore } from '@vrembem/core/index';
+import { Collection, FocusTrap, localStore } from '@vrembem/core';
 
 import defaults from './defaults';
 import { handleClick, handleKeydown } from './handlers';

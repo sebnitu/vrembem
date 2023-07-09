@@ -1,4 +1,4 @@
-import { updateGlobalState } from '@vrembem/core/index';
+import { updateGlobalState } from '@vrembem/core';
 import { close } from './close';
 import { initialState } from './helpers/initialState';
 
