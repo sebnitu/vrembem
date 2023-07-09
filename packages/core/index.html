@@ -54,8 +54,7 @@
   <!-- MJS -->
   <script type="module">
     import * as core from './dev/index.js';
-    window.vb = {};
-    vb.core = core;
+    const vb = { core };
     console.log('Vrembem CJS:', vrembem);
     console.log('Vrembem MJS', vb);
   </script>
