@@ -19,7 +19,7 @@
   },
   "unpkg": "dist/index.umd.cjs",
   "sass": "index.scss",
-  "style": "dist/styles.css",
+  "style": "dist/root.css",
   "files": [
     "dev",
     "dist",
