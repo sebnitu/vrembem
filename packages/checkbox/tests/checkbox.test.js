@@ -48,8 +48,8 @@ test('click event removes aria checked attribute', () => {
 test('should do nothing if clicked checkbox doesn\'t match selector', () => {
   document.body.innerHTML = '<input type="checkbox">';
   checkbox = new Checkbox({ autoInit: true });
-  checkbox.removeAriaState = jest.fn();
-  checkbox.setIndeterminate = jest.fn();
+  checkbox.removeAriaState = vi.fn();
+  checkbox.setIndeterminate = vi.fn();
   const el = document.querySelector('[type="checkbox"]');
 
   el.click();

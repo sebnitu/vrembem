@@ -3,7 +3,7 @@ import Popover from '../index.js';
 
 let popover;
 
-jest.useFakeTimers();
+vi.useFakeTimers();
 
 const markup = `
   <button aria-controls="asdf">...</button>

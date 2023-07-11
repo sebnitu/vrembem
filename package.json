@@ -16,9 +16,9 @@
     "lint:scripts": "eslint packages",
     "lint:styles": "stylelint 'packages/**/*.scss'",
     "sink": "npm ci && npm-run-all build lint test:coverage",
-    "test": "jest",
-    "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest",
     "watch": "lerna run watch --scope=\"@vrembem/$npm_config_component\" --parallel",
     "watch:vb": "lerna run watch --scope=vrembem --parallel"
   },
@@ -29,6 +29,7 @@
     "@testing-library/dom": "^9.3.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/user-event": "^14.4.3",
+    "@vitest/coverage-v8": "^0.33.0",
     "babel-jest": "^29.6.1",
     "concurrently": "^8.2.0",
     "del-cli": "^5.0.0",
@@ -42,7 +43,8 @@
     "stylelint": "^15.10.1",
     "stylelint-config-standard-scss": "^10.0.0",
     "stylelint-order": "^6.0.3",
-    "vite": "^4.4.1"
+    "vite": "^4.4.1",
+    "vitest": "^0.33.0"
   },
   "overrides": {
     "nwsapi": "2.2.2"
