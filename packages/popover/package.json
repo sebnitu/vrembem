@@ -19,7 +19,7 @@
   },
   "unpkg": "dist/index.umd.cjs",
   "sass": "index.scss",
-  "style": "dist/styles.css",
+  "style": "dist/index.css",
   "files": [
     "dev",
     "dist",
@@ -35,8 +35,8 @@
     "scripts:dev": "vite build --outDir dev --minify false",
     "scripts:dist": "vite build --outDir dist",
     "styles": "npm-run-all styles:dev styles:dist",
-    "styles:dev": "sass index.scss dev/styles.css --load-path=../../node_modules",
-    "styles:dist": "sass index.scss dist/styles.css --load-path=../../node_modules --style=compressed",
+    "styles:dev": "sass index.scss dev/index.css --load-path=../../node_modules",
+    "styles:dist": "sass index.scss dist/index.css --load-path=../../node_modules --style=compressed",
     "watch": "concurrently --kill-others 'npm run watch:scripts' 'npm run watch:styles'",
     "watch:scripts": "concurrently 'npm run scripts:dev -- --watch' 'npm run scripts:dist -- --watch'",
     "watch:styles": "nodemon -e scss -x 'npm run styles'"
