@@ -1,4 +1,4 @@
-import { getConfig, teleport } from '@vrembem/core/index';
+import { getConfig, teleport } from '@vrembem/core';
 
 import { deregister } from './deregister';
 import { open } from './open';

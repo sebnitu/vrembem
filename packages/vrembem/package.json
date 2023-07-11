@@ -3,18 +3,23 @@
   "description": "A component library based on the BEM methodology.",
   "version": "4.0.0-alpha.1",
   "license": "MIT",
+  "type": "module",
   "keywords": [
     "BEM",
     "front-end",
     "component",
     "library"
   ],
-  "source": "index.js",
-  "main": "dist/scripts.js",
-  "module": "dist/scripts.esm.js",
-  "unpkg": "dist/scripts.umd.js",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.umd.cjs"
+    }
+  },
+  "unpkg": "dist/index.umd.cjs",
   "sass": "index.scss",
-  "style": "dist/styles.css",
+  "style": "dist/index.css",
   "files": [
     "dev",
     "dist",
@@ -22,17 +27,18 @@
     "index.scss"
   ],
   "scripts": {
+    "serve": "vite",
     "build": "npm-run-all clean styles scripts",
     "clean": "del dev && del dist",
     "scripts": "npm-run-all scripts:dev scripts:dist",
-    "scripts:dev": "npm run scripts:dist -- --output=dev/scripts.js --no-compress",
-    "scripts:dist": "microbundle --name=vrembem --external=none --globals @vrembem/core/index=vrembem.core,@vrembem/checkbox/index=vrembem.Checkbox,@vrembem/drawer/index=vrembem.Drawer,@vrembem/modal/index=vrembem.Modal",
+    "scripts:dev": "vite build --outDir dev --minify false",
+    "scripts:dist": "vite build --outDir dist",
     "styles": "npm-run-all styles:dev styles:dist",
-    "styles:dev": "sass index.scss dev/styles.css --load-path=../../node_modules",
-    "styles:dist": "sass index.scss dist/styles.css --load-path=../../node_modules --style=compressed",
+    "styles:dev": "sass index.scss dev/index.css --load-path=../../node_modules",
+    "styles:dist": "sass index.scss dist/index.css --load-path=../../node_modules --style=compressed",
     "watch": "concurrently --kill-others 'npm run watch:scripts' 'npm run watch:styles'",
-    "watch:scripts": "nodemon -e js -x 'npm run scripts' -i dev -i dist",
-    "watch:styles": "nodemon -e scss -x 'npm run styles'"
+    "watch:scripts": "concurrently 'npm run scripts:dev -- --watch' 'npm run scripts:dist -- --watch'",
+    "watch:styles": "concurrently 'npm run styles:dev -- --watch' 'npm run styles:dist -- --watch'"
   },
   "repository": {
     "type": "git",

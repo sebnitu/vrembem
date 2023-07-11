@@ -1,4 +1,4 @@
-import { Breakpoint, getConfig } from '@vrembem/core/index';
+import { Breakpoint, getConfig } from '@vrembem/core';
 
 import { deregister } from './deregister';
 import { open } from './open';

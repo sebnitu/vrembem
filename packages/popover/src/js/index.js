@@ -1,4 +1,4 @@
-import { Collection } from '@vrembem/core/index';
+import { Collection } from '@vrembem/core';
 
 import defaults from './defaults';
 import { handleKeydown } from './handlers';

@@ -1,4 +1,4 @@
-import { updateGlobalState } from '@vrembem/core/index';
+import { updateGlobalState } from '@vrembem/core';
 
 export function stack(settings) {
 

@@ -10,15 +10,15 @@
     "card"
   ],
   "sass": "index.scss",
-  "style": "dist/styles.css",
+  "style": "dist/index.css",
   "scripts": {
     "build": "npm-run-all clean styles",
     "clean": "del dev && del dist",
     "styles": "npm-run-all styles:dev styles:dist",
-    "styles:dev": "sass index.scss dev/styles.css --load-path=../../node_modules",
-    "styles:dist": "sass index.scss dist/styles.css --load-path=../../node_modules --style=compressed",
+    "styles:dev": "sass index.scss dev/index.css --load-path=../../node_modules",
+    "styles:dist": "sass index.scss dist/index.css --load-path=../../node_modules --style=compressed",
     "watch": "npm run watch:styles",
-    "watch:styles": "nodemon -e scss -x 'npm run styles'"
+    "watch:styles": "concurrently 'npm run styles:dev -- --watch' 'npm run styles:dist -- --watch'"
   },
   "repository": {
     "type": "git",

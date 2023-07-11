@@ -1,4 +1,4 @@
-import { closeTransition, updateGlobalState } from '@vrembem/core/index';
+import { closeTransition, updateGlobalState } from '@vrembem/core';
 import { updateFocusState, getDrawer } from './helpers';
 
 export async function close(query, transition, focus = true) {
