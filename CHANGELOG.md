@@ -19,10 +19,18 @@ chore(release): add v3.0.12 to CHANGELOG.md
 <!-- ADD-NEW-CHANGELOG-HERE -->
 
 
+## v3.0.13 (2023-07-11)
+
+#### :hammer: Chore
+* Dependency bumps
+* [#1193](https://github.com/sebnitu/vrembem/pull/1193) Remove the coveralls dependency
+
+
 ## v3.0.12 (2023-01-02)
 
 #### :hammer: Chore
 * [#1080](https://github.com/sebnitu/vrembem/pull/1080) Bump to current year
+
 
 ## v3.0.11 (2022-12-20)
 
