@@ -15,7 +15,7 @@
     "lint": "npm-run-all lint:styles lint:scripts",
     "lint:scripts": "eslint packages",
     "lint:styles": "stylelint 'packages/**/*.scss'",
-    "sink": "npm ci && npm-run-all build lint test:coverage",
+    "sink": "npm ci && npm-run-all lint test:coverage build",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest",

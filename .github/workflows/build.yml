@@ -14,17 +14,19 @@ jobs:
         with:
           node-version: 20.3.1
   
-      - name: Install and Build
-        run: |
-          npm ci
-          npm run build
+      - name: Setup
+        run: npm ci
 
-      - name: Lint & Test
-        run: |
-          npm run lint
-          npm run test:coverage
+      - name: Lint
+        run: npm run lint
 
-      - name: Coveralls
+      - name: Test
+        run: npm run test:coverage
+
+      - name: Build
+        run: npm run build
+
+      - name: Coverage
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
