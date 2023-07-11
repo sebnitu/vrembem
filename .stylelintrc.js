@@ -1,9 +1,13 @@
-{
+module.exports = {
   "extends": [
     "stylelint-config-standard-scss"
   ],
   "plugins": [
     "stylelint-order"
+  ],
+  "ignoreFiles": [
+    "dev",
+    "dist"
   ],
   "rules": {
     "scss/at-else-closing-brace-newline-after": null,
