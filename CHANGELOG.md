@@ -14,7 +14,7 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v3.0.12 to CHANGELOG.md
+chore(release): add v3.0.13 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
 
