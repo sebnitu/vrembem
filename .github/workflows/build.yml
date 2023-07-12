@@ -29,5 +29,5 @@ jobs:
       - name: Coveralls
         uses: coverallsapp/github-action@v2
         with:
-          file: ./coverage/clover.xml
+          file: ./coverage/coverage-final.json
           github-token: ${{ secrets.GITHUB_TOKEN }}
