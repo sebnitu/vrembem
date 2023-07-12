@@ -17,14 +17,14 @@ jobs:
       - name: Setup
         run: npm ci
 
+      - name: Build
+        run: npm run build
+
       - name: Lint
         run: npm run lint
 
       - name: Test
         run: npm run test:coverage
-
-      - name: Build
-        run: npm run build
 
       - name: Coverage
         uses: coverallsapp/github-action@master
