@@ -4,8 +4,8 @@ import { resizeWindow } from './helpers/resizeWindow';
 import { Breakpoint } from '../index';
 
 const bp = new Breakpoint();
-const handler = jest.fn();
-const handlerAlt = jest.fn();
+const handler = vi.fn();
+const handlerAlt = vi.fn();
 
 beforeAll(() => {
   window.innerWidth = 800;

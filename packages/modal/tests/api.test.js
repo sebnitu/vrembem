@@ -69,7 +69,7 @@ describe('init() & destroy()', () => {
   });
 
   it('should initialize the modal instance with event listeners disabled', async () => {
-    const spy = jest.spyOn(modal, 'initEventListeners');
+    const spy = vi.spyOn(modal, 'initEventListeners');
     await modal.init({
       eventListeners: false,
       transition: false
@@ -79,7 +79,7 @@ describe('init() & destroy()', () => {
   });
 
   it('should destroy the modal instance with event listeners disabled', async () => {
-    const spy = jest.spyOn(modal, 'destroyEventListeners');
+    const spy = vi.spyOn(modal, 'destroyEventListeners');
     expect(modal.settings.eventListeners).toBe(false);
     await modal.destroy();
     expect(spy).not.toHaveBeenCalled();

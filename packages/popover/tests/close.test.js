@@ -4,7 +4,7 @@ import { closeAll, closeCheck } from '../src/js/close';
 
 let popover;
 
-jest.useFakeTimers();
+vi.useFakeTimers();
 
 const markup = `
   <button aria-controls="asdf">...</button>
@@ -68,7 +68,7 @@ describe('closeCheck()', () => {
     popover = new Popover({ autoInit: true });
     expect(popover.collection.length).toBe(3);
     closeCheck.call(popover, popover.collection[0]);
-    jest.advanceTimersByTime(100);
+    vi.advanceTimersByTime(100);
     expect(popover.collection[0].el).not.toHaveClass('is-active');
   });
 
@@ -77,7 +77,7 @@ describe('closeCheck()', () => {
     popover = new Popover({ autoInit: true });
     popover.collection[0].trigger.focus();
     closeCheck.call(popover, popover.collection[0]);
-    jest.advanceTimersByTime(100);
+    vi.advanceTimersByTime(100);
     expect(popover.collection[0].el).toHaveClass('is-active');
   });
 
@@ -86,7 +86,7 @@ describe('closeCheck()', () => {
     popover = new Popover({ autoInit: true });
     popover.collection[0].el.focus();
     closeCheck.call(popover, popover.collection[0]);
-    jest.advanceTimersByTime(100);
+    vi.advanceTimersByTime(100);
     expect(popover.collection[0].el).toHaveClass('is-active');
   });
 });
