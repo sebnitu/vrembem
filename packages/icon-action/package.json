@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/icon-action",
   "description": "A component for displaying simple action buttons using icons.",
-  "version": "4.0.0-alpha.1",
+  "version": "4.0.0-next.2",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/icon-action#readme",
   "dependencies": {
-    "@vrembem/core": "^4.0.0-alpha.1"
+    "@vrembem/core": "^4.0.0-next.2"
   },
   "publishConfig": {
     "access": "public"
