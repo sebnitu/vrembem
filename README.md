@@ -26,7 +26,7 @@ If you'd like to use Vrembem for prototyping or just want to take it for a test 
 
 ```html
 <!-- Include Vrembem styles -->
-<link rel="stylesheet" href="https://unpkg.com/vrembem/dist/styles.css">
+<link rel="stylesheet" href="https://unpkg.com/vrembem/dist/index.css">
 
 <!-- Render a component -->
 <button data-modal-open="modal-id" class="link">Open modal</button>
@@ -64,8 +64,8 @@ Vrembem packages all bundles in two areas, `dist` contains all compressed produc
 
 ```html
 # Styles
-Uncompressed: https://unpkg.com/[COMPONENT]/dev/styles.css
-Compressed:   https://unpkg.com/[COMPONENT]/dist/styles.css
+Uncompressed: https://unpkg.com/[COMPONENT]/dev/index.css
+Compressed:   https://unpkg.com/[COMPONENT]/dist/index.css
 
 # Scripts
 Uncompressed: https://unpkg.com/[COMPONENT]/dev/scripts.umd.js
@@ -76,8 +76,8 @@ For example, if you wanted to include the styles and scripts for the `@vrembem/d
 
 ```html
 <!-- Component specific styles (expanded or compressed) -->
-<link rel="stylesheet" href="https://unpkg.com/@vrembem/drawer/dev/styles.css">
-<link rel="stylesheet" href="https://unpkg.com/@vrembem/drawer/dist/styles.css">
+<link rel="stylesheet" href="https://unpkg.com/@vrembem/drawer/dev/index.css">
+<link rel="stylesheet" href="https://unpkg.com/@vrembem/drawer/dist/index.css">
 
 <!-- Component specific scripts -->
 <script src="https://unpkg.com/@vrembem/drawer/dev/scripts.umd.js"></script>
