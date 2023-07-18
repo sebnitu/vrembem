@@ -1,6 +1,6 @@
 # @vrembem/core
 
-## 4.0.0-next.2
+## 4.0.0-next.0
 
 ### Patch Changes
 
