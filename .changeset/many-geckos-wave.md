@@ -24,4 +24,4 @@
 "@vrembem/menu": patch
 ---
 
-Add changeset into project flow and enter into prerelease mode. This also updates the prerelease naming convention from `alpha` to `next`.
+Add changeset into project flow and Add changeset into project flow and enter into prerelease mode. This also updates the prerelease naming convention from `alpha` to `next`.. This also updates the prerelease naming convention from `alpha` to `next`.
