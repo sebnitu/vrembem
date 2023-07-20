@@ -1,5 +1,11 @@
 # @vrembem/core
 
+## 4.0.0-next.1
+
+### Patch Changes
+
+- 99fa4be3: Added exports map for SCSS files. These are used when importing SCSS files within the context of JavaScript.
+
 ## 4.0.0-next.0
 
 ### Patch Changes
