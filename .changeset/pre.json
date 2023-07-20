@@ -27,6 +27,7 @@
     "vrembem": "4.0.0-alpha.1"
   },
   "changesets": [
-    "many-geckos-wave"
+    "many-geckos-wave",
+    "pretty-spiders-remember"
   ]
 }
