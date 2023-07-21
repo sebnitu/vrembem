@@ -3,22 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>@vrembem/modal</title>
+  <title><%= name %></title>
   <link rel="icon" type="image/png" sizes="32x32" href="https://sebnitu.com/dist/favicon.png">
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/vrembem@next/dist/index.css">
-  <link rel="stylesheet" href="./dev/index.css">
-
 </head>
 <body>
   <main>
     <header class="section background-dark">
-      <div class="section__container gap-y">
-        <h1 class="text-size-lg">@vrembem/modal</h1>
-        <p class="max-width-xs">
-          A component for changing the mode of a page to complete a critical task. This is usually used in conjunction with the dialog component to make modal dialogs.
-        </p>
+      <div class="section__container max-width-xs gap-y">
+        <h1 class="level flex-justify-between">
+          <span class="font-size-lg"><%= name %></span>
+          <span class="font-size-sm font-weight-regular foreground-lighter"><%= version %></span>
+        </h1>
+        <p><%= description %></p>
         <div class="level foreground-lighter">
           <div class="flex flex-align-center gap-x-sm">
             <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -33,8 +29,8 @@
             <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
             </svg>
-            <a class="link" href="https://github.com/sebnitu/vrembem/tree/main/packages/modal">
-              <span>modal</span>
+            <a class="link" href="<%= homepage %>">
+              <span><%= shortName %></span>
             </a>
           </div>
         </div>
@@ -42,21 +38,39 @@
     </header>
 
     <section class="section">
-      <div class="section__container gap-y">
-        <!-- Content goes here... -->
+      <div class="section__container max-width-xs gap-y">
+        
+        <button class="button button_primary" data-modal-open="modal-id">Open</button>
+
+        <div id="modal-id" class="modal">
+          <div class="modal__dialog dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title" aria-describedby="dialog-description">
+            <div class="dialog__header">
+              <h2 id="dialog-title">Modal</h2>
+            </div>
+            <div class="dialog__body">
+              <p id="dialog-description">This is a simple modal using the dialog component for structure.</p>
+            </div>
+            <div class="dialog__footer">
+              <button class="button" data-modal-close>Close</button>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
   </main>
 
-  <!-- CJS -->
-  <script src="./dev/index.umd.cjs"></script>
-
-  <!-- MJS -->
   <script type="module">
-    import Modal from './dev/index.js';
-    const vb = { Modal };
-    console.log('Vrembem CJS:', vrembem);
-    console.log('Vrembem MJS', vb);
+    // Load CSS
+    import 'vrembem/css';
+    import './index.scss';
+
+    // Load JS
+    import Modal from './index.js';
+
+    // Init
+    const modal = new Modal();
+    window.modal = await modal.init();
   </script>
 
 </body>
