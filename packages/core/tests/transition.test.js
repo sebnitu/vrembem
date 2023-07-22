@@ -72,7 +72,7 @@ test('should return a promise when closeTransition is called', () => {
 });
 
 test('should not run opening transition if the transitionend event fired from a child element', () => {
-  const item = openTransition(el, classes);
+  openTransition(el, classes);
   expect(el).toHaveClass('is-opening');
   expect(el.classList.length).toBe(2);
 
@@ -86,7 +86,7 @@ test('should not run opening transition if the transitionend event fired from a 
 });
 
 test('should not closing transition if the transitionend event fired from a child element', () => {
-  const item = closeTransition(el, classes);
+  closeTransition(el, classes);
   expect(el).toHaveClass('is-closing');
   expect(el.classList.length).toBe(2);
 
