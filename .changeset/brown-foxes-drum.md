@@ -1,4 +1,7 @@
 ---
+"vrembem": patch
+"@vrembem/drawer": patch
+"@vrembem/modal": patch
 "@vrembem/core": patch
 ---
 

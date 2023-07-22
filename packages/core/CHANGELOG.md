@@ -1,5 +1,11 @@
 # @vrembem/core
 
+## 4.0.0-next.2
+
+### Patch Changes
+
+- 04f07191: Fix transition bug when child elements transition event bubbles
+
 ## 4.0.0-next.1
 
 ### Patch Changes

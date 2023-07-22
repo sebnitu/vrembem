@@ -1,5 +1,15 @@
 # vrembem
 
+## 4.0.0-next.2
+
+### Patch Changes
+
+- 04f07191: Fix transition bug when child elements transition event bubbles
+- Updated dependencies [04f07191]
+  - @vrembem/drawer@4.0.0-next.2
+  - @vrembem/modal@4.0.0-next.2
+  - @vrembem/core@4.0.0-next.2
+
 ## 4.0.0-next.1
 
 ### Patch Changes
