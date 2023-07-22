@@ -11,7 +11,7 @@
     <header class="section background-dark">
       <div class="section__container max-width-xs gap-y">
         <h1 class="level flex-justify-between">
-          <span class="font-size-lg"><%= name %></span>
+          <span><%= name %></span>
           <span class="font-size-sm font-weight-regular foreground-lighter"><%= version %></span>
         </h1>
         <p><%= description %></p>
@@ -40,18 +40,256 @@
     <section class="section">
       <div class="section__container max-width-xs gap-y">
         
-        <button class="button button_primary" data-modal-open="modal-id">Open</button>
+        <h2 class="h4">modal</h2>
 
-        <div id="modal-id" class="modal">
-          <div class="modal__dialog dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title" aria-describedby="dialog-description">
+        <ul class="list">
+          <li><button class="link" data-modal-open="modal-default">default</button></li>
+          <li><button class="link" data-modal-open="modal-dialog">dialog</button></li>
+          <li><button class="link" data-modal-open="modal-focus-dialog">focus dialog</button></li>
+          <li><button class="link" data-modal-open="modal-focus-inner">focus element</button></li>
+          <li><button class="link" data-modal-open="modal-required">required</button></li>
+        </ul>
+
+        <div id="modal-default" class="modal">
+          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
+            <div class="dialog__body level flex-justify-between">
+              <p>This is a basic modal</p>
+              <button data-modal-close class="link">Close</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="modal-dialog" class="modal">
+          <div class="modal__dialog dialog" role="dialog" aria-modal="true" aria-labelledby="modal-dialog-title" aria-describedby="modal-dialog-description">
             <div class="dialog__header">
-              <h2 id="dialog-title">Modal</h2>
+              <h2 id="modal-dialog-title" class="dialog__title">Modal Dialog</h2>
+              <button class="link" data-modal-close>Close</button>
             </div>
             <div class="dialog__body">
-              <p id="dialog-description">This is a simple modal using the dialog component for structure.</p>
+              <p id="modal-dialog-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean porta diam eget lectus interdum, eu aliquet augue rutrum. Morbi faucibus mauris lectus, in imperdiet augue cursus vel.</p>
+            </div>
+            <div class="dialog__footer flex-justify-end">
+              <div class="button-group">
+                <button data-modal-close class="button button_color_primary">
+                  Some action
+                </button>
+                <button data-modal-close class="button">
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="modal-focus-dialog" class="modal">
+          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
+            <div class="dialog__body level flex-justify-between">
+              <p>Focus modal dialog on open</p>
+              <button data-modal-close class="link">Close</button>
+            </div>
+          </div>
+        </div>
+        
+        <div id="modal-focus-inner" class="modal">
+          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
+            <div class="dialog__body">
+              <div class="level flex-justify-between margin-bottom-md">
+                <p>Focus input element on open</p>
+                <button data-modal-close class="link">Close</button>
+              </div>
+              <input data-focus type="text" class="input" placeholder="Text input...">
+            </div>
+          </div>
+        </div>
+
+        <div id="modal-required" class="modal">
+          <div class="modal__dialog dialog" role="alertdialog" aria-modal="true">
+            <div class="dialog__body gap-y">
+              <h2 class="dialog__title">Required modal</h2>
+              <p>Required modals can not be closed without an explicit action. That means clicking on the background or pressing the escape key to close is disabled.</p>
+              <div class="flex flex-justify-end">
+                <div class="button-group">
+                  <button data-modal-close class="button button_color_primary">I understand</button>
+                  <button data-modal-close class="button button_color_secondary">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="h4">modal_full</h2>
+        
+        <ul class="list">
+          <li><button class="link" data-modal-open="modal-full">modal_full</button></li>
+        </ul>
+        
+        <div id="modal-full" class="modal modal_full">
+          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
+            <div class="dialog__body">
+              <div class="level flex-justify-between">
+                <p>Full modal</p>
+                <button data-modal-close data-modal-focus class="link">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="h4">modal_pos_top</h2>
+
+        <ul class="list">
+          <li><button class="link" data-modal-open="modal-pos-top">modal_pos_top</button></li>
+          <li><button class="link" data-modal-open="modal-pos-bottom">modal_pos_bottom</button></li>
+          <li><button class="link" data-modal-open="modal-pos-left">modal_pos_left</button></li>
+          <li><button class="link" data-modal-open="modal-pos-right">modal_pos_right</button></li>
+        </ul>
+        
+        <div id="modal-pos-top" class="modal modal_pos_top">
+          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
+            <button data-modal-close class="dialog__close link">
+              Close
+            </button>
+            <div class="dialog__body">
+              <p>Top position modal</p>
+            </div>
+            <div class="dialog__footer flex-justify-between">
+              <button class="link" data-modal-open="modal-pos-left">
+                &larr; Left modal
+              </button>
+              <button class="link" data-modal-open="modal-pos-bottom">
+                &darr; Bottom modal
+              </button>
+              <button class="link" data-modal-open="modal-pos-right">
+                &rarr; Right modal
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div id="modal-pos-bottom" class="modal modal_pos_bottom">
+          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
+            <button data-modal-close class="dialog__close link">
+              Close
+            </button>
+            <div class="dialog__body">
+              <p>Bottom position modal</p>
+            </div>
+            <div class="dialog__footer flex-justify-between">
+              <button class="link" data-modal-open="modal-pos-left">
+                &larr; Left modal
+              </button>
+              <button class="link" data-modal-open="modal-pos-top">
+                &uarr; Top modal
+              </button>
+              <button class="link" data-modal-open="modal-pos-right">
+                &rarr; Right modal
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div id="modal-pos-left" class="modal modal_pos_left">
+          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
+            <button data-modal-close class="dialog__close link">
+              Close
+            </button>
+            <div class="dialog__body">
+              <p>Left position modal</p>
             </div>
             <div class="dialog__footer">
-              <button class="button" data-modal-close>Close</button>
+              <button class="link" data-modal-open="modal-pos-top">
+                &uarr; Top modal
+              </button>
+            </div>
+            <div class="dialog__footer">
+              <button class="link" data-modal-open="modal-pos-right">
+                &rarr; Right modal
+              </button>
+            </div>
+            <div class="dialog__footer">
+              <button class="link" data-modal-open="modal-pos-bottom">
+                &darr; Bottom modal
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div id="modal-pos-right" class="modal modal_pos_right">
+          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
+            <button data-modal-close class="dialog__close link">
+              Close
+            </button>
+            <div class="dialog__body">
+              <p>Right position modal</p>
+            </div>
+            <div class="dialog__footer">
+              <button class="link" data-modal-open="modal-pos-top">
+                &uarr; Top modal
+              </button>
+            </div>
+            <div class="dialog__footer">
+              <button class="link" data-modal-open="modal-pos-left">
+                &larr; Left modal
+              </button>
+            </div>
+            <div class="dialog__footer">
+              <button class="link" data-modal-open="modal-pos-bottom">
+                &darr; Bottom modal
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="h4">mod_size_</h2>
+
+        <ul class="list">
+          <li><button class="link" data-modal-open="modal-size-xs">mod_size_xs</button></li>
+          <li><button class="link" data-modal-open="modal-size-sm">mod_size_sm</button></li>
+          <li><button class="link" data-modal-open="modal-size-md">mod_size_md</button></li>
+          <li><button class="link" data-modal-open="modal-size-lg">mod_size_lg</button></li>
+          <li><button class="link" data-modal-open="modal-size-xl">mod_size_xl</button></li>
+        </ul>
+        
+        <div id="modal-size-xs" class="modal modal_size_xs">
+          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
+            <div class="dialog__body level flex-justify-between">
+              <p>Extra small modal</p>
+              <button data-modal-close class="link">Close</button>
+            </div>
+          </div>
+        </div>
+        
+        <div id="modal-size-sm" class="modal modal_size_sm">
+          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
+            <div class="dialog__body level flex-justify-between">
+              <p>Small modal</p>
+              <button data-modal-close class="link">Close</button>
+            </div>
+          </div>
+        </div>
+        
+        <div id="modal-size-md" class="modal modal_size_md">
+          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
+            <div class="dialog__body level flex-justify-between">
+              <p>Medium modal</p>
+              <button data-modal-close class="link">Close</button>
+            </div>
+          </div>
+        </div>
+        
+        <div id="modal-size-lg" class="modal modal_size_lg">
+          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
+            <div class="dialog__body level flex-justify-between">
+              <p>Large modal</p>
+              <button data-modal-close class="link">Close</button>
+            </div>
+          </div>
+        </div>
+        
+        <div id="modal-size-xl" class="modal modal_size_xl">
+          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
+            <div class="dialog__body level flex-justify-between">
+              <p>Extra large modal</p>
+              <button data-modal-close class="link">Close</button>
             </div>
           </div>
         </div>
@@ -59,6 +297,8 @@
       </div>
     </section>
   </main>
+
+  <div class="modals"></div>
 
   <script type="module">
     // Load CSS
@@ -68,9 +308,11 @@
     // Load JS
     import Modal from './index.js';
 
-    // Init
+    // Init and attach modal instance to window
     const modal = new Modal();
-    window.modal = await modal.init();
+    window.modal = await modal.init({
+      teleport: '.modals'
+    });
   </script>
 
 </body>
