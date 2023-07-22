@@ -2,10 +2,13 @@ import { openTransition, closeTransition } from '../index';
 import '@testing-library/jest-dom/extend-expect';
 
 document.body.innerHTML = `
-  <div class="el"></div>
+  <div class="el">
+    <button>...</button>
+  </div>
 `;
 
-const el = document.querySelector('.el');
+const el = document.querySelector('div');
+const btn = document.querySelector('button');
 const classes = {
   stateOpened: 'is-opened',
   stateOpening: 'is-opening',
@@ -66,4 +69,32 @@ test('should return a promise when closeTransition is called', () => {
     expect(el).toHaveClass('is-closed');
     expect(el.classList.length).toBe(2);
   });
+});
+
+test('should not run opening transition if the transitionend event fired from a child element', () => {
+  const item = openTransition(el, classes);
+  expect(el).toHaveClass('is-opening');
+  expect(el.classList.length).toBe(2);
+
+  btn.dispatchEvent(new Event('transitionend', { bubbles: true }));
+  expect(el).toHaveClass('is-opening');
+  expect(el.classList.length).toBe(2);
+
+  el.dispatchEvent(new Event('transitionend'));
+  expect(el).toHaveClass('is-opened');
+  expect(el.classList.length).toBe(2);
+});
+
+test('should not closing transition if the transitionend event fired from a child element', () => {
+  const item = closeTransition(el, classes);
+  expect(el).toHaveClass('is-closing');
+  expect(el.classList.length).toBe(2);
+
+  btn.dispatchEvent(new Event('transitionend', { bubbles: true }));
+  expect(el).toHaveClass('is-closing');
+  expect(el.classList.length).toBe(2);
+
+  el.dispatchEvent(new Event('transitionend'));
+  expect(el).toHaveClass('is-closed');
+  expect(el.classList.length).toBe(2);
 });
