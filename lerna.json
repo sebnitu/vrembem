@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
-  "version": "3.0.13",
+  "version": "3.0.14",
   "command": {
     "publish": {
       "message": "chore(release): bump to %s",
