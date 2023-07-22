@@ -3,7 +3,9 @@ export const openTransition = (el, settings) => {
     if (settings.transition) {
       el.classList.remove(settings.stateClosed);
       el.classList.add(settings.stateOpening);
-      el.addEventListener('transitionend', function _f() {
+      el.addEventListener('transitionend', function _f(event) {
+        // Prevent child transition bubbling from firing this event
+        if (event.target != el) return;
         el.classList.add(settings.stateOpened);
         el.classList.remove(settings.stateOpening);
         resolve(el);
@@ -22,7 +24,10 @@ export const closeTransition = (el, settings) => {
     if (settings.transition) {
       el.classList.add(settings.stateClosing);
       el.classList.remove(settings.stateOpened);
-      el.addEventListener('transitionend', function _f() {
+      el.addEventListener('transitionend', function _f(event) {
+        // Prevent child transition bubbling from firing this event
+        if (event.target != el) return;
+        console.log('transitionend', event.target);
         el.classList.remove(settings.stateClosing);
         el.classList.add(settings.stateClosed);
         resolve(el);
