@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v3.0.13 to CHANGELOG.md
+chore(release): add v3.0.14 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v3.0.14 (2023-07-22)
+
+#### :bug: Bug Fix
+* `core`
+  * [#1334](https://github.com/sebnitu/vrembem/pull/1334) Fix transition bug when child elements transition event bubbles
 
 
 ## v3.0.13 (2023-07-11)
