@@ -7,15 +7,7 @@ const shortName = data.name.replace('@vrembem/', '');
 const shortNameCap = shortName.charAt(0).toUpperCase() + shortName.slice(1);
 
 export default defineConfig({
-  build: {
-    lib: {
-      entry: resolve(__dirname, 'index.js'),
-      name: `vrembem.${shortNameCap}`,
-      fileName: 'index',
-    },
-    emptyOutDir: false,
-    sourcemap: true
-  },
+  build: {},
   plugins: [
     createHtmlPlugin({
       inject: {

@@ -47,19 +47,8 @@
   </main>
 
   <script type="module">
-    // Load CSS
     import 'vrembem/css';
     import './index.scss';
-
-    // Load JS
-    import Drawer from './index.js';
-
-    // Init and attach instance to window
-    const drawer = new Drawer();
-    window.drawer = await drawer.init();
-
-    // Post message to console
-    console.log('Drawer instance has been attached to window:', drawer);
   </script>
 
 </body>
