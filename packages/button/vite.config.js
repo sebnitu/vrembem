@@ -7,7 +7,6 @@ const shortName = data.name.replace('@vrembem/', '');
 const shortNameCap = shortName.charAt(0).toUpperCase() + shortName.slice(1);
 
 export default defineConfig({
-  build: {},
   plugins: [
     createHtmlPlugin({
       inject: {
