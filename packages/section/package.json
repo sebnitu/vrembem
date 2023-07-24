@@ -20,6 +20,7 @@
   "sass": "index.scss",
   "style": "dist/index.css",
   "scripts": {
+    "serve": "vite",
     "build": "npm-run-all clean styles",
     "clean": "del dev && del dist",
     "styles": "npm-run-all styles:dev styles:dist",
