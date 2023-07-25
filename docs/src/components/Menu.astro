@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 const packages = await getCollection('packages');
 ---
 
-<ul class="list">
+<ol class="list">
 {
   packages.map((entry) => (
     <li>
@@ -14,4 +14,4 @@ const packages = await getCollection('packages');
     </li>
   ))
 }
-</ul>
+</ol>
