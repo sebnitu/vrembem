@@ -23,4 +23,4 @@
 "@vrembem/menu": patch
 ---
 
-Added vite index to all packages and root index
+Added vite index to all packages and root index. This update also removes the icon-action component and the checkbox component JavaScript.
