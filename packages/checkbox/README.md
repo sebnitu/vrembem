@@ -17,10 +17,3 @@ npm install @vrembem/checkbox
 ```scss
 @use "@vrembem/checkbox";
 ```
-
-### JavaScript
-
-```js
-import Checkbox from '@vrembem/checkbox';
-const checkbox = new Checkbox({ autoInit: true });
-```
