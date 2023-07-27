@@ -13,5 +13,18 @@
         "packages/**/*.html"
       ]
     }
+  },
+  "changelog": {
+    "repo": "sebnitu/vrembem",
+    "cacheDir": ".changelog",
+    "labels": {
+      "PR: breaking": ":fire: Breaking Changes",
+      "PR: feat": ":tada: New Feature",
+      "PR: fix": ":bug: Bug Fix",
+      "PR: refactor": ":house: Refactor",
+      "PR: test": ":white_check_mark: Testing",
+      "PR: docs": ":books: Documentation",
+      "PR: chore": ":hammer: Chore"
+    }
   }
 }
