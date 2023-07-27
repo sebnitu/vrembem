@@ -23,7 +23,7 @@
 "@vrembem/menu": patch
 ---
 
-This PR adds vite index templates to all packages and a root index for running a multi-page dev server. This update also: 
+This update adds vite index templates to all packages and a root index for running a multi-page dev server. This update also: 
 
 - Removes the icon-action component
 - Removes the checkbox component JavaScript
