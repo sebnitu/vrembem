@@ -9,7 +9,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  ignorePatterns: ["dev", "dist", "tests"],
+  ignorePatterns: ["dev", "dist", "tests", "tsconfig.json"],
   rules: {
     "indent": [
       "error",
