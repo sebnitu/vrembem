@@ -19,8 +19,64 @@ chore(release): add v4.0.0-next.0 to CHANGELOG.md
 <!-- v4 -->
 
 
+## 4.0.0-next.2 (2023-07-22)
+
+### :fire: Breaking Changes
+* `checkbox`, `icon-action`
+  * [#1328](https://github.com/sebnitu/vrembem/pull/1328) Removes the icon-action component and checkbox component JavaScript
+
+#### :books: Documentation
+* `base`, `breadcrumb`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
+  * [#1328](https://github.com/sebnitu/vrembem/pull/1328) Added vite index templates to all packages and a root index for running a multi-page dev server. This update also:
+    * Removes the icon-action component
+    * Removes the checkbox component JavaScript
+
+#### :bug: Bug Fix
+* `core`, `modal`, `drawer`
+  * [#1330](https://github.com/sebnitu/vrembem/pull/1330) Fix transition bug when child elements transition event bubbles
+
+
+## 4.0.0-next.1 (2023-07-20)
+
+#### :hammer: Chore
+* `base`, `breadcrumb`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `icon-action`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
+  * [#1323](https://github.com/sebnitu/vrembem/pull/1323) Added exports map for SCSS files. These are used when importing SCSS files within the context of JavaScript.
+
+
+## v4.0.0-next.0 (2023-04-20)
+
+#### :hammer: Chore
+* `base`, `breadcrumb`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `icon-action`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
+  * [#1192](https://github.com/sebnitu/vrembem/pull/1192) Remove the coveralls dependency
+
+
+## v4.0.0-alpha.0 (2023-02-17)
+
+#### :tada: New Feature
+* `base`, `breadcrumb`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `icon-action`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
+  * [#891](https://github.com/sebnitu/vrembem/pull/891) New palette and theme modules
+
+#### :house: Refactor
+* `card`, `modal`, `section`
+  * [#900](https://github.com/sebnitu/vrembem/pull/900) Refactor modal screen styles and how they are applied
+* `base`
+  * [#899](https://github.com/sebnitu/vrembem/pull/899) Rename base module to normalize
+* `button-group`, `vrembem`
+  * [#898](https://github.com/sebnitu/vrembem/pull/898) Deprecate button-group
+* `breadcrumb`, `drawer`, `grid`, `input`, `modal`, `popover`, `vrembem`
+  * [#897](https://github.com/sebnitu/vrembem/pull/897) Deprecate breadcrumb
+
+#### :books: Documentation
+* `base`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `grid`, `icon-action`, `icon`, `input`, `level`, `media`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`
+  * [#1107](https://github.com/sebnitu/vrembem/pull/1107) Migrate docs from Jekyll to Astro
+
+#### :hammer: Chore
+* `core`
+  * [#944](https://github.com/sebnitu/vrembem/pull/944) Add palette, theme and root manifest to npm files field
+
 
 <!-- v3 -->
+
 
 ## v3.0.14 (2023-07-22)
 
@@ -178,7 +234,9 @@ chore(release): add v4.0.0-next.0 to CHANGELOG.md
     * **Events**
       * `drawer:toDefault` and `drawer:toModal` events have been deprecated in favor of `drawer:switchMode` which is emitted whenever a drawer's mode changes. To check the mode state, use `event.target` and check for the `drawer_modal` class, or get the collection entry and check `entry.mode` property for current state.
 
+
 <!-- v2 -->
+
 
 ## v2.0.0 (2022-03-17)
 
@@ -203,7 +261,9 @@ chore(release): add v4.0.0-next.0 to CHANGELOG.md
       * `dataRequired` => `selectorRequired`: Takes a valid CSS selector string.
       * `dataFocus` => `selectorFocus`: Takes a valid CSS selector string (defaults to`[data-focus]`).
 
+
 <!-- v1 -->
+
 
 ## v1.42.1 (2022-03-09)
 
