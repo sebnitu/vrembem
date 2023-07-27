@@ -4,21 +4,21 @@ This document logs all notable changes to the Vrembem project.
 
 **Tags:**
 
-| Label | Heading |
-|:---|:---|
-| `PR: breaking` | :fire: Breaking Changes |
-| `PR: feat` | :tada: New Feature |
-| `PR: fix` | :bug: Bug Fix |
-| `PR: refactor` | :house: Refactor |
-| `PR: test` | :white_check_mark: Testing |
-| `PR: docs` | :books: Documentation |
-| `PR: chore` | :hammer: Chore |
+| Label          | Heading                    |
+| :------------- | :------------------------- |
+| `PR: breaking` | :fire: Breaking Changes    |
+| `PR: feat`     | :tada: New Feature         |
+| `PR: fix`      | :bug: Bug Fix              |
+| `PR: refactor` | :house: Refactor           |
+| `PR: test`     | :white_check_mark: Testing |
+| `PR: docs`     | :books: Documentation      |
+| `PR: chore`    | :hammer: Chore             |
 
 <!--
 Commit message template:
 chore(release): add v4.0.0-next.0 to CHANGELOG.md
 -->
-<!-- v4 -->
+<!-- v4.0.0-next -->
 
 
 ## 4.0.0-next.2 (2023-07-22)
