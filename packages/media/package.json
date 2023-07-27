@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/media",
   "description": "The media component is used for displaying groups of content with a corresponding media asset, such as an image, avatar or icon.",
-  "version": "4.0.0-next.1",
+  "version": "4.0.0-next.0",
   "license": "MIT",
   "keywords": [
     "BEM",

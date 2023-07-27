@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/radio",
   "description": "Radios allow the user to select a single option from a set.",
-  "version": "4.0.0-next.1",
+  "version": "4.0.0-next.0",
   "license": "MIT",
   "keywords": [
     "BEM",
