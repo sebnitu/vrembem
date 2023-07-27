@@ -9,26 +9,26 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  ignorePatterns: ["dev", "dist", "tests", "tsconfig.json"],
+  ignorePatterns: ['dev', 'dist', 'tests', 'tsconfig.json'],
   rules: {
-    "indent": [
-      "error",
+    'indent': [
+      'error',
       2,
       {
-        "SwitchCase": 1
+        'SwitchCase': 1
       }
     ],
-    "linebreak-style": [
-      "error",
-      "unix"
+    'linebreak-style': [
+      'error',
+      'unix'
     ],
-    "quotes": [
-      "error",
-      "single"
+    'quotes': [
+      'error',
+      'single'
     ],
-    "semi": [
-      "error",
-      "always"
+    'semi': [
+      'error',
+      'always'
     ]
   }
-}
+};
