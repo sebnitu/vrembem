@@ -15,6 +15,14 @@ This document logs all notable changes to the Vrembem project.
 | `PR: chore`    | :hammer: Chore             |
 
 <!--
+Publish flow for `next` branch
+- Merge branch that contains appropriate PR label
+- Run `npx lerna-changelog`
+- Copy/paste output from changelog into this file
+- Commit changes using the commit message template
+- Run `npx lerna version`
+- Run `npx lerna publish from-package --dist-tag next`
+
 Commit message template:
 chore(release): add v4.0.0-next.3 to CHANGELOG.md
 -->
