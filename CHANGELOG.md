@@ -2,15 +2,17 @@
 
 This document logs all notable changes to the Vrembem project.
 
-__Tags:__
+**Tags:**
 
-- :fire: `breaking:` Breaking Changes
-- :tada: `feat:` New Feature
-- :bug: `fix:` Bug Fix
-- :white_check_mark: `test:` Testing
-- :books: `docs:` Documentation
-- :hammer: `chore:` Chore
-- :house: `refactor:` Refactor
+| Label | Heading |
+|:---|:---|
+| `PR: breaking` | :fire: Breaking Changes |
+| `PR: feat` | :tada: New Feature |
+| `PR: fix` | :bug: Bug Fix |
+| `PR: refactor` | :house: Refactor |
+| `PR: test` | :white_check_mark: Testing |
+| `PR: docs` | :books: Documentation |
+| `PR: chore` | :hammer: Chore |
 
 <!--
 Commit message template:
@@ -25,38 +27,38 @@ chore(release): add v4.0.0-next.0 to CHANGELOG.md
 * `checkbox`, `icon-action`
   * [#1328](https://github.com/sebnitu/vrembem/pull/1328) Removes the icon-action component and checkbox component JavaScript
 
-#### :books: Documentation
+### :books: Documentation
 * `base`, `breadcrumb`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
   * [#1328](https://github.com/sebnitu/vrembem/pull/1328) Added vite index templates to all packages and a root index for running a multi-page dev server. This update also:
     * Removes the icon-action component
     * Removes the checkbox component JavaScript
 
-#### :bug: Bug Fix
+### :bug: Bug Fix
 * `core`, `modal`, `drawer`
   * [#1330](https://github.com/sebnitu/vrembem/pull/1330) Fix transition bug when child elements transition event bubbles
 
 
 ## 4.0.0-next.1 (2023-07-20)
 
-#### :hammer: Chore
+### :hammer: Chore
 * `base`, `breadcrumb`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `icon-action`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
   * [#1323](https://github.com/sebnitu/vrembem/pull/1323) Added exports map for SCSS files. These are used when importing SCSS files within the context of JavaScript.
 
 
 ## v4.0.0-next.0 (2023-04-20)
 
-#### :hammer: Chore
+### :hammer: Chore
 * `base`, `breadcrumb`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `icon-action`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
   * [#1192](https://github.com/sebnitu/vrembem/pull/1192) Remove the coveralls dependency
 
 
 ## v4.0.0-alpha.0 (2023-02-17)
 
-#### :tada: New Feature
+### :tada: New Feature
 * `base`, `breadcrumb`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `icon-action`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
   * [#891](https://github.com/sebnitu/vrembem/pull/891) New palette and theme modules
 
-#### :house: Refactor
+### :house: Refactor
 * `card`, `modal`, `section`
   * [#900](https://github.com/sebnitu/vrembem/pull/900) Refactor modal screen styles and how they are applied
 * `base`
@@ -66,11 +68,11 @@ chore(release): add v4.0.0-next.0 to CHANGELOG.md
 * `breadcrumb`, `drawer`, `grid`, `input`, `modal`, `popover`, `vrembem`
   * [#897](https://github.com/sebnitu/vrembem/pull/897) Deprecate breadcrumb
 
-#### :books: Documentation
+### :books: Documentation
 * `base`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `grid`, `icon-action`, `icon`, `input`, `level`, `media`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`
   * [#1107](https://github.com/sebnitu/vrembem/pull/1107) Migrate docs from Jekyll to Astro
 
-#### :hammer: Chore
+### :hammer: Chore
 * `core`
   * [#944](https://github.com/sebnitu/vrembem/pull/944) Add palette, theme and root manifest to npm files field
 
@@ -80,41 +82,41 @@ chore(release): add v4.0.0-next.0 to CHANGELOG.md
 
 ## v3.0.14 (2023-07-22)
 
-#### :bug: Bug Fix
+### :bug: Bug Fix
 * `core`
   * [#1334](https://github.com/sebnitu/vrembem/pull/1334) Fix transition bug when child elements transition event bubbles
 
 
 ## v3.0.13 (2023-07-11)
 
-#### :hammer: Chore
+### :hammer: Chore
 * Dependency bumps
 * [#1193](https://github.com/sebnitu/vrembem/pull/1193) Remove the coveralls dependency
 
 
 ## v3.0.12 (2023-01-02)
 
-#### :hammer: Chore
+### :hammer: Chore
 * [#1080](https://github.com/sebnitu/vrembem/pull/1080) Bump to current year
 
 
 ## v3.0.11 (2022-12-20)
 
-#### :bug: Bug Fix
+### :bug: Bug Fix
 * `base`, `breadcrumb`, `button-group`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `grid`, `icon-action`, `icon`, `input`, `level`, `media`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `tooltip`, `utility`, `vrembem`
   * [#1075](https://github.com/sebnitu/vrembem/pull/1075) Remove touchend events from modal and drawer click handling
 
 
 ## v3.0.10 (2022-07-10)
 
-#### :bug: Bug Fix
+### :bug: Bug Fix
 * `core`
   * [#943](https://github.com/sebnitu/vrembem/pull/943) Add core root.scss to the NPM files field
 
 
 ## v3.0.9 (2022-07-10)
 
-#### :bug: Bug Fix
+### :bug: Bug Fix
 * `core`, `vrembem`
   * [#942](https://github.com/sebnitu/vrembem/pull/942) Fix core Sass module order and move root manifest
 
