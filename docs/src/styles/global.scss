@@ -1,2 +1,13 @@
-@use "vrembem";
+@use "@vrembem/core/palette" with (
+  $seeds: (
+    "primary": hsl(152, 60%, 50%),
+    "secondary": hsl(214, 50%, 50%),
+    "neutral": hsl(30, 8%, 50%),
+    "important": hsl(0, 80%, 50%),
+  )
+);
+@use "vrembem" with (
+  $base-body-background: var(--vb-background-darker),
+  $base-font-family: "Barlow"
+);
 @use "./swatch";

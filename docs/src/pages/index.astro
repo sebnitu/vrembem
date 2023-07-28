@@ -1,12 +1,50 @@
 ---
-import Home from '../layouts/Home.astro';
-import Menu from '../components/Menu.astro';
+import Home from "../layouts/Home.astro";
+import Logo from "../components/Logo.astro";
 ---
 
 <Home>
-	<header class="type">
-		<h1>Vrembem</h1>
-		<p>A component library based on the BEM methodology.</p>
-	</header>
-	<Menu />
+  <div class="section section_size_sm background">
+    <div class="section__container">
+      <div class="level">
+        <a class="flex-grow-1" href="#">
+          <strong>Vrembem</strong>
+          <span class="foreground-lighter">v4.0.0</span>
+        </a>
+        <ul class="menu menu_inline">
+          <li class="menu__item">
+            <a class="menu__action" href="#">Get Started</a>
+          </li>
+          <li class="menu__item"><a class="menu__action" href="#">Docs</a></li>
+          <li class="menu__item">
+            <a class="menu__action" href="#">GitHub</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__action" href="#">Sponsor</a>
+          </li>
+          <li class="menu__sep"></li>
+          <li class="menu__item">
+            <button class="menu__action">Dark Mode</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <header class="section section_size_xl type">
+    <div class="section__container text-align-center">
+      <h1>
+        <Logo />
+      </h1>
+      <p class="font-size-lg margin-bottom-xl">
+        A component library based on the BEM methodology.
+      </p>
+      <div class="level flex-justify-center">
+        <button class="button button_color_primary">Get Started</button>
+        <button class="button button_color_secondary">Documentation</button>
+        <button class="button">
+          <span class="code">$ npm install vrembem</span>
+        </button>
+      </div>
+    </div>
+  </header>
 </Home>
