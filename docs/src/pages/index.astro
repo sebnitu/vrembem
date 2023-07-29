@@ -8,11 +8,12 @@ import LogoIcon from "../components/LogoIcon.astro";
   <header class="section section_size_sm background">
     <div class="section__container">
       <div class="level">
-        <a class="flex-grow-1" href="#">
+        <a class="flex-grow-1 flex gap-x" href="#">
           <strong>Vrembem</strong>
           <span class="foreground-lighter">v4.0.0</span>
         </a>
-        <ul class="menu menu_inline">
+
+        <ul class="menu menu_inline display-none display-flex-md">
           <li class="menu__item">
             <a class="menu__action" href="#">Get Started</a>
           </li>
@@ -28,6 +29,8 @@ import LogoIcon from "../components/LogoIcon.astro";
             <button class="menu__action">Dark Mode</button>
           </li>
         </ul>
+
+        <button class="button display-block display-none-md">Menu</button>
       </div>
     </div>
   </header>
@@ -54,37 +57,55 @@ import LogoIcon from "../components/LogoIcon.astro";
         <div class="grid__item span-12 span-6-sm span-4-lg">
           <div class="background radius-lg padding-xl gap-y-sm">
             <h2 class="font-size-lg">BEM Methodoloy</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent cursus sit amet urna vel tincidunt.</p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+              cursus sit amet urna vel tincidunt.
+            </p>
           </div>
         </div>
         <div class="grid__item span-12 span-6-sm span-4-lg">
           <div class="background radius-lg padding-xl gap-y-sm">
             <h2 class="font-size-lg">CSS Variables</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent cursus sit amet urna vel tincidunt.</p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+              cursus sit amet urna vel tincidunt.
+            </p>
           </div>
         </div>
         <div class="grid__item span-12 span-6-sm span-4-lg">
           <div class="background radius-lg padding-xl gap-y-sm">
             <h2 class="font-size-lg">Modular</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent cursus sit amet urna vel tincidunt.</p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+              cursus sit amet urna vel tincidunt.
+            </p>
           </div>
         </div>
         <div class="grid__item span-12 span-6-sm span-4-lg">
           <div class="background radius-lg padding-xl gap-y-sm">
             <h2 class="font-size-lg">Accessible</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent cursus sit amet urna vel tincidunt.</p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+              cursus sit amet urna vel tincidunt.
+            </p>
           </div>
         </div>
         <div class="grid__item span-12 span-6-sm span-4-lg">
           <div class="background radius-lg padding-xl gap-y-sm">
             <h2 class="font-size-lg">Portable</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent cursus sit amet urna vel tincidunt.</p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+              cursus sit amet urna vel tincidunt.
+            </p>
           </div>
         </div>
         <div class="grid__item span-12 span-6-sm span-4-lg">
           <div class="background radius-lg padding-xl gap-y-sm">
             <h2 class="font-size-lg">Customizable</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent cursus sit amet urna vel tincidunt.</p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+              cursus sit amet urna vel tincidunt.
+            </p>
           </div>
         </div>
       </div>
@@ -94,7 +115,7 @@ import LogoIcon from "../components/LogoIcon.astro";
     <div class="section__container border-top padding-top-xl">
       <div class="level">
         <p class="foreground-lighter flex-grow-1">
-          Vrembem is released under the MIT License.<br>
+          Vrembem is released under the MIT License.<br />
           Copyright 2023 Sebastian Nitu.
         </p>
         <a class="foreground-primary" href="#">
