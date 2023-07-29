@@ -1,6 +1,7 @@
 ---
 import Home from "../layouts/Home.astro";
 import Logo from "../components/Logo.astro";
+import LogoIcon from "../components/LogoIcon.astro";
 ---
 
 <Home>
@@ -47,4 +48,59 @@ import Logo from "../components/Logo.astro";
       </div>
     </div>
   </header>
+  <section class="section">
+    <div class="section__container">
+      <div class="grid">
+        <div class="grid__item span-12 span-6-sm span-4-lg">
+          <div class="background radius-lg padding-xl gap-y-sm">
+            <h2 class="font-size-lg">BEM Methodoloy</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent cursus sit amet urna vel tincidunt.</p>
+          </div>
+        </div>
+        <div class="grid__item span-12 span-6-sm span-4-lg">
+          <div class="background radius-lg padding-xl gap-y-sm">
+            <h2 class="font-size-lg">CSS Variables</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent cursus sit amet urna vel tincidunt.</p>
+          </div>
+        </div>
+        <div class="grid__item span-12 span-6-sm span-4-lg">
+          <div class="background radius-lg padding-xl gap-y-sm">
+            <h2 class="font-size-lg">Modular</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent cursus sit amet urna vel tincidunt.</p>
+          </div>
+        </div>
+        <div class="grid__item span-12 span-6-sm span-4-lg">
+          <div class="background radius-lg padding-xl gap-y-sm">
+            <h2 class="font-size-lg">Accessible</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent cursus sit amet urna vel tincidunt.</p>
+          </div>
+        </div>
+        <div class="grid__item span-12 span-6-sm span-4-lg">
+          <div class="background radius-lg padding-xl gap-y-sm">
+            <h2 class="font-size-lg">Portable</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent cursus sit amet urna vel tincidunt.</p>
+          </div>
+        </div>
+        <div class="grid__item span-12 span-6-sm span-4-lg">
+          <div class="background radius-lg padding-xl gap-y-sm">
+            <h2 class="font-size-lg">Customizable</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent cursus sit amet urna vel tincidunt.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="section">
+    <div class="section__container border-top padding-top-xl">
+      <div class="level">
+        <p class="foreground-lighter flex-grow-1">
+          Vrembem is released under the MIT License.<br>
+          Copyright 2023 Sebastian Nitu.
+        </p>
+        <a class="foreground-primary" href="#">
+          <LogoIcon />
+        </a>
+      </div>
+    </div>
+  </footer>
 </Home>
