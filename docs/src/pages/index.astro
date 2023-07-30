@@ -2,6 +2,7 @@
 import Home from "../layouts/Home.astro";
 import Logo from "../components/Logo.astro";
 import LogoIcon from "../components/LogoIcon.astro";
+import Icon from "../components/Icon.vue";
 ---
 
 <Home>
@@ -26,7 +27,9 @@ import LogoIcon from "../components/LogoIcon.astro";
           </li>
           <li class="menu__sep"></li>
           <li class="menu__item">
-            <button class="menu__action">Dark Mode</button>
+            <button class="menu__action menu__action_icon">
+              <Icon name="moon" />
+            </button>
           </li>
         </ul>
 
@@ -46,7 +49,8 @@ import LogoIcon from "../components/LogoIcon.astro";
         <button class="button button_color_primary">Get Started</button>
         <button class="button button_color_secondary">Documentation</button>
         <button class="button">
-          <span class="code">$ npm install vrembem</span>
+          <span class="code"> $ npm install vrembem</span>
+          <Icon name="copy" classes="icon_size_sm foreground-primary" />
         </button>
       </div>
     </div>
@@ -56,6 +60,7 @@ import LogoIcon from "../components/LogoIcon.astro";
       <div class="grid">
         <div class="grid__item span-12 span-6-sm span-4-lg">
           <div class="background radius-lg padding-xl gap-y-sm">
+            <Icon name="database" classes="icon_size_lg foreground-primary" />
             <h2 class="font-size-lg">BEM Methodoloy</h2>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
@@ -65,6 +70,7 @@ import LogoIcon from "../components/LogoIcon.astro";
         </div>
         <div class="grid__item span-12 span-6-sm span-4-lg">
           <div class="background radius-lg padding-xl gap-y-sm">
+            <Icon name="box" classes="icon_size_lg foreground-primary" />
             <h2 class="font-size-lg">CSS Variables</h2>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
@@ -74,6 +80,7 @@ import LogoIcon from "../components/LogoIcon.astro";
         </div>
         <div class="grid__item span-12 span-6-sm span-4-lg">
           <div class="background radius-lg padding-xl gap-y-sm">
+            <Icon name="zap" classes="icon_size_lg foreground-primary" />
             <h2 class="font-size-lg">Modular</h2>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
@@ -83,6 +90,7 @@ import LogoIcon from "../components/LogoIcon.astro";
         </div>
         <div class="grid__item span-12 span-6-sm span-4-lg">
           <div class="background radius-lg padding-xl gap-y-sm">
+            <Icon name="award" classes="icon_size_lg foreground-primary" />
             <h2 class="font-size-lg">Accessible</h2>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
@@ -92,6 +100,7 @@ import LogoIcon from "../components/LogoIcon.astro";
         </div>
         <div class="grid__item span-12 span-6-sm span-4-lg">
           <div class="background radius-lg padding-xl gap-y-sm">
+            <Icon name="command" classes="icon_size_lg foreground-primary" />
             <h2 class="font-size-lg">Portable</h2>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
@@ -101,6 +110,7 @@ import LogoIcon from "../components/LogoIcon.astro";
         </div>
         <div class="grid__item span-12 span-6-sm span-4-lg">
           <div class="background radius-lg padding-xl gap-y-sm">
+            <Icon name="search" classes="icon_size_lg foreground-primary" />
             <h2 class="font-size-lg">Customizable</h2>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
