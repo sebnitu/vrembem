@@ -1,17 +1,17 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
 
-const packages = await getCollection('packages');
+const packages = await getCollection("packages");
 ---
 
 <ol class="list">
-{
-  packages.map((entry) => (
-    <li>
-      <a class="link" href={`packages/${entry.slug}`}>
-        {entry.data.title}
-      </a>
-    </li>
-  ))
-}
+  {
+    packages.map((entry) => (
+      <li>
+        <a class="link" href={`/packages/${entry.slug}`}>
+          {entry.data.title}
+        </a>
+      </li>
+    ))
+  }
 </ol>

@@ -5,10 +5,30 @@ const { title } = Astro.props;
 ---
 
 <Base title={title}>
-  <div class="section">
-    <div class="section__container max-width-xs type gap-y">
-      <a href="/">&larr; Back</a>
+  <div class="drawer-frame">
+    <aside id="drawer-id" class="drawer is-opened">
+      <div class="drawer__dialog">
+        <slot name="sidebar" />
+      </div>
+    </aside>
+
+    <div class="drawer-main">
+      <a href="/" class="link">Back</a>
       <slot />
     </div>
   </div>
 </Base>
+
+<style>
+  .drawer-frame {
+    background-color: aquamarine;
+  }
+
+  .drawer__dialog {
+    background-color: pink;
+  }
+
+  .drawer-main {
+    background-color: beige;
+  }
+</style>
