@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue';
-import { popover } from '../modules/usePopover.mjs';
+import { popover } from '../modules/usePopover.js';
 
 function uniqueID() {
   return Math.floor(Math.random() * Date.now());

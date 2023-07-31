@@ -1,13 +1,16 @@
 ---
-import Base from './Base.astro';
+import Base from "./Base.astro";
+import Icon from "../components/Icon.vue";
 
 const { title } = Astro.props;
 ---
 
-<Base title={ title }>
+<Base title={title}>
   <div class="section">
-		<div class="section__container max-width-xs type gap-y">
-      <a href="/">&larr; Back</a>
+    <div class="section__container max-width-xs type gap-y">
+      <a href="/" class="button button_icon">
+        <Icon name="arrow-left" classes="icon_size_sm" />
+      </a>
       <slot />
     </div>
   </div>

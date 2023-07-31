@@ -1,25 +1,25 @@
 ---
-import { CollectionEntry, getCollection } from 'astro:content';
-import Layout from '../../layouts/Page.astro';
-import Pre from '../../components/Pre.astro';
-import Table from '../../components/Table.astro';
+import { CollectionEntry, getCollection } from "astro:content";
+import Layout from "../../layouts/Page.astro";
+import Pre from "../../components/Pre.astro";
+import Table from "../../components/Table.astro";
 
 export async function getStaticPaths() {
-  const packages = await getCollection('packages');
-  return packages.map(entry => ({
+  const packages = await getCollection("packages");
+  return packages.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
   }));
 }
 
 interface Props {
-  item: CollectionEntry<"packages">
+  entry: CollectionEntry<"packages">;
 }
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<Layout title={ entry.data.title }>
+<Layout title={entry.data.title}>
   <Content components={{ pre: Pre, table: Table }} />
 </Layout>
