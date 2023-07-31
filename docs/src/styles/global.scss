@@ -11,3 +11,11 @@
 
 @use "./swatch";
 @use "./fold-shadow";
+
+astro-island {
+  display: block !important;
+}
+
+.header {
+  z-index: 10;
+}
