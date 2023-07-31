@@ -1600,6 +1600,12 @@ input::-moz-placeholder {
   overflow: visible;
 }
 
+.drawer.is-opening,
+.drawer.is-closing {
+  transition-property: background-color, opacity, transform;
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
 .drawer.is-opening .drawer__dialog,
 .drawer.is-closing .drawer__dialog {
   transition-property: opacity, transform;
@@ -1620,20 +1626,77 @@ input::-moz-placeholder {
   opacity: 0;
 }
 
+/**
+ * Drawer slide transition
+ */
+.drawer {
+  left: 0;
+  transform: translateX(-100%);
+}
+.drawer.is-opening,
+.drawer.is-opened {
+  transform: translateX(0);
+}
+
+.drawer.is-closing {
+  transform: translateX(-100%);
+}
+
+/**
+ * Drawer switched slide transition
+ */
+.drawer_switch {
+  right: 0;
+  left: auto;
+  transform: translateX(100%);
+}
+.drawer_switch.is-closing {
+  transform: translateX(100%);
+}
+
+/**
+ * Drawer main margins
+ */
+.drawer:not(.drawer_modal, .drawer_switch).is-opening ~ .drawer-main, .drawer:not(.drawer_modal, .drawer_switch).is-opened ~ .drawer-main {
+  margin-left: 18em;
+}
+
+.drawer.drawer_switch:not(.drawer_modal).is-opening ~ .drawer-main, .drawer.drawer_switch:not(.drawer_modal).is-opened ~ .drawer-main {
+  margin-right: 18em;
+}
+
+/**
+ * Drawer modal styles
+ */
 .drawer_modal {
   z-index: 900;
+  right: auto;
+  left: 0;
   width: 0;
   height: 0;
   overflow: hidden;
+  transform: translateX(0);
   background-color: rgba(255, 255, 255, 0);
 }
 .drawer_modal .drawer__dialog {
   position: absolute;
   z-index: 901;
+  left: 0;
   width: 18em;
   max-width: 80%;
+  transform: translateX(-100%);
   background-color: #fff;
   box-shadow: 0 0 2px 1px rgba(33, 33, 33, 0.05), 0 12px 24px rgba(33, 33, 33, 0.2);
+}
+.drawer_modal.drawer_switch {
+  right: auto;
+  left: 0;
+  transform: translateX(0);
+}
+.drawer_modal.drawer_switch .drawer__dialog {
+  right: 0;
+  left: auto;
+  transform: translateX(100%);
 }
 .drawer_modal .dialog__header,
 .drawer_modal .dialog__footer {
@@ -1643,6 +1706,9 @@ input::-moz-placeholder {
   background: #fff;
 }
 
+/**
+ * Drawer modal transition
+ */
 .drawer_modal.is-opening,
 .drawer_modal.is-opened,
 .drawer_modal.is-closing {
@@ -1652,55 +1718,27 @@ input::-moz-placeholder {
 }
 
 .drawer_modal.is-opening,
-.drawer_modal.is-closing {
-  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.drawer_modal.is-opening,
 .drawer_modal.is-opened {
+  transform: translateX(0);
   background-color: rgba(66, 66, 66, 0.8);
 }
-
-.drawer_modal.is-closing {
-  background-color: rgba(66, 66, 66, 0);
-}
-
-.drawer:not(.drawer_switch) {
-  left: 0;
-}
-.drawer:not(.drawer_switch) .drawer__dialog {
-  left: 0;
-  transform: translateX(-100%);
-}
-
-.drawer_switch {
-  right: 0;
-}
-.drawer_switch .drawer__dialog {
-  right: 0;
-  transform: translateX(100%);
-}
-
-.drawer:not(.drawer_switch).is-opening:not(.drawer_modal) ~ .drawer-main,
-.drawer:not(.drawer_switch).is-opened:not(.drawer_modal) ~ .drawer-main {
-  margin-left: 18em;
-}
-
-.drawer_switch.is-opening:not(.drawer_modal) ~ .drawer-main,
-.drawer_switch.is-opened:not(.drawer_modal) ~ .drawer-main {
-  margin-right: 18em;
-}
-
-.drawer.is-opening .drawer__dialog,
-.drawer.is-opened .drawer__dialog {
+.drawer_modal.is-opening .drawer__dialog,
+.drawer_modal.is-opened .drawer__dialog {
   transform: translateX(0);
 }
 
-.drawer:not(.drawer_switch).is-closing .drawer__dialog {
+.drawer_modal.is-closing {
+  transform: translateX(0);
+  background-color: rgba(66, 66, 66, 0);
+}
+.drawer_modal.is-closing .drawer__dialog {
   transform: translateX(-100%);
 }
 
-.drawer_switch.is-closing .drawer__dialog {
+.drawer_modal.drawer_switch.is-closing {
+  transform: translateX(0);
+}
+.drawer_modal.drawer_switch.is-closing .drawer__dialog {
   transform: translateX(100%);
 }
 
