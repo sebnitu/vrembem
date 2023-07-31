@@ -5,12 +5,12 @@ const { title } = Astro.props;
 ---
 
 <Base title={ title }>
-  <main class="section">
+  <div class="section">
 		<div class="section__container max-width-xs type gap-y">
       <a href="/">&larr; Back</a>
       <slot />
     </div>
-  </main>
+  </div>
 </Base>
 
 <style is:global>

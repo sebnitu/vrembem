@@ -38,6 +38,11 @@ import Modal from "../components/Modal.vue"
           <Icon name="menu" />
         </button>
 
+        <Modal client:only id="modal-menu" modalClass="modal_full">
+          <div class="dialog__body">
+            <p>This is some modal content...</p>
+          </div>
+        </Modal>
       </div>
     </div>
   </header>
@@ -145,10 +150,4 @@ import Modal from "../components/Modal.vue"
       </div>
     </div>
   </footer>
-
-  <Modal client:load id="modal-menu" modalClass="modal_full">
-    <div class="dialog__body">
-      <p>This is some modal content...</p>
-    </div>
-  </Modal>
 </Home>

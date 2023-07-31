@@ -15,7 +15,7 @@
 
 <script lang="ts" setup>
 import Popover from './Popover.vue';
-import { popover } from '../modules/usePopover.mjs';
+import { popover } from '../modules/usePopover';
 import { ref } from 'vue';
 
 const copied = ref(false);
