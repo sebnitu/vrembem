@@ -1,0 +1,32 @@
+---
+import Icon from "../components/Icon.vue";
+
+interface Props {
+  classes?: string;
+}
+
+let { classes = "" } = Astro.props;
+---
+
+<ul class={`menu${classes ? " " + classes : ""}`}>
+  <li class="menu__item">
+    <a class="menu__action" href="#">Get Started</a>
+  </li>
+  <li class="menu__item"><a class="menu__action" href="#">Docs</a></li>
+  <li class="menu__item">
+    <a
+      class="menu__action"
+      href="https://github.com/sebnitu/vrembem"
+      target="_blank">GitHub</a
+    >
+  </li>
+  <li class="menu__item">
+    <a class="menu__action" href="#">Sponsor</a>
+  </li>
+  <li class="menu__sep"></li>
+  <li class="menu__item">
+    <button class="menu__action menu__action_icon">
+      <Icon name="moon" />
+    </button>
+  </li>
+</ul>

@@ -2,8 +2,9 @@
 import Home from "../layouts/Home.astro";
 import Logo from "../components/Logo.astro";
 import LogoIcon from "../components/LogoIcon.astro";
+import Navi from "../components/Navi.astro";
 import Icon from "../components/Icon.vue";
-import Modal from "../components/Modal.vue"
+import Modal from "../components/Modal.vue";
 ---
 
 <Home>
@@ -15,30 +16,16 @@ import Modal from "../components/Modal.vue"
           <span class="foreground-lighter">v4.0.0</span>
         </a>
 
-        <ul class="menu menu_inline display-none display-flex-md">
-          <li class="menu__item">
-            <a class="menu__action" href="#">Get Started</a>
-          </li>
-          <li class="menu__item"><a class="menu__action" href="#">Docs</a></li>
-          <li class="menu__item">
-            <a class="menu__action" href="#">GitHub</a>
-          </li>
-          <li class="menu__item">
-            <a class="menu__action" href="#">Sponsor</a>
-          </li>
-          <li class="menu__sep"></li>
-          <li class="menu__item">
-            <button class="menu__action menu__action_icon">
-              <Icon name="moon" />
-            </button>
-          </li>
-        </ul>
+        <Navi classes="menu_inline display-none display-flex-md" />
 
-        <button data-modal-open="modal-menu" class="button button_icon display-block display-none-md">
+        <button
+          data-modal-open="modal-navi"
+          class="button button_icon display-block display-none-md"
+        >
           <Icon name="menu" />
         </button>
 
-        <Modal client:only id="modal-menu" modalClass="modal_full">
+        <Modal client:only id="modal-navi" modalClass="modal_full">
           <div class="dialog__header">
             <h2 class="dialog__title">Menu</h2>
             <button data-modal-close class="button button_icon dialog__close">
@@ -46,7 +33,7 @@ import Modal from "../components/Modal.vue"
             </button>
           </div>
           <div class="dialog__body">
-            <p>Menu goes here...</p>
+            <Navi />
           </div>
         </Modal>
       </div>
@@ -61,12 +48,16 @@ import Modal from "../components/Modal.vue"
         A component library based on the BEM methodology.
       </p>
       <div class="level flex-justify-center">
-        <button class="button button_size_lg button_block_sm button_color_primary"
-          >Get Started</button
+        <button
+          class="button button_size_lg button_block_sm button_color_primary"
         >
-        <button class="button button_size_lg button_block_sm button_color_secondary"
-          >Documentation</button
+          Get Started
+        </button>
+        <button
+          class="button button_size_lg button_block_sm button_color_secondary"
         >
+          Documentation
+        </button>
         <button class="button button_size_lg button_block_sm">
           <span class="code margin-right-sm">
             <span class="foreground-lighter">$</span>
