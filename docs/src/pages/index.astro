@@ -39,8 +39,14 @@ import Modal from "../components/Modal.vue"
         </button>
 
         <Modal client:only id="modal-menu" modalClass="modal_full">
+          <div class="dialog__header">
+            <h2 class="dialog__title">Menu</h2>
+            <button data-modal-close class="button button_icon dialog__close">
+              <Icon name="x" />
+            </button>
+          </div>
           <div class="dialog__body">
-            <p>This is some modal content...</p>
+            <p>Menu goes here...</p>
           </div>
         </Modal>
       </div>
