@@ -3,6 +3,7 @@ import Home from "../layouts/Home.astro";
 import Logo from "../components/Logo.astro";
 import LogoIcon from "../components/LogoIcon.astro";
 import Icon from "../components/Icon.vue";
+import Modal from "../components/Modal.vue"
 ---
 
 <Home>
@@ -33,9 +34,10 @@ import Icon from "../components/Icon.vue";
           </li>
         </ul>
 
-        <button class="button button_icon display-block display-none-md">
+        <button data-modal-open="modal-menu" class="button button_icon display-block display-none-md">
           <Icon name="menu" />
         </button>
+
       </div>
     </div>
   </header>
@@ -143,4 +145,10 @@ import Icon from "../components/Icon.vue";
       </div>
     </div>
   </footer>
+
+  <Modal client:load id="modal-menu" modalClass="modal_full">
+    <div class="dialog__body">
+      <p>This is some modal content...</p>
+    </div>
+  </Modal>
 </Home>
