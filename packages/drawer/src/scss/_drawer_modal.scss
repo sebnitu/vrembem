@@ -27,7 +27,7 @@ $_m: var.$prefix-modifier;
     transform: translateX(-100%);
     border-right: var.$border;
     background-color: var.$modal-background;
-    box-shadow: var.$modal-box-shadow;
+    box-shadow: var.$modal-shadow;
   }
 
   &.#{$_b}drawer#{$_m}switch {
