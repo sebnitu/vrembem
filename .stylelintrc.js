@@ -37,6 +37,7 @@ module.exports = {
     'no-descending-specificity': null,
     'property-no-unknown': true,
     'property-no-vendor-prefix': null,
+    'selector-class-pattern': null,
     'selector-max-compound-selectors': 3,
     'selector-max-id': 0,
     'selector-no-qualifying-type': true,

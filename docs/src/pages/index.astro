@@ -1,14 +1,14 @@
 ---
 import Home from "../layouts/Home.astro";
 import Logo from "../components/Logo.astro";
-import LogoIcon from "../components/LogoIcon.astro";
+import Footer from "../components/Footer.astro";
 import Navibar from "../components/Navibar.astro";
 import Icon from "../components/Icon.vue";
 ---
 
 <Home>
-  <Navibar classes="background fold-shadow-bottom" />
-  <section class="section section_size_xl fold-shadow-top type">
+  <Navibar classes="background fold-shadow" />
+  <div class="section section_size_xl fold-shadow-top type">
     <div class="section__container text-align-center">
       <h1>
         <Logo />
@@ -38,8 +38,8 @@ import Icon from "../components/Icon.vue";
         </button>
       </div>
     </div>
-  </section>
-  <section class="section">
+  </div>
+  <div class="section">
     <div class="section__container">
       <div class="grid">
         <div class="grid__item span-12 span-6-sm span-4-lg">
@@ -104,18 +104,10 @@ import Icon from "../components/Icon.vue";
         </div>
       </div>
     </div>
-  </section>
-  <footer class="section">
+  </div>
+  <div class="section">
     <div class="section__container border-top padding-top-xl">
-      <div class="level">
-        <p class="foreground-lighter flex-grow-1">
-          Vrembem is released under the MIT License.<br />
-          Copyright 2023 Sebastian Nitu.
-        </p>
-        <a href="/" class="foreground-primary">
-          <LogoIcon />
-        </a>
-      </div>
+      <Footer />
     </div>
-  </footer>
+  </div>
 </Home>

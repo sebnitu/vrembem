@@ -1,0 +1,21 @@
+---
+import LogoIcon from "./LogoIcon.astro";
+
+interface Props {
+  classes?: string;
+}
+
+const { classes = "" } = Astro.props;
+---
+
+<footer class={`footer${classes ? " " + classes : ""}`}>
+  <div class="level">
+    <p class="foreground-lighter flex-grow-1">
+      Vrembem is released under the MIT License.<br />
+      Copyright 2023 Sebastian Nitu.
+    </p>
+    <a href="/" class="foreground-primary">
+      <LogoIcon />
+    </a>
+  </div>
+</footer>
