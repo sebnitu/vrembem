@@ -50,7 +50,7 @@
     box-sizing: border-box;
   }
 
-  .spacer {
+  .mask {
     position: sticky;
     z-index: 2;
     top: calc((var(--vb-navibar-height) + var(--vb-drawer-padding)) * -1);

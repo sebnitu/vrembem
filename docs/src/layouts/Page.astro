@@ -17,12 +17,13 @@ const { title, drawer = true } = Astro.props;
     {
       drawer && (
         <aside class="layout__drawer background-darker">
-          <div class="spacer" />
+          <div class="mask" />
           <slot name="drawer" />
         </aside>
       )
     }
     <div class="layout__content">
+      <div class="mask"></div>
       <div class="content">
         <div class="content__container">
           <div class="type gap-y">
