@@ -14,48 +14,55 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v3.0.14 to CHANGELOG.md
+chore(release): add v3.0.15 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
 
 
+## v3.0.15 (2023-08-01)
+
+### :bug: Bug Fix
+* `drawer`
+  * [#1352](https://github.com/sebnitu/vrembem/pull/1352) Fix drawer transition styles
+
+
 ## v3.0.14 (2023-07-22)
 
-#### :bug: Bug Fix
+### :bug: Bug Fix
 * `core`
   * [#1334](https://github.com/sebnitu/vrembem/pull/1334) Fix transition bug when child elements transition event bubbles
 
 
 ## v3.0.13 (2023-07-11)
 
-#### :hammer: Chore
+### :hammer: Chore
 * Dependency bumps
 * [#1193](https://github.com/sebnitu/vrembem/pull/1193) Remove the coveralls dependency
 
 
 ## v3.0.12 (2023-01-02)
 
-#### :hammer: Chore
+### :hammer: Chore
 * [#1080](https://github.com/sebnitu/vrembem/pull/1080) Bump to current year
 
 
 ## v3.0.11 (2022-12-20)
 
-#### :bug: Bug Fix
+### :bug: Bug Fix
 * `base`, `breadcrumb`, `button-group`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `grid`, `icon-action`, `icon`, `input`, `level`, `media`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `tooltip`, `utility`, `vrembem`
   * [#1075](https://github.com/sebnitu/vrembem/pull/1075) Remove touchend events from modal and drawer click handling
 
 
 ## v3.0.10 (2022-07-10)
 
-#### :bug: Bug Fix
+### :bug: Bug Fix
 * `core`
   * [#943](https://github.com/sebnitu/vrembem/pull/943) Add core root.scss to the NPM files field
 
 
 ## v3.0.9 (2022-07-10)
 
-#### :bug: Bug Fix
+### :bug: Bug Fix
 * `core`, `vrembem`
   * [#942](https://github.com/sebnitu/vrembem/pull/942) Fix core Sass module order and move root manifest
 
