@@ -4,11 +4,11 @@ import { getCollection } from "astro:content";
 const packages = await getCollection("packages");
 ---
 
-<ol class="list">
+<ol class="menu">
   {
     packages.map((entry) => (
-      <li>
-        <a class="link" href={`/packages/${entry.slug}`}>
+      <li class="menu__item">
+        <a class="menu__action" href={`/packages/${entry.slug}`}>
           {entry.data.title}
         </a>
       </li>

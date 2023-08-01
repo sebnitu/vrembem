@@ -16,6 +16,11 @@ astro-island {
   display: block !important;
 }
 
+main {
+  height: 100%;
+}
+
 .header {
+  position: relative;
   z-index: 10;
 }

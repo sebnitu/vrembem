@@ -5,30 +5,57 @@ const { title } = Astro.props;
 ---
 
 <Base title={title}>
-  <div class="drawer-frame">
-    <aside id="drawer-id" class="drawer is-opened">
-      <div class="drawer__dialog">
+  <div class="page">
+    
+    <aside class="page__aside">
+      <div class="page__container">
         <slot name="sidebar" />
       </div>
     </aside>
 
-    <div class="drawer-main">
-      <a href="/" class="link">Back</a>
-      <slot />
+    <div class="page__main background fold-shadow-left">
+      <div class="page__container type gap-y">
+        <a href="/" class="link">Back</a>
+        <slot />
+      </div>
     </div>
+
   </div>
 </Base>
 
-<style>
-  .drawer-frame {
-    background-color: aquamarine;
+<style lang="scss">
+  .page {
+    display: flex;
+    min-height: 100%;
   }
 
-  .drawer__dialog {
-    background-color: pink;
+  .page__aside,
+  .page__main {
+    position: relative;
+    display: flex;
   }
 
-  .drawer-main {
-    background-color: beige;
+  .page__aside {
+    justify-content: flex-end;
+    flex-grow: 1;
+
+    .page__container {
+      width: 100%;
+      max-width: 270px;
+    }
+  }
+
+  .page__main {
+    justify-content: flex-start;
+    flex-grow: 2;
+
+    .page__container {
+      width: 100%;
+      max-width: 680px;
+    }
+  }
+
+  .page__container {
+    padding: 2em;
   }
 </style>

@@ -5,11 +5,10 @@ import LogoIcon from "../components/LogoIcon.astro";
 import Navi from "../components/Navi.astro";
 import Icon from "../components/Icon.vue";
 import Modal from "../components/Modal.vue";
-import Popover from "../components/Popover.vue";
 ---
 
 <Home>
-  <header class="header section section_size_sm background fold-shadow">
+  <header class="header section section_size_sm background fold-shadow-bottom">
     <div class="section__container">
       <div class="level">
         <div class="flex-grow-1">
@@ -39,21 +38,6 @@ import Popover from "../components/Popover.vue";
             <Navi />
           </div>
         </Modal>
-
-        <!--
-        <Popover
-          client:only
-          id="popover-navi"
-          triggerClass="button button_icon display-block display-none-md"
-        >
-          <div slot="trigger">
-            <Icon name="menu" />
-          </div>
-          <div slot="content">
-            <Navi />
-          </div>
-        </Popover>
-        -->
       </div>
     </div>
   </header>
