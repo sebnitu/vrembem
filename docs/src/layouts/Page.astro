@@ -1,61 +1,33 @@
 ---
 import Base from "./Base.astro";
+import Navibar from "../components/Navibar.astro";
 
 const { title } = Astro.props;
 ---
 
 <Base title={title}>
-  <div class="page">
-    
-    <aside class="page__aside">
-      <div class="page__container">
-        <slot name="sidebar" />
+  <Navibar />
+  <div class="drawer-frame background">
+    <aside class="drawer is-opened">
+      <div class="drawer__dialog dialog fold-shadow-right">
+        <div class="dialog__body gap-y">
+          <a href="/" class="flex-inline padding gap-x">
+            <strong>Vrembem</strong>
+            <span class="foreground-lighter">v4.0.0</span>
+          </a>
+          <hr class="sep" />
+          <slot name="sidebar" />
+        </div>
       </div>
     </aside>
 
-    <div class="page__main background fold-shadow-left">
-      <div class="page__container type gap-y">
-        <a href="/" class="link">Back</a>
-        <slot />
+    <div class="drawer-main fold-shadow-left">
+      <div class="section">
+        <div class="section__container type gap-y">
+          <a href="/" class="link">Back</a>
+          <slot />
+        </div>
       </div>
     </div>
-
   </div>
 </Base>
-
-<style lang="scss">
-  .page {
-    display: flex;
-    min-height: 100%;
-  }
-
-  .page__aside,
-  .page__main {
-    position: relative;
-    display: flex;
-  }
-
-  .page__aside {
-    justify-content: flex-end;
-    flex-grow: 1;
-
-    .page__container {
-      width: 100%;
-      max-width: 270px;
-    }
-  }
-
-  .page__main {
-    justify-content: flex-start;
-    flex-grow: 2;
-
-    .page__container {
-      width: 100%;
-      max-width: 680px;
-    }
-  }
-
-  .page__container {
-    padding: 2em;
-  }
-</style>

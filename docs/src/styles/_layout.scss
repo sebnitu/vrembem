@@ -1,0 +1,17 @@
+:root {
+  --vb-header-height: 72px;
+}
+
+.navibar {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+}
+
+.drawer {
+  z-index: 11;
+}
+
+.drawer-frame {
+  padding-top: var(--vb-header-height);
+}

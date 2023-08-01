@@ -5,7 +5,7 @@ interface Props {
   classes?: string;
 }
 
-let { classes = "" } = Astro.props;
+const { classes = "" } = Astro.props;
 ---
 
 <ul class={`menu${classes ? " " + classes : ""}`}>

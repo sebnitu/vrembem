@@ -1,0 +1,46 @@
+---
+import Navi from "../components/Navi.astro";
+import Icon from "../components/Icon.vue";
+import Modal from "../components/Modal.vue";
+
+interface Props {
+  classes?: string;
+}
+
+const { classes = "" } = Astro.props;
+const defaultClasses = "navibar section section_size_sm background";
+---
+
+<header class={defaultClasses + (classes ? " " + classes : "")}>
+  <div class="section__container">
+    <div class="level">
+      <div class="flex-grow-1">
+        <a href="/" class="flex-inline gap-x">
+          <strong>Vrembem</strong>
+          <span class="foreground-lighter">v4.0.0</span>
+        </a>
+      </div>
+
+      <Navi classes="menu_inline display-none display-flex-md" />
+
+      <button
+        data-modal-open="modal-navi"
+        class="button button_icon display-block display-none-md"
+      >
+        <Icon name="menu" />
+      </button>
+
+      <Modal client:only id="modal-navi" modalClass="modal_full">
+        <div class="dialog__header">
+          <h2 class="dialog__title">Menu</h2>
+          <button data-modal-close class="button button_icon dialog__close">
+            <Icon name="x" />
+          </button>
+        </div>
+        <div class="dialog__body">
+          <Navi />
+        </div>
+      </Modal>
+    </div>
+  </div>
+</header>

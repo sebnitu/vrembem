@@ -9,18 +9,10 @@
   $base-font-family: #{'"Barlow", sans-serif'}
 );
 
+@use "./layout";
 @use "./swatch";
 @use "./fold-shadow";
 
 astro-island {
   display: block !important;
-}
-
-main {
-  height: 100%;
-}
-
-.header {
-  position: relative;
-  z-index: 10;
 }
