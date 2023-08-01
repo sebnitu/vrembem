@@ -1,12 +1,12 @@
 ---
-import Home from "../layouts/Home.astro";
+import Base from "../layouts/Base.astro";
 import Logo from "../components/Logo.astro";
 import Footer from "../components/Footer.astro";
 import Navibar from "../components/Navibar.astro";
 import Icon from "../components/Icon.vue";
 ---
 
-<Home>
+<Base bodyClass="background-darker">
   <Navibar classes="background fold-shadow" />
   <div class="section section_size_xl fold-shadow-top type">
     <div class="section__container text-align-center">
@@ -110,4 +110,4 @@ import Icon from "../components/Icon.vue";
       <Footer />
     </div>
   </div>
-</Home>
+</Base>
