@@ -1,6 +1,7 @@
 :root {
   --vb-navibar-height: 4.5rem;
   --vb-layout-width: 70rem;
+  --vb-layout-padding: 1rem;
   --vb-drawer-width: 16rem;
   --vb-drawer-padding: 1rem;
   --vb-content-padding: 2rem 2rem 8rem;
@@ -18,8 +19,8 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  padding-right: 1em;
-  padding-left: 1em;
+  padding-right: var(--vb-layout-padding);
+  padding-left: var(--vb-layout-padding);
 }
 
 .layout__drawer {
@@ -77,10 +78,14 @@
   position: relative;
   z-index: 1;
   box-sizing: content-box;
-  width: calc(100% - var(--vb-drawer-width));
+  width: 100%;
   max-width: calc(var(--vb-layout-width) - var(--vb-drawer-width));
   padding-top: var(--vb-navibar-height);
-  padding-left: var(--vb-drawer-width);
+
+  .layout__drawer ~ & {
+    width: calc(100% - var(--vb-drawer-width));
+    padding-left: var(--vb-drawer-width);
+  }
 
   * > * {
     box-sizing: border-box;

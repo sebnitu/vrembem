@@ -3,16 +3,25 @@ import Base from "./Base.astro";
 import Navibar from "../components/Navibar.astro";
 import Footer from "../components/Footer.astro";
 
-const { title } = Astro.props;
+interface Props {
+  drawer?: boolean;
+  title?: string;
+}
+
+const { title, drawer = true } = Astro.props;
 ---
 
 <Base title={title}>
   <Navibar />
   <div class="layout">
-    <aside class="layout__drawer background-darker">
-      <div class="spacer"></div>
-      <slot name="drawer" />
-    </aside>
+    {
+      drawer && (
+        <aside class="layout__drawer background-darker">
+          <div class="spacer" />
+          <slot name="drawer" />
+        </aside>
+      )
+    }
     <div class="layout__content">
       <div class="content">
         <div class="content__container">
