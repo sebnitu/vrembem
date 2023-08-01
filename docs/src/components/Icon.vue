@@ -1,5 +1,5 @@
 <template>
-  <span :class="class" v-html="svg"></span>
+  <span :class="wrapperClass" v-html="svg"></span>
 </template>
 
 <script lang="ts">
@@ -12,7 +12,7 @@ export default {
       type: String,
       default: 'feather'
     },
-    class: {
+    wrapperClass: {
       type: String,
       default: 'display-flex'
     },
