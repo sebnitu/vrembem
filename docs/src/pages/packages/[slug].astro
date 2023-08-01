@@ -1,6 +1,6 @@
 ---
 import { CollectionEntry, getCollection } from "astro:content";
-import Layout from "../../layouts/Page.astro";
+import Page from "../../layouts/Page.astro";
 import Menu from "../../components/Menu.astro";
 import Pre from "../../components/Pre.astro";
 import Table from "../../components/Table.astro";
@@ -21,9 +21,9 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<Layout title={entry.data.title}>
-  <div slot="sidebar">
+<Page title={entry.data.title}>
+  <div slot="drawer">
     <Menu />
   </div>
   <Content components={{ pre: Pre, table: Table }} />
-</Layout>
+</Page>

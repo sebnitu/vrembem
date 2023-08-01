@@ -7,25 +7,17 @@ const { title } = Astro.props;
 
 <Base title={title}>
   <Navibar />
-  <div class="drawer-frame background">
-    <aside class="drawer is-opened">
-      <div class="drawer__dialog dialog fold-shadow-right">
-        <div class="dialog__body gap-y">
-          <a href="/" class="flex-inline padding gap-x">
-            <strong>Vrembem</strong>
-            <span class="foreground-lighter">v4.0.0</span>
-          </a>
-          <hr class="sep" />
-          <slot name="sidebar" />
-        </div>
-      </div>
+  <div class="layout">
+    <aside class="layout__drawer background-darker fold-shadow-right">
+      <div class="spacer"></div>
+      <slot name="drawer" />
     </aside>
-
-    <div class="drawer-main fold-shadow-left">
-      <div class="section">
-        <div class="section__container type gap-y">
-          <a href="/" class="link">Back</a>
-          <slot />
+    <div class="layout__content">
+      <div class="content">
+        <div class="content__container">
+          <div class="type gap-y">
+            <slot />
+          </div>
         </div>
       </div>
     </div>

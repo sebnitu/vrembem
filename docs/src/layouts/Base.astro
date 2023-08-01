@@ -1,7 +1,12 @@
 ---
 import "../styles/global.scss";
 
-const { title } = Astro.props;
+interface Props {
+  bodyClass?: string;
+  title?: string;
+}
+
+const { bodyClass, title } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -19,7 +24,7 @@ const { title } = Astro.props;
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body class={bodyClass}>
     <main>
       <slot />
     </main>

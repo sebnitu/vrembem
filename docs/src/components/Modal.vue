@@ -10,7 +10,6 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { modal } from '../modules/useModal';
 
-console.log('fdsa');
 
 export default {
   props: {
@@ -33,12 +32,10 @@ export default {
     const uid = ref(props.id);
 
     onMounted(() => {
-      console.log('onMounted', uid.value);
       modalInstance.value = modal.register(uid.value);
     });
 
     onBeforeUnmount(() => {
-      console.log('onBeforeUnmount', uid.value);
       modal.deregister(modalInstance.value);
     });
 

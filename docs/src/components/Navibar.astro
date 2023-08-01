@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { classes = "" } = Astro.props;
-const defaultClasses = "navibar section section_size_sm background";
+const defaultClasses = "navibar section section_size_sm";
 ---
 
 <header class={defaultClasses + (classes ? " " + classes : "")}>

@@ -1,17 +1,91 @@
 :root {
-  --vb-header-height: 72px;
+  --vb-navibar-height: 4.5rem;
+  --vb-layout-width: 70rem;
+  --vb-drawer-width: 16rem;
+  --vb-drawer-padding: 1rem;
+  --vb-content-padding: 2rem 2rem 8rem;
+  --vb-content-width: 42rem;
 }
 
 .navibar {
   position: fixed;
-  z-index: 10;
+  z-index: 3;
   width: 100%;
 }
 
-.drawer {
-  z-index: 11;
+.layout {
+  position: relative;
+  justify-content: center;
+  width: 100%;
+  display: flex;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
-.drawer-frame {
-  padding-top: var(--vb-header-height);
+.layout__drawer {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 100%;
+  max-width: calc(var(--vb-drawer-width) - var(--vb-drawer-padding));
+  box-sizing: content-box;
+  z-index: 2;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
+  padding: calc(var(--vb-drawer-padding) + var(--vb-navibar-height)) var(--vb-drawer-padding) var(--vb-drawer-padding);
+
+  & * > * {
+    box-sizing: border-box;
+  }
+
+  .spacer {
+    background-color: var(--vb-background-darker);
+    height: var(--vb-navibar-height);
+    position: sticky;
+    z-index: 2;
+    margin: calc((var(--vb-navibar-height) + var(--vb-drawer-padding)) * -1) calc(var(--vb-drawer-padding) * -1) var(--vb-drawer-padding) calc(var(--vb-drawer-padding) * -1);
+    top: calc((var(--vb-navibar-height) + var(--vb-drawer-padding)) * -1);
+
+    &::after {
+      content: "";
+      border-bottom: 1px solid var(--vb-border-color);
+      position: absolute;
+      inset: 100% 0 auto 0;
+      margin: 0 var(--vb-drawer-padding);
+    }
+  }
+
+  &::after {
+    z-index: 2;
+  }
+}
+
+@media (min-width: 72rem) {
+  .layout__drawer {
+    padding-left: max(var(--vb-drawer-padding), calc((100% - var(--vb-layout-width)) / 2));
+  }
+}
+
+.layout__content {
+  position: relative;
+  z-index: 1;
+  padding-top: var(--vb-navibar-height);
+  padding-left: var(--vb-drawer-width);
+  width: calc(100% - var(--vb-drawer-width));
+  max-width: calc(var(--vb-layout-width) - var(--vb-drawer-width));
+  box-sizing: content-box;
+
+  & * > * {
+    box-sizing: border-box;
+  }
+}
+
+.content {
+  padding: var(--vb-content-padding);
+}
+
+.content__container {
+  max-width: var(--vb-content-width);
+  margin: auto;
 }
