@@ -21,8 +21,7 @@
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest",
     "watch": "lerna run watch --scope=\"@vrembem/$npm_config_component\" --parallel",
-    "watch:vb": "lerna run watch --scope=vrembem --parallel",
-    "prepublish": "npm run sink"
+    "watch:vb": "lerna run watch --scope=vrembem --parallel"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.17.0",
