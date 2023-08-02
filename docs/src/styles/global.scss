@@ -8,6 +8,8 @@
   $base-font-family: #{'"Barlow", sans-serif'}
 );
 
+@use "./root";
+@use "./navibar";
 @use "./layout";
 @use "./swatch";
 @use "./fold-shadow";

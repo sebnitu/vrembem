@@ -1,0 +1,30 @@
+.navibar {
+  position: fixed;
+  z-index: 5;
+  width: 100%;
+  padding: 0 var(--vb-layout-padding);
+}
+
+.navibar__container {
+  width: 100%;
+  max-width: var(--vb-layout-width);
+  margin: auto;
+  display: flex;
+}
+
+.navibar__title,
+.navibar__menu {
+  height: var(--vb-navibar-height);
+  display: flex;
+  align-items: center;
+}
+
+.navibar__title {
+  width: var(--vb-drawer-width);
+}
+
+.navibar__menu {
+  background-color: var(--vb-background);
+  flex-grow: 1;
+  justify-content: flex-end;
+}
