@@ -9,13 +9,17 @@ const { classes = "" } = Astro.props;
 ---
 
 <footer class={`footer${classes ? " " + classes : ""}`}>
-  <div class="level">
-    <p class="foreground-lighter flex-grow-1">
-      Vrembem is released under the MIT License.<br />
-      Copyright 2023 Sebastian Nitu.
-    </p>
-    <a href="/" class="foreground-primary">
-      <LogoIcon />
-    </a>
+  <div class="grid grid_stack_sm">
+    <div class="grid__item">
+      <p class="foreground-lighter flex-grow-1">
+        Vrembem is released under the MIT License.<br />
+        Copyright 2023 Sebastian Nitu.
+      </p>
+    </div>
+    <div class="grid__item span-auto">
+      <a href="/" class="foreground-primary">
+        <LogoIcon />
+      </a>
+    </div>
   </div>
 </footer>
