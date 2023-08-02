@@ -11,8 +11,10 @@
 @use "./root";
 @use "./navibar";
 @use "./layout";
-@use "./swatch";
+
 @use "./fold-shadow";
+@use "./icon_external";
+@use "./swatch";
 
 astro-island {
   display: block !important;

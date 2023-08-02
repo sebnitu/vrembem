@@ -1,5 +1,5 @@
 <template>
-  <span :class="wrapperClass" v-html="svg"></span>
+  <span :class="rootClass" v-html="svg"></span>
 </template>
 
 <script lang="ts">
@@ -12,21 +12,21 @@ export default {
       type: String,
       default: 'feather'
     },
-    wrapperClass: {
+    rootClass: {
       type: String,
       default: 'display-flex'
     },
-    classes: {
+    iconClass: {
       type: String,
       default: ''
     }
   },
   setup(props) {
     const svg = ref(null);
-    const classes = `icon${(props.classes) ? ' ' + props.classes : ''}`;
+    const iconClass = `icon${(props.iconClass) ? ' ' + props.iconClass : ''}`;
 
     svg.value = feather.icons[props.name].toSvg({
-      class: classes
+      class: iconClass
     });
 
     return {

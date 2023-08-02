@@ -14,7 +14,7 @@
         <span>Copied!</span>
       </template>
     </Popover>
-    <Icon v-if="inline" name="chevron-right" wrapperClass="code-block__prompt" classes="icon_size_sm foreground-neutral-50" />
+    <Icon v-if="inline" name="chevron-right" rootClass="code-block__prompt" iconClass="icon_size_sm foreground-neutral-50" />
     <pre class="pre" :class="preClass"><code v-if="code">{{ code }}</code><slot /></pre>
   </div>
 </template>
