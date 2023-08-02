@@ -10,7 +10,6 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { modal } from '../modules/useModal';
 
-
 export default {
   props: {
     id: {

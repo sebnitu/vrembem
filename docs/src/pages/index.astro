@@ -3,6 +3,7 @@ import Base from "../layouts/Base.astro";
 import Logo from "../components/Logo.astro";
 import Footer from "../components/Footer.astro";
 import Navibar from "../components/Navibar.astro";
+import CodeBlock from "../components/CodeBlock.vue";
 import Icon from "../components/Icon.vue";
 ---
 
@@ -29,13 +30,7 @@ import Icon from "../components/Icon.vue";
         >
           Documentation
         </a>
-        <button class="button button_size_lg button_block_sm">
-          <span class="code margin-right-sm">
-            <span class="foreground-lighter">$</span>
-            <span class="foreground">npm install vrembem</span>
-          </span>
-          <Icon name="copy" classes="icon_size_sm foreground-primary" />
-        </button>
+        <CodeBlock code="npm install vrembem" inline={true} client:load />
       </div>
     </div>
   </div>
