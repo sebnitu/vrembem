@@ -2,14 +2,15 @@
 interface Props {
   width?: number;
   height?: number;
+  classes?: string;
 }
 
-const { width = 48, height = 48 } = Astro.props;
+const { width = 48, height = 48, classes } = Astro.props;
 const widthStyle = `width: ${width}px;`;
 const heightStyle = `height: ${height}px;`;
 ---
 
-<div style={`${widthStyle} ${heightStyle}`}>
+<div style={`${widthStyle} ${heightStyle}`} class={classes}>
   <svg
     width="48"
     height="48"
