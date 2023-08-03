@@ -1,5 +1,5 @@
 <template>
-  <div :data-modal="uid" :id="uid" class="modal" :class="modalClass">
+  <div :id="uid" class="modal" :class="modalClass">
     <div class="modal__dialog" :class="dialogClass" role="dialog" aria-modal="true">
       <slot />
     </div>
