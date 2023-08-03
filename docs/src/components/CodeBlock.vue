@@ -96,7 +96,7 @@ export default {
 .code-block__prompt,
 .code-block__copy-button {
   position: absolute;
-  top: 0.75rem;
+  top: 0.7rem;
   padding: 0.5rem;
 }
 
@@ -105,7 +105,7 @@ export default {
 }
 
 .code-block__copy-button {
-  right: 0.75rem;
+  right: 0.7rem;
 }
 
 .code-block_inline {
