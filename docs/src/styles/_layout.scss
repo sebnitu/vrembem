@@ -7,57 +7,6 @@
   padding-left: var(--vb-layout-padding);
 }
 
-.layout__drawer {
-  position: fixed;
-  z-index: 2;
-  box-sizing: content-box;
-  width: 100%;
-  max-width: calc(var(--vb-drawer-width) - var(--vb-drawer-padding));
-  padding: calc(var(--vb-drawer-padding) + var(--vb-navibar-height)) var(--vb-drawer-padding) var(--vb-drawer-padding);
-  overflow-x: hidden;
-  overflow-y: auto;
-  inset: 0 auto 0 0;
-  overscroll-behavior: contain;
-  scroll-behavior: smooth;
-
-  &::after {
-    content: "";
-    position: absolute;
-    z-index: 2;
-    width: 2rem;
-    height: 100%;
-    background: linear-gradient(268deg, rgba(0,0,0,8%) 0, rgba(0,0,0,0%) 2rem);
-    inset: 0 0 auto auto;
-  }
-
-  * > * {
-    box-sizing: border-box;
-  }
-
-  .mask {
-    position: sticky;
-    z-index: 2;
-    top: calc((var(--vb-navibar-height) + var(--vb-drawer-padding)) * -1);
-    height: var(--vb-navibar-height);
-    margin: calc((var(--vb-navibar-height) + var(--vb-drawer-padding)) * -1) calc(var(--vb-drawer-padding) * -1) var(--vb-drawer-padding) calc(var(--vb-drawer-padding) * -1);
-    background-color: var(--vb-background-darker);
-
-    &::after {
-      content: "";
-      position: absolute;
-      margin: 0 var(--vb-drawer-padding);
-      border-bottom: 1px solid var(--vb-border-color);
-      inset: 100% 0 auto;
-    }
-  }
-}
-
-@media (min-width: 72rem) {
-  .layout__drawer {
-    padding-left: max(var(--vb-drawer-padding), calc((100% - var(--vb-layout-width)) / 2));
-  }
-}
-
 .layout__content {
   position: relative;
   z-index: 1;
@@ -66,21 +15,22 @@
   max-width: calc(var(--vb-layout-width) - var(--vb-drawer-width));
   padding-top: var(--vb-navibar-height);
 
-  .layout__drawer ~ & {
-    width: calc(100% - var(--vb-drawer-width));
-    padding-left: var(--vb-drawer-width);
-  }
-
   * > * {
     box-sizing: border-box;
   }
+
+  @media (min-width: 72rem) {
+    .layout.has-drawer & {
+      width: calc(100% - var(--vb-drawer-width));
+      padding-left: var(--vb-drawer-width);
+    }
+  }
 }
 
-.content {
-  padding: var(--vb-content-padding);
-}
+.layout__drawer-toggle {
+  display: inline-block;
 
-.content__container {
-  max-width: var(--vb-content-width);
-  margin: auto;
+  @media (min-width: 72rem) {
+    display: none;
+  }
 }
