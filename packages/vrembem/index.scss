@@ -1,5 +1,5 @@
-@forward "@vrembem/core/root";
 @forward "@vrembem/core" as core-*;
+@forward "@vrembem/core/root";
 @forward "@vrembem/base" as base-*;
 @forward "@vrembem/button" as button-*;
 @forward "@vrembem/card" as card-*;

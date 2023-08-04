@@ -17,6 +17,6 @@ $_m: var.$prefix-modifier;
   }
 
   &.is-closing .#{$_b}modal#{$_e}dialog {
-    transform: scale(1);
+    transform: scale(0.75);
   }
 }

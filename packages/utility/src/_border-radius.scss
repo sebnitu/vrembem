@@ -3,89 +3,38 @@
 
 $_u: var.$prefix-utility;
 $_c: var.$class-border-radius;
+$_s: #{$_u}#{$_c};
 
 @if (var.$output-border-radius) {
-  .#{$_u}#{$_c} {
-    border-radius: core.$border-radius !important;
-  }
+  @each $key, $value in var.$border-radius-map {
+    // Add the key to selector if one exists
+    @if $key != "" {
+      $_s: #{$_s}-#{$key};
+    }
 
-  .#{$_u}#{$_c}-top,
-  .#{$_u}#{$_c}-left,
-  .#{$_u}#{$_c}-top-left {
-    border-top-left-radius: core.$border-radius !important;
-  }
-
-  .#{$_u}#{$_c}-top,
-  .#{$_u}#{$_c}-right,
-  .#{$_u}#{$_c}-top-right {
-    border-top-right-radius: core.$border-radius !important;
-  }
-
-  .#{$_u}#{$_c}-bottom,
-  .#{$_u}#{$_c}-right,
-  .#{$_u}#{$_c}-bottom-right {
-    border-bottom-right-radius: core.$border-radius !important;
-  }
-
-  .#{$_u}#{$_c}-bottom,
-  .#{$_u}#{$_c}-left,
-  .#{$_u}#{$_c}-bottom-left {
-    border-bottom-left-radius: core.$border-radius !important;
-  }
-
-  .#{$_u}#{$_c}-circle {
-    border-radius: core.$border-radius-circle !important;
-  }
-
-  .#{$_u}#{$_c}-circle-top,
-  .#{$_u}#{$_c}-circle-left,
-  .#{$_u}#{$_c}-circle-top-left {
-    border-top-left-radius: core.$border-radius-circle !important;
-  }
-
-  .#{$_u}#{$_c}-circle-top,
-  .#{$_u}#{$_c}-circle-right,
-  .#{$_u}#{$_c}-circle-top-right {
-    border-top-right-radius: core.$border-radius-circle !important;
-  }
-
-  .#{$_u}#{$_c}-circle-bottom,
-  .#{$_u}#{$_c}-circle-right,
-  .#{$_u}#{$_c}-circle-bottom-right {
-    border-bottom-right-radius: core.$border-radius-circle !important;
-  }
-
-  .#{$_u}#{$_c}-circle-bottom,
-  .#{$_u}#{$_c}-circle-left,
-  .#{$_u}#{$_c}-circle-bottom-left {
-    border-bottom-left-radius: core.$border-radius-circle !important;
-  }
-
-  .#{$_u}#{$_c}-square {
-    border-radius: 0 !important;
-  }
-
-  .#{$_u}#{$_c}-square-top,
-  .#{$_u}#{$_c}-square-left,
-  .#{$_u}#{$_c}-square-top-left {
-    border-top-left-radius: 0 !important;
-  }
-
-  .#{$_u}#{$_c}-square-top,
-  .#{$_u}#{$_c}-square-right,
-  .#{$_u}#{$_c}-square-top-right {
-    border-top-right-radius: 0 !important;
-  }
-
-  .#{$_u}#{$_c}-square-bottom,
-  .#{$_u}#{$_c}-square-right,
-  .#{$_u}#{$_c}-square-bottom-right {
-    border-bottom-right-radius: 0 !important;
-  }
-
-  .#{$_u}#{$_c}-square-bottom,
-  .#{$_u}#{$_c}-square-left,
-  .#{$_u}#{$_c}-square-bottom-left {
-    border-bottom-left-radius: 0 !important;
+    // Output border-radius utilities
+    .#{$_s} {
+      border-radius: $value !important;
+    }
+    .#{$_s}-top,
+    .#{$_s}-left,
+    .#{$_s}-top-left {
+      border-top-left-radius: $value !important;
+    }
+    .#{$_s}-top,
+    .#{$_s}-right,
+    .#{$_s}-top-right {
+      border-top-right-radius: $value !important;
+    }
+    .#{$_s}-bottom,
+    .#{$_s}-right,
+    .#{$_s}-bottom-right {
+      border-bottom-right-radius: $value !important;
+    }
+    .#{$_s}-bottom,
+    .#{$_s}-left,
+    .#{$_s}-bottom-left {
+      border-bottom-left-radius: $value !important;
+    }
   }
 }

@@ -3,7 +3,8 @@
   "private": true,
   "license": "MIT",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "docs"
   ],
   "scripts": {
     "dev": "vite",
@@ -12,10 +13,10 @@
     "docs": "npm run dev --prefix docs",
     "fix": "npm-run-all fix:styles fix:scripts",
     "fix:scripts": "eslint --fix packages",
-    "fix:styles": "stylelint --fix 'packages/**/*.scss'",
+    "fix:styles": "stylelint --fix '**/*.scss'",
     "lint": "npm-run-all lint:styles lint:scripts",
     "lint:scripts": "eslint packages",
-    "lint:styles": "stylelint 'packages/**/*.scss'",
+    "lint:styles": "stylelint '**/*.scss'",
     "sink": "npm ci && npm-run-all build lint test:coverage",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",

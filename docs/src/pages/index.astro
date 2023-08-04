@@ -1,12 +1,109 @@
 ---
-import Home from '../layouts/Home.astro';
-import Menu from '../components/Menu.astro';
+import Base from "../layouts/Base.astro";
+import Logo from "../components/Logo.astro";
+import Footer from "../components/Footer.astro";
+import Navibar from "../components/Navibar.astro";
+import CodeBlock from "../components/CodeBlock.vue";
+import Icon from "../components/Icon.vue";
 ---
 
-<Home>
-	<header class="type">
-		<h1>Vrembem</h1>
-		<p>A component library based on the BEM methodology.</p>
-	</header>
-	<Menu />
-</Home>
+<Base bodyClass="background-darker">
+  <Navibar classes="background fold-shadow" />
+  <div class="navibar-spacer"></div>
+  <div class="section section_size_xl fold-shadow-top type">
+    <div class="section__container text-align-center">
+      <h1>
+        <Logo />
+      </h1>
+      <p class="font-size-lg margin-bottom-xl">
+        A component library based on the BEM methodology.
+      </p>
+      <div class="level flex-justify-center">
+        <a
+          href="/getting-started"
+          class="button button_size_lg button_block_sm button_color_primary"
+        >
+          Get Started
+        </a>
+        <a
+          href="/packages"
+          class="button button_size_lg button_block_sm button_color_secondary"
+        >
+          Documentation
+        </a>
+        <CodeBlock code="npm install vrembem" inline={true} client:load />
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section__container">
+      <div class="grid">
+        <div class="grid__item span-12 span-6-sm span-4-lg">
+          <div class="background radius-lg padding-xl gap-y-sm">
+            <Icon name="database" iconClass="icon_size_lg foreground-primary" />
+            <h2 class="font-size-lg">BEM Methodoloy</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+              cursus sit amet urna vel tincidunt.
+            </p>
+          </div>
+        </div>
+        <div class="grid__item span-12 span-6-sm span-4-lg">
+          <div class="background radius-lg padding-xl gap-y-sm">
+            <Icon name="box" iconClass="icon_size_lg foreground-primary" />
+            <h2 class="font-size-lg">CSS Variables</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+              cursus sit amet urna vel tincidunt.
+            </p>
+          </div>
+        </div>
+        <div class="grid__item span-12 span-6-sm span-4-lg">
+          <div class="background radius-lg padding-xl gap-y-sm">
+            <Icon name="zap" iconClass="icon_size_lg foreground-primary" />
+            <h2 class="font-size-lg">Modular</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+              cursus sit amet urna vel tincidunt.
+            </p>
+          </div>
+        </div>
+        <div class="grid__item span-12 span-6-sm span-4-lg">
+          <div class="background radius-lg padding-xl gap-y-sm">
+            <Icon name="award" iconClass="icon_size_lg foreground-primary" />
+            <h2 class="font-size-lg">Accessible</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+              cursus sit amet urna vel tincidunt.
+            </p>
+          </div>
+        </div>
+        <div class="grid__item span-12 span-6-sm span-4-lg">
+          <div class="background radius-lg padding-xl gap-y-sm">
+            <Icon name="command" iconClass="icon_size_lg foreground-primary" />
+            <h2 class="font-size-lg">Portable</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+              cursus sit amet urna vel tincidunt.
+            </p>
+          </div>
+        </div>
+        <div class="grid__item span-12 span-6-sm span-4-lg">
+          <div class="background radius-lg padding-xl gap-y-sm">
+            <Icon name="search" iconClass="icon_size_lg foreground-primary" />
+            <h2 class="font-size-lg">Customizable</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+              cursus sit amet urna vel tincidunt.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section__container border-top padding-top-xl">
+      <Footer />
+    </div>
+  </div>
+</Base>

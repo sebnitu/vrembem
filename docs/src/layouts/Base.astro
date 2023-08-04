@@ -1,19 +1,33 @@
 ---
-import '../styles/global.scss';
+import "../styles/global.scss";
 
-const { title } = Astro.props;
+interface Props {
+  bodyClass?: string;
+  title?: string;
+}
+
+const { bodyClass, title } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" href="/favicon.png" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Vrembem{(title) ? ' | ' + title : ''}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Vrembem{title ? " | " + title : ""}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class={bodyClass}>
+    <main>
+      <slot />
+    </main>
+    <div class="modals"></div>
+  </body>
 </html>

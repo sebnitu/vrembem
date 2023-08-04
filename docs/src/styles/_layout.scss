@@ -1,0 +1,36 @@
+.layout {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-right: var(--vb-layout-padding);
+  padding-left: var(--vb-layout-padding);
+}
+
+.layout__content {
+  position: relative;
+  z-index: 1;
+  box-sizing: content-box;
+  width: 100%;
+  max-width: calc(var(--vb-layout-width) - var(--vb-drawer-width));
+  padding-top: var(--vb-navibar-height);
+
+  * > * {
+    box-sizing: border-box;
+  }
+
+  @media (min-width: 72rem) {
+    .layout.has-drawer & {
+      width: calc(100% - var(--vb-drawer-width));
+      padding-left: var(--vb-drawer-width);
+    }
+  }
+}
+
+.layout__drawer-toggle {
+  display: inline-block;
+
+  @media (min-width: 72rem) {
+    display: none;
+  }
+}

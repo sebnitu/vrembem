@@ -7,7 +7,9 @@ import { deregister } from './deregister';
 import { open } from './open';
 import { close } from './close';
 import { toggle } from './toggle';
-import { getDrawerID, getDrawerElements } from './helpers';
+// TEMP FIX
+// import { getDrawerID, getDrawerElements } from './helpers';
+import { getDrawerID } from './helpers';
 
 export default class Drawer extends Collection {
   #handleClick;
@@ -74,9 +76,10 @@ export default class Drawer extends Collection {
   }
 
   register(query) {
-    const els = getDrawerElements.call(this, query);
-    if (els.error) return Promise.reject(els.error);
-    return register.call(this, els.drawer, els.dialog);
+    // TEMP FIX
+    // const els = getDrawerElements.call(this, query);
+    // if (els.error) return Promise.reject(els.error);
+    return register.call(this, query.drawer, query.dialog);
   }
 
   deregister(query) {
