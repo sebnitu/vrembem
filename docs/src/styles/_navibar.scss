@@ -6,17 +6,17 @@
 }
 
 .navibar__container {
+  display: flex;
   width: 100%;
   max-width: var(--vb-layout-width);
   margin: auto;
-  display: flex;
 }
 
 .navibar__title,
 .navibar__menu {
-  height: var(--vb-navibar-height);
   display: flex;
   align-items: center;
+  height: var(--vb-navibar-height);
 }
 
 .navibar__title {
@@ -24,9 +24,9 @@
 }
 
 .navibar__menu {
-  background-color: var(--vb-background);
   flex-grow: 1;
   justify-content: flex-end;
+  background-color: var(--vb-background);
 }
 
 .navibar-spacer {
