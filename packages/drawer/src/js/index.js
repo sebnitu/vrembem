@@ -80,8 +80,8 @@ export default class Drawer extends Collection {
       Promise.reject(new Error(`Failed to register; drawer not found with ID of: "${query.id || query}".`));
   }
 
-  deregister(value) {
-    let obj = this.get((value.id || value));
+  deregister(query) {
+    let obj = this.get((query.id || query));
     return (obj) ?
       deregister.call(this, obj) :
       Promise.reject(new Error('Failed to deregister; drawer does not exist in collection.'));
