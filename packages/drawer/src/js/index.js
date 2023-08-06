@@ -80,12 +80,11 @@ export default class Drawer extends Collection {
       Promise.reject(new Error(`Failed to register; drawer not found using selector: "${query.id || query}".`));
   }
 
-  deregister(query) {
-    let el = (typeof query == 'string') ?
-      document.querySelector(query) : query;
-    return (el) ?
-      deregister.call(this, el) :
-      Promise.reject(new Error(`Failed to deregister; drawer not found using selector: "${query.id || query}".`));
+  deregister(value) {
+    let obj = this.get((value.id || value));
+    return (obj) ?
+      deregister.call(this, obj) :
+      Promise.reject(new Error('Failed to deregister; drawer does not exist in collection.'));
   }
 
   open(id, transition, focus) {
