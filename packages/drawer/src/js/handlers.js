@@ -1,4 +1,4 @@
-export function handleClick(event) {
+export async function handleClick(event) {
   // If an open, close or toggle button was clicked, handle the click event.
   const trigger = event.target.closest(`
     [data-${this.settings.dataOpen}],
@@ -19,7 +19,7 @@ export function handleClick(event) {
         // Store the trigger on the entry.
         entry.trigger = trigger;
         // Toggle the drawer
-        entry.toggle();
+        return entry.toggle();
       });
     }
 
@@ -32,7 +32,7 @@ export function handleClick(event) {
         // Store the trigger on the entry.
         entry.trigger = trigger;
         // Open the drawer.
-        entry.open();
+        return entry.open();
       });
     }
 
@@ -46,12 +46,12 @@ export function handleClick(event) {
           // Store the trigger on the entry.
           entry.trigger = trigger;
           // Close the drawer.
-          entry.close();
+          return entry.close();
         } else {
           // If no value is set on close trigger, get the parent drawer.
           const parent = event.target.closest(this.settings.selectorDrawer);
           // If a parent drawer was found, close it.
-          if (parent) this.close(parent);
+          if (parent) return this.close(parent);
         }
       });
     }
@@ -62,13 +62,14 @@ export function handleClick(event) {
   // If the modal drawer screen was clicked...
   if (event.target.matches(this.settings.selectorDrawer)) {
     // Close the modal drawer.
-    this.close(event.target.id);
+    return this.close(event.target.id);
   }
 }
 
 export function handleKeydown(event) {
+  // If escape key was pressed.
   if (event.key === 'Escape') {
-    const modal = this.activeModal;
-    if (modal) this.close(modal);
+    // If a modal is opened, close the modal.
+    if (this.activeModal) return this.close(this.activeModal);
   }
 }

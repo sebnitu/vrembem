@@ -13,8 +13,14 @@ export async function register(el, trigger) {
   // Save root this for use inside methods API.
   const root = this;
 
-  // Setup methods API.
-  const methods = {
+  // Setup the popover object.
+  const entry = {
+    id: el.id,
+    state: 'closed',
+    el: el,
+    trigger: trigger,
+    popper: createPopper(trigger, el),
+    config: getConfig(el, this.settings),
     open() {
       return open.call(root, this);
     },
@@ -24,17 +30,6 @@ export async function register(el, trigger) {
     deregister() {
       return deregister.call(root, this);
     }
-  };
-
-  // Setup the popover object.
-  const entry = {
-    id: el.id,
-    state: 'closed',
-    el: el,
-    trigger: trigger,
-    popper: createPopper(trigger, el),
-    config: getConfig(el, this.settings),
-    ...methods
   };
 
   // Set aria-expanded to false if trigger has aria-controls attribute.

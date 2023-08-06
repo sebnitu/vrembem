@@ -9,10 +9,12 @@
   z-index: 100;
   width: calc(100% - 4rem);
   max-width: var(--vb-drawer-width);
+  padding: var(--vb-drawer-padding);
   overflow-x: hidden;
   overflow-y: auto;
   transform: translate(-100%);
   transition: opacity .5s, transform .25s ease;
+  outline: none;
   background-color: var(--vb-background-darker);
   box-shadow: drawer.$modal-shadow;
   opacity: 0;
@@ -27,11 +29,6 @@
     transition: opacity .25s, transform .5s cubic-bezier(0.19, 1, 0.22, 1);
     opacity: 1;
   }
-}
-
-.layout__drawer-dialog {
-  padding: var(--vb-drawer-padding);
-  outline: none;
 }
 
 .layout__drawer-screen {
@@ -102,10 +99,6 @@
       border-bottom: 1px solid var(--vb-border-color);
       inset: 100% 0 auto;
     }
-  }
-
-  .layout__drawer-dialog {
-    padding: 0;
   }
 
   .layout__drawer-screen {

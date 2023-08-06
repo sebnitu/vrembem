@@ -26,11 +26,6 @@ export function getPopoverID(obj) {
     else return false;
   }
 
-  // If it has an id property, return its value.
-  else if (obj.id) {
-    return obj.id;
-  }
-
   // Return false if no id was found.
   else return false;
 }

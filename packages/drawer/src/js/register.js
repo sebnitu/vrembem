@@ -8,7 +8,7 @@ import { switchMode } from './switchMode';
 import { initialState } from './helpers/initialState';
 import { getBreakpoint } from './helpers';
 
-export async function register(el, dialog) {
+export async function register(el) {
   // Deregister entry incase it has already been registered.
   await deregister.call(this, el, false);
 
@@ -18,8 +18,33 @@ export async function register(el, dialog) {
   // Create an instance of the Breakpoint class.
   const breakpoint = new Breakpoint();
 
-  // Setup methods API.
-  const methods = {
+  // Setup the drawer object.
+  const entry = {
+    id: el.id,
+    el: el,
+    dialog: null,
+    trigger: null,
+    settings: getConfig(el, this.settings.dataConfig),
+    get breakpoint() {
+      return getBreakpoint.call(root, el);
+    },
+    get state() {
+      return __state;
+    },
+    set state(value) {
+      __state = value;
+      // Save 'opened' and 'closed' states to store if mode is inline.
+      if (value === 'opened' || value === 'closed') {
+        if (this.mode === 'inline') root.store.set(this.id, this.state);
+      }
+    },
+    get mode() {
+      return __mode;
+    },
+    set mode(value) {
+      __mode = value;
+      switchMode.call(root, this);
+    },
     open(transition, focus) {
       return open.call(root, this, transition, focus);
     },
@@ -51,41 +76,15 @@ export async function register(el, dialog) {
     }
   };
 
-  // Setup the drawer object.
-  const entry = {
-    id: el.id,
-    el: el,
-    dialog: dialog,
-    trigger: null,
-    settings: getConfig(el, this.settings.dataConfig),
-    get breakpoint() {
-      return getBreakpoint.call(root, el);
-    },
-    get state() {
-      return __state;
-    },
-    set state(value) {
-      __state = value;
-      // Save 'opened' and 'closed' states to store if mode is inline.
-      if (value === 'opened' || value === 'closed') {
-        if (this.mode === 'inline') root.store.set(this.id, this.state);
-      }
-    },
-    get mode() {
-      return __mode;
-    },
-    set mode(value) {
-      __mode = value;
-      switchMode.call(root, this);
-    },
-    ...methods
-  };
-
-  // Create the state var with the initial state.
+  // Create the private state var with the initial state.
   let __state = (el.classList.contains(entry.getSetting('stateOpened'))) ? 'opened' : 'closed';
 
-  // Create the mode var with the initial mode.
+  // Create the private mode var with the initial mode.
   let __mode = (el.classList.contains(entry.getSetting('classModal'))) ? 'modal' : 'inline';
+
+  // Set the dialog element. If none is found, use the root element.
+  const dialog = el.querySelector(entry.getSetting('selectorDialog'));
+  entry.dialog = (dialog) ? dialog : el;
 
   // Setup mode specific attributes.
   if (entry.mode === 'modal') {

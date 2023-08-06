@@ -5,15 +5,21 @@ import { open } from './open';
 import { close } from './close';
 import { replace } from './replace';
 
-export async function register(el, dialog) {
+export async function register(el) {
   // Deregister entry incase it has already been registered.
   await deregister.call(this, el, false);
 
   // Save root this for use inside methods API.
   const root = this;
 
-  // Setup methods API.
-  const methods = {
+  // Setup the modal object.
+  const entry = {
+    id: el.id,
+    state: 'closed',
+    el: el,
+    dialog: null,
+    returnRef: null,
+    settings: getConfig(el, this.settings.dataConfig),
     open(transition, focus) {
       return open.call(root, this, transition, focus);
     },
@@ -49,16 +55,9 @@ export async function register(el, dialog) {
     }
   };
 
-  // Setup the modal object.
-  const entry = {
-    id: el.id,
-    state: 'closed',
-    el: el,
-    dialog: dialog,
-    returnRef: null,
-    settings: getConfig(el, this.settings.dataConfig),
-    ...methods
-  };
+  // Set the dialog element. If none is found, use the root element.
+  const dialog = el.querySelector(entry.getSetting('selectorDialog'));
+  entry.dialog = (dialog) ? dialog : el;
 
   // Set aria-modal attribute to true.
   entry.dialog.setAttribute('aria-modal', 'true');

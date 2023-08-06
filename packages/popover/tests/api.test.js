@@ -173,10 +173,10 @@ describe('register() & deregister()', () => {
     expect(el).not.toHaveClass('is-active');
   });
 
-  it('should return collection if deregister is run non-existent popover', async () => {
+  it('should reject promise with error if deregister is called on non-existent entry', async () => {
     popover = new Popover({ autoInit: true });
-    const result = await popover.deregister('asdf');
-    expect(result).toBe(popover.collection);
+    const result = await popover.deregister('asdf').catch((error) => { return error.message; });
+    expect(result).toBe('Failed to deregister; popover does not exist in collection with ID of: "asdf".');
   });
 });
 
