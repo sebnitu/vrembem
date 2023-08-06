@@ -45,7 +45,6 @@ export async function handleClick(event) {
     event.target.matches(this.settings.selectorModal) &&
     !event.target.querySelector(this.settings.selectorRequired)
   ) {
-    // return this.close(getModalID.call(this, event.target));
     return this.close(event.target.id);
   }
 }
