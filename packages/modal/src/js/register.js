@@ -5,7 +5,7 @@ import { open } from './open';
 import { close } from './close';
 import { replace } from './replace';
 
-export async function register(el, dialog) {
+export async function register(el) {
   // Deregister entry incase it has already been registered.
   await deregister.call(this, el, false);
 
@@ -17,7 +17,7 @@ export async function register(el, dialog) {
     id: el.id,
     state: 'closed',
     el: el,
-    dialog: dialog,
+    dialog: null,
     returnRef: null,
     settings: getConfig(el, this.settings.dataConfig),
     open(transition, focus) {
@@ -54,6 +54,10 @@ export async function register(el, dialog) {
       return (key in this.settings) ? this.settings[key] : root.settings[key];
     }
   };
+
+  // Set the dialog element. If none is found, use the root element.
+  const dialog = el.querySelector(entry.getSetting('selectorDialog'));
+  entry.dialog = (dialog) ? dialog : el;
 
   // Set aria-modal attribute to true.
   entry.dialog.setAttribute('aria-modal', 'true');
