@@ -74,10 +74,10 @@ export default class Drawer extends Collection {
 
   register(query) {
     let el = (typeof query == 'string') ?
-      document.querySelector(query) : query;
+      document.getElementById(query) : query;
     return (el) ?
       register.call(this, el) :
-      Promise.reject(new Error(`Failed to register; drawer not found using selector: "${query.id || query}".`));
+      Promise.reject(new Error(`Failed to register; drawer not found with ID of: "${query.id || query}".`));
   }
 
   deregister(value) {

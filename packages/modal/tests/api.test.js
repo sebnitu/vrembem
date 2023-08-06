@@ -149,7 +149,7 @@ describe('register() & deregister()', () => {
 
   it('should reject promise with error if register is called on non-existent modal', async () => {
     const result = await modal.register('asdf').catch((error) => { return error.message; });
-    expect(result).toBe('No modal elements found using the ID: "asdf".');
+    expect(result).toBe('Failed to register; modal not found with ID of: "asdf".');
   });
 
   it('should reject promise with error if deregister is called on non-existent entry', async () => {
