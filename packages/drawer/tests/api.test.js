@@ -234,7 +234,7 @@ describe('register() & deregister()', () => {
   it('should reject promise with error if deregister is called on non-existent entry', async () => {
     expect(drawer.collection.length).toBe(4);
     const result = await drawer.deregister('asdf').catch((error) => { return error.message; });
-    expect(result).toBe('Failed to deregister; drawer does not exist in collection.');
+    expect(result).toBe('Failed to deregister; drawer does not exist in collection with ID of: "asdf".');
     expect(drawer.collection.length).toBe(4);
   });
 });

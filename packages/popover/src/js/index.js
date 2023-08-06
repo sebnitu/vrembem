@@ -6,7 +6,7 @@ import { register, registerEventListeners } from './register';
 import { deregister, deregisterEventListeners } from './deregister';
 import { open } from './open';
 import { close } from './close';
-import { getPopoverID, getPopoverElements } from './helpers';
+import { getPopoverElements } from './helpers';
 
 export default class Popover extends Collection {
   #handleKeydown;
@@ -88,8 +88,10 @@ export default class Popover extends Collection {
   }
 
   deregister(query) {
-    const popover = this.get(getPopoverID.call(this, query));
-    return deregister.call(this, popover);
+    let obj = this.get((query.id || query));
+    return (obj) ?
+      deregister.call(this, obj) :
+      Promise.reject(new Error(`Failed to deregister; popover does not exist in collection with ID of: "${query.id || query}".`));
   }
 
   open(id) {

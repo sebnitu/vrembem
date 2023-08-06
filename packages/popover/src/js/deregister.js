@@ -1,7 +1,4 @@
 export async function deregister(obj) {
-  // Return collection if nothing was passed.
-  if (!obj) return this.collection;
-
   // Check if entry has been registered in the collection.
   const index = this.collection.findIndex((entry) => {
     return (entry.id === obj.id);
