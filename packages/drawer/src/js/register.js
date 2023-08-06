@@ -8,7 +8,7 @@ import { switchMode } from './switchMode';
 import { initialState } from './helpers/initialState';
 import { getBreakpoint } from './helpers';
 
-export async function register(el, dialog) {
+export async function register(el) {
   // Deregister entry incase it has already been registered.
   await deregister.call(this, el, false);
 
@@ -55,7 +55,7 @@ export async function register(el, dialog) {
   const entry = {
     id: el.id,
     el: el,
-    dialog: dialog,
+    dialog: null,
     trigger: null,
     settings: getConfig(el, this.settings.dataConfig),
     get breakpoint() {
@@ -86,6 +86,10 @@ export async function register(el, dialog) {
 
   // Create the mode var with the initial mode.
   let __mode = (el.classList.contains(entry.getSetting('classModal'))) ? 'modal' : 'inline';
+
+  // Set the dialog element.
+  const dialog = el.querySelector(entry.getSetting('selectorDialog'));
+  entry.dialog = (dialog) ? dialog : el;
 
   // Setup mode specific attributes.
   if (entry.mode === 'modal') {

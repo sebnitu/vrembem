@@ -37,7 +37,9 @@
     <section class="section">
       <div class="section__container max-width-xs gap-y">
 
-        <p>...</p>
+        <div id="drawer-1" data-drawer-config="{ 'transition': false }">
+          <p>...</p>
+        </div>
 
       </div>
     </section>
@@ -54,6 +56,12 @@
     // Init and attach instance to window
     const drawer = new Drawer();
     window.drawer = await drawer.init();
+
+    // Manually register a drawer...
+    console.log('1:', await drawer.register('#drawer-1'));
+
+    // Register a drawer that doesn't exist...
+    console.log('2:', await drawer.register('#asdf'));
 
     // Post message to console
     console.log('Drawer instance has been attached to window:', drawer);

@@ -7,9 +7,6 @@ import { deregister } from './deregister';
 import { open } from './open';
 import { close } from './close';
 import { toggle } from './toggle';
-// TEMP FIX
-// import { getDrawerID, getDrawerElements } from './helpers';
-import { getDrawerID } from './helpers';
 
 export default class Drawer extends Collection {
   #handleClick;
@@ -76,15 +73,19 @@ export default class Drawer extends Collection {
   }
 
   register(query) {
-    // TEMP FIX
-    // const els = getDrawerElements.call(this, query);
-    // if (els.error) return Promise.reject(els.error);
-    return register.call(this, query.drawer, query.dialog);
+    let el = (typeof query == 'string') ?
+      document.querySelector(query) : query;
+    return (el) ?
+      register.call(this, el) :
+      Promise.reject(new Error(`Failed to register; drawer not found using selector: "${query.id || query}".`));
   }
 
   deregister(query) {
-    const entry = this.get(getDrawerID.call(this, query));
-    return deregister.call(this, entry);
+    let el = (typeof query == 'string') ?
+      document.querySelector(query) : query;
+    return (el) ?
+      deregister.call(this, el) :
+      Promise.reject(new Error(`Failed to deregister; drawer not found using selector: "${query.id || query}".`));
   }
 
   open(id, transition, focus) {
