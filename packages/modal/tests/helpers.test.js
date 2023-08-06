@@ -1,5 +1,5 @@
 import './mocks/getComputedStyle.mock';
-import { getModalID, getModalElements } from '../src/js/helpers';
+import { getModalID } from '../src/js/helpers';
 
 document.body.innerHTML = `
   <button data-modal-open="modal-1">...</button>
@@ -95,32 +95,5 @@ describe('getModalID()', () => {
   it('should return false if pass object has no id property', () => {
     const result = getModalID({});
     expect(result).toBe(false);
-  });
-});
-
-describe('getModalElements()', () => {
-  it('should return the modal and modal dialog elements using the passed id', () => {
-    const result = getModalElements.call(mockObj, 'modal-1');
-    const modal = document.querySelector('#modal-1');
-    const dialog = modal.querySelector('.modal__dialog');
-    expect(result.modal).toBe(modal);
-    expect(result.dialog).toBe(dialog);
-  });
-
-  it('should return error if no modal elements are found', () => {
-    const func = getModalElements.call(mockObj, 'asdf');
-    expect(func.error.message).toBe('No modal elements found using the ID: "asdf".');
-  });
-
-  it('should return error if no modal dialog is found', () => {
-    const el = document.querySelector('#missing-dialog');
-    const func = getModalElements.call(mockObj, el);
-    expect(func.error.message).toBe('Modal is missing dialog element.');
-  });
-
-  it('should return error if modal id could not be resolved', () => {
-    const el = document.querySelector('.missing-id');
-    const func = getModalElements.call(mockObj, el);
-    expect(func.error.message).toBe('Could not resolve the modal ID.');
   });
 });
