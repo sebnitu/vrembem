@@ -6,9 +6,7 @@
     data-drawer-breakpoint="72rem"
     data-drawer-config="{'classModal': 'is-modal'}">
     <div class="layout__drawer-mask"></div>
-    <div ref="elDialog" class="layout__drawer-dialog" role="dialog">
-      <slot />
-    </div>
+    <slot />
   </aside>
   <div @click="closeDrawer" class="layout__drawer-screen"></div>
 </template>
@@ -22,14 +20,13 @@ export default {
   setup() {
     const uid = ref('layout-drawer');
     const elDrawer = ref(null);
-    const elDialog = ref(null);
 
     function closeDrawer() {
       drawer.close(uid.value);
     }
 
     onMounted(() => {
-      drawer.register({ drawer: elDrawer.value, dialog: elDialog.value });
+      drawer.register(elDrawer.value);
     });
 
     onBeforeUnmount(() => {
@@ -39,7 +36,6 @@ export default {
     return {
       uid,
       elDrawer,
-      elDialog,
       closeDrawer
     };
   },
