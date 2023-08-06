@@ -12,8 +12,14 @@ export async function register(el, dialog) {
   // Save root this for use inside methods API.
   const root = this;
 
-  // Setup methods API.
-  const methods = {
+  // Setup the modal object.
+  const entry = {
+    id: el.id,
+    state: 'closed',
+    el: el,
+    dialog: dialog,
+    returnRef: null,
+    settings: getConfig(el, this.settings.dataConfig),
     open(transition, focus) {
       return open.call(root, this, transition, focus);
     },
@@ -47,17 +53,6 @@ export async function register(el, dialog) {
     getSetting(key) {
       return (key in this.settings) ? this.settings[key] : root.settings[key];
     }
-  };
-
-  // Setup the modal object.
-  const entry = {
-    id: el.id,
-    state: 'closed',
-    el: el,
-    dialog: dialog,
-    returnRef: null,
-    settings: getConfig(el, this.settings.dataConfig),
-    ...methods
   };
 
   // Set aria-modal attribute to true.
