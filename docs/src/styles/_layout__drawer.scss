@@ -9,18 +9,18 @@
   z-index: 100;
   width: calc(100% - 4rem);
   max-width: var(--vb-drawer-width);
+  padding: var(--vb-drawer-padding);
   overflow-x: hidden;
   overflow-y: auto;
   transform: translate(-100%);
   transition: opacity .5s, transform .25s ease;
+  outline: none;
   background-color: var(--vb-background-darker);
   box-shadow: drawer.$modal-shadow;
   opacity: 0;
   inset: 0 auto 0 0;
   overscroll-behavior: contain;
   scroll-behavior: smooth;
-  padding: var(--vb-drawer-padding);
-  outline: none;
 
   &.is-opened,
   &.is-opening {
