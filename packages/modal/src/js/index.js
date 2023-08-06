@@ -9,7 +9,7 @@ import { close } from './close';
 import { closeAll } from './closeAll';
 import { replace } from './replace';
 import { stack } from './stack';
-import { updateFocusState, getModalElements, getModalID } from './helpers';
+import { updateFocusState, getModalElements } from './helpers';
 
 export default class Modal extends Collection {
   #handleClick;
@@ -84,8 +84,10 @@ export default class Modal extends Collection {
   }
 
   deregister(query) {
-    const modal = this.get(getModalID.call(this, query));
-    return deregister.call(this, modal);
+    let obj = this.get((query.id || query));
+    return (obj) ?
+      deregister.call(this, obj) :
+      Promise.reject(new Error('Failed to deregister; modal does not exist in collection.'));
   }
 
   open(id, transition, focus) {

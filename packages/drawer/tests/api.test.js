@@ -226,12 +226,12 @@ describe('register() & deregister()', () => {
     expect(entry.state).toBe('closed');
   });
 
-  it('should throw an error when trying to register a drawer that can not be found', async () => {
+  it('should reject promise with error if register is called on non-existent drawer', async () => {
     const result = await drawer.register('#asdf').catch((error) => { return error.message; });
     expect(result).toBe('Failed to register; drawer not found using selector: "#asdf".');
   });
 
-  it('should throw an error when trying to deregister a drawer that can not be found', async () => {
+  it('should reject promise with error if deregister is called on non-existent entry', async () => {
     expect(drawer.collection.length).toBe(4);
     const result = await drawer.deregister('asdf').catch((error) => { return error.message; });
     expect(result).toBe('Failed to deregister; drawer does not exist in collection.');

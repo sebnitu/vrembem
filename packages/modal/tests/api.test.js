@@ -148,16 +148,13 @@ describe('register() & deregister()', () => {
   });
 
   it('should reject promise with error if register is called on non-existent modal', async () => {
-    let result;
-    await modal.register('asdf').catch((error) => {
-      result = error.message;
-    });
+    const result = await modal.register('asdf').catch((error) => { return error.message; });
     expect(result).toBe('No modal elements found using the ID: "asdf".');
   });
 
-  it('should return collection if deregister is run non-existent modal', async () => {
-    const result = await modal.deregister('asdf');
-    expect(result).toBe(modal.collection);
+  it('should reject promise with error if deregister is called on non-existent entry', async () => {
+    const result = await modal.deregister('asdf').catch((error) => { return error.message; });
+    expect(result).toBe('Failed to deregister; modal does not exist in collection.');
   });
 
   it('should open and update global state if modal already has opened class', async () => {
