@@ -18,6 +18,10 @@ export async function register(el) {
     state: 'closed',
     el: el,
     dialog: null,
+    get required() {
+      return (this.dialog) ?
+        this.dialog.matches(this.getSetting('selectorRequired')) : false;
+    },
     returnRef: null,
     settings: getConfig(el, this.settings.dataConfig),
     open(transition, focus) {
