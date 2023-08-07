@@ -26,11 +26,3 @@
     }
   }
 }
-
-.layout__drawer-toggle {
-  display: inline-block;
-
-  @media (min-width: 72rem) {
-    display: none;
-  }
-}

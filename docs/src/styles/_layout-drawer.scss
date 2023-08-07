@@ -4,7 +4,7 @@
  * Modal drawer
  */
 
-.layout__drawer {
+.layout-drawer {
   position: fixed;
   z-index: 100;
   width: calc(100% - 4rem);
@@ -31,7 +31,7 @@
   }
 }
 
-.layout__drawer-screen {
+.layout-drawer__screen {
   position: fixed;
   z-index: 99;
   transition: opacity .25s;
@@ -39,14 +39,14 @@
   opacity: 0;
   inset: auto;
 
-  .layout__drawer.is-opened ~ &,
-  .layout__drawer.is-opening ~ & {
+  .layout-drawer.is-opened ~ &,
+  .layout-drawer.is-opening ~ & {
     opacity: 0.8;
   }
 
-  .layout__drawer.is-opened ~ &,
-  .layout__drawer.is-opening ~ &,
-  .layout__drawer.is-closing ~ & {
+  .layout-drawer.is-opened ~ &,
+  .layout-drawer.is-opening ~ &,
+  .layout-drawer.is-closing ~ & {
     inset: 0;
   }
 }
@@ -56,7 +56,7 @@
  */
 
 @media (min-width: 72rem) {
-  .layout__drawer {
+  .layout-drawer {
     z-index: 2;
     visibility: visible;
     box-sizing: content-box;
@@ -84,7 +84,7 @@
     }
   }
 
-  .layout__drawer-mask {
+  .layout-drawer__mask {
     position: sticky;
     z-index: 2;
     top: calc((var(--vb-navibar-height) + var(--vb-drawer-padding)) * -1);
@@ -101,7 +101,17 @@
     }
   }
 
-  .layout__drawer-screen {
+  .layout-drawer__screen {
+    display: none;
+  }
+}
+
+/**
+ * Layout drawer toggle
+ */
+
+.layout-drawer-toggle {
+  @media (min-width: 72rem) {
     display: none;
   }
 }

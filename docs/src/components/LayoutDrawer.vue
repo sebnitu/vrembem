@@ -2,13 +2,13 @@
   <aside
     ref="elDrawer"
     :id="uid"
-    class="layout__drawer is-opened"
+    class="layout-drawer is-opened"
     data-drawer-breakpoint="72rem"
     data-drawer-config="{'classModal': 'is-modal'}">
-    <div class="layout__drawer-mask"></div>
+    <div class="layout-drawer__mask"></div>
     <slot />
   </aside>
-  <div @click="closeDrawer" class="layout__drawer-screen"></div>
+  <div @click="closeDrawer" class="layout-drawer__screen"></div>
 </template>
 
 <script lang="ts">
