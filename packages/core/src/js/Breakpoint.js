@@ -14,12 +14,7 @@ export class Breakpoint {
   // Unmount existing handler before setting a new one.
   set handler(func) {
     if (this.mql) {
-      // Conditionally use removeListener() for IE11 support.
-      if (typeof this.mql.removeEventListener === 'function') {
-        this.mql.removeEventListener('change', this.#handler);
-      } else {
-        this.mql.removeListener(this.#handler);
-      }
+      this.mql.removeEventListener('change', this.#handler);
     }
     this.#handler = func;
   }
@@ -35,12 +30,8 @@ export class Breakpoint {
     // Setup and store the MediaQueryList instance.
     this.mql = window.matchMedia(`(min-width: ${this.value})`);
 
-    // Conditionally use addListener() for IE11 support.
-    if (typeof this.mql.addEventListener === 'function') {
-      this.mql.addEventListener('change', this.#handler);
-    } else {
-      this.mql.addListener(this.#handler);
-    }
+    // Add event listener.
+    this.mql.addEventListener('change', this.#handler);
 
     // Run the handler.
     this.#handler(this.mql);
@@ -52,12 +43,8 @@ export class Breakpoint {
     // Guard if no MediaQueryList instance exists.
     if (!this.mql) return this;
 
-    // Conditionally use removeListener() for IE11 support.
-    if (typeof this.mql.removeEventListener === 'function') {
-      this.mql.removeEventListener('change', this.#handler);
-    } else {
-      this.mql.removeListener(this.#handler);
-    }
+    // Add event listener.
+    this.mql.removeEventListener('change', this.#handler);
 
     // Set value, handler and MediaQueryList to null.
     this.value = null;
