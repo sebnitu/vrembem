@@ -40,12 +40,14 @@ export async function handleClick(event) {
     }
   }
 
-  // If the modal screen was clicked, close the modal.
+  // If there is an active modal and the screen was clicked...
   if (
-    event.target.matches(this.settings.selectorModal) &&
-    !event.target.querySelector(this.settings.selectorRequired)
+    this.active &&
+    event.target.matches(this.settings.selectorScreen) &&
+    !this.active.required
   ) {
-    return this.close(event.target.id);
+    // Close the modal.
+    return this.close(this.active.id);
   }
 }
 

@@ -59,10 +59,10 @@ export async function handleClick(event) {
     return;
   }
 
-  // If the modal drawer screen was clicked...
-  if (event.target.matches(this.settings.selectorDrawer)) {
+  // If there is an active modal drawer and the screen was clicked...
+  if (this.activeModal && event.target.matches(this.settings.selectorScreen)) {
     // Close the modal drawer.
-    return this.close(event.target.id);
+    return this.close(this.activeModal.id);
   }
 }
 

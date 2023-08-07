@@ -10,6 +10,7 @@ export default {
   // Selectors
   selectorModal: '.modal',
   selectorDialog: '.modal__dialog',
+  selectorScreen: '.modal',
   selectorRequired: '[role="alertdialog"]',
   selectorFocus: '[data-focus]',
   selectorInert: null,
