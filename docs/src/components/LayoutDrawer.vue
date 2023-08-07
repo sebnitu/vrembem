@@ -8,7 +8,7 @@
     <div class="layout-drawer__mask"></div>
     <slot />
   </aside>
-  <div @click="closeDrawer" class="layout-drawer__screen"></div>
+  <div class="layout-drawer__screen" :data-drawer-close="uid"></div>
 </template>
 
 <script lang="ts">
@@ -21,10 +21,6 @@ export default {
     const uid = ref('layout-drawer');
     const elDrawer = ref(null);
 
-    function closeDrawer() {
-      drawer.close(uid.value);
-    }
-
     onMounted(() => {
       drawer.register(elDrawer.value);
     });
@@ -35,8 +31,7 @@ export default {
 
     return {
       uid,
-      elDrawer,
-      closeDrawer
+      elDrawer
     };
   },
 };

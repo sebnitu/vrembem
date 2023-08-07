@@ -11,6 +11,7 @@ export default {
   // Selectors
   selectorDrawer: '.drawer',
   selectorDialog: '.drawer__dialog',
+  selectorScreen: '.drawer',
   selectorFocus: '[data-focus]',
   selectorInert: null,
   selectorOverflow: 'body',
