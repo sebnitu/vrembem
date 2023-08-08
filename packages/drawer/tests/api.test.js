@@ -4,7 +4,7 @@ import { transition } from './helpers/transition';
 import Drawer from '../index.js';
 
 const markup = `
-  <div class="drawer__wrapper">
+  <div class="drawer-frame">
     <div id="drawer-1" class="drawer is-closed">
       <div class="drawer__dialog">
         <button data-drawer-close>...</button>
@@ -15,7 +15,7 @@ const markup = `
         <button data-drawer-close>...</button>
       </div>
     </div>
-    <div class="drawer__main">
+    <div class="drawer-main">
       <button data-drawer-toggle="drawer-1">...</button>
       <button data-drawer-toggle="drawer-2">...</button>
     </div>

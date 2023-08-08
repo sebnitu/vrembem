@@ -11,13 +11,13 @@ const keySpace = new KeyboardEvent('keydown', {
 });
 
 document.body.innerHTML = `
-  <div class="drawer__wrapper">
+  <div class="drawer-frame">
     <div id="drawer" class="drawer">
       <div class="drawer__dialog">
         <button data-drawer-close>...</button>
       </div>
     </div>
-    <div class="drawer__main">
+    <div class="drawer-main">
       <button data-drawer-open="drawer">...</button>
       <button data-drawer-close="drawer">...</button>
       <button class="empty" data-drawer-close>...</button>
@@ -145,10 +145,10 @@ test('should close modal drawer when background screen is clicked', async () => 
 
   expect(entry.state).toBe('opened');
 
-  document.querySelector('.drawer__wrapper').click();
+  document.querySelector('.drawer-frame').click();
   await transition(entry.el);
 
-  document.querySelector('.drawer__main').click();
+  document.querySelector('.drawer-main').click();
   await transition(entry.el);
 
   expect(entry.state).toBe('opened');

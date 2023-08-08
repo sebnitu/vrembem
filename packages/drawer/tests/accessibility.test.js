@@ -4,11 +4,11 @@ import { transition } from './helpers/transition';
 import Drawer from '../index.js';
 
 document.body.innerHTML = `
-  <div class="drawer__wrapper">
+  <div class="drawer-frame">
     <div id="drawer-default" class="drawer drawer_modal">
       <div class="drawer__dialog">...</div>
     </div>
-    <main class="drawer__main">
+    <main class="drawer-main">
       <button data-drawer-toggle="drawer-default">...</button>
     </main>
   </div>
@@ -21,7 +21,7 @@ const drawer = new Drawer({
 
 const el = document.querySelector('.drawer');
 const dialog = document.querySelector('.drawer__dialog');
-const main = document.querySelector('.drawer__main');
+const main = document.querySelector('.drawer-main');
 const btn = document.querySelector('[data-drawer-toggle]');
 
 test('should set accessibility attributes to modal drawer dialog', async () => {
