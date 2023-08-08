@@ -4,18 +4,17 @@ export async function applyInlineState(entry) {
   } else if (entry.store === 'closed') {
     await entry.close(false, false);
   } else if (entry.store === 'indeterminate') {
-    entry.el.classList.remove(entry.getSetting('stateOpened'));
-    entry.el.classList.remove(entry.getSetting('stateClosed'));
-    entry.state = 'indeterminate';
+    if (entry.state != 'indeterminate') {
+      entry.state = 'indeterminate';
+    }
   } else {
-    entry.state = entry.inlineState;
+    if (entry.state != entry.inlineState) {
+      entry.state = entry.inlineState;
+    }
     if (entry.inlineState === 'opened') {
       await entry.open(false, false);
     } else if (entry.inlineState === 'closed') {
       await entry.close(false, false);
-    } else if (entry.inlineState === 'indeterminate') {
-      entry.el.classList.remove(entry.getSetting('stateOpened'));
-      entry.el.classList.remove(entry.getSetting('stateClosed'));
     }
   }
 }

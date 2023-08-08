@@ -12,7 +12,7 @@ export async function close(query, transition, focus = true) {
   if (transition !== undefined) config.transition = transition;
 
   // If drawer is not closed.
-  if (entry.state === 'closed' || entry.state === 'indeterminate') {
+  if (entry.state === 'opened' || entry.state === 'indeterminate') {
     // Update drawer state.
     entry.state = 'closing';
 

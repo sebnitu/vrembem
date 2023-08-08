@@ -82,7 +82,7 @@ test('should store initial state when switching to modal', async () => {
   const entry = await drawer.register('drawer-3');
   expect(entry.mode).toBe('modal');
   expect(entry.state).toBe('closed');
-  expect(drawer.store.get(entry.id)).toBe('opened');
+  expect(drawer.get(entry.id).inlineState).toBe('opened');
 });
 
 test('should throw an error when setting mode to an invalid value', async () => {

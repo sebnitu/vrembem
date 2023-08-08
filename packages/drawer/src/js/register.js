@@ -5,7 +5,7 @@ import { open } from './open';
 import { close } from './close';
 import { toggle } from './toggle';
 import { switchMode } from './switchMode';
-import { applyInitialState } from './helpers';
+import { getInitialState } from './helpers';
 import { getBreakpoint } from './helpers';
 
 export async function register(el) {
@@ -49,6 +49,14 @@ export async function register(el) {
         if (this.getSetting('store')) {
           root.store.set(this.id, value);
         }
+      }
+
+      // If state is indeterminate, remove the state classes.
+      if (value === 'indeterminate') {
+        this.el.classList.remove(this.getSetting('stateOpened'));
+        this.el.classList.remove(this.getSetting('stateOpening'));
+        this.el.classList.remove(this.getSetting('stateClosed'));
+        this.el.classList.remove(this.getSetting('stateClosing'));
       }
     },
     get mode() {
@@ -104,15 +112,14 @@ export async function register(el) {
     entry.dialog.setAttribute('tabindex', '-1');
   }
 
+  // Set the initial state.
+  entry.state = getInitialState(entry);
+
   // Set the initial mode.
   entry.mode = (el.classList.contains(entry.getSetting('classModal'))) ? 'modal' : 'inline';
 
-  // Apply the initial state.
-  await applyInitialState(entry);
-
-  // If the entry has a breakpoint...
+  // If the entry has a breakpoint, get it mounted.
   if (entry.breakpoint) {
-    // Mount media query breakpoint functionality.
     entry.mountBreakpoint();
   }
 
