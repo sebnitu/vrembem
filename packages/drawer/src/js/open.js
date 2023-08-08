@@ -22,20 +22,20 @@ export async function open(query, transition, focus = true) {
     // Update the global state if mode is modal.
     if (entry.mode === 'modal') updateGlobalState(true, config);
 
+    // Set focus to the drawer element if the focus param is true.
+    if (focus) {
+      updateFocusState.call(this, entry);
+    }
+
     // Update drawer state.
     entry.state = 'opened';
-  }
 
-  // Set focus to the drawer element if the focus param is true.
-  if (focus) {
-    updateFocusState.call(this, entry);
+    // Dispatch custom opened event.
+    entry.el.dispatchEvent(new CustomEvent(config.customEventPrefix + 'opened', {
+      detail: this,
+      bubbles: true
+    }));
   }
-
-  // Dispatch custom opened event.
-  entry.el.dispatchEvent(new CustomEvent(config.customEventPrefix + 'opened', {
-    detail: this,
-    bubbles: true
-  }));
 
   // Return the drawer.
   return entry;
