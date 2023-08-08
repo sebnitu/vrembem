@@ -35,6 +35,7 @@ const markupInitState = `
   <div id="drawer-4" class="drawer">
     <div class="drawer__dialog">...</div>
   </div>
+  <div id="drawer-5" class="drawer"></div>
 `;
 
 const markupConfig = `
@@ -235,6 +236,11 @@ describe('register() & deregister()', () => {
     const result = await drawer.deregister('asdf').catch((error) => { return error.message; });
     expect(result).toBe('Failed to deregister; drawer does not exist in collection with ID of: "asdf".');
     expect(drawer.collection.length).toBe(4);
+  });
+
+  it('should use the root drawer element as dialog if selector returned null', async () => {
+    const entry = drawer.register('drawer-5');
+    expect(entry.el).toBe(entry.dialog);
   });
 });
 
