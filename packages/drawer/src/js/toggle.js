@@ -9,7 +9,7 @@ export async function toggle(query, transition, focus) {
   // Open or close the drawer based on its current state.
   if (entry.state === 'closed') {
     return open.call(this, entry, transition, focus);
-  } else if (entry.state === 'opened') {
+  } else {
     return close.call(this, entry, transition, focus);
   }
 }

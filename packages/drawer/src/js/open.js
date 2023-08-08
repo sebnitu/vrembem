@@ -12,7 +12,7 @@ export async function open(query, transition, focus = true) {
   if (transition !== undefined) config.transition = transition;
 
   // If drawer is not opened.
-  if (entry.state != 'opened') {
+  if (entry.state === 'opened' || entry.state === 'indeterminate') {
     // Update drawer state.
     entry.state = 'opening';
 
