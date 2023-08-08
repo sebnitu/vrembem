@@ -19,8 +19,7 @@ export async function register(el) {
     el: el,
     dialog: null,
     get required() {
-      return (this.dialog) ?
-        this.dialog.matches(this.getSetting('selectorRequired')) : false;
+      return this.dialog.matches(this.getSetting('selectorRequired'));
     },
     returnRef: null,
     settings: getConfig(el, this.settings.dataConfig),
