@@ -40,6 +40,7 @@ export async function register(el) {
     },
     set state(value) {
       _state = value;
+
       // If mode is inline and not in a transitioning state...
       if (this.mode === 'inline' && value != 'opening' && value != 'closing') {
         // Save the inline state.
@@ -112,8 +113,8 @@ export async function register(el) {
     entry.dialog.setAttribute('tabindex', '-1');
   }
 
-  // Set the initial state.
-  entry.state = getInitialState(entry);
+  // Set both the initial state and inline state.
+  entry.state = entry.inlineState = getInitialState(entry);
 
   // Set the initial mode.
   entry.mode = (el.classList.contains(entry.getSetting('classModal'))) ? 'modal' : 'inline';
