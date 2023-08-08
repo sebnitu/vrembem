@@ -41,7 +41,7 @@ beforeAll(async () => {
 });
 
 test('should open drawer when clicking data-drawer-open button', async () => {
-  expect(entry.state).toBe('closed');
+  expect(entry.state).toBe('indeterminate');
 
   btnOpen.click();
   await transition(entry.el);
