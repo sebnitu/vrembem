@@ -5,7 +5,7 @@ import Drawer from '../index.js';
 
 const markup = `
   <div class="drawer__wrapper">
-    <div id="drawer-1" class="drawer">
+    <div id="drawer-1" class="drawer is-closed">
       <div class="drawer__dialog">
         <button data-drawer-close>...</button>
       </div>
