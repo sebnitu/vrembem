@@ -90,7 +90,7 @@ describe('registerCollection() & deregisterCollection()', () => {
 });
 
 describe('open(), close() & toggle()', () => {
-  it('should open and close using open()and close() methods', async () => {
+  it('should open and close using open() and close() methods', async () => {
     await drawer.init();
     const entry = drawer.get('drawer-1');
     expect(entry.state).toBe('closed');

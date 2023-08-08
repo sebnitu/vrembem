@@ -19,6 +19,9 @@ export async function open(query, transition, focus = true) {
     // Run the open transition.
     await openTransition(entry.el, config);
 
+    // Update drawer state.
+    entry.state = 'opened';
+
     // Update the global state if mode is modal.
     if (entry.mode === 'modal') updateGlobalState(true, config);
 
@@ -26,9 +29,6 @@ export async function open(query, transition, focus = true) {
     if (focus) {
       updateFocusState.call(this, entry);
     }
-
-    // Update drawer state.
-    entry.state = 'opened';
 
     // Dispatch custom opened event.
     entry.el.dispatchEvent(new CustomEvent(config.customEventPrefix + 'opened', {

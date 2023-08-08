@@ -22,6 +22,9 @@ export async function close(query, transition, focus = true) {
     // Run the close transition.
     await closeTransition(entry.el, config);
 
+    // Update drawer state.
+    entry.state = 'closed';
+
     // Update the global state if mode is modal.
     if (entry.mode === 'modal') updateGlobalState(false, config);
 
@@ -29,9 +32,6 @@ export async function close(query, transition, focus = true) {
     if (focus) {
       updateFocusState.call(this, entry);
     }
-
-    // Update drawer state.
-    entry.state = 'closed';
 
     // Dispatch custom closed event.
     entry.el.dispatchEvent(new CustomEvent(config.customEventPrefix + 'closed', {

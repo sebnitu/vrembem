@@ -25,13 +25,13 @@ export async function close(query, transition, focus = true) {
     // Remove modal from stack.
     this.stack.remove(modal);
 
+    // Update modal state.
+    modal.state = 'closed';
+
     // Update focus if the focus param is true.
     if (focus) {
       updateFocusState.call(this);
     }
-
-    // Update modal state.
-    modal.state = 'closed';
 
     // Dispatch custom closed event.
     modal.el.dispatchEvent(new CustomEvent(config.customEventPrefix + 'closed', {
