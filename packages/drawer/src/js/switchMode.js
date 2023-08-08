@@ -1,6 +1,6 @@
 import { updateGlobalState } from '@vrembem/core';
 import { close } from './close';
-import { applyInlineState } from './helpers/applyInlineState';
+import { applyInlineState } from './helpers';
 
 export function switchMode(entry) {
   switch (entry.mode) {
