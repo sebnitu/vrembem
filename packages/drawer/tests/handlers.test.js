@@ -121,7 +121,6 @@ test('should close modal drawer when pressing the escape key', async () => {
 
   expect(entry.state).toBe('closed');
 
-
   entry.open();
   await transition(entry.el);
 
