@@ -1,17 +1,17 @@
-export function getInitialState(entry) {
+export function applyInitialState(entry) {
   if (entry.store === 'opened') {
-    return 'opened';
+    entry.open(false, false);
   } else if (entry.store === 'closed') {
-    return 'closed';
+    entry.close(false, false);
   } else if (entry.store === 'indeterminate') {
-    return 'indeterminate';
+    entry.state = 'indeterminate';
   } else {
     if (entry.el.classList.contains(entry.getSetting('stateOpened'))) {
-      return 'opened';
+      entry.open(false, false);
     } else if (entry.el.classList.contains(entry.getSetting('stateClosed'))) {
-      return 'closed';
+      entry.close(false, false);
     } else {
-      return 'indeterminate';
+      entry.state = 'indeterminate';
     }
   }
 }

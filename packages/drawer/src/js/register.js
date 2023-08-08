@@ -5,7 +5,7 @@ import { open } from './open';
 import { close } from './close';
 import { toggle } from './toggle';
 import { switchMode } from './switchMode';
-import { getInitialState } from './helpers';
+import { applyInitialState } from './helpers';
 import { getBreakpoint } from './helpers';
 
 export async function register(el) {
@@ -18,8 +18,8 @@ export async function register(el) {
   // Create an instance of the Breakpoint class.
   const breakpoint = new Breakpoint();
 
-  // Setup private variables.
-  let _state, _mode;
+  // Setup private variables and their default values if any.
+  let _mode, _state = 'indeterminate';
 
   // Setup the drawer object.
   const entry = {
@@ -29,11 +29,18 @@ export async function register(el) {
     trigger: null,
     settings: getConfig(el, this.settings.dataConfig),
     inlineState: 'indeterminate',
+    get breakpoint() {
+      return getBreakpoint.call(root, el);
+    },
     get store() {
       return root.store.get(this.id);
     },
-    get breakpoint() {
-      return getBreakpoint.call(root, el);
+    get mode() {
+      return _mode;
+    },
+    set mode(value) {
+      _mode = value;
+      switchMode.call(root, this);
     },
     get state() {
       return _state;
@@ -59,13 +66,6 @@ export async function register(el) {
         this.el.classList.remove(this.getSetting('stateClosed'));
         this.el.classList.remove(this.getSetting('stateClosing'));
       }
-    },
-    get mode() {
-      return _mode;
-    },
-    set mode(value) {
-      _mode = value;
-      switchMode.call(root, this);
     },
     open(transition, focus) {
       return open.call(root, this, transition, focus);
@@ -114,7 +114,10 @@ export async function register(el) {
   }
 
   // Set both the initial state and inline state.
-  entry.state = entry.inlineState = getInitialState(entry);
+  await applyInitialState(entry);
+
+  // Set the inline state.
+  entry.inlineState = entry.state;
 
   // Set the initial mode.
   entry.mode = (el.classList.contains(entry.getSetting('classModal'))) ? 'modal' : 'inline';
