@@ -26,6 +26,7 @@ const markupMulti = `
   <div id="modal-3" class="modal">
     <div class="modal__dialog">...</div>
   </div>
+  <div id="modal-4" class="modal"></div>
 `;
 
 const markupPreOpened = `
@@ -182,6 +183,13 @@ describe('register() & deregister()', () => {
     await modal.register('modal-default');
     expect(modal.active.id).toBe('modal-default');
   });
+
+  it('should use the root modal element as dialog if selector returned null', async () => {
+    document.body.innerHTML = markupMulti;
+    modal = new Modal();
+    const entry = modal.register('modal-4');
+    expect(entry.el).toBe(entry.dialog);
+  });
 });
 
 describe('open() & close()', () => {
@@ -325,15 +333,17 @@ describe('replace()', () => {
     modal.open('modal-1');
     modal.open('modal-2');
     modal.open('modal-3');
+    modal.open('modal-4');
 
     await Promise.all(modal.collection.map(async (entry) => {
       await transition(entry.el);
     }));
 
-    expect(modal.stack.value.length).toBe(3);
+    expect(modal.stack.value.length).toBe(4);
     expect(modal.get('modal-1').state).toBe('opened');
     expect(modal.get('modal-2').state).toBe('opened');
     expect(modal.get('modal-3').state).toBe('opened');
+    expect(modal.get('modal-4').state).toBe('opened');
 
     modal.replace('modal-2');
 
@@ -345,6 +355,7 @@ describe('replace()', () => {
     expect(modal.get('modal-1').state).toBe('closed');
     expect(modal.get('modal-2').state).toBe('opened');
     expect(modal.get('modal-3').state).toBe('closed');
+    expect(modal.get('modal-4').state).toBe('closed');
   });
 
   it('should correctly handle focus management when focus param is passed', async () => {
@@ -385,6 +396,7 @@ describe('closeAll()', () => {
     modal.open('modal-1');
     modal.open('modal-2');
     modal.open('modal-3');
+    modal.open('modal-4');
 
     await Promise.all(modal.collection.map(async (entry) => {
       expect(entry.el).toHaveClass('is-opening');
@@ -416,6 +428,7 @@ describe('closeAll()', () => {
     await modal.open('modal-1');
     await modal.open('modal-2');
     await modal.open('modal-3');
+    await modal.open('modal-4');
 
     modal.collection.map(async (entry) => {
       expect(entry.state).toBe('opened');
@@ -437,6 +450,7 @@ describe('closeAll()', () => {
     await modal.open('modal-1');
     await modal.open('modal-2');
     await modal.open('modal-3');
+    await modal.open('modal-4');
 
     modal.collection.map(async (entry) => {
       expect(entry.state).toBe('opened');

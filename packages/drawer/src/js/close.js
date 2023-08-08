@@ -3,43 +3,43 @@ import { updateFocusState, getDrawer } from './helpers';
 
 export async function close(query, transition, focus = true) {
   // Get the drawer from collection.
-  const drawer = getDrawer.call(this, query);
+  const entry = getDrawer.call(this, query);
 
   // Get the modal configuration.
-  const config = { ...this.settings, ...drawer.settings };
+  const config = { ...this.settings, ...entry.settings };
 
   // Add transition parameter to configuration.
   if (transition !== undefined) config.transition = transition;
 
-  // If drawer is opened.
-  if (drawer.state === 'opened') {
+  // If drawer is opened or indeterminate.
+  if (entry.state === 'opened' || entry.state === 'indeterminate') {
     // Update drawer state.
-    drawer.state = 'closing';
+    entry.state = 'closing';
 
     // Remove focus from active element.
     document.activeElement.blur();
 
     // Run the close transition.
-    await closeTransition(drawer.el, config);
+    await closeTransition(entry.el, config);
+
+    // Update drawer state.
+    entry.state = 'closed';
 
     // Update the global state if mode is modal.
-    if (drawer.mode === 'modal') updateGlobalState(false, config);
+    if (entry.mode === 'modal') updateGlobalState(false, config);
 
     // Set focus to the trigger element if the focus param is true.
     if (focus) {
-      updateFocusState.call(this, drawer);
+      updateFocusState.call(this, entry);
     }
 
-    // Update drawer state.
-    drawer.state = 'closed';
-
     // Dispatch custom closed event.
-    drawer.el.dispatchEvent(new CustomEvent(config.customEventPrefix + 'closed', {
+    entry.el.dispatchEvent(new CustomEvent(config.customEventPrefix + 'closed', {
       detail: this,
       bubbles: true
     }));
   }
 
   // Return the drawer.
-  return drawer;
+  return entry;
 }

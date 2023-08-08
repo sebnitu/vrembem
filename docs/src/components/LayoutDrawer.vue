@@ -2,9 +2,9 @@
   <aside
     ref="elDrawer"
     :id="uid"
-    class="layout-drawer is-opened"
+    class="layout-drawer"
     data-drawer-breakpoint="72rem"
-    data-drawer-config="{'classModal': 'is-modal'}">
+    data-drawer-config="{'classModal': 'is-modal', 'store': false}">
     <div class="layout-drawer__mask"></div>
     <slot />
   </aside>

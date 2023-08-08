@@ -4,8 +4,8 @@ import { transition } from './helpers/transition';
 import Drawer from '../index.js';
 
 const markup = `
-  <div class="drawer__wrapper">
-    <div id="drawer-1" class="drawer">
+  <div class="drawer-frame">
+    <div id="drawer-1" class="drawer is-closed">
       <div class="drawer__dialog">
         <button data-drawer-close>...</button>
       </div>
@@ -15,7 +15,7 @@ const markup = `
         <button data-drawer-close>...</button>
       </div>
     </div>
-    <div class="drawer__main">
+    <div class="drawer-main">
       <button data-drawer-toggle="drawer-1">...</button>
       <button data-drawer-toggle="drawer-2">...</button>
     </div>
@@ -35,6 +35,7 @@ const markupInitState = `
   <div id="drawer-4" class="drawer">
     <div class="drawer__dialog">...</div>
   </div>
+  <div id="drawer-5" class="drawer"></div>
 `;
 
 const markupConfig = `
@@ -90,7 +91,7 @@ describe('registerCollection() & deregisterCollection()', () => {
 });
 
 describe('open(), close() & toggle()', () => {
-  it('should open and close using open()and close() methods', async () => {
+  it('should open and close using open() and close() methods', async () => {
     await drawer.init();
     const entry = drawer.get('drawer-1');
     expect(entry.state).toBe('closed');
@@ -117,8 +118,16 @@ describe('open(), close() & toggle()', () => {
 
   it('should open and close using toggle() method', async () => {
     const entry = drawer.get('drawer-2');
-    expect(entry.state).toBe('closed');
+    expect(entry.state).toBe('indeterminate');
     expect(entry.mode).toBe('inline');
+
+    drawer.toggle('drawer-2');
+    expect(entry.el).toHaveClass('is-closing');
+    expect(entry.state).toBe('closing');
+
+    await transition(entry.el);
+    expect(entry.el).toHaveClass('is-closed');
+    expect(entry.state).toBe('closed');
 
     drawer.toggle('drawer-2');
     expect(entry.el).toHaveClass('is-opening');
@@ -128,15 +137,6 @@ describe('open(), close() & toggle()', () => {
     expect(entry.el).toHaveClass('is-opened');
     expect(entry.state).toBe('opened');
     expect(entry.dialog).toBe(document.activeElement);
-
-    drawer.toggle('drawer-2');
-    expect(entry.el).toHaveClass('is-closing');
-    expect(entry.state).toBe('closing');
-
-    await transition(entry.el);
-    expect(entry.el).toHaveClass('is-closed');
-    expect(entry.state).toBe('closed');
-    expect(entry.dialog).not.toBe(document.activeElement);
   });
 
   it('should throw if trying to open unregistered drawer', async () => {
@@ -182,7 +182,7 @@ describe('register() & deregister()', () => {
   it('should register drawer in its default state', async () => {
     const entry = await drawer.register('drawer-1');
     expect(entry.mode).toBe('inline');
-    expect(entry.state).toBe('closed');
+    expect(entry.state).toBe('indeterminate');
   });
 
   it('should register drawer in its open state', async () => {
@@ -194,7 +194,7 @@ describe('register() & deregister()', () => {
   it('should register drawer in its modal state', async () => {
     const entry = await drawer.register('drawer-3');
     expect(entry.mode).toBe('modal');
-    expect(entry.state).toBe('opened');
+    expect(entry.state).toBe('closed');
   });
 
   it('should return drawer to state saved in local store', async () => {
@@ -236,6 +236,11 @@ describe('register() & deregister()', () => {
     const result = await drawer.deregister('asdf').catch((error) => { return error.message; });
     expect(result).toBe('Failed to deregister; drawer does not exist in collection with ID of: "asdf".');
     expect(drawer.collection.length).toBe(4);
+  });
+
+  it('should use the root drawer element as dialog if selector returned null', async () => {
+    const entry = drawer.register('drawer-5');
+    expect(entry.el).toBe(entry.dialog);
   });
 });
 

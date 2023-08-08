@@ -5,7 +5,7 @@ import { open } from './open';
 import { close } from './close';
 import { toggle } from './toggle';
 import { switchMode } from './switchMode';
-import { initialState } from './helpers/initialState';
+import { applyInitialState } from './helpers';
 import { getBreakpoint } from './helpers';
 
 export async function register(el) {
@@ -18,6 +18,9 @@ export async function register(el) {
   // Create an instance of the Breakpoint class.
   const breakpoint = new Breakpoint();
 
+  // Setup private variables and their default values if any.
+  let _mode, _state = 'indeterminate';
+
   // Setup the drawer object.
   const entry = {
     id: el.id,
@@ -25,25 +28,44 @@ export async function register(el) {
     dialog: null,
     trigger: null,
     settings: getConfig(el, this.settings.dataConfig),
+    inlineState: 'indeterminate',
     get breakpoint() {
       return getBreakpoint.call(root, el);
     },
-    get state() {
-      return __state;
-    },
-    set state(value) {
-      __state = value;
-      // Save 'opened' and 'closed' states to store if mode is inline.
-      if (value === 'opened' || value === 'closed') {
-        if (this.mode === 'inline') root.store.set(this.id, this.state);
-      }
+    get store() {
+      return root.store.get(this.id);
     },
     get mode() {
-      return __mode;
+      return _mode;
     },
     set mode(value) {
-      __mode = value;
+      _mode = value;
       switchMode.call(root, this);
+    },
+    get state() {
+      return _state;
+    },
+    set state(value) {
+      _state = value;
+
+      // If mode is inline and not in a transitioning state...
+      if (this.mode === 'inline' && value != 'opening' && value != 'closing') {
+        // Save the inline state.
+        this.inlineState = value;
+
+        // Save the store state if enabled.
+        if (this.getSetting('store')) {
+          root.store.set(this.id, value);
+        }
+      }
+
+      // If state is indeterminate, remove the state classes.
+      if (value === 'indeterminate') {
+        this.el.classList.remove(this.getSetting('stateOpened'));
+        this.el.classList.remove(this.getSetting('stateOpening'));
+        this.el.classList.remove(this.getSetting('stateClosed'));
+        this.el.classList.remove(this.getSetting('stateClosing'));
+      }
     },
     open(transition, focus) {
       return open.call(root, this, transition, focus);
@@ -68,7 +90,10 @@ export async function register(el) {
       return this;
     },
     handleBreakpoint(event) {
-      this.mode = (event.matches) ? 'inline' : 'modal';
+      const bpMode = (event.matches) ? 'inline' : 'modal';
+      if (this.mode != bpMode) {
+        this.mode = bpMode;
+      }
       return this;
     },
     getSetting(key) {
@@ -76,40 +101,30 @@ export async function register(el) {
     }
   };
 
-  // Create the private state var with the initial state.
-  let __state = (el.classList.contains(entry.getSetting('stateOpened'))) ? 'opened' : 'closed';
-
-  // Create the private mode var with the initial mode.
-  let __mode = (el.classList.contains(entry.getSetting('classModal'))) ? 'modal' : 'inline';
+  // Add entry to collection.
+  this.collection.push(entry);
 
   // Set the dialog element. If none is found, use the root element.
   const dialog = el.querySelector(entry.getSetting('selectorDialog'));
   entry.dialog = (dialog) ? dialog : el;
-
-  // Setup mode specific attributes.
-  if (entry.mode === 'modal') {
-    // Set aria-modal attribute to true.
-    entry.dialog.setAttribute('aria-modal', 'true');
-  } else {
-    // Remove the aria-modal attribute.
-    entry.dialog.removeAttribute('aria-modal');
-  }
 
   // Set tabindex="-1" so dialog is focusable via JS or click.
   if (entry.getSetting('setTabindex')) {
     entry.dialog.setAttribute('tabindex', '-1');
   }
 
-  // Add entry to collection.
-  this.collection.push(entry);
+  // Set both the initial state and inline state.
+  await applyInitialState(entry);
 
-  // If the entry has a breakpoint...
+  // Set the inline state.
+  entry.inlineState = entry.state;
+
+  // Set the initial mode.
+  entry.mode = (el.classList.contains(entry.getSetting('classModal'))) ? 'modal' : 'inline';
+
+  // If the entry has a breakpoint, get it mounted.
   if (entry.breakpoint) {
-    // Mount media query breakpoint functionality.
     entry.mountBreakpoint();
-  } else {
-    // Else, Setup initial state.
-    await initialState.call(this, entry);
   }
 
   // Return the registered entry.

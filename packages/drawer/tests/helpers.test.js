@@ -1,4 +1,4 @@
-import { getBreakpoint, getDrawerID, getDrawerElements } from '../src/js/helpers';
+import { getBreakpoint } from '../src/js/helpers';
 
 const markup = `
   <div id="drawer-1" class="drawer" data-drawer-breakpoint="600px">...</div>

@@ -78,11 +78,47 @@ test('should return local store state when switching modes', async () => {
   expect(entry.state).toBe('closed');
 });
 
-test('should store initial state when switching to modal', async () => {
+test('should apply indeterminate state when going to inline mode', async () => {
+  await drawer.deregister('drawer-1');
+  drawer.store.set('drawer-1', 'indeterminate');
+  const entry = await drawer.register('drawer-1');
+
+  expect(entry.mode).toBe('inline');
+  expect(entry.state).toBe('indeterminate');
+
+  drawer.store.set('drawer-1');
+
+  entry.mode = 'modal';
+  await transition(entry.el);
+
+  expect(entry.mode).toBe('modal');
+  expect(entry.state).toBe('closed');
+  expect(entry.inlineState).toBe('indeterminate');
+
+  entry.mode = 'inline';
+  await transition(entry.el);
+
+  expect(entry.mode).toBe('inline');
+  expect(entry.state).toBe('indeterminate');
+
+  entry.mode = 'modal';
+  await transition(entry.el);
+
+  // Restore inline state using store value.
+  drawer.store.set('drawer-1', 'indeterminate');
+  entry.inlineState = 'opened';
+  entry.mode = 'inline';
+  await transition(entry.el);
+
+  expect(entry.mode).toBe('inline');
+  expect(entry.state).toBe('indeterminate');
+});
+
+test('should store inline state when switching to modal', async () => {
   const entry = await drawer.register('drawer-3');
   expect(entry.mode).toBe('modal');
   expect(entry.state).toBe('closed');
-  expect(drawer.store.get(entry.id)).toBe('opened');
+  expect(drawer.get(entry.id).inlineState).toBe('opened');
 });
 
 test('should throw an error when setting mode to an invalid value', async () => {
