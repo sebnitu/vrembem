@@ -81,7 +81,10 @@ export async function register(el) {
       return this;
     },
     handleBreakpoint(event) {
-      this.mode = (event.matches) ? 'inline' : 'modal';
+      const bpMode = (event.matches) ? 'inline' : 'modal';
+      if (this.mode != bpMode) {
+        this.mode = bpMode;
+      }
       return this;
     },
     getSetting(key) {
@@ -101,9 +104,8 @@ export async function register(el) {
     entry.dialog.setAttribute('tabindex', '-1');
   }
 
-  // Set the initial mode but don't trigger setter. This will get triggered by
-  // the breakpoint mount via entry.handleBreakpoint().
-  _mode = (el.classList.contains(entry.getSetting('classModal'))) ? 'modal' : 'inline';
+  // Set the initial mode.
+  entry.mode = (el.classList.contains(entry.getSetting('classModal'))) ? 'modal' : 'inline';
 
   // Apply the initial state.
   await applyInitialState(entry);

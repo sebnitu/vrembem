@@ -37,8 +37,13 @@
     <section class="section">
       <div class="section__container max-width-xs gap-y">
 
-        <div id="drawer-1" data-drawer-config="{ 'transition': false }">
-          <p>...</p>
+        <div class="drawer__wrapper">
+          <div id="drawer-default" class="drawer drawer_modal">
+            <div class="drawer__dialog">...</div>
+          </div>
+          <main class="drawer__main">
+            <button data-drawer-toggle="drawer-default">...</button>
+          </main>
         </div>
 
       </div>
@@ -58,7 +63,7 @@
     window.drawer = await drawer.init();
 
     // Manually register a drawer
-    console.log('1:', await drawer.register('drawer-1'));
+    // console.log('1:', await drawer.register('drawer-default'));
 
     // Post message to console
     console.log('Drawer instance has been attached to window:', drawer);
