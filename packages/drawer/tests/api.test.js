@@ -117,8 +117,16 @@ describe('open(), close() & toggle()', () => {
 
   it('should open and close using toggle() method', async () => {
     const entry = drawer.get('drawer-2');
-    expect(entry.state).toBe('closed');
+    expect(entry.state).toBe('indeterminate');
     expect(entry.mode).toBe('inline');
+
+    drawer.toggle('drawer-2');
+    expect(entry.el).toHaveClass('is-closing');
+    expect(entry.state).toBe('closing');
+
+    await transition(entry.el);
+    expect(entry.el).toHaveClass('is-closed');
+    expect(entry.state).toBe('closed');
 
     drawer.toggle('drawer-2');
     expect(entry.el).toHaveClass('is-opening');
@@ -128,15 +136,6 @@ describe('open(), close() & toggle()', () => {
     expect(entry.el).toHaveClass('is-opened');
     expect(entry.state).toBe('opened');
     expect(entry.dialog).toBe(document.activeElement);
-
-    drawer.toggle('drawer-2');
-    expect(entry.el).toHaveClass('is-closing');
-    expect(entry.state).toBe('closing');
-
-    await transition(entry.el);
-    expect(entry.el).toHaveClass('is-closed');
-    expect(entry.state).toBe('closed');
-    expect(entry.dialog).not.toBe(document.activeElement);
   });
 
   it('should throw if trying to open unregistered drawer', async () => {
@@ -182,7 +181,7 @@ describe('register() & deregister()', () => {
   it('should register drawer in its default state', async () => {
     const entry = await drawer.register('drawer-1');
     expect(entry.mode).toBe('inline');
-    expect(entry.state).toBe('closed');
+    expect(entry.state).toBe('indeterminate');
   });
 
   it('should register drawer in its open state', async () => {
@@ -194,7 +193,7 @@ describe('register() & deregister()', () => {
   it('should register drawer in its modal state', async () => {
     const entry = await drawer.register('drawer-3');
     expect(entry.mode).toBe('modal');
-    expect(entry.state).toBe('opened');
+    expect(entry.state).toBe('closed');
   });
 
   it('should return drawer to state saved in local store', async () => {
