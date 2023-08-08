@@ -26,13 +26,17 @@ const { title, drawer = true } = Astro.props;
       <div class="content">
         <div class="content__container">
           <div class="type gap-y">
-            <button
-              data-drawer-toggle="layout-drawer"
-              class="button"
-              style="--vb-breakpoint: 72rem;"
-            >
-              Menu
-            </button>
+            <div class="level">
+              <button data-drawer-toggle="layout-drawer" class="link">
+                Toggle
+              </button>
+              <button data-drawer-open="layout-drawer" class="link">
+                Open</button
+              >
+              <button data-drawer-close="layout-drawer" class="link">
+                Close
+              </button>
+            </div>
             <slot />
           </div>
           <Footer classes="border-top padding-top-xl margin-top-xl" />
