@@ -11,8 +11,8 @@ export async function open(query, transition, focus = true) {
   // Add transition parameter to configuration.
   if (transition !== undefined) config.transition = transition;
 
-  // If drawer is closed.
-  if (drawer.state === 'closed') {
+  // If drawer is not opened.
+  if (drawer.state != 'opened') {
     // Update drawer state.
     drawer.state = 'opening';
 

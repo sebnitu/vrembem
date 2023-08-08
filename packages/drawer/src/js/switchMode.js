@@ -1,6 +1,6 @@
 import { updateGlobalState } from '@vrembem/core';
 import { close } from './close';
-import { initialState } from './helpers/initialState';
+import { applyInlineState } from './helpers/applyInlineState';
 
 export function switchMode(entry) {
   switch (entry.mode) {
@@ -26,8 +26,8 @@ async function toInline(entry) {
   // Remove any focus traps.
   this.focusTrap.unmount();
 
-  // Setup initial state.
-  await initialState.call(this, entry);
+  // Apply the inline state.
+  await applyInlineState(entry);
 
   // Dispatch custom switch event.
   entry.el.dispatchEvent(new CustomEvent(entry.getSetting('customEventPrefix') + 'switchMode', {
@@ -40,19 +40,11 @@ async function toInline(entry) {
 }
 
 async function toModal(entry) {
-  // Get the drawer configuration.
-
   // Add the modal class.
   entry.el.classList.add(entry.getSetting('classModal'));
 
   // Set aria-modal attribute to true.
   entry.dialog.setAttribute('aria-modal', 'true');
-
-  // If there isn't a stored state but also has the opened state class...
-  if (!this.store.get(entry.id) && entry.el.classList.contains(entry.getSetting('stateOpened'))) {
-    // Save the opened state in local store.
-    this.store.set(entry.id, 'opened');
-  }
 
   // Modal drawer defaults to closed state.
   await close.call(this, entry, false, false);
