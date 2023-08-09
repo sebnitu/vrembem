@@ -1,3 +1,19 @@
+export const transition = (el, from, to) => {
+  return new Promise((resolve) => {
+    const cssTime = getComputedStyle(document.body).getPropertyValue('--vb-drawer-transition-duration').trim();
+    const msTime = parseFloat(cssTime) * 1000;
+
+    el.classList.remove(from.finish);
+    el.classList.add(to.start);
+
+    setTimeout(() => {
+      el.classList.add(to.finish);
+      el.classList.remove(to.start);
+      resolve(el);
+    }, msTime);
+  });
+};
+
 export const openTransition = (el, settings) => {
   return new Promise((resolve) => {
     // Check if transitions are enabled.
