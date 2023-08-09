@@ -1,10 +1,11 @@
 import { getPrefix } from './getPrefix';
 
-const prefixValue = getPrefix();
-
 export function cssVar(property, el = document.body, prefix = true) {
-  if (prefix && prefixValue && !property.includes(`--${prefixValue}`)) {
-    property = property.replace('--', `--${prefixValue}`);
+  if (prefix) {
+    const prefixValue = getPrefix();
+    if (prefixValue && !property.includes(`--${prefixValue}`)) {
+      property = property.replace('--', `--${prefixValue}`);
+    }
   }
   const cssValue = getComputedStyle(el).getPropertyValue(property).trim();
   if (cssValue) {
@@ -14,7 +15,7 @@ export function cssVar(property, el = document.body, prefix = true) {
   }
 }
 
-export const transition = (el, from, to, duration = '--transition-duration') => {
+export function transition(el, from, to, duration = '--transition-duration') {
   return new Promise((resolve) => {
     if (typeof duration === 'string') {
       const cssValue = cssVar(duration, el);
@@ -31,7 +32,7 @@ export const transition = (el, from, to, duration = '--transition-duration') => 
       resolve(el);
     }, duration);
   });
-};
+}
 
 export const openTransition = (el, settings) => {
   return new Promise((resolve) => {
