@@ -47,7 +47,7 @@
 
   <style>
     :root {
-      --vb-drawer-transition-duration: 1s;
+      --vb-transition-duration: 1s;
     }
 
     .box {
@@ -58,7 +58,7 @@
 
     .box.is-primary-start,
     .box.is-secondary-start {
-      transition: background-color 1s ease;
+      transition: background-color var(--vb-transition-duration) ease;
     }
 
     .box.is-primary-start,

@@ -1,7 +1,26 @@
-export const transition = (el, from, to) => {
+import { getPrefix } from './getPrefix';
+
+const prefixValue = getPrefix();
+
+export function cssVar(property, el = document.body, prefix = true) {
+  if (prefix && prefixValue && !property.includes(`--${prefixValue}`)) {
+    property = property.replace('--', `--${prefixValue}`);
+  }
+  const cssValue = getComputedStyle(el).getPropertyValue(property).trim();
+  if (cssValue) {
+    return cssValue;
+  } else {
+    throw new Error(`CSS variable "${property}" was not found!`);
+  }
+}
+
+export const transition = (el, from, to, duration = '--transition-duration') => {
   return new Promise((resolve) => {
-    const cssTime = getComputedStyle(document.body).getPropertyValue('--vb-drawer-transition-duration').trim();
-    const msTime = parseFloat(cssTime) * 1000;
+    if (typeof duration === 'string') {
+      const cssValue = cssVar(duration, el);
+      const ms = (cssValue.includes('ms')) ? true : false;
+      duration = parseFloat(cssValue) * ((ms) ? 1 : 1000);
+    }
 
     el.classList.remove(from.finish);
     el.classList.add(to.start);
@@ -10,7 +29,7 @@ export const transition = (el, from, to) => {
       el.classList.add(to.finish);
       el.classList.remove(to.start);
       resolve(el);
-    }, msTime);
+    }, duration);
   });
 };
 
@@ -56,7 +75,7 @@ export const closeTransition = (el, settings) => {
       el.addEventListener('transitionend', function _f(event) {
         // Prevent child transition bubbling from firing this event.
         if (event.target != el) return;
-        
+
         // Toggle final closed state classes.
         el.classList.remove(settings.stateClosing);
         el.classList.add(settings.stateClosed);
