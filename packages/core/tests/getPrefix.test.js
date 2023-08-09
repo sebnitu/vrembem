@@ -6,7 +6,7 @@ test('should return the vrembem prefix value', () => {
 });
 
 test('should return the vrembem prefix value', () => {
-  document.body.style.setProperty('--vrembem-variable-prefix', 'vb-');
+  document.body.style.setProperty('--vrembem-prefix', 'vb-');
   const data = getPrefix();
   expect(data).toBe('vb-');
 });
