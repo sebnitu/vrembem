@@ -1,7 +1,7 @@
-import { openTransition, updateGlobalState } from '@vrembem/core';
+import { transition, updateGlobalState } from '@vrembem/core';
 import { updateFocusState, getDrawer } from './helpers';
 
-export async function open(query, transition, focus = true) {
+export async function open(query, enableTransition, focus = true) {
   // Get the drawer from collection.
   const entry = getDrawer.call(this, query);
 
@@ -9,7 +9,7 @@ export async function open(query, transition, focus = true) {
   const config = { ...this.settings, ...entry.settings };
 
   // Add transition parameter to configuration.
-  if (transition !== undefined) config.transition = transition;
+  if (enableTransition !== undefined) config.transition = enableTransition;
 
   // If drawer is closed or indeterminate.
   if (entry.state === 'closed' || entry.state === 'indeterminate') {
@@ -17,7 +17,18 @@ export async function open(query, transition, focus = true) {
     entry.state = 'opening';
 
     // Run the open transition.
-    await openTransition(entry.el, config);
+    if (config.transition) {
+      await transition(entry.el, {
+        start: config.stateClosing,
+        finish: config.stateClosed
+      }, {
+        start: config.stateOpening,
+        finish: config.stateOpened
+      }, config.transitionDuration);
+    } else {
+      entry.el.classList.add(config.stateOpened);
+      entry.el.classList.remove(config.stateClosed);
+    }
 
     // Update drawer state.
     entry.state = 'opened';

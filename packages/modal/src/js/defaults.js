@@ -28,5 +28,6 @@ export default {
   teleport: null,
   teleportMethod: 'append',
   setTabindex: true,
-  transition: true
+  transition: true,
+  transitionDuration: 500
 };

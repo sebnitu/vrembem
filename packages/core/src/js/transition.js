@@ -1,28 +1,42 @@
 import { cssVar } from './cssVar';
 
+function getTimeValue(value, el) {
+  // If duration is a string, query for the css var value.
+  if (typeof value === 'string') {
+    const cssValue = cssVar(value, el);
+    // Convert value to ms if needed.
+    const ms = (cssValue.includes('ms')) ? true : false;
+    return parseFloat(cssValue) * ((ms) ? 1 : 1000);
+  } else {
+    return value;
+  }
+}
+
 export function transition(el, from, to, duration = '--transition-duration') {
   return new Promise((resolve) => {
-    if (typeof duration === 'string') {
-      const cssValue = cssVar(duration, el);
-      const ms = (cssValue.includes('ms')) ? true : false;
-      duration = parseFloat(cssValue) * ((ms) ? 1 : 1000);
-    }
+    // If duration is a string, query for the css var value.
+    duration = getTimeValue(duration, el);
 
+    // Toggle classes for start of transition.
     el.classList.remove(from.finish);
     el.classList.add(to.start);
 
+    // Setup the transition timing.
     setTimeout(() => {
+      // Toggle classes for end of transition.
       el.classList.add(to.finish);
       el.classList.remove(to.start);
+
+      // Resolve the promise.
       resolve(el);
     }, duration);
   });
 }
 
-export function transitionListener(el, from, to, timeout = 1000) {
+export function transitionListener(el, from, to, timeout = false) {
   return new Promise((resolve) => {
-    // Initialize transition state var.
-    let fin = false;
+    // If timeout is a string, query for the css var value.
+    timeout = getTimeValue(timeout, el);
 
     // Toggle classes for start of transition.
     el.classList.remove(from.finish);
@@ -31,25 +45,25 @@ export function transitionListener(el, from, to, timeout = 1000) {
     // Add event listener for when the transition is finished.
     el.addEventListener('transitionend', function _f(event) {
       // Prevent child transition bubbling from firing this event.
-      if (event.target != el) return;
+      // If it is the correct element, remove the event listener.
+      if (event.target === el) {
+        this.removeEventListener('transitionend', _f);
+      } else { return; }
 
       // Toggle classes for end of transition.
       el.classList.add(to.finish);
       el.classList.remove(to.start);
 
-      // Resolve the promise and remove the event listener.
+      // Resolve the promise.
       resolve(el);
-      this.removeEventListener('transitionend', _f);
-      fin = true;
     });
 
-    // Setup a timeout reset to dispatch the transitionend event if it hasn't
-    // finished by the timeout duration.
-    setTimeout(() => {
-      if (!fin) {
+    // Setup timeout is enabled, set it up and trigger the transitionend event.
+    if (timeout) {
+      setTimeout(() => {
         el.dispatchEvent(new CustomEvent('transitionend'));
-      }
-    }, timeout);
+      }, timeout);
+    }
   });
 }
 
