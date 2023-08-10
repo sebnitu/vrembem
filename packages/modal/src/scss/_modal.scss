@@ -1,6 +1,7 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
+$_v: var.$prefix-variable;
 $_b: var.$prefix-block;
 $_e: var.$prefix-element;
 
@@ -35,8 +36,8 @@ $_e: var.$prefix-element;
   overflow: auto;
   transform: translateY(-(var.$travel));
   transition-property: outline;
-  transition-duration: var.$transition-duration;
-  transition-timing-function: var.$transition-timing-function;
+  transition-duration: var(--#{$_v}modal-transition-duration);
+  transition-timing-function: var(--#{$_v}modal-transition-timing-function);
   outline: var.$outline;
   box-shadow: var.$shadow;
   opacity: 0;
