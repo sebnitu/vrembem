@@ -49,7 +49,7 @@ test('should go through closing transition classes when transition is called', (
 });
 
 test('should go through opening transition using CSS custom property', () => {
-  el.style.setProperty('--duration', '1s');
+  el.style.setProperty('--duration', '1000ms');
   transition(el, close, open, '--duration');
   expect(setTimeout).toHaveBeenCalledTimes(1);
   expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 1000);
