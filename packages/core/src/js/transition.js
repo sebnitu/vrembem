@@ -19,8 +19,11 @@ export function transition(el, from, to, duration = '--transition-duration') {
   });
 }
 
-export function transitionListener(el, from, to) {
+export function transitionListener(el, from, to, timeout = 1000) {
   return new Promise((resolve) => {
+    // Initialize transition state var.
+    let fin = false;
+
     // Toggle classes for start of transition.
     el.classList.remove(from.finish);
     el.classList.add(to.start);
@@ -37,7 +40,16 @@ export function transitionListener(el, from, to) {
       // Resolve the promise and remove the event listener.
       resolve(el);
       this.removeEventListener('transitionend', _f);
+      fin = true;
     });
+
+    // Setup a timeout reset to dispatch the transitionend event if it hasn't
+    // finished by the timeout duration.
+    setTimeout(() => {
+      if (!fin) {
+        el.dispatchEvent(new CustomEvent('transitionend'));
+      }
+    }, timeout);
   });
 }
 
