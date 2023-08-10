@@ -16,7 +16,7 @@ import { cssVar } from './cssVar';
 export function transition(el, from, to, duration = '--transition-duration') {
   return new Promise((resolve) => {
     // If duration is a string, query for the css var value.
-    if (typeof value === 'string') {
+    if (typeof duration === 'string') {
       const cssValue = cssVar(duration, el);
       // Convert value to ms if needed.
       const ms = (cssValue.includes('ms')) ? true : false;
