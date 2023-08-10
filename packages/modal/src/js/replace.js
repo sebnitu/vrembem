@@ -4,19 +4,19 @@ import { updateFocusState, getModal } from './helpers';
 
 export async function replace(query, transition, focus = true) {
   // Get the modal from collection.
-  const modal = getModal.call(this, query);
+  const entry = getModal.call(this, query);
 
   // Setup results for return.
   let resultOpened, resultClosed;
 
-  if (modal.state === 'opened') {
+  if (entry.state === 'opened') {
     // If modal is open, close all modals except for replacement.
-    resultOpened = modal;
-    resultClosed = await closeAll.call(this, modal.id, transition);
+    resultOpened = entry;
+    resultClosed = await closeAll.call(this, entry.id, transition);
   } else {
     // If modal is closed, close all and open replacement at the same time.
-    resultOpened = open.call(this, modal, transition, false);
     resultClosed = closeAll.call(this, false, transition);
+    resultOpened = open.call(this, entry, transition, false);
     await Promise.all([resultOpened, resultClosed]);
   }
 

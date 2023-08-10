@@ -1,5 +1,4 @@
 import '@testing-library/jest-dom/extend-expect';
-import { transitionEnd } from './helpers/transition';
 import Modal from '../index';
 
 const markup = `
@@ -11,8 +10,13 @@ const markup = `
   </div>
 `;
 
-test('should emit custom event when modal has opened', async () => {
+beforeEach(() => {
   document.body.innerHTML = markup;
+  document.querySelector('#modal-default').style.setProperty('--vb-modal-transition-duration', '0.3s');
+  vi.useFakeTimers();
+});
+
+test('should emit custom event when modal has opened', async () => {
   const modal = new Modal();
   await modal.init();
   const el = document.querySelector('#modal-default');
@@ -24,14 +28,13 @@ test('should emit custom event when modal has opened', async () => {
   });
 
   btn.click();
-  await transitionEnd(el);
+  await vi.runAllTimers();
 
   expect(el).toHaveClass('is-opened');
   expect(eventFired).toBe(true);
 });
 
 test('should emit custom event when modal has closed', async () => {
-  document.body.innerHTML = markup;
   const modal = new Modal();
   await modal.init();
   const el = document.querySelector('#modal-default');
@@ -44,20 +47,19 @@ test('should emit custom event when modal has closed', async () => {
   });
 
   btn.click();
-  await transitionEnd(el);
+  await vi.runAllTimers();
 
   expect(el).toHaveClass('is-opened');
   expect(eventFired).toBe(false);
 
   btnClose.click();
-  await transitionEnd(el);
+  await vi.runAllTimers();
 
   expect(el).toHaveClass('is-closed');
   expect(eventFired).toBe(true);
 });
 
 test('should be able to set a custom event prefix', async () => {
-  document.body.innerHTML = markup;
   const modal = new Modal({
     customEventPrefix: 'vrembem:'
   });
@@ -77,7 +79,7 @@ test('should be able to set a custom event prefix', async () => {
   });
 
   btn.click();
-  await transitionEnd(el);
+  await vi.runAllTimers();
 
   expect(eventOpened).toBe(true);
   expect(eventClosed).toBe(false);
@@ -85,7 +87,7 @@ test('should be able to set a custom event prefix', async () => {
   eventOpened = false;
 
   btnClose.click();
-  await transitionEnd(el);
+  await vi.runAllTimers();
 
   expect(eventOpened).toBe(false);
   expect(eventClosed).toBe(true);

@@ -1,6 +1,4 @@
 import '@testing-library/jest-dom/extend-expect';
-import { delay } from './helpers/delay';
-import { transition } from './helpers/transition';
 import Modal from '../index';
 
 const markup = `
@@ -55,7 +53,6 @@ describe('init() & destroy()', () => {
     await modal.init({ transition: false });
     entry = modal.get('modal-default');
     btnOpen.click();
-    await delay();
     expect(entry.state).toBe('opened');
     expect(entry.el).toHaveClass('is-opened');
   });
@@ -65,7 +62,6 @@ describe('init() & destroy()', () => {
     expect(modal.collection.length).toBe(0);
     expect(el).toHaveClass('is-closed');
     btnOpen.click();
-    await delay();
     expect(el).toHaveClass('is-closed');
   });
 
@@ -105,7 +101,6 @@ describe('initEventListeners() & destroyEventListeners()', () => {
   it('should initialize event listeners', async () => {
     modal.initEventListeners();
     btnOpen.click();
-    await delay();
     expect(entry.state).toBe('opened');
     expect(entry.el).toHaveClass('is-opened');
   });
@@ -113,7 +108,6 @@ describe('initEventListeners() & destroyEventListeners()', () => {
   it('should destroy event listeners', async () => {
     modal.destroyEventListeners();
     btnClose.click();
-    await delay();
     expect(entry.state).toBe('opened');
     expect(entry.el).toHaveClass('is-opened');
   });
@@ -197,10 +191,15 @@ describe('open() & close()', () => {
 
   beforeAll(async () => {
     document.body.innerHTML = markup;
+    document.querySelector('#modal-default').style.setProperty('--vb-modal-transition-duration', '0.3s');
     modal = new Modal();
     await modal.init();
     el = document.querySelector('.modal');
     entry = modal.get('modal-default');
+  });
+
+  beforeEach(() => {
+    vi.useFakeTimers();
   });
 
   it('should open modal', async () => {
@@ -208,7 +207,7 @@ describe('open() & close()', () => {
     expect(entry.state).toBe('closed');
 
     modal.open('modal-default');
-    await transition(el);
+    await vi.runAllTimers();
 
     expect(el).toHaveClass('modal is-opened');
     expect(entry.state).toBe('opened');
@@ -219,7 +218,7 @@ describe('open() & close()', () => {
     expect(entry.state).toBe('opened');
 
     modal.open('modal-default');
-    await transition(el);
+    await vi.runAllTimers();
 
     expect(el).toHaveClass('modal is-opened');
     expect(entry.state).toBe('opened');
@@ -230,7 +229,7 @@ describe('open() & close()', () => {
     expect(entry.state).toBe('opened');
 
     modal.close();
-    await transition(el);
+    await vi.runAllTimers();
 
     expect(el).toHaveClass('modal is-closed');
     expect(entry.state).toBe('closed');
@@ -241,7 +240,7 @@ describe('open() & close()', () => {
     expect(entry.state).toBe('closed');
 
     modal.close('modal-default');
-    await transition(el);
+    await vi.runAllTimers();
 
     expect(el).toHaveClass('modal is-closed');
     expect(entry.state).toBe('closed');
@@ -257,28 +256,6 @@ describe('open() & close()', () => {
 
     expect(el).toHaveClass('modal is-closed');
     expect(entry.state).toBe('closed');
-  });
-
-  it('should run function when promise is returned from open api', async () => {
-    let callbackCheck = false;
-
-    modal.open('modal-default').then(() => {
-      callbackCheck = true;
-    });
-
-    await transition(el);
-    expect(callbackCheck).toBe(true);
-  });
-
-  it('should run function when promise is returned from close api', async () => {
-    let callbackCheck = false;
-
-    modal.close().then(() => {
-      callbackCheck = true;
-    });
-
-    await transition(el);
-    expect(callbackCheck).toBe(true);
   });
 
   it('should reject promise with error if open is called on non-existent modal', async () => {
@@ -299,8 +276,15 @@ describe('open() & close()', () => {
 });
 
 describe('replace()', () => {
-  it('should close a modal and open a new one simultaneously', async () => {
+  beforeEach(() => {
     document.body.innerHTML = markupMulti;
+    document.querySelectorAll('.modal').forEach((el) => {
+      el.style.setProperty('--vb-modal-transition-duration', '0.3s');
+    });
+    vi.useFakeTimers();
+  });
+
+  it('should close a modal and open a new one simultaneously', async () => {
     const modal = new Modal();
     await modal.init();
 
@@ -309,24 +293,23 @@ describe('replace()', () => {
     modal.open('modal-1');
     expect(entry.el).toHaveClass('is-opening');
     expect(entry.state).toBe('opening');
-    await transition(entry.el);
+    await vi.runAllTimers();
     expect(entry.el).toHaveClass('is-opened');
     expect(entry.state).toBe('opened');
 
     modal.replace('modal-2');
-    await transition(entry.el);
+    await vi.runAllTimers();
 
     expect(entry.el).toHaveClass('is-closed');
     expect(entry.state).toBe('closed');
 
     entry = modal.get('modal-2');
-    await transition(entry.el);
+    await vi.runAllTimers();
     expect(entry.el).toHaveClass('is-opened');
     expect(entry.state).toBe('opened');
   });
 
   it('should close all open modals except for the replacement', async () => {
-    document.body.innerHTML = markupMulti;
     const modal = new Modal();
     await modal.init();
 
@@ -336,7 +319,7 @@ describe('replace()', () => {
     modal.open('modal-4');
 
     await Promise.all(modal.collection.map(async (entry) => {
-      await transition(entry.el);
+      await vi.runAllTimers();
     }));
 
     expect(modal.stack.value.length).toBe(4);
@@ -348,7 +331,7 @@ describe('replace()', () => {
     modal.replace('modal-2');
 
     await Promise.all(modal.collection.map(async (entry) => {
-      await transition(entry.el);
+      await vi.runAllTimers();
     }));
 
     expect(modal.stack.value.length).toBe(1);
@@ -359,7 +342,6 @@ describe('replace()', () => {
   });
 
   it('should correctly handle focus management when focus param is passed', async () => {
-    document.body.innerHTML = markupMulti;
     const modal = new Modal({ transition: false });
     await modal.init();
 
@@ -377,7 +359,6 @@ describe('replace()', () => {
   });
 
   it('should reject promise with error if replace is called on non-existent modal', async () => {
-    document.body.innerHTML = markupMulti;
     const modal = new Modal();
     let result;
     await modal.replace('asdf').catch((error) => {
@@ -388,8 +369,15 @@ describe('replace()', () => {
 });
 
 describe('closeAll()', () => {
-  it('should close all open modals', async () => {
+  beforeEach(() => {
     document.body.innerHTML = markupMulti;
+    document.querySelectorAll('.modal').forEach((el) => {
+      el.style.setProperty('--vb-modal-transition-duration', '0.3s');
+    });
+    vi.useFakeTimers();
+  });
+
+  it('should close all open modals', async () => {
     const modal = new Modal();
     await modal.init();
 
@@ -398,27 +386,34 @@ describe('closeAll()', () => {
     modal.open('modal-3');
     modal.open('modal-4');
 
-    await Promise.all(modal.collection.map(async (entry) => {
+    modal.collection.map(async (entry) => {
       expect(entry.el).toHaveClass('is-opening');
       expect(entry.state).toBe('opening');
-      await transition(entry.el);
+    });
+
+    await vi.runAllTimers();
+
+    modal.collection.map(async (entry) => {
       expect(entry.el).toHaveClass('is-opened');
       expect(entry.state).toBe('opened');
-    }));
+    });
 
     modal.closeAll();
 
-    await Promise.all(modal.collection.map(async (entry) => {
+    modal.collection.map(async (entry) => {
       expect(entry.el).toHaveClass('is-closing');
       expect(entry.state).toBe('closing');
-      await transition(entry.el);
+    });
+
+    await vi.runAllTimers();
+
+    modal.collection.map(async (entry) => {
       expect(entry.el).toHaveClass('is-closed');
       expect(entry.state).toBe('closed');
-    }));
+    });
   });
 
   it('should return focus to stored trigger when all modals are closed', async () => {
-    document.body.innerHTML = markupMulti;
     const modal = new Modal({ transition: false });
     await modal.init();
 
@@ -440,7 +435,6 @@ describe('closeAll()', () => {
   });
 
   it('should not handle focus when param is set to false', async () => {
-    document.body.innerHTML = markupMulti;
     const modal = new Modal({ transition: false });
     await modal.init();
 

@@ -1,32 +1,43 @@
-import { closeTransition } from '@vrembem/core';
+import { transition } from '@vrembem/core';
 import { updateFocusState, getModal } from './helpers';
 
-export async function close(query, transition, focus = true) {
+export async function close(query, enableTransition, focus = true) {
   // Get the modal from collection, or top modal in stack if no query is provided.
-  const modal = (query) ? getModal.call(this, query) : this.active;
+  const entry = (query) ? getModal.call(this, query) : this.active;
 
   // If a modal exists and its state is opened.
-  if (modal && modal.state === 'opened') {
+  if (entry && entry.state === 'opened') {
     // Update modal state.
-    modal.state = 'closing';
+    entry.state = 'closing';
 
     // Get the modal configuration.
-    const config = { ...this.settings, ...modal.settings };
+    const config = { ...this.settings, ...entry.settings };
 
     // Add transition parameter to configuration.
-    if (transition !== undefined) config.transition = transition;
+    if (enableTransition !== undefined) config.transition = enableTransition;
 
     // Remove focus from active element.
     document.activeElement.blur();
 
     // Run the close transition.
-    await closeTransition(modal.el, config);
+    if (config.transition) {
+      await transition(entry.el, {
+        start: config.stateOpening,
+        finish: config.stateOpened
+      }, {
+        start: config.stateClosing,
+        finish: config.stateClosed
+      }, config.transitionDuration);
+    } else {
+      entry.el.classList.add(config.stateClosed);
+      entry.el.classList.remove(config.stateOpened);
+    }
 
     // Remove modal from stack.
-    this.stack.remove(modal);
+    this.stack.remove(entry);
 
     // Update modal state.
-    modal.state = 'closed';
+    entry.state = 'closed';
 
     // Update focus if the focus param is true.
     if (focus) {
@@ -34,12 +45,12 @@ export async function close(query, transition, focus = true) {
     }
 
     // Dispatch custom closed event.
-    modal.el.dispatchEvent(new CustomEvent(config.customEventPrefix + 'closed', {
+    entry.el.dispatchEvent(new CustomEvent(config.customEventPrefix + 'closed', {
       detail: this,
       bubbles: true
     }));
   }
 
   // Return the modal.
-  return modal;
+  return entry;
 }

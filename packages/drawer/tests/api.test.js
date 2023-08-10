@@ -1,5 +1,4 @@
 import '@testing-library/jest-dom/extend-expect';
-import { transition } from './helpers/transition';
 
 import Drawer from '../index.js';
 
@@ -49,8 +48,8 @@ const markupConfig = `
 
 document.body.innerHTML = markup;
 
-const drawer = new Drawer();
-const drawerAuto = new Drawer({ autoInit: true });
+const drawer = new Drawer({ transitionDuration: 300 });
+const drawerAuto = new Drawer({ autoInit: true, transitionDuration: 300 });
 
 describe('init() & destroy()', () => {
   it('should correctly register all drawers on init()', async () => {
@@ -91,6 +90,10 @@ describe('registerCollection() & deregisterCollection()', () => {
 });
 
 describe('open(), close() & toggle()', () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
   it('should open and close using open() and close() methods', async () => {
     await drawer.init();
     const entry = drawer.get('drawer-1');
@@ -101,7 +104,7 @@ describe('open(), close() & toggle()', () => {
     expect(entry.el).toHaveClass('is-opening');
     expect(entry.state).toBe('opening');
 
-    await transition(entry.el);
+    await vi.runAllTimers();
     expect(entry.el).toHaveClass('is-opened');
     expect(entry.state).toBe('opened');
     expect(entry.dialog).toBe(document.activeElement);
@@ -110,7 +113,7 @@ describe('open(), close() & toggle()', () => {
     expect(entry.el).toHaveClass('is-closing');
     expect(entry.state).toBe('closing');
 
-    await transition(entry.el);
+    await vi.runAllTimers();
     expect(entry.el).toHaveClass('is-closed');
     expect(entry.state).toBe('closed');
     expect(entry.dialog).not.toBe(document.activeElement);
@@ -125,7 +128,7 @@ describe('open(), close() & toggle()', () => {
     expect(entry.el).toHaveClass('is-closing');
     expect(entry.state).toBe('closing');
 
-    await transition(entry.el);
+    await vi.runAllTimers();
     expect(entry.el).toHaveClass('is-closed');
     expect(entry.state).toBe('closed');
 
@@ -133,7 +136,7 @@ describe('open(), close() & toggle()', () => {
     expect(entry.el).toHaveClass('is-opening');
     expect(entry.state).toBe('opening');
 
-    await transition(entry.el);
+    await vi.runAllTimers();
     expect(entry.el).toHaveClass('is-opened');
     expect(entry.state).toBe('opened');
     expect(entry.dialog).toBe(document.activeElement);
@@ -147,6 +150,7 @@ describe('open(), close() & toggle()', () => {
 
 describe('activeModal', () => {
   it('should return entry if drawer modal is active', async () => {
+    vi.useFakeTimers();
     const entry = await drawer.register('drawer-1');
 
     expect(entry.state).toBe('closed');
@@ -155,7 +159,8 @@ describe('activeModal', () => {
 
     entry.mode = 'modal';
     entry.open();
-    await transition(entry.el);
+
+    await vi.runAllTimers();
 
     expect(entry.state).toBe('opened');
     expect(entry.mode).toBe('modal');

@@ -37,11 +37,40 @@
     <section class="section">
       <div class="section__container max-width-xs gap-y">
 
-        <p>...</p>
+        <div id="box" class="box padding">
+          <p>...</p>
+        </div>
 
       </div>
     </section>
   </main>
+
+  <style>
+    :root {
+      --vb-transition-duration: 500ms;
+    }
+
+    .box {
+      color: white;
+      background-color: var(--vb-neutral);
+      border-radius: 0.5rem;
+    }
+
+    .box.is-primary-start,
+    .box.is-secondary-start {
+      transition: background-color var(--vb-transition-duration) ease;
+    }
+
+    .box.is-primary-start,
+    .box.is-primary-finish {
+      background-color: var(--vb-primary);
+    }
+
+    .box.is-secondary-start,
+    .box.is-secondary-finish {
+      background-color: var(--vb-secondary);
+    }
+  </style>
 
   <script type="module">
     // Load CSS
@@ -50,6 +79,19 @@
 
     // Load JS and attach to window
     window.vb = await import('./index.js');
+
+    window.box = document.querySelector('#box');
+
+    window.config = {
+      primary: {
+        start: 'is-primary-start',
+        finish: 'is-primary-finish',
+      },
+      secondary: {
+        start: 'is-secondary-start',
+        finish: 'is-secondary-finish'
+      }
+    }
 
     // Post message to console
     console.log('Core instance has been attached to window:', vb);

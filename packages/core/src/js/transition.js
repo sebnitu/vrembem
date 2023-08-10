@@ -1,59 +1,40 @@
-export const openTransition = (el, settings) => {
+import { cssVar } from './cssVar';
+
+/**
+ * Get the value of a CSS custom property (variable).
+ * @param {Node} el - The element to transition.
+ * @param {Object} from - An object with a start and finish classes to 
+ *   transition from.
+ * @param {Object} to - An object with a start and finish classes to 
+ *   transition to.
+ * @param {String || Number} [duration='--transition-duration'] - Either a CSS 
+ *   custom property to get a duration value from or a millisecond value used 
+ *   for the transition duration.
+ * @return {Promise} Return a promise that resolves when the transition 
+ *   has finished.
+ */
+export function transition(el, from, to, duration = '--transition-duration') {
   return new Promise((resolve) => {
-    // Check if transitions are enabled.
-    if (settings.transition) {
-      // Toggle classes for opening transition.
-      el.classList.remove(settings.stateClosed);
-      el.classList.add(settings.stateOpening);
-
-      // Add event listener for when the transition is finished.
-      el.addEventListener('transitionend', function _f(event) {
-        // Prevent child transition bubbling from firing this event.
-        if (event.target != el) return;
-
-        // Toggle final opened state classes.
-        el.classList.add(settings.stateOpened);
-        el.classList.remove(settings.stateOpening);
-
-        // Resolve the promise and remove the event listener.
-        resolve(el);
-        this.removeEventListener('transitionend', _f);
-      });
-    } else {
-      // Toggle final opened state classes and resolve the promise.
-      el.classList.add(settings.stateOpened);
-      el.classList.remove(settings.stateClosed);
-      resolve(el);
+    // If duration is a string, query for the css var value.
+    if (typeof duration === 'string') {
+      const cssValue = cssVar(duration, el);
+      // Convert value to ms if needed.
+      const ms = (cssValue.includes('ms')) ? true : false;
+      duration = parseFloat(cssValue) * ((ms) ? 1 : 1000);
     }
-  });
-};
 
-export const closeTransition = (el, settings) => {
-  return new Promise((resolve) => {
-    // Check if transitions are enabled.
-    if (settings.transition) {
-      // Toggle classes for closing transition.
-      el.classList.add(settings.stateClosing);
-      el.classList.remove(settings.stateOpened);
+    // Toggle classes for start of transition.
+    el.classList.remove(from.finish);
+    el.classList.add(to.start);
 
-      // Add event listener for when the transition is finished.
-      el.addEventListener('transitionend', function _f(event) {
-        // Prevent child transition bubbling from firing this event.
-        if (event.target != el) return;
-        
-        // Toggle final closed state classes.
-        el.classList.remove(settings.stateClosing);
-        el.classList.add(settings.stateClosed);
+    // Setup the transition timing.
+    setTimeout(() => {
+      // Toggle classes for end of transition.
+      el.classList.add(to.finish);
+      el.classList.remove(to.start);
 
-        // Resolve the promise and remove the event listener.
-        resolve(el);
-        this.removeEventListener('transitionend', _f);
-      });
-    } else {
-      // Toggle final closed state classes and resolve the promise.
-      el.classList.add(settings.stateClosed);
-      el.classList.remove(settings.stateOpened);
+      // Resolve the promise.
       resolve(el);
-    }
+    }, duration);
   });
-};
+}

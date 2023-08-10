@@ -2,10 +2,13 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
+$prefix-variable: core.$prefix-variable !default;
 $prefix-block: core.$prefix-block !default;
 $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
+
+$_v: $prefix-variable;
 
 $class-frame: "#{$prefix-block}drawer-frame" !default;
 $class-main: "#{$prefix-block}drawer-main" !default;
@@ -16,8 +19,8 @@ $border: null !default;
 $sep-border: null !default;
 $background: theme.get("background-darker") !default;
 $shadow: none !default;
-$transition-duration: core.$transition-duration !default;
-$transition-timing-function: core.$transition-timing-function !default;
+$transition-duration: var(--#{$_v}transition-duration, #{core.$transition-duration}) !default;
+$transition-timing-function: var(--#{$_v}transition-timing-function, #{core.$transition-timing-function}) !default;
 
 $frame-height: 100vh !default;
 
