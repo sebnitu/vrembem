@@ -1,5 +1,4 @@
 import '@testing-library/jest-dom/extend-expect';
-import { transitionEnd } from './helpers/transition';
 import Modal from '../index';
 
 const markup = `
@@ -27,6 +26,10 @@ const markupConfig = `
   </div>
 `;
 
+beforeEach(() => {
+  vi.useFakeTimers();
+});
+
 test('should apply state classes on `click` and `transitionend` events', async () => {
   document.body.innerHTML = markup;
   const modal = new Modal();
@@ -40,13 +43,13 @@ test('should apply state classes on `click` and `transitionend` events', async (
   btnOpen.click();
   expect(el).toHaveClass('is-opening');
 
-  await transitionEnd(el);
+  await vi.runAllTimers();
   expect(el).toHaveClass('is-opened');
 
   btnClose.click();
   expect(el).toHaveClass('is-closing');
 
-  await transitionEnd(el);
+  await vi.runAllTimers();
   expect(el).toHaveClass('modal is-closed');
   expect(el).not.toHaveClass('is-opening is-opened is-closing');
 });
@@ -67,13 +70,13 @@ test('should apply custom state classes', async () => {
   btnOpen.click();
   expect(el).toHaveClass('enable');
 
-  await transitionEnd(el);
+  await vi.runAllTimers();
   expect(el).toHaveClass('on');
 
   btnClose.click();
   expect(el).toHaveClass('disable');
 
-  await transitionEnd(el);
+  await vi.runAllTimers();
   expect(el).toHaveClass('modal off');
   expect(el).not.toHaveClass('enable on disable');
 });

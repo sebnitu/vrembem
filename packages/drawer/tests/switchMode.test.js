@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom/extend-expect';
 import './mocks/matchMedia.mock';
 import { resizeWindow } from './helpers/resizeWindow';
-import { transition } from './helpers/transition';
 
 import Drawer from '../index';
 
@@ -20,6 +19,10 @@ document.body.innerHTML = `
 window.innerWidth = 800;
 
 const drawer = new Drawer({ transition: false });
+
+beforeEach(() => {
+  vi.useFakeTimers();
+});
 
 test('should switch drawer to modal when entry.mode property is set to modal', async () => {
   const entry = await drawer.register('drawer-1');
@@ -52,7 +55,7 @@ test('should return local store state when switching modes', async () => {
   expect(entry.state).toBe('opened');
 
   entry.mode = 'modal';
-  await transition(entry.el);
+  await vi.runAllTimers();
 
   expect(drawer.store.get('drawer-1')).toBe('opened');
   expect(entry.mode).toBe('modal');
@@ -65,7 +68,7 @@ test('should return local store state when switching modes', async () => {
   expect(entry.state).toBe('opened');
 
   entry.mode = 'inline';
-  await transition(entry.el);
+  await vi.runAllTimers();
 
   expect(drawer.store.get('drawer-1')).toBe('opened');
   expect(entry.mode).toBe('inline');
@@ -89,26 +92,26 @@ test('should apply indeterminate state when going to inline mode', async () => {
   drawer.store.set('drawer-1');
 
   entry.mode = 'modal';
-  await transition(entry.el);
+  await vi.runAllTimers();
 
   expect(entry.mode).toBe('modal');
   expect(entry.state).toBe('closed');
   expect(entry.inlineState).toBe('indeterminate');
 
   entry.mode = 'inline';
-  await transition(entry.el);
+  await vi.runAllTimers();
 
   expect(entry.mode).toBe('inline');
   expect(entry.state).toBe('indeterminate');
 
   entry.mode = 'modal';
-  await transition(entry.el);
+  await vi.runAllTimers();
 
   // Restore inline state using store value.
   drawer.store.set('drawer-1', 'indeterminate');
   entry.inlineState = 'opened';
   entry.mode = 'inline';
-  await transition(entry.el);
+  await vi.runAllTimers();
 
   expect(entry.mode).toBe('inline');
   expect(entry.state).toBe('indeterminate');

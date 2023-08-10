@@ -1,4 +1,3 @@
-import { transition } from './helpers/transition';
 import Modal from '../index';
 
 const markup = `
@@ -25,10 +24,14 @@ describe('when selectorInert is set:', () => {
     el = document.querySelector('#modal-default');
   });
 
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
   it('should properly hide content when modal is opened', async () => {
     const btnOpen = document.querySelector('[data-modal-open]');
     btnOpen.click();
-    await transition(el);
+    await vi.runAllTimers();
     expect(main.inert).toBe(true);
     expect(main.getAttribute('aria-hidden')).toBe('true');
   });
@@ -36,7 +39,7 @@ describe('when selectorInert is set:', () => {
   it('should properly show content when modal is closed', async () => {
     const btnClose = document.querySelector('[data-modal-close]');
     btnClose.click();
-    await transition(el);
+    await vi.runAllTimers();
     expect(main.inert).toBe(null);
     expect(main.hasAttribute('aria-hidden')).toBe(false);
   });

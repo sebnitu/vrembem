@@ -1,6 +1,5 @@
 import '@testing-library/jest-dom/extend-expect';
 import userEvent from '@testing-library/user-event';
-import { transition } from './helpers/transition';
 import Modal from '../index';
 
 const markup = `
@@ -26,6 +25,10 @@ const markup = `
   </div>
 `;
 
+beforeEach(() => {
+  vi.useFakeTimers();
+});
+
 test('should focus modal dialog when opened and refocus trigger when closed', async () => {
   document.body.innerHTML = markup;
   const modal = new Modal();
@@ -35,7 +38,7 @@ test('should focus modal dialog when opened and refocus trigger when closed', as
   const btnOpen = document.querySelector('[data-modal-open="modal-one"]');
 
   btnOpen.click();
-  await transition(el);
+  await vi.runAllTimers();
   expect(dialog).toHaveFocus();
 });
 
@@ -48,11 +51,11 @@ test('should focus inner modal element and refocus trigger when closed', async (
   const btnClose = el.querySelector('[data-modal-close]');
 
   btnOpen.click();
-  await transition(el);
+  await vi.runAllTimers();
   expect(btnClose).toHaveFocus();
 
   btnClose.click();
-  await transition(el);
+  await vi.runAllTimers();
   expect(btnOpen).toHaveFocus();
 });
 
@@ -66,11 +69,10 @@ test('should remember initial trigger when opening modal through another modal',
   const btnTwo = elOne.querySelector('[data-modal-open="modal-two"]');
 
   btnOpen.click();
-  await transition(elOne);
+  await vi.runAllTimers();
 
   btnTwo.click();
-  await transition(elOne);
-  await transition(elTwo);
+  await vi.runAllTimers();
 
   expect(elOne).toHaveClass('is-opened');
   expect(elTwo).toHaveClass('is-opened');
@@ -87,7 +89,7 @@ test('should retain focus on modal if nothing inner is focusable', async () => {
   const elModal = document.querySelector('#modal-empty');
   const dialog = elModal.querySelector('.modal__dialog');
   modal.open('modal-empty');
-  await transition(elModal);
+  await vi.runAllTimers();
   expect(elModal).toHaveClass('is-opened');
   expect(dialog).toHaveFocus();
   userEvent.tab();

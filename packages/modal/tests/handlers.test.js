@@ -1,5 +1,4 @@
 import '@testing-library/jest-dom/extend-expect';
-import { transitionEnd } from './helpers/transition';
 import Modal from '../index';
 
 const keyEsc = new KeyboardEvent('keydown', {
@@ -28,6 +27,10 @@ const markupReq = `
   </div>
 `;
 
+beforeEach(() => {
+  vi.useFakeTimers();
+});
+
 test('should close when root modal (screen) is clicked', async () => {
   document.body.innerHTML = markup;
   const modal = new Modal();
@@ -39,16 +42,16 @@ test('should close when root modal (screen) is clicked', async () => {
   expect(modal.get('modal-default').required).toBe(false);
 
   btnOpen.click();
-  await transitionEnd(el);
+  await vi.runAllTimers();
 
   dialog.click();
-  await transitionEnd(el);
+  await vi.runAllTimers();
   expect(el).not.toHaveClass('is-closing');
 
   el.click();
   expect(el).toHaveClass('is-closing');
 
-  await transitionEnd(el);
+  await vi.runAllTimers();
   expect(el).toHaveClass('modal is-closed');
   expect(el.classList.length).toBe(2);
 });
@@ -63,13 +66,13 @@ test('should close when the escape key is pressed', async () => {
   btnOpen.click();
   expect(el).toHaveClass('modal is-opening');
 
-  await transitionEnd(el);
+  await vi.runAllTimers();
   expect(el).toHaveClass('modal is-opened');
 
   document.dispatchEvent(keyEsc);
   expect(el).toHaveClass('modal is-closing');
 
-  await transitionEnd(el);
+  await vi.runAllTimers();
   expect(el).toHaveClass('modal is-closed');
   expect(el.classList.length).toBe(2);
 });
@@ -84,13 +87,13 @@ test('should do nothing if none escape key is pressed', async () => {
   btnOpen.click();
   expect(el).toHaveClass('modal is-opening');
 
-  await transitionEnd(el);
+  await vi.runAllTimers();
   expect(el).toHaveClass('modal is-opened');
 
   document.dispatchEvent(keySpace);
   expect(el).not.toHaveClass('is-closing');
 
-  await transitionEnd(el);
+  await vi.runAllTimers();
   expect(el).not.toHaveClass('is-closed');
   expect(el.classList.length).toBe(2);
 });
@@ -108,7 +111,7 @@ test('should not be able to close while modal transition is in process', async (
   document.dispatchEvent(keyEsc);
   expect(el).toHaveClass('modal is-opening');
 
-  await transitionEnd(el);
+  await vi.runAllTimers();
   expect(el).toHaveClass('is-opened');
   expect(el.classList.length).toBe(2);
 });
@@ -124,19 +127,19 @@ test('should prevent escape or screen click closing modal if required', async ()
   expect(modal.get('modal-default').required).toBe(true);
 
   btnOpen.click();
-  await transitionEnd(el);
+  await vi.runAllTimers();
   expect(el).toHaveClass('modal is-opened');
 
   document.dispatchEvent(keyEsc);
-  await transitionEnd(el);
+  await vi.runAllTimers();
   expect(el).toHaveClass('modal is-opened');
 
   el.click();
-  await transitionEnd(el);
+  await vi.runAllTimers();
   expect(el).toHaveClass('modal is-opened');
 
   btnClose.click();
-  await transitionEnd(el);
+  await vi.runAllTimers();
   expect(el).toHaveClass('modal is-closed');
   expect(el.classList.length).toBe(2);
 });
@@ -149,7 +152,7 @@ test('should run the replace method when replace button is clicked', async () =>
   const btnReplace = document.querySelector('[data-modal-replace]');
 
   btnReplace.click();
-  await transitionEnd(el);
+  await vi.runAllTimers();
 
   expect(el).toHaveClass('modal is-opened');
   expect(el.classList.length).toBe(2);
