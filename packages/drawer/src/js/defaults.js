@@ -33,5 +33,5 @@ export default {
   storeKey: 'VB:DrawerState',
   setTabindex: true,
   transition: true,
-  transitionDuration: 500
+  transitionDuration: '--vb-drawer-transition-duration'
 };

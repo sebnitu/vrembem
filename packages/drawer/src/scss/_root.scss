@@ -1,0 +1,8 @@
+@use "./variables" as var;
+
+$_v: var.$prefix-variable;
+
+:root {
+  --#{$_v}drawer-transition-duration: #{var.$transition-duration};
+  --#{$_v}drawer-transition-timing-function: #{var.$transition-timing-function};
+}

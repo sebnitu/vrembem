@@ -48,8 +48,8 @@ const markupConfig = `
 
 document.body.innerHTML = markup;
 
-const drawer = new Drawer();
-const drawerAuto = new Drawer({ autoInit: true });
+const drawer = new Drawer({ transitionDuration: 300 });
+const drawerAuto = new Drawer({ autoInit: true, transitionDuration: 300 });
 
 describe('init() & destroy()', () => {
   it('should correctly register all drawers on init()', async () => {

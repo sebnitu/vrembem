@@ -23,6 +23,8 @@ const dialog = document.querySelector('.drawer__dialog');
 const main = document.querySelector('.drawer-main');
 const btn = document.querySelector('[data-drawer-toggle]');
 
+el.style.setProperty('--vb-drawer-transition-duration', '0.3s');
+
 beforeEach(() => {
   vi.useFakeTimers();
 });

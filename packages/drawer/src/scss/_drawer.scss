@@ -1,5 +1,6 @@
 @use "./variables" as var;
 
+$_v: var.$prefix-variable;
 $_b: var.$prefix-block;
 $_e: var.$prefix-element;
 
@@ -85,13 +86,13 @@ $_e: var.$prefix-element;
 .#{$_b}drawer.is-opening,
 .#{$_b}drawer.is-closing {
   transition-property: background-color, opacity, transform;
-  transition-duration: var.$transition-duration;
-  transition-timing-function: var.$transition-timing-function;
+  transition-duration: var(--#{$_v}drawer-transition-duration);
+  transition-timing-function: var(--#{$_v}drawer-transition-timing-function);
 
   .#{$_b}drawer#{$_e}dialog {
     transition-property: opacity, transform;
-    transition-duration: var.$transition-duration;
-    transition-timing-function: var.$transition-timing-function;
+    transition-duration: var(--#{$_v}drawer-transition-duration);
+    transition-timing-function: var(--#{$_v}drawer-transition-timing-function);
   }
 }
 
