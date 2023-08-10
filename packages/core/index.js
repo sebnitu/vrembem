@@ -2,6 +2,7 @@ export * from './src/js/Breakpoint';
 export * from './src/js/Collection';
 export * from './src/js/FocusTrap';
 
+export * from './src/js/cssVar';
 export * from './src/js/getConfig';
 export * from './src/js/getPrefix';
 export * from './src/js/localStore';

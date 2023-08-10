@@ -1,19 +1,4 @@
-import { getPrefix } from './getPrefix';
-
-export function cssVar(property, el = document.body, prefix = true) {
-  if (prefix) {
-    const prefixValue = getPrefix();
-    if (prefixValue && !property.includes(`--${prefixValue}`)) {
-      property = property.replace('--', `--${prefixValue}`);
-    }
-  }
-  const cssValue = getComputedStyle(el).getPropertyValue(property).trim();
-  if (cssValue) {
-    return cssValue;
-  } else {
-    throw new Error(`CSS variable "${property}" was not found!`);
-  }
-}
+import { cssVar } from './cssVar';
 
 export function transition(el, from, to, duration = '--transition-duration') {
   return new Promise((resolve) => {
@@ -31,6 +16,28 @@ export function transition(el, from, to, duration = '--transition-duration') {
       el.classList.remove(to.start);
       resolve(el);
     }, duration);
+  });
+}
+
+export function transitionListener(el, from, to) {
+  return new Promise((resolve) => {
+    // Toggle classes for start of transition.
+    el.classList.remove(from.finish);
+    el.classList.add(to.start);
+
+    // Add event listener for when the transition is finished.
+    el.addEventListener('transitionend', function _f(event) {
+      // Prevent child transition bubbling from firing this event.
+      if (event.target != el) return;
+
+      // Toggle classes for end of transition.
+      el.classList.add(to.finish);
+      el.classList.remove(to.start);
+
+      // Resolve the promise and remove the event listener.
+      resolve(el);
+      this.removeEventListener('transitionend', _f);
+    });
   });
 }
 
