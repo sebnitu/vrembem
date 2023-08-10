@@ -86,6 +86,7 @@ $_m: var.$prefix-modifier;
 .#{$_b}drawer#{$_m}modal.is-opening,
 .#{$_b}drawer#{$_m}modal.is-opened {
   transform: translateX(0);
+
   &::before {
     opacity: var.$modal-screen-opacity;
   }
