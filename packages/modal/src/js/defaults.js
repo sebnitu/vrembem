@@ -29,5 +29,5 @@ export default {
   teleportMethod: 'append',
   setTabindex: true,
   transition: true,
-  transitionDuration: 500
+  transitionDuration: '--vb-modal-transition-duration'
 };

@@ -1,16 +1,19 @@
 @use "@vrembem/core";
 @use "@vrembem/core/palette";
 
+$prefix-variable: core.$prefix-variable !default;
 $prefix-block: core.$prefix-block !default;
 $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
+$_v: $prefix-variable;
+
 $z-index: 1000 !default;
 $width: 36em !default;
 $travel: 5em !default;
-$transition-duration: core.$transition-duration !default;
-$transition-timing-function: core.$transition-timing-function !default;
+$transition-duration: var(--#{$_v}transition-duration, #{core.$transition-duration}) !default;
+$transition-timing-function: var(--#{$_v}transition-timing-function, #{core.$transition-timing-function}) !default;
 $shadow: core.$shadow-5 !default;
 
 $screen-background: palette.get("neutral", 10) !default;

@@ -11,11 +11,12 @@ const markup = `
 `;
 
 beforeEach(() => {
+  document.body.innerHTML = markup;
+  document.querySelector('#modal-default').style.setProperty('--vb-modal-transition-duration', '0.3s');
   vi.useFakeTimers();
 });
 
 test('should emit custom event when modal has opened', async () => {
-  document.body.innerHTML = markup;
   const modal = new Modal();
   await modal.init();
   const el = document.querySelector('#modal-default');
@@ -34,7 +35,6 @@ test('should emit custom event when modal has opened', async () => {
 });
 
 test('should emit custom event when modal has closed', async () => {
-  document.body.innerHTML = markup;
   const modal = new Modal();
   await modal.init();
   const el = document.querySelector('#modal-default');
@@ -60,7 +60,6 @@ test('should emit custom event when modal has closed', async () => {
 });
 
 test('should be able to set a custom event prefix', async () => {
-  document.body.innerHTML = markup;
   const modal = new Modal({
     customEventPrefix: 'vrembem:'
   });

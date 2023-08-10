@@ -191,6 +191,7 @@ describe('open() & close()', () => {
 
   beforeAll(async () => {
     document.body.innerHTML = markup;
+    document.querySelector('#modal-default').style.setProperty('--vb-modal-transition-duration', '0.3s');
     modal = new Modal();
     await modal.init();
     el = document.querySelector('.modal');
@@ -276,11 +277,14 @@ describe('open() & close()', () => {
 
 describe('replace()', () => {
   beforeEach(() => {
+    document.body.innerHTML = markupMulti;
+    document.querySelectorAll('.modal').forEach((el) => {
+      el.style.setProperty('--vb-modal-transition-duration', '0.3s');
+    });
     vi.useFakeTimers();
   });
 
   it('should close a modal and open a new one simultaneously', async () => {
-    document.body.innerHTML = markupMulti;
     const modal = new Modal();
     await modal.init();
 
@@ -306,7 +310,6 @@ describe('replace()', () => {
   });
 
   it('should close all open modals except for the replacement', async () => {
-    document.body.innerHTML = markupMulti;
     const modal = new Modal();
     await modal.init();
 
@@ -339,7 +342,6 @@ describe('replace()', () => {
   });
 
   it('should correctly handle focus management when focus param is passed', async () => {
-    document.body.innerHTML = markupMulti;
     const modal = new Modal({ transition: false });
     await modal.init();
 
@@ -357,7 +359,6 @@ describe('replace()', () => {
   });
 
   it('should reject promise with error if replace is called on non-existent modal', async () => {
-    document.body.innerHTML = markupMulti;
     const modal = new Modal();
     let result;
     await modal.replace('asdf').catch((error) => {
@@ -369,11 +370,14 @@ describe('replace()', () => {
 
 describe('closeAll()', () => {
   beforeEach(() => {
+    document.body.innerHTML = markupMulti;
+    document.querySelectorAll('.modal').forEach((el) => {
+      el.style.setProperty('--vb-modal-transition-duration', '0.3s');
+    });
     vi.useFakeTimers();
   });
 
   it('should close all open modals', async () => {
-    document.body.innerHTML = markupMulti;
     const modal = new Modal();
     await modal.init();
 
@@ -410,7 +414,6 @@ describe('closeAll()', () => {
   });
 
   it('should return focus to stored trigger when all modals are closed', async () => {
-    document.body.innerHTML = markupMulti;
     const modal = new Modal({ transition: false });
     await modal.init();
 
@@ -432,7 +435,6 @@ describe('closeAll()', () => {
   });
 
   it('should not handle focus when param is set to false', async () => {
-    document.body.innerHTML = markupMulti;
     const modal = new Modal({ transition: false });
     await modal.init();
 

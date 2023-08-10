@@ -22,6 +22,7 @@ describe('when selectorInert is set:', () => {
     });
     main = document.querySelector('main');
     el = document.querySelector('#modal-default');
+    el.style.setProperty('--vb-modal-transition-duration', '0.3s');
   });
 
   beforeEach(() => {

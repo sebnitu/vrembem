@@ -26,11 +26,14 @@ const markup = `
 `;
 
 beforeEach(() => {
+  document.body.innerHTML = markup;
+  document.querySelectorAll('.modal').forEach((el) => {
+    el.style.setProperty('--vb-modal-transition-duration', '0.3s');
+  });
   vi.useFakeTimers();
 });
 
 test('should focus modal dialog when opened and refocus trigger when closed', async () => {
-  document.body.innerHTML = markup;
   const modal = new Modal();
   await modal.init();
   const el = document.querySelector('#modal-one');
@@ -43,7 +46,6 @@ test('should focus modal dialog when opened and refocus trigger when closed', as
 });
 
 test('should focus inner modal element and refocus trigger when closed', async () => {
-  document.body.innerHTML = markup;
   const modal = new Modal();
   await modal.init();
   const el = document.querySelector('#modal-two');
@@ -60,7 +62,6 @@ test('should focus inner modal element and refocus trigger when closed', async (
 });
 
 test('should remember initial trigger when opening modal through another modal', async () => {
-  document.body.innerHTML = markup;
   const modal = new Modal();
   await modal.init();
   const elOne = document.querySelector('#modal-one');
@@ -83,7 +84,6 @@ test('should remember initial trigger when opening modal through another modal',
 });
 
 test('should retain focus on modal if nothing inner is focusable', async () => {
-  document.body.innerHTML = markup;
   const modal = new Modal();
   await modal.init();
   const elModal = document.querySelector('#modal-empty');
