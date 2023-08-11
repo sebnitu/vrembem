@@ -72,11 +72,11 @@ export default class Drawer extends Collection {
     document.removeEventListener('keydown', this.#handleKeydown, false);
   }
 
-  register(query) {
+  register(query, config = {}) {
     let el = (typeof query == 'string') ?
       document.getElementById(query) : query;
     return (el) ?
-      register.call(this, el) :
+      register.call(this, el, config) :
       Promise.reject(new Error(`Failed to register; drawer not found with ID of: "${query.id || query}".`));
   }
 

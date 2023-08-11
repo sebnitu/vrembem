@@ -5,7 +5,7 @@ import { open } from './open';
 import { close } from './close';
 import { replace } from './replace';
 
-export async function register(el) {
+export async function register(el, config = {}) {
   // Deregister entry incase it has already been registered.
   await deregister.call(this, el, false);
 
@@ -22,7 +22,7 @@ export async function register(el) {
       return this.dialog.matches(this.getSetting('selectorRequired'));
     },
     returnRef: null,
-    settings: getConfig(el, this.settings.dataConfig),
+    settings: { ...getConfig(el, this.settings.dataConfig), ...config },
     open(transition, focus) {
       return open.call(root, this, transition, focus);
     },

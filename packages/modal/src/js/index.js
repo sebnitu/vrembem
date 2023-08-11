@@ -77,11 +77,11 @@ export default class Modal extends Collection {
     document.removeEventListener('keydown', this.#handleKeydown, false);
   }
 
-  register(query) {
+  register(query, config = {}) {
     let el = (typeof query == 'string') ?
       document.getElementById(query) : query;
     return (el) ?
-      register.call(this, el) :
+      register.call(this, el, config) :
       Promise.reject(new Error(`Failed to register; modal not found with ID of: "${query.id || query}".`));
   }
 

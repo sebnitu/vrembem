@@ -8,7 +8,7 @@ import { switchMode } from './switchMode';
 import { applyInitialState } from './helpers';
 import { getBreakpoint } from './helpers';
 
-export async function register(el) {
+export async function register(el, config = {}) {
   // Deregister entry incase it has already been registered.
   await deregister.call(this, el, false);
 
@@ -27,7 +27,7 @@ export async function register(el) {
     el: el,
     dialog: null,
     trigger: null,
-    settings: getConfig(el, this.settings.dataConfig),
+    settings: { ...getConfig(el, this.settings.dataConfig), ...config },
     inlineState: 'indeterminate',
     get breakpoint() {
       return getBreakpoint.call(root, el);
