@@ -4,6 +4,7 @@ import Page from "../../layouts/Page.astro";
 import Menu from "../../components/Menu.astro";
 import Pre from "../../components/Pre.astro";
 import Table from "../../components/Table.astro";
+import TableOfContentsHeading from "../../components/TableOfContentsHeading.astro";
 
 export async function getStaticPaths() {
   const packages = await getCollection("packages");
@@ -18,12 +19,37 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content, headings } = await entry.render();
+
+const toc = buildToc(headings);
+
+function buildToc(headings) {
+  const toc = [];
+  const parentHeadings = new Map();
+  headings.forEach((h) => {
+    const heading = { ...h, subheadings: [] };
+    parentHeadings.set(heading.depth, heading);
+    // Change 2 to 1 if your markdown includes your <h1>
+    if (heading.depth === 1) {
+      toc.push(heading);
+    } else {
+      parentHeadings.get(heading.depth - 1).subheadings.push(heading);
+    }
+  });
+  return toc;
+}
 ---
 
 <Page title={entry.data.title}>
   <div slot="drawer">
     <Menu />
+  </div>
+  <div slot="aside">
+    <nav class="type">
+      <ul>
+        {toc.map((heading) => <TableOfContentsHeading heading={heading} />)}
+      </ul>
+    </nav>
   </div>
   <Content components={{ pre: Pre, table: Table }} />
 </Page>
