@@ -1,0 +1,29 @@
+---
+import OnThisPageList from "./OnThisPageList.astro";
+const { headings } = Astro.props;
+
+const otp = build(headings);
+
+function build(headings) {
+  const otp = [];
+  const parentHeadings = new Map();
+  headings.forEach((h) => {
+    const heading = { ...h, subheadings: [] };
+    parentHeadings.set(heading.depth, heading);
+    // Change depth to 1 if your markdown includes your <h1>, else set to 2.
+    const depth = 1;
+    if (heading.depth === depth) {
+      otp.push(heading);
+    } else {
+      parentHeadings.get(heading.depth - 1).subheadings.push(heading);
+    }
+  });
+  return otp;
+}
+---
+
+<nav class="type">
+  <ul>
+    {otp.map((item) => <OnThisPageList {item} />)}
+  </ul>
+</nav>

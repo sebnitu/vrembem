@@ -11,11 +11,15 @@ interface Props {
 }
 
 const { title, drawer = true, aside = false } = Astro.props;
+
+let layoutClasses = "layout";
+layoutClasses += drawer ? " has-drawer" : "";
+layoutClasses += aside ? " has-aside" : "";
 ---
 
 <Base title={title}>
   <Navibar />
-  <div class={`layout${drawer ? " has-drawer" : ""}`}>
+  <div class={layoutClasses}>
     {
       drawer && (
         <LayoutDrawer client:load>

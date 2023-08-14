@@ -1,0 +1,18 @@
+---
+const { item } = Astro.props;
+---
+
+<li>
+  <a href={"#" + item.slug}>
+    {item.text}
+  </a>
+  {
+    item.subheadings.length > 0 && (
+      <ul>
+        {item.subheadings.map((subheading) => (
+          <Astro.self item={subheading} />
+        ))}
+      </ul>
+    )
+  }
+</li>
