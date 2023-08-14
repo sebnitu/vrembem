@@ -1,3 +1,5 @@
+@use "./root";
+
 .layout {
   position: relative;
   display: flex;
@@ -19,10 +21,37 @@
     box-sizing: border-box;
   }
 
-  @media (min-width: 72rem) {
+  @media (min-width: root.$bp-drawer) {
     .layout.has-drawer & {
       width: calc(100% - var(--vb-drawer-width));
       padding-left: var(--vb-drawer-width);
     }
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem 0;
+
+  @media (min-width: root.$bp-drawer) {
+    padding: 4rem 0 4rem 4rem;
+  }
+
+  .content {
+    order: 1;
+    width: 70%;
+  }
+
+  .aside {
+    order: 2;
+    width: calc(30% - 2rem);
+  }
+
+  .footer {
+    order: 3;
+    width: 100%;
   }
 }

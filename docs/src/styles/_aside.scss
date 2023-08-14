@@ -1,0 +1,30 @@
+@use "./root";
+
+.aside {
+  display: none;
+  position: relative;
+  max-width: 26rem;
+}
+
+.aside__container {
+  height: 100vh;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+@media (min-width: root.$bp-aside) {
+  .aside {
+    display: block;
+  }
+}
+
+/**
+ * Aside toggle
+ */
+
+ .layout-aside-toggle {
+  @media (min-width: root.$bp-aside) {
+    display: none;
+  }
+}
