@@ -8,9 +8,25 @@ interface Props {
   title?: string;
   drawer?: boolean;
   aside?: boolean;
+  frontmatter?: {
+    title?: string;
+    drawer?: boolean;
+    aside?: boolean;
+  };
 }
 
-const { title, drawer = true, aside = false } = Astro.props;
+const { frontmatter } = Astro.props;
+const {
+  title = fmd("title"),
+  drawer = fmd("drawer", true),
+  aside = fmd("aside", false),
+} = Astro.props;
+
+// Frontmatter Defaults
+function fmd(attr: string, fallback: any = "") {
+  const fm = frontmatter;
+  return fm && fm[attr] != undefined ? fm[attr] : fallback;
+}
 
 let layoutClasses = "layout";
 layoutClasses += drawer ? " has-drawer" : "";
@@ -27,34 +43,40 @@ layoutClasses += aside ? " has-aside" : "";
         </LayoutDrawer>
       )
     }
-    <div class="layout__content">
-      <div class="wrapper">
+    <div class="layout__main">
+      <div class="layout__grid">
         {
           aside && (
-            <aside class="aside">
-              <div class="aside__container">
+            <aside class="layout__aside layout-aside">
+              <div class="layout-aside__container">
                 <slot name="aside" />
               </div>
             </aside>
           )
         }
-        <div class="content">
-          <div class="content__container">
-            <div class="toolbar level">
-              <button
-                data-drawer-open="layout-drawer"
-                class="link layout-drawer-toggle"
-              >
-                Menu
-              </button>
-              <button class="link layout-aside-toggle">On this page</button>
-            </div>
-            <div class="type gap-y">
-              <slot />
-            </div>
+        <div class="layout__content">
+          <div class="toolbar level">
+            {
+              drawer && (
+                <button
+                  data-drawer-open="layout-drawer"
+                  class="link layout-drawer-toggle"
+                >
+                  Menu
+                </button>
+              )
+            }
+            {
+              aside && (
+                <button class="link layout-aside-toggle">On this page</button>
+              )
+            }
+          </div>
+          <div class="type gap-y">
+            <slot />
           </div>
         </div>
-        <Footer classes="span-full border-top padding-top-xl margin-top-xl" />
+        <Footer classes="layout__footer" />
       </div>
     </div>
   </div>
