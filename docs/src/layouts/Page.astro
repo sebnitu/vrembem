@@ -7,9 +7,10 @@ import LayoutDrawer from "../components/LayoutDrawer.vue";
 interface Props {
   title?: string;
   drawer?: boolean;
+  aside?: boolean;
 }
 
-const { title, drawer = true } = Astro.props;
+const { title, drawer = true, aside = false } = Astro.props;
 ---
 
 <Base title={title}>
@@ -25,17 +26,21 @@ const { title, drawer = true } = Astro.props;
     <div class="layout__content">
       <div class="content">
         <div class="content__container">
-          <div class="gap-y">
-            <h2>On this page</h2>
-            <slot name="aside" />
-          </div>
+          {
+            aside && (
+              <aside class="gap-y">
+                <h2>On this page</h2>
+                <slot name="aside" />
+              </aside>
+            )
+          }
           <div class="type gap-y">
             <button
               data-drawer-open="layout-drawer"
               class="link layout-drawer-open"
             >
-              Menu</button
-            >
+              Menu
+            </button>
             <slot />
           </div>
           <Footer classes="border-top padding-top-xl margin-top-xl" />
