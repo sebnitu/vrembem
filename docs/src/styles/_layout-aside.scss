@@ -1,22 +1,22 @@
 @use "./root";
 
-.aside {
+.layout-aside {
   display: none;
   position: relative;
-  max-width: 26rem;
-}
 
-.aside__container {
-  height: 100vh;
-  max-width: 100%;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-
-@media (min-width: root.$bp-aside) {
-  .aside {
+  @media (min-width: root.$bp-aside) {
     display: block;
   }
+}
+
+.layout-aside__container {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: calc(14rem);
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: calc(var(--vb-navibar-height) + 4rem) 0;
 }
 
 /**

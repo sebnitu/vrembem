@@ -9,7 +9,7 @@
   padding-left: var(--vb-layout-padding);
 }
 
-.layout__content {
+.layout__main {
   position: relative;
   z-index: 1;
   box-sizing: content-box;
@@ -29,29 +29,51 @@
   }
 }
 
-.wrapper {
+.layout__grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
-  padding: 2rem 0;
+  padding: 2rem 1rem;
+
+  
 
   @media (min-width: root.$bp-drawer) {
-    padding: 4rem 0 4rem 4rem;
+    padding: 3rem 0;
+    
+    .has-drawer & {
+      padding: 3rem 0 3rem 3rem;
+    }
   }
 
-  .content {
-    order: 1;
-    width: 70%;
+  @media (min-width: root.$bp-aside) {
+    padding: 4rem 0;
+    
+    .has-drawer & {
+      padding: 4rem 0 4rem 4rem;
+    }
   }
+}
 
-  .aside {
-    order: 2;
-    width: calc(30% - 2rem);
-  }
+.layout__content {
+  order: 1;
+  width: 100%;
+  max-width: var(--vb-content-width);
 
-  .footer {
-    order: 3;
-    width: 100%;
+  @media (min-width: root.$bp-aside) {
+    width: calc(100% - (14rem + 2rem));
   }
+}
+
+.layout__aside {
+  order: 2;
+  width: calc(14rem);
+}
+
+.layout__footer {
+  order: 3;
+  width: 100%;
+  border-top: 1px solid var(--vb-border-color);
+  padding-top: 2em;
+  margin-top: 4em;
 }
