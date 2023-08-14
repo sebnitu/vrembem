@@ -1,16 +1,17 @@
 ---
 import { getCollection } from "astro:content";
 
-const packages = await getCollection("packages");
+const { collection } = Astro.props;
+
+const packages = await getCollection(collection);
 ---
 
 <div class="gap-y">
-  <h2>Components</h2>
   <ol class="menu">
     {
       packages.map((entry) => (
         <li class="menu__item">
-          <a class="menu__action" href={`/packages/${entry.slug}`}>
+          <a class="menu__action" href={`/${collection}/${entry.slug}`}>
             {entry.data.title}
           </a>
         </li>
