@@ -22,8 +22,9 @@ function build(headings) {
 }
 ---
 
-<nav class="type">
-  <ul>
+<nav class="gap-y">
+  <h2>On this page</h2>
+  <ul class="list">
     {otp.map((item) => <OnThisPageList {item} />)}
   </ul>
 </nav>

@@ -28,28 +28,29 @@ layoutClasses += aside ? " has-aside" : "";
       )
     }
     <div class="layout__content">
+      {
+        aside && (
+          <aside class="aside">
+            <div class="aside__container">
+              <slot name="aside" />
+            </div>
+          </aside>
+        )
+      }
       <div class="content">
         <div class="content__container">
-          {
-            aside && (
-              <aside class="gap-y">
-                <h2>On this page</h2>
-                <slot name="aside" />
-              </aside>
-            )
-          }
+          <button
+            data-drawer-open="layout-drawer"
+            class="link layout-drawer-open"
+          >
+            Menu
+          </button>
           <div class="type gap-y">
-            <button
-              data-drawer-open="layout-drawer"
-              class="link layout-drawer-open"
-            >
-              Menu
-            </button>
             <slot />
           </div>
-          <Footer classes="border-top padding-top-xl margin-top-xl" />
         </div>
       </div>
+      <Footer classes="span-full border-top padding-top-xl margin-top-xl" />
     </div>
   </div>
 </Base>
