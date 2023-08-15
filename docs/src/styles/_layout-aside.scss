@@ -12,11 +12,12 @@
 .layout-aside__container {
   position: fixed;
   top: 0;
-  width: calc(14rem);
+  width: var(--vb-aside-width);
   height: 100vh;
   padding: calc(var(--vb-navibar-height) + 4rem) 0;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
+  scroll-behavior: smooth;
 }
 
 /**

@@ -33,7 +33,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 2rem;
+  gap: 4rem;
   padding: 2rem 1rem;
 
   
@@ -61,13 +61,13 @@
   max-width: var(--vb-content-width);
 
   @media (min-width: root.$bp-aside) {
-    width: calc(100% - (14rem + 2rem));
+    width: calc(100% - (var(--vb-aside-width) + 4rem));
   }
 }
 
 .layout__aside {
   order: 2;
-  width: calc(14rem);
+  width: var(--vb-aside-width);
 }
 
 .layout__footer {

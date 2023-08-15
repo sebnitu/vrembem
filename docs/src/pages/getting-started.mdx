@@ -14,15 +14,7 @@ Vrembem is a front-end component library written to make available common web in
 
 This Vrembem repository is managed as a monorepo that contains all available components. Include all components using the convenient all-in-one [vrembem](./packages/vrembem#readme) package.
 
-## Quick Links
-
-- [Documentation](https://vrembem.com)
-- [Components](./packages/)
-- [Changelog](./CHANGELOG.md)
-
-## Getting Started
-
-### Using CDN
+## Using CDN
 
 If you'd like to use Vrembem for prototyping or just want to take it for a test drive, you can leverage the [unpkg](https://unpkg.com/) CDN version of a component or the entire Vrembem library.
 
@@ -51,7 +43,7 @@ If you'd like to use Vrembem for prototyping or just want to take it for a test 
 
 Also see [`example.html`](./example.html) for a more comprehensive working demo of using Vrembem via CDN.
 
-#### CDN References
+### CDN References
 
 Vrembem packages all bundles in two areas, `dist` contains all compressed production ready bundles and `dev` contains uncompressed versions (all using the same file names). Components that ship with JavaScript include 4 bundles:
 
@@ -90,7 +82,7 @@ For example, if you wanted to include the styles and scripts for the `@vrembem/d
 <script nomodule src="https://unpkg.com/@vrembem/drawer/dist/scripts.umd.js"></script>
 ```
 
-### Using NPM
+## Using NPM
 
 To use a Vrembem component, you'll first need to install it as a dependency. For this example we'll be using the modal component:
 
@@ -98,7 +90,7 @@ To use a Vrembem component, you'll first need to install it as a dependency. For
 npm install @vrembem/modal
 ```
 
-#### CSS
+### CSS
 
 Include the component in your build's Sass manifest file:
 
@@ -115,7 +107,7 @@ Vrembem uses [Sass' module system](https://sass-lang.com/blog/the-module-system-
 );
 ```
 
-#### JavaScript
+### JavaScript
 
 Some packages also have included modules for their functionality. You can include these in your JavaScript files by importing, instantiate and initialize:
 
@@ -134,7 +126,7 @@ Alternatively, you can use the `autoInit` option to auto initialize and optional
 new Modal({ autoInit: true });
 ```
 
-#### HTML
+### HTML
 
 Include the component's markup into your project. Use the [online docs](https://vrembem.com) for information and code examples such as markup and available modifiers for each component.
 
@@ -148,7 +140,7 @@ Include the component's markup into your project. Use the [online docs](https://
 </div>
 ```
 
-#### All-in-one
+### All-in-one
 
 It's also possible to include all Vrembem components using the single all-in-one `vrembem` package:
 

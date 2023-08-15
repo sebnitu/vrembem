@@ -2,7 +2,8 @@
 import OnThisPageList from "./OnThisPageList.astro";
 const { headings } = Astro.props;
 
-const otp = build(headings);
+// Filter out the h1 and pass the filtered headings array to build.
+const otp = build(headings.filter((item) => item.depth != 1));
 
 function build(headings) {
   const otp = [];
@@ -11,7 +12,7 @@ function build(headings) {
     const heading = { ...h, subheadings: [] };
     parentHeadings.set(heading.depth, heading);
     // Change depth to 1 if your markdown includes your <h1>, else set to 2.
-    const depth = 1;
+    const depth = 2;
     if (heading.depth === depth) {
       otp.push(heading);
     } else {
@@ -22,9 +23,13 @@ function build(headings) {
 }
 ---
 
-<nav class="gap-y">
-  <h2>On this page</h2>
-  <ul class="list">
-    {otp.map((item) => <OnThisPageList {item} />)}
-  </ul>
+<nav class="otp">
+  { 
+    !!otp.length && (
+      <h2 class="otp__heading">On this page</h2>
+      <ul class="otp__list">
+        {otp.map((item) => <OnThisPageList {item} />)}
+      </ul>
+    )
+  }
 </nav>
