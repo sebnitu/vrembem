@@ -3,6 +3,7 @@
 .layout-aside {
   position: relative;
   display: none;
+  width: var(--vb-aside-width);
 
   @media (min-width: root.$bp-aside) {
     display: block;

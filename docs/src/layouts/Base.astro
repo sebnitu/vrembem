@@ -3,6 +3,7 @@ import Root from "./Root.astro";
 import Navibar from "../components/Navibar.astro";
 import Footer from "../components/Footer.astro";
 import LayoutDrawer from "../components/LayoutDrawer.vue";
+import LayoutAside from "../components/LayoutAside.vue";
 
 interface Props {
   title?: string;
@@ -27,11 +28,9 @@ const { title, drawer = false, aside = false } = Astro.props;
       <div class="layout__grid">
         {
           aside && (
-            <aside class="layout__aside layout-aside">
-              <div class="layout-aside__container">
-                <slot name="aside" />
-              </div>
-            </aside>
+            <LayoutAside client:load>
+              <slot name="aside" />
+            </LayoutAside>
           )
         }
         <div class="layout__content">
@@ -48,7 +47,12 @@ const { title, drawer = false, aside = false } = Astro.props;
             }
             {
               aside && (
-                <button class="link layout-aside-toggle">On this page</button>
+                <button
+                  data-drawer-open="layout-aside"
+                  class="link layout-aside-toggle"
+                >
+                  On this page
+                </button>
               )
             }
           </div>

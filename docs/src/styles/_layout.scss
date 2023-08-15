@@ -36,7 +36,17 @@
   gap: 4rem;
   padding: 2rem 1rem;
 
-  
+  > * {
+    order: 2;
+  }
+
+  .layout__content {
+    order: 1;
+  }
+
+  .layout__footer {
+    order: 3;
+  }
 
   @media (min-width: root.$bp-drawer) {
     padding: 3rem 0;
@@ -56,7 +66,6 @@
 }
 
 .layout__content {
-  order: 1;
   width: 100%;
   max-width: var(--vb-content-width);
 
@@ -65,13 +74,7 @@
   }
 }
 
-.layout__aside {
-  order: 2;
-  width: var(--vb-aside-width);
-}
-
 .layout__footer {
-  order: 3;
   width: 100%;
   margin-top: 4em;
   padding-top: 2em;
