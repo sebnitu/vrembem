@@ -36,6 +36,12 @@
   flex-grow: 1;
   justify-content: flex-end;
 
+  .menu__action {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+  }
+
   @media (min-width: root.$bp-drawer) {
     .has-drawer & {
       background-color: var(--vb-background);
