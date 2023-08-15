@@ -2,8 +2,8 @@
 import OnThisPageList from "./OnThisPageList.astro";
 const { headings } = Astro.props;
 
-// Filter out the h1 and pass the filtered headings array to build.
-const otp = build(headings.filter((item) => item.depth != 1));
+// Filter the headings to only display the ones we want.
+const otp = build(headings.filter((item) => item.depth === 2));
 
 function build(headings) {
   const otp = [];
@@ -26,8 +26,8 @@ function build(headings) {
 <nav class="otp">
   { 
     !!otp.length && (
-      <h2 class="otp__heading">On this page</h2>
-      <ul class="otp__list">
+      <h2 class="otp__heading padding padding-y-sm">On this page</h2>
+      <ul class="otp__menu menu">
         {otp.map((item) => <OnThisPageList {item} />)}
       </ul>
     )

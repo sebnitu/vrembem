@@ -2,13 +2,13 @@
 const { item } = Astro.props;
 ---
 
-<li class="otp__item">
-  <a class="otp__link" href={"#" + item.slug}>
+<li class="menu__item">
+  <a class="menu__action" href={"#" + item.slug}>
     {item.text}
   </a>
   {
     item.subheadings.length > 0 && (
-      <ul class="otp__sublist">
+      <ul class="menu">
         {item.subheadings.map((subheading) => (
           <Astro.self item={subheading} />
         ))}
