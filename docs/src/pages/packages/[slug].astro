@@ -1,10 +1,10 @@
 ---
 import { CollectionEntry, getCollection } from "astro:content";
-import Structure from "../../layouts/Structure.astro";
+import Base from "../../layouts/Base.astro";
 import Menu from "../../components/CollectionMenu.astro";
+import OnThisPage from "../../components/OnThisPage.astro";
 import Pre from "../../components/Pre.astro";
 import Table from "../../components/Table.astro";
-import OnThisPage from "../../components/OnThisPage.astro";
 
 export async function getStaticPaths() {
   const packages = await getCollection("packages");
@@ -22,7 +22,7 @@ const { entry } = Astro.props;
 const { Content, headings } = await entry.render();
 ---
 
-<Structure title={entry.data.title} drawer={true} aside={true}>
+<Base title={entry.data.title} drawer={true} aside={true}>
   <div slot="drawer">
     <Menu collection="packages" />
   </div>
@@ -30,4 +30,4 @@ const { Content, headings } = await entry.render();
     <OnThisPage {headings} />
   </div>
   <Content components={{ pre: Pre, table: Table }} />
-</Structure>
+</Base>

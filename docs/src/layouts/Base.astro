@@ -1,39 +1,63 @@
 ---
-import "../styles/global.scss";
+import Root from "./Root.astro";
+import Navibar from "../components/Navibar.astro";
+import Footer from "../components/Footer.astro";
+import LayoutDrawer from "../components/LayoutDrawer.vue";
 
 interface Props {
   title?: string;
   drawer?: boolean;
   aside?: boolean;
-  bodyClass?: string;
 }
 
-const { title, drawer, aside, bodyClass } = Astro.props;
-
-let mainClasses = "main";
-mainClasses += drawer ? " has-drawer" : "";
-mainClasses += aside ? " has-aside" : "";
+const { title, drawer = false, aside = false } = Astro.props;
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Vrembem{title ? " | " + title : ""}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body class={bodyClass}>
-    <main class={mainClasses}>
-      <slot />
-    </main>
-    <div class="modals"></div>
-  </body>
-</html>
+<Root {title} {drawer} {aside}>
+  <Navibar />
+  <div class="layout">
+    {
+      drawer && (
+        <LayoutDrawer client:load>
+          <slot name="drawer" />
+        </LayoutDrawer>
+      )
+    }
+    <div class="layout__main">
+      <div class="layout__grid">
+        {
+          aside && (
+            <aside class="layout__aside layout-aside">
+              <div class="layout-aside__container">
+                <slot name="aside" />
+              </div>
+            </aside>
+          )
+        }
+        <div class="layout__content">
+          <div class="toolbar level">
+            {
+              drawer && (
+                <button
+                  data-drawer-open="layout-drawer"
+                  class="link layout-drawer-toggle"
+                >
+                  Menu
+                </button>
+              )
+            }
+            {
+              aside && (
+                <button class="link layout-aside-toggle">On this page</button>
+              )
+            }
+          </div>
+          <div class="type gap-y">
+            <slot />
+          </div>
+        </div>
+        <Footer classes="layout__footer" />
+      </div>
+    </div>
+  </div>
+</Root>

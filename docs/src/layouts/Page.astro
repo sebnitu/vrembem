@@ -1,27 +1,21 @@
 ---
-import Structure from "../layouts/Structure.astro";
+import Base from "./Base.astro";
 import Menu from "../components/CollectionMenu.astro";
 import OnThisPage from "../components/OnThisPage.astro";
 
-const { frontmatter, headings } = Astro.props;
+const { headings } = Astro.props;
 const {
-  title = fmd("title"),
-  drawer = fmd("drawer", false),
-  aside = fmd("aside", false),
-} = Astro.props;
-
-// Frontmatter Defaults
-function fmd(attr: string, fallback: any = "") {
-  const fm = frontmatter;
-  return fm && fm[attr] != undefined ? fm[attr] : fallback;
-}
+  title,
+  drawer = false,
+  aside = true,
+} = Astro.props.frontmatter || Astro.props;
 ---
 
-<Structure {title} {drawer} {aside}>
+<Base {title} {drawer} {aside}>
   {
     drawer && (
       <div slot="drawer">
-        <Menu collection="packages" />
+        <Menu collection={drawer} />
       </div>
     )
   }
@@ -33,4 +27,4 @@ function fmd(attr: string, fallback: any = "") {
     )
   }
   <slot />
-</Structure>
+</Base>

@@ -1,5 +1,5 @@
 ---
-import Base from "../layouts/Base.astro";
+import Root from "../layouts/Root.astro";
 import Logo from "../components/Logo.astro";
 import Footer from "../components/Footer.astro";
 import Navibar from "../components/Navibar.astro";
@@ -7,7 +7,7 @@ import CodeBlock from "../components/CodeBlock.vue";
 import Icon from "../components/Icon.vue";
 ---
 
-<Base bodyClass="background-darker">
+<Root bodyClass="background-darker">
   <Navibar classes="background fold-shadow" />
   <div class="navibar-spacer"></div>
   <div class="section section_size_xl fold-shadow-top type">
@@ -106,4 +106,4 @@ import Icon from "../components/Icon.vue";
       <Footer />
     </div>
   </div>
-</Base>
+</Root>
