@@ -22,7 +22,7 @@
   }
 
   @media (min-width: root.$bp-drawer) {
-    .layout.has-drawer & {
+    .has-drawer & {
       width: calc(100% - var(--vb-drawer-width));
       padding-left: var(--vb-drawer-width);
     }

@@ -1,9 +1,9 @@
 ---
-import Page from "../../layouts/Page.astro";
+import Structure from "../../layouts/Structure.astro";
 import Menu from "../../components/CollectionMenu.astro";
 ---
 
-<Page title="Packages">
+<Structure title="Packages" drawer={true} aside={true}>
   <div slot="drawer">
     <Menu collection="packages" />
   </div>
@@ -11,4 +11,4 @@ import Menu from "../../components/CollectionMenu.astro";
     <h1>Packages</h1>
     <p>...</p>
   </div>
-</Page>
+</Structure>

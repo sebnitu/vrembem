@@ -1,6 +1,6 @@
 ---
 import { CollectionEntry, getCollection } from "astro:content";
-import Page from "../../layouts/Page.astro";
+import Structure from "../../layouts/Structure.astro";
 import Menu from "../../components/CollectionMenu.astro";
 import Pre from "../../components/Pre.astro";
 import Table from "../../components/Table.astro";
@@ -22,7 +22,7 @@ const { entry } = Astro.props;
 const { Content, headings } = await entry.render();
 ---
 
-<Page title={entry.data.title} aside={true}>
+<Structure title={entry.data.title} drawer={true} aside={true}>
   <div slot="drawer">
     <Menu collection="packages" />
   </div>
@@ -30,4 +30,4 @@ const { Content, headings } = await entry.render();
     <OnThisPage {headings} />
   </div>
   <Content components={{ pre: Pre, table: Table }} />
-</Page>
+</Structure>

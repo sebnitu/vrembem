@@ -3,10 +3,16 @@ import "../styles/global.scss";
 
 interface Props {
   title?: string;
+  drawer?: boolean;
+  aside?: boolean;
   bodyClass?: string;
 }
 
-const { bodyClass, title } = Astro.props;
+const { title, drawer, aside, bodyClass } = Astro.props;
+
+let mainClasses = "main";
+mainClasses += drawer ? " has-drawer" : "";
+mainClasses += aside ? " has-aside" : "";
 ---
 
 <!DOCTYPE html>
@@ -25,7 +31,7 @@ const { bodyClass, title } = Astro.props;
     />
   </head>
   <body class={bodyClass}>
-    <main>
+    <main class={mainClasses}>
       <slot />
     </main>
     <div class="modals"></div>

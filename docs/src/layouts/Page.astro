@@ -1,24 +1,12 @@
 ---
-import Base from "./Base.astro";
-import Navibar from "../components/Navibar.astro";
-import Footer from "../components/Footer.astro";
-import LayoutDrawer from "../components/LayoutDrawer.vue";
+import Structure from "../layouts/Structure.astro";
+import Menu from "../components/CollectionMenu.astro";
+import OnThisPage from "../components/OnThisPage.astro";
 
-interface Props {
-  title?: string;
-  drawer?: boolean;
-  aside?: boolean;
-  frontmatter?: {
-    title?: string;
-    drawer?: boolean;
-    aside?: boolean;
-  };
-}
-
-const { frontmatter } = Astro.props;
+const { frontmatter, headings } = Astro.props;
 const {
   title = fmd("title"),
-  drawer = fmd("drawer", true),
+  drawer = fmd("drawer", false),
   aside = fmd("aside", false),
 } = Astro.props;
 
@@ -27,57 +15,22 @@ function fmd(attr: string, fallback: any = "") {
   const fm = frontmatter;
   return fm && fm[attr] != undefined ? fm[attr] : fallback;
 }
-
-let layoutClasses = "layout";
-layoutClasses += drawer ? " has-drawer" : "";
-layoutClasses += aside ? " has-aside" : "";
 ---
 
-<Base title={title}>
-  <Navibar />
-  <div class={layoutClasses}>
-    {
-      drawer && (
-        <LayoutDrawer client:load>
-          <slot name="drawer" />
-        </LayoutDrawer>
-      )
-    }
-    <div class="layout__main">
-      <div class="layout__grid">
-        {
-          aside && (
-            <aside class="layout__aside layout-aside">
-              <div class="layout-aside__container">
-                <slot name="aside" />
-              </div>
-            </aside>
-          )
-        }
-        <div class="layout__content">
-          <div class="toolbar level">
-            {
-              drawer && (
-                <button
-                  data-drawer-open="layout-drawer"
-                  class="link layout-drawer-toggle"
-                >
-                  Menu
-                </button>
-              )
-            }
-            {
-              aside && (
-                <button class="link layout-aside-toggle">On this page</button>
-              )
-            }
-          </div>
-          <div class="type gap-y">
-            <slot />
-          </div>
-        </div>
-        <Footer classes="layout__footer" />
+<Structure {title} {drawer} {aside}>
+  {
+    drawer && (
+      <div slot="drawer">
+        <Menu collection="packages" />
       </div>
-    </div>
-  </div>
-</Base>
+    )
+  }
+  {
+    aside && (
+      <div slot="aside">
+        <OnThisPage {headings} />
+      </div>
+    )
+  }
+  <slot />
+</Structure>

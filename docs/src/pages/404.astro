@@ -1,10 +1,14 @@
 ---
-import Page from "../layouts/Page.astro";
+import Base from "../layouts/Base.astro";
 ---
 
-<Page title="Page not found">
-  <div class="type">
-    <h1>404</h1>
-    <p>Page was not found.</p>
+<Base title="Page not found">
+  <div class="section">
+    <div class="section__container type">
+      <h1>404</h1>
+      <p>Page was not found.</p>
+      <br />
+      <p><a href="/" class="link">Home</a></p>
+    </div>
   </div>
-</Page>
+</Base>
