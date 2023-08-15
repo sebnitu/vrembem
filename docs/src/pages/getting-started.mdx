@@ -3,6 +3,11 @@ layout: ../layouts/Page.astro
 title: Getting Started
 ---
 
+import Pre from "../components/Pre.astro";
+import Table from "../components/Table.astro";
+
+export const components = { pre: Pre, table: Table }
+
 # Getting Started
 
 Vrembem is a front-end component library written to make available common web interface patterns. This allows developers and designers to implement robust components into their web projects while keeping them flexible and customizable through the use of the [BEM methodology](https://en.bem.info/methodology/) and [Sass CSS extension language](https://sass-lang.com/).
