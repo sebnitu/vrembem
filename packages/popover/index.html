@@ -37,9 +37,26 @@
     <section class="section">
       <div class="section__container max-width-xs gap-y text-align-center">
 
-        <button class="button" aria-controls="popover-default">Popover</button>
-        <div class="popover" id="popover-default" style="--vb-popover-placement: right;">
-          This is a popover element...
+        <div class="level flex-justify-center">
+          <button class="button" aria-controls="popover-left">Popover</button>
+          <button class="button" aria-controls="popover-top">Popover</button>
+          <button class="button" aria-controls="popover-bottom">Popover</button>
+          <button class="button" aria-controls="popover-right">Popover</button>
+        </div>
+
+        <div>
+          <div id="popover-left" class="popover popover_size_auto popover_tooltip" style="--vb-popover-placement: left;">
+            Pop
+          </div>
+          <div id="popover-top" class="popover popover_size_auto popover_tooltip" style="--vb-popover-placement: top;">
+            Pop
+          </div>
+          <div id="popover-bottom" class="popover popover_size_auto popover_tooltip" style="--vb-popover-placement: bottom;">
+            Pop
+          </div>
+          <div id="popover-right" class="popover popover_size_auto popover_tooltip" style="--vb-popover-placement: right;">
+            Pop
+          </div>
         </div>
 
       </div>
@@ -55,9 +72,7 @@
     import Popover from './index.js';
 
     // Init and attach instance to window
-    const popover = new Popover({
-      placement: 'top'
-    });
+    const popover = new Popover();
     window.popover = await popover.init();
 
     // Post message to console
