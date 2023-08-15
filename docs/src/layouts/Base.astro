@@ -28,9 +28,11 @@ const { title, drawer = false, aside = false } = Astro.props;
       <div class="layout__grid">
         {
           aside && (
-            <LayoutAside client:load>
-              <slot name="aside" />
-            </LayoutAside>
+            <div class="layout__aside">
+              <LayoutAside client:load>
+                <slot name="aside" />
+              </LayoutAside>
+            </div>
           )
         }
         <div class="layout__content">

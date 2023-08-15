@@ -4,10 +4,12 @@ import { getCollection } from "astro:content";
 const { collection } = Astro.props;
 
 const packages = await getCollection(collection);
+const title = collection.charAt(0).toUpperCase() + collection.slice(1);
 ---
 
-<div class="gap-y">
-  <ol class="menu">
+<nav>
+  <h2 class="padding padding-y-sm">{title}</h2>
+  <ul class="menu">
     {
       packages.map((entry) => (
         <li class="menu__item">
@@ -17,5 +19,5 @@ const packages = await getCollection(collection);
         </li>
       ))
     }
-  </ol>
-</div>
+  </ul>
+</nav>

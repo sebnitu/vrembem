@@ -33,6 +33,6 @@ export default {
       uid,
       elDrawer
     };
-  },
+  }
 };
 </script>

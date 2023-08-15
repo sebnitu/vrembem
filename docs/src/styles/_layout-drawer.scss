@@ -59,7 +59,6 @@
 @media (min-width: root.$bp-drawer) {
   .layout-drawer {
     z-index: 2;
-    visibility: visible;
     box-sizing: content-box;
     width: 100%;
     max-width: calc(var(--vb-drawer-width) - var(--vb-drawer-padding));

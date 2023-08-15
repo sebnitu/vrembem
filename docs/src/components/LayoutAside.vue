@@ -2,7 +2,7 @@
   <aside
     ref="elDrawer"
     :id="uid"
-    class="layout__aside layout-aside"
+    class="layout-aside"
     data-drawer-breakpoint="76rem"
     data-drawer-config="{'classModal': 'is-modal', 'store': false}">
     <div class="layout-aside__container">
@@ -34,6 +34,6 @@ export default {
       uid,
       elDrawer
     };
-  },
+  }
 };
 </script>
