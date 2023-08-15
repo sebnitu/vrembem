@@ -1,0 +1,103 @@
+@use "@vrembem/drawer";
+@use "./root";
+
+/**
+ * Modal drawer
+ */
+
+.layout-aside {
+  position: fixed;
+  z-index: 100;
+  visibility: hidden;
+  width: calc(100% - 4rem);
+  max-width: var(--vb-drawer-width);
+  padding: var(--vb-drawer-padding);
+  overflow-x: hidden;
+  overflow-y: auto;
+  transform: translate(100%);
+  transition: opacity .5s, transform .25s ease;
+  outline: none;
+  background-color: var(--vb-background-darker);
+  box-shadow: drawer.$modal-shadow;
+  opacity: 0;
+  inset: 0 0 0 auto;
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
+
+  &.is-opened,
+  &.is-opening {
+    visibility: visible;
+    transform: translate(0);
+    transition: opacity .25s, transform .5s cubic-bezier(0.19, 1, 0.22, 1);
+    opacity: 1;
+  }
+
+  &.is-closed {
+    visibility: hidden;
+  }
+}
+
+.layout-aside__screen {
+  position: fixed;
+  z-index: 99;
+  transition: opacity .25s;
+  background-color: var(--vb-neutral-10);
+  opacity: 0;
+  inset: auto;
+
+  .layout-aside.is-opened ~ &,
+  .layout-aside.is-opening ~ & {
+    opacity: 0.8;
+  }
+
+  .layout-aside.is-opened ~ &,
+  .layout-aside.is-opening ~ &,
+  .layout-aside.is-closing ~ & {
+    inset: 0;
+  }
+}
+
+/**
+ * Inline aside
+ */
+
+@media (min-width: root.$bp-aside) {
+  .layout-aside {
+    position: fixed;
+    z-index: 2;
+    visibility: visible;
+    width: var(--vb-aside-width);
+    height: 100vh;
+    padding: 0;
+    transform: translate(0);
+    background-color: transparent;
+    box-shadow: none;
+    opacity: 1;
+    inset: 0 auto auto;
+  }
+  
+  .layout-aside__container {
+    position: fixed;
+    top: 0;
+    width: var(--vb-aside-width);
+    height: 100vh;
+    padding: calc(var(--vb-navibar-height) + 4rem) 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+  }
+
+  .layout-aside__screen {
+    display: none;
+  }
+}
+
+/**
+ * Aside toggle
+ */
+
+ .layout-aside-toggle {
+  @media (min-width: root.$bp-aside) {
+    display: none;
+  }
+}

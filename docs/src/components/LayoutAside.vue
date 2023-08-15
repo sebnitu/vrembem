@@ -2,13 +2,14 @@
   <aside
     ref="elDrawer"
     :id="uid"
-    class="layout-drawer"
-    data-drawer-breakpoint="60rem"
+    class="layout-aside"
+    data-drawer-breakpoint="76rem"
     data-drawer-config="{'classModal': 'is-modal', 'store': false}">
-    <div class="layout-drawer__mask"></div>
-    <slot />
+    <div class="layout-aside__container">
+      <slot />
+    </div>
   </aside>
-  <div class="layout-drawer__screen" :data-drawer-close="uid"></div>
+  <div class="layout-aside__screen" :data-drawer-close="uid"></div>
 </template>
 
 <script lang="ts">
@@ -18,7 +19,7 @@ import { drawer } from '../modules/useDrawer';
 export default {
   props: {},
   setup() {
-    const uid = ref('layout-drawer');
+    const uid = ref('layout-aside');
     const elDrawer = ref(null);
 
     onMounted(() => {

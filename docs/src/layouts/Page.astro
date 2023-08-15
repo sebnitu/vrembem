@@ -1,47 +1,30 @@
 ---
 import Base from "./Base.astro";
-import Navibar from "../components/Navibar.astro";
-import Footer from "../components/Footer.astro";
-import LayoutDrawer from "../components/LayoutDrawer.vue";
+import Menu from "../components/CollectionMenu.astro";
+import OnThisPage from "../components/OnThisPage.astro";
 
-interface Props {
-  drawer?: boolean;
-  title?: string;
-}
-
-const { title, drawer = true } = Astro.props;
+const { headings } = Astro.props;
+const {
+  title,
+  drawer = false,
+  aside = true,
+} = Astro.props.frontmatter || Astro.props;
 ---
 
-<Base title={title}>
-  <Navibar />
-  <div class={`layout${drawer ? " has-drawer" : ""}`}>
-    {
-      drawer && (
-        <LayoutDrawer client:load>
-          <slot name="drawer" />
-        </LayoutDrawer>
-      )
-    }
-    <div class="layout__content">
-      <div class="content">
-        <div class="content__container">
-          <div class="type gap-y">
-            <div class="level">
-              <button data-drawer-toggle="layout-drawer" class="link">
-                Toggle
-              </button>
-              <button data-drawer-open="layout-drawer" class="link">
-                Open</button
-              >
-              <button data-drawer-close="layout-drawer" class="link">
-                Close
-              </button>
-            </div>
-            <slot />
-          </div>
-          <Footer classes="border-top padding-top-xl margin-top-xl" />
-        </div>
+<Base {title} {drawer} {aside}>
+  {
+    drawer && (
+      <div slot="drawer">
+        <Menu collection={drawer} />
       </div>
-    </div>
-  </div>
+    )
+  }
+  {
+    aside && (
+      <div slot="aside">
+        <OnThisPage {headings} />
+      </div>
+    )
+  }
+  <slot />
 </Base>

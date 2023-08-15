@@ -1,4 +1,5 @@
 @use "@vrembem/drawer";
+@use "./root";
 
 /**
  * Modal drawer
@@ -55,7 +56,7 @@
  * Inline drawer
  */
 
-@media (min-width: 72rem) {
+@media (min-width: root.$bp-drawer) {
   .layout-drawer {
     z-index: 2;
     visibility: visible;
@@ -111,7 +112,7 @@
  */
 
 .layout-drawer-toggle {
-  @media (min-width: 72rem) {
+  @media (min-width: root.$bp-drawer) {
     display: none;
   }
 }

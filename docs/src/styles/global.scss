@@ -12,7 +12,7 @@
 @use "./navibar";
 @use "./layout";
 @use "./layout-drawer";
-@use "./content";
+@use "./layout-aside";
 
 @use "./fold-shadow";
 @use "./icon_external";
@@ -20,4 +20,8 @@
 
 astro-island {
   display: block !important;
+}
+
+.main {
+  min-height: 100vh;
 }

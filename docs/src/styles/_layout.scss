@@ -1,3 +1,5 @@
+@use "./root";
+
 .layout {
   position: relative;
   display: flex;
@@ -5,11 +7,11 @@
   width: 100%;
   padding-right: var(--vb-layout-padding);
   padding-left: var(--vb-layout-padding);
+  overflow-x: hidden;
 }
 
-.layout__content {
+.layout__main {
   position: relative;
-  z-index: 1;
   box-sizing: content-box;
   width: 100%;
   max-width: calc(var(--vb-layout-width) - var(--vb-drawer-width));
@@ -19,10 +21,57 @@
     box-sizing: border-box;
   }
 
-  @media (min-width: 72rem) {
-    .layout.has-drawer & {
+  @media (min-width: root.$bp-drawer) {
+    .has-drawer & {
       width: calc(100% - var(--vb-drawer-width));
       padding-left: var(--vb-drawer-width);
     }
   }
+}
+
+.layout__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4rem;
+  padding: 2rem 1rem;
+
+  @media (min-width: root.$bp-drawer) {
+    padding: 3rem 0;
+    
+    .has-drawer & {
+      padding: 3rem 0 3rem 3rem;
+    }
+  }
+
+  @media (min-width: root.$bp-aside) {
+    padding: 4rem 0;
+    
+    .has-drawer & {
+      padding: 4rem 0 4rem 4rem;
+    }
+  }
+}
+
+.layout__content {
+  order: 1;
+  width: 100%;
+  max-width: var(--vb-content-width);
+
+  @media (min-width: root.$bp-aside) {
+    width: calc(100% - (var(--vb-aside-width) + 4rem));
+  }
+}
+
+.layout__aside {
+  order: 2;
+  width: var(--vb-aside-width);
+}
+
+.layout__footer {
+  order: 3;
+  width: 100%;
+  margin-top: 4em;
+  padding-top: 2em;
+  border-top: 1px solid var(--vb-border-color);
 }

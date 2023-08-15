@@ -1,8 +1,17 @@
+@use "./root";
+
 .navibar {
   position: fixed;
   z-index: 5;
   width: 100%;
   padding: 0 var(--vb-layout-padding);
+  background-color: var(--vb-background);
+
+  @media (min-width: root.$bp-drawer) {
+    .has-drawer & {
+      background-color: transparent;
+    }
+  }
 }
 
 .navibar__container {
@@ -26,7 +35,18 @@
 .navibar__menu {
   flex-grow: 1;
   justify-content: flex-end;
-  background-color: var(--vb-background);
+
+  .menu__action {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+  }
+
+  @media (min-width: root.$bp-drawer) {
+    .has-drawer & {
+      background-color: var(--vb-background);
+    }
+  }
 }
 
 .navibar-spacer {
