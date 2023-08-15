@@ -8,6 +8,7 @@
 .layout-aside {
   position: fixed;
   z-index: 100;
+  visibility: hidden;
   width: calc(100% - 4rem);
   max-width: var(--vb-drawer-width);
   padding: var(--vb-drawer-padding);
@@ -64,6 +65,7 @@
   .layout-aside {
     position: fixed;
     z-index: 2;
+    visibility: visible;
     width: var(--vb-aside-width);
     height: 100vh;
     padding: 0;
