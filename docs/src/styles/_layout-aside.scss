@@ -65,13 +65,13 @@
     position: fixed;
     z-index: 2;
     width: var(--vb-aside-width);
+    height: 100vh;
+    padding: 0;
     transform: translate(0);
+    background-color: transparent;
     box-shadow: none;
     opacity: 1;
-    height: 100vh;
-    background-color: transparent;
-    inset: 0 auto auto auto;
-    padding: 0;
+    inset: 0 auto auto;
   }
   
   .layout-aside__container {
