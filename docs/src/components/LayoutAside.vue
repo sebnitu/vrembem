@@ -9,7 +9,7 @@
       <slot />
     </div>
   </aside>
-  <div class="layout-aside__screen" :data-drawer-close="uid"></div>
+  <div class="layout__screen" :data-drawer-close="uid"></div>
 </template>
 
 <script lang="ts">

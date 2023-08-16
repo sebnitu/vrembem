@@ -25,30 +25,9 @@
 
   &.is-opened,
   &.is-opening {
-    visibility: visible;
     transform: translate(0);
     transition: opacity .25s, transform .5s cubic-bezier(0.19, 1, 0.22, 1);
     opacity: 1;
-  }
-}
-
-.layout-drawer__screen {
-  position: fixed;
-  z-index: 99;
-  transition: opacity .25s;
-  background-color: var(--vb-neutral-10);
-  opacity: 0;
-  inset: auto;
-
-  .layout-drawer.is-opened ~ &,
-  .layout-drawer.is-opening ~ & {
-    opacity: 0.8;
-  }
-
-  .layout-drawer.is-opened ~ &,
-  .layout-drawer.is-opening ~ &,
-  .layout-drawer.is-closing ~ & {
-    inset: 0;
   }
 }
 
@@ -100,10 +79,6 @@
       border-bottom: 1px solid var(--vb-border-color);
       inset: 100% 0 auto;
     }
-  }
-
-  .layout-drawer__screen {
-    display: none;
   }
 }
 

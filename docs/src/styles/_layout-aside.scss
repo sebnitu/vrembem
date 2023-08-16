@@ -2,7 +2,7 @@
 @use "./root";
 
 /**
- * Modal drawer
+ * Modal aside
  */
 
 .layout-aside {
@@ -32,28 +32,12 @@
     opacity: 1;
   }
 
+  &.is-closing {
+    visibility: visible;
+  }
+
   &.is-closed {
     visibility: hidden;
-  }
-}
-
-.layout-aside__screen {
-  position: fixed;
-  z-index: 99;
-  transition: opacity .25s;
-  background-color: var(--vb-neutral-10);
-  opacity: 0;
-  inset: auto;
-
-  .layout-aside.is-opened ~ &,
-  .layout-aside.is-opening ~ & {
-    opacity: 0.8;
-  }
-
-  .layout-aside.is-opened ~ &,
-  .layout-aside.is-opening ~ &,
-  .layout-aside.is-closing ~ & {
-    inset: 0;
   }
 }
 
@@ -85,10 +69,6 @@
     overflow-x: hidden;
     overflow-y: auto;
     scroll-behavior: smooth;
-  }
-
-  .layout-aside__screen {
-    display: none;
   }
 }
 

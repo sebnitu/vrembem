@@ -75,3 +75,27 @@
   padding-top: 2em;
   border-top: 1px solid var(--vb-border-color);
 }
+
+/**
+ * Layout screen
+ */
+
+.layout__screen {
+  position: fixed;
+  z-index: 99;
+  transition: opacity .25s;
+  background-color: var(--vb-neutral-10);
+  opacity: 0;
+  inset: auto;
+
+  .is-opened ~ &,
+  .is-opening ~ & {
+    opacity: 0.8;
+  }
+
+  .is-opened ~ &,
+  .is-opening ~ &,
+  .is-closing ~ & {
+    inset: 0;
+  }
+}
