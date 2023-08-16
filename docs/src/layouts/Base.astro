@@ -19,9 +19,11 @@ const { title, drawer = false, aside = false } = Astro.props;
   <div class="layout">
     {
       drawer && (
-        <LayoutDrawer client:load>
-          <slot name="drawer" />
-        </LayoutDrawer>
+        <div class="layout__drawer">
+          <LayoutDrawer client:load>
+            <slot name="drawer" />
+          </LayoutDrawer>
+        </div>
       )
     }
     <div class="layout__main">

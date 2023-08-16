@@ -15,14 +15,14 @@ const {
   {
     drawer && (
       <div slot="drawer">
-        <Menu collection={drawer} />
+        <Menu collection={drawer} menuClass="layout__menu" />
       </div>
     )
   }
   {
     aside && (
       <div slot="aside">
-        <OnThisPage {headings} />
+        <OnThisPage {headings} menuClass="layout__menu" />
       </div>
     )
   }
