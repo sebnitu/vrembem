@@ -1,18 +1,29 @@
 ---
 import Icon from "../components/Icon.vue";
+import { currentPage } from "../modules/currentPage";
 
 interface Props {
   classes?: string;
 }
 
 const { classes = "" } = Astro.props;
+
+const cp = currentPage(new URL(Astro.request.url).pathname, {
+  classBase: "menu__action",
+  classCurrent: "is-active",
+  classParent: "is-active",
+});
 ---
 
 <ul class={`menu${classes ? " " + classes : ""}`}>
   <li class="menu__item">
-    <a class="menu__action" href="/getting-started">Get Started</a>
+    <a class={cp.classes("/getting-started")} href="/getting-started"
+      >Get Started</a
+    >
   </li>
-  <li class="menu__item"><a class="menu__action" href="/packages">Docs</a></li>
+  <li class="menu__item">
+    <a class={cp.classes("/packages")} href="/packages">Docs</a>
+  </li>
   <li class="menu__item">
     <a
       class="menu__action"

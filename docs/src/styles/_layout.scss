@@ -99,3 +99,19 @@
     inset: 0;
   }
 }
+
+/**
+ * Layout menu
+ */
+
+.layout .menu {
+  margin-top: 0.5rem;
+
+  .menu__item + .menu__item {
+    margin-top: 0;
+  }
+
+  .is-active {
+    background: var(--vb-background);
+  }
+}
