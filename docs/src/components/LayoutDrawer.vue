@@ -8,7 +8,7 @@
     <div class="layout-drawer__mask"></div>
     <slot />
   </aside>
-  <div class="layout-drawer__screen" :data-drawer-close="uid"></div>
+  <div class="layout__screen" :data-drawer-close="uid"></div>
 </template>
 
 <script lang="ts">

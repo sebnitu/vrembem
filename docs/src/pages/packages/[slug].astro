@@ -24,7 +24,7 @@ const { Content, headings } = await entry.render();
 
 <Base title={entry.data.title} drawer={true} aside={true}>
   <div slot="drawer">
-    <Menu collection="packages" />
+    <Menu collection="packages" menuClass="layout__menu" />
   </div>
   <div slot="aside">
     <OnThisPage {headings} />

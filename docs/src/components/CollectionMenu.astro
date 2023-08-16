@@ -1,19 +1,28 @@
 ---
 import { getCollection } from "astro:content";
+import { currentPage } from "../modules/currentPage";
 
-const { collection } = Astro.props;
+const { collection, menuClass } = Astro.props;
 
 const packages = await getCollection(collection);
 const title = collection.charAt(0).toUpperCase() + collection.slice(1);
+
+const cp = currentPage(new URL(Astro.request.url).pathname, {
+  classBase: "menu__action",
+  classCurrent: "is-active",
+});
 ---
 
 <nav>
   <h2 class="padding padding-y-sm">{title}</h2>
-  <ul class="menu">
+  <ul class={`menu${menuClass ? " " + menuClass : ""}`}>
     {
       packages.map((entry) => (
         <li class="menu__item">
-          <a class="menu__action" href={`/${collection}/${entry.slug}`}>
+          <a
+            class={cp.classes(`/${collection}/${entry.slug}`)}
+            href={`/${collection}/${entry.slug}`}
+          >
             {entry.data.title}
           </a>
         </li>
