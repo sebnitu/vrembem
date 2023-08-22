@@ -33,7 +33,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/user-event": "^14.4.3",
     "babel-jest": "^29.6.1",
-    "concurrently": "^8.2.0",
+    "concurrently": "^8.2.1",
     "del-cli": "^5.0.0",
     "eslint": "^8.47.0",
     "eslint-plugin-jest": "^27.2.3",
