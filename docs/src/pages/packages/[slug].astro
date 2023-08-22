@@ -31,3 +31,8 @@ const { Content, headings } = await entry.render();
   </div>
   <Content components={{ pre: Pre, table: Table }} />
 </Base>
+
+<script>
+  import { headerAnchor } from "../../modules/headerAnchor";
+  headerAnchor().mount();
+</script>

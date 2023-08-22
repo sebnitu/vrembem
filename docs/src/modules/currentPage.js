@@ -1,4 +1,4 @@
-const currentPage = (pathname, options) => {
+const currentPage = (pathname, options = {}) => {
   const settings = {
     pathname: pathname,
     classBase: '',
