@@ -28,9 +28,35 @@ function build(headings) {
   { 
     !!otp.length && (
       <h2 class="padding padding-y-sm">On this page</h2>
-      <ul class={`menu${menuClass ? " " + menuClass : ""}`}>
+      <ul class={`menu menu_otp${menuClass ? " " + menuClass : ""}`}>
         {otp.map((item) => <OnThisPageList {item} />)}
       </ul>
     )
   }
 </nav>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  // Setup observer instance.
+  // TODO: Keep item active until the next active heading is at its top scroll position.
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const id = entry.target.getAttribute('id');
+      const el = document.querySelector(`.menu_otp a[href="#${id}"]`);
+      if (el) {
+        if (entry.intersectionRatio > 0) {
+          el.classList.add('is-active');
+        } else {
+          el.classList.remove('is-active');
+        }
+      }
+    });
+  });
+
+  // Track all headings that have an `id` applied.
+  // TODO: Instead of tracking headers with ids, track all listed menu items again using their href values.
+  document.querySelectorAll('.layout__content h1[id], .layout__content h2[id], .layout__content h3[id], .layout__content h4[id], .layout__content h5[id], .layout__content h6[id]').forEach((heading) => {
+    observer.observe(heading);
+  });
+});
+</script>
