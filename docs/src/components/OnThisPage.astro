@@ -63,6 +63,12 @@ function observerCallback(entries) {
 
     // If an entry was returned, set it's link element as active and return.
     if (entry) {
+      // Remove all active states.
+      items.forEach((item) => {
+        item.classList.remove('is-active');
+      });
+
+      // Add the active state.
       const id = entry.target.getAttribute('id');
       const el = document.querySelector(`.menu_otp a[href="#${id}"]`);
       el.classList.add('is-active');
@@ -72,9 +78,6 @@ function observerCallback(entries) {
 
   // If there is only one entry...
   entries.forEach(entry => {
-    const id = entry.target.getAttribute('id');
-    const el = document.querySelector(`.menu_otp a[href="#${id}"]`);
-    
     // If observe entry is below the root bounds
     if (entry.boundingClientRect.top > entry.rootBounds.top) {
       // Get the index (-1) of the current active element.
@@ -82,8 +85,10 @@ function observerCallback(entries) {
         return item.classList.contains('is-active');
       }) - 1;
 
-      // Remove the active state.
-      el.classList.remove('is-active');
+      // Remove all active states.
+      items.forEach((item) => {
+        item.classList.remove('is-active');
+      });
 
       // Apply active state to the previous element.
       if (index >= 0) {
@@ -99,8 +104,11 @@ function observerCallback(entries) {
       });
 
       // Add the active state.
+      const id = entry.target.getAttribute('id');
+      const el = document.querySelector(`.menu_otp a[href="#${id}"]`);
       el.classList.add('is-active');
     }
   });
 }
+
 </script>
