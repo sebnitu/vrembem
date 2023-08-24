@@ -40,8 +40,20 @@ function build(headings) {
 const items = Array.prototype.slice.call(document.querySelectorAll('.menu_otp .menu__action'));
 
 // Setup observer instance.
-// TODO: Keep item active until the next active heading is at its top scroll position.
-const observer = new IntersectionObserver((entries) => {
+const observer = new IntersectionObserver(observerCallback, {
+  rootMargin: '-10% 0% -90% 0%'
+});
+
+// Track all headings that have a menu_otp action link.
+items.forEach((item) => {
+  const href = item.getAttribute('href');
+  const heading = document.querySelector(href);
+  if (heading) {
+    observer.observe(heading);
+  }
+});
+
+function observerCallback(entries) {
   // If there are many entries...
   if (entries.length > 1) {
     // Get the last observe entry that is above the root bounds.
@@ -90,16 +102,5 @@ const observer = new IntersectionObserver((entries) => {
       el.classList.add('is-active');
     }
   });
-}, {
-  rootMargin: '-10% 0px -90% 0px'
-});
-
-// Track all headings that have a menu_otp action link.
-items.forEach((item) => {
-  const href = item.getAttribute('href');
-  const heading = document.querySelector(href);
-  if (heading) {
-    observer.observe(heading);
-  }
-});
+}
 </script>
