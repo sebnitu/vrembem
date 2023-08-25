@@ -1,0 +1,14 @@
+.slide-up {
+  position: relative;
+  transition: transform, opacity;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+
+  opacity: 0;
+  transform: translateY(1rem);
+
+  &.is-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -34,7 +34,7 @@ function scrollSpy(options = {}) {
   function checkScroll() {
     const top = document.documentElement.scrollTop;
     collection.forEach((entry) => {
-      entry.el.classList.toggle(entry.toggle, (entry.value >= document.documentElement.scrollTop));
+      entry.el.classList.toggle(entry.toggle, (entry.value < document.documentElement.scrollTop));
     });
   }
 
