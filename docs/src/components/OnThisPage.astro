@@ -30,8 +30,8 @@ function build(headings) {
       <h2 class="padding padding-y-sm">On this page</h2>
       <ul class={`menu menu_otp${menuClass ? " " + menuClass : ""}`}>
         {otp.map((item) => <OnThisPageList {item} />)}
-        <li class="menu__sep slide-up" data-scroll-config="{ 'value': 200 }"></li>
-        <li class="menu__item slide-up" data-scroll-config="{ 'value': 200 }">
+        <li class="menu__sep slide-up scroll-spy"></li>
+        <li class="menu__item slide-up scroll-spy">
           <a href="#main" class="menu__action">Back to top</a>
         </li>
       </ul>
@@ -43,7 +43,10 @@ function build(headings) {
 import { scrollSpy } from '../modules/scrollSpy';
 import { onThisPage } from '../modules/onThisPage';
 
-scrollSpy().mount();
+scrollSpy({
+  value: 200
+}).mount();
+
 onThisPage({
   selectorAnchors: '.menu_otp a'
 }).mount();
