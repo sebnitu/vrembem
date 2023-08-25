@@ -1,8 +1,10 @@
+@use "@vrembem/core";
+
 .slide-up {
   position: relative;
   transition: transform, opacity;
-  transition-duration: 0.3s;
-  transition-timing-function: ease;
+  transition-duration: core.$transition-duration;
+  transition-timing-function: core.$transition-timing-function;
 
   opacity: 0;
   transform: translateY(1rem);
