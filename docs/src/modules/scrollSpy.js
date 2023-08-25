@@ -4,7 +4,8 @@ function scrollSpy(options = {}) {
   const settings = {
     dataConfig: 'scroll-config',
     value: 0,
-    toggle: 'is-active',
+    operator: '<',
+    classActive: 'is-active',
     ...options
   };
 
@@ -34,8 +35,24 @@ function scrollSpy(options = {}) {
   function checkScroll() {
     const top = document.documentElement.scrollTop;
     collection.forEach((entry) => {
-      entry.el.classList.toggle(entry.toggle, (entry.value < document.documentElement.scrollTop));
+      entry.el.classList.toggle(
+        entry.classActive,
+        customOperator(entry.value, entry.operator, top)
+      );
     });
+  }
+
+  function customOperator(a, op, b) {
+    switch (op) {
+      case '<':
+        return a < b;
+      case '>':
+        return a > b;
+      case '<=':
+        return a <= b;
+      case '>=':
+        return a >= b;
+    }
   }
 
   return {

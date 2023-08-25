@@ -40,65 +40,11 @@ function build(headings) {
 </nav>
 
 <script>
-// Import and mount scroll spy module.
 import { scrollSpy } from '../modules/scrollSpy';
+import { onThisPage } from '../modules/onThisPage';
+
 scrollSpy().mount();
-
-// Setup the initial OnThisPage (otp) collection array.
-const otp = [];
-
-// Set the array of all menu action elements.
-const menuActions = Array.prototype.slice.call(document.querySelectorAll('.menu_otp .menu__action'));
-
-// Build the otp collection by looping through menu actions.
-menuActions.forEach((menuAction) => {
-  // Get the heading using the menu action's href.
-  const href = menuAction.getAttribute('href');
-  const heading = document.querySelector(`.layout__content ${href}`);
-
-  // Guard if there is no heading returned.
-  if (!heading) return;
-
-  // Build the entry object.
-  const entry = {
-    menuAction: menuAction,
-    heading: heading,
-    get active() {
-      return this.menuAction.classList.contains('is-active');
-    },
-    set active(value) {
-      this.menuAction.classList.toggle('is-active', value);
-    },
-    get top() {
-      const rect = heading.getBoundingClientRect();
-      const margin = parseFloat(getComputedStyle(heading).scrollMarginTop);
-      return Math.round(rect.top - margin);
-    }
-  }
-
-  // Push entry into otp array.
-  otp.push(entry);
-});
-
-function setActive(entries) {
-  // Filter out entries that have a positive top value.
-  const pos = otp.filter((entry) => entry.top <= 0);
-  // Find the entry with a negative top value that is closest to zero.
-  const min = Math.max(...pos.map(entry => entry.top))
-  const result = otp.filter(entry => entry.top === min)
-
-  // Set the active state of entries by comparing them with the result.
-  entries.forEach((entry) => {
-    entry.active = (entry === result[0]);
-  });
-}
-
-// Run initial set active.
-setActive(otp);
-
-// Setup the scroll event.
-window.addEventListener('scroll', () => {
-  setActive(otp);
-});
-
+onThisPage({
+  selectorAnchors: '.menu_otp a'
+}).mount();
 </script>
