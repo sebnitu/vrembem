@@ -36,79 +36,52 @@ function build(headings) {
 </nav>
 
 <script>
-// Get an array of all menu action items.
-const items = Array.prototype.slice.call(document.querySelectorAll('.menu_otp .menu__action'));
+// Setup the initial OnThisPage (otp) collection array.
+const otp = [];
 
-// Setup observer instance.
-const observer = new IntersectionObserver(observerCallback, {
-  rootMargin: '-10% 0% -90% 0%'
-});
+// Set the array of all menu action elements.
+const menuActions = Array.prototype.slice.call(document.querySelectorAll('.menu_otp .menu__action'));
 
-// Track all headings that have a menu_otp action link.
-items.forEach((item) => {
-  const href = item.getAttribute('href');
+// Build the otp collection by looping through menu actions.
+menuActions.forEach((menuAction) => {
+  const href = menuAction.getAttribute('href');
   const heading = document.querySelector(href);
-  if (heading) {
-    observer.observe(heading);
+  const entry = {
+    menuAction: menuAction,
+    heading: heading,
+    get active() {
+      return this.menuAction.classList.contains('is-active');
+    },
+    set active(value) {
+      this.menuAction.classList.toggle('is-active', value);
+    },
+    get top() {
+      const rect = heading.getBoundingClientRect();
+      const margin = parseFloat(getComputedStyle(heading).scrollMarginTop);
+      return Math.round(rect.top - margin);
+    }
   }
+
+  // Push entry into otp array.
+  otp.push(entry);
 });
 
-function observerCallback(entries) {
-  // If there are many entries...
-  if (entries.length > 1) {
-    // Get the last observe entry that is above the root bounds.
-    const entry = entries.findLast((entry) => {
-      return !(entry.boundingClientRect.top > entry.rootBounds.top);
-    });
+function setActive(entries) {
+  // Filter out entries that have a positive top value.
+  const pos = otp.filter((entry) => entry.top <= 0);
+  // Find the entry with a negative top value that is closest to zero.
+  const min = Math.max(...pos.map(entry => entry.top))
+  const result = otp.filter(entry => entry.top === min)
 
-    // If an entry was returned, set it's link element as active and return.
-    if (entry) {
-      // Remove all active states.
-      items.forEach((item) => {
-        item.classList.remove('is-active');
-      });
-
-      // Add the active state.
-      const id = entry.target.getAttribute('id');
-      const el = document.querySelector(`.menu_otp a[href="#${id}"]`);
-      el.classList.add('is-active');
-    }
-    return;
-  }
-
-  // If there is only one entry...
-  entries.forEach(entry => {
-    // If observe entry is below the root bounds
-    if (entry.boundingClientRect.top > entry.rootBounds.top) {
-      // Get the index (-1) of the current active element.
-      const index = items.findIndex((item) => {
-        return item.classList.contains('is-active');
-      }) - 1;
-
-      // Remove all active states.
-      items.forEach((item) => {
-        item.classList.remove('is-active');
-      });
-
-      // Apply active state to the previous element.
-      if (index >= 0) {
-        items[index].classList.add('is-active');
-      }
-    }
-    
-    // If observe entry is above the root bounds.
-    else {
-      // Remove all active states.
-      items.forEach((item) => {
-        item.classList.remove('is-active');
-      });
-
-      // Add the active state.
-      const id = entry.target.getAttribute('id');
-      const el = document.querySelector(`.menu_otp a[href="#${id}"]`);
-      el.classList.add('is-active');
-    }
+  // Set the active state of entries by comparing them with the result.
+  entries.forEach((entry) => {
+    entry.active = (entry === result[0]);
   });
 }
+
+// Setup the scroll event.
+window.addEventListener('scroll', () => {
+  setActive(otp);
+});
 
 </script>
