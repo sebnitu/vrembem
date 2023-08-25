@@ -1,4 +1,4 @@
-const currentPage = (pathname, options = {}) => {
+function currentPage(pathname, options = {}) {
   const settings = {
     pathname: pathname,
     classBase: '',
@@ -37,6 +37,6 @@ const currentPage = (pathname, options = {}) => {
     isParent,
     classes
   };
-};
+}
 
 export { currentPage };

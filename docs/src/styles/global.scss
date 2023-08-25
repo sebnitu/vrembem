@@ -14,6 +14,7 @@
 @use "./layout-drawer";
 @use "./layout-aside";
 
+@use "./animations";
 @use "./fold-shadow";
 @use "./header-anchor";
 @use "./icon_external";
@@ -25,12 +26,10 @@ astro-island {
 
 html {
   scroll-behavior: smooth;
-}
 
-@media screen and (prefers-reduced-motion: reduce) {
-	html {
-		scroll-behavior: auto;
-	}
+  @media screen and (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
 }
 
 .main {
