@@ -1,4 +1,4 @@
-const headerAnchor = (options = {}) => {
+function headerAnchor(options = {}) {
   const settings = {
     prefix: ".layout__content",
     headings: ["h1", "h2", "h3", "h4", "h5", "h6"],
@@ -26,6 +26,6 @@ const headerAnchor = (options = {}) => {
     settings,
     mount
   };
-};
+}
 
 export { headerAnchor };

@@ -31,7 +31,7 @@ mainClasses += aside ? " has-aside" : "";
     />
   </head>
   <body class={bodyClass}>
-    <main class={mainClasses}>
+    <main id="main" class={mainClasses} tabindex="-1">
       <slot />
     </main>
     <div class="modals"></div>

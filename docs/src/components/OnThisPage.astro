@@ -30,12 +30,21 @@ function build(headings) {
       <h2 class="padding padding-y-sm">On this page</h2>
       <ul class={`menu menu_otp${menuClass ? " " + menuClass : ""}`}>
         {otp.map((item) => <OnThisPageList {item} />)}
+        <li class="menu__sep display-none" data-scroll-config="{ 'value': 200, 'toggle': 'display-none' }"></li>
+        <li class="menu__item display-none" data-scroll-config="{ 'value': 200, 'toggle': 'display-none' }">
+          <a href="#main" class="menu__action">Back to top</a>
+        </li>
       </ul>
     )
   }
 </nav>
 
 <script>
+// Import and mount scroll spy module.
+import { scrollSpy } from '../modules/scrollSpy';
+const spy = scrollSpy().mount();
+window['scrollSpy'] = spy;
+
 // Setup the initial OnThisPage (otp) collection array.
 const otp = [];
 
@@ -44,8 +53,14 @@ const menuActions = Array.prototype.slice.call(document.querySelectorAll('.menu_
 
 // Build the otp collection by looping through menu actions.
 menuActions.forEach((menuAction) => {
+  // Get the heading using the menu action's href.
   const href = menuAction.getAttribute('href');
-  const heading = document.querySelector(href);
+  const heading = document.querySelector(`.layout__content ${href}`);
+
+  // Guard if there is no heading returned.
+  if (!heading) return;
+
+  // Build the entry object.
   const entry = {
     menuAction: menuAction,
     heading: heading,
