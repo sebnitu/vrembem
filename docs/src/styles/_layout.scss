@@ -1,4 +1,3 @@
-@use "@vrembem/core";
 @use "./root";
 
 .layout {
@@ -21,11 +20,9 @@
     box-sizing: border-box;
   }
 
-  @include core.media-min('md') {
-    padding-top: var(--vb-navibar-height);
-  }
-
   @media (min-width: root.$bp-drawer) {
+    padding-top: var(--vb-navibar-height);
+
     .has-drawer & {
       width: calc(100% - var(--vb-drawer-width));
       padding-left: var(--vb-drawer-width);

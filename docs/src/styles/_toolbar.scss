@@ -1,4 +1,4 @@
-@use "@vrembem/core";
+@use "./root";
 
 .toolbar {
   position: sticky;
@@ -7,7 +7,7 @@
   padding: var(--vb-layout-padding);
   background-color: var(--vb-background);
 
-  @include core.media-min('md') {
+  @media (min-width: root.$bp-drawer) {
     display: none;
   }
 }

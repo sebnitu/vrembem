@@ -12,18 +12,12 @@ const { drawer = false, aside = false } = Astro.props;
     <div class="toolbar">
       <div class="level">
         {drawer && (
-          <button
-            data-drawer-open="layout-drawer"
-            class="link layout-drawer-toggle"
-          >
+          <button data-drawer-open="layout-drawer" class="link">
             Menu
           </button>
         )}
         {aside && (
-          <button
-            data-drawer-open="layout-aside"
-            class="link layout-aside-toggle"
-          >
+          <button data-drawer-open="layout-aside" class="link">
             On this page
           </button>
         )}

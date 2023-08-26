@@ -81,13 +81,3 @@
     }
   }
 }
-
-/**
- * Layout drawer toggle
- */
-
-.layout-drawer-toggle {
-  @media (min-width: root.$bp-drawer) {
-    display: none;
-  }
-}

@@ -1,4 +1,3 @@
-@use "@vrembem/core";
 @use "./root";
 
 .navibar {
@@ -8,11 +7,9 @@
   padding: 0 var(--vb-layout-padding);
   background-color: var(--vb-background);
 
-  @include core.media-min('md') {
-    position: fixed;
-  }
-
   @media (min-width: root.$bp-drawer) {
+    position: fixed;
+
     .has-drawer & {
       background-color: transparent;
     }
