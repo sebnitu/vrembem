@@ -1,7 +1,13 @@
+@use "@vrembem/core";
+
 .toolbar {
   position: sticky;
   top: 0;
   z-index: 4;
   padding: var(--vb-layout-padding);
   background-color: var(--vb-background);
+
+  @include core.media-min('md') {
+    display: none;
+  }
 }
