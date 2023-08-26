@@ -1,0 +1,33 @@
+---
+interface Props {
+  drawer?: boolean;
+  aside?: boolean;
+}
+
+const { drawer = false, aside = false } = Astro.props;
+---
+
+{
+  (drawer || aside) && (
+    <div class="toolbar">
+      <div class="level">
+        {drawer && (
+          <button
+            data-drawer-open="layout-drawer"
+            class="link layout-drawer-toggle"
+          >
+            Menu
+          </button>
+        )}
+        {aside && (
+          <button
+            data-drawer-open="layout-aside"
+            class="link layout-aside-toggle"
+          >
+            On this page
+          </button>
+        )}
+      </div>
+    </div>
+  )
+}
