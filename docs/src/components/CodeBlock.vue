@@ -80,6 +80,11 @@ export default {
   .pre {
     background-color: core.palette-get('neutral', 20);
     color: core.palette-get('neutral', 80);
+
+    @include core.media-max('md') {
+      border-radius: 0;
+      margin: auto calc(var(--vb-layout-padding) * -1);
+    }
   }
 
   .pre_inline {
