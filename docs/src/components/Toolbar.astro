@@ -1,0 +1,37 @@
+---
+import Icon from "../components/Icon.vue";
+
+interface Props {
+  drawer?: boolean;
+  aside?: boolean;
+}
+
+const { drawer = false, aside = false } = Astro.props;
+---
+
+{
+  (drawer || aside) && (
+    <div class="toolbar">
+      <div class="clearfix">
+        {drawer && (
+          <button
+            data-drawer-open="layout-drawer"
+            class="button padding-left-sm float-left"
+          >
+            <Icon name="package" />
+            <span>Packages</span>
+          </button>
+        )}
+        {aside && (
+          <button
+            data-drawer-open="layout-aside"
+            class="button padding-right-sm float-right"
+          >
+            <span>On this page</span>
+            <Icon name="compass" />
+          </button>
+        )}
+      </div>
+    </div>
+  )
+}

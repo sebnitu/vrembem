@@ -71,13 +71,3 @@
     scroll-behavior: smooth;
   }
 }
-
-/**
- * Aside toggle
- */
-
- .layout-aside-toggle {
-  @media (min-width: root.$bp-aside) {
-    display: none;
-  }
-}

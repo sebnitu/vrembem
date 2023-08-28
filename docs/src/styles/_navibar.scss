@@ -1,13 +1,15 @@
 @use "./root";
 
 .navibar {
-  position: fixed;
+  position: static;
   z-index: 5;
   width: 100%;
   padding: 0 var(--vb-layout-padding);
   background-color: var(--vb-background);
 
   @media (min-width: root.$bp-drawer) {
+    position: fixed;
+
     .has-drawer & {
       background-color: transparent;
     }

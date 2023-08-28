@@ -1,0 +1,36 @@
+@use "./root";
+
+.toolbar {
+  position: sticky;
+  z-index: 4;
+  top: 0;
+  display: block;
+  padding: var(--vb-layout-padding);
+  border-top: 1px solid rgba(0,0,0,10%);
+  border-bottom: 1px solid rgba(0,0,0,10%);
+  background-color: var(--vb-background);
+
+  @media (min-width: root.$bp-drawer) {
+    display: none;
+  }
+}
+
+/**
+ * Mini toolbar
+ * This component is displayed between the drawer and aside breakpoints.
+ */
+
+.toolbar-mini {
+  position: fixed;
+  top: var(--vb-navibar-height);
+  right: var(--vb-layout-padding);
+  visibility: hidden;
+  transform: translate(100%);
+  transition: opacity .5s, transform .25s ease;
+
+  @media (min-width: root.$bp-drawer) and (max-width: calc(root.$bp-aside - 1px)) {
+    visibility: visible;
+    transform: translate(0);
+    opacity: 1;
+  }
+}

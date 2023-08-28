@@ -4,9 +4,14 @@ import { currentPage } from "../modules/currentPage";
 
 interface Props {
   classes?: string;
+  inline?: boolean;
 }
 
-const { classes = "" } = Astro.props;
+const { classes = "", inline = false } = Astro.props;
+
+let menuClasses = "menu";
+menuClasses += inline ? " menu_inline" : "";
+menuClasses += classes ? " " + classes : "";
 
 const cp = currentPage(new URL(Astro.request.url).pathname, {
   classBase: "menu__action",
@@ -15,7 +20,7 @@ const cp = currentPage(new URL(Astro.request.url).pathname, {
 });
 ---
 
-<ul class={`menu${classes ? " " + classes : ""}`}>
+<ul class={menuClasses}>
   <li class="menu__item">
     <a class={cp.classes("/getting-started")} href="/getting-started"
       >Get Started</a
@@ -48,9 +53,9 @@ const cp = currentPage(new URL(Astro.request.url).pathname, {
       />
     </a>
   </li>
-  <li class="menu__sep"></li>
-  <li class="menu__item">
-    <button class="menu__action menu__action_icon">
+  {!inline && <li class="menu__sep" />}
+  <li class={`menu__item${inline ? " margin-left-md" : ""}`}>
+    <button class="button button_icon">
       <Icon name="moon" />
     </button>
   </li>

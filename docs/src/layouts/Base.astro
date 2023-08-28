@@ -1,9 +1,11 @@
 ---
 import Root from "./Root.astro";
 import Navibar from "../components/Navibar.astro";
+import Toolbar from "../components/Toolbar.astro";
 import Footer from "../components/Footer.astro";
 import LayoutDrawer from "../components/LayoutDrawer.vue";
 import LayoutAside from "../components/LayoutAside.vue";
+import Icon from "../components/Icon.vue";
 
 interface Props {
   title?: string;
@@ -16,6 +18,7 @@ const { title, drawer = false, aside = false } = Astro.props;
 
 <Root {title} {drawer} {aside}>
   <Navibar />
+  <Toolbar {drawer} {aside} />
   <div class="layout">
     {
       drawer && (
@@ -38,28 +41,18 @@ const { title, drawer = false, aside = false } = Astro.props;
           )
         }
         <div class="layout__content">
-          <div class="toolbar level">
-            {
-              drawer && (
-                <button
-                  data-drawer-open="layout-drawer"
-                  class="link layout-drawer-toggle"
-                >
-                  Menu
-                </button>
-              )
-            }
-            {
-              aside && (
+          {
+            aside && (
+              <div class="toolbar-mini">
                 <button
                   data-drawer-open="layout-aside"
-                  class="link layout-aside-toggle"
+                  class="button button_icon"
                 >
-                  On this page
+                  <Icon name="compass" />
                 </button>
-              )
-            }
-          </div>
+              </div>
+            )
+          }
           <div class="type gap-y">
             <slot />
           </div>
