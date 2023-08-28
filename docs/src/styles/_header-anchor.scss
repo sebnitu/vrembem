@@ -1,21 +1,29 @@
+@use "@vrembem/core";
+
 .header-anchor {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin-left: -0.87em;
-  transition: color 0.25s, opacity 0.25s;
-  opacity: 0;
-  font-weight: 500;
   text-decoration: none !important;
+  float: left;
+  margin-right: 0.5rem;
+  font-weight: 500;
   user-select: none;
 
-  h1:hover &,
-  h2:hover &,
-  h3:hover &,
-  h4:hover &,
-  h5:hover &,
-  h6:hover &,
-  &:focus {
-    opacity: 1;
+  @include core.media-min('md') {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: -0.87em;
+    margin-right: 0;
+    transition: color 0.25s, opacity 0.25s;
+    opacity: 0;
+
+    h1:hover &,
+    h2:hover &,
+    h3:hover &,
+    h4:hover &,
+    h5:hover &,
+    h6:hover &,
+    &:focus {
+      opacity: 1;
+    }
   }
 }
