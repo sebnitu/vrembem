@@ -25,8 +25,9 @@ const { drawer = false, aside = false } = Astro.props;
         {aside && (
           <button
             data-drawer-open="layout-aside"
-            class="button button_icon float-right"
+            class="button padding-right-sm float-right"
           >
+            <span>On this page</span>
             <Icon name="compass" />
           </button>
         )}
