@@ -22,6 +22,7 @@
 
 .toolbar-mini {
   position: fixed;
+  top: var(--vb-navibar-height);
   right: var(--vb-layout-padding);
   visibility: hidden;
   transform: translate(100%);
