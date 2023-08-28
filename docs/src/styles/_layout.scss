@@ -83,6 +83,18 @@
 }
 
 /**
+ * Show between drawer and aside breakpoints
+ */
+
+.show-between-drawer-aside {
+  display: none;
+
+  @media (min-width: root.$bp-drawer) and (max-width: calc(root.$bp-aside - 1px)) {
+    display: block;
+  }
+}
+
+/**
  * Layout screen
  */
 
