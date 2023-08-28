@@ -43,13 +43,12 @@ const { title, drawer = false, aside = false } = Astro.props;
         <div class="layout__content">
           {
             aside && (
-              <div class="show-between-drawer-aside margin-bottom-lg">
+              <div class="toolbar-mini">
                 <button
                   data-drawer-open="layout-aside"
-                  class="button button_size_sm"
+                  class="button button_icon"
                 >
-                  <span>On this page</span>
-                  <Icon name="chevron-right" iconClass="icon_size_sm" />
+                  <Icon name="compass" />
                 </button>
               </div>
             )

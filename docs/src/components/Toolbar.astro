@@ -1,4 +1,6 @@
 ---
+import Icon from "../components/Icon.vue";
+
 interface Props {
   drawer?: boolean;
   aside?: boolean;
@@ -10,15 +12,22 @@ const { drawer = false, aside = false } = Astro.props;
 {
   (drawer || aside) && (
     <div class="toolbar">
-      <div class="level">
+      <div class="clearfix">
         {drawer && (
-          <button data-drawer-open="layout-drawer" class="link">
-            Menu
+          <button
+            data-drawer-open="layout-drawer"
+            class="button padding-left-sm float-left"
+          >
+            <Icon name="arrow-left" iconClass="icon_size_sm" />
+            <span>Menu</span>
           </button>
         )}
         {aside && (
-          <button data-drawer-open="layout-aside" class="link">
-            On this page
+          <button
+            data-drawer-open="layout-aside"
+            class="button button_icon float-right"
+          >
+            <Icon name="compass" />
           </button>
         )}
       </div>

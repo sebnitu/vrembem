@@ -1,8 +1,19 @@
 <template>
-  <button :id="`${uid}-trigger`" :data-popover-trigger="uid" ref="popoverTrigger" @click="triggerAction" :aria-controls="uid" :aria-label="ariaLabel" :class="triggerClass">
+  <button
+    :id="`${uid}-trigger`"
+    :data-popover-trigger="uid"
+    :aria-controls="uid"
+    :aria-label="ariaLabel"
+    ref="popoverTrigger"
+    @click="triggerAction"
+    :class="triggerClass">
     <slot name="trigger">Popover Trigger</slot>
   </button>
-  <div :id="uid" :aria-labelledby="`${uid}-trigger`" class="popover" :class="targetClass">
+  <div
+    :id="uid"
+    :aria-labelledby="`${uid}-trigger`"
+    class="popover"
+    :class="targetClass">
     <slot name="content">Popover Content</slot>
     <span v-if="arrow" class="popover__arrow"></span>
   </div>
