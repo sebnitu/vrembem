@@ -8,6 +8,7 @@
 .layout-drawer {
   position: fixed;
   z-index: 100;
+  visibility: hidden;
   width: calc(100% - 4rem);
   max-width: var(--vb-drawer-width);
   padding: var(--vb-drawer-padding);
@@ -25,6 +26,7 @@
 
   &.is-opened,
   &.is-opening {
+    visibility: visible;
     transform: translate(0);
     transition: opacity .25s, transform .5s cubic-bezier(0.19, 1, 0.22, 1);
     opacity: 1;
