@@ -1,0 +1,14 @@
+@use "@vrembem/core/palette";
+
+.theme-dark {
+  --vb-background: hsl(#{palette.get("neutral", "var")}, 10%);
+  --vb-background-dark: hsl(#{palette.get("neutral", "var")}, 14%);
+  --vb-background-darker: hsl(#{palette.get("neutral", "var")}, 18%);
+  --vb-foreground: #{palette.get("neutral", 95)};
+  --vb-foreground-light: #{palette.get("neutral", 90)};
+  --vb-foreground-lighter: #{palette.get("neutral", 80)};
+  --vb-border-color: #{rgba(white, 0.1)};
+  --vb-border-color-dark: #{rgba(white, 0.2)};
+  --vb-border-color-darker: #{rgba(white, 0.3)};
+  --vb-shadow-color: hsl(#{palette.get("neutral", "var")}, 0%, 20%);
+}

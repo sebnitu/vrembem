@@ -94,6 +94,7 @@ export default {
   .popover {
     --vb-popover-event: click;
     --vb-popover-placement: left;
+    --vb-background: #{core.palette-get('primary', 100)};
     --vb-foreground: #{core.palette-get('primary')};
   }
 }
