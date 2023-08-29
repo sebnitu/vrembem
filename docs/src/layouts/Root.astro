@@ -29,6 +29,18 @@ mainClasses += aside ? " has-aside" : "";
       href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&display=swap"
       rel="stylesheet"
     />
+    <script>
+      // Import local store module.
+      import { localStore } from "@vrembem/core";
+
+      // Setup the local storage proxy.
+      const store = localStore("VB:Profile");
+
+      // Check if a theme has been selected and update body class.
+      if (store.get("theme") != "default") {
+        document.documentElement.classList.add("theme-" + store.get("theme"));
+      }
+    </script>
   </head>
   <body class={bodyClass}>
     <main id="main" class={mainClasses} tabindex="-1">
