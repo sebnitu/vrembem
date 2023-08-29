@@ -1,7 +1,7 @@
 @use "./root";
 
 .navibar {
-  position: static;
+  position: relative;
   z-index: 5;
   width: 100%;
   padding: 0 var(--vb-layout-padding);
