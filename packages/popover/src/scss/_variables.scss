@@ -1,5 +1,4 @@
 @use "@vrembem/core";
-@use "@vrembem/core/theme";
 
 $prefix-variable: core.$prefix-variable !default;
 $prefix-block: core.$prefix-block !default;
@@ -19,7 +18,7 @@ $max-width: calc(100vw - 20px) !default;
 $padding: 0.5em !default;
 $border: null !default;
 $border-radius: core.$border-radius !default;
-$background: theme.get("background") !default;
+$background: white !default;
 $background-clip: padding-box !default;
 $shadow: core.$shadow-2 !default;
 $font-size: core.$font-size-sm !default;
