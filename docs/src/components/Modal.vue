@@ -6,41 +6,35 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { modal } from '../modules/useModal';
 
-export default {
-  props: {
-    id: {
-      type: String,
-      default: null,
-      required: true
-    },
-    modalClass: {
-      type: String,
-      default: null
-    },
-    dialogClass: {
-      type: String,
-      default: 'dialog'
-    }
+const props = defineProps({
+  id: {
+    type: String,
+    default: null,
+    required: true
   },
-  setup(props) {
-    const modalInstance = ref(null);
-    const uid = ref(props.id);
-
-    onMounted(() => {
-      modalInstance.value = modal.register(uid.value);
-    });
-
-    onBeforeUnmount(() => {
-      modal.deregister(modalInstance.value);
-    });
-
-    return {
-      uid
-    };
+  modalClass: {
+    type: String,
+    default: null
   },
-};
+  dialogClass: {
+    type: String,
+    default: 'dialog'
+  }
+});
+
+const modalInstance = ref(null);
+const uid = ref(props.id);
+
+onMounted(() => {
+  modalInstance.value = modal.register(uid.value);
+});
+
+onBeforeUnmount(() => {
+  modal.deregister(modalInstance.value);
+});
+
 </script>

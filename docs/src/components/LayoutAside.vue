@@ -12,39 +12,30 @@
   <div class="layout__screen" :data-drawer-close="uid"></div>
 </template>
 
-<script lang="ts">
+<script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { drawer } from '../modules/useDrawer';
 
-export default {
-  props: {},
-  setup() {
-    const uid = ref('layout-aside');
-    const elDrawer = ref(null);
-    const aside = ref(null);
+const uid = ref('layout-aside');
+const elDrawer = ref(null);
+const aside = ref(null);
 
-    function handleModalClick(event) {
-      if (aside.value.mode != 'modal') return;
-      if (event.target.classList.contains('menu__action')) {
-        aside.value.close(true, false);
-      }
-    }
-
-    onMounted(async () => {
-      await drawer.register(elDrawer.value);
-      aside.value = drawer.get(uid.value);
-      aside.value.el.addEventListener('click', handleModalClick);
-    });
-
-    onBeforeUnmount(() => {
-      drawer.deregister(elDrawer.value);
-      aside.value.el.removeEventListener('click', handleModalClick);
-    });
-
-    return {
-      uid,
-      elDrawer
-    };
+function handleModalClick(event) {
+  if (aside.value.mode != 'modal') return;
+  if (event.target.classList.contains('menu__action')) {
+    aside.value.close(true, false);
   }
-};
+}
+
+onMounted(async () => {
+  await drawer.register(elDrawer.value);
+  aside.value = drawer.get(uid.value);
+  aside.value.el.addEventListener('click', handleModalClick);
+});
+
+onBeforeUnmount(() => {
+  drawer.deregister(elDrawer.value);
+  aside.value.el.removeEventListener('click', handleModalClick);
+});
+
 </script>

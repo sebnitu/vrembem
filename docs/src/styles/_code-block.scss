@@ -1,0 +1,55 @@
+@use '@vrembem/core';
+
+.code-block {
+  position: relative;
+  text-align: left;
+
+  .pre {
+    background-color: core.palette-get('neutral', 20);
+    color: core.palette-get('neutral', 80);
+
+    @include core.media-max('md') {
+      border-radius: 0;
+      margin: auto calc(var(--vb-layout-padding) * -1);
+    }
+  }
+
+  .pre_inline {
+    padding: 0.8125em 4em 0.8125em 2.5em;
+  }
+
+  .popover {
+    --vb-popover-event: click;
+    --vb-popover-placement: left;
+    --vb-background: #{core.palette-get('primary', 100)};
+    --vb-foreground: #{core.palette-get('primary')};
+  }
+}
+
+.code-block__prompt,
+.code-block__copy-button {
+  position: absolute;
+  top: 0.7rem;
+  padding: 0.5rem;
+}
+
+.code-block__prompt {
+  left: 0.5rem;
+}
+
+.code-block__copy-button {
+  right: 0.7rem;
+}
+
+.code-block_inline {
+
+  .code-block__prompt,
+  .code-block__copy-button {
+    top: 0.5rem;
+  }
+
+  .popover {
+    --vb-popover-offset: 24;
+    --vb-popover-placement: bottom;
+  }
+}

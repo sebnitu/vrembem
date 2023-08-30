@@ -1,12 +1,12 @@
 <template>
   <button
+    ref="popoverTrigger"
     :id="`${uid}-trigger`"
     :data-popover-trigger="uid"
     :aria-controls="uid"
     :aria-label="ariaLabel"
-    ref="popoverTrigger"
-    @click="triggerAction"
-    :class="triggerClass">
+    :class="triggerClass"
+    @click="triggerAction">
     <slot name="trigger">Popover Trigger</slot>
   </button>
   <div
@@ -20,7 +20,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import { popover } from '../modules/usePopover.js';
 
@@ -28,62 +28,54 @@ function uniqueID() {
   return Math.floor(Math.random() * Date.now());
 }
 
-export default {
-  props: {
-    ariaLabel: {
-      type: String,
-      default: null,
-    },
-    arrow: {
-      type: Boolean,
-      default: false,
-    },
-    id: {
-      type: String,
-      default: null,
-    },
-    targetClass: {
-      type: String,
-      default: null,
-    },
-    triggerAction: {
-      type: Function,
-      default: null,
-    },
-    triggerClass: {
-      type: String,
-      default: 'link',
-    },
-    placement: {
-      type: String,
-      default: null
-    }
+const props = defineProps({
+  ariaLabel: {
+    type: String,
+    default: null,
   },
-  setup(props) {
-    const popoverInstance = ref(null);
-    const popoverTrigger = ref(null);
-    const uid = ref(`popover-${(props.id) ? props.id : uniqueID()}`);
-    const cssProps = computed(() => {
-      const css = {};
-      if (props.placement) {
-        css['--vb-popover-placement'] = props.placement;
-      }
-      return css
-    });
-
-    onMounted(() => {
-      popoverInstance.value = popover.register(popoverTrigger.value);
-    });
-
-    onBeforeUnmount(() => {
-      popover.deregister(popoverInstance.value);
-    });
-
-    return {
-      uid,
-      cssProps,
-      popoverTrigger,
-    };
+  arrow: {
+    type: Boolean,
+    default: false,
   },
-};
+  id: {
+    type: String,
+    default: null,
+  },
+  targetClass: {
+    type: String,
+    default: null,
+  },
+  triggerAction: {
+    type: Function,
+    default: null,
+  },
+  triggerClass: {
+    type: String,
+    default: 'link',
+  },
+  placement: {
+    type: String,
+    default: null
+  }
+});
+
+const popoverInstance = ref(null);
+const popoverTrigger = ref(null);
+const uid = ref(`popover-${(props.id) ? props.id : uniqueID()}`);
+const cssProps = computed(() => {
+  const css = {};
+  if (props.placement) {
+    css['--vb-popover-placement'] = props.placement;
+  }
+  return css
+});
+
+onMounted(() => {
+  popoverInstance.value = popover.register(popoverTrigger.value);
+});
+
+onBeforeUnmount(() => {
+  popover.deregister(popoverInstance.value);
+});
+
 </script>
