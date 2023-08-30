@@ -1,6 +1,7 @@
 ---
 import Icon from "../components/Icon.vue";
 import { currentPage } from "../modules/currentPage";
+import ThemeSwitcher from "../components/ThemeSwitcher.vue";
 
 interface Props {
   classes?: string;
@@ -53,56 +54,21 @@ const cp = currentPage(new URL(Astro.request.url).pathname, {
       />
     </a>
   </li>
-  {!inline && <li class="menu__sep" />}
-  <li class={`menu__item${inline ? " margin-left-md" : ""}`}>
-    <button id="select-dark-mode" class="button button_icon">
-      <Icon name="moon" />
-    </button>
-    <button id="select-light-mode" class="button button_icon">
-      <Icon name="sun" />
-    </button>
-  </li>
-</ul>
-
-<script>
-  /**
-   * Theme switching functionality.
-   */
-
-  // Import local store module.
-  import { localStore } from "@vrembem/core";
-
-  // Setup the local storage proxy.
-  const store = localStore("VB:Profile");
-
-  // Get the form element.
-  const btnDark = document.querySelector("#select-dark-mode");
-  const btnLight = document.querySelector("#select-light-mode");
-
-  // If a local store theme preference exists...
-  if (store.get("theme") != "dark") {
-    btnLight.classList.add("display-none");
-    btnDark.classList.remove("display-none");
-  } else {
-    btnDark.classList.add("display-none");
-    btnLight.classList.remove("display-none");
+  {
+    inline && (
+      <>
+        <li class="menu__sep" />
+        <li class={"menu__item margin-left-md"}>
+          <ThemeSwitcher client:only />
+        </li>
+      </>
+    )
   }
-
-  // Dark button event listener.
-  btnDark.addEventListener("click", () => {
-    btnDark.classList.add("display-none");
-    btnLight.classList.remove("display-none");
-    store.set("theme", "dark");
-    document.documentElement.classList.add("theme-dark");
-    document.documentElement.classList.remove("theme-light");
-  });
-
-  // Light button event listener.
-  btnLight.addEventListener("click", () => {
-    btnLight.classList.add("display-none");
-    btnDark.classList.remove("display-none");
-    store.set("theme", "light");
-    document.documentElement.classList.add("theme-light");
-    document.documentElement.classList.remove("theme-dark");
-  });
-</script>
+  {
+    !inline && (
+      <li class="menu__item">
+        <p>Drawer theme switcher...</p>
+      </li>
+    )
+  }
+</ul>
