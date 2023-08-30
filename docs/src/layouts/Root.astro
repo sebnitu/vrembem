@@ -30,12 +30,14 @@ mainClasses += aside ? " has-aside" : "";
       rel="stylesheet"
     />
     <script is:inline>
-      // Make this script blocking to prevent flash of pre-themed content.
-      const local = localStorage.getItem("VB:Profile");
-      const store = local ? JSON.parse(local) : {};
-      if (store.theme && store.theme != "default") {
-        document.documentElement.classList.add("theme-" + store.theme);
-      }
+      (function () {
+        // Make this script blocking to prevent flash of pre-themed content.
+        const local = localStorage.getItem("VB:Profile");
+        const store = local ? JSON.parse(local) : {};
+        if (store.theme) {
+          document.documentElement.classList.add(`theme-${store.theme}`);
+        }
+      })();
     </script>
   </head>
   <body class={bodyClass}>
