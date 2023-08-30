@@ -93,14 +93,15 @@
 .layout__screen {
   position: fixed;
   z-index: 99;
-  transition: opacity .25s;
-  background-color: var(--vb-neutral-10);
-  opacity: 0;
+  transition: background-color .25s, backdrop-filter .25s;
+  background-color: hsl(var(--vb-neutral-hs), 10%, 0%);
+  backdrop-filter: blur(4px) opacity(0);
   inset: auto;
 
   .is-opened ~ &,
   .is-opening ~ & {
-    opacity: 0.8;
+    background-color: hsl(var(--vb-neutral-hs), 10%, 80%);
+    backdrop-filter: blur(4px) opacity(1);
   }
 
   .is-opened ~ &,

@@ -9,7 +9,8 @@
   padding: var(--vb-layout-padding);
   border-top: 1px solid theme.get("border-color");
   border-bottom: 1px solid theme.get("border-color");
-  background-color: var(--vb-background);
+  background-color: theme.get("background-glass");
+  backdrop-filter: blur(8px);
   background-clip: padding-box;
 
   @media (min-width: root.$bp-drawer) {

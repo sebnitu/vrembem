@@ -4,6 +4,7 @@
   --vb-background: hsl(#{palette.get("neutral", "var")}, 10%);
   --vb-background-dark: hsl(#{palette.get("neutral", "var")}, 14%);
   --vb-background-darker: hsl(#{palette.get("neutral", "var")}, 18%);
+  --vb-background-glass: hsl(#{palette.get('neutral', 'var')}, 10%, 90%);
   --vb-foreground: #{palette.get("neutral", 95)};
   --vb-foreground-light: #{palette.get("neutral", 90)};
   --vb-foreground-lighter: #{palette.get("neutral", 80)};
